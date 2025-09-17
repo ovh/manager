@@ -1,9 +1,11 @@
 import { z } from 'zod';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { PASSWORD_REGEX } from './form';
 
 // @todo: to verify with requester for schemas
-export const zForm = (t: any) => {
+export const zForm = (t: (key: string, params?: Record<string, unknown>) => string) => {
   const ADD_SITE_FORM_SCHEMA = z.object({
     adminLogin: z
       .string()

@@ -11,10 +11,12 @@ import NotFound from '@/pages/404';
 
 import {
   ADD_DOMAIN,
+  CREATE,
   DASHBOARD,
   DELETE,
   DISABLE_SSL,
   GENERAL_INFORMATION,
+  IMPORT,
   IMPORT_SSL,
   ONBOARDING,
   ORDER_DOMAIN,
@@ -46,8 +48,10 @@ import { urls } from './routes.constants';
 import {
   ManagedWordpressPage,
   ManagedWordpressResourcePage,
+  ManagedWordpressServiceCreatePage,
   ManagedWordpressServiceDelete,
   ManagedWordpressServiceGeneralInformationPage,
+  ManagedWordpressServiceImportPage,
   ManagedWordpressServiceTasksPage,
 } from './pages/managedWordpress';
 
@@ -79,7 +83,7 @@ export default (
   >
     <Route
       id={WORDPRESS_MANAGED}
-      path={urls.wordpressManaged}
+      path={urls.managedWordpress}
       Component={ManagedWordpressPage}
       handle={{
         tracking: {
@@ -138,6 +142,34 @@ export default (
           breadcrumb: {
             label: 'common:web_hosting_header_tasks',
           },
+        }}
+      />
+      <Route
+        id={CREATE}
+        path={urls.managedWordpressResourceCreate}
+        Component={ManagedWordpressServiceCreatePage}
+        handle={{
+          tracking: {
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: 'common:create_website',
+          },
+          isOverridePage: true,
+        }}
+      />
+      <Route
+        id={IMPORT}
+        path={urls.managedWordpressResourceImport}
+        Component={ManagedWordpressServiceImportPage}
+        handle={{
+          tracking: {
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: 'common:import_website',
+          },
+          isOverridePage: true,
         }}
       />
     </Route>

@@ -1,15 +1,13 @@
-import {
-  Links,
-  LinkType,
-  Notifications,
-} from '@ovh-ux/manager-react-components';
-
 import { useTranslation } from 'react-i18next';
 
-import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { LinkType, Links, Notifications } from '@ovh-ux/manager-react-components';
+
 import { useGenerateUrl } from '@/hooks';
+
 import ImportForm from './steps/ImportForm.component';
 
 export default function ImportPage() {
@@ -27,9 +25,7 @@ export default function ImportPage() {
         className="mb-4"
       />
       <Notifications />
-      <OdsText preset={ODS_TEXT_PRESET.span}>
-        {t(`${NAMESPACES.FORM}:mandatory_fields`)}
-      </OdsText>
+      <OdsText preset={ODS_TEXT_PRESET.span}>{t(`${NAMESPACES.FORM}:mandatory_fields`)}</OdsText>
       <ImportForm />
     </div>
   );

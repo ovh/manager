@@ -1,13 +1,9 @@
-import { useMemo, useState } from 'react';
-import {
-  ActionMenu,
-  Datagrid,
-  DatagridColumn,
-  ManagerButton,
-} from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
+import { useCallback, useMemo, useState } from 'react';
+
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
@@ -15,10 +11,20 @@ import {
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { useManagedWordpressWebsites } from '@/data/hooks/managedWordpressWebsites/useManagedWordpressWebsites';
-import { ManagedWordpressWebsites, ResourceStatus } from '@/data/type';
-import { useGenerateUrl } from '@/hooks';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import {
+  ActionMenu,
+  Datagrid,
+  DatagridColumn,
+  ManagerButton,
+} from '@ovh-ux/manager-react-components';
+
 import { useManagedWordpressResourceDetails } from '@/data/hooks/managedWordpressResourceDetails/useManagedWordpressResourceDetails';
+import { useManagedWordpressWebsites } from '@/data/hooks/managedWordpressWebsites/useManagedWordpressWebsites';
+import { ManagedWordpressWebsites } from '@/data/types/product/managedWordpress';
+import { ResourceStatus } from '@/data/types/status';
+import { useGenerateUrl } from '@/hooks';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -40,9 +46,7 @@ export default function MyWebsitesPage() {
   ]);
   const { serviceName } = useParams();
   const { data } = useManagedWordpressWebsites(serviceName);
-  const { data: dataResourceDetails } = useManagedWordpressResourceDetails(
-    serviceName,
-  );
+  const { data: dataResourceDetails } = useManagedWordpressResourceDetails(serviceName);
   const navigate = useNavigate();
   const [rowSelection, setRowSelection] = useState({});
   const importPage = useGenerateUrl(`./import`, 'href');
@@ -60,14 +64,7 @@ export default function MyWebsitesPage() {
   const selectedIds = Object.keys(rowSelection);
 
   const handleDeleteModalClick = () => {
-    const deleteModal = `${deleteModalBase}?websiteIds=${selectedIds.join(
-      ',',
-    )}`;
-    navigate(deleteModal);
-  };
-
-  const handleDeleteItemClick = (id: string) => {
-    const deleteModal = `${deleteModalBase}?websiteIds=${id}`;
+    const deleteModal = `${deleteModalBase}?websiteIds=${selectedIds.join(',')}`;
     navigate(deleteModal);
   };
 
@@ -76,12 +73,18 @@ export default function MyWebsitesPage() {
     window.open(url, '_blank');
   };
 
-  const isRowSelectable = (item: ManagedWordpressWebsites) => {
-    return item.resourceStatus === ResourceStatus.READY;
-  };
+  const isRowSelectable = useCallback(
+    (item: ManagedWordpressWebsites) => item.resourceStatus === ResourceStatus.READY,
+    [],
+  );
 
-  const columns: DatagridColumn<ManagedWordpressWebsites>[] = useMemo(
-    () => [
+  const columns: DatagridColumn<ManagedWordpressWebsites>[] = useMemo(() => {
+    const handleDeleteItemClick = (id: string) => {
+      const deleteModal = `${deleteModalBase}?websiteIds=${id}`;
+      navigate(deleteModal);
+    };
+
+    return [
       {
         id: 'defaultFQDN',
         cell: (item) => (
@@ -116,9 +119,8 @@ export default function MyWebsitesPage() {
         isSortable: true,
         enableHiding: false,
       },
-    ],
-    [t],
-  );
+    ];
+  }, [t, deleteModalBase, navigate, isRowSelectable]);
 
   return (
     <>
@@ -174,17 +176,10 @@ export default function MyWebsitesPage() {
                 )}
 
                 <OdsText preset={ODS_TEXT_PRESET.span} className="self-center">
-                  {t(
-                    'managedWordpress:web_hosting_managed_wordpress_quota_used',
-                    {
-                      used:
-                        dataResourceDetails?.currentState.quotas.websites
-                          .totalUsage,
-                      total:
-                        dataResourceDetails?.currentState.quotas.websites
-                          .totalQuota,
-                    },
-                  )}
+                  {t('managedWordpress:web_hosting_managed_wordpress_quota_used', {
+                    used: dataResourceDetails?.currentState.quotas.websites.totalUsage,
+                    total: dataResourceDetails?.currentState.quotas.websites.totalQuota,
+                  })}
                 </OdsText>
               </div>
             </div>
