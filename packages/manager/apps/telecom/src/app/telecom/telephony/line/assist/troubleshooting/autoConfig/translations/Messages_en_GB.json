@@ -6,7 +6,7 @@
   "telephony_line_assist_troubleshooting_auto_config_reboot": "Please restart your device.",
   "telephony_line_assist_troubleshooting_auto_config_after_reboot": "After the boot phase, your device should connect to the OVHcloud network and be operational again.",
   "telephony_line_assist_troubleshooting_auto_config_last_ip": "The last known IP address for the device has been entered.",
-  "telephony_line_assist_troubleshooting_auto_config_your_ip": "For your information, the IP address that you use to log in to the Manager is: <strong>{{ ip }}</strong> ({{ domain }}).",
+  "telephony_line_assist_troubleshooting_auto_config_your_ip": "For your information, the IP address you use to log in to the Control Panel is: <strong> {{ ip }}</strong> .",
   "telephony_line_assist_troubleshooting_auto_config_check_ip": "Consider checking that the connection is the same as your telephone system.",
   "telephony_line_assist_troubleshooting_auto_config_public_ip": "Device public IP address:",
   "telephony_line_assist_troubleshooting_auto_config_public_ip_invalid": "Please specify a valid IPv4 address (format: xxx.xxx.xxx.xxx).",

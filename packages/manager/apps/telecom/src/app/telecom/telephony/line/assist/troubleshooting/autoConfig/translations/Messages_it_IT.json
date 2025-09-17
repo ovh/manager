@@ -6,7 +6,7 @@
   "telephony_line_assist_troubleshooting_auto_config_reboot": "Riavvia elettricamente il tuo dispositivo.",
   "telephony_line_assist_troubleshooting_auto_config_after_reboot": "Dopo il riavvio, il dispositivo dovrebbe connettersi alla rete OVHcloud ed essere di nuovo operativo.",
   "telephony_line_assist_troubleshooting_auto_config_last_ip": "L'ultimo indirizzo IP utilizzato dal dispositivo è stato recuperato.",
-  "telephony_line_assist_troubleshooting_auto_config_your_ip": "L'indirizzo IP con cui ti connetti allo Spazio Cliente è: <strong>{{ ip }}</strong> ({{ domain }}).",
+  "telephony_line_assist_troubleshooting_auto_config_your_ip": "Per informazione, l'indirizzo IP con cui ti connetti al manager è: <strong> {{ ip }}</strong> .",
   "telephony_line_assist_troubleshooting_auto_config_check_ip": "Verifica che si tratti dello stessa connessione utilizzata dal tuo parco telefonico.",
   "telephony_line_assist_troubleshooting_auto_config_public_ip": "Indirizzo IP pubblico del dispositivo:",
   "telephony_line_assist_troubleshooting_auto_config_public_ip_invalid": "Inserisci un indirizzo IPv4 valido (formato: xxx.xxx.xxx.xxx).",

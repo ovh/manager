@@ -6,7 +6,7 @@
   "telephony_line_assist_troubleshooting_auto_config_reboot": "Veuillez redémarrer électriquement votre équipement.",
   "telephony_line_assist_troubleshooting_auto_config_after_reboot": "Après la phase de démarrage, votre équipement devrait se connecter au réseau OVH et être de nouveau opérationnel.",
   "telephony_line_assist_troubleshooting_auto_config_last_ip": "La dernière adresse IP connue de l'équipement a été renseignée.",
-  "telephony_line_assist_troubleshooting_auto_config_your_ip": "Pour information, l'adresse IP avec laquelle vous vous connectez au manager est : <strong>{{ ip }}</strong> ({{ domain }}).",
+  "telephony_line_assist_troubleshooting_auto_config_your_ip": "Zur Information: Die IP-Adresse, mit der Sie sich in den Manager einloggen, ist: <strong> {{ ip }}</strong> .",
   "telephony_line_assist_troubleshooting_auto_config_check_ip": "Pensez à vérifier qu'il s'agit de la même connexion que celle de votre parc téléphonique.",
   "telephony_line_assist_troubleshooting_auto_config_public_ip": "Adresse IP publique de l'équipement :",
   "telephony_line_assist_troubleshooting_auto_config_public_ip_invalid": "Veuillez spécifier une adresse IPv4 valide (format: xxx.xxx.xxx.xxx).",
