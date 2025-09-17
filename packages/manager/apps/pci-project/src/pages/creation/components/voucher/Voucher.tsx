@@ -21,6 +21,7 @@ type VoucherProps = {
   setVoucherConfiguration: (
     voucherConfiguration: CartConfiguration | undefined,
   ) => void;
+  initialVoucher?: string | null;
 };
 
 export default function Voucher({
@@ -28,6 +29,7 @@ export default function Voucher({
   itemId,
   voucherConfiguration,
   setVoucherConfiguration,
+  initialVoucher,
 }: VoucherProps) {
   const { t } = useTranslation('new/voucher');
 
@@ -39,7 +41,7 @@ export default function Voucher({
     isPending,
     checkEligibility,
     handleRemove,
-  } = useVoucher({ cartId, itemId, setVoucherConfiguration });
+  } = useVoucher({ cartId, itemId, setVoucherConfiguration, initialVoucher });
 
   return (
     <div className="pci-project-new-voucher">

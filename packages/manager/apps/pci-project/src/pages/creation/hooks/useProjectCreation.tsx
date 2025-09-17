@@ -39,8 +39,7 @@ export const useProjectCreation = ({
   const [billingHref, setBillingHref] = useState('');
   const [orderId, setOrderId] = useState<number | null>(null);
 
-  const [searchParams] = useSearchParams();
-  const voucherCode = searchParams.get('voucher');
+  const [voucherCode, setVoucherCode] = useState<string | null>(null);
 
   const navigate = useNavigate();
   const { addError, addWarning } = useNotifications();
@@ -224,6 +223,7 @@ export const useProjectCreation = ({
   return {
     handleProjectCreation,
     handleCreditAndPay,
+    setVoucherCode,
     isSubmitting,
     needToCheckCustomerInfo,
     billingHref,
