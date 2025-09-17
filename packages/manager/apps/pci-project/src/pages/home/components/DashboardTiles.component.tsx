@@ -20,10 +20,10 @@ export default function DashboardTiles() {
       aria-label={t('pci_projects_project_dashboard_tiles_aria')}
     >
       {tiles
-        .filter((tile) =>
-          tile.type === 'billing'
-            ? tile.items.some((item) => !item.hideTileIfNoOtherItems)
-            : tile.items.length > 0,
+        .filter(
+          (tile) =>
+            tile.items.some((item) => !item.hideTileIfNoOtherItems) &&
+            tile.items.length > 0,
         )
         .map((tile, tileIdx) => (
           <div
