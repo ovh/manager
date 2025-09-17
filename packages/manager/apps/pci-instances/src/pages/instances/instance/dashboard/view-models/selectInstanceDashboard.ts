@@ -6,6 +6,7 @@ import {
   TInstanceAction,
   TInstanceAddress,
   TInstanceAddresses,
+  TInstanceBackup,
   TInstanceFlavor,
   TInstancePrice,
   TInstanceRegion,
@@ -42,6 +43,11 @@ type TPrivateNetwork = {
   otherNetworks: TInstanceAddress[] | null;
 };
 
+type TBackupsInfo = {
+  total: number;
+  lastUpdated: string | null;
+};
+
 export type TInstanceDashboardViewModel = {
   id: string;
   name: string;
@@ -59,10 +65,12 @@ export type TInstanceDashboardViewModel = {
   volumes: TInstanceVolume[];
   sshKey: string | null;
   login: string | null;
+  backupsInfo: TBackupsInfo | null;
   actions: TInstanceActions;
   canActivateMonthlyBilling: boolean;
   isDeleteEnabled: boolean;
   isEditEnabled: boolean;
+  isBackupEnabled: boolean;
 } | null;
 
 const isEditionEnabled = (actions: TInstanceAction[]) =>
@@ -92,6 +100,9 @@ const canActivateMonthlyBilling = (actions: TInstanceAction[]) =>
 
 const canDeleteInstance = (actions: TInstanceAction[]) =>
   actions.some(({ name }) => name === 'delete');
+
+const canCreateBackup = (actions: TInstanceAction[]) =>
+  actions.some(({ name }) => name === 'create_backup');
 
 // TODO: find a way to handle this properly (where to build path and translated label)
 const getActionHrefByName = (
@@ -170,15 +181,23 @@ const getActionHrefByName = (
   return { path: '', isExternal: false };
 };
 
+const isAdditionalAction = ({ name }: { name: TActionName }) => {
+  const excludeActions = [
+    'details',
+    'delete',
+    'activate_monthly_billing',
+    'create_backup',
+  ];
+
+  return !excludeActions.includes(name);
+};
+
 const mapActions = (
   instance: TInstance,
   projectUrl: string,
 ): TInstanceActions =>
   instance.actions
-    .filter(
-      ({ name }) =>
-        !['details', 'delete', 'activate_monthly_billing'].includes(name),
-    )
+    .filter(isAdditionalAction)
     .reduce<TInstanceActions>((acc, action) => {
       const { group, name } = action;
       const newAction = {
@@ -240,8 +259,20 @@ type TUrlBuilderParams = {
   dedicatedUrl: string;
 };
 
+const getBackupsInfo = (backups: TInstanceBackup[], locale: string) => ({
+  total: backups.length,
+  lastUpdated: backups[0]
+    ? new Date(backups[0].createdAt).toLocaleDateString(locale, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      })
+    : null, // the last backup is always the first because backups is already sorted from the api
+});
+
 export const selectInstanceDashboard = (
   { projectUrl, dedicatedUrl }: TUrlBuilderParams,
+  locale: string,
   instance?: TInstance,
 ): TInstanceDashboardViewModel => {
   if (!instance) return null;
@@ -260,9 +291,13 @@ export const selectInstanceDashboard = (
     volumes: instance.volumes ?? [],
     sshKey: instance.sshKey,
     login: instance.login,
+    backupsInfo: instance.backups
+      ? getBackupsInfo(instance.backups, locale)
+      : null,
     actions: mapActions(instance, projectUrl),
     canActivateMonthlyBilling: canActivateMonthlyBilling(instance.actions),
     isDeleteEnabled: canDeleteInstance(instance.actions),
     isEditEnabled: isEditionEnabled(instance.actions),
+    isBackupEnabled: canCreateBackup(instance.actions),
   };
 };
