@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.22.0...@ovh-ux/manager-hub-app@0.23.0) (2025-09-17)
+
+
+### Features
+
+* **okms:** add okms to hub ([4d37559](https://github.com/ovh/manager/commit/4d37559d0634403eab0bd5481191e3c88579fabd)), closes [#MANAGER-19183](https://github.com/ovh/manager/issues/MANAGER-19183)
+
+
+
+
+
 # [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.21.7...@ovh-ux/manager-hub-app@0.22.0) (2025-09-16)
 
 
