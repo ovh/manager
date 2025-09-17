@@ -8,7 +8,6 @@ import { ActionsMenu } from '@/components/menu/ActionsMenu.component';
 import NetworkItem from './network/NetworkItem.component';
 import { DashboardTileBlock } from './DashboardTile.component';
 import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceActionModal';
-import ReverseDNS from './network/ReverseDNS.component';
 import ExpandedNetwork from './network/ExpandedNetwork.component';
 
 const InstanceNetworkingBlock: FC = () => {
@@ -76,9 +75,7 @@ const InstanceNetworkingBlock: FC = () => {
             address={network}
             isFloatingIp={instance.publicNetwork.isFloatingIp}
             actions={publicIpActionsLinks}
-          >
-            <ReverseDNS ip={network.ip} />
-          </NetworkItem>
+          />
         ))}
       </DashboardTileBlock>
       <DashboardTileBlock isLoading={isInstanceLoading} withoutDivider>
