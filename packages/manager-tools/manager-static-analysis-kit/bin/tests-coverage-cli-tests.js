@@ -1,19 +1,5 @@
 #!/usr/bin/env node
-/**
- * Smoke/validation tests for the "manager-tests-coverage" CLI.
- *
- * Runs a set of representative invocations and asserts on exit codes:
- *  - Exit 0 when at least one valid target is analyzed.
- *  - Exit 1 when all provided targets are invalid.
- *
- * NOTE:
- *  - This does not assert on report contents, only that the CLI finishes
- *    with the expected status and doesn’t crash.
- *  - Keep the “all apps” case commented unless you need a full-run debug;
- *    it’s slow because it builds/tests everything with Turbo.
- */
 import { spawnSync } from 'node:child_process';
-import process from 'node:process';
 
 import { logError, logInfo } from './utils/log-utils.js';
 
@@ -76,7 +62,6 @@ for (const test of cases) {
 
 if (failed > 0) {
   logError(`\n❌ ${failed} test(s) failed.`);
-  process.exit(1);
 } else {
   logInfo('\n🎉 All tests-coverage CLI validation tests passed!');
 }

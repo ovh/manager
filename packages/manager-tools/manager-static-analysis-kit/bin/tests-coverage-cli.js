@@ -2,26 +2,23 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
-import { fileURLToPath } from 'node:url';
 
 import {
   collectTestsCoverage,
   generateTestsCoverageHtml,
 } from '../dist/adapters/tests-coverage/helpers/tests-coverage-analysis-helper.js';
+import {
+  appsDir,
+  outputRootDir,
+  rootDir,
+  testsCoverageCombinedHtmlReportName,
+  testsCoverageCombinedJsonReportName,
+  testsCoverageReportsRootDirName,
+} from './cli-path-config.js';
 import { parseCliTargets } from './utils/args-parse-utils.js';
 import { logError, logInfo, logWarn } from './utils/log-utils.js';
 import { runAppsAnalysis } from './utils/runner-utils.js';
 import { resolveTurboFilters, runTurboBuild, runTurboTests } from './utils/turbo-utils.js';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const rootDir = path.resolve(__dirname, '../../..');
-const outputRootDir = path.resolve(__dirname, '../../../..');
-const appsDir = path.join(rootDir, 'manager/apps');
-
-// reports
-const reportsRootDirName = 'tests-coverage-reports';
-const combinedJsonReportName = 'tests-coverage-combined-report.json';
-const combinedHtmlReportName = 'tests-coverage-combined-report.html';
 
 /**
  * Locate common coverage artifacts inside an app directory.
@@ -66,7 +63,7 @@ function findCoverageFiles(appDir) {
  */
 function harvestAppCoverage(appDir, appShortName) {
   const { summary, lcov } = findCoverageFiles(appDir);
-  const outDir = path.join(outputRootDir, reportsRootDirName, appShortName);
+  const outDir = path.join(outputRootDir, testsCoverageReportsRootDirName, appShortName);
   fs.mkdirSync(outDir, { recursive: true });
 
   if (!summary) {
@@ -118,12 +115,15 @@ function main() {
       requireReact: false,
       binaryLabel: 'Tests coverage',
       appRunner: harvestAppCoverage,
-      reportsRootDirName,
-      combinedJson: combinedJsonReportName,
-      combinedHtml: combinedHtmlReportName,
+      reportsRootDirName: testsCoverageReportsRootDirName,
+      combinedJson: testsCoverageCombinedJsonReportName,
+      combinedHtml: testsCoverageCombinedHtmlReportName,
       collectFn: collectTestsCoverage,
       generateHtmlFn: (combined) =>
-        generateTestsCoverageHtml(combined, path.join(outputRootDir, reportsRootDirName)),
+        generateTestsCoverageHtml(
+          combined,
+          path.join(outputRootDir, testsCoverageReportsRootDirName),
+        ),
       outputRootDir,
     });
   } catch (err) {

@@ -250,7 +250,7 @@ export function generateTestsCoverageHtml(
     .row-orange { background:#fff8e1; }
     .row-red { background:#ffe6e6; }
   </style>
-  <h1>Tests Coverage — Combined Report</h1>
+  <h1>Tests Coverage</h1>
   `;
 
   const appRow = (app: string, r: TestsCoverageRow) => {
