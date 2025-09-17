@@ -25,4 +25,5 @@ perf-budgets-reports/**
 types-coverage-reports/**
 code-duplication-reports/**
 tests-coverage-reports/**
+static-dynamic-quality-reports/**/**
 **/.type-coverage/result.json

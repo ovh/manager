@@ -2,26 +2,22 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
-import { fileURLToPath } from 'node:url';
 
 import {
   collectTypesCoverage,
   generateTypesCoverageHtml,
 } from '../dist/adapters/types-coverage/helpers/types-coverage-analysis-helper.js';
+import {
+  appsDir,
+  outputRootDir,
+  tsTypesCoverageBin,
+  typesCoverageCombinedHtmlReportName,
+  typesCoverageCombinedJsonReportName,
+  typesCoverageReportsRootDirName,
+} from './cli-path-config.js';
 import { buildTypesCoverageArgs, parseCliTargets } from './utils/args-parse-utils.js';
 import { logError, logInfo, logWarn } from './utils/log-utils.js';
 import { ensureBinExists, runAppsAnalysis, runCommand } from './utils/runner-utils.js';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const rootDir = path.resolve(__dirname, '../../..');
-const outputRootDir = path.resolve(__dirname, '../../../..');
-const appsDir = path.join(rootDir, 'manager/apps');
-
-const tsCoverageBin = path.resolve(__dirname, '../node_modules/.bin/typescript-coverage-report');
-
-const reportsRootDirName = 'types-coverage-reports';
-const typesCoverageCombinedJsonReportName = 'types-coverage-combined-report.json';
-const typesCoverageCombinedHtmlReportName = 'types-coverage-combined-report.html';
 
 /**
  * Temporarily strip "extends" from tsconfig.json before analysis,
@@ -73,14 +69,18 @@ function patchTsConfig(appDir, fn) {
  */
 function runAppTypesCoverage(appDir, appShortName) {
   return patchTsConfig(appDir, () => {
-    const absoluteOutputDir = path.join(outputRootDir, reportsRootDirName, appShortName);
+    const absoluteOutputDir = path.join(
+      outputRootDir,
+      typesCoverageReportsRootDirName,
+      appShortName,
+    );
     fs.mkdirSync(absoluteOutputDir, { recursive: true });
 
     const relativeOutputDir = path.relative(appDir, absoluteOutputDir);
     logInfo(`Running TypeScript coverage for ${appShortName} → ${absoluteOutputDir}`);
 
     const args = buildTypesCoverageArgs(relativeOutputDir);
-    const ok = runCommand(tsCoverageBin, args, appDir);
+    const ok = runCommand(tsTypesCoverageBin, args, appDir);
 
     const jsonReport = path.join(absoluteOutputDir, 'typescript-coverage.json');
     const htmlReport = path.join(absoluteOutputDir, 'index.html');
@@ -101,7 +101,7 @@ function runAppTypesCoverage(appDir, appShortName) {
  */
 function main() {
   try {
-    ensureBinExists(tsCoverageBin, 'typescript-coverage-report');
+    ensureBinExists(tsTypesCoverageBin, 'typescript-coverage-report');
 
     const { appFolders } = parseCliTargets(appsDir);
 
@@ -111,7 +111,7 @@ function main() {
       requireReact: true,
       binaryLabel: 'Type coverage',
       appRunner: runAppTypesCoverage,
-      reportsRootDirName,
+      reportsRootDirName: typesCoverageReportsRootDirName,
       combinedJson: typesCoverageCombinedJsonReportName,
       combinedHtml: typesCoverageCombinedHtmlReportName,
       collectFn: collectTypesCoverage,

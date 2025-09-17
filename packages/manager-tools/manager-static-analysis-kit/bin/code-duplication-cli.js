@@ -2,27 +2,22 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
-import { fileURLToPath } from 'node:url';
 
 import {
   collectCodeDuplication,
   generateCodeDuplicationHtml,
 } from '../dist/adapters/code-duplication/helpers/code-duplication-analysis-helper.js';
+import {
+  appsDir,
+  codeDupCombinedHtmlReportName,
+  codeDupCombinedJsonReportName,
+  codeDupReportsRootDirName,
+  jscpdBinPath,
+  outputRootDir,
+} from './cli-path-config.js';
 import { buildCodeDuplicationArgs, parseCliTargets } from './utils/args-parse-utils.js';
 import { logError, logInfo, logWarn } from './utils/log-utils.js';
 import { ensureBinExists, runAppsAnalysis, runCommand } from './utils/runner-utils.js';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const rootDir = path.resolve(__dirname, '../../..');
-const outputRootDir = path.resolve(__dirname, '../../../..');
-const appsDir = path.join(rootDir, 'manager/apps');
-
-const jscpdBin = path.resolve(__dirname, '../node_modules/.bin/jscpd');
-
-// reports
-const reportsRootDirName = 'code-duplication-reports';
-const codeDupCombinedJsonReportName = 'code-duplication-combined-report.json';
-const codeDupCombinedHtmlReportName = 'code-duplication-combined-report.html';
 
 /**
  * Run `jscpd` code duplication analysis for a single app.
@@ -33,7 +28,7 @@ const codeDupCombinedHtmlReportName = 'code-duplication-combined-report.html';
  */
 function runAppCodeDuplication(appDir, appShortName) {
   try {
-    const absoluteOutputDir = path.join(outputRootDir, reportsRootDirName, appShortName);
+    const absoluteOutputDir = path.join(outputRootDir, codeDupReportsRootDirName, appShortName);
     fs.mkdirSync(absoluteOutputDir, { recursive: true });
 
     // Relative output path from the app dir (keeps paths clean inside HTML reports)
@@ -42,7 +37,7 @@ function runAppCodeDuplication(appDir, appShortName) {
     logInfo(`Running jscpd for ${appShortName} → ${absoluteOutputDir}`);
 
     const args = [...buildCodeDuplicationArgs(relativeOutputDir), appDir];
-    const ok = runCommand(jscpdBin, args, appDir);
+    const ok = runCommand(jscpdBinPath, args, appDir);
 
     // Validate expected reports
     const jsonReport = path.join(absoluteOutputDir, 'jscpd-report.json');
@@ -75,7 +70,7 @@ function runAppCodeDuplication(appDir, appShortName) {
  */
 function main() {
   try {
-    ensureBinExists(jscpdBin, 'jscpd');
+    ensureBinExists(jscpdBinPath, 'jscpd');
 
     const { appFolders } = parseCliTargets(appsDir);
 
@@ -85,7 +80,7 @@ function main() {
       requireReact: true,
       binaryLabel: 'Code duplication',
       appRunner: runAppCodeDuplication,
-      reportsRootDirName,
+      reportsRootDirName: codeDupReportsRootDirName,
       combinedJson: codeDupCombinedJsonReportName,
       combinedHtml: codeDupCombinedHtmlReportName,
       collectFn: collectCodeDuplication,

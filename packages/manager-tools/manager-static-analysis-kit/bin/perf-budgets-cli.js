@@ -2,29 +2,25 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
-import { fileURLToPath } from 'node:url';
 
 import {
   collectPerfBudgets,
   generatePerfBudgetsHtml,
 } from '../dist/adapters/perf-budgets/helpers/perfs-bundle-analysis-helper.js';
 import { bundleAnalysisConfig } from '../dist/configs/bundle-analysis-config.js';
+import {
+  appsDir,
+  bundleAnalyzerBinPath,
+  outputRootDir,
+  perfBudgetCombinedHtmlReportName,
+  perfBudgetCombinedJsonReportName,
+  perfBudgetsReportDirName,
+  rootDir,
+} from './cli-path-config.js';
 import { parseCliTargets } from './utils/args-parse-utils.js';
 import { logError, logInfo, logWarn } from './utils/log-utils.js';
 import { ensureBinExists, runAppsAnalysis, runCommand } from './utils/runner-utils.js';
 import { resolveTurboFilters, runTurboBuild } from './utils/turbo-utils.js';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const rootDir = path.resolve(__dirname, '../../..');
-const outputRootDir = path.resolve(__dirname, '../../../..');
-const appsDir = path.join(rootDir, 'manager/apps');
-
-const bundleAnalyzerBin = path.resolve(__dirname, '../node_modules/.bin/analyze');
-
-// reports
-const perfBudgetsReportDirName = 'perf-budgets-reports';
-const perfBudgetCombinedJsonReportName = 'perf-budgets-combined-report.json';
-const perfBudgetCombinedHtmlReportName = 'perf-budgets-combined-report.html';
 
 /**
  * Run vite-bundle-analyzer for a given mode (html or json).
@@ -51,7 +47,7 @@ function runAppBundleAnalyzer(appDir, appShortName, mode) {
     bundleAnalysisConfig?.reportFile || 'bundle-report',
   ];
 
-  const ok = runCommand(bundleAnalyzerBin, analyzerArgs, appDir);
+  const ok = runCommand(bundleAnalyzerBinPath, analyzerArgs, appDir);
   if (!ok) {
     logError(`❌ Analyzer (${mode}) failed for ${appShortName}`);
     return false;
@@ -93,7 +89,7 @@ function runAppPerfBudgets(appDir, appShortName) {
  */
 function main() {
   try {
-    ensureBinExists(bundleAnalyzerBin, 'vite-bundle-analyzer');
+    ensureBinExists(bundleAnalyzerBinPath, 'vite-bundle-analyzer');
 
     const { appFolders, packageNames } = parseCliTargets(appsDir);
     const turboFilters = resolveTurboFilters({ appsDir, appFolders, packageNames });

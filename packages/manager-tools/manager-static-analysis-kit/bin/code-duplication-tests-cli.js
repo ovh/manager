@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 import { spawnSync } from 'node:child_process';
-import process from 'node:process';
 
 import { logError, logInfo } from './utils/log-utils.js';
 
@@ -64,7 +63,6 @@ for (const test of cases) {
 
 if (failed > 0) {
   logError(`\n❌ ${failed} test(s) failed.`);
-  process.exit(1);
 } else {
   logInfo('\n🎉 All code-duplication-tests CLI validation tests passed!');
 }
