@@ -10,6 +10,62 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 /**
+ * Parse CLI arguments into a structured object.
+ *
+ * Supports:
+ *   --dry-run
+ *   --format=console|json|html  OR  --format console
+ *   --outDir=dir
+ *   --file=path
+ *   --app=name
+ *   <positional app name>
+ *
+ * Unrecognized args are collected in `rest`.
+ */
+export function parseCliArgs(argv) {
+  const out = {
+    app: undefined,
+    dryRun: false,
+    format: 'console',
+    outDir: 'target',
+    file: undefined,
+    type: undefined, // a11y | w3c | ...
+    rest: [],
+  };
+
+  const [, , ...args] = argv;
+  for (let i = 0; i < args.length; i++) {
+    const arg = args[i];
+
+    if (arg === '--dry-run') {
+      out.dryRun = true;
+    } else if (arg.startsWith('--format=')) {
+      out.format = arg.split('=')[1] || out.format;
+    } else if (arg === '--format' && args[i + 1]) {
+      out.format = args[i + 1];
+      i++;
+    } else if (arg.startsWith('--outDir=')) {
+      out.outDir = arg.split('=')[1] || out.outDir;
+    } else if (arg.startsWith('--file=')) {
+      out.file = arg.split('=')[1] || out.file;
+    } else if (arg.startsWith('--app=')) {
+      out.app = arg.split('=')[1];
+    } else if (!out.app && !arg.startsWith('--')) {
+      out.app = arg;
+    } else if (arg.startsWith('--type=')) {
+      out.type = arg.split('=')[1];
+    } else if (arg === '--type' && args[i + 1]) {
+      out.type = args[i + 1];
+      i++;
+    } else {
+      out.rest.push(arg);
+    }
+  }
+
+  return out;
+}
+
+/**
  * Runs a migration or setup process for a specific app or globally.
  *
  * Supports dry-run, formatter/linter post-processing, and test verification.

@@ -5,57 +5,80 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 export const reportOutputBasePath = resolve(__dirname, '../../../../migration-status-reports');
 
-export const buildRoutesReportFileName = (outputFormat) =>
-  outputFormat === 'json'
-    ? `${reportOutputBasePath}/routes-migration-report.json`
-    : outputFormat === 'html'
-      ? `${reportOutputBasePath}/routes-migration-report.html`
-      : null;
-
-export const buildSwcReportFileName = (outputFormat) =>
-  outputFormat === 'json'
-    ? `${reportOutputBasePath}/swc-migration-report.json`
-    : outputFormat === 'html'
-      ? `${reportOutputBasePath}/swc-migration-report.html`
-      : null;
-
-export const buildTestsReportFileName = (outputFormat) =>
-  outputFormat === 'json'
-    ? `${reportOutputBasePath}/tests-migration-report.json`
-    : outputFormat === 'html'
-      ? `${reportOutputBasePath}/tests-migration-report.html`
-      : null;
-
-export const buildStaticKitReportFileName = (outputFormat) =>
-  outputFormat === 'json'
-    ? `${reportOutputBasePath}/static-kit-migration-report.json`
-    : outputFormat === 'html'
-      ? `${reportOutputBasePath}/static-kit-migration-report.html`
-      : null;
-
-export const buildMergedReportFileName = (outputFormat) =>
-  outputFormat === 'json'
-    ? `${reportOutputBasePath}/migration-status-full-report.json`
-    : outputFormat === 'html'
-      ? `${reportOutputBasePath}/migration-status-full-report.html`
-      : null;
-
-export const buildW3CReportFileName = (outputFormat) =>
-  outputFormat === 'json'
-    ? `${reportOutputBasePath}/w3c-migration-report.json`
-    : outputFormat === 'html'
-      ? `${reportOutputBasePath}/w3c-migration-report.html`
-      : null;
-
-export const buildA11yReportFileName = (outputFormat) =>
-  outputFormat === 'json'
-    ? `${reportOutputBasePath}/a11y-migration-report.json`
-    : outputFormat === 'html'
-      ? `${reportOutputBasePath}/a11y-migration-report.html`
-      : null;
+/**
+ * Build a migration report filename for a given report name and format.
+ *
+ * @param {string} name - Report name prefix (e.g. "routes", "tests", "w3c").
+ * @param {'json'|'html'|string|null} format - Output format ("json", "html", or undefined for console).
+ * @returns {string|null} - Full path to the report file, or null if console output is used.
+ */
+export const buildReportFileName = (name, format) => {
+  if (format === 'json') return `${reportOutputBasePath}/${name}-migration-report.json`;
+  if (format === 'html') return `${reportOutputBasePath}/${name}-migration-report.html`;
+  return null; // console output only
+};
 
 /**
- * Ensure directory exists.
+ * Build the filename for the Routes migration report.
+ *
+ * @param {'json'|'html'|string|null} format - Output format ("json", "html", or console).
+ * @returns {string|null} - Full path to the Routes report file, or null if console mode.
+ */
+export const buildRoutesReportFileName = (format) => buildReportFileName('routes', format);
+
+/**
+ * Build the filename for the SWC migration report.
+ *
+ * @param {'json'|'html'|string|null} format - Output format ("json", "html", or console).
+ * @returns {string|null} - Full path to the SWC report file, or null if console mode.
+ */
+export const buildSwcReportFileName = (format) => buildReportFileName('swc', format);
+
+/**
+ * Build the filename for the Tests migration report.
+ *
+ * @param {'json'|'html'|string|null} format - Output format ("json", "html", or console).
+ * @returns {string|null} - Full path to the Tests report file, or null if console mode.
+ */
+export const buildTestsReportFileName = (format) => buildReportFileName('tests', format);
+
+/**
+ * Build the filename for the Static Kit migration report (ESLint + TS).
+ *
+ * @param {'json'|'html'|string|null} format - Output format ("json", "html", or console).
+ * @returns {string|null} - Full path to the Static Kit report file, or null if console mode.
+ */
+export const buildStaticKitReportFileName = (format) => buildReportFileName('static-kit', format);
+
+/**
+ * Build the filename for the merged full migration report (all categories).
+ *
+ * @param {'json'|'html'|string|null} format - Output format ("json", "html", or console).
+ * @returns {string|null} - Full path to the merged report file, or null if console mode.
+ */
+export const buildMergedReportFileName = (format) =>
+  buildReportFileName('migration-status-full', format);
+
+/**
+ * Build the filename for the W3C HTML validation migration report.
+ *
+ * @param {'json'|'html'|string|null} format - Output format ("json", "html", or console).
+ * @returns {string|null} - Full path to the W3C report file, or null if console mode.
+ */
+export const buildW3CReportFileName = (format) => buildReportFileName('w3c', format);
+
+/**
+ * Build the filename for the Accessibility (a11y) migration report.
+ *
+ * @param {'json'|'html'|string|null} format - Output format ("json", "html", or console).
+ * @returns {string|null} - Full path to the a11y report file, or null if console mode.
+ */
+export const buildA11yReportFileName = (format) => buildReportFileName('a11y', format);
+
+/**
+ * Ensure a directory exists, creating it recursively if needed.
+ *
+ * @param {string} filePath - Path to the file for which the directory must exist.
  */
 const ensureDirectory = (filePath) => {
   const dir = dirname(filePath);
@@ -65,7 +88,11 @@ const ensureDirectory = (filePath) => {
 };
 
 /**
- * Convert report to HTML table.
+ * Convert a JSON report into an HTML table.
+ *
+ * @param {string} title - Title of the report.
+ * @param {object[]} data - Report rows.
+ * @returns {string} - HTML string.
  */
 const renderHtml = (title, data) => {
   const headers = Object.keys(data[0] || {});
@@ -98,11 +125,18 @@ const renderHtml = (title, data) => {
 };
 
 /**
- * Render report to console or file.
+ * Render a report to console, JSON file, or HTML file.
+ *
+ * @param {object[]} report - Array of report rows.
+ * @param {object} options - Rendering options.
+ * @param {string} options.title - Report title.
+ * @param {string[]} options.statusKeys - Keys used to compute the summary.
+ * @param {'console'|'json'|'html'} options.format - Output format.
+ * @param {string|null} options.filename - File path for JSON/HTML output.
  */
 export const renderReport = (report, { title, statusKeys, format, filename }) => {
   if (format === 'json' || format === 'html') {
-    ensureDirectory(filename); // <-- ensure output path exists
+    ensureDirectory(filename);
   }
 
   if (format === 'json') {
@@ -137,8 +171,9 @@ export const renderReport = (report, { title, statusKeys, format, filename }) =>
 };
 
 /**
- * Build merged migration report
- * @returns {any[]}
+ * Build a merged migration report by reading all individual JSON reports.
+ *
+ * @returns {object[]} - Array of merged report rows.
  */
 const buildMergedMigrationReport = () => {
   const reportSources = {
@@ -170,8 +205,10 @@ const buildMergedMigrationReport = () => {
 };
 
 /**
- * Render merged migration report (routes + tests + swc).
- * Honors format: json, html, or undefined (logs to console).
+ * Render the merged migration report (routes, tests, swc, static-kit, w3c, a11y).
+ *
+ * @param {object} options - Rendering options.
+ * @param {'console'|'json'|'html'} options.format - Output format.
  */
 export const renderMergedReport = ({ format }) => {
   const filename = buildMergedReportFileName(format);
@@ -183,6 +220,8 @@ export const renderMergedReport = ({ format }) => {
       'Routes Migration',
       'Tests Migration',
       'SWC Migration',
+      'ESLint Migration',
+      'TypeScript Migration',
       'W3C Migration',
       'A11y Migration',
     ],

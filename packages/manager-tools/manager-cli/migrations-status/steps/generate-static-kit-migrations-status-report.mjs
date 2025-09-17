@@ -9,7 +9,7 @@
  * - Required scripts in package.json
  *
  * Usage:
- *   node static-kit-status.js [--dry-run] [--format json|html]
+ *   node static-kit-status.js [--dry-run] [--format json|html] [--app <name>]
  */
 import { existsSync, readFileSync } from 'fs';
 import path from 'path';
@@ -17,14 +17,9 @@ import stripJsonComments from 'strip-json-comments';
 
 import { applicationsBasePath, getReactApplications } from '../../utils/AppUtils.mjs';
 import { buildStaticKitReportFileName, renderReport } from '../../utils/ExportUtils.mjs';
+import { parseCliArgs } from '../../utils/ScriptUtils.mjs';
 
-/** CLI arguments */
-const args = process.argv.slice(2);
-/** Run without making changes */
-const isDryRun = args.includes('--dry-run');
-/** Optional output format (json, html, etc.) */
-const formatArgIndex = args.findIndex((arg) => arg === '--format');
-const format = formatArgIndex !== -1 ? args[formatArgIndex + 1] : null;
+const cliArgs = parseCliArgs(process.argv);
 
 /** Constants for Static Kit compliance */
 const STATIC_KIT_PKG = '@ovh-ux/manager-static-analysis-kit';
@@ -35,10 +30,6 @@ const STATIC_KIT_TS_STRICT_CONFIG = '@ovh-ux/manager-static-analysis-kit/tsconfi
 
 /**
  * Safely parse a JSON file that may contain comments.
- *
- * @param {string} filePath - Path to the JSON file.
- * @param {string} appName - Application name (for error reporting).
- * @returns {object|null} Parsed JSON object, or null on failure.
  */
 const parseJsonWithComments = (filePath, appName) => {
   try {
@@ -46,7 +37,7 @@ const parseJsonWithComments = (filePath, appName) => {
     const cleaned = stripJsonComments(raw);
     return JSON.parse(cleaned);
   } catch (err) {
-    if (isDryRun) {
+    if (cliArgs.dryRun) {
       console.log(`❌ ${appName}: Failed to parse ${path.basename(filePath)} → ${err.message}`);
     }
     return null;
@@ -55,16 +46,6 @@ const parseJsonWithComments = (filePath, appName) => {
 
 /**
  * Check if a given application is compliant with Static Analysis Kit requirements.
- *
- * Rules:
- * - Must include @ovh-ux/manager-static-analysis-kit in devDependencies
- * - Must not have eslint/typescript directly in dependencies
- * - Must define lint:modern and lint:modern:fix scripts
- * - Must have eslint.config.mjs importing the static kit config
- * - tsconfig.json must extend static-kit tsconfig/react or tsconfig/react-strict
- *
- * @param {string} appName - Application folder name.
- * @returns {{eslint: string, ts: string}} Compliance status.
  */
 const checkStaticKitCompliance = (appName) => {
   const appPath = path.join(applicationsBasePath, appName);
@@ -88,7 +69,7 @@ const checkStaticKitCompliance = (appName) => {
   // 1. Check Static Kit dependency
   if (!devDeps[STATIC_KIT_PKG]) {
     eslintOk = false;
-    if (isDryRun) console.log(`❌ ${appName}: Missing ${STATIC_KIT_PKG} in devDependencies`);
+    if (cliArgs.dryRun) console.log(`❌ ${appName}: Missing ${STATIC_KIT_PKG} in devDependencies`);
   }
 
   // 2. Disallow direct eslint/typescript dependencies
@@ -97,14 +78,14 @@ const checkStaticKitCompliance = (appName) => {
   );
   if (hasBannedDeps) {
     eslintOk = false;
-    if (isDryRun) console.log(`❌ ${appName}: Contains banned eslint/typescript deps`);
+    if (cliArgs.dryRun) console.log(`❌ ${appName}: Contains banned eslint/typescript deps`);
   }
 
   // 3. Check required scripts
   for (const script of REQUIRED_SCRIPTS) {
     if (!scripts[script]) {
       eslintOk = false;
-      if (isDryRun) console.log(`❌ ${appName}: Missing script ${script}`);
+      if (cliArgs.dryRun) console.log(`❌ ${appName}: Missing script ${script}`);
     }
   }
 
@@ -115,12 +96,12 @@ const checkStaticKitCompliance = (appName) => {
     if (content?.includes?.(STATIC_KIT_ESLINT_CONFIG)) {
       eslintUsesStaticKit = true;
     }
-    if (!eslintUsesStaticKit && isDryRun) {
+    if (!eslintUsesStaticKit && cliArgs.dryRun) {
       console.log(`❌ ${appName}: eslint.config.mjs does not import from static-analysis-kit`);
     }
   } else {
     eslintOk = false;
-    if (isDryRun) console.log(`❌ ${appName}: eslint.config.mjs missing`);
+    if (cliArgs.dryRun) console.log(`❌ ${appName}: eslint.config.mjs missing`);
   }
 
   eslintOk = eslintOk && eslintUsesStaticKit;
@@ -128,7 +109,7 @@ const checkStaticKitCompliance = (appName) => {
   // 5. Validate tsconfig.json
   if (!existsSync(tsconfigPath)) {
     tsOk = false;
-    if (isDryRun) console.log(`❌ ${appName}: tsconfig.json missing`);
+    if (cliArgs.dryRun) console.log(`❌ ${appName}: tsconfig.json missing`);
   } else {
     const tsconfig = parseJsonWithComments(tsconfigPath, appName);
     if (!tsconfig) {
@@ -140,7 +121,7 @@ const checkStaticKitCompliance = (appName) => {
         !baseExtends?.includes?.(STATIC_KIT_TS_STRICT_CONFIG)
       ) {
         tsOk = false;
-        if (isDryRun) {
+        if (cliArgs.dryRun) {
           console.log(`❌ ${appName}: tsconfig extends is not compliant → ${baseExtends}`);
         }
       }
@@ -154,13 +135,14 @@ const checkStaticKitCompliance = (appName) => {
 };
 
 /**
- * Generate a status report for all React applications and render it
- * in the specified format (console table, JSON, HTML, etc.).
- *
- * @returns {void}
+ * Generate a status report for React applications and render it.
  */
 const generateStaticKitStatusReport = () => {
-  const apps = getReactApplications();
+  let apps = getReactApplications();
+  if (cliArgs.app) {
+    apps = apps.filter((a) => a === cliArgs.app);
+  }
+
   const report = apps.map((app) => {
     const result = checkStaticKitCompliance(app);
     return {
@@ -173,8 +155,8 @@ const generateStaticKitStatusReport = () => {
   renderReport(report, {
     title: 'Follow Up Static Kit Migration',
     statusKeys: ['ESLint Migration', 'TypeScript Migration'],
-    format,
-    filename: buildStaticKitReportFileName(format),
+    format: cliArgs.format,
+    filename: buildStaticKitReportFileName(cliArgs.format),
   });
 };
 
