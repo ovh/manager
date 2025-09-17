@@ -49,14 +49,14 @@ const Modal = ({
         {...(variant === 'warning' && { color: 'warning' })}
         aria-describedby={id}
         dismissible={dismissible}
+        className="max-h-[unset]"
       >
         <Wrapper>
           <div id={id} className="px-8 pt-6 pb-10">
-            <div id={id} className="px-8 pt-6 pb-10">
+            <div id={id}>
               <Text preset={TEXT_PRESET.heading4}>{title}</Text>
               {children}
             </div>
-            {children}
           </div>
           <div className="flex justify-end p-8 pt-0 gap-4">
             <Button
@@ -64,6 +64,7 @@ const Modal = ({
               variant={BUTTON_VARIANT.ghost}
               color={BUTTON_COLOR.primary}
               onClick={onModalClose}
+              type="button"
             >
               {t('cancel')}
             </Button>
@@ -71,6 +72,7 @@ const Modal = ({
               disabled={isPending || disabled}
               onClick={handleInstanceAction}
               color={BUTTON_COLOR.primary}
+              type="submit"
             >
               {t('confirm')}
             </Button>

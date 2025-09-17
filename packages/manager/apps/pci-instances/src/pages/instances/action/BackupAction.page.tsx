@@ -6,7 +6,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { PropsWithChildren, useCallback, useMemo } from 'react';
 import { Message, MessageBody, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { DefaultError } from '@tanstack/react-query';
 import { formatISO } from 'date-fns';
@@ -84,10 +84,12 @@ const DistantSnapshotSection = ({
   continents: ReturnType<typeof useInstanceBackupPrice>['distantContinents'];
 }) => {
   const { t } = useTranslation('actions');
-  const { watch } = useFormContext<TFormFieldsValues>();
+  const { control } = useFormContext<TFormFieldsValues>();
 
-  const open = watch('distantSnapshot');
-  const distantRegion = watch('distantRegion');
+  const [open, distantRegion] = useWatch({
+    control,
+    name: ['distantSnapshot', 'distantRegion'],
+  });
 
   const {
     price: backupPrice,
@@ -133,16 +135,14 @@ const DistantSnapshotSection = ({
     <>
       <InputField<TFormFieldsValues>
         label={t('pci_instances_actions_backup_instance_distant_name_label')}
-        name={'distantSnapshotName'}
-        type={'text'}
+        name="distantSnapshotName"
+        type="text"
       />
-
       <SelectField<TFormFieldsValues>
         label={t('pci_instances_actions_backup_instance_distant_region_label')}
-        name={'distantRegion'}
+        name="distantRegion"
         items={regionItems}
       />
-
       {!!price && !isBackupLoading && (
         <p className="text-sm font-medium">
           {t('pci_instances_actions_backup_instance_distant_region_price', {
@@ -150,9 +150,8 @@ const DistantSnapshotSection = ({
           })}
         </p>
       )}
-
       {showActivateRegionWarning && (
-        <Message color={'warning'} className="mt-6">
+        <Message color={'warning'} dismissible={false}>
           <MessageBody>
             {t('pci_instances_actions_backup_instance_region_enable_warning')}
           </MessageBody>
@@ -283,9 +282,6 @@ const BackupActionPage = () => {
       )}
     >
       <div className="flex flex-col gap-4">
-        <Text preset={TEXT_PRESET.label}>
-          {t('pci_instances_actions_backup_instance_name_label')}
-        </Text>
         <InputField<TFormFieldsValues>
           label={t('pci_instances_actions_backup_instance_name_label')}
           name={'snapshotName'}
@@ -303,7 +299,7 @@ const BackupActionPage = () => {
           <>
             <ToggleField<TFormFieldsValues>
               label={t('pci_instances_actions_backup_instance_distant_label')}
-              name={'distantSnapshot'}
+              name="distantSnapshot"
               badges={[
                 {
                   label: t('common:pci_instances_common_new'),
