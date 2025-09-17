@@ -40,6 +40,7 @@
 /packages/manager/apps/nasha @ovh/dev-manager-infrastructure-baremetalstorage
 /packages/manager/apps/netapp @ovh/dev-manager-infrastructure-baremetalstorage
 /packages/manager/apps/nutanix @ovh/dev-manager-enterprise-nutanixBackup
+/packages/manager/apps/okms @ovh/dev-manager-enterprise-kms
 /packages/manager/apps/overthebox @ovh/dev-manager-infrastructure-network
 /packages/manager/apps/pci @ovh/dev-manager-pci-all
 /packages/manager/apps/pci-* @ovh/dev-manager-pci-all
