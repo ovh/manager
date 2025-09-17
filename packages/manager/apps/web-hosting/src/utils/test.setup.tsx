@@ -4,7 +4,17 @@ import { Path, To } from 'react-router-dom';
 
 import { vi } from 'vitest';
 
-import { attachedDomainDigStatusMock, websitesMocks } from '../data/__mocks__';
+import {
+  attachedDomainDigStatusMock,
+  managedWordpressRerefenceAvailableLanguageMock,
+  managedWordpressResourceDetailsMock,
+  managedWordpressResourceMock,
+  managedWordpressWebsitesDeleteMock,
+  managedWordpressWebsitesDetailsMock,
+  managedWordpressWebsitesMock,
+  managedWordpressWebsitesTaskMock,
+  websitesMocks,
+} from '../data/__mocks__';
 
 const mocksAxios = vi.hoisted(() => ({
   get: vi.fn(),
@@ -99,6 +109,7 @@ vi.mock('react-router-dom', async (importActual) => {
     useHref: vi.fn<(url: To) => string>((url) =>
       typeof url === 'string' ? url : (url as Path).pathname,
     ),
+    useParams: vi.fn(() => ({}) as Record<string, string | undefined>),
   };
 });
 
@@ -112,24 +123,14 @@ vi.mock('@/data/api/index', () => ({
   getWebHostingAttachedDomainDigStatusQueryKey: vi.fn(),
 }));
 vi.mock('@/data/api/managedWordpress', () => ({
-  getManagedCmsResource: vi.fn(() =>
-    Promise.resolve(managedWordpressResourceMock),
-  ),
-  getManagedCmsResourceDetails: vi.fn(() =>
-    Promise.resolve(managedWordpressResourceDetailsMock),
-  ),
-  getManagedCmsResourceWebsites: vi.fn(() =>
-    Promise.resolve(managedWordpressWebsitesMock),
-  ),
+  getManagedCmsResource: vi.fn(() => Promise.resolve(managedWordpressResourceMock)),
+  getManagedCmsResourceDetails: vi.fn(() => Promise.resolve(managedWordpressResourceDetailsMock)),
+  getManagedCmsResourceWebsites: vi.fn(() => Promise.resolve(managedWordpressWebsitesMock)),
   getManagedCmsResourceWebsiteDetails: vi.fn(() =>
     Promise.resolve(managedWordpressWebsitesDetailsMock),
   ),
-  deleteManagedCmsResourceWebsite: vi.fn(() =>
-    Promise.resolve(managedWordpressWebsitesDeleteMock),
-  ),
-  getManagedCmsResourceWebsiteTasks: vi.fn(() =>
-    Promise.resolve(managedWordpressWebsitesTaskMock),
-  ),
+  deleteManagedCmsResourceWebsite: vi.fn(() => Promise.resolve(managedWordpressWebsitesDeleteMock)),
+  getManagedCmsResourceWebsiteTasks: vi.fn(() => Promise.resolve(managedWordpressWebsitesTaskMock)),
   getManagedCmsReferenceAvailableLanguages: vi.fn(() =>
     Promise.resolve(managedWordpressRerefenceAvailableLanguageMock),
   ),

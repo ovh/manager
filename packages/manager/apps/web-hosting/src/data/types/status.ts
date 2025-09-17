@@ -4,6 +4,8 @@ export enum ResourceStatus {
   ERROR = 'ERROR',
   READY = 'READY',
   UPDATING = 'UPDATING',
+  SUSPENDED = 'SUSPENDED',
+  DONE = 'DONE',
 }
 
 export enum ServiceStatus {

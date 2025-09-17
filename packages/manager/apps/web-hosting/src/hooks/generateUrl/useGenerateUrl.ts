@@ -1,8 +1,5 @@
-import {
-  RelativeRoutingType,
-  useHref,
-  useSearchParams,
-} from 'react-router-dom';
+import { RelativeRoutingType, useHref, useSearchParams } from 'react-router-dom';
+
 import { buildURLWithSearchParams } from '@/utils';
 
 export const useGenerateUrl = (
@@ -10,11 +7,11 @@ export const useGenerateUrl = (
   type: 'path' | 'href' = 'path',
   params?: Record<string, string | number>,
   relativeType: RelativeRoutingType = 'path',
-) => {
+): string => {
   const [searchParams] = useSearchParams();
 
   const urlSearchParams = {
-    serviceName: searchParams.get('serviceName'),
+    serviceName: searchParams.get('serviceName') ?? undefined,
     ...params,
   };
 
@@ -23,8 +20,7 @@ export const useGenerateUrl = (
     searchParams: urlSearchParams,
   });
 
-  if (type === 'href') {
-    return useHref(fullURL, { relative: relativeType });
-  }
-  return fullURL;
+  const href = useHref(fullURL, { relative: relativeType });
+
+  return type === 'href' ? href : fullURL;
 };
