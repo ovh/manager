@@ -1,27 +1,23 @@
 import { useEffect, useMemo } from 'react';
+
 import { Outlet, useNavigate } from 'react-router-dom';
-import {
-  BaseLayout,
-  Datagrid,
-  DatagridColumn,
-  Links,
-} from '@ovh-ux/manager-react-components';
+
 import { useTranslation } from 'react-i18next';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { OdsBadge } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { BaseLayout, Datagrid, DatagridColumn, Links } from '@ovh-ux/manager-react-components';
+
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import { useManagedWordpressResource } from '@/data/hooks/managedWordpressResource/useManagedWordpressResource';
-import { ManagedWordpressResourceType } from '@/data/type';
+import { ManagedWordpressResourceType } from '@/data/types/product/managedWordpress';
 import { useGenerateUrl } from '@/hooks/generateUrl/useGenerateUrl';
 import { getStatusColor } from '@/utils/getStatusColor';
 
 export default function ManagedWordpressPage() {
   const { data, isLoading } = useManagedWordpressResource();
-  const { t } = useTranslation([
-    'common',
-    NAMESPACES.ACTIONS,
-    NAMESPACES.STATUS,
-  ]);
+  const { t } = useTranslation(['common', NAMESPACES.ACTIONS, NAMESPACES.STATUS]);
   const navigate = useNavigate();
 
   const firstItemUrl = useGenerateUrl(
@@ -35,37 +31,34 @@ export default function ManagedWordpressPage() {
     }
   }, [data, isLoading, navigate, firstItemUrl]);
 
+  function ResourceLink({ id }: { id: string }) {
+    const href = useGenerateUrl(`./${id}`, 'href');
+    return <Links href={href} label={id} />;
+  }
   const columns: DatagridColumn<ManagedWordpressResourceType>[] = useMemo(
     () => [
       {
         id: 'id',
-        cell: (item) => {
-          const href = useGenerateUrl(`./${item.id}`, 'href');
-          return <Links href={href} label={item.id} />;
-        },
+        cell: (item) => <ResourceLink id={item?.id} />,
         label: t('common:web_hosting_status_header_resource'),
       },
       {
         id: 'plan',
         cell: (item) => {
-          const match = item.currentState.plan.match(/managed-cms-(\d+)/);
+          const match = item?.currentState?.plan.match(/managed-cms-(\d+)/);
           const numberOfSites = match ? match[1] : '?';
-          return (
-            <span>{`${numberOfSites} ${t('common:web_hosting_sites')}`}</span>
-          );
+          return <span>{`${numberOfSites} ${t('common:web_hosting_sites')}`}</span>;
         },
         label: t('common:web_hosting_status_header_offer'),
       },
       {
         id: 'resourceStatus',
         cell: (item) => {
-          const statusColor = getStatusColor(item.resourceStatus);
+          const statusColor = getStatusColor(item?.resourceStatus);
           return (
             <OdsBadge
               color={statusColor}
-              label={t(
-                `common:web_hosting_status_${item.resourceStatus.toLocaleLowerCase()}`,
-              )}
+              label={t(`common:web_hosting_status_${item?.resourceStatus.toLocaleLowerCase()}`)}
             />
           );
         },
@@ -76,8 +69,8 @@ export default function ManagedWordpressPage() {
         cell: (item) => {
           return (
             <span>
-              {item.currentState.quotas.websites.totalUsage}&nbsp;/&nbsp;
-              {item.currentState.quotas.websites.totalQuota}
+              {item?.currentState?.quotas?.websites?.totalUsage}&nbsp;/&nbsp;
+              {item?.currentState?.quotas?.websites?.totalQuota}
             </span>
           );
         },

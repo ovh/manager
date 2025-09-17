@@ -8,6 +8,13 @@ import {
   attachedDomainDigStatusMock,
   domainInformationMock,
   domainZoneMock,
+  managedWordpressRerefenceAvailableLanguageMock,
+  managedWordpressResourceDetailsMock,
+  managedWordpressResourceMock,
+  managedWordpressWebsitesDeleteMock,
+  managedWordpressWebsitesDetailsMock,
+  managedWordpressWebsitesMock,
+  managedWordpressWebsitesTaskMock,
   serviceInfosMock,
   webHostingMock,
   websitesMocks,
@@ -65,7 +72,9 @@ vi.mock('axios', async (importActual) => {
 });
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importActual) => {
-  const actual = await importActual<typeof import('@ovh-ux/manager-react-shell-client')>();
+  const actual = await importActual<
+    typeof import('@ovh-ux/manager-react-shell-client')
+  >();
   return {
     ...actual,
     ShellContext: React.createContext(mocksHostingUrl),
@@ -90,11 +99,9 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importActual) => {
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   return {
-    ...(await importOriginal<typeof import('@ovh-ux/manager-react-components')>()),
-    useNotifications: () => ({
-      addSuccess: vi.fn(),
-      addWarning: vi.fn(),
-    }),
+    ...(await importOriginal<
+      typeof import('@ovh-ux/manager-react-components')
+    >()),
   };
 });
 
@@ -122,13 +129,7 @@ vi.mock('react-router-dom', async (importActual) => {
     useHref: vi.fn<(url: To) => string>((url) =>
       typeof url === 'string' ? url : (url as Path).pathname,
     ),
-    useParams: vi.fn(
-      () =>
-        ({
-          serviceName: 'serviceName',
-          domain: 'domain',
-        }) as Record<string, string | undefined>,
-    ),
+    useParams: vi.fn(() => ({} as Record<string, string | undefined>)),
   };
 });
 
@@ -138,10 +139,11 @@ vi.mock('@/data/api/index', () => ({
     cursorNext: null,
   }),
   getWebHostingAttachedDomainQueryKey: vi.fn(),
-  getWebHostingAttachedDomainDigStatus: vi.fn(() => Promise.resolve(attachedDomainDigStatusMock)),
+  getWebHostingAttachedDomainDigStatus: vi.fn(() =>
+    Promise.resolve(attachedDomainDigStatusMock),
+  ),
   getWebHostingAttachedDomainDigStatusQueryKey: vi.fn(),
 }));
-<<<<<<< HEAD
 
 vi.mock('@/data/api/dashboard', async (importActual) => {
   return {
@@ -160,22 +162,25 @@ vi.mock('@/data/hooks/webHostingDashboard/useWebHostingDashboard', () => ({
   useGetHostingService: vi.fn(),
 }));
 
-vi.mock('@/data/hooks/webHostingDashboard/useWebHostingDashboard', async (importActual) => {
-  const actual =
-    await importActual<typeof import('@/data/hooks/webHostingDashboard/useWebHostingDashboard')>();
-  return {
-    ...actual,
-    useGetServiceInfos: vi.fn(() => ({
-      data: serviceInfosMock,
-      isSuccess: true,
-      isLoading: false,
-      isError: false,
-      status: 'success',
-    })),
-  };
-});
+vi.mock(
+  '@/data/hooks/webHostingDashboard/useWebHostingDashboard',
+  async (importActual) => {
+    const actual = await importActual<
+      typeof import('@/data/hooks/webHostingDashboard/useWebHostingDashboard')
+    >();
+    return {
+      ...actual,
+      useGetServiceInfos: vi.fn(() => ({
+        data: serviceInfosMock,
+        isSuccess: true,
+        isLoading: false,
+        isError: false,
+        status: 'success',
+      })),
+    };
+  },
+);
 
-=======
 vi.mock('@/data/api/managedWordpress', () => ({
   getManagedCmsResource: vi.fn(() =>
     Promise.resolve(managedWordpressResourceMock),
@@ -199,7 +204,6 @@ vi.mock('@/data/api/managedWordpress', () => ({
     Promise.resolve(managedWordpressRerefenceAvailableLanguageMock),
   ),
 }));
->>>>>>> 8271b8fadde (feat(web-hosting): add listing pages resource and websites)
 afterEach(() => {
   vi.clearAllMocks();
 });

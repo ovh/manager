@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { getManagedCmsResourceDetails } from '@/data/api/managedWordpress';
 
 export const useManagedWordpressResourceDetails = (serviceName: string) => {

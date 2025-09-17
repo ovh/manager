@@ -1,18 +1,12 @@
-import React, { useState, useEffect, ReactNode } from 'react';
-import {
-  Location,
-  NavLink,
-  useLocation,
-  useNavigate,
-  useParams,
-} from 'react-router-dom';
-import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { replaceAll } from '@/utils';
+import React, { ReactNode, useEffect, useState } from 'react';
+
+import { Location, NavLink, useLocation, useNavigate, useParams } from 'react-router-dom';
+
+import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { replaceAll } from '@/utils/string';
 
 export type TabItemProps = {
   name: string;
@@ -30,19 +24,15 @@ export type TabsPanelProps = {
 };
 
 export const activatedTabs = (pathMatchers: RegExp[], location: Location) => {
-  return pathMatchers?.some((pathMatcher) =>
-    pathMatcher.test(location.pathname),
-  );
+  return pathMatchers?.some((pathMatcher) => pathMatcher.test(location.pathname));
 };
 
 export const useComputePathMatchers = (routes: string[]) => {
-  const { serviceName } = useParams();
-
+  const { serviceName } = useParams<{ serviceName: string }>();
   const replacements = {
-    ':serviceName': serviceName,
+    ':serviceName': serviceName || '',
   };
-
-  return routes.map((path) => new RegExp(`${replaceAll(path, replacements)}$`));
+  return routes.map((path) => new RegExp(`^${replaceAll(path, replacements)}$`));
 };
 
 export const TabsPanel: React.FC<TabsPanelProps> = ({ tabs }) => {
@@ -60,16 +50,14 @@ export const TabsPanel: React.FC<TabsPanelProps> = ({ tabs }) => {
         const [pathname] = (tab.to || '').split('?');
         return (
           pathname === location.pathname ||
-          tab.pathMatchers?.some((pathMatcher) =>
-            pathMatcher.test(location.pathname),
-          )
+          tab.pathMatchers?.some((pathMatcher) => pathMatcher.test(location.pathname))
         );
       });
       if (activeTab) {
         setActivePanel(activeTab.name);
       }
     }
-  }, [location.pathname, tabs]);
+  }, [location.pathname, navigate, tabs]);
 
   return (
     <OdsTabs>
