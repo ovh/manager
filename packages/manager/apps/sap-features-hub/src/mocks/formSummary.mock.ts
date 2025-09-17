@@ -5,26 +5,30 @@ import { labels } from '@/test-utils';
 import { LABELS } from '@/utils/label.constants';
 import { ServerConfigVM as VM } from '@/types/servers.type';
 
-const { installation: l } = labels;
+const { installation: l, system: lSystem, form: lForm } = labels;
 
 const getVMFields = (vms: VM[]): StepFieldSummary[] =>
   vms.reduce(
     (fields, vm, index) =>
       [
         ...fields,
-        { type: 'subtitle', isMinor: true, label: `${l.vm} ${index + 1}` },
+        {
+          type: 'subtitle',
+          isMinor: true,
+          label: `${lSystem.vm} ${index + 1}`,
+        },
         { value: vm.name, label: l.server_config_input_vm_name },
-        ...('role' in vm ? [{ value: vm.role, label: l.role }] : []),
+        ...('role' in vm ? [{ value: vm.role, label: lSystem.role }] : []),
         { value: vm.vcpus, label: FORM_LABELS.vcpus },
-        { value: vm.memory, label: l.ram },
+        { value: vm.memory, label: lSystem.ram_gb },
         {
           value: vm.rootPassword,
-          label: l.server_config_input_root_password,
+          label: lSystem.password_root,
           isSecretValue: true,
         },
         {
           value: vm.ipAddress,
-          label: l.server_config_input_ipv4_address,
+          label: lSystem.address_ipv4,
         },
         {
           value: vm.instanceNumber,
@@ -41,13 +45,13 @@ export const mockedFormSummary: { formSummary: StepSummary[] } = {
       title: l.service_input_vmware,
       fields: [
         { value: mock.serviceDisplayName, label: l.service_input_vmware },
-        { value: mock.datacenterName, label: l.service_input_vdc },
-        { value: mock.clusterName, label: l.service_input_cluster },
+        { value: mock.datacenterName, label: lSystem.datacentre },
+        { value: mock.clusterName, label: lSystem.cluster },
       ],
     },
     {
       id: '2',
-      title: l.deployment_summary,
+      title: lSystem.installation,
       fields: [
         {
           value: mock.applicationVersion,
@@ -70,7 +74,7 @@ export const mockedFormSummary: { formSummary: StepSummary[] } = {
         { type: 'subtitle', label: FORM_LABELS.sids },
         { value: mock.sapSid, label: FORM_LABELS.sapSid },
         { value: mock.sapHanaSid, label: FORM_LABELS.sapHanaSid },
-        { type: 'subtitle', label: l.passwords },
+        { type: 'subtitle', label: lSystem.passwords },
         {
           value: mock.masterSapPassword,
           label: FORM_LABELS.masterSapPassword,
@@ -99,10 +103,10 @@ export const mockedFormSummary: { formSummary: StepSummary[] } = {
       fields: [
         { value: mock.bucketId, label: l.common_input_container },
         { value: mock.endpoint, label: FORM_LABELS.endpoint },
-        { value: mock.accessKey, label: l.common_input_access_key },
+        { value: mock.accessKey, label: lSystem.key_access },
         {
           value: mock.secretKey,
-          label: l.common_input_secret_key,
+          label: lSystem.key_secret,
           isSecretValue: true,
         },
       ],
@@ -111,29 +115,29 @@ export const mockedFormSummary: { formSummary: StepSummary[] } = {
       id: '5',
       title: l.os_config_summary,
       fields: [
-        { value: mock.domainName, label: l.os_config_input_domain },
+        { value: mock.domainName, label: lSystem.domain_name },
         { value: mock.osLicense, label: l.os_config_input_suse },
         {
-          value: mock.osUpdate ? l.yes : l.no,
+          value: mock.osUpdate ? lForm.yes : lForm.no,
           label: l.os_config_toggle_update,
         },
         {
-          value: mock.firewallService ? l.yes : l.no,
+          value: mock.firewallService ? lForm.yes : lForm.no,
           label: l.os_config_toggle_firewall_service,
         },
         {
-          value: mock.firewallServer ? l.yes : l.no,
+          value: mock.firewallServer ? lForm.yes : lForm.no,
           label: l.os_config_toggle_firewall_server,
         },
         {
-          value: mock.firewallDatabase ? l.yes : l.no,
+          value: mock.firewallDatabase ? lForm.yes : lForm.no,
           label: l.os_config_toggle_firewall_database,
         },
       ],
     },
     {
       id: '6',
-      title: l.vms,
+      title: lSystem.vms,
       fields: [
         {
           value: mock.network,
@@ -177,22 +181,22 @@ export const mockedFormSummary: { formSummary: StepSummary[] } = {
       title: l.enablement_summary,
       fields: [
         {
-          value: mock.bucketBackint ? l.yes : l.no,
+          value: mock.bucketBackint ? lForm.yes : lForm.no,
           label: l.enablement_input_has_backup,
         },
         { value: mock.bucketBackint?.id, label: l.common_input_container },
         { value: mock.bucketBackint?.endpoint, label: FORM_LABELS.endpoint },
         {
           value: mock.bucketBackint?.accessKey,
-          label: l.common_input_access_key,
+          label: lSystem.key_access,
         },
         {
           value: mock.bucketBackint?.secretKey,
-          label: l.common_input_secret_key,
+          label: lSystem.key_secret,
           isSecretValue: true,
         },
         {
-          value: mock.logsDataPlatform ? l.yes : l.no,
+          value: mock.logsDataPlatform ? lForm.yes : lForm.no,
           label: l.enablement_input_has_logs_ldp_ovh,
         },
         {
