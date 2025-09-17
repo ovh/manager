@@ -31,6 +31,7 @@ export type PaymentStepProps = {
     skipRegistration?: boolean;
   }) => Promise<unknown>;
   onPaymentError: (err: string | undefined) => void;
+  handleVoucherChange?: (voucher: string | undefined) => void;
 };
 
 type PaymentForm = {
@@ -47,6 +48,7 @@ export default function PaymentStep({
   handleCustomSubmitButton,
   onPaymentSubmit,
   onPaymentError,
+  handleVoucherChange,
 }: PaymentStepProps) {
   const [searchParams] = useSearchParams();
   const [paymentForm, setPaymentForm] = useState<PaymentForm>({
@@ -55,6 +57,8 @@ export default function PaymentStep({
     isAsDefault: false,
   });
 
+  const initialVoucher = searchParams.get('voucher') ?? undefined;
+
   const handleVoucherConfigurationChange = (
     voucherConfiguration: CartConfiguration | undefined,
   ) => {
@@ -62,6 +66,14 @@ export default function PaymentStep({
       ...prev,
       voucherConfiguration,
     }));
+    if (voucherConfiguration) {
+      // Needed because the voucher configuration might be empty but attached
+      if (voucherConfiguration?.value !== '') {
+        handleVoucherChange?.(voucherConfiguration?.value);
+      }
+    } else {
+      handleVoucherChange?.(undefined);
+    }
   };
 
   const { data: isStartupProgramAvailable } = useIsStartupProgramAvailable();
@@ -90,6 +102,7 @@ export default function PaymentStep({
         itemId={cartProjectItem.itemId}
         voucherConfiguration={paymentForm.voucherConfiguration}
         setVoucherConfiguration={handleVoucherConfigurationChange}
+        initialVoucher={initialVoucher}
       />
 
       <PaymentMethods

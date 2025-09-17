@@ -63,6 +63,7 @@ export default function ProjectCreation() {
   >(false);
   const [billingHref, setBillingHref] = React.useState<string>('');
   const [orderId, setOrderId] = React.useState<number | null>(null);
+  const [voucherCode, setVoucherCode] = useState<string | undefined>(undefined);
   const { checkAntiFraud } = useAntiFraud();
 
   useEffect(() => {
@@ -145,7 +146,10 @@ export default function ProjectCreation() {
           orderProjectItem({
             cartId: justCreatedCart.cartId,
           });
-          setSearchParams({ cartId: justCreatedCart.cartId });
+          setSearchParams({
+            ...Object.fromEntries(searchParams.entries()),
+            cartId: justCreatedCart.cartId,
+          });
         },
       },
     );
@@ -320,8 +324,6 @@ export default function ProjectCreation() {
         setIsSubmitting(false);
 
         if (cartFinalized.orderId) {
-          const voucherCode = searchParams.get('voucher');
-
           if (voucherCode) {
             navigation.navigateTo(
               'public-cloud',
@@ -352,7 +354,7 @@ export default function ProjectCreation() {
       isSubmitting,
       projectItem,
       needToCheckCustomerInfo,
-      searchParams,
+      voucherCode,
     ],
   );
 
@@ -487,6 +489,7 @@ export default function ProjectCreation() {
             paymentHandler={paymentHandlerRef}
             onPaymentSubmit={handlePaymentSubmit}
             onPaymentError={onPaymentError}
+            handleVoucherChange={(voucher) => setVoucherCode(voucher)}
           />
         </StepComponent>
       </div>
