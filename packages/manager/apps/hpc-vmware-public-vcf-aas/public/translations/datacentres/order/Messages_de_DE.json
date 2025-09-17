@@ -6,7 +6,7 @@
   "managed_vcd_vdc_order_vhost": "Virtual Host",
   "managed_vcd_vdc_order_cpu_speed": "CPU (GHz)",
   "managed_vcd_vdc_order_ram": "RAM",
-  "managed_vcd_vdc_order_ram_value": "{{ram}} GB",
+  "managed_vcd_vdc_order_ram_value": "RAM (GB)",
   "managed_vcd_vdc_order_vcpu_count": "Anzahl der vCPUs",
   "managed_vcd_vdc_order_type": "Typ",
   "managed_vcd_vdc_order_price": "Preis",

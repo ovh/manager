@@ -4,5 +4,5 @@
   "table_column_priority": "Prioridad",
   "table_column_date": "Fecha",
   "table_column_categories": "Categorías",
-  "contact_status_warning": "Parece que hay un problema con la forma de recepción {{ contactType }}. Puedes <anchor> administrar la configuración de recepción</anchor> para corregir este problema."
+  "contact_status_warning": "Parece que hay un problema con el método de recepción {{ contactType }}. Puede <anchor>gestionar los parámetros de recepción</anchor> para solucionar este problema."
 }
