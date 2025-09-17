@@ -5,7 +5,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { Icon, Link, Text } from '@ovhcloud/ods-react';
 import DashboardCardLayout from './DashboardCardLayout.component';
 import { useDashboard } from '../hooks/useDashboard';
-import { DashboardTileBlock } from './DashboardTile.component';
+import { DashboardTileBlock } from './tile/DashboardTile.component';
 import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceActionModal';
 import { Clipboard } from '@/components/clipboard/Clipboard.component';
 
@@ -90,7 +90,6 @@ const InstancePropertyBlock: FC = () => {
       {instance?.login && (
         <DashboardTileBlock
           label={t('pci_instances_dashboard_network_connexion')}
-          withoutDivider
         >
           <div className="flex">
             <Clipboard value={instance.login} />
