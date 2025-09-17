@@ -39,9 +39,11 @@ export const SelectField = <
         }) => (
           <>
             <Select
-              value={value}
+              value={value ? [value] : []}
               items={items}
-              onValueChange={onChange}
+              onValueChange={(changeDetails) =>
+                onChange(changeDetails.value?.[0])
+              }
               invalid={invalid}
             >
               <SelectControl />

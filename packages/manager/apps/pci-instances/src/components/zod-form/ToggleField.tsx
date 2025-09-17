@@ -1,5 +1,5 @@
 import { Controller, FieldPath, FieldValues } from 'react-hook-form';
-import { Text, Toggle, ToggleLabel } from '@ovhcloud/ods-react';
+import { Text, Toggle, ToggleControl, ToggleLabel } from '@ovhcloud/ods-react';
 import { Badge, BadgeProps } from '@ovh-ux/manager-pci-common';
 
 /**
@@ -52,10 +52,12 @@ export const ToggleField = <
               <Text preset={'label'}>
                 <Toggle
                   checked={boolValue ?? false}
-                  onClick={() => onChange(!boolValue)}
+                  onCheckedChange={() => onChange(!boolValue)}
                   onBlur={onBlur}
                 >
-                  <ToggleLabel>
+                  <ToggleControl />
+
+                  <ToggleLabel className="flex">
                     <span>{label}</span>
 
                     {!!badges && (
