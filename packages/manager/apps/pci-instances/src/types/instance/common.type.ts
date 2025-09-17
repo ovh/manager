@@ -70,6 +70,8 @@ export type TPrice = {
 
 export type TRegionType = 'region' | 'localzone' | 'region-3-az' | string;
 
+export type TDeploymentMode = '1AZ' | '3AZ' | 'LZ';
+
 export type TSubnet = {
   id: string;
   name: string;
