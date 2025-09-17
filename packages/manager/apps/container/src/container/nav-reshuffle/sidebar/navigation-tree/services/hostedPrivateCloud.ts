@@ -40,7 +40,7 @@ hostedPrivateCloudUniverse.children = [
         tag: NodeTag.NEW,
         routing: {
           application: 'hpc-vmware-public-vcf-aas',
-          hash: '#/',
+          hash: '/',
         },
         features: ['hpc-vmware-public-vcf-aas'],
       },
