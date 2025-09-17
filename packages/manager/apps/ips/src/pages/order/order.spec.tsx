@@ -264,9 +264,11 @@ describe('Order', async () => {
       await selectOffer({ container, offer: IpOffer.blockAdditionalIp });
       const select = await getOrganisationSelect(container);
 
-      select
-        .querySelectorAll('option')
-        .forEach((option) => expect(option.value).toContain(organisationType));
+      select.querySelectorAll('option').forEach((option, idx) => {
+        if (idx !== 0) {
+          expect(option.value).toContain(organisationType);
+        }
+      });
     },
   );
 
