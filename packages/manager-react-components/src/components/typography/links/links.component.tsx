@@ -17,6 +17,7 @@ export enum IconLinkAlignmentType {
 }
 
 export interface LinksProps {
+  id?: string;
   className?: string;
   color?: ODS_LINK_COLOR;
   download?: string;
