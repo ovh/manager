@@ -73,8 +73,8 @@ describe('useFormSummary hook test suite', () => {
         ![
           l.common_input_container,
           FORM_LABELS.endpoint,
-          l.common_input_access_key,
-          l.common_input_secret_key,
+          l.common_input_access_key, // replace here
+          l.common_input_secret_key, // replace here
           l.enablement_input_logstash_entrypoint,
           l.enablement_input_logstash_certificat,
         ].includes(field.label),

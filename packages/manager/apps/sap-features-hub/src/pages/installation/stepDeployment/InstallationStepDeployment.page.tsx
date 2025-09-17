@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsInputChangeEvent } from '@ovhcloud/ods-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { SelectField } from '@/components/Form/SelectField.component';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import { useInstallationFormContext } from '@/context/InstallationForm.context';
@@ -19,7 +20,7 @@ import {
 } from '@/utils/selectValues';
 
 export default function InstallationStepDeployment() {
-  const { t } = useTranslation('installation');
+  const { t } = useTranslation(['installation', NAMESPACES.ACTIONS]);
   const { previousStep, nextStep } = useFormSteps();
   const {
     values: {
@@ -93,7 +94,7 @@ export default function InstallationStepDeployment() {
       <SelectField
         name="applicationVersion"
         label={t('deployment_input_application_version')}
-        placeholder={t('select_label')}
+        placeholder={t(`${NAMESPACES.ACTIONS}:select_imperative`)}
         options={sapCapabilities?.applicationVersions}
         isLoading={isLoadingSapCapabilities}
         isDisabled={isLoadingSapCapabilities || isSapCapabilitiesError}
@@ -106,7 +107,7 @@ export default function InstallationStepDeployment() {
       <SelectField
         name="applicationType"
         label={t('deployment_input_application_type')}
-        placeholder={t('select_label')}
+        placeholder={t(`${NAMESPACES.ACTIONS}:select_imperative`)}
         options={sapCapabilities?.applicationTypes}
         isLoading={isLoadingSapCapabilities}
         isDisabled={isLoadingSapCapabilities || isSapCapabilitiesError}
@@ -119,7 +120,7 @@ export default function InstallationStepDeployment() {
       <SelectField
         name="deploymentType"
         label={t('deployment_input_deployment_type')}
-        placeholder={t('select_label')}
+        placeholder={t(`${NAMESPACES.ACTIONS}:select_imperative`)}
         options={sapCapabilities?.deploymentTypes}
         isLoading={isLoadingSapCapabilities}
         isDisabled={isLoadingSapCapabilities || isSapCapabilitiesError}

@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import {
   SYSTEM_PASSWORD_INPUTS,
@@ -23,7 +24,7 @@ import { useStepValidation } from '@/hooks/apiValidation/useApiValidation';
 import { useStateMessage } from '@/hooks/stateMessage/stateMessage';
 
 export default function InstallationStepSystemInformation() {
-  const { t } = useTranslation('installation');
+  const { t } = useTranslation(['installation', NAMESPACES.SYSTEM]);
   const { previousStep, nextStep } = useFormSteps();
   const {
     values: { serviceName, ...formValues },
@@ -97,7 +98,9 @@ export default function InstallationStepSystemInformation() {
           {...inputProps}
         />
       ))}
-      <OdsText preset="heading-3">{t('passwords')}</OdsText>
+      <OdsText preset="heading-3">
+        {t(`${NAMESPACES.SYSTEM}:passwords`)}
+      </OdsText>
       {SYSTEM_PASSWORD_INPUTS.map(
         ({ name, helperKey, passwordType, ...inputProps }) => (
           <TextField

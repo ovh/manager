@@ -119,9 +119,10 @@ describe('InstallationStepEnablement page unit test suite', () => {
       'common_helper_container',
       FORM_LABELS.endpoint,
       'common_helper_endpoint',
-      'common_input_access_key',
       'common_helper_access_key',
       'common_input_secret_key',
+      'NAMESPACES.SYSTEM:key_access', // check this test
+      'NAMESPACES.SYSTEM:key_secret', // check this test
       'common_helper_secret_key',
       'enablement_input_has_logs_ldp_ovh',
       'enablement_input_has_logs_ldp_ovh_helper',
