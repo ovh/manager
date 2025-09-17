@@ -18,8 +18,8 @@ const BreadcrumbStory = (args) => {
 export const Basic = BreadcrumbStory.bind({});
 
 Basic.args = {
-  rootLabel: 'vRack Services',
   appName: 'vrack-services',
+  rootLabel: 'vRack Services',
   hideRootLabel: false,
 };
 
