@@ -1,14 +1,14 @@
-import { Status } from '@/types/ssl';
+/* eslint-disable max-lines */
 import {
-  ManagedWordpressResourceType,
-  ResourceStatus,
   ManagedWordpressCmsType,
-  ManagedWordpressWebsites,
-  TaskStatus,
-  ManagedWordpressWebsiteDetails,
   ManagedWordpressResourceDetailsType,
   ManagedWordpressResourceTask,
-} from '../type';
+  ManagedWordpressResourceType,
+  ManagedWordpressWebsiteDetails,
+  ManagedWordpressWebsites,
+} from '../types/product/managedWordpress';
+import { Status } from '../types/product/ssl';
+import { ResourceStatus, TaskStatus } from '../types/status';
 
 export const managedWordpressResourceMock: ManagedWordpressResourceType[] = [
   {
@@ -108,8 +108,7 @@ export const managedWordpressResourceMock: ManagedWordpressResourceType[] = [
       {
         plan: 'test',
         id: '663d955c-9063-46d7-bd4c-e92c3c8d50af',
-        link:
-          '/v2/managedCMS/resource/ddb77eb4-3316-420b-8cee-f02aa3094963/website/ad5be906-3106-4567-bd89-63931cee91e3',
+        link: '/v2/managedCMS/resource/ddb77eb4-3316-420b-8cee-f02aa3094963/website/ad5be906-3106-4567-bd89-63931cee91e3',
         status: 'WAITING_USER_INPUT',
         type: 'WEBSITE_IMPORT',
       },
@@ -128,8 +127,7 @@ export const managedWordpressResourceDetailsMock: ManagedWordpressResourceDetail
       'ovh:project': 'wordpress-project',
       env: 'production',
     },
-    urn:
-      'urn:ovh:resource:managed-wordpress:123e4567-e89b-12d3-a456-426614174000',
+    urn: 'urn:ovh:resource:managed-wordpress:123e4567-e89b-12d3-a456-426614174000',
   },
   currentState: {
     plan: 'wp-professional',
@@ -190,7 +188,7 @@ export const managedWordpressWebsitesMock: ManagedWordpressWebsites[] = [
     resourceStatus: ResourceStatus.READY,
     checksum: 'aaaaa',
     currentState: {
-      cms: ManagedWordpressCmsType.WORD_PRESS,
+      cms: ManagedWordpressCmsType.WORDPRESS,
       createdAt: '2025-01-01T08:00:00+01:00',
       defaultFQDN: '5281b1f7a943.foo.managed-cms.ovh',
       diskUsageBytes: 1073741824,
@@ -201,8 +199,7 @@ export const managedWordpressWebsitesMock: ManagedWordpressWebsites[] = [
     currentTasks: [
       {
         id: '866f8418-9e30-456b-8311-bc465aaf0b7b',
-        link:
-          '/v2/managedCMS/resource/b698cfa5-21bd-466a-9d8f-80eca2e3f844/website/f9c60740-5e93-45a1-9cee-87987c4ddfe5',
+        link: '/v2/managedCMS/resource/b698cfa5-21bd-466a-9d8f-80eca2e3f844/website/f9c60740-5e93-45a1-9cee-87987c4ddfe5',
         status: TaskStatus.RUNNING,
         type: 'WEBSITE_CREATE',
       },
@@ -220,7 +217,7 @@ export const managedWordpressWebsitesMock: ManagedWordpressWebsites[] = [
     resourceStatus: ResourceStatus.CREATING,
     checksum: 'aaaaa',
     currentState: {
-      cms: ManagedWordpressCmsType.WORD_PRESS,
+      cms: ManagedWordpressCmsType.WORDPRESS,
       createdAt: '2025-01-01T08:00:00+01:00',
       defaultFQDN: 'test.fr',
       diskUsageBytes: 0,
@@ -240,8 +237,7 @@ export const managedWordpressWebsitesMock: ManagedWordpressWebsites[] = [
     currentTasks: [
       {
         id: '866f8418-9e30-456b-8311-bc465aaf0b7b',
-        link:
-          '/v2/managedCMS/resource/b698cfa5-21bd-466a-9d8f-80eca2e3f844/website/f9c60740-5e93-45a1-9cee-87987c4ddfe5',
+        link: '/v2/managedCMS/resource/b698cfa5-21bd-466a-9d8f-80eca2e3f844/website/f9c60740-5e93-45a1-9cee-87987c4ddfe5',
         status: TaskStatus.RUNNING,
         type: 'WEBSITE_CREATE',
       },
@@ -255,7 +251,7 @@ export const managedWordpressWebsitesMock: ManagedWordpressWebsites[] = [
     targetSpec: {
       creation: {
         adminLogin: 'admin@admin.com',
-        cms: ManagedWordpressCmsType.WORD_PRESS,
+        cms: ManagedWordpressCmsType.WORDPRESS,
         cmsSpecific: {
           wordPress: {
             language: 'fr_FR',
@@ -266,7 +262,7 @@ export const managedWordpressWebsitesMock: ManagedWordpressWebsites[] = [
       import: {
         adminLogin: 'admin@admin.com',
         adminURL: 'https://test.fr/wp-admin',
-        cms: ManagedWordpressCmsType.WORD_PRESS,
+        cms: ManagedWordpressCmsType.WORDPRESS,
         cmsSpecific: {
           wordPress: {
             selection: {
@@ -295,11 +291,11 @@ export const managedWordpressWebsitesDetailsMock: ManagedWordpressWebsiteDetails
     import: {
       adminURL: 'https://someexternalwordpress.com/wp-admin.php',
       adminLogin: 'admin',
-      cms: ManagedWordpressCmsType.WORD_PRESS,
+      cms: ManagedWordpressCmsType.WORDPRESS,
     },
   },
   currentState: {
-    cms: ManagedWordpressCmsType.WORD_PRESS,
+    cms: ManagedWordpressCmsType.WORDPRESS,
     createdAt: '2025-01-01T08:00:00+01:00',
     defaultFQDN: 'example.com',
     diskUsageBytes: 0,
@@ -325,8 +321,7 @@ export const managedWordpressWebsitesDetailsMock: ManagedWordpressWebsiteDetails
   currentTasks: [
     {
       id: '663d955c-9063-46d7-bd4c-e92c3c8d50af',
-      link:
-        '/v2/managedCMS/resource/ddb77eb4-3316-420b-8cee-f02aa3094963/website/88f3766f-7951-45fc-8336-fea9418c14f4',
+      link: '/v2/managedCMS/resource/ddb77eb4-3316-420b-8cee-f02aa3094963/website/88f3766f-7951-45fc-8336-fea9418c14f4',
       status: Status.RUNNING,
       type: 'WEBSITE_IMPORT',
     },
@@ -338,7 +333,7 @@ export const managedWordpressWebsitesDeleteMock: ManagedWordpressWebsiteDetails 
   resourceStatus: ResourceStatus.DELETING,
   checksum: 'bbbbb',
   currentState: {
-    cms: ManagedWordpressCmsType.WORD_PRESS,
+    cms: ManagedWordpressCmsType.WORDPRESS,
     phpVersion: '8.4',
     createdAt: '2025-01-01T08:00:00+01:00',
     defaultFQDN: '5281b1f7a943.foo.managed-cms.ovh',
@@ -348,8 +343,7 @@ export const managedWordpressWebsitesDeleteMock: ManagedWordpressWebsiteDetails 
   currentTasks: [
     {
       id: '866f8418-9e30-456b-8311-bc465aaf0b7b',
-      link:
-        '/v2/managedCMS/resource/b698cfa5-21bd-466a-9d8f-80eca2e3f844/website/214daed5-19d9-45ea-8d2c-5281b1f7a943',
+      link: '/v2/managedCMS/resource/b698cfa5-21bd-466a-9d8f-80eca2e3f844/website/214daed5-19d9-45ea-8d2c-5281b1f7a943',
       status: Status.PENDING,
       type: 'WEBSITE_DELETE',
     },

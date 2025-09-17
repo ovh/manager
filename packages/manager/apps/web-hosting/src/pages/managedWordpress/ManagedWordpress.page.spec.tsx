@@ -1,7 +1,9 @@
 import { describe, expect } from 'vitest';
-import { render } from '@/utils/test.provider';
-import ManagedWordpressPage from './ManagedWordpress.page';
+
 import ManagedWordpressTranslations from '@/public/translations/common/Messages_fr_FR.json';
+import { render } from '@/utils/test.provider';
+
+import ManagedWordpressPage from './ManagedWordpress.page';
 
 describe('ManagedWordpressPage Page', () => {
   it('should render page with content', () => {

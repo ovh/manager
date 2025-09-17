@@ -1,17 +1,12 @@
-import {
-  ManagerButton,
-  ManagerTile,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
-import {
-  OdsFormField,
-  OdsInput,
-  OdsPassword,
-  OdsCheckbox,
-  OdsText,
-  OdsRadio,
-  OdsMessage,
-} from '@ovhcloud/ods-components/react';
+import { useContext, useEffect, useMemo, useState } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_BUTTON_COLOR,
   ODS_CARD_COLOR,
@@ -19,37 +14,38 @@ import {
   ODS_MESSAGE_COLOR,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
+import {
+  OdsCheckbox,
+  OdsFormField,
+  OdsInput,
+  OdsMessage,
+  OdsPassword,
+  OdsRadio,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useTranslation } from 'react-i18next';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useContext, useEffect, useMemo, useState } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useMutation } from '@tanstack/react-query';
-import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { ManagerButton, ManagerTile, useNotifications } from '@ovh-ux/manager-react-components';
+import { queryClient } from '@ovh-ux/manager-react-core-application';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import {
   postManagedCmsResourceWebsite,
   putManagedCmsResourceWebsiteTasks,
 } from '@/data/api/managedWordpress';
-import { zForm } from '@/utils/formSchemas.utils';
 import { useManagedWordpressWebsiteDetails } from '@/data/hooks/managedWordpressWebsiteDetails/useManagedWordpressWebsiteDetails';
+import { ManagedWordpressCmsType } from '@/data/types/product/managedWordpress';
 import { useGenerateUrl } from '@/hooks';
+import { zForm } from '@/utils/formSchemas.utils';
 
 export default function ImportForm() {
-  const { t } = useTranslation([
-    NAMESPACES.FORM,
-    NAMESPACES.ERROR,
-    'common',
-    'managedWordpress',
-  ]);
+  const { t } = useTranslation([NAMESPACES.FORM, NAMESPACES.ERROR, 'common', 'managedWordpress']);
   const { serviceName } = useParams();
   const [step, setStep] = useState(1);
   const { environment } = useContext(ShellContext);
   const { language } = environment.getUser();
   const { addError, addSuccess } = useNotifications();
-
   // form control for step 1
   const {
     control,
@@ -85,23 +81,23 @@ export default function ImportForm() {
         adminLogin,
         adminPassword,
         adminURL,
-        cms: 'WORD_PRESS',
+        cms: ManagedWordpressCmsType.WORDPRESS,
         cmsSpecific: {
           wordPress: { language },
         },
       });
     },
-    onSuccess: (response) => {
-      if (response?.id) {
+    onSuccess: (response: { id?: string } | void) => {
+      if (response && typeof response === 'object' && 'id' in response && response.id) {
         setWebsiteId(response.id);
         setStep(2);
       }
     },
-    onError: (error: ApiError) => {
+    onError: (error: unknown) => {
       addError(
         <OdsText>
           {t(`${NAMESPACES.ERROR}error_message`, {
-            error: error?.response?.data?.message,
+            error: (error as ApiError)?.response?.data?.message,
           })}
         </OdsText>,
         true,
@@ -133,14 +129,14 @@ export default function ImportForm() {
     if (!data?.currentState.import.checkResult.cmsSpecific.wordPress) {
       return null;
     }
-    const plugins = data.currentState.import.checkResult.cmsSpecific.wordPress.plugins.map(
+    const plugins = data?.currentState.import.checkResult.cmsSpecific.wordPress.plugins.map(
       (plugin) => ({
         name: plugin.name,
         version: plugin.version,
         enabled: true,
       }),
     );
-    const themes = data.currentState.import.checkResult.cmsSpecific.wordPress.themes.map(
+    const themes = data?.currentState.import.checkResult.cmsSpecific.wordPress.themes.map(
       (theme) => ({
         name: theme.name,
         version: theme.version,
@@ -177,20 +173,18 @@ export default function ImportForm() {
   useEffect(() => {
     if (data?.currentState.import.checkResult.cmsSpecific.wordPress) {
       step2Form.reset({
-        plugins: data.currentState.import.checkResult.cmsSpecific.wordPress.plugins.map(
+        plugins: data?.currentState.import.checkResult.cmsSpecific.wordPress.plugins.map(
           (plugin) => ({
             name: plugin.name,
             version: plugin.version,
             enabled: true,
           }),
         ),
-        themes: data.currentState.import.checkResult.cmsSpecific.wordPress.themes.map(
-          (theme) => ({
-            name: theme.name,
-            version: theme.version,
-            active: true,
-          }),
-        ),
+        themes: data?.currentState.import.checkResult.cmsSpecific.wordPress.themes.map((theme) => ({
+          name: theme.name,
+          version: theme.version,
+          active: true,
+        })),
         media: true,
         wholeDatabase: true,
         posts: false,
@@ -211,7 +205,7 @@ export default function ImportForm() {
   const { mutate: launchImport, isPending: isSubmittingStep2 } = useMutation({
     mutationFn: async (values: Step2FormValues) => {
       const inputs = {
-        'import.cmsSpecific.wordPress.selection': {
+        'import.cmsSpecific.wordpress.selection': {
           plugins: values.plugins
             .filter((plugin) => plugin.enabled)
             .map(({ name, version, enabled }) => ({ name, version, enabled })),
@@ -228,31 +222,25 @@ export default function ImportForm() {
         },
       };
       const currentTaskId = data?.currentTasks?.[0]?.id;
-      return putManagedCmsResourceWebsiteTasks(
-        serviceName,
-        inputs,
-        currentTaskId,
-      );
+      return putManagedCmsResourceWebsiteTasks(serviceName, inputs, currentTaskId);
     },
     onSuccess: () => {
       addSuccess(
         <div>
           <span className="block font-bold">
-            {t(
-              'managedWordpress:web_hosting_managed_wordpress_import_success_message_part_1',
-            )}
+            {t('managedWordpress:web_hosting_managed_wordpress_import_success_message_part_1')}
           </span>
           <OdsText preset={ODS_TEXT_PRESET.paragraph} className="block">
-            {t(
-              'managedWordpress:web_hosting_managed_wordpress_import_success_message_part_2',
-            )}
+            {t('managedWordpress:web_hosting_managed_wordpress_import_success_message_part_2')}
           </OdsText>
         </div>,
         true,
       );
-      queryClient.invalidateQueries({
-        queryKey: ['managedWordpressWebsiteDetails', serviceName, websiteId],
-      });
+      queryClient
+        .invalidateQueries({
+          queryKey: ['managedWordpressWebsiteDetails', serviceName, websiteId],
+        })
+        .catch(console.error);
     },
     onError: (error: ApiError) => {
       addError(
@@ -275,7 +263,12 @@ export default function ImportForm() {
   return (
     <>
       {step === 1 && (
-        <form onSubmit={handleSubmit(onStep1Submit)}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            void handleSubmit(onStep1Submit)(e);
+          }}
+        >
           <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
             {t('common:web_hosting_common_url_connexion')}
           </OdsText>
@@ -283,17 +276,12 @@ export default function ImportForm() {
             name="adminURL"
             control={control}
             render={({ field: { name, value, onBlur, onChange } }) => (
-              <OdsFormField
-                className="w-full mb-4"
-                error={errors?.adminURL?.message}
-              >
-                <label slot="label">
-                  {t('common:web_hosting_common_admin_url')}*
-                </label>
+              <OdsFormField className="w-full mb-4" error={errors?.adminURL?.message}>
+                <label slot="label">{t('common:web_hosting_common_admin_url')}*</label>
                 <OdsInput
                   type={ODS_INPUT_TYPE.text}
                   name={name}
-                  value={value as string}
+                  value={value}
                   data-testid="input-admin-url"
                   hasError={!!errors.adminURL}
                   onOdsBlur={onBlur}
@@ -310,17 +298,12 @@ export default function ImportForm() {
             name="adminLogin"
             control={control}
             render={({ field: { name, value, onBlur, onChange } }) => (
-              <OdsFormField
-                className="w-full mb-4"
-                error={errors?.adminLogin?.message}
-              >
-                <label slot="label">
-                  {t('common:web_hosting_common_admin_login')}*
-                </label>
+              <OdsFormField className="w-full mb-4" error={errors?.adminLogin?.message}>
+                <label slot="label">{t('common:web_hosting_common_admin_login')}*</label>
                 <OdsInput
                   type={ODS_INPUT_TYPE.text}
                   name={name}
-                  value={value as string}
+                  value={value}
                   data-testid="input-admin-login"
                   hasError={!!errors.adminLogin}
                   onOdsBlur={onBlur}
@@ -334,18 +317,13 @@ export default function ImportForm() {
             name="adminPassword"
             control={control}
             render={({ field: { name, value, onBlur, onChange } }) => (
-              <OdsFormField
-                className="w-full mb-4"
-                error={errors?.adminPassword?.message}
-              >
-                <label slot="label">
-                  {t('common:web_hosting_common_admin_password')}*
-                </label>
+              <OdsFormField className="w-full mb-4" error={errors?.adminPassword?.message}>
+                <label slot="label">{t('common:web_hosting_common_admin_password')}*</label>
                 <OdsPassword
                   name={name}
-                  value={value as string}
+                  value={value}
                   data-testid="input-admin-password"
-                  hasError={!!errors.adminPassword}
+                  hasError={!!errors?.adminPassword}
                   onOdsBlur={onBlur}
                   onOdsChange={onChange}
                   className="w-full"
@@ -369,22 +347,22 @@ export default function ImportForm() {
         </form>
       )}
       {step === 2 && (
-        <form onSubmit={handleSubmitStep2(onStep2Submit)}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            void handleSubmitStep2(onStep2Submit)(e);
+          }}
+        >
+          {' '}
           <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
-            {t(
-              'managedWordpress:web_hosting_managed_wordpress_import_select_element',
-            )}
+            {t('managedWordpress:web_hosting_managed_wordpress_import_select_element')}
           </OdsText>
           <OdsText preset={ODS_TEXT_PRESET.span}>
-            {t(
-              'managedWordpress:web_hosting_managed_wordpress_import_select_element_description',
-            )}
+            {t('managedWordpress:web_hosting_managed_wordpress_import_select_element_description')}
           </OdsText>
           <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
             <ManagerTile color={ODS_CARD_COLOR.neutral}>
-              <ManagerTile.Title>
-                {t('common:web_hosting_common_plugins')}
-              </ManagerTile.Title>
+              <ManagerTile.Title>{t('common:web_hosting_common_plugins')}</ManagerTile.Title>
               <OdsText preset={ODS_TEXT_PRESET.span}>
                 {t(
                   'managedWordpress:web_hosting_managed_wordpress_import_select_plugins_description',
@@ -406,14 +384,12 @@ export default function ImportForm() {
                 />
                 <label className="ml-4 cursor-pointer">
                   <OdsText>
-                    {t(
-                      'managedWordpress:web_hosting_managed_wordpress_import_select_plugins_all',
-                    )}
+                    {t('managedWordpress:web_hosting_managed_wordpress_import_select_plugins_all')}
                   </OdsText>
                 </label>
               </div>
               <div className="ml-8">
-                {data?.currentState.import.checkResult.cmsSpecific.wordPress.plugins.map(
+                {data?.currentState?.import?.checkResult?.cmsSpecific?.wordPress?.plugins.map(
                   (plugin, index) => (
                     <div key={plugin.name}>
                       <input
@@ -438,10 +414,7 @@ export default function ImportForm() {
                               onOdsBlur={onBlur}
                               onOdsChange={(e) => onChange(e.detail.checked)}
                             />
-                            <label
-                              htmlFor={plugin.name}
-                              className="ml-4 cursor-pointer"
-                            >
+                            <label htmlFor={plugin.name} className="ml-4 cursor-pointer">
                               <OdsText>{plugin.name}</OdsText>
                             </label>
                           </div>
@@ -453,9 +426,7 @@ export default function ImportForm() {
               </div>
             </ManagerTile>
             <ManagerTile color={ODS_CARD_COLOR.neutral}>
-              <ManagerTile.Title>
-                {t('common:web_hosting_common_themes')}
-              </ManagerTile.Title>
+              <ManagerTile.Title>{t('common:web_hosting_common_themes')}</ManagerTile.Title>
               <OdsText preset={ODS_TEXT_PRESET.span}>
                 {t(
                   'managedWordpress:web_hosting_managed_wordpress_import_select_themes_description',
@@ -478,14 +449,12 @@ export default function ImportForm() {
                 />
                 <label className="ml-4 cursor-pointer">
                   <OdsText>
-                    {t(
-                      'managedWordpress:web_hosting_managed_wordpress_import_select_themes_all',
-                    )}
+                    {t('managedWordpress:web_hosting_managed_wordpress_import_select_themes_all')}
                   </OdsText>
                 </label>
               </div>
               <div className="ml-8">
-                {data?.currentState.import.checkResult.cmsSpecific.wordPress.themes.map(
+                {data?.currentState?.import?.checkResult?.cmsSpecific?.wordPress?.themes.map(
                   (theme, index) => (
                     <div key={theme.name}>
                       <input
@@ -511,10 +480,7 @@ export default function ImportForm() {
                               onOdsBlur={onBlur}
                               onOdsChange={(e) => onChange(e.detail.checked)}
                             />
-                            <label
-                              htmlFor={theme.name}
-                              className="ml-4 cursor-pointer"
-                            >
+                            <label htmlFor={theme.name} className="ml-4 cursor-pointer">
                               <OdsText>{theme.name}</OdsText>
                             </label>
                           </div>
@@ -526,9 +492,7 @@ export default function ImportForm() {
               </div>
             </ManagerTile>
             <ManagerTile color={ODS_CARD_COLOR.neutral}>
-              <ManagerTile.Title>
-                {t('common:web_hosting_common_medias')}
-              </ManagerTile.Title>
+              <ManagerTile.Title>{t('common:web_hosting_common_medias')}</ManagerTile.Title>
               <OdsText preset={ODS_TEXT_PRESET.span}>
                 {t(
                   'managedWordpress:web_hosting_managed_wordpress_import_select_medias_description',
@@ -546,13 +510,8 @@ export default function ImportForm() {
                       onOdsChange={(e) => onChange(e.detail.checked)}
                       name={name}
                     />
-                    <label
-                      htmlFor="import-media"
-                      className="ml-4 cursor-pointer"
-                    >
-                      <OdsText>
-                        {t('common:web_hosting_common_media_all')}
-                      </OdsText>
+                    <label htmlFor="import-media" className="ml-4 cursor-pointer">
+                      <OdsText>{t('common:web_hosting_common_media_all')}</OdsText>
                     </label>
                   </div>
                 )}
@@ -562,9 +521,7 @@ export default function ImportForm() {
           <ManagerTile color={ODS_CARD_COLOR.neutral} className="mt-6">
             <div className="m-4">
               <div className="flex flex-col items-start justify-between mb-4">
-                <ManagerTile.Title>
-                  {t('common:web_hosting_common_database')}
-                </ManagerTile.Title>
+                <ManagerTile.Title>{t('common:web_hosting_common_database')}</ManagerTile.Title>
                 <OdsText preset={ODS_TEXT_PRESET.span}>
                   {t(
                     'managedWordpress:web_hosting_managed_wordpress_import_select_database_description',
@@ -587,10 +544,7 @@ export default function ImportForm() {
                         />
                       )}
                     />
-                    <label
-                      htmlFor="import-all-database"
-                      className="ml-4 cursor-pointer"
-                    >
+                    <label htmlFor="import-all-database" className="ml-4 cursor-pointer">
                       {t(
                         'managedWordpress:web_hosting_managed_wordpress_import_select_wholedatabase_select',
                       )}{' '}
@@ -617,10 +571,7 @@ export default function ImportForm() {
                         />
                       )}
                     />
-                    <label
-                      htmlFor="import-database"
-                      className="ml-4 cursor-pointer"
-                    >
+                    <label htmlFor="import-database" className="ml-4 cursor-pointer">
                       {t(
                         'managedWordpress:web_hosting_managed_wordpress_import_select_database_category_select',
                       )}
@@ -653,10 +604,7 @@ export default function ImportForm() {
                       onOdsBlur={onBlur}
                       onOdsChange={onChange}
                     />
-                    <label
-                      htmlFor="import-posts"
-                      className="ml-4 cursor-pointer"
-                    >
+                    <label htmlFor="import-posts" className="ml-4 cursor-pointer">
                       <OdsText>{t('common:web_hosting_common_posts')}</OdsText>
                     </label>
                   </div>
@@ -677,10 +625,7 @@ export default function ImportForm() {
                       onOdsBlur={onBlur}
                       onOdsChange={(e) => onChange(e.detail.checked)}
                     />
-                    <label
-                      htmlFor="import-pages"
-                      className="ml-4 cursor-pointer"
-                    >
+                    <label htmlFor="import-pages" className="ml-4 cursor-pointer">
                       <OdsText>{t('common:web_hosting_common_pages')}</OdsText>
                     </label>
                   </div>
@@ -701,13 +646,8 @@ export default function ImportForm() {
                       onOdsBlur={onBlur}
                       onOdsChange={(e) => onChange(e.detail.checked)}
                     />
-                    <label
-                      htmlFor="import-comments"
-                      className="ml-4 cursor-pointer"
-                    >
-                      <OdsText>
-                        {t('common:web_hosting_common_comments')}
-                      </OdsText>
+                    <label htmlFor="import-comments" className="ml-4 cursor-pointer">
+                      <OdsText>{t('common:web_hosting_common_comments')}</OdsText>
                     </label>
                   </div>
                 )}
@@ -727,10 +667,7 @@ export default function ImportForm() {
                       onOdsBlur={onBlur}
                       onOdsChange={(e) => onChange(e.detail.checked)}
                     />
-                    <label
-                      htmlFor="import-tags"
-                      className="ml-4 cursor-pointer"
-                    >
+                    <label htmlFor="import-tags" className="ml-4 cursor-pointer">
                       <OdsText>{t('common:web_hosting_common_tags')}</OdsText>
                     </label>
                   </div>
@@ -751,10 +688,7 @@ export default function ImportForm() {
                       onOdsBlur={onBlur}
                       onOdsChange={(e) => onChange(e.detail.checked)}
                     />
-                    <label
-                      htmlFor="import-users"
-                      className="ml-4 cursor-pointer"
-                    >
+                    <label htmlFor="import-users" className="ml-4 cursor-pointer">
                       <OdsText>{t('common:web_hosting_common_users')}</OdsText>
                     </label>
                   </div>
@@ -762,11 +696,7 @@ export default function ImportForm() {
               />
             </div>
           </ManagerTile>
-          <OdsMessage
-            color={ODS_MESSAGE_COLOR.warning}
-            isDismissible={false}
-            className="mt-4"
-          >
+          <OdsMessage color={ODS_MESSAGE_COLOR.warning} isDismissible={false} className="mt-4">
             <div className="flex flex-col space-y-2">
               <span>
                 {t(
@@ -774,9 +704,7 @@ export default function ImportForm() {
                 )}{' '}
               </span>
               <span>
-                {t(
-                  'managedWordpress:web_hosting_managed_wordpress_import_warning_message_part_2',
-                )}
+                {t('managedWordpress:web_hosting_managed_wordpress_import_warning_message_part_2')}
               </span>
             </div>
           </OdsMessage>

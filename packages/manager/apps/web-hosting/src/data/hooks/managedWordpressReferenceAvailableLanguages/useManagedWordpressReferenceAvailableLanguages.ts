@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+
 import { getManagedCmsReferenceAvailableLanguages } from '@/data/api/managedWordpress';
 
 export const useManagedWordpressReferenceAvailableLanguages = () => {

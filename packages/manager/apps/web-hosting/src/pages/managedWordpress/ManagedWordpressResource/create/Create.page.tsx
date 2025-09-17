@@ -1,42 +1,44 @@
-import {
-  Links,
-  LinkType,
-  ManagerButton,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_INPUT_TYPE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  OdsInput,
   OdsFormField,
+  OdsInput,
   OdsPassword,
   OdsSelect,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { ODS_INPUT_TYPE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useMutation } from '@tanstack/react-query';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { LinkType, Links, ManagerButton, useNotifications } from '@ovh-ux/manager-react-components';
+
+import { postManagedCmsResourceWebsite } from '@/data/api/managedWordpress';
+import { useManagedWordpressReferenceAvailableLanguages } from '@/data/hooks/managedWordpressReferenceAvailableLanguages/useManagedWordpressReferenceAvailableLanguages';
+import { ManagedWordpressCmsType } from '@/data/types/product/managedWordpress';
 import { useGenerateUrl } from '@/hooks';
 import { zForm } from '@/utils';
-import { useManagedWordpressReferenceAvailableLanguages } from '@/data/hooks/managedWordpressReferenceAvailableLanguages/useManagedWordpressReferenceAvailableLanguages';
-import { postManagedCmsResourceWebsite } from '@/data/api/managedWordpress';
 
 export default function CreatePage() {
-  const { t } = useTranslation([
-    NAMESPACES.FORM,
-    NAMESPACES.ERROR,
-    'common',
-    'managedWordpress',
-  ]);
+  const { t } = useTranslation([NAMESPACES.FORM, NAMESPACES.ERROR, 'common', 'managedWordpress']);
   const { serviceName } = useParams();
   const navigate = useNavigate();
 
   const goBackUrl = useGenerateUrl('..', 'href');
   const onCloseUrl = useGenerateUrl('..', 'path');
   const onClose = () => navigate(onCloseUrl);
-  const { data } = useManagedWordpressReferenceAvailableLanguages();
+  interface LanguageOption {
+    code: string;
+    name: string;
+  }
+
+  const { data } = useManagedWordpressReferenceAvailableLanguages() as {
+    data: LanguageOption[] | undefined;
+  };
   const { addError, addSuccess } = useNotifications();
 
   const {
@@ -74,7 +76,7 @@ export default function CreatePage() {
       return postManagedCmsResourceWebsite(serviceName, {
         adminLogin,
         adminPassword,
-        cms: 'WORD_PRESS',
+        cms: ManagedWordpressCmsType.WORDPRESS,
         cmsSpecific: {
           wordPress: { language },
         },
@@ -83,9 +85,7 @@ export default function CreatePage() {
     onSuccess: () => {
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t(
-            'managedWordpress:web_hosting_managed_wordpress_create_webiste_success',
-          )}
+          {t('managedWordpress:web_hosting_managed_wordpress_create_webiste_success')}
         </OdsText>,
         true,
       );
@@ -93,9 +93,7 @@ export default function CreatePage() {
     onError: () => {
       addError(
         <OdsText>
-          {t(
-            'managedWordpress:web_hosting_managed_wordpress_create_webiste_error',
-          )}
+          {t('managedWordpress:web_hosting_managed_wordpress_create_webiste_error')}
         </OdsText>,
         true,
       );
@@ -138,14 +136,10 @@ export default function CreatePage() {
         label={t('common:web_hosting_common_sites_backlink')}
         className="mb-4"
       />
-      <OdsText preset={ODS_TEXT_PRESET.span}>
-        {t(`${NAMESPACES.FORM}:mandatory_fields`)}
-      </OdsText>
-      <form onSubmit={handleSubmit(onCreateSubmit)}>
+      <OdsText preset={ODS_TEXT_PRESET.span}>{t(`${NAMESPACES.FORM}:mandatory_fields`)}</OdsText>
+      <form onSubmit={() => handleSubmit(onCreateSubmit)}>
         <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
-          {t(
-            'managedWordpress:web_hosting_managed_wordpress_create_webiste_create_login',
-          )}
+          {t('managedWordpress:web_hosting_managed_wordpress_create_webiste_create_login')}
         </OdsText>
         <Controller
           name="cmsSpecific.wordPress.language"
@@ -153,10 +147,7 @@ export default function CreatePage() {
           render={({ field }) => (
             <OdsFormField className="w-full mb-4">
               <label slot="label">
-                {t(
-                  'managedWordpress:web_hosting_managed_wordpress_create_webiste_language_admin',
-                )}
-                *
+                {t('managedWordpress:web_hosting_managed_wordpress_create_webiste_language_admin')}*
               </label>
               <OdsSelect
                 name={field.name}
@@ -167,7 +158,7 @@ export default function CreatePage() {
                 )}
                 onOdsChange={(e) => field.onChange(e.target?.value)}
               >
-                {data?.map((option: any) => (
+                {data?.map((option: LanguageOption) => (
                   <option key={option.code} value={option.code}>
                     {option.name}
                   </option>
@@ -181,17 +172,12 @@ export default function CreatePage() {
           name="adminLogin"
           control={control}
           render={({ field }) => (
-            <OdsFormField
-              className="w-full mb-4"
-              error={errors?.adminLogin?.message}
-            >
-              <label slot="label">
-                {t('common:web_hosting_common_admin_email')}*
-              </label>
+            <OdsFormField className="w-full mb-4" error={errors?.adminLogin?.message}>
+              <label slot="label">{t('common:web_hosting_common_admin_email')}*</label>
               <OdsInput
                 type={ODS_INPUT_TYPE.text}
                 name={field.name}
-                value={field.value as string}
+                value={field.value}
                 data-testid="input-admin-login"
                 hasError={!!errors.adminLogin}
                 onOdsBlur={field.onBlur}
@@ -208,16 +194,11 @@ export default function CreatePage() {
           name="adminPassword"
           control={control}
           render={({ field }) => (
-            <OdsFormField
-              className="w-full mb-4"
-              error={errors?.adminPassword?.message}
-            >
-              <label slot="label">
-                {t('common:web_hosting_common_admin_password')}*
-              </label>
+            <OdsFormField className="w-full mb-4" error={errors?.adminPassword?.message}>
+              <label slot="label">{t('common:web_hosting_common_admin_password')}*</label>
               <OdsPassword
                 name={field.name}
-                value={field.value as string}
+                value={field.value}
                 data-testid="input-admin-password"
                 hasError={!!errors.adminPassword}
                 onOdsBlur={field.onBlur}

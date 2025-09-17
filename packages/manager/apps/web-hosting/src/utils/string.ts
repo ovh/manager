@@ -1,17 +1,12 @@
-export const replaceAll = (str: string, obj: Record<string, string>) => {
+export const replaceAll = (str: string, obj: Record<string, string>): string => {
+  if (!str) return str;
   let replaced = str;
-
   Object.keys(obj).forEach((key) => {
-    replaced = replaced.replace(new RegExp(key, 'g'), obj[key]);
+    replaced = replaced.replace(new RegExp(escapeRegExp(key), 'g'), obj[key]);
   });
-
   return replaced;
 };
 
-export const capitalize = (val: string) => {
-  return (
-    String(val)
-      .charAt(0)
-      .toUpperCase() + String(val).slice(1)
-  );
+const escapeRegExp = (value: string): string => {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // échappe les caractères spéciaux
 };

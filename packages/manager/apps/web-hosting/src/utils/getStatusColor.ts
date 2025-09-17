@@ -1,13 +1,11 @@
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import {
-  DnsStatus,
-  GitStatus,
-  ResourceStatus,
-  ServiceStatus,
-} from '@/data/type';
-import { Status } from '@/types/ssl';
 
-export const getStatusColor = (status: string) => {
+import { Status } from '@/data/types/product/ssl';
+import { DnsStatus, GitStatus, ResourceStatus, ServiceStatus } from '@/data/types/status';
+
+export const getStatusColor = (
+  status: GitStatus | ResourceStatus | ServiceStatus | DnsStatus | Status,
+) => {
   switch (status) {
     case GitStatus.CREATED:
     case ResourceStatus.READY:
