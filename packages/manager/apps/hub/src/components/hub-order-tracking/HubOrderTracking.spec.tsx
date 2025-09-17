@@ -140,4 +140,25 @@ describe('HubOrderTracking Component', async () => {
     const formattedDate = screen.getByText(new Date().toLocaleDateString());
     expect(formattedDate).toBeInTheDocument();
   });
+
+  it('displays payment not received when status is notPaid', async () => {
+    useLastOrderTrackingMockValue.isLoading = false;
+    useLastOrderTrackingMockValue.error = false;
+    useLastOrderTrackingMockValue.data = {
+      orderId: 231474541,
+      date: new Date().toISOString(),
+      status: 'notPaid',
+      history: [
+        { date: new Date().toISOString(), label: 'PAYMENT_INITIATED' },
+      ],
+    };
+
+    renderComponent(<HubOrderTracking />);
+
+    await waitFor(() => {
+      expect(
+        screen.getByText('order_tracking_history_custom_payment_waiting'),
+      ).toBeInTheDocument();
+    });
+  });
 });
