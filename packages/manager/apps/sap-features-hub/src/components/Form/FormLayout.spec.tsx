@@ -38,7 +38,10 @@ describe('FormLayout component unit test suite', () => {
     const previousCTA = getByTestId(testIds.formPreviousCta);
     expect(previousCTA).toBeVisible();
     expect(previousCTA).toHaveAttribute('variant', 'outline');
-    expect(previousCTA).toHaveAttribute('label', 'previous_step_cta');
+    expect(previousCTA).toHaveAttribute(
+      'label',
+      `NAMESPACES.ACTIONS:previous`, // check
+    );
 
     // and
     expect(getByText(childrenLabel)).toBeVisible();

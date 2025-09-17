@@ -74,8 +74,8 @@ describe('InstallationStepOSConfig page unit test suite', () => {
     const elements = [
       'os_config_title',
       'os_config_subtitle',
-      'os_config_input_domain',
-      'os_config_input_suse (optional_label)',
+      `NAMESPACES.SYSTEM:domain_name`, // check
+      `os_config_input_suse (NAMESPACE.FORM:optional)`, // check
       'os_config_toggle_update',
       'os_config_toggle_firewall_service',
       'os_config_toggle_firewall_server',

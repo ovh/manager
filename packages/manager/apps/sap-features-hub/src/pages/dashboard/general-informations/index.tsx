@@ -8,6 +8,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { urls } from '@/routes/routes.constant';
 import useGuideUtils, {
   GUIDE_LINK_SOURCE_CODE,
@@ -18,7 +19,7 @@ import { TRACKING } from '@/tracking.constants';
 import { testIds } from '@/utils/testIds.constants';
 
 function GeneralInfos() {
-  const { t } = useTranslation('dashboard');
+  const { t } = useTranslation(['dashboard', NAMESPACES.RESOURCES]);
   const guides = useGuideUtils();
   const wizardHref = useHref(urls.installationWizard);
   const listingHref = useHref(urls.listing);
@@ -42,7 +43,7 @@ function GeneralInfos() {
           value: (
             <Links
               data-testid={testIds.hubLinkSapHanaDocs}
-              label={t('blocks_documentation')}
+              label={t(`${NAMESPACES.RESOURCES}:documentation`)}
               href={guides.pre_installation_sap}
               target="_blank"
               type={LinkType.external}
@@ -73,7 +74,7 @@ function GeneralInfos() {
           value: (
             <Links
               data-testid={testIds.hubLinkInfraAsCodeDocs}
-              label={t('blocks_documentation')}
+              label={t(`${NAMESPACES.RESOURCES}:documentation`)}
               href={guides.infrastructure_as_code}
               target="_blank"
               type={LinkType.external}
@@ -93,7 +94,7 @@ function GeneralInfos() {
           value: (
             <Links
               data-testid={testIds.hubLinkInfraAsCodeGit}
-              label={t('blocks_code_source')}
+              label={t(`${NAMESPACES.RESOURCES}:source_code`)}
               href={GUIDE_LINK_SOURCE_CODE.infrastructureAsCode}
               target="_blank"
               type={LinkType.external}
@@ -122,7 +123,7 @@ function GeneralInfos() {
           value: (
             <Links
               data-testid={testIds.hubLinkBackintDownload}
-              label={t('blocks_download')}
+              label={t(`${NAMESPACES.RESOURCES}:download`)}
               href="https://ovhcloud-backint-agent.s3.rbx.io.cloud.ovh.net/ovhcloud-backint-agent.zip"
               onClickReturn={() =>
                 trackClick(TRACKING.dashboard.downloadBackint)
@@ -135,7 +136,7 @@ function GeneralInfos() {
           value: (
             <Links
               data-testid={testIds.hubLinkSapHanaBackupDocs}
-              label={t('blocks_documentation')}
+              label={t(`${NAMESPACES.RESOURCES}:documentation`)}
               href={guides.backup_sap_hana}
               target="_blank"
               type={LinkType.external}
@@ -206,7 +207,7 @@ function GeneralInfos() {
           value: (
             <Links
               data-testid={testIds.hubLinkWizardDocs}
-              label={t('blocks_documentation')}
+              label={t(`${NAMESPACES.RESOURCES}:documentation`)}
               href={guides.pre_installation_wizard}
               target="_blank"
               type={LinkType.external}
@@ -239,7 +240,7 @@ function GeneralInfos() {
           value: (
             <Links
               data-testid={testIds.hubLinkAnalysisDocs}
-              label={t('blocks_documentation')}
+              label={t(`${NAMESPACES.RESOURCES}:documentation`)}
               href={guides.logs_analysis_and_extract}
               target="_blank"
               type={LinkType.external}
@@ -259,7 +260,7 @@ function GeneralInfos() {
           value: (
             <Links
               data-testid={testIds.hubLinkAnalysisGit}
-              label={t('blocks_code_source')}
+              label={t(`${NAMESPACES.RESOURCES}:source_code`)}
               href={GUIDE_LINK_SOURCE_CODE.analysisAndExtract}
               target="_blank"
               type={LinkType.external}
