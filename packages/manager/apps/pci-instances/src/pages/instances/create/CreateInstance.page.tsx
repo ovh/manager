@@ -18,12 +18,18 @@ import {
   quantitySchema,
 } from '@/pages/instances/create/components/QuantitySelector';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
-import { Cart } from '@/components/cart/Cart';
+import {
+  localizationDefaultValue,
+  LocalizationSelection,
+  localizationSelectionSchema,
+} from './components/localisationSelection/LocalizationSelection.component';
+import { CreationCart } from './components/CreationCart.component';
 
 export type TInstanceCreationForm = z.infer<typeof instanceCreationSchema>;
 export const instanceCreationSchema = z.object({
   name: nameSchema,
   quantity: quantitySchema,
+  region: localizationSelectionSchema,
 });
 
 const quantityHintParams = {
@@ -41,6 +47,7 @@ const CreateInstance: FC = () => {
     defaultValues: {
       name: nameDefaultValue,
       quantity: quantityDefaultValue,
+      region: localizationDefaultValue,
     },
     mode: 'onChange',
   });
@@ -81,9 +88,10 @@ const CreateInstance: FC = () => {
               type={quantityHintParams.type}
               region={quantityHintParams.region}
             />
+            <LocalizationSelection />
           </section>
           <aside className="min-w-[320px] w-full max-w-[640px]">
-            <Cart />
+            <CreationCart />
           </aside>
         </div>
       </FormProvider>
