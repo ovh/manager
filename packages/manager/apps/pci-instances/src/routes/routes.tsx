@@ -9,6 +9,7 @@ import {
 import { instanceLegacyRedirectionLoader } from './loaders/instanceLegacy.loader';
 import { ComponentType } from 'react';
 import { TSectionType } from '@/types/instance/action/action.type';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 const lazyRouteConfig = <ComponentProps extends {} = {}>(
@@ -176,6 +177,12 @@ export const getRoutes = (shell: ShellContextType): RouteObject[] => [
         ...lazyRouteConfig(() =>
           import('@/pages/instances/create/CreateInstance.page'),
         ),
+        handle: {
+          tracking: {
+            pageName: 'add_instance',
+            pageType: PageType.funnel,
+          },
+        },
       },
       {
         path: SECTIONS.instanceLegacy,
