@@ -125,6 +125,7 @@ export const useInstanceBackupAction = (
         return backupInstance({
           projectId,
           instanceId: id,
+          regionName: region,
           snapshotName,
           ...(distantSnapshot
             ? {
