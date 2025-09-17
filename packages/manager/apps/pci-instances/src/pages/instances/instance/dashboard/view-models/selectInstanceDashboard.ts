@@ -6,6 +6,7 @@ import {
   TInstanceAction,
   TInstanceAddress,
   TInstanceAddresses,
+  TInstanceBackup,
   TInstanceFlavor,
   TInstancePrice,
   TInstanceRegion,
@@ -37,6 +38,11 @@ type TPublicNetwork = {
   networks: TInstanceAddress[];
 };
 
+type TBackupInfo = {
+  total: number;
+  lastUpdated: string;
+};
+
 type TPrivateNetwork = {
   previews: TInstanceAddress[];
   otherNetworks: TInstanceAddress[] | null;
@@ -59,10 +65,12 @@ export type TInstanceDashboardViewModel = {
   volumes: TInstanceVolume[];
   sshKey: string | null;
   login: string | null;
+  backup: TBackupInfo | null;
   actions: TInstanceActions;
   canActivateMonthlyBilling: boolean;
   isDeleteEnabled: boolean;
   isEditEnabled: boolean;
+  isBackupEnabled: boolean;
 } | null;
 
 const isEditionEnabled = (actions: TInstanceAction[]) =>
@@ -92,6 +100,9 @@ const canActivateMonthlyBilling = (actions: TInstanceAction[]) =>
 
 const canDeleteInstance = (actions: TInstanceAction[]) =>
   actions.some(({ name }) => name === 'delete');
+
+const canCreateBackup = (actions: TInstanceAction[]) =>
+  actions.some(({ name }) => name === 'create_backup');
 
 // TODO: find a way to handle this properly (where to build path and translated label)
 const getActionHrefByName = (
@@ -177,7 +188,12 @@ const mapActions = (
   instance.actions
     .filter(
       ({ name }) =>
-        !['details', 'delete', 'activate_monthly_billing'].includes(name),
+        ![
+          'details',
+          'delete',
+          'activate_monthly_billing',
+          'create_backup',
+        ].includes(name),
     )
     .reduce<TInstanceActions>((acc, action) => {
       const { group, name } = action;
@@ -249,6 +265,11 @@ type TUrlBuilderParams = {
   dedicatedUrl: string;
 };
 
+const getBackupInfo = (backups: TInstanceBackup[]) => ({
+  total: backups.length,
+  lastUpdated: backups[0]!.createdAt, // the last backup is always the first because backups is already sorted from the api
+});
+
 export const selectInstanceDashboard = (
   { projectUrl, projectId, dedicatedUrl }: TUrlBuilderParams,
   instance?: TInstance,
@@ -273,9 +294,11 @@ export const selectInstanceDashboard = (
     volumes: instance.volumes ?? [],
     sshKey: instance.sshKey,
     login: instance.login,
+    backup: instance.backups ? getBackupInfo(instance.backups) : null,
     actions: mapActions(instance, projectUrl),
     canActivateMonthlyBilling: canActivateMonthlyBilling(instance.actions),
     isDeleteEnabled: canDeleteInstance(instance.actions),
     isEditEnabled: isEditionEnabled(instance.actions),
+    isBackupEnabled: canCreateBackup(instance.actions),
   };
 };
