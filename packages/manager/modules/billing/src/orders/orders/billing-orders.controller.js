@@ -1,6 +1,6 @@
 import get from 'lodash/get';
-import omit from 'lodash/omit';
 import set from 'lodash/set';
+import omit from 'lodash/omit';
 import { BILLING_ORDERS_STATUS } from './billing-orders.constant';
 
 export default class BillingOrdersCtrl {

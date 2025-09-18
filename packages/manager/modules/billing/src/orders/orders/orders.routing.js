@@ -1,5 +1,6 @@
 import controller from './billing-orders.controller';
 import template from './billing-orders.html';
+import { BILLING_ORDERS_STATUS_PROPERTY } from './billing-orders.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('billing.orders.orders', {
@@ -7,6 +8,15 @@ export default /* @ngInject */ ($stateProvider) => {
     params: {
       filter: {
         dynamic: true,
+        value: encodeURIComponent(
+          JSON.stringify([
+            {
+              property: BILLING_ORDERS_STATUS_PROPERTY,
+              operator: 'isNot',
+              value: 'orderExpired',
+            },
+          ]),
+        ),
       },
     },
     template,
@@ -33,14 +43,25 @@ export default /* @ngInject */ ($stateProvider) => {
         return kycValidated;
       },
       filter: /* @ngInject */ ($transition$) => $transition$.params().filter,
-      criteria: /* @ngInject */ ($log, filter) => {
+      criteria: /* @ngInject */ ($log, $translate, filter) => {
         if (filter) {
           try {
             const criteria = JSON.parse(decodeURIComponent(filter));
             if (!Array.isArray(criteria)) {
               throw new Error('Invalid criteria');
             }
-            return criteria;
+            return criteria.map((c) => {
+              return c.property === BILLING_ORDERS_STATUS_PROPERTY
+                ? {
+                    ...c,
+                    title: `${$translate.instant(
+                      `orders_${c.property}`,
+                    )} ${$translate.instant(
+                      `common_criteria_adder_operator_boolean_${c.operator}`,
+                    )} ${$translate.instant(`orders_order_status_${c.value}`)}`,
+                  }
+                : c;
+            });
           } catch (err) {
             $log.error(err);
           }
