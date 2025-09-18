@@ -51,7 +51,7 @@
     "element-internals-polyfill": "^3.0.2"
   },
   "regions": [
-    "CA",
-    "EU"
+    "EU",
+    "CA"
   ]
 }

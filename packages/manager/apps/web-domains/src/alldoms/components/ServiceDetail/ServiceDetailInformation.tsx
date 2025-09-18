@@ -38,10 +38,8 @@ export default function ServiceDetailInformation({
           })}
         </Text>
         <div>
-          <Text>
-            <strong>
-              {t('allDom_page_detail_information_general_extensions')}
-            </strong>
+          <Text preset={TEXT_PRESET.span} className="font-bold">
+            {t('allDom_page_detail_information_general_extensions')}
           </Text>
           <Text preset={TEXT_PRESET.span}>
             {currentState.extensions
