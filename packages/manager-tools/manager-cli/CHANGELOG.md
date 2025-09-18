@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.11.1...@ovh-ux/manager-cli@0.12.0) (2025-09-18)
+
+
+### Features
+
+* code review and enhancement ([c754394](https://github.com/ovh/manager/commit/c754394b218ee3d8b30a989ffd21256467d15e54)), closes [#MANAGER-18576](https://github.com/ovh/manager/issues/MANAGER-18576)
+* include a11y and w3c in migration status reports ([d7425dc](https://github.com/ovh/manager/commit/d7425dcb36b2a7cc5b28530984881066f9cd35d4)), closes [#MANAGER-17958](https://github.com/ovh/manager/issues/MANAGER-17958)
+
+
+
+
+
 ## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.11.0...@ovh-ux/manager-cli@0.11.1) (2025-09-11)
 
 

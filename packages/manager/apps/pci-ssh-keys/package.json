@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-ssh-keys-app",
-  "version": "0.13.14",
+  "version": "0.13.15",
   "private": true,
   "description": "PCI SSH Keys react app",
   "type": "module",
@@ -12,14 +12,14 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.6.1",
-    "@ovh-ux/manager-core-api": "^0.18.3",
+    "@ovh-ux/manager-config": "^8.6.2",
+    "@ovh-ux/manager-core-api": "^0.18.4",
     "@ovh-ux/manager-pci-common": "^0.17.0",
     "@ovh-ux/manager-react-components": "^1.46.0",
-    "@ovh-ux/manager-react-core-application": "^0.12.3",
+    "@ovh-ux/manager-react-core-application": "^0.12.4",
     "@ovh-ux/manager-react-shell-client": "^0.9.3",
-    "@ovh-ux/manager-tailwind-config": "^0.5.1",
-    "@ovh-ux/shell": "^4.7.5",
+    "@ovh-ux/manager-tailwind-config": "^0.5.2",
+    "@ovh-ux/shell": "^4.7.6",
     "@ovhcloud/ods-common-core": "17.2.2",
     "@ovhcloud/ods-common-theming": "17.2.2",
     "@ovhcloud/ods-components": "17.2.2",
@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
-    "@ovh-ux/manager-vite-config": "^0.13.0",
+    "@ovh-ux/manager-vite-config": "^0.13.1",
     "@tanstack/react-query-devtools": "^5.51.21",
     "@testing-library/dom": "^9.3.4",
     "@testing-library/jest-dom": "^6.4.2",
