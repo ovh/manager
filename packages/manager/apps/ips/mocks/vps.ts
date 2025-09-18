@@ -54,6 +54,8 @@ const orderableIpCountries = [
   'be',
   'nl',
   'ie',
+  'ca',
+  'in',
 ];
 
 export type GetVpsMocksParams = {

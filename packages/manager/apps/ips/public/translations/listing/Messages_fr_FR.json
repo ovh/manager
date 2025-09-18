@@ -65,7 +65,7 @@
   "listingColumnsType_vpn": "VPN",
   "listingColumnsType_housing": "Housing",
   "listingTerminateByoip_title": "Supprimer le bloc",
-  "listingTerminateByoip_info1": "Ce bloc d'IP fait partie d'un plus grand bloc BYOIP. Veuillez vous rendre sur <Link>mes services</Link> et choisir `résilier` si vous souhaitez annuler votre service BYOIP.",
+  "listingTerminateByoip_info1": "Ce bloc d'IP fait partie d'un plus grand bloc BYOIP. Veuillez vous rendre sur <Link>mes services</Link> et choisir \"résilier\" si vous souhaitez annuler votre service BYOIP.",
   "listingTerminateByoip_info2": "Ce bloc IP fait partie d'un plus grand bloc BYOIP. Veuillez utiliser l'API <Link>(link)</Link> si vous souhaitez annuler votre service BYOIP.",
   "listingActionManageSubnetInVrack": "Gérer IPv6 subnets dans le vRack",
   "listingActionAddVirtualMac": "Ajouter une MAC virtuelle",

@@ -3,7 +3,6 @@ import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ListingContextProvider } from '@/pages/listing/listingContext';
 import { IpCell, IpCellProps } from './IpCell';
 import ipDetailsList from '../../../../../../../mocks/ip/get-ip-details.json';
 
@@ -21,9 +20,7 @@ vi.mock('@/data/hooks/ip', () => ({
 const renderComponent = (params: IpCellProps) => {
   return render(
     <QueryClientProvider client={queryClient}>
-      <ListingContextProvider>
-        <IpCell {...params} />
-      </ListingContextProvider>
+      <IpCell {...params} />
     </QueryClientProvider>,
   );
 };

@@ -1,4 +1,3 @@
-import '@/test-utils/setupUnitTests';
 import React from 'react';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import {
@@ -11,26 +10,19 @@ import {
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ListingContext } from '@/pages/listing/listingContext';
 import { QuickFilter } from './FilterQuick';
+import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
 
 const queryClient = new QueryClient();
 
 /** MOCKS */
 const setApiFilter = vi.fn();
-const mockApiFilter = { version: 4 };
 
 /** RENDER */
 const renderComponent = () => {
   return render(
     <QueryClientProvider client={queryClient}>
       <ListingContext.Provider
-        value={{
-          addExpiredIp: vi.fn(),
-          expiredIps: [],
-          apiFilter: mockApiFilter,
-          setApiFilter,
-          setIpToSearch: vi.fn(),
-          ipToSearch: undefined,
-        }}
+        value={{ ...listingContextDefaultParams, setApiFilter }}
       >
         <QuickFilter />
       </ListingContext.Provider>

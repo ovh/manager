@@ -39,8 +39,7 @@ export default function GameFirewallPage() {
     index === 0
       ? {
           label: ipOnGame,
-          // TODO: Add search params once they are implemented on listing page
-          onClick: () => navigate(urls.listing),
+          onClick: () => navigate(`${urls.listing}?ip=${ipOnGame}`),
         }
       : { label: t('title') };
 

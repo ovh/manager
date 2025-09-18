@@ -10,7 +10,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
@@ -27,6 +27,7 @@ import {
 
 export default function DeleteVirtualMac() {
   const navigate = useNavigate();
+  const [search] = useSearchParams();
   const { id, service } = useParams();
   const { ip } = ipFormatter(fromIdToIp(id));
   const { t } = useTranslation(['virtual-mac', TRANSLATION_NAMESPACES.listing]);
@@ -50,7 +51,7 @@ export default function DeleteVirtualMac() {
   );
 
   const closeModal = () => {
-    navigate('..');
+    navigate(`..?${search.toString()}`);
   };
 
   const { isPending, mutate: deleteVirtualMacHandler } = useMutation({

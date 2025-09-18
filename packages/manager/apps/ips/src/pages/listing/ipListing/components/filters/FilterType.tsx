@@ -1,9 +1,5 @@
 import React, { useContext } from 'react';
 import { OdsSelect } from '@ovhcloud/ods-components/react';
-import {
-  OdsSelectCustomEvent,
-  OdsSelectChangeEventDetail,
-} from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { IpTypeEnum } from '@/data/api';
 import { ListingContext } from '@/pages/listing/listingContext';
@@ -23,14 +19,14 @@ export const TypeFilter = ({ className }: { className?: string }) => {
       name="search-type"
       data-testid="search-type"
       value={apiFilter?.type || ALL_IP_TYPE_OPTION_VALUE}
-      onOdsChange={(e: OdsSelectCustomEvent<OdsSelectChangeEventDetail>) => {
+      onOdsChange={(e) => {
         const { value } = e.detail;
         setApiFilter((prev) => ({
           ...prev,
           type:
             value === ALL_IP_TYPE_OPTION_VALUE
               ? undefined
-              : (e.detail.value as IpTypeEnum),
+              : (value as IpTypeEnum),
         }));
       }}
     >
