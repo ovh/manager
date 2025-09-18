@@ -7,12 +7,25 @@ import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 
 i18n.use(initReactI18next).init({
-  fallbackLng: 'fr_FR',
+  fallbackLng: 'en',
   interpolation: {
     escapeValue: false,
   },
   resources: {
-    en: {},
+    en: {
+      datagrid: {
+        common_pagination_load_more: 'Load more',
+        common_pagination_load_all: 'Load all',
+        common_pagination_of: 'of',
+        common_pagination_results: 'results',
+        common_pagination_no_results: 'No result',
+        common_clipboard_success_label: 'Copied!',
+        common_clipboard_error_label: 'Copy error.',
+        common_empty_text_cell: 'None',
+        common_topbar_columns: 'Columns',
+        common_topbar_columns_select_all: 'Select all',
+      },
+    },
   },
 });
 
