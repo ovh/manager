@@ -2,7 +2,7 @@ import React from 'react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useTranslation } from 'react-i18next';
 import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { OdsModal, OdsText } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { TRANSLATION_NAMESPACES } from '@/utils';
@@ -22,6 +22,7 @@ export default function ImportIpFromSys() {
   const [destinationServer, setDestinationServer] = React.useState<string>();
   const [duration, setDuration] = React.useState<string>();
   const [currentStep, setCurrentStep] = React.useState(1);
+  const [search] = useSearchParams();
   const { t } = useTranslation([
     TRANSLATION_NAMESPACES.importIpFromSys,
     NAMESPACES.FORM,
@@ -30,7 +31,7 @@ export default function ImportIpFromSys() {
   const navigate = useNavigate();
 
   const closeModal = () => {
-    navigate('..');
+    navigate(`..?${search.toString()}`);
   };
 
   const {

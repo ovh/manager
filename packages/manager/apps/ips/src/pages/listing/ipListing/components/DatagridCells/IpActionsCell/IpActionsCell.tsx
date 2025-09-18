@@ -4,7 +4,7 @@ import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import ipaddr from 'ipaddr.js';
 import { urlDynamicParts, urls } from '@/routes/routes.constant';
 import { fromIpToId, ipFormatter } from '@/utils';
@@ -93,6 +93,7 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
     ip: parentIpGroup || ip,
   });
   const navigate = useNavigate();
+  const [search] = useSearchParams();
   const { t } = useTranslation(['listing', NAMESPACES?.ACTIONS]);
   const isAdmin = useContext(ShellContext)
     .environment?.getUser()
@@ -130,9 +131,11 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
     enabled: Boolean(ipDetails) && hasDedicatedServiceAttachedToIp,
   });
 
+  const isIpExpired = expiredIps?.indexOf(ip) !== -1;
+
   const { hasAlerts } = useIpHasAlerts({
     ip,
-    enabled: expiredIps.indexOf(ip) === -1,
+    enabled: !isIpExpired,
   });
 
   useEffect(() => {
@@ -151,12 +154,6 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
     };
     fetchUrl();
   }, [serviceName, shell.navigation]);
-
-  const goToVrackPage = () => {
-    window.top.location.href = vrackPage;
-  };
-
-  const isIpExpired = expiredIps?.indexOf(ip) !== -1;
 
   // not expired and additionnal / dedicated Ip linked to a dedicated server
   const enabledGetGameFirewall =
@@ -194,9 +191,12 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         : t('listingActionAddDescription'),
       onClick: () =>
         navigate(
-          urls.upsertDescription
+          `${urls.upsertDescription
             .replace(urlDynamicParts.parentId, parentId)
-            .replace(urlDynamicParts.optionalId, isGroup ? '' : id),
+            .replace(
+              urlDynamicParts.optionalId,
+              isGroup ? '' : id,
+            )}?${search.toString()}`,
         ),
     },
     {
@@ -204,9 +204,12 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
       label: t('listingMenuReverseDns'),
       onClick: () =>
         navigate(
-          urls.listingConfigureReverseDns
+          `${urls.listingConfigureReverseDns
             .replace(urlDynamicParts.parentId, parentId)
-            .replace(urlDynamicParts.optionalId, isGroup ? '' : id),
+            .replace(
+              urlDynamicParts.optionalId,
+              isGroup ? '' : id,
+            )}?${search.toString()}`,
         ),
     },
     !!ipDetails?.canBeTerminated &&
@@ -220,7 +223,12 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         })} Additional IP`,
         isLoading,
         onClick: () =>
-          navigate(urls.listingIpTerminate.replace(urlDynamicParts.id, id)),
+          navigate(
+            `${urls.listingIpTerminate.replace(
+              urlDynamicParts.id,
+              id,
+            )}?${search.toString()}`,
+          ),
       },
     !!ipDetails?.canBeTerminated &&
       ipDetails.bringYourOwnIp &&
@@ -232,7 +240,12 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         label: t('listingActionByoipTerminate'),
         isLoading,
         onClick: () =>
-          navigate(urls.listingByoipTerminate.replace(urlDynamicParts.id, id)),
+          navigate(
+            `${urls.listingByoipTerminate.replace(
+              urlDynamicParts.id,
+              id,
+            )}?${search.toString()}`,
+          ),
       },
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
@@ -241,7 +254,12 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         id: 3,
         label: t('listingActionManageGameMitigation'),
         onClick: () =>
-          navigate(urls.configureGameFirewall.replace(urlDynamicParts.id, id)),
+          navigate(
+            `${urls.configureGameFirewall.replace(
+              urlDynamicParts.id,
+              id,
+            )}?${search.toString()}`,
+          ),
       },
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
@@ -258,7 +276,9 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
       ipDetails?.type === IpTypeEnum.VRACK && {
         id: 5,
         label: t('listingActionManageSubnetInVrack'),
-        onClick: () => goToVrackPage(),
+        onClick: () => {
+          window.top.location.href = vrackPage;
+        },
       },
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
@@ -267,9 +287,12 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         label: t('listingActionAddVirtualMac'),
         onClick: () =>
           navigate(
-            urls.addVirtualMac
+            `${urls.addVirtualMac
               .replace(urlDynamicParts.id, id)
-              .replace(urlDynamicParts.service, serviceName),
+              .replace(
+                urlDynamicParts.service,
+                serviceName,
+              )}?${search.toString()}`,
           ),
         isDisabled:
           !hasDedicatedServiceAttachedToIp ||
@@ -286,9 +309,12 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         label: t('listingActionViewVirtualMac'),
         onClick: () =>
           navigate(
-            urls.viewVirtualMac
+            `${urls.viewVirtualMac
               .replace(urlDynamicParts.id, id)
-              .replace(urlDynamicParts.service, serviceName),
+              .replace(
+                urlDynamicParts.service,
+                serviceName,
+              )}?${search.toString()}`,
           ),
       },
     !isGroup &&
@@ -299,9 +325,12 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         label: t('listingActionDeleteVirtualMac'),
         onClick: () =>
           navigate(
-            urls.deleteVirtualMac
+            `${urls.deleteVirtualMac
               .replace(urlDynamicParts.id, id)
-              .replace(urlDynamicParts.service, serviceName),
+              .replace(
+                urlDynamicParts.service,
+                serviceName,
+              )}?${search.toString()}`,
           ),
       },
     !isGroup &&
@@ -313,15 +342,26 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
           ? t('listingManageMitigation_DEFAULT_to_PERMANENT')
           : t('listingManageMitigation_PERMANENT_to_AUTO'),
         onClick: () =>
-          navigate(urls.manageIpMitigation.replace(urlDynamicParts.id, id)),
+          navigate(
+            `${urls.manageIpMitigation.replace(
+              urlDynamicParts.id,
+              id,
+            )}?${search.toString()}`,
+          ),
         isDisabled: isMitigationLoading || disableManageMitigationAction,
       },
     ipaddr.IPv4.isIPv4(ipAddress) &&
-      ipDetails?.type === IpTypeEnum.ADDITIONAL && {
+      ipDetails?.type === IpTypeEnum.ADDITIONAL &&
+      !ipDetails?.bringYourOwnIp && {
         id: 10,
         label: `${t('move', { ns: NAMESPACES.ACTIONS })} Additional IP`,
         onClick: () =>
-          navigate(urls.listingMoveIp.replace(urlDynamicParts.id, id)),
+          navigate(
+            `${urls.listingMoveIp.replace(
+              urlDynamicParts.id,
+              id,
+            )}?${search.toString()}`,
+          ),
       },
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
@@ -330,9 +370,12 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
         label: t('listingActionUnblockHackedIP'),
         onClick: () =>
           navigate(
-            urls.unblockAntiHack
+            `${urls.unblockAntiHack
               .replace(urlDynamicParts.id, id)
-              .replace(urlDynamicParts.service, serviceName),
+              .replace(
+                urlDynamicParts.service,
+                serviceName,
+              )}?${search.toString()}`,
           ),
       },
   ].filter(Boolean);
