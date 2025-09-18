@@ -76,14 +76,30 @@
     },
     "./tsconfig/test-strict": {
       "default": "./dist/tsconfig/test-strict.json"
+    },
+    "./tests/html-w3c-tests-setup": {
+      "types": "./dist/adapters/html-w3c-validation/helpers/html-w3c-tests-setup.d.ts",
+      "import": "./dist/adapters/html-w3c-validation/helpers/html-w3c-tests-setup.js"
+    },
+    "./tests/html-a11y-tests-setup": {
+      "types": "./dist/adapters/html-a11y-validation/helpers/html-a11y-tests-setup.d.ts",
+      "import": "./dist/adapters/html-a11y-validation/helpers/html-a11y-tests-setup"
     }
   },
   "main": "./dist/code-analysis.js",
   "types": "./dist/code-analysis.d.ts",
   "bin": {
+    "manager-code-duplication": "./bin/code-duplication-cli.js",
+    "manager-code-duplication-tests": "./bin/code-duplication-tests-cli.js",
     "manager-lint": "./bin/lint-cli.js",
     "manager-perf-budgets": "./bin/perf-budgets-cli.js",
-    "manager-perf-budgets-tests": "./bin/perf-budgets-tests-cli.js"
+    "manager-perf-budgets-tests": "./bin/perf-budgets-tests-cli.js",
+    "manager-static-dynamic-quality-checks": "./bin/static-dynamic-quality-checks.js",
+    "manager-static-dynamic-quality-checks-tests": "./bin/static-dynamic-quality-checks-tests.js",
+    "manager-tests-coverage": "./bin/tests-coverage-cli.js",
+    "manager-tests-coverage-tests": "./bin/tests-coverage-cli-tests.js",
+    "manager-types-coverage": "./bin/types-coverage-cli.js",
+    "manager-types-coverage-tests": "./bin/types-coverage-tests-cli.js"
   },
   "files": [
     "dist",
@@ -93,12 +109,12 @@
   "scripts": {
     "build": "tsx scripts/build.ts",
     "postinstall": "tsx scripts/build.ts",
-    "lint:modern": "manager-lint --config eslint.config.mts ./src",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mts ./src",
-    "prepare": "tsx scripts/build.ts",
-    "test": "echo \"No tests yet.\" && exit 0"
+    "lint:modern": "manager-lint --config eslint.config.mts ./src/**/*.ts",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mts ./src/**/*.ts",
+    "prepare": "tsx scripts/build.ts"
   },
   "dependencies": {
+    "axe-core": "^4.10.3",
     "@eslint/css": "^0.9.0",
     "@eslint/js": "^9.29.0",
     "@html-eslint/eslint-plugin": "^0.42.0",
@@ -122,16 +138,25 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-storybook": "^9.0.13",
     "eslint-plugin-tailwindcss": "^3.18.0",
+    "execa": "^9.6.0",
     "globals": "^16.2.0",
+    "jscpd": "^4.0.5",
     "jiti": "^2.5.1",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.6.13",
+    "semantic-ui-react": "^2.1.5",
     "tailwind-csstree": "^0.1.1",
     "tailwindcss": "^3.4.4",
     "tsc-alias": "^1.8.16",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3",
+    "typescript-coverage-report": "^1.1.1",
     "typescript-eslint": "^8.35.0",
-    "vite-bundle-analyzer": "^1.2.3"
+    "vite-bundle-analyzer": "^1.2.3",
+    "vitest-axe": "^0.1.0",
+    "vnu-jar": "^24.10.17"
+  },
+  "peerDependencies": {
+    "@ovh-ux/manager-tests-setup": "latest"
   }
 }

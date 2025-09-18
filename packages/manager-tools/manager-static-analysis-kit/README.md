@@ -1,4 +1,4 @@
-# 🧪static-analysis-kit
+# 🧪 static-analysis-kit
 
 A modular, extensible, and future-ready toolkit for defining, adapting, and sharing static analysis rules across projects in the `manager` monorepo.
 
@@ -6,22 +6,60 @@ A modular, extensible, and future-ready toolkit for defining, adapting, and shar
 
 ## 🚀 What Is It?
 
-`static-analysis-kit` provides a unified platform for code quality, complexity, duplication, and architectural analysis. It separates semantic rule definitions from tool-specific integrations using a clean adapter-based architecture.
+`static-analysis-kit` provides a unified platform for **static & dynamic quality checks**: linting, duplication, type coverage, tests coverage, and performance budgets.
 
-It currently supports:
-- ESLint (flat config)
-- Madge (dependency graph & circular analysis)
-- JSCPD (code duplication detection)
-- Code Health Meter (complexity, Halstead, maintainability, SLOC, architecture)
+It separates semantic rule definitions from tool-specific integrations using a clean adapter-based architecture.
 
 ---
 
-## 🎯 Why We Built This
+## 📦 Tools Exposed by the Kit
 
-- Reuse rules across projects and tools
-- Avoid duplication of `.eslintrc`, `.prettierrc`, `.madgerc`, etc.
-- Standardize how we measure code health and enforce architectural boundaries
-- Enable safe and gradual migration to new tooling
+The kit currently provides:
+
+- **ESLint** (flat config, adapters for React, TS, a11y, imports, naming, Storybook, Tailwind, TanStack, Vitest)
+- **Code Duplication Reports** (`manager-code-duplication`)
+- **Performance Budgets** (`manager-perf-budgets`)
+- **Tests Coverage Reports** (`manager-tests-coverage`)
+- **Types Coverage Reports** (`manager-types-coverage`)
+- **W3C & A11Y Unit Tests Matchers** (`expect(container).toBeAccessible()`, `await expect(html).toBeValidHtml()`)
+
+Coming soon:
+- **Madge** (dependency graph & circular analysis)
+- **Code Health Meter** (complexity, Halstead, maintainability, SLOC)
+
+> Each tool has its own README inside the kit with full usage & configuration details.  
+> See:
+> - [Code Duplication](src/adapters/code-duplication/README.md)
+> - [Performance Budgets](src/adapters/perf-budgets/README.md)
+> - [Tests Coverage](src/adapters/tests-coverage/README.md)
+> - [Types Coverage](src/adapters/types-coverage/README.md)
+> - [HTML W3C Validation](src/adapters/html-w3c-validation/README.md)
+> - [HTML Accessibility Matcher](src/adapters/html-a11y-validation/README.md)
+
+---
+
+## 🧑‍💻 Combined Quality Checks
+
+The kit also provides a **single entrypoint** for running all static & dynamic quality checks in parallel:
+
+```bash
+# Run all quality checks
+yarn manager-static-dynamic-quality-checks
+
+# Run only tests-related checks
+yarn manager-static-dynamic-quality-checks --tests
+```
+
+### Run by Type
+
+You can also target subsets of checks:
+
+```bash
+yarn manager-code-duplication
+yarn manager-perf-budgets
+yarn manager-tests-coverage
+yarn manager-types-coverage
+```
 
 ---
 
@@ -32,77 +70,29 @@ static-analysis-kit/
 ├── src/
 │   ├── code-analysis.ts               # Central entry point (exports adapters)
 │   ├── configs/                       # Tool-agnostic semantic rule definitions
-│   │   ├── complexity.ts
-│   │   ├── madge-options.ts
-│   │   └── jscpd-options.ts
-│   └── adapters/
-│       ├── eslint/                    # ESLint flat config + rules
-│       │   ├── config/
-│       │   │   └── eslint.config.ts
-│       │   └── rules/
-│       ├── madge/                     # Madge analysis adapter
-│       ├── jscpd/                     # JSCPD (duplication) adapter
-│       ├── prettier/                  # Optional: shared formatting config
-│       └── code-health-meter/         # Halstead, MI, Cyclomatic, SLOC
-```
-
----
-
-## 🛠️ Usage in an App
-
-```ts
-// apps/zimbra/eslint.config.ts
-import { eslintConfig } from '@ovh-ux/manager-static-analysis-kit';
-
-export default [...eslintConfig];
-```
-
-This will apply all enabled ESLint rule groups from the toolkit, using flat config format (ESLint v8+).
-
-```ts
-// apps/zimbra/prettier.config.ts
-import { prettierConfig } from '@ovh-ux/manager-static-analysis-kit';
-
-export default [...prettierConfig];
+│   └── adapters/                      # Tool integrations
+│       ├── eslint/                    
+│       ├── code-duplication/          # Duplication reports
+│       ├── perf-budgets/              # Performance analyzer
+│       ├── tests-coverage/            # Test coverage reports
+│       ├── types-coverage/            # TS coverage reports
+│       ├── madge/                     # Coming soon
+│       └── code-health-meter/         # Coming soon
 ```
 
 ---
 
 ## 🧠 Design Principles
 
-- **Composable**: Adapters are modular, rules are grouped by category
-- **Decoupled**: Semantic configs live separately from tool logic
-- **Pluggable**: Easy to add new tools (e.g. Biome, Oxlint)
-- **Testable**: Configs are plain TS, easy to mock and verify
-
----
-
-## 🔮 Future Flexibility
-
-This architecture is designed to easily accommodate:
-
-- `biome/` adapter (Rust-based formatter/linter)
-- `oxlint/` adapter (high-performance Rust linter)
-- `depcruise/`, `pmd/`, `stylelint/` or internal tools
-
-Each would follow the same adapter pattern and pull from shared `configs/` where applicable.
-
----
-
-## 🧑‍💻 Contributing
-
-If you’re adding a new rule or adapter:
-
-1. Put semantic/shared config in `configs/` if reusable.
-2. Create a new adapter directory in `adapters/` (e.g., `eslint`, `madge`).
-3. Add a domain-specific config, transformer, or wrapper.
-4. Wire into `code-analysis.ts` as needed.
-5. Document your addition.
+- **Composable**: Adapters are modular, rules are grouped by category.
+- **Decoupled**: Semantic configs live separately from tool logic.
+- **Pluggable**: Easy to add new tools (e.g., Biome, Oxlint).
+- **CI/CD Ready**: All tools produce JSON + HTML reports for pipelines.
 
 ---
 
 ## 📬 Feedback Welcome
 
-The goal is to create a robust, composable, and organization-wide standard for static analysis.
+The goal is to create a **robust, composable, and organization-wide standard** for static analysis and dynamic quality checks.
 
-Feel free to suggest improvements or new integrations!
+Suggestions & contributions are welcome.  

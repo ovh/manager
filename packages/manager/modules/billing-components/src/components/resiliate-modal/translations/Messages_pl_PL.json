@@ -4,7 +4,7 @@
   "billing_resiliate_terminate": "Zrezygnuj z usługi natychmiast.",
   "billing_resiliate_terminateAtEngagementDate": "Rezygnacja z usługi w dniu zakończenia umowy terminowej",
   "billing_resiliate_terminateAtExpirationDate": "Zrezygnuj z usługi w dniu wygaśnięcia.",
-  "billing_resiliate_deleteAtExpiration_success": "Dyspozycja rezygnacji z usługi w dniu wygaśnięcia została przyjęte.",
+  "billing_resiliate_deleteAtExpiration_success": "Dyspozycja rezygnacji z usługi w dniu wygaśnięcia została przyjęta.",
   "billing_resiliate_deleteAtExpiration_error": "Wystąpił błąd podczas składania rezygnacji z usługi w dniu jej wygaśnięcia:",
   "billing_resiliate_terminate_success": "Dyspozycja rezygnacji z usługi została przyjęta. Otrzymasz e-mail z prośbą o potwierdzenie rezygnacji.",
   "billing_resiliate_terminate_immediate_success": "Dyspozycja rezygnacji z tej usługi została przyjęta.",

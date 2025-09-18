@@ -5,7 +5,7 @@ import { dirname, join, resolve } from 'node:path';
 import process, { cwd } from 'node:process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
-import { logError, logInfo } from './cli-utils.js';
+import { logError, logInfo } from './utils/log-utils.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const userCwd = cwd();

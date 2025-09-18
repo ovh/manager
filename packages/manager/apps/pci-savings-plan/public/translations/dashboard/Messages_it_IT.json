@@ -30,9 +30,9 @@
   "dashboard_graph_included": "Incluso nei Savings Plan",
   "dashboard_graph_excluded": "Escluso dai Savings Plan",
   "dashboard_resource_list_title": "Risorse utilizzate",
-  "dashboard_resource_list_search": "Cerca un ID",
+  "dashboard_resource_list_search": "Cercare un ID",
   "dashboard_resource_list_no_results": "Nessun risultato trovato per \"{{searchQuery}}\"",
   "dashboard_resource_list_no_resources": "Nessuna risorsa utilizzata per questo flavor",
   "dashboard_resource_list_details": "Dettagli",
-  "dashboard_resource_list_view_resources": "Visualizza le risorse"
+  "dashboard_resource_list_view_resources": "Visualizzare le risorse"
 }

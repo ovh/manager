@@ -1,12 +1,12 @@
 {
   "button_go_back": "Volver a la página anterior",
-  "history_banner": "Este mensaje se envió el <strong> {{ date }}</strong> de <strong> {{ email }}</strong> . <anchor>Consultar el historial</anchor>",
+  "history_banner": "Este mensaje fue enviado el <strong>{{ date }}</strong> a <strong>{{ email }}</strong>. <anchor>Consultar el historial</anchor>",
   "button_download_attachment": "Descargar el archivo adjunto",
   "format_switch_short": "Corto",
   "format_switch_long": "Largo",
   "format_switch_html": "Formato HTML",
   "history_overlay_headline": "Seguimiento de los envíos",
-  "history_overlay_description": "Aquí encontrará toda la información relativa al envío de este mensaje. Si encuentra un problema, puede administrar la configuración de comunicación.",
-  "history_overlay_settings_link": "Acceder a la configuración de difusión",
+  "history_overlay_description": "Aquí encontrará toda la información relativa al envío de este mensaje. Si encuentra un problema, puede gestionar los parámetros de comunicación.",
+  "history_overlay_settings_link": "Acceder a los parámetros de envío",
   "history_overlay_close": "Cerrar"
 }

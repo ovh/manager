@@ -99,8 +99,8 @@ const deepClone = (obj) => JSON.parse(JSON.stringify(obj));
  */
 const computeDelta = (base, app) => {
   const delta = { compilerOptions: {} };
-  const baseCompiler = base.compilerOptions || {};
-  const appCompiler = app.compilerOptions || {};
+  const baseCompiler = base?.compilerOptions || {};
+  const appCompiler = app?.compilerOptions || {};
 
   for (const key in appCompiler) {
     if (basePriorAttributes.has(key)) continue;
@@ -115,8 +115,8 @@ const computeDelta = (base, app) => {
     }
   }
 
-  if (app.include) delta.include = app.include;
-  if (app.exclude) delta.exclude = app.exclude;
+  if (app?.include) delta.include = app.include;
+  if (app?.exclude) delta.exclude = app.exclude;
 
   return delta;
 };
