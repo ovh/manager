@@ -10,28 +10,31 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  StepComponent,
   Links,
-  useProjectUrl,
+  StepComponent,
   Subtitle,
   useCatalogPrice,
+  useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { Trans, useTranslation } from 'react-i18next';
 import {
-  RegionSelector,
-  usePCICommonContextFactory,
-  PCICommonContext,
-  TRegion,
-  TDeployment,
   DeploymentTilesInput,
+  PCICommonContext,
+  RegionSelector,
+  TDeployment,
   TProductAvailabilityRegion,
+  TRegion,
+  usePCICommonContextFactory,
 } from '@ovh-ux/manager-pci-common';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { REGION_AVAILABILITY_LINK } from '@/constants';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
-import { useTracking } from '@/pages/create/hooks/useTracking';
 import { useGetRegionPrivateNetworks } from '@/api/hook/useNetwork';
 import useGuideLink from '@/hooks/useGuideLink/useGuideLink';
 import { useDeployments } from '@/api/hook/useDeployments/useDeployments';
@@ -60,7 +63,7 @@ export const RegionStep = ({
   ]);
   const projectUrl = useProjectUrl('public-cloud');
 
-  const { trackStep } = useTracking();
+  const { trackClick } = useOvhTracking();
 
   const store = useCreateStore();
 
@@ -131,7 +134,12 @@ export const RegionStep = ({
       order={1}
       next={{
         action: () => {
-          trackStep(1);
+          trackClick({
+            actions: ['select_location', `add_${store.region!.name}`],
+            actionType: 'action',
+            buttonType: ButtonType.button,
+            location: PageLocation.funnel,
+          });
 
           store.check(StepsEnum.REGION);
           store.lock(StepsEnum.REGION);
@@ -143,6 +151,16 @@ export const RegionStep = ({
       }}
       edit={{
         action: () => {
+          trackClick({
+            actions: [
+              'select_location',
+              `edit_step_location_${store.region!.name}`,
+            ],
+            actionType: 'action',
+            buttonType: ButtonType.externalLink,
+            location: PageLocation.funnel,
+          });
+
           store.unlock(StepsEnum.REGION);
           store.uncheck(StepsEnum.REGION);
           store.open(StepsEnum.REGION);
