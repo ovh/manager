@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import {
   OdsButton,
@@ -22,11 +22,12 @@ export default function TerminateByoip() {
   const { t } = useTranslation(['listing', NAMESPACES.ACTIONS]);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
+  const [search] = useSearchParams();
   const { environment } = useContext(ShellContext);
   const region = environment.getRegion();
 
   const closeModal = () => {
-    navigate('..');
+    navigate(`..?${search.toString()}`);
   };
 
   const closeHandler = () => {

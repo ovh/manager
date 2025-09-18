@@ -1,12 +1,12 @@
-import '@/test-utils/setupUnitTests';
 import React, { PropsWithChildren } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ListingContextProvider } from '@/pages/listing/listingContext';
+import { ListingContext } from '@/pages/listing/listingContext';
 import ipDetailsList from '../../../../../../../mocks/ip/get-ip-details.json';
 import { IpVmac, IpVmacProps } from './IpVmac';
 import { DedicatedServerVmacWithIpType } from '@/data/api';
+import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
 
 const queryClient = new QueryClient();
 /** MOCKS */
@@ -35,9 +35,9 @@ vi.mock('../SkeletonCell/SkeletonCell', () => ({
 const renderComponent = (params: IpVmacProps) => {
   return render(
     <QueryClientProvider client={queryClient}>
-      <ListingContextProvider>
+      <ListingContext.Provider value={listingContextDefaultParams}>
         <IpVmac {...params} />
-      </ListingContextProvider>
+      </ListingContext.Provider>
     </QueryClientProvider>,
   );
 };
