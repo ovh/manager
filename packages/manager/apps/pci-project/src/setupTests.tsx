@@ -621,6 +621,12 @@ vi.mock('@ovh-ux/manager-react-shell-client', async () => {
           getURL: mockGetURL,
         },
       },
+      environment: {
+        getUser: () => ({
+          ovhSubsidiary: 'FR',
+          language: 'fr_FR',
+        }),
+      },
     }),
     useOvhTracking: () => ({
       trackClick: vi.fn(),
