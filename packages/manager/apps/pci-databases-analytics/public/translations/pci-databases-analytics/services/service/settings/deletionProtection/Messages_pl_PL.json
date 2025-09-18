@@ -7,6 +7,6 @@
   "activateDeletionProtection": "Włącz",
   "deactivateDeletionProtection": "Wyłącz",
   "updateServiceToastErrorTitle": "Błąd",
-  "updateServiceToastSuccessTitle": "Sukces",
+  "updateServiceToastSuccessTitle": "Operacja zakończona pomyślnie",
   "updateServiceToastSuccessDescription": "Twoja usługa została poprawnie zaktualizowana"
 }
