@@ -79,8 +79,6 @@
   "account_name": "Nom du compte",
   "owner": "Propriétaire",
   "diagnostics": "Diagnostics",
-  "zimbra_pro_beta_title": "Zimbra Pro est maintenant accessible en bêta !",
-  "zimbra_pro_beta_description": "Pendant la période de bêta, bénéficiez de 5 comptes Pro gratuits, avec 50 Go d'espace email, une licence Active Sync et un espace de stockage Drive, en plus de toutes les fonctionnalités déjà incluses dans l'offre Starter.",
   "order_an_account_type": "Commander un compte {{ type }}",
   "useful_links": "Liens utiles",
   "number_of_accounts": "Nombre de comptes",

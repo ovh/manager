@@ -1,4 +1,4 @@
-import React, { Suspense, useContext, useMemo } from 'react';
+import React, { Suspense, useContext } from 'react';
 
 import { Outlet, useResolvedPath, useSearchParams } from 'react-router-dom';
 
@@ -14,7 +14,6 @@ import {
   GuideButton,
   GuideItem,
   Notifications,
-  useFeatureAvailability,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import {
@@ -24,18 +23,10 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 
-import {
-  Breadcrumb,
-  Loading,
-  ProBetaBanner,
-  TabItemProps,
-  TabsPanel,
-  useComputePathMatchers,
-} from '@/components';
-import { FEATURE_AVAILABILITY, MAX_PRO_ACCOUNTS } from '@/constants';
+import { Breadcrumb, Loading, TabItemProps, TabsPanel, useComputePathMatchers } from '@/components';
 import { useOrganization } from '@/data/hooks';
 import { CHANGELOG_LINKS, GUIDES_LIST } from '@/guides.constants';
-import { useAccountsStatistics, useGenerateUrl, useOverridePage } from '@/hooks';
+import { useGenerateUrl, useOverridePage } from '@/hooks';
 import { urls } from '@/routes/routes.constants';
 import {
   AUTO_REPLY,
@@ -63,14 +54,6 @@ export const DashboardLayout: React.FC = () => {
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
   const basePath = useResolvedPath('').pathname;
-  const { proCount } = useAccountsStatistics();
-
-  const { data: availability } = useFeatureAvailability([FEATURE_AVAILABILITY.PRO_BETA]);
-
-  const showProBetaBanner = useMemo(
-    () => proCount < MAX_PRO_ACCOUNTS && availability?.[FEATURE_AVAILABILITY.PRO_BETA],
-    [availability, proCount],
-  );
 
   const guideItems: GuideItem[] = [
     {
@@ -196,11 +179,8 @@ export const DashboardLayout: React.FC = () => {
       }
       message={
         // temporary fix margin even if empty
-        notifications.length || showProBetaBanner ? (
-          <div className="flex flex-col gap-4">
-            {!!showProBetaBanner && <ProBetaBanner />}
-            {!!notifications.length && <Notifications />}
-          </div>
+        notifications.length ? (
+          <div className="flex flex-col gap-4">{!!notifications.length && <Notifications />}</div>
         ) : null
       }
       tabs={isOverridePage ? null : <TabsPanel tabs={tabsList} />}

@@ -8,5 +8,4 @@ export * from './idLink/IdLink.component';
 export * from './inlineEmailAccountFormItem/InlineEmailAccountFormItem.component';
 export * from './labelChip/LabelChip.component';
 export * from './loading/Loading.component';
-export * from './proBetaBanner/ProBetaBanner.component';
 export * from './tabsPanel/TabsPanel.component';
