@@ -3,7 +3,7 @@
   "pci_instances_dashboard_tab_info_title": "General information",
   "pci_instances_dashboard_tab_vnc_title": "VNC console",
   "pci_instances_dashboard_info_title": "Information",
-  "pci_instances_dashboard_upgrade_model": "Modify template",
+  "pci_instances_dashboard_upgrade_model": "Modify model",
   "pci_instances_dashboard_memory_title": "RAM",
   "pci_instances_dashboard_processor_title": "Processor",
   "pci_instances_dashboard_price_title": "Price",
