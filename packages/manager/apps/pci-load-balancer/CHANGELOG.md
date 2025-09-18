@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.15.16...@ovh-ux/manager-pci-load-balancer-app@0.15.17) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-load-balancer-app
+
+
+
+
+
 ## [0.15.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.15.15...@ovh-ux/manager-pci-load-balancer-app@0.15.16) (2025-09-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-load-balancer-app

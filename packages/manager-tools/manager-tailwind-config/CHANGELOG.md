@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-tailwind-config@0.5.1...@ovh-ux/manager-tailwind-config@0.5.2) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-tailwind-config
+
+
+
+
+
 ## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-tailwind-config@0.5.0...@ovh-ux/manager-tailwind-config@0.5.1) (2025-09-11)
 
 
