@@ -37,21 +37,41 @@ const data = [
     person: 'John Doe',
     mostInterestIn: '	HTML tables',
     age: 25,
+    subRows: Array.from({ length: 5 }, (_, index) => ({
+      person: `Most interest in ${index + 999999}`,
+      mostInterestIn: `Most interest in ${index + 999999}`,
+      age: index + 999999,
+    })),
   },
   {
     person: 'Jane Doe',
     mostInterestIn: 'Web accessibility',
     age: 26,
+    subRows: Array.from({ length: 5 }, (_, index) => ({
+      person: `Most interest in ${index + 888888}`,
+      mostInterestIn: `Most interest in ${index + 888888}`,
+      age: index + 888888,
+    })),
   },
   {
     person: 'Sarah',
     mostInterestIn: 'JavaScript frameworks',
     age: 25,
+    subRows: Array.from({ length: 5 }, (_, index) => ({
+      person: `Most interest in ${index + 777777}`,
+      mostInterestIn: `Most interest in ${index + 777777}`,
+      age: index + 777777,
+    })),
   },
   {
     person: 'Karen',
     mostInterestIn: '	Web performance',
     age: 26,
+    subRows: Array.from({ length: 5 }, (_, index) => ({
+      person: `Most interest in ${index + 666666}`,
+      mostInterestIn: `Most interest in ${index + 666666}`,
+      age: index + 666666,
+    })),
   },
 ];
 
@@ -66,7 +86,6 @@ const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
   const [isFetchAll, setIsFetchAll] = useState(false);
   const [items, setItems] = useState(args.data);
   const cols = args.columns;
-  // const containerHeight = args.containerHeight;
   const fetchAllPages = () => {
     const newData = Array.from({ length: 10000 }, (_, index) => ({
       ...items[index],
@@ -83,6 +102,18 @@ const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
   const [containerHeightStyle, setContainerHeightStyle] = useState(
     args.containerHeight,
   );
+  const {
+    expandable,
+    autoScroll,
+    renderSubComponent,
+    subComponentHeight,
+    maxRowHeight,
+    isLoading,
+    totalCount,
+    onFetchNextPage,
+    onFetchAllPages,
+    manualSorting,
+  } = args;
 
   return (
     <>
@@ -103,7 +134,9 @@ const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
               <FormFieldLabel>Container Height</FormFieldLabel>
               <Input
                 value={containerHeightState}
-                onChange={(e) => setContainerHeightState(e.target.value)}
+                onChange={(e) =>
+                  setContainerHeightState(Number(e.target.value))
+                }
               />
               <Button
                 onClick={() => setContainerHeightStyle(containerHeightState)}
@@ -118,7 +151,7 @@ const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
         columns={cols}
         data={items}
         {...(containerHeightStyle && { containerHeight: containerHeightStyle })}
-        {...('manualSorting' in args && { ...sortAttrs })}
+        {...(manualSorting && { ...sortAttrs })}
         {...('onFetchAllPages' in args &&
           !isFetchAll && {
             hasNextPage: true,
@@ -140,6 +173,13 @@ const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
                 },
               ]),
           })}
+        {...('renderSubComponent' in args && { renderSubComponent })}
+        {...('subComponentHeight' in args && { subComponentHeight })}
+        {...('maxRowHeight' in args && { maxRowHeight })}
+        {...('isLoading' in args && { isLoading })}
+        {...('totalCount' in args && { totalCount })}
+        {...('expandable' in args && { expandable })}
+        {...('autoScroll' in args && { autoScroll })}
       />
     </>
   );
@@ -200,7 +240,39 @@ DatagridWithContainerHeight.args = {
   hasNextPage: true,
   onFetchAllPages: () => {},
   onFetchNextPage: () => {},
-  containerHeight: '240px',
+  containerHeight: '260px',
+};
+
+export const DatagridWithSubComponent = DatagridStory.bind({});
+
+DatagridWithSubComponent.args = {
+  columns,
+  data,
+  manualSorting: false,
+  hasNextPage: true,
+  autoScroll: false,
+  onFetchNextPage: () => {},
+  renderSubComponent: (row: any) => (
+    <>
+      <div>{row.original.person}</div>
+      <div>{row.original.mostInterestIn}</div>
+      <div>{row.original.age}</div>
+    </>
+  ),
+  subComponentHeight: 80,
+  totalCount: 4,
+};
+
+export const DatagridWithExpandable = DatagridStory.bind({});
+
+DatagridWithExpandable.args = {
+  columns,
+  data,
+  manualSorting: false,
+  expandable: true,
+  autoScroll: false,
+  subComponentHeight: 80,
+  totalCount: 4,
 };
 
 const meta = {

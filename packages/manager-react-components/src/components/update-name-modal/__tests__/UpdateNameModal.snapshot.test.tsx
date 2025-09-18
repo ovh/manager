@@ -19,8 +19,6 @@ describe('UpdateNameModal Snapshot Tests', () => {
           updateDisplayName={mockUpdateDisplayName}
         />,
       );
-      console.log('container.parentElement', container.parentElement);
-
       expect(container.parentElement).toMatchSnapshot();
     });
 

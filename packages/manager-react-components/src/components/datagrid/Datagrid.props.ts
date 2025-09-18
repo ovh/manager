@@ -1,6 +1,8 @@
+import { MutableRefObject } from 'react';
 import {
   ColumnDef,
   ColumnSort as TanstackColumnSort,
+  Row,
 } from '@tanstack/react-table';
 import {
   FilterComparator,
@@ -11,7 +13,7 @@ import { Option } from '../filters/filter-add.component';
 export type ColumnSort = TanstackColumnSort;
 
 export type DatagridProps<T extends Record<string, unknown>> = {
-  columns: ColumnDef<T>[];
+  columns: ManagerColumnDef<T>[];
   data: T[];
   sorting?: ColumnSort[];
   onSortChange?: (sorting: ColumnSort[]) => void;
@@ -21,7 +23,29 @@ export type DatagridProps<T extends Record<string, unknown>> = {
   onFetchAllPages?: () => void;
   onFetchNextPage?: () => void;
   isLoading?: boolean;
-  containerHeight?: string;
+  containerHeight?: number;
+  totalCount?: number;
+  maxRowHeight?: number;
+  renderSubComponent?: (
+    row: Row<T>,
+    headerRefs?: MutableRefObject<Record<string, HTMLTableCellElement>>,
+  ) => JSX.Element;
+  subComponentHeight?: number;
+  expandable?: boolean;
+  autoScroll?: boolean;
+};
+
+export enum ColumnMetaType {
+  TEXT = 'text',
+  LINK = 'link',
+  BADGE = 'badge',
+}
+
+export type ManagerColumnDef<T> = ColumnDef<T> & {
+  meta?: {
+    type?: ColumnMetaType;
+    className?: string;
+  };
 };
 
 /** It is use by different hooks to define the columns of the datagrid

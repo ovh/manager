@@ -1,9 +1,20 @@
-import { ColumnDef, ColumnSort } from '@tanstack/react-table';
+import { MutableRefObject } from 'react';
+import { ColumnSort, Row } from '@tanstack/react-table';
+import { ManagerColumnDef } from './Datagrid.props';
 
 export type UseDatagridTableProps<T> = {
-  columns: ColumnDef<T>[];
+  columns: ManagerColumnDef<T>[];
   data: T[];
   sorting?: ColumnSort[];
   onSortChange?: (sorting: ColumnSort[]) => void;
   manualSorting?: boolean;
+  renderSubComponent?: (
+    row: Row<T>,
+    headerRefs?: MutableRefObject<Record<string, HTMLTableCellElement>>,
+  ) => JSX.Element;
+  expandable?: boolean;
 };
+
+export interface ExpandableRow<T> {
+  subRows?: T[];
+}

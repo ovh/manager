@@ -8,49 +8,37 @@ const TableHeaderContentComponent = <T,>({
   headerGroups,
   onSortChange,
 }: TableHeaderContentProps<T>) => (
-  <thead
-    style={{
-      display: 'grid',
-      position: 'sticky',
-      top: 0,
-      zIndex: 1,
-    }}
-  >
+  <thead className={`sticky top-[-1px] z-10 bg-white overflow-hidden`}>
     {headerGroups?.map((headerGroup) => (
-      <tr key={headerGroup.id} style={{ display: 'flex', width: '100%' }}>
-        {headerGroup.headers.map((header) => {
-          return (
-            <th
-              key={header.id}
-              className={`${
-                contentAlignLeft ? 'text-left pl-4' : 'text-center'
-              } h-11 whitespace-nowrap `}
-              style={{
-                display: 'flex',
-                ...(header?.column?.columnDef?.maxSize && {
-                  maxWidth: header?.column?.columnDef?.maxSize,
-                }),
-                flex: 1,
-                minWidth: 0,
-              }}
-            >
-              {!header.isPlaceholder &&
-                (onSortChange ? (
-                  <TableHeaderSorting
-                    header={header}
-                    onSortChange={onSortChange}
-                  />
-                ) : (
-                  <>
-                    {flexRender(
-                      header.column.columnDef.header,
-                      header.getContext(),
-                    )}
-                  </>
-                ))}
-            </th>
-          );
-        })}
+      <tr key={headerGroup.id} className="h-[50px]">
+        {headerGroup.headers.map((header) => (
+          <th
+            key={header.id}
+            className={`${
+              contentAlignLeft ? 'text-left pl-4' : 'text-center'
+            } h-11 whitespace-nowrap `}
+            style={{
+              width: header.column.getSize(),
+              minWidth: header.column.columnDef.minSize ?? 0,
+              maxWidth: header.column.columnDef.maxSize ?? 'auto',
+            }}
+          >
+            {!header.isPlaceholder &&
+              (onSortChange ? (
+                <TableHeaderSorting
+                  header={header}
+                  onSortChange={onSortChange}
+                />
+              ) : (
+                <>
+                  {flexRender(
+                    header.column.columnDef.header,
+                    header.getContext(),
+                  )}
+                </>
+              ))}
+          </th>
+        ))}
       </tr>
     ))}
   </thead>
