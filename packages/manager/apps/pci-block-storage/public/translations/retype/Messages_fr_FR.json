@@ -4,8 +4,10 @@
   "pci_projects_project_storages_blocks_retype_change_type_title": "Sélectionner le type",
   "pci_projects_project_storages_blocks_retype_change_encryption_title": "Sélectionner le chiffrement",
   "pci_projects_project_storages_blocks_retype_encryption_not_available": "Le chiffrement n'est pas disponible dans cette région",
+  "pci_projects_project_storages_blocks_retype_confirm_action_label": "Entrer \"{{ confirmWord }}\" pour confirmer votre choix.",
+  "pci_projects_project_storages_blocks_retype_confirm_action_confirm_button": "Confirmer et continuer",
   "pci_projects_project_storages_blocks_retype_detach_volume": "Pour modifier votre type d'offre, vous devez détacher le volume de son instance {{ instance }}",
-  "pci_projects_project_storages_blocks_retype_detach_volume_label": "Entrer \"{{ confirmWord }}\" pour confirmer votre choix.",
-  "pci_projects_project_storages_blocks_retype_detach_volume_confirm_button": "Confirmer et continuer",
-  "pci_projects_project_storages_blocks_retype_detach_volume_error": "Une erreur s'est produite lors du détachement de l'instance. Nous vous invitons à vous rendre sur <0>la page block storage</0> afin de détacher l'instance manuellement"
+  "pci_projects_project_storages_blocks_retype_detach_volume_error": "Une erreur s'est produite lors du détachement de l'instance. Nous vous invitons à vous rendre sur <0>la page block storage</0> afin de détacher l'instance manuellement.",
+  "pci_projects_project_storages_blocks_retype_delete_snapshots": "Pour modifier votre type d’offre vous devez avant supprimer les snapshots rattachés à votre volume.",
+  "pci_projects_project_storages_blocks_retype_delete_snapshots_error": "Une erreur s'est produite lors de la suppression des snapshots. Nous vous invitons à vous rendre sur <0>la page des snapshots</0> afin de les supprimer manuellement."
 }
