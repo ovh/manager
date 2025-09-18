@@ -1,16 +1,14 @@
 import { useMemo, useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useFormatDate, OvhSubsidiary } from '@ovh-ux/manager-react-components';
-import { CountryCode } from '@ovh-ux/manager-config';
 
 import { useCreditDetails } from '@/data/hooks/useCredit';
 import {
   DASHBOARD_DOCUMENTATION_LINKS_CONFIG,
-  DOCUMENTATION_GUIDE_LINKS,
   DASHBOARD_COMMUNITY_LINKS,
   DASHBOARD_CREDIT_VOUCHER_LINK,
   buildDeveloperCenterUrl,
-  DOC_BASE_URL,
+  getDocumentationGuideLink,
   BASE_PROJECT_PATH,
   DashboardTile,
   DashboardItem,
@@ -66,10 +64,10 @@ export function useDashboardSections(projectId: string) {
     return DASHBOARD_DOCUMENTATION_LINKS_CONFIG.map((item) => ({
       ...item,
       link: item.documentationGuideKey
-        ? DOC_BASE_URL +
-          (DOCUMENTATION_GUIDE_LINKS[item.documentationGuideKey][
-            subsidiary as CountryCode
-          ] || DOCUMENTATION_GUIDE_LINKS[item.documentationGuideKey].DEFAULT)
+        ? getDocumentationGuideLink(
+            item.documentationGuideKey,
+            subsidiary as OvhSubsidiary,
+          )
         : item.link,
     }));
   }, [subsidiary]);

@@ -1,5 +1,4 @@
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
-import { CountryCode } from '@ovh-ux/manager-config';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 export const QUOTA_THRESHOLD = 80;
@@ -26,8 +25,9 @@ export const ITALY_AGREEMENT_TEXT = {
     "Il Cliente dichiara di riconoscere, accettare ed approvare espressamente, ai sensi dell'art. 1341, secondo comma, e dell'art. 1342, secondo comma, del Codice Civile, le seguenti specifiche clausole del presente Contratto: 2.5 (“Chiusura dell’Account Cliente”), 3.7 (“Sospensione dei Servizi”), 4.2 (“SLA”), 4.3 (“Crediti di servizio”), 5.2 (“Modifica dei Servizi ordinati”), 7.1 (“Casi di e-mail fraudolente e indesiderate”), 7.3 (“Sospensione e disattivazione”), 10.2 (“Responsabilità di OVHcloud”), 10.3 (“Limitazioni di responsabilità”), 10.4 (“Eccezioni”), 10.6 (“Responsabilità del Cliente”), 10.7 (“Garanzie”), 10.8 (“Forza Maggiore”), 11.2 (“Modifica delle tariffe”), 11.6 (“Mancato pagamento e ritardo nel pagamento”), 11.7 (“Contestazione”), 12.2 (“Rinnovo dei Servizi”), 14.1 (“Legge applicabile e foro competente”), 14.2, ult. cpv. (“Sanzioni internazionali e Controllo delle esportazioni”), 14.7 (“Modifiche al Contratto”), 14.9 (“Cessione del contratto”).",
 };
 
-export const INDIAN_KYC_SUPPORT_LINK =
-  'https://help.ovhcloud.com/csm?id=csm_cases_requests&ovhSubsidiary=IN';
+export const DOC_BASE_URL = 'https://help.ovhcloud.com/csm';
+
+export const INDIAN_KYC_SUPPORT_LINK = `${DOC_BASE_URL}?id=csm_cases_requests&ovhSubsidiary=IN`;
 
 export type TFeatureStateDetail = {
   url: string;
@@ -54,33 +54,67 @@ export const PCI_HDS_ADDON = {
 export const BASE_PROJECT_PATH = '#/pci/projects/:projectId';
 
 const OVH_CLOUD_URL = 'https://www.ovhcloud.com';
-const HDS_URL = 'enterprise/certification-conformity/hds/';
 
-type HdsInfo = { [key in OvhSubsidiary]: string };
-
-// Legacy HDS_INFO - kept for backward compatibility
-export const HDS_INFO: Partial<HdsInfo> = {
-  DEFAULT: `${OVH_CLOUD_URL}/en/${HDS_URL}`,
-  ASIA: `${OVH_CLOUD_URL}/asia/${HDS_URL}`,
-  AU: `${OVH_CLOUD_URL}/en-au/${HDS_URL}`,
-  CA: `${OVH_CLOUD_URL}/en-ca/${HDS_URL}`,
-  DE: `${OVH_CLOUD_URL}/de/${HDS_URL}`,
-  ES: `${OVH_CLOUD_URL}/es-es/${HDS_URL}`,
-  FR: `${OVH_CLOUD_URL}/fr/${HDS_URL}`,
-  GB: `${OVH_CLOUD_URL}/en-gb/${HDS_URL}`,
-  IE: `${OVH_CLOUD_URL}/en-ie/${HDS_URL}`,
-  IT: `${OVH_CLOUD_URL}/it/${HDS_URL}`,
-  MA: `${OVH_CLOUD_URL}/fr-ma/${HDS_URL}`,
-  NL: `${OVH_CLOUD_URL}/nl/${HDS_URL}`,
-  PL: `${OVH_CLOUD_URL}/pl/${HDS_URL}`,
-  PT: `${OVH_CLOUD_URL}/pt/${HDS_URL}`,
-  QC: `${OVH_CLOUD_URL}/fr-ca/${HDS_URL}`,
-  SG: `${OVH_CLOUD_URL}/en-sg/${HDS_URL}`,
-  SN: `${OVH_CLOUD_URL}/fr-sn/${HDS_URL}`,
-  TN: `${OVH_CLOUD_URL}/fr-tn/${HDS_URL}`,
-  WE: `${OVH_CLOUD_URL}/en/${HDS_URL}`,
-  WS: `${OVH_CLOUD_URL}/es/${HDS_URL}`,
+// Global language mappings for subsidiaries
+export const OVH_LANGUAGE_BY_SUBSIDIARY: Record<OvhSubsidiary, string> = {
+  DEFAULT: 'en',
+  ASIA: 'asia',
+  AU: 'en-au',
+  CA: 'en-ca',
+  CZ: 'cs',
+  DE: 'de',
+  ES: 'es-es',
+  EU: 'en',
+  FI: 'fi',
+  FR: 'fr',
+  GB: 'en-gb',
+  IE: 'en-ie',
+  IN: 'en-in',
+  IT: 'it',
+  LT: 'lt',
+  MA: 'fr-ma',
+  NL: 'nl',
+  PL: 'pl',
+  PT: 'pt',
+  QC: 'fr-ca',
+  SG: 'en-sg',
+  SN: 'fr-sn',
+  TN: 'fr-tn',
+  US: 'en-us',
+  WE: 'en',
+  WS: 'es',
 };
+
+// Function to get HDS info URL for a given subsidiary with automatic fallback
+export const getHdsInfoUrl = (subsidiary: OvhSubsidiary): string => {
+  const HDS_URL = 'enterprise/certification-conformity/hds/';
+  const language = OVH_LANGUAGE_BY_SUBSIDIARY[subsidiary];
+  return `${OVH_CLOUD_URL}/${language}/${HDS_URL}`;
+};
+
+// Function to build Developer Center URL for a given subsidiary
+export const buildDeveloperCenterUrl = (subsidiary: OvhSubsidiary): string => {
+  // Developer Center exists only for specific subsidiaries
+  const developerCenterSubsidiaries: Partial<Record<OvhSubsidiary, string>> = {
+    FR: 'fr',
+    GB: 'en-gb',
+    IE: 'en-ie',
+    CA: 'en-ca',
+    QC: 'fr-ca',
+    MA: 'fr-ma',
+    SN: 'fr-sn',
+    TN: 'fr-tn',
+    AU: 'en-au',
+    SG: 'en-sg',
+    ASIA: 'asia',
+    IN: 'en-in',
+    WE: 'en',
+  };
+
+  const language = developerCenterSubsidiaries[subsidiary] || 'en';
+  return `${OVH_CLOUD_URL}/${language}/developer-center/`;
+};
+
 export const PCI_FEATURES_STATES: TFeatureState = {
   DATAPLATFORM: {
     LIST: {
@@ -176,8 +210,7 @@ export const PCI_FEATURES_STATES: TFeatureState = {
   },
 };
 
-export const SUPPORT_URL =
-  'https://help.ovhcloud.com/csm?id=csm_get_help&ovhSubsidiary=';
+export const SUPPORT_URL = `${DOC_BASE_URL}?id=csm_get_help&ovhSubsidiary=`;
 
 export const PCI_PROJECT_ORDER_CART = {
   productName: 'cloud',
@@ -208,27 +241,19 @@ export const STARTUP_PROGRAM_GUIDE_URL =
   'https://community.ovhcloud.com/community/en/what-products-are-available-to-use-with-startup-program-credits?id=community_question&sys_id=99d01d508d61d2902d4cc9575bde90ae&view_source=featuredList';
 
 // Legacy QUOTA_LIMIT_GUIDES - kept for backward compatibility
+const INCREASE_QUOTA_URL =
+  '-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=';
 export const QUOTA_LIMIT_GUIDES: Partial<{ [key in OvhSubsidiary]: string }> = {
-  GB:
-    'https://help.ovhcloud.com/csm/en-gb-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050843',
-  IE:
-    'https://help.ovhcloud.com/csm/en-ie-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050840',
-  DEFAULT:
-    'https://help.ovhcloud.com/csm/en-gb-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050843',
-  ASIA:
-    'https://help.ovhcloud.com/csm/asia-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050836',
-  AU:
-    'https://help.ovhcloud.com/csm/en-au-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050838',
-  CA:
-    'https://help.ovhcloud.com/csm/en-ca-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050852',
-  SG:
-    'https://help.ovhcloud.com/csm/en-sg-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050844',
-  WE:
-    'https://help.ovhcloud.com/csm/en-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050845',
-  IN:
-    'https://help.ovhcloud.com/csm/asia-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050836',
-  FR:
-    'https://help.ovhcloud.com/csm/fr-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050857',
+  GB: `${DOC_BASE_URL}/en-gb${INCREASE_QUOTA_URL}KB0050843`,
+  IE: `${DOC_BASE_URL}/en-ie${INCREASE_QUOTA_URL}KB0050840`,
+  DEFAULT: `${DOC_BASE_URL}/en-gb${INCREASE_QUOTA_URL}KB0050843`,
+  ASIA: `${DOC_BASE_URL}/asia${INCREASE_QUOTA_URL}KB0050836`,
+  AU: `${DOC_BASE_URL}/en-au${INCREASE_QUOTA_URL}KB0050838`,
+  CA: `${DOC_BASE_URL}/en-ca${INCREASE_QUOTA_URL}KB0050852`,
+  SG: `${DOC_BASE_URL}/en-sg${INCREASE_QUOTA_URL}KB0050844`,
+  WE: `${DOC_BASE_URL}/en-${INCREASE_QUOTA_URL}KB0050845`,
+  IN: `${DOC_BASE_URL}/asia${INCREASE_QUOTA_URL}KB0050836`,
+  FR: `${DOC_BASE_URL}/fr${INCREASE_QUOTA_URL}KB0050857`,
 };
 
 export const UCENTS = 1 / 100_000_000;
@@ -282,273 +307,107 @@ export type DashboardTile = {
   items: DashboardItem[];
 };
 
-export const DOC_BASE_URL = 'https://help.ovhcloud.com/csm';
-export const DOC_PUBLIC_CLOUD_PATH = '/public-cloud';
-
-// Typed list of supported subsidiary codes
-export const SUPPORTED_SUBSIDIARIES = [
-  'FR',
-  'GB',
-  'DE',
-  'ES',
-  'CA',
-  'QC',
-  'DEFAULT',
-  'ASIA',
-  'AU',
-  'IE',
-  'IT',
-  'MA',
-  'NL',
-  'PL',
-  'PT',
-  'SG',
-  'SN',
-  'TN',
-  'WE',
-  'WS',
-  'IN',
-] as const;
-
-// Utility function to create subsidiary objects with proper typing
-export const createSubsidiaryObject = <T>(
-  generator: (subsidiary: OvhSubsidiary) => T,
-): Partial<{ [key in OvhSubsidiary]: T }> => {
-  const result: Partial<{ [key in OvhSubsidiary]: T }> = {};
-  SUPPORTED_SUBSIDIARIES.forEach((subsidiary) => {
-    result[subsidiary as OvhSubsidiary] = generator(
-      subsidiary as OvhSubsidiary,
-    );
-  });
-  return result;
-};
-
-/**
- * Utility function to ensure all supported subsidiaries have a value with fallback to DEFAULT
- *
- * This function guarantees that:
- * 1. All codes in SUPPORTED_SUBSIDIARIES have a value in the mapping
- * 2. If a subsidiary is not explicitly defined, it falls back to DEFAULT
- * 3. If DEFAULT is not defined, it uses the provided defaultValue
- *
- * This prevents runtime errors when accessing subsidiary-specific values
- * and ensures consistent fallback behavior across all URL generation functions.
- */
-export const ensureCompleteSubsidiaryMapping = <T>(
-  mapping: Partial<{ [key in OvhSubsidiary]: T }>,
-  defaultValue: T,
-): Partial<{ [key in OvhSubsidiary]: T }> => {
-  const result: Partial<{ [key in OvhSubsidiary]: T }> = { ...mapping };
-
-  // Ensure DEFAULT exists
-  if (!result.DEFAULT) {
-    result.DEFAULT = defaultValue;
-  }
-
-  // Ensure all supported subsidiaries have a value (fallback to DEFAULT)
-  SUPPORTED_SUBSIDIARIES.forEach((subsidiary) => {
-    if (!result[subsidiary as OvhSubsidiary]) {
-      result[subsidiary as OvhSubsidiary] = result.DEFAULT || defaultValue;
-    }
-  });
-
-  return result;
-};
-
-// Unified language mappings for all URL patterns
-export const LANGUAGE_MAPPINGS: Partial<
-  { [key in OvhSubsidiary]: string }
-> = ensureCompleteSubsidiaryMapping(
-  {
-    DEFAULT: 'en',
-    ASIA: 'asia',
-    AU: 'en-au',
-    CA: 'en-ca',
-    DE: 'de',
-    ES: 'es-es',
-    FR: 'fr',
-    GB: 'en-gb',
-    IE: 'en-ie',
-    IT: 'it',
-    MA: 'fr-ma',
-    NL: 'nl',
-    PL: 'pl',
-    PT: 'pt',
-    QC: 'fr-ca',
-    SG: 'en-sg',
-    SN: 'fr-sn',
-    TN: 'fr-tn',
-    WE: 'en',
-    WS: 'es',
-    IN: 'asia',
-  },
-  'en',
-);
-
-// URL construction utilities
-export const buildDocumentationUrl = (
-  basePath: string,
-  subsidiary: OvhSubsidiary,
-  articleId: string,
-): string => {
-  const language = LANGUAGE_MAPPINGS[subsidiary] || LANGUAGE_MAPPINGS.DEFAULT;
-  return `${DOC_BASE_URL}${basePath}/${language}-public-cloud-compute-${articleId}?id=kb_article_view&sysparm_article=${articleId}`;
-};
-
-// Generic function to build URLs with different patterns
-export const buildOvhCloudUrl = (
-  subsidiary: OvhSubsidiary,
-  path: string,
-): string => {
-  const language = LANGUAGE_MAPPINGS[subsidiary] || LANGUAGE_MAPPINGS.DEFAULT;
-  return `https://www.ovhcloud.com/${language}/${path}`;
-};
-
-export const buildDeveloperCenterUrl = (subsidiary: OvhSubsidiary): string => {
-  return buildOvhCloudUrl(subsidiary, 'developer-center/');
-};
-
-export const buildHdsUrl = (subsidiary: OvhSubsidiary): string => {
-  return buildOvhCloudUrl(
-    subsidiary,
-    'enterprise/certification-conformity/hds/',
-  );
-};
-
-// Refactored HDS_INFO using the centralized function and typed list
-export const HDS_INFO_REFACTORED: Partial<
-  { [key in OvhSubsidiary]: string }
-> = createSubsidiaryObject(buildHdsUrl);
-
-// Specific function for documentation guide URLs
-export const buildGuideUrl = (
-  subsidiary: OvhSubsidiary,
-  articleId: string,
-): string => {
-  const language = LANGUAGE_MAPPINGS[subsidiary] || LANGUAGE_MAPPINGS.DEFAULT;
-  return `${DOC_PUBLIC_CLOUD_PATH}/${language}-public-cloud-compute-${articleId}?id=kb_article_view&sysparm_article=${articleId}`;
-};
-
-// Function to generate documentation guide links for all subsidiaries
-export const generateGuideLinks = (articleId: string): Partial<GuideLinks> => {
-  const links: Partial<GuideLinks> = {};
-
-  // Generate links for all supported subsidiaries
-  SUPPORTED_SUBSIDIARIES.forEach((subsidiary) => {
-    const language = LANGUAGE_MAPPINGS[subsidiary];
-    if (language && subsidiary !== 'DEFAULT') {
-      links[
-        subsidiary as CountryCode
-      ] = `${DOC_PUBLIC_CLOUD_PATH}/${language}-public-cloud-compute-${articleId}?id=kb_article_view&sysparm_article=${articleId}`;
-    }
-  });
-
-  // Add DEFAULT fallback
-  links.DEFAULT = `${DOC_PUBLIC_CLOUD_PATH}/${LANGUAGE_MAPPINGS.DEFAULT}-public-cloud-compute-${articleId}?id=kb_article_view&sysparm_article=${articleId}`;
-
-  return links;
-};
-
-// Quota limit guide article IDs by subsidiary
-export const QUOTA_LIMIT_ARTICLE_IDS: Partial<
-  { [key in OvhSubsidiary]: string }
-> = ensureCompleteSubsidiaryMapping(
-  {
-    // Countries with specific article IDs
-    GB: 'KB0050843',
-    IE: 'KB0050840',
-    ASIA: 'KB0050836',
-    AU: 'KB0050838',
-    CA: 'KB0050852',
-    SG: 'KB0050844',
-    WE: 'KB0050845',
-    IN: 'KB0050836',
-    FR: 'KB0050857',
-
-    // Countries that fallback to DEFAULT (using GB article ID)
-    DE: 'KB0050843',
-    ES: 'KB0050843',
-    IT: 'KB0050843',
-    MA: 'KB0050843',
-    NL: 'KB0050843',
-    PL: 'KB0050843',
-    PT: 'KB0050843',
-    QC: 'KB0050843',
-    SN: 'KB0050843',
-    TN: 'KB0050843',
-    WS: 'KB0050843',
-
-    DEFAULT: 'KB0050843',
-  },
-  'KB0050843',
-);
-
-// Function to generate quota limit guide URLs
-export const generateQuotaLimitGuideUrl = (
+// Function to get documentation guide URL for a given guide and subsidiary
+export const getDocumentationGuideLink = (
+  guideName: string,
   subsidiary: OvhSubsidiary,
 ): string => {
-  const articleId =
-    QUOTA_LIMIT_ARTICLE_IDS[subsidiary] || QUOTA_LIMIT_ARTICLE_IDS.DEFAULT;
+  const language = OVH_LANGUAGE_BY_SUBSIDIARY[subsidiary];
 
-  // Special cases for subsidiaries with different URL patterns
-  if (subsidiary === 'ASIA' || subsidiary === 'IN') {
-    return `${DOC_BASE_URL}/asia-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=${articleId}`;
+  // Special case for guides - uses csm_index instead of KB article
+  if (guideName === 'guides') {
+    return `${DOC_BASE_URL}/${language}-home?id=csm_index`;
   }
 
-  if (subsidiary === 'WE') {
-    return `${DOC_BASE_URL}/en-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=${articleId}`;
-  }
+  // KB Article IDs for documentation guides by subsidiary
+  const DOCUMENTATION_KB_BY_SUB: Record<
+    string,
+    Partial<Record<OvhSubsidiary, string>>
+  > = {
+    getting_started: {
+      DEFAULT: 'KB0050388', // en-gb
+      DE: 'KB0050383', // de
+      ES: 'KB0050389', // es-es
+      FR: 'KB0050407', // fr
+      IE: 'KB0050387', // en-ie
+      IT: 'KB0050404', // it
+      PL: 'KB0050394', // pl
+      PT: 'KB0050395', // pt
+      CA: 'KB0050398', // en-ca
+      QC: 'KB0050397', // fr-ca
+      WS: 'KB0050392', // es
+      AU: 'KB0038069', // en-au
+      IN: 'KB0069446', // en-in
+      SG: 'KB0050393', // en-sg
+      ASIA: 'KB0050384', // asia
+    },
+    public_cloud: {
+      DEFAULT: 'KB0050399', // en-gb
+      DE: 'KB0050396', // de
+      ES: 'KB0050416', // es-es
+      FR: 'KB0050409', // fr
+      IE: 'KB0050401', // en-ie
+      IT: 'KB0050403', // it
+      PL: 'KB0050406', // pl
+      PT: 'KB0050411', // pt
+      CA: 'KB0050400', // en-ca
+      QC: 'KB0050408', // fr-ca
+      WS: 'KB0050417', // es
+      AU: 'KB0050410', // en-au
+      IN: 'KB0069451', // en-in
+      SG: 'KB0050402', // en-sg
+      ASIA: 'KB0038083', // asia
+    },
+    instances: {
+      DEFAULT: 'KB0050758', // en-gb
+      DE: 'KB0050755', // de
+      ES: 'KB0050761', // es-es
+      FR: 'KB0050764', // fr
+      IE: 'KB0050766', // en-ie
+      IT: 'KB0050765', // it
+      PL: 'KB0050768', // pl
+      PT: 'KB0050776', // pt
+      CA: 'KB0050754', // en-ca
+      QC: 'KB0050762', // fr-ca
+      WS: 'KB0050760', // es
+      AU: 'KB0050756', // en-au
+      IN: 'KB0069231', // en-in
+      SG: 'KB0050759', // en-sg
+      ASIA: 'KB0038462', // asia
+    },
+    billing: {
+      DEFAULT: 'KB0050453', // en-gb
+      DE: 'KB0050448', // de
+      ES: 'KB0050457', // es-es
+      FR: 'KB0050459', // fr
+      IE: 'KB0050454', // en-ie
+      IT: 'KB0050461', // it
+      PL: 'KB0050472', // pl
+      PT: 'KB0050474', // pt
+      CA: 'KB0050452', // en-ca
+      QC: 'KB0050460', // fr-ca
+      WS: 'KB0050462', // es
+      AU: 'KB0038140', // en-au
+      IN: 'KB0069450', // en-in
+      SG: 'KB0050465', // en-sg
+      ASIA: 'KB0050463', // asia
+    },
+  };
 
-  // Standard pattern for other subsidiaries
-  // For quota guides, DEFAULT should use 'en-gb' not 'en'
-  let language = LANGUAGE_MAPPINGS[subsidiary] || LANGUAGE_MAPPINGS.DEFAULT;
-  if (subsidiary === 'DEFAULT') {
-    language = 'en-gb';
-  }
-  return `${DOC_BASE_URL}/${language}-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=${articleId}`;
-};
+  const kbId =
+    DOCUMENTATION_KB_BY_SUB[guideName]?.[subsidiary] ||
+    DOCUMENTATION_KB_BY_SUB[guideName]?.DEFAULT;
 
-// Refactored QUOTA_LIMIT_GUIDES using the centralized function and typed list
-export const QUOTA_LIMIT_GUIDES_REFACTORED: Partial<
-  { [key in OvhSubsidiary]: string }
-> = createSubsidiaryObject(generateQuotaLimitGuideUrl);
+  // Map guide names to their specific paths
+  const guidePaths: Record<string, string> = {
+    getting_started: 'public-cloud-compute-essential-information',
+    public_cloud: 'public-cloud-compute-control-panel',
+    instances: 'public-cloud-compute-getting-started-instance',
+    billing: 'public-cloud-compute-billing-options',
+  };
 
-type GuideLinks = { [key in CountryCode | 'DEFAULT']: string };
-
-// Documentation guide article IDs
-export const DOCUMENTATION_ARTICLE_IDS = {
-  getting_started: 'essential-information',
-  public_cloud: 'control-panel',
-  instances: 'getting-started-instance',
-  billing: 'billing-options',
-  guides: 'home',
-} as const;
-
-// Special case for guides (different URL pattern)
-export const generateGuidesLinks = (): Partial<GuideLinks> => {
-  const links: Partial<GuideLinks> = {};
-
-  Object.entries(LANGUAGE_MAPPINGS).forEach(([subsidiary, language]) => {
-    if (subsidiary !== 'DEFAULT') {
-      links[
-        subsidiary as CountryCode
-      ] = `${DOC_PUBLIC_CLOUD_PATH}/${language}-home?id=csm_index`;
-    }
-  });
-
-  links.DEFAULT = `${DOC_PUBLIC_CLOUD_PATH}/${LANGUAGE_MAPPINGS.DEFAULT}-home?id=csm_index`;
-
-  return links;
-};
-
-export const DOCUMENTATION_GUIDE_LINKS: {
-  [guideName: string]: Partial<GuideLinks>;
-} = {
-  getting_started: generateGuideLinks('essential-information'),
-  public_cloud: generateGuideLinks('control-panel'),
-  instances: generateGuideLinks('getting-started-instance'),
-  billing: generateGuideLinks('billing-options'),
-  guides: generateGuidesLinks(),
+  const path = guidePaths[guideName];
+  return `${DOC_BASE_URL}/${language}-${path}?id=kb_article_view&sysparm_article=${kbId}`;
 };
 
 export const DASHBOARD_DOCUMENTATION_LINKS_CONFIG: DashboardItemConfig[] = [
@@ -580,7 +439,6 @@ export const DASHBOARD_DOCUMENTATION_LINKS_CONFIG: DashboardItemConfig[] = [
 ];
 
 // Developer Center URL construction (now uses centralized LANGUAGE_MAPPINGS)
-
 export const DASHBOARD_COMMUNITY_LINKS: DashboardItem[] = [
   {
     labelTranslationKey: 'pci_projects_project_roadmap',
