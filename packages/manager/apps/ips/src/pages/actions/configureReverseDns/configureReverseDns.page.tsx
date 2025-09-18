@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ipaddr from 'ipaddr.js';
 import {
@@ -31,6 +31,11 @@ export default function ConfigureReverseDns() {
 
   const { addSuccess } = useNotifications();
   const navigate = useNavigate();
+  const [search] = useSearchParams();
+
+  const closeModal = () => {
+    navigate(`..?${search.toString()}`);
+  };
 
   const { t } = useTranslation([
     'configure-reverse-dns',
@@ -60,7 +65,7 @@ export default function ConfigureReverseDns() {
     ip: ipGroup,
     ipReverse: ip,
     onSuccess: () => {
-      navigate('..');
+      closeModal();
       addSuccess(t('listingReverseDnsUpdateSuccess'));
     },
   });
@@ -73,7 +78,7 @@ export default function ConfigureReverseDns() {
     ip: ipGroup,
     ipReverse: ip,
     onSuccess: () => {
-      navigate('..');
+      closeModal();
       addSuccess(t('listingReverseDnsUpdateSuccess'));
     },
   });
@@ -81,7 +86,7 @@ export default function ConfigureReverseDns() {
   const cancel = React.useCallback(() => {
     setReverseDns(data?.data?.reverse);
     setCurrentIp('');
-    navigate('..');
+    closeModal();
   }, [data?.data?.reverse]);
 
   const confirm = React.useCallback(
