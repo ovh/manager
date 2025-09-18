@@ -13,8 +13,10 @@ import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
 import { useCatalogWithPreselection } from '@/api/hooks/useCatalogWithPreselection';
 import { useAttachedInstances } from '@/api/hooks/useInstance';
+import { useVolumeSnapshots } from '@/api/hooks/useSnapshot';
 import { Retype } from './Retype.component';
 import { RetypeDetachInstance } from './RetypeDetachInstance.component';
+import { RetypeDeleteSnapshots } from './RetypeDeleteSnapshots.component';
 
 const RetypePage = () => {
   const { t } = useTranslation(['retype']);
@@ -31,7 +33,13 @@ const RetypePage = () => {
     isPending: isInstancesPending,
   } = useAttachedInstances(projectId, volumeId);
 
-  const isPending = isCatalogPending || isInstancesPending;
+  const { data: snapshots, isPending: isSnapshotsPending } = useVolumeSnapshots(
+    projectId,
+    volumeId,
+  );
+
+  const isPending =
+    isCatalogPending || isInstancesPending || isSnapshotsPending;
 
   const displayedForm = useMemo(() => {
     if (isPending) {
@@ -59,6 +67,16 @@ const RetypePage = () => {
       return (
         <RetypeDetachInstance
           instance={instances[0]}
+          projectId={projectId}
+          volumeId={volumeId}
+        />
+      );
+    }
+
+    if (snapshots?.length > 0) {
+      return (
+        <RetypeDeleteSnapshots
+          snapshots={snapshots}
           projectId={projectId}
           volumeId={volumeId}
         />
