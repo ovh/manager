@@ -3,7 +3,6 @@ import React, { PropsWithChildren } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ListingContextProvider } from '@/pages/listing/listingContext';
 import ipDetailsList from '../../../../../../../mocks/ip/get-ip-details.json';
 import { IpRegion, IpRegionProps } from './IpRegion';
 
@@ -25,9 +24,7 @@ vi.mock('../SkeletonCell/SkeletonCell', () => ({
 const renderComponent = (params: IpRegionProps) => {
   return render(
     <QueryClientProvider client={queryClient}>
-      <ListingContextProvider>
-        <IpRegion {...params} />
-      </ListingContextProvider>
+      <IpRegion {...params} />
     </QueryClientProvider>,
   );
 };

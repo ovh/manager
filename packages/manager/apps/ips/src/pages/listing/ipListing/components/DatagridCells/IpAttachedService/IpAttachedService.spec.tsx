@@ -49,9 +49,7 @@ const renderComponent = (params: IpAttachedServiceProps) => {
       <ShellContext.Provider
         value={(shellContext as unknown) as ShellContextType}
       >
-        <ListingContextProvider>
-          <IpAttachedService {...params} />
-        </ListingContextProvider>
+        <IpAttachedService {...params} />
       </ShellContext.Provider>
     </QueryClientProvider>,
   );

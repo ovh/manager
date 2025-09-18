@@ -26,6 +26,7 @@ const orderableIpCountries = [
   'be',
   'nl',
   'ie',
+  'ca',
 ];
 
 export type GetDedicatedCloudMocksParams = {

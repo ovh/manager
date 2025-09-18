@@ -1,17 +1,17 @@
-import '@/test-utils/setupUnitTests';
 import React from 'react';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import { IpVmacFilterByIp, IpVmacFilterByIpProps } from './IpVmacFilterByIp';
-import { ListingContextProvider } from '@/pages/listing/listingContext';
+import { ListingContext } from '@/pages/listing/listingContext';
 import { MacAddressTypeEnum } from '@/data/api';
+import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
 
 /** RENDER */
 const renderComponent = (params: IpVmacFilterByIpProps) => {
   return render(
-    <ListingContextProvider>
+    <ListingContext.Provider value={listingContextDefaultParams}>
       <IpVmacFilterByIp {...params} />
-    </ListingContextProvider>,
+    </ListingContext.Provider>,
   );
 };
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -29,6 +29,7 @@ export default function AntiHackModal() {
   const [time, setTime] = useState(0);
   const [logs, setLogs] = useState('');
   const navigate = useNavigate();
+  const [search] = useSearchParams();
   const { id } = useParams();
   const { ip } = ipFormatter(fromIdToIp(id));
   const { addSuccess, addError, clearNotifications } = useNotifications();
@@ -52,7 +53,7 @@ export default function AntiHackModal() {
   }, [ipAntihack]);
 
   const closeModal = () => {
-    navigate('..');
+    navigate(`..?${search.toString()}`);
   };
 
   const fields = useMemo(
@@ -123,7 +124,7 @@ export default function AntiHackModal() {
 
   return (
     <Modal
-      isOpen={true}
+      isOpen
       onDismiss={closeHandler}
       heading={t('unblockAntiHackTitle')}
       primaryLabel={t('unblockAntiHackIP_action')}

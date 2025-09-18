@@ -27,8 +27,12 @@ export const SkeletonCell = ({
 }: PropsWithChildren<SkeletonCellParams>) => {
   const { addExpiredIp } = useContext(ListingContext);
 
-  // If ip is set and asynchronous call gives error 460 we add it on expired ips list
-  if (ip && error?.response.status === 460) addExpiredIp(ip);
+  React.useEffect(() => {
+    // If ip is set and asynchronous call gives error 460 we add it on expired ips list
+    if (ip && error?.response?.status === 460) {
+      addExpiredIp(ip);
+    }
+  }, [ip, error, addExpiredIp]);
 
   // If not enable or if there is an error, return an empty cell
   if (!enabled || !!error) return null;
