@@ -55,6 +55,8 @@ const setVirtualWindow = (start: number, size: number = 20) => {
   virtualWindowSize = size;
 };
 
+const scrollToIndexMock = vi.fn();
+
 vi.mock('@tanstack/react-virtual', () => ({
   useVirtualizer: ({ count }: { count: number }) => ({
     getTotalSize: () => count * 50,
@@ -75,6 +77,7 @@ vi.mock('@tanstack/react-virtual', () => ({
     },
     measureElement: () => {},
     overscan: 40,
+    scrollToIndex: scrollToIndexMock,
   }),
 }));
 
@@ -111,6 +114,13 @@ const Wrapper = () => {
 };
 
 describe('TableBodyComponent', () => {
+  beforeEach(() => {
+    mockedHook.mockReturnValue({
+      isAuthorized: true,
+      isLoading: false,
+      isFetched: true,
+    });
+  });
   it('should render the table body', () => {
     render(<Datagrid columns={columns} data={data} containerHeight="300px" />);
     expect(screen.getByText('Person 1')).toBeInTheDocument();
@@ -121,11 +131,6 @@ describe('TableBodyComponent', () => {
   });
 
   it('should render the table body, load more and display next items', () => {
-    mockedHook.mockReturnValue({
-      isAuthorized: true,
-      isLoading: false,
-      isFetched: true,
-    });
     render(<Wrapper />);
     expect(screen.getByText('Person 1')).toBeInTheDocument();
     expect(screen.getByText('Person 2')).toBeInTheDocument();
@@ -140,12 +145,6 @@ describe('TableBodyComponent', () => {
   });
 
   it('should test virtualization with scrollable window', () => {
-    mockedHook.mockReturnValue({
-      isAuthorized: true,
-      isLoading: false,
-      isFetched: true,
-    });
-
     // Start with first 20 items visible
     setVirtualWindow(0, 20);
     const { container } = render(<Wrapper />);

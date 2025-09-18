@@ -114,8 +114,11 @@ export function useResourcesIcebergV6<T = unknown>({
     }
   };
 
+  console.info('sorting : ', sorting);
+
+  console.info('dataSelected : ', dataSelected);
   return {
-    ...(dataSelected ? { ...dataSelected, totalCount: 0 } : { totalCount: 0 }),
+    ...dataSelected,
     hasNextPage,
     fetchNextPage,
     ...rest,

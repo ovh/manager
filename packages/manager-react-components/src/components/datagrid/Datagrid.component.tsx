@@ -2,8 +2,7 @@ import { useRef } from 'react';
 import { Table } from '@ovhcloud/ods-react';
 import { TableBody } from './table/table-body/TableBody.component';
 import { TableHeaderContent } from './table/table-head/table-header-content/TableHeaderContent.component';
-import { FooterActions } from './table/table-footer/footer-actions/FooterActions.component';
-import { useContainerHeight } from './useContainerHeight';
+import { TableFooter } from './table/table-footer/TableFooter.component';
 import { useDatagrid } from './useDatagrid';
 import { DatagridProps } from './Datagrid.props';
 import './translations';
@@ -20,6 +19,9 @@ export const Datagrid = <T extends Record<string, unknown>>({
   onFetchNextPage,
   isLoading,
   containerHeight,
+  totalCount,
+  renderSubComponent,
+  subComponentHeight,
 }: DatagridProps<T>) => {
   const { getHeaderGroups, getRowModel } = useDatagrid({
     columns,
@@ -27,15 +29,12 @@ export const Datagrid = <T extends Record<string, unknown>>({
     sorting,
     onSortChange,
     manualSorting,
+    renderSubComponent,
   });
-
   const rowModel = getRowModel();
   const { rows } = rowModel;
   const headerGroups = getHeaderGroups();
   const tableContainerRef = useRef<HTMLDivElement>(null);
-  const containerHeightAuto = useContainerHeight({ tableContainerRef });
-
-  console.info('Datagrid containerHeight', containerHeight);
   return (
     <>
       <div
@@ -43,9 +42,7 @@ export const Datagrid = <T extends Record<string, unknown>>({
         style={{
           overflow: 'auto',
           position: 'relative',
-          height:
-            containerHeight ||
-            (rows?.length > 5 ? containerHeightAuto : '100%'),
+          height: containerHeight || (rows?.length > 9 ? '550px' : '100%'),
         }}
       >
         <Table className="w-full" style={{ display: 'grid' }}>
@@ -58,14 +55,19 @@ export const Datagrid = <T extends Record<string, unknown>>({
           <TableBody
             rowModel={rowModel}
             tableContainerRef={tableContainerRef}
+            isLoading={isLoading}
+            renderSubComponent={renderSubComponent}
+            subComponentHeight={subComponentHeight}
           />
         </Table>
       </div>
-      <FooterActions
+      <TableFooter
         hasNextPage={hasNextPage}
         onFetchAllPages={onFetchAllPages}
         onFetchNextPage={onFetchNextPage}
         isLoading={isLoading}
+        totalCount={totalCount}
+        itemsCount={rows?.length}
       />
     </>
   );
