@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ovh-at-internet",
-  "version": "0.24.3",
+  "version": "0.24.4",
   "description": "ATInternet tracking library for OVHcloud.",
   "keywords": [
     "at-internet",
@@ -31,7 +31,7 @@
     "prepare": "tsc"
   },
   "devDependencies": {
-    "@ovh-ux/manager-config": "^8.6.1"
+    "@ovh-ux/manager-config": "^8.6.2"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^8.0.1"

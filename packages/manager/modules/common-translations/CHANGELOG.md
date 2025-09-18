@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.18.2...@ovh-ux/manager-common-translations@0.18.3) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-common-translations
+
+
+
+
+
 ## [0.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.18.1...@ovh-ux/manager-common-translations@0.18.2) (2025-09-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-common-translations

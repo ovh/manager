@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-static-analysis-kit@0.8.0...@ovh-ux/manager-static-analysis-kit@0.9.0) (2025-09-18)
+
+
+### Bug Fixes
+
+* md lint issues ([0d2fe8e](https://github.com/ovh/manager/commit/0d2fe8e49f3594f5abc9d8e6b306b0b71a065c6c)), closes [#MANAGER-17958](https://github.com/ovh/manager/issues/MANAGER-17958)
+
+
+### Features
+
+* a11y and w3c unit tests expectations ([5a2d75d](https://github.com/ovh/manager/commit/5a2d75dba8a8877253871aa0a7c12dc2c79d1423)), closes [#MANAGER-17958](https://github.com/ovh/manager/issues/MANAGER-17958)
+* code duplication analysis ([d431254](https://github.com/ovh/manager/commit/d4312543737541257185be6e54358dfb49285d51)), closes [#MANAGER-17958](https://github.com/ovh/manager/issues/MANAGER-17958)
+* extend tests cases ([69ad98b](https://github.com/ovh/manager/commit/69ad98b3d02c615996f5c4ad9067a93a10b58ec4)), closes [#MANAGER-17958](https://github.com/ovh/manager/issues/MANAGER-17958)
+* global unit tests coverage reports ([e11191a](https://github.com/ovh/manager/commit/e11191a24609d56e76fd3eacaeac79d4c3b1ab4a)), closes [#MANAGER-17958](https://github.com/ovh/manager/issues/MANAGER-17958)
+* single html entry for all static and dynamic checks ([0556811](https://github.com/ovh/manager/commit/0556811b4f15ad3288f34b3ba8e468a1c9fee061)), closes [#MANAGER-18576](https://github.com/ovh/manager/issues/MANAGER-18576)
+* typeScript types coverage analysis ([65f7d2f](https://github.com/ovh/manager/commit/65f7d2f22e4c68aa897d135e11642cd26073846b)), closes [#MANAGER-17958](https://github.com/ovh/manager/issues/MANAGER-17958)
+* update documentation ([316add2](https://github.com/ovh/manager/commit/316add2055f4a27a3446d5361ee26e0baadbf2b8)), closes [#MANAGER-17958](https://github.com/ovh/manager/issues/MANAGER-17958)
+
+
+
+
+
 # [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-static-analysis-kit@0.7.1...@ovh-ux/manager-static-analysis-kit@0.8.0) (2025-09-11)
 
 

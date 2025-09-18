@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.10.5...@ovh-ux/manager-pci-ai-tools-app@1.10.6) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
 ## [1.10.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.10.4...@ovh-ux/manager-pci-ai-tools-app@1.10.5) (2025-09-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
