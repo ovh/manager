@@ -122,5 +122,10 @@
   "service_billing_state_automatic_renewal_tooltip": "Prossima scadenza il",
   "account_state_blockedforspam": "Bloccato",
   "account_state_tooltip_billinglocked": "Problema di fatturazione, verifica la sezione dedicata del tuo Spazio Cliente",
-  "account_state_tooltip_blockedforspam": "Sospeso per attività sospetta, contatta il supporto clienti."
+  "account_state_tooltip_blockedforspam": "Sospeso per attività sospetta, contatta il supporto clienti.",
+  "update_offer": "Modificare soluzione",
+  "update_offer_title": "Seleziona il tuo nuovo servizio",
+  "paid_now": "Paga adesso",
+  "next_billing": "Prossima fatturazione",
+  "continue_order_btn": "Continuare con l’ordine"
 }

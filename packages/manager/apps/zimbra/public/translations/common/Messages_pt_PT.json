@@ -121,6 +121,11 @@
   "service_billing_state_cancelation_planned_tooltip": "Rescisão prevista dia",
   "service_billing_state_automatic_renewal_tooltip": "Próxima data de vencimento",
   "account_state_blockedforspam": "Bloqueada",
-  "account_state_tooltip_billinglocked": "Problema de faturação, verifique a seção de fatura do seu espaço de cliente",
-  "account_state_tooltip_blockedforspam": "Suspenso por atividade suspeita, entre em contato com o suporte ao usuário."
+  "account_state_tooltip_billinglocked": "Problemas de faturação, verifique a secção Faturação da Área de Cliente",
+  "account_state_tooltip_blockedforspam": "Suspenso por atividade suspeita, contacte o suporte ao utilizador.",
+  "update_offer": "Mudar de oferta",
+  "update_offer_title": "Escolha a sua nova oferta",
+  "paid_now": "A pagar agora",
+  "next_billing": "Próxima faturação",
+  "continue_order_btn": "Prosseguir a encomenda"
 }

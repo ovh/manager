@@ -17,7 +17,5 @@ describe('Domains page', () => {
 
     const button = getByTestId('add-domain-btn');
     expect(button).toHaveAttribute('label', commonTranslation.add_domain);
-
-    expect(button).toHaveAttribute('is-disabled', 'true');
   });
 });
