@@ -16,9 +16,7 @@ import {
   detachVolume,
   getAllVolumes,
   getVolume,
-  getVolumeSnapshot,
   TAPIVolume,
-  TVolumeSnapshot,
   updateVolume,
 } from '@/api/data/volume';
 import { UCENTS_FACTOR } from '@/hooks/currency-constants';
@@ -175,17 +173,6 @@ export const useVolume = (
     ...restQuery,
   };
 };
-
-export const getVolumeSnapshotQueryKey = (projectId: string) => [
-  'volume-snapshot',
-  projectId,
-];
-
-export const useVolumeSnapshot = (projectId: string) =>
-  useQuery({
-    queryKey: ['volume-snapshot', projectId],
-    queryFn: (): Promise<TVolumeSnapshot[]> => getVolumeSnapshot(projectId),
-  });
 
 interface DeleteVolumeProps {
   projectId: string;
