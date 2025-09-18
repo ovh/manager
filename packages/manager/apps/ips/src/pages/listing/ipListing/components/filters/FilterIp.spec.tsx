@@ -1,28 +1,22 @@
-import '@/test-utils/setupUnitTests';
 import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ListingContext } from '@/pages/listing/listingContext';
 import { IpFilter } from './FilterIp';
+import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
 
 const queryClient = new QueryClient();
-/** MOCKS */
 
-const setIpToSearch = vi.fn();
+const setApiFilter = vi.fn();
 
-/** RENDER */
 const renderComponent = () => {
   return render(
     <QueryClientProvider client={queryClient}>
       <ListingContext.Provider
         value={{
-          addExpiredIp: vi.fn(),
-          expiredIps: [],
-          apiFilter: null,
-          setApiFilter: vi.fn(),
-          setIpToSearch,
-          ipToSearch: undefined,
+          ...listingContextDefaultParams,
+          setApiFilter,
         }}
       >
         <IpFilter />
@@ -50,7 +44,7 @@ describe('IpFilter Component', async () => {
     });
 
     waitFor(() => {
-      expect(setIpToSearch).toHaveBeenCalledWith('10.0.0.1');
+      expect(setApiFilter).toHaveBeenCalledWith({ ip: '10.0.0.1' });
     });
   });
 });

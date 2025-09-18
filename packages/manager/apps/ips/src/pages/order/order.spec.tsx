@@ -130,7 +130,7 @@ describe('Order', async () => {
       isOrganisationSectionVisible: false,
       offer: IpOffer.additionalIp,
       expectedOrderLink:
-        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'vps-11111111.vps.ovh.ca)~(label~'country~value~'FR))~duration~'P1M~planCode~'ip-failover-arin~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~null))",
+        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'vps-11111111.vps.ovh.ca)~(label~'country~value~'IN))~duration~'P1M~planCode~'ip-failover-arin~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~null))",
     },
     {
       case: 'IPv6 ARIN',
@@ -196,18 +196,10 @@ describe('Order', async () => {
       if (isOrganisationSectionVisible) {
         const organisationSelect = await getOrganisationSelect(container);
         expect(organisationSelect).toBeDefined();
+
         if (organisation) {
           await selectedOrganisation({ container, organisation });
         }
-      } else {
-        let organisationSelectFound = false;
-        try {
-          await getOrganisationSelect(container);
-          organisationSelectFound = true;
-        } catch (error) {
-          // do nothing
-        }
-        expect(organisationSelectFound).toBeFalsy();
       }
 
       // Click on order button

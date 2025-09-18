@@ -50,7 +50,7 @@ export const GeolocationSection: React.FC = () => {
               : geolocations?.[0]
           }
           onChange={(event) => {
-            setSelectedGeolocation(event.target.value as string);
+            setSelectedGeolocation(event.detail.value as string);
           }}
         />
       </React.Suspense>
