@@ -20,7 +20,7 @@ export const useHybridBreadcrumb = ({
         : location.pathname.replace(activePanel.to, '');
     const activePanelSubRoutes = activePanelSubPathName
       .split('/')
-      .filter((x) => x)
+      .filter(Boolean)
       .map((subPathName: string) => ({
         label: subPathName,
         ...(activePanel.isRedirectLegacy
