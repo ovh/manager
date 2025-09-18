@@ -1,6 +1,6 @@
 {
   "pci_projects_project_storages_containers_replication_list_title_description": "Określ opcje replikacji OVHcloud Object Storage - możesz wskazać, które obiekty będą replikowane, czy mają być przenoszone do innej klasy przestrzeni dyskowej, w którym kontenerze zostaną zapisane oraz czy mają być replikowane znaczniki usuwania.",
-  "pci_projects_project_storages_containers_replication_list_back_to_objects": "Powrót do interfejsu",
+  "pci_projects_project_storages_containers_replication_list_back_to_objects": "Powrót do dashboardu",
   "pci_projects_project_storages_containers_replication_list_sub_title": "Zarządzanie replikacją",
   "pci_projects_project_storages_containers_replication_list_description": "Replikuj w prosty sposób Twoje dane w regionach OVHcloud.",
   "pci_projects_project_storages_containers_replication_list_add_replication_rule": "Dodaj regułę replikacji",

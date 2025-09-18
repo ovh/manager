@@ -4,5 +4,5 @@
   "table_column_priority": "Priorytet",
   "table_column_date": "Data",
   "table_column_categories": "Kategorie",
-  "contact_status_warning": "Wygląda na to, że wystąpił problem ze sposobem odbioru {{ contactType }}. Możesz <anchor>zarządzać ustawieniami odbierania</anchor>, aby rozwiązać ten problem."
+  "contact_status_warning": "Wygląda na to, że wystąpił problem z metodą odbioru {{contactType}}. Aby rozwiązać ten problem, możesz <anchor>zmienić ustawienia odbioru</anchor>."
 }
