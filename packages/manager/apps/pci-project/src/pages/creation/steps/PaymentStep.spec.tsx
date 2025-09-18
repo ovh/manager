@@ -1,3 +1,4 @@
+import React from 'react';
 import { UseQueryResult } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
@@ -22,9 +23,14 @@ vi.mock('@/data/hooks/useCredit', () => ({
   useStartupProgramAmountText: vi.fn(),
 }));
 
-vi.mock('@/components/payment/PaymentMethods', () => ({
+// Mock WillPayment federated module
+vi.mock('willPayment/WillPayment', () => ({
+  default: vi.fn(),
+}));
+
+vi.mock('../components/payment/WillPayment.component', () => ({
   default: vi.fn(() => (
-    <div data-testid="payment-methods">Payment Methods Component</div>
+    <div data-testid="will-payment">Will Payment Component</div>
   )),
 }));
 
@@ -73,11 +79,7 @@ describe('PaymentStep', () => {
         quantity: 1,
       },
     },
-    handleIsPaymentMethodValid: vi.fn(),
-    paymentHandler: { current: null },
-    handleCustomSubmitButton: vi.fn(),
-    onPaymentSubmit: vi.fn(),
-    onPaymentError: vi.fn(),
+    onPaymentStatusChange: vi.fn(),
   };
 
   const mockStartupProgramAmountText = '100.00 €';
@@ -114,7 +116,7 @@ describe('PaymentStep', () => {
     it('should render the component without crashing', () => {
       renderComponent();
       expect(screen.getByTestId('voucher')).toBeVisible();
-      expect(screen.getByTestId('payment-methods')).toBeVisible();
+      expect(screen.getByTestId('will-payment')).toBeVisible();
     });
 
     it('should render Voucher component with correct props', () => {
@@ -124,11 +126,11 @@ describe('PaymentStep', () => {
       expect(voucherComponent).toBeVisible();
     });
 
-    it('should render PaymentMethods component with correct props', () => {
+    it('should render WillPayment component with correct props', () => {
       renderComponent();
 
-      const paymentMethodsComponent = screen.getByTestId('payment-methods');
-      expect(paymentMethodsComponent).toBeVisible();
+      const willPaymentComponent = screen.getByTestId('will-payment');
+      expect(willPaymentComponent).toBeVisible();
     });
 
     it('should not render StartupProgram when not available', () => {
