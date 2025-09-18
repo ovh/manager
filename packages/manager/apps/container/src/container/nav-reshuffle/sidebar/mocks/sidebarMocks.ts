@@ -14,7 +14,7 @@ const mockPlugins = vi.hoisted(() => ({
   },
   navigation: {
     getURL: vi.fn(
-      (app, hash) => `https://www.ovh.com/manager/#/${hash.replace('#', app)}`,
+      (app, hash) => `https://manager.eu.ovhcloud.com/#/${hash.replace('#', app)}`,
     ),
     navigateTo: vi.fn(() => {}),
   },
