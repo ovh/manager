@@ -96,7 +96,7 @@ export default function ServiceDetail() {
                         format: 'PPP',
                       }),
                     }}
-                    components={{ strong: <strong /> }}
+                    components={{ strong: <span className="font-bold" /> }}
                   />
                 </Text>
                 <OdsLink
