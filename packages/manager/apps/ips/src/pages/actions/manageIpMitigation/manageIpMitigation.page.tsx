@@ -1,25 +1,21 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { OdsButton, OdsModal, OdsText } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
   useGetIpMitigationWithoutIceberg,
   useUpdateIpMitigation,
 } from '@/data/hooks/ip';
 import { fromIdToIp, ipFormatter } from '@/utils';
-import Loading from '../../listing/manageOrganisations/components/Loading/Loading';
 
 export default function ManageIpMitigationModal() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { ip, ipGroup } = ipFormatter(fromIdToIp(id));
+  const [search] = useSearchParams();
   const {
     ipMitigation,
     isLoading: isMitigationLoading,
@@ -48,6 +44,10 @@ export default function ManageIpMitigationModal() {
 
   const ipBlock = ipGroup;
 
+  const closeModal = () => {
+    navigate(`..?${search.toString()}`);
+  };
+
   const {
     mutate: updateIpMitigation,
     isPending: updateIpMitigationPending,
@@ -56,7 +56,7 @@ export default function ManageIpMitigationModal() {
     ip,
     mitigation,
     onSuccess: () => {
-      navigate('..');
+      closeModal();
       addWarning(
         isDefaultMitigation
           ? t('listingManageMitigation_permanent_success', { t0: ip })
@@ -64,7 +64,7 @@ export default function ManageIpMitigationModal() {
       );
     },
     onError: () => {
-      navigate('..');
+      closeModal();
       addError(
         isDefaultMitigation
           ? t('listingManageMitigation_permanent_failed', { t0: ip })
@@ -74,45 +74,26 @@ export default function ManageIpMitigationModal() {
     },
   });
 
-  const cancel = () => navigate('..');
   const confirm = () => updateIpMitigation();
 
   return (
-    <OdsModal isOpen isDismissible onOdsClose={cancel}>
-      {isMitigationLoading ? (
-        <Loading className="flex justify-center" size={ODS_SPINNER_SIZE.sm} />
-      ) : (
-        <>
-          <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.heading4}>
-            {title}
-          </OdsText>
-          <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
-            {question}
-          </OdsText>
-          <OdsButton
-            slot="actions"
-            type="button"
-            variant={ODS_BUTTON_VARIANT.ghost}
-            label={t('cancel', { ns: NAMESPACES.ACTIONS })}
-            onClick={cancel}
-            data-testid="cancel-button"
-          />
-          <OdsButton
-            slot="actions"
-            type="button"
-            isDisabled={updateIpMitigationPending || disableConfirm}
-            label={t('validate', { ns: NAMESPACES.ACTIONS })}
-            onClick={confirm}
-            data-testid="confirm-button"
-          />
-          {updateIpMitigationPending && (
-            <Loading
-              className="flex justify-center"
-              size={ODS_SPINNER_SIZE.sm}
-            />
-          )}
-        </>
-      )}
-    </OdsModal>
+    <Modal
+      isOpen
+      isLoading={isMitigationLoading}
+      heading={title}
+      onDismiss={closeModal}
+      onSecondaryButtonClick={closeModal}
+      onPrimaryButtonClick={confirm}
+      primaryLabel={t('validate', { ns: NAMESPACES.ACTIONS })}
+      primaryButtonTestId="confirm-button"
+      isPrimaryButtonLoading={updateIpMitigationPending}
+      secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
+      secondaryButtonTestId="cancel-button"
+      isPrimaryButtonDisabled={updateIpMitigationPending || disableConfirm}
+    >
+      <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
+        {question}
+      </OdsText>
+    </Modal>
   );
 }

@@ -11,21 +11,22 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { fromIdToIp, ipFormatter } from '@/utils';
 
 export default function TerminateIp() {
   const navigate = useNavigate();
+  const [search] = useSearchParams();
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
   const { id } = useParams();
-  const { ip, isGroup } = ipFormatter(fromIdToIp(id));
+  const { ip } = ipFormatter(fromIdToIp(id));
   const { t } = useTranslation('listing');
   const { addSuccess } = useNotifications();
   const { trackClick, trackPage } = useOvhTracking();
 
   const closeModal = () => {
-    navigate('..');
+    navigate(`..?${search.toString()}`);
   };
 
   const onSuccess = () => {

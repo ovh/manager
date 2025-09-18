@@ -49,6 +49,26 @@ export const getDedicatedServerMocks = ({
   isDedicatedServerCannotOrderIp,
 }: GetDedicatedServerMocksParams): Handler[] => [
   {
+    url: '/dedicated/server/:serviceName/ipCountryAvailable',
+    response: [
+      'fr',
+      'de',
+      'pl',
+      'es',
+      'it',
+      'uk',
+      'pt',
+      'cz',
+      'fi',
+      'lt',
+      'be',
+      'nl',
+      'ie',
+      'ca',
+    ],
+    api: 'v6',
+  },
+  {
     url: '/dedicated/server/:serviceName/orderable/ip',
     response: isDedicatedServerCannotOrderIp
       ? { ipv6: [], ipv4: [] }

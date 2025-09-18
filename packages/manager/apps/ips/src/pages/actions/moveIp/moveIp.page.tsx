@@ -2,7 +2,7 @@ import React from 'react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Trans, useTranslation } from 'react-i18next';
 import { ODS_MESSAGE_COLOR, ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { OdsMessage } from '@ovhcloud/ods-components/react';
 import {
   useNotifications,
@@ -26,6 +26,7 @@ export default function MoveIpModal() {
   const { id } = useParams<{ id: string }>();
   const { ip, ipGroup } = ipFormatter(fromIdToIp(id));
   const navigate = useNavigate();
+  const [search] = useSearchParams();
   const { addSuccess } = useNotifications();
   const [destinationService, setDestinationService] = React.useState<string>();
   const [nextHop, setNextHop] = React.useState<string>();
@@ -37,7 +38,7 @@ export default function MoveIpModal() {
   ]);
 
   const closeModal = React.useCallback(() => {
-    navigate('..');
+    navigate(`..?${search.toString()}`);
   }, []);
 
   const {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
 import {
   OdsButton,
@@ -24,7 +24,7 @@ import {
   useAddIpToVirtualMac,
   useGetServerModels,
 } from '@/data/hooks';
-import { useGetIpdetails, useGetIpVmac } from '@/data/hooks/ip';
+import { useGetIpVmac } from '@/data/hooks/ip';
 import { VirtualMac } from '@/data/api';
 import { fromIdToIp, ipFormatter, useGuideUtils } from '@/utils';
 import Loading from '@/pages/listing/manageOrganisations/components/Loading/Loading';
@@ -38,6 +38,7 @@ export default function AddVirtualMacModal() {
   const [virtualMachineName, setVirtualMachineName] = useState('');
   const { links } = useGuideUtils();
   const navigate = useNavigate();
+  const [search] = useSearchParams();
   const { id, service } = useParams();
   const { ip } = ipFormatter(fromIdToIp(id));
   const { models, isLoading: isServerModelsLoading } = useGetServerModels({
@@ -45,6 +46,10 @@ export default function AddVirtualMacModal() {
   });
   const { addSuccess, addError } = useNotifications();
   const MAX_CHARACTERS = 250;
+
+  const closeModal = () => {
+    navigate(`..?${search.toString()}`);
+  };
 
   const {
     control,
@@ -65,11 +70,11 @@ export default function AddVirtualMacModal() {
     type: selectedType,
     virtualMachineName,
     onSuccess: () => {
-      navigate('..');
+      closeModal();
       addSuccess(t('addVirtualMacAddNewSuccess', { t0: ip }));
     },
     onError: (err) => {
-      navigate('..');
+      closeModal();
       addError(
         t('addVirtualMacAddNewFailure', {
           t0: ip,
@@ -91,11 +96,11 @@ export default function AddVirtualMacModal() {
     ip,
     virtualMachineName,
     onSuccess: () => {
-      navigate('..');
+      closeModal();
       addSuccess(t('addVirtualMacAddExistingSuccess', { t0: ip }));
     },
     onError: (err) => {
-      navigate('..');
+      closeModal();
       addError(
         t('addVirtualMacAddExistingFailure', {
           t0: ip,
@@ -127,10 +132,8 @@ export default function AddVirtualMacModal() {
   const onSubmit = () =>
     createNewVirtualMac ? addVirtualMacToIp() : addIpToVirtualMac();
 
-  const cancel = () => navigate('..');
-
   return (
-    <OdsModal isOpen isDismissible onOdsClose={cancel}>
+    <OdsModal isOpen isDismissible onOdsClose={closeModal}>
       {isVmacLoading || addVirtualMacToIpPending || addIpToVirtualMacPending ? (
         <Loading className="flex justify-center" size={ODS_SPINNER_SIZE.md} />
       ) : (
@@ -309,7 +312,7 @@ export default function AddVirtualMacModal() {
                 type="button"
                 variant={ODS_BUTTON_VARIANT.ghost}
                 label={t('cancel', { ns: NAMESPACES.ACTIONS })}
-                onClick={cancel}
+                onClick={closeModal}
                 data-testid="cancel-button"
               />
             </div>

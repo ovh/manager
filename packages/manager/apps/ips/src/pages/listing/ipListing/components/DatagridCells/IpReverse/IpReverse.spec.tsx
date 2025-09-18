@@ -1,4 +1,3 @@
-import '@/test-utils/setupUnitTests';
 import React, { PropsWithChildren } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
@@ -7,10 +6,11 @@ import {
   ShellContext,
   initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import { ListingContextProvider } from '@/pages/listing/listingContext';
+import { ListingContext } from '@/pages/listing/listingContext';
 import ipDetailsList from '../../../../../../../mocks/ip/get-ip-details.json';
 import { IpReverse, IpReverseProps } from './IpReverse';
 import { IpReverseType } from '@/data/api';
+import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
 
 const queryClient = new QueryClient();
 /** MOCKS */
@@ -26,15 +26,14 @@ vi.mock('../SkeletonCell/SkeletonCell', () => ({
   SkeletonCell: ({ children }: PropsWithChildren) => <div>{children}</div>,
 }));
 
-/** RENDER */
 const renderComponent = async (params: IpReverseProps) => {
   const context = await initShellContext('ips');
   return render(
     <ShellContext.Provider value={context}>
       <QueryClientProvider client={queryClient}>
-        <ListingContextProvider>
+        <ListingContext.Provider value={listingContextDefaultParams}>
           <IpReverse {...params} />
-        </ListingContextProvider>
+        </ListingContext.Provider>
       </QueryClientProvider>
     </ShellContext.Provider>,
   );

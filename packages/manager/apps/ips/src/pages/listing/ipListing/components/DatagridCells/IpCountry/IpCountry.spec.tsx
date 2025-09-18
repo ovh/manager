@@ -25,9 +25,7 @@ vi.mock('../SkeletonCell/SkeletonCell', () => ({
 const renderComponent = (params: IpCountryProps) => {
   return render(
     <QueryClientProvider client={queryClient}>
-      <ListingContextProvider>
-        <IpCountry {...params} />
-      </ListingContextProvider>
+      <IpCountry {...params} />
     </QueryClientProvider>,
   );
 };
