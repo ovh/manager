@@ -49,8 +49,8 @@ export default function UploadedFile({
   return (
     <div>
       <div>
-        <Text className="block mb-3" preset={TEXT_PRESET.span}>
-          <strong>{description}</strong>
+        <Text className="block font-bold mb-3" preset={TEXT_PRESET.span}>
+          {description}
         </Text>
         {template && (
           <Message
@@ -96,7 +96,7 @@ export default function UploadedFile({
       >
         <FileUploadList>
           {files.map((file: File, idx) => (
-            <FileUploadItem file={file} key={idx} />
+            <FileUploadItem file={file} key={`${file.name}-${idx}`} />
           ))}
         </FileUploadList>
       </FileUpload>
