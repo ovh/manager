@@ -1,5 +1,10 @@
 import { Filter } from './filters.type.js';
 
+export declare enum IcebergCacheModeEnum {
+  Cursor = 'cachedobjectlist-cursor',
+  Pages = 'cachedobjectlist-pages',
+}
+
 export type IcebergCommonOptions = {
   route: string;
   pageSize?: number;
@@ -22,6 +27,8 @@ export type IcebergFetchParamsV2 = {
   filters?: Filter[];
   sortBy?: string;
   sortOrder?: 'ASC' | 'DESC';
+  icebergCacheMode?: IcebergCacheModeEnum;
+  enableIcebergCache?: boolean;
 } & IcebergCommonOptions;
 
 export type IcebergFetchResultV6<T> = {

@@ -29,6 +29,8 @@ export const useAllDomDatagridColumns = () => {
       label: t('allDom_table_header_id'),
       enableHiding: false,
       type: FilterTypeCategories.String,
+      isFilterable: true,
+      isSearchable: true,
     },
     {
       id: 'renewMode',

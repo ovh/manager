@@ -8,6 +8,7 @@ import {
   Notifications,
   useResourcesIcebergV2,
 } from '@ovh-ux/manager-react-components';
+//import { IcebergCacheModeEnum } from '@ovh-ux/manager-core-api';
 import { Outlet } from 'react-router-dom';
 
 import { toASCII } from 'punycode';
@@ -37,11 +38,15 @@ export default function ServiceList() {
     isLoading,
     setSorting,
     search,
+    filters,
   } = useResourcesIcebergV2<AlldomService>({
     route: '/domain/alldom',
     queryKey: ['allDom', 'domains', searchInput],
     pageSize: 10,
     columns,
+    disableCache: false,
+    icebergCacheMode: 'cachedobjectlist-pages' /*IcebergCacheModeEnum.Pages*/,
+    enableIcebergCache: true,
   });
 
   const { data: serviceList, listLoading } = useGetServices({
@@ -132,6 +137,7 @@ export default function ServiceList() {
           sorting={sorting}
           onSortChange={setSorting}
           isLoading={isLoading}
+          filters={filters}
           search={{
             searchInput,
             setSearchInput,

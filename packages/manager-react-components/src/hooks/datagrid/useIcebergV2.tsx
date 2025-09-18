@@ -69,6 +69,8 @@ export function useResourcesIcebergV2<T>({
   defaultSorting = undefined,
   shouldFetchAll = false,
   disableCache,
+  icebergCacheMode,
+  enableIcebergCache = false,
   ...options
 }: IcebergFetchParamsV2 &
   IcebergV2HookParams<T>): UseResourcesIcebergV2Result<T> {
@@ -100,6 +102,8 @@ export function useResourcesIcebergV2<T>({
         sortOrder: sorting?.[0]?.desc ? 'DESC' : 'ASC',
         filters: searchFilter ? [searchFilter, ...filters] : filters,
         disableCache,
+        icebergCacheMode,
+        enableIcebergCache: enableIcebergCache,
       }),
     getNextPageParam: (lastPage) => lastPage.cursorNext,
   });

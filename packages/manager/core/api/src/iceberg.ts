@@ -2,7 +2,11 @@ import { AxiosResponse } from 'axios';
 
 import { apiClient } from './client.js';
 import { transformTagsFiltersToQuery } from './filters.js';
-import { Filter, FilterComparator, FilterTypeCategories } from './types/filters.type.js';
+import {
+  Filter,
+  FilterComparator,
+  FilterTypeCategories,
+} from './types/filters.type.js';
 import {
   IcebergFetchParamsV2,
   IcebergFetchParamsV6,
@@ -24,7 +28,10 @@ export const appendIamTags = (
   return params;
 };
 
-export function icebergFilter(comparator: FilterComparator, value: string | string[]) {
+export function icebergFilter(
+  comparator: FilterComparator,
+  value: string | string[],
+) {
   const v = encodeURIComponent(String(value || ''));
   switch (comparator) {
     case FilterComparator.Includes:
@@ -61,8 +68,10 @@ export const buildHeaders = () => {
   const headers: Record<string, string> = {};
 
   const builder = {
-    setPaginationMode: (mode = 'CachedObjectList-Pages') => {
-      headers['x-pagination-mode'] = mode;
+    setPaginationMode: (mode = 'CachedObjectList-Pages', isEnabled = true) => {
+      if (isEnabled) {
+        headers['x-pagination-mode'] = mode;
+      }
       return builder;
     },
     setPaginationNumber: (page = 1) => {
@@ -93,8 +102,12 @@ export const buildHeaders = () => {
         const filtersJoin = filters
           .filter(({ type }) => type !== FilterTypeCategories.Tags)
           .map(({ comparator, key, value }) => {
-            const correctedValue = typeof value === 'object' ? value : String(value || '');
-            return `${encodeURIComponent(key)}:${icebergFilter(comparator, correctedValue)}`;
+            const correctedValue =
+              typeof value === 'object' ? value : String(value || '');
+            return `${encodeURIComponent(key)}:${icebergFilter(
+              comparator,
+              correctedValue,
+            )}`;
           })
           .join('&');
         if (filtersJoin) {
@@ -107,7 +120,11 @@ export const buildHeaders = () => {
       headers[key] = value;
       return builder;
     },
-    setIamTags: (params: URLSearchParams, filters: Filter[] | undefined, paramName = 'iamTags') => {
+    setIamTags: (
+      params: URLSearchParams,
+      filters: Filter[] | undefined,
+      paramName = 'iamTags',
+    ) => {
       appendIamTags(params, filters, paramName);
       return builder;
     },
@@ -133,15 +150,22 @@ export async function fetchIcebergV2<T>({
   sortBy,
   sortOrder,
   disableCache,
+  icebergCacheMode,
+  enableIcebergCache,
 }: IcebergFetchParamsV2): Promise<IcebergFetchResultV2<T>> {
   const params = new URLSearchParams();
   const requestHeaders = buildHeaders()
+    .setPaginationMode(icebergCacheMode, enableIcebergCache)
     .setPaginationSize(pageSize)
     .setPaginationCursor(cursor)
     .setDisabledCache(disableCache)
     .setPaginationSort(sortBy, sortOrder)
     .setPaginationFilter(filters)
-    .setIamTags(params, filters, route.includes('/iam/resource') ? 'tags' : 'iamTags')
+    .setIamTags(
+      params,
+      filters,
+      route.includes('/iam/resource') ? 'tags' : 'iamTags',
+    )
     .build();
 
   const response: AxiosResponse<T[]> = await apiClient.v2.get<T[]>(
