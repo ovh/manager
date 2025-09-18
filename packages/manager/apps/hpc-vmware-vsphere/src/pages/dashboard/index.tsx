@@ -46,7 +46,7 @@ export default function DashboardPage() {
 
   const service = {
     name: serviceName,
-    description: vmwareVsphere?.data?.description ?? serviceName,
+    description: vmwareVsphere?.data?.description || serviceName,
   };
 
   const guides = useGuideUtils();
