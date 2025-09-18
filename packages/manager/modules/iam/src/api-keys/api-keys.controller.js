@@ -1,11 +1,12 @@
-import { API_KEY_URL } from '../iam.constants';
+import { getAuthUrl } from '@ovh-ux/manager-core-sso';
+import { AUTH_CREATE_TOKEN_API } from '../iam.constants';
 import { API_KEYS_TRACKING_HITS } from './api-keys.constants';
 
 export default class ApplicationsController {
   /* @ngInject */
-  constructor(IAMService, coreConfig) {
+  constructor(IAMService) {
     this.IAMService = IAMService;
-    this.API_KEY_URL = API_KEY_URL[coreConfig.getRegion()];
+    this.API_KEY_URL = `${getAuthUrl()}${AUTH_CREATE_TOKEN_API}`;
   }
 
   /**

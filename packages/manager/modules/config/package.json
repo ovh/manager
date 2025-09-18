@@ -29,6 +29,7 @@
     "prepare": "tsc"
   },
   "dependencies": {
+    "@ovh-ux/manager-core-sso": "^0.4.1",
     "@ovh-ux/ovh-reket": "^2.1.13"
   },
   "devDependencies": {
