@@ -16,7 +16,6 @@ import TagsListTopbar from './tagsListTopBar/TagsListTopbar.component';
 import { IamTagListItem } from '@/data/api/get-iam-tags';
 import TagTypeCell from './tagTypeCell/TagTypeCell.component';
 import TagsListActions from './tagsListActions/TagsListActions.component';
-import DatagridItemsCounter from '@/components/datagridItemsCounter/DatagridItemsCounter.component';
 import { useGetIamTags } from '@/data/hooks/useGetIamTags';
 import { useTagManagerContext } from '../../TagManagerContext';
 import { SortTagsParams, sortTags } from './utils/sortTags';
@@ -168,11 +167,6 @@ export default function TagsListDatagrid() {
           onRowSelectionChange,
         }}
         getRowId={getRowId}
-      />
-      <DatagridItemsCounter
-        currentPage={page}
-        pageSize={PAGE_SIZE}
-        totalItems={filteredTags.length}
       />
     </>
   );
