@@ -495,16 +495,37 @@ export default class Server {
     );
   }
 
-  getAuthorizableBlocks(serviceName) {
+  getFtpBackupAccess(serviceName) {
     return this.OvhHttp.get(
-      '/sws/dedicated/server/{serviceName}/backupFtp/access/authorizableBlocks',
+      '/dedicated/server/{serviceName}/features/backupFTP/access',
       {
-        rootPath: '2api',
+        rootPath: 'apiv6',
         urlParams: {
           serviceName,
         },
       },
     );
+  }
+
+  getFtpBackupAuthorizableBlocks(serviceName) {
+    return this.OvhHttp.get(
+      '/dedicated/server/{serviceName}/features/backupFTP/authorizableBlocks',
+      {
+        rootPath: 'apiv6',
+        urlParams: {
+          serviceName,
+        },
+      },
+    );
+  }
+
+  getAuthorizableBlocks(serviceName) {
+    return this.$q
+      .all([
+        this.getFtpBackupAccess(serviceName),
+        this.getFtpBackupAuthorizableBlocks(serviceName),
+      ])
+      .then((data) => data.flat().sort());
   }
 
   postFtpBackupIp(serviceName, ipBlocksList, ftp, nfs, cifs) {
