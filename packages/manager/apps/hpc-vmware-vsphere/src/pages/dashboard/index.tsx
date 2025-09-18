@@ -36,6 +36,28 @@ export type DashboardLayoutProps = {
   tabs: DashboardTabItem[];
 };
 
+interface TabItemProps {
+  tab: DashboardTabItem;
+  activePanel: DashboardTabItem | null;
+}
+
+const TabItem = ({ tab, activePanel }: TabItemProps) => {
+  const { isRedirectLegacy, name, title, to } = tab;
+  const isSelected = activePanel?.name === name;
+
+  const tabContent = <OdsTab isSelected={isSelected}>{title}</OdsTab>;
+
+  return isRedirectLegacy ? (
+    <a className="no-underline" href={to}>
+      {tabContent}
+    </a>
+  ) : (
+    <NavLink to={to} className="no-underline">
+      {tabContent}
+    </NavLink>
+  );
+};
+
 export default function DashboardPage() {
   const { serviceName } = useParams();
   const navigate = useNavigate();
@@ -55,11 +77,13 @@ export default function DashboardPage() {
 
   const { legacyApplication, legacyPath, dedicatedCloudTitle } = appConfig;
 
-  const { data: legacyAppBaseUrl } = useNavigationGetUrl([
-    legacyApplication,
-    `/${legacyPath}`,
-    {},
-  ]) as { data: string };
+  const {
+    data: legacyAppBaseUrl,
+    isLoading: isLoadingLegacyAppBaseUrl,
+  } = useNavigationGetUrl([legacyApplication, `/${legacyPath}`, {}]) as {
+    data: string;
+    isLoading: boolean;
+  };
 
   const legacyAppServiceBaseUrl = `${legacyAppBaseUrl}/${service.name}`;
 
@@ -146,7 +170,7 @@ export default function DashboardPage() {
     activePanel,
   });
 
-  if (isLoadingVsphere) {
+  if (isLoadingVsphere || isLoadingLegacyAppBaseUrl) {
     return (
       <div className="flex pt-10">
         <OdsSpinner />
@@ -171,29 +195,9 @@ export default function DashboardPage() {
       header={header}
       tabs={
         <OdsTabs>
-          {tabsList.map((tab: DashboardTabItem) => {
-            const { isRedirectLegacy, name, title, to } = tab;
-            const isSelected = activePanel?.name === name;
-            return isRedirectLegacy ? (
-              <a className="no-underline" href={to}>
-                <OdsTab
-                  key={`osds-tab-bar-item-${name}`}
-                  isSelected={isSelected}
-                >
-                  {title}
-                </OdsTab>
-              </a>
-            ) : (
-              <NavLink to={to} className="no-underline">
-                <OdsTab
-                  key={`osds-tab-bar-item-${name}`}
-                  isSelected={isSelected}
-                >
-                  {title}
-                </OdsTab>
-              </NavLink>
-            );
-          })}
+          {tabsList.map((tab: DashboardTabItem) => (
+            <TabItem key={tab.name} tab={tab} activePanel={activePanel} />
+          ))}
         </OdsTabs>
       }
     >
