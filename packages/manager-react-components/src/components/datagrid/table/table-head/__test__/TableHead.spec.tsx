@@ -1,6 +1,13 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Datagrid } from '../../../Datagrid.component';
+import { useAuthorizationIam } from '../../../../../hooks/iam';
+import { IamAuthorizationResponse } from '../../../../../hooks/iam/iam.interface';
+
+vitest.mock('../../../../../hooks/iam');
+
+const mockedHook =
+  useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
 
 const columns = [
   {
@@ -27,6 +34,13 @@ const data = [
 ];
 
 describe('TableHead', () => {
+  beforeEach(() => {
+    mockedHook.mockReturnValue({
+      isAuthorized: true,
+      isLoading: false,
+      isFetched: true,
+    });
+  });
   it('should render all headers correctly', () => {
     render(<Datagrid columns={columns} data={data} />);
     expect(screen.getByText('Name')).toBeInTheDocument();

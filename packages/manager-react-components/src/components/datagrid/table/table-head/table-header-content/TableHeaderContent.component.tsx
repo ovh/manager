@@ -7,31 +7,22 @@ const TableHeaderContentComponent = <T,>({
   contentAlignLeft = true,
   headerGroups,
   onSortChange,
-}: TableHeaderContentProps<T>) => (
-  <thead
-    style={{
-      display: 'grid',
-      position: 'sticky',
-      top: 0,
-      zIndex: 1,
-    }}
-  >
-    {headerGroups?.map((headerGroup) => (
-      <tr key={headerGroup.id} style={{ display: 'flex', width: '100%' }}>
-        {headerGroup.headers.map((header) => {
-          return (
+}: TableHeaderContentProps<T>) => {
+  console.log('entre dans la condition 2');
+  return (
+    <thead className={`sticky top-[-1px] z-10 bg-white overflow-hidden`}>
+      {headerGroups?.map((headerGroup) => (
+        <tr key={headerGroup.id} className="h-[50px]">
+          {headerGroup.headers.map((header) => (
             <th
               key={header.id}
               className={`${
                 contentAlignLeft ? 'text-left pl-4' : 'text-center'
               } h-11 whitespace-nowrap `}
               style={{
-                display: 'flex',
-                ...(header?.column?.columnDef?.maxSize && {
-                  maxWidth: header?.column?.columnDef?.maxSize,
-                }),
-                flex: 1,
-                minWidth: 0,
+                width: header.column.getSize(),
+                minWidth: header.column.columnDef.minSize ?? 0,
+                maxWidth: header.column.columnDef.maxSize ?? 'auto',
               }}
             >
               {!header.isPlaceholder &&
@@ -49,12 +40,12 @@ const TableHeaderContentComponent = <T,>({
                   </>
                 ))}
             </th>
-          );
-        })}
-      </tr>
-    ))}
-  </thead>
-);
+          ))}
+        </tr>
+      ))}
+    </thead>
+  );
+};
 
 export const TableHeaderContent = memo(TableHeaderContentComponent) as <
   T = unknown,

@@ -4,8 +4,16 @@ import {
   DatagridProps,
   Text,
 } from '@ovh-ux/manager-react-components';
-import { FormField, FormFieldLabel, Input, Button } from '@ovhcloud/ods-react';
-import { SortingState } from '@tanstack/react-table';
+import {
+  FormField,
+  FormFieldLabel,
+  Input,
+  Button,
+  Icon,
+  ICON_NAME,
+  BUTTON_SIZE,
+} from '@ovhcloud/ods-react';
+import { SortingState, VisibilityState } from '@tanstack/react-table';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 const columns = [
@@ -14,6 +22,7 @@ const columns = [
     label: 'Person',
     accessorKey: 'person',
     header: 'Person',
+    enableHiding: true,
     cell: ({ getValue }) => <div>{getValue()}</div>,
   },
   {
@@ -21,6 +30,7 @@ const columns = [
     label: 'Most interest in',
     accessorKey: 'mostInterestIn',
     header: 'Most interest in',
+    enableHiding: true,
     cell: ({ getValue }) => <div>{getValue()}</div>,
   },
   {
@@ -28,6 +38,7 @@ const columns = [
     label: 'Age',
     accessorKey: 'age',
     header: 'Age',
+    enableHiding: false,
     cell: ({ getValue }) => <div>{getValue()}</div>,
   },
 ];
@@ -37,21 +48,41 @@ const data = [
     person: 'John Doe',
     mostInterestIn: '	HTML tables',
     age: 25,
+    subRows: Array.from({ length: 5 }, (_, index) => ({
+      person: `Most interest in ${index + 999999}`,
+      mostInterestIn: `Most interest in ${index + 999999}`,
+      age: index + 999999,
+    })),
   },
   {
     person: 'Jane Doe',
     mostInterestIn: 'Web accessibility',
     age: 26,
+    subRows: Array.from({ length: 5 }, (_, index) => ({
+      person: `Most interest in ${index + 888888}`,
+      mostInterestIn: `Most interest in ${index + 888888}`,
+      age: index + 888888,
+    })),
   },
   {
     person: 'Sarah',
     mostInterestIn: 'JavaScript frameworks',
     age: 25,
+    subRows: Array.from({ length: 5 }, (_, index) => ({
+      person: `Most interest in ${index + 777777}`,
+      mostInterestIn: `Most interest in ${index + 777777}`,
+      age: index + 777777,
+    })),
   },
   {
     person: 'Karen',
     mostInterestIn: '	Web performance',
     age: 26,
+    subRows: Array.from({ length: 5 }, (_, index) => ({
+      person: `Most interest in ${index + 666666}`,
+      mostInterestIn: `Most interest in ${index + 666666}`,
+      age: index + 666666,
+    })),
   },
 ];
 
@@ -66,7 +97,6 @@ const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
   const [isFetchAll, setIsFetchAll] = useState(false);
   const [items, setItems] = useState(args.data);
   const cols = args.columns;
-  // const containerHeight = args.containerHeight;
   const fetchAllPages = () => {
     const newData = Array.from({ length: 10000 }, (_, index) => ({
       ...items[index],
@@ -83,6 +113,21 @@ const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
   const [containerHeightStyle, setContainerHeightStyle] = useState(
     args.containerHeight,
   );
+  const {
+    expandable,
+    autoScroll,
+    renderSubComponent,
+    subComponentHeight,
+    maxRowHeight,
+    isLoading,
+    totalCount,
+    onFetchNextPage,
+    onFetchAllPages,
+    manualSorting,
+    topbar,
+  } = args;
+
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
 
   return (
     <>
@@ -103,7 +148,9 @@ const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
               <FormFieldLabel>Container Height</FormFieldLabel>
               <Input
                 value={containerHeightState}
-                onChange={(e) => setContainerHeightState(e.target.value)}
+                onChange={(e) =>
+                  setContainerHeightState(Number(e.target.value))
+                }
               />
               <Button
                 onClick={() => setContainerHeightStyle(containerHeightState)}
@@ -118,7 +165,7 @@ const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
         columns={cols}
         data={items}
         {...(containerHeightStyle && { containerHeight: containerHeightStyle })}
-        {...('manualSorting' in args && { ...sortAttrs })}
+        {...(manualSorting && { ...sortAttrs })}
         {...('onFetchAllPages' in args &&
           !isFetchAll && {
             hasNextPage: true,
@@ -140,6 +187,16 @@ const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
                 },
               ]),
           })}
+        {...('renderSubComponent' in args && { renderSubComponent })}
+        {...('subComponentHeight' in args && { subComponentHeight })}
+        {...('maxRowHeight' in args && { maxRowHeight })}
+        {...('isLoading' in args && { isLoading })}
+        {...('totalCount' in args && { totalCount })}
+        {...('expandable' in args && { expandable })}
+        {...('autoScroll' in args && { autoScroll })}
+        {...('columnVisibility' in args && { columnVisibility })}
+        {...('setColumnVisibility' in args && { setColumnVisibility })}
+        {...('topbar' in args && { topbar })}
       />
     </>
   );
@@ -152,17 +209,17 @@ Default.args = {
   data,
 };
 
-export const DatagridWithSorting = DatagridStory.bind({});
+export const Sorting = DatagridStory.bind({});
 
-DatagridWithSorting.args = {
+Sorting.args = {
   columns,
   data,
   manualSorting: false,
 };
 
-export const DatagridWithLoadMore = DatagridStory.bind({});
+export const LoadMore = DatagridStory.bind({});
 
-DatagridWithLoadMore.args = {
+LoadMore.args = {
   columns,
   data,
   manualSorting: false,
@@ -170,9 +227,9 @@ DatagridWithLoadMore.args = {
   onFetchNextPage: () => {},
 };
 
-export const DatagridWithLoadAll = DatagridStory.bind({});
+export const LoadAll = DatagridStory.bind({});
 
-DatagridWithLoadAll.args = {
+LoadAll.args = {
   columns,
   data,
   manualSorting: false,
@@ -180,9 +237,9 @@ DatagridWithLoadAll.args = {
   onFetchAllPages: () => {},
 };
 
-export const DatagridWithLoadAllAndLoading = DatagridStory.bind({});
+export const LoadAllAndLoading = DatagridStory.bind({});
 
-DatagridWithLoadAllAndLoading.args = {
+LoadAllAndLoading.args = {
   columns,
   data,
   manualSorting: false,
@@ -191,16 +248,73 @@ DatagridWithLoadAllAndLoading.args = {
   onFetchNextPage: () => {},
 };
 
-export const DatagridWithContainerHeight = DatagridStory.bind({});
+export const ContainerHeight = DatagridStory.bind({});
 
-DatagridWithContainerHeight.args = {
+ContainerHeight.args = {
   columns,
   data,
   manualSorting: false,
   hasNextPage: true,
   onFetchAllPages: () => {},
   onFetchNextPage: () => {},
-  containerHeight: '240px',
+  containerHeight: '260px',
+};
+
+export const SubComponent = DatagridStory.bind({});
+
+SubComponent.args = {
+  columns,
+  data,
+  manualSorting: false,
+  hasNextPage: true,
+  autoScroll: false,
+  onFetchNextPage: () => {},
+  renderSubComponent: (row: any) => (
+    <>
+      <div>{row.original.person}</div>
+      <div>{row.original.mostInterestIn}</div>
+      <div>{row.original.age}</div>
+    </>
+  ),
+  subComponentHeight: 80,
+  totalCount: 4,
+};
+
+export const Expandable = DatagridStory.bind({});
+
+Expandable.args = {
+  columns,
+  data,
+  manualSorting: false,
+  expandable: true,
+  autoScroll: false,
+  subComponentHeight: 80,
+  totalCount: 4,
+};
+
+export const VisibilityColumns = DatagridStory.bind({});
+
+VisibilityColumns.args = {
+  columns,
+  data,
+  manualSorting: false,
+  columnVisibility: { person: true, mostInterestIn: true, age: true },
+  setColumnVisibility: () => {},
+};
+
+export const Topbar = DatagridStory.bind({});
+
+Topbar.args = {
+  columns,
+  data,
+  topbar: (
+    <div>
+      <Button size={BUTTON_SIZE.sm}>
+        <Icon name={ICON_NAME.plus} />
+        Add New
+      </Button>
+    </div>
+  ),
 };
 
 const meta = {

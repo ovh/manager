@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { BUTTON_VARIANT } from '@ovhcloud/ods-react';
 import { Button } from '../../../../button';
 
-export const FooterActionsComponent = ({
+const FooterActionsComponent = ({
   hasNextPage,
   onFetchAllPages,
   onFetchNextPage,
@@ -16,9 +16,9 @@ export const FooterActionsComponent = ({
 }) => {
   const { t } = useTranslation('datagrid');
   return (
-    <>
+    <div className="h-full flex items-center justify-center">
       {hasNextPage ? (
-        <div className="flex justify-center gap-5 my-5">
+        <div className="flex justify-center gap-5">
           {onFetchNextPage && (
             <Button
               data-testid="load-more-btn"
@@ -41,7 +41,7 @@ export const FooterActionsComponent = ({
           )}
         </div>
       ) : null}
-    </>
+    </div>
   );
 };
 
