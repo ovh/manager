@@ -3,7 +3,7 @@ import { apiClient } from '@ovh-ux/manager-core-api';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { IamCheckResponse, IamInterface, IamObject } from './iam.interface';
 import { formatIamTagsFromResources } from '../../utils/format-tags';
-import { useResourcesIcebergV2 } from '..';
+import { useDataApi } from '..';
 
 export const fetchAuthorizationsCheck = async ({
   actions,
@@ -86,11 +86,13 @@ export function useGetResourceTags({
     flattenData: resources,
     isError: isTagsError,
     isLoading: isTagsLoading,
-  } = useResourcesIcebergV2<IamObject>({
+  } = useDataApi<IamObject>({
+    version: 'v2',
+    iceberg: true,
     route,
     queryKey: ['iam/resource', resourceType || ''],
     enabled,
-    shouldFetchAll: true,
+    fetchAll: true,
   });
 
   const tags = useMemo(() => {
