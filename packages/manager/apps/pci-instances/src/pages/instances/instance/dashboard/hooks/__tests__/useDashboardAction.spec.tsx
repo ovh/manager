@@ -5,6 +5,7 @@ import { useUnattachedVolumes } from '../useDashboardAction';
 import { getInstance } from '@/data/api/instance';
 import { TInstance } from '@/types/instance/entity.type';
 import { getVolumes } from '@/data/api/volume';
+import { useDedicatedUrl } from '@/hooks/url/useDedicatedUrl';
 
 const fakeInstance = {
   id: 'fake-instance-id',
@@ -21,6 +22,7 @@ const fakeInstance = {
       size: null,
     },
   ],
+  addresses: new Map(),
   task: {
     isPending: false,
     status: null,
@@ -32,8 +34,10 @@ const getVolumesMock = vi.fn();
 
 vi.mock('@/data/api/instance');
 vi.mock('@/data/api/volume');
+vi.mock('@/hooks/url/useDedicatedUrl');
 vi.mocked(getInstance).mockResolvedValue(fakeInstance);
 vi.mocked(getVolumes).mockImplementation(getVolumesMock);
+vi.mocked(useDedicatedUrl).mockResolvedValue('');
 
 const render = () =>
   renderHook(
