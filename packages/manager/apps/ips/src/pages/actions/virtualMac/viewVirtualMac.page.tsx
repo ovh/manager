@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -15,6 +15,7 @@ export default function ViewVirtualMacModal() {
   const [macAddress, setMacAddress] = useState('');
   const [virtualMachineName, setVirtualMachineName] = useState('');
   const navigate = useNavigate();
+  const [search] = useSearchParams();
   const { id, service } = useParams();
   const { ip } = ipFormatter(fromIdToIp(id));
 
@@ -49,7 +50,9 @@ export default function ViewVirtualMacModal() {
     }
   }, [dedicatedServerVmacWithIpResponse]);
 
-  const close = () => navigate('..');
+  const closeModal = () => {
+    navigate(`..?${search.toString()}`);
+  };
 
   const fields = useMemo(
     () => [
@@ -75,11 +78,11 @@ export default function ViewVirtualMacModal() {
 
   return (
     <Modal
-      isOpen={true}
-      onDismiss={close}
+      isOpen
+      onDismiss={closeModal}
       heading={t('viewVirtualMacTitle')}
       secondaryLabel={t('close', { ns: NAMESPACES.ACTIONS })}
-      onSecondaryButtonClick={close}
+      onSecondaryButtonClick={closeModal}
       isLoading={isVmacLoading || isVmacWithIpLoading}
     >
       <div>

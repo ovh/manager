@@ -1,4 +1,3 @@
-import '@/test-utils/setupUnitTests';
 import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { act, fireEvent, render, waitFor } from '@testing-library/react';
@@ -6,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ListingContext } from '@/pages/listing/listingContext';
 import { TypeFilter } from './FilterType';
 import { IpTypeEnum } from '@/data/api';
+import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
 
 const queryClient = new QueryClient();
 /** MOCKS */
@@ -18,12 +18,8 @@ const renderComponent = () => {
     <QueryClientProvider client={queryClient}>
       <ListingContext.Provider
         value={{
-          addExpiredIp: vi.fn(),
-          expiredIps: [],
-          apiFilter: null,
+          ...listingContextDefaultParams,
           setApiFilter,
-          setIpToSearch: vi.fn(),
-          ipToSearch: undefined,
         }}
       >
         <TypeFilter />
