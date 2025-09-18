@@ -4,8 +4,7 @@ import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { Translation } from 'react-i18next';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useContext } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useGetPool, useUpdatePool } from '@/api/hook/usePool';
 import {
@@ -17,7 +16,7 @@ import { TLoadBalancerPool } from '@/api/data/pool';
 const TRACKING_HIT_PREFIX = 'edit';
 
 export default function PoolsEditPage(): JSX.Element {
-  const { tracking } = useContext(ShellContext).shell;
+  const { trackClick } = useOvhTracking();
 
   const { addSuccess, addError } = useNotifications();
 
@@ -39,9 +38,9 @@ export default function PoolsEditPage(): JSX.Element {
     region,
     poolId,
     onSuccess: (updatedPool: TLoadBalancerPool) => {
-      tracking.trackClick({
-        name: `${TRACKING_HIT_PREFIX}-success`,
-        type: 'action',
+      trackClick({
+        actions: [`${TRACKING_HIT_PREFIX}`, `success`],
+        actionType: 'action',
       });
       goBack();
 
@@ -57,9 +56,9 @@ export default function PoolsEditPage(): JSX.Element {
       );
     },
     onError: (cause: ApiError) => {
-      tracking.trackClick({
-        name: `${TRACKING_HIT_PREFIX}-error`,
-        type: 'action',
+      trackClick({
+        actions: [`${TRACKING_HIT_PREFIX}`, `error`],
+        actionType: 'action',
       });
 
       addError(
@@ -82,17 +81,17 @@ export default function PoolsEditPage(): JSX.Element {
   });
 
   const cancel = () => {
-    tracking.trackClick({
-      name: `${TRACKING_HIT_PREFIX}::cancel`,
-      type: 'action',
+    trackClick({
+      actions: [`${TRACKING_HIT_PREFIX}`, `cancel`],
+      actionType: 'action',
     });
     navigate(`../${poolId}`);
   };
 
   const edit = ({ name, algorithm, permanentSession }: TPoolFormData) => {
-    tracking.trackClick({
-      name: `${TRACKING_HIT_PREFIX}::confirm`,
-      type: 'action',
+    trackClick({
+      actions: [`${TRACKING_HIT_PREFIX}`, `confirm`],
+      actionType: 'action',
     });
     doUpdatePool({ name, algorithm, permanentSession });
   };
