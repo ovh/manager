@@ -7,5 +7,9 @@
   "sap_hub_history_deployment_type": "Rodzaj wdrożenia",
   "sap_hub_history_installation_status": "Status",
   "sap_hub_history_installation_RETRY": "Ponowna próba",
-  "sap_hub_history_installation_see_detail": "Wyświetl szczegóły"
+  "sap_hub_history_installation_see_detail": "Wyświetl szczegóły",
+  "sap_hub_history_installation_delete": "Usuń instalację",
+  "sap_hub_history_installation_delete_content": "Czy na pewno chcesz usunąć tę instalację?",
+  "sap_hub_history_installation_delete_success": "Instalacja {{taskId}} została poprawnie usunięta z historii",
+  "sap_hub_history_installation_delete_error": "Wystąpił błąd podczas usuwania instalacji {{taskId}} z historii."
 }
