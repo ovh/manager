@@ -26,9 +26,9 @@
   },
   "devDependencies": {
     "@inquirer/type": "^3.0.8",
-    "@ovh-ux/manager-static-analysis-kit": "^0.8.0",
-    "@ovh-ux/manager-tests-setup": "^0.4.1",
-    "@ovh-ux/manager-vite-config": "^0.13.0",
+    "@ovh-ux/manager-static-analysis-kit": "*",
+    "@ovh-ux/manager-tests-setup": "latest",
+    "@ovh-ux/manager-vite-config": "*",
     "@types/inquirer-autocomplete-prompt": "^3.0.3"
   }
 }
