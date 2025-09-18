@@ -59,7 +59,7 @@ export const IpAntiDdos = ({ ip }: IpAntiDdosProps) => {
         ipMitigation={ipMitigation}
         enabled={enabled}
         ip={ip}
-      ></IpAntiDdosDisplay>
+      />
     </SkeletonCell>
   );
 };

@@ -1,4 +1,5 @@
 import {
+  Filter,
   FilterComparator,
   apiClient,
   fetchIcebergV6,
@@ -12,7 +13,7 @@ export type GetIpListParams = {
   /** Filter the value of description property (like) */
   description?: string;
   /** Filter resources on IAM tags */
-  iamTags?: any;
+  iamTags?: Record<string, string>;
   /** Filter the value of ip property (contains or equals) */
   ip?: string;
   /** Filter the value of isAdditionalIp property (&#x3D;) (alpha) */
@@ -29,40 +30,42 @@ export const getIpListQueryKey = (params: GetIpListParams) => [
   `get/ip:${encodeURIComponent(JSON.stringify(params))}`,
 ];
 
+const getIpListParamToQueryString = (params: GetIpListParams) =>
+  Object.entries(params).reduce((query, [key, value]) => {
+    if (key === 'type' && value === IpTypeEnum.ADDITIONAL) {
+      query.append('isAdditionalIp', 'true');
+    } else if (key !== 'ip' && value !== undefined) {
+      query.append(key, String(value));
+    }
+    return query;
+  }, new URLSearchParams());
+
 /**
  * List the ip.Ip objects : Your OVH IPs
  */
-export const getIpList = (params: GetIpListParams) => {
-  const query = new URLSearchParams();
-  Object.entries(params).forEach(([key, value]) => {
-    if (key === 'type' && value === IpTypeEnum.ADDITIONAL) {
-      query.append('isAdditionalIp', 'true');
-    } else if (value !== undefined) {
-      query.append(key, String(value));
-    }
-  });
+export const getIpList = (params: GetIpListParams) =>
+  apiClient.v6.get<string[]>(`/ip?${getIpListParamToQueryString(params)}`);
 
-  return apiClient.v6.get<string[]>(`/ip?${query.toString()}`);
-};
-
-export const getIcebergIpList = (params: GetIpListParams) =>
-  fetchIcebergV6<IpObject>({
-    route: '/ip',
-    filters: [
-      ...Object.entries(params)
-        .filter(
-          ([key, value]) =>
-            !(key === 'type' && value === IpTypeEnum.ADDITIONAL),
-        )
-        .map(([key, value]) => ({
-          key,
-          value,
-          comparator: FilterComparator.IsEqual,
-        })),
-      {
-        key: 'isAdditionalIp',
-        value: params.type === IpTypeEnum.ADDITIONAL,
+export const getIcebergIpList = (params: GetIpListParams) => {
+  const filters = [
+    ...Object.entries(params)
+      .filter(
+        ([key, value]) => !(key === 'type' && value === IpTypeEnum.ADDITIONAL),
+      )
+      .map(([key, value]) => ({
+        key,
+        value,
         comparator: FilterComparator.IsEqual,
-      },
-    ],
+      })),
+    {
+      key: 'isAdditionalIp',
+      value: params.type === IpTypeEnum.ADDITIONAL,
+      comparator: FilterComparator.IsEqual,
+    },
+  ] as Filter[];
+
+  return fetchIcebergV6<IpObject>({
+    route: '/ip',
+    filters,
   });
+};

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, Outlet } from 'react-router-dom';
+import { useNavigate, Outlet, useSearchParams } from 'react-router-dom';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
@@ -26,6 +26,7 @@ export type DashboardTabItemProps = {
 export default function IpListingPage() {
   const { environment } = React.useContext(ShellContext);
   const navigate = useNavigate();
+  const [search] = useSearchParams();
   const { t } = useTranslation(TRANSLATION_NAMESPACES.listing);
   return (
     <ListingContextProvider>
@@ -67,7 +68,11 @@ export default function IpListingPage() {
                 id: 0,
                 label: t('listingSettingsImportIpFromSys'),
                 isDisabled: environment.user.ovhSubsidiary === 'US',
-                onClick: () => navigate(urls.listingImportIpFromSys),
+                onClick: () => {
+                  navigate(
+                    `${urls.listingImportIpFromSys}?${search.toString()}`,
+                  );
+                },
               },
             ]}
           />

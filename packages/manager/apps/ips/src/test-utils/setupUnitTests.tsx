@@ -30,3 +30,11 @@ vi.mock('react-router-dom', async (importOriginal) => {
     NavLink: ({ ...params }: NavLinkProps) => <>{params.children}</>,
   };
 });
+
+export const listingContextDefaultParams = {
+  addExpiredIp: vi.fn(),
+  expiredIps: [] as string[],
+  apiFilter: {},
+  setApiFilter: vi.fn(),
+  hasNoApiFilter: true,
+};
