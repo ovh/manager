@@ -4,7 +4,7 @@
   "pci_projects_project_instances_instance_edit_sshKey_label": "SSH-Schlüssel",
   "pci_projects_project_instances_instance_edit_privateNetwork_label": "Verbundene(s) private(s) Netzwerk(e)",
   "pci_projects_project_instances_instance_edit_reboot_message": "Während dieses Vorgangs muss der Server neu gestartet werden. Daher ist er für einige Sekunden nicht verfügbar.",
-  "pci_projects_project_instances_instance_edit_reinstall_message": "Sämtliche Daten werden gelöscht!",
+  "pci_projects_project_instances_instance_edit_reinstall_message": "Bitte beachten Sie, dass alle Ihre Daten gelöscht werden und der Server während dieser Operation neu gestartet wird. Daher ist er für einige Sekunden nicht verfügbar.",
   "pci_projects_project_instances_instance_edit_name_label": "Name der Instanz",
   "pci_projects_project_instances_instance_edit_name_help": "Darf ausschließlich Zahlen, Buchstaben, Unterstriche, Gedankenstriche und Punkte enthalten.",
   "pci_projects_project_instances_instance_edit_name_submit_label": "Namen ändern",
@@ -37,5 +37,6 @@
   "pci_projects_project_instances_instance_edit_loosing_monthly_plan_p1": "Die monatliche Abrechnung ist für die neuen Instanzen (b3, c3, r3) nicht verfügbar.",
   "pci_projects_project_instances_instance_edit_loosing_monthly_plan_p2": "So führt jede Migration von der alten auf die neue Reihe zwingend zu einer Umstellung auf die stündliche Abrechnung.",
   "pci_projects_project_instances_instance_edit_loosing_monthly_plan_p3": "Die monatliche Abrechnung für Ihren laufenden Monat ist weiterhin fällig.",
-  "pci_projects_project_instances_instance_edit_billing_montly_discount_message_link": "Preise anzeigen"
+  "pci_projects_project_instances_instance_edit_billing_montly_discount_message_link": "Preise anzeigen",
+  "pci_projects_project_instances_instance_edit_reinstall_message_distant": "Bitte beachten Sie, dass alle Ihre Daten gelöscht werden und der Server während dieser Operation neu gestartet wird. Die Wiederherstellung des Images Ihrer Instanz anhand eines Remote-Backups führt zu einer längeren Verarbeitungszeit. Diese hängt von der Größe des Images und von der Remote-Region ab. Zwecks Wiederherstellung wird dieses Remote-Image lokal kopiert und Ihnen als lokales Backup zum üblichen Preis berechnet."
 }
