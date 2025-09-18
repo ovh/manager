@@ -7,8 +7,6 @@ import { scoreAllPerfBudgets } from '../rules/perfs-budgets-scoring';
 import { PerfBudgetResult, PerfBudgetsSummary } from '../types/PerfBudget';
 import { ParsedAsset, ParsedBundle } from '../types/PerfBudgetAssets';
 
-const perfBudgetsReportDirName = 'perf-budgets-reports';
-
 /**
  * Escape HTML entities for safe embedding.
  */
@@ -79,8 +77,8 @@ export function parseAnalyzerJson(raw: ParsedAsset[]): ParsedBundle {
  * generated per application, normalizes them against configured medians
  * (HTTP Archive values), and produces a combined summary.
  */
-export function collectPerfBudgets(rootDir: string): PerfBudgetsSummary {
-  const reportsRoot = path.join(rootDir, perfBudgetsReportDirName);
+export function collectPerfBudgets(reportOutputDir: string): PerfBudgetsSummary {
+  const reportsRoot = path.join(reportOutputDir);
 
   if (!fs.existsSync(reportsRoot)) {
     throw new Error(`Reports directory not found: ${reportsRoot}`);

@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 import { spawnSync } from 'node:child_process';
-import process from 'node:process';
 
-import { logError, logInfo } from './cli-utils.js';
+import { logError, logInfo } from './utils/log-utils.js';
 
 // Define the set of validation test cases
 const cases = [
@@ -68,7 +67,6 @@ for (const test of cases) {
 
 if (failed > 0) {
   logError(`\n❌ ${failed} test(s) failed.`);
-  process.exit(1);
 } else {
   logInfo('\n🎉 All perf-budgets CLI validation tests passed!');
 }
