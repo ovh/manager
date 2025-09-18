@@ -4,6 +4,7 @@ import { render, waitFor } from '@testing-library/react';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { SkeletonCell, SkeletonCellParams } from './SkeletonCell';
 import { ListingContext } from '@/pages/listing/listingContext';
+import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
 
 /** MOCKS */
 const addExpiredIp = vi.fn();
@@ -13,12 +14,8 @@ const renderComponent = (params: SkeletonCellParams, child?: ReactNode) => {
   return render(
     <ListingContext.Provider
       value={{
+        ...listingContextDefaultParams,
         addExpiredIp,
-        expiredIps: [],
-        apiFilter: null,
-        setApiFilter: vi.fn(),
-        setIpToSearch: vi.fn(),
-        ipToSearch: null,
       }}
     >
       <SkeletonCell {...params}>{child}</SkeletonCell>

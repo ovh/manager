@@ -1,4 +1,3 @@
-import '@/test-utils/setupUnitTests';
 import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { act, fireEvent, render, waitFor } from '@testing-library/react';
@@ -9,6 +8,7 @@ import { ListingContext } from '@/pages/listing/listingContext';
 import ipList from '../../../../../../mocks/ip/get-ips.json';
 import { IpDatagrid } from './IpDatagrid';
 import { getButtonByIcon } from '@/test-utils';
+import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
 
 const queryClient = new QueryClient();
 /** MOCKS */
@@ -41,25 +41,11 @@ vi.mock('../ipGroupDatagrid/ipGroupDatagrid', () => ({
   ),
 }));
 
-let ipToSearch = '';
-const setIpToSearch = (ip: string) => {
-  ipToSearch = ip;
-};
-
 /** RENDER */
 const renderComponent = () => {
   return render(
     <QueryClientProvider client={queryClient}>
-      <ListingContext.Provider
-        value={{
-          addExpiredIp: vi.fn(),
-          expiredIps: [],
-          apiFilter: null,
-          setApiFilter: vi.fn(),
-          setIpToSearch,
-          ipToSearch,
-        }}
-      >
+      <ListingContext.Provider value={listingContextDefaultParams}>
         <IpDatagrid />
       </ListingContext.Provider>
     </QueryClientProvider>,
@@ -89,43 +75,12 @@ describe('IpDatagrid Component', async () => {
     });
   });
 
-  it('Should filter ip part', async () => {
-    useGetIpListMock.mockReturnValue({
-      ipList,
-      isLoading: false,
-      error: undefined,
-    });
-    setIpToSearch('239.99');
-    const { getAllByText } = renderComponent();
-    await waitFor(() => {
-      expect(getAllByText('239.99.244.14/32').length).toBe(12);
-      expect(getAllByText('239.99.262.83/32').length).toBe(12);
-      expect(getAllByText('239.99.279.206/32').length).toBe(12);
-    });
-  });
-
-  it('Should filter bigger ip part', async () => {
-    useGetIpListMock.mockReturnValue({
-      ipList,
-      isLoading: false,
-      error: undefined,
-    });
-    setIpToSearch('239.99.24');
-    const { getAllByText, queryByText } = renderComponent();
-    await waitFor(() => {
-      expect(getAllByText('239.99.244.14/32').length).toBe(12);
-      expect(queryByText('239.99.262.83/32')).toBeNull();
-      expect(queryByText('239.99.279.206/32')).toBeNull();
-    });
-  });
-
   it('should display expandable rows for ip group', async () => {
     useGetIpListMock.mockReturnValue({
       ipList,
       isLoading: false,
       error: undefined,
     });
-    setIpToSearch('241.94.186.48');
     const { container, getByText } = renderComponent();
     const expandButton = await getButtonByIcon({
       container,

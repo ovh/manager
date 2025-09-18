@@ -9,17 +9,21 @@ export const VALID_INPUT_VALUES = {
 };
 
 export async function fillStep1({ ip, token } = VALID_INPUT_VALUES) {
+  const ipEvent = new CustomEvent('odsChange', {
+    detail: { value: ip },
+  });
   const ipInput = screen.getByLabelText(labels.importIpFromSys.step1IpLabel);
-  await waitFor(() => fireEvent.change(ipInput, { target: { value: ip } }));
+  await waitFor(() => fireEvent(ipInput, ipEvent));
 
   const tokenInput = screen.getByLabelText(
     labels.importIpFromSys.step1TokenLabel,
   );
-  await waitFor(() =>
-    fireEvent.change(tokenInput, {
-      target: { value: token },
-    }),
-  );
+
+  const tokenEvent = new CustomEvent('odsChange', {
+    detail: { value: token },
+  });
+
+  await waitFor(() => fireEvent(tokenInput, tokenEvent));
 }
 
 export async function fillStep2(
@@ -30,9 +34,11 @@ export async function fillStep2(
       labels.importIpFromSys.step2ServerLabel,
     );
 
-    fireEvent.change(destinationServerInput, {
-      target: { value: destinationServerValue },
+    const event = new CustomEvent('odsChange', {
+      detail: { value: destinationServerValue },
     });
+
+    fireEvent(destinationServerInput, event);
   }, WAIT_FOR_DEFAULT_OPTIONS);
 }
 
