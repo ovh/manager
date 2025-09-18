@@ -6,7 +6,7 @@ import {
   useRouteSynchro,
   ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import Loading from '@/alldoms/components/Loading/Loading';
+import Loading from '@/alldoms/components/loading/Loading';
 
 export default function Layout() {
   const location = useLocation();
