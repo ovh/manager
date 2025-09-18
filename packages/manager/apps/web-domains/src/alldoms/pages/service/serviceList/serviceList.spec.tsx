@@ -1,9 +1,10 @@
+import '@/common/setupTests';
 import React from 'react';
 import { vi } from 'vitest';
 import { fireEvent, render, waitFor, screen } from '@testing-library/react';
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 import ServiceList from './serviceList';
-import { wrapper } from '@/alldoms/utils/test.provider';
+import { wrapper } from '@/common/utils/test.provider';
 import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
 import { serviceInfo } from '@/alldoms/__mocks__/serviceInfo';
 import { alldomService } from '@/alldoms/__mocks__/alldomService';
@@ -42,8 +43,6 @@ describe('AllDom datagrid', () => {
       // We test the status
       const status = getByTestId('status');
       expect(status).toBeInTheDocument();
-      expect(status).toHaveAttribute('color', 'success');
-      expect(status).toHaveAttribute('label', 'allDom_table_status_automatic');
 
       // We test the actions
       fireEvent.click(screen.getByTestId('navigation-action-trigger-action'));
