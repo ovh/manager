@@ -4,7 +4,7 @@
   "pci_instances_list_column_public_IPs": "Public IPs",
   "pci_instances_list_column_private_IPs": "Private IPs",
   "pci_instances_list_column_image": "Image",
-  "pci_instances_list_column_flavor": "Template",
+  "pci_instances_list_column_flavor": "Model",
   "pci_instances_list_column_region": "Location",
   "pci_instances_list_column_actions": "Actions",
   "pci_instances_list_column_volumes": "Volumes",
