@@ -122,5 +122,10 @@
   "service_billing_state_automatic_renewal_tooltip": "Najbliższy termin odnowienia",
   "account_state_blockedforspam": "Zablokowane",
   "account_state_tooltip_billinglocked": "Problem z płatnością - sprawdź sekcję „Płatności” w Panelu klienta",
-  "account_state_tooltip_blockedforspam": "Wstrzymano z powodu podejrzanego działania. Skontaktuj się z pomocą techniczną."
+  "account_state_tooltip_blockedforspam": "Wstrzymano z powodu podejrzanego działania. Skontaktuj się z pomocą techniczną.",
+  "update_offer": "Zmień ofertę",
+  "update_offer_title": "Wybierz nową ofertę",
+  "paid_now": "Do zapłaty teraz",
+  "next_billing": "Kolejna płatność",
+  "continue_order_btn": "Kontynuuj zamówienie"
 }
