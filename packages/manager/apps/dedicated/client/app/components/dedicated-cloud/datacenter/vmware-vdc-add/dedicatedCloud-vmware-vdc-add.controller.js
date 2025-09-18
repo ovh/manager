@@ -119,20 +119,24 @@ export default class VmwareVdcAddCtrl {
 
     this.submitting = true;
 
-    this.$window.open(
-      `${this.orderUrlPrefix}${this.orderUrlSuffix}${JSURL.stringify({
-        range: this.model.host.range,
-        ...(this.model.host.host !== HOST_TYPE.STANDARD && {
-          [this.model.host.host]: true,
-        }),
-      })}&serviceName=${this.serviceName}${
-        this.model.datastoreRequired ? `&datastoreRequired=true` : ''
-      }`,
-      '_blank',
-      'noopener',
-    );
+    const url = `${this.orderUrlPrefix}${this.orderUrlSuffix}${JSURL.stringify({
+      range: this.model.host.range,
+      ...(this.model.host.host !== HOST_TYPE.STANDARD && {
+        [this.model.host.host]: true,
+      }),
+    })}&serviceName=${this.serviceName}${
+      this.model.datastoreRequired ? `&datastoreRequired=true` : ''
+    }`;
 
-    return this.goBack();
+    this.$window.open(url, '_blank', 'noopener');
+
+    return this.goBack(
+      this.$translate.instant('dedicatedCloud_order_success_message', {
+        productName: this.model.vdc.vdc,
+        url,
+      }),
+      'info',
+    );
   }
 
   onCancel() {
