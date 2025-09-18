@@ -255,10 +255,15 @@ export default class PciProjectInstanceService {
     ).$promise;
   }
 
-  reinstallFromRegion(projectId, region, instanceId, { imageId }) {
+  reinstallFromRegion(
+    projectId,
+    instanceRegion,
+    instanceId,
+    { imageId, region },
+  ) {
     return this.$http.post(
-      `/cloud/project/${projectId}/region/${region}/instance/${instanceId}/reinstall`,
-      { imageId },
+      `/cloud/project/${projectId}/region/${instanceRegion}/instance/${instanceId}/reinstall`,
+      { imageId, imageRegionName: region },
     );
   }
 
@@ -713,6 +718,7 @@ export default class PciProjectInstanceService {
       autobackup,
       flavorId,
       imageId,
+      imageRegionName,
       monthlyBilling,
       name,
       network,
@@ -731,6 +737,7 @@ export default class PciProjectInstanceService {
         },
         bootFrom: {
           imageId,
+          imageRegionName,
         },
         billingPeriod: monthlyBilling ? 'monthly' : 'hourly',
         name,
