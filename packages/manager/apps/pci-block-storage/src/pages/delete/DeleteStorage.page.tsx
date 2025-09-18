@@ -4,16 +4,13 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import {
-  useDeleteVolume,
-  useVolume,
-  useVolumeSnapshot,
-} from '@/api/hooks/useVolume';
+import { useDeleteVolume, useVolume } from '@/api/hooks/useVolume';
 import DeleteWarningMessage from './DeleteWarningMessage';
 import DeleteConstraintWarningMessage from './DeleteConstraintWarningMessage';
 import { ButtonLink } from '@/components/button-link/ButtonLink';
 import { useTrackBanner } from '@/hooks/useTrackBanner';
 import { Button } from '@/components/button/Button';
+import { useVolumeSnapshots } from '@/api/hooks/useSnapshot';
 
 export default function DeleteStorage() {
   const { projectId, volumeId } = useParams();
@@ -26,8 +23,9 @@ export default function DeleteStorage() {
     projectId,
     volumeId,
   );
-  const { data: snapshots, isPending: isSnapshotPending } = useVolumeSnapshot(
+  const { data: snapshots, isPending: isSnapshotPending } = useVolumeSnapshots(
     projectId,
+    volumeId,
   );
 
   const onTrackingBannerError = useTrackBanner(
@@ -76,8 +74,7 @@ export default function DeleteStorage() {
   });
 
   const isPending = isVolumePending || isSnapshotPending || isDeletePending;
-  const hasSnapshot =
-    !isPending && snapshots?.some((s) => s.volumeId === volumeId);
+  const hasSnapshot = !isPending && snapshots?.length > 0;
   const isAttached = !isPending && volume?.attachedTo.length > 0;
   const canDelete = !isPending && !isAttached && !hasSnapshot;
 
