@@ -122,5 +122,10 @@
   "service_billing_state_automatic_renewal_tooltip": "Next renewal date on",
   "account_state_blockedforspam": "Blocked ",
   "account_state_tooltip_billinglocked": "Billing issues - Check the billing section of your Control Panel",
-  "account_state_tooltip_blockedforspam": "Suspended due to suspicious activity, please contact Customer Support."
+  "account_state_tooltip_blockedforspam": "Suspended due to suspicious activity, please contact Customer Support.",
+  "update_offer": "Change plan",
+  "update_offer_title": "Select your new plan",
+  "paid_now": "To pay now",
+  "next_billing": "Next billing",
+  "continue_order_btn": "Continue my order"
 }

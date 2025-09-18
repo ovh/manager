@@ -122,5 +122,10 @@
   "service_billing_state_automatic_renewal_tooltip": "Nächste Verlängerung am",
   "account_state_blockedforspam": "Gesperrt",
   "account_state_tooltip_billinglocked": "Abrechnungsproblem, bitte überprüfen Sie den Bereich zur Abrechnung in Ihrem Kundencenter.",
-  "account_state_tooltip_blockedforspam": "Wegen verdächtiger Aktivität ausgesetzt, wenden Sie sich an den Nutzersupport."
+  "account_state_tooltip_blockedforspam": "Wegen verdächtiger Aktivität ausgesetzt, wenden Sie sich an den Nutzersupport.",
+  "update_offer": "Angebot wechseln",
+  "update_offer_title": "Neues Angebot auswählen",
+  "paid_now": "Jetzt zu zahlen",
+  "next_billing": "Nächste Abrechnung",
+  "continue_order_btn": "Mit meiner Bestellung fortfahren"
 }

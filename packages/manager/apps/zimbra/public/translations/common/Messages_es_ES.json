@@ -122,5 +122,10 @@
   "service_billing_state_automatic_renewal_tooltip": "Próxima fecha de vencimiento el",
   "account_state_blockedforspam": "Bloqueado",
   "account_state_tooltip_billinglocked": "Problema de facturación, consultar la sección de facturas del área de cliente",
-  "account_state_tooltip_blockedforspam": "Suspendido por actividad sospechosa, póngase en contacto con el soporte técnico del usuario."
+  "account_state_tooltip_blockedforspam": "Suspendido por actividad sospechosa, póngase en contacto con el soporte técnico del usuario.",
+  "update_offer": "Cambiar de plan",
+  "update_offer_title": "Seleccione su nueva solución",
+  "paid_now": "Para pagar ahora",
+  "next_billing": "Próxima facturación",
+  "continue_order_btn": "Seguir con el pedido"
 }
