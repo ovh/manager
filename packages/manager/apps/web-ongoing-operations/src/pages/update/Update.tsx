@@ -197,7 +197,7 @@ export default function Update() {
               values={{
                 t0: domain.comment,
               }}
-              components={{ strong: <strong /> }}
+              components={{ strong: <span className="font-bold" /> }}
             />
           </Text>
           <Text preset={TEXT_PRESET.paragraph}>
@@ -207,7 +207,7 @@ export default function Update() {
               values={{
                 t0: t(`domain_operations_nicOperation_${domain.function}`),
               }}
-              components={{ strong: <strong /> }}
+              components={{ strong: <span className="font-bold" /> }}
             />
           </Text>
         </div>
