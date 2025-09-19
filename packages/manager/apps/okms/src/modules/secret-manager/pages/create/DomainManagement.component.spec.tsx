@@ -12,7 +12,6 @@ import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import userEvent, { UserEvent } from '@testing-library/user-event';
 import {
   ServiceDetails,
-  UseResourcesIcebergV2Result,
   useServiceDetails,
 } from '@ovh-ux/manager-react-components';
 import {
@@ -31,6 +30,7 @@ import { okmsMock } from '@/mocks/kms/okms.mock';
 import { useOkmsList } from '@/data/hooks/useOkms';
 import { OKMS } from '@/types/okms.type';
 import { getOrderCatalogOKMS } from '@/data/api/orderCatalogOKMS';
+import { ErrorResponse } from '@/types/api.type';
 
 let i18nValue: i18n;
 
@@ -77,8 +77,8 @@ vi.mock('@/data/hooks/useOkms', () => ({
 }));
 
 vi.mocked(useOkmsList).mockReturnValue({
-  data: { pages: [{ data: okmsMock }] },
-} as UseResourcesIcebergV2Result<OKMS>);
+  data: okmsMock,
+} as UseQueryResult<OKMS[], ErrorResponse>);
 
 const TestComponent = () => {
   const [selectedDomainId, setSelectedDomainId] = useState<
@@ -184,10 +184,7 @@ describe('Domain management test suite', () => {
     // GIVEN
     vi.mocked(getOrderCatalogOKMS).mockResolvedValueOnce(catalogMock);
 
-    const regionDomainList = filterDomainsByRegion({
-      domains: okmsMock,
-      region: firstRegion,
-    });
+    const regionDomainList = filterDomainsByRegion(okmsMock, firstRegion);
     await renderDomainManagement();
     await assertTextVisibility(
       labels.secretManager.create.domain_section_title,
