@@ -29,7 +29,7 @@ export const DomainManagement = ({
   const { environment } = useContext(ShellContext);
   const {
     data: orderCatalogOKMS,
-    error: OrderCatalogError,
+    error: orderCatalogError,
     isLoading: isLoadingOrderCatalog,
   } = useOrderCatalogOkms(environment.getUser().ovhSubsidiary);
 
@@ -39,12 +39,10 @@ export const DomainManagement = ({
   const [regionDomains, setRegionDomains] = useState<OKMS[]>([]);
 
   const {
-    data,
+    data: domains,
     error: okmsError,
     isLoading: isOkmsListLoading,
   } = useOkmsList();
-
-  const domains = data?.pages[0]?.data;
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -75,7 +73,7 @@ export const DomainManagement = ({
     setSelectedRegion(domainFromSearchParam.region);
     setSelectedDomainId(domainIdSearchParam);
     setRegionDomains(
-      filterDomainsByRegion({ domains, region: domainFromSearchParam.region }),
+      filterDomainsByRegion(domains, domainFromSearchParam.region),
     );
   }, [domains, searchParams]);
 
@@ -84,10 +82,7 @@ export const DomainManagement = ({
 
     if (!domains) return;
 
-    const filteredDomainList = filterDomainsByRegion({
-      domains,
-      region,
-    });
+    const filteredDomainList = filterDomainsByRegion(domains, region);
 
     setRegionDomains(filteredDomainList);
 
@@ -98,10 +93,10 @@ export const DomainManagement = ({
     setSelectedDomainId(filteredDomainList[0].id);
   };
 
-  if (OrderCatalogError || okmsError) {
-    const message = OrderCatalogError
-      ? OrderCatalogError.response?.data?.message
-      : okmsError.message;
+  if (orderCatalogError || okmsError) {
+    const message = orderCatalogError
+      ? orderCatalogError.response?.data?.message
+      : okmsError.response?.data?.message;
 
     return (
       <OdsMessage color="danger">
