@@ -23,9 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
               .injector()
               .getAsync('shouldBeConfigured'),
           })
-          .then(({ isZertoOnPremise, shouldBeConfigured }) => {
-            if (isZertoOnPremise && shouldBeConfigured)
-              return 'app.dedicatedCloud.details.datacenter.details.zerto.summary';
+          .then(({ isZertoOnPremise }) => {
             return (
               !isZertoOnPremise &&
               'app.dedicatedCloud.details.datacenter.details.zerto'
