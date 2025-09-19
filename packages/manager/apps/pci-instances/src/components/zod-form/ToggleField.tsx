@@ -58,7 +58,7 @@ export const ToggleField = <
                   <ToggleControl />
 
                   <ToggleLabel className="flex">
-                    <span>{label}</span>
+                    <Text>{label}</Text>
 
                     {!!badges && (
                       <span className={'ml-4 flex flex-row gap-2 flex-wrap'}>
