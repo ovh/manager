@@ -20,17 +20,11 @@ export default /* @ngInject */ ($stateProvider) => {
             isZertoOnPremise: transition
               .injector()
               .getAsync('isZertoOnPremise'),
-            shouldBeConfigured: transition
-              .injector()
-              .getAsync('shouldBeConfigured'),
           })
-          .then(({ isZertoOnPremise, shouldBeConfigured }) => {
+          .then(({ isZertoOnPremise }) => {
             if (!isZertoOnPremise)
               return 'app.managedBaremetal.details.datacenters.datacenter.zerto';
-            return (
-              shouldBeConfigured &&
-              'app.managedBaremetal.details.datacenters.datacenter.zerto.summary'
-            );
+            return false;
           });
       },
       resolve: {
