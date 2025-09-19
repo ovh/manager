@@ -3,8 +3,8 @@ import { Environment } from "@ovh-ux/manager-config";
 import { useOvhPaymentMethod } from '@ovh-ux/ovh-payment-method';
 import { useReket } from '@ovh-ux/ovh-reket';
 import { useApplication } from "@/context";
-import { IPaymentMethod } from "@/payment-modal/PaymentModal";
-import { PAYMENT_ALERTS } from "@/payment-modal/PaymentModal.constants";
+import { IPaymentMethod } from "@/components/PaymentModal/PaymentModal.component";
+import { PAYMENT_ALERTS } from "@/components/PaymentModal/PaymentModal.constants";
 
 export const useExpiredDefaultCreditCardAlert = (enabled: boolean) => {
   const { shell } = useApplication();

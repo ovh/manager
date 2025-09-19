@@ -9,8 +9,8 @@ import { useShell } from '@/context';
 
 import SuggestionModal from '@/components/SuggestionModal/SuggestionModal.component';
 import AgreementsUpdateModal from '@/components/AgreementsUpdateModal/AgreementsUpdateModal.component';
-import PaymentModal from '@/payment-modal/PaymentModal';
-import { IdentityDocumentsModal } from '@/identity-documents-modal/IdentityDocumentsModal';
+import PaymentModal from '@/components/PaymentModal/PaymentModal.component';
+import { IdentityDocumentsModal } from '@/components/IdentityDocumentsModal/IdentityDocumentsModal.component';
 
 const MODALS: FC[] = [
   IdentityDocumentsModal,
