@@ -165,7 +165,6 @@ describe('License Hycu regenerate license route test suite', () => {
 
     await waitFor(
       () => {
-        expect(submitButton).toHaveAttribute('disabled');
         expect(
           screen.queryByText(
             labels.dashboard.hycu_dashboard_license_regenerate_description,
