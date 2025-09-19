@@ -25,5 +25,6 @@
   "pci_instances_dashboard_instance_price_label": "Preço da instância: ",
   "pci_instances_dashboard_licence_price_label": "Preço da licença: ",
   "pci_instances_dashboard_public_network_title": "Redes públicas",
-  "pci_instances_dashboard_network_floating_title": "IP flutuante"
+  "pci_instances_dashboard_network_floating_title": "IP flutuante",
+  "pci_instances_dashboard_network_name_label": "Nome da rede: "
 }
