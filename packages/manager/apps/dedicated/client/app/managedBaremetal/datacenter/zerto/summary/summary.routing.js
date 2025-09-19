@@ -23,10 +23,9 @@ export default /* @ngInject */ ($stateProvider) => {
               .injector()
               .getAsync('shouldBeConfigured'),
           })
-          .then(({ isZertoOnPremise, shouldBeConfigured }) => {
+          .then(({ isZertoOnPremise }) => {
             return (
               isZertoOnPremise &&
-              !shouldBeConfigured &&
               'app.managedBaremetal.details.datacenters.datacenter.zerto.listing'
             );
           });

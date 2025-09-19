@@ -24,7 +24,7 @@ export default /* @ngInject */ ($stateProvider) => {
         })
         .then(({ isZertoOnPremise, shouldBeConfigured }) => {
           if (isZertoOnPremise && shouldBeConfigured)
-            return 'app.dedicatedCloud.details.datacenter.details.zerto.summary';
+            return 'app.dedicatedCloud.details.datacenter.details.zerto.listing.addSite';
           return (
             isZertoOnPremise &&
             'app.dedicatedCloud.details.datacenter.details.zerto.listing'
