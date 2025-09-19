@@ -23,16 +23,15 @@ export default /* @ngInject */ ($stateProvider) => {
               .injector()
               .getAsync('shouldBeConfigured'),
           })
-          .then(({ isZertoOnPremise, shouldBeConfigured }) => {
+          .then(({ isZertoOnPremise }) => {
             return (
               isZertoOnPremise &&
-              !shouldBeConfigured &&
               'app.managedBaremetal.details.datacenters.datacenter.zerto.listing'
             );
           });
       },
       resolve: {
-        goToDeleteZertoModal: /* @ngInject */ ($state) => () =>
+        goToDeleteSiteZertoModal: /* @ngInject */ ($state) => () =>
           $state.go(
             'app.managedBaremetal.details.datacenters.datacenter.zerto.summary.deleteZerto',
           ),

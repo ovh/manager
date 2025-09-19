@@ -1,3 +1,5 @@
+import { DEDICATEDCLOUD_DATACENTER_DRP_STATUS } from '../../../../components/dedicated-cloud/datacenter/zerto/dedicatedCloud-datacenter-zerto.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'app.managedBaremetal.details.datacenters.datacenter.zerto.listing',
@@ -18,17 +20,11 @@ export default /* @ngInject */ ($stateProvider) => {
             isZertoOnPremise: transition
               .injector()
               .getAsync('isZertoOnPremise'),
-            shouldBeConfigured: transition
-              .injector()
-              .getAsync('shouldBeConfigured'),
           })
-          .then(({ isZertoOnPremise, shouldBeConfigured }) => {
+          .then(({ isZertoOnPremise }) => {
             if (!isZertoOnPremise)
               return 'app.managedBaremetal.details.datacenters.datacenter.zerto';
-            return (
-              shouldBeConfigured &&
-              'app.managedBaremetal.details.datacenters.datacenter.zerto.summary'
-            );
+            return false;
           });
       },
       resolve: {
@@ -46,11 +42,14 @@ export default /* @ngInject */ ($stateProvider) => {
           dedicatedCloudZerto,
           serviceName,
           datacenterId,
+          currentZerto,
         ) =>
-          dedicatedCloudZerto.getZertoMultiSite({
-            serviceName,
-            datacenterId,
-          }),
+          currentZerto.state === DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivering
+            ? []
+            : dedicatedCloudZerto.getZertoMultiSite({
+                serviceName,
+                datacenterId,
+              }),
       },
     },
   );

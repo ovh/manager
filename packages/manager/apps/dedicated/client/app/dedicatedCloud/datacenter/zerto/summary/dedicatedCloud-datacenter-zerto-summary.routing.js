@@ -19,20 +19,16 @@ export default /* @ngInject */ ($stateProvider) => {
             isZertoOnPremise: transition
               .injector()
               .getAsync('isZertoOnPremise'),
-            shouldBeConfigured: transition
-              .injector()
-              .getAsync('shouldBeConfigured'),
           })
-          .then(({ isZertoOnPremise, shouldBeConfigured }) => {
+          .then(({ isZertoOnPremise }) => {
             return (
               isZertoOnPremise &&
-              !shouldBeConfigured &&
               'app.dedicatedCloud.details.datacenter.details.zerto.listing'
             );
           });
       },
       resolve: {
-        goToDeleteZertoModal: /* @ngInject */ ($state) => () =>
+        goToDeleteSiteZertoModal: /* @ngInject */ ($state) => () =>
           $state.go(
             'app.dedicatedCloud.details.datacenter.details.zerto.summary.deleteZerto',
           ),
