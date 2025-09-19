@@ -6,6 +6,7 @@
   "gcuComputeField": "CPU: {{ cpu }} vCores ",
   "memoryField": "RAM: {{ memory }}",
   "publicNetworkField": "Réseau public: {{ network }}/s",
+  "qpuQubits": "Qubits: ",
   "temporaryLocalStorageField": "Stockage local éphémère: {{ storage }} SSD",
   "temporaryLocalStorageHelper": "Stockage local performant, mais non sauvegardé",
   "modifyLabel": "Modifier",
