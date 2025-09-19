@@ -31,6 +31,11 @@ import {
   STATUS_DISABLED,
   STATUS_SUSPENDED,
   STORAGE_ASYNC_REPLICATION_LINK,
+  STORAGE_LOCALISATION_LINKS,
+  STORAGE_OBJECT_LOCK_LINKS,
+  STORAGE_VERSIONING_LINKS,
+  STORAGE_ACCESS_LOGS_LINKS,
+  STORAGE_STATIC_WEBSITE_LINKS,
   UNIVERSE,
   SUB_UNIVERSE,
   APP_NAME,
@@ -44,7 +49,6 @@ import { HelpDrawer } from './HelpDrawer';
 import { getStatusColor, TStatusColor } from '@/utils/getStatusColor';
 import { getDashboardTabs } from '@/utils/getDashboardTabs';
 import { CommonCard } from '@/components/CommonCard';
-import { CardSection } from '@/components/CardSection';
 
 const statusMap: Record<string, TStatusColor> = {
   [STATUS_ENABLED]: 'success',
@@ -129,6 +133,41 @@ export default function DashboardPage() {
     [me?.ovhSubsidiary],
   );
 
+  const LOCALISATION_LINK = useMemo(
+    () =>
+      STORAGE_LOCALISATION_LINKS[me?.ovhSubsidiary] ||
+      STORAGE_LOCALISATION_LINKS.DEFAULT,
+    [me?.ovhSubsidiary],
+  );
+
+  const OBJECT_LOCK_LINK = useMemo(
+    () =>
+      STORAGE_OBJECT_LOCK_LINKS[me?.ovhSubsidiary] ||
+      STORAGE_OBJECT_LOCK_LINKS.DEFAULT,
+    [me?.ovhSubsidiary],
+  );
+
+  const VERSIONING_LINK = useMemo(
+    () =>
+      STORAGE_VERSIONING_LINKS[me?.ovhSubsidiary] ||
+      STORAGE_VERSIONING_LINKS.DEFAULT,
+    [me?.ovhSubsidiary],
+  );
+
+  const ACCESS_LOGS_LINK = useMemo(
+    () =>
+      STORAGE_ACCESS_LOGS_LINKS[me?.ovhSubsidiary] ||
+      STORAGE_ACCESS_LOGS_LINKS.DEFAULT,
+    [me?.ovhSubsidiary],
+  );
+
+  const STATIC_WEBSITE_LINK = useMemo(
+    () =>
+      STORAGE_STATIC_WEBSITE_LINKS[me?.ovhSubsidiary] ||
+      STORAGE_STATIC_WEBSITE_LINKS.DEFAULT,
+    [me?.ovhSubsidiary],
+  );
+
   const versioningBadgeColor = useMemo(
     () => getStatusColor(container?.versioning?.status, statusMap),
     [container?.versioning?.status],
@@ -207,7 +246,7 @@ export default function DashboardPage() {
       {showReplicationBanner && (
         <OdsMessage
           color="information"
-          className="mt-6 mb-6 inline-flex items-start"
+          className="mb-6 inline-flex items-start"
           isDismissible={false}
         >
           <span>
@@ -272,7 +311,7 @@ export default function DashboardPage() {
               'dashboard:pci_projects_project_storages_dashboard_helper_drawer_title',
             )}
           >
-            <div className="flex flex-col my-4 gap-4 ">
+            <div className="flex flex-col my-6 gap-4 ">
               <OdsText>
                 {t(
                   'dashboard:pci_projects_project_storages_dashboard_helper_drawer_description',
@@ -299,6 +338,14 @@ export default function DashboardPage() {
         isOpen={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
         storageMode={getStorageHelpDrawerMode()}
+        customLinks={{
+          asyncReplication: REPLICATION_LINK,
+          localisation: LOCALISATION_LINK,
+          objectLock: OBJECT_LOCK_LINK,
+          versioning: VERSIONING_LINK,
+          accessLogs: ACCESS_LOGS_LINK,
+          staticWebsite: STATIC_WEBSITE_LINK,
+        }}
       />
     </BaseLayout>
   );
