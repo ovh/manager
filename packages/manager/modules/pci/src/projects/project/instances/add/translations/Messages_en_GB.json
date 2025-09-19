@@ -141,5 +141,5 @@
   "pci_projects_project_network_private_create_configure_api": "You can customise your ranges via the API.",
   "pci_projects_project_instances_add_numInstances_3az_help": "Creating multiple instances in a 3-AZ region places them within the same availability zone, regardless of whether you choose a zone or the “choose for me” option.",
   "pci_projects_project_instances_add_billing_floating_ip_detail_price_hourly": "You will be charged {{ floatingIpPrice }} ex. VAT/hour.",
-  "pci_projects_project_instances_add_image_distant_warning": "Creating your instance from a remote backup will require a local copy of the remote image, which will be invoiced at the usual rate."
+  "pci_projects_project_instances_add_image_distant_warning": "Creating your instance from a remote backup will result in a longer processing time, depending on the size of the image and the remote region. In order to be created, a local copy of the remote image will be copied locally and you will be billed as a local backup at the usual rate."
 }
