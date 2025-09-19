@@ -15,7 +15,7 @@ import {
   DeleteModal,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { getOkmsServicesResourceListQueryKey } from '@/data/api/okms';
+import { okmsQueryKeys } from '@/data/api/okms';
 
 export default function TerminateKms() {
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ export default function TerminateKms() {
 
   const onSuccess = async () => {
     await queryClient.invalidateQueries({
-      queryKey: getOkmsServicesResourceListQueryKey,
+      queryKey: okmsQueryKeys.detail(okmsId),
     });
     closeModal();
     clearNotifications();

@@ -17,7 +17,7 @@ import Loading from '@/components/Loading/Loading';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
-import { getOkmsResourceQueryKey } from '@/data/api/okms';
+import { okmsQueryKeys } from '@/data/api/okms';
 import { useOkmsById } from '@/data/hooks/useOkms';
 import { CHANGELOG_LINKS, SERVICE_KEYS_LABEL } from '@/constants';
 import KmsTabs, {
@@ -140,7 +140,7 @@ export default function DashboardPage() {
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={() =>
           queryClient.refetchQueries({
-            queryKey: getOkmsResourceQueryKey(okmsId),
+            queryKey: okmsQueryKeys.detail(okmsId),
           })
         }
       />

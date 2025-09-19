@@ -10,7 +10,6 @@ import { OdsButton, OdsMessage } from '@ovhcloud/ods-components/react';
 import {
   BaseLayout,
   ChangelogButton,
-  Datagrid,
   Notifications,
   RedirectionGuard,
   useNotifications,
@@ -21,22 +20,14 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useOkmsList } from '@/data/hooks/useOkms';
+import { useOkmsDatagridList } from '@/data/hooks/useOkms';
 import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
-import {
-  DatagridCellId,
-  DatagridCellName,
-  DatagridCellRegion,
-  DatagridCellStatus,
-  DatagridResourceKmipCountCell,
-  DatagridResourceServiceKeyCountCell,
-} from '@/components/Listing/ListingCells';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
 import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
-import { getOkmsServicesResourceListQueryKey } from '@/data/api/okms';
-import KmsActionMenu from '@/components/menu/KmsActionMenu.component';
+import { okmsQueryKeys } from '@/data/api/okms';
 import kmsListingTestIds from './KmsListing.constants';
-import { CHANGELOG_LINKS, SERVICE_KEYS_LABEL } from '@/constants';
+import { CHANGELOG_LINKS } from '@/constants';
+import { OkmsDatagrid } from '@/common/components/okmsDatagrid/OkmsDatagrid.component';
 
 export default function Listing() {
   const { t } = useTranslation('key-management-service/listing');
@@ -49,60 +40,23 @@ export default function Listing() {
     state?.hasPendingOrder,
   );
 
-  const columns = [
-    {
-      id: 'name',
-      cell: DatagridCellName,
-      label: t('key_management_service_listing_name_cell'),
-    },
-    {
-      id: 'id',
-      cell: DatagridCellId,
-      label: t('key_management_service_listing_id_cell'),
-    },
-    {
-      id: 'kmip_count',
-      cell: DatagridResourceKmipCountCell,
-      label: t('key_management_service_listing_kmip_cell'),
-    },
-    {
-      id: 'servicekey_count',
-      cell: DatagridResourceServiceKeyCountCell,
-      label: SERVICE_KEYS_LABEL,
-    },
-    {
-      id: 'region',
-      cell: DatagridCellRegion,
-      label: t('key_management_service_listing_region_cell'),
-    },
-    {
-      id: 'status',
-      cell: DatagridCellStatus,
-      label: t('key_management_service_listing_status_cell'),
-    },
-    {
-      id: 'action',
-      cell: KmsActionMenu,
-      isSortable: false,
-      label: '',
-    },
-  ];
-
   const {
     data,
     flattenData,
-    fetchNextPage,
-    hasNextPage,
     isError,
     isLoading,
     status,
-  } = useOkmsList();
+    fetchNextPage,
+    hasNextPage,
+  } = useOkmsDatagridList({ pageSize: 10 });
+  const okmsList = flattenData || [];
 
   useAutoRefetch({
-    queryKey: getOkmsServicesResourceListQueryKey,
+    queryKey: okmsQueryKeys.listDatagrid(),
     enabled: isRefetchEnabled,
     onFinish: () => setIsRefetchEnabled(false),
   });
+
   const headerProps: HeadersProps = {
     title: t('key_management_service_listing_title'),
     headerButton: <KmsGuidesHeader />,
@@ -144,16 +98,14 @@ export default function Listing() {
             label={t('key_management_service_listing_add_kms_button')}
             data-testid={kmsListingTestIds.ctaOrder}
           />
-          {flattenData && (
-            <Datagrid
-              columns={columns}
-              items={flattenData}
-              totalItems={flattenData.length || 0}
-              hasNextPage={hasNextPage}
-              onFetchNextPage={() => fetchNextPage()}
-              contentAlignLeft
-            />
-          )}
+
+          <OkmsDatagrid
+            type="kms"
+            okmsList={okmsList}
+            isLoading={isLoading}
+            hasNextPage={hasNextPage}
+            onFetchNextPage={() => fetchNextPage()}
+          />
         </div>
         <Outlet />
       </BaseLayout>
