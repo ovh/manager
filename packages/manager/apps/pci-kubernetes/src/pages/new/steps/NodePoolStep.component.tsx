@@ -237,18 +237,15 @@ const NodePoolStep = ({
               antiAffinity={nodePoolState.antiAffinity}
             />
           </div>
-          {regionInformations?.type &&
-            !isMultiDeploymentZones(regionInformations.type) && (
-              <div className="mb-8">
-                <NodePoolAntiAffinity
-                  isChecked={nodePoolState.antiAffinity}
-                  isEnabled={!nodePoolState.scaling?.isAutoscale}
-                  onChange={(antiAffinity: boolean) =>
-                    setNodePoolState((state) => ({ ...state, antiAffinity }))
-                  }
-                />
-              </div>
-            )}
+          <div className="mb-8">
+            <NodePoolAntiAffinity
+              isChecked={nodePoolState.antiAffinity}
+              isEnabled={!nodePoolState.scaling?.isAutoscale}
+              onChange={(antiAffinity: boolean) =>
+                setNodePoolState((state) => ({ ...state, antiAffinity }))
+              }
+            />
+          </div>
           <div className="mb-8">
             <BillingStep
               price={price?.hour ?? null}
