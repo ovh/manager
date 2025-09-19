@@ -5,15 +5,17 @@ import {
   Breadcrumb,  
 } from '@ovh-ux/manager-react-components';
 import { AppConfig, appName } from '@/App.constants';
+import { Outlet } from 'react-router-dom';
 
-export default function ListingPage() {
-  const { t } = useTranslation(['common', 'dashboards']);  
+export default function MetricsPage() {
+  const { t } = useTranslation(['common', 'metrics']);
 
   return (
     <BaseLayout
       breadcrumb={<Breadcrumb appName={appName} rootLabel={AppConfig.rootLabel} />}
-      header={{ title: t('dashboards:title') }}
-    >
+      header={{ title: t('metrics:title') }}
+    >      
+      <Outlet />
     </BaseLayout>
   );
 }
