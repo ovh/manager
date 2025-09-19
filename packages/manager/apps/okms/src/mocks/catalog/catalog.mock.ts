@@ -8,7 +8,7 @@ export const catalogMock: OKMSCatalog = {
           name: 'region',
           isCustom: false,
           isMandatory: true,
-          values: ['EU_WEST_RBX', 'EU_WEST_SBG'],
+          values: ['eu-west-rbx', 'eu-west-sbg'],
         },
       ],
       planCode: '',
