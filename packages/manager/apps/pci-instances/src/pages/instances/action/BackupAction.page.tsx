@@ -144,11 +144,11 @@ const DistantSnapshotSection = ({
         items={regionItems}
       />
       {!!price && !isBackupLoading && (
-        <p className="text-sm font-medium">
-          {t('pci_instances_actions_backup_instance_distant_region_price', {
+        <Text preset={TEXT_PRESET.caption}>
+          {t('pci_instances_actions_backup_instance_price', {
             price,
           })}
-        </p>
+        </Text>
       )}
       {showActivateRegionWarning && (
         <Message color="warning" dismissible={false}>
@@ -281,7 +281,7 @@ const BackupActionPage = () => {
         </Form>
       )}
     >
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 mt-6">
         <InputField<TFormFieldsValues>
           label={t('pci_instances_actions_backup_instance_name_label')}
           name="snapshotName"
