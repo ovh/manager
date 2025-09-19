@@ -11,6 +11,7 @@ import {
   TEXT_PRESET,
 } from '@ovhcloud/ods-react';
 import { OdsTooltip } from '@ovhcloud/ods-components/react';
+import { toUnicode } from 'punycode';
 
 interface DomainsCheckboxItemProps {
   readonly serviceName: string;
@@ -50,7 +51,7 @@ export default function DomainsCheckboxItem({
               : 'text-[var(--ods-color-text)]'
           }
         >
-          {serviceName}
+          {toUnicode(serviceName)}
         </CheckboxLabel>
       </Checkbox>
       {isDisabled && (
