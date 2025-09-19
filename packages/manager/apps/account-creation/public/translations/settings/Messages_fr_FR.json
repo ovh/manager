@@ -1,0 +1,7 @@
+{
+  "title": "Choisissez les paramètres du compte",
+  "description": "Vous avez déjà un compte ? <Link label=\"Connectez-vous\"></Link>",
+  "country_setting": "Pays de résidence fiscale",
+  "currency_setting": "Devise",
+  "site_setting": "Site web (langue)"
+}

@@ -56,8 +56,8 @@ describe('ReassuranceWording', () => {
       expect(descriptionElement).toHaveTextContent('generic_description');
     });
 
-    it('should display a generic message when on preferences route without customer data', async () => {
-      mockLocation('/preferences');
+    it('should display a generic message when on settings route without customer data', async () => {
+      mockLocation('/settings');
       renderComponent({});
 
       const titleElement = screen.getByTestId('reassurance_wording_title');

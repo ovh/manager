@@ -1,6 +1,6 @@
 export const urls = {
   root: '/',
-  preferences: '/preferences',
+  settings: '/settings',
   accountType: '/type',
   accountDetails: '/details',
   company: '/company',
