@@ -194,18 +194,11 @@ const mapActions = (
 const buildPublicNetworkActionLinks = (
   baseUrl: string,
   ipv4: string,
-  projectId: string,
 ): TAction[] => {
   const ipParams = `ip=${ipv4}&ipBlock=${ipv4}`;
 
   return [
     { label: 'change_dns', link: { path: baseUrl } },
-    {
-      label: 'activate_mitigation',
-      link: {
-        path: `${baseUrl}?action=mitigation&${ipParams}&serviceName=${projectId}`,
-      },
-    },
     {
       label: 'firewall_settings',
       link: {
@@ -220,7 +213,6 @@ const buildPublicNetworkActionLinks = (
 
 const mapPublicNetwork = (
   dedicatedUrl: string,
-  projectId: string,
   addresses: TInstanceAddresses,
 ) => {
   const networks = addresses.get('floating') ?? addresses.get('public') ?? [];
@@ -228,7 +220,7 @@ const mapPublicNetwork = (
 
   return {
     isFloatingIp: !!addresses.get('floating'),
-    actionsLinks: buildPublicNetworkActionLinks(dedicatedUrl, ipv4, projectId),
+    actionsLinks: buildPublicNetworkActionLinks(dedicatedUrl, ipv4),
     networks,
   };
 };
@@ -245,12 +237,11 @@ const mapPrivateNetwork = (addresses: TInstanceAddresses) => {
 
 type TUrlBuilderParams = {
   projectUrl: string;
-  projectId: string;
   dedicatedUrl: string;
 };
 
 export const selectInstanceDashboard = (
-  { projectUrl, projectId, dedicatedUrl }: TUrlBuilderParams,
+  { projectUrl, dedicatedUrl }: TUrlBuilderParams,
   instance?: TInstance,
 ): TInstanceDashboardViewModel => {
   if (!instance) return null;
@@ -260,11 +251,7 @@ export const selectInstanceDashboard = (
     name: instance.name,
     flavor: instance.flavor ? mapFlavor(instance.flavor) : null,
     region: instance.region,
-    publicNetwork: mapPublicNetwork(
-      dedicatedUrl,
-      projectId,
-      instance.addresses,
-    ),
+    publicNetwork: mapPublicNetwork(dedicatedUrl, instance.addresses),
     privateNetwork: mapPrivateNetwork(instance.addresses),
     pricings: mapPricings(instance.pricings || []),
     task: instance.task,
