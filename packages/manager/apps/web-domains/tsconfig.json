@@ -3,7 +3,6 @@
   "compilerOptions": {
     "types": ["vite/client", "node"],
     "module": "ES2020",
-    "moduleResolution": "bundler",
     "removeComments": true,
     "outDir": "dist",
     "noImplicitAny": true,
