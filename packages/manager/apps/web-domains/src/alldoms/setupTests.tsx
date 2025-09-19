@@ -34,6 +34,7 @@ vi.mock('react-router-dom', () => ({
   })),
   useParams: () => {
     return {
+      serviceName: 'foobar',
       id: '1',
     };
   },
