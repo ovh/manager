@@ -3,18 +3,21 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useDeleteAccountAclFromProject } from '@/data/hooks/useAcl';
 import { useParam } from '@/hooks/useParam';
+import { CONTACTS_TRACKING } from '@/tracking.constant';
 
 export default function RemovePage() {
   const { t } = useTranslation(['contacts']);
+  const { trackClick, trackPage } = useOvhTracking();
   const { addSuccess, addError } = useNotifications();
 
   const navigate = useNavigate();
   const projectId = useParam('projectId');
   const { accountId } = useParams();
 
-  const handleClose = () => navigate('..');
+  const goBack = () => navigate('..');
 
   const {
     deleteAccountAclFromProject,
@@ -22,19 +25,38 @@ export default function RemovePage() {
   } = useDeleteAccountAclFromProject({
     projectId,
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: CONTACTS_TRACKING.REMOVE.REQUEST_SUCCESS,
+      });
       addSuccess(t('cpb_rights_table_rights_remove_success'));
-      handleClose();
+      goBack();
     },
     onError: () => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: CONTACTS_TRACKING.REMOVE.REQUEST_FAIL,
+      });
       addError(t('cpb_rights_remove_error'));
-      handleClose();
+      goBack();
     },
   });
   const handleSubmit = () => {
     if (isPending || !accountId) {
       return;
     }
+    trackClick({
+      actionType: 'action',
+      actions: CONTACTS_TRACKING.REMOVE.CTA_CONFIRM,
+    });
     deleteAccountAclFromProject(accountId);
+  };
+  const handleCancel = () => {
+    trackClick({
+      actionType: 'action',
+      actions: CONTACTS_TRACKING.REMOVE.CTA_CANCEL,
+    });
+    goBack();
   };
 
   return (
@@ -43,9 +65,9 @@ export default function RemovePage() {
       primaryLabel={t('common_confirm')}
       onPrimaryButtonClick={handleSubmit}
       secondaryLabel={t('common_cancel')}
-      onSecondaryButtonClick={handleClose}
+      onSecondaryButtonClick={handleCancel}
       heading={t('cpb_rights_delete_title')}
-      onDismiss={handleClose}
+      onDismiss={handleCancel}
       isOpen={true}
     >
       <OdsText>

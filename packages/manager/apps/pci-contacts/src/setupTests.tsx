@@ -6,14 +6,6 @@ import { ActionMenuItem } from '@ovh-ux/manager-react-components';
 
 global.fetch = fetch;
 
-// Mock PNG assets globally to avoid import issues
-vi.mock('@/assets/credit_card.png', () => ({ default: 'credit_card.png' }));
-vi.mock('@/assets/paypal.png', () => ({ default: 'paypal.png' }));
-vi.mock('@/assets/bank_account.png', () => ({ default: 'bank_account.png' }));
-vi.mock('@/assets/sepa_direct_debit.png', () => ({
-  default: 'sepa_direct_debit.png',
-}));
-
 // Handle unhandled promise rejections in tests to prevent Vitest warnings
 const originalUnhandledRejection = process.listeners('unhandledRejection');
 process.removeAllListeners('unhandledRejection');
@@ -43,11 +35,15 @@ vi.mock('react-i18next', () => ({
 }));
 
 const trackClickMock = vi.fn();
+const trackPageMock = vi.fn();
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
   return {
     ...original,
-    useOvhTracking: () => ({ trackClick: trackClickMock }),
+    useOvhTracking: () => ({
+      trackClick: trackClickMock,
+      trackPage: trackPageMock,
+    }),
   };
 });
 

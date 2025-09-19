@@ -16,31 +16,30 @@ export const LEVEL2 = {
   },
 };
 export const UNIVERSE = 'PublicCloud';
-export const SUB_UNIVERSE = 'projects';
-export const APP_NAME = 'projects';
+export const SUB_UNIVERSE = 'settings';
+export const APP_NAME = 'contacts_rights';
 
-export const PROJECTS_TRACKING = {
+export const CONTACTS_TRACKING = {
+  GUIDE: ['page', 'tile-tutorial'],
+  CHANGELOG: ['page', 'tile-tutorial'],
   LISTING: {
-    PAGE_NAME: 'projects-management',
-    CTA_CREATE_PROJECT: ['page', 'button', 'create_project'],
-    SHOW_PROJECT: ['page', 'button', 'detail_project'],
-    DELETE_PROJECT: ['datagrid', 'button', 'delete_project'],
-  },
-  ONBOARDING: {
-    PAGE_NAME: 'projects-management',
-    CTA_CREATE_PROJECT: ['page', 'button', 'create_project'],
+    ADD_CONTACT: ['page', 'button', 'add_contact'],
+    DELETE_CONTACT: ['datagrid', 'button', 'delete_contact'],
+    EDIT_ADMIN_CONTACT: ['page', 'button', 'edit_admin-contact'],
+    EDIT_BILLING_CONTACT: ['page', 'button', 'edit_billing-contact'],
   },
   ADD: {
-    PAGE_NAME: 'projects-management',
+    PAGE_NAME: 'add_contact',
+    CTA_CANCEL: ['pop-up', 'button', 'add_contact', 'cancel'],
+    CTA_CONFIRM: ['pop-up', 'button', 'add_contact', 'confirm'],
+    REQUEST_FAIL: 'add_contact_error',
+    REQUEST_SUCCESS: 'add_contact_success',
   },
-  DELETE: {
-    PAGE_NAME: 'projects-management',
-    CTA_CANCEL: ['pop-up', 'button', 'delete_project', 'cancel'],
-    CTA_CONFIRM: ['pop-up', 'button', 'delete_project', 'confirm'],
-    REQUEST_FAIL: 'delete_project_error',
-    REQUEST_SUCCESS: 'delete_project_success',
-  },
-  PROJECT_HOME: {
-    PAGE_NAME: 'project-detail',
+  REMOVE: {
+    PAGE_NAME: 'remove_contact',
+    CTA_CANCEL: ['pop-up', 'button', 'remove_contact', 'cancel'],
+    CTA_CONFIRM: ['pop-up', 'button', 'remove_contact', 'confirm'],
+    REQUEST_FAIL: 'remove_contact_error',
+    REQUEST_SUCCESS: 'remove_contact_success',
   },
 };

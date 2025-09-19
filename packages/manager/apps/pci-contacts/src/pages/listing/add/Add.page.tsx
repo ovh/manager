@@ -7,16 +7,19 @@ import {
   OdsInput,
   OdsSelect,
 } from '@ovhcloud/ods-components/react';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { ODS_INPUT_TYPE, ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { useAddAccountAclToProject } from '@/data/hooks/useAcl';
 import { AccountAcl } from '@/data/api/acl';
 import { useParam } from '@/hooks/useParam';
 import { normalizeAccountId } from '@/utils/normalize-account-id';
+import { CONTACTS_TRACKING } from '@/tracking.constant';
 
 type AclRight = AccountAcl['type'];
 
 export default function AddPage() {
   const { t } = useTranslation(['contacts', 'pci-common']);
+  const { trackClick, trackPage } = useOvhTracking();
   const { addSuccess, addError } = useNotifications();
 
   const projectId = useParam('projectId');
@@ -25,18 +28,26 @@ export default function AddPage() {
   const [accountToAdd, setAccountToAdd] = useState<string>('');
   const [accountRights, setAccountRights] = useState<AclRight>('readOnly');
   const [isAccountInputTouched, setIsAccountInputTouched] = useState(false);
-  const handleClose = () => navigate('..');
+  const goBack = () => navigate('..');
   const normalizedAccountId = normalizeAccountId(accountToAdd);
 
   const { addAccountAclToProject, isPending } = useAddAccountAclToProject({
     projectId,
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: CONTACTS_TRACKING.ADD.REQUEST_SUCCESS,
+      });
       addSuccess(t('cpb_rights_table_rights_add_success'));
-      handleClose();
+      goBack();
     },
     onError: () => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: CONTACTS_TRACKING.ADD.REQUEST_FAIL,
+      });
       addError(t('cpb_rights_add_error'));
-      handleClose();
+      goBack();
     },
   });
 
@@ -44,11 +55,22 @@ export default function AddPage() {
     if (isPending) {
       return;
     }
+    trackClick({
+      actionType: 'action',
+      actions: CONTACTS_TRACKING.ADD.CTA_CONFIRM,
+    });
     const account: AccountAcl = {
       accountId: normalizedAccountId,
       type: accountRights,
     };
     addAccountAclToProject(account);
+  };
+  const handleCancel = () => {
+    trackClick({
+      actionType: 'action',
+      actions: CONTACTS_TRACKING.ADD.CTA_CANCEL,
+    });
+    goBack();
   };
 
   return (
@@ -58,9 +80,9 @@ export default function AddPage() {
       onPrimaryButtonClick={handleSubmit}
       isPrimaryButtonDisabled={!normalizedAccountId}
       secondaryLabel={t('common_cancel')}
-      onSecondaryButtonClick={handleClose}
+      onSecondaryButtonClick={handleCancel}
       heading={t('cpb_rights_add_title')}
-      onDismiss={handleClose}
+      onDismiss={handleCancel}
       isOpen={true}
     >
       <OdsFormField

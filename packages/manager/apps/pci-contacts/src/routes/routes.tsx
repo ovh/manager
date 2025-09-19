@@ -3,12 +3,12 @@ import { Route } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { urls } from '@/routes/routes.constant';
-import { PROJECTS_TRACKING } from '@/tracking.constant';
+import { CONTACTS_TRACKING } from '@/tracking.constant';
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
 const ListingPage = lazy(() => import('@/pages/listing/Listing.page'));
 const AddModal = lazy(() => import('@/pages/listing/add/Add.page'));
-const DeleteModal = lazy(() => import('@/pages/listing/remove/Remove.page'));
+const RemoveModal = lazy(() => import('@/pages/listing/remove/Remove.page'));
 
 export default (
   <Route
@@ -27,7 +27,6 @@ export default (
       Component={ListingPage}
       handle={{
         tracking: {
-          pageName: PROJECTS_TRACKING.LISTING.PAGE_NAME,
           pageType: PageType.listing,
         },
       }}
@@ -37,17 +36,17 @@ export default (
         Component={AddModal}
         handle={{
           tracking: {
-            pageName: PROJECTS_TRACKING.ADD.PAGE_NAME,
+            pageName: CONTACTS_TRACKING.ADD.PAGE_NAME,
             pageType: PageType.popup,
           },
         }}
       />
       <Route
         path={urls.delete}
-        Component={DeleteModal}
+        Component={RemoveModal}
         handle={{
           tracking: {
-            pageName: PROJECTS_TRACKING.DELETE.PAGE_NAME,
+            pageName: CONTACTS_TRACKING.REMOVE.PAGE_NAME,
             pageType: PageType.popup,
           },
         }}

@@ -9,6 +9,7 @@ import {
 import {
   ShellContext,
   ShellContextType,
+  useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import {
   BaseLayout,
@@ -37,6 +38,7 @@ import { TService } from '@/data/types/service.type';
 import { usePaginatedItems } from '@/hooks/usePaginatedItems';
 import { useParam } from '@/hooks/useParam';
 import { ProjectValidationGuard } from '@/components/ProjectValidationGuard';
+import { CONTACTS_TRACKING } from '@/tracking.constant';
 
 const CONTACTS_DATAGRID_PAGINATION = 10;
 
@@ -61,6 +63,7 @@ const useGetContactsPageHref = (
 
 export default function ListingPage() {
   const { t } = useTranslation(['contacts']);
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const hrefProject = useProjectUrl('public-cloud');
   const context = useContext(ShellContext);
@@ -79,7 +82,20 @@ export default function ListingPage() {
   );
   const columns = getDatagridColumns(t);
   const isAdmin = serviceInfo && user.nichandle === serviceInfo.contactAdmin;
+  const onEditContactClick = (type: 'admin' | 'billing') => {
+    trackClick({
+      actionType: 'action',
+      actions:
+        type === 'admin'
+          ? CONTACTS_TRACKING.LISTING.EDIT_ADMIN_CONTACT
+          : CONTACTS_TRACKING.LISTING.EDIT_BILLING_CONTACT,
+    });
+  };
   const openAddContactModal = () => {
+    trackClick({
+      actionType: 'action',
+      actions: CONTACTS_TRACKING.LISTING.ADD_CONTACT,
+    });
     navigate(`./${urls.add}`);
   };
   const isEuRegion = context.environment.getRegion() === 'EU';
@@ -130,6 +146,7 @@ export default function ListingPage() {
                     href={contactsPageHref}
                     label={t('cpb_rights_modify')}
                     icon={ODS_ICON_NAME.externalLink}
+                    onClick={() => onEditContactClick('admin')}
                     target="_blank"
                   />
                 )}
@@ -148,6 +165,7 @@ export default function ListingPage() {
                     href={contactsPageHref}
                     label={t('cpb_rights_modify')}
                     icon={ODS_ICON_NAME.externalLink}
+                    onClick={() => onEditContactClick('billing')}
                     target="_blank"
                   />
                 )}
