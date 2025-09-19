@@ -44,7 +44,7 @@ const renderComponent = () =>
   );
 
 describe('User Provider', () => {
-  it('should redirect to the preferences page if there is no active session', async () => {
+  it('should redirect to the settings page if there is no active session', async () => {
     vi.spyOn(useMeApi, 'useMe').mockReturnValue({
       isFetched: true,
       error: { status: 401 },
@@ -52,11 +52,11 @@ describe('User Provider', () => {
     renderComponent();
 
     await vi.waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith(urls.preferences);
+      expect(mockedUsedNavigate).toHaveBeenCalledWith(urls.settings);
     });
   });
 
-  it('should redirect to the preferences page if there is an active session with GB user', async () => {
+  it('should redirect to the account type page if there is an active session with GB user', async () => {
     vi.spyOn(useMeApi, 'useMe').mockReturnValue({
       isFetched: true,
       data: {
@@ -70,7 +70,7 @@ describe('User Provider', () => {
     });
   });
 
-  it('should redirect to the preferences page if there is an active session with non GB user', async () => {
+  it('should redirect to the legacy signup page if there is an active session with non GB user', async () => {
     const mockedLocationAssign = vi.fn();
     Object.defineProperty(window, 'location', {
       value: {

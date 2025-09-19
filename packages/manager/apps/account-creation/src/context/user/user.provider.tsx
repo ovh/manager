@@ -36,7 +36,7 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   useEffect(() => {
     if (isFetched) {
       if (error?.status === 401) {
-        navigate(urls.preferences);
+        navigate(urls.settings);
         return;
       }
       if (me?.ovhSubsidiary !== 'GB') {
