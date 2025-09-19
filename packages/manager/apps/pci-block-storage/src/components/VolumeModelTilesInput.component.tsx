@@ -96,6 +96,7 @@ export const VolumeModelTilesInput = ({
         ],
         features: getFeatures(m),
         price: m.hourlyPrice,
+        disabled: true,
       })),
     [volumeModels, t, getDescription, getFeatures],
   );

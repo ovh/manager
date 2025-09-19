@@ -1,15 +1,27 @@
 import { useNavigate } from 'react-router-dom';
 import { FC, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Translation, useTranslation } from 'react-i18next';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
+import {
+  ICON_NAME,
+  Message,
+  MESSAGE_COLOR,
+  MessageBody,
+  MessageIcon,
+  Text,
+  TEXT_PRESET,
+} from '@ovhcloud/ods-react';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { Encryption } from '@/components/Encryption';
 import { EncryptionType } from '@/api/select/volume';
 import { TVolumeModel } from '@/api/hooks/useCatalog';
 import { VolumeModelTilesInput } from '@/components/VolumeModelTilesInput.component';
 import { TVolumeRetypeModel } from '@/api/hooks/useCatalogWithPreselection';
 import { BaseRetypeForm } from './BaseRetypeForm.component';
+import { useRetypeVolume } from '@/api/hooks/useVolume';
+import { useTrackBanner } from '@/hooks/useTrackBanner';
+import { TAPIVolume } from '@/api/data/volume';
 
 type FormValues = {
   volumeModel: TVolumeModel;
@@ -17,16 +29,48 @@ type FormValues = {
 };
 
 type RetypeProps = {
+  projectId: string;
+  volumeId: string;
   volumeModelData: TVolumeRetypeModel[];
   preselectedEncryptionType: EncryptionType | null;
 };
 
 export const Retype: FC<RetypeProps> = ({
+  projectId,
+  volumeId,
   volumeModelData,
   preselectedEncryptionType,
 }) => {
   const { t } = useTranslation(['common', 'retype', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
+  const { addSuccess } = useNotifications();
+
+  const onRetypeSuccess = useTrackBanner(
+    { type: 'success' },
+    (originalVolume: TAPIVolume) => {
+      navigate('..');
+      addSuccess(
+        <Translation ns="retype">
+          {(_t) =>
+            _t('pci_projects_project_storages_blocks_retype_retype_success', {
+              volumeName: originalVolume?.name,
+            })
+          }
+        </Translation>,
+        true,
+      );
+    },
+  );
+
+  const {
+    retypeVolume,
+    isPending: isRetypingPending,
+    isError: isRetypingError,
+  } = useRetypeVolume({
+    projectId,
+    volumeId,
+    onSuccess: onRetypeSuccess,
+  });
 
   const currentModel = useMemo(
     () => volumeModelData.find((model) => model.isPreselected),
@@ -58,19 +102,30 @@ export const Retype: FC<RetypeProps> = ({
     navigate('..');
   };
 
-  const onSubmit: SubmitHandler<FormValues> = () => {
-    // TODO Change this when backend is ready
+  const onSubmit: SubmitHandler<FormValues> = (formValues) => {
+    retypeVolume({
+      type: formValues.volumeModel.name,
+      encryptionType: formValues.encryptionType,
+    });
   };
 
   return (
     <BaseRetypeForm
       onSubmit={handleSubmit(onSubmit)}
       onClose={onClose}
-      isValidationDisabled={!isDirty}
+      isValidationDisabled={!isDirty && !isRetypingPending}
       cancelButtonText={t(`${NAMESPACES.ACTIONS}:cancel`)}
       validateButtonText={t(`${NAMESPACES.ACTIONS}:modify`)}
     >
       <div>
+        {isRetypingError && (
+          <Message dismissible={false} color={MESSAGE_COLOR.critical}>
+            <MessageIcon name={ICON_NAME.hexagonExclamation} />
+            <MessageBody>
+              {t('pci_projects_project_storages_blocks_retype_retype_error')}
+            </MessageBody>
+          </Message>
+        )}
         <Controller
           control={control}
           name="volumeModel"
@@ -78,7 +133,7 @@ export const Retype: FC<RetypeProps> = ({
             <VolumeModelTilesInput
               value={value}
               volumeModels={volumeModelData}
-              onChange={onChange}
+              onChange={!isRetypingPending && onChange}
               label={t(
                 'retype:pci_projects_project_storages_blocks_retype_change_type_title',
               )}
@@ -94,7 +149,7 @@ export const Retype: FC<RetypeProps> = ({
               render={({ field: { value, onChange } }) => (
                 <Encryption
                   encryptionType={value}
-                  onChange={onChange}
+                  onChange={!isRetypingPending && onChange}
                   title={t(
                     'retype:pci_projects_project_storages_blocks_retype_change_encryption_title',
                   )}

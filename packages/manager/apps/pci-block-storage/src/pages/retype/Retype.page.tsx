@@ -85,6 +85,8 @@ const RetypePage = () => {
 
     return (
       <Retype
+        projectId={projectId}
+        volumeId={volumeId}
         volumeModelData={volumeModelData}
         preselectedEncryptionType={preselectedEncryptionType}
       />
