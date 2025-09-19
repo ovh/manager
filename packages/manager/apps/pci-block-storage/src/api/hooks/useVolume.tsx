@@ -5,7 +5,7 @@ import {
   PaginationState,
   useCatalogPrice,
 } from '@ovh-ux/manager-react-components';
-import { useMutation, useQueries, useQuery } from '@tanstack/react-query';
+import { useMutation, useQueries } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { pipe } from 'lodash/fp';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -16,6 +16,7 @@ import {
   detachVolume,
   getAllVolumes,
   getVolume,
+  retypeVolume,
   TAPIVolume,
   updateVolume,
 } from '@/api/data/volume';
@@ -33,6 +34,7 @@ import {
   mapVolumeStatus,
   mapVolumeToAdd,
   mapVolumeToEdit,
+  mapVolumeToRetype,
   mapVolumeType,
   paginateResults,
   sortResults,
@@ -42,6 +44,7 @@ import {
   TVolumeRegion,
   TVolumeStatus,
   TVolumeToAdd,
+  TVolumeToRetype,
   TVolumeType,
 } from '@/api/select/volume';
 
@@ -364,6 +367,54 @@ export const useAddVolume = ({
 
   return {
     addVolume: mutation.mutate,
+    ...mutation,
+  };
+};
+
+type UseRetypeVolumeProps = {
+  projectId: string;
+  volumeId: string;
+  onSuccess?: (originalVolume?: TAPIVolume) => void;
+  onError?: (cause: Error) => void;
+};
+
+export const useRetypeVolume = ({
+  projectId,
+  volumeId,
+  onError,
+  onSuccess,
+}: UseRetypeVolumeProps) => {
+  const { data: catalog } = useVolumeCatalog(projectId);
+  const { data: volume } = useVolume(projectId, volumeId);
+
+  const mutationFn = useCallback<
+    (newVolumeType: TVolumeToRetype) => Promise<void>
+  >(
+    (newVolumeType) =>
+      catalog
+        ? retypeVolume(
+            mapVolumeToRetype(projectId, volume, catalog)(newVolumeType),
+          )
+        : Promise.reject(),
+    [catalog, projectId],
+  );
+
+  const mutation = useMutation({
+    mutationFn,
+    onError,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: getVolumeQueryKey(projectId, volumeId),
+      });
+      await queryClient.invalidateQueries({
+        queryKey: getVolumesQueryKey(projectId),
+      });
+      return onSuccess(volume);
+    },
+  });
+
+  return {
+    retypeVolume: mutation.mutate,
     ...mutation,
   };
 };

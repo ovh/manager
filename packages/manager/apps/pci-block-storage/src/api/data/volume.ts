@@ -136,3 +136,21 @@ export const addVolume = async ({
 
   return data;
 };
+
+export type TRetypeVolumeProps = {
+  projectId: string;
+  originalVolume: Pick<TAPIVolume, 'id' | 'region'>;
+  newType: string;
+};
+export const retypeVolume = async ({
+  projectId,
+  originalVolume: { id, region },
+  newType,
+}: TRetypeVolumeProps) => {
+  const { data } = await v6.post<void>(
+    `/cloud/project/${projectId}/region/${region}/volume/${id}/retype`,
+    { type: newType },
+  );
+
+  return data;
+};

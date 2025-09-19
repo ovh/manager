@@ -4,6 +4,7 @@ import {
   EncryptionType,
   getEncryption,
   mapVolumeEncryption,
+  mapVolumeToRetype,
   mapVolumeType,
   paginateResults,
   sortResults,
@@ -44,6 +45,7 @@ const specWithoutEncryptionSpecification = {
 const catalog = {
   models: [
     {
+      name: 'model',
       pricings: [
         {
           specs: encryptedSpec,
@@ -541,6 +543,38 @@ describe('volume', () => {
         isClassicMultiAttach: false,
       });
       expect(is3az).toHaveBeenCalledWith(catalogRegion, volume.region);
+    });
+  });
+
+  describe('mapVolumeToRetype', () => {
+    it('should return the project id, the mapped volume and the type from catalog when encrypted', () => {
+      const mockVolume = { id: '1', region } as TAPIVolume;
+      const result = mapVolumeToRetype(
+        '123',
+        mockVolume,
+        catalog,
+      )({ type: 'model', encryptionType: EncryptionType.OMK });
+
+      expect(result).toEqual({
+        projectId: '123',
+        originalVolume: mockVolume,
+        newType: encryptedSpec.name,
+      });
+    });
+
+    it('should return the project id, the mapped volume and the type from catalog when not encrypted', () => {
+      const mockVolume = { id: '1', region } as TAPIVolume;
+      const result = mapVolumeToRetype(
+        '123',
+        mockVolume,
+        catalog,
+      )({ type: 'model', encryptionType: null });
+
+      expect(result).toEqual({
+        projectId: '123',
+        originalVolume: mockVolume,
+        newType: nonEncryptedSpec.name,
+      });
     });
   });
 });
