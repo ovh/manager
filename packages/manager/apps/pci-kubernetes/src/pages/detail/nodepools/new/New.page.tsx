@@ -425,16 +425,11 @@ export default function NewPage(): JSX.Element {
           onScaleChange={(auto) => store.set.scaling(auto)}
           antiAffinity={billingState.antiAffinity.isChecked}
         />
-        <>
-          {regionInformations?.type &&
-            !isMultiDeploymentZones(regionInformations.type) && (
-              <NodePoolAntiAffinity
-                isChecked={billingState.antiAffinity.isChecked}
-                isEnabled={!store.scaling?.isAutoscale}
-                onChange={billingState.antiAffinity.onChange}
-              />
-            )}
-        </>
+        <NodePoolAntiAffinity
+          isChecked={billingState.antiAffinity.isChecked}
+          isEnabled={!store.scaling?.isAutoscale}
+          onChange={billingState.antiAffinity.onChange}
+        />
       </StepComponent>
       <div ref={store.steps.get(StepsEnum.BILLING)?.ref}></div>
       <StepComponent
