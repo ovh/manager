@@ -5,9 +5,7 @@ import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { urls } from '@/routes/routes.constant';
 
 const LayoutPage = lazy(() => import('@/pages/layout'));
-const PreferencesPage = lazy(() =>
-  import('@/pages/preferences/preferences.page'),
-);
+const SettingsPage = lazy(() => import('@/pages/settings/settings.page'));
 const AccountTypePage = lazy(() =>
   import('@/pages/accountType/AccountType.page'),
 );
@@ -29,11 +27,11 @@ export default (
     }
   >
     <Route
-      path={urls.preferences}
-      Component={PreferencesPage}
+      path={urls.settings}
+      Component={SettingsPage}
       handle={{
         tracking: {
-          pageName: 'preferences',
+          pageName: 'settings',
           pageType: PageType.funnel,
         },
       }}

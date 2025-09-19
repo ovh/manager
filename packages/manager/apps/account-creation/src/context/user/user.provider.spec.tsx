@@ -52,7 +52,7 @@ const renderComponent = () =>
   );
 
 describe('User Provider', () => {
-  it('should redirect to the preferences page if there is no active session', async () => {
+  it('should redirect to the settings page if there is no active session', async () => {
     vi.spyOn(useMeApi, 'useMe').mockReturnValue({
       isFetched: true,
       error: { status: 401 },
@@ -60,7 +60,7 @@ describe('User Provider', () => {
     renderComponent();
 
     await vi.waitFor(() => {
-      expect(mockedUsedNavigate).toHaveBeenCalledWith(urls.preferences);
+      expect(mockedUsedNavigate).toHaveBeenCalledWith(urls.settings);
     });
   });
 
@@ -78,7 +78,7 @@ describe('User Provider', () => {
     });
   });
 
-  it('should redirect to the account type page if logged in user is not authorized', async () => {
+  it('should redirect to the legacy signup page if logged in user is not authorized', async () => {
     const mockedLocationAssign = vi.fn();
     Object.defineProperty(window, 'location', {
       value: {
