@@ -215,6 +215,6 @@
   "sidebar_observability": "Observabilité",
   "sidebar_observability_short": "Observabilité",
   "sidebar_observability_dashboards": "Tableaux de bord",
-  "sidebar_observability_metric": "Métriques",
-  "sidebar_observability_metric_tenant": "Tenants"
+  "sidebar_observability_metrics": "Métriques",
+  "sidebar_observability_metrics_tenants": "Tenants"
 }
