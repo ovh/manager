@@ -8,6 +8,7 @@ import {
   Text,
   TEXT_PRESET,
 } from '@ovhcloud/ods-react';
+import { toUnicode } from 'punycode';
 import { ModalStepsProps } from '@/alldoms/types';
 import { useTerminateService } from '@/alldoms/hooks/useTerminateService/useTerminateService';
 
@@ -27,14 +28,14 @@ export default function TerminateModalStepTwo({
       <Text preset={TEXT_PRESET.paragraph}>
         {domainTerminateList.length === 0
           ? t('allDom_modal_step_two_no_domain_checked', {
-              serviceName,
+              serviceName: toUnicode(serviceName),
             })
           : t('allDom_modal_step_two_warning')}
       </Text>
       <ul className="flex flex-col gap-y-2 ml-2 pl-8">
         {domainTerminateList.map((element) => (
           <li className="text-[var(--ods-color-text)]" key={element}>
-            {element}
+            {toUnicode(element)}
           </li>
         ))}
       </ul>

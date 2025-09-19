@@ -4,6 +4,7 @@ import { Modal } from '@ovh-ux/manager-react-components';
 import { useParams } from 'react-router-dom';
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
+import { toUnicode } from 'punycode';
 import { useGetAllDomResource } from '@/alldoms/hooks/data/query';
 import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
 import { ServiceRoutes } from '@/alldoms/enum/service.enum';
@@ -35,7 +36,7 @@ export default function ServiceTerminate() {
       isLoading={isLoading || listLoading}
       type={ODS_MODAL_COLOR.critical}
       heading={t('allDom_modal_title', {
-        serviceName,
+        serviceName: toUnicode(serviceName),
       })}
     >
       <div>
