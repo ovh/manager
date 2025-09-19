@@ -66,7 +66,7 @@ const InstanceName: FC<TInstanceNameProps> = ({ instance }) => {
   };
 
   return (
-    <header className="flex items-center">
+    <div className="flex items-center min-w-96">
       {isEditing ? (
         <InputCancellable
           value={instanceName}
@@ -98,7 +98,7 @@ const InstanceName: FC<TInstanceNameProps> = ({ instance }) => {
           <Icon name="pen" />
         </Button>
       )}
-    </header>
+    </div>
   );
 };
 

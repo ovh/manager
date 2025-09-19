@@ -43,7 +43,7 @@ const InstancePropertyBlock: FC = () => {
               <Link
                 key={id}
                 href={`${projectUrl}/storages/blocks/${id}/edit`}
-                className="block whitespace-nowrap overflow-hidden text-ellipsis max-w-[13rem]"
+                className="block whitespace-nowrap overflow-hidden text-ellipsis max-w-[13rem] visited:text-[var(--ods-color-primary-500)]"
               >
                 {name}
               </Link>
@@ -52,7 +52,11 @@ const InstancePropertyBlock: FC = () => {
             <Text className="my-4">-</Text>
           )}
           {instance?.isEditEnabled && (
-            <Link as={RouterLink} to="./attach">
+            <Link
+              as={RouterLink}
+              to="./attach"
+              className="visited:text-[var(--ods-color-primary-500)]"
+            >
               {t('pci_instances_dashboard_attach_volumes')}
               <Icon name="arrow-right" />
             </Link>
@@ -65,7 +69,11 @@ const InstancePropertyBlock: FC = () => {
       >
         <Text className="my-4">{instance?.image}</Text>
         {instance?.isEditEnabled && (
-          <Link as={RouterLink} to={`../${instanceId}/edit`}>
+          <Link
+            as={RouterLink}
+            to={`../${instanceId}/edit`}
+            className="visited:text-[var(--ods-color-primary-500)]"
+          >
             {t('pci_instances_dashboard_edit_image')}
             <Icon name="arrow-right" />
           </Link>

@@ -1,16 +1,18 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useHref } from 'react-router-dom';
+import { useHref, Link as RouterLink } from 'react-router-dom';
 import { OsdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  Links,
-  LinkType,
-  useTranslatedMicroRegions,
-} from '@ovh-ux/manager-react-components';
+import { useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
 import { RegionChipByType } from '@ovh-ux/manager-pci-common';
-import { BUTTON_VARIANT, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
+import {
+  BUTTON_VARIANT,
+  Icon,
+  Link,
+  Text,
+  TEXT_PRESET,
+} from '@ovhcloud/ods-react';
 import DashboardCardLayout from './DashboardCardLayout.component';
 import PriceLabel from '@/components/priceLabel/PriceLabel.component';
 import { useDashboard } from '../hooks/useDashboard';
@@ -36,10 +38,6 @@ const InstanceGeneralInfoBlock: FC = () => {
   ]);
   const { translateMicroRegion } = useTranslatedMicroRegions();
   const { instanceId, region } = useInstanceParams();
-  const hrefEditInstance = useHref(`../${instanceId}/edit`);
-  const hrefBillingMonthlyActivate = useHref(
-    `../${instanceId}/billing/monthly/activate?region=${region}`,
-  );
   const hrefDeleteInstance = useHref(
     `../${instanceId}/delete?region=${region}`,
   );
@@ -74,11 +72,14 @@ const InstanceGeneralInfoBlock: FC = () => {
         <div className="flex flex-col">
           <Text className="my-4">{instance?.flavor?.name}</Text>
           {instance?.isEditEnabled && (
-            <Links
-              label={t('pci_instances_dashboard_upgrade_model')}
-              type={LinkType.next}
-              href={hrefEditInstance}
-            />
+            <Link
+              as={RouterLink}
+              to={`../${instanceId}/edit`}
+              className="visited:text-[var(--ods-color-primary-500)]"
+            >
+              {t('pci_instances_dashboard_upgrade_model')}
+              <Icon name="arrow-right" />
+            </Link>
           )}
         </div>
       </DashboardTileBlock>
@@ -137,13 +138,16 @@ const InstanceGeneralInfoBlock: FC = () => {
             ))}
           </div>
           {instance?.canActivateMonthlyBilling && (
-            <Links
-              label={t(
+            <Link
+              as={RouterLink}
+              to={`../${instanceId}/billing/monthly/activate?region=${region}`}
+              className="visited:text-[var(--ods-color-primary-500)]"
+            >
+              {t(
                 'actions:pci_instances_actions_billing_monthly_activate_instance_title',
               )}
-              type={LinkType.next}
-              href={hrefBillingMonthlyActivate}
-            />
+              <Icon name="arrow-right" />
+            </Link>
           )}
         </div>
       </DashboardTileBlock>
