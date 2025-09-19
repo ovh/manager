@@ -116,16 +116,15 @@
             </oui-tabs-item>
 
             <oui-tabs-item
-                data-ng-repeat="(localisation, snapshots) in $ctrl.snapshots track by localisation"
-                data-id="snapshots-{{localisation}}"
-                data-ng-if="snapshots.length > 0 && (localisation !== 'distant' || $ctrl.distantBackupAvailability)"
-                data-heading="{{:: 'pci_project_instances_shapshots_' + localisation | translate }}"
-                data-on-active="$ctrl.onTabChange({ tab: 'snapshots-' + localisation })"
+                data-id="snapshots-local"
+                data-ng-if="$ctrl.snapshots.local.length > 0"
+                data-heading="{{:: 'pci_project_instances_shapshots_local' | translate }}"
+                data-on-active="$ctrl.onTabChange({ tab: 'snapshots-local' })"
             >
                 <div class="container-fluid px-0">
                     <div class="row">
                         <oui-select-picker
-                            data-ng-repeat="snapshot in snapshots track by snapshot.id"
+                            data-ng-repeat="snapshot in $ctrl.snapshots.local track by snapshot.id"
                             class="d-inline-block col-md-6 col-xl-4 my-3"
                             data-name="{{:: snapshot.id }}"
                             data-label="{{:: snapshot.name }}"
@@ -144,7 +143,45 @@
                         </oui-select-picker>
                     </div>
                     <oui-checkbox
-                        data-ng-if="$ctrl.unavailableSnapshotsPresent[localisation]"
+                        data-ng-if="$ctrl.unavailableSnapshotsPresent['local']"
+                        data-model="$ctrl.showNonAvailable"
+                    >
+                        <span
+                            data-translate="pci_project_instances_display_nonavailable"
+                        ></span>
+                    </oui-checkbox>
+                </div>
+            </oui-tabs-item>
+
+            <oui-tabs-item
+                data-id="snapshots-distant"
+                data-ng-if="$ctrl.snapshots.distant.length > 0 && $ctrl.distantBackupAvailability"
+                data-heading="{{:: 'pci_project_instances_shapshots_distant' | translate }}"
+                data-on-active="$ctrl.onTabChange({ tab: 'snapshots-distant' })"
+            >
+                <div class="container-fluid px-0">
+                    <div class="row">
+                        <oui-select-picker
+                            data-ng-repeat="snapshot in $ctrl.snapshots.distant track by snapshot.id"
+                            class="d-inline-block col-md-6 col-xl-4 my-3"
+                            data-name="{{:: snapshot.id }}"
+                            data-label="{{:: snapshot.name }}"
+                            data-description="{{:: snapshot.creationDate | date: 'medium' }}"
+                            data-model="$ctrl.image"
+                            data-values="[snapshot]"
+                            data-variant="light"
+                            data-on-change="$ctrl.onImageChange(modelValue)"
+                            data-disabled="!$ctrl.isCompatible(snapshot)"
+                            data-ng-if="$ctrl.showNonAvailable || $ctrl.isCompatible(snapshot)"
+                        >
+                            <oui-select-picker-section
+                                data-ng-if="!$ctrl.isCompatible(snapshot)"
+                                data-ng-transclude
+                            ></oui-select-picker-section>
+                        </oui-select-picker>
+                    </div>
+                    <oui-checkbox
+                        data-ng-if="$ctrl.unavailableSnapshotsPresent['distant']"
                         data-model="$ctrl.showNonAvailable"
                     >
                         <span
