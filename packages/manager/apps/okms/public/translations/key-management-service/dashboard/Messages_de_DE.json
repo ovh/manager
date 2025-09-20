@@ -48,7 +48,7 @@
   "key_management_service_dashboard_contact_type_administrator": "Administrator",
   "key_management_service_dashboard_contact_type_technical": "Technisch",
   "key_management_service_dashboard_contact_type_billing": "Abrechnung",
-  "key_management_service_dashboard_action_billing_terminate": "Kündigen",
+  "key_management_service_dashboard_action_billing_terminate": "Löschen",
   "service_status": "Zustand des Dienstes",
   "key_management_service_dashboard_field_label_state": "Status",
   "key_management_service_dashboard_dashboard_field_state_active": "Aktiv",

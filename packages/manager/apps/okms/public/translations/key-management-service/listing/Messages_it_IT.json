@@ -2,7 +2,7 @@
   "title": "Listing page",
   "listing_resultats": "risultati",
   "key_management_service_listing_resultats": "risultati",
-  "key_management_service_listing_name_cell": "Nome",
+  "key_management_service_listing_name_cell": "Cognome",
   "key_management_service_listing_id_cell": "ID",
   "key_management_service_listing_region_cell": "Region",
   "key_management_service_listing_clipboard_success_label": "Copiato",

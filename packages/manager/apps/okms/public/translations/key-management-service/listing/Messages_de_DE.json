@@ -9,7 +9,7 @@
   "key_management_service_listing_clipboard_error_label": "Fehler",
   "key_management_service_listing_add_kms_button": "KMS bestellen",
   "key_management_service_listing_title": "Key Management Service",
-  "key_management_service_listing_terminate": "Kündigen",
+  "key_management_service_listing_terminate": "Löschen",
   "key_management_service_listing_region_eu_west_par": "Europa (Frankreich – Paris)",
   "key_management_service_listing_region_eu_west_gra": "Europa (Frankreich – Gravelines)",
   "key_management_service_listing_region_eu_west_rbx": "Europa (Frankreich – Roubaix)",

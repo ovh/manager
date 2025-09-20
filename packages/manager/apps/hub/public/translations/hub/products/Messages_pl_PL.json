@@ -73,5 +73,6 @@
   "manager_hub_products_VMWARE_CLOUD_DIRECTOR_BACKUP": "Managed Veeam for VCD",
   "manager_hub_products_OKMS_RESOURCE": "Key Management Service",
   "manager_hub_products_ZIMBRA_SLOT": "Zimbra Starter",
-  "manager_hub_products_VMWARE_PUBLIC_VCF_AS_A_SERVICE": "Public VCF as a Service"
+  "manager_hub_products_VMWARE_PUBLIC_VCF_AS_A_SERVICE": "Public VCF as a Service",
+  "manager_hub_products_OKMS": "Key Management Service"
 }

@@ -16,7 +16,7 @@
   "key_management_service_service-keys_dashboard_field_state_compromised": "compromised",
   "key_management_service_service-keys_dashboard_field_state_deactivated": "disabled",
   "key_management_service_service-keys_dashboard_field_state_destroyed": "deleted",
-  "key_management_service_service-keys_dashboard_field_state_destroyed_compromised": "compromised &amp; deleted",
+  "key_management_service_service-keys_dashboard_field_state_destroyed_compromised": "compromised & deleted",
   "key_management_service_service-keys_dashboard_field_state_pre_active": "Enabling...",
   "key_management_service_service-keys_dashboard_field_created_at": "Creation",
   "key_management_service_service-keys_dashboard_field_origin": "Service Key origin",
@@ -91,7 +91,7 @@
   "key_management_service_service-keys_deactivation_success": "The Service Key has been disabled",
   "key_management_service_service-keys_reactivate_success": "The Service Key has been re-enabled",
   "key_management_service_service_keys_back_link": "Back to the list of Service Keys",
-  "key_management_service_service-keys_create_protection_level_title": "Level of protection",
+  "key_management_service_service-keys_create_protection_level_title": "Protection level",
   "key_management_service_service-keys_create_protection_level_subtitle": "Specify Service Key protection level.",
   "key_management_service_service-keys_create_software_protection_title": "Software protection",
   "key_management_service_service-keys_create_software_protection_subtitle": "Cryptographic operations are performed on software."

@@ -91,8 +91,8 @@
   "key_management_service_service-keys_deactivation_success": "Der Service Key wurde erfolgreich deaktiviert.",
   "key_management_service_service-keys_reactivate_success": "Der Service Key wurde erfolgreich reaktiviert.",
   "key_management_service_service_keys_back_link": "Zurück zur Liste der Service Keys",
-  "key_management_service_service-keys_create_protection_level_title": "Schutzebene",
+  "key_management_service_service-keys_create_protection_level_title": "Schutzniveau",
   "key_management_service_service-keys_create_protection_level_subtitle": "Geben Sie das für den Service Key verwendete Schutzlevel an.",
-  "key_management_service_service-keys_create_software_protection_title": "Software-Schutz",
+  "key_management_service_service-keys_create_software_protection_title": "Softwareschutz",
   "key_management_service_service-keys_create_software_protection_subtitle": "Kryptografische Operationen werden mit Software ausgeführt."
 }
