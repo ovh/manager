@@ -1,7 +1,7 @@
 {
   "key_management_service_service_keys": "Claves de cifrado",
   "key_management_service_service-keys_headline": "Cree y gestione sus Service Keys CMK (Customer Managed Keys).",
-  "key_management_service_service-keys_column_name": "Apellido",
+  "key_management_service_service-keys_column_name": "Nombre",
   "key_management_service_service-keys_column_id": "ID",
   "key_management_service_service-keys_column_type": "Tipo",
   "key_management_service_service-keys_column_created-at": "Fecha de creación",
@@ -94,5 +94,5 @@
   "key_management_service_service-keys_create_protection_level_title": "Nivel de protección",
   "key_management_service_service-keys_create_protection_level_subtitle": "Especifique el nivel de protección utilizado para la Service Key.",
   "key_management_service_service-keys_create_software_protection_title": "Protección de software",
-  "key_management_service_service-keys_create_software_protection_subtitle": "Las operaciones criptográficas se realizan en un programa de software."
+  "key_management_service_service-keys_create_software_protection_subtitle": "Las operaciones de cifrado se realizan en un software."
 }

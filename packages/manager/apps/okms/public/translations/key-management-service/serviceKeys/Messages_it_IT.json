@@ -94,5 +94,5 @@
   "key_management_service_service-keys_create_protection_level_title": "Livello di protezione",
   "key_management_service_service-keys_create_protection_level_subtitle": "Indica il livello di protezione utilizzato per la Service Key.",
   "key_management_service_service-keys_create_software_protection_title": "Protezione software",
-  "key_management_service_service-keys_create_software_protection_subtitle": "Le operazioni crittografiche vengono effettuate su un software."
+  "key_management_service_service-keys_create_software_protection_subtitle": "Le operazioni crittografiche sono effettuate su un software."
 }
