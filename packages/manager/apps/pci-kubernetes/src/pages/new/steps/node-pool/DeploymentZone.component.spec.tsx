@@ -1,5 +1,6 @@
+import { fireEvent, render } from '@testing-library/react';
 import { vi } from 'vitest';
-import { render, fireEvent } from '@testing-library/react';
+
 import DeploymentZone from './DeploymentZone.component';
 
 describe('DeploymentZone component', () => {
@@ -17,9 +18,7 @@ describe('DeploymentZone component', () => {
     );
 
     expect(getByText('kube_common_node_pool_deploy_title')).toBeInTheDocument();
-    expect(
-      getByText('kube_common_node_pool_deploy_description'),
-    ).toBeInTheDocument();
+    expect(getByText('kube_common_node_pool_deploy_description')).toBeInTheDocument();
     availabilityZones.forEach((zone) => {
       expect(getByText(zone)).toBeInTheDocument();
     });

@@ -45,26 +45,21 @@ describe('Estimation component', () => {
     },
   ];
 
-  it.each(cases)(
-    '$description',
-    ({ rows, expectedLabels, hiddenLabels, expectedValues }) => {
-      render(<Estimation rows={rows} />);
+  it.each(cases)('$description', ({ rows, expectedLabels, hiddenLabels, expectedValues }) => {
+    render(<Estimation rows={rows} />);
 
-      expect(
-        screen.getByText('kube_common_node_pool_estimated_cost'),
-      ).toBeDefined();
+    expect(screen.getByText('kube_common_node_pool_estimated_cost')).toBeDefined();
 
-      expectedLabels.forEach((label) => {
-        expect(screen.getByText(label)).toBeVisible();
-      });
+    expectedLabels.forEach((label) => {
+      expect(screen.getByText(label)).toBeVisible();
+    });
 
-      hiddenLabels.forEach((label) => {
-        expect(screen.queryByText(label)).toBeNull();
-      });
+    hiddenLabels.forEach((label) => {
+      expect(screen.queryByText(label)).toBeNull();
+    });
 
-      expectedValues?.forEach((value) => {
-        expect(screen.getByText(value)).toBeVisible();
-      });
-    },
-  );
+    expectedValues?.forEach((value) => {
+      expect(screen.getByText(value)).toBeVisible();
+    });
+  });
 });

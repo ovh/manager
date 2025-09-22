@@ -1,4 +1,5 @@
 import { renderHook } from '@testing-library/react';
+
 import { useDatagridColumns } from './useDatagridColumn';
 
 describe('useDatagridColumn', () => {
@@ -21,9 +22,7 @@ describe('useDatagridColumn', () => {
     expect(antiAffinityColumn).toBeDefined();
     expect(antiAffinityColumn?.label).toBe('kube_node_pool_anti_affinity');
 
-    const numberOfNodesColumn = columns.find(
-      (col) => col.id === 'numberOfNodes',
-    );
+    const numberOfNodesColumn = columns.find((col) => col.id === 'numberOfNodes');
     expect(numberOfNodesColumn).toBeDefined();
     expect(numberOfNodesColumn?.label).toBe('kube_node_pool_node_count');
 
@@ -31,13 +30,9 @@ describe('useDatagridColumn', () => {
     expect(autoscaleColumn).toBeDefined();
     expect(autoscaleColumn?.label).toBe('Autoscaling');
 
-    const monthlyBilledColumn = columns.find(
-      (col) => col.id === 'monthlyBilled',
-    );
+    const monthlyBilledColumn = columns.find((col) => col.id === 'monthlyBilled');
     expect(monthlyBilledColumn).toBeDefined();
-    expect(monthlyBilledColumn?.label).toBe(
-      'kube-nodes:kube_nodes_billing_type',
-    );
+    expect(monthlyBilledColumn?.label).toBe('kube-nodes:kube_nodes_billing_type');
 
     const createdAtColumn = columns.find((col) => col.id === 'createdAt');
     expect(createdAtColumn).toBeDefined();

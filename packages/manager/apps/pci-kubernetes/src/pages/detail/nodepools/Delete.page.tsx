@@ -1,3 +1,11 @@
+import { ReactElement, useMemo, useState } from 'react';
+
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_LEVEL } from '@ovhcloud/ods-common-theming';
+import { ODS_BUTTON_VARIANT, ODS_INPUT_TYPE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsFormField,
@@ -5,27 +13,17 @@ import {
   OsdsModal,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_INPUT_TYPE,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useMemo, useState } from 'react';
+
 import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import { useClusterNodePools, useDeleteNodePool } from '@/api/hooks/node-pools';
-import queryClient from '@/queryClient';
-import { useTrack } from '@/hooks/track';
 import LoadingSkeleton from '@/components/LoadingSkeleton.component';
+import { useTrack } from '@/hooks/track';
+import queryClient from '@/queryClient';
 
 const CONFIRMATION_TEXT = 'DELETE';
 
-export default function DeletePage(): JSX.Element {
+export default function DeletePage(): ReactElement {
   const { projectId, kubeId: clusterId } = useParams();
   const [searchParams] = useSearchParams();
   const poolId = searchParams.get('nodePoolId');
@@ -50,15 +48,9 @@ export default function DeletePage(): JSX.Element {
   const { t: tCommon } = useTranslation('common');
   const { t: tNodePoolDelete } = useTranslation('delete-pool');
 
-  const { data: pools, isPending: isPoolsPending } = useClusterNodePools(
-    projectId,
-    clusterId,
-  );
+  const { data: pools, isPending: isPoolsPending } = useClusterNodePools(projectId, clusterId);
 
-  const pool = useMemo(() => pools?.find((p) => p.id === poolId), [
-    pools,
-    poolId,
-  ]);
+  const pool = useMemo(() => pools?.find((p) => p.id === poolId), [pools, poolId]);
 
   const { deletePool, isPending: isDeleting } = useDeleteNodePool({
     onError(cause: Error & { response: { data: { message: string } } }): void {
@@ -122,11 +114,7 @@ export default function DeletePage(): JSX.Element {
             <OsdsFormField
               className="mt-4"
               inline
-              error={
-                confirmationInputData.hasError
-                  ? tCommon('common_field_error_required')
-                  : ''
-              }
+              error={confirmationInputData.hasError ? tCommon('common_field_error_required') : ''}
             >
               <OsdsText
                 slot="label"

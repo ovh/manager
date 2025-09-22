@@ -1,18 +1,9 @@
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_TEXT_COLOR_INTENT,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsText,
-  OsdsFormField,
-  OsdsToggle,
-} from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_COLOR_INTENT, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsFormField, OsdsText, OsdsToggle } from '@ovhcloud/ods-components/react';
+
 import { ANTI_AFFINITY_MAX_NODES } from '@/constants';
 
 type NodePoolAntiAffinityProps = {
@@ -20,11 +11,7 @@ type NodePoolAntiAffinityProps = {
   isEnabled: boolean;
   onChange: (val: boolean) => void;
 };
-const NodePoolAntiAffinity = ({
-  isChecked,
-  onChange,
-  isEnabled,
-}: NodePoolAntiAffinityProps) => {
+const NodePoolAntiAffinity = ({ isChecked, onChange, isEnabled }: NodePoolAntiAffinityProps) => {
   const { t } = useTranslation('billing-anti-affinity');
 
   return (

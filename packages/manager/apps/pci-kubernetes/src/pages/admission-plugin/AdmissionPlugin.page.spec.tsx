@@ -1,9 +1,12 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { OsdsSwitch } from '@ovhcloud/ods-components';
-import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
-import AdmissionPluginsModal from './AdmissionPlugins.page';
+
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
 import { wrapper } from '@/wrapperRenders';
+
+import AdmissionPluginsModal from './AdmissionPlugins.page';
 
 const navigate = vi.fn();
 
@@ -67,10 +70,7 @@ describe('AdmissionPluginsModal', () => {
     const { container } = render(<AdmissionPluginsModal />, { wrapper });
     const modal = container.querySelector('osds-modal');
     expect(modal).toBeInTheDocument();
-    expect(modal).toHaveProperty(
-      'headline',
-      'kube_service_cluster_admission_plugins_mutation',
-    );
+    expect(modal).toHaveProperty('headline', 'kube_service_cluster_admission_plugins_mutation');
   });
 
   it('handles plugin switch change', () => {
@@ -93,17 +93,13 @@ describe('AdmissionPluginsModal', () => {
     });
 
     render(<AdmissionPluginsModal />, { wrapper });
-    const switchElement = screen.getAllByText(
-      'kube_service_cluster_admission_plugins_to_activate',
-    );
+    const switchElement = screen.getAllByText('kube_service_cluster_admission_plugins_to_activate');
     fireEvent.change(switchElement[0], { detail: { current: 'enabled' } });
   });
 
   it('handles cancel button click', () => {
     render(<AdmissionPluginsModal />, { wrapper });
-    const cancelButton = screen.getByText(
-      'common:common_stepper_cancel_button_label',
-    );
+    const cancelButton = screen.getByText('common:common_stepper_cancel_button_label');
     fireEvent.click(cancelButton);
     expect(navigate).toHaveBeenCalledWith('..');
   });
@@ -131,9 +127,7 @@ describe('AdmissionPluginsModal', () => {
     render(<AdmissionPluginsModal />, { wrapper });
 
     const saveButton = screen.getByText('common:common_save_button_label');
-    const input = (screen.getByTestId(
-      'AlwaysPullImages-switch',
-    ) as unknown) as OsdsSwitch;
+    const input = screen.getByTestId('AlwaysPullImages-switch') as unknown as OsdsSwitch;
 
     input.odsSwitchChanged.emit({
       current: 'disabled',

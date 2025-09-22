@@ -1,5 +1,7 @@
-import { v6 } from '@ovh-ux/manager-core-api';
 import { describe, it, vi } from 'vitest';
+
+import { v6 } from '@ovh-ux/manager-core-api';
+
 import { deleteNode, getNodes } from '@/api/data/nodes';
 
 describe('getNodes', () => {
@@ -41,9 +43,7 @@ describe('getNodes', () => {
 
   it('handles error when fetching nodes', async () => {
     vi.mocked(v6.get).mockRejectedValue(new Error('Network Error'));
-    await expect(getNodes('project1', 'cluster1', 'pool1')).rejects.toThrow(
-      'Network Error',
-    );
+    await expect(getNodes('project1', 'cluster1', 'pool1')).rejects.toThrow('Network Error');
   });
 });
 
@@ -51,15 +51,11 @@ describe('deleteNode', () => {
   it('deletes node successfully', async () => {
     vi.mocked(v6.delete).mockResolvedValue({});
     await deleteNode('project1', 'cluster1', 'node1');
-    expect(v6.delete).toHaveBeenCalledWith(
-      '/cloud/project/project1/kube/cluster1/node/node1',
-    );
+    expect(v6.delete).toHaveBeenCalledWith('/cloud/project/project1/kube/cluster1/node/node1');
   });
 
   it('handles error when deleting node', async () => {
     vi.mocked(v6.delete).mockRejectedValue(new Error('Network Error'));
-    await expect(deleteNode('project1', 'cluster1', 'node1')).rejects.toThrow(
-      'Network Error',
-    );
+    await expect(deleteNode('project1', 'cluster1', 'node1')).rejects.toThrow('Network Error');
   });
 });
