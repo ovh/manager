@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web-office-app",
-  "version": "0.4.12",
+  "version": "0.4.13",
   "private": true,
   "description": "React app for web office 365",
   "repository": {
@@ -12,12 +12,12 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "tsc && vite build",
-    "start": "vite",
-    "test": "manager-test run",
-    "test:coverage": "manager-test run --coverage",
+    "build:strict": "tsc --project tsconfig.strict.json && vite build",
     "lint:modern": "manager-lint --config eslint.config.mjs ./src",
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
-    "build:strict": "tsc --project tsconfig.strict.json && vite build"
+    "start": "vite",
+    "test": "manager-test run",
+    "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.2",
@@ -50,13 +50,13 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@ovh-ux/manager-static-analysis-kit": "*",
     "@ovh-ux/manager-tests-setup": "latest",
     "@ovh-ux/manager-vite-config": "^0.13.1",
     "@tanstack/react-query-devtools": "^5.51.21",
     "@types/jest": "^29.5.12",
     "@types/react": "^18.2.55",
-    "@types/react-dom": "^18.2.19",
-    "@ovh-ux/manager-static-analysis-kit": "*"
+    "@types/react-dom": "^18.2.19"
   },
   "regions": [
     "EU"

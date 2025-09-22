@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.32...@ovh-ux/manager-zimbra-app@0.32.0) (2025-09-22)
+
+
+### Features
+
+* **zimbra:** show renewal & cancel date on tooltip ([f0072f2](https://github.com/ovh/manager/commit/f0072f2da928dd8a1e17f05ee91cf66e8b3b9173)), closes [#MANAGER-18408](https://github.com/ovh/manager/issues/MANAGER-18408)
+
+
+
+
+
 ## [0.31.32](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.31...@ovh-ux/manager-zimbra-app@0.31.32) (2025-09-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app
