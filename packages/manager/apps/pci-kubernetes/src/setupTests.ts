@@ -15,9 +15,7 @@ vi.mock('react-router-dom', async () => {
   return {
     ...mod,
     useSearchParams: () => [new URLSearchParams({})],
-    useParams: vi
-      .fn()
-      .mockReturnValue({ projectId: 'project-id', kubeId: 'kube-id' }),
+    useParams: vi.fn().mockReturnValue({ projectId: 'project-id', kubeId: 'kube-id' }),
     useHref: vi.fn(),
     useLocation: vi.fn(),
     useNavigate: vi.fn(),
@@ -30,9 +28,7 @@ vi.mock('@ovh-ux/manager-pci-common', async () => {
   const mod = await vi.importActual('@ovh-ux/manager-pci-common');
   return {
     ...mod,
-    useParam: vi
-      .fn()
-      .mockReturnValue({ projectId: 'project-id', kubeId: 'kube-id' }),
+    useParam: vi.fn().mockReturnValue({ projectId: 'project-id', kubeId: 'kube-id' }),
     useProject: vi.fn().mockResolvedValue({
       projectName: 'project-name',
       project_id: 'project-id',

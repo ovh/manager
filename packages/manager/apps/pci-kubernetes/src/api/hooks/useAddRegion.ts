@@ -1,5 +1,7 @@
-import { TLocalisation } from '@ovh-ux/manager-pci-common';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import { TLocalisation } from '@ovh-ux/manager-pci-common';
+
 import { addProjectRegion } from '../data/regions';
 
 export type TUseAddProjectRegionArgs = {
@@ -8,11 +10,7 @@ export type TUseAddProjectRegionArgs = {
   onSuccess: (data: TLocalisation, variables: string, context: unknown) => void;
 };
 
-export const useQueryRegionQueryKey = (projectId: string) => [
-  'project',
-  projectId,
-  'regions',
-];
+export const useQueryRegionQueryKey = (projectId: string) => ['project', projectId, 'regions'];
 
 export const useAddProjectRegion = ({
   projectId,

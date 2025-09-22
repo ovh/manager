@@ -39,8 +39,5 @@ export const getNodes = async (
   }));
 };
 
-export const deleteNode = async (
-  projectId: string,
-  clusterId: string,
-  nodeId: string,
-) => v6.delete(`/cloud/project/${projectId}/kube/${clusterId}/node/${nodeId}`);
+export const deleteNode = async (projectId: string, clusterId: string, nodeId: string) =>
+  v6.delete(`/cloud/project/${projectId}/kube/${clusterId}/node/${nodeId}`);

@@ -1,19 +1,18 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { PaginationState } from '@ovh-ux/manager-react-components';
-import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useMemo } from 'react';
+
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
+
+import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
+import { PaginationState } from '@ovh-ux/manager-react-components';
+
+import { TNode, deleteNode, getNodes } from '@/api/data/nodes';
 import { useRegionFlavors } from '@/api/hooks/flavors';
-import { deleteNode, getNodes, TNode } from '@/api/data/nodes';
 import { useInstances } from '@/api/hooks/instances';
+import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { paginateResults } from '@/helpers';
 
-export const getNodesQueryKey = (
-  projectId: string,
-  clusterId: string,
-  nodePoolId: string,
-) => [
+export const getNodesQueryKey = (projectId: string, clusterId: string, nodePoolId: string) => [
   'project',
   projectId,
   'kubernetes',
@@ -23,11 +22,7 @@ export const getNodesQueryKey = (
   'nodes',
 ];
 
-export const useNodes = (
-  projectId: string,
-  clusterId: string,
-  nodePoolId: string,
-) =>
+export const useNodes = (projectId: string, clusterId: string, nodePoolId: string) =>
   useQuery({
     queryKey: getNodesQueryKey(projectId, clusterId, nodePoolId),
     queryFn: () => getNodes(projectId, clusterId, nodePoolId),
@@ -74,9 +69,7 @@ export const usePaginatedNodes = (
     () =>
       (nodes || []).map((node) => {
         const flavor = (flavors || []).find((f) => f.name === node.flavor);
-        const instance = (instances || []).find(
-          (i) => i.id === node.instanceId,
-        );
+        const instance = (instances || []).find((i) => i.id === node.instanceId);
 
         const billingType = (() => {
           if (!instance?.monthlyBilling) return 'hourly';
@@ -95,8 +88,7 @@ export const usePaginatedNodes = (
           ...node,
           formattedFlavor,
           billingType,
-          canSwitchToMonthly:
-            billingType === 'hourly' && !!flavor?.planCodes?.monthly,
+          canSwitchToMonthly: billingType === 'hourly' && !!flavor?.planCodes?.monthly,
           search: `${node.id} ${node.name} ${formattedFlavor} ${billingType}`,
         } as TNode;
       }),
@@ -113,16 +105,8 @@ export const usePaginatedNodes = (
       [nodesWithFlavorsAndBillingType, pagination, filters],
     ),
     error: nodesError || clusterError || flavorsError || InstancesError,
-    isLoading:
-      isNodesLoading ||
-      isClusterLoading ||
-      isFlavorsLoading ||
-      isInstancesLoading,
-    isPending:
-      isNodesPending ||
-      isClusterPending ||
-      isFlavorsPending ||
-      isInstancesPending,
+    isLoading: isNodesLoading || isClusterLoading || isFlavorsLoading || isInstancesLoading,
+    isPending: isNodesPending || isClusterPending || isFlavorsPending || isInstancesPending,
   };
 };
 

@@ -1,21 +1,18 @@
+import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
 import { act, fireEvent, render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
-import {
-  OdsInputValueChangeEventDetail,
-  OsdsInput,
-} from '@ovhcloud/ods-components';
-import RenameClusterPage from './RenameCluster.page';
-import * as useKubernetesModule from '@/api/hooks/useKubernetes';
-import { wrapper } from '@/wrapperRenders';
-import { TKube } from '@/types';
 
-type UseRenameClusterReturnType = UseMutationResult<
-  never,
-  Error,
-  void,
-  unknown
-> & { renameCluster: () => void };
+import { OdsInputValueChangeEventDetail, OsdsInput } from '@ovhcloud/ods-components';
+
+import * as useKubernetesModule from '@/api/hooks/useKubernetes';
+import { TKube } from '@/types';
+import { wrapper } from '@/wrapperRenders';
+
+import RenameClusterPage from './RenameCluster.page';
+
+type UseRenameClusterReturnType = UseMutationResult<never, Error, void, unknown> & {
+  renameCluster: () => void;
+};
 
 describe('RenameClusterPage', () => {
   it('renders loading spinner when data is pending', () => {
@@ -38,16 +35,13 @@ describe('RenameClusterPage', () => {
     const { getByTestId } = render(<RenameClusterPage />, {
       wrapper,
     });
-    const renameInput = (getByTestId(
-      'renameCluster-input_name',
-    ) as unknown) as OsdsInput;
+    const renameInput = getByTestId('renameCluster-input_name') as unknown as OsdsInput;
     act(() => {
       fireEvent.change(getByTestId('renameCluster-input_name'), {
         target: { value: 'INVALID_NAME' },
       });
       renameInput.odsValueChange.emit({
-        value:
-          'INVALID_NAME_$$$$_TOOOOOOOOOOOO_LLLONNNNNNNNNG_NAMMMMMMMMMMMMMMME',
+        value: 'INVALID_NAME_$$$$_TOOOOOOOOOOOO_LLLONNNNNNNNNG_NAMMMMMMMMMMMMMMME',
       } as OdsInputValueChangeEventDetail);
       fireEvent.blur(getByTestId('renameCluster-input_name'));
       renameInput.odsInputBlur.emit();
@@ -60,9 +54,7 @@ describe('RenameClusterPage', () => {
 
   it('enables submit button when name input is valid', () => {
     const { getByTestId } = render(<RenameClusterPage />, { wrapper });
-    const renameInput = (getByTestId(
-      'renameCluster-input_name',
-    ) as unknown) as OsdsInput;
+    const renameInput = getByTestId('renameCluster-input_name') as unknown as OsdsInput;
     act(() => {
       fireEvent.change(getByTestId('renameCluster-input_name'), {
         target: { value: 'VALID_NAME' },
@@ -76,16 +68,12 @@ describe('RenameClusterPage', () => {
 
   it('calls renameCluster on submit button click', () => {
     const mockRenameCluster = vi.fn();
-    vi.spyOn(useKubernetesModule, 'useRenameKubernetesCluster').mockReturnValue(
-      ({
-        renameCluster: mockRenameCluster,
-        isPending: false,
-      } as unknown) as UseRenameClusterReturnType,
-    );
+    vi.spyOn(useKubernetesModule, 'useRenameKubernetesCluster').mockReturnValue({
+      renameCluster: mockRenameCluster,
+      isPending: false,
+    } as unknown as UseRenameClusterReturnType);
     const { getByTestId } = render(<RenameClusterPage />, { wrapper });
-    const renameInput = (getByTestId(
-      'renameCluster-input_name',
-    ) as unknown) as OsdsInput;
+    const renameInput = getByTestId('renameCluster-input_name') as unknown as OsdsInput;
     act(() => {
       fireEvent.change(getByTestId('renameCluster-input_name'), {
         target: { value: 'VALID_NAME' },

@@ -1,28 +1,16 @@
 {
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
   "compilerOptions": {
-    "strict": true,
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-    /* Bundler mode */
-    "moduleResolution": "node",
-    "allowImportingTsExtensions": false,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    /* Linting */
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
     "paths": {
+      "@/public/*": ["./public/*"],
       "@/*": ["./src/*"],
       "react": ["./node_modules/@types/react"]
     },
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "outDir": "dist",
+    "allowJs": true,
+    "resolveJsonModule": true
   },
-  "include": ["src"],
+  "include": ["src", "public/**/*.json"],
   "exclude": ["node_modules", "dist", "types"]
 }
