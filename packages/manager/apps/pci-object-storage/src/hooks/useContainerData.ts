@@ -43,10 +43,10 @@ export const useContainerData = () => {
   );
 
   const isLocalZone = region?.type === ObjectContainerMode.LOCAL_ZONE;
-  const isRightOffer = !!container?.s3StorageType;
+  const isS3StorageType = !!container?.s3StorageType;
 
   const { available: isEncryptionAvailable } = useGetEncriptionAvailability();
-  const displayEncryptionData = isEncryptionAvailable && isRightOffer;
+  const displayEncryptionData = isEncryptionAvailable && isS3StorageType;
 
   const isEncrypted = useMemo(() => {
     const { sseAlgorithm } = serverContainer?.encryption || {};
@@ -55,12 +55,12 @@ export const useContainerData = () => {
 
   const showEnableEncryptionLink = useMemo(() => {
     return (
-      isRightOffer &&
+      isS3StorageType &&
       !isLocalZone &&
       !isEncrypted &&
       region?.name !== MUMBAI_REGION_NAME
     );
-  }, [isRightOffer, isLocalZone, isEncrypted, region?.name]);
+  }, [isS3StorageType, isLocalZone, isEncrypted, region?.name]);
 
   const showReplicationBanner = useMemo(() => {
     const hasEnabledRule = container?.replication?.rules?.some(
@@ -84,6 +84,6 @@ export const useContainerData = () => {
     displayEncryptionData,
     isPending,
     isLocalZone,
-    isRightOffer,
+    isS3StorageType,
   };
 };

@@ -54,11 +54,7 @@ import { usePaginatedObjects } from '@/api/hooks/useContainer';
 import UseStandardInfrequentAccessAvailability from '@/hooks/useStandardInfrequentAccessAvailability';
 import { useSortedObjects } from './useSortedObjectsWithIndex';
 import { ContainerDatagrid } from './ContainerDataGrid';
-import {
-  CommonContainerContext,
-  S3ContainerContext,
-  SwiftContainerContext,
-} from './ContainerContext';
+import { S3ContainerContext, SwiftContainerContext } from './ContainerContext';
 import { getDashboardTabs } from '@/utils/getDashboardTabs';
 import { useDatagridColumn } from './useDatagridColumn';
 import './style.scss';
@@ -107,7 +103,7 @@ export default function ObjectPage() {
     showReplicationBanner,
     isPending,
     isLocalZone,
-    isRightOffer,
+    isS3StorageType,
   } = useContainerData();
 
   const manageReplicationsHref = useHref(
@@ -253,11 +249,12 @@ export default function ObjectPage() {
     t,
   });
 
+  console.log({ tabs });
+
   if (!container || !url) return <OdsSpinner size="md" />;
 
   const commonContextValue = {
-    isS3StorageType: isRightOffer,
-    isRightOffer,
+    isS3StorageType,
     isLocalZone,
     versioningStatus: container.versioning?.status,
     shouldHideButton,
@@ -332,7 +329,7 @@ export default function ObjectPage() {
       hrefPrevious={objectStorageHref}
     >
       <Notifications />
-      {<TabsPanel tabs={tabs} />}
+      <TabsPanel tabs={tabs} />
 
       {hasMaintenance && (
         <PciMaintenanceBanner maintenanceURL={maintenanceURL} />
@@ -362,17 +359,21 @@ export default function ObjectPage() {
         </OdsMessage>
       )}
 
-      <CommonContainerContext.Provider value={commonContextValue}>
-        {isRightOffer ? (
-          <S3ContainerContext.Provider value={s3ContextValue}>
-            <ContainerDatagrid />
-          </S3ContainerContext.Provider>
-        ) : (
-          <SwiftContainerContext.Provider value={swiftContextValue}>
-            <ContainerDatagrid />
-          </SwiftContainerContext.Provider>
-        )}
-      </CommonContainerContext.Provider>
+      {isS3StorageType ? (
+        <S3ContainerContext.Provider value={s3ContextValue}>
+          <ContainerDatagrid
+            isS3StorageType={isS3StorageType}
+            handleAddObjectClick={handleAddObjectClick}
+          />
+        </S3ContainerContext.Provider>
+      ) : (
+        <SwiftContainerContext.Provider value={swiftContextValue}>
+          <ContainerDatagrid
+            isS3StorageType={isS3StorageType}
+            handleAddObjectClick={handleAddObjectClick}
+          />
+        </SwiftContainerContext.Provider>
+      )}
 
       <Suspense fallback={<OdsSpinner size="md" />}>
         <Outlet />

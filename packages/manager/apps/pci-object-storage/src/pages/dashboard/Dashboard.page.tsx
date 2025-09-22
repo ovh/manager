@@ -91,7 +91,7 @@ export default function DashboardPage() {
     displayEncryptionData,
     isPending,
     isLocalZone,
-    isRightOffer,
+    isS3StorageType,
   } = useContainerData();
 
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(
@@ -220,15 +220,15 @@ export default function DashboardPage() {
       <div className="flex flex-row w-full gap-4">
         <ContainerInfoCard
           container={container}
-          isRightOffer={isRightOffer}
+          isS3StorageType={isS3StorageType}
           isLocalZone={isLocalZone}
         />
 
-        {isRightOffer && (
+        {isS3StorageType && (
           <BucketPropertiesCard
             container={container}
             isLocalZone={isLocalZone}
-            isRightOffer={isRightOffer}
+            isS3StorageType={isS3StorageType}
             getVersioningBadgeColor={versioningBadgeColor}
             getObjectLockBadgeColor={objectLockBadgeColor}
             enableVersioningHref={enableVersioningHref}
@@ -237,15 +237,15 @@ export default function DashboardPage() {
         )}
 
         <div className="flex flex-col w-1/3 gap-4">
-          {isRightOffer && (
+          {isS3StorageType && (
             <StorageManagementCard
               isLocalZone={isLocalZone}
-              isRightOffer={isRightOffer}
+              isS3StorageType={isS3StorageType}
               showReplicationBanner={showReplicationBanner}
               manageReplicationsHref={manageReplicationsHref}
             />
           )}
-          {!isLocalZone && isRightOffer && (
+          {!isLocalZone && isS3StorageType && (
             <SecurityPermissionsCard
               displayEncryptionData={displayEncryptionData}
               isEncrypted={isEncrypted}
