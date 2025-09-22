@@ -11,6 +11,8 @@ export const SERVICE_WITH_AGORA_TERMINATION = [
   'vcd',
 ];
 
+export const SERVICE_TYPES_WITH_AGORA_TERMINATION = ['domain'];
+
 export const SERVICE_GROUP_WITH_AGORA_TERMINATION_REGEX = /hycu-vms-*|(logs-enterprise(-hds)?$)/;
 
 export default {
