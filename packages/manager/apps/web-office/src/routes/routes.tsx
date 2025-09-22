@@ -1,54 +1,49 @@
 import React from 'react';
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+
 import { Route } from 'react-router-dom';
+
+import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
-import NotFound from '@/pages/404';
-import { urls } from '@/routes/routes.constants';
+
 import {
+  DELETE_ACCOUNT,
   EDIT_ACCOUNT,
   EDIT_PASSWORD,
   GENERAL_INFORMATION,
   LICENCES,
-  USAGE,
-  DELETE_ACCOUNT,
   ORDER_ACCOUNT,
-} from '@/tracking.constants';
+  USAGE,
+} from '@/Tracking.constants';
+import NotFound from '@/pages/404';
+import { urls } from '@/routes/Routes.constants';
 
 const LayoutPage = React.lazy(() => import('@/pages/layout'));
-const LicensesPage = React.lazy(() => import('@/pages/licenses/licenses.page'));
-const DashboardPage = React.lazy(() => import('@/pages/dashboard'));
-const GeneralInformationPage = React.lazy(() =>
-  import('@/pages/dashboard/generalInformation/GeneralInformation.page'),
+const LicensesPage = React.lazy(() => import('@/pages/licenses/Licenses.page'));
+const DashboardPage = React.lazy(() => import('@/pages/dashboard/Dashboard.page'));
+const GeneralInformationPage = React.lazy(
+  () => import('@/pages/dashboard/general-information/GeneralInformation.page'),
 );
-const EditNamePage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/generalInformation/updateDisplayName/UpdateDisplayName.modal'
-  ),
+const EditNamePage = React.lazy(
+  () => import('@/pages/dashboard/general-information/update-display-name/UpdateDisplayName.modal'),
 );
-const UsersPage = React.lazy(() =>
-  import('@/pages/dashboard/users/Users.page'),
+const UsersPage = React.lazy(() => import('@/pages/dashboard/users/Users.page'));
+const UsersDeletePage = React.lazy(
+  () => import('@/pages/dashboard/users/delete-users/DeleteUsers.modal'),
 );
-const UsersDeletePage = React.lazy(() =>
-  import('@/pages/dashboard/users/deleteUsers/DeleteUsers.modal'),
+const UsersEditPage = React.lazy(
+  () => import('@/pages/dashboard/users/edit-users/EditUsers.modal'),
 );
-const UsersEditPage = React.lazy(() =>
-  import('@/pages/dashboard/users/editUsers/EditUsers.modal'),
+const UsersChangePasswordPage = React.lazy(
+  () => import('@/pages/dashboard/users/change-password-users/ChangePasswordUsers.modal'),
 );
-const UsersChangePasswordPage = React.lazy(() =>
-  import(
-    '@/pages/dashboard/users/changePasswordUsers/ChangePasswordUsers.modal'
-  ),
+const UsersOrderLicensesPage = React.lazy(
+  () => import('@/pages/dashboard/users/order-licenses/OrderLicenses.modal'),
 );
-const UsersOrderLicensesPage = React.lazy(() =>
-  import('@/pages/dashboard/users/orderLicenses/OrderLicenses.modal'),
+const UsersOrderUsersPage = React.lazy(
+  () => import('@/pages/dashboard/users/order-users/OrderUsers.modal'),
 );
-const UsersOrderUsersPage = React.lazy(() =>
-  import('@/pages/dashboard/users/orderUsers/OrderUsers.modal'),
-);
-const ConsumptionPage = React.lazy(() =>
-  import('@/pages/dashboard/consumption/Consumption.page'),
-);
-const OnboardingPage = React.lazy(() => import('@/pages/onboarding'));
+const ConsumptionPage = React.lazy(() => import('@/pages/dashboard/consumption/Consumption.page'));
+const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
 
 export default (
   <Route

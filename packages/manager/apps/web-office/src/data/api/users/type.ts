@@ -1,4 +1,4 @@
-import { LicenseEnum, TaskStatusEnum, UserStateEnum } from '../api.type';
+import { LicenseEnum, TaskStatusEnum, UserStateEnum } from '../ApiType';
 
 export type UserNativeType = {
   activationEmail: string;
@@ -11,12 +11,7 @@ export type UserNativeType = {
   taskPendingId: number;
   usageLocation: string;
   serviceName?: string;
-  [key: string]:
-    | string
-    | number
-    | boolean
-    | LicenseEnum[]
-    | { id: string; urn: string };
+  [key: string]: string | number | boolean | LicenseEnum[] | { id: string; urn: string };
 };
 
 export type PendingTaskType = {

@@ -7,6 +7,7 @@ import 'ovh-api-services';
 
 import routing from './troubleshooting.routing';
 import templates from './troubleshooting.templates';
+import service from './troubleshooting.service';
 
 import './troubleshooting.less';
 
@@ -21,6 +22,7 @@ angular
     'ovh-api-services',
   ])
   .config(routing)
+  .service('TelephonyLineAssistTroubleshootingService', service)
   .run(templates)
   .run(/* @ngTranslationsInject:json ./translations ./autoConfig/translations ./manualConfig/translations ./procedure/translations */);
 
