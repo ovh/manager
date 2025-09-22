@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/sign-up-app",
-  "version": "4.2.38",
+  "version": "4.3.0",
   "private": true,
   "description": "Sign-up form application.",
   "repository": {
@@ -28,7 +28,7 @@
     "@ovh-ux/ng-ovh-sso-auth": "^4.9.0",
     "@ovh-ux/ng-translate-async-loader": "^2.2.5",
     "@ovh-ux/request-tagger": "^0.5.2",
-    "@ovh-ux/sign-up": "^3.2.5",
+    "@ovh-ux/sign-up": "^3.3.0",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.8",

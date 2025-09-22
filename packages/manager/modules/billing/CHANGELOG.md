@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.50.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.49.0...@ovh-ux/manager-billing@0.50.0) (2025-09-22)
+
+
+### Bug Fixes
+
+* **billing:** lock datagrid pagination to arrows mode ([5b8514c](https://github.com/ovh/manager/commit/5b8514cbf599f5894a130a7b8196b323631476e4)), closes [#MANAGER-19744](https://github.com/ovh/manager/issues/MANAGER-19744)
+
+
+### Features
+
+* **billing:** add info banner for payment by cheque option ([83b03e1](https://github.com/ovh/manager/commit/83b03e17c9ddc0151569b113455ea74c5681097d)), closes [#MANAGER-19679](https://github.com/ovh/manager/issues/MANAGER-19679)
+
+
+
+
+
 # [0.49.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.48.1...@ovh-ux/manager-billing@0.49.0) (2025-09-16)
 
 

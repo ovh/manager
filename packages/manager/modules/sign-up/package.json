@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/sign-up",
-  "version": "3.2.5",
+  "version": "3.3.0",
   "private": true,
   "description": "Sign-Up form component.",
   "repository": {
