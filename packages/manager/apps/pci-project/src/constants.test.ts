@@ -5,7 +5,6 @@ import {
   DOC_BASE_URL,
   OVH_LANGUAGE_BY_SUBSIDIARY,
   getHdsInfoUrl,
-  getQuotaLimitGuideLink,
   getDocumentationGuideLink,
 } from './constants';
 
