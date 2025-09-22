@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.151.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.150.1...@ovh-ux/manager-container-app@0.151.0) (2025-09-22)
+
+
+### Features
+
+* **kms:** redirect from "key-management-service" to "okms" ([a0b58da](https://github.com/ovh/manager/commit/a0b58da4784ccb99c3bc09943dc2014f7c5a1b6f)), closes [#MANAGER-19701](https://github.com/ovh/manager/issues/MANAGER-19701)
+
+
+
+
+
 ## [0.150.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.150.0...@ovh-ux/manager-container-app@0.150.1) (2025-09-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app
