@@ -4,3 +4,5 @@ export const RESILIATION_CAPACITIES = [
   'terminateAtEngagementDate',
   'terminateAtExpirationDate',
 ];
+
+export const RESILIATION_DEFAULT_CAPABILITY = 'terminateAtExpirationDate';
