@@ -8,6 +8,7 @@
   "pci_instances_list_column_region": "Localisation",
   "pci_instances_list_column_actions": "Actions",
   "pci_instances_list_column_volumes": "Volume(s)",
+  "pci_instances_list_column_creation_date": "Date de création",
   "pci_instances_list_inconsistency_message": "Toutes les données n'ont pas pu être chargées. Notre équipe technique est informée et travaille à résoudre le problème.",
   "pci_instances_list_unknown_error_message1": "Nous n'avons pas pu récupérer la liste de vos instances. Veuillez cliquer sur le bouton <Link>'Rafraîchir'</Link> pour essayer à nouveau.",
   "pci_instances_list_unknown_error_message2": "Nos équipes techniques ont été notifiées de ce problème et travaillent à sa résolution.",
@@ -26,5 +27,6 @@
   "pci_instances_list_action_unrescue": "Sortir du mode rescue",
   "pci_instances_list_action_soft_reboot": "Redémarrer à chaud (soft)",
   "pci_instances_list_action_hard_reboot": "Redémarrer à froid (hard)",
-  "pci_instances_list_action_reinstall": "Réinstaller"
+  "pci_instances_list_action_reinstall": "Réinstaller",
+  "pci_instances_operations_running": "L(es) opération(s) de création d'instance(s) est en cours"
 }
