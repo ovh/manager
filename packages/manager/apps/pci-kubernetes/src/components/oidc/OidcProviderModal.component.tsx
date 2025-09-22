@@ -1,11 +1,12 @@
-import { useState, useEffect, useContext, useCallback } from 'react';
-import {
-  OsdsAccordion,
-  OsdsButton,
-  OsdsModal,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { useCallback, useContext, useEffect, useState } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { FormProvider, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
@@ -13,28 +14,25 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
-import { useForm, FormProvider } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import {
+  OsdsAccordion,
+  OsdsButton,
+  OsdsModal,
+  OsdsSpinner,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useParams, useNavigate } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import useFormFields from '@/hooks/useFormField';
-import {
-  useOidcProvider,
-  useUpsertOidcProvider,
-} from '@/api/hooks/useKubernetes';
-import {
-  PlaceHolder,
-  SigningAlgorithms,
-  TOidcFormValues,
-  oidcSchema,
-} from '@/types';
-import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
-import { OptionalFormField } from './OptionalFormField.component';
+
+import { useOidcProvider, useUpsertOidcProvider } from '@/api/hooks/useKubernetes';
 import { parseCommaSeparated, transformKey } from '@/helpers';
+import useFormFields from '@/hooks/useFormField';
+import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
+import { PlaceHolder, SigningAlgorithms, TOidcFormValues, oidcSchema } from '@/types';
+
+import { OptionalFormField } from './OptionalFormField.component';
 import RenderFormField from './RenderFormField.component';
 
 export function OidcProviderModal() {
@@ -69,10 +67,10 @@ export function OidcProviderModal() {
   } = methods;
   const { addError, addSuccess } = useNotifications();
 
-  const {
-    data: oidcProvider,
-    isPending: isPendingOidcProvider,
-  } = useOidcProvider(projectId, kubeId);
+  const { data: oidcProvider, isPending: isPendingOidcProvider } = useOidcProvider(
+    projectId,
+    kubeId,
+  );
 
   useEffect(() => {
     if (oidcProvider) {
@@ -93,28 +91,22 @@ export function OidcProviderModal() {
   const isUpdate = !!oidcProvider?.clientId;
   const mode = isUpdate ? 'update' : 'add';
 
-  const {
-    upsertOidcProvider,
-    isPending: isPendingUpsertOidcProvider,
-  } = useUpsertOidcProvider({
+  const { upsertOidcProvider, isPending: isPendingUpsertOidcProvider } = useUpsertOidcProvider({
     projectId,
     kubeId,
     isUpdate,
     onError(error: ApiError) {
       addError(
-        t(
-          `pci_projects_project_kubernetes_details_service_${mode}_oidc_provider_request_error`,
-          { message: error?.response?.data?.message || error?.message || null },
-        ),
+        t(`pci_projects_project_kubernetes_details_service_${mode}_oidc_provider_request_error`, {
+          message: error?.response?.data?.message || error?.message || null,
+        }),
         true,
       );
       onClose();
     },
     onSuccess() {
       addSuccess(
-        t(
-          `pci_projects_project_kubernetes_details_service_${mode}_oidc_provider_request_success`,
-        ),
+        t(`pci_projects_project_kubernetes_details_service_${mode}_oidc_provider_request_success`),
         true,
       );
       onClose();
@@ -145,9 +137,7 @@ export function OidcProviderModal() {
         });
         onClose();
       }}
-      headline={t(
-        `pci_projects_project_kubernetes_details_service_${mode}_oidc_provider_title`,
-      )}
+      headline={t(`pci_projects_project_kubernetes_details_service_${mode}_oidc_provider_title`)}
     >
       <slot name="content">
         {isPending ? (
@@ -191,38 +181,23 @@ export function OidcProviderModal() {
                 );
               })}
               <div className="mt-8">
-                <OsdsAccordion
-                  onOdsAccordionToggle={() => setIsOptional(!isOptional)}
-                >
+                <OsdsAccordion onOdsAccordionToggle={() => setIsOptional(!isOptional)}>
                   <span slot="summary">
                     {isOptional
-                      ? t(
-                          'pci_projects_project_kubernetes_details_service_hide_optional',
-                        )
-                      : t(
-                          'pci_projects_project_kubernetes_details_service_show_optional',
-                        )}
+                      ? t('pci_projects_project_kubernetes_details_service_hide_optional')
+                      : t('pci_projects_project_kubernetes_details_service_show_optional')}
                   </span>
-                  {fields?.map(
-                    ({
-                      name,
-                      label,
-                      description,
-                      component,
-                      placeholder,
-                      caption,
-                    }) => (
-                      <OptionalFormField
-                        key={name}
-                        name={name}
-                        label={label}
-                        description={description}
-                        component={component}
-                        placeholder={placeholder}
-                        caption={caption}
-                      />
-                    ),
-                  )}
+                  {fields?.map(({ name, label, description, component, placeholder, caption }) => (
+                    <OptionalFormField
+                      key={name}
+                      name={name}
+                      label={label}
+                      description={description}
+                      component={component}
+                      placeholder={placeholder}
+                      caption={caption}
+                    />
+                  ))}
                 </OsdsAccordion>
               </div>
               <div className="mt-6 flex justify-end gap-4">

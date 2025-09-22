@@ -1,32 +1,30 @@
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
+import { Suspense, useContext, useMemo } from 'react';
+
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,
   ODS_TEXT_LEVEL,
   OdsBreadcrumbAttributeItem,
 } from '@ovhcloud/ods-components';
-import {
-  OsdsBreadcrumb,
-  OsdsLink,
-  OsdsMessage,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { OsdsBreadcrumb, OsdsLink, OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { useProject } from '@ovh-ux/manager-pci-common';
 import {
   Card,
   OnboardingLayout,
   RedirectionGuard,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { useProject } from '@ovh-ux/manager-pci-common';
-import { Suspense, useContext, useMemo } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { GUIDES } from './constants';
+
 import { useAvailableRegions } from '@/api/hooks/useAvailableRegions';
 import { useAllKube } from '@/api/hooks/useKubernetes';
+
+import { GUIDES } from './constants';
 
 export default function OnBoardingPage() {
   const { t: tOnBoarding } = useTranslation('onboarding');
@@ -46,24 +44,16 @@ export default function OnBoardingPage() {
       description: tOnBoarding(
         `pci_projects_project_kubernetes_onboarding_guides_${guide.id}_description`,
       ),
-      title: tOnBoarding(
-        `pci_projects_project_kubernetes_onboarding_guides_${guide.id}_title`,
-      ),
+      title: tOnBoarding(`pci_projects_project_kubernetes_onboarding_guides_${guide.id}_title`),
     },
   }));
 
-  const {
-    data: availableRegions,
-    isPending: isAvailableRegionsPending,
-  } = useAvailableRegions(projectId);
+  const { data: availableRegions, isPending: isAvailableRegionsPending } =
+    useAvailableRegions(projectId);
 
-  const canCreateCluster = useMemo(() => availableRegions?.length > 0, [
-    availableRegions,
-  ]);
+  const canCreateCluster = useMemo(() => availableRegions?.length > 0, [availableRegions]);
 
-  const { data: clusters, isPending: isClustersPending } = useAllKube(
-    projectId,
-  );
+  const { data: clusters, isPending: isClustersPending } = useAllKube(projectId);
 
   const breadcrumbItems: OdsBreadcrumbAttributeItem[] = [
     {
@@ -92,9 +82,7 @@ export default function OnBoardingPage() {
               size={ODS_THEME_TYPOGRAPHY_SIZE._400}
               className="mt-8 block"
             >
-              {tOnBoarding(
-                'pci_projects_project_kubernetes_onboarding_content1',
-              )}
+              {tOnBoarding('pci_projects_project_kubernetes_onboarding_content1')}
             </OsdsText>
             <OsdsText
               color={ODS_THEME_COLOR_INTENT.text}
@@ -102,9 +90,7 @@ export default function OnBoardingPage() {
               size={ODS_THEME_TYPOGRAPHY_SIZE._500}
               className="mt-6 block"
             >
-              {tOnBoarding(
-                'pci_projects_project_kubernetes_onboarding_content2',
-              )}
+              {tOnBoarding('pci_projects_project_kubernetes_onboarding_content2')}
             </OsdsText>
             <OsdsText
               color={ODS_THEME_COLOR_INTENT.text}
@@ -112,9 +98,7 @@ export default function OnBoardingPage() {
               size={ODS_THEME_TYPOGRAPHY_SIZE._400}
               className="mt-6 block"
             >
-              {tOnBoarding(
-                'pci_projects_project_kubernetes_onboarding_content3',
-              )}
+              {tOnBoarding('pci_projects_project_kubernetes_onboarding_content3')}
             </OsdsText>
             {!canCreateCluster && (
               <OsdsMessage
@@ -129,18 +113,11 @@ export default function OnBoardingPage() {
                     size={ODS_THEME_TYPOGRAPHY_SIZE._400}
                     className="mt-6 block"
                   >
-                    {tOnBoarding(
-                      'pci_projects_project_kubernetes_onboarding_regions_unavailable',
-                    )}
+                    {tOnBoarding('pci_projects_project_kubernetes_onboarding_regions_unavailable')}
                   </OsdsText>
 
-                  <OsdsLink
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                    className="mt-4"
-                  >
-                    {tOnBoarding(
-                      'pci_projects_project_kubernetes_onboarding_regions_create',
-                    )}
+                  <OsdsLink color={ODS_THEME_COLOR_INTENT.primary} className="mt-4">
+                    {tOnBoarding('pci_projects_project_kubernetes_onboarding_regions_create')}
                   </OsdsLink>
                 </div>
               </OsdsMessage>
@@ -149,14 +126,10 @@ export default function OnBoardingPage() {
         }
         orderButtonLabel={
           canCreateCluster
-            ? tOnBoarding(
-                'pci_projects_project_kubernetes_onboarding_action_label',
-              )
+            ? tOnBoarding('pci_projects_project_kubernetes_onboarding_action_label')
             : undefined
         }
-        onOrderButtonClick={() =>
-          navigate(`/pci/projects/${projectId}/kubernetes/new`)
-        }
+        onOrderButtonClick={() => navigate(`/pci/projects/${projectId}/kubernetes/new`)}
       >
         {tileItems.map((tile) => (
           <Card key={tile.id} href={tile.href} texts={tile.texts} />

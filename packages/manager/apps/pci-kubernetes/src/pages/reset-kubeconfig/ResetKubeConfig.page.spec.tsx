@@ -1,18 +1,16 @@
+import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
 import { fireEvent, render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
-import ResetKubeConfigPage from './ResetKubeConfig.page';
-import * as useKubernetesModule from '@/api/hooks/useKubernetes';
 
+import * as useKubernetesModule from '@/api/hooks/useKubernetes';
 import { TKube } from '@/types';
 import { wrapper } from '@/wrapperRenders';
 
-type UseResetKubeConfigReturnType = UseMutationResult<
-  never,
-  Error,
-  void,
-  unknown
-> & { resetKubeConfig: () => void };
+import ResetKubeConfigPage from './ResetKubeConfig.page';
+
+type UseResetKubeConfigReturnType = UseMutationResult<never, Error, void, unknown> & {
+  resetKubeConfig: () => void;
+};
 
 describe('ResetKubeConfigPage', () => {
   it('renders loading spinner when data is pending', () => {
@@ -29,9 +27,7 @@ describe('ResetKubeConfigPage', () => {
     } as UseQueryResult<TKube>);
     const { getByText } = render(<ResetKubeConfigPage />, { wrapper });
     expect(
-      getByText(
-        'pci_projects_project_kubernetes_service_reset_kubeconfig_cluster_not_ready',
-      ),
+      getByText('pci_projects_project_kubernetes_service_reset_kubeconfig_cluster_not_ready'),
     ).toBeInTheDocument();
   });
 
@@ -45,18 +41,16 @@ describe('ResetKubeConfigPage', () => {
     } as UseQueryResult<TKube>);
     const { getByText } = render(<ResetKubeConfigPage />, { wrapper });
     expect(
-      getByText(
-        'pci_projects_project_kubernetes_service_reset_kubeconfig_message',
-      ),
+      getByText('pci_projects_project_kubernetes_service_reset_kubeconfig_message'),
     ).toBeInTheDocument();
   });
 
   it('calls resetKubeConfig on confirm button click', () => {
     const mockResetKubeConfig = vi.fn();
-    vi.spyOn(useKubernetesModule, 'useResetKubeConfig').mockReturnValueOnce(({
+    vi.spyOn(useKubernetesModule, 'useResetKubeConfig').mockReturnValueOnce({
       resetKubeConfig: mockResetKubeConfig,
       isPending: false,
-    } as unknown) as UseResetKubeConfigReturnType);
+    } as unknown as UseResetKubeConfigReturnType);
     const { getByTestId } = render(<ResetKubeConfigPage />, { wrapper });
     fireEvent.click(getByTestId('resetKubeConfig-button_submit'));
     expect(mockResetKubeConfig).toHaveBeenCalled();
