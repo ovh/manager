@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.32.0...@ovh-ux/manager-dbaas-logs@1.33.0) (2025-09-22)
+
+
+### Features
+
+* **ldp:** no opensearch url if iam enabled ([7de7e58](https://github.com/ovh/manager/commit/7de7e586c013c6d82a45146e2d43b52d728fe3f9)), closes [#OB-8548](https://github.com/ovh/manager/issues/OB-8548)
+
+
+
+
+
 # [1.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.31.6...@ovh-ux/manager-dbaas-logs@1.32.0) (2025-08-25)
 
 

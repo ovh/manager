@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-resource-tagging@1.1.4...@ovh-ux/manager-resource-tagging@1.2.0) (2025-09-22)
+
+
+### Features
+
+* **dedicated:** fix tagging combobox ([2f394d0](https://github.com/ovh/manager/commit/2f394d0abb5249e4ca9762e7c7e6d81acbcfc847)), closes [#MANAGER-19534](https://github.com/ovh/manager/issues/MANAGER-19534)
+
+
+
+
+
 ## [1.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-resource-tagging@1.1.3...@ovh-ux/manager-resource-tagging@1.1.4) (2025-07-04)
 
 
