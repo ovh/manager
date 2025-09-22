@@ -1,12 +1,17 @@
+import { useEffect, useState } from 'react';
+
+import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
+
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import {
-  ODS_TEXT_COLOR_INTENT,
-  ODS_TEXT_LEVEL,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_MESSAGE_TYPE,
+  ODS_TEXT_COLOR_INTENT,
+  ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
-import clsx from 'clsx';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   OsdsFormField,
   OsdsIcon,
@@ -15,25 +20,14 @@ import {
   OsdsText,
   OsdsToggle,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
-import { useMe } from '@ovh-ux/manager-react-components';
-import { useEffect, useState } from 'react';
+
 import { QuantitySelector } from '@ovh-ux/manager-pci-common';
-import {
-  ANTI_AFFINITY_MAX_NODES,
-  NODE_RANGE,
-  AUTOSCALING_LINK,
-} from '@/constants';
+import { useMe } from '@ovh-ux/manager-react-components';
+
+import { ANTI_AFFINITY_MAX_NODES, AUTOSCALING_LINK, NODE_RANGE } from '@/constants';
 import { TScalingState } from '@/types';
 
-function getDesiredQuantity(
-  quantity: { min: number; desired: number },
-  maxValue: number,
-) {
+function getDesiredQuantity(quantity: { min: number; desired: number }, maxValue: number) {
   if (quantity.min >= NODE_RANGE.MAX) return 0;
   if (quantity.min >= maxValue) return maxValue;
   return quantity.desired;
@@ -56,8 +50,7 @@ export function Autoscaling({
   const { t } = useTranslation('autoscaling');
   const ovhSubsidiary = useMe()?.me?.ovhSubsidiary;
   const infosURL =
-    AUTOSCALING_LINK[ovhSubsidiary as keyof typeof AUTOSCALING_LINK] ||
-    AUTOSCALING_LINK.DEFAULT;
+    AUTOSCALING_LINK[ovhSubsidiary as keyof typeof AUTOSCALING_LINK] || AUTOSCALING_LINK.DEFAULT;
   const [isAutoscale, setIsAutoscale] = useState<boolean>(!!autoscale);
   const [quantity, setQuantity] = useState({
     desired: initialScaling ? initialScaling.desired : NODE_RANGE.MIN,
@@ -102,9 +95,7 @@ export function Autoscaling({
             size={ODS_THEME_TYPOGRAPHY_SIZE._400}
             slot="end"
           >
-            {t(
-              `kubernetes_node_pool_autoscaling_autoscale_toggle_${isAutoscale}`,
-            )}
+            {t(`kubernetes_node_pool_autoscaling_autoscale_toggle_${isAutoscale}`)}
           </OsdsText>
         </OsdsToggle>
       </OsdsFormField>

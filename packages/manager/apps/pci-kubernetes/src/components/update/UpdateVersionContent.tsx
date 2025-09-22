@@ -1,10 +1,8 @@
-import { OsdsText } from '@ovhcloud/ods-components/react';
-import {
-  ODS_TEXT_COLOR_INTENT,
-  ODS_TEXT_LEVEL,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import { Trans, useTranslation } from 'react-i18next';
+
+import { ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_COLOR_INTENT, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
+import { OsdsText } from '@ovhcloud/ods-components/react';
 
 type UpdateVersionContentProps = {
   forceVersion: boolean;

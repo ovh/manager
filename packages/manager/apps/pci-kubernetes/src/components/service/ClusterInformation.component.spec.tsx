@@ -1,13 +1,15 @@
-import { render, screen, waitFor } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import { describe, it, expect, vi } from 'vitest';
+import { render, screen, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import ClusterInformation from '@/components/service/ClusterInformation.component';
-import { wrapper } from '@/wrapperRenders';
-import { DeploymentMode, TKube } from '@/types';
+
 import * as ApiKube from '@/api/data/kubernetes';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
+import ClusterInformation from '@/components/service/ClusterInformation.component';
+import { DeploymentMode, TKube } from '@/types';
 import { TRegionInformations } from '@/types/region';
+import { wrapper } from '@/wrapperRenders';
 
 vi.mock('@/api/hooks/useRegionInformations');
 
@@ -52,29 +54,23 @@ describe('ClusterInformation', () => {
     renderClusterInformation(kubeDetail);
 
     await waitFor(() => {
-      expect(
-        screen.getByText(/kube_service_cluster_information/i),
-      ).toBeInTheDocument();
+      expect(screen.getByText(/kube_service_cluster_information/i)).toBeInTheDocument();
       expect(screen.getByText('listing:kube_list_id')).toBeInTheDocument();
 
       expect(screen.getByText('Cluster1')).toBeInTheDocument();
-      expect(
-        screen.getByText('kube_service_cluster_status_READY'),
-      ).toBeInTheDocument();
+      expect(screen.getByText('kube_service_cluster_status_READY')).toBeInTheDocument();
       expect(screen.getByText('1.18')).toBeInTheDocument();
-      expect(
-        screen.getByTestId('admission-plugin-chip AlwaysPullImages'),
-      ).toHaveProperty('color', ODS_THEME_COLOR_INTENT.success);
-      expect(
-        screen.getByTestId('admission-plugin-chip NodeRestriction'),
-      ).toHaveProperty('color', ODS_THEME_COLOR_INTENT.warning);
+      expect(screen.getByTestId('admission-plugin-chip AlwaysPullImages')).toHaveProperty(
+        'color',
+        ODS_THEME_COLOR_INTENT.success,
+      );
+      expect(screen.getByTestId('admission-plugin-chip NodeRestriction')).toHaveProperty(
+        'color',
+        ODS_THEME_COLOR_INTENT.warning,
+      );
       expect(screen.getByText('Region1')).toBeInTheDocument();
-      expect(
-        screen.getByText('pci_project_flavors_zone_global_region'),
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText('kube_service_cluster_etcd_quota'),
-      ).toBeInTheDocument();
+      expect(screen.getByText('pci_project_flavors_zone_global_region')).toBeInTheDocument();
+      expect(screen.getByText('kube_service_cluster_etcd_quota')).toBeInTheDocument();
     });
   });
 

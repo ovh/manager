@@ -1,4 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+
 import { TAdmissionPlugin, TKube } from '@/types';
 
 type PluginsData = {
@@ -54,9 +55,7 @@ export const pluginAlreadyExists = (name: string): PluginsData | undefined =>
  * @param admissionPlugins - The admission, enabled, and disabled plugins object.
  * @returns - An array of plugin objects, each with name, label, state, tip, value, and disabled properties, sorted alphabetically by label
  */
-export const mapPluginsFromArrayToObject = (
-  admissionPlugins: TAdmissionPlugin,
-): PluginsData[] =>
+export const mapPluginsFromArrayToObject = (admissionPlugins: TAdmissionPlugin): PluginsData[] =>
   Object.entries(admissionPlugins)
     .flatMap(([state, names]) =>
       names.map((name) => {

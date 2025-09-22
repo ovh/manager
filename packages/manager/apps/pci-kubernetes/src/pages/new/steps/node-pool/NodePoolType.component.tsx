@@ -1,11 +1,10 @@
 import { Dispatch, SetStateAction } from 'react';
+
 import { useTranslation } from 'react-i18next';
+
+import { ODS_TEXT_COLOR_INTENT, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { OsdsText } from '@ovhcloud/ods-components/react';
-import {
-  ODS_TEXT_COLOR_INTENT,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
+
 import {
   FlavorSelector,
   TComputedKubeFlavor,
@@ -36,11 +35,7 @@ export default function NodePoolType({
       >
         {t('kube_common_node_pool_model_type_selector')}
       </OsdsText>
-      <FlavorSelector
-        projectId={projectId}
-        region={region}
-        onSelect={onSelect}
-      />
+      <FlavorSelector projectId={projectId} region={region} onSelect={onSelect} />
     </div>
   );
 }

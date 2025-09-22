@@ -1,19 +1,20 @@
+import { Suspense, useContext } from 'react';
+
 import { Outlet, useParams, useRouteError } from 'react-router-dom';
 
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { Suspense, useContext } from 'react';
-import { ErrorBanner } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
+  PCICommonContext,
   usePCICommonContextFactory,
   useProject,
-  PCICommonContext,
 } from '@ovh-ux/manager-pci-common';
-import ShellRoutingSync from '@/core/ShellRoutingSync';
-import HidePreloader from '@/core/HidePreloader';
+import { ErrorBanner } from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
-import usePageTracking from '@/hooks/usePageTracking';
+import HidePreloader from '@/core/HidePreloader';
+import ShellRoutingSync from '@/core/ShellRoutingSync';
 import useHas3AZRegions from '@/hooks/useHas3AZRegions';
+import usePageTracking from '@/hooks/usePageTracking';
 
 export default function Layout() {
   const { projectId } = useParams();

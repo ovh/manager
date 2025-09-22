@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
@@ -13,26 +12,24 @@ import {
   ODS_TEXT_SIZE,
   ODS_TILE_VARIANT,
 } from '@ovhcloud/ods-components';
-
 import {
   OsdsDivider,
-  OsdsText,
-  OsdsPopover,
-  OsdsTile,
   OsdsIcon,
+  OsdsPopover,
   OsdsPopoverContent,
+  OsdsText,
+  OsdsTile,
 } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { RegionChipByType, useParam } from '@ovh-ux/manager-pci-common';
 import {
   Clipboard,
-  Links,
   LinkType,
+  Links,
   TileBlock as TileLine,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
@@ -51,15 +48,8 @@ export type ClusterInformationProps = {
   kubeDetail: TKube;
 };
 
-export default function ClusterInformation({
-  kubeDetail,
-}: Readonly<ClusterInformationProps>) {
-  const { t } = useTranslation([
-    'service',
-    'listing',
-    'kube',
-    NAMESPACES.ONBOARDING,
-  ]);
+export default function ClusterInformation({ kubeDetail }: Readonly<ClusterInformationProps>) {
+  const { t } = useTranslation(['service', 'listing', 'kube', NAMESPACES.ONBOARDING]);
 
   const { projectId } = useParam('projectId');
   const context = useContext(ShellContext);
@@ -68,22 +58,13 @@ export default function ClusterInformation({
   const has3AZ = use3AZPlanAvailable();
 
   const planDocumentationLink =
-    PLAN_DOC_LINKS[ovhSubsidiary as keyof typeof PLAN_DOC_LINKS] ??
-    PLAN_DOC_LINKS.DEFAULT;
+    PLAN_DOC_LINKS[ovhSubsidiary as keyof typeof PLAN_DOC_LINKS] ?? PLAN_DOC_LINKS.DEFAULT;
 
-  const { data: regionInformations } = useRegionInformations(
-    projectId,
-    kubeDetail.region,
-  );
+  const { data: regionInformations } = useRegionInformations(projectId, kubeDetail.region);
   useEffect(() => () => clearNotifications(), [clearNotifications]);
 
   return (
-    <OsdsTile
-      className="flex-col w-full shadow-lg"
-      inline
-      rounded
-      variant={ODS_TILE_VARIANT.ghost}
-    >
+    <OsdsTile className="flex-col w-full shadow-lg" inline rounded variant={ODS_TILE_VARIANT.ghost}>
       <div className="flex flex-col w-full">
         <OsdsText
           size={ODS_TEXT_SIZE._400}

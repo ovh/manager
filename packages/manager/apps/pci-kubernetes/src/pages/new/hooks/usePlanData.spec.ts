@@ -1,6 +1,8 @@
 import { renderHook } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { useCatalog } from '@ovh-ux/manager-pci-common';
-import { describe, it, expect, vi } from 'vitest';
+
 import usePlanData from './usePlanData';
 
 vi.mock('@ovh-ux/manager-pci-common', () => ({

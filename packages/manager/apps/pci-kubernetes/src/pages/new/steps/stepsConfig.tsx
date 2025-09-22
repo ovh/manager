@@ -1,18 +1,20 @@
+import { ComponentType } from 'react';
+
 import { useClusterCreationStepper } from '../hooks/useCusterCreationStepper';
 import { ClusterConfirmationStep } from './ClusterConfirmStep.component';
 import { ClusterNameStep } from './ClusterNameStep.component';
+import Loader from './Loader';
 import { LocationStep } from './LocationStep.component';
 import { NetworkStep } from './NetworkStep.component';
 import NodePoolStep from './NodePoolStep.component';
 import PlanStep from './PlanStep.component';
 import { VersionAndUpdatePolicyStep } from './VersionAndUpdatePolicyStep.component';
-import Loader from './Loader';
 
 type StepComponentProps = Record<string, unknown>;
 
 type StepConfig = {
   key: string;
-  component: React.ComponentType<StepComponentProps> | string;
+  component: ComponentType<StepComponentProps> | string;
   titleKey: string;
   extraProps?: Record<string, unknown>;
   condition?: boolean;
@@ -72,9 +74,7 @@ const stepsConfig = ({
   },
   {
     key: 'confirm',
-    component: !stepper.confirm.step.isLocked
-      ? ClusterConfirmationStep
-      : Loader,
+    component: !stepper.confirm.step.isLocked ? ClusterConfirmationStep : Loader,
     titleKey: 'stepper:common_stepper_submit_button_cluster',
     extraProps: {
       nodePools: stepper.form.nodePools,

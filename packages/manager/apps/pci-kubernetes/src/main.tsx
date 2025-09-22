@@ -1,17 +1,14 @@
 import React from 'react';
+
 import ReactDOM from 'react-dom/client';
-import {
-  initI18n,
-  initShellContext,
-  ShellContext,
-} from '@ovh-ux/manager-react-shell-client';
-import App from './App';
 
 import '@ovh-ux/manager-pci-common/dist/style.css';
+import { ShellContext, initI18n, initShellContext } from '@ovh-ux/manager-react-shell-client';
 
+import '@/vite-hmr';
+
+import App from './App';
 import './index.css';
-
-import '@/vite-hmr.ts';
 import { useAppStore } from './store';
 
 const init = async (

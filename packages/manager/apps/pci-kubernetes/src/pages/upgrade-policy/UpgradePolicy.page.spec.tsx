@@ -1,18 +1,17 @@
+import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
 import { act, fireEvent, render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
-import UpgradePolicyPage from './UpgradePolicy.page';
+
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
 import { UPGRADE_POLICIES } from '@/constants';
-import { wrapper } from '@/wrapperRenders';
 import { TKube } from '@/types';
+import { wrapper } from '@/wrapperRenders';
 
-type UseUpdateKubePolicyReturnType = UseMutationResult<
-  never,
-  Error,
-  void,
-  unknown
-> & { updateKubePolicy: () => void };
+import UpgradePolicyPage from './UpgradePolicy.page';
+
+type UseUpdateKubePolicyReturnType = UseMutationResult<never, Error, void, unknown> & {
+  updateKubePolicy: () => void;
+};
 
 describe('UpgradePolicyPage', () => {
   it('renders loading spinner when data is pending', () => {
@@ -29,9 +28,7 @@ describe('UpgradePolicyPage', () => {
     } as UseQueryResult<TKube>);
     const { getByText } = render(<UpgradePolicyPage />, { wrapper });
     UPGRADE_POLICIES.forEach((policy) => {
-      expect(
-        getByText(`kube_service_upgrade_policy_${policy}`),
-      ).toBeInTheDocument();
+      expect(getByText(`kube_service_upgrade_policy_${policy}`)).toBeInTheDocument();
     });
   });
 
@@ -40,10 +37,10 @@ describe('UpgradePolicyPage', () => {
       isPending: false,
     } as UseQueryResult<TKube>);
     const mockUpdateKubePolicy = vi.fn();
-    vi.spyOn(useKubernetesModule, 'useUpdateKubePolicy').mockReturnValueOnce(({
+    vi.spyOn(useKubernetesModule, 'useUpdateKubePolicy').mockReturnValueOnce({
       updateKubePolicy: mockUpdateKubePolicy,
       isPending: false,
-    } as unknown) as UseUpdateKubePolicyReturnType);
+    } as unknown as UseUpdateKubePolicyReturnType);
     const { getByTestId } = render(<UpgradePolicyPage />, {
       wrapper,
     });

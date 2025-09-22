@@ -1,9 +1,11 @@
-import { v6 } from '@ovh-ux/manager-core-api';
 import { describe, it, vi } from 'vitest';
+
+import { v6 } from '@ovh-ux/manager-core-api';
+
 import {
   getAllPrivateNetworks,
-  getPrivateNetworkName,
   getAllPrivateNetworksByRegion,
+  getPrivateNetworkName,
 } from '@/api/data/network';
 
 describe('getAllPrivateNetworks', () => {
@@ -32,9 +34,7 @@ describe('getAllPrivateNetworks', () => {
 
   it('handles error when fetching private networks', async () => {
     vi.mocked(v6.get).mockRejectedValue(new Error('Network Error'));
-    await expect(getAllPrivateNetworks('project1')).rejects.toThrow(
-      'Network Error',
-    );
+    await expect(getAllPrivateNetworks('project1')).rejects.toThrow('Network Error');
   });
 });
 
@@ -130,8 +130,6 @@ describe('getAllPrivateNetworksByRegion', () => {
   it('throws error when API call fails', async () => {
     vi.mocked(v6.get).mockRejectedValue(new Error('API Error'));
 
-    await expect(
-      getAllPrivateNetworksByRegion('project1', 'region1'),
-    ).rejects.toThrow('API Error');
+    await expect(getAllPrivateNetworksByRegion('project1', 'region1')).rejects.toThrow('API Error');
   });
 });

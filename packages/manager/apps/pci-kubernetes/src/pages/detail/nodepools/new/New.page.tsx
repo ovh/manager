@@ -1,3 +1,10 @@
+import { ReactElement, useEffect, useState } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
+import { Translation, useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
@@ -7,58 +14,35 @@ import {
   OdsInputValueChangeEvent,
 } from '@ovhcloud/ods-components';
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
   OsdsButton,
   OsdsFormField,
   OsdsInput,
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { Translation, useTranslation } from 'react-i18next';
-import {
-  Notifications,
-  StepComponent,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
-import {
-  useCatalog,
-  useParam as useSafeParams,
-} from '@ovh-ux/manager-pci-common';
-import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { useNewPoolStore } from '@/pages/detail/nodepools/new/store';
-import { StepsEnum } from '@/pages/detail/nodepools/new/steps.enum';
-import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
+
+import { useCatalog, useParam as useSafeParams } from '@ovh-ux/manager-pci-common';
+import { Notifications, StepComponent, useNotifications } from '@ovh-ux/manager-react-components';
+
 import { createNodePool } from '@/api/data/node-pools';
-import BillingStep, {
-  TBillingStepProps,
-} from '@/components/create/BillingStep.component';
-import queryClient from '@/queryClient';
-import { useTrack } from '@/hooks/track';
-import NodePoolAntiAffinity from '@/pages/new/steps/node-pool/NodePoolAntiAffinity.component';
-import { FlavorSelector } from '@/components/flavor-selector/FlavorSelector.component';
-import NodePoolSize from '@/pages/new/steps/node-pool/NodePoolSize.component';
-import DeploymentZone from '@/pages/new/steps/node-pool/DeploymentZone.component';
-import { isMultiDeploymentZones } from '@/helpers';
+import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
-import useMergedFlavorById, {
-  getPriceByDesiredScale,
-} from '@/hooks/useMergedFlavorById';
+import BillingStep, { TBillingStepProps } from '@/components/create/BillingStep.component';
+import { FlavorSelector } from '@/components/flavor-selector/FlavorSelector.component';
+import { isMultiDeploymentZones } from '@/helpers';
 import { hasInvalidScalingOrAntiAffinityConfig } from '@/helpers/node-pool';
+import { useTrack } from '@/hooks/track';
+import useMergedFlavorById, { getPriceByDesiredScale } from '@/hooks/useMergedFlavorById';
+import { StepsEnum } from '@/pages/detail/nodepools/new/steps.enum';
+import { useNewPoolStore } from '@/pages/detail/nodepools/new/store';
+import DeploymentZone from '@/pages/new/steps/node-pool/DeploymentZone.component';
+import NodePoolAntiAffinity from '@/pages/new/steps/node-pool/NodePoolAntiAffinity.component';
+import NodePoolSize from '@/pages/new/steps/node-pool/NodePoolSize.component';
+import queryClient from '@/queryClient';
 import { TCreateNodePoolParam } from '@/types';
 
-export default function NewPage(): JSX.Element {
-  const { t } = useTranslation([
-    'common',
-    'listing',
-    'add',
-    'add-form',
-    'kube',
-    'node-pool',
-  ]);
+export default function NewPage(): ReactElement {
+  const { t } = useTranslation(['common', 'listing', 'add', 'add-form', 'kube', 'node-pool']);
 
   const { trackClick } = useTrack();
 
@@ -66,10 +50,7 @@ export default function NewPage(): JSX.Element {
 
   const { projectId, kubeId: clusterId } = useSafeParams('projectId', 'kubeId');
   const { data: catalog, isPending: isCatalogPending } = useCatalog();
-  const { data: cluster, isPending: isClusterPending } = useKubernetesCluster(
-    projectId,
-    clusterId,
-  );
+  const { data: cluster, isPending: isClusterPending } = useKubernetesCluster(projectId, clusterId);
 
   const navigate = useNavigate();
 
@@ -79,10 +60,7 @@ export default function NewPage(): JSX.Element {
     isAdding: false,
   });
 
-  const { data: regionInformations } = useRegionInformations(
-    projectId,
-    cluster?.region ?? null,
-  );
+  const { data: regionInformations } = useRegionInformations(projectId, cluster?.region ?? null);
 
   const [billingState, setBillingState] = useState<
     TBillingStepProps & {
@@ -120,19 +98,14 @@ export default function NewPage(): JSX.Element {
     warn: false,
   });
 
-  const price = useMergedFlavorById(
-    projectId,
-    cluster?.region ?? null,
-    store.flavor?.id,
-    {
-      select: (flavor) =>
-        getPriceByDesiredScale(
-          flavor?.pricingsHourly?.price,
-          flavor?.pricingsMonthly?.price,
-          store.scaling?.quantity.desired,
-        ),
-    },
-  );
+  const price = useMergedFlavorById(projectId, cluster?.region ?? null, store.flavor?.id, {
+    select: (flavor) =>
+      getPriceByDesiredScale(
+        flavor?.pricingsHourly?.price,
+        flavor?.pricingsMonthly?.price,
+        store.scaling?.quantity.desired,
+      ),
+  });
 
   // reset store on mount
   useEffect(() => {
@@ -147,16 +120,12 @@ export default function NewPage(): JSX.Element {
           const addon = catalog?.addons.find(
             (add) => add.planCode === store.flavor?.planCodes?.hourly,
           );
-          return addon?.blobs?.tags?.includes('coming_soon')
-            ? 'coming_soon'
-            : 'not_available';
+          return addon?.blobs?.tags?.includes('coming_soon') ? 'coming_soon' : 'not_available';
         }
         return 'available';
       })();
 
-      const warnForAutoscaleBilling = Boolean(
-        store.isMonthlyBilling && store.scaling?.isAutoscale,
-      );
+      const warnForAutoscaleBilling = Boolean(store.isMonthlyBilling && store.scaling?.isAutoscale);
 
       setBillingState((prev) => ({
         ...prev,
@@ -208,13 +177,7 @@ export default function NewPage(): JSX.Element {
         );
 
         queryClient.invalidateQueries({
-          queryKey: [
-            'project',
-            projectId,
-            'kubernetes',
-            clusterId,
-            'nodePools',
-          ],
+          queryKey: ['project', projectId, 'kubernetes', clusterId, 'nodePools'],
         });
         navigate('../nodepools');
       })
@@ -292,11 +255,7 @@ export default function NewPage(): JSX.Element {
         >
           <OsdsText
             slot="label"
-            color={
-              store.name.hasError
-                ? ODS_THEME_COLOR_INTENT.error
-                : ODS_THEME_COLOR_INTENT.text
-            }
+            color={store.name.hasError ? ODS_THEME_COLOR_INTENT.error : ODS_THEME_COLOR_INTENT.text}
             className="mt-4"
             size={ODS_TEXT_SIZE._100}
           >
@@ -308,9 +267,7 @@ export default function NewPage(): JSX.Element {
               value={store.name.value}
               inline
               color={
-                store.name.hasError
-                  ? ODS_THEME_COLOR_INTENT.error
-                  : ODS_THEME_COLOR_INTENT.primary
+                store.name.hasError ? ODS_THEME_COLOR_INTENT.error : ODS_THEME_COLOR_INTENT.primary
               }
               onOdsValueChange={handleValueChange}
               type={ODS_INPUT_TYPE.text}
@@ -408,8 +365,7 @@ export default function NewPage(): JSX.Element {
           label: t('common_stepper_modify_this_step'),
         }}
       >
-        {regionInformations?.type &&
-        isMultiDeploymentZones(regionInformations.type) ? (
+        {regionInformations?.type && isMultiDeploymentZones(regionInformations.type) ? (
           <div className="mb-8 flex gap-4">
             <DeploymentZone
               onSelect={store.set.selectedAvailabilityZone}
@@ -449,11 +405,7 @@ export default function NewPage(): JSX.Element {
 
         {!state.isAdding ? (
           <div className="flex mt-4">
-            <OsdsButton
-              onClick={create}
-              inline
-              color={ODS_THEME_COLOR_INTENT.primary}
-            >
+            <OsdsButton onClick={create} inline color={ODS_THEME_COLOR_INTENT.primary}>
               {t('listing:kube_common_save')}
             </OsdsButton>
             <OsdsButton

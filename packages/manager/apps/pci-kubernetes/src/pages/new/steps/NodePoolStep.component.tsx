@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
-import { useParam as useSafeParams } from '@ovh-ux/manager-pci-common';
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -9,38 +9,33 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
-import {
-  convertHourlyPriceToMonthly,
-  Datagrid,
-} from '@ovh-ux/manager-react-components';
-import { TScalingState, NodePoolState } from '@/types';
-import { NODE_RANGE, TAGS_BLOB } from '@/constants';
-import { useClusterCreationStepper } from '../hooks/useCusterCreationStepper';
-import BillingStep from '@/components/create/BillingStep.component';
-import { getDatagridColumns } from './node-pool/getDataGridColumns';
-import NodePoolToggle from './node-pool/NodePoolToggle.component';
-import NodePoolName from './node-pool/NodePoolName.component';
-import NodePoolType from './node-pool/NodePoolType.component';
-import NodePoolSize from './node-pool/NodePoolSize.component';
-import NodePoolAntiAffinity from './node-pool/NodePoolAntiAffinity.component';
+import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { useParam as useSafeParams } from '@ovh-ux/manager-pci-common';
+import { Datagrid, convertHourlyPriceToMonthly } from '@ovh-ux/manager-react-components';
+
 import { NodePoolPrice } from '@/api/data/kubernetes';
-import { generateUniqueName, isMultiDeploymentZones } from '@/helpers';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
-import DeploymentZone from './node-pool/DeploymentZone.component';
+import BillingStep from '@/components/create/BillingStep.component';
 import { TComputedKubeFlavor } from '@/components/flavor-selector/FlavorSelector.component';
-import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
-import useMergedFlavorById, {
-  getPriceByDesiredScale,
-} from '@/hooks/useMergedFlavorById';
+import { NODE_RANGE, TAGS_BLOB } from '@/constants';
+import { generateUniqueName, isMultiDeploymentZones } from '@/helpers';
 import { isNodePoolNameValid } from '@/helpers/matchers/matchers';
 import { hasInvalidScalingOrAntiAffinityConfig } from '@/helpers/node-pool';
+import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import useMergedFlavorById, { getPriceByDesiredScale } from '@/hooks/useMergedFlavorById';
+import { NodePoolState, TScalingState } from '@/types';
 
-const NodePoolStep = ({
-  stepper,
-}: {
-  stepper: ReturnType<typeof useClusterCreationStepper>;
-}) => {
+import { useClusterCreationStepper } from '../hooks/useCusterCreationStepper';
+import DeploymentZone from './node-pool/DeploymentZone.component';
+import NodePoolAntiAffinity from './node-pool/NodePoolAntiAffinity.component';
+import NodePoolName from './node-pool/NodePoolName.component';
+import NodePoolSize from './node-pool/NodePoolSize.component';
+import NodePoolToggle from './node-pool/NodePoolToggle.component';
+import NodePoolType from './node-pool/NodePoolType.component';
+import { getDatagridColumns } from './node-pool/getDataGridColumns';
+
+const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreationStepper> }) => {
   const { t } = useTranslation([
     'stepper',
     'node-pool',
@@ -65,26 +60,18 @@ const NodePoolStep = ({
 
   const hasError = nodePoolState.isTouched && !isValidName;
   const [isMonthlyBilled, setIsMonthlyBilled] = useState(false);
-  const [
-    selectedFlavor,
-    setSelectedFlavor,
-  ] = useState<TComputedKubeFlavor | null>(null);
+  const [selectedFlavor, setSelectedFlavor] = useState<TComputedKubeFlavor | null>(null);
 
   const featureFlipping3az = use3AZPlanAvailable();
   const [nodePoolEnabled, setNodePoolEnabled] = useState(true);
   const [nodes, setNodes] = useState<NodePoolPrice[] | null>(null);
   const onDelete = useCallback(
-    (nameToDelete: string) =>
-      nodes && setNodes(nodes.filter((node) => node.name !== nameToDelete)),
+    (nameToDelete: string) => nodes && setNodes(nodes.filter((node) => node.name !== nameToDelete)),
     [nodes],
   );
-  const columns = useMemo(() => getDatagridColumns({ onDelete, t }), [
-    onDelete,
-    t,
-  ]);
+  const columns = useMemo(() => getDatagridColumns({ onDelete, t }), [onDelete, t]);
 
-  const isNodePoolValid =
-    !nodePoolEnabled || (Boolean(selectedFlavor) && isValidName);
+  const isNodePoolValid = !nodePoolEnabled || (Boolean(selectedFlavor) && isValidName);
 
   const { projectId } = useSafeParams('projectId');
 
@@ -112,18 +99,13 @@ const NodePoolStep = ({
     (regionInformations &&
       hasInvalidScalingOrAntiAffinityConfig(regionInformations, nodePoolState));
 
-  const isPricingComingSoon = selectedFlavor?.blobs?.tags?.includes(
-    TAGS_BLOB.COMING_SOON,
-  );
+  const isPricingComingSoon = selectedFlavor?.blobs?.tags?.includes(TAGS_BLOB.COMING_SOON);
 
   const isStepUnlocked = !stepper.node.step.isLocked;
 
   const canSubmit =
     (isStepUnlocked && !nodePoolEnabled) ||
-    (isStepUnlocked &&
-      nodePoolEnabled &&
-      Array.isArray(nodes) &&
-      nodes.length > 0);
+    (isStepUnlocked && nodePoolEnabled && Array.isArray(nodes) && nodes.length > 0);
 
   useEffect(() => setIsMonthlyBilled(false), [selectedFlavor]);
 
@@ -150,10 +132,7 @@ const NodePoolStep = ({
           nodePoolState.selectedAvailabilityZone && {
             availabilityZones: [nodePoolState.selectedAvailabilityZone],
           }),
-        localisation:
-          nodePoolState.selectedAvailabilityZone ??
-          stepper.form.region?.name ??
-          null,
+        localisation: nodePoolState.selectedAvailabilityZone ?? stepper.form.region?.name ?? null,
         desiredNodes: nodePoolState.scaling.quantity.desired,
         ...(nodePoolState.scaling.isAutoscale && {
           minNodes: nodePoolState.scaling.quantity.min,
@@ -162,7 +141,7 @@ const NodePoolStep = ({
         flavorName: selectedFlavor.name ?? '',
 
         monthlyPrice: isMonthlyBilled
-          ? price?.month ?? 0
+          ? (price?.month ?? 0)
           : convertHourlyPriceToMonthly(price?.hour ?? 0),
         monthlyBilled: isMonthlyBilled,
       };
@@ -185,8 +164,7 @@ const NodePoolStep = ({
 
   return (
     <>
-      {((!stepper.node.step.isLocked && nodePoolEnabled) ||
-        !nodePoolEnabled) && (
+      {((!stepper.node.step.isLocked && nodePoolEnabled) || !nodePoolEnabled) && (
         <NodePoolToggle
           nodePoolEnabled={nodePoolEnabled}
           step={stepper.node.step}
@@ -222,9 +200,7 @@ const NodePoolStep = ({
                     }))
                   }
                   availabilityZones={regionInformations?.availabilityZones}
-                  selectedAvailabilityZone={
-                    nodePoolState.selectedAvailabilityZone ?? ''
-                  }
+                  selectedAvailabilityZone={nodePoolState.selectedAvailabilityZone ?? ''}
                 />
               </div>
             )}
@@ -255,9 +231,7 @@ const NodePoolStep = ({
                 isChecked: isMonthlyBilled,
                 check: setIsMonthlyBilled,
               }}
-              warn={
-                (nodePoolState.scaling?.isAutoscale && isMonthlyBilled) ?? false
-              }
+              warn={(nodePoolState.scaling?.isAutoscale && isMonthlyBilled) ?? false}
             />
           </div>
           <div className="mb-8">
@@ -266,9 +240,7 @@ const NodePoolStep = ({
                 setNodePoolState((state) => ({ ...state, isTouched }))
               }
               hasError={hasError}
-              onNameChange={(name: string) =>
-                setNodePoolState((state) => ({ ...state, name }))
-              }
+              onNameChange={(name: string) => setNodePoolState((state) => ({ ...state, name }))}
               name={nodePoolState.name}
             />
           </div>

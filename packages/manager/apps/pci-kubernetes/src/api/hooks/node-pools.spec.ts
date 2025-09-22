@@ -1,12 +1,11 @@
-import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+
+import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
+
 import * as ApiNodePoolsModule from '@/api/data/node-pools';
 import { TClusterNodePool } from '@/api/data/node-pools';
-import {
-  useClusterNodePools,
-  useUpdateNodePoolSize,
-} from '@/api/hooks/node-pools';
+import { useClusterNodePools, useUpdateNodePoolSize } from '@/api/hooks/node-pools';
 import { wrapper } from '@/wrapperRenders';
 
 vi.mock('@ovh-ux/manager-core-utils');
@@ -38,15 +37,10 @@ describe('useClusterNodePools', () => {
       },
     ];
 
-    vi.spyOn(ApiNodePoolsModule, 'getClusterNodePools').mockResolvedValueOnce(
-      mockData,
-    );
+    vi.spyOn(ApiNodePoolsModule, 'getClusterNodePools').mockResolvedValueOnce(mockData);
     vi.mocked(getDateFnsLocale).mockResolvedValue('fr');
 
-    const { result } = renderHook(
-      () => useClusterNodePools('project1', 'cluster1'),
-      { wrapper },
-    );
+    const { result } = renderHook(() => useClusterNodePools('project1', 'cluster1'), { wrapper });
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
     expect(result.current.data).toEqual(mockResulData);
@@ -63,9 +57,7 @@ describe('useUpdateNodePoolSize', () => {
       maxNodes: 5,
       autoscale: true,
     };
-    vi.spyOn(ApiNodePoolsModule, 'updateNodePoolSize').mockResolvedValue(
-      {} as never,
-    );
+    vi.spyOn(ApiNodePoolsModule, 'updateNodePoolSize').mockResolvedValue({} as never);
     const { result } = renderHook(
       () =>
         useUpdateNodePoolSize({

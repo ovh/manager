@@ -1,14 +1,14 @@
+import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
 import { act, fireEvent, render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
-import {
-  OdsInputValueChangeEventDetail,
-  OsdsInput,
-} from '@ovhcloud/ods-components';
-import TerminatePage from './Terminate.page';
+
+import { OdsInputValueChangeEventDetail, OsdsInput } from '@ovhcloud/ods-components';
+
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
-import { wrapper } from '@/wrapperRenders';
 import { TKube } from '@/types';
+import { wrapper } from '@/wrapperRenders';
+
+import TerminatePage from './Terminate.page';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   useNotifications: () => ({
@@ -17,12 +17,9 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
   }),
 }));
 
-type UseTerminateClusterReturnType = UseMutationResult<
-  never,
-  Error,
-  void,
-  unknown
-> & { terminateCluster: () => void };
+type UseTerminateClusterReturnType = UseMutationResult<never, Error, void, unknown> & {
+  terminateCluster: () => void;
+};
 
 describe('TerminatePage', () => {
   it('renders loading spinner when data is pending', () => {
@@ -51,7 +48,7 @@ describe('TerminatePage', () => {
       fireEvent.change(terminateInput, {
         target: { value: 'TERMINATE' },
       });
-      ((terminateInput as unknown) as OsdsInput).odsValueChange.emit({
+      (terminateInput as unknown as OsdsInput).odsValueChange.emit({
         value: 'TERMINATE',
       } as OdsInputValueChangeEventDetail);
     });
@@ -60,17 +57,17 @@ describe('TerminatePage', () => {
 
   it('calls terminateCluster on submit button click', () => {
     const mockTerminateCluster = vi.fn();
-    vi.spyOn(useKubernetesModule, 'useTerminateCluster').mockReturnValue(({
+    vi.spyOn(useKubernetesModule, 'useTerminateCluster').mockReturnValue({
       terminateCluster: mockTerminateCluster,
       isPending: false,
-    } as unknown) as UseTerminateClusterReturnType);
+    } as unknown as UseTerminateClusterReturnType);
     const { getByTestId } = render(<TerminatePage />, { wrapper });
     const terminateInput = getByTestId('terminate-input');
     act(() => {
       fireEvent.change(terminateInput, {
         target: { value: 'TERMINATE' },
       });
-      ((terminateInput as unknown) as OsdsInput).odsValueChange.emit({
+      (terminateInput as unknown as OsdsInput).odsValueChange.emit({
         value: 'TERMINATE',
       } as OdsInputValueChangeEventDetail);
     });

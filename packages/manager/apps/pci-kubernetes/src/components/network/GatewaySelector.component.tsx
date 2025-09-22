@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { useProjectUrl } from '@ovh-ux/manager-react-components';
+
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_RADIO_BUTTON_SIZE, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import {
   OsdsFormField,
   OsdsLink,
@@ -10,12 +13,9 @@ import {
   OsdsRadioGroup,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_RADIO_BUTTON_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+
+import { useProjectUrl } from '@ovh-ux/manager-react-components';
+
 import { GatewayModeSelector, ModeEnum } from './GatewayModeSelector.component';
 
 export const GATEWAY_IP_REGEX = /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)(\.(?!$)|$)){4}$/;
@@ -58,10 +58,7 @@ export const GatewaySelector = ({
   useEffect(() => {
     onSelect?.({
       ...gateway,
-      ip:
-        gateway.mode === ModeEnum.CUSTOM && GATEWAY_IP_REGEX.test(gateway.ip)
-          ? gateway.ip
-          : '',
+      ip: gateway.mode === ModeEnum.CUSTOM && GATEWAY_IP_REGEX.test(gateway.ip) ? gateway.ip : '',
     });
   }, [gateway]);
 
@@ -87,15 +84,8 @@ export const GatewaySelector = ({
         }}
       >
         <OsdsRadio name="gateway" value="false">
-          <OsdsRadioButton
-            color={ODS_THEME_COLOR_INTENT.primary}
-            size={ODS_RADIO_BUTTON_SIZE.xs}
-          >
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_TEXT_SIZE._400}
-              slot="end"
-            >
+          <OsdsRadioButton color={ODS_THEME_COLOR_INTENT.primary} size={ODS_RADIO_BUTTON_SIZE.xs}>
+            <OsdsText color={ODS_THEME_COLOR_INTENT.text} size={ODS_TEXT_SIZE._400} slot="end">
               {tAdd('kubernetes_network_form_gateway_public')}
             </OsdsText>
           </OsdsRadioButton>
@@ -111,15 +101,8 @@ export const GatewaySelector = ({
           </OsdsText>
         )}
         <OsdsRadio className="mt-4" name="gateway" value="true">
-          <OsdsRadioButton
-            color={ODS_THEME_COLOR_INTENT.primary}
-            size={ODS_RADIO_BUTTON_SIZE.xs}
-          >
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_TEXT_SIZE._400}
-              slot="end"
-            >
+          <OsdsRadioButton color={ODS_THEME_COLOR_INTENT.primary} size={ODS_RADIO_BUTTON_SIZE.xs}>
+            <OsdsText color={ODS_THEME_COLOR_INTENT.text} size={ODS_TEXT_SIZE._400} slot="end">
               {tAdd('kubernetes_network_form_gateway_private')}
             </OsdsText>
           </OsdsRadioButton>

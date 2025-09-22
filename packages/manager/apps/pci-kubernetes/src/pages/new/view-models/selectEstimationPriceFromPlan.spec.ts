@@ -14,14 +14,10 @@ describe('selectEstimationPriceFromPlans', () => {
     { value: TClusterPlanEnum.STANDARD, price: 1 },
   ] as TPlan[];
 
-  const nodePools = [
-    { monthlyPrice: 100 },
-    { monthlyPrice: 200 },
-  ] as NodePoolPrice[];
+  const nodePools = [{ monthlyPrice: 100 }, { monthlyPrice: 200 }] as NodePoolPrice[];
   it.each([
     {
-      description:
-        'FREE plan with showSavingPlan = true 3AZ = true (default test)',
+      description: 'FREE plan with showSavingPlan = true 3AZ = true (default test)',
       plan: TClusterPlanEnum.FREE,
       pools: [] as NodePoolPrice[],
       options: { has3AZ: true, showSavingPlan: true },

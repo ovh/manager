@@ -1,16 +1,12 @@
-import { describe, it, vi, expect, beforeEach, Mock } from 'vitest';
-import { render, fireEvent, waitFor } from '@testing-library/react';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
-import {
-  UpdatePolicySelector,
-  selectedTileClass,
-} from './UpdatePolicySelector.component';
+import { fireEvent, render, waitFor } from '@testing-library/react';
+import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
 
 import { UPGRADE_POLICIES } from '@/constants';
 import { UpdatePolicy } from '@/types';
+
+import { UpdatePolicySelector, selectedTileClass } from './UpdatePolicySelector.component';
 
 let setPolicyMock: Mock;
 
@@ -29,10 +25,7 @@ describe('UpgradePolicyTileSelector', () => {
   it('renders correctly ', () => {
     const { container } = render(
       <ShellContext.Provider value={mockShellContextValue}>
-        <UpdatePolicySelector
-          onPolicyChange={setPolicyMock}
-          policy={UpdatePolicy.AlwaysUpdate}
-        />
+        <UpdatePolicySelector onPolicyChange={setPolicyMock} policy={UpdatePolicy.AlwaysUpdate} />
       </ShellContext.Provider>,
     );
 
@@ -42,10 +35,7 @@ describe('UpgradePolicyTileSelector', () => {
   it('displays the correct number of policy tiles', () => {
     const { getAllByRole } = render(
       <ShellContext.Provider value={mockShellContextValue}>
-        <UpdatePolicySelector
-          onPolicyChange={setPolicyMock}
-          policy={UpdatePolicy.AlwaysUpdate}
-        />
+        <UpdatePolicySelector onPolicyChange={setPolicyMock} policy={UpdatePolicy.AlwaysUpdate} />
       </ShellContext.Provider>,
     );
 
@@ -56,10 +46,7 @@ describe('UpgradePolicyTileSelector', () => {
   it('calls setPolicy with the correct argument when a tile is clicked', async () => {
     const { getByTestId } = render(
       <ShellContext.Provider value={mockShellContextValue}>
-        <UpdatePolicySelector
-          onPolicyChange={setPolicyMock}
-          policy={UpdatePolicy.AlwaysUpdate}
-        />
+        <UpdatePolicySelector onPolicyChange={setPolicyMock} policy={UpdatePolicy.AlwaysUpdate} />
       </ShellContext.Provider>,
     );
 
@@ -74,10 +61,7 @@ describe('UpgradePolicyTileSelector', () => {
   it('applies the correct class to the selected tile', () => {
     const { getByTestId } = render(
       <ShellContext.Provider value={mockShellContextValue}>
-        <UpdatePolicySelector
-          onPolicyChange={setPolicyMock}
-          policy={UpdatePolicy.AlwaysUpdate}
-        />
+        <UpdatePolicySelector onPolicyChange={setPolicyMock} policy={UpdatePolicy.AlwaysUpdate} />
       </ShellContext.Provider>,
     );
 
