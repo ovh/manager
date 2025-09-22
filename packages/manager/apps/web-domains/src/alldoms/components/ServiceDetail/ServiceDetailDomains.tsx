@@ -16,6 +16,7 @@ export default function ServiceDetailDomains({
     id: 'name',
     desc: false,
   });
+
   const columns = useDomainDatagridColumns({ alldomTerminated });
 
   const sortedItems = useMemo(() => {

@@ -33,6 +33,8 @@ import { CANCEL_TERMINATE_URL } from '@/alldoms/constants';
 import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
 import { urls } from '@/alldoms/routes/routes.constant';
 import appConfig from '@/web-domains.config';
+import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
+import { ServiceRoutes } from '@/alldoms/enum/service.enum';
 
 export default function ServiceDetail() {
   const [isManualRenewMessage, setIsManualRenewMessage] = useState<boolean>(
@@ -48,9 +50,38 @@ export default function ServiceDetail() {
     title: serviceName,
   };
 
-  const { data: alldomService, isLoading } = useGetAllDom({
+  const { data: alldom, isLoading } = useGetAllDom({
     serviceName,
   });
+
+  const {
+    data: domainServiceList,
+    listLoading: domainServiceListLoading,
+  } = useGetServices({
+    names: alldom?.currentState?.domains.map((domain) => domain.name),
+    serviceRoute: ServiceRoutes.Domain,
+  });
+
+  const alldomService = alldom;
+  if (
+    !isLoading &&
+    alldomService &&
+    !domainServiceListLoading &&
+    domainServiceList
+  ) {
+    alldomService.currentState.domains.forEach((domain) => {
+      const service = domainServiceList.find(
+        (s) => s.resource.name === domain.name,
+      );
+      if (service?.billing?.expirationDate) {
+        return {
+          ...domain,
+          expiresAt: service.billing.expirationDate,
+        };
+      }
+      return domain;
+    });
+  }
 
   if (isLoading) {
     return <Loading />;
