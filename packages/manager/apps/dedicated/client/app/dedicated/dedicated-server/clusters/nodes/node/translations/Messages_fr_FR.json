@@ -357,7 +357,6 @@
   "server_configuration_installation_ovh_desktop_READY_TO_USE": "Prêt à l'emploi (interface graphique)",
   "server_configuration_installation_ovh_desktop_VIRTUALISATION": "Virtualisation",
   "server_configuration_installation_ovh_desktop_VIRTUALIZATION": "Virtualisation",
-  "server_configuration_installation_ovh_step1_gabarit_eol": "OVHcloud se réinvente constamment pour adapter ses offres à une demande croissante de résilience. Afin d'atteindre cet objectif, <b>les gabarits personnels seront prochainement supprimés</b>. Vous pourrez installer des OS avec le <b>même niveau de personnalisation qu'auparavant</b>. Pour plus d'informations sur les impacts et la stratégie optimale à adopter pour gérer au mieux ce changement, veuillez consulter <a href=\"{{t0}}\" rel=\"noopener noreferrer\" class=\"alert-link\" target=\"doc\">cette page de documentation <span class=\"fa fa-external-link\" aria-hidden=\"true\"></span></a>.",
   "server_configuration_installation_ovh_step1_empty": "Aucune distribution compatible pour votre serveur dans la catégorie",
   "server_configuration_installation_ovh_step1_info": "Sélectionnez la distribution que vous souhaitez installer sur le serveur : <b class=\"text-nowrap\">{{t0}}</b>",
   "server_configuration_installation_ovh_step1_info2": "Vous avez la possibilité de passer directement à l'installation ou de la personnaliser.",
