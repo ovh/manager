@@ -14,15 +14,18 @@
         data-on-rules-updated="$ctrl.onRulesUpdated.bind($ctrl)"
     >
         <oui-stepper
-            data-current-index="1"
+            data-current-index="0"
             data-on-finish="$ctrl.onStepperFinished()"
         >
             <oui-step-form
                 data-header="{{ 'sign_up_form_identity_step_title' | translate }}"
-                data-valid="true"
-                data-editable="false"
+                data-on-focus="$ctrl.onStepFocus('identity')"
+                data-on-cancel="$ctrl.onStepFormCancel('identity')"
+                data-ng-class="{ 'oui-stepper__step_form_active': $ctrl.isActiveStep('identity') }"
+                data-prevent-next="true"
                 data-ng-if="!$ctrl.loading.init"
             >
+                <div data-ui-view="identity"></div>
             </oui-step-form>
             <oui-step-form
                 data-header="{{ 'sign_up_form_details_step_title' | translate }}"
