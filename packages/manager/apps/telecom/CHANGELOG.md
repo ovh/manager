@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.15.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.15.14...@ovh-ux/manager-telecom@16.15.15) (2025-09-22)
+
+
+### Bug Fixes
+
+* **telecom.telephony:** use apiv6 for check the current ip ([a414943](https://github.com/ovh/manager/commit/a414943054747cdd154893c65d0777c6ba6c82e2)), closes [#PRDCOL-197](https://github.com/ovh/manager/issues/PRDCOL-197)
+
+
+
+
+
 ## [16.15.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.15.13...@ovh-ux/manager-telecom@16.15.14) (2025-09-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom
