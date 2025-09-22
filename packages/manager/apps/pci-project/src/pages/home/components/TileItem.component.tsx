@@ -1,34 +1,37 @@
-import { Fragment, memo } from 'react';
+import { memo } from 'react';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
-import { BottomSection, BottomSectionItem } from './useDashboardSections.hook';
-import TileItemContent from './TileItemContent.component';
+import { useTranslation } from 'react-i18next';
 
-interface TileItemProps {
-  item: BottomSectionItem;
-  section: BottomSection;
+import { DashboardTile, DashboardItem } from '@/constants';
+import BillingItem from './BillingItem.component';
+import StandardItem from './StandardItem.component';
+
+type TileItemProps = {
+  item: DashboardItem;
+  tile: DashboardTile;
   itemIdx: number;
   totalItems: number;
   isLoading: boolean;
-  projectId: string;
-}
+};
 
 const TileItem = memo(function TileItem({
   item,
-  section,
+  tile,
   itemIdx,
   totalItems,
   isLoading,
-  projectId,
 }: TileItemProps) {
+  const { t } = useTranslation('project');
+
   // Simple logic for showing divider
   const shouldShowDivider = () => {
     // Don't show divider for last item
     if (itemIdx === totalItems - 1) return false;
 
-    // Special case for billing section
-    if (section.type === 'billing') {
+    // Special case for billing tile
+    if (tile.type === 'billing') {
       const currentHasPrice = !!item.price;
-      const nextHasPrice = !!section.items[itemIdx + 1]?.price;
+      const nextHasPrice = !!tile.items[itemIdx + 1]?.price;
 
       // Show separator between vouchers (both have price)
       if (currentHasPrice && nextHasPrice) return true;
@@ -38,30 +41,32 @@ const TileItem = memo(function TileItem({
     }
 
     // Default: show divider between items with labels
-    const currentHasLabel = !!item.label;
-    const nextHasLabel = !!section.items[itemIdx + 1]?.label;
+    const currentHasLabel = !!item.labelTranslationKey;
+    const nextHasLabel = !!tile.items[itemIdx + 1]?.labelTranslationKey;
     return currentHasLabel && nextHasLabel;
   };
 
   return (
-    <Fragment>
+    <>
       <ManagerTile.Item>
         {item.label && (
           <ManagerTile.Item.Label>{item.label}</ManagerTile.Item.Label>
         )}
-        {item.description && (
-          <ManagerTile.Item.Description>
-            <TileItemContent
-              item={item}
-              section={section}
-              isLoading={isLoading}
-              projectId={projectId}
-            />
-          </ManagerTile.Item.Description>
+        {item.labelTranslationKey && (
+          <ManagerTile.Item.Label>
+            {t(item.labelTranslationKey)}
+          </ManagerTile.Item.Label>
         )}
+        <ManagerTile.Item.Description>
+          {tile.type === 'billing' && item.price ? (
+            <BillingItem item={item} isLoading={isLoading} />
+          ) : (
+            <StandardItem {...item} />
+          )}
+        </ManagerTile.Item.Description>
       </ManagerTile.Item>
       {shouldShowDivider() && <ManagerTile.Divider />}
-    </Fragment>
+    </>
   );
 });
 
