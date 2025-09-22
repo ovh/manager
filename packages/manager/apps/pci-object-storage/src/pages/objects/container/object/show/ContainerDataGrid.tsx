@@ -13,18 +13,22 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import {
-  useCommonContainerContext,
   useS3ContainerContext,
   useSwiftContainerContext,
 } from './ContainerContext';
 
-export function ContainerDatagrid() {
+export type ContainerDatagridProps = {
+  isS3StorageType: boolean;
+  handleAddObjectClick: () => void;
+};
+
+export function ContainerDatagrid({
+  isS3StorageType,
+  handleAddObjectClick,
+}: ContainerDatagridProps) {
   const { t } = useTranslation(['container', 'filters']);
-  const commonContext = useCommonContainerContext();
   const s3Context = useS3ContainerContext();
   const swiftContext = useSwiftContainerContext();
-
-  const { isS3StorageType, handleAddObjectClick } = commonContext;
 
   if (isS3StorageType && s3Context) {
     const {

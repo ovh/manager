@@ -28,7 +28,7 @@ export type TTags = {
 type TBucketPropertiesCardProps = {
   container: TContainer;
   isLocalZone: boolean;
-  isRightOffer: boolean;
+  isS3StorageType: boolean;
   getVersioningBadgeColor: TOdsBadgeColor;
   getObjectLockBadgeColor: TOdsBadgeColor;
   enableVersioningHref: string;
@@ -38,7 +38,7 @@ type TBucketPropertiesCardProps = {
 export const BucketPropertiesCard = ({
   container,
   isLocalZone,
-  isRightOffer,
+  isS3StorageType,
   getVersioningBadgeColor,
   getObjectLockBadgeColor,
   enableVersioningHref,
@@ -127,7 +127,7 @@ export const BucketPropertiesCard = ({
     >
       {renderObjectLockSection()}
 
-      {isRightOffer && !isLocalZone ? (
+      {isS3StorageType && !isLocalZone ? (
         <>
           {renderVersioningSection()}
           {renderApiOnlySection(

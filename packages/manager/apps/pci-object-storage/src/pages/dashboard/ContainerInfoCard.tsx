@@ -10,7 +10,7 @@ import { CommonCard } from '@/components/CommonCard';
 
 type TContainerInfoCardProps = {
   container: TContainer;
-  isRightOffer: boolean;
+  isS3StorageType: boolean;
   isLocalZone: boolean;
 };
 
@@ -22,7 +22,7 @@ type BadgeConfig = {
 
 export const ContainerInfoCard = ({
   container,
-  isRightOffer,
+  isS3StorageType,
   isLocalZone,
 }: TContainerInfoCardProps) => {
   const { t } = useTranslation(['container', 'containers/add', 'dashboard']);
@@ -73,7 +73,7 @@ export const ContainerInfoCard = ({
     >
       <CardSection
         title={
-          isRightOffer
+          isS3StorageType
             ? t(
                 'dashboard:pci_projects_project_storages_dashboard_container_name',
               )
@@ -129,7 +129,7 @@ export const ContainerInfoCard = ({
 
       <CardSection
         title={
-          isRightOffer
+          isS3StorageType
             ? t(
                 'dashboard:pci_projects_project_storages_dashboard_container_virtual_hosted_style',
               )

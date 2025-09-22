@@ -126,7 +126,7 @@ describe('ShowPage', () => {
       displayEncryptionData: false,
       isPending: false,
       isLocalZone: false,
-      isRightOffer: true,
+      isS3StorageType: true,
     });
   });
 
@@ -149,7 +149,7 @@ describe('ShowPage', () => {
       displayEncryptionData: false,
       isPending: true,
       isLocalZone: false,
-      isRightOffer: true,
+      isS3StorageType: true,
     });
 
     renderWithRouter(<ShowPage />);
