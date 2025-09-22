@@ -1,3 +1,4 @@
+import { LANGUAGES } from '@ovh-ux/manager-config';
 import i18n from 'i18next';
 import I18NextHttpBackend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
@@ -18,7 +19,10 @@ export default async function initI18n(
     .init({
       lng: locale,
       fallbackLng: 'fr_FR',
-      supportedLngs: availablesLocales,
+      supportedLngs:
+        LANGUAGES.available.map(
+          ({ key }: { name: string; key: string }) => key,
+        ) || availablesLocales,
       defaultNS: 'common',
       ns: ['common'], // namespaces to load by default
       backend: {
