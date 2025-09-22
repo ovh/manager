@@ -1,6 +1,6 @@
+import { memo } from 'react';
 import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { memo } from 'react';
 
 const BillingItemSkeleton = memo(function BillingItemSkeleton() {
   const { t } = useTranslation('project');

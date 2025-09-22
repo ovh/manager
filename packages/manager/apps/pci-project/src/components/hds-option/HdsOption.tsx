@@ -8,7 +8,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HDS_INFO } from '@/constants';
+import { getHdsInfoUrl } from '@/constants';
 
 type HdsOptionProps = {
   isChecked: boolean;
@@ -31,8 +31,7 @@ export default function HdsOption({
 
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
-  const hdsInfoLink =
-    HDS_INFO[ovhSubsidiary as OvhSubsidiary] || HDS_INFO.DEFAULT || '';
+  const hdsInfoLink = getHdsInfoUrl(ovhSubsidiary as OvhSubsidiary);
 
   const isHdsDisabled =
     isAlreadyCertifiedProject || !isValidForCertification || isDisabled;
