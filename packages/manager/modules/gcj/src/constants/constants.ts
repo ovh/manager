@@ -68,3 +68,5 @@ export const MORE_INFO_LINK = {
   IN: 'https://www.ovhcloud.com/en-in/support/termsofservice/cookies_ovh.xml',
   DEFAULT: 'https://www.ovh.ie/support/termsofservice/cookies_ovh.xml',
 };
+
+export const SMALL_DEVICE_MAX_SIZE = '30em';
