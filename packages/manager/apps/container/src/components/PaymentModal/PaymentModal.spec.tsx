@@ -1,7 +1,7 @@
 import { it, vi, describe, expect } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import PaymentModal from './PaymentModal';
+import PaymentModal from './PaymentModal.component';
 import { PAYMENT_ALERTS } from './PaymentModal.constants';
 
 const mocks = vi.hoisted(() => ({
