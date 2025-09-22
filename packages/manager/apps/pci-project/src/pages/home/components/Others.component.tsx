@@ -1,15 +1,11 @@
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 
-export type OtherActionItem = {
-  icon: keyof typeof ODS_ICON_NAME;
-  label: string;
-  link: string;
-};
+import { DASHBOARD_OTHER_ACTIONS_ITEMS } from '@/constants';
+import useTranslation from '@/hooks/usePermissiveTranslation.hook';
 
-export function Others({ items }: { items: OtherActionItem[] }) {
+function Others() {
   const { t } = useTranslation('project');
 
   return (
@@ -21,17 +17,29 @@ export function Others({ items }: { items: OtherActionItem[] }) {
         >
           {t('pci_projects_project_others')}
         </OdsText>
-        {items.map((action, idx) => (
-          <Link to={action.link} style={{ textDecoration: 'none' }} key={idx}>
+        {DASHBOARD_OTHER_ACTIONS_ITEMS.map((item, idx) =>
+          item.link ? (
+            <Link to={item.link} style={{ textDecoration: 'none' }} key={idx}>
+              <OdsButton
+                variant="outline"
+                className="whitespace-nowrap flex items-center m-3"
+                icon={item.iconODS}
+                label={t(item.labelTranslationKey)}
+              />
+            </Link>
+          ) : (
             <OdsButton
+              key={idx}
               variant="outline"
               className="whitespace-nowrap flex items-center m-3"
-              icon={ODS_ICON_NAME[action.icon]}
-              label={action.label}
+              icon={item.iconODS}
+              label={t(item.labelTranslationKey)}
             />
-          </Link>
-        ))}
+          ),
+        )}
       </div>
     </div>
   );
 }
+
+export default Others;
