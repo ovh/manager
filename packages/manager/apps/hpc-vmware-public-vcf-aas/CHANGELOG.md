@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.23.1...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.24.0) (2025-09-22)
+
+
+### Features
+
+* **vcd:** add validation on add network on vrack ([ea218d0](https://github.com/ovh/manager/commit/ea218d0abbb0caab39f4c428dbf74b62139a1596)), closes [#MANAGER-19203](https://github.com/ovh/manager/issues/MANAGER-19203)
+
+
+
+
+
 ## [0.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.23.0...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.23.1) (2025-09-18)
 
 
