@@ -48,6 +48,7 @@ export const features = [
   'public-cloud:project-settings',
   'data-platform',
   'key-management-service',
+  'okms',
   'okms:key-management-service',
   'okms:secret-manager',
   'pci-savings-plan',
@@ -473,15 +474,15 @@ export function getPciProjectMenu(
       title: 'Identity, Security & Operations',
       subItems: [
         isFeaturesAvailable('okms:key-management-service') && {
-          id: 'okms-key-management-service',
+          id: 'key-management-service',
           title: 'Key Management Service',
-          href: getURL('okms', '/'),
+          href: getURL('okms', `#/key-management-service`),
         },
         isFeaturesAvailable('okms:secret-manager') && {
           id: 'okms-secret-manager',
           title: 'Secret Manager',
-          href: getURL('okms', `#/secret-manager`),
           badge: 'beta',
+          href: getURL('okms', `#/secret-manager`),
         },
       ],
     });
