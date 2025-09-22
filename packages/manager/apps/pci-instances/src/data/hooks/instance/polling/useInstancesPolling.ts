@@ -5,15 +5,12 @@ import {
   UseQueryOptions,
   UseQueryResult,
 } from '@tanstack/react-query';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { getInstance } from '@/data/api/instance';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { instancesQueryKey, isApiErrorResponse } from '@/utils';
 import { TInstance } from '@/types/instance/entity.type';
-import { useOperations } from '@/data/hooks/instance/operation/useOperations';
-
-const POLLING_INTERVAL = 3000;
 
 export type TUseInstancesPollingQueryOptions = Pick<
   UseQueryOptions<TInstance>,
@@ -41,10 +38,10 @@ const defaultQueryOptions: TUseInstancesPollingQueryOptions = {
   refetchIntervalInBackground: true,
   gcTime: 0,
   refetchInterval: (query: Query<TInstance>) =>
-    query.state.error ? false : POLLING_INTERVAL,
+    query.state.error ? false : 3_000,
 };
 
-export const shouldRetryAfter404Error = (
+export const shouldRetryAfterNot404Error = (
   failureCount: number,
   error: DefaultError,
 ): boolean =>
@@ -95,29 +92,4 @@ export const useInstancesPolling = (
   }, [onError, onSuccess, polledInstances]);
 
   return polledInstances;
-};
-
-export const useInstancesOperationsPolling = () => {
-  const projectId = useProjectId();
-
-  const { operations } = useOperations(
-    projectId,
-    {
-      section: 'instance',
-      action: 'create',
-    },
-    {
-      refetchInterval: POLLING_INTERVAL,
-      refetchIntervalInBackground: true,
-    },
-  );
-
-  const operationsRunning = useMemo(
-    () => operations.filter((operation) => operation.status !== 'completed'),
-    [operations],
-  );
-
-  return {
-    hasOperationsRunning: operationsRunning.length > 0,
-  };
 };
