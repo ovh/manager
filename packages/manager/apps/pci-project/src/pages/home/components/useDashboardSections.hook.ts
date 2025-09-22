@@ -1,37 +1,26 @@
-import { useMemo, useCallback, useContext } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useMemo, useContext } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useFormatDate } from '@ovh-ux/manager-react-components';
+import { useFormatDate, OvhSubsidiary } from '@ovh-ux/manager-react-components';
+
 import { useCreditDetails } from '@/data/hooks/useCredit';
 import {
-  getDocumentationLinks,
-  COMMUNITY_LINKS,
-  BILLING_LINKS,
-} from './constants';
-
-// Types for dashboard sections
-export type BottomSection = {
-  title: string;
-  type: 'billing' | 'documentation' | 'community';
-  items: BottomSectionItem[];
-};
-
-export type BottomSectionItem = {
-  label: string;
-  description?: string;
-  link: string | string[];
-  price?: string;
-  validUntil?: string | null;
-  icon?: string;
-  target?: string;
-  rel?: string;
-  color?: string;
-  ariaLabelKey?: string;
-};
+  DASHBOARD_DOCUMENTATION_LINKS_CONFIG,
+  DASHBOARD_COMMUNITY_LINKS,
+  DASHBOARD_CREDIT_VOUCHER_LINK,
+  buildDeveloperCenterUrl,
+  getDocumentationGuideLink,
+  BASE_PROJECT_PATH,
+  DashboardTile,
+  DashboardItem,
+} from '@/constants';
+import useTranslation from '@/hooks/usePermissiveTranslation.hook';
 
 export function useDashboardSections(projectId: string) {
   const { t } = useTranslation('project');
   const { environment } = useContext(ShellContext);
+  const subsidiary = useMemo(() => environment.getUser().ovhSubsidiary, [
+    environment,
+  ]);
   const formatDate = useFormatDate();
   const {
     data: vouchersCreditDetails = [],
@@ -40,108 +29,86 @@ export function useDashboardSections(projectId: string) {
     error,
   } = useCreditDetails(projectId);
 
-  const createBillingItems = useCallback(() => {
-    const items = [];
+  const billingItems = useMemo((): DashboardItem[] => {
+    let items: DashboardItem[] = [];
+    const baseProjectPath = BASE_PROJECT_PATH.replace(':projectId', projectId);
 
     // Add voucher credits from API
     if (!isLoading) {
-      items.push(
-        ...vouchersCreditDetails.slice(0, 3).map((credit) => ({
-          label: t('pci_projects_project_voucher_credit', {
-            voucher: credit.voucher,
-          }),
-          description: credit.description,
-          link: `/public-cloud/pci/projects/${projectId}/billing/credits`,
-          price: credit.balance,
-          validUntil: credit.expirationDate
-            ? t('pci_projects_project_expires_on', {
-                date: formatDate({
-                  date: credit.expirationDate,
-                  format: 'PPpp',
-                }),
-              })
-            : null,
-        })),
-      );
+      items = vouchersCreditDetails.slice(0, 3).map((credit) => ({
+        label: t('pci_projects_project_voucher_credit', {
+          voucher: credit.voucher,
+        }),
+        description: credit.description,
+        price: credit.balance,
+        validUntil: credit.expirationDate
+          ? t('pci_projects_project_expires_on', {
+              date: formatDate({
+                date: credit.expirationDate,
+                format: 'PP',
+              }),
+            })
+          : null,
+      }));
     }
 
-    // Add billing links (including voucher link) - these are static constants
-    items.push(
-      ...BILLING_LINKS.map((link) => ({
-        label: '',
-        description: `pci_projects_project_${link.descriptionKey}`,
-        link: link.link.replace('{projectId}', projectId),
-        icon: link.icon,
-        target: link.target,
-        rel: link.rel,
-        color: link.color,
-        ariaLabelKey: link.ariaLabelKey,
-      })),
-    );
+    items.push({
+      ...DASHBOARD_CREDIT_VOUCHER_LINK,
+      link: baseProjectPath + DASHBOARD_CREDIT_VOUCHER_LINK.link,
+    });
 
     return items;
   }, [isLoading, vouchersCreditDetails, projectId, t, formatDate]);
 
-  const createDocumentationItems = useCallback(() => {
-    const user = environment.getUser();
-    const documentationLinks = getDocumentationLinks(user.ovhSubsidiary);
-
-    return documentationLinks.map((link) => ({
-      label: t(`pci_projects_project_${link.labelKey}`),
-      description: t(`pci_projects_project_${link.descriptionKey}`),
-      link: link.link,
+  const documentationItems = useMemo((): DashboardItem[] => {
+    return DASHBOARD_DOCUMENTATION_LINKS_CONFIG.map((item) => ({
+      ...item,
+      link: item.documentationGuideKey
+        ? getDocumentationGuideLink(
+            item.documentationGuideKey,
+            subsidiary as OvhSubsidiary,
+          )
+        : item.link,
     }));
-  }, [t, environment]);
+  }, [subsidiary]);
 
-  const createCommunityItems = useCallback(() => {
-    return COMMUNITY_LINKS.flatMap((link) => {
-      if ('items' in link && link.items) {
-        // Handle items structure - create title item and sub-items
-        const titleItem = {
-          label: t(`pci_projects_project_${link.labelKey}`),
-          description: '',
-          link: '',
+  const communityItems = useMemo((): DashboardItem[] => {
+    return DASHBOARD_COMMUNITY_LINKS.map((item) => {
+      // Dynamically construct Developer Center URL based on subsidiary
+      if (
+        item.labelTranslationKey === 'pci_projects_project_developer_center'
+      ) {
+        const developerCenterUrl = buildDeveloperCenterUrl(
+          subsidiary as OvhSubsidiary,
+        );
+
+        return {
+          ...item,
+          link: developerCenterUrl,
         };
-
-        const subItems = link.items.map((item) => ({
-          label: '',
-          description: t(`pci_projects_project_${item.descriptionKey}`),
-          link: item.link,
-        }));
-
-        return [titleItem, ...subItems];
       }
-      // Handle single link structure
-      return [
-        {
-          label: t(`pci_projects_project_${link.labelKey}`),
-          description: t(`pci_projects_project_${link.descriptionKey}`),
-          link: link.link,
-        },
-      ];
+      return item;
     });
-  }, [t]);
+  }, [subsidiary]);
 
-  const sections: BottomSection[] = useMemo(
+  const tiles: DashboardTile[] = useMemo(
     () => [
       {
-        title: t('pci_projects_project_billing_section'),
+        titleTranslationKey: 'pci_projects_project_billing_section',
         type: 'billing' as const,
-        items: createBillingItems(),
+        items: billingItems,
       },
       {
-        title: t('pci_projects_project_documentation_section'),
-        type: 'documentation' as const,
-        items: createDocumentationItems(),
+        titleTranslationKey: 'pci_projects_project_documentation_section',
+        items: documentationItems,
       },
       {
-        title: t('pci_projects_project_community_section'),
-        type: 'community' as const,
-        items: createCommunityItems(),
+        titleTranslationKey: 'pci_projects_project_community_section',
+        items: communityItems,
       },
     ],
-    [t, createBillingItems, createDocumentationItems, createCommunityItems],
+    [billingItems, documentationItems, communityItems],
   );
 
-  return { sections, isLoading, isError, error };
+  return { tiles, isLoading, isError, error };
 }

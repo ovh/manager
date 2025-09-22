@@ -9,7 +9,7 @@ import {
 import { useProject, isDiscoveryProject } from '@ovh-ux/manager-pci-common';
 import { useActivationUrl } from '@/hooks/useActivationUrl';
 
-export function DiscoveryBanner({ className }: { className?: string }) {
+function DiscoveryBanner({ className }: { className?: string }) {
   const { t } = useTranslation('project');
   const { data: project } = useProject();
   const { goToActivation } = useActivationUrl();
@@ -56,3 +56,5 @@ export function DiscoveryBanner({ className }: { className?: string }) {
     </>
   );
 }
+
+export default DiscoveryBanner;
