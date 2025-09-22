@@ -7,5 +7,9 @@
   "sap_hub_history_deployment_type": "Deployment type",
   "sap_hub_history_installation_status": "Status",
   "sap_hub_history_installation_RETRY": "Retry",
-  "sap_hub_history_installation_see_detail": "See more information"
+  "sap_hub_history_installation_see_detail": "See more information",
+  "sap_hub_history_installation_delete": "Delete installation",
+  "sap_hub_history_installation_delete_content": "Are you sure you want to delete this installation?",
+  "sap_hub_history_installation_delete_success": "The {{taskId}} installation has been deleted from the log",
+  "sap_hub_history_installation_delete_error": "An error occurred while deleting the {{taskId}} installation from the log."
 }

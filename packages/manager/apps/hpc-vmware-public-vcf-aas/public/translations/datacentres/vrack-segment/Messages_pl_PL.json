@@ -13,7 +13,7 @@
   "managed_vcd_dashboard_vrack_edit_success": "Żądanie zmiany ID VLAN zostało przyjęte.",
   "managed_vcd_dashboard_vrack_edit_error": "Wystąpił błąd podczas modyfikacji ID VLAN: {{errorApi}}",
   "managed_vcd_dashboard_vrack_form_add_network_description": "Dodaj nowy adres podsieci do tego segmentu sieci vRack, aby połączyć wirtualne maszyny. Pierwsza część określa gateway w podsieci.",
-  "managed_vcd_dashboard_vrack_add_network_input_helper": "Adres podsieci musi być podany w formacie CIDR.",
+  "managed_vcd_dashboard_vrack_add_network_input_helper": "Adres podsieci musi być podany w formacie CIDR gateway/maska.",
   "managed_vcd_dashboard_vrack_add_network_input_error": "Ten adres podsieci już istnieje.",
   "managed_vcd_dashboard_vrack_add_network_success": "Podsieć została dodana",
   "managed_vcd_dashboard_vrack_add_network_error": "Wystąpił błąd podczas dodawania podsieci: {{errorApi}}",

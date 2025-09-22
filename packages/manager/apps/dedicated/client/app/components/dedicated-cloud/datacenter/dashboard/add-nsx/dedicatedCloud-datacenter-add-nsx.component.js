@@ -12,6 +12,7 @@ export default {
     addNsx: '<',
     handleSuccess: '<',
     handleError: '<',
+    trackClick: '<',
   },
   controller,
   template,
