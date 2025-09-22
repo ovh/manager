@@ -26,7 +26,9 @@ import { useDatagridPolling } from '../hooks/useDatagridPolling';
 import { TextCell } from '@/pages/instances/datagrid/components/cell/TextCell.component';
 import { TaskStatus } from '../../task/TaskStatus.component';
 import { useFormatDate } from '@/hooks/date/useFormatDate';
-import { useInstancesOperationsPolling } from '@/data/hooks/instance/polling/useInstancesPolling';
+import {
+  useDatagridOperationsPolling
+} from '@/pages/instances/datagrid/hooks/useDatagridOperationsPolling';
 
 type TFilterWithLabel = Filter & { label: string };
 type TSorting = {
@@ -87,8 +89,6 @@ const DatagridComponent = ({
     addError,
   } = useNotifications();
 
-  const { hasOperationsRunning } = useInstancesOperationsPolling();
-
   const {
     data = getPlaceHolderData(10),
     isLoading: instancesQueryLoading,
@@ -105,8 +105,9 @@ const DatagridComponent = ({
     sort: sorting.id,
     sortOrder: sorting.desc ? 'desc' : 'asc',
     filters,
-    forceRefetch: hasOperationsRunning,
   });
+
+  const { hasOperationsRunning } = useDatagridOperationsPolling();
 
   const pollingData = useDatagridPolling(pendingTasks);
 
