@@ -1,20 +1,18 @@
-import {
-  OsdsButton,
-  OsdsModal,
-  OsdsSpinner,
-} from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { Translation, useTranslation } from 'react-i18next';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useContext, useEffect, useState } from 'react';
+
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+
+import { Translation, useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OsdsButton, OsdsModal, OsdsSpinner } from '@ovhcloud/ods-components/react';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import {
-  useKubernetesCluster,
-  useUpdateKubeVersion,
-} from '@/api/hooks/useKubernetes';
+
+import { useKubernetesCluster, useUpdateKubeVersion } from '@/api/hooks/useKubernetes';
 import UpdateVersionContent from '@/components/update/UpdateVersionContent';
 import { UPDATE_STRATEGY } from '@/constants';
 import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
@@ -32,20 +30,16 @@ export default function UpdateVersionPage() {
   const { tracking } = useContext(ShellContext)?.shell || {};
 
   const forceVersion =
-    searchParams.get('forceVersion') === 'true' ||
-    searchParams.get('forceVersion') === '';
+    searchParams.get('forceVersion') === 'true' || searchParams.get('forceVersion') === '';
 
   const strategy = forceVersion ? UPDATE_STRATEGY.PATCH : UPDATE_STRATEGY.MINOR;
 
-  const {
-    data: kubernetesCluster,
-    isPending: isPendingCluster,
-  } = useKubernetesCluster(projectId, kubeId);
+  const { data: kubernetesCluster, isPending: isPendingCluster } = useKubernetesCluster(
+    projectId,
+    kubeId,
+  );
 
-  const {
-    updateKubeVersion,
-    isPending: isPendingUpdateVersion,
-  } = useUpdateKubeVersion({
+  const { updateKubeVersion, isPending: isPendingUpdateVersion } = useUpdateKubeVersion({
     projectId,
     kubeId,
     strategy,
@@ -64,9 +58,7 @@ export default function UpdateVersionPage() {
     },
     onSuccess() {
       addSuccess(
-        <Translation ns="update">
-          {(_t) => _t('kube_service_update_success')}
-        </Translation>,
+        <Translation ns="update">{(_t) => _t('kube_service_update_success')}</Translation>,
         true,
       );
       onClose();

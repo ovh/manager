@@ -1,48 +1,44 @@
-import { ApiError, applyFilters, Filter } from '@ovh-ux/manager-core-api';
-import { PaginationState } from '@ovh-ux/manager-react-components';
-import {
-  UndefinedInitialDataOptions,
-  useMutation,
-  useQuery,
-} from '@tanstack/react-query';
 import { useMemo } from 'react';
+
+import { UndefinedInitialDataOptions, useMutation, useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import { TKube, TOidcProvider } from '@/types';
-import queryClient from '@/queryClient';
-import { paginateResults, REFETCH_INTERVAL_DURATION } from '@/helpers';
+
+import { ApiError, Filter, applyFilters } from '@ovh-ux/manager-core-api';
+import { PaginationState } from '@ovh-ux/manager-react-components';
+
 import { STATUS } from '@/constants';
+import { REFETCH_INTERVAL_DURATION, paginateResults } from '@/helpers';
+import queryClient from '@/queryClient';
+import { TKube, TOidcProvider } from '@/types';
+
 import {
+  KubeClusterCreationParams,
+  TResetClusterParams,
   addOidcProvider,
+  createKubernetesCluster,
   createSubscription,
   deleteSubscription,
-  createKubernetesCluster,
   getAllKube,
   getClusterRestrictions,
+  getKubeEtcdUsage,
   getKubernetesCluster,
   getOidcProvider,
   getSubscribedLogs,
-  KubeClusterCreationParams,
   postKubeConfig,
   removeOidcProvider,
   resetCluster,
   resetKubeConfig,
   terminateCluster,
-  TResetClusterParams,
   updateKubePolicy,
-  updateKubernetesCluster,
   updateKubeVersion,
+  updateKubernetesCluster,
   updateOidcProvider,
-  getKubeEtcdUsage,
 } from '../data/kubernetes';
 import { getPrivateNetworkName } from '../data/network';
-import { useAllPrivateNetworks } from './useNetwork';
 import { mapPluginsFromArrayToObject } from '../data/plugins';
+import { useAllPrivateNetworks } from './useNetwork';
 
-export const getAllKubeQueryKey = (projectId: string) => [
-  'project',
-  projectId,
-  'kube',
-];
+export const getAllKubeQueryKey = (projectId: string) => ['project', projectId, 'kube'];
 
 export const useAllKube = (
   projectId: string,
@@ -56,11 +52,7 @@ export const useAllKube = (
     ...(options || {}),
   });
 
-export const useKubes = (
-  projectId: string,
-  pagination: PaginationState,
-  filters: Filter[],
-) => {
+export const useKubes = (projectId: string, pagination: PaginationState, filters: Filter[]) => {
   const { t } = useTranslation('listing');
 
   const {
@@ -88,10 +80,7 @@ export const useKubes = (
     return {
       isLoading: isAllKubeLoading || isNetworksLoading,
       isPending: isAllKubePending || isNetworksPending,
-      data: paginateResults<TKube>(
-        applyFilters(result || [], filters),
-        pagination,
-      ),
+      data: paginateResults<TKube>(applyFilters(result || [], filters), pagination),
       error: allKubeError || networksError,
     };
   }, [
@@ -150,8 +139,7 @@ export const useRenameKubernetesCluster = ({
   onSuccess,
 }: RenameKubernetesClusterProps) => {
   const mutation = useMutation({
-    mutationFn: async () =>
-      updateKubernetesCluster(projectId, kubeId, { name }),
+    mutationFn: async () => updateKubernetesCluster(projectId, kubeId, { name }),
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
@@ -275,10 +263,13 @@ export const useKubeDetail = (
   ]);
 };
 
-export const getClusterRestrictionsQuery = (
-  projectId: string,
-  kubeId: string,
-) => ['project', projectId, 'kube', kubeId, 'restrictions'];
+export const getClusterRestrictionsQuery = (projectId: string, kubeId: string) => [
+  'project',
+  projectId,
+  'kube',
+  kubeId,
+  'restrictions',
+];
 
 export const useClusterRestrictions = (projectId: string, kubeId: string) =>
   useQuery({
@@ -303,12 +294,7 @@ type KubeConfigProps = {
   onSuccess: (data: { content: string }) => void;
 };
 
-export const useKubeConfig = ({
-  projectId,
-  kubeId,
-  onError,
-  onSuccess,
-}: KubeConfigProps) => {
+export const useKubeConfig = ({ projectId, kubeId, onError, onSuccess }: KubeConfigProps) => {
   const mutation = useMutation({
     mutationFn: async () => postKubeConfig(projectId, kubeId),
     onError,
@@ -483,17 +469,15 @@ export const useRemoveOidcProvider = ({
   };
 };
 
-export const getSubscribedLogsQueryKey = (
-  projectId: string,
-  kubeId: string,
-  kind: string,
-) => ['log-subscription', projectId, kubeId, 'audit', kind];
+export const getSubscribedLogsQueryKey = (projectId: string, kubeId: string, kind: string) => [
+  'log-subscription',
+  projectId,
+  kubeId,
+  'audit',
+  kind,
+];
 
-export const useSubscribedLogs = (
-  projectId: string,
-  kubeId: string,
-  kind: string,
-) =>
+export const useSubscribedLogs = (projectId: string, kubeId: string, kind: string) =>
   useQuery({
     queryKey: getSubscribedLogsQueryKey(projectId, kubeId, kind),
     queryFn: () => getSubscribedLogs(projectId, kubeId, kind),
@@ -584,8 +568,7 @@ export const useCreateKubernetesCluster = ({
   onSuccess,
 }: CreateClusterProps) => {
   const mutation = useMutation({
-    mutationFn: (params: KubeClusterCreationParams) =>
-      createKubernetesCluster(projectId, params),
+    mutationFn: (params: KubeClusterCreationParams) => createKubernetesCluster(projectId, params),
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({

@@ -1,5 +1,6 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+
 import * as ApiAvailableRegionsModule from '@/api/data/available-regions';
 import { TAvailableRegionsResponse } from '@/api/data/available-regions';
 import { useAvailableRegions } from '@/api/hooks/useAvailableRegions';
@@ -7,7 +8,7 @@ import { wrapper } from '@/wrapperRenders';
 
 describe('useAvailableRegions', () => {
   it('fetches available regions successfully', async () => {
-    const mockData = ({
+    const mockData = {
       products: [
         {
           name: 'kubernetes',
@@ -17,11 +18,8 @@ describe('useAvailableRegions', () => {
           ],
         },
       ],
-    } as unknown) as TAvailableRegionsResponse;
-    vi.spyOn(
-      ApiAvailableRegionsModule,
-      'getAvailableRegions',
-    ).mockResolvedValueOnce(mockData);
+    } as unknown as TAvailableRegionsResponse;
+    vi.spyOn(ApiAvailableRegionsModule, 'getAvailableRegions').mockResolvedValueOnce(mockData);
     const { result } = renderHook(() => useAvailableRegions('project1'), {
       wrapper,
     });
@@ -41,10 +39,7 @@ describe('useAvailableRegions', () => {
         },
       ],
     } as TAvailableRegionsResponse;
-    vi.spyOn(
-      ApiAvailableRegionsModule,
-      'getAvailableRegions',
-    ).mockResolvedValueOnce(mockData);
+    vi.spyOn(ApiAvailableRegionsModule, 'getAvailableRegions').mockResolvedValueOnce(mockData);
     const { result } = renderHook(() => useAvailableRegions('project1'), {
       wrapper,
     });

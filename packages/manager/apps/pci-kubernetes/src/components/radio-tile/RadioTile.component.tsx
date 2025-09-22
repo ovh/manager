@@ -1,8 +1,9 @@
-import { useId } from 'react';
+import { InputHTMLAttributes, KeyboardEvent, ReactNode, useId } from 'react';
+
 import { cn } from '@/helpers';
 
-interface RadioTileProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  children: React.ReactNode | React.ReactNode[];
+interface RadioTileProps extends InputHTMLAttributes<HTMLInputElement> {
+  children: ReactNode | ReactNode[];
   className?: string;
   tileClassName?: string;
   labelClassName?: string;
@@ -17,11 +18,9 @@ const RadioTile = ({
 }: RadioTileProps) => {
   const id = useId();
   const labelId = `${id}-label`;
-  const handleLabelKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleLabelKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      const inputElement = document.getElementById(
-        id,
-      ) as HTMLInputElement | null;
+      const inputElement = document.getElementById(id) as HTMLInputElement | null;
       if (inputElement) {
         inputElement.click();
       }
@@ -53,7 +52,8 @@ const RadioTile = ({
             {
               'border-primary-600  selected': !disabled && props.checked,
               'border-primary-100 bg-white': !disabled && !props.checked,
-              'hover:shadow-sm hover:border-primary-600 hover:bg-primary-100 cursor-pointer': !disabled,
+              'hover:shadow-sm hover:border-primary-600 hover:bg-primary-100 cursor-pointer':
+                !disabled,
               'bg-neutral-100 border-neutral-100 text-neutral-800': disabled,
             },
 
@@ -70,12 +70,7 @@ const RadioTile = ({
 };
 
 RadioTile.Separator = function RadioTileSeparator() {
-  return (
-    <div
-      className="w-full border-neutral-100 border-t mt-2 pt-2 "
-      aria-hidden="true"
-    ></div>
-  );
+  return <div className="w-full border-neutral-100 border-t mt-2 pt-2 " aria-hidden="true"></div>;
 };
 
 export default RadioTile;

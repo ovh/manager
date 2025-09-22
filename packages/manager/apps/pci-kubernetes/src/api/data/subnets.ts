@@ -1,4 +1,4 @@
-import { v6, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+import { fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
 
 export type TGateway = {
   externalInformation: {
@@ -57,11 +57,7 @@ export const getRegionSubnets = async (
   return data;
 };
 
-export const getListGateways = async (
-  projectId: string,
-  regionName: string,
-  subnetId: string,
-) => {
+export const getListGateways = async (projectId: string, regionName: string, subnetId: string) => {
   const { data } = await v6.get<TGateway[]>(
     `/cloud/project/${projectId}/region/${regionName}/gateway?subnetId=${subnetId}`,
   );

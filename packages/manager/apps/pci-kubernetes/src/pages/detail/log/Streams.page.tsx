@@ -1,4 +1,10 @@
+import { useContext, useState } from 'react';
+
 import { useHref, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -7,27 +13,14 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  OsdsButton,
-  OsdsIcon,
-  OsdsLink,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { useContext, useState } from 'react';
-import {
-  Notifications,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { OsdsButton, OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { DbaasLogsAccountSelector, StreamsList, TDbaasLog } from '@ovh-ux/manager-pci-common';
+import { Notifications, useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import {
-  DbaasLogsAccountSelector,
-  StreamsList,
-  TDbaasLog,
-} from '@ovh-ux/manager-pci-common';
-import { LOG_LIST_TRACKING_HITS } from './constants';
+
 import { KubeLogsProvider } from './KubeLogsProvider';
+import { LOG_LIST_TRACKING_HITS } from './constants';
 
 export default function StreamsPage() {
   const { kubeId, projectId } = useParams();
@@ -40,11 +33,7 @@ export default function StreamsPage() {
 
   const gotoAddDataStream = async () =>
     navigation
-      .getURL(
-        'dedicated',
-        `#/dbaas/logs/${account?.serviceName}/streams/add`,
-        {},
-      )
+      .getURL('dedicated', `#/dbaas/logs/${account?.serviceName}/streams/add`, {})
       .then((url: string) => window.open(url, '_blank'));
 
   return (
@@ -112,10 +101,7 @@ export default function StreamsPage() {
         {t('logs_list_add_data_stream_button')}
       </OsdsButton>
 
-      <DbaasLogsAccountSelector
-        account={account}
-        onAccountChange={setAccount}
-      />
+      <DbaasLogsAccountSelector account={account} onAccountChange={setAccount} />
 
       {account && (
         <div className="mt-4">

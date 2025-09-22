@@ -1,17 +1,15 @@
 // versionSelector.test.ts
-import { render, screen, waitFor } from '@testing-library/react';
-import {
-  QueryObserverBaseResult,
-  QueryObserverSuccessResult,
-} from '@tanstack/react-query';
-import { describe, it, vi, expect, beforeEach, Mock } from 'vitest';
 import { useEffect, useState } from 'react';
-import {
-  OdsSelectValueChangeEventDetail,
-  OsdsSelect,
-} from '@ovhcloud/ods-components';
-import { VersionSelector } from './VersionSelector.component';
+
+import { QueryObserverBaseResult, QueryObserverSuccessResult } from '@tanstack/react-query';
+import { render, screen, waitFor } from '@testing-library/react';
+import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { OdsSelectValueChangeEventDetail, OsdsSelect } from '@ovhcloud/ods-components';
+
 import { useGetCloudSchema } from '@/api/hooks/useCloud';
+
+import { VersionSelector } from './VersionSelector.component';
 
 const TestComponent = () => {
   const [version, setVersion] = useState('');
@@ -25,16 +23,14 @@ const TestComponent = () => {
     return () => clearTimeout(timeout);
   }, []);
 
-  return (
-    <VersionSelector onSelectVersion={setVersion} versionSelected={version} />
-  );
+  return <VersionSelector onSelectVersion={setVersion} versionSelected={version} />;
 };
 
 vi.mock('@/api/hooks/useCloud', () => ({
   useGetCloudSchema: vi.fn(),
 }));
 
-const mockUseGetCloudSchema = (useGetCloudSchema as unknown) as Mock;
+const mockUseGetCloudSchema = useGetCloudSchema as unknown as Mock;
 
 const initQuery = {
   data: {
@@ -49,7 +45,7 @@ const initQuery = {
   isError: false,
   isSuccess: true,
   status: 'success' as const,
-  error: (undefined as unknown) as Error,
+  error: undefined as unknown as Error,
 } as QueryObserverBaseResult | QueryObserverSuccessResult;
 
 beforeEach(() => {
@@ -59,9 +55,7 @@ beforeEach(() => {
 describe('VersionSelector', () => {
   it('should call onSelectVersion with the selected version', async () => {
     const onSelectVersion = vi.fn();
-    render(
-      <VersionSelector onSelectVersion={onSelectVersion} versionSelected="" />,
-    );
+    render(<VersionSelector onSelectVersion={onSelectVersion} versionSelected="" />);
     await waitFor(() => {
       expect(onSelectVersion).toHaveBeenCalledWith('v1.23.0');
     });
@@ -75,9 +69,7 @@ describe('VersionSelector', () => {
   });
 
   it('selects a version based on the versionSelected prop', () => {
-    render(
-      <VersionSelector onSelectVersion={vi.fn()} versionSelected="v1.22.0" />,
-    );
+    render(<VersionSelector onSelectVersion={vi.fn()} versionSelected="v1.22.0" />);
 
     const select = screen.getByTestId('version-selector-select');
     expect(select).toHaveValue('v1.22.0');
@@ -86,16 +78,9 @@ describe('VersionSelector', () => {
   // Test case to check if the onSelectVersion callback is called when a new version is selected
   it('calls onSelectVersion callback when a new version is selected', async () => {
     const onSelectVersionMock = vi.fn();
-    render(
-      <VersionSelector
-        onSelectVersion={onSelectVersionMock}
-        versionSelected="1.21.0"
-      />,
-    );
+    render(<VersionSelector onSelectVersion={onSelectVersionMock} versionSelected="1.21.0" />);
 
-    const select = (screen.getByTestId(
-      'version-selector-select',
-    ) as unknown) as OsdsSelect;
+    const select = screen.getByTestId('version-selector-select') as unknown as OsdsSelect;
     select.odsValueChange.emit({
       value: 'v1.22.0',
     } as OdsSelectValueChangeEventDetail);
@@ -123,8 +108,6 @@ describe('VersionSelector', () => {
 
     render(<VersionSelector onSelectVersion={vi.fn()} versionSelected="" />);
 
-    expect(
-      screen.queryByTestId('version-selector-select'),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByTestId('version-selector-select')).not.toBeInTheDocument();
   });
 });

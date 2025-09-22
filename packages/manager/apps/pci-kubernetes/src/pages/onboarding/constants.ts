@@ -17,8 +17,7 @@ export const GUIDES = [
     id: 'deploy-app',
     links: {
       US: 'https://support.us.ovhcloud.com/hc/en-us/articles/1500004771762',
-      DEFAULT:
-        'https://docs.ovh.com/gb/en/kubernetes/deploying-an-application/',
+      DEFAULT: 'https://docs.ovh.com/gb/en/kubernetes/deploying-an-application/',
     },
   },
   {
