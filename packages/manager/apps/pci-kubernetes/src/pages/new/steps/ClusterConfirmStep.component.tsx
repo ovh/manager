@@ -6,16 +6,27 @@ import {
   useProject,
 } from '@ovh-ux/manager-pci-common';
 import { OsdsButton } from '@ovhcloud/ods-components/react';
+
+import {
+  convertHourlyPriceToMonthly,
+  useCatalogPrice,
+} from '@ovh-ux/manager-react-components';
 import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import Estimation from '@/components/create/Estimation.component';
+
 import { NodePoolPrice } from '@/api/data/kubernetes';
-import { TClusterCreationForm } from '../hooks/useCusterCreationStepper';
+import Estimation from '@/components/create/Estimation.component';
+import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import useSavingPlanAvailable from '@/hooks/useSavingPlanAvailable';
+import { TClusterPlan } from '@/types';
+
+import usePlanData from '../hooks/usePlanData';
+import selectEstimationPriceFromPlans from '../view-models/selectEstimationPriceFromPlans';
 
 export interface BillingStepProps {
   onSubmit: () => void;
   nodePools: NodePoolPrice[];
-  plan: TClusterCreationForm['plan'];
+  plan: TClusterPlan;
 }
 
 export function ClusterConfirmationStep({
@@ -24,13 +35,30 @@ export function ClusterConfirmationStep({
   plan,
 }: Readonly<BillingStepProps>) {
   const { t } = useTranslation('stepper');
+  const { t: tNode } = useTranslation('node-pool');
   const { projectId } = useParams();
   const { data: project } = useProject(projectId);
   const isDiscovery = isDiscoveryProject(project as TProject);
+  const { plans } = usePlanData();
+  const { getFormattedMonthlyCatalogPrice } = useCatalogPrice(2, {
+    exclVat: true,
+  });
+  const showSavingPlan = useSavingPlanAvailable();
+  const has3AZ = use3AZPlanAvailable();
+  const getEstimationPrices = selectEstimationPriceFromPlans(
+    tNode,
+    getFormattedMonthlyCatalogPrice,
+    convertHourlyPriceToMonthly,
+  );
+
+  const estimationPrices = getEstimationPrices(plan, plans, nodePools, {
+    showSavingPlan,
+    has3AZ,
+  });
 
   return (
     <>
-      <Estimation plan={plan} nodePools={nodePools} />
+      {estimationPrices && <Estimation rows={estimationPrices} />}
       <OsdsButton
         disabled={isDiscovery || undefined}
         className="mt-4 w-fit"

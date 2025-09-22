@@ -233,3 +233,29 @@ export type TCreateNodePoolParam = {
   desiredNodes: number;
   maxNodes?: number;
 };
+
+export type TPlan = {
+  title: string;
+  type: DeploymentMode;
+  description: string;
+  content: string[];
+  footer?: string;
+  value: TClusterPlan;
+  code: string;
+  price: number | null;
+};
+
+export type NodePool = {
+  name: string;
+  antiAffinity: boolean;
+  autoscale: boolean;
+  availabilityZones?: string[];
+  desiredNodes: number;
+  minNodes?: number;
+  localisation: string | null;
+  flavorName: string;
+  maxNodes?: number;
+  monthlyBilled: boolean;
+};
+
+export type NodePoolPrice = NodePool & { monthlyPrice: number };
