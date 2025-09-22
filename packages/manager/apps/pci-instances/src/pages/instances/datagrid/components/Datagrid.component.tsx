@@ -8,9 +8,7 @@ import { Dispatch, SetStateAction, useEffect, useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
-import {
-  Message, MessageBody, MessageIcon,
-} from '@ovhcloud/ods-react';
+import { Message, MessageBody, MessageIcon } from '@ovhcloud/ods-react';
 import { Filter } from '@ovh-ux/manager-core-api';
 import { usePciUrl } from '@ovh-ux/manager-pci-common';
 import {
@@ -245,7 +243,14 @@ const DatagridComponent = ({
         isSortable: false,
       },
     ],
-    [t, instancesQueryLoading, translateMicroRegion, pciUrl, pollingData, formatDate],
+    [
+      t,
+      instancesQueryLoading,
+      translateMicroRegion,
+      pciUrl,
+      pollingData,
+      formatDate,
+    ],
   );
 
   const errorMessage = useMemo(
@@ -297,30 +302,28 @@ const DatagridComponent = ({
   }, [isError, addError, t, errorMessage]);
 
   return (
-    <div className="overflow-x-auto mt-8">
+    <div className="overflow-x-hidden mt-8">
       {hasOperationsRunning && (
         <Message className={'mb-4'} color={'information'}>
           <MessageIcon name={'circle-info'} />
-          <MessageBody
-          >
-            {t('pci_instances_operations_running')}
-          </MessageBody>
+          <MessageBody>{t('pci_instances_operations_running')}</MessageBody>
         </Message>
       )}
-
-      <Datagrid
-        columns={datagridColumns}
-        hasNextPage={!isFetchingNextPage && !isRefetching && hasNextPage}
-        items={data}
-        onFetchNextPage={fetchNextPage}
-        totalItems={data.length}
-        sorting={sorting}
-        onSortChange={onSortChange}
-        manualSorting
-        className={
-          '[&_osds-table_table_thead_tr_th]:bg-[--ods-color-default-050] [&_osds-table]:mb-8'
-        }
-      />
+      <div className="*:overflow-x-scroll">
+        <Datagrid
+          columns={datagridColumns}
+          hasNextPage={!isFetchingNextPage && !isRefetching && hasNextPage}
+          items={data}
+          onFetchNextPage={fetchNextPage}
+          totalItems={data.length}
+          sorting={sorting}
+          onSortChange={onSortChange}
+          manualSorting
+          className={
+            '[&_osds-table_table_thead_tr_th]:bg-[--ods-color-default-050] [&_osds-table]:mb-8 [&_osds-table]:overflow-x-visible'
+          }
+        />
+      </div>
     </div>
   );
 };
