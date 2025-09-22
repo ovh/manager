@@ -16,6 +16,7 @@ export default function Layout() {
 
   useEffect(() => {
     const match = matches.slice(-1);
+    // TODO: modify tracking prefixes ?
     defineCurrentPage(`app.key-management-service-${match[0]?.id}`);
   }, [location]);
 
