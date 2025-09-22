@@ -116,6 +116,7 @@
   "domain_operations_update_accelerate": "Demande d'accélération de l'opération réussie !",
   "domain_operations_update_key_authInfo": "AuthInfo",
   "domain_operations_update_key_memberContactXXX": "Identifiant du membre",
+  "domain_operations_update_key_owner_email": "Mettre à jour l'email du titulaire avec un contenu valide",
   "domain_operations_update_key_validationToken": "Jeton de validation",
   "domain_operations_update_key_document": "Document",
   "domain_operations_update_field_bad_value": "La valeur saisie dans le champ {{t0}} est invalide",
