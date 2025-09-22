@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.59.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.58.3...@ovh-ux/manager-dedicated@20.59.0) (2025-09-22)
+
+
+### Features
+
+* **dedicated:** add tracking for nsx edge ([2f31d58](https://github.com/ovh/manager/commit/2f31d58c9d3725b91e50703d594790ca888bb0d6)), closes [#MANAGER-17752](https://github.com/ovh/manager/issues/MANAGER-17752)
+
+
+
+
+
 ## [20.58.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.58.2...@ovh-ux/manager-dedicated@20.58.3) (2025-09-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
