@@ -1,25 +1,19 @@
-import { OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
-import {
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { TabsComponent } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
+import { ReactElement } from 'react';
+
 import clsx from 'clsx';
-import {
-  RegionTile,
-  isDiscoveryProject,
-  useProject,
-  TProject,
-} from '@ovh-ux/manager-pci-common';
-import { useRegionSelector } from './useRegionSelector';
-import { RegionList } from './RegionList.component';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
+import { ODS_SPINNER_SIZE, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { RegionTile, isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
+import { TabsComponent } from '@ovh-ux/manager-react-components';
+
 import { TLocation } from '@/types/region';
+
+import { RegionList } from './RegionList.component';
+import { useRegionSelector } from './useRegionSelector';
 
 export type RegionSelectorProps = {
   projectId: string;
@@ -33,11 +27,11 @@ export function RegionSelector({
   onSelectRegion,
   regionFilter,
   compactMode,
-}: Readonly<RegionSelectorProps>): JSX.Element {
+}: Readonly<RegionSelectorProps>): ReactElement {
   const { t } = useTranslation('region-selector');
 
   const { data: project } = useProject(projectId);
-  const isDiscovery = isDiscoveryProject(project as TProject);
+  const isDiscovery = isDiscoveryProject(project);
 
   const {
     continents,
@@ -121,18 +115,9 @@ export function RegionSelector({
         <OsdsText
           breakSpaces={false}
           size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-          color={
-            isSelected
-              ? ODS_THEME_COLOR_INTENT.text
-              : ODS_THEME_COLOR_INTENT.primary
-          }
+          color={isSelected ? ODS_THEME_COLOR_INTENT.text : ODS_THEME_COLOR_INTENT.primary}
         >
-          <div
-            className={clsx(
-              isSelected && 'font-bold',
-              'whitespace-nowrap px-2 text-lg',
-            )}
-          >
+          <div className={clsx(isSelected && 'font-bold', 'whitespace-nowrap px-2 text-lg')}>
             {continent.name}
           </div>
         </OsdsText>

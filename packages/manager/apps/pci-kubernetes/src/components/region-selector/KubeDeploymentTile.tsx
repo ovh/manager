@@ -1,5 +1,7 @@
-import clsx from 'clsx';
 import { ComponentType, ReactNode } from 'react';
+
+import clsx from 'clsx';
+
 import RadioTile from '../radio-tile/RadioTile.component';
 
 export interface KubeDeploymentTileProps {
@@ -33,10 +35,7 @@ export function KubeDeploymentTile({
       <div className="flex flex-col w-full items-center text-center space-y-4 px-[24px] py-[16px] min-h-[200px]">
         <div className="flex flex-col lg:flex-row gap-4">
           <h2
-            className={clsx(
-              'text-base text-[#4d5693]',
-              isSelected ? 'font-bold' : 'font-normal',
-            )}
+            className={clsx('text-base text-[#4d5693]', isSelected ? 'font-bold' : 'font-normal')}
           >
             {title}
           </h2>

@@ -1,18 +1,18 @@
-import {
-  Clipboard,
-  DatagridColumn,
-  DataGridTextCell,
-} from '@ovh-ux/manager-react-components';
+import { useHref, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsLink } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { useHref, useParams } from 'react-router-dom';
+
+import { Clipboard, DataGridTextCell, DatagridColumn } from '@ovh-ux/manager-react-components';
+
 import ActionsComponent from '@/components/listing/actions.component';
-import { TKube } from '@/types';
 import ClusterStatus from '@/components/service/ClusterStatus.component';
+import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import { TKube } from '@/types';
 
 import Mode from './Mode';
-import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 
 export const useDatagridColumn = () => {
   const { t } = useTranslation(['listing', 'kube']);
@@ -24,10 +24,7 @@ export const useDatagridColumn = () => {
       id: 'name',
       cell: (props: TKube) => (
         <DataGridTextCell>
-          <OsdsLink
-            color={ODS_THEME_COLOR_INTENT.primary}
-            href={useHref(`${props.id}`)}
-          >
+          <OsdsLink color={ODS_THEME_COLOR_INTENT.primary} href={useHref(`${props.id}`)}>
             {props.name}
           </OsdsLink>
         </DataGridTextCell>
@@ -46,42 +43,32 @@ export const useDatagridColumn = () => {
     {
       id: 'plan',
       cell: (props: TKube) => (
-        <DataGridTextCell>
-          {t(`kube:kube_service_cluster_plan_${props.plan}`)}
-        </DataGridTextCell>
+        <DataGridTextCell>{t(`kube:kube_service_cluster_plan_${props.plan}`)}</DataGridTextCell>
       ),
       label: t('kube:kube_service_cluster_plan'),
     },
     {
       id: 'region',
-      cell: (props: TKube) => (
-        <DataGridTextCell>{props.region}</DataGridTextCell>
-      ),
+      cell: (props: TKube) => <DataGridTextCell>{props.region}</DataGridTextCell>,
       label: t('kube_list_region'),
     },
     ...(has3AZ
       ? [
           {
             id: 'mode',
-            cell: (props: TKube) => (
-              <Mode projectId={projectId} region={props.region} />
-            ),
+            cell: (props: TKube) => <Mode projectId={projectId} region={props.region} />,
             label: t('kubernetes_containers_deployment_mode_label'),
           },
         ]
       : []),
     {
       id: 'attachedTo',
-      cell: (props: TKube) => (
-        <DataGridTextCell>{props.attachedTo}</DataGridTextCell>
-      ),
+      cell: (props: TKube) => <DataGridTextCell>{props.attachedTo}</DataGridTextCell>,
       label: t('kube_list_network_attached'),
     },
     {
       id: 'version',
-      cell: (props: TKube) => (
-        <DataGridTextCell>{props.version}</DataGridTextCell>
-      ),
+      cell: (props: TKube) => <DataGridTextCell>{props.version}</DataGridTextCell>,
       label: t('kube_list_version'),
     },
     {

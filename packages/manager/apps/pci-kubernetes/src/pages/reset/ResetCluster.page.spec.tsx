@@ -1,24 +1,19 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
 import { UseQueryResult } from '@tanstack/react-query';
-import ResetClusterPage from './ResetCluster.page';
-import {
-  useKubernetesCluster,
-  useResetCluster,
-} from '@/api/hooks/useKubernetes';
-import { useGetCloudSchema } from '@/api/hooks/useCloud';
-import { useRegionInformations } from '@/api/hooks/useRegionInformations';
-import {
-  useAvailablePrivateNetworks,
-  useListGateways,
-} from '@/api/hooks/useNetwork';
+import { render, screen, waitFor } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { wrapper } from '@/wrapperRenders';
-import { DeploymentMode, TKube } from '@/types';
+import { TCloudSchema } from '@/api/data/cloud';
 import { TNetworkRegion } from '@/api/data/network';
 import { TGateway } from '@/api/data/subnets';
+import { useGetCloudSchema } from '@/api/hooks/useCloud';
+import { useKubernetesCluster, useResetCluster } from '@/api/hooks/useKubernetes';
+import { useAvailablePrivateNetworks, useListGateways } from '@/api/hooks/useNetwork';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
+import { DeploymentMode, TKube } from '@/types';
 import { TRegionInformations } from '@/types/region';
-import { TCloudSchema } from '@/api/data/cloud';
+import { wrapper } from '@/wrapperRenders';
+
+import ResetClusterPage from './ResetCluster.page';
 
 vi.mock('@/api/hooks/useKubernetes', () => ({
   useKubernetesCluster: vi.fn(),
@@ -76,10 +71,10 @@ describe('ResetClusterPage', () => {
       isLoading: false,
     } as UseQueryResult<TGateway[], Error>);
 
-    vi.mocked(useResetCluster).mockReturnValue(({
+    vi.mocked(useResetCluster).mockReturnValue({
       resetCluster: vi.fn(),
       isPending: false,
-    } as unknown) as ReturnType<typeof useResetCluster>);
+    } as unknown as ReturnType<typeof useResetCluster>);
   });
 
   it('should render reset modal with correct labels', async () => {
@@ -87,9 +82,7 @@ describe('ResetClusterPage', () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText(
-          'reset:pci_projects_project_kubernetes_service_reset_message',
-        ),
+        screen.getByText('reset:pci_projects_project_kubernetes_service_reset_message'),
       ).toBeInTheDocument();
     });
   });

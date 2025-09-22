@@ -1,26 +1,17 @@
-import {
-  OsdsChip,
-  OsdsLink,
-  OsdsText,
-  OsdsTile,
-} from '@ovhcloud/ods-components/react';
+import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_CHIP_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
-import clsx from 'clsx';
-import {
-  useCatalogPrice,
-  useProjectUrl,
-} from '@ovh-ux/manager-react-components';
+import { ODS_CHIP_SIZE, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsChip, OsdsLink, OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
+
 import { RegionChipByType, useBytes } from '@ovh-ux/manager-pci-common';
+import { useCatalogPrice, useProjectUrl } from '@ovh-ux/manager-react-components';
+
 import { DeploymentMode } from '@/types';
 
 export interface FlavorDiskType {
@@ -78,10 +69,7 @@ export function FlavorTile({
   const projectHref = useProjectUrl('public-cloud');
   return (
     <OsdsTile
-      className={clsx(
-        isSelected ? checkedClass : uncheckedClass,
-        !hasEnoughQuota && 'opacity-50',
-      )}
+      className={clsx(isSelected ? checkedClass : uncheckedClass, !hasEnoughQuota && 'opacity-50')}
       checked={isSelected}
       onClick={() => hasEnoughQuota && onClick?.()}
     >
@@ -92,16 +80,10 @@ export function FlavorTile({
             size={ODS_THEME_TYPOGRAPHY_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.text}
           >
-            <span className={clsx(isSelected && 'font-bold')}>
-              {flavorName}
-            </span>
+            <span className={clsx(isSelected && 'font-bold')}>{flavorName}</span>
           </OsdsText>
           {isNewFlavor && (
-            <OsdsChip
-              color={ODS_THEME_COLOR_INTENT.info}
-              size={ODS_CHIP_SIZE.sm}
-              inline
-            >
+            <OsdsChip color={ODS_THEME_COLOR_INTENT.info} size={ODS_CHIP_SIZE.sm} inline>
               <OsdsText
                 color={ODS_THEME_COLOR_INTENT.primary}
                 level={ODS_TEXT_LEVEL.body}
@@ -187,9 +169,7 @@ export function FlavorTile({
         <div className="flex gap-4 mt-3">
           {Object.entries(flavorCompatibility).map(([zone, isVisible]) => {
             if (isVisible) {
-              return (
-                <RegionChipByType key={zone} type={zone as DeploymentMode} />
-              );
+              return <RegionChipByType key={zone} type={zone as DeploymentMode} />;
             }
             return null;
           })}

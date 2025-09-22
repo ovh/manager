@@ -1,7 +1,8 @@
 import { render } from '@testing-library/react';
-import ActionsComponent from './actions.component';
 
 import { wrapper } from '@/wrapperRenders';
+
+import ActionsComponent from './actions.component';
 
 describe('ActionsComponent', () => {
   const kubeId = 'test-kube-id';

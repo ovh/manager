@@ -1,10 +1,7 @@
-import { ResponseAPIError } from '@ovh-ux/manager-pci-common';
-import {
-  Datagrid,
-  Notifications,
-  useDataGrid,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { useParams } from 'react-router-dom';
+
+import { Translation, useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -15,20 +12,23 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
+import { OsdsButton, OsdsIcon, OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { ResponseAPIError } from '@ovh-ux/manager-pci-common';
 import {
-  OsdsButton,
-  OsdsIcon,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import { Translation, useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
-import { formatIP } from '@/helpers';
+  Datagrid,
+  Notifications,
+  useDataGrid,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
+
 import {
   useDeleteRestriction,
   useMappedRestrictions,
   useUpdateRestriction,
 } from '@/api/hooks/useRestriction';
+import { formatIP } from '@/helpers';
+
 import { useRestrictionColumns } from '../../../components/restriction/useRestrictionColumns';
 
 export default function RestrictionsPage() {
@@ -45,17 +45,12 @@ export default function RestrictionsPage() {
     deleteRowByIndex,
   } = useMappedRestrictions(projectId, kubeId, pagination);
 
-  const {
-    deleteRestriction,
-    isPending: isDeletePending,
-  } = useDeleteRestriction({
+  const { deleteRestriction, isPending: isDeletePending } = useDeleteRestriction({
     projectId,
     kubeId,
     onSuccess: () =>
       addSuccess(
-        <Translation ns="restrictions">
-          {(_t) => _t('kube_restrictions_add_success')}
-        </Translation>,
+        <Translation ns="restrictions">{(_t) => _t('kube_restrictions_add_success')}</Translation>,
         true,
       ),
     onError: (error: ResponseAPIError) =>
@@ -71,17 +66,12 @@ export default function RestrictionsPage() {
       ),
   });
 
-  const {
-    updateRestriction,
-    isPending: isUpdatePending,
-  } = useUpdateRestriction({
+  const { updateRestriction, isPending: isUpdatePending } = useUpdateRestriction({
     projectId,
     kubeId,
     onSuccess: () =>
       addSuccess(
-        <Translation ns="restrictions">
-          {(_t) => _t('kube_restrictions_add_success')}
-        </Translation>,
+        <Translation ns="restrictions">{(_t) => _t('kube_restrictions_add_success')}</Translation>,
         true,
       ),
     onError: (error: ResponseAPIError) =>
@@ -111,9 +101,7 @@ export default function RestrictionsPage() {
   };
 
   const onSave = (ip: string, index: number) => {
-    const ipsToSave = mappedData.map((d) =>
-      d.index === index ? formatIP(ip) : d.value,
-    );
+    const ipsToSave = mappedData.map((d) => (d.index === index ? formatIP(ip) : d.value));
     updateRestriction(ipsToSave.filter((d) => d));
   };
 

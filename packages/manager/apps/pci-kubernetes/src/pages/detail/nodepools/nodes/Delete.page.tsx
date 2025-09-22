@@ -1,3 +1,16 @@
+import { ReactElement, useMemo, useState } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_LEVEL } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_BUTTON_VARIANT,
+  ODS_INPUT_TYPE,
+  ODS_SPINNER_SIZE,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsFormField,
@@ -6,27 +19,16 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_INPUT_TYPE,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useMemo, useState } from 'react';
+
 import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import { getNodesQueryKey, useDeleteNode, useNodes } from '@/api/hooks/nodes';
 import { useTrack } from '@/hooks/track';
 import queryClient from '@/queryClient';
 
 const CONFIRMATION_TEXT = 'DELETE';
 
-export default function DeletePage(): JSX.Element {
+export default function DeletePage(): ReactElement {
   const { projectId, kubeId: clusterId, poolId, nodeId } = useParams();
 
   const { trackClick } = useTrack();
@@ -47,16 +49,9 @@ export default function DeletePage(): JSX.Element {
   const { t: tKubeNodes } = useTranslation('kube-nodes');
   const { t: tCommon } = useTranslation('common');
 
-  const { data: nodes, isPending: isNodesPending } = useNodes(
-    projectId,
-    clusterId,
-    poolId,
-  );
+  const { data: nodes, isPending: isNodesPending } = useNodes(projectId, clusterId, poolId);
 
-  const node = useMemo(() => nodes?.find((n) => n.id === nodeId), [
-    nodes,
-    nodeId,
-  ]);
+  const node = useMemo(() => nodes?.find((n) => n.id === nodeId), [nodes, nodeId]);
 
   const { deleteNode, isPending: isDeleting } = useDeleteNode({
     onError(cause: Error & { response: { data: { message: string } } }): void {
@@ -120,11 +115,7 @@ export default function DeletePage(): JSX.Element {
             <OsdsFormField
               className="mt-4"
               inline
-              error={
-                confirmationInputData.hasError
-                  ? tCommon('common_field_error_required')
-                  : ''
-              }
+              error={confirmationInputData.hasError ? tCommon('common_field_error_required') : ''}
             >
               <OsdsText
                 slot="label"
@@ -166,11 +157,7 @@ export default function DeletePage(): JSX.Element {
             </OsdsFormField>
           </>
         ) : (
-          <OsdsSpinner
-            inline
-            size={ODS_SPINNER_SIZE.md}
-            className="block text-center"
-          />
+          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} className="block text-center" />
         )}
       </slot>
       <OsdsButton

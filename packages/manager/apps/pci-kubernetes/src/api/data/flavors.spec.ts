@@ -1,12 +1,12 @@
 import { describe, it, vi } from 'vitest';
+
 import { v6 } from '@ovh-ux/manager-core-api';
+
 import { getFlavors, getKubeFlavors, getRegionFlavors } from './flavors';
 
 describe('getRegionFlavors', () => {
   it('fetches region flavors successfully', async () => {
-    const mockData = [
-      { id: 'flavor1', name: 'Flavor 1', ram: 2048, disk: 20, vcpus: 2 },
-    ];
+    const mockData = [{ id: 'flavor1', name: 'Flavor 1', ram: 2048, disk: 20, vcpus: 2 }];
     vi.mocked(v6.get).mockResolvedValue({ data: mockData });
     const result = await getRegionFlavors('project1', 'region1');
     expect(result).toEqual(mockData);
@@ -21,9 +21,7 @@ describe('getRegionFlavors', () => {
 
   it('handles error when fetching region flavors', async () => {
     vi.mocked(v6.get).mockRejectedValue(new Error('Network Error'));
-    await expect(getRegionFlavors('project1', 'region1')).rejects.toThrow(
-      'Network Error',
-    );
+    await expect(getRegionFlavors('project1', 'region1')).rejects.toThrow('Network Error');
   });
 
   it('fetches region flavors with multiple flavors', async () => {
@@ -81,9 +79,7 @@ describe('getFlavors', () => {
   it('throws an error when API call fails', async () => {
     const errorMessage = 'Network Error';
     vi.mocked(v6.get).mockRejectedValueOnce(new Error(errorMessage));
-    await expect(getFlavors('projectId', 'region1')).rejects.toThrow(
-      errorMessage,
-    );
+    await expect(getFlavors('projectId', 'region1')).rejects.toThrow(errorMessage);
   });
 
   it('returns empty array when no flavors are available', async () => {
@@ -114,9 +110,7 @@ describe('getKubeFlavors', () => {
   it('throws an error when API call fails', async () => {
     const errorMessage = 'Network Error';
     vi.mocked(v6.get).mockRejectedValueOnce(new Error(errorMessage));
-    await expect(getKubeFlavors('projectId', 'region1')).rejects.toThrow(
-      errorMessage,
-    );
+    await expect(getKubeFlavors('projectId', 'region1')).rejects.toThrow(errorMessage);
   });
 
   it('returns empty array when no kube flavors are available', async () => {

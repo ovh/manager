@@ -1,10 +1,12 @@
-import { vi, describe } from 'vitest';
 import { render } from '@testing-library/react';
+import { describe, vi } from 'vitest';
+
+import { TClusterNodePool } from '@/api/data/node-pools';
 import * as nodePoolsModule from '@/api/hooks/node-pools';
 import * as queryClientModule from '@/queryClient';
 import { wrapper } from '@/wrapperRenders';
+
 import Page from './NodePools.page';
-import { TClusterNodePool } from '@/api/data/node-pools';
 
 const nodePool: TClusterNodePool = {
   id: '1',

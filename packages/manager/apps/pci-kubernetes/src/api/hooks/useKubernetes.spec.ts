@@ -1,7 +1,11 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+
 import * as ApiKubernetesModule from '@/api/data/kubernetes';
 import * as ApiNetworksModule from '@/api/data/network';
+import { TKube } from '@/types';
+import { wrapper } from '@/wrapperRenders';
+
 import {
   useAllKube,
   useGetClusterEtcdUsage,
@@ -11,8 +15,6 @@ import {
   useResetKubeConfig,
   useUpdateKubePolicy,
 } from './useKubernetes';
-import { wrapper } from '@/wrapperRenders';
-import { TKube } from '@/types';
 
 describe('useAllKube', () => {
   it('fetches all Kubernetes clusters successfully', async () => {
@@ -26,9 +28,7 @@ describe('useAllKube', () => {
 
 describe('useKubes', () => {
   it('fetches filtered and paginated Kubernetes clusters successfully', async () => {
-    const mockData = [
-      { id: 'kube1', name: 'Kube 1', privateNetworkId: 'net1' },
-    ] as TKube[];
+    const mockData = [{ id: 'kube1', name: 'Kube 1', privateNetworkId: 'net1' }] as TKube[];
     vi.spyOn(ApiKubernetesModule, 'getAllKube').mockResolvedValueOnce(mockData);
     const mockPrivateNetworksData = [
       {
@@ -80,13 +80,8 @@ describe('useKubernetesCluster', () => {
         },
       },
     } as TKube;
-    vi.spyOn(ApiKubernetesModule, 'getKubernetesCluster').mockResolvedValueOnce(
-      mockData,
-    );
-    const { result } = renderHook(
-      () => useKubernetesCluster('project1', 'kube1'),
-      { wrapper },
-    );
+    vi.spyOn(ApiKubernetesModule, 'getKubernetesCluster').mockResolvedValueOnce(mockData);
+    const { result } = renderHook(() => useKubernetesCluster('project1', 'kube1'), { wrapper });
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
     expect(result.current.data).toEqual({
       ...mockData,
@@ -106,8 +101,7 @@ describe('useKubernetesCluster', () => {
           disabled: false,
           label: 'Plugin Always Pull Images',
           state: 'disabled',
-          tip:
-            'kube_service_cluster_admission_plugins_always_pull_image_explanation',
+          tip: 'kube_service_cluster_admission_plugins_always_pull_image_explanation',
         },
 
         {
@@ -116,8 +110,7 @@ describe('useKubernetesCluster', () => {
           state: 'enabled',
           disabled: true,
           label: 'Plugin Node Restriction',
-          tip:
-            'kube_service_cluster_admission_plugins_node_restriction_explanation',
+          tip: 'kube_service_cluster_admission_plugins_node_restriction_explanation',
         },
       ],
     });
@@ -128,10 +121,7 @@ describe('useRenameKubernetesCluster', () => {
   it('renames Kubernetes cluster successfully', async () => {
     const mockSuccess = vi.fn();
     const mockError = vi.fn();
-    vi.spyOn(
-      ApiKubernetesModule,
-      'updateKubernetesCluster',
-    ).mockResolvedValueOnce({});
+    vi.spyOn(ApiKubernetesModule, 'updateKubernetesCluster').mockResolvedValueOnce({});
     const { result } = renderHook(
       () =>
         useRenameKubernetesCluster({
@@ -199,14 +189,11 @@ describe('useGetClusterEtcdUsage', () => {
   });
   it('fetches etcd usage successfully', async () => {
     const mockData = { usage: 500, quota: 1024 };
-    vi.spyOn(ApiKubernetesModule, 'getKubeEtcdUsage').mockResolvedValueOnce(
-      mockData,
-    );
+    vi.spyOn(ApiKubernetesModule, 'getKubeEtcdUsage').mockResolvedValueOnce(mockData);
 
-    const { result } = renderHook(
-      () => useGetClusterEtcdUsage('project-valid', 'kube1'),
-      { wrapper },
-    );
+    const { result } = renderHook(() => useGetClusterEtcdUsage('project-valid', 'kube1'), {
+      wrapper,
+    });
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
     expect(result.current.data).toEqual(mockData);
@@ -217,10 +204,9 @@ describe('useGetClusterEtcdUsage', () => {
       new Error('Network Error'),
     );
 
-    const { result } = renderHook(
-      () => useGetClusterEtcdUsage('project-error', 'kube1'),
-      { wrapper },
-    );
+    const { result } = renderHook(() => useGetClusterEtcdUsage('project-error', 'kube1'), {
+      wrapper,
+    });
     await waitFor(() => expect(result.current.isError).toBe(true));
   });
 });

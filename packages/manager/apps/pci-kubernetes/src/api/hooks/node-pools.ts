@@ -1,21 +1,24 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { PaginationState } from '@ovh-ux/manager-react-components';
-import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useMemo, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
+
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { ColumnSort } from '@tanstack/react-table';
 import { format, parseISO } from 'date-fns';
 import * as dateFnsLocales from 'date-fns/locale';
+import { useTranslation } from 'react-i18next';
+
+import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
+import { PaginationState } from '@ovh-ux/manager-react-components';
+
 import {
-  deleteNodePool,
-  getClusterNodePools,
   TClusterNodePool,
   TUpdateNodePoolSizeParam,
+  deleteNodePool,
+  getClusterNodePools,
   updateNodePoolSize,
 } from '@/api/data/node-pools';
-import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { useRegionFlavors } from '@/api/hooks/flavors';
+import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { compareFunction, paginateResults } from '@/helpers';
 
 export const useClusterNodePools = (projectId: string, clusterId: string) => {
@@ -49,9 +52,7 @@ export const sortClusterNodePools = (
   if (sorting) {
     const { id: sortKey, desc } = sorting;
 
-    data.sort(
-      compareFunction<TClusterNodePool>(sortKey as keyof TClusterNodePool),
-    );
+    data.sort(compareFunction<TClusterNodePool>(sortKey as keyof TClusterNodePool));
     if (desc) {
       data.reverse();
     }
@@ -115,10 +116,7 @@ export const usePaginatedClusterNodePools = (
     data: useMemo(
       () =>
         paginateResults<TClusterNodePool>(
-          applyFilters(
-            sortClusterNodePools(poolsWithFlavors || [], sorting),
-            filters,
-          ),
+          applyFilters(sortClusterNodePools(poolsWithFlavors || [], sorting), filters),
           pagination,
         ),
       [poolsWithFlavors, pagination, filters, sorting],

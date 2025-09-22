@@ -1,19 +1,8 @@
-import {
-  OsdsText,
-  OsdsFormField,
-  OsdsToggle,
-} from '@ovhcloud/ods-components/react';
-
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_TEXT_COLOR_INTENT,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_COLOR_INTENT, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsFormField, OsdsText, OsdsToggle } from '@ovhcloud/ods-components/react';
 
 type NodeToggleProps = {
   nodePoolEnabled: boolean;

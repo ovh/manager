@@ -1,20 +1,18 @@
-import {
-  DatagridColumn,
-  DataGridTextCell,
-} from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsChip, OsdsLink } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
+import { OsdsChip, OsdsLink } from '@ovhcloud/ods-components/react';
+
+import { DataGridTextCell, DatagridColumn } from '@ovh-ux/manager-react-components';
+
 import { TClusterNodePool } from '@/api/data/node-pools';
+
 import ActionsComponent from './actions.component';
 
-export const MonthlyBilled = ({
-  monthlyBilled,
-}: {
-  monthlyBilled: boolean;
-}) => {
+export const MonthlyBilled = ({ monthlyBilled }: { monthlyBilled: boolean }) => {
   const { t } = useTranslation('flavor-billing');
   return (
     <DataGridTextCell>
@@ -83,11 +81,7 @@ export const useDatagridColumns = () => {
         ) : (
           <DataGridTextCell>
             <span className="whitespace-nowrap">
-              <OsdsChip
-                color={ODS_THEME_COLOR_INTENT.error}
-                inline
-                size={ODS_CHIP_SIZE.sm}
-              >
+              <OsdsChip color={ODS_THEME_COLOR_INTENT.error} inline size={ODS_CHIP_SIZE.sm}>
                 {t(`kube_node_pool_autoscale_${pool.autoscale}`)}
               </OsdsChip>
             </span>
@@ -102,9 +96,7 @@ export const useDatagridColumns = () => {
           <span className="whitespace-nowrap">
             <OsdsChip
               color={
-                props.antiAffinity
-                  ? ODS_THEME_COLOR_INTENT.success
-                  : ODS_THEME_COLOR_INTENT.error
+                props.antiAffinity ? ODS_THEME_COLOR_INTENT.success : ODS_THEME_COLOR_INTENT.error
               }
               inline
               size={ODS_CHIP_SIZE.sm}
@@ -136,8 +128,7 @@ export const useDatagridColumns = () => {
         <DataGridTextCell>
           <OsdsChip
             color={(() => {
-              if (pool.status === 'READY')
-                return ODS_THEME_COLOR_INTENT.success;
+              if (pool.status === 'READY') return ODS_THEME_COLOR_INTENT.success;
               if (pool.status === 'ERROR') return ODS_THEME_COLOR_INTENT.error;
               return ODS_THEME_COLOR_INTENT.warning;
             })()}

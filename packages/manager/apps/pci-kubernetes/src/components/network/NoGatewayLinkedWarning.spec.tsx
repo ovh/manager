@@ -1,9 +1,11 @@
-import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import NoGatewayLinkedMessage from './NoGatewayLinkedWarning.component';
-import { DeploymentMode } from '@/types';
-import { TGateway } from '@/api/data/subnets';
+import { describe, expect, it, vi } from 'vitest';
+
 import { TNetworkRegion } from '@/api/data/network';
+import { TGateway } from '@/api/data/subnets';
+import { DeploymentMode } from '@/types';
+
+import NoGatewayLinkedMessage from './NoGatewayLinkedWarning.component';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   useProjectUrl: () => 'https://project-url',
@@ -11,16 +13,8 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
 
 describe('NoGatewayLinkedMessage', () => {
   it('should show message when no private network exists', () => {
-    render(
-      <NoGatewayLinkedMessage
-        network={[]}
-        gateways={[]}
-        type={DeploymentMode.MULTI_ZONES}
-      />,
-    );
-    expect(
-      screen.getByText('kubernetes_network_form_no_private_network'),
-    ).toBeInTheDocument();
+    render(<NoGatewayLinkedMessage network={[]} gateways={[]} type={DeploymentMode.MULTI_ZONES} />);
+    expect(screen.getByText('kubernetes_network_form_no_private_network')).toBeInTheDocument();
     expect(screen.getByText('kubernetes_network_form_add')).toHaveAttribute(
       'href',
       'https://project-url/private-networks',
@@ -35,12 +29,11 @@ describe('NoGatewayLinkedMessage', () => {
         type={DeploymentMode.MULTI_ZONES}
       />,
     );
-    expect(
-      screen.getByText('kubernetes_network_form_no_associated_gateway'),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText('kubernetes_network_form_add_gateway'),
-    ).toHaveAttribute('href', 'https://project-url/gateway/new');
+    expect(screen.getByText('kubernetes_network_form_no_associated_gateway')).toBeInTheDocument();
+    expect(screen.getByText('kubernetes_network_form_add_gateway')).toHaveAttribute(
+      'href',
+      'https://project-url/gateway/new',
+    );
   });
 
   it('should render nothing when network and gateway are valid', () => {
