@@ -1,3 +1,7 @@
+import { useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,
@@ -6,11 +10,11 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { SubnetSelector } from '../network/SubnetSelector.component';
+
 import { TNetworkRegion } from '@/api/data/network';
 import { TPrivateNetworkSubnet } from '@/api/data/subnets';
+
+import { SubnetSelector } from '../network/SubnetSelector.component';
 
 export type LoadBalancerSelectProps = {
   projectId: string;
@@ -40,9 +44,7 @@ export default function LoadBalancerSelect({
         <>
           {t('kubernetes_network_form_load_balancers_subnet_toggler')}
           <OsdsIcon
-            name={
-              isExpanded ? ODS_ICON_NAME.CHEVRON_UP : ODS_ICON_NAME.CHEVRON_DOWN
-            }
+            name={isExpanded ? ODS_ICON_NAME.CHEVRON_UP : ODS_ICON_NAME.CHEVRON_DOWN}
             color={ODS_THEME_COLOR_INTENT.primary}
             size={ODS_ICON_SIZE.sm}
             aria-hidden="true"

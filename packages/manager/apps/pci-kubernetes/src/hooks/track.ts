@@ -1,5 +1,7 @@
 import { useContext } from 'react';
+
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { TRACKING_PREFIX } from '@/constants';
 
 export const useTrack = () => {

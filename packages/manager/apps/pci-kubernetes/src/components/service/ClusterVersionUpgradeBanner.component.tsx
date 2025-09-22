@@ -1,15 +1,11 @@
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_SIZE, ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
-import {
-  OsdsButton,
-  OsdsMessage,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
+import { ODS_BUTTON_SIZE, ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
+import { OsdsButton, OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
+
 import { VERSIONS_GUIDE_URL } from '@/constants';
 
 export default function ClusterVersionUpgradeBanner() {

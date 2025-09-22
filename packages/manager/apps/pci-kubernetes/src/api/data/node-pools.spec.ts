@@ -1,10 +1,8 @@
-import { v6 } from '@ovh-ux/manager-core-api';
 import { describe, it, vi } from 'vitest';
-import {
-  deleteNodePool,
-  getClusterNodePools,
-  updateNodePoolSize,
-} from '@/api/data/node-pools';
+
+import { v6 } from '@ovh-ux/manager-core-api';
+
+import { deleteNodePool, getClusterNodePools, updateNodePoolSize } from '@/api/data/node-pools';
 
 describe('getClusterNodePools', () => {
   it('fetches cluster node pools successfully', async () => {
@@ -74,9 +72,7 @@ describe('getClusterNodePools', () => {
 
   it('handles error when fetching cluster node pools', async () => {
     vi.mocked(v6.get).mockRejectedValue(new Error('Network Error'));
-    await expect(getClusterNodePools('project1', 'cluster1')).rejects.toThrow(
-      'Network Error',
-    );
+    await expect(getClusterNodePools('project1', 'cluster1')).rejects.toThrow('Network Error');
   });
 });
 
@@ -84,16 +80,12 @@ describe('deleteNodePool', () => {
   it('deletes node pool successfully', async () => {
     vi.mocked(v6.delete).mockResolvedValue({});
     await deleteNodePool('project1', 'cluster1', 'pool1');
-    expect(v6.delete).toHaveBeenCalledWith(
-      '/cloud/project/project1/kube/cluster1/nodepool/pool1',
-    );
+    expect(v6.delete).toHaveBeenCalledWith('/cloud/project/project1/kube/cluster1/nodepool/pool1');
   });
 
   it('handles error when deleting node pool', async () => {
     vi.mocked(v6.delete).mockRejectedValue(new Error('Network Error'));
-    await expect(
-      deleteNodePool('project1', 'cluster1', 'pool1'),
-    ).rejects.toThrow('Network Error');
+    await expect(deleteNodePool('project1', 'cluster1', 'pool1')).rejects.toThrow('Network Error');
   });
 });
 
@@ -121,8 +113,8 @@ describe('updateNodePoolSize', () => {
       autoscale: true,
     };
     vi.mocked(v6.put).mockRejectedValue(new Error('Network Error'));
-    await expect(
-      updateNodePoolSize('project1', 'cluster1', 'pool1', param),
-    ).rejects.toThrow('Network Error');
+    await expect(updateNodePoolSize('project1', 'cluster1', 'pool1', param)).rejects.toThrow(
+      'Network Error',
+    );
   });
 });

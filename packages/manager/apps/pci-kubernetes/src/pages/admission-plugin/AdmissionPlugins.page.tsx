@@ -1,23 +1,10 @@
-import {
-  OsdsSwitch,
-  OsdsSwitchItem,
-  OsdsButton,
-  OsdsModal,
-  OsdsPopoverContent,
-  OsdsDivider,
-  OsdsText,
-  OsdsMessage,
-  OsdsPopover,
-  OsdsSpinner,
-  OsdsIcon,
-} from '@ovhcloud/ods-components/react';
 import { useCallback, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
 
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
@@ -31,20 +18,31 @@ import {
   OdsSwitchChangedEventDetail,
   OsdsSwitchCustomEvent,
 } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
+import {
+  OsdsButton,
+  OsdsDivider,
+  OsdsIcon,
+  OsdsMessage,
+  OsdsModal,
+  OsdsPopover,
+  OsdsPopoverContent,
+  OsdsSpinner,
+  OsdsSwitch,
+  OsdsSwitchItem,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
+
 import { useUpdateAdmissionPlugin } from '@/api/hooks/useAdmissionPlugin/useAdmissionPlugin';
+import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { useResponsiveModal } from '@/hooks/useResizeOsdsModal';
 
 const AdmissionPluginsModal = () => {
   const navigate = useNavigate();
   const onClose = () => navigate('..');
   const { projectId, kubeId } = useParams();
-  const { data: kubeDetail, isPending } = useKubernetesCluster(
-    projectId,
-    kubeId,
-  );
+  const { data: kubeDetail, isPending } = useKubernetesCluster(projectId, kubeId);
   const { t } = useTranslation(['service']);
 
   const { plugins } = kubeDetail ?? {};
@@ -71,10 +69,7 @@ const AdmissionPluginsModal = () => {
     [],
   );
 
-  const {
-    updateAdmissionPlugins,
-    isPending: isMutationUpdating,
-  } = useUpdateAdmissionPlugin({
+  const { updateAdmissionPlugins, isPending: isMutationUpdating } = useUpdateAdmissionPlugin({
     projectId,
     kubeId,
     onError: (error) => {
@@ -197,9 +192,7 @@ const AdmissionPluginsModal = () => {
                         value="enabled"
                         checked={plugin.state === 'enabled' || undefined}
                       >
-                        {t(
-                          'kube_service_cluster_admission_plugins_to_activate',
-                        )}
+                        {t('kube_service_cluster_admission_plugins_to_activate')}
                       </OsdsSwitchItem>
                       {!plugin.disabled && (
                         <OsdsSwitchItem
@@ -207,9 +200,7 @@ const AdmissionPluginsModal = () => {
                           value="disabled"
                           checked={plugin.state === 'disabled' || undefined}
                         >
-                          {t(
-                            'kube_service_cluster_admission_plugins_to_desactivate',
-                          )}
+                          {t('kube_service_cluster_admission_plugins_to_desactivate')}
                         </OsdsSwitchItem>
                       )}
                     </OsdsSwitch>

@@ -1,5 +1,7 @@
-import { useCatalog } from '@ovh-ux/manager-pci-common';
 import { useCallback } from 'react';
+
+import { useCatalog } from '@ovh-ux/manager-pci-common';
+
 import { DeploymentMode, TClusterPlan, TClusterPlanEnum } from '@/types';
 
 type TPlan = {
