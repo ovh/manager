@@ -137,7 +137,6 @@ export default function RemovePage() {
   const isPending =
     isSavingsPlansPending || isDefaultProjectLoading || isRemovePending;
 
-  console.log('isSavingPlansLoading', isSavingsPlansPending);
   return (
     <Modal
       type={ODS_MODAL_COLOR.warning}

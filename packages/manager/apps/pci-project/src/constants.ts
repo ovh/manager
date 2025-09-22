@@ -1,10 +1,12 @@
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 export const QUOTA_THRESHOLD = 80;
 
 export const ROADMAP_CHANGELOG_LINKS = {
   changelog: 'https://github.com/orgs/ovh/projects/16/views/6?pane=info',
-  roadmap: 'https://github.com/orgs/ovh/projects/16/views/1?pane=info',
+  roadmap:
+    'https://github.com/ovh/public-cloud-roadmap/projects?query=is%3Aopen',
   'feature-request':
     'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
 };
@@ -23,8 +25,9 @@ export const ITALY_AGREEMENT_TEXT = {
     "Il Cliente dichiara di riconoscere, accettare ed approvare espressamente, ai sensi dell'art. 1341, secondo comma, e dell'art. 1342, secondo comma, del Codice Civile, le seguenti specifiche clausole del presente Contratto: 2.5 (“Chiusura dell’Account Cliente”), 3.7 (“Sospensione dei Servizi”), 4.2 (“SLA”), 4.3 (“Crediti di servizio”), 5.2 (“Modifica dei Servizi ordinati”), 7.1 (“Casi di e-mail fraudolente e indesiderate”), 7.3 (“Sospensione e disattivazione”), 10.2 (“Responsabilità di OVHcloud”), 10.3 (“Limitazioni di responsabilità”), 10.4 (“Eccezioni”), 10.6 (“Responsabilità del Cliente”), 10.7 (“Garanzie”), 10.8 (“Forza Maggiore”), 11.2 (“Modifica delle tariffe”), 11.6 (“Mancato pagamento e ritardo nel pagamento”), 11.7 (“Contestazione”), 12.2 (“Rinnovo dei Servizi”), 14.1 (“Legge applicabile e foro competente”), 14.2, ult. cpv. (“Sanzioni internazionali e Controllo delle esportazioni”), 14.7 (“Modifiche al Contratto”), 14.9 (“Cessione del contratto”).",
 };
 
-export const INDIAN_KYC_SUPPORT_LINK =
-  'https://help.ovhcloud.com/csm?id=csm_cases_requests&ovhSubsidiary=IN';
+export const DOC_BASE_URL = 'https://help.ovhcloud.com/csm';
+
+export const INDIAN_KYC_SUPPORT_LINK = `${DOC_BASE_URL}?id=csm_cases_requests&ovhSubsidiary=IN`;
 
 export type TFeatureStateDetail = {
   url: string;
@@ -51,31 +54,67 @@ export const PCI_HDS_ADDON = {
 export const BASE_PROJECT_PATH = '#/pci/projects/:projectId';
 
 const OVH_CLOUD_URL = 'https://www.ovhcloud.com';
-const HDS_URL = 'enterprise/certification-conformity/hds/';
 
-type HdsInfo = { [key in OvhSubsidiary]: string };
-export const HDS_INFO: Partial<HdsInfo> = {
-  DEFAULT: `${OVH_CLOUD_URL}/en/${HDS_URL}`,
-  ASIA: `${OVH_CLOUD_URL}/asia/${HDS_URL}`,
-  AU: `${OVH_CLOUD_URL}/en-au/${HDS_URL}`,
-  CA: `${OVH_CLOUD_URL}/en-ca/${HDS_URL}`,
-  DE: `${OVH_CLOUD_URL}/de/${HDS_URL}`,
-  ES: `${OVH_CLOUD_URL}/es-es/${HDS_URL}`,
-  FR: `${OVH_CLOUD_URL}/fr/${HDS_URL}`,
-  GB: `${OVH_CLOUD_URL}/en-gb/${HDS_URL}`,
-  IE: `${OVH_CLOUD_URL}/en-ie/${HDS_URL}`,
-  IT: `${OVH_CLOUD_URL}/it/${HDS_URL}`,
-  MA: `${OVH_CLOUD_URL}/fr-ma/${HDS_URL}`,
-  NL: `${OVH_CLOUD_URL}/nl/${HDS_URL}`,
-  PL: `${OVH_CLOUD_URL}/pl/${HDS_URL}`,
-  PT: `${OVH_CLOUD_URL}/pt/${HDS_URL}`,
-  QC: `${OVH_CLOUD_URL}/fr-ca/${HDS_URL}`,
-  SG: `${OVH_CLOUD_URL}/en-sg/${HDS_URL}`,
-  SN: `${OVH_CLOUD_URL}/fr-sn/${HDS_URL}`,
-  TN: `${OVH_CLOUD_URL}/fr-tn/${HDS_URL}`,
-  WE: `${OVH_CLOUD_URL}/en/${HDS_URL}`,
-  WS: `${OVH_CLOUD_URL}/es/${HDS_URL}`,
+// Global language mappings for subsidiaries
+export const OVH_LANGUAGE_BY_SUBSIDIARY: Record<OvhSubsidiary, string> = {
+  DEFAULT: 'en',
+  ASIA: 'asia',
+  AU: 'en-au',
+  CA: 'en-ca',
+  CZ: 'cs',
+  DE: 'de',
+  ES: 'es-es',
+  EU: 'en',
+  FI: 'fi',
+  FR: 'fr',
+  GB: 'en-gb',
+  IE: 'en-ie',
+  IN: 'en-in',
+  IT: 'it',
+  LT: 'lt',
+  MA: 'fr-ma',
+  NL: 'nl',
+  PL: 'pl',
+  PT: 'pt',
+  QC: 'fr-ca',
+  SG: 'en-sg',
+  SN: 'fr-sn',
+  TN: 'fr-tn',
+  US: 'en-us',
+  WE: 'en',
+  WS: 'es',
 };
+
+// Function to get HDS info URL for a given subsidiary with automatic fallback
+export const getHdsInfoUrl = (subsidiary: OvhSubsidiary): string => {
+  const HDS_URL = 'enterprise/certification-conformity/hds/';
+  const language = OVH_LANGUAGE_BY_SUBSIDIARY[subsidiary];
+  return `${OVH_CLOUD_URL}/${language}/${HDS_URL}`;
+};
+
+// Function to build Developer Center URL for a given subsidiary
+export const buildDeveloperCenterUrl = (subsidiary: OvhSubsidiary): string => {
+  // Developer Center exists only for specific subsidiaries
+  const developerCenterSubsidiaries: Partial<Record<OvhSubsidiary, string>> = {
+    FR: 'fr',
+    GB: 'en-gb',
+    IE: 'en-ie',
+    CA: 'en-ca',
+    QC: 'fr-ca',
+    MA: 'fr-ma',
+    SN: 'fr-sn',
+    TN: 'fr-tn',
+    AU: 'en-au',
+    SG: 'en-sg',
+    ASIA: 'asia',
+    IN: 'en-in',
+    WE: 'en',
+  };
+
+  const language = developerCenterSubsidiaries[subsidiary] || 'en';
+  return `${OVH_CLOUD_URL}/${language}/developer-center/`;
+};
+
 export const PCI_FEATURES_STATES: TFeatureState = {
   DATAPLATFORM: {
     LIST: {
@@ -171,8 +210,7 @@ export const PCI_FEATURES_STATES: TFeatureState = {
   },
 };
 
-export const SUPPORT_URL =
-  'https://help.ovhcloud.com/csm?id=csm_get_help&ovhSubsidiary=';
+export const SUPPORT_URL = `${DOC_BASE_URL}?id=csm_get_help&ovhSubsidiary=`;
 
 export const PCI_PROJECT_ORDER_CART = {
   productName: 'cloud',
@@ -202,27 +240,20 @@ export enum AntiFraudError {
 export const STARTUP_PROGRAM_GUIDE_URL =
   'https://community.ovhcloud.com/community/en/what-products-are-available-to-use-with-startup-program-credits?id=community_question&sys_id=99d01d508d61d2902d4cc9575bde90ae&view_source=featuredList';
 
+// Legacy QUOTA_LIMIT_GUIDES - kept for backward compatibility
+const INCREASE_QUOTA_URL =
+  '-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=';
 export const QUOTA_LIMIT_GUIDES: Partial<{ [key in OvhSubsidiary]: string }> = {
-  GB:
-    'https://help.ovhcloud.com/csm/en-gb-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050843',
-  IE:
-    'https://help.ovhcloud.com/csm/en-ie-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050840',
-  DEFAULT:
-    'https://help.ovhcloud.com/csm/en-gb-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050843',
-  ASIA:
-    'https://help.ovhcloud.com/csm/asia-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050836',
-  AU:
-    'https://help.ovhcloud.com/csm/en-au-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050838',
-  CA:
-    'https://help.ovhcloud.com/csm/en-ca-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050852',
-  SG:
-    'https://help.ovhcloud.com/csm/en-sg-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050844',
-  WE:
-    'https://help.ovhcloud.com/csm/en-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050845',
-  IN:
-    'https://help.ovhcloud.com/csm/asia-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050836',
-  FR:
-    'https://help.ovhcloud.com/csm/fr-public-cloud-compute-increase-quota?id=kb_article_view&sysparm_article=KB0050857',
+  GB: `${DOC_BASE_URL}/en-gb${INCREASE_QUOTA_URL}KB0050843`,
+  IE: `${DOC_BASE_URL}/en-ie${INCREASE_QUOTA_URL}KB0050840`,
+  DEFAULT: `${DOC_BASE_URL}/en-gb${INCREASE_QUOTA_URL}KB0050843`,
+  ASIA: `${DOC_BASE_URL}/asia${INCREASE_QUOTA_URL}KB0050836`,
+  AU: `${DOC_BASE_URL}/en-au${INCREASE_QUOTA_URL}KB0050838`,
+  CA: `${DOC_BASE_URL}/en-ca${INCREASE_QUOTA_URL}KB0050852`,
+  SG: `${DOC_BASE_URL}/en-sg${INCREASE_QUOTA_URL}KB0050844`,
+  WE: `${DOC_BASE_URL}/en-${INCREASE_QUOTA_URL}KB0050845`,
+  IN: `${DOC_BASE_URL}/asia${INCREASE_QUOTA_URL}KB0050836`,
+  FR: `${DOC_BASE_URL}/fr${INCREASE_QUOTA_URL}KB0050857`,
 };
 
 export const UCENTS = 1 / 100_000_000;
@@ -244,3 +275,258 @@ export const PAYPAL_SCRIPT = {
   src: 'https://www.paypalobjects.com/api/checkout.js',
   id: 'paypal_checkout_script',
 };
+
+// Dashboard Tile Types and Constants
+export type DashboardItem = {
+  label?: string;
+  labelTranslationKey?: string;
+  description?: string;
+  descriptionTranslationKey?: string;
+  link?: string;
+  linkLabelTranslationKey?: string;
+  iconODS?: ODS_ICON_NAME;
+  iconImage?: string;
+  target?: string;
+  rel?: string;
+  color?: string;
+  ariaLabelTranslationKey?: string;
+  price?: string;
+  validUntil?: string | null;
+  hideTileIfNoOtherItems?: boolean;
+};
+
+// Config type for items that need transformation before becoming DashboardItem
+export type DashboardItemConfig = DashboardItem & {
+  documentationGuideKey?: string;
+};
+
+export type DashboardTile = {
+  titleTranslationKey: string;
+  // Tile type. Defaults to 'standard' if not specified.
+  type?: 'standard' | 'billing';
+  items: DashboardItem[];
+};
+
+// Function to get documentation guide URL for a given guide and subsidiary
+export const getDocumentationGuideLink = (
+  guideName: string,
+  subsidiary: OvhSubsidiary,
+): string => {
+  const language = OVH_LANGUAGE_BY_SUBSIDIARY[subsidiary];
+
+  // Special case for guides - uses csm_index instead of KB article
+  if (guideName === 'guides') {
+    return `${DOC_BASE_URL}/${language}-home?id=csm_index`;
+  }
+
+  // KB Article IDs for documentation guides by subsidiary
+  const DOCUMENTATION_KB_BY_SUB: Record<
+    string,
+    Partial<Record<OvhSubsidiary, string>>
+  > = {
+    getting_started: {
+      DEFAULT: 'KB0050388', // en-gb
+      DE: 'KB0050383', // de
+      ES: 'KB0050389', // es-es
+      FR: 'KB0050407', // fr
+      IE: 'KB0050387', // en-ie
+      IT: 'KB0050404', // it
+      PL: 'KB0050394', // pl
+      PT: 'KB0050395', // pt
+      CA: 'KB0050398', // en-ca
+      QC: 'KB0050397', // fr-ca
+      WS: 'KB0050392', // es
+      AU: 'KB0038069', // en-au
+      IN: 'KB0069446', // en-in
+      SG: 'KB0050393', // en-sg
+      ASIA: 'KB0050384', // asia
+    },
+    public_cloud: {
+      DEFAULT: 'KB0050399', // en-gb
+      DE: 'KB0050396', // de
+      ES: 'KB0050416', // es-es
+      FR: 'KB0050409', // fr
+      IE: 'KB0050401', // en-ie
+      IT: 'KB0050403', // it
+      PL: 'KB0050406', // pl
+      PT: 'KB0050411', // pt
+      CA: 'KB0050400', // en-ca
+      QC: 'KB0050408', // fr-ca
+      WS: 'KB0050417', // es
+      AU: 'KB0050410', // en-au
+      IN: 'KB0069451', // en-in
+      SG: 'KB0050402', // en-sg
+      ASIA: 'KB0038083', // asia
+    },
+    instances: {
+      DEFAULT: 'KB0050758', // en-gb
+      DE: 'KB0050755', // de
+      ES: 'KB0050761', // es-es
+      FR: 'KB0050764', // fr
+      IE: 'KB0050766', // en-ie
+      IT: 'KB0050765', // it
+      PL: 'KB0050768', // pl
+      PT: 'KB0050776', // pt
+      CA: 'KB0050754', // en-ca
+      QC: 'KB0050762', // fr-ca
+      WS: 'KB0050760', // es
+      AU: 'KB0050756', // en-au
+      IN: 'KB0069231', // en-in
+      SG: 'KB0050759', // en-sg
+      ASIA: 'KB0038462', // asia
+    },
+    billing: {
+      DEFAULT: 'KB0050453', // en-gb
+      DE: 'KB0050448', // de
+      ES: 'KB0050457', // es-es
+      FR: 'KB0050459', // fr
+      IE: 'KB0050454', // en-ie
+      IT: 'KB0050461', // it
+      PL: 'KB0050472', // pl
+      PT: 'KB0050474', // pt
+      CA: 'KB0050452', // en-ca
+      QC: 'KB0050460', // fr-ca
+      WS: 'KB0050462', // es
+      AU: 'KB0038140', // en-au
+      IN: 'KB0069450', // en-in
+      SG: 'KB0050465', // en-sg
+      ASIA: 'KB0050463', // asia
+    },
+  };
+
+  const kbId =
+    DOCUMENTATION_KB_BY_SUB[guideName]?.[subsidiary] ||
+    DOCUMENTATION_KB_BY_SUB[guideName]?.DEFAULT;
+
+  // Map guide names to their specific paths
+  const guidePaths: Record<string, string> = {
+    getting_started: 'public-cloud-compute-essential-information',
+    public_cloud: 'public-cloud-compute-control-panel',
+    instances: 'public-cloud-compute-getting-started-instance',
+    billing: 'public-cloud-compute-billing-options',
+  };
+
+  const path = guidePaths[guideName];
+  return `${DOC_BASE_URL}/${language}-${path}?id=kb_article_view&sysparm_article=${kbId}`;
+};
+
+export const DASHBOARD_DOCUMENTATION_LINKS_CONFIG: DashboardItemConfig[] = [
+  {
+    labelTranslationKey: 'pci_projects_project_getting_started',
+    linkLabelTranslationKey: 'pci_projects_project_essential_to_start',
+    documentationGuideKey: 'getting_started',
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_public_cloud',
+    linkLabelTranslationKey: 'pci_projects_project_get_familiar',
+    documentationGuideKey: 'public_cloud',
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_instances',
+    linkLabelTranslationKey: 'pci_projects_project_manage_instances',
+    documentationGuideKey: 'instances',
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_billing',
+    linkLabelTranslationKey: 'pci_projects_project_understand_manage',
+    documentationGuideKey: 'billing',
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_guides',
+    linkLabelTranslationKey: 'pci_projects_project_see_all_guides',
+    documentationGuideKey: 'guides',
+  },
+];
+
+// Developer Center URL construction (now uses centralized LANGUAGE_MAPPINGS)
+export const DASHBOARD_COMMUNITY_LINKS: DashboardItem[] = [
+  {
+    labelTranslationKey: 'pci_projects_project_roadmap',
+    linkLabelTranslationKey: 'pci_projects_project_discover_participate',
+    link: ROADMAP_CHANGELOG_LINKS.roadmap,
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_developer_center',
+    linkLabelTranslationKey: 'pci_projects_project_start_with_products',
+    // LINK is dynamically constructed based on subsidiary in useDashboardSections hook
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_community',
+  },
+  {
+    labelTranslationKey: '',
+    linkLabelTranslationKey: 'pci_projects_project_discuss_discord',
+    link: 'https://discord.gg/ovhcloud',
+  },
+  {
+    labelTranslationKey: '',
+    linkLabelTranslationKey: 'pci_projects_project_discuss_community',
+    link: 'https://community.ovh.com/',
+  },
+];
+
+export const DASHBOARD_CREDIT_VOUCHER_LINK: DashboardItem = {
+  linkLabelTranslationKey: 'pci_projects_project_credits_vouchers',
+  link: '/vouchers',
+  color: 'primary',
+  iconODS: ODS_ICON_NAME.arrowRight,
+  ariaLabelTranslationKey: 'pci_projects_project_link_credits_vouchers_aria',
+  hideTileIfNoOtherItems: true,
+};
+
+// Quick Access Items - Base configuration without iconImage (will be added in component)
+export const DASHBOARD_QUICK_ACCESS_ITEMS_BASE: DashboardItem[] = [
+  {
+    labelTranslationKey: 'pci_projects_project_instances',
+    descriptionTranslationKey: 'pci_projects_project_create_instance',
+    link: `instances/new`,
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_kubernetes',
+    descriptionTranslationKey: 'pci_projects_project_create_cluster',
+    link: PCI_FEATURES_STATES.KUBERNETES.LIST.url,
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_object_storage',
+    descriptionTranslationKey: 'pci_projects_project_create_container',
+    link: PCI_FEATURES_STATES.OBJECTS.LIST.url,
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_block_storage',
+    descriptionTranslationKey: 'pci_projects_project_create_volume',
+    link: PCI_FEATURES_STATES.BLOCKS.LIST.url,
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_network',
+    descriptionTranslationKey: 'pci_projects_project_manage_vrack',
+    link: PCI_FEATURES_STATES.PRIVATE_NETWORK.LIST.url,
+  },
+  {
+    labelTranslationKey: 'pci_projects_project_database',
+    descriptionTranslationKey: 'pci_projects_project_create_database',
+    link: PCI_FEATURES_STATES.DATABASES.ADD.url,
+  },
+];
+
+export const DASHBOARD_OTHER_ACTIONS_ITEMS: DashboardItem[] = [
+  {
+    iconODS: ODS_ICON_NAME.book,
+    labelTranslationKey: 'pci_projects_project_create_ai_notebook',
+    link: PCI_FEATURES_STATES.NOTEBOOKS.ADD.url,
+  },
+  {
+    iconODS: ODS_ICON_NAME.network,
+    labelTranslationKey: 'pci_projects_project_create_load_balancer',
+    link: PCI_FEATURES_STATES.LOADBALANCER.LIST.url,
+  },
+  {
+    iconODS: ODS_ICON_NAME.bill,
+    labelTranslationKey: 'pci_projects_project_billing',
+    link: PCI_FEATURES_STATES.PROJECT_MANAGEMENT.BILLING_CONTROL.url,
+  },
+  {
+    iconODS: ODS_ICON_NAME.cog,
+    labelTranslationKey: 'pci_projects_project_quotas',
+    link: PCI_FEATURES_STATES.PROJECT_MANAGEMENT.QUOTA_AND_REGIONS.url,
+  },
+];
