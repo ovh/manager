@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
+import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import { createWrapper } from '@/wrapperRenders';
 import HdsOption from './HdsOption';
-import { HDS_INFO } from '@/constants';
+import { getHdsInfoUrl } from '@/constants';
 
 describe('HdsOption', () => {
   const defaultProps = {
@@ -18,7 +19,7 @@ describe('HdsOption', () => {
     });
 
     const link = screen.getByTestId('ods-link');
-    expect(link).toHaveAttribute('href', HDS_INFO.FR);
+    expect(link).toHaveAttribute('href', getHdsInfoUrl('FR' as OvhSubsidiary));
   });
 
   it('disables checkbox if already certified', () => {

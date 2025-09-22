@@ -56,12 +56,7 @@ export default function QuotaAlert() {
                 />
               ),
               quotaUrl: (
-                <OdsLink
-                  href={quotaUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-testid="quota-alert_quota-url"
-                />
+                <OdsLink href={quotaUrl} data-testid="quota-alert_quota-url" />
               ),
             }}
           />
