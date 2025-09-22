@@ -111,11 +111,6 @@ export default class BillingService {
       case 'deleteAtExpiration':
       case 'terminateAtExpirationDate':
         return this.$http.put(`/services/${service.id}`, {
-          displayName: service.displayName,
-          renew: {
-            ...service.renew,
-            mode: 'manual',
-          },
           terminationPolicy: option,
         });
       case 'terminate':
