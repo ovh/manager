@@ -1,10 +1,8 @@
-import { v6 } from '@ovh-ux/manager-core-api';
 import { describe, it, vi } from 'vitest';
-import {
-  getPrivateNetworkSubnets,
-  getListGateways,
-  TGateway,
-} from '@/api/data/subnets';
+
+import { v6 } from '@ovh-ux/manager-core-api';
+
+import { TGateway, getListGateways, getPrivateNetworkSubnets } from '@/api/data/subnets';
 
 describe('getPrivateNetworkSubnets', () => {
   it('fetches private network subnets successfully', async () => {
@@ -39,9 +37,7 @@ describe('getPrivateNetworkSubnets', () => {
 
   it('handles error when fetching private network subnets', async () => {
     vi.mocked(v6.get).mockRejectedValue(new Error('Network Error'));
-    await expect(
-      getPrivateNetworkSubnets('project1', 'network1'),
-    ).rejects.toThrow('Network Error');
+    await expect(getPrivateNetworkSubnets('project1', 'network1')).rejects.toThrow('Network Error');
   });
 });
 
@@ -90,8 +86,6 @@ describe('getListGateways', () => {
 
     vi.mocked(v6.get).mockRejectedValue(error);
 
-    await expect(
-      getListGateways(projectId, regionName, subnetId),
-    ).rejects.toThrow('API Error');
+    await expect(getListGateways(projectId, regionName, subnetId)).rejects.toThrow('API Error');
   });
 });

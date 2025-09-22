@@ -1,38 +1,31 @@
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import clsx from 'clsx';
-import { OsdsButton, OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { StepState } from '../hooks/useStep';
-import { VersionSelector } from './VersionSelector.component';
-import { UpdatePolicySelector } from './UpdatePolicySelector.component';
+import { ODS_BUTTON_SIZE, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsButton, OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
+
 import { UpdatePolicy } from '@/types';
+
+import { StepState } from '../hooks/useStep';
+import { UpdatePolicySelector } from './UpdatePolicySelector.component';
+import { VersionSelector } from './VersionSelector.component';
 
 export interface VersionStepProps {
   onSubmit: (version: string, policy: UpdatePolicy) => void;
   step: StepState;
 }
 
-export function VersionAndUpdatePolicyStep({
-  onSubmit,
-  step,
-}: Readonly<VersionStepProps>) {
+export function VersionAndUpdatePolicyStep({ onSubmit, step }: Readonly<VersionStepProps>) {
   const { t } = useTranslation(['stepper', 'versions', 'service']);
   const [version, setVersion] = useState<string | null>(null);
   const [policy, setPolicy] = useState(UpdatePolicy.AlwaysUpdate);
   return (
     <>
       <div className={clsx(step.isLocked && 'hidden')}>
-        <VersionSelector
-          key={version}
-          versionSelected={version}
-          onSelectVersion={setVersion}
-        />
+        <VersionSelector key={version} versionSelected={version} onSelectVersion={setVersion} />
         <UpdatePolicySelector policy={policy} onPolicyChange={setPolicy} />
       </div>
 

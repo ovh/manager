@@ -1,26 +1,18 @@
-import {
-  OsdsMessage,
-  OsdsText,
-  OsdsIcon,
-  OsdsLink,
-} from '@ovhcloud/ods-components/react';
+import { useTranslation } from 'react-i18next';
 
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_MESSAGE_TYPE,
   ODS_TEXT_COLOR_INTENT,
 } from '@ovhcloud/ods-components';
-
-import { useTranslation } from 'react-i18next';
+import { OsdsIcon, OsdsLink, OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 
 import { KUBECONFIG_3AZ_GATEWAY } from '@/constants';
 

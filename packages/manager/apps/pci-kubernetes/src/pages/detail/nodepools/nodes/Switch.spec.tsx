@@ -1,6 +1,8 @@
-import { describe } from 'vitest';
 import { render } from '@testing-library/react';
+import { describe } from 'vitest';
+
 import { wrapper } from '@/wrapperRenders';
+
 import SwitchPage from './Switch.page';
 
 describe('SwitchPage', () => {

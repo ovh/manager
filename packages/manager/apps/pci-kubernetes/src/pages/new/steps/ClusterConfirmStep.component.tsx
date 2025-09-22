@@ -1,15 +1,16 @@
-import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import {
-  isDiscoveryProject,
-  TProject,
-  useProject,
-} from '@ovh-ux/manager-pci-common';
-import { OsdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import Estimation from '@/components/create/Estimation.component';
+import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
+import { OsdsButton } from '@ovhcloud/ods-components/react';
+
+import { TProject, isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
+
 import { NodePoolPrice } from '@/api/data/kubernetes';
+import Estimation from '@/components/create/Estimation.component';
+
 import { TClusterCreationForm } from '../hooks/useCusterCreationStepper';
 
 export interface BillingStepProps {
@@ -18,15 +19,11 @@ export interface BillingStepProps {
   plan: TClusterCreationForm['plan'];
 }
 
-export function ClusterConfirmationStep({
-  onSubmit,
-  nodePools,
-  plan,
-}: Readonly<BillingStepProps>) {
+export function ClusterConfirmationStep({ onSubmit, nodePools, plan }: Readonly<BillingStepProps>) {
   const { t } = useTranslation('stepper');
   const { projectId } = useParams();
   const { data: project } = useProject(projectId);
-  const isDiscovery = isDiscoveryProject(project as TProject);
+  const isDiscovery = isDiscoveryProject(project);
 
   return (
     <>

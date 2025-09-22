@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next';
+
 import { TMappedRestriction } from '@/api/hooks/useRestriction';
+
 import RestrictionLine from './RestrictionLine.component';
 
 type RestrictionColumnsProps = {

@@ -1,13 +1,9 @@
-import {
-  OsdsButton,
-  OsdsModal,
-  OsdsRadio,
-  OsdsRadioButton,
-  OsdsRadioGroup,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { useContext, useEffect, useState } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
 import { Translation, useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_VARIANT,
@@ -17,16 +13,22 @@ import {
   OdsRadioGroupValueChangeEventDetail,
   OsdsRadioGroupCustomEvent,
 } from '@ovhcloud/ods-components';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useContext, useEffect, useState } from 'react';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { UPGRADE_POLICIES } from '@/constants';
 import {
-  useKubernetesCluster,
-  useUpdateKubePolicy,
-} from '@/api/hooks/useKubernetes';
+  OsdsButton,
+  OsdsModal,
+  OsdsRadio,
+  OsdsRadioButton,
+  OsdsRadioGroup,
+  OsdsSpinner,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
+import { useKubernetesCluster, useUpdateKubePolicy } from '@/api/hooks/useKubernetes';
+import { UPGRADE_POLICIES } from '@/constants';
 import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
 
 export default function UpgradePolicyPage() {
@@ -38,15 +40,12 @@ export default function UpgradePolicyPage() {
   const { addError, addSuccess } = useNotifications();
   const { tracking } = useContext(ShellContext)?.shell || {};
 
-  const {
-    data: kubernetesCluster,
-    isPending: isPendingCluster,
-  } = useKubernetesCluster(projectId, kubeId);
+  const { data: kubernetesCluster, isPending: isPendingCluster } = useKubernetesCluster(
+    projectId,
+    kubeId,
+  );
 
-  const {
-    updateKubePolicy,
-    isPending: isPendingUpdatePolicy,
-  } = useUpdateKubePolicy({
+  const { updateKubePolicy, isPending: isPendingUpdatePolicy } = useUpdateKubePolicy({
     projectId,
     kubeId,
     updatePolicy,
@@ -65,9 +64,7 @@ export default function UpgradePolicyPage() {
     },
     onSuccess() {
       addSuccess(
-        <Translation ns="service">
-          {(_t) => _t('kube_service_upgrade_policy_success')}
-        </Translation>,
+        <Translation ns="service">{(_t) => _t('kube_service_upgrade_policy_success')}</Translation>,
         true,
       );
       onClose();
@@ -104,9 +101,7 @@ export default function UpgradePolicyPage() {
           <OsdsRadioGroup
             value={updatePolicy}
             onOdsValueChange={(
-              event: OsdsRadioGroupCustomEvent<
-                OdsRadioGroupValueChangeEventDetail
-              >,
+              event: OsdsRadioGroupCustomEvent<OdsRadioGroupValueChangeEventDetail>,
             ) => {
               setUpdatePolicy(event.detail.newValue);
             }}
@@ -118,10 +113,7 @@ export default function UpgradePolicyPage() {
                   size={ODS_RADIO_BUTTON_SIZE.xs}
                 >
                   <div slot="end" className="inline-block">
-                    <OsdsText
-                      color={ODS_THEME_COLOR_INTENT.text}
-                      size={ODS_TEXT_SIZE._600}
-                    >
+                    <OsdsText color={ODS_THEME_COLOR_INTENT.text} size={ODS_TEXT_SIZE._600}>
                       {t(`kube_service_upgrade_policy_${policy}`)}
                     </OsdsText>
                     <OsdsText

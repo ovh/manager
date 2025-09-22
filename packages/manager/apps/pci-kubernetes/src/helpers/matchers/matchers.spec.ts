@@ -1,8 +1,8 @@
 import {
   CLUSTER_NAME_CONSTRAINTS,
+  NODE_POOL_NAME_CONSTRAINTS,
   isClusterNameValid,
   isNodePoolNameValid,
-  NODE_POOL_NAME_CONSTRAINTS,
 } from './matchers';
 
 const commonInvalidNames = [
@@ -49,14 +49,10 @@ const commonInvalidNames = [
 const commonValidNames = ['aa', 'a1', 'a-a', 'a--a', 'name-1'];
 
 const validMaxNodePoolName = 'a'.repeat(NODE_POOL_NAME_CONSTRAINTS.MAX_LENGTH);
-const invalidMaxNodePoolName = 'a'.repeat(
-  NODE_POOL_NAME_CONSTRAINTS.MAX_LENGTH + 1,
-);
+const invalidMaxNodePoolName = 'a'.repeat(NODE_POOL_NAME_CONSTRAINTS.MAX_LENGTH + 1);
 
 const validMaxClusterName = 'a'.repeat(CLUSTER_NAME_CONSTRAINTS.MAX_LENGTH);
-const invalidMaxClusterName = 'a'.repeat(
-  CLUSTER_NAME_CONSTRAINTS.MAX_LENGTH + 1,
-);
+const invalidMaxClusterName = 'a'.repeat(CLUSTER_NAME_CONSTRAINTS.MAX_LENGTH + 1);
 
 const validNodePoolNames = ['1', '1a', '1-1', '1--1', 'a'];
 

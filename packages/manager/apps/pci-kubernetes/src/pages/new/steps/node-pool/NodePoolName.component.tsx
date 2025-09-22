@@ -1,19 +1,8 @@
-import {
-  OsdsText,
-  OsdsInput,
-  OsdsFormField,
-} from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import {
-  ODS_INPUT_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
 
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_LEVEL } from '@ovhcloud/ods-common-theming';
+import { ODS_INPUT_TYPE, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsFormField, OsdsInput, OsdsText } from '@ovhcloud/ods-components/react';
 
 type NodeNameProps = {
   hasError: boolean;
@@ -22,12 +11,7 @@ type NodeNameProps = {
   onNameChange: (val: string) => void;
 };
 
-const NodePoolName = ({
-  hasError,
-  onTouched,
-  name,
-  onNameChange,
-}: NodeNameProps) => {
+const NodePoolName = ({ hasError, onTouched, name, onNameChange }: NodeNameProps) => {
   const { t } = useTranslation('add');
 
   return (
@@ -43,21 +27,13 @@ const NodePoolName = ({
       </OsdsText>
       <OsdsFormField
         class="mt-6"
-        error={
-          hasError
-            ? t('kube_add_node_pool_name_input_pattern_validation_error')
-            : ''
-        }
+        error={hasError ? t('kube_add_node_pool_name_input_pattern_validation_error') : ''}
         inline
       >
         <OsdsText
           slot="label"
           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          color={
-            hasError
-              ? ODS_THEME_COLOR_INTENT.error
-              : ODS_THEME_COLOR_INTENT.text
-          }
+          color={hasError ? ODS_THEME_COLOR_INTENT.error : ODS_THEME_COLOR_INTENT.text}
           size={ODS_TEXT_SIZE._200}
         >
           {t('kubernetes_add_name')}
@@ -66,11 +42,7 @@ const NodePoolName = ({
           <OsdsInput
             placeholder={t('kube_add_node_pool_name_label')}
             value={name}
-            color={
-              hasError
-                ? ODS_THEME_COLOR_INTENT.error
-                : ODS_THEME_COLOR_INTENT.primary
-            }
+            color={hasError ? ODS_THEME_COLOR_INTENT.error : ODS_THEME_COLOR_INTENT.primary}
             type={ODS_INPUT_TYPE.text}
             onOdsValueChange={(e) => {
               onNameChange(e.detail.value ?? '');

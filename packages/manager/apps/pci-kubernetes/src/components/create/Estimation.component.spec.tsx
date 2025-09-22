@@ -1,12 +1,14 @@
 import { render } from '@testing-library/react';
-import { describe, it, vi, expect, beforeEach, Mock } from 'vitest';
+import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { useCatalog } from '@ovh-ux/manager-pci-common';
 import { useCatalogPrice } from '@ovh-ux/manager-react-components';
-import Estimation from './Estimation.component';
-import { wrapper } from '@/wrapperRenders';
 
 import { NodePoolPrice } from '@/api/data/kubernetes';
 import { TClusterPlanEnum } from '@/types';
+import { wrapper } from '@/wrapperRenders';
+
+import Estimation from './Estimation.component';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -61,9 +63,7 @@ describe('Estimation Component', () => {
       wrapper,
     });
 
-    expect(
-      getByText('kube_common_node_pool_estimated_cost'),
-    ).toBeInTheDocument();
+    expect(getByText('kube_common_node_pool_estimated_cost')).toBeInTheDocument();
   });
 
   it('should display all expected estimation texts', () => {
@@ -75,16 +75,10 @@ describe('Estimation Component', () => {
       wrapper,
     });
 
-    expect(
-      getByText('kube_common_node_pool_estimation_text'),
-    ).toBeInTheDocument();
-    expect(
-      getByText('kube_common_node_pool_estimation_price'),
-    ).toBeInTheDocument();
+    expect(getByText('kube_common_node_pool_estimation_text')).toBeInTheDocument();
+    expect(getByText('kube_common_node_pool_estimation_price')).toBeInTheDocument();
     expect(getByText('0.00 €')).toBeInTheDocument();
-    expect(
-      getByText('kube_common_node_pool_estimation_text_end'),
-    ).toBeInTheDocument();
+    expect(getByText('kube_common_node_pool_estimation_text_end')).toBeInTheDocument();
   });
 
   it('should correctly calculate the estimated price from nodePools', () => {
@@ -93,9 +87,7 @@ describe('Estimation Component', () => {
       { monthlyPrice: 20 },
     ] as NodePoolPrice[];
 
-    const getFormattedMonthlyCatalogPriceMock = vi
-      .fn()
-      .mockReturnValue('30.00 €');
+    const getFormattedMonthlyCatalogPriceMock = vi.fn().mockReturnValue('30.00 €');
 
     (useCatalogPrice as Mock).mockReturnValue({
       getFormattedMonthlyCatalogPrice: getFormattedMonthlyCatalogPriceMock,
@@ -109,16 +101,12 @@ describe('Estimation Component', () => {
     );
 
     expect(getFormattedMonthlyCatalogPriceMock).toHaveBeenCalledWith(30);
-    expect(
-      getByText('kube_common_node_pool_estimation_price'),
-    ).toBeInTheDocument();
+    expect(getByText('kube_common_node_pool_estimation_price')).toBeInTheDocument();
     expect(getByText('30.00 €')).toBeInTheDocument();
   });
 
   it('should display default price when nodePools is undefined', () => {
-    const getFormattedMonthlyCatalogPriceMock = vi
-      .fn()
-      .mockReturnValue('x.xx €');
+    const getFormattedMonthlyCatalogPriceMock = vi.fn().mockReturnValue('x.xx €');
 
     (useCatalogPrice as Mock).mockReturnValue({
       getFormattedMonthlyCatalogPrice: getFormattedMonthlyCatalogPriceMock,
@@ -129,9 +117,7 @@ describe('Estimation Component', () => {
     });
 
     expect(getFormattedMonthlyCatalogPriceMock).toHaveBeenCalledWith(0);
-    expect(
-      getByText('kube_common_node_pool_estimation_price'),
-    ).toBeInTheDocument();
+    expect(getByText('kube_common_node_pool_estimation_price')).toBeInTheDocument();
     expect(getByText('x.xx €')).toBeInTheDocument();
   });
 });

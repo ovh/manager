@@ -1,13 +1,14 @@
-import { PaginationState } from '@ovh-ux/manager-react-components';
-import { useMutation } from '@tanstack/react-query';
 import { useEffect, useMemo, useState } from 'react';
-import queryClient from '@/queryClient';
+
+import { useMutation } from '@tanstack/react-query';
+
+import { PaginationState } from '@ovh-ux/manager-react-components';
+
 import { paginateResults } from '@/helpers';
+import queryClient from '@/queryClient';
+
 import { deleteRestriction, updateRestriction } from '../data/restriction';
-import {
-  getClusterRestrictionsQuery,
-  useClusterRestrictions,
-} from './useKubernetes';
+import { getClusterRestrictionsQuery, useClusterRestrictions } from './useKubernetes';
 
 export type TMappedRestriction = {
   index: number;
@@ -102,8 +103,7 @@ export const useUpdateRestriction = ({
   onSuccess,
 }: TDeleteRestriction) => {
   const mutation = useMutation({
-    mutationFn: async (ips: string[]) =>
-      updateRestriction(projectId, kubeId, ips),
+    mutationFn: async (ips: string[]) => updateRestriction(projectId, kubeId, ips),
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({

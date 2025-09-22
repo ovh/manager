@@ -1,20 +1,20 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { z } from 'zod';
 
+import { NodePoolPrice } from '@/api/data/kubernetes';
 import {
+  camelToSnake,
   compareFunction,
+  filterSchemaKeys,
   formatIP,
+  generateUniqueName,
+  getColorByPercentage,
   getFormatedKubeVersion,
+  isBase64,
   isIPValid,
   paginateResults,
-  getColorByPercentage,
-  camelToSnake,
-  filterSchemaKeys,
-  isBase64,
   parseCommaSeparated,
-  generateUniqueName,
 } from '@/helpers/index';
-import { NodePoolPrice } from '@/api/data/kubernetes';
 
 describe('helper', () => {
   it('compares two objects based on a key', () => {
@@ -105,9 +105,7 @@ describe('getColorByPercentage', () => {
 describe('camelToSnake', () => {
   it('converts camelCase to snake_case', () => {
     expect(camelToSnake('camelCase')).toBe('camel_case');
-    expect(camelToSnake('someLongVariableName')).toBe(
-      'some_long_variable_name',
-    );
+    expect(camelToSnake('someLongVariableName')).toBe('some_long_variable_name');
     expect(camelToSnake('already_snake_case')).toBe('already_snake_case');
   });
 });
@@ -184,25 +182,14 @@ describe('generateUniqueName', () => {
     ['NodePool-2', [{ name: 'NodePool-2' }], 'NodePool-2-1'],
     [
       'NodePool-2',
-      [
-        { name: 'NodePool-2' },
-        { name: 'NodePool-2-1' },
-        { name: 'NodePool-2-2' },
-      ],
+      [{ name: 'NodePool-2' }, { name: 'NodePool-2-1' }, { name: 'NodePool-2-2' }],
       'NodePool-2-3',
     ],
-    [
-      'UniquePool',
-      [{ name: 'AnotherPool' }, { name: 'NodePool-2' }],
-      'UniquePool',
-    ],
+    ['UniquePool', [{ name: 'AnotherPool' }, { name: 'NodePool-2' }], 'UniquePool'],
   ])(
     'should return %s for baseName "%s" with existing nodes %j',
     (baseName, existingNodePools, expectedResult) => {
-      const result = generateUniqueName(
-        baseName,
-        existingNodePools as NodePoolPrice[],
-      );
+      const result = generateUniqueName(baseName, existingNodePools as NodePoolPrice[]);
       expect(result).toBe(expectedResult);
     },
   );
