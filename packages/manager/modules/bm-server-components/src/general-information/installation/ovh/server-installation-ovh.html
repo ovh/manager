@@ -15,17 +15,6 @@
             data-wizard-step-on-load="$ctrl.loadStep1.bind($ctrl)"
             data-wizard-step-on-next="$ctrl.checkNextStep1.bind($ctrl)"
         >
-            <oui-message
-                class="mb-3"
-                data-type="warning"
-                data-dismissable
-                data-ng-if="informations.hasSomePersonalTemplates"
-            >
-                <span
-                    data-translate="server_configuration_installation_ovh_step1_gabarit_eol"
-                    data-translate-values="{ t0: $ctrl.doc.eolPersonalInstallationTemplates }"
-                ></span>
-            </oui-message>
 
             <div class="text-center" data-ng-show="loader.loading">
                 <oui-spinner></oui-spinner>
