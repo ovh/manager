@@ -881,13 +881,6 @@ export default class Server {
     );
   }
 
-  getPersonalTemplatesList() {
-    // temporary, to be removed with all its dependencies starting from 7th of October 2025
-    return this.OvhHttp.get('/me/installationTemplate', {
-      rootPath: 'apiv6',
-    });
-  }
-
   getPartitionSchemes(productId, templateName) {
     return this.get(productId, '{templateName}/partitionScheme', {
       urlParams: {
