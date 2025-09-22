@@ -37,5 +37,6 @@
   "kube_common_node_pool_deploy_title": "Wahl der Availability Zone",
   "kube_common_node_pool_deploy_description": "Bei einem über drei Availability Zones (AZ) verteilten Kubernetes-Cluster wird empfohlen, Node-Pools je Zone einzusetzen, um Resilienz und Hochverfügbarkeit zu gewährleisten. Diese Konfiguration ermöglicht eine gleichmäßige Verteilung Ihrer Workloads auf die AZs. Das erhöht die Fehlertoleranz und sorgt für eine optimale Betriebskontinuität.",
   "kube_node_pool": "Node-Pool konfigurieren",
-  "kube_common_estimation_price_free": "Kostenlos"
+  "kube_common_estimation_price_free": "Kostenlos",
+  "kube_common_estimation_total_price": "Geschätzter Gesamtpreis:"
 }
