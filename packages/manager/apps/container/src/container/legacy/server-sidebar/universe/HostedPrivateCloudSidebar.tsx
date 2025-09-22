@@ -421,7 +421,6 @@ export default function HostedPrivateCloudSidebar() {
         />
       );
       const app = 'okms';
-      const baseUrl = navigation.getURL(app, '/');
 
       menu.push({
         id: 'identity-security-operations',
@@ -433,13 +432,13 @@ export default function HostedPrivateCloudSidebar() {
             color={ODS_THEME_COLOR_INTENT.text}
           />
         ),
-        pathMatcher: new RegExp('^/okms/key-management-service'),
+        pathMatcher: new RegExp('^/okms/*'),
         subItems: [
-          {
+          feature['okms:key-management-service'] && {
             id: 'key-management-service',
             label: t('sidebar_key-management-service'),
-            href: baseUrl,
-            pathMatcher: new RegExp('^/okms/key-management-service(/(?!secret-manager).*)?$'),
+            href: navigation.getURL(app, '#/key-management-service'),
+            pathMatcher: new RegExp('^/okms/key-management-service'),
             icon: keyIcon,
             async loader() {
               const services = await loadServices(
@@ -452,7 +451,7 @@ export default function HostedPrivateCloudSidebar() {
                 {
                   id: 'key-management-service-all',
                   label: t('sidebar_service_all'),
-                  href: baseUrl,
+                  href: navigation.getURL(app, '#/key-management-service'),
                   ignoreSearch: true,
                   icon: keyIcon,
                 },
@@ -470,12 +469,12 @@ export default function HostedPrivateCloudSidebar() {
             label: 'Secret Manager',
             badge: 'beta',
             icon: <OsdsIcon
-                    name={ODS_ICON_NAME.SHIELD_CONCEPT}
-                    size={ODS_ICON_SIZE.xxs}
-                    color={ODS_THEME_COLOR_INTENT.text}
-                  />,
+              name={ODS_ICON_NAME.SHIELD_CONCEPT}
+              size={ODS_ICON_SIZE.xxs}
+              color={ODS_THEME_COLOR_INTENT.text}
+            />,
             href: navigation.getURL(app, '#/secret-manager'),
-            routeMatcher: new RegExp('/okms/secret-manager'),
+            pathMatcher: new RegExp('^/okms/secret-manager/*'),
           },
         ],
       });
