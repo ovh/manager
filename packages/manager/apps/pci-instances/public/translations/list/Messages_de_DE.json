@@ -26,5 +26,7 @@
   "pci_instances_list_action_unrescue": "Rescue-Modus verlassen",
   "pci_instances_list_action_soft_reboot": "Soft Reboot durchführen",
   "pci_instances_list_action_hard_reboot": "Hard Reboot durchführen",
-  "pci_instances_list_action_reinstall": "Neu installieren"
+  "pci_instances_list_action_reinstall": "Neu installieren",
+  "pci_instances_list_column_creation_date": "Erstellungsdatum",
+  "pci_instances_operations_running": "Die Instanz(en) wird/werden erstellt"
 }
