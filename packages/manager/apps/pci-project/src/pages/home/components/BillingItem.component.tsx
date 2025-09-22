@@ -1,11 +1,11 @@
+import { memo } from 'react';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { memo } from 'react';
-import { BottomSectionItem } from './useDashboardSections.hook';
+import { DashboardItem } from '@/constants';
 import BillingItemSkeleton from './BillingItemSkeleton.component';
 
 type BillingItemProps = {
-  item: BottomSectionItem;
+  item: DashboardItem;
   isLoading: boolean;
 };
 
