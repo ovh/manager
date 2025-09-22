@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.16.4...@ovh-ux/manager-procedures-app@0.16.5) (2025-09-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4298] ([85ea0d7](https://github.com/ovh/manager/commit/85ea0d77ce785df8c04a70b6afef7bfd4356a0f4))
+
+
+
+
+
 ## [0.16.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.16.3...@ovh-ux/manager-procedures-app@0.16.4) (2025-09-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-procedures-app

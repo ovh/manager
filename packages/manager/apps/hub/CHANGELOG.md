@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.23.1...@ovh-ux/manager-hub-app@0.24.0) (2025-09-22)
+
+
+### Bug Fixes
+
+* **hub:** hide renew configuration for shared cdn ([f85faca](https://github.com/ovh/manager/commit/f85facae470db43a10b2b06c16475bf93f0a864c)), closes [#MANAGER-19044](https://github.com/ovh/manager/issues/MANAGER-19044)
+
+
+### Features
+
+* **hub:** improve roadmap & changelog translation text ([3110707](https://github.com/ovh/manager/commit/3110707e3328d9fc9eabf492069b839edaab0e22)), closes [#MANAGER-19541](https://github.com/ovh/manager/issues/MANAGER-19541)
+
+
+
+
+
 ## [0.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.23.0...@ovh-ux/manager-hub-app@0.23.1) (2025-09-18)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.24.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.24.1...@ovh-ux/manager-billing-components@4.24.2) (2025-09-22)
+
+
+### Bug Fixes
+
+* **billing:** hide renew configuration for shared cdn ([8d82a01](https://github.com/ovh/manager/commit/8d82a013bd8ecfc9c7e68b74a8c4877916732296)), closes [#MANAGER-19044](https://github.com/ovh/manager/issues/MANAGER-19044)
+
+
+
+
+
 ## [4.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.24.0...@ovh-ux/manager-billing-components@4.24.1) (2025-09-18)
 
 

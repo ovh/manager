@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.22.4...@ovh-ux/manager-catalog-app@1.23.0) (2025-09-22)
+
+
+### Features
+
+* **catalog:** migrate route definitions ([5fc0657](https://github.com/ovh/manager/commit/5fc0657a0dc630789813540342e56715349d2943)), closes [#MANAGER-18572](https://github.com/ovh/manager/issues/MANAGER-18572)
+* **catalog:** migrate to centralized test config and swc ([1521953](https://github.com/ovh/manager/commit/15219537a9e9ba87652a4e8a2a06c701fcbcf66c)), closes [#MANAGER-19215](https://github.com/ovh/manager/issues/MANAGER-19215)
+
+
+
+
+
 ## [1.22.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.22.3...@ovh-ux/manager-catalog-app@1.22.4) (2025-09-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-catalog-app
