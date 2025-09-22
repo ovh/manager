@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
+
 import { BreakPoints } from '@/types';
 
 const getPopup = () =>
-  document
-    .querySelector('osds-modal')
-    ?.shadowRoot?.querySelector('dialog > div > div.popup') as HTMLElement;
+  document.querySelector('osds-modal')?.shadowRoot?.querySelector('dialog > div > div.popup');
 
 /**
  * Mutation observer to detect changes in the DOM.
@@ -66,7 +65,7 @@ export const useResponsiveModal = (size) => {
       attributes: true,
     });
 
-    const initialPopup = getPopup();
+    const initialPopup = getPopup() as HTMLElement;
 
     if (initialPopup) {
       applyStyles(initialPopup);

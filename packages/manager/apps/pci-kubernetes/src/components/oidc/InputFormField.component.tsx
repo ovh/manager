@@ -1,14 +1,11 @@
 import React, { FormEvent } from 'react';
+
+import { ODS_INPUT_TYPE, ODS_TEXT_COLOR_INTENT, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
 import { OsdsInput, OsdsText } from '@ovhcloud/ods-components/react';
-import {
-  ODS_INPUT_TYPE,
-  ODS_TEXT_COLOR_INTENT,
-  ODS_TEXT_LEVEL,
-} from '@ovhcloud/ods-components';
 
 export type TInputFormFieldProps = React.ComponentProps<typeof OsdsInput> & {
   name: string;
-  onChange: (event: FormEvent<HTMLOsdsInputElement>) => void;
+  onChange: (event: FormEvent<HTMLInputElement>) => void;
   onBlur: () => void;
   onOdsValueChange: () => void;
   error: boolean;
@@ -40,11 +37,7 @@ export const InputFormField = ({
       {...rest}
     />
     {caption && (
-      <OsdsText
-        className="mt-3"
-        color={ODS_TEXT_COLOR_INTENT.text}
-        level={ODS_TEXT_LEVEL.caption}
-      >
+      <OsdsText className="mt-3" color={ODS_TEXT_COLOR_INTENT.text} level={ODS_TEXT_LEVEL.caption}>
         {caption}
       </OsdsText>
     )}

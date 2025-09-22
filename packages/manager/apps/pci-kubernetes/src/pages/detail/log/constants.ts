@@ -1,7 +1,6 @@
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 
-export const TRACKING_PREFIX =
-  'PublicCloud::projects::managed_kubernetes_cluster';
+export const TRACKING_PREFIX = 'PublicCloud::projects::managed_kubernetes_cluster';
 export const TRACKING_SUFFIX = '_managed_kubernetes_cluster::kubernetes';
 
 type OvhSubsidiaryRecord = Partial<Record<OvhSubsidiary, string>>;
@@ -9,8 +8,7 @@ type OvhSubsidiaryRecord = Partial<Record<OvhSubsidiary, string>>;
 export const LOGS_INFO: OvhSubsidiaryRecord = {
   DEFAULT:
     'https://help.ovhcloud.com/csm/en-gb-public-cloud-kubernetes-forwarding-audit-logs?id=kb_article_view&sysparm_article=KB0062280',
-  US:
-    'https://support.us.ovhcloud.com/hc/en-us/articles/29326025853715-Managed-Kubernetes-Service-Audit-Logs-Forwarding',
+  US: 'https://support.us.ovhcloud.com/hc/en-us/articles/29326025853715-Managed-Kubernetes-Service-Audit-Logs-Forwarding',
 };
 
 export const KUBERNETES_LOG_KINDS_KEYS = {
@@ -67,6 +65,5 @@ export const DATA_PLATFORM_GUIDE: OvhSubsidiaryRecord = {
   SG: 'https://www.ovhcloud.com/en-sg/logs-data-platform',
   ASIA: 'https://www.ovhcloud.com/asia/logs-data-platform',
   IN: 'https://www.ovhcloud.com/en-in/logs-data-platform',
-  US:
-    'https://us.ovhcloud.com/identity-security-operations/logs-data-platform/',
+  US: 'https://us.ovhcloud.com/identity-security-operations/logs-data-platform/',
 };

@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+
 import { useMergedKubeFlavors } from './useFlavors';
 
 export const getPriceByDesiredScale = (
@@ -16,9 +17,7 @@ export const getPriceByDesiredScale = (
   };
 };
 
-type MergedFlavorReturn = ReturnType<
-  typeof useMergedKubeFlavors
->['mergedFlavors'][0];
+type MergedFlavorReturn = ReturnType<typeof useMergedKubeFlavors>['mergedFlavors'][0];
 
 const useMergedFlavorById = <T = MergedFlavorReturn>(
   projectId: string,
@@ -28,10 +27,10 @@ const useMergedFlavorById = <T = MergedFlavorReturn>(
 ): T | null => {
   const { mergedFlavors } = useMergedKubeFlavors(projectId, region);
 
-  const flavor = useMemo(() => mergedFlavors?.find((f) => f.id === flavorId), [
-    mergedFlavors,
-    flavorId,
-  ]);
+  const flavor = useMemo(
+    () => mergedFlavors?.find((f) => f.id === flavorId),
+    [mergedFlavors, flavorId],
+  );
   if (!flavor) return null;
 
   return opts?.select ? opts.select(flavor) : (flavor as T);
