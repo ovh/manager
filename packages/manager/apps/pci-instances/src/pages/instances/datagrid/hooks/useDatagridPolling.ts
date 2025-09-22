@@ -7,7 +7,7 @@ import { TInstance } from '@/types/instance/entity.type';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { buildPartialInstanceDto } from '@/data/hooks/instance/builder/instanceDto.builder';
 import {
-  shouldRetryAfter404Error,
+  shouldRetryAfterNot404Error,
   TPendingTask,
   useInstancesPolling,
 } from '@/data/hooks/instance/polling/useInstancesPolling';
@@ -80,7 +80,7 @@ export const useDatagridPolling = (pendingTasks: TPendingTask[]) => {
       onSuccess: handlePollingSuccess,
       onError: handlePollingError,
     },
-    { retry: shouldRetryAfter404Error },
+    { retry: shouldRetryAfterNot404Error },
   );
 
   return useMemo(() => selectPollingDataForDatagrid(pollingData), [
