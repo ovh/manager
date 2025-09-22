@@ -37,5 +37,6 @@
   "kube_common_node_pool_deploy_title": "Scelta della zona di disponibilità",
   "kube_common_node_pool_deploy_description": "In un cluster Kubernetes ripartito su tre Availability Zone (AZ), l'utilizzo di pool di nodi per zona è consigliato per assicurare resilienza e alta disponibilità. Questa configurazione permette di distribuire in modo equilibrato i tuoi workload tra le AZ. Migliora la tolleranza ai guasti e garantisce una continuità di servizio ottimale.",
   "kube_node_pool": "Configurare il pool di nodi",
-  "kube_common_estimation_price_free": "Gratis"
+  "kube_common_estimation_price_free": "Gratis",
+  "kube_common_estimation_total_price": "Prezzo totale stimato:"
 }
