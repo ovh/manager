@@ -23,7 +23,7 @@ export function ModalButtonGroup({
 }: ModalButtonGroupProps) {
   const { t } = useTranslation(NAMESPACES.ACTIONS);
   return (
-    <div className="flex mt-4 gap-3" slot="actions">
+    <div className="flex mt-4 gap-3 z-[2]" slot="actions">
       {onCancel && (
         <OdsButton
           variant={ODS_BUTTON_VARIANT.outline}
