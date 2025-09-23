@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-object-storage-app",
-  "version": "0.16.6",
+  "version": "0.17.0",
   "private": true,
   "description": "PCI Object Storage react app",
   "type": "module",

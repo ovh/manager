@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.96.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.95.2...@ovh-ux/manager-pci@6.96.0) (2025-09-23)
+
+
+### Features
+
+* **ai-tools:** delete ai tools angular code as it have been migrated to react ([08892c0](https://github.com/ovh/manager/commit/08892c0c38849e66a8d408e3f6cb200be7f29a72)), closes [#DATATR-2347](https://github.com/ovh/manager/issues/DATATR-2347)
+* **data-processing:** remove angular unused code and remove billing section ([7e49b07](https://github.com/ovh/manager/commit/7e49b07bf01f84d3f6e53c741cfa762f5a6c5866)), closes [#DATATR-2346](https://github.com/ovh/manager/issues/DATATR-2346)
+* **pci-instances:** redirect to regionalized dashboard ([d5f5a20](https://github.com/ovh/manager/commit/d5f5a203d72e14af571b834e80670eea018ec6ab)), closes [#TAPC-5002](https://github.com/ovh/manager/issues/TAPC-5002)
+
+
+
+
+
 ## [6.95.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.95.1...@ovh-ux/manager-pci@6.95.2) (2025-07-10)
 
 

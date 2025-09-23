@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.30.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.30.2...@ovh-ux/manager-pci-kubernetes-app@0.30.3) (2025-09-23)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** change translation in english ([67c89be](https://github.com/ovh/manager/commit/67c89be57a408e838fde505516bf8312e96ead90)), closes [#TAPC-5024](https://github.com/ovh/manager/issues/TAPC-5024)
+* **pci-kubernetes:** resolve issue switching 3az to 1az ([097079c](https://github.com/ovh/manager/commit/097079ce42258b60af5380a703eef6bf8ad02a2b)), closes [#TAPC-5069](https://github.com/ovh/manager/issues/TAPC-5069)
+
+
+
+
+
 ## [0.30.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.30.1...@ovh-ux/manager-pci-kubernetes-app@0.30.2) (2025-09-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app

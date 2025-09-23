@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.15.17...@ovh-ux/manager-pci-load-balancer-app@0.16.0) (2025-09-23)
+
+
+### Features
+
+* **pci-load-balancer:** update tracking load balancer ([#19262](https://github.com/ovh/manager/issues/19262)) ([c034f76](https://github.com/ovh/manager/commit/c034f76519a96f799c189db53d18085a22af8fb1)), closes [#TAPC-3830](https://github.com/ovh/manager/issues/TAPC-3830)
+
+
+
+
+
 ## [0.15.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-load-balancer-app@0.15.16...@ovh-ux/manager-pci-load-balancer-app@0.15.17) (2025-09-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-load-balancer-app

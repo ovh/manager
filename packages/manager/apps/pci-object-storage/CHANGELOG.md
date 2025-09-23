@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.16.6...@ovh-ux/manager-pci-object-storage-app@0.17.0) (2025-09-23)
+
+
+### Features
+
+* **object-storage:** add offiste replication destination ([d733535](https://github.com/ovh/manager/commit/d733535e9147b6386e0253380417bc5b4aaecc1b)), closes [#TAPC-4148](https://github.com/ovh/manager/issues/TAPC-4148)
+
+
+
+
+
 ## [0.16.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.16.5...@ovh-ux/manager-pci-object-storage-app@0.16.6) (2025-09-18)
 
 
