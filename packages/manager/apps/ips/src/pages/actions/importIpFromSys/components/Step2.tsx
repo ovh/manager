@@ -11,8 +11,9 @@ import { ODS_MESSAGE_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { TRANSLATION_NAMESPACES } from '@/utils';
 import ModalButtonGroup from './ModalButtonGroup.component';
 import {
+  PRODUCT_PATHS_AND_CATEGORIES,
   useDedicatedServerIpMigrationAvailableDurations,
-  useOrderDedicatedServerList,
+  useGetProductService,
 } from '@/data/hooks';
 import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
 
@@ -37,10 +38,10 @@ export default function Step2({
 }: Step2Props) {
   const { t } = useTranslation(TRANSLATION_NAMESPACES.importIpFromSys);
   const {
-    serverList,
-    isServerListLoading,
-    serverListError,
-  } = useOrderDedicatedServerList();
+    services: serverList,
+    isLoading: isServerListLoading,
+    error: serverListError,
+  } = useGetProductService(PRODUCT_PATHS_AND_CATEGORIES.DEDICATED);
 
   const {
     isIpMigrationAvailable,
@@ -69,7 +70,7 @@ export default function Step2({
           {isServerListLoading && <OdsSpinner />}
           {serverList?.length && (
             <OdsSelect
-              className="mt-1"
+              className="mt-1 z-[3] min-w-[300px] md:min-w-[400px]"
               name="destination-server"
               id="destination-server"
               value={destinationServer}
@@ -78,8 +79,8 @@ export default function Step2({
               strategy="fixed"
             >
               {serverList?.map((server) => (
-                <option key={server} value={server}>
-                  {server}
+                <option key={server.serviceName} value={server.serviceName}>
+                  {server.displayName || server.serviceName}
                 </option>
               ))}
             </OdsSelect>

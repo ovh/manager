@@ -1,10 +1,6 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
 import { IpMigrationOrder } from '@/types/ipMigrationOrder';
 
-export const getOrderDedicatedServerList = async (): Promise<ApiResponse<
-  string[]
->> => apiClient.v6.get<string[]>('/order/dedicated/server');
-
 export const getOrderDedicatedServerInfo = async (
   serviceName: string,
 ): Promise<ApiResponse<string[]>> =>
