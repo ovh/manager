@@ -10,6 +10,19 @@
   "pci_instances_common_pending": "Wird ausgeführt...",
   "pci_instances_common_search": "Suchen",
   "pci_instances_common_instance_title": "Instanz",
-  "pci_instances_common_instance_name": "Name der Instanz",
-  "pci_instances_common_help": "Hilfe"
+  "pci_instances_common_instance_name": "Instanzname",
+  "pci_instances_common_help": "Hilfe",
+  "pci_instances_common_instance_localzone_deployment_mode": "Local Zone",
+  "pci_instances_common_instance_region_deployment_mode": "3-AZ Region",
+  "pci_instances_common_instance_region-3-az_deployment_mode": "1-AZ Region",
+  "pci_instances_common_instance_region_deployment_mode_description": "Widerstandsfähiger und kosteneffizienter Einsatz in 1 Verfügbarkeitszone.",
+  "pci_instances_common_instance_region-3-az_deployment_mode_description": "Einsatz mit hoher Widerstandsfähigkeit/hoher Verfügbarkeit für Ihre kritischen Anwendungen in 3 Verfügbarkeitszonen.",
+  "pci_instances_common_instance_localzone_deployment_mode_description": "Einsatz Ihrer Anwendungen so nah wie möglich an Ihren Nutzern für geringe Latenz und Datenresidenz.",
+  "pci_instances_common_instance_continent_north_america": "Nordamerika",
+  "pci_instances_common_instance_continent_western_europe": "Westeuropa",
+  "pci_instances_common_instance_continent_central_europe": "Zentraleuropa",
+  "pci_instances_common_instance_continent_south_europe": "Südeuropa",
+  "pci_instances_common_instance_continent_north_africa": "Nordafrika",
+  "pci_instances_common_instance_continent_south_east_asia": "Südostasien",
+  "pci_instances_common_instance_continent_oceania": "Ozeanien"
 }

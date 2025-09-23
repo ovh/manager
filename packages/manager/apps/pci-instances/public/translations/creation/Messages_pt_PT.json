@@ -1,7 +1,12 @@
 {
-  "pci_instance_creation_name_rule": "Deve apenas conter números, letras, underscores, hífenes ou pontos.",
+  "pci_instance_creation_name_rule": "Deve conter apenas números, letras, sublinhados, hífens ou pontos.",
   "pci_instances_creation_advanced_parameters": "Configurações avançadas",
   "pci_instances_creation_quantity_title": "Escolher uma quantidade",
   "pci_instances_creation_quantity_label": "Número de instâncias a criar",
-  "pci_instance_creation_quantity_rule": "O seu limite atual permite-lhe criar simultaneamente até {{ quota }} instância(s) de tipo {{ type }} para a região de {{ region }}."
+  "pci_instance_creation_quantity_rule": "O seu quota atual permite-lhe criar simultaneamente até {{ quota }} instância(s) do tipo {{ type }} para a região {{ region }}.",
+  "pci_instance_creation_choose_localization_title": "Escolha uma localização",
+  "pci_instance_creation_select_localization_label": "Selecione uma localização: ",
+  "pci_instance_creation_select_localization_informations": "As Zonas Locais não são elegíveis para os Planos de Economia.",
+  "pci_instance_creation_continue_order": "Continuar a minha encomenda",
+  "pci_instance_creation_configuration_code": "Código da minha configuração"
 }

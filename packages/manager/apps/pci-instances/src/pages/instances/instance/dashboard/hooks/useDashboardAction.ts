@@ -11,7 +11,7 @@ import {
 import { useVolumes } from '@/data/hooks/volume/useVolume';
 import { useAttachVolume as useAttachVolumeMutation } from '@/data/hooks/instance/useInstance';
 import { TPartialInstance } from '@/types/instance/entity.type';
-import { updateAllInstancesFromCache } from '@/adapters/tanstack-query/store/instances/updaters';
+import { updateAllInstancesFromCache } from '@/adapters/tanstack/instances/updaters';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { isApiErrorResponse } from '@/utils';
 

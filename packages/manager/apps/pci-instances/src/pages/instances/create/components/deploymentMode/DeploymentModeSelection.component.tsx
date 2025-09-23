@@ -1,4 +1,4 @@
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import {
   Checkbox,
   CheckboxControl,
@@ -7,23 +7,23 @@ import {
   Link,
   Text,
 } from '@ovhcloud/ods-react';
-import {Controller, useFormContext} from 'react-hook-form';
-import {PciCard} from '@/components/pciCard/PciCard.component';
-import {DeploymentModeBadge} from '@/components/deploymentModeBadge/DeploymentModeBadge.component';
-import {TDeploymentModeId} from '@/types/instance/common.type';
-import {deploymentModes} from '@/__mocks__/instance/constants';
-import {NAMESPACES} from '@ovh-ux/manager-common-translations';
-import {HelpDrawer} from "@/components/helpDrawer/HelpDrawer.component";
+import { Controller, useFormContext } from 'react-hook-form';
+import { PciCard } from '@/components/pciCard/PciCard.component';
+import { DeploymentModeBadge } from '@/components/deploymentModeBadge/DeploymentModeBadge.component';
+import { deploymentModes } from '@/__mocks__/instance/constants';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { HelpDrawer } from '@/components/helpDrawer/HelpDrawer.component';
+import { TDeploymentMode } from '@/types/instance/common.type';
 
 export const deploymentModesDefaultValue: string[] = ['3AZ', '1AZ'];
 
 type TDeploymentModeSelection = {
-  deploymentModes: TDeploymentModeId[];
+  deploymentModes: TDeploymentMode[];
 };
 
 export const DeploymentModeSelection = () => {
-  const {t} = useTranslation([NAMESPACES.ONBOARDING, 'creation', 'common']);
-  const {control} = useFormContext<TDeploymentModeSelection>();
+  const { t } = useTranslation([NAMESPACES.ONBOARDING, 'creation', 'common']);
+  const { control } = useFormContext<TDeploymentModeSelection>();
 
   return (
     <section className="my-8">
@@ -63,13 +63,15 @@ export const DeploymentModeSelection = () => {
           </HelpDrawer>
         </div>
 
-        <Text preset="paragraph">(Not mandatory) Si besoin d’un texte explicatif/consigne...</Text>
+        <Text preset="paragraph">
+          (Not mandatory) Si besoin d’un texte explicatif/consigne...
+        </Text>
       </div>
       <section className="mt-6">
         <Controller<TDeploymentModeSelection, 'deploymentModes'>
           name="deploymentModes"
           control={control}
-          render={({field}) => (
+          render={({ field }) => (
             <CheckboxGroup
               name="deploymentModes"
               className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4"
@@ -88,7 +90,9 @@ export const DeploymentModeSelection = () => {
                     const currentValue = field.value;
                     if (currentValue.includes(mode.id)) {
                       field.onChange(
-                        currentValue.filter((value: TDeploymentModeId) => value !== mode.id),
+                        currentValue.filter(
+                          (value: TDeploymentMode) => value !== mode.id,
+                        ),
                       );
                     } else {
                       field.onChange([...field.value, mode.id]);
@@ -100,17 +104,17 @@ export const DeploymentModeSelection = () => {
                       className="w-full"
                       checked={field.value.includes(mode.id)}
                     >
-                      <CheckboxControl/>
+                      <CheckboxControl />
                       <CheckboxLabel className="font-bold text-lg text-[--ods-color-heading]">
                         {mode.title}
                       </CheckboxLabel>
                     </Checkbox>
-                    <DeploymentModeBadge mode={mode.id}/>
+                    <DeploymentModeBadge mode={mode.id} />
                   </PciCard.Header>
 
                   <PciCard.Content className="justify-between">
                     <Text>{mode.description}</Text>
-                    <div className="bg-[--ods-color-neutral-100] w-full h-[100px] mt-6"/>
+                    <div className="bg-[--ods-color-neutral-100] w-full h-[100px] mt-6" />
                   </PciCard.Content>
                 </PciCard>
               ))}
