@@ -4,7 +4,6 @@ import { catalogPcc } from './pcc-catalog';
 import {
   availableDurations,
   availableOperations,
-  catalogDedicatedServerList,
   ipMigrationOrderRecap,
   ipMigrationPostResponse,
 } from './dedicated-server-catalog';
@@ -12,7 +11,6 @@ import {
 export type GetCatalogMocksParams = {
   isIpCatalogKo?: boolean;
   isPccCatalogKo?: boolean;
-  isDedicatedServerCatalogKo?: boolean;
   isDedicatedServerIpMigrationAvailableDurationsKo?: boolean;
   isIpMigrationUnavailableInOperations?: boolean;
 };
@@ -20,7 +18,6 @@ export type GetCatalogMocksParams = {
 export const getCatalogMocks = ({
   isIpCatalogKo,
   isPccCatalogKo,
-  isDedicatedServerCatalogKo,
   isDedicatedServerIpMigrationAvailableDurationsKo,
   isIpMigrationUnavailableInOperations,
 }: GetCatalogMocksParams): Handler[] => [
@@ -51,14 +48,6 @@ export const getCatalogMocks = ({
       (operation) =>
         !isIpMigrationUnavailableInOperations || operation !== 'ipMigration',
     ),
-    api: 'v6',
-  },
-  {
-    url: '/order/dedicated/server',
-    response: isDedicatedServerCatalogKo
-      ? { message: 'Dedicated Server Catalog KO' }
-      : catalogDedicatedServerList,
-    status: isDedicatedServerCatalogKo ? 400 : 200,
     api: 'v6',
   },
   {
