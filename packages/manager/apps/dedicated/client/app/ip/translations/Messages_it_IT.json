@@ -61,6 +61,8 @@
   "ip_table_empty": "Nessun dato da visualizzare",
   "ip_table_search": "Ricerca...",
   "ip_table_ipblock_refresh": "Aggiornamento dell'IP {{t0}}...",
+  "ip_table_ipBlock_under_creation": "Creazione in corso...",
+  "ip_table_ipblock_under_division": "Eliminazione in corso...",
   "ip_manage_task_pending": "Un'operazione è in corso su uno degli IP del tuo server.",
   "ip_migration": "Importa i tuoi indirizzi IP da SYS a OVHcloud",
   "ip_export": "Esporta i tuoi indirizzi IP in un file CSV",
@@ -773,12 +775,9 @@
   "ip_repricing_banner_link": "Ulteriori informazioni",
   "ip_unused_banner_text": "Disponi di indirizzi IP non utilizzati. Gli indirizzi IPv4 sono una risorsa sempre più rara. Se non effettivamente necessari, consigliamo pertanto di liberarli.",
   "ip_unused_banner_link": "Visualizza i miei IP non utilizzati",
-  "ip_table_ipBlock_under_creation": "Creazione in corso...",
-  "ip_table_ipblock_under_division": "Eliminazione in corso...",
   "ip_guide_title": "Guida",
   "ip_guide_link_additional_ip": "Configurare un Additional IP",
   "ip_guide_link_ip_alias": "Configurare un indirizzo IP come alias",
   "ip_guide_link_ip_proxmox": "Configurare un Additional IP su Proxmox VE",
-  "ip_guide_link_floating_ip": "Concetti - Additional IP o Floating IP su Public Cloud",
-  "ip_permanent_mitigation_EOL": "ATTENZIONE: la funzionalità “Scrubbing Center: permanente” è giunta alla fine del suo ciclo di vita (EOL) e sarà disattivata definitivamente l'8 settembre 2025."
+  "ip_guide_link_floating_ip": "Concetti - Additional IP o Floating IP su Public Cloud"
 }
