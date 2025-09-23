@@ -1,4 +1,4 @@
-import { DnssecStatusEnum } from '../enum/dnnecStatus.enum';
+import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
 
 export interface TDomainZone {
   dnssecSupported: boolean;
