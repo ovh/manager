@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.19.0...@ovh-ux/manager-iam@1.20.0) (2025-09-22)
+
+
+### Features
+
+* **iam:** add missing translation for product type Rancher ([cc4ee92](https://github.com/ovh/manager/commit/cc4ee92f90c93e96eb4408828a7bc28609b81fa7)), closes [#MANAGER-18557](https://github.com/ovh/manager/issues/MANAGER-18557)
+* **iam:** add nic in identities information banner ([b7daf3c](https://github.com/ovh/manager/commit/b7daf3cb73780ca9e5c9b09b12516fc019096bcc)), closes [#MANAGER-17322](https://github.com/ovh/manager/issues/MANAGER-17322)
+
+
+
+
+
 # [1.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.18.0...@ovh-ux/manager-iam@1.19.0) (2025-08-25)
 
 

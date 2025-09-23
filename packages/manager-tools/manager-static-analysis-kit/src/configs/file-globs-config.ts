@@ -16,7 +16,4 @@ export const htmlFiles = '**/*.html';
 export const storyFiles = '**/*.stories.@(ts|tsx|js|jsx|mjs|cjs)';
 export const testFiles = ['**/*.{test,spec}.{ts,tsx,js,jsx}', '**/__tests__/**/*.{ts,tsx,js,jsx}'];
 
-export const commonTextFiles = '**/*.{ts,tsx,js,jsx,json,yml,yaml,md}';
-export const jsonFiles = '**/*.json';
-export const yamlFiles = '**/*.{yml,yaml}';
-export const markdownFiles = '**/*.md';
+export const commonTextFiles = '**/*.{ts,tsx,mts,js,jsx,mjs,json,yml,yaml,md}';

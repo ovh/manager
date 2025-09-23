@@ -107,5 +107,6 @@
   "iam_resource_type_pccVMware/sapPreInstallation": "VMware SAP preInstallation",
   "iam_resource_type_publicCloudProject/managedRancher": "Managed Rancher Service",
   "iam_resource_type_sdwan": "SDWAN",
-  "iam_resource_type_veeamCloudConnect": "Veeam Cloud Connect"
+  "iam_resource_type_veeamCloudConnect": "Veeam Cloud Connect",
+  "iam_resource_type_dedicatedServerIronic": "Ironic Dedicated Server"
 }

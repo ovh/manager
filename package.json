@@ -49,6 +49,8 @@
     "prepare": "husky install",
     "release": "scripts/release/release.sh",
     "start": "node scripts/start-application.mjs",
+    "static-dynamic-quality-check-reports": "yarn manager-static-dynamic-quality-checks",
+    "static-dynamic-quality-check-tests": "yarn manager-static-dynamic-quality-checks --tests",
     "test": "turbo run test --concurrency=1",
     "test:scripts": "make test"
   },

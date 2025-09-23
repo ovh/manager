@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.32...@ovh-ux/manager-zimbra-app@0.32.0) (2025-09-22)
+
+
+### Features
+
+* **zimbra:** show renewal & cancel date on tooltip ([f0072f2](https://github.com/ovh/manager/commit/f0072f2da928dd8a1e17f05ee91cf66e8b3b9173)), closes [#MANAGER-18408](https://github.com/ovh/manager/issues/MANAGER-18408)
+
+
+
+
+
+## [0.31.32](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.31...@ovh-ux/manager-zimbra-app@0.31.32) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.31.31](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.30...@ovh-ux/manager-zimbra-app@0.31.31) (2025-09-15)
+
+
+### Bug Fixes
+
+* **zimbra:** fix error related to billing info ([34a13d4](https://github.com/ovh/manager/commit/34a13d41c83e7cde2b61fed64dbc5648789a0c75)), closes [#PRDCOL-181](https://github.com/ovh/manager/issues/PRDCOL-181)
+
+
+
+
+
+## [0.31.30](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.29...@ovh-ux/manager-zimbra-app@0.31.30) (2025-09-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.31.29](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.28...@ovh-ux/manager-zimbra-app@0.31.29) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
 ## [0.31.28](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.31.27...@ovh-ux/manager-zimbra-app@0.31.28) (2025-09-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app

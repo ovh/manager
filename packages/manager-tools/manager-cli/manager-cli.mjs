@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-
 import { execSync } from 'child_process';
+
 import { applicationsBasePath, getReactApplications } from './utils/AppUtils.mjs';
 
 const args = process.argv.slice(2);
 const [command, ...restArgs] = args;
 
-const validMigrationTypes = ['routes', 'tests', 'swc', 'static-kit', 'all'];
+const validMigrationTypes = ['routes', 'tests', 'swc', 'static-kit', 'w3c', 'a11y', 'all'];
 const validTestTypes = ['unit', 'integration'];
 const validFormats = ['json', 'html'];
 
@@ -20,12 +20,13 @@ const knownCommands = {
 yarn manager-cli routes-migrate --app zimbra
 
 # Preview changes without affecting files
-yarn manager-cli routes-migrate --app zimbra --dry-run`
+yarn manager-cli routes-migrate --app zimbra --dry-run`,
   },
   'tests-migrate': {
     script: 'common-tests-config-migration',
     isAppRequired: true,
-    description: 'Migrate test setup (unit, integration...) to centralized shared configuration (Vitest, Jest...)',
+    description:
+      'Migrate test setup (unit, integration...) to centralized shared configuration (Vitest, Jest...)',
     help: `
 # Migrate a unit test setup with Vitest (affect files)
 yarn manager-cli tests-migrate --app zimbra --testType unit
@@ -34,7 +35,7 @@ yarn manager-cli tests-migrate --app zimbra --testType unit
 yarn manager-cli tests-migrate --app zimbra --testType integration --framework jest
 
 # Preview changes without applying them (without affecting files)
-yarn manager-cli tests-migrate --app zimbra --testType unit --dry-run`
+yarn manager-cli tests-migrate --app zimbra --testType unit --dry-run`,
   },
   'duplicated-translations': {
     script: 'check-duplicated-translations',
@@ -47,13 +48,14 @@ yarn manager-cli duplicated-translations --app zimbra`,
   'static-analysis-migrate': {
     script: 'static-analysis-migration',
     isAppRequired: true,
-    description: 'Migrate ESLint & TS config to static-analysis-kit (safe defaults + recommendations)',
+    description:
+      'Migrate ESLint & TS config to static-analysis-kit (safe defaults + recommendations)',
     help: `
 # Migrate to static-analysis-kit for an app (non-destructive)
 yarn manager-cli static-analysis-migrate --app zimbra
 
 # Preview changes without writing files
-yarn manager-cli static-analysis-migrate --app zimbra --dry-run`
+yarn manager-cli static-analysis-migrate --app zimbra --dry-run`,
   },
   'migrations-status': {
     script: 'migrations-status',
@@ -68,13 +70,17 @@ yarn manager-cli migrations-status --type routes
 yarn manager-cli migrations-status --type tests
 yarn manager-cli migrations-status --type swc
 yarn manager-cli migrations-status --type static-kit
+yarn manager-cli migrations-status --type w3c
+yarn manager-cli migrations-status --type a11y
 
 # Export as HTML or JSON
 yarn manager-cli migrations-status --type routes --format json
 yarn manager-cli migrations-status --type tests --format html
+yarn manager-cli migrations-status --type w3c --format html
+yarn manager-cli migrations-status --type a11y --format json
 
 yarn manager-cli migrations-status --type all --format html
-yarn manager-cli migrations-status --type all --format json`
+yarn manager-cli migrations-status --type all --format json`,
   },
 };
 
@@ -154,15 +160,17 @@ if (knownCommand.isAppRequired) {
 
   const availableApps = getReactApplications();
   if (!availableApps.includes(appName)) {
-    console.error([
-      `❌ App "${appName}" not found in:`,
-      `   ${applicationsBasePath}`,
-      '',
-      `📦 Available apps:`,
-      ...availableApps.map((a) => `  - ${a}`),
-      '',
-      `💡 Tip: Use "yarn manager-cli --list" to see all app names`,
-    ].join('\n'));
+    console.error(
+      [
+        `❌ App "${appName}" not found in:`,
+        `   ${applicationsBasePath}`,
+        '',
+        `📦 Available apps:`,
+        ...availableApps.map((a) => `  - ${a}`),
+        '',
+        `💡 Tip: Use "yarn manager-cli --list" to see all app names`,
+      ].join('\n'),
+    );
     process.exit(1);
   }
 }
@@ -184,11 +192,15 @@ const typeValue = typeArgIndex !== -1 ? restArgs[typeArgIndex + 1] : null;
 if (command === 'migrations-status') {
   if (typeArgIndex !== -1) {
     if (!typeValue || typeValue.startsWith('--')) {
-      console.error(`❌ Missing value for "--type" flag. Valid values: ${validMigrationTypes.join(', ')}`);
+      console.error(
+        `❌ Missing value for "--type" flag. Valid values: ${validMigrationTypes.join(', ')}`,
+      );
       process.exit(1);
     }
     if (!validMigrationTypes.includes(typeValue)) {
-      console.error(`❌ Invalid --type "${typeValue}". Must be one of: ${validMigrationTypes.join(', ')}`);
+      console.error(
+        `❌ Invalid --type "${typeValue}". Must be one of: ${validMigrationTypes.join(', ')}`,
+      );
       process.exit(1);
     }
     extraFlags.push('--type', typeValue);
@@ -199,11 +211,15 @@ if (command === 'migrations-status') {
 
   if (formatArgIndex !== -1) {
     if (!formatValue || formatValue.startsWith('--')) {
-      console.error(`❌ Missing value for "--format" flag. Valid values: ${validFormats.join(', ')}`);
+      console.error(
+        `❌ Missing value for "--format" flag. Valid values: ${validFormats.join(', ')}`,
+      );
       process.exit(1);
     }
     if (!validFormats.includes(formatValue)) {
-      console.error(`❌ Invalid --format "${formatValue}". Must be one of: ${validFormats.join(', ')}`);
+      console.error(
+        `❌ Invalid --format "${formatValue}". Must be one of: ${validFormats.join(', ')}`,
+      );
       process.exit(1);
     }
     extraFlags.push('--format', formatValue);
@@ -219,7 +235,9 @@ if (command === 'tests-migrate') {
     process.exit(1);
   }
   if (!validTestTypes.includes(testType)) {
-    console.error(`❌ Invalid --testType "${testType}". Must be one of: ${validTestTypes.join(', ')}`);
+    console.error(
+      `❌ Invalid --testType "${testType}". Must be one of: ${validTestTypes.join(', ')}`,
+    );
     process.exit(1);
   }
   extraFlags.push('--testType', testType);
@@ -231,7 +249,9 @@ const runCommand = [
   knownCommand.script,
   knownCommand.isAppRequired ? appName : '',
   ...extraFlags,
-].filter(Boolean).join(' ');
+]
+  .filter(Boolean)
+  .join(' ');
 
 try {
   console.log(`\n▶ Running "${command}"${appName ? ` for app: "${appName}"` : ''}`);

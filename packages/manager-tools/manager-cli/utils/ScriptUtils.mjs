@@ -1,12 +1,69 @@
 #!/usr/bin/env node
 import { execSync } from 'child_process';
+import path, { dirname, join, resolve } from 'path';
 import { fileURLToPath } from 'url';
-import path, { dirname, resolve, join } from 'path';
-import { isCodeFileExistsSync } from './CodeTransformUtils.mjs';
+
 import { applicationsBasePath } from './AppUtils.mjs';
+import { isCodeFileExistsSync } from './CodeTransformUtils.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+/**
+ * Parse CLI arguments into a structured object.
+ *
+ * Supports:
+ *   --dry-run
+ *   --format=console|json|html  OR  --format console
+ *   --outDir=dir
+ *   --file=path
+ *   --app=name
+ *   <positional app name>
+ *
+ * Unrecognized args are collected in `rest`.
+ */
+export function parseCliArgs(argv) {
+  const out = {
+    app: undefined,
+    dryRun: false,
+    format: 'console',
+    outDir: 'target',
+    file: undefined,
+    type: undefined, // a11y | w3c | ...
+    rest: [],
+  };
+
+  const [, , ...args] = argv;
+  for (let i = 0; i < args.length; i++) {
+    const arg = args[i];
+
+    if (arg === '--dry-run') {
+      out.dryRun = true;
+    } else if (arg.startsWith('--format=')) {
+      out.format = arg.split('=')[1] || out.format;
+    } else if (arg === '--format' && args[i + 1]) {
+      out.format = args[i + 1];
+      i++;
+    } else if (arg.startsWith('--outDir=')) {
+      out.outDir = arg.split('=')[1] || out.outDir;
+    } else if (arg.startsWith('--file=')) {
+      out.file = arg.split('=')[1] || out.file;
+    } else if (arg.startsWith('--app=')) {
+      out.app = arg.split('=')[1];
+    } else if (!out.app && !arg.startsWith('--')) {
+      out.app = arg;
+    } else if (arg.startsWith('--type=')) {
+      out.type = arg.split('=')[1];
+    } else if (arg === '--type' && args[i + 1]) {
+      out.type = args[i + 1];
+      i++;
+    } else {
+      out.rest.push(arg);
+    }
+  }
+
+  return out;
+}
 
 /**
  * Runs a migration or setup process for a specific app or globally.
@@ -60,9 +117,7 @@ export const runMigration = ({
           `Usage: yarn manager-cli ${commandLabel} --app <app-name> ${
             framework ? '[--framework <name>] ' : ''
           }${
-            commandLabel.includes('tests-migrate')
-              ? '--testType <unit|integration> '
-              : ''
+            commandLabel.includes('tests-migrate') ? '--testType <unit|integration> ' : ''
           }[--dry-run]`,
         ].join('\n'),
       );
@@ -75,9 +130,7 @@ export const runMigration = ({
       } for app: ${appName}${framework ? ` using ${framework}` : ''}`,
     );
   } else {
-    console.log(
-      `🔄 Running ${commandLabel}${dryRun ? ' in dry-run mode' : ''}`,
-    );
+    console.log(`🔄 Running ${commandLabel}${dryRun ? ' in dry-run mode' : ''}`);
   }
 
   try {
@@ -134,14 +187,7 @@ export const runMigration = ({
 
   if (dryRun || !appName || statusOnly) return;
 
-  const appFullPath = join(
-    'packages',
-    'manager',
-    'apps',
-    appName,
-    '**',
-    formatGlob,
-  );
+  const appFullPath = join('packages', 'manager', 'apps', appName, '**', formatGlob);
 
   try {
     console.log('📦 Running yarn install to apply dependency changes...');
@@ -154,7 +200,7 @@ export const runMigration = ({
     console.error(error);
   }
 
-  if(enablePrettier){
+  if (enablePrettier) {
     try {
       console.log('🎨 Formatting code with Prettier...');
       execSync(`yarn prettier --write "${appFullPath}"`, {
@@ -167,7 +213,7 @@ export const runMigration = ({
     }
   }
 
-  if(enableLintFix){
+  if (enableLintFix) {
     try {
       console.log('🧹 Applying ESLint fixes...');
       execSync(`yarn eslint "${appFullPath}" --fix --quiet`, {
@@ -182,9 +228,7 @@ export const runMigration = ({
 
   if (testCommand) {
     try {
-      console.log(
-        `🧪 Running tests for app "${appName}" to verify migration...`,
-      );
+      console.log(`🧪 Running tests for app "${appName}" to verify migration...`);
       execSync(`yarn workspace @ovh-ux/manager-${appName}-app ${testCommand}`, {
         stdio: 'inherit',
         cwd: resolve(__dirname, '../..'),

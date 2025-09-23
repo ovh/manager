@@ -40,7 +40,6 @@ export default class IpListController {
     Alerter,
     Ip,
     IpFirewall,
-    IpMitigation,
     IpOrganisation,
     IpReverse,
     IpVirtualMac,
@@ -60,7 +59,6 @@ export default class IpListController {
     this.Alerter = Alerter;
     this.Ip = Ip;
     this.IpFirewall = IpFirewall;
-    this.IpMitigation = IpMitigation;
     this.IpOrganisation = IpOrganisation;
     this.IpReverse = IpReverse;
     this.IpVirtualMac = IpVirtualMac;
@@ -84,7 +82,6 @@ export default class IpListController {
       Alerter,
       Ip,
       IpFirewall,
-      IpMitigation,
       IpOrganisation,
       IpReverse,
       IpVirtualMac,
@@ -148,19 +145,15 @@ export default class IpListController {
       $scope.isAdditionalIp = self.isAdditionalIp;
       $scope.isAdmin = coreConfig.getUser().auth?.roles?.includes(ADMIN_ROLE);
       $scope.isDeleteByoipServiceAvailable = self.isDeleteByoipServiceAvailable;
-      $scope.isPermanentMitigationAvailable =
-        self.isPermanentMitigationAvailable;
       $scope.goToDeleteIpService = self.goToDeleteIpService;
 
       $scope.tracking = {
-        'enable-permanent-mitigation': `${TRACKING_PREFIX}::enable-permanent-mitigation`,
         'create-firewall': `${TRACKING_PREFIX}::create-firewall`,
         'enable-firewall': `${TRACKING_PREFIX}::enable-firewall`,
         'ip-firewall': `${TRACKING_PREFIX}::ip::firewall`,
         'disable-firewall': `${TRACKING_PREFIX}::disable-firewall`,
         'mac-add': `${TRACKING_PREFIX}::mac-add`,
         statistics: `${TRACKING_PREFIX}::statistics`,
-        'switch-auto-mitigation': `${TRACKING_PREFIX}::switch-auto-mitigation`,
         'move-failover': `${TRACKING_PREFIX}::move-failover`,
         'delete-failover': `${TRACKING_PREFIX}::delete-failover`,
         'delete-vrack': `${TRACKING_PREFIX}::delete-vrack`,
@@ -223,25 +216,6 @@ export default class IpListController {
       angular.forEach(ipBlock.ips, (ip) => {
         // Stop all pending polling for this ipBlock/ip
         IpFirewall.killPollFirewallState(ipBlock, ip);
-        // Stop all pending polling for this ipBlock/ip
-        IpMitigation.killPollMitigationState(ipBlock, ip);
-
-        // Poll mitigation state
-        if (
-          ip.mitigation === 'CREATION_PENDING' ||
-          ip.mitigation === 'REMOVAL_PENDING'
-        ) {
-          IpMitigation.pollMitigationState(ipBlock, ip).then(() => {
-            Ip.getIpsForIpBlock(
-              ipBlock.ipBlock,
-              ipBlock.service.serviceName,
-              ipBlock.service.category,
-            ).then((ips) => {
-              const newIp = find(ips, { ip: ip.ip });
-              angular.extend(ip, newIp);
-            });
-          });
-        }
 
         // Poll firewall state
         if (
@@ -367,7 +341,6 @@ export default class IpListController {
       Ip.killAllGetIpsListForService();
       IpVirtualMac.killPollVirtualMacs();
       IpFirewall.killPollFirewallState();
-      IpMitigation.killPollMitigationState();
       IpOrganisation.killAllPolling();
 
       if ($scope.poller) {
@@ -655,17 +628,6 @@ export default class IpListController {
           ip: $location.search().ip,
         });
       }, 300);
-    }
-
-    if ($location.search().action === 'mitigation' && $location.search().ip) {
-      $scope.trackPage(`${TRACKING_PREFIX}::enable-permanent-mitigation`);
-
-      $timeout(() => {
-        $scope.setAction('ip/mitigation/update/ip-ip-mitigation-update', {
-          ipBlock: $location.search().ipBlock,
-          ip: $location.search().ip,
-        });
-      }, 500);
     }
 
     if ($location.search().action === 'reverse' && $location.search().ip) {

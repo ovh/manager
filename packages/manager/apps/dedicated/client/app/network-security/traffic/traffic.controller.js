@@ -5,6 +5,7 @@ import {
   TRAFFIC_PERIOD_LIST,
   CHART,
 } from './traffic.constant';
+import { TRAFFIC_MAX_DATA_RETENTION_DAYS } from '../network-security.constant';
 
 export default class TrafficController {
   /* @ngInject */
@@ -16,6 +17,7 @@ export default class TrafficController {
 
     this.TRAFFIC_PERIODS = TRAFFIC_PERIODS;
     this.TRAFFIC_PERIOD_LIST = TRAFFIC_PERIOD_LIST;
+    this.TRAFFIC_MAX_DATA_RETENTION_DAYS = TRAFFIC_MAX_DATA_RETENTION_DAYS;
     this.CHART = CHART;
     this.PAGE_SIZE = PAGE_SIZE;
   }
@@ -38,7 +40,9 @@ export default class TrafficController {
 
     if (this.dateTime) {
       const dateLimit = new Date();
-      dateLimit.setDate(dateLimit.getDate() - 14);
+      dateLimit.setDate(
+        dateLimit.getDate() - this.TRAFFIC_MAX_DATA_RETENTION_DAYS,
+      );
       if (this.dateTime >= dateLimit) {
         const customPeriod = {
           name: 'custom',
@@ -153,6 +157,12 @@ export default class TrafficController {
         break;
       case this.TRAFFIC_PERIOD_LIST.last14d:
         after.setDate(after.getDate() - 14);
+        break;
+      case this.TRAFFIC_PERIOD_LIST.last1M:
+        after.setDate(after.getDate() - 30);
+        break;
+      case this.TRAFFIC_PERIOD_LIST.last2M:
+        after.setDate(after.getDate() - 60);
         break;
       case 'custom':
         after.setTime(this.dateTime);

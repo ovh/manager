@@ -55,10 +55,13 @@ export const GUIDE_LINKS = {
 
 export const TRACKING_PREFIX = 'network-security::anti-ddos-dashboard';
 
+export const TRAFFIC_MAX_DATA_RETENTION_DAYS = 60;
+
 export default {
   API_PATH,
   PAGE_SIZE,
   ENTITY,
   GUIDE_LINKS,
   TRACKING_PREFIX,
+  TRAFFIC_MAX_DATA_RETENTION_DAYS,
 };

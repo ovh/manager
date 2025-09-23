@@ -3,6 +3,79 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.23.1...@ovh-ux/manager-hub-app@0.24.0) (2025-09-22)
+
+
+### Bug Fixes
+
+* **hub:** hide renew configuration for shared cdn ([f85faca](https://github.com/ovh/manager/commit/f85facae470db43a10b2b06c16475bf93f0a864c)), closes [#MANAGER-19044](https://github.com/ovh/manager/issues/MANAGER-19044)
+
+
+### Features
+
+* **hub:** improve roadmap & changelog translation text ([3110707](https://github.com/ovh/manager/commit/3110707e3328d9fc9eabf492069b839edaab0e22)), closes [#MANAGER-19541](https://github.com/ovh/manager/issues/MANAGER-19541)
+
+
+
+
+
+## [0.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.23.0...@ovh-ux/manager-hub-app@0.23.1) (2025-09-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4339] ([eac81a8](https://github.com/ovh/manager/commit/eac81a87009357e682ec5d14a2a3f613391e3be9))
+
+
+
+
+
+# [0.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.22.0...@ovh-ux/manager-hub-app@0.23.0) (2025-09-17)
+
+
+### Features
+
+* **okms:** add okms to hub ([4d37559](https://github.com/ovh/manager/commit/4d37559d0634403eab0bd5481191e3c88579fabd)), closes [#MANAGER-19183](https://github.com/ovh/manager/issues/MANAGER-19183)
+
+
+
+
+
+# [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.21.7...@ovh-ux/manager-hub-app@0.22.0) (2025-09-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 654] ([a142e50](https://github.com/ovh/manager/commit/a142e504fe2115679df456e4552cf7333048cf46))
+
+
+### Features
+
+* **vcf:** rename vcd by public vcf ([c53d86a](https://github.com/ovh/manager/commit/c53d86aa368c5fd802cfd4e3285fac713ab373b7)), closes [#MANAGER-19106](https://github.com/ovh/manager/issues/MANAGER-19106)
+
+
+
+
+
+## [0.21.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.21.6...@ovh-ux/manager-hub-app@0.21.7) (2025-09-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4306] ([1b1ca9b](https://github.com/ovh/manager/commit/1b1ca9b2e773e70dc601e9c34440cf5f4a3d2b2f))
+
+
+
+
+
+## [0.21.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.21.5...@ovh-ux/manager-hub-app@0.21.6) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
 ## [0.21.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.21.4...@ovh-ux/manager-hub-app@0.21.5) (2025-09-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app

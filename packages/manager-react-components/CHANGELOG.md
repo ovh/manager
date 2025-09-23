@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.40.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.40.4...@ovh-ux/manager-react-components@2.40.5) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-components
+
+## [2.40.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.40.3...@ovh-ux/manager-react-components@2.40.4) (2025-09-12)
+
+### Bug Fixes
+
+- **mrc:** fix checking select all columns visibility ([9ec8c1a](https://github.com/ovh/manager/commit/9ec8c1a1f6f1e26f757cbce665ed3bbcef0ce68a)), closes [#ISSUE-19038](https://github.com/ovh/manager/issues/ISSUE-19038)
+
+## [2.40.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.40.2...@ovh-ux/manager-react-components@2.40.3) (2025-09-11)
+
+### Bug Fixes
+
+- **manager-react-components:** correct breadcrumb href ([2b348f9](https://github.com/ovh/manager/commit/2b348f980f97e21615cb7f8aa143135bcba9115d)), closes [#MANAGER-19686](https://github.com/ovh/manager/issues/MANAGER-19686)
+
 ## [2.40.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.40.1...@ovh-ux/manager-react-components@2.40.2) (2025-09-09)
 
 ### Bug Fixes

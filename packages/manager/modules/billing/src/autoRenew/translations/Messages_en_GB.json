@@ -1,6 +1,6 @@
 {
   "billing_title": "My offers and services",
-  "billing_description": "Welcome to your service management section. Manage all your service renewals, payments, and cancellations on this page.",
+  "billing_description": "Welcome to your service management section.",
   "billing_home_title": "All services",
   "billing_agreements_title": "Contracts",
   "billing_ssh_title": "SSH keys",
@@ -15,7 +15,7 @@
   "billing_autorenew_service_status_manualPayment": "Manual renewal",
   "billing_autorenew_service_status_pending_debt": "Bill to pay",
   "billing_autorenew_service_status_delete_at_expiration": "Cancellation scheduled",
-  "billing_autorenew_service_status_expired": "Terminated",
+  "billing_autorenew_service_status_expired": "Cancelled",
   "billing_autorenew_service_expiration_weeks": "Expires in a week",
   "billing_autorenew_service_expiration_months": "Expires in a month",
   "billing_autorenew_service_expiration_renew_month": "To be renewed in a month",
@@ -51,7 +51,7 @@
   "autorenew_service_renew_years_frequency_value": "Automatic: every {{t0}} years",
   "autorenew_service_renew_paid": "Paid",
   "autorenew_empty": "You don't have any services",
-  "autorenew_service_action_title": "Actions",
+  "autorenew_service_action_title": "Action",
   "autorenew_service_autorenew_day": "Day of automatic renewal:",
   "autorenew_service_autorenew_day_tooltip": "If you automatically renew any of your services, you may choose a renewal day.",
   "autorenew_service_select_intro": "Select all:",
@@ -166,5 +166,12 @@
   "billing_autorenew_engagement_none": "No commitment",
   "billing_autorenew_service_type_ZIMBRA_SLOT": "Zimbra Starter",
   "billing_autorenew_service_type_HOSTING_WEB_EXTRA_SQL_PERSO": "Extra Personal SQL",
-  "billing_autorenew_service_type_HOSTING_WEB_CDN": "Shared CDN"
+  "billing_autorenew_service_type_HOSTING_WEB_CDN": "Shared CDN",
+  "billing_description_details": "Manage all your service renewals, payments, and cancellations on this page.",
+  "billing_autorenew_service_date_us": "Expiry date",
+  "autorenew_service_actions_title": "Actions",
+  "billing_autorenew_service_every_month": "Every month",
+  "billing_autorenew_service_every_x_months": "Every {{ months }} months",
+  "billing_autorenew_service_every_year": "Every year",
+  "billing_autorenew_service_every_x_years": "Every {{ years }} years"
 }

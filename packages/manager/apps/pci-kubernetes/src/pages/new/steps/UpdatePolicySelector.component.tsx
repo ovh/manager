@@ -101,7 +101,9 @@ export function UpdatePolicySelector({
                     color={ODS_THEME_COLOR_INTENT.success}
                     size={ODS_CHIP_SIZE.sm}
                   >
-                    {t('versions:pci_project_versions_recommended_version')}
+                    {t(
+                      'versions:pci_project_versions_recommended_version_female',
+                    )}
                   </OsdsChip>
                 )}
               </div>

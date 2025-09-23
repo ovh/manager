@@ -31,7 +31,7 @@ export default function MainLayout() {
 
   // Hide shell preloader on mount
   useEffect(() => {
-    void shell.ux.hidePreloader();
+    void shell?.ux.hidePreloader();
   }, [shell]);
 
   return (

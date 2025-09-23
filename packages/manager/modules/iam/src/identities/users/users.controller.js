@@ -142,7 +142,12 @@ export default class IamUsersCtrl {
     this.ssoService
       .getIdentityProvider()
       .then((identityProvider) => {
-        this.identityProvider = identityProvider;
+        this.isSSOConnection = !!identityProvider?.disableUsers;
+        if (!this.isSSOConnection) {
+          this.usersService.getAuthDetails().then((details) => {
+            this.authDetails = details;
+          });
+        }
       })
       .catch(() => {
         this.identityProvider = null;

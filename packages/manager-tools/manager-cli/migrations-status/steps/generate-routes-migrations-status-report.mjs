@@ -1,28 +1,24 @@
 #!/usr/bin/env node
+import { existsSync } from 'fs';
+import { readFile } from 'fs/promises';
 
 import { getReactApplications, resolveRoutePath } from '../../utils/AppUtils.mjs';
-import { readFile } from 'fs/promises';
-import { existsSync } from 'fs';
 import { buildRoutesReportFileName, renderReport } from '../../utils/ExportUtils.mjs';
+import { parseCliArgs } from '../../utils/ScriptUtils.mjs';
 
-const args = process.argv.slice(2);
-const isDryRun = args.includes('--dry-run');
-const formatArgIndex = args.findIndex(arg => arg === '--format');
-const format = formatArgIndex !== -1 ? args[formatArgIndex + 1] : null;
+const cliArgs = parseCliArgs(process.argv);
 
 /**
  * Check if an app's route file is migrated to JSX-style.
- * @param {string} appName
- * @returns {Promise<'✅ Done' | '📝 TODO'>}
  */
 const getRouteMigrationStatus = async (appName) => {
-  const routePath = resolveRoutePath(appName, { verbose: isDryRun });
+  const routePath = resolveRoutePath(appName, { verbose: cliArgs.dryRun });
   if (!routePath || !existsSync(routePath)) return '📝 TODO';
 
   try {
     const content = await readFile(routePath, 'utf-8');
     const migrated = content.includes('<Route') && !content.includes('lazyRouteConfig');
-    if (isDryRun) {
+    if (cliArgs.dryRun) {
       console.log(`🔍 ${appName}:`);
       console.log(`   - <Route>: ${content.includes('<Route')}`);
       console.log(`   - lazyRouteConfig: ${content.includes('lazyRouteConfig')}`);
@@ -37,9 +33,12 @@ const getRouteMigrationStatus = async (appName) => {
  * Run migration status analysis and render output.
  */
 const generateRoutesMigrationsStatusReport = async () => {
-  const apps = getReactApplications();
-  const report = [];
+  let apps = getReactApplications();
+  if (cliArgs.app) {
+    apps = apps.filter((a) => a === cliArgs.app);
+  }
 
+  const report = [];
   for (const app of apps) {
     const status = await getRouteMigrationStatus(app);
     report.push({ Application: app, 'Routes Migration': status });
@@ -48,8 +47,8 @@ const generateRoutesMigrationsStatusReport = async () => {
   renderReport(report, {
     title: 'Follow Up Routes Migration',
     statusKeys: ['Routes Migration'],
-    format,
-    filename: buildRoutesReportFileName(format),
+    format: cliArgs.format,
+    filename: buildRoutesReportFileName(cliArgs.format),
   });
 };
 

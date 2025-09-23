@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-load-balancer-app",
-  "version": "0.15.15",
+  "version": "0.15.17",
   "private": true,
   "description": "PCI Octavia load balancer react app",
   "type": "module",
@@ -15,15 +15,15 @@
     "test:watch:coverage": "vitest --coverage"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.6.0",
-    "@ovh-ux/manager-core-api": "^0.18.2",
-    "@ovh-ux/manager-core-utils": "^0.4.0",
+    "@ovh-ux/manager-config": "^8.6.2",
+    "@ovh-ux/manager-core-api": "^0.18.4",
+    "@ovh-ux/manager-core-utils": "^0.4.2",
     "@ovh-ux/manager-pci-common": "^0.17.0",
     "@ovh-ux/manager-react-components": "^1.46.0",
-    "@ovh-ux/manager-react-core-application": "^0.12.2",
+    "@ovh-ux/manager-react-core-application": "^0.12.4",
     "@ovh-ux/manager-react-shell-client": "^0.9.3",
-    "@ovh-ux/manager-tailwind-config": "^0.5.0",
-    "@ovh-ux/shell": "^4.7.4",
+    "@ovh-ux/manager-tailwind-config": "^0.5.2",
+    "@ovh-ux/shell": "^4.7.6",
     "@ovhcloud/ods-common-core": "17.2.2",
     "@ovhcloud/ods-common-stencil": "17.2.2",
     "@ovhcloud/ods-common-theming": "17.2.2",
@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
-    "@ovh-ux/manager-vite-config": "^0.12.0",
+    "@ovh-ux/manager-vite-config": "^0.13.1",
     "@testing-library/dom": "^10.1.0",
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^16.0.0",

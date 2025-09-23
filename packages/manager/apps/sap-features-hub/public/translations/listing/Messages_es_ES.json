@@ -7,5 +7,9 @@
   "sap_hub_history_deployment_type": "Tipo de despliegue",
   "sap_hub_history_installation_status": "Estado",
   "sap_hub_history_installation_RETRY": "Nuevo intento",
-  "sap_hub_history_installation_see_detail": "Ver el detalle"
+  "sap_hub_history_installation_see_detail": "Ver el detalle",
+  "sap_hub_history_installation_delete": "Eliminar la instalación",
+  "sap_hub_history_installation_delete_content": "¿Seguro/a que quiere eliminar esta instalación?",
+  "sap_hub_history_installation_delete_success": "La instalación {{taskId}} se ha eliminado correctamente del historial",
+  "sap_hub_history_installation_delete_error": "Se ha producido un error al eliminar la instalación {{taskId}} del historial."
 }

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cli",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "private": true,
   "description": "Manager CLI automation packages",
   "bugs": {
@@ -19,8 +19,8 @@
     "check-duplicated-translations": "node ./translations-checker/check-duplicated-translations.mjs",
     "common-tests-config-migration": "node ./tests-migrate/common-tests-config-migration.mjs",
     "json-to-component-route-migration": "node ./routes-migrate/json-to-component-route-migration.mjs",
-    "lint:modern": "manager-lint --config eslint.config.mjs ./**/**.*js",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./**/**.*js",
+    "lint:modern": "manager-lint --config eslint.config.mjs ./**/**.*js ./**/**/**.*js",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./**/**.*js ./**/**/**.*js",
     "manager-cli": "node ./manager-cli.mjs",
     "migrations-status": "node migrations-status/generate-migrations-status-reports.mjs",
     "routes-migrations-status": "node migrations-status/steps/generate-routes-migrations-status-report.mjs",
@@ -34,11 +34,11 @@
     "@babel/parser": "^7.27.0",
     "@babel/traverse": "^7.27.0",
     "@babel/types": "^7.27.0",
-    "@ovh-ux/manager-tests-setup": "^0.4.0",
+    "@ovh-ux/manager-tests-setup": "^0.4.2",
     "fast-glob": "^3.3.3"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "*",
+    "@ovh-ux/manager-static-analysis-kit": "^0.9.0",
     "strip-json-comments": "^5.0.2"
   },
   "engines": {

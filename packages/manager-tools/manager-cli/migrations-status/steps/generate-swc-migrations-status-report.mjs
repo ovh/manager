@@ -1,17 +1,18 @@
 #!/usr/bin/env node
-
 import { existsSync, readFileSync } from 'fs';
 import path from 'path';
+
 import { applicationsBasePath, getReactApplications } from '../../utils/AppUtils.mjs';
-import { babelConfigurationFiles, REQUIRED_DEP_VERSIONS, satisfiesVersion } from '../../utils/DependenciesUtils.mjs';
-import { getTestMigrationStatus } from '../../utils/TestUtils.mjs';
+import {
+  REQUIRED_DEP_VERSIONS,
+  babelConfigurationFiles,
+  satisfiesVersion,
+} from '../../utils/DependenciesUtils.mjs';
 import { buildSwcReportFileName, renderReport } from '../../utils/ExportUtils.mjs';
+import { parseCliArgs } from '../../utils/ScriptUtils.mjs';
+import { getTestMigrationStatus } from '../../utils/TestUtils.mjs';
 
-const args = process.argv.slice(2);
-const isDryRun = args.includes('--dry-run');
-
-const formatArgIndex = args.findIndex(arg => arg === '--format');
-const format = formatArgIndex !== -1 ? args[formatArgIndex + 1] : null;
+const cliArgs = parseCliArgs(process.argv);
 
 /**
  * Check whether an app is migrated to SWC.
@@ -21,9 +22,9 @@ const format = formatArgIndex !== -1 ? args[formatArgIndex + 1] : null;
  * @returns {'✅ Done' | '📝 TODO'}
  */
 const getSwcMigrationStatus = (appName) => {
-  const testStatus = getTestMigrationStatus(appName, { verbose: isDryRun });
+  const testStatus = getTestMigrationStatus(appName, { verbose: cliArgs.dryRun });
   if (testStatus !== '✅ Done') {
-    if (isDryRun) {
+    if (cliArgs.dryRun) {
       console.log(`⏭️ ${appName}: Skipping SWC check (tests not fully migrated)`);
     }
     return '📝 TODO';
@@ -40,7 +41,7 @@ const getSwcMigrationStatus = (appName) => {
   for (const file of babelConfigurationFiles) {
     if (existsSync(path.join(appPath, file))) {
       babelFilesCleaned = false;
-      if (isDryRun) console.log(`🛑 ${appName}: Babel config found → ${file}`);
+      if (cliArgs.dryRun) console.log(`🛑 ${appName}: Babel config found → ${file}`);
     }
   }
 
@@ -51,15 +52,20 @@ const getSwcMigrationStatus = (appName) => {
     Object.keys(allDeps).forEach((dep) => {
       if (dep.startsWith('@babel/') || dep === 'babel-loader') {
         babelDepsRemoved = false;
-        if (isDryRun) console.log(`🛑 ${appName}: Babel dep found → ${dep}`);
+        if (cliArgs.dryRun) console.log(`🛑 ${appName}: Babel dep found → ${dep}`);
       }
     });
 
     const managerVite = allDeps['@ovh-ux/manager-vite-config'];
-    if (!managerVite || !satisfiesVersion(REQUIRED_DEP_VERSIONS['@ovh-ux/manager-vite-config'], managerVite)) {
+    if (
+      !managerVite ||
+      !satisfiesVersion(REQUIRED_DEP_VERSIONS['@ovh-ux/manager-vite-config'], managerVite)
+    ) {
       depsOk = false;
-      depsErrors.push(`🟥 @ovh-ux/manager-vite-config required: ${REQUIRED_DEP_VERSIONS['@ovh-ux/manager-vite-config']}, found: ${managerVite || 'not installed'}`);
-    } else if (isDryRun) {
+      depsErrors.push(
+        `🟥 @ovh-ux/manager-vite-config required: ${REQUIRED_DEP_VERSIONS['@ovh-ux/manager-vite-config']}, found: ${managerVite || 'not installed'}`,
+      );
+    } else if (cliArgs.dryRun) {
       console.log(`   - @ovh-ux/manager-vite-config version: ✅ ${managerVite}`);
     }
 
@@ -68,20 +74,20 @@ const getSwcMigrationStatus = (appName) => {
       if (!satisfiesVersion(REQUIRED_DEP_VERSIONS['vite'], vite)) {
         depsOk = false;
         depsErrors.push(`🟥 vite required: ${REQUIRED_DEP_VERSIONS['vite']}, found: ${vite}`);
-      } else if (isDryRun) {
+      } else if (cliArgs.dryRun) {
         console.log(`   - vite version: ✅ ${vite}`);
       }
-    } else if (isDryRun) {
+    } else if (cliArgs.dryRun) {
       console.log(`   - vite version: ⚪️ not installed (optional)`);
     }
   }
 
   const isMigrated = babelFilesCleaned && babelDepsRemoved && depsOk;
 
-  if (isDryRun) {
+  if (cliArgs.dryRun) {
     if (!babelFilesCleaned) console.log(`❌ ${appName}: Babel config files not removed`);
     if (!babelDepsRemoved) console.log(`❌ ${appName}: Babel dependencies not cleaned`);
-    if (!depsOk) depsErrors.forEach(e => console.log(e));
+    if (!depsOk) depsErrors.forEach((e) => console.log(e));
     if (isMigrated) console.log(`✅ ${appName}: SWC migration complete`);
   }
 
@@ -92,7 +98,11 @@ const getSwcMigrationStatus = (appName) => {
  * Run and render SWC migration report.
  */
 const generateSwcMigrationsStatusReport = () => {
-  const apps = getReactApplications();
+  let apps = getReactApplications();
+  if (cliArgs.app) {
+    apps = apps.filter((a) => a === cliArgs.app);
+  }
+
   const report = apps.map((app) => ({
     Application: app,
     'SWC Migration': getSwcMigrationStatus(app),
@@ -101,8 +111,8 @@ const generateSwcMigrationsStatusReport = () => {
   renderReport(report, {
     title: 'Follow Up SWC Migration',
     statusKeys: ['SWC Migration'],
-    format,
-    filename: buildSwcReportFileName(format),
+    format: cliArgs.format,
+    filename: buildSwcReportFileName(cliArgs.format),
   });
 };
 

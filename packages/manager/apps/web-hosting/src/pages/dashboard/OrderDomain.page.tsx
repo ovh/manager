@@ -1,36 +1,38 @@
-import React, { useContext, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useContext, useState } from 'react';
 
-import { OdsRadio, OdsText } from '@ovhcloud/ods-components/react';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsRadio, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal } from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { ACTIONS, DOMAIN_ORDER_URL, REGION } from '@/constants';
 import { subRoutes, urls } from '@/routes/routes.constants';
 
 export default function OrderDomainModal() {
   const { serviceName } = useParams();
   const navigate = useNavigate();
-  const closeModal = () =>
-    navigate(urls.ssl.replace(subRoutes.serviceName, serviceName));
+  const closeModal = () => navigate(urls.ssl.replace(subRoutes.serviceName, serviceName));
   const context = useContext(ShellContext);
   const region = context.environment.getRegion();
   const { ovhSubsidiary } = context.environment.getUser();
   const rawOrderFormURL =
     DOMAIN_ORDER_URL?.[region as keyof typeof DOMAIN_ORDER_URL]?.[
-      ovhSubsidiary as keyof typeof DOMAIN_ORDER_URL[REGION]
+      ovhSubsidiary as keyof (typeof DOMAIN_ORDER_URL)[REGION]
     ];
-
   const { t } = useTranslation(['dashboard', NAMESPACES.ACTIONS]);
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState<ACTIONS | ''>('');
 
   const onConfirm = () => {
     if (selectedOption === ACTIONS.ORDER) {
       window.open(rawOrderFormURL, '_blank');
       closeModal();
-    } else {
+    } else if (selectedOption === ACTIONS.ATTACH) {
       navigate(urls.addDomain.replace(subRoutes.serviceName, serviceName));
     }
   };
@@ -44,7 +46,7 @@ export default function OrderDomainModal() {
       secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onPrimaryButtonClick={onConfirm}
       onSecondaryButtonClick={closeModal}
-      isPrimaryButtonDisabled={Boolean(!selectedOption)}
+      isPrimaryButtonDisabled={!selectedOption}
     >
       <div className="flex flex-col space-y-8 mb-10">
         <OdsText className="mb-4" preset={ODS_TEXT_PRESET.heading4}>
@@ -59,9 +61,7 @@ export default function OrderDomainModal() {
             onOdsChange={() => setSelectedOption(ACTIONS.ORDER)}
           />
           <label>
-            <OdsText preset="span">
-              {t('hosting_dashboard_add_or_order_step1_order')}
-            </OdsText>
+            <OdsText preset="span">{t('hosting_dashboard_add_or_order_step1_order')}</OdsText>
           </label>
         </div>
         <div className="flex gap-4 items-center">
@@ -72,9 +72,7 @@ export default function OrderDomainModal() {
             onOdsChange={() => setSelectedOption(ACTIONS.ATTACH)}
           />
           <label>
-            <OdsText preset="span">
-              {t('hosting_dashboard_add_or_order_step1_attach')}
-            </OdsText>
+            <OdsText preset="span">{t('hosting_dashboard_add_or_order_step1_attach')}</OdsText>
           </label>
         </div>
       </div>

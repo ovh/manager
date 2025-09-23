@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.14.3...@ovh-ux/manager-bm-server-components@2.15.0) (2025-09-22)
+
+
+### Features
+
+* **nutanix:** fetch server tasks with iceberg and adding filter status in datagrid ([bc4456c](https://github.com/ovh/manager/commit/bc4456c816fd9d0c29bf5e9cbd67e213a82c2f60)), closes [#MANAGER-17410](https://github.com/ovh/manager/issues/MANAGER-17410)
+
+
+
+
+
+## [2.14.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.14.2...@ovh-ux/manager-bm-server-components@2.14.3) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
+## [2.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.14.1...@ovh-ux/manager-bm-server-components@2.14.2) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
 ## [2.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.14.0...@ovh-ux/manager-bm-server-components@2.14.1) (2025-09-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-bm-server-components

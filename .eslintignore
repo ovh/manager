@@ -15,6 +15,5 @@ packages/components/ovh-at-internet/src/ovh-at-internet.ts
 packages/manager/apps/container
 packages/manager/apps/pci-databases-analytics/src/components/ui
 !.storybook
-lint-runner.js
-lint-cli.js
+manager-static-analysis-kit
 manager-generator

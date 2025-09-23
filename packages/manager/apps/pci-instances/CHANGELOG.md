@@ -3,6 +3,81 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.5.0...@ovh-ux/manager-pci-instances-app@0.5.1) (2025-09-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4339] ([eac81a8](https://github.com/ovh/manager/commit/eac81a87009357e682ec5d14a2a3f613391e3be9))
+
+
+
+
+
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.4.5...@ovh-ux/manager-pci-instances-app@0.5.0) (2025-09-15)
+
+
+### Bug Fixes
+
+* **pci-instances:** add region params to delete action ([b171f2e](https://github.com/ovh/manager/commit/b171f2e241f0097a5953782235fa58570b666c92))
+* **pci-instances:** adjust dashboard ui to be conform with design ([0ed8815](https://github.com/ovh/manager/commit/0ed8815712916d59cca374560f3d35d8af4e531f))
+* **pci-instances:** avoid maximum update depth exceeded in render ([157b2be](https://github.com/ovh/manager/commit/157b2bedf672171a784879f15f7fb658a99d0c5d))
+* **pci-instances:** close action popover when opening a modal action ([4499c23](https://github.com/ovh/manager/commit/4499c2350fd12092b49b63cecf4f3c539ea1605d))
+* **pci-instances:** dashboard - make icons bigger ([4cf1c26](https://github.com/ovh/manager/commit/4cf1c2643cb170ac83046822561628951f6157e5)), closes [#TAPC-4862](https://github.com/ovh/manager/issues/TAPC-4862)
+* **pci-instances:** dashboard - rework action popover visuals ([0a58e2b](https://github.com/ovh/manager/commit/0a58e2b8eac1cb06e93379995cecf7ed26b5b187)), closes [#TAPC-4863](https://github.com/ovh/manager/issues/TAPC-4863)
+* **pci-instances:** dashboard - rework create backup modal texts ([5df7dbf](https://github.com/ovh/manager/commit/5df7dbf27179b6d38bf17d311c37d01b6376367e)), closes [#TAPC-4866](https://github.com/ovh/manager/issues/TAPC-4866)
+* **pci-instances:** dashboard - rework dividers ([09f7f90](https://github.com/ovh/manager/commit/09f7f90818574cbf5bd882dfadec5bd03918699a)), closes [#TAPC-4864](https://github.com/ovh/manager/issues/TAPC-4864)
+* **pci-instances:** dashboard - rework warning modal text ([bb33d97](https://github.com/ovh/manager/commit/bb33d976106db602e057e883f235afc68bc2e6ef)), closes [#TAPC-4860](https://github.com/ovh/manager/issues/TAPC-4860)
+* **pci-instances:** disable modal cancel button only on pending ([e17e695](https://github.com/ovh/manager/commit/e17e69575656b10703735d88feafe8c2a4060030))
+* **pci-instances:** display elipsis when volume name is too long + migrate link to ods19 ([b4b7c1f](https://github.com/ovh/manager/commit/b4b7c1f825bbb262e56967e5dd5c6682309e880a))
+* **pci-instances:** display only enabled price for instance ([44870c0](https://github.com/ovh/manager/commit/44870c07a66bca0683354575c49e0b4dbde549be))
+* **pci-instances:** enable network actions in edit mode ([0e493a9](https://github.com/ovh/manager/commit/0e493a99bee443c34c4ad0f27740faeb635205bc))
+* **pci-instances:** fix warning modal variant ([722e786](https://github.com/ovh/manager/commit/722e786009ae8259e3b5796f6568b4728edb88f8)), closes [#TAPC-4865](https://github.com/ovh/manager/issues/TAPC-4865)
+* **pci-instances:** handle hashes conflict between dashboard and creation ([8a2e71f](https://github.com/ovh/manager/commit/8a2e71ff48824ab05f4f4c64a24a08bf1d4b3ff4))
+* **pci-instances:** hide reverse dns if it is not defined ([39980eb](https://github.com/ovh/manager/commit/39980ebdb7088f05ba38a4c6993bc2aa31c0c29b))
+* **pci-instances:** migrate ActionMenu to ODS19 and fix button to ghost ([6f8194a](https://github.com/ovh/manager/commit/6f8194ac6ae7803fcae7e67821aa126e47f8bc0c)), closes [#TAPC-4861](https://github.com/ovh/manager/issues/TAPC-4861)
+* **pci-instances:** open public ip external link in a new tab  ([b766d51](https://github.com/ovh/manager/commit/b766d51c70a61725e0ccca8fede7dc53466119f2)), closes [#TAPC-4872](https://github.com/ovh/manager/issues/TAPC-4872)
+* **pci-instances:** prevent submit form on hiting enter ([1423b25](https://github.com/ovh/manager/commit/1423b25be222054f37e21c0152195372d2a91bb2))
+* **pci-instances:** refresh the price display after switching to monthly ([0e22147](https://github.com/ovh/manager/commit/0e221475901cf4aa25b2b9a444874086c3dd0756))
+* **pci-instances:** remove unsafe assignment due to any type ([0157b16](https://github.com/ovh/manager/commit/0157b16a4cd3b2d7dda57181741bd67e1b11095c))
+* **pci-instances:** sync cache to display the right action status ([97e5bb4](https://github.com/ovh/manager/commit/97e5bb45107b33982cb61d74f70d5927078636be))
+* **pci-instances:** validate instanceId params to avoid error on generating path ([48051a3](https://github.com/ovh/manager/commit/48051a3d6dd460daf6db1f1389c8d103971bfbb7))
+
+
+### Features
+
+* **pci-instance:** fix warning message add private network ([b0d2339](https://github.com/ovh/manager/commit/b0d233904726dc259fda35ad67e2cdb2a7eb2e91)), closes [#TAPC-4860](https://github.com/ovh/manager/issues/TAPC-4860)
+* **pci-instances:** add dashboard translation ([34c908a](https://github.com/ovh/manager/commit/34c908a3b8b42a31574606d7d62d772d788720a4))
+* **pci-instances:** add dropdown actions ([3c0966e](https://github.com/ovh/manager/commit/3c0966e0d616c4f8df65392537cdfc959f89e28b)), closes [#TAPC-4386](https://github.com/ovh/manager/issues/TAPC-4386)
+* **pci-instances:** add fr translation for dashboard ([c1a20ab](https://github.com/ovh/manager/commit/c1a20ab9ae126f9618ab171281b72726ba808d74))
+* **pci-instances:** add general information content ([49be203](https://github.com/ovh/manager/commit/49be20343ffd465915ad160bf47851cd193a12b4)), closes [#TAPC-4052](https://github.com/ovh/manager/issues/TAPC-4052)
+* **pci-instances:** add instance property block ([71282e0](https://github.com/ovh/manager/commit/71282e0f293eb82114ea7b9c61da207d6fa7ad37)), closes [#TAPC-4059](https://github.com/ovh/manager/issues/TAPC-4059)
+* **pci-instances:** add instance status and add polling feature ([c5a5613](https://github.com/ovh/manager/commit/c5a5613b8f3f1994011adefcb54e44c56e01bcfd)), closes [#TAPC-4037](https://github.com/ovh/manager/issues/TAPC-4037)
+* **pci-instances:** add network block ([14ac378](https://github.com/ovh/manager/commit/14ac378beb30718080704ff3c24df4e5e1d50ab5)), closes [#TAPC-4061](https://github.com/ovh/manager/issues/TAPC-4061) [#TAPC-4401](https://github.com/ovh/manager/issues/TAPC-4401)
+* **pci-instances:** add new dashboard page ([e27ee34](https://github.com/ovh/manager/commit/e27ee34087f53012e24e9d2086544669c4c81a49)), closes [#TAPC-4388](https://github.com/ovh/manager/issues/TAPC-4388)
+* **pci-instances:** add reverse dns field ([dc75b3a](https://github.com/ovh/manager/commit/dc75b3a06734ecdbc55794f9b211a901f4181f8e)), closes [#TAPC-4404](https://github.com/ovh/manager/issues/TAPC-4404)
+* **pci-instances:** add vnc tab when edit is enabled ([5e6bf91](https://github.com/ovh/manager/commit/5e6bf91a6e0cbf36dc5ec5d38da2f68eea8be50b)), closes [#TAPC-4391](https://github.com/ovh/manager/issues/TAPC-4391)
+* **pci-instances:** allow activating monthly billing when enabled ([b1efbe4](https://github.com/ovh/manager/commit/b1efbe4cf56684768b1f4df88be3b6e9429a65a9)), closes [#TAPC-4076](https://github.com/ovh/manager/issues/TAPC-4076)
+* **pci-instances:** allow instance deleting when enabled ([95dfadc](https://github.com/ovh/manager/commit/95dfadc198252ca20d3665889432942bd5a0bb54)), closes [#TAPC-4387](https://github.com/ovh/manager/issues/TAPC-4387)
+* **pci-instances:** attach volume on instance ([912acda](https://github.com/ovh/manager/commit/912acda22cd01a3c1c7cb319ae1f7d7bf0ef2dd4)), closes [#TAPC-4389](https://github.com/ovh/manager/issues/TAPC-4389)
+* **pci-instances:** display instance name and allow updating if edit is enabled ([8b1e4ef](https://github.com/ovh/manager/commit/8b1e4efc3f4fc46c798c978d3d54b0fcfc406fe4)), closes [#TAPC-4006](https://github.com/ovh/manager/issues/TAPC-4006)
+* **pci-instances:** implement generic legacy redirection ([f0a0144](https://github.com/ovh/manager/commit/f0a0144b18a0a7fb33431b43bef38cdc441509b4)), closes [#TAPC-4669](https://github.com/ovh/manager/issues/TAPC-4669)
+* **pci-instances:** migrate components to ods 19 ([ba40fc8](https://github.com/ovh/manager/commit/ba40fc88e2135df9e87d304e3ee1aee4d19b53b5))
+* **pci-instances:** redirect user to error page when instance cannot be fetched ([742c00b](https://github.com/ovh/manager/commit/742c00b5b6ea09fda5787dfdc01b68ca67e249e5)), closes [#TAPC-4849](https://github.com/ovh/manager/issues/TAPC-4849)
+* **pci-instances:** use loader to get non migrated routes ([9ca1297](https://github.com/ovh/manager/commit/9ca1297dece431e1c85b7d005d7e8224e4ff0ae9)), closes [#TAPC-4669](https://github.com/ovh/manager/issues/TAPC-4669)
+
+
+
+
+
+## [0.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.4.4...@ovh-ux/manager-pci-instances-app@0.4.5) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
 ## [0.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.4.3...@ovh-ux/manager-pci-instances-app@0.4.4) (2025-09-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-instances-app

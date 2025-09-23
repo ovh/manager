@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.11.15...@ovh-ux/manager-web-ongoing-operations-app@1.11.16) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.11.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.11.14...@ovh-ux/manager-web-ongoing-operations-app@1.11.15) (2025-09-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.11.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.11.13...@ovh-ux/manager-web-ongoing-operations-app@1.11.14) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.11.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.11.12...@ovh-ux/manager-web-ongoing-operations-app@1.11.13) (2025-09-11)
+
+
+### Bug Fixes
+
+* **web-ongoing-operations:** be able to cancel operation ([#18918](https://github.com/ovh/manager/issues/18918)) ([4926ef5](https://github.com/ovh/manager/commit/4926ef51f6c2eaeb082c95f4566a1199f64ea5db)), closes [#MANAGER-19550](https://github.com/ovh/manager/issues/MANAGER-19550)
+
+
+
+
+
 ## [1.11.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.11.11...@ovh-ux/manager-web-ongoing-operations-app@1.11.12) (2025-09-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app

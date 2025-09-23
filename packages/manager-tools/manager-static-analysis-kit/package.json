@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-static-analysis-kit",
-  "version": "0.7.1",
+  "version": "0.9.0",
   "description": "A modular, extensible, and future-ready toolkit for defining, adapting, and sharing static analysis rules across projects in the `manager` monorepo.",
   "repository": {
     "type": "git",
@@ -76,12 +76,30 @@
     },
     "./tsconfig/test-strict": {
       "default": "./dist/tsconfig/test-strict.json"
+    },
+    "./tests/html-w3c-tests-setup": {
+      "types": "./dist/adapters/html-w3c-validation/helpers/html-w3c-tests-setup.d.ts",
+      "import": "./dist/adapters/html-w3c-validation/helpers/html-w3c-tests-setup.js"
+    },
+    "./tests/html-a11y-tests-setup": {
+      "types": "./dist/adapters/html-a11y-validation/helpers/html-a11y-tests-setup.d.ts",
+      "import": "./dist/adapters/html-a11y-validation/helpers/html-a11y-tests-setup"
     }
   },
   "main": "./dist/code-analysis.js",
   "types": "./dist/code-analysis.d.ts",
   "bin": {
-    "manager-lint": "./bin/lint-cli.js"
+    "manager-code-duplication": "./bin/code-duplication-cli.js",
+    "manager-code-duplication-tests": "./bin/code-duplication-tests-cli.js",
+    "manager-lint": "./bin/lint-cli.js",
+    "manager-perf-budgets": "./bin/perf-budgets-cli.js",
+    "manager-perf-budgets-tests": "./bin/perf-budgets-tests-cli.js",
+    "manager-static-dynamic-quality-checks": "./bin/static-dynamic-quality-checks.js",
+    "manager-static-dynamic-quality-checks-tests": "./bin/static-dynamic-quality-checks-tests.js",
+    "manager-tests-coverage": "./bin/tests-coverage-cli.js",
+    "manager-tests-coverage-tests": "./bin/tests-coverage-cli-tests.js",
+    "manager-types-coverage": "./bin/types-coverage-cli.js",
+    "manager-types-coverage-tests": "./bin/types-coverage-tests-cli.js"
   },
   "files": [
     "dist",
@@ -91,10 +109,9 @@
   "scripts": {
     "build": "tsx scripts/build.ts",
     "postinstall": "tsx scripts/build.ts",
-    "lint:modern": "manager-lint --config eslint.config.mts ./src",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mts ./src",
-    "prepare": "tsx scripts/build.ts",
-    "test": "echo \"No tests yet.\" && exit 0"
+    "lint:modern": "manager-lint --config eslint.config.mts ./src/**/*.ts",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mts ./src/**/*.ts",
+    "prepare": "tsx scripts/build.ts"
   },
   "dependencies": {
     "@eslint/css": "^0.9.0",
@@ -109,6 +126,7 @@
     "@typescript-eslint/eslint-plugin": "^8.37.0",
     "@typescript-eslint/parser": "^8.37.0",
     "@vitest/eslint-plugin": "^1.3.3",
+    "axe-core": "^4.10.3",
     "eslint": "^9.29.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-import-resolver-typescript": "^4.4.4",
@@ -120,15 +138,25 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-storybook": "^9.0.13",
     "eslint-plugin-tailwindcss": "^3.18.0",
+    "execa": "^9.6.0",
     "globals": "^16.2.0",
     "jiti": "^2.5.1",
+    "jscpd": "^4.0.5",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.6.13",
+    "semantic-ui-react": "^2.1.5",
     "tailwind-csstree": "^0.1.1",
     "tailwindcss": "^3.4.4",
     "tsc-alias": "^1.8.16",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.35.0"
+    "typescript-coverage-report": "^1.1.1",
+    "typescript-eslint": "^8.35.0",
+    "vite-bundle-analyzer": "^1.2.3",
+    "vitest-axe": "^0.1.0",
+    "vnu-jar": "^24.10.17"
+  },
+  "peerDependencies": {
+    "@ovh-ux/manager-tests-setup": "latest"
   }
 }

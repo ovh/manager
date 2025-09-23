@@ -10,8 +10,12 @@
                     class="oui-input"
                     name="name"
                     id="name"
-                    data-ng-model="$ctrl.accountFormCtrl.model.name"
-                    data-ng-required="$ctrl.accountFormCtrl.rules.name.mandatory"
+                    data-ng-model="$ctrl.signUpFormCtrl.model.name"
+                    data-ng-required="$ctrl.signUpFormCtrl.rules.name.mandatory"
+                    data-ng-maxlength="$ctrl.signUpFormCtrl.rules.name.maxLength"
+                    data-ng-minlength="$ctrl.signUpFormCtrl.rules.name.minLength"
+                    data-ng-pattern="$ctrl.signUpFormCtrl.rules.name.regularExpression"
+                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.name)"
                 />
             </oui-field>
             <!-- /input[name="name"] -->
@@ -27,29 +31,15 @@
                     class="oui-input"
                     name="firstname"
                     id="firstname"
-                    data-ng-model="$ctrl.accountFormCtrl.model.firstname"
-                    data-ng-required="$ctrl.accountFormCtrl.rules.firstname.mandatory"
+                    data-ng-model="$ctrl.signUpFormCtrl.model.firstname"
+                    data-ng-required="$ctrl.signUpFormCtrl.rules.firstname.mandatory"
+                    data-ng-maxlength="$ctrl.signUpFormCtrl.rules.firstname.maxLength"
+                    data-ng-minlength="$ctrl.signUpFormCtrl.rules.firstname.minLength"
+                    data-ng-pattern="$ctrl.signUpFormCtrl.rules.firstname.regularExpression"
+                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.firstname)"
                 />
             </oui-field>
             <!-- /input[name="firstname"] -->
         </div>
     </div>
-
-    <!-- email -->
-    <oui-field
-        data-label="{{ 'sign_up_identity_field_email' | translate }}"
-        data-error-messages="{ emailAvailable: ('ovh_account_form_field_email_error' | translate) }"
-    >
-        <input
-            type="email"
-            class="oui-input"
-            name="email"
-            id="email"
-            data-ng-model="$ctrl.accountFormCtrl.model.email"
-            data-ng-required="$ctrl.accountFormCtrl.rules.email.mandatory"
-            data-ng-pattern="$ctrl.accountFormCtrl.rules.email.regularExpression"
-            data-email-available="{{ $ctrl.accountFormCtrl.model.ovhCompany }}"
-        />
-    </oui-field>
-    <!-- /input[name="email"] -->
 </div>

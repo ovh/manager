@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.21.0...@ovh-ux/manager-pci-savings-plan-app@1.21.1) (2025-09-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4339] ([eac81a8](https://github.com/ovh/manager/commit/eac81a87009357e682ec5d14a2a3f613391e3be9))
+* **i18n:** add missing translations [CDS 4344] ([9a27729](https://github.com/ovh/manager/commit/9a277290d8896ef6c44c0abe880051cb76525849))
+
+
+
+
+
+# [1.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.20.17...@ovh-ux/manager-pci-savings-plan-app@1.21.0) (2025-09-15)
+
+
+### Bug Fixes
+
+* **savings-plan:** use resources Id instead of plan for consumption ([0952842](https://github.com/ovh/manager/commit/095284212c759c02c3ed04cd3880f2ba6e2ff436)), closes [#TAPC-4399](https://github.com/ovh/manager/issues/TAPC-4399)
+
+
+### Features
+
+* **savings-plan:** details of ressource id for a plan ([aa6afe0](https://github.com/ovh/manager/commit/aa6afe09a0ac6e833bb133e8c842cb6bbe217457)), closes [#TAPC-4399](https://github.com/ovh/manager/issues/TAPC-4399)
+
+
+
+
+
+## [1.20.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.20.16...@ovh-ux/manager-pci-savings-plan-app@1.20.17) (2025-09-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.20.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.20.15...@ovh-ux/manager-pci-savings-plan-app@1.20.16) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
 ## [1.20.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.20.14...@ovh-ux/manager-pci-savings-plan-app@1.20.15) (2025-09-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app

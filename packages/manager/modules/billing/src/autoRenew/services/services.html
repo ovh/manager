@@ -39,7 +39,9 @@
             tracking-category="$ctrl.trackingCategory"
         >
         </ovh-manager-auto-renew-payment-method>
-        <ovh-manager-auto-renew-tips></ovh-manager-auto-renew-tips>
+        <ovh-manager-auto-renew-tips
+            data-ng-if="!$ctrl.isUSRegion"
+        ></ovh-manager-auto-renew-tips>
     </div>
 
     <oui-datagrid
@@ -57,9 +59,11 @@
     >
         <oui-datagrid-topbar>
             <oui-action-menu
-                data-text="{{:: 'autorenew_service_action_title' | translate }}"
+                data-text="{{:: ($ctrl.isUSRegion ? 'autorenew_service_action_title' : 'autorenew_service_actions_title') | translate }}"
             >
-                <div data-ng-if="$ctrl.selectedServices.length > 0">
+                <div
+                    data-ng-if="$ctrl.selectedServices.length > 0 && !$ctrl.isUSRegion"
+                >
                     <oui-action-menu-item
                         data-href="{{ $ctrl.manualRenewUrl }}"
                         data-external
@@ -175,14 +179,12 @@
             data-title="::'billing_autorenew_service_frequency' | translate"
             data-type="options"
         >
-            <span
-                data-ng-bind-html="$row.hasAutomaticRenew() && !$row.isResiliated() && $row.renewPeriod ? 'billing_autorenew_service_every_' + $row.renew.period + '_month': 'billing_autorenew_service_none' | translate"
-            >
+            <span data-ng-bind-html="::$ctrl.getRenewPeriodTranslation($row)">
             </span>
         </oui-datagrid-column>
 
         <oui-datagrid-column
-            data-title="::'billing_autorenew_service_date' | translate"
+            data-title="::($ctrl.isUSRegion? 'billing_autorenew_service_date_us' : 'billing_autorenew_service_date') | translate"
             data-property="expiration"
             data-type="options"
             data-type-options="$ctrl.filtersOptions.expiration"

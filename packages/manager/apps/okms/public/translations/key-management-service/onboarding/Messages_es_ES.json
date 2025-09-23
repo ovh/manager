@@ -1,0 +1,19 @@
+{
+  "title": "OVHcloud Key Management Service",
+  "description": "Mantenga el control sobre el cifrado de sus datos sensibles.",
+  "orderButtonLabel": "Contratar un KMS",
+  "orderButtonLink": "/#/dedicated/key-management-service/order",
+  "moreInfoButtonLabel": "Más información",
+  "moreInfoButtonLink": "/#/dedicated/key-management-service/info",
+  "guideCategory": "Guía",
+  "guide1Title": "Primeros pasos con un key-management-service",
+  "guide1Description": "Cómo gestionar un NAS-HA desde el área de cliente de OVHcloud",
+  "guide1Link": "https://help.ovhcloud.com/csm/es-es-public-cloud-storage-nas-get-started?id=kb_article_view&amp;sysparm_article=KB0046695",
+  "guide2Title": "Montaje de un NAS-HA mediante NFS compartido",
+  "guide2Description": "Cómo conectarse a un NAS-HA utilizando un recurso compartido por NFS",
+  "guide2Link": "https://help.ovhcloud.com/csm/es-es-public-cloud-storage-nas-nfs?id=kb_article_view&amp;sysparm_article=KB0046746",
+  "guide3Title": "Montar un NAS en Windows Server a través de CIFS",
+  "guide3Description": "Cómo montar un NAS en Windows Server a través del protocolo CIFS",
+  "guide3Link": "https://help.ovhcloud.com/csm/es-es-public-cloud-storage-nas-cifs?id=kb_article_view&amp;sysparm_article=KB0046668",
+  "description_secondary": "OVHcloud KMS es un servicio centralizado de cifrado completamente administrado para proteger los datos en sus aplicaciones y servicios de OVHcloud."
+}

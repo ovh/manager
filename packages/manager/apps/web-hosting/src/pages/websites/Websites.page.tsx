@@ -1,16 +1,9 @@
-import React, { useContext, useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
+
+import { download, generateCsv, mkConfig } from 'export-to-csv';
+import punycode from 'punycode/punycode';
 import { useTranslation } from 'react-i18next';
-import { generateCsv, mkConfig, download } from 'export-to-csv';
-import {
-  BaseLayout,
-  Datagrid,
-  DatagridColumn,
-  GuideButton,
-  GuideItem,
-  Notifications,
-  OvhSubsidiary,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
@@ -25,22 +18,35 @@ import {
   OdsPopover,
   OdsTooltip,
 } from '@ovhcloud/ods-components/react';
+
+import {
+  BaseLayout,
+  Datagrid,
+  DatagridColumn,
+  GuideButton,
+  GuideItem,
+  Notifications,
+  OvhSubsidiary,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import punycode from 'punycode/punycode';
+
+import { getAllWebHostingAttachedDomain } from '@/data/api/AttachedDomain';
 import { useWebHostingAttachedDomain } from '@/data/hooks/webHostingAttachedDomain/useWebHostingAttachedDomain';
-import { WebsiteType, ServiceStatus } from '@/data/type';
+import { WebsiteType } from '@/data/types/product/website';
+import { ServiceStatus } from '@/data/types/status';
+import { useDebouncedValue } from '@/hooks/debouncedValue/useDebouncedValue';
+import { EXPORT_CSV, ORDER_CTA, WEBSITE } from '@/utils/tracking.constants';
+import { buildURLSearchParams } from '@/utils/url';
+
 import ActionButtonStatistics from './ActionButtonStatistics.component';
 import { BadgeStatusCell, DiagnosticCell, LinkCell } from './Cells.component';
 import { GUIDE_URL, ORDER_URL } from './websites.constants';
-import { getAllWebHostingAttachedDomain } from '@/data/api/AttachedDomain';
-import { EXPORT_CSV, ORDER_CTA, WEBSITE } from '@/utils/tracking.constants';
-import { useDebouncedValue } from '@/hooks/debouncedValue/useDebouncedValue';
-import { buildURLSearchParams } from '@/utils/url';
 
 export default function Websites() {
   const { t } = useTranslation('common');
@@ -48,22 +54,13 @@ export default function Websites() {
   const [isCSVLoading, setIsCSVLoading] = useState(false);
   const csvPopoverRef = useRef<HTMLOdsPopoverElement>(null);
   const { notifications, addSuccess } = useNotifications();
-  const [
-    searchInput,
-    setSearchInput,
-    debouncedSearchInput,
-    setDebouncedSearchInput,
-  ] = useDebouncedValue('');
+  const [searchInput, setSearchInput, debouncedSearchInput, setDebouncedSearchInput] =
+    useDebouncedValue('');
 
-  const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isLoading,
-    isFetchingNextPage,
-  } = useWebHostingAttachedDomain({
-    domain: punycode.toASCII(debouncedSearchInput),
-  });
+  const { data, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage } =
+    useWebHostingAttachedDomain({
+      domain: punycode.toASCII(debouncedSearchInput),
+    });
   const { trackClick } = useOvhTracking();
 
   const items = data ? data.map((website: WebsiteType) => website) : [];
@@ -74,9 +71,7 @@ export default function Websites() {
       label: t('web_hosting_status_header_fqdn'),
       cell: (webSiteItem: WebsiteType) => {
         const fqdn = webSiteItem?.currentState.fqdn || '';
-        const containsPunycode = fqdn
-          .split('.')
-          .some((part) => part.startsWith('xn--'));
+        const containsPunycode = fqdn.split('.').some((part) => part.startsWith('xn--'));
 
         return (
           <div className="flex items-center">
@@ -93,9 +88,7 @@ export default function Websites() {
                   className="color-disabled cursor-pointer ml-4"
                   name="circle-question"
                 />
-                <OdsTooltip triggerId={`tooltip-trigger-${fqdn}`}>
-                  {fqdn}
-                </OdsTooltip>
+                <OdsTooltip triggerId={`tooltip-trigger-${fqdn}`}>{fqdn}</OdsTooltip>
               </>
             )}
           </div>
@@ -107,9 +100,7 @@ export default function Websites() {
     {
       id: 'diagnostic',
       label: t('web_hosting_status_header_diagnostic'),
-      cell: (webSiteItem: WebsiteType) => (
-        <DiagnosticCell webSiteItem={webSiteItem} />
-      ),
+      cell: (webSiteItem: WebsiteType) => <DiagnosticCell webSiteItem={webSiteItem} />,
       enableHiding: true,
     },
     {
@@ -178,11 +169,7 @@ export default function Websites() {
       cell: (webSiteItem: WebsiteType) => (
         <BadgeStatusCell
           webSiteItem={webSiteItem}
-          status={
-            webSiteItem?.currentState.ownLog
-              ? ServiceStatus.ACTIVE
-              : ServiceStatus.NONE
-          }
+          status={webSiteItem?.currentState.ownLog ? ServiceStatus.ACTIVE : ServiceStatus.NONE}
           tracking="ownLog"
           withMultisite
         />
@@ -231,9 +218,7 @@ export default function Websites() {
         <BadgeStatusCell
           webSiteItem={webSiteItem}
           status={
-            webSiteItem?.currentState.hosting.boostOffer
-              ? ServiceStatus.ACTIVE
-              : ServiceStatus.NONE
+            webSiteItem?.currentState.hosting.boostOffer ? ServiceStatus.ACTIVE : ServiceStatus.NONE
           }
           tracking="boostOffer"
           withBoost
@@ -243,9 +228,7 @@ export default function Websites() {
     {
       id: 'actions',
       label: '',
-      cell: (webSiteItem: WebsiteType) => (
-        <ActionButtonStatistics webSiteItem={webSiteItem} />
-      ),
+      cell: (webSiteItem: WebsiteType) => <ActionButtonStatistics webSiteItem={webSiteItem} />,
     },
   ];
   interface ExportColumn {
@@ -287,8 +270,7 @@ export default function Websites() {
     {
       id: 'git',
       label: t('web_hosting_status_header_git'),
-      getValue: (item) =>
-        t(`web_hosting_status_${item?.currentState.git?.status.toLowerCase()}`),
+      getValue: (item) => t(`web_hosting_status_${item?.currentState.git?.status.toLowerCase()}`),
     },
     {
       id: 'ownLog',
@@ -304,22 +286,18 @@ export default function Websites() {
     {
       id: 'CDN',
       label: t('web_hosting_status_header_cdn'),
-      getValue: (item) =>
-        t(`web_hosting_status_${item?.currentState.cdn?.status.toLowerCase()}`),
+      getValue: (item) => t(`web_hosting_status_${item?.currentState.cdn?.status.toLowerCase()}`),
     },
     {
       id: 'ssl',
       label: t('web_hosting_status_header_ssl'),
-      getValue: (item) =>
-        t(`web_hosting_status_${item?.currentState.ssl?.status.toLowerCase()}`),
+      getValue: (item) => t(`web_hosting_status_${item?.currentState.ssl?.status.toLowerCase()}`),
     },
     {
       id: 'firewall',
       label: t('web_hosting_status_header_firewall'),
       getValue: (item) =>
-        t(
-          `web_hosting_status_${item?.currentState.firewall?.status.toLowerCase()}`,
-        ),
+        t(`web_hosting_status_${item?.currentState.firewall?.status.toLowerCase()}`),
     },
     {
       id: 'boostOffer',
@@ -335,7 +313,7 @@ export default function Websites() {
   ];
 
   const handleExportWithExportToCsv = (dataCsv: WebsiteType[]) => {
-    csvPopoverRef.current?.hide();
+    Promise.resolve(csvPopoverRef.current?.hide()).catch(() => {});
     setIsCSVLoading(true);
     trackClick({
       location: PageLocation.page,
@@ -361,7 +339,8 @@ export default function Websites() {
     );
 
     const csv = generateCsv(csvConfig)(csvData);
-    const blob = new Blob([csv.toString()], { type: 'text/csv' });
+    const csvString = csv as unknown as string;
+    const blob = new Blob([csvString], { type: 'text/csv' });
     const url = URL.createObjectURL(blob);
 
     const successMessage = (
@@ -383,7 +362,7 @@ export default function Websites() {
   };
 
   const handleExportAllWithExportToCsv = async () => {
-    csvPopoverRef.current?.hide();
+    await csvPopoverRef.current?.hide();
     setIsCSVLoading(true);
     const searchParams = buildURLSearchParams({ domain: debouncedSearchInput });
     const result = await getAllWebHostingAttachedDomain(searchParams);
@@ -461,11 +440,7 @@ export default function Websites() {
               variant={ODS_BUTTON_VARIANT.outline}
               data-testid="websites-page-export-button"
               isLoading={isCSVLoading}
-              icon={
-                isExportPopoverOpen
-                  ? ODS_ICON_NAME.chevronUp
-                  : ODS_ICON_NAME.chevronDown
-              }
+              icon={isExportPopoverOpen ? ODS_ICON_NAME.chevronUp : ODS_ICON_NAME.chevronDown}
             />
 
             <OdsPopover

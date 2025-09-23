@@ -1,16 +1,16 @@
 {
   "home": "Inicio",
-  "order": "Solicitar",
+  "order": "Contratar",
   "back": "Volver",
-  "title": "Panel de control",
-  "email": "Correo electrónico",
+  "title": "Dashboard",
+  "email": "Email",
   "subject": "Asunto",
   "message": "Mensaje",
   "submitButton": "Enviar",
   "successMessage": "Su solicitud se ha enviado correctamente.",
   "errors": {
-    "emailRequired": "El correo electrónico es obligatorio.",
-    "emailInvalid": "Por favor, introduzca una dirección de correo válida.",
+    "emailRequired": "La dirección de correo es obligatoria.",
+    "emailInvalid": "Introduzca una dirección de correo electrónico válida.",
     "subjectRequired": "El asunto es obligatorio.",
     "messageRequired": "El mensaje es obligatorio."
   },

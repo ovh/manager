@@ -1,4 +1,5 @@
 import { renderHook, waitFor } from '@testing-library/react';
+
 import { useHostingUrl } from './useHostingUrl';
 
 describe('useHostingUrl', () => {

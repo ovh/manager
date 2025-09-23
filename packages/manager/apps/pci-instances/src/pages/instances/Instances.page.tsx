@@ -31,6 +31,7 @@ import { Search } from 'lucide-react';
 
 import { FC, FormEvent, useCallback, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   Navigate,
   Outlet,
@@ -38,13 +39,11 @@ import {
   useRouteLoaderData,
 } from 'react-router-dom';
 import clsx from 'clsx';
-import NotFoundPage from '../404/NotFound.page';
 import { useInstances } from '@/data/hooks/instance/useInstances';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { Spinner } from '@/components/spinner/Spinner.component';
 import { SECTIONS } from '@/routes/routes';
 import { SearchNotifications } from '@/components/SearchNotifications/SearchNotifications';
-import { useActionSection } from '@/hooks/instance/action/useActionSection';
 import { CHANGELOG_LINKS } from '@/constants';
 import DatagridComponent from './datagrid/components/Datagrid.component';
 
@@ -87,7 +86,7 @@ const SearchBar = ({
   );
 };
 const Instances: FC = () => {
-  const { t } = useTranslation(['list', 'common']);
+  const { t } = useTranslation(['list', 'common', NAMESPACES.ACTIONS]);
 
   const project = useRouteLoaderData('root') as TProject | undefined;
   const createInstanceHref = useHref('./new');
@@ -95,18 +94,13 @@ const Instances: FC = () => {
   const { filters, addFilter, removeFilter } = useColumnFilters();
 
   const filterPopoverRef = useRef<HTMLOsdsPopoverElement>(null);
-  const section = useActionSection();
-  const routeLoaderData = useRouteLoaderData(section ?? '') as
-    | {
-        notFoundAction?: boolean;
-      }
-    | undefined;
 
   const {
     data,
     isFetchingNextPage,
     refresh,
     isFetching,
+    isPending,
     isRefetching,
   } = useInstances({
     limit: 20,
@@ -161,10 +155,6 @@ const Instances: FC = () => {
 
   if (data && !data.length && !filters.length && !isFetching)
     return <Navigate to={SECTIONS.onboarding} />;
-
-  if (routeLoaderData?.notFoundAction) {
-    return <NotFoundPage />;
-  }
 
   return (
     <>
@@ -245,7 +235,7 @@ const Instances: FC = () => {
                       size={ODS_ICON_SIZE.sm}
                       color={ODS_THEME_COLOR_INTENT.primary}
                     />
-                    <span>{t('common:pci_instances_common_filter')}</span>
+                    <span>{t(`${NAMESPACES.ACTIONS}:filter`)}</span>
                   </span>
                 </OsdsButton>
                 <OsdsPopoverContent>
@@ -279,7 +269,7 @@ const Instances: FC = () => {
           )}
         </div>
       </PageLayout>
-      {!isFetching && <Outlet />}
+      {!isPending && <Outlet />}
     </>
   );
 };
