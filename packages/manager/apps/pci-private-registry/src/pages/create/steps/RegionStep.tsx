@@ -136,6 +136,12 @@ export default function RegionStep({
     [localisations?.continents],
   );
 
+  useEffect(() => {
+    if (is3AZEnabled) {
+      handleRegionChange({ name: DeploymentMode.MULTI_ZONES });
+    }
+  }, [is3AZEnabled, handleRegionChange]);
+
   return (
     <StepComponent
       isOpen={store.stepsState[StepEnum.REGION].isOpen}
@@ -176,6 +182,7 @@ export default function RegionStep({
     >
       {isPending ? (
         <OsdsSpinner
+          role="status"
           inline
           size={ODS_SPINNER_SIZE.md}
           className="block text-center"
