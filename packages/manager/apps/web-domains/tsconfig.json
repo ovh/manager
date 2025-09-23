@@ -2,6 +2,8 @@
   "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react",
   "compilerOptions": {
     "types": ["vite/client", "node"],
+    "module": "ES2020",
+    "removeComments": true,
     "outDir": "dist",
     "noImplicitAny": true,
     "resolveJsonModule": true,

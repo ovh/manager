@@ -1,8 +1,8 @@
-import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
+import { Link, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import config from '@/web-ongoing-operations.config';
 
 interface SubHeaderProps {
@@ -10,20 +10,20 @@ interface SubHeaderProps {
 }
 
 export default function SubHeader({ title }: SubHeaderProps) {
-  const { t } = useTranslation('dashboard');
+  const { t: tAction } = useTranslation(NAMESPACES.ACTIONS);
   const { data: customUrl } = useNavigationGetUrl([config.rootLabel, '', {}]);
   const url = `${customUrl as string}/domain`;
 
   return (
     <section className="mb-8 flex flex-col gap-y-2">
-      <OdsLink
+      <Link
         href={url}
         icon="arrow-left"
         iconAlignment="left"
-        label={t('back_link')}
+        label={tAction('back_to_list')}
         isDisabled={!url}
       />
-      <OdsText preset={ODS_TEXT_PRESET.heading3}>{title}</OdsText>
+      <Text preset={TEXT_PRESET.heading3}>{title}</Text>
     </section>
   );
 }
