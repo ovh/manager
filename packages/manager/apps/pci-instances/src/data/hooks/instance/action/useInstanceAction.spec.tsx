@@ -10,7 +10,7 @@ import { TAggregatedInstanceDto } from '@/types/instance/api.type';
 import { TInstancesServerResponse } from '@/__mocks__/instance/handlers';
 import { useBaseInstanceAction } from './useInstanceAction';
 import { TAggregatedInstance } from '@/types/instance/entity.type';
-import { updateAggregatedInstancesFromCache } from '@/adapters/tanstack-query/store/instances/updaters';
+import { updateAggregatedInstancesFromCache } from '@/adapters/tanstack/instances/updaters';
 
 // initializers
 const initQueryClient = () => {
