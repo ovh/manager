@@ -713,34 +713,29 @@
                                     for="contactInfoPhone"
                                     data-ng-bind=":: 'exchange_account_add_contact_phone_label' | translate"
                                 ></label>
-                                <div class="oui-field">
+                                <div
+                                    class="oui-field"
+                                    data-ng-class="{ 'oui-field_error has-error': $ctrl.newAccountForm.contactInfoPhone.$invalid && $ctrl.newAccountForm.contactInfoPhone.$touched }"
+                                >
+                                    <input
+                                        class="w-100 oui-input"
+                                        id="contactInfoPhone"
+                                        name="contactInfoPhone"
+                                        type="text"
+                                        data-ng-pattern="$ctrl.ACCOUNT_WORLD_PHONE_REGEX"
+                                        data-ng-model="$ctrl.telephonyModel.phone.number"
+                                        data-ng-change="$ctrl.onCountryPhoneCodeChange('phone')"
+                                        data-ng-required="$ctrl.telephonyModel.phone.selected"
+                                    />
                                     <div
-                                        class="w-100 oui-input-group_inline"
-                                        data-ng-class="{ 'oui-field_error has-error': $ctrl.newAccountForm.contactInfoPhone.$invalid && $ctrl.newAccountForm.contactInfoPhone.$touched }"
+                                        class="oui-field__error"
+                                        data-ng-if="$ctrl.newAccountForm.contactInfoPhone.$invalid"
+                                        role="alert"
                                     >
-                                        <input
-                                            class="w-100 oui-input"
-                                            id="contactInfoPhone"
-                                            name="contactInfoPhone"
-                                            type="text"
-                                            data-ng-pattern="$ctrl.ACCOUNT_WORLD_PHONE_REGEX"
-                                            data-ng-model="$ctrl.telephonyModel.phone.number"
-                                            data-ng-change="$ctrl.onCountryPhoneCodeChange('phone')"
-                                            data-ng-required="$ctrl.telephonyModel.phone.selected"
-                                            data-oui-tooltip="{{:: 'exchange_account_add_phone_help_text' | translate}}"
-                                        />
-                                    </div>
-                                    <div class="oui-field__footer">
-                                        <div
-                                            class="oui-field__error"
-                                            data-ng-if="$ctrl.newAccountForm.contactInfoPhone.$error.required"
-                                            role="alert"
+                                        <span
+                                            data-translate="exchange_account_add_phone_error_text"
                                         >
-                                            <span
-                                                class="oui-icon oui-icon-error"
-                                                aria-hidden="true"
-                                            ></span>
-                                        </div>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -752,34 +747,29 @@
                                     for="contactInfoMobile"
                                     data-ng-bind=":: 'exchange_account_add_contact_mobile_label' | translate"
                                 ></label>
-                                <div class="oui-field">
+                                <div
+                                    class="oui-field"
+                                    data-ng-class="{ 'oui-field_error has-error': $ctrl.newAccountForm.contactInfoMobile.$invalid && $ctrl.newAccountForm.contactInfoMobile.$touched }"
+                                >
+                                    <input
+                                        class="w-100 oui-input"
+                                        id="contactInfoMobile"
+                                        name="contactInfoMobile"
+                                        type="text"
+                                        data-ng-pattern="$ctrl.ACCOUNT_WORLD_PHONE_REGEX"
+                                        data-ng-model="$ctrl.telephonyModel.mobile.number"
+                                        data-ng-change="$ctrl.onCountryPhoneCodeChange('mobile')"
+                                        data-ng-required="$ctrl.telephonyModel.mobile.selected"
+                                    />
                                     <div
-                                        class="w-100 oui-input-group_inline"
-                                        data-ng-class="{ 'oui-field_error has-error': $ctrl.newAccountForm.contactInfoMobile.$invalid && $ctrl.newAccountForm.contactInfoMobile.$touched }"
+                                        class="oui-field__error"
+                                        data-ng-if="$ctrl.newAccountForm.contactInfoMobile.$invalid"
+                                        role="alert"
                                     >
-                                        <input
-                                            class="w-100 oui-input"
-                                            id="contactInfoMobile"
-                                            name="contactInfoMobile"
-                                            type="text"
-                                            data-ng-pattern="$ctrl.ACCOUNT_WORLD_PHONE_REGEX"
-                                            data-ng-model="$ctrl.telephonyModel.mobile.number"
-                                            data-ng-change="$ctrl.onCountryPhoneCodeChange('mobile')"
-                                            data-ng-required="$ctrl.telephonyModel.mobile.selected"
-                                            data-oui-tooltip="{{:: 'exchange_account_add_phone_help_text' | translate}}"
-                                        />
-                                    </div>
-                                    <div class="oui-field__footer">
-                                        <div
-                                            class="oui-field__error"
-                                            data-ng-if="$ctrl.newAccountForm.contactInfoMobile.$error.required"
-                                            role="alert"
+                                        <span
+                                            data-translate="exchange_account_add_phone_error_text"
                                         >
-                                            <span
-                                                class="oui-icon oui-icon-error"
-                                                aria-hidden="true"
-                                            ></span>
-                                        </div>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -791,34 +781,29 @@
                                     for="contactInfoFax"
                                     data-ng-bind=":: 'exchange_account_add_contact_fax_label' | translate"
                                 ></label>
-                                <div class="oui-field">
+                                <div
+                                    class="oui-field"
+                                    data-ng-class="{ 'oui-field_error has-error': $ctrl.newAccountForm.contactInfoFax.$invalid && $ctrl.newAccountForm.contactInfoFax.$touched }"
+                                >
+                                    <input
+                                        class="w-100 oui-input"
+                                        id="contactInfoFax"
+                                        name="contactInfoFax"
+                                        type="text"
+                                        data-ng-pattern="$ctrl.ACCOUNT_WORLD_PHONE_REGEX"
+                                        data-ng-model="$ctrl.telephonyModel.fax.number"
+                                        data-ng-change="$ctrl.onCountryPhoneCodeChange('fax')"
+                                        data-ng-required="$ctrl.telephonyModel.fax.selected"
+                                    />
                                     <div
-                                        class="w-100 oui-input-group_inline"
-                                        data-ng-class="{ 'oui-field_error has-error': $ctrl.newAccountForm.contactInfoFax.$invalid && $ctrl.newAccountForm.contactInfoFax.$touched }"
+                                        class="oui-field__error"
+                                        data-ng-if="$ctrl.newAccountForm.contactInfoFax.$invalid"
+                                        role="alert"
                                     >
-                                        <input
-                                            class="w-100 oui-input"
-                                            id="contactInfoFax"
-                                            name="contactInfoFax"
-                                            type="text"
-                                            data-ng-pattern="$ctrl.ACCOUNT_WORLD_PHONE_REGEX"
-                                            data-ng-model="$ctrl.telephonyModel.fax.number"
-                                            data-ng-change="$ctrl.onCountryPhoneCodeChange('fax')"
-                                            data-ng-required="$ctrl.telephonyModel.fax.selected"
-                                            data-oui-tooltip="{{:: 'exchange_account_add_phone_help_text' | translate}}"
-                                        />
-                                    </div>
-                                    <div class="oui-field__footer">
-                                        <div
-                                            class="oui-field__error"
-                                            data-ng-if="$ctrl.newAccountForm.contactInfoFax.$error.required"
-                                            role="alert"
+                                        <span
+                                            data-translate="exchange_account_add_phone_error_text"
                                         >
-                                            <span
-                                                class="oui-icon oui-icon-error"
-                                                aria-hidden="true"
-                                            ></span>
-                                        </div>
+                                        </span>
                                     </div>
                                 </div>
                             </div>

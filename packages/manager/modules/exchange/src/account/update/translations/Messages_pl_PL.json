@@ -80,5 +80,6 @@
   "exchange_ACTION_update_no_domains": "Nie dodałeś/-aś jeszcze domeny lub domena nie została zatwierdzona. <br/>Dodaj najpierw domenę i zaczekaj na jej zatwierdzenie, aby utworzyć konto Exchange.",
   "exchange_ACTION_update_account_option_fail": "Wystąpił błąd podczas pobierania domen.",
   "exchange_ACTION_update_account_fetchingAccountCreationOptions_error": "Wystąpił błąd podczas pobierania opcji tworzenia konta Exchange.",
-  "exchange_ACTION_update_account_error_message": "Wystąpił błąd podczas zakładania konta Exchange: {{message}}"
+  "exchange_ACTION_update_account_error_message": "Wystąpił błąd podczas zakładania konta Exchange: {{message}}",
+  "exchange_account_update_contact_phone_error_text": "Spacja niedozwolona"
 }

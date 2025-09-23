@@ -263,5 +263,6 @@
   "exchange_account_country_EA": "Ceuta",
   "exchange_account_country_IC": "Canary islands ",
   "exchange_account_country_TA": "Tristan da Cunha (archipelago)",
-  "exchange_account_country_XK": "Republic of Kosovo"
+  "exchange_account_country_XK": "Republic of Kosovo",
+  "exchange_account_add_phone_error_text": "No spaces allowed"
 }

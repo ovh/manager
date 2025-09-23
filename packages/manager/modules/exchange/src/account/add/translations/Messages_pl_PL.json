@@ -263,5 +263,6 @@
   "exchange_account_country_EA": "Ceuta",
   "exchange_account_country_IC": "Wyspy Kanaryjskie",
   "exchange_account_country_TA": "Tristan da Cunha (archipelag)",
-  "exchange_account_country_XK": "Republika Kosowa"
+  "exchange_account_country_XK": "Republika Kosowa",
+  "exchange_account_add_phone_error_text": "Spacja niedozwolona"
 }

@@ -4,7 +4,7 @@ export const DATAGRID_COLUMN_PARAMETERS_PREFERENCE_NAME =
 export const ACCOUNT_PHONE_RULE_NAME = 'phoneCountry';
 export const ACCOUNT_COUNTRY_RULE_NAME = 'country';
 
-export const ACCOUNT_WORLD_PHONE_REGEX = /^00\d{2,3}[\s\d]+$/;
+export const ACCOUNT_WORLD_PHONE_REGEX = /^\S+$/;
 
 export const ACCOUNT_EMAIL_ADDRESS_REGEX = /^(?:[A-Za-z0-9]+(?:[-_][A-Za-z0-9]+)*)(?:(?:\.|\+)(?:[A-Za-z0-9]+(?:[-_][A-Za-z0-9]+)*))*$/;
 
