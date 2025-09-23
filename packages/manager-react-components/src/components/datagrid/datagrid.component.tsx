@@ -297,6 +297,7 @@ export const Datagrid = <T,>({
         : []),
       ...columns.map(
         (col): ColumnDef<T> => ({
+          id: col.id,
           accessorKey: col.id,
           cell: (props) => col.cell(props.row.original),
           header: col.label,
