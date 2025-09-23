@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.24.0...@ovh-ux/manager-hub-app@0.24.1) (2025-09-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4354] ([b6cc887](https://github.com/ovh/manager/commit/b6cc887597bb6d29404e8d0a744231d57ce3868d))
+
+
+
+
+
 # [0.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.23.1...@ovh-ux/manager-hub-app@0.24.0) (2025-09-22)
 
 
