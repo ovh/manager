@@ -80,5 +80,6 @@
   "exchange_ACTION_update_no_domains": "Il dominio non è ancora stato aggiunto o convalidato. <br/>Per creare un account Exchange è necessario aggiungere prima un dominio e attendere che venga convalidato.",
   "exchange_ACTION_update_account_option_fail": "Si è verificato un errore durante il caricamento dei domini.",
   "exchange_ACTION_update_account_fetchingAccountCreationOptions_error": "Si è verificato un errore durante il recupero delle opzioni di creazione di un account Exchange.",
-  "exchange_ACTION_update_account_error_message": "Si è verificato un errore durante la creazione dell'account Exchange: {{message}}"
+  "exchange_ACTION_update_account_error_message": "Si è verificato un errore durante la creazione dell'account Exchange: {{message}}",
+  "exchange_account_update_contact_phone_error_text": "Spazio non consentito"
 }

@@ -80,5 +80,6 @@
   "exchange_ACTION_update_no_domains": "Todavía no ha añadido ningún dominio o este último todavía no ha sido validado. <br/>Para crear una cuenta Exchange, debe añadir un dominio y esperar a que sea validado.",
   "exchange_ACTION_update_account_option_fail": "Se ha producido un error al cargar los dominios.",
   "exchange_ACTION_update_account_fetchingAccountCreationOptions_error": "Se ha producido un error al cargar las opciones de creación de una cuenta Exchange.",
-  "exchange_ACTION_update_account_error_message": "Se ha producido un error al crear la cuenta Exchange: {{message}}"
+  "exchange_ACTION_update_account_error_message": "Se ha producido un error al crear la cuenta Exchange: {{message}}",
+  "exchange_account_update_contact_phone_error_text": "No se permiten espacios"
 }
