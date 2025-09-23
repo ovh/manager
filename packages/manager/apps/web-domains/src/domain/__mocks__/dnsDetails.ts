@@ -63,6 +63,8 @@ export const baseDomainResource: TDomainResource = {
         },
       ],
     },
+    authInfoManagedByOVHcloud: true,
+    authInfoSupported: true,
     createdAt: '2025-10-11T11:00:00',
   },
   currentTasks: [],
@@ -70,6 +72,7 @@ export const baseDomainResource: TDomainResource = {
   id: 'abc-123',
   resourceStatus: ResourceStatusEnum.READY,
   targetSpec: {
+    protectionState: ProtectionStateEnum.PROTECTED,
     dnsConfiguration: {
       nameServers: [],
     },

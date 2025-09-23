@@ -94,6 +94,7 @@ export default function HostDrawer({
           {
             checksum,
             nameServers: dnsConfiguration.nameServers,
+            protectionState: targetSpec.protectionState,
             hosts: [
               ...hostsConfiguration.hosts,
               {

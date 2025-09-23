@@ -49,6 +49,8 @@ export const serviceList: TDomainResource[] = [
           },
         ],
       },
+      authInfoManagedByOVHcloud: true,
+      authInfoSupported: true,
       contactsConfiguration: {
         contactAdministrator: { id: 'admin-id' },
         contactBilling: {
@@ -70,6 +72,7 @@ export const serviceList: TDomainResource[] = [
           },
         ],
       },
+      protectionState: ProtectionStateEnum.PROTECTED,
     },
     currentTasks: [],
     iam: {
