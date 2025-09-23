@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hpc-vmware-public-vcf-aas-app",
-  "version": "0.24.0",
+  "version": "0.24.1",
   "private": true,
   "description": "New managed VMware Public VCF aas offers",
   "repository": {
@@ -25,8 +25,8 @@
     "@ovh-ux/manager-core-utils": "^0.4.2",
     "@ovh-ux/manager-module-common-api": "^0.5.4",
     "@ovh-ux/manager-module-order": "^0.11.4",
-    "@ovh-ux/manager-module-vcd-api": "^0.8.5",
-    "@ovh-ux/manager-react-components": "^2.40.5",
+    "@ovh-ux/manager-module-vcd-api": "^0.8.6",
+    "@ovh-ux/manager-react-components": "^2.41.0",
     "@ovh-ux/manager-react-core-application": "^0.12.4",
     "@ovh-ux/manager-react-shell-client": "^0.9.3",
     "@ovh-ux/request-tagger": "^0.5.2",

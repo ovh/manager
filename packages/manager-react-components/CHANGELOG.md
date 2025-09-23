@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.40.5...@ovh-ux/manager-react-components@2.41.0) (2025-09-23)
+
+### Bug Fixes
+
+- **mrc:** fix datagrid column id ([487cbe1](https://github.com/ovh/manager/commit/487cbe1a8a988734db8cba6fcd5efcf7d37da1fc)), closes [#MANAGER-19267](https://github.com/ovh/manager/issues/MANAGER-19267)
+
+### Features
+
+- **mrc:** add id to link component ([23710c4](https://github.com/ovh/manager/commit/23710c4c4151cd282087dabaadff2e0d60d3d870)), closes [#19239](https://github.com/ovh/manager/issues/19239)
+
 ## [2.40.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.40.4...@ovh-ux/manager-react-components@2.40.5) (2025-09-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-react-components
