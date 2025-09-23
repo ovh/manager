@@ -1,7 +1,12 @@
 {
-  "pci_instance_creation_name_rule": "Must only contain numbers, letters, underscores, dashes or full stops.",
+  "pci_instance_creation_name_rule": "Must only contain numbers, letters, underscores, dashes or dots.",
   "pci_instances_creation_advanced_parameters": "Advanced settings",
   "pci_instances_creation_quantity_title": "Choose a quantity",
   "pci_instances_creation_quantity_label": "Number of instances to create",
-  "pci_instance_creation_quantity_rule": "Your current quota allows you to create up to {{ quota }} simultaneous {{ type }} instance(s) for the {{ region }} region."
+  "pci_instance_creation_quantity_rule": "Your current quota allows you to create up to {{ quota }} instance(s) of type {{ type }} for the {{ region }} region simultaneously.",
+  "pci_instance_creation_choose_localization_title": "Choose a location",
+  "pci_instance_creation_select_localization_label": "Select a location: ",
+  "pci_instance_creation_select_localization_informations": "Local Zones are not eligible for Savings Plans.",
+  "pci_instance_creation_continue_order": "Continue my order",
+  "pci_instance_creation_configuration_code": "Code of my configuration"
 }

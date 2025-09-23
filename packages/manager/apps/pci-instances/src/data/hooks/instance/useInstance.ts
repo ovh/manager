@@ -15,7 +15,7 @@ import { useProjectId } from '@/hooks/project/useProjectId';
 import { instancesQueryKey } from '@/utils';
 import { TInstance } from '@/types/instance/entity.type';
 import { DeepReadonly } from '@/types/utils.type';
-import { resetInstanceCache } from '@/adapters/tanstack-query/store/instances/updaters';
+import { resetInstanceCache } from '@/adapters/tanstack/instances/updaters';
 
 export type TUseInstanceQueryOptions = Pick<
   UseQueryOptions<TInstance>,

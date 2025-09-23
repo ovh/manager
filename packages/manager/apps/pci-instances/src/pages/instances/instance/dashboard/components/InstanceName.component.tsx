@@ -9,7 +9,7 @@ import { useProjectId } from '@/hooks/project/useProjectId';
 import { TInstanceDashboardViewModel } from '../view-models/selectInstanceDashboard';
 import InputCancellable from '@/components/input/InputCancellable.component';
 import { TPartialInstance } from '@/types/instance/entity.type';
-import { updateAllInstancesFromCache } from '@/adapters/tanstack-query/store/instances/updaters';
+import { updateAllInstancesFromCache } from '@/adapters/tanstack/instances/updaters';
 
 type TInstanceNameProps = {
   instance: NonNullable<TInstanceDashboardViewModel>;

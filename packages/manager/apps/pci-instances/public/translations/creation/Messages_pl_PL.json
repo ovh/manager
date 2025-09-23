@@ -1,7 +1,12 @@
 {
-  "pci_instance_creation_name_rule": "Może zawierać tylko cyfry, litery, podkreślenia, myślniki lub kropki.",
-  "pci_instances_creation_advanced_parameters": "Zaawansowane parametry",
+  "pci_instance_creation_name_rule": "Musi zawierać tylko liczby, litery, podkreślenia, myślniki lub kropki.",
+  "pci_instances_creation_advanced_parameters": "Ustawienia zaawansowane",
   "pci_instances_creation_quantity_title": "Wybierz ilość",
   "pci_instances_creation_quantity_label": "Liczba instancji do utworzenia",
-  "pci_instance_creation_quantity_rule": "Twój aktualny limit pozwala na jednoczesne utworzenie do {{ quota }} instancji(ów) typu {{ type }} dla regionu {{ region }}."
+  "pci_instance_creation_quantity_rule": "Twój aktualny limit pozwala na jednoczesne utworzenie do {{ quota }} instancji typu {{ type }} w regionie {{ region }}.",
+  "pci_instance_creation_choose_localization_title": "Wybierz lokalizację",
+  "pci_instance_creation_select_localization_label": "Wybierz lokalizację: ",
+  "pci_instance_creation_select_localization_informations": "Strefy lokalne nie kwalifikują się do planów oszczędnościowych.",
+  "pci_instance_creation_continue_order": "Kontynuuj moje zamówienie",
+  "pci_instance_creation_configuration_code": "Kod mojej konfiguracji"
 }

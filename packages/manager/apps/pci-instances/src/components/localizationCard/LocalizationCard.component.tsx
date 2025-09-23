@@ -3,14 +3,14 @@ import clsx from 'clsx';
 import { Controller, useFormContext } from 'react-hook-form';
 import { Flag } from '../flag/Flag';
 import { TCountryIsoCode } from '../flag/country-iso-code';
-import { TDeploymentModeId } from '@/types/instance/common.type';
 import { DeploymentModeBadge } from '../deploymentModeBadge/DeploymentModeBadge.component';
+import { TDeploymentMode } from '@/types/instance/common.type';
 
 export type TLocalizationCardProps = {
   title: string;
   region: string;
   countryCode: TCountryIsoCode;
-  deploymentMode: TDeploymentModeId;
+  deploymentMode: TDeploymentMode;
   onSelect?: (region: string) => void;
 };
 

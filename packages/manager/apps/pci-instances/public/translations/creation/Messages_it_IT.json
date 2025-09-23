@@ -1,7 +1,12 @@
 {
   "pci_instance_creation_name_rule": "Deve contenere solo numeri, lettere, underscore, trattini o punti.",
   "pci_instances_creation_advanced_parameters": "Impostazioni avanzate",
-  "pci_instances_creation_quantity_title": "Scegli la quantità",
+  "pci_instances_creation_quantity_title": "Scegli una quantità",
   "pci_instances_creation_quantity_label": "Numero di istanze da creare",
-  "pci_instance_creation_quantity_rule": "La tua quota attuale ti permette di creare contemporaneamente fino a {{ quota }} istanze di tipo {{ type }} per la Region {{ region }}."
+  "pci_instance_creation_quantity_rule": "Il tuo attuale limite ti consente di creare simultaneamente fino a {{ quota }} istanza(e) di tipo {{ type }} per la regione {{ region }}.",
+  "pci_instance_creation_choose_localization_title": "Scegli una posizione",
+  "pci_instance_creation_select_localization_label": "Seleziona una posizione: ",
+  "pci_instance_creation_select_localization_informations": "Le Zone Locali non sono idonee ai Savings Plans.",
+  "pci_instance_creation_continue_order": "Continua il mio ordine",
+  "pci_instance_creation_configuration_code": "Codice della mia configurazione"
 }

@@ -11,5 +11,18 @@
   "pci_instances_common_search": "Procurar",
   "pci_instances_common_instance_title": "Instância",
   "pci_instances_common_instance_name": "Nome da instância",
-  "pci_instances_common_help": "Ajuda"
+  "pci_instances_common_help": "Ajuda",
+  "pci_instances_common_instance_localzone_deployment_mode": "Local Zone",
+  "pci_instances_common_instance_region_deployment_mode": "Região 3-AZ",
+  "pci_instances_common_instance_region-3-az_deployment_mode": "Região 1-AZ",
+  "pci_instances_common_instance_region_deployment_mode_description": "Implantação resiliente e económica em 1 zona de disponibilidade.",
+  "pci_instances_common_instance_region-3-az_deployment_mode_description": "Implantação de alta resiliência/alta disponibilidade para as suas aplicações críticas em 3 zonas de disponibilidade.",
+  "pci_instances_common_instance_localzone_deployment_mode_description": "Implantação das suas aplicações o mais próximo possível dos seus utilizadores para uma baixa latência e a residência dos dados.",
+  "pci_instances_common_instance_continent_north_america": "América do Norte",
+  "pci_instances_common_instance_continent_western_europe": "Europa Ocidental",
+  "pci_instances_common_instance_continent_central_europe": "Europa Central",
+  "pci_instances_common_instance_continent_south_europe": "Europa do Sul",
+  "pci_instances_common_instance_continent_north_africa": "África do Norte",
+  "pci_instances_common_instance_continent_south_east_asia": "Ásia do Sudeste",
+  "pci_instances_common_instance_continent_oceania": "Oceânia"
 }

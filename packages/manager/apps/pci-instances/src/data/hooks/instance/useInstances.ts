@@ -15,7 +15,7 @@ import { TAggregatedInstance } from '@/types/instance/entity.type';
 import { instancesSelector } from './selectors/instances.selector';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { DeepReadonly } from '@/types/utils.type';
-import { listQueryKeyPredicate } from '@/adapters/tanstack-query/store/instances/queryKeys';
+import { listQueryKeyPredicate } from '@/adapters/tanstack/instances/queryKeys';
 
 type FilterWithLabel = Filter & { label: string };
 
