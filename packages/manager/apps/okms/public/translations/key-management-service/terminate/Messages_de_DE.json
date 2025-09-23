@@ -1,6 +1,6 @@
 {
   "key_management_service_terminate_cancel": "Abbrechen",
-  "key_management_service_terminate_confirm": "Kündigen",
+  "key_management_service_terminate_confirm": "Löschen",
   "key_management_service_terminate_error": "Es ist ein Fehler aufgetreten. {{error}}",
   "key_management_service_terminate_heading": "Meinen KMS kündigen",
   "key_management_service_terminate_description": "Bitte geben Sie „{{terminateKeyword}}“ ein, um die Kündigung Ihres KMS zu bestätigen.",
