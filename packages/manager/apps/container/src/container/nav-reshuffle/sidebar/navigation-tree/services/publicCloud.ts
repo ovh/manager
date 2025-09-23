@@ -354,30 +354,12 @@ pciNode.children = [
     features: [
       'data-processing',
       'logs-data-platform',
-      'databases-analysis',
-      'databases-operational',
-      'databases-streaming',
       'pci-databases-analytics-analysis',
       'pci-databases-analytics-operational',
       'pci-databases-analytics-streaming',
     ],
     forceVisibility: true,
     children: [
-      // Entry menu for PCI Databases for Angular
-      {
-        id: 'pci-databases-operational',
-        idAttr: 'pci-databases-operational',
-        universe: PUBLICCLOUD_UNIVERSE_ID,
-        translation: 'sidebar_pci_analytics_databases',
-        serviceType: 'CLOUD_PROJECT_DATABASE',
-        routing: {
-          application: 'public-cloud',
-          hash:
-            '#/pci/projects/{projectId}/storages/databases-analytics/databases',
-        },
-        features: ['databases-operational'],
-        forceVisibility: true,
-      },
       // Entry menu for PCI Databases for React
       {
         id: 'pci-databases-analytics-operational',
@@ -391,21 +373,6 @@ pciNode.children = [
             '#/pci/projects/{projectId}/databases-analytics/operational/services',
         },
         features: ['pci-databases-analytics-operational'],
-        forceVisibility: true,
-      },
-      // Entry menu for PCI Data Streaming for Angular
-      {
-        id: 'pci-databases-streaming',
-        idAttr: 'pci-databases-streaming',
-        universe: PUBLICCLOUD_UNIVERSE_ID,
-        translation: 'sidebar_pci_analytics_data_streaming',
-        serviceType: 'CLOUD_PROJECT_DATABASE',
-        routing: {
-          application: 'public-cloud',
-          hash:
-            '#/pci/projects/{projectId}/storages/databases-analytics/data-streaming',
-        },
-        features: ['databases-streaming'],
         forceVisibility: true,
       },
       // Entry menu for PCI Data Streaming for React
@@ -432,21 +399,6 @@ pciNode.children = [
           hash: '#/pci/projects/{projectId}/data-processing',
         },
         features: ['data-processing'],
-        forceVisibility: true,
-      },
-      // Entry menu for PCI Data Analysis for Angular
-      {
-        id: 'pci-databases-analysis',
-        idAttr: 'pci-databases-analysis-link',
-        universe: PUBLICCLOUD_UNIVERSE_ID,
-        translation: 'sidebar_pci_analytics_data_analysis',
-        serviceType: 'CLOUD_PROJECT_DATABASE',
-        routing: {
-          application: 'public-cloud',
-          hash:
-            '#/pci/projects/{projectId}/storages/databases-analytics/data-analysis',
-        },
-        features: ['databases-analysis'],
         forceVisibility: true,
       },
       // Entry menu for PCI Data Analysis for React
