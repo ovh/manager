@@ -23,7 +23,7 @@ export const useAdvancedConfigurationForm = ({
     'pci-databases-analytics/services/service/settings',
   );
   // sanitize the property name to avoid mismatch with errors handlers
-  const sanitizePropertyName = (name: string) => name.replaceAll('.', ':');
+  const sanitizePropertyName = (name: string) => name.replace(/\./g, '::');
   const getInitialProperties = () => {
     const initialProperties: AdvancedConfigurationProperty[] = [];
     Object.keys(initialValue).forEach((key) => {

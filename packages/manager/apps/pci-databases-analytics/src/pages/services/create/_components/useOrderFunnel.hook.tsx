@@ -5,14 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import * as database from '@/types/cloud/project/database';
-import {
-  Engine,
-  Flavor,
-  NetworkOptionValue,
-  Plan,
-  Region,
-  Version,
-} from '@/types/orderFunnel';
+import { Engine, Flavor, Plan, Region, Version } from '@/types/orderFunnel';
 import { order } from '@/types/catalog';
 import { createTree } from '@/lib/availabilitiesHelper';
 import { generateName } from '@/lib/nameGenerator';
@@ -85,7 +78,13 @@ export function useOrderFunnel(
       .min(1)
       .max(50),
   });
-  const form = useForm({
+  type OrderFormValues = Omit<z.infer<typeof orderSchema>, 'ipRestrictions'> & {
+    ipRestrictions: {
+      ip: string;
+      description: string;
+    }[];
+  };
+  const form = useForm<OrderFormValues>({
     resolver: zodResolver(orderSchema),
     defaultValues: {
       name: generateName(),
@@ -96,12 +95,12 @@ export function useOrderFunnel(
       flavor: '',
       nbNodes: 0,
       additionalStorage: 0,
-      ipRestrictions: [],
+      ipRestrictions: [] as { ip: string; description: string }[],
       network: {
         type: database.NetworkTypeEnum.public,
         networkId: undefined,
         subnetId: undefined,
-      } as NetworkOptionValue,
+      },
     },
   });
 

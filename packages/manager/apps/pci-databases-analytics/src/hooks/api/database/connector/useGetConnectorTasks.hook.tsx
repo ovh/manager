@@ -1,6 +1,8 @@
-import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
 import * as database from '@/types/cloud/project/database';
-import { useQueryImmediateRefetch } from '@/hooks/api/useImmediateRefetch';
+import {
+  OptionsFor,
+  useQueryImmediateRefetch,
+} from '@/hooks/api/useImmediateRefetch';
 import { getConnectorTasks } from '@/data/api/database/connector.api';
 
 export function useGetConnectorTasks(
@@ -8,7 +10,7 @@ export function useGetConnectorTasks(
   engine: database.EngineEnum,
   serviceId: string,
   connectorId: string,
-  options: Omit<QueryObserverOptions, 'queryKey'> = {},
+  options?: OptionsFor<typeof getConnectorTasks>,
 ) {
   const queryKey = [
     projectId,
@@ -24,5 +26,5 @@ export function useGetConnectorTasks(
     queryFn: () =>
       getConnectorTasks({ projectId, engine, serviceId, connectorId }),
     ...options,
-  }) as UseQueryResult<database.kafkaConnect.connector.Task[], Error>;
+  });
 }

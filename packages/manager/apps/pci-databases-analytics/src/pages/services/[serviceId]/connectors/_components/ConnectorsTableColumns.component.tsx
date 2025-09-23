@@ -3,6 +3,7 @@ import { ArrowDown, ArrowUp, MoreHorizontal } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import {
   Badge,
+  BadgeProps,
   Button,
   DropdownMenu,
   DropdownMenuContent,
@@ -100,7 +101,7 @@ export const getColumns = ({
       ),
       accessorFn: (row) => row.status,
       cell: ({ row }) => {
-        let badgeVariant = 'default';
+        let badgeVariant: BadgeProps['variant'] = 'primary';
         switch (row.original.status) {
           case database.kafkaConnect.connector.StatusEnum.RUNNING:
             badgeVariant = 'success';
@@ -114,7 +115,7 @@ export const getColumns = ({
             badgeVariant = 'destructive';
             break;
           default:
-            badgeVariant = 'default';
+            badgeVariant = 'primary';
             break;
         }
         return <Badge variant={badgeVariant}>{row.original.status}</Badge>;

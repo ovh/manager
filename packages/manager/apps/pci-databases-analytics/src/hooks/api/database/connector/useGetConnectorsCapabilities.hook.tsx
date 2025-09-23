@@ -1,13 +1,15 @@
-import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
 import * as database from '@/types/cloud/project/database';
-import { useQueryImmediateRefetch } from '@/hooks/api/useImmediateRefetch';
+import {
+  OptionsFor,
+  useQueryImmediateRefetch,
+} from '@/hooks/api/useImmediateRefetch';
 import { getConnectorsCapabilities } from '@/data/api/database/connector.api';
 
 export function useGetConnectorsCapabilities(
   projectId: string,
   engine: database.EngineEnum,
   serviceId: string,
-  options: Omit<QueryObserverOptions, 'queryKey'> = {},
+  options?: OptionsFor<typeof getConnectorsCapabilities>,
 ) {
   const queryKey = [
     projectId,
@@ -21,5 +23,5 @@ export function useGetConnectorsCapabilities(
     queryKey,
     queryFn: () => getConnectorsCapabilities({ projectId, engine, serviceId }),
     ...options,
-  }) as UseQueryResult<database.kafkaConnect.capabilities.Connector[], Error>;
+  });
 }
