@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import { ApiError, IcebergFetchResultV6 } from '@ovh-ux/manager-core-api';
 import {
   GetProductServicesParams,
   getProductServicesQueryKey,
@@ -32,7 +33,10 @@ const getDisplayName = (
  * Fetch the list of available services for a product
  */
 export const useGetProductService = (product: GetProductServicesParams) => {
-  const { data, ...query } = useQuery({
+  const { data, ...query } = useQuery<
+    IcebergFetchResultV6<ProductServicesDetails>,
+    ApiError
+  >({
     queryKey: getProductServicesQueryKey(product),
     queryFn: () => getProductServices(product),
   });
