@@ -4,16 +4,15 @@ import {
   ApiResponse,
   IcebergFetchResultV6,
 } from '@ovh-ux/manager-core-api';
-import { useState } from 'react';
-import { hasSameStringElements } from '@ovh-ux/manager-core-utils';
 import {
   DedicatedServerVmacType,
   getDedicatedServerVmacVirtualAddress,
   getdedicatedServerVmac,
   getdedicatedServerVmacQueryKey,
+  getDedicatedServerVmacVirtualAddressQueryKey,
 } from '@/data/api';
-import { INVALIDATED_REFRESH_PERIOD } from '@/utils';
-import { getDedicatedServerVmacVirtualAddressQueryKey } from '../../api';
+import { useGetDedicatedServerTasks } from './useGetDedicatedServerTasks';
+import { VMAC_UPDATE_TASKS_QUERY_KEY_PARAMS } from '@/utils';
 
 export type UseGetIpVmacWithIpParams = {
   serviceName: string;
@@ -29,8 +28,6 @@ export const useGetIpVmacWithIp = ({
   serviceName,
   enabled = true,
 }: UseGetIpVmacWithIpParams) => {
-  const [invalidatedData, setInvalidatedData] = useState(undefined);
-
   const { data: dedicatedServerVmacResponse, isLoading, isError } = useQuery<
     IcebergFetchResultV6<DedicatedServerVmacType>,
     ApiError
@@ -39,29 +36,11 @@ export const useGetIpVmacWithIp = ({
     queryFn: () => getdedicatedServerVmac({ serviceName }),
     enabled,
     retry: false,
-    refetchInterval: (query) => {
-      const queryData = query.state.data?.data ?? [];
-      const macAdresses = queryData.map(({ macAddress }) => macAddress);
-
-      if (query.state.isInvalidated) {
-        setInvalidatedData(macAdresses);
-        return INVALIDATED_REFRESH_PERIOD;
-      }
-
-      if (
-        !!invalidatedData &&
-        !hasSameStringElements(invalidatedData, macAdresses)
-      ) {
-        setInvalidatedData(undefined);
-      }
-
-      return invalidatedData ? INVALIDATED_REFRESH_PERIOD : undefined;
-    },
   });
 
   const results = useQueries({
     queries: (dedicatedServerVmacResponse?.data || []).map(
-      (vmac): UseQueryOptions<ApiResponse<string[]>, ApiError> => ({
+      (vmac: any): UseQueryOptions<ApiResponse<string[]>, ApiError> => ({
         queryKey: getDedicatedServerVmacVirtualAddressQueryKey({
           serviceName,
           macAddress: vmac.macAddress,
@@ -76,10 +55,18 @@ export const useGetIpVmacWithIp = ({
     ),
   });
 
+  const { hasOnGoingTask: hasVmacTasks } = useGetDedicatedServerTasks({
+    ...VMAC_UPDATE_TASKS_QUERY_KEY_PARAMS,
+    serviceName,
+    enabled,
+    queryKeyToInvalidate: getdedicatedServerVmacQueryKey({ serviceName }),
+  });
+
   const formattedResult = {
     isLoading:
       isLoading ||
-      !!results.find((result) => !!result.isLoading || !!invalidatedData),
+      !!results.find((result) => !!result.isLoading) ||
+      hasVmacTasks,
     isError: isError || !!results.find((result) => !!result.isError),
     vmacsWithIp: results?.map(({ data }, index) => ({
       ...dedicatedServerVmacResponse?.data?.[index],
