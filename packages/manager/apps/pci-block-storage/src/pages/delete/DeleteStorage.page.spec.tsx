@@ -2,11 +2,8 @@ import { act, fireEvent } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 import { useParams } from 'react-router-dom';
 import DeleteStorage from './DeleteStorage.page';
-import {
-  useDeleteVolume,
-  useVolume,
-  useVolumeSnapshot,
-} from '@/api/hooks/useVolume';
+import { useDeleteVolume, useVolume } from '@/api/hooks/useVolume';
+import { useVolumeSnapshots } from '@/api/hooks/useSnapshot';
 import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
 
 const deleteVolume = vi.fn();
@@ -15,6 +12,7 @@ vi.mock('react-router-dom');
 vi.mocked(useParams).mockReturnValue({ volumeId: 'testVolume' });
 
 vi.mock('@/api/hooks/useVolume');
+vi.mock('@/api/hooks/useSnapshot');
 
 const mockedVolume = {
   data: {
@@ -37,17 +35,17 @@ vi.mocked(useDeleteVolume).mockReturnValue({
 const mockedSnapshots = {
   data: [{ id: 'snapshot1', volumeId: 'testVolume' }],
   isPending: false,
-} as ReturnType<typeof useVolumeSnapshot>;
+} as ReturnType<typeof useVolumeSnapshots>;
 
 const mockedSnapshotsEmpty = {
   data: [],
   isPending: false,
-} as ReturnType<typeof useVolumeSnapshot>;
+} as ReturnType<typeof useVolumeSnapshots>;
 
 describe('DeleteStorage', () => {
   it('renders without crashing', () => {
     vi.mocked(useVolume).mockReturnValue(mockedVolume);
-    vi.mocked(useVolumeSnapshot).mockReturnValue(mockedSnapshots);
+    vi.mocked(useVolumeSnapshots).mockReturnValue(mockedSnapshots);
 
     const { container } = renderWithMockedWrappers(<DeleteStorage />);
     expect(container).toBeTruthy();
@@ -55,7 +53,7 @@ describe('DeleteStorage', () => {
 
   it('renders spinner when isPending is true', () => {
     vi.mocked(useVolume).mockReturnValue(mockedVolumePending);
-    vi.mocked(useVolumeSnapshot).mockReturnValue(mockedSnapshots);
+    vi.mocked(useVolumeSnapshots).mockReturnValue(mockedSnapshots);
 
     const { getByTestId } = renderWithMockedWrappers(<DeleteStorage />);
     expect(getByTestId('deleteStorage-spinner')).toBeInTheDocument();
@@ -63,7 +61,7 @@ describe('DeleteStorage', () => {
 
   it('renders DeleteConstraintWarningMessage when hasSnapshot or isAttached is true', () => {
     vi.mocked(useVolume).mockReturnValue(mockedVolume);
-    vi.mocked(useVolumeSnapshot).mockReturnValue(mockedSnapshots);
+    vi.mocked(useVolumeSnapshots).mockReturnValue(mockedSnapshots);
 
     const { getByTestId } = renderWithMockedWrappers(<DeleteStorage />);
     expect(
@@ -73,7 +71,7 @@ describe('DeleteStorage', () => {
 
   it('renders DeleteWarningMessage when canDelete is true', () => {
     vi.mocked(useVolume).mockReturnValue(mockedVolume);
-    vi.mocked(useVolumeSnapshot).mockReturnValue(mockedSnapshotsEmpty);
+    vi.mocked(useVolumeSnapshots).mockReturnValue(mockedSnapshotsEmpty);
 
     const { getByText } = renderWithMockedWrappers(<DeleteStorage />);
     expect(
@@ -85,7 +83,7 @@ describe('DeleteStorage', () => {
     vi.mocked(useVolume).mockReturnValue(
       mockedVolume as ReturnType<typeof useVolume>,
     );
-    vi.mocked(useVolumeSnapshot).mockReturnValue(mockedSnapshotsEmpty);
+    vi.mocked(useVolumeSnapshots).mockReturnValue(mockedSnapshotsEmpty);
 
     const { getByText } = renderWithMockedWrappers(<DeleteStorage />);
     act(() => {

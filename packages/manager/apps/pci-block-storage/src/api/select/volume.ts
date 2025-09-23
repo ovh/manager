@@ -5,7 +5,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { TFunction } from 'i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { TVolume } from '@/api/hooks/useVolume';
+import { TVolume, UseVolumeResult } from '@/api/hooks/useVolume';
 import {
   AddVolumeProps,
   TAPIVolume,
@@ -15,6 +15,7 @@ import { TVolumeCatalog } from '@/api/data/catalog';
 import {
   getPricingSpecsFromModelPricings,
   getVolumeModelPricings,
+  is3az,
   TModelPrice,
 } from '@/api/select/catalog';
 import {
@@ -136,7 +137,7 @@ export const mapVolumeStatus = <V extends TAPIVolume>(
   };
 };
 
-const getVolumePricing = (catalog?: TVolumeCatalog) => {
+export const getVolumePricing = (catalog?: TVolumeCatalog) => {
   const catalogPricing = catalog?.models.flatMap((m) => m.pricings) ?? [];
 
   return (volume: Pick<TAPIVolume, 'type' | 'region'>) =>
@@ -180,14 +181,29 @@ export type TVolumeEncryption = {
   encrypted: boolean | null;
   encryptionType: EncryptionType | null;
 };
+
+export const getEncryption = (catalog?: TVolumeCatalog) => <
+  V extends TAPIVolume
+>(
+  volume: V,
+) => {
+  const encrypted = getVolumePricing(catalog)(volume)?.specs.encrypted ?? null;
+  const encryptionType = encrypted ? EncryptionType.OMK : null;
+
+  return {
+    encrypted,
+    encryptionType,
+  };
+};
+
 export const mapVolumeEncryption = <V extends TAPIVolume>(
   t: TFunction<['common']>,
   catalog?: TVolumeCatalog,
 ) => {
-  const getPrice = getVolumePricing(catalog);
+  const getEncryptionForVolume = getEncryption(catalog);
 
   return (volume: V): V & TVolumeEncryption => {
-    const encrypted = getPrice(volume)?.specs.encrypted ?? null;
+    const { encrypted, encryptionType } = getEncryptionForVolume(volume);
 
     let encryptionStatusContext = 'UNKNOWN';
     if (encrypted !== null) {
@@ -203,7 +219,7 @@ export const mapVolumeEncryption = <V extends TAPIVolume>(
           defaultValue: encryptionStatusContext,
         },
       ),
-      encryptionType: encrypted ? EncryptionType.OMK : null,
+      encryptionType,
       encrypted,
     };
   };
@@ -283,7 +299,7 @@ export type TVolumeToEdit = {
     size: number;
     bootable: boolean;
   };
-  originalVolume: TVolume;
+  originalVolume: UseVolumeResult;
 };
 
 export const mapVolumeToEdit = ({
@@ -303,4 +319,20 @@ export const mapVolumeToEdit = ({
     bootable: originalVolume.bootable,
     size: originalVolume.size,
   },
+});
+
+export const isClassicMultiAttach = (volume: TAPIVolume) =>
+  volume.type === 'classic-multiattach';
+
+export type TVolumeType = {
+  is3az: boolean;
+  isClassicMultiAttach: boolean;
+};
+
+export const mapVolumeType = <V extends TAPIVolume>(
+  catalog?: TVolumeCatalog,
+) => (volume: V): V & TVolumeType => ({
+  ...volume,
+  is3az: is3az(catalog?.regions || [], volume.region),
+  isClassicMultiAttach: isClassicMultiAttach(volume),
 });

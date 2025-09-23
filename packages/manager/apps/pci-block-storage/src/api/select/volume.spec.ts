@@ -1,6 +1,66 @@
-import { paginateResults, sortResults } from './volume';
+import { describe, it, vi } from 'vitest';
+import { TFunction } from 'i18next';
+import {
+  EncryptionType,
+  getEncryption,
+  mapVolumeEncryption,
+  mapVolumeType,
+  paginateResults,
+  sortResults,
+} from './volume';
 import { TVolume } from '@/api/hooks/useVolume';
 import { BlockStorageListColumn } from '@/hooks/useDatagridColumn';
+import { TVolumeCatalog } from '@/api/data/catalog';
+import { TAPIVolume } from '@/api/data/volume';
+import { is3az } from '@/api/select/catalog';
+import { TRegion } from '@/api/data/regions';
+
+vi.mock('@/api/select/catalog', () => ({
+  getPricingSpecsFromModelPricings: vi.fn(),
+  getVolumeModelPricings: vi.fn(),
+  is3az: vi.fn(),
+}));
+
+vi.mock('@ovh-ux/manager-react-components', () => ({
+  getMacroRegion: vi.fn(),
+}));
+
+const region = 'FR';
+const encryptedSpec = {
+  name: 'spec encrypted',
+  encrypted: true,
+};
+
+const nonEncryptedSpec = {
+  name: 'spec not encrypted',
+  encrypted: false,
+};
+
+const specWithoutEncryptionSpecification = {
+  name: 'spec without encrypted',
+  encrypted: undefined,
+};
+
+const catalog = {
+  models: [
+    {
+      pricings: [
+        {
+          specs: encryptedSpec,
+          regions: [region],
+        },
+        {
+          specs: nonEncryptedSpec,
+          regions: [region],
+        },
+        {
+          specs: specWithoutEncryptionSpecification,
+          regions: [region],
+        },
+      ],
+    },
+  ],
+} as TVolumeCatalog;
 
 describe('volume', () => {
   describe('sortResults', () => {
@@ -324,6 +384,163 @@ describe('volume', () => {
         pageCount: 3,
         totalRows: 5,
       });
+    });
+  });
+
+  describe('getEncryption', () => {
+    it('should return encrypted true and OMK encryption if corresponding specs is encrypted', () => {
+      const volume = {
+        type: encryptedSpec.name,
+        region,
+      } as TAPIVolume;
+
+      const result = getEncryption(catalog)(volume);
+
+      expect(result).toEqual({
+        encrypted: true,
+        encryptionType: EncryptionType.OMK,
+      });
+    });
+
+    it('should return encrypted false and encryptionType null if corresponding specs is encrypted', () => {
+      const volume = {
+        type: nonEncryptedSpec.name,
+        region,
+      } as TAPIVolume;
+
+      const result = getEncryption(catalog)(volume);
+
+      expect(result).toEqual({
+        encrypted: false,
+        encryptionType: null,
+      });
+    });
+
+    it('should return encrypted and encryptionType null if corresponding specs does not have encrypted value', () => {
+      const volume = {
+        type: specWithoutEncryptionSpecification.name,
+        region,
+      } as TAPIVolume;
+
+      const result = getEncryption(catalog)(volume);
+
+      expect(result).toEqual({
+        encrypted: null,
+        encryptionType: null,
+      });
+    });
+  });
+
+  describe('mapVolumeEncryption', () => {
+    const mockTranslator = (vi.fn() as unknown) as TFunction<['common']>;
+    vi.mocked(mockTranslator).mockReturnValue('translation');
+
+    it('should add encrypted true, OMK encryption and active status if corresponding specs is encrypted', () => {
+      const volume = {
+        type: encryptedSpec.name,
+        region,
+      } as TAPIVolume;
+      const result = mapVolumeEncryption(mockTranslator, catalog)(volume);
+
+      expect(result).toEqual(
+        expect.objectContaining({
+          encrypted: true,
+          encryptionType: EncryptionType.OMK,
+          encryptionStatus: 'translation',
+        }),
+      );
+      expect(mockTranslator).toHaveBeenCalledWith(
+        'common:pci_projects_project_storages_blocks_status',
+        {
+          context: 'ACTIVE',
+          defaultValue: 'ACTIVE',
+        },
+      );
+    });
+
+    it('should add encrypted false, null encryption and none status if corresponding specs is encrypted', () => {
+      const volume = {
+        type: nonEncryptedSpec.name,
+        region,
+      } as TAPIVolume;
+      const result = mapVolumeEncryption(mockTranslator, catalog)(volume);
+
+      expect(result).toEqual(
+        expect.objectContaining({
+          encrypted: false,
+          encryptionType: null,
+          encryptionStatus: 'translation',
+        }),
+      );
+      expect(mockTranslator).toHaveBeenCalledWith(
+        'common:pci_projects_project_storages_blocks_status',
+        {
+          context: 'NONE',
+          defaultValue: 'NONE',
+        },
+      );
+    });
+
+    it('should add encrypted and encryption null and UNKNOWN status if corresponding specs is encrypted', () => {
+      const volume = {
+        type: specWithoutEncryptionSpecification.name,
+        region,
+      } as TAPIVolume;
+      const result = mapVolumeEncryption(mockTranslator, catalog)(volume);
+
+      expect(result).toEqual(
+        expect.objectContaining({
+          encrypted: null,
+          encryptionType: null,
+          encryptionStatus: 'translation',
+        }),
+      );
+      expect(mockTranslator).toHaveBeenCalledWith(
+        'common:pci_projects_project_storages_blocks_status',
+        {
+          context: 'UNKNOWN',
+          defaultValue: 'UNKNOWN',
+        },
+      );
+    });
+  });
+
+  describe('mapVolumeType', () => {
+    it('should add the value of is3az and isClassicMultiattach to true if type is "classic-multiattach"', () => {
+      const volume = {
+        region: 'region',
+        type: 'classic-multiattach',
+      } as TAPIVolume;
+      const catalogRegion = [{ name: 'toto' }] as TRegion[];
+      vi.mocked(is3az).mockReturnValue(false);
+
+      const result = mapVolumeType({
+        regions: catalogRegion,
+      } as TVolumeCatalog)(volume);
+
+      expect(result).toEqual({
+        ...volume,
+        is3az: false,
+        isClassicMultiAttach: true,
+      });
+      expect(is3az).toHaveBeenCalledWith(catalogRegion, volume.region);
+    });
+
+    it('should add the value of is3az and isClassicMultiattach to false if type is not "classic-multiattach"', () => {
+      const volume = { region: 'region', type: 'classic' } as TAPIVolume;
+      const catalogRegion = [{ name: 'toto' }] as TRegion[];
+      vi.mocked(is3az).mockReturnValue(true);
+
+      const result = mapVolumeType({
+        regions: catalogRegion,
+      } as TVolumeCatalog)(volume);
+
+      expect(result).toEqual({
+        ...volume,
+        is3az: true,
+        isClassicMultiAttach: false,
+      });
+      expect(is3az).toHaveBeenCalledWith(catalogRegion, volume.region);
     });
   });
 });

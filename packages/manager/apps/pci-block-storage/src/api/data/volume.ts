@@ -15,33 +15,12 @@ export type TAPIVolume = {
   availabilityZone: 'any' | string;
 };
 
-export type TVolumeSnapshot = {
-  id: string;
-  creationDate: string;
-  description: string;
-  name: string;
-  planCode: string;
-  region: string;
-  size: number;
-  status: string;
-  volumeId: string;
-};
-
 export const getVolume = async (
   projectId: string,
   volumeId: string,
 ): Promise<TAPIVolume> => {
   const { data } = await v6.get<TAPIVolume>(
     `/cloud/project/${projectId}/volume/${volumeId}`,
-  );
-  return data;
-};
-
-export const getVolumeSnapshot = async (
-  projectId: string,
-): Promise<TVolumeSnapshot[]> => {
-  const { data } = await v6.get<TVolumeSnapshot[]>(
-    `/cloud/project/${projectId}/volume/snapshot`,
   );
   return data;
 };
