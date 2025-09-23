@@ -28,20 +28,6 @@
                     data-description="{{ ctrlTabGeneralInformations.domain.filerz || '-' }}"
                 ></oui-tile-definition>
                 <oui-tile-definition
-                    data-term="{{ ::'email_tab_domain_dns_filter' | translate }}"
-                    data-description="{{ 'email_tab_domain_dns_filter_' + (ctrlTabGeneralInformations.dnsFilter || 'NO_FILTERING') | translate }}"
-                >
-                    <oui-action-menu data-compact data-placement="end">
-                        <oui-action-menu-item
-                            data-on-click="setAction('email-domain/email/filter/edit-dns/email-domain-email-filter-edit-dns', ctrlTabGeneralInformations.dnsFilter)"
-                        >
-                            <span
-                                data-translate="email_tab_domain_dns_filter_edit"
-                            ></span>
-                        </oui-action-menu-item>
-                    </oui-action-menu>
-                </oui-tile-definition>
-                <oui-tile-definition
                     data-term="{{ ::'email_tab_domain_dns_mx_records' | translate }}"
                 >
                     <oui-tile-description>
