@@ -27,7 +27,6 @@ import {
   TContactsConfigurationAPI,
 } from '@/domain/types/domainResource';
 import DnsState from './DnsState';
-import AnycastTerminateModal from '@/domain/components/AnycastOrder/AnycastTerminateModal';
 
 interface ConfigurationCardsProps {
   readonly serviceName: string;
@@ -224,95 +223,85 @@ export default function ConfigurationCards({
   }
 
   return (
-    <>
-      {dataProtectionDrawerOpened && (
-        <div
-          className="fixed inset-0 bg-[--ods-color-primary-500] opacity-75 z-40"
-          onClick={() => setDataProtectionDrawerOpened(false)}
-        />
-      )}
-      <ManagerTile>
-        <ManagerTile.Title>
-          {t('domain_tab_general_information_configuration')}
-        </ManagerTile.Title>
-        <ManagerTile.Divider />
-        <DnsState
-          domainResource={domainResource}
-          serviceName={serviceName}
-          anycastOption={anycastOption}
-          isFetchingAnycastOption={isFetchingAnycastOption}
-          anycastTerminateModalOpen={anycastTerminateModalOpen}
-          setAnycastTerminateModalOpen={setAnycastTerminateModalOpen}
-          restoreAnycast={restoreAnycast}
-          setRestoreAnycast={setRestoreAnycast}
-        />
-        <ManagerTile.Divider />
-        <DnssecToggleStatus
-          dnssecModalOpened={dnssecModalOpened}
-          dnssecStatus={dnssecStatus}
-          domainResource={domainResource}
-          isDnssecStatusLoading={isDnssecStatusLoading}
-          setDnssecModalOpened={setDnssecModalOpened}
-        />
-        <ManagerTile.Divider />
-        <TransferToggleStatus
-          domainResource={domainResource}
-          transferModalOpened={transferModalOpened}
-          setTransferModalOpened={setTransferModalOpened}
-          setTransferAuthInfoModalOpened={setTransferAuthInfoModalOpened}
-          setTagModalOpened={setTagModalOpened}
-        />
-        <ManagerTile.Divider />
-        <DataProtection
-          domainResource={domainResource}
-          setDataProtectionDrawerOpened={setDataProtectionDrawerOpened}
-        />
-        <DnssecModal
-          action={dnssecStatus?.status}
-          open={dnssecModalOpened}
-          updateDnssec={updateDnssec}
-          onClose={() => setDnssecModalOpened(!dnssecModalOpened)}
-        />
-        <TransferModal
-          serviceName={serviceName}
-          action={domainResource?.currentState.protectionState}
-          open={transferModalOpened}
-          updateDomain={() => handleUpdateProtectionState()}
-          onClose={() => setTransferModalOpened(!transferModalOpened)}
-        />
-        <TransferAuthInfoModal
-          authInfo={authInfo}
-          authInfoManagedByOVH={
-            domainResource?.currentState?.authInfoManagedByOVHcloud
-          }
-          isAuthInfoLoading={isAuthInfoLoading}
-          onClose={() =>
-            setTransferAuthInfoModalOpened(!transferAuthInfoModalOpened)
-          }
-          open={transferAuthInfoModalOpened}
-        />
-        <TransferTagModal
-          tag={tag}
-          setTag={setTag}
-          handleTag={handleTag}
-          serviceName={serviceName}
-          isTransferTagPending={isTransferTagPending}
-          transferTagError={transferTagError}
-          open={tagModalOpened}
-          onClose={() => setTagModalOpened(!tagModalOpened)}
-        />
-        <DataProtectionDrawer
-          isDrawerOpen={dataProtectionDrawerOpened}
-          onClose={() => setDataProtectionDrawerOpened(false)}
-          domainResource={domainResource}
-          visibleContacts={visibleContacts}
-          selectedContacts={selectedContacts}
-          onCheckboxChange={handleCheckboxChange}
-          onClick={() => {
-            handleUpdateDataProtection();
-          }}
-        />
-      </ManagerTile>
-    </>
+    <ManagerTile>
+      <ManagerTile.Title>
+        {t('domain_tab_general_information_configuration')}
+      </ManagerTile.Title>
+      <ManagerTile.Divider />
+      <ManagerTile.Item>
+        <ManagerTile.Item.Label>Serveur DNS</ManagerTile.Item.Label>
+        <ManagerTile.Item.Description>
+          <Badge color={BADGE_COLOR.success} className="mt-4">
+            Enregistré
+          </Badge>
+        </ManagerTile.Item.Description>
+      </ManagerTile.Item>
+      <ManagerTile.Divider />
+      <DnssecToggleStatus
+        dnssecModalOpened={dnssecModalOpened}
+        dnssecStatus={dnssecStatus}
+        domainResource={domainResource}
+        isDnssecStatusLoading={isDnssecStatusLoading}
+        setDnssecModalOpened={setDnssecModalOpened}
+      />
+      <ManagerTile.Divider />
+      <TransferToggleStatus
+        domainResource={domainResource}
+        transferModalOpened={transferModalOpened}
+        setTransferModalOpened={setTransferModalOpened}
+        setTransferAuthInfoModalOpened={setTransferAuthInfoModalOpened}
+        setTagModalOpened={setTagModalOpened}
+      />
+      <DnssecModal
+        action={dnssecStatus?.status}
+        open={dnssecModalOpened}
+        updateDnssec={updateDnssec}
+        onClose={() => setDnssecModalOpened(!dnssecModalOpened)}
+      />
+      <ManagerTile.Divider />
+      <DataProtection
+        domainResource={domainResource}
+        setDataProtectionDrawerOpened={setDataProtectionDrawerOpened}
+      />
+      <TransferModal
+        serviceName={serviceName}
+        action={domainResource?.currentState.protectionState}
+        open={transferModalOpened}
+        updateDomain={() => handleUpdateProtectionState()}
+        onClose={() => setTransferModalOpened(!transferModalOpened)}
+      />
+      <TransferAuthInfoModal
+        authInfo={authInfo}
+        authInfoManagedByOVH={
+          domainResource?.currentState?.authInfoManagedByOVHcloud
+        }
+        isAuthInfoLoading={isAuthInfoLoading}
+        onClose={() =>
+          setTransferAuthInfoModalOpened(!transferAuthInfoModalOpened)
+        }
+        open={transferAuthInfoModalOpened}
+      />
+      <TransferTagModal
+        tag={tag}
+        setTag={setTag}
+        handleTag={handleTag}
+        serviceName={serviceName}
+        isTransferTagPending={isTransferTagPending}
+        transferTagError={transferTagError}
+        open={tagModalOpened}
+        onClose={() => setTagModalOpened(!tagModalOpened)}
+      />
+      <DataProtectionDrawer
+        isDrawerOpen={dataProtectionDrawerOpened}
+        onClose={() => setDataProtectionDrawerOpened(false)}
+        domainResource={domainResource}
+        visibleContacts={visibleContacts}
+        selectedContacts={selectedContacts}
+        onCheckboxChange={handleCheckboxChange}
+        onClick={() => {
+          handleUpdateDataProtection();
+        }}
+      />
+    </ManagerTile>
   );
 }
