@@ -24,3 +24,17 @@ export const getServiceDnssec = async (
   const { data } = await v6.get(`/domain/zone/${serviceName}/dnssec`);
   return data;
 };
+
+export const activateServiceDnssec = async (
+  serviceName: string,
+): Promise<null> => {
+  const { data } = await v6.post(`/domain/zone/${serviceName}/dnssec`);
+  return data;
+};
+
+export const deactivateServiceDnssec = async (
+  serviceName: string,
+): Promise<null> => {
+  const { data } = await v6.delete(`/domain/zone/${serviceName}/dnssec`);
+  return data;
+};

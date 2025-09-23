@@ -60,6 +60,8 @@ export interface TDomainResource {
   checksum: string;
   currentState: {
     additionalStates: AdditionalDomainStateEnum[] | [];
+    authInfoManagedByOVHcloud: boolean;
+    authInfoSupported: boolean;
     dnsConfiguration: DNSConfiguration;
     extension: string;
     mainState: DomainStateEnum;
@@ -81,6 +83,7 @@ export interface TDomainResource {
     hostsConfiguration?: {
       hosts: THost[];
     };
+    protectionState: ProtectionStateEnum;
   };
 }
 

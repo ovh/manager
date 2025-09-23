@@ -14,13 +14,20 @@ import {
   getDomainAnycastOption,
   getDomainResource,
   updateDomainResource,
+  getDomainAuthInfo,
+  transferTag,
 } from '@/domain/data/api/domainResources';
 import {
   ServiceType,
   TDomainOption,
   TDomainResource,
 } from '@/domain/types/domainResource';
-import { getDomainZone, getServiceDnssec } from '@/domain/data/api/domainZone';
+import {
+  activateServiceDnssec,
+  deactivateServiceDnssec,
+  getDomainZone,
+  getServiceDnssec,
+} from '@/domain/data/api/domainZone';
 import { TDomainZone } from '@/domain/types/domainZone';
 import { order } from '@/domain/types/orderCatalog';
 import { getOrderCatalog } from '@/domain/data/api/order';
@@ -43,6 +50,8 @@ import {
 } from '@/domain/data/api/hosting';
 import { FreeHostingOptions } from '@/domain/components/AssociatedServicesCards/Hosting';
 import { THost } from '@/domain/types/host';
+import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
+import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
 
 export const useGetDomainResource = (serviceName: string) => {
   const { data, isLoading, error } = useQuery<TDomainResource>({
@@ -150,10 +159,12 @@ export const useUpdateDomainResource = (serviceName: string) => {
   const queryClient = useQueryClient();
 
   const { mutate, isPending } = useMutation({
+    mutationKey: ['domain', 'resource', 'update', serviceName],
     mutationFn: ({
       checksum,
       nameServers,
       hosts,
+      protectionState,
     }: {
       checksum: string;
       nameServers: {
@@ -162,6 +173,7 @@ export const useUpdateDomainResource = (serviceName: string) => {
         ipv6?: string;
       }[];
       hosts: THost[];
+      protectionState: ProtectionStateEnum;
     }) =>
       updateDomainResource(serviceName, {
         checksum,
@@ -172,6 +184,7 @@ export const useUpdateDomainResource = (serviceName: string) => {
           hostsConfiguration: {
             hosts,
           },
+          protectionState,
         },
       }),
     onSuccess: () => {
@@ -342,17 +355,87 @@ export function useGetSubDomainsAndMultiSites(serviceNames: string[]) {
     })),
   });
 }
+
 export const useGetDnssecStatus = (serviceName: string) => {
-  const { data, isFetching } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['domain', 'zone', 'dnssec', serviceName],
     queryFn: () => getServiceDnssec(serviceName),
     retry: false,
-    retryOnMount: false,
-    refetchOnMount: false,
   });
 
   return {
     dnssecStatus: data,
-    isDnssecStatusLoading: isFetching,
+    isDnssecStatusLoading: isLoading,
+  };
+};
+
+export const useUpdateDnssecService = (
+  serviceName: string,
+  action: DnssecStatusEnum,
+) => {
+  const queryClient = useQueryClient();
+  const { addSuccess, addError } = useNotifications();
+  const { t } = useTranslation(['domain', 'web-domains/error']);
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: () => {
+      if (action === DnssecStatusEnum.ENABLED) {
+        return activateServiceDnssec(serviceName);
+      }
+
+      return deactivateServiceDnssec(serviceName);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['domain', 'zone', 'dnssec', serviceName],
+      });
+      addSuccess(t('domain_tab_general_information_dnssec_result'));
+    },
+    onError: (error: Error) => {
+      addError(
+        t('domain_tab_general_information_dnssec_error', {
+          error: error.message,
+        }),
+      );
+    },
+  });
+
+  return {
+    updateServiceDnssec: mutate,
+    isUpdateIsPending: isPending,
+  };
+};
+
+export const useGetDomainAuthInfo = (serviceName: string) => {
+  const { data, isLoading } = useQuery({
+    queryKey: ['domain', 'service', serviceName, 'authInfo'],
+    queryFn: () => getDomainAuthInfo(serviceName),
+  });
+
+  return {
+    authInfo: data,
+    isAuthInfoLoading: isLoading,
+  };
+};
+
+export const useTransferTag = (serviceName: string, tag: string) => {
+  const queryClient = useQueryClient();
+  const { t } = useTranslation(['domain', 'web-domains/error']);
+  const { addSuccess, addError } = useNotifications();
+
+  const { mutate, isPending, error } = useMutation({
+    mutationFn: () => transferTag(tag, serviceName),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['domain', 'service', serviceName, 'authInfo'],
+      });
+      addSuccess(t('domain_tab_general_information_transfer_tag_success'));
+    },
+  });
+
+  return {
+    transferTag: mutate,
+    transferTagError: error,
+    isTransferTagPending: isPending,
   };
 };
