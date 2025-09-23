@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-ai-tools-app",
-  "version": "1.10.6",
+  "version": "1.11.0",
   "private": true,
   "description": "pci-ai-tools",
   "repository": {

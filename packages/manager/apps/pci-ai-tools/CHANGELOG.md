@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.10.6...@ovh-ux/manager-pci-ai-tools-app@1.11.0) (2025-09-23)
+
+
+### Features
+
+* **pci-ai-tools:** add VRAM to Flavorble ([f1fed0b](https://github.com/ovh/manager/commit/f1fed0bb53abccfc5b42e7e7a80d430872302030)), closes [#AIS-1557](https://github.com/ovh/manager/issues/AIS-1557)
+
+
+
+
+
 ## [1.10.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.10.5...@ovh-ux/manager-pci-ai-tools-app@1.10.6) (2025-09-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
