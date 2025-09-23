@@ -211,5 +211,10 @@
   "sidebar_skip_to_the_main_content": "Allez au contenu principal",
   "sidebar_public_networking": "Réseau public",
   "sidebar_private_networking": "Réseau privé",
-  "sidebar_network_services": "Services réseau"
+  "sidebar_network_services": "Services réseau",
+  "sidebar_observability": "Observabilité",
+  "sidebar_observability_short": "Observabilité",
+  "sidebar_observability_dashboards": "Tableaux de bord",
+  "sidebar_observability_metric": "Métriques",
+  "sidebar_observability_metric_tenant": "Tenants"
 }

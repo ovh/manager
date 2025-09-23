@@ -1,0 +1,54 @@
+import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
+import illustration from '@/assets/images/sidebar/security-identity-operations.png';
+import { Node } from '../node';
+
+const sioUniverse: Node = {
+  id: 'observability',
+  idAttr: 'observability-link',
+  translation: 'sidebar_observability',
+  shortTranslation: 'sidebar_observability_short',
+  illustration,
+  svgIcon: OvhProductName.SHIELDCHECK,
+  routing: {
+    application: 'observability',
+  },
+  hasService: false,
+  features: ['observability'],
+};
+
+sioUniverse.children = [
+  {
+    id: 'dashboards',
+    idAttr: 'dashboards-link',
+    translation: 'sidebar_observability_dashboards',
+    universe: sioUniverse.id,
+    features: ['observability:dashboards'],
+    routing: {
+      application: 'observability',
+      hash: '#/dashboards',
+    },
+  },
+  {
+    id: 'metric',
+    idAttr: 'metric-link',
+    translation: 'sidebar_observability_metric',
+    universe: sioUniverse.id,
+    features: ['observability:metric'],
+    children: [
+      {
+        id: 'observability-metric-tenant',
+        idAttr: 'observability-metric-tenant-link',
+        translation: 'sidebar_observability_metric_tenant',
+        universe: sioUniverse.id,
+        serviceType: 'DBAAS_LOGS',
+        features: ['observability:metric:tenant'],
+        routing: {
+          application: 'observability',
+          hash: '#/metric/tenant',
+        },
+      },
+    ],
+  },
+];
+
+export default sioUniverse;
