@@ -124,7 +124,7 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
   const hasHousingServiceAttachedToIp =
     Boolean(serviceName) && servicesAttached.length === 0;
 
-  const { isVmacAlreadyExist } = useIpHasVmac({
+  const { isVmacAlreadyExist, isLoading: isVmacLoading } = useIpHasVmac({
     serviceName,
     ip,
     enabled: Boolean(ipDetails) && hasDedicatedServiceAttachedToIp,
@@ -271,11 +271,15 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
               .replace(urlDynamicParts.id, id)
               .replace(urlDynamicParts.service, serviceName),
           ),
-        isDisabled: !hasDedicatedServiceAttachedToIp || isVmacAlreadyExist,
+        isDisabled:
+          !hasDedicatedServiceAttachedToIp ||
+          isVmacAlreadyExist ||
+          isVmacLoading,
       },
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
       ipDetails?.type === IpTypeEnum.ADDITIONAL &&
+      !isVmacLoading &&
       isVmacAlreadyExist &&
       hasDedicatedServiceAttachedToIp && {
         id: 7,
@@ -289,6 +293,7 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
       },
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
+      !isVmacLoading &&
       isVmacAlreadyExist && {
         id: 8,
         label: t('listingActionDeleteVirtualMac'),
