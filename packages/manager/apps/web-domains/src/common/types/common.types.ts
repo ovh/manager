@@ -349,3 +349,4 @@ export interface TMxPlan {
   offer: string | null;
   status: 'close' | 'ok' | 'readOnly' | 'unknown';
 }
+

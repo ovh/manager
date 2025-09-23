@@ -5,6 +5,7 @@ import BannerStatus from '@/domain/components/BannerStatus/BannerStatus';
 import GeneralInformationsCards from '@/domain/components/InformationsCards/GeneralInformations';
 import SubscriptionCards from '@/domain/components/SubscriptionCards/SubscriptionCards';
 import AssociatedServicesCards from '@/domain/components/AssociatedServicesCards/AssociatedServicesCards';
+import ConfigurationCards from '@/domain/components/ConfigurationCards/ConfigurationCards';
 
 export default function GeneralInformations() {
   const { serviceName } = useParams<{ serviceName: string }>();
@@ -21,9 +22,7 @@ export default function GeneralInformations() {
           <AssociatedServicesCards serviceName={serviceName} />
         </div>
         <div className="row-span-4 col-start-2 row-start-1">
-          <ManagerTile>
-            <ManagerTile.Title>Configuration</ManagerTile.Title>
-          </ManagerTile>
+          <ConfigurationCards serviceName={serviceName} />
         </div>
         <div className="row-span-4 col-start-3 row-start-1">
           <SubscriptionCards serviceName={serviceName} />
