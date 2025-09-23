@@ -31,8 +31,10 @@ import {
   deploymentModesSchema,
   localizationSelectionSchema,
   nameSchema,
-  quantitySchema
-} from "@/pages/instances/create/CreateInstance.schema";
+  quantitySchema,
+} from '@/pages/instances/create/CreateInstance.schema';
+
+import { useInstancesCatalog } from '@/data/hooks/catalog/useInstancesCatalog';
 
 export type TInstanceCreationForm = z.infer<typeof instanceCreationSchema>;
 export const instanceCreationSchema = z.object({
@@ -51,6 +53,7 @@ const quantityHintParams = {
 const CreateInstance: FC = () => {
   const project = useRouteLoaderData('root') as TProject | undefined;
   const { t } = useTranslation(['common', 'creation']);
+  useInstancesCatalog();
 
   const formMethods = useForm({
     resolver: zodResolver(instanceCreationSchema),
@@ -68,7 +71,6 @@ const CreateInstance: FC = () => {
       label: t('common:pci_instances_common_create_instance'),
     },
   ];
-
   return (
     <main>
       <section className="mb-8">
