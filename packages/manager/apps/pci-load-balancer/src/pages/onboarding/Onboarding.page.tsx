@@ -17,9 +17,12 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import { Suspense, useContext } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useAllLoadBalancers } from '@/api/hook/useLoadBalancer';
-import { GUIDES, ONBOARDING_TRACKING_PREFIX } from './constant';
+import { GUIDES } from './constant';
 import { useGetPrivateNetworks } from '@/api/hook/useNetwork';
 
 export default function OnBoardingPage() {
@@ -30,8 +33,8 @@ export default function OnBoardingPage() {
   const navigate = useNavigate();
 
   const context = useContext(ShellContext);
-  const { tracking } = context.shell;
   const { ovhSubsidiary } = context.environment.getUser();
+  const { trackClick } = useOvhTracking();
 
   const {
     data: privateNetworks,
@@ -95,9 +98,9 @@ export default function OnBoardingPage() {
           } else {
             navigate(`./no-private-network`);
           }
-          tracking?.trackClick({
-            name: `${ONBOARDING_TRACKING_PREFIX}::add`,
-            type: 'navigation',
+          trackClick({
+            actions: ['onboarding', 'add'],
+            actionType: 'navigation',
           });
         }}
       >

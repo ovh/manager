@@ -380,42 +380,6 @@ export const ACCESSING_YOUR_AI_APPS_WITH_TOKENS = {
   IN: 'https://docs.ovh.com/asia/en/publiccloud/ai/ai-apps-tokens/',
 };
 
-export const PRESENTATION_OF_DATA_PROCESSING = {
-  GB: 'https://docs.ovh.com/gb/en/data-processing/overview/',
-  IE: 'https://docs.ovh.com/ie/en/data-processing/overview/',
-  DEFAULT: 'https://docs.ovh.com/gb/en/data-processing/overview/',
-  ASIA: 'https://docs.ovh.com/asia/en/data-processing/overview/',
-  AU: 'https://docs.ovh.com/au/en/data-processing/overview/',
-  CA: 'https://docs.ovh.com/ca/en/data-processing/overview/',
-  SG: 'https://docs.ovh.com/sg/en/data-processing/overview/',
-  WE: 'https://docs.ovh.com/us/en/data-processing/overview/',
-  IN: 'https://docs.ovh.com/asia/en/data-processing/overview/',
-};
-
-export const DATA_PROCESSING_CAPABILITIES_AND_LIMITATIONS = {
-  GB: 'https://docs.ovh.com/gb/en/data-processing/capabilities/',
-  IE: 'https://docs.ovh.com/ie/en/data-processing/capabilities/',
-  DEFAULT: 'https://docs.ovh.com/gb/en/data-processing/capabilities/',
-  ASIA: 'https://docs.ovh.com/asia/en/data-processing/capabilities/',
-  AU: 'https://docs.ovh.com/au/en/data-processing/capabilities/',
-  CA: 'https://docs.ovh.com/ca/en/data-processing/capabilities/',
-  SG: 'https://docs.ovh.com/sg/en/data-processing/capabilities/',
-  WE: 'https://docs.ovh.com/us/en/data-processing/capabilities/',
-  IN: 'https://docs.ovh.com/asia/en/data-processing/capabilities/',
-};
-
-export const SUBMIT_A_JAVA_SCALA_JOB = {
-  GB: 'https://docs.ovh.com/gb/en/data-processing/submit-javascala/',
-  IE: 'https://docs.ovh.com/ie/en/data-processing/submit-javascala/',
-  DEFAULT: 'https://docs.ovh.com/gb/en/data-processing/submit-javascala/',
-  ASIA: 'https://docs.ovh.com/asia/en/data-processing/submit-javascala/',
-  AU: 'https://docs.ovh.com/au/en/data-processing/submit-javascala/',
-  CA: 'https://docs.ovh.com/ca/en/data-processing/submit-javascala/',
-  SG: 'https://docs.ovh.com/sg/en/data-processing/submit-javascala/',
-  WE: 'https://docs.ovh.com/us/en/data-processing/submit-javascala/',
-  IN: 'https://docs.ovh.com/asia/en/data-processing/submit-javascala/',
-};
-
 export const AI_NOTEBOOKS_STARTUP = {
   GB: 'https://docs.ovh.com/gb/en/publiccloud/ai/cli/getting-started-cli/',
   IE: 'https://docs.ovh.com/ie/en/publiccloud/ai/cli/getting-started-cli/',
@@ -687,96 +651,6 @@ export const GUIDES_LIST = {
       url: CREATE_AND_USE_A_PRIVATE_IMAGE,
       key: 'create_and_use_a_private_image',
       tracking: '::guides::go_to_creating_and_using_a_private_image',
-    },
-  },
-  ai_machine_learning: {
-    ...DEFAULT_GUIDES,
-    differences_between_ai_notebooks_ai_training_ai_apps: {
-      url: DIFFERENCES_BETWEEN_AI_NOTEBOOKS_AI_TRAINING_AI_APPS,
-      key: 'differences_between_ai_notebooks_ai_training_ai_apps',
-      tracking: '::guides::go_to_ai_comparative_tables',
-    },
-    ai_apps_capabilities_and_limitations: {
-      url: AI_APPS_CAPABILITIES_AND_LIMITATIONS,
-      key: 'ai_apps_capabilities_and_limitations',
-      tracking: '::guides::go_to_capabilities',
-    },
-    accessing_your_ai_apps_with_tokens: {
-      url: ACCESSING_YOUR_AI_APPS_WITH_TOKENS,
-      key: 'accessing_your_ai_apps_with_tokens',
-      tracking: '::guides::go_to_ai_apps_tokens',
-    },
-  },
-  data_processing: {
-    ...DEFAULT_GUIDES,
-    presentation_of_data_processing: {
-      url: PRESENTATION_OF_DATA_PROCESSING,
-      key: 'presentation_of_data_processing',
-      tracking: '::guides::go_to_overview',
-    },
-    data_processing_capabilities_and_limitations: {
-      url: DATA_PROCESSING_CAPABILITIES_AND_LIMITATIONS,
-      key: 'data_processing_capabilities_and_limitations',
-      tracking: '::guides::go_to_capabilities',
-    },
-    submit_a_java_scala_job: {
-      url: SUBMIT_A_JAVA_SCALA_JOB,
-      key: 'submit_a_java_scala_job',
-      tracking: '::guides::go_to_submit_javascala',
-    },
-  },
-  ai_notenooks: {
-    ...DEFAULT_GUIDES,
-    ai_notebooks_startup: {
-      url: AI_NOTEBOOKS_STARTUP,
-      key: 'ai_notebooks_startup',
-      tracking: '::guides::go_to_getting_started_cli',
-    },
-    ai_notebooks_definition: {
-      url: AI_NOTEBOOKS_DEFINITION,
-      key: 'ai_notebooks_definition',
-      tracking: '::guides::go_to_definition',
-    },
-    using_data_form_object_storage: {
-      url: USING_DATA_FORM_OBJECT_STORAGE,
-      key: 'using_data_form_object_storage',
-      tracking: '::guides::go_to_access_object_storage_data',
-    },
-  },
-  ai_training: {
-    ...DEFAULT_GUIDES,
-    ai_training_capabilities_and_limitations: {
-      url: AI_TRAINING_CAPABILITIES_AND_LIMITATIONS,
-      key: 'ai_training_capabilities_and_limitations',
-      tracking: '::guides::go_to_capabilities',
-    },
-    submit_a_job_via_the_user_interface: {
-      url: SUBMIT_A_JOB_VIA_THE_USER_INTERFACE,
-      key: 'submit_a_job_via_the_user_interface',
-      tracking: '::guides::go_to_submit_job',
-    },
-    managing_a_custom_image: {
-      url: MANAGING_A_CUSTOM_IMAGE,
-      key: 'managing_a_custom_image',
-      tracking: '::guides::go_to_build_use_custom_image',
-    },
-  },
-  ml_serving: {
-    ...DEFAULT_GUIDES,
-    deploying_a_custom_model: {
-      url: DEPLOYING_A_CUSTOM_MODEL,
-      key: 'deploying_a_custom_model',
-      tracking: '::guides::go_to_deploy_serialized_models',
-    },
-    models_definition: {
-      url: MODELS_DEFINITION,
-      key: 'models_definition',
-      tracking: '::guides::go_to_models',
-    },
-    exporting_a_tensorflow_model: {
-      url: EXPORTING_A_TENSORFLOW_MODEL,
-      key: 'exporting_a_tensorflow_model',
-      tracking: '::guides::go_to_export_tensorflow_models',
     },
   },
   private_network: {

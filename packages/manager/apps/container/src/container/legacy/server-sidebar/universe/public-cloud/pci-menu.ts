@@ -36,10 +36,6 @@ export const features = [
   'kubernetes',
   'private-registry',
   'workflow-management',
-  'notebooks',
-  'training',
-  'ai-apps',
-  'data-processing',
   'logs-data-platform',
   'horizon',
   'pci-rancher',
@@ -50,7 +46,6 @@ export const features = [
   'public-cloud:vouchers',
   'public-cloud:contacts',
   'public-cloud:project-settings',
-  'ai-dashboard',
   'data-platform',
   'key-management-service',
   'okms:key-management-service',
@@ -265,7 +260,6 @@ export function getPciProjectMenu(
       'pci-databases-analytics-operational',
       'databases-streaming',
       'pci-databases-analytics-streaming',
-      'data-processing',
       'databases-analysis',
       'pci-databases-analytics-analysis',
       'pci-dataplatform',
@@ -313,14 +307,6 @@ export function getPciProjectMenu(
             `#/pci/projects/${projectId}/databases-analytics/streaming/services`,
           ),
         },
-        isFeaturesAvailable('data-processing') && {
-          id: 'data-processing',
-          title: 'Data Processing',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/data-processing`,
-          ),
-        },
         // Entry menu for PCI Data Analysis for Angular
         isFeaturesAvailable('databases-analysis') && {
           id: 'databases-analysis',
@@ -366,10 +352,6 @@ export function getPciProjectMenu(
 
   if (
     isFeaturesAvailable(
-      'ai-dashboard',
-      'notebooks',
-      'training',
-      'ai-apps',
       'pci-ai-endpoints',
       'pci-ai-dashboard',
       'pci-ai-notebooks',
@@ -412,29 +394,6 @@ export function getPciProjectMenu(
             'public-cloud',
             `#/pci/projects/${projectId}/ai-ml/deploy`,
           ),
-        },
-        isFeaturesAvailable('ai-dashboard') && {
-          id: 'dashboard',
-          title: 'AI Dashboard',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/ai-dashboard`,
-          ),
-        },
-        isFeaturesAvailable('notebooks') && {
-          id: 'notebooks',
-          title: 'AI Notebooks',
-          href: getURL('public-cloud', `#/pci/projects/${projectId}/notebooks`),
-        },
-        isFeaturesAvailable('training') && {
-          id: 'training',
-          title: 'AI Training',
-          href: getURL('public-cloud', `#/pci/projects/${projectId}/training`),
-        },
-        isFeaturesAvailable('ai-apps') && {
-          id: 'apps',
-          title: 'AI Deploy',
-          href: getURL('public-cloud', `#/pci/projects/${projectId}/ai/apps`),
         },
         isFeaturesAvailable('pci-ai-endpoints') && {
           id: 'pci-ai-endpoints',

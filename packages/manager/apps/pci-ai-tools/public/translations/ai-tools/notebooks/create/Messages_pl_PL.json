@@ -51,5 +51,6 @@
   "fieldFlavorDescription": "Wybierz typ zasobów",
   "fieldFrameworkVersionDescription": "Wybierz wersję",
   "fieldConfigurationPrivacyLabel": "Poufność",
-  "sshKeyConfigurationHelperBis": "Połącz klucze SSH z Twoim notebookiem za pomocą poniższej listy rozwijanej"
+  "sshKeyConfigurationHelperBis": "Połącz klucze SSH z Twoim notebookiem za pomocą poniższej listy rozwijanej",
+  "summaryFieldFlavorVMemory": "{{memory}} VRAM"
 }

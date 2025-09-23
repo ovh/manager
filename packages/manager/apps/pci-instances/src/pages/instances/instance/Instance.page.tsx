@@ -18,6 +18,7 @@ import InstanceName from './dashboard/components/InstanceName.component';
 import { useDashboard } from './dashboard/hooks/useDashboard';
 import { LoadingCell } from '../datagrid/components/cell/LoadingCell.component';
 import InstanceErrorGuard from './InstanceErrorGuard.page';
+import { SearchNotifications } from '@/components/SearchNotifications/SearchNotifications';
 
 const Instance: FC = () => {
   const { t } = useTranslation([NAMESPACES.DASHBOARD, 'dashboard']);
@@ -73,6 +74,7 @@ const Instance: FC = () => {
           </div>
           <div className="mt-8 mb-8">
             <Notifications />
+            <SearchNotifications />
           </div>
           <GoBack />
           <div className="mt-8">

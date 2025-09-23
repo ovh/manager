@@ -81,7 +81,7 @@
   "kube_add_plan_subtitle": "Choose the right plan for your needs. Pick from a wide selection of instances (Kubernetes nodes), billed by the hour or via a subscription.",
   "kubernetes_add_deployment_mode_card_beta": "Beta",
   "kube_add_node_pool_name_title": "Name your node pool",
-  "kube_add_plan_content_unavailable_1AZ_banner": "This {{ plan }} plan is not yet available in 1-AZ regions. Select 3-AZ deployment to access the {{ plan }} plan.",
-  "kube_add_plan_content_unavailable_3AZ_banner": "This {{ plan }} plan is not yet available in 3-AZ regions. Select 1-AZ deployment to access the {{ plan }} plan.",
+  "kube_add_plan_content_unavailable_1AZ_banner": "The {{ plan }} plan is not yet available in 1-AZ regions. Select 3-AZ deployment to access the {{ plan }} plan.",
+  "kube_add_plan_content_unavailable_3AZ_banner": "The {{ plan }} plan is not yet available in 3-AZ regions. Select 1-AZ deployment to access the {{ plan }} plan.",
   "kube_add_name_title": "Name your node pool"
 }

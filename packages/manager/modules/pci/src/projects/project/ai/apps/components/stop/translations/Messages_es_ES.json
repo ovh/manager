@@ -1,8 +1,0 @@
-{
-  "pci_app_stop_app_title": "Detención de la app",
-  "pci_app_stop_app_content": "¿Seguro que quiere detener la app {{ appName }}?",
-  "pci_app_stop_app_success": "La app se ha detenido correctamente.",
-  "pci_app_stop_app_error": "Se ha producido un error al detener la app {{ appName }}: {{ message }}.",
-  "pci_app_stop_app_submit_label": "Confirmar",
-  "pci_app_stop_app_cancel_label": "Cancelar"
-}

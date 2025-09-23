@@ -3,20 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
 import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import DashboardCardLayout from './DashboardCardLayout.component';
-import { useProjectId } from '@/hooks/project/useProjectId';
 import { useDashboard } from '../hooks/useDashboard';
 import { ActionsMenu } from '@/components/menu/ActionsMenu.component';
-import NetworkItem from './NetworkItem.component';
+import NetworkItem from './network/NetworkItem.component';
 import { DashboardTileBlock } from './DashboardTile.component';
-import { useDedicatedUrl } from '@/hooks/url/useDedicatedUrl';
 import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceActionModal';
-import ReverseDNS from './ReverseDNS.component';
+import ExpandedNetwork from './network/ExpandedNetwork.component';
 
 const InstanceNetworkingBlock: FC = () => {
   const { t } = useTranslation(['dashboard', 'list', 'actions']);
   const { region, instanceId } = useInstanceParams();
-  const dedicatedUrl = useDedicatedUrl();
-  const projectId = useProjectId();
   const projectUrl = useProjectUrl('public-cloud');
 
   const { instance, isPending: isInstanceLoading } = useDashboard({
@@ -24,51 +20,16 @@ const InstanceNetworkingBlock: FC = () => {
     instanceId,
   });
 
-  const publicIPs = useMemo(
+  const publicIpActionsLinks = useMemo(
     () =>
-      instance?.addresses.get('floating') ?? instance?.addresses.get('public'),
-    [instance?.addresses],
+      instance?.publicNetwork.actionsLinks.map((action) => ({
+        ...action,
+        label: t(
+          `actions:pci_instances_actions_instance_network_${action.label}`,
+        ),
+      })) ?? [],
+    [instance?.publicNetwork, t],
   );
-
-  const publicIpActionsLinks = useMemo(() => {
-    const ipV4 = publicIPs?.find((publicIp) => publicIp.version === 4)?.ip;
-    const ipParams = `ip=${ipV4}&ipBlock=${ipV4}`;
-
-    return [
-      {
-        label: t('actions:pci_instances_actions_instance_network_change_dns'),
-        link: {
-          path: dedicatedUrl,
-          isExternal: true,
-          isTargetBlank: true,
-        },
-      },
-      {
-        label: t(
-          'actions:pci_instances_actions_instance_network_activate_mitigation',
-        ),
-        link: {
-          path: `${dedicatedUrl}?action=mitigation&${ipParams}&serviceName=${projectId}`,
-          isExternal: true,
-          isTargetBlank: true,
-        },
-      },
-      {
-        label: t(
-          'actions:pci_instances_actions_instance_network_firewall_settings',
-        ),
-        link: {
-          path: `${dedicatedUrl}?action=toggleFirewall&${ipParams}`,
-          isExternal: true,
-          isTargetBlank: true,
-        },
-      },
-    ];
-  }, [publicIPs, dedicatedUrl, projectId, t]);
-
-  const privateIps = useMemo(() => instance?.addresses.get('private'), [
-    instance?.addresses,
-  ]);
 
   const privateIpActionsLinks = useMemo(
     () =>
@@ -108,15 +69,13 @@ const InstanceNetworkingBlock: FC = () => {
         label={t('pci_instances_dashboard_public_network_title')}
         isLoading={isInstanceLoading}
       >
-        {publicIPs?.map((publicIp) => (
+        {instance?.publicNetwork.networks.map((network) => (
           <NetworkItem
-            key={publicIp.ip}
-            address={publicIp}
-            isFloatingIp={!!instance?.addresses.get('floating')}
+            key={network.ip}
+            address={network}
+            isFloatingIp={instance.publicNetwork.isFloatingIp}
             actions={publicIpActionsLinks}
-          >
-            <ReverseDNS ip={publicIp.ip} />
-          </NetworkItem>
+          />
         ))}
       </DashboardTileBlock>
       <DashboardTileBlock isLoading={isInstanceLoading} withoutDivider>
@@ -129,9 +88,12 @@ const InstanceNetworkingBlock: FC = () => {
             items={privateIpActionsLinks}
           />
         </div>
-        {privateIps?.map((privateIp) => (
-          <NetworkItem key={privateIp.ip} address={privateIp} />
+        {instance?.privateNetwork.previews.map((network) => (
+          <NetworkItem key={network.ip} address={network} />
         ))}
+        {instance?.privateNetwork.otherNetworks && (
+          <ExpandedNetwork networks={instance.privateNetwork.otherNetworks} />
+        )}
       </DashboardTileBlock>
     </DashboardCardLayout>
   );
