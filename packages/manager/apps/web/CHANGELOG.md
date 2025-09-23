@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.24.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.24.1...@ovh-ux/manager-web@19.24.2) (2025-09-23)
+
+
+### Bug Fixes
+
+* **dns-3325:** remove button to delete DNS zone in DNS zone panel ([0a81de6](https://github.com/ovh/manager/commit/0a81de64c435830ce164de27ddbfab9b8a807111))
+* **dns-44:** allow null (dot) target on MX DNS record (rfc7505) ([67bd348](https://github.com/ovh/manager/commit/67bd34830e844aff7d682b6c4cabd74a1d45b153)), closes [#DNS-44](https://github.com/ovh/manager/issues/DNS-44)
+
+
+
+
+
 ## [19.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.24.0...@ovh-ux/manager-web@19.24.1) (2025-09-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

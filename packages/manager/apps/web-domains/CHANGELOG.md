@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.2.3...@ovh-ux/manager-web-domains-app@1.3.0) (2025-09-23)
+
+
+### Bug Fixes
+
+* **web-domains:** fix domain expiration date ([d62c395](https://github.com/ovh/manager/commit/d62c395e2ca5d874261ea875514ef2810d0725be)), closes [#MANAGER-19853](https://github.com/ovh/manager/issues/MANAGER-19853)
+
+
+### Features
+
+* **domain:** replace <strong> tag by font-bold classname ([d9dcbc4](https://github.com/ovh/manager/commit/d9dcbc496d8c8891591a986d86891c3c05a4cd1e)), closes [#MANAGER-18983](https://github.com/ovh/manager/issues/MANAGER-18983)
+* **web-domains:** resiliation modal improvement ([4ec67eb](https://github.com/ovh/manager/commit/4ec67ebf29a6c3dbac5dd4469881ef18ba8e64ac)), closes [#MANAGER-19392](https://github.com/ovh/manager/issues/MANAGER-19392)
+* **web-domains:** upgrade to ods 19 ([70e5675](https://github.com/ovh/manager/commit/70e5675bba6a0de29bf00b10f70f4a7b535f5d50)), closes [#MANAGER-19391](https://github.com/ovh/manager/issues/MANAGER-19391)
+* **web-domains:** use breadcrumb instead of backlink ([929b304](https://github.com/ovh/manager/commit/929b304f4d47cc34d2d0e0979b82998b2b9c65c3)), closes [#MANAGER-19643](https://github.com/ovh/manager/issues/MANAGER-19643)
+* **web-domains:** use toUnicode on alldom & domain names ([5602db7](https://github.com/ovh/manager/commit/5602db7a4ee9ebd96a076206171909f184eb5e45)), closes [#MANAGER-19831](https://github.com/ovh/manager/issues/MANAGER-19831)
+* **web-ongoing-operations:** deduplicate translation ([aceed65](https://github.com/ovh/manager/commit/aceed6558a3080354a38672942295ad8df3d3b58)), closes [#MANAGER-19096](https://github.com/ovh/manager/issues/MANAGER-19096)
+
+
+
+
+
 ## [1.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.2.2...@ovh-ux/manager-web-domains-app@1.2.3) (2025-09-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-domains-app
