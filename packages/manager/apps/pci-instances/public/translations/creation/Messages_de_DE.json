@@ -1,7 +1,12 @@
 {
-  "pci_instance_creation_name_rule": "Darf ausschließlich Zahlen, Buchstaben, Unterstriche, Bindestriche oder Punkte enthalten.",
+  "pci_instance_creation_name_rule": "Darf nur Zahlen, Buchstaben, Unterstriche, Bindestriche oder Punkte enthalten.",
   "pci_instances_creation_advanced_parameters": "Erweiterte Einstellungen",
-  "pci_instances_creation_quantity_title": "Menge auswählen",
+  "pci_instances_creation_quantity_title": "Wählen Sie eine Menge",
   "pci_instances_creation_quantity_label": "Anzahl der zu erstellenden Instanzen",
-  "pci_instance_creation_quantity_rule": "Mit Ihrem aktuellen Quota können Sie für die Region {{ region }} gleichzeitig bis zu {{ quota }} Instanz(en) des Typs {{ type }} erstellen."
+  "pci_instance_creation_quantity_rule": "Ihr aktuelles Kontingent erlaubt es Ihnen, gleichzeitig bis zu {{ quota }} Instanz(en) vom Typ {{ type }} für die Region {{ region }} zu erstellen.",
+  "pci_instance_creation_choose_localization_title": "Wählen Sie einen Standort",
+  "pci_instance_creation_select_localization_label": "Wählen Sie einen Standort aus: ",
+  "pci_instance_creation_select_localization_informations": "Die lokalen Zonen sind nicht für die Savings Plans berechtigt.",
+  "pci_instance_creation_continue_order": "Meine Bestellung fortsetzen",
+  "pci_instance_creation_configuration_code": "Code meiner Konfiguration"
 }
