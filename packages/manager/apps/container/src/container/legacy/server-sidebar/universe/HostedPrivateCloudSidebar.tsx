@@ -46,8 +46,9 @@ const features = [
   'dedicated-server:ecoRangeOrder',
   'dedicated-server:nutanixOrder',
   'network-security',
-  'key-management-service',
+  'okms',
   'okms:key-management-service',
+  'okms:secret-manager',
 ];
 
 export default function HostedPrivateCloudSidebar() {
@@ -353,64 +354,7 @@ export default function HostedPrivateCloudSidebar() {
       });
     }
 
-    if (feature['key-management-service']) {
-      const keyIcon = (
-        <OsdsIcon
-          name={ODS_ICON_NAME.KEY_CONCEPT}
-          size={ODS_ICON_SIZE.xxs}
-          color={ODS_THEME_COLOR_INTENT.text}
-        />
-      );
-      menu.push({
-        id: 'identity-security-operations-legacy',
-        label: t('sidebar_security_identity_operations'),
-        icon: (
-          <OsdsIcon
-            name={ODS_ICON_NAME.CLOUD_EYE_CONCEPT}
-            size={ODS_ICON_SIZE.xxs}
-            color={ODS_THEME_COLOR_INTENT.text}
-          />
-        ),
-        pathMatcher: new RegExp('^/key-management-service'),
-        subItems: [
-          {
-            id: 'key-management-service-legacy',
-            label: t('sidebar_key-management-service'),
-            href: navigation.getURL('key-management-service', '/'),
-            pathMatcher: new RegExp('^/key-management-service'),
-            icon: keyIcon,
-            async loader() {
-              const app = 'key-management-service';
-              const services = await loadServices(
-                '/okms/resource',
-                undefined,
-                app,
-              );
-
-              return [
-                {
-                  id: 'key-management-service-all',
-                  label: t('sidebar_service_all'),
-                  href: navigation.getURL(app, '/'),
-                  ignoreSearch: true,
-                  icon: keyIcon,
-                },
-                ...services.map((service) => ({
-                  ...service,
-                  // This is a temporary fix intended to exist only during the migration to the new /okms app.
-                  href: service.href.replace('key-management-service/key-management-service', 'key-management-service'),
-                  pathMatcher: new RegExp(
-                    `^/key-management-service/${service.serviceName}`,
-                  ),
-                })),
-              ];
-            },
-          },
-        ],
-      });
-    }
-
-    if (feature['okms:key-management-service']) {
+    if (feature['okms']) {
       const keyIcon = (
         <OsdsIcon
           name={ODS_ICON_NAME.KEY_CONCEPT}
@@ -419,7 +363,6 @@ export default function HostedPrivateCloudSidebar() {
         />
       );
       const app = 'okms';
-      const baseUrl = navigation.getURL(app, '/');
 
       menu.push({
         id: 'identity-security-operations',
@@ -431,12 +374,12 @@ export default function HostedPrivateCloudSidebar() {
             color={ODS_THEME_COLOR_INTENT.text}
           />
         ),
-        pathMatcher: new RegExp('^/okms/key-management-service'),
+        pathMatcher: new RegExp('^/okms/*'),
         subItems: [
-          {
+          feature['okms:key-management-service'] && {
             id: 'key-management-service',
             label: t('sidebar_key-management-service'),
-            href: baseUrl,
+            href: navigation.getURL(app, '#/key-management-service'),
             pathMatcher: new RegExp('^/okms/key-management-service'),
             icon: keyIcon,
             async loader() {
@@ -450,7 +393,7 @@ export default function HostedPrivateCloudSidebar() {
                 {
                   id: 'key-management-service-all',
                   label: t('sidebar_service_all'),
-                  href: baseUrl,
+                  href: navigation.getURL(app, '#/key-management-service'),
                   ignoreSearch: true,
                   icon: keyIcon,
                 },
@@ -462,6 +405,18 @@ export default function HostedPrivateCloudSidebar() {
                 })),
               ];
             },
+          },
+          feature['okms:secret-manager'] && {
+            id: 'okms-secret-manager',
+            label: 'Secret Manager',
+            badge: 'beta',
+            icon: <OsdsIcon
+              name={ODS_ICON_NAME.SHIELD_CONCEPT}
+              size={ODS_ICON_SIZE.xxs}
+              color={ODS_THEME_COLOR_INTENT.text}
+            />,
+            href: navigation.getURL(app, '#/secret-manager'),
+            pathMatcher: new RegExp('^/okms/secret-manager/*'),
           },
         ],
       });

@@ -7,9 +7,10 @@ import {
   createHashRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
+import secretManagerRoutes from '@secret-manager/routes/routes';
 import kmsRoutes from '@/routes/routes';
-import rootRoutes from '@/routes/rootRoutes';
 import Loading from '@/components/Loading/Loading';
+import rootRoutes from './routes/rootRoutes';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,7 +23,7 @@ const queryClient = new QueryClient({
 function App() {
   const { shell } = useContext(ShellContext);
   const router = createHashRouter(
-    createRoutesFromElements([rootRoutes, kmsRoutes]),
+    createRoutesFromElements([rootRoutes, kmsRoutes, secretManagerRoutes]),
   );
 
   useEffect(() => {

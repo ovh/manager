@@ -13,7 +13,7 @@ const sioUniverse: Node = {
     application: 'iam',
   },
   hasService: false,
-  features: ['key-management-service', 'okms:key-management-service', 'logs-data-platform', 'identity-access-management'],
+  features: ['okms', 'okms:key-management-service', 'okms:secret-manager', 'logs-data-platform', 'identity-access-management'],
 };
 
 sioUniverse.children = [
@@ -83,31 +83,11 @@ sioUniverse.children = [
     ]
   },
   {
-    id: 'security-identity-legacy',
-    idAttr: 'security-identity-link',
-    translation: 'sidebar_security_identity',
-    universe: sioUniverse.id,
-    features: ['key-management-service'],
-    children: [
-      {
-        id: 'security-identity-operations-kms',
-        idAttr: 'security-identity-operations-kms-link',
-        translation: 'sidebar_security_identity_operations_kms',
-        universe: sioUniverse.id,
-        features: ['key-management-service'],
-        routing: {
-          application: 'key-management-service',
-          hash: '#/',
-        },
-      },
-    ],
-  },
-  {
     id: 'security-identity',
     idAttr: 'security-identity-link',
     translation: 'sidebar_security_identity',
     universe: sioUniverse.id,
-    features: ['okms:key-management-service'],
+    features: ['okms'],
     children: [
       {
         id: 'security-identity-operations-okms',
@@ -118,6 +98,18 @@ sioUniverse.children = [
         routing: {
           application: 'okms',
           hash: '#/key-management-service',
+        },
+      },
+      {
+        id: 'security-identity-operations-secret-manager',
+        idAttr: 'security-identity-operations-secret-manager-link',
+        translation: 'sidebar_security_identity_operations_secret_manager',
+        universe: sioUniverse.id,
+        tag: NodeTag.BETA,
+        features: ['okms:secret-manager'],
+        routing: {
+          application: 'okms',
+          hash: '#/secret-manager',
         },
       },
     ],

@@ -47,8 +47,9 @@ export const features = [
   'public-cloud:contacts',
   'public-cloud:project-settings',
   'data-platform',
-  'key-management-service',
+  'okms',
   'okms:key-management-service',
+  'okms:secret-manager',
   'pci-savings-plan',
   'pci-ai-endpoints',
   'pci-quantum-emulators',
@@ -452,29 +453,21 @@ export function getPciProjectMenu(
     });
   }
 
-  if (isFeaturesAvailable('key-management-service')) {
+  if (isFeaturesAvailable('okms')) {
     pciMenu.push({
       id: 'identity-security-legacy',
       title: 'Identity, Security & Operations',
       subItems: [
-        {
+        isFeaturesAvailable('okms:key-management-service') && {
           id: 'key-management-service',
           title: 'Key Management Service',
-          href: getURL('key-management-service', `/`),
+          href: getURL('okms', `#/key-management-service`),
         },
-      ],
-    });
-  }
-
-  if (isFeaturesAvailable('okms:key-management-service')) {
-    pciMenu.push({
-      id: 'identity-security',
-      title: 'Identity, Security & Operations',
-      subItems: [
-        {
-          id: 'key-management-service',
-          title: 'Key Management Service',
-          href: getURL('okms', '/'),
+        isFeaturesAvailable('okms:secret-manager') && {
+          id: 'okms-secret-manager',
+          title: 'Secret Manager',
+          badge: 'beta',
+          href: getURL('okms', `#/secret-manager`),
         },
       ],
     });
