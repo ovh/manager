@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.11.16...@ovh-ux/manager-web-ongoing-operations-app@1.12.0) (2025-09-23)
+
+
+### Bug Fixes
+
+* **web-domains:** fix domain expiration date ([d62c395](https://github.com/ovh/manager/commit/d62c395e2ca5d874261ea875514ef2810d0725be)), closes [#MANAGER-19853](https://github.com/ovh/manager/issues/MANAGER-19853)
+
+
+### Features
+
+* **domain:** replace <strong> tag by font-bold classname ([d9dcbc4](https://github.com/ovh/manager/commit/d9dcbc496d8c8891591a986d86891c3c05a4cd1e)), closes [#MANAGER-18983](https://github.com/ovh/manager/issues/MANAGER-18983)
+* **web-ongoing-operations:** deduplicate translation ([aceed65](https://github.com/ovh/manager/commit/aceed6558a3080354a38672942295ad8df3d3b58)), closes [#MANAGER-19096](https://github.com/ovh/manager/issues/MANAGER-19096)
+* **web-ongoing-operations:** fix badge ([813f004](https://github.com/ovh/manager/commit/813f004c865278aef0b19c26085a3438e3a0aa29)), closes [#MANAGER-19001](https://github.com/ovh/manager/issues/MANAGER-19001)
+* **web-ongoing-operations:** ods 19 upgrade ([#18874](https://github.com/ovh/manager/issues/18874)) ([57f5592](https://github.com/ovh/manager/commit/57f559248d85633c56defb4624df62ef70c08170)), closes [#MANAGER-19001](https://github.com/ovh/manager/issues/MANAGER-19001)
+
+
+
+
+
 ## [1.11.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.11.15...@ovh-ux/manager-web-ongoing-operations-app@1.11.16) (2025-09-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
