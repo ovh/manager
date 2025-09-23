@@ -2,11 +2,7 @@ import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { Clipboard } from '@ovh-ux/manager-react-components';
 
 import { useTranslation } from 'react-i18next';
-import {
-  OBJECT_CONTAINER_MODE_LOCAL_ZONE,
-  OBJECT_CONTAINER_MODE_MONO_ZONE,
-  OBJECT_CONTAINER_MODE_MULTI_ZONES,
-} from '@/constants';
+import { ObjectContainerMode } from '@/constants';
 import { TContainer } from './BucketPropertiesCard';
 import { TOdsBadgeColor } from '@/components/types';
 import { CardSection } from '@/components/CardSection';
@@ -14,7 +10,7 @@ import { CommonCard } from '@/components/CommonCard';
 
 type TContainerInfoCardProps = {
   container: TContainer;
-  isRightOffer: boolean;
+  isS3StorageType: boolean;
   isLocalZone: boolean;
 };
 
@@ -26,7 +22,7 @@ type BadgeConfig = {
 
 export const ContainerInfoCard = ({
   container,
-  isRightOffer,
+  isS3StorageType,
   isLocalZone,
 }: TContainerInfoCardProps) => {
   const { t } = useTranslation(['container', 'containers/add', 'dashboard']);
@@ -35,19 +31,19 @@ export const ContainerInfoCard = ({
     if (!container?.regionDetails?.type) return null;
 
     const badgeConfig: Record<string, BadgeConfig> = {
-      [OBJECT_CONTAINER_MODE_MULTI_ZONES]: {
+      [ObjectContainerMode.MULTI_ZONES]: {
         className: 'chip-3AZ ml-4',
         label: t(
           'containers/add:pci_projects_project_storages_containers_add_deployment_mode_region-3-az_label',
         ),
       },
-      [OBJECT_CONTAINER_MODE_MONO_ZONE]: {
+      [ObjectContainerMode.MONO_ZONE]: {
         className: 'chip-1AZ ml-4',
         label: t(
           'containers/add:pci_projects_project_storages_containers_add_deployment_mode_region_label',
         ),
       },
-      [OBJECT_CONTAINER_MODE_LOCAL_ZONE]: {
+      [ObjectContainerMode.LOCAL_ZONE]: {
         className: 'ml-4',
         color: 'information' as TOdsBadgeColor,
         label: t(
@@ -77,7 +73,7 @@ export const ContainerInfoCard = ({
     >
       <CardSection
         title={
-          isRightOffer
+          isS3StorageType
             ? t(
                 'dashboard:pci_projects_project_storages_dashboard_container_name',
               )
@@ -133,7 +129,7 @@ export const ContainerInfoCard = ({
 
       <CardSection
         title={
-          isRightOffer
+          isS3StorageType
             ? t(
                 'dashboard:pci_projects_project_storages_dashboard_container_virtual_hosted_style',
               )

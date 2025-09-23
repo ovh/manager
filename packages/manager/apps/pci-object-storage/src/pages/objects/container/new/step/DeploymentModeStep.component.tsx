@@ -9,9 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { OdsLink, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 import {
   DEPLOYMENT_MODE_LINK,
-  OBJECT_CONTAINER_DEPLOYMENT_MODES,
-  OBJECT_CONTAINER_MODE_LOCAL_ZONE,
-  OBJECT_CONTAINER_MODE_MULTI_ZONES,
+  ObjectContainerMode,
   STORAGE_PRICES_LINK,
 } from '@/constants';
 
@@ -49,21 +47,23 @@ export function DeploymentModeStep() {
 
   const items = useMemo(
     () =>
-      OBJECT_CONTAINER_DEPLOYMENT_MODES.map((offer) => ({
-        id: offer,
-      })).filter((item) => {
-        if (
-          item.id === OBJECT_CONTAINER_MODE_LOCAL_ZONE &&
-          !isLocalZoneAvailable
-        ) {
-          return false;
-        }
-        if (item.id === OBJECT_CONTAINER_MODE_MULTI_ZONES && !is3azAvailable) {
-          return false;
-        }
-        return true;
-      }),
-    [OBJECT_CONTAINER_DEPLOYMENT_MODES, is3azAvailable, isLocalZoneAvailable],
+      Object.values(ObjectContainerMode)
+        .map((offer) => ({
+          id: offer,
+        }))
+        .filter((item) => {
+          if (
+            item.id === ObjectContainerMode.LOCAL_ZONE &&
+            !isLocalZoneAvailable
+          ) {
+            return false;
+          }
+          if (item.id === ObjectContainerMode.MULTI_ZONES && !is3azAvailable) {
+            return false;
+          }
+          return true;
+        }),
+    [Object.values(ObjectContainerMode), is3azAvailable, isLocalZoneAvailable],
   );
 
   const trackDeploymentModeAction = (actionType, deploymentMode = null) => {

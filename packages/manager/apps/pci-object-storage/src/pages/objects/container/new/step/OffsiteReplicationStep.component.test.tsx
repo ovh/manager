@@ -2,7 +2,6 @@ import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import { useCatalog, useProductAvailability } from '@ovh-ux/manager-pci-common';
 import { MemoryRouter, useParams } from 'react-router-dom';
-import { StepComponent } from '@ovh-ux/manager-react-components';
 import { OffsiteReplication } from './OffsiteReplicationStep.component';
 import { wrapperOffsiteReplication } from '@/wrapperRenders';
 import { useContainerCreationStore } from '../useContainerCreationStore';

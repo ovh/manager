@@ -8,9 +8,7 @@ import { useMergedContainer } from '@/hooks/useContainerMemo';
 import { useGetEncriptionAvailability } from '@/api/hooks/useGetEncriptionAvailability';
 import {
   NO_ENCRYPTION_VALUE,
-  OBJECT_CONTAINER_MODE_LOCAL_ZONE,
-  OBJECT_CONTAINER_MODE_MONO_ZONE,
-  OBJECT_CONTAINER_MODE_MULTI_ZONES,
+  ObjectContainerMode,
   MUMBAI_REGION_NAME,
 } from '@/constants';
 
@@ -44,11 +42,11 @@ export const useContainerData = () => {
     region,
   );
 
-  const isLocalZone = region?.type === OBJECT_CONTAINER_MODE_LOCAL_ZONE;
-  const isRightOffer = !!container?.s3StorageType;
+  const isLocalZone = region?.type === ObjectContainerMode.LOCAL_ZONE;
+  const isS3StorageType = !!container?.s3StorageType;
 
   const { available: isEncryptionAvailable } = useGetEncriptionAvailability();
-  const displayEncryptionData = isEncryptionAvailable && isRightOffer;
+  const displayEncryptionData = isEncryptionAvailable && isS3StorageType;
 
   const isEncrypted = useMemo(() => {
     const { sseAlgorithm } = serverContainer?.encryption || {};
@@ -57,12 +55,12 @@ export const useContainerData = () => {
 
   const showEnableEncryptionLink = useMemo(() => {
     return (
-      isRightOffer &&
+      isS3StorageType &&
       !isLocalZone &&
       !isEncrypted &&
       region?.name !== MUMBAI_REGION_NAME
     );
-  }, [isRightOffer, isLocalZone, isEncrypted, region?.name]);
+  }, [isS3StorageType, isLocalZone, isEncrypted, region?.name]);
 
   const showReplicationBanner = useMemo(() => {
     const hasEnabledRule = container?.replication?.rules?.some(
@@ -70,10 +68,9 @@ export const useContainerData = () => {
     );
     return (
       !hasEnabledRule &&
-      [
-        OBJECT_CONTAINER_MODE_MONO_ZONE,
-        OBJECT_CONTAINER_MODE_MULTI_ZONES,
-      ].includes(container?.regionDetails?.type)
+      [ObjectContainerMode.MONO_ZONE, ObjectContainerMode.MULTI_ZONES].includes(
+        container?.regionDetails?.type,
+      )
     );
   }, [container?.replication?.rules, container?.regionDetails?.type]);
 
@@ -87,6 +84,6 @@ export const useContainerData = () => {
     displayEncryptionData,
     isPending,
     isLocalZone,
-    isRightOffer,
+    isS3StorageType,
   };
 };

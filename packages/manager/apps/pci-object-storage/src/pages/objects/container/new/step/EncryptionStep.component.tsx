@@ -11,7 +11,7 @@ import {
   ENCRYPTION_ALGORITHM_SSE_S3,
   MUMBAI_REGION_NAME,
   NO_ENCRYPTION_VALUE,
-  OBJECT_CONTAINER_MODE_MULTI_ZONES,
+  ObjectContainerMode,
 } from '@/constants';
 
 export function EncryptionStep() {
@@ -33,7 +33,7 @@ export function EncryptionStep() {
       isOpen={stepper.encryption.isOpen || stepper.encryption.isLocked}
       isChecked={stepper.encryption.isChecked}
       isLocked={stepper.encryption.isLocked}
-      order={form.deploymentMode === OBJECT_CONTAINER_MODE_MULTI_ZONES ? 7 : 6}
+      order={form.deploymentMode === ObjectContainerMode.MULTI_ZONES ? 7 : 6}
       next={{
         action: submitEncryption,
         label: t('pci-common:common_stepper_next_button_label'),
