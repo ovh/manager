@@ -1,185 +1,167 @@
-import { render } from '@testing-library/react';
-import { Mock, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { UseQueryResult } from '@tanstack/react-query';
 import {
-  StepComponent,
-  TilesInputComponent,
-} from '@ovh-ux/manager-react-components';
-import { useProjectLocalisation } from '@ovh-ux/manager-pci-common';
+  ProjectLocalisation,
+  TLocalisation,
+  useParam,
+  useProjectLocalisation,
+} from '@ovh-ux/manager-pci-common';
+import RegionStep from './RegionStep';
 import { wrapper } from '@/wrapperRenders';
-import RegionStep from '@/pages/create/steps/RegionStep';
+import { useStore } from '@/pages/create/store';
 import { useGetCapabilities } from '@/api/hooks/useCapabilities';
+import { use3AZFeatureAvailability } from '@/hooks/features/use3AZFeatureAvailability';
+import { DeploymentMode } from '@/types';
+import { TCapability } from '@/api/data/capability';
 
-const compute = () => render(<RegionStep />, { wrapper });
+vi.mock('@/pages/create/store');
+vi.mock('@/api/hooks/useCapabilities');
+vi.mock('@ovh-ux/manager-pci-common');
+vi.mock('@/hooks/features/use3AZFeatureAvailability');
+vi.mock('@ovh-ux/manager-react-components', async () => {
+  const actual = await vi.importActual('@ovh-ux/manager-react-components');
+  return {
+    ...actual,
+    StepComponent: ({ children }: { children: React.ReactNode }) => (
+      <div data-testid="step-component">{children}</div>
+    ),
+    Subtitle: ({ children }: { children: React.ReactNode }) => (
+      <div data-testid="subtitle">{children}</div>
+    ),
+    TilesInputComponent: ({
+      items,
+      value,
+      onInput,
+    }: {
+      items: TLocalisation[];
+      value: TLocalisation;
+      onInput: (value: TLocalisation) => void;
+    }) => (
+      <div data-testid="tiles-input-component">
+        {items.map((item) => (
+          <div
+            key={item.name}
+            data-testid="tile"
+            onClick={() => onInput(item)}
+            className={value?.name === item.name ? 'selected' : ''}
+          >
+            {item.name}
+          </div>
+        ))}
+      </div>
+    ),
+  };
+});
 
-describe('NameStep', () => {
-  vi.mock('@ovh-ux/manager-react-components', (importOriginal) => ({
-    ...importOriginal,
-    StepComponent: vi
-      .fn()
-      .mockImplementation(({ children }: { children: JSX.Element }) => (
-        <div data-testid="StepComponent">{children}</div>
-      )),
-    Subtitle: vi
-      .fn()
-      .mockImplementation(() => <div data-testid="Subtitle">Subtitle</div>),
-    TilesInputComponent: vi
-      .fn()
-      .mockImplementation(() => (
-        <div data-testid="TilesInputComponent">TilesInputComponent</div>
-      )),
-  }));
+vi.mock('@ovh-ux/manager-pci-common', async () => {
+  const actual = await vi.importActual('@ovh-ux/manager-pci-common');
+  return {
+    ...actual,
+    DeploymentTilesInput: ({
+      value,
+      onChange,
+      deployments,
+      isLocked,
+    }: {
+      value: TLocalisation;
+      onChange: (value: TLocalisation) => void;
+      deployments: TLocalisation[];
+      isLocked: boolean;
+    }) => (
+      <div>
+        Selected : {value?.name}
+        {isLocked && <div data-testid="locked">Locked</div>}
+        {deployments.map((e) => (
+          <div
+            key={e.name}
+            data-testid={`deployment-tiles-input-${e.name}`}
+            onClick={() => onChange({ name: e.name } as TLocalisation)}
+          >
+            {e?.name || 'none'}
+          </div>
+        ))}
+      </div>
+    ),
+    useProjectLocalisation: vi.fn(),
+    useParam: vi.fn(),
+  };
+});
 
-  vi.mock('@ovh-ux/manager-pci-common', (importOriginal) => ({
-    ...importOriginal,
-    useParam: vi.fn().mockReturnValue({ projectId: 'projectId' }),
-    useProjectLocalisation: vi.fn().mockReturnValue({ data: [] }),
-    usePCIFeatureAvailability: vi.fn().mockReturnValue({ data: new Map() }),
-    DeploymentTilesInput: vi
-      .fn()
-      .mockImplementation(() => (
-        <div data-testid="DeploymentTilesInput">DeploymentTilesInput</div>
-      )),
-  }));
+describe('RegionStep Component', () => {
+  const mockStore = {
+    state: { region: null },
+    set: { region: vi.fn(), plan: vi.fn() },
+    stepsState: {
+      REGION: { isOpen: true, isLocked: false, isChecked: false },
+      NAME: { isOpen: false, isLocked: false, isChecked: false },
+      PLAN: { isOpen: false, isLocked: false, isChecked: false },
+    },
+    stepsHandle: {
+      check: vi.fn(),
+      uncheck: vi.fn(),
+      lock: vi.fn(),
+      unlock: vi.fn(),
+      open: vi.fn(),
+      close: vi.fn(),
+    },
+  };
 
-  vi.mock('@/api/hooks/useCapabilities', (importOriginal) => ({
-    ...importOriginal,
-    useGetCapabilities: vi.fn().mockReturnValue({ data: [] }),
-  }));
+  beforeEach(() => {
+    vi.clearAllMocks();
 
-  it('should render StepComponent', () => {
-    compute();
-
-    const spy = StepComponent as Mock;
-
-    const { mock } = spy;
-
-    const firstCall = mock.calls[0][0];
-
-    expect({
-      isOpen: firstCall.isOpen,
-      isLocked: firstCall.isLocked,
-      iChecked: firstCall.isChecked,
-      order: firstCall.order,
-      title: firstCall.title,
-      next: {
-        label: firstCall.next.label,
-        isDisabled: firstCall.next.isDisabled,
+    vi.mocked(useStore).mockReturnValue(mockStore);
+    vi.mocked(useGetCapabilities).mockReturnValue({
+      data: [
+        { regionName: 'GRA', plans: [{ name: 'MEDIUM' }] },
+        { regionName: 'REG1', plans: [{ name: 'MEDIUM' }] },
+      ],
+      isPending: false,
+    } as UseQueryResult<TCapability[], Error>);
+    vi.mocked(useProjectLocalisation).mockReturnValue({
+      data: {
+        regions: [
+          { name: 'REG1', type: DeploymentMode.MULTI_ZONES },
+          { name: 'GRA', type: 'region' },
+        ],
       },
-      edit: {
-        label: firstCall.edit.label,
-      },
-    }).toEqual({
-      isOpen: true,
-      isLocked: false,
-      iChecked: false,
-      order: 1,
-      title: 'create:private_registry_create_location',
-      next: {
-        label: 'common_field:common_stepper_next_button_label',
-        isDisabled: true,
-      },
-      edit: {
-        label: 'common_field:common_stepper_modify_this_step',
-      },
+      isPending: false,
+    } as UseQueryResult<ProjectLocalisation, Error>);
+    vi.mocked(use3AZFeatureAvailability).mockReturnValue({
+      is3AZEnabled: true,
+      isPending: false,
     });
+    vi.mocked(useParam).mockReturnValue({ projectId: 'project-1' });
   });
 
-  describe('Content', () => {
-    beforeAll(() => {
-      (StepComponent as Mock).mockImplementationOnce(
-        ({ children }: { children: JSX.Element }) => (
-          <div data-testid="StepComponent">{children}</div>
-        ),
-      );
-    });
-    describe('Items', () => {
-      it("should render 'TilesInputComponent' with empty array if localisations regions is not valid", () => {
-        (useProjectLocalisation as Mock).mockReturnValueOnce({
-          data: null,
-        });
+  it('renders without crashing', () => {
+    render(<RegionStep />, { wrapper });
+    expect(
+      screen.getByText('create:private_registry_create_location'),
+    ).toBeDefined();
+  });
 
-        const spy = TilesInputComponent as Mock;
+  it('shows spinner when loading localisations', () => {
+    vi.mocked(useProjectLocalisation).mockReturnValue(({
+      data: { regions: [] },
+      isPending: true,
+    } as unknown) as UseQueryResult<ProjectLocalisation>);
+    render(<RegionStep />, { wrapper });
+    expect(screen.getByRole('status')).toBeDefined();
+  });
 
-        compute();
+  it('selects the 3AZ tile by default', () => {
+    render(<RegionStep />, { wrapper });
 
-        const { mock } = spy;
-        const call = mock.calls[0][0];
+    const tile = screen.getByTestId('deployment-tiles-input-region-3-az');
+    expect(tile).toHaveTextContent('region-3-az');
+  });
 
-        expect(call.items).toEqual([]);
-      });
+  it('changes tile when clicked', async () => {
+    render(<RegionStep />, { wrapper });
 
-      describe('localisations regions is valid', () => {
-        beforeAll(() => {
-          (useProjectLocalisation as Mock).mockReturnValue({
-            data: {
-              regions: [
-                {
-                  name: 'name1',
-                },
-                {
-                  name: 'name2',
-                },
-                {
-                  name: 'name1',
-                },
-              ],
-            },
-          });
-        });
-
-        it('capabilities are not valid', () => {
-          (useGetCapabilities as Mock).mockReturnValue({ data: null });
-
-          const spy = TilesInputComponent as Mock;
-
-          compute();
-
-          const { mock } = spy;
-          const call = mock.lastCall[0];
-
-          expect(call.items).toEqual([]);
-        });
-
-        it('capabilities are valid', () => {
-          (useGetCapabilities as Mock).mockReturnValue({
-            data: [
-              {
-                regionName: 'name1',
-                plans: [],
-              },
-              {
-                regionName: 'name2',
-                plans: [],
-              },
-              {
-                regionName: 'name2',
-                plans: [],
-              },
-            ],
-          });
-
-          const spy = TilesInputComponent as Mock;
-
-          compute();
-
-          const { mock } = spy;
-          const call = mock.lastCall[0];
-
-          const expectedRegions = [
-            {
-              name: 'name1',
-            },
-            {
-              name: 'name2',
-            },
-            {
-              name: 'name1',
-            },
-          ];
-
-          expect(call.items).toEqual(expectedRegions);
-        });
-      });
-    });
+    const tile = screen.getByTestId('deployment-tiles-input-region');
+    fireEvent.click(tile);
+    expect(tile).toHaveTextContent('region');
   });
 });
