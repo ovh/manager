@@ -24,6 +24,7 @@ import {
   localizationSelectionSchema,
 } from './components/localisationSelection/LocalizationSelection.component';
 import { CreationCart } from './components/CreationCart.component';
+import { useInstancesCatalog } from '@/data/hooks/catalog/useInstancesCatalog';
 
 export type TInstanceCreationForm = z.infer<typeof instanceCreationSchema>;
 export const instanceCreationSchema = z.object({
@@ -41,6 +42,7 @@ const quantityHintParams = {
 const CreateInstance: FC = () => {
   const project = useRouteLoaderData('root') as TProject | undefined;
   const { t } = useTranslation(['common', 'creation']);
+  useInstancesCatalog();
 
   const formMethods = useForm({
     resolver: zodResolver(instanceCreationSchema),
