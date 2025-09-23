@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-load-balancer-app",
-  "version": "0.15.17",
+  "version": "0.16.0",
   "private": true,
   "description": "PCI Octavia load balancer react app",
   "type": "module",

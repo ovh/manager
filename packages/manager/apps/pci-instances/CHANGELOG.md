@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.5.1...@ovh-ux/manager-pci-instances-app@0.6.0) (2025-09-23)
+
+
+### Bug Fixes
+
+* **pci-instances:** add namespace for empty attached network message ([14e9d91](https://github.com/ovh/manager/commit/14e9d919090d51c91b07558ccf57499b91d1667b)), closes [#TAPC-5003](https://github.com/ovh/manager/issues/TAPC-5003)
+* **pci-instances:** allow unattached volume in the same availability zone ([687100e](https://github.com/ovh/manager/commit/687100e94bcbbf98e997fca976d39383e9e50e93)), closes [#TAPC-4975](https://github.com/ovh/manager/issues/TAPC-4975)
+* **pci-instances:** change template to model ([3bb04a5](https://github.com/ovh/manager/commit/3bb04a50f683eaaab3173925a8f186bc6c001bd7)), closes [#TAPC-5051](https://github.com/ovh/manager/issues/TAPC-5051)
+* **pci-instances:** remove reverse dns display ([23a7155](https://github.com/ovh/manager/commit/23a715552c4f0493d182e3c7670adaa20a3b85bd)), closes [#TAPC-5023](https://github.com/ovh/manager/issues/TAPC-5023)
+* **pci-instances:** translate the label of clipboard trigger ([254f840](https://github.com/ovh/manager/commit/254f840161f6e22e9f77a42b3f2d1a7a9ec18aa1)), closes [#TAPC-5010](https://github.com/ovh/manager/issues/TAPC-5010)
+
+
+### Features
+
+* **pci-instances:** add an expanded button to show more private network ([196a33f](https://github.com/ovh/manager/commit/196a33fa26c0d894dd9df75c7bd572b4719e4cf5)), closes [#TAPC-5018](https://github.com/ovh/manager/issues/TAPC-5018)
+* **pci-instances:** redirect to regionalized dashboard ([d5f5a20](https://github.com/ovh/manager/commit/d5f5a203d72e14af571b834e80670eea018ec6ab)), closes [#TAPC-5002](https://github.com/ovh/manager/issues/TAPC-5002)
+* **pci-instances:** refetch instance dashboard on window focus ([56190df](https://github.com/ovh/manager/commit/56190df93124eb4853c2ad1caaea8c68d65ecd2a)), closes [#TAPC-5030](https://github.com/ovh/manager/issues/TAPC-5030)
+
+
+
+
+
 ## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.5.0...@ovh-ux/manager-pci-instances-app@0.5.1) (2025-09-18)
 
 
