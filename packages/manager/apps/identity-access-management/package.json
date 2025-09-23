@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-identity-access-management-app",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "private": true,
   "description": "manage iam policies users tags etc",
   "repository": {
@@ -24,7 +24,7 @@
     "@ovh-ux/manager-core-utils": "^0.4.2",
     "@ovh-ux/manager-react-components": "^2.40.5",
     "@ovh-ux/manager-react-core-application": "^0.12.4",
-    "@ovh-ux/manager-react-shell-client": "*",
+    "@ovh-ux/manager-react-shell-client": "^0.11.0",
     "@ovh-ux/request-tagger": "^0.5.2",
     "@ovhcloud/ods-components": "^18.3.0",
     "@ovhcloud/ods-themes": "^18.3.0",

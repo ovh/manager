@@ -17,6 +17,7 @@
       "packages/manager/core/application",
       "packages/manager/core/ovh-product-icons",
       "packages/manager/core/request-tagger",
+      "packages/manager/core/shell-client",
       "packages/manager/core/sso",
       "packages/manager/core/url-builder",
       "packages/manager/core/utils",
