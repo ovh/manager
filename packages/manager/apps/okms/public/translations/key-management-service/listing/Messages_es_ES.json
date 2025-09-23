@@ -31,5 +31,6 @@
   "key_management_service_listing_region_labeu_west_1_dev_2": "LABEU (Francia - Croix) (DEV-2)",
   "key_management_service_listing_status_cell": "Estado",
   "key_management_service_listing_service_key_cell": "Claves",
-  "key_management_service_listing_kmip_cell": "KMIP"
+  "key_management_service_listing_kmip_cell": "KMIP",
+  "key_management_service_listing_secret_cell": "Secretos"
 }
