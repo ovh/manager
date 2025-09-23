@@ -19,37 +19,42 @@ The `DrawerCollapsible` is very similar, but it allows the user to access the co
 
 **Collapsible Drawer** is intended for specific use cases where we want the user to access the content of the page while interacting with the drawer.
 
-⚠️ The default `Drawer` should be prefered in most cases.
+The default `Drawer` should be prefered in most cases.
 
 ## Example of definition
 
-<Source
-  code={`
-    <Drawer
-      heading={'Example drawer'}
-      onDismiss={() => {}}
-      isOpen={true}
-      primaryButtonLabel={'Confirm'}
-      onPrimaryButtonClick={() => {}}
-      secondaryButtonLabel={'Cancel'}
-      onSecondaryButtonClick={() => {}}
-    >
-      <div>Example content</div>
-    </Drawer>`}
-  language="javascript"
-/>
+✅ Place your content in a `Drawer.Content` component to ensure good positioning.
+
+❌ Don't put content directly at the root of the drawer.
 
 <Source
   code={`
-    <DrawerCollapsible
-      heading={'Example of a collapsible drawer'}
-      onDismiss={() => {}}
-      isOpen={true}
-    >
-      <div>Example content</div>
-    </DrawerCollapsible>`}
-  language="javascript"
+<Drawer.Root
+  isOpen={isOpen}
+  onDismiss={handleDismiss}
+  isLoading={isLoading}
+  >
+  <Drawer.Header
+    title="This is the drawer title"
+  />
+  <Drawer.Content>
+    <div>
+      The is the custom content of the drawer<
+    /div>
+  </Drawer.Content>
+  <Drawer.Footer
+    primaryButtonLabel="Submit"
+    isPrimaryButtonDisabled={isDisabled}
+    isPrimaryButtonLoading={isSubmiting}
+    onPrimaryButtonClick={handleSubmit}
+    secondaryButtonLabel="Close"
+    onSecondaryButtonClick={handleDismiss}
+  />
+</Drawer.Root>
+    `}
+  language="tsx"
 />
+
 
 
 ## Features

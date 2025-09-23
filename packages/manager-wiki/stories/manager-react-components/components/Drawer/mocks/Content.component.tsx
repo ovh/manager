@@ -10,7 +10,7 @@ const Title = ({ children }) => (
 
 const Paragraph = ({ children }) => <p className="mb-4">{children}</p>;
 
-export const DrawerContent = ({ size = 'short' }: DrawerContentProps) => {
+export const Content = ({ size = 'short' }: DrawerContentProps) => {
   return (
     <div>
       <Title>The standard Lorem Ipsum passage, used since the 1500s</Title>
