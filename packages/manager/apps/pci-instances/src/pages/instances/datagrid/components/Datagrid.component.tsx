@@ -4,7 +4,7 @@ import {
   useNotifications,
   useTranslatedMicroRegions,
 } from '@ovh-ux/manager-react-components';
-import { Dispatch, SetStateAction, useEffect, useMemo } from 'react';
+import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
@@ -111,8 +111,8 @@ const DatagridComponent = ({
   const pollingData = useDatagridPolling(pendingTasks);
 
   const { formatDate } = useFormatDate({
-    dateStyle: 'full',
-    timeStyle: 'long',
+    dateStyle: 'short',
+    timeStyle: 'short',
   });
 
   const datagridColumns: DatagridColumn<TAggregatedInstance>[] = useMemo(
@@ -301,11 +301,17 @@ const DatagridComponent = ({
     if (isError) addError(errorMessage, true);
   }, [isError, addError, t, errorMessage]);
 
+  const [isInfoMessageOpen, setIsInfoMessageOpen] = useState(true);
+
   return (
     <div className="overflow-x-hidden mt-8">
-      {hasOperationsRunning && (
-        <Message className={'mb-4'} color={'information'}>
-          <MessageIcon name={'circle-info'} />
+      {hasOperationsRunning && isInfoMessageOpen && (
+        <Message
+          className="mb-4"
+          color="information"
+          onRemove={() => setIsInfoMessageOpen(false)}
+        >
+          <MessageIcon name="circle-info" />
           <MessageBody>{t('pci_instances_operations_running')}</MessageBody>
         </Message>
       )}
