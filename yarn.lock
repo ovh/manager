@@ -7209,10 +7209,10 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-shell-client@*":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.10.0.tgz#24dd88cca632cafd2528bd438b041938cb54ceca"
-  integrity sha512-51D1bZqJauYAkh1bGwirs7JUzJbquhl71zR7khfD2NU3tWoj55nUBAco8v7ApndStJMstlDG86WQXYclErIuQA==
+"@ovh-ux/manager-react-shell-client@0.9.3":
+  version "0.9.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.9.3.tgz#4f6f40ae85076390ad1c54b5c3a24207d1fab158"
+  integrity sha512-i86lAEyYPY2iCoGCpm8DVF0IuyIxYO+Iccav0/cw0ItUEexsvNHbDWRu9DLlIIS3Vknrx/ualDg0cEbPEA5lZw==
   dependencies:
     "@ovh-ux/manager-config" "^8.2.1"
     "@ovh-ux/ovh-at-internet" "^0.24.1"
@@ -7223,10 +7223,10 @@
     i18next "^23.8.2"
     i18next-http-backend "^2.4.2"
 
-"@ovh-ux/manager-react-shell-client@^0.9.3":
-  version "0.9.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.9.3.tgz#4f6f40ae85076390ad1c54b5c3a24207d1fab158"
-  integrity sha512-i86lAEyYPY2iCoGCpm8DVF0IuyIxYO+Iccav0/cw0ItUEexsvNHbDWRu9DLlIIS3Vknrx/ualDg0cEbPEA5lZw==
+"@ovh-ux/manager-react-shell-client@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.11.0.tgz#721d34d7ce4e28f4bc4eece2356e24523f91039f"
+  integrity sha512-MhijKX5h5yuQGimExJHhH/DdhLuqQp8LeeScLD4xr6inoB68xL125OVNJYGpu0whJiPjZ73RWvv2Zibs9IcXhg==
   dependencies:
     "@ovh-ux/manager-config" "^8.2.1"
     "@ovh-ux/ovh-at-internet" "^0.24.1"
