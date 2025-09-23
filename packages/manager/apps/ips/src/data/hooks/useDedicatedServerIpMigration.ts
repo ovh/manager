@@ -4,13 +4,10 @@ import {
   getOrderDedicatedServerInfo,
   getOrderDedicatedServerIpMigrationAvailableDurations,
   getOrderDedicatedServerIpMigrationDetails,
-  getOrderDedicatedServerList,
   OrderDedicatedServerIpMigrationParams,
   postOrderDedicatedServerIpMigration,
 } from '../api/orderIpMigration';
 import { IpMigrationOrder } from '@/types/ipMigrationOrder';
-
-const orderDedicatedServerListQueryKey = ['/order/dedicated/server'];
 
 const getOrderDedicatedServerInfoQueryKey = (serviceName: string) => [
   `/order/dedicated/server/${serviceName}`,
@@ -32,26 +29,6 @@ export const getOrderDedicatedServerIpMigrationDetailsQueryKey = (
   params.token,
   params.duration,
 ];
-
-/**
- * Retrieve the list of dedicated servers for an IP migration
- */
-export function useOrderDedicatedServerList() {
-  const {
-    data: serverList,
-    isLoading: isServerListLoading,
-    error: serverListError,
-  } = useQuery<ApiResponse<string[]>, ApiError>({
-    queryKey: orderDedicatedServerListQueryKey,
-    queryFn: getOrderDedicatedServerList,
-  });
-
-  return {
-    serverList: serverList?.data,
-    isServerListLoading,
-    serverListError,
-  };
-}
 
 /**
  * Provide the list of durations available for the IP migration
