@@ -20,6 +20,7 @@ import {
   useIpHasVmac,
   useGetIpMitigationWithoutIceberg,
   useIpHasAlerts,
+  PRODUCT_PATHS_AND_CATEGORIES,
 } from '@/data/hooks';
 
 export type IpActionsCellParams = {
@@ -103,16 +104,14 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
   const {
     hasServiceAttached: hasCloudServiceAttachedToIP,
   } = useIpHasServicesAttached({
-    path: '/cloud/project',
-    category: 'CLOUD',
+    ...PRODUCT_PATHS_AND_CATEGORIES.CLOUD,
     serviceName,
   });
 
   const {
     hasServiceAttached: hasDedicatedServiceAttachedToIp,
   } = useIpHasServicesAttached({
-    path: '/dedicated/server',
-    category: 'DEDICATED',
+    ...PRODUCT_PATHS_AND_CATEGORIES.DEDICATED,
     serviceName,
   });
 
