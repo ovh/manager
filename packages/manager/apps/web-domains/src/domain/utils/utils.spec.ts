@@ -18,6 +18,7 @@ import { DnsConfigurationTypeEnum } from '../enum/dnsConfigurationType.enum';
 import { IpsSupportedEnum } from '../enum/hostConfiguration.enum';
 import { StatusEnum } from '../enum/Status.enum';
 import { THost } from '../types/host';
+import { ProtectionStateEnum } from '../enum/protectionState.enum';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   useFormatDate: () => () => '03/01/2025 10:15',
@@ -74,6 +75,7 @@ describe('computeDnsDetails', () => {
       },
       targetSpec: {
         dnsConfiguration: { nameServers: [ns1] },
+        protectionState: ProtectionStateEnum.PROTECTED,
       },
     };
 
@@ -101,6 +103,7 @@ describe('computeDnsDetails', () => {
       },
       targetSpec: {
         dnsConfiguration: { nameServers: [ns1] },
+        protectionState: ProtectionStateEnum.PROTECTED,
       },
     };
 
@@ -136,6 +139,7 @@ describe('computeDnsDetails', () => {
       ],
       targetSpec: {
         dnsConfiguration: { nameServers: [ns1] },
+        protectionState: ProtectionStateEnum.PROTECTED,
       },
     };
 
@@ -163,6 +167,7 @@ describe('computeDnsDetails', () => {
       },
       targetSpec: {
         dnsConfiguration: { nameServers: [] },
+        protectionState: ProtectionStateEnum.PROTECTED,
       },
     };
 
@@ -190,6 +195,7 @@ describe('computeDnsDetails', () => {
       },
       targetSpec: {
         dnsConfiguration: { nameServers: [ns1, ns2] },
+        protectionState: ProtectionStateEnum.PROTECTED,
       },
     };
 
@@ -227,6 +233,7 @@ describe('computeDnsDetails', () => {
       },
       targetSpec: {
         dnsConfiguration: { nameServers: [nsNoIP] },
+        protectionState: ProtectionStateEnum.PROTECTED,
       },
     };
 

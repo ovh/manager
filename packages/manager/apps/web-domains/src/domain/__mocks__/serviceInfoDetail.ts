@@ -42,6 +42,8 @@ export const domainResourceOK: TDomainResource = {
         },
       ],
     },
+    authInfoManagedByOVHcloud: true,
+    authInfoSupported: true,
     extension: '.com',
     mainState: DomainStateEnum.OK,
     protectionState: ProtectionStateEnum.PROTECTED,
@@ -72,6 +74,8 @@ export const serviceInfoDetail: TDomainResource = {
     protectionState: ProtectionStateEnum.PROTECTED,
     suspensionState: SuspensionStateEnum.NOT_SUSPENDED,
     additionalStates: [],
+    authInfoManagedByOVHcloud: true,
+    authInfoSupported: true,
     dnsConfiguration: {
       minDNS: 2,
       maxDNS: 8,
@@ -131,6 +135,7 @@ export const serviceInfoDetail: TDomainResource = {
         },
       ],
     },
+    protectionState: ProtectionStateEnum.PROTECTED,
   },
   currentTasks: [],
   iam: {
