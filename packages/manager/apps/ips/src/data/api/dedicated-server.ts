@@ -1,5 +1,6 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
 import { IamObject } from '@ovh-ux/manager-react-components';
+import { Query } from '@tanstack/react-query';
 import { ServiceStatus } from '@/types';
 
 export type DedicatedServer = {
@@ -93,3 +94,63 @@ export const getDedicatedServerAvailableCountries = (
   serviceName: string,
 ): Promise<ApiResponse<string[]>> =>
   apiClient.v6.get(`/dedicated/server/${serviceName}/ipCountryAvailable`);
+
+export type GetDedicatedServerTasksParams = {
+  serviceName: string;
+  taskFunction: string;
+  status: string;
+};
+
+export type DedicatedServerTaskResponse = {
+  status: string;
+};
+
+const getDedicatedServerTasksBaseQueryKey = (serviceName: string): string =>
+  `get/dedicated/server/${encodeURIComponent(serviceName)}/task`;
+
+export const getDedicatedServerTasksQueryKey = ({
+  serviceName,
+  taskFunction,
+  status,
+}: GetDedicatedServerTasksParams) => [
+  getDedicatedServerTasksBaseQueryKey(serviceName),
+  { taskFunction, status },
+];
+
+export const getDedicatedServerTaskQueryKey = (
+  serviceName: string,
+  taskId: number,
+) => [`get/dedicated/server/${encodeURIComponent(serviceName)}/task/${taskId}`];
+
+export const createDedicatedServerTasksQueryKeyPredicate = (
+  serviceName: string,
+  functionList: string[],
+) => ({ queryKey }: Query) => {
+  return (
+    queryKey[0] === getDedicatedServerTasksBaseQueryKey(serviceName) &&
+    functionList.includes(
+      (queryKey[1] as { taskFunction: string })?.taskFunction,
+    )
+  );
+};
+
+export const getDedicatedServerTasks = async ({
+  serviceName,
+  taskFunction,
+  status,
+}: GetDedicatedServerTasksParams): Promise<ApiResponse<number[]>> => {
+  return apiClient.v6.get<number[]>(
+    `/dedicated/server/${encodeURIComponent(
+      serviceName,
+    )}/task?function=${taskFunction}&status=${status}`,
+  );
+};
+
+export const getDedicatedServerTask = async (
+  serviceName: string,
+  taskId: number,
+): Promise<ApiResponse<DedicatedServerTaskResponse>> => {
+  return apiClient.v6.get<DedicatedServerTaskResponse>(
+    `/dedicated/server/${encodeURIComponent(serviceName)}/task/${taskId}`,
+  );
+};

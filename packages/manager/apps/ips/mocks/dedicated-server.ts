@@ -93,4 +93,9 @@ export const getDedicatedServerMocks = ({
     response: dedicatedServerMockList.slice(0, nbDedicatedServers),
     api: 'v6',
   },
+  {
+    url: '/dedicated/server/:serviceName/task',
+    response: [],
+    api: 'v6',
+  },
 ];
