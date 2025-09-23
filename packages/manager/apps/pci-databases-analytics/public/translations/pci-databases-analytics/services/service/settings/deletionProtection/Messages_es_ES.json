@@ -1,12 +1,12 @@
 {
   "deletionProtectionTitle": "Protección contra la eliminación",
   "deletionProtectionDescription": "Esta opción le permite proteger su instancia de una eliminación accidental.",
-  "activateProtection": "¿Desea activar la protección contra eliminación?",
-  "deactivateProtection": "¿Seguro que quiere desactivar la protección contra la eliminación para este servicio?",
+  "activateProtection": "¿Desea activar la protección contra la eliminación?",
+  "deactivateProtection": "¿Seguro/a que quiere desactivar la protección contra la eliminación para este servicio?",
   "deletionProtectionButtonCancel": "Cancelar",
   "activateDeletionProtection": "Activar",
   "deactivateDeletionProtection": "Desactivar",
   "updateServiceToastErrorTitle": "Error",
-  "updateServiceToastSuccessTitle": "Éxito",
+  "updateServiceToastSuccessTitle": "Realizado",
   "updateServiceToastSuccessDescription": "El servicio se ha actualizado correctamente"
 }
