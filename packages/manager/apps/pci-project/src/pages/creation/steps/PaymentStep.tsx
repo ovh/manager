@@ -1,6 +1,4 @@
-import { useContext, useState } from 'react';
-
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useState } from 'react';
 import {
   useIsStartupProgramAvailable,
   useStartupProgramAmountText,
@@ -15,6 +13,7 @@ import { GlobalStateStatus } from '@/types/WillPayment.type';
 import WillPaymentComponent from '../components/payment/WillPayment.component';
 import StartupProgram from '../components/startup-program/StartupProgram';
 import Voucher from '../components/voucher/Voucher';
+import { useWillPaymentConfig } from '../hooks/useWillPaymentConfig';
 
 export type PaymentStepProps = {
   cart: Cart;
@@ -41,8 +40,9 @@ export default function PaymentStep({
     isAsDefault: false,
   });
 
-  const { environment } = useContext(ShellContext);
-  const user = environment.getUser();
+  const willPaymentConfig = useWillPaymentConfig({
+    onPaymentStatusChange,
+  });
 
   const handleVoucherConfigurationChange = (
     voucherConfiguration: CartConfiguration | undefined,
@@ -68,14 +68,7 @@ export default function PaymentStep({
       />
 
       <WillPaymentComponent
-        config={{
-          baseUrl: window.location.origin,
-          onChange: (state: GlobalStateStatus) =>
-            onPaymentStatusChange?.(state),
-          subsidiary: user.ovhSubsidiary,
-          language: user.language,
-          hostApp: 'pci',
-        }}
+        config={willPaymentConfig}
         onRegisteredPaymentMethodSelected={onRegisteredPaymentMethodSelected}
       />
 
