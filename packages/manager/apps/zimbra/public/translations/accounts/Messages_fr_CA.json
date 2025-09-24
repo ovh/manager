@@ -8,6 +8,7 @@
   "zimbra_account_unconfigured": "Comptes non configurés ({{ value }})",
   "zimbra_account_account_add": "Créer un compte",
   "zimbra_account_account_order": "Commander un compte",
+  "zimbra_account_account_migrate": "Migrer un compte",
   "zimbra_account_tooltip_need_domain": "Veuillez d'abord configurer un domaine.",
   "zimbra_account_tooltip_need_slot": "Aucun compte disponible, veuillez en commander.",
   "zimbra_account_cancel_modal_content": "Le compte email <strong>{{ email }}</strong> et toutes ses données seront définitivement supprimées à la fin de la période d'engagement du service.",

@@ -118,6 +118,7 @@ export const UPGRADE_SLOT = `upgrade_${SLOT}`;
 
 // GUIDES
 export const GUIDE_WEBMAIL = 'webmail';
+export const GUIDE_OVH_MAIL_MIGRATOR = 'ovh-mail-migrator';
 export const GUIDE_ADMINISTRATOR = 'administrator-guide';
 export const GUIDE_USER = 'user-guide';
 export const GUIDE_CNAME = 'cname-guide';
