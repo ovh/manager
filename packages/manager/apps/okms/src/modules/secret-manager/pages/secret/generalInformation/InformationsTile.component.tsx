@@ -4,6 +4,7 @@ import { OdsText, OdsClipboard } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useTranslation } from 'react-i18next';
 import { Secret } from '@secret-manager/types/secret.type';
+import { SECRET_TEST_IDS } from '@secret-manager/pages/secret/generalInformation/GeneralInformation.constants';
 import { useFormatDate } from '@/common/hooks/useFormatDate';
 import { URN_LABEL, PATH_LABEL } from '@/constants';
 
@@ -24,7 +25,9 @@ export const InformationsTile = ({ secret }: InformationTileProps) => {
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{PATH_LABEL}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          <OdsText preset="span">{secret.path}</OdsText>
+          <OdsText preset="span" data-testid={SECRET_TEST_IDS.PATH}>
+            {secret.path}
+          </OdsText>
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
 
@@ -32,7 +35,11 @@ export const InformationsTile = ({ secret }: InformationTileProps) => {
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{URN_LABEL}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          <OdsClipboard className="w-full" value={secret.iam.urn} />
+          <OdsClipboard
+            className="w-full"
+            value={secret.iam.urn}
+            data-testid={SECRET_TEST_IDS.URN}
+          />
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
 
@@ -42,7 +49,7 @@ export const InformationsTile = ({ secret }: InformationTileProps) => {
           {t('creation_date', { ns: NAMESPACES.DASHBOARD })}
         </ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          <OdsText preset="span">
+          <OdsText preset="span" data-testid={SECRET_TEST_IDS.CREATED_AT}>
             {formatDate(secret.metadata.createdAt)}
           </OdsText>
         </ManagerTile.Item.Description>
@@ -52,7 +59,7 @@ export const InformationsTile = ({ secret }: InformationTileProps) => {
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t('last_update')}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          <OdsText preset="span">
+          <OdsText preset="span" data-testid={SECRET_TEST_IDS.UPDATED_AT}>
             {formatDate(secret.metadata.updatedAt)}
           </OdsText>
         </ManagerTile.Item.Description>
