@@ -18,17 +18,17 @@ import { AntiFraudError, PCI_PROJECT_ORDER_CART } from '@/constants';
 import useAntiFraud from './useAntiFraud';
 import { payWithRegisteredPaymentMean } from '@/data/api/payment';
 
-export type UseCreationProps = {
+export type UseProjectCreationProps = {
   t: TFunction;
   cart?: Cart;
   projectItem?: OrderedProduct;
 };
 
-export const useCreation = ({
+export const useProjectCreation = ({
   t,
   cart,
   projectItem,
-}: Readonly<UseCreationProps>) => {
+}: Readonly<UseProjectCreationProps>) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [needToCheckCustomerInfo, setNeedToCheckCustomerInfo] = useState(false);
   const [billingHref, setBillingHref] = useState('');
