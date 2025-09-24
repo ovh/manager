@@ -4,17 +4,18 @@ import { Path, To } from 'react-router-dom';
 
 import { vi } from 'vitest';
 
+import { attachedDomainDigStatusMock, websitesMocks } from '@/data/__mocks__';
+import { managedWordpressRerefenceAvailableLanguageMock } from '@/data/__mocks__/managedWordpress/language';
 import {
-  attachedDomainDigStatusMock,
-  managedWordpressRerefenceAvailableLanguageMock,
   managedWordpressResourceDetailsMock,
   managedWordpressResourceMock,
+} from '@/data/__mocks__/managedWordpress/ressource';
+import { managedWordpressWebsitesTaskMock } from '@/data/__mocks__/managedWordpress/tasks';
+import {
   managedWordpressWebsitesDeleteMock,
   managedWordpressWebsitesDetailsMock,
   managedWordpressWebsitesMock,
-  managedWordpressWebsitesTaskMock,
-  websitesMocks,
-} from '../data/__mocks__';
+} from '@/data/__mocks__/managedWordpress/website';
 
 const mocksAxios = vi.hoisted(() => ({
   get: vi.fn(),
