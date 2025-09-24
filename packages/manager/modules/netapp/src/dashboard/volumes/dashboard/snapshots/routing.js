@@ -4,6 +4,7 @@ import {
   SNAPSHOT_TRACKING_PREFIX,
   SNAPSHOT_LISTING_TRACKING_CONTEXT,
 } from './constants';
+import { formatValueToBestUnit } from '../utils';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('netapp.dashboard.volumes.dashboard.snapshots', {
@@ -117,15 +118,59 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
 
-      snapshots: /* @ngInject */ ($http, serviceName, volumeId) =>
-        $http
-          .get(
-            `/storage/netapp/${serviceName}/share/${volumeId}/snapshot?detail=true`,
-          )
-          .then(({ data }) => data)
-          .then((snapshots) =>
-            snapshots.map((snapshot) => new Snapshot(snapshot)),
+      snapshots: /* @ngInject */ ($http, $q, serviceName, volumeId) =>
+        $q
+          .all([
+            $http.get(
+              `/storage/netapp/${serviceName}/share/${volumeId}/snapshot?detail=true`,
+            ),
+            $http.get(`/storage/netapp/${serviceName}/metricsToken`),
+          ])
+          .then(
+            ([
+              { data: snapshots },
+              {
+                data: { endpoint, token },
+              },
+            ]) => {
+              // eslint-disable-next-line no-useless-escape
+              const QUERY = `\{__name__=~"snapshot_size",service_id="${serviceName}",share_id="${volumeId}"\}`;
+              return $http
+                .get(`${endpoint}/prometheus/api/v1/query?query=${QUERY}`, {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
+                })
+                .then(
+                  ({
+                    data: {
+                      data: { result },
+                    },
+                  }) => {
+                    const snapshotSizes = result.reduce(
+                      (prev, { metric: { snapshot }, value }) => ({
+                        ...prev,
+                        [snapshot]:
+                          value?.[1] && formatValueToBestUnit(value[1]),
+                      }),
+                      {},
+                    );
+
+                    return snapshots.map(
+                      (snapshot) =>
+                        new Snapshot({
+                          ...snapshot,
+                          size: snapshotSizes[snapshot.path.split('/').at(-1)],
+                        }),
+                    );
+                  },
+                )
+                .catch(() =>
+                  snapshots.map((snapshot) => new Snapshot(snapshot)),
+                );
+            },
           ),
+
       hasOnlySystemSnapshot: /* @ngInject */ (snapshots) =>
         !snapshots.find(
           (snapshot) =>

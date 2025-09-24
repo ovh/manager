@@ -59,6 +59,14 @@
                 ></span>
             </oui-datagrid-column>
             <oui-datagrid-column
+                title=":: 'netapp_volumes_snapshots_size' | translate"
+                property="size"
+                sortable
+                searchable
+            >
+                <span data-ng-bind=":: $row.size || '-'"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 title=":: 'netapp_volumes_snapshots_type' | translate"
                 property="type"
             >
