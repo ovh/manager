@@ -21,7 +21,7 @@
   "dependencies": {
     "@datatr-ux/ods-tailwind-config": "^1.0.3",
     "@datatr-ux/ovhcloud-types": "^1.0.11",
-    "@datatr-ux/uxlib": "^0.0.11-beta-8",
+    "@datatr-ux/uxlib": "0.0.12-beta-3",
     "@ovh-ux/manager-config": "^8.6.2",
     "@ovh-ux/manager-core-api": "^0.18.4",
     "@ovh-ux/manager-react-shell-client": "^0.9.3",
