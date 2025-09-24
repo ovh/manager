@@ -12,4 +12,5 @@ export const TRANSLATION_NAMESPACES = {
   regionSelector: 'region-selector',
   importIpFromSys: 'import-ip-from-sys',
   moveIp: 'move-ip',
+  exportIpToCsv: 'export-ip-to-csv',
 };
