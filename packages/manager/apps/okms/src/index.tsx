@@ -48,4 +48,4 @@ const init = async (appName: string) => {
   );
 };
 
-init('key-management-service');
+init('okms');
