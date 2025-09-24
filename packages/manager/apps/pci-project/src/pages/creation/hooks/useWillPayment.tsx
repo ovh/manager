@@ -1,9 +1,11 @@
 import { useCallback, useState } from 'react';
+import { GlobalStateStatus } from '@/types/WillPayment.type';
+import { triggerSavePaymentMethodEvent } from '../utils/paymentEvents';
 import {
-  ComponentStatus,
-  GlobalStateStatus,
-  PaymentMethodStatus,
-} from '@/types/WillPayment.type';
+  isPaymentMethodSaveRequired as checkIsPaymentMethodSaveRequired,
+  isPaymentMethodSaved as checkIsPaymentMethodSaved,
+  isSubmittingEnabled as checkIsSubmittingEnabled,
+} from '../utils/paymentLogic';
 
 /**
  * Simplified hook for WillPayment integration
@@ -17,11 +19,14 @@ export const useWillPayment = () => {
 
   const [hasDefaultPaymentMethod, setHasDefaultPaymentMethod] = useState(false);
 
-  const handleRegisteredPaymentMethodSelected = (event: CustomEvent) => {
-    if (event && event.detail) {
-      setHasDefaultPaymentMethod(true);
-    }
-  };
+  const handleRegisteredPaymentMethodSelected = useCallback(
+    (event: CustomEvent) => {
+      if (event && event.detail) {
+        setHasDefaultPaymentMethod(true);
+      }
+    },
+    [],
+  );
 
   /**
    * Handles payment status changes from the WillPayment module
@@ -37,23 +42,17 @@ export const useWillPayment = () => {
    * Triggers payment method saving via DOM event
    */
   const triggerSavePaymentMethod = useCallback(() => {
-    const eventBus = document.getElementById('will-payment-event-bus');
-    if (eventBus) {
-      eventBus.dispatchEvent(new CustomEvent('GO_SAVE_PAYMENT_METHOD'));
-    }
+    triggerSavePaymentMethodEvent();
   }, []);
 
-  const isPaymentMethodSaveRequired =
-    globalStateStatus?.componentStatus === ComponentStatus.READY_TO_GO_FORWARD;
-
-  const isPaymentMethodSaved =
-    globalStateStatus?.componentStatus ===
-      ComponentStatus.PAYMENT_METHOD_SAVED ||
-    globalStateStatus?.paymentMethodStatus ===
-      PaymentMethodStatus.PAYMENT_METHOD_SAVED;
-
-  const isSubmittingEnabled =
-    hasDefaultPaymentMethod || isPaymentMethodSaveRequired;
+  const isPaymentMethodSaveRequired = checkIsPaymentMethodSaveRequired(
+    globalStateStatus,
+  );
+  const isPaymentMethodSaved = checkIsPaymentMethodSaved(globalStateStatus);
+  const isSubmittingEnabled = checkIsSubmittingEnabled(
+    hasDefaultPaymentMethod,
+    isPaymentMethodSaveRequired,
+  );
 
   return {
     hasDefaultPaymentMethod,
