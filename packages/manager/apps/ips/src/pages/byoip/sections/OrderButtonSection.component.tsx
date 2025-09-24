@@ -25,7 +25,7 @@ export const OrderButtonSection: React.FC = () => {
       <OdsButton
         color={ODS_BUTTON_COLOR.primary}
         size={ODS_BUTTON_SIZE.md}
-        variant={ODS_BUTTON_VARIANT.ghost}
+        variant={ODS_BUTTON_VARIANT.outline}
         label={t('cancel', { ns: NAMESPACES.ACTIONS })}
         onClick={() => navigate(urls.listing)}
       />
