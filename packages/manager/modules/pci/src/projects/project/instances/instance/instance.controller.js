@@ -31,7 +31,11 @@ export default class PciInstanceController {
     this.localZoneUrl = this.PciProject.getDocumentUrl('LOCAL_ZONE');
     this.zone3azUrl = this.PciProject.getDocumentUrl('REGIONS_3AZ');
 
-    this.is3az = this.instance.planCode.includes('3AZ');
+    try {
+      this.is3az = this.instance.planCode?.includes('3AZ');
+    } catch (e) {
+      console.error(e);
+    }
 
     this.regionsTypesAvailability = {};
     this.fetchRegionsTypesAvailability();
