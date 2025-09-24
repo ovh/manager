@@ -69,7 +69,7 @@
   "listingTerminateByoip_info2": "Ce bloc IP fait partie d'un plus grand bloc BYOIP. Veuillez utiliser l'API <Link>(link)</Link> si vous souhaitez annuler votre service BYOIP.",
   "listingActionManageSubnetInVrack": "Gérer IPv6 subnets dans le vRack",
   "listingActionAddVirtualMac": "Ajouter une MAC virtuelle",
-  "listingActionViewVirtualMac": "Nom de la machine virtuelle",
+  "listingActionViewVirtualMac": "Détails de la MAC virtuelle",
   "listingActionConfigureEdgeNetworkFirewall": "Configurer le Edge Network Firewall",
   "listingActionManageGameMitigation": "Configurer le Game firewall",
   "listingActionAddDescription": "Ajouter une description",
