@@ -1,0 +1,51 @@
+/* stylelint-disable */
+@import '@datatr-ux/ods-tailwind-config/style.css';
+@import '@datatr-ux/uxlib/style.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, *:before, *:after {
+  border-color: var(--border);
+}
+
+/*
+* Scrollbar
+*/
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* 
+* Override headers colors and heights
+*/
+h1, h2, h3, h4, h5, div, span {
+  @apply text-heading;
+}
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2.25rem;
+  line-height: 2.8125rem;
+}
+h3 {
+  font-size: 2rem;
+}
+h4 {
+  line-height: 1.75rem;
+}
+h5 {
+  font-size: 1rem;
+}
