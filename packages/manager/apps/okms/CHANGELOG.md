@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.33.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.33.13...@ovh-ux/manager-okms-app@0.33.14) (2025-09-24)
+
+
+### Bug Fixes
+
+* **okms:** app id in shell init ([ca062c2](https://github.com/ovh/manager/commit/ca062c26b57bec9dc590ed619907b2e4438e2235)), closes [#MANAGER-19881](https://github.com/ovh/manager/issues/MANAGER-19881)
+
+
+
+
+
 ## [0.33.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.33.12...@ovh-ux/manager-okms-app@0.33.13) (2025-09-23)
 
 
