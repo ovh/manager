@@ -10,6 +10,7 @@ import { useDeleteIpReverse } from '@/data/hooks/ip/useDeleteIpReverse';
 import { useUpdateIpReverse } from '@/data/hooks/ip/useUpdateIpReverse';
 import { EditInline } from '@/components/EditInline/edit-inline.component';
 import { TRANSLATION_NAMESPACES, useGuideUtils } from '@/utils';
+import { IpReverseError } from '@/components/IpReverseError/IpReverseError';
 
 export type IpReverseProps = {
   ip: string;
@@ -48,37 +49,7 @@ export const IpReverse = ({ ip, parentIpGroup }: IpReverseProps) => {
   // If there is an error while deleting / updating
   // Add error notification
   const onError = (apiError: ApiError) => {
-    addError(
-      <span>
-        <div className="font-bold">{t('ip_reverse_update_failure_title')}</div>
-        <p>
-          <div className="mb-2">
-            {t('ip_reverse_update_failure_hint')}
-            <Links
-              href={links?.configureReverseDnsGuide}
-              label={t('ip_reverse_update_failure_hint_link')}
-              target="_blank"
-            />
-            {'.'}
-          </div>
-          <li>
-            <span className="inline-block min-w-24 font-bold">
-              {t('ip_reverse_update_failure_api_error')}
-            </span>
-            <span>
-              {apiError?.response?.data?.message || apiError?.message || null}
-            </span>
-          </li>
-          <li>
-            <span className="inline-block min-w-24 font-bold">
-              {t('ip_reverse_update_failure_request_id')}
-            </span>
-            <span>{apiError?.response?.headers?.['x-ovh-queryid']}</span>
-          </li>
-        </p>
-      </span>,
-      true,
-    );
+    addError(<IpReverseError apiError={apiError} />, true);
   };
 
   // Prepare delete mutation with
