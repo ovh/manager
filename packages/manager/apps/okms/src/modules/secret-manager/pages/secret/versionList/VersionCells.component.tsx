@@ -15,14 +15,15 @@ import {
 import { VersionState } from '@secret-manager/components/VersionState/VersionState.component';
 import { useFormatDate } from '@/common/hooks/useFormatDate';
 import { kmsIamActions } from '@/utils/iam/iam.constants';
+import { versionListCellTestId } from './VersionCells.constants';
 
-const versionCellIdDisabled: Record<SecretVersionState, boolean> = {
+const isVersionIdCellDisabled: Record<SecretVersionState, boolean> = {
   ACTIVE: false,
   DEACTIVATED: true,
   DELETED: true,
 };
 
-export const VersionCellID = ({
+export const VersionIdCell = ({
   version,
   urn,
 }: {
@@ -36,7 +37,7 @@ export const VersionCellID = ({
     <ManagerLink
       label={version.id.toString()}
       href={null}
-      isDisabled={versionCellIdDisabled[version.state]}
+      isDisabled={isVersionIdCellDisabled[version.state]}
       onClick={() => {
         navigate(
           SECRET_MANAGER_ROUTES_URLS.versionListSecretValueDrawer(
@@ -49,24 +50,40 @@ export const VersionCellID = ({
       urn={urn}
       iamActions={[kmsIamActions.secretGet, kmsIamActions.secretVersionGetData]}
       isDisplayTooltip
+      data-testid={versionListCellTestId(version, 'version')}
     />
   );
 };
 
-export const VersionCellState = (version: SecretVersion) => (
-  <VersionState state={version.state} />
+export const VersionStateCell = (version: SecretVersion) => (
+  <VersionState
+    state={version.state}
+    data-testid={versionListCellTestId(version, 'status')}
+  />
 );
 
-export const VersionCellCreatedAt = (version: SecretVersion) => {
+export const VersionCreatedAtCell = (version: SecretVersion) => {
   const { formatDate } = useFormatDate();
 
-  return <DataGridTextCell>{formatDate(version.createdAt)}</DataGridTextCell>;
+  return (
+    <DataGridTextCell
+      data-testid={versionListCellTestId(version, 'created-at')}
+    >
+      {formatDate(version.createdAt)}
+    </DataGridTextCell>
+  );
 };
 
-export const VersionCellDeactivatedAt = (version: SecretVersion) => {
+export const VersionDeactivatedAtCell = (version: SecretVersion) => {
   const { formatDate } = useFormatDate();
 
   const date = version.deactivatedAt ? formatDate(version.deactivatedAt) : '-';
 
-  return <DataGridTextCell>{date}</DataGridTextCell>;
+  return (
+    <DataGridTextCell
+      data-testid={versionListCellTestId(version, 'deactivated-at')}
+    >
+      {date}
+    </DataGridTextCell>
+  );
 };

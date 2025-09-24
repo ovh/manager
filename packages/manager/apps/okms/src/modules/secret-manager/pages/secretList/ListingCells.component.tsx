@@ -15,22 +15,40 @@ import {
 import { Link } from '@/common/components/Link/Link.component';
 import { useFormatDate } from '@/common/hooks/useFormatDate';
 import { kmsIamActions } from '@/utils/iam/iam.constants';
+import { secretListCellTestId } from './ListingCells.constant';
 
 export const DatagridCellPath = (secret: Secret) => {
   const { okmsId } = useParams<LocationPathParams>();
   const url = SECRET_MANAGER_ROUTES_URLS.secret(okmsId, secret.path);
 
-  return <Link href={url} label={secret.path} isRouterLink />;
+  return (
+    <Link
+      href={url}
+      label={secret.path}
+      isRouterLink
+      data-testid={secretListCellTestId(secret.path, 'path')}
+    />
+  );
 };
 
 export const DatagridCellVersion = (secret: Secret) => {
-  return <DataGridTextCell>{secret.version.id}</DataGridTextCell>;
+  return (
+    <DataGridTextCell
+      data-testid={secretListCellTestId(secret.path, 'version')}
+    >
+      {secret.version.id}
+    </DataGridTextCell>
+  );
 };
 
 export const DatagridCreationDate = (secret: Secret) => {
   const { formatDate } = useFormatDate();
   return (
-    <DataGridTextCell>{formatDate(secret.metadata.createdAt)}</DataGridTextCell>
+    <DataGridTextCell
+      data-testid={secretListCellTestId(secret.path, 'created-at')}
+    >
+      {formatDate(secret.metadata.createdAt)}
+    </DataGridTextCell>
   );
 };
 
