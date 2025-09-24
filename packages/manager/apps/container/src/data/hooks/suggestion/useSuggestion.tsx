@@ -25,16 +25,16 @@ export const useSuggestions = (enabled: boolean) => useQuery({
   enabled,
 });
 
-export const useSuggestionsCheck = (user: User, error?: Error) => useCallback(
-  (suggestions: Suggestion[]) => {
+export const useSuggestionsCheck = (user: User) => useCallback(
+  (suggestions?: Suggestion[], error?: Error) => {
     if (error) {
       return false;
     }
-    const ninSuggestion = suggestions.find((suggestion) => suggestion.type === 'NIN');
+    const ninSuggestion = suggestions?.find((suggestion) => suggestion.type === 'NIN');
     if (ninSuggestion?.isActive) {
       return false;
     }
-    return suggestions.some((suggestion) => isSuggestionRelevant(suggestion, user));
+    return suggestions?.some((suggestion) => isSuggestionRelevant(suggestion, user));
   },
   [user],
 );
