@@ -19,11 +19,12 @@ import {
 } from '@/data/hooks/useCart';
 import FullPageSpinner from '@/components/FullPageSpinner';
 import { useConfigForm } from './hooks/useConfigForm';
-import { useCreation } from './hooks/useCreation';
+import { useProjectCreation } from './hooks/useProjectCreation';
 import { useStepper } from './hooks/useStepper';
 import ConfigStep from './steps/ConfigStep';
 import PaymentStep from './steps/PaymentStep';
 import { useWillPayment } from './hooks/useWillPayment';
+import { usePaymentSubmission } from './hooks/usePaymentSubmission';
 
 export default function ProjectCreation() {
   const { t } = useTranslation([
@@ -88,7 +89,7 @@ export default function ProjectCreation() {
     needToCheckCustomerInfo,
     billingHref,
     handleProjectCreation,
-  } = useCreation({ t, cart, projectItem });
+  } = useProjectCreation({ t, cart, projectItem });
 
   const {
     isPaymentMethodSaveRequired,
@@ -99,6 +100,14 @@ export default function ProjectCreation() {
     handlePaymentStatusChange,
     handleRegisteredPaymentMethodSelected,
   } = useWillPayment();
+
+  const { handlePaymentSubmit } = usePaymentSubmission({
+    isPaymentMethodSaveRequired,
+    isPaymentMethodSaved,
+    hasDefaultPaymentMethod,
+    triggerSavePaymentMethod,
+    onProjectCreation: handleProjectCreation,
+  });
 
   useEffect(() => {
     if (isLoadingConfigForm) {
@@ -151,23 +160,6 @@ export default function ProjectCreation() {
   };
 
   const handleCancel = useCallback(() => navigate('..'), [navigate]);
-
-  const handlePaymentSubmit = () => {
-    if (isPaymentMethodSaveRequired) {
-      triggerSavePaymentMethod();
-    } else if (hasDefaultPaymentMethod) {
-      handleProjectCreation();
-    }
-  };
-
-  /**
-   * If the payment method is saved, proceed to Creation directly
-   */
-  useEffect(() => {
-    if (isPaymentMethodSaved) {
-      handleProjectCreation();
-    }
-  }, [isPaymentMethodSaved]);
 
   if (!cart || !projectItem) {
     return <FullPageSpinner />;
