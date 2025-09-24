@@ -15,6 +15,14 @@ export const useWillPayment = () => {
     setGlobalStateStatus,
   ] = useState<GlobalStateStatus | null>(null);
 
+  const [hasDefaultPaymentMethod, setHasDefaultPaymentMethod] = useState(false);
+
+  const handleRegisteredPaymentMethodSelected = (event: CustomEvent) => {
+    if (event && event.detail) {
+      setHasDefaultPaymentMethod(true);
+    }
+  };
+
   /**
    * Handles payment status changes from the WillPayment module
    */
@@ -35,12 +43,6 @@ export const useWillPayment = () => {
     }
   }, []);
 
-  /**
-   * TODO: should get the info from will payment module
-   * Because in this case the on change is not triggered
-   */
-  const hasDefaultPaymentMethod = false;
-
   const isPaymentMethodSaveRequired =
     globalStateStatus?.componentStatus === ComponentStatus.READY_TO_GO_FORWARD;
 
@@ -60,5 +62,6 @@ export const useWillPayment = () => {
     isSubmittingDisabled: !isSubmittingEnabled,
     triggerSavePaymentMethod,
     handlePaymentStatusChange,
+    handleRegisteredPaymentMethodSelected,
   };
 };

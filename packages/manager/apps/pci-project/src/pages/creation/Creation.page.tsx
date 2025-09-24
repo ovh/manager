@@ -97,6 +97,7 @@ export default function ProjectCreation() {
     hasDefaultPaymentMethod,
     triggerSavePaymentMethod,
     handlePaymentStatusChange,
+    handleRegisteredPaymentMethodSelected,
   } = useWillPayment();
 
   useEffect(() => {
@@ -244,7 +245,7 @@ export default function ProjectCreation() {
             ns: 'new/payment',
           })}
           next={{
-            action: () => handlePaymentSubmit(),
+            action: handlePaymentSubmit,
             label: paymentStepNextButton,
             isDisabled: isSubmittingDisabled,
             isLoading: isSubmitting,
@@ -258,6 +259,9 @@ export default function ProjectCreation() {
             cart={cart}
             cartProjectItem={projectItem}
             onPaymentStatusChange={handlePaymentStatusChange}
+            onRegisteredPaymentMethodSelected={
+              handleRegisteredPaymentMethodSelected
+            }
           />
         </StepComponent>
       </div>

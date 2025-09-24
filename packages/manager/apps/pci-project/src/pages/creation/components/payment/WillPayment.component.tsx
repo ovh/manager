@@ -9,6 +9,7 @@ type WillPaymentModuleProps = {
 
 type WillPaymentComponentProps = {
   config: TWillPaymentConfig;
+  onRegisteredPaymentMethodSelected: (event: CustomEvent) => void;
 };
 
 /**
@@ -22,13 +23,6 @@ const WillPaymentModule = lazy(() =>
 
       useEffect(() => {
         const { slotRef, config } = props;
-
-        if (!slotRef.current) {
-          return undefined;
-        }
-
-        // Clear existing content to prevent duplication
-        slotRef.current.innerHTML = '';
 
         // Initialize the payment module with configuration
         setUpWillPayment((slotRef.current as unknown) as HTMLSlotElement, {
@@ -52,13 +46,27 @@ const WillPaymentModule = lazy(() =>
  * WillPaymentComponent
  * @param config - Configuration for the Will Payment module
  */
-function WillPaymentComponent({ config }: Readonly<WillPaymentComponentProps>) {
+function WillPaymentComponent({
+  config,
+  onRegisteredPaymentMethodSelected,
+}: Readonly<WillPaymentComponentProps>) {
   const slotRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (slotRef.current) {
+      slotRef.current.addEventListener(
+        'WP::USER_ACTION::REGISTERED_PM_SELECTED',
+        (event) => onRegisteredPaymentMethodSelected(event as CustomEvent),
+      );
+    }
+  }, [slotRef, onRegisteredPaymentMethodSelected]);
 
   return (
     <div id="will-payment-event-bus" ref={slotRef}>
       <Suspense fallback={<OdsSpinner />}>
-        <WillPaymentModule slotRef={slotRef} config={config} />
+        {slotRef.current && (
+          <WillPaymentModule slotRef={slotRef} config={config} />
+        )}
       </Suspense>
     </div>
   );
