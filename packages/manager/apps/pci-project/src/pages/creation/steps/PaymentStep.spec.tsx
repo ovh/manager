@@ -80,6 +80,7 @@ describe('PaymentStep', () => {
       },
     },
     onPaymentStatusChange: vi.fn(),
+    onRegisteredPaymentMethodSelected: vi.fn(),
   };
 
   const mockStartupProgramAmountText = '100.00 €';
