@@ -12,6 +12,7 @@
   "pci_instance_creation_choose_localization_title": "Choisissez une localisation",
   "pci_instance_creation_select_localization_label": "Selectionnez une localisation: ",
   "pci_instance_creation_select_localization_informations": "Les Locales Zones ne sont pas éligibles aux Savings Plans.",
+  "pci_instance_creation_select_localization_help": "OVHcloud propose sa solution Public Cloud à travers le monde via nos datacenters présents sur plusieurs continents. Celle-ci est donc accessible en Europe, en Amérique du Nord et en Asie-Pacifique. Notre volonté : élargir la disponibilité de nos services à de nouvelles zones géographiques.",
   "pci_instance_creation_continue_order": "Continuer ma commande",
   "pci_instance_creation_configuration_code": "Code de ma configuration"
 }
