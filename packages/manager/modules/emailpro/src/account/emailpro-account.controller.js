@@ -12,6 +12,7 @@ import {
   ACCOUNT_TYPES,
   FILTER_TYPE,
   SUPPORT_URL_VIEW_TICKETS,
+  OVH_MAIL_MIGRATOR_URL,
 } from './emailpro-constants';
 
 export default class {
@@ -96,6 +97,10 @@ export default class {
         }
       }
     });
+
+    this.$scope.goToOvhMailMigrator = () => {
+      return window.open(OVH_MAIL_MIGRATOR_URL, '_blank');
+    };
 
     this.$scope.getAccounts = (count, offset) => {
       this.$scope.setMessage(null);
