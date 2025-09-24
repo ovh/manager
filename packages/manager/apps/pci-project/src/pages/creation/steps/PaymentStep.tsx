@@ -20,6 +20,7 @@ export type PaymentStepProps = {
   cart: Cart;
   cartProjectItem: OrderedProduct;
   onPaymentStatusChange?: (willPaymentStatus: GlobalStateStatus) => void;
+  onRegisteredPaymentMethodSelected: (event: CustomEvent) => void;
 };
 
 type PaymentForm = {
@@ -32,6 +33,7 @@ export default function PaymentStep({
   cart,
   cartProjectItem,
   onPaymentStatusChange,
+  onRegisteredPaymentMethodSelected,
 }: Readonly<PaymentStepProps>) {
   const [paymentForm, setPaymentForm] = useState<PaymentForm>({
     voucherConfiguration: undefined,
@@ -74,6 +76,7 @@ export default function PaymentStep({
           language: user.language,
           hostApp: 'pci',
         }}
+        onRegisteredPaymentMethodSelected={onRegisteredPaymentMethodSelected}
       />
 
       {isStartupProgramAvailable && startupProgramAmountText && (
