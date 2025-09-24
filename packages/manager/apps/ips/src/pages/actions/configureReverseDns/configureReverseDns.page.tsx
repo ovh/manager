@@ -3,16 +3,15 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ipaddr from 'ipaddr.js';
 import {
-  OdsButton,
-  OdsModal,
   OdsText,
   OdsLink,
   OdsFormField,
   OdsInput,
+  OdsMessage,
 } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { ODS_TEXT_PRESET, ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import { fromIdToIp, ipFormatter, useGuideUtils } from '@/utils';
 import { isIpInsideBlock, isValidReverseDomain } from '@/utils/validators';
 import {
@@ -20,7 +19,7 @@ import {
   useUpdateIpReverse,
   useGetIpReverse,
 } from '@/data/hooks/ip';
-import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
+import { IpReverseError } from '@/components/IpReverseError/IpReverseError';
 
 export default function ConfigureReverseDns() {
   const { id, parentId } = useParams();
@@ -105,11 +104,28 @@ export default function ConfigureReverseDns() {
     setReverseDns(data?.data?.reverse);
   }, [data]);
 
+  const apiError =
+    ipReverseError || updateIpReverseError || deleteIpReverseError;
+
   return (
-    <OdsModal isOpen isDismissible onOdsClose={cancel}>
-      <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.heading4}>
-        {t('reverseDnsModalTitle')}
-      </OdsText>
+    <Modal
+      isOpen
+      heading={t('reverseDnsModalTitle')}
+      onDismiss={cancel}
+      onSecondaryButtonClick={cancel}
+      onPrimaryButtonClick={confirm}
+      primaryLabel={t('confirm', { ns: NAMESPACES.ACTIONS })}
+      primaryButtonTestId="confirm-button"
+      isPrimaryButtonLoading={updateIpReversePending || deleteIpReversePending}
+      secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
+      secondaryButtonTestId="cancel-button"
+      isPrimaryButtonDisabled={
+        (!currentIp && isGroup) ||
+        ipReverseLoading ||
+        !!ipReverseError ||
+        reverseDns === data?.data?.reverse
+      }
+    >
       <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
         {t('reverseDnsModalDescription')}
         <OdsLink
@@ -175,30 +191,15 @@ export default function ConfigureReverseDns() {
           }}
         />
       </OdsFormField>
-      <ApiErrorMessage
-        className="mb-4"
-        error={ipReverseError || updateIpReverseError || deleteIpReverseError}
-      />
-      <OdsButton
-        slot="actions"
-        type="button"
-        variant={ODS_BUTTON_VARIANT.ghost}
-        label={t('cancel', { ns: NAMESPACES.ACTIONS })}
-        onClick={cancel}
-      />
-      <OdsButton
-        slot="actions"
-        type="button"
-        isDisabled={
-          (!currentIp && isGroup) ||
-          ipReverseLoading ||
-          !!ipReverseError ||
-          reverseDns === data?.data?.reverse
-        }
-        isLoading={updateIpReversePending || deleteIpReversePending}
-        label={t('confirm', { ns: NAMESPACES.ACTIONS })}
-        onClick={confirm}
-      />
-    </OdsModal>
+      {apiError && (
+        <OdsMessage
+          isDismissible={false}
+          className={`block mb-4`}
+          color={ODS_MESSAGE_COLOR.critical}
+        >
+          <IpReverseError apiError={apiError} />
+        </OdsMessage>
+      )}
+    </Modal>
   );
 }
