@@ -910,5 +910,6 @@
   "emailpro_ACTION_update_account_step1_password_zimbra_helper": "Twoje hasło musi zawierać co najmniej:",
   "emailpro_ACTION_update_account_step1_password_zimbra_helper_rule_1": "10 znaków",
   "emailpro_ACTION_update_account_step1_password_zimbra_helper_rule_2": "1 cyfrę i 1 znak specjalny ($, !, &amp;,...)",
-  "emailpro_ACTION_update_account_step1_password_zimbra_helper_rule_3": "1 dużą literę"
+  "emailpro_ACTION_update_account_step1_password_zimbra_helper_rule_3": "1 dużą literę",
+  "emailpro_ACTION_migrate_account_button": "Migracja kont"
 }
