@@ -310,7 +310,7 @@ export default function AddVirtualMacModal() {
                 className="m-1"
                 slot="actions"
                 type="button"
-                variant={ODS_BUTTON_VARIANT.ghost}
+                variant={ODS_BUTTON_VARIANT.outline}
                 label={t('cancel', { ns: NAMESPACES.ACTIONS })}
                 onClick={closeModal}
                 data-testid="cancel-button"

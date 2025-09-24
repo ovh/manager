@@ -59,23 +59,32 @@ export default function IpListingPage() {
         </div>
 
         <div className="flex flex-col items-end ml-auto gap-2">
-          <ActionMenu
-            id="settings"
-            icon={ODS_ICON_NAME.cog}
-            isCompact
-            items={[
-              {
-                id: 0,
-                label: t('listingSettingsImportIpFromSys'),
-                isDisabled: environment.user.ovhSubsidiary === 'US',
-                onClick: () => {
-                  navigate(
-                    `${urls.listingImportIpFromSys}?${search.toString()}`,
-                  );
+          <div className="flex items-end ml-auto gap-2">
+            <ActionMenu
+              id="settings"
+              icon={ODS_ICON_NAME.cog}
+              isCompact
+              items={[
+                {
+                  id: 0,
+                  label: t('listingSettingsImportIpFromSys'),
+                  isDisabled: environment.user.ovhSubsidiary === 'US',
+                  onClick: () => {
+                    navigate(
+                      `${urls.listingImportIpFromSys}?${search.toString()}`,
+                    );
+                  },
                 },
-              },
-            ]}
-          />
+              ]}
+            />
+            <OdsButton
+                variant={ODS_BUTTON_VARIANT.outline}
+                icon={ODS_ICON_NAME.download}
+                size={ODS_BUTTON_SIZE.sm}
+                onClick={() => navigate(urls.listingExportIpToCsv)}
+                label=""
+              />
+          </div>
           <QuickFilter />
         </div>
       </div>
