@@ -15,6 +15,7 @@ export const RegionSelectionSection: React.FC = () => {
     selectedServiceType,
     selectedService,
     ipVersion,
+    setSelectedOrganisation,
   } = React.useContext(OrderContext);
   const { t } = useTranslation('order');
   const { regionList, isLoading, isError, error } = useAdditionalIpsRegions({
@@ -43,6 +44,11 @@ export const RegionSelectionSection: React.FC = () => {
     );
   }
 
+  const handleSelectRegion = (updatedRegion: React.SetStateAction<string>) => {
+    setSelectedRegion(updatedRegion);
+    setSelectedOrganisation(undefined);
+  };
+
   return (
     <OrderSection
       isLoading={isLoading || isRegionAvailabilityLoading}
@@ -57,7 +63,7 @@ export const RegionSelectionSection: React.FC = () => {
           <RegionSelector
             regionList={regionList}
             selectedRegion={selectedRegion}
-            setSelectedRegion={setSelectedRegion}
+            setSelectedRegion={handleSelectRegion}
             disabledRegions={disabledRegionList?.map(
               ({ region, has3blocks }) => ({
                 region,

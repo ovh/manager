@@ -7,6 +7,7 @@ export * from './ipMitigation';
 export * from './ipSpam';
 export * from './ipAntihack';
 export * from './ipEdgeFirewall';
+export * from './ipExport';
 export * from './ipGameFirewall';
 export * from './organisationsList';
 export * from './organisationsDetails';

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Links } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
@@ -7,12 +7,18 @@ import {
   OdsSkeleton,
   OdsMessage,
 } from '@ovhcloud/ods-components/react';
-import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+import {
+  ODS_MESSAGE_COLOR,
+  OdsSelectChangeEventDetail,
+  OdsSelectCustomEvent,
+} from '@ovhcloud/ods-components';
 import { OrderSection } from '@/components/OrderSection/OrderSection.component';
 import { useGetOrganisationsList } from '@/data/hooks/organisation';
 import { OrderContext } from '../order.context';
 import { isAvailableOrganisation } from '../order.utils';
 import { isRegionInEu } from '@/components/RegionSelector/region-selector.utils';
+
+const NO_ORGANISATION = 'no_organisation';
 
 export const OrganisationSection: React.FC = () => {
   const {
@@ -25,22 +31,35 @@ export const OrganisationSection: React.FC = () => {
   const { t } = useTranslation('order');
   const { organisations, isLoading } = useGetOrganisationsList();
 
+  const organisationInfoLabel = useMemo(() => {
+    if (selectedOrganisation) {
+      return t('organisation_selection_info');
+    }
+    if (isRegionInEu(selectedRegion)) {
+      return t('organisation_selection_description_no_organisation_RIPE');
+    }
+    return t('organisation_selection_description_no_organisation_ARIN');
+  }, [selectedOrganisation, selectedRegion]);
+
+  const handleOrganisationChange = (
+    event: OdsSelectCustomEvent<OdsSelectChangeEventDetail>,
+  ) => {
+    const updatedOrganisation =
+      event.detail.value !== NO_ORGANISATION ? event.detail.value : undefined;
+    setSelectedOrganisation(updatedOrganisation);
+  };
+
   return (
     <OrderSection
       title={t('organisation_selection_title')}
-      description={
-        t('organisation_selection_description') +
-        (isRegionInEu(selectedRegion)
-          ? t('organisation_selection_description_no_organisation_RIPE')
-          : t('organisation_selection_description_no_organisation_ARIN'))
-      }
+      description={t('organisation_selection_description')}
     >
       <OdsMessage
         isDismissible={false}
         className="block mb-3"
         color={ODS_MESSAGE_COLOR.information}
       >
-        {t('organisation_selection_info')}
+        {organisationInfoLabel}
       </OdsMessage>
       {isLoading ? (
         <OdsSkeleton />
@@ -49,13 +68,13 @@ export const OrganisationSection: React.FC = () => {
           key={organisations.join('-')}
           className="block w-full max-w-[384px] mb-1"
           name="ip-organisation"
-          onOdsChange={(event) =>
-            setSelectedOrganisation(event.detail.value as string)
-          }
+          onOdsChange={handleOrganisationChange}
           value={selectedOrganisation}
           placeholder={t('organisation_select_placeholder')}
         >
-          <option value={undefined}>{t('organisation_select_none')}</option>
+          <option value={NO_ORGANISATION}>
+            {t('organisation_select_none')}
+          </option>
           {organisations
             .filter(isAvailableOrganisation(selectedPlanCode))
             .map((orgId) => (
