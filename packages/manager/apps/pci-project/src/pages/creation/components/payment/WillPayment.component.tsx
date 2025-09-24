@@ -1,6 +1,6 @@
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import React, { lazy, Suspense, useEffect, useRef } from 'react';
 import { TWillPaymentConfig } from '@/types/WillPayment.type';
+import { setupRegisteredPaymentMethodListener } from '../../utils/paymentEvents';
 
 type WillPaymentModuleProps = {
   slotRef: React.RefObject<HTMLDivElement>;
@@ -24,7 +24,10 @@ const WillPaymentModule = lazy(() =>
       useEffect(() => {
         const { slotRef, config } = props;
 
-        // Initialize the payment module with configuration
+        if (!slotRef.current) {
+          return undefined;
+        }
+
         setUpWillPayment((slotRef.current as unknown) as HTMLSlotElement, {
           configuration: config,
         });
@@ -35,7 +38,7 @@ const WillPaymentModule = lazy(() =>
             slotRef.current.innerHTML = '';
           }
         };
-      }, [props.slotRef]);
+      }, [props.slotRef, props.config]);
 
       return null;
     },
@@ -53,20 +56,17 @@ function WillPaymentComponent({
   const slotRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (slotRef.current) {
-      slotRef.current.addEventListener(
-        'WP::USER_ACTION::REGISTERED_PM_SELECTED',
-        (event) => onRegisteredPaymentMethodSelected(event as CustomEvent),
-      );
-    }
+    const cleanup = setupRegisteredPaymentMethodListener(
+      onRegisteredPaymentMethodSelected,
+    );
+
+    return cleanup || undefined;
   }, [slotRef, onRegisteredPaymentMethodSelected]);
 
   return (
     <div id="will-payment-event-bus" ref={slotRef}>
-      <Suspense fallback={<OdsSpinner />}>
-        {slotRef.current && (
-          <WillPaymentModule slotRef={slotRef} config={config} />
-        )}
+      <Suspense>
+        <WillPaymentModule slotRef={slotRef} config={config} />
       </Suspense>
     </div>
   );
