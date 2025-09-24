@@ -5,7 +5,6 @@ import queryClient from './query.client';
 import Router from './routes/Router';
 import Loading from './components/loading/Loading.component';
 import ProgressLoader from './components/loading/ProgressLoader.component';
-import './global.css';
 import { useLoadingIndicatorContext } from './contexts/LoadingIndicator.context';
 
 function App() {
