@@ -117,15 +117,40 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
 
-      snapshots: /* @ngInject */ ($http, serviceName, volumeId) =>
-        $http
-          .get(
-            `/storage/netapp/${serviceName}/share/${volumeId}/snapshot?detail=true`,
-          )
-          .then(({ data }) => data)
-          .then((snapshots) =>
-            snapshots.map((snapshot) => new Snapshot(snapshot)),
-          ),
+      snapshots: /* @ngInject */ ($http, $q, serviceName, volumeId) =>
+        $q
+          .all([
+            $http.get(
+              `/storage/netapp/${serviceName}/share/${volumeId}/snapshot?detail=true`,
+            ),
+            $http.get(`/storage/netapp/${serviceName}/metricsToken`),
+          ])
+          .then((responses) => responses.map(({ data }) => data))
+          .then(([snapshots, { endpoint, token }]) => {
+            // eslint-disable-next-line no-useless-escape
+            const QUERY = `\{__name__=~"snapshot_size",service_id="${serviceName}",share_id="${volumeId}"\}`;
+            console.info('coucou', QUERY);
+            return $http
+              .get(`${endpoint}/prometheus/api/v1/query?query=${QUERY}`, {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              })
+              .then(
+                ({
+                  data: {
+                    data: { result },
+                  },
+                }) => {
+                  console.info({ result });
+                  return snapshots.map(
+                    (snapshot) => new Snapshot({ ...snapshot, size: result }),
+                  );
+                },
+              )
+              .catch(() => snapshots.map((snapshot) => new Snapshot(snapshot)));
+          }),
+
       hasOnlySystemSnapshot: /* @ngInject */ (snapshots) =>
         !snapshots.find(
           (snapshot) =>
