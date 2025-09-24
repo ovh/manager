@@ -18,7 +18,10 @@ import toUpper from 'lodash/toUpper';
 
 import punycode from 'punycode';
 
-import { DATAGRID_COLUMN_PARAMETERS_PREFERENCE_NAME } from './account.constants';
+import {
+  DATAGRID_COLUMN_PARAMETERS_PREFERENCE_NAME,
+  OVH_MAIL_MIGRATOR_URL,
+} from './account.constants';
 
 export default class ExchangeAccountHomeController {
   /* @ngInject */
@@ -61,6 +64,7 @@ export default class ExchangeAccountHomeController {
     this.OvhApiMe = OvhApiMe;
     this.ovhUserPref = ovhUserPref;
     this.ouiDatagridService = ouiDatagridService;
+    this.OVH_MAIL_MIGRATOR_URL = OVH_MAIL_MIGRATOR_URL;
   }
 
   $onInit() {
