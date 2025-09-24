@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import { renderHook, waitFor } from '@testing-library/react';
 import { describe, expect, vi } from 'vitest';
 
-import { managedWordpressResourceDetailsMock } from '@/data/__mocks__';
+import { managedWordpressResourceDetailsMock } from '@/data/__mocks__/managedWordpress/ressource';
 import { wrapper } from '@/utils/test.provider';
 
 import { useManagedWordpressResourceDetails } from './useManagedWordpressResourceDetails';

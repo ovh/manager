@@ -4,29 +4,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BUTTON_COLOR,
-  ODS_CARD_COLOR,
-  ODS_INPUT_TYPE,
-  ODS_MESSAGE_COLOR,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import {
-  OdsCheckbox,
-  OdsFormField,
-  OdsInput,
-  OdsMessage,
-  OdsPassword,
-  OdsRadio,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { ManagerButton, ManagerTile, useNotifications } from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
@@ -34,10 +20,14 @@ import {
   postManagedCmsResourceWebsite,
   putManagedCmsResourceWebsiteTasks,
 } from '@/data/api/managedWordpress';
-import { useManagedWordpressWebsiteDetails } from '@/data/hooks/managedWordpressWebsiteDetails/useManagedWordpressWebsiteDetails';
-import { ManagedWordpressCmsType } from '@/data/types/product/managedWordpress';
+import { useManagedWordpressWebsiteDetails } from '@/data/hooks/managedWordpress/managedWordpressWebsiteDetails/useManagedWordpressWebsiteDetails';
+import { ManagedWordpressCmsType } from '@/data/types/product/managedWordpress/cms';
 import { useGenerateUrl } from '@/hooks';
 import { zForm } from '@/utils/formSchemas.utils';
+
+import Step1, { Step1FormValues } from './ImportForm/Step1';
+import Step2 from './ImportForm/Step2';
+import { Step2FormValues } from './ImportForm/types';
 
 export default function ImportForm() {
   const { t } = useTranslation([NAMESPACES.FORM, NAMESPACES.ERROR, 'common', 'managedWordpress']);
@@ -51,7 +41,7 @@ export default function ImportForm() {
     control,
     handleSubmit,
     formState: { isValid, errors, isDirty },
-  } = useForm({
+  } = useForm<Step1FormValues>({
     defaultValues: {
       adminLogin: '',
       adminPassword: '',
@@ -105,26 +95,15 @@ export default function ImportForm() {
     },
   });
 
-  const onStep1Submit: SubmitHandler<{
-    adminLogin: string;
-    adminPassword: string;
-    adminURL: string;
-  }> = ({ adminLogin, adminPassword, adminURL }) => {
+  const onStep1Submit: SubmitHandler<Step1FormValues> = ({
+    adminLogin,
+    adminPassword,
+    adminURL,
+  }) => {
     createWebsite({ adminLogin, adminPassword, adminURL });
   };
 
   // form control for step 2
-  type Step2FormValues = {
-    plugins: { name: string; version: string; enabled: boolean }[];
-    themes: { name: string; version: string; active: boolean }[];
-    media: boolean;
-    wholeDatabase: boolean;
-    posts: boolean;
-    pages: boolean;
-    comments: boolean;
-    tags: boolean;
-    users: boolean;
-  };
   const defaultValuesStep2 = useMemo<Step2FormValues | null>(() => {
     if (!data?.currentState.import.checkResult.cmsSpecific.wordPress) {
       return null;
@@ -196,9 +175,7 @@ export default function ImportForm() {
     }
   }, [data, step2Form]);
   const {
-    control: controlStep2,
     handleSubmit: handleSubmitStep2,
-    watch: watchStep2,
     formState: { isValid: isValidStep2 },
   } = step2Form;
 
@@ -259,466 +236,35 @@ export default function ImportForm() {
   const onStep2Submit: SubmitHandler<Step2FormValues> = (values) => {
     launchImport(values);
   };
-  const wholeDatabase = watchStep2('wholeDatabase');
+
   return (
     <>
       {step === 1 && (
-        <form
+        <Step1
+          t={t}
+          control={control}
+          errors={errors}
+          isDirty={isDirty}
+          isValid={isValid}
+          isSubmitting={isSubmittingStep1}
           onSubmit={(e) => {
             e.preventDefault();
             void handleSubmit(onStep1Submit)(e);
           }}
-        >
-          <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
-            {t('common:web_hosting_common_url_connexion')}
-          </OdsText>
-          <Controller
-            name="adminURL"
-            control={control}
-            render={({ field: { name, value, onBlur, onChange } }) => (
-              <OdsFormField className="w-full mb-4" error={errors?.adminURL?.message}>
-                <label slot="label">{t('common:web_hosting_common_admin_url')}*</label>
-                <OdsInput
-                  type={ODS_INPUT_TYPE.text}
-                  name={name}
-                  value={value}
-                  data-testid="input-admin-url"
-                  hasError={!!errors.adminURL}
-                  onOdsBlur={onBlur}
-                  onOdsChange={onChange}
-                  isClearable
-                />
-              </OdsFormField>
-            )}
-          />
-          <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
-            {t('common:web_hosting_common_wordpress_login')}
-          </OdsText>
-          <Controller
-            name="adminLogin"
-            control={control}
-            render={({ field: { name, value, onBlur, onChange } }) => (
-              <OdsFormField className="w-full mb-4" error={errors?.adminLogin?.message}>
-                <label slot="label">{t('common:web_hosting_common_admin_login')}*</label>
-                <OdsInput
-                  type={ODS_INPUT_TYPE.text}
-                  name={name}
-                  value={value}
-                  data-testid="input-admin-login"
-                  hasError={!!errors.adminLogin}
-                  onOdsBlur={onBlur}
-                  onOdsChange={onChange}
-                  isClearable
-                />
-              </OdsFormField>
-            )}
-          />
-          <Controller
-            name="adminPassword"
-            control={control}
-            render={({ field: { name, value, onBlur, onChange } }) => (
-              <OdsFormField className="w-full mb-4" error={errors?.adminPassword?.message}>
-                <label slot="label">{t('common:web_hosting_common_admin_password')}*</label>
-                <OdsPassword
-                  name={name}
-                  value={value}
-                  data-testid="input-admin-password"
-                  hasError={!!errors?.adminPassword}
-                  onOdsBlur={onBlur}
-                  onOdsChange={onChange}
-                  className="w-full"
-                  isClearable
-                  isMasked
-                />
-              </OdsFormField>
-            )}
-          />
-          <OdsFormField>
-            <ManagerButton
-              type="submit"
-              label={t('common:web_hosting_common_action_continue')}
-              isDisabled={!isDirty || !isValid || isSubmittingStep1}
-              isLoading={isSubmittingStep1}
-              color={ODS_BUTTON_COLOR.primary}
-              id="import-step1"
-              data-testid="import-step1"
-            />
-          </OdsFormField>
-        </form>
+        />
       )}
       {step === 2 && (
-        <form
+        <Step2
+          t={t}
+          step2Form={step2Form}
+          data={data}
+          isValid={isValidStep2}
+          isSubmitting={isSubmittingStep2}
           onSubmit={(e) => {
             e.preventDefault();
             void handleSubmitStep2(onStep2Submit)(e);
           }}
-        >
-          {' '}
-          <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
-            {t('managedWordpress:web_hosting_managed_wordpress_import_select_element')}
-          </OdsText>
-          <OdsText preset={ODS_TEXT_PRESET.span}>
-            {t('managedWordpress:web_hosting_managed_wordpress_import_select_element_description')}
-          </OdsText>
-          <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-            <ManagerTile color={ODS_CARD_COLOR.neutral}>
-              <ManagerTile.Title>{t('common:web_hosting_common_plugins')}</ManagerTile.Title>
-              <OdsText preset={ODS_TEXT_PRESET.span}>
-                {t(
-                  'managedWordpress:web_hosting_managed_wordpress_import_select_plugins_description',
-                )}
-              </OdsText>
-              <div className="flex flex-row mt-2">
-                <OdsCheckbox
-                  isChecked={watchStep2('plugins').every((p) => p.enabled)}
-                  onOdsChange={(e) =>
-                    step2Form.setValue(
-                      'plugins',
-                      watchStep2('plugins').map((p) => ({
-                        ...p,
-                        enabled: e.detail.checked,
-                      })),
-                    )
-                  }
-                  name="all_plugins"
-                />
-                <label className="ml-4 cursor-pointer">
-                  <OdsText>
-                    {t('managedWordpress:web_hosting_managed_wordpress_import_select_plugins_all')}
-                  </OdsText>
-                </label>
-              </div>
-              <div className="ml-8">
-                {data?.currentState?.import?.checkResult?.cmsSpecific?.wordPress?.plugins.map(
-                  (plugin, index) => (
-                    <div key={plugin.name}>
-                      <input
-                        type="hidden"
-                        {...step2Form.register(`plugins.${index}.name`)}
-                        value={plugin.name}
-                      />
-                      <input
-                        type="hidden"
-                        {...step2Form.register(`plugins.${index}.version`)}
-                        value={plugin.version}
-                      />
-                      <Controller
-                        name={`plugins.${index}.enabled`}
-                        control={controlStep2}
-                        render={({ field: { value, onBlur, onChange } }) => (
-                          <div className="flex flex-row mt-4">
-                            <OdsCheckbox
-                              name={`plugins.${index}.enabled`}
-                              id={plugin.name}
-                              isChecked={value}
-                              onOdsBlur={onBlur}
-                              onOdsChange={(e) => onChange(e.detail.checked)}
-                            />
-                            <label htmlFor={plugin.name} className="ml-4 cursor-pointer">
-                              <OdsText>{plugin.name}</OdsText>
-                            </label>
-                          </div>
-                        )}
-                      />
-                    </div>
-                  ),
-                )}
-              </div>
-            </ManagerTile>
-            <ManagerTile color={ODS_CARD_COLOR.neutral}>
-              <ManagerTile.Title>{t('common:web_hosting_common_themes')}</ManagerTile.Title>
-              <OdsText preset={ODS_TEXT_PRESET.span}>
-                {t(
-                  'managedWordpress:web_hosting_managed_wordpress_import_select_themes_description',
-                )}
-                *
-              </OdsText>
-              <div className="flex flex-row mt-2">
-                <OdsCheckbox
-                  isChecked={watchStep2('themes').every((p) => p.active)}
-                  onOdsChange={(e) =>
-                    step2Form.setValue(
-                      'themes',
-                      watchStep2('themes').map((p) => ({
-                        ...p,
-                        active: e.detail.checked,
-                      })),
-                    )
-                  }
-                  name="all_themes"
-                />
-                <label className="ml-4 cursor-pointer">
-                  <OdsText>
-                    {t('managedWordpress:web_hosting_managed_wordpress_import_select_themes_all')}
-                  </OdsText>
-                </label>
-              </div>
-              <div className="ml-8">
-                {data?.currentState?.import?.checkResult?.cmsSpecific?.wordPress?.themes.map(
-                  (theme, index) => (
-                    <div key={theme.name}>
-                      <input
-                        type="hidden"
-                        {...step2Form.register(`themes.${index}.name`)}
-                        value={theme.name}
-                      />
-                      <input
-                        type="hidden"
-                        {...step2Form.register(`themes.${index}.version`)}
-                        value={theme.version}
-                      />
-                      <Controller
-                        key={theme.name}
-                        name={`themes.${index}.active`}
-                        control={controlStep2}
-                        render={({ field: { value, onBlur, onChange } }) => (
-                          <div className="flex flex-row mt-4">
-                            <OdsCheckbox
-                              name={`themes.${index}.active`}
-                              id={theme.name}
-                              isChecked={value}
-                              onOdsBlur={onBlur}
-                              onOdsChange={(e) => onChange(e.detail.checked)}
-                            />
-                            <label htmlFor={theme.name} className="ml-4 cursor-pointer">
-                              <OdsText>{theme.name}</OdsText>
-                            </label>
-                          </div>
-                        )}
-                      />
-                    </div>
-                  ),
-                )}
-              </div>
-            </ManagerTile>
-            <ManagerTile color={ODS_CARD_COLOR.neutral}>
-              <ManagerTile.Title>{t('common:web_hosting_common_medias')}</ManagerTile.Title>
-              <OdsText preset={ODS_TEXT_PRESET.span}>
-                {t(
-                  'managedWordpress:web_hosting_managed_wordpress_import_select_medias_description',
-                )}
-              </OdsText>
-              <Controller
-                name="media"
-                control={controlStep2}
-                render={({ field: { name, value, onBlur, onChange } }) => (
-                  <div className="flex flex-row mt-4">
-                    <OdsCheckbox
-                      data-testid="import-media"
-                      isChecked={value}
-                      onOdsBlur={onBlur}
-                      onOdsChange={(e) => onChange(e.detail.checked)}
-                      name={name}
-                    />
-                    <label htmlFor="import-media" className="ml-4 cursor-pointer">
-                      <OdsText>{t('common:web_hosting_common_media_all')}</OdsText>
-                    </label>
-                  </div>
-                )}
-              />
-            </ManagerTile>
-          </div>
-          <ManagerTile color={ODS_CARD_COLOR.neutral} className="mt-6">
-            <div className="m-4">
-              <div className="flex flex-col items-start justify-between mb-4">
-                <ManagerTile.Title>{t('common:web_hosting_common_database')}</ManagerTile.Title>
-                <OdsText preset={ODS_TEXT_PRESET.span}>
-                  {t(
-                    'managedWordpress:web_hosting_managed_wordpress_import_select_database_description',
-                  )}
-                </OdsText>
-              </div>
-              <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4">
-                <ManagerTile color={ODS_CARD_COLOR.neutral}>
-                  <ManagerTile.Title>
-                    <Controller
-                      name="wholeDatabase"
-                      control={controlStep2}
-                      render={({ field: { onChange, onBlur, value } }) => (
-                        <OdsRadio
-                          id="import-all-database"
-                          name="databaseOption"
-                          isChecked={value}
-                          onOdsBlur={onBlur}
-                          onOdsChange={(e) => onChange(e.detail.checked)}
-                        />
-                      )}
-                    />
-                    <label htmlFor="import-all-database" className="ml-4 cursor-pointer">
-                      {t(
-                        'managedWordpress:web_hosting_managed_wordpress_import_select_wholedatabase_select',
-                      )}{' '}
-                    </label>
-                  </ManagerTile.Title>
-                  <OdsText preset={ODS_TEXT_PRESET.span}>
-                    {t(
-                      'managedWordpress:web_hosting_managed_wordpress_import_select_wholedatabase_description',
-                    )}
-                  </OdsText>
-                </ManagerTile>
-                <ManagerTile color={ODS_CARD_COLOR.neutral}>
-                  <ManagerTile.Title>
-                    <Controller
-                      name="wholeDatabase"
-                      control={controlStep2}
-                      render={({ field: { onChange, onBlur, value } }) => (
-                        <OdsRadio
-                          id="import-database"
-                          name="databaseOption"
-                          isChecked={!value}
-                          onOdsBlur={onBlur}
-                          onOdsChange={onChange}
-                        />
-                      )}
-                    />
-                    <label htmlFor="import-database" className="ml-4 cursor-pointer">
-                      {t(
-                        'managedWordpress:web_hosting_managed_wordpress_import_select_database_category_select',
-                      )}
-                    </label>
-                  </ManagerTile.Title>
-                  <OdsText preset={ODS_TEXT_PRESET.span}>
-                    {t(
-                      'managedWordpress:web_hosting_managed_wordpress_import_select_database_category_description',
-                    )}{' '}
-                  </OdsText>
-                </ManagerTile>
-              </div>
-            </div>
-            <OdsText preset={ODS_TEXT_PRESET.span}>
-              {t(
-                'managedWordpress:web_hosting_managed_wordpress_import_select_category_description',
-              )}
-            </OdsText>
-            <div className="flex flex-row mt-4">
-              <Controller
-                name="posts"
-                control={controlStep2}
-                render={({ field: { name, value, onBlur, onChange } }) => (
-                  <div className="flex flex-row mt-4">
-                    <OdsCheckbox
-                      id="import-posts"
-                      name={name}
-                      isChecked={value}
-                      isDisabled={wholeDatabase}
-                      onOdsBlur={onBlur}
-                      onOdsChange={onChange}
-                    />
-                    <label htmlFor="import-posts" className="ml-4 cursor-pointer">
-                      <OdsText>{t('common:web_hosting_common_posts')}</OdsText>
-                    </label>
-                  </div>
-                )}
-              />
-            </div>
-            <div className="flex flex-row mt-4">
-              <Controller
-                name="pages"
-                control={controlStep2}
-                render={({ field: { name, value, onBlur, onChange } }) => (
-                  <div className="flex flex-row mt-4">
-                    <OdsCheckbox
-                      id="import-pages"
-                      name={name}
-                      isChecked={value}
-                      isDisabled={wholeDatabase}
-                      onOdsBlur={onBlur}
-                      onOdsChange={(e) => onChange(e.detail.checked)}
-                    />
-                    <label htmlFor="import-pages" className="ml-4 cursor-pointer">
-                      <OdsText>{t('common:web_hosting_common_pages')}</OdsText>
-                    </label>
-                  </div>
-                )}
-              />
-            </div>
-            <div className="flex flex-row mt-4">
-              <Controller
-                name="comments"
-                control={controlStep2}
-                render={({ field: { name, value, onBlur, onChange } }) => (
-                  <div className="flex flex-row mt-4">
-                    <OdsCheckbox
-                      id="import-comments"
-                      name={name}
-                      isChecked={value}
-                      isDisabled={wholeDatabase}
-                      onOdsBlur={onBlur}
-                      onOdsChange={(e) => onChange(e.detail.checked)}
-                    />
-                    <label htmlFor="import-comments" className="ml-4 cursor-pointer">
-                      <OdsText>{t('common:web_hosting_common_comments')}</OdsText>
-                    </label>
-                  </div>
-                )}
-              />
-            </div>
-            <div className="flex flex-row mt-4">
-              <Controller
-                name="tags"
-                control={controlStep2}
-                render={({ field: { name, value, onBlur, onChange } }) => (
-                  <div className="flex flex-row mt-4">
-                    <OdsCheckbox
-                      id="import-tags"
-                      name={name}
-                      isChecked={value}
-                      isDisabled={wholeDatabase}
-                      onOdsBlur={onBlur}
-                      onOdsChange={(e) => onChange(e.detail.checked)}
-                    />
-                    <label htmlFor="import-tags" className="ml-4 cursor-pointer">
-                      <OdsText>{t('common:web_hosting_common_tags')}</OdsText>
-                    </label>
-                  </div>
-                )}
-              />
-            </div>
-            <div className="flex flex-row mt-4">
-              <Controller
-                name="users"
-                control={controlStep2}
-                render={({ field: { name, value, onBlur, onChange } }) => (
-                  <div className="flex flex-row mt-4">
-                    <OdsCheckbox
-                      id="import-users"
-                      name={name}
-                      isChecked={value}
-                      isDisabled={wholeDatabase}
-                      onOdsBlur={onBlur}
-                      onOdsChange={(e) => onChange(e.detail.checked)}
-                    />
-                    <label htmlFor="import-users" className="ml-4 cursor-pointer">
-                      <OdsText>{t('common:web_hosting_common_users')}</OdsText>
-                    </label>
-                  </div>
-                )}
-              />
-            </div>
-          </ManagerTile>
-          <OdsMessage color={ODS_MESSAGE_COLOR.warning} isDismissible={false} className="mt-4">
-            <div className="flex flex-col space-y-2">
-              <span>
-                {t(
-                  'managedWordpress:web_hosting_managed_wordpress_import_warning_message_part_1',
-                )}{' '}
-              </span>
-              <span>
-                {t('managedWordpress:web_hosting_managed_wordpress_import_warning_message_part_2')}
-              </span>
-            </div>
-          </OdsMessage>
-          <OdsFormField>
-            <ManagerButton
-              type="submit"
-              label={t('common:web_hosting_common_action_launch_import')}
-              isDisabled={!isValidStep2 || isSubmittingStep2}
-              isLoading={isSubmittingStep2}
-              color={ODS_BUTTON_COLOR.primary}
-              id="import-step2"
-            />
-          </OdsFormField>
-        </form>
+        />
       )}
     </>
   );

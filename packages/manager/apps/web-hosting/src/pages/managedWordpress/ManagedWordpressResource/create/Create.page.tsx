@@ -18,8 +18,8 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { LinkType, Links, ManagerButton, useNotifications } from '@ovh-ux/manager-react-components';
 
 import { postManagedCmsResourceWebsite } from '@/data/api/managedWordpress';
-import { useManagedWordpressReferenceAvailableLanguages } from '@/data/hooks/managedWordpressReferenceAvailableLanguages/useManagedWordpressReferenceAvailableLanguages';
-import { ManagedWordpressCmsType } from '@/data/types/product/managedWordpress';
+import { useManagedWordpressReferenceAvailableLanguages } from '@/data/hooks/managedWordpress/managedWordpressReferenceAvailableLanguages/useManagedWordpressReferenceAvailableLanguages';
+import { ManagedWordpressCmsType } from '@/data/types/product/managedWordpress/cms';
 import { useGenerateUrl } from '@/hooks';
 import { zForm } from '@/utils';
 

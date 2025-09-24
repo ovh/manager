@@ -10,8 +10,8 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { BaseLayout, Datagrid, DatagridColumn, Links } from '@ovh-ux/manager-react-components';
 
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
-import { useManagedWordpressResource } from '@/data/hooks/managedWordpressResource/useManagedWordpressResource';
-import { ManagedWordpressResourceType } from '@/data/types/product/managedWordpress';
+import { useManagedWordpressResource } from '@/data/hooks/managedWordpress/managedWordpressResource/useManagedWordpressResource';
+import { ManagedWordpressResourceType } from '@/data/types/product/managedWordpress/ressource';
 import { useGenerateUrl } from '@/hooks/generateUrl/useGenerateUrl';
 import { getStatusColor } from '@/utils/getStatusColor';
 
