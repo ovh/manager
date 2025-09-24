@@ -188,6 +188,19 @@ export const Routes: RouteObject[] = [
                   },
                 },
               },
+              {
+                id: subRoutes.exportIpToCsv,
+                path: urls.listingExportIpToCsv,
+                ...lazyRouteConfig(() =>
+                  import('@/pages/actions/exportIpToCsv/exportIpToCsv.page'),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'export-ip-to-csv',
+                    pageType: PageType.popup,
+                  },
+                },
+              }
             ],
           },
           {
