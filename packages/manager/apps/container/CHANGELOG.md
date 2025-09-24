@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.152.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.152.0...@ovh-ux/manager-container-app@0.152.1) (2025-09-24)
+
+
+### Bug Fixes
+
+* **container:** issue with usecallback in suggestion modal ([f99fe64](https://github.com/ovh/manager/commit/f99fe646e25800910efaeb6b86135f99dd847e71)), closes [#MANAGER-19872](https://github.com/ovh/manager/issues/MANAGER-19872)
+* **container:** suggestion modal error management ([d5d67e7](https://github.com/ovh/manager/commit/d5d67e7e9db62fb5970afc3d7ba664303c37212a)), closes [#MANAGER-14721](https://github.com/ovh/manager/issues/MANAGER-14721)
+
+
+
+
+
 # [0.152.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.151.1...@ovh-ux/manager-container-app@0.152.0) (2025-09-23)
 
 
