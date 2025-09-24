@@ -56,4 +56,11 @@ export default class MyPoliciesController extends AbstractCursorDatagridControll
       params: { ...this.params, policy: id },
     });
   }
+
+  openAdvancedSearchModal() {
+    // TODO: tracking + translation
+    return this.goTo({
+      name: 'iam.policies.myPolicies.advancedSearch',
+    });
+  }
 }
