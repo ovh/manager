@@ -67,6 +67,15 @@
                 <span data-ng-bind=":: $row.size || '-'"></span>
             </oui-datagrid-column>
             <oui-datagrid-column
+                title=":: 'netapp_volumes_snapshots_path' | translate"
+                property="path"
+            >
+                <oui-clipboard
+                    class="min-w-20"
+                    data-model="$row.path"
+                ></oui-clipboard>
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 title=":: 'netapp_volumes_snapshots_type' | translate"
                 property="type"
             >
