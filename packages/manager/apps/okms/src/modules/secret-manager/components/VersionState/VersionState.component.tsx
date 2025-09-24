@@ -35,18 +35,20 @@ export type VersionStatusParams = Omit<
 > & {
   state: SecretVersionState;
   size?: ODS_BADGE_SIZE;
+  'data-testid'?: string;
 };
 
 export const VersionState = ({
   state,
   size = ODS_BADGE_SIZE.md,
+  'data-testid': dataTestId,
   ...rest
 }: VersionStatusParams) => {
   const { t } = useTranslation('secret-manager');
 
   return (
     <OdsBadge
-      data-testid={VERSION_BADGE_TEST_ID}
+      data-testid={dataTestId || VERSION_BADGE_TEST_ID}
       label={t(variants[state].translationKey)}
       size={size}
       color={variants[state].color}
