@@ -1,9 +1,16 @@
 import { useTranslation } from 'react-i18next';
 import {
+  Button,
   Checkbox,
   CheckboxControl,
   CheckboxGroup,
   CheckboxLabel,
+  Drawer,
+  DRAWER_POSITION,
+  DrawerBody,
+  DrawerContent,
+  DrawerTrigger,
+  Link,
   Text,
 } from '@ovhcloud/ods-react';
 import z from 'zod';
@@ -21,17 +28,63 @@ type TDeploymentModeSelection = {
 };
 
 export const DeploymentModeSelection = () => {
-  const { t } = useTranslation('creation');
+  const { t } = useTranslation('creation, common');
   const { control } = useFormContext<TDeploymentModeSelection>();
 
   return (
     <section className="my-8">
-      <Text preset="heading-3">
-        {t('pci_instance_creation_select_deployment_mode_title')}
-      </Text>
-      <Text preset="paragraph">
-        (Not mandatory) Si besoin d’un texte explicatif/consigne...
-      </Text>
+      <div className="flex flex-col gap-4">
+        <div className={'mt-8 flex'}>
+          <Text preset="heading-3">
+            {t('creation:pci_instance_creation_select_deployment_mode_title')}
+          </Text>
+          <div>
+            <Drawer>
+              <DrawerTrigger asChild>
+                <Button variant={'ghost'} size={'sm'}>
+                  {t('common:pci_instances_common_help')}
+                </Button>
+              </DrawerTrigger>
+              <DrawerContent position={DRAWER_POSITION.right}>
+                <DrawerBody className={'pb-10'}>
+                  <Text preset="paragraph" className={'mb-4'}>
+                    {t(
+                      'creation:pci_instance_creation_select_deployment_mode_help_p1',
+                    )}
+                  </Text>
+                  <Text preset="paragraph" className={'mb-4'}>
+                    {t(
+                      'creation:pci_instance_creation_select_deployment_mode_help_p2',
+                    )}
+                  </Text>
+                  <Text preset="paragraph" className={'mb-4'}>
+                    {t(
+                      'creation:pci_instance_creation_select_deployment_mode_help_p3',
+                    )}
+                  </Text>
+                  <Text preset="paragraph" className={'mb-4'}>
+                    {t(
+                      'creation:pci_instance_creation_select_deployment_mode_help_p4',
+                    )}
+                  </Text>
+                  <Link
+                    className={'w-full'}
+                    href="https://help.ovhcloud.com/csm/fr-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066031"
+                  >
+                    https://help.ovhcloud.com/csm/fr-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066031
+                  </Link>
+                </DrawerBody>
+              </DrawerContent>
+            </Drawer>
+          </div>
+        </div>
+
+        <Text preset="paragraph">
+          {t(
+            'creation:pci_instance_creation_select_deployment_mode_informations',
+          )}
+        </Text>
+      </div>
       <section className="mt-6">
         <Controller<TDeploymentModeSelection>
           name="deploymentModes"
