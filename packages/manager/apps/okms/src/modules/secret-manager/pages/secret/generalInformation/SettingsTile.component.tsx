@@ -9,6 +9,7 @@ import {
   SecretSmartConfigOrigin,
   NOT_SET_VALUE_DEACTIVATE_VERSION_AFTER,
 } from '@secret-manager/utils/secretSmartConfig';
+import { SECRET_TEST_IDS } from '@secret-manager/pages/secret/generalInformation/GeneralInformation.constants';
 
 type SettingsTileProps = {
   secret: Secret;
@@ -40,7 +41,7 @@ export const SettingsTile = ({ secret }: SettingsTileProps) => {
           {isPending ? (
             <OdsSkeleton />
           ) : (
-            <OdsText preset="span">
+            <OdsText preset="span" data-testid={SECRET_TEST_IDS.MAX_VERSIONS}>
               {secretConfig.maxVersions.value}{' '}
               {labels[secretConfig.maxVersions.origin]}
             </OdsText>
@@ -56,7 +57,10 @@ export const SettingsTile = ({ secret }: SettingsTileProps) => {
           {isPending ? (
             <OdsSkeleton />
           ) : (
-            <OdsText preset="span">
+            <OdsText
+              preset="span"
+              data-testid={SECRET_TEST_IDS.DEACTIVATE_VERSION_AFTER}
+            >
               {secretConfig.deactivateVersionAfter.value ===
               NOT_SET_VALUE_DEACTIVATE_VERSION_AFTER
                 ? t('never_expire')
@@ -75,7 +79,7 @@ export const SettingsTile = ({ secret }: SettingsTileProps) => {
           {isPending ? (
             <OdsSkeleton />
           ) : (
-            <OdsText preset="span">
+            <OdsText preset="span" data-testid={SECRET_TEST_IDS.CAS_REQUIRED}>
               {secretConfig.casRequired.value
                 ? t('activated')
                 : t('disabled', { ns: NAMESPACES.STATUS })}{' '}
