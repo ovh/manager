@@ -37,5 +37,6 @@
   "zimbra_account_upgrade_offer_details": "Account upgrades are free throughout the beta phase.",
   "zimbra_account_upgrade_lab_page": "For more information, please read <Link href=\"{{ zimbra_beta_link }}\">the beta conditions on the OVHcloud Labs page</Link>.",
   "zimbra_account_upgrade_success_message": "Your upgrade request has been processed. It will be processed in a few moments.",
-  "zimbra_account_upgrade_error_message": "Unable to submit your upgrade request. {{ error }}"
+  "zimbra_account_upgrade_error_message": "Unable to submit your upgrade request. {{ error }}",
+  "zimbra_account_account_migrate": "Migrate an account"
 }

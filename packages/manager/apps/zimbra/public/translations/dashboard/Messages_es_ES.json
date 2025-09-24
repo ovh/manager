@@ -63,5 +63,6 @@
   "zimbra_dashboard_domains_verify": "Verificación",
   "zimbra_dashboard_domains_diagnostics": "Diagnóstico",
   "zimbra_mail_configure_guide": "Conectar una cuenta de correo",
-  "zimbra_mail_migrate_guide": "Migrar una cuenta de correo"
+  "zimbra_mail_migrate_guide": "Migrar una cuenta de correo",
+  "zimbra_dashboard_ovh_mail_migrator": "Herramienta de migración"
 }

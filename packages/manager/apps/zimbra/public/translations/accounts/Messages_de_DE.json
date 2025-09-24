@@ -37,5 +37,6 @@
   "zimbra_account_upgrade_offer_details": "Wir bieten Ihnen an, Ihr Konto während der gesamten Betaphase kostenlos upzugraden.",
   "zimbra_account_upgrade_lab_page": "Für mehr Informationen lesen Sie bitte <Link href=\"{{ zimbra_beta_link }}\">die Beta-Bedingungen auf der Lab-Seite</Link>.",
   "zimbra_account_upgrade_success_message": "Ihre Upgrade-Anfrage wurde registriert. Sie wird in Kürze bearbeitet.",
-  "zimbra_account_upgrade_error_message": "Die Upgradeanfrage ist fehlgeschlagen. {{ error }}"
+  "zimbra_account_upgrade_error_message": "Die Upgradeanfrage ist fehlgeschlagen. {{ error }}",
+  "zimbra_account_account_migrate": "Einen Account migrieren"
 }
