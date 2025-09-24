@@ -910,5 +910,6 @@
   "emailpro_ACTION_update_account_step1_password_zimbra_helper": "Your password must contain at least:",
   "emailpro_ACTION_update_account_step1_password_zimbra_helper_rule_1": "10 characters",
   "emailpro_ACTION_update_account_step1_password_zimbra_helper_rule_2": "1 digit or 1 special character ($, !, &amp;)",
-  "emailpro_ACTION_update_account_step1_password_zimbra_helper_rule_3": "1 uppercase letter"
+  "emailpro_ACTION_update_account_step1_password_zimbra_helper_rule_3": "1 uppercase letter",
+  "emailpro_ACTION_migrate_account_button": "Migrate accounts"
 }
