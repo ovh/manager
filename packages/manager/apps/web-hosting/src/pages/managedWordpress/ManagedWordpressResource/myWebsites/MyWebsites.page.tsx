@@ -20,9 +20,9 @@ import {
   ManagerButton,
 } from '@ovh-ux/manager-react-components';
 
-import { useManagedWordpressResourceDetails } from '@/data/hooks/managedWordpressResourceDetails/useManagedWordpressResourceDetails';
-import { useManagedWordpressWebsites } from '@/data/hooks/managedWordpressWebsites/useManagedWordpressWebsites';
-import { ManagedWordpressWebsites } from '@/data/types/product/managedWordpress';
+import { useManagedWordpressResourceDetails } from '@/data/hooks/managedWordpress/managedWordpressResourceDetails/useManagedWordpressResourceDetails';
+import { useManagedWordpressWebsites } from '@/data/hooks/managedWordpress/managedWordpressWebsites/useManagedWordpressWebsites';
+import { ManagedWordpressWebsites } from '@/data/types/product/managedWordpress/website';
 import { ResourceStatus } from '@/data/types/status';
 import { useGenerateUrl } from '@/hooks';
 
@@ -74,7 +74,8 @@ export default function MyWebsitesPage() {
   };
 
   const isRowSelectable = useCallback(
-    (item: ManagedWordpressWebsites) => item.resourceStatus === ResourceStatus.READY,
+    (item: ManagedWordpressWebsites) =>
+      (item.resourceStatus as ResourceStatus) === ResourceStatus.READY,
     [],
   );
 

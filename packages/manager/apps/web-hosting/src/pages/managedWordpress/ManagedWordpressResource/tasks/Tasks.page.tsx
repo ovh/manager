@@ -10,9 +10,9 @@ import { OdsBadge, OdsButton, OdsProgressBar } from '@ovhcloud/ods-components/re
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Datagrid, DatagridColumn, useFormatDate } from '@ovh-ux/manager-react-components';
 
-import { useManagedWordpressResourceTasks } from '@/data/hooks/managedWordpressResourceTasks/useManagedWordpressResourceTasks';
-import { useManagedWordpressWebsites } from '@/data/hooks/managedWordpressWebsites/useManagedWordpressWebsites';
-import { ManagedWordpressResourceTask } from '@/data/types/product/managedWordpress';
+import { useManagedWordpressResourceTasks } from '@/data/hooks/managedWordpress/managedWordpressResourceTasks/useManagedWordpressResourceTasks';
+import { useManagedWordpressWebsites } from '@/data/hooks/managedWordpress/managedWordpressWebsites/useManagedWordpressWebsites';
+import { ManagedWordpressResourceTask } from '@/data/types/product/managedWordpress/tasks';
 import { Status } from '@/data/types/product/ssl';
 import { getStatusColor } from '@/utils/getStatusColor';
 
