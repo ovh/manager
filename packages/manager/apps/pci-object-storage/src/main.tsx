@@ -1,31 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {
-  initI18n,
+  ShellProvider,
   initShellContext,
-  ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
+import initI18n from './i18n';
 import App from './App';
-
-import './index.css';
-
+import { LoadingIndicatorProvider } from './contexts/LoadingIndicator.context';
 import '@/vite-hmr.ts';
-import { APP_NAME, LEVEL2, SUB_UNIVERSE, UNIVERSE } from './tracking.constants';
-
-const trackingContext = {
-  chapter1: UNIVERSE,
-  chapter2: SUB_UNIVERSE,
-  chapter3: APP_NAME,
-  appName: APP_NAME,
-  level2Config: LEVEL2,
-  pageTheme: UNIVERSE,
-};
+import './index.css';
 
 const init = async (
   appName: string,
   { reloadOnLocaleChange } = { reloadOnLocaleChange: false },
 ) => {
-  const context = await initShellContext(appName, trackingContext);
+  const context = await initShellContext(appName);
 
   const region = context.environment.getRegion();
   try {
@@ -34,18 +23,32 @@ const init = async (
     // nothing to do
   }
 
-  await initI18n({
-    context,
-    reloadOnLocaleChange,
-    ns: ['common'],
-    defaultNS: 'common',
+  const locales = await context.shell.i18n.getAvailableLocales();
+
+  const i18n = initI18n(
+    context.environment.getUserLocale(),
+    locales.map(({ key }: { key: string }) => key),
+  );
+
+  context.shell.i18n.onLocaleChange(({ locale }: { locale: string }) => {
+    if (reloadOnLocaleChange) {
+      window.top?.location.reload();
+    } else {
+      i18n.changeLanguage(locale);
+    }
   });
 
-  ReactDOM.createRoot(document.getElementById('root')).render(
+  const root = document.getElementById('root');
+  if (!root) {
+    throw new Error('Root element not found');
+  }
+  ReactDOM.createRoot(root).render(
     <React.StrictMode>
-      <ShellContext.Provider value={context}>
-        <App />
-      </ShellContext.Provider>
+      <ShellProvider client={context}>
+        <LoadingIndicatorProvider>
+          <App />
+        </LoadingIndicatorProvider>
+      </ShellProvider>
     </React.StrictMode>,
   );
 };
