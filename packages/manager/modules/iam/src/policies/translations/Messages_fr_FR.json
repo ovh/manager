@@ -12,5 +12,6 @@
   "iam_policies_datagrid_column_description": "Description",
   "iam_policies_datagrid_column_name": "Nom",
   "iam_policies_datagrid_topbar_create_policy": "Créer une politique",
+  "iam_policies_datagrid_topbar_advanced_search": "Recherche avancée",
   "iam_policies_description": "Gérez les identités de vos utilisateurs et de vos applications, ainsi que leurs droits d’accès dans une interface unique pour tous vos services. OVHcloud IAM permet de gérer finement l’ensemble des autorisations des produits OVHcloud et d’obtenir un meilleur niveau de sécurité avec une vision centralisée de vos accès."
 }
