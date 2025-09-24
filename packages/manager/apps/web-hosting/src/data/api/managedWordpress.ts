@@ -2,15 +2,20 @@ import { v2 } from '@ovh-ux/manager-core-api';
 
 // import { proxyV2 } from '../../../../../core/api/src/client';
 // @todo: to change soon we have prod api
+
+import { PostImportPayload } from '../types/product/managedWordpress/import';
 import {
   ManagedWordpressResourceDetailsType,
-  ManagedWordpressResourceTask,
   ManagedWordpressResourceType,
+} from '../types/product/managedWordpress/ressource';
+import {
+  ManagedWordpressResourceTask,
+  PostImportTaskPayload,
+} from '../types/product/managedWordpress/tasks';
+import {
   ManagedWordpressWebsiteDetails,
   ManagedWordpressWebsites,
-  PostImportPayload,
-  PostImportTaskPayload,
-} from '../types/product/managedWordpress';
+} from '../types/product/managedWordpress/website';
 
 export const getManagedCmsReferenceAvailableLanguages = async (): Promise<string[]> => {
   const { data } = await v2.get<string[]>('/managedCMS/reference/availableLanguages');

@@ -3,4 +3,4 @@ export * from './websites';
 export * from './webHostingDashboard';
 export * from './ssl';
 export * from './tasks';
-export * from './managedWordpress';
+export * from './managedWordpress/mocks';
