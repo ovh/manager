@@ -126,7 +126,7 @@ export const ByoipOrderModal: React.FC<{ isOpen: boolean }> = ({
         <OdsButton
           color={ODS_BUTTON_COLOR.primary}
           size={ODS_BUTTON_SIZE.md}
-          variant={ODS_BUTTON_VARIANT.ghost}
+          variant={ODS_BUTTON_VARIANT.outline}
           label={t('cancel', { ns: NAMESPACES.ACTIONS })}
           onClick={() => {
             startTransition(() => {
