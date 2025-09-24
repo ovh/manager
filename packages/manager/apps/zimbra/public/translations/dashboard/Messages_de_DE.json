@@ -63,5 +63,6 @@
   "zimbra_dashboard_domains_verify": "Überprüfung",
   "zimbra_dashboard_domains_diagnostics": "Diagnose",
   "zimbra_mail_configure_guide": "Einen E-Mail-Account verbinden",
-  "zimbra_mail_migrate_guide": "Einen E-Mail-Account migrieren"
+  "zimbra_mail_migrate_guide": "Einen E-Mail-Account migrieren",
+  "zimbra_dashboard_ovh_mail_migrator": "Migrationstool"
 }

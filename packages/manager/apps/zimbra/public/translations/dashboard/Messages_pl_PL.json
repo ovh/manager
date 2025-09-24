@@ -63,5 +63,6 @@
   "zimbra_dashboard_domains_verify": "Sposób weryfikacji",
   "zimbra_dashboard_domains_diagnostics": "Raporty diagnostyczne",
   "zimbra_mail_configure_guide": "Połączenie konta e-mail",
-  "zimbra_mail_migrate_guide": "Migracja konta e-mail"
+  "zimbra_mail_migrate_guide": "Migracja konta e-mail",
+  "zimbra_dashboard_ovh_mail_migrator": "Narzędzie do migracji"
 }
