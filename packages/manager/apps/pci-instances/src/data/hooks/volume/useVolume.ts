@@ -1,5 +1,5 @@
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-import { TVolume } from '@/types/volume/common.type';
+import { TVolume } from '@/types/volume/entity.type';
 import { getVolumes } from '@/data/api/volume';
 
 export const useVolumes = (

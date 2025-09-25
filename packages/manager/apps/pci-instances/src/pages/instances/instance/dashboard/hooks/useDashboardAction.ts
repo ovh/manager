@@ -69,13 +69,7 @@ export const useUnattachedVolumes = ({
     () => ({
       instance,
       volumes:
-        instance?.volumes && volumes
-          ? selectUnattachedVolumes(
-              volumes,
-              instance.volumes,
-              instance.region.availabilityZone,
-            )
-          : [],
+        instance && volumes ? selectUnattachedVolumes(volumes, instance) : [],
       isPending: isInstancePending || isVolumePending,
     }),
     [instance, volumes, isInstancePending, isVolumePending],
