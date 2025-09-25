@@ -10,7 +10,12 @@ import {
   updateDomainResource,
 } from '@/domain/data/api/domainResources';
 import { TDomainOption, TDomainResource } from '@/domain/types/domainResource';
-import { getDomainZone } from '@/domain/data/api/domainZone';
+import {
+  activateServiceDnssec,
+  deactivateServiceDnssec,
+  getDomainZone,
+  getServiceDnssec,
+} from '@/domain/data/api/domainZone';
 import { TDomainZone } from '@/domain/types/domainZone';
 import { order } from '@/domain/types/orderCatalog';
 import { getOrderCatalog } from '@/domain/data/api/order';
@@ -21,6 +26,7 @@ import {
 import { ServiceInfoUpdateEnum } from '@/common/enum/common.enum';
 import { TServiceInfo } from '@/common/types/common.types';
 import { ServiceRoutes } from '@/alldoms/enum/service.enum';
+import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
 
 export const useGetDomainResource = (serviceName: string) => {
   const { data, isLoading, error } = useQuery<TDomainResource>({
@@ -172,5 +178,55 @@ export const useUpdateDomainResource = (serviceName: string) => {
   return {
     updateDomain: mutate,
     isUpdateDomainPending: isPending,
+  };
+};
+
+export const useGetDnssecStatus = (serviceName: string) => {
+  const { data, isLoading } = useQuery({
+    queryKey: ['domain', 'zone', 'dnssec', serviceName],
+    queryFn: () => getServiceDnssec(serviceName),
+    retry: false,
+  });
+
+  return {
+    dnssecStatus: data,
+    isDnssecStatusLoading: isLoading,
+  };
+};
+
+export const useUpdateDnssecService = (
+  serviceName: string,
+  action: DnssecStatusEnum,
+) => {
+  const queryClient = useQueryClient();
+  const { addSuccess, addError } = useNotifications();
+  const { t } = useTranslation(['domain', 'web-domains/error']);
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: () => {
+      if (action === DnssecStatusEnum.ENABLED) {
+        return activateServiceDnssec(serviceName);
+      }
+
+      return deactivateServiceDnssec(serviceName);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['domain', 'zone', 'dnssec', serviceName],
+      });
+      addSuccess(t('domain_tab_general_information_dnssec_result'));
+    },
+    onError: (error: Error) => {
+      addError(
+        t('domain_tab_general_information_dnssec_error', {
+          error: error.message,
+        }),
+      );
+    },
+  });
+
+  return {
+    updateServiceDnssec: mutate,
+    isUpdateIsPending: isPending,
   };
 };
