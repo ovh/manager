@@ -1,23 +1,17 @@
-import React, { Suspense, startTransition, useMemo } from 'react';
-
+import { Suspense, startTransition, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import { useTranslation } from 'react-i18next';
-
 import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OdsButton } from '@ovhcloud/ods-components/react';
-
 import {
   BaseLayout,
   DataGridTextCell,
   Datagrid,
   useDataGrid,
 } from '@ovh-ux/manager-react-components';
-
-import { APP_FEATURES, appName } from '@/App.constants';
+import { APP_FEATURES } from '@/App.constants';
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import { useListingData } from '@/data/hooks/useResources';
-import { useBreadcrumb } from '@/hooks/layout/useBreadcrumb';
 import { useListingColumns } from '@/hooks/listing/useListingColumns';
 import { urls } from '@/routes/Routes.constants';
 import { ListingItemType } from '@/types/Listing.type';
@@ -26,14 +20,13 @@ export default function ListingPage() {
   const { t } = useTranslation(['common', 'listing']);
   const navigate = useNavigate();
 
-  const breadcrumbItems = useBreadcrumb({
-    rootLabel: t('common:home'),
-    appName,
-  });
-
-  const { items, total, isLoading, hasNextPage, fetchNextPage } = useListingData<ListingItemType>(
-    APP_FEATURES.listingEndpoint,
-  );
+  const {
+    items,
+    total,
+    isLoading,
+    hasNextPage,
+    fetchNextPage,
+  } = useListingData<ListingItemType>(APP_FEATURES.listingEndpoint);
 
   const baseColumns = useListingColumns<ListingItemType>();
 
@@ -49,24 +42,29 @@ export default function ListingPage() {
         label: t('listing:auto_column', 'Result'),
         isSortable: false,
         cell: (row: ListingItemType) => (
-          <DataGridTextCell>{row ? JSON.stringify(row) : EMPTY}</DataGridTextCell>
+          <DataGridTextCell>
+            {row ? JSON.stringify(row) : EMPTY}
+          </DataGridTextCell>
         ),
       },
     ];
   }, [baseColumns, t]);
 
-  const initialSort = useMemo(() => ({ id: columns[0]?.id ?? 'auto', desc: false }), [columns]);
+  const initialSort = useMemo(
+    () => ({ id: columns[0]?.id ?? 'auto', desc: false }),
+    [columns],
+  );
   const { sorting, setSorting } = useDataGrid(initialSort);
 
   const totalItems = Number.isFinite(total) ? total : items.length;
 
   const onNavigateToDashboardClicked = () => {
-    startTransition(() => navigate(`../${urls.dashboard}`));
+    startTransition(() => navigate(urls.dashboard));
   };
 
   return (
     <BaseLayout
-      breadcrumb={<Breadcrumb items={breadcrumbItems} />}
+      breadcrumb={<Breadcrumb />}
       header={{ title: t('listing:title') }}
     >
       <Suspense>
