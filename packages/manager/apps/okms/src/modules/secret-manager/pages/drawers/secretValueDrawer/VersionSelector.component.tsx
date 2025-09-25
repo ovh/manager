@@ -4,7 +4,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   OdsMessage,
   OdsSelect,
-  OdsSpinner,
+  OdsSkeleton,
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { VersionState } from '@secret-manager/components/VersionState/VersionState.component';
@@ -13,7 +13,8 @@ import { SecretVersion } from '@secret-manager/types/secret.type';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import {
   VERSION_SELECTOR_ERROR_TEST_ID,
-  VERSION_SELECTOR_SPINNER_TEST_ID,
+  VERSION_SELECTOR_SELECT_SKELETON_TEST_ID,
+  VERSION_SELECTOR_STATUS_SKELETON_TEST_ID,
   VERSION_SELECTOR_TEST_ID,
 } from './VersionSelector.constants';
 import { isErrorResponse } from '@/utils/api/api';
@@ -22,16 +23,16 @@ type VersionSelectorParams = {
   okmsId: string;
   secretPath: string;
   versionId: string;
-  currentVersion: SecretVersion;
-  setCurrentVersion: React.Dispatch<React.SetStateAction<SecretVersion>>;
+  selectedVersion: SecretVersion;
+  setSelectedVersion: React.Dispatch<React.SetStateAction<SecretVersion>>;
 };
 
 export const VersionSelector = ({
   okmsId,
   secretPath,
   versionId,
-  currentVersion,
-  setCurrentVersion,
+  selectedVersion,
+  setSelectedVersion,
 }: VersionSelectorParams) => {
   const secretPathDecoded = decodeSecretPath(secretPath);
 
@@ -46,15 +47,6 @@ export const VersionSelector = ({
     path: secretPathDecoded,
     pageSize: 100,
   });
-
-  // isFetching forces to display the spinner when the version has changed
-  // otherwise when the ods-select component is refreshed, react breaks
-  if (isPending || isFetching)
-    return (
-      <div className="flex justify-center">
-        <OdsSpinner data-testid={VERSION_SELECTOR_SPINNER_TEST_ID} />
-      </div>
-    );
 
   if (error) {
     const message = isErrorResponse(error)
@@ -77,47 +69,59 @@ export const VersionSelector = ({
 
   const versions = data?.pages.flatMap((page) => page.data);
 
-  if (!versions?.length) return null;
-
-  const defaultVersion = versionId
-    ? versions
-        .find((version) => version.id.toString() === versionId)
-        .id.toString()
-    : versions[0].id.toString();
-
   return (
     <div className="flex flex-col gap-3 pt-2">
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-2 items-center h-8">
         <OdsText preset="span" className="w-1/3">
           {t('version')}
         </OdsText>
-        <OdsSelect
-          data-testid={VERSION_SELECTOR_TEST_ID}
-          className="flex-grow"
-          name="version-selector"
-          onOdsChange={(value) =>
-            setCurrentVersion(
-              versions.find((v) => v.id === Number(value.detail.value)),
-            )
-          }
-          defaultValue={defaultVersion}
-          isDisabled={versions.length === 1}
-        >
-          {versions.map((version) => (
-            <option value={version.id} key={version.id}>
-              {version.id}
-            </option>
-          ))}
-        </OdsSelect>
+        {/*   isFetching forces to display the spinner when the version has changed
+        otherwise when the ods-select component is refreshed, react breaks */}
+        {isPending || isFetching ? (
+          <OdsSkeleton
+            className="flex-grow"
+            data-testid={VERSION_SELECTOR_SELECT_SKELETON_TEST_ID}
+          />
+        ) : (
+          <OdsSelect
+            data-testid={VERSION_SELECTOR_TEST_ID}
+            className="flex-grow"
+            name="version-selector"
+            onOdsChange={(value) =>
+              setSelectedVersion(
+                versions.find((v) => v.id === Number(value.detail.value)),
+              )
+            }
+            defaultValue={
+              versionId
+                ? versions
+                    .find((version) => version.id.toString() === versionId)
+                    .id.toString()
+                : versions[0].id.toString()
+            }
+            isDisabled={versions.length === 1}
+          >
+            {versions.map((version) => (
+              <option value={version.id} key={version.id}>
+                {version.id}
+              </option>
+            ))}
+          </OdsSelect>
+        )}
       </div>
-      {currentVersion && (
-        <div className="flex gap-2 items-center">
-          <OdsText preset="span" className="w-1/3">
-            {t('status', { ns: NAMESPACES.STATUS })}
-          </OdsText>
-          <VersionState state={currentVersion.state} />
-        </div>
-      )}
+      <div className="flex gap-2 items-center h-8">
+        <OdsText preset="span" className="w-1/3">
+          {t('status', { ns: NAMESPACES.STATUS })}
+        </OdsText>
+        {isPending ? (
+          <OdsSkeleton
+            className="flex-grow"
+            data-testid={VERSION_SELECTOR_STATUS_SKELETON_TEST_ID}
+          />
+        ) : (
+          selectedVersion && <VersionState state={selectedVersion.state} />
+        )}
+      </div>
     </div>
   );
 };
