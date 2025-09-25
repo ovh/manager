@@ -28,7 +28,7 @@
     "@ovh-ux/manager-core-api": "^0.18.4",
     "@ovh-ux/manager-pci-common": "^0.16.4",
     "@ovh-ux/manager-react-components": "^1.46.0",
-    "@ovh-ux/manager-react-shell-client": "^0.9.3",
+    "@ovh-ux/manager-react-shell-client": "^0.11.0",
     "@ovh-ux/request-tagger": "^0.5.2",
     "@ovh-ux/shell": "^4.7.6",
     "@ovhcloud/ods-theme-blue-jeans": "17.2.2",

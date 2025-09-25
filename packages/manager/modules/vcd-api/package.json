@@ -27,7 +27,7 @@
     "@ovh-ux/manager-core-api": "^0.18.4",
     "@ovh-ux/manager-module-order": "^0.11.4",
     "@ovh-ux/manager-react-components": "^2.41.0",
-    "@ovh-ux/manager-react-shell-client": "^0.9.3"
+    "@ovh-ux/manager-react-shell-client": "^0.11.0"
   },
   "devDependencies": {
     "@ovh-ux/manager-core-test-utils": "^0.7.4",
