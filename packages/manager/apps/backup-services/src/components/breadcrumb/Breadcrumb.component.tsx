@@ -1,9 +1,7 @@
-import {
-  OdsBreadcrumb,
-  OdsBreadcrumbItem,
-} from '@ovhcloud/ods-components/react';
-import { useBreadcrumb } from '@/hooks/layout/useBreadcrumb';
+import { OdsBreadcrumb, OdsBreadcrumbItem } from '@ovhcloud/ods-components/react';
+
 import { useApplicationBreadcrumbItems } from '@/hooks/layout/useApplicationBreadcrumbItems';
+import { useBreadcrumb } from '@/hooks/layout/useBreadcrumb';
 
 function Breadcrumb(): JSX.Element {
   const applicationBreadcrumbItems = useApplicationBreadcrumbItems();

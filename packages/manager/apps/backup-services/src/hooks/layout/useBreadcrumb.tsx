@@ -1,7 +1,9 @@
 import { useLocation } from 'react-router-dom';
+
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
-import { BreadcrumbItem, BreadcrumbProps } from '@/types/Breadcrumb.type';
+
 import { APP_FEATURES, appName, productName } from '@/App.constants';
+import { BreadcrumbItem, BreadcrumbProps } from '@/types/Breadcrumb.type';
 
 const { appSlug, basePrefix } = APP_FEATURES;
 
@@ -27,18 +29,16 @@ export const useBreadcrumb = ({ items }: BreadcrumbProps = {}) => {
     // href: `${url}${value}`, // to try if navigation not working
   }));
 
-  const breadcrumbItems: BreadcrumbItem[] = [rootItem, ...pathItems].map(
-    (crumb) => {
-      const match = items?.find(({ id }) => id === crumb.id);
+  const breadcrumbItems: BreadcrumbItem[] = [rootItem, ...pathItems].map((crumb) => {
+    const match = items?.find(({ id }) => id === crumb.id);
 
-      return {
-        id: match?.id ?? crumb.id,
-        label: match?.label ?? crumb.label,
-        href: match?.href ?? crumb.href,
-        // href: `${url}${crumb.value}`, // to try if navigation not working
-      };
-    },
-  );
+    return {
+      id: match?.id ?? crumb.id,
+      label: match?.label ?? crumb.label,
+      href: match?.href ?? crumb.href,
+      // href: crumb.href, // to try if navigation not working
+    };
+  });
 
   return breadcrumbItems;
 };
