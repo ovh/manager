@@ -8,9 +8,9 @@ import {
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import userEvent from '@testing-library/user-event';
+import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/versionList';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
-import { assertVersionDatagridVisilibity } from './versionList/VersionList.page.spec';
 import { PATH_LABEL, URN_LABEL } from '@/constants';
 import { okmsRoubaix1Mock } from '@/mocks/kms/okms.mock';
 
