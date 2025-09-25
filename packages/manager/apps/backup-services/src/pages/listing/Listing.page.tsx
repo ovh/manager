@@ -1,14 +1,19 @@
 import { Suspense, startTransition, useMemo } from 'react';
+
 import { useNavigate } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
+
 import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OdsButton } from '@ovhcloud/ods-components/react';
+
 import {
   BaseLayout,
   DataGridTextCell,
   Datagrid,
   useDataGrid,
 } from '@ovh-ux/manager-react-components';
+
 import { APP_FEATURES } from '@/App.constants';
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import { useListingData } from '@/data/hooks/useResources';
@@ -20,13 +25,9 @@ export default function ListingPage() {
   const { t } = useTranslation(['common', 'listing']);
   const navigate = useNavigate();
 
-  const {
-    items,
-    total,
-    isLoading,
-    hasNextPage,
-    fetchNextPage,
-  } = useListingData<ListingItemType>(APP_FEATURES.listingEndpoint);
+  const { items, total, isLoading, hasNextPage, fetchNextPage } = useListingData<ListingItemType>(
+    APP_FEATURES.listingEndpoint,
+  );
 
   const baseColumns = useListingColumns<ListingItemType>();
 
@@ -42,18 +43,13 @@ export default function ListingPage() {
         label: t('listing:auto_column', 'Result'),
         isSortable: false,
         cell: (row: ListingItemType) => (
-          <DataGridTextCell>
-            {row ? JSON.stringify(row) : EMPTY}
-          </DataGridTextCell>
+          <DataGridTextCell>{row ? JSON.stringify(row) : EMPTY}</DataGridTextCell>
         ),
       },
     ];
   }, [baseColumns, t]);
 
-  const initialSort = useMemo(
-    () => ({ id: columns[0]?.id ?? 'auto', desc: false }),
-    [columns],
-  );
+  const initialSort = useMemo(() => ({ id: columns[0]?.id ?? 'auto', desc: false }), [columns]);
   const { sorting, setSorting } = useDataGrid(initialSort);
 
   const totalItems = Number.isFinite(total) ? total : items.length;
@@ -63,10 +59,7 @@ export default function ListingPage() {
   };
 
   return (
-    <BaseLayout
-      breadcrumb={<Breadcrumb />}
-      header={{ title: t('listing:title') }}
-    >
+    <BaseLayout breadcrumb={<Breadcrumb />} header={{ title: t('listing:title') }}>
       <Suspense>
         {columns && (
           <Datagrid
