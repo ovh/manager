@@ -4,16 +4,16 @@ import {
   Combobox,
   ComboboxContent,
   ComboboxControl,
+  ComboboxGroupItem,
+  ComboboxItem,
   ComboboxValueChangeDetails,
   FormField,
   FormFieldLabel,
-  SelectGroupItem,
-  SelectItem,
 } from '@ovhcloud/ods-react';
 import { ErrorText } from './ErrorText';
 
-export type SelectFieldItem = SelectItem;
-export type SelectFieldGroup = SelectGroupItem;
+export type ComboboxFieldItem = ComboboxItem;
+export type ComboboxFieldGroup = ComboboxGroupItem;
 
 export const ComboboxField = <
   TFieldValues extends FieldValues,
@@ -22,10 +22,12 @@ export const ComboboxField = <
   label,
   name,
   items,
+  allowCustomValue = false,
 }: {
   label: string;
   name: TName;
-  items: (SelectItem | SelectGroupItem)[];
+  items: (ComboboxFieldItem | ComboboxFieldGroup)[];
+  allowCustomValue?: boolean;
 }) => {
   const inputId = useId();
 
@@ -46,12 +48,12 @@ export const ComboboxField = <
               items={items}
               onValueChange={handleChange}
               invalid={invalid}
-              allowCustomValue={false}
+              allowCustomValue={allowCustomValue}
             >
               <ComboboxControl />
               <ComboboxContent className="max-h-52 overflow-y-scroll" />
             </Combobox>
-            <ErrorText>{error?.message}</ErrorText>
+            {error && <ErrorText>{error?.message}</ErrorText>}
           </FormField>
         );
       }}

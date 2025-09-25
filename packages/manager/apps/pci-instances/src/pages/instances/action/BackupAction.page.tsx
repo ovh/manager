@@ -5,7 +5,14 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { PropsWithChildren, useCallback, useMemo } from 'react';
-import { Message, MessageBody, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
+import {
+  ICON_NAME,
+  Message,
+  MessageBody,
+  MessageIcon,
+  Text,
+  TEXT_PRESET,
+} from '@ovhcloud/ods-react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { DefaultError } from '@tanstack/react-query';
@@ -25,10 +32,10 @@ import {
   useInputSchema,
 } from '@/input-validation';
 import {
+  ComboboxField,
+  ComboboxFieldGroup,
   Form,
   InputField,
-  ComboboxField,
-  SelectFieldGroup,
   ToggleField,
 } from '@/components/zod-form';
 
@@ -106,7 +113,7 @@ const DistantSnapshotSection = ({
     () =>
       continents
         .entries()
-        .map<SelectFieldGroup>(([label, regions]) => ({
+        .map<ComboboxFieldGroup>(([label, regions]) => ({
           label,
           options: regions.map((region) => ({
             label: region.label,
@@ -132,32 +139,37 @@ const DistantSnapshotSection = ({
   if (!open) return null;
 
   return (
-    <>
+    <div className="flex flex-col gap-6 mt-6">
       <InputField<TFormFieldsValues>
         label={t('pci_instances_actions_backup_instance_distant_name_label')}
         name="distantSnapshotName"
         type="text"
       />
-      <ComboboxField<TFormFieldsValues>
-        label={t('pci_instances_actions_backup_instance_distant_region_label')}
-        name="distantRegion"
-        items={regionItems}
-      />
-      {!!price && !isBackupLoading && (
-        <Text preset={TEXT_PRESET.caption}>
-          {t('pci_instances_actions_backup_instance_price', {
-            price,
-          })}
-        </Text>
-      )}
+      <div className="flex flex-col gap-4">
+        <ComboboxField<TFormFieldsValues>
+          label={t(
+            'pci_instances_actions_backup_instance_distant_region_label',
+          )}
+          name="distantRegion"
+          items={regionItems}
+        />
+        {!!price && !isBackupLoading && (
+          <Text preset={TEXT_PRESET.caption}>
+            {t('pci_instances_actions_backup_instance_price', {
+              price,
+            })}
+          </Text>
+        )}
+      </div>
       {showActivateRegionWarning && (
         <Message color="warning" dismissible={false}>
+          <MessageIcon name={ICON_NAME.triangleExclamation} />
           <MessageBody>
             {t('pci_instances_actions_backup_instance_region_enable_warning')}
           </MessageBody>
         </Message>
       )}
-    </>
+    </div>
   );
 };
 
@@ -265,7 +277,8 @@ const BackupActionPage = () => {
       instance={instance}
       section="backup"
       isLoading={isLoading}
-      variant="warning"
+      variant="primary"
+      className="max-h-[unset] mt-[25vh]"
       wrapper={({ children }: PropsWithChildren) => (
         <Form
           schema={formSchema}
@@ -296,7 +309,7 @@ const BackupActionPage = () => {
         )}
 
         {distantContinents.size > 0 && (
-          <>
+          <div className="mt-6">
             <ToggleField<TFormFieldsValues>
               label={t('pci_instances_actions_backup_instance_distant_label')}
               name="distantSnapshot"
@@ -313,7 +326,7 @@ const BackupActionPage = () => {
               projectId={projectId}
               continents={distantContinents}
             />
-          </>
+          </div>
         )}
       </div>
     </ActionModal>

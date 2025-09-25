@@ -15,6 +15,7 @@ export type TActionModalProps = PropsWithChildren<{
   variant?: TModalVariant;
   isLoading: boolean;
   dismissible?: boolean;
+  className?: string;
   wrapper?: React.ComponentType<PropsWithChildren<unknown>>;
 }>;
 
@@ -29,6 +30,7 @@ export const ActionModal = ({
   variant,
   isLoading,
   dismissible,
+  className,
   wrapper,
 }: TActionModalProps) => (
   <Modal
@@ -39,6 +41,7 @@ export const ActionModal = ({
     variant={variant}
     dismissible={dismissible}
     wrapper={wrapper}
+    className={className}
   >
     {isPending ? (
       <div className="pt-8">
