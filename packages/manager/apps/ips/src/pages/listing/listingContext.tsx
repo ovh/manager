@@ -70,14 +70,14 @@ export const ListingContextProvider = ({ children }: PropsWithChildren) => {
 
   const setApiFilterWithUrlUpdate = React.useCallback(
     (updater: React.SetStateAction<GetIpListParams>) => {
-      // Let the state update to the next tick to avoid sync issues and warnings about set state during render
-      setTimeout(() => {
-        setApiFilter((prev) => {
-          const newFilter =
-            typeof updater === 'function' ? updater(prev) : updater;
+      setApiFilter((prev) => {
+        const newFilter =
+          typeof updater === 'function' ? updater(prev) : updater;
+        // Let the state update to the next tick to avoid sync issues and warnings about set state during render
+        setTimeout(() => {
           setSearch(cleanApiFilter(newFilter), { replace: true });
-          return newFilter;
         });
+        return newFilter;
       });
     },
     [],
