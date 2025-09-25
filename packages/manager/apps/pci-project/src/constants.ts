@@ -51,6 +51,26 @@ export const PCI_HDS_ADDON = {
   planCode: 'certification.hds.2018',
 };
 
+export const PCI_HDS_DISCOVERY_ADDON = {
+  parentPlanCode: 'project.discovery',
+};
+
+export const DISCOVERY_PROJECT_PLANCODE = 'project.discovery';
+
+export const ORDER_FOLLOW_UP_POLLING_INTERVAL = 7000;
+export const ORDER_FOLLOW_UP_STATUS_ENUM = {
+  DOING: 'DOING',
+  DONE: 'DONE',
+  ERROR: 'ERROR',
+  TODO: 'TODO',
+};
+export const ORDER_FOLLOW_UP_STEP_ENUM = {
+  AVAILABLE: 'AVAILABLE',
+  DELIVERING: 'DELIVERING',
+  VALIDATED: 'VALIDATED',
+  VALIDATING: 'VALIDATING',
+};
+
 export const BASE_PROJECT_PATH = '#/pci/projects/:projectId';
 
 const OVH_CLOUD_URL = 'https://www.ovhcloud.com';
@@ -530,3 +550,25 @@ export const DASHBOARD_OTHER_ACTIONS_ITEMS: DashboardItem[] = [
     link: PCI_FEATURES_STATES.PROJECT_MANAGEMENT.QUOTA_AND_REGIONS.url,
   },
 ];
+const OVH_DOCS_URL = 'https://docs.ovh.com';
+export const CREATING_GUIDE_URLS: Record<string, string> = {
+  DE: `${OVH_DOCS_URL}/de/public-cloud/`,
+  CZ: `${OVH_DOCS_URL}/cz/cs/public-cloud/`,
+  ASIA: `${OVH_DOCS_URL}/asia/en/public-cloud/`,
+  AU: `${OVH_DOCS_URL}/au/en/public-cloud/`,
+  GB: `${OVH_DOCS_URL}/gb/en/public-cloud/`,
+  IE: `${OVH_DOCS_URL}/ie/en/public-cloud/`,
+  SG: `${OVH_DOCS_URL}/sg/en/public-cloud/`,
+  US: `${OVH_DOCS_URL}/us/en/public-cloud/`,
+  ES: `${OVH_DOCS_URL}/es/public-cloud/`,
+  FI: `${OVH_DOCS_URL}/fi/public-cloud/`,
+  CA: `${OVH_DOCS_URL}/ca/fr/public-cloud/`,
+  FR: `${OVH_DOCS_URL}/fr/public-cloud/`,
+  IT: `${OVH_DOCS_URL}/it/public-cloud/`,
+  LT: `${OVH_DOCS_URL}/lt/public-cloud/`,
+  NL: `${OVH_DOCS_URL}/nl/public-cloud/`,
+  PL: `${OVH_DOCS_URL}/pl/public-cloud/`,
+  PT: `${OVH_DOCS_URL}/pt/public-cloud/`,
+};
+
+export const SLIDE_ANIMATION_INTERVAL = 5000;

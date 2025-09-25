@@ -1,0 +1,12 @@
+{
+  "pci_projects_creating_main_title": "La tua avventura Public Cloud ha inizio!",
+  "pci_projects_creating_secondary_title": "Creazione del progetto in corso...",
+  "pci_projects_creating_explain1": "Per completare la creazione del progetto è necessario effettuare il pagamento del modulo d'ordine  <a href=\"{{ href }}\">{{ orderId }}</a>.",
+  "pci_projects_creating_explain2": "Se visualizzi ancora questa pagina qualche minuto dopo aver effettuato il pagamento, contatta il <a href=\"{{ href }}\">supporto</a>.",
+  "pci_projects_creating_long_time": "L’operazione potrebbe richiedere qualche minuto.",
+  "pci_projects_creating_long_time_wait": "Nel frattempo, puoi consultare le guide disponibili o gli altri tuoi progetti :)",
+  "pci_projects_creating_guides": "Guide Public Cloud",
+  "pci_projects_creating_other_projects": "I tuoi altri progetti",
+  "pci_projects_creating_delivery_error": "Si è verificato un errore durante la creazione del tuo progetto Public Cloud. Stiamo lavorando per risolvere il problema il prima possibile. Riceverai un messaggio di conferma della corretta creazione. Ti ringraziamo per la pazienza e ci scusiamo sin d’ora per l’eventuale disagio causato.",
+  "pci_projects_creating_discovery_project_long_time_wait": "Nel frattempo, consulta le nostre guide :)"
+}
