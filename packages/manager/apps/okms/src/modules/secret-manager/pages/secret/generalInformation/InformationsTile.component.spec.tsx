@@ -45,6 +45,8 @@ describe('Secrets Informations Tile component tests suite', () => {
       mockSecret.metadata.createdAt,
       labels.secretManager.last_update,
       mockSecret.metadata.updatedAt,
+      labels.secretManager.current_version,
+      mockSecret.metadata.currentVersion,
     ];
 
     labelList.forEach((label) => {
