@@ -2,17 +2,12 @@ import { getLogsRoute } from '@ovh-ux/logs-to-customer';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { lazy } from 'react';
-import { Route } from 'react-router-dom';
+import { Navigate, Route } from 'react-router-dom';
 import { urls } from '@/routes/routes.constant';
 
 const LayoutPage = lazy(() => import('@/pages/layout'));
-const ListingPage = lazy(() => import('@/pages/listing'));
 const DashboardPage = lazy(() => import('@/pages/dashboard'));
-const GeneralInfosPage = lazy(() =>
-  import('@/pages/dashboard/general-informations'),
-);
 const LogsPage = lazy(() => import('@/pages/dashboard/logs/Logs.page'));
-const OnboardingPage = lazy(() => import('@/pages/onboarding'));
 
 export default (
   <Route
@@ -29,82 +24,9 @@ export default (
   >
     <Route
       index
-      Component={ListingPage}
-      id="listing"
-      handle={{
-        tracking: {
-          pageName: 'listing',
-          pageType: PageType.listing,
-        },
-      }}
+      element={<Navigate to={`${urls.dashboard}/${urls.logs}`} replace />}
     />
     <Route path={urls.dashboard} Component={DashboardPage} id="dashboard">
-      <Route
-        index
-        id="general-info"
-        Component={GeneralInfosPage}
-        handle={{
-          tracking: {
-            pageName: 'dashboard',
-            pageType: PageType.dashboard,
-          },
-        }}
-      />
-      <Route
-        path={urls.datacenter}
-        id="datacenters"
-        Component={GeneralInfosPage}
-        handle={{
-          tracking: {
-            pageName: 'datacenters',
-            pageType: PageType.dashboard,
-          },
-        }}
-      ></Route>
-      <Route
-        path={urls.users}
-        id="users"
-        Component={GeneralInfosPage}
-        handle={{
-          tracking: {
-            pageName: 'users',
-            pageType: PageType.dashboard,
-          },
-        }}
-      ></Route>
-      <Route
-        path={urls.security}
-        id="security"
-        Component={GeneralInfosPage}
-        handle={{
-          tracking: {
-            pageName: 'security',
-            pageType: PageType.dashboard,
-          },
-        }}
-      ></Route>
-      <Route
-        path={urls.operations}
-        id="operations"
-        Component={GeneralInfosPage}
-        handle={{
-          tracking: {
-            pageName: 'operations',
-            pageType: PageType.dashboard,
-          },
-        }}
-      ></Route>
-      <Route
-        path={urls.license}
-        id="license"
-        Component={GeneralInfosPage}
-        handle={{
-          tracking: {
-            pageName: 'license',
-            pageType: PageType.dashboard,
-          },
-        }}
-      ></Route>
       <Route
         path={urls.logs}
         id="logs"
@@ -119,16 +41,5 @@ export default (
         {getLogsRoute()}
       </Route>
     </Route>
-    <Route
-      path={urls.onboarding}
-      id="onboarding"
-      Component={OnboardingPage}
-      handle={{
-        tracking: {
-          pageName: 'onboarding',
-          pageType: PageType.onboarding,
-        },
-      }}
-    />
   </Route>
 );
