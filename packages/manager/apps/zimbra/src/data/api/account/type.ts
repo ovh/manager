@@ -1,4 +1,4 @@
-import { ResourceStatus, TaskStatus, ZimbraOffer } from '@/data/api';
+import { CurrentAccountStatus, ResourceStatus, TaskStatus, ZimbraOffer } from '@/data/api';
 
 export type AccountType = {
   checksum: string;
@@ -21,7 +21,7 @@ export type AccountType = {
     detailedStatus: {
       details: string;
       link: string;
-      status: string;
+      status: keyof typeof CurrentAccountStatus;
     }[];
     displayName: string;
     domainId: string;
