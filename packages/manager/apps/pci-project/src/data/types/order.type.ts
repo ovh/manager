@@ -37,3 +37,35 @@ export type TOrderFollowUp = {
   status: TOrderFollowUpStatus;
   step: TOrderFollowUpStep;
 };
+
+export type TOrderDetailExtension = {
+  order: {
+    action: string;
+    configuration: {
+      label: string;
+      value: string;
+    }[];
+    plan: {
+      code: string;
+    };
+    type: 'plan' | 'product' | null;
+  };
+};
+
+type TOrderPrice = {
+  currencyCode: string;
+  priceInUcents: number;
+  text: string;
+  value: number;
+};
+
+export type TOrderDetail = {
+  cancelled: boolean;
+  description: string;
+  detailType: string;
+  domain: string;
+  orderDetailId: number;
+  quantity: string;
+  totalPrice: TOrderPrice;
+  unitPrice: TOrderPrice;
+};

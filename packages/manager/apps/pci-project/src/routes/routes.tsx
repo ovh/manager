@@ -63,7 +63,18 @@ export default (
       Component={CreatingPage}
       handle={{
         tracking: {
-          pageType: PageType.funnel,
+          pageName: PROJECTS_TRACKING.CREATING.PAGE_NAME,
+          pageType: PageType.dashboard,
+        },
+      }}
+    />
+    <Route
+      path={urls.creatingWithVoucher}
+      Component={CreatingPage}
+      handle={{
+        tracking: {
+          pageName: PROJECTS_TRACKING.CREATING.PAGE_NAME,
+          pageType: PageType.dashboard,
         },
       }}
     />
