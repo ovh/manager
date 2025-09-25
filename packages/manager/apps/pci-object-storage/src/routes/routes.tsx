@@ -28,20 +28,39 @@ export default [
       {
         path: '',
         id: 'objects',
-        ...lazyLoadRoute(() => import('@/pages/Root.page')),
-        children: [],
+        ...lazyLoadRoute(() =>
+          import('@/pages/object-storage/ObjectStorage.layout'),
+        ),
+        children: [
+          {
+            path: '',
+            id: 'objects.containers',
+            ...lazyLoadRoute(() =>
+              import('@/pages/object-storage/containers/Containers.page'),
+            ),
+          },
+          {
+            path: 'users',
+            id: 'objects.users',
+            ...lazyLoadRoute(() =>
+              import('@/pages/object-storage/users/Users.page'),
+            ),
+          },
+        ],
       },
       {
         path: 'onboarding',
         id: 'onboarding',
         ...lazyLoadRoute(() =>
-          import('@/pages/containers/onboarding/Onboarding.page'),
+          import('@/pages/object-storage/onboarding/Onboarding.page'),
         ),
       },
       {
         path: 'new',
         id: 'create',
-        ...lazyLoadRoute(() => import('@/pages/containers/create/Create.page')),
+        ...lazyLoadRoute(() =>
+          import('@/pages/object-storage/create/Create.page'),
+        ),
       },
       // {
       //   path: ':serviceId',
