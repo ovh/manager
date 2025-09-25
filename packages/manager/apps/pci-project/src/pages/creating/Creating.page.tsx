@@ -19,7 +19,7 @@ import {
 } from '@/data/hooks/useOrder';
 import { CREATING_GUIDE_URLS } from '@/constants';
 import ImageSlider from './components/ImageSlider';
-import CreatingSpinner from './components/CreatingSpinner';
+import LargeSpinner from './components/large-spinner/LargeSpinner';
 
 export default function CreatingPage() {
   const { t } = useTranslation('creating');
@@ -64,9 +64,6 @@ export default function CreatingPage() {
       });
 
       if (redirectState) {
-        /**
-         * TODO: Need use case to test it
-         */
         navigate(redirectState);
       } else {
         navigate(`../${projectId}`);
@@ -86,9 +83,9 @@ export default function CreatingPage() {
             {t('pci_projects_creating_secondary_title')}
           </OdsText>
 
-          <CreatingSpinner>
+          <LargeSpinner>
             <ImageSlider />
-          </CreatingSpinner>
+          </LargeSpinner>
 
           <div className="text-center space-y-4">
             <OdsText preset={ODS_TEXT_PRESET.paragraph}>

@@ -1,4 +1,4 @@
-.creating-spinner-container {
+.large-spinner-container {
   position: relative;
   display: flex;
   align-items: center;
@@ -6,7 +6,7 @@
   min-height: 200px;
 }
 
-.creating-spinner {
+.large-spinner {
   width: 50vw;
   height: 50vw;
   max-width: 350px;
@@ -15,7 +15,7 @@
   position: relative;
 }
 
-.creating-spinner svg {
+.large-spinner svg {
   display: block;
   margin: 0;
   padding: 0;
@@ -27,7 +27,7 @@
   height: 100%;
 }
 
-.creating-spinner-content {
+.large-spinner-content {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -35,14 +35,14 @@
   z-index: 10;
 }
 
-.creating-spinner-content img {
+.large-spinner-content img {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
   transition: opacity 1s ease-in-out;
 }
 
-.creating-spinner svg:nth-child(1) circle {
+.large-spinner svg:nth-child(1) circle {
   stroke: #3d86c3;
   stroke-dasharray: 1, 300;
   stroke-dashoffset: 0;
@@ -50,7 +50,7 @@
   transform-origin: center center;
 }
 
-.creating-spinner svg:nth-child(2) circle {
+.large-spinner svg:nth-child(2) circle {
   stroke: #33bbee;
   stroke-dasharray: 1, 300;
   stroke-dashoffset: 0;
@@ -58,7 +58,7 @@
   transform-origin: center center;
 }
 
-.creating-spinner svg:nth-child(3) circle {
+.large-spinner svg:nth-child(3) circle {
   stroke: #2558c3;
   stroke-dasharray: 1, 300;
   stroke-dashoffset: 0;

@@ -16,7 +16,11 @@ import {
   TOrderFollowUpStep,
 } from '@/data/types/order.type';
 import { createWrapper } from '@/wrapperRenders';
-import { useDeliveredProjectId, useOrderFollowUpPolling } from './useOrder';
+import {
+  useDeliveredProjectId,
+  useOrderFollowUpPolling,
+  shouldRefetchProjectCreation,
+} from './useOrder';
 
 vi.mock('@/data/api/order');
 
@@ -491,6 +495,87 @@ describe('useOrder hooks', () => {
           enabled: false,
         }),
       );
+    });
+  });
+
+  describe('shouldRefetchProjectCreation', () => {
+    const mockOnProjectDelivered = vi.fn();
+    const mockOnProjectDeliveryFail = vi.fn();
+
+    beforeEach(() => {
+      mockOnProjectDelivered.mockClear();
+      mockOnProjectDeliveryFail.mockClear();
+    });
+
+    it('should continue polling when no follow up data', () => {
+      const result = shouldRefetchProjectCreation(
+        mockOnProjectDelivered,
+        mockOnProjectDeliveryFail,
+      );
+
+      expect(result).toBe(ORDER_FOLLOW_UP_POLLING_INTERVAL);
+      expect(mockOnProjectDelivered).not.toHaveBeenCalled();
+      expect(mockOnProjectDeliveryFail).not.toHaveBeenCalled();
+    });
+
+    it('should stop polling and call onProjectDelivered when delivery is complete', () => {
+      const mockFollowUpData: TOrderFollowUp[] = [
+        {
+          step: ORDER_FOLLOW_UP_STEP_ENUM.DELIVERING as TOrderFollowUpStep,
+          status: ORDER_FOLLOW_UP_STATUS_ENUM.DONE as TOrderFollowUpStatus,
+          history: [],
+        },
+      ];
+
+      const result = shouldRefetchProjectCreation(
+        mockOnProjectDelivered,
+        mockOnProjectDeliveryFail,
+        mockFollowUpData,
+      );
+
+      expect(result).toBe(false);
+      expect(mockOnProjectDelivered).toHaveBeenCalledTimes(1);
+      expect(mockOnProjectDeliveryFail).not.toHaveBeenCalled();
+    });
+
+    it('should stop polling and call onProjectDeliveryFail when error occurs', () => {
+      const mockFollowUpData: TOrderFollowUp[] = [
+        {
+          step: ORDER_FOLLOW_UP_STEP_ENUM.VALIDATING as TOrderFollowUpStep,
+          status: ORDER_FOLLOW_UP_STATUS_ENUM.ERROR as TOrderFollowUpStatus,
+          history: [],
+        },
+      ];
+
+      const result = shouldRefetchProjectCreation(
+        mockOnProjectDelivered,
+        mockOnProjectDeliveryFail,
+        mockFollowUpData,
+      );
+
+      expect(result).toBe(false);
+      expect(mockOnProjectDeliveryFail).toHaveBeenCalledTimes(1);
+      expect(mockOnProjectDelivered).not.toHaveBeenCalled();
+    });
+
+    it('should continue polling when delivery is in progress', () => {
+      const mockFollowUpData: TOrderFollowUp[] = [
+        {
+          step: ORDER_FOLLOW_UP_STEP_ENUM.DELIVERING as TOrderFollowUpStep,
+          status: ORDER_FOLLOW_UP_STATUS_ENUM.DOING as TOrderFollowUpStatus,
+          history: [],
+        },
+      ];
+
+      const result = shouldRefetchProjectCreation(
+        mockOnProjectDelivered,
+        mockOnProjectDeliveryFail,
+        mockFollowUpData,
+      );
+
+      expect(result).toBe(ORDER_FOLLOW_UP_POLLING_INTERVAL);
+      expect(mockOnProjectDelivered).not.toHaveBeenCalled();
+      expect(mockOnProjectDeliveryFail).not.toHaveBeenCalled();
     });
   });
 });

@@ -1,15 +1,15 @@
 import React from 'react';
-import './CreatingSpinner.css';
+import './LargeSpinner.css';
 
-type CreatingSpinnerProps = {
+type LargeSpinnerProps = {
   children?: React.ReactNode;
 };
 
-export default function CreatingSpinner({ children }: CreatingSpinnerProps) {
+export default function LargeSpinner({ children }: LargeSpinnerProps) {
   return (
-    <div className="creating-spinner-container">
-      <div className="creating-spinner-content">{children}</div>
-      <div className="creating-spinner">
+    <div className="large-spinner-container">
+      <div className="large-spinner-content">{children}</div>
+      <div className="large-spinner">
         <svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
           <circle
             fill="none"

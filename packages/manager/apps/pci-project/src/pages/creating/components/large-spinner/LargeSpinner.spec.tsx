@@ -1,20 +1,20 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import CreatingSpinner from './CreatingSpinner';
+import LargeSpinner from './LargeSpinner';
 import { createWrapper } from '@/wrapperRenders';
 
-describe('CreatingSpinner', () => {
+describe('LargeSpinner', () => {
   const renderComponent = (props = {}) =>
-    render(<CreatingSpinner {...props} />, { wrapper: createWrapper() });
+    render(<LargeSpinner {...props} />, { wrapper: createWrapper() });
 
   it('should render the spinner', () => {
     renderComponent();
 
-    const spinner = document.querySelector('.creating-spinner');
+    const spinner = document.querySelector('.large-spinner');
     expect(spinner).toBeInTheDocument();
 
-    const svgElements = document.querySelectorAll('.creating-spinner svg');
+    const svgElements = document.querySelectorAll('.large-spinner svg');
     expect(svgElements).toHaveLength(3);
   });
 
@@ -28,9 +28,7 @@ describe('CreatingSpinner', () => {
   it('should render without children when none provided', () => {
     renderComponent();
 
-    const contentContainer = document.querySelector(
-      '.creating-spinner-content',
-    );
+    const contentContainer = document.querySelector('.large-spinner-content');
     expect(contentContainer).toBeInTheDocument();
     expect(contentContainer).toBeEmptyDOMElement();
   });
