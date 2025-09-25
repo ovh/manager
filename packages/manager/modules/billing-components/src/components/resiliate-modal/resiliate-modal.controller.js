@@ -1,26 +1,33 @@
 export default class ResiliateModalController {
   /* @ngInject */
-  constructor($translate, atInternet, BillingService, RESILIATION_CAPACITIES) {
+  constructor(
+    $translate,
+    atInternet,
+    BillingService,
+    RESILIATION_CAPACITIES,
+    RESILIATION_DEFAULT_CAPABILITY,
+  ) {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.BillingService = BillingService;
     this.RESILIATION_CAPACITIES = RESILIATION_CAPACITIES;
+    this.RESILIATION_DEFAULT_CAPABILITY = RESILIATION_DEFAULT_CAPABILITY;
   }
 
   $onInit() {
-    this.resiliateOptions =
-      this.capabilities?.reduce((options, option) => {
-        if (this.RESILIATION_CAPACITIES.includes(option)) {
-          options.push({
-            value: option,
-            label: this.$translate.instant(`billing_resiliate_${option}`),
-          });
-        }
-        return options;
-      }, []) || [];
-    if (this.resiliateOptions.length === 1) {
-      this.resiliateOption = this.resiliateOptions[0].value;
-    }
+    this.resiliateOptions = (this.capabilities || [])
+      .filter((option) => this.RESILIATION_CAPACITIES.includes(option))
+      .map((value) => ({
+        value,
+        label: this.$translate.instant(`billing_resiliate_${value}`),
+      }));
+
+    this.resiliateOption =
+      this.resiliateOptions.length === 1
+        ? this.resiliateOptions[0].value
+        : this.resiliateOptions.find(
+            ({ value }) => value === this.RESILIATION_DEFAULT_CAPABILITY,
+          )?.value;
   }
 
   resiliate() {
@@ -35,7 +42,7 @@ export default class ResiliateModalController {
           this.resiliateOption === 'terminate' &&
           this.BillingService.shouldSkipConfirmation(this.service);
         return this.onSuccess(
-          isResiliationImmediate,
+          true,
           this.$translate.instant(
             `billing_resiliate_${this.resiliateOption}${
               isResiliationImmediate ? '_immediate' : ''

@@ -23,6 +23,7 @@ export const SERVICE_TYPE = {
   VRACK: 'VRACK',
   VMWARE_CLOUD_DIRECTOR_ORGANIZATION: 'VMWARE_CLOUD_DIRECTOR_ORGANIZATION',
   ZIMBRA_SLOT: 'ZIMBRA_SLOT',
+  DOMAIN: 'DOMAIN',
 };
 
 // This list represent what service types uses apiv6 `/services` routes to
