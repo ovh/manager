@@ -1,0 +1,12 @@
+<span
+    class="oui-badge"
+    data-ng-class="{
+                                  'oui-badge_error': $ctrl.globalStatus === 'error',
+                                  'oui-badge_warning': $ctrl.globalStatus === 'warning',
+                                  'oui-badge_success': $ctrl.globalStatus === 'success'
+                            }"
+>
+    <span
+        data-translate="{{:: 'dedicatedCloud_zerto_site_status_vpn_' + $ctrl.zertoState }}"
+    ></span>
+</span>

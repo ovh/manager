@@ -38,6 +38,18 @@ export const DEDICATEDCLOUD_DATACENTER_DRP_STATUS = {
   unprovisionning: 'unprovisionning',
 };
 
+export const DEDICATEDCLOUD_DATACENTER_ZERTO_SITE_STATUS = {
+  CREATING: 'creating',
+  DELETING: 'deleting',
+  DELIVERED: 'delivered',
+  ERROR: 'error',
+  TO_CREATE: 'toCreate',
+  TO_DELETE: 'toDelete',
+  TO_UPDATE: 'toUpdate',
+  UNKNOWN: 'unknown',
+  UPDATING: 'updating',
+};
+
 export const DEDICATEDCLOUD_DATACENTER_DRP_ROLES = {
   primary: 'primary',
   secondary: 'secondary',

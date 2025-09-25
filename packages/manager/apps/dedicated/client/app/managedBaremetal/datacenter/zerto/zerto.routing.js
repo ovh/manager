@@ -22,13 +22,8 @@ export default /* @ngInject */ ($stateProvider) => {
             isZertoOnPremise: transition
               .injector()
               .getAsync('isZertoOnPremise'),
-            shouldBeConfigured: transition
-              .injector()
-              .getAsync('shouldBeConfigured'),
           })
-          .then(({ isZertoOnPremise, shouldBeConfigured }) => {
-            if (isZertoOnPremise && shouldBeConfigured)
-              return 'app.managedBaremetal.details.datacenters.datacenter.zerto.listing.addSite';
+          .then(({ isZertoOnPremise }) => {
             return (
               isZertoOnPremise &&
               'app.managedBaremetal.details.datacenters.datacenter.zerto.listing'
