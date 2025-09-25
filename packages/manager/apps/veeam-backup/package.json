@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-veeam-backup-app",
-  "version": "0.21.2",
+  "version": "0.21.3",
   "private": true,
   "description": "veeam backup app",
   "repository": {
@@ -23,8 +23,8 @@
     "@ovh-ux/manager-core-utils": "^0.4.2",
     "@ovh-ux/manager-module-common-api": "^0.5.4",
     "@ovh-ux/manager-module-order": "^0.11.4",
-    "@ovh-ux/manager-module-vcd-api": "^0.8.6",
-    "@ovh-ux/manager-react-components": "^2.41.0",
+    "@ovh-ux/manager-module-vcd-api": "^0.8.7",
+    "@ovh-ux/manager-react-components": "^2.41.1",
     "@ovh-ux/manager-react-core-application": "^0.12.4",
     "@ovh-ux/manager-react-shell-client": "^0.9.3",
     "@ovh-ux/request-tagger": "^0.5.2",
