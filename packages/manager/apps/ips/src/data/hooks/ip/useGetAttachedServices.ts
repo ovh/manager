@@ -1,15 +1,27 @@
+import { IpTypeEnum } from '@/data/api';
 import { useGetProductServices } from '../useGetProductServices';
 
 // List of all relevant product paths and categories to check except { path: '/dedicated/housing', category: 'HOUSING' },
 export const PRODUCT_PATHS_AND_CATEGORIES = {
-  CLOUD: { path: '/cloud/project', category: 'CLOUD' },
-  DEDICATED: { path: '/dedicated/server', category: 'DEDICATED' },
-  VPS: { path: '/vps', category: 'VPS' },
-  VRACK: { path: '/vrack', category: 'VRACK' },
-  PRIVATE_CLOUD: { path: '/dedicatedCloud', category: 'PRIVATE_CLOUD' },
-  IP_LOAD_BALANCING: {
+  [IpTypeEnum.CLOUD]: { path: '/cloud/project', category: IpTypeEnum.CLOUD },
+  [IpTypeEnum.DEDICATED]: {
+    path: '/dedicated/server',
+    category: IpTypeEnum.DEDICATED,
+  },
+  [IpTypeEnum.VPS]: { path: '/vps', category: IpTypeEnum.VPS },
+  [IpTypeEnum.VRACK]: { path: '/vrack', category: IpTypeEnum.VRACK },
+  [IpTypeEnum.PCC]: { path: '/dedicatedCloud', category: IpTypeEnum.PCC },
+  [IpTypeEnum.LOAD_BALANCING]: {
     path: '/ipLoadbalancing',
-    category: 'IP_LOAD_BALANCING',
+    category: IpTypeEnum.LOAD_BALANCING,
+  },
+  [IpTypeEnum.XDSL]: {
+    pathList: ['/xdsl', '/pack/xdsl'],
+    category: IpTypeEnum.XDSL,
+  },
+  [IpTypeEnum.OVERTHEBOX]: {
+    path: '/overTheBox',
+    category: IpTypeEnum.OVERTHEBOX,
   },
 };
 
@@ -21,7 +33,7 @@ export const useGetAttachedServices = ({
   serviceName,
 }: UseGetAttachedServicesParams) => {
   // Fetch all product services for all paths/categories
-  const { services: productServicesList } = useGetProductServices(
+  const { serviceList: productServicesList } = useGetProductServices(
     Object.values(PRODUCT_PATHS_AND_CATEGORIES),
   );
 
