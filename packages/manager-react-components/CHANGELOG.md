@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.41.0...@ovh-ux/manager-react-components@2.41.1) (2025-09-25)
+
+### Bug Fixes
+
+- **mrc:** fix column visibility when id contain dot ([52b9fe9](https://github.com/ovh/manager/commit/52b9fe93b80b16c33f404bf9be455031770081c9)), closes [#MANAGER-19267](https://github.com/ovh/manager/issues/MANAGER-19267)
+
 # [2.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.40.5...@ovh-ux/manager-react-components@2.41.0) (2025-09-23)
 
 ### Bug Fixes
