@@ -17,6 +17,7 @@ import {
   ORDER_SECTIGO,
   SAN_SSL,
   SSL,
+  TASK,
   WEBSITE,
 } from '@/utils/tracking.constants';
 
@@ -31,7 +32,7 @@ const DisableSslPage = React.lazy(() => import('@/pages/dashboard/ssl/manage/dis
 const SanSslPage = React.lazy(() => import('@/pages/dashboard/ssl/manage/sanSsl.page'));
 const AddDomainPage = React.lazy(() => import('@/pages/dashboard/AddDomain.page'));
 const OrderDomainPage = React.lazy(() => import('@/pages/dashboard/OrderDomain.page'));
-
+const OngoingTaskPage = React.lazy(() => import('@/pages/dashboard/task/Task.page'));
 export default (
   <Route
     id={'root'}
@@ -87,6 +88,20 @@ export default (
           },
           breadcrumb: {
             label: 'ssl',
+          },
+        }}
+      />
+      <Route
+        id={TASK}
+        path={urls.task}
+        Component={OngoingTaskPage}
+        handle={{
+          tracking: {
+            pageName: TASK,
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: 'task',
           },
         }}
       />
