@@ -4,6 +4,11 @@ import find from 'lodash/find';
 import map from 'lodash/map';
 import union from 'lodash/union';
 import uniqBy from 'lodash/uniqBy';
+import {
+  FILE_FORMAT_ACCEPT,
+  FILE_MAX_SIZE,
+  FILE_MAX_NUMBER,
+} from './telecom-sms-senders-add.constant';
 
 export default class {
   /* @ngInject */
@@ -30,6 +35,9 @@ export default class {
     };
     this.TucToast = TucToast;
     this.TucToastError = TucToastError;
+    this.FILE_FORMAT_ACCEPT = FILE_FORMAT_ACCEPT;
+    this.FILE_MAX_SIZE = FILE_MAX_SIZE;
+    this.FILE_MAX_NUMBER = FILE_MAX_NUMBER;
   }
 
   $onInit() {
@@ -168,10 +176,10 @@ export default class {
         },
       )
       .$promise.then(() =>
-        this.sender.supportingDocument !== undefined
+        this.sender.supportingDocuments !== undefined
           ? this.addSupportingDocument(
               this.sender.sender,
-              this.sender.supportingDocument[0],
+              this.sender.supportingDocuments,
             )
           : this.$q.when(),
       )
@@ -190,16 +198,18 @@ export default class {
       });
   }
 
-  addSupportingDocument(senderName, supportingDocument) {
-    const { name } = supportingDocument;
-    return this.$http
-      .post(
-        `/sms/${this.$stateParams.serviceName}/senders/${senderName}/documents`,
-        {
-          name,
-        },
-      )
-      .then(({ data }) => this.$http.put(data.putUrl, supportingDocument));
+  addSupportingDocument(senderName, supportingDocuments) {
+    return supportingDocuments.map((supportingDocument) => {
+      const { name } = supportingDocument;
+      return this.$http
+        .post(
+          `/sms/${this.$stateParams.serviceName}/senders/${senderName}/documents`,
+          {
+            name,
+          },
+        )
+        .then(({ data }) => this.$http.put(data.putUrl, supportingDocument));
+    });
   }
 
   /**
