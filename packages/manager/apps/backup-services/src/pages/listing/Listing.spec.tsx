@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import { fireEvent, render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
@@ -12,6 +12,7 @@ vi.mock('react-i18next', () => ({
 const navigate = vi.fn();
 vi.mock('react-router-dom', () => ({
   useNavigate: () => navigate,
+  useHref: vi.fn(),
 }));
 
 // --- Mock manager-react-components ---
@@ -23,7 +24,12 @@ interface BaseLayoutProps {
 
 interface DataGridProps<T> {
   topbar?: ReactNode;
-  columns: { id: string; label: string; isSortable?: boolean; cell?: (row: T) => ReactNode }[];
+  columns: {
+    id: string;
+    label: string;
+    isSortable?: boolean;
+    cell?: (row: T) => ReactNode;
+  }[];
   items: T[];
   totalItems: number;
   hasNextPage: boolean;
@@ -39,6 +45,7 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
       {children}
     </div>
   ),
+
   // eslint-disable-next-line react/no-multi-comp
   Datagrid: <T extends { id: string }>({
     topbar,
@@ -80,12 +87,14 @@ vi.mock('@ovhcloud/ods-components', () => ({
 }));
 
 // --- Mock hooks ---
-vi.mock('@/hooks/layout/useBreadcrumb', () => ({
-  useBreadcrumb: () => [{ label: 'home' }],
-}));
 vi.mock('@/hooks/listing/useListingColumns', () => ({
   useListingColumns: () => [
-    { id: 'id', label: 'listing:id', isSortable: true, cell: (row: { id: string }) => row.id },
+    {
+      id: 'id',
+      label: 'listing:id',
+      isSortable: true,
+      cell: (row: { id: string }) => row.id,
+    },
   ],
 }));
 vi.mock('@/data/hooks/useResources', () => ({
@@ -100,9 +109,10 @@ vi.mock('@/data/hooks/useResources', () => ({
 
 // --- Mock Breadcrumb ---
 vi.mock('@/components/breadcrumb/Breadcrumb.component', () => ({
-  default: ({ items }: { items: { label: string }[] }) => (
-    <nav>{items.map((i) => i.label).join('/')}</nav>
-  ),
+  default: () => {
+    const items = [{ label: 'home' }];
+    return <nav>{items.map((i) => i.label).join('/')}</nav>;
+  },
 }));
 
 // --- Tests ---
@@ -130,7 +140,7 @@ describe('ListingPage', () => {
     const { default: ListingPage } = await import('./Listing.page');
     render(<ListingPage />);
     fireEvent.click(screen.getByText('listing:open'));
-    expect(navigate).toHaveBeenCalledWith('../dashboard');
+    expect(navigate).toHaveBeenCalledWith('/services/dashboard');
   });
 
   it('calls fetchNextPage when clicking fetch button', async () => {
