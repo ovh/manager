@@ -88,7 +88,7 @@ const OrderFunnel = ({
         TRACKING.deploy.banner.errorBannerInfo(
           model.result.region.id,
           model.result.flavor.type,
-          model.result.unsecureHttp ? PrivacyEnum.public : PrivacyEnum.private,
+          model.result.unsecureHttp ? PrivacyEnum.private : PrivacyEnum.public,
         ),
         'banner',
       );
@@ -103,7 +103,7 @@ const OrderFunnel = ({
         TRACKING.deploy.banner.successBannerInfo(
           model.result.region.id,
           model.result.flavor.type,
-          model.result.unsecureHttp ? PrivacyEnum.public : PrivacyEnum.private,
+          model.result.unsecureHttp ? PrivacyEnum.private : PrivacyEnum.public,
         ),
         'banner',
       );
@@ -204,8 +204,8 @@ const OrderFunnel = ({
             model.result.region.id,
             model.result.flavor.type,
             model.result.unsecureHttp
-              ? PrivacyEnum.public
-              : PrivacyEnum.private,
+              ? PrivacyEnum.private
+              : PrivacyEnum.public,
           ),
           'funnel',
         );
@@ -512,9 +512,9 @@ const OrderFunnel = ({
                     <FormItem className="flex flex-col gap-1">
                       <PrivacyRadioInput
                         value={field.value}
-                        onChange={(newPrivacyValue: PrivacyEnum) =>
-                          model.form.setValue('privacy', newPrivacyValue)
-                        }
+                        onChange={(newPrivacyValue: PrivacyEnum) => {
+                          model.form.setValue('privacy', newPrivacyValue);
+                        }}
                       />
                     </FormItem>
                   )}
