@@ -30,6 +30,21 @@ export default /* @ngInject */ ($stateProvider) => {
       tab: null,
     },
     resolve: {
+      goBack: /* @ngInject */ ($state, setMessage) => (
+        message,
+        type = 'success',
+        reload = false,
+      ) => {
+        const promise = $state.go('^', null, {
+          reload,
+        });
+
+        if (message) {
+          promise.then(() => setMessage(message, type));
+        }
+
+        return promise;
+      },
       cdnProperties: /* @ngInject */ (
         $q,
         HostingCdnSharedService,
@@ -221,7 +236,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.hosting.dashboard.detachEmail'),
       goToDetachPrivateDB: /* @ngInject */ ($state) => () =>
         $state.go('app.hosting.dashboard.database.detachPrivate'),
-
+      goToAbuseUnblock: /* @ngInject */ ($state) => (serviceName) =>
+        $state.go('app.hosting.dashboard.abuse-unblock', {
+          serviceName,
+        }),
       goToMultisite: /* @ngInject */ (goToState) => (
         message = false,
         type = 'success',
@@ -269,6 +287,11 @@ export default /* @ngInject */ ($stateProvider) => {
           .catch(() => null),
 
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
+      setMessage: /* @ngInject */ (Alerter, $timeout) => (
+        message,
+        type,
+        alertId = 'app.alerts.layout',
+      ) => $timeout(() => Alerter.set(`alert-${type}`, message, null, alertId)),
     },
     translations: { value: ['.'], format: 'json' },
     atInternet: { ignore: true },
