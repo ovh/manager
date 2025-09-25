@@ -1,0 +1,12 @@
+{
+  "pci_projects_creating_main_title": "You’re on your way to the Public Cloud",
+  "pci_projects_creating_secondary_title": "Creating your project",
+  "pci_projects_creating_explain1": "To finish creating your project, please pay the amount listed on the <a href=\"{{ href }}\">{{ orderId }}</a> purchase order.",
+  "pci_projects_creating_explain2": "If this page still appears a few minutes after you have submitted your payment, please contact our <a href=\"{{ href }}\">customer services team</a>.",
+  "pci_projects_creating_long_time": "This may take a few minutes.",
+  "pci_projects_creating_long_time_wait": "In the meantime, feel free to refer to our guides or your other projects.",
+  "pci_projects_creating_guides": "Our Public Cloud guides",
+  "pci_projects_creating_other_projects": "Your other projects",
+  "pci_projects_creating_delivery_error": "An error has occurred creating your Public Cloud project. We are working to resolve this as soon as possible. You will receive an email confirming that it has been created. Thank you for your patience, and apologies for any inconvenience caused.",
+  "pci_projects_creating_discovery_project_long_time_wait": "In the meantime, feel free to consult our guides :)"
+}
