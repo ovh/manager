@@ -217,6 +217,7 @@
   "emailpro_ACTION_order_accounts_step1_price_with_tax_only": "{0} ({0} TTC)",
   "emailpro_ACTION_order_accounts_step1_user_error": "Erreur lors de la récupération des informations de l'utilisateur",
   "emailpro_ACTION_add_account_button": "Ajouter un compte",
+  "emailpro_ACTION_migrate_account_button": "Migrer des comptes",
   "emailpro_ACTION_add_account_legal_warning": "Je reconnais qu'OVH procédera à l’exécution immédiate de la prestation à compter de la validation de ma commande et à ce titre je renonce expressément à exercer mon droit de rétractation conformément aux dispositions de l’article L.121-21-8 du code de la consommation.",
   "emailpro_ACTION_add_account_option_fail": "Une erreur est survenue lors du chargement de vos domaines.",
   "emailpro_ACTION_add_account_step1_display_name_label": "Nom à afficher",
