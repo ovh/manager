@@ -5,8 +5,8 @@ import '@ovh-ux/ui-kit';
 import '@ovh-ux/ng-translate-async-loader';
 
 import component from './dedicatedCloud-datacenter-dashboard.component';
-import drp from '../drp';
-import drpAlerts from '../drp/alerts';
+import zerto from '../zerto';
+import zertoAlerts from '../zerto/alerts';
 
 const moduleName = 'ovhManagerDedicatedCloudDatacenterDashboardComponent';
 
@@ -15,8 +15,8 @@ angular
     'ngTranslateAsyncLoader',
     'oui',
     'pascalprecht.translate',
-    drp,
-    drpAlerts,
+    zerto,
+    zertoAlerts,
   ])
   .component('ovhManagerDedicatedCloudDatacenterDashboard', component)
   .run(/* @ngTranslationsInject:json ./translations */);
