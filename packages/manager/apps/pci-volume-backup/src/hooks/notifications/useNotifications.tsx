@@ -1,4 +1,4 @@
-import { ApiError } from '@ovh-ux/manager-core-api';
+import { isApiCustomError } from '@ovh-ux/manager-core-api';
 import { useNotifications as useMRCNotifications } from '@ovh-ux/manager-react-components';
 import { useCallback } from 'react';
 import { Trans, Translation } from 'react-i18next';
@@ -13,10 +13,15 @@ export const useNotifications = ({ ns }: { ns: string }) => {
       values,
     }: {
       i18nKey: string;
-      error?: ApiError;
+      error?: Error;
       values?: Record<string, string | undefined>;
-    }) =>
-      addError(
+    }) => {
+      let errorMessage: string | null = null;
+      if (isApiCustomError(error) && error.response)
+        errorMessage = error.response.data.message;
+      else if (error) errorMessage = error.message;
+
+      return addError(
         <div>
           <Translation ns={ns}>
             {(t) => (
@@ -25,17 +30,16 @@ export const useNotifications = ({ ns }: { ns: string }) => {
                 i18nKey={i18nKey}
                 values={{
                   ...values,
-                  message:
-                    error?.response?.data?.message || error?.message || null,
-                  errorMessage:
-                    error?.response?.data?.message || error?.message || null,
+                  message: errorMessage,
+                  errorMessage,
                 }}
               />
             )}
           </Translation>
         </div>,
         true,
-      ),
+      );
+    },
     [addError, ns],
   );
 
