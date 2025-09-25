@@ -1,8 +1,10 @@
-import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { appName, productName } from '@/App.constants';
 import { urls } from '@/routes/Routes.constants';
 import { BreadcrumbItem } from '@/types/Breadcrumb.type';
-import { appName, productName } from '@/App.constants';
 
 export const useApplicationBreadcrumbItems = (): BreadcrumbItem[] => {
   const { t } = useTranslation(['listing', 'dashboard']);
