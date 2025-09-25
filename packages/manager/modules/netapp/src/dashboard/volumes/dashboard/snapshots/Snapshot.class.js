@@ -1,15 +1,8 @@
 import { STATUS } from './constants';
 
 export default class Snapshot {
-  constructor({ id, name, description, createdAt, type, status }) {
-    Object.assign(this, {
-      id,
-      name,
-      description,
-      createdAt,
-      type,
-      status,
-    });
+  constructor(snapshot) {
+    Object.assign(this, snapshot);
   }
 
   isActive() {
