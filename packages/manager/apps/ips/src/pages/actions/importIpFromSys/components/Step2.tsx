@@ -41,7 +41,7 @@ export default function Step2({
     services: serverList,
     isLoading: isServerListLoading,
     error: serverListError,
-  } = useGetProductService(PRODUCT_PATHS_AND_CATEGORIES.DEDICATED);
+  } = useGetProductService(PRODUCT_PATHS_AND_CATEGORIES.dedicated);
 
   const {
     isIpMigrationAvailable,
