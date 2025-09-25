@@ -58,8 +58,7 @@
     "autoprefixer": "^10.4.17",
     "effect": "3.17.7",
     "msw": "2.1.7",
-    "typescript": "^5.1.6",
-    "vitest": "^2.1.9"
+    "typescript": "^5.1.6"
   },
   "regions": [
     "CA",
