@@ -15,7 +15,7 @@ import {
 import { VersionState } from '@secret-manager/components/VersionState/VersionState.component';
 import { useFormatDate } from '@/common/hooks/useFormatDate';
 import { kmsIamActions } from '@/utils/iam/iam.constants';
-import { versionListCellTestId } from './VersionCells.constants';
+import { VERSION_LIST_CELL_TEST_IDS } from './VersionCells.constants';
 
 const isVersionIdCellDisabled: Record<SecretVersionState, boolean> = {
   ACTIVE: false,
@@ -50,7 +50,7 @@ export const VersionIdCell = ({
       urn={urn}
       iamActions={[kmsIamActions.secretGet, kmsIamActions.secretVersionGetData]}
       isDisplayTooltip
-      data-testid={versionListCellTestId(version, 'version')}
+      data-testid={VERSION_LIST_CELL_TEST_IDS.version(version)}
     />
   );
 };
@@ -58,7 +58,7 @@ export const VersionIdCell = ({
 export const VersionStateCell = (version: SecretVersion) => (
   <VersionState
     state={version.state}
-    data-testid={versionListCellTestId(version, 'status')}
+    data-testid={VERSION_LIST_CELL_TEST_IDS.status(version)}
   />
 );
 
@@ -67,7 +67,7 @@ export const VersionCreatedAtCell = (version: SecretVersion) => {
 
   return (
     <DataGridTextCell
-      data-testid={versionListCellTestId(version, 'created-at')}
+      data-testid={VERSION_LIST_CELL_TEST_IDS.createdAt(version)}
     >
       {formatDate(version.createdAt)}
     </DataGridTextCell>
@@ -81,7 +81,7 @@ export const VersionDeactivatedAtCell = (version: SecretVersion) => {
 
   return (
     <DataGridTextCell
-      data-testid={versionListCellTestId(version, 'deactivated-at')}
+      data-testid={VERSION_LIST_CELL_TEST_IDS.deactivatedAt(version)}
     >
       {date}
     </DataGridTextCell>

@@ -13,7 +13,7 @@ import {
   regionWithMultipleOkms,
   regionWithoutOkms,
 } from '@/mocks/kms/okms.mock';
-import { okmsListCellTestId } from '@/common/components/okmsDatagrid/ListingCells.constants';
+import { OKMS_LIST_CELL_TEST_IDS } from '@/common/components/okmsDatagrid/ListingCells.constants';
 
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.okmsList(
   regionWithMultipleOkms.region,
@@ -26,12 +26,10 @@ const checkOkmsListPageToBeDisplayed = async (container: HTMLElement) => {
   await assertTextVisibility(labels.secretManager.okms_list);
 
   // Check there is clipboard components displayed in the datagrid
-  const clipboardTestId1 = okmsListCellTestId(
-    regionWithMultipleOkms.okmsMock[0].id,
-    'id',
-  );
+  const firstOkmsId = regionWithMultipleOkms.okmsMock[0].id;
+  const firstClipboardTestId = OKMS_LIST_CELL_TEST_IDS.id(firstOkmsId);
   await waitFor(() => {
-    expect(screen.getByTestId(clipboardTestId1)).toBeInTheDocument();
+    expect(screen.getByTestId(firstClipboardTestId)).toBeInTheDocument();
   });
 
   // Check the first okms link on the datagrid

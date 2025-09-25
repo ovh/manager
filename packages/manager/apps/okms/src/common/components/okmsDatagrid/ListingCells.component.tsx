@@ -18,14 +18,14 @@ import { OkmsServiceState } from '@/components/layout-helpers/Dashboard/okmsServ
 import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import { OkmsDatagridType } from './okmsDatagrid.type';
 import { Link } from '@/common/components/Link/Link.component';
-import { okmsListCellTestId } from './ListingCells.constants';
+import { OKMS_LIST_CELL_TEST_IDS } from './ListingCells.constants';
 
 export const DatagridCellId = (okms: OKMS) => {
   return (
     <Clipboard
       className="w-full"
       value={okms.id}
-      data-testid={okmsListCellTestId(okms.id, 'id')}
+      data-testid={OKMS_LIST_CELL_TEST_IDS.id(okms.id)}
     />
   );
 };
@@ -50,7 +50,7 @@ export const DatagridCellName = (
       href={urls[type]}
       label={okms.iam.displayName}
       isRouterLink
-      data-testid={okmsListCellTestId(okms.id, 'name')}
+      data-testid={OKMS_LIST_CELL_TEST_IDS.name(okms.id)}
       onClick={() => {
         if (tracking[type].length > 0) {
           trackClick({
@@ -67,7 +67,7 @@ export const DatagridCellName = (
 
 export const DatagridCellRegion = (okms: OKMS) => {
   return (
-    <DataGridTextCell data-testid={okmsListCellTestId(okms.id, 'region')}>
+    <DataGridTextCell data-testid={OKMS_LIST_CELL_TEST_IDS.region(okms.id)}>
       <Region
         mode="region"
         name={okms.region.toLowerCase().replaceAll('_', '-')}
@@ -89,14 +89,14 @@ export const DatagridCellStatus = (okms: OKMS) => {
   return (
     <OkmsServiceState
       state={OkmsServiceInfos.data.resource.state}
-      data-testid={okmsListCellTestId(okms.id, 'status')}
+      data-testid={OKMS_LIST_CELL_TEST_IDS.status(okms.id)}
     />
   );
 };
 
 export const DatagridCellKmipCount = (okms: OKMS) => {
   return (
-    <DataGridTextCell data-testid={okmsListCellTestId(okms.id, 'kmip-count')}>
+    <DataGridTextCell data-testid={OKMS_LIST_CELL_TEST_IDS.kmipCount(okms.id)}>
       {okms.kmipObjectCount}
     </DataGridTextCell>
   );
@@ -105,7 +105,7 @@ export const DatagridCellKmipCount = (okms: OKMS) => {
 export const DatagridCellServiceKeyCount = (okms: OKMS) => {
   return (
     <DataGridTextCell
-      data-testid={okmsListCellTestId(okms.id, 'service-key-count')}
+      data-testid={OKMS_LIST_CELL_TEST_IDS.serviceKeyCount(okms.id)}
     >
       {okms.serviceKeyCount}
     </DataGridTextCell>
@@ -114,7 +114,9 @@ export const DatagridCellServiceKeyCount = (okms: OKMS) => {
 
 export const DatagridCellSecretCount = (okms: OKMS) => {
   return (
-    <DataGridTextCell data-testid={okmsListCellTestId(okms.id, 'secret-count')}>
+    <DataGridTextCell
+      data-testid={OKMS_LIST_CELL_TEST_IDS.secretCount(okms.id)}
+    >
       {okms.secretCount}
     </DataGridTextCell>
   );

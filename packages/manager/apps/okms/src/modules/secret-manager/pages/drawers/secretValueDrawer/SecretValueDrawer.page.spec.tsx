@@ -12,15 +12,15 @@ import {
   versionDeletedMock,
   versionListMock,
 } from '@secret-manager/mocks/versions/versions.mock';
+import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
+import userEvent from '@testing-library/user-event';
+import { SECRET_RAW_VALUE_TEST_ID } from './SecretRawValue.contants';
 import {
-  RAW_VALUE_TEST_ID,
-  VALUE_DRAWER_TEST_ID,
   VERSION_SELECTOR_ERROR_TEST_ID,
   VERSION_SELECTOR_SPINNER_TEST_ID,
   VERSION_SELECTOR_TEST_ID,
-} from '@secret-manager/utils/tests/secretValue.constants';
-import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
-import userEvent from '@testing-library/user-event';
+} from './VersionSelector.constants';
+import { SECRET_VALUE_DRAWER_TEST_ID } from './SecretValueDrawer.constants';
 import {
   renderTestApp,
   RenderTestMockParams,
@@ -49,7 +49,7 @@ const renderPage = async ({
   // Check if the drawer is open
   expect(
     await screen.findByTestId(
-      VALUE_DRAWER_TEST_ID,
+      SECRET_VALUE_DRAWER_TEST_ID,
       {},
       WAIT_FOR_DEFAULT_OPTIONS,
     ),
@@ -191,7 +191,7 @@ describe('ValueDrawer test suite', () => {
 
         // TODO: update this part when we'll handle key/value representation.
         await waitFor(() => {
-          const versionRawValue = screen.getByTestId(RAW_VALUE_TEST_ID);
+          const versionRawValue = screen.getByTestId(SECRET_RAW_VALUE_TEST_ID);
           expect(versionRawValue).toBeVisible();
         }, WAIT_FOR_DEFAULT_OPTIONS);
       },
