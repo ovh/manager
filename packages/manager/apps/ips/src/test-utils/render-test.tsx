@@ -44,6 +44,8 @@ import {
   getCloudProjectMocks,
   getIpLoadBalancingMocks,
   GetIpLoadBalancingMocksParams,
+  getXdslMocks,
+  getOverTheBoxMocks,
 } from '../../mocks';
 
 export type GetUserMocksParams = {
@@ -88,6 +90,8 @@ export const renderTest = async ({
         ...getOrganisationMocks(mockParams),
         ...getCloudProjectMocks(),
         ...getIpLoadBalancingMocks(mockParams),
+        ...getXdslMocks(),
+        ...getOverTheBoxMocks(),
       ].map((handler) => ({
         ...handler,
         // TODO: Remove when toMswHandlers has default delay 0
