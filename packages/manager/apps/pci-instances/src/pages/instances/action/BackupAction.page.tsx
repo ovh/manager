@@ -27,7 +27,7 @@ import {
 import {
   Form,
   InputField,
-  SelectField,
+  ComboboxField,
   SelectFieldGroup,
   ToggleField,
 } from '@/components/zod-form';
@@ -138,7 +138,7 @@ const DistantSnapshotSection = ({
         name="distantSnapshotName"
         type="text"
       />
-      <SelectField<TFormFieldsValues>
+      <ComboboxField<TFormFieldsValues>
         label={t('pci_instances_actions_backup_instance_distant_region_label')}
         name="distantRegion"
         items={regionItems}

@@ -9,13 +9,17 @@ import {
   SelectGroupItem,
   SelectItem,
   SelectValueChangeDetail,
+  Combobox,
+  ComboboxContent,
+  ComboboxControl,
+  ComboboxValueChangeDetails,
 } from '@ovhcloud/ods-react';
 import { ErrorText } from './ErrorText';
 
 export type SelectFieldItem = SelectItem;
 export type SelectFieldGroup = SelectGroupItem;
 
-export const SelectField = <
+export const ComboboxField = <
   TFieldValues extends FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 >({
@@ -38,20 +42,21 @@ export const SelectField = <
           field: { value, onChange },
           fieldState: { error, invalid },
         }) => {
-          const handleChange = (changeDetails: SelectValueChangeDetail) =>
+          const handleChange = (changeDetails: ComboboxValueChangeDetails) =>
             onChange(changeDetails.value[0]);
 
           return (
             <>
-              <Select
+              <Combobox
                 value={value ? [value] : []}
                 items={items}
                 onValueChange={handleChange}
                 invalid={invalid}
+                allowCustomValue={false}
               >
-                <SelectControl />
-                <SelectContent />
-              </Select>
+                <ComboboxControl />
+                <ComboboxContent />
+              </Combobox>
               {!!error && <ErrorText>{error.message}</ErrorText>}
             </>
           );
