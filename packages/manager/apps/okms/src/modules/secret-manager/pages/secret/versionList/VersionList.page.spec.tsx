@@ -1,31 +1,15 @@
 import userEvent from '@testing-library/user-event';
-import { act } from '@testing-library/react';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import {
-  versionActiveMock,
-  versionListMock,
-} from '@secret-manager/mocks/versions/versions.mock';
+import { versionActiveMock } from '@secret-manager/mocks/versions/versions.mock';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
+import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/versionList';
 import { labels } from '@/utils/tests/init.i18n';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
-import { getOdsButtonByLabel } from '@/utils/tests/uiTestHelpers';
+import { getOdsLinkByTestId } from '@/utils/tests/uiTestHelpers';
+import { versionLinkTestId } from './VersionCells.constants';
 
 const mockOkmsId = '123123';
-const mockSecretPath = 'a/secret';
-
-export const assertVersionDatagridVisilibity = async () => {
-  // assert datagrid column visiblity
-  await assertTextVisibility(labels.secretManager.version);
-  await assertTextVisibility(labels.common.status.status);
-  await assertTextVisibility(labels.common.dashboard.creation_date);
-  await assertTextVisibility(labels.secretManager.expiration_date);
-
-  // assert we display versions rows
-  versionListMock.forEach(async (version) => {
-    await assertTextVisibility(version.id.toString());
-  });
-};
 
 describe('Version list page test suite', () => {
   it('should display the version datagrid', async () => {
@@ -33,7 +17,7 @@ describe('Version list page test suite', () => {
 
     // WHEN
     await renderTestApp(
-      SECRET_MANAGER_ROUTES_URLS.versionList(mockOkmsId, mockSecretPath),
+      SECRET_MANAGER_ROUTES_URLS.versionList(mockOkmsId, mockSecret1.path),
     );
 
     // THEN
@@ -44,21 +28,19 @@ describe('Version list page test suite', () => {
     // GIVEN
     const user = userEvent.setup();
 
-    const { container } = await renderTestApp(
+    await renderTestApp(
       SECRET_MANAGER_ROUTES_URLS.versionList(mockOkmsId, mockSecret1.path),
     );
 
     await assertVersionDatagridVisilibity();
 
-    // WHEN
-    const versionLink = await getOdsButtonByLabel({
-      container,
-      label: versionActiveMock.id.toString(),
-      isLink: true,
+    const versionLink = await getOdsLinkByTestId({
+      testId: versionLinkTestId(versionActiveMock.id),
       disabled: false,
     });
 
-    await act(() => user.click(versionLink));
+    // WHEN
+    user.click(versionLink);
 
     // THEN
     await assertTextVisibility(labels.secretManager.values);
