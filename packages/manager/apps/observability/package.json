@@ -1,0 +1,59 @@
+{
+  "name": "@ovh-ux/manager-observability-app",
+  "version": "0.0.0",
+  "private": true,
+  "description": "OVHCloud Observability µApplication",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/apps/observability"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "scripts": {
+    "build": "tsc && vite build",
+    "lint:modern": "manager-lint --config eslint.config.mjs ./src",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
+    "start": "vite",
+    "test": "manager-test run",
+    "test:coverage": "manager-test run --coverage"
+  },
+  "dependencies": {
+    "@ovh-ux/manager-config": "*",
+    "@ovh-ux/manager-core-api": "*",
+    "@ovh-ux/manager-core-utils": "*",
+    "@ovh-ux/manager-pci-common": "^2.4.2",
+    "@ovh-ux/manager-react-components": "^2.36.0",
+    "@ovh-ux/manager-react-core-application": "*",
+    "@ovh-ux/manager-react-shell-client": "*",
+    "@ovh-ux/request-tagger": "*",
+    "@ovh-ux/shell": "^4.5.7",
+    "@ovhcloud/ods-components": "^18.6.2",
+    "@ovhcloud/ods-themes": "^18.6.2",
+    "@tanstack/react-query": "^5.51.21",
+    "axios": "^1.1.2",
+    "clsx": "^1.2.1",
+    "element-internals-polyfill": "^3.0.0",
+    "i18next": "^23.8.2",
+    "i18next-http-backend": "^2.4.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^14.0.5",
+    "react-router-dom": "^6.3.0",
+    "tailwindcss": "^3.4.4"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-kit": "^0.8.0",
+    "@ovh-ux/manager-tests-setup": "^0.2.0",
+    "@ovh-ux/manager-vite-config": "*",
+    "@tanstack/react-query-devtools": "^5.51.21"
+  },
+  "regions": [
+    "CA",
+    "EU",
+    "US"
+  ],
+  "universes": [
+    "Manager"
+  ]
+}
