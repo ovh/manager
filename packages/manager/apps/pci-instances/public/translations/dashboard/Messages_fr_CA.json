@@ -11,7 +11,7 @@
   "pci_instances_dashboard_storage_title": "Stockage",
   "pci_instances_dashboard_public_bandwidth_title": "Bande passante publique",
   "pci_instances_dashboard_attach_volumes": "Attacher un volume",
-  "pci_instances_dashboard_edit_image": "Changer l'image",
+  "pci_instances_dashboard_edit_image": "Modifier l'image",
   "pci_instances_dashboard_id_openstack_title": "ID",
   "pci_instances_dashboard_ssh_key": "Clé SSH",
   "pci_instances_dashboard_network_title": "Réseaux",

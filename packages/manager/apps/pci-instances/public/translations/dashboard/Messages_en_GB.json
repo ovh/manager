@@ -11,7 +11,7 @@
   "pci_instances_dashboard_storage_title": "Storage",
   "pci_instances_dashboard_public_bandwidth_title": "Public bandwidth",
   "pci_instances_dashboard_attach_volumes": "Attach a volume ",
-  "pci_instances_dashboard_edit_image": "Change image",
+  "pci_instances_dashboard_edit_image": "Modify image",
   "pci_instances_dashboard_id_openstack_title": "ID",
   "pci_instances_dashboard_ssh_key": "SSH key",
   "pci_instances_dashboard_network_title": "Networks",
