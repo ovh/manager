@@ -1,12 +1,9 @@
 export type BreadcrumbItem = {
+  id: string;
   label: string | undefined;
   href: string;
 };
 
-export interface BreadcrumbProps {
-  rootLabel?: string;
-  customRootLabel?: string;
-  appName?: string;
-  projectId?: string;
+export type BreadcrumbProps = {
   items?: BreadcrumbItem[];
-}
+};

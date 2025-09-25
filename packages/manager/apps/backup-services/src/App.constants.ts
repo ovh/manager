@@ -1,6 +1,7 @@
 import type { OnboardingConfigType } from '@/types/Onboarding.type';
 
 export const appName = 'backup-services';
+export const productName = 'OVHcloud Backup Services';
 
 export const AppConfig = {
   listing: {
@@ -39,10 +40,10 @@ export const APP_FEATURES = {
   dashboardEndpoint: '/domain/alldom',
   isPci: false,
   routeFlavor: 'generic' as const,
-  basePrefix: '',
+  basePrefix: 'backup',
   serviceParam: 'id',
   platformParam: 'id',
-  appSlug: 'backup-services',
+  appSlug: 'services',
   tracking: {
     level2ByRegion: {
       EU: { level2: '120' },

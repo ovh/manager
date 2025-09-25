@@ -1,33 +1,19 @@
-import React, { Suspense, startTransition, useMemo } from 'react';
-
+import { Suspense, startTransition, useMemo } from 'react';
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
-
 import { useTranslation } from 'react-i18next';
-
 import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
-
 import { BaseLayout } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-
-import { appName } from '@/App.constants';
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import { useDashboardTabs } from '@/hooks/dashboard/useDashboardTabs';
-import { useBreadcrumb } from '@/hooks/layout/useBreadcrumb';
 import { urls } from '@/routes/Routes.constants';
 
 export default function DashboardPage() {
   const { t } = useTranslation(['common', 'dashboard']);
   const navigate = useNavigate();
-
   const location = useLocation();
-  const { trackClick } = useOvhTracking();
-
   const tabs = useDashboardTabs();
-
-  const breadcrumbItems = useBreadcrumb({
-    rootLabel: t('common:home'),
-    appName,
-  });
+  const { trackClick } = useOvhTracking();
 
   const activeTab = useMemo(
     () =>
@@ -46,7 +32,7 @@ export default function DashboardPage() {
         header={{ title: t('dashboard:title') }}
         backLinkLabel={t('dashboard:back')}
         onClickReturn={onNavigateBackClicked}
-        breadcrumb={<Breadcrumb items={breadcrumbItems} />}
+        breadcrumb={<Breadcrumb />}
         tabs={
           tabs.length > 0 ? (
             <OdsTabs>
@@ -61,11 +47,15 @@ export default function DashboardPage() {
                     }
                   }}
                 >
-                  <OdsTab isSelected={tab.name === activeTab?.name}>{t(tab.title)}</OdsTab>
+                  <OdsTab isSelected={tab.name === activeTab?.name}>
+                    {t(tab.title)}
+                  </OdsTab>
                 </NavLink>
               ))}
             </OdsTabs>
-          ) : undefined
+          ) : (
+            undefined
+          )
         }
       />
       <Suspense fallback={null}>
