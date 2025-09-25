@@ -50,6 +50,9 @@ export const features = [
   'network-security',
   'key-management-service',
   'okms:key-management-service',
+  'observability',
+  'observability:dashboards',
+  'observability:metric:tenant',
 ];
 
 export default function DedicatedSidebar() {
@@ -483,6 +486,48 @@ export default function DedicatedSidebar() {
             },
           },
         ],
+      });
+    }
+
+    if (feature['observability']) {
+
+      const observabilityIcon = (
+        <OsdsIcon
+          name={ODS_ICON_NAME.KEY_CONCEPT}
+          size={ODS_ICON_SIZE.xxs}
+          color={ODS_THEME_COLOR_INTENT.text}
+        />
+      );
+
+      menu.push({
+        id: 'observability',
+        label: t('sidebar_observability'),
+        icon: (
+          <OsdsIcon
+            name={ODS_ICON_NAME.CLOUD_EYE_CONCEPT}
+            size={ODS_ICON_SIZE.xxs}
+            color={ODS_THEME_COLOR_INTENT.text}
+          />
+        ),
+        pathMatcher: new RegExp('^/observability'),
+        subItems: [
+          feature['observability:dashboards'] && {
+            id: 'dashboards',
+            href: navigation.getURL('observability', '#/dashboards'),
+            label: t('sidebar_observability_dashboards'),
+            pathMatcher: new RegExp('^/observability/dashboards'),
+            ignoreSearch: true,
+            icon: observabilityIcon,
+          },
+          feature['observability:metric:tenant'] && {
+            id: 'tenants',
+            href: navigation.getURL('observability', '#/metric/tenant'),
+            label: t('sidebar_observability_metric_tenant'),
+            pathMatcher: new RegExp('^/observability/metric/tenant'),
+            ignoreSearch: true,
+            icon: observabilityIcon,
+          },
+        ].filter(Boolean),
       });
     }
 
