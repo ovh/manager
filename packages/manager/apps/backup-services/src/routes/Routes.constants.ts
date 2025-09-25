@@ -1,20 +1,20 @@
 import { APP_FEATURES, appName } from '@/App.constants';
 
-import { getRoot } from './Routes.utils';
-
-const { isPci } = APP_FEATURES;
+const ROOT_URL = `/${APP_FEATURES.appSlug}`;
 
 export const subRoutes = {
   'general-information': '' as const,
+  onboarding: 'onboarding' as const,
+  dashboard: 'dashboard' as const,
   help: 'help' as const,
-  ...(isPci ? { quota: 'quota' as const } : {}),
 } as const;
 
 export const urls = {
-  root: getRoot(),
-  dashboard: `dashboard`,
-  onboarding: 'onboarding',
-  listing: 'listing',
+  root: ROOT_URL,
+  listing: ROOT_URL,
+  onboarding: `${ROOT_URL}/${subRoutes.onboarding}`,
+  dashboard: `${ROOT_URL}/${subRoutes.dashboard}`,
+  help: `${ROOT_URL}/${subRoutes.dashboard}/${subRoutes.help}`,
 } as const;
 
 export const DASHBOARD_NAV_TABS = Object.freeze([
@@ -32,9 +32,6 @@ export const DASHBOARD_NAV_TABS = Object.freeze([
     pathMatchers: [/\/help$/],
     trackingActions: ['click::help-tab'],
   },
-  // PCI-only tabs can be added here if needed
 ]);
 
-export const redirectionApp = APP_FEATURES.isPci
-  ? APP_FEATURES.appSlug // for PCI, shell expects the short app slug
-  : appName;
+export const redirectionApp = appName;
