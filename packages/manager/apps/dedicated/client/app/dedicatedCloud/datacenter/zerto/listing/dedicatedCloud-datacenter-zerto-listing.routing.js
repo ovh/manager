@@ -1,5 +1,3 @@
-import { DEDICATEDCLOUD_DATACENTER_DRP_STATUS } from '../../../../components/dedicated-cloud/datacenter/zerto/dedicatedCloud-datacenter-zerto.constants';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'app.dedicatedCloud.details.datacenter.details.zerto.listing',
@@ -37,18 +35,6 @@ export default /* @ngInject */ ($stateProvider) => {
             'app.dedicatedCloud.details.datacenter.details.zerto.listing.deleteSite',
             { serviceName, datacenterId, siteId },
           ),
-        zertoMultiSites: /* @ngInject */ (
-          dedicatedCloudZerto,
-          serviceName,
-          datacenterId,
-          currentZerto,
-        ) =>
-          currentZerto.state === DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivering
-            ? []
-            : dedicatedCloudZerto.getZertoMultiSite({
-                serviceName,
-                datacenterId,
-              }),
       },
     },
   );

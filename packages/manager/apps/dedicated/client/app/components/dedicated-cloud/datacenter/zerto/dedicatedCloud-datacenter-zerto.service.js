@@ -11,6 +11,7 @@ import {
   DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS,
   DEDICATEDCLOUD_DATACENTER_PCC_UNAVAILABLE_CODES,
   DEDICATEDCLOUD_DATACENTER_ZERTO,
+  DEDICATEDCLOUD_DATACENTER_ZERTO_SITE_STATUS,
 } from './dedicatedCloud-datacenter-zerto.constants';
 
 const moduleName = 'dedicatedCloudDatacenterZertoService';
@@ -615,6 +616,7 @@ export class DedicatedCloudDatacenterZertoService {
       DEDICATEDCLOUD_DATACENTER_DRP_STATUS.error,
       DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS.error,
       DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS.notConfigured,
+      DEDICATEDCLOUD_DATACENTER_DRP_STATUS.deleting,
     ].includes(state);
   }
 
@@ -628,6 +630,41 @@ export class DedicatedCloudDatacenterZertoService {
 
   static isZertoInValidState(state) {
     return state === DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivered;
+  }
+
+  static isZertoSiteSuccessState(state) {
+    return [DEDICATEDCLOUD_DATACENTER_ZERTO_SITE_STATUS.DELIVERED].includes(
+      state,
+    );
+  }
+
+  static isZertoSiteInfoState(state) {
+    return [
+      DEDICATEDCLOUD_DATACENTER_ZERTO_SITE_STATUS.CREATING,
+      DEDICATEDCLOUD_DATACENTER_ZERTO_SITE_STATUS.TO_CREATE,
+      DEDICATEDCLOUD_DATACENTER_ZERTO_SITE_STATUS.TO_UPDATE,
+      DEDICATEDCLOUD_DATACENTER_ZERTO_SITE_STATUS.UPDATING,
+    ].includes(state);
+  }
+
+  static isZertoSiteWarningState(state) {
+    return [
+      DEDICATEDCLOUD_DATACENTER_ZERTO_SITE_STATUS.CREATING,
+      DEDICATEDCLOUD_DATACENTER_ZERTO_SITE_STATUS.TO_CREATE,
+      DEDICATEDCLOUD_DATACENTER_ZERTO_SITE_STATUS.UNKNOWN,
+    ].includes(state);
+  }
+
+  static isZertoSiteCriticalState(state) {
+    return [
+      DEDICATEDCLOUD_DATACENTER_ZERTO_SITE_STATUS.DELETING,
+      DEDICATEDCLOUD_DATACENTER_ZERTO_SITE_STATUS.ERROR,
+      DEDICATEDCLOUD_DATACENTER_ZERTO_SITE_STATUS.TO_DELETE,
+    ].includes(state);
+  }
+
+  static isZertoSiteErrorState(state) {
+    return [DEDICATEDCLOUD_DATACENTER_ZERTO_SITE_STATUS.ERROR].includes(state);
   }
 
   getZertoMultiSite({ serviceName, datacenterId }) {

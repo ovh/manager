@@ -128,5 +128,11 @@
   "dedicatedCloud_datacenter_nameModifying_success": "Le changement de nom de votre datacenter sera effectif dans quelques instants.",
   "dedicatedCloud_manage_nsx_vcpu_price": "à partir de {{price}} HT/vCPU/ mois *",
   "dedicatedCloud_manage_nsx_additionnal_price_informations": "* 2x4 vCPU inclus dans l'offre standard",
-  "dedicatedCloud_go_back_to_list": "Retour à la liste"
+  "dedicatedCloud_go_back_to_list": "Retour à la liste",
+  "dedicatedCloud_datacenter_zerto_one_site_state_delivered": "1 site délivré",
+  "dedicatedCloud_datacenter_zerto_one_site_state_wait_action": "1 site en attente",
+  "dedicatedCloud_datacenter_zerto_one_site_state_error": "1 site en erreur",
+  "dedicatedCloud_datacenter_zerto_multiple_site_state_delivered": "{{numbers}} sites délivré",
+  "dedicatedCloud_datacenter_zerto_multiple_site_state_wait_action": "{{numbers}} sites en attente",
+  "dedicatedCloud_datacenter_zerto_multiple_site_state_error": "{{numbers}} sites en erreur"
 }

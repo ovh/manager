@@ -23,6 +23,8 @@ export default {
     goToAddNsx: '<',
     isNsxEdgeAvailable: '<',
     isNsxEdgeRelocateAvailable: '<',
+    zertoMultiSites: '<',
+    isZertoTypeOnPremise: '<',
   },
   controller,
   template,
