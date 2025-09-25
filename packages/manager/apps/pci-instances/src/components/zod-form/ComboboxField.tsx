@@ -1,18 +1,14 @@
 import { Controller, FieldPath, FieldValues } from 'react-hook-form';
 import { useId } from 'react';
 import {
-  FormField,
-  FormFieldLabel,
-  Select,
-  SelectContent,
-  SelectControl,
-  SelectGroupItem,
-  SelectItem,
-  SelectValueChangeDetail,
   Combobox,
   ComboboxContent,
   ComboboxControl,
   ComboboxValueChangeDetails,
+  FormField,
+  FormFieldLabel,
+  SelectGroupItem,
+  SelectItem,
 } from '@ovhcloud/ods-react';
 import { ErrorText } from './ErrorText';
 
@@ -34,35 +30,32 @@ export const ComboboxField = <
   const inputId = useId();
 
   return (
-    <FormField>
-      <FormFieldLabel htmlFor={inputId}>{label}</FormFieldLabel>
+    <Controller<TFieldValues, TName>
+      render={({
+        field: { value, onChange },
+        fieldState: { error, invalid },
+      }) => {
+        const handleChange = (changeDetails: ComboboxValueChangeDetails) =>
+          onChange(changeDetails.value[0]);
 
-      <Controller<TFieldValues, TName>
-        render={({
-          field: { value, onChange },
-          fieldState: { error, invalid },
-        }) => {
-          const handleChange = (changeDetails: ComboboxValueChangeDetails) =>
-            onChange(changeDetails.value[0]);
-
-          return (
-            <>
-              <Combobox
-                value={value ? [value] : []}
-                items={items}
-                onValueChange={handleChange}
-                invalid={invalid}
-                allowCustomValue={false}
-              >
-                <ComboboxControl />
-                <ComboboxContent />
-              </Combobox>
-              {!!error && <ErrorText>{error.message}</ErrorText>}
-            </>
-          );
-        }}
-        name={name}
-      />
-    </FormField>
+        return (
+          <FormField invalid={invalid}>
+            <FormFieldLabel htmlFor={inputId}>{label}</FormFieldLabel>
+            <Combobox
+              value={value ? [value] : []}
+              items={items}
+              onValueChange={handleChange}
+              invalid={invalid}
+              allowCustomValue={false}
+            >
+              <ComboboxControl />
+              <ComboboxContent className="max-h-52 overflow-y-scroll" />
+            </Combobox>
+            <ErrorText>{error?.message}</ErrorText>
+          </FormField>
+        );
+      }}
+      name={name}
+    />
   );
 };
