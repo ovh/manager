@@ -49,6 +49,7 @@
   "settings_default": "Paramètres par défaut",
   "values": "Valeurs",
   "version": "Version",
+  "current_version": "Version courante",
   "version_state_active": "Active",
   "version_state_deactivate": "Désactiver",
   "version_state_deactivated": "Désactivée",
