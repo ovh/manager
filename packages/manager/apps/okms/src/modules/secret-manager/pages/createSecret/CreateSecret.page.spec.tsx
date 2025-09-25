@@ -4,12 +4,14 @@ import {
 } from '@ovh-ux/manager-core-test-utils';
 import { waitFor } from '@testing-library/dom';
 import {
-  DATA_INPUT_TEST_ID,
   MOCK_DATA_VALID_JSON,
-  PATH_INPUT_TEST_ID,
   MOCK_PATH_VALID,
-  SUBMIT_BTN_TEST_ID,
 } from '@secret-manager/utils/tests/secret.constants';
+import {
+  SECRET_INPUT_PATH_TEST_ID,
+  SECRET_SUBMIT_BUTTON_TEST_ID,
+} from '@secret-manager/pages/createSecret/SecretForm.constants';
+import { SECRET_INPUT_DATA_TEST_ID } from '@secret-manager/components/form/SecretDataFormField.constants';
 import { fireEvent, act, screen } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
 import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
@@ -29,8 +31,8 @@ const selectRegion = async (user: UserEvent) => {
 };
 
 const fillRequiredFields = () => {
-  const inputPath = screen.getByTestId(PATH_INPUT_TEST_ID);
-  const inputData = screen.getByTestId(DATA_INPUT_TEST_ID);
+  const inputPath = screen.getByTestId(SECRET_INPUT_PATH_TEST_ID);
+  const inputData = screen.getByTestId(SECRET_INPUT_DATA_TEST_ID);
 
   act(() => {
     fireEvent.input(inputPath, {
@@ -69,7 +71,7 @@ describe('Create secret page test suite', () => {
     await selectRegion(user);
     fillRequiredFields();
 
-    const submitButton = screen.getByTestId(SUBMIT_BTN_TEST_ID);
+    const submitButton = screen.getByTestId(SECRET_SUBMIT_BUTTON_TEST_ID);
     expect(submitButton).toBeInTheDocument();
 
     await waitFor(() => expect(submitButton).toBeEnabled());
@@ -100,7 +102,7 @@ describe('Create secret page test suite', () => {
     await selectRegion(user);
     fillRequiredFields();
 
-    const submitButton = screen.getByTestId(SUBMIT_BTN_TEST_ID);
+    const submitButton = screen.getByTestId(SECRET_SUBMIT_BUTTON_TEST_ID);
     expect(submitButton).toBeInTheDocument();
 
     await waitFor(() => expect(submitButton).toBeEnabled());

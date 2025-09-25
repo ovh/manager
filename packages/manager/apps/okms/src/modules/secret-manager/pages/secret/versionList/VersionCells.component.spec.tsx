@@ -14,7 +14,7 @@ import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { getOdsButtonByLabel } from '@/utils/tests/uiTestHelpers';
 import { removeHandlersDelay, renderWithClient } from '@/utils/tests/testUtils';
 import { initTestI18n } from '@/utils/tests/init.i18n';
-import { VersionCellID } from './VersionCells.component';
+import { VersionIdCell } from './VersionCells.component';
 import { getIamMocks } from '@/mocks/iam/iam.handler';
 
 let i18nValue: i18n;
@@ -38,7 +38,7 @@ const renderVersionLink = async (versionMock: SecretVersion) => {
 
   const { container } = renderWithClient(
     <I18nextProvider i18n={i18nValue}>
-      <VersionCellID version={versionMock} urn={mockSecret1.iam.urn} />
+      <VersionIdCell version={versionMock} urn={mockSecret1.iam.urn} />
     </I18nextProvider>,
   );
 

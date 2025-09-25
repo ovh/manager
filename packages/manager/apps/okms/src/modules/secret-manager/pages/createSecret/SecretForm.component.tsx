@@ -22,9 +22,9 @@ import {
   useSecretDataSchema,
 } from '@secret-manager/validation';
 import {
-  PATH_INPUT_TEST_ID,
-  SUBMIT_BTN_TEST_ID,
-} from '@secret-manager/utils/tests/secret.constants';
+  SECRET_INPUT_PATH_TEST_ID,
+  SECRET_SUBMIT_BUTTON_TEST_ID,
+} from '@secret-manager/pages/createSecret/SecretForm.constants';
 import { SecretFormBackLink } from './BackLink.component';
 import { SECRET_DATA_TEMPLATE } from './SecretForm.constants';
 import { PATH_LABEL } from '@/constants';
@@ -112,7 +112,7 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
                   value={value}
                   onOdsBlur={onBlur}
                   onOdsChange={onChange}
-                  data-testid={PATH_INPUT_TEST_ID}
+                  data-testid={SECRET_INPUT_PATH_TEST_ID}
                 />
                 <OdsText slot="helper" preset="caption">
                   {t('path_field_helper')}
@@ -144,7 +144,7 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
           isDisabled={!isDirty || !isValid || !okmsId}
           isLoading={isPending}
           label={t('create', { ns: NAMESPACES.ACTIONS })}
-          data-testid={SUBMIT_BTN_TEST_ID}
+          data-testid={SECRET_SUBMIT_BUTTON_TEST_ID}
         />
       </div>
     </form>

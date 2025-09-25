@@ -23,9 +23,9 @@ import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { waitFor } from '@testing-library/dom';
 import { act, render, screen } from '@testing-library/react';
 import {
-  ACTIVATE_OKMS_BTN_TEST_ID,
-  ACTIVATE_OKMS_SPINNER_TEST_ID,
-} from '@secret-manager/utils/tests/secret.constants';
+  SECRET_ACTIVATE_OKMS_BUTTON_TEST_ID,
+  SECRET_ACTIVATE_OKMS_SPINNER_TEST_ID,
+} from '@secret-manager/pages/createSecret/ActivateRegion.contants';
 import { labels, initTestI18n } from '@/utils/tests/init.i18n';
 import { OkmsManagement } from './OkmsManagement.component';
 import { catalogMock } from '@/mocks/catalog/catalog.mock';
@@ -167,28 +167,36 @@ const assertOkmsListIsInTheDocument = async (okmsList: OKMS[]) => {
 };
 
 const assertActivateButtonIsInTheDocument = async () => {
-  const activateButton = screen.queryByTestId(ACTIVATE_OKMS_BTN_TEST_ID);
+  const activateButton = screen.queryByTestId(
+    SECRET_ACTIVATE_OKMS_BUTTON_TEST_ID,
+  );
   await waitFor(() => {
     expect(activateButton).toBeVisible();
   });
 };
 
 const assertActivateButtonIsNotInTheDocument = async () => {
-  const activateButton = screen.queryByTestId(ACTIVATE_OKMS_BTN_TEST_ID);
+  const activateButton = screen.queryByTestId(
+    SECRET_ACTIVATE_OKMS_BUTTON_TEST_ID,
+  );
   await waitFor(() => {
     expect(activateButton).toBeNull();
   });
 };
 
 const assertLoadingListIsInTheDocument = async () => {
-  const activateSpinner = screen.queryByTestId(ACTIVATE_OKMS_SPINNER_TEST_ID);
+  const activateSpinner = screen.queryByTestId(
+    SECRET_ACTIVATE_OKMS_SPINNER_TEST_ID,
+  );
   await waitFor(() => {
     expect(activateSpinner).toBeVisible();
   });
 };
 
 const assertLoadingListIsNotInTheDocument = async () => {
-  const activateSpinner = screen.queryByTestId(ACTIVATE_OKMS_SPINNER_TEST_ID);
+  const activateSpinner = screen.queryByTestId(
+    SECRET_ACTIVATE_OKMS_SPINNER_TEST_ID,
+  );
   await waitFor(() => {
     expect(activateSpinner).toBeNull();
   });

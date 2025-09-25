@@ -8,9 +8,9 @@ import { vi } from 'vitest';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { render, screen } from '@testing-library/react';
 import {
-  ACTIVATE_OKMS_BTN_TEST_ID,
-  ACTIVATE_OKMS_SPINNER_TEST_ID,
-} from '@secret-manager/utils/tests/secret.constants';
+  SECRET_ACTIVATE_OKMS_BUTTON_TEST_ID,
+  SECRET_ACTIVATE_OKMS_SPINNER_TEST_ID,
+} from '@secret-manager/pages/createSecret/ActivateRegion.contants';
 import { labels, initTestI18n } from '@/utils/tests/init.i18n';
 import { REGION_EU_WEST_RBX } from '@/mocks/catalog/catalog.mock';
 import {
@@ -70,7 +70,9 @@ describe('ActivateRegion test suite', () => {
       });
 
       // THEN
-      const activateButton = screen.queryByTestId(ACTIVATE_OKMS_BTN_TEST_ID);
+      const activateButton = screen.queryByTestId(
+        SECRET_ACTIVATE_OKMS_BUTTON_TEST_ID,
+      );
       expect(activateButton).toBeVisible();
 
       await user.click(activateButton);
@@ -95,7 +97,9 @@ describe('ActivateRegion test suite', () => {
       });
 
       // THEN
-      const Spinner = screen.queryByTestId(ACTIVATE_OKMS_SPINNER_TEST_ID);
+      const Spinner = screen.queryByTestId(
+        SECRET_ACTIVATE_OKMS_SPINNER_TEST_ID,
+      );
       expect(Spinner).toBeVisible();
 
       await assertTextVisibility(
