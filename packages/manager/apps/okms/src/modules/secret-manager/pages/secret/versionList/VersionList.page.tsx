@@ -54,8 +54,7 @@ const VersionListPage = () => {
   const columns = [
     {
       id: 'version',
-      cell: (version: SecretVersion) =>
-        VersionIdCell({ version, urn: secret?.iam?.urn }),
+      cell: (version: SecretVersion) => VersionIdCell({ version, secret }),
       label: t('version'),
     },
     {

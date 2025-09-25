@@ -17,7 +17,8 @@ import userEvent from '@testing-library/user-event';
 import { SECRET_RAW_VALUE_TEST_ID } from './SecretRawValue.contants';
 import {
   VERSION_SELECTOR_ERROR_TEST_ID,
-  VERSION_SELECTOR_SPINNER_TEST_ID,
+  VERSION_SELECTOR_SELECT_SKELETON_TEST_ID,
+  VERSION_SELECTOR_STATUS_SKELETON_TEST_ID,
   VERSION_SELECTOR_TEST_ID,
 } from './VersionSelector.constants';
 import { SECRET_VALUE_DRAWER_TEST_ID } from './SecretValueDrawer.constants';
@@ -42,7 +43,7 @@ const renderPage = async ({
 }: {
   url?: string;
   mockParams?: RenderTestMockParams;
-}) => {
+} = {}) => {
   const user = userEvent.setup();
   const { container } = await renderTestApp(url, mockParams);
 
@@ -62,14 +63,20 @@ const renderPage = async ({
 };
 
 describe('ValueDrawer test suite', () => {
-  it('should display a spinner while loading secret versions', async () => {
+  it('should display skeletons while loading secret versions', async () => {
     // GIVEN
     // WHEN
-    await renderPage({});
+    await renderPage();
 
     // THEN
-    const valueSpinner = screen.getByTestId(VERSION_SELECTOR_SPINNER_TEST_ID);
-    expect(valueSpinner).toBeVisible();
+    const selectSkeleton = screen.getByTestId(
+      VERSION_SELECTOR_SELECT_SKELETON_TEST_ID,
+    );
+    const statusSkeleton = screen.getByTestId(
+      VERSION_SELECTOR_STATUS_SKELETON_TEST_ID,
+    );
+    expect(selectSkeleton).toBeVisible();
+    expect(statusSkeleton).toBeVisible();
   });
 
   it('should display a notification on error loading secret versions', async () => {
@@ -88,7 +95,7 @@ describe('ValueDrawer test suite', () => {
     it('should display the version selector with the last version pre-selected', async () => {
       // GIVEN
       // WHEN
-      await renderPage({});
+      await renderPage();
 
       // THEN
       await waitFor(() => {
@@ -104,14 +111,14 @@ describe('ValueDrawer test suite', () => {
 
     it('should display the version selector with the url version pre-selected', async () => {
       // GIVEN
-      const lastVersion = versionListMock.length;
+      const lastVersionId = versionListMock.length;
 
       // WHEN
       await renderPage({
         url: SECRET_MANAGER_ROUTES_URLS.versionListSecretValueDrawer(
           mockOkmsId,
           mockSecretPath,
-          lastVersion,
+          lastVersionId,
         ),
       });
 
@@ -121,7 +128,7 @@ describe('ValueDrawer test suite', () => {
         expect(versionSelect).toBeVisible();
         expect(versionSelect).toHaveAttribute(
           'default-value',
-          versionListMock[lastVersion - 1].id.toString(),
+          versionListMock[lastVersionId - 1].id.toString(),
         );
         expect(versionSelect).toBeEnabled();
       }, WAIT_FOR_DEFAULT_OPTIONS);
@@ -140,6 +147,23 @@ describe('ValueDrawer test suite', () => {
         expect(versionSelect).toBeVisible();
         expect(versionSelect).toBeDisabled();
       }, WAIT_FOR_DEFAULT_OPTIONS);
+    });
+
+    it('should display a message when the selected version is the current version', async () => {
+      // GIVEN
+      const currentVersionId = mockSecret.version.id;
+
+      // WHEN
+      await renderPage({
+        url: SECRET_MANAGER_ROUTES_URLS.versionListSecretValueDrawer(
+          mockOkmsId,
+          mockSecretPath,
+          currentVersionId,
+        ),
+      });
+
+      // THEN
+      await assertTextVisibility(labels.secretManager.current_version);
     });
   });
 
@@ -167,7 +191,7 @@ describe('ValueDrawer test suite', () => {
       'should display the correct version informations for $version',
       async ({ version, haveValue }) => {
         // GIVEN version, haveValue
-        await renderPage({});
+        await renderPage();
 
         await waitFor(() => {
           expect(screen.getByTestId(VERSION_SELECTOR_TEST_ID)).toBeVisible();
@@ -184,8 +208,10 @@ describe('ValueDrawer test suite', () => {
 
         // THEN
         await assertTextVisibility(labels.common.status.status);
-        const versionStatusBadge = screen.getByTestId(VERSION_BADGE_TEST_ID);
-        expect(versionStatusBadge).toBeVisible();
+        await waitFor(() => {
+          const versionStatusBadge = screen.getByTestId(VERSION_BADGE_TEST_ID);
+          expect(versionStatusBadge).toBeVisible();
+        });
 
         if (!haveValue) return;
 

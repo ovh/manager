@@ -9,10 +9,10 @@ import {
 import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
 import userEvent from '@testing-library/user-event';
 import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
+import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/versionList';
 import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/tests/regionSelector';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
-import { assertVersionDatagridVisilibity } from '../secret/versionList/VersionList.page.spec';
 import { PATH_LABEL } from '@/constants';
 
 const mockOkmsId = '12345';
