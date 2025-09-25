@@ -1,0 +1,12 @@
+{
+  "pci_projects_creating_main_title": "Vous êtes en route pour l’aventure Public Cloud",
+  "pci_projects_creating_secondary_title": "La création de votre projet est en cours",
+  "pci_projects_creating_explain1": "Pour finaliser la création de votre projet, veuillez effectuer le paiement du bon de commande <a href=\"{{ href }}\">{{ orderId }}</a>.",
+  "pci_projects_creating_explain2": "Si cette page est toujours présente plusieurs minutes après le paiement du bon de commande, merci de contacter <a href=\"{{ href }}\">notre service client</a>.",
+  "pci_projects_creating_long_time": "Cela peut prendre quelques minutes.",
+  "pci_projects_creating_long_time_wait": "En attendant n'hésitez pas à consulter nos guides ou vos autres projets :)",
+  "pci_projects_creating_discovery_project_long_time_wait": "En attendant n'hésitez pas à consulter nos guides :)",
+  "pci_projects_creating_guides": "Nos guides Public Cloud",
+  "pci_projects_creating_other_projects": "Vos autres projets",
+  "pci_projects_creating_delivery_error": "Une erreur est survenue lors de la création de votre projet Public Cloud. Nous nous chargeons de la résoudre au plus vite. Vous recevrez un e-mail vous confirmant sa bonne création. Nous vous remercions pour votre patience et nous excusons pour la gêne occasionnée."
+}
