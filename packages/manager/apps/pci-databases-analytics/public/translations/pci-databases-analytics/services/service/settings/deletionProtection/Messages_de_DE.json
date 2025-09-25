@@ -1,12 +1,12 @@
 {
-  "deletionProtectionTitle": "Löschschutz",
+  "deletionProtectionTitle": "Schutz vor Löschung",
   "deletionProtectionDescription": "Mit dieser Option können Sie Ihre Instanz vor versehentlichem Löschen schützen.",
-  "activateProtection": "Soll der Löschschutz aktiviert werden?",
-  "deactivateProtection": "Sind Sie sicher, dass Sie den Löschschutz für diesen Dienst deaktivieren möchten?",
+  "activateProtection": "Soll der Schutz vor Löschung aktiviert werden?",
+  "deactivateProtection": "Sind Sie sicher, dass Sie den Schutz vor Löschung für diesen Dienst deaktivieren möchten?",
   "deletionProtectionButtonCancel": "Abbrechen",
   "activateDeletionProtection": "Aktivieren",
   "deactivateDeletionProtection": "Deaktivieren",
   "updateServiceToastErrorTitle": "Fehler",
-  "updateServiceToastSuccessTitle": "Erfolg",
-  "updateServiceToastSuccessDescription": "Ihr Dienst wurde erfolgreich aktualisiert"
+  "updateServiceToastSuccessTitle": "Erfolgreich",
+  "updateServiceToastSuccessDescription": "Ihr Dienst wurde erfolgreich aktualisiert."
 }

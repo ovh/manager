@@ -35,5 +35,5 @@
   "TopicAclsTab": "ACL",
   "ConnectorsTab": "Connectors",
   "ReplicationsTab": "Replikationsfluss",
-  "deletionProtectionBadgeLabel": "Löschschutz"
+  "deletionProtectionBadgeLabel": "Schutz vor Löschung"
 }
