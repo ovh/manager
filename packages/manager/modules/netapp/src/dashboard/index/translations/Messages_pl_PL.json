@@ -6,7 +6,7 @@
   "netapp_dashboard_information_performance_level": "Poziom wydajności",
   "netapp_dashboard_information_quota": "Rozmiar przestrzeni dyskowej",
   "netapp_dashboard_information_quota_formatted": "{{quota}}",
-  "netapp_dashboard_network_configuration": "Konfiguracja sieci",
+  "netapp_dashboard_network_configuration": "Wymagana konfiguracja użytkownika",
   "netapp_dashboard_network_configuration_status": "Status",
   "netapp_dashboard_network_configuration_status_to_configure": "Gotowe do konfiguracji",
   "netapp_dashboard_network_configuration_status_associating": "W trakcie wdrażania",

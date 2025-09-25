@@ -6,7 +6,7 @@
   "netapp_dashboard_information_performance_level": "Nivel de rendimiento",
   "netapp_dashboard_information_quota": "Tamaño de almacenamiento",
   "netapp_dashboard_information_quota_formatted": "{{ quota }} GB",
-  "netapp_dashboard_network_configuration": "Configuración de la red",
+  "netapp_dashboard_network_configuration": "Configuración del usuario requerida",
   "netapp_dashboard_network_configuration_status": "Estado",
   "netapp_dashboard_network_configuration_status_to_configure": "Listo para configurar",
   "netapp_dashboard_network_configuration_status_associating": "Despliegue en proceso",
