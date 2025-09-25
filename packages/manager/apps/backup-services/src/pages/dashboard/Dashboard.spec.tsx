@@ -74,13 +74,15 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
 }));
 
 // --- Mock Breadcrumb ---
-interface BreadcrumbProps {
-  items: { label: string }[];
-}
+// interface BreadcrumbProps {
+//   items: { label: string }[];
+// }
 vi.mock('@/components/breadcrumb/Breadcrumb.component', () => ({
-  default: ({ items }: BreadcrumbProps) => (
-    <nav data-testid="breadcrumb-nav">{items.map((i) => i.label).join(' / ')}</nav>
-  ),
+  // default: ({ items }: BreadcrumbProps) => (
+  default: () => {
+    const items = [{ label: 'Home' }, { label: 'Dashboard' }];
+    return <nav data-testid="breadcrumb-nav">{items.map((i) => i.label).join(' / ')}</nav>;
+  },
 }));
 
 // --- Mock useDashboardTabs ---
@@ -97,9 +99,9 @@ vi.mock('@/hooks/dashboard/useDashboardTabs', () => ({
 }));
 
 // --- Mock useBreadcrumb ---
-vi.mock('@/hooks/layout/useBreadcrumb', () => ({
-  useBreadcrumb: () => [{ label: 'Home' }, { label: 'Dashboard' }],
-}));
+// vi.mock('@/hooks/layout/useBreadcrumb', () => ({
+//   useBreadcrumb: () => [{ label: 'Home' }, { label: 'Dashboard' }],
+// }));
 
 describe('DashboardPage', () => {
   beforeEach(() => {
