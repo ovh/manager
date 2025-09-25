@@ -237,11 +237,15 @@ export const splitPathIntoSegments = (path: string): string[] => {
 export const isMatchingNode = (node: Node, pathSegment: string) => {
   if (!node.routing) return null;
 
+  const pathSegments = splitPathIntoSegments(pathSegment)
+  if (node.routing.pathMatcher?.test(pathSegment)) {
+    return { value: node, segments: pathSegments.length };
+  }
+
   const nodePath = node.routing.hash
     ? node.routing.hash.replace('#', node.routing.application)
     : `/${node.routing.application}`;
   const nodeSegments = splitPathIntoSegments(nodePath);
-  const pathSegments = splitPathIntoSegments(pathSegment);
 
   return nodeSegments.length > pathSegments.length
     ? null
