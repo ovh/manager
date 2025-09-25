@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Modal from '@/components/modal/Modal.component';
@@ -7,6 +7,7 @@ import { useAttachVolume } from '../hooks/useDashboardAction';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import VolumeSelector from '../components/VolumeSelector.component';
 import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceActionModal';
+import { TUnattachedVolume } from '../view-models/selectUnattachedResource';
 
 const AttachVolume: FC = () => {
   const { t } = useTranslation('actions');
@@ -14,7 +15,7 @@ const AttachVolume: FC = () => {
   const { instanceId, region } = useInstanceParams();
   const navigate = useNavigate();
   const handleModalClose = () => navigate('..');
-  const [volumeId, setVolumeId] = useState<string>('');
+  const [volume, setVolume] = useState<TUnattachedVolume | null>(null);
 
   const { isPending, volumes, attachVolume } = useAttachVolume({
     projectId,
@@ -22,12 +23,18 @@ const AttachVolume: FC = () => {
     instanceId,
   });
 
+  const handleAttachVolume = useCallback(() => {
+    if (!volume) return;
+
+    attachVolume({ volumeId: volume.value });
+  }, [attachVolume, volume]);
+
   return (
     <Modal
       title={t('pci_instances_actions_instance_volume_attach_title')}
       isPending={isPending}
-      disabled={!volumeId}
-      handleInstanceAction={() => attachVolume({ volumeId })}
+      disabled={!volume}
+      handleInstanceAction={handleAttachVolume}
       onModalClose={handleModalClose}
       variant="primary"
     >
@@ -36,7 +43,11 @@ const AttachVolume: FC = () => {
           <Spinner />
         </div>
       ) : (
-        <VolumeSelector volumes={volumes} onValueChange={setVolumeId} />
+        <VolumeSelector
+          volume={volume}
+          volumes={volumes}
+          onValueChange={setVolume}
+        />
       )}
     </Modal>
   );
