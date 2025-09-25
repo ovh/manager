@@ -1,9 +1,12 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
+
 import { useCatalog } from '@ovh-ux/manager-pci-common';
-import PlanTile from './PlanStep.component';
-import { StepState } from '../hooks/useStep';
+
 import { DeploymentMode, TClusterPlan, TClusterPlanEnum } from '@/types';
+
+import { StepState } from '../hooks/useStep';
+import PlanTile from './PlanStep.component';
 
 vi.mock('@ovh-ux/manager-pci-common', () => ({
   ...vi.importActual('@ovh-ux/manager-pci-common'),
@@ -26,10 +29,7 @@ describe('PlanTile Component', () => {
   const mockOnSubmit = vi.fn();
   let step: StepState;
 
-  const plans: TClusterPlan[] = [
-    TClusterPlanEnum.FREE,
-    TClusterPlanEnum.STANDARD,
-  ];
+  const plans: TClusterPlan[] = [TClusterPlanEnum.FREE, TClusterPlanEnum.STANDARD];
 
   beforeEach(() => {
     step = { isLocked: false } as StepState;
@@ -51,17 +51,14 @@ describe('PlanTile Component', () => {
   });
 
   const renderComponent = (plan: TClusterPlan) => {
-    const region =
-      plan === 'free' ? DeploymentMode.MONO_ZONE : DeploymentMode.MULTI_ZONES;
+    const region = plan === 'free' ? DeploymentMode.MONO_ZONE : DeploymentMode.MULTI_ZONES;
     render(<PlanTile type={region} onSubmit={mockOnSubmit} step={step} />);
   };
 
   test.each(plans)('renders all plan options', (plan) => {
     renderComponent(plan);
     expect(screen.getByTestId('plan-tile-radio-tile-free')).toBeInTheDocument();
-    expect(
-      screen.getByTestId('plan-tile-radio-tile-standard'),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('plan-tile-radio-tile-standard')).toBeInTheDocument();
   });
 
   test.each(plans)('selecting %s plan updates state', (plan) => {
@@ -70,9 +67,7 @@ describe('PlanTile Component', () => {
     fireEvent.click(selectedPlan);
     expect(selectedPlan).toBeChecked();
     expect(
-      screen.getByTestId(
-        `plan-tile-radio-tile-${plan === 'free' ? 'standard' : 'free'}`,
-      ),
+      screen.getByTestId(`plan-tile-radio-tile-${plan === 'free' ? 'standard' : 'free'}`),
     ).toHaveAttribute('aria-disabled', 'true');
   });
 
@@ -84,33 +79,23 @@ describe('PlanTile Component', () => {
     (region, availablePlan, unavailablePlan) => {
       render(<PlanTile type={region} onSubmit={mockOnSubmit} step={step} />);
 
-      const unavailablePlanOption = screen.getByTestId(
-        `plan-tile-radio-tile-${unavailablePlan}`,
-      );
+      const unavailablePlanOption = screen.getByTestId(`plan-tile-radio-tile-${unavailablePlan}`);
       fireEvent.click(unavailablePlanOption);
-      expect(
-        screen.getByTestId(`plan-tile-radio-tile-${availablePlan}`),
-      ).toBeChecked();
+      expect(screen.getByTestId(`plan-tile-radio-tile-${availablePlan}`)).toBeChecked();
       expect(unavailablePlanOption).toHaveAttribute('aria-disabled', 'true');
     },
   );
 
-  test.each(plans)(
-    'submitting form calls onSubmit with selected %s plan',
-    (plan) => {
-      renderComponent(plan);
-      const form = screen.getByTestId('form');
-      fireEvent.submit(form);
-      expect(mockOnSubmit).toHaveBeenCalledWith(plan);
-    },
-  );
+  test.each(plans)('submitting form calls onSubmit with selected %s plan', (plan) => {
+    renderComponent(plan);
+    const form = screen.getByTestId('form');
+    fireEvent.submit(form);
+    expect(mockOnSubmit).toHaveBeenCalledWith(plan);
+  });
 
-  test.each(plans)(
-    'does not allow changing selection when step is locked',
-    (plan) => {
-      step.isLocked = true;
-      renderComponent(plan);
-      expect(screen.getByTestId('plan-header-locked')).toBeInTheDocument();
-    },
-  );
+  test.each(plans)('does not allow changing selection when step is locked', (plan) => {
+    step.isLocked = true;
+    renderComponent(plan);
+    expect(screen.getByTestId('plan-header-locked')).toBeInTheDocument();
+  });
 });

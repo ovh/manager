@@ -1,16 +1,15 @@
-import { render, screen, waitFor } from '@testing-library/react';
-import { describe, it, expect, vi, Mock } from 'vitest';
 import { UseQueryResult } from '@tanstack/react-query';
-import { useRegionSubnets } from '@/api/hooks/useSubnets';
-import { useRegionInformations } from '@/api/hooks/useRegionInformations';
-import ClusterNetwork, {
-  ClusterNetworkProps,
-} from './ClusterNetwork.component';
-import { wrapper } from '@/wrapperRenders';
-import { PROCESSING_STATUS } from '@/constants';
+import { render, screen, waitFor } from '@testing-library/react';
+import { Mock, describe, expect, it, vi } from 'vitest';
 
-import { TRegionInformations } from '@/types/region';
 import { TPrivateNetworkSubnet } from '@/api/data/subnets';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
+import { useRegionSubnets } from '@/api/hooks/useSubnets';
+import { PROCESSING_STATUS } from '@/constants';
+import { TRegionInformations } from '@/types/region';
+import { wrapper } from '@/wrapperRenders';
+
+import ClusterNetwork, { ClusterNetworkProps } from './ClusterNetwork.component';
 
 vi.mock('@/api/hooks/useSubnets', () => ({
   useRegionSubnets: vi.fn(),
@@ -54,12 +53,8 @@ describe('ClusterNetwork Component', () => {
 
     render(<ClusterNetwork {...props} />, { wrapper });
 
-    expect(
-      screen.getByText('kube_service_cluster_network_tile_title'),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText('kube_service_cluster_network_public'),
-    ).toBeInTheDocument();
+    expect(screen.getByText('kube_service_cluster_network_tile_title')).toBeInTheDocument();
+    expect(screen.getByText('kube_service_cluster_network_public')).toBeInTheDocument();
   });
 
   it('renders the component with private network', () => {
@@ -79,12 +74,8 @@ describe('ClusterNetwork Component', () => {
     render(<ClusterNetwork {...props} />, { wrapper });
 
     expect(screen.getByText('Attached Network')).toBeInTheDocument();
-    expect(
-      screen.getByText('pci_kubernetes_network_data_private'),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText('pci_kubernetes_network_data_ip: 192.168.1.1'),
-    ).toBeInTheDocument();
+    expect(screen.getByText('pci_kubernetes_network_data_private')).toBeInTheDocument();
+    expect(screen.getByText('pci_kubernetes_network_data_ip: 192.168.1.1')).toBeInTheDocument();
   });
 
   it('disables the edit button when kubeDetail status is processing', () => {
@@ -135,27 +126,20 @@ describe('ClusterNetwork Component', () => {
 
     render(<ClusterNetwork {...props} />, { wrapper });
     await waitFor(() =>
-      expect(
-        screen.getByTestId('cluster-network-edit-button'),
-      ).toBeInTheDocument(),
+      expect(screen.getByTestId('cluster-network-edit-button')).toBeInTheDocument(),
     );
   });
-  it.each(PROCESSING_STATUS)(
-    'must disable the button when the status is not %s',
-    (status) => {
-      const props = {
-        ...initialProps,
-        kubeDetail: {
-          ...initialProps.kubeDetail,
-          status,
-        },
-      };
-      render(<ClusterNetwork {...props} />, { wrapper });
-      expect(screen.getByTestId('cluster-network-edit-button')).toHaveAttribute(
-        'disabled',
-      );
-    },
-  );
+  it.each(PROCESSING_STATUS)('must disable the button when the status is not %s', (status) => {
+    const props = {
+      ...initialProps,
+      kubeDetail: {
+        ...initialProps.kubeDetail,
+        status,
+      },
+    };
+    render(<ClusterNetwork {...props} />, { wrapper });
+    expect(screen.getByTestId('cluster-network-edit-button')).toHaveAttribute('disabled');
+  });
 
   it('shows subnet information when available in Az and 3az', () => {
     const props = {
@@ -218,12 +202,8 @@ describe('ClusterNetwork Component', () => {
       } as UseQueryResult<TPrivateNetworkSubnet[]>);
       render(<ClusterNetwork {...props} />, { wrapper });
 
-      expect(
-        screen.getByText(`${nodesSubnetId} - 192.168.1.0/24`),
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText('subnet-456 - 192.168.2.0/24'),
-      ).toBeInTheDocument();
+      expect(screen.getByText(`${nodesSubnetId} - 192.168.1.0/24`)).toBeInTheDocument();
+      expect(screen.getByText('subnet-456 - 192.168.2.0/24')).toBeInTheDocument();
     },
   );
 });

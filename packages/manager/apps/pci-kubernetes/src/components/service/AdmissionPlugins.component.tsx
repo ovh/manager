@@ -1,3 +1,8 @@
+import { useNavigate } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
@@ -5,17 +10,15 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { useNavigate } from 'react-router-dom';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   OsdsChip,
-  OsdsText,
-  OsdsLink,
   OsdsIcon,
+  OsdsLink,
   OsdsPopover,
   OsdsPopoverContent,
+  OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+
 import { pluginData } from '@/api/data/plugins';
 
 export type AdmissionPluginsProps = {
@@ -31,10 +34,7 @@ const AdmissionPlugins = ({ isProcessing, plugins }: AdmissionPluginsProps) => {
   return (
     <div className="mb-4 flex flex-wrap justify-between gap-4">
       {plugins?.map((plugin) => (
-        <div
-          className="flex w-full items-baseline justify-between "
-          key={plugin.name}
-        >
+        <div className="flex w-full items-baseline justify-between " key={plugin.name}>
           <OsdsPopover>
             <span slot="popover-trigger">
               <OsdsText
@@ -56,10 +56,7 @@ const AdmissionPlugins = ({ isProcessing, plugins }: AdmissionPluginsProps) => {
             </span>
             {plugin.tip && (
               <OsdsPopoverContent>
-                <OsdsText
-                  color={ODS_THEME_COLOR_INTENT.text}
-                  level={ODS_TEXT_LEVEL.body}
-                >
+                <OsdsText color={ODS_THEME_COLOR_INTENT.text} level={ODS_TEXT_LEVEL.body}>
                   {t(plugin.tip)}
                 </OsdsText>
               </OsdsPopoverContent>
@@ -73,8 +70,7 @@ const AdmissionPlugins = ({ isProcessing, plugins }: AdmissionPluginsProps) => {
             }
             data-testid={`admission-plugin-chip ${plugin.name}`}
           >
-            {plugin.state === 'enabled' &&
-              t('kube_service_cluster_admission_plugins_activated')}
+            {plugin.state === 'enabled' && t('kube_service_cluster_admission_plugins_activated')}
             {plugin.state === 'disabled' &&
               t('kube_service_cluster_admission_plugins_desactivated')}
           </OsdsChip>

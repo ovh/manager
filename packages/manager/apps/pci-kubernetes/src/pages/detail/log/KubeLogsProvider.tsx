@@ -1,10 +1,9 @@
+import { PropsWithChildren } from 'react';
+
 import { LogProvider } from '@ovh-ux/manager-pci-common';
 import { useMe } from '@ovh-ux/manager-react-components';
-import {
-  DATA_PLATFORM_GUIDE,
-  LOG_LIST_TRACKING_HITS,
-  LOG_TRACKING_HITS,
-} from './constants';
+
+import { DATA_PLATFORM_GUIDE, LOG_LIST_TRACKING_HITS, LOG_TRACKING_HITS } from './constants';
 
 export interface KubeLogsProviderProps {
   kubeId: string;
@@ -15,7 +14,7 @@ export function KubeLogsProvider({
   children,
   kubeId,
   projectId,
-}: React.PropsWithChildren<KubeLogsProviderProps>) {
+}: PropsWithChildren<KubeLogsProviderProps>) {
   const ovhSubsidiary = useMe()?.me?.ovhSubsidiary;
   return (
     <LogProvider
@@ -23,7 +22,8 @@ export function KubeLogsProvider({
       logsKeys={['message']}
       logsKind="audit"
       logsGuideURL={
-        DATA_PLATFORM_GUIDE[ovhSubsidiary] || DATA_PLATFORM_GUIDE.DEFAULT
+        DATA_PLATFORM_GUIDE[ovhSubsidiary as keyof typeof DATA_PLATFORM_GUIDE] ||
+        DATA_PLATFORM_GUIDE.DEFAULT
       }
       logsTracking={{
         graylogWatch: LOG_TRACKING_HITS.GRAYLOG_WATCH,

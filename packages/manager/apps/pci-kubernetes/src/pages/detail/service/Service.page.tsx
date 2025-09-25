@@ -1,29 +1,24 @@
-import { Notifications, useMe } from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
 import { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { Outlet, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_SPINNER_SIZE, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { Notifications, useMe } from '@ovh-ux/manager-react-components';
+
 import { useGetCloudSchema } from '@/api/hooks/useCloud';
 import { useKubeDetail } from '@/api/hooks/useKubernetes';
 import ClusterAccessAndSecurity from '@/components/service/ClusterAccessAndSecurity.component';
 import ClusterInformation from '@/components/service/ClusterInformation.component';
 import ClusterManagement from '@/components/service/ClusterManagement.component';
+import ClusterNetwork from '@/components/service/ClusterNetwork.component';
 import ClusterSecurityUpgradeBanner from '@/components/service/ClusterSecurityUpgradeBanner.component';
 import ClusterVersionUpgradeBanner from '@/components/service/ClusterVersionUpgradeBanner.component';
-import ClusterNetwork from '@/components/service/ClusterNetwork.component';
-import {
-  KUBE_INSTALL_URL,
-  KUBECTL_URL,
-  PROCESSING_STATUS,
-  STATUS,
-} from '@/constants';
-
+import { KUBECTL_URL, KUBE_INSTALL_URL, PROCESSING_STATUS, STATUS } from '@/constants';
 import { REFETCH_INTERVAL_DURATION } from '@/helpers';
 
 export default function ServicePage() {
@@ -61,12 +56,11 @@ export default function ServicePage() {
 
             {!isVersionSupported && <ClusterVersionUpgradeBanner />}
 
-            {!kubeDetail?.isUpToDate &&
-              kubeDetail?.status !== STATUS.UPDATING && (
-                <ClusterSecurityUpgradeBanner
-                  isDisabled={isProcessing(kubeDetail?.status) || undefined}
-                />
-              )}
+            {!kubeDetail?.isUpToDate && kubeDetail?.status !== STATUS.UPDATING && (
+              <ClusterSecurityUpgradeBanner
+                isDisabled={isProcessing(kubeDetail?.status) || undefined}
+              />
+            )}
           </div>
 
           <OsdsText
@@ -92,8 +86,7 @@ export default function ServicePage() {
             <span
               dangerouslySetInnerHTML={{
                 __html: t('kube_service_installation_information', {
-                  url:
-                    KUBE_INSTALL_URL[ovhSubsidiary] || KUBE_INSTALL_URL.DEFAULT,
+                  url: KUBE_INSTALL_URL[ovhSubsidiary] || KUBE_INSTALL_URL.DEFAULT,
                 }),
               }}
             />

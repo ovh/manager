@@ -1,13 +1,10 @@
-import {
-  OsdsButton,
-  OsdsFormField,
-  OsdsInput,
-  OsdsModal,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { useContext, useEffect, useState } from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
 import { Translation, useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
@@ -18,38 +15,37 @@ import {
   OdsInputValueChangeEvent,
 } from '@ovhcloud/ods-components';
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { useContext, useEffect, useState } from 'react';
+  OsdsButton,
+  OsdsFormField,
+  OsdsInput,
+  OsdsModal,
+  OsdsSpinner,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import {
-  useKubernetesCluster,
-  useRenameKubernetesCluster,
-} from '@/api/hooks/useKubernetes';
-import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
+
+import { useKubernetesCluster, useRenameKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { isClusterNameValid } from '@/helpers/matchers/matchers';
+import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
 
 export default function RenameClusterPage() {
   const { t: tEditName } = useTranslation('edit-name');
   const { projectId, kubeId } = useParams();
   const { addError, addSuccess } = useNotifications();
-  const {
-    data: kubernetesCluster,
-    isPending: isPendingCluster,
-  } = useKubernetesCluster(projectId, kubeId);
+  const { data: kubernetesCluster, isPending: isPendingCluster } = useKubernetesCluster(
+    projectId,
+    kubeId,
+  );
   const [name, setName] = useState('');
   const [hasNameError, setHasNameError] = useState(false);
   const navigate = useNavigate();
   const onClose = () => navigate('..');
   const { tracking } = useContext(ShellContext)?.shell || {};
 
-  const {
-    renameCluster,
-    isPending: isPendingRename,
-  } = useRenameKubernetesCluster({
+  const { renameCluster, isPending: isPendingRename } = useRenameKubernetesCluster({
     projectId,
     kubeId,
     name,
@@ -69,9 +65,7 @@ export default function RenameClusterPage() {
     onSuccess() {
       addSuccess(
         <Translation ns="edit-name">
-          {(_t) =>
-            _t('pci_projects_project_kubernetes_details_service_name_success')
-          }
+          {(_t) => _t('pci_projects_project_kubernetes_details_service_name_success')}
         </Translation>,
         true,
       );
@@ -97,9 +91,7 @@ export default function RenameClusterPage() {
         });
         onClose();
       }}
-      headline={tEditName(
-        'pci_projects_project_kubernetes_details_service_name',
-      )}
+      headline={tEditName('pci_projects_project_kubernetes_details_service_name')}
     >
       <slot name="content">
         {isPendingCluster || isPendingRename ? (
@@ -116,12 +108,9 @@ export default function RenameClusterPage() {
               level={ODS_TEXT_LEVEL.body}
               size={ODS_THEME_TYPOGRAPHY_SIZE._400}
             >
-              {tEditName(
-                'pci_projects_project_kubernetes_details_service_name_default',
-                {
-                  name: kubernetesCluster?.id,
-                },
-              )}
+              {tEditName('pci_projects_project_kubernetes_details_service_name_default', {
+                name: kubernetesCluster?.id,
+              })}
             </OsdsText>
             <OsdsFormField
               data-testid="renameCluster-formfield"
@@ -138,15 +127,9 @@ export default function RenameClusterPage() {
                 <OsdsText
                   level={ODS_TEXT_LEVEL.body}
                   size={ODS_TEXT_SIZE._200}
-                  color={
-                    hasNameError
-                      ? ODS_TEXT_COLOR_INTENT.error
-                      : ODS_THEME_COLOR_INTENT.text
-                  }
+                  color={hasNameError ? ODS_TEXT_COLOR_INTENT.error : ODS_THEME_COLOR_INTENT.text}
                 >
-                  {tEditName(
-                    'pci_projects_project_kubernetes_details_service_name_custom',
-                  )}
+                  {tEditName('pci_projects_project_kubernetes_details_service_name_custom')}
                 </OsdsText>
               </div>
               <OsdsInput
@@ -154,9 +137,7 @@ export default function RenameClusterPage() {
                 defaultValue={name}
                 data-testid="renameCluster-input_name"
                 type={ODS_INPUT_TYPE.text}
-                onOdsValueChange={(event: OdsInputValueChangeEvent) =>
-                  setName(event.detail.value)
-                }
+                onOdsValueChange={(event: OdsInputValueChangeEvent) => setName(event.detail.value)}
                 className={
                   hasNameError
                     ? 'bg-red-100 border-red-500 text-red-500 focus:text-red-500'
@@ -179,9 +160,7 @@ export default function RenameClusterPage() {
         }}
         data-testid="renameCluster-button_cancel"
       >
-        {tEditName(
-          'pci_projects_project_kubernetes_details_service_name_cancel',
-        )}
+        {tEditName('pci_projects_project_kubernetes_details_service_name_cancel')}
       </OsdsButton>
       <OsdsButton
         slot="actions"

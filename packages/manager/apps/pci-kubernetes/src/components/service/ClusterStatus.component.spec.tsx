@@ -1,6 +1,8 @@
-import { describe, it } from 'vitest';
 import { render } from '@testing-library/react';
+import { describe, it } from 'vitest';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+
 import ClusterStatus from '@/components/service/ClusterStatus.component';
 
 describe('ClusterStatus', () => {

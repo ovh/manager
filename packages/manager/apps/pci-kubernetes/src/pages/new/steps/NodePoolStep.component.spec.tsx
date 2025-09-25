@@ -1,14 +1,15 @@
-import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import { QueryObserverSuccessResult } from '@tanstack/react-query';
-import { describe, it, vi, expect, beforeEach } from 'vitest';
-import NodePoolStep from './NodePoolStep.component';
-import { useClusterCreationStepper } from '../hooks/useCusterCreationStepper';
-import { useRegionInformations } from '@/api/hooks/useRegionInformations';
+import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { wrapper } from '@/wrapperRenders';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import { DeploymentMode } from '@/types';
 import { TRegionInformations } from '@/types/region';
+import { wrapper } from '@/wrapperRenders';
+
+import { useClusterCreationStepper } from '../hooks/useCusterCreationStepper';
+import NodePoolStep from './NodePoolStep.component';
 
 vi.mock('react-router-dom', () => ({
   useParams: () => ({ projectId: '12345' }),
@@ -19,7 +20,7 @@ vi.mock('../hooks/useCusterCreationStepper', () => ({
 }));
 //
 vi.mock('@ovh-ux/manager-react-components', async (original) => ({
-  ...((await original()) as Record<string, unknown>),
+  ...(await original()),
   useProjectUrl: vi.fn(),
 }));
 
@@ -27,7 +28,7 @@ vi.mock('@/api/hooks/useRegionInformations', () => ({
   useRegionInformations: vi.fn(),
 }));
 
-const mockStepper = ({
+const mockStepper = {
   node: {
     step: {
       isLocked: false,
@@ -39,7 +40,7 @@ const mockStepper = ({
       name: 'eu-west-1',
     },
   },
-} as unknown) as ReturnType<typeof useClusterCreationStepper>;
+} as unknown as ReturnType<typeof useClusterCreationStepper>;
 
 describe('NodePoolStep Component', () => {
   beforeEach(() => {
@@ -63,9 +64,7 @@ describe('NodePoolStep Component', () => {
       'pci_projects_project_instances_configure_billing_type',
       'node-pool:kube_common_add_node_pool',
     ];
-    toTest.forEach((test) =>
-      expect(screen.getByText(test)).toBeInTheDocument(),
-    );
+    toTest.forEach((test) => expect(screen.getByText(test)).toBeInTheDocument());
   });
 
   it('should render zones', () => {

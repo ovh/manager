@@ -1,24 +1,17 @@
 import { useTranslation } from 'react-i18next';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
-  convertHourlyPriceToMonthly,
-  useCatalogPrice,
-} from '@ovh-ux/manager-react-components';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_COLOR_INTENT, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { OsdsText } from '@ovhcloud/ods-components/react';
-import {
-  ODS_TEXT_COLOR_INTENT,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
+
+import { convertHourlyPriceToMonthly, useCatalogPrice } from '@ovh-ux/manager-react-components';
+
 import { NodePoolPrice } from '@/api/data/kubernetes';
-import useSavingsPlanAvailable from '@/hooks/useSavingPlanAvailable';
-import { TClusterPlanEnum } from '@/types';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import useSavingsPlanAvailable from '@/hooks/useSavingPlanAvailable';
 import { TClusterCreationForm } from '@/pages/new/hooks/useCusterCreationStepper';
 import usePlanData from '@/pages/new/hooks/usePlanData';
+import { TClusterPlanEnum } from '@/types';
 
 type EstimationProps = {
   nodePools?: NodePoolPrice[];
@@ -71,9 +64,7 @@ const Estimation = ({ nodePools, plan }: EstimationProps) => {
           <strong> {t('kube_common_cluster_estimation_price')}</strong>{' '}
           {t(
             plan === TClusterPlanEnum.STANDARD
-              ? getFormattedMonthlyCatalogPrice(
-                  convertHourlyPriceToMonthly(getPrice(plan)),
-                )
+              ? getFormattedMonthlyCatalogPrice(convertHourlyPriceToMonthly(getPrice(plan)))
               : 'kube_common_estimation_price_free',
           )}
         </OsdsText>

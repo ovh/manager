@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
-import { Control, useFormContext, UseFormReturn } from 'react-hook-form';
+import { Control, UseFormReturn, useFormContext } from 'react-hook-form';
+import { describe, expect, it, vi } from 'vitest';
+
 import RenderFormField from './RenderFormField.component';
 
 vi.mock('react-hook-form', () => ({
@@ -22,15 +23,7 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
 
 vi.mock('./InputFormField.component', () => ({
   InputFormField: vi.fn(
-    ({
-      name,
-      value,
-      onChange,
-      onBlur,
-      placeholder,
-      error,
-      'data-testid': dataTestId,
-    }) => (
+    ({ name, value, onChange, onBlur, placeholder, error, 'data-testid': dataTestId }) => (
       <input
         name={name}
         value={value}
@@ -110,9 +103,7 @@ describe('RenderFormField', () => {
       });
 
       it('passes the correct props to the Controller', () => {
-        const mockControl = ({ [name]: vi.fn() } as unknown) as Control<
-          Record<string, unknown>
-        >;
+        const mockControl = { [name]: vi.fn() } as unknown as Control<Record<string, unknown>>;
         vi.mocked(useFormContext).mockReturnValue({
           ...mockFormContext,
           control: mockControl,

@@ -1,7 +1,9 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent, act } from '@testing-library/react';
-import { LocationStep } from './LocationStep.component';
+import { act, fireEvent, render, screen } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { wrapper } from '@/wrapperRenders';
+
+import { LocationStep } from './LocationStep.component';
 
 vi.mock('@/hooks/useHas3AZRegions', () => ({
   default: () => ({
@@ -72,13 +74,9 @@ describe('LocationStep', () => {
     };
     render(<LocationStep {...props} />, { wrapper });
 
-    expect(
-      screen.getByText('add:kubernetes_add_region_title'),
-    ).toBeInTheDocument();
+    expect(screen.getByText('add:kubernetes_add_region_title')).toBeInTheDocument();
 
-    expect(
-      screen.getByText('add:kubernetes_add_region_title_multi-zones'),
-    ).toBeInTheDocument();
+    expect(screen.getByText('add:kubernetes_add_region_title_multi-zones')).toBeInTheDocument();
   });
 
   it('disables Next button if no region selected', () => {

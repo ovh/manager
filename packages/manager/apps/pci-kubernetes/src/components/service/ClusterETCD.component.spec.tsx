@@ -1,11 +1,14 @@
-import { render, waitFor } from '@testing-library/react';
-import * as manager from '@ovh-ux/manager-react-components';
-import { vi } from 'vitest';
 import { UseQueryResult } from '@tanstack/react-query';
-import ClusterEtcd from './ClusterETCD.component';
-import { wrapper } from '@/wrapperRenders';
+import { render, waitFor } from '@testing-library/react';
+import { vi } from 'vitest';
+
+import * as manager from '@ovh-ux/manager-react-components';
+
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
 import { getColorByPercentage } from '@/helpers';
+import { wrapper } from '@/wrapperRenders';
+
+import ClusterEtcd from './ClusterETCD.component';
 
 describe('ClusterEtcd', () => {
   it('renders progress bar and usage text correctly', async () => {
@@ -13,10 +16,10 @@ describe('ClusterEtcd', () => {
     const mockQuota = 1000;
     const mockPercentage = (mockUsage / mockQuota) * 100;
 
-    vi.spyOn(useKubernetesModule, 'useGetClusterEtcdUsage').mockReturnValue(({
+    vi.spyOn(useKubernetesModule, 'useGetClusterEtcdUsage').mockReturnValue({
       data: { usage: mockUsage, quota: mockQuota },
       isPending: false,
-    } as unknown) as UseQueryResult<{ usage: number; quota: number }>);
+    } as unknown as UseQueryResult<{ usage: number; quota: number }>);
 
     const { getByText, container } = render(<ClusterEtcd />, { wrapper });
 
@@ -26,12 +29,8 @@ describe('ClusterEtcd', () => {
 
       expect(progressBar).toBeInTheDocument();
       expect(progressBar?.getAttribute('color')).toBe(progressBarColor);
-      expect(progressBar?.getAttribute('value')).toBe(
-        mockPercentage.toString(),
-      );
-      expect(
-        getByText('500 unit_size_B / 1000 unit_size_B'),
-      ).toBeInTheDocument();
+      expect(progressBar?.getAttribute('value')).toBe(mockPercentage.toString());
+      expect(getByText('500 unit_size_B / 1000 unit_size_B')).toBeInTheDocument();
     });
   });
 
@@ -40,10 +39,10 @@ describe('ClusterEtcd', () => {
     const mockQuota = 1000;
     const mockPercentage = (mockUsage / mockQuota) * 100;
 
-    vi.spyOn(useKubernetesModule, 'useGetClusterEtcdUsage').mockReturnValue(({
+    vi.spyOn(useKubernetesModule, 'useGetClusterEtcdUsage').mockReturnValue({
       data: { usage: mockUsage, quota: mockQuota },
       isPending: false,
-    } as unknown) as UseQueryResult<{ usage: number; quota: number }>);
+    } as unknown as UseQueryResult<{ usage: number; quota: number }>);
 
     const { container } = render(<ClusterEtcd />, { wrapper });
 
@@ -60,17 +59,15 @@ describe('ClusterEtcd', () => {
     const mockUsage = 300;
     const mockQuota = 600;
 
-    vi.spyOn(useKubernetesModule, 'useGetClusterEtcdUsage').mockReturnValue(({
+    vi.spyOn(useKubernetesModule, 'useGetClusterEtcdUsage').mockReturnValue({
       data: { usage: mockUsage, quota: mockQuota },
       isPending: false,
-    } as unknown) as UseQueryResult<{ usage: number; quota: number }>);
+    } as unknown as UseQueryResult<{ usage: number; quota: number }>);
 
     const { getByText } = render(<ClusterEtcd />, { wrapper });
 
     await waitFor(() => {
-      expect(
-        getByText('300 unit_size_B / 600 unit_size_B'),
-      ).toBeInTheDocument();
+      expect(getByText('300 unit_size_B / 600 unit_size_B')).toBeInTheDocument();
     });
   });
   it('should call addError only once when percentage is over 80%', async () => {
@@ -82,10 +79,10 @@ describe('ClusterEtcd', () => {
     });
 
     // Mock useGetClusterEtcdUsage to return usage leading to percentage > 80%
-    vi.spyOn(useKubernetesModule, 'useGetClusterEtcdUsage').mockReturnValue(({
+    vi.spyOn(useKubernetesModule, 'useGetClusterEtcdUsage').mockReturnValue({
       data: { usage: mockUsage, quota: mockQuota },
       isPending: false,
-    } as unknown) as UseQueryResult<{ usage: number; quota: number }>);
+    } as unknown as UseQueryResult<{ usage: number; quota: number }>);
 
     // Render the component
     render(<ClusterEtcd />);

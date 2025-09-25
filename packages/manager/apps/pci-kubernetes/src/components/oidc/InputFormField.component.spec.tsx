@@ -1,22 +1,18 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, vi, expect } from 'vitest';
-import {
-  InputFormField,
-  TInputFormFieldProps,
-} from './InputFormField.component';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
+import { InputFormField, TInputFormFieldProps } from './InputFormField.component';
 
 vi.mock('@ovhcloud/ods-components/react', () => ({
-  OsdsInput: vi.fn(
-    ({ className, onOdsValueChange, onOdsInputBlur, ...props }) => (
-      <input
-        data-testid={props['data-testid']}
-        className={className}
-        onChange={(e) => onOdsValueChange && onOdsValueChange(e.target.value)}
-        onBlur={() => onOdsInputBlur && onOdsInputBlur()}
-        {...props}
-      />
-    ),
-  ),
+  OsdsInput: vi.fn(({ className, onOdsValueChange, onOdsInputBlur, ...props }) => (
+    <input
+      data-testid={props['data-testid']}
+      className={className}
+      onChange={(e) => onOdsValueChange && onOdsValueChange(e.target.value)}
+      onBlur={() => onOdsInputBlur && onOdsInputBlur()}
+      {...props}
+    />
+  )),
   OsdsText: vi.fn(({ children, ...props }) => (
     <span data-testid={props['data-testid']} {...props}>
       {children}

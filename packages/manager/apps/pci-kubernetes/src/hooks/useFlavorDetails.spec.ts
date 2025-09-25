@@ -1,9 +1,8 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook } from '@testing-library/react-hooks';
-import useMergedFlavorById, {
-  getPriceByDesiredScale,
-} from './useMergedFlavorById';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { useMergedKubeFlavors } from './useFlavors';
+import useMergedFlavorById, { getPriceByDesiredScale } from './useMergedFlavorById';
 
 const mockFlavors = [
   { id: 'flavor-1', name: 'Small', cpu: 2 },
@@ -39,15 +38,13 @@ describe('getPriceByDesiredScale', () => {
 
 describe('useMergedFlavorById', () => {
   beforeEach(() => {
-    vi.mocked(useMergedKubeFlavors).mockReturnValue(({
+    vi.mocked(useMergedKubeFlavors).mockReturnValue({
       mergedFlavors: mockFlavors,
-    } as unknown) as ReturnType<typeof useMergedKubeFlavors>);
+    } as unknown as ReturnType<typeof useMergedKubeFlavors>);
   });
 
   it('should return the flavor matching the ID', () => {
-    const { result } = renderHook(() =>
-      useMergedFlavorById('project-1', 'region-1', 'flavor-2'),
-    );
+    const { result } = renderHook(() => useMergedFlavorById('project-1', 'region-1', 'flavor-2'));
 
     expect(result.current).toEqual({ id: 'flavor-2', name: 'Medium', cpu: 4 });
   });

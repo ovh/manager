@@ -1,5 +1,7 @@
 import { z } from 'zod';
+
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+
 import { pluginData } from '@/api/data/plugins';
 import { isBase64 } from '@/helpers';
 
@@ -71,7 +73,7 @@ export enum TClusterPlanEnum {
   STANDARD = 'standard',
 }
 
-export type TClusterPlan = typeof TClusterPlanEnum[keyof typeof TClusterPlanEnum];
+export type TClusterPlan = (typeof TClusterPlanEnum)[keyof typeof TClusterPlanEnum];
 
 export type TNetworkConfiguration = {
   privateNetworkRoutingAsDefault: boolean;
@@ -103,9 +105,7 @@ export const oidcSchema = z.object({
       message:
         'pci_projects_project_kubernetes_details_service_upsert_oidc_provider_issue_https_error',
     }),
-  clientId: z
-    .string()
-    .min(1, { message: 'common:common_field_error_required' }),
+  clientId: z.string().min(1, { message: 'common:common_field_error_required' }),
   caContent: z
     .string()
     .default(`${PlaceHolder.groupsClaim}`)
@@ -137,10 +137,7 @@ export const oidcSchema = z.object({
           'pci_projects_project_kubernetes_details_service_oidc_provider_field_groups_claim_error',
       },
     ),
-  groupsPrefix: z
-    .string()
-    .nullable()
-    .optional(),
+  groupsPrefix: z.string().nullable().optional(),
   requiredClaim: z
     .string()
     .nullable()
@@ -162,18 +159,9 @@ export const oidcSchema = z.object({
         });
       }
     }),
-  signingAlgorithms: z
-    .array(z.nativeEnum(SigningAlgorithms))
-    .nullable()
-    .optional(),
-  usernameClaim: z
-    .string()
-    .nullable()
-    .optional(),
-  usernamePrefix: z
-    .string()
-    .nullable()
-    .optional(),
+  signingAlgorithms: z.array(z.nativeEnum(SigningAlgorithms)).nullable().optional(),
+  usernameClaim: z.string().nullable().optional(),
+  usernamePrefix: z.string().nullable().optional(),
 });
 
 export type FormValues = z.infer<typeof oidcSchema>;

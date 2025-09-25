@@ -1,4 +1,11 @@
 import { useEffect, useMemo } from 'react';
+
+import { useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
@@ -6,21 +13,13 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OsdsIcon, OsdsLink, OsdsProgressBar, OsdsText } from '@ovhcloud/ods-components/react';
 
-import { useTranslation } from 'react-i18next';
 import { useBytes } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import {
-  OsdsIcon,
-  OsdsLink,
-  OsdsProgressBar,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import { useParams } from 'react-router-dom';
+
 import { useGetClusterEtcdUsage } from '@/api/hooks/useKubernetes';
-import { getColorByPercentage, QUOTA_ERROR_URL } from '@/helpers';
+import { QUOTA_ERROR_URL, getColorByPercentage } from '@/helpers';
 
 const getProgressBarStyle = (color: string) => `
   progress[value] {
@@ -48,10 +47,7 @@ function ClusterEtcd() {
   const { projectId, kubeId } = useParams();
   const { formatBytes } = useBytes();
 
-  const { data: { usage: used, quota: total } = {} } = useGetClusterEtcdUsage(
-    projectId,
-    kubeId,
-  );
+  const { data: { usage: used, quota: total } = {} } = useGetClusterEtcdUsage(projectId, kubeId);
   const percentage = useMemo(() => (used / total) * 100, [used, total]);
   const { t } = useTranslation(['service']);
   const { addWarning } = useNotifications();
@@ -60,9 +56,7 @@ function ClusterEtcd() {
     if (percentage >= 80) {
       addWarning(
         <>
-          <span className="text-[#995400]">
-            {t('kube_service_etcd_quota_error')}
-          </span>
+          <span className="text-[#995400]">{t('kube_service_etcd_quota_error')}</span>
 
           <br />
           <OsdsLink
@@ -100,11 +94,7 @@ function ClusterEtcd() {
 
   return (
     <div className="w-full p-3 my-4">
-      <OsdsProgressBar
-        color={getColorByPercentage(percentage)}
-        value={percentage}
-        max={100}
-      />
+      <OsdsProgressBar color={getColorByPercentage(percentage)} value={percentage} max={100} />
       <OsdsText
         size={ODS_TEXT_SIZE._400}
         level={ODS_TEXT_LEVEL.body}

@@ -5,8 +5,6 @@ export const getProjectQuotaByRegion = async (
   projectId: string,
   regionName: string,
 ): Promise<TQuota> => {
-  const { data } = await v6.get(
-    `/cloud/project/${projectId}/region/${regionName}/quota`,
-  );
+  const { data } = await v6.get(`/cloud/project/${projectId}/region/${regionName}/quota`);
   return data;
 };

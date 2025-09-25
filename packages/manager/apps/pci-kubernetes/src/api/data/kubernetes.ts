@@ -1,18 +1,9 @@
 import { fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
-import {
-  TClusterPlan,
-  TKube,
-  TNetworkConfiguration,
-  TOidcProvider,
-} from '@/types';
 
-export const getKubernetesCluster = async (
-  projectId: string,
-  kubeId: string,
-): Promise<TKube> => {
-  const { data } = await v6.get<TKube>(
-    `/cloud/project/${projectId}/kube/${kubeId}`,
-  );
+import { TClusterPlan, TKube, TNetworkConfiguration, TOidcProvider } from '@/types';
+
+export const getKubernetesCluster = async (projectId: string, kubeId: string): Promise<TKube> => {
+  const { data } = await v6.get<TKube>(`/cloud/project/${projectId}/kube/${kubeId}`);
   return data;
 };
 
@@ -68,17 +59,12 @@ export const updateKubernetesCluster = async (
   kubeId: string,
   params: Partial<TKube>,
 ) => {
-  const { data } = await v6.put(
-    `/cloud/project/${projectId}/kube/${kubeId}`,
-    params,
-  );
+  const { data } = await v6.put(`/cloud/project/${projectId}/kube/${kubeId}`, params);
   return data;
 };
 
 export const resetKubeConfig = async (projectId: string, kubeId: string) => {
-  const { data } = await v6.post(
-    `/cloud/project/${projectId}/kube/${kubeId}/kubeconfig/reset`,
-  );
+  const { data } = await v6.post(`/cloud/project/${projectId}/kube/${kubeId}/kubeconfig/reset`);
   return data;
 };
 
@@ -106,45 +92,27 @@ export const postKubeConfig = async (
   projectId: string,
   kubeId: string,
 ): Promise<{ content: string }> => {
-  const { data } = await v6.post(
-    `/cloud/project/${projectId}/kube/${kubeId}/kubeconfig`,
-  );
+  const { data } = await v6.post(`/cloud/project/${projectId}/kube/${kubeId}/kubeconfig`);
 
   return data;
 };
 
-export const updateKubePolicy = async (
-  projectId: string,
-  kubeId: string,
-  updatePolicy: string,
-) => {
-  const { data } = await v6.put(
-    `/cloud/project/${projectId}/kube/${kubeId}/updatePolicy`,
-    {
-      updatePolicy,
-    },
-  );
+export const updateKubePolicy = async (projectId: string, kubeId: string, updatePolicy: string) => {
+  const { data } = await v6.put(`/cloud/project/${projectId}/kube/${kubeId}/updatePolicy`, {
+    updatePolicy,
+  });
   return data;
 };
 
-export const updateKubeVersion = async (
-  projectId: string,
-  kubeId: string,
-  strategy: string,
-) => {
-  const { data } = await v6.post(
-    `/cloud/project/${projectId}/kube/${kubeId}/update`,
-    {
-      strategy,
-    },
-  );
+export const updateKubeVersion = async (projectId: string, kubeId: string, strategy: string) => {
+  const { data } = await v6.post(`/cloud/project/${projectId}/kube/${kubeId}/update`, {
+    strategy,
+  });
   return data;
 };
 
 export const terminateCluster = async (projectId: string, kubeId: string) => {
-  const { data } = await v6.delete(
-    `/cloud/project/${projectId}/kube/${kubeId}`,
-  );
+  const { data } = await v6.delete(`/cloud/project/${projectId}/kube/${kubeId}`);
   return data;
 };
 
@@ -162,18 +130,11 @@ export const resetCluster = async (
   kubeId: string,
   params: TResetClusterParams,
 ) => {
-  const { data } = await v6.post(
-    `/cloud/project/${projectId}/kube/${kubeId}/reset`,
-    params,
-  );
+  const { data } = await v6.post(`/cloud/project/${projectId}/kube/${kubeId}/reset`, params);
   return data;
 };
 
-export const addOidcProvider = async (
-  projectId: string,
-  kubeId: string,
-  params: TOidcProvider,
-) => {
+export const addOidcProvider = async (projectId: string, kubeId: string, params: TOidcProvider) => {
   const { data } = await v6.post(
     `/cloud/project/${projectId}/kube/${kubeId}/openIdConnect`,
     params,
@@ -186,17 +147,12 @@ export const updateOidcProvider = async (
   kubeId: string,
   params: TOidcProvider,
 ) => {
-  const { data } = await v6.put(
-    `/cloud/project/${projectId}/kube/${kubeId}/openIdConnect`,
-    params,
-  );
+  const { data } = await v6.put(`/cloud/project/${projectId}/kube/${kubeId}/openIdConnect`, params);
   return data;
 };
 
 export const removeOidcProvider = async (projectId: string, kubeId: string) => {
-  const { data } = await v6.delete(
-    `/cloud/project/${projectId}/kube/${kubeId}/openIdConnect`,
-  );
+  const { data } = await v6.delete(`/cloud/project/${projectId}/kube/${kubeId}/openIdConnect`);
   return data;
 };
 
@@ -213,11 +169,7 @@ export type TSubscription = {
   updatedAt: string;
 };
 
-export const getSubscribedLogs = async (
-  projectId: string,
-  kubeId: string,
-  kind: string,
-) => {
+export const getSubscribedLogs = async (projectId: string, kubeId: string, kind: string) => {
   const { data } = await fetchIcebergV6<TSubscription>({
     route: `/cloud/project/${projectId}/kube/${kubeId}/log/subscription?kind=${kind}`,
     disableCache: true,
@@ -230,17 +182,10 @@ export type TLogURL = {
   url: string;
 };
 
-export const postLogURL = async (
-  projectId: string,
-  kubeId: string,
-  kind: string,
-) => {
-  const { data } = await v6.post<TLogURL>(
-    `/cloud/project/${projectId}/kube/${kubeId}/log/url`,
-    {
-      kind,
-    },
-  );
+export const postLogURL = async (projectId: string, kubeId: string, kind: string) => {
+  const { data } = await v6.post<TLogURL>(`/cloud/project/${projectId}/kube/${kubeId}/log/url`, {
+    kind,
+  });
   return data;
 };
 
@@ -255,9 +200,7 @@ export const pollOperation = async (
   intervalMs = 1000,
 ) => {
   const poll = async () => {
-    const { data: op } = await v6.get(
-      `/dbaas/logs/${serviceName}/operation/${operationId}`,
-    );
+    const { data: op } = await v6.get(`/dbaas/logs/${serviceName}/operation/${operationId}`);
     if (op.state === 'SUCCESS') {
       return op;
     }
@@ -318,18 +261,15 @@ export async function editNetwork(
   }
   if (hasLoadBalancersChanges) {
     todo.push(
-      v6.put(
-        `/cloud/project/${projectId}/kube/${kubeId}/updateLoadBalancersSubnetId`,
-        { loadBalancersSubnetId },
-      ),
+      v6.put(`/cloud/project/${projectId}/kube/${kubeId}/updateLoadBalancersSubnetId`, {
+        loadBalancersSubnetId,
+      }),
     );
   }
   return Promise.all(todo);
 }
 
 export const getKubeEtcdUsage = async (projectId: string, kubeId: string) => {
-  const { data } = await v6.get(
-    `/cloud/project/${projectId}/kube/${kubeId}/metrics/etcdUsage`,
-  );
+  const { data } = await v6.get(`/cloud/project/${projectId}/kube/${kubeId}/metrics/etcdUsage`);
   return data;
 };

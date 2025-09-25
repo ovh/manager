@@ -1,10 +1,11 @@
-import { create } from 'zustand';
-import { createRef, RefObject } from 'react';
-import { StepsEnum } from '@/pages/detail/nodepools/new/steps.enum';
+import { RefObject, createRef } from 'react';
 
-import { isNodePoolNameValid } from '@/helpers/matchers/matchers';
+import { create } from 'zustand';
+
 import { TComputedKubeFlavor } from '@/components/flavor-selector/FlavorSelector.component';
 import { NODE_RANGE } from '@/constants';
+import { isNodePoolNameValid } from '@/helpers/matchers/matchers';
+import { StepsEnum } from '@/pages/detail/nodepools/new/steps.enum';
 import { TScalingState } from '@/types';
 
 type TStep = {
@@ -260,11 +261,9 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
     }));
   },
   scrollToStep: (id: StepsEnum) => {
-    get()
-      .steps.get(id)
-      ?.ref.current?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
+    get().steps.get(id)?.ref.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
   },
 }));
