@@ -1,9 +1,14 @@
 import { Suspense, startTransition, useMemo } from 'react';
+
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
+
 import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
+
 import { BaseLayout } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import { useDashboardTabs } from '@/hooks/dashboard/useDashboardTabs';
 import { urls } from '@/routes/Routes.constants';
@@ -47,15 +52,11 @@ export default function DashboardPage() {
                     }
                   }}
                 >
-                  <OdsTab isSelected={tab.name === activeTab?.name}>
-                    {t(tab.title)}
-                  </OdsTab>
+                  <OdsTab isSelected={tab.name === activeTab?.name}>{t(tab.title)}</OdsTab>
                 </NavLink>
               ))}
             </OdsTabs>
-          ) : (
-            undefined
-          )
+          ) : undefined
         }
       />
       <Suspense fallback={null}>

@@ -1,11 +1,10 @@
-import React from 'react';
-import type { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import { MemoryRouter } from 'react-router-dom';
 
 import { vi } from 'vitest';
 
-import type { Environment } from '@ovh-ux/manager-config';
+import { Environment } from '@ovh-ux/manager-config';
 import {
   ShellContext,
   ShellContextType,
