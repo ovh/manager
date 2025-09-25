@@ -1,7 +1,6 @@
 import { redirect } from 'react-router-dom';
 import queryClient from '@/query.client';
 import { getStorages } from '@/data/api/storage/storages';
-import Containers from './containers/Containers.page';
 
 interface ObjectStorageProps {
   params: {
@@ -28,7 +27,3 @@ export const Loader = ({ params }: ObjectStorageProps) => {
       return null;
     });
 };
-
-export default function Root() {
-  return <Containers />;
-}
