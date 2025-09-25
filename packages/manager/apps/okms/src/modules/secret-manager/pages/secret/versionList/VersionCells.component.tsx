@@ -9,10 +9,13 @@ import {
   ManagerLink,
 } from '@ovh-ux/manager-react-components';
 import {
+  Secret,
   SecretVersion,
   SecretVersionState,
 } from '@secret-manager/types/secret.type';
 import { VersionState } from '@secret-manager/components/VersionState/VersionState.component';
+import { useTranslation } from 'react-i18next';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { useFormatDate } from '@/common/hooks/useFormatDate';
 import { kmsIamActions } from '@/utils/iam/iam.constants';
 import { VERSION_LIST_CELL_TEST_IDS } from './VersionCells.constants';
@@ -25,33 +28,48 @@ const isVersionIdCellDisabled: Record<SecretVersionState, boolean> = {
 
 export const VersionIdCell = ({
   version,
-  urn,
+  secret,
 }: {
   version: SecretVersion;
-  urn: string;
+  secret: Secret;
 }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation('secret-manager');
   const { okmsId, secretPath } = useParams<LocationPathParams>();
 
+  const isCurrentVersion = version.id === secret?.metadata?.currentVersion;
+
   return (
-    <ManagerLink
-      label={version.id.toString()}
-      href={null}
-      isDisabled={isVersionIdCellDisabled[version.state]}
-      onClick={() => {
-        navigate(
-          SECRET_MANAGER_ROUTES_URLS.versionListSecretValueDrawer(
-            okmsId,
-            secretPath,
-            version.id,
-          ),
-        );
-      }}
-      urn={urn}
-      iamActions={[kmsIamActions.secretGet, kmsIamActions.secretVersionGetData]}
-      isDisplayTooltip
-      data-testid={VERSION_LIST_CELL_TEST_IDS.version(version)}
-    />
+    <div className="flex gap-2 items-center">
+      <ManagerLink
+        label={version.id.toString()}
+        href={null}
+        isDisabled={isVersionIdCellDisabled[version.state]}
+        onClick={() => {
+          navigate(
+            SECRET_MANAGER_ROUTES_URLS.versionListSecretValueDrawer(
+              okmsId,
+              secretPath,
+              version.id,
+            ),
+          );
+        }}
+        urn={secret?.iam?.urn}
+        iamActions={[
+          kmsIamActions.secretGet,
+          kmsIamActions.secretVersionGetData,
+        ]}
+        isDisplayTooltip
+        data-testid={VERSION_LIST_CELL_TEST_IDS.version(version)}
+      />
+      {isCurrentVersion && (
+        <OdsBadge
+          data-testid={VERSION_LIST_CELL_TEST_IDS.currentVersionBadge}
+          label={t('current_version')}
+          color={'information'}
+        />
+      )}
+    </div>
   );
 };
 

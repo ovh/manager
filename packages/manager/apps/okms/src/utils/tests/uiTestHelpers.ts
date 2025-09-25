@@ -1,7 +1,9 @@
 import { OdsIcon } from '@ovhcloud/ods-components/react';
-import { waitFor, waitForOptions } from '@testing-library/react';
+import { screen, waitFor, waitForOptions } from '@testing-library/react';
 
 const WAIT_FOR_DEFAULT_OPTIONS = { timeout: 3000 };
+
+/* GET BY LABEL */
 
 type GetOdsButtonParams = {
   container: HTMLElement;
@@ -102,4 +104,28 @@ export const getOdsButtonByIcon = async ({
     nth,
     ...options,
   });
+};
+
+/* GET BY TEST ID */
+
+type GetOdsLinkByTestIdParams = {
+  testId: string;
+  disabled?: boolean;
+};
+
+export const getOdsLinkByTestId = async ({
+  testId,
+  disabled,
+}: GetOdsLinkByTestIdParams) => {
+  let link: HTMLElement;
+  await waitFor(() => {
+    link = screen.getByTestId(testId);
+    expect(link).toBeInTheDocument();
+
+    return disabled
+      ? expect(link).toHaveAttribute('is-disabled', 'true')
+      : expect(link).not.toHaveAttribute('is-disabled', 'true');
+  });
+
+  return link;
 };
