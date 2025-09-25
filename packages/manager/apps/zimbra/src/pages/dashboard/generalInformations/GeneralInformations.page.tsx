@@ -26,6 +26,7 @@ export const GeneralInformations = () => {
     'common:webmail': GUIDES_LIST.webmail,
     zimbra_dashboard_administrator_guide: GUIDES_LIST.administrator_guide,
     zimbra_dashboard_user_guides: GUIDES_LIST.user_guide,
+    zimbra_dashboard_ovh_mail_migrator: GUIDES_LIST.ovh_mail_migrator,
   };
 
   const itemsStatus = useMemo(() => {
