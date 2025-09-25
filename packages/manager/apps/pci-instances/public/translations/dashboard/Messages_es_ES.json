@@ -11,7 +11,7 @@
   "pci_instances_dashboard_storage_title": "Almacenamiento",
   "pci_instances_dashboard_public_bandwidth_title": "Ancho de banda público",
   "pci_instances_dashboard_attach_volumes": "Asociar un volumen",
-  "pci_instances_dashboard_edit_image": "Cambiar imagen",
+  "pci_instances_dashboard_edit_image": "Editar imagen",
   "pci_instances_dashboard_id_openstack_title": "ID",
   "pci_instances_dashboard_ssh_key": "Llave SSH",
   "pci_instances_dashboard_network_title": "Redes",
