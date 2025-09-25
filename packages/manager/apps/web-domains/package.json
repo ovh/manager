@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web-domains-app",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "private": true,
   "description": "Domains and Alldom management",
   "repository": {
@@ -25,7 +25,7 @@
     "@ovh-ux/manager-config": "^8.6.2",
     "@ovh-ux/manager-core-api": "^0.16.0",
     "@ovh-ux/manager-core-utils": "^0.4.2",
-    "@ovh-ux/manager-react-components": "^2.41.0",
+    "@ovh-ux/manager-react-components": "^2.41.1",
     "@ovh-ux/manager-react-core-application": "^0.12.4",
     "@ovh-ux/manager-react-shell-client": "^0.9.3",
     "@ovh-ux/manager-vite-config": "^0.13.1",
