@@ -15,7 +15,7 @@ export const useRoadmapChangelogData = (isLoadingItems: boolean) => {
 
   const emptyRoadmapChangelogItem: RoadmapChangelogItem = {
     title: '',
-    description: '',
+    url: '',
     product: '',
     releaseDate: '',
     status: '',
@@ -51,7 +51,7 @@ export const useRoadmapChangelogData = (isLoadingItems: boolean) => {
     },
     {
       id: 'description',
-      label: t('datagrid_table_head_description'),
+      label: t('datagrid_table_head_link'),
       cell: (item: RoadmapChangelogItem) =>
         isLoadingItems ? (
           <OsdsSkeleton />
