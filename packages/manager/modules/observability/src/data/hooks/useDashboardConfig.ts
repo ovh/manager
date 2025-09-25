@@ -54,7 +54,7 @@ export const useChartWithData = (chartId?: string) => {
     isLoading: dataLoading,
     error: dataError,
     isError: isDataError,
-  } = useChartData(chartId);
+  } = useChartData(chartId, chartConfig?.query);
 
   const isLoading = configLoading || dataLoading;
 

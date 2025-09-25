@@ -11,13 +11,14 @@ export const getChartDataQueryKey = (
 // typed query options using queryOptions()
 export const getChartDataOptions = (
   chartId: string,
+  query: string,
   selectedTimeOption: string,
   refreshInterval: number,
 ) =>
   queryOptions({
     queryKey: getChartDataQueryKey(chartId, selectedTimeOption),
     queryFn: (): Promise<ObsChartData> =>
-      fetchChartData(chartId, selectedTimeOption),
+      fetchChartData(chartId, query, selectedTimeOption),
     refetchInterval: refreshInterval > 0 ? refreshInterval * 1000 : false,
     enabled: !!chartId,
   });
@@ -25,12 +26,14 @@ export const getChartDataOptions = (
 // hook for a single chart
 export const useChartData = (
   chartId?: string,
+  query?: string,
   selectedTimeOption?: string,
   refreshInterval?: number,
 ) => {
   return useQuery(
     getChartDataOptions(
       chartId ?? '',
+      query ?? '',
       selectedTimeOption ?? '',
       refreshInterval ?? -1,
     ),
@@ -39,13 +42,18 @@ export const useChartData = (
 
 // hook for multiple charts
 export const useMultipleChartData = (
-  charts: { id: string }[],
+  charts: { id: string; query: string }[],
   selectedTimeOption: string,
   refreshInterval: number,
 ) => {
   return useQueries({
     queries: charts.map((chart) =>
-      getChartDataOptions(chart.id, selectedTimeOption, refreshInterval),
+      getChartDataOptions(
+        chart.id,
+        chart.query,
+        selectedTimeOption,
+        refreshInterval,
+      ),
     ),
   });
 };

@@ -42,6 +42,7 @@ export const ObsDashboard = ({
             title,
             unit,
             tooltip,
+            query,
             data,
           } = widget;
 
@@ -55,6 +56,7 @@ export const ObsDashboard = ({
               isLoading={isLoading}
               colspan={colspan}
               rowspan={rowspan}
+              query={query}
             >
               <ChartRenderer
                 type={chart.type}

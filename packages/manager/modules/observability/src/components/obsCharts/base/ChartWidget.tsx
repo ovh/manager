@@ -23,6 +23,7 @@ export interface ChartWidgetProps {
   isLoading?: boolean;
   colspan?: number;
   rowspan?: number;
+  query: string;
   children: React.ReactNode;
 }
 

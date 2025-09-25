@@ -7,7 +7,12 @@ export const fetchDashboardConfig = (): Promise<ObsWidget[]> => {
 
 export const fetchChartData = (
   chartId: string,
+  query: string,
   selectedTimeOption: string,
 ): Promise<any[]> => {
-  return getDashboardService().fetchChartData(chartId, selectedTimeOption);
+  return getDashboardService().fetchChartData(
+    chartId,
+    query,
+    selectedTimeOption,
+  );
 };

@@ -13,7 +13,7 @@
       "XAxis": {
         "dataKey": "timestamp",
         "formatter": "formatTimestamp",
-        "interval": 10
+        "interval": 8
       },
       "YAxis": {
         "dataKey": "value"

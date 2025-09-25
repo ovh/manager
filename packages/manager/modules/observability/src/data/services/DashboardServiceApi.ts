@@ -1,6 +1,7 @@
-import { ObsChartData, ObsChartType, ObsWidget } from '../../types';
+import { ObsChartData, ObsWidget } from '../../types';
 import { IDashboardService } from './IDashboardService';
 import { fetchPrometheusData, PrometheusResult } from '../api/prometheusClient';
+import dashboardConfig from '../mocks/config/dashboardConfig2.json';
 
 export class DashboardServiceApi implements IDashboardService {
   private readonly defaults = { windowSec: 60 * 60, stepSec: 60 };
@@ -8,6 +9,8 @@ export class DashboardServiceApi implements IDashboardService {
   private readonly serviceName = 'DashboardServiceApi';
 
   async fetchDashboardConfig(): Promise<ObsWidget[]> {
+    return dashboardConfig as ObsWidget[];
+
     throw new Error(
       `${this.serviceName}: DashboardConfig API not implemented yet`,
     );
@@ -15,9 +18,9 @@ export class DashboardServiceApi implements IDashboardService {
 
   async fetchChartData(
     chartId: string,
+    query: string,
     selectedTimeOption: string,
   ): Promise<ObsChartData> {
-    console.log(chartId);
     const now = Math.floor(Date.now() / 1000);
 
     // Determine the window in seconds based on selectedTimeOption
@@ -26,7 +29,7 @@ export class DashboardServiceApi implements IDashboardService {
     switch (selectedTimeOption) {
       case '1h': {
         windowSec = 60 * 60; // 1 hour
-        step = 60; // 1-minute step
+        step = 14; // 1-minute step
         break;
       }
       case '12h': {
@@ -51,17 +54,21 @@ export class DashboardServiceApi implements IDashboardService {
     const end = now;
 
     const result: PrometheusResult = await fetchPrometheusData({
-      query: 'demo_api_http_requests_in_progress',
+      query,
       start,
       end,
       step,
     });
 
-    const data: ObsChartData = result.data.result.flatMap((series) =>
-      series.values.map(([timestamp, value]) => ({
-        timestamp: Number(timestamp) * 1000, // ms
-        value: Number(value),
-      })),
+    console.log(chartId);
+
+    const data: ObsChartData = result.data.result[0].values.map(
+      ([timestamp, value]) => {
+        return {
+          timestamp: Number(timestamp) * 1000, // ms
+          value: Number(value),
+        };
+      },
     );
 
     return data;

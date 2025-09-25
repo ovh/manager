@@ -33,7 +33,7 @@ export default function Onboarding() {
         moreInfoButtonLabel={t('moreInfoButtonLabel')}
         moreInfoHref="#"
       ></OnboardingLayout>
-      <div className="w-full flex justify-center m-4">
+      <div className="w-full flex justify-center gap-4 m-4">
         <OdsButton
           className="[&::part(button)]:w-full sm:w-auto"
           size={ODS_BUTTON_SIZE.md}
@@ -42,6 +42,17 @@ export default function Onboarding() {
             navigate('/dashboards');
           }}
           label={'Accéder aux tabeaux de bord prédéfinis'}
+          iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.right}
+        />
+
+        <OdsButton
+          className="[&::part(button)]:w-full sm:w-auto"
+          size={ODS_BUTTON_SIZE.md}
+          variant={ODS_BUTTON_VARIANT.outline}
+          onClick={() => {
+            navigate('/settings');
+          }}
+          label={'Accéder aux Settings'}
           iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.right}
         />
       </div>

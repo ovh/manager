@@ -1,0 +1,43 @@
+[
+  {
+    "id": "chart-1",
+    "title": "Display metric name 1",
+    "unit": "m²/sec",
+    "colspan": 2,
+    "tooltip": {
+      "title": "Example of tooltip - Metric Information",
+      "subTitle": "CPUUtilization"
+    },
+    "query": "demo_api_http_requests_in_progress",
+    "chart": {
+      "type": "TimeSeries",
+      "curveType": "linear",
+      "XAxis": {
+        "dataKey": "timestamp",
+        "formatter": "formatTimestamp",
+        "interval": 10
+      },
+      "YAxis": {
+        "dataKey": "value"
+      }
+    }
+  },
+  {
+    "id": "chart-2",
+    "title": "Display metric name 2",
+    "unit": "m²/sec",
+    "colspan": 2,
+    "query": "demo_batch_last_run_processed_bytes",
+    "chart": {
+      "type": "TimeSeries",
+      "XAxis": {
+        "dataKey": "timestamp",
+        "formatter": "formatTimestamp",
+        "interval": 10
+      },
+      "YAxis": {
+        "dataKey": "value"
+      }
+    }
+  }
+]

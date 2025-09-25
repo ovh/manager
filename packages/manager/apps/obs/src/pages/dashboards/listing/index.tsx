@@ -1,15 +1,15 @@
-import React, { useState, startTransition } from 'react';
+import React, { startTransition } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import { OdsButton } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
   Breadcrumb,
   Datagrid,
   BaseLayout,
-  DatagridColumn,
   Links,
+  DatagridColumn,
 } from '@ovh-ux/manager-react-components';
 
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
@@ -27,12 +27,17 @@ export default function Listing() {
     startTransition(() => navigate(`${location.pathname}/${dashboardId}`));
   };
 
-  const [columns, setColumns] = useState<DatagridColumn<any>[]>([
+  type TDashboard = {
+    productType: string;
+    description: string;
+  };
+
+  const columns: DatagridColumn<TDashboard>[] = [
     {
       id: 'productType',
       type: FilterTypeCategories.String,
       label: 'Product type',
-      cell: (props) => (
+      cell: (props: TDashboard) => (
         <Links
           onClickReturn={() => {
             navigateToDashboard(`${props?.productType}`);
@@ -45,7 +50,7 @@ export default function Listing() {
       id: 'description',
       type: FilterTypeCategories.String,
       label: 'Description',
-      cell: (item) => item.description,
+      cell: (props) => <OdsText>{props.description}</OdsText>,
     },
     {
       id: 'action',
@@ -53,7 +58,7 @@ export default function Listing() {
       isSortable: false,
       label: '',
     },
-  ]);
+  ];
 
   const header = {
     title: t('title'),

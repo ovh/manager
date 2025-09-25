@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { Route } from 'react-router-dom';
+import { Navigate, Route } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { getObservabilityRoute } from '@ovh-ux/observability';
@@ -16,6 +16,31 @@ const OverviewPage = lazy(() => import('@/pages/overview'));
 // Dashboards
 const DashboardsListingPage = lazy(() => import('@/pages/dashboards/listing'));
 const DashobardDetailsPage = lazy(() => import('@/pages/dashboards/details'));
+
+// Settings
+const SettingsListingPage = lazy(() => import('@/pages/settings/listing'));
+
+const SettingsDashboardPage = lazy(() => import('@/pages/settings/dashboard'));
+
+const SettingsGeneralInformationsPage = lazy(() =>
+  import('@/pages/settings/generalInformations').then((m) => ({
+    default: m.SettingsGeneralInformationsPage,
+  })),
+);
+
+const EditNameModal = lazy(() =>
+  import('@/pages/settings/generalInformations').then((m) => ({
+    default: m.EditNameModal,
+  })),
+);
+
+const SettingsGrafanaPage = lazy(() => import('@/pages/settings/grafana'));
+const SettingsPolitiqueIAMPage = lazy(() =>
+  import('@/pages/settings/politicsIAM'),
+);
+const SettingsInfrastructurePage = lazy(() =>
+  import('@/pages/settings/infrastructure'),
+);
 
 export default (
   <Route
@@ -65,6 +90,23 @@ export default (
       }}
     >
       {getObservabilityRoute(ObsEnabledFeatures, defaultFeature)}
+    </Route>
+
+    <Route path="/settings" Component={SettingsListingPage} />
+
+    <Route path="/settings/:serviceId" Component={SettingsDashboardPage}>
+      <Route
+        path="general-informations"
+        Component={SettingsGeneralInformationsPage}
+      >
+        <Route path="edit-name" Component={EditNameModal} />
+      </Route>
+
+      <Route path="grafana" Component={SettingsGrafanaPage} />
+
+      <Route path="politiqueIAM" Component={SettingsPolitiqueIAMPage} />
+
+      <Route path="infrastructure" Component={SettingsInfrastructurePage} />
     </Route>
   </Route>
 );

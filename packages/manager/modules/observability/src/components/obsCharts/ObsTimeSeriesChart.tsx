@@ -32,7 +32,11 @@ const ObsTimeSeriesChart = ({
     formatter: xAxisFormatter,
     interval: xAxisInterval,
   } = timeseriesChartConfig.XAxis;
+
   const { dataKey: YAxisDataKey } = timeseriesChartConfig.YAxis;
+
+  const curveType = timeseriesChartConfig.curveType ?? 'monotone';
+
   const { brush } = timeseriesChartConfig;
 
   const formatter = getFormatter(xAxisFormatter);
@@ -49,6 +53,7 @@ const ObsTimeSeriesChart = ({
   const chartMargin = isFullscreen
     ? { top: 10, bottom: 20, left: 0, right: 10 }
     : { top: 0, bottom: 0, left: 20, right: 30 };
+
   const legendAlign = isFullscreen ? 'center' : 'left';
   const legendVerticalAlign = isFullscreen ? 'bottom' : 'top';
   const legendMargins = isFullscreen
@@ -80,7 +85,7 @@ const ObsTimeSeriesChart = ({
           formatter={(value: number) => [value, YAxisDataKey]}
         />
         <Line
-          type="monotone"
+          type={curveType}
           dot={false}
           dataKey={YAxisDataKey}
           stroke={ColorScale.light}

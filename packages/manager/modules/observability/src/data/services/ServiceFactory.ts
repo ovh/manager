@@ -9,7 +9,5 @@ import { DashboardServiceMock } from './DashboardServiceMock';
  * based on the configuration settings.
  */
 export const getDashboardService = (): IDashboardService => {
-  return config.useMocks
-    ? new DashboardServiceMock()
-    : new DashboardServiceApi();
+  return true ? new DashboardServiceMock() : new DashboardServiceApi();
 };

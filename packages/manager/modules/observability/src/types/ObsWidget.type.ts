@@ -8,6 +8,7 @@ export type ObsWidget = {
   colspan?: number;
   rowspan?: number;
   tooltip?: ObsChartTooltip;
+  query: string;
 };
 
 // Base chart type with common properties
@@ -15,9 +16,27 @@ export type ObsChartBase = {
   type: ObsChartType;
 };
 
+export type CurveType =
+  | 'basis'
+  | 'basisClosed'
+  | 'basisOpen'
+  | 'bumpX'
+  | 'bumpY'
+  | 'bump'
+  | 'linear'
+  | 'linearClosed'
+  | 'natural'
+  | 'monotoneX'
+  | 'monotoneY'
+  | 'monotone'
+  | 'step'
+  | 'stepBefore'
+  | 'stepAfter';
+
 // TimeSeries chart specific properties
 export type ObsChartTimeSeries = ObsChartBase & {
   type: ObsChartType.TimeSeries;
+  curveType?: CurveType;
   XAxis: {
     dataKey: string;
     interval?: number;

@@ -2,20 +2,36 @@ import React, { lazy } from 'react';
 import { Route, Navigate } from 'react-router-dom';
 import { ObsFeatureType } from '../types/enums/ObsFeatureType';
 import { getSafeDefaultFeature } from '../utils/ObsFeaturesUtils';
+import { lazyWithPreload } from './lazyWithPreload';
 
 // --- imports ---
-const importMetricsPage = () => import('../pages/metrics');
-const importDashboardDetailsPage = () => import('../pages/metrics/dashboard');
-const importDashboardWidgetModal = () =>
-  import('../pages/metrics/dashboardWidget');
+const importMetricsPage = () => import('../pages/metrics/MetricsPage');
+
 const importLogsPage = () => import('../pages/logs');
+
+const importDashboardModule = () => import('../pages/metrics');
+
+export const DashboardDetailsPage = lazyWithPreload(() =>
+  importDashboardModule().then((m) => ({ default: m.DashboardDetailsPage })),
+);
+
+export const DashboardWidgetModal = lazyWithPreload(() =>
+  importDashboardModule().then((m) => ({ default: m.DashboardWidgetModal })),
+);
+
+// preload immediately
+DashboardDetailsPage.preload();
+DashboardWidgetModal.preload();
 
 // --- Helper for lazy routes with optional props ---
 const lazyRouteConfig = (
-  importFn: () => Promise<{ default: React.ComponentType<any> }>,
+  importFn: () => Promise<any>,
+  exportName = 'default',
   props?: Record<string, any>,
 ) => {
-  const LazyComponent = lazy(importFn);
+  const LazyComponent = lazy(() =>
+    importFn().then((m) => ({ default: m[exportName] })),
+  );
 
   return {
     Component: (routeProps: any) =>
@@ -53,15 +69,11 @@ export const getObservabilityRoute = (
           id="metrics"
           {...lazyRouteConfig(importMetricsPage)}
         >
-          <Route
-            path={''}
-            id="dashboard"
-            {...lazyRouteConfig(importDashboardDetailsPage)}
-          >
+          <Route path={''} id="dashboard" Component={DashboardDetailsPage}>
             <Route
               path={`:widgetId`}
               id="dashboard-widget"
-              {...lazyRouteConfig(importDashboardWidgetModal)}
+              Component={DashboardWidgetModal}
             />
           </Route>
         </Route>
