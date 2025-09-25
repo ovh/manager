@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.96.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.96.0...@ovh-ux/manager-pci@6.96.1) (2025-09-25)
+
+
+### Bug Fixes
+
+* **pci-instances:** prevent planCode to be null ([6ec5b69](https://github.com/ovh/manager/commit/6ec5b69bb8fe15d21a04e2eac0745b33062fd2a4)), closes [#TAPC-5119](https://github.com/ovh/manager/issues/TAPC-5119)
+
+
+
+
+
 # [6.96.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.95.2...@ovh-ux/manager-pci@6.96.0) (2025-09-23)
 
 
