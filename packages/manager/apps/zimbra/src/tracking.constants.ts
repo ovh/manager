@@ -123,5 +123,7 @@ export const GUIDE_USER = 'user-guide';
 export const GUIDE_CNAME = 'cname-guide';
 export const GUIDE_DNS_CONFIG = 'dns-configuration-guide';
 export const GUIDE_HOW_TO_CONFIGURE = 'how-to-configure-guide';
+export const GUIDE_MAIL_CONFIGURE = 'mail-configure';
+export const GUIDE_MAIL_MIGRATE = 'mail-migrate';
 
 export const GO_TO = (link: string) => `go-to-${link}`;
