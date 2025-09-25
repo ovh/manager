@@ -3,29 +3,29 @@
         class="oui-heading_4"
         data-translate="dedicatedCloud_datacenter_add_site_title"
     ></h3>
-    <dl class="row">
+    <dl class="row  container-sm">
         <dt
-            class="col-md-5"
+            class="col-lg-3"
             data-translate="dedicatedCloud_datacenter_drp_confirm_summary_drp_type"
         ></dt>
         <dd
-            class="col-md-7"
+            class="col-lg-9"
             data-ng-bind="::'dedicatedCloud_datacenter_onPremise_choice_' + $ctrl.pccType | translate"
         ></dd>
         <dt
-            class="col-md-5"
+            class="col-lg-3"
             data-ng-bind="::'dedicatedCloud_datacenter_drp_confirm_summary_first_onPremise_datacenter' | translate"
         ></dt>
         <dd
-            class="col-md-7"
+            class="col-lg-9"
             data-ng-bind="::$ctrl.zertoInformations.primaryDatacenter.displayName || '-'"
         ></dd>
         <dt
-            class="col-md-5"
+            class="col-lg-3"
             data-ng-bind=":: ('dedicatedCloud_datacenter_drp_confirm_summary_first_onPremise_pcc_' + $ctrl.pccType) | translate"
         ></dt>
         <dd
-            class="col-md-7"
+            class="col-lg-9"
             data-ng-bind="::$ctrl.zertoInformations.primaryPcc.serviceName || '-'"
         ></dd>
     </dl>

@@ -18,13 +18,8 @@ export default /* @ngInject */ ($stateProvider) => {
         .get('$q')
         .all({
           isZertoOnPremise: transition.injector().getAsync('isZertoOnPremise'),
-          shouldBeConfigured: transition
-            .injector()
-            .getAsync('shouldBeConfigured'),
         })
-        .then(({ isZertoOnPremise, shouldBeConfigured }) => {
-          if (isZertoOnPremise && shouldBeConfigured)
-            return 'app.dedicatedCloud.details.datacenter.details.zerto.listing.addSite';
+        .then(({ isZertoOnPremise }) => {
           return (
             isZertoOnPremise &&
             'app.dedicatedCloud.details.datacenter.details.zerto.listing'

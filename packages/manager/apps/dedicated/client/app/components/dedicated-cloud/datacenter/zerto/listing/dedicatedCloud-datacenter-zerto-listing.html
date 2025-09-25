@@ -33,6 +33,17 @@
         >
         </oui-datagrid-column>
         <oui-datagrid-column
+            data-title="'dedicatedCloud_datacenter_drp_listing_column_status' | translate"
+            data-property="state"
+            data-sortable
+            data-searchable
+            data-filterable
+        >
+            <dedicated-cloud-datacenter-zerto-state-badge
+                data-zerto-state="{{ $row.state }}"
+            />
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'dedicatedCloud_datacenter_drp_listing_column_ip_public' | translate"
             data-property="remoteEndpointPublicIp"
             data-sortable
