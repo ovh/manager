@@ -7,7 +7,7 @@ import {
   applicationsBasePath,
   cleanupDirectories,
   managerRootPath,
-} from '../../playbook/pnpm-config.js';
+} from '../../playbook/playbook-config.js';
 import { parseAppPackageJson } from './json-utils.js';
 import { logger } from './log-manager.js';
 

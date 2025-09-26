@@ -4,8 +4,7 @@
  *
  * Provides a simple argument parser and dispatcher for actions like
  * build, test, lint, CI tasks, docs, and manager-cli passthrough.
- * Uses a mapping-based dispatcher instead of a long switch statement
- * for clarity, modularity, and testability.
+ * Supports forwarding arbitrary Turbo CLI flags.
  */
 import process from 'node:process';
 
@@ -132,10 +131,23 @@ function exitError(msg) {
 }
 
 /**
+ * Collect extra CLI options to forward to Turbo.
+ *
+ * @param {Record<string, string|boolean>} opts - Parsed CLI options.
+ * @returns {string[]} Array of CLI flags for Turbo.
+ */
+function collectTurboArgs(opts) {
+  const excluded = ['action', 'type', 'app', 'filter', 'region', 'mode', 'container'];
+  return Object.entries(opts)
+    .filter(([k]) => !excluded.includes(k))
+    .flatMap(([k, v]) => (typeof v === 'boolean' ? [`--${k}`] : [`--${k}`, v]));
+}
+
+/**
  * Map of supported CLI actions to their async handlers.
  * Each handler receives the parsed CLI context.
  *
- * @type {Record<string, (ctx: {app?: string, passthrough: string[], filter?: string|null, mode?: string}) => Promise<void>>}
+ * @type {Record<string, (ctx: {app?: string, passthrough: string[], filter?: string|null, mode?: string, opts: Record<string, string|boolean>}) => Promise<void>>}
  */
 const actions = {
   async build({ app }) {
@@ -150,11 +162,15 @@ const actions = {
     if (!app) exitError(`Action "lint" requires --app`);
     return lintApp(app);
   },
-  async buildCI({ passthrough, filter }) {
-    return buildCI(passthrough.length ? passthrough : filter ? ['--filter', filter] : []);
+  async buildCI({ passthrough, filter, opts }) {
+    const base = passthrough.length ? passthrough : filter ? ['--filter', filter] : [];
+    const forwarded = collectTurboArgs(opts);
+    return buildCI([...base, ...forwarded]);
   },
-  async testCI({ passthrough, filter }) {
-    return testCI(passthrough.length ? passthrough : filter ? ['--filter', filter] : []);
+  async testCI({ passthrough, filter, opts }) {
+    const base = passthrough.length ? passthrough : filter ? ['--filter', filter] : [];
+    const forwarded = collectTurboArgs(opts);
+    return testCI([...base, ...forwarded]);
   },
   async start() {
     return startApp();
@@ -175,7 +191,6 @@ const actions = {
     // Everything after "cli" is forwarded directly to manager-cli
     const cliIndex = process.argv.indexOf('cli');
     const extraArgs = cliIndex !== -1 ? process.argv.slice(cliIndex + 1) : [];
-
     return runManagerCli(extraArgs);
   },
   async workspace({ mode }) {
@@ -230,7 +245,7 @@ mode: ${mode || '(none)'}`);
   try {
     const handler = actions[action];
     if (!handler) exitError(`❌ Unknown action: "${action}"`);
-    await handler({ app, passthrough, filter, mode });
+    await handler({ app, passthrough, filter, mode, opts });
     process.exit(0);
   } catch (err) {
     logger.error(err.stack || err.message || err);

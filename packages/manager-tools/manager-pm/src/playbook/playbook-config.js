@@ -4,6 +4,9 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+/** Root directory of the monorepo. */
+export const managerRootPath = path.resolve(__dirname, '../../../../..');
+
 /** Default PNPM version to download. */
 export const pnpmVersion = '10.17.0';
 
@@ -16,8 +19,8 @@ export const pnpmExecutablePath = path.join(pnpmBinaryPath, 'pnpm');
 /** Directory where the PNPM store will be placed. */
 export const pnpmStorePath = path.resolve('./target');
 
-/** Root directory of the monorepo. */
-export const managerRootPath = path.resolve(__dirname, '../../../../..');
+/** Local PNPM global-dir used for `pnpm link` */
+export const pnpmGlobalStorePath = path.resolve('target/.pnpm-home');
 
 /** Path to root package.json (Yarn workspaces). */
 export const rootPackageJsonPath = path.join(managerRootPath, 'package.json');

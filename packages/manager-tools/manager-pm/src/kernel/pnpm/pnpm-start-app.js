@@ -3,7 +3,7 @@ import inquirer from 'inquirer';
 import inquirerSearchList from 'inquirer-search-list';
 import process from 'node:process';
 
-import { containerPackageName, managerRootPath } from '../../playbook/pnpm-config.js';
+import { containerPackageName, managerRootPath } from '../../playbook/playbook-config.js';
 import { getApplicationId, getApplications } from '../commons/workspace-utils.js';
 import { updateRootWorkspacesFromCatalogs, clearRootWorkspaces } from '../commons/catalog-utils.js';
 import { resolveBuildFilter } from '../commons/task-utils.js';

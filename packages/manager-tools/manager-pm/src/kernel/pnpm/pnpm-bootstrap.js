@@ -19,17 +19,18 @@ import {
   pnpmExecutablePath,
   pnpmVersion,
   rootPackageJsonPath,
-} from '../../playbook/pnpm-config.js';
+} from '../../playbook/playbook-config.js';
 import { logger } from '../commons/log-manager.js';
 import { removePackageManager, restorePackageManager } from '../commons/package-manager-utils.js';
 
 /**
- * Compute the final executable path for pnpm based on the current platform.
+ * Compute the final PNPM executable path for the current platform.
+ * On Windows, appends `.exe`.
  *
- * @param {string} platform - NodeJS platform
- * @returns {string} Executable path string
+ * @param {string} platform - Node.js platform string (e.g. "linux", "darwin", "win32")
+ * @returns {string} Absolute path to the PNPM binary executable
  */
-function getPnpmExecutablePath(platform) {
+export function getPnpmPlatformExecutablePath(platform) {
   return pnpmExecutablePath + (platform === 'win32' ? '.exe' : '');
 }
 
@@ -77,7 +78,7 @@ function installPnpmBinary() {
   }
 
   const pnpmBinaryUrl = `https://github.com/pnpm/pnpm/releases/download/v${pnpmVersion}/${binaryName}`;
-  const outputPath = getPnpmExecutablePath(platform);
+  const outputPath = getPnpmPlatformExecutablePath(platform);
 
   logger.info(`🌐 Downloading PNPM binary from: ${pnpmBinaryUrl}`);
   logger.info(`📦 Saving to: ${outputPath}`);
@@ -108,7 +109,7 @@ function installPnpmBinary() {
  */
 export async function bootstrapPnpm() {
   logger.info('⚡ Bootstrapping PNPM...');
-  const executablePath = getPnpmExecutablePath(os.platform());
+  const executablePath = getPnpmPlatformExecutablePath(os.platform());
 
   if (!existsSync(executablePath)) {
     logger.warn(`⚠ PNPM not found at ${executablePath}`);

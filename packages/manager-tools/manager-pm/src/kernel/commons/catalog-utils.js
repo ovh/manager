@@ -8,7 +8,7 @@ import {
   pnpmAppsPlaybookPath,
   rootPackageJsonPath,
   yarnAppsPlaybookPath,
-} from '../../playbook/pnpm-config.js';
+} from '../../playbook/playbook-config.js';
 import { logger } from './log-manager.js';
 
 /**

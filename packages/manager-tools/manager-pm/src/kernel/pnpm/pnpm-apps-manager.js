@@ -67,6 +67,7 @@ Please do not interrupt this process.
       logger.warn(`⚠️ Migration skipped: "${relAppPath}" is not a valid workspace.`);
       return;
     }
+
     if (removed === 'error' || added === 'error') {
       throw new Error(`Catalog update failed for "${relAppPath}"`);
     }
@@ -77,6 +78,7 @@ Please do not interrupt this process.
     logger.success(`✅ "${relAppPath}" is now tracked in PNPM and visible to Turbo.`);
 
     logger.info(`📦 Running "yarn install" to refresh root workspaces...`);
+
     try {
       execSync('yarn install', { stdio: 'inherit' });
       logger.success(`✔ Dependencies installed. Migration of "${relAppPath}" complete.`);
@@ -162,6 +164,7 @@ Please do not interrupt this process.
       logger.warn(`⚠️ Rollback skipped: "${relAppPath}" is not a valid workspace.`);
       return;
     }
+
     if (removed === 'error' || added === 'error') {
       throw new Error(`Catalog update failed for "${relAppPath}"`);
     }
@@ -171,6 +174,7 @@ Please do not interrupt this process.
     logger.success(`✅ "${relAppPath}" is now tracked in Yarn and visible to Turbo.`);
 
     logger.info(`📦 Running "yarn install" to refresh root workspaces...`);
+
     try {
       execSync('yarn install', { stdio: 'inherit' });
       logger.success(`✔ Dependencies installed. Rollback of "${relAppPath}" complete.`);

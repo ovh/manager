@@ -1,14 +1,15 @@
 import { execSync, spawn } from 'node:child_process';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
+import os from 'node:os';
 
 import {
   managerRootPath,
   normalizedVersionsPath,
-  pnpmExecutablePath,
+  pnpmGlobalStorePath,
   pnpmStorePath,
   rootPackageJsonPath,
-} from '../../playbook/pnpm-config.js';
+} from '../../playbook/playbook-config.js';
 import {
   clearRootWorkspaces,
   getCatalogPaths,
@@ -19,19 +20,22 @@ import { getPrivatePackages } from '../commons/dependencies-utils.js';
 import { loadJson } from '../commons/json-utils.js';
 import { logger } from '../commons/log-manager.js';
 import { removePackageManager, restorePackageManager } from '../commons/package-manager-utils.js';
-import { bootstrapPnpm } from './pnpm-bootstrap.js';
+import { bootstrapPnpm, getPnpmPlatformExecutablePath } from './pnpm-bootstrap.js';
 
 /**
- * Link all private packages into the local PNPM store (`./target`).
+ * Link all private packages into the local PNPM store.
  *
- * - Scans core/modules/components for private packages.
- * - Runs `pnpm link --dir ./target` in each private package.
- * - Does **not** topo-sort (since `pnpm link` does not install).
+ * Uses `--dir` (to target/.pnpm-store) and `--global-dir` (to target/.pnpm-home)
+ * to keep everything self-contained and CI-friendly.
+ *
+ * @returns {Promise<void>}
  */
 export async function linkPrivateDeps() {
   logger.info('🔍 Scanning for private packages...');
   const privatePackageDirs = await getPrivatePackages();
   logger.info(`Found ${privatePackageDirs.length} private packages.`);
+
+  const pnpmBin = getPnpmPlatformExecutablePath(os.platform());
 
   for (const packageDir of privatePackageDirs) {
     const packageJsonPath = path.join(packageDir, 'package.json');
@@ -40,20 +44,25 @@ export async function linkPrivateDeps() {
 
     if (!pkg.name) continue;
 
-    logger.info(`🔗 Linking ${pkg.name} from ${packageDir} into local store...`);
+    logger.info(
+      `🔗 Linking ${pkg.name} from ${packageDir} into local store (dir=${pnpmStorePath}, global-dir=${pnpmGlobalStorePath})...`
+    );
 
     try {
-      execSync(`${pnpmExecutablePath} link --dir ${pnpmStorePath}`, {
-        cwd: packageDir,
-        stdio: 'inherit',
-      });
+      execSync(
+        `${pnpmBin} link --dir ${pnpmStorePath} --global-dir ${pnpmGlobalStorePath}`,
+        {
+          cwd: packageDir,
+          stdio: 'inherit',
+        }
+      );
       logger.success(`✔ Linked ${pkg.name}`);
     } catch (e) {
       logger.error(`❌ Failed to link ${pkg.name}:`, e.message);
     }
   }
 
-  logger.info(`✅ All private packages linked into ${pnpmStorePath}`);
+  logger.success(`✅ All private packages linked into ${pnpmStorePath}`);
 }
 
 /**
@@ -62,11 +71,11 @@ export async function linkPrivateDeps() {
  * - Private packages (linked locally with `link:`),
  * - Normalized versions (forced versions for consistency).
  *
- * @param appPath - Absolute path to the app being installed.
- * @param appPkg - Parsed package.json of the app.
- * @param privateDeps - Map of private package names → absolute paths.
- * @param normalizedVersions - Map of normalized dependency versions.
- * @returns Absolute path to the temporary workspace file created.
+ * @param {string} appPath - Absolute path to the app being installed.
+ * @param {object} appPkg - Parsed package.json of the app.
+ * @param {Map<string,string>} privateDeps - Map of private package names → absolute paths.
+ * @param {Record<string,string>} normalizedVersions - Map of normalized dependency versions.
+ * @returns {Promise<string>} Absolute path to the temporary workspace file created.
  */
 async function createWorkspaceYaml(appPath, appPkg, privateDeps, normalizedVersions) {
   logger.info(`📝 [workspace] Collecting dependencies from package.json...`);
@@ -129,11 +138,13 @@ async function createWorkspaceYaml(appPath, appPkg, privateDeps, normalizedVersi
  *  7. Clean up temporary files
  *  8. Restore `packageManager` field in root package.json
  *
- * @param appPath - Absolute path to the app folder
+ * @param {string} appPath - Absolute path to the app folder
  * @throws If PNPM install fails
  */
 export async function installAppDeps(appPath) {
   logger.info(`🚀 Starting PNPM install for app at: ${appPath}`);
+
+  const pnpmBin = getPnpmPlatformExecutablePath(os.platform());
 
   // --- Step 1: Remove packageManager from root
   const removedValue = await removePackageManager(rootPackageJsonPath);
@@ -171,7 +182,7 @@ export async function installAppDeps(appPath) {
     // --- Step 6: Run PNPM install
     logger.info(`📖 [step 6] Running PNPM install...`);
     execSync(
-      `${pnpmExecutablePath} install --ignore-scripts --no-lockfile --store-dir=${path.join(managerRootPath, 'target/.pnpm-store')}`,
+      `${pnpmBin} install --ignore-scripts --no-lockfile --store-dir=${path.join(managerRootPath, 'target/.pnpm-store')}`,
       { cwd: appPath, stdio: 'inherit' },
     );
 

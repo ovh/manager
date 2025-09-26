@@ -1,6 +1,6 @@
 import { spawn } from 'node:child_process';
 
-import { managerRootPath } from '../../playbook/pnpm-config.js';
+import { managerRootPath } from '../../playbook/playbook-config.js';
 import { clearRootWorkspaces, updateRootWorkspacesFromCatalogs } from '../commons/catalog-utils.js';
 import { logger } from '../commons/log-manager.js';
 import { resolveBuildFilter } from '../commons/task-utils.js';
@@ -52,23 +52,36 @@ async function runTask(label, cmd, args) {
 }
 
 /**
- * Run a Turbo task (build or test) in CI mode with arbitrary Turbo CLI options.
+ * Wrap a task with pre/post workspace handling.
+ * Ensures catalogs are merged before and always cleared after execution,
+ * even if the task fails.
  *
- * This is similar to runTurboTask but does not resolve an appRef.
- * Instead, it directly forwards any options (like `--filter`, `--parallel`, etc.)
- * to the underlying Turbo command. Intended for CI/CD pipelines where full Turbo
- * flexibility is required.
+ * @template T
+ * @param {() => Promise<T>} fn - The async function representing the task body.
+ * @returns {Promise<T>} Resolves or rejects with the underlying task result.
+ */
+async function withWorkspaces(fn) {
+  await updateRootWorkspacesFromCatalogs();
+  try {
+    return await fn();
+  } finally {
+    await clearRootWorkspaces();
+  }
+}
+
+/**
+ * Run a Turbo task (build or test) in CI mode with arbitrary Turbo CLI options.
  *
  * @async
  * @param {"build"|"test"} task - The Turbo task type to run.
  * @param {string[]} [options=[]] - Additional Turbo CLI options, e.g. ["--filter=docs...", "--parallel"].
- * @returns {Promise<void>} Resolves when the Turbo task completes successfully, rejects on failure.
+ * @returns {Promise<void>} Resolves when the Turbo task completes successfully.
  */
 export async function runTurboTaskCI(task, options = []) {
-  await updateRootWorkspacesFromCatalogs();
-  const args = ['run', task, ...options];
-  await runTask(`${task} (CI)`, 'turbo', args);
-  await clearRootWorkspaces();
+  return withWorkspaces(async () => {
+    const args = ['run', task, ...options];
+    await runTask(`${task} (CI)`, 'turbo', args);
+  });
 }
 
 /**
@@ -112,19 +125,19 @@ export async function testCI(options = []) {
  * @returns {Promise<void>} Resolves when the Turbo task completes.
  */
 async function runTurboTask(task, appRef, concurrency = 1) {
-  await updateRootWorkspacesFromCatalogs();
-  const args = ['run', task, `--concurrency=${concurrency}`, '--continue=always'];
-  const filter = resolveBuildFilter(appRef);
-  if (filter) args.push('--filter', filter);
-  await runTask(`${task}${appRef ? ` (${appRef})` : ' (all apps)'}`, 'turbo', args);
-  await clearRootWorkspaces();
+  return withWorkspaces(async () => {
+    const args = ['run', task, `--concurrency=${concurrency}`, '--continue=always'];
+    const filter = resolveBuildFilter(appRef);
+    if (filter) args.push('--filter', filter);
+    await runTask(`${task}${appRef ? ` (${appRef})` : ' (all apps)'}`, 'turbo', args);
+  });
 }
 
 /**
  * Build a specific application.
  *
  * @param {string} appRef - The app reference or package name.
- * @returns {Promise<void>} Resolves when the build finishes.
+ * @returns {Promise<void>} Resolves when the build finishes successfully.
  */
 export async function buildApp(appRef) {
   return runTurboTask('build', appRef, 1);
@@ -134,7 +147,7 @@ export async function buildApp(appRef) {
  * Run tests for a specific application.
  *
  * @param {string} appRef - The app reference or package name.
- * @returns {Promise<void>} Resolves when the tests complete.
+ * @returns {Promise<void>} Resolves when the tests complete successfully.
  */
 export async function testApp(appRef) {
   return runTurboTask('test', appRef, 1);
@@ -143,7 +156,7 @@ export async function testApp(appRef) {
 /**
  * Build all applications.
  *
- * @returns {Promise<void>} Resolves when the build finishes.
+ * @returns {Promise<void>} Resolves when the build finishes successfully.
  */
 export async function buildAll() {
   return runTurboTask('build', null, 1);
@@ -152,7 +165,7 @@ export async function buildAll() {
 /**
  * Run tests for all applications.
  *
- * @returns {Promise<void>} Resolves when the tests complete.
+ * @returns {Promise<void>} Resolves when the tests complete successfully.
  */
 export async function testAll() {
   return runTurboTask('test', null, 1);
@@ -163,32 +176,28 @@ export async function testAll() {
  *
  * @param {string} appRef - The app reference or package name (required).
  * @throws {Error} If no appRef is provided or the package name cannot be resolved.
- * @returns {Promise<void>} Resolves when linting completes.
+ * @returns {Promise<void>} Resolves when linting completes successfully.
  */
 export async function lintApp(appRef) {
   if (!appRef) throw new Error('lintApp: appRef is required');
-
-  await updateRootWorkspacesFromCatalogs();
-  const pkgName = resolveBuildFilter(appRef);
-  if (!pkgName) {
-    throw new Error(`Unable to resolve package name for "${appRef}"`);
-  }
-
-  const args = ['lint:tsx', '--', '--app', pkgName];
-  await runTask(`lint (${appRef})`, 'yarn', args);
-
-  await clearRootWorkspaces();
+  return withWorkspaces(async () => {
+    const pkgName = resolveBuildFilter(appRef);
+    if (!pkgName) {
+      throw new Error(`Unable to resolve package name for "${appRef}"`);
+    }
+    await runTask(`lint (${appRef})`, 'yarn', ['lint:tsx', '--', '--app', pkgName]);
+  });
 }
 
 /**
  * Run linting for all applications.
  *
- * @returns {Promise<void>} Resolves when linting completes.
+ * @returns {Promise<void>} Resolves when linting completes successfully.
  */
 export async function lintAll() {
-  await updateRootWorkspacesFromCatalogs();
-  await runTask('lint (all apps)', 'yarn', ['pm:lint:base']);
-  await clearRootWorkspaces();
+  return withWorkspaces(() =>
+    runTask('lint (all apps)', 'yarn', ['pm:lint:base'])
+  );
 }
 
 /**
@@ -197,13 +206,13 @@ export async function lintAll() {
  * @returns {Promise<void>} Resolves when docs are built successfully.
  */
 export async function buildDocs() {
-  await updateRootWorkspacesFromCatalogs();
-  await runTask(
-    'docs build',
-    'yarn',
-    ['workspace', '@ovh-ux/manager-documentation', 'run', 'docs:build']
+  return withWorkspaces(() =>
+    runTask(
+      'docs build',
+      'yarn',
+      ['workspace', '@ovh-ux/manager-documentation', 'run', 'docs:build']
+    )
   );
-  await clearRootWorkspaces();
 }
 
 /**
@@ -212,19 +221,21 @@ export async function buildDocs() {
  * This ensures catalogs are merged before and cleaned after execution.
  *
  * Example:
- *   yarn manager-pm --type pnpm --action cli -- <args>
+ * ```bash
+ * yarn manager-pm --type pnpm --action cli -- <args>
+ * ```
  *
  * @param {string[]} [options=[]] - Additional arguments to pass to manager-cli.
  * @returns {Promise<void>} Resolves when the CLI completes successfully.
  */
 export async function runManagerCli(options = []) {
-  await updateRootWorkspacesFromCatalogs();
-  await runTask('manager-cli', 'yarn', [
-    'workspace',
-    '@ovh-ux/manager-cli',
-    'run',
-    'manager-cli',
-    ...options,
-  ]);
-  await clearRootWorkspaces();
+  return withWorkspaces(() =>
+    runTask('manager-cli', 'yarn', [
+      'workspace',
+      '@ovh-ux/manager-cli',
+      'run',
+      'manager-cli',
+      ...options,
+    ])
+  );
 }

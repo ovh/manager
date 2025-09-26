@@ -224,7 +224,7 @@ These are already aliased in the root `package.json`:
 - `src/kernel/commons/*` — logging, catalogs, JSON utils, workspace resolution
 - `src/kernel/pnpm/*` — PNPM bootstrap, dependency manager, vitest patcher, tasks
 - `src/playbook/catalog/*.json` — Yarn/PNPM app catalogs, normalized versions, critical deps
-- `src/playbook/pnpm-config.js` — paths, PNPM version, private workspace roots, cleanup dirs
+- `src/playbook/playbook-config.js` — paths, PNPM version, private workspace roots, cleanup dirs
 
 ---
 
@@ -249,7 +249,7 @@ This resets the root workspace view and ensures Turbo sees the right catalogs.
 
 - Update normalized versions in `src/playbook/catalog/pnpm-normalized-versions.json` when bumping shared deps.
 - Update critical deps in `src/playbook/catalog/pnpm-react-critical-deps.json` if new React-family packages are introduced.
-- Adjust private workspace roots in `src/playbook/pnpm-config.js` if the repo layout changes.
+- Adjust private workspace roots in `src/playbook/playbook-config.js` if the repo layout changes.
 
 ---
 
