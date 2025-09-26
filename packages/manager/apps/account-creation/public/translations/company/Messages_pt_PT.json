@@ -1,0 +1,9 @@
+{
+  "title": "Adicione a sua empresa",
+  "description": "Com o número SIREN/SIRET da sua empresa, recuperamos automaticamente as informações necessárias para a criação da conta.",
+  "fallback": "Ainda não tem um SIREN/SIRET? Crie uma conta Particular que você poderá converter mais tarde em conta Empresa.",
+  "fallback_link": "Criar uma conta Particular",
+  "search_suggestion": "A pesquisa contém muitos resultados, por favor, refine-a.",
+  "search_not_satisfactory": "Não encontra a sua empresa? Adicione-a manualmente",
+  "no_result": "Nenhum resultado"
+}
