@@ -19,7 +19,7 @@ vue/src
 packages/components/ovh-at-internet/src/ovh-at-internet.ts
 packages/manager/apps/pci-databases-analytics/src/components/ui
 packages/manager/apps/container
-
+packages/manager/apps/cloud-shell/src/wasm_exec.js
 packages/manager/core/api
 packages/manager/core/application
 packages/manager/core/ovh-product-icons

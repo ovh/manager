@@ -1,0 +1,9 @@
+{
+  "cloud_shell_welcome": "Bienvenue sur le Shell OVHcloud ! Tapez `help` pour démarrer.",
+  "cloud_shell_loading_environment": "Chargement de l'environnement...",
+  "cloud_shell_running_command": "Exécution de la commande",
+  "cloud_shell_waiting": "Chargement ...",
+  "cloud_shell_loading": "Chargement... Veuillez attendre que l'environnement se charge.",
+  "cloud_shell_switch_theme_light": "Passer au thème clair",
+  "cloud_shell_switch_theme_dark": "Passer au thème sombre"
+}
