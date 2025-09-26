@@ -246,7 +246,7 @@ describe('Constants', () => {
             expect(url).toContain(`/${language}-`);
 
             // Should contain guide-specific path
-            const expectedPaths = {
+            const expectedPaths: Record<string, string> = {
               getting_started: 'public-cloud-compute-essential-information',
               public_cloud: 'public-cloud-compute-control-panel',
               instances: 'public-cloud-compute-getting-started-instance',
