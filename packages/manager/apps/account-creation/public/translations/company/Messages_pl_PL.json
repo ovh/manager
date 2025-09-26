@@ -1,0 +1,9 @@
+{
+  "title": "Dodaj swoją firmę",
+  "description": "Z numerem SIREN/SIRET Twojej firmy automatycznie pobieramy niezbędne informacje do utworzenia konta.",
+  "fallback": "Nie masz jeszcze SIREN/SIRET? Utwórz konto Osobiste, które później przekształcisz w konto Firmowe.",
+  "fallback_link": "Utwórz konto Osobiste",
+  "search_suggestion": "Wyszukiwanie zawiera wiele wyników, proszę je zawęzić",
+  "search_not_satisfactory": "Nie możesz znaleźć swojej firmy? Dodaj ją ręcznie",
+  "no_result": "Brak wyników wyszukiwania"
+}

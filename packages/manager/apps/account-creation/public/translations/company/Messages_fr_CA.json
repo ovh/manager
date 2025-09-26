@@ -1,0 +1,9 @@
+{
+  "title": "Ajoutez votre entreprise",
+  "description": "Avec le numéro SIREN/SIRET de votre entreprise, nous récupérons automatiquement les informations nécessaires à la création du compte.",
+  "fallback": "Vous n’avez pas encore de SIREN/SIRET ? Créez un compte Particulier que vous basculerez plus tard en compte Entreprise.",
+  "fallback_link": "Créer un compte Particulier",
+  "search_suggestion": "La recherche contient beaucoup de résultat veuillez l'affiner s'il vous plait",
+  "search_not_satisfactory": "Vous ne trouvez pas votre entreprise ? Ajoutez-la manuellement",
+  "no_result": "Aucun résultat"
+}
