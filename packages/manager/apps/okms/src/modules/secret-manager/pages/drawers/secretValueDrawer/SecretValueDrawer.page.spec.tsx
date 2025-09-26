@@ -16,7 +16,8 @@ import {
   RAW_VALUE_TEST_ID,
   VALUE_DRAWER_TEST_ID,
   VERSION_SELECTOR_ERROR_TEST_ID,
-  VERSION_SELECTOR_SPINNER_TEST_ID,
+  VERSION_SELECTOR_SELECT_SKELETON_TEST_ID,
+  VERSION_SELECTOR_STATUS_SKELETON_TEST_ID,
   VERSION_SELECTOR_TEST_ID,
 } from '@secret-manager/utils/tests/secretValue.constants';
 import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
@@ -62,14 +63,20 @@ const renderPage = async ({
 };
 
 describe('ValueDrawer test suite', () => {
-  it('should display a spinner while loading secret versions', async () => {
+  it('should display skeletons while loading secret versions', async () => {
     // GIVEN
     // WHEN
     await renderPage({});
 
     // THEN
-    const valueSpinner = screen.getByTestId(VERSION_SELECTOR_SPINNER_TEST_ID);
-    expect(valueSpinner).toBeVisible();
+    const selectSkeleton = screen.getByTestId(
+      VERSION_SELECTOR_SELECT_SKELETON_TEST_ID,
+    );
+    const statusSkeleton = screen.getByTestId(
+      VERSION_SELECTOR_STATUS_SKELETON_TEST_ID,
+    );
+    expect(selectSkeleton).toBeVisible();
+    expect(statusSkeleton).toBeVisible();
   });
 
   it('should display a notification on error loading secret versions', async () => {
@@ -184,8 +191,10 @@ describe('ValueDrawer test suite', () => {
 
         // THEN
         await assertTextVisibility(labels.common.status.status);
-        const versionStatusBadge = screen.getByTestId(VERSION_BADGE_TEST_ID);
-        expect(versionStatusBadge).toBeVisible();
+        await waitFor(() => {
+          const versionStatusBadge = screen.getByTestId(VERSION_BADGE_TEST_ID);
+          expect(versionStatusBadge).toBeVisible();
+        });
 
         if (!haveValue) return;
 

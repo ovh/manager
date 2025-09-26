@@ -11,11 +11,12 @@ import {
   versionDeletedMock,
 } from '@secret-manager/mocks/versions/versions.mock';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
-import { getOdsButtonByLabel } from '@/utils/tests/uiTestHelpers';
 import { removeHandlersDelay, renderWithClient } from '@/utils/tests/testUtils';
 import { initTestI18n } from '@/utils/tests/init.i18n';
 import { VersionCellID } from './VersionCells.component';
 import { getIamMocks } from '@/mocks/iam/iam.handler';
+import { getOdsLinkByTestId } from '@/utils/tests/uiTestHelpers';
+import { versionLinkTestId } from './VersionCells.constants';
 
 let i18nValue: i18n;
 
@@ -38,7 +39,7 @@ const renderVersionLink = async (versionMock: SecretVersion) => {
 
   const { container } = renderWithClient(
     <I18nextProvider i18n={i18nValue}>
-      <VersionCellID version={versionMock} urn={mockSecret1.iam.urn} />
+      <VersionCellID version={versionMock} secret={mockSecret1} />
     </I18nextProvider>,
   );
 
@@ -71,13 +72,11 @@ describe('VersionCellId test suite', () => {
         // GIVEN version
 
         // WHEN
-        const { container } = await renderVersionLink(version);
+        await renderVersionLink(version);
 
         // THEN
-        await getOdsButtonByLabel({
-          container,
-          label: version.id.toString(),
-          isLink: true,
+        await getOdsLinkByTestId({
+          testId: versionLinkTestId(version.id),
           disabled: isLinkDisabled,
         });
       },

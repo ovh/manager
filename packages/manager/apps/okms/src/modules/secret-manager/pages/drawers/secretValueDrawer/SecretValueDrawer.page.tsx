@@ -5,17 +5,29 @@ import { VALUE_DRAWER_TEST_ID } from '@secret-manager/utils/tests/secretValue.co
 import { SecretVersion } from '@secret-manager/types/secret.type';
 import { LocationPathParams } from '@secret-manager/routes/routes.constants';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useSecret } from '@secret-manager/data/hooks/useSecret';
+import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { SecretRawValue } from './SecretRawValue.component';
 import { VersionSelector } from './VersionSelector.component';
+
+const UseIsCurrentVersion = (version: SecretVersion) => {
+  const { okmsId, secretPath } = useParams<LocationPathParams>();
+  const { data: secret } = useSecret(okmsId, decodeSecretPath(secretPath));
+
+  return secret?.metadata?.currentVersion === version?.id;
+};
 
 const SecretValueDrawerPage = () => {
   const { okmsId, secretPath, versionId } = useParams<LocationPathParams>();
   const { t } = useTranslation('secret-manager');
   const navigate = useNavigate();
 
-  const [currentVersion, setCurrentVersion] = useState<
+  const [selectedVersion, setSelectedVersion] = useState<
     SecretVersion | undefined
   >(undefined);
+
+  const isCurrentVersion = UseIsCurrentVersion(selectedVersion);
 
   return (
     <Drawer
@@ -31,14 +43,17 @@ const SecretValueDrawerPage = () => {
           okmsId={okmsId}
           secretPath={secretPath}
           versionId={versionId}
-          currentVersion={currentVersion}
-          setCurrentVersion={setCurrentVersion}
+          selectedVersion={selectedVersion}
+          setSelectedVersion={setSelectedVersion}
         />
-        {currentVersion && currentVersion.state === 'ACTIVE' && (
+        {isCurrentVersion && (
+          <OdsMessage isDismissible={false}>{t('current_version')}</OdsMessage>
+        )}
+        {selectedVersion && selectedVersion.state === 'ACTIVE' && (
           <SecretRawValue
             okmsId={okmsId}
             secretPath={secretPath}
-            version={currentVersion}
+            version={selectedVersion}
           />
         )}
       </div>
