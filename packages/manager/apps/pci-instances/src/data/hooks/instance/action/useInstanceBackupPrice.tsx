@@ -86,7 +86,7 @@ export const useInstanceBackupPrice = (projectId: string, region: string) => {
           ...r,
           label: translateMicroRegion(r.name) || r.name,
         })),
-      (r) => translateContinentRegion(r.name),
+      (r) => translateContinentRegion(r.name) || 'Internal',
     );
   }, [
     productAvailability,

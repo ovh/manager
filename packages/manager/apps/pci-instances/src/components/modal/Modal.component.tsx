@@ -22,6 +22,7 @@ const Modal = ({
   variant = 'primary',
   dismissible = false,
   disabled,
+  className,
   // eslint-disable-next-line @typescript-eslint/naming-convention
   wrapper: Wrapper = Fragment,
 }: {
@@ -33,6 +34,7 @@ const Modal = ({
   variant?: TModalVariant;
   dismissible?: boolean;
   disabled?: boolean;
+  className?: string;
   wrapper?: React.ComponentType<PropsWithChildren<unknown>>;
 }) => {
   const { t } = useTranslation(NAMESPACES.ACTIONS);
@@ -49,7 +51,7 @@ const Modal = ({
         {...(variant === 'warning' && { color: 'warning' })}
         aria-describedby={id}
         dismissible={dismissible}
-        className="max-h-[unset]"
+        className={className}
       >
         <Wrapper>
           <div id={id} className="px-8 pt-6 pb-10">
