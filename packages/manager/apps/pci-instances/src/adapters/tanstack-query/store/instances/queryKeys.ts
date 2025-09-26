@@ -31,3 +31,9 @@ export const instanceQueryKeyPredicate = (
     'instance',
     instanceId,
   ]).every((elt) => query.queryKey.includes(elt));
+
+export const instancesCatalogQueryKey = (projectId: string): string[] => [
+  'project',
+  projectId,
+  'instancesCatalog',
+];
