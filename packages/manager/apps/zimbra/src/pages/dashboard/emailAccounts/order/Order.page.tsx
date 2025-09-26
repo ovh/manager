@@ -22,7 +22,6 @@ import {
   LinkType,
   Links,
   Order,
-  OvhSubsidiary,
   Price,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
@@ -249,7 +248,7 @@ export const EmailAccountsOrder = () => {
   const { t } = useTranslation('accounts/order');
   const context = useContext(ShellContext);
   const locale = context.environment.getUserLocale();
-  const ovhSubsidiary = context.environment.getUser().ovhSubsidiary as OvhSubsidiary;
+  const { ovhSubsidiary } = context.environment.getUser();
   const region = context.environment.getRegion();
   const orderBaseURL = getExpressOrderURL(region, ovhSubsidiary);
 
