@@ -4,6 +4,12 @@ import { odsSetup } from '@ovhcloud/ods-common-core';
 import queryClient from '@/queryClient';
 import '@ovhcloud/ods-theme-blue-jeans';
 import Router from './routes/Router';
+import { createTanStackStore } from './adapters/tanstack-query/store/createTanStackStore';
+import { Deps } from './deps/deps';
+
+export const deps: Deps = {
+  store: createTanStackStore(),
+};
 
 odsSetup();
 
