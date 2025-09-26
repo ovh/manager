@@ -17,3 +17,4 @@ packages/manager/apps/pci-databases-analytics/src/components/ui
 !.storybook
 manager-static-analysis-kit
 manager-generator
+packages/manager/apps/cloud-shell/src/wasm_exec.js
