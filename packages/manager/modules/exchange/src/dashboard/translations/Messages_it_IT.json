@@ -1667,5 +1667,6 @@
   "exchange_reset_mfa_success": "L’autenticazione a due fattori è stata ripristinata correttamente.",
   "exchange_mfa_error": "Si è verificato un errore: {{error}}",
   "exchange_delete_mfa_success": "L’autenticazione a due fattori è stata eliminata correttamente.",
-  "exchange_delete_mfa_error": "Si è verificato un errore durante l’eliminazione della doppia autenticazione: {{error}}"
+  "exchange_delete_mfa_error": "Si è verificato un errore durante l’eliminazione della doppia autenticazione: {{error}}",
+  "exchange_tab_LOGS": "Log"
 }

@@ -99,6 +99,17 @@
                     >
                         <span data-translate="exchange_tab_TASKS"></span>
                     </oui-header-tabs-item>
+                    <oui-header-tabs-item
+                        href="{{ ctrl.logsLink }}"
+                        active="ctrl.currentActiveLink() === ctrl.logsLink"
+                        data-ng-if=":: ctrl.isLogsAvailable"
+                    >
+                        <span data-translate="exchange_tab_LOGS"></span>
+                        <span
+                            class="oui-badge oui-badge_beta"
+                            data-ng-bind=":: ctrl.BETA"
+                        ></span>
+                    </oui-header-tabs-item>
                 </oui-header-tabs-dropdown>
             </oui-header-tabs>
 

@@ -5,7 +5,6 @@ import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 
 import create from './create';
 import edit from './edit';
-import editDns from './edit-dns';
 import filterDelete from './delete';
 import routing from './filter.routing';
 
@@ -15,7 +14,6 @@ angular
   .module(moduleName, [
     create,
     edit,
-    editDns,
     filterDelete,
     ngTranslateAsyncLoader,
     'oui',

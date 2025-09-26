@@ -57,5 +57,6 @@
   "telephony_billingAccount_svaWallet_kyc_identity_submit_label": "Siguiente paso",
   "telephony_billingAccount_svaWallet_kyc_identity_submit_cancel": "Cancelar",
   "telephony_billingAccount_svaWallet_kyc_identity_submit_lemonway": "LemonWay",
-  "telephony_billingAccount_svaWallet_kyc_identity_error": "Se ha producido un error al guardar la información: {{ errorMessage }}"
+  "telephony_billingAccount_svaWallet_kyc_identity_error": "Se ha producido un error al guardar la información: {{ errorMessage }}",
+  "telephony_billingAccount_svaWallet_kyc_identity_company_registration_date": "Fecha de creación"
 }
