@@ -28,7 +28,7 @@ describe('License Hycu edit test suite', () => {
       screen.getByText(
         labels.editPack.hycu_edit_pack_subtitle.replace(
           '{{displayName}}',
-          'N/A',
+          '425802fa-fb70-4b2a-9d5b-ec4de86bb40c',
         ),
       ),
     ).toBeVisible();
