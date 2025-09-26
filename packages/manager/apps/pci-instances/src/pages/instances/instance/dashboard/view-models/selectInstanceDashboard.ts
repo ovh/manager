@@ -71,10 +71,14 @@ export type TInstanceDashboardViewModel = {
   isDeleteEnabled: boolean;
   isEditEnabled: boolean;
   isBackupEnabled: boolean;
+  isVncEnabled: boolean;
 } | null;
 
 const isEditionEnabled = (actions: TInstanceAction[]) =>
   actions.some(({ name }) => name === 'edit');
+
+const isVncEnabled = (actions: TInstanceAction[]) =>
+  actions.some(({ name }) => name === 'vnc');
 
 const mapFlavor = ({ name, specs }: TInstanceFlavor) => ({
   name,
@@ -187,6 +191,7 @@ const isAdditionalAction = ({ name }: { name: TActionName }) => {
     'delete',
     'activate_monthly_billing',
     'create_backup',
+    'vnc',
   ];
 
   return !excludeActions.includes(name);
@@ -299,5 +304,6 @@ export const selectInstanceDashboard = (
     isDeleteEnabled: canDeleteInstance(instance.actions),
     isEditEnabled: isEditionEnabled(instance.actions),
     isBackupEnabled: canCreateBackup(instance.actions),
+    isVncEnabled: isVncEnabled(instance.actions),
   };
 };
