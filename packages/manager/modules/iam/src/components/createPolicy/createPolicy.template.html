@@ -169,6 +169,17 @@
             ></oui-select>
         </oui-field>
         <!-- </ResourceGroups> -->
+
+        <!-- <Conditions> -->
+        <h3 data-translate="iam_create_policy_form_conditions_heading"></h3>
+        <p data-translate="iam_create_policy_form_conditions_description"></p>
+        <iam-condition-list
+            data-conditions="$ctrl.model.conditions"
+            data-read-only="$ctrl.policy.readOnly"
+        >
+        </iam-condition-list>
+        <!-- </Conditions> -->
+
         <!-- <Actions> -->
         <h3 data-translate="iam_create_policy_form_actions_heading"></h3>
         <p data-translate="iam_create_policy_form_actions_description"></p>
