@@ -9,6 +9,11 @@ const isInstanceCreationOperationInProgress = (operation: TOperation) =>
   operation.action === 'create' &&
   operation.status === 'in-progress';
 
+const isInstanceReinstallOperationInProgress = (operation: TOperation) =>
+  operation.section === 'instance' &&
+  operation.action === 'reinstall' &&
+  operation.status === 'in-progress';
+
 const isSubOperationCopyImageInProgress = (
   subOperation?: Required<TOperation>['subOperations'][number],
 ) =>
@@ -21,44 +26,47 @@ export const useDatagridOperationsPolling = (onComplete?: () => void) => {
   const projectId = useProjectId();
 
   const [
-    hasDistantBackupCopyRunning,
-    setHasDistantBackupCopyRunning,
-  ] = useState(false);
+    numberOfDistantBackupCopyRunning,
+    setNumberOfDistantBackupCopyRunning,
+  ] = useState(0);
 
   const onSuccess = useCallback(
     (operations?: TOperation[]) => {
       if (!operations) return undefined;
 
-      const hasDistantBackupInCopy = operations
-        .filter(isInstanceCreationOperationInProgress)
+      const newNumberOfDistantBackupCopyRunning = operations
+        .filter(
+          (operation) =>
+            isInstanceCreationOperationInProgress(operation) ||
+            isInstanceReinstallOperationInProgress(operation),
+        )
         .flatMap((operation) => operation.subOperations)
-        .some(isSubOperationCopyImageInProgress);
+        .filter(isSubOperationCopyImageInProgress).length;
 
       if (
-        hasDistantBackupCopyRunning &&
-        !hasDistantBackupInCopy &&
-        onComplete
+        onComplete &&
+        newNumberOfDistantBackupCopyRunning < numberOfDistantBackupCopyRunning
       ) {
         onComplete();
       }
 
-      setHasDistantBackupCopyRunning(hasDistantBackupInCopy);
-
-      return hasDistantBackupInCopy;
+      return setNumberOfDistantBackupCopyRunning(
+        newNumberOfDistantBackupCopyRunning,
+      );
     },
-    [hasDistantBackupCopyRunning, onComplete],
+    [numberOfDistantBackupCopyRunning, onComplete, projectId],
   );
 
   useOperationsPolling(
     projectId,
     {
-      refetchInterval: hasDistantBackupCopyRunning && 5_000,
+      refetchInterval: numberOfDistantBackupCopyRunning && 5_000,
       retry: shouldRetryAfterNot404Error,
     },
     { onSuccess },
   );
 
   return {
-    hasOperationsRunning: hasDistantBackupCopyRunning,
+    hasOperationsRunning: numberOfDistantBackupCopyRunning > 0,
   };
 };
