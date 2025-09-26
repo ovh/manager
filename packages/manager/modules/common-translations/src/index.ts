@@ -23,4 +23,5 @@ export const NAMESPACES = {
   RESOURCES: `${NAMESPACE_PREFIX}/resources`,
   SYSTEM: `${NAMESPACE_PREFIX}/system`,
   TIME: `${NAMESPACE_PREFIX}/time`,
+  NAVIGATION: `${NAMESPACE_PREFIX}/navigation`,
 };
