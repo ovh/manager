@@ -2,11 +2,7 @@ import React, { useMemo } from 'react';
 
 import { Trans, useTranslation } from 'react-i18next';
 
-import {
-  ODS_BADGE_COLOR,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
+import { ODS_BADGE_COLOR, ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsTooltip } from '@ovhcloud/ods-components/react';
 import {
   OdsBadge,
@@ -81,9 +77,7 @@ export const PriceCard: React.FC<PriceCardProps> = ({
     <OdsCard
       className={cn(
         'flex flex-col w-full border-2 cursor-pointer overflow-hidden',
-        isSelected
-          ? 'bg-color-primary-050 border-color-primary-500'
-          : 'border-gray-300',
+        isSelected ? 'bg-color-primary-050 border-color-primary-500' : 'border-gray-300',
         isDisabled ? 'bg-gray-100' : '',
         className,
       )}
@@ -95,15 +89,8 @@ export const PriceCard: React.FC<PriceCardProps> = ({
         )}
       >
         <div className="flex gap-4 items-center">
-          <OdsRadio
-            name={planCode}
-            isChecked={isSelected}
-            onClick={() => false}
-          />
-          <OdsText
-            preset="heading-4"
-            className={cn(isDisabled && '[&::part(text)]:text-gray-500')}
-          >
+          <OdsRadio name={planCode} isChecked={isSelected} onClick={() => false} />
+          <OdsText preset="heading-4" className={cn(isDisabled && '[&::part(text)]:text-gray-500')}>
             {capitalize(planCode)}
           </OdsText>
         </div>
@@ -120,13 +107,8 @@ export const PriceCard: React.FC<PriceCardProps> = ({
       <div className="flex flex-col p-6 flex-1 gap-4">
         {features.map((feature, index) => (
           <div className="flex items-center gap-8" key={index}>
-            <OdsIcon
-              name="check"
-              className={cn(isDisabled ? 'text-gray-400' : 'text-green-600')}
-            />
-            <OdsText
-              className={cn(isDisabled ? '[&::part(text)]:text-gray-400' : '')}
-            >
+            <OdsIcon name="check" className={cn(isDisabled ? 'text-gray-400' : 'text-green-600')} />
+            <OdsText className={cn(isDisabled ? '[&::part(text)]:text-gray-400' : '')}>
               <Trans t={t} i18nKey={feature.label} />
               {feature.tooltip && (
                 <OdsIcon
@@ -160,18 +142,13 @@ export const PriceCard: React.FC<PriceCardProps> = ({
         )}
       >
         {isLoading ? (
-          <OdsSkeleton
-            data-testid="price-loading"
-            className="[&::part(skeleton)]:w-16"
-          />
+          <OdsSkeleton data-testid="price-loading" className="[&::part(skeleton)]:w-16" />
         ) : (
           price && (
             <OdsText
               preset="heading-5"
               className={cn(
-                isDisabled
-                  ? '[&::part(text)]:text-gray-500'
-                  : 'text-color-primary-500',
+                isDisabled ? '[&::part(text)]:text-gray-500' : 'text-color-primary-500',
               )}
             >
               <Price
