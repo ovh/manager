@@ -17,6 +17,47 @@
 
 ---
 
+## Philosophy & Design Rationale
+
+The approach is inspired by a simple migration principle:  
+**separate workflows first, then unify when safe**.
+
+- If you want to migrate from Yarn → PNPM, the naive approach is to split the repo into two completely separate spaces.
+- Instead, `manager-pm` keeps **both Yarn and PNPM in the same workspace** and switches context cleverly:
+  - When Yarn is needed → PNPM apps are removed from the root `package.json`.
+  - When Turbo needs the full graph → PNPM apps are temporarily merged back.
+- PNPM is kept **localized** (no hoisting) to avoid interference with Yarn.
+- CI/CD pipelines remain unchanged because `manager-pm` hooks into Yarn’s pre/post install lifecycle.
+- Legacy `yarn exec turbo` is replaced with direct `yarn build` / `yarn turbo`.
+- Non-semver dependencies are overridden via **per-app temporary `pnpm-workspace.yaml`** instead of modifying apps directly.
+- Private internal packages are built and **linked into PNPM’s store** to avoid registry fetches, ensuring fresh builds from `dist/`.
+- To prevent multiple React instances, React-family packages are exposed as **peerDependencies** and deduped in Vite configs.
+
+```text
+                 ┌───────────────────────┐
+                 │ Root (Yarn workspace) │
+                 └───────────┬───────────┘
+                             │
+      ┌──────────────────────┴────────────────────────┐
+      │                                               │
+┌─────────────┐                                ┌─────────────┐
+│ Yarn Apps   │                                │ PNPM Apps   │
+│ (stable)    │                                │ (migrating) │
+└─────┬───────┘                                └─────┬───────┘
+      │   remove during Yarn ops                      │  isolated installs
+      │   merge during Turbo ops                      │  temp workspace.yaml
+      │                                               │  private deps linked
+      │                                               │  react dedupe
+      └───────────────────┬───────────────────────────┘
+                          │
+                  ┌───────▼────────┐
+                  │   Turbo Graph  │
+                  │  (merged view) │
+                  └────────────────┘
+```
+
+---
+
 ## How it works (concepts)
 
 ### 1) Catalogs (source of truth)
@@ -258,6 +299,17 @@ This resets the root workspace view and ensures Turbo sees the right catalogs.
 - The tool **restores** the root `packageManager` field and clears merged workspaces **even on failure**.
 - Vitest config mutations are **idempotent** and minimal (only adding `dedupe` for critical deps).
 - Catalog edits are atomic: invalid workspaces are rejected with logs.
+
+---
+
+## Future Migration Path
+
+Once **all apps** migrate to PNPM:
+
+- [ ] Replace all `yarn` commands with `pm` (custom manager).
+- [ ] Remove legacy Yarn usage entirely from packages and scripts.
+- [ ] Replace localized PNPM installs with a **single hoisted PNPM workspace**.
+- [ ] Simplify CI/CD by removing compatibility hooks.
 
 ---
 
