@@ -4,6 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 import HamburgerMenu from './HamburgerMenu';
 import UserAccountMenu from './user-account-menu';
 
+import CloudShellLink from '@/container/common/cloud-shell';
 import LanguageMenu from '@/container/common/language';
 import modalStyle from '@/container/common/modal.module.scss';
 import NavReshuffleSwitchBack from '@/container/common/nav-reshuffle-switch-back';
@@ -89,6 +90,9 @@ function Header({
                     setIsNotificationsSidebarVisible(false);
                   }}
                 ></LanguageMenu>
+              </div>
+              <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
+                <CloudShellLink />
               </div>
               <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
                 <Notifications />
