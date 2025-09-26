@@ -66,11 +66,11 @@
             data-sortable
         >
             <span
-                data-ng-if="$row.migrationAvailable === FtthEligibilityCtrl.ELIGIBILITY.eligible && $row.copperGridClosureTrajectory.technicalClosureDate"
-                data-ng-bind="$row.copperGridClosureTrajectory.technicalClosureDate | date:'shortDate'"
+                data-ng-if="$row.migrationAvailable === FtthEligibilityCtrl.ELIGIBILITY.eligible && $row.firstCopperClosure.date"
+                data-ng-bind="$row.firstCopperClosure.date | date:'shortDate'"
             ></span>
             <span
-                data-ng-if="$row.migrationAvailable === FtthEligibilityCtrl.ELIGIBILITY.eligible && !$row.copperGridClosureTrajectory.technicalClosureDate"
+                data-ng-if="$row.migrationAvailable === FtthEligibilityCtrl.ELIGIBILITY.eligible && !$row.firstCopperClosure.date"
                 data-translate="telecom_dashboard_ftth_eligibility_not_available"
             ></span>
             <span
