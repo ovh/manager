@@ -1,0 +1,14 @@
+{
+  "title": "Selecione um tipo de conta",
+  "description": "Necessita de ajuda? <Tooltip>Saiba mais sobre os tipos de contas</Tooltip>",
+  "legal_form_association": "Associação",
+  "legal_form_administration": "Administração pública",
+  "legal_form_corporation": "Empresa",
+  "legal_form_individual": "Particular",
+  "legal_form_personalcorporation": "Empresa individual",
+  "legal_form_tooltip_corporation_description": "Crie uma conta para a sua empresa se tiver uma atividade registrada, incluindo empresas unipessoais.",
+  "legal_form_tooltip_individual_description": "Crie uma conta como particular se não tiver uma empresa registrada ou se estiver a criar a sua empresa.",
+  "legal_form_tooltip_administration_description": "Crie uma conta para a sua organização pública se representar um Estado, uma entidade local, uma organização ou instituição internacional.",
+  "legal_form_tooltip_association_description": "Crie uma conta para a sua associação se estiver registrada no registro nacional de empresas e estabelecimentos. Se não estiver registrada, por favor crie uma conta como particular.",
+  "legal_form_tooltip_personalcorporation_description": "Descrição da Empresa Individual."
+}
