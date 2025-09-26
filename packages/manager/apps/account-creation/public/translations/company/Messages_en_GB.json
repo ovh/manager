@@ -1,0 +1,9 @@
+{
+  "title": "Add your business",
+  "description": "With your business's SIREN/SIRET number, we automatically retrieve the necessary information to create the account.",
+  "fallback": "Don't have a SIREN/SIRET yet? Create a Personal account that you can later switch to a Business account.",
+  "fallback_link": "Create a Personal account",
+  "search_suggestion": "The search contains many results, please refine it",
+  "search_not_satisfactory": "Can't find your business? Add it manually",
+  "no_result": "No result"
+}
