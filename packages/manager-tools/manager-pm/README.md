@@ -2,7 +2,6 @@
 
 `manager-pm` enables a smooth, reversible migration where the monorepo keeps **Yarn** at the root while selected apps adopt **PNPM** in isolation. It manages catalogs of apps, patches configs safely, bootstraps a pinned PNPM binary, and gives you one CLI to build/test/lint across **both** worlds.
 
-> Status: internal tooling · Node 18+ · Turbo required · Recommended: Yarn Berry (v3+)  
 > Repo assumptions: applications live under `packages/manager/apps/*` and private packages under `packages/manager/{core,modules,tools}` and `packages/components`.
 
 ---
@@ -32,6 +31,7 @@ The approach is inspired by a simple migration principle:
 - Non-semver dependencies are overridden via **per-app temporary `pnpm-workspace.yaml`** instead of modifying apps directly.
 - Private internal packages are built and **linked into PNPM’s store** to avoid registry fetches, ensuring fresh builds from `dist/`.
 - To prevent multiple React instances, React-family packages are exposed as **peerDependencies** and deduped in Vite configs.
+- No local or CI/CD installation of PNPM is required. The manager-pm tool is fully autonomous and portable, bundling a pinned PNPM binary to ensure reproducibility. This avoids changing existing developer setups or pipelines when transitioning between package managers.
 
 ```text
                  ┌───────────────────────┐
