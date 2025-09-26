@@ -4,5 +4,5 @@
   "iam_identities_account_delegation_disclaimer": "Support tickets are only accessible via your customer account (NIC).",
   "iam_identities_account_delegation_cancel": "Cancel",
   "iam_identities_account_delegation_confirm": "Add",
-  "iam_identities_account_delegation_format_error": "Enter a valid account format, e.g., {{format}}"
+  "iam_identities_account_delegation_format_error": "Please enter a valid format, e.g. {{format}}"
 }

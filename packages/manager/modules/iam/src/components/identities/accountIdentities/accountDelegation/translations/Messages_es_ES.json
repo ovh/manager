@@ -4,5 +4,5 @@
   "iam_identities_account_delegation_disclaimer": "Solo podrá acceder a los tíquets de soporte con su cuenta de cliente (NIC)",
   "iam_identities_account_delegation_cancel": "Cancelar",
   "iam_identities_account_delegation_confirm": "Añadir",
-  "iam_identities_account_delegation_format_error": "El formato de la cuenta no es válido, ejemplo {{format}}"
+  "iam_identities_account_delegation_format_error": "Introduzca un formato válido, por ejemplo: {{format}}"
 }
