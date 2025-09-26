@@ -27,5 +27,9 @@
   "change_password_helper1": "Attenzione, la password deve rispettare queste condizioni:",
   "change_password_helper2": "Almeno 1 lettera minuscola, 1 lettera maiuscola, 1 cifra o 1 carattere speciale",
   "price": "Prezzo",
-  "stepPlaceholder": "Step {{current}} di {{total}}"
+  "stepPlaceholder": "Step {{current}} di {{total}}",
+  "yes": "Sì",
+  "no": "No",
+  "ok": "OK",
+  "optional": "facoltativo"
 }
