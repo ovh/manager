@@ -40,7 +40,7 @@ const Instance: FC = () => {
       },
     ];
 
-    return instance?.isEditEnabled
+    return instance?.isVncEnabled
       ? [
           ...defaultTab,
           {
@@ -49,7 +49,7 @@ const Instance: FC = () => {
           },
         ]
       : defaultTab;
-  }, [dashboardPath.pathname, vncPath.pathname, t, instance?.isEditEnabled]);
+  }, [dashboardPath.pathname, vncPath.pathname, t, instance?.isVncEnabled]);
 
   return (
     <InstanceWrapper>
