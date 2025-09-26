@@ -91,8 +91,10 @@
   "cancel_slot_title": "Résilier mon service Zimbra {{ offer }}",
   "undo_cancel_slot_title": "Réactiver le renouvellement pour mon service Zimbra {{ offer }}",
   "upgrade_pro": "Mettre à niveau",
+  "update_offer": "Changer d'offre",
   "upgrade_account_pro": "Mettre à niveau mon compte",
   "upgrade_btn_account": "Mise à niveau vers Zimbra Pro",
+  "update_offer_title": "Sélectionnez votre nouvelle offre",
   "email_account_upgrade": "Changer l'offre",
   "service_state_creating": "Création",
   "service_state_deleting": "Suppression",
@@ -102,5 +104,8 @@
   "service_state_updating": "Mise à jour",
   "account_state_blockedforspam": "Bloqué",
   "account_state_tooltip_billinglocked": "Problème de facturation, vérifier la section facture de votre espace client",
-  "account_state_tooltip_blockedforspam": "Suspendu pour activité suspecte, contactez le support utilisateur."
+  "account_state_tooltip_blockedforspam": "Suspendu pour activité suspecte, contactez le support utilisateur.",
+  "paid_now": "À payer maintenant",
+  "next_billing": "Prochaine facturation",
+  "continue_order_btn": "Continuer ma commande"
 }

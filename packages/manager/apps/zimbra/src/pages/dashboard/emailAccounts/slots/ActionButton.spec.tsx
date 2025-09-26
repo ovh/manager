@@ -21,7 +21,7 @@ describe('Slots datagrid action menu', () => {
 
     const menuItems = container.querySelectorAll('ods-popover ods-button');
 
-    expect(menuItems.length).toBe(1);
+    expect(menuItems.length).toBe(2);
 
     expect(menuItems[0]).toHaveAttribute('label', commonTranslation.configure_account);
   });
