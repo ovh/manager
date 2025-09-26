@@ -1,0 +1,14 @@
+{
+  "title": "Wybierz typ konta",
+  "description": "Potrzebujesz pomocy? <Tooltip>Dowiedz się więcej o typach kont</Tooltip>",
+  "legal_form_association": "Stowarzyszenie",
+  "legal_form_administration": "Administracja publiczna",
+  "legal_form_corporation": "Nazwa Firmy",
+  "legal_form_individual": "Osoba fizyczna",
+  "legal_form_personalcorporation": "Działalność gospodarcza",
+  "legal_form_tooltip_corporation_description": "Utwórz konto dla swojej firmy, jeśli masz zarejestrowaną działalność, w tym jednoosobowe firmy.",
+  "legal_form_tooltip_individual_description": "Utwórz konto jako osoba fizyczna, jeśli nie masz zarejestrowanej firmy lub jeśli jesteś w trakcie zakupu firmy.",
+  "legal_form_tooltip_administration_description": "Utwórz konto dla swojej organizacji publicznej, jeśli reprezentujesz państwo, jednostkę samorządową, organizację lub instytucję międzynarodową.",
+  "legal_form_tooltip_association_description": "Utwórz konto dla swojego stowarzyszenia, jeśli jesteś zarejestrowany w krajowym rejestrze przedsiębiorstw i instytucji. Jeśli nie jesteś zarejestrowany, utwórz konto jako osoba fizyczna.",
+  "legal_form_tooltip_personalcorporation_description": "Opis Działalności Gospodarczej."
+}

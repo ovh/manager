@@ -1,0 +1,9 @@
+{
+  "title": "Fügen Sie Ihr Unternehmen hinzu",
+  "description": "Mit der SIREN/SIRET-Nummer Ihres Unternehmens holen wir automatisch die notwendigen Informationen zur Erstellung des Kontos ab.",
+  "fallback": "Haben Sie noch keine SIREN/SIRET? Erstellen Sie ein Privatkonto, das Sie später in ein Unternehmenskonto umwandeln können.",
+  "fallback_link": "Ein Privatkonto erstellen",
+  "search_suggestion": "Die Suche enthält viele Ergebnisse, bitte verfeinern Sie sie.",
+  "search_not_satisfactory": "Können Sie Ihr Unternehmen nicht finden? Fügen Sie es manuell hinzu",
+  "no_result": "Keine Ergebnisse"
+}

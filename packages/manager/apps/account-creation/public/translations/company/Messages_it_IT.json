@@ -1,0 +1,9 @@
+{
+  "title": "Aggiungi la tua impresa",
+  "description": "Con il numero SIREN/SIRET della tua impresa, recuperiamo automaticamente le informazioni necessarie per la creazione dell'account.",
+  "fallback": "Non hai ancora un SIREN/SIRET? Crea un account Personale che potrai successivamente convertire in account Impresa.",
+  "fallback_link": "Crea un account Personale",
+  "search_suggestion": "La ricerca contiene molti risultati, ti preghiamo di affinare.",
+  "search_not_satisfactory": "Non trovi la tua impresa? Aggiungila manualmente",
+  "no_result": "Nessun risultato"
+}
