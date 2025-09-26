@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { urls } from '@/routes/routes.constant';
+import { TrackingSubApps } from '@/tracking.constant';
 
 const RootLayout = lazy(() => import('@/pages/layout'));
 const DashboardLayout = lazy(() => import('@/pages/dashboardLayout'));
@@ -42,12 +43,20 @@ export default (
           tracking: {
             pageName: 'communications',
             pageType: PageType.listing,
+            subApp: TrackingSubApps.Communications,
           },
         }}
       />
       <Route
         path={urls.CommunicationsDetail}
         Component={CommunicationsDetailPage}
+        handle={{
+          tracking: {
+            pageName: 'subject',
+            pageType: PageType.dashboard,
+            subApp: TrackingSubApps.Communications,
+          },
+        }}
       />
       <Route
         path={urls.ContactsTab}
@@ -55,7 +64,8 @@ export default (
         handle={{
           tracking: {
             pageName: 'contacts',
-            pageType: PageType.funnel,
+            pageType: PageType.listing,
+            subApp: TrackingSubApps.Contacts,
           },
         }}
       >
@@ -95,8 +105,9 @@ export default (
         Component={SettingsPage}
         handle={{
           tracking: {
-            pageName: 'settings',
-            pageType: PageType.funnel,
+            pageName: 'preference-center',
+            pageType: PageType.dashboard,
+            subApp: TrackingSubApps.Settings,
           },
         }}
       />
