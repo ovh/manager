@@ -1,9 +1,11 @@
 import { useState, Suspense } from 'react';
 
 import { useMediaQuery } from 'react-responsive';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import HamburgerMenu from './HamburgerMenu';
 import UserAccountMenu from './user-account-menu';
 
+import CloudShellLink from '@/container/common/cloud-shell';
 import LanguageMenu from '@/container/common/language';
 import modalStyle from '@/container/common/modal.module.scss';
 import NavReshuffleSwitchBack from '@/container/common/nav-reshuffle-switch-back';
@@ -40,6 +42,9 @@ function Header({
   const isSmallDevice = useMediaQuery({
     query: `(max-width: ${SMALL_DEVICE_MAX_SIZE})`,
   });
+  const { data: cloudShellAvailability } = useFeatureAvailability(
+    ['cloud-shell'],
+  );
   const navigationPlugin = shell.getPlugin('navigation');
   const logoLink = navigationPlugin.getURL('hub', '#/');
   const { isMobile } = useProductNavReshuffle();
@@ -90,6 +95,11 @@ function Header({
                   }}
                 ></LanguageMenu>
               </div>
+          {cloudShellAvailability?.['cloud-shell'] && (
+              <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
+            <CloudShellLink />
+          </div>
+          )}
               <div className={`oui-navbar-list__item ${style.navbarListItem}`}>
                 <Notifications />
               </div>
