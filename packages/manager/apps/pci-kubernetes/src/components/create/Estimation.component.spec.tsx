@@ -1,137 +1,70 @@
-import { render } from '@testing-library/react';
-import { describe, it, vi, expect, beforeEach, Mock } from 'vitest';
-import { useCatalog } from '@ovh-ux/manager-pci-common';
-import { useCatalogPrice } from '@ovh-ux/manager-react-components';
-import Estimation from './Estimation.component';
-import { wrapper } from '@/wrapperRenders';
+import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 
-import { NodePoolPrice } from '@/api/data/kubernetes';
-import { TClusterPlanEnum } from '@/types';
+import Estimation, { EstimationRow } from './Estimation.component';
 
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string, params?: Record<string, string>) =>
-      params ? `${key} ${JSON.stringify(params)}` : key,
-  }),
-}));
-vi.mock('@/hooks/use3azPlanAvaible', () => ({
-  default: vi.fn(),
-}));
+describe('Estimation component', () => {
+  const cases: {
+    description: string;
+    rows: EstimationRow[];
+    expectedLabels: string[];
+    hiddenLabels: string[];
+    expectedValues?: string[];
+  }[] = [
+    {
+      description: 'some rows shown, some hidden, some with value',
+      rows: [
+        { label: 'row1', value: '100 €/mo', show: true },
+        { label: 'row2', value: '200 €/mo', show: false },
+        { label: 'row3', show: true },
+        { label: 'row4', value: '300 €/mo', show: true },
+      ],
+      expectedLabels: ['row1', 'row3', 'row4'],
+      hiddenLabels: ['row2'],
+      expectedValues: ['100 €/mo', '300 €/mo'],
+    },
+    {
+      description: 'all rows hidden',
+      rows: [
+        { label: 'row1', value: '100 €/mo', show: false },
+        { label: 'row2', show: false },
+      ],
+      expectedLabels: [],
+      hiddenLabels: ['row1', 'row2'],
+      expectedValues: [],
+    },
+    {
+      description: 'all rows shown with value',
+      rows: [
+        { label: 'row1', value: '50 €/mo', show: true },
+        { label: 'row2', value: '150 €/mo', show: true },
+      ],
+      expectedLabels: ['row1', 'row2'],
+      hiddenLabels: [],
+      expectedValues: ['50 €/mo', '150 €/mo'],
+    },
+  ];
 
-vi.mock('@ovh-ux/manager-pci-common', () => ({
-  ...vi.importActual('@ovh-ux/manager-pci-common'),
-  useCatalog: vi.fn(),
-}));
+  it.each(cases)(
+    '$description',
+    ({ rows, expectedLabels, hiddenLabels, expectedValues }) => {
+      render(<Estimation rows={rows} />);
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  ...vi.importActual('@ovh-ux/manager-react-components'),
-  useCatalogPrice: vi.fn(),
-}));
+      expect(
+        screen.getByText('kube_common_node_pool_estimated_cost'),
+      ).toBeDefined();
 
-describe('Estimation Component', () => {
-  beforeEach(() => {
-    vi.mocked(useCatalog).mockReturnValue({
-      data: {
-        addons: [
-          {
-            planCode: 'mks.free.hour.consumption',
-            pricings: [{ price: 0 }],
-          },
-          {
-            planCode: 'mks.standard.hour.consumption.3az',
-            pricings: [{ price: 123 }],
-          },
-          {
-            planCode: 'mks.standard.hour.consumption.4az',
-            pricings: [{ price: 123 }],
-          },
-        ],
-      },
-      isPending: false,
-    } as ReturnType<typeof useCatalog>);
-    vi.clearAllMocks();
-  });
+      expectedLabels.forEach((label) => {
+        expect(screen.getByText(label)).toBeVisible();
+      });
 
-  it('should render the estimated cost label', () => {
-    (useCatalogPrice as Mock).mockReturnValue({
-      getFormattedMonthlyCatalogPrice: vi.fn().mockReturnValue('0.00 €'),
-    });
+      hiddenLabels.forEach((label) => {
+        expect(screen.queryByText(label)).toBeNull();
+      });
 
-    const { getByText } = render(<Estimation plan={TClusterPlanEnum.FREE} />, {
-      wrapper,
-    });
-
-    expect(
-      getByText('kube_common_node_pool_estimated_cost'),
-    ).toBeInTheDocument();
-  });
-
-  it('should display all expected estimation texts', () => {
-    (useCatalogPrice as Mock).mockReturnValue({
-      getFormattedMonthlyCatalogPrice: vi.fn().mockReturnValue('0.00 €'),
-    });
-
-    const { getByText } = render(<Estimation plan={TClusterPlanEnum.FREE} />, {
-      wrapper,
-    });
-
-    expect(
-      getByText('kube_common_node_pool_estimation_text'),
-    ).toBeInTheDocument();
-    expect(
-      getByText('kube_common_node_pool_estimation_price'),
-    ).toBeInTheDocument();
-    expect(getByText('0.00 €')).toBeInTheDocument();
-    expect(
-      getByText('kube_common_node_pool_estimation_text_end'),
-    ).toBeInTheDocument();
-  });
-
-  it('should correctly calculate the estimated price from nodePools', () => {
-    const mockNodePools: NodePoolPrice[] = [
-      { monthlyPrice: 10 },
-      { monthlyPrice: 20 },
-    ] as NodePoolPrice[];
-
-    const getFormattedMonthlyCatalogPriceMock = vi
-      .fn()
-      .mockReturnValue('30.00 €');
-
-    (useCatalogPrice as Mock).mockReturnValue({
-      getFormattedMonthlyCatalogPrice: getFormattedMonthlyCatalogPriceMock,
-    });
-
-    const { getByText } = render(
-      <Estimation nodePools={mockNodePools} plan={TClusterPlanEnum.FREE} />,
-      {
-        wrapper,
-      },
-    );
-
-    expect(getFormattedMonthlyCatalogPriceMock).toHaveBeenCalledWith(30);
-    expect(
-      getByText('kube_common_node_pool_estimation_price'),
-    ).toBeInTheDocument();
-    expect(getByText('30.00 €')).toBeInTheDocument();
-  });
-
-  it('should display default price when nodePools is undefined', () => {
-    const getFormattedMonthlyCatalogPriceMock = vi
-      .fn()
-      .mockReturnValue('x.xx €');
-
-    (useCatalogPrice as Mock).mockReturnValue({
-      getFormattedMonthlyCatalogPrice: getFormattedMonthlyCatalogPriceMock,
-    });
-
-    const { getByText } = render(<Estimation plan={TClusterPlanEnum.FREE} />, {
-      wrapper,
-    });
-
-    expect(getFormattedMonthlyCatalogPriceMock).toHaveBeenCalledWith(0);
-    expect(
-      getByText('kube_common_node_pool_estimation_price'),
-    ).toBeInTheDocument();
-    expect(getByText('x.xx €')).toBeInTheDocument();
-  });
+      expectedValues?.forEach((value) => {
+        expect(screen.getByText(value)).toBeVisible();
+      });
+    },
+  );
 });

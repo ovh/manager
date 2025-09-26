@@ -11,7 +11,7 @@ export type TClusterCreationForm = {
   version: string;
   updatePolicy: UpdatePolicy | null;
   network: TNetworkFormState | null;
-  nodePools?: NodePoolPrice[];
+  nodePools?: NodePoolPrice[] | null;
   plan: TClusterPlan | null;
   clusterName: string;
 };
@@ -159,7 +159,7 @@ export function useClusterCreationStepper(has3AZRegions = false) {
       submit: (nodePools: NodePoolPrice[] | null) => {
         setForm((f) => ({
           ...f,
-          ...(nodePools && { nodePools }),
+          nodePools,
         }));
         nodeStep.check();
         nodeStep.lock();

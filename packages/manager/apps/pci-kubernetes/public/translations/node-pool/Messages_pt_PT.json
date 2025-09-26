@@ -37,5 +37,6 @@
   "kube_common_node_pool_deploy_title": "Escolha da Availability Zone",
   "kube_common_node_pool_deploy_description": "Num cluster Kubernetes repartido por três Availability Zones (AZ), é recomendada a utilização de pools de nós por zonas para assegurar a resiliência e a alta disponibilidade. Esta configuração permite distribuir de forma equilibrada as suas cargas de trabalho entre as AZ. Assim, melhora-se a tolerância a falhas e garante-se uma continuidade de serviço ideal.",
   "kube_node_pool": "Configurar o pool de nós",
-  "kube_common_estimation_price_free": "Grátis"
+  "kube_common_estimation_price_free": "Grátis",
+  "kube_common_estimation_total_price": "Preço total estimado:"
 }

@@ -6,7 +6,7 @@ import DashboardCardLayout from './DashboardCardLayout.component';
 import { useDashboard } from '../hooks/useDashboard';
 import { ActionsMenu } from '@/components/menu/ActionsMenu.component';
 import NetworkItem from './network/NetworkItem.component';
-import { DashboardTileBlock } from './DashboardTile.component';
+import { DashboardTileBlock } from './tile/DashboardTile.component';
 import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceActionModal';
 import ExpandedNetwork from './network/ExpandedNetwork.component';
 
@@ -78,7 +78,7 @@ const InstanceNetworkingBlock: FC = () => {
           />
         ))}
       </DashboardTileBlock>
-      <DashboardTileBlock isLoading={isInstanceLoading} withoutDivider>
+      <DashboardTileBlock isLoading={isInstanceLoading}>
         <div className="flex items-center justify-between">
           <Text preset={TEXT_PRESET.heading6}>
             {t('pci_instances_dashboard_network_private_title')}

@@ -11,7 +11,7 @@
   "pci_instances_dashboard_storage_title": "Storage",
   "pci_instances_dashboard_public_bandwidth_title": "Banda passante pubblica",
   "pci_instances_dashboard_attach_volumes": "Associa un volume",
-  "pci_instances_dashboard_edit_image": "Cambiare immagine",
+  "pci_instances_dashboard_edit_image": "Modifica l'immagine",
   "pci_instances_dashboard_id_openstack_title": "ID",
   "pci_instances_dashboard_ssh_key": "Chiave SSH",
   "pci_instances_dashboard_network_title": "Reti",
@@ -25,5 +25,10 @@
   "pci_instances_dashboard_instance_price_label": "Prezzo dell'istanza: ",
   "pci_instances_dashboard_licence_price_label": "Prezzo della licenza: ",
   "pci_instances_dashboard_public_network_title": "Reti pubbliche",
-  "pci_instances_dashboard_network_floating_title": "Floating IP"
+  "pci_instances_dashboard_network_floating_title": "Floating IP",
+  "pci_instances_dashboard_network_name_label": "Nome della rete: ",
+  "pci_instances_dashboard_backup_empty_message": "Non hai backup",
+  "pci_instances_dashboard_backup_title": "Gestione del backup",
+  "pci_instances_dashboard_backup_number_of_backups": "Numero di backup dell’istanza",
+  "pci_instances_dashboard_backup_last_updated_backups": "Data dell'ultimo backup"
 }
