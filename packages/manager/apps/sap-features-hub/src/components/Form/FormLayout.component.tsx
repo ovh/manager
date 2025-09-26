@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { testIds } from '@/utils/testIds.constants';
 
 export type FormLayoutProps = {
@@ -28,7 +29,7 @@ export default function FormLayout({
   ...rest
 }: Readonly<FormLayoutProps>) {
   const titleRef = useRef<HTMLOdsTextElement>();
-  const { t } = useTranslation('installation');
+  const { t } = useTranslation(['installation', NAMESPACES.ACTIONS]);
 
   useEffect(() => {
     if (serverErrorMessage) {
@@ -60,7 +61,7 @@ export default function FormLayout({
       <div className="flex gap-x-2">
         {onPrevious && (
           <OdsButton
-            label={t('previous_step_cta')}
+            label={t(`${NAMESPACES.ACTIONS}:previous`)}
             variant="outline"
             onClick={onPrevious}
             data-testid={testIds.formPreviousCta}

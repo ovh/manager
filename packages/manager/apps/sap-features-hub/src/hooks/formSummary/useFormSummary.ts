@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { StepFieldSummary, StepSummary } from '@/types/formStep.type';
 import { FORM_LABELS } from '@/constants/form.constants';
 import { InstallationFormValues } from '@/types/form.type';
@@ -7,26 +8,39 @@ import { LABELS } from '@/utils/label.constants';
 import { ServerConfigVM as VM } from '@/types/servers.type';
 
 export const useFormSummary = (values: InstallationFormValues) => {
-  const { t } = useTranslation('installation');
+  const { t } = useTranslation([
+    'installation',
+    NAMESPACES.FORM,
+    NAMESPACES.SYSTEM,
+  ]);
 
   const getVMFields = (vms: VM[]): StepFieldSummary[] =>
     vms.reduce(
       (fields, vm, index) =>
         [
           ...fields,
-          { type: 'subtitle', isMinor: true, label: `${t('vm')} ${index + 1}` },
+          {
+            type: 'subtitle',
+            isMinor: true,
+            label: `${t(`${NAMESPACES.SYSTEM}:vm`)} ${index + 1}`,
+          },
           { value: vm.name, label: t('server_config_input_vm_name') },
-          ...('role' in vm ? [{ value: vm.role, label: t('role') }] : []),
+          ...('role' in vm
+            ? [{ value: vm.role, label: t(`${NAMESPACES.SYSTEM}:role`) }]
+            : []),
           { value: vm.vcpus, label: FORM_LABELS.vcpus },
-          { value: vm.memory, label: t('ram') },
+          {
+            value: vm.memory,
+            label: t(`${NAMESPACES.SYSTEM}:ram_gb`),
+          },
           {
             value: vm.rootPassword,
-            label: t('server_config_input_root_password'),
+            label: t(`${NAMESPACES.SYSTEM}:password_root`),
             isSecretValue: true,
           },
           {
             value: vm.ipAddress,
-            label: t('server_config_input_ipv4_address'),
+            label: t(`${NAMESPACES.SYSTEM}:address_ipv4`),
           },
           {
             value: vm.instanceNumber,
@@ -46,13 +60,19 @@ export const useFormSummary = (values: InstallationFormValues) => {
             value: values.serviceDisplayName,
             label: t('service_input_vmware'),
           },
-          { value: values.datacenterName, label: t('service_input_vdc') },
-          { value: values.clusterName, label: t('service_input_cluster') },
+          {
+            value: values.datacenterName,
+            label: t(`${NAMESPACES.SYSTEM}:datacentre`),
+          },
+          {
+            value: values.clusterName,
+            label: t(`${NAMESPACES.SYSTEM}:cluster`),
+          },
         ],
       },
       {
         id: '2',
-        title: t('deployment_summary'),
+        title: t(`${NAMESPACES.SYSTEM}:installation`),
         fields: [
           {
             value: values.applicationVersion,
@@ -75,7 +95,7 @@ export const useFormSummary = (values: InstallationFormValues) => {
           { type: 'subtitle', label: FORM_LABELS.sids },
           { value: values.sapSid, label: FORM_LABELS.sapSid },
           { value: values.sapHanaSid, label: FORM_LABELS.sapHanaSid },
-          { type: 'subtitle', label: t('passwords') },
+          { type: 'subtitle', label: t(`${NAMESPACES.SYSTEM}:passwords`) },
           {
             value: values.masterSapPassword,
             label: FORM_LABELS.masterSapPassword,
@@ -104,10 +124,13 @@ export const useFormSummary = (values: InstallationFormValues) => {
         fields: [
           { value: values.bucketId, label: t('common_input_container') },
           { value: values.endpoint, label: FORM_LABELS.endpoint },
-          { value: values.accessKey, label: t('common_input_access_key') },
+          {
+            value: values.accessKey,
+            label: t(`${NAMESPACES.SYSTEM}:key_access`),
+          },
           {
             value: values.secretKey,
-            label: t('common_input_secret_key'),
+            label: t(`${NAMESPACES.SYSTEM}:key_secret`),
             isSecretValue: true,
           },
         ],
@@ -116,29 +139,40 @@ export const useFormSummary = (values: InstallationFormValues) => {
         id: '5',
         title: t('os_config_summary'),
         fields: [
-          { value: values.domainName, label: t('os_config_input_domain') },
+          {
+            value: values.domainName,
+            label: t(`${NAMESPACES.SYSTEM}:domain_name`),
+          },
           { value: values.osLicense, label: t('os_config_input_suse') },
           {
-            value: values.osUpdate ? t('yes') : t('no'),
+            value: values.osUpdate
+              ? t(`${NAMESPACES.FORM}:yes`)
+              : t(`${NAMESPACES.FORM}:no`),
             label: t('os_config_toggle_update'),
           },
           {
-            value: values.firewallService ? t('yes') : t('no'),
+            value: values.firewallService
+              ? t(`${NAMESPACES.FORM}:yes`)
+              : t(`${NAMESPACES.FORM}:no`),
             label: t('os_config_toggle_firewall_service'),
           },
           {
-            value: values.firewallServer ? t('yes') : t('no'),
+            value: values.firewallServer
+              ? t(`${NAMESPACES.FORM}:yes`)
+              : t(`${NAMESPACES.FORM}:no`),
             label: t('os_config_toggle_firewall_server'),
           },
           {
-            value: values.firewallDatabase ? t('yes') : t('no'),
+            value: values.firewallDatabase
+              ? t(`${NAMESPACES.FORM}:yes`)
+              : t(`${NAMESPACES.FORM}:no`),
             label: t('os_config_toggle_firewall_database'),
           },
         ],
       },
       {
         id: '6',
-        title: t('vms'),
+        title: t(`${NAMESPACES.SYSTEM}:vms`),
         fields: [
           {
             value: values.network,
@@ -186,13 +220,13 @@ export const useFormSummary = (values: InstallationFormValues) => {
           ...(!values.bucketBackint
             ? [
                 {
-                  value: t('no'),
+                  value: t(`${NAMESPACES.FORM}:no`),
                   label: t('enablement_input_has_backup'),
                 },
               ]
             : [
                 {
-                  value: t('yes'),
+                  value: t(`${NAMESPACES.FORM}:yes`),
                   label: t('enablement_input_has_backup'),
                 },
                 {
@@ -205,24 +239,24 @@ export const useFormSummary = (values: InstallationFormValues) => {
                 },
                 {
                   value: values.bucketBackint.accessKey,
-                  label: t('common_input_access_key'),
+                  label: t(`${NAMESPACES.SYSTEM}:key_access`),
                 },
                 {
                   value: values.bucketBackint.secretKey,
-                  label: t('common_input_secret_key'),
+                  label: t(`${NAMESPACES.SYSTEM}:key_secret`),
                   isSecretValue: true,
                 },
               ]),
           ...(!values.logsDataPlatform
             ? [
                 {
-                  value: t('no'),
+                  value: t(`${NAMESPACES.FORM}:no`),
                   label: t('enablement_input_has_logs_ldp_ovh'),
                 },
               ]
             : [
                 {
-                  value: t('yes'),
+                  value: t(`${NAMESPACES.FORM}:yes`),
                   label: t('enablement_input_has_logs_ldp_ovh'),
                 },
                 {

@@ -1,10 +1,12 @@
 import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { describe, vi } from 'vitest';
 import { testIds } from '@/utils/testIds.constants';
 import FormLayout, { FormLayoutProps } from './FormLayout.component';
+import { labels } from '@/test-utils';
+import { testWrapperBuilder } from '@/test-utils/testWrapperBuilder';
 
 const previousSpy = vi.fn();
 const submitSpy = vi.fn();
@@ -18,29 +20,36 @@ const layoutProps: FormLayoutProps = {
   onPrevious: previousSpy,
 };
 
+const renderComponent = async () => {
+  const wrapper = await testWrapperBuilder()
+    .withI18next()
+    .build();
+  return render(<FormLayout {...layoutProps} />, { wrapper });
+};
+
 describe('FormLayout component unit test suite', () => {
-  it('should render field with title, CTAs and children', () => {
+  it('should render field with title, CTAs and children', async () => {
     // when
-    const { getByText, getByTestId } = render(<FormLayout {...layoutProps} />);
+    await renderComponent();
 
     // then
-    const title = getByText(layoutProps.title);
+    const title = screen.getByText(layoutProps.title);
     expect(title).toBeVisible();
     expect(title).toHaveAttribute('preset', 'heading-2');
 
     // and
-    const submitCTA = getByTestId(testIds.formSubmitCta);
+    const submitCTA = screen.getByTestId(testIds.formSubmitCta);
     expect(submitCTA).toBeVisible();
     expect(submitCTA).toHaveAttribute('variant', 'default');
     expect(submitCTA).toHaveAttribute('label', layoutProps.submitLabel);
 
     // and
-    const previousCTA = getByTestId(testIds.formPreviousCta);
+    const previousCTA = screen.getByTestId(testIds.formPreviousCta);
     expect(previousCTA).toBeVisible();
     expect(previousCTA).toHaveAttribute('variant', 'outline');
-    expect(previousCTA).toHaveAttribute('label', 'previous_step_cta');
+    expect(previousCTA).toHaveAttribute('label', labels.actions.previous);
 
     // and
-    expect(getByText(childrenLabel)).toBeVisible();
+    expect(screen.getByText(childrenLabel)).toBeVisible();
   });
 });

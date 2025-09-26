@@ -5,6 +5,7 @@ import {
   OdsToggleChangeEvent,
 } from '@ovhcloud/ods-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import { useInstallationFormContext } from '@/context/InstallationForm.context';
 import { TextField } from '@/components/Form/TextField.component';
@@ -25,7 +26,7 @@ import { mapFormOSConfigToStructured } from '@/mappers/stepFormMappers';
 import { useStateMessage } from '@/hooks/stateMessage/stateMessage';
 
 export default function InstallationStepOSConfig() {
-  const { t } = useTranslation('installation');
+  const { t } = useTranslation(['installation', NAMESPACES.FORM]);
   const { previousStep, nextStep } = useFormSteps();
   const {
     stateMessage: serverErrorMessage,
@@ -99,7 +100,7 @@ export default function InstallationStepOSConfig() {
     >
       <TextField
         name="domainName"
-        label={t('os_config_input_domain')}
+        label={t(`${NAMESPACES.SYSTEM}:domain_name`)}
         onOdsChange={(e) => {
           handleChange({
             e,
@@ -114,7 +115,9 @@ export default function InstallationStepOSConfig() {
       />
       <TextField
         name="osLicense"
-        label={`${t('os_config_input_suse')} (${t('optional_label')})`}
+        label={`${t('os_config_input_suse')} (${t(
+          `${NAMESPACES.FORM}:optional`,
+        )})`}
         onOdsChange={(e) => {
           const { value } = e.detail;
           handleChange({

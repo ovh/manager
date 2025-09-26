@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useHref, useParams } from 'react-router-dom';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { BreadcrumbItem } from './useBreadcrumb';
 import { subRoutes, urls } from '@/routes/routes.constant';
 
@@ -8,6 +9,7 @@ export const useApplicationBreadcrumbItems = (): BreadcrumbItem[] => {
     'listing',
     'installation',
     'dashboard/installation',
+    NAMESPACES.FORM,
   ]);
   const listingHref = useHref(urls.listing);
   const wizardHref = useHref(urls.installationWizard);
@@ -31,11 +33,11 @@ export const useApplicationBreadcrumbItems = (): BreadcrumbItem[] => {
     },
     {
       id: subRoutes.initialStep,
-      label: t('installation:form_step', { step: 1 }),
+      label: t(`${NAMESPACES.FORM}:step_number`, { step: 1 }),
     },
     {
       id: stepId,
-      label: t('installation:form_step', { step: stepId }),
+      label: t(`${NAMESPACES.FORM}:step_number`, { step: stepId }),
     },
   ];
 
