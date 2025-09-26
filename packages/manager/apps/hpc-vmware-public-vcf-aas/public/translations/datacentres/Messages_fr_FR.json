@@ -7,5 +7,6 @@
   "managed_vcd_vdc_vcpu_value": "{{speed}} GHz",
   "managed_vcd_vdc_usage": "Usage",
   "managed_vcd_vdc_contact_support": "Merci de contacter le support",
-  "managed_vcd_vdc_associate_vrack": "Associer un vRack"
+  "managed_vcd_vdc_associate_vrack": "Associer un vRack",
+  "managed_vcd_vdc_associate_vrack_disabled": "L'association d'un vRack à un Public VCF as-a-Service n'est pas encore disponible"
 }
