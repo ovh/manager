@@ -24,5 +24,19 @@
   "zimbra_account_upgrade_offer_details": "Nous vous proposons de mettre à niveau votre compte gratuitement pendant toute la durée de la phase bêta.",
   "zimbra_account_upgrade_lab_page": "Pour plus de détails, veuillez lire <Link href=\"{{ zimbra_beta_link }}\">les conditions de béta sur la page lab</Link>.",
   "zimbra_account_upgrade_success_message": "Votre demande de mise à niveau a bien été prise en compte. Elle sera traitée d'ici quelques instants.",
-  "zimbra_account_upgrade_error_message": "Votre demande de mise à niveau n'a pas pu aboutir. {{ error }}"
+  "zimbra_account_upgrade_error_message": "Votre demande de mise à niveau n'a pas pu aboutir. {{ error }}",
+  "zimbra_account_plan_feature_storage_starter": "<strong>15 Go</strong> de stockage",
+  "zimbra_account_plan_feature_storage_pro": "<strong>50 Go</strong> de stockage",
+  "zimbra_account_plan_feature_storage_business": "<strong>50 Go</strong> de stockage",
+  "zimbra_account_plan_feature_share": "Partage limité de <strong>calendriers</strong>, <strong>tâches</strong> et <strong>contacts</strong>",
+  "zimbra_account_plan_feature_sync": "<strong>Synchrnisation ActiveSync</strong>",
+  "zimbra_account_plan_feature_files_storage": "<strong>Stockage</strong> de fichiers",
+  "zimbra_account_plan_feature_co_edit": "<strong>Co-édition</strong> de fichiers (à venir)",
+  "zimbra_account_plan_feature_private_chat": "<strong>Chat</strong> en <strong>privé</strong> (à venir)",
+  "zimbra_account_plan_feature_team_chat": "<strong>Chat</strong> en <strong>équipe</strong> (à venir)",
+  "zimbra_account_plan_feature_shared_storage": "<strong>1 Go</strong> de <strong>stockage partagé</strong>",
+  "zimbra_account_plan_feature_video_conferences": "<strong>Visioconférences</strong>",
+  "zimbra_account_plan_tag_current_offer": "Offre actuelle",
+  "zimbra_account_plan_tag_new": "New",
+  "zimbra_account_plan_tag_coming_soon": "Coming soon"
 }

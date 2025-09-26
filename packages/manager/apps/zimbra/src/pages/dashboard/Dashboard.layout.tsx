@@ -35,7 +35,11 @@ import {
 import { FEATURE_AVAILABILITY, MAX_PRO_ACCOUNTS } from '@/constants';
 import { useOrganization } from '@/data/hooks';
 import { CHANGELOG_LINKS, GUIDES_LIST } from '@/guides.constants';
-import { useAccountsStatistics, useGenerateUrl, useOverridePage } from '@/hooks';
+import {
+  useAccountsStatistics,
+  useGenerateUrl,
+  useOverridePage,
+} from '@/hooks';
 import { urls } from '@/routes/routes.constants';
 import {
   AUTO_REPLY,
@@ -65,10 +69,15 @@ export const DashboardLayout: React.FC = () => {
   const basePath = useResolvedPath('').pathname;
   const { proCount } = useAccountsStatistics();
 
-  const { data: availability } = useFeatureAvailability([FEATURE_AVAILABILITY.PRO_BETA]);
+  const { data: availability } = useFeatureAvailability([
+    FEATURE_AVAILABILITY.PRO_BETA,
+  ]);
 
   const showProBetaBanner = useMemo(
-    () => proCount < MAX_PRO_ACCOUNTS && availability?.[FEATURE_AVAILABILITY.PRO_BETA],
+    () =>
+      proCount < MAX_PRO_ACCOUNTS &&
+      availability?.[FEATURE_AVAILABILITY.PRO_BETA] &&
+      false,
     [availability, proCount],
   );
 
@@ -104,7 +113,10 @@ export const DashboardLayout: React.FC = () => {
       trackingName: ORGANIZATION,
       title: t('common:organization'),
       to: useGenerateUrl(`${basePath}/organizations`, 'path'),
-      pathMatchers: useComputePathMatchers([urls.organizations, urls.organizationsDelete]),
+      pathMatchers: useComputePathMatchers([
+        urls.organizations,
+        urls.organizationsDelete,
+      ]),
       hidden: selectedOrganizationId !== null,
     },
     {
@@ -134,7 +146,10 @@ export const DashboardLayout: React.FC = () => {
       trackingName: MAILING_LIST,
       title: t('common:mailing_list'),
       to: useGenerateUrl(`${basePath}/mailing_lists`, 'path'),
-      pathMatchers: useComputePathMatchers([urls.mailing_lists, urls.mailing_lists_delete]),
+      pathMatchers: useComputePathMatchers([
+        urls.mailing_lists,
+        urls.mailing_lists_delete,
+      ]),
       hidden: !FEATURE_FLAGS.MAILINGLISTS,
     },
     {
@@ -170,7 +185,7 @@ export const DashboardLayout: React.FC = () => {
       subtitle={
         selectedOrganizationId &&
         organization &&
-        ((
+        (((
           <>
             <span>{organization.currentState.name}</span>
             <OdsTag
@@ -192,7 +207,7 @@ export const DashboardLayout: React.FC = () => {
               label={organization.currentState.label}
             />
           </>
-        ) as unknown as string) // subtitle should accept a ReactElement
+        ) as unknown) as string) // subtitle should accept a ReactElement
       }
       message={
         // temporary fix margin even if empty

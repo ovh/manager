@@ -110,7 +110,7 @@ export const withSlotId = z.object({
 
 // @TODO: remove when backend doesn't require that anymore
 export const withOffer = z.object({
-  offer: z.enum([ZimbraOffer.STARTER, ZimbraOffer.PRO]),
+  offer: z.enum([ZimbraOffer.STARTER, ZimbraOffer.PRO, ZimbraOffer.BUSINESS]),
 });
 
 export const baseEmailAccountSchema = z.object({
@@ -119,7 +119,7 @@ export const baseEmailAccountSchema = z.object({
   lastName: z.string().optional(),
   firstName: z.string().optional(),
   displayName: z.string().optional(),
-  offer: z.enum([ZimbraOffer.STARTER, ZimbraOffer.PRO]).optional(),
+  offer: z.enum([ZimbraOffer.STARTER, ZimbraOffer.PRO, ZimbraOffer.BUSINESS]).optional(),
   hideInGal: z.boolean().optional(),
   forceChangePasswordAfterLogin: z.boolean().optional(),
   slotId: z.string().optional(),

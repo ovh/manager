@@ -2,7 +2,7 @@ export const FEATURE_AVAILABILITY = {
   PRO_BETA: 'zimbra:pro_beta',
 };
 
-export const MAX_PRO_ACCOUNTS = 5;
+export const MAX_PRO_ACCOUNTS = 7;
 export const OVH_WEBSITE_ROOT_URL = 'https://ovhcloud.com';
 
 export const ZimbraLabsLink = 'https://labs.ovhcloud.com/en/zimbra-beta/';

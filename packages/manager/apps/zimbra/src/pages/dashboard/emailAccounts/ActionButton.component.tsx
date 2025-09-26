@@ -7,20 +7,19 @@ import { useTranslation } from 'react-i18next';
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ActionMenu, useFeatureAvailability } from '@ovh-ux/manager-react-components';
+import { ActionMenu } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
-import { FEATURE_AVAILABILITY, MAX_PRO_ACCOUNTS } from '@/constants';
-import { ResourceStatus, ServiceBillingState, ZimbraPlanCodes } from '@/data/api';
+import { ResourceStatus, ServiceBillingState } from '@/data/api';
 import { usePlatform } from '@/data/hooks';
-import { useAccountsStatistics, useGenerateUrl } from '@/hooks';
+import { useGenerateUrl } from '@/hooks';
 import {
   CANCEL_SLOT,
   DELETE_EMAIL_ACCOUNT,
   EDIT_EMAIL_ACCOUNT,
   GO_EMAIL_ACCOUNT_ALIASES,
   UNDO_CANCEL_SLOT,
-  UPGRADE_SLOT,
+  UPDATE_OFFER_SLOT,
 } from '@/tracking.constants';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 
@@ -35,8 +34,6 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
   const { t } = useTranslation(['common', NAMESPACES.ACTIONS]);
   const { platformUrn } = usePlatform();
   const navigate = useNavigate();
-  const { proCount } = useAccountsStatistics();
-  const { data: availability } = useFeatureAvailability([FEATURE_AVAILABILITY.PRO_BETA]);
 
   const hrefEditEmailAccount = useGenerateUrl(`./${item.id}/settings`, 'path');
 
@@ -98,16 +95,16 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
     navigate(hrefUndoCancelSlot);
   };
 
-  const hrefUpgradeEmailAccount = useGenerateUrl(`./slot/${item?.slotId}/upgrade`, 'path');
+  const hrefUpdateOfferEmailAccount = useGenerateUrl(`./slot/${item?.slotId}/update_offer`, 'path');
 
-  const handleUpgradeEmailClick = () => {
+  const handleUpdateOfferEmailClick = () => {
     trackClick({
       location: PageLocation.datagrid,
       buttonType: ButtonType.button,
       actionType: 'navigation',
-      actions: [UPGRADE_SLOT],
+      actions: [UPDATE_OFFER_SLOT],
     });
-    navigate(hrefUpgradeEmailAccount);
+    navigate(hrefUpdateOfferEmailAccount);
   };
 
   const actionItems = [
@@ -127,6 +124,13 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
     },
     {
       id: 3,
+      onClick: handleUpdateOfferEmailClick,
+      urn: platformUrn,
+      iamActions: [IAM_ACTIONS.account.edit],
+      label: t('update_offer'),
+    },
+    {
+      id: 4,
       onClick: handleDeleteEmailClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.account.delete],
@@ -154,20 +158,6 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
       iamActions: [IAM_ACTIONS.account.edit],
       label: t('undo_cancel_slot'),
       color: ODS_BUTTON_COLOR.critical,
-    });
-  }
-
-  if (
-    availability?.[FEATURE_AVAILABILITY.PRO_BETA] &&
-    item?.service?.planCode !== ZimbraPlanCodes.ZIMBRA_PRO &&
-    proCount < MAX_PRO_ACCOUNTS
-  ) {
-    actionItems.push({
-      id: actionItems.length + 1,
-      onClick: handleUpgradeEmailClick,
-      urn: platformUrn,
-      iamActions: [IAM_ACTIONS.account.edit],
-      label: t('upgrade_pro'),
     });
   }
 

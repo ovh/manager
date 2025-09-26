@@ -86,3 +86,5 @@ export const orderCatalogMock: order.publicOrder.Catalog = {
   addons: [],
   planFamilies: [],
 };
+
+// export const upgradeOrderMock: Order = {};

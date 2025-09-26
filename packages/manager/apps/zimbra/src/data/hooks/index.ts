@@ -10,6 +10,7 @@ export * from './domain/useDomainZone';
 export * from './mailinglist/useMailingList';
 export * from './mailinglist/useMailingLists';
 export * from './order/useOrderCatalog';
+export * from './order/useUpgradeOrder';
 export * from './organization/useOrganization';
 export * from './organization/useOrganizations';
 export * from './platform/usePlatform';

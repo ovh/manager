@@ -10,3 +10,5 @@ export * from './labelChip/LabelChip.component';
 export * from './loading/Loading.component';
 export * from './proBetaBanner/ProBetaBanner.component';
 export * from './tabsPanel/TabsPanel.component';
+export * from './priceCard/PriceCard.component';
+export * from './totalPriceCard/TotalPriceCard.component';

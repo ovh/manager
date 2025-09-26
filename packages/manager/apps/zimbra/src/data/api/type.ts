@@ -1,12 +1,14 @@
 export const ZimbraOffer = {
   STARTER: 'STARTER',
   PRO: 'PRO',
+  BUSINESS: 'BUSINESS',
 } as const;
 
 export enum ZimbraPlanCodes {
   ZIMBRA_STARTER = 'zimbra-account-pp-starter',
   ZIMBRA_STARTER_BETA = 'zimbra-account-pp-starter-beta',
   ZIMBRA_PRO = 'zimbra-account-pp-pro',
+  ZIMBRA_BUSINESS = 'zimbra-account-pp-business',
 }
 
 export type AccountStatistics = {

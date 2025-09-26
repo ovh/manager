@@ -22,7 +22,6 @@ import {
   LinkType,
   Links,
   Order,
-  OvhSubsidiary,
   Price,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
@@ -37,7 +36,11 @@ import { Loading } from '@/components';
 import { ZimbraPlanCodes, generateOrderURL, order } from '@/data/api';
 import { useOrderCatalog, usePlatform } from '@/data/hooks';
 import { useGenerateUrl } from '@/hooks';
-import { CANCEL, CONFIRM, ORDER_ZIMBRA_EMAIL_ACCOUNT } from '@/tracking.constants';
+import {
+  CANCEL,
+  CONFIRM,
+  ORDER_ZIMBRA_EMAIL_ACCOUNT,
+} from '@/tracking.constants';
 import { orderEmailAccountSchema } from '@/utils';
 
 type OrderCatalogFormProps = {
@@ -69,7 +72,9 @@ const OrderCatalogForm = ({
     return {
       ...starter,
       monthly: starter.pricings.find(
-        (pricing) => pricing.interval === 1 && pricing.intervalUnit === IntervalUnitType.month,
+        (pricing) =>
+          pricing.interval === 1 &&
+          pricing.intervalUnit === IntervalUnitType.month,
       ),
     };
   }, [catalog]);
@@ -139,8 +144,14 @@ const OrderCatalogForm = ({
               control={control}
               name={ZimbraPlanCodes.ZIMBRA_STARTER}
               render={({ field: { name, value, onChange, onBlur } }) => (
-                <OdsFormField className="flex flex-col gap-4" error={errors?.[name]?.message}>
-                  <OdsText className="font-bold" preset={ODS_TEXT_PRESET.paragraph}>
+                <OdsFormField
+                  className="flex flex-col gap-4"
+                  error={errors?.[name]?.message}
+                >
+                  <OdsText
+                    className="font-bold"
+                    preset={ODS_TEXT_PRESET.paragraph}
+                  >
                     {starterPlan?.blobs?.commercial?.name}
                   </OdsText>
                   <OdsQuantity
@@ -154,8 +165,16 @@ const OrderCatalogForm = ({
                     onOdsBlur={onBlur}
                   ></OdsQuantity>
                   <Price
-                    value={value ? value * starterPlan?.monthly.price : starterPlan?.monthly.price}
-                    tax={value ? value * starterPlan?.monthly.tax : starterPlan?.monthly.tax}
+                    value={
+                      value
+                        ? value * starterPlan?.monthly.price
+                        : starterPlan?.monthly.price
+                    }
+                    tax={
+                      value
+                        ? value * starterPlan?.monthly.tax
+                        : starterPlan?.monthly.tax
+                    }
                     intervalUnit={starterPlan?.monthly.intervalUnit}
                     ovhSubsidiary={catalog.locale.subsidiary}
                     locale={locale}
@@ -199,7 +218,10 @@ const OrderCatalogForm = ({
                         isChecked={value === '12'}
                         onClick={() => onChange('12')}
                       ></OdsRadio>
-                      <label htmlFor="12-month" className="flex flex-col cursor-pointer">
+                      <label
+                        htmlFor="12-month"
+                        className="flex flex-col cursor-pointer"
+                      >
                         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                           {`12 ${t('zimbra_account_order_commitment_months')}`}
                         </OdsText>
@@ -223,13 +245,16 @@ const OrderCatalogForm = ({
                       inputId={name}
                       id={name}
                       name={name}
-                      value={value as unknown as string}
+                      value={(value as unknown) as string}
                       isChecked={value}
                       onClick={() => onChange(!value)}
                     ></OdsCheckbox>
                     <label className="cursor-pointer" htmlFor={name}>
                       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                        <Trans t={t} i18nKey={'zimbra_account_order_legal_checkbox'} />
+                        <Trans
+                          t={t}
+                          i18nKey={'zimbra_account_order_legal_checkbox'}
+                        />
                       </OdsText>
                     </label>
                   </div>
@@ -249,7 +274,7 @@ export const EmailAccountsOrder = () => {
   const { t } = useTranslation('accounts/order');
   const context = useContext(ShellContext);
   const locale = context.environment.getUserLocale();
-  const ovhSubsidiary = context.environment.getUser().ovhSubsidiary as OvhSubsidiary;
+  const { ovhSubsidiary } = context.environment.getUser();
   const region = context.environment.getRegion();
   const orderBaseURL = getExpressOrderURL(region, ovhSubsidiary);
 
@@ -266,12 +291,7 @@ export const EmailAccountsOrder = () => {
     navigate(goBackUrl);
   };
 
-  const {
-    data: catalog,
-    isLoading,
-    isError,
-    error,
-  } = useOrderCatalog({
+  const { data: catalog, isLoading, isError, error } = useOrderCatalog({
     productName: 'zimbra',
     ovhSubsidiary,
   });
@@ -295,7 +315,11 @@ export const EmailAccountsOrder = () => {
         label={t('zimbra_account_order_cta_back')}
         iconAlignment={IconLinkAlignmentType.left}
       />
-      <OdsText data-testid="page-title" preset={ODS_TEXT_PRESET.heading2} className="mb-6">
+      <OdsText
+        data-testid="page-title"
+        preset={ODS_TEXT_PRESET.heading2}
+        className="mb-6"
+      >
         {t('zimbra_account_order_title')}
       </OdsText>
       {isLoading ? (

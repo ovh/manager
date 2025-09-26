@@ -60,6 +60,7 @@ import {
   ORGANIZATION,
   REDIRECTION,
   UNDO_CANCEL_SLOT,
+  UPDATE_OFFER_SLOT,
   UPGRADE_SLOT,
   VERIFY_DOMAIN,
 } from '@/tracking.constants';
@@ -78,89 +79,112 @@ export type RouteHandle = {
 
 export type RouteMatch = UIMatch<unknown, RouteHandle>;
 
-const GeneralInformationsPage = React.lazy(
-  () => import('@/pages/dashboard/generalInformations/GeneralInformations.page'),
+const GeneralInformationsPage = React.lazy(() =>
+  import('@/pages/dashboard/generalInformations/GeneralInformations.page'),
 );
-const OrganizationPage = React.lazy(
-  () => import('@/pages/dashboard/organizations/Organizations.page'),
+const OrganizationPage = React.lazy(() =>
+  import('@/pages/dashboard/organizations/Organizations.page'),
 );
-const AddOrganizationPage = React.lazy(
-  () => import('@/pages/dashboard/organizations/addEdit/AddEdit.modal'),
+const AddOrganizationPage = React.lazy(() =>
+  import('@/pages/dashboard/organizations/addEdit/AddEdit.modal'),
 );
-const DeleteOrganizationPage = React.lazy(
-  () => import('@/pages/dashboard/organizations/delete/Delete.modal'),
+const DeleteOrganizationPage = React.lazy(() =>
+  import('@/pages/dashboard/organizations/delete/Delete.modal'),
 );
-const DomainPage = React.lazy(() => import('@/pages/dashboard/domains/Domains.page'));
-const AddDomainPage = React.lazy(() => import('@/pages/dashboard/domains/add/Add.page'));
-const EditDomainPage = React.lazy(() => import('@/pages/dashboard/domains/edit/Edit.modal'));
-const DeleteDomainPage = React.lazy(() => import('@/pages/dashboard/domains/delete/Delete.modal'));
-const VerifyPage = React.lazy(() => import('@/pages/dashboard/domains/verify/Verify.page'));
-const DiagnosticsPage = React.lazy(
-  () => import('@/pages/dashboard/domains/diagnostics/Diagnostics.page'),
+const DomainPage = React.lazy(() =>
+  import('@/pages/dashboard/domains/Domains.page'),
 );
-const EmailAccountPage = React.lazy(
-  () => import('@/pages/dashboard/emailAccounts/EmailAccounts.page'),
+const AddDomainPage = React.lazy(() =>
+  import('@/pages/dashboard/domains/add/Add.page'),
 );
-const AddEmailAccountPage = React.lazy(
-  () => import('@/pages/dashboard/emailAccounts/add/Add.page'),
+const EditDomainPage = React.lazy(() =>
+  import('@/pages/dashboard/domains/edit/Edit.modal'),
 );
-const EmailAccountSettingsPage = React.lazy(
-  () => import('@/pages/dashboard/emailAccounts/EmailAccountForm.component'),
+const DeleteDomainPage = React.lazy(() =>
+  import('@/pages/dashboard/domains/delete/Delete.modal'),
 );
-const CancelSlotPage = React.lazy(
-  () => import('@/pages/dashboard/emailAccounts/cancel/Cancel.modal'),
+const VerifyPage = React.lazy(() =>
+  import('@/pages/dashboard/domains/verify/Verify.page'),
 );
-const UndoCancelSlotPage = React.lazy(
-  () => import('@/pages/dashboard/emailAccounts/undoCancel/UndoCancel.modal'),
+const DiagnosticsPage = React.lazy(() =>
+  import('@/pages/dashboard/domains/diagnostics/Diagnostics.page'),
 );
-const UpgradeAccountPage = React.lazy(
-  () => import('@/pages/dashboard/emailAccounts/upgrade/Upgrade.page'),
+const EmailAccountPage = React.lazy(() =>
+  import('@/pages/dashboard/emailAccounts/EmailAccounts.page'),
 );
-const AliasPage = React.lazy(
-  () => import('@/pages/dashboard/emailAccounts/settings/aliases/Aliases.page'),
+const AddEmailAccountPage = React.lazy(() =>
+  import('@/pages/dashboard/emailAccounts/add/Add.page'),
 );
-const AddAliasPage = React.lazy(
-  () => import('@/pages/dashboard/emailAccounts/settings/aliases/add/Add.modal'),
+const EmailAccountSettingsPage = React.lazy(() =>
+  import('@/pages/dashboard/emailAccounts/EmailAccountForm.component'),
 );
-const DeleteAliasPage = React.lazy(
-  () => import('@/pages/dashboard/emailAccounts/settings/aliases/delete/Delete.modal'),
+const CancelSlotPage = React.lazy(() =>
+  import('@/pages/dashboard/emailAccounts/cancel/Cancel.modal'),
 );
-const RedirectionPage = React.lazy(
-  () => import('@/pages/dashboard/redirections/Redirections.page'),
+const UndoCancelSlotPage = React.lazy(() =>
+  import('@/pages/dashboard/emailAccounts/undoCancel/UndoCancel.modal'),
 );
-const EditRedirectionPage = React.lazy(
-  () => import('@/pages/dashboard/redirections/addEdit/AddEdit.modal'),
+const UpgradeAccountPage = React.lazy(() =>
+  import('@/pages/dashboard/emailAccounts/upgrade/Upgrade.page'),
 );
-const DeleteRedirectionPage = React.lazy(
-  () => import('@/pages/dashboard/redirections/delete/Delete.modal'),
+const UpdateOfferAccountPage = React.lazy(() =>
+  import('@/pages/dashboard/emailAccounts/updateOffer/UpdateOffer.page'),
 );
-const AutoReplyPage = React.lazy(() => import('@/pages/dashboard/autoReplies/AutoReplies.page'));
-const AddAutoReplyPage = React.lazy(() => import('@/pages/dashboard/autoReplies/add/Add.page'));
-const DeleteAutoReplyPage = React.lazy(
-  () => import('@/pages/dashboard/autoReplies/delete/Delete.modal'),
+const AliasPage = React.lazy(() =>
+  import('@/pages/dashboard/emailAccounts/settings/aliases/Aliases.page'),
 );
-const DeleteEmailAccountPage = React.lazy(
-  () => import('@/pages/dashboard/emailAccounts/delete/Delete.modal'),
+const AddAliasPage = React.lazy(() =>
+  import('@/pages/dashboard/emailAccounts/settings/aliases/add/Add.modal'),
 );
-const OrderZimbraAccountsPage = React.lazy(
-  () => import('@/pages/dashboard/emailAccounts/order/Order.page'),
+const DeleteAliasPage = React.lazy(() =>
+  import(
+    '@/pages/dashboard/emailAccounts/settings/aliases/delete/Delete.modal'
+  ),
 );
-const MailingListPage = React.lazy(
-  () => import('@/pages/dashboard/mailingLists/MailingLists.page'),
+const RedirectionPage = React.lazy(() =>
+  import('@/pages/dashboard/redirections/Redirections.page'),
 );
-const EditMailingListPage = React.lazy(
-  () => import('@/pages/dashboard/mailingLists/addEdit/AddEdit.page'),
+const EditRedirectionPage = React.lazy(() =>
+  import('@/pages/dashboard/redirections/addEdit/AddEdit.modal'),
 );
-const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
-const OnboardingWelcomePage = React.lazy(() => import('@/pages/onboarding/welcome/Welcome.page'));
-const OnboardingOrganizationPage = React.lazy(
-  () => import('@/pages/onboarding/configure/organization/Organization.page'),
+const DeleteRedirectionPage = React.lazy(() =>
+  import('@/pages/dashboard/redirections/delete/Delete.modal'),
 );
-const OnboardingDomainPage = React.lazy(
-  () => import('@/pages/onboarding/configure/domain/Domain.page'),
+const AutoReplyPage = React.lazy(() =>
+  import('@/pages/dashboard/autoReplies/AutoReplies.page'),
 );
-const OnboardingEmailAccountsPage = React.lazy(
-  () => import('@/pages/onboarding/configure/emailAccounts/EmailAccounts.page'),
+const AddAutoReplyPage = React.lazy(() =>
+  import('@/pages/dashboard/autoReplies/add/Add.page'),
+);
+const DeleteAutoReplyPage = React.lazy(() =>
+  import('@/pages/dashboard/autoReplies/delete/Delete.modal'),
+);
+const DeleteEmailAccountPage = React.lazy(() =>
+  import('@/pages/dashboard/emailAccounts/delete/Delete.modal'),
+);
+const OrderZimbraAccountsPage = React.lazy(() =>
+  import('@/pages/dashboard/emailAccounts/order/Order.page'),
+);
+const MailingListPage = React.lazy(() =>
+  import('@/pages/dashboard/mailingLists/MailingLists.page'),
+);
+const EditMailingListPage = React.lazy(() =>
+  import('@/pages/dashboard/mailingLists/addEdit/AddEdit.page'),
+);
+const OnboardingPage = React.lazy(() =>
+  import('@/pages/onboarding/Onboarding.page'),
+);
+const OnboardingWelcomePage = React.lazy(() =>
+  import('@/pages/onboarding/welcome/Welcome.page'),
+);
+const OnboardingOrganizationPage = React.lazy(() =>
+  import('@/pages/onboarding/configure/organization/Organization.page'),
+);
+const OnboardingDomainPage = React.lazy(() =>
+  import('@/pages/onboarding/configure/domain/Domain.page'),
+);
+const OnboardingEmailAccountsPage = React.lazy(() =>
+  import('@/pages/onboarding/configure/emailAccounts/EmailAccounts.page'),
 );
 
 export default (
@@ -168,7 +192,9 @@ export default (
     path={''}
     Component={Layout}
     id={'root'}
-    errorElement={<ErrorBoundary redirectionApp="zimbra" isPreloaderHide isRouteShellSync />}
+    errorElement={
+      <ErrorBoundary redirectionApp="zimbra" isPreloaderHide isRouteShellSync />
+    }
   >
     <Route
       path={':platformId'}
@@ -447,6 +473,20 @@ export default (
             isOverridePage: true,
             tracking: {
               pageName: UPGRADE_SLOT,
+              pageType: PageType.funnel,
+            },
+            breadcrumb: {
+              label: 'common:email_account_upgrade',
+            },
+          }}
+        />
+        <Route
+          path={'slot/:slotId/update_offer'}
+          Component={UpdateOfferAccountPage}
+          handle={{
+            isOverridePage: true,
+            tracking: {
+              pageName: UPDATE_OFFER_SLOT,
               pageType: PageType.funnel,
             },
             breadcrumb: {
@@ -848,7 +888,10 @@ export default (
           },
         }}
       />
-      <Route path={'configure/:platformId'} Component={OnboardingConfigureLayout}>
+      <Route
+        path={'configure/:platformId'}
+        Component={OnboardingConfigureLayout}
+      >
         <Route
           path={'organization'}
           Component={OnboardingOrganizationPage}
