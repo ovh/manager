@@ -26,5 +26,7 @@
   "pci_instances_list_action_unrescue": "Exit rescue mode",
   "pci_instances_list_action_soft_reboot": "Hot reboot (soft)",
   "pci_instances_list_action_hard_reboot": "Cold reboot (hard)",
-  "pci_instances_list_action_reinstall": "Reinstall"
+  "pci_instances_list_action_reinstall": "Reinstall",
+  "pci_instances_list_column_creation_date": "Creation date",
+  "pci_instances_operations_running": "Instance creation operation(s) in progress"
 }

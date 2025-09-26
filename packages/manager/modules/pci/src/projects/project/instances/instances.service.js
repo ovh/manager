@@ -17,12 +17,14 @@ import {
   BANDWIDTH_LIMIT,
   BANDWIDTH_OUT_INVOICE,
   DEFAULT_IP,
+  DISTANT_BACKUP_FEATURE,
   FLAVORS_WITHOUT_ADDITIONAL_IPS,
   FLAVORS_WITHOUT_AUTOMATED_BACKUP,
   FLAVORS_WITHOUT_SOFT_REBOOT,
   FLAVORS_WITHOUT_SUSPEND,
   FLAVORS_WITHOUT_VNC,
 } from './instances.constants';
+import { ONE_AZ_REGION, THREE_AZ_REGION } from '../project.constants';
 
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["getBaseApiRoute"] }] */
 export default class PciProjectInstanceService {
@@ -47,6 +49,7 @@ export default class PciProjectInstanceService {
     OvhApiOrderCatalogPublic,
     PciProjectRegions,
     PciProject,
+    ovhFeatureFlipping,
   ) {
     this.$http = $http;
     this.$q = $q;
@@ -71,6 +74,7 @@ export default class PciProjectInstanceService {
     this.FLAVORS_WITHOUT_VNC = FLAVORS_WITHOUT_VNC;
     this.FLAVORS_WITHOUT_ADDITIONAL_IPS = FLAVORS_WITHOUT_ADDITIONAL_IPS;
     this.FLAVORS_WITHOUT_AUTOMATED_BACKUP = FLAVORS_WITHOUT_AUTOMATED_BACKUP;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
 
     this.licensePriceFormatter = new Intl.NumberFormat(
       this.coreConfig.getUserLocale().replace('_', '-'),
@@ -251,6 +255,18 @@ export default class PciProjectInstanceService {
     ).$promise;
   }
 
+  reinstallFromRegion(
+    projectId,
+    instanceRegion,
+    instanceId,
+    { imageId, region },
+  ) {
+    return this.$http.post(
+      `/cloud/project/${projectId}/region/${instanceRegion}/instance/${instanceId}/reinstall`,
+      { imageId, imageRegionName: region },
+    );
+  }
+
   start(projectId, instance) {
     return this.$http.post(
       `${this.getBaseApiRoute(projectId, instance)}/instance/${
@@ -378,7 +394,11 @@ export default class PciProjectInstanceService {
       );
   }
 
-  createBackup(projectId, { id: instanceId }, { name: snapshotName }) {
+  createBackup(
+    projectId,
+    { id: instanceId },
+    { name: snapshotName, distantRegion, distantSnapshotName },
+  ) {
     return this.OvhApiCloudProjectInstance.v6().backup(
       {
         serviceName: projectId,
@@ -386,6 +406,8 @@ export default class PciProjectInstanceService {
       },
       {
         snapshotName,
+        distantRegionName: distantRegion,
+        distantSnapshotName,
       },
     ).$promise;
   }
@@ -618,6 +640,47 @@ export default class PciProjectInstanceService {
       });
   }
 
+  getDistantBackupAvailableRegions(projectId, instanceRegionName) {
+    return Promise.all([
+      this.getProductAvailability(projectId, undefined, 'snapshot'),
+      this.ovhFeatureFlipping.checkFeatureAvailability(DISTANT_BACKUP_FEATURE),
+    ]).then(([productAvailability, feature]) => {
+      if (!feature.isFeatureAvailable(DISTANT_BACKUP_FEATURE)) return [];
+
+      const instancePlan = productAvailability.plans.find(
+        (p) =>
+          p.code.startsWith('snapshot.consumption') &&
+          p.regions.some((r) => r.name === instanceRegionName),
+      );
+
+      const instanceRegion = instancePlan?.regions.find(
+        (r) => r.name === instanceRegionName,
+      );
+
+      if (
+        !instanceRegion ||
+        (instanceRegion.type !== THREE_AZ_REGION &&
+          instanceRegion.type !== ONE_AZ_REGION)
+      )
+        return [];
+
+      const regions = productAvailability.plans
+        .filter((p) => p.code.startsWith('snapshot.consumption'))
+        .flatMap((p) => p.regions);
+
+      return regions
+        .filter(
+          (r) =>
+            r.name !== instanceRegionName &&
+            (r.type === THREE_AZ_REGION || r.type === ONE_AZ_REGION),
+        )
+        .map((r) => ({
+          ...r,
+          ...this.ovhManagerRegionService.getRegion(r.name),
+        }));
+    });
+  }
+
   getProductAvailability(
     projectId,
     ovhSubsidiary = this.coreConfig.getUser().ovhSubsidiary,
@@ -650,67 +713,40 @@ export default class PciProjectInstanceService {
 
   save(
     serviceName,
+    region,
     {
       autobackup,
       flavorId,
       imageId,
+      imageRegionName,
       monthlyBilling,
       name,
-      networks,
-      region,
-      sshKeyId,
+      network,
+      sshKey,
       userData,
       availabilityZone,
     },
     number = 1,
-    isPrivateMode,
   ) {
-    const saveInstanceNamespace = 'instance-creation';
-    const status = 'ACTIVE';
-    if (number > 1) {
-      return this.$http
-        .post(`/cloud/project/${serviceName}/instance/bulk`, {
-          autobackup,
-          flavorId,
-          imageId,
-          monthlyBilling,
-          name,
-          networks,
-          region,
-          sshKeyId,
-          userData,
-          number,
-          availabilityZone,
-        })
-        .then(({ data }) => {
-          return data;
-        });
-    }
     return this.$http
-      .post(`/cloud/project/${serviceName}/instance`, {
+      .post(`/cloud/project/${serviceName}/region/${region}/instance`, {
+        bulk: number,
         autobackup,
-        flavorId,
-        imageId,
-        monthlyBilling,
+        flavor: {
+          id: flavorId,
+        },
+        bootFrom: {
+          imageId,
+          imageRegionName,
+        },
+        billingPeriod: monthlyBilling ? 'monthly' : 'hourly',
         name,
-        networks,
-        region,
-        sshKeyId,
+        network,
+        sshKey: sshKey ? { name: sshKey.name } : null,
         userData,
         availabilityZone,
       })
       .then(({ data }) => {
-        if (isPrivateMode) {
-          const url = `/cloud/project/${serviceName}/instance/${data.id}`;
-          return this.checkOperationStatus(
-            url,
-            saveInstanceNamespace,
-            status,
-          ).then((res) => {
-            this.Poller.kill({ namespace: saveInstanceNamespace });
-            return res;
-          });
-        }
         return data;
       });
   }
@@ -1007,7 +1043,7 @@ export default class PciProjectInstanceService {
       )
       .then(({ resourceId }) => {
         this.Poller.kill({ namespace: 'private-network-creation' });
-        return this.getCreatedSubnet(projectId, region, resourceId);
+        return resourceId;
       });
   }
 
@@ -1023,14 +1059,6 @@ export default class PciProjectInstanceService {
         namespace: 'private-network-creation',
       },
     );
-  }
-
-  getCreatedSubnet(projectId, region, networkId) {
-    return this.$http
-      .get(
-        `/cloud/project/${projectId}/region/${region}/network/${networkId}/subnet`,
-      )
-      .then(({ data }) => data);
   }
 
   associateGatewayToNetwork(projectId, region, gatewayId, subnetId) {

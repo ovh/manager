@@ -38,10 +38,10 @@ const defaultQueryOptions: TUseInstancesPollingQueryOptions = {
   refetchIntervalInBackground: true,
   gcTime: 0,
   refetchInterval: (query: Query<TInstance>) =>
-    query.state.error ? false : 3000,
+    query.state.error ? false : 3_000,
 };
 
-export const shouldRetryAfter404Error = (
+export const shouldRetryAfterNot404Error = (
   failureCount: number,
   error: DefaultError,
 ): boolean =>
