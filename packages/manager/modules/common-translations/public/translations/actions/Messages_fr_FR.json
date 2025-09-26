@@ -57,5 +57,8 @@
   "order_users": "Ajouter un utilisateur",
   "edit_account": "Éditer le compte",
   "change_password": "Modifier le mot de passe",
-  "delete_account": "Supprimer le compte"
+  "delete_account": "Supprimer le compte",
+  "reset": "Tout effacer",
+  "filters_apply": "Appliquer les filtres",
+  "show_hide_filters": "Afficher / Masquer les filtres"
 }
