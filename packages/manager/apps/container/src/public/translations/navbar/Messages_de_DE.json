@@ -13,5 +13,6 @@
   "navbar_language_change": "Sprache des Interface ändern",
   "navbar_account": "Mein Account",
   "navbar_search": "Suchen",
-  "navbar_menu_name": "Hauptmenü"
+  "navbar_menu_name": "Hauptmenü",
+  "navbar_cloud_shell": "OVHcloud Shell"
 }
