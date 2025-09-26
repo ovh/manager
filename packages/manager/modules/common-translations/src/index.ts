@@ -20,4 +20,5 @@ export const NAMESPACES = {
   COUNTRY: `${NAMESPACE_PREFIX}/country`,
   LANGUAGE: `${NAMESPACE_PREFIX}/language`,
   UPLOAD: `${NAMESPACE_PREFIX}/upload`,
+  NAVIGATION: `${NAMESPACE_PREFIX}/navigation`,
 };
