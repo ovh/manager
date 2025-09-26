@@ -30,5 +30,6 @@
   "pci_instances_dashboard_backup_empty_message": "Vous n'avez pas de backup",
   "pci_instances_dashboard_backup_title": "Gestion du backup",
   "pci_instances_dashboard_backup_number_of_backups": "Nombre de backups de l'instance",
-  "pci_instances_dashboard_backup_last_updated_backups": "Date du dernier backup"
+  "pci_instances_dashboard_backup_last_updated_backups": "Date du dernier backup",
+  "pci_instances_dashboard_tab_vnc_disabled_text": "L'état de cette instance ne permet pas la connexion via la console VNC"
 }

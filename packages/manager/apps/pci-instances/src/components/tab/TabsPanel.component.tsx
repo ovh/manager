@@ -1,11 +1,21 @@
 import { FC, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Tabs, TabList, Tab, TabsValueChangeEvent } from '@ovhcloud/ods-react';
+import {
+  Tabs,
+  TabList,
+  Tab,
+  TabsValueChangeEvent,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@ovhcloud/ods-react';
 
 type TTabItem = {
   label: string;
   to: string;
   badge?: string;
+  disabled?: boolean;
+  tooltipText?: string;
 };
 
 type TTabsPanelProps = {
@@ -30,9 +40,16 @@ const TabsPanel: FC<TTabsPanelProps> = ({ tabs }) => {
     <Tabs value={activeTab} onValueChange={handleTabChange}>
       <TabList>
         {tabs.map((tab) => (
-          <Tab key={tab.to} value={tab.to}>
-            {tab.label}
-          </Tab>
+          <Tooltip key={tab.to}>
+            <TooltipTrigger asChild>
+              <Tab value={tab.to} disabled={tab.disabled}>
+                {tab.label}
+              </Tab>
+            </TooltipTrigger>
+            {tab.tooltipText && (
+              <TooltipContent>{tab.tooltipText}</TooltipContent>
+            )}
+          </Tooltip>
         ))}
       </TabList>
     </Tabs>
