@@ -1,0 +1,7 @@
+{
+  "pci_project_new_payment_default_title": "Votre moyen de paiement",
+  "pci_project_new_payment_default_explain_info": "Votre moyen de paiement par défaut ci-dessous sera utilisé pour la consommation de votre projet Public Cloud. Tant que vous ne consommez rien, vous ne serez pas débité ou prélevé.",
+  "pci_project_new_payment_default_method_use_others_payment_methods": "Changer mon moyen de paiement par défaut",
+  "pci_project_new_payment_default_method_badge_default": "Par défaut",
+  "pci_project_new_payment_default_method_expiration_date": "Exp. {{formatDate}}"
+}

@@ -1,0 +1,6 @@
+{
+  "pci_project_new_payment_challenge_credit_card": "Pour vérifier votre moyen de paiement, <strong>veuillez saisir les 6 premiers chiffres de votre carte bancaire ci-contre :</strong>",
+  "pci_project_new_payment_challenge_paypal": "Afin de vérifier votre moyen de paiement, veuillez vous reconnecter à votre compte paypal.",
+  "pci_project_new_payment_challenge_bank_account": "Afin de vérifier votre moyen de paiement, veuillez saisir votre numéro IBAN ci-dessous :",
+  "pci_project_new_payment_challenge_error_retry_challenge": "Vous n'avez pas réussi à vérifier votre moyen de paiement, merci de réessayer."
+}
