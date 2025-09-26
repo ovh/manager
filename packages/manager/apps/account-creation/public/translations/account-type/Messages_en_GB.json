@@ -1,0 +1,14 @@
+{
+  "title": "Select an account type",
+  "description": "Need help? <Tooltip>Learn more about account types</Tooltip>",
+  "legal_form_association": "Association",
+  "legal_form_administration": "Public administration",
+  "legal_form_corporation": "The company",
+  "legal_form_individual": "Private individual",
+  "legal_form_personalcorporation": "Sole proprietorship",
+  "legal_form_tooltip_corporation_description": "Create an account for your business if you have a registered activity, including sole proprietorships.",
+  "legal_form_tooltip_individual_description": "Create an account as an individual if you do not have a registered business or if you are in the process of starting your business.",
+  "legal_form_tooltip_administration_description": "Create an account for your public organisation if you represent a state, a local authority, an international organisation or institution.",
+  "legal_form_tooltip_association_description": "Create an account for your association if you are registered in the national directory of businesses and establishments. If you are not registered, please create an account as an individual.",
+  "legal_form_tooltip_personalcorporation_description": "Description Sole Proprietorship."
+}

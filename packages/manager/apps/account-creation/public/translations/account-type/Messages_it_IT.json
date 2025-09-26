@@ -1,0 +1,14 @@
+{
+  "title": "Seleziona un tipo di account",
+  "description": "Hai bisogno di aiuto? <Tooltip>Scopri di più sui tipi di account</Tooltip>",
+  "legal_form_association": "Associazione",
+  "legal_form_administration": "Amministrazione pubblica",
+  "legal_form_corporation": "Società",
+  "legal_form_individual": "Privato",
+  "legal_form_personalcorporation": "Ditta individuale",
+  "legal_form_tooltip_corporation_description": "Crea un account per la tua azienda se hai un'attività registrata, comprese le imprese individuali.",
+  "legal_form_tooltip_individual_description": "Crea un account come privato se non hai un'azienda registrata o se stai creando la tua azienda.",
+  "legal_form_tooltip_administration_description": "Crea un account per la tua organizzazione pubblica se rappresenti uno Stato, un ente locale, un'organizzazione o un'istituzione internazionale.",
+  "legal_form_tooltip_association_description": "Crea un account per la tua associazione se sei registrato nel registro nazionale delle imprese e degli stabilimenti. Se non sei registrato, ti preghiamo di creare un account come privato.",
+  "legal_form_tooltip_personalcorporation_description": "Descrizione Ditta Individuale."
+}
