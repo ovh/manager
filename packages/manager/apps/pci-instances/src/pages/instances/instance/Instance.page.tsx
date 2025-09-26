@@ -32,24 +32,23 @@ const Instance: FC = () => {
     instanceId,
   });
 
-  const tabs = useMemo(() => {
-    const defaultTab = [
+  const tabs = useMemo(
+    () => [
       {
         label: t('general_information'),
         to: dashboardPath.pathname,
       },
-    ];
-
-    return instance?.isEditEnabled
-      ? [
-          ...defaultTab,
-          {
-            label: t('dashboard:pci_instances_dashboard_tab_vnc_title'),
-            to: vncPath.pathname,
-          },
-        ]
-      : defaultTab;
-  }, [dashboardPath.pathname, vncPath.pathname, t, instance?.isEditEnabled]);
+      {
+        label: t('dashboard:pci_instances_dashboard_tab_vnc_title'),
+        to: vncPath.pathname,
+        disabled: !instance?.isVncEnabled,
+        tooltipText: !instance?.isVncEnabled
+          ? t('dashboard:pci_instances_dashboard_tab_vnc_disabled_text')
+          : null,
+      },
+    ],
+    [dashboardPath.pathname, vncPath.pathname, t, instance?.isVncEnabled],
+  );
 
   return (
     <InstanceWrapper>
