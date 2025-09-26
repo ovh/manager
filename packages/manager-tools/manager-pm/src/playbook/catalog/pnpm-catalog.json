@@ -1,0 +1,7 @@
+[
+  "packages/manager/apps/pci-ai-tools",
+  "packages/manager/apps/hpc-vmware-public-vcf-aas",
+  "packages/manager/apps/container",
+  "packages/manager/apps/dedicated",
+  "packages/manager/apps/zimbra"
+]

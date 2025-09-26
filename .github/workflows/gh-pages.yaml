@@ -17,15 +17,15 @@ jobs:
         run: |
           yarn --version
           yarn install
-          yarn exec turbo -- run build --filter="./packages/manager/core/api"
-          yarn exec turbo -- run build --filter="./packages/manager/core/url-builder"
-          yarn exec turbo -- run build --filter="./packages/components/ovh-shell"
-          yarn exec turbo -- run build --filter="./packages/components/ovh-reket"
-          yarn exec turbo -- run build --filter="./packages/components/ovh-at-internet"
-          yarn exec turbo -- run build --filter="./packages/manager/modules/config"
-          yarn exec turbo -- run build --filter="./packages/manager/modules/common-translations"
-          yarn exec turbo -- run build --filter="./packages/manager-react-components"
-          yarn workspace @ovh-ux/manager-documentation run docs:build
+          yarn build --filter="./packages/manager/core/api"
+          yarn build --filter="./packages/manager/core/url-builder"
+          yarn build --filter="./packages/components/ovh-shell"
+          yarn build --filter="./packages/components/ovh-reket"
+          yarn build --filter="./packages/components/ovh-at-internet"
+          yarn build --filter="./packages/manager/modules/config"
+          yarn build --filter="./packages/manager/modules/common-translations"
+          yarn build --filter="./packages/manager-react-components"
+          yarn manager-pm --type pnpm --action docs
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
