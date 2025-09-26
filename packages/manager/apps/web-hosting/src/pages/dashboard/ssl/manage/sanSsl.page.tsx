@@ -53,6 +53,7 @@ export default function SanModal() {
             navigator.clipboard.writeText(san).catch(console.error);
           }}
           variant={ODS_BUTTON_VARIANT.outline}
+          data-testid="secondary-button"
           label={t('san_ssl_copy')}
           className="mt-4"
           type="button"
@@ -61,6 +62,7 @@ export default function SanModal() {
           color={ODS_BUTTON_COLOR.primary}
           onClick={closeModal}
           variant={ODS_BUTTON_VARIANT.default}
+          data-testid="primary-button"
           label={tActions('close')}
           className="mt-4"
           type="button"
