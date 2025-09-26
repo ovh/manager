@@ -32,5 +32,6 @@
   "pci_project_guides_header_models_definition": "Modelli - definizione (EN)",
   "pci_project_guides_header_exporting_a_tensorflow_model": "Esportare un modello TensorFlow (EN)",
   "pci_project_guides_header_public_cloud_guides": "Tutte le guide Public Cloud",
-  "pci_project_guides_header_savings_plans": "Come funzionano i Savings Plan?"
+  "pci_project_guides_header_savings_plans": "Come funzionano i Savings Plan?",
+  "pci_project_guides_header_first_steps_with_storages": "Primi passi con Object Storage"
 }
