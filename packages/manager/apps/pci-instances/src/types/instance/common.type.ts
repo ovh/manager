@@ -1,22 +1,22 @@
-export type TActionName =
+export type TInternalActionName =
   | 'details'
   | 'edit'
-  | 'assign_floating_ip'
-  | 'activate_monthly_billing'
-  | 'create_backup'
-  | 'create_autobackup'
-  | 'start'
-  | 'stop'
-  | 'rescue'
-  | 'unrescue'
   | 'soft_reboot'
   | 'hard_reboot'
+  | 'rescue'
+  | 'unrescue'
+  | 'create_backup'
+  | 'activate_monthly_billing'
+  | 'delete'
+  | 'stop'
+  | 'start'
   | 'shelve'
   | 'unshelve'
-  | 'resume'
-  | 'reinstall'
-  | 'delete'
-  | 'vnc';
+  | 'reinstall';
+
+export type TExternalActionName = 'create_autobackup' | 'assign_floating_ip';
+
+export type TActionName = TInternalActionName | TExternalActionName | 'vnc';
 
 export type TStatus =
   | 'ACTIVE'
