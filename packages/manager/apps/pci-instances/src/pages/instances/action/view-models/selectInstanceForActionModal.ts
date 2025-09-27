@@ -1,5 +1,5 @@
 import { TAggregatedInstanceDto } from '@/types/instance/api.type';
-import { TInstance, TInstanceAddress } from '@/types/instance/entity.type';
+import { TInstance } from '@/types/instance/entity.type';
 
 export type TInstanceActionModalViewModel = {
   id: string;
@@ -10,22 +10,36 @@ export type TInstanceActionModalViewModel = {
   imageId: string;
 } | null;
 
-const mapAggregatedInstanceDto = (instance: TAggregatedInstanceDto) => ({
-  isImageDeprecated: instance.isImageDeprecated,
-  ip: instance.addresses[0]?.ip ?? '',
-  region: instance.region,
-  imageId: instance.imageId,
-});
+const mapAggregatedInstanceDto = (instance: TAggregatedInstanceDto) => {
+  const publicNetwork = instance.addresses.find(
+    (address) =>
+      (address.type === 'floating' || address.type === 'public') &&
+      address.version === 4,
+  );
 
-const mapInstance = (instance: TInstance) => ({
-  isImageDeprecated: instance.image?.deprecated ?? false,
-  ip:
-    (instance.addresses.values().next().value as
-      | TInstanceAddress[]
-      | undefined)?.[0]?.ip ?? '',
-  region: instance.region.name,
-  imageId: instance.image?.id ?? '',
-});
+  return {
+    isImageDeprecated: instance.isImageDeprecated,
+    ip: publicNetwork?.ip ?? '',
+    region: instance.region,
+    imageId: instance.imageId,
+  };
+};
+
+const mapInstance = (instance: TInstance) => {
+  const publicNetworks =
+    instance.addresses.get('floating') ??
+    instance.addresses.get('public') ??
+    [];
+  const ipv4 =
+    publicNetworks.find((network) => network.version === 4)?.ip ?? '';
+
+  return {
+    isImageDeprecated: instance.image?.deprecated ?? false,
+    ip: ipv4,
+    region: instance.region.name,
+    imageId: instance.image?.id ?? '',
+  };
+};
 
 const isInstanceAggregated = (
   instance: TAggregatedInstanceDto | TInstance,

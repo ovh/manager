@@ -35,7 +35,11 @@ const BackupBlock: FC = () => {
         </DashboardTileBlock>
       )}
       {instance?.isBackupEnabled && (
-        <Link as={RouterLink} to={`../${instanceId}/backup?region=${region}`}>
+        <Link
+          as={RouterLink}
+          to={`../${instanceId}/backup?region=${region}`}
+          className="visited:text-[var(--ods-color-primary-500)]"
+        >
           {t('list:pci_instances_list_action_create_backup')}
           <Icon name="arrow-right" />
         </Link>
