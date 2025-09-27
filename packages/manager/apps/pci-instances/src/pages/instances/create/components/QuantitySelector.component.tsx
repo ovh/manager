@@ -10,6 +10,7 @@ import {
   QuantityInput,
   Text,
 } from '@ovhcloud/ods-react';
+import { quantityDefaultValue } from '@/components/cart/Cart.constants';
 
 const rules = {
   min: 1,
@@ -20,15 +21,14 @@ export const quantitySchema = z
   .number()
   .min(rules.min)
   .max(rules.max);
-export const quantityDefaultValue = 1;
 
-type Props = {
+type TQuantityProps = {
   quota: number;
   type: string;
   region: string;
 };
 
-export const QuantitySelector = ({ quota, type, region }: Props) => {
+export const QuantitySelector = ({ quota, type, region }: TQuantityProps) => {
   const { t } = useTranslation('creation');
 
   const {
