@@ -45,6 +45,7 @@ function CommunicationsPage() {
     {
       id: 'title',
       isSearchable: true,
+      isSortable: false,
       label: t('table_column_subject'),
       cell: (notification) => (
         <DataGridTextCell>
@@ -58,6 +59,7 @@ function CommunicationsPage() {
       id: 'status',
       label: '',
       isFilterable: true,
+      isSortable: false,
       cell: (notification) => (
         <DataGridTextCell>
           <NotificationContactStatus
@@ -71,6 +73,7 @@ function CommunicationsPage() {
       id: 'priority',
       label: t('table_column_priority'),
       isFilterable: true,
+      isSortable: false,
       type: FilterTypeCategories.Options,
       comparator: [FilterComparator.IsEqual],
       filterOptions: reference?.priorities?.map(({ name }) => ({
@@ -100,6 +103,7 @@ function CommunicationsPage() {
       id: 'category',
       label: t('table_column_categories'),
       isFilterable: true,
+      isSortable: false,
       type: FilterTypeCategories.Options,
       comparator: [FilterComparator.IsEqual],
       filterOptions: reference?.categories?.map(({ name }) => ({

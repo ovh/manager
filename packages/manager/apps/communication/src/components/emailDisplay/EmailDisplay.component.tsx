@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { OdsSwitch, OdsSwitchItem } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { Notification } from '@/data/types';
@@ -18,6 +18,10 @@ export default function EmailDisplay({ notification, header }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number | undefined>(undefined);
 
+  const hasText = useMemo(() => {
+    return notification.shortText || notification.text || notification.html;
+  }, [notification]);
+
   // If the notification has a short text, we display it as a short text
   useEffect(() => {
     if (notification?.shortText) {
@@ -29,6 +33,7 @@ export default function EmailDisplay({ notification, header }: Props) {
 
   const updateHeight = () => {
     if (!ref.current) return;
+    if (!hasText) return;
     const { top } = ref.current.getBoundingClientRect();
     const viewportHeight = window.innerHeight;
     const remainingHeight = viewportHeight - top - PADDING_OFFSET;
@@ -47,6 +52,10 @@ export default function EmailDisplay({ notification, header }: Props) {
       resizeObserver.disconnect();
     };
   }, []);
+
+  if (!hasText) {
+    return null;
+  }
 
   return (
     <div
