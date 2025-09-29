@@ -20,5 +20,8 @@
   "prepaid": "Prépayé",
   "creating": "En cours de création",
   "updating": "Mise à jour",
-  "unconfigured": "Non configuré"
+  "unconfigured": "Non configuré",
+  "active": "Actif",
+  "error": "Erreur",
+  "ready": "Actif"
 }
