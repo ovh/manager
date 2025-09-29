@@ -2,4 +2,111 @@
     data-heading="{{:: 'iam_advanced_policy_search_title' | translate}}"
     data-primary-label="{{:: 'iam_advanced_policy_search_button' | translate}}"
 >
+    <h3
+        class="oui-heading_h3"
+        data-translate="iam_advanced_policy_search_criteria_identities"
+    ></h3>
+
+    <!-- Identities: local users -->
+    <oui-collapsible
+        heading="{{:: 'iam_advanced_policy_search_criteria_identities_local_users' | translate}}"
+    >
+        <oui-search
+            data-placeholder="{{:: 'iam_identities_users_modal_search_placeholder' | translate}}"
+            data-model="$ctrl.model.localUsers.search"
+            data-on-change="$ctrl.onChangeSearch('localUsers')"
+            data-on-reset="$ctrl.onReset('localUsers')"
+        ></oui-search>
+        <oui-checkbox
+            data-ng-repeat="user in $ctrl.model.localUsers.items | filter: $ctrl.filterLocalUsersFn track by $index"
+            data-model="$ctrl.model.localUsers.selected[user.email]"
+            thumbnail
+        >
+            <div>
+                <span data-translate="iam_identities_users_email"></span>
+                <b data-ng-bind="user.email"></b>
+            </div>
+            <div>
+                <span data-translate="iam_identities_users_group"></span>
+                <b data-ng-bind="user.group"></b>
+            </div>
+            <div>
+                <span data-translate="iam_identities_urn"></span>
+                <b data-ng-bind="user.urn"></b>
+            </div>
+        </oui-checkbox>
+    </oui-collapsible>
+
+    <!-- Identities: user groups -->
+    <oui-collapsible
+        heading="{{:: 'iam_advanced_policy_search_criteria_identities_user_groups' | translate}}"
+    >
+        <oui-search
+            data-placeholder="{{:: 'iam_identities_groups_modal_search_placeholder' | translate}}"
+            data-model="$ctrl.model.userGroups.search"
+        ></oui-search>
+        <oui-checkbox
+            data-ng-repeat="group in $ctrl.model.userGroups.items | filter: $ctrl.filterUserGroupsFn track by $index"
+            data-model="$ctrl.model.userGroups.selected[group.urn]"
+            thumbnail
+        >
+            <div>
+                <span data-translate="iam_identities_groups_description"></span>
+                <b data-ng-bind="group.description"></b>
+            </div>
+            <div>
+                <span data-translate="iam_identities_groups_role"></span>
+                <b data-ng-bind="group.role"></b>
+            </div>
+            <div>
+                <span data-translate="iam_identities_urn"></span>
+                <b data-ng-bind="group.urn"></b>
+            </div>
+        </oui-checkbox>
+    </oui-collapsible>
+
+    <!-- Identities: URN search -->
+    <oui-collapsible
+        heading="{{:: 'iam_advanced_policy_search_criteria_identities_urn_search' | translate}}"
+    >
+        // TODO
+    </oui-collapsible>
+
+    <h3
+        class="oui-heading_h3"
+        data-translate="iam_advanced_policy_search_criteria_ressources"
+    ></h3>
+
+    <!-- Ressources: product types -->
+    <oui-collapsible
+        heading="{{:: 'iam_advanced_policy_search_criteria_ressources_product_search' | translate}}"
+    >
+        TODO
+    </oui-collapsible>
+
+    <!-- Ressources: ressource types -->
+    <oui-collapsible
+        heading="{{:: 'iam_advanced_policy_search_criteria_ressources_ressource_search' | translate}}"
+    >
+        TODO
+    </oui-collapsible>
+
+    <h3
+        class="oui-heading_h3"
+        data-translate="iam_advanced_policy_search_criteria_actions"
+    ></h3>
+
+    <!-- Actions: managed permissions -->
+    <oui-collapsible
+        heading="{{:: 'iam_advanced_policy_search_criteria_actions_managed_permissions' | translate}}"
+    >
+        TODO
+    </oui-collapsible>
+
+    <!-- Actions: manual actions -->
+    <oui-collapsible
+        heading="{{:: 'iam_advanced_policy_search_criteria_actions_manual_actions' | translate}}"
+    >
+        TODO
+    </oui-collapsible>
 </oui-modal>
