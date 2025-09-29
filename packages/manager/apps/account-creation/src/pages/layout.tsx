@@ -21,7 +21,9 @@ export default function Layout() {
   }, [location]);
 
   useEffect(() => {
-    trackPage(pageTracking);
+    if (pageTracking) {
+      trackPage(pageTracking);
+    }
   }, [location]);
 
   return (

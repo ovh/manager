@@ -1,5 +1,7 @@
 import i18next from 'i18next';
 
+export type TranslationModule = Record<string, unknown>;
+
 /**
  * Manager Fallback Language
  */
@@ -37,50 +39,46 @@ export const normalizeLanguageCode = (language: string) => {
  * @param translationLoaders - A map of language codes to dynamic import functions for translations.
  * @param namespace - The namespace under which translations will be added.
  */
-export const buildTranslationResources = (
-  translationLoaders: Record<string, () => Promise<any>>,
-  namespace: string,
-) => async (language: string) => {
-  const normalizedLang = normalizeLanguageCode(language);
+export const buildTranslationResources =
+  (translationLoaders: Record<string, () => Promise<TranslationModule>>, namespace: string) =>
+  async (language: string) => {
+    const normalizedLang = normalizeLanguageCode(language);
 
-  // Always load fallbackLang once, before the user language
-  if (!i18next.hasResourceBundle(fallbackLang, namespace)) {
-    try {
-      console.info(
-        `Loading fallback language: ${fallbackLang} for namespace: ${namespace}`,
-      );
-      const fallbackModule = await translationLoaders[fallbackLang]();
-      i18next.addResources(
-        fallbackLang,
-        namespace,
-        fallbackModule.default || fallbackModule,
-      );
-    } catch (error) {
-      console.error(
-        `Failed to load fallback translations (${fallbackLang}):`,
-        error,
-      );
+    if (!translationLoaders[fallbackLang]) {
+      return false;
     }
-  }
 
-  // Then load the requested language
-  if (
-    normalizedLang !== fallbackLang &&
-    !i18next.hasResourceBundle(normalizedLang, namespace)
-  ) {
-    try {
-      const module = await translationLoaders[normalizedLang]();
-      i18next.addResources(normalizedLang, namespace, module.default || module);
-    } catch (error) {
-      console.warn(
-        `Could not load ${normalizedLang}. Will fallback to ${fallbackLang}.`,
-        error,
-      );
+    // Always load fallbackLang once, before the user language
+    if (!i18next.hasResourceBundle(fallbackLang, namespace)) {
+      try {
+        console.info(`Loading fallback language: ${fallbackLang} for namespace: ${namespace}`);
+        const fallbackModule: TranslationModule = await translationLoaders[fallbackLang]();
+        i18next.addResources(
+          fallbackLang,
+          namespace,
+          (fallbackModule as { default?: TranslationModule }).default ?? fallbackModule,
+        );
+      } catch (error) {
+        console.error(`Failed to load fallback translations (${fallbackLang}):`, error);
+      }
     }
-  }
 
-  return true;
-};
+    if (!translationLoaders[normalizedLang]) {
+      return false;
+    }
+
+    // Then load the requested language
+    if (normalizedLang !== fallbackLang && !i18next.hasResourceBundle(normalizedLang, namespace)) {
+      try {
+        const module = await translationLoaders[normalizedLang]?.();
+        i18next.addResources(normalizedLang, namespace, module?.default || module);
+      } catch (error) {
+        console.warn(`Could not load ${normalizedLang}. Will fallback to ${fallbackLang}.`, error);
+      }
+    }
+
+    return true;
+  };
 
 /**
  * Initializes and manages i18next language updates and resource loading.
@@ -91,13 +89,10 @@ export const buildTranslationResources = (
  * @param {string} namespace - The namespace to be used for loading translations.
  */
 export const buildTranslationManager = (
-  translationLoaders: Record<string, () => Promise<any>>,
+  translationLoaders: Record<string, () => Promise<TranslationModule>>,
   namespace: string,
 ) => {
-  const loadTranslations = buildTranslationResources(
-    translationLoaders,
-    namespace,
-  );
+  const loadTranslations = buildTranslationResources(translationLoaders, namespace);
 
   const handleLanguageChange = async (lang: string) => {
     const normalizedLang = normalizeLanguageCode(lang);
@@ -105,12 +100,14 @@ export const buildTranslationManager = (
   };
 
   if (i18next.isInitialized) {
-    handleLanguageChange(i18next.language);
+    void handleLanguageChange(i18next.language);
   } else {
     i18next.on('initialized', () => {
-      handleLanguageChange(i18next.language);
+      void handleLanguageChange(i18next.language);
     });
   }
 
-  i18next.on('languageChanged', handleLanguageChange);
+  i18next.on('languageChanged', (lang) => {
+    void handleLanguageChange(lang);
+  });
 };

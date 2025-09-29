@@ -1,6 +1,6 @@
-import { buildTranslationManager } from '../../../../utils/translation-helper';
+import { buildTranslationManager, TranslationModule } from '../../../../utils/translation-helper';
 
-const translationLoaders: Record<string, () => Promise<any>> = {
+const translationLoaders: Record<string, () => Promise<TranslationModule>> = {
   de_DE: () => import('./Messages_de_DE.json'),
   en_GB: () => import('./Messages_en_GB.json'),
   es_ES: () => import('./Messages_es_ES.json'),
