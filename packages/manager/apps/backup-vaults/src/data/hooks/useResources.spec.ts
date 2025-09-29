@@ -1,4 +1,4 @@
-import { act, renderHook } from '@testing-library/react';
+import { renderHook } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 // Small helper to (re)load the module under test with a specific APP_FEATURES.listingApi
@@ -29,7 +29,6 @@ async function loadSubject(listingApi: 'v6Iceberg' | 'v2' | 'v6' | undefined) {
     mocks: { useResourcesIcebergV2, useResourcesIcebergV6, useResourcesV6 },
   } as unknown as {
     useResources: (typeof import('./useResources'))['useResources'];
-    useListingData: (typeof import('./useResources'))['useListingData'];
     mocks: {
       useResourcesIcebergV2: ReturnType<typeof vi.fn>;
       useResourcesIcebergV6: ReturnType<typeof vi.fn>;
@@ -122,72 +121,5 @@ describe('useResources', () => {
     });
     expect(result.current.totalCount).toBe(1);
     expect(result.current.flattenData).toEqual([{ id: 42 }]);
-  });
-});
-
-// eslint-disable-next-line max-lines-per-function
-describe('useListingData', () => {
-  it('derives items and total from v6Iceberg (uses totalCount when provided)', async () => {
-    const { useListingData, mocks } = await loadSubject('v6Iceberg');
-
-    const fetchNextPage = vi.fn();
-    mocks.useResourcesIcebergV6.mockReturnValue({
-      flattenData: [{ id: 1 }, { id: 2 }],
-      totalCount: 999,
-      hasNextPage: true,
-      fetchNextPage,
-      isLoading: false,
-      status: 'success' as const,
-    });
-
-    const { result } = renderHook(() => useListingData<{ id: number }>('/things'));
-
-    expect(result.current.items).toEqual([{ id: 1 }, { id: 2 }]);
-    expect(result.current.total).toBe(999); // uses totalCount when present
-    expect(result.current.isLoading).toBe(false);
-    expect(result.current.hasNextPage).toBe(true);
-
-    expect(fetchNextPage).not.toHaveBeenCalled();
-    act(() => {
-      result.current.fetchNextPage?.();
-    });
-    expect(fetchNextPage).toHaveBeenCalledTimes(1);
-  });
-
-  it('derives total from items.length when totalCount is missing (v2)', async () => {
-    const { useListingData, mocks } = await loadSubject('v2');
-
-    mocks.useResourcesIcebergV2.mockReturnValue({
-      flattenData: [{ id: 'x' }, { id: 'y' }, { id: 'z' }],
-      hasNextPage: false,
-      isLoading: true,
-      status: 'pending' as const,
-    });
-
-    const { result } = renderHook(() => useListingData<{ id: string }>('/legacy'));
-
-    expect(result.current.items).toHaveLength(3);
-    expect(result.current.total).toBe(3); // fallback to items.length
-    expect(result.current.isLoading).toBe(true);
-    expect(result.current.hasNextPage).toBe(false);
-    expect(result.current.fetchNextPage).toBeUndefined(); // no hasNextPage => wrapper not exposed
-  });
-
-  it('handles empty/undefined flattenData gracefully', async () => {
-    const { useListingData, mocks } = await loadSubject('v6');
-
-    mocks.useResourcesV6.mockReturnValue({
-      flattenData: undefined,
-      totalCount: undefined,
-      hasNextPage: false,
-      isLoading: false,
-      status: 'success' as const,
-    });
-
-    const { result } = renderHook(() => useListingData<Record<string, never>>('/empty'));
-
-    expect(result.current.items).toEqual([]);
-    expect(result.current.total).toBe(0);
-    expect(result.current.hasNextPage).toBe(false);
   });
 });
