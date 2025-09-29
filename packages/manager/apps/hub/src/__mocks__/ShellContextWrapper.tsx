@@ -1,7 +1,5 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { vi } from 'vitest';
 import { render } from '@testing-library/react';
-/* eslint-enable import/no-extraneous-dependencies */
 import {
   ShellContext,
   ShellContextType,
