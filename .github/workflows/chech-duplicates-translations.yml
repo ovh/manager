@@ -34,7 +34,10 @@ jobs:
 
           if echo "$labels" | grep -wq "translation required"; then
             echo "✅ Translation required: Check the duplicate translation pls!..."
-  
+            SHOULD_CONTINUE=true
+            echo "should_continue<<EOF" >> $GITHUB_OUTPUT
+            echo "$SHOULD_CONTINUE" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT  
           else
             echo "❌ Translation label does not exist, exit..."
             SHOULD_CONTINUE=false
