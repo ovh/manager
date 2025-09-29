@@ -7,15 +7,15 @@ import {
   OdsSpinner,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  VERSION_SELECTOR_ERROR_TEST_ID,
-  VERSION_SELECTOR_SPINNER_TEST_ID,
-  VERSION_SELECTOR_TEST_ID,
-} from '@secret-manager/utils/tests/secretValue.constants';
 import { VersionState } from '@secret-manager/components/VersionState/VersionState.component';
 import { useSecretVersionList } from '@secret-manager/data/hooks/useSecretVersionList';
 import { SecretVersion } from '@secret-manager/types/secret.type';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
+import {
+  VERSION_SELECTOR_ERROR_TEST_ID,
+  VERSION_SELECTOR_SPINNER_TEST_ID,
+  VERSION_SELECTOR_TEST_ID,
+} from './VersionSelector.constants';
 import { isErrorResponse } from '@/utils/api/api';
 
 type VersionSelectorParams = {

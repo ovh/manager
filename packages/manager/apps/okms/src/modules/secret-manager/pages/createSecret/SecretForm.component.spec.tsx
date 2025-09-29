@@ -7,12 +7,11 @@ import { vi } from 'vitest';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { waitFor } from '@testing-library/dom';
 import {
-  DATA_INPUT_TEST_ID,
   MOCK_DATA_VALID_JSON,
-  PATH_INPUT_TEST_ID,
   MOCK_PATH_VALID,
-  SUBMIT_BTN_TEST_ID,
 } from '@secret-manager/utils/tests/secret.constants';
+import { SECRET_FORM_TEST_IDS } from '@secret-manager/pages/createSecret/SecretForm.constants';
+import { SECRET_INPUT_DATA_TEST_ID } from '@secret-manager/components/form/SecretDataFormField.constants';
 import { fireEvent, act, render, screen } from '@testing-library/react';
 import { labels, initTestI18n } from '@/utils/tests/init.i18n';
 import { SecretForm } from './SecretForm.component';
@@ -84,11 +83,13 @@ describe('Secrets creation form test suite', () => {
         labels.secretManager.create_secret_form_secret_section_title,
       );
 
-      const inputPath = screen.getByTestId(PATH_INPUT_TEST_ID);
+      const inputPath = screen.getByTestId(SECRET_FORM_TEST_IDS.INPUT_PATH);
       expect(inputPath).toBeInTheDocument();
-      const inputData = screen.getByTestId(DATA_INPUT_TEST_ID);
+      const inputData = screen.getByTestId(SECRET_INPUT_DATA_TEST_ID);
       expect(inputData).toBeInTheDocument();
-      const submitButton = screen.getByTestId(SUBMIT_BTN_TEST_ID);
+      const submitButton = screen.getByTestId(
+        SECRET_FORM_TEST_IDS.SUBMIT_BUTTON,
+      );
       expect(submitButton).toBeInTheDocument();
 
       // WHEN
@@ -114,7 +115,7 @@ describe('Secrets creation form test suite', () => {
   it('should display the template in the data input', async () => {
     // GIVEN
     await renderSecretForm(MOCK_OKMS_ID);
-    const inputData = screen.getByTestId(DATA_INPUT_TEST_ID);
+    const inputData = screen.getByTestId(SECRET_INPUT_DATA_TEST_ID);
     expect(inputData).toBeInTheDocument();
 
     // THEN
