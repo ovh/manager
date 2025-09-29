@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.30.3...@ovh-ux/manager-pci-kubernetes-app@0.31.0) (2025-09-29)
+
+
+### Features
+
+* **pci-kubernetes:** display total price on billing ([b48700b](https://github.com/ovh/manager/commit/b48700b112d5f71ab42b7c1a52b234478af2eeeb)), closes [#TAPC-5004](https://github.com/ovh/manager/issues/TAPC-5004)
+* **pci-kubernetes:** enable antiaffinity on 3az ([c0e21b8](https://github.com/ovh/manager/commit/c0e21b8bcaefb7c5acbcbf6ddc625d2a19aae644)), closes [#TAPC-4959](https://github.com/ovh/manager/issues/TAPC-4959)
+* **pci-kubernetes:** enable etcd ([3bf58f0](https://github.com/ovh/manager/commit/3bf58f0428244f30da6fa6c148e96ce63d6b01a0)), closes [#TAPC-4958](https://github.com/ovh/manager/issues/TAPC-4958)
+
+
+
+
+
 ## [0.30.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.30.2...@ovh-ux/manager-pci-kubernetes-app@0.30.3) (2025-09-23)
 
 

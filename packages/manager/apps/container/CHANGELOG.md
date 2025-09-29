@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.153.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.152.1...@ovh-ux/manager-container-app@0.153.0) (2025-09-29)
+
+
+### Features
+
+* **pci-ai-tools:** add menu Qpu ([e148767](https://github.com/ovh/manager/commit/e148767a220b125c5de4180a02e9657dde0920a8)), closes [#AIS-1207](https://github.com/ovh/manager/issues/AIS-1207)
+
+
+
+
+
 ## [0.152.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.152.0...@ovh-ux/manager-container-app@0.152.1) (2025-09-24)
 
 
