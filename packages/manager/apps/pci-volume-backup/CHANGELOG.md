@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-backup-app@0.2.8...@ovh-ux/manager-pci-volume-backup-app@0.3.0) (2025-09-29)
+
+
+### Features
+
+* **pci-volume-backup:** disallow restauration on deleted or deleting volumes ([6094f78](https://github.com/ovh/manager/commit/6094f78cca4b6bec3905017f3bc21a30c3be988d)), closes [#TAPC-3604](https://github.com/ovh/manager/issues/TAPC-3604)
+
+
+
+
+
 ## [0.2.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-backup-app@0.2.7...@ovh-ux/manager-pci-volume-backup-app@0.2.8) (2025-09-25)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-volume-backup-app
