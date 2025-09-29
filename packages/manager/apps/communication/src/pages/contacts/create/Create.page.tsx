@@ -31,10 +31,9 @@ export default function CreateContactPage() {
     'account:apiovh:notification/contactMean/validate',
   ]);
 
-  const { addSuccess } = useNotifications();
+  const { addSuccess, clearNotifications } = useNotifications();
   const [error, setError] = useState<string | null>(null);
-  const { t } = useTranslation('contacts');
-  const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
+  const { t } = useTranslation(['contacts', NAMESPACES.ACTIONS, 'common']);
   const navigate = useNavigate();
 
   const formRef = useRef<{ submit: () => void }>(null);
@@ -46,8 +45,12 @@ export default function CreateContactPage() {
       setCreatedContactMean(contactMean);
       setCurrentStage(CreateContactStage.VALIDATE);
     },
-    onError: () => {
-      setError(t('add_contact_error_message'));
+    onError: (err) => {
+      if (err.response?.status === 429) {
+        setError(t('error_rate_limit_message', { ns: 'common' }));
+      } else {
+        setError(t('add_contact_error_message'));
+      }
     },
   });
 
@@ -57,8 +60,14 @@ export default function CreateContactPage() {
   } = useValidateContactMean({
     contactMeanId: createdContactMean?.id || '',
     onSuccess: () => {
+      clearNotifications();
       addSuccess(t('add_contact_success_message'));
       navigate(urls.ContactsTab);
+    },
+    onError: (err) => {
+      if (err.response?.status === 429) {
+        setError(t('error_rate_limit_message', { ns: 'common' }));
+      }
     },
   });
 
@@ -97,10 +106,10 @@ export default function CreateContactPage() {
       onDismiss={() => navigate(urls.ContactsTab)}
       primaryLabel={
         currentStage === CreateContactStage.CREATE
-          ? tActions('add')
-          : tActions('validate')
+          ? t('add', { ns: NAMESPACES.ACTIONS })
+          : t('validate', { ns: NAMESPACES.ACTIONS })
       }
-      secondaryLabel={tActions('cancel')}
+      secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
       onSecondaryButtonClick={() => {
         navigate(urls.ContactsTab);
       }}

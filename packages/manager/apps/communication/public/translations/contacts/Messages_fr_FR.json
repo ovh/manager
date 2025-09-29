@@ -27,6 +27,7 @@
   "verify_contact_contact_email_info": "Vous avez reçu un code sur <strong>{{email}}</strong>.",
   "add_contact_modal_title": "Ajouter un contact",
   "verify_contact_modal_title": "Entrez le code de vérification",
+  "edit_contact_modal_title": "Modifier le contact",
   "add_contact_modal_info": "Facilitez la gestion de vos contacts en leur donnant un nom.",
   "contact_form_type_label": "Type",
   "contact_form_type_email_label": "Email",

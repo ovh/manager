@@ -26,26 +26,34 @@ import {
   useRestartValidationContactMean,
 } from '@/data/hooks/useContactMean/useContactMean';
 import { getContactMeanListQueryKey } from '@/data/api/contacts';
+import {
+  ContactMeanActions,
+  displayActionMenuItem,
+} from './contacts.constants';
 
 function ContactMeanActionMenu({ contactMean }: { contactMean: ContactMean }) {
-  const { t } = useTranslation(['contacts', NAMESPACES.ACTIONS]);
-  const { addSuccess, addError } = useNotifications();
+  const { t } = useTranslation(['contacts', NAMESPACES.ACTIONS, 'common']);
+  const { addSuccess, addError, clearNotifications } = useNotifications();
   const { data: accountUrn } = useAccountUrn();
   const { mutate: deleteContactMean } = useDeleteContactMean({
     id: contactMean.id,
     onSuccess: () => {
+      clearNotifications();
       addSuccess(t('delete_contact_success_message'));
     },
     onError: () => {
+      clearNotifications();
       addError(t('delete_contact_error_message'));
     },
   });
   const { mutate: disableContactMean } = useChangeContactMeanStatus({
     contactMeanId: contactMean.id,
     onSuccess: () => {
+      clearNotifications();
       addSuccess(t('deactivate_contact_success_message'));
     },
     onError: () => {
+      clearNotifications();
       addError(t('deactivate_contact_error_message'));
     },
   });
@@ -55,10 +63,16 @@ function ContactMeanActionMenu({ contactMean }: { contactMean: ContactMean }) {
   } = useRestartValidationContactMean({
     contactMeanId: contactMean.id,
     onSuccess: () => {
+      clearNotifications();
       addSuccess(t('restart_validation_contact_success_message'));
     },
-    onError: () => {
-      addError(t('restart_validation_contact_error_message'));
+    onError: (error) => {
+      clearNotifications();
+      if (error.response?.status === 429) {
+        addError(t('error_rate_limit_message', { ns: 'common' }));
+      } else {
+        addError(t('restart_validation_contact_error_message'));
+      }
     },
   });
   const navigate = useNavigate();
@@ -66,46 +80,45 @@ function ContactMeanActionMenu({ contactMean }: { contactMean: ContactMean }) {
   const items = useMemo(
     () =>
       [
-        contactMean.status === 'VALID' && {
+        displayActionMenuItem(contactMean, ContactMeanActions.EDIT) && {
           id: 1,
           label: t('table_action_edit'),
           onClick: () => navigate(urls.ContactsEditTo(contactMean.id)),
           iamActions: ['account:apiovh:notification/contactMean/edit'],
           urn: accountUrn,
-          isDisabled: contactMean.default,
         },
-        contactMean.status === 'TO_VALIDATE' && {
+        displayActionMenuItem(contactMean, ContactMeanActions.VALIDATE) && {
           id: 2,
           label: t('table_action_enter_verification_code'),
           onClick: () => navigate(urls.ContactsValidateTo(contactMean.id)),
           iamActions: ['account:apiovh:notification/contactMean/validate'],
           urn: accountUrn,
         },
-        contactMean.type === 'EMAIL' &&
-          contactMean.status === 'TO_VALIDATE' && {
-            id: 3,
-            label: t('table_action_resend_verification_code'),
-            onClick: () => restartValidationContactMean(),
-            iamActions: [
-              'account:apiovh:notification/contactMean/restartValidation',
-            ],
-            urn: accountUrn,
-          },
-        contactMean.status === 'VALID' && {
+        displayActionMenuItem(
+          contactMean,
+          ContactMeanActions.RESTART_VALIDATION,
+        ) && {
+          id: 3,
+          label: t('table_action_resend_verification_code'),
+          onClick: () => restartValidationContactMean(),
+          iamActions: [
+            'account:apiovh:notification/contactMean/restartValidation',
+          ],
+          urn: accountUrn,
+        },
+        displayActionMenuItem(contactMean, ContactMeanActions.DEACTIVATE) && {
           id: 4,
           label: t('table_action_deactivate'),
           onClick: () => disableContactMean('DISABLED'),
           iamActions: ['account:apiovh:notification/contactMean/edit'],
           urn: accountUrn,
-          isDisabled: contactMean.default,
         },
-        contactMean.status === 'DISABLED' && {
+        displayActionMenuItem(contactMean, ContactMeanActions.ACTIVATE) && {
           id: 5,
           label: t('activate', { ns: NAMESPACES.ACTIONS }),
           onClick: () => disableContactMean('VALID'),
           iamActions: ['account:apiovh:notification/contactMean/edit'],
           urn: accountUrn,
-          isDisabled: contactMean.default,
         },
         {
           id: 6,
@@ -113,7 +126,6 @@ function ContactMeanActionMenu({ contactMean }: { contactMean: ContactMean }) {
           onClick: () => deleteContactMean(),
           iamActions: ['account:apiovh:notification/contactMean/delete'],
           urn: accountUrn,
-          isDisabled: contactMean.default,
         },
       ].filter(Boolean) as ActionMenuItem[],
     [t, contactMean],
@@ -142,8 +154,10 @@ function ContactsPage() {
     {
       id: 'description',
       label: t('table_column_description'),
+      size: 400,
+      isSortable: false,
       cell: ({ description, default: isDefault }) => (
-        <DataGridTextCell>
+        <DataGridTextCell className="truncate">
           {description || '-'}
           {isDefault && (
             <OdsBadge
@@ -158,12 +172,14 @@ function ContactsPage() {
     {
       id: 'type',
       label: t('table_column_type'),
+      isSortable: false,
       cell: ({ type }) => (
         <DataGridTextCell>{t(`type_${type.toLowerCase()}`)}</DataGridTextCell>
       ),
     },
     {
       id: 'contact-mean',
+      isSortable: false,
       label: t('table_column_contact_mean'),
       /* TODO: replace with component once new contact means are defined */
       cell: (contactMean) => (
@@ -173,6 +189,8 @@ function ContactsPage() {
     {
       id: 'status',
       label: t('table_column_status'),
+      size: 120,
+      isSortable: false,
       cell: ({ status }) => (
         <DataGridTextCell>
           <ContactMeanStatusChip status={status} />
@@ -182,9 +200,13 @@ function ContactsPage() {
     {
       id: 'actions',
       label: '',
+      size: 80,
+      isSortable: false,
       cell: (contactMean) => (
         <div className="flex flex-row justify-center">
-          <ContactMeanActionMenu contactMean={contactMean} />
+          {!contactMean.default && (
+            <ContactMeanActionMenu contactMean={contactMean} />
+          )}
         </div>
       ),
     },
@@ -221,6 +243,7 @@ function ContactsPage() {
         sorting={sorting}
         onSortChange={setSorting}
         isLoading={isLoading}
+        tableLayoutFixed={true}
         topbar={
           <ManagerButton
             id="add-contact-button"
