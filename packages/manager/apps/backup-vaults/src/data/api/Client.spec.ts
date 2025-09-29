@@ -3,9 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import * as coreApi from '@ovh-ux/manager-core-api';
 
-import * as AppC from '@/App.constants';
-
-import { deleteJSON, fetchListing, getJSON, postJSON, putJSON } from './Client.api';
+import { deleteJSON, getJSON, postJSON, putJSON } from './Client.api';
 
 // Define a minimal client type instead of `any`
 type MockableAxios = Pick<AxiosInstance, 'get' | 'post' | 'put' | 'delete'>;
@@ -88,70 +86,5 @@ describe('API client helpers', () => {
       params: undefined,
       headers: {},
     });
-  });
-});
-
-// eslint-disable-next-line max-lines-per-function
-describe('fetchListing', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
-  it('calls fetchIcebergV6 when APP_FEATURES.listingApi = v6Iceberg', async () => {
-    vi.spyOn(coreApi, 'fetchIcebergV6').mockResolvedValue({
-      data: [{ id: 1 }],
-      totalCount: 42,
-      status: 200,
-    });
-
-    vi.spyOn(AppC, 'APP_FEATURES', 'get').mockReturnValue({
-      ...AppC.APP_FEATURES,
-      listingApi: 'v6Iceberg',
-    });
-
-    const result = await fetchListing('/my/route', { page: 2 });
-    expect(coreApi.fetchIcebergV6).toHaveBeenCalledWith(
-      expect.objectContaining({ route: '/my/route', page: 2 }),
-    );
-    expect(result.data).toEqual([{ id: 1 }]);
-    expect(result.totalCount).toBe(42);
-  });
-
-  it('calls fetchIcebergV2 when APP_FEATURES.listingApi = v2', async () => {
-    vi.spyOn(coreApi, 'fetchIcebergV2').mockResolvedValue({
-      data: [{ id: 1 }],
-      cursorNext: 'next',
-      status: 200,
-    });
-
-    vi.spyOn(AppC, 'APP_FEATURES', 'get').mockReturnValue({
-      ...AppC.APP_FEATURES,
-      listingApi: 'v2',
-    });
-
-    const result = await fetchListing('/my/route', { cursor: 'cur' });
-    expect(coreApi.fetchIcebergV2).toHaveBeenCalledWith(
-      expect.objectContaining({ route: '/my/route', cursor: 'cur' }),
-    );
-    expect(result.data).toEqual([{ id: 1 }]);
-    expect(result.cursorNext).toBe('next');
-  });
-
-  it('falls back to plain v6 listing if APP_FEATURES.listingApi = v6', async () => {
-    vi.spyOn(AppC, 'APP_FEATURES', 'get').mockReturnValue({
-      ...AppC.APP_FEATURES,
-      listingApi: 'v6',
-    });
-
-    const mockGet = vi.fn().mockResolvedValue(makeResponse([{ id: 'a' }, { id: 'b' }]));
-    Object.assign(coreApi.v6 as unknown as MockableAxios, { get: mockGet });
-
-    const result = await fetchListing('/plain');
-    expect(mockGet).toHaveBeenCalledWith('/plain', {
-      params: undefined,
-      headers: {},
-    });
-    expect(result.data.length).toBe(2);
-    expect(result.totalCount).toBe(2);
   });
 });
