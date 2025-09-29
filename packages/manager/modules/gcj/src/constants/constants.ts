@@ -1,5 +1,6 @@
-import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import { Region } from '@ovh-ux/manager-config';
+import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+
 import { PolicyLinks } from '../types/links.type';
 
 export const LegalPolicyLinkByLanguage: PolicyLinks = {
@@ -42,8 +43,7 @@ export const DEFAULT_SUB_BY_REGION: Record<Region, OvhSubsidiary> = {
 };
 
 export const MORE_INFO_LINK = {
-  FR:
-    'https://www.ovh.com/fr/support/documents_legaux/politique_cookies_ovh.xml',
+  FR: 'https://www.ovh.com/fr/support/documents_legaux/politique_cookies_ovh.xml',
   GB: 'https://www.ovh.co.uk/support/termsofservice/cookies_ovh.xml',
   IE: 'https://www.ovh.ie/support/termsofservice/cookies_ovh.xml',
   DE: 'https://www.ovh.de/support/agb/cookies_ovh.xml',
@@ -53,10 +53,8 @@ export const MORE_INFO_LINK = {
   PL: 'https://www.ovh.pl/pomoc/dokumenty/cookies_ovh.xml',
   PT: 'https://www.ovh.pt/suporte/documentos_legais/cookies_ovh.xml',
   SN: 'https://www.ovh.sn/support/documents_legaux/politique_cookies_ovh.xml',
-  TN:
-    'https://www.ovh.com/tn/support/documents_legaux/politique_cookies_ovh.xml',
-  MA:
-    'https://www.ovh.com/ma/support/documents_legaux/politique_cookies_ovh.xml',
+  TN: 'https://www.ovh.com/tn/support/documents_legaux/politique_cookies_ovh.xml',
+  MA: 'https://www.ovh.com/ma/support/documents_legaux/politique_cookies_ovh.xml',
   QC: 'https://www.ovh.com/ca/fr/support/documents_legaux/cookies_ovh.xml',
   CA: 'https://www.ovh.com/ca/en/support/termsofservice/cookies_ovh.xml',
   WE: 'https://www.ovh.com/world/support/termsofservice/cookies_ovh.xml',
