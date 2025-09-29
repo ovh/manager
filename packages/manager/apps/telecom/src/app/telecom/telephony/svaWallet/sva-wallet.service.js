@@ -36,6 +36,13 @@ export default class SvaWalletService {
       );
   }
 
+  getWalletOnboarding() {
+    return this.$http
+      .get('/me/sva/onboarding')
+      .then(({ data }) => data)
+      .catch(() => false);
+  }
+
   saveWallet(wallet, bankAccount) {
     return this.$http.post('/me/sva/onboarding', wallet).then(({ data }) => {
       if (bankAccount) {
