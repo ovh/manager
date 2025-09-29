@@ -5,7 +5,7 @@ import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { screen, act, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MOCK_DATA_VALID_JSON } from '@secret-manager/utils/tests/secret.constants';
-import { SECRET_INPUT_DATA_TEST_ID } from '@secret-manager/components/form/SecretDataFormField.constants';
+import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
 import {
   assertTextVisibility,
   getOdsButtonByLabel,
@@ -79,7 +79,7 @@ describe('Secret create version drawer page test suite', () => {
   it('should display the current secret value', async () => {
     await renderPage();
 
-    const dataInput = screen.getByTestId(SECRET_INPUT_DATA_TEST_ID);
+    const dataInput = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA);
 
     // Check if the data input contains the secret value
     expect(dataInput).toBeInTheDocument();
@@ -95,7 +95,9 @@ describe('Secret create version drawer page test suite', () => {
     );
 
     // Get the data input
-    const dataInput = await screen.findByTestId(SECRET_INPUT_DATA_TEST_ID);
+    const dataInput = await screen.findByTestId(
+      SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA,
+    );
     expect(dataInput).toBeInTheDocument();
 
     await act(() => {
