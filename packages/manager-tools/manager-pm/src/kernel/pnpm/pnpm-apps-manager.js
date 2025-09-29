@@ -1,12 +1,14 @@
 import { execSync } from 'node:child_process';
+
 import {
   addAppPathToCatalog,
-  getCatalogPaths, isAppInCatalog,
+  getCatalogPaths,
+  isAppInCatalog,
   removeAppPathFromCatalog,
 } from '../commons/catalog-utils.js';
+import { normalizeReactDependencies } from '../commons/dependencies-utils.js';
 import { logger } from '../commons/log-manager.js';
 import { buildAppWorkspacePath, cleanAppDirs } from '../commons/workspace-utils.js';
-import { normalizeReactDependencies } from '../commons/dependencies-utils.js';
 import { patchVitestConfig } from './pnpm-config-manager.js';
 
 /**

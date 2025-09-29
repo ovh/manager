@@ -56,7 +56,9 @@ export async function readCatalog(file) {
 
     if (Array.isArray(catalog)) {
       logger.info(`📖 Loaded ${catalog.length} entries from catalog: ${file}`);
-      logger.debug(`Sample entries: ${catalog.slice(0, 5).join(', ')}${catalog.length > 5 ? ' ...' : ''}`);
+      logger.debug(
+        `Sample entries: ${catalog.slice(0, 5).join(', ')}${catalog.length > 5 ? ' ...' : ''}`,
+      );
       return catalog.map(String);
     }
 
@@ -139,7 +141,9 @@ export async function isAppInCatalog(catalogPath, appPath) {
     if (found) {
       logger.debug(`✔ "${appPath}" found in catalog ${path.relative(process.cwd(), catalogPath)}`);
     } else {
-      logger.info(`ℹ "${appPath}" is not listed in catalog ${path.relative(process.cwd(), catalogPath)}`);
+      logger.info(
+        `ℹ "${appPath}" is not listed in catalog ${path.relative(process.cwd(), catalogPath)}`,
+      );
     }
 
     return found;
@@ -174,10 +178,14 @@ export async function addAppPathToCatalog(catalogPath, appPath) {
     const list = await readCatalog(catalogPath);
     list.push(appPath);
     await writeCatalog(catalogPath, list);
-    logger.success(`➕ Added app "${appPath}" to catalog: ${path.relative(process.cwd(), catalogPath)}`);
+    logger.success(
+      `➕ Added app "${appPath}" to catalog: ${path.relative(process.cwd(), catalogPath)}`,
+    );
     return 'added';
   } catch (err) {
-    logger.error(`❌ Unexpected failure adding "${appPath}" to catalog "${catalogPath}": ${err.message}`);
+    logger.error(
+      `❌ Unexpected failure adding "${appPath}" to catalog "${catalogPath}": ${err.message}`,
+    );
     logger.debug(`Stack trace: ${err.stack}`);
     return 'error';
   }
@@ -206,10 +214,14 @@ export async function removeAppPathFromCatalog(catalogPath, appPath) {
 
     const next = list.filter((p) => p !== appPath);
     await writeCatalog(catalogPath, next);
-    logger.success(`🗑️ Removed app "${appPath}" from catalog: ${path.relative(process.cwd(), catalogPath)}`);
+    logger.success(
+      `🗑️ Removed app "${appPath}" from catalog: ${path.relative(process.cwd(), catalogPath)}`,
+    );
     return 'removed';
   } catch (err) {
-    logger.error(`❌ Unexpected failure removing "${appPath}" from catalog "${catalogPath}": ${err.message}`);
+    logger.error(
+      `❌ Unexpected failure removing "${appPath}" from catalog "${catalogPath}": ${err.message}`,
+    );
     logger.debug(`Stack trace: ${err.stack}`);
     return 'error';
   }

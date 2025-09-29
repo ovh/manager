@@ -167,7 +167,7 @@ export async function getApplicationId(packageName) {
   try {
     const stdout = await new Promise((resolve, reject) => {
       execFile('yarn', ['workspaces', 'info'], (err, out, errOut) =>
-        err ? reject(errOut || err) : resolve(out)
+        err ? reject(errOut || err) : resolve(out),
       );
     });
     // extract JSON between the first '{' and last '}'

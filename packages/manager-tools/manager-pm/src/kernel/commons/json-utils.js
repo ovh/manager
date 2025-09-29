@@ -118,11 +118,7 @@ export async function writeJson(filePath, data) {
     logger.info(`✅ JSON written successfully to ${filePath}`);
     if (typeof data === 'object' && data !== null) {
       const keys = Object.keys(data);
-      logger.debug(
-        `Sample keys: ${keys.slice(0, 5).join(', ')}${
-          keys.length > 5 ? ' ...' : ''
-        }`,
-      );
+      logger.debug(`Sample keys: ${keys.slice(0, 5).join(', ')}${keys.length > 5 ? ' ...' : ''}`);
     }
   } catch (err) {
     logger.error(`❌ Failed to write JSON to ${filePath}: ${err.message}`);

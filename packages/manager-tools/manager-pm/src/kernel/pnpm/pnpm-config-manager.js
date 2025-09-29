@@ -1,8 +1,9 @@
 import { promises as fs } from 'node:fs';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
-import { logger } from '../commons/log-manager.js';
+
 import { writeJson } from '../commons/json-utils.js';
+import { logger } from '../commons/log-manager.js';
 
 /**
  * Try to locate a Vitest config file in a given app directory.
@@ -58,7 +59,9 @@ async function ensureImports(code, configPath, appPath) {
   if (code.includes('@ovh-ux/manager-tests-setup')) {
     if (!code.includes('defaultDedupedDependencies')) {
       code = code.replace(/createConfig/, 'createConfig, \r\tdefaultDedupedDependencies');
-      logger.success(`➕ Injected defaultDedupedDependencies into existing import in ${configPath}`);
+      logger.success(
+        `➕ Injected defaultDedupedDependencies into existing import in ${configPath}`,
+      );
       modified = true;
     } else {
       logger.debug(`✔ Import already includes defaultDedupedDependencies in ${configPath}`);
@@ -95,7 +98,7 @@ function ensureResolveDedupe(code, configPath) {
     } else {
       code = code.replace(
         /resolve:\s*{([^}]*)}/,
-        (m, g) => `resolve: { dedupe: [...defaultDedupedDependencies], ${g}}`
+        (m, g) => `resolve: { dedupe: [...defaultDedupedDependencies], ${g}}`,
       );
       logger.success(`➕ Added dedupe[] inside resolve in ${configPath}`);
       modified = true;
@@ -103,7 +106,7 @@ function ensureResolveDedupe(code, configPath) {
   } else {
     code = code.replace(
       /export default/,
-      `export default {\n  resolve: { dedupe: [...defaultDedupedDependencies] },`
+      `export default {\n  resolve: { dedupe: [...defaultDedupedDependencies] },`,
     );
     logger.success(`➕ Added new resolve with dedupe[] into ${configPath}`);
     modified = true;

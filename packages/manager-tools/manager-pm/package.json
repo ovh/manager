@@ -10,8 +10,8 @@
     "manager-pm": "./bin/manager-pm.js"
   },
   "scripts": {
-    "lint:modern": "manager-lint --config eslint.config.mjs ./bin/**/**.js ./src/**/**.js",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./bin/**/**.js ./src/**/**.js"
+    "lint:modern": "manager-lint --config eslint.config.mjs './bin/**/*.js' './src/**/*.js'",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs './bin/**/*.js' './src/**/*.js'"
   },
   "dependencies": {
     "commander": "^14.0.0",

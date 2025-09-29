@@ -195,9 +195,7 @@ export async function lintApp(appRef) {
  * @returns {Promise<void>} Resolves when linting completes successfully.
  */
 export async function lintAll() {
-  return withWorkspaces(() =>
-    runTask('lint (all apps)', 'yarn', ['pm:lint:base'])
-  );
+  return withWorkspaces(() => runTask('lint (all apps)', 'yarn', ['pm:lint:base']));
 }
 
 /**
@@ -207,11 +205,12 @@ export async function lintAll() {
  */
 export async function buildDocs() {
   return withWorkspaces(() =>
-    runTask(
-      'docs build',
-      'yarn',
-      ['workspace', '@ovh-ux/manager-documentation', 'run', 'docs:build']
-    )
+    runTask('docs build', 'yarn', [
+      'workspace',
+      '@ovh-ux/manager-documentation',
+      'run',
+      'docs:build',
+    ]),
   );
 }
 
@@ -236,6 +235,6 @@ export async function runManagerCli(options = []) {
       'run',
       'manager-cli',
       ...options,
-    ])
+    ]),
   );
 }

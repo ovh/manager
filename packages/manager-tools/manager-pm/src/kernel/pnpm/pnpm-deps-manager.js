@@ -1,7 +1,7 @@
 import { execSync, spawn } from 'node:child_process';
 import { promises as fs } from 'node:fs';
-import path from 'node:path';
 import os from 'node:os';
+import path from 'node:path';
 
 import {
   managerRootPath,
@@ -45,17 +45,14 @@ export async function linkPrivateDeps() {
     if (!pkg.name) continue;
 
     logger.info(
-      `🔗 Linking ${pkg.name} from ${packageDir} into local store (dir=${pnpmStorePath}, global-dir=${pnpmGlobalStorePath})...`
+      `🔗 Linking ${pkg.name} from ${packageDir} into local store (dir=${pnpmStorePath}, global-dir=${pnpmGlobalStorePath})...`,
     );
 
     try {
-      execSync(
-        `${pnpmBin} link --dir ${pnpmStorePath} --global-dir ${pnpmGlobalStorePath}`,
-        {
-          cwd: packageDir,
-          stdio: 'inherit',
-        }
-      );
+      execSync(`${pnpmBin} link --dir ${pnpmStorePath} --global-dir ${pnpmGlobalStorePath}`, {
+        cwd: packageDir,
+        stdio: 'inherit',
+      });
       logger.success(`✔ Linked ${pkg.name}`);
     } catch (e) {
       logger.error(`❌ Failed to link ${pkg.name}:`, e.message);
@@ -285,9 +282,7 @@ export async function yarnPostInstall() {
     const pnpmApps = await readCatalog(pnpmCatalogPath);
 
     for (const relAppPath of pnpmApps) {
-      const abs = path.isAbsolute(relAppPath)
-        ? relAppPath
-        : path.join(managerRootPath, relAppPath);
+      const abs = path.isAbsolute(relAppPath) ? relAppPath : path.join(managerRootPath, relAppPath);
       await installAppDeps(abs);
     }
 

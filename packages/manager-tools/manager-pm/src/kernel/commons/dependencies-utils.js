@@ -1,12 +1,12 @@
-import { promises as fs, existsSync, readFileSync } from 'node:fs';
 import { execSync } from 'node:child_process';
+import { existsSync, promises as fs, readFileSync } from 'node:fs';
 import path from 'node:path';
 
 import {
-  reactCriticalDependenciesPath,
   ignoredDirectories,
   managerRootPath,
   privateWorkspaces,
+  reactCriticalDependenciesPath,
 } from '../../playbook/playbook-config.js';
 import { logger } from './log-manager.js';
 
@@ -54,7 +54,9 @@ function resolveInstalledVersionWithRetry(pkgName, relAppPath) {
   if (version) return version;
 
   // Retry guard
-  logger.warn(`⚠️ Could not resolve ${pkgName}. Running "yarn install" at repo root (one-time retry)...`);
+  logger.warn(
+    `⚠️ Could not resolve ${pkgName}. Running "yarn install" at repo root (one-time retry)...`,
+  );
   try {
     execSync('yarn install', {
       cwd: managerRootPath,
@@ -154,7 +156,7 @@ export async function normalizeReactDependencies(relAppPath) {
 
   if (missingDeps.length > 0) {
     throw new Error(
-      `❌ Migration aborted: failed to resolve critical React deps (${missingDeps.join(', ')})`
+      `❌ Migration aborted: failed to resolve critical React deps (${missingDeps.join(', ')})`,
     );
   }
 
@@ -224,11 +226,12 @@ export async function getPrivatePackages() {
     allPackageDirs = allPackageDirs.concat(foundPackageDirs);
   }
 
-  allPackageDirs = allPackageDirs.filter((workspace) => (
-    !workspace.includes('manager-pm') &&
-    !workspace.includes('manager-generator') &&
-    !workspace.includes('manager-cli')
-  ));
+  allPackageDirs = allPackageDirs.filter(
+    (workspace) =>
+      !workspace.includes('manager-pm') &&
+      !workspace.includes('manager-generator') &&
+      !workspace.includes('manager-cli'),
+  );
 
   const privatePackageDirs = [];
   for (const packageDir of allPackageDirs) {

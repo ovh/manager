@@ -4,10 +4,10 @@ import inquirerSearchList from 'inquirer-search-list';
 import process from 'node:process';
 
 import { containerPackageName, managerRootPath } from '../../playbook/playbook-config.js';
-import { getApplicationId, getApplications } from '../commons/workspace-utils.js';
-import { updateRootWorkspacesFromCatalogs, clearRootWorkspaces } from '../commons/catalog-utils.js';
-import { resolveBuildFilter } from '../commons/task-utils.js';
+import { clearRootWorkspaces, updateRootWorkspacesFromCatalogs } from '../commons/catalog-utils.js';
 import { logger } from '../commons/log-manager.js';
+import { resolveBuildFilter } from '../commons/task-utils.js';
+import { getApplicationId, getApplications } from '../commons/workspace-utils.js';
 
 /**
  * @typedef {Object} StartAppOptions
@@ -85,7 +85,11 @@ export async function startApp(options = {}) {
     },
   ];
 
-  const { packageName, region = defaultRegion, container = false } = await inquirer.prompt(questions);
+  const {
+    packageName,
+    region = defaultRegion,
+    container = false,
+  } = await inquirer.prompt(questions);
   if (!packageName) throw new Error('No application selected.');
 
   // Make REGION visible to children spawned below
@@ -142,9 +146,9 @@ export async function startApp(options = {}) {
   try {
     const { result } = concurrently(commands, {
       raw,
-      prefix: 'name',   // show [container] / [app] before each line
-      timestamp: true,  // add hh:mm:ss
-      killOthers,       // stop sibling on failure by default
+      prefix: 'name', // show [container] / [app] before each line
+      timestamp: true, // add hh:mm:ss
+      killOthers, // stop sibling on failure by default
     });
     await result;
     logger.info('✅ Start completed');
