@@ -83,7 +83,7 @@ export default function LiveChat({
 
   const [snowContext, setSnowContext] = useState<SnowChatContext>({
     skip_load_history: 'false',
-    live_agent_only: 'false',
+    live_agent_only: 'true',
     requester_session_language: language,
     language,
     region,
@@ -188,7 +188,7 @@ export default function LiveChat({
   useEffect(() => {
     console.log(window.location.hostname);
     if (window.location.hostname.includes('labeu')) {
-      setSnowContext((prev) => ({ ...prev, live_agent_only: undefined }));
+      setSnowContext((prev) => ({ ...prev, live_agent_only: 'true' }));
     }
   }, []);
 
