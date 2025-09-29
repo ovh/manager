@@ -7,7 +7,8 @@
       "@/*": ["./src/*"]
     },
     "outDir": "dist",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "jsx": "react-jsx"
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist", "types", "src/__tests__"]
