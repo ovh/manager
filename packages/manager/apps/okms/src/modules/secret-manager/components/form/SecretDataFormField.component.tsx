@@ -2,7 +2,7 @@ import React from 'react';
 import { Controller, UseControllerProps } from 'react-hook-form';
 import { OdsFormField, OdsTextarea } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { DATA_INPUT_TEST_ID } from '@secret-manager/utils/tests/secret.constants';
+import { SECRET_INPUT_DATA_TEST_ID } from './SecretDataFormField.constants';
 
 export const SecretDataFormField = <T extends Record<string, string>>({
   name,
@@ -26,7 +26,7 @@ export const SecretDataFormField = <T extends Record<string, string>>({
             onOdsChange={field.onChange}
             isResizable
             rows={12}
-            data-testid={DATA_INPUT_TEST_ID}
+            data-testid={SECRET_INPUT_DATA_TEST_ID}
           />
         </OdsFormField>
       )}

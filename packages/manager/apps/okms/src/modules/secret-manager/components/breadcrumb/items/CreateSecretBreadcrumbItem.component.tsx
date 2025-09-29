@@ -6,7 +6,7 @@ import {
   SECRET_MANAGER_ROUTES_URLS,
 } from '@secret-manager/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
-import { CREATE_SECRET_BREADCRUMB_ITEM_TEST_ID } from '@secret-manager/utils/tests/breadcrumb.constants';
+import { BREADCRUMB_ITEM_TEST_IDS } from './BreadcrumbItem.constants';
 
 export const CreateSecretBreadcrumbItem = () => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ export const CreateSecretBreadcrumbItem = () => {
 
   return (
     <OdsBreadcrumbItem
-      data-testid={CREATE_SECRET_BREADCRUMB_ITEM_TEST_ID}
+      data-testid={BREADCRUMB_ITEM_TEST_IDS.CREATE_SECRET}
       key={SECRET_MANAGER_ROUTES_URIS.root}
       label={t('create_a_secret')}
       onClick={() => navigate(SECRET_MANAGER_ROUTES_URLS.createSecret)}
