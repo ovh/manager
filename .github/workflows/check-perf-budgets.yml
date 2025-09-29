@@ -63,3 +63,5 @@ jobs:
           changed_pkgs=${changed_pkgs%,}
           changed_pkgs="${changed_pkgs#//,}"
           echo "Changed packages: $changed_pkgs"
+
+          yarn manager-perf-budgets --packages $changed_pkgs
