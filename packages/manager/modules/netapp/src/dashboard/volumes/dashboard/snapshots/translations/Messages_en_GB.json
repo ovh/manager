@@ -1,6 +1,6 @@
 {
   "netapp_volumes_snapshots": "Snapshots",
-  "netapp_volumes_snapshots_breadcrumb": "Backups",
+  "netapp_volumes_snapshots_breadcrumb": "Snapshots",
   "netapp_volumes_snapshots_actions": "Actions",
   "netapp_volumes_snapshots_actions_create": "Create a snapshot",
   "netapp_volumes_snapshots_actions_create_label": "Snapshot: Create a snapshot",
