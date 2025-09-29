@@ -338,16 +338,27 @@ const BackupActionPage = () => {
 
         {distantContinents.size > 0 && (
           <div className="mt-6">
-            <ToggleField<TFormFieldsValues>
-              label={t('pci_instances_actions_backup_instance_distant_label')}
+            <Controller
+              render={({ field: { value: fieldValue, onChange, onBlur } }) => {
+                return (
+                  <ToggleField
+                    label={t(
+                      'pci_instances_actions_backup_instance_distant_label',
+                    )}
+                    checked={fieldValue ?? false}
+                    onCheckedChange={() => onChange(!fieldValue)}
+                    onBlur={onBlur}
+                    badges={[
+                      {
+                        label: t('common:pci_instances_common_new'),
+                        backgroundColor: '#47FFFA',
+                        textColor: '#000D1F',
+                      },
+                    ]}
+                  />
+                );
+              }}
               name="distantSnapshot"
-              badges={[
-                {
-                  label: t('common:pci_instances_common_new'),
-                  backgroundColor: '#47FFFA',
-                  textColor: '#000D1F',
-                },
-              ]}
             />
 
             <DistantSnapshotSection
