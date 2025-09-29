@@ -1,7 +1,9 @@
-import type { OnboardingConfigType } from '@/types/Onboarding.type';
+import { OnboardingConfigType } from '@/types/Onboarding.type';
+
+import ovhcloudBackupImg from './assets/OVHcloudBackup.svg?url';
 
 export const appName = 'backup-services';
-export const productName = 'OVHcloud Backup Services';
+export const productName = 'OVHcloud Backup';
 
 export const AppConfig = {
   listing: {
@@ -15,7 +17,7 @@ export const AppConfig = {
 const docUrl = 'https://docs.ovh.com';
 
 export const ONBOARDING_CONFIG: OnboardingConfigType = {
-  productName: 'backup-services',
+  productName,
   productCategory: 'Public Cloud',
   brand: 'OVHcloud',
   tiles: [
@@ -28,6 +30,8 @@ export const ONBOARDING_CONFIG: OnboardingConfigType = {
     tutorial: docUrl,
     faq: docUrl,
   },
+  title: productName,
+  heroImage: { src: ovhcloudBackupImg },
 };
 
 export type ListingApi = 'v6Iceberg' | 'v6' | 'v2';
