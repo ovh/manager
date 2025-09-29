@@ -11,7 +11,8 @@ export default mergeConfig(
   sharedConfig,
   createConfig({
     test: {
-      setupFiles: ['./setupTests.ts'],
+      setupFiles: ['@ovh-ux/manager-core-test-utils/src/utils/setup-test.ts'],
+      css: false,
       coverage: {
         exclude: [
           ...defaultExcludedFiles,

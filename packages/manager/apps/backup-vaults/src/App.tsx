@@ -1,4 +1,5 @@
 import { Suspense, useContext, useEffect } from 'react';
+import React from 'react';
 
 import { RouterProvider, createHashRouter, createRoutesFromElements } from 'react-router-dom';
 

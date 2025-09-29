@@ -23,7 +23,6 @@ const ListingPage = React.lazy(() => import('@/pages/listing/Listing.page'));
 
 export default (
   <>
-    {/* Redirect container "/" → flavor-specific root (e.g. /pci/projects/:projectId/appSlug) */}
     <Route path="/" element={<Navigate to={urls.root} replace />} />
 
     {/* Rooted application layout */}

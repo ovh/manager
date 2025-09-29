@@ -1,5 +1,6 @@
 /* eslint-disable react/no-multi-comp */
 import type { ReactNode } from 'react';
+import React from 'react';
 
 import { fireEvent, render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
