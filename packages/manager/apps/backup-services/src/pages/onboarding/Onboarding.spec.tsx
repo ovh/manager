@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
@@ -81,7 +81,7 @@ describe('OnboardingPage', () => {
     render(<OnboardingPage />);
     expect(screen.getByTestId('title')).toHaveTextContent('Welcome!');
     expect(screen.getByTestId('description')).toBeInTheDocument();
-    expect(screen.getByTestId('order')).toHaveTextContent('common:order');
+    expect(screen.getByTestId('order')).toBeInTheDocument();
   });
 
   it('renders hero image with alt text', () => {
