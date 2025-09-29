@@ -11,7 +11,7 @@ import {
   MOCK_PATH_VALID,
 } from '@secret-manager/utils/tests/secret.constants';
 import { SECRET_FORM_TEST_IDS } from '@secret-manager/pages/createSecret/SecretForm.constants';
-import { SECRET_INPUT_DATA_TEST_ID } from '@secret-manager/components/form/SecretDataFormField.constants';
+import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
 import { fireEvent, act, render, screen } from '@testing-library/react';
 import { labels, initTestI18n } from '@/utils/tests/init.i18n';
 import { SecretForm } from './SecretForm.component';
@@ -85,7 +85,9 @@ describe('Secrets creation form test suite', () => {
 
       const inputPath = screen.getByTestId(SECRET_FORM_TEST_IDS.INPUT_PATH);
       expect(inputPath).toBeInTheDocument();
-      const inputData = screen.getByTestId(SECRET_INPUT_DATA_TEST_ID);
+      const inputData = screen.getByTestId(
+        SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA,
+      );
       expect(inputData).toBeInTheDocument();
       const submitButton = screen.getByTestId(
         SECRET_FORM_TEST_IDS.SUBMIT_BUTTON,
@@ -115,7 +117,7 @@ describe('Secrets creation form test suite', () => {
   it('should display the template in the data input', async () => {
     // GIVEN
     await renderSecretForm(MOCK_OKMS_ID);
-    const inputData = screen.getByTestId(SECRET_INPUT_DATA_TEST_ID);
+    const inputData = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA);
     expect(inputData).toBeInTheDocument();
 
     // THEN
