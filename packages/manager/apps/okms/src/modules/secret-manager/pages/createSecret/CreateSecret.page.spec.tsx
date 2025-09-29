@@ -8,7 +8,7 @@ import {
   MOCK_PATH_VALID,
 } from '@secret-manager/utils/tests/secret.constants';
 import { SECRET_FORM_TEST_IDS } from '@secret-manager/pages/createSecret/SecretForm.constants';
-import { SECRET_INPUT_DATA_TEST_ID } from '@secret-manager/components/form/SecretDataFormField.constants';
+import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
 import { fireEvent, act, screen } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
 import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
@@ -29,7 +29,7 @@ const selectRegion = async (user: UserEvent) => {
 
 const fillRequiredFields = () => {
   const inputPath = screen.getByTestId(SECRET_FORM_TEST_IDS.INPUT_PATH);
-  const inputData = screen.getByTestId(SECRET_INPUT_DATA_TEST_ID);
+  const inputData = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA);
 
   act(() => {
     fireEvent.input(inputPath, {

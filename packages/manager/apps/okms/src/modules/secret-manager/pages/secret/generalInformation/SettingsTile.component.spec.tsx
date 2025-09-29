@@ -20,6 +20,15 @@ vi.mock('@secret-manager/hooks/useSecretSmartConfig', () => ({
   useSecretSmartConfig: (secret: Secret) => mockUseSecretSmartConfig(secret),
 }));
 
+vi.mock('react-router-dom', async (importOriginal) => {
+  const module: typeof import('react-router-dom') = await importOriginal();
+  return {
+    ...module,
+    useNavigate: () => vi.fn(),
+    useHref: vi.fn((link) => link),
+  };
+});
+
 const mockSecret = mockSecret1;
 
 const mockSecretSmartConfig: SecretSmartConfig = {
@@ -35,6 +44,7 @@ const mockSecretSmartConfig: SecretSmartConfig = {
     value: 15,
     origin: 'DOMAIN',
   },
+  isCasRequiredSetOnOkms: true,
 };
 
 let i18nValue: i18n;

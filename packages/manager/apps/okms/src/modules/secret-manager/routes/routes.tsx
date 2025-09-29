@@ -46,6 +46,11 @@ const CreateVersionDrawer = React.lazy(() =>
     '@secret-manager/pages/drawers/createVersionDrawer/CreateVersionDrawer.page'
   ),
 );
+const EditMetadataDrawer = React.lazy(() =>
+  import(
+    '@secret-manager/pages/drawers/editMetadataDrawer/EditMetadataDrawer.page'
+  ),
+);
 const DeleteVersionModal = React.lazy(() =>
   import(
     '@secret-manager/pages/secret/versionList/delete/DeleteSecretVersionModal.page'
@@ -110,6 +115,10 @@ export default (
           <Route
             path={SECRET_MANAGER_ROUTES_URIS.createVersion}
             Component={CreateVersionDrawer}
+          />
+          <Route
+            path={SECRET_MANAGER_ROUTES_URIS.editMetadata}
+            Component={EditMetadataDrawer}
           />
           <Route
             path={SECRET_MANAGER_ROUTES_URIS.delete}

@@ -36,7 +36,8 @@ describe('getSecretSmartConfig', () => {
     domainOverrides: Partial<SecretConfig>;
     expectedValue: string | number | boolean;
     expectedOrigin: 'SECRET' | 'DOMAIN' | 'DEFAULT';
-    testedProperty: keyof SecretSmartConfig;
+    expectedIsCasRequiredSetOnOkms: boolean;
+    testedProperty: Exclude<keyof SecretSmartConfig, 'isCasRequiredSetOnOkms'>;
   };
 
   const runTests = (testCases: TestCase[]) => {
@@ -47,6 +48,7 @@ describe('getSecretSmartConfig', () => {
         domainOverrides,
         expectedValue,
         expectedOrigin,
+        expectedIsCasRequiredSetOnOkms,
         testedProperty,
       }) => {
         const secret = createMockSecret(secretOverrides);
@@ -60,6 +62,9 @@ describe('getSecretSmartConfig', () => {
 
         expect(result[testedProperty].value).toBe(expectedValue);
         expect(result[testedProperty].origin).toBe(expectedOrigin);
+        expect(result.isCasRequiredSetOnOkms).toBe(
+          expectedIsCasRequiredSetOnOkms,
+        );
       },
     );
   };
@@ -72,6 +77,7 @@ describe('getSecretSmartConfig', () => {
         domainOverrides: { maxVersions: NOT_SET_VALUE_MAX_VERSIONS },
         expectedValue: 10,
         expectedOrigin: 'DEFAULT',
+        expectedIsCasRequiredSetOnOkms: false,
         testedProperty: 'maxVersions',
       },
       {
@@ -84,6 +90,7 @@ describe('getSecretSmartConfig', () => {
         },
         expectedValue: NOT_SET_VALUE_DEACTIVATE_VERSION_AFTER,
         expectedOrigin: 'DEFAULT',
+        expectedIsCasRequiredSetOnOkms: false,
         testedProperty: 'deactivateVersionAfter',
       },
       {
@@ -92,6 +99,7 @@ describe('getSecretSmartConfig', () => {
         domainOverrides: { casRequired: false },
         expectedValue: false,
         expectedOrigin: 'DEFAULT',
+        expectedIsCasRequiredSetOnOkms: false,
         testedProperty: 'casRequired',
       },
     ];
@@ -107,6 +115,7 @@ describe('getSecretSmartConfig', () => {
         domainOverrides: { maxVersions: NOT_SET_VALUE_MAX_VERSIONS },
         expectedValue: 5,
         expectedOrigin: 'SECRET',
+        expectedIsCasRequiredSetOnOkms: false,
         testedProperty: 'maxVersions',
       },
       {
@@ -117,6 +126,7 @@ describe('getSecretSmartConfig', () => {
         },
         expectedValue: '1h',
         expectedOrigin: 'SECRET',
+        expectedIsCasRequiredSetOnOkms: false,
         testedProperty: 'deactivateVersionAfter',
       },
       {
@@ -125,6 +135,7 @@ describe('getSecretSmartConfig', () => {
         domainOverrides: { casRequired: false },
         expectedValue: true,
         expectedOrigin: 'SECRET',
+        expectedIsCasRequiredSetOnOkms: false,
         testedProperty: 'casRequired',
       },
     ];
@@ -140,6 +151,7 @@ describe('getSecretSmartConfig', () => {
         domainOverrides: { maxVersions: 15 },
         expectedValue: 15,
         expectedOrigin: 'DOMAIN',
+        expectedIsCasRequiredSetOnOkms: false,
         testedProperty: 'maxVersions',
       },
       {
@@ -150,6 +162,7 @@ describe('getSecretSmartConfig', () => {
         domainOverrides: { deactivateVersionAfter: '2h' },
         expectedValue: '2h',
         expectedOrigin: 'DOMAIN',
+        expectedIsCasRequiredSetOnOkms: false,
         testedProperty: 'deactivateVersionAfter',
       },
       {
@@ -158,6 +171,7 @@ describe('getSecretSmartConfig', () => {
         domainOverrides: { casRequired: true },
         expectedValue: true,
         expectedOrigin: 'DOMAIN',
+        expectedIsCasRequiredSetOnOkms: true,
         testedProperty: 'casRequired',
       },
     ];
@@ -173,6 +187,7 @@ describe('getSecretSmartConfig', () => {
         domainOverrides: { maxVersions: 15 },
         expectedValue: 5,
         expectedOrigin: 'SECRET',
+        expectedIsCasRequiredSetOnOkms: false,
         testedProperty: 'maxVersions',
       },
       {
@@ -181,6 +196,7 @@ describe('getSecretSmartConfig', () => {
         domainOverrides: { deactivateVersionAfter: '2h' },
         expectedValue: '1h',
         expectedOrigin: 'SECRET',
+        expectedIsCasRequiredSetOnOkms: false,
         testedProperty: 'deactivateVersionAfter',
       },
       {
@@ -189,6 +205,7 @@ describe('getSecretSmartConfig', () => {
         domainOverrides: { casRequired: false },
         expectedValue: true,
         expectedOrigin: 'SECRET',
+        expectedIsCasRequiredSetOnOkms: false,
         testedProperty: 'casRequired',
       },
     ];

@@ -19,6 +19,7 @@ export type SecretSmartConfig = {
   casRequired: SecretSmartConfigValue<boolean>;
   deactivateVersionAfter: SecretSmartConfigValue<string>;
   maxVersions: SecretSmartConfigValue<number>;
+  isCasRequiredSetOnOkms: boolean;
 };
 
 /**
@@ -88,5 +89,7 @@ export const buildSecretSmartConfig = (
       NOT_SET_VALUE_MAX_VERSIONS,
       secretConfigReference.maxVersions,
     ),
+    isCasRequiredSetOnOkms:
+      secretConfigOkms.casRequired !== NOT_SET_VALUE_CAS_REQUIRED,
   };
 };
