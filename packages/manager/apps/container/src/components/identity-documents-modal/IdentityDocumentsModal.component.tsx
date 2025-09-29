@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useCallback, useEffect, useRef, useState } from 'react';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { Trans, useTranslation } from 'react-i18next';
 import {
@@ -59,7 +59,7 @@ export const IdentityDocumentsModal: FC = () => {
 
   const trackingPlugin = shell.getPlugin('tracking');
 
-  const onCancel = () => {
+  const onCancel = useCallback(() => {
     setShowModal(false);
     uxPlugin.notifyModalActionDone(IdentityDocumentsModal.name);
     trackingPlugin.trackClick({
@@ -67,9 +67,9 @@ export const IdentityDocumentsModal: FC = () => {
       type: 'action',
       ...trackingContext,
     });
-  };
+  }, [trackingPlugin, uxPlugin]);
 
-  const onConfirm = () => {
+  const onConfirm = useCallback(() => {
     setShowModal(false);
     trackingPlugin.trackClick({
       name: `${trackingPrefix}::pop-up::button::kyc::start-verification`,
@@ -77,7 +77,7 @@ export const IdentityDocumentsModal: FC = () => {
       ...trackingContext,
     });
     navigationPlugin.navigateTo('dedicated', `#/identity-documents`);
-  };
+  }, [navigationPlugin, trackingPlugin]);
 
   useEffect(() => {
     trackingPlugin.trackPage({
