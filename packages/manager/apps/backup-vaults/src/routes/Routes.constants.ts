@@ -6,10 +6,10 @@ export const subRoutes = {
 } as const;
 
 export const urls = {
-  root: APP_FEATURES.appSlug,
-  dashboard: `dashboard`,
-  onboarding: 'onboarding',
-  listing: 'listing',
+  root: `/${APP_FEATURES.appSlug}`,
+  dashboard: `/${APP_FEATURES.appSlug}/dashboard`,
+  onboarding: `/${APP_FEATURES.appSlug}/onboarding`,
+  listing: `/${APP_FEATURES.appSlug}/listing`,
 } as const;
 
 export const DASHBOARD_NAV_TABS = Object.freeze([
