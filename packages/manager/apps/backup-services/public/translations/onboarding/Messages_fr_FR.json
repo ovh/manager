@@ -1,11 +1,11 @@
 {
-  "title_fallback": "Bienvenue sur app-gen-test",
-  "description_part1": "Découvrez comment tirer le meilleur parti de app-gen-test, ddd.",
+  "title_fallback": "Bienvenue sur {{productName}}",
+  "description_part1": "Découvrez comment tirer le meilleur parti de {{productName}}",
   "description_part2": "Suivez nos guides pour démarrer rapidement.",
   "guides": {
     "guide1": {
       "category": "Découverte",
-      "title": "Commencer avec app-gen-test",
+      "title": "Commencer avec {{productName}}",
       "description": "Apprenez les bases pour démarrer.",
       "cta": "Découvrir"
     },
