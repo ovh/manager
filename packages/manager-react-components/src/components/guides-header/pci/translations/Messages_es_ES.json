@@ -1,7 +1,7 @@
 {
   "pci_project_guides_header": "Guías",
   "pci_project_guides_header_all_guides": "Todas las guías",
-  "pci_project_guides_header_all_storage_guides": "Todas las guías de almacenamiento y backup",
+  "pci_project_guides_header_all_storage_guides": "Todos los guías de Almacenamiento de Objetos",
   "pci_project_guides_header_first_steps_with_instances": "Primeros pasos con instancias",
   "pci_project_guides_header_storages_volume_backup_overview": "Crear una copia de seguridad de un volumen",
   "pci_project_guides_header_ip_fail_over": "IP failover",
@@ -33,5 +33,5 @@
   "pci_project_guides_header_exporting_a_tensorflow_model": "Exportar un modelo TensorFlow (EN)",
   "pci_project_guides_header_public_cloud_guides": "Todas las guías de Public Cloud",
   "pci_project_guides_header_savings_plans": "¿Cómo funcionan los Savings Plans?",
-  "pci_project_guides_header_first_steps_with_storages": "Primeros pasos con Object Storage"
+  "pci_project_guides_header_first_steps_with_storages": "Primeros pasos con Almacenamiento de Objetos"
 }
