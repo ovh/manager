@@ -13,10 +13,17 @@ import {
   Text,
   TEXT_PRESET,
 } from '@ovhcloud/ods-react';
-import { useFormContext, useWatch } from 'react-hook-form';
+import {
+  Controller,
+  FormProvider,
+  useForm,
+  useFormContext,
+  useWatch,
+} from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { DefaultError } from '@tanstack/react-query';
 import { formatISO } from 'date-fns';
+import { zodResolver } from '@hookform/resolvers/zod';
 import ActionModal from '@/components/actionModal/ActionModal.component';
 import { useInstanceBackupAction } from '@/data/hooks/instance/action/useInstanceAction';
 import { useInstanceBackupPrice } from '@/data/hooks/instance/action/useInstanceBackupPrice';
@@ -34,7 +41,6 @@ import {
 import {
   ComboboxField,
   ComboboxFieldGroup,
-  Form,
   InputField,
   ToggleField,
 } from '@/components/zod-form';
@@ -140,10 +146,19 @@ const DistantSnapshotSection = ({
 
   return (
     <div className="flex flex-col gap-6 mt-6">
-      <InputField<TFormFieldsValues>
-        label={t('pci_instances_actions_backup_instance_distant_name_label')}
+      <Controller
+        render={({ field, fieldState: { error, invalid } }) => (
+          <InputField
+            label={t(
+              'pci_instances_actions_backup_instance_distant_name_label',
+            )}
+            invalid={invalid}
+            errorMessage={error?.message}
+            type="text"
+            {...field}
+          />
+        )}
         name="distantSnapshotName"
-        type="text"
       />
       <div className="flex flex-col gap-4">
         <ComboboxField<TFormFieldsValues>
@@ -255,6 +270,17 @@ const BackupActionPage = () => {
 
   const formSchema = useFormSchema();
 
+  const { handleSubmit, formState, ...restForm } = useForm({
+    resolver: zodResolver(formSchema),
+    values: {
+      snapshotName: defaultSnapshotName,
+      distantSnapshot: false,
+      distantSnapshotName: defaultSnapshotName,
+      distantRegion: null,
+    },
+    mode: 'onBlur',
+  });
+
   const handleInstanceAction = useCallback(
     (formValues: TSchemaOutput<typeof formSchema>) => {
       if (instance)
@@ -280,25 +306,27 @@ const BackupActionPage = () => {
       variant="primary"
       className="max-h-[unset] mt-[25vh]"
       wrapper={({ children }: PropsWithChildren) => (
-        <Form
-          schema={formSchema}
-          onSubmit={handleInstanceAction}
-          values={{
-            snapshotName: defaultSnapshotName,
-            distantSnapshot: false,
-            distantSnapshotName: defaultSnapshotName,
-            distantRegion: null,
-          }}
+        <FormProvider
+          formState={formState}
+          handleSubmit={handleSubmit}
+          {...restForm}
         >
-          {children}
-        </Form>
+          <form onSubmit={handleSubmit(handleInstanceAction)}>{children}</form>
+        </FormProvider>
       )}
     >
       <div className="flex flex-col gap-4 mt-6">
-        <InputField<TFormFieldsValues>
-          label={t('pci_instances_actions_backup_instance_name_label')}
+        <Controller
+          render={({ field, fieldState: { error, invalid } }) => (
+            <InputField
+              label={t('pci_instances_actions_backup_instance_name_label')}
+              invalid={invalid}
+              errorMessage={error?.message}
+              type="text"
+              {...field}
+            />
+          )}
           name="snapshotName"
-          type="text"
         />
         {!!price && !isBackupLoading && (
           <Text preset={TEXT_PRESET.caption}>

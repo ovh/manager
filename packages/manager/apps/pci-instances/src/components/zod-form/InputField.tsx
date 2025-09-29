@@ -1,4 +1,3 @@
-import { Controller, FieldPath, FieldValues } from 'react-hook-form';
 import { ComponentPropsWithoutRef } from 'react';
 import {
   FormField,
@@ -8,30 +7,19 @@ import {
 } from '@ovhcloud/ods-react';
 import { ErrorText } from '@/components/zod-form/ErrorText';
 
-export const InputField = <
-  TFieldValues extends FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
->({
+export const InputField = ({
   label,
-  name,
+  invalid,
+  errorMessage,
   ...inputProps
-}: { label: string; name: TName } & Omit<
+}: { label: string; invalid: boolean; errorMessage?: string } & Omit<
   ComponentPropsWithoutRef<'input'>,
-  'name' | 'type'
+  'type'
 > &
-  Pick<InputProp, 'type'>) => {
-  return (
-    <FormField>
-      <FormFieldLabel>{label}</FormFieldLabel>
-      <Controller<TFieldValues>
-        render={({ field, fieldState: { error, invalid } }) => (
-          <>
-            <Input {...field} {...inputProps} invalid={invalid} />
-            {!!error && <ErrorText>{error.message}</ErrorText>}
-          </>
-        )}
-        name={name}
-      />
-    </FormField>
-  );
-};
+  Pick<InputProp, 'type'>) => (
+  <FormField>
+    <FormFieldLabel>{label}</FormFieldLabel>
+    <Input {...inputProps} invalid={invalid} />
+    {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
+  </FormField>
+);
