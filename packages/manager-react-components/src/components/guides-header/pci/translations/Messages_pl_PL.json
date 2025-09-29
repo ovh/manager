@@ -1,7 +1,7 @@
 {
   "pci_project_guides_header": "Przewodniki",
   "pci_project_guides_header_all_guides": "Wszystkie przewodniki",
-  "pci_project_guides_header_all_storage_guides": "Wszystkie przewodniki dotyczące przestrzeni dyskowej i kopii zapasowych",
+  "pci_project_guides_header_all_storage_guides": "Wszystkie przewodniki Object Storage",
   "pci_project_guides_header_first_steps_with_instances": "Pierwsze kroki z instancjami",
   "pci_project_guides_header_storages_volume_backup_overview": "Utwórz kopię zapasową wolumenu",
   "pci_project_guides_header_ip_fail_over": "IP Failover",

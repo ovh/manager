@@ -1,7 +1,7 @@
 {
   "pci_project_guides_header": "Guide",
   "pci_project_guides_header_all_guides": "Tutte le guide",
-  "pci_project_guides_header_all_storage_guides": "Tutte le guide di storage e backup",
+  "pci_project_guides_header_all_storage_guides": "Tutti i guide Object Storage",
   "pci_project_guides_header_first_steps_with_instances": "Iniziare a utilizzare le istanze",
   "pci_project_guides_header_storages_volume_backup_overview": "Creare il backup di un volume",
   "pci_project_guides_header_ip_fail_over": "IP Failover",
