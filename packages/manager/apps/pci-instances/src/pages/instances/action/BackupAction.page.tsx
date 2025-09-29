@@ -40,7 +40,7 @@ import {
   TSchemaOutput,
   useInputSchema,
 } from '@/input-validation';
-import { ComboboxField, InputField, ToggleField } from '@/components/zod-form';
+import { ComboboxField, InputField, ToggleField } from '@/components/form';
 
 const useFormSchema = () => {
   const {

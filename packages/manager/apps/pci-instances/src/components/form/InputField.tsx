@@ -5,7 +5,7 @@ import {
   Input,
   InputProp,
 } from '@ovhcloud/ods-react';
-import { ErrorText } from '@/components/zod-form/ErrorText';
+import { ErrorText } from './ErrorText';
 
 export const InputField = ({
   label,
