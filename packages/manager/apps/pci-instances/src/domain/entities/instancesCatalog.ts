@@ -10,7 +10,7 @@ export type TContinentID = TContinentName;
 
 export type TContinent = {
   name: TContinentName;
-  regionIds: TRegionID[];
+  datacenterIds: string[];
   tags: string[];
 };
 
@@ -19,11 +19,11 @@ export type TRegion = {
   deploymentMode: TDeploymentModeID;
   continentIds: TContinentID[];
   country: string | null;
-  datacenter: string;
   availabilityZones: string[];
   isActivable: boolean;
   isActivated: boolean;
   isInMaintenance: boolean;
+  microRegions: string[];
 };
 
 export type TDeployment = {

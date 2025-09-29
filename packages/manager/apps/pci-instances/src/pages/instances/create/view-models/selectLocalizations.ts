@@ -2,7 +2,6 @@ import { Deps } from '@/deps/deps';
 import { TDeploymentMode } from '@/types/instance/common.type';
 import { TRegion } from '@/domain/entities/instancesCatalog';
 import { Reader } from '@/types/utils.type';
-// import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 export type TRegionDataForCard = {
   city: string;

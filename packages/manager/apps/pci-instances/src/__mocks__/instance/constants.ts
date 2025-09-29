@@ -123,7 +123,7 @@ export const mockedInstancesCatalogDTO: TInstancesCatalogDTO = {
       },
       {
         name: 'western_europe',
-        regions: ['GRA11', 'EU-WEST-PAR'],
+        regions: ['GRA11', 'GRA7', 'EU-WEST-PAR'],
         tags: [],
       },
       {
@@ -150,6 +150,20 @@ export const mockedInstancesCatalogDTO: TInstancesCatalogDTO = {
   regions: [
     {
       name: 'GRA11',
+      type: 'region',
+      availabilityZones: [],
+      isInMaintenance: false,
+      country: 'fr',
+      isActivated: true,
+      isActivable: true,
+      datacenter: 'GRA',
+      filters: {
+        deployment: ['region'],
+        region: ['western_europe'],
+      },
+    },
+    {
+      name: 'GRA7',
       type: 'region',
       availabilityZones: [],
       isInMaintenance: false,
@@ -212,51 +226,51 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
     regions: {
       byId: new Map([
         [
-          'GRA11',
+          'GRA',
           {
-            name: 'GRA11',
+            name: 'GRA',
             deploymentMode: 'region',
             availabilityZones: [],
             isInMaintenance: false,
             country: 'fr',
             isActivated: true,
             isActivable: true,
-            datacenter: 'GRA',
             continentIds: ['western_europe'],
+            microRegions: ['GRA11', 'GRA7'],
           },
         ],
         [
-          'BHS5',
+          'BHS',
           {
-            name: 'BHS5',
+            name: 'BHS',
             deploymentMode: 'region',
             availabilityZones: [],
             isInMaintenance: false,
             country: 'ca',
             isActivated: true,
             isActivable: true,
-            datacenter: 'BHS',
             continentIds: ['north_america'],
+            microRegions: ['BHS5'],
           },
         ],
         [
-          'EU-SOUTH-LZ-MIL-A',
+          'EU-SOUTH-LZ-MIL',
           {
-            name: 'EU-SOUTH-LZ-MIL-A',
+            name: 'EU-SOUTH-LZ-MIL',
             deploymentMode: 'localzone',
             availabilityZones: [],
             isInMaintenance: false,
             country: 'it',
             isActivated: false,
             isActivable: true,
-            datacenter: 'EU-SOUTH-LZ-MIL',
             continentIds: ['south_europe'],
+            microRegions: ['EU-SOUTH-LZ-MIL-A'],
           },
         ],
         [
-          'EU-WEST-PAR',
+          'PAR',
           {
-            name: 'EU-WEST-PAR',
+            name: 'PAR',
             deploymentMode: 'region-3-az',
             availabilityZones: [
               'eu-west-par-a',
@@ -267,12 +281,12 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
             country: 'fr',
             isActivated: true,
             isActivable: true,
-            datacenter: 'PAR',
             continentIds: ['western_europe'],
+            microRegions: ['EU-WEST-PAR'],
           },
         ],
       ]),
-      allIds: ['GRA11', 'BHS5', 'EU-SOUTH-LZ-MIL-A', 'EU-WEST-PAR'],
+      allIds: ['GRA', 'BHS', 'EU-SOUTH-LZ-MIL', 'PAR'],
     },
     deploymentModes: {
       byId: new Map([
@@ -306,7 +320,7 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
           'north_america',
           {
             name: 'north_america',
-            regionIds: ['BHS5'],
+            datacenterIds: ['BHS'],
             tags: [],
           },
         ],
@@ -314,7 +328,7 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
           'western_europe',
           {
             name: 'western_europe',
-            regionIds: ['GRA11', 'EU-WEST-PAR'],
+            datacenterIds: ['GRA', 'PAR'],
             tags: [],
           },
         ],
@@ -322,7 +336,7 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
           'south_europe',
           {
             name: 'south_europe',
-            regionIds: ['EU-SOUTH-LZ-MIL-A'],
+            datacenterIds: ['EU-SOUTH-LZ-MIL'],
             tags: [],
           },
         ],
