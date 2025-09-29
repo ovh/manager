@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Drawer } from '@ovh-ux/manager-react-components';
-import { VALUE_DRAWER_TEST_ID } from '@secret-manager/utils/tests/secretValue.constants';
 import { SecretVersion } from '@secret-manager/types/secret.type';
 import { LocationPathParams } from '@secret-manager/routes/routes.constants';
 import { useNavigate, useParams } from 'react-router-dom';
+import { SECRET_VALUE_DRAWER_TEST_ID } from './SecretValueDrawer.constants';
 import { SecretRawValue } from './SecretRawValue.component';
 import { VersionSelector } from './VersionSelector.component';
 
@@ -19,7 +19,7 @@ const SecretValueDrawerPage = () => {
 
   return (
     <Drawer
-      data-testid={VALUE_DRAWER_TEST_ID}
+      data-testid={SECRET_VALUE_DRAWER_TEST_ID}
       heading={t('values')}
       onDismiss={() => {
         navigate('..');
