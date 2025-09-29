@@ -7,6 +7,7 @@ const URIS = {
   versionList: 'versions',
   create: 'create',
   createVersion: 'create-version',
+  editMetadata: 'edit-metadata',
   order: 'order',
   value: 'value',
   delete: 'delete',
@@ -46,6 +47,11 @@ const URLS = {
   secretCreateVersionDrawer: (okmsId: string, secretPath: string) =>
     `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${
       URIS.createVersion
+    }`,
+
+  secretEditMetadataDrawer: (okmsId: string, secretPath: string) =>
+    `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${
+      URIS.editMetadata
     }`,
 
   secretDeleteSecret: (okmsId: string, secretPath: string) =>
