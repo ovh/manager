@@ -17,7 +17,7 @@ export const InputField = ({
   'type'
 > &
   Pick<InputProp, 'type'>) => (
-  <FormField>
+  <FormField invalid={invalid}>
     <FormFieldLabel>{label}</FormFieldLabel>
     <Input {...inputProps} invalid={invalid} />
     {errorMessage && <ErrorText>{errorMessage}</ErrorText>}

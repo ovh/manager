@@ -6,12 +6,14 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { PropsWithChildren, useCallback, useMemo } from 'react';
 import {
+  ComboboxValueChangeDetails,
   ICON_NAME,
   Message,
   MessageBody,
   MessageIcon,
   Text,
   TEXT_PRESET,
+  ComboboxGroupItem
 } from '@ovhcloud/ods-react';
 import {
   Controller,
@@ -38,12 +40,7 @@ import {
   TSchemaOutput,
   useInputSchema,
 } from '@/input-validation';
-import {
-  ComboboxField,
-  ComboboxFieldGroup,
-  InputField,
-  ToggleField,
-} from '@/components/zod-form';
+import { ComboboxField, InputField, ToggleField } from '@/components/zod-form';
 
 const useFormSchema = () => {
   const {
@@ -119,7 +116,7 @@ const DistantSnapshotSection = ({
     () =>
       continents
         .entries()
-        .map<ComboboxFieldGroup>(([label, regions]) => ({
+        .map<ComboboxGroupItem>(([label, regions]) => ({
           label,
           options: regions.map((region) => ({
             label: region.label,
@@ -161,12 +158,29 @@ const DistantSnapshotSection = ({
         name="distantSnapshotName"
       />
       <div className="flex flex-col gap-4">
-        <ComboboxField<TFormFieldsValues>
-          label={t(
-            'pci_instances_actions_backup_instance_distant_region_label',
-          )}
+        <Controller
+          render={({
+            field: { value, onChange },
+            fieldState: { error, invalid },
+          }) => {
+            const handleChange = (changeDetails: ComboboxValueChangeDetails) =>
+              onChange(changeDetails.value[0]);
+
+            return (
+              <ComboboxField
+                label={t(
+                  'pci_instances_actions_backup_instance_distant_region_label',
+                )}
+                errorMessage={error?.message}
+                value={value ? [value] : []}
+                items={regionItems}
+                onValueChange={handleChange}
+                invalid={invalid}
+                allowCustomValue={false}
+              />
+            );
+          }}
           name="distantRegion"
-          items={regionItems}
         />
         {!!price && !isBackupLoading && (
           <Text preset={TEXT_PRESET.caption}>
