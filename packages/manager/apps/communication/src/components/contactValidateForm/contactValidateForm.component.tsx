@@ -43,7 +43,7 @@ const ContactValidateForm = forwardRef(
     }));
 
     return (
-      <form className="flex flex-col gap-4">
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         <Controller
           control={control}
           name="otp"

@@ -15,11 +15,10 @@ import { useAuthorization, usePendingRedirect } from '@/hooks';
 
 export default function EditContactPage() {
   const navigate = useNavigate();
-  const { addSuccess } = useNotifications();
+  const { addSuccess, clearNotifications } = useNotifications();
   const [error, setError] = useState<string | null>(null);
   const { contactMeanId } = useParams();
-  const { t } = useTranslation('contacts');
-  const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
+  const { t } = useTranslation(['contacts', NAMESPACES.ACTIONS, 'common']);
 
   const { isAuthorized, isLoading: isLoadingAuthorization } = useAuthorization([
     'account:apiovh:notification/contactMean/edit',
@@ -36,11 +35,16 @@ export default function EditContactPage() {
   const { mutate, isPending: isPendingRename } = useRenameContactMean({
     contactMeanId: contactMeanId as string,
     onSuccess: () => {
+      clearNotifications();
       addSuccess(t('edit_contact_success_message'));
       navigate(urls.ContactsTab);
     },
-    onError: () => {
-      setError(t('edit_contact_error_message'));
+    onError: (err) => {
+      if (err.response?.status === 429) {
+        setError(t('error_rate_limit_message', { ns: 'common' }));
+      } else {
+        setError(t('edit_contact_error_message'));
+      }
     },
   });
 
@@ -61,8 +65,8 @@ export default function EditContactPage() {
       onDismiss={() => navigate(urls.ContactsTab)}
       onSecondaryButtonClick={() => navigate(urls.ContactsTab)}
       onPrimaryButtonClick={() => formRef.current?.submit()}
-      secondaryButtonLabel={tActions('cancel')}
-      primaryButtonLabel={tActions('validate')}
+      secondaryButtonLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
+      primaryButtonLabel={t('validate', { ns: NAMESPACES.ACTIONS })}
       isPrimaryButtonLoading={isPendingRename}
       isLoading={isLoading}
     >

@@ -36,7 +36,7 @@ export const useContactMean = ({
 
 type UseCreateContactMeanParams = {
   onSuccess?: (contactMean: ContactMean) => void;
-  onError?: (error: Error) => void;
+  onError?: (error: ApiError) => void;
 };
 export const useCreateContactMean = ({
   onSuccess,
@@ -59,7 +59,7 @@ export const useCreateContactMean = ({
 type UpdateContactMeanParams = {
   contactMeanId: string;
   onSuccess?: (contactMean: ContactMean) => void;
-  onError?: (error: Error) => void;
+  onError?: (error: ApiError) => void;
 };
 export const useRenameContactMean = ({
   contactMeanId,
@@ -130,7 +130,7 @@ export const useChangeContactMeanStatus = ({
 type UseValidateContactMeanParams = {
   contactMeanId: string;
   onSuccess?: (contactMean: ContactMean) => void;
-  onError?: (error: Error) => void;
+  onError?: (error: ApiError) => void;
 };
 export const useValidateContactMean = ({
   contactMeanId,
