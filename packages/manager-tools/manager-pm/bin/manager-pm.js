@@ -3,7 +3,8 @@
  * @fileoverview manager-pm CLI entrypoint.
  *
  * Provides a simple argument parser and dispatcher for actions like
- * build, test, lint, CI tasks, docs, and manager-cli passthrough.
+ * build, test, lint, CI tasks, docs, manager-cli passthrough,
+ * workspace management, publishing, release, and lifecycle hooks.
  * Supports forwarding arbitrary Turbo CLI flags.
  */
 import process from 'node:process';
@@ -19,8 +20,11 @@ import {
   buildApp,
   buildCI,
   buildDocs,
+  createRelease,
   lintAll,
   lintApp,
+  publishPackage,
+  runLifecycleTask,
   runManagerCli,
   testAll,
   testApp,
@@ -87,37 +91,109 @@ function parseArgs(argv) {
 }
 
 /**
- * Print usage instructions for manager-pm.
+ * Human-readable CLI help text for manager-pm.
+ *
+ * Includes usage, actions, common options, publish/release flags, examples, and notes.
+ * Update this string when adding or removing actions so `printHelp()` stays in sync.
+ *
+ * @constant
+ * @type {string}
+ */
+const HELP_TEXT = `
+manager-pm — monorepo task runner
+
+USAGE
+  manager-pm [--type pnpm] --action <action> [options]
+  manager-pm --help
+
+ACTIONS
+  Single-app:
+    build   --app <name>         Build one app
+    test    --app <name>         Test one app
+    lint    --app <name>         Lint one app
+
+  Turbo passthrough (flags forwarded to Turbo):
+    buildCI [--filter <expr>] [other turbo flags]
+    testCI  [--filter <expr>] [other turbo flags]
+
+  Global:
+    full-build                   Build ALL apps
+    full-test                    Test ALL apps
+    full-lint                    Lint ALL apps
+    start                        Launch interactive app starter
+    docs                         Build documentation workspace
+    cli                          Run manager-cli (everything after "cli" is forwarded)
+    workspace --mode <prepare|remove>
+                                 Prepare or clear root workspaces
+
+  Publishing & Release:
+    publish                      Publish all packages (scripts/publish.js)
+    release                      Create a release (scripts/release/release.sh)
+
+  Lifecycle:
+    preinstall                   Run preinstall lifecycle hook
+    postinstall                  Run postinstall lifecycle hook
+
+COMMON OPTIONS
+  --type <pnpm>                  Package manager type (default: pnpm)
+  --action <name>                Action to execute
+  --app <name>                   App/package name (build/test/lint single-app)
+  --filter <expr>                Turbo filter for buildCI/testCI
+  --container                    Hint that we run inside a container
+  --region <code>                Region flag (printed for logs only)
+
+RELEASE / PUBLISH FLAGS (forwarded to underlying tools)
+  --dry-run | --dryrun | -n      DRY MODE
+                                 • publish: uses "npm publish --dry-run" (no registry write)
+                                 • release: non-mutating — no smoke tags, no commits/push,
+                                   no file changes persist (working tree is restored)
+  --tag <name>                   Dist-tag (publish) or explicit release tag (release)
+  --seed <value>                 Seed used to compute release name
+  --conventional-prerelease      Forwarded to lerna (release)
+  --preid <id>                   e.g. rc, alpha (with --conventional-prerelease)
+  (Any other unknown flags are forwarded to Turbo / lerna / npm/yarn as appropriate)
+
+EXAMPLES
+  # Single app
+  manager-pm --type pnpm --action build --app web
+  manager-pm --type pnpm --action test  --app web
+  manager-pm --type pnpm --action lint  --app web
+
+  # Turbo passthrough
+  manager-pm --type pnpm --action buildCI --filter=@ovh-ux/manager-web
+  manager-pm --type pnpm --action testCI  --filter=tag:unit --parallel
+
+  # Workspaces
+  manager-pm --action workspace --mode prepare
+  manager-pm --action workspace --mode remove
+
+  # manager-cli passthrough
+  manager-pm --type pnpm --action cli -- migrations-status --type all
+
+  # Publish (dry + real)
+  manager-pm --type pnpm --action publish --dry-run
+  manager-pm --type pnpm --action publish --dry-run --tag v1.2.3
+  manager-pm --type pnpm --action publish --access public --tag latest
+
+  # Release (dry + real)
+  manager-pm --type pnpm --action release --dry-run
+  manager-pm --type pnpm --action release --tag v1.2.3
+  manager-pm --type pnpm --action release --conventional-prerelease --preid rc
+
+NOTES
+  • Exit codes: 0 on success, non-zero on failure.
+  • In dry release mode, the script safeguards your working tree: no tags/commits/push,
+    no persistent file changes (package.json/CHANGELOG restored).
+  • For "cli" action, everything after the word "cli" is forwarded to manager-cli verbatim.
+`;
+
+/**
+ * Print the CLI help text.
+ *
  * @returns {void}
  */
 function printHelp() {
-  logger.info(`
-Usage: manager-pm --type pnpm --action <action> [options]
-
-Single-app mode:
-  build   --app <name>      Build one app only
-  test    --app <name>      Run tests for one app only
-  lint    --app <name>      Run lint for one app only
-
-Turbo passthrough:
-  buildCI [--filter <expr>] [other turbo options]
-  testCI  [--filter <expr>] [other turbo options]
-
-Global:
-  full-build   Build ALL apps
-  full-test    Run tests across ALL apps
-  full-lint    Run lint across ALL apps
-  start        Launch interactive app starter
-  docs         Build documentation workspace
-  cli          Run manager-cli with passthrough args
-  workspace    Manage root workspaces (prepare/remove)
-
-Examples:
-  manager-pm --type pnpm --action build --app web
-  manager-pm --type pnpm --action cli -- migrations-status --type all
-  manager-pm --action workspace --mode prepare
-  manager-pm --action workspace --mode remove
-`);
+  logger.info(HELP_TEXT);
 }
 
 /**
@@ -131,12 +207,12 @@ function exitError(msg) {
 }
 
 /**
- * Collect extra CLI options to forward to Turbo.
+ * Collect extra CLI options to forward to internal tools.
  *
  * @param {Record<string, string|boolean>} opts - Parsed CLI options.
  * @returns {string[]} Array of CLI flags for Turbo.
  */
-function collectTurboArgs(opts) {
+function collectToolsArgs(opts) {
   const excluded = ['action', 'type', 'app', 'filter', 'region', 'mode', 'container'];
   return Object.entries(opts)
     .filter(([k]) => !excluded.includes(k))
@@ -164,12 +240,12 @@ const actions = {
   },
   async buildCI({ passthrough, filter, opts }) {
     const base = passthrough.length ? passthrough : filter ? ['--filter', filter] : [];
-    const forwarded = collectTurboArgs(opts);
+    const forwarded = collectToolsArgs(opts);
     return buildCI([...base, ...forwarded]);
   },
   async testCI({ passthrough, filter, opts }) {
     const base = passthrough.length ? passthrough : filter ? ['--filter', filter] : [];
-    const forwarded = collectTurboArgs(opts);
+    const forwarded = collectToolsArgs(opts);
     return testCI([...base, ...forwarded]);
   },
   async start() {
@@ -206,6 +282,20 @@ const actions = {
     } else {
       exitError(`❌ Unknown workspace mode: "${mode}" (expected prepare|remove)`);
     }
+  },
+  async publish({ opts }) {
+    const forwarded = collectToolsArgs(opts);
+    return publishPackage(forwarded);
+  },
+  async release({ opts }) {
+    const forwarded = collectToolsArgs(opts);
+    return createRelease(forwarded);
+  },
+  async preinstall() {
+    return runLifecycleTask('preinstall');
+  },
+  async postinstall() {
+    return runLifecycleTask('postinstall');
   },
 };
 
@@ -244,7 +334,12 @@ mode: ${mode || '(none)'}`);
 
   try {
     const handler = actions[action];
-    if (!handler) exitError(`❌ Unknown action: "${action}"`);
+    if (!handler) {
+      logger.warn(`⚠️  Unknown action: "${action}"`);
+      printHelp();
+      process.exit(1);
+    }
+
     await handler({ app, passthrough, filter, mode, opts });
     process.exit(0);
   } catch (err) {

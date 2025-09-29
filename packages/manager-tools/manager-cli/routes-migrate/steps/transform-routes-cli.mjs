@@ -2,7 +2,6 @@
 import parser from '@babel/parser';
 import traverseModule from '@babel/traverse';
 import { readFile, writeFile } from 'fs/promises';
-import path from 'path';
 import prettier from 'prettier';
 
 import { traverseRoutesExportNodes } from '../../utils/ASTUtils.mjs';
@@ -258,6 +257,7 @@ const extractRoutesFromAST = (ast, code, lazyRoutesNames) => {
  */
 const generateLazyRouteImports = (lazyRoutesNames) =>
   Array.from(lazyRoutesNames.entries())
+    // eslint-disable-next-line no-unused-vars
     .filter(([_, name]) => !name.includes('NotFound'))
     .map(([path, name]) => `const ${name} = React.lazy(() => import('${path}'));`)
     .join('\n');

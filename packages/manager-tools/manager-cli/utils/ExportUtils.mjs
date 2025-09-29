@@ -76,6 +76,14 @@ export const buildW3CReportFileName = (format) => buildReportFileName('w3c', for
 export const buildA11yReportFileName = (format) => buildReportFileName('a11y', format);
 
 /**
+ * Build the filename for the PNPM migration report.
+ *
+ * @param {'json'|'html'|string|null} format - Output format ("json", "html", or console).
+ * @returns {string|null} - Full path to the PNPM report file, or null if console mode.
+ */
+export const buildPnpmReportFileName = (format) => buildReportFileName('pnpm', format);
+
+/**
  * Ensure a directory exists, creating it recursively if needed.
  *
  * @param {string} filePath - Path to the file for which the directory must exist.
@@ -184,6 +192,7 @@ const buildMergedMigrationReport = () => {
     'TypeScript Migration': buildStaticKitReportFileName('json'),
     'W3C Migration': buildW3CReportFileName('json'),
     'A11y Migration': buildA11yReportFileName('json'),
+    'PNPM Migration': buildPnpmReportFileName('json'),
   };
 
   const mergedMap = new Map();
@@ -224,6 +233,7 @@ export const renderMergedReport = ({ format }) => {
       'TypeScript Migration',
       'W3C Migration',
       'A11y Migration',
+      'PNPM Migration',
     ],
     format,
     filename,

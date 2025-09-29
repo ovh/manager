@@ -238,3 +238,52 @@ export async function runManagerCli(options = []) {
     ]),
   );
 }
+
+/**
+ * Publish all packages (delegates to scripts/publish.js).
+ * Forwards CLI flags like: --tag v1.2.3 → ['--tag','v1.2.3'].
+ *
+ * @param {string[]} [options=[]]
+ * @returns {Promise<void>}
+ */
+export async function publishPackage(options = []) {
+  return withWorkspaces(() =>
+    runTask('packages:publish', 'node', ['scripts/publish.js', ...options]),
+  );
+}
+
+/**
+ * Create a release (delegates to scripts/release/release.sh).
+ * Forwards CLI flags like: --tag v1.2.3 → ['--tag','v1.2.3'].
+ *
+ * @param {string[]} [options=[]]
+ * @returns {Promise<void>}
+ */
+export async function createRelease(options = []) {
+  return withWorkspaces(() =>
+    runTask('release', 'bash', ['scripts/release/release.sh', ...options]),
+  );
+}
+
+/**
+ * Run a lifecycle task (preinstall, postinstall, etc.).
+ *
+ * This is a thin wrapper around runTask, without withWorkspaces,
+ * because lifecycle hooks must run before or after install.
+ *
+ * @param {"preinstall"|"postinstall"} lifecycle - Lifecycle stage to run.
+ * @returns {Promise<void>} Resolves when the lifecycle script completes successfully.
+ */
+export async function runLifecycleTask(lifecycle) {
+  const scripts = {
+    preinstall: './packages/manager-tools/manager-pm/src/manager-pm-preinstall.js',
+    postinstall: './packages/manager-tools/manager-pm/src/manager-pm-postinstall.js',
+  };
+
+  const script = scripts[lifecycle];
+  if (!script) {
+    throw new Error(`Unknown lifecycle: ${lifecycle}`);
+  }
+
+  return runTask(lifecycle, 'node', [script]);
+}

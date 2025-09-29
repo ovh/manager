@@ -26,10 +26,10 @@ The approach is inspired by a simple migration principle:
   - When Yarn is needed → PNPM apps are removed from the root `package.json`.
   - When Turbo needs the full graph → PNPM apps are temporarily merged back.
 - PNPM is kept **localized** (no hoisting) to avoid interference with Yarn.
-- CI/CD pipelines remain unchanged because `manager-pm` hooks into Yarn’s pre/post install lifecycle.
+- CI/CD pipelines remain unchanged because `manager-pm` hooks into Yarn's pre/post install lifecycle.
 - Legacy `yarn exec turbo` is replaced with direct `yarn build` / `yarn turbo`.
 - Non-semver dependencies are overridden via **per-app temporary `pnpm-workspace.yaml`** instead of modifying apps directly.
-- Private internal packages are built and **linked into PNPM’s store** to avoid registry fetches, ensuring fresh builds from `dist/`.
+- Private internal packages are built and **linked into PNPM's store** to avoid registry fetches, ensuring fresh builds from `dist/`.
 - To prevent multiple React instances, React-family packages are exposed as **peerDependencies** and deduped in Vite configs.
 - No local or CI/CD installation of PNPM is required. The manager-pm tool is fully autonomous and portable, bundling a pinned PNPM binary to ensure reproducibility. This avoids changing existing developer setups or pipelines when transitioning between package managers.
 
@@ -66,17 +66,17 @@ This design avoids duplication on disk while preserving isolated dependency tree
 
 ### How PNPM Stores Dependencies
 - All packages are placed in a global `.pnpm/` store directory.
-- In each project’s `node_modules/`, PNPM does **not copy files**. Instead:
+- In each project's `node_modules/`, PNPM does **not copy files**. Instead:
   - A **hard link** (or symlink on Windows) is created from the store to `node_modules/.pnpm/...`.
   - A **symlink** is then created to expose the package at the expected path (e.g., `node_modules/react`).
-- Result: even if 50 apps depend on `react@18.3.0`, React’s source files exist **only once in the store**.
+- Result: even if 50 apps depend on `react@18.3.0`, React's source files exist **only once in the store**.
 
 ### Isolated Mode (`node-linker=isolated`)
 When using isolated mode (no hoisting):
 - Each app (`appA/node_modules`, `appB/node_modules`) gets its own independent dependency tree.
 - If both **App A** and **App B** depend on `react@18.3.0`:
   - PNPM stores React once globally.
-  - Each app’s `node_modules` contains a hard link pointing to that same store location.
+  - Each app's `node_modules` contains a hard link pointing to that same store location.
   - On disk, React is **not duplicated** — the two entries share the same inode.
 
 ### Key Effects
@@ -225,7 +225,7 @@ manager-pm --type pnpm --action testCI  --filter=packages/manager/apps/web --con
 
 Because the monorepo runs **Yarn at the root** and **PNPM per-app**, you must follow a strict workflow so the two stay in sync:
 
-1. **Manually edit the app’s `package.json`**  
+1. **Manually edit the app's `package.json`**  
    Add your new dependency (`dependencies` / `devDependencies`) directly in the target app folder, e.g.:
 
    ```json
@@ -238,13 +238,26 @@ Because the monorepo runs **Yarn at the root** and **PNPM per-app**, you must fo
 
 2. **Run `yarn install` from the root**  
    This updates the root lockfile and triggers `manager-pm` hooks to:
-- normalize versions
-- rebuild PNPM overrides
-- re-install PNPM apps if necessary
+  - normalize versions
+  - rebuild PNPM overrides
+  - re-install PNPM apps if necessary
 
 3. **Verify**
-- For Yarn apps: `yarn workspace <app> why <dep>`
-- For PNPM apps: `manager-pm --type pnpm --action build --app <app>`
+  - For Yarn apps: `yarn workspace <app> why <dep>`
+  - For PNPM apps: `manager-pm --type pnpm --action build --app <app>`
+
+---
+
+⚠️ **Warning about `yarn add`**
+
+- Running `yarn add` **does trigger** the same `preinstall`/`postinstall` hooks as a full `yarn install`.
+- This means it *can* keep Yarn and PNPM in sync — but with caveats:
+  - Yarn still defaults to adding dependencies at the **root workspace**, not the target app.
+  - Hooks cannot distinguish between *install* and *add*, so catalogs/overrides may not update correctly in all cases.
+- To avoid inconsistencies, prefer the **manual edit + `yarn install`** workflow described above.
+- If you do use `yarn add`, always double-check that:
+  - the dependency was added to the **right `package.json`**, and
+  - PNPM apps still re-installed correctly.
 
 ---
 
@@ -290,21 +303,6 @@ These are already aliased in the root `package.json`:
   }
 }
 ```
-
----
-
-### ✅ Do / ❌ Don’t
-
-| ✅ Do                                                                 | ❌ Don’t                                  |
-|----------------------------------------------------------------------|------------------------------------------|
-| Add deps manually to the app’s `package.json`                        | Run `pnpm add` inside an app              |
-| Run `yarn install` at the **root** after editing deps                | Run `yarn add` or `pnpm add` directly     |
-| Commit both `package.json` changes **and** updated `yarn.lock`       | Forget to update lockfile after changing  |
-| Use `manager-pm` commands (`build`, `test`, `lint`) to verify        | Assume Yarn & PNPM auto-sync without root |
-
-- ❌ Don’t use `yarn workspace`.
-- ❌ Don’t use `yarn exec turbo` (legacy way to call Turbo).  
-  ✅ Instead, run `yarn build`, `yarn test`, etc.
 
 ---
 

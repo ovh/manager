@@ -18,45 +18,24 @@ import { getApplicationId, getApplications } from '../commons/workspace-utils.js
  */
 
 /**
- * Start an application (optionally inside the container) with Turbo.
- *
- * This function:
- *  1) Prompts the user to pick the app/region/container mode,
- *  2) Temporarily restores hybrid workspaces (so PNPM-only apps are visible),
- *  3) Spawns the requested Turbo processes via `concurrently`,
- *  4) Always clears the root workspaces back to normal on exit.
- *
- * Environment:
- *  - Sets `process.env.REGION` to the chosen region.
- *  - When running in container mode, passes:
- *      - `VITE_CONTAINER_APP=<appId>` to the container process
- *      - `CONTAINER=1` to the app process
- *
- * @param {StartAppOptions} [options]
- * @returns {Promise<void>}
- * @throws {Error} If no application is selected or resolution fails.
+ * Register inquirer custom prompt (searchable list).
  */
-export async function startApp(options = {}) {
-  const {
-    defaultRegion = 'EU',
-    defaultContainer = true,
-    raw = true,
-    killOthers = 'failure',
-  } = options;
-
-  // Register searchable list prompt (you were registering it already)
+function registerPrompts() {
   inquirer.registerPrompt('search-list', inquirerSearchList);
+}
 
-  // Preload apps once (avoid recomputing in choices functions)
-  const apps = getApplications();
-  if (!apps.length) {
-    throw new Error('No applications found under configured applicationsBasePath.');
-  }
-
-  /** @type {import('inquirer').QuestionCollection} */
-  const questions = [
+/**
+ * Build the interactive questions to ask the user.
+ *
+ * @param {Array<{ value: string, regions?: string[] }>} apps - List of available applications.
+ * @param {string} defaultRegion - Default region preselected.
+ * @param {boolean} defaultContainer - Default container mode.
+ * @returns {import('inquirer').QuestionCollection}
+ */
+function buildQuestions(apps, defaultRegion, defaultContainer) {
+  return [
     {
-      type: 'search-list', // searchable 🥳
+      type: 'search-list',
       name: 'packageName',
       message: 'Which application do you want to start?',
       choices: apps,
@@ -84,37 +63,21 @@ export async function startApp(options = {}) {
       when: (answers) => answers.packageName !== containerPackageName,
     },
   ];
+}
 
-  const {
-    packageName,
-    region = defaultRegion,
-    container = false,
-  } = await inquirer.prompt(questions);
-  if (!packageName) throw new Error('No application selected.');
-
-  // Make REGION visible to children spawned below
-  process.env.REGION = region;
-  logger.info(`🌍 REGION=${region}`);
-  logger.info(`📦 Package: ${packageName}${container ? ' (container mode)' : ''}`);
-
-  // 1) Ensure hybrid visibility (e.g., PNPM-only apps become visible to Turbo)
-  await updateRootWorkspacesFromCatalogs();
-
-  // 2) Build Turbo filters
-  const appFilter = resolveBuildFilter(packageName) ?? packageName;
-
-  // 3) Build concurrently commands
-  /** @type {Array<{
-   *   name: string,
-   *   command: string,
-   *   cwd: string,
-   *   env?: NodeJS.ProcessEnv,
-   *   prefixColor?: string
-   * }>} */
+/**
+ * Build the concurrently commands for app + container.
+ *
+ * @param {string} packageName - Selected package name.
+ * @param {string} appFilter - Turbo filter for the app.
+ * @param {boolean} container - Whether to run inside container mode.
+ * @returns {Promise<Array<{ name: string, command: string, cwd: string, env?: NodeJS.ProcessEnv, prefixColor?: string }>>}
+ */
+async function buildCommands(packageName, appFilter, container) {
+  /** @type {Array<any>} */
   const commands = [];
 
   if (container && packageName !== containerPackageName) {
-    // Resolve app id via local discovery (works even if Yarn workspaces ignore it)
     const appId = await getApplicationId(packageName);
 
     commands.push({
@@ -142,13 +105,23 @@ export async function startApp(options = {}) {
     });
   }
 
-  // 4) Run! Ensure cleanup no matter what.
+  return commands;
+}
+
+/**
+ * Run the concurrently process with cleanup logic.
+ *
+ * @param {Array<any>} commands - Commands to execute.
+ * @param {boolean} raw - Whether to pass raw output.
+ * @param {"failure"|"success"|"always"} killOthers - Kill other processes policy.
+ */
+async function runWithCleanup(commands, raw, killOthers) {
   try {
     const { result } = concurrently(commands, {
       raw,
-      prefix: 'name', // show [container] / [app] before each line
-      timestamp: true, // add hh:mm:ss
-      killOthers, // stop sibling on failure by default
+      prefix: 'name',
+      timestamp: true,
+      killOthers,
     });
     await result;
     logger.info('✅ Start completed');
@@ -156,4 +129,59 @@ export async function startApp(options = {}) {
     await clearRootWorkspaces();
     logger.info('🧹 Root workspaces restored');
   }
+}
+
+/**
+ * Start an application (optionally inside the container) with Turbo.
+ *
+ * Steps performed:
+ *   1. Prompt the user to pick the app/region/container mode
+ *   2. Temporarily restore hybrid workspaces (so PNPM-only apps are visible)
+ *   3. Spawn the requested Turbo processes via `concurrently`
+ *   4. Always clear the root workspaces back to normal on exit
+ *
+ * Environment:
+ *   - Sets `process.env.REGION` to the chosen region.
+ *   - When running in container mode:
+ *       - `VITE_CONTAINER_APP=<appId>` is passed to the container process
+ *       - `CONTAINER=1` is passed to the app process
+ *
+ * @param {StartAppOptions} [options]
+ * @returns {Promise<void>}
+ * @throws {Error} If no application is selected or resolution fails.
+ */
+export async function startApp(options = {}) {
+  const {
+    defaultRegion = 'EU',
+    defaultContainer = true,
+    raw = true,
+    killOthers = 'failure',
+  } = options;
+
+  registerPrompts();
+
+  const apps = getApplications();
+  if (!apps.length) {
+    throw new Error('No applications found under configured applicationsBasePath.');
+  }
+
+  const questions = buildQuestions(apps, defaultRegion, defaultContainer);
+  const {
+    packageName,
+    region = defaultRegion,
+    container = false,
+  } = await inquirer.prompt(questions);
+
+  if (!packageName) throw new Error('No application selected.');
+
+  process.env.REGION = region;
+  logger.info(`🌍 REGION=${region}`);
+  logger.info(`📦 Package: ${packageName}${container ? ' (container mode)' : ''}`);
+
+  await updateRootWorkspacesFromCatalogs();
+
+  const appFilter = resolveBuildFilter(packageName) ?? packageName;
+  const commands = await buildCommands(packageName, appFilter, container);
+
+  await runWithCleanup(commands, raw, killOthers);
 }
