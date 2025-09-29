@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.20.0...@ovh-ux/manager-iam@1.21.0) (2025-09-29)
+
+
+### Features
+
+* **iam:** add helper message for external nic modal ([99e91d9](https://github.com/ovh/manager/commit/99e91d9dbfd9996f300fd306d108fa252c993ccb)), closes [#MANAGER-18443](https://github.com/ovh/manager/issues/MANAGER-18443)
+* **iam:** close modal on click outside ([e06af3a](https://github.com/ovh/manager/commit/e06af3a2911b1aabdbf807b9498d279c94896b96)), closes [#MANAGER-18441](https://github.com/ovh/manager/issues/MANAGER-18441)
+
+
+
+
+
 # [1.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.19.0...@ovh-ux/manager-iam@1.20.0) (2025-09-22)
 
 
