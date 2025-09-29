@@ -14,15 +14,14 @@ import { useAuthorization, usePendingRedirect } from '@/hooks';
 import ContactValidateForm from '@/components/contactValidateForm/contactValidateForm.component';
 
 export default function ValidateContactPage() {
-  const { t } = useTranslation('contacts');
+  const { t } = useTranslation(['contacts', NAMESPACES.ACTIONS, 'common']);
   const { contactMeanId } = useParams();
   const { isAuthorized, isLoading: isLoadingAuthorization } = useAuthorization([
     'account:apiovh:notification/contactMean/validate',
   ]);
 
-  const { addSuccess } = useNotifications();
+  const { addSuccess, clearNotifications } = useNotifications();
   const [error, setError] = useState<string | null>(null);
-  const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
   const navigate = useNavigate();
   const formRef = useRef<{ submit: () => void }>(null);
   const { data: contactMean, isLoading: isLoadingContactMean } = useContactMean(
@@ -38,11 +37,16 @@ export default function ValidateContactPage() {
   } = useValidateContactMean({
     contactMeanId: contactMean?.id || '',
     onSuccess: () => {
+      clearNotifications();
       addSuccess(t('add_contact_success_message'));
       navigate(urls.ContactsTab);
     },
-    onError: () => {
-      setError(t('verify_contact_error_message'));
+    onError: (err) => {
+      if (err.response?.status === 429) {
+        setError(t('error_rate_limit_message', { ns: 'common' }));
+      } else {
+        setError(t('verify_contact_error_message'));
+      }
     },
   });
 
@@ -62,8 +66,8 @@ export default function ValidateContactPage() {
       isOpen={true}
       isLoading={isLoading}
       onDismiss={() => navigate(urls.ContactsTab)}
-      primaryLabel={tActions('validate')}
-      secondaryLabel={tActions('cancel')}
+      primaryLabel={t('validate', { ns: NAMESPACES.ACTIONS })}
+      secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
       onSecondaryButtonClick={() => {
         navigate(urls.ContactsTab);
       }}

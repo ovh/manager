@@ -24,5 +24,6 @@
   "status_disabled": "Désactivé",
   "status_valid": "Actif",
   "status_to_validate": "En attente",
-  "iam_display_content_message": "Vous ne disposez pas des permissions nécessaires pour afficher les données de cette ressource. Veuillez contacter votre administrateur."
+  "iam_display_content_message": "Vous ne disposez pas des permissions nécessaires pour afficher les données de cette ressource. Veuillez contacter votre administrateur.",
+  "error_rate_limit_message": "Vous avez atteint la limite de requêtes. Veuillez réessayer plus tard."
 }
