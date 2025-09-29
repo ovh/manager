@@ -129,20 +129,15 @@ export default class {
   }
 
   getStatusTypes() {
-    const isUSRegion = this.coreConfig.isRegion('US');
-
-    return Object.values(SERVICE_STATUS).reduce((translatedStatus, status) => {
-      if (isUSRegion && status === SERVICE_STATUS.MANUAL) {
-        return translatedStatus;
-      }
-
-      return {
+    return Object.values(SERVICE_STATUS).reduce(
+      (translatedStatus, status) => ({
         ...translatedStatus,
         [status]: this.$translate.instant(
           `billing_autorenew_service_status_${status}`,
         ),
-      };
-    }, {});
+      }),
+      {},
+    );
   }
 
   getStatesTypes() {
