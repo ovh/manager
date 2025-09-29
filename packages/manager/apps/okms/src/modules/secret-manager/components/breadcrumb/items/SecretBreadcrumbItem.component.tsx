@@ -6,8 +6,8 @@ import {
   SECRET_MANAGER_ROUTES_URLS,
 } from '@secret-manager/routes/routes.constants';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
-import { SECRET_BREADCRUMB_ITEM_TEST_ID } from '@secret-manager/utils/tests/breadcrumb.constants';
 import { isLocationParamsDefined } from '@secret-manager/utils/locationParams';
+import { BREADCRUMB_ITEM_TEST_IDS } from './BreadcrumbItem.constants';
 
 const Item = ({
   okmsId,
@@ -20,7 +20,7 @@ const Item = ({
 
   return (
     <OdsBreadcrumbItem
-      data-testid={SECRET_BREADCRUMB_ITEM_TEST_ID}
+      data-testid={BREADCRUMB_ITEM_TEST_IDS.SECRET}
       key={okmsId}
       label={decodeSecretPath(secretPath)}
       onClick={() =>
