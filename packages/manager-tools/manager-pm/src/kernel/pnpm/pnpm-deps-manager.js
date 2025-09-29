@@ -6,8 +6,6 @@ import path from 'node:path';
 import {
   managerRootPath,
   normalizedVersionsPath,
-  pnpmGlobalStorePath,
-  pnpmStorePath,
   rootPackageJsonPath,
 } from '../../playbook/playbook-config.js';
 import {
@@ -21,46 +19,6 @@ import { loadJson } from '../commons/json-utils.js';
 import { logger } from '../commons/log-manager.js';
 import { removePackageManager, restorePackageManager } from '../commons/package-manager-utils.js';
 import { bootstrapPnpm, getPnpmPlatformExecutablePath } from './pnpm-bootstrap.js';
-
-/**
- * Link all private packages into the local PNPM store.
- *
- * Uses `--dir` (to target/.pnpm-store) and `--global-dir` (to target/.pnpm-home)
- * to keep everything self-contained and CI-friendly.
- *
- * @returns {Promise<void>}
- */
-export async function linkPrivateDeps() {
-  logger.info('🔍 Scanning for private packages...');
-  const privatePackageDirs = await getPrivatePackages();
-  logger.info(`Found ${privatePackageDirs.length} private packages.`);
-
-  const pnpmBin = getPnpmPlatformExecutablePath(os.platform());
-
-  for (const packageDir of privatePackageDirs) {
-    const packageJsonPath = path.join(packageDir, 'package.json');
-    const raw = await fs.readFile(packageJsonPath, 'utf-8');
-    const pkg = JSON.parse(raw);
-
-    if (!pkg.name) continue;
-
-    logger.info(
-      `🔗 Linking ${pkg.name} from ${packageDir} into local store (dir=${pnpmStorePath}, global-dir=${pnpmGlobalStorePath})...`,
-    );
-
-    try {
-      execSync(`${pnpmBin} link --dir ${pnpmStorePath} --global-dir ${pnpmGlobalStorePath}`, {
-        cwd: packageDir,
-        stdio: 'inherit',
-      });
-      logger.success(`✔ Linked ${pkg.name}`);
-    } catch (e) {
-      logger.error(`❌ Failed to link ${pkg.name}:`, e.message);
-    }
-  }
-
-  logger.success(`✅ All private packages linked into ${pnpmStorePath}`);
-}
 
 /**
  * Create a temporary `pnpm-workspace.yaml` inside the app folder.
@@ -86,18 +44,15 @@ async function createWorkspaceYaml(appPath, appPkg, privateDeps, normalizedVersi
 
   const overrideEntries = {};
 
-  // Handle private packages
-  logger.info(`🔎 [workspace] Checking for private package links...`);
-  for (const depName of Object.keys(deps)) {
-    if (privateDeps.has(depName)) {
-      const depPath = privateDeps.get(depName);
-      const relativePath = path.relative(appPath, depPath);
-      overrideEntries[depName] = `link:${relativePath}`;
-      logger.info(`   ↳ linked private: ${depName} → ${relativePath}`);
-    }
+  // Always link ALL private packages
+  logger.info(`🔎 [workspace] Linking all private packages...`);
+  for (const [depName, depPath] of privateDeps.entries()) {
+    const relativePath = path.relative(appPath, depPath);
+    overrideEntries[depName] = `link:${relativePath}`;
+    logger.info(`   ↳ linked private: ${depName} → ${relativePath}`);
   }
 
-  // Handle normalized versions
+  // Add normalized versions for public deps
   logger.info(`🔎 [workspace] Applying normalized versions...`);
   for (const [name, version] of Object.entries(normalizedVersions)) {
     if (!overrideEntries[name]) {
@@ -276,7 +231,6 @@ export async function yarnPostInstall() {
   try {
     await bootstrapPnpm();
     await buildPrivatePackages();
-    await linkPrivateDeps();
 
     const { pnpmCatalogPath } = getCatalogPaths();
     const pnpmApps = await readCatalog(pnpmCatalogPath);

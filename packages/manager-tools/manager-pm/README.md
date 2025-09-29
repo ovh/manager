@@ -58,6 +58,56 @@ The approach is inspired by a simple migration principle:
 
 ---
 
+## PNPM Dependency Layout in Isolated Mode
+
+PNPM uses a **global content-addressable store** to manage dependencies efficiently. 
+
+This design avoids duplication on disk while preserving isolated dependency trees per application.
+
+### How PNPM Stores Dependencies
+- All packages are placed in a global `.pnpm/` store directory.
+- In each project’s `node_modules/`, PNPM does **not copy files**. Instead:
+  - A **hard link** (or symlink on Windows) is created from the store to `node_modules/.pnpm/...`.
+  - A **symlink** is then created to expose the package at the expected path (e.g., `node_modules/react`).
+- Result: even if 50 apps depend on `react@18.3.0`, React’s source files exist **only once in the store**.
+
+### Isolated Mode (`node-linker=isolated`)
+When using isolated mode (no hoisting):
+- Each app (`appA/node_modules`, `appB/node_modules`) gets its own independent dependency tree.
+- If both **App A** and **App B** depend on `react@18.3.0`:
+  - PNPM stores React once globally.
+  - Each app’s `node_modules` contains a hard link pointing to that same store location.
+  - On disk, React is **not duplicated** — the two entries share the same inode.
+
+### Key Effects
+- **No Disk Bloat**  
+  React's code (or any package) is stored only once globally.
+- **Dependency Isolation**  
+  Each app has its own `node_modules` tree, avoiding hoisting conflicts and version leakage.
+- **Runtime Behavior**  
+  Each app may resolve its own React instance at runtime.
+  - If apps are deployed independently, this is fine.
+  - If apps are composed together (e.g., microfrontends), multiple React instances can cause *Invalid Hook Call* errors.
+
+✅ With this setup, PNPM maintains efficient disk usage, guarantees isolation, and still allows you to control deduplication of critical libraries like React.
+
+### Best Practice for Shared Libraries (e.g., React)
+
+To avoid multiple React instances at runtime:
+
+1. Declare React as a **peerDependency** in all apps:
+   ```json
+   {
+     "peerDependencies": {
+       "react": "^18.0.0",
+       "react-dom": "^18.0.0"
+     }
+   }
+   ```
+2. Ensure the **host application** provides the actual React version.
+
+---
+
 ## How it works (concepts)
 
 ### 1) Catalogs (source of truth)
