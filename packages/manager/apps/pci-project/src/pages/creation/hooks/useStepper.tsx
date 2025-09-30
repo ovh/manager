@@ -1,28 +1,40 @@
 import { useState } from 'react';
 
-/**
- * Custom hook to manage stepper state for the project creation flow.
- * Returns the current step, a setter, and booleans for each step's state.
- */
+export enum Step {
+  Config = 0,
+  Payment = 1,
+  CreditConfirmation = 2,
+}
+
+const getStepStates = (currentStep: Step) => ({
+  // Config step (Step 0)
+  isConfigChecked: currentStep > Step.Config,
+  isConfigLocked: currentStep > Step.Config,
+
+  // Payment step (Step 1)
+  isPaymentOpen: currentStep > Step.Config,
+  isPaymentChecked: currentStep > Step.Payment,
+  isPaymentLocked: currentStep !== Step.Payment,
+
+  // Credit confirmation step (Step 2)
+  isCreditConfirmationOpen: currentStep === Step.CreditConfirmation,
+  isCreditConfirmationChecked: false,
+  isCreditConfirmationLocked: false,
+});
+
 export const useStepper = () => {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState<Step>(Step.Config);
 
-  // Step 1: Config
-  const isConfigChecked = currentStep > 0;
-  const isConfigLocked = currentStep > 0;
+  const stepStates = getStepStates(currentStep);
 
-  // Step 2: Payment
-  const isPaymentOpen = currentStep === 1;
-  const isPaymentChecked = false; // (update if you add more steps)
-  const isPaymentLocked = currentStep < 1;
+  const goToConfig = () => setCurrentStep(Step.Config);
+  const goToPayment = () => setCurrentStep(Step.Payment);
+  const goToCreditConfirmation = () => setCurrentStep(Step.CreditConfirmation);
 
   return {
-    currentStep,
-    setCurrentStep,
-    isConfigChecked,
-    isConfigLocked,
-    isPaymentOpen,
-    isPaymentChecked,
-    isPaymentLocked,
+    ...stepStates,
+    goToConfig,
+    goToPayment,
+    goToCreditConfirmation,
   };
 };

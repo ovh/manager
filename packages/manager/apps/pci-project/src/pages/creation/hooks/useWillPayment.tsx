@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { GlobalStateStatus } from '@/types/WillPayment.type';
+import { GlobalStateStatus, TCreditData } from '@/types/WillPayment.type';
 import { triggerSavePaymentMethodEvent } from '../utils/paymentEvents';
 import {
   isPaymentMethodSaveRequired as checkIsPaymentMethodSaveRequired,
@@ -19,47 +19,43 @@ export const useWillPayment = () => {
 
   const [hasDefaultPaymentMethod, setHasDefaultPaymentMethod] = useState(false);
 
-  const handleRegisteredPaymentMethodSelected = useCallback(
-    (event: CustomEvent) => {
-      if (event && event.detail) {
-        setHasDefaultPaymentMethod(true);
-      }
-    },
-    [],
-  );
+  const handleRegisteredPaymentMethodSelected = (event: CustomEvent) => {
+    if (event && event.detail) {
+      setHasDefaultPaymentMethod(true);
+    }
+  };
 
   /**
    * Handles payment status changes from the WillPayment module
    */
-  const handlePaymentStatusChange = useCallback(
-    (willPaymentStatus: GlobalStateStatus) => {
-      setGlobalStateStatus(willPaymentStatus);
-    },
-    [],
-  );
+  const handlePaymentStatusChange = (willPaymentStatus: GlobalStateStatus) => {
+    setGlobalStateStatus(willPaymentStatus);
+  };
 
   /**
    * Triggers payment method saving via DOM event
    */
-  const triggerSavePaymentMethod = useCallback(() => {
+  const savePaymentMethod = () => {
     triggerSavePaymentMethodEvent();
-  }, []);
+  };
 
-  const isPaymentMethodSaveRequired = checkIsPaymentMethodSaveRequired(
-    globalStateStatus,
-  );
-  const isPaymentMethodSaved = checkIsPaymentMethodSaved(globalStateStatus);
-  const isSubmittingEnabled = checkIsSubmittingEnabled(
+  const needsSave = checkIsPaymentMethodSaveRequired(globalStateStatus);
+  const isSaved = checkIsPaymentMethodSaved(globalStateStatus);
+  const canSubmit = checkIsSubmittingEnabled(
     hasDefaultPaymentMethod,
-    isPaymentMethodSaveRequired,
+    needsSave,
   );
+
+  const creditData = globalStateStatus?.data as TCreditData | undefined;
 
   return {
+    isCreditPayment: creditData?.isCredit,
+    creditAmount: creditData?.creditAmount,
     hasDefaultPaymentMethod,
-    isPaymentMethodSaveRequired,
-    isPaymentMethodSaved,
-    isSubmittingDisabled: !isSubmittingEnabled,
-    triggerSavePaymentMethod,
+    needsSave,
+    isSaved,
+    canSubmit,
+    savePaymentMethod,
     handlePaymentStatusChange,
     handleRegisteredPaymentMethodSelected,
   };

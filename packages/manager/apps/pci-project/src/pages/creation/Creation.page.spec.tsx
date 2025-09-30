@@ -78,7 +78,26 @@ vi.mock('./hooks/useConfigForm', () => ({
 const mockUseStepper = vi.fn();
 
 vi.mock('./hooks/useStepper', () => ({
+  Step: {
+    Config: 0,
+    Payment: 1,
+    CreditConfirmation: 2,
+  },
   useStepper: () => mockUseStepper(),
+}));
+
+// Mock useProjectCreation hook
+const mockUseProjectCreation = vi.fn();
+
+vi.mock('./hooks/useProjectCreation', () => ({
+  useProjectCreation: () => mockUseProjectCreation(),
+}));
+
+// Mock useWillPayment hook
+const mockUseWillPayment = vi.fn();
+
+vi.mock('./hooks/useWillPayment', () => ({
+  useWillPayment: () => mockUseWillPayment(),
 }));
 
 // Mock useAntiFraud hook
@@ -129,16 +148,18 @@ vi.mock('@/components/FullPageSpinner', () => ({
 }));
 
 // Mock step components
-vi.mock('./steps/ConfigurationStep', () => ({
-  default: () => <div data-testid="configuration-step">Configuration Step</div>,
-}));
-
 vi.mock('./steps/ConfigStep', () => ({
   default: () => <div data-testid="config-step">Config Step</div>,
 }));
 
 vi.mock('./steps/PaymentStep', () => ({
   default: () => <div data-testid="payment-step">Payment Step</div>,
+}));
+
+vi.mock('./components/credit/CreditConfirmation.component', () => ({
+  default: () => (
+    <div data-testid="credit-confirmation">Credit Confirmation</div>
+  ),
 }));
 
 const renderWithProviders = (component: ReactElement) => {
@@ -155,7 +176,7 @@ describe('Creation Page', () => {
     mockUseParams.mockReturnValue({ projectId: 'test-project-id' });
 
     mockUseGetCart.mockReturnValue({
-      cart: {
+      data: {
         cartId: 'test-cart-id',
         description: 'Test Cart',
         items: [],
@@ -193,7 +214,11 @@ describe('Creation Page', () => {
     });
 
     mockUseGetOrderProjectId.mockReturnValue({
-      orderId: null,
+      data: {
+        itemId: 'test-project-item-id',
+        cartId: 'test-cart-id',
+        type: 'publicCloudProject',
+      },
       isLoading: false,
       error: null,
     });
@@ -217,18 +242,37 @@ describe('Creation Page', () => {
     });
 
     mockUseStepper.mockReturnValue({
-      currentStep: 'generalInformations',
-      setCurrentStep: vi.fn(),
+      goToConfig: vi.fn(),
+      goToPayment: vi.fn(),
+      goToCreditConfirmation: vi.fn(),
       isConfigChecked: false,
       isConfigLocked: false,
       isPaymentOpen: false,
       isPaymentChecked: false,
-      isPaymentLocked: false,
-      goToStep: vi.fn(),
-      nextStep: vi.fn(),
-      previousStep: vi.fn(),
-      isFirstStep: true,
-      isLastStep: false,
+      isPaymentLocked: true,
+      isCreditConfirmationOpen: false,
+      isCreditConfirmationChecked: false,
+      isCreditConfirmationLocked: false,
+    });
+
+    mockUseProjectCreation.mockReturnValue({
+      isSubmitting: false,
+      needToCheckCustomerInfo: false,
+      billingHref: '',
+      handleProjectCreation: vi.fn(),
+      handleCreditAndPay: vi.fn(),
+    });
+
+    mockUseWillPayment.mockReturnValue({
+      isCreditPayment: false,
+      creditAmount: null,
+      needsSave: false,
+      isSaved: false,
+      canSubmit: true,
+      hasDefaultPaymentMethod: false,
+      savePaymentMethod: vi.fn(),
+      handlePaymentStatusChange: vi.fn(),
+      handleRegisteredPaymentMethodSelected: vi.fn(),
     });
 
     mockUseAttachConfigurationToCartItem.mockReturnValue({
@@ -261,33 +305,73 @@ describe('Creation Page', () => {
     expect(screen.getByTestId('payment-step')).toBeInTheDocument();
   });
 
-  it('should show proper content when cart is loading', () => {
+  it('should show spinner when cart or projectItem is null', () => {
+    // Override the default mocks to return null data
+    mockUseCreateAndAssignCart.mockReturnValue({
+      mutate: vi.fn(),
+      data: null, // No created cart
+      isLoading: false,
+      error: null,
+    });
+
     mockUseGetCart.mockReturnValue({
-      cart: null,
-      isLoading: true,
+      data: null, // No existing cart
+      isLoading: false,
+      error: null,
+    });
+
+    mockUseOrderProjectItem.mockReturnValue({
+      mutate: vi.fn(),
+      data: null, // No created project item
+      isLoading: false,
+      error: null,
+    });
+
+    mockUseGetOrderProjectId.mockReturnValue({
+      data: null, // No existing project item
+      isLoading: false,
       error: null,
     });
 
     renderWithProviders(<Creation />);
 
-    // Component should still render the basic structure
-    expect(screen.getByTestId('config-step')).toBeInTheDocument();
-    expect(screen.getByTestId('payment-step')).toBeInTheDocument();
+    expect(screen.getByTestId('full-page-spinner')).toBeInTheDocument();
   });
 
   it('should handle cart loading error', () => {
     const error = new Error('Failed to load cart');
+
+    // Override all cart/project related mocks to return null
+    mockUseCreateAndAssignCart.mockReturnValue({
+      mutate: vi.fn(),
+      data: null,
+      isLoading: false,
+      error,
+    });
+
     mockUseGetCart.mockReturnValue({
-      cart: null,
+      data: null,
+      isLoading: false,
+      error,
+    });
+
+    mockUseOrderProjectItem.mockReturnValue({
+      mutate: vi.fn(),
+      data: null,
+      isLoading: false,
+      error,
+    });
+
+    mockUseGetOrderProjectId.mockReturnValue({
+      data: null,
       isLoading: false,
       error,
     });
 
     renderWithProviders(<Creation />);
 
-    // Component should still render even with error
-    expect(screen.getByTestId('config-step')).toBeInTheDocument();
-    expect(screen.getByTestId('payment-step')).toBeInTheDocument();
+    // Should show spinner when cart/projectItem is null
+    expect(screen.getByTestId('full-page-spinner')).toBeInTheDocument();
   });
 
   it('should render config step by default', () => {
@@ -315,35 +399,57 @@ describe('Creation Page', () => {
       expect(screen.getByTestId('payment-step')).toBeInTheDocument();
     });
 
-    // Verify cart hook is called
+    // Verify hooks are called
     expect(mockUseGetCart).toHaveBeenCalled();
-    expect(mockUseAntiFraud).toHaveBeenCalled();
+    expect(mockUseProjectCreation).toHaveBeenCalled();
+    expect(mockUseWillPayment).toHaveBeenCalled();
   });
 
-  it('should handle anti-fraud polling', () => {
-    mockUseAntiFraud.mockReturnValue({
-      checkAntiFraud: vi.fn(),
-      isPolling: true,
-      error: null,
+  it('should handle project creation submission', () => {
+    const mockHandleProjectCreation = vi.fn();
+
+    mockUseProjectCreation.mockReturnValue({
+      isSubmitting: false,
+      needToCheckCustomerInfo: false,
+      billingHref: '',
+      handleProjectCreation: mockHandleProjectCreation,
+      handleCreditAndPay: vi.fn(),
+    });
+
+    mockUseWillPayment.mockReturnValue({
+      isCreditPayment: false,
+      creditAmount: null,
+      needsSave: false,
+      isSaved: false,
+      canSubmit: true,
+      hasDefaultPaymentMethod: true, // Has default payment method
+      savePaymentMethod: vi.fn(),
+      handlePaymentStatusChange: vi.fn(),
+      handleRegisteredPaymentMethodSelected: vi.fn(),
     });
 
     renderWithProviders(<Creation />);
 
-    // Component should handle polling state appropriately
-    expect(mockUseAntiFraud).toHaveBeenCalled();
+    expect(mockUseProjectCreation).toHaveBeenCalled();
+    expect(mockUseWillPayment).toHaveBeenCalled();
   });
 
-  it('should handle anti-fraud error', () => {
-    const error = new Error('Anti-fraud check failed');
-    mockUseAntiFraud.mockReturnValue({
-      checkAntiFraud: vi.fn(),
-      isPolling: false,
-      error,
+  it('should handle credit payment flow', () => {
+    mockUseWillPayment.mockReturnValue({
+      isCreditPayment: true,
+      creditAmount: { value: 100, currency: 'EUR' },
+      needsSave: false,
+      isSaved: false,
+      canSubmit: true,
+      hasDefaultPaymentMethod: false,
+      savePaymentMethod: vi.fn(),
+      handlePaymentStatusChange: vi.fn(),
+      handleRegisteredPaymentMethodSelected: vi.fn(),
     });
 
     renderWithProviders(<Creation />);
 
-    expect(mockUseAntiFraud).toHaveBeenCalled();
+    expect(mockUseWillPayment).toHaveBeenCalled();
   });
 
   it('should handle order polling state', () => {
@@ -364,7 +470,7 @@ describe('Creation Page', () => {
 
   it('should handle cart with items', () => {
     mockUseGetCart.mockReturnValue({
-      cart: {
+      data: {
         cartId: 'test-cart-id',
         description: 'Cart with items',
         items: [
@@ -386,7 +492,7 @@ describe('Creation Page', () => {
 
   it('should handle readonly cart', () => {
     mockUseGetCart.mockReturnValue({
-      cart: {
+      data: {
         cartId: 'readonly-cart',
         description: 'Readonly Cart',
         items: [],
@@ -399,5 +505,55 @@ describe('Creation Page', () => {
     renderWithProviders(<Creation />);
 
     expect(mockUseGetCart).toHaveBeenCalled();
+  });
+
+  it('should render credit confirmation when isCreditConfirmationOpen is true', () => {
+    mockUseStepper.mockReturnValue({
+      goToConfig: vi.fn(),
+      goToPayment: vi.fn(),
+      goToCreditConfirmation: vi.fn(),
+      isConfigChecked: true,
+      isConfigLocked: true,
+      isPaymentOpen: true,
+      isPaymentChecked: true,
+      isPaymentLocked: true,
+      isCreditConfirmationOpen: true,
+      isCreditConfirmationChecked: false,
+      isCreditConfirmationLocked: false,
+    });
+
+    renderWithProviders(<Creation />);
+
+    expect(screen.getByTestId('credit-confirmation')).toBeInTheDocument();
+  });
+
+  it('should call handleProjectCreation when isSaved becomes true', async () => {
+    const mockHandleProjectCreation = vi.fn();
+
+    mockUseProjectCreation.mockReturnValue({
+      isSubmitting: false,
+      needToCheckCustomerInfo: false,
+      billingHref: '',
+      handleProjectCreation: mockHandleProjectCreation,
+      handleCreditAndPay: vi.fn(),
+    });
+
+    mockUseWillPayment.mockReturnValue({
+      isCreditPayment: false,
+      creditAmount: null,
+      needsSave: false,
+      isSaved: true, // This should trigger handleProjectCreation
+      canSubmit: true,
+      hasDefaultPaymentMethod: false,
+      savePaymentMethod: vi.fn(),
+      handlePaymentStatusChange: vi.fn(),
+      handleRegisteredPaymentMethodSelected: vi.fn(),
+    });
+
+    renderWithProviders(<Creation />);
+
+    await waitFor(() => {
+      expect(mockHandleProjectCreation).toHaveBeenCalledWith({});
+    });
   });
 });
