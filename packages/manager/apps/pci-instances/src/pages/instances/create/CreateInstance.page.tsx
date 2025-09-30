@@ -35,6 +35,7 @@ import {
 } from '@/pages/instances/create/CreateInstance.schema';
 
 import { useInstancesCatalog } from '@/data/hooks/catalog/useInstancesCatalog';
+import { FlavorsTable } from '@/components/flavorsTable/FlavorsTable.component';
 
 export type TInstanceCreationForm = z.infer<typeof instanceCreationSchema>;
 export const instanceCreationSchema = z.object({
@@ -99,6 +100,8 @@ const CreateInstance: FC = () => {
             <Localization />
             <DeploymentModeSelection />
             <LocalizationSelection />
+            <br />
+            <FlavorsTable caption={'test'}></FlavorsTable>
 
             <AdvancedParameters />
             <QuantitySelector
