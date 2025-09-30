@@ -14,8 +14,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc",
-    "lint:modern": "manager-lint --config eslint.config.mjs src/**.ts src/**.tsx src/**/**.ts src/**/**.tsx",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**.tsx src/**/**.ts src/**/**.tsx",
+    "lint:modern": "manager-lint --config eslint.config.mjs 'src/**.ts' 'src/**.tsx' 'src/**/**.ts' 'src/**/**.tsx'",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs 'src/**.ts' 'src/**.tsx' 'src/**/**.ts' 'src/**/**.tsx'",
     "prepare": "tsc"
   },
   "dependencies": {
