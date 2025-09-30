@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.15.17...@ovh-ux/manager-telecom@16.16.0) (2025-09-30)
+
+
+### Features
+
+* **access-list:** use first copper closure date ([33bad9e](https://github.com/ovh/manager/commit/33bad9e1a29688bee8cbd7c1cba7c94e9360f6ef)), closes [#MANAGER-19753](https://github.com/ovh/manager/issues/MANAGER-19753)
+
+
+
+
+
 ## [16.15.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.15.16...@ovh-ux/manager-telecom@16.15.17) (2025-09-30)
 
 
