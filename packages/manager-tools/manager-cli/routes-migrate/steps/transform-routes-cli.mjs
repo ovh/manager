@@ -2,7 +2,6 @@
 import parser from '@babel/parser';
 import traverseModule from '@babel/traverse';
 import { readFile, writeFile } from 'fs/promises';
-import path from 'path';
 import prettier from 'prettier';
 
 import { traverseRoutesExportNodes } from '../../utils/ASTUtils.mjs';

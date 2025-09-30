@@ -1,7 +1,8 @@
 {
   "pci_project_guides_header": "Guides",
   "pci_project_guides_header_all_guides": "Tous les guides",
-  "pci_project_guides_header_all_storage_guides": "Tous les guides stockage et sauvegarde",
+  "pci_project_guides_header_all_storage_guides": "Tous les guides Object Storage",
+  "pci_project_guides_header_first_steps_with_storages": "Premiers pas avec Object Storage",
   "pci_project_guides_header_first_steps_with_instances": "Premiers pas avec les instances",
   "pci_project_guides_header_storages_volume_backup_overview": "Créer une sauvegarde d’un volume",
   "pci_project_guides_header_ip_fail_over": "IP fail-over",
