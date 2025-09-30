@@ -1,12 +1,13 @@
-@import '@datatr-ux/ods-tailwind-config/style.css';
-@import '@datatr-ux/uxlib/style.css';
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .application {
   @apply md:mx-12 mt-8;
+}
+
+html {
+  font-family: var(--ods-font-family-default);
 }
 
 a:not([class]),
@@ -43,12 +44,12 @@ code {
   border-radius: 6px !important;
 }
 
+.log-container {
+  color: var(--ods-color-text-500);
+}
+
 osds-tile,
 osds-input {
   border-width: var(--ods-size-input-md-border-width);
-  border-color: var(--ods-color-primary-200);
-}
-
-osds-input {
   border-color: var(--ods-color-primary-200);
 }
