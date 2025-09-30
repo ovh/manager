@@ -14,6 +14,8 @@ export const flavorCategorySchema = z.string().nullable();
 
 export const flavorTypeSchema = z.string().nullable();
 
+export const flavorSchema = z.string().nullable();
+
 export const microRegionSelectionSchema = z.string().nullable();
 
 export const availabilityZoneSelectionSchema = z.string().nullable();

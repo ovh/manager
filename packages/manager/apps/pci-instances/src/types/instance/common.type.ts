@@ -84,6 +84,12 @@ export type TSubnet = {
   };
 };
 
+export type TFlavor = {
+  name: string;
+  memory: number;
+  vcore: number;
+};
+
 export type TFlavorSpec = {
   value: number;
   unit: string;

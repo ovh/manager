@@ -8,6 +8,7 @@ import { TDeploymentMode } from '@/types/instance/common.type';
 import { TRegionData } from '@/pages/instances/create/view-models/localizationsViewModel';
 import { TContinentData } from '@/pages/instances/create/view-models/continentsViewModel';
 import { TOptionsData } from '@/pages/instances/create/view-models/categoriesTypesViewModel';
+import { TFlavorDataForTable } from '@/pages/instances/create/view-models/flavorsViewModel';
 
 export const mockedInstance: TAggregatedInstance = {
   id: '12345',
@@ -782,5 +783,63 @@ export const mockedFlavorCategories = [
       },
     ],
     tags: null,
+  },
+];
+
+export const mockedFlavors: TFlavorDataForTable[] = [
+  {
+    unavailable: false,
+    unavailableQuota: false,
+    name: 'b3-8',
+    memory: 8,
+    vCore: 2,
+    storage: '50NVMe',
+    mode: 'region-3-az',
+    hourlyPrice: 0.0465,
+    monthlyPrice: 25.5,
+  },
+  {
+    unavailable: false,
+    unavailableQuota: false,
+    name: 'b3-16',
+    memory: 16,
+    vCore: 4,
+    storage: '100NVMe',
+    mode: 'region-3-az',
+    hourlyPrice: 0.186,
+    monthlyPrice: 51.0,
+  },
+  {
+    unavailable: false,
+    unavailableQuota: false,
+    name: 'b3-32',
+    memory: 32,
+    vCore: 8,
+    storage: '200NVMe',
+    mode: 'region-3-az',
+    hourlyPrice: 0.372,
+    monthlyPrice: 102.0,
+  },
+  {
+    unavailable: false,
+    unavailableQuota: true,
+    name: 'b3-256',
+    memory: 256,
+    vCore: 128,
+    storage: '400NVMe',
+    mode: 'region-3-az',
+    hourlyPrice: 2.9756,
+    monthlyPrice: 816.0,
+  },
+  {
+    unavailable: true,
+    unavailableQuota: false,
+    name: 'b3-512',
+    memory: 512,
+    vCore: 160,
+    storage: '400NVMe',
+    mode: 'region-3-az',
+    hourlyPrice: 3.7195,
+    monthlyPrice: 1632.0,
   },
 ];

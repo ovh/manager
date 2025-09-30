@@ -11,14 +11,30 @@ import {
 import { deps } from '@/deps/deps';
 import { selectLocalisationDetails } from '../view-models/cartViewModel';
 import { useProjectId } from '@/hooks/project/useProjectId';
+import { FlavorDetails } from '@/pages/instances/create/components/cart/FlavorDetails.component';
+import { mockedFlavors } from '@/__mocks__/instance/constants';
 
 export const CreationCart = () => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation(['common', 'creation']);
   const projectId = useProjectId();
   const { control } = useFormContext<TInstanceCreationForm>();
-  const [name, macroRegion, microRegion, availabilityZone] = useWatch({
+  const [
+    name,
+    macroRegion,
+    microRegion,
+    availabilityZone,
+    quantity,
+    flavor,
+  ] = useWatch({
     control,
-    name: ['name', 'macroRegion', 'microRegion', 'availabilityZone'],
+    name: [
+      'name',
+      'macroRegion',
+      'microRegion',
+      'availabilityZone',
+      'quantity',
+      'flavor',
+    ],
   });
 
   const localizationDetails = selectLocalisationDetails(deps)(
@@ -26,6 +42,11 @@ export const CreationCart = () => {
     macroRegion,
     microRegion,
     availabilityZone,
+  );
+
+  const selectedFlavor = useMemo(
+    () => mockedFlavors.find((item) => item.name === flavor),
+    [flavor],
   );
 
   const itemDetails: TCartItemDetail[] = useMemo(() => {
@@ -42,8 +63,21 @@ export const CreationCart = () => {
         ]
       : [];
 
-    return [...regionDetails];
-  }, [t, localizationDetails]);
+    const flavorDetails = selectedFlavor
+      ? [
+          {
+            name: t(
+              'creation:pci_instance_creation_select_flavor_cart_section',
+            ),
+            description: (
+              <FlavorDetails quantity={quantity} flavor={selectedFlavor} />
+            ),
+          },
+        ]
+      : [];
+
+    return [...regionDetails, ...flavorDetails];
+  }, [t, localizationDetails, quantity, selectedFlavor]);
 
   const cartItems: TCartItem[] = useMemo(
     () => [
