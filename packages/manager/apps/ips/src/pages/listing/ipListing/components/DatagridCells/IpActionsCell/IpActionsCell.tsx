@@ -212,7 +212,6 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
       },
     !!ipDetails?.canBeTerminated &&
       ipDetails.bringYourOwnIp &&
-      isAdmin &&
       [IpTypeEnum.ADDITIONAL, IpTypeEnum.PCC, IpTypeEnum.VRACK].includes(
         ipDetails?.type,
       ) && {
