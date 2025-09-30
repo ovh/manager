@@ -222,7 +222,7 @@ describe('useDatagridOperationsPolling', () => {
           useDatagridOperationsPolling(mockOnComplete),
         );
 
-        await waitFor(async () => {
+        await waitFor(() => {
           expect(getOperations).toHaveBeenCalledTimes(1);
         });
 
@@ -232,7 +232,7 @@ describe('useDatagridOperationsPolling', () => {
           vi.useRealTimers();
         });
 
-        await waitFor(async () => {
+        await waitFor(() => {
           expect(getOperations).toHaveBeenCalledTimes(2);
           expect(result.current.hasOperationsRunning).toBe(false);
           expect(mockOnComplete).toHaveBeenCalled();

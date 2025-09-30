@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React, { PropsWithChildren } from 'react';
 import { renderHook } from '@testing-library/react';
