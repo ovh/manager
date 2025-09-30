@@ -15,7 +15,7 @@ import { TFlavorTypeTag } from '@/types/instance/common.type';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { TInstanceCreationForm } from '../../../CreateInstance.page';
 
-const FlavorType: FC = () => {
+export const FlavorType: FC = () => {
   const { control } = useFormContext<TInstanceCreationForm>();
   const flavorCategory = useWatch({
     control,
@@ -79,5 +79,3 @@ const FlavorType: FC = () => {
     />
   );
 };
-
-export default FlavorType;

@@ -1,6 +1,6 @@
-import { deps } from '@/deps/deps';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as useReactHookForm } from 'react-hook-form';
+import { deps } from '@/deps/deps';
 import { nameDefaultValue } from '../components/Name.component';
 import { quantityDefaultValue } from '../components/QuantitySelector.component';
 import { instanceCreationSchema } from '../CreateInstance.page';
@@ -8,7 +8,10 @@ import { selectContinent } from '../view-models/continentsViewModel';
 import { selectDeploymentModes } from '../view-models/deploymentModeViewModel';
 import { selectLocalizations } from '../view-models/localizationsViewModel';
 import { TDeploymentMode } from '@/types/instance/common.type';
-import { mockedFlavorCategories } from '@/__mocks__/instance/constants';
+import {
+  mockedFlavorCategories,
+  mockedFlavors,
+} from '@/__mocks__/instance/constants';
 
 export const useForm = (projectId: string) => {
   const deploymentModes = selectDeploymentModes(deps)(projectId);
@@ -42,6 +45,8 @@ export const useForm = (projectId: string) => {
       ({ name }) => name === flavorCategoryDefaultValue,
     )?.type[0]?.name ?? '';
 
+  const flavorDefaultValue = mockedFlavors[0]?.name ?? '';
+
   const availabilityZoneDefaultValue =
     localizations[0]!.microRegions[0]?.availabilityZones[0] ?? null;
 
@@ -54,6 +59,7 @@ export const useForm = (projectId: string) => {
       continent: continentDefaultValue,
       flavorCategory: flavorCategoryDefaultValue,
       flavorType: flavorTypeDefaultValue,
+      flavor: flavorDefaultValue,
       macroRegion: macroRegionDefaultValue,
       microRegion: microRegionDefaultValue,
       availabilityZone: availabilityZoneDefaultValue,

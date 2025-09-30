@@ -5,7 +5,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { Link, Text } from '@ovhcloud/ods-react';
 import { useGuideLink } from '@/hooks/url/useGuideLink';
 
-const FlavorHelper: FC = () => {
+export const FlavorHelper: FC = () => {
   const { t } = useTranslation(['creation', NAMESPACES.ONBOARDING]);
   const guide = useGuideLink('FLAVOR');
 
@@ -42,5 +42,3 @@ const FlavorHelper: FC = () => {
     </HelpDrawer>
   );
 };
-
-export default FlavorHelper;
