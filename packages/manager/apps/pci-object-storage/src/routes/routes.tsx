@@ -144,6 +144,17 @@ export default [
                 '@/pages/object-storage/storage/swiftId/dashboard/Dashboard.page'
               ),
             ),
+            children: [
+              {
+                path: 'delete',
+                id: 'nswift.dashboard.delete',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/storage/swiftId/dashboard/delete/Delete.modal'
+                  ),
+                ),
+              },
+            ],
           },
           {
             path: 'objects',

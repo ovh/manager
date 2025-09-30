@@ -124,11 +124,18 @@ export const getColumns = ({
     },
     {
       id: 'Objects',
-      accessorFn: (row) => row.objectsCount || 0,
+      accessorFn: (row) => row.objectsCount || row.storedObjects,
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
           {t('tableHeaderObjectNumber')}
         </DataTable.SortableHeader>
+      ),
+      cell: ({ row }) => (
+        <span>
+          {row.original?.storageType === ObjectStorageTypeEnum.s3
+            ? row.original.objectsCount
+            : row.original.storedObjects}
+        </span>
       ),
     },
     {
@@ -140,11 +147,22 @@ export const getColumns = ({
         </DataTable.SortableHeader>
       ),
       cell: ({ row }) => (
-        <span>
-          {row.original?.objectsSize
-            ? octetConverter(row.original?.objectsSize, false, 2)
-            : '-'}
-        </span>
+        <>
+          {row.original?.storageType === ObjectStorageTypeEnum.s3 && (
+            <span>
+              {row.original?.objectsSize
+                ? octetConverter(row.original?.objectsSize, false, 2)
+                : '-'}
+            </span>
+          )}
+          {row.original?.storageType === ObjectStorageTypeEnum.swift && (
+            <span>
+              {row.original?.storedBytes
+                ? octetConverter(row.original?.storedBytes, false, 2)
+                : '-'}
+            </span>
+          )}
+        </>
       ),
     },
     {

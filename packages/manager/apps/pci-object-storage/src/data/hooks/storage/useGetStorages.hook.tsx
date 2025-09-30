@@ -12,7 +12,7 @@ export function useGetStorages(
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () =>
-      getStorages({ projectId, archive: false, withObjects: false }),
+      getStorages({ projectId, archive: false, withObjects: true }),
     ...options,
   });
 }
