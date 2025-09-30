@@ -5,6 +5,7 @@ export default {
   bindings: {
     currentService: '<',
     onDeactivateLogs: '<',
+    isDisabled: '<',
   },
   name: 'ovhManagerPccDashboardOptionsLogs',
   template,
