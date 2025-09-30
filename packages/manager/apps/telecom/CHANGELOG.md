@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.15.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.15.16...@ovh-ux/manager-telecom@16.15.17) (2025-09-30)
+
+
+### Bug Fixes
+
+* **telecom.sva:** change api and add redirect url for post sva wallet ([797bad0](https://github.com/ovh/manager/commit/797bad024da3cde505d99a2fd7eb2816842b33c4)), closes [#MANAGER-19236](https://github.com/ovh/manager/issues/MANAGER-19236)
+* **telephony.sva:** fix issue on partial onboarding ([400b6c9](https://github.com/ovh/manager/commit/400b6c98eb9fbe89131e1330d922fe1594c83990)), closes [#MANAGER-19236](https://github.com/ovh/manager/issues/MANAGER-19236)
+
+
+
+
+
 ## [16.15.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.15.15...@ovh-ux/manager-telecom@16.15.16) (2025-09-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom
