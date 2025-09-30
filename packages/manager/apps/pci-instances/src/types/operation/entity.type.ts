@@ -9,8 +9,8 @@ type OperationStatus =
 
 export type TOperation = {
   id: string;
-  section: string;
-  action: string;
+  section: 'instance' | string;
+  action: 'create' | 'reinstall' | string;
   status:
     | 'completed'
     | 'created'
@@ -20,8 +20,8 @@ export type TOperation = {
     | string;
   resourceId: string;
   subOperations?: {
-    section: string;
-    action: string;
+    section: 'image' | string;
+    action: 'copytoregion' | string;
     status: OperationStatus;
   }[];
 };
