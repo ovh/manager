@@ -7085,10 +7085,10 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.11.0.tgz#d5a3cecc41435aa56ba5c9e7af6e3637e8c76c39"
   integrity sha512-5upqmSqpbbNtg+/R2L+F7h9aJHilANq7BkgVUuEOaWgN8KMC1fTdnivQUFrC23mdnhD/H3LpDXKi+8+GajP39Q==
 
-"@ovh-ux/manager-common-translations@^0.14.0":
-  version "0.14.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.14.0.tgz#f219a240c191276df509ef57d18f060e70e310b0"
-  integrity sha512-HJB947C0gOdpO+9N46Hb51NJjsd53CnYG2/5MT9zcoVBdx9pUTUjMwONBO3wJRJbEgg3lSXtZOvrrK+zI/6ySA==
+"@ovh-ux/manager-common-translations@^0.16.0":
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-common-translations/-/manager-common-translations-0.16.0.tgz#9883bc61007ec083766d243e2df690340b4bde85"
+  integrity sha512-OVTMlLFJeOVsTHEXX2Uk1Sf3xQFozoGMZKlBNj6XmakB0fnDXvS20kjQtJFChgGVScyVyaxPEVYi/O8YIJ4Lrw==
 
 "@ovh-ux/manager-common-translations@^0.9.1":
   version "0.9.1"
@@ -7228,7 +7228,7 @@
     i18next "^23.8.2"
     i18next-http-backend "^2.4.2"
 
-"@ovh-ux/manager-react-shell-client@^0.9.3":
+"@ovh-ux/manager-react-shell-client@^0.9.1", "@ovh-ux/manager-react-shell-client@^0.9.3":
   version "0.9.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-0.9.3.tgz#4f6f40ae85076390ad1c54b5c3a24207d1fab158"
   integrity sha512-i86lAEyYPY2iCoGCpm8DVF0IuyIxYO+Iccav0/cw0ItUEexsvNHbDWRu9DLlIIS3Vknrx/ualDg0cEbPEA5lZw==
