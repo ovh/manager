@@ -21,9 +21,9 @@ import { Text } from '../../../text/Text.component';
 export const INTERNAL_COLUMNS = ['expander', 'actions'];
 
 const ColumnsVisibilityComponent = <T,>({
-  visibleColumns,
-  toggleAllColumnsVisible,
   getIsAllColumnsVisible,
+  toggleAllColumnsVisible,
+  visibleColumns,
 }: ColumnsVisibilityProps<T>) => {
   const { t } = useTranslation('datagrid');
   const eligibleColumns = visibleColumns.filter(
@@ -58,10 +58,7 @@ const ColumnsVisibilityComponent = <T,>({
               <Checkbox
                 aria-label={t('common_topbar_columns_select_all')}
                 checked={isAllColumnsVisible}
-                onChange={() => {
-                  console.log('toggleAllColumnsVisible');
-                  toggleAllColumnsVisible();
-                }}
+                onChange={() => toggleAllColumnsVisible()}
               >
                 <CheckboxControl />
                 <CheckboxLabel>

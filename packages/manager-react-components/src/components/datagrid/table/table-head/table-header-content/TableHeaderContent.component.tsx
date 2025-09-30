@@ -8,7 +8,6 @@ const TableHeaderContentComponent = <T,>({
   headerGroups,
   onSortChange,
 }: TableHeaderContentProps<T>) => {
-  console.log('entre dans la condition 2');
   return (
     <thead className={`sticky top-[-1px] z-10 bg-white overflow-hidden`}>
       {headerGroups?.map((headerGroup) => (

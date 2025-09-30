@@ -1,18 +1,18 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BUTTON_VARIANT } from '@ovhcloud/ods-react';
+import { BUTTON_VARIANT, BUTTON_SIZE } from '@ovhcloud/ods-react';
 import { Button } from '../../../../button';
 
 const FooterActionsComponent = ({
   hasNextPage,
+  isLoading,
   onFetchAllPages,
   onFetchNextPage,
-  isLoading,
 }: {
   hasNextPage?: boolean;
-  onFetchNextPage?: () => void;
-  onFetchAllPages?: () => void;
   isLoading?: boolean;
+  onFetchAllPages?: () => void;
+  onFetchNextPage?: () => void;
 }) => {
   const { t } = useTranslation('datagrid');
   return (
@@ -22,6 +22,7 @@ const FooterActionsComponent = ({
           {onFetchNextPage && (
             <Button
               data-testid="load-more-btn"
+              size={BUTTON_SIZE.sm}
               variant={BUTTON_VARIANT.outline}
               onClick={onFetchNextPage}
               loading={isLoading}
@@ -32,6 +33,7 @@ const FooterActionsComponent = ({
           {onFetchAllPages && (
             <Button
               data-testid="load-all-btn"
+              size={BUTTON_SIZE.sm}
               variant={BUTTON_VARIANT.outline}
               onClick={onFetchAllPages}
               loading={isLoading}

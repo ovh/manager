@@ -6,19 +6,19 @@ import { Text } from '../../../../text';
 import { ColumnMetaType } from '../../../Datagrid.props';
 
 export const CellRow = ({
-  type,
-  className,
+  badgeColor,
   children,
+  className,
   href,
   onClick,
-  badgeColor,
+  type,
 }: {
-  type: ColumnMetaType;
-  className?: string;
-  children?: React.ReactNode;
-  onClick?: () => void;
-  href?: string;
   badgeColor?: BADGE_COLOR;
+  children?: React.ReactNode;
+  className?: string;
+  href?: string;
+  onClick?: () => void;
+  type: ColumnMetaType;
 }) => {
   if (type === 'text') {
     return <Text className={className}>{children}</Text>;
@@ -40,6 +40,6 @@ export const CellRow = ({
   return className ? (
     <div className={className}>{children}</div>
   ) : (
-    <>children</>
+    <>{children}</>
   );
 };

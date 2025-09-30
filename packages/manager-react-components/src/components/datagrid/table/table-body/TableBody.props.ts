@@ -2,15 +2,16 @@ import { RefObject, MutableRefObject } from 'react';
 import { RowModel, Row } from '@tanstack/react-table';
 
 export type TableBodyProps<T> = {
-  rowModel: RowModel<T>;
-  tableContainerRef: RefObject<HTMLDivElement>;
+  autoScroll?: boolean;
   isLoading: boolean;
+  maxRowHeight: number;
+  pageSize?: number;
   renderSubComponent?: (
     row: Row<T>,
     headerRefs?: MutableRefObject<Record<string, HTMLTableCellElement>>,
   ) => JSX.Element;
+  rowModel: RowModel<T>;
   subComponentHeight?: number;
-  maxRowHeight: number;
-  pageSize?: number;
-  autoScroll?: boolean;
+  tableContainerRef: RefObject<HTMLDivElement>;
+  contentAlignLeft?: boolean;
 };

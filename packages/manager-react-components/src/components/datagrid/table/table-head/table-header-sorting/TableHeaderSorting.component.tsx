@@ -6,13 +6,18 @@ export const TableHeaderSorting = <T,>({
   header,
   onSortChange,
 }: TableHeaderSortingProps<T>) => {
-  const attrs = onSortChange && {
-    className: header.column.getCanSort() ? 'cursor-pointer select-none' : '',
-    onClick: header.column.getToggleSortingHandler(),
-  };
+  const canSort = header.column.getCanSort();
+  const handleClick = onSortChange
+    ? header.column.getToggleSortingHandler()
+    : undefined;
+  const containerClassName = `${canSort ? 'cursor-pointer select-none' : ''} h-[20px]`;
 
   return (
-    <div {...attrs} data-testid={`header-${header.id}`}>
+    <div
+      {...(handleClick && { onClick: handleClick })}
+      data-testid={`header-${header.id}`}
+      className={containerClassName}
+    >
       <span>
         {flexRender(header.column.columnDef.header, header.getContext())}
       </span>

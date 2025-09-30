@@ -10,35 +10,59 @@ import {
   BUTTON_VARIANT,
   BUTTON_SIZE,
   ICON_NAME,
+  Checkbox,
+  CheckboxControl,
 } from '@ovhcloud/ods-react';
 import { UseDatagridTableProps, ExpandableRow } from './useDatagrid.props';
 import { Button } from '../button';
 
 export const useDatagrid = <T extends ExpandableRow<T>>({
   columns,
-  data,
-  sorting,
-  onSortChange,
-  manualSorting,
-  renderSubComponent,
-  expandable,
   columnVisibility,
+  data,
+  expandable,
+  manualSorting,
+  onSortChange,
+  renderSubComponent,
+  rowSelection,
   setColumnVisibility,
+  sorting,
 }: UseDatagridTableProps<T>) => {
-  const manuelSortingConfig = onSortChange
-    ? {
-        getSortedRowModel: getSortedRowModel(),
-        manualSorting,
-        onSortingChange: onSortChange,
-        state: {
-          sorting,
-          columnVisibility,
-        },
-      }
-    : {};
-
   return useReactTable({
     columns: [
+      ...(rowSelection
+        ? [
+            {
+              id: 'select',
+              maxSize: 50,
+              enableResizing: true,
+              enableHiding: true,
+              cell: ({ row }: { row: Row<T> }) => (
+                <Checkbox
+                  id={row.id}
+                  name={`select-${row.id}`}
+                  onChange={() => row.toggleSelected()}
+                  checked={row.getIsSelected()}
+                  disabled={!row.getCanSelect()}
+                >
+                  <CheckboxControl />
+                </Checkbox>
+              ),
+              header: ({ table }) => (
+                <Checkbox
+                  id="select-all"
+                  name="select-all"
+                  onChange={() => {
+                    table.toggleAllRowsSelected();
+                  }}
+                  checked={table.getIsAllRowsSelected()}
+                >
+                  <CheckboxControl />
+                </Checkbox>
+              ),
+            },
+          ]
+        : []),
       ...(expandable || renderSubComponent
         ? [
             {
@@ -88,11 +112,21 @@ export const useDatagrid = <T extends ExpandableRow<T>>({
       setColumnVisibility && {
         columnVisibility,
         onColumnVisibilityChange: setColumnVisibility,
-        state: {
-          columnVisibility,
-        },
       }),
-    ...manuelSortingConfig,
-    debugTable: true,
+    state: {
+      ...(onSortChange && { sorting }),
+      ...(columnVisibility && setColumnVisibility && { columnVisibility }),
+      ...(rowSelection && { rowSelection: rowSelection.rowSelection }),
+    },
+    ...(rowSelection &&
+      rowSelection.setRowSelection && {
+        enableRowSelection: true,
+        onRowSelectionChange: rowSelection.setRowSelection,
+      }),
+    ...(onSortChange && {
+      onSortingChange: onSortChange,
+      getSortedRowModel: getSortedRowModel(),
+      ...(manualSorting && { manualSorting }),
+    }),
   });
 };

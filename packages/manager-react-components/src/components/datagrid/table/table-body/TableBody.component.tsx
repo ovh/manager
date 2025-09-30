@@ -1,4 +1,4 @@
-import { useEffect, useCallback, Fragment } from 'react';
+import { useEffect, useCallback, Fragment, useMemo } from 'react';
 import { Row, flexRender } from '@tanstack/react-table';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { TableBodyProps } from './TableBody.props';
@@ -8,14 +8,15 @@ import { SubRowMemo } from './sub-row/SubRow.component';
 import { LoadingRow } from './loading-row/LoadingRow.component';
 
 export const TableBody = <T,>({
-  rowModel,
-  tableContainerRef,
+  autoScroll = true,
   isLoading,
-  renderSubComponent,
-  subComponentHeight = 50,
   maxRowHeight,
   pageSize = 10,
-  autoScroll = true,
+  renderSubComponent,
+  rowModel,
+  subComponentHeight = 50,
+  tableContainerRef,
+  contentAlignLeft = true,
 }: TableBodyProps<T>) => {
   const { rows } = rowModel;
   const previousRowsLength = usePrevious(rows?.length);
@@ -57,18 +58,23 @@ export const TableBody = <T,>({
     [rows],
   );
 
-  const totalHeight = rows.reduce((acc, row) => {
-    return acc + maxRowHeight + (row.getIsExpanded() ? subComponentHeight : 0);
-  }, 0);
+  const totalHeight = useMemo(() => {
+    let total = rows.reduce((acc, row) => {
+      return (
+        acc + maxRowHeight + (row.getIsExpanded() ? subComponentHeight : 0)
+      );
+    }, 0);
+    return isLoading
+      ? total + (pageSize - 1) * maxRowHeight
+      : total + rows.length;
+  }, [rows, maxRowHeight, subComponentHeight, isLoading]);
 
   return (
     <tbody
       key={`table-body-${rows.length}`}
       className="w-full relative p-0 overflow-hidden"
       style={{
-        height: isLoading
-          ? totalHeight + rows.length + (pageSize - 1 * maxRowHeight)
-          : totalHeight + rows.length,
+        height: totalHeight,
       }}
     >
       {rowVirtualizer.getVirtualItems().map((virtualRow) => {
@@ -86,16 +92,17 @@ export const TableBody = <T,>({
               key={row.id}
               data-index={virtualRow.index}
               ref={rowVirtualizer.measureElement}
-              className={`overflow-hidden absolute top-0 w-full h-[${maxRowHeight}px] table table-fixed`}
+              className={`overflow-hidden absolute top-0 w-full table table-fixed`}
               style={{
                 left: -1,
+                height: `${maxRowHeight}px`,
                 transform: `translateY(${virtualRow.start + offset}px)`,
               }}
             >
               {row.getVisibleCells().map((cell) => (
                 <td
                   key={cell.id}
-                  className="py-[8px]"
+                  className={`py-[8px] ${contentAlignLeft ? 'pl-4' : 'text-center'}`}
                   style={{
                     width: cell.column.getSize(),
                     minWidth: cell.column.columnDef.minSize ?? 0,

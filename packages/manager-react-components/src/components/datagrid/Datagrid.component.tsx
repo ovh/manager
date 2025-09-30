@@ -1,41 +1,47 @@
-import { useRef, useMemo, useState } from 'react';
+import { useRef, useMemo } from 'react';
 import { Table } from '@ovhcloud/ods-react';
-import { VisibilityState } from '@tanstack/react-table';
 import { TableHeaderContent } from './table/table-head/table-header-content/TableHeaderContent.component';
 import { TableFooter } from './table/table-footer/TableFooter.component';
 import { TableBody } from './table/table-body/TableBody.component';
 import { useDatagrid } from './useDatagrid';
 import { DatagridProps } from './Datagrid.props';
 import { Topbar } from './topbar/Topbar.component';
-
 import './translations';
 
 const DEFAULT_ROW_HEIGHT = 50;
+const DEFAULT_CONTAINER_HEIGHT = 570;
 
 export const Datagrid = <T extends Record<string, unknown>>({
+  autoScroll = true,
   columns,
-  data,
-  onSortChange,
-  sorting,
-  manualSorting = false,
+  columnVisibility,
+  containerHeight,
   contentAlignLeft = true,
+  data,
+  enableColumnvisibility = false,
+  enableFilter = false,
+  enableSearch = false,
+  expandable = false,
+  filters,
   hasNextPage,
+  isLoading,
+  manualSorting = false,
+  maxRowHeight = DEFAULT_ROW_HEIGHT,
   onFetchAllPages,
   onFetchNextPage,
-  isLoading,
-  containerHeight,
-  totalCount,
+  onSortChange,
   renderSubComponent,
-  subComponentHeight,
-  maxRowHeight = DEFAULT_ROW_HEIGHT,
-  expandable = false,
-  autoScroll = true,
-  columnVisibility,
+  resourceType,
+  rowSelection,
+  search,
   setColumnVisibility,
+  sorting,
+  subComponentHeight,
   topbar,
+  totalCount,
 }: DatagridProps<T>) => {
   const dataMemo = useMemo(() => data, [data]);
-  const columnsMemo = useMemo(() => columns, []);
+  const columnsMemo = useMemo(() => columns, [columns]);
   const {
     getHeaderGroups,
     getRowModel,
@@ -53,6 +59,7 @@ export const Datagrid = <T extends Record<string, unknown>>({
     expandable,
     columnVisibility,
     setColumnVisibility,
+    rowSelection,
   });
   const rowModel = getRowModel();
   const { rows } = rowModel;
@@ -62,27 +69,40 @@ export const Datagrid = <T extends Record<string, unknown>>({
     () => getAllLeafColumns(),
     [getAllLeafColumns()],
   );
+
+  const containerHeightMemo =
+    dataMemo?.length < 10 ? '100%' : `${DEFAULT_CONTAINER_HEIGHT}px`;
+  const containerStyle = useMemo(
+    () => ({
+      maxHeight: containerHeight ? `${containerHeight}px` : containerHeightMemo,
+      height: containerHeight ? `${containerHeight}px` : containerHeightMemo,
+    }),
+    [containerHeight, dataMemo?.length],
+  );
+
   return (
     <>
-      <Topbar
-        topbar={topbar}
-        visibleColumns={visibleColumns}
-        toggleAllColumnsVisible={toggleAllColumnsVisible}
-        getIsAllColumnsVisible={getIsAllColumnsVisible}
-        getIsSomeColumnsVisible={getIsSomeColumnsVisible}
-        setColumnVisibility={setColumnVisibility}
-      />
+      {(topbar || enableSearch || enableFilter || enableColumnvisibility) && (
+        <Topbar
+          columns={columnsMemo}
+          topbar={topbar}
+          search={search}
+          resourceType={resourceType}
+          filters={filters}
+          enableFilter={enableFilter}
+          enableSearch={enableSearch}
+          enableColumnvisibility={enableColumnvisibility}
+          visibleColumns={visibleColumns}
+          toggleAllColumnsVisible={toggleAllColumnsVisible}
+          getIsAllColumnsVisible={getIsAllColumnsVisible}
+          getIsSomeColumnsVisible={getIsSomeColumnsVisible}
+          setColumnVisibility={setColumnVisibility}
+        />
+      )}
       <div
         className="overflow-auto relative w-full"
         ref={tableContainerRef}
-        style={{
-          maxHeight: containerHeight ? `${containerHeight}px` : '570px',
-          height: containerHeight
-            ? `${containerHeight}px`
-            : data?.length < 10
-              ? '100%'
-              : '570px',
-        }}
+        style={containerStyle}
       >
         <Table className="w-full">
           <TableHeaderContent<T>
@@ -99,6 +119,7 @@ export const Datagrid = <T extends Record<string, unknown>>({
             renderSubComponent={renderSubComponent}
             subComponentHeight={subComponentHeight}
             maxRowHeight={maxRowHeight}
+            contentAlignLeft={contentAlignLeft}
           />
         </Table>
       </div>

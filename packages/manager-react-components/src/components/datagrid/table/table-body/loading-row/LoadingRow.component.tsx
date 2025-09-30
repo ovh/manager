@@ -3,8 +3,8 @@ import { Skeleton } from '@ovhcloud/ods-react';
 import { LoadingRowProps } from './LoadingRow.props';
 
 const LoadingRowComponent = <T,>({
-  pageSize = 10,
   columns,
+  pageSize = 10,
 }: LoadingRowProps<T>) => {
   return (
     <>

@@ -3,7 +3,13 @@ import {
   Datagrid,
   DatagridProps,
   Text,
+  useColumnFilters,
 } from '@ovh-ux/manager-react-components';
+import {
+  FilterComparator,
+  applyFilters,
+  FilterCategories,
+} from '@ovh-ux/manager-core-api';
 import {
   FormField,
   FormFieldLabel,
@@ -13,7 +19,11 @@ import {
   ICON_NAME,
   BUTTON_SIZE,
 } from '@ovhcloud/ods-react';
-import { SortingState, VisibilityState } from '@tanstack/react-table';
+import {
+  SortingState,
+  VisibilityState,
+  RowSelectionState,
+} from '@tanstack/react-table';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
 const columns = [
@@ -23,6 +33,9 @@ const columns = [
     accessorKey: 'person',
     header: 'Person',
     enableHiding: true,
+    isSearchable: true,
+    isFilterable: true,
+    comparator: FilterCategories.String,
     cell: ({ getValue }) => <div>{getValue()}</div>,
   },
   {
@@ -31,6 +44,8 @@ const columns = [
     accessorKey: 'mostInterestIn',
     header: 'Most interest in',
     enableHiding: true,
+    isFilterable: true,
+    type: FilterCategories.String,
     cell: ({ getValue }) => <div>{getValue()}</div>,
   },
   {
@@ -39,6 +54,8 @@ const columns = [
     accessorKey: 'age',
     header: 'Age',
     enableHiding: false,
+    isFilterable: true,
+    type: FilterCategories.Numeric,
     cell: ({ getValue }) => <div>{getValue()}</div>,
   },
 ];
@@ -88,7 +105,7 @@ const data = [
 
 const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
-
+  const [searchInput, setSearchInput] = useState('');
   const sortAttrs = {
     sorting,
     onSortChange: setSorting,
@@ -125,22 +142,34 @@ const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
     onFetchAllPages,
     manualSorting,
     topbar,
+    enableFilter,
+    enableSearch,
+    enableColumnvisibility,
   } = args;
 
+  const { filters, addFilter, removeFilter } = useColumnFilters();
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+  const onSearch = (search: string) => {
+    const tmp = applyFilters(
+      args.data,
+      !search || search.length === 0
+        ? filters
+        : [
+            {
+              key: 'person',
+              value: searchInput,
+              comparator: FilterComparator.Includes,
+            },
+            ...filters,
+          ],
+    );
+    setItems(tmp);
+  };
 
+  console.info('sortAttrs : ', sortAttrs);
   return (
     <>
-      {'onFetchNextPage' in args && (
-        <div className="py-4">
-          <Text>
-            <b>Notice:</b> You are currently running React in development mode.
-            Virtualized rendering performance will be slightly degraded until
-            this application is built for production. ({items?.length} of 10000
-            rows fetched)
-          </Text>
-        </div>
-      )}
       {'containerHeight' in args && (
         <div className="py-4">
           <div className="max-w-[200px]">
@@ -163,9 +192,11 @@ const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
       )}
       <Datagrid
         columns={cols}
-        data={items}
-        {...(containerHeightStyle && { containerHeight: containerHeightStyle })}
-        {...(manualSorting && { ...sortAttrs })}
+        data={applyFilters(items, filters)}
+        {...('containerHeight' in args && {
+          containerHeight: containerHeightStyle,
+        })}
+        {...('manualSorting' in args && { ...sortAttrs })}
         {...('onFetchAllPages' in args &&
           !isFetchAll && {
             hasNextPage: true,
@@ -197,6 +228,21 @@ const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
         {...('columnVisibility' in args && { columnVisibility })}
         {...('setColumnVisibility' in args && { setColumnVisibility })}
         {...('topbar' in args && { topbar })}
+        {...('filters' in args && {
+          filters: { filters, add: addFilter, remove: removeFilter },
+        })}
+        {...('enableFilter' in args && { enableFilter })}
+        {...('enableSearch' in args && { enableSearch })}
+        {...('enableColumnvisibility' in args && { enableColumnvisibility })}
+        {...('search' in args && {
+          search: { searchInput, setSearchInput, onSearch },
+        })}
+        {...('rowSelection' in args && {
+          rowSelection: {
+            rowSelection,
+            setRowSelection,
+          },
+        })}
       />
     </>
   );
@@ -215,6 +261,14 @@ Sorting.args = {
   columns,
   data,
   manualSorting: false,
+};
+
+export const Loading = DatagridStory.bind({});
+
+Loading.args = {
+  columns: [],
+  data,
+  isLoading: true,
 };
 
 export const LoadMore = DatagridStory.bind({});
@@ -300,6 +354,45 @@ VisibilityColumns.args = {
   manualSorting: false,
   columnVisibility: { person: true, mostInterestIn: true, age: true },
   setColumnVisibility: () => {},
+  enableColumnvisibility: true,
+};
+
+export const Filtering = DatagridStory.bind({});
+
+Filtering.args = {
+  columns,
+  data,
+  filters: {
+    filters: [],
+    add: () => {},
+    remove: () => {},
+  },
+  enableFilter: true,
+};
+
+export const Search = DatagridStory.bind({});
+
+Search.args = {
+  columns,
+  data,
+  search: {
+    searchInput: '',
+    setSearchInput: () => {},
+    onSearch: () => {},
+  },
+  enableSearch: true,
+};
+
+export const RowSelection = DatagridStory.bind({});
+
+RowSelection.args = {
+  columns,
+  data,
+  rowSelection: {
+    rowSelection: [],
+    setRowSelection: () => {},
+    onRowSelectionChange: () => {},
+  },
 };
 
 export const Topbar = DatagridStory.bind({});
@@ -315,6 +408,26 @@ Topbar.args = {
       </Button>
     </div>
   ),
+  filters: {
+    filters: [],
+    add: () => {},
+    remove: () => {},
+  },
+  enableFilter: true,
+  search: {
+    searchInput: '',
+    setSearchInput: () => {},
+    onSearch: () => {},
+  },
+  enableSearch: true,
+  rowSelection: {
+    rowSelection: [],
+    setRowSelection: () => {},
+    onRowSelectionChange: () => {},
+  },
+  columnVisibility: { person: true, mostInterestIn: true, age: true },
+  setColumnVisibility: () => {},
+  enableColumnvisibility: true,
 };
 
 const meta = {
