@@ -23,6 +23,7 @@
     >
         <oui-action-menu
             data-ng-if="$ctrl.LOGS_COMPATIBILITY_STATE[$ctrl.logsCompatiblity.state].actions.length > 0"
+            data-disabled=":: $ctrl.isDisabled"
             data-compact
             data-placement="end"
         >
@@ -37,6 +38,7 @@
             <oui-action-menu-item
                 data-ng-if="$ctrl.LOGS_COMPATIBILITY_STATE[$ctrl.logsCompatiblity.state].actions.includes($ctrl.LOGS_ACTIONS.DEACTIVATE)"
                 data-on-click="$ctrl.onDeactivateLogs()"
+                data-disabled=":: $ctrl.isDisabled"
             >
                 <span data-translate="logs_deactivate"></span>
             </oui-action-menu-item>
