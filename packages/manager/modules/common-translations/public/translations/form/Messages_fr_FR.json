@@ -32,5 +32,6 @@
   "yes": "Oui",
   "no": "Non",
   "ok": "OK",
-  "optional": "facultatif"
+  "optional": "facultatif",
+  "no_result": "Aucun résultat"
 }
