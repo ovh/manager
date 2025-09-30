@@ -33,8 +33,9 @@ const RadioTile = ({
       {...(!disabled && { tabIndex: 0 })}
       onKeyDown={handleLabelKeyDown}
       data-testid="radio-tile-container"
+      className={cn(tileClassName, 'h-full')}
     >
-      <div className={cn(tileClassName)}>
+      <div className="h-full">
         <input
           onChange={(e) => (props.onChange ? props.onChange(e) : null)}
           className="hidden"
@@ -48,13 +49,14 @@ const RadioTile = ({
         <label
           id={labelId}
           className={cn(
-            'flex flex-col h-full w-full group border-2 border-primary-100 rounded-md',
+            'flex flex-col h-full w-full group border-2 border-solid  rounded-md',
             {
-              'border-primary-600  selected': !disabled && props.checked,
-              'border-primary-100 bg-white': !disabled && !props.checked,
-              'hover:shadow-sm hover:border-primary-600 hover:bg-primary-100 cursor-pointer':
+              'border-[--ods-color-blue-600]  selected': !disabled && props.checked,
+              'border-[--ods-color-blue-100] bg-white': !disabled && !props.checked,
+              'hover:shadow-sm  hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] cursor-pointer':
                 !disabled,
-              'bg-neutral-100 border-neutral-100 text-neutral-800': disabled,
+              'bg-neutral-100  text-neutral-800 border-[--ods-color-border-readonly-default]':
+                disabled,
             },
 
             labelClassName,
@@ -67,10 +69,6 @@ const RadioTile = ({
       </div>
     </div>
   );
-};
-
-RadioTile.Separator = function RadioTileSeparator() {
-  return <div className="w-full border-neutral-100 border-t mt-2 pt-2 " aria-hidden="true"></div>;
 };
 
 export default RadioTile;
