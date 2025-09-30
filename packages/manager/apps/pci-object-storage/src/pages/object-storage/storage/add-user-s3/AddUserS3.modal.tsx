@@ -46,7 +46,7 @@ const SwithType = () => {
   const navigate = useNavigate();
   const toast = useToast();
   const { projectId, storageId, region } = useParams();
-  const s3Query = useGetS3(projectId, region, storageId);
+  const s3Query = useGetS3({ projectId, region, name: storageId });
   const [openUser, setOpenUser] = useState(false);
 
   const { users } = useObjectStorageData();
