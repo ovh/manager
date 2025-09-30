@@ -100,7 +100,7 @@ export default class FtthEligibilityCtrl {
           this.createService(
             service,
             data[0].status,
-            data[0].copperGridClosureTrajectory,
+            data[0].firstCopperClosure,
           ),
         );
       }
@@ -109,7 +109,7 @@ export default class FtthEligibilityCtrl {
     return this.$q.all(list);
   }
 
-  createService(service, migrationAvailable, copperGridClosureTrajectory) {
+  createService(service, migrationAvailable, firstCopperClosure) {
     const { accessName, accessType, description, packName } = service;
     const createService = {
       accessName,
@@ -126,8 +126,8 @@ export default class FtthEligibilityCtrl {
         `#/pack/${packName}/migration`,
       ),
     };
-    if (copperGridClosureTrajectory) {
-      createService.copperGridClosureTrajectory = copperGridClosureTrajectory;
+    if (firstCopperClosure) {
+      createService.firstCopperClosure = firstCopperClosure;
     }
     return createService;
   }
