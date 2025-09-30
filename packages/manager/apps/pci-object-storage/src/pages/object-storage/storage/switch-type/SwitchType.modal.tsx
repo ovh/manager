@@ -19,7 +19,7 @@ import { useEditSwift } from '@/data/hooks/swift-storage/useEditSwift.hook';
 
 const SwithType = () => {
   const { projectId, containerId } = useParams();
-  const storageQuery = useGetSwift(projectId, containerId, true);
+  const storageQuery = useGetSwift({ projectId, containerId, noObjects: true });
   const navigate = useNavigate();
   const { t } = useTranslation('pci-object-storage/storages/switch-type');
   const toast = useToast();
