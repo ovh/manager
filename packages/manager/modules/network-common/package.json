@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-network-common",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "private": true,
   "description": "OVHcloud manager module common network",
   "repository": {
@@ -26,7 +26,7 @@
     "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
-    "@ovh-ux/manager-react-components": "^2.41.1"
+    "@ovh-ux/manager-react-components": "^2.42.0"
   },
   "devDependencies": {
     "@ovh-ux/manager-core-api": "^0.18.4",

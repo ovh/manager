@@ -111,7 +111,7 @@ export default class XdslAccessListCtrl {
             this.createService(
               service,
               data[0].status,
-              data[0].copperGridClosureTrajectory,
+              data[0].firstCopperClosure,
             ),
           )
           .catch(() =>
@@ -124,7 +124,7 @@ export default class XdslAccessListCtrl {
     return this.$q.all(serviceList);
   }
 
-  createService(service, migrationAvailable, copperGridClosureTrajectory) {
+  createService(service, migrationAvailable, firstCopperClosure) {
     const { accessName, accessType, description, packName } = service;
     const newService = {
       accessName,
@@ -145,12 +145,12 @@ export default class XdslAccessListCtrl {
     newService.closureDate = this.$translate.instant(
       'xdsl_access_list_not_concerned',
     );
-    if (copperGridClosureTrajectory) {
-      newService.copperGridClosureTrajectory = copperGridClosureTrajectory;
+    if (firstCopperClosure) {
+      newService.firstCopperClosure = firstCopperClosure;
       if (migrationAvailable) {
-        if (copperGridClosureTrajectory.technicalClosureDate) {
+        if (firstCopperClosure.date) {
           newService.closureDate = this.$filter('date')(
-            copperGridClosureTrajectory.technicalClosureDate,
+            firstCopperClosure.date,
             'shortDate',
           );
         } else {

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hycu-app",
-  "version": "0.14.19",
+  "version": "0.14.20",
   "private": true,
   "description": "Backup HYCU for OVHcloud",
   "repository": {
@@ -17,7 +17,7 @@
     "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
-    "@ovh-ux/manager-common-translations": "^0.18.3",
+    "@ovh-ux/manager-common-translations": "^0.19.0",
     "@ovh-ux/manager-config": "^8.6.2",
     "@ovh-ux/manager-core-api": "^0.18.4",
     "@ovh-ux/manager-core-utils": "^0.4.2",
