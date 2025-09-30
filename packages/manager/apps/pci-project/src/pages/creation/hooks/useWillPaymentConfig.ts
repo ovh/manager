@@ -23,7 +23,7 @@ export const useWillPaymentConfig = ({
     baseUrl: window.location.origin,
     onChange: (state: GlobalStateStatus) => onPaymentStatusChange?.(state),
     subsidiary: user.ovhSubsidiary,
-    language: user.language,
+    language: `${user.language}`,
     hostApp: 'pci',
   };
 };

@@ -20,11 +20,16 @@ describe('useWillPayment', () => {
     const { result } = renderHook(() => useWillPayment());
 
     expect(result.current.hasDefaultPaymentMethod).toBe(false);
-    expect(result.current.isPaymentMethodSaveRequired).toBe(false);
-    expect(result.current.isPaymentMethodSaved).toBe(false);
-    expect(result.current.isSubmittingDisabled).toBe(true);
-    expect(typeof result.current.triggerSavePaymentMethod).toBe('function');
+    expect(result.current.needsSave).toBe(false);
+    expect(result.current.isSaved).toBe(false);
+    expect(result.current.canSubmit).toBe(false);
+    expect(result.current.isCreditPayment).toBeUndefined();
+    expect(result.current.creditAmount).toBeUndefined();
+    expect(typeof result.current.savePaymentMethod).toBe('function');
     expect(typeof result.current.handlePaymentStatusChange).toBe('function');
+    expect(typeof result.current.handleRegisteredPaymentMethodSelected).toBe(
+      'function',
+    );
   });
 
   it('should handle ERROR state correctly', () => {
@@ -40,12 +45,12 @@ describe('useWillPayment', () => {
     });
 
     expect(result.current.hasDefaultPaymentMethod).toBe(false);
-    expect(result.current.isPaymentMethodSaveRequired).toBe(false);
-    expect(result.current.isPaymentMethodSaved).toBe(false);
-    expect(result.current.isSubmittingDisabled).toBe(true);
+    expect(result.current.needsSave).toBe(false);
+    expect(result.current.isSaved).toBe(false);
+    expect(result.current.canSubmit).toBe(false);
   });
 
-  it('should handle COMPLETED state correctly', () => {
+  it('should handle PAYMENT_METHOD_SAVED state correctly', () => {
     const { result } = renderHook(() => useWillPayment());
 
     const completedStatus: GlobalStateStatus = {
@@ -57,11 +62,12 @@ describe('useWillPayment', () => {
       result.current.handlePaymentStatusChange(completedStatus);
     });
 
-    expect(result.current.isPaymentMethodSaved).toBe(true);
-    expect(result.current.isSubmittingDisabled).toBe(true); // No save required, so button disabled
+    expect(result.current.isSaved).toBe(true);
+    expect(result.current.needsSave).toBe(false);
+    expect(result.current.canSubmit).toBe(false); // No default payment method and no save required
   });
 
-  it('should handle READY_TO_SAVE state correctly', () => {
+  it('should handle READY_TO_GO_FORWARD state correctly', () => {
     const { result } = renderHook(() => useWillPayment());
 
     const readyStatus: GlobalStateStatus = {
@@ -73,9 +79,9 @@ describe('useWillPayment', () => {
       result.current.handlePaymentStatusChange(readyStatus);
     });
 
-    expect(result.current.isPaymentMethodSaveRequired).toBe(true);
-    expect(result.current.isPaymentMethodSaved).toBe(false);
-    expect(result.current.isSubmittingDisabled).toBe(false); // Save required, so button enabled
+    expect(result.current.needsSave).toBe(true);
+    expect(result.current.isSaved).toBe(false);
+    expect(result.current.canSubmit).toBe(true); // Save required, so button enabled
   });
 
   it('should handle LOADING state correctly', () => {
@@ -90,9 +96,9 @@ describe('useWillPayment', () => {
       result.current.handlePaymentStatusChange(loadingStatus);
     });
 
-    expect(result.current.isPaymentMethodSaveRequired).toBe(false);
-    expect(result.current.isPaymentMethodSaved).toBe(false);
-    expect(result.current.isSubmittingDisabled).toBe(true); // Neither condition met, so button disabled
+    expect(result.current.needsSave).toBe(false);
+    expect(result.current.isSaved).toBe(false);
+    expect(result.current.canSubmit).toBe(false); // Neither condition met, so button disabled
   });
 
   it('should trigger save payment method event', () => {
@@ -104,7 +110,7 @@ describe('useWillPayment', () => {
     const { result } = renderHook(() => useWillPayment());
 
     act(() => {
-      result.current.triggerSavePaymentMethod();
+      result.current.savePaymentMethod();
     });
 
     expect(dispatchEventSpy).toHaveBeenCalledWith(
@@ -121,8 +127,46 @@ describe('useWillPayment', () => {
 
     expect(() => {
       act(() => {
-        result.current.triggerSavePaymentMethod();
+        result.current.savePaymentMethod();
       });
     }).not.toThrow();
+  });
+
+  it('should handle credit payment data correctly', () => {
+    const { result } = renderHook(() => useWillPayment());
+
+    const creditStatus: GlobalStateStatus = {
+      componentStatus: ComponentStatus.READY_TO_GO_FORWARD,
+      paymentMethodStatus: PaymentMethodStatus.PENDING,
+      data: {
+        isCredit: true,
+        creditAmount: { value: 100, currency: 'EUR' },
+      },
+    };
+
+    act(() => {
+      result.current.handlePaymentStatusChange(creditStatus);
+    });
+
+    expect(result.current.isCreditPayment).toBe(true);
+    expect(result.current.creditAmount).toEqual({
+      value: 100,
+      currency: 'EUR',
+    });
+  });
+
+  it('should enable submit when has default payment method', () => {
+    const { result } = renderHook(() => useWillPayment());
+
+    // First set default payment method
+    const mockEvent = new CustomEvent('test', {
+      detail: { paymentMethodId: 'pm_123' },
+    });
+
+    act(() => {
+      result.current.handleRegisteredPaymentMethodSelected(mockEvent);
+    });
+
+    expect(result.current.canSubmit).toBe(true);
   });
 });
