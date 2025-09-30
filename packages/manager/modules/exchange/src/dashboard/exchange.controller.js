@@ -38,6 +38,8 @@ export default class ExchangeCtrl {
     sharedLink,
     sharedAccountLink,
     taskLink,
+    logsLink,
+    isLogsAvailable,
   ) {
     this.services = {
       $q,
@@ -57,10 +59,14 @@ export default class ExchangeCtrl {
       exchange,
       reloadDashboard,
       WucUser,
+      isLogsAvailable,
     };
     this.exchange = exchange;
     this.$routerParams = wucExchange.getParams();
 
+    this.isLogsAvailable =
+      isLogsAvailable && exchange.offer.startsWith('DEDICATED');
+    this.BETA = 'Beta';
     this.EXCHANGE_CONTAINER_MESSAGING = EXCHANGE_CONTAINER_MESSAGING;
 
     set(navigation, '$exchangeRootScope', $scope);
@@ -107,6 +113,7 @@ export default class ExchangeCtrl {
     this.disclaimerLink = disclaimerLink;
     this.sharedLink = sharedLink;
     this.taskLink = taskLink;
+    this.logsLink = logsLink;
   }
 
   $onInit() {

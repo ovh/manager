@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { FC, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import {
   OsdsButton,
   OsdsModal,
@@ -55,14 +55,15 @@ const PaymentModal: FC = () => {
     .getPlugin('navigation')
     .getURL('dedicated', '#/billing/payment/method');
 
-  const closeHandler = () => {
+  const closeHandler = useCallback(() => {
     setShowPaymentModal(false);
     ux.notifyModalActionDone(PaymentModal.name);
-  };
-  const validateHandler = () => {
+  }, [ux]);
+
+  const validateHandler = useCallback(() => {
     setShowPaymentModal(false);
     window.location.href = paymentMethodURL;
-  };
+  }, [paymentMethodURL]);
   
   useEffect(() => {
     if (shouldDisplayModal !== undefined) {

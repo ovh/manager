@@ -66,10 +66,9 @@ export default function ModalContainer({
   useEffect(() => {
     if (currentIndex === null) return;
     uxPlugin.registerModalActionDoneListener(handleActionDone);
-    // TODO: implement the unregisterModalActionDoneListener in order to clean up this event listener (MANAGER-18813)
-    /*return () => {
+    return () => {
       uxPlugin.unregisterModalActionDoneListener(handleActionDone);
-    };*/
+    };
   }, [currentIndex, uxPlugin, handleActionDone]);
 
   if (currentIndex === null) return null;

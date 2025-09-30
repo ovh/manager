@@ -122,7 +122,7 @@
   "orders_order_status_delivering": "Entrega em curso",
   "orders_order_status_documents_requested": "Aguardar documentos",
   "orders_order_status_not_paid": "Sem pagamento",
-  "orders_order_status_unknown": "Desconhecido",
+  "orders_order_status_unknown": "Erro",
   "orders_order_bc_expired": "Encomenda expirada",
   "orders_order_status_filter_progress": "Em curso",
   "orders_order_status_filter_all": "Todas",

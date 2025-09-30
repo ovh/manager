@@ -225,5 +225,6 @@
   "sidebar_sap_features_hub": "SAP Features Hub",
   "sidebar_alldom": "Alldoms",
   "sidebar_alldom_list": "Meine Alldoms",
-  "sidebar_security_identity_operations_iam_tag-management": "Tag-Management"
+  "sidebar_security_identity_operations_iam_tag-management": "Tag-Management",
+  "sidebar_pci_quantum_qpu": "QPUs"
 }

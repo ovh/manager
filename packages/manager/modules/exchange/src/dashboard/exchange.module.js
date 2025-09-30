@@ -10,6 +10,8 @@ import 'moment';
 
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
+
 import ExchangeAccountMfaCreate from '../account/mfa/create';
 import ExchangeAccountMfaDelete from '../account/mfa/delete';
 
@@ -32,6 +34,7 @@ import disclaimer from '../disclaimer/disclaimer.module';
 import shared from '../shared/shared.module';
 import task from '../task/task.module';
 import alias from '../alias/exchange-alias.module';
+import logs from '../logs/logs.module';
 
 import {
   EXCHANGE_MX_CONFIG,
@@ -51,6 +54,7 @@ angular
     'ngSanitize',
     'ng.ckeditor',
     'ngOvhWebUniverseComponents',
+    ngOvhFeatureFlipping,
     components,
     controllers,
     ovhManagerCore,
@@ -70,6 +74,7 @@ angular
     shared,
     task,
     alias,
+    logs,
   ])
   .constant('EXCHANGE_MX_CONFIG', EXCHANGE_MX_CONFIG)
   .constant('EXCHANGE_CONFIG_URL', EXCHANGE_CONFIG_URL)

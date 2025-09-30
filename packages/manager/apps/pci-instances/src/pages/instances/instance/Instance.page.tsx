@@ -59,19 +59,17 @@ const Instance: FC = () => {
             projectLabel={project.description ?? ''}
             items={[{ label: instance?.name ?? '' }]}
           />
-          <div className="header mt-8">
+          <header className="header mt-8">
             <div className="flex items-center justify-between">
-              <div className="flex-[0.8]">
-                <LoadingCell isLoading={isInstanceLoading}>
-                  {instance && <InstanceName instance={instance} />}
-                </LoadingCell>
-              </div>
+              <LoadingCell isLoading={isInstanceLoading}>
+                {instance && <InstanceName instance={instance} />}
+              </LoadingCell>
               <div className="flex gap-x-3">
                 <ChangelogButton links={CHANGELOG_LINKS} />
                 <PciGuidesHeader category="instances" />
               </div>
             </div>
-          </div>
+          </header>
           <div className="mt-8 mb-8">
             <Notifications />
             <SearchNotifications />

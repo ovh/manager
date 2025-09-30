@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-wiki",
-  "version": "0.14.1",
+  "version": "0.14.2",
   "private": true,
   "description": "Manager Wiki",
   "license": "BSD-3-Clause",
@@ -29,7 +29,7 @@
     "@ovh-ux/manager-core-api": "^0.12.0",
     "@ovh-ux/ovh-at-internet": "^0.21.6",
     "@ovh-ux/request-tagger": "^0.5.2",
-    "@ovh-ux/shell": "^4.7.6",
+    "@ovh-ux/shell": "^4.7.7",
     "@ovh-ux/url-builder": "^2.1.2",
     "@storybook/addon-docs": "^8.6.7",
     "@storybook/addon-essentials": "^8.6.7",

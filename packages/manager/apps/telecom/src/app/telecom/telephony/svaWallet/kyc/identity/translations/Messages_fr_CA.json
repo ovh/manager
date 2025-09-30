@@ -7,6 +7,7 @@
   "telephony_billingAccount_svaWallet_kyc_identity_type_reseller": "Professionnel revendeur",
   "telephony_billingAccount_svaWallet_kyc_identity_company_name": "Raison sociale",
   "telephony_billingAccount_svaWallet_kyc_identity_company_identification_number": "SIRET",
+  "telephony_billingAccount_svaWallet_kyc_identity_company_registration_date": "Date de création",
   "telephony_billingAccount_svaWallet_kyc_identity_company_kind": "Type d'entreprise",
   "telephony_billingAccount_svaWallet_kyc_identity_company_kind_placeholder": "Choisir la typologie",
   "telephony_billingAccount_svaWallet_kyc_company_kind_ADMINISTRATION": "Administration/Autorités ou Agences publiques et autorités régionales",

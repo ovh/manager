@@ -31,6 +31,8 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
   isSvaWalletFeatureAvailable,
   svaWallet,
   themes,
+  isSvaWalletValid,
+  svaWalletOnboarding,
 ) {
   const self = this;
 
@@ -39,6 +41,8 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountDashboardC
   self.themes = themes;
 
   self.svaWallet = svaWallet;
+  self.isSvaWalletValid = isSvaWalletValid;
+  self.svaWalletOnboarding = svaWalletOnboarding;
 
   self.isSvaWalletFeatureAvailable = isSvaWalletFeatureAvailable;
   self.showSvaProfile = false;

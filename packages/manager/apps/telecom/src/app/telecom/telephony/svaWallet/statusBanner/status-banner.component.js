@@ -6,5 +6,7 @@ export default {
   controller,
   bindings: {
     svaWallet: '<',
+    isSvaWalletValid: '<',
+    svaWalletOnboarding: '<',
   },
 };

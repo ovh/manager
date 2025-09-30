@@ -4,5 +4,5 @@
   "iam_identities_account_delegation_disclaimer": "Auf Support-Tickets kann nur über Ihren Kunden-Account (NIC) zugegriffen werden.",
   "iam_identities_account_delegation_cancel": "Abbrechen",
   "iam_identities_account_delegation_confirm": "Hinzufügen",
-  "iam_identities_account_delegation_format_error": "Das Account-Format ist ungültig, Beispiel: {{format}}"
+  "iam_identities_account_delegation_format_error": "Bitte geben Sie ein gültiges Format an, zum Beispiel {{format}}."
 }

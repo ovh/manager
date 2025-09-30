@@ -11,7 +11,7 @@ export default class KycIdentitySummaryBankAccountController {
     this.isLoading = false;
     this.model = {
       holder: null,
-      iban: null,
+      iban: '',
     };
   }
 

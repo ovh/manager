@@ -1,11 +1,4 @@
-import {
-  Suspense,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import { Suspense, useCallback, useEffect, useMemo, useState } from 'react';
 import {
   Outlet,
   useHref,
@@ -15,8 +8,6 @@ import {
 } from 'react-router-dom';
 import {
   BaseLayout,
-  Links,
-  LinkType,
   Notifications,
   PciGuidesHeader,
   PciMaintenanceBanner,
@@ -27,17 +18,13 @@ import {
   useProductMaintenance,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { TabsPanel, useProject } from '@ovh-ux/manager-pci-common';
-import {
-  ShellContext,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import {
   OdsBreadcrumb,
   OdsBreadcrumbItem,
-  OdsMessage,
   OdsSpinner,
 } from '@ovhcloud/ods-components/react';
 
@@ -93,7 +80,6 @@ export default function ObjectPage() {
   const [enableVersionsToggle, setEnableVersionsToggle] = useState(false);
   const [sortingDatagrid, setSortingDatagrid] = useState(null);
 
-  const { tracking } = useContext(ShellContext).shell;
   const { me } = useMe();
   const { data: project } = useProject();
   const hrefProject = useProjectUrl('public-cloud');
@@ -104,15 +90,10 @@ export default function ObjectPage() {
     container,
     url,
     region,
-    showReplicationBanner,
     isPending,
     isLocalZone,
     isRightOffer,
   } = useContainerData();
-
-  const manageReplicationsHref = useHref(
-    `./replications?region=${regionParam}`,
-  );
 
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(
     project?.project_id,
@@ -336,30 +317,6 @@ export default function ObjectPage() {
 
       {hasMaintenance && (
         <PciMaintenanceBanner maintenanceURL={maintenanceURL} />
-      )}
-
-      {showReplicationBanner && (
-        <OdsMessage
-          color="information"
-          className="mt-6 inline-flex items-start"
-          isDismissible={false}
-        >
-          <span>
-            <Trans
-              i18nKey="container:pci_projects_project_storages_containers_container_add_replication_rules_info"
-              components={{
-                1: <Links href={manageReplicationsHref} />,
-                2: (
-                  <Links
-                    href={REPLICATION_LINK}
-                    target="_blank"
-                    type={LinkType.external}
-                  />
-                ),
-              }}
-            />
-          </span>
-        </OdsMessage>
       )}
 
       <CommonContainerContext.Provider value={commonContextValue}>

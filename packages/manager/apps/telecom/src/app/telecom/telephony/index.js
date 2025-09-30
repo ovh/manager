@@ -59,8 +59,28 @@ angular
               return TelephonySvaWalletService.isSvaWalletValid(svaWallet);
             },
 
-            goToSvaWallet: /* @ngInject */ ($state) => () =>
-              $state.go('telecom.telephony.billingAccount.svaWallet'),
+            svaWalletOnboarding: /* @ngInject */ (
+              $q,
+              isSvaWalletFeatureAvailable,
+              TelephonySvaWalletService,
+            ) =>
+              isSvaWalletFeatureAvailable
+                ? TelephonySvaWalletService.getWalletOnboarding()
+                : $q.resolve(false),
+
+            goToSvaWallet: /* @ngInject */ (
+              $state,
+              $window,
+              isSvaWalletValid,
+              svaWalletOnboarding,
+            ) => () => {
+              if (!isSvaWalletValid && svaWalletOnboarding?.url) {
+                // eslint-disable-next-line no-param-reassign
+                $window.top.location.href = svaWalletOnboarding?.url;
+              }
+
+              $state.go('telecom.telephony.billingAccount.svaWallet');
+            },
             meSchema: /* @ngInject */ ($http) =>
               $http.get('/me.json').then(({ data: schema }) => schema),
 

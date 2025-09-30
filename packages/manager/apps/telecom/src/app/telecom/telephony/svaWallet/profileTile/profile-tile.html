@@ -17,7 +17,19 @@
             ></span>
         </oui-tile-description>
     </oui-tile-definition>
-    <oui-tile-button data-ui-sref="telecom.telephony.billingAccount.svaWallet">
+    <oui-tile-button
+        data-ng-if="!$ctrl.svaWalletOnboarding"
+        data-ui-sref="telecom.telephony.billingAccount.svaWallet"
+    >
+        <span
+            data-translate="telephony_billingAccount_svaWallet_profile_see_profile"
+        ></span>
+    </oui-tile-button>
+    <oui-tile-button
+        data-ng-if="$ctrl.svaWalletOnboarding"
+        href="{{:: $ctrl.svaWalletOnboarding.url }}"
+        external
+    >
         <span
             data-translate="telephony_billingAccount_svaWallet_profile_see_profile"
         ></span>

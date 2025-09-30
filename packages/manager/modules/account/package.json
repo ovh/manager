@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-account",
-  "version": "0.17.8",
+  "version": "0.17.9",
   "private": true,
   "description": "OVHcloud Account product",
   "repository": {
@@ -33,7 +33,7 @@
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.4.1",
     "@ovh-ux/ng-ui-router-layout": "^4.3.5",
     "@ovh-ux/request-tagger": "^0.5.2",
-    "@ovh-ux/shell": "^4.7.6",
+    "@ovh-ux/shell": "^4.7.7",
     "@ovh-ux/sign-up": "^3.3.0",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.23",

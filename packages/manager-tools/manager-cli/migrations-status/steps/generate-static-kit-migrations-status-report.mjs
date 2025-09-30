@@ -24,7 +24,8 @@ const cliArgs = parseCliArgs(process.argv);
 /** Constants for Static Kit compliance */
 const STATIC_KIT_PKG = '@ovh-ux/manager-static-analysis-kit';
 const REQUIRED_SCRIPTS = ['lint:modern', 'lint:modern:fix'];
-const STATIC_KIT_ESLINT_CONFIG = '@ovh-ux/manager-static-analysis-kit/eslint';
+const STATIC_KIT_ESLINT_INCREMENTAL_CONFIG = '@ovh-ux/manager-static-analysis-kit/eslint';
+const STATIC_KIT_ESLINT_FULL_CONFIG = 'eslintSharedConfig';
 const STATIC_KIT_TS_CONFIG = '@ovh-ux/manager-static-analysis-kit/tsconfig/react';
 const STATIC_KIT_TS_STRICT_CONFIG = '@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict';
 
@@ -34,12 +35,18 @@ const STATIC_KIT_TS_STRICT_CONFIG = '@ovh-ux/manager-static-analysis-kit/tsconfi
 const parseJsonWithComments = (filePath, appName) => {
   try {
     const raw = readFileSync(filePath, 'utf-8');
-    const cleaned = stripJsonComments(raw);
-    return JSON.parse(cleaned);
+
+    // Remove comments first
+    const withoutComments = stripJsonComments(raw);
+
+    // Remove trailing commas (in arrays and objects)
+    const withoutTrailingCommas = withoutComments
+      .replace(/,\s*}/g, '}') // trailing comma before }
+      .replace(/,\s*]/g, ']'); // trailing comma before ]
+
+    return JSON.parse(withoutTrailingCommas);
   } catch (err) {
-    if (cliArgs.dryRun) {
-      console.log(`❌ ${appName}: Failed to parse ${path.basename(filePath)} → ${err.message}`);
-    }
+    console.log(`❌ ${appName}: Failed to parse ${path.basename(filePath)} → ${err.message}`);
     return null;
   }
 };
@@ -93,7 +100,10 @@ const checkStaticKitCompliance = (appName) => {
   if (existsSync(eslintConfigPath)) {
     const rawEslintConfig = readFileSync(eslintConfigPath, 'utf-8');
     const content = stripJsonComments(rawEslintConfig).trim();
-    if (content?.includes?.(STATIC_KIT_ESLINT_CONFIG)) {
+    if (
+      content?.includes?.(STATIC_KIT_ESLINT_INCREMENTAL_CONFIG) ||
+      content?.includes?.(STATIC_KIT_ESLINT_FULL_CONFIG)
+    ) {
       eslintUsesStaticKit = true;
     }
     if (!eslintUsesStaticKit && cliArgs.dryRun) {

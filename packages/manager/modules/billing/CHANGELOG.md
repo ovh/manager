@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.51.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.50.1...@ovh-ux/manager-billing@0.51.0) (2025-09-30)
+
+
+### Bug Fixes
+
+* **billing:** replace invalid status for unpaid services ([c08bf08](https://github.com/ovh/manager/commit/c08bf08b90f91f860b027c2c2abad90df9fe7480)), closes [#MANAGER-19485](https://github.com/ovh/manager/issues/MANAGER-19485)
+
+
+### Features
+
+* **billing:** add default filter to orders ([fca8643](https://github.com/ovh/manager/commit/fca86430dd62760eee66b0dffb7eb84cd9a1a4f4)), closes [#MANAGER-19041](https://github.com/ovh/manager/issues/MANAGER-19041)
+
+
+
+
+
 ## [0.50.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.50.0...@ovh-ux/manager-billing@0.50.1) (2025-09-23)
 
 

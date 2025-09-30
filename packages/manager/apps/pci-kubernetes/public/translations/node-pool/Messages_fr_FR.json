@@ -24,6 +24,7 @@
   "kube_common_node_pool_estimated_cost": "Estimation coût mensuel du cluster :",
   "kube_common_node_pool_estimation_text": "Cette estimation n'inclut pas une éventuelle réduction liée aux Savings Plans.",
   "kube_common_node_pool_estimation_price": "Pools de nœuds :",
+  "kube_common_estimation_total_price": "Prix total estimé :",
   "kube_common_estimation_price": "Gratuit durant la phase de beta.",
   "kube_common_estimation_price_free": "Gratuit",
   "kube_common_cluster_estimation_price": "Plan de contrôle géré :",

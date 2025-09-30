@@ -35,6 +35,7 @@ import { useLastOrderTracking } from '@/data/hooks/lastOrderTracking/useLastOrde
 import {
   ERROR_STATUS,
   WAITING_PAYMENT_LABEL,
+  NOT_PAID,
 } from '@/data/api/order/order.constants';
 import useDateFormat from '@/hooks/dateFormat/useDateFormat';
 import { LastOrderTrackingResponse, OrderHistory } from '@/types/order.type';
@@ -98,7 +99,14 @@ export default function HubOrderTracking() {
     return getLatestStatus(orderDataResponse.history);
   }, [orderDataResponse, isLastOrderLoading]);
 
-  const isWaitingPayment = currentStatus?.label === WAITING_PAYMENT_LABEL;
+  const displayedLabel = useMemo(() => {
+    if (!currentStatus) return undefined;
+    return orderDataResponse?.status === NOT_PAID
+      ? WAITING_PAYMENT_LABEL
+      : currentStatus.label;
+  }, [currentStatus, orderDataResponse?.status]);
+
+  const isWaitingPayment = displayedLabel === WAITING_PAYMENT_LABEL;
 
   const { format } = useDateFormat({
     options: {
@@ -193,14 +201,14 @@ export default function HubOrderTracking() {
                       className="inline-block mr-1"
                     >
                       <strong>{format(new Date(currentStatus.date))}</strong>
-                      &nbsp;{t(`order_tracking_history_${currentStatus.label}`)}
+                      &nbsp;{t(`order_tracking_history_${displayedLabel}`)}
                     </OsdsText>
                     <span className="inline-block size-[16px]">
                       <OsdsIcon
                         size={ODS_ICON_SIZE.xxs}
                         color={ODS_THEME_COLOR_INTENT.text}
                         name={
-                          !ERROR_STATUS.includes(currentStatus.label) &&
+                          !ERROR_STATUS.includes(displayedLabel) &&
                           !isWaitingPayment
                             ? ODS_ICON_NAME.OK
                             : ODS_ICON_NAME.CLOSE

@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren } from 'react';
-import { Card, Divider, Text } from '@ovhcloud/ods-react';
+import { Card, Text } from '@ovhcloud/ods-react';
 
 type TDashboardCardLayoutProps = { title: string };
 
@@ -8,10 +8,7 @@ const DashboardCardLayout: FC<PropsWithChildren<TDashboardCardLayoutProps>> = ({
   title,
 }) => (
   <Card color="neutral" className="p-6">
-    <header>
-      <Text preset="heading-4">{title}</Text>
-      <Divider spacing="6" />
-    </header>
+    <Text preset="heading-4">{title}</Text>
     <section>{children}</section>
   </Card>
 );
