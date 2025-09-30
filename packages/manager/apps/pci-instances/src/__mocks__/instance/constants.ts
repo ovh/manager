@@ -401,3 +401,20 @@ export const mockedDeploymentModesSelectorData: TDeploymentModeDataForCard[] = [
     url: InstanceImage,
   },
 ];
+
+export const mockedFlavorCategory = [
+  { label: 'General Purpose', value: 'general' },
+  { label: 'Compute Optimized', value: 'optimised' },
+  { label: 'Memory Optimized', value: 'memory_optimized' },
+  { label: 'GPU', value: 'gpu' },
+  { label: 'Discovery', value: 'discovery' },
+  { label: 'Storage Optimized', value: 'storage_optimised' },
+  { label: 'Metal', value: 'metal' },
+];
+
+export const mockedFlavorType = [
+  { label: 'B3', value: 'b3', customRendererData: { tag: 'saving plan' } },
+  { label: 'B2', value: 'b2' },
+  { label: 'B4', value: 'b4', customRendererData: { tag: 'new' } },
+  { label: 'B5', value: 'b5', customRendererData: { tag: 'coming soon' } },
+];
