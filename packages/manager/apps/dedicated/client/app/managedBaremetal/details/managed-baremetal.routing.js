@@ -7,6 +7,7 @@ import uniq from 'lodash/uniq';
 
 import { DedicatedCloud as DedicatedCloudInfo } from '@ovh-ux/manager-models';
 import {
+  DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS,
   DEDICATEDCLOUD_DATACENTER_DRP_STATUS,
   DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS,
 } from '../../components/dedicated-cloud/datacenter/zerto/dedicatedCloud-datacenter-zerto.constants';
@@ -77,6 +78,26 @@ export default /* @ngInject */ ($stateProvider) => {
             })
             .then(() => currentZerto);
         }),
+      isZertoTypeOnPremise: /* @ngInject */ (currentZerto) =>
+        currentZerto.drpType ===
+        DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.onPremise,
+      zertoMultiSites: /* @ngInject */ (
+        serviceName,
+        isZertoTypeOnPremise,
+        dedicatedCloudZerto,
+        currentZerto,
+      ) =>
+        currentZerto.state ===
+          (DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivering ||
+            DEDICATEDCLOUD_DATACENTER_DRP_STATUS.disabled) &&
+        isZertoTypeOnPremise
+          ? []
+          : dedicatedCloudZerto
+              .getZertoMultiSite({
+                serviceName,
+                datacenterId: currentZerto.datacenterId,
+              })
+              .catch(() => []),
       datacenterList: /* @ngInject */ ($stateParams, DedicatedCloud) =>
         DedicatedCloud.getDatacenters($stateParams.productId),
       datacenterOfZerto: /* @ngInject */ (currentZerto, datacenterList) =>
