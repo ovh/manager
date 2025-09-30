@@ -1,6 +1,6 @@
-import { deps } from '@/deps/deps';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as useReactHookForm } from 'react-hook-form';
+import { deps } from '@/deps/deps';
 import { nameDefaultValue } from '../components/Name.component';
 import { quantityDefaultValue } from '../components/QuantitySelector.component';
 import { instanceCreationSchema } from '../CreateInstance.page';
@@ -12,6 +12,7 @@ import {
   selectCategories,
   selectTypes,
 } from '../view-models/categoriesTypesViewModel';
+import { mockedFlavors } from '@/__mocks__/instance/constants';
 
 export const useForm = (projectId: string) => {
   const deploymentModes = selectDeploymentModes(deps)(projectId);
@@ -45,6 +46,8 @@ export const useForm = (projectId: string) => {
   const flavorTypeDefaultValue =
     selectTypes(deps)(projectId, flavorCategoryDefaultValue)[0]?.value ?? null;
 
+  const flavorDefaultValue = mockedFlavors[0]?.name ?? null;
+
   const availabilityZoneDefaultValue = null;
 
   const formMethods = useReactHookForm({
@@ -56,6 +59,7 @@ export const useForm = (projectId: string) => {
       continent: continentDefaultValue,
       flavorCategory: flavorCategoryDefaultValue,
       flavorType: flavorTypeDefaultValue,
+      flavor: flavorDefaultValue,
       macroRegion: macroRegionDefaultValue,
       microRegion: microRegionDefaultValue,
       availabilityZone: availabilityZoneDefaultValue,
