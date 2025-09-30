@@ -92,14 +92,16 @@ export default function Step1({
                 ))}
               </OdsComboboxGroup>
             ))}
-          <OdsComboboxGroup>
-            <span slot="title">
-              {t('service_selection_select_ip_parking_option_group_label')}
-            </span>
-            <OdsComboboxItem value={ipParkingOptionValue}>
-              {t('service_selection_select_ip_parking_option_label')}
-            </OdsComboboxItem>
-          </OdsComboboxGroup>
+          {currentService !== null && (
+            <OdsComboboxGroup>
+              <span slot="title">
+                {t('service_selection_select_ip_parking_option_group_label')}
+              </span>
+              <OdsComboboxItem value={ipParkingOptionValue}>
+                {t('service_selection_select_ip_parking_option_label')}
+              </OdsComboboxItem>
+            </OdsComboboxGroup>
+          )}
         </OdsCombobox>
       </OdsFormField>
 

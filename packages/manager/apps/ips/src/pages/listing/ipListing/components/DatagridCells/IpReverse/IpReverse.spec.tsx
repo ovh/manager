@@ -4,6 +4,7 @@ import { render, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
   ShellContext,
+  ShellContextType,
   initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
 import { ListingContext } from '@/pages/listing/listingContext';
@@ -27,7 +28,7 @@ vi.mock('../SkeletonCell/SkeletonCell', () => ({
 }));
 
 const renderComponent = async (params: IpReverseProps) => {
-  const context = await initShellContext('ips');
+  const context = (await initShellContext('ips')) as ShellContextType;
   return render(
     <ShellContext.Provider value={context}>
       <QueryClientProvider client={queryClient}>
