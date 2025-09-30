@@ -9,7 +9,7 @@ export const CartItemDetails = ({ details }: TCartItemsDetailsProps) => (
   <AccordionContent className="bg-[--ods-color-neutral-050] py-5 px-8">
     {details.map(({ name, description, price }, index) => (
       <div key={`${name}-${index}`} data-testid={`cart-item-details-${name}`}>
-        <Text className="text-[--ods-color-heading]">{name}</Text>
+        <Text className="text-sm text-[--ods-color-heading]">{name}</Text>
 
         <div className="flex justify-between">
           {description}
