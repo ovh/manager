@@ -31,6 +31,7 @@
     "@ovh-ux/manager-pci-common": "^2.7.17",
     "@ovh-ux/manager-react-components": "^2.42.4",
     "@ovh-ux/manager-react-core-application": "^0.12.9",
+    "@hookform/resolvers": "^3.3.4",
     "@ovh-ux/manager-react-shell-client": "^0.9.3",
     "@ovh-ux/manager-tailwind-config": "^0.5.5",
     "@ovh-ux/shell": "^4.7.11",
@@ -47,11 +48,13 @@
     "qs": "^6.11.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.50.1",
     "react-i18next": "^14.0.5",
     "react-router": "^6.21.3",
     "react-router-dom": "^6.3.0",
     "tailwind-merge": "^2.2.1",
-    "tailwindcss": "^3.4.4"
+    "tailwindcss": "^3.4.4",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",

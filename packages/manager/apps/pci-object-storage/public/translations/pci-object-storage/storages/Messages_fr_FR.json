@@ -1,5 +1,5 @@
 {
-  "createNewContainer": "Créer un conteneurs d'objets",
+  "createNewStorage": "Créer un conteneurs d'objets",
   "tableHeaderName": "Nom",
   "tableHeaderLocation": "Localisation",
   "tableHeaderDeploymentMode": "Mode de déploiement",
@@ -16,5 +16,6 @@
   "tableActionCopy": "Copier ID",
   "tableActionSwitchToPublic": "Passer en public",
   "tableActionSwitchToPrivate": "Passer en privé",
+  "tableActionAddUser": "Ajouter un utilisateur",
   "tableActionDelete": "Supprimer"
 }
