@@ -7,16 +7,19 @@ import {
 } from '@ovhcloud/ods-react';
 import { ErrorText } from './ErrorText';
 
+type InputFieldProps = {
+  label: string;
+  invalid: boolean;
+  errorMessage?: string;
+} & Omit<ComponentPropsWithoutRef<'input'>, 'type'> &
+  Pick<InputProp, 'type'>;
+
 export const InputField = ({
   label,
   invalid,
   errorMessage,
   ...inputProps
-}: { label: string; invalid: boolean; errorMessage?: string } & Omit<
-  ComponentPropsWithoutRef<'input'>,
-  'type'
-> &
-  Pick<InputProp, 'type'>) => (
+}: InputFieldProps) => (
   <FormField invalid={invalid}>
     <FormFieldLabel>{label}</FormFieldLabel>
     <Input {...inputProps} invalid={invalid} />

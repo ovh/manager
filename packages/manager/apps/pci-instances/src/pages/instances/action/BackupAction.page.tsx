@@ -6,6 +6,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { PropsWithChildren, useCallback, useMemo } from 'react';
 import {
+  ComboboxGroupItem,
   ComboboxValueChangeDetails,
   ICON_NAME,
   Message,
@@ -13,7 +14,6 @@ import {
   MessageIcon,
   Text,
   TEXT_PRESET,
-  ComboboxGroupItem
 } from '@ovhcloud/ods-react';
 import {
   Controller,
@@ -325,6 +325,7 @@ const BackupActionPage = () => {
           handleSubmit={handleSubmit}
           {...restForm}
         >
+          {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
           <form onSubmit={handleSubmit(handleInstanceAction)}>{children}</form>
         </FormProvider>
       )}
@@ -353,25 +354,21 @@ const BackupActionPage = () => {
         {distantContinents.size > 0 && (
           <div className="mt-6">
             <Controller
-              render={({ field: { value: fieldValue, onChange, onBlur } }) => {
-                return (
-                  <ToggleField
-                    label={t(
-                      'pci_instances_actions_backup_instance_distant_label',
-                    )}
-                    checked={fieldValue ?? false}
-                    onCheckedChange={() => onChange(!fieldValue)}
-                    onBlur={onBlur}
-                    badges={[
-                      {
-                        label: t('common:pci_instances_common_new'),
-                        backgroundColor: '#47FFFA',
-                        textColor: '#000D1F',
-                      },
-                    ]}
-                  />
-                );
-              }}
+              render={({ field: { value: fieldValue, onChange, onBlur } }) => (
+                <ToggleField
+                  label={t(
+                    'pci_instances_actions_backup_instance_distant_label',
+                  )}
+                  checked={!!fieldValue}
+                  onCheckedChange={() => onChange(!fieldValue)}
+                  onBlur={onBlur}
+                  badges={[
+                    {
+                      label: t('common:pci_instances_common_new'),
+                    },
+                  ]}
+                />
+              )}
               name="distantSnapshot"
             />
 

@@ -8,16 +8,18 @@ import {
 } from '@ovhcloud/ods-react';
 import { ErrorText } from './ErrorText';
 
+type ComboboxFieldProps = {
+  label: string;
+  errorMessage?: string;
+  invalid: boolean;
+} & ComboboxProp;
+
 export const ComboboxField = ({
   label,
   errorMessage,
   invalid,
   ...comboboxProps
-}: {
-  label: string;
-  errorMessage?: string;
-  invalid: boolean;
-} & ComboboxProp) => (
+}: ComboboxFieldProps) => (
   <FormField invalid={invalid}>
     <FormFieldLabel>{label}</FormFieldLabel>
     <Combobox {...comboboxProps}>
