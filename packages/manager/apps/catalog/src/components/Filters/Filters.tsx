@@ -1,22 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import { useSearchParams } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
 
-import { OsdsButton, OsdsText, OsdsLink } from '@ovhcloud/ods-components/react';
-import { useSearchParams } from 'react-router-dom';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsButton, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { Product } from '@/api';
+import {
+  Universe,
+  getAvailableCategoriesWithCounter,
+  getFilterParamsFromUrl,
+  getUniverses,
+  toFilterValue,
+} from '@/utils/utils';
 
 import FilterItem from './FilterItem';
 import LoadingFilterItem from './LoadingFilterItem';
-
-import {
-  getFilterParamsFromUrl,
-  getAvailableCategoriesWithCounter,
-  getUniverses,
-  toFilterValue,
-  Universe,
-} from '@/utils/utils';
-import { Product } from '@/api';
 
 interface FiltersProps {
   products: Product[];
@@ -122,9 +124,7 @@ const Filters: React.FC<FiltersProps> = ({
                     label={data.universe}
                     count={data.count}
                     type="universe"
-                    isChecked={selectedUniverses.includes(
-                      toFilterValue(data.universe),
-                    )}
+                    isChecked={selectedUniverses.includes(toFilterValue(data.universe))}
                     onCheckboxChange={handleCheckboxChange}
                   />
                 );
@@ -152,9 +152,7 @@ const Filters: React.FC<FiltersProps> = ({
                     label={item.category}
                     count={item.count}
                     type="category"
-                    isChecked={selectedCategories.includes(
-                      toFilterValue(item.category),
-                    )}
+                    isChecked={selectedCategories.includes(toFilterValue(item.category))}
                     onCheckboxChange={handleCheckboxChange}
                   />
                 );
@@ -170,9 +168,7 @@ const Filters: React.FC<FiltersProps> = ({
           <OsdsLink
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={() => resetFilters()}
-            onKeyDown={(event: React.KeyboardEvent) =>
-              event.key === 'Enter' && resetFilters()
-            }
+            onKeyDown={(event: React.KeyboardEvent) => event.key === 'Enter' && resetFilters()}
             data-tracking="filter::reset"
           >
             {t('manager_catalog_filters_reset')}
@@ -181,9 +177,7 @@ const Filters: React.FC<FiltersProps> = ({
             disabled={!hasInteracted || undefined}
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={() => setFilters()}
-            onKeyDown={(event: React.KeyboardEvent) =>
-              event.key === 'Enter' && setFilters()
-            }
+            onKeyDown={(event: React.KeyboardEvent) => event.key === 'Enter' && setFilters()}
             data-tracking="filter::apply"
           >
             {t('manager_catalog_filters_button_apply')}
