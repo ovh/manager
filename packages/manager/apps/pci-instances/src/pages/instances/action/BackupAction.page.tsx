@@ -5,11 +5,27 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { PropsWithChildren, useCallback, useMemo } from 'react';
-import { Message, MessageBody, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
-import { useFormContext, useWatch } from 'react-hook-form';
+import {
+  ComboboxGroupItem,
+  ComboboxValueChangeDetails,
+  ICON_NAME,
+  Message,
+  MessageBody,
+  MessageIcon,
+  Text,
+  TEXT_PRESET,
+} from '@ovhcloud/ods-react';
+import {
+  Controller,
+  FormProvider,
+  useForm,
+  useFormContext,
+  useWatch,
+} from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { DefaultError } from '@tanstack/react-query';
 import { formatISO } from 'date-fns';
+import { zodResolver } from '@hookform/resolvers/zod';
 import ActionModal from '@/components/actionModal/ActionModal.component';
 import { useInstanceBackupAction } from '@/data/hooks/instance/action/useInstanceAction';
 import { useInstanceBackupPrice } from '@/data/hooks/instance/action/useInstanceBackupPrice';
@@ -24,13 +40,7 @@ import {
   TSchemaOutput,
   useInputSchema,
 } from '@/input-validation';
-import {
-  Form,
-  InputField,
-  SelectField,
-  SelectFieldGroup,
-  ToggleField,
-} from '@/components/zod-form';
+import { ComboboxField, InputField, ToggleField } from '@/components/form';
 
 const useFormSchema = () => {
   const {
@@ -106,7 +116,7 @@ const DistantSnapshotSection = ({
     () =>
       continents
         .entries()
-        .map<SelectFieldGroup>(([label, regions]) => ({
+        .map<ComboboxGroupItem>(([label, regions]) => ({
           label,
           options: regions.map((region) => ({
             label: region.label,
@@ -132,32 +142,63 @@ const DistantSnapshotSection = ({
   if (!open) return null;
 
   return (
-    <>
-      <InputField<TFormFieldsValues>
-        label={t('pci_instances_actions_backup_instance_distant_name_label')}
+    <div className="flex flex-col gap-6 mt-6">
+      <Controller
+        render={({ field, fieldState: { error, invalid } }) => (
+          <InputField
+            label={t(
+              'pci_instances_actions_backup_instance_distant_name_label',
+            )}
+            invalid={invalid}
+            errorMessage={error?.message}
+            type="text"
+            {...field}
+          />
+        )}
         name="distantSnapshotName"
-        type="text"
       />
-      <SelectField<TFormFieldsValues>
-        label={t('pci_instances_actions_backup_instance_distant_region_label')}
-        name="distantRegion"
-        items={regionItems}
-      />
-      {!!price && !isBackupLoading && (
-        <Text preset={TEXT_PRESET.caption}>
-          {t('pci_instances_actions_backup_instance_price', {
-            price,
-          })}
-        </Text>
-      )}
+      <div className="flex flex-col gap-4">
+        <Controller
+          render={({
+            field: { value, onChange },
+            fieldState: { error, invalid },
+          }) => {
+            const handleChange = (changeDetails: ComboboxValueChangeDetails) =>
+              onChange(changeDetails.value[0]);
+
+            return (
+              <ComboboxField
+                label={t(
+                  'pci_instances_actions_backup_instance_distant_region_label',
+                )}
+                errorMessage={error?.message}
+                value={value ? [value] : []}
+                items={regionItems}
+                onValueChange={handleChange}
+                invalid={invalid}
+                allowCustomValue={false}
+              />
+            );
+          }}
+          name="distantRegion"
+        />
+        {!!price && !isBackupLoading && (
+          <Text preset={TEXT_PRESET.caption}>
+            {t('pci_instances_actions_backup_instance_price', {
+              price,
+            })}
+          </Text>
+        )}
+      </div>
       {showActivateRegionWarning && (
         <Message color="warning" dismissible={false}>
+          <MessageIcon name={ICON_NAME.triangleExclamation} />
           <MessageBody>
             {t('pci_instances_actions_backup_instance_region_enable_warning')}
           </MessageBody>
         </Message>
       )}
-    </>
+    </div>
   );
 };
 
@@ -243,6 +284,17 @@ const BackupActionPage = () => {
 
   const formSchema = useFormSchema();
 
+  const { handleSubmit, formState, ...restForm } = useForm({
+    resolver: zodResolver(formSchema),
+    values: {
+      snapshotName: defaultSnapshotName,
+      distantSnapshot: false,
+      distantSnapshotName: defaultSnapshotName,
+      distantRegion: null,
+    },
+    mode: 'onBlur',
+  });
+
   const handleInstanceAction = useCallback(
     (formValues: TSchemaOutput<typeof formSchema>) => {
       if (instance)
@@ -265,27 +317,31 @@ const BackupActionPage = () => {
       instance={instance}
       section="backup"
       isLoading={isLoading}
-      variant="warning"
+      variant="primary"
+      className="max-h-[unset] mt-[25vh]"
       wrapper={({ children }: PropsWithChildren) => (
-        <Form
-          schema={formSchema}
-          onSubmit={handleInstanceAction}
-          values={{
-            snapshotName: defaultSnapshotName,
-            distantSnapshot: false,
-            distantSnapshotName: defaultSnapshotName,
-            distantRegion: null,
-          }}
+        <FormProvider
+          formState={formState}
+          handleSubmit={handleSubmit}
+          {...restForm}
         >
-          {children}
-        </Form>
+          {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+          <form onSubmit={handleSubmit(handleInstanceAction)}>{children}</form>
+        </FormProvider>
       )}
     >
       <div className="flex flex-col gap-4 mt-6">
-        <InputField<TFormFieldsValues>
-          label={t('pci_instances_actions_backup_instance_name_label')}
+        <Controller
+          render={({ field, fieldState: { error, invalid } }) => (
+            <InputField
+              label={t('pci_instances_actions_backup_instance_name_label')}
+              invalid={invalid}
+              errorMessage={error?.message}
+              type="text"
+              {...field}
+            />
+          )}
           name="snapshotName"
-          type="text"
         />
         {!!price && !isBackupLoading && (
           <Text preset={TEXT_PRESET.caption}>
@@ -296,24 +352,31 @@ const BackupActionPage = () => {
         )}
 
         {distantContinents.size > 0 && (
-          <>
-            <ToggleField<TFormFieldsValues>
-              label={t('pci_instances_actions_backup_instance_distant_label')}
+          <div className="mt-6">
+            <Controller
+              render={({ field: { value: fieldValue, onChange, onBlur } }) => (
+                <ToggleField
+                  label={t(
+                    'pci_instances_actions_backup_instance_distant_label',
+                  )}
+                  checked={!!fieldValue}
+                  onCheckedChange={() => onChange(!fieldValue)}
+                  onBlur={onBlur}
+                  badges={[
+                    {
+                      label: t('common:pci_instances_common_new'),
+                    },
+                  ]}
+                />
+              )}
               name="distantSnapshot"
-              badges={[
-                {
-                  label: t('common:pci_instances_common_new'),
-                  backgroundColor: '#47FFFA',
-                  textColor: '#000D1F',
-                },
-              ]}
             />
 
             <DistantSnapshotSection
               projectId={projectId}
               continents={distantContinents}
             />
-          </>
+          </div>
         )}
       </div>
     </ActionModal>
