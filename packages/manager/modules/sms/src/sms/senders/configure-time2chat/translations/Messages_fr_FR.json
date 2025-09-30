@@ -11,7 +11,7 @@
   "sms_senders_configure_kyc_label_primary_use_case": "Cas d'utilisation principal",
   "sms_senders_configure_kyc_label_operational_contact_name": "Nom du contact",
   "sms_senders_configure_kyc_label_contact_email": "Email du contact",
-  "sms_senders_configure_auto_response_message_title": "2. Si le client ne répond pas au message",
+  "sms_senders_configure_auto_response_message_title": "2. Si vous ne répondez pas aux messages client",
   "sms_senders_configure_auto_response_message_subtitle": "Il recevra un message au bout de 24 heures qui lui indiquera que la conversation est terminée.",
   "sms_senders_configure_kyc": "KYC",
   "sms_senders_configure_contact_info_update_error": "La mise à jour des informations de réponses automatiques n'a pas pu aboutir. {{ error }}",

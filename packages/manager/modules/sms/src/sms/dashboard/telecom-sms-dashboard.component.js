@@ -17,6 +17,7 @@ export default {
     serviceName: '<',
 
     isSmppAccount: '<',
+    smsFeatureAvailability: '<',
   },
   controller,
   name: 'ovhManagerSmsDashboard',

@@ -30,7 +30,11 @@
                 <p
                     data-translate="sms_senders_configure_contact_info_subtitle"
                 ></p>
-                <form name="contactInfoForm" id="contactInfoForm" novalidate>
+                <form
+                    name="$ctrl.contactInfoForm"
+                    id="contactInfoForm"
+                    novalidate
+                >
                     <!-- COMMERCIAL_NAME  -->
                     <oui-field
                         data-label="{{ 'sms_senders_configure_contact_info_label_commercial_name' | translate }}"
@@ -42,6 +46,7 @@
                             placeholder="{{ 'sms_senders_configure_contact_info_label_commercial_name' | translate }}"
                             data-ng-model="$ctrl.contactInfoData.name"
                             required
+                            data-maxlength="100"
                         />
                     </oui-field>
 
@@ -67,11 +72,12 @@
                     >
                         <input
                             class="oui-input"
-                            type="text"
+                            type="url"
                             id="website"
                             name="website"
                             placeholder="{{ 'sms_senders_configure_contact_info_label_website' | translate }}"
                             data-ng-model="$ctrl.contactInfoData.website"
+                            data-maxlength="100"
                             required
                         />
                     </oui-field>
@@ -80,7 +86,7 @@
                         class="mb-3"
                         data-submit-text="{{ 'sms_modify' | translate }}"
                         data-on-submit="$ctrl.updateContactInfo()"
-                        data-disabled="contactInfoForm.$invalid || contactInfoForm.$pristine"
+                        data-disabled="$ctrl.contactInfoForm.$invalid || !$ctrl.contactInfoForm.$dirty"
                     >
                     </oui-form-actions>
                 </form>
@@ -92,7 +98,7 @@
                     data-translate="sms_senders_configure_auto_response_message_subtitle"
                 ></p>
                 <form
-                    name="autoResponseMessageForm"
+                    name="$ctrl.autoResponseMessageForm"
                     id="autoResponseMessageForm"
                     novalidate
                 >
@@ -103,6 +109,7 @@
                             model="$ctrl.autoResponseData.autoResponse"
                             rows="4"
                             required
+                            data-maxlength="160"
                         >
                         </oui-textarea>
                     </oui-field>
@@ -111,7 +118,7 @@
                         class="mb-3"
                         data-submit-text="{{ 'sms_modify' | translate }}"
                         data-on-submit="$ctrl.updateAutoResponseMessage()"
-                        data-disabled="autoResponseMessageForm.$invalid || autoResponseMessageForm.$pristine"
+                        data-disabled="$ctrl.autoResponseMessageForm.$invalid || !$ctrl.autoResponseMessageForm.$dirty"
                     >
                     </oui-form-actions>
                 </form>
@@ -123,7 +130,7 @@
                         data-translate="sms_senders_configure_kyc"
                     ></h2>
                 </header>
-                <form name="kycForm" id="kycForm" novalidate>
+                <form name="$ctrl.kycForm" id="kycForm" novalidate>
                     <!-- COMPANY_NAME  -->
                     <oui-field
                         data-label="{{ 'sms_senders_configure_kyc_label_company_name' | translate }}"
@@ -135,6 +142,7 @@
                             name="company_name"
                             placeholder="{{ 'sms_senders_configure_kyc_label_company_name' | translate }}"
                             data-ng-model="$ctrl.kycData.companyName"
+                            data-maxlength="50"
                             required
                         />
                     </oui-field>
@@ -150,6 +158,7 @@
                             name="brand_name"
                             placeholder="{{ 'sms_senders_configure_kyc_label_brand_name' | translate }}"
                             data-ng-model="$ctrl.kycData.brandUsingService"
+                            data-maxlength="50"
                             required
                         />
                     </oui-field>
@@ -165,6 +174,7 @@
                             name="primary_use_case"
                             placeholder="{{ 'sms_senders_configure_kyc_label_primary_use_case' | translate }}"
                             data-ng-model="$ctrl.kycData.primaryUseCase"
+                            data-maxlength="50"
                             required
                         />
                     </oui-field>
@@ -180,6 +190,7 @@
                             name="contact_name"
                             placeholder="{{ 'sms_senders_configure_kyc_label_operational_contact_name' | translate }}"
                             data-ng-model="$ctrl.kycData.operationalContactName"
+                            data-maxlength="50"
                             required
                         />
                     </oui-field>
@@ -195,6 +206,7 @@
                             name="contact_email"
                             placeholder="{{ 'sms_senders_configure_kyc_label_contact_email' | translate }}"
                             data-ng-model="$ctrl.kycData.operationalContactEmail"
+                            data-maxlength="50"
                             required
                         />
                     </oui-field>
@@ -203,7 +215,7 @@
                         class="mb-3"
                         data-submit-text="{{ 'sms_modify' | translate }}"
                         data-on-submit="$ctrl.updateKyc()"
-                        data-disabled="kycForm.$invalid || kycForm.$pristine"
+                        data-disabled="$ctrl.kycForm.$invalid || !$ctrl.kycForm.$dirty"
                     >
                     </oui-form-actions>
                 </form>
