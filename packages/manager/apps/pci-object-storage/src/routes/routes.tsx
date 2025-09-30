@@ -27,24 +27,92 @@ export default [
     children: [
       {
         path: '',
-        id: 'objects',
+        id: 'objects-storage',
         ...lazyLoadRoute(() =>
           import('@/pages/object-storage/ObjectStorage.layout'),
         ),
         children: [
           {
             path: '',
-            id: 'objects.containers',
+            id: 'objects-storage.storages',
             ...lazyLoadRoute(() =>
-              import('@/pages/object-storage/containers/Containers.page'),
+              import('@/pages/object-storage/storage/Storages.page'),
             ),
+            children: [
+              {
+                path: 'switch-type/:containerId',
+                id: 'storages.switch-type',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/storage/switch-type/SwitchType.modal'
+                  ),
+                ),
+              },
+              {
+                path: 'add-s3-user/:storageType/:storageId/:region',
+                id: 'storages.add-s3-user',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/storage/add-user-s3/AddUserS3.modal'
+                  ),
+                ),
+              },
+              {
+                path: 'delete/:storageType/:storageId/:region',
+                id: 'storages.delete',
+                ...lazyLoadRoute(() =>
+                  import('@/pages/object-storage/storage/delete/Delete.modal'),
+                ),
+              },
+            ],
           },
           {
             path: 'users',
-            id: 'objects.users',
+            id: 'objects-storage.users',
             ...lazyLoadRoute(() =>
               import('@/pages/object-storage/users/Users.page'),
             ),
+            children: [
+              {
+                path: 'create',
+                id: 'users.create',
+                ...lazyLoadRoute(() =>
+                  import('@/pages/object-storage/users/create/Create.modal'),
+                ),
+              },
+              {
+                path: 'user-secret/:userId',
+                id: 'users.secret',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/users/show-secret/ShowSecretKey.modal'
+                  ),
+                ),
+              },
+              {
+                path: 'rclone/:userId',
+                id: 'users.rclone',
+                ...lazyLoadRoute(() =>
+                  import('@/pages/object-storage/users/rclone/Rclone.modal'),
+                ),
+              },
+              {
+                path: 'enable/:userId',
+                id: 'users.enable',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/users/enableS3/EnableS3.modal'
+                  ),
+                ),
+              },
+              {
+                path: 'disable/:userId',
+                id: 'users.disable',
+                ...lazyLoadRoute(() =>
+                  import('@/pages/object-storage/users/delete/Delete.modal'),
+                ),
+              },
+            ],
           },
         ],
       },

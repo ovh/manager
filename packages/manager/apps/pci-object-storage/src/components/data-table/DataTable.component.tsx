@@ -23,7 +23,7 @@ export function DataTable<TData>({
   renderRowExpansion,
 }: DatatableProps<TData>) {
   const { table, rows } = useDataTableContext<TData>();
-  const { t } = useTranslation('pci-databases-analytics/components/data-table');
+  const { t } = useTranslation('components/data-table');
   const [expandedRows, setExpandedRows] = useState<Record<string, boolean>>({});
 
   const toggleRowExpansion = (rowId: string) => {

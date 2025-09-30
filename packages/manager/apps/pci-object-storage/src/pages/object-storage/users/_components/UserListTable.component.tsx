@@ -2,35 +2,57 @@ import { useNavigate } from 'react-router-dom';
 import { ColumnDef } from '@tanstack/react-table';
 import { Plus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Skeleton, Button } from '@datatr-ux/uxlib';
+import { Skeleton, Button, useToast } from '@datatr-ux/uxlib';
 import { getColumns } from './UsertListColumns.component';
 import DataTable from '@/components/data-table';
 import { getFilters } from './UserListFilters.component';
 import user from '@/types/User';
 import { UserWithS3Credentials } from '@/data/hooks/user/useGetUsersWithS3Credentials.hook';
+import useDownload from '@/hooks/useDownload';
+import { useObjectStorageData } from '../../ObjectStorage.context';
+import { getUserPolicy } from '@/data/api/user/user.api';
 
 interface UsersListProps {
   users: UserWithS3Credentials[];
 }
 
 export default function UsersList({ users }: UsersListProps) {
-  const { t } = useTranslation('pci-object-storage/containers');
+  const { t } = useTranslation('pci-object-storage/users');
+  const { projectId } = useObjectStorageData();
   const navigate = useNavigate();
+  const toast = useToast();
+  const { download } = useDownload();
+
+  const downloadPolicy = async (us: UserWithS3Credentials) => {
+    try {
+      const policyData = await getUserPolicy({ projectId, userId: us.id });
+      download(policyData.policy, 'userPolicy.json');
+    } catch (err) {
+      toast.toast({
+        title: t('userPolicyDownloadFailed'),
+        variant: 'error',
+      });
+    }
+  };
+
   const columns: ColumnDef<UserWithS3Credentials>[] = getColumns({
+    onEnableUserClicked: (us: UserWithS3Credentials) => {
+      navigate(`./enable/${us.id}`);
+    },
     onImportUserAccessClicked: (us: UserWithS3Credentials) => {
       console.log(us);
     },
     onDownloadUserAccessClicked: (us: UserWithS3Credentials) => {
-      console.log(us);
+      downloadPolicy(us);
     },
     onDownloadRcloneClicked: (us: UserWithS3Credentials) => {
-      console.log(us);
+      navigate(`./rclone/${us.id}`);
     },
     onSecretKeyClicked: (us: UserWithS3Credentials) => {
-      console.log(us);
+      navigate(`./user-secret/${us.id}`);
     },
     onDeleteClicked: (us: user.User) => {
-      console.log(us);
+      navigate(`./disable/${us.id}`);
     },
   });
   const usersFilters = getFilters();
@@ -45,13 +67,13 @@ export default function UsersList({ users }: UsersListProps) {
       <DataTable.Header>
         <DataTable.Action>
           <Button
-            data-testid="create-service-button"
+            data-testid="create-user-button"
             onClick={() => {
-              navigate('./new');
+              navigate('./create');
             }}
           >
             <Plus className="size-6 mr-2 text-primary-foreground" />
-            {t('createNewContainer')}
+            {t('createNewUser')}
           </Button>
         </DataTable.Action>
         <DataTable.SearchBar />

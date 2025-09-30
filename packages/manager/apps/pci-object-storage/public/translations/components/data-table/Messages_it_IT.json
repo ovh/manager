@@ -1,0 +1,10 @@
+{
+  "itemCount_one": "{{count}} elemento",
+  "itemCount_other": "{{count}} elementi",
+  "currentPage": "Pagina {{currentPage}} di {{totalPagesCount}}",
+  "goToFirstPage": "Vai alla prima pagina",
+  "goToPreviousPage": "Vai alla pagina precedente",
+  "goToNextPage": "Vai alla pagina successiva",
+  "goToLastPage": "Vai all'ultima pagina",
+  "noResult": "Nessun risultato"
+}

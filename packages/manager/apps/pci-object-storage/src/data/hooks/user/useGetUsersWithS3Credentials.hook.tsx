@@ -1,6 +1,5 @@
 import { QueryObserverOptions, useQueries } from '@tanstack/react-query';
 import { useCallback, useEffect, useRef } from 'react';
-import * as role from '@datatr-ux/ovhcloud-types/cloud/role/index';
 import user from '@/types/User';
 import { getUserS3Credentials } from '@/data/api/user/user.api';
 
@@ -15,30 +14,21 @@ export const useGetUsersWithS3Credentials = (
 ) => {
   const s3CredentialsQueries = useQueries({
     queries: users
-      ? users
-          .filter(
-            (us: user.User) =>
-              us.status === user.UserStatusEnum.creating ||
-              us.roles.find(
-                (s3Role: role.Role) =>
-                  s3Role.name === user.RoleEnum.objectstore_operator,
-              ),
-          )
-          .map((us) => {
-            return {
-              queryKey: [projectId, 'user', us.id, 's3Credentials'],
-              queryFn: () =>
-                getUserS3Credentials({
-                  projectId,
-                  userId: us.id,
-                }),
-              ...options,
-              select: (s3CredArray: user.S3Credentials[]) => {
-                const access = s3CredArray[0]?.access;
-                return access && { ...us, access_key: access };
-              },
-            };
-          })
+      ? users.map((us) => {
+          return {
+            queryKey: [projectId, 'user', us.id, 's3Credentials'],
+            queryFn: () =>
+              getUserS3Credentials({
+                projectId,
+                userId: us.id,
+              }),
+            ...options,
+            select: (s3CredArray: user.S3Credentials[]) => {
+              const access = s3CredArray[0]?.access;
+              return { ...us, access_key: access || '' };
+            },
+          };
+        })
       : [],
   });
 

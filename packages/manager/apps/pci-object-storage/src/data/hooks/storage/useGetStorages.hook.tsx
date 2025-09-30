@@ -2,7 +2,7 @@ import {
   OptionsFor,
   useQueryImmediateRefetch,
 } from '@/hooks/useImmediateRefetch';
-import { getStorages } from '../../api/storage/storages';
+import { getStorages } from '../../api/storage/storages.api';
 
 export function useGetStorages(
   projectId: string,

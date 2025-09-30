@@ -1,18 +1,26 @@
 import * as storages from '@datatr-ux/ovhcloud-types/cloud/storage/index';
+import { RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud/index';
 
 export default storages;
 
-export interface Containers extends storages.Container {
-  createdAt?: string; // ou Date si tu veux gérer ça avec des objets Date
-  encryption?: storages.EncryptionAlgorithmEnum; // Remplacer 'any' par un type précis si connu
+export enum ObjectStorageTypeEnum {
+  's3' = 's3',
+  'swift' = 'swift',
+}
+
+export interface FormattedStorage extends storages.Container {
+  createdAt?: string;
+  encryption?: storages.EncryptionAlgorithmEnum;
   isHighPerfStorage?: boolean;
-  objects: storages.ContainerObject[]; // Remplacer 'any' par un type précis si connu
+  objects: storages.ContainerObject[];
   objectsCount: number;
   objectsSize: number;
   ownerId: number;
   public?: boolean;
   s3StorageType: string;
   virtualHost: string;
+  regionType: RegionTypeEnum;
+  storageType: ObjectStorageTypeEnum;
 }
 
 export interface Error {
@@ -28,5 +36,5 @@ export interface StorageError {
 
 export interface Storages {
   errors: StorageError[];
-  resources: Containers[];
+  resources: FormattedStorage[];
 }
