@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { getReactApplications } from '../../utils/AppUtils.mjs';
+import { getAvailableApps } from '../../utils/AppUtils.mjs';
 import { buildPnpmReportFileName, renderReport } from '../../utils/ExportUtils.mjs';
 import { getPnpmMigrationStatus } from '../../utils/PnpmUtils.mjs';
 import { parseCliArgs } from '../../utils/ScriptUtils.mjs';
@@ -10,7 +10,7 @@ const cliArgs = parseCliArgs(process.argv);
  * Generates and prints a PNPM migration status table for all applications.
  */
 const generatePnpmMigrationsStatusReport = () => {
-  let apps = getReactApplications();
+  let apps = getAvailableApps();
   if (cliArgs.app) {
     apps = apps.filter((app) => app === cliArgs.app);
   }

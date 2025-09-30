@@ -1,14 +1,24 @@
 {
-  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/public/*": ["./public/*"],
-      "@/*": ["./src/*"]
+      "@/public/*": [
+        "./public/*"
+      ],
+      "@/*": [
+        "./src/*"
+      ]
     },
     "outDir": "dist",
     "allowJs": true
   },
-  "include": ["src", "public/**/*.json"],
-  "exclude": ["node_modules", "dist", "types"]
+  "include": [
+    "src",
+    "public/**/*.json"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "types"
+  ]
 }

@@ -26,6 +26,9 @@ import {
   publishPackage,
   runLifecycleTask,
   runManagerCli,
+  runPerfBudgets,
+  runStaticDynamicReports,
+  runStaticDynamicTests,
   testAll,
   testApp,
   testCI,
@@ -134,6 +137,11 @@ ACTIONS
     preinstall                   Run preinstall lifecycle hook
     postinstall                  Run postinstall lifecycle hook
 
+  Static & Performance:
+    staticDynamicReports          Run static + dynamic checks (reports)
+    perfBudgets [--packages <list>] Run performance budgets check for selected packages
+    staticDynamicTests            Run static + dynamic checks (tests)
+
 COMMON OPTIONS
   --type <pnpm>                  Package manager type (default: pnpm)
   --action <name>                Action to execute
@@ -169,6 +177,13 @@ EXAMPLES
 
   # manager-cli passthrough
   manager-pm --type pnpm --action cli -- migrations-status --type all
+
+  # Reports
+  yarn manager-pm --type pnpm --action staticDynamicReports
+  yarn manager-pm --type pnpm --action perfBudgets --packages web,cloud
+
+  # Tests
+  yarn manager-pm --type pnpm --action staticDynamicTests
 
   # Publish (dry + real)
   manager-pm --type pnpm --action publish --dry-run
@@ -210,10 +225,13 @@ function exitError(msg) {
  * Collect extra CLI options to forward to internal tools.
  *
  * @param {Record<string, string|boolean>} opts - Parsed CLI options.
- * @returns {string[]} Array of CLI flags for Turbo.
+ * @param {boolean} includeApp - Whether to forward --app / --packages.
+ * @returns {string[]} Array of CLI flags.
  */
-function collectToolsArgs(opts) {
-  const excluded = ['action', 'type', 'app', 'filter', 'region', 'mode', 'container'];
+function collectToolsArgs(opts, includeApp = false) {
+  const alwaysExcluded = ['action', 'type', 'filter', 'region', 'mode', 'container'];
+  const excluded = includeApp ? alwaysExcluded : [...alwaysExcluded, 'app', 'packages'];
+
   return Object.entries(opts)
     .filter(([k]) => !excluded.includes(k))
     .flatMap(([k, v]) => (typeof v === 'boolean' ? [`--${k}`] : [`--${k}`, v]));
@@ -268,6 +286,16 @@ const actions = {
     const cliIndex = process.argv.indexOf('cli');
     const extraArgs = cliIndex !== -1 ? process.argv.slice(cliIndex + 1) : [];
     return runManagerCli(extraArgs);
+  },
+  async staticDynamicReports() {
+    return runStaticDynamicReports();
+  },
+  async staticDynamicTests() {
+    return runStaticDynamicTests();
+  },
+  async perfBudgets({ passthrough, opts }) {
+    const forwarded = collectToolsArgs(opts, true); // allow app/packages
+    return runPerfBudgets([...forwarded, ...passthrough]);
   },
   async workspace({ mode }) {
     if (!mode) {

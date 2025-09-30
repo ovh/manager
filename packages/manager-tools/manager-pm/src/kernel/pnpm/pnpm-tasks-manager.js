@@ -41,7 +41,7 @@ function runCommand(cmd, args, cwd) {
  */
 async function runTask(label, cmd, args) {
   try {
-    logger.info(`▶ ${cmd} ${args.join(' ')}`);
+    logger.info(`▶ ${cmd} ${args?.join(' ')}`);
     await runCommand(cmd, args, managerRootPath);
     logger.info(`✅ ${label} completed successfully`);
   } catch (error) {
@@ -286,4 +286,63 @@ export async function runLifecycleTask(lifecycle) {
   }
 
   return runTask(lifecycle, 'node', [script]);
+}
+
+/**
+ * Run static + dynamic quality checks in reports mode.
+ *
+ * This executes the `manager-static-dynamic-quality-checks` CLI without extra flags,
+ * generating combined HTML/JSON reports for code duplication, type coverage,
+ * test coverage, and performance budgets.
+ *
+ * Example:
+ * ```bash
+ * yarn manager-pm --type pnpm --action staticDynamicReports
+ * ```
+ *
+ * @returns {Promise<void>} Resolves when all reports are generated successfully.
+ */
+export async function runStaticDynamicReports() {
+  return withWorkspaces(() =>
+    runTask('static-dynamic-reports', 'manager-static-dynamic-quality-checks'),
+  );
+}
+
+/**
+ * Run static + dynamic quality checks in tests mode.
+ *
+ * This executes the `manager-static-dynamic-quality-checks` CLI with the `--tests` flag,
+ * triggering analyzers in validation mode (duplication-tests, types-tests, coverage-tests,
+ * perf-budgets-tests).
+ *
+ * Example:
+ * ```bash
+ * yarn manager-pm --type pnpm --action staticDynamicTests
+ * ```
+ *
+ * @returns {Promise<void>} Resolves when all test checks complete successfully.
+ */
+export async function runStaticDynamicTests() {
+  return withWorkspaces(() =>
+    runTask('static-dynamic-tests', 'manager-static-dynamic-quality-checks', ['--tests']),
+  );
+}
+
+/**
+ * Run performance budgets (PNPM-aware).
+ *
+ * Unlike static/dynamic aggregate checks, perfBudgets can be scoped to specific
+ * apps or package sets via `--app <name>` or `--packages <list>`.
+ *
+ * Example:
+ * ```bash
+ * yarn manager-pm --type pnpm --action perfBudgets --packages web,cloud
+ * yarn manager-pm --type pnpm --action perfBudgets --app zimbra
+ * ```
+ *
+ * @param {string[]} [options=[]] - Extra args to pass through (supports --app and --packages).
+ * @returns {Promise<void>} Resolves when performance budgets complete successfully.
+ */
+export async function runPerfBudgets(options = []) {
+  return withWorkspaces(() => runTask('perf-budgets', 'manager-perf-budgets', options));
 }
