@@ -18,7 +18,7 @@
   "orders_order_status_delivering": "Entregando...",
   "orders_order_status_documentsRequested": "Pendiente de documentación",
   "orders_order_status_notPaid": "Pago no recibido",
-  "orders_order_status_unknown": "Desconocido",
+  "orders_order_status_unknown": "Error",
   "orders_order_bc_expired": "El pedido ha expirado.",
   "orders_order_status_filter_progress": "En proceso",
   "orders_order_status_filter_all": "Todas",
