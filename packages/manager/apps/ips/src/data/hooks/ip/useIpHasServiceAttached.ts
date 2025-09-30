@@ -1,8 +1,9 @@
+import { IpTypeEnum } from '@/data/api';
 import { useGetProductService } from '../useGetProductService';
 
 export type UseIpHasServicesAttachedParams = {
   path: string;
-  category: string;
+  category: IpTypeEnum;
   serviceName?: string;
 };
 
