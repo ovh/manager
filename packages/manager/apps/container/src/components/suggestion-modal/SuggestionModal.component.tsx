@@ -132,7 +132,10 @@ const SuggestionModal: FC = () => {
                 </li>
               ))}
           </ul>
-          <p>{t('suggestion_modal_description_sub')}</p>
+          <p>{t('suggestion_modal_description_sub', {
+            confirmLabel: t('suggestion_modal_action_confirm'),
+            modifyLabel: t('suggestion_modal_action_modify')
+          })}</p>
         </OsdsText>
 
         <OsdsButton
