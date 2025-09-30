@@ -23,5 +23,7 @@
   "pci_instance_creation_select_flavor_help_memory_optimized": "<strong>Instances optimisées pour la mémoire (Memory Optimized) :</strong> adaptées aux applications qui nécessitent une capacité importante de mémoire, comme les bases de données en mémoire et l’analyse de données. Elles sont dotées d’une grande quantité de mémoire RAM.",
   "pci_instance_creation_select_flavor_help_storage_otpimized": "<strong>Instances optimisées pour le stockage (Storage Optimized) :</strong> idéales pour les charges de travail qui exigent un stockage de données rapide et de grandes capacités, comme les bases de données massives ou les applications de streaming.",
   "pci_instance_creation_select_flavor_help_gpu": "<strong>Instances GPU (Graphics Processing Unit) :</strong> équipées de processeurs graphiques (GPU), elles sont conçues pour des tâches telles que le machine learning, la visualisation 3D, la modélisation et la simulation.",
-  "pci_instance_creation_select_flavor_help_discovery": "<strong>Instances Discovery :</strong> des instances spécifiques pour le développement et le test d'applications avec des ressources partagées pour limiter les coûts"
+  "pci_instance_creation_select_flavor_help_discovery": "<strong>Instances Discovery :</strong> des instances spécifiques pour le développement et le test d'applications avec des ressources partagées pour limiter les coûts",
+  "pci_instance_creation_select_flavor_category_label": "Modèle d'instance",
+  "pci_instance_creation_select_flavor_include_unavailable_action": "Inclure les indisponibles"
 }

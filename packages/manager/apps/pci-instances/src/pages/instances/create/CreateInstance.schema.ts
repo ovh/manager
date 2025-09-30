@@ -10,6 +10,10 @@ export const continentSelectionSchema = z.string();
 
 export const localizationSelectionSchema = z.string();
 
+export const flavorCategorySchema = z.string();
+
+export const flavorTypeSchema = z.string();
+
 export const quantityRules = {
   min: 1,
   max: 5,
