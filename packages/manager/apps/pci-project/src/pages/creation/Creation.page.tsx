@@ -20,16 +20,17 @@ import {
 import FullPageSpinner from '@/components/FullPageSpinner';
 import { useConfigForm } from './hooks/useConfigForm';
 import { useProjectCreation } from './hooks/useProjectCreation';
-import { useStepper } from './hooks/useStepper';
+import { Step, useStepper } from './hooks/useStepper';
 import ConfigStep from './steps/ConfigStep';
 import PaymentStep from './steps/PaymentStep';
 import { useWillPayment } from './hooks/useWillPayment';
-import { usePaymentSubmission } from './hooks/usePaymentSubmission';
+import CreditConfirmation from './components/credit/CreditConfirmation.component';
 
 export default function ProjectCreation() {
   const { t } = useTranslation([
     'new/config',
     'new/payment',
+    'payment/integrations/credit/confirmation',
     NAMESPACES.ACTIONS,
   ]);
 
@@ -75,13 +76,17 @@ export default function ProjectCreation() {
   } = useAttachConfigurationToCartItem();
 
   const {
-    currentStep,
-    setCurrentStep,
+    goToConfig,
+    goToPayment,
+    goToCreditConfirmation,
     isConfigChecked,
     isConfigLocked,
     isPaymentOpen,
     isPaymentChecked,
     isPaymentLocked,
+    isCreditConfirmationOpen,
+    isCreditConfirmationChecked,
+    isCreditConfirmationLocked,
   } = useStepper();
 
   const {
@@ -89,25 +94,20 @@ export default function ProjectCreation() {
     needToCheckCustomerInfo,
     billingHref,
     handleProjectCreation,
-  } = useProjectCreation({ t, cart, projectItem });
+    handleCreditAndPay,
+  } = useProjectCreation({ t, cart, projectItem, goToCreditConfirmation });
 
   const {
-    isPaymentMethodSaveRequired,
-    isPaymentMethodSaved,
-    isSubmittingDisabled,
+    isCreditPayment,
+    creditAmount,
+    needsSave,
+    isSaved,
+    canSubmit,
     hasDefaultPaymentMethod,
-    triggerSavePaymentMethod,
+    savePaymentMethod,
     handlePaymentStatusChange,
     handleRegisteredPaymentMethodSelected,
   } = useWillPayment();
-
-  const { handlePaymentSubmit } = usePaymentSubmission({
-    isPaymentMethodSaveRequired,
-    isPaymentMethodSaved,
-    hasDefaultPaymentMethod,
-    triggerSavePaymentMethod,
-    onProjectCreation: handleProjectCreation,
-  });
 
   useEffect(() => {
     if (isLoadingConfigForm) {
@@ -119,7 +119,7 @@ export default function ProjectCreation() {
     }
 
     // Proceed to the next step
-    setCurrentStep(1);
+    goToPayment();
   }, [isLoadingConfigForm]);
 
   useEffect(() => {
@@ -154,12 +154,40 @@ export default function ProjectCreation() {
         },
       },
       {
-        onSuccess: () => setCurrentStep(1),
+        onSuccess: () => goToPayment(),
       },
     );
   };
 
   const handleCancel = useCallback(() => navigate('..'), [navigate]);
+
+  const handlePaymentSubmit = useCallback(() => {
+    if (needsSave && !isCreditPayment) {
+      // Need to save the payment method first
+      savePaymentMethod();
+    } else if (hasDefaultPaymentMethod || isCreditPayment) {
+      handleProjectCreation({
+        isCreditPayment,
+        creditAmount: creditAmount?.value ?? 0,
+      });
+    }
+  }, [
+    needsSave,
+    hasDefaultPaymentMethod,
+    savePaymentMethod,
+    handleProjectCreation,
+    isCreditPayment,
+    creditAmount,
+  ]);
+
+  /**
+   * Auto-proceed with project creation when payment method is saved
+   */
+  useEffect(() => {
+    if (isSaved) {
+      handleProjectCreation({});
+    }
+  }, [isSaved]);
 
   if (!cart || !projectItem) {
     return <FullPageSpinner />;
@@ -195,15 +223,15 @@ export default function ProjectCreation() {
         </div>
 
         <StepComponent
-          order={1}
+          order={Step.Config}
           isOpen={true}
           isLocked={isConfigLocked}
           isChecked={isConfigChecked}
           title={t('pci_project_new_config_description_label')}
           edit={
-            currentStep > 0
+            isConfigLocked
               ? {
-                  action: () => setCurrentStep(0),
+                  action: () => goToConfig(),
                   label: t('modify', { ns: NAMESPACES.ACTIONS }),
                   isDisabled: false,
                 }
@@ -229,17 +257,26 @@ export default function ProjectCreation() {
         </StepComponent>
 
         <StepComponent
-          order={2}
+          order={Step.Payment}
           isOpen={isPaymentOpen}
           isLocked={isPaymentLocked}
           isChecked={isPaymentChecked}
           title={t('pci_project_new_payment_description_label', {
             ns: 'new/payment',
           })}
+          edit={
+            isPaymentChecked
+              ? {
+                  action: () => goToPayment(),
+                  label: t('modify', { ns: NAMESPACES.ACTIONS }),
+                  isDisabled: false,
+                }
+              : undefined
+          }
           next={{
             action: handlePaymentSubmit,
             label: paymentStepNextButton,
-            isDisabled: isSubmittingDisabled,
+            isDisabled: !canSubmit,
             isLoading: isSubmitting,
           }}
           skip={{
@@ -256,6 +293,32 @@ export default function ProjectCreation() {
             }
           />
         </StepComponent>
+
+        {isCreditConfirmationOpen && (
+          <StepComponent
+            order={Step.CreditConfirmation}
+            isOpen={isCreditConfirmationOpen}
+            isLocked={isCreditConfirmationLocked}
+            isChecked={isCreditConfirmationChecked}
+            title={t('pci_project_new_payment_credit_confirmation_title', {
+              ns: 'payment/integrations/credit/confirmation',
+            })}
+            next={{
+              action: handleCreditAndPay,
+              label: t('pci_project_new_payment_credit_credit_and_pay', {
+                ns: 'payment/integrations/credit/confirmation',
+              }),
+              isDisabled: isSubmitting,
+              isLoading: isSubmitting,
+            }}
+            skip={{
+              action: handleCancel,
+              label: t('cancel', { ns: NAMESPACES.ACTIONS }),
+            }}
+          >
+            <CreditConfirmation creditAmount={creditAmount} />
+          </StepComponent>
+        )}
       </div>
     </div>
   );
