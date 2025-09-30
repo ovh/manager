@@ -16,9 +16,6 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@datatr-ux/ods-tailwind-config": "1.0.3",
-    "@datatr-ux/ovhcloud-types": "1.0.8",
-    "@datatr-ux/uxlib": "0.0.10",
     "@hookform/resolvers": "^3.3.4",
     "@ovh-ux/manager-common-translations": "^0.19.1",
     "@ovh-ux/manager-config": "^8.6.3",

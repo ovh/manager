@@ -1,21 +1,9 @@
 import { FormEvent, useMemo, useState } from 'react';
 
-import { Button } from '@datatr-ux/uxlib';
-import { Check, Clock12 } from 'lucide-react';
+import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_MESSAGE_TYPE,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { OsdsMessage, OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
+import { Badge, Button, Icon, Message, MessageIcon, Spinner, Text } from '@ovhcloud/ods-react';
 
 import { convertHourlyPriceToMonthly, useCatalogPrice } from '@ovh-ux/manager-react-components';
 
@@ -66,28 +54,23 @@ const PlanTile = ({
   return (
     <form data-testid="form" onSubmit={onSubmitHandler}>
       {!step.isLocked && <PlanTile.Banner type={type} />}
-      <OsdsText
-        className="my-4  block"
-        size={ODS_TEXT_SIZE._400}
-        level={ODS_TEXT_LEVEL.body}
-        color={ODS_THEME_COLOR_INTENT.text}
-      >
+      <Text className="my-4  block" color="text">
         {t('kube_add_plan_subtitle')}
-      </OsdsText>
+      </Text>
 
-      <div className=" mt-6 grid grid-cols-1  lg:grid-cols-2  xl:grid-cols-3  gap-4">
+      <div>
         {!step.isLocked &&
           (isPendingPlans ? (
-            <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+            <Spinner size="md" />
           ) : (
-            <>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 my-6">
               {sortedPlans.map((plan) => (
                 <RadioTile
                   disabled={planIsDisabled(plan.value)}
                   key={plan.value}
                   data-testid={`plan-tile-radio-tile-${plan.value}`}
                   name="plan-select"
-                  tileClassName="h-full "
+                  tileClassName="h-full"
                   onChange={() => !planIsDisabled(plan.value) && setSelected(plan.value)}
                   value={plan.value}
                   checked={selected === plan.value}
@@ -102,8 +85,16 @@ const PlanTile = ({
                       disabled={planIsDisabled(plan.value)}
                     />
                   )}
-                  <RadioTile.Separator />
-                  <div className="text-sm flex flex-col p-4">
+                  <div className="px-6 py-2">
+                    <hr
+                      className={clsx(
+                        'w-full border-solid border-0 border-b border-[--ods-color-neutral-100]',
+                      )}
+                      aria-hidden="true"
+                    />
+                  </div>
+
+                  <div className="text-sm flex flex-col px-6 py-4 gap-3">
                     <PlanTile.Content
                       disabled={planIsDisabled(plan.value)}
                       contents={plan.content}
@@ -118,17 +109,21 @@ const PlanTile = ({
                   />
                 </RadioTile>
               ))}
-            </>
+            </div>
           ))}
-        {step.isLocked && <PlanTile.LockedView value={selected} />}
+        {step.isLocked && (
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <PlanTile.LockedView value={selected} />
+          </div>
+        )}
       </div>
-      {!step.isLocked && (
+      {!step.isLocked && !isPendingPlans && (
         <Button
-          type="submit"
-          variant="primary"
-          disabled={!selected}
-          className=" mt-6 py-8 px-6"
+          className="mt-2 w-fit p-6"
           size="md"
+          type="submit"
+          color="primary"
+          disabled={!selected}
         >
           {t('stepper:common_stepper_next_button_label')}
         </Button>
@@ -142,27 +137,23 @@ PlanTile.Banner = function PlanTileBanner({ type }: { type: DeploymentMode }) {
   const [open, setOpen] = useState(true);
   return (
     open && (
-      <OsdsMessage
-        removable
-        onOdsRemoveClick={() => setOpen(false)}
+      <Message
+        variant="default"
+        dismissible
+        onRemove={() => setOpen(false)}
         className="mt-4"
-        type={ODS_MESSAGE_TYPE.info}
-        color={ODS_THEME_COLOR_INTENT.info}
+        color="information"
       >
-        <OsdsText
-          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-          color={ODS_THEME_COLOR_INTENT.text}
-          className="block"
-        >
-          {isMultiDeploymentZones(type)
-            ? t('kube_add_plan_content_unavailable_3AZ_banner', {
-                plan: 'Free',
-              })
-            : t('kube_add_plan_content_unavailable_1AZ_banner', {
-                plan: 'Standard',
-              })}
-        </OsdsText>
-      </OsdsMessage>
+        <MessageIcon name="circle-info" />
+
+        {isMultiDeploymentZones(type)
+          ? t('kube_add_plan_content_unavailable_3AZ_banner', {
+              plan: 'Free',
+            })
+          : t('kube_add_plan_content_unavailable_1AZ_banner', {
+              plan: 'Standard',
+            })}
+      </Message>
     )
   );
 };
@@ -175,9 +166,12 @@ PlanTile.LockedView = function PlanTileLockedView({ value }: { value: TClusterPl
   if (!plan) return null;
 
   return (
-    <RadioTile labelClassName="border-primary-100">
-      <div className="  px-4 py-2 flex-col w-full ">
-        <h5 data-testid="plan-header-locked" className="capitalize font-bold">
+    <RadioTile labelClassName="border-[--ods-color-information-100] border">
+      <div className="px-4 py-2 flex-col w-full ">
+        <h5
+          data-testid="plan-header-locked"
+          className="capitalize font-bold text-[--ods-color-text-disabled-default]"
+        >
           {t(plan.title)}
         </h5>
       </div>
@@ -206,21 +200,25 @@ PlanTile.Header = function PlanTileHeader({
       (value === TClusterPlanEnum.STANDARD && isMonoDeploymentZone(type)));
 
   return (
-    <div className=" px-6 py-4 flex-col w-full ">
-      <div className="flex gap-4">
-        <h5 data-testid="plan-header" className="capitalize font-bold">
+    <div className=" px-6 py-4">
+      <div className="flex flex-wrap gap-4">
+        <h5
+          data-testid="plan-header"
+          className={clsx(
+            'capitalize font-bold  text-lg text-[--ods-color-element-background-selected] mb-0 mt-0',
+          )}
+        >
           {t(title)}
         </h5>
+        {displayWarningMessage && (
+          <Badge className="rounded-[1rem]" color="information">
+            {t('kube_add_plan_content_coming_very_soon')}
+          </Badge>
+        )}
       </div>
 
-      <div className="mt-2 flex flex-col">
-        {displayWarningMessage && (
-          <span className="text-warning-500 inline-flex gap-1">
-            <Clock12 />
-            <span>{t('kube_add_plan_content_coming_very_soon')}</span>
-          </span>
-        )}
-        <span>{t(description)}</span>
+      <div className="mt-2 flex flex-wrap">
+        <span className="text-[--ods-color-text-500]">{t(description)}</span>
       </div>
     </div>
   );
@@ -235,13 +233,15 @@ PlanTile.Content = function PlanTileContent({
 }) {
   const { t } = useTranslation(['add']);
   return contents.map((text) => (
-    <span className="flex items-start gap-1" key={text}>
-      <Check
+    <span className="flex items-baseline gap-4 text-sm text-[--ods-color-text-500]" key={text}>
+      <Icon
+        name="check"
         className={cn('shrink-0', {
-          'text-neutral-600': disabled,
+          'text-[--ods-color-text-500]': disabled,
           'text-teal-500': !disabled,
         })}
       />
+
       {t(text)}
     </span>
   ));
@@ -273,30 +273,20 @@ PlanTile.Footer = function PlanTileFooter({
   return (
     <div className=" mt-auto w-full rounded-b-md border-none bg-neutral-100">
       {isFreePlan ? (
-        <p className=" p-4 text-xl text-primary-600">
+        <p className="m-0 p-4 text-xl text-[--ods-color-primary-600]">
           <strong>{t(content)}</strong>
         </p>
       ) : (
         <div className="px-4 pb-4">
           {hourlyPrice && (
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              className="block pt-4"
-            >
+            <Text color="text" className="block pt-4">
               <strong>{hourlyPrice}</strong>
-            </OsdsText>
+            </Text>
           )}
           {monthlyPrice && (
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              className="block"
-            >
+            <Text color="text" className="block">
               ~ {monthlyPrice}
-            </OsdsText>
+            </Text>
           )}
         </div>
       )}

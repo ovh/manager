@@ -1,12 +1,18 @@
-@import '@datatr-ux/ods-tailwind-config/style.css';
-@import '@datatr-ux/uxlib/style.css';
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .application {
   @apply md:mx-12 mt-8;
+}
+
+html {
+  font-family: var(--ods-font-family-default);
+
+  osds-tile {
+    border-width: var(--ods-size-input-md-border-width);
+    border-color: var(--ods-color-primary-200);
+  }
 }
 
 a:not([class]),
