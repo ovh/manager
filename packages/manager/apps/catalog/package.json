@@ -12,6 +12,9 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "tsc && vite build",
+    "build:strict": "tsc --project tsconfig.strict.json && vite build",
+    "lint:modern": "manager-lint --config eslint.config.mjs ./src",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "start": "tsc && vite",
     "test": "manager-test run",
     "test:watch": "manager-test watch"
@@ -41,6 +44,7 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-tailwind-config": "^0.5.3",
+    "@ovh-ux/manager-static-analysis-kit": "^0.10.0",
     "@ovh-ux/manager-tests-setup": "^0.2.0",
     "@ovh-ux/manager-vite-config": "^0.13.2",
     "@tanstack/react-query-devtools": "^5.51.21",

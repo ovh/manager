@@ -1,5 +1,6 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
 import i18next from 'i18next';
+
+import { apiClient } from '@ovh-ux/manager-core-api';
 
 export const getManagerCatalogListQueryKey = ['/catalog'];
 

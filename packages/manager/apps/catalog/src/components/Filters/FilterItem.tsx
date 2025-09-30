@@ -1,15 +1,9 @@
 import React from 'react';
-import {
-  OsdsText,
-  OsdsCheckbox,
-  OsdsCheckboxButton,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-  ODS_CHECKBOX_BUTTON_SIZE,
-} from '@ovhcloud/ods-components';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_CHECKBOX_BUTTON_SIZE, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsCheckbox, OsdsCheckboxButton, OsdsText } from '@ovhcloud/ods-components/react';
+
 import { toFilterValue } from '@/utils/utils';
 
 interface FilterItemProps {
@@ -17,11 +11,7 @@ interface FilterItemProps {
   count?: number;
   type: 'category' | 'universe';
   isChecked: boolean;
-  onCheckboxChange: (
-    type: 'category' | 'universe',
-    label: string,
-    event: CustomEvent,
-  ) => void;
+  onCheckboxChange: (type: 'category' | 'universe', label: string, event: CustomEvent) => void;
 }
 
 const FilterItem: React.FC<FilterItemProps> = ({
@@ -42,10 +32,7 @@ const FilterItem: React.FC<FilterItemProps> = ({
       }
       data-tracking={`filter::${type}::${toFilterValue(label)}`}
     >
-      <OsdsCheckboxButton
-        size={ODS_CHECKBOX_BUTTON_SIZE.sm}
-        color={ODS_THEME_COLOR_INTENT.text}
-      >
+      <OsdsCheckboxButton size={ODS_CHECKBOX_BUTTON_SIZE.sm} color={ODS_THEME_COLOR_INTENT.text}>
         <span slot="end">
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.text}
