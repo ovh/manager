@@ -8,6 +8,7 @@ import { selectContinent } from '../view-models/selectContinents';
 import { selectDeploymentModes } from '../view-models/selectDeploymentMode';
 import { selectLocalizations } from '../view-models/selectLocalizations';
 import { TDeploymentMode } from '@/types/instance/common.type';
+import { mockedFlavorCategories } from '@/__mocks__/instance/constants';
 
 export const useForm = (projectId: string) => {
   const deploymentModes = selectDeploymentModes(deps)(projectId);
@@ -30,6 +31,13 @@ export const useForm = (projectId: string) => {
 
   const localizationDefaultValue = localizations[0]?.region ?? 'EU-WEST-PAR';
 
+  const flavorCategoryDefaultValue = mockedFlavorCategories[0]?.name ?? '';
+
+  const flavorTypeDefaultValue =
+    mockedFlavorCategories.find(
+      ({ name }) => name === flavorCategoryDefaultValue,
+    )?.type[0]?.name ?? '';
+
   const formMethods = useReactHookForm({
     resolver: zodResolver(instanceCreationSchema),
     values: {
@@ -38,6 +46,8 @@ export const useForm = (projectId: string) => {
       deploymentModes: deploymentModesDefaultValue,
       region: localizationDefaultValue,
       continent: continentDefaultValue,
+      flavorCategory: flavorCategoryDefaultValue,
+      flavorType: flavorTypeDefaultValue,
     },
     mode: 'onChange',
   });

@@ -401,3 +401,180 @@ export const mockedDeploymentModesSelectorData: TDeploymentModeDataForCard[] = [
     url: InstanceImage,
   },
 ];
+
+export const mockedFlavorCategories = [
+  {
+    name: 'Best Sellers!',
+    type: [
+      {
+        name: 'ModelTests',
+        flavors: ['d2-2', 'd2-4', 'b3-8'],
+        tags: ['new'],
+      },
+    ],
+    tags: ['New!'],
+  },
+  {
+    name: 'General Purpose',
+    type: [
+      {
+        name: 'B2',
+        flavors: ['b2-7', 'b2-15', 'b2-30', 'b2-60', 'b2-120'],
+        tags: [],
+      },
+      {
+        name: 'B3',
+        flavors: [
+          'b3-8',
+          'b3-16',
+          'b3-32',
+          'b3-64',
+          'b3-128',
+          'b3-256',
+          'b3-512',
+          'b3-640',
+        ],
+        tags: ['new'],
+      },
+    ],
+    tags: null,
+  },
+  {
+    name: 'Compute Optimized',
+    type: [
+      {
+        name: 'C2',
+        flavors: ['c2-7', 'c2-15', 'c2-30', 'c2-60', 'c2-120'],
+        tags: [],
+      },
+      {
+        name: 'C3',
+        flavors: [
+          'c3-4',
+          'c3-8',
+          'c3-16',
+          'c3-32',
+          'c3-64',
+          'c3-128',
+          'c3-256',
+          'c3-320',
+        ],
+        tags: [],
+      },
+    ],
+    tags: null,
+  },
+  {
+    name: 'Memory Optimized',
+    type: [
+      {
+        name: 'R2',
+        flavors: ['r2-15', 'r2-30', 'r2-60', 'r2-120', 'r2-240'],
+        tags: [],
+      },
+      {
+        name: 'R3',
+        flavors: [
+          'r3-16',
+          'r3-32',
+          'r3-64',
+          'r3-128',
+          'r3-256',
+          'r3-512',
+          'r3-1024',
+        ],
+        tags: [],
+      },
+    ],
+    tags: null,
+  },
+  {
+    name: 'Storage Optimized',
+    type: [
+      {
+        name: 'I1',
+        flavors: ['i1-45', 'i1-90', 'i1-180'],
+        tags: [],
+      },
+    ],
+    tags: null,
+  },
+  {
+    name: 'Discovery',
+    type: [
+      {
+        name: 'D2',
+        flavors: ['d2-2', 'd2-4', 'd2-8'],
+        tags: [],
+      },
+    ],
+    tags: null,
+  },
+  {
+    name: 'Cloud GPU',
+    type: [
+      {
+        name: 'L40s',
+        flavors: ['l40s-90', 'l40s-180', 'l40s-360'],
+        tags: [],
+      },
+      {
+        name: 'A10',
+        flavors: ['a10-45', 'a10-90', 'a10-180'],
+        tags: [],
+      },
+      {
+        name: 'A100',
+        flavors: ['a100-180', 'a100-360', 'a100-720'],
+        tags: [],
+      },
+      {
+        name: 'H100',
+        flavors: ['h100-380', 'h100-720', 'h100-1520'],
+        tags: [],
+      },
+      {
+        name: 'L4',
+        flavors: ['l4-90', 'l4-180', 'l4-360'],
+        tags: [],
+      },
+      {
+        name: 'RTX5000',
+        flavors: ['rtx5000-28', 'rtx5000-56', 'rtx5000-84'],
+        tags: [],
+      },
+      {
+        name: 'T1',
+        flavors: ['t1-45', 't1-90', 't1-180'],
+        tags: [],
+      },
+      {
+        name: 'T1-le',
+        flavors: ['t1-le-45', 't1-le-90', 't1-le-180'],
+        tags: [],
+      },
+      {
+        name: 'T2',
+        flavors: ['t2-45', 't2-90', 't2-180'],
+        tags: [],
+      },
+      {
+        name: 'T2-le',
+        flavors: ['t2-le-45', 't2-le-90', 't2-le-180'],
+        tags: [],
+      },
+    ],
+    tags: null,
+  },
+  {
+    name: 'Metal Instances',
+    type: [
+      {
+        name: 'BM',
+        flavors: ['bm-s1', 'bm-m1', 'bm-l1'],
+        tags: [],
+      },
+    ],
+    tags: null,
+  },
+];
