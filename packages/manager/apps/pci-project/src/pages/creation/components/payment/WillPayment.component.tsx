@@ -38,7 +38,7 @@ const WillPaymentModule = lazy(() =>
             slotRef.current.innerHTML = '';
           }
         };
-      }, [props.slotRef, props.config]);
+      }, [props.slotRef]);
 
       return null;
     },
