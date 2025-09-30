@@ -17,7 +17,6 @@ export const Name = () => {
 
   return (
     <article className="flex flex-col w-full mb-8">
-      <hr className={'h-px my-8 bg-gray-200 border-0 w-full'} />
       {/* TODO: Pre-fill name with combination of {flavor_name region_id month day hour minute} */}
       <div className="pt-3 pb-4">
         <FormField>

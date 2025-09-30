@@ -1,5 +1,5 @@
 import { TDeploymentMode } from '@/types/instance/common.type';
-import { Badge } from '@ovhcloud/ods-react';
+import { Badge, BADGE_SIZE } from '@ovhcloud/ods-react';
 
 enum DeploymentMode {
   region = '1-AZ',
@@ -22,10 +22,11 @@ const getBadgeClassName = (mode: TDeploymentMode) => {
 
 type TDeploymentModeBadgeProps = {
   mode: TDeploymentMode;
+  size?: BADGE_SIZE;
 };
 
-export const DeploymentModeBadge = ({ mode }: TDeploymentModeBadgeProps) => (
-  <Badge className={`${getBadgeClassName(mode)} text-nowrap`}>
+export const DeploymentModeBadge = ({ mode, size = BADGE_SIZE.md}: TDeploymentModeBadgeProps) => (
+  <Badge className={`${getBadgeClassName(mode)} text-nowrap`} size={size}>
     {DeploymentMode[mode]}
   </Badge>
 );

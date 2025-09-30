@@ -2,6 +2,7 @@ import {
   Checkbox,
   CheckboxControl,
   CheckboxLabel,
+  Divider,
   Text,
 } from '@ovhcloud/ods-react';
 import { FC } from 'react';
@@ -9,12 +10,14 @@ import { useTranslation } from 'react-i18next';
 import FlavorHelper from './flavor/FlavorHelper.component';
 import FlavorCategory from './flavor/FlavorCategory.component';
 import FlavorType from './flavor/flavorType/FlavorType.component';
+import FlavorSelectionComponent from "@/pages/instances/create/components/flavor/FlavorSelection.component";
 
 const FlavorBlock: FC = () => {
   const { t } = useTranslation('creation');
 
   return (
     <section>
+      <Divider spacing="64" />
       <div className="flex items-center space-x-4">
         <Text preset="heading-3">
           {t('pci_instance_creation_select_flavor_title')}
@@ -40,6 +43,7 @@ const FlavorBlock: FC = () => {
           </CheckboxLabel>
         </Checkbox>
       </div>
+      <FlavorSelectionComponent/>
     </section>
   );
 };

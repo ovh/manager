@@ -8,7 +8,7 @@ type TCartProps = PropsWithChildren<{
 export const Cart = ({ children, className }: TCartProps) => (
   <div
     className={clsx(
-      'rounded-md border border-solid border-gray-400 shadow-lg p-6',
+      'rounded-xs border border-solid border-gray-400 shadow-lg p-6',
       className,
     )}
     data-testid="cart"

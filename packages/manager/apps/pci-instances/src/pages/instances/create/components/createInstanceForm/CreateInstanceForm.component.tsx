@@ -1,6 +1,6 @@
 import { PciCardShowcaseComponent } from '@/components/pciCard/PciCardShowcase.component';
 import { QuantitySelector } from '@/pages/instances/create/components/QuantitySelector.component';
-import { Divider, Text } from '@ovhcloud/ods-react';
+import { Text } from '@ovhcloud/ods-react';
 import { FormProvider } from 'react-hook-form';
 import { AdvancedParameters } from '../AdvancedParameters.component';
 import { CreationCart } from '../CreationCart.component';
@@ -67,14 +67,13 @@ export const CreateInstanceForm = () => {
               />
             </div>
           )}
+          <FlavorBlock />
           <AdvancedParameters />
           <QuantitySelector
             quota={quantityHintParams.quota}
             type={quantityHintParams.type}
             region={quantityHintParams.region}
           />
-          <Divider spacing="64" />
-          <FlavorBlock />
           <PciCardShowcaseComponent />
         </section>
         <aside className="min-w-[280px] w-1/3 max-w-[640px]">

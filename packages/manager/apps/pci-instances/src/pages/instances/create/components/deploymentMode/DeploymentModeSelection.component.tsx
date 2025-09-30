@@ -66,10 +66,6 @@ export const DeploymentModeSelection = () => {
             </Link>
           </HelpDrawer>
         </div>
-
-        <Text preset="paragraph">
-          (Not mandatory) Si besoin d’un texte explicatif/consigne...
-        </Text>
       </div>
       <section className="mt-6">
         <Controller<TDeploymentModeSelection, 'deploymentModes'>
