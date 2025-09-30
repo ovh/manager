@@ -22,11 +22,16 @@ export enum ComponentStatus {
   PAYMENT_METHOD_SAVED = 'PAYMENT_METHOD_SAVED', // When a payment method is registered or updated
 }
 
+export type TCreditData = {
+  isCredit?: boolean;
+  creditAmount?: { value: number; text: string; currencyCode: string };
+};
+
 export type GlobalStateStatus = {
   componentStatus: ComponentStatus;
   paymentMethodStatus: PaymentMethodStatus;
   error?: string | null;
-  data?: unknown;
+  data?: TCreditData | unknown;
 };
 
 export type TWillPaymentConfig = {
