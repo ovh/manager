@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hub-app",
-  "version": "0.24.1",
+  "version": "0.25.0",
   "private": true,
   "description": "OVHcloud Dashboard control panel.",
   "repository": {
@@ -21,7 +21,7 @@
     "@ovh-ux/manager-core-api": "^0.18.4",
     "@ovh-ux/manager-models": "^2.5.9",
     "@ovh-ux/manager-react-components": "^1.48.0",
-    "@ovh-ux/manager-react-core-application": "^0.12.4",
+    "@ovh-ux/manager-react-core-application": "^0.12.5",
     "@ovh-ux/manager-react-shell-client": "^0.9.3",
     "@ovh-ux/request-tagger": "^0.5.2",
     "@ovhcloud/ods-common-core": "17.2.1",

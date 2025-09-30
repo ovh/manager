@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.154.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.153.0...@ovh-ux/manager-container-app@0.154.0) (2025-09-30)
+
+
+### Features
+
+* **container:** wrap modal handlers with usecallback ([7864882](https://github.com/ovh/manager/commit/78648826f66a7d82fd7b9578271c4a0ab561c8da)), closes [#MANAGER-18812](https://github.com/ovh/manager/issues/MANAGER-18812)
+
+
+
+
+
 # [0.153.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.152.1...@ovh-ux/manager-container-app@0.153.0) (2025-09-29)
 
 
