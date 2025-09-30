@@ -31,7 +31,10 @@ export default class {
 
     this.volume = {
       size: this.volumeCapacityInfos.volume_size,
-      used: this.volumeCapacityInfos.volume_size_used,
+      used: (
+        this.volumeCapacityInfos.volume_size_used -
+        this.volumeCapacityInfos.volume_snapshot_reserve_overflow
+      ).toFixed(2),
       available: this.volumeCapacityInfos.volume_size_available,
       overflow: this.volumeCapacityInfos.volume_snapshot_reserve_overflow,
       usedPercent: getPercentage(

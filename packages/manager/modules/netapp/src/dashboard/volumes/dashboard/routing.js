@@ -17,7 +17,10 @@ export default /* @ngInject */ ($stateProvider) => {
         NetAppDashboardService,
         serviceName,
         volumeId,
-      ) => NetAppDashboardService.getVolumeCapacity(serviceName, volumeId),
+      ) =>
+        NetAppDashboardService.getVolumeCapacity(serviceName, volumeId)
+          .then((data) => data)
+          .catch(() => null),
       goToVolumeDashboard: /* @ngInject */ (
         $state,
         Alerter,

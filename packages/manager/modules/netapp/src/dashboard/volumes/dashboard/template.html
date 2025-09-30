@@ -241,22 +241,21 @@
                                 ng-style="{ width: {{$ctrl.volume.usedPercent}} + '%' }"
                             ></div>
                             <div
-                                class="segment snapshot-overflow"
-                                ng-style="{ width: {{$ctrl.volume.overflowPercent}} + '%' }"
-                            ></div>
-                            <div
                                 class="segment available"
                                 ng-style="{ width: {{$ctrl.volume.availablePercent}} + '%' }"
                             ></div>
-                            <div class="segment separator"></div>
-
                             <div
-                                class="segment reserve"
-                                ng-style="{ width: {{$ctrl.snapshot.usedPercent}} + '%' }"
+                                class="segment snapshot-overflow"
+                                ng-style="{ width: {{$ctrl.volume.overflowPercent}} + '%' }"
                             ></div>
+                            <div class="segment separator"></div>
                             <div
                                 class="segment available"
                                 ng-style="{ width: {{$ctrl.snapshot.availablePercent}} + '%' }"
+                            ></div>
+                            <div
+                                class="segment used"
+                                ng-style="{ width: {{$ctrl.snapshot.usedPercent}} + '%' }"
                             ></div>
                         </div>
 

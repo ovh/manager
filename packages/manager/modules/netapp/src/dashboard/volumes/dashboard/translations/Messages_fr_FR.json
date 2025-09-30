@@ -36,7 +36,7 @@
   "netapp_volumes_dashboard_mount_path_not_configurated": "Paramètres réseaux non configurés",
   "netapp_volumes_dashboard_capacity": "Capacité du volume",
   "netapp_volumes_dashboard_volume_data_space": "Espace de données",
-  "netapp_volumes_dashboard_volume_used": "Utiliser",
+  "netapp_volumes_dashboard_volume_used": "Utilisé",
   "netapp_volumes_dashboard_volume_overflow": "Débordement",
   "netapp_volumes_dashboard_volume_available": "Disponible",
   "netapp_volumes_dashboard_snapshot_space": "Reserve de Snapshot"
