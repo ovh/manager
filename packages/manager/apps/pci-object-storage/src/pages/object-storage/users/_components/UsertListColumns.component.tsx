@@ -1,27 +1,32 @@
 import { ColumnDef } from '@tanstack/react-table';
-import { MoreHorizontal } from 'lucide-react';
+import { HelpCircle, MoreHorizontal } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import {
+  Badge,
   Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
 } from '@datatr-ux/uxlib';
 import DataTable from '@/components/data-table';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
-import user from '@/types/User';
 import { UserWithS3Credentials } from '@/data/hooks/user/useGetUsersWithS3Credentials.hook';
 
 interface UsersListColumnsProps {
-  onImportUserAccessClicked: (user: user.User) => void;
-  onDownloadUserAccessClicked: (user: user.User) => void;
-  onDownloadRcloneClicked: (user: user.User) => void;
-  onSecretKeyClicked: (user: user.User) => void;
-  onDeleteClicked: (user: user.User) => void;
+  onEnableUserClicked: (user: UserWithS3Credentials) => void;
+  onImportUserAccessClicked: (user: UserWithS3Credentials) => void;
+  onDownloadUserAccessClicked: (user: UserWithS3Credentials) => void;
+  onDownloadRcloneClicked: (user: UserWithS3Credentials) => void;
+  onSecretKeyClicked: (user: UserWithS3Credentials) => void;
+  onDeleteClicked: (user: UserWithS3Credentials) => void;
 }
 export const getColumns = ({
+  onEnableUserClicked,
   onImportUserAccessClicked,
   onDownloadUserAccessClicked,
   onDownloadRcloneClicked,
@@ -58,6 +63,36 @@ export const getColumns = ({
       accessorFn: (row) => row.access_key,
     },
     {
+      id: 's3 activated',
+      header: ({ column }) => (
+        <>
+          <Popover>
+            <PopoverTrigger>
+              <HelpCircle className="mr-2 size-4" />
+            </PopoverTrigger>
+            <PopoverContent className="text-sm">
+              <p>{t('s3InfoHelper')}</p>
+            </PopoverContent>
+          </Popover>
+          <DataTable.SortableHeader column={column}>
+            {t('tableHeaderS3Enabler')}
+          </DataTable.SortableHeader>
+        </>
+      ),
+      accessorFn: (row) => row.access_key,
+      cell: ({ row }) => (
+        <div className="flex items-center gap-2">
+          {row.original.access_key ? (
+            <Badge variant="success">{t('tableS3Enable')}</Badge>
+          ) : (
+            <>
+              <Badge variant="warning">{t('tableS3Disable')}</Badge>
+            </>
+          )}
+        </div>
+      ),
+    },
+    {
       id: MENU_COLUMN_ID,
       enableGlobalFilter: false,
       cell: ({ row }) => {
@@ -74,6 +109,15 @@ export const getColumns = ({
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent data-testid="users-action-content" align="end">
+              <DropdownMenuItem
+                variant="primary"
+                onClick={() => {
+                  onEnableUserClicked(row.original);
+                }}
+                disabled={!!row.original.access_key}
+              >
+                {t('tableActionEnable')}
+              </DropdownMenuItem>
               <DropdownMenuItem
                 variant="primary"
                 onClick={() => {
@@ -114,7 +158,7 @@ export const getColumns = ({
                   onDeleteClicked(row.original);
                 }}
               >
-                {t('tableActionDelete')}
+                {t('tableActionDisable')}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

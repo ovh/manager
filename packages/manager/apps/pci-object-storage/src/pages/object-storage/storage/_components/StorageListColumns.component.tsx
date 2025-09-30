@@ -12,27 +12,33 @@ import {
   DropdownMenuTrigger,
   useToast,
 } from '@datatr-ux/uxlib';
+import { RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud/index';
 import DataTable from '@/components/data-table';
 import Link from '@/components/links/Link.component';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 import { getRegionFlag } from '@/lib/flagHelper';
 import Flag from '@/components/flag/Flag.component';
-import storages, { Containers } from '@/types/Storages';
+import storages, {
+  FormattedStorage,
+  ObjectStorageTypeEnum,
+} from '@/types/Storages';
 import { octetConverter } from '@/lib/bytesHelper';
 
-interface ContainersListColumnsProps {
-  onSwitchClicked: (container: Containers) => void;
-  onDeleteClicked: (container: Containers) => void;
+interface StoragesListColumnsProps {
+  onSwitchClicked: (storage: FormattedStorage) => void;
+  onAddUserClicked: (storage: FormattedStorage) => void;
+  onDeleteClicked: (storage: FormattedStorage) => void;
 }
 export const getColumns = ({
   onSwitchClicked,
   onDeleteClicked,
-}: ContainersListColumnsProps) => {
+  onAddUserClicked,
+}: StoragesListColumnsProps) => {
   const navigate = useNavigate();
-  const { t } = useTranslation('pci-object-storage/containers');
+  const { t } = useTranslation('pci-object-storage/storages');
   const { t: tRegions } = useTranslation('regions');
   const toast = useToast();
-  const columns: ColumnDef<Containers>[] = [
+  const columns: ColumnDef<FormattedStorage>[] = [
     {
       id: 'name',
       header: ({ column }) => (
@@ -72,7 +78,7 @@ export const getColumns = ({
     },
     {
       id: 'Mode',
-      accessorFn: (row) => row.containerType,
+      accessorFn: (row) => row.regionType,
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
           {t('tableHeaderDeploymentMode')}
@@ -80,7 +86,7 @@ export const getColumns = ({
       ),
       cell: ({ row }) => (
         <div>
-          {row.original.region === 'EU-WEST-PAR' ? (
+          {row.original.regionType === RegionTypeEnum['region-3-az'] ? (
             <Badge className="bg-primary-500">
               <span className="text-white">3-AZ</span>
             </Badge>
@@ -94,7 +100,7 @@ export const getColumns = ({
     },
     {
       id: 'Offre',
-      accessorFn: (row) => row?.s3StorageType,
+      accessorFn: (row) => row.storageType,
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
           {t('tableHeaderOffer')}
@@ -102,7 +108,7 @@ export const getColumns = ({
       ),
       cell: ({ row }) => (
         <span>
-          {row.original?.s3StorageType
+          {row.original?.storageType === ObjectStorageTypeEnum.s3
             ? t('tableS3Offer')
             : t('tableSwiftOffer')}
         </span>
@@ -163,13 +169,13 @@ export const getColumns = ({
       id: MENU_COLUMN_ID,
       enableGlobalFilter: false,
       cell: ({ row }) => {
-        const container = row.original;
+        const storage = row.original;
 
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
-                data-testid="containers-action-trigger"
+                data-testid="storages-action-trigger"
                 variant="menu"
                 size="menu"
               >
@@ -178,7 +184,7 @@ export const getColumns = ({
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent
-              data-testid="containers-action-content"
+              data-testid="storages-action-content"
               align="end"
             >
               <DropdownMenuItem
@@ -190,28 +196,37 @@ export const getColumns = ({
               <DropdownMenuItem
                 variant="primary"
                 onClick={() => {
-                  navigator.clipboard.writeText(container.id);
+                  navigator.clipboard.writeText(storage.id);
                   toast.toast({
-                    description: 'container id saved in clipboard',
+                    description: 'storage id saved in clipboard',
                   });
                 }}
               >
                 {t('tableActionCopy')}
               </DropdownMenuItem>
-              <DropdownMenuItem
-                data-testid="container-action-rename-button"
-                variant="primary"
-                onClick={() => {
-                  onSwitchClicked(row.original);
-                }}
-              >
-                {row.original.public
-                  ? t('tableActionSwitchToPrivate')
-                  : t('tableActionSwitchToPublic')}
-              </DropdownMenuItem>
+              {storage.storageType === ObjectStorageTypeEnum.swift && (
+                <DropdownMenuItem
+                  data-testid="storage-action-switch-button"
+                  variant="primary"
+                  onClick={() => onSwitchClicked(row.original)}
+                >
+                  {row.original.public
+                    ? t('tableActionSwitchToPrivate')
+                    : t('tableActionSwitchToPublic')}
+                </DropdownMenuItem>
+              )}
+              {storage.storageType === ObjectStorageTypeEnum.s3 && (
+                <DropdownMenuItem
+                  variant="primary"
+                  data-testid="storage-action-add-user-button"
+                  onClick={() => onAddUserClicked(row.original)}
+                >
+                  {t('tableActionAddUser')}
+                </DropdownMenuItem>
+              )}
               <DropdownMenuSeparator />
               <DropdownMenuItem
-                data-testid="container-action-delete-button"
+                data-testid="storage-action-delete-button"
                 variant="destructive"
                 onClick={() => {
                   onDeleteClicked(row.original);

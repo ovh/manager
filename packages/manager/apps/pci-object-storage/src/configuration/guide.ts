@@ -23,6 +23,11 @@ export const GUIDES = {
     default:
       'https://docs.ovh.com/gb/en/public-cloud/share_an_object_via_a_temporary_url/',
   },
+  OBJ_STO_RCLONE: {
+    fr_FR: 'https://docs.ovh.com/fr/storage/sync-rclone-object-storage/',
+    fr_CA: 'https://docs.ovh.com/fr/storage/sync-rclone-object-storage/',
+    default: 'https://docs.ovh.com/gb/en/storage/sync-rclone-object-storage/',
+  },
 };
 
 export function getGuideUrl(

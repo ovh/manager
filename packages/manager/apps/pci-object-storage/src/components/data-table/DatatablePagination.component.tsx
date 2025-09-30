@@ -16,7 +16,7 @@ import {
 import { useDataTableContext } from './DataTable.context';
 
 export function DataTablePagination() {
-  const { t } = useTranslation('pci-databases-analytics/components/data-table');
+  const { t } = useTranslation('components/data-table');
   const { table } = useDataTableContext();
   const itemCount = table.getRowCount();
   if (itemCount === 0) return <></>;
