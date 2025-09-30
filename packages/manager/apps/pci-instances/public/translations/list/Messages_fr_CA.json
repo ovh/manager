@@ -28,5 +28,5 @@
   "pci_instances_list_action_soft_reboot": "Redémarrer à chaud (soft)",
   "pci_instances_list_action_hard_reboot": "Redémarrer à froid (hard)",
   "pci_instances_list_action_reinstall": "Réinstaller",
-  "pci_instances_operations_running": "L(es) opération(s) sur l(es) instance(s) est en cours"
+  "pci_instances_operations_running": "L(es) opération(s) sur l(es) instance(s) est(sont) en cours"
 }

@@ -28,5 +28,5 @@
   "pci_instances_list_action_hard_reboot": "Restart sprzętowy (hard)",
   "pci_instances_list_action_reinstall": "Reinstaluj",
   "pci_instances_list_column_creation_date": "Data utworzenia",
-  "pci_instances_operations_running": "Operacja(e) na instancji(e) jest w toku"
+  "pci_instances_operations_running": "Operacja(e) na instancji(ach) jest(są) w toku"
 }

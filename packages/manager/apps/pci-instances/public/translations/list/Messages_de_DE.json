@@ -28,5 +28,5 @@
   "pci_instances_list_action_hard_reboot": "Hard Reboot durchführen",
   "pci_instances_list_action_reinstall": "Neu installieren",
   "pci_instances_list_column_creation_date": "Erstellungsdatum",
-  "pci_instances_operations_running": "Die Operation(en) auf der/dem Instanz(en) wird/werden durchgeführt."
+  "pci_instances_operations_running": "Die Operation(en) auf der/die Instanz(en) wird/werden durchgeführt."
 }

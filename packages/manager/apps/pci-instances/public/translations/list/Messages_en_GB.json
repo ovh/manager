@@ -28,5 +28,5 @@
   "pci_instances_list_action_hard_reboot": "Cold reboot (hard)",
   "pci_instances_list_action_reinstall": "Reinstall",
   "pci_instances_list_column_creation_date": "Creation date",
-  "pci_instances_operations_running": "The operation(s) on the instance(s) is in progress"
+  "pci_instances_operations_running": "The operation(s) on the instance(s) is(are) in progress."
 }
