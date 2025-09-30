@@ -1,45 +1,27 @@
-import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import * as role from '@datatr-ux/ovhcloud-types/cloud/role/index';
-import user from '@/types/User';
 import TabsMenu from '@/components/tabs-menu/TabsMenu.component';
-import { useUserActivityContext } from '@/contexts/UserActivityContext';
-import { POLLING } from '@/configuration/polling.constants';
-import { useGetUsers } from '@/data/hooks/user/useGetUsers.hook';
-import { useGetStorages } from '@/data/hooks/storage/useGetStorages.hook';
+import { FormattedStorage } from '@/types/Storages';
+import { UserWithS3Credentials } from '@/data/hooks/user/useGetUsersWithS3Credentials.hook';
 
-const ObjectStorageTabs = () => {
-  const { projectId } = useParams();
+interface ObjectStorageTabsProps {
+  storages: FormattedStorage[];
+  users: UserWithS3Credentials[];
+}
+
+const ObjectStorageTabs = ({ storages, users }: ObjectStorageTabsProps) => {
   const { t } = useTranslation('pci-object-storage');
-  const { isUserActive } = useUserActivityContext();
-
-  const { data: users } = useGetUsers(projectId, {
-    refetchInterval: isUserActive && POLLING.USERS,
-  });
-
-  const containersQuery = useGetStorages(projectId, {
-    refetchInterval: isUserActive && POLLING.CONTAINERS,
-  });
 
   const tabs = [
     {
       href: '',
-      count: containersQuery.data?.resources?.length,
+      count: storages.length,
       label: t('containerTab'),
       end: true,
     },
     {
       href: 'users',
       label: t('usersTab'),
-      count:
-        users?.filter(
-          (us: user.User) =>
-            us.status === user.UserStatusEnum.creating ||
-            us.roles.find(
-              (s3Role: role.Role) =>
-                s3Role.name === user.RoleEnum.objectstore_operator,
-            ),
-        ).length || 0,
+      count: users.length,
     },
   ].filter((tab) => tab);
 

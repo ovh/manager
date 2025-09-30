@@ -1,6 +1,6 @@
 import { redirect } from 'react-router-dom';
 import queryClient from '@/query.client';
-import { getStorages } from '@/data/api/storage/storages';
+import { getStorages } from '@/data/api/storage/storages.api';
 
 interface ObjectStorageProps {
   params: {
