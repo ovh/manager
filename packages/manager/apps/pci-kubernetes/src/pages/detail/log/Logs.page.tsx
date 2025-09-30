@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -12,7 +12,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 
-import { LogsView } from '@ovh-ux/manager-pci-common';
+import { LogsView, useParam } from '@ovh-ux/manager-pci-common';
 import { Notifications, useMe } from '@ovh-ux/manager-react-components';
 
 import { KubeLogsProvider } from './KubeLogsProvider';
@@ -20,10 +20,10 @@ import { LOGS_INFO } from './constants';
 
 export default function LogsPage() {
   const { t } = useTranslation('logs');
-  const { kubeId, projectId } = useParams();
+  const { kubeId, projectId } = useParam('kubeId', 'projectId');
   const navigate = useNavigate();
   const ovhSubsidiary = useMe()?.me?.ovhSubsidiary;
-  const infoLink = LOGS_INFO[ovhSubsidiary] || LOGS_INFO.DEFAULT;
+  const infoLink = LOGS_INFO[ovhSubsidiary as keyof typeof LOGS_INFO] || LOGS_INFO.DEFAULT;
 
   return (
     <KubeLogsProvider kubeId={kubeId} projectId={projectId}>
@@ -52,7 +52,9 @@ export default function LogsPage() {
           />
         </span>
       </OsdsLink>
-      <LogsView onGotoStreams={() => navigate('./streams')} />
+      <div className="log-container">
+        <LogsView onGotoStreams={() => navigate('./streams')} />
+      </div>
     </KubeLogsProvider>
   );
 }
