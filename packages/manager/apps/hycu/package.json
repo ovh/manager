@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hycu-app",
-  "version": "0.14.18",
+  "version": "0.14.19",
   "private": true,
   "description": "Backup HYCU for OVHcloud",
   "repository": {
@@ -24,7 +24,7 @@
     "@ovh-ux/manager-module-common-api": "^0.5.4",
     "@ovh-ux/manager-module-order": "^0.11.4",
     "@ovh-ux/manager-react-components": "^1.48.0",
-    "@ovh-ux/manager-react-core-application": "^0.12.4",
+    "@ovh-ux/manager-react-core-application": "^0.12.5",
     "@ovh-ux/manager-react-shell-client": "^0.9.3",
     "@ovh-ux/manager-tailwind-config": "^0.5.2",
     "@ovh-ux/request-tagger": "^0.5.2",
