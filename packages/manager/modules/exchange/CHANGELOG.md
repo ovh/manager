@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.14.2...@ovh-ux/manager-exchange@4.15.0) (2025-09-30)
+
+
+### Features
+
+* **web.exchange:** enable logs for web exchange ([b20a840](https://github.com/ovh/manager/commit/b20a84095fb1e32e3a2c7eddd454ef635a4f45a2)), closes [#MANAGER-18870](https://github.com/ovh/manager/issues/MANAGER-18870) [#MANAGER-19529](https://github.com/ovh/manager/issues/MANAGER-19529)
+
+
+
+
+
 ## [4.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.14.1...@ovh-ux/manager-exchange@4.14.2) (2025-05-23)
 
 

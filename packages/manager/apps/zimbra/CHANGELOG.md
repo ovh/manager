@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.32.3...@ovh-ux/manager-zimbra-app@0.33.0) (2025-09-30)
+
+
+### Features
+
+* **zimbra:** add enable and disabl button to dkim config page ([4893da5](https://github.com/ovh/manager/commit/4893da59a6e69a494bc77166a69bd415d840170a)), closes [#MANAGER-18849](https://github.com/ovh/manager/issues/MANAGER-18849)
+
+
+
+
+
 ## [0.32.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.32.2...@ovh-ux/manager-zimbra-app@0.32.3) (2025-09-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app

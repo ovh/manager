@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "20.59.4",
+  "version": "20.59.5",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -36,7 +36,7 @@
     "@ovh-ux/manager-core": "^13.2.9",
     "@ovh-ux/manager-dbaas-logs": "^1.33.0",
     "@ovh-ux/manager-error-page": "^2.4.5",
-    "@ovh-ux/manager-exchange": "^4.14.2",
+    "@ovh-ux/manager-exchange": "^4.15.0",
     "@ovh-ux/manager-filters": "^1.1.1",
     "@ovh-ux/manager-iplb": "^1.29.2",
     "@ovh-ux/manager-log-to-customer": "^2.7.1",
@@ -50,7 +50,7 @@
     "@ovh-ux/manager-support": "^2.1.20",
     "@ovh-ux/manager-trusted-nic": "^1.2.1",
     "@ovh-ux/manager-veeam-enterprise": "^1.13.2",
-    "@ovh-ux/manager-vps": "^2.50.8",
+    "@ovh-ux/manager-vps": "^2.50.9",
     "@ovh-ux/manager-vrack": "^1.21.1",
     "@ovh-ux/ng-at-internet": "^6.0.25",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.5.4",
