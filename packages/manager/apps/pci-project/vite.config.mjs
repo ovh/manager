@@ -8,7 +8,7 @@ const getWillPaymentEntryUrl = () => {
     return 'https://www.build-ovh.com/order/payment/assets/remoteEntry.js'; 
   }
   
-  return 'https://www.ovhcloud.com/order/payment/assets/remoteEntry.js';
+  return '/order/payment/assets/remoteEntry.js';
 };
 
 export default defineConfig({
