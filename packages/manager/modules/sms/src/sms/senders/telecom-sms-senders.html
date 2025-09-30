@@ -75,6 +75,7 @@
                 type="button"
                 class="btn btn-primary mr-2"
                 data-ui-sref="sms.service.senders.orderTime2Chat"
+                data-ng-if="SmsSendersCtrl.smsFeatureAvailability.isFeatureAvailable('sms:time2chat')"
             >
                 <i class="oui-icon oui-icon-cart mr-2" aria-hidden="true"></i>
                 <span data-translate="sms_senders_order_time2chat"></span>

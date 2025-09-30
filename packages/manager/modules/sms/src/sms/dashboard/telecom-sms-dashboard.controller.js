@@ -127,12 +127,16 @@ export default class {
         text: this.$translate.instant('sms_actions_credit_transfer'),
         hit: `${this.DASHBOARD_TRACKING_PREFIX}::transfer-credit`,
       },
-      {
-        name: 'order_time2chat',
-        sref: 'sms.service.senders.orderTime2Chat',
-        text: this.$translate.instant('sms_actions_order_time2chat'),
-        hit: `${this.DASHBOARD_TRACKING_PREFIX}::order-time2chat`,
-      },
+      ...(this.smsFeatureAvailability.isFeatureAvailable('sms:time2chat')
+        ? [
+            {
+              name: 'order_time2chat',
+              sref: 'sms.service.senders.orderTime2Chat',
+              text: this.$translate.instant('sms_actions_order_time2chat'),
+              hit: `${this.DASHBOARD_TRACKING_PREFIX}::order-time2chat`,
+            },
+          ]
+        : []),
     ];
 
     this.statisticsFilters = Object.values(STATISTICS_FILTER).map((value) => ({

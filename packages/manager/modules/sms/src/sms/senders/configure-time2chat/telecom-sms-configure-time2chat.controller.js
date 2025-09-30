@@ -50,6 +50,7 @@ export default class SmsSendersConfigureTime2ChatCtrl {
    * @return {Promise}
    */
   updateContactInfo() {
+    this.contactInfoForm.$setPristine();
     return this.smsService
       .updateContactInfo(
         this.$stateParams.serviceName,
@@ -78,6 +79,7 @@ export default class SmsSendersConfigureTime2ChatCtrl {
    * @return {Promise}
    */
   updateAutoResponseMessage() {
+    this.autoResponseMessageForm.$setPristine();
     return this.smsService
       .updateAutoResponseMessage(
         this.$stateParams.serviceName,
@@ -106,6 +108,7 @@ export default class SmsSendersConfigureTime2ChatCtrl {
    * @return {Promise}
    */
   updateKyc() {
+    this.kycForm.$setPristine();
     return this.smsService
       .updateKyc(
         this.$stateParams.serviceName,
