@@ -3,34 +3,45 @@ import { ColumnDef } from '@tanstack/react-table';
 import { Plus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Skeleton, Button } from '@datatr-ux/uxlib';
-import { getColumns } from './ContainerListColumns.component';
+import { getColumns } from './StorageListColumns.component';
 import DataTable from '@/components/data-table';
-import { getFilters } from './ContainerListFilters.component';
-import { Containers } from '@/types/Storages';
+import { getFilters } from './StorageListFilters.component';
+import { FormattedStorage, ObjectStorageTypeEnum } from '@/types/Storages';
 
-interface ContainersListProps {
-  containers: Containers[];
+interface StoragesListProps {
+  storages: FormattedStorage[];
 }
 
-export default function ContainersList({ containers }: ContainersListProps) {
-  const { t } = useTranslation('pci-object-storage/containers');
+export default function StoragesList({ storages }: StoragesListProps) {
+  const { t } = useTranslation('pci-object-storage/storages');
   const navigate = useNavigate();
-  const columns: ColumnDef<Containers>[] = getColumns({
-    onSwitchClicked: (container: Containers) => {
-      navigate(`./switch/${container.id}`);
+  const columns: ColumnDef<FormattedStorage>[] = getColumns({
+    onSwitchClicked: (storage: FormattedStorage) => {
+      navigate(`./switch-type/${storage.id}`);
     },
-    onDeleteClicked: (container: Containers) => {
-      navigate(`./delete/${container.id}`);
+    onDeleteClicked: (storage: FormattedStorage) => {
+      return storage.storageType === ObjectStorageTypeEnum.s3
+        ? navigate(
+            `./delete/${storage.storageType}/${storage.name}/${storage.region}`,
+          )
+        : navigate(
+            `./delete/${storage.storageType}/${storage.id}/${storage.region}`,
+          );
+    },
+    onAddUserClicked: (storage: FormattedStorage) => {
+      navigate(
+        `./add-s3-user/${storage.storageType}/${storage.name}/${storage.region}`,
+      );
     },
   });
-  const containersFilters = getFilters();
+  const storagesFilters = getFilters();
 
   return (
     <DataTable.Provider
       columns={columns}
-      data={containers}
+      data={storages}
       pageSize={25}
-      filtersDefinition={containersFilters}
+      filtersDefinition={storagesFilters}
     >
       <DataTable.Header>
         <DataTable.Action>
@@ -41,7 +52,7 @@ export default function ContainersList({ containers }: ContainersListProps) {
             }}
           >
             <Plus className="size-6 mr-2 text-primary-foreground" />
-            {t('createNewContainer')}
+            {t('createNewStorage')}
           </Button>
         </DataTable.Action>
         <DataTable.SearchBar />
@@ -54,7 +65,7 @@ export default function ContainersList({ containers }: ContainersListProps) {
   );
 }
 
-ContainersList.Skeleton = function ContainersListSkeleton() {
+StoragesList.Skeleton = function StoragesListSkeleton() {
   return (
     <>
       <div
