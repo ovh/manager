@@ -17,6 +17,8 @@ import { PciCardShowcaseComponent } from '@/components/pciCard/PciCardShowcase.c
 import {
   continentSelectionSchema,
   deploymentModesSchema,
+  flavorCategorySchema,
+  flavorTypeSchema,
   localizationSelectionSchema,
   nameSchema,
   quantitySchema,
@@ -34,6 +36,8 @@ export const instanceCreationSchema = z.object({
   deploymentModes: deploymentModesSchema,
   region: localizationSelectionSchema,
   continent: continentSelectionSchema,
+  flavorCategory: flavorCategorySchema,
+  flavorType: flavorTypeSchema,
 });
 
 const quantityHintParams = {
