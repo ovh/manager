@@ -71,7 +71,8 @@ This design avoids duplication on disk while preserving isolated dependency tree
   - A **symlink** is then created to expose the package at the expected path (e.g., `node_modules/react`).
 - Result: even if 50 apps depend on `react@18.3.0`, React's source files exist **only once in the store**.
 
-### Isolated Mode (`node-linker=isolated`)
+### Isolated Mode
+
 When using isolated mode (no hoisting):
 - Each app (`appA/node_modules`, `appB/node_modules`) gets its own independent dependency tree.
 - If both **App A** and **App B** depend on `react@18.3.0`:
@@ -80,6 +81,7 @@ When using isolated mode (no hoisting):
   - On disk, React is **not duplicated** — the two entries share the same inode.
 
 ### Key Effects
+
 - **No Disk Bloat**  
   React's code (or any package) is stored only once globally.
 - **Dependency Isolation**  
@@ -108,76 +110,134 @@ To avoid multiple React instances at runtime:
 
 ---
 
-## How it works (concepts)
+## How it works — concepts that match the codebase
 
-### 1) Catalogs (source of truth)
+### 1) Catalogs (sources of truth)
 - **Yarn catalog**: `src/playbook/catalog/yarn-catalog.json`
 - **PNPM catalog**: `src/playbook/catalog/pnpm-catalog.json`
 
-An app lives in **one** catalog at a time. Migration = moving its workspace path between catalogs.
+An app lives in **one** catalog at a time. Migrating an app = moving its workspace path between catalogs.  
+`catalog-utils` exposes helpers to read/write catalogs and to **prepare/clear** root `workspaces.packages`:
 
-### 2) Dynamic root workspaces
-During builds/tests, `manager-pm` **merges** Yarn+PNPM catalogs into `package.json > workspaces.packages`, runs Turbo, then **clears** them back. Yarn installs use the Yarn-only catalog. This keeps the root lockfile sane.
+- `updateRootWorkspacesFromCatalogs()` → merge Yarn+PNPM catalogs into the root for “full graph” operations.
+- `updateRootWorkspacesToYarnOnly()` → restrict to Yarn apps (used during `preinstall`).
+- `clearRootWorkspaces()` → empty the merged view (used after tasks / on finally blocks).
 
-### 3) Pinned PNPM
-A PNPM binary (version pinned in config) is downloaded to `target/pnpm/` and used for app installs. No global PNPM needed.
+### 2) Pinned PNPM
 
-### 4) Private package linking
-Private packages (e.g., `packages/manager/core/*`, `packages/manager/modules/*`, `packages/components/*`) are **built** then **linked** into a local PNPM store so apps can depend on them via `link:` overrides.
+- `src/playbook/playbook-config.js` pins PNPM to **`10.17.0`** and stores it under `target/pnpm`.
+- `pnpm-bootstrap` downloads the right binary for the platform and verifies it with `pnpm --version`.
 
-### 5) Per-app workspace overrides
-For each PNPM app, a **temporary** `pnpm-workspace.yaml` is generated with:
+### 3) Private package linking
+
+- `dependencies-utils.getPrivatePackages()` scans these workspace roots (configurable in `playbook-config`):
+- `packages/manager/core`, `packages/manager/modules`, `packages/manager-tools`, `packages/components` (excluding this tool and the generator).  
+
+Private packages are **built via Turbo** then **linked** (`link:` overrides) into each PNPM app’s *temporary* workspace file.
+
+### 4) Per-app temporary `pnpm-workspace.yaml`
+
+During PNPM install for a PNPM-app, a **temporary** `pnpm-workspace.yaml` is created in **that app folder** with:
+
 - `packages: ['.']`
 - `overrides:`
-  - `link:` entries for private packages (relative paths)
-  - normalized versions from `src/playbook/catalog/pnpm-normalized-versions.json`
+  - **Private packages** → `link:` to local paths.
+  - **Normalized versions** → from `src/playbook/catalog/pnpm-normalized-versions.json`.
 
-**The file is removed after install.**
+Install runs with:  
 
-### 6) Safety patches
-- React & friends are **normalized** (`pnpm-react-critical-deps.json`) to avoid duplicate Reacts and TS types.
-- Vitest config is **patched** to `dedupe` critical deps when needed.
-- Root `packageManager` field is temporarily **removed** during PNPM installs, then **restored**.
+- `pnpm install --ignore-scripts --no-lockfile --store-dir=target/.pnpm-store` (at the repo root).  
+
+The file is **removed afterwards**.
+
+### 5) Safety patches
+
+- Root `packageManager` is **temporarily removed** during PNPM installs and then **restored** (`package-manager-utils`).
+- React & co. can be normalized via `pnpm-react-critical-deps.json`.
+- `pnpm-config-manager.patchVitestConfig()` optionally injects `resolve.dedupe` with a default list when present.
+
+### 6) Yarn lifecycle hooks
+
+- **Preinstall** → `updateRootWorkspacesToYarnOnly()` to keep the root lockfile sane.
+- **Postinstall** → bootstraps PNPM, builds private packages, installs PNPM apps via the local PNPM, then **clears** merged workspaces (idempotent cleanup).
+
+> Hooks are provided as binaries in this package:  
+> `src/manager-pm-preinstall.js` and `src/manager-pm-postinstall.js`.
 
 ---
 
-## CLI
+## CLI Reference
 
 ### Binary
-```
-manager-pm --type pnpm --action <action> [options]
-```
 
-Supported actions:
-- `build --app <name>` – build a single app
-- `test --app <name>` – test a single app
-- `lint --app <name>` – lint a single app
-- `buildCI [--filter <expr>] [...]` – run `turbo run build` with passthrough options
-- `testCI  [--filter <expr>] [...]` – run `turbo run test`  with passthrough options
-- `start` – interactive runner (choose app/region/container)
-
-Examples:
 ```bash
-# Single app (by folder, package name, or shorthand)
+manager-pm --type pnpm --action <action> [options] [-- <passthrough>]
+```
+
+**Common flags**
+- `--type <pnpm>`: package manager type (future-proof, default: `pnpm`).
+- `--action <name>`: command to run.
+- `--app <name|workspace|path>`: single-app operations (build/test/lint).
+- `--filter <expr>`: Turbo filter for CI commands.
+- `--container`: hint for “start” (container mode).
+- `--region <code>`: informational; surfaced in logs.
+- `--version` / `-V`: print CLI version.
+
+---
+
+### Single app
+
+```bash
+# Build / Test / Lint one app (by folder, package name, or shorthand)
 manager-pm --type pnpm --action build --app packages/manager/apps/web
 manager-pm --type pnpm --action test  --app @ovh-ux/manager-web
 manager-pm --type pnpm --action lint  --app web
-
-# CI-style with Turbo options (strict passthrough)
-manager-pm --type pnpm --action buildCI --filter=@ovh-ux/manager-web --graph
-manager-pm --type pnpm --action testCI  --filter=packages/manager/apps/docs... --parallel
-
-# Interactive dev
-manager-pm --type pnpm --action start
 ```
 
-### Yarn scripts (wrappers)
-```bash
-# Migrate an app to PNPM
-yarn pm:add:app --app packages/manager/apps/web
+### CI — Turbo passthrough
 
-# Roll back an app to Yarn
-yarn pm:remove:app --app web
+```bash
+# Using --filter
+manager-pm --type pnpm --action buildCI --filter=@ovh-ux/manager-web
+manager-pm --type pnpm --action testCI  --filter=packages/manager/apps/docs... --parallel
+
+# Using raw passthrough
+manager-pm --action buildCI -- --filter=@ovh-ux/manager-web --graph
+manager-pm --action testCI  -- --filter=tag:unit --parallel
+```
+
+### Global
+
+```bash
+manager-pm --action full-build     # Build ALL apps (uses merged workspaces)
+manager-pm --action full-test      # Test ALL apps
+manager-pm --action full-lint      # Lint ALL apps
+manager-pm --action start          # Interactive app starter (region/container prompt)
+manager-pm --action docs           # Build @ovh-ux/manager-documentation docs
+manager-pm --action cli -- …       # Passthrough to @ovh-ux/manager-cli (with merged workspaces)
+manager-pm --action workspace --mode prepare|remove   # Prepare/Clear merged root workspaces
+```
+
+### Publish & Release (delegates to repo scripts)
+
+```bash
+# Publish (scripts/publish.js)
+manager-pm --action publish --dry-run
+manager-pm --action publish --tag v1.2.3 --access public
+
+# Release (scripts/release/release.sh)
+manager-pm --action release --dry-run
+manager-pm --action release --tag v1.2.3
+manager-pm --action release --conventional-prerelease --preid rc
+```
+
+> These commands **delegate to the repository’s** publishing/release tooling. Ensure `scripts/publish.js` and `scripts/release/release.sh` exist at the repo root.
+
+### Lifecycle (wired by root package.json)
+
+```bash
+manager-pm --action preinstall
+manager-pm --action postinstall
 ```
 
 ---
@@ -259,6 +319,8 @@ Because the monorepo runs **Yarn at the root** and **PNPM per-app**, you must fo
   - the dependency was added to the **right `package.json`**, and
   - PNPM apps still re-installed correctly.
 
+⚠️ `publish` and `release` **depend on repo-level scripts** under `scripts/`.
+
 ---
 
 ## Legacy Yarn Workspace (prepare/remove)
@@ -306,58 +368,62 @@ These are already aliased in the root `package.json`:
 
 ---
 
-## File map (key parts)
+## Configuration knobs (`src/playbook/playbook-config.js`)
 
-- `bin/manager-pm.js` — Commander CLI
-- `src/manager-pm-*.js` — Yarn hooks & wrappers (`preinstall`, `postinstall`, add/remove app)
-- `src/kernel/commons/*` — logging, catalogs, JSON utils, workspace resolution
-- `src/kernel/pnpm/*` — PNPM bootstrap, dependency manager, vitest patcher, tasks
-- `src/playbook/catalog/*.json` — Yarn/PNPM app catalogs, normalized versions, critical deps
-- `src/playbook/playbook-config.js` — paths, PNPM version, private workspace roots, cleanup dirs
+- **`managerRootPath`**: auto-resolved to the monorepo root.
+- **`pnpmVersion`**: `10.17.0` (pinned).
+- **`pnpmBinaryPath`**: target folder for the downloaded PNPM.
+- **`privateWorkspaces`**: roots scanned for private packages to build & link.
+- **`applicationsBasePath`**: where apps are discovered (default: `packages/manager/apps`).
+- **`cleanupDirectories`**: folders removed during clean (`node_modules`, `dist`, `.turbo`).
+- **`containerPackageName`**: used by the interactive `start` action (`@ovh-ux/manager-container-app`).
+
+To change behavior, update this file and commit.
 
 ---
 
 ## Troubleshooting
 
-- **Turbo not found**: ensure `turbo` is available in the root (`devDependencies`) and on PATH during CI.
-- **React duplication / invalid hooks**: run migration again (normalization & Vitest patch), or inspect overrides.
-- **Stuck installs**: delete `target/pnpm/` and any lingering per-app `pnpm-workspace.yaml`, then retry.
-- **Windows**: a `pnpm-win.exe` is bootstrapped automatically; ensure path permissions allow execution.
-- If you see errors like *“Workspace not found in Turbo graph”* or *duplicate workspaces in lockfile*, run:
-
-```bash
-yarn pm:remove:legacy:workspace
-yarn pm:prepare:legacy:workspace
-```
-
-This resets the root workspace view and ensures Turbo sees the right catalogs.
-
----
-
-## Maintenance
-
-- Update normalized versions in `src/playbook/catalog/pnpm-normalized-versions.json` when bumping shared deps.
-- Update critical deps in `src/playbook/catalog/pnpm-react-critical-deps.json` if new React-family packages are introduced.
-- Adjust private workspace roots in `src/playbook/playbook-config.js` if the repo layout changes.
+- **React duplication / invalid hooks** → ensure React-family deps are peers; re-run migration; check Vite `resolve.dedupe` (auto-patch).
+- **Stuck PNPM installs** → clear `target/pnpm/` and temp files; retry.
+- **Turbo cannot see some workspaces** → run:
+  ```bash
+  yarn pm:remove:legacy:workspace
+  yarn pm:prepare:legacy:workspace
+  ```
+- **Clean & reset hybrid state completely**:
+  ```bash
+  find . -name 'node_modules' -type d -prune -exec rm -rf '{}' + && \
+  find . -name 'dist'        -type d -prune -exec rm -rf '{}' + && \
+  find . -name '.turbo'      -type d -prune -exec rm -rf '{}' + && \
+  find . -name 'target'      -type d -prune -exec rm -rf '{}' +
+  ```
 
 ---
 
 ## Security & safety notes
 
-- The tool **restores** the root `packageManager` field and clears merged workspaces **even on failure**.
-- Vitest config mutations are **idempotent** and minimal (only adding `dedupe` for critical deps).
-- Catalog edits are atomic: invalid workspaces are rejected with logs.
+- Root `packageManager` and merged workspaces are **restored/cleared even on failure**.
+- Vitest config mutations are **minimal & idempotent**.
+- Catalog edits validate entries and log explicit warnings.
+- PNPM install runs with `--ignore-scripts` and writes no PNPM lockfile for apps (isolated, reproducible via catalogs).
 
 ---
 
-## Future Migration Path
+## Migration Roadmap
 
-Once **all apps** migrate to PNPM:
+- **Short term (only candidate apps)**: Yarn root + PNPM apps in hybrid mode.
+- **Medium term**: Progressively migrate more apps to PNPM.
+- **Long term**: Remove Yarn entirely and consolidate into a single PNPM workspace with hoisting.
 
-- [ ] Replace all `yarn` commands with `pm` (custom manager).
-- [ ] Remove legacy Yarn usage entirely from packages and scripts.
-- [ ] Replace localized PNPM installs with a **single hoisted PNPM workspace**.
-- [ ] Simplify CI/CD by removing compatibility hooks.
+### Milestones
+
+- Migrate candidate apps first (application-level only; **do not touch `modules` or `core` at this stage**, as these will be handled separately in a dedicated cleaning phase).
+- Move all apps to PNPM.
+- Drop Yarn workspace scripts.
+- Replace root `yarn.lock` with `pnpm-lock.yaml`.
+
+> ⚠ The initial cleaning and migration steps deliberately focus on apps and exclude shared `modules` and `core`. These areas will be addressed later to ensure stability and controlled migration.
 
 ---
 
