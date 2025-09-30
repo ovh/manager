@@ -13,7 +13,7 @@
   "pci_projects_project_instances_instance_edit_image_label": "Obraz",
   "pci_projects_project_instances_instance_edit_image_not_available": "Dostępna dla innego regionu",
   "pci_projects_project_instances_instance_edit_image_submit_label": "Zmień obraz",
-  "pci_projects_project_instances_instance_edit_image_success_message": "Obraz instancji {{instance}} został zaktualizowany.",
+  "pci_projects_project_instances_instance_edit_image_success_message": "Operacja aktualizacji obrazu instancji {{ instance }} jest w toku",
   "pci_projects_project_instances_instance_edit_image_error_put": "Wystąpił błąd podczas aktualizacji instancji {{instance}}: {{message}}.",
   "pci_projects_project_instances_instance_edit_flavor_label": "Model",
   "pci_projects_project_instances_instance_edit_flavor_not_available": "Dostępna dla innego regionu",
