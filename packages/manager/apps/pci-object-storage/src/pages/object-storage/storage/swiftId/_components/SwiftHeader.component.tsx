@@ -6,7 +6,6 @@ import Flag from '@/components/flag/Flag.component';
 import storages from '@/types/Storages';
 
 export const SwiftHeader = ({ swift }: { swift: storages.ContainerDetail }) => {
-  const { t } = useTranslation('pci-object-storage/storages/header-tabs');
   const { t: tRegions } = useTranslation('regions');
   return (
     <div

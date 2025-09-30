@@ -27,7 +27,7 @@ export const useObjectStorageData = () => {
 
   return {
     projectId,
-    storages: storagesQuery.data.resources,
+    storages: storagesQuery.data?.resources,
     usersQuery,
     regions: regionQuery.data,
     storagesQuery,
