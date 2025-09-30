@@ -88,7 +88,12 @@ export const FilterService = ({ className }: { className?: string }) => {
               type: undefined,
               'routedTo.serviceName': value,
             };
-        return setApiFilter((prev) => ({ ...prev, ...newFilter }));
+        return setApiFilter((prev) => ({
+          ...prev,
+          ...newFilter,
+          // Also reset IP filter when changing service filter
+          ip: undefined,
+        }));
       }}
     >
       <OdsComboboxGroup>
@@ -102,7 +107,11 @@ export const FilterService = ({ className }: { className?: string }) => {
         </OdsComboboxItem>
       </OdsComboboxGroup>
       {Object.values(PRODUCT_PATHS_AND_CATEGORIES)
-        .filter(({ category }) => serviceByCategory[category].length > 0)
+        .filter(
+          ({ category }) =>
+            serviceByCategory?.[category] &&
+            serviceByCategory?.[category].length > 0,
+        )
         .sort(
           (a, b) =>
             serviceOrder.findIndex((value) => value === a.category) -
@@ -114,13 +123,15 @@ export const FilterService = ({ className }: { className?: string }) => {
             <OdsComboboxItem value={t(getAllItemLabelKeyFromType(category))}>
               {t(getAllItemLabelKeyFromType(category))}
             </OdsComboboxItem>
-            {serviceByCategory[category].map(({ serviceName, displayName }) => (
-              <ComboboxServiceItem
-                key={serviceName}
-                name={serviceName}
-                displayName={displayName}
-              />
-            ))}
+            {serviceByCategory?.[category]?.map(
+              ({ serviceName, displayName }) => (
+                <ComboboxServiceItem
+                  key={serviceName}
+                  name={serviceName}
+                  displayName={displayName}
+                />
+              ),
+            )}
           </OdsComboboxGroup>
         ))}
     </OdsCombobox>

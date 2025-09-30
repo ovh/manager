@@ -14,6 +14,7 @@ const excludedTypes = [
   IpTypeEnum.PRIVATE,
   IpTypeEnum.VPN,
   IpTypeEnum.PCI,
+  IpTypeEnum.OVERTHEBOX,
 ];
 
 /**

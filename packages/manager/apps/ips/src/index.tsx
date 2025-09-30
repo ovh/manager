@@ -4,6 +4,7 @@ import {
   ShellContext,
   initShellContext,
   initI18n,
+  ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
 import App from './App';
 import './index.scss';
@@ -21,7 +22,10 @@ const trackingContext = {
 };
 
 const init = async (appName: string) => {
-  const context = await initShellContext(appName, trackingContext);
+  const context = (await initShellContext(
+    appName,
+    trackingContext,
+  )) as ShellContextType;
 
   await initI18n({
     context,

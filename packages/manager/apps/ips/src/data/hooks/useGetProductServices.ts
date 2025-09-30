@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { useQueries } from '@tanstack/react-query';
 import {
   GetProductServicesParams,
@@ -36,15 +35,12 @@ const getDisplayName = (
 export const useGetProductServices = (
   productPathsAndCategories: GetProductServicesParams[],
 ) => {
-  const queries = useQueries({
+  const serviceByCategory = useQueries({
     queries: productPathsAndCategories.map((params) => ({
       queryKey: getProductServicesQueryKey(params as GetProductServicesParams),
       queryFn: () => getProductServices(params as GetProductServicesParams),
     })),
-  });
-
-  const serviceByCategory = useMemo(
-    () =>
+    combine: (queries) =>
       queries
         .map((result, index) => ({
           data: result?.data?.data || [],
@@ -64,12 +60,12 @@ export const useGetProductServices = (
           });
           return acc;
         }, {} as Record<string, ServiceInfo[]>),
-    [queries],
-  );
+  });
 
   return {
-    serviceList: Object.values(serviceByCategory).flatMap((service) => service),
+    serviceList: serviceByCategory
+      ? Object.values(serviceByCategory).flatMap((service) => service)
+      : [],
     serviceByCategory,
-    queries,
   };
 };
