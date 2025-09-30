@@ -8,6 +8,7 @@
   "zimbra_domain_diagnostic_status_ok": "Configuration OK",
   "zimbra_domain_diagnostic_status_error": "Erreur de configuration",
   "zimbra_domain_diagnostic_status_warning": "Attention",
+  "zimbra_domain_diagnostic_status_disabled": "Désactiver",
   "zimbra_domain_diagnostic_information_message_mx_ok": "La configuration de votre compte Zimbra sur OVHcloud est fonctionnelle: les emails adressés à votre domaine sont correctement acheminés vers vos boîtes aux lettres Zimbra.<br/><br/>N'hésitez pas à consulter régulièrement les diagnostics pour vous assurer du bon fonctionnement de votre service.",
   "zimbra_domain_diagnostic_information_message_mx_error": "Nous constatons une configuration MX qui ne correspond pas à celle attendue par votre service email.<br/><br/>Si vous ne recevez pas vos emails dans les boites de destination, merci de procéder à une reconfiguration de votre Zone DNS avec les informations ci-dessous.",
   "zimbra_domain_diagnostic_information_message_mx_warning": "Nous constatons une configuration MX qui ne correspond pas à celle attendue par votre service email.<br/><br/>Si aucun email n’arrive dans vos boites mails, procédez à une reconfiguration.<br/><br/>Sinon, cette configuration est probablement volontaire. Contactez l’administrateur de votre service pour avoir plus d’informations.",
@@ -21,8 +22,11 @@
   "zimbra_domain_diagnostic_information_message_dkim_ok": "La configuration de votre compte Zimbra sur OVHcloud est fonctionnelle: les emails adressés à votre domaine sont correctement acheminés vers vos boîtes aux lettres Zimbra.<br/><br/>N'hésitez pas à consulter régulièrement les diagnostics pour vous assurer du bon fonctionnement de votre service.",
   "zimbra_domain_diagnostic_information_message_dkim_error": "Nous avons détecté une configuration DKIM qui ne correspond pas à la configuration attendue pour votre service de messagerie.<br/><br/>Si vous rencontrez des difficultés pour livrer des emails à vos destinataires, veuillez suivre les instructions ci-dessous pour reconfigurer votre Zone DNS avec les informations correctes.",
   "zimbra_domain_diagnostic_information_message_dkim_warning": "Nous avons détecté une configuration DKIM qui ne correspond pas à la configuration attendue pour votre service de messagerie.<br/><br/>Si vous rencontrez des difficultés pour livrer des emails à vos destinataires, veuillez suivre les instructions ci-dessous pour reconfigurer votre Zone DNS avec les informations correctes.",
+  "zimbra_domain_diagnostic_information_message_dkim_disabled": "La signature DKIM n'est pas activée, cela pourrait entraîner des problèmes de livraison pour certains de vos emails.",
   "zimbra_domain_diagnostic_information_banner_dkim_error": "Erreur de configuration DKIM, vous pouvez rencontrer des difficultés à délivrer vos emails à vos destinataires.",
   "zimbra_domain_diagnostic_information_banner_dkim_warning": "Configuration DKIM anormale",
+  "zimbra_domain_diagnostic_banner_enable_success_message": "Votre demande d'activation a bien été prise en compte. Elle sera exécutée d'ici quelques instants.",
+  "zimbra_domain_diagnostic_banner_disable_success_message": "Votre demande de désactivation a bien été prise en compte. Elle sera exécutée d'ici quelques instants.",
   "zimbra_domain_diagnostic_type": "Type :",
   "zimbra_domain_diagnostic_access_guide": "Accéder au guide",
   "zimbra_domain_diagnostic_subtitle": "Diagnostics du domaine {{domain}}",
@@ -33,5 +37,7 @@
   "zimbra_domain_diagnostic_field_priority": "Priorité :",
   "zimbra_domain_diagnostic_field_weight": "Poids :",
   "zimbra_domain_diagnostic_field_port": "Port :",
-  "zimbra_domain_diagnostic_field_target": "Cible :"
+  "zimbra_domain_diagnostic_field_target": "Cible :",
+  "zimbra_domain_diagnostic_dkim_enable": "Activer la signature DKIM",
+  "zimbra_domain_diagnostic_dkim_disable": "Désactiver la signature DKIM"
 }

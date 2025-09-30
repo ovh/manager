@@ -1667,5 +1667,6 @@
   "exchange_reset_mfa_success": "Die Zwei-Faktor-Authentifizierung wurde zurückgesetzt.",
   "exchange_mfa_error": "Es ist ein Fehler aufgetreten: {{error}}",
   "exchange_delete_mfa_success": "Die Zwei-Faktor-Authentifizierung wurde gelöscht.",
-  "exchange_delete_mfa_error": "Bei der Löschung der Zwei-Faktor-Authentifizierung ist ein Fehler aufgetreten: {{error}}"
+  "exchange_delete_mfa_error": "Bei der Löschung der Zwei-Faktor-Authentifizierung ist ein Fehler aufgetreten: {{error}}",
+  "exchange_tab_LOGS": "Logs"
 }
