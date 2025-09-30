@@ -207,13 +207,13 @@ export async function removeAppPathFromCatalog(catalogPath, appPath) {
       return 'invalid';
     }
 
-    const list = await readCatalog(catalogPath);
-    if (!list.includes(appPath)) {
+    const catalogApps = await readCatalog(catalogPath);
+    if (!catalogApps.includes(appPath)) {
       return 'noop';
     }
 
-    const next = list.filter((p) => p !== appPath);
-    await writeCatalog(catalogPath, next);
+    const updatedCatalogApps = catalogApps.filter((catalogApp) => catalogApp !== appPath);
+    await writeCatalog(catalogPath, updatedCatalogApps);
     logger.success(
       `🗑️ Removed app "${appPath}" from catalog: ${path.relative(process.cwd(), catalogPath)}`,
     );

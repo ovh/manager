@@ -5,7 +5,6 @@ import path from 'node:path';
 import {
   ignoredDirectories,
   managerRootPath,
-  privateModulesPath,
   reactCriticalDependenciesPath,
 } from '../../playbook/playbook-config.js';
 import { logger } from './log-manager.js';
@@ -207,55 +206,108 @@ export async function findPackages(rootDir) {
 }
 
 /**
- * Loads the list of private package directories from a static JSON file.
+ * Load CLI filters (Turbo or PNPM) from the static private catalog JSON file.
  *
- * - Validates that the file exists and is a valid JSON array of strings.
- * - Provides detailed logs on success and failure.
+ * Catalog format:
+ * ```json
+ * [
+ *   {
+ *     "turbo": "--filter @ovh-ux/manager-core-application",
+ *     "pnpm": "--filter packages/manager/core/application"
+ *   },
+ *   {
+ *     "turbo": "--filter @ovh-ux/manager-utils",
+ *     "pnpm": "--filter packages/manager/core/utils"
+ *   }
+ * ]
+ * ```
  *
  * @async
- * @function getPrivatePackages
- * @returns {Promise<string[]>} A promise resolving to an array of private package directory paths.
- *
- * @throws Logs errors and returns an empty array if:
- *   - the file does not exist,
- *   - the JSON is malformed,
- *   - the contents are not a valid array of strings.
+ * @function buildPrivateDependenciesFilters
+ * @param {string} privateCatalogPath - Absolute path to the JSON private catalog file.
+ * @param {"turbo"|"pnpm"} tool - Which CLI filters to extract.
+ * @returns {Promise<string[]>} Array of CLI arguments ready to pass to the tool.
  */
-export async function getPrivatePackages() {
+export async function buildPrivateDependenciesFilters(privateCatalogPath, tool) {
   try {
-    // Ensure the file exists before reading
-    await fs.access(privateModulesPath, constants.F_OK);
+    await fs.access(privateCatalogPath, constants.F_OK);
+    const raw = await fs.readFile(privateCatalogPath, 'utf-8');
 
-    const privateModules = await fs.readFile(privateModulesPath, 'utf-8');
-    let privatePackageDirs;
-
+    let entries;
     try {
-      privatePackageDirs = JSON.parse(privateModules);
-    } catch (parseErr) {
-      logger.error(`❌ Failed to parse JSON from ${privateModulesPath}: ${parseErr.message}`);
+      entries = JSON.parse(raw);
+    } catch (err) {
+      logger.error(`❌ Failed to parse JSON at ${privateCatalogPath}: ${err.message}`);
       return [];
     }
 
-    // Validate structure: must be an array of strings
-    if (!Array.isArray(privatePackageDirs)) {
-      logger.error(`❌ Invalid format: expected an array in ${privateModulesPath}`);
+    if (!Array.isArray(entries)) {
+      logger.error(`❌ Invalid catalog format in ${privateCatalogPath}: expected an array`);
       return [];
     }
-    if (!privatePackageDirs.every((p) => typeof p === 'string')) {
-      logger.warn(`⚠️ Some entries in ${privateModulesPath} are not strings. Filtering them out.`);
-      privatePackageDirs = privatePackageDirs.filter((p) => typeof p === 'string');
+
+    const filters = [];
+    for (const entry of entries) {
+      const value = entry?.[tool];
+      if (typeof value === 'string' && value.trim().length > 0) {
+        filters.push(...value.split(' '));
+      } else {
+        logger.warn(`⚠️ Skipped invalid ${tool} entry: ${JSON.stringify(entry)}`);
+      }
     }
 
-    logger.info(`📦 Total private packages loaded: ${privatePackageDirs.length}`);
-    logger.debug(
-      `Sample private packages: ${privatePackageDirs.slice(0, 5).join(', ')}${
-        privatePackageDirs.length > 5 ? ' ...' : ''
-      }`,
-    );
-
-    return privatePackageDirs;
+    logger.info(`📦 Loaded ${filters.length / 2} ${tool} filters from ${privateCatalogPath}`);
+    return filters;
   } catch (err) {
-    logger.error(`❌ Failed to read private modules file at ${privateModulesPath}: ${err.message}`);
+    logger.error(`❌ Could not load ${tool} filters from ${privateCatalogPath}: ${err.message}`);
     return [];
+  }
+}
+
+/**
+ * Load Turbo CLI filters from the static private catalog JSON file.
+ */
+export function getTurboPrivateFilters(catalogPath) {
+  return buildPrivateDependenciesFilters(catalogPath, 'turbo');
+}
+
+/**
+ * Load PNPM private modules as absolute paths for linking in pnpm-workspace.yaml.
+ *
+ * Example output:
+ * Map {
+ *   "@ovh-ux/manager-core-application" => "/abs/path/packages/manager/core/application",
+ *   "@ovh-ux/manager-utils" => "/abs/path/packages/manager/core/utils"
+ * }
+ */
+export async function getPnpmPrivateModules(catalogPath) {
+  try {
+    await fs.access(catalogPath, constants.F_OK);
+    const raw = await fs.readFile(catalogPath, 'utf-8');
+    const entries = JSON.parse(raw);
+
+    if (!Array.isArray(entries)) {
+      logger.error(`❌ Invalid catalog format in ${catalogPath}: expected an array`);
+      return new Map();
+    }
+
+    const map = new Map();
+    for (const entry of entries) {
+      if (entry?.turbo && entry?.pnpm) {
+        const pkgName = entry.turbo.replace('--filter ', '').trim();
+        const absPath = path.isAbsolute(entry.pnpm)
+          ? entry.pnpm
+          : path.join(managerRootPath, entry.pnpm);
+        map.set(pkgName, absPath);
+      } else {
+        logger.warn(`⚠️ Skipped invalid entry: ${JSON.stringify(entry)}`);
+      }
+    }
+
+    logger.info(`📦 PNPM modules loaded: ${map.size} private packages`);
+    return map;
+  } catch (err) {
+    logger.error(`❌ Could not load PNPM private modules from ${catalogPath}: ${err.message}`);
+    return new Map();
   }
 }

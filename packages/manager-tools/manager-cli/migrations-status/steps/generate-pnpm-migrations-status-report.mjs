@@ -12,7 +12,7 @@ const cliArgs = parseCliArgs(process.argv);
 const generatePnpmMigrationsStatusReport = () => {
   let apps = getReactApplications();
   if (cliArgs.app) {
-    apps = apps.filter((a) => a === cliArgs.app);
+    apps = apps.filter((app) => app === cliArgs.app);
   }
 
   const report = apps.map((app) => ({
