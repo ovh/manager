@@ -1,11 +1,11 @@
 import { execSync } from 'node:child_process';
-import { existsSync, promises as fs, readFileSync } from 'node:fs';
+import { constants, existsSync, promises as fs, readFileSync } from 'node:fs';
 import path from 'node:path';
 
 import {
   ignoredDirectories,
   managerRootPath,
-  privateWorkspaces,
+  privateModulesPath,
   reactCriticalDependenciesPath,
 } from '../../playbook/playbook-config.js';
 import { logger } from './log-manager.js';
@@ -207,54 +207,55 @@ export async function findPackages(rootDir) {
 }
 
 /**
- * Collect all private packages under the manager repo roots.
+ * Loads the list of private package directories from a static JSON file.
  *
- * - Recursively scans configured workspaces.
- * - Filters only `private` packages with a `name` field.
- * - Logs counts and sample paths.
+ * - Validates that the file exists and is a valid JSON array of strings.
+ * - Provides detailed logs on success and failure.
  *
- * @returns {Promise<string[]>} List of directories containing private packages.
+ * @async
+ * @function getPrivatePackages
+ * @returns {Promise<string[]>} A promise resolving to an array of private package directory paths.
+ *
+ * @throws Logs errors and returns an empty array if:
+ *   - the file does not exist,
+ *   - the JSON is malformed,
+ *   - the contents are not a valid array of strings.
  */
 export async function getPrivatePackages() {
-  logger.debug('getPrivatePackages()');
-  let allPackageDirs = [];
+  try {
+    // Ensure the file exists before reading
+    await fs.access(privateModulesPath, constants.F_OK);
 
-  for (const workspaceRoot of privateWorkspaces) {
-    logger.info(`🔎 Scanning workspace root: ${workspaceRoot}`);
-    const foundPackageDirs = await findPackages(workspaceRoot);
-    logger.debug(`Found ${foundPackageDirs.length} package dirs under ${workspaceRoot}`);
-    allPackageDirs = allPackageDirs.concat(foundPackageDirs);
-  }
+    const privateModules = await fs.readFile(privateModulesPath, 'utf-8');
+    let privatePackageDirs;
 
-  allPackageDirs = allPackageDirs.filter(
-    (workspace) =>
-      !workspace.includes('manager-pm') &&
-      !workspace.includes('manager-generator') &&
-      !workspace.includes('manager-cli'),
-  );
-
-  const privatePackageDirs = [];
-  for (const packageDir of allPackageDirs) {
     try {
-      const raw = await fs.readFile(path.join(packageDir, 'package.json'), 'utf-8');
-      const pkg = JSON.parse(raw);
-      if (pkg.private && pkg.name) {
-        privatePackageDirs.push(packageDir);
-        logger.debug(`✔ Private package detected: ${pkg.name} (${packageDir})`);
-      } else {
-        logger.debug(`ℹ Non-private or unnamed package skipped: ${packageDir}`);
-      }
-    } catch (err) {
-      logger.warn(`⚠️ Could not read/parse package.json in ${packageDir}: ${err.message}`);
+      privatePackageDirs = JSON.parse(privateModules);
+    } catch (parseErr) {
+      logger.error(`❌ Failed to parse JSON from ${privateModulesPath}: ${parseErr.message}`);
+      return [];
     }
+
+    // Validate structure: must be an array of strings
+    if (!Array.isArray(privatePackageDirs)) {
+      logger.error(`❌ Invalid format: expected an array in ${privateModulesPath}`);
+      return [];
+    }
+    if (!privatePackageDirs.every((p) => typeof p === 'string')) {
+      logger.warn(`⚠️ Some entries in ${privateModulesPath} are not strings. Filtering them out.`);
+      privatePackageDirs = privatePackageDirs.filter((p) => typeof p === 'string');
+    }
+
+    logger.info(`📦 Total private packages loaded: ${privatePackageDirs.length}`);
+    logger.debug(
+      `Sample private packages: ${privatePackageDirs.slice(0, 5).join(', ')}${
+        privatePackageDirs.length > 5 ? ' ...' : ''
+      }`,
+    );
+
+    return privatePackageDirs;
+  } catch (err) {
+    logger.error(`❌ Failed to read private modules file at ${privateModulesPath}: ${err.message}`);
+    return [];
   }
-
-  logger.info(`📦 Total private packages found: ${privatePackageDirs.length}`);
-  logger.debug(
-    `Sample private packages: ${privatePackageDirs.slice(0, 5).join(', ')}${
-      privatePackageDirs.length > 5 ? ' ...' : ''
-    }`,
-  );
-
-  return privatePackageDirs;
 }

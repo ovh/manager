@@ -77,6 +77,30 @@ export const reactCriticalDependenciesPath = path.join(
 );
 
 /**
+ * Absolute path to the JSON catalog of private package directories.
+ *
+ * - This file (`pnpm-private-modules.json`) must be manually updated
+ *   whenever a new private package is added or removed.
+ * - It should contain a flat array of absolute or relative paths to packages.
+ *
+ * Example:
+ * ```json
+ * [
+ *   "packages/manager/core/shell-client",
+ *   "packages/manager/core/sso",
+ *   "packages/manager/modules/foo"
+ * ]
+ * ```
+ *
+ * @constant
+ * @type {string}
+ */
+export const privateModulesPath = path.join(
+  managerPMPath,
+  'src/playbook/catalog/pnpm-private-modules.json',
+);
+
+/**
  * Applications root path
  */
 export const applicationsBasePath = 'packages/manager/apps';
@@ -86,17 +110,6 @@ export const applicationsBasePath = 'packages/manager/apps';
  * for `package.json` files (e.g. build artifacts, dependencies, VCS).
  */
 export const ignoredDirectories = new Set(['node_modules', 'dist', 'coverage', '.git']);
-
-/**
- * Root directories under the monorepo where private packages
- * (core, modules, components) are expected to be located.
- */
-export const privateWorkspaces = [
-  'packages/manager/core',
-  'packages/manager/modules',
-  'packages/manager-tools',
-  'packages/components',
-];
 
 /**
  * Folders to remove before installation.

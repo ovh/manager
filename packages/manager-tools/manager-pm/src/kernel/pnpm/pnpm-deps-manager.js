@@ -159,29 +159,21 @@ export async function installAppDeps(appPath) {
 }
 
 /**
- * Internal: build all private packages (core/modules/components) so that their "dist"
- * exists before linking them into the PNPM local store.
+ * Build private packages using Turbo with filters loaded
+ * from the pre-generated JSON file (`pnpm-private-modules.json`).
+ *
+ * Since the JSON already stores expanded arguments, no transformation
+ * is required: the filters are spread directly into the Turbo CLI args.
+ *
+ * @async
+ * @function buildPrivatePackages
+ * @returns {Promise<void>} Resolves when the Turbo build completes.
+ * @throws {Error} If the Turbo process exits with a non-zero code.
  */
-async function buildPrivatePackages() {
-  const privateDirs = await getPrivatePackages();
-  if (privateDirs.length === 0) {
-    logger.info('ℹ No private packages found to build.');
-    return;
-  }
-
-  const filters = [];
-  for (const dir of privateDirs) {
-    try {
-      const raw = await fs.readFile(path.join(dir, 'package.json'), 'utf-8');
-      const pkg = JSON.parse(raw);
-      if (pkg.name) filters.push('--filter', pkg.name);
-    } catch {
-      /* ignore invalid package.json */
-    }
-  }
-
+export async function buildPrivatePackages() {
+  const filters = await getPrivatePackages();
   if (filters.length === 0) {
-    logger.info('ℹ No resolvable private package names found to build.');
+    logger.info('ℹ No private package filters found to build.');
     return;
   }
 
@@ -191,16 +183,13 @@ async function buildPrivatePackages() {
   await new Promise((resolve, reject) => {
     const proc = spawn('turbo', args, {
       cwd: managerRootPath,
-      stdio: 'inherit', // pipe output directly to terminal
+      stdio: 'inherit',
     });
 
     proc.on('error', reject);
     proc.on('close', (code) => {
-      if (code === 0) {
-        resolve();
-      } else {
-        reject(new Error(`turbo build failed with exit code ${code}`));
-      }
+      if (code === 0) resolve();
+      else reject(new Error(`turbo build failed with exit code ${code}`));
     });
   });
 
