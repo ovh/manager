@@ -45,7 +45,7 @@ export function useDashboardSections(projectId: string) {
           ? t('pci_projects_project_expires_on', {
               date: formatDate({
                 date: credit.expirationDate,
-                format: 'PP',
+                format: 'PPPp',
               }),
             })
           : null,
