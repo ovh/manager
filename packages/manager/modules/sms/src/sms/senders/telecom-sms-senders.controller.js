@@ -27,6 +27,7 @@ export default class {
     OvhApiSms,
     TucToast,
     TucToastError,
+    smsFeatureAvailability,
   ) {
     this.$stateParams = $stateParams;
     this.$q = $q;
@@ -42,6 +43,7 @@ export default class {
     };
     this.TucToast = TucToast;
     this.TucToastError = TucToastError;
+    this.smsFeatureAvailability = smsFeatureAvailability;
   }
 
   $onInit() {
