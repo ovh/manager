@@ -12,6 +12,7 @@ import {
   OdsBreadcrumb,
   OdsBreadcrumbItem,
   OdsSpinner,
+  OdsBadge,
 } from '@ovhcloud/ods-components/react';
 import {
   BaseLayout,
@@ -21,6 +22,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
+import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import appConfig from '@/hpc-vmware-vsphere.config';
 
 import { VSPHERE_CHANGELOGS_LINKS } from './dashboard.constants';
@@ -42,10 +44,18 @@ interface TabItemProps {
 }
 
 const TabItem = ({ tab, activePanel }: TabItemProps) => {
-  const { isRedirectLegacy, name, title, to } = tab;
+  const { isRedirectLegacy, name, title, badge, to } = tab;
   const isSelected = activePanel?.name === name;
 
-  const tabContent = <OdsTab isSelected={isSelected}>{title}</OdsTab>;
+  const tabLabel = badge ? (
+    <>
+      {title} {badge}
+    </>
+  ) : (
+    title
+  );
+
+  const tabContent = <OdsTab isSelected={isSelected}>{tabLabel}</OdsTab>;
 
   return isRedirectLegacy ? (
     <a className="no-underline" href={to}>
@@ -127,6 +137,13 @@ export default function DashboardPage() {
     {
       name: 'logs',
       title: t('tabs_label_logs'),
+      badge: (
+        <OdsBadge
+          label="Beta"
+          color={ODS_BADGE_COLOR.beta}
+          size="sm"
+        ></OdsBadge>
+      ),
       to: useResolvedPath('logs').pathname,
       isRedirectLegacy: false,
     },
