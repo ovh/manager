@@ -28,5 +28,5 @@
   "pci_instances_list_action_hard_reboot": "Reboot a frio (hard)",
   "pci_instances_list_action_reinstall": "Reinstalar",
   "pci_instances_list_column_creation_date": "Data de criação",
-  "pci_instances_operations_running": "A(s) operação(ões) de criação de instância(s) está em curso"
+  "pci_instances_operations_running": "A(s) operação(ões) na(s) instância(s) está(ão) em curso"
 }
