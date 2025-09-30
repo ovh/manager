@@ -101,7 +101,7 @@ export const renderTest = async ({
   );
 
   if (!context) {
-    context = await initShellContext(APP_NAME);
+    context = (await initShellContext(APP_NAME)) as ShellContextType;
   }
 
   context.environment.getUser().ovhSubsidiary =
