@@ -130,21 +130,83 @@ export default [
           import('@/pages/object-storage/create/Create.page'),
         ),
       },
-      // {
-      //   path: ':serviceId',
-      //   ...lazyLoadRoute(() =>
-      //     import('@/pages/services/[serviceId]/Service.layout'),
-      //   ),
-      //   children: [
-      //     {
-      //       path: '',
-      //       id: 'service.{service.engine}.dashboard',
-      //       ...lazyLoadRoute(() =>
-      //         import('@/pages/services/[serviceId]/dashboard/Dashboard.page'),
-      //       ),
-      //     },
-      //   ],
-      // },
+      {
+        path: 'swift/:swiftId',
+        ...lazyLoadRoute(() =>
+          import('@/pages/object-storage/storage/swiftId/Swift.layout'),
+        ),
+        children: [
+          {
+            path: '',
+            id: 'swift.dashboard',
+            ...lazyLoadRoute(() =>
+              import(
+                '@/pages/object-storage/storage/swiftId/dashboard/Dashboard.page'
+              ),
+            ),
+          },
+          {
+            path: 'objects',
+            id: 'swift.dashboard.objects',
+            ...lazyLoadRoute(() =>
+              import(
+                '@/pages/object-storage/storage/swiftId/objects/Objects.page'
+              ),
+            ),
+          },
+        ],
+      },
+      {
+        path: 's3/:region/:s3Name',
+        ...lazyLoadRoute(() =>
+          import('@/pages/object-storage/storage/s3Id/S3.layout'),
+        ),
+        children: [
+          {
+            path: '',
+            id: 's3.dashboard',
+            ...lazyLoadRoute(() =>
+              import(
+                '@/pages/object-storage/storage/s3Id/dashboard/Dashboard.page'
+              ),
+            ),
+          },
+          {
+            path: 'objects',
+            id: 's3.dashboard.objects',
+            ...lazyLoadRoute(() =>
+              import(
+                '@/pages/object-storage/storage/s3Id/objects/Objects.page'
+              ),
+            ),
+          },
+          {
+            path: 'replication',
+            id: 's3.dashboard.replication',
+            ...lazyLoadRoute(() =>
+              import(
+                '@/pages/object-storage/storage/s3Id/repilcation/Replication.page'
+              ),
+            ),
+          },
+          {
+            path: 'logs',
+            id: 's3.dashboard.logs',
+            ...lazyLoadRoute(() =>
+              import('@/pages/object-storage/storage/s3Id/logs/Logs.page'),
+            ),
+          },
+          {
+            path: 'settings',
+            id: 's3.dashboard.settings',
+            ...lazyLoadRoute(() =>
+              import(
+                '@/pages/object-storage/storage/s3Id/settings/Settings.page'
+              ),
+            ),
+          },
+        ],
+      },
     ],
   },
   {

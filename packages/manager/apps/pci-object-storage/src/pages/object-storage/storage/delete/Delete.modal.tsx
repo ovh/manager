@@ -9,8 +9,8 @@ const DeleteContainerModal = () => {
   const navigate = useNavigate();
   const storageQuery =
     storageType === ObjectStorageTypeEnum.s3
-      ? useGetS3(projectId, region, storageId)
-      : useGetSwift(projectId, storageId, false);
+      ? useGetS3({ projectId, region, name: storageId })
+      : useGetSwift({ projectId, containerId: storageId, noObjects: true });
 
   return (
     <DeleteStorage
