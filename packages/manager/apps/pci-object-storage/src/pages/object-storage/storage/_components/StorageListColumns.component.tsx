@@ -51,7 +51,15 @@ export const getColumns = ({
         const { id, name } = row.original;
         return (
           <div className="flex flex-col flex-nowrap text-left">
-            <Link to={id}>{name}</Link>
+            <Link
+              to={
+                row.original.storageType === ObjectStorageTypeEnum.s3
+                  ? `./s3/${row.original.region}/${row.original.name}`
+                  : `./swift/${id}`
+              }
+            >
+              {name}
+            </Link>
           </div>
         );
       },
@@ -189,7 +197,13 @@ export const getColumns = ({
             >
               <DropdownMenuItem
                 variant="primary"
-                onClick={() => navigate(`./${row.original.id}`)}
+                onClick={() =>
+                  navigate(
+                    storage.storageType === ObjectStorageTypeEnum.s3
+                      ? `./s3/${storage.region}/${storage.name}`
+                      : `./swift/${storage.id}`,
+                  )
+                }
               >
                 {t('tableActionManage')}
               </DropdownMenuItem>

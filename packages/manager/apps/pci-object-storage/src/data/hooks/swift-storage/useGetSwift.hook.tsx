@@ -4,12 +4,19 @@ import {
   useQueryImmediateRefetch,
 } from '@/hooks/useImmediateRefetch';
 
-export function useGetSwift(
-  projectId: string,
-  containerId: string,
-  noObjects: boolean,
-  options?: OptionsFor<typeof getSwiftStorage>,
-) {
+export type UseGetSwiftProps = {
+  projectId: string;
+  containerId: string;
+  noObjects: boolean;
+  options?: OptionsFor<typeof getSwiftStorage>;
+};
+
+export function useGetSwift({
+  projectId,
+  containerId,
+  noObjects,
+  options,
+}: UseGetSwiftProps) {
   const queryKey = [projectId, 'storages', containerId];
   return useQueryImmediateRefetch({
     queryKey,
