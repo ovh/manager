@@ -14,13 +14,12 @@ export type TrackingContextParams = {
 };
 
 export type ShellContextType = {
-  shell?: ShellClientApi | null;
-  environment?: Environment | null;
-  tracking?: TrackingContextParams | null;
+  shell: ShellClientApi;
+  environment: Environment;
+  tracking?: TrackingContextParams;
 };
 
 export const ShellContext = createContext<ShellContextType>({
-  shell: null,
-  environment: null,
-  tracking: null,
+  shell: {} as ShellClientApi,
+  environment: {} as Environment,
 });
