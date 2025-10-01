@@ -18,12 +18,14 @@ export const okmsRoubaix1Mock: OKMS = {
   },
   id: '2c5463d3-540a-428b-94a8-44ddb61c6e05',
   kmipEndpoint: 'eu-west-rbx.okms.ovh.net:1234',
+  kmipRsaEndpoint: 'eu-west-rbx.okms.ovh.net',
   region: REGION_EU_WEST_RBX,
   restEndpoint: 'https://eu-west-rbx.okms.ovh.net',
-  swaggerEndpoint: '"https://swagger-eu-west-rbx.okms.ovh.net',
+  swaggerEndpoint: 'https://swagger-eu-west-rbx.okms.ovh.net',
   kmipObjectCount: 1,
   serviceKeyCount: 3,
   secretCount: 2,
+  secretVersionCount: 21,
 };
 
 export const okmsRoubaix2Mock: OKMS = {
@@ -34,12 +36,14 @@ export const okmsRoubaix2Mock: OKMS = {
   },
   id: '7f3a82ac-a8d8-4c2a-ab0c-f6e86ddf6a7c',
   kmipEndpoint: 'eu-west-rbx.okms.ovh.net:1234',
+  kmipRsaEndpoint: 'eu-west-rbx.okms.ovh.net',
   region: REGION_EU_WEST_RBX,
   restEndpoint: 'https://eu-west-rbx.okms.ovh.net',
-  swaggerEndpoint: '"https://swagger-eu-west-rbx.okms.ovh.net',
+  swaggerEndpoint: 'https://swagger-eu-west-rbx.okms.ovh.net',
   kmipObjectCount: 1,
   serviceKeyCount: 3,
   secretCount: 2,
+  secretVersionCount: 21,
 };
 
 export const okmsStrasbourg1Mock: OKMS = {
@@ -52,10 +56,12 @@ export const okmsStrasbourg1Mock: OKMS = {
   kmipEndpoint: 'eu-west-rbx.okms.ovh.net:1234',
   region: REGION_EU_WEST_SBG,
   restEndpoint: 'https://eu-west-rbx.okms.ovh.net',
-  swaggerEndpoint: '"https://swagger-eu-west-rbx.okms.ovh.net',
+  kmipRsaEndpoint: 'eu-west-rbx.okms.ovh.net',
+  swaggerEndpoint: 'https://swagger-eu-west-rbx.okms.ovh.net',
   kmipObjectCount: 1,
   serviceKeyCount: 3,
   secretCount: 0,
+  secretVersionCount: 21,
 };
 
 export const regionWithMultipleOkms: OkmsByRegion = {

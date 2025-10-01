@@ -35,6 +35,7 @@ describe('RestApiTile component tests suite', () => {
     swaggerEndpoint: 'https://swagger-endpoint',
     kmipObjectCount: 1,
     serviceKeyCount: 2,
+    secretVersionCount: 21,
     secretCount: 3,
     iam: {
       displayName: 'name',
