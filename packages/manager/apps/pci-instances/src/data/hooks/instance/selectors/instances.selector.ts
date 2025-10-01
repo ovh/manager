@@ -3,93 +3,44 @@ import { TAggregatedInstanceDto } from '@/types/instance/api.type';
 import {
   TAggregatedInstanceAddress,
   TAggregatedInstance,
-  TAggregatedInstanceAction,
   TAggregatedInstanceActions,
   TInstanceAddressType,
 } from '@/types/instance/entity.type';
-import { TActionName } from '@/types/instance/common.type';
+import {
+  TActionName,
+  TExternalActionName,
+  TInternalActionName,
+} from '@/types/instance/common.type';
 import { getInstanceStatus } from '@/pages/instances/mapper/status.mapper';
+import { TActionLink } from '@/types/instance/action/action.type';
 
 const getInstanceTaskState = (
   taskState: string,
 ): TAggregatedInstance['taskState'] =>
   taskState.length > 0 ? taskState : null;
 
-const getActionHrefByName = (
-  projectUrl: string,
-  name: TActionName,
-  { region, id }: Pick<TAggregatedInstance, 'id' | 'region'>,
-): TAggregatedInstanceAction['link'] => {
-  if (name === 'details') {
-    return { path: `${id}?region=${region}`, isExternal: false };
-  }
+const isInternalAction = (action: TActionName): action is TInternalActionName =>
+  [
+    'details',
+    'edit',
+    'soft_reboot',
+    'hard_reboot',
+    'rescue',
+    'unrescue',
+    'create_backup',
+    'activate_monthly_billing',
+    'delete',
+    'stop',
+    'start',
+    'shelve',
+    'unshelve',
+    'reinstall',
+  ].includes(action);
 
-  if (name === 'edit') {
-    return {
-      path: `${id}/edit`,
-      isExternal: false,
-    };
-  }
+const isExternalAction = (action: TActionName): action is TExternalActionName =>
+  ['create_autobackup', 'assign_floating_ip'].includes(action);
 
-  if (name === 'create_autobackup') {
-    return { path: `${projectUrl}/workflow/new`, isExternal: true };
-  }
-
-  if (name === 'assign_floating_ip') {
-    const searchParams = new URLSearchParams({
-      ipType: 'floating_ip',
-      region,
-      instance: id,
-    });
-
-    return {
-      path: `${projectUrl}/public-ips/order?${searchParams.toString()}`,
-      isExternal: true,
-    };
-  }
-
-  if (name === 'soft_reboot') {
-    return {
-      path: `soft-reboot?instanceId=${id}&region=${region}`,
-      isExternal: false,
-    };
-  }
-
-  if (name === 'hard_reboot') {
-    return {
-      path: `hard-reboot?instanceId=${id}&region=${region}`,
-      isExternal: false,
-    };
-  }
-
-  if (name === 'rescue') {
-    return {
-      path: `rescue/start?instanceId=${id}&region=${region}`,
-      isExternal: false,
-    };
-  }
-
-  if (name === 'unrescue') {
-    return {
-      path: `rescue/end?instanceId=${id}&region=${region}`,
-      isExternal: false,
-    };
-  }
-
-  if (name === 'create_backup') {
-    return {
-      path: `backup?instanceId=${id}&region=${region}`,
-      isExternal: false,
-    };
-  }
-
-  if (name === 'activate_monthly_billing') {
-    return {
-      path: `billing/monthly/activate?instanceId=${id}&region=${region}`,
-      isExternal: false,
-    };
-  }
-
+const buildInternalActionsHref = (instanceId: string, region: string) => {
   const actions = new Set([
     'delete',
     'stop',
@@ -99,12 +50,74 @@ const getActionHrefByName = (
     'reinstall',
   ]);
 
-  if (actions.has(name)) {
-    return {
-      path: `${name}?instanceId=${id}&region=${region}`,
-      isExternal: false,
-    };
-  }
+  return [
+    { details: `${instanceId}?region=${region}` },
+    { edit: `${instanceId}/edit` },
+    {
+      soft_reboot: `soft-reboot?instanceId=${instanceId}&region=${region}`,
+    },
+    {
+      hard_reboot: `hard-reboot?instanceId=${instanceId}&region=${region}`,
+    },
+    { rescue: `rescue/start?instanceId=${instanceId}&region=${region}` },
+    { unrescue: `rescue/end?instanceId=${instanceId}&region=${region}` },
+    {
+      create_backup: `backup?instanceId=${instanceId}&region=${region}`,
+    },
+    {
+      activate_monthly_billing: `billing/monthly/activate?instanceId=${instanceId}&region=${region}`,
+    },
+    ...Array.from(actions).map((action) => ({
+      [action]: `${action}?instanceId=${instanceId}&region=${region}`,
+    })),
+  ].reduce((acc, item) => {
+    const [key, value] = Object.entries(item)[0] as [
+      TInternalActionName,
+      string,
+    ];
+    acc[key] = { path: value, isExternal: false };
+    return acc;
+  }, {} as Record<TInternalActionName, TActionLink>);
+};
+
+const buildExternalActionsHref = (
+  projectUrl: string,
+  id: string,
+  region: string,
+) => {
+  const searchParams = new URLSearchParams({
+    ipType: 'floating_ip',
+    region,
+    instance: id,
+  });
+
+  return {
+    create_autobackup: { path: `${projectUrl}/workflow/new`, isExternal: true },
+    assign_floating_ip: {
+      path: `${projectUrl}/public-ips/order?${searchParams.toString()}`,
+      isExternal: true,
+    },
+  };
+};
+
+export const getActionHrefByName = (
+  projectUrl: string,
+  name: TActionName,
+  { id, region }: { id: string; region: string },
+) => (
+  buildInternalActionsHref: (
+    id: string,
+    region: string,
+  ) => Record<TInternalActionName, TActionLink>,
+  buildExternalActionsHref: (
+    projectUrl: string,
+    id: string,
+    region: string,
+  ) => Record<TExternalActionName, TActionLink>,
+): TActionLink => {
+  if (isInternalAction(name)) return buildInternalActionsHref(id, region)[name];
+  if (isExternalAction(name))
+    return buildExternalActionsHref(projectUrl, id, region)[name];
 
   return { path: '', isExternal: false };
 };
@@ -132,7 +145,11 @@ const mapInstanceActions = (
     if (isActionToDisplay(name)) {
       const newAction = {
         label: `pci_instances_list_action_${name}`,
-        link: getActionHrefByName(projectUrl, name, instance),
+        link: getActionHrefByName(
+          projectUrl,
+          name,
+          instance,
+        )(buildInternalActionsHref, buildExternalActionsHref),
       };
       const foundAction = acc.get(group);
       if (!foundAction) return acc.set(group, [newAction]);

@@ -1,6 +1,7 @@
+import { getActionHrefByName } from '@/data/hooks/instance/selectors/instances.selector';
 import { getInstanceStatus } from '@/pages/instances/mapper/status.mapper';
 import { TAction, TActionLink } from '@/types/instance/action/action.type';
-import { TActionName } from '@/types/instance/common.type';
+import { TActionName, TInternalActionName } from '@/types/instance/common.type';
 import {
   TInstance,
   TInstanceAction,
@@ -108,81 +109,53 @@ const canDeleteInstance = (actions: TInstanceAction[]) =>
 const canCreateBackup = (actions: TInstanceAction[]) =>
   actions.some(({ name }) => name === 'create_backup');
 
-// TODO: find a way to handle this properly (where to build path and translated label)
-const getActionHrefByName = (
-  projectUrl: string,
-  name: TActionName,
-  { region: { name: region }, id }: Pick<TInstance, 'id' | 'region'>,
-): TActionLink => {
-  if (name === 'edit') {
-    return {
-      path: `../${id}/edit`,
-      isExternal: false,
-    };
-  }
-
-  if (name === 'create_autobackup') {
-    return { path: `${projectUrl}/workflow/new`, isExternal: true };
-  }
-
-  if (name === 'assign_floating_ip') {
-    const searchParams = new URLSearchParams({
-      ipType: 'floating_ip',
-      region,
-      instance: id,
-    });
-
-    return {
-      path: `${projectUrl}/public-ips/order?${searchParams.toString()}`,
-      isExternal: true,
-    };
-  }
-
-  if (name === 'soft_reboot') {
-    return {
-      path: `../${id}/soft-reboot?region=${region}`,
-      isExternal: false,
-    };
-  }
-
-  if (name === 'hard_reboot') {
-    return {
-      path: `../${id}/hard-reboot?region=${region}`,
-      isExternal: false,
-    };
-  }
-
-  if (name === 'rescue') {
-    return {
-      path: `../${id}/rescue/start?region=${region}`,
-      isExternal: false,
-    };
-  }
-
-  if (name === 'unrescue') {
-    return {
-      path: `../${id}/rescue/end?region=${region}`,
-      isExternal: false,
-    };
-  }
-
-  if (name === 'create_backup') {
-    return {
-      path: `../${id}/backup?region=${region}`,
-      isExternal: false,
-    };
-  }
-
+const buildInternalActionsHref = (instanceId: string, region: string) => {
   const actions = new Set(['stop', 'start', 'shelve', 'unshelve', 'reinstall']);
 
-  if (actions.has(name)) {
-    return {
-      path: `../${id}/${name}?region=${region}`,
-      isExternal: false,
-    };
-  }
+  return [
+    { edit: `../${instanceId}/edit` },
+    {
+      soft_reboot: `../${instanceId}/soft-reboot?region=${region}`,
+    },
+    {
+      hard_reboot: `../${instanceId}/hard-reboot?region=${region}`,
+    },
+    { rescue: `../${instanceId}/rescue/start?region=${region}` },
+    { unrescue: `../${instanceId}/rescue/end?region=${region}` },
+    {
+      create_backup: `../${instanceId}/backup?region=${region}`,
+    },
+    ...Array.from(actions).map((action) => ({
+      [action]: `../${instanceId}/${action}?region=${region}`,
+    })),
+  ].reduce((acc, item) => {
+    const [key, value] = Object.entries(item)[0] as [
+      TInternalActionName,
+      string,
+    ];
+    acc[key] = { path: value, isExternal: false };
+    return acc;
+  }, {} as Record<TInternalActionName, TActionLink>);
+};
 
-  return { path: '', isExternal: false };
+const buildExternalActionsHref = (
+  projectUrl: string,
+  id: string,
+  region: string,
+) => {
+  const searchParams = new URLSearchParams({
+    ipType: 'floating_ip',
+    region,
+    instance: id,
+  });
+
+  return {
+    create_autobackup: { path: `${projectUrl}/workflow/new`, isExternal: true },
+    assign_floating_ip: {
+      path: `${projectUrl}/public-ips/order?${searchParams.toString()}`,
+      isExternal: true,
+    },
+  };
 };
 
 const isAdditionalAction = ({ name }: { name: TActionName }) => {
@@ -207,7 +180,10 @@ const mapActions = (
       const { group, name } = action;
       const newAction = {
         label: `pci_instances_list_action_${name}`,
-        link: getActionHrefByName(projectUrl, name, instance),
+        link: getActionHrefByName(projectUrl, name, {
+          id: instance.id,
+          region: instance.region.name,
+        })(buildInternalActionsHref, buildExternalActionsHref),
       };
       const foundAction = acc.get(group);
       if (!foundAction) return acc.set(group, [newAction]);
