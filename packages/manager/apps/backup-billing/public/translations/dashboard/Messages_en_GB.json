@@ -1,0 +1,19 @@
+{
+  "home": "Home",
+  "order": "Order",
+  "back": "Back",
+  "title": "Dashboard",
+  "email": "Email address",
+  "subject": "Subject",
+  "message": "Message",
+  "submitButton": "Send",
+  "successMessage": "Your request has been sent.",
+  "errors": {
+    "emailRequired": "You need to enter an email address",
+    "emailInvalid": "Please enter a valid email address.",
+    "subjectRequired": "You need to enter a subject.",
+    "messageRequired": "You need to write a message."
+  },
+  "general-information": "General information",
+  "help": "Help"
+}
