@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.4.15...@ovh-ux/manager-dedicated-servers-app@0.4.16) (2025-10-01)
+
+
+### Bug Fixes
+
+* **dedicated-servers:** fix datagrid errors ([8b7b2b9](https://github.com/ovh/manager/commit/8b7b2b9ac21de1d59f4352213951c34539dd4838)), closes [#MANAGER-19003](https://github.com/ovh/manager/issues/MANAGER-19003)
+
+
+
+
+
 ## [0.4.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.4.14...@ovh-ux/manager-dedicated-servers-app@0.4.15) (2025-09-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
