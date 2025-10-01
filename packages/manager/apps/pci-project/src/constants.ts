@@ -499,7 +499,7 @@ export const DASHBOARD_QUICK_ACCESS_ITEMS_BASE: DashboardItem[] = [
   {
     labelTranslationKey: 'pci_projects_home_instances',
     descriptionTranslationKey: 'pci_projects_home_create_instance',
-    link: `instances/new`,
+    link: PCI_FEATURES_STATES.INSTANCES.LIST.url,
   },
   {
     labelTranslationKey: 'pci_projects_home_kubernetes',
@@ -532,7 +532,7 @@ export const DASHBOARD_OTHER_ACTIONS_ITEMS: DashboardItem[] = [
   {
     iconODS: ODS_ICON_NAME.book,
     labelTranslationKey: 'pci_projects_home_create_ai_notebook',
-    link: PCI_FEATURES_STATES.NOTEBOOKS.ADD.url,
+    link: PCI_FEATURES_STATES.NOTEBOOKS.LIST.url,
   },
   {
     iconODS: ODS_ICON_NAME.network,
