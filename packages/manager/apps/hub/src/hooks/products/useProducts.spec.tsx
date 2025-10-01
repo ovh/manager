@@ -1,17 +1,20 @@
 import React, { PropsWithChildren } from 'react';
+
 import { renderHook, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+
 import {
   ShellContext,
   ShellContextType,
   useRouteSynchro,
 } from '@ovh-ux/manager-react-shell-client';
-import { useProducts } from '@/hooks/products/useProducts';
+
 import {
   lotsOfProductsMocked,
   lotsOfProductsParsedExpandedMocked,
   lotsOfProductsParsedMocked,
 } from '@/__mocks__/products';
+import { useProducts } from '@/hooks/products/useProducts';
 
 const shellContext = {
   environment: {
@@ -25,19 +28,16 @@ const shellContext = {
 };
 
 const wrapper = ({ children }: PropsWithChildren) => (
-  <ShellContext.Provider value={(shellContext as unknown) as ShellContextType}>
+  <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
     {children}
   </ShellContext.Provider>
 );
 
 describe('useProducts', () => {
   it('returns non expanded products list', async () => {
-    const { result } = renderHook(
-      () => useProducts(lotsOfProductsMocked, false),
-      {
-        wrapper,
-      },
-    );
+    const { result } = renderHook(() => useProducts(lotsOfProductsMocked, false), {
+      wrapper,
+    });
 
     await waitFor(() => {
       expect(result.current.products).toEqual(lotsOfProductsParsedMocked);
@@ -45,17 +45,12 @@ describe('useProducts', () => {
   });
 
   it('returns expanded products list', async () => {
-    const { result } = renderHook(
-      () => useProducts(lotsOfProductsMocked, true),
-      {
-        wrapper,
-      },
-    );
+    const { result } = renderHook(() => useProducts(lotsOfProductsMocked, true), {
+      wrapper,
+    });
 
     await waitFor(() => {
-      expect(result.current.products).toEqual(
-        lotsOfProductsParsedExpandedMocked,
-      );
+      expect(result.current.products).toEqual(lotsOfProductsParsedExpandedMocked);
     });
   });
 
@@ -86,8 +81,7 @@ describe('useProducts', () => {
                       EU: 'dedicated',
                       US: 'dedicated',
                     },
-                    url:
-                      'https://www.ovh.com/manager/#/dedicated/configuration/fake_product/fake_service',
+                    url: 'https://www.ovh.com/manager/#/dedicated/configuration/fake_product/fake_service',
                   },
                 ],
               },

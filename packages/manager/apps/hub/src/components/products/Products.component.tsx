@@ -1,15 +1,12 @@
 import React, { Suspense, useState } from 'react';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import {
-  OsdsButton,
-  OsdsChip,
-  OsdsIcon,
-  OsdsLink,
-  OsdsSkeleton,
-  OsdsText,
-  OsdsTile,
-} from '@ovhcloud/ods-components/react';
+
 import { Await, useSearchParams } from 'react-router-dom';
+
+import punycode from 'punycode/punycode';
+import { useTranslation } from 'react-i18next';
+
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
@@ -21,13 +18,22 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { useTranslation } from 'react-i18next';
-import punycode from 'punycode/punycode';
+import {
+  OsdsButton,
+  OsdsChip,
+  OsdsIcon,
+  OsdsLink,
+  OsdsSkeleton,
+  OsdsText,
+  OsdsTile,
+} from '@ovhcloud/ods-components/react';
+
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { useProducts } from '@/hooks/products/useProducts';
 import { ApiEnvelope } from '@/types/apiEnvelope.type';
 import { HubProduct, ProductList } from '@/types/services.type';
-import { useProducts } from '@/hooks/products/useProducts';
+
 import './Products.style.scss';
 
 type ProductsProps = {
@@ -105,11 +111,7 @@ export default function Products({ services }: ProductsProps) {
                       {product.count}
                     </OsdsChip>
                   </OsdsText>
-                  <Suspense
-                    fallback={
-                      <OsdsSkeleton inline size={ODS_SKELETON_SIZE.xs} />
-                    }
-                  >
+                  <Suspense fallback={<OsdsSkeleton inline size={ODS_SKELETON_SIZE.xs} />}>
                     <Await
                       resolve={product.link}
                       children={(link: string) =>
@@ -145,10 +147,7 @@ export default function Products({ services }: ProductsProps) {
                   </Suspense>
                 </div>
                 <div>
-                  <ul
-                    className="list-none m-0 p-0"
-                    data-testid="product_services_list"
-                  >
+                  <ul className="list-none m-0 p-0" data-testid="product_services_list">
                     {product.data.map((service) => (
                       <li
                         className="services-list"
@@ -164,8 +163,7 @@ export default function Products({ services }: ProductsProps) {
                           data-testid="service_link"
                         >
                           {punycode.toUnicode(
-                            service.resource.displayName ||
-                              service.resource.name,
+                            service.resource.displayName || service.resource.name,
                           )}
                         </OsdsLink>
                       </li>
@@ -193,17 +191,11 @@ export default function Products({ services }: ProductsProps) {
               size={ODS_TEXT_SIZE._400}
               color={ODS_THEME_COLOR_INTENT.primary}
             >
-              {t(
-                expand
-                  ? 'manager_hub_products_see_less'
-                  : 'manager_hub_products_see_more',
-              )}
+              {t(expand ? 'manager_hub_products_see_less' : 'manager_hub_products_see_more')}
             </OsdsText>
             <span slot="end">
               <OsdsIcon
-                name={
-                  expand ? ODS_ICON_NAME.CHEVRON_UP : ODS_ICON_NAME.CHEVRON_DOWN
-                }
+                name={expand ? ODS_ICON_NAME.CHEVRON_UP : ODS_ICON_NAME.CHEVRON_DOWN}
                 size={ODS_ICON_SIZE.xs}
                 color={ODS_THEME_COLOR_INTENT.primary}
               ></OsdsIcon>

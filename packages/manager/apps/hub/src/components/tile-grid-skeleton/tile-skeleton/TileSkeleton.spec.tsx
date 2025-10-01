@@ -1,6 +1,8 @@
 import React from 'react';
-import { describe, expect, it } from 'vitest';
+
 import { render } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+
 import TileSkeleton from '@/components/tile-grid-skeleton/tile-skeleton/TileSkeleton.component';
 
 describe('TileSkeleton', () => {

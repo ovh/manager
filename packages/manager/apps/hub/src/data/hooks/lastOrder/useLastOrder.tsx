@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
+
 import { getLastOrder } from '@/data/api/order/order';
 import { LastOrder } from '@/types/order.type';
 

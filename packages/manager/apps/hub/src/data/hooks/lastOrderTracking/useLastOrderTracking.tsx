@@ -1,7 +1,7 @@
-import { useOrderStatus } from '../orderStatus/useOrderStatus';
-import { useOrderDetails } from '../orderDetails/useOrderDetails';
-import { useOrderCompleteHistory } from '../orderCompleteHistory/useOrderCompleteHistory';
 import { useLastOrder } from '../lastOrder/useLastOrder';
+import { useOrderCompleteHistory } from '../orderCompleteHistory/useOrderCompleteHistory';
+import { useOrderDetails } from '../orderDetails/useOrderDetails';
+import { useOrderStatus } from '../orderStatus/useOrderStatus';
 
 export const useLastOrderTracking = () => {
   const {
@@ -41,12 +41,8 @@ export const useLastOrderTracking = () => {
       ...lastOrder?.data,
     },
     isLoading:
-      isLastOrderLoading ||
-      isOrderStatusLoading ||
-      isOrderDetailsLoading ||
-      isHistoriesLoading,
-    error:
-      lastOrderError || orderStatusError || orderDetailsError || historiesError,
+      isLastOrderLoading || isOrderStatusLoading || isOrderDetailsLoading || isHistoriesLoading,
+    error: lastOrderError || orderStatusError || orderDetailsError || historiesError,
     refetch: async () => {
       await refetchLastOrder();
       if (orderId) await refetchOrderStatus();

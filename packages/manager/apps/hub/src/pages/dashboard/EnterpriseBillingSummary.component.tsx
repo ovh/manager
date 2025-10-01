@@ -1,20 +1,21 @@
 import React from 'react';
-import { OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { useTranslation } from 'react-i18next';
+
+import { OdsHTMLAnchorElementRel, OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  OdsHTMLAnchorElementRel,
-  OdsHTMLAnchorElementTarget,
-} from '@ovhcloud/ods-common-core';
-import { LINK } from '@/pages/dashboard/dashboard.constants';
+import { OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import '@/pages/dashboard/BillingSummary.style.scss';
+import { LINK } from '@/pages/dashboard/dashboard.constants';
 
 export default function EnterpriseBillingSummary() {
   const { t } = useTranslation('hub/billing');
@@ -28,10 +29,7 @@ export default function EnterpriseBillingSummary() {
   };
 
   return (
-    <div
-      className="manager-hub-billing-summary"
-      data-testid="enterprise_billing_summary"
-    >
+    <div className="manager-hub-billing-summary" data-testid="enterprise_billing_summary">
       <div className="text-left px-6">
         <OsdsText
           className="block mb-6"
@@ -62,11 +60,7 @@ export default function EnterpriseBillingSummary() {
       >
         {t('hub_enterprise_billing_summary_goto')}
         <span className="ml-4" slot="end">
-          <OsdsIcon
-            name={ODS_ICON_NAME.ARROW_RIGHT}
-            size={ODS_ICON_SIZE.sm}
-            contrasted
-          ></OsdsIcon>
+          <OsdsIcon name={ODS_ICON_NAME.ARROW_RIGHT} size={ODS_ICON_SIZE.sm} contrasted></OsdsIcon>
         </span>
       </OsdsLink>
     </div>
