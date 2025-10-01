@@ -31,5 +31,6 @@
   "yes": "Sì",
   "no": "No",
   "ok": "OK",
-  "optional": "facoltativo"
+  "optional": "facoltativo",
+  "step_number": "Step {{step}}"
 }
