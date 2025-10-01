@@ -54,7 +54,7 @@ export const codeDuplicationConfig = {
    */
   worstFiles: {
     threshold: 5, // % duplication
-    count: 10, // max files
+    count: 15, // max files
   },
 
   /**

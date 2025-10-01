@@ -95,7 +95,7 @@ function main() {
     const turboFilters = resolveTurboFilters({ appsDir, appFolders, packageNames });
 
     // Step 1: build
-    runTurboBuild(rootDir, turboFilters);
+    runTurboBuild(rootDir, turboFilters, ['--continue']);
 
     // Step 2: analyze apps + combined
     runAppsAnalysis({

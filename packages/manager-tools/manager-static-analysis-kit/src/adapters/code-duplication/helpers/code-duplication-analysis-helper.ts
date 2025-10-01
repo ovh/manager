@@ -183,6 +183,15 @@ function parseAppCodeDuplicationReport(jsonPath: string): AppCodeDuplicationSumm
 
     const totalLines = total.lines ?? 0;
     const duplicateLines = total.duplicatedLines ?? 0;
+    const percentage =
+      total.percentage ?? (totalLines > 0 ? (duplicateLines / totalLines) * 100 : 0);
+
+    const worstFiles = extractWorstFiles(report);
+
+    // compute per-file percentages for min/max
+    const perFilePercentages = worstFiles.map(([, f]) => f.percentage);
+    const minPercentage = perFilePercentages.length ? Math.min(...perFilePercentages) : percentage;
+    const maxPercentage = perFilePercentages.length ? Math.max(...perFilePercentages) : percentage;
 
     return {
       totalLines,
@@ -190,8 +199,10 @@ function parseAppCodeDuplicationReport(jsonPath: string): AppCodeDuplicationSumm
       duplicateLines,
       duplicateTokens: total.duplicatedTokens ?? 0,
       clonesCount: total.clones ?? 0,
-      percentage: total.percentage ?? (totalLines > 0 ? (duplicateLines / totalLines) * 100 : 0),
-      worstFiles: extractWorstFiles(report),
+      percentage,
+      minPercentage,
+      maxPercentage,
+      worstFiles,
     };
   } catch (err) {
     return {
@@ -201,6 +212,8 @@ function parseAppCodeDuplicationReport(jsonPath: string): AppCodeDuplicationSumm
       duplicateTokens: 0,
       clonesCount: 0,
       percentage: 0,
+      minPercentage: 0,
+      maxPercentage: 0,
       error: (err as Error).message,
       worstFiles: [],
     };
@@ -296,18 +309,20 @@ const getColorForDuplicationStatus = (pct: number): string => {
 };
 
 /**
- * Render a collapsible HTML `<details>` block for worst duplicated files of an app.
+ * Render a collapsible HTML <details> block for worst duplicated files of an app.
  *
  * @param {string} app - Application name.
  * @param {WorstCodeDuplicationFile[]} worstFiles - List of worst duplicated files.
  * @returns {string} HTML markup for the worst-files drilldown.
  */
 function renderWorstFiles(app: string, worstFiles: AppCodeDuplicationSummary['worstFiles'] = []) {
+  const threshold = codeDuplicationConfig.worstFiles.threshold;
+
   if (!worstFiles.length) {
     return `
-      <details>
-        <summary>⚠️ Worst duplicated files</summary>
-        <p style="margin:0.5rem 0; color:#888;">No files above threshold 🎉</p>
+      <details class="coverage-details">
+        <summary>📊 Duplication Overview for <strong>${app}</strong></summary>
+        <p class="coverage-empty">No files above threshold 🎉</p>
       </details>`;
   }
 
@@ -316,25 +331,60 @@ function renderWorstFiles(app: string, worstFiles: AppCodeDuplicationSummary['wo
       const short = shortPathFromAppsRoot(file, app);
       const color = getColorForDuplicationStatus(f.percentage);
       return `
-      <tr>
-        <td colspan="2" title="${file}">${short}</td>
-        <td>${f.duplicatedLines}/${f.totalLines}</td>
-        <td style="color:${color}">${f.percentage.toFixed(2)}%</td>
-      </tr>`;
+        <tr>
+          <td colspan="2" title="${file}">${short}</td>
+          <td>${f.duplicatedLines}/${f.totalLines}</td>
+          <td style="color:${color}">${f.percentage.toFixed(2)}%</td>
+        </tr>`;
     })
     .join('');
 
   return `
-    <details>
-      <summary>⚠️ Worst duplicated files (≥ ${codeDuplicationConfig.worstFiles.threshold}%)</summary>
-      <table style="margin:0.5rem 0; border:1px solid #ccc; width:95%;">
+    <details class="coverage-details">
+      <summary>📊 Duplication Overview for <strong>${app}</strong> (≥ ${threshold}%)</summary>
+      <table class="coverage-subtable">
         <tbody>${rows}</tbody>
       </table>
     </details>`;
 }
 
 /**
+ * Render the duplication percentage cell with optional min–max range.
+ *
+ * - If no duplication → shows just "0.00%".
+ * - If min === max → shows just that value.
+ * - Otherwise → shows global percentage + colored range (min–max).
+ *
+ * @param {AppCodeDuplicationSummary} stats - Duplication stats for one app.
+ * @returns {string} HTML string for the coverage cell.
+ */
+function renderDuplicationCell(stats: AppCodeDuplicationSummary) {
+  const min = stats.minPercentage ?? stats.percentage;
+  const max = stats.maxPercentage ?? stats.percentage;
+
+  // Case 1: no duplication at all
+  if (stats.duplicateLines === 0) {
+    return `<span style="color:${getColorForDuplicationStatus(0)}">0.00%</span>`;
+  }
+
+  // Case 2: identical min & max → collapse
+  if (min.toFixed(2) === max.toFixed(2)) {
+    return `<span style="color:${getColorForDuplicationStatus(min)}">${min.toFixed(2)}%</span>`;
+  }
+
+  // Default: show global % with range
+  return `
+    ${stats.percentage.toFixed(2)}% (range:
+      <span style="color:${getColorForDuplicationStatus(min)}">${min.toFixed(2)}%</span> –
+      <span style="color:${getColorForDuplicationStatus(max)}">${max.toFixed(2)}%</span>)
+  `;
+}
+
+/**
  * Build a single HTML row summarizing duplication stats for one app.
+ *
+ * - The row background color is determined by the **worst case coverage** (minPercentage).
+ * - The coverage cell shows global percentage with min–max range, each individually colored.
  *
  * @param {string} app - App name.
  * @param {AppCodeDuplicationSummary} stats - Duplication statistics.
@@ -348,8 +398,9 @@ function buildAppRow(app: string, stats: AppCodeDuplicationSummary): string {
     </tr>`;
   }
 
-  const color = getColorForDuplicationStatus(stats.percentage);
-  const bg = color === 'green' ? '#e6ffed' : color === 'orange' ? '#fff8e1' : '#ffe6e6';
+  const max = stats.maxPercentage ?? stats.percentage;
+  const rowColor = getColorForDuplicationStatus(max);
+  const bg = rowColor === 'green' ? '#e6ffed' : rowColor === 'orange' ? '#fff8e1' : '#ffe6e6';
 
   return `
 <tr style="background:${bg}">
@@ -357,7 +408,7 @@ function buildAppRow(app: string, stats: AppCodeDuplicationSummary): string {
   <td>${stats.totalLines}</td>
   <td>${stats.duplicateLines}</td>
   <td>${stats.clonesCount}</td>
-  <td style="font-weight:bold; color:${color};">${stats.percentage.toFixed(2)}%</td>
+  <td style="font-weight:bold;">${renderDuplicationCell(stats)}</td>
 </tr>
 <tr><td colspan="5">${renderWorstFiles(app, stats.worstFiles)}</td></tr>`;
 }
@@ -370,6 +421,7 @@ function buildAppRow(app: string, stats: AppCodeDuplicationSummary): string {
  * @param {CombinedCodeDuplicationSummary} summary - Combined duplication summary.
  * @returns {string} HTML string for the full report page.
  */
+// eslint-disable-next-line max-lines-per-function
 export function generateCodeDuplicationHtml(summary: CombinedCodeDuplicationSummary): string {
   const rows = Object.entries(summary.apps)
     .map(([app, stats]) => buildAppRow(app, stats))
@@ -385,6 +437,28 @@ export function generateCodeDuplicationHtml(summary: CombinedCodeDuplicationSumm
           table { border-collapse: collapse; width: 100%; }
           th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; }
           th { background: #f0f0f0; }
+          .coverage-details {
+            margin: 0.3rem 0 0.8rem 1.5rem;
+            padding: 0.5rem;
+            border-left: 3px solid #ccc;
+            background: #fafafa;
+            border-radius: 4px;
+          }
+          .coverage-details summary {
+            font-weight: bold;
+            cursor: pointer;
+          }
+          .coverage-subtable {
+            margin-top: 0.5rem;
+            border: 1px solid #ddd;
+            width: 95%;
+            font-size: 0.9em;
+          }
+          .coverage-empty {
+            margin: 0.5rem 0;
+            color: #888;
+            font-style: italic;
+          }
         </style>
       </head>
       <body>

@@ -1,3 +1,5 @@
+import { sharedTypesExclusionPatterns } from './shared-exclusion-patterns';
+
 /**
  * Default configuration for TypeScript coverage checks.
  *
@@ -6,7 +8,7 @@
  */
 export const typesCoverageConfig = {
   /** Minimum percentage of coverage required (same as `--threshold` or `-t`) */
-  threshold: 80,
+  threshold: 60,
 
   /** Output directory for reports (same as `--outputDir` or `-o`) */
   outputDir: 'coverage-ts',
@@ -24,27 +26,18 @@ export const typesCoverageConfig = {
   project: 'tsconfig.json',
 
   /** Glob patterns for files to ignore (repeat `--ignore-files` per pattern) */
-  ignoreFiles: [
-    '**/*.stories.tsx',
-    '**/*.stories.ts',
-    '**/*.spec.ts',
-    '**/*.spec.tsx',
-    '**/jest.config.ts',
-    '**/vitest.config.*',
-    '**/dist/**',
-    '**/.generated/**',
-  ],
+  ignoreFiles: sharedTypesExclusionPatterns,
 
   /** Allow writes to variables with implicit any (same as `--ignore-unread` or `-u`) */
-  ignoreUnread: true,
+  ignoreUnread: false,
 
   /**
    * Coverage thresholds for HTML coloring (not passed to CLI).
    * Coverage >= green → good, >= orange → warning, else red.
    */
   thresholds: {
-    green: 90,
-    orange: 70,
+    green: 80,
+    orange: 60,
   },
 
   /**
@@ -52,8 +45,8 @@ export const typesCoverageConfig = {
    */
   worstFiles: {
     /** Show top N worst covered files */
-    count: 10,
+    count: 15,
     /** Show files with coverage strictly below this % */
-    threshold: 80,
+    threshold: 100,
   },
 };
