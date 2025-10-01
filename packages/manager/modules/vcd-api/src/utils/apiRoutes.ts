@@ -4,6 +4,14 @@ export const getVcdOrganizationRoute = (id: string) => {
   return `${VCD_ORGANIZATION_ROUTE}/${id}`;
 };
 
+export const getVcdOrganisationNetworkAclList = (id: string) => {
+  return `${VCD_ORGANIZATION_ROUTE}/${id}/networkAcl`;
+};
+
+export const getVcdOrganisationNetworkAcl = (id: string, aclId: string) => {
+  return `${getVcdOrganisationNetworkAclList(id)}/${aclId}`;
+};
+
 export const getVcdResetPasswordRoute = (id: string) =>
   `${VCD_ORGANIZATION_ROUTE}/${id}/password`;
 

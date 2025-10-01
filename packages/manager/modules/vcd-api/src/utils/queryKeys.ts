@@ -1,6 +1,7 @@
 const vcdBaseKey = 'vmwareCloudDirector';
 const vdcBaseKey = 'virtualDataCenter';
 const veeamBackupBaseKey = 'backup';
+const networkAclBaseKey = 'networkAcl';
 export const icebergListingQueryKey = 'servicesListingIceberg';
 
 // Veeam Backup
@@ -18,6 +19,7 @@ export const getVcdOrganizationQueryKey = (id: string) => [
   ...vcdOrganizationListQueryKey,
   id,
 ];
+
 export const getVcdOrganizationBackupQueryKey = (id: string) => [
   ...getVcdOrganizationQueryKey(id),
   'backup',
@@ -41,6 +43,12 @@ export const getVcdDatacentreListQueryKey = (id: string) => [
 export const getVcdDatacentreQueryKey = (id: string, vdcId: string) => [
   ...getVcdDatacentreListQueryKey(id),
   vdcId,
+];
+
+// Network acl
+export const getVcdNetworkAclListQueryKey = (id: string) => [
+  ...getVcdOrganizationQueryKey(id),
+  networkAclBaseKey,
 ];
 
 // VirtualDataCenter resources
