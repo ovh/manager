@@ -46,8 +46,8 @@ export type SecretWithData = Omit<Secret, 'version'> & {
 
 export type SecretConfig = {
   casRequired: boolean;
-  deactivateVersionAfter?: string;
-  maxVersions?: number;
+  deactivateVersionAfter: string;
+  maxVersions: number;
 };
 
 export type SecretConfigReference = {
