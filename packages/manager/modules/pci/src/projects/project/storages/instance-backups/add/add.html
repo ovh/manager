@@ -22,6 +22,49 @@
             ></div>
         </div>
 
+        <div data-ng-if="$ctrl.showAvailabilityZoneSelection">
+            <h5
+                data-translate="pci_project_instances_instance_add_3_az_region_select_title"
+            ></h5>
+            <p
+                data-translate="pci_project_instances_instance_add_3_az_region_select_description"
+                data-translate-values="{guideLink: $ctrl.resilience3azLink}"
+            ></p>
+            <oui-radio-group
+                data-model="$ctrl.availabilityZone.auto"
+                class="mb-3"
+            >
+                <oui-radio data-value="true" class="mb-3">
+                    <oui-radio-label
+                        data-translate="pci_project_instances_instance_add_3_az_region_select_auto_title"
+                    ></oui-radio-label>
+                    <oui-radio-description
+                        data-translate="pci_project_instances_instance_add_3_az_region_select_auto_description"
+                    ></oui-radio-description>
+                </oui-radio>
+
+                <oui-radio data-value="false">
+                    <oui-radio-label
+                        data-translate="pci_project_instances_instance_add_3_az_region_select_manual_title"
+                    ></oui-radio-label>
+                </oui-radio>
+                <div class="row auto-clear">
+                    <oui-select-picker
+                        data-ng-if="!$ctrl.availabilityZone.auto"
+                        class="col-md-3 col-xl-2 my-3"
+                        data-ng-repeat="zone in $ctrl.backupRegion.availabilityZones track by $index"
+                        data-name="{{ zone }}"
+                        data-model="$ctrl.availabilityZone.zone"
+                        data-label="{{ zone }}"
+                        data-values="[zone]"
+                        data-variant="light"
+                        data-required
+                    >
+                    </oui-select-picker>
+                </div>
+            </oui-radio-group>
+        </div>
+
         <div class="oui-field oui-field_error">
             <label
                 for="backup-region"

@@ -11,6 +11,7 @@ import sshKeys from '../../../../../components/project/instance/ssh-keys';
 import trustedZoneBanner from '../../../../../components/trusted-zone-banner';
 
 import instances from '../../../instances/instances.module';
+import instanceAdd from '../../../instances/add/add.module';
 
 import component from './add.component';
 import routing from './add.routing';
@@ -25,6 +26,7 @@ angular
     'ovh-api-services',
     'ui.router',
     instances,
+    instanceAdd,
     flavorBilling,
     flavorsList,
     sshKeys,
