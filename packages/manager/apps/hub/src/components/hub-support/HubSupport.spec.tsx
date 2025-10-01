@@ -1,14 +1,10 @@
 import React from 'react';
-import {
-  render,
-  screen,
-  fireEvent,
-  act,
-  waitFor,
-} from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
-import HubSupport from '@/components/hub-support/HubSupport.component';
+
 import '@testing-library/jest-dom';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
+import HubSupport from '@/components/hub-support/HubSupport.component';
 import { Ticket } from '@/types/support.type';
 
 const { refetch } = vi.hoisted(() => {

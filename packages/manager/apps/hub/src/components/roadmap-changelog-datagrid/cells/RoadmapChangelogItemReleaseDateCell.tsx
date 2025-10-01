@@ -1,12 +1,10 @@
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
+
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+
 import { RoadmapChangelogItem } from '@/types/roadmapchangelog.type';
 
-export const RoadmapChangelogItemReleaseDateCell = ({
-  item,
-}: {
-  item: RoadmapChangelogItem;
-}) => {
+export const RoadmapChangelogItemReleaseDateCell = ({ item }: { item: RoadmapChangelogItem }) => {
   const { i18n } = useTranslation('changelog');
   const locale = i18n?.language?.replace('_', '-');
   return (

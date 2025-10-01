@@ -1,30 +1,20 @@
 import { Suspense, useContext, useEffect, useMemo } from 'react';
+
 import { Await } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
-import {
-  OdsHTMLAnchorElementRel,
-  OdsHTMLAnchorElementTarget,
-} from '@ovhcloud/ods-common-core';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
+
+import { OdsHTMLAnchorElementRel, OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
-import {
-  OsdsLink,
-  OsdsMessage,
-  OsdsSkeleton,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import {
-  ShellContext,
-  useOvhTracking,
-  PageType,
-} from '@ovh-ux/manager-react-shell-client';
+import { OsdsLink, OsdsMessage, OsdsSkeleton, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { PageType, ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { useKyc } from '@/data/hooks/kyc/useKyc';
-import { KycProcedures, KycStatuses } from '@/types/kyc.type';
 import { useHubContext } from '@/pages/dashboard/context';
 import { KYC_INDIA_FEATURE } from '@/pages/dashboard/dashboard.constants';
+import { KycProcedures, KycStatuses } from '@/types/kyc.type';
 
 export default function KycIndiaBanner() {
   const { t } = useTranslation('hub/kyc');
@@ -35,17 +25,10 @@ export default function KycIndiaBanner() {
   const { trackClick, trackPage } = useOvhTracking();
   const { useKycStatus } = useKyc(KycProcedures.INDIA);
   const { data } = useKycStatus({
-    enabled: !(
-      isLoading ||
-      isFreshCustomer ||
-      availability?.[KYC_INDIA_FEATURE]
-    ),
+    enabled: !(isLoading || isFreshCustomer || availability?.[KYC_INDIA_FEATURE]),
   });
 
-  const shouldBeDisplayed = useMemo(
-    () => data?.status === KycStatuses.REQUIRED,
-    [data],
-  );
+  const shouldBeDisplayed = useMemo(() => data?.status === KycStatuses.REQUIRED, [data]);
 
   useEffect(() => {
     if (shouldBeDisplayed && !data?.ticketId) {
@@ -57,10 +40,7 @@ export default function KycIndiaBanner() {
   }, [data]);
 
   const link = useMemo(
-    () =>
-      data?.ticketId
-        ? null
-        : navigation.getURL('dedicated', '#/identity-documents', {}),
+    () => (data?.ticketId ? null : navigation.getURL('dedicated', '#/identity-documents', {})),
     [data],
   );
 
@@ -84,17 +64,9 @@ export default function KycIndiaBanner() {
         color={ODS_THEME_COLOR_INTENT.text}
         className="block"
       >
-        {t(
-          `manager_hub_dashboard_kyc_banner_description${
-            data.ticketId ? '_waiting' : ''
-          }`,
-        )}
+        {t(`manager_hub_dashboard_kyc_banner_description${data.ticketId ? '_waiting' : ''}`)}
         {link && (
-          <Suspense
-            fallback={
-              <OsdsSkeleton data-testid="kyc_india_banner_link_skeleton" />
-            }
-          >
+          <Suspense fallback={<OsdsSkeleton data-testid="kyc_india_banner_link_skeleton" />}>
             <Await
               resolve={link}
               children={(href: string) => (

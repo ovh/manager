@@ -1,13 +1,11 @@
-import { lazy, Suspense, useContext } from 'react';
-import {
-  OsdsChip,
-  OsdsIcon,
-  OsdsLink,
-  OsdsSkeleton,
-  OsdsTable,
-  OsdsText,
-  OsdsTile,
-} from '@ovhcloud/ods-components/react';
+import { Suspense, lazy, useContext } from 'react';
+
+import { Await } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_LEVEL } from '@ovhcloud/ods-common-theming';
 import {
   ODS_CHIP_SIZE,
   ODS_ICON_NAME,
@@ -18,30 +16,29 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import {
-  ShellContext,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { useTranslation } from 'react-i18next';
-import { Await } from 'react-router-dom';
-import { useFetchHubBillingServices } from '@/data/hooks/billingServices/useBillingServices';
+  OsdsChip,
+  OsdsIcon,
+  OsdsLink,
+  OsdsSkeleton,
+  OsdsTable,
+  OsdsText,
+  OsdsTile,
+} from '@ovhcloud/ods-components/react';
+
+import { ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { BillingService } from '@/billing/types/billingServices.type';
+import { useFetchHubBillingServices } from '@/data/hooks/billingServices/useBillingServices';
 import useDateFormat from '@/hooks/dateFormat/useDateFormat';
 import { useHubContext } from '@/pages/dashboard/context';
 import { BILLING_FEATURE } from '@/pages/dashboard/dashboard.constants';
 
-const TileError = lazy(() =>
-  import('@/components/tile-error/TileError.component'),
+const TileError = lazy(() => import('@/components/tile-error/TileError.component'));
+const BillingStatus = lazy(
+  () => import('@/billing/components/billing-status/BillingStatus.component'),
 );
-const BillingStatus = lazy(() =>
-  import('@/billing/components/billing-status/BillingStatus.component'),
-);
-const ServicesActions = lazy(() =>
-  import('@/billing/components/services-actions/ServicesActions.component'),
+const ServicesActions = lazy(
+  () => import('@/billing/components/services-actions/ServicesActions.component'),
 );
 
 export default function PaymentStatus() {
@@ -82,11 +79,7 @@ export default function PaymentStatus() {
 
   return (
     (isLoading || !isFreshCustomer) && (
-      <OsdsTile
-        className="w-full flex flex-col p-6"
-        inline
-        data-testid="payment_status"
-      >
+      <OsdsTile className="w-full flex flex-col p-6" inline data-testid="payment_status">
         <div className="flex mb-2 gap-4 items-start">
           <OsdsText
             className="block flex-1 mb-6"
@@ -152,10 +145,7 @@ export default function PaymentStatus() {
           )}
         </div>
         {isLoading || areBillingServicesLoading ? (
-          <OsdsTable
-            className="block overflow-visible"
-            data-testid="payment_status_skeleton_table"
-          >
+          <OsdsTable className="block overflow-visible" data-testid="payment_status_skeleton_table">
             <table className="table-auto">
               <tbody>
                 {[1, 2, 3, 4].map((line: number) => (
@@ -186,10 +176,7 @@ export default function PaymentStatus() {
                           size={ODS_SKELETON_SIZE.xs}
                         />
                       </div>
-                      <div
-                        className="lg:inline mb-1"
-                        data-testid="service_expiration_date_message"
-                      >
+                      <div className="lg:inline mb-1" data-testid="service_expiration_date_message">
                         <OsdsSkeleton
                           className="block"
                           data-testid="service_date_skeleton"
@@ -213,11 +200,7 @@ export default function PaymentStatus() {
         ) : (
           <>
             {!services ? (
-              <Suspense
-                fallback={
-                  <OsdsSkeleton data-testid="tile_error_skeleton" inline />
-                }
-              >
+              <Suspense fallback={<OsdsSkeleton data-testid="tile_error_skeleton" inline />}>
                 <TileError
                   contrasted
                   message={t('ovh_manager_hub_payment_status_tile_error')}
@@ -236,17 +219,11 @@ export default function PaymentStatus() {
                     {t('ovh_manager_hub_payment_status_tile_no_services')}
                   </OsdsText>
                 ) : (
-                  <OsdsTable
-                    className="block overflow-visible"
-                    data-testid="payment_status_table"
-                  >
+                  <OsdsTable className="block overflow-visible" data-testid="payment_status_table">
                     <table className="table-auto">
                       <tbody>
                         {services.map((service: BillingService) => (
-                          <tr
-                            key={`billing_service_${service.id}`}
-                            data-testid="billing_service"
-                          >
+                          <tr key={`billing_service_${service.id}`} data-testid="billing_service">
                             <td scope="row" className="!p-4">
                               {service.url ? (
                                 <OsdsLink
@@ -273,9 +250,7 @@ export default function PaymentStatus() {
                                 size={ODS_TEXT_SIZE._200}
                                 color={ODS_THEME_COLOR_INTENT.text}
                               >
-                                {tProducts(
-                                  `manager_hub_products_${service.serviceType}`,
-                                )}
+                                {tProducts(`manager_hub_products_${service.serviceType}`)}
                               </OsdsText>
                             </td>
                             <td scope="row" className="!p-4">
@@ -299,35 +274,22 @@ export default function PaymentStatus() {
                                   {service.isOneShot() &&
                                     !service.isResiliated() &&
                                     !service.hasPendingResiliation() && (
-                                      <span data-testid="service_without_expiration_date">
-                                        -
-                                      </span>
+                                      <span data-testid="service_without_expiration_date">-</span>
                                     )}
                                   {service.hasManualRenew() &&
                                     !service.isResiliated() &&
                                     !service.hasDebt() && (
                                       <span data-testid="service_valid_until_date">
-                                        {t(
-                                          'ovh_manager_hub_payment_status_tile_before',
-                                          {
-                                            date: format(
-                                              service.formattedExpiration,
-                                            ),
-                                          },
-                                        )}
+                                        {t('ovh_manager_hub_payment_status_tile_before', {
+                                          date: format(service.formattedExpiration),
+                                        })}
                                       </span>
                                     )}
-                                  {(service.isResiliated() ||
-                                    service.hasPendingResiliation()) && (
+                                  {(service.isResiliated() || service.hasPendingResiliation()) && (
                                     <span data-testid="service_with_termination_date">
-                                      {t(
-                                        'ovh_manager_hub_payment_status_tile_renew',
-                                        {
-                                          date: format(
-                                            service.formattedExpiration,
-                                          ),
-                                        },
-                                      )}
+                                      {t('ovh_manager_hub_payment_status_tile_renew', {
+                                        date: format(service.formattedExpiration),
+                                      })}
                                     </span>
                                   )}
                                   {service.hasAutomaticRenewal() &&
@@ -341,9 +303,7 @@ export default function PaymentStatus() {
                                     )}
                                   {service.hasDebt() && (
                                     <span data-testid="service_with_debt">
-                                      {t(
-                                        'ovh_manager_hub_payment_status_tile_now',
-                                      )}
+                                      {t('ovh_manager_hub_payment_status_tile_now')}
                                     </span>
                                   )}
                                 </div>
@@ -362,10 +322,7 @@ export default function PaymentStatus() {
                                       <ServicesActions
                                         service={service}
                                         autoRenewLink={link}
-                                        trackingPrefix={[
-                                          'activity',
-                                          'payment-status',
-                                        ]}
+                                        trackingPrefix={['activity', 'payment-status']}
                                       />
                                     )}
                                   />

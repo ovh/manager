@@ -1,14 +1,14 @@
 import React from 'react';
-import { describe, expect, it, vi } from 'vitest';
-import { act, fireEvent, render } from '@testing-library/react';
+
 import '@testing-library/jest-dom';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
+import { act, fireEvent, render } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
+import { aFewProductsMocked, lotsOfProductsMocked } from '@/__mocks__/products';
 import Products from '@/components/products/Products.component';
 import { ProductList } from '@/types/services.type';
-import { aFewProductsMocked, lotsOfProductsMocked } from '@/__mocks__/products';
 
 const trackClickMock = vi.fn();
 const url = 'https://fake-link.com';
@@ -65,9 +65,7 @@ const shellContext = {
 
 const renderComponent = (services: ProductList) => {
   return render(
-    <ShellContext.Provider
-      value={(shellContext as unknown) as ShellContextType}
-    >
+    <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
       <Products services={{ status: 'OK', data: services }}></Products>
     </ShellContext.Provider>,
   );
@@ -92,12 +90,8 @@ describe('Products.component', () => {
 
   it('should display correctly a signle product with a single service', async () => {
     const [productName] = Object.keys(aFewProductsMocked.data);
-    const {
-      getByText,
-      getByTestId,
-      findByTestId,
-      queryByTestId,
-    } = renderComponent(aFewProductsMocked);
+    const { getByText, getByTestId, findByTestId, queryByTestId } =
+      renderComponent(aFewProductsMocked);
 
     const productAnchor = await findByTestId('product_link');
     const servicesList = getByTestId('product_services_list');
@@ -115,11 +109,7 @@ describe('Products.component', () => {
 
     expect(trackClickMock).toHaveBeenCalledWith({
       actionType: 'action',
-      actions: [
-        'product',
-        productName.toLowerCase().replace(/_/g, '-'),
-        'show-all',
-      ],
+      actions: ['product', productName.toLowerCase().replace(/_/g, '-'), 'show-all'],
     });
 
     const serviceAnchor = await findByTestId('service_link');
@@ -128,18 +118,12 @@ describe('Products.component', () => {
 
     expect(trackClickMock).toHaveBeenCalledWith({
       actionType: 'action',
-      actions: [
-        'product',
-        productName.toLowerCase().replace(/_/g, '-'),
-        'go-to-service',
-      ],
+      actions: ['product', productName.toLowerCase().replace(/_/g, '-'), 'go-to-service'],
     });
   });
 
   it('should call onClick when link is clicked', async () => {
-    const { getByTestId, getByText, findByTestId } = renderComponent(
-      lotsOfProductsMocked,
-    );
+    const { getByTestId, getByText, findByTestId } = renderComponent(lotsOfProductsMocked);
 
     const expandLink = await findByTestId('expand_link');
     const productsList = getByTestId('products-list-container');
@@ -155,8 +139,6 @@ describe('Products.component', () => {
       actions: ['product', 'show_more'],
     });
 
-    expect(productsList.children.length).toBe(
-      Object.keys(lotsOfProductsMocked.data).length,
-    );
+    expect(productsList.children.length).toBe(Object.keys(lotsOfProductsMocked.data).length);
   });
 });

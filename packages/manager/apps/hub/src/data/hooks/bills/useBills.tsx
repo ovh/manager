@@ -1,5 +1,6 @@
 import { DefinedInitialDataOptions, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
+
 import { getBills } from '@/data/api/bills';
 import { Bills } from '@/types/bills.type';
 

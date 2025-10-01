@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+
 import { CountryCode } from '@ovh-ux/manager-config';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
@@ -7,9 +8,7 @@ type GetGuideLinkProps = {
   subsidiary: CountryCode | string;
 };
 
-function useGuideUtils(
-  guides: Record<string, Partial<Record<CountryCode, string>>>,
-) {
+function useGuideUtils(guides: Record<string, Partial<Record<CountryCode, string>>>) {
   const { shell } = useContext(ShellContext);
   const { environment } = shell;
   const [list, setList] = useState({});
@@ -19,8 +18,7 @@ function useGuideUtils(
     return keys.reduce<Record<string, string>>(
       (links, key: string) => ({
         ...links,
-        [key]:
-          guides[key][subsidiary as CountryCode] ?? guides[key][CountryCode.GB],
+        [key]: guides[key][subsidiary as CountryCode] ?? guides[key][CountryCode.GB],
       }),
       {} as Record<string, string>,
     );
