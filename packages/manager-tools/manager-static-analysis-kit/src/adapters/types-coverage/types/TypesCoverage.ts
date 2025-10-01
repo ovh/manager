@@ -37,6 +37,8 @@ export interface AppCoverageSummary {
   covered: number;
   total: number;
   percentage: number;
+  minPercentage?: number;
+  maxPercentage?: number;
   error?: string;
 
   /** Pre-filtered worst files (below threshold). */

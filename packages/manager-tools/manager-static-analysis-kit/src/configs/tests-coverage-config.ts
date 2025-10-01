@@ -20,7 +20,7 @@ export const testsCoverageConfig = {
     /**
      * Number of least-covered files to report per app.
      */
-    count: 10,
+    count: 15,
   },
 
   /**
