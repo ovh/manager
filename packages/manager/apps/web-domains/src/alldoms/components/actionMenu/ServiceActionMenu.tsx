@@ -6,7 +6,7 @@ import {
   ShellContext,
   useNavigationGetUrl,
 } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ActionEnum, LifecycleActionsEnum } from '@/alldoms/enum/service.enum';
 import { allDomManagerService, RENEW_URL } from '@/alldoms/constants';
 import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
@@ -30,6 +30,7 @@ export default function ServiceActionMenu({
 }: DatagridColumnActionMenuProps) {
   const { t } = useTranslation('allDom');
   const navigate = useNavigate();
+  const location = useLocation();
 
   const {
     environment: { user },
