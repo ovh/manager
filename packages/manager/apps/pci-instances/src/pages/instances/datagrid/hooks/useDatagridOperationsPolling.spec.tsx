@@ -61,7 +61,6 @@ describe('useDatagridOperationsPolling', () => {
       {
         description:
           'with in-progress instance reinstall without copy in-progress',
-        resultMessage: 'should return no operation and not call onComplete',
         operations: [
           {
             section: 'instance',

@@ -32,7 +32,7 @@ export const useDatagridOperationsPolling = (onComplete?: () => void) => {
 
   const onSuccess = useCallback(
     (operations?: TOperation[]) => {
-      if (!operations) return undefined;
+      if (!operations) return;
 
       const newNumberOfDistantBackupCopyRunning = operations
         .filter(
@@ -50,9 +50,7 @@ export const useDatagridOperationsPolling = (onComplete?: () => void) => {
         onComplete();
       }
 
-      return setNumberOfDistantBackupCopyRunning(
-        newNumberOfDistantBackupCopyRunning,
-      );
+      setNumberOfDistantBackupCopyRunning(newNumberOfDistantBackupCopyRunning);
     },
     [numberOfDistantBackupCopyRunning, onComplete, projectId],
   );
