@@ -19,7 +19,7 @@ export const initInterceptor = () => {
     };
   };
 
-  v6.interceptors.response.use(undefined, (error : Record<string, any>) => {
+  v6.interceptors.response.use(undefined, (error: Record<string, any>) => {
     const { response } = error || {};
     const { status, data } = response;
 
