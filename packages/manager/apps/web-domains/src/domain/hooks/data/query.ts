@@ -6,6 +6,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import {
   getDomainAnycastOption,
+  getDomainAuthInfo,
   getDomainResource,
   updateDomainResource,
 } from '@/domain/data/api/domainResources';
@@ -228,5 +229,17 @@ export const useUpdateDnssecService = (
   return {
     updateServiceDnssec: mutate,
     isUpdateIsPending: isPending,
+  };
+};
+
+export const useGetDomainAuthInfo = (serviceName: string) => {
+  const { data, isLoading } = useQuery({
+    queryKey: ['domain', 'service', serviceName, 'authInfo'],
+    queryFn: () => getDomainAuthInfo(serviceName),
+  });
+
+  return {
+    authInfo: data,
+    isAuthInfoLoading: isLoading,
   };
 };

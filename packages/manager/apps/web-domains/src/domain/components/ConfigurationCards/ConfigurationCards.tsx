@@ -15,12 +15,17 @@ import {
 } from '@ovhcloud/ods-react';
 import {
   useGetDnssecStatus,
+  useGetDomainAuthInfo,
   useGetDomainResource,
   useUpdateDnssecService,
 } from '@/domain/hooks/data/query';
 import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
 import DnssecModal from './DnssecModal';
 import DnssecToggleStatus from './DnssecToggleStatus';
+import TransferToggleStatus from './TransferToggleStatus';
+import TransferModal from './TransferModal';
+import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
+import TransferAuthInfoModal from './TransferAuthInfoModal';
 
 interface ConfigurationCardsProps {
   readonly serviceName: string;
@@ -31,9 +36,18 @@ export default function ConfigurationCards({
 }: ConfigurationCardsProps) {
   const { t } = useTranslation(['domain']);
   const { domainResource } = useGetDomainResource(serviceName);
+  const { authInfo, isAuthInfoLoading } = useGetDomainAuthInfo(serviceName);
+  console.log(authInfo)
   const [dnssecModalOpened, setDnssecModalOpened] = React.useState<boolean>(
     false,
   );
+  const [transferModalOpened, setTransferModalOpened] = React.useState<boolean>(
+    false,
+  );
+  const [
+    transferAuthInfoModalOpened,
+    setTransferAuthInfoModalOpened,
+  ] = React.useState<boolean>(false);
   const { dnssecStatus, isDnssecStatusLoading } = useGetDnssecStatus(
     serviceName,
   );
@@ -77,34 +91,33 @@ export default function ConfigurationCards({
         setDnssecModalOpened={setDnssecModalOpened}
       />
       <ManagerTile.Divider />
-      <ManagerTile.Item>
-        <ManagerTile.Item.Label>
-          Protection contre le transfert
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Icon className="pl-3" name={ICON_NAME.circleQuestion} />
-            </TooltipTrigger>
-            <TooltipContent>
-              {t('domain_tab_general_information_tooltip_domain_state')}
-            </TooltipContent>
-          </Tooltip>
-        </ManagerTile.Item.Label>
-        <ManagerTile.Item.Description>
-          <Toggle withLabels={true} className="items-end">
-            <ToggleControl />
-            <ToggleLabel>
-              <Badge color={BADGE_COLOR.success} className="mt-4">
-                Enregistré
-              </Badge>
-            </ToggleLabel>
-          </Toggle>
-        </ManagerTile.Item.Description>
-      </ManagerTile.Item>
+      <TransferToggleStatus
+        domainResource={domainResource}
+        transferModalOpened={transferModalOpened}
+        setTransferModalOpened={setTransferModalOpened}
+        transferAuthInfoModalOpened={transferAuthInfoModalOpened}
+        setTransferAuthInfoModalOpened={setTransferAuthInfoModalOpened}
+      />
       <DnssecModal
         action={dnssecStatus?.status}
         open={dnssecModalOpened}
         updateDnssec={updateDnssec}
-        onClose={() => setDnssecModalOpened(!setDnssecModalOpened)}
+        onClose={() => setDnssecModalOpened(!dnssecModalOpened)}
+      />
+      <TransferModal
+        serviceName={serviceName}
+        action={ProtectionStateEnum.UNPROTECTED}
+        open={transferModalOpened}
+        updateDomain={() => null}
+        onClose={() => setTransferModalOpened(!transferModalOpened)}
+      />
+      <TransferAuthInfoModal
+        authInfo={authInfo}
+        isAuthInfoLoading={isAuthInfoLoading}
+        onClose={() =>
+          setTransferAuthInfoModalOpened(!transferAuthInfoModalOpened)
+        }
+        open={transferAuthInfoModalOpened}
       />
     </ManagerTile>
   );

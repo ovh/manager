@@ -73,6 +73,7 @@ export interface TDomainResource {
     dnsConfiguration?: {
       nameServers: TNameServer[];
     };
+    protectionState: ProtectionStateEnum;
   };
 }
 
