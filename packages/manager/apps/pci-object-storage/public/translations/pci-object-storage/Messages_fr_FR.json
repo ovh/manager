@@ -3,5 +3,6 @@
   "description": "Hébergez votre catalogue de données dans notre solution de stockage d'objets. Vous pouvez gérer ces données à partir de votre application en utilisant des API compatibles S3.",
   "crumb-object-storage": "Object Storage",
   "containerTab": "Mes conteneurs",
-  "usersTab": "Utilisateurs"
+  "usersTab": "Utilisateurs",
+  "settingsTab": "Configurations"
 }
