@@ -52,7 +52,7 @@ export default function ArchivePage() {
     onError: (error: ApiError) => {
       addErrorMessage({
         i18nKey:
-          'pci_projects_project_storages_cold_archive_containers_container_archive_success_message',
+          'pci_projects_project_storages_cold_archive_containers_container_archive_error_message',
         error,
         values: {
           containerName: archiveName,
