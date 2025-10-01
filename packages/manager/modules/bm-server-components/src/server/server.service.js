@@ -505,16 +505,37 @@ export default class Server {
     );
   }
 
-  getAuthorizableBlocks(serviceName) {
+  getFtpBackupAccess(serviceName) {
     return this.OvhHttp.get(
-      '/sws/dedicated/server/{serviceName}/backupFtp/access/authorizableBlocks',
+      '/dedicated/server/{serviceName}/features/backupFTP/access',
       {
-        rootPath: '2api',
+        rootPath: 'apiv6',
         urlParams: {
           serviceName,
         },
       },
     );
+  }
+
+  getFtpBackupAuthorizableBlocks(serviceName) {
+    return this.OvhHttp.get(
+      '/dedicated/server/{serviceName}/features/backupFTP/authorizableBlocks',
+      {
+        rootPath: 'apiv6',
+        urlParams: {
+          serviceName,
+        },
+      },
+    );
+  }
+
+  getAuthorizableBlocks(serviceName) {
+    return this.$q
+      .all([
+        this.getFtpBackupAccess(serviceName),
+        this.getFtpBackupAuthorizableBlocks(serviceName),
+      ])
+      .then((data) => data.flat().sort());
   }
 
   postFtpBackupIp(serviceName, ipBlocksList, ftp, nfs, cifs) {
@@ -581,16 +602,36 @@ export default class Server {
   }
 
   getFtpBackupOrderDetail(serviceName, capacity) {
-    return this.OvhHttp.get(
-      '/sws/dedicated/server/{serviceName}/backupFtp/order/{capacity}/details',
-      {
-        rootPath: '2api',
-        urlParams: {
-          serviceName,
-          capacity,
-        },
+    const options = {
+      rootPath: 'apiv6',
+      urlParams: {
+        serviceName,
       },
-    );
+      params: {
+        capacity,
+      },
+    };
+
+    return this.OvhHttp.get(
+      '/order/dedicated/server/{serviceName}/backupStorage',
+      options,
+    ).then((durations) => {
+      if (durations[0]) {
+        return this.OvhHttp.get(
+          '/order/dedicated/server/{serviceName}/backupStorage/{duration}',
+          {
+            ...options,
+            urlParams: {
+              ...options.urlParams,
+              duration: durations[0],
+            },
+          },
+        ).then((data) => {
+          return { ...data, duration: durations[0] };
+        });
+      }
+      throw new Error('durations not found');
+    });
   }
 
   postFtpBackupOrderDetail(serviceName, duration, capacity) {
