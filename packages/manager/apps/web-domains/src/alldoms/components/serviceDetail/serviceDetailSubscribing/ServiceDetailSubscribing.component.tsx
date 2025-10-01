@@ -10,11 +10,11 @@ import {
   Text,
   TEXT_PRESET,
 } from '@ovhcloud/ods-react';
-import ServiceActionMenu from '@/alldoms/components/ActionMenu/ServiceActionMenu';
+import ServiceActionMenu from '@/alldoms/components/actionMenu/ServiceActionMenu';
 import { AlldomService } from '@/alldoms/types';
-import ServiceDetailSubscribingRenewDate from '@/alldoms/components/ServiceDetail/ServiceDetailSubscribing/ServiceDetailSubscribingRenewDate';
+import ServiceDetailSubscribingRenewDate from '@/alldoms/components/serviceDetail/serviceDetailSubscribing/ServiceDetailSubscribingRenewDate';
 import { ActionEnum } from '@/alldoms/enum/service.enum';
-import ServiceDetailSubscribingRenewMode from './ServiceDetailSubscribingRenewMode';
+import ServiceDetailSubscribingRenewMode from '@/alldoms/components/serviceDetail/serviceDetailSubscribing/ServiceDetailSubscribingRenewMode';
 import { CANCEL_TERMINATE_URL, TERMINATE_URL } from '@/alldoms/constants';
 
 interface ServiceDetailSubscribingProps {
