@@ -4,8 +4,9 @@
   "spaceUsedTableHeader": "Espace utilisé",
   "endpointRegionTableHeader": "Endpoint",
   "cnameTableHeader": "Enregistrement CNAME/TXT",
-  "configurationTitle": "Configuration",
+  "configurationTitle": "Gestion du service",
   "swiftIdLabel": "Id du conteneur",
   "successCopy": "Copié!",
-  "deleteSwiftButton": "Supprimer"
+  "deleteSwiftButton": "Supprimer",
+  "settingsTitle": "Configurations"
 }

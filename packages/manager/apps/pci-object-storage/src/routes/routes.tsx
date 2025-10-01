@@ -144,17 +144,6 @@ export default [
                 '@/pages/object-storage/storage/swiftId/dashboard/Dashboard.page'
               ),
             ),
-            children: [
-              {
-                path: 'delete',
-                id: 'nswift.dashboard.delete',
-                ...lazyLoadRoute(() =>
-                  import(
-                    '@/pages/object-storage/storage/swiftId/dashboard/delete/Delete.modal'
-                  ),
-                ),
-              },
-            ],
           },
           {
             path: 'objects',
@@ -164,6 +153,26 @@ export default [
                 '@/pages/object-storage/storage/swiftId/objects/Objects.page'
               ),
             ),
+          },
+          {
+            path: 'settings',
+            id: 'swift.dashboard.settings',
+            ...lazyLoadRoute(() =>
+              import(
+                '@/pages/object-storage/storage/swiftId/settings/Settings.page'
+              ),
+            ),
+            children: [
+              {
+                path: 'delete',
+                id: 'nswift.dashboard.delete',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/storage/swiftId/settings/delete/Delete.modal'
+                  ),
+                ),
+              },
+            ],
           },
         ],
       },

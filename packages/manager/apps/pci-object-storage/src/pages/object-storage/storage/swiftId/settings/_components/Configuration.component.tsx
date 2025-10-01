@@ -46,6 +46,7 @@ const Configuration = () => {
               <Button
                 data-testid="swift-config-delete-button"
                 variant="destructive"
+                mode="outline"
                 className="w-full mt-4"
                 onClick={() => navigate('./delete')}
               >
