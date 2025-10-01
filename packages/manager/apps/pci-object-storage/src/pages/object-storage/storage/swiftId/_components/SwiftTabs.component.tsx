@@ -15,6 +15,10 @@ const SwiftTabs = ({ swift }: SwiftTabsProps) => {
       label: t('objectsTab'),
       count: swift?.objects?.length || 0,
     },
+    {
+      href: 'settings',
+      label: t('settingsTab'),
+    },
   ].filter((tab) => tab);
 
   return <TabsMenu tabs={tabs} />;
