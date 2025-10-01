@@ -24,6 +24,7 @@ interface DnsLineInputProps {
   readonly onAdd?: (values: { server: string; ip: string }) => void;
   readonly editable: boolean;
   readonly allServers: TNameServer[];
+  readonly type?: string;
 }
 
 export default function DnsLineInput({
@@ -34,6 +35,7 @@ export default function DnsLineInput({
   onAdd,
   editable,
   allServers,
+  type,
 }: DnsLineInputProps) {
   const { t } = useTranslation(['domain', NAMESPACES.ACTIONS]);
 
@@ -107,8 +109,11 @@ export default function DnsLineInput({
   };
 
   return (
-    <div className="flex flex-row gap-6 w-full mb-4">
-      <FormField className="flex-1">
+    <div
+      className={`flex ${type &&
+        'flex-col md:flex-row lg:flex-row'} gap-6 w-full mb-4`}
+    >
+      <FormField>
         {showLabels && (
           <div>
             <FormFieldLabel className="text-sm">

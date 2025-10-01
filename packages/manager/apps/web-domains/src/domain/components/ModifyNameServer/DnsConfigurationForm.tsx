@@ -13,7 +13,6 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import ipaddr from 'ipaddr.js';
 import { useNavigate } from 'react-router-dom';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { TDomainZone } from '@/domain/types/domainZone';
 import { TDomainResource, TNameServer } from '@/domain/types/domainResource';
 import { ActiveConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
@@ -23,8 +22,6 @@ import {
   computeDisplayNameServers,
 } from '@/domain/utils/dnsUtils';
 import NewDnsConfigModal from '@/domain/components/ModifyNameServer/NewDnsConfigModal';
-import { useGenerateUrl } from '@/domain/hooks/generateUrl/useGenerateUrl';
-import { urls } from '@/domain/routes/routes.constant';
 
 interface DnsConfigurationFormProps {
   readonly domainZone: TDomainZone;
@@ -40,11 +37,8 @@ export default function DnsConfigurationForm({
   currentState,
 }: DnsConfigurationFormProps) {
   const { t } = useTranslation('domain');
-  const { t: tCommon } = useTranslation(NAMESPACES.ACTIONS);
   const navigate = useNavigate();
-  const backUrl = useGenerateUrl(urls.domainTabDns, 'path', {
-    serviceName,
-  });
+
   const initialServers = computeDisplayNameServers(
     currentState.dnsConfiguration,
     domainZone,
@@ -69,6 +63,7 @@ export default function DnsConfigurationForm({
         newEntry.ipv6 = ip;
       }
     }
+
     setNameServers((prev) => [...prev, newEntry]);
   };
 
@@ -83,6 +78,11 @@ export default function DnsConfigurationForm({
     nameServers,
     currentState.dnsConfiguration,
   );
+
+  const handleReset = () => {
+    setNameServers(initialServers);
+    setFeedbackMessage(null);
+  };
 
   return (
     <div className="mt-6 ml-8">
@@ -100,6 +100,7 @@ export default function DnsConfigurationForm({
           <React.Fragment key={ns.nameServer}>
             <DnsLineInput
               server={ns.nameServer.trim()}
+              ip={ns.ipv4 || ns.ipv6}
               showLabels={index === 0}
               onRemove={() => handleRemove(index)}
               editable={false}
@@ -110,23 +111,30 @@ export default function DnsConfigurationForm({
         ))}
       </div>
       <DnsLineInput
+        type={'add'}
         server=""
         showLabels={true}
         onAdd={handleAdd}
         editable={true}
         allServers={nameServers}
       />
+      {feedbackMessage && (
+        <Message
+          color={MESSAGE_COLOR.critical}
+          className="mt-6 w-full"
+          dismissible={false}
+        >
+          <MessageIcon name={ICON_NAME.circleXmark} />
+          <MessageBody>{feedbackMessage}</MessageBody>
+        </Message>
+      )}
       <div className="flex gap-4 mt-6">
         <Button
           variant={BUTTON_VARIANT.ghost}
           size={BUTTON_SIZE.sm}
-          onClick={() => {
-            setNameServers(initialServers);
-            setFeedbackMessage(null);
-            navigate(backUrl);
-          }}
+          onClick={() => handleReset()}
         >
-          {tCommon(`${NAMESPACES.ACTIONS}:cancel`)}
+          {t('domain_tab_DNS_modification_button_restore_form')}
         </Button>
         <Button
           size={BUTTON_SIZE.sm}
@@ -134,7 +142,7 @@ export default function DnsConfigurationForm({
           disabled={!canSave}
           data-testid="apply-btn"
         >
-          {tCommon(`${NAMESPACES.ACTIONS}:add`)}
+          {t('domain_tab_DNS_modification_button_apply')}
         </Button>
         <NewDnsConfigModal
           serviceName={serviceName}
@@ -155,16 +163,6 @@ export default function DnsConfigurationForm({
           }
         />
       </div>
-      {feedbackMessage && (
-        <Message
-          color={MESSAGE_COLOR.critical}
-          className="mt-6 w-full"
-          dismissible={false}
-        >
-          <MessageIcon name={ICON_NAME.circleXmark} />
-          <MessageBody>{feedbackMessage}</MessageBody>
-        </Message>
-      )}
     </div>
   );
 }
