@@ -5,23 +5,8 @@ import {
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
 import { PropsWithChildren, useCallback, useMemo } from 'react';
-import {
-  ComboboxGroupItem,
-  ComboboxValueChangeDetails,
-  ICON_NAME,
-  Message,
-  MessageBody,
-  MessageIcon,
-  Text,
-  TEXT_PRESET,
-} from '@ovhcloud/ods-react';
-import {
-  Controller,
-  FormProvider,
-  useForm,
-  useFormContext,
-  useWatch,
-} from 'react-hook-form';
+import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
+import { Controller, FormProvider, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { DefaultError } from '@tanstack/react-query';
 import { formatISO } from 'date-fns';
@@ -35,169 +20,10 @@ import {
 } from '@/pages/instances/action/hooks/useInstanceActionModal';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { isApiErrorResponse } from '@/utils';
-import {
-  TSchemaInput,
-  TSchemaOutput,
-  useInputSchema,
-} from '@/input-validation';
-import { ComboboxField, InputField, ToggleField } from '@/components/form';
-
-const useFormSchema = () => {
-  const {
-    object,
-    discriminatedUnion,
-    literal,
-    string,
-    remove,
-    nullableRequired,
-  } = useInputSchema();
-
-  return useMemo(
-    () =>
-      discriminatedUnion('distantSnapshot', [
-        object({
-          snapshotName: string(),
-          distantSnapshot: literal(true),
-          distantRegion: nullableRequired(string()),
-          distantSnapshotName: nullableRequired(string()),
-        }),
-        object({
-          snapshotName: string(),
-          distantSnapshot: literal(false),
-          distantRegion: remove(string()),
-          distantSnapshotName: remove(string()),
-        }),
-      ]).transform(
-        ({
-          snapshotName,
-          distantSnapshot,
-          distantRegion,
-          distantSnapshotName,
-        }) => ({
-          snapshotName,
-          distantSnapshot: distantSnapshot
-            ? { name: distantSnapshotName, region: distantRegion }
-            : undefined,
-        }),
-      ),
-    [object, discriminatedUnion, literal, string, remove, nullableRequired],
-  );
-};
-
-type TFormFieldsValues = TSchemaInput<ReturnType<typeof useFormSchema>>;
-
-const DistantSnapshotSection = ({
-  projectId,
-  continents,
-}: {
-  projectId: string;
-  continents: ReturnType<typeof useInstanceBackupPrice>['distantContinents'];
-}) => {
-  const { t } = useTranslation('actions');
-  const { control } = useFormContext<TFormFieldsValues>();
-
-  const [open, distantRegion] = useWatch({
-    control,
-    name: ['distantSnapshot', 'distantRegion'],
-  });
-
-  const {
-    price: backupPrice,
-    isLoading: isBackupLoading,
-  } = useInstanceBackupPrice(projectId, distantRegion ?? '');
-
-  const { getFormattedCatalogPrice } = useCatalogPrice(3);
-  const price = useMemo(
-    () => (backupPrice ? getFormattedCatalogPrice(backupPrice) : null),
-    [backupPrice, getFormattedCatalogPrice],
-  );
-
-  const regionItems = useMemo(
-    () =>
-      Array.from(continents.entries()).map<ComboboxGroupItem>(
-        ([label, regions]) => ({
-          label,
-          options: regions.map((region) => ({
-            label: region.label,
-            value: region.name,
-          })),
-        }),
-      ),
-    [continents],
-  );
-
-  const showActivateRegionWarning = useMemo(
-    () =>
-      !!distantRegion &&
-      !!Array.from(continents.values()).find(
-        (regions) =>
-          regions.find((r) => r.name === distantRegion)?.enabled === false,
-      ),
-    [distantRegion, continents],
-  );
-
-  if (!open) return null;
-
-  return (
-    <div className="flex flex-col gap-6 mt-6">
-      <Controller
-        render={({ field, fieldState: { error, invalid } }) => (
-          <InputField
-            label={t(
-              'pci_instances_actions_backup_instance_distant_name_label',
-            )}
-            invalid={invalid}
-            errorMessage={error?.message}
-            type="text"
-            {...field}
-          />
-        )}
-        name="distantSnapshotName"
-      />
-      <div className="flex flex-col gap-4">
-        <Controller
-          render={({
-            field: { value, onChange },
-            fieldState: { error, invalid },
-          }) => {
-            const handleChange = (changeDetails: ComboboxValueChangeDetails) =>
-              onChange(changeDetails.value[0]);
-
-            return (
-              <ComboboxField
-                label={t(
-                  'pci_instances_actions_backup_instance_distant_region_label',
-                )}
-                errorMessage={error?.message}
-                value={value ? [value] : []}
-                items={regionItems}
-                onValueChange={handleChange}
-                invalid={invalid}
-                allowCustomValue={false}
-              />
-            );
-          }}
-          name="distantRegion"
-        />
-        {!!price && !isBackupLoading && (
-          <Text preset={TEXT_PRESET.caption}>
-            {t('pci_instances_actions_backup_instance_price', {
-              price,
-            })}
-          </Text>
-        )}
-      </div>
-      {showActivateRegionWarning && (
-        <Message color="warning" dismissible={false}>
-          <MessageIcon name={ICON_NAME.triangleExclamation} />
-          <MessageBody>
-            {t('pci_instances_actions_backup_instance_region_enable_warning')}
-          </MessageBody>
-        </Message>
-      )}
-    </div>
-  );
-};
+import { TSchemaOutput } from '@/input-validation';
+import { InputField, ToggleField } from '@/components/form';
+import { useBackupFormShema } from '@/pages/instances/action/hooks/useBackupFormShema';
+import { DistantSnapshotSection } from './components/backup-action/DistantSnapshotSection.component';
 
 const InstanceBackupLink = ({ children }: PropsWithChildren) => {
   const projectUrl = useProjectUrl('public-cloud');
@@ -279,7 +105,7 @@ const BackupActionPage = () => {
     },
   );
 
-  const formSchema = useFormSchema();
+  const formSchema = useBackupFormShema();
 
   const { handleSubmit, formState, ...restForm } = useForm({
     resolver: zodResolver(formSchema),
