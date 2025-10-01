@@ -1,16 +1,17 @@
 import { ColumnSort } from '@ovh-ux/manager-react-components';
 
 export type OKMS = {
-  id: string;
-  region: string;
-  kmipEndpoint: string;
-  kmipRsaEndpoint?: string;
-  restEndpoint: string;
-  swaggerEndpoint: string;
-  serviceKeyCount: number;
-  kmipObjectCount: number;
-  secretCount: number;
   iam: IAM;
+  id: string;
+  kmipEndpoint: string;
+  kmipObjectCount: number;
+  kmipRsaEndpoint: string;
+  region: string;
+  restEndpoint: string;
+  secretCount: number;
+  secretVersionCount: number;
+  serviceKeyCount: number;
+  swaggerEndpoint: string;
 };
 
 export type OkmsPublicCa = {
