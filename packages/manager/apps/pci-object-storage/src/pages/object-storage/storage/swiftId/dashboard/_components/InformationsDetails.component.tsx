@@ -45,7 +45,7 @@ const InformationsDetails = ({
             </TableCell>
             <TableCell>
               <p
-                className="truncate lg:max-w-[250px] xl:max-w-[500px]"
+                className="truncate max-w-[650px] xl:max-w-none"
                 title={`${
                   region.services.find((ser) => ser.name === 'storage').endpoint
                 }/${swiftId}`}
@@ -81,7 +81,7 @@ const InformationsDetails = ({
             </TableCell>
             <TableCell>
               <p
-                className="truncate lg:max-w-[250px] xl:max-w-[500px]"
+                className="truncate max-w-[650px] xl:max-w-none"
                 title={swift.staticUrl}
               >
                 {swift.staticUrl}
