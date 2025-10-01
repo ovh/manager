@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   RadioGroup,
   Radio,
@@ -16,7 +17,6 @@ import {
   BUTTON_SIZE,
   MESSAGE_COLOR,
 } from '@ovhcloud/ods-react';
-import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
@@ -25,8 +25,6 @@ import { TDomainResource } from '@/domain/types/domainResource';
 import { ActiveConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 import { TDomainZone } from '@/domain/types/domainZone';
 import config from '@/web-domains.config';
-import { useGenerateUrl } from '@/domain/hooks/generateUrl/useGenerateUrl';
-import { urls } from '@/domain/routes/routes.constant';
 import NewDnsConfigModal from '@/domain/components/ModifyNameServer/NewDnsConfigModal';
 import DnsConfigurationForm from '@/domain/components/ModifyNameServer/DnsConfigurationForm';
 

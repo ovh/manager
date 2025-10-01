@@ -66,11 +66,11 @@ export const changelogLinks: ChangelogLinks = {
     'https://github.com/ovh/hosting-domain-names-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
 };
 
-const ongoingOperationLink: [string, string, Record<string, ParamValueType>] = [
-  'web-ongoing-operations',
-  '/domain',
-  {},
-];
+export const ongoingOperationLink: [
+  string,
+  string,
+  Record<string, ParamValueType>,
+] = ['web-ongoing-operations', '/domain', {}];
 
 export const ERROR_RULES: ComboRule[] = [
   {
@@ -83,7 +83,8 @@ export const ERROR_RULES: ComboRule[] = [
       i18nKey: 'domain_tab_general_information_banner_technical_suspended',
       link: {
         linkDetails: ongoingOperationLink,
-        linki18n: 'domain_tab_general_information_banner_link_ongoing_op',
+        linki18n:
+          'domain_tab_general_information_banner_link_ongoing_operations',
       },
     },
   },
