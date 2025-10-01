@@ -6,6 +6,7 @@ export type DomainBodyParamsType = {
   autoConfigureMX: boolean;
   autoConfigureSPF: boolean;
   autoConfigureDKIM: boolean;
+  autoConfigureAutodiscover: boolean;
   dkimEnabled?: boolean;
 };
 
