@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.15.0...@ovh-ux/manager-bm-server-components@2.16.0) (2025-10-01)
+
+
+### Features
+
+* **dedicated:** removes deprecated  /sws/dedicated/server/ api call ([b1822aa](https://github.com/ovh/manager/commit/b1822aaf02e38cf5def8a9b6768743d37e53a6d3)), closes [#MANAGER-17541](https://github.com/ovh/manager/issues/MANAGER-17541)
+* **dedicated:** updates getAuthorizableBlocks call ([53d0654](https://github.com/ovh/manager/commit/53d065413a4ae8fcb47e6763a157a1fbb73938b5)), closes [#MANAGER-17542](https://github.com/ovh/manager/issues/MANAGER-17542)
+
+
+
+
+
 # [2.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.14.3...@ovh-ux/manager-bm-server-components@2.15.0) (2025-09-22)
 
 

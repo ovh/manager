@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-nutanix-app",
-  "version": "3.0.89",
+  "version": "3.0.90",
   "private": true,
   "description": "OVHcloud Nutanix app",
   "repository": {
@@ -15,7 +15,7 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "@ovh-ux/manager-bm-server-components": "^2.15.0",
+    "@ovh-ux/manager-bm-server-components": "^2.16.0",
     "@ovh-ux/manager-components": "^1.26.0",
     "@ovh-ux/manager-config": "^8.6.2",
     "@ovh-ux/manager-core": "^13.2.9",
