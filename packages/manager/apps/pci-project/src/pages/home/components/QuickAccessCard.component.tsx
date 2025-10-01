@@ -10,7 +10,7 @@ type QuickAccessCardProps = {
 };
 
 function QuickAccessCard({ item, index }: QuickAccessCardProps) {
-  const { t } = useTranslation('project');
+  const { t } = useTranslation('home');
 
   return item.link ? (
     <Link

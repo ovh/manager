@@ -13,7 +13,7 @@ const BillingItem = memo(function BillingItem({
   item,
   isLoading,
 }: BillingItemProps) {
-  const { t } = useTranslation('project');
+  const { t } = useTranslation('home');
 
   if (isLoading) {
     return <BillingItemSkeleton />;
@@ -30,7 +30,7 @@ const BillingItem = memo(function BillingItem({
           <OdsText
             preset="paragraph"
             className="mb-2"
-            aria-label={t('pci_projects_project_voucher_description_aria')}
+            aria-label={t('pci_projects_home_voucher_description_aria')}
           >
             {item.description}
           </OdsText>
@@ -39,7 +39,7 @@ const BillingItem = memo(function BillingItem({
           <OdsText
             preset="heading-4"
             className="block mb-1"
-            aria-label={t('pci_projects_project_available_balance_aria')}
+            aria-label={t('pci_projects_home_available_balance_aria')}
           >
             {item.price}
           </OdsText>
@@ -47,7 +47,7 @@ const BillingItem = memo(function BillingItem({
         {item.validUntil && (
           <OdsText
             preset="caption"
-            aria-label={t('pci_projects_project_expiration_date_aria')}
+            aria-label={t('pci_projects_home_expiration_date_aria')}
           >
             {item.validUntil}
           </OdsText>

@@ -8,13 +8,21 @@ import {
 
 import { useProject, isDiscoveryProject } from '@ovh-ux/manager-pci-common';
 import { useActivationUrl } from '@/hooks/useActivationUrl';
+import { useEligibility } from '@/data/hooks/payment/useEligibility';
+import { TEligibilityPaymentMethod } from '@/data/types/payment/eligibility.type';
 
 function DiscoveryBanner({ className }: { className?: string }) {
-  const { t } = useTranslation('project');
+  const { t } = useTranslation('home');
   const { data: project } = useProject();
   const { goToActivation } = useActivationUrl();
+  const { data: eligibility } = useEligibility();
 
-  if (!project || !isDiscoveryProject(project)) {
+  // Check if user is eligible for free trial (credit payment method)
+  const isEligibleForFreeTrial = eligibility?.paymentMethodsAuthorized?.includes(
+    TEligibilityPaymentMethod.CREDIT,
+  );
+
+  if (!project || !isDiscoveryProject(project) || !isEligibleForFreeTrial) {
     return null;
   }
 
@@ -35,12 +43,12 @@ function DiscoveryBanner({ className }: { className?: string }) {
         <div className="flex items-center justify-between w-full">
           <div className="flex flex-col flex-1">
             <OdsText preset="heading-4">
-              {t('pci_projects_project_banner_discovery_title')}
+              {t('pci_projects_home_banner_discovery_title')}
             </OdsText>
             <OdsText preset="paragraph">
               <span
                 dangerouslySetInnerHTML={{
-                  __html: t('pci_projects_project_banner_discovery_message'),
+                  __html: t('pci_projects_home_banner_discovery_message'),
                 }}
               />
             </OdsText>
@@ -48,7 +56,7 @@ function DiscoveryBanner({ className }: { className?: string }) {
           <OdsButton
             size={ODS_BUTTON_SIZE.md}
             onClick={goToActivation}
-            label={t('pci_projects_project_banner_discovery_cta')}
+            label={t('pci_projects_home_banner_discovery_cta')}
             className="mr-4"
           />
         </div>

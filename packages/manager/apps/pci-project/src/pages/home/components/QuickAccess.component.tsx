@@ -30,12 +30,12 @@ const quickAccessItems: DashboardItem[] = DASHBOARD_QUICK_ACCESS_ITEMS_BASE.map(
 );
 
 function QuickAccess() {
-  const { t } = useTranslation('project');
+  const { t } = useTranslation('home');
 
   return (
     <>
       <OdsText preset={ODS_TEXT_PRESET.heading3}>
-        {t('pci_projects_project_quick_access')}
+        {t('pci_projects_home_quick_access')}
       </OdsText>
       <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-5 m-6">
         {quickAccessItems.map((item, idx) => (
