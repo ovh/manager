@@ -44,7 +44,8 @@ describe('bannerTypeFromFlags (severity + i18n key)', () => {
       i18nKey: 'domain_tab_general_information_banner_technical_suspended',
       link: {
         linkDetails: ['web-ongoing-operations', '/domain', {}],
-        linki18n: 'domain_tab_general_information_banner_link_ongoing_op',
+        linki18n:
+          'domain_tab_general_information_banner_link_ongoing_operations',
       },
     });
   });
@@ -73,7 +74,8 @@ describe('bannerTypeFromFlags (severity + i18n key)', () => {
       i18nKey: 'domain_tab_general_information_banner_technical_suspended',
       link: {
         linkDetails: ['web-ongoing-operations', '/domain', {}],
-        linki18n: 'domain_tab_general_information_banner_link_ongoing_op',
+        linki18n:
+          'domain_tab_general_information_banner_link_ongoing_operations',
       },
     });
   });
