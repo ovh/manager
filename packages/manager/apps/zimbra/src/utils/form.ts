@@ -191,6 +191,7 @@ export const domainSchema = z.object({
   autoConfigureMX: z.boolean(),
   autoConfigureSPF: z.boolean(),
   autoConfigureDKIM: z.boolean(),
+  autoConfigureAutodiscover: z.boolean(),
 });
 
 export type DomainSchema = z.infer<typeof domainSchema>;
