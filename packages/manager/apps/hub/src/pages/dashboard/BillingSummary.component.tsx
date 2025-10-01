@@ -1,4 +1,18 @@
-import React, { lazy, Suspense, useContext, useMemo, useState } from 'react';
+import React, { Suspense, lazy, useContext, useMemo, useState } from 'react';
+
+import { Await } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { OdsHTMLAnchorElementRel, OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_SKELETON_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   OsdsIcon,
   OsdsLink,
@@ -7,35 +21,18 @@ import {
   OsdsSkeleton,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ShellContext,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { useTranslation } from 'react-i18next';
-import {
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_SKELETON_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  OdsHTMLAnchorElementRel,
-  OdsHTMLAnchorElementTarget,
-} from '@ovhcloud/ods-common-core';
-import { Await } from 'react-router-dom';
+
+import { ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { useFetchHubBills } from '@/data/hooks/bills/useBills';
 import { useFetchHubDebt } from '@/data/hooks/debt/useDebt';
-import '@/pages/dashboard/BillingSummary.style.scss';
-import { BILLING_SUMMARY_PERIODS_IN_MONTHS } from '@/pages/dashboard/dashboard.constants';
 import { usePeriodFilter } from '@/hooks/periodFilter/usePeriodFilter';
 import { usePriceFormat } from '@/hooks/priceFormat/usePriceFormat';
+import '@/pages/dashboard/BillingSummary.style.scss';
 import { useHubContext } from '@/pages/dashboard/context';
+import { BILLING_SUMMARY_PERIODS_IN_MONTHS } from '@/pages/dashboard/dashboard.constants';
 
-const TileError = lazy(() =>
-  import('@/components/tile-error/TileError.component'),
-);
+const TileError = lazy(() => import('@/components/tile-error/TileError.component'));
 
 export default function BillingSummary() {
   const { t } = useTranslation('hub/billing');
@@ -59,10 +56,7 @@ export default function BillingSummary() {
   const isDataLoading = isLoading || areBillsLoading || isDebtLoading;
 
   const formattedPrice = usePriceFormat(bills?.total, bills?.currency?.code);
-  const formattedDebtPrice = usePriceFormat(
-    debt?.dueAmount?.value,
-    debt?.dueAmount?.currencyCode,
-  );
+  const formattedDebtPrice = usePriceFormat(debt?.dueAmount?.value, debt?.dueAmount?.currencyCode);
 
   const payDebtLink = useMemo(
     () => navigation.getURL('dedicated', '#/billing/history/debt/all/pay', {}),
@@ -73,9 +67,7 @@ export default function BillingSummary() {
     () =>
       navigation.getURL('dedicated', '#/billing/history', {
         // From BFF's code, it seems that period cannot be null or undefined, so this code could probably be simplified
-        filter: bills?.period
-          ? JSON.stringify(usePeriodFilter(bills.period))
-          : '',
+        filter: bills?.period ? JSON.stringify(usePeriodFilter(bills.period)) : '',
       }),
     [bills?.period],
   );
@@ -89,10 +81,7 @@ export default function BillingSummary() {
 
   return (
     (isDataLoading || !isFreshCustomer) && (
-      <div
-        data-testid="billing_summary"
-        className="manager-hub-billing-summary"
-      >
+      <div data-testid="billing_summary" className="manager-hub-billing-summary">
         <OsdsText
           className="block mb-6"
           level={ODS_TEXT_LEVEL.subheading}
@@ -102,9 +91,7 @@ export default function BillingSummary() {
           {t('hub_billing_summary_title')}
         </OsdsText>
         {!isDataLoading && billsError && (
-          <Suspense
-            fallback={<OsdsSkeleton data-testid="tile_error_skeleton" inline />}
-          >
+          <Suspense fallback={<OsdsSkeleton data-testid="tile_error_skeleton" inline />}>
             <TileError
               contrasted
               message={t('hub_billing_summary_display_bills_error')}
@@ -118,9 +105,7 @@ export default function BillingSummary() {
               data-testid="bills_period_selector"
               className="w-full m-auto max-w-60 px-4 box-border"
               value={months}
-              onOdsValueChange={(event) =>
-                setMonths(Number(event.detail.value as string))
-              }
+              onOdsValueChange={(event) => setMonths(Number(event.detail.value as string))}
             >
               {BILLING_SUMMARY_PERIODS_IN_MONTHS.map((month) => (
                 <OsdsSelectOption
@@ -165,9 +150,7 @@ export default function BillingSummary() {
                           contrasted
                         ></OsdsIcon>
                       </span>
-                      <span className="inline-block">
-                        {t('hub_billing_summary_debt_null')}
-                      </span>
+                      <span className="inline-block">{t('hub_billing_summary_debt_null')}</span>
                     </div>
                   )}
                   {debt?.dueAmount?.value > 0 && (
@@ -177,11 +160,7 @@ export default function BillingSummary() {
                           debt: formattedDebtPrice,
                         })}
                       </span>
-                      <Suspense
-                        fallback={
-                          <OsdsSkeleton data-testid="debt_link_skeleton" />
-                        }
-                      >
+                      <Suspense fallback={<OsdsSkeleton data-testid="debt_link_skeleton" />}>
                         <Await
                           resolve={payDebtLink}
                           children={(link: string) => (
@@ -202,9 +181,7 @@ export default function BillingSummary() {
                   )}
                   {bills?.total === 0 && t('hub_billing_summary_debt_no_bills')}
                 </div>
-                <Suspense
-                  fallback={<OsdsSkeleton data-testid="bills_link_skeleton" />}
-                >
+                <Suspense fallback={<OsdsSkeleton data-testid="bills_link_skeleton" />}>
                   <Await
                     resolve={viewBillsLink}
                     children={(link: string) => (

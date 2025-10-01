@@ -18,42 +18,24 @@ export const LINK = 'https://billing.us.ovhcloud.com/login';
 
 export const NOTIFICATIONS_LINKS = {
   GLOBAL_COMMUNICATION_PHISHING: {
-    DE:
-      'https://help.ovhcloud.com/csm/de-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0030035',
-    ES:
-      'https://help.ovhcloud.com/csm/es-es-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043067',
-    IE:
-      'https://help.ovhcloud.com/csm/en-ie-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043341',
-    IT:
-      'https://help.ovhcloud.com/csm/it-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043072',
-    PL:
-      'https://help.ovhcloud.com/csm/pl-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043071',
-    PT:
-      'https://help.ovhcloud.com/csm/pt-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043070',
-    FR:
-      'https://help.ovhcloud.com/csm/fr-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043069',
-    MA:
-      'https://help.ovhcloud.com/csm/fr-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043069',
-    SN:
-      'https://help.ovhcloud.com/csm/fr-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043069',
-    TN:
-      'https://help.ovhcloud.com/csm/fr-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043069',
-    NL:
-      'https://help.ovhcloud.com/csm/en-nl-documentation-account-and-service-management?id=kb_browse_cat&kb_id=7c798fe1551974502d4c6e78b74219bb',
-    GB:
-      'https://help.ovhcloud.com/csm/en-gb-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043064',
-    CA:
-      'https://help.ovhcloud.com/csm/en-ca-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043351',
-    QC:
-      'https://help.ovhcloud.com/csm/fr-ca-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043068',
-    IN:
-      'https://help.ovhcloud.com/csm/asia-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043063',
-    SG:
-      'https://help.ovhcloud.com/csm/en-sg-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043062',
-    ASIA:
-      'https://help.ovhcloud.com/csm/asia-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043063',
-    US:
-      'https://support.us.ovhcloud.com/hc/en-us/articles/28330641929491-VMware-Cloud-Director-How-to-Use-the-vCD-User-Interface',
+    DE: 'https://help.ovhcloud.com/csm/de-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0030035',
+    ES: 'https://help.ovhcloud.com/csm/es-es-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043067',
+    IE: 'https://help.ovhcloud.com/csm/en-ie-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043341',
+    IT: 'https://help.ovhcloud.com/csm/it-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043072',
+    PL: 'https://help.ovhcloud.com/csm/pl-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043071',
+    PT: 'https://help.ovhcloud.com/csm/pt-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043070',
+    FR: 'https://help.ovhcloud.com/csm/fr-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043069',
+    MA: 'https://help.ovhcloud.com/csm/fr-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043069',
+    SN: 'https://help.ovhcloud.com/csm/fr-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043069',
+    TN: 'https://help.ovhcloud.com/csm/fr-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043069',
+    NL: 'https://help.ovhcloud.com/csm/en-nl-documentation-account-and-service-management?id=kb_browse_cat&kb_id=7c798fe1551974502d4c6e78b74219bb',
+    GB: 'https://help.ovhcloud.com/csm/en-gb-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043064',
+    CA: 'https://help.ovhcloud.com/csm/en-ca-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043351',
+    QC: 'https://help.ovhcloud.com/csm/fr-ca-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043068',
+    IN: 'https://help.ovhcloud.com/csm/asia-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043063',
+    SG: 'https://help.ovhcloud.com/csm/en-sg-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043062',
+    ASIA: 'https://help.ovhcloud.com/csm/asia-account-scams-fraud-phishing?id=kb_article_view&sysparm_article=KB0043063',
+    US: 'https://support.us.ovhcloud.com/hc/en-us/articles/28330641929491-VMware-Cloud-Director-How-to-Use-the-vCD-User-Interface',
   },
 };
 

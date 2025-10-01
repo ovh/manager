@@ -1,7 +1,8 @@
 import { DefinedInitialDataOptions, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { getBillingServices } from '@/data/api/billingServices';
+
 import { HubBillingServices } from '@/billing/types/billingServices.type';
+import { getBillingServices } from '@/data/api/billingServices';
 
 export const useFetchHubBillingServices = (
   options?: Partial<DefinedInitialDataOptions<HubBillingServices, AxiosError>>,

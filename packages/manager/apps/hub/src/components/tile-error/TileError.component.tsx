@@ -1,9 +1,8 @@
 import React from 'react';
-import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_LEVEL } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -11,7 +10,7 @@ import {
   ODS_ICON_SIZE,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
+import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
 
 type Props = {
   message: string;
@@ -20,19 +19,12 @@ type Props = {
   contrasted?: boolean;
 };
 
-export default function TileError({
-  message,
-  refetch,
-  className,
-  contrasted,
-}: Props) {
+export default function TileError({ message, refetch, className, contrasted }: Props) {
   const { t } = useTranslation('hub/error');
   return (
     <div className={`flex gap-1 flex-col items-center p-8 ${className}`}>
       <OsdsText
-        {...(contrasted
-          ? { contrasted }
-          : { color: ODS_THEME_COLOR_INTENT.text })}
+        {...(contrasted ? { contrasted } : { color: ODS_THEME_COLOR_INTENT.text })}
         level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
         className="block mb-6"
         size={ODS_TEXT_SIZE._600}
@@ -40,9 +32,7 @@ export default function TileError({
         {t('manager_hub_error_tile_oops')}
       </OsdsText>
       <OsdsText
-        {...(contrasted
-          ? { contrasted }
-          : { color: ODS_THEME_COLOR_INTENT.text })}
+        {...(contrasted ? { contrasted } : { color: ODS_THEME_COLOR_INTENT.text })}
         level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
         size={ODS_TEXT_SIZE._400}
         className="block mb-5"
@@ -52,9 +42,7 @@ export default function TileError({
       <OsdsButton
         onClick={refetch}
         size={ODS_BUTTON_SIZE.sm}
-        {...(contrasted
-          ? { contrasted }
-          : { color: ODS_THEME_COLOR_INTENT.primary })}
+        {...(contrasted ? { contrasted } : { color: ODS_THEME_COLOR_INTENT.primary })}
         variant={ODS_BUTTON_VARIANT.ghost}
         inline
       >
@@ -64,9 +52,7 @@ export default function TileError({
             hoverable
             name={ODS_ICON_NAME.REFRESH}
             size={ODS_ICON_SIZE.xs}
-            {...(contrasted
-              ? { contrasted }
-              : { color: ODS_THEME_COLOR_INTENT.primary })}
+            {...(contrasted ? { contrasted } : { color: ODS_THEME_COLOR_INTENT.primary })}
           />
         </span>
       </OsdsButton>

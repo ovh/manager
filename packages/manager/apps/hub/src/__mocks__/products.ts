@@ -1,4 +1,4 @@
-import { ProductList, HubProduct } from '@/types/services.type';
+import { HubProduct, ProductList } from '@/types/services.type';
 
 export const aFewProductsMocked: ProductList = {
   count: 1,
@@ -27,8 +27,7 @@ export const aFewProductsMocked: ProductList = {
             EU: 'dedicated',
             US: 'dedicated',
           },
-          url:
-            'https://www.ovh.com/manager/#/dedicated/configuration/cdn/displayName1',
+          url: 'https://www.ovh.com/manager/#/dedicated/configuration/cdn/displayName1',
         },
       ],
     },
@@ -62,8 +61,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'dedicated',
             US: 'dedicated',
           },
-          url:
-            'https://www.ovh.com/manager/#/dedicated/configuration/cdn/cdn_dedicated_1',
+          url: 'https://www.ovh.com/manager/#/dedicated/configuration/cdn/cdn_dedicated_1',
         },
         {
           propertyId: 'service',
@@ -86,8 +84,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'dedicated',
             US: 'dedicated',
           },
-          url:
-            'https://www.ovh.com/manager/#/dedicated/configuration/cdn/cdn_dedicated_2',
+          url: 'https://www.ovh.com/manager/#/dedicated/configuration/cdn/cdn_dedicated_2',
         },
         {
           propertyId: 'service',
@@ -110,8 +107,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'dedicated',
             US: 'dedicated',
           },
-          url:
-            'https://www.ovh.com/manager/#/dedicated/configuration/cdn/cdn_dedicated_3',
+          url: 'https://www.ovh.com/manager/#/dedicated/configuration/cdn/cdn_dedicated_3',
         },
       ],
     },
@@ -139,8 +135,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'public-cloud',
             US: 'public-cloud',
           },
-          url:
-            'https://www.ovh.com/manager/#/public-cloud/pci/projects/fakeName1',
+          url: 'https://www.ovh.com/manager/#/public-cloud/pci/projects/fakeName1',
         },
         {
           propertyId: 'project_id',
@@ -163,8 +158,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'public-cloud',
             US: 'public-cloud',
           },
-          url:
-            'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-2',
+          url: 'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-2',
         },
         {
           propertyId: 'project_id',
@@ -187,8 +181,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'public-cloud',
             US: 'public-cloud',
           },
-          url:
-            'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-3',
+          url: 'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-3',
         },
         {
           propertyId: 'project_id',
@@ -211,8 +204,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'public-cloud',
             US: 'public-cloud',
           },
-          url:
-            'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-4',
+          url: 'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-4',
         },
         {
           propertyId: 'project_id',
@@ -235,8 +227,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'public-cloud',
             US: 'public-cloud',
           },
-          url:
-            'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-5',
+          url: 'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-5',
         },
         {
           propertyId: 'project_id',
@@ -259,8 +250,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'public-cloud',
             US: 'public-cloud',
           },
-          url:
-            'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-6',
+          url: 'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-6',
         },
         {
           propertyId: 'project_id',
@@ -283,8 +273,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'public-cloud',
             US: 'public-cloud',
           },
-          url:
-            'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-7',
+          url: 'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-7',
         },
         {
           propertyId: 'project_id',
@@ -307,8 +296,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'public-cloud',
             US: 'public-cloud',
           },
-          url:
-            'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-8',
+          url: 'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-8',
         },
       ],
     },
@@ -457,8 +445,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'dedicated',
             US: 'dedicated',
           },
-          url:
-            'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-1',
+          url: 'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-1',
         },
         {
           propertyId: 'serviceName',
@@ -482,8 +469,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'dedicated',
             US: 'dedicated',
           },
-          url:
-            'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-2',
+          url: 'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-2',
         },
         {
           propertyId: 'serviceName',
@@ -507,8 +493,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'dedicated',
             US: 'dedicated',
           },
-          url:
-            'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-3',
+          url: 'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-3',
         },
         {
           propertyId: 'serviceName',
@@ -532,8 +517,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'dedicated',
             US: 'dedicated',
           },
-          url:
-            'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-4',
+          url: 'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-4',
         },
         {
           propertyId: 'serviceName',
@@ -557,8 +541,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'dedicated',
             US: 'dedicated',
           },
-          url:
-            'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-5',
+          url: 'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-5',
         },
         {
           propertyId: 'serviceName',
@@ -582,8 +565,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'dedicated',
             US: 'dedicated',
           },
-          url:
-            'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-6',
+          url: 'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-6',
         },
         {
           propertyId: 'serviceName',
@@ -607,8 +589,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'dedicated',
             US: 'dedicated',
           },
-          url:
-            'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-7',
+          url: 'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-7',
         },
         {
           propertyId: 'serviceName',
@@ -632,8 +613,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'dedicated',
             US: 'dedicated',
           },
-          url:
-            'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-8',
+          url: 'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-8',
         },
         {
           propertyId: 'serviceName',
@@ -657,8 +637,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'dedicated',
             US: 'dedicated',
           },
-          url:
-            'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-9',
+          url: 'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-9',
         },
       ],
     },
@@ -682,8 +661,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'dedicated',
             US: 'dedicated',
           },
-          url:
-            'https://www.ovh.com/manager/#/dedicated/configuration/housing/dedicated_housing_1',
+          url: 'https://www.ovh.com/manager/#/dedicated/configuration/housing/dedicated_housing_1',
         },
       ],
     },
@@ -711,8 +689,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'dedicated',
             US: 'dedicated',
           },
-          url:
-            'https://www.ovh.com/manager/#/dedicated/paas/nasha/nasha_1/partitions',
+          url: 'https://www.ovh.com/manager/#/dedicated/paas/nasha/nasha_1/partitions',
         },
         {
           propertyId: 'serviceName',
@@ -735,8 +712,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'dedicated',
             US: 'dedicated',
           },
-          url:
-            'https://www.ovh.com/manager/#/dedicated/paas/nasha/nasha_2/partitions',
+          url: 'https://www.ovh.com/manager/#/dedicated/paas/nasha/nasha_2/partitions',
         },
       ],
     },
@@ -764,8 +740,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'dedicated',
             US: 'dedicated',
           },
-          url:
-            'https://www.ovh.com/manager/#/dedicated/configuration/server/dedicated_server_1',
+          url: 'https://www.ovh.com/manager/#/dedicated/configuration/server/dedicated_server_1',
         },
         {
           propertyId: 'name',
@@ -788,8 +763,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'dedicated',
             US: 'dedicated',
           },
-          url:
-            'https://www.ovh.com/manager/#/dedicated/configuration/server/dedicated_server_2',
+          url: 'https://www.ovh.com/manager/#/dedicated/configuration/server/dedicated_server_2',
         },
         {
           propertyId: 'name',
@@ -812,8 +786,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'dedicated',
             US: 'dedicated',
           },
-          url:
-            'https://www.ovh.com/manager/#/dedicated/configuration/server/dedicated_server_3',
+          url: 'https://www.ovh.com/manager/#/dedicated/configuration/server/dedicated_server_3',
         },
         {
           propertyId: 'name',
@@ -836,8 +809,7 @@ export const lotsOfProductsMocked: ProductList = {
             EU: 'dedicated',
             US: 'dedicated',
           },
-          url:
-            'https://www.ovh.com/manager/#/dedicated/configuration/server/dedicated_server_4',
+          url: 'https://www.ovh.com/manager/#/dedicated/configuration/server/dedicated_server_4',
         },
       ],
     },
@@ -870,8 +842,7 @@ export const lotsOfProductsParsedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-1',
+        url: 'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-1',
       },
       {
         propertyId: 'serviceName',
@@ -895,8 +866,7 @@ export const lotsOfProductsParsedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-2',
+        url: 'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-2',
       },
       {
         propertyId: 'serviceName',
@@ -920,8 +890,7 @@ export const lotsOfProductsParsedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-3',
+        url: 'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-3',
       },
       {
         propertyId: 'serviceName',
@@ -945,8 +914,7 @@ export const lotsOfProductsParsedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-4',
+        url: 'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-4',
       },
     ],
     type: 'DEDICATED_CLOUD',
@@ -977,8 +945,7 @@ export const lotsOfProductsParsedMocked: HubProduct[] = [
           EU: 'public-cloud',
           US: 'public-cloud',
         },
-        url:
-          'https://www.ovh.com/manager/#/public-cloud/pci/projects/fakeName1',
+        url: 'https://www.ovh.com/manager/#/public-cloud/pci/projects/fakeName1',
       },
       {
         propertyId: 'project_id',
@@ -1001,8 +968,7 @@ export const lotsOfProductsParsedMocked: HubProduct[] = [
           EU: 'public-cloud',
           US: 'public-cloud',
         },
-        url:
-          'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-2',
+        url: 'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-2',
       },
       {
         propertyId: 'project_id',
@@ -1025,8 +991,7 @@ export const lotsOfProductsParsedMocked: HubProduct[] = [
           EU: 'public-cloud',
           US: 'public-cloud',
         },
-        url:
-          'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-3',
+        url: 'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-3',
       },
       {
         propertyId: 'project_id',
@@ -1049,8 +1014,7 @@ export const lotsOfProductsParsedMocked: HubProduct[] = [
           EU: 'public-cloud',
           US: 'public-cloud',
         },
-        url:
-          'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-4',
+        url: 'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-4',
       },
     ],
     type: 'CLOUD_PROJECT',
@@ -1181,8 +1145,7 @@ export const lotsOfProductsParsedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/configuration/server/dedicated_server_1',
+        url: 'https://www.ovh.com/manager/#/dedicated/configuration/server/dedicated_server_1',
       },
       {
         propertyId: 'name',
@@ -1205,8 +1168,7 @@ export const lotsOfProductsParsedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/configuration/server/dedicated_server_2',
+        url: 'https://www.ovh.com/manager/#/dedicated/configuration/server/dedicated_server_2',
       },
       {
         propertyId: 'name',
@@ -1229,8 +1191,7 @@ export const lotsOfProductsParsedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/configuration/server/dedicated_server_3',
+        url: 'https://www.ovh.com/manager/#/dedicated/configuration/server/dedicated_server_3',
       },
       {
         propertyId: 'name',
@@ -1253,8 +1214,7 @@ export const lotsOfProductsParsedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/configuration/server/dedicated_server_4',
+        url: 'https://www.ovh.com/manager/#/dedicated/configuration/server/dedicated_server_4',
       },
     ],
     type: 'DEDICATED_SERVER',
@@ -1285,8 +1245,7 @@ export const lotsOfProductsParsedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/configuration/cdn/cdn_dedicated_1',
+        url: 'https://www.ovh.com/manager/#/dedicated/configuration/cdn/cdn_dedicated_1',
       },
       {
         propertyId: 'service',
@@ -1309,8 +1268,7 @@ export const lotsOfProductsParsedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/configuration/cdn/cdn_dedicated_2',
+        url: 'https://www.ovh.com/manager/#/dedicated/configuration/cdn/cdn_dedicated_2',
       },
       {
         propertyId: 'service',
@@ -1333,8 +1291,7 @@ export const lotsOfProductsParsedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/configuration/cdn/cdn_dedicated_3',
+        url: 'https://www.ovh.com/manager/#/dedicated/configuration/cdn/cdn_dedicated_3',
       },
     ],
     type: 'CDN_DEDICATED',
@@ -1365,8 +1322,7 @@ export const lotsOfProductsParsedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/paas/nasha/nasha_1/partitions',
+        url: 'https://www.ovh.com/manager/#/dedicated/paas/nasha/nasha_1/partitions',
       },
       {
         propertyId: 'serviceName',
@@ -1389,8 +1345,7 @@ export const lotsOfProductsParsedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/paas/nasha/nasha_2/partitions',
+        url: 'https://www.ovh.com/manager/#/dedicated/paas/nasha/nasha_2/partitions',
       },
     ],
     type: 'DEDICATED_NASHA',
@@ -1425,8 +1380,7 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-1',
+        url: 'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-1',
       },
       {
         propertyId: 'serviceName',
@@ -1450,8 +1404,7 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-2',
+        url: 'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-2',
       },
       {
         propertyId: 'serviceName',
@@ -1475,8 +1428,7 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-3',
+        url: 'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-3',
       },
       {
         propertyId: 'serviceName',
@@ -1500,8 +1452,7 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-4',
+        url: 'https://www.ovh.com/manager/#/dedicated/configuration/dedicated_cloud/pcc-4',
       },
     ],
     type: 'DEDICATED_CLOUD',
@@ -1532,8 +1483,7 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
           EU: 'public-cloud',
           US: 'public-cloud',
         },
-        url:
-          'https://www.ovh.com/manager/#/public-cloud/pci/projects/fakeName1',
+        url: 'https://www.ovh.com/manager/#/public-cloud/pci/projects/fakeName1',
       },
       {
         propertyId: 'project_id',
@@ -1556,8 +1506,7 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
           EU: 'public-cloud',
           US: 'public-cloud',
         },
-        url:
-          'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-2',
+        url: 'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-2',
       },
       {
         propertyId: 'project_id',
@@ -1580,8 +1529,7 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
           EU: 'public-cloud',
           US: 'public-cloud',
         },
-        url:
-          'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-3',
+        url: 'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-3',
       },
       {
         propertyId: 'project_id',
@@ -1604,8 +1552,7 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
           EU: 'public-cloud',
           US: 'public-cloud',
         },
-        url:
-          'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-4',
+        url: 'https://www.ovh.com/manager/#/public-cloud/pci/projects/pci-project-4',
       },
     ],
     type: 'CLOUD_PROJECT',
@@ -1736,8 +1683,7 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/configuration/server/dedicated_server_1',
+        url: 'https://www.ovh.com/manager/#/dedicated/configuration/server/dedicated_server_1',
       },
       {
         propertyId: 'name',
@@ -1760,8 +1706,7 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/configuration/server/dedicated_server_2',
+        url: 'https://www.ovh.com/manager/#/dedicated/configuration/server/dedicated_server_2',
       },
       {
         propertyId: 'name',
@@ -1784,8 +1729,7 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/configuration/server/dedicated_server_3',
+        url: 'https://www.ovh.com/manager/#/dedicated/configuration/server/dedicated_server_3',
       },
       {
         propertyId: 'name',
@@ -1808,8 +1752,7 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/configuration/server/dedicated_server_4',
+        url: 'https://www.ovh.com/manager/#/dedicated/configuration/server/dedicated_server_4',
       },
     ],
     type: 'DEDICATED_SERVER',
@@ -1840,8 +1783,7 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/configuration/cdn/cdn_dedicated_1',
+        url: 'https://www.ovh.com/manager/#/dedicated/configuration/cdn/cdn_dedicated_1',
       },
       {
         propertyId: 'service',
@@ -1864,8 +1806,7 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/configuration/cdn/cdn_dedicated_2',
+        url: 'https://www.ovh.com/manager/#/dedicated/configuration/cdn/cdn_dedicated_2',
       },
       {
         propertyId: 'service',
@@ -1888,8 +1829,7 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/configuration/cdn/cdn_dedicated_3',
+        url: 'https://www.ovh.com/manager/#/dedicated/configuration/cdn/cdn_dedicated_3',
       },
     ],
     type: 'CDN_DEDICATED',
@@ -1920,8 +1860,7 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/paas/nasha/nasha_1/partitions',
+        url: 'https://www.ovh.com/manager/#/dedicated/paas/nasha/nasha_1/partitions',
       },
       {
         propertyId: 'serviceName',
@@ -1944,8 +1883,7 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/paas/nasha/nasha_2/partitions',
+        url: 'https://www.ovh.com/manager/#/dedicated/paas/nasha/nasha_2/partitions',
       },
     ],
     type: 'DEDICATED_NASHA',
@@ -1972,8 +1910,7 @@ export const lotsOfProductsParsedExpandedMocked: HubProduct[] = [
           EU: 'dedicated',
           US: 'dedicated',
         },
-        url:
-          'https://www.ovh.com/manager/#/dedicated/configuration/housing/dedicated_housing_1',
+        url: 'https://www.ovh.com/manager/#/dedicated/configuration/housing/dedicated_housing_1',
       },
     ],
     type: 'DEDICATED_HOUSING',

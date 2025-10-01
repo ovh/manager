@@ -1,4 +1,20 @@
-import { lazy, Suspense, useContext, useMemo } from 'react';
+import { Suspense, lazy, useContext, useMemo } from 'react';
+
+import { Await } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { OdsHTMLAnchorElementRel, OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_LEVEL } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_CHIP_SIZE,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_SKELETON_SIZE,
+  ODS_TEXT_COLOR_HUE,
+  ODS_TEXT_SIZE,
+  ODS_TILE_VARIANT,
+} from '@ovhcloud/ods-components';
 import {
   OsdsChip,
   OsdsIcon,
@@ -7,43 +23,16 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_TILE_VARIANT,
-  ODS_CHIP_SIZE,
-  ODS_ICON_NAME,
-  ODS_TEXT_SIZE,
-  ODS_ICON_SIZE,
-  ODS_TEXT_COLOR_HUE,
-  ODS_SKELETON_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
-import {
-  OdsHTMLAnchorElementRel,
-  OdsHTMLAnchorElementTarget,
-} from '@ovhcloud/ods-common-core';
-import {
-  ButtonType,
-  ShellContext,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { Await } from 'react-router-dom';
-import { useLastOrderTracking } from '@/data/hooks/lastOrderTracking/useLastOrderTracking';
-import {
-  ERROR_STATUS,
-  WAITING_PAYMENT_LABEL,
-  NOT_PAID,
-} from '@/data/api/order/order.constants';
-import useDateFormat from '@/hooks/dateFormat/useDateFormat';
-import { LastOrderTrackingResponse, OrderHistory } from '@/types/order.type';
-import { useHubContext } from '@/pages/dashboard/context';
 
-const TileError = lazy(() =>
-  import('@/components/tile-error/TileError.component'),
-);
+import { ButtonType, ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { ERROR_STATUS, NOT_PAID, WAITING_PAYMENT_LABEL } from '@/data/api/order/order.constants';
+import { useLastOrderTracking } from '@/data/hooks/lastOrderTracking/useLastOrderTracking';
+import useDateFormat from '@/hooks/dateFormat/useDateFormat';
+import { useHubContext } from '@/pages/dashboard/context';
+import { LastOrderTrackingResponse, OrderHistory } from '@/types/order.type';
+
+const TileError = lazy(() => import('@/components/tile-error/TileError.component'));
 
 export default function HubOrderTracking() {
   const { t } = useTranslation('hub/order');
@@ -59,12 +48,7 @@ export default function HubOrderTracking() {
   const { trackClick } = useOvhTracking();
 
   const orderTrackingLinkAsync = useMemo(
-    () =>
-      navigation.getURL(
-        'dedicated',
-        `#/billing/order/${orderDataResponse?.orderId}`,
-        {},
-      ),
+    () => navigation.getURL('dedicated', `#/billing/order/${orderDataResponse?.orderId}`, {}),
     [orderDataResponse?.orderId],
   );
 
@@ -77,33 +61,25 @@ export default function HubOrderTracking() {
     if (!orderData?.date || !orderData?.status) return undefined;
     return {
       date: orderData.date,
-      label:
-        orderData.status === 'delivered'
-          ? 'INVOICE_IN_PROGRESS'
-          : 'custom_creation',
+      label: orderData.status === 'delivered' ? 'INVOICE_IN_PROGRESS' : 'custom_creation',
     };
   };
 
   const getLatestStatus = (history: OrderHistory[]) => {
     return history.reduce((latest, item) => {
-      return new Date(item.date).getTime() > new Date(latest.date).getTime()
-        ? item
-        : latest;
+      return new Date(item.date).getTime() > new Date(latest.date).getTime() ? item : latest;
     });
   };
 
   const currentStatus = useMemo(() => {
     if (!orderDataResponse || isLastOrderLoading) return undefined;
-    if (!orderDataResponse.history?.length)
-      return getInitialStatus(orderDataResponse);
+    if (!orderDataResponse.history?.length) return getInitialStatus(orderDataResponse);
     return getLatestStatus(orderDataResponse.history);
   }, [orderDataResponse, isLastOrderLoading]);
 
   const displayedLabel = useMemo(() => {
     if (!currentStatus) return undefined;
-    return orderDataResponse?.status === NOT_PAID
-      ? WAITING_PAYMENT_LABEL
-      : currentStatus.label;
+    return orderDataResponse?.status === NOT_PAID ? WAITING_PAYMENT_LABEL : currentStatus.label;
   }, [currentStatus, orderDataResponse?.status]);
 
   const isWaitingPayment = displayedLabel === WAITING_PAYMENT_LABEL;
@@ -155,11 +131,7 @@ export default function HubOrderTracking() {
                 className="mb-6"
                 data-testid="order_info_skeleton"
               ></OsdsSkeleton>
-              <OsdsSkeleton
-                inline
-                randomized
-                data-testid="orders_link_skeleton"
-              ></OsdsSkeleton>
+              <OsdsSkeleton inline randomized data-testid="orders_link_skeleton"></OsdsSkeleton>
             </>
           ) : (
             <>
@@ -176,14 +148,8 @@ export default function HubOrderTracking() {
                           color={ODS_THEME_COLOR_INTENT.primary}
                           className="font-bold flex flex-col items-center justify-center mb-6 h-[40px]"
                         >
-                          <span
-                            slot="start"
-                            className="flex flex-col items-center justify-center"
-                          >
-                            <OsdsChip
-                              size={ODS_CHIP_SIZE.sm}
-                              color={ODS_THEME_COLOR_INTENT.info}
-                            >
+                          <span slot="start" className="flex flex-col items-center justify-center">
+                            <OsdsChip size={ODS_CHIP_SIZE.sm} color={ODS_THEME_COLOR_INTENT.info}>
                               {t('hub_order_tracking_order_id', {
                                 orderId: orderDataResponse.orderId,
                               })}
@@ -208,8 +174,7 @@ export default function HubOrderTracking() {
                         size={ODS_ICON_SIZE.xxs}
                         color={ODS_THEME_COLOR_INTENT.text}
                         name={
-                          !ERROR_STATUS.includes(displayedLabel) &&
-                          !isWaitingPayment
+                          !ERROR_STATUS.includes(displayedLabel) && !isWaitingPayment
                             ? ODS_ICON_NAME.OK
                             : ODS_ICON_NAME.CLOSE
                         }
@@ -241,9 +206,7 @@ export default function HubOrderTracking() {
                   </Suspense>
                 </>
               )}
-              {(error ||
-                !orderDataResponse?.date ||
-                !orderDataResponse?.status) && (
+              {(error || !orderDataResponse?.date || !orderDataResponse?.status) && (
                 <TileError
                   message={t('hub_order_tracking_error')}
                   className={`!p-1`}

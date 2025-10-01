@@ -1,9 +1,11 @@
 import React, { PropsWithChildren } from 'react';
-import { renderHook, waitFor } from '@testing-library/react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { renderHook, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import { useFetchHubBills } from '@/data/hooks/bills/useBills';
+
 import * as BillsApi from '@/data/api/bills';
+import { useFetchHubBills } from '@/data/hooks/bills/useBills';
 import { Bills } from '@/types/bills.type';
 
 const queryClient = new QueryClient();
@@ -15,9 +17,7 @@ const wrapper = ({ children }: PropsWithChildren) => (
 describe('useFetchHubBills', () => {
   it('returns no bills summary if api returned none', async () => {
     const bills: Bills | null = null;
-    const getBills = vi
-      .spyOn(BillsApi, 'getBills')
-      .mockReturnValue(Promise.resolve(bills));
+    const getBills = vi.spyOn(BillsApi, 'getBills').mockReturnValue(Promise.resolve(bills));
 
     const { result } = renderHook(() => useFetchHubBills(1), {
       wrapper,

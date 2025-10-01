@@ -1,7 +1,4 @@
-export const productListingPages: Record<
-  string,
-  { application: string; hash: string }
-> = {
+export const productListingPages: Record<string, { application: string; hash: string }> = {
   CDN_DEDICATED: {
     application: 'dedicated',
     hash: '#/configuration/cdn',

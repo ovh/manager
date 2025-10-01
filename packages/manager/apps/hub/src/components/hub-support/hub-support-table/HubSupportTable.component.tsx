@@ -1,6 +1,9 @@
-import { OsdsTable } from '@ovhcloud/ods-components/react';
 import React, { FunctionComponent } from 'react';
+
+import { OsdsTable } from '@ovhcloud/ods-components/react';
+
 import { Ticket } from '@/types/support.type';
+
 import { MAX_TICKETS_TO_DISPLAY } from '../HubSupport.constants';
 import { HubSupportTableItem } from './hub-support-table-item/HubSupportTableItem.component';
 
@@ -16,10 +19,7 @@ export const HubSupportTable: FunctionComponent<Props> = ({ tickets }) => {
       <table className="table-auto">
         <tbody>
           {limitedTickets.map((ticketItem) => (
-            <HubSupportTableItem
-              key={ticketItem.ticketId}
-              ticket={ticketItem}
-            />
+            <HubSupportTableItem key={ticketItem.ticketId} ticket={ticketItem} />
           ))}
         </tbody>
       </table>

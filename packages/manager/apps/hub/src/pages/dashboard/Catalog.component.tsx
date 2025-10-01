@@ -1,18 +1,18 @@
+import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { Card } from '@ovh-ux/manager-react-components';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { OsdsText } from '@ovhcloud/ods-components/react';
+
 import {
   ODS_THEME_COLOR_HUE,
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
 } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_TEXT_COLOR_HUE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import React from 'react';
+import { ODS_TEXT_COLOR_HUE, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+
+import { Card } from '@ovh-ux/manager-react-components';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import TileGridSkeleton from '@/components/tile-grid-skeleton/TileGridSkeleton.component';
 import { useFetchHubCatalog } from '@/data/hooks/catalog/useCatalog';
 import { CatalogItem } from '@/types/catalog';
@@ -61,10 +61,7 @@ export default function Catalog() {
           {Object.keys(catalog).map((category) => {
             const items = catalog[category];
             return (
-              <div
-                key={`${category}_products_list`}
-                data-testid="catalog_products_list"
-              >
+              <div key={`${category}_products_list`} data-testid="catalog_products_list">
                 <OsdsText
                   className="block mb-4 mt-6"
                   level={ODS_TEXT_LEVEL.subheading}
@@ -86,9 +83,7 @@ export default function Catalog() {
                       }}
                       href={item.order}
                       hoverable
-                      onClick={() =>
-                        trackProductOrder(category, item.productName)
-                      }
+                      onClick={() => trackProductOrder(category, item.productName)}
                     />
                   ))}
                 </div>

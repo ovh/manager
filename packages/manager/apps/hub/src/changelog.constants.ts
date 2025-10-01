@@ -1,8 +1,4 @@
-import {
-  ButtonType,
-  PageLocation,
-  TrackingClickParams,
-} from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation, TrackingClickParams } from '@ovh-ux/manager-react-shell-client';
 
 interface ChangelogLinks {
   url: string;
@@ -109,15 +105,12 @@ export const EXTERNAL_LINKS: Record<string, ChangelogLinks> = {
     },
   },
   SECURITY_ROADMAP: {
-    url:
-      'https://github.com/ovh/management-security-operations-roadmap/issues/new',
+    url: 'https://github.com/ovh/management-security-operations-roadmap/issues/new',
     label_key: 'changelog_roadmap_security_label',
     tracking: {
       location: PageLocation.page,
       buttonType: ButtonType.externalLink,
-      actions: [
-        `go-to-request-new-feature-security-identity-operations-solutions`,
-      ],
+      actions: [`go-to-request-new-feature-security-identity-operations-solutions`],
       actionType: 'action',
     },
   },

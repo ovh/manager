@@ -1,22 +1,14 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+
 import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { Skeletons } from './Skeletons.component';
 
 vi.mock('@ovhcloud/ods-components/react', () => ({
-  OsdsSkeleton: ({
-    inline,
-    randomized,
-  }: {
-    inline: boolean;
-    randomized: boolean;
-  }) => (
-    <div
-      data-testid="osds-skeleton"
-      data-inline={inline}
-      data-randomized={randomized}
-    ></div>
+  OsdsSkeleton: ({ inline, randomized }: { inline: boolean; randomized: boolean }) => (
+    <div data-testid="osds-skeleton" data-inline={inline} data-randomized={randomized}></div>
   ),
 }));
 

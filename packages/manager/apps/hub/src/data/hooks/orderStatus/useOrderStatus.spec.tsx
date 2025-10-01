@@ -1,9 +1,12 @@
-import { renderHook, waitFor } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { vi, describe, it, expect } from 'vitest';
 import { PropsWithChildren } from 'react';
-import { useOrderStatus } from './useOrderStatus';
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { renderHook, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { getOrderStatus } from '@/data/api/order/order';
+
+import { useOrderStatus } from './useOrderStatus';
 
 vi.mock('@/data/api/order/order', () => ({
   getOrderStatus: vi.fn(),
@@ -37,12 +40,9 @@ describe('useOrderStatus', () => {
   });
 
   it('should not run the query when orderId is undefined', async () => {
-    const { result } = renderHook(
-      () => useOrderStatus((undefined as unknown) as number),
-      {
-        wrapper,
-      },
-    );
+    const { result } = renderHook(() => useOrderStatus(undefined as unknown as number), {
+      wrapper,
+    });
 
     expect(result.current.data).toBeUndefined();
     expect(result.current.isLoading).toBe(false);

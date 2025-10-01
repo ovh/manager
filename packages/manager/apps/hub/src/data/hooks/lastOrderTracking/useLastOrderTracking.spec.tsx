@@ -1,10 +1,12 @@
+import React, { PropsWithChildren } from 'react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
-import React, { PropsWithChildren } from 'react';
 import { describe, it, vi } from 'vitest';
+
+import * as orderApi from '@/data/api/order/order';
 import { useLastOrderTracking } from '@/data/hooks/lastOrderTracking/useLastOrderTracking';
 import { LastOrderTrackingResponse } from '@/types/order.type';
-import * as orderApi from '@/data/api/order/order';
 
 const queryClient = new QueryClient();
 
@@ -75,12 +77,8 @@ describe('useLastOrderTracking', () => {
       expect(getOrderStatus).toHaveBeenCalled();
       expect(getOrderDetails).toHaveBeenCalled();
       expect(getCompleteHistory).toHaveBeenCalled();
-      expect(result.current.data.expirationDate).toEqual(
-        lastOrderTrackingResponse.expirationDate,
-      );
-      expect(result.current.data.status).toEqual(
-        lastOrderTrackingResponse.status,
-      );
+      expect(result.current.data.expirationDate).toEqual(lastOrderTrackingResponse.expirationDate);
+      expect(result.current.data.status).toEqual(lastOrderTrackingResponse.status);
     });
   });
 });

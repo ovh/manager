@@ -1,12 +1,10 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import { vi } from 'vitest';
-import { render } from '@testing-library/react';
-/* eslint-enable import/no-extraneous-dependencies */
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
 import { ReactNode } from 'react';
+
+import { render } from '@testing-library/react';
+import { vi } from 'vitest';
+
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
 import { deepMerge } from '@/utils/deepMerge';
 
 const baseShellContext = {

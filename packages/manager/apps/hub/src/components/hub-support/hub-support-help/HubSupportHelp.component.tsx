@@ -1,14 +1,16 @@
 import React, { FunctionComponent } from 'react';
-import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
-import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+
 import { useTranslation } from 'react-i18next';
+
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_LEVEL } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
+
 import { ButtonType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import useGuideUtils from '@/hooks/guideUtils/useGuideUtils';
+
 import assistance from '../assets/assistance.png';
 
 export const HubSupportHelp: FunctionComponent = () => {

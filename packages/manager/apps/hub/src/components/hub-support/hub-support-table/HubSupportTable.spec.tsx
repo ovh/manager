@@ -1,8 +1,11 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+
 import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { Ticket } from '@/types/support.type';
+
 import { HubSupportTable } from './HubSupportTable.component';
 
 vi.mock('./hub-support-table-item/HubSupportTableItem.component', () => ({

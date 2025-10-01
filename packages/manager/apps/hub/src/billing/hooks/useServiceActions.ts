@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
-import {
-  OdsHTMLAnchorElementRel,
-  OdsHTMLAnchorElementTarget,
-} from '@ovhcloud/ods-common-core';
+
+import { OdsHTMLAnchorElementRel, OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { ServiceLinks } from '@/billing/types/service-links.type';
+
 import { BillingService } from '@/billing/types/billingServices.type';
+import { ServiceLinks } from '@/billing/types/service-links.type';
 
 export type ServiceAction = {
   color?: ODS_THEME_COLOR_INTENT;
@@ -155,9 +156,7 @@ export const useServiceActions = (
     }
     if (links.resiliateByDeletion) {
       items.push({
-        label: t(
-          `billing_services_actions_menu_resiliate_${service.serviceType}`,
-        ),
+        label: t(`billing_services_actions_menu_resiliate_${service.serviceType}`),
         color: ODS_THEME_COLOR_INTENT.primary,
         onClick: () => {
           trackAction('go-to-resiliate');

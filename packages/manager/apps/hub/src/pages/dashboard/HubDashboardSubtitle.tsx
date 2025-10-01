@@ -1,13 +1,16 @@
 import React from 'react';
-import { OsdsSkeleton, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
+  ODS_SKELETON_SIZE,
   ODS_TEXT_COLOR_HUE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
-  ODS_SKELETON_SIZE,
 } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
+import { OsdsSkeleton, OsdsText } from '@ovhcloud/ods-components/react';
+
 import { useHubContext } from '@/pages/dashboard/context';
 
 export default function HubDashboardSubtitle() {
@@ -17,11 +20,7 @@ export default function HubDashboardSubtitle() {
   return (
     <div className="inline-block my-6 h-[32px]">
       {isLoading ? (
-        <OsdsSkeleton
-          size={ODS_SKELETON_SIZE.md}
-          inline
-          className="p-4"
-        ></OsdsSkeleton>
+        <OsdsSkeleton size={ODS_SKELETON_SIZE.md} inline className="p-4"></OsdsSkeleton>
       ) : (
         !isFreshCustomer && (
           <OsdsText

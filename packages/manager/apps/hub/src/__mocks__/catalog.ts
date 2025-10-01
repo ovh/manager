@@ -1,13 +1,7 @@
 export const catalogData = {
   'Hosted Private Cloud': [
     {
-      categories: [
-        'Catalogs',
-        'Hosted Private Cloud',
-        'Platform',
-        'VMware',
-        'VMware on OVHcloud',
-      ],
+      categories: ['Catalogs', 'Hosted Private Cloud', 'Platform', 'VMware', 'VMware on OVHcloud'],
       category: 'Platform',
       description:
         'VMware on OVHcloud is a unique solution on the market, offering cloud scalability on a 100% dedicated hardware infrastructure. Your infrastructure virtualisation is powered by VMware technology, and entirely managed by OVHcloud. ',
@@ -16,20 +10,14 @@ export const catalogData = {
       id: 20414,
       lang: 'en_GB',
       name: 'VMware on OVHcloud',
-      order:
-        'https://www.ovhcloud.com/it/enterprise/products/hosted-private-cloud/prices/',
+      order: 'https://www.ovhcloud.com/it/enterprise/products/hosted-private-cloud/prices/',
       productName: 'PRIVATE_CLOUD',
       regionTags: ['EU', 'US', 'CA'],
       universe: 'Hosted Private Cloud',
       url: 'https://mockup.url.com',
     },
     {
-      categories: [
-        'Catalogs',
-        'Hosted Private Cloud',
-        'Platform',
-        'SAP HANA on Private Cloud',
-      ],
+      categories: ['Catalogs', 'Hosted Private Cloud', 'Platform', 'SAP HANA on Private Cloud'],
       category: 'Platform',
       description:
         'This new platform combines SAP HANA-certified HCI servers with our VMware on OVHcloud infrastructure. It enables secure hosting and effortless deployment of your most critical SAP environments in a sovereign cloud.',
@@ -95,12 +83,7 @@ export const catalogData = {
       url: 'https://ovhcloud.com/en-gb/managed-bare-metal/',
     },
     {
-      categories: [
-        'Catalogs',
-        'Bare Metal Cloud',
-        'Storage and Backup',
-        'Enterprise File Storage',
-      ],
+      categories: ['Catalogs', 'Bare Metal Cloud', 'Storage and Backup', 'Enterprise File Storage'],
       category: 'Storage and Backup',
       description:
         'Enterprise File Storage, powered by NetApp. Connect of all your OVHcloud solutions to a high-performance file storage service for your most critical business applications.',
@@ -113,20 +96,14 @@ export const catalogData = {
       productName: 'NETAPP',
       regionTags: ['EU', 'CA'],
       universe: 'Bare Metal Cloud',
-      url:
-        'https://ovhcloud.com/en-gb/storage-solutions/enterprise-file-storage/',
+      url: 'https://ovhcloud.com/en-gb/storage-solutions/enterprise-file-storage/',
     },
   ],
 };
 
 export const rawCatalogData = [
   {
-    categories: [
-      'Catalogs',
-      'Public Cloud',
-      'Storage and Backup',
-      'Block Storage',
-    ],
+    categories: ['Catalogs', 'Public Cloud', 'Storage and Backup', 'Block Storage'],
     category: 'Storage and Backup',
     description:
       'Create storage volumes, which can be used as additional disks and secured via triple replication for data.',
@@ -140,12 +117,7 @@ export const rawCatalogData = [
     url: 'https://mockup.url.com',
   },
   {
-    categories: [
-      'Catalogs',
-      'Public Cloud',
-      'Storage and Backup',
-      'Cloud Archive',
-    ],
+    categories: ['Catalogs', 'Public Cloud', 'Storage and Backup', 'Cloud Archive'],
     category: 'Storage and Backup',
     description:
       'Archive your data over the long term in a cloud storage space, accessible via standard protocols.',
@@ -159,12 +131,7 @@ export const rawCatalogData = [
     url: 'https://mockup.url.com',
   },
   {
-    categories: [
-      'Catalogs',
-      'Public Cloud',
-      'Data Analytics',
-      'Data Processing',
-    ],
+    categories: ['Catalogs', 'Public Cloud', 'Data Analytics', 'Data Processing'],
     category: 'Data Analytics',
     description: 'Launch your Apache Spark processing tasks quickly and easily',
     featureAvailability: 'data-processing',
@@ -178,12 +145,7 @@ export const rawCatalogData = [
     url: 'https://mockup.url.com',
   },
   {
-    categories: [
-      'Catalogs',
-      'Web Hosting & Domains',
-      'Email solutions',
-      'Email Pro',
-    ],
+    categories: ['Catalogs', 'Web Hosting & Domains', 'Email solutions', 'Email Pro'],
     category: 'Email solutions',
     description:
       'As the most comprehensive and widely-used business email solution on the market, Exchange offers many features — including contact, folder and calendar sharing, and email syncing.',
@@ -199,12 +161,7 @@ export const rawCatalogData = [
     url: 'https://ovhcloud.com/en-gb/emails/email-pro/',
   },
   {
-    categories: [
-      'Catalogs',
-      'Public Cloud',
-      'Storage and Backup',
-      'Instance Backup',
-    ],
+    categories: ['Catalogs', 'Public Cloud', 'Storage and Backup', 'Instance Backup'],
     category: 'Storage and Backup',
     description: 'Get a backup service for your instances',
     id: 20390,
@@ -217,12 +174,7 @@ export const rawCatalogData = [
     url: 'https://mockup.url.com',
   },
   {
-    categories: [
-      'Catalogs',
-      'Web Hosting & Domains',
-      'Collaborative Solutions',
-      'Microsoft 365',
-    ],
+    categories: ['Catalogs', 'Web Hosting & Domains', 'Collaborative Solutions', 'Microsoft 365'],
     category: 'Collaborative Solutions',
     description:
       'Securely access and edit your documents anytime, anywhere, so you can work however you work best. ',
@@ -276,12 +228,7 @@ export const rawCatalogData = [
     url: 'https://mockup.url.com',
   },
   {
-    categories: [
-      'Catalogs',
-      'Public Cloud',
-      'Storage and Backup',
-      'Object Storage',
-    ],
+    categories: ['Catalogs', 'Public Cloud', 'Storage and Backup', 'Object Storage'],
     category: 'Storage and Backup',
     description: 'Enjoy unlimited on-demand storage, accessible via S3 API.',
     id: 20407,
@@ -294,13 +241,7 @@ export const rawCatalogData = [
     url: 'https://mockup.url.com',
   },
   {
-    categories: [
-      'Catalogs',
-      'Hosted Private Cloud',
-      'Platform',
-      'VMware',
-      'VMware on OVHcloud',
-    ],
+    categories: ['Catalogs', 'Hosted Private Cloud', 'Platform', 'VMware', 'VMware on OVHcloud'],
     category: 'Platform',
     description:
       'VMware on OVHcloud is a unique solution on the market, offering cloud scalability on a 100% dedicated hardware infrastructure. Your infrastructure virtualisation is powered by VMware technology, and entirely managed by OVHcloud. ',
@@ -309,20 +250,14 @@ export const rawCatalogData = [
     id: 20414,
     lang: 'en_GB',
     name: 'VMware on OVHcloud',
-    order:
-      'https://www.ovhcloud.com/it/enterprise/products/hosted-private-cloud/prices/',
+    order: 'https://www.ovhcloud.com/it/enterprise/products/hosted-private-cloud/prices/',
     productName: 'PRIVATE_CLOUD',
     regionTags: ['EU', 'US', 'CA'],
     universe: 'Hosted Private Cloud',
     url: 'https://mockup.url.com',
   },
   {
-    categories: [
-      'Catalogs',
-      'Web Hosting & Domains',
-      'Databases',
-      'Private SQL Databases',
-    ],
+    categories: ['Catalogs', 'Web Hosting & Domains', 'Databases', 'Private SQL Databases'],
     category: 'Databases',
     description:
       'Works perfectly alongside all of our OVHcloud products, e.g. VPS, dedicated servers, Public Cloud instances and Cloud Web hosting',
@@ -357,12 +292,7 @@ export const rawCatalogData = [
     url: 'https://mockup.url.com',
   },
   {
-    categories: [
-      'Catalogs',
-      'Web Hosting & Domains',
-      'Web Hosting options',
-      'Visibility Pro',
-    ],
+    categories: ['Catalogs', 'Web Hosting & Domains', 'Web Hosting options', 'Visibility Pro'],
     category: 'Web Hosting options',
     description:
       'Get your business on the map, wherever your customers are. Receive alerts, and reply quickly to customer reviews. Save time with an easy-to-use, centralised management interface.',
@@ -375,12 +305,7 @@ export const rawCatalogData = [
     url: 'https://mockup.url.com',
   },
   {
-    categories: [
-      'Catalogs',
-      'Public Cloud',
-      'Storage and Backup',
-      'Volume Snapshot',
-    ],
+    categories: ['Catalogs', 'Public Cloud', 'Storage and Backup', 'Volume Snapshot'],
     category: 'Storage and Backup',
     description: 'Trigger a snapshot on your Block Storage volumes',
     id: 20426,
@@ -393,12 +318,7 @@ export const rawCatalogData = [
     url: 'https://mockup.url.com',
   },
   {
-    categories: [
-      'Catalogs',
-      'Public Cloud',
-      'Containers and orchestration',
-      'Workflow Management',
-    ],
+    categories: ['Catalogs', 'Public Cloud', 'Containers and orchestration', 'Workflow Management'],
     category: 'Containers and orchestration',
     description:
       'Automate your tasks to operate cloud resources based on your business logic, and adapt them to suit any situation',
@@ -412,12 +332,7 @@ export const rawCatalogData = [
     url: 'https://mockup.url.com',
   },
   {
-    categories: [
-      'Catalogs',
-      'Hosted Private Cloud',
-      'Platform',
-      'Nutanix on OVHcloud',
-    ],
+    categories: ['Catalogs', 'Hosted Private Cloud', 'Platform', 'Nutanix on OVHcloud'],
     category: 'Platform',
     description:
       'The Nutanix on OVHcloud solution combines Nutanix Cloud Platform software licences with dedicated, Nutanix-qualified OVHcloud Hosted Private Cloud infrastructure — so you can pre-deploy a Nutanix hyperconverged environment (HCI) in just a few hours.',
@@ -448,8 +363,7 @@ export const rawCatalogData = [
   {
     categories: ['Catalogs', 'Public Cloud', 'Storage and Backup', 'Databases'],
     category: 'Storage and Backup',
-    description:
-      'Harness the power of your data by maintaining control of your resources.',
+    description: 'Harness the power of your data by maintaining control of your resources.',
     featureAvailability: 'databases',
     id: 20466,
     lang: 'en_GB',
@@ -461,12 +375,7 @@ export const rawCatalogData = [
     url: 'https://mockup.url.com',
   },
   {
-    categories: [
-      'Catalogs',
-      'Public Cloud',
-      'AI & machine learning',
-      'AI Notebooks',
-    ],
+    categories: ['Catalogs', 'Public Cloud', 'AI & machine learning', 'AI Notebooks'],
     category: 'AI & machine learning',
     description:
       'Get a quick, simple start launching your Jupyter or VS Code notebooks in the cloud',
@@ -481,12 +390,7 @@ export const rawCatalogData = [
     url: 'https://mockup.url.com',
   },
   {
-    categories: [
-      'Catalogs',
-      'Public Cloud',
-      'AI & machine learning',
-      'AI Training',
-    ],
+    categories: ['Catalogs', 'Public Cloud', 'AI & machine learning', 'AI Training'],
     category: 'AI & machine learning',
     description:
       'Train your AI, machine learning and deep learning models efficiently and easily, and optimise your GPU usage.',
@@ -500,12 +404,7 @@ export const rawCatalogData = [
     url: 'https://mockup.url.com',
   },
   {
-    categories: [
-      'Catalogs',
-      'Public Cloud',
-      'Management Interfaces',
-      'Horizon',
-    ],
+    categories: ['Catalogs', 'Public Cloud', 'Management Interfaces', 'Horizon'],
     category: 'Management Interfaces',
     description:
       'Use the original OpenStack web interface to effortlessly manage your cloud resources',
@@ -567,12 +466,7 @@ export const rawCatalogData = [
     url: 'https://ovhcloud.com/en-gb/managed-bare-metal/',
   },
   {
-    categories: [
-      'Catalogs',
-      'Bare Metal Cloud',
-      'Storage and Backup',
-      'Enterprise File Storage',
-    ],
+    categories: ['Catalogs', 'Bare Metal Cloud', 'Storage and Backup', 'Enterprise File Storage'],
     category: 'Storage and Backup',
     description:
       'Enterprise File Storage, powered by NetApp. Connect of all your OVHcloud solutions to a high-performance file storage service for your most critical business applications.',
@@ -585,8 +479,7 @@ export const rawCatalogData = [
     productName: 'NETAPP',
     regionTags: ['EU', 'CA'],
     universe: 'Bare Metal Cloud',
-    url:
-      'https://ovhcloud.com/en-gb/storage-solutions/enterprise-file-storage/',
+    url: 'https://ovhcloud.com/en-gb/storage-solutions/enterprise-file-storage/',
   },
   {
     categories: ['Catalogs', 'Network', 'Network Services', 'Floating IP'],
@@ -604,12 +497,7 @@ export const rawCatalogData = [
     url: 'https://mockup.url.com',
   },
   {
-    categories: [
-      'Catalogs',
-      'Network',
-      'Network Services',
-      'OVHcloud Load Balancer',
-    ],
+    categories: ['Catalogs', 'Network', 'Network Services', 'OVHcloud Load Balancer'],
     category: 'Network Services',
     description:
       'Scale to meet your demand with any of our cloud solutions, in any of our datacentres.  With the OVHcloud Load Balancer, you can balance the load between services spread across multiple datacentres.',
@@ -653,12 +541,7 @@ export const rawCatalogData = [
     url: 'https://mockup.url.com',
   },
   {
-    categories: [
-      'Catalogs',
-      'Hosted Private Cloud',
-      'Storage and Backup',
-      'Veeam Enterprise',
-    ],
+    categories: ['Catalogs', 'Hosted Private Cloud', 'Storage and Backup', 'Veeam Enterprise'],
     category: 'Storage and Backup',
     description:
       'Unlock the power of Veeam Backup & Replication. With OVHcloud, you can enjoy total freedom in terms of how you configure your backups once you have deployed your solution.',
@@ -673,12 +556,7 @@ export const rawCatalogData = [
     url: 'https://ovhcloud.com/en-gb/storage-solutions/veeam-enterprise',
   },
   {
-    categories: [
-      'Catalogs',
-      'Public Cloud',
-      'Data Analytics',
-      'Logs Data Platform',
-    ],
+    categories: ['Catalogs', 'Public Cloud', 'Data Analytics', 'Logs Data Platform'],
     category: 'Data Analytics',
     description:
       'Index and analyse logs in real time. Receive alerts if anything stops working. Share your data with your employees.',
@@ -721,12 +599,7 @@ export const rawCatalogData = [
     url: 'https://mockup.url.com',
   },
   {
-    categories: [
-      'Catalogs',
-      'Public Cloud',
-      'Storage and Backup',
-      'Cold Archive',
-    ],
+    categories: ['Catalogs', 'Public Cloud', 'Storage and Backup', 'Cold Archive'],
     category: 'Storage and Backup',
     description:
       'Get our most cost-effective storage type for long-term data archiving on a tape storage infrastructure.',
@@ -740,12 +613,7 @@ export const rawCatalogData = [
     url: 'https://mockup.url.com',
   },
   {
-    categories: [
-      'Catalogs',
-      'Public Cloud',
-      'Storage and Backup',
-      'Volume Backup',
-    ],
+    categories: ['Catalogs', 'Public Cloud', 'Storage and Backup', 'Volume Backup'],
     category: 'Storage and Backup',
     description:
       'Back up your Block Storage volumes. The backed-up data is stored on our Object Storage service.',
@@ -759,12 +627,7 @@ export const rawCatalogData = [
     url: 'https://mockup.url.com',
   },
   {
-    categories: [
-      'Catalogs',
-      'Public Cloud',
-      'AI & machine learning',
-      'AI Deploy',
-    ],
+    categories: ['Catalogs', 'Public Cloud', 'AI & machine learning', 'AI Deploy'],
     category: 'AI & machine learning',
     description:
       'Easily deploy machine learning models and applications to production, create your API access points effortlessly, and make effective predictions.',
@@ -778,12 +641,7 @@ export const rawCatalogData = [
     url: 'https://www.ovhcloud.com/en-gb/public-cloud/ai-deploy/',
   },
   {
-    categories: [
-      'Catalogs',
-      'Hosted Private Cloud',
-      'Platform',
-      'SAP HANA on Private Cloud',
-    ],
+    categories: ['Catalogs', 'Hosted Private Cloud', 'Platform', 'SAP HANA on Private Cloud'],
     category: 'Platform',
     description:
       'This new platform combines SAP HANA-certified HCI servers with our VMware on OVHcloud infrastructure. It enables secure hosting and effortless deployment of your most critical SAP environments in a sovereign cloud.',
@@ -806,8 +664,7 @@ export const rawCatalogData = [
       'Kubernetes Load Balancer',
     ],
     category: 'Containers and orchestration',
-    description:
-      'Automatic distribution of traffic on the Managed Kubernetes Service',
+    description: 'Automatic distribution of traffic on the Managed Kubernetes Service',
     featureAvailability: 'kubernetes',
     id: 21763,
     lang: 'en_GB',

@@ -1,30 +1,24 @@
 import { Suspense, useContext, useEffect, useMemo } from 'react';
+
 import { Await } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
-import {
-  OdsHTMLAnchorElementRel,
-  OdsHTMLAnchorElementTarget,
-} from '@ovhcloud/ods-common-core';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
+
+import { OdsHTMLAnchorElementRel, OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
-import {
-  OsdsLink,
-  OsdsMessage,
-  OsdsSkeleton,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { OsdsLink, OsdsMessage, OsdsSkeleton, OsdsText } from '@ovhcloud/ods-components/react';
+
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useKyc } from '@/data/hooks/kyc/useKyc';
-import { KycProcedures, KycStatuses } from '@/types/kyc.type';
+
 import { SUPPORT_URLS } from '@/components/hub-support/HubSupport.constants';
+import { useKyc } from '@/data/hooks/kyc/useKyc';
+import { useHubContext } from '@/pages/dashboard/context';
 import {
   KYC_FRAUD_FEATURE,
   KYC_FRAUD_TRACK_IMPRESSION,
 } from '@/pages/dashboard/dashboard.constants';
-import { useHubContext } from '@/pages/dashboard/context';
+import { KycProcedures, KycStatuses } from '@/types/kyc.type';
 
 export default function KycFraudBanner() {
   const { t } = useTranslation('hub/kyc');
@@ -38,11 +32,7 @@ export default function KycFraudBanner() {
   const region = environment.getRegion();
   const isEUOrCA = ['EU', 'CA'].includes(region);
   const { data } = useKycStatus({
-    enabled: !(
-      isLoading ||
-      isFreshCustomer ||
-      availability?.[KYC_FRAUD_FEATURE]
-    ),
+    enabled: !(isLoading || isFreshCustomer || availability?.[KYC_FRAUD_FEATURE]),
   });
 
   const shouldBeDisplayed = useMemo(
@@ -83,9 +73,7 @@ export default function KycFraudBanner() {
     <OsdsMessage
       className="flex rounded mb-4"
       type={
-        data?.status === KycStatuses.REQUIRED
-          ? ODS_MESSAGE_TYPE.warning
-          : ODS_MESSAGE_TYPE.info
+        data?.status === KycStatuses.REQUIRED ? ODS_MESSAGE_TYPE.warning : ODS_MESSAGE_TYPE.info
       }
       color={
         data?.status === KycStatuses.REQUIRED
@@ -102,11 +90,7 @@ export default function KycFraudBanner() {
       >
         {t(`kyc_fraud_${data.status}_banner_text`)}
         {link && (
-          <Suspense
-            fallback={
-              <OsdsSkeleton data-testid="kyc_fraud_banner_link_skeleton" />
-            }
-          >
+          <Suspense fallback={<OsdsSkeleton data-testid="kyc_fraud_banner_link_skeleton" />}>
             <Await
               resolve={link}
               children={(href: string) => (

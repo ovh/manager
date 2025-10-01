@@ -1,5 +1,8 @@
 import React, { useContext } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_CHIP_SIZE,
   ODS_ICON_NAME,
@@ -8,9 +11,9 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsChip, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 export default function Welcome() {
   const { t } = useTranslation('hub');

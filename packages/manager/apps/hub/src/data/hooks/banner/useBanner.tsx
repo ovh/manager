@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
+
 import { getBanner } from '@/data/api/banner';
 import { Banner } from '@/types/banner.type';
 
