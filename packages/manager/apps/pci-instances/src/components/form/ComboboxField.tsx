@@ -12,18 +12,20 @@ type ComboboxFieldProps = {
   label: string;
   errorMessage?: string;
   invalid: boolean;
+  clearable?: boolean;
 } & ComboboxProp;
 
 export const ComboboxField = ({
   label,
   errorMessage,
   invalid,
+  clearable = false,
   ...comboboxProps
 }: ComboboxFieldProps) => (
   <FormField invalid={invalid}>
     <FormFieldLabel>{label}</FormFieldLabel>
     <Combobox {...comboboxProps}>
-      <ComboboxControl />
+      <ComboboxControl clearable={clearable} />
       <ComboboxContent className="max-h-52 overflow-y-scroll" />
     </Combobox>
     {errorMessage && <ErrorText>{errorMessage}</ErrorText>}

@@ -104,6 +104,7 @@ export const DistantSnapshotSection = ({
                 onValueChange={handleChange}
                 invalid={invalid}
                 allowCustomValue={false}
+                clearable
               />
             );
           }}
