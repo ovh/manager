@@ -19,6 +19,6 @@
   "billing_payment_method_table_action_delete": "Eliminar esta forma de pago",
   "billing_payment_method_information_add_ovh_sas": "Al registrar una forma de pago, autoriza a OVH SAS a conservarla para facilitar el pago de futuros pedidos.",
   "billing_payment_method_information_add_default": "La forma de pago registrada como forma de pago por defecto se utilizará automáticamente en cada vencimiento para abonar el pago de sus servicios con renovación automática y pago por uso («pay-as-you-go»). Antes de cada vencimiento de pago, recibirá una notificación. Puede modificar, eliminar o añadir formas de pago utilizando la siguiente interfaz. Para poder utilizar servicios con renovación automática o con pago por uso, deberá disponer al menos de una forma de pago válida registrada.",
-  "billing_payment_method_payment_by_cheque_information": "El pago por cheque dejará de aceptarse a partir del 1 de diciembre de 2025. Para simplificar sus reglamentos, le proponemos otras alternativas. Haga clic en el botón de acción ",
-  "billing_payment_method_payment_by_cheque_information_button": "\"Añadir una forma de pago\""
+  "billing_payment_method_payment_by_cheque_information": "El pago por cheque dejará de aceptarse a partir del 1 de diciembre de 2025. Para simplificar sus pagos, le proponemos otras alternativas. Haga clic en el botón de acción ",
+  "billing_payment_method_payment_by_cheque_information_button": "Añadir una forma de pago"
 }

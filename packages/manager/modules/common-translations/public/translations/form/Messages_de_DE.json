@@ -31,5 +31,6 @@
   "yes": "Ja",
   "no": "Nein",
   "ok": "OK",
-  "optional": "wahlweise"
+  "optional": "wahlweise",
+  "step_number": "Schritt {{step}}"
 }
