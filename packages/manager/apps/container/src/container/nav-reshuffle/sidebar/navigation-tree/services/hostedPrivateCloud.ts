@@ -129,6 +129,28 @@ hostedPrivateCloudUniverse.children = [
       },
     ],
   },
+  {
+    id: 'hpc-ovhcloud-backup',
+    idAttr: 'hpc-ovhcloud-backup-link',
+    universe: hostedPrivateCloudUniverse.id,
+    translation: 'sidebar_ovhcloud_backup',
+    features: ['backup-billing'],
+    children: [
+      {
+        id: 'backup-billing',
+        idAttr: 'backup-billing-link',
+        universe: hostedPrivateCloudUniverse.id,
+        translation: 'sidebar_backup_billing',
+        serviceType: 'BACKUP_BILLING',
+        routing: {
+          application: 'backup-billing',
+          hash: '#/',
+        },
+        features: ['backup-billing'],
+      },
+    ],
+  },
 ];
 
 export default hostedPrivateCloudUniverse;
+ 
