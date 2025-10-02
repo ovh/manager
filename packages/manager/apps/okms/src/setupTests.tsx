@@ -55,7 +55,7 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
     Drawer: vi.fn(({ children, className, ...props }) => (
       <div data-testid={props['data-testid']} className={className}>
         <header>{props.heading}</header>
-        {children}
+        {!props.isLoading && children}
       </div>
     )),
   };

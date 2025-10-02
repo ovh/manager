@@ -1,9 +1,11 @@
-import { PathParams } from 'msw';
 import { Handler } from '@ovh-ux/manager-core-test-utils';
 import { createSecretResponseMock, secretListMock } from './secrets.mock';
 import { findSecretMockByPath } from './secretsMock.utils';
+import { buildMswResponseMock } from '@/utils/tests/msw';
 
 // LIST
+export const getSecretsErrorMessage = 'get-secrets-error-message';
+
 export type GetSecretsMockParams = {
   isSecretListKO?: boolean;
   nbSecrets?: number;
@@ -15,20 +17,19 @@ export const getSecretsMock = ({
 }: GetSecretsMockParams): Handler[] => [
   {
     url: '/okms/resource/:okmsId/secret',
-    response: isSecretListKO
-      ? {
-          status: 500,
-          data: {
-            message: 'secrets error',
-          },
-        }
-      : secretListMock.slice(0, nbSecrets),
+    response: buildMswResponseMock({
+      data: secretListMock.slice(0, nbSecrets),
+      errorMessage: getSecretsErrorMessage,
+      isError: isSecretListKO,
+    }),
     status: isSecretListKO ? 500 : 200,
     api: 'v2',
   },
 ];
 
 // GET
+export const getSecretErrorMessage = 'get-secret-error-message';
+
 export type GetSecretMockParams = {
   isSecretKO?: boolean;
 };
@@ -38,15 +39,12 @@ export const getSecretMock = ({
 }: GetSecretMockParams): Handler[] => [
   {
     url: '/okms/resource/:okmsId/secret/:secretPath',
-    response: isSecretKO
-      ? {
-          status: 500,
-          data: {
-            message: 'secrets error',
-          },
-        }
-      : (request: Request, params: PathParams) =>
-          findSecretMockByPath(secretListMock, request, params),
+    response: buildMswResponseMock({
+      data: (request, params) =>
+        findSecretMockByPath(secretListMock, request, params),
+      errorMessage: getSecretErrorMessage,
+      isError: isSecretKO,
+    }),
     status: isSecretKO ? 500 : 200,
     api: 'v2',
   },
@@ -64,14 +62,43 @@ export const createSecretsMock = ({
 }: CreateSecretsMockParams): Handler[] => [
   {
     url: '/okms/resource/:okmsId/secret',
-    response: isCreateSecretKO
-      ? {
-          message: createSecretErrorMessage,
-        }
-      : createSecretResponseMock,
+    response: buildMswResponseMock({
+      data: createSecretResponseMock,
+      errorMessage: createSecretErrorMessage,
+      isError: isCreateSecretKO,
+    }),
     status: isCreateSecretKO ? 500 : 200,
     api: 'v2',
     method: 'post',
+  },
+];
+
+// PUT (UPDATE)
+export const updateSecretErrorMessage = 'update-secret-error-message';
+
+export type UpdateSecretMockParams = {
+  isUpdateSecretKO?: boolean;
+};
+
+export const updateSecretMock = ({
+  isUpdateSecretKO,
+}: UpdateSecretMockParams): Handler[] => [
+  {
+    url: '/okms/resource/:okmsId/secret/:secretPath',
+    response: buildMswResponseMock({
+      data: (request, params) => {
+        const secret = findSecretMockByPath(secretListMock, request, params);
+        return {
+          path: secret.path,
+          metadata: secret.metadata,
+        };
+      },
+      errorMessage: updateSecretErrorMessage,
+      isError: isUpdateSecretKO,
+    }),
+    status: isUpdateSecretKO ? 500 : 200,
+    api: 'v2',
+    method: 'put',
   },
 ];
 
@@ -87,11 +114,11 @@ export const deleteSecretMock = ({
 }: DeleteSecretMockParams): Handler[] => [
   {
     url: '/okms/resource/:okmsId/secret/:path',
-    response: isDeleteSecretKO
-      ? {
-          message: deleteSecretErrorMessage,
-        }
-      : null,
+    response: buildMswResponseMock({
+      data: null,
+      errorMessage: deleteSecretErrorMessage,
+      isError: isDeleteSecretKO,
+    }),
     status: isDeleteSecretKO ? 500 : 200,
     api: 'v2',
     method: 'delete',

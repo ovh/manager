@@ -16,7 +16,8 @@ import {
 } from '@secret-manager/mocks/versions/versions.mock';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { removeHandlersDelay, renderWithClient } from '@/utils/tests/testUtils';
+import { renderWithClient } from '@/utils/tests/testUtils';
+import { removeHandlersDelay } from '@/utils/tests/msw';
 import { VersionIdCell } from './VersionCells.component';
 import { initTestI18n, labels } from '@/utils/tests/init.i18n';
 import { getIamMocks } from '@/mocks/iam/iam.handler';

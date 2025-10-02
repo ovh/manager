@@ -22,6 +22,7 @@ import {
   DrawerFooter,
 } from '@/common/components/drawer/DrawerInnerComponents.component';
 import { VersionStatusMessage } from './VersionStatusMessage.component';
+import { CREATE_VERSION_DRAWER_TEST_IDS } from './CreateVersionDrawer.constants';
 
 type CreateVersionDrawerProps = {
   secret: SecretWithData;
@@ -135,7 +136,7 @@ export default function CreateVersionDrawerPage() {
       heading={t('add_new_version')}
       onDismiss={handleDismiss}
       isLoading={isPending}
-      data-testid="create-version-drawer"
+      data-testid={CREATE_VERSION_DRAWER_TEST_IDS.drawer}
     >
       <Suspense>
         {error && (

@@ -26,6 +26,8 @@ import {
   GetSecretMockParams,
   getSecretsMock,
   GetSecretsMockParams,
+  updateSecretMock,
+  UpdateSecretMockParams,
 } from '@secret-manager/mocks/secrets/secrets.handler';
 import {
   getSecretConfigOkmsMock,
@@ -46,7 +48,7 @@ import {
   updateVersionMock,
   UpdateVersionMockParams,
 } from '@secret-manager/mocks/versions/versions.handler';
-import { removeHandlersDelay } from './testUtils';
+import { removeHandlersDelay } from './msw';
 import { initTestI18n } from './init.i18n';
 import { getOkmsMocks, GetOkmsMocksParams } from '@/mocks/kms/okms.handler';
 import {
@@ -98,6 +100,7 @@ export type RenderTestMockParams = GetOkmsMocksParams &
   GetSecretsMockParams &
   GetSecretMockParams &
   CreateSecretsMockParams &
+  UpdateSecretMockParams &
   DeleteSecretMockParams &
   GetSecretConfigOkmsMockParams &
   GetSecretConfigReferenceMockParams &
@@ -133,6 +136,7 @@ export const renderTestApp = async (
         ...getSecretsMock(mockParams),
         ...getSecretMock(mockParams),
         ...createSecretsMock(mockParams),
+        ...updateSecretMock(mockParams),
         ...deleteSecretMock(mockParams),
         ...getSecretConfigOkmsMock(mockParams),
         ...getSecretConfigReferenceMock(mockParams),
