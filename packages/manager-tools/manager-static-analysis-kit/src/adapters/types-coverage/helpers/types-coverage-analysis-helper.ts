@@ -301,9 +301,9 @@ export function generateTypesCoverageHtml(summary: CoverageSummary): string {
               <th>Covered</th>
               <th>Total</th>
               <th>Coverage (range)</th>
-              <th>as</th>
-              <th>any</th>
-              <th>unknown</th>
+              <th>Number of as</th>
+              <th>Number of any</th>
+              <th>Number of unknown</th>
             </tr>
           </thead>
           <tbody>${buildRows(summary.apps)}</tbody>
