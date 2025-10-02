@@ -3,26 +3,34 @@ import {
   ButtonType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import {
-  Link,
-  RadioGroup,
-  Text,
-} from '@ovhcloud/ods-react';
+import { Link, RadioGroup, Text } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { LocalizationCard } from '@/components/localizationCard/LocalizationCard.component';
 import { TInstanceCreationForm } from '../../CreateInstance.page';
-import { mockedLocalizations } from '@/__mocks__/instance/constants';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {HelpDrawer} from "@/components/helpDrawer/HelpDrawer.component";
-
-export const localizationDefaultValue = 'eu-west-par';
+import { HelpDrawer } from '@/components/helpDrawer/HelpDrawer.component';
+import { selectLocalizations } from '../../view-models/selectLocalizations';
+import { deps } from '@/deps/deps';
+import { ContinentSelection } from '../continentSelection/ContinentSelection.component';
+import { useEffect } from 'react';
+import { useProjectId } from '@/hooks/project/useProjectId';
 
 export const LocalizationSelection = () => {
   const { t } = useTranslation([NAMESPACES.ONBOARDING, 'creation']);
+  const projectId = useProjectId();
   const { trackClick } = useOvhTracking();
-  const { control } = useFormContext<TInstanceCreationForm>();
-  const selectedRegion = useWatch({ control, name: 'region' });
+  const { control, setValue } = useFormContext<TInstanceCreationForm>();
+  const [deploymentModes, selectedContinent, selectedRegion] = useWatch({
+    control,
+    name: ['deploymentModes', 'continent', 'region'],
+  });
+
+  const localizations = selectLocalizations(deps)(
+    projectId,
+    deploymentModes,
+    selectedContinent,
+  );
 
   const handleSelect = (region: string) => {
     trackClick({
@@ -33,6 +41,16 @@ export const LocalizationSelection = () => {
     });
   };
 
+  useEffect(() => {
+    const availablePreviousSelectedLocalization = localizations.find(
+      (localization) => localization.region === selectedRegion,
+    );
+
+    if (!availablePreviousSelectedLocalization && localizations[0]) {
+      setValue('region', localizations[0].region);
+    }
+  }, [localizations, selectedRegion, setValue]);
+
   return (
     <section>
       <div className="flex flex-col gap-4">
@@ -42,9 +60,7 @@ export const LocalizationSelection = () => {
           </Text>
           <HelpDrawer>
             <Text preset="paragraph" className="mb-4">
-              {t(
-                'creation:pci_instance_creation_select_localization_help',
-              )}
+              {t('creation:pci_instance_creation_select_localization_help')}
             </Text>
             <Link
               className="visited:text-[var(--ods-color-primary-500)]"
@@ -59,13 +75,16 @@ export const LocalizationSelection = () => {
           {t('creation:pci_instance_creation_select_localization_informations')}
         </Text>
       </div>
+      <div className="mb-5 mt-7 w-[255px]">
+        <ContinentSelection />
+      </div>
       <RadioGroup value={selectedRegion}>
         <div className="grid grid-cols-[repeat(auto-fit,_minmax(225px,_1fr))] gap-6">
-          {mockedLocalizations.map(
-            ({ countryCode, title, region, deploymentMode }) => (
+          {localizations.map(
+            ({ city, region, countryCode, deploymentMode }) => (
               <LocalizationCard
                 key={region}
-                title={title}
+                title={city}
                 region={region}
                 countryCode={countryCode}
                 deploymentMode={deploymentMode}
