@@ -14,6 +14,7 @@ import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/te
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
 import { PATH_LABEL } from '@/constants';
+import { CREATE_VERSION_DRAWER_TEST_IDS } from '../drawers/createVersionDrawer/CreateVersionDrawer.constants';
 
 const mockOkmsId = '12345';
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretList(mockOkmsId);
@@ -133,7 +134,10 @@ describe('Secret list page test suite', () => {
     },
     {
       actionLabel: labels.secretManager.add_new_version,
-      assertion: () => assertTextVisibility(labels.secretManager.editor),
+      assertion: async () =>
+        expect(
+          await screen.findByTestId(CREATE_VERSION_DRAWER_TEST_IDS.drawer),
+        ).toBeInTheDocument(),
     },
     {
       actionLabel: labels.secretManager.access_versions,
