@@ -8,9 +8,9 @@ import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import { OdsButton } from '@ovhcloud/ods-components/react';
 import { Button, Link } from '@ovhcloud/ods-react';
 
-import { BaseLayout, Datagrid } from '@ovh-ux/manager-react-components';
+import { BaseLayout, Breadcrumb, Datagrid } from '@ovh-ux/manager-react-components';
 
-import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
+import { appName } from '@/App.constants';
 import { BACKUP_VAULTS_LIST_QUERY_KEY, useBackupVaultsList } from '@/data/hooks/vault/getVault';
 
 import { useColumns } from './_hooks/useColumns.hooks';
@@ -25,7 +25,10 @@ export default function ListingPage() {
     queryClient.invalidateQueries({ queryKey: BACKUP_VAULTS_LIST_QUERY_KEY });
 
   return (
-    <BaseLayout breadcrumb={<Breadcrumb />} header={{ title: t('listing:title') }}>
+    <BaseLayout
+      breadcrumb={<Breadcrumb appName={appName} rootLabel={appName} />}
+      header={{ title: t('listing:title') }}
+    >
       <Suspense>
         <Datagrid
           topbar={
