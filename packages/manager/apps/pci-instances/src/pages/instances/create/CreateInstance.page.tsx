@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useRouteLoaderData } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TProject } from '@ovh-ux/manager-pci-common';
-import { Text } from '@ovhcloud/ods-react';
+import { Divider, Text } from '@ovhcloud/ods-react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -35,6 +35,7 @@ import {
 } from '@/pages/instances/create/CreateInstance.schema';
 
 import { useInstancesCatalog } from '@/data/hooks/catalog/useInstancesCatalog';
+import FlavorBlock from './components/FlavorBlock.component';
 
 export type TInstanceCreationForm = z.infer<typeof instanceCreationSchema>;
 export const instanceCreationSchema = z.object({
@@ -106,6 +107,8 @@ const CreateInstance: FC = () => {
               type={quantityHintParams.type}
               region={quantityHintParams.region}
             />
+            <Divider spacing="64" />
+            <FlavorBlock />
             <PciCardShowcaseComponent />
           </section>
           <aside className="min-w-[280px] w-1/3 max-w-[640px]">

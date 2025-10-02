@@ -9,26 +9,25 @@ import {
   DrawerTrigger,
 } from '@ovhcloud/ods-react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { PropsWithChildren } from "react";
+import { PropsWithChildren } from 'react';
 
-type HelperDrawerProps = PropsWithChildren<DrawerProp> & React.HTMLAttributes<HTMLDivElement>;
+type HelperDrawerProps = PropsWithChildren<DrawerProp> &
+  React.HTMLAttributes<HTMLDivElement>;
 
 export const HelpDrawer = ({ children }: HelperDrawerProps) => {
   const { t } = useTranslation([NAMESPACES.ONBOARDING, 'common']);
 
   return (
     <>
-      <div className="w-px bg-[var(--ods-color-information-800)] h-[25px]"/>
-      <Drawer>
+      <div className="w-px bg-[var(--ods-color-information-800)] h-[25px]" />
+      <Drawer closeOnEscape closeOnInteractOutside>
         <DrawerTrigger asChild>
           <Button variant="ghost" size="sm">
             {t('common:pci_instances_common_help')}
           </Button>
         </DrawerTrigger>
         <DrawerContent position={DRAWER_POSITION.right}>
-          <DrawerBody className="pb-10">
-            {children}
-          </DrawerBody>
+          <DrawerBody className="pb-10">{children}</DrawerBody>
         </DrawerContent>
       </Drawer>
     </>
