@@ -56,6 +56,10 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
       <div data-testid="tabs">{tabs}</div>
     </div>
   ),
+  Breadcrumb: () => {
+    const items = [{ label: 'Home' }, { label: 'Dashboard' }];
+    return <nav data-testid="breadcrumb-nav">{items.map((i) => i.label).join(' / ')}</nav>;
+  },
 }));
 
 interface OdsTabsProps {
@@ -72,14 +76,6 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
       {children}
     </div>
   ),
-}));
-
-// --- Mock Breadcrumb ---
-vi.mock('@/components/breadcrumb/Breadcrumb.component', () => ({
-  default: () => {
-    const items = [{ label: 'Home' }, { label: 'Dashboard' }];
-    return <nav data-testid="breadcrumb-nav">{items.map((i) => i.label).join(' / ')}</nav>;
-  },
 }));
 
 // --- Mock useDashboardTabs ---
