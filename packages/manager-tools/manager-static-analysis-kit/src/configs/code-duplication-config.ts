@@ -43,6 +43,18 @@ export const codeDuplicationConfig = {
   ignore: sharedExclusionPatterns,
 
   /**
+   * Patterns of code to ignore when computing duplication.
+   *
+   * Each string is a JavaScript regular expression (string form) tested
+   * against duplicated blocks. If all lines of a duplicate match one of
+   * these patterns, that block is excluded from the results.
+   *
+   * Typical usage is to avoid false positives from common boilerplate such
+   * as `import` or `require` statements.
+   */
+  ignorePatterns: ["import .* from '.*';"],
+
+  /**
    * Reporters we need. html + json are mandatory for our pipeline.
    */
   reporters: ['html', 'json', 'console'],

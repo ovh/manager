@@ -30,6 +30,12 @@ export interface AppCodeDuplicationSummary {
   clonesCount: number;
 
   /**
+   * Number of distinct files that contain at least one duplicated region.
+   * Derived from the `duplicates` array in the jscpd JSON report.
+   */
+  filesWithDuplication: number;
+
+  /**
    * Optional error message if the app’s report could not be parsed or aggregated.
    * When present, other numeric fields may be zeroed.
    */

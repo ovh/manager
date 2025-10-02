@@ -96,11 +96,15 @@ function shortPathFromAppsRoot(filePath: string, app?: string): string {
  * - Finally by filename (stable tie-break).
  *
  * @param report Parsed jscpd v4 JSON
- * @returns array of `[file, { duplicatedLines, totalLines, percentage }]`
+ * @returns { files: WorstCodeDuplicationFile[], fileCount: number }
  */
-export function extractWorstFiles(report: JscpdReportV4): WorstCodeDuplicationFile[] {
+// eslint-disable-next-line max-lines-per-function
+export function extractWorstFiles(report: JscpdReportV4): {
+  files: WorstCodeDuplicationFile[];
+  fileCount: number;
+} {
   const dups = Array.isArray(report?.duplicates) ? report.duplicates : [];
-  if (dups.length === 0) return [];
+  if (dups.length === 0) return { files: [], fileCount: 0 };
 
   const { threshold, count } = codeDuplicationConfig.worstFiles;
 
@@ -133,7 +137,7 @@ export function extractWorstFiles(report: JscpdReportV4): WorstCodeDuplicationFi
   }
 
   // Build, filter, sort, and cap the list
-  return Object.entries(fileMap)
+  const files = Object.entries(fileMap)
     .map(([file, { dup, total = 0 }]) => {
       const percentage = total > 0 ? (dup / total) * 100 : 0;
       const stats: WorstFileStats = {
@@ -168,6 +172,8 @@ export function extractWorstFiles(report: JscpdReportV4): WorstCodeDuplicationFi
       return a[0].localeCompare(b[0]);
     })
     .slice(0, count);
+
+  return { files, fileCount: Object.keys(fileMap).length };
 }
 
 /**
@@ -186,7 +192,7 @@ function parseAppCodeDuplicationReport(jsonPath: string): AppCodeDuplicationSumm
     const percentage =
       total.percentage ?? (totalLines > 0 ? (duplicateLines / totalLines) * 100 : 0);
 
-    const worstFiles = extractWorstFiles(report);
+    const { files: worstFiles, fileCount } = extractWorstFiles(report);
 
     // compute per-file percentages for min/max
     const perFilePercentages = worstFiles.map(([, f]) => f.percentage);
@@ -203,6 +209,7 @@ function parseAppCodeDuplicationReport(jsonPath: string): AppCodeDuplicationSumm
       minPercentage,
       maxPercentage,
       worstFiles,
+      filesWithDuplication: fileCount, // NEW
     };
   } catch (err) {
     return {
@@ -216,6 +223,7 @@ function parseAppCodeDuplicationReport(jsonPath: string): AppCodeDuplicationSumm
       maxPercentage: 0,
       error: (err as Error).message,
       worstFiles: [],
+      filesWithDuplication: 0,
     };
   }
 }
@@ -224,8 +232,6 @@ function parseAppCodeDuplicationReport(jsonPath: string): AppCodeDuplicationSumm
  * Aggregate global totals from all per-app summaries.
  *
  * @param {Record<string, AppCodeDuplicationSummary>} apps - Map of app name to summary.
- * @returns {{ totalLines: number, totalTokens: number, totalDuplicateLines: number, totalDuplicateTokens: number }}
- *   Accumulated totals across all apps.
  */
 function aggregateTotals(apps: Record<string, AppCodeDuplicationSummary>) {
   return Object.values(apps).reduce(
@@ -243,9 +249,6 @@ function aggregateTotals(apps: Record<string, AppCodeDuplicationSummary>) {
 /**
  * Collect all `jscpd-report.json` files from a report directory, parse them,
  * and merge into a combined summary across apps.
- *
- * @param {string} reportOutputDir - Path to the directory containing per-app reports.
- * @returns {CombinedCodeDuplicationSummary} Combined summary including per-app stats and totals.
  */
 export function collectCodeDuplication(reportOutputDir: string): CombinedCodeDuplicationSummary {
   if (!fs.existsSync(reportOutputDir)) {
@@ -282,25 +285,6 @@ export function collectCodeDuplication(reportOutputDir: string): CombinedCodeDup
 
 /**
  * Returns the traffic-light color representing duplication severity for a given percentage.
- *
- * Rules (configurable via `codeDuplicationConfig.thresholds`):
- * - % < `green`   → `"green"`
- * - % < `orange`  → `"orange"`
- * - otherwise     → `"red"`
- *
- * If thresholds are not configured, defaults are `green = 10` and `orange = 20`.
- *
- * @param {number} pct Duplication percentage (0–100). Value is not clamped.
- * @returns {"green" | "orange" | "red"} Status color string.
- *
- * @remarks
- * If `pct` is `NaN` or not finite, the comparisons fail and the function returns `"red"`.
- * Validate or clamp `pct` upstream if you need different behavior.
- *
- * @example
- * getColorForDuplicationStatus(3);   // "green"  (with defaults)
- * getColorForDuplicationStatus(12);  // "orange"
- * getColorForDuplicationStatus(25);  // "red"
  */
 const getColorForDuplicationStatus = (pct: number): string => {
   const green = codeDuplicationConfig.thresholds?.green ?? 10;
@@ -310,10 +294,6 @@ const getColorForDuplicationStatus = (pct: number): string => {
 
 /**
  * Render a collapsible HTML <details> block for worst duplicated files of an app.
- *
- * @param {string} app - Application name.
- * @param {WorstCodeDuplicationFile[]} worstFiles - List of worst duplicated files.
- * @returns {string} HTML markup for the worst-files drilldown.
  */
 function renderWorstFiles(app: string, worstFiles: AppCodeDuplicationSummary['worstFiles'] = []) {
   const threshold = codeDuplicationConfig.worstFiles.threshold;
@@ -350,29 +330,23 @@ function renderWorstFiles(app: string, worstFiles: AppCodeDuplicationSummary['wo
 
 /**
  * Render the duplication percentage cell with optional min–max range.
- *
- * - If no duplication → shows just "0.00%".
- * - If min === max → shows just that value.
- * - Otherwise → shows global percentage + colored range (min–max).
- *
- * @param {AppCodeDuplicationSummary} stats - Duplication stats for one app.
- * @returns {string} HTML string for the coverage cell.
  */
 function renderDuplicationCell(stats: AppCodeDuplicationSummary) {
   const min = stats.minPercentage ?? stats.percentage;
   const max = stats.maxPercentage ?? stats.percentage;
 
-  // Case 1: no duplication at all
   if (stats.duplicateLines === 0) {
     return `<span style="color:${getColorForDuplicationStatus(0)}">0.00%</span>`;
   }
 
-  // Case 2: identical min & max → collapse
   if (min.toFixed(2) === max.toFixed(2)) {
-    return `<span style="color:${getColorForDuplicationStatus(min)}">${min.toFixed(2)}%</span>`;
+    // All worst files cluster at the same percentage
+    return `
+      ${stats.percentage.toFixed(2)}% (${stats.filesWithDuplication} files cluster at
+      <span style="color:${getColorForDuplicationStatus(min)}">${min.toFixed(2)}%</span>)
+    `;
   }
 
-  // Default: show global % with range
   return `
     ${stats.percentage.toFixed(2)}% (range:
       <span style="color:${getColorForDuplicationStatus(min)}">${min.toFixed(2)}%</span> –
@@ -382,13 +356,6 @@ function renderDuplicationCell(stats: AppCodeDuplicationSummary) {
 
 /**
  * Build a single HTML row summarizing duplication stats for one app.
- *
- * - The row background color is determined by the **worst case coverage** (minPercentage).
- * - The coverage cell shows global percentage with min–max range, each individually colored.
- *
- * @param {string} app - App name.
- * @param {AppCodeDuplicationSummary} stats - Duplication statistics.
- * @returns {string} HTML `<tr>` rows (summary + worst files).
  */
 function buildAppRow(app: string, stats: AppCodeDuplicationSummary): string {
   if (stats.error) {
@@ -415,13 +382,7 @@ function buildAppRow(app: string, stats: AppCodeDuplicationSummary): string {
 
 /**
  * Generate a full HTML report summarizing code duplication across apps.
- *
- * Includes per-app stats, totals, and drilldown of worst duplicated files.
- *
- * @param {CombinedCodeDuplicationSummary} summary - Combined duplication summary.
- * @returns {string} HTML string for the full report page.
  */
-// eslint-disable-next-line max-lines-per-function
 export function generateCodeDuplicationHtml(summary: CombinedCodeDuplicationSummary): string {
   const rows = Object.entries(summary.apps)
     .map(([app, stats]) => buildAppRow(app, stats))
