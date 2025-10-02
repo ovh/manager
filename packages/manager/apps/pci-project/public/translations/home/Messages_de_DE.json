@@ -101,7 +101,8 @@
   "billing-item-title": "Titel des Abrechnungselements",
   "opens_in_new_tab": "Wird in neuem Tab geöffnet",
   "pci_projects_home_loading_billing_info": "Abrechnungsinformationen werden geladen",
-  "pci_projects_home_banner_discovery_title": "Sie verwenden den Discovery-Modus.",
-  "pci_projects_home_banner_discovery_message": "Aktivieren Sie Ihr Projekt und <strong>profitieren Sie von 200 € Guthaben, 30 Tage lang kostenlos</strong>.",
+  "pci_projects_home_banner_discovery_title_with_promotion": "Aktivieren Sie Ihr Projekt, indem Sie eine Zahlungsmethode hinzufügen, und profitieren Sie von {{ amount }} kostenlosem Guthaben.",
+  "pci_projects_home_banner_discovery_title_no_promotion": "Beginnen Sie mit der Bereitstellung Ihrer Cloud-Ressourcen.",
+  "pci_projects_home_banner_discovery_description": "Sie befinden sich derzeit im Discovery-Modus. Durch die Aktivierung Ihres Projekts können Sie Ihre Cloud-Ressourcen in wenigen Minuten starten.",
   "pci_projects_home_banner_discovery_cta": "Aktivieren"
 }

@@ -101,7 +101,8 @@
   "billing-item-title": "Billing item title",
   "opens_in_new_tab": "Opens in new tab",
   "pci_projects_home_loading_billing_info": "Loading billing information",
-  "pci_projects_home_banner_discovery_title": "You are using Discovery mode.",
-  "pci_projects_home_banner_discovery_message": "Activate your project and <strong>enjoy £200 free credit for 30 days</strong>.",
+  "pci_projects_home_banner_discovery_title_with_promotion": "Activate your project by adding a payment method and benefit from {{ amount }} of free credit.",
+  "pci_projects_home_banner_discovery_title_no_promotion": "Start deploying your Cloud resources.",
+  "pci_projects_home_banner_discovery_description": "You are currently in discovery mode. By activating your project, you will be able to start your cloud resources in just a few minutes.",
   "pci_projects_home_banner_discovery_cta": "Enable"
 }

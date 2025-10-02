@@ -101,7 +101,8 @@
   "billing-item-title": "Título do elemento de faturação",
   "opens_in_new_tab": "Abre num novo separador",
   "pci_projects_home_loading_billing_info": "A carregar informações de faturação",
-  "pci_projects_home_banner_discovery_title": "Está a utilizar o modo Descoberta.",
-  "pci_projects_home_banner_discovery_message": "Ative o seu projeto e <strong>aproveite 200 € de crédito gratuito durante 30 dias</strong>.",
+  "pci_projects_home_banner_discovery_title_with_promotion": "Ative o seu projeto adicionando um método de pagamento e beneficie de {{ amount }} de crédito gratuito.",
+  "pci_projects_home_banner_discovery_title_no_promotion": "Comece a implementar os seus recursos Cloud.",
+  "pci_projects_home_banner_discovery_description": "Está atualmente no modo descoberta. Ao ativar o seu projeto, poderá iniciar os seus recursos cloud em apenas alguns minutos.",
   "pci_projects_home_banner_discovery_cta": "Ativar"
 }

@@ -8,32 +8,22 @@ import {
 
 import { useProject, isDiscoveryProject } from '@ovh-ux/manager-pci-common';
 import { useActivationUrl } from '@/hooks/useActivationUrl';
-import { useEligibility } from '@/data/hooks/payment/useEligibility';
-import { TEligibilityPaymentMethod } from '@/data/types/payment/eligibility.type';
+import { useDiscoveryVoucher } from '@/hooks/home/useDiscoveryVoucher';
 
 function DiscoveryBanner({ className }: { className?: string }) {
   const { t } = useTranslation('home');
   const { data: project } = useProject();
   const { goToActivation } = useActivationUrl();
-  const { data: eligibility } = useEligibility();
 
-  // Check if user is eligible for free trial (credit payment method)
-  const isEligibleForFreeTrial = eligibility?.paymentMethodsAuthorized?.includes(
-    TEligibilityPaymentMethod.CREDIT,
-  );
+  const isDiscovery = project ? isDiscoveryProject(project) : false;
+  const { data: voucherAmount } = useDiscoveryVoucher(isDiscovery);
 
-  if (!project || !isDiscoveryProject(project) || !isEligibleForFreeTrial) {
+  if (!project || !isDiscovery) {
     return null;
   }
 
   return (
     <>
-      {/*
-      Previous implementation :
-      <PciDiscoveryBanner project={project} className={className} />
-
-      TODO: Implement the new design below, in @ovh-ux/manager-pci-common
-      */}
       <OdsMessage
         color={ODS_MESSAGE_COLOR.information}
         variant={ODS_MESSAGE_VARIANT.default}
@@ -43,14 +33,14 @@ function DiscoveryBanner({ className }: { className?: string }) {
         <div className="flex items-center justify-between w-full">
           <div className="flex flex-col flex-1">
             <OdsText preset="heading-4">
-              {t('pci_projects_home_banner_discovery_title')}
+              {voucherAmount
+                ? t('pci_projects_home_banner_discovery_title_with_promotion', {
+                    amount: voucherAmount,
+                  })
+                : t('pci_projects_home_banner_discovery_title_no_promotion')}
             </OdsText>
             <OdsText preset="paragraph">
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: t('pci_projects_home_banner_discovery_message'),
-                }}
-              />
+              {t('pci_projects_home_banner_discovery_description')}
             </OdsText>
           </div>
           <OdsButton

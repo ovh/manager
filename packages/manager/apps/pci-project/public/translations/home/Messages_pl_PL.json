@@ -101,7 +101,8 @@
   "billing-item-title": "Tytuł elementu płatności",
   "opens_in_new_tab": "Otwiera się w nowej karcie",
   "pci_projects_home_loading_billing_info": "Ładowanie informacji o płatnościach",
-  "pci_projects_home_banner_discovery_title": "Używasz trybu Discovery.",
-  "pci_projects_home_banner_discovery_message": "Aktywuj swój projekt i <strong>ciesz się 200 € darmowego kredytu przez 30 dni</strong>.",
+  "pci_projects_home_banner_discovery_title_with_promotion": "Aktywuj swój projekt, dodając metodę płatności, i skorzystaj z {{ amount }} darmowego kredytu.",
+  "pci_projects_home_banner_discovery_title_no_promotion": "Rozpocznij wdrażanie swoich zasobów Cloud.",
+  "pci_projects_home_banner_discovery_description": "Obecnie korzystasz z trybu Discovery. Aktywując swój projekt, będziesz mógł uruchomić swoje zasoby cloud w ciągu kilku minut.",
   "pci_projects_home_banner_discovery_cta": "Włącz"
 }
