@@ -126,7 +126,8 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
   const isIpExpired = expiredIps?.indexOf(ip) !== -1;
 
   const { hasAlerts } = useIpHasAlerts({
-    ip,
+    ip: parentIpGroup || ip,
+    subIp: ip,
     enabled: !isIpExpired,
   });
 
@@ -334,6 +335,7 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
           navigate(
             `${urls.unblockAntiHack
               .replace(urlDynamicParts.id, id)
+              .replace(urlDynamicParts.parentId, parentId)
               .replace(
                 urlDynamicParts.service,
                 serviceName,
