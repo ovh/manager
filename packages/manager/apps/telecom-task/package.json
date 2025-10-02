@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-task-app",
-  "version": "8.0.31",
+  "version": "8.0.32",
   "private": true,
   "description": "Telecom task standalone application.",
   "repository": {
@@ -15,19 +15,19 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.6.2",
-    "@ovh-ux/manager-core": "^13.2.9",
+    "@ovh-ux/manager-config": "^8.6.3",
+    "@ovh-ux/manager-core": "^13.2.10",
     "@ovh-ux/manager-telecom-styles": "^4.8.6",
     "@ovh-ux/manager-telecom-task": "^6.5.2",
     "@ovh-ux/ng-ovh-checkbox-table": "^2.1.5",
     "@ovh-ux/ng-ovh-http": "^5.1.5",
-    "@ovh-ux/ng-ovh-request-tagger": "^2.0.7",
+    "@ovh-ux/ng-ovh-request-tagger": "^2.0.8",
     "@ovh-ux/ng-ovh-sso-auth": "^4.9.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.5",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^7.29.1",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.4.1",
     "@ovh-ux/ng-ui-router-title": "^3.1.5",
-    "@ovh-ux/request-tagger": "^0.5.2",
+    "@ovh-ux/request-tagger": "^0.5.3",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
