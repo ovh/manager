@@ -1,6 +1,7 @@
 import { OnboardingConfigType } from '@/types/Onboarding.type';
 
 import ovhcloudBackupImg from './assets/OVHcloudBackup.svg?url';
+import { GET_BACKUP_TENANTS_ROUTE } from './data/api/Backup.api';
 
 export const appName = 'backup-services';
 export const productName = 'OVHcloud Backup';
@@ -40,8 +41,8 @@ export type DashboardApi = 'v6' | 'v2';
 export const APP_FEATURES = {
   listingApi: 'v2' as ListingApi,
   dashboardApi: 'v2' as DashboardApi,
-  listingEndpoint: '/domain/alldom',
-  dashboardEndpoint: '/domain/alldom',
+  listingEndpoint: GET_BACKUP_TENANTS_ROUTE,
+  dashboardEndpoint: '',
   isPci: false,
   routeFlavor: 'generic' as const,
   basePrefix: 'backup',
