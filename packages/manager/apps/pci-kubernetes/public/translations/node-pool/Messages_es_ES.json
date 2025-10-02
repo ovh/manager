@@ -38,5 +38,6 @@
   "kube_common_node_pool_deploy_description": "En un clúster Kubernetes repartido en tres zonas de disponibilidad (AZ), se recomienda utilizar pools de nodos por zona para garantizar la resiliencia y la alta disponibilidad. Esta configuración le permite distribuir de manera equilibrada sus cargas de trabajo entre las AZ. Mejora así la tolerancia a fallos y garantiza una continuidad del servicio óptima.",
   "kube_node_pool": "Configurar el pool de nodos",
   "kube_common_estimation_price_free": "Gratis",
-  "kube_common_estimation_total_price": "Precio total aproximado:"
+  "kube_common_estimation_total_price": "Precio total estimado:",
+  "kube_common_node_pool_estimation_cost_tile": "Estimación mensual"
 }
