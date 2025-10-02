@@ -17,9 +17,12 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { unblockAntiHackIp, getIpAntihackQueryKey } from '@/data/api';
+import { unblockAntiHackIp, getIpAntihackQueryKey, IpAntihackStateEnum } from '@/data/api';
 import { useGetIpAntihack } from '@/data/hooks/ip';
 import { fromIdToIp, ipFormatter } from '@/utils';
+
+
+const DEFAULT_LOG_DISPLAY_CLASS_NAMES = 'whitespace-pre overflow-scroll bg-stone-200 p-2 rounded-md border-1 border-solid border-stone-300  min-w-full max-h-48'
 
 export default function AntiHackModal() {
   const { t } = useTranslation(['anti-hack', NAMESPACES.ACTIONS, 'error']);
@@ -28,27 +31,36 @@ export default function AntiHackModal() {
   const [blockedSince, setBlockedSince] = useState(undefined);
   const [time, setTime] = useState(0);
   const [logs, setLogs] = useState('');
+  const [logsDisplayClasses, setLogsDisplayClasses] = useState(DEFAULT_LOG_DISPLAY_CLASS_NAMES);
   const navigate = useNavigate();
   const [search] = useSearchParams();
-  const { id } = useParams();
+  const { id, parentId } = useParams();
   const { ip } = ipFormatter(fromIdToIp(id));
+  const { ip: parentIp } = ipFormatter(fromIdToIp(parentId));
   const { addSuccess, addError, clearNotifications } = useNotifications();
   const queryClient = useQueryClient();
   const { trackClick, trackPage } = useOvhTracking();
   const format = useFormatDate();
 
   const { ipAntihack, isLoading: isIpAntihackLoading } = useGetIpAntihack({
-    ip,
+    ip: parentIp,
     enabled: true,
   });
 
   useEffect(() => {
     if (ipAntihack) {
-      setIpBlocked(ipAntihack[0]?.ipBlocked);
-      setIpState(ipAntihack[0]?.state);
-      setBlockedSince(ipAntihack[0]?.blockedSince);
-      setTime(ipAntihack[0]?.time);
-      setLogs(ipAntihack[0]?.logs);
+      const toBeUnblocked = ipAntihack.find((antihack) => 
+        antihack.ipBlocked === ip && antihack.state === IpAntihackStateEnum.BLOCKED);
+      setIpBlocked(toBeUnblocked?.ipBlocked);
+      setIpState(toBeUnblocked?.state);
+      setBlockedSince(toBeUnblocked?.blockedSince);
+      setTime(toBeUnblocked?.time);
+      if(toBeUnblocked?.logs.length){
+        setLogs(toBeUnblocked?.logs);
+      } else {
+        setLogs(t('anti_hack_no_log_available'));
+        setLogsDisplayClasses(`${DEFAULT_LOG_DISPLAY_CLASS_NAMES} text-center`)
+      }
     }
   }, [ipAntihack]);
 
@@ -61,17 +73,17 @@ export default function AntiHackModal() {
       !!ipState && !!blockedSince
         ? [
             {
-              label: t('antiHackStatus'),
+              label: t('anti_hack_status'),
               value: ipState,
               key: 'antihack_ipState',
             },
             {
-              label: t('antiHackBlockedSince'),
+              label: t('anti_hack_blocked_since'),
               value: format({ date: new Date(blockedSince), format: 'PPPpp' }),
               key: 'antihack_blockedSince',
             },
             {
-              label: t('antiHackTime'),
+              label: t('anti_hack_time'),
               value: time,
               key: 'antihack_time',
             },
@@ -88,7 +100,7 @@ export default function AntiHackModal() {
         pageType: PageType.bannerSuccess,
         pageName: 'anti-hack-unblock_success',
       });
-      addSuccess(t('unblockAntiHackIP_success', { ipBlocked }));
+      addSuccess(t('unblock_anti_hack_ip_success', { ipBlocked }));
 
       await queryClient.invalidateQueries({
         queryKey: getIpAntihackQueryKey({ ip }),
@@ -103,7 +115,7 @@ export default function AntiHackModal() {
       });
       closeModal();
       addError(
-        t('unblockAntiHackIP_error', {
+        t('unblock_anti_hack_ip_error', {
           ipBlocked,
           error: err?.response?.data?.message,
         }),
@@ -126,8 +138,8 @@ export default function AntiHackModal() {
     <Modal
       isOpen
       onDismiss={closeHandler}
-      heading={t('unblockAntiHackTitle')}
-      primaryLabel={t('unblockAntiHackIP_action')}
+      heading={t('unblock_anti_hack_title')}
+      primaryLabel={t('unblock_anti_hack_ip_action')}
       onPrimaryButtonClick={() => unblockAntihackHandler()}
       isPrimaryButtonLoading={isPending}
       secondaryLabel={t('close', { ns: NAMESPACES.ACTIONS })}
@@ -148,7 +160,7 @@ export default function AntiHackModal() {
         ))}
         <div className="flex mb-2">
           <OdsText
-            className="whitespace-pre overflow-scroll bg-stone-200 p-2 rounded-md border-1 border-solid border-stone-300 max-h-48"
+            className={logsDisplayClasses}
             preset="code"
           >
             {logs}
