@@ -1,6 +1,6 @@
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
 
-import { TENANTS_MOCKS } from '@/mocks/tenants.mock';
+import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
 import { Tenant } from '@/types/Tenant.type';
 
 import { getBackupTenants } from '../api/Backup.api';

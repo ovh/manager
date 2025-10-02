@@ -1,55 +1,39 @@
-import { ReactNode } from 'react';
+import { render } from '@testing-library/react';
+import { SetupServer } from 'msw/node';
 
-import { MemoryRouter } from 'react-router-dom';
+import { getAuthenticationMocks, toMswHandlers } from '@ovh-ux/manager-core-test-utils';
 
-import { vi } from 'vitest';
+import { TTenantMockParams, getTenantMocks } from '@/mocks/tenant/tenants.handler';
+import { urls } from '@/routes/Routes.constants';
 
-import { Environment } from '@ovh-ux/manager-config';
-import {
-  ShellContext,
-  ShellContextType,
-  TrackingContextParams,
-} from '@ovh-ux/manager-react-shell-client';
-import { ShellClientApi } from '@ovh-ux/shell';
-import { ClientNavigationApi } from '@ovh-ux/shell/dist/types/plugin/navigation';
+import { TestApp } from './TestApp';
+import { testWrapperBuilder } from './testWrapperBuilder';
 
-type ProvidersOptions = {
-  shell?: Partial<ShellClientApi>;
-  environment?: Partial<Environment>;
-  tracking?: TrackingContextParams;
-  route?: string;
+const formatSafePath = (url?: string) =>
+  url && url.startsWith(urls.root) ? url : `${urls.root}${url ?? ''}`;
+
+export const renderTest = async ({
+  initialRoute,
+  ...mockParams
+}: {
+  initialRoute?: string;
+} & TTenantMockParams = {}) => {
+  (global as unknown as { server: SetupServer }).server?.resetHandlers(
+    ...toMswHandlers([
+      ...getAuthenticationMocks({ isAuthMocked: true }),
+      ...getTenantMocks(mockParams),
+    ]),
+  );
+
+  const Providers = await testWrapperBuilder()
+    .withQueryClient()
+    .withI18next()
+    .withShellContext()
+    .build();
+
+  return render(
+    <Providers>
+      <TestApp initialRoute={formatSafePath(initialRoute)} />
+    </Providers>,
+  );
 };
-
-export function createMockNavigation(
-  overrides?: Partial<ClientNavigationApi>,
-): ClientNavigationApi {
-  return {
-    getURL: vi.fn(),
-    navigateTo: vi.fn(),
-    reload: vi.fn(),
-    ...(overrides ?? {}),
-  };
-}
-
-export function createMockShell(overrides?: Partial<ShellClientApi>): ShellClientApi {
-  return {
-    navigation: createMockNavigation(),
-    ...(overrides ?? {}),
-  } as ShellClientApi;
-}
-
-export function createWrapper(opts?: ProvidersOptions) {
-  return function Wrapper({ children }: { children: ReactNode }) {
-    const value: ShellContextType = {
-      shell: createMockShell(opts?.shell),
-      environment: (opts?.environment ?? {}) as Environment,
-      ...(opts?.tracking !== undefined ? { tracking: opts.tracking } : {}),
-    };
-
-    return (
-      <ShellContext.Provider value={value}>
-        <MemoryRouter initialEntries={[opts?.route ?? '/']}>{children}</MemoryRouter>
-      </ShellContext.Provider>
-    );
-  };
-}

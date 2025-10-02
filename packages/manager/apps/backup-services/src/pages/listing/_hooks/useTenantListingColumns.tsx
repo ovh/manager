@@ -17,11 +17,7 @@ import {
 } from '../_components';
 
 export function useListingColumns(): DatagridColumn<Tenant>[] {
-  const { t } = useTranslation([
-    NAMESPACES.DASHBOARD,
-    NAMESPACES.REGION,
-    NAMESPACES.STATUS,
-  ]);
+  const { t } = useTranslation([NAMESPACES.DASHBOARD, NAMESPACES.REGION, NAMESPACES.STATUS]);
 
   return useMemo<DatagridColumn<Tenant>[]>(() => {
     return [
