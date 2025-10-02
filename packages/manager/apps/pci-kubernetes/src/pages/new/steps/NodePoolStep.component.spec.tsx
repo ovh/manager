@@ -61,7 +61,7 @@ describe('NodePoolStep Component', () => {
       'kube_common_node_pool_model_type_selector',
       'kube_common_node_pool_size_title',
       'kubernetes_node_pool_anti_affinity',
-      'pci_projects_project_instances_configure_billing_type',
+      'flavor-billing:pci_projects_project_instances_configure_billing_type',
       'node-pool:kube_common_add_node_pool',
     ];
     toTest.forEach((test) => expect(screen.getByText(test)).toBeInTheDocument());
