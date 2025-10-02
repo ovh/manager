@@ -97,14 +97,14 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
   const {
     hasServiceAttached: hasCloudServiceAttachedToIP,
   } = useIpHasServicesAttached({
-    ...PRODUCT_PATHS_AND_CATEGORIES.CLOUD,
+    ...PRODUCT_PATHS_AND_CATEGORIES.cloud,
     serviceName,
   });
 
   const {
     hasServiceAttached: hasDedicatedServiceAttachedToIp,
   } = useIpHasServicesAttached({
-    ...PRODUCT_PATHS_AND_CATEGORIES.DEDICATED,
+    ...PRODUCT_PATHS_AND_CATEGORIES.dedicated,
     serviceName,
   });
 

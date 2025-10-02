@@ -1,9 +1,12 @@
+import { useMemo } from 'react';
 import { useQueries } from '@tanstack/react-query';
+import { IcebergFetchResultV6 } from '@ovh-ux/manager-core-api';
 import {
   GetProductServicesParams,
   getProductServicesQueryKey,
   getProductServices,
   ProductServicesDetails,
+  IpTypeEnum,
 } from '../api';
 
 export interface ServiceInfo {
@@ -18,9 +21,9 @@ const getDisplayName = (
 ): string => {
   let iam;
   switch (category) {
-    case 'CLOUD':
+    case IpTypeEnum.CLOUD:
       return (service?.description as string) || '';
-    case 'VRACK':
+    case IpTypeEnum.VRACK:
       return (service?.name as string) || '';
     default:
       iam = service.iam as { displayName?: string } | undefined;
@@ -34,28 +37,42 @@ const getDisplayName = (
 export const useGetProductServices = (
   productPathsAndCategories: GetProductServicesParams[],
 ) => {
-  const queries = useQueries({
+  const queriesResult = useQueries({
     queries: productPathsAndCategories.map((params) => ({
       queryKey: getProductServicesQueryKey(params as GetProductServicesParams),
       queryFn: () => getProductServices(params as GetProductServicesParams),
     })),
+    combine: (queries) =>
+      queries
+        .map((result, index) => ({
+          data: result?.data?.data || [],
+          category: productPathsAndCategories[index]?.category,
+        }))
+        .reduce((acc, { category, data }) => {
+          acc[category] = data.map((service) => {
+            const iam = service.iam as { urn: string } | undefined;
+            const extractedServiceName = iam?.urn.split(':').pop() || '';
+
+            return {
+              category,
+              serviceName: extractedServiceName,
+              displayName:
+                getDisplayName(category, service) || extractedServiceName,
+            };
+          });
+          return acc;
+        }, {} as Record<string, ServiceInfo[]>),
   });
 
-  const services = queries.flatMap(({ data }) =>
-    (data?.data || []).map((service: any) => {
-      const iam = service.iam as { urn: string } | undefined;
-      const extractedServiceName = iam?.urn.split(':').pop() || '';
-      return {
-        category: service.category,
-        serviceName: extractedServiceName,
-        displayName:
-          getDisplayName(service.category, service) || extractedServiceName,
-      };
-    }),
-  ) as ServiceInfo[];
+  const serviceByCategory = (queriesResult?.data as unknown) as Record<
+    string,
+    ServiceInfo[]
+  >;
 
   return {
-    services,
-    queries,
+    serviceList: serviceByCategory
+      ? Object.values(serviceByCategory).flatMap((service) => service)
+      : [],
+    serviceByCategory,
   };
 };
