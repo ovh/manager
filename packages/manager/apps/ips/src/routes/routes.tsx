@@ -135,21 +135,6 @@ export const Routes: RouteObject[] = [
                 },
               },
               {
-                id: subRoutes.manageIpMitigation,
-                path: urls.manageIpMitigation,
-                ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/actions/manageIpMitigation/manageIpMitigation.page'
-                  ),
-                ),
-                handle: {
-                  tracking: {
-                    pageName: 'listing-manage-mitigation',
-                    pageType: PageType.popup,
-                  },
-                },
-              },
-              {
                 id: subRoutes.deleteVirtualMac,
                 path: urls.deleteVirtualMac,
                 ...lazyRouteConfig(() =>
