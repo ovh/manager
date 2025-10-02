@@ -1,5 +1,11 @@
 import { OdsIcon } from '@ovhcloud/ods-components/react';
-import { screen, waitFor, waitForOptions } from '@testing-library/react';
+import {
+  waitFor,
+  waitForOptions,
+  screen,
+  fireEvent,
+  act,
+} from '@testing-library/react';
 
 const WAIT_FOR_DEFAULT_OPTIONS = { timeout: 3000 };
 
@@ -128,4 +134,30 @@ export const getOdsLinkByTestId = async ({
   });
 
   return link;
+};
+
+export const changeOdsInputValueByTestId = async (
+  inputTestId: string,
+  value: string,
+) => {
+  // First try to get the input directly
+  let input = screen.queryByTestId(inputTestId);
+
+  // If the input is not found, try to find it with a findByTestId
+  // This can look silly, but the ODS input renders in a mysterious way
+  // and if you use a findByTestId when you need a getByTestId (and reverse), it won't work
+  if (!input) {
+    input = await screen.findByTestId(inputTestId);
+  }
+
+  await act(() => {
+    fireEvent.change(input, {
+      target: { value },
+    });
+  });
+
+  // Wait for the data input to be updated
+  await waitFor(() => {
+    expect(input).toHaveValue(value);
+  });
 };

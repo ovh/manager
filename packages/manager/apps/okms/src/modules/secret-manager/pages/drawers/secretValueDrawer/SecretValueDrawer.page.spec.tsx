@@ -1,4 +1,4 @@
-import { screen, act, waitFor, fireEvent } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { VERSION_BADGE_TEST_ID } from '@secret-manager/utils/tests/version.constants';
 import { SecretVersion } from '@secret-manager/types/secret.type';
@@ -27,6 +27,7 @@ import {
   RenderTestMockParams,
 } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
+import { changeOdsInputValueByTestId } from '@/utils/tests/uiTestHelpers';
 
 const mockOkmsId = '12345';
 const mockSecret = secretListMock[0];
@@ -193,18 +194,11 @@ describe('ValueDrawer test suite', () => {
         // GIVEN version, haveValue
         await renderPage();
 
-        await waitFor(() => {
-          expect(screen.getByTestId(VERSION_SELECTOR_TEST_ID)).toBeVisible();
-        }, WAIT_FOR_DEFAULT_OPTIONS);
-
-        // WHEN
-        const versionSelect = screen.getByTestId(VERSION_SELECTOR_TEST_ID);
-
-        await act(() => {
-          fireEvent.change(versionSelect, {
-            target: { value: version.id.toString() },
-          });
-        });
+        // Change the data input value
+        await changeOdsInputValueByTestId(
+          VERSION_SELECTOR_TEST_ID,
+          version.id.toString(),
+        );
 
         // THEN
         await assertTextVisibility(labels.common.status.status);
