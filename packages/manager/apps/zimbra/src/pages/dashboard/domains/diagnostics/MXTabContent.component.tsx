@@ -68,7 +68,7 @@ const MXTabContent = ({
           }}
         />
       </OdsText>
-      {isOk && (
+      {!isOk && (
         <>
           {guide && <GuideLink label={t('zimbra_domain_diagnostic_access_guide')} guide={guide} />}
           {isAutoConfigurable ? (
