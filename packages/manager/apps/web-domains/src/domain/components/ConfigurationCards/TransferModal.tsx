@@ -37,8 +37,8 @@ export default function TransferModal({
       <ModalContent
         color={
           action === ProtectionStateEnum.UNPROTECTED
-            ? MODAL_COLOR.information
-            : MODAL_COLOR.critical
+            ? MODAL_COLOR.critical
+            : MODAL_COLOR.information
         }
         dismissible={false}
       >
@@ -51,8 +51,8 @@ export default function TransferModal({
         >
           <Text preset={TEXT_PRESET.heading2}>
             {action === ProtectionStateEnum.UNPROTECTED
-              ? t('domain_tab_general_information_transfer_activation_modal')
-              : t('domain_tab_general_information_transfer_deactivate_modal')}
+              ? t('domain_tab_general_information_transfer_deactivate_modal')
+              : t('domain_tab_general_information_transfer_activation_modal')}
           </Text>
           <Text preset={TEXT_PRESET.paragraph}>
             {action === ProtectionStateEnum.UNPROTECTED ? (
@@ -93,8 +93,8 @@ export default function TransferModal({
             <Button
               color={
                 action === ProtectionStateEnum.UNPROTECTED
-                  ? BUTTON_COLOR.information
-                  : BUTTON_COLOR.critical
+                  ? BUTTON_COLOR.critical
+                  : BUTTON_COLOR.information
               }
               onClick={() => updateDomain()}
             >

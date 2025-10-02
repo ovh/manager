@@ -2,19 +2,8 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 import {
-  Badge,
-  BADGE_COLOR,
-  Icon,
-  ICON_NAME,
-  Toggle,
-  ToggleControl,
-  ToggleLabel,
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@ovhcloud/ods-react';
-import {
   useGetDnssecStatus,
+  useGetDomainAnycastOption,
   useGetDomainAuthInfo,
   useGetDomainResource,
   useUpdateDnssecService,
@@ -26,6 +15,8 @@ import TransferToggleStatus from './TransferToggleStatus';
 import TransferModal from './TransferModal';
 import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
 import TransferAuthInfoModal from './TransferAuthInfoModal';
+import DnsState from './DnsState';
+import AnycastTerminateModal from '@/domain/components/AnycastOrder/AnycastTerminateModal';
 
 interface ConfigurationCardsProps {
   readonly serviceName: string;
@@ -37,13 +28,20 @@ export default function ConfigurationCards({
   const { t } = useTranslation(['domain']);
   const { domainResource } = useGetDomainResource(serviceName);
   const { authInfo, isAuthInfoLoading } = useGetDomainAuthInfo(serviceName);
-  console.log(authInfo)
+  const { anycastOption, isFetchingAnycastOption } = useGetDomainAnycastOption(
+    serviceName,
+  );
   const [dnssecModalOpened, setDnssecModalOpened] = React.useState<boolean>(
     false,
   );
   const [transferModalOpened, setTransferModalOpened] = React.useState<boolean>(
     false,
   );
+  const [
+    anycastTerminateModalOpen,
+    setAnycastTerminateModalOpen,
+  ] = React.useState<boolean>(false);
+  const [restoreAnycast, setRestoreAnycast] = React.useState<boolean>(false);
   const [
     transferAuthInfoModalOpened,
     setTransferAuthInfoModalOpened,
@@ -74,14 +72,16 @@ export default function ConfigurationCards({
         {t('domain_tab_general_information_configuration')}
       </ManagerTile.Title>
       <ManagerTile.Divider />
-      <ManagerTile.Item>
-        <ManagerTile.Item.Label>Serveur DNS</ManagerTile.Item.Label>
-        <ManagerTile.Item.Description>
-          <Badge color={BADGE_COLOR.success} className="mt-4">
-            Enregistré
-          </Badge>
-        </ManagerTile.Item.Description>
-      </ManagerTile.Item>
+      <DnsState
+        domainResource={domainResource}
+        serviceName={serviceName}
+        anycastOption={anycastOption}
+        isFetchingAnycastOption={isFetchingAnycastOption}
+        anycastTerminateModalOpen={anycastTerminateModalOpen}
+        setAnycastTerminateModalOpen={setAnycastTerminateModalOpen}
+        restoreAnycast={restoreAnycast}
+        setRestoreAnycast={setRestoreAnycast}
+      />
       <ManagerTile.Divider />
       <DnssecToggleStatus
         dnssecModalOpened={dnssecModalOpened}
@@ -118,6 +118,15 @@ export default function ConfigurationCards({
           setTransferAuthInfoModalOpened(!transferAuthInfoModalOpened)
         }
         open={transferAuthInfoModalOpened}
+      />
+      <AnycastTerminateModal
+        serviceName={serviceName}
+        restore={restoreAnycast}
+        anycastTerminateModalOpen={anycastTerminateModalOpen}
+        expirationDate={anycastOption?.expirationDate}
+        onOpenAnycastTerminateModal={() =>
+          setAnycastTerminateModalOpen(!anycastTerminateModalOpen)
+        }
       />
     </ManagerTile>
   );
