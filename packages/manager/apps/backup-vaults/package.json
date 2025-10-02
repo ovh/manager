@@ -29,8 +29,8 @@
     "@ovh-ux/manager-react-shell-client": "*",
     "@ovh-ux/request-tagger": "*",
     "@ovh-ux/shell": "^4.5.7",
-    "@ovhcloud/ods-components": "^18.6.2",
-    "@ovhcloud/ods-themes": "^18.6.2",
+    "@ovhcloud/ods-components": "^18.6.4",
+    "@ovhcloud/ods-themes": "^18.6.4",
     "@tanstack/react-query": "^5.51.21",
     "axios": "^1.1.2",
     "clsx": "^1.2.1",
@@ -48,7 +48,8 @@
     "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/manager-tests-setup": "latest",
     "@ovh-ux/manager-vite-config": "*",
-    "@tanstack/react-query-devtools": "^5.51.21"
+    "@tanstack/react-query-devtools": "^5.51.21",
+    "msw": "2.1.7"
   },
   "regions": [
     "CA",
