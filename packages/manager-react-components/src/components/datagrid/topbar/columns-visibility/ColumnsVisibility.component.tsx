@@ -26,13 +26,13 @@ const ColumnsVisibilityComponent = <T,>({
   visibleColumns,
 }: ColumnsVisibilityProps<T>) => {
   const { t } = useTranslation('datagrid');
-  const eligibleColumns = visibleColumns.filter(
-    (column) => !INTERNAL_COLUMNS.includes(column.id),
-  );
+  const eligibleColumns =
+    visibleColumns?.filter((column) => !INTERNAL_COLUMNS.includes(column.id)) ||
+    [];
   const visibleColumnsCount = eligibleColumns.filter((column) =>
     column.getIsVisible(),
   ).length;
-  const isAllColumnsVisible = getIsAllColumnsVisible();
+  const isAllColumnsVisible = getIsAllColumnsVisible?.() || false;
   return (
     <div>
       <Popover position={POPOVER_POSITION.bottom}>
@@ -58,7 +58,7 @@ const ColumnsVisibilityComponent = <T,>({
               <Checkbox
                 aria-label={t('common_topbar_columns_select_all')}
                 checked={isAllColumnsVisible}
-                onChange={() => toggleAllColumnsVisible()}
+                onChange={() => toggleAllColumnsVisible?.()}
               >
                 <CheckboxControl />
                 <CheckboxLabel>

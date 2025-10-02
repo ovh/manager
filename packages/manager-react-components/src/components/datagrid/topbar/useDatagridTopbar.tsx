@@ -1,13 +1,15 @@
 import { useMemo } from 'react';
 import { FilterCategories } from '@ovh-ux/manager-core-api';
+import { Column } from '@tanstack/react-table';
 import { ColumnFilter } from '../../filters/filter-add.component';
+import { ManagerColumnDef } from '../Datagrid.props';
 
 export const useDatagridTopbar = ({
   columns,
   visibleColumns,
 }: {
-  columns: any;
-  visibleColumns: any;
+  columns?: ManagerColumnDef<any>[];
+  visibleColumns?: Column<any, unknown>[];
 }) => {
   const hasSearchFeature = useMemo(
     () => columns?.some((col) => col?.isSearchable),
@@ -27,15 +29,15 @@ export const useDatagridTopbar = ({
             item.isFilterable,
         )
         .map((column) => ({
-          id: column.id,
-          label: column.label,
-          ...(column?.type && {
-            comparators: FilterCategories[column.type],
-            type: column.type,
-          }),
-          ...(column?.comparator && { comparators: column.comparator }),
+          id: column.id || '',
+          label: column.label || '',
+          comparators:
+            column?.comparator ||
+            FilterCategories[column?.type as keyof typeof FilterCategories] ||
+            [],
+          ...(column?.type && { type: column.type }),
           ...(column?.filterOptions && { options: column.filterOptions }),
-        })),
+        })) || [],
     [columns],
   );
   return {

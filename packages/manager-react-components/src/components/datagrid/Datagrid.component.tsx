@@ -21,7 +21,7 @@ export const Datagrid = <T extends Record<string, unknown>>({
   enableColumnvisibility = false,
   enableFilter = false,
   enableSearch = false,
-  expandable = false,
+  expandable,
   filters,
   hasNextPage,
   isLoading,
@@ -56,10 +56,10 @@ export const Datagrid = <T extends Record<string, unknown>>({
     onSortChange,
     manualSorting,
     renderSubComponent,
-    expandable,
     columnVisibility,
     setColumnVisibility,
     rowSelection,
+    expandable,
   });
   const rowModel = getRowModel();
   const { rows } = rowModel;
@@ -112,10 +112,12 @@ export const Datagrid = <T extends Record<string, unknown>>({
             contentAlignLeft={contentAlignLeft}
           />
           <TableBody
+            columns={visibleColumns}
             autoScroll={autoScroll}
+            expanded={expandable?.expanded}
             rowModel={rowModel}
             tableContainerRef={tableContainerRef}
-            isLoading={isLoading}
+            isLoading={isLoading ?? false}
             renderSubComponent={renderSubComponent}
             subComponentHeight={subComponentHeight}
             maxRowHeight={maxRowHeight}

@@ -3,58 +3,37 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { Datagrid } from '../../../Datagrid.component';
 import { useAuthorizationIam } from '../../../../../hooks/iam';
 import { IamAuthorizationResponse } from '../../../../../hooks/iam/iam.interface';
+import {
+  mockIamResponse,
+  mockBasicColumns,
+  mockData,
+  mockOnSortChange,
+  mockEmptySorting,
+  mockSortingAsc,
+} from '../../../__tests__/mocks';
 
 vitest.mock('../../../../../hooks/iam');
 
 const mockedHook =
   useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
 
-const columns = [
-  {
-    id: 'name',
-    header: 'Name',
-    accessorKey: 'name',
-  },
-  {
-    id: 'age',
-    header: 'Age',
-    accessorKey: 'age',
-  },
-];
-
-const data = [
-  {
-    name: 'John',
-    age: 25,
-  },
-  {
-    name: 'Jane',
-    age: 26,
-  },
-];
-
 describe('TableHead', () => {
   beforeEach(() => {
-    mockedHook.mockReturnValue({
-      isAuthorized: true,
-      isLoading: false,
-      isFetched: true,
-    });
+    mockedHook.mockReturnValue(mockIamResponse);
   });
   it('should render all headers correctly', () => {
-    render(<Datagrid columns={columns} data={data} />);
+    render(<Datagrid columns={mockBasicColumns} data={mockData} />);
     expect(screen.getByText('Name')).toBeInTheDocument();
     expect(screen.getByText('Age')).toBeInTheDocument();
   });
 
   it('should render headers with sorting enabled', () => {
-    const mockOnSortChange = vi.fn();
     render(
       <Datagrid
-        columns={columns}
-        data={data}
+        columns={mockBasicColumns}
+        data={mockData}
         onSortChange={mockOnSortChange}
-        sorting={[]}
+        sorting={mockEmptySorting}
       />,
     );
 
@@ -63,13 +42,12 @@ describe('TableHead', () => {
   });
 
   it('should call onSortChange when header is clicked', () => {
-    const mockOnSortChange = vi.fn();
     render(
       <Datagrid
-        columns={columns}
-        data={data}
+        columns={mockBasicColumns}
+        data={mockData}
         onSortChange={mockOnSortChange}
-        sorting={[]}
+        sorting={mockEmptySorting}
       />,
     );
 
@@ -79,13 +57,12 @@ describe('TableHead', () => {
   });
 
   it('should toggle sort direction on second click', () => {
-    const mockOnSortChange = vi.fn();
     render(
       <Datagrid
-        columns={columns}
-        data={data}
+        columns={mockBasicColumns}
+        data={mockData}
         onSortChange={mockOnSortChange}
-        sorting={[{ id: 'name', desc: false }]}
+        sorting={mockSortingAsc}
       />,
     );
 
@@ -95,13 +72,12 @@ describe('TableHead', () => {
   });
 
   it('should handle multiple column sorting', () => {
-    const mockOnSortChange = vi.fn();
     render(
       <Datagrid
-        columns={columns}
-        data={data}
+        columns={mockBasicColumns}
+        data={mockData}
         onSortChange={mockOnSortChange}
-        sorting={[{ id: 'name', desc: false }]}
+        sorting={mockSortingAsc}
       />,
     );
 
@@ -113,8 +89,8 @@ describe('TableHead', () => {
   it('should render with initial sorting state', () => {
     render(
       <Datagrid
-        columns={columns}
-        data={data}
+        columns={mockBasicColumns}
+        data={mockData}
         sorting={[{ id: 'age', desc: true }]}
       />,
     );
@@ -124,13 +100,12 @@ describe('TableHead', () => {
   });
 
   it('should handle empty sorting array', () => {
-    const mockOnSortChange = vi.fn();
     render(
       <Datagrid
-        columns={columns}
-        data={data}
+        columns={mockBasicColumns}
+        data={mockData}
         onSortChange={mockOnSortChange}
-        sorting={[]}
+        sorting={mockEmptySorting}
       />,
     );
 
@@ -140,11 +115,10 @@ describe('TableHead', () => {
   });
 
   it('should handle undefined sorting prop', () => {
-    const mockOnSortChange = vi.fn();
     render(
       <Datagrid
-        columns={columns}
-        data={data}
+        columns={mockBasicColumns}
+        data={mockData}
         onSortChange={mockOnSortChange}
       />,
     );
@@ -155,13 +129,12 @@ describe('TableHead', () => {
   });
 
   it('should handle manual sorting mode', () => {
-    const mockOnSortChange = vi.fn();
     render(
       <Datagrid
-        columns={columns}
-        data={data}
+        columns={mockBasicColumns}
+        data={mockData}
         onSortChange={mockOnSortChange}
-        sorting={[]}
+        sorting={mockEmptySorting}
         manualSorting={true}
       />,
     );

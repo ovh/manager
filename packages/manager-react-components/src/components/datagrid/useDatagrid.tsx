@@ -28,6 +28,7 @@ export const useDatagrid = <T extends ExpandableRow<T>>({
   setColumnVisibility,
   sorting,
 }: UseDatagridTableProps<T>) => {
+  console.info('useDatagrid expandable ', expandable);
   return useReactTable({
     columns: [
       ...(rowSelection
@@ -48,7 +49,7 @@ export const useDatagrid = <T extends ExpandableRow<T>>({
                   <CheckboxControl />
                 </Checkbox>
               ),
-              header: ({ table }) => (
+              header: ({ table }: { table: any }) => (
                 <Checkbox
                   id="select-all"
                   name="select-all"
@@ -63,7 +64,7 @@ export const useDatagrid = <T extends ExpandableRow<T>>({
             },
           ]
         : []),
-      ...(expandable || renderSubComponent
+      ...(expandable?.enableExpandable || renderSubComponent
         ? [
             {
               id: 'expander',
@@ -111,12 +112,19 @@ export const useDatagrid = <T extends ExpandableRow<T>>({
     ...(columnVisibility &&
       setColumnVisibility && {
         columnVisibility,
-        onColumnVisibilityChange: setColumnVisibility,
+        onColumnVisibilityChange: (updaterOrValue) => {
+          if (typeof updaterOrValue === 'function') {
+            setColumnVisibility(updaterOrValue(columnVisibility));
+          } else {
+            setColumnVisibility(updaterOrValue);
+          }
+        },
       }),
     state: {
       ...(onSortChange && { sorting }),
       ...(columnVisibility && setColumnVisibility && { columnVisibility }),
       ...(rowSelection && { rowSelection: rowSelection.rowSelection }),
+      ...(expandable?.enableExpandable && { expanded: expandable.expanded }),
     },
     ...(rowSelection &&
       rowSelection.setRowSelection && {
@@ -124,9 +132,19 @@ export const useDatagrid = <T extends ExpandableRow<T>>({
         onRowSelectionChange: rowSelection.setRowSelection,
       }),
     ...(onSortChange && {
-      onSortingChange: onSortChange,
+      onSortingChange: (updaterOrValue) => {
+        if (typeof updaterOrValue === 'function') {
+          onSortChange(updaterOrValue(sorting || []));
+        } else {
+          onSortChange(updaterOrValue);
+        }
+      },
       getSortedRowModel: getSortedRowModel(),
       ...(manualSorting && { manualSorting }),
     }),
+    ...(expandable?.enableExpandable &&
+      expandable?.setExpanded && {
+        onExpandedChange: expandable?.setExpanded,
+      }),
   });
 };

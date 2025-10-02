@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   Datagrid,
   DatagridProps,
-  Text,
   useColumnFilters,
 } from '@ovh-ux/manager-react-components';
 import {
@@ -23,6 +22,7 @@ import {
   SortingState,
   VisibilityState,
   RowSelectionState,
+  ExpandedState,
 } from '@tanstack/react-table';
 import { withRouter } from 'storybook-addon-react-router-v6';
 
@@ -131,22 +131,17 @@ const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
     args.containerHeight,
   );
   const {
-    expandable,
     autoScroll,
     renderSubComponent,
     subComponentHeight,
     maxRowHeight,
     isLoading,
     totalCount,
-    onFetchNextPage,
-    onFetchAllPages,
-    manualSorting,
     topbar,
     enableFilter,
     enableSearch,
     enableColumnvisibility,
   } = args;
-
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
@@ -166,8 +161,7 @@ const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
     );
     setItems(tmp);
   };
-
-  console.info('sortAttrs : ', sortAttrs);
+  const [expanded, setExpanded] = useState<ExpandedState>({});
   return (
     <>
       {'containerHeight' in args && (
@@ -223,7 +217,13 @@ const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
         {...('maxRowHeight' in args && { maxRowHeight })}
         {...('isLoading' in args && { isLoading })}
         {...('totalCount' in args && { totalCount })}
-        {...('expandable' in args && { expandable })}
+        {...('expandable' in args && {
+          expandable: {
+            enableExpandable: true,
+            expanded,
+            setExpanded,
+          },
+        })}
         {...('autoScroll' in args && { autoScroll })}
         {...('columnVisibility' in args && { columnVisibility })}
         {...('setColumnVisibility' in args && { setColumnVisibility })}
@@ -266,9 +266,11 @@ Sorting.args = {
 export const Loading = DatagridStory.bind({});
 
 Loading.args = {
-  columns: [],
-  data,
+  columns,
+  data: [],
   isLoading: true,
+  hasNextPage: true,
+  onFetchNextPage: () => {},
 };
 
 export const LoadMore = DatagridStory.bind({});
@@ -340,7 +342,11 @@ Expandable.args = {
   columns,
   data,
   manualSorting: false,
-  expandable: true,
+  expandable: {
+    enableExpandable: true,
+    expanded: {},
+    setExpanded: () => {},
+  },
   autoScroll: false,
   subComponentHeight: 80,
   totalCount: 4,

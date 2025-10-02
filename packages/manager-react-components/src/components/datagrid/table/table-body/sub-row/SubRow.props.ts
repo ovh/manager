@@ -1,6 +1,6 @@
 import { VirtualItem } from '@tanstack/react-virtual';
 
-export type SubRowProps<T> = {
+export type SubRowProps = {
   maxRowHeight: number;
   offset: number;
   renderSubComponent?: any;

@@ -26,9 +26,11 @@ const TopbarComponent = <T,>({
       columns,
       visibleColumns,
     });
+
   return (
     <>
       <div
+        data-testid="topbar-container"
         id="container"
         className="flex flex-wrap justify-between pb-6 items-center"
       >
@@ -40,7 +42,7 @@ const TopbarComponent = <T,>({
           className="w-full mt-[10px] md:mt-[0px] md:w-auto md:order-3"
         >
           <div className="flex justify-end items-center">
-            {enableSearch && hasSearchFeature && (
+            {enableSearch && hasSearchFeature && search && (
               <ColumnsSearch search={search} />
             )}
             {enableFilter && filtersColumns?.length > 0 && (
@@ -57,7 +59,7 @@ const TopbarComponent = <T,>({
               setColumnVisibility &&
               hasVisibilityFeature && (
                 <div className={filtersColumns?.length > 0 ? 'ml-[10px]' : ''}>
-                  {visibleColumns.length > 0 && (
+                  {visibleColumns && visibleColumns.length > 0 && (
                     <ColumnVisibility<T>
                       visibleColumns={visibleColumns}
                       toggleAllColumnsVisible={toggleAllColumnsVisible}
@@ -70,7 +72,7 @@ const TopbarComponent = <T,>({
           </div>
         </div>
       </div>
-      {enableFilter && filters?.filters.length > 0 && (
+      {enableFilter && filters && filters.filters.length > 0 && (
         <div
           data-testid="datagrid-filter-list"
           id="datagrid-filter-list"

@@ -85,7 +85,6 @@
   "exclude": [
     "./src/components/**/stories.tsx",
     "./src/components/**/test.tsx",
-    "./src/components/**/__tests__/*",
     "./src/tailwind/*",
     "./src/__mocks__/*",
     "../manager-tools/manager-legacy-tools/**/*"

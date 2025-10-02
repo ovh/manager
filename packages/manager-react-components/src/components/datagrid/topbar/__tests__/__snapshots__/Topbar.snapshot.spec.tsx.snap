@@ -1,0 +1,653 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Topbar Snapshot Tests > should match snapshot with active filters 1`] = `
+<div
+  class="flex flex-wrap justify-between pb-6 items-center"
+  data-testid="topbar-container"
+  id="container"
+>
+  <div
+    class="flex-1 w-full md:w-auto md:order-1 mr-4"
+    id="left-side"
+  />
+  <div
+    class="w-full mt-[10px] md:mt-[0px] md:w-auto md:order-3"
+    id="right-side"
+  >
+    <div
+      class="flex justify-end items-center"
+    >
+      <div
+        class="ml-[10px]"
+        data-testid="datagrid-topbar-filters"
+      >
+        <div>
+          <button
+            aria-controls="popover::rk::content"
+            aria-expanded="false"
+            aria-haspopup="dialog"
+            aria-label="common_criteria_adder_filter_label"
+            class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+            data-part="trigger"
+            data-scope="popover"
+            data-state="closed"
+            data-testid="manager-button"
+            dir="ltr"
+            id="popover::rk::trigger"
+            type="button"
+          >
+            <span
+              class="_icon_i4xp0_2 _icon--filter_i4xp0_211"
+            />
+            common_criteria_adder_filter_label
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Topbar Snapshot Tests > should match snapshot with all features enabled 1`] = `
+<div
+  class="flex flex-wrap justify-between pb-6 items-center"
+  data-testid="topbar-container"
+  id="container"
+>
+  <div
+    class="flex-1 w-full md:w-auto md:order-1 mr-4"
+    id="left-side"
+  >
+    <div>
+      Custom topbar content
+    </div>
+  </div>
+  <div
+    class="w-full mt-[10px] md:mt-[0px] md:w-auto md:order-3"
+    id="right-side"
+  >
+    <div
+      class="flex justify-end items-center"
+    >
+      <form
+        class="mr-[5px]"
+      >
+        <div
+          class="_input_1p31i_2 _input--with-actions_1p31i_32"
+        >
+          <input
+            class="_input__field_1p31i_35"
+            placeholder="Search..."
+            type="search"
+            value="test"
+          />
+          <div
+            class="_input__actions_1p31i_61"
+          >
+            <button
+              class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+              type="button"
+            >
+              <span
+                class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+              />
+            </button>
+            <button
+              class="_button_10f3x_2 _button--primary_10f3x_99 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+              type="submit"
+            >
+              <span
+                class="_icon_i4xp0_2 _icon--magnifying-glass_i4xp0_295"
+              />
+            </button>
+          </div>
+        </div>
+      </form>
+      <div
+        class="ml-[10px]"
+        data-testid="datagrid-topbar-filters"
+      >
+        <div>
+          <button
+            aria-controls="popover::r7::content"
+            aria-expanded="false"
+            aria-haspopup="dialog"
+            aria-label="common_criteria_adder_filter_label"
+            class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+            data-part="trigger"
+            data-scope="popover"
+            data-state="closed"
+            data-testid="manager-button"
+            dir="ltr"
+            id="popover::r7::trigger"
+            type="button"
+          >
+            <span
+              class="_icon_i4xp0_2 _icon--filter_i4xp0_211"
+            />
+            common_criteria_adder_filter_label
+          </button>
+        </div>
+      </div>
+      <div
+        class="ml-[10px]"
+      >
+        <div>
+          <button
+            aria-controls="popover::r8::content"
+            aria-expanded="false"
+            aria-haspopup="dialog"
+            aria-label="Columns"
+            class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+            data-part="trigger"
+            data-scope="popover"
+            data-state="closed"
+            data-testid="manager-button"
+            dir="ltr"
+            id="popover::r8::trigger"
+            type="button"
+          >
+            <span
+              class="_icon_i4xp0_2 _icon--columns_i4xp0_136"
+            />
+            Columns
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Topbar Snapshot Tests > should match snapshot with basic props 1`] = `
+<div
+  class="flex flex-wrap justify-between pb-6 items-center"
+  data-testid="topbar-container"
+  id="container"
+>
+  <div
+    class="flex-1 w-full md:w-auto md:order-1 mr-4"
+    id="left-side"
+  />
+  <div
+    class="w-full mt-[10px] md:mt-[0px] md:w-auto md:order-3"
+    id="right-side"
+  >
+    <div
+      class="flex justify-end items-center"
+    />
+  </div>
+</div>
+`;
+
+exports[`Topbar Snapshot Tests > should match snapshot with column visibility enabled 1`] = `
+<div
+  class="flex flex-wrap justify-between pb-6 items-center"
+  data-testid="topbar-container"
+  id="container"
+>
+  <div
+    class="flex-1 w-full md:w-auto md:order-1 mr-4"
+    id="left-side"
+  />
+  <div
+    class="w-full mt-[10px] md:mt-[0px] md:w-auto md:order-3"
+    id="right-side"
+  >
+    <div
+      class="flex justify-end items-center"
+    >
+      <div
+        class="ml-[10px]"
+      >
+        <div>
+          <button
+            aria-controls="popover::r1::content"
+            aria-expanded="false"
+            aria-haspopup="dialog"
+            aria-label="Columns"
+            class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+            data-part="trigger"
+            data-scope="popover"
+            data-state="closed"
+            data-testid="manager-button"
+            dir="ltr"
+            id="popover::r1::trigger"
+            type="button"
+          >
+            <span
+              class="_icon_i4xp0_2 _icon--columns_i4xp0_136"
+            />
+            Columns
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Topbar Snapshot Tests > should match snapshot with columns that have no filter feature 1`] = `
+<div
+  class="flex flex-wrap justify-between pb-6 items-center"
+  data-testid="topbar-container"
+  id="container"
+>
+  <div
+    class="flex-1 w-full md:w-auto md:order-1 mr-4"
+    id="left-side"
+  />
+  <div
+    class="w-full mt-[10px] md:mt-[0px] md:w-auto md:order-3"
+    id="right-side"
+  >
+    <div
+      class="flex justify-end items-center"
+    />
+  </div>
+</div>
+`;
+
+exports[`Topbar Snapshot Tests > should match snapshot with columns that have no search feature 1`] = `
+<div
+  class="flex flex-wrap justify-between pb-6 items-center"
+  data-testid="topbar-container"
+  id="container"
+>
+  <div
+    class="flex-1 w-full md:w-auto md:order-1 mr-4"
+    id="left-side"
+  />
+  <div
+    class="w-full mt-[10px] md:mt-[0px] md:w-auto md:order-3"
+    id="right-side"
+  >
+    <div
+      class="flex justify-end items-center"
+    />
+  </div>
+</div>
+`;
+
+exports[`Topbar Snapshot Tests > should match snapshot with columns that have no visibility feature 1`] = `
+<div
+  class="flex flex-wrap justify-between pb-6 items-center"
+  data-testid="topbar-container"
+  id="container"
+>
+  <div
+    class="flex-1 w-full md:w-auto md:order-1 mr-4"
+    id="left-side"
+  />
+  <div
+    class="w-full mt-[10px] md:mt-[0px] md:w-auto md:order-3"
+    id="right-side"
+  >
+    <div
+      class="flex justify-end items-center"
+    />
+  </div>
+</div>
+`;
+
+exports[`Topbar Snapshot Tests > should match snapshot with custom topbar content 1`] = `
+<div
+  class="flex flex-wrap justify-between pb-6 items-center"
+  data-testid="topbar-container"
+  id="container"
+>
+  <div
+    class="flex-1 w-full md:w-auto md:order-1 mr-4"
+    id="left-side"
+  >
+    <div>
+      Custom topbar content
+    </div>
+  </div>
+  <div
+    class="w-full mt-[10px] md:mt-[0px] md:w-auto md:order-3"
+    id="right-side"
+  >
+    <div
+      class="flex justify-end items-center"
+    />
+  </div>
+</div>
+`;
+
+exports[`Topbar Snapshot Tests > should match snapshot with empty visible columns 1`] = `
+<div
+  class="flex flex-wrap justify-between pb-6 items-center"
+  data-testid="topbar-container"
+  id="container"
+>
+  <div
+    class="flex-1 w-full md:w-auto md:order-1 mr-4"
+    id="left-side"
+  />
+  <div
+    class="w-full mt-[10px] md:mt-[0px] md:w-auto md:order-3"
+    id="right-side"
+  >
+    <div
+      class="flex justify-end items-center"
+    />
+  </div>
+</div>
+`;
+
+exports[`Topbar Snapshot Tests > should match snapshot with filters enabled 1`] = `
+<div
+  class="flex flex-wrap justify-between pb-6 items-center"
+  data-testid="topbar-container"
+  id="container"
+>
+  <div
+    class="flex-1 w-full md:w-auto md:order-1 mr-4"
+    id="left-side"
+  />
+  <div
+    class="w-full mt-[10px] md:mt-[0px] md:w-auto md:order-3"
+    id="right-side"
+  >
+    <div
+      class="flex justify-end items-center"
+    >
+      <div
+        class="ml-[10px]"
+        data-testid="datagrid-topbar-filters"
+      >
+        <div>
+          <button
+            aria-controls="popover::r0::content"
+            aria-expanded="false"
+            aria-haspopup="dialog"
+            aria-label="common_criteria_adder_filter_label"
+            class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+            data-part="trigger"
+            data-scope="popover"
+            data-state="closed"
+            data-testid="manager-button"
+            dir="ltr"
+            id="popover::r0::trigger"
+            type="button"
+          >
+            <span
+              class="_icon_i4xp0_2 _icon--filter_i4xp0_211"
+            />
+            common_criteria_adder_filter_label
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Topbar Snapshot Tests > should match snapshot with multiple active filters 1`] = `
+<div
+  class="flex flex-wrap justify-between pb-6 items-center"
+  data-testid="topbar-container"
+  id="container"
+>
+  <div
+    class="flex-1 w-full md:w-auto md:order-1 mr-4"
+    id="left-side"
+  />
+  <div
+    class="w-full mt-[10px] md:mt-[0px] md:w-auto md:order-3"
+    id="right-side"
+  >
+    <div
+      class="flex justify-end items-center"
+    >
+      <div
+        class="ml-[10px]"
+        data-testid="datagrid-topbar-filters"
+      >
+        <div>
+          <button
+            aria-controls="popover::rm::content"
+            aria-expanded="false"
+            aria-haspopup="dialog"
+            aria-label="common_criteria_adder_filter_label"
+            class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+            data-part="trigger"
+            data-scope="popover"
+            data-state="closed"
+            data-testid="manager-button"
+            dir="ltr"
+            id="popover::rm::trigger"
+            type="button"
+          >
+            <span
+              class="_icon_i4xp0_2 _icon--filter_i4xp0_211"
+            />
+            common_criteria_adder_filter_label
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Topbar Snapshot Tests > should match snapshot with partial column visibility 1`] = `
+<div
+  class="flex flex-wrap justify-between pb-6 items-center"
+  data-testid="topbar-container"
+  id="container"
+>
+  <div
+    class="flex-1 w-full md:w-auto md:order-1 mr-4"
+    id="left-side"
+  />
+  <div
+    class="w-full mt-[10px] md:mt-[0px] md:w-auto md:order-3"
+    id="right-side"
+  >
+    <div
+      class="flex justify-end items-center"
+    >
+      <div
+        class="ml-[10px]"
+      >
+        <div>
+          <button
+            aria-controls="popover::re::content"
+            aria-expanded="false"
+            aria-haspopup="dialog"
+            aria-label="Columns"
+            class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+            data-part="trigger"
+            data-scope="popover"
+            data-state="closed"
+            data-testid="manager-button"
+            dir="ltr"
+            id="popover::re::trigger"
+            type="button"
+          >
+            <span
+              class="_icon_i4xp0_2 _icon--columns_i4xp0_136"
+            />
+            Columns (1)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Topbar Snapshot Tests > should match snapshot with resource type 1`] = `
+<div
+  class="flex flex-wrap justify-between pb-6 items-center"
+  data-testid="topbar-container"
+  id="container"
+>
+  <div
+    class="flex-1 w-full md:w-auto md:order-1 mr-4"
+    id="left-side"
+  />
+  <div
+    class="w-full mt-[10px] md:mt-[0px] md:w-auto md:order-3"
+    id="right-side"
+  >
+    <div
+      class="flex justify-end items-center"
+    >
+      <div
+        class="ml-[10px]"
+        data-testid="datagrid-topbar-filters"
+      >
+        <div>
+          <button
+            aria-controls="popover::rl::content"
+            aria-expanded="false"
+            aria-haspopup="dialog"
+            aria-label="common_criteria_adder_filter_label"
+            class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+            data-part="trigger"
+            data-scope="popover"
+            data-state="closed"
+            data-testid="manager-button"
+            dir="ltr"
+            id="popover::rl::trigger"
+            type="button"
+          >
+            <span
+              class="_icon_i4xp0_2 _icon--filter_i4xp0_211"
+            />
+            common_criteria_adder_filter_label
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Topbar Snapshot Tests > should match snapshot with search and custom placeholder 1`] = `
+<div
+  class="flex flex-wrap justify-between pb-6 items-center"
+  data-testid="topbar-container"
+  id="container"
+>
+  <div
+    class="flex-1 w-full md:w-auto md:order-1 mr-4"
+    id="left-side"
+  />
+  <div
+    class="w-full mt-[10px] md:mt-[0px] md:w-auto md:order-3"
+    id="right-side"
+  >
+    <div
+      class="flex justify-end items-center"
+    >
+      <form
+        class="mr-[5px]"
+      >
+        <div
+          class="_input_1p31i_2 _input--with-actions_1p31i_32"
+        >
+          <input
+            class="_input__field_1p31i_35"
+            placeholder="Search users..."
+            type="search"
+            value=""
+          />
+          <div
+            class="_input__actions_1p31i_61"
+          >
+            <button
+              class="_button_10f3x_2 _button--primary_10f3x_99 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+              type="submit"
+            >
+              <span
+                class="_icon_i4xp0_2 _icon--magnifying-glass_i4xp0_295"
+              />
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Topbar Snapshot Tests > should match snapshot with search enabled 1`] = `
+<div
+  class="flex flex-wrap justify-between pb-6 items-center"
+  data-testid="topbar-container"
+  id="container"
+>
+  <div
+    class="flex-1 w-full md:w-auto md:order-1 mr-4"
+    id="left-side"
+  />
+  <div
+    class="w-full mt-[10px] md:mt-[0px] md:w-auto md:order-3"
+    id="right-side"
+  >
+    <div
+      class="flex justify-end items-center"
+    >
+      <form
+        class="mr-[5px]"
+      >
+        <div
+          class="_input_1p31i_2 _input--with-actions_1p31i_32"
+        >
+          <input
+            class="_input__field_1p31i_35"
+            placeholder="Search..."
+            type="search"
+            value="test"
+          />
+          <div
+            class="_input__actions_1p31i_61"
+          >
+            <button
+              class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+              type="button"
+            >
+              <span
+                class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+              />
+            </button>
+            <button
+              class="_button_10f3x_2 _button--primary_10f3x_99 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+              type="submit"
+            >
+              <span
+                class="_icon_i4xp0_2 _icon--magnifying-glass_i4xp0_295"
+              />
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Topbar Snapshot Tests > should match snapshot with undefined props 1`] = `
+<div
+  class="flex flex-wrap justify-between pb-6 items-center"
+  data-testid="topbar-container"
+  id="container"
+>
+  <div
+    class="flex-1 w-full md:w-auto md:order-1 mr-4"
+    id="left-side"
+  />
+  <div
+    class="w-full mt-[10px] md:mt-[0px] md:w-auto md:order-3"
+    id="right-side"
+  >
+    <div
+      class="flex justify-end items-center"
+    />
+  </div>
+</div>
+`;

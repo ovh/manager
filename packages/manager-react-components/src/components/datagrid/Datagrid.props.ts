@@ -5,12 +5,13 @@ import {
   Row,
   VisibilityState,
   RowSelectionState,
+  SortingState,
+  ExpandedState,
 } from '@tanstack/react-table';
 import {
   FilterComparator,
   FilterTypeCategories as DatagridColumnTypes,
 } from '@ovh-ux/manager-core-api';
-import { SortingState } from '@tanstack/react-table';
 import { Option } from '../filters/filter-add.component';
 import { FilterWithLabel } from '../filters/interface';
 
@@ -45,6 +46,12 @@ export interface FilterProps {
 
 export type ColumnSort = TanstackColumnSort;
 
+export interface ExpandedProps {
+  enableExpandable: boolean;
+  expanded: ExpandedState;
+  setExpanded: Dispatch<SetStateAction<ExpandedState>>;
+}
+
 export type DatagridProps<T extends Record<string, unknown>> = {
   autoScroll?: boolean;
   columns: ManagerColumnDef<T>[];
@@ -55,7 +62,7 @@ export type DatagridProps<T extends Record<string, unknown>> = {
   enableColumnvisibility?: boolean;
   enableFilter?: boolean;
   enableSearch?: boolean;
-  expandable?: boolean;
+  expandable?: ExpandedProps;
   filters?: FilterProps;
   hasNextPage?: boolean;
   isLoading?: boolean;

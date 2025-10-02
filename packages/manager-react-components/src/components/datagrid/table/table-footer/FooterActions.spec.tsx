@@ -4,59 +4,34 @@ import { render } from '../../../../utils/test.provider';
 import { Datagrid } from '../../Datagrid.component';
 import { useAuthorizationIam } from '../../../../hooks/iam';
 import { IamAuthorizationResponse } from '../../../../hooks/iam/iam.interface';
+import {
+  mockIamResponse,
+  mockBasicColumns,
+  mockData,
+  mockOnFetchNextPage,
+  mockOnFetchAllPages,
+} from '../../__tests__/mocks';
 
 vitest.mock('../../../../hooks/iam', () => ({
-  useAuthorizationIam: vitest.fn().mockReturnValue({
-    isAuthorized: true,
-    isLoading: false,
-    isFetched: true,
-  }),
+  useAuthorizationIam: vitest.fn().mockReturnValue(mockIamResponse),
 }));
 
 const mockedHook =
   useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
 
-const columns = [
-  {
-    id: 'name',
-    header: 'Name',
-    accessorKey: 'name',
-  },
-  {
-    id: 'age',
-    header: 'Age',
-    accessorKey: 'age',
-  },
-];
-
-const data = [
-  {
-    name: 'John',
-    age: 25,
-  },
-  {
-    name: 'Jane',
-    age: 26,
-  },
-];
-
 describe('FooterActions', () => {
   beforeEach(() => {
-    mockedHook.mockReturnValue({
-      isAuthorized: true,
-      isLoading: true,
-      isFetched: true,
-    });
+    mockedHook.mockReturnValue(mockIamResponse);
   });
 
   it('should render the footer actions', () => {
     render(
       <Datagrid
-        columns={columns}
-        data={data}
+        columns={mockBasicColumns}
+        data={mockData}
         hasNextPage={true}
-        onFetchNextPage={vi.fn()}
-        onFetchAllPages={vi.fn()}
+        onFetchNextPage={mockOnFetchNextPage}
+        onFetchAllPages={mockOnFetchAllPages}
         isLoading={false}
       />,
     );
@@ -67,10 +42,10 @@ describe('FooterActions', () => {
   it('should render only load more  actions', () => {
     render(
       <Datagrid
-        columns={columns}
-        data={data}
+        columns={mockBasicColumns}
+        data={mockData}
         hasNextPage={true}
-        onFetchNextPage={vi.fn()}
+        onFetchNextPage={mockOnFetchNextPage}
       />,
     );
     expect(screen.getByText('Load more')).toBeInTheDocument();
@@ -80,56 +55,53 @@ describe('FooterActions', () => {
   it('should not render load more action when hasNextPage is false', () => {
     render(
       <Datagrid
-        columns={columns}
-        data={data}
+        columns={mockBasicColumns}
+        data={mockData}
         hasNextPage={false}
-        onFetchNextPage={vi.fn()}
+        onFetchNextPage={mockOnFetchNextPage}
       />,
     );
     expect(screen.queryByText('Load more')).not.toBeInTheDocument();
   });
 
   it('should call onFetchNext page when click on load more', () => {
-    const onFetchNextPage = vi.fn();
     render(
       <Datagrid
-        columns={columns}
-        data={data}
+        columns={mockBasicColumns}
+        data={mockData}
         hasNextPage={true}
-        onFetchNextPage={onFetchNextPage}
-        onFetchAllPages={vi.fn()}
+        onFetchNextPage={mockOnFetchNextPage}
+        onFetchAllPages={mockOnFetchAllPages}
       />,
     );
     expect(screen.getByText('Load more')).toBeInTheDocument();
     fireEvent.click(screen.getByText('Load more'));
-    expect(onFetchNextPage).toHaveBeenCalled();
+    expect(mockOnFetchNextPage).toHaveBeenCalled();
   });
 
   it('should call onFetchAllPages when click on load all', () => {
-    const onFetchAllPages = vi.fn();
     render(
       <Datagrid
-        columns={columns}
-        data={data}
+        columns={mockBasicColumns}
+        data={mockData}
         hasNextPage={true}
-        onFetchNextPage={vi.fn()}
-        onFetchAllPages={onFetchAllPages}
+        onFetchNextPage={mockOnFetchNextPage}
+        onFetchAllPages={mockOnFetchAllPages}
       />,
     );
     expect(screen.getByText('Load all')).toBeInTheDocument();
     fireEvent.click(screen.getByText('Load all'));
-    expect(onFetchAllPages).toHaveBeenCalled();
+    expect(mockOnFetchAllPages).toHaveBeenCalled();
   });
 
   it('should button load all be disabled when isLoading is true', () => {
-    const onFetchAllPages = vi.fn();
     render(
       <Datagrid
-        columns={columns}
-        data={data}
+        columns={mockBasicColumns}
+        data={mockData}
         hasNextPage={true}
-        onFetchNextPage={vi.fn()}
-        onFetchAllPages={onFetchAllPages}
+        onFetchNextPage={mockOnFetchNextPage}
+        onFetchAllPages={mockOnFetchAllPages}
         isLoading={true}
       />,
     );

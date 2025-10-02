@@ -11,8 +11,7 @@ import {
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '../../../button/Button.component';
-import { ColumnFilter } from '../../../filters/filter-add.component';
-import { FilterAdd } from '../../../filters/filter-add.component';
+import { ColumnFilter, FilterAdd } from '../../../filters/filter-add.component';
 import { FilterProps } from '../../Datagrid.props';
 
 interface ColumnsFilteringComponentProps {
@@ -48,11 +47,13 @@ export const ColumnsFilteringComponent = ({
             columns={columns}
             resourceType={resourceType}
             onAddFilter={(addedFilter, column) => {
-              filters.add({
-                ...addedFilter,
-                label: column.label,
-              });
-              filterPopoverRef.current?.hide();
+              if (filters && addedFilter.value !== undefined) {
+                filters.add({
+                  ...addedFilter,
+                  value: addedFilter.value,
+                  label: column.label,
+                });
+              }
             }}
           />
         </PopoverContent>

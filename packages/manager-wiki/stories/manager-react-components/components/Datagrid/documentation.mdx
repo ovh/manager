@@ -297,12 +297,17 @@ const items = [
       }
     ]
   }
-]
+];
+const [expanded, setExpanded] = useState<ExpandedState>({});
 
 <Datagrid<Item>
   columns={columns}
   data={items}
-  expandable={true}
+  expandable={{
+    expanded,
+    setExpanded,
+    enableExpanded
+  }}
 />;
 ```
 

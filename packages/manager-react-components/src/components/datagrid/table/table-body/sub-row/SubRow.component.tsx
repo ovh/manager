@@ -1,14 +1,14 @@
 import { memo } from 'react';
 import { SubRowProps } from './SubRow.props';
 
-export const SubRow = <T,>({
+export const SubRow = ({
   maxRowHeight,
   offset,
   renderSubComponent,
   row,
   subComponentHeight,
   virtualRow,
-}: SubRowProps<T>) => (
+}: SubRowProps) => (
   <tr
     key={`${row.id}-expanded-tr`}
     data-index={`${virtualRow.index}-expanded-tr`}

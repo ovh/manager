@@ -5,47 +5,16 @@ import { render } from '../../../../../utils/test.provider';
 import { Datagrid } from '../../../Datagrid.component';
 import { useAuthorizationIam } from '../../../../../hooks/iam';
 import { IamAuthorizationResponse } from '../../../../../hooks/iam/iam.interface';
+import {
+  mockIamResponse,
+  mockBasicColumns,
+  mockExtendedData,
+} from '../../../__tests__/mocks';
 
 vi.mock('../../../../../hooks/iam');
 
 const mockedHook =
   useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
-
-const columns = [
-  {
-    id: 'name',
-    header: 'Name',
-    accessorKey: 'name',
-  },
-  {
-    id: 'age',
-    header: 'Age',
-    accessorKey: 'age',
-  },
-];
-
-const data = [
-  {
-    name: 'Person 1',
-    age: 25,
-  },
-  {
-    name: 'Person 2',
-    age: 26,
-  },
-  {
-    name: 'Person 3',
-    age: 25,
-  },
-  {
-    name: 'Person 4',
-    age: 27,
-  },
-  {
-    name: 'Person 5',
-    age: 28,
-  },
-];
 
 let virtualWindowStart = 0;
 let virtualWindowSize = 20;
@@ -82,7 +51,7 @@ vi.mock('@tanstack/react-virtual', () => ({
 }));
 
 const Wrapper = () => {
-  const [items, setItems] = useState(data);
+  const [items, setItems] = useState(mockExtendedData);
   const [isFetchAllPages, setIsFetchAllPages] = useState(false);
   const onFetchNextPage = () => {
     setItems([
@@ -101,28 +70,32 @@ const Wrapper = () => {
     setItems(newData);
     setIsFetchAllPages(true);
   };
+
+  console.info('isFetchAllPages : ', isFetchAllPages);
   return (
     <Datagrid
-      columns={columns}
+      columns={mockBasicColumns}
       data={items}
       containerHeight={300}
       onFetchNextPage={onFetchNextPage}
       onFetchAllPages={onFetchAllPages}
-      hasNextPage={!!isFetchAllPages}
+      hasNextPage={true}
     />
   );
 };
 
 describe('TableBodyComponent', () => {
   beforeEach(() => {
-    mockedHook.mockReturnValue({
-      isAuthorized: true,
-      isLoading: false,
-      isFetched: true,
-    });
+    mockedHook.mockReturnValue(mockIamResponse);
   });
   it('should render the table body', () => {
-    render(<Datagrid columns={columns} data={data} containerHeight={300} />);
+    render(
+      <Datagrid
+        columns={mockBasicColumns}
+        data={mockExtendedData}
+        containerHeight={300}
+      />,
+    );
     expect(screen.getByText('Person 1')).toBeInTheDocument();
     expect(screen.getByText('Person 2')).toBeInTheDocument();
     expect(screen.getByText('Person 3')).toBeInTheDocument();

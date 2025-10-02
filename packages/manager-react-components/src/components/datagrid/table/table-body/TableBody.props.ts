@@ -1,5 +1,5 @@
 import { RefObject, MutableRefObject } from 'react';
-import { RowModel, Row } from '@tanstack/react-table';
+import { RowModel, Row, ExpandedState, Column } from '@tanstack/react-table';
 
 export type TableBodyProps<T> = {
   autoScroll?: boolean;
@@ -14,4 +14,6 @@ export type TableBodyProps<T> = {
   subComponentHeight?: number;
   tableContainerRef: RefObject<HTMLDivElement>;
   contentAlignLeft?: boolean;
+  expanded?: ExpandedState;
+  columns: Column<T>[];
 };

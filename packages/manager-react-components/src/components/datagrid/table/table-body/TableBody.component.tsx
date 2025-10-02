@@ -9,8 +9,10 @@ import { LoadingRow } from './loading-row/LoadingRow.component';
 
 export const TableBody = <T,>({
   autoScroll = true,
+  columns,
   isLoading,
   maxRowHeight,
+  expanded,
   pageSize = 10,
   renderSubComponent,
   rowModel,
@@ -51,7 +53,7 @@ export const TableBody = <T,>({
     (index: number) => {
       let count = 0;
       for (let i = 0; i < index; i += 1) {
-        if (rows[i].getIsExpanded()) count += 1;
+        if (rows[i]?.getIsExpanded()) count += 1;
       }
       return count * EXPANDED_SIZE;
     },
@@ -59,7 +61,7 @@ export const TableBody = <T,>({
   );
 
   const totalHeight = useMemo(() => {
-    let total = rows.reduce((acc, row) => {
+    const total = rows.reduce((acc, row) => {
       return (
         acc + maxRowHeight + (row.getIsExpanded() ? subComponentHeight : 0)
       );
@@ -67,7 +69,7 @@ export const TableBody = <T,>({
     return isLoading
       ? total + (pageSize - 1) * maxRowHeight
       : total + rows.length;
-  }, [rows, maxRowHeight, subComponentHeight, isLoading]);
+  }, [rows, maxRowHeight, subComponentHeight, isLoading, expanded]);
 
   return (
     <tbody
@@ -80,12 +82,6 @@ export const TableBody = <T,>({
       {rowVirtualizer.getVirtualItems().map((virtualRow) => {
         const row = rows[virtualRow?.index] as Row<T>;
         const offset = renderSubComponent ? getOffset(virtualRow?.index) : 0;
-
-        if (virtualRow?.index === rows.length - 1 && isLoading) {
-          const columns = row.getVisibleCells().map((cell) => cell.column);
-          return <LoadingRow key={`${row.id}-loading`} columns={columns} />;
-        }
-
         return (
           <Fragment key={`table-body-tr-${row.id}`}>
             <tr
@@ -128,6 +124,7 @@ export const TableBody = <T,>({
           </Fragment>
         );
       })}
+      {isLoading && <LoadingRow key={`loading-row`} columns={columns} />}
     </tbody>
   );
 };

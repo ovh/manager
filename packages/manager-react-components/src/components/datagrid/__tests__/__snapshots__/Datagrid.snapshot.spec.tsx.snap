@@ -1,0 +1,494 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Datagrid Snapshot Tests > should match snapshot with all features enabled 1`] = `
+<div
+  class="flex flex-wrap justify-between pb-6 items-center"
+  id="container"
+>
+  <div
+    class="flex-1 w-full md:w-auto md:order-1 mr-4"
+    id="left-side"
+  />
+  <div
+    class="w-full mt-[10px] md:mt-[0px] md:w-auto md:order-3"
+    id="right-side"
+  >
+    <div
+      class="flex justify-end items-center"
+    >
+      <div
+        class=""
+      >
+        <div>
+          <button
+            aria-controls="popover::r1::content"
+            aria-expanded="false"
+            aria-haspopup="dialog"
+            aria-label="Columns"
+            class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+            data-part="trigger"
+            data-scope="popover"
+            data-state="closed"
+            data-testid="manager-button"
+            dir="ltr"
+            id="popover::r1::trigger"
+            type="button"
+          >
+            <span
+              class="_icon_i4xp0_2 _icon--columns_i4xp0_136"
+            />
+            Columns
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with basic props 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 100%; height: 100%;"
+>
+  <table
+    class="_table--md_1xkmm_54 w-full"
+  >
+    <thead
+      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+    >
+      <tr
+        class="h-[50px]"
+      >
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          Name
+        </th>
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          Age
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="w-full relative p-0 overflow-hidden"
+      style="height: 102px;"
+    />
+  </table>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with column visibility enabled 1`] = `
+<div
+  class="flex flex-wrap justify-between pb-6 items-center"
+  id="container"
+>
+  <div
+    class="flex-1 w-full md:w-auto md:order-1 mr-4"
+    id="left-side"
+  />
+  <div
+    class="w-full mt-[10px] md:mt-[0px] md:w-auto md:order-3"
+    id="right-side"
+  >
+    <div
+      class="flex justify-end items-center"
+    />
+  </div>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with custom container height 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 400px; height: 400px;"
+>
+  <table
+    class="_table--md_1xkmm_54 w-full"
+  >
+    <thead
+      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+    >
+      <tr
+        class="h-[50px]"
+      >
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          Name
+        </th>
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          Age
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="w-full relative p-0 overflow-hidden"
+      style="height: 102px;"
+    />
+  </table>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with empty data 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 100%; height: 100%;"
+>
+  <table
+    class="_table--md_1xkmm_54 w-full"
+  >
+    <thead
+      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+    >
+      <tr
+        class="h-[50px]"
+      >
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          Name
+        </th>
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          Age
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="h-[3.25rem] w-full"
+      >
+        <td
+          class="absolute text-center w-full py-[15px]"
+          style="border-right: 1px solid var(--ods-color-neutral-100); left: 0px;"
+        >
+          <p
+            class="_text--paragraph_1aw48_54"
+          >
+            No result
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 100%; height: 100%;"
+>
+  <table
+    class="_table--md_1xkmm_54 w-full"
+  >
+    <thead
+      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+    >
+      <tr
+        class="h-[50px]"
+      >
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 50px; min-width: 20px; max-width: 50px;"
+        />
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          Name
+        </th>
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          Age
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="w-full relative p-0 overflow-hidden"
+      style="height: 102px;"
+    />
+  </table>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with filters enabled 1`] = `
+<div
+  class="flex flex-wrap justify-between pb-6 items-center"
+  id="container"
+>
+  <div
+    class="flex-1 w-full md:w-auto md:order-1 mr-4"
+    id="left-side"
+  />
+  <div
+    class="w-full mt-[10px] md:mt-[0px] md:w-auto md:order-3"
+    id="right-side"
+  >
+    <div
+      class="flex justify-end items-center"
+    />
+  </div>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with loading state 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 100%; height: 100%;"
+>
+  <table
+    class="_table--md_1xkmm_54 w-full"
+  >
+    <thead
+      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+    >
+      <tr
+        class="h-[50px]"
+      >
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          Name
+        </th>
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          Age
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="w-full relative p-0 overflow-hidden"
+      style="height: 550px;"
+    />
+  </table>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with pagination 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 100%; height: 100%;"
+>
+  <table
+    class="_table--md_1xkmm_54 w-full"
+  >
+    <thead
+      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+    >
+      <tr
+        class="h-[50px]"
+      >
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          Name
+        </th>
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          Age
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="w-full relative p-0 overflow-hidden"
+      style="height: 102px;"
+    />
+  </table>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 100%; height: 100%;"
+>
+  <table
+    class="_table--md_1xkmm_54 w-full"
+  >
+    <thead
+      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+    >
+      <tr
+        class="h-[50px]"
+      >
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 50px; min-width: 20px; max-width: 50px;"
+        >
+          <label
+            class="_checkbox_18i6t_2"
+            data-part="root"
+            data-scope="checkbox"
+            data-state="unchecked"
+            dir="ltr"
+            for="checkbox:select-all:input"
+            id="checkbox:select-all"
+          >
+            <div
+              aria-hidden="true"
+              class="_checkbox-control_r0pkw_2"
+              data-part="control"
+              data-scope="checkbox"
+              data-state="unchecked"
+              dir="ltr"
+              id="checkbox:select-all:control"
+            >
+              <div
+                data-part="indicator"
+                data-scope="checkbox"
+                data-state="unchecked"
+                dir="ltr"
+                hidden=""
+              >
+                <span
+                  class="_icon_i4xp0_2 _icon--check_i4xp0_61 _checkbox-control__icon_r0pkw_48"
+                />
+              </div>
+              <div
+                data-part="indicator"
+                data-scope="checkbox"
+                data-state="unchecked"
+                dir="ltr"
+                hidden=""
+              >
+                <span
+                  class="_icon_i4xp0_2 _icon--minus_i4xp0_298 _checkbox-control__icon_r0pkw_48"
+                />
+              </div>
+              <input
+                aria-labelledby="checkbox:select-all:label"
+                id="checkbox:select-all:input"
+                name="select-all"
+                style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+                type="checkbox"
+                value="on"
+              />
+            </div>
+          </label>
+        </th>
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          Name
+        </th>
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          Age
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="w-full relative p-0 overflow-hidden"
+      style="height: 102px;"
+    />
+  </table>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with search enabled 1`] = `
+<div
+  class="flex flex-wrap justify-between pb-6 items-center"
+  id="container"
+>
+  <div
+    class="flex-1 w-full md:w-auto md:order-1 mr-4"
+    id="left-side"
+  />
+  <div
+    class="w-full mt-[10px] md:mt-[0px] md:w-auto md:order-3"
+    id="right-side"
+  >
+    <div
+      class="flex justify-end items-center"
+    />
+  </div>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with sorting enabled 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 100%; height: 100%;"
+>
+  <table
+    class="_table--md_1xkmm_54 w-full"
+  >
+    <thead
+      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+    >
+      <tr
+        class="h-[50px]"
+      >
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="cursor-pointer select-none h-[20px]"
+            data-testid="header-name"
+          >
+            <span>
+              Name
+            </span>
+            <span
+              class="align-middle inline-block pl-1 -mt-1"
+            >
+              <span
+                class="_icon_i4xp0_2 _icon--arrow-up_i4xp0_34"
+              />
+            </span>
+          </div>
+        </th>
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="cursor-pointer select-none h-[20px]"
+            data-testid="header-age"
+          >
+            <span>
+              Age
+            </span>
+            <span
+              class="align-middle inline-block pl-1 -mt-1"
+            >
+              <span
+                class="_icon_i4xp0_2 _icon--arrow-down_i4xp0_16 invisible"
+              />
+            </span>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="w-full relative p-0 overflow-hidden"
+      style="height: 102px;"
+    />
+  </table>
+</div>
+`;

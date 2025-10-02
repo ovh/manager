@@ -1,8 +1,10 @@
 import { ReactNode } from 'react';
 import { Column, VisibilityState } from '@tanstack/react-table';
-import { ManagerColumnDef } from '../../Datagrid.props';
-import { FilterProps } from '../../Datagrid.props';
-import { SearchProps } from '../../Datagrid.props';
+import {
+  ManagerColumnDef,
+  FilterProps,
+  SearchProps,
+} from '../../Datagrid.props';
 
 export type ColumnsVisibilityProps<T> = {
   columns?: ManagerColumnDef<T>[];

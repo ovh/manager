@@ -1,13 +1,16 @@
 import { MutableRefObject } from 'react';
 import { ColumnSort, Row, VisibilityState } from '@tanstack/react-table';
-import { ManagerColumnDef } from './Datagrid.props';
-import { RowSelectionProps } from './Datagrid.props';
+import {
+  ManagerColumnDef,
+  RowSelectionProps,
+  ExpandedProps,
+} from './Datagrid.props';
 
 export type UseDatagridTableProps<T> = {
   columns: ManagerColumnDef<T>[];
   columnVisibility?: VisibilityState;
   data: T[];
-  expandable?: boolean;
+  expandable?: ExpandedProps;
   manualSorting?: boolean;
   onSortChange?: (sorting: ColumnSort[]) => void;
   renderSubComponent?: (
