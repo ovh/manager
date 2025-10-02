@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { TInstancesCatalogDTO } from '@/adapters/tanstack/instancesCatalog/right/dto.type';
 import { TDeploymentModeDataForCard } from '@/pages/instances/create/view-models/selectDeploymentMode';
 import { TAggregatedInstance } from '@/types/instance/entity.type';
@@ -38,78 +39,6 @@ export type TDeploymentModeCard = {
   title: string;
   description: string;
 };
-
-export const deploymentModes: TDeploymentModeCard[] = [
-  {
-    id: 'region-3-az',
-    title: 'Région 3-AZ',
-    description:
-      'Déploiement haute résilience / haute disponibilité pour vos applications critiques sur 3 zones de disponibilité.',
-  },
-  {
-    id: 'region',
-    title: 'Région 1-AZ',
-    description:
-      'Déploiement résilient et économique sur 1 zone de disponibilité.',
-  },
-  {
-    id: 'localzone',
-    title: 'Local Zone',
-    description:
-      'Déploiement de vos applications au plus près de vos utilisateurs pour une faible latence et la résidence des données.',
-  },
-];
-
-export const mockedLocalizations = [
-  {
-    title: 'Paris',
-    region: 'eu-west-par',
-    countryCode: 'fr',
-    deploymentMode: 'region-3-az',
-  },
-  {
-    title: 'Strasbourg',
-    region: 'eu-west-sbg',
-    countryCode: 'fr',
-    deploymentMode: 'region',
-  },
-  {
-    title: 'Gravelines',
-    region: 'eu-west-gra',
-    countryCode: 'fr',
-    deploymentMode: 'region',
-  },
-  {
-    title: 'Varosvie',
-    region: 'WAW1',
-    countryCode: 'pl',
-    deploymentMode: 'region',
-  },
-  {
-    title: 'Francfort',
-    region: 'DE1',
-    countryCode: 'de',
-    deploymentMode: 'region',
-  },
-  {
-    title: 'Roubaix',
-    region: 'eu-west-rbx',
-    countryCode: 'fr',
-    deploymentMode: 'region',
-  },
-  {
-    title: 'Bucarest',
-    region: 'eu-central-lz-buh-a',
-    countryCode: 'ro',
-    deploymentMode: 'localzone',
-  },
-  {
-    title: 'Londres',
-    region: 'UK1',
-    countryCode: 'gb',
-    deploymentMode: 'region',
-  },
-] as const;
 
 export const mockedProjectId = '8c8c4fd6d4414aa29fc777752b00005198664';
 export const mockedInstancesCatalogDTO: TInstancesCatalogDTO = {
@@ -354,13 +283,61 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
 
 export const mockedLocalizationsData: TRegionDataForCard[] = [
   {
-    city: 'region:manager_components_region_GRA',
+    city: 'regions:manager_components_region_GRA',
     region: 'GRA',
     countryCode: 'fr',
     deploymentMode: 'region',
   },
   {
-    city: 'region:manager_components_region_PAR',
+    city: 'regions:manager_components_region_PAR',
+    region: 'PAR',
+    countryCode: 'fr',
+    deploymentMode: 'region-3-az',
+  },
+];
+
+export const mockedLocalizationsDataForSelectedDeploymentZoneAndAllContinents: TRegionDataForCard[] = [
+  {
+    city: 'regions:manager_components_region_GRA',
+    region: 'GRA',
+    countryCode: 'fr',
+    deploymentMode: 'region',
+  },
+  {
+    city: 'regions:manager_components_region_BHS',
+    region: 'BHS',
+    countryCode: 'ca',
+    deploymentMode: 'region',
+  },
+  {
+    city: 'regions:manager_components_region_PAR',
+    region: 'PAR',
+    countryCode: 'fr',
+    deploymentMode: 'region-3-az',
+  },
+];
+
+export const mockedLocalizationsDataForNoneDeploymentZoneAndAllContinents: TRegionDataForCard[] = [
+  {
+    city: 'regions:manager_components_region_GRA',
+    region: 'GRA',
+    countryCode: 'fr',
+    deploymentMode: 'region',
+  },
+  {
+    city: 'regions:manager_components_region_BHS',
+    region: 'BHS',
+    countryCode: 'ca',
+    deploymentMode: 'region',
+  },
+  {
+    city: 'regions:manager_components_region_MIL',
+    region: 'EU-SOUTH-LZ-MIL',
+    countryCode: 'it',
+    deploymentMode: 'localzone',
+  },
+  {
+    city: 'regions:manager_components_region_PAR',
     region: 'PAR',
     countryCode: 'fr',
     deploymentMode: 'region-3-az',
@@ -369,34 +346,58 @@ export const mockedLocalizationsData: TRegionDataForCard[] = [
 
 export const mockedContinentsSelectorData: TContinentData[] = [
   {
-    label: 'pci_instances_common_instance_continent_western_europe',
+    label: 'common:pci_instances_common_instance_continent_all',
+    value: 'all',
+  },
+  {
+    label: 'common:pci_instances_common_instance_continent_western_europe',
     value: 'western_europe',
   },
   {
-    label: 'pci_instances_common_instance_continent_north_america',
+    label: 'common:pci_instances_common_instance_continent_north_america',
     value: 'north_america',
   },
 ];
+
+export const mockedAllContinentsSelectorData: TContinentData[] = [
+  {
+    label: 'common:pci_instances_common_instance_continent_all',
+    value: 'all',
+  },
+  {
+    label: 'common:pci_instances_common_instance_continent_north_america',
+    value: 'north_america',
+  },
+  {
+    label: 'common:pci_instances_common_instance_continent_western_europe',
+    value: 'western_europe',
+  },
+  {
+    label: 'common:pci_instances_common_instance_continent_south_europe',
+    value: 'south_europe',
+  },
+];
+
 export const mockedDeploymentModesSelectorData: TDeploymentModeDataForCard[] = [
   {
     mode: 'region',
-    title: 'pci_instances_common_instance_region_deployment_mode',
+    title: 'common:pci_instances_common_instance_region_deployment_mode',
     description:
-      'pci_instances_common_instance_region_deployment_mode_description',
+      'common:pci_instances_common_instance_region_deployment_mode_description',
     url: InstanceImage,
   },
   {
     mode: 'region-3-az',
-    title: 'pci_instances_common_instance_region-3-az_deployment_mode',
+    title: 'common:pci_instances_common_instance_region-3-az_deployment_mode',
     description:
-      'pci_instances_common_instance_region-3-az_deployment_mode_description',
+      'common:pci_instances_common_instance_region-3-az_deployment_mode_description',
     url: InstanceImage,
   },
   {
     mode: 'localzone',
-    title: 'pci_instances_common_instance_localzone_deployment_mode',
+    title: 'common:pci_instances_common_instance_localzone_deployment_mode',
     description:
-      'pci_instances_common_instance_localzone_deployment_mode_description',
+      'common:pci_instances_common_instance_localzone_deployment_mode_description',
     url: InstanceImage,
   },
 ];

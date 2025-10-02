@@ -244,3 +244,6 @@ export const CountryIsoCode = {
 } as const;
 
 export type TCountryIsoCode = typeof CountryIsoCode[keyof typeof CountryIsoCode];
+
+export const iscountryISOCode = (country: string): country is TCountryIsoCode =>
+  Object.values(CountryIsoCode).includes(country as TCountryIsoCode);

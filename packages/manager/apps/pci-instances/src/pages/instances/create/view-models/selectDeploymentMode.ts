@@ -2,7 +2,7 @@ import { TDeploymentMode } from '@/types/instance/common.type';
 import InstanceImage from '../../../../../public/assets/instance.png';
 
 import { Reader } from '@/types/utils.type';
-import { Deps } from '@/deps/deps';
+import { Deps, TTranslateFn } from '@/deps/deps';
 
 export type TDeploymentModeDataForCard = {
   mode: TDeploymentMode;
@@ -11,13 +11,15 @@ export type TDeploymentModeDataForCard = {
   url: string;
 };
 
-const mapDeploymentModeForCard = (translate: Deps['translate']) => (
+const mapDeploymentModeForCard = (translate: TTranslateFn) => (
   mode: TDeploymentMode,
 ): TDeploymentModeDataForCard => ({
   mode,
-  title: translate(`pci_instances_common_instance_${mode}_deployment_mode`),
+  title: translate(
+    `common:pci_instances_common_instance_${mode}_deployment_mode`,
+  ),
   description: translate(
-    `pci_instances_common_instance_${mode}_deployment_mode_description`,
+    `common:pci_instances_common_instance_${mode}_deployment_mode_description`,
   ),
   url: InstanceImage,
 });
