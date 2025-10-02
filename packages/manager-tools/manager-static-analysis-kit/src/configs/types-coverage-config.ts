@@ -41,6 +41,16 @@ export const typesCoverageConfig = {
   },
 
   /**
+   * Thresholds for manual loose types (as/any/unknown).
+   * Count <= green → good, <= orange → warning, else red.
+   */
+  looseThresholds: {
+    as: { green: 0, orange: 50 },
+    any: { green: 0, orange: 5 },
+    unknown: { green: 0, orange: 20 },
+  },
+
+  /**
    * Worst-file drilldown configuration for HTML report.
    */
   worstFiles: {
