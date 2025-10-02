@@ -15,7 +15,6 @@ export const subRoutes = {
   addVirtualMac: 'add-virtual-mac',
   service: 'service',
   viewVirtualMac: 'view-virtual-mac',
-  manageIpMitigation: 'manage-mitigation',
   deleteVirtualMac: 'delete-virtual-mac',
   importIpFromSys: 'import-ip-from-sys',
   moveIp: 'move-ip',
@@ -52,6 +51,5 @@ export const urls = {
   manageOrganisations: `${subRoutes.root}/${subRoutes.manageOrganisations}`,
   openOrganisationsModal: `${subRoutes.root}/${subRoutes.manageOrganisations}/${urlDynamicParts.organisationId}/${subRoutes.openOrganisations}`,
   listingConfigureReverseDns: `${subRoutes.root}/${subRoutes.configureReverseDns}/${urlDynamicParts.parentId}/${urlDynamicParts.optionalId}`,
-  byoipOrderModal: `${subRoutes.root}/${subRoutes.byoip}/${subRoutes.byoipOrder}`,
-  manageIpMitigation: `${subRoutes.root}/${subRoutes.manageIpMitigation}/${urlDynamicParts.id}`,
+  byoipOrderModal: `${subRoutes.root}/${subRoutes.byoip}/${subRoutes.byoipOrder}`
 };
