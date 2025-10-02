@@ -1,29 +1,67 @@
 export default class AdvancedPolicySearchController {
   /* @ngInject */
-  constructor(IAMService) {
+  constructor($state, IAMService) {
+    this.$state = $state;
     this.IAMService = IAMService;
 
     this.model = {
-      // Identity
-      localUsers: { loading: true, search: '', selected: {}, items: [] },
-      userGroups: { loading: true, search: '', selected: {}, items: [] },
-      // Ressources
-      // Actions
+      selectedIdentities: {},
+      selectedResources: {},
+      selectedActions: {},
     };
+
+    this.localUsers = { loading: true, search: '', items: [] };
+    this.userGroups = { loading: true, search: '', items: [] };
 
     this.filterLocalUsersFn = this.filterLocalUsers.bind(this);
     this.filterUserGroupsFn = this.filterUserGroup.bind(this);
   }
 
   $onInit() {
+    const identities = (this.identitiesFilter || []).reduce(
+      (acc, key) => ({ ...acc, [key]: true }),
+      {},
+    );
+    const resources = (this.resourcesFilter || []).reduce(
+      (acc, key) => ({ ...acc, [key]: true }),
+      {},
+    );
+    const actions = (this.actionsFilter || []).reduce(
+      (acc, key) => ({ ...acc, [key]: true }),
+      {},
+    );
+    this.model = {
+      selectedIdentities: identities,
+      selectedResources: resources,
+      selectedActions: actions,
+    };
+
     this.getLocalUsers().then((localUsers) => {
-      this.model.localUsers.items = localUsers;
-      this.model.localUsers.loading = false;
+      this.localUsers.items = localUsers;
+      this.localUsers.loading = false;
     });
     this.getGroupList().then((userGroups) => {
-      this.model.userGroups.items = userGroups;
-      this.model.userGroups.loading = false;
+      this.userGroups.items = userGroups;
+      this.userGroups.loading = false;
     });
+  }
+
+  submitSearch() {
+    const identities = Object.keys(this.model.selectedIdentities).filter(
+      (urn) => !!this.model.selectedIdentities[urn],
+    );
+    const resources = Object.keys(this.model.selectedResources).filter(
+      (urn) => !!this.model.selectedResources[urn],
+    );
+    const actions = Object.keys(this.model.selectedActions).filter(
+      (action) => !!this.model.selectedActions[action],
+    );
+    const stateParams = {
+      identitiesFilter: identities,
+      resourcesFilter: resources,
+      actionsFilter: actions,
+    };
+    this.$state.go('^', stateParams);
   }
 
   getLocalUsers() {
@@ -40,7 +78,7 @@ export default class AdvancedPolicySearchController {
   }
 
   filterLocalUsers(localUser) {
-    const query = this.model.localUsers.search;
+    const query = this.localUsers.search;
     const { login, email } = localUser;
     return query.length > 0
       ? email.toLowerCase().includes(query.toLowerCase()) ||
@@ -62,7 +100,7 @@ export default class AdvancedPolicySearchController {
   }
 
   filterUserGroup(userGroup) {
-    const query = this.model.userGroups.search;
+    const query = this.userGroups.search;
     const { name, role } = userGroup;
     return query.length > 0
       ? name.toLowerCase().includes(query.toLowerCase()) ||

@@ -4,6 +4,9 @@ import template from './advancedPolicySearch.template.html';
 export default {
   bindings: {
     goBack: '<',
+    identitiesFilter: '<',
+    resourcesFilter: '<',
+    actionsFilter: '<',
   },
   controller,
   template,

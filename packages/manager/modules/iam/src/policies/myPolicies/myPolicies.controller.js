@@ -19,6 +19,9 @@ export default class MyPoliciesController extends AbstractCursorDatagridControll
     return this.IAMService.getPolicies({
       cursor,
       readOnly: false,
+      identities: this.identitiesFilter || [],
+      resources: this.resourcesFilter || [],
+      actions: this.actionsFilter || [],
     });
   }
 
