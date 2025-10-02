@@ -19,6 +19,7 @@ export const mockedInstance: TAggregatedInstance = {
   availabilityZone: null,
   taskState: null,
   isImageDeprecated: false,
+  creationDate: null,
 };
 
 export const mockedInstanceWithEmptyRegion: TAggregatedInstance = {

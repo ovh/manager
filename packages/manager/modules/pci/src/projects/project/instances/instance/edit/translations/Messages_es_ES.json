@@ -4,7 +4,7 @@
   "pci_projects_project_instances_instance_edit_sshKey_label": "Llave SSH",
   "pci_projects_project_instances_instance_edit_privateNetwork_label": "Red(es) privada(s) asociada(s)",
   "pci_projects_project_instances_instance_edit_reboot_message": "Durante la operación será necesario reiniciar el servidor. No estará disponible durante unos segundos.",
-  "pci_projects_project_instances_instance_edit_reinstall_message": "¡Todos los datos se borrarán!",
+  "pci_projects_project_instances_instance_edit_reinstall_message": "Tenga en cuenta que se eliminarán todos los datos y se reiniciará el servidor durante la operación. No estará disponible durante unos segundos.",
   "pci_projects_project_instances_instance_edit_name_label": "Nombre de la instancia",
   "pci_projects_project_instances_instance_edit_name_help": "Solo debe contener números, letras, guiones, guiones bajos o puntos.",
   "pci_projects_project_instances_instance_edit_name_submit_label": "Cambiar el nombre",
@@ -13,7 +13,7 @@
   "pci_projects_project_instances_instance_edit_image_label": "Imagen",
   "pci_projects_project_instances_instance_edit_image_not_available": "Disponible para otra región",
   "pci_projects_project_instances_instance_edit_image_submit_label": "Modificar la imagen",
-  "pci_projects_project_instances_instance_edit_image_success_message": "La imagen de la instancia {{ instance }} se ha actualizado.",
+  "pci_projects_project_instances_instance_edit_image_success_message": "La operación de actualización de la imagen de la instancia {{ instance }} está en curso",
   "pci_projects_project_instances_instance_edit_image_error_put": "Se ha producido un error al actualizar la imagen de la instancia {{ instance }}: {{ message }}.",
   "pci_projects_project_instances_instance_edit_flavor_label": "Modelo",
   "pci_projects_project_instances_instance_edit_flavor_not_available": "Disponible para otra región",
@@ -37,5 +37,6 @@
   "pci_projects_project_instances_instance_edit_loosing_monthly_plan_p1": "La facturación mensual no está disponible en las nuevas instancias (B3, C3, R3).",
   "pci_projects_project_instances_instance_edit_loosing_monthly_plan_p2": "Así pues, cualquier migración desde la antigua generación hacia la nueva gama implicará el cambio obligatorio a la facturación por horas.",
   "pci_projects_project_instances_instance_edit_loosing_monthly_plan_p3": "El importe de la facturación mensual del mes en curso deberá abonarse.",
-  "pci_projects_project_instances_instance_edit_billing_montly_discount_message_link": "Ver los precios"
+  "pci_projects_project_instances_instance_edit_billing_montly_discount_message_link": "Ver los precios",
+  "pci_projects_project_instances_instance_edit_reinstall_message_distant": "Tenga en cuenta que se eliminarán todos los datos y se reiniciará el servidor durante la operación. La restauración de la imagen de su instancia a partir de un backup remoto conlleva un procesamiento más largo, en función del tamaño de la imagen y de la región remota. Para poder restaurarla, esta imagen remota se copiará localmente y se le facturará como un backup local al precio habitual."
 }

@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { TInstance, TPartialInstance } from '@/types/instance/entity.type';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import {
-  shouldRetryAfter404Error,
+  shouldRetryAfterNot404Error,
   TPendingTask,
   useInstancesPolling,
 } from '@/data/hooks/instance/polling/useInstancesPolling';
@@ -100,7 +100,7 @@ export const useDashboardPolling = ({
       onSuccess: handlePollingSuccess,
       onError: handlePollingError,
     },
-    { retry: shouldRetryAfter404Error },
+    { retry: shouldRetryAfterNot404Error },
   );
 
   return pollingData;
