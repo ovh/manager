@@ -8,7 +8,7 @@ import { PciCard } from '@/components/pciCard/PciCard.component';
 type TLocalizationCardProps = {
   title: string;
   region: string;
-  countryCode: TCountryIsoCode;
+  countryCode: TCountryIsoCode | null;
   deploymentMode: TDeploymentMode;
   isSelected: boolean;
   onSelect: (region: string) => void;
@@ -32,7 +32,8 @@ export const LocalizationCard = ({
       <Radio value={region}>
         <RadioControl />
         <RadioLabel className="font-bold text-lg text-[--ods-color-heading] gap-x-4 flex items-center">
-          <Flag isoCode={countryCode} /> {title}
+          {countryCode && <Flag isoCode={countryCode} />}
+          {title}
         </RadioLabel>
       </Radio>
       <div className="flex items-center justify-between gap-4 w-full">

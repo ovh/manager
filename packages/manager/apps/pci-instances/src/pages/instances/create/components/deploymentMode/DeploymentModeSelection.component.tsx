@@ -10,22 +10,26 @@ import {
 import { Controller, useFormContext } from 'react-hook-form';
 import { PciCard } from '@/components/pciCard/PciCard.component';
 import { DeploymentModeBadge } from '@/components/deploymentModeBadge/DeploymentModeBadge.component';
-import { deploymentModes } from '@/__mocks__/instance/constants';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { HelpDrawer } from '@/components/helpDrawer/HelpDrawer.component';
 import { TDeploymentMode } from '@/types/instance/common.type';
 import { useGuideLink } from '@/hooks/url/useGuideLink';
+import { selectDeploymentModes } from '../../view-models/selectDeploymentMode';
+import { deps } from '@/deps/deps';
+import { useProjectId } from '@/hooks/project/useProjectId';
 
-export const deploymentModesDefaultValue: string[] = ['3AZ', '1AZ'];
+export const deploymentModesDefaultValue: TDeploymentMode[] = ['region-3-az'];
 
 type TDeploymentModeSelection = {
   deploymentModes: TDeploymentMode[];
 };
 
 export const DeploymentModeSelection = () => {
+  const projectId = useProjectId();
   const { t } = useTranslation([NAMESPACES.ONBOARDING, 'creation', 'common']);
   const { control } = useFormContext<TDeploymentModeSelection>();
   const guide = useGuideLink('LOCATION');
+  const deploymentModes = selectDeploymentModes(deps)(projectId);
 
   return (
     <section className="my-8">
@@ -82,41 +86,45 @@ export const DeploymentModeSelection = () => {
                 field.onChange(value);
               }}
             >
-              {deploymentModes.map((mode) => (
+              {deploymentModes.map(({ mode, title, description, url }) => (
                 <PciCard
                   selectable
-                  selected={field.value.includes(mode.id)}
+                  selected={field.value.includes(mode)}
                   className="h-full"
-                  key={mode.id}
+                  key={mode}
                   onClick={() => {
                     const currentValue = field.value;
-                    if (currentValue.includes(mode.id)) {
+                    if (currentValue.includes(mode)) {
                       field.onChange(
                         currentValue.filter(
-                          (value: TDeploymentMode) => value !== mode.id,
+                          (value: TDeploymentMode) => value !== mode,
                         ),
                       );
                     } else {
-                      field.onChange([...field.value, mode.id]);
+                      field.onChange([...field.value, mode]);
                     }
                   }}
                 >
                   <PciCard.Header>
                     <Checkbox
                       className="w-full"
-                      checked={field.value.includes(mode.id)}
+                      checked={field.value.includes(mode)}
                     >
                       <CheckboxControl />
                       <CheckboxLabel className="font-bold text-lg text-[--ods-color-heading]">
-                        {mode.title}
+                        {title}
                       </CheckboxLabel>
                     </Checkbox>
-                    <DeploymentModeBadge mode={mode.id} />
+                    <DeploymentModeBadge mode={mode} />
                   </PciCard.Header>
 
                   <PciCard.Content className="justify-between">
-                    <Text>{mode.description}</Text>
-                    <div className="bg-[--ods-color-neutral-100] w-full h-[100px] mt-6" />
+                    <Text>{description}</Text>
+                    <img
+                      src={url}
+                      className="w-full h-[100px] mt-6"
+                      alt={title}
+                    />
                   </PciCard.Content>
                 </PciCard>
               ))}
