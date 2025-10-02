@@ -1,6 +1,6 @@
 import { Link, Text } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
-import { Controller, useFormContext, useWatch } from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
 import { TInstanceCreationForm } from '../../CreateInstance.page';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { HelpDrawer } from '@/components/helpDrawer/HelpDrawer.component';
@@ -12,7 +12,6 @@ export const localizationDefaultValue = 'eu-west-par';
 export const LocalizationSelection = () => {
   const { t } = useTranslation([NAMESPACES.ONBOARDING, 'creation']);
   const { control } = useFormContext<TInstanceCreationForm>();
-  const selectedRegion = useWatch({ control, name: 'region' });
   const guide = useGuideLink('LOCATION');
 
   return (
@@ -43,9 +42,7 @@ export const LocalizationSelection = () => {
       <Controller
         name="region"
         control={control}
-        render={({ field }) => (
-          <LocationField onChange={field.onChange} value={selectedRegion} />
-        )}
+        render={({ field }) => <LocationField onChange={field.onChange} />}
       />
     </section>
   );

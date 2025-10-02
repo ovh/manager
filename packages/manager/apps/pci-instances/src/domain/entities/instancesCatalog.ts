@@ -1,3 +1,4 @@
+import { TCountryIsoCode } from '@/components/flag/country-iso-code';
 import { TDeploymentMode } from '../../types/instance/common.type';
 
 type TRegionName = string;
@@ -18,7 +19,7 @@ export type TRegion = {
   name: TRegionName;
   deploymentMode: TDeploymentModeID;
   continentIds: TContinentID[];
-  country: string | null;
+  country: TCountryIsoCode | null;
   availabilityZones: string[];
   isActivable: boolean;
   isActivated: boolean;

@@ -3,9 +3,10 @@ import {
   mockedInstancesCatalogEntity,
   mockedContinentsSelectorData,
   mockedProjectId,
+  mockedAllContinentsSelectorData,
 } from '@/__mocks__/instance/constants';
 import { Deps } from '@/deps/deps';
-import { selectContinentData } from '../selectContinents';
+import { selectContinent } from '../selectContinents';
 
 const fakeDeps: Deps = {
   instancesCatalogPort: {
@@ -17,9 +18,15 @@ const fakeDeps: Deps = {
 };
 
 describe('selectContinents ViewModel', () => {
-  it('should return expected derived data for the view', () => {
+  it(`should return matching continents of the deployment zones with "all" preselected`, () => {
     expect(
-      selectContinentData(fakeDeps)(mockedProjectId, ['region', 'region-3-az']),
+      selectContinent(fakeDeps)(mockedProjectId, ['region', 'region-3-az']),
     ).toStrictEqual(mockedContinentsSelectorData);
+  });
+
+  it('should return all continents of the available regions with "all" preselected if no deploymentZone is selected', () => {
+    expect(selectContinent(fakeDeps)(mockedProjectId, [])).toStrictEqual(
+      mockedAllContinentsSelectorData,
+    );
   });
 });
