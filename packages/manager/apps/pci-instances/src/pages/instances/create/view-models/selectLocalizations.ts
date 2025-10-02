@@ -2,23 +2,31 @@ import { Deps } from '@/deps/deps';
 import { TDeploymentMode } from '@/types/instance/common.type';
 import { TRegion } from '@/domain/entities/instancesCatalog';
 import { Reader } from '@/types/utils.type';
+import { TCountryIsoCode } from '@/components/flag/country-iso-code';
+import { getLocalZoneTranslationKey } from '@/utils';
 
 export type TRegionDataForCard = {
   city: string;
   region: string;
-  countryCode: string;
+  countryCode: TCountryIsoCode;
   deploymentMode: TDeploymentMode;
 };
 
-// TODO: Remove || ''
 const mapRegionToLocalizationCard = (translate: Deps['translate']) => (
   region: TRegion,
-): TRegionDataForCard => ({
-  city: translate(`region:manager_components_region_${region.name}`),
-  region: region.name,
-  countryCode: region.country || '',
-  deploymentMode: region.deploymentMode,
-});
+): TRegionDataForCard => {
+  const regionName =
+    region.deploymentMode === 'localzone'
+      ? getLocalZoneTranslationKey(region.name)
+      : region.name;
+
+  return {
+    city: translate(`region:manager_components_region_${regionName}`),
+    region: region.name,
+    countryCode: region.country,
+    deploymentMode: region.deploymentMode,
+  };
+};
 
 type TSelectLocalizationsForCard = (
   projectId: string,

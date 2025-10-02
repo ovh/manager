@@ -1,5 +1,4 @@
 import { TInstancesCatalogDTO } from '@/adapters/tanstack/instancesCatalog/right/dto.type';
-import { TLocalizationCardProps } from '@/components/localizationCard/LocalizationCard.component';
 import { TDeploymentModeDataForCard } from '@/pages/instances/create/view-models/selectDeploymentMode';
 import { TAggregatedInstance } from '@/types/instance/entity.type';
 import { TInstancesCatalog } from '@/domain/entities/instancesCatalog';
@@ -39,78 +38,6 @@ export type TDeploymentModeCard = {
   title: string;
   description: string;
 };
-
-export const deploymentModes: TDeploymentModeCard[] = [
-  {
-    id: 'region-3-az',
-    title: 'Région 3-AZ',
-    description:
-      'Déploiement haute résilience / haute disponibilité pour vos applications critiques sur 3 zones de disponibilité.',
-  },
-  {
-    id: 'region',
-    title: 'Région 1-AZ',
-    description:
-      'Déploiement résilient et économique sur 1 zone de disponibilité.',
-  },
-  {
-    id: 'localzone',
-    title: 'Local Zone',
-    description:
-      'Déploiement de vos applications au plus près de vos utilisateurs pour une faible latence et la résidence des données.',
-  },
-];
-
-export const mockedLocalizations: TLocalizationCardProps[] = [
-  {
-    title: 'Paris',
-    region: 'eu-west-par',
-    countryCode: 'fr',
-    deploymentMode: 'region-3-az',
-  },
-  {
-    title: 'Strasbourg',
-    region: 'eu-west-sbg',
-    countryCode: 'fr',
-    deploymentMode: 'region',
-  },
-  {
-    title: 'Gravelines',
-    region: 'eu-west-gra',
-    countryCode: 'fr',
-    deploymentMode: 'region',
-  },
-  {
-    title: 'Varosvie',
-    region: 'WAW1',
-    countryCode: 'pl',
-    deploymentMode: 'region',
-  },
-  {
-    title: 'Francfort',
-    region: 'DE1',
-    countryCode: 'de',
-    deploymentMode: 'region',
-  },
-  {
-    title: 'Roubaix',
-    region: 'eu-west-rbx',
-    countryCode: 'fr',
-    deploymentMode: 'region',
-  },
-  {
-    title: 'Bucarest',
-    region: 'eu-central-lz-buh-a',
-    countryCode: 'ro',
-    deploymentMode: 'localzone',
-  },
-  {
-    title: 'Londres',
-    region: 'UK1',
-    countryCode: 'gb',
-    deploymentMode: 'region',
-  },
-];
 
 export const mockedProjectId = '8c8c4fd6d4414aa29fc777752b00005198664';
 export const mockedInstancesCatalogDTO: TInstancesCatalogDTO = {
