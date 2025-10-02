@@ -114,28 +114,25 @@ const DistantSnapshotSection = ({
 
   const regionItems = useMemo(
     () =>
-      continents
-        .entries()
-        .map<ComboboxGroupItem>(([label, regions]) => ({
+      Array.from(continents.entries()).map<ComboboxGroupItem>(
+        ([label, regions]) => ({
           label,
           options: regions.map((region) => ({
             label: region.label,
             value: region.name,
           })),
-        }))
-        .toArray(),
+        }),
+      ),
     [continents],
   );
 
   const showActivateRegionWarning = useMemo(
     () =>
       !!distantRegion &&
-      !!continents
-        .values()
-        .find(
-          (regions) =>
-            regions.find((r) => r.name === distantRegion)?.enabled === false,
-        ),
+      !!Array.from(continents.values()).find(
+        (regions) =>
+          regions.find((r) => r.name === distantRegion)?.enabled === false,
+      ),
     [distantRegion, continents],
   );
 

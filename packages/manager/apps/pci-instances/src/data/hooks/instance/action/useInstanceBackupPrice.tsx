@@ -1,15 +1,9 @@
-import {
-  convertHourlyPriceToMonthly,
-  useTranslatedMicroRegions,
-} from '@ovh-ux/manager-react-components';
-import {
-  useProductAvailability,
-  useCatalog,
-  TProductAvailabilityRegion,
-} from '@ovh-ux/manager-pci-common';
+import { convertHourlyPriceToMonthly, useTranslatedMicroRegions, } from '@ovh-ux/manager-react-components';
+import { TProductAvailabilityRegion, useCatalog, useProductAvailability, } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
 import { useIsDistantBackupAvailable } from '@/data/hooks/feature';
+import { groupBy } from '@/utils';
 
 type ContinentRegion = Pick<TProductAvailabilityRegion, 'enabled' | 'name'> & {
   label: string;
@@ -72,21 +66,23 @@ export const useInstanceBackupPrice = (projectId: string, region: string) => {
     )
       return new Map<string, ContinentRegion[]>();
 
-    return Map.groupBy(
+    return groupBy(
       productAvailability.plans
-        .filter((p) => p.code.startsWith('snapshot.consumption'))
-        .flatMap((p) => p.regions)
+        .filter((plan) => plan.code.startsWith('snapshot.consumption'))
+        .flatMap((plan) => plan.regions)
         .filter(
-          (r) =>
-            r.name !== region &&
+          (productRegion) =>
+            productRegion.name !== region &&
             // Distant backups can be created only in distant 1AZ and 3AZ for now
-            (r.type === 'region' || r.type === 'region-3-az'),
+            (productRegion.type === 'region' ||
+              productRegion.type === 'region-3-az'),
         )
-        .map((r) => ({
-          ...r,
-          label: translateMicroRegion(r.name) || r.name,
+        .map((productRegion) => ({
+          ...productRegion,
+          label: translateMicroRegion(productRegion.name) || productRegion.name,
         })),
-      (r) => translateContinentRegion(r.name) || 'Internal',
+      (productRegion: TProductAvailabilityRegion) =>
+        translateContinentRegion(productRegion.name) || 'Internal',
     );
   }, [
     productAvailability,
