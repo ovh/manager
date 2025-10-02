@@ -66,11 +66,11 @@ export const changelogLinks: ChangelogLinks = {
     'https://github.com/ovh/hosting-domain-names-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
 };
 
-const ongoingOperationLink: [string, string, Record<string, ParamValueType>] = [
-  'web-ongoing-operations',
-  '/domain',
-  {},
-];
+export const ongoingOperationLink: [
+  string,
+  string,
+  Record<string, ParamValueType>,
+] = ['web-ongoing-operations', '/domain', {}];
 
 export const ERROR_RULES: ComboRule[] = [
   {
