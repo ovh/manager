@@ -39,5 +39,10 @@
   "zimbra_domain_diagnostic_banner_enable_success_message": "Your activation request has been processed. It will be executed in a few moments.",
   "zimbra_domain_diagnostic_banner_disable_success_message": "Your deactivation request has been processed. It will be executed in a few moments.",
   "zimbra_domain_diagnostic_dkim_enable": "Enable DKIM signing",
-  "zimbra_domain_diagnostic_dkim_disable": "Disable DKIM signing"
+  "zimbra_domain_diagnostic_dkim_disable": "Disable DKIM signing",
+  "zimbra_domain_diagnostic_information_message_srv_ok": "Autodiscover is correctly configured on your domain.<br/><br/>Autodiscover is a mechanism that simplifies the configuration of mailboxes on email clients. Autodiscover eliminates the need to specify the server name and connection ports.",
+  "zimbra_domain_diagnostic_information_message_srv_error": "We have noticed an SRV configuration that does not match the settings of your Email Service. Autodiscover may not work properly.<br/><br/>Autodiscover is a mechanism that simplifies the configuration of mailboxes on email clients. Autodiscover eliminates the need to specify the server name and connection ports.<br/><br/>Please fill in your domain’s DNS Zone with the information below.",
+  "zimbra_domain_diagnostic_information_message_srv_warning": "We have noticed an SRV configuration that does not match the settings of your Email Service. Autodiscover may not work properly.<br/><br/>Autodiscover is a mechanism that simplifies the configuration of mailboxes on email clients. Autodiscover eliminates the need to specify the server name and connection ports.",
+  "zimbra_domain_diagnostic_information_banner_srv_error": "SRV configuration error; your users may have trouble setting up their accounts in email clients.",
+  "zimbra_domain_diagnostic_information_banner_srv_warning": "Incorrect SRV configuration."
 }
