@@ -8,20 +8,23 @@ import { ListingContext } from '@/pages/listing/listingContext';
 
 export type IpAlertsProps = {
   ip: string;
+  subIp?: string;
 };
 
 /**
  * Component to display the cell content for alerts.
  * If ip has alert display the corresponding badge
  * @param ip the ip with mask
+ * @param subIp the sub ip to check
  * @returns React component
  */
-export const IpAlerts = ({ ip }: IpAlertsProps) => {
+export const IpAlerts = ({ ip, subIp }: IpAlertsProps) => {
   const { expiredIps } = useContext(ListingContext);
   const { t } = useTranslation('listing');
 
   const { hasAlerts, isLoading } = useIpHasAlerts({
     ip,
+    subIp,
     enabled: expiredIps.indexOf(ip) === -1,
   });
 

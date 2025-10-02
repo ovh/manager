@@ -87,7 +87,7 @@ export const IpGroupDatagrid = ({
     {
       id: 'ip-alerts',
       label: t('listingColumnsIpAlerts'),
-      cell: (ip) => <IpAlerts ip={ip} />,
+      cell: (ip) => <IpAlerts subIp={ip}  ip={row.original.ip}/>,
       size: parentHeaders.current['ip-alerts'].clientWidth,
     },
     {
