@@ -3,18 +3,15 @@ import {
   ButtonType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import {
-  Link,
-  RadioGroup,
-  Text,
-} from '@ovhcloud/ods-react';
+import { Link, RadioGroup, Text } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { LocalizationCard } from '@/components/localizationCard/LocalizationCard.component';
 import { TInstanceCreationForm } from '../../CreateInstance.page';
 import { mockedLocalizations } from '@/__mocks__/instance/constants';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {HelpDrawer} from "@/components/helpDrawer/HelpDrawer.component";
+import { HelpDrawer } from '@/components/helpDrawer/HelpDrawer.component';
+import { useGuideLink } from '@/hooks/url/useGuideLink';
 
 export const localizationDefaultValue = 'eu-west-par';
 
@@ -23,6 +20,7 @@ export const LocalizationSelection = () => {
   const { trackClick } = useOvhTracking();
   const { control } = useFormContext<TInstanceCreationForm>();
   const selectedRegion = useWatch({ control, name: 'region' });
+  const guide = useGuideLink('LOCATION');
 
   const handleSelect = (region: string) => {
     trackClick({
@@ -42,13 +40,11 @@ export const LocalizationSelection = () => {
           </Text>
           <HelpDrawer>
             <Text preset="paragraph" className="mb-4">
-              {t(
-                'creation:pci_instance_creation_select_localization_help',
-              )}
+              {t('creation:pci_instance_creation_select_localization_help')}
             </Text>
             <Link
               className="visited:text-[var(--ods-color-primary-500)]"
-              href="https://help.ovhcloud.com/csm/fr-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066031"
+              href={guide}
             >
               {t('find_out_more')}
             </Link>
