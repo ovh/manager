@@ -47,6 +47,7 @@ export const baseDomainResource: TDomainResource = {
   id: 'abc-123',
   resourceStatus: ResourceStatusEnum.READY,
   targetSpec: {
+    protectionState: ProtectionStateEnum.PROTECTED,
     dnsConfiguration: {
       nameServers: [],
     },

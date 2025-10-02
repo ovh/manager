@@ -42,3 +42,13 @@ export const updateDomainResource = async (
   const { data } = await v2.put(`/domain/name/${serviceName}`, payload);
   return data;
 };
+
+export const getDomainAuthInfo = async (
+  serviceName: string,
+): Promise<string | null> => {
+  const { data, status } = await v6.get(`/domain/${serviceName}/authInfo`);
+  if (status !== 200) {
+    return null;
+  }
+  return data;
+};
