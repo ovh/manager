@@ -217,6 +217,13 @@ export function buildCodeDuplicationArgs(outputDir) {
     // https://github.com/kucherenko/jscpd/blob/master/apps/jscpd/README.md#ignore
     args.push('--ignore', cfg.ignore.join(','));
   }
-
+  // jscpd accepts regex patterns via `--ignore-pattern` (singular).
+  // Multiple regexes should be joined by comma.
+  // https://github.com/kucherenko/jscpd/blob/master/apps/jscpd/README.md#ignore-pattern
+  if (Array.isArray(cfg.ignorePatterns) && cfg.ignorePatterns.length > 0) {
+    for (const pat of cfg.ignorePatterns) {
+      args.push('--ignore-pattern', `'${pat}'`);
+    }
+  }
   return args;
 }
