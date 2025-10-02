@@ -14,6 +14,7 @@ import { deploymentModes } from '@/__mocks__/instance/constants';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { HelpDrawer } from '@/components/helpDrawer/HelpDrawer.component';
 import { TDeploymentMode } from '@/types/instance/common.type';
+import { useGuideLink } from '@/hooks/url/useGuideLink';
 
 export const deploymentModesDefaultValue: string[] = ['3AZ', '1AZ'];
 
@@ -24,6 +25,7 @@ type TDeploymentModeSelection = {
 export const DeploymentModeSelection = () => {
   const { t } = useTranslation([NAMESPACES.ONBOARDING, 'creation', 'common']);
   const { control } = useFormContext<TDeploymentModeSelection>();
+  const guide = useGuideLink('LOCATION');
 
   return (
     <section className="my-8">
@@ -55,7 +57,7 @@ export const DeploymentModeSelection = () => {
             </Text>
             <Link
               className="visited:text-[var(--ods-color-primary-500)]"
-              href="https://help.ovhcloud.com/csm/fr-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066031"
+              href={guide}
               target="_blank"
             >
               {t('find_out_more')}
