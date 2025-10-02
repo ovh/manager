@@ -18,7 +18,7 @@ vi.mocked(useParams).mockReturnValue({
 });
 
 describe('Domain diagnostics page', () => {
-  it('should display correctly and have 3 tabs', async () => {
+  it('should display correctly and have 4 tabs', async () => {
     vi.mocked(useLocation).mockReturnValue({
       pathname: urls.domains_diagnostic_mx
         .replace(':platformId', platformMock[0].id)
@@ -38,7 +38,7 @@ describe('Domain diagnostics page', () => {
 
     const tabs = container.querySelectorAll('ods-tab');
 
-    expect(tabs.length).toBe(3);
+    expect(tabs.length).toBe(4);
 
     expect(container.querySelector(odsTabIsSelected(true))).toHaveAttribute('id', DnsRecordType.MX);
 
@@ -84,5 +84,24 @@ describe('Domain diagnostics page', () => {
     });
 
     expect(queryByTestId(tabContent(DnsRecordType.DKIM))).toBeInTheDocument();
+  });
+
+  it('should render SRV tab correctly when selected', async () => {
+    vi.mocked(useLocation).mockReturnValue({
+      pathname: urls.domains_diagnostic_srv
+        .replace(':platformId', platformMock[0].id)
+        .replace(':domainId', domainMock.id),
+      search: '',
+      hash: '',
+      key: '',
+      state: '',
+    });
+    const { queryByTestId } = render(<Diagnostics />);
+
+    await waitFor(() => {
+      expect(queryByTestId('spinner')).toBeNull();
+    });
+
+    expect(queryByTestId(tabContent(DnsRecordType.SRV))).toBeInTheDocument();
   });
 });

@@ -24,6 +24,7 @@ export const domainMock: DomainType = {
     ],
     expectedDNSConfig: {
       spf: 'string',
+      autodiscover: 'string',
       dkim: {
         cnames: [
           {
@@ -95,6 +96,7 @@ export const domainsMock: DomainType[] = [
           cname: 'string',
         },
         spf: 'string',
+        autodiscover: 'string',
       },
     },
     currentTasks: [
@@ -146,6 +148,7 @@ export const domainsMock: DomainType[] = [
           cname: 'string',
         },
         spf: 'string',
+        autodiscover: 'string',
       },
     },
     currentTasks: [
@@ -219,6 +222,16 @@ export const domainDiagnosticMock = {
       errors: [
         {
           code: 'DANGEROUS_SPF_POLICY',
+          message: 'string',
+        },
+      ],
+      recordsFound: ['string'],
+      status: 'ERROR',
+    },
+    autodiscover: {
+      errors: [
+        {
+          code: 'INCORRECT_SRV_RECORD',
           message: 'string',
         },
       ],
