@@ -17,7 +17,7 @@ export const useCreditDetails = (projectId: string) => {
     select: (response) => {
       const formattedData: VoucherCreditDetail[] =
         response.data?.map((creditDetail: CreditDetailsResponse) => ({
-          voucher: creditDetail.voucher || 'Unknown',
+          voucher: creditDetail.voucher || '',
           description: creditDetail.description || 'No description',
           balance: creditDetail.available_credit?.text || '0',
           expirationDate: creditDetail.validity?.to || null,
