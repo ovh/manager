@@ -33,6 +33,11 @@
             <span data-ng-bind="$row.identities.length"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
+            data-title="'iam_policies_datagrid_column_resources' | translate"
+        >
+            <span data-ng-bind="$row.resources.length"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'iam_policies_datagrid_column_actions' | translate"
         >
             <span data-ng-bind="$row.permissions.allow.length"></span>
