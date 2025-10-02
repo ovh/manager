@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-catalog-app",
-  "version": "1.23.1",
+  "version": "1.23.2",
   "private": true,
   "description": "OVHcloud Catalog application",
   "repository": {
@@ -17,12 +17,12 @@
     "test:watch": "manager-test watch"
   },
   "dependencies": {
-    "@ovh-ux/manager-core-api": "^0.18.4",
-    "@ovh-ux/manager-core-utils": "^0.4.2",
+    "@ovh-ux/manager-core-api": "^0.18.5",
+    "@ovh-ux/manager-core-utils": "^0.4.3",
     "@ovh-ux/manager-react-components": "^1.48.0",
-    "@ovh-ux/manager-react-core-application": "^0.12.5",
+    "@ovh-ux/manager-react-core-application": "^0.12.6",
     "@ovh-ux/manager-react-shell-client": "^0.9.3",
-    "@ovh-ux/shell": "^4.7.7",
+    "@ovh-ux/shell": "^4.7.8",
     "@ovhcloud/ods-common-core": "17.2.2",
     "@ovhcloud/ods-common-theming": "17.2.2",
     "@ovhcloud/ods-components": "17.2.2",
@@ -40,9 +40,9 @@
     "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
-    "@ovh-ux/manager-tailwind-config": "^0.5.2",
+    "@ovh-ux/manager-tailwind-config": "^0.5.3",
     "@ovh-ux/manager-tests-setup": "^0.2.0",
-    "@ovh-ux/manager-vite-config": "^0.13.1",
+    "@ovh-ux/manager-vite-config": "^0.13.2",
     "@tanstack/react-query-devtools": "^5.51.21",
     "vite": "^6.0.7"
   },

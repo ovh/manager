@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/order-tracking-app",
-  "version": "3.0.39",
+  "version": "3.0.40",
   "private": true,
   "description": "Order tracking standalone application.",
   "repository": {
@@ -13,16 +13,16 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.6.2",
-    "@ovh-ux/manager-core": "^13.2.9",
-    "@ovh-ux/ng-at-internet": "^6.0.25",
+    "@ovh-ux/manager-config": "^8.6.3",
+    "@ovh-ux/manager-core": "^13.2.10",
+    "@ovh-ux/ng-at-internet": "^6.0.26",
     "@ovh-ux/ng-ovh-http": "^5.1.5",
     "@ovh-ux/ng-ovh-order-tracking": "^2.5.5",
-    "@ovh-ux/ng-ovh-request-tagger": "^2.0.7",
+    "@ovh-ux/ng-ovh-request-tagger": "^2.0.8",
     "@ovh-ux/ng-ovh-sso-auth": "^4.9.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.5",
     "@ovh-ux/ng-translate-async-loader": "^2.2.5",
-    "@ovh-ux/request-tagger": "^0.5.2",
+    "@ovh-ux/request-tagger": "^0.5.3",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.22",
     "angular": "^1.7.5",

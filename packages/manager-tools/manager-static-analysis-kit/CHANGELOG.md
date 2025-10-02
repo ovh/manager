@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-static-analysis-kit@0.9.0...@ovh-ux/manager-static-analysis-kit@0.10.0) (2025-10-02)
+
+
+### Features
+
+* add loose types calculation to types reports ([2398431](https://github.com/ovh/manager/commit/2398431ae3bf9e5300683894fa5fe6a12371108f)), closes [#MANAGER-19923](https://github.com/ovh/manager/issues/MANAGER-19923)
+* clarify loose types metrics ([ef00a39](https://github.com/ovh/manager/commit/ef00a39fce3cd661ba89673cf9263637a5ec31b8)), closes [#MANAGER-19923](https://github.com/ovh/manager/issues/MANAGER-19923)
+* enhance code duplication reporting ([bfbe364](https://github.com/ovh/manager/commit/bfbe3644d31bde25229dad7cfd2ff0446440fd49)), closes [#MANAGER-19923](https://github.com/ovh/manager/issues/MANAGER-19923)
+* enhance loose types report format ([1688577](https://github.com/ovh/manager/commit/168857738ba67e1406e5fb138c2d2f0c3789305b)), closes [#MANAGER-19923](https://github.com/ovh/manager/issues/MANAGER-19923)
+* improve static and dynamic reporting ([09de1f8](https://github.com/ovh/manager/commit/09de1f86d2e57a7ba61612ae3df45d121da39908)), closes [#MANAGER-19923](https://github.com/ovh/manager/issues/MANAGER-19923)
+
+
+
+
+
 # [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-static-analysis-kit@0.8.0...@ovh-ux/manager-static-analysis-kit@0.9.0) (2025-09-18)
 
 
