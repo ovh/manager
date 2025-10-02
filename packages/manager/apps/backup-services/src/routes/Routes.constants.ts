@@ -5,7 +5,7 @@ const ROOT_URL = `/${APP_FEATURES.appSlug}`;
 export const subRoutes = {
   'general-information': '' as const,
   onboarding: 'onboarding' as const,
-  dashboard: 'dashboard' as const,
+  dashboard: ':tenantId' as const,
   help: 'help' as const,
 } as const;
 
