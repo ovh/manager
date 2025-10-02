@@ -1,7 +1,6 @@
-import { PathParams } from 'msw';
 import { Handler } from '@ovh-ux/manager-core-test-utils';
 import { versionListMock, createVersionResponseMock } from './versions.mock';
-import { createHandlerResponseMock } from '@/utils/tests/testUtils';
+import { buildMswResponseMock } from '@/utils/tests/msw';
 import { findVersionMockById } from './versionsMock.utils';
 
 // LIST VERSION
@@ -10,20 +9,19 @@ export type GetVersionsMockParams = {
   nbVersions?: number;
 };
 
+export const getVersionsErrorMessage = 'get-versions-error-message';
+
 export const getVersionsMock = ({
   isVersionsKO,
   nbVersions = versionListMock.length,
 }: GetVersionsMockParams): Handler[] => [
   {
     url: '/okms/resource/:okmsId/secret/:secretPath/version',
-    response: isVersionsKO
-      ? {
-          status: 500,
-          data: {
-            message: 'versions error',
-          },
-        }
-      : versionListMock.slice(0, nbVersions),
+    response: buildMswResponseMock({
+      data: versionListMock.slice(0, nbVersions),
+      errorMessage: getVersionsErrorMessage,
+      isError: isVersionsKO,
+    }),
     status: isVersionsKO ? 500 : 200,
     api: 'v2',
   },
@@ -34,20 +32,19 @@ export type GetVersionMockParams = {
   isVersionKO?: boolean;
 };
 
+export const getVersionErrorMessage = 'get-version-error-message';
+
 export const getVersionMock = ({
   isVersionKO,
 }: GetVersionMockParams): Handler[] => [
   {
     url: '/okms/resource/:okmsId/secret/:secretPath/version/:versionId',
-    response: isVersionKO
-      ? {
-          status: 500,
-          data: {
-            message: 'version error',
-          },
-        }
-      : (request: Request, params: PathParams) =>
-          findVersionMockById(versionListMock, request, params),
+    response: buildMswResponseMock({
+      data: (request, params) =>
+        findVersionMockById(versionListMock, request, params),
+      errorMessage: getVersionErrorMessage,
+      isError: isVersionKO,
+    }),
     status: isVersionKO ? 500 : 200,
     api: 'v2',
   },
@@ -65,11 +62,11 @@ export const createVersionMock = ({
 }: CreateVersionMockParams): Handler[] => [
   {
     url: '/okms/resource/:okmsId/secret/:secretPath/version',
-    response: isCreateVersionKO
-      ? {
-          message: createVersionErrorMessage,
-        }
-      : createVersionResponseMock,
+    response: buildMswResponseMock({
+      data: createVersionResponseMock,
+      errorMessage: createVersionErrorMessage,
+      isError: isCreateVersionKO,
+    }),
     status: isCreateVersionKO ? 500 : 200,
     api: 'v2',
     method: 'post',
@@ -89,7 +86,7 @@ export const updateVersionMock = ({
   {
     url: '/okms/resource/:okmsId/secret/:secretPath/version/:versionId',
     method: 'put',
-    response: createHandlerResponseMock({
+    response: buildMswResponseMock({
       data: {},
       errorMessage: updateVersionErrorMessage,
       isError: isVersionUpdateKO,
