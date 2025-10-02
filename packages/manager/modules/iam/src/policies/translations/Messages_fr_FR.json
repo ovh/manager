@@ -9,6 +9,7 @@
   "iam_policies_datagrid_action_read_policy": "Voir la politique",
   "iam_policies_datagrid_column_actions": "Nombre d'actions",
   "iam_policies_datagrid_column_identities": "Nombre d'identités",
+  "iam_policies_datagrid_column_resources": "Nombre de ressources",
   "iam_policies_datagrid_column_description": "Description",
   "iam_policies_datagrid_column_name": "Nom",
   "iam_policies_datagrid_topbar_create_policy": "Créer une politique",
