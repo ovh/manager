@@ -2,7 +2,7 @@ export type TRegionDeploymentModeDTO = 'region' | 'localzone' | 'region-3-az';
 
 export type TDeploymentModeDTO = {
   name: TRegionDeploymentModeDTO;
-  tags: string[];
+  tags: string[] | null;
 };
 
 export type TRegionDTO = {

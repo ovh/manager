@@ -49,3 +49,6 @@ export const replaceToSnakeCase = (str: string): string =>
 
 export const isCustomUrlSection = (str: string): boolean =>
   str.includes('-') || str.includes('/');
+
+export const getLocalZoneTranslationKey = (regionName: string) =>
+  regionName.split('-').slice(-1)[0];

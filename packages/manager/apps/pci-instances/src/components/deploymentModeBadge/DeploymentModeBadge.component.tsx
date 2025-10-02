@@ -25,5 +25,7 @@ type TDeploymentModeBadgeProps = {
 };
 
 export const DeploymentModeBadge = ({ mode }: TDeploymentModeBadgeProps) => (
-  <Badge className={getBadgeClassName(mode)}>{DeploymentMode[mode]}</Badge>
+  <Badge className={`${getBadgeClassName(mode)} text-nowrap`}>
+    {DeploymentMode[mode]}
+  </Badge>
 );

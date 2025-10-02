@@ -1,9 +1,12 @@
-import { z } from "zod";
-import { instanceNameRegex } from "@/constants";
+import { z } from 'zod';
+import { instanceNameRegex } from '@/constants';
+import { DEPLOYMENT_MODES } from '@/types/instance/common.type';
 
 export const nameSchema = z.string().regex(instanceNameRegex);
 
-export const deploymentModesSchema = z.array(z.string());
+export const deploymentModesSchema = z.array(z.enum(DEPLOYMENT_MODES));
+
+export const continentSelectionSchema = z.string();
 
 export const localizationSelectionSchema = z.string();
 
