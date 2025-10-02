@@ -229,7 +229,7 @@ function renderAppRow(app: string, stats: AppCoverageSummary) {
   const loose = stats.looseTypes || { as: 0, any: 0, unknown: 0 };
 
   return `
-    <tr>
+    <tr style="background:#f0f0f0">
       <td>${app}</td>
       <td>${stats.covered}</td>
       <td>${stats.total}</td>
