@@ -9,7 +9,7 @@ type TSelectContinentData = (
   deploymentModes: TDeploymentMode[],
 ) => TContinentData[];
 
-export const selectContinentData: Reader<Deps, TSelectContinentData> = (
+export const selectContinent: Reader<Deps, TSelectContinentData> = (
   deps: Deps,
 ) => (
   projectId: string,
@@ -20,16 +20,21 @@ export const selectContinentData: Reader<Deps, TSelectContinentData> = (
 
   if (!data) return [];
 
-  const continents = [
-    ...new Set(
-      deploymentModes.flatMap(
-        (mode) => data.relations.continentIdsByDeploymentModeId.get(mode) ?? [],
-      ),
-    ),
-  ];
+  const continentsIds = !deploymentModes.length
+    ? data.entities.continents.allIds
+    : [
+        ...new Set(
+          deploymentModes.flatMap(
+            (mode) =>
+              data.relations.continentIdsByDeploymentModeId.get(mode) ?? [],
+          ),
+        ),
+      ];
 
-  return continents.map((continent) => ({
-    label: translate(`pci_instances_common_instance_continent_${continent}`),
+  return ['all', ...continentsIds].map((continent) => ({
+    label: translate(
+      `common:pci_instances_common_instance_continent_${continent}`,
+    ),
     value: continent,
   }));
 };

@@ -11,6 +11,9 @@ import App from './App';
 import '@ovh-ux/manager-pci-common/dist/style.css';
 import './index.scss';
 import { APP_NAME, LEVEL2, SUB_UNIVERSE, UNIVERSE } from './tracking.constants';
+import { i18n } from 'i18next';
+
+export let i18nInstance: i18n;
 
 const trackingContext = {
   chapter1: UNIVERSE,
@@ -34,10 +37,20 @@ const init = async (
     // nothing to do
   }
 
-  await initI18n({
+  i18nInstance = await initI18n({
     context,
     reloadOnLocaleChange,
-    ns: ['common'],
+    ns: [
+      'actions',
+      'common',
+      'creation',
+      'dashboard',
+      'list',
+      'onboarding',
+      'order-price',
+      'regions',
+      'status',
+    ],
     defaultNS: 'common',
   });
 

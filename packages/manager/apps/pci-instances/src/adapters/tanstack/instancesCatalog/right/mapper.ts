@@ -13,17 +13,21 @@ import {
   TInstancesCatalogDTO,
   TRegionDTO,
 } from './dto.type';
+import { iscountryISOCode } from '@/components/flag/country-iso-code';
 
 type TNormalizedEntity<ID, Entity> = {
   byId: Map<ID, Entity>;
   allIds: ID[];
 };
 
+const mapCountry = (country: string | null) =>
+  country && iscountryISOCode(country) ? country : null;
+
 const mapRegionDTOtoEntity = (regionDto: TRegionDTO): TRegion => ({
   name: regionDto.datacenter,
   deploymentMode: regionDto.type,
   continentIds: regionDto.filters.region,
-  country: regionDto.country,
+  country: mapCountry(regionDto.country),
   availabilityZones: regionDto.availabilityZones,
   isActivable: regionDto.isActivable,
   isActivated: regionDto.isActivated,
@@ -33,7 +37,7 @@ const mapRegionDTOtoEntity = (regionDto: TRegionDTO): TRegion => ({
 
 const mapDeploymentModeDTOToEntity = (
   mode: TDeploymentModeDTO,
-): TDeployment => ({ name: mode.name, tags: mode.tags });
+): TDeployment => ({ name: mode.name, tags: mode.tags ?? [] });
 
 const normalizeData = <DTOItem extends { name: ItemID }, ItemID, EntityItem>(
   items: DTOItem[],
