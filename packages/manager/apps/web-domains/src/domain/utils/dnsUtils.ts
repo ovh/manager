@@ -12,6 +12,7 @@ import {
   DnsConfigurationTypeEnum,
 } from '@/domain/enum/dnsConfigurationType.enum';
 import { TDomainZone } from '@/domain/types/domainZone';
+import { ConfigurationDnsStateAndContent } from '../constants/configuration.card';
 
 const INTERNAL_DNS_PATTERN: Record<string, RegExp> = {
   EU: /^d?ns(?:\d{1,3})?\.ovh\.net/i,
@@ -197,4 +198,11 @@ export function canSaveNewDnsConfig(
     count <= dnsConfig.maxDNS &&
     areArraysDifferent()
   );
+}
+
+export function getDnsStateDetails(dnsConfiguration: DnsConfigurationTypeEnum) {
+  const values = ConfigurationDnsStateAndContent.find((dns) => {
+    return dns.dnsTypes.includes(dnsConfiguration);
+  });
+  return values.result;
 }
