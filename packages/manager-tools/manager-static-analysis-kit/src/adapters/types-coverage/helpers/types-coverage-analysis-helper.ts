@@ -5,6 +5,7 @@ import { typesCoverageConfig } from '../../../configs/types-coverage-config';
 import {
   AppCoverageSummary,
   CoverageSummary,
+  LooseTypesSummary,
   RawCoverageReport,
   WorstFileEntry,
 } from '../types/TypesCoverage';
@@ -24,7 +25,7 @@ function normalizeFileEntry(file: string, data: { correctCount?: number; totalCo
 }
 
 /**
- * Extracts the "worst covered" files from a report.
+ * Extracts the "worst covered" files from a coverage report.
  */
 function extractWorstFiles(report: RawCoverageReport): WorstFileEntry[] {
   if (!report.fileCounts) return [];
@@ -38,6 +39,19 @@ function extractWorstFiles(report: RawCoverageReport): WorstFileEntry[] {
     .map(
       (f) => [f.file, { covered: f.covered, total: f.total, percentage: f.percentage }] as const,
     );
+}
+
+/**
+ * Reads and parses loose-types.json if available.
+ */
+function readLooseTypes(appReportDir: string): LooseTypesSummary | undefined {
+  const file = path.join(appReportDir, 'loose-types.json');
+  if (!fs.existsSync(file)) return undefined;
+  try {
+    return JSON.parse(fs.readFileSync(file, 'utf-8')) as LooseTypesSummary;
+  } catch {
+    return undefined;
+  }
 }
 
 /**
@@ -83,12 +97,16 @@ export function collectTypesCoverage(reportOutputDir: string): CoverageSummary {
     .filter((entry) => fs.statSync(path.join(reportOutputDir, entry)).isDirectory());
 
   for (const appDirName of appDirs) {
-    const jsonPath = path.join(reportOutputDir, appDirName, 'typescript-coverage.json');
+    const appReportDir = path.join(reportOutputDir, appDirName);
+    const jsonPath = path.join(appReportDir, 'typescript-coverage.json');
     if (!fs.existsSync(jsonPath)) continue;
 
     try {
       const report: RawCoverageReport = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
       const stats = computeAppCoverage(report);
+
+      // attach loose-types if available
+      stats.looseTypes = readLooseTypes(appReportDir);
 
       apps[appDirName] = stats;
       totalCovered += stats.covered;
@@ -112,12 +130,21 @@ export function collectTypesCoverage(reportOutputDir: string): CoverageSummary {
 }
 
 /**
- * Determine coverage status color.
+ * Determine coverage status color (traffic light).
  */
 function getReportStatusColor(percentage: number): 'green' | 'orange' | 'red' {
   const { green, orange } = typesCoverageConfig.thresholds;
   if (percentage >= green) return 'green';
   if (percentage >= orange) return 'orange';
+  return 'red';
+}
+
+/**
+ * Determine loose type status color based on thresholds.
+ */
+function getLooseStatusColor(value: number, thresholds: { green: number; orange: number }) {
+  if (value <= thresholds.green) return 'green';
+  if (value <= thresholds.orange) return 'orange';
   return 'red';
 }
 
@@ -129,37 +156,11 @@ function renderColoredPercentage(value: number): string {
 }
 
 /**
- * Render details for worst files of an app.
+ * Render a loose type cell with thresholds.
  */
-function renderWorstFiles(app: string, worstFiles: AppCoverageSummary['worstFiles'] = []) {
-  if (!worstFiles.length) {
-    return `
-    <details class="coverage-details">
-      <summary>📊 Type Coverage Overview for <strong>${app}</strong></summary>
-      <p class="coverage-empty">
-        It seems this project does not contain any <code>.ts</code> or <code>.tsx</code> files.
-      </p>
-    </details>`;
-  }
-
-  const rows = worstFiles
-    .map(
-      ([file, f]) => `
-        <tr>
-          <td colspan="2">${file}</td>
-          <td>${f.covered}/${f.total}</td>
-          <td>${renderColoredPercentage(f.percentage)}</td>
-        </tr>`,
-    )
-    .join('');
-
-  return `
-    <details class="coverage-details">
-      <summary>📊 Type Coverage Overview for <strong>${app}</strong></summary>
-      <table class="coverage-subtable">
-        <tbody>${rows}</tbody>
-      </table>
-    </details>`;
+function renderLooseCell(value: number, thresholds: { green: number; orange: number }) {
+  const color = getLooseStatusColor(value, thresholds);
+  return `<td style="font-weight:bold;color:${color};">${value}</td>`;
 }
 
 /**
@@ -175,32 +176,73 @@ function renderCoverageCell(stats: AppCoverageSummary) {
 }
 
 /**
- * Render a single app row.
+ * Render a table section for type coverage worst files.
+ */
+function renderWorstFilesTable(worstFiles: WorstFileEntry[] = []) {
+  if (!worstFiles.length) {
+    return `<p class="coverage-empty">No type coverage issues 🎉</p>`;
+  }
+
+  const rows = worstFiles
+    .map(
+      ([file, f]) => `
+        <tr>
+          <td>${file}</td>
+          <td>${f.covered}/${f.total}</td>
+          <td>${renderColoredPercentage(f.percentage)}</td>
+        </tr>`,
+    )
+    .join('');
+
+  return `
+    <table class="coverage-subtable">
+      <thead><tr><th>File</th><th>Covered/Total</th><th>%</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+}
+
+/**
+ * Render the details block for one app.
+ */
+function renderAppDetails(app: string, stats: AppCoverageSummary) {
+  return `
+    <details class="coverage-details">
+      <summary>📊 Type Coverage Overview for <strong>${app}</strong></summary>
+      <div class="coverage-card">
+        <h4>Type Coverage Worst Files</h4>
+        ${renderWorstFilesTable(stats.worstFiles)}
+      </div>
+    </details>`;
+}
+
+/**
+ * Render a single app row for the coverage table.
  */
 function renderAppRow(app: string, stats: AppCoverageSummary) {
   if (stats.error) {
     return `<tr style="background:#ffe0e0">
       <td>${app}</td>
-      <td colspan="3" style="color:red">${stats.error}</td>
+      <td colspan="7" style="color:red">${stats.error}</td>
     </tr>`;
   }
 
-  // 🟢 use the min coverage instead of global %
-  const colorKey = getReportStatusColor(stats.minPercentage ?? stats.percentage);
-  const bg = colorKey === 'green' ? '#e6ffed' : colorKey === 'orange' ? '#fff8e1' : '#ffe6e6';
+  const loose = stats.looseTypes || { as: 0, any: 0, unknown: 0 };
 
   return `
-    <tr style="background:${bg}">
+    <tr>
       <td>${app}</td>
       <td>${stats.covered}</td>
       <td>${stats.total}</td>
       <td style="font-weight:bold;">${renderCoverageCell(stats)}</td>
+      ${renderLooseCell(loose.as, typesCoverageConfig.looseThresholds.as)}
+      ${renderLooseCell(loose.any, typesCoverageConfig.looseThresholds.any)}
+      ${renderLooseCell(loose.unknown, typesCoverageConfig.looseThresholds.unknown)}
     </tr>
-    <tr><td colspan="4">${renderWorstFiles(app, stats.worstFiles)}</td></tr>`;
+    <tr><td colspan="7">${renderAppDetails(app, stats)}</td></tr>`;
 }
 
 /**
- * Build table rows for all apps.
+ * Build all app rows into a table body.
  */
 function buildRows(apps: Record<string, AppCoverageSummary>): string {
   return Object.entries(apps)
@@ -259,6 +301,9 @@ export function generateTypesCoverageHtml(summary: CoverageSummary): string {
               <th>Covered</th>
               <th>Total</th>
               <th>Coverage (range)</th>
+              <th>as</th>
+              <th>any</th>
+              <th>unknown</th>
             </tr>
           </thead>
           <tbody>${buildRows(summary.apps)}</tbody>

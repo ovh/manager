@@ -31,6 +31,15 @@ export interface FileCoverage {
 export type WorstFileEntry = [string, FileCoverage];
 
 /**
+ * Manual "loose types" statistics collected by scanning `src/` files.
+ */
+export interface LooseTypesSummary {
+  as: number;
+  any: number;
+  unknown: number;
+}
+
+/**
  * Shape of a single app's aggregated coverage summary.
  */
 export interface AppCoverageSummary {
@@ -43,6 +52,9 @@ export interface AppCoverageSummary {
 
   /** Pre-filtered worst files (below threshold). */
   worstFiles?: WorstFileEntry[];
+
+  /** Manual loose type usage */
+  looseTypes?: LooseTypesSummary;
 }
 
 /**
