@@ -76,7 +76,7 @@
   "listingActionEditDescription": "Editer la description",
   "listingActionDeleteVirtualMac": "Supprimer la MAC virtuelle",
   "listingActionByoipTerminate": "Résilier le service BYOIP",
-  "listingActionUnblockHackedIP": "déblocage anti-hack...",
+  "listingActionUnblockHackedIP": "Déblocage anti-hack",
   "listingUpsertDescription": "Description",
   "listingUpsertDescriptionSuccessMessage": "La description de l'IP {{value}} a été modifiée.",
   "listingTerminateIp_confirm_Headline": "Résilier mon IP",
