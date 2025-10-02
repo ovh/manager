@@ -3,10 +3,15 @@ import { Trans, useTranslation } from 'react-i18next';
 import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 
+import { Clipboard } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { GuideLink } from '@/components';
-import { DomainDiagnosisTestResult, DomainDiagnosisTestStatusEnum } from '@/data/api';
+import {
+  DomainDiagnosisTestResult,
+  DomainDiagnosisTestStatusEnum,
+  ExpectedDNSConfig,
+} from '@/data/api';
 import { GUIDES_LIST, Guide } from '@/guides.constants';
 import { AUTO_CONFIGURE_DOMAIN } from '@/tracking.constants';
 import { DnsRecordType } from '@/utils/dnsconfig.constants';
@@ -16,12 +21,14 @@ import StatusBadge from './StatusBadge.component';
 const SRVTabContent = ({
   diagnostic,
   recordType,
+  expectedDNSConfig,
   trackingName,
   isAutoConfigurable,
   guide = GUIDES_LIST.dns_configuration_guide,
 }: {
   diagnostic: DomainDiagnosisTestResult;
   recordType: DnsRecordType;
+  expectedDNSConfig: ExpectedDNSConfig;
   trackingName: string;
   isAutoConfigurable: boolean;
   guide?: Guide;
@@ -87,6 +94,14 @@ const SRVTabContent = ({
                       <strong className="mr-4">{t('zimbra_domain_diagnostic_type')}</strong>
                       <OdsText preset={ODS_TEXT_PRESET.span}>{recordType}</OdsText>
                     </OdsText>
+                  </td>
+                </tr>
+                <tr key="srv">
+                  <td>
+                    <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                      <strong className="mr-4">{t('zimbra_domain_diagnostic_field_target')}</strong>
+                    </OdsText>
+                    <Clipboard value={expectedDNSConfig?.autodiscover} />
                   </td>
                 </tr>
               </tbody>
