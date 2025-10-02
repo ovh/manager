@@ -25,7 +25,11 @@ import {
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
 
-import { useCatalogPrice, useProjectUrl } from '@ovh-ux/manager-react-components';
+import {
+  convertHourlyPriceToMonthly,
+  useCatalogPrice,
+  useProjectUrl,
+} from '@ovh-ux/manager-react-components';
 
 import useSavingsPlanAvailable from '@/hooks/useSavingPlanAvailable';
 
@@ -47,9 +51,13 @@ export type TBillingStepProps = {
 };
 
 export default function BillingStep(props: TBillingStepProps): ReactElement {
-  const { t } = useTranslation(['billing-anti-affinity', 'add']);
-  const { t: tFlavourBilling } = useTranslation('flavor-billing');
-  const { getFormattedMonthlyCatalogPrice, getFormattedHourlyCatalogPrice } = useCatalogPrice(4, {
+  const { t } = useTranslation(['billing-anti-affinity', 'add', 'node-pool', 'flavor-billing']);
+
+  const { getFormattedHourlyCatalogPrice } = useCatalogPrice(4, {
+    exclVat: true,
+  });
+
+  const { getFormattedMonthlyCatalogPrice } = useCatalogPrice(2, {
     exclVat: true,
   });
 
@@ -66,7 +74,7 @@ export default function BillingStep(props: TBillingStepProps): ReactElement {
           level={ODS_TEXT_LEVEL.heading}
           size={ODS_TEXT_SIZE._400}
         >
-          {tFlavourBilling('pci_projects_project_instances_configure_billing_type')}
+          {t('flavor-billing:pci_projects_project_instances_configure_billing_type')}
         </OsdsText>
         {props.monthlyBilling.isComingSoon && showSavingPlan ? (
           <OsdsMessage
@@ -128,7 +136,7 @@ export default function BillingStep(props: TBillingStepProps): ReactElement {
               size={ODS_THEME_TYPOGRAPHY_SIZE._400}
               color={ODS_THEME_COLOR_INTENT.text}
             >
-              {tFlavourBilling('pci_project_flavors_billing_hourly')}
+              {t('flavor-billing:pci_project_flavors_billing_hourly')}
             </OsdsText>
             <hr className={separatorClass} />
             <OsdsText
@@ -138,9 +146,17 @@ export default function BillingStep(props: TBillingStepProps): ReactElement {
               className="block"
             >
               <strong>
-                {tFlavourBilling('pci_project_flavors_billing_price_hourly_price_label')}
+                {t('flavor-billing:pci_project_flavors_billing_price_hourly_price_label')}
               </strong>
               {` ${getFormattedHourlyCatalogPrice(Number(props.price))}`}
+            </OsdsText>
+            <OsdsText
+              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+              color={ODS_THEME_COLOR_INTENT.text}
+            >
+              <strong>{t('node-pool:kube_common_node_pool_estimation_cost_tile')}:</strong>
+              {` ${getFormattedMonthlyCatalogPrice(convertHourlyPriceToMonthly(Number(props.price)))}`}
             </OsdsText>
           </div>
         </OsdsTile>
@@ -163,7 +179,7 @@ export default function BillingStep(props: TBillingStepProps): ReactElement {
                 size={ODS_THEME_TYPOGRAPHY_SIZE._400}
                 color={ODS_THEME_COLOR_INTENT.text}
               >
-                {tFlavourBilling('pci_project_flavors_billing_monthly')}
+                {t('flavor-billing:pci_project_flavors_billing_monthly')}
               </OsdsText>
               <hr className={separatorClass} />
               <OsdsText
@@ -173,8 +189,8 @@ export default function BillingStep(props: TBillingStepProps): ReactElement {
                 className="block"
               >
                 <strong>
-                  {tFlavourBilling(
-                    'pci_project_flavors_billing_price_monthly_instance_price_label',
+                  {t(
+                    'flavor-billing:pci_project_flavors_billing_price_monthly_instance_price_label',
                   )}
                 </strong>
                 {` ${getFormattedMonthlyCatalogPrice(props.monthlyPrice ?? 0)}`}
