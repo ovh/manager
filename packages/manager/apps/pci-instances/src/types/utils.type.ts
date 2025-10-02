@@ -27,3 +27,5 @@ export type DeepReadonly<T> = T extends Primitive
   : T extends Set<infer M>
   ? DeepReadonlySet<M>
   : unknown;
+
+export type Reader<D, V> = (deps: D) => V;
