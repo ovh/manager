@@ -44,7 +44,7 @@ export const urls = {
   addVirtualMac: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.service}/${urlDynamicParts.service}/${subRoutes.addVirtualMac}`,
   viewVirtualMac: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.service}/${urlDynamicParts.service}/${subRoutes.viewVirtualMac}`,
   deleteVirtualMac: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.service}/${urlDynamicParts.service}/${subRoutes.deleteVirtualMac}`,
-  unblockAntiHack: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.service}/${urlDynamicParts.service}/${subRoutes.unblockAntiHack}`,
+  unblockAntiHack: `${subRoutes.root}/${urlDynamicParts.parentId}/${subRoutes.service}/${urlDynamicParts.service}/${subRoutes.unblockAntiHack}/${urlDynamicParts.id}`,
   configureGameFirewall: `${subRoutes.root}/${urlDynamicParts.id}/${subRoutes.configureGameFirewall}`,
   order: `${subRoutes.root}/${subRoutes.order}`,
   byoip: `${subRoutes.root}/${subRoutes.byoip}`,
