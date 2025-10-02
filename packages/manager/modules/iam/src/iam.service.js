@@ -218,12 +218,24 @@ export default class IAMService {
    * Get the list of policies
    * @param {string} cursor The base64 encoded cursor to pass
    * @param {boolean} readOnly
+   * @param {string[]} identities The list of identities to filter with
+   * @param {string[]} resources The list of resources to filter with
+   * @param {string[]} actions The list of actions to filter with
    * @returns {Promise}
    */
-  getPolicies({ cursor, readOnly }) {
+  getPolicies({ cursor, readOnly, identities, resources, actions }) {
     const params = {};
     if (typeof readOnly !== 'undefined') {
       params.readOnly = readOnly;
+    }
+    if (typeof identities !== 'undefined' && identities.length > 0) {
+      params.identity = identities;
+    }
+    if (typeof resources !== 'undefined' && resources.length > 0) {
+      params.resourceURN = resources;
+    }
+    if (typeof actions !== 'undefined' && actions.length > 0) {
+      params.action = actions;
     }
     return this.Apiv2Service.httpApiv2List(
       { url: URL.POLICY, params },

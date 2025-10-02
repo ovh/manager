@@ -1,6 +1,7 @@
 <oui-modal
     data-heading="{{:: 'iam_advanced_policy_search_title' | translate}}"
     data-primary-label="{{:: 'iam_advanced_policy_search_button' | translate}}"
+    data-primary-action="$ctrl.submitSearch()"
 >
     <h3
         class="oui-heading_h3"
@@ -9,17 +10,31 @@
 
     <!-- Identities: local users -->
     <oui-collapsible
-        heading="{{:: 'iam_advanced_policy_search_criteria_identities_local_users' | translate}}"
+        data-heading="{{:: 'iam_advanced_policy_search_criteria_identities_local_users' | translate}}"
+        data-on-toggle="$ctrl.loadFieldItems(expanded, 'localUsers')"
+        data-loading="$ctrl.localUsers.status === 'loading'"
     >
         <oui-search
             data-placeholder="{{:: 'iam_identities_users_modal_search_placeholder' | translate}}"
-            data-model="$ctrl.model.localUsers.search"
-            data-on-change="$ctrl.onChangeSearch('localUsers')"
-            data-on-reset="$ctrl.onReset('localUsers')"
+            data-model="$ctrl.localUsers.search"
         ></oui-search>
+        <oui-message
+            data-type="error"
+            data-ng-if="$ctrl.localUsers.status === 'error'"
+        >
+            <span data-ng-bind="$ctrl.localUsers.errorMessage"></span>
+        </oui-message>
+        <oui-message
+            data-type="info"
+            data-ng-if="$ctrl.localUsers.status === 'empty'"
+        >
+            <span
+                data-translate="iam_identities_users_modal_empty_state"
+            ></span>
+        </oui-message>
         <oui-checkbox
-            data-ng-repeat="user in $ctrl.model.localUsers.items | filter: $ctrl.filterLocalUsersFn track by $index"
-            data-model="$ctrl.model.localUsers.selected[user.email]"
+            data-ng-repeat="user in $ctrl.localUsers.items | filter: $ctrl.filterLocalUsersFn track by $index"
+            data-model="$ctrl.model.selectedIdentities[user.urn]"
             thumbnail
         >
             <div>
@@ -39,15 +54,31 @@
 
     <!-- Identities: user groups -->
     <oui-collapsible
-        heading="{{:: 'iam_advanced_policy_search_criteria_identities_user_groups' | translate}}"
+        data-heading="{{:: 'iam_advanced_policy_search_criteria_identities_user_groups' | translate}}"
+        data-on-toggle="$ctrl.loadFieldItems(expanded, 'userGroups')"
+        data-loading="$ctrl.userGroups.status === 'loading'"
     >
         <oui-search
             data-placeholder="{{:: 'iam_identities_groups_modal_search_placeholder' | translate}}"
-            data-model="$ctrl.model.userGroups.search"
+            data-model="$ctrl.userGroups.search"
         ></oui-search>
+        <oui-message
+            data-type="error"
+            data-ng-if="$ctrl.userGroups.status === 'error'"
+        >
+            <span data-ng-bind="$ctrl.userGroups.errorMessage"></span>
+        </oui-message>
+        <oui-message
+            data-type="info"
+            data-ng-if="$ctrl.userGroups.status === 'empty'"
+        >
+            <span
+                data-translate="iam_identities_groups_modal_empty_state"
+            ></span>
+        </oui-message>
         <oui-checkbox
-            data-ng-repeat="group in $ctrl.model.userGroups.items | filter: $ctrl.filterUserGroupsFn track by $index"
-            data-model="$ctrl.model.userGroups.selected[group.urn]"
+            data-ng-repeat="group in $ctrl.userGroups.items | filter: $ctrl.filterUserGroupsFn track by $index"
+            data-model="$ctrl.model.selectedIdentities[group.urn]"
             thumbnail
         >
             <div>
