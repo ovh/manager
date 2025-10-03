@@ -25,8 +25,8 @@ import { useQuery } from '@tanstack/react-query';
 import * as database from '@/types/cloud/project/database';
 
 interface IpsRestrictionsFormProps {
-  value: database.IpRestrictionCreation[];
-  onChange: (newIps: database.IpRestrictionCreation[]) => void;
+  value: Omit<database.service.IpRestriction, 'status'>[];
+  onChange: (newIps: Omit<database.service.IpRestriction, 'status'>[]) => void;
   disabled?: boolean;
 }
 
@@ -46,8 +46,8 @@ const IpsRestrictionsForm = React.forwardRef<
     queryKey: ['ip'],
     queryFn: async () => {
       const response = await fetch('https://api.ipify.org?format=json');
-      const data = await response.json();
-      return data as { ip: string };
+      const data: { ip: string } = await response.json();
+      return data;
     },
   });
   const { t } = useTranslation(
@@ -85,7 +85,10 @@ const IpsRestrictionsForm = React.forwardRef<
       ip: formatIpMask(ip),
       description,
     };
-    const newIps = [...value, formattedIp];
+    const newIps = [...value, formattedIp].map((ipRestriction) => ({
+      ip: ipRestriction.ip,
+      description: ipRestriction.description || '',
+    }));
     onChange(newIps);
     form.reset();
   };
@@ -110,7 +113,7 @@ const IpsRestrictionsForm = React.forwardRef<
               <Button
                 className="px-2"
                 mode={'outline'}
-                size={'s'}
+                size={'sm'}
                 onClick={() =>
                   addIp({
                     ip: dataplatformIp,
@@ -127,7 +130,7 @@ const IpsRestrictionsForm = React.forwardRef<
               <Button
                 className="px-2"
                 mode={'outline'}
-                size={'s'}
+                size={'sm'}
                 onClick={() =>
                   addIp({ ip: ipQuery.data?.ip, description: 'current ip' })
                 }
