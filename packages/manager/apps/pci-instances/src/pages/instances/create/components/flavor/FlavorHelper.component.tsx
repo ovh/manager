@@ -15,7 +15,7 @@ const FlavorHelper: FC = () => {
     'compute_optimized',
     'memory_optimized',
     'storage_otpimized',
-    'help_gpu',
+    'gpu',
     'discovery',
   ];
 
