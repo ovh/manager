@@ -1,6 +1,8 @@
+import React from 'react';
+
 import { render, screen } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import React from 'react';
+
 import RGDP from './RGDP.page';
 
 vi.mock('./rgdpIntroduction/RGDPIntroduction.component', () => ({

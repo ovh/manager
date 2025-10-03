@@ -1,29 +1,21 @@
 import React from 'react';
+
 import { Route } from 'react-router-dom';
+
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+
+import { createRoutePath, errorRoutePath, seeRoutePath } from '@/routes/mfa.constants';
+
 import NotFound from '../pages/404';
-import {
-  createRoutePath,
-  errorRoutePath,
-  seeRoutePath,
-} from '@/routes/mfa.constants';
 
 // Disable MFA
-const DisableMfaPage = React.lazy(() =>
-  import('@/pages/disableMFA/DisableMFA.page'),
+const DisableMfaPage = React.lazy(() => import('@/pages/disableMFA/DisableMFA.page'));
+const DisableMfaCreatePage = React.lazy(() => import('@/pages/disableMFA/create/Create.page'));
+const DisableMfaCreateFormPage = React.lazy(
+  () => import('@/pages/disableMFA/create/form/Form.page'),
 );
-const DisableMfaCreatePage = React.lazy(() =>
-  import('@/pages/disableMFA/create/Create.page'),
-);
-const DisableMfaCreateFormPage = React.lazy(() =>
-  import('@/pages/disableMFA/create/form/Form.page'),
-);
-const DisableMfaSeePage = React.lazy(() =>
-  import('@/pages/disableMFA/see/See.page'),
-);
-const DisableMfaErrorPage = React.lazy(() =>
-  import('@/pages/disableMFA/error/Error.page'),
-);
+const DisableMfaSeePage = React.lazy(() => import('@/pages/disableMFA/see/See.page'));
+const DisableMfaErrorPage = React.lazy(() => import('@/pages/disableMFA/error/Error.page'));
 
 // GDPR
 const GDPRPage = React.lazy(() => import('@/pages/rgdp/RGDP.page'));
@@ -36,11 +28,7 @@ export default (
   <Route
     id="root"
     errorElement={
-      <ErrorBoundary
-        redirectionApp="procedures"
-        isPreloaderHide={true}
-        isRouteShellSync={false}
-      />
+      <ErrorBoundary redirectionApp="procedures" isPreloaderHide={true} isRouteShellSync={false} />
     }
   >
     {/* Disable 2FA / MFA Routes */}
@@ -52,10 +40,7 @@ export default (
         <Route path="" element={<DisableMfaCreateFormPage />} />
       </Route>
 
-      <Route
-        path={`${accountDisable2faRoute}/${seeRoutePath}`}
-        element={<DisableMfaSeePage />}
-      />
+      <Route path={`${accountDisable2faRoute}/${seeRoutePath}`} element={<DisableMfaSeePage />} />
       <Route
         path={`${accountDisable2faRoute}/${errorRoutePath}`}
         element={<DisableMfaErrorPage />}

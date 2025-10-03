@@ -1,16 +1,11 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import {
-  getProceduresAPI,
-  UploadDocuments,
-  UploadLink,
-} from '@/data/api/proceduresApi';
+
+import { UploadDocuments, UploadLink, getProceduresAPI } from '@/data/api/proceduresApi';
 import { Procedure } from '@/types/procedure';
 
 export const useProcedures = (procedure: Procedure) => {
-  const { getStatus, getDocumentsLinks, uploadDocuments } = getProceduresAPI(
-    procedure,
-  );
+  const { getStatus, getDocumentsLinks, uploadDocuments } = getProceduresAPI(procedure);
 
   const useStatus = <TResponse,>() =>
     useQuery<TResponse, AxiosError>({
