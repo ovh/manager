@@ -2,6 +2,7 @@ import {
   FC,
   Suspense,
   useEffect,
+  useLayoutEffect,
   useState,
   useCallback,
 } from 'react';
@@ -63,7 +64,9 @@ export default function ModalContainer({
     }
   }, [currentIndex]);
 
-  useEffect(() => {
+  // Register the listener synchronously before rendering using useLayoutEffect
+  // This ensures the listener is registered before any modal's useEffect runs
+  useLayoutEffect(() => {
     if (currentIndex === null) return;
     uxPlugin.registerModalActionDoneListener(handleActionDone);
     return () => {
