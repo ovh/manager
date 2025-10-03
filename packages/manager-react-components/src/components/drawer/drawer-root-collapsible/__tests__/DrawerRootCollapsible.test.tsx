@@ -1,10 +1,17 @@
+import '../../drawer.mocks'; // import the mock first
+import { vi } from 'vitest';
 import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { mockedProps } from './DrawerBase.mock';
-import { DrawerCollapsible } from './DrawerCollapsible.component';
+import { DrawerRootCollapsible } from '../DrawerRootCollapsible.component';
+
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+  }),
+}));
 
 it('should display the drawer in its collapsible variant', () => {
-  render(<DrawerCollapsible {...mockedProps} />);
+  render(<DrawerRootCollapsible isOpen={true} onDismiss={vi.fn()} />);
   expect(screen.getByTestId('drawer')).not.toBeNull();
   expect(screen.queryByTestId('drawer-backdrop')).toBeNull();
   expect(screen.queryByTestId('drawer-handle')).not.toBeNull();
@@ -13,7 +20,7 @@ it('should display the drawer in its collapsible variant', () => {
 it('should collapse and reopen the drawer when the handle is clicked', async () => {
   const user = userEvent.setup();
 
-  render(<DrawerCollapsible {...mockedProps} />);
+  render(<DrawerRootCollapsible isOpen={true} onDismiss={vi.fn()} />);
   expect(screen.getByTestId('drawer')).not.toBeNull();
 
   // Collapse the drawer
@@ -43,7 +50,7 @@ it('should collapse and reopen the drawer when the handle is clicked', async () 
 });
 
 it('should hide the handle immediately after the user presses the “Esc” key', () => {
-  render(<DrawerCollapsible {...mockedProps} />);
+  render(<DrawerRootCollapsible isOpen={true} onDismiss={vi.fn()} />);
   expect(screen.getByTestId('drawer')).not.toBeNull();
   const handle = screen.getByTestId('drawer-handle');
   expect(handle).toBeVisible();

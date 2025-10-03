@@ -3,13 +3,8 @@ import { OdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
-import { DrawerCollapseState } from './Drawer.types';
-import './translations';
-
-type DrawerHandleProps = {
-  onClick: () => void;
-  collapseState: DrawerCollapseState;
-};
+import { DrawerHandleProps } from './DrawerHandle.props';
+import '../translations';
 
 const DrawerHandle = ({ onClick, collapseState }: DrawerHandleProps) => {
   const { t } = useTranslation('drawer');
