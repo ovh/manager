@@ -3,12 +3,12 @@ import { urls } from '@/routes/routes.constant';
 export const PROJECT_TABS = [
   {
     name: 'home',
-    titleKey: 'pci_projects_project_home',
+    titleKey: 'pci_projects_home_home',
     to: urls.home,
   },
   {
     name: 'settings',
-    titleKey: 'pci_projects_project_settings',
+    titleKey: 'pci_projects_home_settings',
     to: urls.edit,
   },
 ] as const;

@@ -6,7 +6,7 @@ import TileItem from './TileItem.component';
 
 export default function DashboardTiles() {
   const projectId = useProjectIdFromParams();
-  const { t } = useTranslation('project');
+  const { t } = useTranslation('home');
   const { tiles, isLoading, isError, error } = useDashboardSections(projectId);
 
   if (isError) {
@@ -17,7 +17,7 @@ export default function DashboardTiles() {
     <div
       className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 items-stretch"
       role="region"
-      aria-label={t('pci_projects_project_dashboard_tiles_aria')}
+      aria-label={t('pci_projects_home_dashboard_tiles_aria')}
     >
       {tiles
         .filter(
@@ -30,7 +30,7 @@ export default function DashboardTiles() {
             key={tileIdx}
             className="flex flex-col h-full"
             role="region"
-            aria-label={t('pci_projects_project_tile_aria', {
+            aria-label={t('pci_projects_home_tile_aria', {
               title: tile.titleTranslationKey,
             })}
           >

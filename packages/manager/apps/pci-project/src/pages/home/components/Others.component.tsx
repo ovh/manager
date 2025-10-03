@@ -1,12 +1,15 @@
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { Link } from 'react-router-dom';
 
 import { DASHBOARD_OTHER_ACTIONS_ITEMS } from '@/constants';
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
+import { useDashboardLinks } from '@/hooks/home/useDashboardLinks';
 
 function Others() {
-  const { t } = useTranslation('project');
+  const { t } = useTranslation('home');
+
+  // Convert paths to absolute URLs
+  const otherActionItems = useDashboardLinks(DASHBOARD_OTHER_ACTIONS_ITEMS);
 
   return (
     <div className="my-4">
@@ -15,18 +18,18 @@ function Others() {
           preset={ODS_TEXT_PRESET.heading3}
           className="whitespace-nowrap mr-4"
         >
-          {t('pci_projects_project_others')}
+          {t('pci_projects_home_others')}
         </OdsText>
-        {DASHBOARD_OTHER_ACTIONS_ITEMS.map((item, idx) =>
+        {otherActionItems.map((item, idx) =>
           item.link ? (
-            <Link to={item.link} style={{ textDecoration: 'none' }} key={idx}>
+            <a href={item.link} style={{ textDecoration: 'none' }} key={idx}>
               <OdsButton
                 variant="outline"
                 className="whitespace-nowrap flex items-center m-3"
                 icon={item.iconODS}
                 label={t(item.labelTranslationKey)}
               />
-            </Link>
+            </a>
           ) : (
             <OdsButton
               key={idx}
