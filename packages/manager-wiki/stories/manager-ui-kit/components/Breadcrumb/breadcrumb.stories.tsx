@@ -3,7 +3,7 @@ import {
   withRouter,
   reactRouterParameters,
 } from 'storybook-addon-react-router-v6';
-import { Breadcrumb } from '@ovh-ux/manager-react-components';
+import { Breadcrumb } from '@ovh-ux/manager-ui-kit';
 
 const BreadcrumbStory = (args) => {
   return (
@@ -32,7 +32,7 @@ HideRootLabel.args = {
 };
 
 export default {
-  title: 'Manager React Components/Components/Breadcrumb',
+  title: 'Manager UI Kit/Components/Breadcrumb',
   component: Breadcrumb,
   decorators: [withRouter],
   parameters: {

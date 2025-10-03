@@ -10,7 +10,7 @@ import {
   ActionMenu,
   ChangelogLinks,
   ChangelogButton,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/manager-ui-kit';
 import {
   Message,
   MESSAGE_COLOR,
@@ -257,7 +257,7 @@ export const DashboardTemplate = () => (
 
 const meta: Meta<typeof BaseLayout> = {
   decorators: [withRouter],
-  title: 'Manager React Components/Templates/Base Layout',
+  title: 'Manager UI Kit/Templates/Base Layout',
   component: BaseLayout,
   argTypes: {},
   args: completeBaseLayoutExample,

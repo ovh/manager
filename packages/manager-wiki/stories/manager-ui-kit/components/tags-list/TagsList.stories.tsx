@@ -7,10 +7,10 @@ import {
   MESSAGE_COLOR,
   Text,
 } from '@ovhcloud/ods-react';
-import { TagsList } from '../../../../../manager-react-components/src/components';
+import { TagsList } from '../../../../../manager-ui-kit/src/components';
 
 const managerTagsList = {
-  title: 'Manager React Components/Components/TagsList',
+  title: 'Manager UI Kit/Components/TagsList',
   component: TagsList,
 };
 

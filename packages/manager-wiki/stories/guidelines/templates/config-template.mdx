@@ -22,10 +22,10 @@ It can be `pages/config/config.page.tsx`
 
 #### BaseLayout
 
-The config page uses the `BaseLayout` component from `manager-react-components` as its main container. This provides consistent styling and structure across the application.
+The config page uses the `BaseLayout` component from `manager-ui-kit` as its main container. This provides consistent styling and structure across the application.
 
 ```tsx
-import { BaseLayout } from '@ovh-ux/manager-react-components';
+import { BaseLayout } from '@ovh-ux/manager-ui-kit';
 
 const ConfigPage = () => {
   return (
@@ -44,7 +44,7 @@ const ConfigPage = () => {
 ### Implementation Example
 
 ```tsx
-import { BaseLayout } from '@ovh-ux/manager-react-components';
+import { BaseLayout } from '@ovh-ux/manager-ui-kit';
 import { OdsFormField, OdsSelect, OdsCheckbox } from '@ovhcloud/ods-components/react';
 
 const ConfigPage = () => {
@@ -235,7 +235,7 @@ const ConfigPage = () => {
 
 ### Code Review Checklist
 
-- [ ] Use `BaseLayout` component from `manager-react-components`
+- [ ] Use `BaseLayout` component from `manager-ui-kit`
 - [ ] Implement proper form validation
 - [ ] Handle loading and error states
 - [ ] Use ODS components for form elements

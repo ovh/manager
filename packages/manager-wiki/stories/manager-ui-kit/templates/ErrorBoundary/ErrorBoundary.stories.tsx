@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import { Meta } from '@storybook/react';
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+import { ErrorBoundary } from '@ovh-ux/manager-ui-kit';
 
 const defaultsProps = {
   redirectionApp: 'vrack-services-test',
@@ -10,7 +10,7 @@ const defaultsProps = {
 };
 
 const meta: Meta = {
-  title: 'Manager React Components/Components/ErrorBoundary',
+  title: 'Manager UI Kit/Components/ErrorBoundary',
   component: ErrorBoundary,
   decorators: [withRouter],
   args: defaultsProps,
