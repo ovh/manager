@@ -120,21 +120,27 @@ const mapInstanceAddresses = (instance: TAggregatedInstanceDto) =>
     return acc.set(type, [rest]);
   }, new Map<TInstanceAddressType, TAggregatedInstanceAddress[]>());
 
+const isActionToDisplay = (name: TActionName) => name !== 'vnc';
+
 const mapInstanceActions = (
   instance: TAggregatedInstanceDto,
   projectUrl: string,
 ): TAggregatedInstanceActions =>
   instance.actions.reduce<TAggregatedInstanceActions>((acc, action) => {
     const { group, name } = action;
-    const newAction = {
-      label: `pci_instances_list_action_${name}`,
-      link: getActionHrefByName(projectUrl, name, instance),
-    };
-    const foundAction = acc.get(group);
-    if (!foundAction) return acc.set(group, [newAction]);
-    foundAction.push(newAction);
+
+    if (isActionToDisplay(name)) {
+      const newAction = {
+        label: `pci_instances_list_action_${name}`,
+        link: getActionHrefByName(projectUrl, name, instance),
+      };
+      const foundAction = acc.get(group);
+      if (!foundAction) return acc.set(group, [newAction]);
+      foundAction.push(newAction);
+    }
+
     return acc;
-  }, new Map() as TAggregatedInstanceActions);
+  }, new Map());
 
 export const instancesSelector = (
   { pages }: InfiniteData<TAggregatedInstanceDto[], number>,
