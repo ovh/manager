@@ -1,21 +1,17 @@
-import { describe, expect, it, vi } from 'vitest';
 import { act, fireEvent, render } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import * as reactShellClientModule from '@ovh-ux/manager-react-shell-client';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
 import Changelog from './Changelog';
 
 const trackClickMock = vi.fn();
 const trackPageMock = vi.fn();
 
-vi.mock(
-  '@/components/roadmap-changelog-datagrid/RoadmapChangelogDatagrids',
-  () => ({
-    default: () => <span>datagrid</span>,
-  }),
-);
+vi.mock('@/components/roadmap-changelog-datagrid/RoadmapChangelogDatagrids', () => ({
+  default: () => <span>datagrid</span>,
+}));
 
 vi.mock('@/hooks/useHubNavigation/useHubNavigation', () => ({
   useHubNavigation: vi.fn(() => ({
@@ -60,9 +56,7 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
 
 const renderComponent = () =>
   render(
-    <ShellContext.Provider
-      value={(mocks.shellContext as unknown) as ShellContextType}
-    >
+    <ShellContext.Provider value={mocks.shellContext as unknown as ShellContextType}>
       <Changelog />
     </ShellContext.Provider>,
   );

@@ -1,16 +1,18 @@
 import { FunctionComponent } from 'react';
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+
 import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
-import { ROADMAP_STATUS_COLORS } from './roadmapChangelogItemStatusCell.constants';
+
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+
 import { RoadmapChangelogItem } from '@/types/roadmapchangelog.type';
+
+import { ROADMAP_STATUS_COLORS } from './roadmapChangelogItemStatusCell.constants';
 
 type Props = {
   item: RoadmapChangelogItem;
 };
-export const RoadmapChangelogItemStatusCell: FunctionComponent<Props> = ({
-  item,
-}) => {
+export const RoadmapChangelogItemStatusCell: FunctionComponent<Props> = ({ item }) => {
   return (
     <DataGridTextCell>
       <OsdsChip

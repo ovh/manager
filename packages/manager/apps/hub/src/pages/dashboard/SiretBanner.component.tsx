@@ -1,11 +1,11 @@
 import { Suspense, useContext, useEffect, useMemo } from 'react';
+
 import { Await } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
+
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
@@ -19,11 +19,9 @@ import {
   OsdsSkeleton,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ShellContext,
-  useOvhTracking,
-  PageType,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { PageType, ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { useHubContext } from '@/pages/dashboard/context';
 import { SIRET_BANNER_FEATURE } from '@/pages/dashboard/dashboard.constants';
 

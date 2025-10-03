@@ -1,14 +1,15 @@
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import React from 'react';
+
 import { Route } from 'react-router-dom';
+
+import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
+
 import NotFound from '@/pages/404';
 
 const LayoutPage = React.lazy(() => import('@/pages/layout'));
 const DashboardPage = React.lazy(() => import('@/pages/dashboard/dashboard'));
-const RoadmapChangelogPage = React.lazy(() =>
-  import('@/pages/changelog/Changelog'),
-);
+const RoadmapChangelogPage = React.lazy(() => import('@/pages/changelog/Changelog'));
 
 export default (
   <Route
@@ -16,11 +17,7 @@ export default (
     Component={LayoutPage}
     id={'root'}
     errorElement={
-      <ErrorBoundary
-        redirectionApp="hub-backup"
-        isPreloaderHide={true}
-        isRouteShellSync={true}
-      />
+      <ErrorBoundary redirectionApp="hub-backup" isPreloaderHide={true} isRouteShellSync={true} />
     }
   >
     <Route

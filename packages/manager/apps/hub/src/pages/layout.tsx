@@ -1,12 +1,11 @@
-import React, { useEffect, useContext } from 'react';
-import { defineCurrentPage } from '@ovh-ux/request-tagger';
+import React, { useContext, useEffect } from 'react';
+
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
-import {
-  ShellContext,
-  useOvhTracking,
-  useRouteSynchro,
-} from '@ovh-ux/manager-react-shell-client';
+
 import '@ovhcloud/ods-theme-blue-jeans';
+
+import { ShellContext, useOvhTracking, useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
+import { defineCurrentPage } from '@ovh-ux/request-tagger';
 
 interface MatchHandle {
   tracking?: {

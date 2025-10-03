@@ -1,11 +1,13 @@
 import { useContext } from 'react';
+
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { HubProduct, ProductList } from '@/types/services.type';
+
 import {
   DEFAULT_DISPLAYED_PRODUCTS,
   DEFAULT_DISPLAYED_SERVICES,
   productListingPages,
 } from '@/components/products/Products.constants';
+import { HubProduct, ProductList } from '@/types/services.type';
 
 export const useProducts = (services: ProductList, expand = false) => {
   const { shell } = useContext(ShellContext);
@@ -18,19 +20,14 @@ export const useProducts = (services: ProductList, expand = false) => {
         hash: null,
       };
       return {
-        data: servicesByProducts[name].data.slice(
-          0,
-          DEFAULT_DISPLAYED_SERVICES,
-        ),
+        data: servicesByProducts[name].data.slice(0, DEFAULT_DISPLAYED_SERVICES),
         count: servicesByProducts[name].count,
         type: name,
         formattedType: name.toLowerCase().replace(/_/g, '-'),
         // Link to product page should be done on the BFF side
         link:
           application && hash
-            ? (shell.navigation.getURL(application, hash, {}) as Promise<
-                string
-              >)
+            ? (shell.navigation.getURL(application, hash, {}) as Promise<string>)
             : null,
       };
     })
