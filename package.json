@@ -19,7 +19,7 @@
     "format:html": "yarn run lint:html && prettier --parser=html --write \"packages/**/*.html\"",
     "format:js": "yarn run lint:js --fix",
     "format:md": "yarn run lint:md --fix",
-    "format:tsx": "yarn run pm:lint:fix && prettier --write \"packages/{manager/apps,manager-react-components}/**/*.{tsx,ts}\"",
+    "format:tsx": "yarn run lint:tsx --fix && prettier --write \"packages/{manager/apps,manager-ui-kit}/**/*.{tsx,ts}\"",
     "generate:uapp": "yarn manager-generator",
     "preinstall": "node ./packages/manager-tools/manager-pm/src/manager-pm-preinstall.js",
     "postinstall": "node ./packages/manager-tools/manager-pm/src/manager-pm-postinstall.js",
