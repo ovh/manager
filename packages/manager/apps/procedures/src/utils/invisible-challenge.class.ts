@@ -1,4 +1,5 @@
 import { AxiosInstance, InternalAxiosRequestConfig } from 'axios';
+
 import { IframeLoaderPayload, loadIframe, removeIframe } from '@/utils/iframe';
 import {
   CHALLENGE_IFRAME_ID,
@@ -38,9 +39,7 @@ export class ChallengeApiInterceptor {
   }
 
   public attachMessageListener() {
-    window.addEventListener('message', (message: MessageEvent) =>
-      this.onIframeMessage(message),
-    );
+    window.addEventListener('message', (message: MessageEvent) => this.onIframeMessage(message));
   }
 
   public loadChallenge(url: string): Promise<unknown> {
@@ -84,16 +83,12 @@ export class ChallengeApiInterceptor {
         this.iframe = loadEvent.target as HTMLIFrameElement;
 
         if (!this.iframe) {
-          this.iframe = document.getElementById(
-            CHALLENGE_IFRAME_ID,
-          ) as HTMLIFrameElement;
+          this.iframe = document.getElementById(CHALLENGE_IFRAME_ID) as HTMLIFrameElement;
         }
 
         this.onIframeLoaded();
       })
-      .catch(() =>
-        this.deferWaitingChallenge.reject(ChallengeFailureReasons.NoIframe),
-      );
+      .catch(() => this.deferWaitingChallenge.reject(ChallengeFailureReasons.NoIframe));
 
     return this.deferWaitingChallenge.promise;
   }
@@ -105,10 +100,7 @@ export class ChallengeApiInterceptor {
     }
 
     const iframeContentWindow = this.iframe.contentWindow;
-    iframeContentWindow.postMessage(
-      { type: 'challengeRequest' },
-      this.iframe.src,
-    );
+    iframeContentWindow.postMessage({ type: 'challengeRequest' }, this.iframe.src);
 
     // If something went wrong with the iframe communication, schedule a safety aborting
     // process to avoid infinitely wait for an iframe message.
@@ -132,9 +124,7 @@ export class ChallengeApiInterceptor {
     }
   }
 
-  private resolveWaitingChallenge(
-    challenge: ChallengeApiInterceptorChallengeResponse,
-  ): void {
+  private resolveWaitingChallenge(challenge: ChallengeApiInterceptorChallengeResponse): void {
     this.deferWaitingChallenge.resolve(challenge);
     this.deferWaitingChallenge = null;
 
@@ -142,10 +132,7 @@ export class ChallengeApiInterceptor {
   }
 
   private onIframeMessage(message: MessageEvent): void {
-    if (
-      !this.iframe?.src.startsWith(message.origin) ||
-      !message.data?.challenge_response
-    ) {
+    if (!this.iframe?.src.startsWith(message.origin) || !message.data?.challenge_response) {
       return;
     }
 

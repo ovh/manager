@@ -1,9 +1,8 @@
-import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useMemo } from 'react';
-import {
-  accountDisable2faRoute,
-  exercisingYourRightsRoute,
-} from '@/routes/routes';
+
+import { useLocation, useNavigate } from 'react-router-dom';
+
+import { accountDisable2faRoute, exercisingYourRightsRoute } from '@/routes/routes';
 
 export default function NotFound(): null {
   const navigate = useNavigate();
@@ -12,16 +11,13 @@ export default function NotFound(): null {
   const redirectMap: Record<string, string> = useMemo(
     () => ({
       [accountDisable2faRoute]: `${accountDisable2faRoute}${search || ''}`,
-      [exercisingYourRightsRoute]: `${exercisingYourRightsRoute}${search ||
-        ''}`,
+      [exercisingYourRightsRoute]: `${exercisingYourRightsRoute}${search || ''}`,
     }),
     [search],
   );
 
   useEffect(() => {
-    const matchedRoute = Object.keys(redirectMap).find((route) =>
-      pathname.startsWith(route),
-    );
+    const matchedRoute = Object.keys(redirectMap).find((route) => pathname.startsWith(route));
     if (matchedRoute) {
       navigate(redirectMap[matchedRoute], { replace: true });
     } else {

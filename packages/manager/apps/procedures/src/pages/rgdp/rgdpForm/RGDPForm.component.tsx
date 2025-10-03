@@ -1,21 +1,20 @@
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_TYPE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import {
-  OsdsButton,
-  OsdsMessage,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
 import React, { FunctionComponent, useEffect, useState } from 'react';
+
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { FinalizeValues, GDPRFormValues, GDPRValues } from '@/types/gdpr.type';
-import { TextField } from './TextField/TextField.component';
-import { SelectField } from './SelectField/SelectField.component';
-import { TextAreaField } from './TextAreaField/TextAreaField.component';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_LEVEL } from '@ovhcloud/ods-common-theming';
+import { ODS_BUTTON_TYPE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsButton, OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
+
 import ExitGuard from '@/components/ExitGuard/ExitGuard.component';
+import { ConfirmModal } from '@/components/modals/confirmModal/ConfirmModal.component';
+import { SuccessModal } from '@/components/modals/successModal/SuccessModal.component';
+import { useProcedures } from '@/data/hooks/useProcedures';
+import { FinalizeValues, GDPRFormValues, GDPRValues } from '@/types/gdpr.type';
+import { getWebSiteRedirectUrl } from '@/utils/url-builder';
+
+import { FileField } from './FileField/FileField.component';
 import {
   EmailRegex,
   GDPRSubjectValues,
@@ -25,16 +24,12 @@ import {
   TextInputRegex,
 } from './RGDPForm.constants';
 import './RGDPForm.style.css';
-import { FileField } from './FileField/FileField.component';
-import { ConfirmModal } from '@/components/modals/confirmModal/ConfirmModal.component';
-import { SuccessModal } from '@/components/modals/successModal/SuccessModal.component';
-import { getWebSiteRedirectUrl } from '@/utils/url-builder';
-import { useProcedures } from '@/data/hooks/useProcedures';
+import { SelectField } from './SelectField/SelectField.component';
+import { TextAreaField } from './TextAreaField/TextAreaField.component';
+import { TextField } from './TextField/TextField.component';
 
 const extractFiles = (formValue: GDPRFormValues): File[] =>
-  formValue.otherDocuments
-    ? formValue.otherDocuments.filter((file) => file)
-    : [];
+  formValue.otherDocuments ? formValue.otherDocuments.filter((file) => file) : [];
 
 export const RGDPForm: FunctionComponent = () => {
   const { t } = useTranslation('rgdp');
@@ -151,16 +146,12 @@ export const RGDPForm: FunctionComponent = () => {
         <TextField
           label={t('rgdp_form_field_label_confirm_email')}
           name="confirmEmail"
-          validate={(value) =>
-            value === email || t('rgdp_form_validation_message_email_match')
-          }
+          validate={(value) => value === email || t('rgdp_form_validation_message_email_match')}
           control={control}
         />
 
         <TextField
-          label={`${t('rgdp_form_field_label_nichandle')} (${t(
-            'rgdp_form_field_optional',
-          )})`}
+          label={`${t('rgdp_form_field_label_nichandle')} (${t('rgdp_form_field_optional')})`}
           name="nichandle"
           pattern={{
             value: TextInputRegex,
@@ -215,9 +206,7 @@ export const RGDPForm: FunctionComponent = () => {
             className="block mb-6"
             size={ODS_TEXT_SIZE._500}
           >
-            {`${t('rgdp_form_upload_documents_title')} (${t(
-              'rgdp_form_field_optional',
-            )})`}
+            {`${t('rgdp_form_upload_documents_title')} (${t('rgdp_form_field_optional')})`}
           </OsdsText>
 
           <OsdsText

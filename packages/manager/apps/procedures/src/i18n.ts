@@ -21,8 +21,7 @@ export default function initI18n(locale = 'fr_FR', sub: string) {
     .use({
       type: 'postProcessor',
       name: 'normalize',
-      process: (value: string) =>
-        value ? value.replace(/&amp;/g, '&') : value,
+      process: (value: string) => (value ? value.replace(/&amp;/g, '&') : value),
     })
     .init({
       lng: validLocale,

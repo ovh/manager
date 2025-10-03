@@ -1,8 +1,9 @@
-import { vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
+import { vi } from 'vitest';
+
+import { User } from '@/context/User/context';
 import { useSessionModal } from '@/context/User/useSessionModal';
 import { useFetchServerTime } from '@/data/hooks/useUtils';
-import { User } from '@/context/User/context';
 
 vi.mock('@/data/hooks/useUtils', () => ({
   useFetchServerTime: vi.fn(),
