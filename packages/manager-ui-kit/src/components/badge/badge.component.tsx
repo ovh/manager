@@ -1,4 +1,3 @@
-
 import { Badge as OdsBadge, Skeleton } from '@ovhcloud/ods-react';
 import { BadgeProps } from './badge.props';
 

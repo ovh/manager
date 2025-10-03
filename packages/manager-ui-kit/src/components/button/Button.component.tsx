@@ -27,7 +27,7 @@ export const Button = ({
   if (isAuthorized || !(iamActions && urn)) {
     return (
       <OdsButton data-testid="manager-button" {...restProps}>
-        {children}
+        {children} coucou
       </OdsButton>
     );
   }
@@ -40,7 +40,7 @@ export const Button = ({
           {...restProps}
           disabled={true}
         >
-          {children}
+          {children} toto
         </OdsButton>
       </TooltipTrigger>
       <TooltipContent>{t('common_iam_actions_message')}</TooltipContent>
@@ -51,7 +51,7 @@ export const Button = ({
       {...restProps}
       disabled={true}
     >
-      {children}
+      {children} titi
     </OdsButton>
   );
 };
