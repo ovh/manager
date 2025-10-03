@@ -4,6 +4,7 @@ import {
   GUIDE_ADMINISTRATOR,
   GUIDE_CNAME,
   GUIDE_DNS_CONFIG,
+  GUIDE_OVH_MAIL_MIGRATOR,
   GUIDE_USER,
   GUIDE_WEBMAIL,
 } from '@/tracking.constants';
@@ -35,6 +36,10 @@ const helpRoot = 'https://help.ovhcloud.com/csm/';
 
 const WEBMAIL = {
   DEFAULT: 'https://webmail.mail.ovh.net/',
+};
+
+const OVH_MAIL_MIGRATOR = {
+  DEFAULT: 'https://omm.ovh.net/',
 };
 
 export const ZIMBRA_USER_GUIDE: GuideLinks = {
@@ -127,7 +132,7 @@ export const ZIMBRA_DNS_CONFIGURATION_GUIDE: GuideLinks = {
   SN: `${helpRoot}`,
 };
 
-export const GUIDES_LIST = {
+export const GUIDES_LIST: Record<string, Guide> = {
   webmail: {
     key: 'common:webmail',
     url: WEBMAIL,
@@ -152,6 +157,11 @@ export const GUIDES_LIST = {
     key: 'zimbra_dns_configuration_guide',
     url: ZIMBRA_DNS_CONFIGURATION_GUIDE,
     tracking: GUIDE_DNS_CONFIG,
+  },
+  ovh_mail_migrator: {
+    key: 'zimbra_dashboard_ovh_mail_migrator',
+    url: OVH_MAIL_MIGRATOR,
+    tracking: GUIDE_OVH_MAIL_MIGRATOR,
   },
 };
 
