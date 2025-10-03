@@ -75,9 +75,7 @@ export function useDashboardSections(projectId: string) {
   const communityItems = useMemo((): DashboardItem[] => {
     return DASHBOARD_COMMUNITY_LINKS.map((item) => {
       // Dynamically construct Developer Center URL based on subsidiary
-      if (
-        item.labelTranslationKey === 'pci_projects_home_developer_center'
-      ) {
+      if (item.labelTranslationKey === 'pci_projects_home_developer_center') {
         const developerCenterUrl = buildDeveloperCenterUrl(
           subsidiary as OvhSubsidiary,
         );

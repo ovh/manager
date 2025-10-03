@@ -10,7 +10,7 @@ export const discoveryVoucherQueryKey = () => [
   DISCOVERY_PROMOTION_VOUCHER,
 ];
 
-export const useDiscoveryVoucher = (enabled: boolean = true) => {
+export const useDiscoveryVoucher = (enabled = true) => {
   return useQuery({
     queryKey: discoveryVoucherQueryKey(),
     queryFn: () => checkVoucherEligibility(DISCOVERY_PROMOTION_VOUCHER),
