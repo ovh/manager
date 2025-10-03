@@ -4,6 +4,7 @@
     "prettier --write"
   ],
   "*.js": ["eslint --fix"],
+  "*.{tsx,ts}": ["eslint --fix", "prettier --write"],
   "*.{css,less,scss}": ["stylelint --fix"],
   "!(*CHANGELOG).md": ["remark -qf .", "eslint --ext .md --fix"],
   "**/package.json": ["npx sort-package-json"],
