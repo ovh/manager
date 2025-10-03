@@ -4,13 +4,13 @@ import { useFormatDate, OvhSubsidiary } from '@ovh-ux/manager-react-components';
 
 import { useCreditDetails } from '@/data/hooks/useCredit';
 import {
-  DASHBOARD_DOCUMENTATION_LINKS_CONFIG,
-  DASHBOARD_COMMUNITY_LINKS,
   DASHBOARD_CREDIT_VOUCHER_LINK,
-  getDocumentationGuideLink,
   BASE_PROJECT_PATH,
   DashboardTile,
   DashboardItem,
+  DASHBOARD_DOCUMENTATION_LINKS_CONFIG,
+  DASHBOARD_COMMUNITY_LINKS_CONFIG,
+  QUOTA_LIMIT_GUIDES,
 } from '@/constants';
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
 
@@ -51,25 +51,29 @@ export function useDashboardSections(projectId: string) {
       }));
     }
 
+    // Add quota guides link
+    const quotaGuidesLink =
+      QUOTA_LIMIT_GUIDES[subsidiary as OvhSubsidiary] ||
+      QUOTA_LIMIT_GUIDES.DEFAULT;
+    items.push({
+      linkLabelTranslationKey: 'pci_projects_home_quota_guides',
+      link: quotaGuidesLink,
+      color: 'primary',
+    });
+
+    // Add credit voucher link
     items.push({
       ...DASHBOARD_CREDIT_VOUCHER_LINK,
       link: baseProjectPath + DASHBOARD_CREDIT_VOUCHER_LINK.link,
     });
 
     return items;
-  }, [isLoading, vouchersCreditDetails, projectId, t, formatDate]);
+  }, [isLoading, vouchersCreditDetails, projectId, t, formatDate, subsidiary]);
 
-  const documentationItems = useMemo((): DashboardItem[] => {
-    return DASHBOARD_DOCUMENTATION_LINKS_CONFIG.map((item) => ({
-      ...item,
-      link: item.documentationGuideKey
-        ? getDocumentationGuideLink(
-            item.documentationGuideKey,
-            subsidiary as OvhSubsidiary,
-          )
-        : item.link,
-    }));
-  }, [subsidiary]);
+  const region = environment.getRegion();
+  const communityItems = DASHBOARD_COMMUNITY_LINKS_CONFIG.filter(
+    (link) => !link.regions || link.regions.includes(region),
+  );
 
   const tiles: DashboardTile[] = useMemo(
     () => [
@@ -80,14 +84,14 @@ export function useDashboardSections(projectId: string) {
       },
       {
         titleTranslationKey: 'pci_projects_home_documentation_section',
-        items: documentationItems,
+        items: DASHBOARD_DOCUMENTATION_LINKS_CONFIG,
       },
       {
         titleTranslationKey: 'pci_projects_home_community_section',
-        items: DASHBOARD_COMMUNITY_LINKS,
+        items: communityItems,
       },
     ],
-    [billingItems, documentationItems],
+    [billingItems, communityItems],
   );
 
   return { tiles, isLoading, isError, error };

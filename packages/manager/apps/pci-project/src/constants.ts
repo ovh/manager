@@ -247,7 +247,7 @@ export const QUOTA_LIMIT_GUIDES: Partial<{ [key in OvhSubsidiary]: string }> = {
   AU: `${DOC_BASE_URL}/en-au${INCREASE_QUOTA_URL}KB0050838`,
   CA: `${DOC_BASE_URL}/en-ca${INCREASE_QUOTA_URL}KB0050852`,
   SG: `${DOC_BASE_URL}/en-sg${INCREASE_QUOTA_URL}KB0050844`,
-  WE: `${DOC_BASE_URL}/en-${INCREASE_QUOTA_URL}KB0050845`,
+  WE: `${DOC_BASE_URL}/en${INCREASE_QUOTA_URL}KB0050845`,
   IN: `${DOC_BASE_URL}/asia${INCREASE_QUOTA_URL}KB0050836`,
   FR: `${DOC_BASE_URL}/fr${INCREASE_QUOTA_URL}KB0050857`,
 };
@@ -289,6 +289,7 @@ export type DashboardItem = {
   price?: string;
   validUntil?: string | null;
   hideTileIfNoOtherItems?: boolean;
+  regions?: string[];
 };
 
 // Config type for items that need transformation before becoming DashboardItem
@@ -303,151 +304,64 @@ export type DashboardTile = {
   items: DashboardItem[];
 };
 
-// Function to get documentation guide URL for a given guide and subsidiary
-export const getDocumentationGuideLink = (
-  guideName: string,
-  subsidiary: OvhSubsidiary,
-): string => {
-  const language = OVH_LANGUAGE_BY_SUBSIDIARY[subsidiary];
-
-  // Special case for guides - uses csm_index instead of KB article
-  if (guideName === 'guides') {
-    return `${DOC_BASE_URL}/${language}-home?id=csm_index`;
-  }
-
-  // KB Article IDs for documentation guides by subsidiary
-  const DOCUMENTATION_KB_BY_SUB: Record<
-    string,
-    Partial<Record<OvhSubsidiary, string>>
-  > = {
-    getting_started: {
-      DEFAULT: 'KB0050388', // en-gb
-      DE: 'KB0050383', // de
-      ES: 'KB0050389', // es-es
-      FR: 'KB0050407', // fr
-      IE: 'KB0050387', // en-ie
-      IT: 'KB0050404', // it
-      PL: 'KB0050394', // pl
-      PT: 'KB0050395', // pt
-      CA: 'KB0050398', // en-ca
-      QC: 'KB0050397', // fr-ca
-      WS: 'KB0050392', // es
-      AU: 'KB0038069', // en-au
-      IN: 'KB0069446', // en-in
-      SG: 'KB0050393', // en-sg
-      ASIA: 'KB0050384', // asia
-    },
-    public_cloud: {
-      DEFAULT: 'KB0050399', // en-gb
-      DE: 'KB0050396', // de
-      ES: 'KB0050416', // es-es
-      FR: 'KB0050409', // fr
-      IE: 'KB0050401', // en-ie
-      IT: 'KB0050403', // it
-      PL: 'KB0050406', // pl
-      PT: 'KB0050411', // pt
-      CA: 'KB0050400', // en-ca
-      QC: 'KB0050408', // fr-ca
-      WS: 'KB0050417', // es
-      AU: 'KB0050410', // en-au
-      IN: 'KB0069451', // en-in
-      SG: 'KB0050402', // en-sg
-      ASIA: 'KB0038083', // asia
-    },
-    instances: {
-      DEFAULT: 'KB0050758', // en-gb
-      DE: 'KB0050755', // de
-      ES: 'KB0050761', // es-es
-      FR: 'KB0050764', // fr
-      IE: 'KB0050766', // en-ie
-      IT: 'KB0050765', // it
-      PL: 'KB0050768', // pl
-      PT: 'KB0050776', // pt
-      CA: 'KB0050754', // en-ca
-      QC: 'KB0050762', // fr-ca
-      WS: 'KB0050760', // es
-      AU: 'KB0050756', // en-au
-      IN: 'KB0069231', // en-in
-      SG: 'KB0050759', // en-sg
-      ASIA: 'KB0038462', // asia
-    },
-    billing: {
-      DEFAULT: 'KB0050453', // en-gb
-      DE: 'KB0050448', // de
-      ES: 'KB0050457', // es-es
-      FR: 'KB0050459', // fr
-      IE: 'KB0050454', // en-ie
-      IT: 'KB0050461', // it
-      PL: 'KB0050472', // pl
-      PT: 'KB0050474', // pt
-      CA: 'KB0050452', // en-ca
-      QC: 'KB0050460', // fr-ca
-      WS: 'KB0050462', // es
-      AU: 'KB0038140', // en-au
-      IN: 'KB0069450', // en-in
-      SG: 'KB0050465', // en-sg
-      ASIA: 'KB0050463', // asia
-    },
-  };
-
-  const kbId =
-    DOCUMENTATION_KB_BY_SUB[guideName]?.[subsidiary] ||
-    DOCUMENTATION_KB_BY_SUB[guideName]?.DEFAULT;
-
-  // Map guide names to their specific paths
-  const guidePaths: Record<string, string> = {
-    getting_started: 'public-cloud-compute-essential-information',
-    public_cloud: 'public-cloud-compute-control-panel',
-    instances: 'public-cloud-compute-getting-started-instance',
-    billing: 'public-cloud-compute-billing-options',
-  };
-
-  const path = guidePaths[guideName];
-  return `${DOC_BASE_URL}/${language}-${path}?id=kb_article_view&sysparm_article=${kbId}`;
-};
-
-export const DASHBOARD_DOCUMENTATION_LINKS_CONFIG: DashboardItemConfig[] = [
+export const DASHBOARD_DOCUMENTATION_LINKS_CONFIG: DashboardItem[] = [
   {
-    labelTranslationKey: 'pci_projects_home_getting_started',
-    linkLabelTranslationKey: 'pci_projects_home_essential_to_start',
-    documentationGuideKey: 'getting_started',
+    labelTranslationKey:
+      'pci_projects_home_documentation_getting_started_term',
+    linkLabelTranslationKey:
+      'pci_projects_home_documentation_getting_started_description',
+    link:
+      'https://docs.ovh.com/gb/en/public-cloud/public-cloud-essential-information/',
   },
   {
-    labelTranslationKey: 'pci_projects_home_public_cloud',
-    linkLabelTranslationKey: 'pci_projects_home_get_familiar',
-    documentationGuideKey: 'public_cloud',
+    labelTranslationKey: 'pci_projects_home_documentation_interface_term',
+    linkLabelTranslationKey:
+      'pci_projects_home_documentation_interface_description',
+    link: 'https://docs.ovh.com/gb/en/public-cloud/public-cloud-interface/',
   },
   {
-    labelTranslationKey: 'pci_projects_home_instances',
-    linkLabelTranslationKey: 'pci_projects_home_manage_instances',
-    documentationGuideKey: 'instances',
+    labelTranslationKey: 'pci_projects_home_documentation_instances_term',
+    linkLabelTranslationKey:
+      'pci_projects_home_documentation_instances_description',
+    link:
+      'https://docs.ovh.com/gb/en/public-cloud/get-started-with-a-public-cloud-instance/',
   },
   {
-    labelTranslationKey: 'pci_projects_home_billing',
-    linkLabelTranslationKey: 'pci_projects_home_understand_manage',
-    documentationGuideKey: 'billing',
+    labelTranslationKey: 'pci_projects_home_documentation_billing_term',
+    linkLabelTranslationKey:
+      'pci_projects_home_documentation_billing_description',
+    link:
+      'https://docs.ovh.com/gb/en/public-cloud/information-on-cloud-billing-options/',
   },
   {
-    labelTranslationKey: 'pci_projects_home_guides',
-    linkLabelTranslationKey: 'pci_projects_home_see_all_guides',
-    documentationGuideKey: 'guides',
+    labelTranslationKey: 'pci_projects_home_documentation_guides_term',
+    linkLabelTranslationKey:
+      'pci_projects_home_documentation_guides_description',
+    link: 'https://docs.ovh.com/gb/en/',
+  },
+  {
+    labelTranslationKey:
+      'pci_projects_home_documentation_block_storage_term',
+    linkLabelTranslationKey:
+      'pci_projects_home_documentation_block_storage_description',
+    link: 'https://support.us.ovhcloud.com/hc/en-us/articles/360002157044',
   },
 ];
 
-// Developer Center URL construction (now uses centralized LANGUAGE_MAPPINGS)
-export const DASHBOARD_COMMUNITY_LINKS: DashboardItem[] = [
+export const DASHBOARD_COMMUNITY_LINKS_CONFIG: DashboardItem[] = [
   {
-    labelTranslationKey: 'pci_projects_home_roadmap',
-    linkLabelTranslationKey: 'pci_projects_home_discover_participate',
-    link: ROADMAP_CHANGELOG_LINKS.roadmap,
+    labelTranslationKey: 'pci_projects_home_community_roadmap_term',
+    linkLabelTranslationKey:
+      'pci_projects_home_community_roadmap_description',
+    link: 'https://github.com/ovh/public-cloud-roadmap/projects',
+    regions: ['EU', 'CA'],
   },
   {
-    labelTranslationKey: 'pci_projects_home_community',
-  },
-  {
-    labelTranslationKey: '',
-    linkLabelTranslationKey: 'pci_projects_home_discuss_discord',
+    labelTranslationKey: 'pci_projects_home_community_discord_term',
+    linkLabelTranslationKey:
+      'pci_projects_home_community_discord_description',
     link: 'https://discord.gg/ovhcloud',
+    regions: ['EU', 'CA'],
   },
 ];
 
