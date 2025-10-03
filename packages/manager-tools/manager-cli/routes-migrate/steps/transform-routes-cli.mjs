@@ -257,7 +257,7 @@ const extractRoutesFromAST = (ast, code, lazyRoutesNames) => {
  */
 const generateLazyRouteImports = (lazyRoutesNames) =>
   Array.from(lazyRoutesNames.entries())
-    .filter(([_, name]) => !name.includes('NotFound'))
+    .filter(([, name]) => !name.includes('NotFound'))
     .map(([path, name]) => `const ${name} = React.lazy(() => import('${path}'));`)
     .join('\n');
 

@@ -95,7 +95,6 @@
     "manager-perf-budgets": "./bin/perf-budgets-cli.js",
     "manager-perf-budgets-tests": "./bin/perf-budgets-tests-cli.js",
     "manager-static-dynamic-quality-checks": "./bin/static-dynamic-quality-checks.js",
-    "manager-static-dynamic-quality-checks-tests": "./bin/static-dynamic-quality-checks-tests.js",
     "manager-tests-coverage": "./bin/tests-coverage-cli.js",
     "manager-tests-coverage-tests": "./bin/tests-coverage-cli-tests.js",
     "manager-types-coverage": "./bin/types-coverage-cli.js",
