@@ -11,6 +11,7 @@ import { useColumns } from '@/components/dataGridColumns';
 import { useDedicatedServer } from '@/hooks/useDedicatedServer';
 import { urls } from '@/routes/routes.constant';
 import { ErrorComponent } from '@/components/errorComponent';
+import { useGetNutanixServer } from '@/hooks/useGetNutanixServer';
 
 export default function ServerListing() {
   const columns = useColumns();
