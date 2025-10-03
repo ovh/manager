@@ -28,7 +28,10 @@ export default function Layout() {
   return (
     <>
       <Outlet />
-      {data?.length === 0 && <Navigate key={location.pathname} to="/onboarding" replace />}
+      {data?.length === 0 && ['/', '/websites'].includes(location.pathname) && (
+        <Navigate key={location.pathname} to="/onboarding" replace />
+      )}
+
       {data?.length > 0 && location.pathname === '/' && location.search === '' && (
         <Navigate to="/websites" />
       )}
