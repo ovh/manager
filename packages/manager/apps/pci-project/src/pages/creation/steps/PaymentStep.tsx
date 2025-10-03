@@ -1,9 +1,4 @@
-import { useCallback, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import PaymentMethods, {
-  TPaymentMethodRef,
-} from '@/components/payment/PaymentMethods';
-
+import { useState } from 'react';
 import {
   useIsStartupProgramAvailable,
   useStartupProgramAmountText,
@@ -14,23 +9,17 @@ import {
   OrderedProduct,
 } from '@/data/types/cart.type';
 import { TPaymentMethod } from '@/data/types/payment/payment-method.type';
+import { GlobalStateStatus } from '@/types/WillPayment.type';
+import WillPaymentComponent from '../components/payment/WillPayment.component';
 import StartupProgram from '../components/startup-program/StartupProgram';
 import Voucher from '../components/voucher/Voucher';
+import { useWillPaymentConfig } from '../hooks/useWillPaymentConfig';
 
 export type PaymentStepProps = {
   cart: Cart;
   cartProjectItem: OrderedProduct;
-  handleIsPaymentMethodValid: (isValid: boolean) => void;
-  paymentHandler: React.Ref<TPaymentMethodRef>;
-  handleCustomSubmitButton: (btn: string | JSX.Element) => void;
-  onPaymentSubmit: ({
-    paymentMethodId,
-    skipRegistration,
-  }: {
-    paymentMethodId?: number;
-    skipRegistration?: boolean;
-  }) => Promise<unknown>;
-  onPaymentError: (err: string | undefined) => void;
+  onPaymentStatusChange?: (willPaymentStatus: GlobalStateStatus) => void;
+  onRegisteredPaymentMethodSelected: (event: CustomEvent) => void;
 };
 
 type PaymentForm = {
@@ -42,17 +31,17 @@ type PaymentForm = {
 export default function PaymentStep({
   cart,
   cartProjectItem,
-  handleIsPaymentMethodValid,
-  paymentHandler,
-  handleCustomSubmitButton,
-  onPaymentSubmit,
-  onPaymentError,
-}: PaymentStepProps) {
-  const [searchParams] = useSearchParams();
+  onPaymentStatusChange,
+  onRegisteredPaymentMethodSelected,
+}: Readonly<PaymentStepProps>) {
   const [paymentForm, setPaymentForm] = useState<PaymentForm>({
     voucherConfiguration: undefined,
     paymentMethod: undefined,
     isAsDefault: false,
+  });
+
+  const willPaymentConfig = useWillPaymentConfig({
+    onPaymentStatusChange,
   });
 
   const handleVoucherConfigurationChange = (
@@ -69,20 +58,6 @@ export default function PaymentStep({
     isStartupProgramAvailable ?? false,
   );
 
-  const onPaymentMethodChange = useCallback((method: TPaymentMethod) => {
-    setPaymentForm((prev) => ({
-      ...prev,
-      paymentMethod: method,
-    }));
-  }, []);
-
-  const onSetAsDefaultChange = useCallback((value: boolean) => {
-    setPaymentForm((prev) => ({
-      ...prev,
-      isAsDefault: value,
-    }));
-  }, []);
-
   return (
     <div className="flex flex-col gap-8">
       <Voucher
@@ -92,17 +67,9 @@ export default function PaymentStep({
         setVoucherConfiguration={handleVoucherConfigurationChange}
       />
 
-      <PaymentMethods
-        paymentMethodHandler={paymentHandler}
-        handleValidityChange={handleIsPaymentMethodValid}
-        cartId={cart.cartId}
-        itemId={cartProjectItem.itemId}
-        handleCustomSubmitButton={handleCustomSubmitButton}
-        preselectedPaymentType={searchParams.get('paymentType')}
-        handlePaymentMethodChange={onPaymentMethodChange}
-        handleSetAsDefaultChange={onSetAsDefaultChange}
-        onPaymentSubmit={onPaymentSubmit}
-        onPaymentError={onPaymentError}
+      <WillPaymentComponent
+        config={willPaymentConfig}
+        onRegisteredPaymentMethodSelected={onRegisteredPaymentMethodSelected}
       />
 
       {isStartupProgramAvailable && startupProgramAmountText && (
