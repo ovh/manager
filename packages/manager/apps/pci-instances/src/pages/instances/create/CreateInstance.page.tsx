@@ -101,7 +101,8 @@ const CreateInstance: FC = () => {
             <DeploymentModeSelection />
             <LocalizationSelection />
             <br />
-            <FlavorsTable caption={'test'}></FlavorsTable>
+            <br />
+            <FlavorsTable caption={'test'} selectable></FlavorsTable>
 
             <AdvancedParameters />
             <QuantitySelector
