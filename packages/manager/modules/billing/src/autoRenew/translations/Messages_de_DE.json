@@ -170,16 +170,9 @@
   "billing_autorenew_service_every_6_month": "Alle 6 Monate",
   "billing_autorenew_service_every_12_month": "Jedes Jahr",
   "billing_autorenew_engagement_none": "Ohne Vertragsbindung",
-  "billing_autorenew_service_type_ZIMBRA_SLOT": "Zimbra Starter",
-  "billing_autorenew_service_type_HOSTING_WEB_EXTRA_SQL_PERSO": "Extra SQL Basic",
-  "billing_autorenew_service_type_HOSTING_WEB_CDN": "Shared CDN",
   "billing_autorenew_service_status_unpaid": "Ausstehende Rechnung",
-  "billing_description_details": "Verwalten Sie die Verlängerung, Zahlung und Kündigung Ihrer Dienste über diese Seite.",
-  "billing_autorenew_service_date_us": "Ablaufdatum",
-  "autorenew_service_actions_title": "Aktionen",
   "billing_autorenew_service_every_month": "Jeden Monat",
   "billing_autorenew_service_every_x_months": "Alle {{ months }} Monate",
   "billing_autorenew_service_every_year": "Jedes Jahr",
-  "billing_autorenew_service_every_x_years": "Alle {{ years }} Jahre",
-  "billing_autorenew_engagement_none": "Ohne Vertragsbindung"
+  "billing_autorenew_service_every_x_years": "Alle {{ years }} Jahre"
 }
