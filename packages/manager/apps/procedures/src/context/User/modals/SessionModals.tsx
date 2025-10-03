@@ -1,20 +1,18 @@
 import React, { FunctionComponent, useCallback, useContext } from 'react';
-import { useSessionModal } from '../useSessionModal';
+
 import { getRedirectLoginUrl } from '@/utils/url-builder';
+
+import userContext from '../context';
+import { useSessionModal } from '../useSessionModal';
 import { ExpiredSessionModal } from './ExpiredSessionModal';
 import { WarningSessionModal } from './WarningSessionModal';
-import userContext from '../context';
 
 export const SessionModals: FunctionComponent = () => {
   const context = useContext(userContext);
 
   const { user } = context;
-  const {
-    setShowExpiredModal,
-    setShowWarningModal,
-    showExpiredModal,
-    showWarningModal,
-  } = useSessionModal(user, 0.75);
+  const { setShowExpiredModal, setShowWarningModal, showExpiredModal, showWarningModal } =
+    useSessionModal(user, 0.75);
 
   const handleCloseExpiredModal = useCallback(() => {
     setShowExpiredModal(false);
@@ -26,12 +24,8 @@ export const SessionModals: FunctionComponent = () => {
 
   return (
     <>
-      {showExpiredModal && (
-        <ExpiredSessionModal onClose={handleCloseExpiredModal} />
-      )}
-      {showWarningModal && (
-        <WarningSessionModal onClose={handleCloseWarningModal} />
-      )}
+      {showExpiredModal && <ExpiredSessionModal onClose={handleCloseExpiredModal} />}
+      {showWarningModal && <WarningSessionModal onClose={handleCloseWarningModal} />}
     </>
   );
 };

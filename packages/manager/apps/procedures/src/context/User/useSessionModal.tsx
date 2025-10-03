@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import { User } from '@/context/User/context';
 import { useFetchServerTime } from '@/data/hooks/useUtils';
 import { getRedirectLoginUrl } from '@/utils/url-builder';
@@ -11,9 +12,7 @@ export const useSessionModal = (user: User, warningPercentage: number) => {
   useEffect(() => {
     if (!isFetched) return undefined;
 
-    const currentTime = isError
-      ? Math.floor(Date.now() / 1000)
-      : currentServerTime;
+    const currentTime = isError ? Math.floor(Date.now() / 1000) : currentServerTime;
     const redirectUrl = getRedirectLoginUrl(user);
 
     if (!user) {

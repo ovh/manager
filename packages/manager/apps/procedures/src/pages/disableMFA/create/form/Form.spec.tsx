@@ -1,20 +1,15 @@
 import React from 'react';
-import { describe, expect, it, vi } from 'vitest';
-import {
-  render,
-  screen,
-  fireEvent,
-  act,
-  waitFor,
-} from '@testing-library/react';
-import '@testing-library/jest-dom';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import {
-  OdsSelectValueChangeEventDetail,
-  OsdsSelect,
-} from '@ovhcloud/ods-components';
-import FormCreateRequest from './Form.page';
+import '@testing-library/jest-dom';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
+import { OdsSelectValueChangeEventDetail, OsdsSelect } from '@ovhcloud/ods-components';
+
 import * as useProcedures from '@/data/api/proceduresApi';
+
+import FormCreateRequest from './Form.page';
 
 const renderFormComponent = () => {
   const queryClient = new QueryClient();
@@ -39,9 +34,8 @@ vi.mock('@/context/User/useUser', () => ({
 // Override retryDelay to 0 in tests to eliminate artificial waiting
 // during React Query retries and make our tests instantaneous and deterministic.
 vi.mock('@tanstack/react-query', async () => {
-  const actual = await vi.importActual<typeof import('@tanstack/react-query')>(
-    '@tanstack/react-query',
-  );
+  const actual =
+    await vi.importActual<typeof import('@tanstack/react-query')>('@tanstack/react-query');
   return {
     ...actual,
     useMutation: (...args: any[]) => {
@@ -59,17 +53,15 @@ describe('Form.page', () => {
   it('should render select LegalForms correctly when the sub is FR and legalForms is other', async () => {
     renderFormComponent();
 
-    expect(
-      screen.getByTestId('account-disable-2fa-create-form-select'),
-    ).not.toBeNull();
+    expect(screen.getByTestId('account-disable-2fa-create-form-select')).not.toBeNull();
   });
 
   it('should render FormDocumentFieldList when legalForm is selected', async () => {
     renderFormComponent();
 
-    const legalFormSelect = (screen.queryByTestId(
+    const legalFormSelect = screen.queryByTestId(
       'account-disable-2fa-create-form-select',
-    ) as unknown) as OsdsSelect;
+    ) as unknown as OsdsSelect;
 
     await act(() =>
       legalFormSelect.odsValueChange.emit({
@@ -77,9 +69,7 @@ describe('Form.page', () => {
       } as OdsSelectValueChangeEventDetail),
     );
 
-    const selectInput = screen.getByTestId(
-      'account-disable-2fa-create-form-select',
-    );
+    const selectInput = screen.getByTestId('account-disable-2fa-create-form-select');
     await act(() => fireEvent.click(selectInput));
 
     const selectOption = screen.getByText(
@@ -132,9 +122,7 @@ describe('Form.page', () => {
     await act(() => fireEvent.click(submitBtn));
 
     expect(
-      getByText(
-        'account-disable-2fa-create-form-confirm-modal-send-document-description-insure',
-      ),
+      getByText('account-disable-2fa-create-form-confirm-modal-send-document-description-insure'),
     ).not.toBeNull();
   });
 
@@ -150,18 +138,12 @@ describe('Form.page', () => {
       }),
     );
 
-    await act(() =>
-      fireEvent.click(getByText('account-disable-2fa-create-form-submit')),
-    );
+    await act(() => fireEvent.click(getByText('account-disable-2fa-create-form-submit')));
 
-    await act(async () =>
-      fireEvent.click(getByText('account-disable-2fa-confirm-modal-no')),
-    );
+    await act(async () => fireEvent.click(getByText('account-disable-2fa-confirm-modal-no')));
 
     expect(
-      queryByText(
-        'account-disable-2fa-create-form-confirm-modal-send-document-description-insure',
-      ),
+      queryByText('account-disable-2fa-create-form-confirm-modal-send-document-description-insure'),
     ).not.toBeInTheDocument();
   });
 
@@ -189,9 +171,7 @@ describe('Form.page', () => {
     await act(() => fireEvent.click(confirmBtn));
 
     expect(
-      getByText(
-        'account-disable-2fa-create-form-success-modal-send-document-title',
-      ),
+      getByText('account-disable-2fa-create-form-success-modal-send-document-title'),
     ).not.toBeNull();
   });
 
@@ -223,9 +203,7 @@ describe('Form.page', () => {
 
     await waitFor(() =>
       expect(
-        getByText(
-          'account-disable-2fa-create-form-error-message-send-document',
-        ),
+        getByText('account-disable-2fa-create-form-error-message-send-document'),
       ).not.toBeNull(),
     );
     // File input should not be disabled if getUploadDocumentsLinks is not successful
@@ -246,9 +224,7 @@ describe('Form.page', () => {
       await act(() =>
         fireEvent.change(fileInput, {
           target: {
-            files: [
-              new File(['test'], 'chucknorris.png', { type: 'image/png' }),
-            ],
+            files: [new File(['test'], 'chucknorris.png', { type: 'image/png' })],
           },
         }),
       );
@@ -262,9 +238,7 @@ describe('Form.page', () => {
       await waitFor(
         () =>
           expect(
-            getByText(
-              'account-disable-2fa-create-form-error-message-send-document',
-            ),
+            getByText('account-disable-2fa-create-form-error-message-send-document'),
           ).not.toBeNull(),
         { timeout: 30000 },
       );

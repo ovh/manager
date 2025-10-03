@@ -1,15 +1,15 @@
+import React, { FunctionComponent } from 'react';
+
+import { Control, Controller, Validate, ValidationRule } from 'react-hook-form';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_LEVEL } from '@ovhcloud/ods-common-theming';
 import {
   OsdsFormField,
   OsdsSelect,
   OsdsSelectOption,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
-import { Control, Controller, Validate, ValidationRule } from 'react-hook-form';
-import React, { FunctionComponent } from 'react';
+
 import { GDPRFormValues } from '@/types/gdpr.type';
 
 export type SelectOption = {
@@ -24,9 +24,7 @@ type Props = {
   required?: string;
   helper?: string;
   pattern?: ValidationRule<RegExp>;
-  validate?:
-    | Validate<string, GDPRFormValues>
-    | Record<string, Validate<string, GDPRFormValues>>;
+  validate?: Validate<string, GDPRFormValues> | Record<string, Validate<string, GDPRFormValues>>;
   options: SelectOption[];
   placeholder: string;
 };
@@ -53,10 +51,7 @@ export const SelectField: FunctionComponent<Props> = ({
           pattern,
           validate,
         }}
-        render={({
-          field: { onChange, onBlur, value, name: _name },
-          fieldState: { error },
-        }) => (
+        render={({ field: { onChange, onBlur, value, name: _name }, fieldState: { error } }) => (
           <OsdsFormField error={error?.message}>
             {label && (
               <label htmlFor={id} slot="label">

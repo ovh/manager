@@ -1,14 +1,11 @@
 import React, { FunctionComponent } from 'react';
+
 import { Control, Controller, Validate, ValidationRule } from 'react-hook-form';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_LEVEL } from '@ovhcloud/ods-common-theming';
 import { OsdsText } from '@ovhcloud/ods-components/react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
-import {
-  FileInputContainer,
-  FileWithError,
-} from '@/components/FileInput/FileInputContainer';
+
+import { FileInputContainer, FileWithError } from '@/components/FileInput/FileInputContainer';
 import { GDPRFormValues } from '@/types/gdpr.type';
 
 type Props = {
@@ -23,9 +20,7 @@ type Props = {
   pattern?: ValidationRule<RegExp>;
   tooltips?: string[];
   multiple?: boolean;
-  validate?:
-    | Validate<string, GDPRFormValues>
-    | Record<string, Validate<string, GDPRFormValues>>;
+  validate?: Validate<string, GDPRFormValues> | Record<string, Validate<string, GDPRFormValues>>;
 };
 
 export const FileField: FunctionComponent<Props> = ({
