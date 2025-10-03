@@ -20,7 +20,7 @@ import { useMessageContext } from '@/context/Message.context';
 import { TRACKING } from '@/tracking.constants';
 
 const VLAN_MIN = 1;
-const VLAN_MAX = 4095;
+const VLAN_MAX = 4094;
 
 const VLAN_ID_FORM_SCHEMA = z.object({
   vlanId: z
@@ -155,7 +155,10 @@ export default function EditVrackSegmentId() {
             <RhfField
               control={control}
               controllerParams={register('vlanId')}
-              helperMessage={t('managed_vcd_dashboard_vrack_vlan_id_helper')}
+              helperMessage={t('managed_vcd_dashboard_vrack_vlan_id_helper', {
+                minId: VLAN_MIN,
+                maxId: VLAN_MAX,
+              })}
             >
               <RhfField.Label>
                 {t('managed_vcd_dashboard_vrack_vlan_id')}
