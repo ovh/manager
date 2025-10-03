@@ -1,0 +1,7 @@
+export const urls = {
+  root: '/',
+  preferences: '/preferences',
+  accountType: '/type',
+  accountDetails: '/details',
+  company: '/company',
+};

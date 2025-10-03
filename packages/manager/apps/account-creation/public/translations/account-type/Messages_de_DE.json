@@ -1,0 +1,14 @@
+{
+  "title": "Wählen Sie einen Kontotyp aus",
+  "description": "Sie brauchen Hilfe? <Tooltip>Erfahren Sie mehr über die Kontotypen</Tooltip>",
+  "legal_form_association": "Verein",
+  "legal_form_administration": "Öffentliche Verwaltung",
+  "legal_form_corporation": "Unternehmen",
+  "legal_form_individual": "Privatperson",
+  "legal_form_personalcorporation": "Einzelunternehmen",
+  "legal_form_tooltip_corporation_description": "Erstellen Sie ein Konto für Ihr Unternehmen, wenn Sie eine registrierte Tätigkeit haben, einschließlich Einzelunternehmen.",
+  "legal_form_tooltip_individual_description": "Erstellen Sie ein Konto als Privatperson, wenn Sie kein registriertes Unternehmen haben oder wenn Sie dabei sind, Ihr Unternehmen zu gründen.",
+  "legal_form_tooltip_administration_description": "Erstellen Sie ein Konto für Ihre öffentliche Organisation, wenn Sie einen Staat, eine Gebietskörperschaft, eine internationale Organisation oder Institution vertreten.",
+  "legal_form_tooltip_association_description": "Erstellen Sie ein Konto für Ihren Verein, wenn Sie im nationalen Unternehmens- und Einrichtungverzeichnis eingetragen sind. Wenn Sie nicht eingetragen sind, erstellen Sie bitte ein Konto als Privatperson.",
+  "legal_form_tooltip_personalcorporation_description": "Beschreibung Einzelunternehmen."
+}
