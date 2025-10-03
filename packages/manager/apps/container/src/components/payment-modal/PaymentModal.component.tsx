@@ -17,27 +17,6 @@ import {
 } from '@/data/hooks/paymentMethod/usePaymentMethod';
 import { hasExpiredDefaultCreditCardAlert } from '@/helpers/paymentMethod/paymentMethodHelper';
 
-export interface IPaymentMethod {
-  icon?: {
-    data?: string;
-    name: string;
-    url?: string;
-  };
-  label: string;
-  status: string;
-  default: boolean;
-  oneclick: boolean;
-  lastUpdate: string;
-  description: string;
-  integration: string;
-  paymentType: string;
-  creationDate: string;
-  paymentMeanId: number;
-  expirationDate?: string;
-  paymentSubType: string;
-  paymentMethodId: number;
-}
-
 const PaymentModal: FC = () => {
   const { t } = useTranslation('payment-modal');
   const { shell } = useApplication();
