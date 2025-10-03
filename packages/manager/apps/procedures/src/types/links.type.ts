@@ -6,7 +6,5 @@ export type CanadianPolicyLinks = {
 };
 
 export type PolicyLinks = {
-  [key in Subsidiary | 'DEFAULT']: key extends 'CA'
-    ? CanadianPolicyLinks
-    : string;
+  [key in Subsidiary | 'DEFAULT']: key extends 'CA' ? CanadianPolicyLinks : string;
 };

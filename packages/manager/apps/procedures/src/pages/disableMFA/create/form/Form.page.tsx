@@ -1,3 +1,9 @@
+import React, { useState } from 'react';
+
+import { FieldValues, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_LEVEL } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_TYPE,
   ODS_TEXT_SIZE,
@@ -11,21 +17,16 @@ import {
   OsdsSelectOption,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import React, { useState } from 'react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
-import { FieldValues, useForm } from 'react-hook-form';
-import { FormDocumentFieldList } from './FormDocumentFields/FormDocumentFieldList';
-import { LegalFrom } from '@/types/user.type';
-import useUser from '@/context/User/useUser';
+
 import ExitGuard from '@/components/ExitGuard/ExitGuard.component';
-import { getWebSiteRedirectUrl } from '@/utils/url-builder';
 import { ConfirmModal } from '@/components/modals/confirmModal/ConfirmModal.component';
 import { SuccessModal } from '@/components/modals/successModal/SuccessModal.component';
+import useUser from '@/context/User/useUser';
 import { useProcedures } from '@/data/hooks/useProcedures';
+import { LegalFrom } from '@/types/user.type';
+import { getWebSiteRedirectUrl } from '@/utils/url-builder';
+
+import { FormDocumentFieldList } from './FormDocumentFields/FormDocumentFieldList';
 
 const flatFiles = (files: FieldValues) =>
   Object.values(files)
@@ -90,9 +91,7 @@ const FormCreateRequest = () => {
   const isPending = areUploadLinksPending || isUploadPending;
   const isError = hasUploadLinksError || hasUploadError;
 
-  const handleLegalFormChange = (
-    e: OsdsSelectCustomEvent<OdsSelectValueChangeEventDetail>,
-  ) => {
+  const handleLegalFormChange = (e: OsdsSelectCustomEvent<OdsSelectValueChangeEventDetail>) => {
     setParsedLegalForm(() => {
       reset();
       resetUpload();
@@ -157,9 +156,7 @@ const FormCreateRequest = () => {
 
       {showConfirmModal && (
         <ConfirmModal
-          title={t(
-            'account-disable-2fa-create-form-confirm-modal-send-document-title',
-          )}
+          title={t('account-disable-2fa-create-form-confirm-modal-send-document-title')}
           descriptionInsure={t(
             'account-disable-2fa-create-form-confirm-modal-send-document-description-insure',
           )}
@@ -184,12 +181,8 @@ const FormCreateRequest = () => {
       {showSuccessModal && (
         <SuccessModal
           ovhHomePageHref={getWebSiteRedirectUrl()}
-          title={t(
-            'account-disable-2fa-create-form-success-modal-send-document-title',
-          )}
-          description={t(
-            'account-disable-2fa-create-form-success-modal-send-document-description',
-          )}
+          title={t('account-disable-2fa-create-form-success-modal-send-document-title')}
+          description={t('account-disable-2fa-create-form-success-modal-send-document-description')}
           ovhHomePageLabel={t('account-disable-2fa-success-modal-back-home')}
         />
       )}

@@ -6,9 +6,7 @@ export type IframeLoaderPayload = {
   width?: string;
 };
 
-const getNewIframeElement = (
-  payload: IframeLoaderPayload,
-): HTMLIFrameElement => {
+const getNewIframeElement = (payload: IframeLoaderPayload): HTMLIFrameElement => {
   if (!payload || !payload.src) {
     throw new Error('[IframeLoader][getNewIframeElement()] missing payload.');
   }
@@ -39,11 +37,7 @@ export const loadIframe = (payload: IframeLoaderPayload): Promise<unknown> => {
     // with this timeout we ensure we never infinitely wait for promise resolution / rejection
     const timeoutId = setTimeout(() => {
       const iframes = window.document.getElementsByTagName('iframe');
-      for (
-        let iframeIndex = 0;
-        iframeIndex < iframes.length;
-        iframeIndex += 1
-      ) {
+      for (let iframeIndex = 0; iframeIndex < iframes.length; iframeIndex += 1) {
         const iframeElement = iframes[iframeIndex];
         if (iframeElement.src === payload.src) {
           resolve({ target: iframeElement });

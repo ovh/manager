@@ -1,10 +1,13 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+
 import '@testing-library/jest-dom';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
-import { useSessionModal } from '../useSessionModal';
-import userContext, { User } from '../context';
+
 import { getRedirectLoginUrl } from '@/utils/url-builder';
+
+import userContext, { User } from '../context';
+import { useSessionModal } from '../useSessionModal';
 import { SessionModals } from './SessionModals';
 
 vi.mock('../useSessionModal', () => ({
@@ -64,12 +67,8 @@ describe('SessionModals', () => {
       </userContext.Provider>,
     );
 
-    expect(
-      screen.queryByTestId('expired-session-modal'),
-    ).not.toBeInTheDocument();
-    expect(
-      screen.queryByTestId('warning-session-modal'),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByTestId('expired-session-modal')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('warning-session-modal')).not.toBeInTheDocument();
   });
 
   it('should display the ExpiredSessionModal when showExpiredModal is true', () => {
