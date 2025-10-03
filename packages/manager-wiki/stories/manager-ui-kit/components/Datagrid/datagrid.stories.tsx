@@ -8,7 +8,7 @@ import {
   useDatagridSearchParams,
   useColumnFilters,
   DataGridTextCell,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/manager-ui-kit';
 import { columns as clm, columnsFilters, Item } from './datagrid.mock';
 
 function sortItems(
@@ -147,7 +147,7 @@ WithSubComponent.args = {
 };
 
 export default {
-  title: 'Manager React Components/Components/Datagrid Paginated',
+  title: 'Manager UI Kit/Components/Datagrid Paginated',
   component: Datagrid,
   decorators: [withRouter],
   parameters: {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { GuideMenu, GuideMenuProps } from '@ovh-ux/manager-react-components';
+import { GuideMenu, GuideMenuProps } from '@ovh-ux/manager-ui-kit';
 
 const guideItems = [
   {
@@ -28,7 +28,7 @@ export const GuideMenuLoading = () => (
 export const GuideMenuEmpty = () => <GuideMenu items={[]} />;
 
 const meta: Meta<GuideMenuProps> = {
-  title: 'Manager React Components/Components/GuideMenu',
+  title: 'Manager UI Kit/Components/GuideMenu',
   decorators: [(story) => <div>{story()}</div>],
   component: GuideMenu,
   argTypes: {},

@@ -5,7 +5,7 @@ import {
   ActionMenu,
   ActionMenuItem,
   ActionMenuProps,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/manager-ui-kit';
 
 const actionItems: ActionMenuItem[] = [
   {
@@ -39,7 +39,7 @@ const actionItems: ActionMenuItem[] = [
     id: 5,
     onClick: () => window.open('https://ovhcloud.com', '_blank', 'noopener'),
     label: 'action without iam permissions',
-    urn: 'urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd',
+    urn: 'urn:v9:eu:resource:manager-ui-kit:vrz-a878-dsflkds-fdsfsd',
     iamActions: ['vrackServices:apiovh:iam/resource/tag/remove'],
   },
 ];
@@ -54,7 +54,7 @@ export const actionMenuStandard = {
 
 const meta: Meta<ActionMenuProps> = {
   decorators: [(story) => <div className="h-52">{story()}</div>],
-  title: 'Manager React Components/components/ActionMenu',
+  title: 'Manager UI Kit/components/ActionMenu',
   component: ActionMenu,
 };
 

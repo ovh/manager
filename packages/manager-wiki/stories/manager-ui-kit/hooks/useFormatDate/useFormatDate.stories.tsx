@@ -3,7 +3,7 @@ import {
   DEFAULT_UNKNOWN_DATE_LABEL,
   FormatDateOptions,
   useFormatDate,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/manager-ui-kit';
 
 const FormatDateComponent = ({
   date,
@@ -54,7 +54,7 @@ export const UnknownDate = {
 };
 
 const useFormatDateStories = {
-  title: 'Manager React Components/Hooks/useFormatDate',
+  title: 'Manager UI Kit/Hooks/useFormatDate',
   component: FormatDateComponent,
   argTypes: {
     invalidDateDisplayLabel: {

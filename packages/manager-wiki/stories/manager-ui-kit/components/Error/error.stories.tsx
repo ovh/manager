@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { Error, ErrorProps } from '@ovh-ux/manager-react-components';
+import { Error, ErrorProps } from '@ovh-ux/manager-ui-kit';
 
 const defaultError: ErrorProps = {
   error: {},
@@ -23,7 +23,7 @@ const errorApiWithCode: ErrorProps = {
 };
 
 const meta: Meta<typeof Error> = {
-  title: 'Manager React Components/Components/Errors',
+  title: 'Manager UI Kit/Components/Errors',
   decorators: [(story) => <div>{story()}</div>],
   component: Error,
   argTypes: {},

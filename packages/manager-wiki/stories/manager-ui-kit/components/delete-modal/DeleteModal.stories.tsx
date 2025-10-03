@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { Meta } from '@storybook/react';
-import {
-  DeleteModal,
-  DeleteModalProps,
-} from '@ovh-ux/manager-react-components';
+import { DeleteModal, DeleteModalProps } from '@ovh-ux/manager-ui-kit';
 
 export const DeleteModalDefault = (props: DeleteModalProps) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -50,7 +47,7 @@ export const DeleteModalIsLoading = (props: DeleteModalProps) => {
 };
 
 const meta: Meta = {
-  title: 'Manager React Components/Components/Delete Modal',
+  title: 'Manager UI Kit/Components/Delete Modal',
   component: DeleteModal,
   argTypes: {
     isOpen: { control: 'boolean' },
