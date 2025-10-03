@@ -14,8 +14,8 @@
     "build": "tsc && vite build",
     "lint:check": "eslint --ext .ts,.tsx . && tsc --noEmit",
     "start": "tsc && vite",
-    "test": "vitest run --reporter=verbose",
-    "test:coverage": "vitest run --coverage"
+    "test": "manager-test run --reporter=verbose",
+    "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
     "@hookform/resolvers": "5.2.1",
@@ -49,18 +49,13 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-core-test-utils": "^0.7.7",
+    "@ovh-ux/manager-tests-setup": "latest",
     "@ovh-ux/manager-vite-config": "^0.13.4",
     "@tanstack/react-query-devtools": "^5.51.21",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.0.1",
-    "@testing-library/user-event": "^14.5.2",
     "@types/file-saver": "^2.0.7",
-    "@vitejs/plugin-react": "^4.3.4",
-    "@vitest/coverage-v8": "^2.1.9",
     "element-internals-polyfill": "^3.0.2",
     "msw": "2.1.7",
-    "typescript": "^5.1.6",
-    "vitest": "^2.1.9"
+    "typescript": "^5.1.6"
   },
   "regions": [
     "CA",
