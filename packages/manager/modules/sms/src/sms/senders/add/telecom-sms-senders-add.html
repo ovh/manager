@@ -152,11 +152,15 @@
                     <oui-field
                         data-label="{{:: 'sms_senders_add_sender_supporting_document' | translate }}"
                         data-label-popover="{{:: 'sms_senders_add_sender_supporting_document_help' | translate }}"
-                        data-size="xl"
+                        data-help-text="{{:: 'sms_senders_add_sender_supporting_document_info' | translate }}"
+                        data-ng-class="{ 'oui-field_error has-error': SmsSendersAddCtrl.sender.supportingDocument.length > SmsSendersAddCtrl.FILE_MAX_NUMBER }"
                     >
                         <oui-file
-                            data-model="SmsSendersAddCtrl.sender.supportingDocument"
-                            data-accept="application/pdf,image/jpeg,image/png,image/jpg"
+                            data-model="SmsSendersAddCtrl.sender.supportingDocuments"
+                            data-accept="{{ SmsSendersAddCtrl.FILE_FORMAT_ACCEPT }}"
+                            data-maxsize="SmsSendersAddCtrl.FILE_MAX_SIZE"
+                            data-multiple
+                            data-preview
                         ></oui-file>
                     </oui-field>
 
@@ -242,7 +246,7 @@
                         <button
                             type="submit"
                             class="btn btn-primary"
-                            data-ng-disabled="addSenderForm.$invalid || SmsSendersAddCtrl.loading.adding"
+                            data-ng-disabled="addSenderForm.$invalid || SmsSendersAddCtrl.loading.adding || SmsSendersAddCtrl.sender.supportingDocuments.length > SmsSendersAddCtrl.FILE_MAX_NUMBER"
                             data-translate="sms_submit"
                         ></button>
                         <oui-spinner
