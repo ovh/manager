@@ -108,7 +108,10 @@ const OrderFunnel = ({
         },
         plan: data.plan,
         version: data.version,
-        ipRestrictions: data.ipRestrictions,
+        ipRestrictions: data.ipRestrictions.map((r) => ({
+          ip: r.ip ?? '',
+          description: r.description ?? '',
+        })),
       };
       if (data.network.type === database.NetworkTypeEnum.private) {
         // endpoint does not expect the network id, but the linked openstackId instead

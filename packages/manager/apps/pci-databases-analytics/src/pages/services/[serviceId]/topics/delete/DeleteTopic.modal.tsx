@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
-import * as db from '@datatr-ux/ovhcloud-types/cloud/project/database/index';
 import {
   Button,
   DialogClose,
@@ -26,7 +25,7 @@ const DeleteTopic = () => {
   const topicsQuery = useGetTopics(projectId, service.engine, service.id, {
     enabled: !!service.id,
   });
-  const topics = topicsQuery.data as db.kafka.Topic[];
+  const topics = topicsQuery.data;
   const deletedTopic = topics?.find((t) => t.id === topicId);
 
   const { t } = useTranslation(
