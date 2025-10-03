@@ -5,8 +5,7 @@ export const QUOTA_THRESHOLD = 80;
 
 export const ROADMAP_CHANGELOG_LINKS = {
   changelog: 'https://github.com/orgs/ovh/projects/16/views/6?pane=info',
-  roadmap:
-    'https://github.com/ovh/public-cloud-roadmap/projects?query=is%3Aopen',
+  roadmap: 'https://github.com/ovh/public-cloud-roadmap/projects',
   'feature-request':
     'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
 };
@@ -110,29 +109,6 @@ export const getHdsInfoUrl = (subsidiary: OvhSubsidiary): string => {
   const HDS_URL = 'enterprise/certification-conformity/hds/';
   const language = OVH_LANGUAGE_BY_SUBSIDIARY[subsidiary];
   return `${OVH_CLOUD_URL}/${language}/${HDS_URL}`;
-};
-
-// Function to build Developer Center URL for a given subsidiary
-export const buildDeveloperCenterUrl = (subsidiary: OvhSubsidiary): string => {
-  // Developer Center exists only for specific subsidiaries
-  const developerCenterSubsidiaries: Partial<Record<OvhSubsidiary, string>> = {
-    FR: 'fr',
-    GB: 'en-gb',
-    IE: 'en-ie',
-    CA: 'en-ca',
-    QC: 'fr-ca',
-    MA: 'fr-ma',
-    SN: 'fr-sn',
-    TN: 'fr-tn',
-    AU: 'en-au',
-    SG: 'en-sg',
-    ASIA: 'asia',
-    IN: 'en-in',
-    WE: 'en',
-  };
-
-  const language = developerCenterSubsidiaries[subsidiary] || 'en';
-  return `${OVH_CLOUD_URL}/${language}/developer-center/`;
 };
 
 export const PCI_FEATURES_STATES: TFeatureState = {
@@ -432,28 +408,28 @@ export const getDocumentationGuideLink = (
 
 export const DASHBOARD_DOCUMENTATION_LINKS_CONFIG: DashboardItemConfig[] = [
   {
-    labelTranslationKey: 'pci_projects_project_getting_started',
-    linkLabelTranslationKey: 'pci_projects_project_essential_to_start',
+    labelTranslationKey: 'pci_projects_home_getting_started',
+    linkLabelTranslationKey: 'pci_projects_home_essential_to_start',
     documentationGuideKey: 'getting_started',
   },
   {
-    labelTranslationKey: 'pci_projects_project_public_cloud',
-    linkLabelTranslationKey: 'pci_projects_project_get_familiar',
+    labelTranslationKey: 'pci_projects_home_public_cloud',
+    linkLabelTranslationKey: 'pci_projects_home_get_familiar',
     documentationGuideKey: 'public_cloud',
   },
   {
-    labelTranslationKey: 'pci_projects_project_instances',
-    linkLabelTranslationKey: 'pci_projects_project_manage_instances',
+    labelTranslationKey: 'pci_projects_home_instances',
+    linkLabelTranslationKey: 'pci_projects_home_manage_instances',
     documentationGuideKey: 'instances',
   },
   {
-    labelTranslationKey: 'pci_projects_project_billing',
-    linkLabelTranslationKey: 'pci_projects_project_understand_manage',
+    labelTranslationKey: 'pci_projects_home_billing',
+    linkLabelTranslationKey: 'pci_projects_home_understand_manage',
     documentationGuideKey: 'billing',
   },
   {
-    labelTranslationKey: 'pci_projects_project_guides',
-    linkLabelTranslationKey: 'pci_projects_project_see_all_guides',
+    labelTranslationKey: 'pci_projects_home_guides',
+    linkLabelTranslationKey: 'pci_projects_home_see_all_guides',
     documentationGuideKey: 'guides',
   },
 ];
@@ -461,69 +437,59 @@ export const DASHBOARD_DOCUMENTATION_LINKS_CONFIG: DashboardItemConfig[] = [
 // Developer Center URL construction (now uses centralized LANGUAGE_MAPPINGS)
 export const DASHBOARD_COMMUNITY_LINKS: DashboardItem[] = [
   {
-    labelTranslationKey: 'pci_projects_project_roadmap',
-    linkLabelTranslationKey: 'pci_projects_project_discover_participate',
+    labelTranslationKey: 'pci_projects_home_roadmap',
+    linkLabelTranslationKey: 'pci_projects_home_discover_participate',
     link: ROADMAP_CHANGELOG_LINKS.roadmap,
   },
   {
-    labelTranslationKey: 'pci_projects_project_developer_center',
-    linkLabelTranslationKey: 'pci_projects_project_start_with_products',
-    // LINK is dynamically constructed based on subsidiary in useDashboardSections hook
-  },
-  {
-    labelTranslationKey: 'pci_projects_project_community',
+    labelTranslationKey: 'pci_projects_home_community',
   },
   {
     labelTranslationKey: '',
-    linkLabelTranslationKey: 'pci_projects_project_discuss_discord',
+    linkLabelTranslationKey: 'pci_projects_home_discuss_discord',
     link: 'https://discord.gg/ovhcloud',
-  },
-  {
-    labelTranslationKey: '',
-    linkLabelTranslationKey: 'pci_projects_project_discuss_community',
-    link: 'https://community.ovh.com/',
   },
 ];
 
 export const DASHBOARD_CREDIT_VOUCHER_LINK: DashboardItem = {
-  linkLabelTranslationKey: 'pci_projects_project_credits_vouchers',
+  linkLabelTranslationKey: 'pci_projects_home_credits_vouchers',
   link: '/vouchers',
   color: 'primary',
   iconODS: ODS_ICON_NAME.arrowRight,
-  ariaLabelTranslationKey: 'pci_projects_project_link_credits_vouchers_aria',
+  ariaLabelTranslationKey: 'pci_projects_home_link_credits_vouchers_aria',
   hideTileIfNoOtherItems: true,
 };
 
 // Quick Access Items - Base configuration without iconImage (will be added in component)
 export const DASHBOARD_QUICK_ACCESS_ITEMS_BASE: DashboardItem[] = [
   {
-    labelTranslationKey: 'pci_projects_project_instances',
-    descriptionTranslationKey: 'pci_projects_project_create_instance',
-    link: `instances/new`,
+    labelTranslationKey: 'pci_projects_home_instances',
+    descriptionTranslationKey: 'pci_projects_home_create_instance',
+    link: PCI_FEATURES_STATES.INSTANCES.LIST.url,
   },
   {
-    labelTranslationKey: 'pci_projects_project_kubernetes',
-    descriptionTranslationKey: 'pci_projects_project_create_cluster',
+    labelTranslationKey: 'pci_projects_home_kubernetes',
+    descriptionTranslationKey: 'pci_projects_home_create_cluster',
     link: PCI_FEATURES_STATES.KUBERNETES.LIST.url,
   },
   {
-    labelTranslationKey: 'pci_projects_project_object_storage',
-    descriptionTranslationKey: 'pci_projects_project_create_container',
+    labelTranslationKey: 'pci_projects_home_object_storage',
+    descriptionTranslationKey: 'pci_projects_home_create_container',
     link: PCI_FEATURES_STATES.OBJECTS.LIST.url,
   },
   {
-    labelTranslationKey: 'pci_projects_project_block_storage',
-    descriptionTranslationKey: 'pci_projects_project_create_volume',
+    labelTranslationKey: 'pci_projects_home_block_storage',
+    descriptionTranslationKey: 'pci_projects_home_create_volume',
     link: PCI_FEATURES_STATES.BLOCKS.LIST.url,
   },
   {
-    labelTranslationKey: 'pci_projects_project_network',
-    descriptionTranslationKey: 'pci_projects_project_manage_vrack',
+    labelTranslationKey: 'pci_projects_home_network',
+    descriptionTranslationKey: 'pci_projects_home_manage_vrack',
     link: PCI_FEATURES_STATES.PRIVATE_NETWORK.LIST.url,
   },
   {
-    labelTranslationKey: 'pci_projects_project_database',
-    descriptionTranslationKey: 'pci_projects_project_create_database',
+    labelTranslationKey: 'pci_projects_home_database',
+    descriptionTranslationKey: 'pci_projects_home_create_database',
     link: PCI_FEATURES_STATES.DATABASES.ADD.url,
   },
 ];
@@ -531,22 +497,22 @@ export const DASHBOARD_QUICK_ACCESS_ITEMS_BASE: DashboardItem[] = [
 export const DASHBOARD_OTHER_ACTIONS_ITEMS: DashboardItem[] = [
   {
     iconODS: ODS_ICON_NAME.book,
-    labelTranslationKey: 'pci_projects_project_create_ai_notebook',
-    link: PCI_FEATURES_STATES.NOTEBOOKS.ADD.url,
+    labelTranslationKey: 'pci_projects_home_create_ai_notebook',
+    link: PCI_FEATURES_STATES.NOTEBOOKS.LIST.url,
   },
   {
     iconODS: ODS_ICON_NAME.network,
-    labelTranslationKey: 'pci_projects_project_create_load_balancer',
+    labelTranslationKey: 'pci_projects_home_create_load_balancer',
     link: PCI_FEATURES_STATES.LOADBALANCER.LIST.url,
   },
   {
     iconODS: ODS_ICON_NAME.bill,
-    labelTranslationKey: 'pci_projects_project_billing',
+    labelTranslationKey: 'pci_projects_home_billing',
     link: PCI_FEATURES_STATES.PROJECT_MANAGEMENT.BILLING_CONTROL.url,
   },
   {
     iconODS: ODS_ICON_NAME.cog,
-    labelTranslationKey: 'pci_projects_project_quotas',
+    labelTranslationKey: 'pci_projects_home_quotas',
     link: PCI_FEATURES_STATES.PROJECT_MANAGEMENT.QUOTA_AND_REGIONS.url,
   },
 ];
