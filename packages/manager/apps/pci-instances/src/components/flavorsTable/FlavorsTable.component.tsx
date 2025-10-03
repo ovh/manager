@@ -1,13 +1,16 @@
 import { BADGE_SIZE, Table, TableProp, TABLE_SIZE, TABLE_VARIANT, Text } from '@ovhcloud/ods-react';
 import { DeploymentModeBadge } from '../deploymentModeBadge/DeploymentModeBadge.component';
 import clsx from "clsx";
+import { FlavorsTableTr } from "@/components/flavorsTable/FlavorsTableTd.component";
+import { MouseEventHandler } from "react";
 
 export type TFlavorsTableProps = TableProp & React.HTMLAttributes<HTMLTableElement> & {
-    caption: string;
-    selectable?: boolean;
-  };
+  caption: string;
+  selectable?: boolean;
+  onClick?: MouseEventHandler<HTMLTableRowElement>;
+};
 
-export const FlavorsTable = ({ caption, className, selectable= false, size=TABLE_SIZE.md , variant= TABLE_VARIANT.default }: TFlavorsTableProps) => {
+export const FlavorsTable = ({ caption, className, onClick, selectable= false, size=TABLE_SIZE.md , variant= TABLE_VARIANT.default }: TFlavorsTableProps) => {
   const trClasses = clsx(
     '',
     {
@@ -38,7 +41,7 @@ export const FlavorsTable = ({ caption, className, selectable= false, size=TABLE
         </tr>
       </thead>
       <tbody>
-        <tr className={trClasses}>
+        <FlavorsTableTr className={trClasses} onClick={onClick}>
           <td className={tdClasses}></td>
           <th className={tdClasses} scope="row"><Text className={"font-regular"}>b3-8</Text></th>
           <td className={tdClasses}><Text>8</Text></td>
@@ -47,8 +50,8 @@ export const FlavorsTable = ({ caption, className, selectable= false, size=TABLE
           <td className={tdClasses}><DeploymentModeBadge mode={'region-3-az'} size={BADGE_SIZE.sm}></DeploymentModeBadge></td>
           <td className={tdClasses}><Text className={"font-semibold"}>0,0465 €</Text></td>
           <td className={tdClasses}><Text className={"font-semibold"}>25,50 €</Text></td>
-        </tr>
-        <tr className={trClasses}>
+        </FlavorsTableTr>
+        <FlavorsTableTr className={trClasses} onClick={onClick}>
           <td className={tdClasses}></td>
           <th className={tdClasses} scope="row"><Text className={"font-regular"}>b3-16</Text></th>
           <td className={tdClasses}><Text>16</Text></td>
@@ -57,8 +60,8 @@ export const FlavorsTable = ({ caption, className, selectable= false, size=TABLE
           <td className={tdClasses}><DeploymentModeBadge mode={'region-3-az'} size={BADGE_SIZE.sm}></DeploymentModeBadge></td>
           <td className={tdClasses}><Text className={"font-semibold"}>0,186 €</Text></td>
           <td className={tdClasses}><Text className={"font-semibold"}>51,00 €</Text></td>
-        </tr>
-        <tr className={trClasses}>
+        </FlavorsTableTr>
+        <FlavorsTableTr className={trClasses} onClick={onClick}>
           <td className={tdClasses}></td>
           <th className={tdClasses} scope="row"><Text className={"font-regular"}>b3-32</Text></th>
           <td className={tdClasses}><Text>32</Text></td>
@@ -67,7 +70,7 @@ export const FlavorsTable = ({ caption, className, selectable= false, size=TABLE
           <td className={tdClasses}><DeploymentModeBadge mode={'region-3-az'} size={BADGE_SIZE.sm}></DeploymentModeBadge></td>
           <td className={tdClasses}><Text className={"font-semibold"}>0,372 €</Text></td>
           <td className={tdClasses}><Text className={"font-semibold"}>102,00 €</Text></td>
-        </tr>
+        </FlavorsTableTr>
       </tbody>
     </Table>
   );

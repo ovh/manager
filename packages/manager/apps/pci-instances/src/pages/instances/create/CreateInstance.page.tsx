@@ -102,7 +102,7 @@ const CreateInstance: FC = () => {
             <LocalizationSelection />
             <br />
             <br />
-            <FlavorsTable caption={'test'} selectable></FlavorsTable>
+            <FlavorsTable caption={'test'} selectable onClick={() => console.log('clicked !')}></FlavorsTable>
 
             <AdvancedParameters />
             <QuantitySelector
