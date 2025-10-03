@@ -1,11 +1,11 @@
 import React from 'react';
-import { Drawer, DrawerProps } from '@ovh-ux/manager-react-components';
+import { Drawer, DrawerProps } from '@ovh-ux/manager-ui-kit';
 import { Meta } from '@storybook/react';
 import { useArgs } from '@storybook/preview-api';
 import { DrawerContent } from './DrawerContent.component';
 
 const meta: Meta<typeof Drawer> = {
-  title: 'Manager React Components/Components/Drawer',
+  title: 'Manager UI Kit/Components/Drawer',
   component: Drawer,
   args: {
     heading: 'Drawer Title',

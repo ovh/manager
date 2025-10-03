@@ -1,9 +1,6 @@
 import { Meta } from '@storybook/react';
 import { MESSAGE_VARIANT, MESSAGE_COLOR } from '@ovhcloud/ods-react';
-import {
-  ActionBanner,
-  ActionBannerProps,
-} from '@ovh-ux/manager-react-components';
+import { ActionBanner, ActionBannerProps } from '@ovh-ux/manager-ui-kit';
 
 export const Default = {
   args: {
@@ -16,7 +13,7 @@ export const Default = {
 };
 
 const SampleActionBanner: Meta<ActionBannerProps> = {
-  title: 'Manager React Components/Components/Action Banner',
+  title: 'Manager UI Kit/Components/Action Banner',
   component: ActionBanner,
 };
 
@@ -49,7 +46,7 @@ export const ActionBannerWithMessageVariants: Meta<ActionBannerProps> = {
 };
 
 export const ActionBannerWithButton: Meta<ActionBannerProps> = {
-  title: 'Manager React Components/Components/ActionBanner',
+  title: 'Manager UI Kit/Components/ActionBanner',
   args: {
     ...Default.args,
     label: 'Click Me!',
@@ -59,7 +56,7 @@ export const ActionBannerWithButton: Meta<ActionBannerProps> = {
 };
 
 export const ActionBannerWithLink: Meta<ActionBannerProps> = {
-  title: 'Manager React Components/Components/ActionBanner',
+  title: 'Manager UI Kit/Components/ActionBanner',
   args: {
     ...Default.args,
     label: 'Click Me!',

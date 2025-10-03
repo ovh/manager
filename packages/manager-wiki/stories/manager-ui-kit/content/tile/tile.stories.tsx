@@ -9,7 +9,7 @@ import {
   Badge,
   Button,
 } from '@ovhcloud/ods-react';
-import { Clipboard, ActionMenu, Tile } from '@ovh-ux/manager-react-components';
+import { Clipboard, ActionMenu, Tile } from '@ovh-ux/manager-ui-kit';
 
 const actionItems = [
   {
@@ -156,7 +156,7 @@ export const CompleteExample = () => {
 };
 
 const meta: Meta = {
-  title: 'Manager React Components/Content/Tile',
+  title: 'Manager UI Kit/Content/Tile',
   component: Tile,
   argTypes: {},
   args: {},

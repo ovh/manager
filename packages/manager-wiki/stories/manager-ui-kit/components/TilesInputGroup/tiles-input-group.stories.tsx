@@ -3,14 +3,14 @@ import { Meta } from '@storybook/react';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useArgs } from '@storybook/preview-api';
 import { clsx } from 'clsx';
-import { TilesInputGroupComponent } from '@ovh-ux/manager-react-components';
+import { TilesInputGroupComponent } from '@ovh-ux/manager-ui-kit';
 import {
   countries as allCountries,
   TCountry,
-} from '@ovh-ux/manager-react-components/src/__mocks__/tiles-input';
+} from '@ovh-ux/manager-ui-kit/src/__mocks__/tiles-input';
 
 export default {
-  title: 'Manager React Components/Components/TilesInputGroup',
+  title: 'Manager UI Kit/Components/TilesInputGroup',
   component: TilesInputGroupComponent,
   parameters: {
     docs: {

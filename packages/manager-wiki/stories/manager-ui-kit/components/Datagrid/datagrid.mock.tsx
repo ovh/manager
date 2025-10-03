@@ -7,7 +7,7 @@ import {
   ActionMenu,
   DatagridColumn,
   DatagridColumnTypes,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/manager-ui-kit';
 
 export interface Item {
   label: string;

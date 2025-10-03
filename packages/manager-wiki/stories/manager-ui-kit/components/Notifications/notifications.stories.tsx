@@ -3,10 +3,7 @@ import { withRouter } from 'storybook-addon-react-router-v6';
 import { OdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
 
-import {
-  Notifications,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { Notifications, useNotifications } from '@ovh-ux/manager-ui-kit';
 
 const NotificationsStory = () => {
   const {
@@ -58,7 +55,7 @@ export const Primary = {
 };
 
 export default {
-  title: 'Manager React Components/Components/Notifications',
+  title: 'Manager UI Kit/Components/Notifications',
   component: NotificationsStory,
   decorators: [withRouter],
 };

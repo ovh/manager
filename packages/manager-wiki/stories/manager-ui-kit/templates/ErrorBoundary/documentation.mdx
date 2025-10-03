@@ -1,6 +1,6 @@
 import { Meta, Canvas, Source } from '@storybook/blocks';
 
-<Meta title="Manager React Components/ErrorBoundary/Documentation" />
+<Meta title="Manager UI Kit/ErrorBoundary/Documentation" />
 
 # ErrorBoundary
 
@@ -17,7 +17,7 @@ This component also integrates with `ShellContext` from `@ovh-ux/manager-react-s
 #### With LazyRouteConfig function
 
 <Source
-  code={`import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+  code={`import { ErrorBoundary } from '@ovh-ux/manager-ui-kit';
 
         const lazyRouteConfig = (importFn: CallableFunction) => ({
             lazy: async () => {
@@ -37,7 +37,7 @@ language="typescript"
 #### With Route component
 
 <Source
-  code={`import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+  code={`import { ErrorBoundary } from '@ovh-ux/manager-ui-kit';
   <Route
     id="root"
     path={ROUTE_PATHS.ROOT}

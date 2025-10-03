@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { Step, StepProps } from '@ovh-ux/manager-react-components';
+import { Step, StepProps } from '@ovh-ux/manager-ui-kit';
 
 const renderComponent = ({
   order,
@@ -53,12 +53,12 @@ export const Default = {
 };
 
 const StepStory: Meta<StepProps> = {
-  title: 'Manager React Components/Components/Step',
+  title: 'Manager UI Kit/Components/Step',
   render: renderComponent,
 };
 
 export const Checked: Meta<StepProps> = {
-  title: 'Manager React Components/Components/Step',
+  title: 'Manager UI Kit/Components/Step',
   render: renderComponent,
   args: {
     ...Default.args,
@@ -67,7 +67,7 @@ export const Checked: Meta<StepProps> = {
 };
 
 export const CheckedAndLocked: Meta<StepProps> = {
-  title: 'Manager React Components/Components/Step',
+  title: 'Manager UI Kit/Components/Step',
   render: renderComponent,
   args: {
     ...Default.args,
@@ -77,7 +77,7 @@ export const CheckedAndLocked: Meta<StepProps> = {
 };
 
 export const CheckedAndLockedWithoutEdit: Meta<StepProps> = {
-  title: 'Manager React Components/Components/Step',
+  title: 'Manager UI Kit/Components/Step',
   render: renderComponent,
   args: {
     ...Default.args,
@@ -92,7 +92,7 @@ export const CheckedAndLockedWithoutEdit: Meta<StepProps> = {
 };
 
 export const Closed: Meta<StepProps> = {
-  title: 'Manager React Components/Components/Step',
+  title: 'Manager UI Kit/Components/Step',
   render: renderComponent,
   args: {
     ...Default.args,
@@ -103,7 +103,7 @@ export const Closed: Meta<StepProps> = {
 };
 
 export const UncheckedAndClosed: Meta<StepProps> = {
-  title: 'Manager React Components/Components/Step',
+  title: 'Manager UI Kit/Components/Step',
   render: renderComponent,
   args: {
     ...Default.args,
@@ -114,7 +114,7 @@ export const UncheckedAndClosed: Meta<StepProps> = {
 };
 
 export const NextButtonDisabled: Meta<StepProps> = {
-  title: 'Manager React Components/Components/Step',
+  title: 'Manager UI Kit/Components/Step',
   render: renderComponent,
   args: {
     ...Default.args,
@@ -127,7 +127,7 @@ export const NextButtonDisabled: Meta<StepProps> = {
 };
 
 export const Skip: Meta<StepProps> = {
-  title: 'Manager React Components/Components/Step',
+  title: 'Manager UI Kit/Components/Step',
   render: renderComponent,
   args: {
     ...Default.args,

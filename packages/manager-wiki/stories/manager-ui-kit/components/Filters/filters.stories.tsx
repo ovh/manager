@@ -19,7 +19,7 @@ import {
   FilterAdd,
   FilterList,
   useColumnFilters,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/manager-ui-kit';
 
 const FiltersStory = () => {
   const [searchField, setSearchField] = useState('');
@@ -115,7 +115,7 @@ export const DefaultProps = {
 };
 
 const meta = {
-  title: 'Manager React Components/Components/Filters',
+  title: 'Manager UI Kit/Components/Filters',
   component: FiltersStory,
   decorators: [withRouter],
 };

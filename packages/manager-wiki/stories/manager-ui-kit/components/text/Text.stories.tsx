@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/react';
-import { Text, TextProps } from '@ovh-ux/manager-react-components';
+import { Text, TextProps } from '@ovh-ux/manager-ui-kit';
 import { IAM_ACTIONS, IAM_URNS } from '../../../../utils/iam.constants';
 
 export const Default: Meta<TextProps> = {
@@ -25,7 +25,7 @@ export const TextWithoutAuthorization: Meta<TextProps> = {
 };
 
 const meta = {
-  title: 'Manager React Components/Components/Text',
+  title: 'Manager UI Kit/Components/Text',
   component: Text,
   args: {
     ...Default.args,

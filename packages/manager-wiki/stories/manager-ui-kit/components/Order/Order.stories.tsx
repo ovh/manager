@@ -2,7 +2,7 @@ import React, { ComponentType } from 'react';
 
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { Meta, StoryObj } from '@storybook/react';
-import { Order } from '@ovh-ux/manager-react-components';
+import { Order } from '@ovh-ux/manager-ui-kit';
 
 function renderComponent(args) {
   return (
@@ -46,7 +46,7 @@ export const DemoOrder: Story = {
 };
 
 const meta: Meta = {
-  title: 'Manager React Components/Components/Order',
+  title: 'Manager UI Kit/Components/Order',
   component: Order,
   subcomponents: {
     'Order.Summary': Order.Summary as ComponentType<unknown>,
