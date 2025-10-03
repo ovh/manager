@@ -452,6 +452,9 @@ angular.module('App').controller(
             case 'aspf':
               [, this.model.target.aspf] = splittedVal;
               break;
+            case 'adkim':
+              [, this.model.target.adkim] = splittedVal;
+              break;
             default:
           }
         }
