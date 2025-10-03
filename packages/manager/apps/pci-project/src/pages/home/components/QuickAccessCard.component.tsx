@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { OdsCard, OdsText, OdsIcon } from '@ovhcloud/ods-components/react';
 
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
@@ -10,11 +9,11 @@ type QuickAccessCardProps = {
 };
 
 function QuickAccessCard({ item, index }: QuickAccessCardProps) {
-  const { t } = useTranslation('project');
+  const { t } = useTranslation('home');
 
   return item.link ? (
-    <Link
-      to={item.link}
+    <a
+      href={item.link}
       className="no-underline"
       key={index}
       aria-label={t('pci_project_quick_access_card_aria_label', {
@@ -57,7 +56,7 @@ function QuickAccessCard({ item, index }: QuickAccessCardProps) {
           </OdsText>
         </div>
       </OdsCard>
-    </Link>
+    </a>
   ) : (
     <OdsCard
       key={index}
