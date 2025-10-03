@@ -5,8 +5,7 @@ export const QUOTA_THRESHOLD = 80;
 
 export const ROADMAP_CHANGELOG_LINKS = {
   changelog: 'https://github.com/orgs/ovh/projects/16/views/6?pane=info',
-  roadmap:
-    'https://github.com/ovh/public-cloud-roadmap/projects?query=is%3Aopen',
+  roadmap: 'https://github.com/ovh/public-cloud-roadmap/projects',
   'feature-request':
     'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
 };
@@ -110,29 +109,6 @@ export const getHdsInfoUrl = (subsidiary: OvhSubsidiary): string => {
   const HDS_URL = 'enterprise/certification-conformity/hds/';
   const language = OVH_LANGUAGE_BY_SUBSIDIARY[subsidiary];
   return `${OVH_CLOUD_URL}/${language}/${HDS_URL}`;
-};
-
-// Function to build Developer Center URL for a given subsidiary
-export const buildDeveloperCenterUrl = (subsidiary: OvhSubsidiary): string => {
-  // Developer Center exists only for specific subsidiaries
-  const developerCenterSubsidiaries: Partial<Record<OvhSubsidiary, string>> = {
-    FR: 'fr',
-    GB: 'en-gb',
-    IE: 'en-ie',
-    CA: 'en-ca',
-    QC: 'fr-ca',
-    MA: 'fr-ma',
-    SN: 'fr-sn',
-    TN: 'fr-tn',
-    AU: 'en-au',
-    SG: 'en-sg',
-    ASIA: 'asia',
-    IN: 'en-in',
-    WE: 'en',
-  };
-
-  const language = developerCenterSubsidiaries[subsidiary] || 'en';
-  return `${OVH_CLOUD_URL}/${language}/developer-center/`;
 };
 
 export const PCI_FEATURES_STATES: TFeatureState = {
@@ -466,22 +442,12 @@ export const DASHBOARD_COMMUNITY_LINKS: DashboardItem[] = [
     link: ROADMAP_CHANGELOG_LINKS.roadmap,
   },
   {
-    labelTranslationKey: 'pci_projects_home_developer_center',
-    linkLabelTranslationKey: 'pci_projects_home_start_with_products',
-    // LINK is dynamically constructed based on subsidiary in useDashboardSections hook
-  },
-  {
     labelTranslationKey: 'pci_projects_home_community',
   },
   {
     labelTranslationKey: '',
     linkLabelTranslationKey: 'pci_projects_home_discuss_discord',
     link: 'https://discord.gg/ovhcloud',
-  },
-  {
-    labelTranslationKey: '',
-    linkLabelTranslationKey: 'pci_projects_home_discuss_community',
-    link: 'https://community.ovh.com/',
   },
 ];
 

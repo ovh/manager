@@ -7,7 +7,6 @@ import {
   DASHBOARD_DOCUMENTATION_LINKS_CONFIG,
   DASHBOARD_COMMUNITY_LINKS,
   DASHBOARD_CREDIT_VOUCHER_LINK,
-  buildDeveloperCenterUrl,
   getDocumentationGuideLink,
   BASE_PROJECT_PATH,
   DashboardTile,
@@ -72,23 +71,6 @@ export function useDashboardSections(projectId: string) {
     }));
   }, [subsidiary]);
 
-  const communityItems = useMemo((): DashboardItem[] => {
-    return DASHBOARD_COMMUNITY_LINKS.map((item) => {
-      // Dynamically construct Developer Center URL based on subsidiary
-      if (item.labelTranslationKey === 'pci_projects_home_developer_center') {
-        const developerCenterUrl = buildDeveloperCenterUrl(
-          subsidiary as OvhSubsidiary,
-        );
-
-        return {
-          ...item,
-          link: developerCenterUrl,
-        };
-      }
-      return item;
-    });
-  }, [subsidiary]);
-
   const tiles: DashboardTile[] = useMemo(
     () => [
       {
@@ -102,10 +84,10 @@ export function useDashboardSections(projectId: string) {
       },
       {
         titleTranslationKey: 'pci_projects_home_community_section',
-        items: communityItems,
+        items: DASHBOARD_COMMUNITY_LINKS,
       },
     ],
-    [billingItems, documentationItems, communityItems],
+    [billingItems, documentationItems],
   );
 
   return { tiles, isLoading, isError, error };
