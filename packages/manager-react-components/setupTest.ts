@@ -1,7 +1,6 @@
+// vitest.setup.js
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
-import '@ovh-ux/manager-static-analysis-kit/tests/html-w3c-tests-setup';
-import '@ovh-ux/manager-static-analysis-kit/tests/html-a11y-tests-setup';
 
 // This polyfill exists because of an issue with jsdom and the EventTarget class
 // when testing a component with an OdsDatepicker (addEventListener crashes at component initialization).
