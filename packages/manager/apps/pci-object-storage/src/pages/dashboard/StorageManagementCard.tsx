@@ -33,7 +33,7 @@ export const StorageManagementCard = ({
           'dashboard:pci_projects_project_storages_dashboard_async_replication',
         )}
       >
-        <div className="mt-4">
+        <div>
           <StatusBadge
             status={showReplicationBanner ? 'disabled' : 'enabled'}
             translationKey="container:pci_projects_project_storages_containers_container_offsite_replication"

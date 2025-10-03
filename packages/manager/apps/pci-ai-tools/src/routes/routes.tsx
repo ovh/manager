@@ -1,5 +1,6 @@
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import NotFound from '../pages/404.page';
+import ErrorBoundary from '@/components/error-boundary/ErrorBoundary.component';
 
 const lazyRouteConfig = (importFn: CallableFunction) => {
   return {
@@ -8,6 +9,7 @@ const lazyRouteConfig = (importFn: CallableFunction) => {
       return {
         Component: moduleDefault,
         loader: moduleExports?.Loader,
+        ErrorBoundary,
         handle: {
           breadcrumb: moduleExports.breadcrumb,
         },

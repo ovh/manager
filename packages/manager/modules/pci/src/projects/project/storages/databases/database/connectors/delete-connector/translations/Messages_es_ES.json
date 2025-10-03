@@ -1,8 +1,0 @@
-{
-  "pci_databases_connectors_delete_connector_confirm": "Confirmar",
-  "pci_databases_connectors_delete_connector_cancel": "Cancelar",
-  "pci_databases_connectors_delete_connector": "Eliminar un conector",
-  "pci_databases_connectors_delete_connector_description": "¿Seguro que quiere eliminar este conector?",
-  "pci_databases_connectors_delete_connector_success_message": "El conector se ha eliminado correctamente.",
-  "pci_databases_connectors_delete_connector_error_message": "Se ha producido un error al eliminar el conector: {{message}}"
-}

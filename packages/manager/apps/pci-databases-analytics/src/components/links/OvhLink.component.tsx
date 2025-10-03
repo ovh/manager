@@ -19,12 +19,16 @@ function OvhLink({
   const [url, setUrl] = React.useState('');
   React.useEffect(() => {
     const fetchUrl = async (urlParams: OvhLinkProps) => {
-      const goTo = (await navigation.getURL(
+      const result = await navigation.getURL(
         urlParams.application,
         urlParams.path,
         urlParams.params,
-      )) as string;
-      setUrl(goTo);
+      );
+      if (typeof result === 'string') {
+        setUrl(result);
+      } else {
+        setUrl('');
+      }
     };
     fetchUrl({ application, path, params });
   }, [application, path, params, navigation]);

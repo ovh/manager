@@ -1,8 +1,0 @@
-{
-  "pci_databases_advanced_configuration_tab_title": "Configurazione avanzata",
-  "pci_databases_advanced_configuration_update_success_message": "La configurazione avanzata è stata aggiornata correttamente",
-  "pci_databases_advanced_configuration_update_error_message": "Si è verificato un errore durante l'aggiornamento della configurazione avanzata: {{message}}",
-  "pci_databases_advanced_configuration_update": "Aggiorna la configurazione avanzata",
-  "pci_databases_advanced_configuration_add": "Aggiungi una configurazione avanzata",
-  "pci_databases_advanced_configuration_restart_info": "La modifica della configurazione avanzata potrebbe comportare il riavvio del servizio."
-}

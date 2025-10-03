@@ -25,5 +25,21 @@
   "pci_projects_project_storages_dashboard_enable_encryption": "Enable encryption",
   "pci_projects_project_storages_dashboard_didacticiel": "TUTORIAL",
   "pci_projects_project_storages_dashboard_data_encryption_enabled": "SSE-OMK",
-  "pci_projects_project_storages_dashboard_cname": "CNAME/TXT record value:"
+  "pci_projects_project_storages_dashboard_cname": "CNAME/TXT record value",
+  "pci_projects_project_storages_dashboard_helper_drawer_title": "Understanding my dashboard",
+  "pci_projects_project_storages_dashboard_helper_drawer_description": "Learn how to use your dashboard features to the full.",
+  "pci_projects_project_storages_dashboard_container_cname_txt_description_with_link": "Use the “Static hosting” container on a domain or subdomain. Simply modify the DNS zone by adding a CNAME record with this value.",
+  "pci_projects_project_storages_dashboard_object_lock_description_with_link": "Lock your resources to protect them from unexpected deletion or modification, over a set period of time or not. <1>Learn more</1>",
+  "pci_projects_project_storages_dashboard_versioning_description_with_link": "Keep your item history to find and restore previous versions. <1>Learn more</1>",
+  "pci_projects_project_storages_dashboard_tags_description_with_link": "Tag your objects to organize and manage them more easily.",
+  "pci_projects_project_storages_dashboard_access_log_description_with_link": "View access history for your containers to track and analyze their activity. <1>Learn more</1>",
+  "pci_projects_project_storages_dashboard_hosting_static_website_description_with_link": "Host your static websites directly from your container for fast, secure distribution. <1>Learn more</1>",
+  "pci_projects_project_storages_dashboard_container_localisation_description_with_link": "The location corresponds to the region chosen when the container was created, and when you chose how to deploy it. <1>Learn more</1>",
+  "pci_projects_project_storages_dashboard_container_objects_number_description_with_link": "The number of objects may vary depending on whether versioning, MPU, or other options are enabled. <1>Learn more</1>",
+  "pci_projects_project_storages_dashboard_container_used_space_description_with_link": "The space used is a value in bytes. <1>Learn more</1>",
+  "pci_projects_project_storages_dashboard_container_endpoint_description_with_link": "This information is required to retrieve or manipulate your objects via the API. <1>Learn more</1>",
+  "pci_projects_project_storages_dashboard_container_virtual_hosted_style_description_with_link": "Publish your containers and objects on the web by setting access rights (per object), giving them public access. They are then accessible via the Virtual Hosted-Style address.",
+  "pci_projects_project_storages_dashboard_async_replication_description_with_link": "An automatic or manual replication rule has been configured or not on this container. <1>Learn more</1>",
+  "pci_projects_project_storages_dashboard_lifecycle_description_with_link": "Automatically manage the lifecycle of your objects. <1>Learn more</1>",
+  "pci_projects_project_storages_dashboard_default_encryption_description_with_link": "OVHcloud Managed Keys are managed and used on your behalf by an integrated and enhanced KMS service from OVHcloud."
 }

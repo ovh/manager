@@ -1,4 +1,9 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+import {
+  apiClient,
+  createHeaders,
+  IcebergPaginationHeaders,
+  NoCacheHeaders,
+} from '@/data/api/api.client';
 import * as database from '@/types/cloud/project/database';
 import { ServiceData } from '.';
 
@@ -7,18 +12,10 @@ export const getConnectionPools = async ({
   engine,
   serviceId,
 }: ServiceData) =>
-  apiClient.v6
-    .get(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/connectionPool`,
-      {
-        headers: {
-          'X-Pagination-Mode': 'CachedObjectList-Pages',
-          'X-Pagination-Size': '50000',
-          Pragma: 'no-cache',
-        },
-      },
-    )
-    .then((res) => res.data as database.postgresql.ConnectionPool[]);
+  apiClient.v6.get<database.postgresql.ConnectionPool[]>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/connectionPool`,
+    { headers: createHeaders(NoCacheHeaders, IcebergPaginationHeaders) },
+  );
 
 export interface AddConnectionPool extends ServiceData {
   connectionPool: Partial<database.postgresql.ConnectionPoolCreation>;
@@ -30,12 +27,10 @@ export const addConnectionPool = async ({
   serviceId,
   connectionPool,
 }: AddConnectionPool) =>
-  apiClient.v6
-    .post(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/connectionPool`,
-      connectionPool,
-    )
-    .then((res) => res.data as database.postgresql.ConnectionPool);
+  apiClient.v6.post<database.postgresql.ConnectionPool>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/connectionPool`,
+    connectionPool,
+  );
 
 export type ConnectionPoolEdition = Omit<
   database.postgresql.ConnectionPool,
@@ -53,12 +48,10 @@ export const editConnectionPool = async ({
   connectionPool,
 }: EditConnectionPool) => {
   const { id, ...body } = connectionPool;
-  return apiClient.v6
-    .put(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/connectionPool/${id}`,
-      body,
-    )
-    .then((res) => res.data as database.postgresql.ConnectionPool);
+  return apiClient.v6.put<database.postgresql.ConnectionPool>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/connectionPool/${id}`,
+    body,
+  );
 };
 
 export interface DeleteConnectionPool extends ServiceData {
