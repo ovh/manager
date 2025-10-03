@@ -5,7 +5,7 @@ import { DashboardItem } from '@/constants';
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
 
 function StandardItem(item: DashboardItem) {
-  const { t } = useTranslation('project');
+  const { t } = useTranslation('home');
 
   return (
     <div className="flex flex-col">
@@ -23,7 +23,7 @@ function StandardItem(item: DashboardItem) {
           label={t(item.linkLabelTranslationKey)}
           icon={item.iconODS}
           aria-label={`${t(item.linkLabelTranslationKey)} - ${t(
-            'pci_projects_project_opens_in_new_tab',
+            'pci_projects_home_opens_in_new_tab',
           )}`}
         />
       )}
