@@ -13,7 +13,7 @@ import { useIsQuotaAboveThreshold, useQuotas } from '@/data/hooks/useQuota';
 import { QUOTA_LIMIT_GUIDES } from '@/constants';
 
 export default function QuotaAlert() {
-  const { t } = useTranslation('project');
+  const { t } = useTranslation('home');
   const projectId = useProjectIdFromParams();
 
   const { data: quotas, isLoading } = useQuotas(projectId);
@@ -44,7 +44,7 @@ export default function QuotaAlert() {
         <OdsText>
           <Trans
             t={t}
-            i18nKey="pci_projects_project_quota_threshold_warning_message"
+            i18nKey="pci_projects_home_quota_threshold_warning_message"
             components={{
               quotaGuidesLink: (
                 <OdsLink
