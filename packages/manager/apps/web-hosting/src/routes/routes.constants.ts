@@ -6,7 +6,7 @@ export const subRoutes = {
 export const urls = {
   // ROOT
   root: '',
-  wordpressManaged: '/wordpress-managed',
+  managedWordpress: '/managed-hosting-for-wordpress',
   hosting: '/web/hosting',
 
   // COMMON
