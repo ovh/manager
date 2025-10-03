@@ -5,12 +5,13 @@ import {
   FilterComparator,
 } from '@ovh-ux/manager-core-api';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { SortingState } from '@tanstack/react-table';
 import { defaultPageSize } from './index';
-import { DatagridColumn, useColumnFilters, ColumnSort } from '../../components';
+import { DatagridColumn, useColumnFilters } from '../../components';
 
 interface IcebergV6Hook<T> {
   queryKey: string[];
-  defaultSorting?: ColumnSort;
+  defaultSorting?: SortingState;
   shouldFetchAll?: boolean;
   columns?: DatagridColumn<T>[];
 }
@@ -26,16 +27,14 @@ export function useResourcesIcebergV6<T = unknown>({
   route,
   pageSize = defaultPageSize,
   queryKey,
-  defaultSorting = undefined,
+  defaultSorting = [],
   shouldFetchAll = false,
   columns,
   disableCache,
 }: IcebergFetchParamsV6 & IcebergV6Hook<T>) {
   const [searchInput, setSearchInput] = useState('');
   const [searchFilter, setSearchFilter] = useState<any>(null);
-  const [sorting, setSorting] = useState<ColumnSort | undefined>(
-    defaultSorting,
-  );
+  const [sorting, setSorting] = useState<SortingState>(defaultSorting);
   const { filters, addFilter, removeFilter } = useColumnFilters();
 
   const {
@@ -59,8 +58,8 @@ export function useResourcesIcebergV6<T = unknown>({
         route,
         pageSize: shouldFetchAll ? API_V6_MAX_PAGE_SIZE : pageSize,
         page: pageIndex,
-        sortBy: sorting?.id || undefined,
-        sortReverse: sorting?.desc,
+        sortBy: sorting[0]?.id || undefined,
+        sortReverse: sorting[0]?.desc,
         filters: searchFilter ? [searchFilter, ...filters] : filters,
         disableCache,
       }),
@@ -115,7 +114,7 @@ export function useResourcesIcebergV6<T = unknown>({
   };
 
   return {
-    ...(dataSelected ? { ...dataSelected, totalCount: 0 } : { totalCount: 0 }),
+    ...dataSelected,
     hasNextPage,
     fetchNextPage,
     ...rest,

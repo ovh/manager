@@ -78,12 +78,13 @@
     "./src/components/tags-list/**/*",
     "./src/components/onboarding-layout/**/*",
     "./src/components/order/**/*",
-    "./src/components/grid-layout/**/*"
+    "./src/components/grid-layout/**/*",
+    "./src/components/base-layout/**/*",
+    "./src/components/datagrid/**/*"
   ],
   "exclude": [
     "./src/components/**/stories.tsx",
     "./src/components/**/test.tsx",
-    "./src/components/**/__tests__/*",
     "./src/tailwind/*",
     "./src/__mocks__/*",
     "../manager-tools/manager-legacy-tools/**/*"

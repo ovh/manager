@@ -1,0 +1,625 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TableFooter Snapshot Tests > should match snapshot with all props provided 1`] = `
+<div
+  class="flex justify-center items-center"
+>
+  <div
+    class="size-12 grow-3 w-[25%]"
+  />
+  <div
+    class="size-12 grow-7 w-1/2"
+  >
+    <div
+      class="h-full flex items-center justify-center"
+    >
+      <div
+        class="flex justify-center gap-5"
+      >
+        <button
+          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+          data-testid="load-more-btn"
+          type="button"
+        >
+          Load more
+        </button>
+        <button
+          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+          data-testid="load-all-btn"
+          type="button"
+        >
+          Load all
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="size-14 grow-3 w-[25%]"
+  >
+    <div
+      class="text-right h-full flex items-bottom justify-end"
+    >
+      <p
+        class="_text--paragraph_1aw48_54"
+      >
+        50
+         
+        of 500
+         
+        results
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TableFooter Snapshot Tests > should match snapshot with basic props 1`] = `
+<div
+  class="flex justify-center items-center"
+>
+  <div
+    class="size-12 grow-3 w-[25%]"
+  />
+  <div
+    class="size-12 grow-7 w-1/2"
+  >
+    <div
+      class="h-full flex items-center justify-center"
+    />
+  </div>
+  <div
+    class="size-14 grow-3 w-[25%]"
+  >
+    <div
+      class="text-right h-full flex items-bottom justify-end"
+    >
+      <p
+        class="_text--paragraph_1aw48_54"
+      >
+        10
+         
+        of 100
+         
+        results
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TableFooter Snapshot Tests > should match snapshot with large numbers 1`] = `
+<div
+  class="flex justify-center items-center"
+>
+  <div
+    class="size-12 grow-3 w-[25%]"
+  />
+  <div
+    class="size-12 grow-7 w-1/2"
+  >
+    <div
+      class="h-full flex items-center justify-center"
+    >
+      <div
+        class="flex justify-center gap-5"
+      >
+        <button
+          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+          data-testid="load-more-btn"
+          type="button"
+        >
+          Load more
+        </button>
+        <button
+          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+          data-testid="load-all-btn"
+          type="button"
+        >
+          Load all
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="size-14 grow-3 w-[25%]"
+  >
+    <div
+      class="text-right h-full flex items-bottom justify-end"
+    >
+      <p
+        class="_text--paragraph_1aw48_54"
+      >
+        9999
+         
+        of 99999
+         
+        results
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TableFooter Snapshot Tests > should match snapshot with loading state 1`] = `
+<div
+  class="flex justify-center items-center"
+>
+  <div
+    class="size-12 grow-3 w-[25%]"
+  />
+  <div
+    class="size-12 grow-7 w-1/2"
+  >
+    <div
+      class="h-full flex items-center justify-center"
+    >
+      <div
+        class="flex justify-center gap-5"
+      >
+        <button
+          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+          data-testid="load-more-btn"
+          disabled=""
+          type="button"
+        >
+          <span
+            class="_button__spinner_10f3x_372"
+          >
+            <span
+              class="_spinner_o7c7y_10 _spinner--neutral_o7c7y_26 _spinner--sm_o7c7y_17"
+              role="progressbar"
+            >
+              <svg
+                class="_spinner__svg_o7c7y_32"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  fill="none"
+                  height="24"
+                  width="24"
+                />
+                <g
+                  transform="translate(-237.694 -93.932)"
+                >
+                  <path
+                    d="M-5236.305-4108.069h0v-2a9.011,9.011,0,0,0,9-9,9.01,9.01,0,0,0-9-9,9.01,9.01,0,0,0-9,9h-2a10.928,10.928,0,0,1,3.222-7.779,10.928,10.928,0,0,1,7.778-3.221,10.929,10.929,0,0,1,7.779,3.221,10.932,10.932,0,0,1,3.221,7.777,10.928,10.928,0,0,1-3.221,7.778A10.931,10.931,0,0,1-5236.305-4108.069Z"
+                    transform="translate(5486 4225)"
+                  />
+                  <circle
+                    cx="1"
+                    cy="1"
+                    r="1"
+                    transform="translate(248.694 114.932)"
+                  />
+                  <circle
+                    cx="1"
+                    cy="1"
+                    r="1"
+                    transform="translate(238.694 104.932)"
+                  />
+                </g>
+              </svg>
+            </span>
+          </span>
+          Load more
+        </button>
+        <button
+          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+          data-testid="load-all-btn"
+          disabled=""
+          type="button"
+        >
+          <span
+            class="_button__spinner_10f3x_372"
+          >
+            <span
+              class="_spinner_o7c7y_10 _spinner--neutral_o7c7y_26 _spinner--sm_o7c7y_17"
+              role="progressbar"
+            >
+              <svg
+                class="_spinner__svg_o7c7y_32"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  fill="none"
+                  height="24"
+                  width="24"
+                />
+                <g
+                  transform="translate(-237.694 -93.932)"
+                >
+                  <path
+                    d="M-5236.305-4108.069h0v-2a9.011,9.011,0,0,0,9-9,9.01,9.01,0,0,0-9-9,9.01,9.01,0,0,0-9,9h-2a10.928,10.928,0,0,1,3.222-7.779,10.928,10.928,0,0,1,7.778-3.221,10.929,10.929,0,0,1,7.779,3.221,10.932,10.932,0,0,1,3.221,7.777,10.928,10.928,0,0,1-3.221,7.778A10.931,10.931,0,0,1-5236.305-4108.069Z"
+                    transform="translate(5486 4225)"
+                  />
+                  <circle
+                    cx="1"
+                    cy="1"
+                    r="1"
+                    transform="translate(248.694 114.932)"
+                  />
+                  <circle
+                    cx="1"
+                    cy="1"
+                    r="1"
+                    transform="translate(238.694 104.932)"
+                  />
+                </g>
+              </svg>
+            </span>
+          </span>
+          Load all
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="size-14 grow-3 w-[25%]"
+  >
+    <div
+      class="text-right h-full flex items-bottom justify-end"
+    >
+      <p
+        class="_text--paragraph_1aw48_54"
+      >
+        10
+         
+        of 100
+         
+        results
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TableFooter Snapshot Tests > should match snapshot with no pagination and no totalCount 1`] = `
+<div
+  class="flex justify-center items-center"
+>
+  <div
+    class="size-12 grow-3 w-[25%]"
+  />
+  <div
+    class="size-12 grow-7 w-1/2"
+  >
+    <div
+      class="h-full flex items-center justify-center"
+    />
+  </div>
+  <div
+    class="size-14 grow-3 w-[25%]"
+  >
+    <div
+      class="text-right h-full flex items-bottom justify-end"
+    >
+      <p
+        class="_text--paragraph_1aw48_54"
+      >
+        15
+         
+         
+        results
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TableFooter Snapshot Tests > should match snapshot with only itemsCount 1`] = `
+<div
+  class="flex justify-center items-center"
+>
+  <div
+    class="size-12 grow-3 w-[25%]"
+  />
+  <div
+    class="size-12 grow-7 w-1/2"
+  >
+    <div
+      class="h-full flex items-center justify-center"
+    />
+  </div>
+  <div
+    class="size-14 grow-3 w-[25%]"
+  >
+    <div
+      class="text-right h-full flex items-bottom justify-end"
+    >
+      <p
+        class="_text--paragraph_1aw48_54"
+      >
+        25
+         
+         
+        results
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TableFooter Snapshot Tests > should match snapshot with only load all button 1`] = `
+<div
+  class="flex justify-center items-center"
+>
+  <div
+    class="size-12 grow-3 w-[25%]"
+  />
+  <div
+    class="size-12 grow-7 w-1/2"
+  >
+    <div
+      class="h-full flex items-center justify-center"
+    >
+      <div
+        class="flex justify-center gap-5"
+      >
+        <button
+          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+          data-testid="load-all-btn"
+          type="button"
+        >
+          Load all
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="size-14 grow-3 w-[25%]"
+  >
+    <div
+      class="text-right h-full flex items-bottom justify-end"
+    >
+      <p
+        class="_text--paragraph_1aw48_54"
+      >
+        10
+         
+        of 100
+         
+        results
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TableFooter Snapshot Tests > should match snapshot with only load more button 1`] = `
+<div
+  class="flex justify-center items-center"
+>
+  <div
+    class="size-12 grow-3 w-[25%]"
+  />
+  <div
+    class="size-12 grow-7 w-1/2"
+  >
+    <div
+      class="h-full flex items-center justify-center"
+    >
+      <div
+        class="flex justify-center gap-5"
+      >
+        <button
+          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+          data-testid="load-more-btn"
+          type="button"
+        >
+          Load more
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="size-14 grow-3 w-[25%]"
+  >
+    <div
+      class="text-right h-full flex items-bottom justify-end"
+    >
+      <p
+        class="_text--paragraph_1aw48_54"
+      >
+        10
+         
+        of 100
+         
+        results
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TableFooter Snapshot Tests > should match snapshot with pagination but no handlers 1`] = `
+<div
+  class="flex justify-center items-center"
+>
+  <div
+    class="size-12 grow-3 w-[25%]"
+  />
+  <div
+    class="size-12 grow-7 w-1/2"
+  >
+    <div
+      class="h-full flex items-center justify-center"
+    >
+      <div
+        class="flex justify-center gap-5"
+      />
+    </div>
+  </div>
+  <div
+    class="size-14 grow-3 w-[25%]"
+  >
+    <div
+      class="text-right h-full flex items-bottom justify-end"
+    >
+      <p
+        class="_text--paragraph_1aw48_54"
+      >
+        20
+         
+        of 200
+         
+        results
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TableFooter Snapshot Tests > should match snapshot with pagination enabled 1`] = `
+<div
+  class="flex justify-center items-center"
+>
+  <div
+    class="size-12 grow-3 w-[25%]"
+  />
+  <div
+    class="size-12 grow-7 w-1/2"
+  >
+    <div
+      class="h-full flex items-center justify-center"
+    >
+      <div
+        class="flex justify-center gap-5"
+      >
+        <button
+          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+          data-testid="load-more-btn"
+          type="button"
+        >
+          Load more
+        </button>
+        <button
+          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+          data-testid="load-all-btn"
+          type="button"
+        >
+          Load all
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="size-14 grow-3 w-[25%]"
+  >
+    <div
+      class="text-right h-full flex items-bottom justify-end"
+    >
+      <p
+        class="_text--paragraph_1aw48_54"
+      >
+        10
+         
+        of 100
+         
+        results
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TableFooter Snapshot Tests > should match snapshot with undefined props 1`] = `
+<div
+  class="flex justify-center items-center"
+>
+  <div
+    class="size-12 grow-3 w-[25%]"
+  />
+  <div
+    class="size-12 grow-7 w-1/2"
+  >
+    <div
+      class="h-full flex items-center justify-center"
+    />
+  </div>
+  <div
+    class="size-14 grow-3 w-[25%]"
+  >
+    <div
+      class="text-right h-full flex items-bottom justify-end"
+    >
+      <p
+        class="_text--paragraph_1aw48_54"
+      >
+         
+         
+        results
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TableFooter Snapshot Tests > should match snapshot with zero itemsCount 1`] = `
+<div
+  class="flex justify-center items-center"
+>
+  <div
+    class="size-12 grow-3 w-[25%]"
+  />
+  <div
+    class="size-12 grow-7 w-1/2"
+  >
+    <div
+      class="h-full flex items-center justify-center"
+    />
+  </div>
+  <div
+    class="size-14 grow-3 w-[25%]"
+  >
+    <div
+      class="text-right h-full flex items-bottom justify-end"
+    >
+      <p
+        class="_text--paragraph_1aw48_54"
+      >
+        0
+         
+        of 100
+         
+        results
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TableFooter Snapshot Tests > should match snapshot with zero totalCount 1`] = `
+<div
+  class="flex justify-center items-center"
+>
+  <div
+    class="size-12 grow-3 w-[25%]"
+  />
+  <div
+    class="size-12 grow-7 w-1/2"
+  >
+    <div
+      class="h-full flex items-center justify-center"
+    />
+  </div>
+  <div
+    class="size-14 grow-3 w-[25%]"
+  >
+    <div
+      class="text-right h-full flex items-bottom justify-end"
+    >
+      <p
+        class="_text--paragraph_1aw48_54"
+      >
+        5
+         
+        0
+         
+        results
+      </p>
+    </div>
+  </div>
+</div>
+`;

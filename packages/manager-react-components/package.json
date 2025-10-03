@@ -36,6 +36,7 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@tanstack/react-query": "^5.51.21",
     "@tanstack/react-table": "^8.20.1",
+    "@tanstack/react-virtual": "^3.10.9",
     "clsx": "^2.1.1",
     "dompurify": "^3.2.6",
     "lodash.isdate": "^4.0.1",
