@@ -21,7 +21,7 @@ const TileItem = memo(function TileItem({
   totalItems,
   isLoading,
 }: TileItemProps) {
-  const { t } = useTranslation('project');
+  const { t } = useTranslation('home');
 
   // Simple logic for showing divider
   const shouldShowDivider = () => {
