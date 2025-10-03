@@ -1,4 +1,6 @@
 import React, { FunctionComponent } from 'react';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
@@ -7,13 +9,7 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import {
-  OsdsButton,
-  OsdsIcon,
-  OsdsModal,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OsdsButton, OsdsIcon, OsdsModal, OsdsText } from '@ovhcloud/ods-components/react';
 
 type Props = {
   title: string;

@@ -1,6 +1,8 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+
 import '@testing-library/jest-dom';
+import { render } from '@testing-library/react';
+
 import { SkeletonLoading } from './SkeletonLoading';
 
 describe('SkeletonLoading Component', () => {

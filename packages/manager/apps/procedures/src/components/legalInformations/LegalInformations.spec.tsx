@@ -1,8 +1,11 @@
+import React from 'react';
+
 import { render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import React from 'react';
-import { LegalInformations } from './LegalInformations.component';
+
 import { LegalPolicyLinkByLanguage } from '@/constants';
+
+import { LegalInformations } from './LegalInformations.component';
 
 const faketTranslationNamespace = 'tkey';
 const faketpolicyTanslationKey = 'policyKey';
@@ -51,26 +54,19 @@ describe('LegalInformations.component', () => {
     ['CA', 'fr_FR', LegalPolicyLinkByLanguage.CA.fr],
     ['CA', 'en_IN', LegalPolicyLinkByLanguage.CA.en],
     ['unknown', 'anything', LegalPolicyLinkByLanguage.DEFAULT],
-  ])(
-    'should have the correct link for %s user speaking %s',
-    async (sub, locale, result) => {
-      user.subsidiary = sub;
-      user.language = locale;
+  ])('should have the correct link for %s user speaking %s', async (sub, locale, result) => {
+    user.subsidiary = sub;
+    user.language = locale;
 
-      const { getByTestId } = render(
-        <LegalInformations
-          translationNamespace={faketTranslationNamespace}
-          policyTanslationKey={faketpolicyTanslationKey}
-          informationTranslationKey={faketinformationTranslationKey}
-        />,
-      );
+    const { getByTestId } = render(
+      <LegalInformations
+        translationNamespace={faketTranslationNamespace}
+        policyTanslationKey={faketpolicyTanslationKey}
+        informationTranslationKey={faketinformationTranslationKey}
+      />,
+    );
 
-      const legalInformationPolicyContent = getByTestId(
-        'legal_information_policy_content',
-      );
-      expect(legalInformationPolicyContent.innerHTML.includes(result)).toBe(
-        true,
-      );
-    },
-  );
+    const legalInformationPolicyContent = getByTestId('legal_information_policy_content');
+    expect(legalInformationPolicyContent.innerHTML.includes(result)).toBe(true);
+  });
 });

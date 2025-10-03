@@ -1,6 +1,8 @@
+import React from 'react';
+
 import { render, screen } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import React from 'react';
+
 import { RGDPIntroduction } from './RGDPIntroduction.component';
 
 vi.mock('react-i18next', () => ({
@@ -25,9 +27,7 @@ describe('RGDPIntroduction Component', () => {
     const titleElement = screen.getByText('rgdp_introduction_title');
     expect(titleElement).toBeInTheDocument();
 
-    const purposeElement = screen.getByText(
-      'rgdp_introduction_content_purpose',
-    );
+    const purposeElement = screen.getByText('rgdp_introduction_content_purpose');
     expect(purposeElement).toBeInTheDocument();
 
     const identityVerificationElement = screen.getByText(

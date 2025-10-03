@@ -1,15 +1,11 @@
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
-import {
-  OsdsFormField,
-  OsdsInput,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import { Control, Controller, Validate, ValidationRule } from 'react-hook-form';
-import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
 import React, { FunctionComponent } from 'react';
+
+import { Control, Controller, Validate, ValidationRule } from 'react-hook-form';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_LEVEL } from '@ovhcloud/ods-common-theming';
+import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
+import { OsdsFormField, OsdsInput, OsdsText } from '@ovhcloud/ods-components/react';
+
 import { GDPRFormValues } from '@/types/gdpr.type';
 
 type Props = {
@@ -19,9 +15,7 @@ type Props = {
   required?: string;
   helper?: string;
   pattern?: ValidationRule<RegExp>;
-  validate?:
-    | Validate<string, GDPRFormValues>
-    | Record<string, Validate<string, GDPRFormValues>>;
+  validate?: Validate<string, GDPRFormValues> | Record<string, Validate<string, GDPRFormValues>>;
 };
 
 export const TextField: FunctionComponent<Props> = ({
@@ -45,10 +39,7 @@ export const TextField: FunctionComponent<Props> = ({
           pattern,
           validate,
         }}
-        render={({
-          field: { onChange, onBlur, value, name: _name },
-          fieldState: { error },
-        }) => (
+        render={({ field: { onChange, onBlur, value, name: _name }, fieldState: { error } }) => (
           <OsdsFormField error={error?.message}>
             {label && (
               <label htmlFor={id} slot="label">

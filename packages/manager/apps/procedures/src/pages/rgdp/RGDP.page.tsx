@@ -1,9 +1,11 @@
 import React from 'react';
+
 import { PageLayout } from '@/components/PageLayout/PageLayout.component';
-import { RGDPIntroduction } from './rgdpIntroduction/RGDPIntroduction.component';
-import { RGDPForm } from './rgdpForm/RGDPForm.component';
 import { LegalInformations } from '@/components/legalInformations/LegalInformations.component';
+
 import { LEGAL_INFORMATIONS_RETENTION_DAYS } from './RGPD.constants';
+import { RGDPForm } from './rgdpForm/RGDPForm.component';
+import { RGDPIntroduction } from './rgdpIntroduction/RGDPIntroduction.component';
 
 export default function RGDP() {
   return (
