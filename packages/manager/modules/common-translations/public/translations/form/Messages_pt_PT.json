@@ -31,5 +31,6 @@
   "yes": "Sim",
   "no": "Não",
   "ok": "OK",
-  "optional": "facultativo"
+  "optional": "facultativo",
+  "step_number": "Etapa {{step}}"
 }

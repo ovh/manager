@@ -19,6 +19,6 @@
   "billing_payment_method_table_action_delete": "Elimina questo metodo di pagamento",
   "billing_payment_method_information_add_ovh_sas": "Quando registri un metodo di pagamento, autorizzi OVH S.A.S a conservarlo per facilitare il pagamento degli ordini futuri.",
   "billing_payment_method_information_add_default": "Il metodo di pagamento registrato come \"predefinito\" viene utilizzato automaticamente a ogni scadenza per il saldo dei servizi con rinnovo automatico e fatturazione a consumo (\"Pay as you go\"). Prima di ogni scadenza di pagamento, verrà inviato un messaggio di notifica. I metodi di pagamento possono essere modificati, eliminati o aggiunti in qualsiasi momento tramite l'interfaccia qui sotto. Per utilizzare servizi con rinnovo automatico o fatturazione a consumo, è necessario disporre di almeno una modalità di pagamento valida registrata.",
-  "billing_payment_method_payment_by_cheque_information": "Il pagamento tramite assegno non sarà più accettato dal 1° dicembre 2025. Per semplificare i vostri regolamenti, vi proponiamo altre alternative. Per favore, clicca sul pulsante di azione ",
-  "billing_payment_method_payment_by_cheque_information_button": "\"Aggiungi un metodo di pagamento\""
+  "billing_payment_method_payment_by_cheque_information": "Il pagamento tramite assegno non sarà più accettato a partire dal 1° dicembre 2025. Per semplificare i pagamenti, proponiamo altre alternative. Clicca su ",
+  "billing_payment_method_payment_by_cheque_information_button": "“Aggiungere un metodo di pagamento”"
 }

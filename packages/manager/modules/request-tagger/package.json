@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-request-tagger",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "private": true,
   "description": "Request tagger",
   "keywords": [
@@ -31,7 +31,7 @@
     "prepare": "rollup -c --environment BUILD:production"
   },
   "dependencies": {
-    "@ovh-ux/request-tagger": "^0.5.2",
+    "@ovh-ux/request-tagger": "^0.5.3",
     "lodash": "^4.17.15"
   },
   "devDependencies": {

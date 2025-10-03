@@ -81,19 +81,25 @@ export function resolveTurboFilters({ appsDir, appFolders, packageNames }) {
  *
  * @param {string} rootDir - Root directory where Turbo should be executed.
  * @param {string[]} filters - List of Turbo build filters (package names).
+ * @param {string[]} [extraArgs=[]] - Additional arguments to forward to Turbo.
  * @returns {void}
  *
  * @example
  * runTurboBuild("/workspace", ["@ovh-ux/manager-zimbra-app"]);
  * // Executes: turbo run build --filter @ovh-ux/manager-zimbra-app
  */
-export function runTurboBuild(rootDir, filters) {
+export function runTurboBuild(rootDir, filters, extraArgs = []) {
   if (filters.length === 0) {
     logWarn('⚠️ No Turbo build filters provided, skipping build step.');
     return;
   }
 
-  const turboArgs = ['run', 'build', ...filters.flatMap((pkgName) => ['--filter', pkgName])];
+  const turboArgs = [
+    'run',
+    'build',
+    ...filters.flatMap((pkgName) => ['--filter', pkgName]),
+    ...extraArgs,
+  ];
   logInfo(`Building with Turbo (filters: ${filters.join(', ')})`);
 
   const buildResult = spawnSync('turbo', turboArgs, {
@@ -124,7 +130,12 @@ export function runTurboBuild(rootDir, filters) {
  * runTurboTests(process.cwd(), ['web', 'zimbra'], ['--', '--coverage']);
  */
 export function runTurboTests(rootDir, filters, extraArgs = []) {
-  const args = ['run', 'test', ...filters.flatMap((pkg) => ['--filter', pkg]), ...extraArgs];
+  const args = [
+    'run',
+    'test',
+    ...filters.flatMap((pkgName) => ['--filter', pkgName]),
+    ...extraArgs,
+  ];
   logInfo(`Testing with Turbo (filters: ${filters.join(', ')})`);
 
   const res = spawnSync('turbo', args, {

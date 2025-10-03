@@ -189,13 +189,11 @@ function getTestsCoverageStatusColor(pct: number): 'green' | 'orange' | 'red' {
  * @returns {string} HTML block.
  */
 function renderWorstFiles(app: string, worst: WorstFileEntry[]) {
-  const { threshold, metric } = testsCoverageConfig.worstFiles;
-
   if (!worst.length) {
     return `
-      <details>
-        <summary>⚠️ Worst covered files (${metric})</summary>
-        <p style="margin:0.5rem 0; color:#888;">No files below threshold 🎉</p>
+      <details class="coverage-details">
+        <summary>📊 Test Coverage Overview for <strong>${app}</strong></summary>
+        <p class="coverage-empty">No files below threshold 🎉</p>
       </details>`;
   }
 
@@ -205,15 +203,17 @@ function renderWorstFiles(app: string, worst: WorstFileEntry[]) {
         <tr>
           <td colspan="2">${file}</td>
           <td>${f.covered}/${f.total}</td>
-          <td style="color:${getTestsCoverageStatusColor(f.percentage)}">${f.percentage.toFixed(2)}%</td>
+          <td style="color:${getTestsCoverageStatusColor(f.percentage)}">
+            ${f.percentage.toFixed(2)}%
+          </td>
         </tr>`,
     )
     .join('');
 
   return `
-    <details>
-      <summary>⚠️ Worst covered files (below ${threshold}% — ${metric})</summary>
-      <table style="margin:0.5rem 0; border:1px solid #ccc; width:95%;">
+    <details class="coverage-details">
+      <summary>📊 Test Coverage Overview for <strong>${app}</strong></summary>
+      <table class="coverage-subtable">
         <tbody>${rows}</tbody>
       </table>
     </details>`;
@@ -249,6 +249,28 @@ export function generateTestsCoverageHtml(
     .row-green { background:#e6ffed; }
     .row-orange { background:#fff8e1; }
     .row-red { background:#ffe6e6; }
+    .coverage-details {
+      margin: 0.3rem 0 0.8rem 1.5rem; /* indent */
+      padding: 0.5rem;
+      border-left: 3px solid #ccc;
+      background: #fafafa;
+      border-radius: 4px;
+    }
+    .coverage-details summary {
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .coverage-subtable {
+      margin-top: 0.5rem;
+      border: 1px solid #ddd;
+      width: 95%;
+      font-size: 0.9em;
+    }
+    .coverage-empty {
+      margin: 0.5rem 0;
+      color: #888;
+      font-style: italic;
+    }
   </style>
   <h1>Tests Coverage</h1>
   `;

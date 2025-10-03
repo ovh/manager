@@ -19,6 +19,6 @@
   "billing_payment_method_table_action_delete": "Usuń tę metodę płatności",
   "billing_payment_method_information_add_ovh_sas": "Po zarejestrowaniu sposobu płatności OVH S.A.S może go zachować, aby ułatwić płatności za przyszłe zamówienia.",
   "billing_payment_method_information_add_default": "Sposób płatności zarejestrowany jako domyślny zostanie automatycznie użyty w każdym kolejnym terminie płatności do opłacenia usług z opcją automatycznego odnowienia oraz płatności za wykorzystane zasoby („pay as you go”). Otrzymasz powiadomienie przed każdym nowym terminem płatności. W każdej chwili możesz zmienić, usunąć lub dodać sposoby płatności, używając poniższego interfejsu. Aby móc korzystać z usług z opcją automatycznego odnawiania lub z płatnością za wykorzystane zasoby, musisz mieć zarejestrowany co najmniej jeden ważny sposób płatności.",
-  "billing_payment_method_payment_by_cheque_information": "Płatność czekiem nie będzie już przyjmowana od 1 grudnia 2025. Aby uprościć Twoje zasady, proponujemy Ci alternatywne rozwiązania. Kliknij przycisk akcji ",
-  "billing_payment_method_payment_by_cheque_information_button": "\"Dodaj sposób płatności\""
+  "billing_payment_method_payment_by_cheque_information": "Od 1 grudnia 2025 płatność czekiem nie będzie już akceptowana. Prosimy o skorzystanie z innych dostępnych form regulowania należności. Kliknij przycisk ",
+  "billing_payment_method_payment_by_cheque_information_button": "„Dodaj sposób płatności”"
 }

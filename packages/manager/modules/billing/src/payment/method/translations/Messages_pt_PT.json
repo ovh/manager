@@ -19,6 +19,6 @@
   "billing_payment_method_table_action_delete": "Eliminar este método de pagamento",
   "billing_payment_method_information_add_ovh_sas": "Ao registar um método de pagamento, autoriza a OVH S.A.S a conservá-lo para facilitar o pagamento das suas futuras encomendas.",
   "billing_payment_method_information_add_default": "O método de pagamento que regista enquanto método de pagamento \"predefinido\" é utilizado automaticamente em cada data de vencimento para o pagamento dos seus serviços em renovação automática e em pagamento conforme a sua utilização (\"Pay as you go\"). Receberá uma notificação antes de cada prazo de pagamento. Pode alterar, eliminar ou adicionar métodos de pagamento a qualquer momento, utilizando a interface abaixo. Para poder utilizar serviços com renovação automática ou pagamento conforme a sua utilização, deve dispor de pelo menos um método de pagamento válido registado.",
-  "billing_payment_method_payment_by_cheque_information": "O pagamento por cheque não será aceite a partir de 1 de dezembro de 2025. Para simplificar os seus regulamentos, sugerimos-lhe outras alternativas. Clique no botão de ação ",
-  "billing_payment_method_payment_by_cheque_information_button": "\"Adicionar um método de pagamento\""
+  "billing_payment_method_payment_by_cheque_information": "O pagamento por cheque não será mais aceite a partir de 1 de dezembro de 2025. Para simplificar os seus pagamentos, sugerimos-lhe outras alternativas. Clique no botão de ação ",
+  "billing_payment_method_payment_by_cheque_information_button": "“Adicionar um método de pagamento”"
 }
