@@ -119,5 +119,5 @@
   "service_state_ready": "Ativo",
   "service_state_updating": "Atualização",
   "service_billing_state_cancelation_planned_tooltip": "Rescisão prevista dia",
-  "service_billing_state_automatic_renewal_tooltip": "Próxima data de vencimento"
+  "service_billing_state_automatic_renewal_tooltip": "Próxima data de vencimento a"
 }

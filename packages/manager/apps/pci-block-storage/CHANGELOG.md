@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.20.11...@ovh-ux/manager-pci-block-storage-app@0.20.12) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.20.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.20.10...@ovh-ux/manager-pci-block-storage-app@0.20.11) (2025-09-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4368] ([e5ca652](https://github.com/ovh/manager/commit/e5ca6521bb4fdcfb050e578e103023b92064517a))
+
+
+
+
+
+## [0.20.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.20.9...@ovh-ux/manager-pci-block-storage-app@0.20.10) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
+## [0.20.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.20.8...@ovh-ux/manager-pci-block-storage-app@0.20.9) (2025-09-23)
+
+
+### Bug Fixes
+
+* **pci-block-storage:** fix guides links ([626fc4b](https://github.com/ovh/manager/commit/626fc4be576fa28391ee4e53dc2da793b6e8fb8b)), closes [#TAPC-4665](https://github.com/ovh/manager/issues/TAPC-4665)
+
+
+
+
+
 ## [0.20.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.20.7...@ovh-ux/manager-pci-block-storage-app@0.20.8) (2025-09-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app

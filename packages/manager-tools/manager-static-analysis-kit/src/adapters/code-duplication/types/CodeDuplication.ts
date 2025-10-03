@@ -20,12 +20,20 @@ export interface AppCodeDuplicationSummary {
    * If not provided by the report, it is computed as duplicateLines / totalLines * 100.
    */
   percentage: number;
+  minPercentage: number;
+  maxPercentage: number;
 
   /**
    * Number of clone groups (a.k.a. "clones") reported by the detector
    * for this app. A clone group can involve multiple files/regions.
    */
   clonesCount: number;
+
+  /**
+   * Number of distinct files that contain at least one duplicated region.
+   * Derived from the `duplicates` array in the jscpd JSON report.
+   */
+  filesWithDuplication: number;
 
   /**
    * Optional error message if the app’s report could not be parsed or aggregated.

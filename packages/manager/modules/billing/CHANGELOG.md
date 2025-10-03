@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.51.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.51.0...@ovh-ux/manager-billing@0.51.1) (2025-10-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4375] ([b64bc5e](https://github.com/ovh/manager/commit/b64bc5e7ac85abea5918b83836b0b748944923b5))
+
+
+
+
+
+# [0.51.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.50.1...@ovh-ux/manager-billing@0.51.0) (2025-09-30)
+
+
+### Bug Fixes
+
+* **billing:** replace invalid status for unpaid services ([c08bf08](https://github.com/ovh/manager/commit/c08bf08b90f91f860b027c2c2abad90df9fe7480)), closes [#MANAGER-19485](https://github.com/ovh/manager/issues/MANAGER-19485)
+
+
+### Features
+
+* **billing:** add default filter to orders ([fca8643](https://github.com/ovh/manager/commit/fca86430dd62760eee66b0dffb7eb84cd9a1a4f4)), closes [#MANAGER-19041](https://github.com/ovh/manager/issues/MANAGER-19041)
+
+
+
+
+
+## [0.50.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.50.0...@ovh-ux/manager-billing@0.50.1) (2025-09-23)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([2c3fab1](https://github.com/ovh/manager/commit/2c3fab10cb6268bb3d33e615c2922abd1bc8c5b3))
+
+
+
+
+
 # [0.50.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.49.0...@ovh-ux/manager-billing@0.50.0) (2025-09-22)
 
 

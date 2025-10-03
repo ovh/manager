@@ -61,6 +61,8 @@
   "ip_table_empty": "No data to display",
   "ip_table_search": "Searching....",
   "ip_table_ipblock_refresh": "Refreshing IP {{t0}}...",
+  "ip_table_ipBlock_under_creation": "Creating...",
+  "ip_table_ipblock_under_division": "Dividing...",
   "ip_manage_task_pending": "An operation is currently being processed on one of the IPs in your server.",
   "ip_migration": "Import IP addresses from SyS to OVHcloud",
   "ip_export": "Export IP addresses to a CSV file",
@@ -773,12 +775,9 @@
   "ip_repricing_banner_link": "More information",
   "ip_unused_banner_text": "You have unused IP addresses. Since IPv4 addresses are becoming increasingly scarce as a resource, please release them if you do not need them.",
   "ip_unused_banner_link": "View unused IPs.",
-  "ip_table_ipBlock_under_creation": "Creating...",
-  "ip_table_ipblock_under_division": "Dividing...",
   "ip_guide_title": "Guide",
   "ip_guide_link_additional_ip": "Configure an Additional IP",
   "ip_guide_link_ip_alias": "Configuring an IP address as an alias",
   "ip_guide_link_ip_proxmox": "Configure an Additional IP on Proxmox VE",
-  "ip_guide_link_floating_ip": "Concepts - Additional IP or Floating IP on Public Cloud",
-  "ip_permanent_mitigation_EOL": "WARNING: The ‘Scrubbing Center: Permanent Mode’ feature is reaching its end of life (EOL) and will be permanently disabled on 8 September 2025."
+  "ip_guide_link_floating_ip": "Concepts - Additional IP or Floating IP on Public Cloud"
 }

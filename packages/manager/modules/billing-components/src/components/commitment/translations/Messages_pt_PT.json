@@ -29,5 +29,8 @@
   "billing_commitment_commit_with_discount": "Subscrever com compromisso e beneficiar de um desconto",
   "billing_commitment_commit_again_with_discount": "Voltar a subscrever com compromisso e beneficiar de um desconto",
   "billing_commitment_none_with_discount": "Atualmente, não tem nenhum compromisso para o seu serviço {{ serviceName }}. A partir de hoje, pode usufruir de um desconto ao contratar o seu {{ serviceType }} com compromisso.",
-  "billing_commitment_commit_again_description_with_discount": "Atualmente, tem um compromisso para o seu serviço {{ serviceName }} até {{ endDate }}. Pode continuar a beneficiar de um preço especial ao contratar novamente o seu {{ serviceType }} com compromisso."
+  "billing_commitment_commit_again_description_with_discount": "Atualmente, tem um compromisso para o seu serviço {{ serviceName }} até {{ endDate }}. Pode continuar a beneficiar de um preço especial ao contratar novamente o seu {{ serviceType }} com compromisso.",
+  "billing_commitment_payment_pay_now_description": "Beneficiar de um desconto adicional ao pagar o montante total antecipadamente",
+  "billing_commitment_info_message": "Ao escolher uma oferta com compromisso, compromete-se a utilizar o serviço durante todo o período escolhido. Em contrapartida, beneficia de uma vantagem (por exemplo: redução de preço, taxas de instalação gratuitas, etc.). O utilizador pode, a qualquer momento, suspender o serviço, mas o cancelamento antecipado poderá acarretar custos ou o pagamento dos meses restantes.",
+  "billing_commitment_payment_method_error": "Existe um problema com o seu método de pagamento. Vamos redirecioná-lo para a página \"Método de pagamento\" para que possa resolver o problema."
 }

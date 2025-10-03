@@ -1,21 +1,29 @@
 import {
   BaseLayout,
+  Breadcrumb,
   Notifications,
   useFormatDate,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import React, { useState } from 'react';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import { Trans, useTranslation } from 'react-i18next';
-import { OdsLink, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import {
-  ODS_ICON_NAME,
-  ODS_MESSAGE_COLOR,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
+  Outlet,
+  useParams,
+  useNavigate,
+  Link as RouterLink,
+} from 'react-router-dom';
+import { Trans, useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import appConfig from '@/web-domains.config';
+import {
+  Icon,
+  ICON_NAME,
+  Message,
+  MESSAGE_COLOR,
+  MessageIcon,
+  Text,
+  TEXT_PRESET,
+  Link as OdsLink,
+} from '@ovhcloud/ods-react';
 import ServiceDetailDomains from '@/alldoms/components/ServiceDetail/ServiceDetailDomains';
 import ServiceDetailInformation from '@/alldoms/components/ServiceDetail/ServiceDetailInformation';
 import ServiceDetailSubscribing from '@/alldoms/components/ServiceDetail/ServiceDetailSubscribing/ServiceDetailSubscribing.component';
@@ -24,6 +32,9 @@ import Loading from '@/alldoms/components/loading/Loading';
 import { CANCEL_TERMINATE_URL } from '@/alldoms/constants';
 import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
 import { urls } from '@/alldoms/routes/routes.constant';
+import appConfig from '@/web-domains.config';
+import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
+import { ServiceRoutes } from '@/alldoms/enum/service.enum';
 
 export default function ServiceDetail() {
   const [isManualRenewMessage, setIsManualRenewMessage] = useState<boolean>(
@@ -39,15 +50,38 @@ export default function ServiceDetail() {
     title: serviceName,
   };
 
-  const { data: alldomService, isLoading } = useGetAllDom({
+  const { data: alldom, isLoading } = useGetAllDom({
     serviceName,
   });
 
-  const { data: url } = useNavigationGetUrl([
-    appConfig.rootLabel,
-    `/alldoms/${serviceName}/${CANCEL_TERMINATE_URL()}`,
-    {},
-  ]);
+  const {
+    data: domainServiceList,
+    listLoading: domainServiceListLoading,
+  } = useGetServices({
+    names: alldom?.currentState?.domains.map((domain) => domain.name),
+    serviceRoute: ServiceRoutes.Domain,
+  });
+
+  const alldomService = alldom;
+  if (
+    !isLoading &&
+    alldomService &&
+    !domainServiceListLoading &&
+    domainServiceList
+  ) {
+    alldomService.currentState.domains.forEach((domain) => {
+      const service = domainServiceList.find(
+        (s) => s.resource.name === domain.name,
+      );
+      if (service?.billing?.expirationDate) {
+        return {
+          ...domain,
+          expiresAt: service.billing.expirationDate,
+        };
+      }
+      return domain;
+    });
+  }
 
   if (isLoading) {
     return <Loading />;
@@ -59,22 +93,30 @@ export default function ServiceDetail() {
       message={notifications.length ? <Notifications /> : null}
       onClickReturn={() => navigate(urls.alldomsRoot)}
       backLinkLabel={t(`${NAMESPACES.ACTIONS}:back_to_list`)}
+      breadcrumb={
+        <Breadcrumb
+          rootLabel={t('title')}
+          appName={appConfig.rootLabel}
+          hideRootLabel
+        />
+      }
     >
       <section>
         {hasTerminateAtExpirationDateAction(
           alldomService.lifecyclePendingActions,
         ) &&
           isManualRenewMessage && (
-            <OdsMessage
-              color={ODS_MESSAGE_COLOR.warning}
+            <Message
+              color={MESSAGE_COLOR.warning}
               className="mb-8 w-full"
-              isDismissible={true}
-              onOdsRemove={() => setIsManualRenewMessage(false)}
+              dismissible={true}
+              onRemove={() => setIsManualRenewMessage(false)}
             >
+              <MessageIcon name={ICON_NAME.triangleExclamation} />
               <div className="flex flex-col gap-y-2">
-                <OdsText
-                  preset={ODS_TEXT_PRESET.paragraph}
-                  className="text-warning"
+                <Text
+                  preset={TEXT_PRESET.paragraph}
+                  className="text-[var(--ods-color-warning-700)]"
                 >
                   <Trans
                     t={t}
@@ -85,17 +127,18 @@ export default function ServiceDetail() {
                         format: 'PPP',
                       }),
                     }}
-                    components={{ strong: <strong /> }}
+                    components={{ strong: <span className="font-bold" /> }}
                   />
-                </OdsText>
+                </Text>
                 <OdsLink
-                  href={url as string}
-                  label={t('allDom_detail_page_manuel_renew_warning_link')}
-                  icon={ODS_ICON_NAME.arrowRight}
-                  className="link-banner"
-                />
+                  as={RouterLink}
+                  to={`/alldoms/${serviceName}/${CANCEL_TERMINATE_URL()}`}
+                >
+                  <Icon name={ICON_NAME.arrowRight} />
+                  {t('allDom_detail_page_manuel_renew_warning_link')}
+                </OdsLink>
               </div>
-            </OdsMessage>
+            </Message>
           )}
         <div className="grid grid-cols-1 gap-6 items-start mb-8 lg:grid-cols-2">
           <ServiceDetailInformation currentState={alldomService.currentState} />

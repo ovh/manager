@@ -73,6 +73,7 @@
   "exchange_ACTION_export_confirm": "Etes-vous certain de vouloir exporter vos comptes ?",
   "exchange_ACTION_add_domain_invalid_domain": "Le domaine saisi n'est pas valide",
   "exchange_tab_INFORMATION": "Informations générales",
+  "exchange_tab_LOGS": "Logs",
   "exchange_tab_DOMAIN": "Domaines associés",
   "exchange_tab_ACCOUNT": "Comptes e-mail",
   "exchange_tab_SHARED_ACCOUNT": "Comptes partagés",
@@ -1334,6 +1335,7 @@
   "exchange_ACTION_configure_services_help_passwordHistoryCount": "Détermine le nombre de nouveaux mots de passe uniques qui doivent être associés à un compte d'utilisateur avant qu'un ancien mot de passe puisse être réutilisé.",
   "exchange_ACTION_configure_services_help_minPasswordLength": "Si vous entrez \"0\", aucun mot de passe n'est pas requis",
   "exchange_tab_TASKS_SET_SERVICE": "Politique de sécurité des comptes",
+
   "exchange_ACTION_loading": "Chargement en cours…",
   "exchange_ACTION_sending": "Envoi en cours…",
   "exchange_ACTION_configure_help_title": "Configuration service Exchange",

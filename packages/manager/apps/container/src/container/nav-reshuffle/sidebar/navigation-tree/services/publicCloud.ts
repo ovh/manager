@@ -352,7 +352,6 @@ pciNode.children = [
     universe: PUBLICCLOUD_UNIVERSE_ID,
     translation: 'sidebar_pci_analytics',
     features: [
-      'data-processing',
       'logs-data-platform',
       'databases-analysis',
       'databases-operational',
@@ -421,19 +420,6 @@ pciNode.children = [
         features: ['pci-databases-analytics-streaming'],
         forceVisibility: true,
       },
-      {
-        id: 'pci-data-processing',
-        idAttr: 'pci-data-processing-link',
-        universe: PUBLICCLOUD_UNIVERSE_ID,
-        translation: 'sidebar_pci_data_processing',
-        serviceType: 'CLOUD_PROJECT_DATAPROCESSING_JOBS',
-        routing: {
-          application: 'public-cloud',
-          hash: '#/pci/projects/{projectId}/data-processing',
-        },
-        features: ['data-processing'],
-        forceVisibility: true,
-      },
       // Entry menu for PCI Data Analysis for Angular
       {
         id: 'pci-databases-analysis',
@@ -498,10 +484,6 @@ pciNode.children = [
     universe: PUBLICCLOUD_UNIVERSE_ID,
     translation: 'sidebar_pci_ai',
     features: [
-      'notebooks',
-      'ai-apps',
-      'training',
-      'ai-dashboard',
       'pci-ai-endpoints',
       'pci-ai-dashboard',
       'pci-ai-notebooks',
@@ -564,58 +546,6 @@ pciNode.children = [
         forceVisibility: true,
       },
       {
-        id: 'pci-ai-dashboard',
-        idAttr: 'pci-ai-dashboard-link',
-        universe: pciNode.id,
-        translation: 'sidebar_pci_ai_dashboard',
-        serviceType: 'CLOUD_PROJECT_AI_DASHBOARD',
-        routing: {
-          application: 'public-cloud',
-          hash: '#/pci/projects/{projectId}/ai-dashboard',
-        },
-        features: ['ai-dashboard'],
-        forceVisibility: true,
-      },
-      {
-        id: 'pci-ai-notebooks',
-        idAttr: 'pci-ai-notebooks-link',
-        universe: PUBLICCLOUD_UNIVERSE_ID,
-        translation: 'sidebar_pci_ai_notebooks',
-        serviceType: 'CLOUD_PROJECT_AI_NOTEBOOK',
-        routing: {
-          application: 'public-cloud',
-          hash: '#/pci/projects/{projectId}/notebooks',
-        },
-        features: ['notebooks'],
-        forceVisibility: true,
-      },
-      {
-        id: 'pci-ai-training',
-        idAttr: 'pci-ai-training-link',
-        universe: PUBLICCLOUD_UNIVERSE_ID,
-        translation: 'sidebar_pci_ai_training',
-        serviceType: 'CLOUD_PROJECT_AI_JOB',
-        routing: {
-          application: 'public-cloud',
-          hash: '#/pci/projects/{projectId}/training',
-        },
-        features: ['training'],
-        forceVisibility: true,
-      },
-      {
-        id: 'pci-ai-app',
-        idAttr: 'pci-ai-app-link',
-        universe: PUBLICCLOUD_UNIVERSE_ID,
-        translation: 'sidebar_pci_ai_app',
-        serviceType: 'CLOUD_PROJECT_AI_APP',
-        routing: {
-          application: 'public-cloud',
-          hash: '#/pci/projects/{projectId}/ai',
-        },
-        features: ['ai-apps'],
-        forceVisibility: true,
-      },
-      {
         id: 'pci-ai-endpoints-app',
         idAttr: 'pci-ai-endpoints-app-link',
         universe: PUBLICCLOUD_UNIVERSE_ID,
@@ -637,6 +567,7 @@ pciNode.children = [
     translation: 'sidebar_pci_quantum',
     features: [
       'pci-quantum-emulators',
+      'pci-quantum-qpu',
     ],
     forceVisibility: true,
     children: [
@@ -651,8 +582,22 @@ pciNode.children = [
           hash: '#/pci/projects/{projectId}/ai-ml/quantum/notebooks',
         },
         forceVisibility: true,
-        tag: NodeTag.NEW
+        features: ['pci-quantum-emulators'],
       },
+       {
+         id: 'pci-quantum-qpu',
+         idAttr: 'pci-quantum-qpu-link',
+         universe: PUBLICCLOUD_UNIVERSE_ID,
+         translation: 'sidebar_pci_quantum_qpu',
+         serviceType: 'CLOUD_PROJECT_QUANTUM_QPU',
+         routing: {
+           application: 'public-cloud',
+            hash: '#/pci/projects/{projectId}/ai-ml/quantum/qpu',
+         },
+         forceVisibility: true,
+         features: ['pci-quantum-qpu'],
+         tag: NodeTag.NEW
+       },
     ],
   },
   {

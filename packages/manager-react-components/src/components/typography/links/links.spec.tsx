@@ -51,3 +51,16 @@ describe('Links component', () => {
     expect(linkElement).toBeInTheDocument();
   });
 });
+
+it('renders a link correctly with an id', () => {
+  const props = {
+    href: 'https://www.ovhcloud.com/',
+    label: 'tooltip ready link',
+    id: 'trigger-id',
+  };
+
+  const { container } = render(<Links {...props} />);
+  const linkElement = container.querySelector('#trigger-id');
+
+  expect(linkElement).toBeInTheDocument();
+});

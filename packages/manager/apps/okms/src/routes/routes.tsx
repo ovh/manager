@@ -95,7 +95,7 @@ export default (
     id={'kms-root'}
     errorElement={
       <ErrorBoundary
-        redirectionApp="key-management-service"
+        redirectionApp="okms"
         isPreloaderHide={true}
         isRouteShellSync={true}
       />

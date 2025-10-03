@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/logs-to-customer",
-  "version": "1.7.5",
+  "version": "1.7.9",
   "private": true,
   "description": "",
   "license": "BSD-3-Clause",
@@ -19,12 +19,12 @@
     "date-fns": "^3.6.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-api": "^0.18.4",
-    "@ovh-ux/manager-core-test-utils": "^0.7.4",
-    "@ovh-ux/manager-react-components": "^2.40.5",
-    "@ovh-ux/manager-static-analysis-kit": "^0.9.0",
+    "@ovh-ux/manager-core-api": "^0.18.5",
+    "@ovh-ux/manager-core-test-utils": "^0.7.5",
+    "@ovh-ux/manager-react-components": "^2.42.1",
+    "@ovh-ux/manager-static-analysis-kit": "^0.10.0",
     "@ovh-ux/manager-tests-setup": "latest",
-    "@ovh-ux/manager-vite-config": "^0.13.1",
+    "@ovh-ux/manager-vite-config": "^0.13.2",
     "@ovhcloud/ods-components": "^18.6.2",
     "@ovhcloud/ods-themes": "^18.6.2",
     "msw": "2.1.7",

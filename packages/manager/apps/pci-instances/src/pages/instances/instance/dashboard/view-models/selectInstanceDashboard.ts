@@ -1,9 +1,12 @@
 import { getInstanceStatus } from '@/pages/instances/mapper/status.mapper';
+import { TAction, TActionLink } from '@/types/instance/action/action.type';
 import { TActionName } from '@/types/instance/common.type';
 import {
   TInstance,
   TInstanceAction,
+  TInstanceAddress,
   TInstanceAddresses,
+  TInstanceBackup,
   TInstanceFlavor,
   TInstancePrice,
   TInstanceRegion,
@@ -27,23 +30,31 @@ type TFlavor = {
   publicBandwidth: string;
 };
 
-export type TAction = {
-  label: string;
-  link: {
-    path: string;
-    isExternal: boolean;
-    isTargetBlank?: boolean;
-  };
+type TInstanceActions = Map<string, TAction[]>;
+
+type TPublicNetwork = {
+  isFloatingIp: boolean;
+  actionsLinks: TAction[];
+  networks: TInstanceAddress[];
 };
 
-type TInstanceActions = Map<string, TAction[]>;
+type TPrivateNetwork = {
+  previews: TInstanceAddress[];
+  otherNetworks: TInstanceAddress[] | null;
+};
+
+type TBackupsInfo = {
+  total: number;
+  lastUpdated: string | null;
+};
 
 export type TInstanceDashboardViewModel = {
   id: string;
   name: string;
   flavor: TFlavor | null;
   region: TInstanceRegion;
-  addresses: TInstanceAddresses;
+  publicNetwork: TPublicNetwork;
+  privateNetwork: TPrivateNetwork;
   pricings: TPrice[];
   status: {
     label: TInstanceStatus;
@@ -54,10 +65,12 @@ export type TInstanceDashboardViewModel = {
   volumes: TInstanceVolume[];
   sshKey: string | null;
   login: string | null;
+  backupsInfo: TBackupsInfo | null;
   actions: TInstanceActions;
   canActivateMonthlyBilling: boolean;
   isDeleteEnabled: boolean;
   isEditEnabled: boolean;
+  isBackupEnabled: boolean;
 } | null;
 
 const isEditionEnabled = (actions: TInstanceAction[]) =>
@@ -88,12 +101,15 @@ const canActivateMonthlyBilling = (actions: TInstanceAction[]) =>
 const canDeleteInstance = (actions: TInstanceAction[]) =>
   actions.some(({ name }) => name === 'delete');
 
+const canCreateBackup = (actions: TInstanceAction[]) =>
+  actions.some(({ name }) => name === 'create_backup');
+
 // TODO: find a way to handle this properly (where to build path and translated label)
 const getActionHrefByName = (
   projectUrl: string,
   name: TActionName,
   { region: { name: region }, id }: Pick<TInstance, 'id' | 'region'>,
-): TAction['link'] => {
+): TActionLink => {
   if (name === 'edit') {
     return {
       path: `../${id}/edit`,
@@ -165,15 +181,23 @@ const getActionHrefByName = (
   return { path: '', isExternal: false };
 };
 
+const isAdditionalAction = ({ name }: { name: TActionName }) => {
+  const excludeActions = [
+    'details',
+    'delete',
+    'activate_monthly_billing',
+    'create_backup',
+  ];
+
+  return !excludeActions.includes(name);
+};
+
 const mapActions = (
   instance: TInstance,
   projectUrl: string,
 ): TInstanceActions =>
   instance.actions
-    .filter(
-      ({ name }) =>
-        !['details', 'delete', 'activate_monthly_billing'].includes(name),
-    )
+    .filter(isAdditionalAction)
     .reduce<TInstanceActions>((acc, action) => {
       const { group, name } = action;
       const newAction = {
@@ -186,8 +210,69 @@ const mapActions = (
       return acc;
     }, new Map() as TInstanceActions);
 
+const buildPublicNetworkActionLinks = (
+  baseUrl: string,
+  ipv4: string,
+): TAction[] => {
+  const ipParams = `ip=${ipv4}&ipBlock=${ipv4}`;
+
+  return [
+    { label: 'change_dns', link: { path: baseUrl } },
+    {
+      label: 'firewall_settings',
+      link: {
+        path: `${baseUrl}?action=toggleFirewall&${ipParams}`,
+      },
+    },
+  ].map((action) => ({
+    ...action,
+    link: { ...action.link, isExternal: true, isTargetBlank: true },
+  }));
+};
+
+const mapPublicNetwork = (
+  dedicatedUrl: string,
+  addresses: TInstanceAddresses,
+) => {
+  const networks = addresses.get('floating') ?? addresses.get('public') ?? [];
+  const ipv4 = networks.find((network) => network.version === 4)?.ip ?? '';
+
+  return {
+    isFloatingIp: !!addresses.get('floating'),
+    actionsLinks: buildPublicNetworkActionLinks(dedicatedUrl, ipv4),
+    networks,
+  };
+};
+
+const mapPrivateNetwork = (addresses: TInstanceAddresses) => {
+  const networks = addresses.get('private') ?? [];
+  const otherNetworks = networks.slice(2);
+
+  return {
+    previews: networks.slice(0, 2),
+    otherNetworks: otherNetworks.length > 0 ? otherNetworks : null,
+  };
+};
+
+type TUrlBuilderParams = {
+  projectUrl: string;
+  dedicatedUrl: string;
+};
+
+const getBackupsInfo = (backups: TInstanceBackup[], locale: string) => ({
+  total: backups.length,
+  lastUpdated: backups[0]
+    ? new Date(backups[0].createdAt).toLocaleDateString(locale, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      })
+    : null, // the last backup is always the first because backups is already sorted from the api
+});
+
 export const selectInstanceDashboard = (
-  projectUrl: string,
+  { projectUrl, dedicatedUrl }: TUrlBuilderParams,
+  locale: string,
   instance?: TInstance,
 ): TInstanceDashboardViewModel => {
   if (!instance) return null;
@@ -197,7 +282,8 @@ export const selectInstanceDashboard = (
     name: instance.name,
     flavor: instance.flavor ? mapFlavor(instance.flavor) : null,
     region: instance.region,
-    addresses: instance.addresses,
+    publicNetwork: mapPublicNetwork(dedicatedUrl, instance.addresses),
+    privateNetwork: mapPrivateNetwork(instance.addresses),
     pricings: mapPricings(instance.pricings || []),
     task: instance.task,
     status: getInstanceStatus(instance.status),
@@ -205,9 +291,13 @@ export const selectInstanceDashboard = (
     volumes: instance.volumes ?? [],
     sshKey: instance.sshKey,
     login: instance.login,
+    backupsInfo: instance.backups
+      ? getBackupsInfo(instance.backups, locale)
+      : null,
     actions: mapActions(instance, projectUrl),
     canActivateMonthlyBilling: canActivateMonthlyBilling(instance.actions),
     isDeleteEnabled: canDeleteInstance(instance.actions),
     isEditEnabled: isEditionEnabled(instance.actions),
+    isBackupEnabled: canCreateBackup(instance.actions),
   };
 };

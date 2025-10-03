@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-wiki",
-  "version": "0.13.2",
+  "version": "0.14.4",
   "private": true,
   "description": "Manager Wiki",
   "license": "BSD-3-Clause",
@@ -12,8 +12,8 @@
     "start": "yarn run build-dependencies && rm -rf dist/.cache/storybook && storybook dev -p 6006"
   },
   "dependencies": {
-    "@ovh-ux/manager-core-api": "^0.18.4",
-    "@ovh-ux/manager-react-components": "^2.40.5",
+    "@ovh-ux/manager-core-api": "^0.18.5",
+    "@ovh-ux/manager-react-components": "^2.42.1",
     "@ovhcloud/ods-components": "^18.6.2",
     "@tanstack/react-table": "^8.10.0",
     "clsx": "^2.1.1",
@@ -25,12 +25,12 @@
   "devDependencies": {
     "@etchteam/storybook-addon-status": "^5.0.0",
     "@mdx-js/react": "^3.0.1",
-    "@ovh-ux/manager-config": "^8.6.2",
+    "@ovh-ux/manager-config": "^8.6.3",
     "@ovh-ux/manager-core-api": "^0.12.0",
     "@ovh-ux/ovh-at-internet": "^0.21.6",
-    "@ovh-ux/request-tagger": "^0.5.2",
-    "@ovh-ux/shell": "^4.7.6",
-    "@ovh-ux/url-builder": "^2.1.2",
+    "@ovh-ux/request-tagger": "^0.5.3",
+    "@ovh-ux/shell": "^4.7.8",
+    "@ovh-ux/url-builder": "^2.1.3",
     "@storybook/addon-docs": "^8.6.7",
     "@storybook/addon-essentials": "^8.6.7",
     "@storybook/addon-interactions": "^8.6.7",

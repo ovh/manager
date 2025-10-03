@@ -297,6 +297,7 @@ export const Datagrid = <T,>({
         : []),
       ...columns.map(
         (col): ColumnDef<T> => ({
+          id: col.id,
           accessorKey: col.id,
           cell: (props) => col.cell(props.row.original),
           header: col.label,
@@ -396,9 +397,7 @@ export const Datagrid = <T,>({
   const columnsVisibility = useMemo(
     () =>
       table.getAllLeafColumns().map((column) => {
-        const col = columns.find(
-          (item) => column.id === item.id.replaceAll('.', '_'),
-        );
+        const col = columns.find((item) => column.id === item.id);
         return {
           id: column.id,
           label: col?.label,

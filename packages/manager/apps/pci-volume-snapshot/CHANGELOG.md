@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.6.11...@ovh-ux/manager-pci-volume-snapshot-app@0.6.12) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-snapshot-app
+
+
+
+
+
+## [0.6.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.6.10...@ovh-ux/manager-pci-volume-snapshot-app@0.6.11) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-snapshot-app
+
+
+
+
+
+## [0.6.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.6.9...@ovh-ux/manager-pci-volume-snapshot-app@0.6.10) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-snapshot-app
+
+
+
+
+
+## [0.6.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.6.8...@ovh-ux/manager-pci-volume-snapshot-app@0.6.9) (2025-09-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-snapshot-app
+
+
+
+
+
+## [0.6.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.6.7...@ovh-ux/manager-pci-volume-snapshot-app@0.6.8) (2025-09-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-volume-snapshot-app
+
+
+
+
+
+## [0.6.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.6.6...@ovh-ux/manager-pci-volume-snapshot-app@0.6.7) (2025-09-23)
+
+
+### Bug Fixes
+
+* **pci-volume-snapshot:** change US onboarding guide ([60749a2](https://github.com/ovh/manager/commit/60749a2dec573b2136f349dcb3659e8ff01e876c)), closes [#TAPC-1577](https://github.com/ovh/manager/issues/TAPC-1577)
+
+
+
+
+
 ## [0.6.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-volume-snapshot-app@0.6.5...@ovh-ux/manager-pci-volume-snapshot-app@0.6.6) (2025-09-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-volume-snapshot-app

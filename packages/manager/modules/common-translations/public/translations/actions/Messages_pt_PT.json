@@ -53,5 +53,9 @@
   "order_users": "Adicionar um utilizador",
   "edit_account": "Editar a conta",
   "change_password": "Alterar palavra-passe",
-  "delete_account": "Eliminar conta"
+  "delete_account": "Eliminar conta",
+  "copy": "Copiar",
+  "select_imperative": "Selecione",
+  "go_to_details": "Ver detalhes",
+  "display_recap": "Ver resumo"
 }

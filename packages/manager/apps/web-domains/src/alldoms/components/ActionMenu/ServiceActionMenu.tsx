@@ -47,7 +47,12 @@ export default function ServiceActionMenu({
   const { data: handleContactUrl } = useNavigationGetUrl([
     'account',
     '/contacts/services/edit',
-    { categoryType: allDomManagerService, service: serviceName },
+    {
+      serviceName,
+      category: allDomManagerService,
+      service: serviceName,
+      categoryType: allDomManagerService,
+    },
   ]);
 
   const disableAction = hasTerminateAtExpirationDateAction(

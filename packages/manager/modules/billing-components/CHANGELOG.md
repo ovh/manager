@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.25.0...@ovh-ux/manager-billing-components@4.25.1) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
+# [4.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.24.2...@ovh-ux/manager-billing-components@4.25.0) (2025-09-23)
+
+
+### Features
+
+* **billing:** rework commitment page ([82ec628](https://github.com/ovh/manager/commit/82ec628fc54d1935d8c672e2001bdcb13a328b0c)), closes [#MANAGER-17576](https://github.com/ovh/manager/issues/MANAGER-17576)
+
+
+
+
+
 ## [4.24.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.24.1...@ovh-ux/manager-billing-components@4.24.2) (2025-09-22)
 
 

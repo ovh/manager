@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.42.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.42.0...@ovh-ux/manager-react-components@2.42.1) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-components
+
+# [2.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.41.1...@ovh-ux/manager-react-components@2.42.0) (2025-09-30)
+
+### Bug Fixes
+
+- **i18n:** add missing translations [CDS 679] ([b873a7b](https://github.com/ovh/manager/commit/b873a7b6e8fcd007651a2ad9380ae85ca370a55a))
+
+### Features
+
+- **mrc:** guide link pci storages ([9bbd33d](https://github.com/ovh/manager/commit/9bbd33d1cdb1a15a4df3dbb8ba5b6f9e6767b19a)), closes [#TAPC-4875](https://github.com/ovh/manager/issues/TAPC-4875)
+
+## [2.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.41.0...@ovh-ux/manager-react-components@2.41.1) (2025-09-25)
+
+### Bug Fixes
+
+- **mrc:** fix column visibility when id contain dot ([52b9fe9](https://github.com/ovh/manager/commit/52b9fe93b80b16c33f404bf9be455031770081c9)), closes [#MANAGER-19267](https://github.com/ovh/manager/issues/MANAGER-19267)
+
+# [2.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.40.5...@ovh-ux/manager-react-components@2.41.0) (2025-09-23)
+
+### Bug Fixes
+
+- **mrc:** fix datagrid column id ([487cbe1](https://github.com/ovh/manager/commit/487cbe1a8a988734db8cba6fcd5efcf7d37da1fc)), closes [#MANAGER-19267](https://github.com/ovh/manager/issues/MANAGER-19267)
+
+### Features
+
+- **mrc:** add id to link component ([23710c4](https://github.com/ovh/manager/commit/23710c4c4151cd282087dabaadff2e0d60d3d870)), closes [#19239](https://github.com/ovh/manager/issues/19239)
+
 ## [2.40.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.40.4...@ovh-ux/manager-react-components@2.40.5) (2025-09-18)
 
 **Note:** Version bump only for package @ovh-ux/manager-react-components

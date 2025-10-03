@@ -3,7 +3,7 @@
   "pci_instances_dashboard_tab_info_title": "General information",
   "pci_instances_dashboard_tab_vnc_title": "VNC console",
   "pci_instances_dashboard_info_title": "Information",
-  "pci_instances_dashboard_upgrade_model": "Modify template",
+  "pci_instances_dashboard_upgrade_model": "Modify model",
   "pci_instances_dashboard_memory_title": "RAM",
   "pci_instances_dashboard_processor_title": "Processor",
   "pci_instances_dashboard_price_title": "Price",
@@ -11,7 +11,7 @@
   "pci_instances_dashboard_storage_title": "Storage",
   "pci_instances_dashboard_public_bandwidth_title": "Public bandwidth",
   "pci_instances_dashboard_attach_volumes": "Attach a volume ",
-  "pci_instances_dashboard_edit_image": "Change image",
+  "pci_instances_dashboard_edit_image": "Modify image",
   "pci_instances_dashboard_id_openstack_title": "ID",
   "pci_instances_dashboard_ssh_key": "SSH key",
   "pci_instances_dashboard_network_title": "Networks",
@@ -25,5 +25,10 @@
   "pci_instances_dashboard_instance_price_label": "Instance price: ",
   "pci_instances_dashboard_licence_price_label": "Licence price: ",
   "pci_instances_dashboard_public_network_title": "Public networks",
-  "pci_instances_dashboard_network_floating_title": "Floating IP"
+  "pci_instances_dashboard_network_floating_title": "Floating IP",
+  "pci_instances_dashboard_network_name_label": "Network name: ",
+  "pci_instances_dashboard_backup_empty_message": "You do not have a backup",
+  "pci_instances_dashboard_backup_title": "Backup management",
+  "pci_instances_dashboard_backup_number_of_backups": "Instance backup count",
+  "pci_instances_dashboard_backup_last_updated_backups": "Date of last backup"
 }

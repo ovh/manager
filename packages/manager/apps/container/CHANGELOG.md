@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.154.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.154.0...@ovh-ux/manager-container-app@0.154.1) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.154.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.153.0...@ovh-ux/manager-container-app@0.154.0) (2025-09-30)
+
+
+### Features
+
+* **container:** wrap modal handlers with usecallback ([7864882](https://github.com/ovh/manager/commit/78648826f66a7d82fd7b9578271c4a0ab561c8da)), closes [#MANAGER-18812](https://github.com/ovh/manager/issues/MANAGER-18812)
+
+
+
+
+
+# [0.153.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.152.1...@ovh-ux/manager-container-app@0.153.0) (2025-09-29)
+
+
+### Features
+
+* **pci-ai-tools:** add menu Qpu ([e148767](https://github.com/ovh/manager/commit/e148767a220b125c5de4180a02e9657dde0920a8)), closes [#AIS-1207](https://github.com/ovh/manager/issues/AIS-1207)
+
+
+
+
+
+## [0.152.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.152.0...@ovh-ux/manager-container-app@0.152.1) (2025-09-24)
+
+
+### Bug Fixes
+
+* **container:** issue with usecallback in suggestion modal ([f99fe64](https://github.com/ovh/manager/commit/f99fe646e25800910efaeb6b86135f99dd847e71)), closes [#MANAGER-19872](https://github.com/ovh/manager/issues/MANAGER-19872)
+* **container:** suggestion modal error management ([d5d67e7](https://github.com/ovh/manager/commit/d5d67e7e9db62fb5970afc3d7ba664303c37212a)), closes [#MANAGER-14721](https://github.com/ovh/manager/issues/MANAGER-14721)
+
+
+
+
+
+# [0.152.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.151.1...@ovh-ux/manager-container-app@0.152.0) (2025-09-23)
+
+
+### Features
+
+* **ai-tools:** delete ai tools angular code as it have been migrated to react ([08892c0](https://github.com/ovh/manager/commit/08892c0c38849e66a8d408e3f6cb200be7f29a72)), closes [#DATATR-2347](https://github.com/ovh/manager/issues/DATATR-2347)
+* **data-processing:** remove angular unused code and remove billing section ([7e49b07](https://github.com/ovh/manager/commit/7e49b07bf01f84d3f6e53c741cfa762f5a6c5866)), closes [#DATATR-2346](https://github.com/ovh/manager/issues/DATATR-2346)
+
+
+
+
+
 ## [0.151.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.151.0...@ovh-ux/manager-container-app@0.151.1) (2025-09-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

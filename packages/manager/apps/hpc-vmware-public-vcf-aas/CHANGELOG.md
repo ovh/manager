@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.25.2...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.25.3) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-public-vcf-aas-app
+
+
+
+
+
+## [0.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.25.1...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.25.2) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-public-vcf-aas-app
+
+
+
+
+
+## [0.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.25.0...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.25.1) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-public-vcf-aas-app
+
+
+
+
+
+# [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.24.2...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.25.0) (2025-09-29)
+
+
+### Features
+
+* **vcd:** associate vrack on vcd datacentre ([7c32cc1](https://github.com/ovh/manager/commit/7c32cc18049f944dbae0c7b3f201d359c80d52f5)), closes [#MANAGER-19429](https://github.com/ovh/manager/issues/MANAGER-19429)
+
+
+
+
+
+## [0.24.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.24.1...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.24.2) (2025-09-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-public-vcf-aas-app
+
+
+
+
+
+## [0.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.24.0...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.24.1) (2025-09-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-public-vcf-aas-app
+
+
+
+
+
 # [0.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.23.1...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.24.0) (2025-09-22)
 
 

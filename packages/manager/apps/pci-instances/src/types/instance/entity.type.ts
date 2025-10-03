@@ -117,7 +117,7 @@ export type TInstancePrice = TPrice;
 
 export type TInstanceImage = TImage;
 
-type TInstanceBackup = TBackup;
+export type TInstanceBackup = TBackup;
 
 export type TInstanceAddresses = Map<TInstanceAddressType, TInstanceAddress[]>;
 

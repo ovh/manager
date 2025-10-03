@@ -122,7 +122,7 @@
   "orders_order_status_delivering": "Being processed ",
   "orders_order_status_documents_requested": "Documents pending ",
   "orders_order_status_not_paid": "Unpaid ",
-  "orders_order_status_unknown": "Unknown",
+  "orders_order_status_unknown": "Error",
   "orders_order_bc_expired": "Order expired ",
   "orders_order_status_filter_progress": "In progress",
   "orders_order_status_filter_all": "All ",

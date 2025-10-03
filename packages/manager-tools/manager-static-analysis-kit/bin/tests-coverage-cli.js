@@ -93,13 +93,15 @@ function main() {
     const turboFilters = resolveTurboFilters({ appsDir, appFolders, packageNames });
 
     // 1) Build all selected targets (best-effort)
-    runTurboBuild(rootDir, turboFilters);
+    runTurboBuild(rootDir, turboFilters, ['--continue']);
 
     // 2) Run tests with coverage; keep args minimal for Vitest/Jest compatibility
     //    (Projects should already be configured to emit json-summary/lcov.)
     runTurboTests(rootDir, turboFilters, [
-      '--',
+      '--continue', // turbo: keep going even if some tests fail
+      '--', // pass the rest to the test runner
       '--coverage',
+      '--coverage.reportOnFailure',
       '--coverage.reporter',
       'json-summary',
       '--coverage.reporter',

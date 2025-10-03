@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OdsLink } from '@ovhcloud/ods-components/react';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
+import { Link } from '@ovhcloud/ods-react';
 
 interface ActionMeDnsComponentProps {
   readonly domainName: string;
@@ -15,13 +15,14 @@ export default function ActionMeDnsComponent({
 
   const url = `${webUrl as string}/domain/${domainName}/dns-modify`;
   return (
-    <OdsLink
+    <Link
       href={url}
       color="primary"
-      label={t('domain_operations_update_dns_click')}
       className="block"
       icon="external-link"
       isDisabled={!url}
-    />
+    >
+      {t('domain_operations_update_dns_click')}
+    </Link>
   );
 }

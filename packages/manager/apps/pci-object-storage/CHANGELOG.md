@@ -3,6 +3,71 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.17.5...@ovh-ux/manager-pci-object-storage-app@0.17.6) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.17.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.17.4...@ovh-ux/manager-pci-object-storage-app@0.17.5) (2025-09-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4368] ([e5ca652](https://github.com/ovh/manager/commit/e5ca6521bb4fdcfb050e578e103023b92064517a))
+
+
+
+
+
+## [0.17.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.17.3...@ovh-ux/manager-pci-object-storage-app@0.17.4) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.17.2...@ovh-ux/manager-pci-object-storage-app@0.17.3) (2025-09-29)
+
+
+### Bug Fixes
+
+* **object-storage:** hide banner on object detail page ([5ade30d](https://github.com/ovh/manager/commit/5ade30d2d915b5130d4be014f76df6b451a8e425)), closes [#TAPC-4842](https://github.com/ovh/manager/issues/TAPC-4842)
+
+
+
+
+
+## [0.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.17.1...@ovh-ux/manager-pci-object-storage-app@0.17.2) (2025-09-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.17.0...@ovh-ux/manager-pci-object-storage-app@0.17.1) (2025-09-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.16.6...@ovh-ux/manager-pci-object-storage-app@0.17.0) (2025-09-23)
+
+
+### Features
+
+* **object-storage:** add offiste replication destination ([d733535](https://github.com/ovh/manager/commit/d733535e9147b6386e0253380417bc5b4aaecc1b)), closes [#TAPC-4148](https://github.com/ovh/manager/issues/TAPC-4148)
+
+
+
+
+
 ## [0.16.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.16.5...@ovh-ux/manager-pci-object-storage-app@0.16.6) (2025-09-18)
 
 

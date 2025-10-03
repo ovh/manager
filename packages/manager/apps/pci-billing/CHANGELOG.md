@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.12.1...@ovh-ux/manager-pci-billing-app@0.12.2) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-billing-app
+
+
+
+
+
+## [0.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.12.0...@ovh-ux/manager-pci-billing-app@0.12.1) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-billing-app
+
+
+
+
+
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.11.4...@ovh-ux/manager-pci-billing-app@0.12.0) (2025-09-23)
+
+
+### Features
+
+* **data-processing:** remove angular unused code and remove billing section ([7e49b07](https://github.com/ovh/manager/commit/7e49b07bf01f84d3f6e53c741cfa762f5a6c5866)), closes [#DATATR-2346](https://github.com/ovh/manager/issues/DATATR-2346)
+
+
+
+
+
 ## [0.11.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.11.3...@ovh-ux/manager-pci-billing-app@0.11.4) (2025-09-18)
 
 

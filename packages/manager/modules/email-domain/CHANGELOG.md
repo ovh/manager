@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.11.4...@ovh-ux/manager-email-domain@1.11.5) (2025-09-30)
+
+
+### Bug Fixes
+
+* **web.email-domain:** remove spam filter on general information ([e0fe400](https://github.com/ovh/manager/commit/e0fe400e597d7a3d1c6191267dfbc9853772af81)), closes [#PRDCOL-200](https://github.com/ovh/manager/issues/PRDCOL-200)
+
+
+
+
+
 ## [1.11.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.11.3...@ovh-ux/manager-email-domain@1.11.4) (2025-07-17)
 
 

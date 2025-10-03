@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.1.8...@ovh-ux/manager-communication-app@0.1.9) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-communication-app
+
+
+
+
+
+## [0.1.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.1.7...@ovh-ux/manager-communication-app@0.1.8) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-communication-app
+
+
+
+
+
+## [0.1.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.1.6...@ovh-ux/manager-communication-app@0.1.7) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-communication-app
+
+
+
+
+
+## [0.1.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.1.5...@ovh-ux/manager-communication-app@0.1.6) (2025-09-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-communication-app
+
+
+
+
+
+## [0.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.1.4...@ovh-ux/manager-communication-app@0.1.5) (2025-09-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4345] ([0b51f28](https://github.com/ovh/manager/commit/0b51f28a03805af3ffebef2726b95de0ba1bf93e))
+
+
+
+
+
 ## [0.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.1.3...@ovh-ux/manager-communication-app@0.1.4) (2025-09-18)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.50.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.8...@ovh-ux/manager-vps@2.50.9) (2025-09-30)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** fix issue bandwidth on upgrade ([ffb893b](https://github.com/ovh/manager/commit/ffb893b92ff3959bb62744c7295c95c81bf41e85)), closes [#PRDCOL-209](https://github.com/ovh/manager/issues/PRDCOL-209)
+
+
+
+
+
 ## [2.50.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.7...@ovh-ux/manager-vps@2.50.8) (2025-09-16)
 
 

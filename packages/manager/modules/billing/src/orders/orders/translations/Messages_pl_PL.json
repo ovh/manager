@@ -18,7 +18,7 @@
   "orders_order_status_delivering": "Dostarczanie w trakcie",
   "orders_order_status_documentsRequested": "Oczekiwanie na dokumenty",
   "orders_order_status_notPaid": "Brak płatności",
-  "orders_order_status_unknown": "Nieznany",
+  "orders_order_status_unknown": "Błąd",
   "orders_order_bc_expired": "Zamówienie wygasło",
   "orders_order_status_filter_progress": "W realizacji",
   "orders_order_status_filter_all": "Wszystkie",
