@@ -54,5 +54,8 @@
     "CA",
     "EU",
     "US"
+  ],
+  "universes": [
+    "@ovh-ux/manager-dedicated"
   ]
 }
