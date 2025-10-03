@@ -7,6 +7,7 @@ export default {
     currentService: '<',
     currentUser: '<',
     datacenterList: '<',
+    onDeactivateLogs: '<',
     deleteDrp: '<',
     drpAvailability: '<',
     drpGlobalStatus: '<',
@@ -14,9 +15,8 @@ export default {
     goToDrp: '<',
     goToDrpDatacenterSelection: '<',
     goToVpnConfiguration: '<',
-
     isDrpActionPossible: '<',
-
+    isLogsDisabled: '<?',
     onBasicOptionsUpgrade: '&',
     onCertificationUpgrade: '&',
     onConfigurationOnlyUpgrade: '&',

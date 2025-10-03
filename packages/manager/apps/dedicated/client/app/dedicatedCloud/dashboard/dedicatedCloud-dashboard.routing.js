@@ -72,6 +72,11 @@ export default /* @ngInject */ ($stateProvider) => {
       onMlSubscribe: /* @ngInject */ ($state) => () =>
         $state.go('app.dedicatedCloud.details.dashboard.ml-subscribe'),
 
+      onDeactivateLogs: /* @ngInject */ ($state, currentService) => () =>
+        $state.go('app.dedicatedCloud.details.dashboard.deactivate-logs', {
+          productId: currentService.serviceName,
+        }),
+
       onTerminate: /* @ngInject */ ($state) => () =>
         $state.go('app.dedicatedCloud.details.dashboard.terminate'),
 
