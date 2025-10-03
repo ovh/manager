@@ -108,5 +108,5 @@ export const computeServicePrice = ({
     flavorPrice,
     storagePrice,
     servicePrice,
-  } as ServicePricing;
+  };
 };

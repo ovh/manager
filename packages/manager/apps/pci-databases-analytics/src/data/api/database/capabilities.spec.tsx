@@ -1,12 +1,12 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
 import { describe, expect, vi } from 'vitest';
+import { apiClient } from '@/data/api/api.client';
 import {
   getCapabilities,
   getEnginesCapabilities,
   getRegionsCapabilities,
 } from './capabilities.api';
 
-vi.mock('@ovh-ux/manager-core-api', () => {
+vi.mock('@/data/api/api.client', () => {
   const get = vi.fn(() => {
     return Promise.resolve({ data: null });
   });
