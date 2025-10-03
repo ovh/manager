@@ -7,6 +7,8 @@ export const FILTER_TYPE = 'ALL';
 
 export const rootSupportUrl = 'https://help.ovhcloud.com/';
 
+export const OVH_MAIL_MIGRATOR_URL = 'https://omm.ovh.net/';
+
 export const SUPPORT_URL_VIEW_TICKETS = `${rootSupportUrl}csm?id=csm_cases_requests&ovhSubsidiary=`;
 
 export const ZIMBRA_PASSWORD_REGEX = /^(?=.*[!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*\d)(?=.*[A-Z])(?=(.*)).{10,64}$/;
@@ -18,4 +20,5 @@ export default {
   ACCOUNT_TYPES,
   FILTER_TYPE,
   SUPPORT_URL_VIEW_TICKETS,
+  OVH_MAIL_MIGRATOR_URL,
 };
