@@ -1,0 +1,18 @@
+{
+  "pci_projects_onboarding_title": "Benvenuto nell'ecosistema Public Cloud",
+  "pci_projects_onboarding_description1": "Creando un progetto Public Cloud potrai usufruire dell’accesso a diverse risorse disponibili on demand per la tua applicazione. Ecco alcuni esempi.",
+  "pci_projects_onboarding_description2": "È possibile: avviare database SQL o NoSQL, testare un’applicazione su un cluster Kubernetes, utilizzare strumenti di Intelligenza Artificiale per alcune ore o automatizzare il deploy dei server Cloud con Terraform.",
+  "pci_projects_onboarding_contracts_agreements_label": "Ho preso visione e accetto i termini dei seguenti contratti:  ",
+  "pci_projects_onboarding_create_project": "Scopri l'universo Public Cloud",
+  "pci_projects_onboarding_us_title": "La tua piattaforma Public Cloud aperta e reversibile",
+  "pci_projects_onboarding_us_description1": "Sei appassionato di cultura DevOps e pratiche \"cloud ready\" e gestisci la tua infrastruttura tramite API e strumenti di orchestrazione. Cerchi soluzioni preinstallate o \"as a service\" flessibili e fatturate a consumo, per concentrarti sul tuo core business e accelerare la tua produzione.",
+  "pci_projects_onboarding_us_description2": "In questo spazio è possibile approfittare di un'ampia scelta di servizi per sviluppare le tue innovazioni. Queste soluzioni ti permettono di concentrarti sulle tue attività a forte valore aggiunto, utilizzando il Cloud di OVHcloud.",
+  "pci_projects_onboarding_us_description3": "Organizzare le architetture per progetto permette di segmentare i deploy nel Cloud in base alle aree funzionali e operative più adatte alle tue necessità. Ad esempio, puoi creare un progetto per il tuo ambiente di sviluppo e un altro per l'ambiente di produzione. È anche possibile effettuare una segmentazione in base al tipo di applicazione, in particolare con un progetto \"back office\" e un progetto \"e-commerce\".",
+  "pci_projects_onboarding_us_create_project": "Crea il tuo primo progetto Public Cloud OVH ",
+  "pci_projects_onboarding_us_banner_trusted_customer_info_1": "Vuoi richiedere maggiori informazioni o effettuare un ordine?",
+  "pci_projects_onboarding_us_banner_trusted_customer_info_2": "Chiedi di essere ricontattato gratuitamente da un consulente OVHcloud.",
+  "pci_projects_onboarding_banner_trusted_customer_info_1": "Vuoi richiedere maggiori informazioni o effettuare un ordine?",
+  "pci_projects_onboarding_banner_trusted_customer_info_2": "Chiedi di essere ricontattato gratuitamente da un consulente OVHcloud.",
+  "pci_projects_onboarding_banner_kyc_validation_under_verification_description": "Per creare un progetto Public Cloud, è necessario verificare l’identità conformemente alle normative vigenti. Il trattamento dei documenti è attualmente in fase di analisi da parte dei nostri team. Per maggiori informazioni, consulta ",
+  "pci_projects_onboarding_banner_kyc_validation_under_verification_link": "Le mie richieste di assistenza"
+}

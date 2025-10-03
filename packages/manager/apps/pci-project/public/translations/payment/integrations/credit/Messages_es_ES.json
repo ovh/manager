@@ -1,0 +1,6 @@
+{
+  "pci_project_new_payment_credit_explain": "Cada proyecto de Public Cloud tiene una cuenta de créditos propia. Si la cantidad de créditos es insuficiente, deberá abonar lo antes posible el importe restante con una forma de pago memorizada en su cuenta.",
+  "pci_project_new_payment_credit_info": "* Los créditos no son transferibles ni reembolsables, y no tienen ningún valor monetario. Si no se utilizan en un plazo de 13 meses, se pierden. Al hacer clic en «Recargar y crear mi proyecto», será redirigido a la orden de pedido, desde donde podrá abonar los créditos por tarjeta bancaria o PayPal.",
+  "pci_project_new_payment_credit_amount_other": "Otro importe",
+  "pci_project_new_payment_credit_amount_other_label": "Importe a recargar"
+}
