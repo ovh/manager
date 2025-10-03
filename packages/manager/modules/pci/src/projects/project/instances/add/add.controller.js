@@ -1562,7 +1562,7 @@ export default class PciInstancesAddController {
               messageType ? `_${messageType}` : ''
             }`,
           ),
-          'success',
+          'info',
         );
       })
       .catch((error) => {
