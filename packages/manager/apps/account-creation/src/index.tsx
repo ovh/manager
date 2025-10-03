@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {
-  HOSTNAME_REGIONS,
   useDefaultLanguage,
   findAvailableLocale,
   detectUserLocale,
@@ -14,8 +13,9 @@ import App from './App';
 import './vite-hmr';
 import './index.scss';
 import TrackingProvider from './context/tracking/tracking.provider';
+import { getRegion } from '@/helpers/region/regionHelper';
 
-const region = HOSTNAME_REGIONS[window.location.hostname] || 'EU';
+const region = getRegion();
 
 if (__VERSION__) {
   defineApplicationVersion(__VERSION__);
