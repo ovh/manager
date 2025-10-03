@@ -1,6 +1,9 @@
 import React, { FunctionComponent } from 'react';
+
 import { renderHook } from '@testing-library/react';
+
 import userContext, { UserContext } from '@/context/User/context';
+
 import useUserContext from './useUser';
 
 const mockContextValue: UserContext = {

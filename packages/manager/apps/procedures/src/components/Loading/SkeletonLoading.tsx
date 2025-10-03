@@ -1,5 +1,6 @@
-import { OsdsSkeleton } from '@ovhcloud/ods-components/react';
 import React, { FunctionComponent } from 'react';
+
+import { OsdsSkeleton } from '@ovhcloud/ods-components/react';
 
 export const SkeletonLoading: FunctionComponent = () => {
   return (
