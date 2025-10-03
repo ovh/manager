@@ -1,0 +1,94 @@
+@used-color: #0052cc;
+@overflow-color: #f2060e;
+@available-color: #ddd;
+
+.progress-container {
+  width: 100%;
+  height: 20px;
+  border-radius: 6px;
+  background-color: #eee;
+  overflow: hidden;
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.segment {
+  height: 100%;
+}
+
+.used {
+  background-color: @used-color;
+}
+
+.dot-used-color {
+  background: @used-color;
+}
+
+.snapshot-overflow {
+  background-color: @overflow-color;
+}
+
+.dot-overflow-color {
+  background: @overflow-color;
+}
+
+.available {
+  background-color: @available-color;
+}
+
+.dot-available-color {
+  background: @available-color;
+}
+
+.separator {
+  background-color: #ffffff;
+  width: 1px;
+}
+
+.reserve {
+  background-color: #001a66;
+}
+
+.info-section {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 1rem;
+}
+
+.info-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.capacity-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.color-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.capacity-value {
+  text-align: right;
+  white-space: nowrap;
+  margin-left: 1rem;
+}
