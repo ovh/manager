@@ -11,7 +11,7 @@ import {
   useColumnFilters,
   ActionMenu,
   DataGridTextCell,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/manager-ui-kit';
 import {
   columns,
   columnsFilters,
@@ -403,7 +403,7 @@ WithDatagridSubComponent.args = {
 };
 
 export default {
-  title: 'Manager React Components/Components/Datagrid Cursor',
+  title: 'Manager UI Kit/Components/Datagrid Cursor',
   component: Datagrid,
   decorators: [withRouter],
 };

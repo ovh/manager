@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/react';
-import { Button, ButtonProps } from '@ovh-ux/manager-react-components';
+import { Button, ButtonProps } from '@ovh-ux/manager-ui-kit';
 import { IAM_URNS, IAM_ACTIONS } from '../../../../utils/iam.constants';
 
 export const Default: Meta<ButtonProps> = {
@@ -32,7 +32,7 @@ export const ButtonWithoutIamAuthorization: Meta<ButtonProps> = {
 };
 
 const meta = {
-  title: 'Manager React Components/Components/Button',
+  title: 'Manager UI Kit/Components/Button',
   component: Button,
   args: {
     children: 'Remove button',
