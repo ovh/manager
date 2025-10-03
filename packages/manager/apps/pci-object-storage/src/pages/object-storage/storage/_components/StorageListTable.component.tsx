@@ -59,7 +59,7 @@ export default function StoragesList({ storages }: StoragesListProps) {
         <DataTable.FiltersButton />
       </DataTable.Header>
       <DataTable.FiltersList />
-      <DataTable.Table />
+      <DataTable.Table/>
       <DataTable.Pagination />
     </DataTable.Provider>
   );
