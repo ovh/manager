@@ -60,4 +60,10 @@ angular
   .constant('DETACHABLE_PRODUCT_NAMES', [
     'start10m-addon-v1',
     'hosting-free-100m',
-  ]);
+  ])
+  .constant('HOSTING_ABUSE_STATE', {
+    MALWARES: 'malwares',
+    MAILSOUT: 'mailsout',
+    OUTSTATE: 'outstate',
+    BLOCKED: 'blocked',
+  });
