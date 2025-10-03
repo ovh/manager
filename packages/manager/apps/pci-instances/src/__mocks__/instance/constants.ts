@@ -1,5 +1,4 @@
 import { TInstancesCatalogDTO } from '@/adapters/tanstack/instancesCatalog/right/dto.type';
-import { TLocalizationCardProps } from '@/components/localizationCard/LocalizationCard.component';
 import { TDeploymentModeDataForCard } from '@/pages/instances/create/view-models/selectDeploymentMode';
 import { TAggregatedInstance } from '@/types/instance/entity.type';
 import { TInstancesCatalog } from '@/domain/entities/instancesCatalog';
@@ -61,7 +60,7 @@ export const deploymentModes: TDeploymentModeCard[] = [
   },
 ];
 
-export const mockedLocalizations: TLocalizationCardProps[] = [
+export const mockedLocalizations = [
   {
     title: 'Paris',
     region: 'eu-west-par',
@@ -110,7 +109,7 @@ export const mockedLocalizations: TLocalizationCardProps[] = [
     countryCode: 'gb',
     deploymentMode: 'region',
   },
-];
+] as const;
 
 export const mockedProjectId = '8c8c4fd6d4414aa29fc777752b00005198664';
 export const mockedInstancesCatalogDTO: TInstancesCatalogDTO = {
