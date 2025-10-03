@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { Clipboard } from '@ovh-ux/manager-react-components';
+import { Clipboard } from '@ovh-ux/manager-ui-kit';
 
 const meta: Meta<typeof Clipboard> = {
-  title: 'Manager React Components/Components/Clipboard',
+  title: 'Manager UI Kit/Components/Clipboard',
   component: Clipboard,
 };
 

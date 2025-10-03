@@ -2,13 +2,13 @@ import React from 'react';
 import {
   DrawerCollapsible,
   DrawerCollapsibleProps,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/manager-ui-kit';
 import { Meta } from '@storybook/react';
 import { useArgs } from '@storybook/preview-api';
 import { DrawerContent } from './DrawerContent.component';
 
 const meta: Meta<typeof DrawerCollapsible> = {
-  title: 'Manager React Components/Components/Drawer',
+  title: 'Manager UI Kit/Components/Drawer',
   component: DrawerCollapsible,
   args: {
     heading: 'Drawer Title',
