@@ -14,8 +14,8 @@ export default /* @ngInject */ ($stateProvider) => {
         parseInt($transition$.params().serviceId, 10),
 
       capabilities: /* @ngInject */ (service) => service.possibleActions,
-      goBack: /* @ngInject */ ($state) => (isResiliationImmediate = false) => {
-        if (isResiliationImmediate) {
+      goBack: /* @ngInject */ ($state) => (forceRefresh = false) => {
+        if (forceRefresh) {
           return $state.go(
             '^',
             { refresh: 'true' },
@@ -24,11 +24,8 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return $state.go('^');
       },
-      onSuccess: /* @ngInject */ (Alerter, goBack) => (
-        isResiliationImmediate,
-        message,
-      ) =>
-        goBack(isResiliationImmediate).then(() => {
+      onSuccess: /* @ngInject */ (Alerter, goBack) => (forceRefresh, message) =>
+        goBack(forceRefresh).then(() => {
           Alerter.success(message);
         }),
       onError: /* @ngInject */ (Alerter, goBack) => (message) =>

@@ -4,8 +4,7 @@ type ProductKey = 'universe' | 'category' | 'name';
 
 export const toFilterDisplay = (label: string) => label.replaceAll('_', ' ');
 
-export const toFilterValue = (label: string) =>
-  label.replace(/,/gm, '{coma}').replace(/\s/gm, '_');
+export const toFilterValue = (label: string) => label.replace(/,/gm, '{coma}').replace(/\s/gm, '_');
 
 export const toFilterLabel = (value: string) =>
   value.replace(/_/gm, ' ').replace(/\{coma\}/gm, ',');
@@ -17,11 +16,7 @@ export interface Universe {
   name?: string;
 }
 
-export const filterByProperty = (
-  product: Product,
-  query: string[],
-  property: ProductKey,
-) => {
+export const filterByProperty = (product: Product, query: string[], property: ProductKey) => {
   return query.length === 0 || query.includes(product[property]);
 };
 
@@ -44,16 +39,8 @@ export const filterProducts = (
 ) =>
   products.filter(
     (product) =>
-      filterByProperty(
-        product,
-        selectedCategories.map(toFilterLabel),
-        'category',
-      ) &&
-      filterByProperty(
-        product,
-        selectedUniverses.map(toFilterLabel),
-        'universe',
-      ) &&
+      filterByProperty(product, selectedCategories.map(toFilterLabel), 'category') &&
+      filterByProperty(product, selectedUniverses.map(toFilterLabel), 'universe') &&
       matchSearchText(product, searchText),
   );
 
@@ -86,13 +73,9 @@ export function getUniverses(products: Product[], withCounter: boolean) {
     );
     return formattedUniverses;
   }
-  const uniqueUniverses = [
-    ...new Set(products.map((product) => product.universe)),
-  ];
+  const uniqueUniverses = [...new Set(products.map((product) => product.universe))];
 
-  uniqueUniverses.sort((a, b) =>
-    a.localeCompare(b, undefined, { sensitivity: 'base' }),
-  );
+  uniqueUniverses.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
   return uniqueUniverses;
 }
 
@@ -101,9 +84,7 @@ export const getAvailableCategoriesWithCounter = (
   selectedUniverses: string[],
 ) => {
   const productsInSelectedUniverses = products
-    .filter((product) =>
-      filterByProperty(product, selectedUniverses, 'universe'),
-    )
+    .filter((product) => filterByProperty(product, selectedUniverses, 'universe'))
     .filter((product) => !!product.category);
   return countAndFormat(productsInSelectedUniverses, 'category');
 };

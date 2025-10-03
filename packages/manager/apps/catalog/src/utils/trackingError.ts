@@ -1,10 +1,10 @@
 import React from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { useLocation } from 'react-router-dom';
-import {
-  ErrorMessage,
-  TRACKING_LABELS,
-} from '@ovh-ux/manager-react-components';
+
+import { ErrorMessage, TRACKING_LABELS } from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { ErrorObject } from '@/components/Error/Errors';
 
 export function getTypology(error: ErrorMessage) {
@@ -25,9 +25,7 @@ export function useSendErrorTracking({ error }: ErrorObject) {
   React.useEffect(() => {
     env.then((response: any) => {
       const { applicationName } = response;
-      const name = `errors::${getTypology(
-        error as ErrorMessage,
-      )}::${applicationName}`;
+      const name = `errors::${getTypology(error as ErrorMessage)}::${applicationName}`;
       tracking.trackPage({
         name,
         level2: '81',

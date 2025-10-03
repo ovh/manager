@@ -1,13 +1,13 @@
 import React from 'react';
+
 import ReactDOM from 'react-dom/client';
-import {
-  ShellContext,
-  initShellContext,
-  initI18n,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { ShellContext, initI18n, initShellContext } from '@ovh-ux/manager-react-shell-client';
+
+import '@/vite-hmr';
+
 import App from './App';
 import './global.css';
-import '@/vite-hmr';
 
 const init = async (appName: string) => {
   const context = await initShellContext(appName);

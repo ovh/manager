@@ -1,7 +1,11 @@
 import React from 'react';
+
 import { useLocation, useNavigate } from 'react-router-dom';
+
 import { AxiosError } from 'axios';
+
 import { ErrorBanner, ErrorMessage } from '@ovh-ux/manager-react-components';
+
 import { useSendErrorTracking } from '@/utils/trackingError';
 
 export interface ErrorObject {

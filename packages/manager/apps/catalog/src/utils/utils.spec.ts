@@ -1,15 +1,17 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
+import { Product } from '@/api';
+
 import { products as productsData } from './mocks/test-products.mock.json';
 import {
-  getUniverses,
-  filterProducts,
   filterByProperty,
+  filterProducts,
   getAvailableCategoriesWithCounter,
-  matchSearchText,
   getFilterParamsFromUrl,
   getSearchUrlFromFilterParams,
+  getUniverses,
+  matchSearchText,
 } from './utils';
-import { Product } from '@/api';
 
 describe('filterProducts', () => {
   it('should filter products based on selected categories, universes, and search text', () => {
@@ -60,9 +62,7 @@ describe('match categories with filterByProperty', () => {
     const products: Product[] = productsData;
     const productToMatch: Product = products[0];
 
-    expect(
-      filterByProperty(productToMatch, selectedCategories, 'category'),
-    ).toBe(true);
+    expect(filterByProperty(productToMatch, selectedCategories, 'category')).toBe(true);
   });
 
   it('should not match products based on selected categories', () => {
@@ -70,9 +70,7 @@ describe('match categories with filterByProperty', () => {
     const products: Product[] = productsData;
     const productToMatch: Product = products[1];
 
-    expect(
-      filterByProperty(productToMatch, selectedCategories, 'category'),
-    ).toBe(false);
+    expect(filterByProperty(productToMatch, selectedCategories, 'category')).toBe(false);
   });
 });
 
@@ -82,9 +80,7 @@ describe('match universes with filterByProperty', () => {
     const products: Product[] = productsData;
     const productToMatch: Product = products[2];
 
-    expect(
-      filterByProperty(productToMatch, selectedUniverses, 'universe'),
-    ).toBe(true);
+    expect(filterByProperty(productToMatch, selectedUniverses, 'universe')).toBe(true);
   });
 
   it('should not match products based on selected universes', () => {
@@ -92,9 +88,7 @@ describe('match universes with filterByProperty', () => {
     const products: Product[] = productsData;
     const productToMatch: Product = products[0];
 
-    expect(
-      filterByProperty(productToMatch, selectedUniverses, 'universe'),
-    ).toBe(false);
+    expect(filterByProperty(productToMatch, selectedUniverses, 'universe')).toBe(false);
   });
 });
 
@@ -119,9 +113,7 @@ describe('search product with matchSearchText', () => {
 describe('categories and universes with counters', () => {
   describe('getAvailableCategoriesWithCounter', () => {
     it('should return categories with their respective counts based on selected universes', () => {
-      const result = getAvailableCategoriesWithCounter(productsData, [
-        'Universe1',
-      ]);
+      const result = getAvailableCategoriesWithCounter(productsData, ['Universe1']);
       expect(result).toEqual([
         { category: 'Category1', count: 1 },
         { category: 'Category2', count: 1 },
@@ -158,14 +150,9 @@ describe('getFilterParamsFromUrl', () => {
   describe('get universes from url', () => {
     it('should return the universes match in params', () => {
       const result = getFilterParamsFromUrl(
-        new URLSearchParams(
-          'universes=Bare+Metal+Cloud%2CHosted+Private+Cloud',
-        ),
+        new URLSearchParams('universes=Bare+Metal+Cloud%2CHosted+Private+Cloud'),
       );
-      expect(result?.universes).toEqual([
-        'Bare Metal Cloud',
-        'Hosted Private Cloud',
-      ]);
+      expect(result?.universes).toEqual(['Bare Metal Cloud', 'Hosted Private Cloud']);
     });
   });
   describe('get categories and universes from url', () => {
@@ -185,9 +172,7 @@ describe('getFilterParamsFromUrl', () => {
   describe('get category and universe from url', () => {
     it('should return the universe and category match in params', () => {
       const result = getFilterParamsFromUrl(
-        new URLSearchParams(
-          'categories=Containers+and+orchestration&universes=Bare+Metal+Cloud',
-        ),
+        new URLSearchParams('categories=Containers+and+orchestration&universes=Bare+Metal+Cloud'),
       );
       expect(result?.universes).toEqual(['Bare Metal Cloud']);
       expect(result?.categories).toEqual(['Containers and orchestration']);
@@ -200,11 +185,7 @@ describe('getSearchUrlFromFilterParams', () => {
     it('should return string with only categories ', () => {
       const result = getSearchUrlFromFilterParams(
         '',
-        [
-          'AI & machine learning',
-          'Containers and orchestration',
-          'Dedicated Servers',
-        ],
+        ['AI & machine learning', 'Containers and orchestration', 'Dedicated Servers'],
         [],
       );
       expect(result.toString()).toEqual(
@@ -219,9 +200,7 @@ describe('getSearchUrlFromFilterParams', () => {
         [],
         ['Bare Metal Cloud', 'Hosted Private Cloud'],
       );
-      expect(result.toString()).toEqual(
-        'universes=Bare+Metal+Cloud%2CHosted+Private+Cloud',
-      );
+      expect(result.toString()).toEqual('universes=Bare+Metal+Cloud%2CHosted+Private+Cloud');
     });
   });
   describe('get params query from url', () => {

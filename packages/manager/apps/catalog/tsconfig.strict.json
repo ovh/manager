@@ -1,5 +1,5 @@
 {
-  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react",
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
   "compilerOptions": {
     "types": ["vite/client", "node"],
     "outDir": "dist",
@@ -13,6 +13,6 @@
     },
     "baseUrl": "."
   },
-  "include": ["**/*.ts", "**/*.tsx", "src/**/*.json"],
+  "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "dist", "types", "src/__tests__"]
 }
