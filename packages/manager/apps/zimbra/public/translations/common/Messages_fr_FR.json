@@ -101,5 +101,8 @@
   "service_state_suspended": "Suspendu",
   "service_state_error": "Erreur",
   "service_state_ready": "Actif",
-  "service_state_updating": "Mise à jour"
+  "service_state_updating": "Mise à jour",
+  "account_state_blockedforspam": "Bloqué",
+  "account_state_tooltip_billinglocked": "Problème de facturation, vérifier la section facture de votre espace client",
+  "account_state_tooltip_blockedforspam": "Suspendu pour activité suspecte, contactez le support utilisateur."
 }
