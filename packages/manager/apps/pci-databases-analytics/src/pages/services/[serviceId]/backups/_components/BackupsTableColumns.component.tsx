@@ -158,5 +158,5 @@ export const getColumns = ({
     expiryDateColumn,
     statusColumn,
     actionsColumn,
-  ] as ColumnDef<BackupWithExpiricyDate>[];
+  ];
 };

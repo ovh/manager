@@ -105,7 +105,7 @@ const AddEditNamespace = ({
   );
 
   const onSubmit = form.handleSubmit((formValues) => {
-    const retentionFormValues = {
+    const retentionFormValues: Partial<database.m3db.namespace.Retention> = {
       periodDuration: convertDurationStringToISODuration(
         formValues.periodDuration,
       ),
@@ -120,7 +120,7 @@ const AddEditNamespace = ({
       bufferPastDuration: formValues.bufferPastDuration
         ? convertDurationStringToISODuration(formValues.bufferPastDuration)
         : null,
-    } as database.m3db.namespace.Retention;
+    };
 
     if (isEdition) {
       if (Object.entries(form.formState.dirtyFields).length === 0) {

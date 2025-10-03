@@ -1,6 +1,11 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+import {
+  apiClient,
+  createHeaders,
+  IcebergPaginationHeaders,
+  NoCacheHeaders,
+} from '@/data/api/api.client';
 import * as database from '@/types/cloud/project/database';
-import { HeadersIcebergPagination, ServiceData } from '.';
+import { ServiceData } from '.';
 import { TopicAcl } from '@/types/cloud/project/database/kafka';
 
 export const getTopicAcls = async ({
@@ -8,11 +13,10 @@ export const getTopicAcls = async ({
   engine,
   serviceId,
 }: ServiceData) =>
-  apiClient.v6
-    .get(`/cloud/project/${projectId}/database/${engine}/${serviceId}/acl`, {
-      headers: HeadersIcebergPagination,
-    })
-    .then((res) => res.data as database.kafka.TopicAcl[]);
+  apiClient.v6.get<database.kafka.TopicAcl[]>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/acl`,
+    createHeaders(NoCacheHeaders, IcebergPaginationHeaders),
+  );
 
 export interface AddTopicAcl extends ServiceData {
   topicAcl: Omit<TopicAcl, 'id'>;
@@ -23,12 +27,10 @@ export const addTopicAcl = async ({
   serviceId,
   topicAcl,
 }: AddTopicAcl) =>
-  apiClient.v6
-    .post(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/acl`,
-      topicAcl,
-    )
-    .then((res) => res.data as database.kafka.TopicAcl);
+  apiClient.v6.post<database.kafka.TopicAcl>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/acl`,
+    topicAcl,
+  );
 
 export interface DeleteTopicAcl extends ServiceData {
   topicAclId: string;

@@ -22,7 +22,7 @@ interface DatatableProps<TData> {
 export function DataTable<TData>({
   renderRowExpansion,
 }: DatatableProps<TData>) {
-  const { table, rows } = useDataTableContext();
+  const { table, rows } = useDataTableContext<TData>();
   const { t } = useTranslation('pci-databases-analytics/components/data-table');
   const [expandedRows, setExpandedRows] = useState<Record<string, boolean>>({});
 
@@ -101,7 +101,7 @@ export function DataTable<TData>({
               {expandedRows[row.id] && renderRowExpansion && (
                 <TableRow>
                   <TableCell colSpan={headerGroups[0].headers.length + 1}>
-                    {renderRowExpansion(row.original as TData)}
+                    {renderRowExpansion(row.original)}
                   </TableCell>
                 </TableRow>
               )}
