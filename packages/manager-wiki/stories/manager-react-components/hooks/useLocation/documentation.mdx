@@ -1,0 +1,132 @@
+import { Meta, Source, ArgTypes } from '@storybook/blocks';
+
+<Meta title="Manager React Components/Hooks/useLocation" />
+
+
+## useLocation
+
+The useLocation exposes utils methods to access Locations.
+
+## API
+
+The hook rely on the `location` plugin using the following v2 API endpoint
+<Source
+code={`
+GET /location
+`}
+/>
+
+## Methods
+
+### useLocationByName
+Allow you to find a specific location using its name
+
+#### Usage
+<Source
+code={`const { data: location } = useLocationByName('locationName');`}
+language="ts"
+/>
+
+#### Parameters
+<Source
+code={`string`}
+language="ts"
+/>
+
+#### Returns
+Returns a `UseQueryResult` object with:
+- `data`: a `Location` object matching the name given in parameter
+
+
+### useAllLocationsByType
+Allow you to find all location of a certain type
+
+#### Usage
+<Source
+code={`const { data: locations } = useAllLocationsByType(LocationType.LZ);`}
+language="ts"
+/>
+
+#### Parameters
+<Source
+code={`enum LocationType {
+    '1AZ' = 'REGION-1-AZ',
+    '3AZ' = 'REGION-3-AZ',
+    'LZ' = 'LOCAL-ZONE',
+};`}
+language="ts"
+/>
+
+#### Returns
+Returns a `UseQueryResult` object with:
+- `data`: an `Array` of `Location` matching the type given in parameter
+
+### useCityByCode
+Allow you to retrieve a city name using its code
+
+#### Usage
+<Source
+code={`const { data: cityName } = useCityByCode('cityCode');`}
+language="ts"
+/>
+
+#### Parameters
+<Source
+code={`string`}
+language="ts"
+/>
+
+#### Returns
+Returns a `UseQueryResult` object with:
+- `data`: a `string` representing the name of the city matching the code given in parameter
+
+### useAllCountries
+Allow you to get all countries with their name and code
+
+#### Usage
+<Source
+code={`const { data: countries } = useAllCountries();`}
+language="ts"
+/>
+
+#### Returns
+Returns a `UseQueryResult` object with:
+- `data`: an `Array` of unique `Country` extracted from the list of all `Location`
+
+## Types
+
+### Location
+Type representing a `Location` (exposed by `@ovh-ux/shell` package)
+
+<Source
+code={`type Location = {
+    availabilityZones: string[];
+    cardinalPoint: CardinalPoint;
+    cityCode: string;
+    cityLatitude: number;
+    cityLongitude: number;
+    cityName: string;
+    code: string;
+    countryCode: string;
+    countryName: string;
+    geographyCode: string;
+    geographyName: string;
+    location: string;
+    name: string;
+    openingYear: number;
+    specificType: SpecificType;
+    type: Type;
+}`}
+language="ts"
+/>
+
+### Country
+Type representing a `Country` with its name and code
+
+<Source
+code={`type Country = {
+    code: string;
+    name: string;
+}`}
+language="ts"
+/>
