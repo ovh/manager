@@ -24,6 +24,7 @@ export const makeSlotService = (service: ServiceDetails): SlotService => {
     nextBillingDate: service.billing?.nextBillingDate,
     state: getServiceBillingState(service),
     planCode: service.billing.plan.code as ZimbraPlanCodes,
+    price: service.billing.pricing.price.text,
   };
 };
 
