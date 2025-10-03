@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.33.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.33.2...@ovh-ux/manager-zimbra-app@0.33.3) (2025-10-03)
+
+
+### Bug Fixes
+
+* **zimbra:** fix the display of record in MX & SPF config ([07829b1](https://github.com/ovh/manager/commit/07829b1d13ea4427e7cac8cb2b9c51de057e4f95)), closes [#PRDCOL-218](https://github.com/ovh/manager/issues/PRDCOL-218)
+
+
+
+
+
 ## [0.33.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.33.1...@ovh-ux/manager-zimbra-app@0.33.2) (2025-10-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app
