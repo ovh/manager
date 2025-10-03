@@ -6,5 +6,7 @@
   "manager_components_resource_tagging_manager_action_assign_tag": "Assigner un tag",
   "manager_components_resource_tagging_manager_action_unassign_tag": "Désassigner",
   "manager_components_resource_tagging_manager_action_tag_details": "Tag details",
-  "manager_components_resource_tagging_manager_empty": "Aucun tag n'est assigné"
+  "manager_components_resource_tagging_manager_empty": "Aucun tag n'est assigné",
+  "manager_components_resource_tagging_manager_guide": "Guide",
+  "manager_components_resource_tagging_manager_title": "Comment assigner un tag à un serveur Bare Metal"
 }
