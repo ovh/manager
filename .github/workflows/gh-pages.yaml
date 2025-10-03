@@ -24,7 +24,7 @@ jobs:
           yarn exec turbo -- run build --filter="./packages/components/ovh-at-internet"
           yarn exec turbo -- run build --filter="./packages/manager/modules/config"
           yarn exec turbo -- run build --filter="./packages/manager/modules/common-translations"
-          yarn exec turbo -- run build --filter="./packages/manager-react-components"
+          yarn exec turbo -- run build --filter="./packages/manager-ui-kit"
           yarn workspace @ovh-ux/manager-documentation run docs:build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
