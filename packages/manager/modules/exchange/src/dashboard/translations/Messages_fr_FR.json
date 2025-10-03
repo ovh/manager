@@ -159,6 +159,7 @@
   "exchange_tab_ACCOUNTS_menu_mfa_RESET": "Réinitialiser la double authentification",
   "exchange_tab_ACCOUNTS_menu_mfa_BULK_ENABLE": "Activer la double authentification sur l'ensemble des comptes",
   "exchange_tab_ACCOUNTS_menu_mfa_BULK_DELETE": "Supprimer la double authentification sur l'ensemble des comptes",
+  "exchange_tab_ACCOUNTS_menu_migrate": "Migrer des comptes",
   "exchange_tab_ACCOUNTS_menu_upgradeTo300Gb": "Augmenter la capacité à 300 {0}",
   "exchange_tab_ACCOUNTS_menu_contactSupportForSpam": "Débloquer",
   "exchange_tab_ACCOUNTS_menu_outlook_activate": "Activer la licence Outlook",
