@@ -1,4 +1,5 @@
 import { createContext } from 'react';
+
 import { LegalFrom, Subsidiary } from '@/types/user.type';
 
 export type User = {

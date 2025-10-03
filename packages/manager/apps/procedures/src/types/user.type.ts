@@ -1,9 +1,4 @@
-export type LegalFrom =
-  | 'individual'
-  | 'association'
-  | 'corporation'
-  | 'other'
-  | 'administration';
+export type LegalFrom = 'individual' | 'association' | 'corporation' | 'other' | 'administration';
 export type Subsidiary =
   | 'FR'
   | 'DE'

@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
+
 import { getServerTime } from '@/data/api/utilsApi';
 
 export const useFetchServerTime = () =>

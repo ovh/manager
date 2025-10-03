@@ -1,20 +1,18 @@
-import {
-  render,
-  screen,
-  act,
-  waitFor,
-  fireEvent,
-} from '@testing-library/react';
 import React from 'react';
-import { describe, it, expect, vi } from 'vitest';
-import * as OdsComponentModule from '@ovhcloud/ods-components/react';
-import { OsdsInput, OsdsSelect, OsdsTextArea } from '@ovhcloud/ods-components';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { RGDPForm } from './RGDPForm.component';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
+import { OsdsInput, OsdsSelect, OsdsTextArea } from '@ovhcloud/ods-components';
+import * as OdsComponentModule from '@ovhcloud/ods-components/react';
+
 import { GDPRFormValues } from '@/types/gdpr.type';
 
+import { RGDPForm } from './RGDPForm.component';
+
 const getOsdsElementByFormName = <T,>(fieldName: keyof GDPRFormValues) =>
-  (screen.queryByTestId(`field_id_${fieldName}`) as unknown) as T;
+  screen.queryByTestId(`field_id_${fieldName}`) as unknown as T;
 
 vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
   const module: typeof OdsComponentModule = await importOriginal();
@@ -26,22 +24,12 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
         <p>{error}</p>
       </div>
     ),
-    OsdsInput: ({ ...props }: any) => (
-      <module.OsdsInput {...props} data-testid={props.id} />
-    ),
+    OsdsInput: ({ ...props }: any) => <module.OsdsInput {...props} data-testid={props.id} />,
     OsdsButton: ({ ...props }: any) => (
-      <button
-        children={props.children}
-        disabled={props.disabled}
-        type={props.type}
-      />
+      <button children={props.children} disabled={props.disabled} type={props.type} />
     ),
-    OsdsSelect: ({ ...props }: any) => (
-      <module.OsdsSelect {...props} data-testid={props.id} />
-    ),
-    OsdsTextarea: ({ ...props }: any) => (
-      <module.OsdsTextarea {...props} data-testid={props.id} />
-    ),
+    OsdsSelect: ({ ...props }: any) => <module.OsdsSelect {...props} data-testid={props.id} />,
+    OsdsTextarea: ({ ...props }: any) => <module.OsdsTextarea {...props} data-testid={props.id} />,
   };
 });
 
@@ -62,20 +50,12 @@ describe('RGDPForm', () => {
       expect(getByText('rgdp_form_field_label_firstname')).toBeInTheDocument();
       expect(getByText('rgdp_form_field_label_name')).toBeInTheDocument();
       expect(getByText('rgdp_form_field_label_email')).toBeInTheDocument();
-      expect(
-        getByText('rgdp_form_field_label_confirm_email'),
-      ).toBeInTheDocument();
+      expect(getByText('rgdp_form_field_label_confirm_email')).toBeInTheDocument();
       expect(getByText('rgdp_form_field_label_category')).toBeInTheDocument();
-      expect(
-        getByText('rgdp_form_field_label_category_detail'),
-      ).toBeInTheDocument();
-      expect(
-        getByText('rgdp_form_field_label_request_description'),
-      ).toBeInTheDocument();
+      expect(getByText('rgdp_form_field_label_category_detail')).toBeInTheDocument();
+      expect(getByText('rgdp_form_field_label_request_description')).toBeInTheDocument();
 
-      expect(
-        getByText('rgdp_form_field_label_other_documents'),
-      ).toBeInTheDocument();
+      expect(getByText('rgdp_form_field_label_other_documents')).toBeInTheDocument();
     });
   });
 
@@ -90,9 +70,7 @@ describe('RGDPForm', () => {
 
     const surnameInput = getOsdsElementByFormName<OsdsInput>('name');
     const firstNameInput = getOsdsElementByFormName<OsdsInput>('firstName');
-    const requestDescriptionText = getOsdsElementByFormName<OsdsTextArea>(
-      'description',
-    );
+    const requestDescriptionText = getOsdsElementByFormName<OsdsTextArea>('description');
 
     await act(async () => {
       surnameInput.value = '';
@@ -105,9 +83,7 @@ describe('RGDPForm', () => {
     });
 
     await waitFor(() => {
-      const errorMessages = queryAllByText(
-        'rgdp_form_validation_message_required',
-      );
+      const errorMessages = queryAllByText('rgdp_form_validation_message_required');
       expect(errorMessages).toHaveLength(3);
     });
   });
@@ -134,9 +110,7 @@ describe('RGDPForm', () => {
     });
 
     await waitFor(() => {
-      const errorMessages = queryAllByText(
-        'rgdp_form_validation_message_invalid_format',
-      );
+      const errorMessages = queryAllByText('rgdp_form_validation_message_invalid_format');
       expect(errorMessages).toHaveLength(3);
     });
   });
@@ -153,9 +127,7 @@ describe('RGDPForm', () => {
     });
 
     await waitFor(() => {
-      expect(
-        getByText('rgdp_form_validation_message_invalid_email_format'),
-      ).toBeInTheDocument();
+      expect(getByText('rgdp_form_validation_message_invalid_email_format')).toBeInTheDocument();
     });
   });
 
@@ -163,9 +135,7 @@ describe('RGDPForm', () => {
     const { getByText } = renderForm();
 
     const emailInput = getOsdsElementByFormName<OsdsInput>('email');
-    const confirmEmailInput = getOsdsElementByFormName<OsdsInput>(
-      'confirmEmail',
-    );
+    const confirmEmailInput = getOsdsElementByFormName<OsdsInput>('confirmEmail');
 
     await act(async () => {
       emailInput.value = 'test@example.com';
@@ -179,9 +149,7 @@ describe('RGDPForm', () => {
     });
 
     await waitFor(() => {
-      expect(
-        getByText('rgdp_form_validation_message_email_match'),
-      ).toBeInTheDocument();
+      expect(getByText('rgdp_form_validation_message_email_match')).toBeInTheDocument();
     });
   });
 
@@ -190,13 +158,9 @@ describe('RGDPForm', () => {
 
     const surnameInput = getOsdsElementByFormName<OsdsInput>('name');
     const firstNameInput = getOsdsElementByFormName<OsdsInput>('firstName');
-    const requestDescriptionText = getOsdsElementByFormName<OsdsTextArea>(
-      'description',
-    );
+    const requestDescriptionText = getOsdsElementByFormName<OsdsTextArea>('description');
     const emailInput = getOsdsElementByFormName<OsdsInput>('email');
-    const confirmEmailInput = getOsdsElementByFormName<OsdsInput>(
-      'confirmEmail',
-    );
+    const confirmEmailInput = getOsdsElementByFormName<OsdsInput>('confirmEmail');
     const objectSelect = getOsdsElementByFormName<OsdsSelect>('category');
 
     const submitBtn = getByText('rgdp_form_submit');

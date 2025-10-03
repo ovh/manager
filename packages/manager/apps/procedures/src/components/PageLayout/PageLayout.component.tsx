@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+
 import ovhCloudLogo from '@/assets/logo-ovhcloud.png';
 
 type Props = {

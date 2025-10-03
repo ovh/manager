@@ -1,11 +1,10 @@
-import { OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { Trans, useTranslation } from 'react-i18next';
 import React, { FunctionComponent } from 'react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
+
+import { Trans, useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_LEVEL } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsText } from '@ovhcloud/ods-components/react';
 
 export const RGDPIntroduction: FunctionComponent = () => {
   const { t } = useTranslation('rgdp');

@@ -1,7 +1,9 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+
 import '@testing-library/jest-dom';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
+
 import { WarningSessionModal } from './WarningSessionModal';
 
 const onCloseMock = vi.fn();
@@ -22,9 +24,7 @@ describe('WarningSessionModal', () => {
   it('should call onClose when the button is clicked', () => {
     render(<WarningSessionModal onClose={onCloseMock} />);
 
-    const button = screen.getByText(
-      'account-disable-2fa-session-modal-warning-ok-button',
-    );
+    const button = screen.getByText('account-disable-2fa-session-modal-warning-ok-button');
     fireEvent.click(button);
 
     expect(onCloseMock).toHaveBeenCalledTimes(1);
