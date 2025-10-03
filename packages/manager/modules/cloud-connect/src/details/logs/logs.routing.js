@@ -1,6 +1,7 @@
 import { name } from './live-tail/live-tail.component';
 import {
   CLOUD_CONNECT_LOG_KEYS,
+  CLOUD_CONNECT_LOGS_GUIDE,
   CLOUD_CONNECT_LOGS_TRACKING_HITS,
   LOGS_TRACKING_CONTEXT,
 } from './logs.constants';
@@ -59,8 +60,9 @@ export default /* @ngInject */ ($stateProvider) => {
         Object.fromEntries(
           logKinds.map((kind) => [kind, CLOUD_CONNECT_LOG_KEYS]),
         ),
-      logServiceGuideLink: /* @ngInject */ (user, DATA_PLATFORM_GUIDE) =>
-        DATA_PLATFORM_GUIDE[user.ovhSubsidiary] ?? DATA_PLATFORM_GUIDE.WE,
+      logServiceGuideLink: /* @ngInject */ (user) =>
+        CLOUD_CONNECT_LOGS_GUIDE[user.ovhSubsidiary] ??
+        CLOUD_CONNECT_LOGS_GUIDE.WE,
     },
   });
 };

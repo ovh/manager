@@ -9,7 +9,6 @@ import {
   MAX_MOUNT_POINTS,
   REINSTALL_API_CONSOLE_LINK,
   API_OS_INSTALLATION_DOCUMENTATION_LINK,
-  EOL_PERSONAL_INSTALLATION_TEMPLATES_DOCUMENTATION_LINK,
 } from './server-installation-ovh.constants';
 
 export default class ServerInstallationOvhCtrl {
@@ -50,10 +49,6 @@ export default class ServerInstallationOvhCtrl {
       apiOsInstallation:
         API_OS_INSTALLATION_DOCUMENTATION_LINK[this.ovhSubsidiary] ||
         API_OS_INSTALLATION_DOCUMENTATION_LINK.DEFAULT,
-      eolPersonalInstallationTemplates:
-        EOL_PERSONAL_INSTALLATION_TEMPLATES_DOCUMENTATION_LINK[
-          this.ovhSubsidiary
-        ] || EOL_PERSONAL_INSTALLATION_TEMPLATES_DOCUMENTATION_LINK.DEFAULT,
       consoleForClipboard:
         REINSTALL_API_CONSOLE_LINK[this.ovhPlate] ||
         REINSTALL_API_CONSOLE_LINK.EU,
@@ -392,16 +387,6 @@ export default class ServerInstallationOvhCtrl {
   loadStep1() {
     this.$scope.loader.loading = true;
 
-    const hasSomePersonalTemplates = this.Server.getPersonalTemplatesList()
-      .then((templateList) => {
-        this.$scope.informations.hasSomePersonalTemplates =
-          templateList.length > 0;
-      })
-      .catch(() => {
-        // when migration is finished, API call will be removed
-        // In the meantime manager-ovh to be deployed WW with the removal of this banner, we will hide the message
-        this.$scope.informations.hasSomePersonalTemplates = false;
-      });
     const getHardRaid = this.getHardwareRaid();
     const getOvhTemplates = this.Server.getOvhTemplates(
       this.$stateParams.productId,
@@ -463,11 +448,9 @@ export default class ServerInstallationOvhCtrl {
         );
       });
 
-    this.$q
-      .all([hasSomePersonalTemplates, getHardRaid, getOvhTemplates])
-      .finally(() => {
-        this.$scope.loader.loading = false;
-      });
+    this.$q.all([getHardRaid, getOvhTemplates]).finally(() => {
+      this.$scope.loader.loading = false;
+    });
   }
 
   getCountFilter(itemFamily) {
