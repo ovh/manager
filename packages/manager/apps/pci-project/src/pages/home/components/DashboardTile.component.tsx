@@ -15,7 +15,7 @@ export default function DashboardTile({
   titleTranslationKey,
   isUSRegion = false,
 }: DashboardTileProps) {
-  const { t } = useTranslation('project');
+  const { t } = useTranslation('home');
 
   // Hide section for US region if needed (like community section)
   if (isUSRegion && titleTranslationKey === 'community') {
