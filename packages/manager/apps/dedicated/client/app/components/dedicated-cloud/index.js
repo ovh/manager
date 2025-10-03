@@ -2,7 +2,7 @@ import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 
 import component from './dedicatedCloud.component';
-import drpService from './datacenter/drp/dedicatedCloud-datacenter-drp.service';
+import zertoService from './datacenter/zerto/dedicatedCloud-datacenter-zerto.service';
 import dedicatedCloudservice from './dedicatedCloud.service';
 import ServicePackService from './service-pack/service-pack.service';
 import OptionsService from './dashboard/tiles/options/options.service';
@@ -17,7 +17,7 @@ angular
     'oui',
     'pascalprecht.translate',
     dedicatedCloudservice,
-    drpService,
+    zertoService,
     ngAtInternet,
     ngOvhFeatureFlipping,
     OptionsService,
