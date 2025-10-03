@@ -41,6 +41,7 @@ type TDatagridComponentProps = DeepReadonly<{
   filters: TFilterWithLabel[];
   onRefresh: () => void;
   onSortChange: Dispatch<SetStateAction<TSorting>>;
+  checkForOperations?: boolean;
 }>;
 
 const getPlaceHolderData = (count: number): TAggregatedInstance[] =>
@@ -72,6 +73,7 @@ const DatagridComponent = ({
   filters,
   onRefresh,
   onSortChange,
+  checkForOperations = false,
 }: TDatagridComponentProps) => {
   const pciUrl = usePciUrl();
   const { t } = useTranslation([
@@ -306,7 +308,7 @@ const DatagridComponent = ({
 
   return (
     <div className="overflow-x-hidden mt-8">
-      {hasOperationsRunning && isInfoMessageOpen && (
+      {checkForOperations && hasOperationsRunning && isInfoMessageOpen && (
         <Message
           className="mb-4"
           color="information"
