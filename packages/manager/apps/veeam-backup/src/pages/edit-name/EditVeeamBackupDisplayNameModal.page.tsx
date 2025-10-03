@@ -1,13 +1,7 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import {
-  ButtonType,
-  PageLocation,
-  PageType,
-  TrackingClickParams,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { UpdateIamNameModal } from '@ovh-ux/manager-react-components';
 import { useQueryClient } from '@tanstack/react-query';
 import {
@@ -15,13 +9,8 @@ import {
   getVeeamBackupQueryKey,
   useVeeamBackup,
 } from '@ovh-ux/manager-module-vcd-api';
-import { PageName } from '@/tracking.constant';
+import { PageName, TRACKING } from '@/tracking.constant';
 import { MessagesContext } from '@/components/Messages/Messages.context';
-
-const sharedTrackingParams: TrackingClickParams = {
-  location: PageLocation.popup,
-  buttonType: ButtonType.button,
-};
 
 export default function EditVeeamBackupDisplayNameModal() {
   const { id } = useParams();
@@ -33,11 +22,7 @@ export default function EditVeeamBackupDisplayNameModal() {
   const queryClient = useQueryClient();
 
   const onClose = () => {
-    trackClick({
-      ...sharedTrackingParams,
-      actionType: 'exit',
-      actions: ['edit_veeam-backup', 'cancel'],
-    });
+    trackClick(TRACKING.editVeeamDisplayNameFromDashboard.clicks.closeModal);
     navigate('..');
   };
 
@@ -78,11 +63,9 @@ export default function EditVeeamBackupDisplayNameModal() {
         });
       }}
       onConfirm={() => {
-        trackClick({
-          ...sharedTrackingParams,
-          actionType: 'action',
-          actions: ['edit_veeam-backup', 'confirm'],
-        });
+        trackClick(
+          TRACKING.editVeeamDisplayNameFromDashboard.clicks.confirmEdit,
+        );
       }}
       defaultValue={data?.data?.iam?.displayName}
     />

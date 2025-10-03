@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { OdsText, OdsModal, OdsButton } from '@ovhcloud/ods-components/react';
+import { useOvhTracking, PageType } from '@ovh-ux/manager-react-shell-client';
 
 import {
   ODS_BUTTON_VARIANT,
@@ -14,19 +15,32 @@ import {
 import { useActivateVmwareCloudDirectorBackupOfferGold } from '@ovh-ux/manager-module-vcd-api';
 import { MessagesContext } from '@/components/Messages/Messages.context';
 import TEST_IDS from '@/utils/testIds.constants';
+import { TRACKING, PageName } from '@/tracking.constant';
 
 export default function ActivateOfferModal() {
   const { t } = useTranslation('activate-offer');
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
   const { id } = useParams();
+  const { trackClick, trackPage } = useOvhTracking();
 
   const navigate = useNavigate();
   const { addSuccessMessage, addCriticalMessage } = useContext(MessagesContext);
 
-  const onClose = () => navigate('..');
+  const goBack = () => {
+    navigate('..');
+  };
+
+  const onClose = () => {
+    trackClick(TRACKING.activateVeeamBackupOffer.clicks.closeModal);
+    goBack();
+  };
 
   const onSuccess = () => {
-    onClose();
+    goBack();
+    trackPage({
+      pageType: PageType.bannerSuccess,
+      pageName: PageName.successActivateOfferGold,
+    });
     addSuccessMessage(t('success'), {
       veeamBackupId: id,
     });
@@ -39,7 +53,11 @@ export default function ActivateOfferModal() {
     backupId: id,
     onSuccess,
     onError: (err) => {
-      onClose();
+      goBack();
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: PageName.errorActivateOfferGold,
+      });
       addCriticalMessage(
         t('error', {
           errorAPI: err?.response?.data?.message,
@@ -52,6 +70,7 @@ export default function ActivateOfferModal() {
   });
 
   const onActivate = () => {
+    trackClick(TRACKING.activateVeeamBackupOffer.clicks.confirmActivation);
     activateGoldOffer().catch(() => {});
   };
 

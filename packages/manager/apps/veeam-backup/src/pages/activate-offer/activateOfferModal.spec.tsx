@@ -1,6 +1,8 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { act, screen, waitFor } from '@testing-library/react';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
+
 import {
   assertOdsModalVisibility,
   assertTextVisibility,
@@ -14,6 +16,7 @@ import {
 import { renderTest, labels } from '@/test-helpers';
 import { urls } from '@/routes/routes.constant';
 import TEST_IDS from '@/utils/testIds.constants';
+import { TRACKING, PageName } from '@/tracking.constant';
 
 vi.mock('@ovh-ux/manager-module-vcd-api', async () => {
   const actual = await vi.importActual('@ovh-ux/manager-module-vcd-api');
@@ -23,7 +26,28 @@ vi.mock('@ovh-ux/manager-module-vcd-api', async () => {
   };
 });
 
+const trackClickMock = vi.fn();
+const trackPageMock = vi.fn();
+const trackCurrentPageMock = vi.fn();
+
+vi.mock('@ovh-ux/manager-react-shell-client', async () => {
+  const actual = await vi.importActual('@ovh-ux/manager-react-shell-client');
+  return {
+    ...actual,
+    useOvhTracking: () => ({
+      trackCurrentPage: trackCurrentPageMock,
+      trackPage: trackPageMock,
+      trackClick: trackClickMock,
+    }),
+  };
+});
+
 describe('Activate offer modal', () => {
+  beforeEach(() => {
+    trackClickMock.mockClear();
+    trackPageMock.mockClear();
+    trackCurrentPageMock.mockClear();
+  });
   it.each([
     {
       name: 'success',
@@ -36,6 +60,13 @@ describe('Activate offer modal', () => {
       }),
       clickTestId: TEST_IDS.activateOfferModalAction,
       expectedText: 'success',
+      expectedTrackingCalls: {
+        trackClick: TRACKING.activateVeeamBackupOffer.clicks.confirmActivation,
+        trackPage: {
+          pageType: PageType.bannerSuccess,
+          pageName: PageName.successActivateOfferGold,
+        },
+      },
     },
     {
       name: 'error',
@@ -51,6 +82,13 @@ describe('Activate offer modal', () => {
       }),
       clickTestId: TEST_IDS.activateOfferModalAction,
       expectedText: 'error',
+      expectedTrackingCalls: {
+        trackClick: TRACKING.activateVeeamBackupOffer.clicks.confirmActivation,
+        trackPage: {
+          pageType: PageType.bannerError,
+          pageName: PageName.errorActivateOfferGold,
+        },
+      },
     },
     {
       name: 'cancel',
@@ -60,10 +98,14 @@ describe('Activate offer modal', () => {
       }),
       clickTestId: TEST_IDS.cancelOfferModalAction,
       expectedText: null,
+      expectedTrackingCalls: {
+        trackClick: TRACKING.activateVeeamBackupOffer.clicks.closeModal,
+        trackPage: null,
+      },
     },
   ])(
     'should handle $name flow correctly',
-    async ({ mockHook, clickTestId, expectedText }) => {
+    async ({ mockHook, clickTestId, expectedText, expectedTrackingCalls }) => {
       const user = userEvent.setup();
 
       (useActivateVmwareCloudDirectorBackupOfferGold as ReturnType<
@@ -79,6 +121,7 @@ describe('Activate offer modal', () => {
       const openModalBtn = await getElementByTestId(
         TEST_IDS.activateGoldOfferAction,
       );
+
       await act(() => user.click(openModalBtn));
       await assertOdsModalVisibility({ container, isVisible: true });
 
@@ -91,6 +134,21 @@ describe('Activate offer modal', () => {
         await waitFor(() => {
           expect(screen.getByText(expectedText)).toBeInTheDocument();
         });
+      }
+
+      if (expectedTrackingCalls?.trackClick) {
+        expect(trackClickMock).toHaveBeenCalledWith(
+          expectedTrackingCalls.trackClick,
+        );
+      } else {
+        expect(trackClickMock).not.toHaveBeenCalled();
+      }
+      if (expectedTrackingCalls?.trackPage) {
+        expect(trackPageMock).toHaveBeenCalledWith(
+          expectedTrackingCalls.trackPage,
+        );
+      } else {
+        expect(trackPageMock).not.toHaveBeenCalled();
       }
     },
   );
