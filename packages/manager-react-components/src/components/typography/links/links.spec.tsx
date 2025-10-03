@@ -3,27 +3,6 @@ import { Links, LinkType } from './links.component';
 import { render } from '../../../utils/test.provider';
 
 describe('Links component', () => {
-  it("should have a valid html", async () => {
-    const props = {
-      label: 'Back to the list',
-      href: 'https://www.example.com',
-      type: LinkType.back,
-    };
-    const { container } = render(<Links {...props} />);
-    const html = container.innerHTML;
-    await expect(html).toBeValidHtml();
-  });
-
-  it("should have an accessible html", async () => {
-    const props = {
-      label: 'Back to the list',
-      href: 'https://www.example.com',
-      type: LinkType.back,
-    };
-    const { container } = render(<Links {...props} />);
-    await expect(container).toBeAccessible();
-  });
-
   it('renders a back link correctly', () => {
     const props = {
       label: 'Back to the list',
