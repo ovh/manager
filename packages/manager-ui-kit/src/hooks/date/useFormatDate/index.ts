@@ -1,5 +1,3 @@
 export { useFormatDate } from './useFormatDate';
-export type {
-  FormatDateOptions,
-  DEFAULT_UNKNOWN_DATE_LABEL,
-} from './useFormatDate.type';
+export type { FormatDateOptions } from './useFormatDate.type';
+export { DEFAULT_UNKNOWN_DATE_LABEL } from './useFormatDate.type';
