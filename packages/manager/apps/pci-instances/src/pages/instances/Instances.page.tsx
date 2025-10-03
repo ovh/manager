@@ -26,7 +26,13 @@ import {
   OsdsPopoverContent,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import { Button, Input } from '@ovhcloud/ods-react';
+import {
+  Button,
+  Input,
+  Message,
+  MessageBody,
+  MessageIcon,
+} from '@ovhcloud/ods-react';
 import { Search } from 'lucide-react';
 
 import { FC, FormEvent, useCallback, useMemo, useRef, useState } from 'react';
@@ -47,6 +53,7 @@ import { SearchNotifications } from '@/components/SearchNotifications/SearchNoti
 import { CHANGELOG_LINKS } from '@/constants';
 import DatagridComponent from './datagrid/components/Datagrid.component';
 import { useDatagridOperationsPolling } from '@/pages/instances/datagrid/hooks/useDatagridOperationsPolling';
+import { useHasPendingInstanceCreationOperations } from '@/data/hooks/operation/useOperations';
 
 const initialSorting = {
   id: 'name',
@@ -156,8 +163,20 @@ const Instances: FC = () => {
 
   useDatagridOperationsPolling(handleRefresh);
 
-  if (data && !data.length && !filters.length && !isFetching)
+  const {
+    hasPendingInstanceCreationOperations,
+    isPending: isOperationsPending,
+  } = useHasPendingInstanceCreationOperations();
+
+  const hasNoInstances = data && !data.length && !filters.length && !isFetching;
+
+  if (
+    hasNoInstances &&
+    !isOperationsPending &&
+    !hasPendingInstanceCreationOperations
+  ) {
     return <Navigate to={SECTIONS.onboarding} />;
+  }
 
   return (
     <>
@@ -176,6 +195,16 @@ const Instances: FC = () => {
           <OsdsDivider />
           <Notifications />
           <SearchNotifications />
+          {hasNoInstances &&
+            !isOperationsPending &&
+            hasPendingInstanceCreationOperations && (
+              <Message className="mb-4" color="information" dismissible={false}>
+                <MessageIcon name="circle-info" />
+                <MessageBody>
+                  {t('pci_instances_creations_operations_running')}
+                </MessageBody>
+              </Message>
+            )}
           <OsdsDivider />
           <div className="sm:flex items-center justify-between mt-4 min-h-[40px]">
             <OsdsButton
@@ -264,6 +293,7 @@ const Instances: FC = () => {
             filters={filters}
             onRefresh={handleRefresh}
             onSortChange={setSorting}
+            checkForOperations={(data?.length || 0) > 0}
           />
           {isFetchingNextPage && (
             <div className="mt-5">

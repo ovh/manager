@@ -1,26 +1,13 @@
 import { useCallback, useState } from 'react';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { TOperation } from '@/types/operation/entity.type';
-import { useOperationsPolling } from '@/data/hooks/instance/polling/useOperationsPolling';
+import { useOperationsPolling } from '@/data/hooks/operation/polling/useOperationsPolling';
 import { shouldRetryAfterNot404Error } from '@/data/hooks/instance/polling/useInstancesPolling';
-
-const isInstanceCreationOperationInProgress = (operation: TOperation) =>
-  operation.section === 'instance' &&
-  operation.action === 'create' &&
-  operation.status === 'in-progress';
-
-const isInstanceReinstallOperationInProgress = (operation: TOperation) =>
-  operation.section === 'instance' &&
-  operation.action === 'reinstall' &&
-  operation.status === 'in-progress';
-
-const isSubOperationCopyImageInProgress = (
-  subOperation?: Required<TOperation>['subOperations'][number],
-) =>
-  subOperation &&
-  subOperation.section === 'image' &&
-  subOperation.action === 'copytoregion' &&
-  subOperation.status === 'in-progress';
+import {
+  isInstanceCreationOperationInProgress,
+  isInstanceReinstallOperationInProgress,
+  isSubOperationCopyImageInProgress,
+} from '@/utils/operation/operations.utils';
 
 export const useDatagridOperationsPolling = (onComplete?: () => void) => {
   const projectId = useProjectId();
