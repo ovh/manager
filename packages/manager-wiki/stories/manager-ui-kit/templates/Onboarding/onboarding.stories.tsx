@@ -1,8 +1,8 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { LinkCard, OnboardingLayout } from '@ovh-ux/manager-react-components';
-import placeholderSrc from '@ovh-ux/manager-react-components/public/assets/placeholder.png';
-import customImgSrc from '@ovh-ux/manager-react-components/public/assets/error-banner-oops.png';
+import { LinkCard, OnboardingLayout } from '@ovh-ux/manager-ui-kit';
+import placeholderSrc from '@ovh-ux/manager-ui-kit/public/assets/placeholder.png';
+import customImgSrc from '@ovh-ux/manager-ui-kit/public/assets/error-banner-oops.png';
 import { OdsText } from '@ovhcloud/ods-components/react';
 
 export const OnboardingFullExample = () => (
@@ -175,7 +175,7 @@ export const OnboardingWithoutHeadingSection = () => (
 );
 
 const meta: Meta<typeof OnboardingLayout> = {
-  title: 'Manager React Components/Components/OnboardingLayout',
+  title: 'Manager UI Kit/Components/OnboardingLayout',
   component: OnboardingLayout,
   argTypes: {
     title: {

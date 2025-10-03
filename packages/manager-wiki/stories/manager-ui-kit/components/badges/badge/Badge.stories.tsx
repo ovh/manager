@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react';
 import { BADGE_COLOR, BADGE_SIZE, Icon, ICON_NAME } from '@ovhcloud/ods-react';
-import { Badge, BadgeProps } from '@ovh-ux/manager-react-components';
+import { Badge, BadgeProps } from '@ovh-ux/manager-ui-kit';
 
 export const Default = {
   args: {
@@ -15,7 +15,7 @@ function renderComponent({ children, ...args }) {
 }
 
 const simpleBadge: Meta<BadgeProps> = {
-  title: 'Manager React Components/Components/Badges/Badge',
+  title: 'Manager UI Kit/Components/Badges/Badge',
   render: renderComponent,
   parameters: {
     docs: {
@@ -28,7 +28,7 @@ const simpleBadge: Meta<BadgeProps> = {
 };
 
 export const BadgeWithIcon: Meta<BadgeProps> = {
-  title: 'Manager React Components/Components/Badge',
+  title: 'Manager UI Kit/Components/Badge',
   args: {
     ...Default.args,
     children: (
@@ -49,7 +49,7 @@ export const BadgeWithIcon: Meta<BadgeProps> = {
 };
 
 export const BadgeWithLoader: Meta<BadgeProps> = {
-  title: 'Manager React Components/Components/Badge',
+  title: 'Manager UI Kit/Components/Badge',
   args: {
     isLoading: true,
     ...Default.args,

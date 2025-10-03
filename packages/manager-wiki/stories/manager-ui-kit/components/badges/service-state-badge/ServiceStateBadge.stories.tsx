@@ -1,9 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import {
-  ServiceStateBadge,
-  ResourceStatus,
-} from '@ovh-ux/manager-react-components';
+import { ServiceStateBadge, ResourceStatus } from '@ovh-ux/manager-ui-kit';
 
 export const ServiceStateBadgeActive = () => (
   <ServiceStateBadge state="active" />
@@ -41,7 +38,7 @@ export const LoadingBadge = () => (
 );
 
 const meta: Meta<typeof ServiceStateBadge> = {
-  title: 'Manager React Components/Components/Badges/ServiceStateBadge',
+  title: 'Manager UI Kit/Components/Badges/ServiceStateBadge',
   component: ServiceStateBadge,
   argTypes: {
     state: {

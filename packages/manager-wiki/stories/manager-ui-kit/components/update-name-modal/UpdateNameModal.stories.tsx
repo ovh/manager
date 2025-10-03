@@ -3,7 +3,7 @@ import { Meta } from '@storybook/react';
 import {
   UpdateNameModal as UpdateNameModalComponent,
   UpdateNameModalProps,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/manager-ui-kit';
 
 export const UpdateNameModalDefault = (props: UpdateNameModalProps) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -35,7 +35,7 @@ export const UpdateNameModalWithError = (props: UpdateNameModalProps) => {
 };
 
 const meta: Meta = {
-  title: 'Manager React Components/Components/Update Name Modal',
+  title: 'Manager UI Kit/Components/Update Name Modal',
   component: UpdateNameModalComponent,
   argTypes: {
     isLoading: { control: 'boolean' },

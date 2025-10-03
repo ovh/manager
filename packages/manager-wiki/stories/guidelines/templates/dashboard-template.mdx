@@ -25,7 +25,7 @@ You have a default dashboard template that display base template with default ca
 
 ### BaseLayout
 
-- Uses the same `baseLayout` component from `manager-react-components`
+- Uses the same `baseLayout` component from `manager-ui-kit`
 - Displays service overview and key metrics
 - Supports custom widgets and charts
 
@@ -115,16 +115,16 @@ Define your tab paths in the routes.tsx file
 
 > ### ⚠️ Note
 >
-> Tabs outlet can contains `datagrid` from `manager-react-components`, display data with `chartJS` components
+> Tabs outlet can contains `datagrid` from `manager-ui-kit`, display data with `chartJS` components
 
 ### BREADCRUMB
 
-Import the `Breadcrumb` component from `Manager React Components` and fill the attributes `breadcrumb` of `BaseLayout` component.
+Import the `Breadcrumb` component from `Manager UI Kit` and fill the attributes `breadcrumb` of `BaseLayout` component.
 
 Here an exemple
 
 ```tsx
-import { Breadcrumb, BaseLayout } from '@ovh-ux/manager-react-components';
+import { Breadcrumb, BaseLayout } from '@ovh-ux/manager-ui-kit';
 
 const DashboardPage = () => {
   return (
@@ -152,6 +152,6 @@ const DashboardPage = () => {
 
 ### Code Review Checklist
 
-- [ ] Use `BaseLayout` Component from `manager-react-components`
+- [ ] Use `BaseLayout` Component from `manager-ui-kit`
 - [ ] API call with `apiClient from`@ovh-ux/manager-core-api`
 - [ ] Notifications success/errors`in`message` attribute of base layout component

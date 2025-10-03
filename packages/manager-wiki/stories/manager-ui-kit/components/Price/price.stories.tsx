@@ -1,13 +1,9 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import {
-  Price,
-  OvhSubsidiary,
-  IntervalUnitType,
-} from '@ovh-ux/manager-react-components';
+import { Price, OvhSubsidiary, IntervalUnitType } from '@ovh-ux/manager-ui-kit';
 
 const meta = {
-  title: 'Manager React Components/Components/Price',
+  title: 'Manager UI Kit/Components/Price',
   component: Price,
   parameters: {
     docs: {

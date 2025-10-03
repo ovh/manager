@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { LinkCard, LinkCardProps } from '@ovh-ux/manager-react-components';
+import { LinkCard, LinkCardProps } from '@ovh-ux/manager-ui-kit';
 
 export const defaultProps: LinkCardProps = {
   texts: {
@@ -32,7 +32,7 @@ const textsWithDescription = {
 };
 
 const meta: Meta<typeof LinkCard> = {
-  title: 'Manager React Components/Components/Link Card',
+  title: 'Manager UI Kit/Components/Link Card',
   decorators: [
     // eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle
     (Story) => (

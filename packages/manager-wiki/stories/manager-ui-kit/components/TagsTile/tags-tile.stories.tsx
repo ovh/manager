@@ -1,8 +1,8 @@
 import { StoryObj } from '@storybook/react';
-import { TagsTile } from '@ovh-ux/manager-react-components';
+import { TagsTile } from '@ovh-ux/manager-ui-kit';
 
 const managerTagsTile = {
-  title: 'Manager React Components/Components/TagsTile',
+  title: 'Manager UI Kit/Components/TagsTile',
   component: TagsTile,
 };
 

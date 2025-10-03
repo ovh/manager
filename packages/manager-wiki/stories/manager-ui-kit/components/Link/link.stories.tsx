@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { Link, LinkProps, LinkType } from '@ovh-ux/manager-react-components';
+import { Link, LinkProps, LinkType } from '@ovh-ux/manager-ui-kit';
 import { IAM_ACTIONS, IAM_URNS } from '../../../../utils/iam.constants';
 
 const backLink: LinkProps = {
@@ -52,7 +52,7 @@ const iamLinkWithoutAuthAndTooltip: LinkProps = {
 };
 
 const meta: Meta<LinkProps> = {
-  title: 'Manager React Components/Components/Link',
+  title: 'Manager UI Kit/Components/Link',
   decorators: [(story) => <div>{story()}</div>],
   argTypes: {},
   args: backLink,

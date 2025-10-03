@@ -1,6 +1,6 @@
 import { Meta, Canvas, Source } from '@storybook/blocks';
 
-<Meta title="Manager React Components/Components/Datagrid Cursor/Documentation" />
+<Meta title="Manager UI Kit/Components/Datagrid Cursor/Documentation" />
 
 # Datagrid
 
@@ -81,7 +81,7 @@ Why Use TanStack Table?
 
 <Source
   code={`
-import { useResourcesV6, useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
+import { useResourcesV6, useResourcesIcebergV6 } from '@ovh-ux/manager-ui-kit';
 
 const { filters } = useResourcesIcebergV6({ ... });
 const { filters } = useResourcesV6({ ... });
@@ -99,7 +99,7 @@ If you are using a custom hook
 
 <Source
   code={`
-import { useColumnFilters } from '@ovh-ux/manager-react-components';
+import { useColumnFilters } from '@ovh-ux/manager-ui-kit';
 
 const { filters, addFilter, removeFilter } = useColumnFilters();
 
@@ -210,7 +210,7 @@ What contains `search` object :
   code={`
 import {
   useResourcesIcebergV6,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/manager-ui-kit';
   const {
     {...}
     search, // it return search object
@@ -269,7 +269,7 @@ Fill `columns` attribute with your columns definition. The`search` object return
   code={`
 import {
   useResourcesV6,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/manager-ui-kit';
   const {
     {...}
     search, // it return search object

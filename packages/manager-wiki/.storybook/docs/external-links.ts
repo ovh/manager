@@ -27,21 +27,21 @@ const externalLinks = {
   },
   github: {
     action:
-      'https://github.com/ovh/manager/tree/master/packages/manager-react-components/src/components/navigation/menus/action',
+      'https://github.com/ovh/manager/tree/master/packages/manager-ui-kit/src/components/navigation/menus/action',
     deleteModal:
-      'https://github.com/ovh/manager/tree/master/packages/manager-react-components/src/components/templates/delete-modal',
+      'https://github.com/ovh/manager/tree/master/packages/manager-ui-kit/src/components/templates/delete-modal',
     updateNameModal:
-      'https://github.com/ovh/manager/tree/master/packages/manager-react-components/src/components/templates/update-name-modal',
+      'https://github.com/ovh/manager/tree/master/packages/manager-ui-kit/src/components/templates/update-name-modal',
     filters:
-      'https://github.com/ovh/manager/tree/master/packages/manager-react-components/src/components/filters',
+      'https://github.com/ovh/manager/tree/master/packages/manager-ui-kit/src/components/filters',
     links:
-      'https://github.com/ovh/manager/tree/master/packages/manager-react-components/src/components/typography/links',
+      'https://github.com/ovh/manager/tree/master/packages/manager-ui-kit/src/components/typography/links',
     managerButton:
-      'https://github.com/ovh/manager/blob/master/packages/manager-react-components/src/components/ManagerButton/ManagerButton.tsx',
+      'https://github.com/ovh/manager/blob/master/packages/manager-ui-kit/src/components/ManagerButton/ManagerButton.tsx',
     managerText:
-      'https://github.com/ovh/manager/blob/master/packages/manager-react-components/src/components/ManagerText/ManagerText.tsx',
+      'https://github.com/ovh/manager/blob/master/packages/manager-ui-kit/src/components/ManagerText/ManagerText.tsx',
     price:
-      'https://github.com/ovh/manager/tree/master/packages/manager-react-components/src/components/content/price',
+      'https://github.com/ovh/manager/tree/master/packages/manager-ui-kit/src/components/content/price',
   },
 };
 
