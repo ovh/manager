@@ -1,3 +1,14 @@
-import { TVolume } from './common.type';
+import { TStatus, TAnyZone } from './common.type';
 
-export type TVolumeDto = TVolume;
+type TAttachedInstance = {
+  id: string;
+};
+
+export type TVolumeDto = {
+  id: string;
+  name: string;
+  size: number;
+  availabilityZone: string | null | TAnyZone;
+  attachedTo: TAttachedInstance[];
+  status: TStatus;
+};
