@@ -1,16 +1,23 @@
 import path from 'path';
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
+import {
+  createConfig,
+  mergeConfig,
+  defaultExcludedFiles,
+} from '@ovh-ux/manager-tests-setup';
+
+export default mergeConfig(createConfig(), {
   test: {
     setupFiles: 'vitest.setup.js',
     globals: true,
     environment: 'jsdom',
     coverage: {
       include: ['src'],
-      exclude: [],
+      exclude: [...defaultExcludedFiles],
+    },
+    server: {
+      deps: {
+        inline: [/@ovhcloud\/ods-react.*/],
+      },
     },
     testTimeout: 60000,
     fileParallelism: false,

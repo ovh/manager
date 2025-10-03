@@ -8,7 +8,6 @@ import {
   generateCodeDuplicationHtml,
 } from '../dist/adapters/code-duplication/helpers/code-duplication-analysis-helper.js';
 import {
-  appsDir,
   codeDupCombinedHtmlReportName,
   codeDupCombinedJsonReportName,
   codeDupReportsRootDirName,
@@ -17,7 +16,7 @@ import {
 } from './cli-path-config.js';
 import { buildCodeDuplicationArgs, parseCliTargets } from './utils/args-parse-utils.js';
 import { logError, logInfo, logWarn } from './utils/log-utils.js';
-import { ensureBinExists, runAppsAnalysis, runCommand } from './utils/runner-utils.js';
+import { ensureBinExists, runAnalysis, runCommand } from './utils/runner-utils.js';
 
 /**
  * Run `jscpd` code duplication analysis for a single app.
@@ -72,14 +71,14 @@ function main() {
   try {
     ensureBinExists(jscpdBinPath, 'jscpd');
 
-    const { appFolders } = parseCliTargets(appsDir);
+    const { appFolders, analysisDir } = parseCliTargets();
 
-    runAppsAnalysis({
-      appsDir,
-      appFolders,
+    runAnalysis({
+      analysisDir,
+      folders: appFolders,
       requireReact: true,
       binaryLabel: 'Code duplication',
-      appRunner: runAppCodeDuplication,
+      analysisRunner: runAppCodeDuplication,
       reportsRootDirName: codeDupReportsRootDirName,
       combinedJson: codeDupCombinedJsonReportName,
       combinedHtml: codeDupCombinedHtmlReportName,
