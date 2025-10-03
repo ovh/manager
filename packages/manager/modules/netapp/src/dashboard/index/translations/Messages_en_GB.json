@@ -6,7 +6,7 @@
   "netapp_dashboard_information_performance_level": "Performance level",
   "netapp_dashboard_information_quota": "Storage size",
   "netapp_dashboard_information_quota_formatted": "{{quota}}GB",
-  "netapp_dashboard_network_configuration": "Network configuration",
+  "netapp_dashboard_network_configuration": "Require user configuration",
   "netapp_dashboard_network_configuration_status": "Status",
   "netapp_dashboard_network_configuration_status_to_configure": "Ready to configure",
   "netapp_dashboard_network_configuration_status_associating": "Deploying...",
