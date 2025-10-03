@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable max-lines */
 /**
  * @fileoverview manager-pm CLI entrypoint.
  *
@@ -10,12 +11,6 @@
 import process from 'node:process';
 
 import {
-  clearRootWorkspaces,
-  updateRootWorkspacesFromCatalogs,
-} from '../src/kernel/commons/catalog-utils.js';
-import { logger } from '../src/kernel/commons/log-manager.js';
-import { startApp } from '../src/kernel/pnpm/pnpm-start-app.js';
-import {
   buildAll,
   buildApp,
   buildCI,
@@ -24,6 +19,7 @@ import {
   lintAll,
   lintApp,
   publishPackage,
+  runLernaTask,
   runLifecycleTask,
   runManagerCli,
   runPerfBudgets,
@@ -32,7 +28,13 @@ import {
   testAll,
   testApp,
   testCI,
-} from '../src/kernel/pnpm/pnpm-tasks-manager.js';
+} from '../src/kernel/commons/tasks-manager.js';
+import { startApp } from '../src/kernel/pnpm/pnpm-start-app.js';
+import {
+  clearRootWorkspaces,
+  updateRootWorkspacesFromCatalogs,
+} from '../src/kernel/utils/catalog-utils.js';
+import { logger, setLoggerMode } from '../src/kernel/utils/log-manager.js';
 
 const VERSION = '0.2.0';
 
@@ -119,6 +121,9 @@ ACTIONS
     buildCI [--filter <expr>] [other turbo flags]
     testCI  [--filter <expr>] [other turbo flags]
 
+  Lerna passthrough (flags forwarded to Lerna):
+    lerna <subcommand> [options] Run any Lerna command with workspaces restored/cleaned
+
   Global:
     full-build                   Build ALL apps
     full-test                    Test ALL apps
@@ -149,6 +154,7 @@ COMMON OPTIONS
   --filter <expr>                Turbo filter for buildCI/testCI
   --container                    Hint that we run inside a container
   --region <code>                Region flag (printed for logs only)
+  --silent                       Suppress ALL logs (stderr + stdout), only raw tool output remains
 
 RELEASE / PUBLISH FLAGS (forwarded to underlying tools)
   --dry-run | --dryrun | -n      DRY MODE
@@ -170,6 +176,11 @@ EXAMPLES
   # Turbo passthrough
   manager-pm --type pnpm --action buildCI --filter=@ovh-ux/manager-web
   manager-pm --type pnpm --action testCI  --filter=tag:unit --parallel
+
+  # Lerna passthrough
+  manager-pm --action lerna list --all --json --toposort
+  manager-pm --action lerna publish from-package --yes
+  manager-pm --action lerna version --conventional-commits
 
   # Workspaces
   manager-pm --action workspace --mode prepare
@@ -200,6 +211,7 @@ NOTES
   • In dry release mode, the script safeguards your working tree: no tags/commits/push,
     no persistent file changes (package.json/CHANGELOG restored).
   • For "cli" action, everything after the word "cli" is forwarded to manager-cli verbatim.
+  • For "lerna" action, everything after the word "lerna" is forwarded to Lerna verbatim.
 `;
 
 /**
@@ -325,6 +337,18 @@ const actions = {
   async postinstall() {
     return runLifecycleTask('postinstall');
   },
+  async lerna() {
+    const lernaIndex = process.argv.indexOf('lerna');
+    let extraArgs = lernaIndex !== -1 ? process.argv.slice(lernaIndex + 1) : [];
+
+    // Strip --silent before passing to Lerna
+    if (extraArgs.includes('--silent')) {
+      extraArgs = extraArgs.filter((arg) => arg !== '--silent');
+      setLoggerMode('silent');
+    }
+
+    return runLernaTask(extraArgs);
+  },
 };
 
 /**
@@ -333,6 +357,13 @@ const actions = {
  */
 async function main() {
   const { opts, passthrough } = parseArgs(process.argv.slice(2));
+
+  if (process.argv.includes('--silent')) {
+    setLoggerMode('silent');
+  } else {
+    setLoggerMode('stderr'); // safe default for jq pipes
+  }
+
   const { action, type = 'pnpm', app = null, filter = null, region = 'EU', mode = null } = opts;
   const container = Boolean(opts.container);
 

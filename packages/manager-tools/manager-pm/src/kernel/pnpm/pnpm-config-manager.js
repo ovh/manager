@@ -2,8 +2,8 @@ import { promises as fs } from 'node:fs';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 
-import { writeJson } from '../commons/json-utils.js';
-import { logger } from '../commons/log-manager.js';
+import { writeJson } from '../utils/json-utils.js';
+import { logger } from '../utils/log-manager.js';
 
 /**
  * Try to locate a Vitest config file in a given app directory.

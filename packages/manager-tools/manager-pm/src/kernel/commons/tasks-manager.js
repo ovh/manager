@@ -1,9 +1,9 @@
 import { spawn } from 'node:child_process';
 
 import { managerRootPath } from '../../playbook/playbook-config.js';
-import { clearRootWorkspaces, updateRootWorkspacesFromCatalogs } from '../commons/catalog-utils.js';
-import { logger } from '../commons/log-manager.js';
-import { resolveBuildFilter } from '../commons/task-utils.js';
+import { clearRootWorkspaces, updateRootWorkspacesFromCatalogs } from '../utils/catalog-utils.js';
+import { logger } from '../utils/log-manager.js';
+import { resolveBuildFilter } from '../utils/tasks-utils.js';
 
 /**
  * Spawn a child process and run a command with streamed output.
@@ -70,12 +70,22 @@ async function withWorkspaces(fn) {
 }
 
 /**
- * Run a Turbo task (build or test) in CI mode with arbitrary Turbo CLI options.
+ * Run a Turbo task (build or test) in CI mode with arbitrary CLI options.
+ *
+ * This wrapper is agnostic of the underlying package manager (Yarn, PNPM, or hybrid).
+ * It ensures catalogs are merged into root workspaces before running Turbo,
+ * and cleared afterward.
+ *
+ * Example:
+ * ```bash
+ * yarn manager-pm --action buildCI --filter=@scope/app
+ * yarn manager-pm --action testCI --filter=tag:unit --parallel
+ * ```
  *
  * @async
- * @param {"build"|"test"} task - The Turbo task type to run.
- * @param {string[]} [options=[]] - Additional Turbo CLI options, e.g. ["--filter=docs...", "--parallel"].
- * @returns {Promise<void>} Resolves when the Turbo task completes successfully.
+ * @param {"build"|"test"} task - The Turbo task to run.
+ * @param {string[]} [options=[]] - Extra CLI args passed to `turbo run <task>`.
+ * @returns {Promise<void>} Resolves when the Turbo task finishes successfully.
  */
 export async function runTurboTaskCI(task, options = []) {
   return withWorkspaces(async () => {
@@ -329,20 +339,41 @@ export async function runStaticDynamicTests() {
 }
 
 /**
- * Run performance budgets (PNPM-aware).
+ * Run performance budgets analysis with hybrid package-manager awareness.
  *
- * Unlike static/dynamic aggregate checks, perfBudgets can be scoped to specific
- * apps or package sets via `--app <name>` or `--packages <list>`.
+ * Works across Yarn, PNPM, or mixed setups. Ensures workspaces are prepared before running.
+ * Supports scoping by app or package list.
  *
  * Example:
  * ```bash
- * yarn manager-pm --type pnpm --action perfBudgets --packages web,cloud
- * yarn manager-pm --type pnpm --action perfBudgets --app zimbra
+ * yarn manager-pm --action perfBudgets --packages web,cloud
+ * yarn manager-pm --action perfBudgets --app zimbra
  * ```
  *
- * @param {string[]} [options=[]] - Extra args to pass through (supports --app and --packages).
+ * @param {string[]} [options=[]] - Extra CLI flags, e.g. `--app <name>` or `--packages <list>`.
  * @returns {Promise<void>} Resolves when performance budgets complete successfully.
  */
 export async function runPerfBudgets(options = []) {
   return withWorkspaces(() => runTask('perf-budgets', 'manager-perf-budgets', options));
+}
+
+/**
+ * Run an arbitrary Lerna command with workspace handling.
+ *
+ * Suppresses all logger output to avoid breaking JSON output
+ * when piping to tools like `jq`.
+ *
+ * Example:
+ * ```bash
+ * yarn manager-pm --action lerna list --all --json --toposort \
+ *   | jq -r '.[].location | select(. | test("/packages/manager/apps"))'
+ * ```
+ *
+ * @param {string[]} [options=[]] - Arguments passed to the `lerna` binary.
+ * @returns {Promise<void>} Resolves when the Lerna process completes successfully.
+ */
+export async function runLernaTask(options = []) {
+  return withWorkspaces(async () => {
+    await runCommand('node_modules/.bin/lerna', options, managerRootPath);
+  });
 }

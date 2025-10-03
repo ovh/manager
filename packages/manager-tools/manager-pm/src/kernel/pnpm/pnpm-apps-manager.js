@@ -5,10 +5,10 @@ import {
   getCatalogPaths,
   isAppInCatalog,
   removeAppPathFromCatalog,
-} from '../commons/catalog-utils.js';
-import { normalizeReactDependencies } from '../commons/dependencies-utils.js';
-import { logger } from '../commons/log-manager.js';
-import { buildAppWorkspacePath, cleanAppDirs } from '../commons/workspace-utils.js';
+} from '../utils/catalog-utils.js';
+import { normalizeReactDependencies } from '../utils/dependencies-utils.js';
+import { logger } from '../utils/log-manager.js';
+import { buildAppWorkspacePath, cleanAppDirs } from '../utils/workspace-utils.js';
 import { patchVitestConfig } from './pnpm-config-manager.js';
 
 /**

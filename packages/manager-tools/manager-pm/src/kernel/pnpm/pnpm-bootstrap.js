@@ -20,8 +20,8 @@ import {
   pnpmVersion,
   rootPackageJsonPath,
 } from '../../playbook/playbook-config.js';
-import { logger } from '../commons/log-manager.js';
-import { removePackageManager, restorePackageManager } from '../commons/package-manager-utils.js';
+import { logger } from '../utils/log-manager.js';
+import { removePackageManager, restorePackageManager } from '../utils/package-manager-utils.js';
 
 /**
  * Compute the final PNPM executable path for the current platform.

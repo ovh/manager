@@ -10,8 +10,8 @@
  */
 import process from 'node:process';
 
-import { logger } from './kernel/commons/log-manager.js';
 import { yarnPostInstall } from './kernel/pnpm/pnpm-deps-manager.js';
+import { logger } from './kernel/utils/log-manager.js';
 
 /**
  * Main entrypoint for the post-installation routine.

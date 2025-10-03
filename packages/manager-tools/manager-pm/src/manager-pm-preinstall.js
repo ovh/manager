@@ -16,8 +16,8 @@
  */
 import process from 'node:process';
 
-import { logger } from './kernel/commons/log-manager.js';
 import { yarnPreInstall } from './kernel/pnpm/pnpm-deps-manager.js';
+import { logger } from './kernel/utils/log-manager.js';
 
 /**
  * Main entrypoint for the pre-installation routine.

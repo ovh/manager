@@ -1,6 +1,6 @@
 import process from 'node:process';
 
-import { logger } from '../commons/log-manager.js';
+import { logger } from './log-manager.js';
 
 /** Parse `--app <val>`, `-a <val>`, or `--app=<val>` from argv. */
 export function parseAppArg(argv = process.argv.slice(2)) {

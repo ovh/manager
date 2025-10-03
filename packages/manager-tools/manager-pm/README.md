@@ -242,6 +242,114 @@ manager-pm --action postinstall
 
 ---
 
+## Continuous Delivery (CDS)
+
+In our previous workflow, Continuous Delivery jobs relied on **direct Lerna invocations** such as:
+
+```bash
+node_modules/.bin/lerna list   --all   --json   --toposort   | jq -r '.[].location | select(. | test("/packages/manager/apps"))'
+```
+
+This worked but bypassed the hybrid logic of `manager-pm`.  
+
+Now, all Lerna calls should go **through `manager-pm`**, ensuring that catalogs and hybrid workspaces are prepared/cleaned consistently.
+
+### New recommended usage
+
+```bash
+yarn -s manager-pm --silent --action lerna list --all --json --toposort --loglevel silent   | jq -r '.[].location | select(test("/packages/manager/apps"))'
+```
+
+Or equivalently:
+
+```bash
+node node_modules/.bin/manager-pm --silent --action lerna list --all --json --toposort --loglevel silent   | jq -r '.[].location | select(test("/packages/manager/apps"))'
+```
+
+Both commands guarantee:
+- Correct workspace preparation/cleanup before and after the run.
+- Silent Yarn headers/footers suppressed (so JSON remains parseable).
+- Full passthrough of flags and options to **Lerna**.
+
+### Passing arbitrary Lerna options
+
+`manager-pm` exposes a **Lerna passthrough mode**, so you can use any existing Lerna subcommand:
+
+```bash
+# List packages
+manager-pm --action lerna list --all --json --toposort
+
+# Publish from local versions
+manager-pm --action lerna publish from-package --yes
+
+# Version with conventional commits
+manager-pm --action lerna version --conventional-commits
+```
+
+This ensures **CD pipelines and developers** use a single, unified CLI (`manager-pm`), regardless of whether the repo is Yarn-only, PNPM-only, or hybrid.
+
+### 🟡 Staging
+
+#### Detect changed packages (apps only)
+
+**Before**
+
+```bash
+PACKAGES_TO_BUILD=$(node_modules/.bin/lerna changed   --all   --include-merged-tags   --json --toposort   | jq -r '.[].location | select(. | test("/packages/manager/apps"))')
+```
+
+**Now**
+
+```bash
+PACKAGES_TO_BUILD=$(yarn -s manager-pm --silent --action lerna changed   --all   --include-merged-tags   --json --toposort   | jq -r '.[].location | select(test("/packages/manager/apps"))')
+```
+
+#### Search an existing app on the list
+
+**Before**
+
+```bash
+app_path="$(node_modules/.bin/lerna list   --all   --parseable   --toposort   --long | grep ":${app}:" | cut -d: -f1)"
+```
+
+**Now**
+
+```bash
+app_path="$(yarn -s manager-pm --silent --action lerna list   --all   --parseable   --toposort   --long | grep ":${app}:" | cut -d: -f1)"
+```
+
+### 🔵 Production
+
+#### Changed packages on the release
+
+**Before**
+
+```bash
+packages=$(node_modules/.bin/lerna changed --all -l --json | jq -r '.[].name')
+```
+
+**Now**
+
+```bash
+packages=$(yarn -s manager-pm --silent --action lerna changed --all -l --json | jq -r '.[].name')
+```
+
+#### Get changed package in build pipeline
+
+**Before**
+
+```bash
+package_path=$(node_modules/.bin/lerna list -ap --scope="XXX")
+```
+
+**Now**
+
+```bash
+package_path=$(yarn -s manager-pm --silent --action lerna list -ap --scope="XXX")
+```
+
+---
+
 ## Typical workflows
 
 ### Migrate an app to PNPM

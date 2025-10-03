@@ -14,11 +14,11 @@ import {
   getCatalogPaths,
   readCatalog,
   updateRootWorkspacesToYarnOnly,
-} from '../commons/catalog-utils.js';
-import { getPnpmPrivateModules, getTurboPrivateFilters } from '../commons/dependencies-utils.js';
-import { loadJson } from '../commons/json-utils.js';
-import { logger } from '../commons/log-manager.js';
-import { removePackageManager, restorePackageManager } from '../commons/package-manager-utils.js';
+} from '../utils/catalog-utils.js';
+import { getPnpmPrivateModules, getTurboPrivateFilters } from '../utils/dependencies-utils.js';
+import { loadJson } from '../utils/json-utils.js';
+import { logger } from '../utils/log-manager.js';
+import { removePackageManager, restorePackageManager } from '../utils/package-manager-utils.js';
 import { bootstrapPnpm, getPnpmPlatformExecutablePath } from './pnpm-bootstrap.js';
 
 /**

@@ -4,10 +4,10 @@ import inquirerSearchList from 'inquirer-search-list';
 import process from 'node:process';
 
 import { containerPackageName, managerRootPath } from '../../playbook/playbook-config.js';
-import { clearRootWorkspaces, updateRootWorkspacesFromCatalogs } from '../commons/catalog-utils.js';
-import { logger } from '../commons/log-manager.js';
-import { resolveBuildFilter } from '../commons/task-utils.js';
-import { getApplicationId, getApplications } from '../commons/workspace-utils.js';
+import { clearRootWorkspaces, updateRootWorkspacesFromCatalogs } from '../utils/catalog-utils.js';
+import { logger } from '../utils/log-manager.js';
+import { resolveBuildFilter } from '../utils/tasks-utils.js';
+import { getApplicationId, getApplications } from '../utils/workspace-utils.js';
 
 /**
  * @typedef {Object} StartAppOptions
