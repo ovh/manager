@@ -42,8 +42,8 @@ export default defineConfig({
     outDir: '../dist',
     lib: {
       entry: path.resolve(__dirname, 'src/lib.ts'),
-      name: 'ManagerReactComponentsLib',
-      fileName: (format) => `manager-react-components-lib.${format}.ts`,
+      name: 'ManagerUiKitLib',
+      fileName: (format) => `manager-ui-kit-lib.${format}.ts`,
     },
     rollupOptions: {
       external: [

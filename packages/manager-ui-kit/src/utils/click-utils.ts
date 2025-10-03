@@ -5,10 +5,10 @@ import { MouseEventHandler, KeyboardEvent } from 'react';
  * as welll as the onKeyDown event handler when using the keys Space or Enter
  */
 export const handleClick = (fn: (ev: Event) => void) => ({
-  onClick: (fn as unknown) as MouseEventHandler,
+  onClick: fn as unknown as MouseEventHandler,
   onKeyDown: (event: KeyboardEvent) => {
     if ([' ', 'Enter'].includes(event.key)) {
-      fn((event as unknown) as Event);
+      fn(event as unknown as Event);
     }
   },
 });
