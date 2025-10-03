@@ -170,16 +170,9 @@
   "billing_autorenew_service_every_6_month": "Every 6 months",
   "billing_autorenew_service_every_12_month": "Every year",
   "billing_autorenew_engagement_none": "No commitment",
-  "billing_autorenew_service_type_ZIMBRA_SLOT": "Zimbra Starter",
-  "billing_autorenew_service_type_HOSTING_WEB_EXTRA_SQL_PERSO": "Extra Personal SQL",
-  "billing_autorenew_service_type_HOSTING_WEB_CDN": "Shared CDN",
   "billing_autorenew_service_status_unpaid": "Bill to pay",
-  "billing_description_details": "Manage all your service renewals, payments, and cancellations on this page.",
-  "billing_autorenew_service_date_us": "Expiry date",
-  "autorenew_service_actions_title": "Actions",
   "billing_autorenew_service_every_month": "Every month",
   "billing_autorenew_service_every_x_months": "Every {{ months }} months",
   "billing_autorenew_service_every_year": "Every year",
-  "billing_autorenew_service_every_x_years": "Every {{ years }} years",
-  "billing_autorenew_engagement_none": "No commitment"
+  "billing_autorenew_service_every_x_years": "Every {{ years }} years"
 }
