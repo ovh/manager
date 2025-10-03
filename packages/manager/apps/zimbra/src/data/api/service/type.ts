@@ -13,6 +13,7 @@ export type SlotService = {
   nextBillingDate?: string;
   state: keyof typeof ServiceBillingState;
   planCode?: ZimbraPlanCodes;
+  price?: string;
 };
 
 export const SlotServiceTerminationPolicy = {
