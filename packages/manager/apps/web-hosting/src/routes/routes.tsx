@@ -29,22 +29,8 @@ import {
   WORDPRESS_MANAGED,
   WORDPRESS_MANAGED_SERVICE,
 } from '../utils/tracking.constants';
-import {
-  DashboardLayout,
-  OnboardingPage,
-  RootPage,
-  WebsitesPage,
-} from './pages/default';
+import { DashboardLayout, OnboardingPage, RootPage, WebsitesPage } from './pages/default';
 import { AddDomainPage, OrderDomainPage } from './pages/domain';
-import {
-  DisableSslPage,
-  ImportSslPage,
-  OrderSectigoPage,
-  SanSslPage,
-  SslPage,
-} from './pages/ssl';
-import { OngoingTaskPage } from './pages/task';
-import { urls } from './routes.constants';
 import {
   ManagedWordpressPage,
   ManagedWordpressResourcePage,
@@ -54,6 +40,9 @@ import {
   ManagedWordpressServiceImportPage,
   ManagedWordpressServiceTasksPage,
 } from './pages/managedWordpress';
+import { DisableSslPage, ImportSslPage, OrderSectigoPage, SanSslPage, SslPage } from './pages/ssl';
+import { OngoingTaskPage } from './pages/task';
+import { urls } from './routes.constants';
 
 export type RouteHandle = {
   isOverridePage?: boolean;
