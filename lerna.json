@@ -7,7 +7,7 @@
     "packages/manager/core/*",
     "packages/manager/modules/*",
     "packages/manager/tools/*",
-    "packages/manager-react-components"
+    "packages/manager-ui-kit"
   ],
   "npmClient": "yarn",
   "useWorkspaces": true,
