@@ -8,7 +8,6 @@ import {
   generateTestsCoverageHtml,
 } from '../dist/adapters/tests-coverage/helpers/tests-coverage-analysis-helper.js';
 import {
-  appsDir,
   outputRootDir,
   rootDir,
   testsCoverageCombinedHtmlReportName,
@@ -17,8 +16,8 @@ import {
 } from './cli-path-config.js';
 import { parseCliTargets } from './utils/args-parse-utils.js';
 import { logError, logInfo, logWarn } from './utils/log-utils.js';
-import { runAppsAnalysis } from './utils/runner-utils.js';
-import { resolveTurboFilters, runTurboBuild, runTurboTests } from './utils/turbo-utils.js';
+import { runAnalysis } from './utils/runner-utils.js';
+import { buildTurboFilters, runTurboBuild, runTurboTests } from './utils/turbo-utils.js';
 
 /**
  * Locate common coverage artifacts inside an app directory.
@@ -89,8 +88,8 @@ function harvestAppCoverage(appDir, appShortName) {
  */
 function main() {
   try {
-    const { appFolders, packageNames } = parseCliTargets(appsDir);
-    const turboFilters = resolveTurboFilters({ appsDir, appFolders, packageNames });
+    const { appFolders, packageNames, analysisDir } = parseCliTargets();
+    const turboFilters = buildTurboFilters({ analysisDir, appFolders, packageNames });
 
     // 1) Build all selected targets (best-effort)
     runTurboBuild(rootDir, turboFilters, ['--continue']);
@@ -111,12 +110,12 @@ function main() {
     ]);
 
     // 3) Per-app harvest + combined reports
-    runAppsAnalysis({
-      appsDir,
-      appFolders,
+    runAnalysis({
+      analysisDir,
+      folders: appFolders,
       requireReact: false,
       binaryLabel: 'Tests coverage',
-      appRunner: harvestAppCoverage,
+      analysisRunner: harvestAppCoverage,
       reportsRootDirName: testsCoverageReportsRootDirName,
       combinedJson: testsCoverageCombinedJsonReportName,
       combinedHtml: testsCoverageCombinedHtmlReportName,

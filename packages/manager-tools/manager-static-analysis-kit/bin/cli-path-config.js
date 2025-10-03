@@ -29,3 +29,7 @@ export const tsTypesCoverageBin = path.resolve(
 export const typesCoverageReportsRootDirName = 'types-coverage-reports';
 export const typesCoverageCombinedJsonReportName = 'types-coverage-combined-report.json';
 export const typesCoverageCombinedHtmlReportName = 'types-coverage-combined-report.html';
+
+export const libraryDir = path.join(rootDir);
+
+export const librariesNames = ['manager-react-components', 'manager-wiki'];

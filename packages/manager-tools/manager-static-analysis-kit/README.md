@@ -63,6 +63,66 @@ yarn manager-types-coverage
 
 ---
 
+## 🔧 Launch Modes
+
+Each CLI (`manager-code-duplication`, `manager-tests-coverage`, `manager-types-coverage`, etc.) supports multiple **launch modes** for targeting different scopes.
+
+---
+
+### Analyze specific apps (by folder name)
+
+```bash
+yarn manager-types-coverage --apps container,zimbra
+```
+
+or single app:
+
+```bash
+yarn manager-types-coverage --app zimbra
+```
+
+> Here you provide **app folders** located under `manager/apps`.
+
+---
+
+### Analyze specific packages (by `package.json` name)
+
+```bash
+yarn manager-types-coverage --packages @ovh-ux/manager-container-app,@ovh-ux/manager-zimbra-app
+```
+
+or single package:
+
+```bash
+yarn manager-types-coverage --package @ovh-ux/manager-container-app
+```
+
+> In this mode:
+> - The CLI resolves the package names to their corresponding **apps**.
+> - Reports are generated per **app folder**.
+
+---
+
+### Analyze specific libraries (by `package.json` name)
+
+```bash
+yarn manager-types-coverage --libraries @ovh-ux/manager-core-shell,@ovh-ux/manager-react-components
+```
+
+or single library:
+
+```bash
+yarn manager-types-coverage --library @ovh-ux/manager-core-shell
+```
+
+> In this mode:
+> - The CLI resolves the library names to their corresponding **folders** inside configured library roots:
+    >   - `packages/manager-react-components/*`
+>   - `packages/manager-wiki/*`
+> - Reports are generated per **library folder**.
+
+---
+
 ## 🧱 Structure Overview
 
 ```

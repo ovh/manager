@@ -37,10 +37,16 @@ const buildAssetsInfos = (data: ParsedAsset[]): ParsedAsset[] =>
     const sizeKb: number = typeof entry?.parsedSize === 'number' ? entry.parsedSize / 1024 : 0;
 
     let type: ParsedAsset['type'] = 'other';
-    if (/\.js$/i.test(filename)) type = 'js';
-    else if (/\.css$/i.test(filename)) type = 'css';
-    else if (/\.html$/i.test(filename)) type = 'html';
-    else if (/\.(png|jpe?g|gif|svg|webp)$/i.test(filename)) type = 'img';
+
+    if (/\.(js|mjs|cjs|ts|tsx)$/i.test(filename)) {
+      type = 'js';
+    } else if (/\.css$/i.test(filename)) {
+      type = 'css';
+    } else if (/\.html?$/i.test(filename)) {
+      type = 'html';
+    } else if (/\.(png|jpe?g|gif|svg|webp)$/i.test(filename)) {
+      type = 'img';
+    }
 
     return { filename, type, sizeKb };
   });

@@ -3,7 +3,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "dist",
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "esModuleInterop": true
   },
   "files": ["global.d.ts"],
   "include": ["src/**/*", "*.spec.tsx", ".storybook/i18n.ts", "**/*.json"],

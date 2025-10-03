@@ -3,9 +3,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 
-import { resolveAppInfo } from './apps-utils.js';
 import { generateCombinedReports } from './file-utils.js';
 import { logError, logInfo } from './log-utils.js';
+import { resolveModuleInfo } from './module-utils.js';
 
 /**
  * Ensure the given binary exists.
@@ -30,14 +30,14 @@ export function runCommand(bin, args, cwd) {
 }
 
 /**
- * Generic per-app analysis runner with safety.
+ * Generic analysis runner with safety.
  */
-export function runAppsAnalysis({
-  appsDir,
-  appFolders,
+export function runAnalysis({
+  analysisDir,
+  folders,
   requireReact = false,
   binaryLabel,
-  appRunner, // (appDir, appShortName, appInfo) => boolean
+  analysisRunner,
   reportsRootDirName,
   combinedJson,
   combinedHtml,
@@ -47,19 +47,19 @@ export function runAppsAnalysis({
 }) {
   const analyzed = [];
 
-  for (const appFolder of appFolders) {
-    const appInfo = resolveAppInfo(appsDir, appFolder, { requireReact });
-    if (!appInfo) continue;
+  for (const folder of folders) {
+    const moduleInfo = resolveModuleInfo(analysisDir, folder, { requireReact });
+    if (!moduleInfo) continue;
 
     let ok = false;
     try {
-      ok = appRunner(appInfo.appDir, appInfo.appShortName, appInfo);
+      ok = analysisRunner(moduleInfo.moduleDir, moduleInfo.moduleShortName, moduleInfo);
     } catch (err) {
       logError(
-        `❌ Fatal error while analyzing ${appInfo.appShortName}: ${err.stack || err.message}`,
+        `❌ Fatal error while analyzing ${moduleInfo.moduleShortName}: ${err.stack || err.message}`,
       );
     }
-    if (ok) analyzed.push(appInfo.appShortName);
+    if (ok) analyzed.push(moduleInfo.moduleShortName);
   }
 
   if (analyzed.length > 0) {
