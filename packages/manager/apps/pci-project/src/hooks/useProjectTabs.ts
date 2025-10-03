@@ -14,7 +14,7 @@ export type ProjectTabWithFullPath = {
  * Fixes the issue where TabsPanel doesn't activate tabs correctly due to path mismatch
  */
 export const useProjectTabs = (): ProjectTabWithFullPath[] => {
-  const { t } = useTranslation('project');
+  const { t } = useTranslation('home');
   const { projectId } = useParams<{ projectId: string }>();
 
   return PROJECT_TABS.map((tab) => ({

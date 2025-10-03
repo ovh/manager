@@ -1,3 +1,4 @@
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useTranslation } from 'react-i18next';
 import { Outlet } from 'react-router-dom';
 
@@ -21,7 +22,7 @@ import QuotaAlert from './components/QuotaAlert.component';
 import { ProjectValidationGuard } from '@/components/project-validation-guard/ProjectValidationGuard';
 
 export default function ProjectHeader() {
-  const { t } = useTranslation('project');
+  const { t } = useTranslation(['home', NAMESPACES.FORM]);
 
   const hrefProject = usePciUrl();
   const { data: project, isLoading } = useProject();
@@ -50,13 +51,13 @@ export default function ProjectHeader() {
             ? {
                 color: ODS_BADGE_COLOR.information,
                 size: ODS_BADGE_SIZE.md,
-                label: t('pci_projects_project_label_discovery'),
+                label: t('pci_projects_home_label_discovery'),
               }
             : undefined,
           changelogButton: <ChangelogButton links={ROADMAP_CHANGELOG_LINKS} />,
         }}
         tabs={
-          <nav aria-label={t('pci_projects_project_main_navigation')}>
+          <nav aria-label={t('pci_projects_home_main_navigation')}>
             <TabsPanel tabs={tabs} />
           </nav>
         }
