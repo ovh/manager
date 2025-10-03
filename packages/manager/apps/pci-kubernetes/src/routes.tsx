@@ -1,15 +1,13 @@
 import { Navigate } from 'react-router-dom';
-import { useAppStore } from './store';
+
 import HidePreloader from './core/HidePreloader';
+import { useAppStore } from './store';
 
 interface LazyRouteOptions {
   disabledRegions: string | string[];
 }
 
-const lazyRouteConfig = (
-  importFn: CallableFunction,
-  options?: LazyRouteOptions,
-) => ({
+const lazyRouteConfig = (importFn: CallableFunction, options?: LazyRouteOptions) => ({
   lazy: async () => {
     const { default: moduleDefault, ...moduleExports } = await importFn();
     const { region } = useAppStore.getState();
@@ -70,78 +68,54 @@ export default [
           },
           {
             path: 'service',
-            ...lazyRouteConfig(() =>
-              import('@/pages/detail/service/Service.page'),
-            ),
+            ...lazyRouteConfig(() => import('@/pages/detail/service/Service.page')),
             children: [
               {
                 path: 'name',
-                ...lazyRouteConfig(() =>
-                  import('@/pages/rename/RenameCluster.page'),
-                ),
+                ...lazyRouteConfig(() => import('@/pages/rename/RenameCluster.page')),
               },
               {
                 path: 'admission-plugin',
-                ...lazyRouteConfig(() =>
-                  import('@/pages/admission-plugin/AdmissionPlugins.page'),
-                ),
+                ...lazyRouteConfig(() => import('@/pages/admission-plugin/AdmissionPlugins.page')),
               },
               {
                 path: 'edit-network',
-                ...lazyRouteConfig(() =>
-                  import('@/pages/edit-network/EditNetwork.page'),
-                ),
+                ...lazyRouteConfig(() => import('@/pages/edit-network/EditNetwork.page')),
               },
               {
                 path: 'reset-kubeconfig',
-                ...lazyRouteConfig(() =>
-                  import('@/pages/reset-kubeconfig/ResetKubeConfig.page'),
-                ),
+                ...lazyRouteConfig(() => import('@/pages/reset-kubeconfig/ResetKubeConfig.page')),
               },
               {
                 path: 'upgrade-policy',
-                ...lazyRouteConfig(() =>
-                  import('@/pages/upgrade-policy/UpgradePolicy.page'),
-                ),
+                ...lazyRouteConfig(() => import('@/pages/upgrade-policy/UpgradePolicy.page')),
               },
               {
                 path: 'update',
-                ...lazyRouteConfig(() =>
-                  import('@/pages/update/UpdateVersion.page'),
-                ),
+                ...lazyRouteConfig(() => import('@/pages/update/UpdateVersion.page')),
               },
               {
                 path: 'terminate',
-                ...lazyRouteConfig(() =>
-                  import('@/pages/terminate/Terminate.page'),
-                ),
+                ...lazyRouteConfig(() => import('@/pages/terminate/Terminate.page')),
               },
               {
                 path: 'reset',
-                ...lazyRouteConfig(() =>
-                  import('@/pages/reset/ResetCluster.page'),
-                ),
+                ...lazyRouteConfig(() => import('@/pages/reset/ResetCluster.page')),
               },
               {
                 path: 'add-oidc-provider',
-                ...lazyRouteConfig(() =>
-                  import('@/pages/oidc-provider/add/AddOIDCProvider.page'),
-                ),
+                ...lazyRouteConfig(() => import('@/pages/oidc-provider/add/AddOIDCProvider.page')),
               },
               {
                 path: 'update-oidc-provider',
-                ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/oidc-provider/update/UpdateOIDCProvider.page'
-                  ),
+                ...lazyRouteConfig(
+                  () => import('@/pages/oidc-provider/update/UpdateOIDCProvider.page'),
                 ),
               },
               {
                 path: 'remove-oidc-provider',
-                ...lazyRouteConfig(() =>
-                  import(
-                    '@/pages/oidc-provider/remove/RemoveOIDCProvider.page'
-                  ),
+                ...lazyRouteConfig(
+                  () => import('@/pages/oidc-provider/remove/RemoveOIDCProvider.page'),
                 ),
               },
             ],
@@ -151,21 +125,15 @@ export default [
             handle: {
               tracking: 'nodepools',
             },
-            ...lazyRouteConfig(() =>
-              import('@/pages/detail/nodepools/NodePools.page'),
-            ),
+            ...lazyRouteConfig(() => import('@/pages/detail/nodepools/NodePools.page')),
             children: [
               {
                 path: 'delete',
-                ...lazyRouteConfig(() =>
-                  import('@/pages/detail/nodepools/Delete.page'),
-                ),
+                ...lazyRouteConfig(() => import('@/pages/detail/nodepools/Delete.page')),
               },
               {
                 path: 'scale',
-                ...lazyRouteConfig(() =>
-                  import('@/pages/detail/nodepools/Scale.page'),
-                ),
+                ...lazyRouteConfig(() => import('@/pages/detail/nodepools/Scale.page')),
               },
             ],
           },
@@ -174,30 +142,22 @@ export default [
             handle: {
               // tracking: 'nodepools',
             },
-            ...lazyRouteConfig(() =>
-              import('@/pages/detail/nodepools/new/New.page'),
-            ),
+            ...lazyRouteConfig(() => import('@/pages/detail/nodepools/new/New.page')),
           },
           {
             path: 'nodepools/:poolId/nodes',
             // handle: {
             //   tracking: 'nodepools',
             // },
-            ...lazyRouteConfig(() =>
-              import('@/pages/detail/nodepools/nodes/Nodes.page'),
-            ),
+            ...lazyRouteConfig(() => import('@/pages/detail/nodepools/nodes/Nodes.page')),
             children: [
               {
                 path: ':nodeId/delete',
-                ...lazyRouteConfig(() =>
-                  import('@/pages/detail/nodepools/nodes/Delete.page'),
-                ),
+                ...lazyRouteConfig(() => import('@/pages/detail/nodepools/nodes/Delete.page')),
               },
               {
                 path: 'billing-type',
-                ...lazyRouteConfig(() =>
-                  import('@/pages/detail/nodepools/nodes/Switch.page'),
-                ),
+                ...lazyRouteConfig(() => import('@/pages/detail/nodepools/nodes/Switch.page')),
               },
             ],
           },
@@ -206,9 +166,7 @@ export default [
             handle: {
               tracking: 'restrictions',
             },
-            ...lazyRouteConfig(() =>
-              import('@/pages/detail/restrictions/Restrictions.page'),
-            ),
+            ...lazyRouteConfig(() => import('@/pages/detail/restrictions/Restrictions.page')),
           },
           {
             path: 'logs',

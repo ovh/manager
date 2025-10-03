@@ -7,11 +7,7 @@ import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
-import {
-  OsdsButton,
-  OsdsDivider,
-  OsdsIcon,
-} from '@ovhcloud/ods-components/react';
+import { OsdsButton, OsdsDivider, OsdsIcon } from '@ovhcloud/ods-components/react';
 
 type TileButtonProps = {
   title: string;

@@ -1,14 +1,14 @@
-import {
-  Clipboard,
-  DatagridColumn,
-  DataGridTextCell,
-} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { OsdsChip } from '@ovhcloud/ods-components/react';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
-import ActionsComponent from './actions.component';
+import { OsdsChip } from '@ovhcloud/ods-components/react';
+
+import { Clipboard, DataGridTextCell, DatagridColumn } from '@ovh-ux/manager-react-components';
+
 import { TNode } from '@/api/data/nodes';
+
+import ActionsComponent from './actions.component';
 
 export const useDatagridColumns = () => {
   const { t: tListing } = useTranslation('listing');
@@ -58,10 +58,8 @@ export const useDatagridColumns = () => {
           {node.billingType && (
             <OsdsChip
               color={(() => {
-                if (node.status === 'READY')
-                  return ODS_THEME_COLOR_INTENT.success;
-                if (node.status === 'ERROR')
-                  return ODS_THEME_COLOR_INTENT.error;
+                if (node.status === 'READY') return ODS_THEME_COLOR_INTENT.success;
+                if (node.status === 'ERROR') return ODS_THEME_COLOR_INTENT.error;
                 return ODS_THEME_COLOR_INTENT.warning;
               })()}
               inline

@@ -1,11 +1,12 @@
+import { UseQueryResult } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import { UseQueryResult } from '@tanstack/react-query';
-import OnBoardingPage from '@/pages/onboarding/Onboarding.page';
-import { wrapper } from '@/wrapperRenders';
-import { TKube } from '@/types';
+
 import * as useAvailableRegionsModule from '@/api/hooks/useAvailableRegions';
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
+import OnBoardingPage from '@/pages/onboarding/Onboarding.page';
+import { TKube } from '@/types';
+import { wrapper } from '@/wrapperRenders';
 
 vi.mock('@/core/HidePreloader', () => ({
   default: () => <div>HidePeloader</div>,
@@ -32,9 +33,7 @@ describe('Onboarding', () => {
     } as UseQueryResult<{ name: string; type: string }[]>);
     const { getByText } = render(<OnBoardingPage />, { wrapper });
     expect(
-      getByText(
-        'pci_projects_project_kubernetes_onboarding_regions_unavailable',
-      ),
+      getByText('pci_projects_project_kubernetes_onboarding_regions_unavailable'),
     ).toBeVisible();
   });
 

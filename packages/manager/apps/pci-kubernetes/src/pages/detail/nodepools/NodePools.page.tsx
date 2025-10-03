@@ -1,5 +1,16 @@
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useRef, useState } from 'react';
+
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsIcon,
@@ -7,12 +18,8 @@ import {
   OsdsPopoverContent,
   OsdsSearchBar,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-} from '@ovhcloud/ods-components';
+
+import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import {
   Datagrid,
   FilterAdd,
@@ -21,13 +28,11 @@ import {
   useColumnFilters,
   useDataGrid,
 } from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
-import { useTranslation } from 'react-i18next';
+
 import { usePaginatedClusterNodePools } from '@/api/hooks/node-pools';
+import LoadingSkeleton from '@/components/LoadingSkeleton.component';
 import { useDatagridColumns } from '@/pages/detail/nodepools/useDatagridColumn';
 import queryClient from '@/queryClient';
-import LoadingSkeleton from '@/components/LoadingSkeleton.component';
 
 export default function NodePoolsPage() {
   const { projectId, kubeId } = useParams();
@@ -40,10 +45,7 @@ export default function NodePoolsPage() {
   const columns = useDatagridColumns();
   const { filters, addFilter, removeFilter } = useColumnFilters();
 
-  const {
-    data: pools,
-    isPending: isPoolsPending,
-  } = usePaginatedClusterNodePools(
+  const { data: pools, isPending: isPoolsPending } = usePaginatedClusterNodePools(
     projectId,
     kubeId,
     pagination,

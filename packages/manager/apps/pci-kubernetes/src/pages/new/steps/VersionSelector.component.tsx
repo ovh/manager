@@ -1,22 +1,18 @@
 import { useEffect, useMemo } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_LEVEL } from '@ovhcloud/ods-common-theming';
+import { ODS_CHIP_SIZE, ODS_SELECT_SIZE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import {
+  OsdsChip,
+  OsdsFormField,
+  OsdsSelect,
   OsdsSelectOption,
   OsdsSpinner,
-  OsdsSelect,
-  OsdsChip,
   OsdsText,
-  OsdsFormField,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_CHIP_SIZE,
-  ODS_SELECT_SIZE,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
+
 import { useGetCloudSchema } from '@/api/hooks/useCloud';
 
 export interface VersionSelectorProps {
@@ -42,13 +38,7 @@ export function VersionSelector({
   }, [versionSelected, isPending]);
 
   if (isPending) {
-    return (
-      <OsdsSpinner
-        data-testid="version-selector-spinner"
-        inline
-        size={ODS_SPINNER_SIZE.md}
-      />
-    );
+    return <OsdsSpinner data-testid="version-selector-spinner" inline size={ODS_SPINNER_SIZE.md} />;
   }
 
   return (
@@ -82,13 +72,8 @@ export function VersionSelector({
                     version,
                   })} `}
                   {version === lastVersion && (
-                    <OsdsChip
-                      color={ODS_THEME_COLOR_INTENT.success}
-                      size={ODS_CHIP_SIZE.sm}
-                    >
-                      {t(
-                        'versions:pci_project_versions_recommended_version_female',
-                      )}
+                    <OsdsChip color={ODS_THEME_COLOR_INTENT.success} size={ODS_CHIP_SIZE.sm}>
+                      {t('versions:pci_project_versions_recommended_version_female')}
                     </OsdsChip>
                   )}
                 </div>

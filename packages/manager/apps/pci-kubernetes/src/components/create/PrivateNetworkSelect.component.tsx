@@ -1,4 +1,7 @@
-import { useProjectUrl } from '@ovh-ux/manager-react-components';
+import { useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -11,25 +14,26 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import {
+  OsdsButton,
   OsdsFormField,
   OsdsIcon,
   OsdsLink,
   OsdsSelect,
   OsdsSelectOption,
   OsdsText,
-  OsdsButton,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+
+import { useProjectUrl } from '@ovh-ux/manager-react-components';
+
 import { TNetwork, TNetworkRegion } from '@/api/data/network';
-import { isMonoDeploymentZone } from '@/helpers';
-import queryClient from '@/queryClient';
-import { DeploymentMode } from '@/types';
+import { TPrivateNetworkSubnet } from '@/api/data/subnets';
 import {
   getListGatewaysQueryKey,
   getQueryKeyPrivateNetworksByRegion,
 } from '@/api/hooks/useNetwork';
-import { TPrivateNetworkSubnet } from '@/api/data/subnets';
+import { isMonoDeploymentZone } from '@/helpers';
+import queryClient from '@/queryClient';
+import { DeploymentMode } from '@/types';
 
 export type PrivateNetworkSelectProps = {
   network: TNetworkRegion;
@@ -109,22 +113,15 @@ export default function PrivateNetworkSelect({
             className="mt-4"
             name="privateNetwork"
             size={ODS_SELECT_SIZE.md}
-            value={
-              network?.id ||
-              (isMonoDeploymentZone(type) ? defaultNetwork.id : null)
-            }
+            value={network?.id || (isMonoDeploymentZone(type) ? defaultNetwork.id : null)}
             onOdsValueChange={(ev) => {
               const networkId = `${ev.detail.value}`;
               onSelect(networks?.find((net) => net.id === networkId));
             }}
           >
-            <span slot="placeholder">
-              {t('kubernetes_network_form_select_private_option')}
-            </span>
+            <span slot="placeholder">{t('kubernetes_network_form_select_private_option')}</span>
             {isMonoDeploymentZone(type) && (
-              <OsdsSelectOption value={defaultNetwork.id}>
-                {defaultNetwork.name}
-              </OsdsSelectOption>
+              <OsdsSelectOption value={defaultNetwork.id}>{defaultNetwork.name}</OsdsSelectOption>
             )}
             {networks?.map((net) => (
               <OsdsSelectOption value={net.id} key={net.id}>

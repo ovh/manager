@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { getRegionInformations } from '../data/informations-region';
+
 import { TRegionInformations } from '@/types/region';
+
+import { getRegionInformations } from '../data/informations-region';
 
 export const getRegionInfo = (projectId: string, regionName: string) => [
   'region-informations',
@@ -9,13 +11,10 @@ export const getRegionInfo = (projectId: string, regionName: string) => [
   regionName,
 ];
 
-export const useRegionInformations = (
-  projectId: string,
-  regionName: string | null,
-) =>
+export const useRegionInformations = (projectId: string, regionName: string | null) =>
   useQuery<TRegionInformations | null>({
-    queryKey: getRegionInfo(projectId, regionName as string),
-    queryFn: () => getRegionInformations(projectId, regionName as string),
+    queryKey: getRegionInfo(projectId, regionName),
+    queryFn: () => getRegionInformations(projectId, regionName),
     enabled: !!projectId && !!regionName,
     retry: false,
   });

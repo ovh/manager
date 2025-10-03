@@ -1,16 +1,15 @@
-import { useState, useEffect, useContext } from 'react';
+import { ReactElement, useContext, useEffect, useState } from 'react';
+
 import { NavLink, useLocation } from 'react-router-dom';
-import {
-  OsdsTabs,
-  OsdsTabBar,
-  OsdsTabBarItem,
-} from '@ovhcloud/ods-components/react';
+
+import { OsdsTabBar, OsdsTabBarItem, OsdsTabs } from '@ovhcloud/ods-components/react';
+
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 export type TabItemProps = {
   name: string;
-  title: string | JSX.Element;
+  title: string | ReactElement;
   to: string;
   tracking: string;
   isHidden?: boolean;

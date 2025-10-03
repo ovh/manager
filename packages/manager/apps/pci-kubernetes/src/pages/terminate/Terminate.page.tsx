@@ -1,15 +1,14 @@
-import {
-  OsdsButton,
-  OsdsFormField,
-  OsdsInput,
-  OsdsMessage,
-  OsdsModal,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { useContext, useEffect, useState } from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
 import { Translation, useTranslation } from 'react-i18next';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
@@ -19,17 +18,20 @@ import {
   OdsInputValueChangeEvent,
 } from '@ovhcloud/ods-components';
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { useContext, useEffect, useState } from 'react';
+  OsdsButton,
+  OsdsFormField,
+  OsdsInput,
+  OsdsMessage,
+  OsdsModal,
+  OsdsSpinner,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import {
-  useKubernetesCluster,
-  useTerminateCluster,
-} from '@/api/hooks/useKubernetes';
+
+import { useKubernetesCluster, useTerminateCluster } from '@/api/hooks/useKubernetes';
 import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
 
 export default function TerminatePage() {
@@ -39,10 +41,10 @@ export default function TerminatePage() {
   const { addError, addSuccess } = useNotifications();
   const navigate = useNavigate();
   const onClose = () => navigate('..');
-  const {
-    data: kubernetesCluster,
-    isPending: isPendingCluster,
-  } = useKubernetesCluster(projectId, kubeId);
+  const { data: kubernetesCluster, isPending: isPendingCluster } = useKubernetesCluster(
+    projectId,
+    kubeId,
+  );
   const [formState, setFormState] = useState({
     terminateInput: '',
     hasError: false,
@@ -51,10 +53,7 @@ export default function TerminatePage() {
 
   const { tracking } = useContext(ShellContext)?.shell || {};
 
-  const {
-    terminateCluster,
-    isPending: isPendingTerminate,
-  } = useTerminateCluster({
+  const { terminateCluster, isPending: isPendingTerminate } = useTerminateCluster({
     projectId,
     kubeId,
     onError(error: ApiError) {
@@ -72,9 +71,7 @@ export default function TerminatePage() {
     },
     onSuccess() {
       addSuccess(
-        <Translation ns="terminate">
-          {(_t) => _t('kube_service_terminate_success')}
-        </Translation>,
+        <Translation ns="terminate">{(_t) => _t('kube_service_terminate_success')}</Translation>,
         true,
       );
       onClose();
@@ -134,9 +131,7 @@ export default function TerminatePage() {
             <OsdsFormField
               class="mt-6"
               data-testid="terminate-formfield"
-              error={
-                formState.hasError ? tCommon('common_field_error_required') : ''
-              }
+              error={formState.hasError ? tCommon('common_field_error_required') : ''}
             >
               <OsdsText
                 slot="label"
@@ -190,9 +185,7 @@ export default function TerminatePage() {
           });
           terminateCluster();
         }}
-        disabled={
-          isPending || formState.terminateInput !== 'TERMINATE' || undefined
-        }
+        disabled={isPending || formState.terminateInput !== 'TERMINATE' || undefined}
         data-testid="terminate-button_submit"
       >
         {t('kube_service_terminate_common_confirm')}

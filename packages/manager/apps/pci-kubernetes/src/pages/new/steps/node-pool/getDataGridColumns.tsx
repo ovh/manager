@@ -1,10 +1,9 @@
-import {
-  DatagridColumn,
-  DataGridTextCell,
-} from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_CHIP_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
+
+import { DataGridTextCell, DatagridColumn } from '@ovh-ux/manager-react-components';
+
 import { NodePool } from '@/api/data/kubernetes';
 import RestrictionAction from '@/components/restriction/RestrictionAction.component';
 import { MonthlyBilled } from '@/pages/detail/nodepools/useDatagridColumn';
@@ -25,9 +24,7 @@ export const getDatagridColumns = ({
 
     {
       id: 'localisation',
-      cell: (props) => (
-        <DataGridTextCell>{props.localisation}</DataGridTextCell>
-      ),
+      cell: (props) => <DataGridTextCell>{props.localisation}</DataGridTextCell>,
       label: t('node-pool:kube_common_node_pool_localisation'),
     },
     {
@@ -37,9 +34,7 @@ export const getDatagridColumns = ({
     },
     {
       id: 'desiredNodes',
-      cell: (props) => (
-        <DataGridTextCell>{props.desiredNodes}</DataGridTextCell>
-      ),
+      cell: (props) => <DataGridTextCell>{props.desiredNodes}</DataGridTextCell>,
       label: t('node-pool:kube_common_node_pool_desired_node'),
     },
     {
@@ -54,9 +49,7 @@ export const getDatagridColumns = ({
             <span className="whitespace-nowrap">
               <OsdsChip
                 color={
-                  props.autoscale
-                    ? ODS_THEME_COLOR_INTENT.success
-                    : ODS_THEME_COLOR_INTENT.error
+                  props.autoscale ? ODS_THEME_COLOR_INTENT.success : ODS_THEME_COLOR_INTENT.error
                 }
                 inline
                 size={ODS_CHIP_SIZE.sm}
@@ -75,9 +68,7 @@ export const getDatagridColumns = ({
           <span className="whitespace-nowrap">
             <OsdsChip
               color={
-                props.antiAffinity
-                  ? ODS_THEME_COLOR_INTENT.success
-                  : ODS_THEME_COLOR_INTENT.error
+                props.antiAffinity ? ODS_THEME_COLOR_INTENT.success : ODS_THEME_COLOR_INTENT.error
               }
               inline
               size={ODS_CHIP_SIZE.sm}

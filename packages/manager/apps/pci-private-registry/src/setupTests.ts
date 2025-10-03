@@ -7,6 +7,12 @@ afterEach(() => {
   queryClient.clear();
 });
 
+vi.mock('./hooks/features/use3AZFeatureAvailability', () => ({
+  use3AZFeatureAvailability: vi
+    .fn()
+    .mockReturnValue({ is3AZEnabled: true, isPending: false }),
+}));
+
 vi.mock('react-router-dom', async () => {
   const mod = await vi.importActual('react-router-dom');
   return {
@@ -29,6 +35,9 @@ vi.mock('@ovh-ux/manager-pci-common', async () => {
       projectName: 'project-name',
       project_id: 'project-id',
     }),
+    usePCIFeatureAvailability: {
+      data: { get: vi.fn().mockReturnValue(true), isPending: false },
+    },
   };
 });
 

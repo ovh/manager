@@ -1,22 +1,18 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, vi, expect } from 'vitest';
-import {
-  TextAreaFormField,
-  TTextAreaFormFieldProps,
-} from './TextAreaFormField.component';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
+import { TTextAreaFormFieldProps, TextAreaFormField } from './TextAreaFormField.component';
 
 vi.mock('@ovhcloud/ods-components/react', () => ({
-  OsdsTextarea: vi.fn(
-    ({ className, onOdsValueChange, onOdsBlur, ...props }) => (
-      <textarea
-        data-testid={props['data-testid']}
-        className={className}
-        onChange={(e) => onOdsValueChange && onOdsValueChange(e.target.value)}
-        onBlur={() => onOdsBlur && onOdsBlur()}
-        {...props}
-      />
-    ),
-  ),
+  OsdsTextarea: vi.fn(({ className, onOdsValueChange, onOdsBlur, ...props }) => (
+    <textarea
+      data-testid={props['data-testid']}
+      className={className}
+      onChange={(e) => onOdsValueChange && onOdsValueChange(e.target.value)}
+      onBlur={() => onOdsBlur && onOdsBlur()}
+      {...props}
+    />
+  )),
 }));
 
 describe('TextAreaFormField', () => {

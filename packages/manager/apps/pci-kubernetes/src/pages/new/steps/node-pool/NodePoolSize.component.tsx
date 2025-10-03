@@ -1,12 +1,10 @@
-import {
-  ODS_TEXT_COLOR_INTENT,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { OsdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { TScalingState } from '@/types';
+
+import { ODS_TEXT_COLOR_INTENT, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+
 import { Autoscaling } from '@/components/Autoscaling.component';
+import { TScalingState } from '@/types';
 
 export interface NodeSizeStepProps {
   isMonthlyBilled: boolean;

@@ -23,20 +23,13 @@ export type TNetwork = {
   clusterRegion?: TNetworkRegion;
 };
 
-export const getAllPrivateNetworks = async (
-  projectId: string,
-): Promise<TNetwork[]> => {
-  const { data } = await v6.get<TNetwork[]>(
-    `/cloud/project/${projectId}/network/private`,
-  );
+export const getAllPrivateNetworks = async (projectId: string): Promise<TNetwork[]> => {
+  const { data } = await v6.get<TNetwork[]>(`/cloud/project/${projectId}/network/private`);
 
   return data;
 };
 
-export const getPrivateNetworkName = (
-  privateNetworks: TNetwork[],
-  privateNetworkId: string,
-) => {
+export const getPrivateNetworkName = (privateNetworks: TNetwork[], privateNetworkId: string) => {
   if (!privateNetworkId) {
     return privateNetworkId;
   }
@@ -48,10 +41,7 @@ export const getPrivateNetworkName = (
   return result ? result.name : privateNetworkId;
 };
 
-export const getAllPrivateNetworksByRegion = async (
-  projectId: string,
-  regionName: string,
-) => {
+export const getAllPrivateNetworksByRegion = async (projectId: string, regionName: string) => {
   const { data } = await v6.get<TNetworkRegion[]>(
     `/cloud/project/${projectId}/region/${regionName}/network`,
   );

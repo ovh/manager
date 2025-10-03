@@ -30,11 +30,7 @@ export default function RestrictionAction({
       onClick={onClick}
       disabled={disabled || undefined}
     >
-      <OsdsIcon
-        name={iconName}
-        size={ODS_ICON_SIZE.xs}
-        color={ODS_THEME_COLOR_INTENT.primary}
-      />
+      <OsdsIcon name={iconName} size={ODS_ICON_SIZE.xs} color={ODS_THEME_COLOR_INTENT.primary} />
     </OsdsButton>
   );
 }

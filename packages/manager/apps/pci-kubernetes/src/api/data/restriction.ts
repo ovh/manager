@@ -16,11 +16,8 @@ export const updateRestriction = async (
   kubeId: string,
   ips: string[],
 ): Promise<void> => {
-  const { data } = await v6.put(
-    `/cloud/project/${projectId}/kube/${kubeId}/ipRestrictions`,
-    {
-      ips,
-    },
-  );
+  const { data } = await v6.put(`/cloud/project/${projectId}/kube/${kubeId}/ipRestrictions`, {
+    ips,
+  });
   return data;
 };

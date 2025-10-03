@@ -1,14 +1,8 @@
-import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
-import {
-  ODS_MESSAGE_TYPE,
-  ODS_TEXT_COLOR_INTENT,
-  ODS_TEXT_LEVEL,
-} from '@ovhcloud/ods-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
+import { ODS_MESSAGE_TYPE, ODS_TEXT_COLOR_INTENT, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
+import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 
 type ResetKubeConfigContentProps = {
   isClusterReady: boolean;
@@ -32,9 +26,7 @@ export default function ResetKubeConfigContent({
         size={ODS_THEME_TYPOGRAPHY_SIZE._400}
         className="mt-6 block"
       >
-        {t(
-          'pci_projects_project_kubernetes_service_reset_kubeconfig_description1',
-        )}
+        {t('pci_projects_project_kubernetes_service_reset_kubeconfig_description1')}
       </OsdsText>
       <OsdsText
         color={ODS_TEXT_COLOR_INTENT.text}
@@ -42,9 +34,7 @@ export default function ResetKubeConfigContent({
         size={ODS_THEME_TYPOGRAPHY_SIZE._400}
         className="mt-6 block"
       >
-        {t(
-          'pci_projects_project_kubernetes_service_reset_kubeconfig_description2',
-        )}
+        {t('pci_projects_project_kubernetes_service_reset_kubeconfig_description2')}
       </OsdsText>
       <OsdsText
         color={ODS_TEXT_COLOR_INTENT.text}
@@ -52,9 +42,7 @@ export default function ResetKubeConfigContent({
         size={ODS_THEME_TYPOGRAPHY_SIZE._400}
         className="mt-6 block"
       >
-        {t(
-          'pci_projects_project_kubernetes_service_reset_kubeconfig_description3',
-        )}
+        {t('pci_projects_project_kubernetes_service_reset_kubeconfig_description3')}
       </OsdsText>
     </>
   ) : (
@@ -64,9 +52,7 @@ export default function ResetKubeConfigContent({
       size={ODS_THEME_TYPOGRAPHY_SIZE._400}
       className="mt-6 block"
     >
-      {t(
-        'pci_projects_project_kubernetes_service_reset_kubeconfig_cluster_not_ready',
-      )}
+      {t('pci_projects_project_kubernetes_service_reset_kubeconfig_cluster_not_ready')}
     </OsdsText>
   );
 }
