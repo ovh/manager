@@ -186,18 +186,21 @@ export default class EditOwnerFormFieldController {
   // Returns a list of fields that are required to pass the validation rules.
   // In some cases we need to return a list of fields even though the rule says otherwise.
   isRequired() {
-    return Object.values(FORCED_FIELDS).includes(this.rule?.label) || !!this.rule?.constraints
-      .filter((constraint) => constraint.operator === 'required')
-      .find((rules) => {
-        if (rules?.conditions) {
-          return rules?.conditions?.and
-            ? !rules?.conditions?.and
-                .map((rule) => this.checkConstraint(rule.fields))
-                .some((e) => e === false)
-            : this.checkConstraint(rules);
-        }
-        return !!rules;
-      });
+    return (
+      Object.values(FORCED_FIELDS).includes(this.rule?.label) ||
+      !!this.rule?.constraints
+        .filter((constraint) => constraint.operator === 'required')
+        .find((rules) => {
+          if (rules?.conditions) {
+            return rules?.conditions?.and
+              ? !rules?.conditions?.and
+                  .map((rule) => this.checkConstraint(rule.fields))
+                  .some((e) => e === false)
+              : this.checkConstraint(rules);
+          }
+          return !!rules;
+        })
+    );
   }
 
   isReadOnly() {
@@ -232,8 +235,6 @@ export default class EditOwnerFormFieldController {
         this.value = {
           key: this.rule.placeholder,
         };
-      } else {
-        this.value = this.rule.placeholder;
       }
     }
   }
