@@ -162,6 +162,7 @@ export const DomainForm = ({
       autoConfigureMX: true,
       autoConfigureSPF: true,
       autoConfigureDKIM: true,
+      autoConfigureSRV: true,
     },
     mode: 'onTouched',
     resolver: zodResolver(domainSchema),
@@ -206,6 +207,10 @@ export const DomainForm = ({
       autoConfigureDKIM:
         (configurationType === DNS_CONFIG_TYPE.STANDARD && isOvhDomain) ||
         (configurationType === DNS_CONFIG_TYPE.EXPERT && data.autoConfigureDKIM) ||
+        false,
+      autoConfigureSRV:
+        (configurationType === DNS_CONFIG_TYPE.STANDARD && isOvhDomain) ||
+        (configurationType === DNS_CONFIG_TYPE.EXPERT && data.autoConfigureSRV) ||
         false,
     } as DomainBodyParamsType);
   };
@@ -399,6 +404,26 @@ export const DomainForm = ({
                   values={{ domain: formValues.name }}
                 />
               </OdsText>
+              <Controller
+                control={control}
+                name="autoConfigureSRV"
+                render={({ field: { name, value, onChange } }) => (
+                  <div key={name} className="flex leading-none gap-4">
+                    <OdsCheckbox
+                      inputId={name}
+                      key={name}
+                      isChecked={value}
+                      name={name}
+                      onOdsChange={() => onChange(!value)}
+                    ></OdsCheckbox>
+                    <label htmlFor={name}>
+                      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                        {t('zimbra_domains_add_domain_configuration_expert_configure_srv')}
+                      </OdsText>
+                    </label>
+                  </div>
+                )}
+              />
               <Controller
                 control={control}
                 name="autoConfigureMX"
