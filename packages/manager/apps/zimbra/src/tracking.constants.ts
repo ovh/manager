@@ -95,7 +95,6 @@ export const EDIT_EMAIL_ACCOUNT = `edit_${EMAIL_ACCOUNT}`;
 export const GO_EMAIL_ACCOUNT_ALIASES = `go_${EMAIL_ACCOUNT}_${ALIAS}`;
 export const DELETE_EMAIL_ACCOUNT = `delete_${EMAIL_ACCOUNT}`;
 export const ORDER_ZIMBRA_EMAIL_ACCOUNT = `order_zimbra_${EMAIL_ACCOUNT}`;
-export const ORDER_ZIMBRA_PRO_BETA_EMAIL_ACCOUNT = `order_zimbra_pro_beta_${EMAIL_ACCOUNT}`;
 
 // EMAIL ACCOUNT SETTINGS
 export const EMAIL_ACCOUNT_AUTO_REPLY = `${EMAIL_ACCOUNT}_${AUTO_REPLY}`;
