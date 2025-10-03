@@ -117,7 +117,7 @@ yarn manager-types-coverage --library @ovh-ux/manager-react-components
 
 > In this mode:
 > - The CLI resolves the library names to their corresponding **folders** inside configured library roots:
-    >   - `packages/manager-react-components/*`
+>   - `packages/manager-react-components/*`
 >   - `packages/manager-wiki/*`
 > - Reports are generated per **library folder**.
 
