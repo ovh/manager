@@ -126,6 +126,7 @@ module.exports = {
         '**/*.{test,spec,step}.{ts,tsx}',
         '**/*.{mock,Mock,MOCK,Mocked,Mocking}*.{ts,tsx}',
         '**/*Test*.{ts,tsx}',
+        '**/index.{js,ts,mjs,mts}',
       ],
       rules: {
         'import/no-extraneous-dependencies': 'off',
