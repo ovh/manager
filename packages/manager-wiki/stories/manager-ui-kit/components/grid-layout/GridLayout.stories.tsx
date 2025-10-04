@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { GridLayout, Tile, Text } from '@ovh-ux/manager-ui-kit';
+import { GridLayout, Tile, Text } from '@ovh-ux/muk';
 
 const meta: Meta<typeof GridLayout> = {
   title: 'Manager UI Kit/Components/GridLayout',

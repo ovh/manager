@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/react';
-import { Button, ButtonProps } from '@ovh-ux/manager-ui-kit';
+import { Button, ButtonProps } from '@ovh-ux/muk';
 import { IAM_URNS, IAM_ACTIONS } from '../../../../utils/iam.constants';
 
 export const Default: Meta<ButtonProps> = {

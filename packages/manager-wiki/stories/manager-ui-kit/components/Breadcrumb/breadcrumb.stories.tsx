@@ -3,7 +3,7 @@ import {
   withRouter,
   reactRouterParameters,
 } from 'storybook-addon-react-router-v6';
-import { Breadcrumb } from '@ovh-ux/manager-ui-kit';
+import { Breadcrumb } from '@ovh-ux/muk';
 
 const BreadcrumbStory = (args) => {
   return (

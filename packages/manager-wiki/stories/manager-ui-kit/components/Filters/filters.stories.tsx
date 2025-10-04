@@ -15,11 +15,7 @@ import {
   OdsInput,
 } from '@ovhcloud/ods-components/react';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import {
-  FilterAdd,
-  FilterList,
-  useColumnFilters,
-} from '@ovh-ux/manager-ui-kit';
+import { FilterAdd, FilterList, useColumnFilters } from '@ovh-ux/muk';
 
 const FiltersStory = () => {
   const [searchField, setSearchField] = useState('');

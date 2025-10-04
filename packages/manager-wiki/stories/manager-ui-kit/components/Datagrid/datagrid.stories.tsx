@@ -8,7 +8,7 @@ import {
   useDatagridSearchParams,
   useColumnFilters,
   DataGridTextCell,
-} from '@ovh-ux/manager-ui-kit';
+} from '@ovh-ux/muk';
 import { columns as clm, columnsFilters, Item } from './datagrid.mock';
 
 function sortItems(
