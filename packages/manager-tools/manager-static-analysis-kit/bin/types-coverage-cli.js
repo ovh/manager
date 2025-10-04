@@ -9,7 +9,6 @@ import {
   generateTypesCoverageHtml,
 } from '../dist/adapters/types-coverage/helpers/types-coverage-analysis-helper.js';
 import {
-  appsDir,
   outputRootDir,
   tsTypesCoverageBin,
   typesCoverageCombinedHtmlReportName,
@@ -18,7 +17,7 @@ import {
 } from './cli-path-config.js';
 import { buildTypesCoverageArgs, parseCliTargets } from './utils/args-parse-utils.js';
 import { logError, logInfo, logWarn } from './utils/log-utils.js';
-import { ensureBinExists, runAppsAnalysis, runCommand } from './utils/runner-utils.js';
+import { ensureBinExists, runAnalysis, runCommand } from './utils/runner-utils.js';
 
 /**
  * Temporarily strip "extends" from tsconfig.json before analysis,
@@ -171,14 +170,14 @@ function main() {
   try {
     ensureBinExists(tsTypesCoverageBin, 'typescript-coverage-report');
 
-    const { appFolders } = parseCliTargets(appsDir);
+    const { appFolders, analysisDir } = parseCliTargets();
 
-    runAppsAnalysis({
-      appsDir,
-      appFolders,
+    runAnalysis({
+      analysisDir,
+      folders: appFolders,
       requireReact: true,
       binaryLabel: 'Type coverage',
-      appRunner: runAppTypesCoverage,
+      analysisRunner: runAppTypesCoverage,
       reportsRootDirName: typesCoverageReportsRootDirName,
       combinedJson: typesCoverageCombinedJsonReportName,
       combinedHtml: typesCoverageCombinedHtmlReportName,

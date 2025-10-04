@@ -18,7 +18,7 @@ import { logError, logInfo, logWarn } from './log-utils.js';
  * // appFolders = ["zimbra", "web"]
  * // Returns: ["@ovh-ux/manager-zimbra-app", "@ovh-ux/manager-web-app"]
  */
-function resolveTurboFiltersFromAppFolders(appsDir, appFolders) {
+function buildAppsFilters(appsDir, appFolders) {
   return appFolders
     .map((appFolder) => {
       const pkgPath = path.join(appsDir, appFolder, 'package.json');
@@ -39,32 +39,32 @@ function resolveTurboFiltersFromAppFolders(appsDir, appFolders) {
  * - If `packageNames` are provided, they are used directly as filters.
  *
  * @param {Object} options
- * @param {string} options.appsDir - Absolute path to the apps root directory.
+ * @param {string} options.analysisDir - Absolute path to the apps root directory.
  * @param {string[]} options.appFolders - List of app folders to analyze.
  * @param {string[]} options.packageNames - List of package names (overrides appFolders).
  * @returns {string[]} List of resolved Turbo filters (package names).
  *
  * @example
- * resolveTurboFilters({
- *   appsDir: "/workspace/manager/apps",
+ * buildTurboFilters({
+ *   analysisDir: "/workspace/manager/apps",
  *   appFolders: ["zimbra"],
  *   packageNames: []
  * });
  * // → ["@ovh-ux/manager-zimbra-app"]
  *
  * @example
- * resolveTurboFilters({
- *   appsDir: "/workspace/manager/apps",
+ * buildTurboFilters({
+ *   analysisDir: "/workspace/manager/apps",
  *   appFolders: [],
  *   packageNames: ["@ovh-ux/manager-web-app"]
  * });
  * // → ["@ovh-ux/manager-web-app"]
  */
-export function resolveTurboFilters({ appsDir, appFolders, packageNames }) {
+export function buildTurboFilters({ analysisDir, appFolders, packageNames }) {
   let filters = [];
 
   if (appFolders.length > 0 && packageNames.length === 0) {
-    filters = resolveTurboFiltersFromAppFolders(appsDir, appFolders);
+    filters = buildAppsFilters(analysisDir, appFolders);
   } else if (packageNames.length > 0) {
     filters = packageNames;
   }

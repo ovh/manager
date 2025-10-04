@@ -9,7 +9,6 @@ import {
 } from '../dist/adapters/perf-budgets/helpers/perfs-bundle-analysis-helper.js';
 import { bundleAnalysisConfig } from '../dist/configs/bundle-analysis-config.js';
 import {
-  appsDir,
   bundleAnalyzerBinPath,
   outputRootDir,
   perfBudgetCombinedHtmlReportName,
@@ -19,8 +18,8 @@ import {
 } from './cli-path-config.js';
 import { parseCliTargets } from './utils/args-parse-utils.js';
 import { logError, logInfo, logWarn } from './utils/log-utils.js';
-import { ensureBinExists, runAppsAnalysis, runCommand } from './utils/runner-utils.js';
-import { resolveTurboFilters, runTurboBuild } from './utils/turbo-utils.js';
+import { ensureBinExists, runAnalysis, runCommand } from './utils/runner-utils.js';
+import { buildTurboFilters, runTurboBuild } from './utils/turbo-utils.js';
 
 /**
  * Run vite-bundle-analyzer for a given mode (html or json).
@@ -91,19 +90,19 @@ function main() {
   try {
     ensureBinExists(bundleAnalyzerBinPath, 'vite-bundle-analyzer');
 
-    const { appFolders, packageNames } = parseCliTargets(appsDir);
-    const turboFilters = resolveTurboFilters({ appsDir, appFolders, packageNames });
+    const { appFolders, packageNames, analysisDir } = parseCliTargets();
+    const turboFilters = buildTurboFilters({ analysisDir, appFolders, packageNames });
 
     // Step 1: build
     runTurboBuild(rootDir, turboFilters, ['--continue']);
 
     // Step 2: analyze apps + combined
-    runAppsAnalysis({
-      appsDir,
-      appFolders,
+    runAnalysis({
+      analysisDir,
+      folders: appFolders,
       requireReact: false,
       binaryLabel: 'Perf budgets',
-      appRunner: runAppPerfBudgets,
+      analysisRunner: runAppPerfBudgets,
       reportsRootDirName: perfBudgetsReportDirName,
       combinedJson: perfBudgetCombinedJsonReportName,
       combinedHtml: perfBudgetCombinedHtmlReportName,
