@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { GuideMenu, GuideMenuProps } from '@ovh-ux/manager-ui-kit';
+import { GuideMenu, GuideMenuProps } from '@ovh-ux/muk';
 
 const guideItems = [
   {

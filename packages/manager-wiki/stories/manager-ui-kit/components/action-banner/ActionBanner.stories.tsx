@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react';
 import { MESSAGE_VARIANT, MESSAGE_COLOR } from '@ovhcloud/ods-react';
-import { ActionBanner, ActionBannerProps } from '@ovh-ux/manager-ui-kit';
+import { ActionBanner, ActionBannerProps } from '@ovh-ux/muk';
 
 export const Default = {
   args: {

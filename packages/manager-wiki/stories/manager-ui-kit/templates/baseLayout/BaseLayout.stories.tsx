@@ -10,7 +10,7 @@ import {
   ActionMenu,
   ChangelogLinks,
   ChangelogButton,
-} from '@ovh-ux/manager-ui-kit';
+} from '@ovh-ux/muk';
 import {
   Message,
   MESSAGE_COLOR,

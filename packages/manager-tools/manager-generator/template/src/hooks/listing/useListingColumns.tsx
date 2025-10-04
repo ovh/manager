@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { OdsText } from '@ovhcloud/ods-components/react';
 
-import type { DatagridColumn } from '@ovh-ux/manager-react-components';
+import type { DatagridColumn } from '@ovh-ux/muk';
 
 import { DefaultListingItemType } from '@/types/Listing.type';
 

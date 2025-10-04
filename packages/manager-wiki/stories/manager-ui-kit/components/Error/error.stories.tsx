@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { Error, ErrorProps } from '@ovh-ux/manager-ui-kit';
+import { Error, ErrorProps } from '@ovh-ux/muk';
 
 const defaultError: ErrorProps = {
   error: {},
