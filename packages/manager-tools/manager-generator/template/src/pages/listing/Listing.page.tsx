@@ -12,7 +12,7 @@ import {
   DataGridTextCell,
   Datagrid,
   useDataGrid,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/manager-ui-kit';
 
 import { APP_FEATURES, appName } from '@/App.constants';
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';

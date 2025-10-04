@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { useProject } from '@ovh-ux/manager-pci-common';
-import { useProjectUrl } from '@ovh-ux/manager-react-components';
+import { useProjectUrl } from '@ovh-ux/manager-ui-kit';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { BreadcrumbItem, BreadcrumbProps } from '@/types/Breadcrumb.type';

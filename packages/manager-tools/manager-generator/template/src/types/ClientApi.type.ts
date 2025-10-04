@@ -1,7 +1,7 @@
 import React from 'react';
 
 import type { Filter } from '@ovh-ux/manager-core-api';
-import type { ColumnSort, DatagridColumn } from '@ovh-ux/manager-react-components';
+import type { ColumnSort, DatagridColumn } from '@ovh-ux/manager-ui-kit';
 
 export type ApiVersion = 'v2' | 'v6';
 

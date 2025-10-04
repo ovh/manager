@@ -2,7 +2,7 @@ import React from 'react';
 
 import { OdsText } from '@ovhcloud/ods-components/react';
 
-import { Clipboard, LinkType, Links } from '@ovh-ux/manager-react-components';
+import { Clipboard, LinkType, Links } from '@ovh-ux/manager-ui-kit';
 
 import GeneralInformationTile from '@/components/dashboard/general-information/GeneralInformationTile.component';
 

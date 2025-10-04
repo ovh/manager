@@ -31,7 +31,7 @@ interface DataGridProps<T> {
   isLoading: boolean;
 }
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
+vi.mock('@ovh-ux/manager-ui-kit', () => ({
   BaseLayout: ({ header, children, breadcrumb }: BaseLayoutProps) => (
     <div>
       <h1>{header.title}</h1>
