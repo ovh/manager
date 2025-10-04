@@ -49,8 +49,8 @@ const ignorePatterns =
   appName || isPackageName
     ? []
     : modernApps.map(
-      (app) => `--ignore-pattern='packages/manager/apps/${app}/**'`,
-    );
+        (app) => `--ignore-pattern='packages/manager/apps/${app}/**'`,
+      );
 
 /**
  * Determines legacy lint targets.
@@ -58,9 +58,9 @@ const ignorePatterns =
 const legacyPattern = appName
   ? [`packages/manager/apps/${appName}/**/*.{tsx,ts}`]
   : [
-    'packages/manager/apps/**/*.{tsx,ts}',
-    'packages/manager-react-components/**/*.{tsx,ts}',
-  ];
+      'packages/manager/apps/**/*.{tsx,ts}',
+      'packages/manager-ui-kit/**/*.{tsx,ts}',
+    ];
 
 if (verbose) {
   console.log(`🗂️ Legacy lint patterns:\n${legacyPattern.join('\n')}`);
@@ -89,8 +89,8 @@ tasks.push({
   cmd: isPackageName
     ? ['turbo', 'run', 'lint:modern', '--filter', packageName]
     : appName
-      ? ['turbo', 'run', 'lint:modern', '--filter', appName]
-      : ['turbo', 'run', 'lint:modern'],
+    ? ['turbo', 'run', 'lint:modern', '--filter', appName]
+    : ['turbo', 'run', 'lint:modern'],
 });
 
 const errors = [];

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { OdsText } from '@ovhcloud/ods-components/react';
 
-import { Clipboard, LinkType, Links } from '@ovh-ux/manager-react-components';
+import { Clipboard, LinkType, Links } from '@ovh-ux/muk';
 
 import GeneralInformationTile from '@/components/dashboard/general-information/GeneralInformationTile.component';
 
@@ -16,13 +16,18 @@ export default function GeneralInformationPage() {
           id: 'description',
           label: 'Description',
           value: (
-            <OdsText>Hosted Private Cloud – VMware vSphere service running in GRA region.</OdsText>
+            <OdsText>
+              Hosted Private Cloud – VMware vSphere service running in GRA
+              region.
+            </OdsText>
           ),
         },
         {
           id: 'api-url',
           label: 'API URL',
-          value: <Clipboard value="https://api.ovh.com/1.0/hostedprivatecloud" />,
+          value: (
+            <Clipboard value="https://api.ovh.com/1.0/hostedprivatecloud" />
+          ),
         },
         {
           id: 'service-id',

@@ -4,7 +4,7 @@ import {
   ChangelogMenu,
   ChangelogMenuLinks,
   ChangelogMenuProps,
-} from '@ovh-ux/manager-ui-kit';
+} from '@ovh-ux/muk';
 
 const changelogChapters: string[] = ['baremetal', 'server', 'dedicated'];
 const changelogLinks: ChangelogMenuLinks = {

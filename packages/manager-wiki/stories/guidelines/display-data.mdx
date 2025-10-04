@@ -10,10 +10,10 @@ This guide provides best practices for displaying different types of data in Rea
 
 ### Price Component
 
-Use the `Price` component from `@ovh-ux/manager-ui-kit` for displaying prices, [here](?path=/docs/manager-ui-kit-components-price--technical-information) the documentation.
+Use the `Price` component from `@ovh-ux/muk` for displaying prices, [here](?path=/docs/manager-ui-kit-components-price--technical-information) the documentation.
 
 ```tsx
-import { Price, OvhSubsidiary, IntervalUnitType } from '@ovh-ux/manager-ui-kit';
+import { Price, OvhSubsidiary, IntervalUnitType } from '@ovh-ux/muk';
 
 // Basic usage
 <Price 
@@ -53,13 +53,13 @@ import { Price, OvhSubsidiary, IntervalUnitType } from '@ovh-ux/manager-ui-kit';
 
 ### Date Formatting Hook
 
-Use the `useFormatDate` hook from `@ovh-ux/manager-ui-kit` for displaying dates.
+Use the `useFormatDate` hook from `@ovh-ux/muk` for displaying dates.
 The hook leverages date-fns for formatting dates in a localized and customizable way,  [here](?path=/docs/manager-ui-kit-hooks-useformatdate-documentation--technical-information) the documentation.
 
 Here some examples :
 
 ```tsx
-import { useFormatDate } from '@ovh-ux/manager-ui-kit';
+import { useFormatDate } from '@ovh-ux/muk';
 import { OdsText } from '@ovhcloud/ods-components/react';
 
 // Basic usage with default format (PP)
@@ -88,10 +88,10 @@ const DateDisplay = ({ date, format = 'PP' }) => {
 
 ### Storage Component
 
-Use the `Storage` component from `@ovh-ux/manager-ui-kit` for displaying storage values:
+Use the `Storage` component from `@ovh-ux/muk` for displaying storage values:
 
 ```tsx
-import { Storage } from '@ovh-ux/manager-ui-kit';
+import { Storage } from '@ovh-ux/muk';
 
 // Basic usage
 <Storage value={1024} />
@@ -129,7 +129,7 @@ import { Skeleton } from '@ovhcloud/ods-components/react';
 
 ## Code Review Checklist
 
-- [ ] Use appropriate components from `@ovh-ux/manager-ui-kit`
+- [ ] Use appropriate components from `@ovh-ux/muk`
 - [ ] Implement proper loading states
 - [ ] Handle error cases
 - [ ] Follow formatting guidelines

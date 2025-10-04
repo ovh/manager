@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react';
 import { BADGE_COLOR, BADGE_SIZE, Icon, ICON_NAME } from '@ovhcloud/ods-react';
-import { Badge, BadgeProps } from '@ovh-ux/manager-ui-kit';
+import { Badge, BadgeProps } from '@ovh-ux/muk';
 
 export const Default = {
   args: {

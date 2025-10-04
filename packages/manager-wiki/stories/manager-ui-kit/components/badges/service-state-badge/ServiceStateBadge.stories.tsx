@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { ServiceStateBadge, ResourceStatus } from '@ovh-ux/manager-ui-kit';
+import { ServiceStateBadge, ResourceStatus } from '@ovh-ux/muk';
 
 export const ServiceStateBadgeActive = () => (
   <ServiceStateBadge state="active" />

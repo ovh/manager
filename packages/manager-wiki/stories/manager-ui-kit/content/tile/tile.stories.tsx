@@ -9,7 +9,7 @@ import {
   Badge,
   Button,
 } from '@ovhcloud/ods-react';
-import { Clipboard, ActionMenu, Tile } from '@ovh-ux/manager-ui-kit';
+import { Clipboard, ActionMenu, Tile } from '@ovh-ux/muk';
 
 const actionItems = [
   {

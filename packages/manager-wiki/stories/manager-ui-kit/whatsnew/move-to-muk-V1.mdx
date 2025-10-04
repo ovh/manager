@@ -9,43 +9,43 @@ This guide documents the initial migration from `manager-ui-kit` to `manager-ui-
 ## Summary
 
 - Package renamed: `packages/manager-ui-kit` → `packages/manager-ui-kit`.
-- New package name: `@ovh-ux/manager-ui-kit`.
+- New package name: `@ovh-ux/muk`.
 - Wiki stories moved to `packages/manager-wiki/stories/manager-ui-kit/**`.
 - Root configs updated to reference `packages/manager-ui-kit`.
-- Apps and modules were NOT migrated (they still use `@ovh-ux/manager-ui-kit`).
+- Apps and modules were NOT migrated (they still use `@ovh-ux/muk`).
 
 ## Install
 
 Update your `package.json` if you plan to adopt the new package in your project:
 
 ```json
-"@ovh-ux/manager-ui-kit": "^1.x"
+"@ovh-ux/muk": "^1.x"
 ```
 
 Import the stylesheet if needed:
 
 ```js
-import '@ovh-ux/manager-ui-kit/dist/style.css';
+import '@ovh-ux/muk/dist/style.css';
 ```
 
 ## Imports (before → after)
 
 ```ts
 // Before
-import { Button } from '@ovh-ux/manager-ui-kit';
+import { Button } from '@ovh-ux/muk';
 
 // After
-import { Button } from '@ovh-ux/manager-ui-kit';
+import { Button } from '@ovh-ux/muk';
 ```
 
 Assets referenced from the package should also point to the new scope if you adopt it:
 
 ```ts
 // Before
-import placeholder from '@ovh-ux/manager-ui-kit/public/assets/placeholder.png';
+import placeholder from '@ovh-ux/muk/public/assets/placeholder.png';
 
 // After
-import placeholder from '@ovh-ux/manager-ui-kit/public/assets/placeholder.png';
+import placeholder from '@ovh-ux/muk/public/assets/placeholder.png';
 ```
 
 ## Storybook structure
@@ -55,7 +55,7 @@ import placeholder from '@ovh-ux/manager-ui-kit/public/assets/placeholder.png';
 
 ## Quick checklist
 
-- Update imports to `@ovh-ux/manager-ui-kit` (only where migrating now).
+- Update imports to `@ovh-ux/muk` (only where migrating now).
 - Keep apps/modules unchanged unless explicitly migrating.
 - Update CSS import if you rely on the kit’s stylesheet.
 

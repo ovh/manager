@@ -1,11 +1,7 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import { ODS_POPOVER_POSITION } from '@ovhcloud/ods-components';
-import {
-  ActionMenu,
-  ActionMenuItem,
-  ActionMenuProps,
-} from '@ovh-ux/manager-ui-kit';
+import { ActionMenu, ActionMenuItem, ActionMenuProps } from '@ovh-ux/muk';
 
 const actionItems: ActionMenuItem[] = [
   {
