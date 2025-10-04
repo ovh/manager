@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { Step, StepProps } from '@ovh-ux/manager-ui-kit';
+import { Step, StepProps } from '@ovh-ux/muk';
 
 const renderComponent = ({
   order,

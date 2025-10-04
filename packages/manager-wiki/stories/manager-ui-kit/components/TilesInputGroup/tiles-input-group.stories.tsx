@@ -3,11 +3,11 @@ import { Meta } from '@storybook/react';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useArgs } from '@storybook/preview-api';
 import { clsx } from 'clsx';
-import { TilesInputGroupComponent } from '@ovh-ux/manager-ui-kit';
+import { TilesInputGroupComponent } from '@ovh-ux/muk';
 import {
   countries as allCountries,
   TCountry,
-} from '@ovh-ux/manager-ui-kit/src/__mocks__/tiles-input';
+} from '@ovh-ux/muk/src/__mocks__/tiles-input';
 
 export default {
   title: 'Manager UI Kit/Components/TilesInputGroup',

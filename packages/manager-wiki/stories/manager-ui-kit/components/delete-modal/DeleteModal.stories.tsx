@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Meta } from '@storybook/react';
-import { DeleteModal, DeleteModalProps } from '@ovh-ux/manager-ui-kit';
+import { DeleteModal, DeleteModalProps } from '@ovh-ux/muk';
 
 export const DeleteModalDefault = (props: DeleteModalProps) => {
   const [isOpen, setIsOpen] = useState(true);

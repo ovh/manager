@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  DrawerCollapsible,
-  DrawerCollapsibleProps,
-} from '@ovh-ux/manager-ui-kit';
+import { DrawerCollapsible, DrawerCollapsibleProps } from '@ovh-ux/muk';
 import { Meta } from '@storybook/react';
 import { useArgs } from '@storybook/preview-api';
 import { DrawerContent } from './DrawerContent.component';

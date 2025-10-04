@@ -7,7 +7,7 @@ import {
   ActionMenu,
   DatagridColumn,
   DatagridColumnTypes,
-} from '@ovh-ux/manager-ui-kit';
+} from '@ovh-ux/muk';
 
 export interface Item {
   label: string;

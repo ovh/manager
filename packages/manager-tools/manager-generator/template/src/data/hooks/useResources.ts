@@ -5,10 +5,13 @@ import {
   useResourcesIcebergV2,
   useResourcesIcebergV6,
   useResourcesV6,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/muk';
 
 import { APP_FEATURES } from '@/App.constants';
-import { ResourcesFacadeResult, UseResourcesParams } from '@/types/ClientApi.type';
+import {
+  ResourcesFacadeResult,
+  UseResourcesParams,
+} from '@/types/ClientApi.type';
 import { ListingDataResultType } from '@/types/Listing.type';
 
 function mapResponseWithTotal<T>(response: {
@@ -82,9 +85,9 @@ function createResourcesFactory<T extends Record<string, unknown>>() {
   };
 }
 
-export function useResources<T extends Record<string, unknown> = Record<string, unknown>>(
-  params: UseResourcesParams<T>,
-): ResourcesFacadeResult<T> {
+export function useResources<
+  T extends Record<string, unknown> = Record<string, unknown>
+>(params: UseResourcesParams<T>): ResourcesFacadeResult<T> {
   const resourcesFactory = createResourcesFactory<T>();
   const api = APP_FEATURES.listingApi;
 
@@ -93,9 +96,9 @@ export function useResources<T extends Record<string, unknown> = Record<string, 
   return resourcesFactory.v6(params);
 }
 
-export function useListingData<T extends Record<string, unknown> = Record<string, unknown>>(
-  route: string,
-): ListingDataResultType<T> {
+export function useListingData<
+  T extends Record<string, unknown> = Record<string, unknown>
+>(route: string): ListingDataResultType<T> {
   const raw = useResources<T>({
     route,
     queryKey: ['listing', route],
@@ -103,7 +106,8 @@ export function useListingData<T extends Record<string, unknown> = Record<string
 
   return useMemo<ListingDataResultType<T>>(() => {
     const items = raw?.flattenData ?? [];
-    const total = typeof raw?.totalCount === 'number' ? raw.totalCount : items.length;
+    const total =
+      typeof raw?.totalCount === 'number' ? raw.totalCount : items.length;
 
     const fetchNextPage =
       raw?.hasNextPage && raw?.fetchNextPage

@@ -1,5 +1,5 @@
 import { StoryObj } from '@storybook/react';
-import { TagsTile } from '@ovh-ux/manager-ui-kit';
+import { TagsTile } from '@ovh-ux/muk';
 
 const managerTagsTile = {
   title: 'Manager UI Kit/Components/TagsTile',

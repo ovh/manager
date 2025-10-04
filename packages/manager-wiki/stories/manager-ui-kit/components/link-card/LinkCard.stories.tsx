@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import { LinkCard, LinkCardProps } from '@ovh-ux/manager-ui-kit';
+import { LinkCard, LinkCardProps } from '@ovh-ux/muk';
 
 export const defaultProps: LinkCardProps = {
   texts: {

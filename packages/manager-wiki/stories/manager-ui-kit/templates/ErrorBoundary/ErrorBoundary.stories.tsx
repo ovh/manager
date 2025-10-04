@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import { Meta } from '@storybook/react';
-import { ErrorBoundary } from '@ovh-ux/manager-ui-kit';
+import { ErrorBoundary } from '@ovh-ux/muk';
 
 const defaultsProps = {
   redirectionApp: 'vrack-services-test',
