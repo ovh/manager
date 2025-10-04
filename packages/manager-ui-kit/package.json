@@ -1,9 +1,8 @@
 {
-  "name": "@ovh-ux/manager-ui-kit",
+  "name": "@ovh-ux/muk",
   "version": "0.0.1",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
-  "private": true,
   "description": "MUK:Manager UI Kit",
   "types": "dist/types/src/lib.d.ts",
   "main": "dist/src/lib.js",

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 # How to implement Modal
 
-This guide explains how to implement different types of modals in the OVHcloud Manager using the `@ovh-ux/manager-ui-kit` library.
+This guide explains how to implement different types of modals in the OVHcloud Manager using the `@ovh-ux/muk` library.
 
 ## Modal in Routes.tsx in child path
 
@@ -49,7 +49,7 @@ The Modal component provides a consistent interface for displaying modal dialogs
 [Here](?path=/docs/manager-ui-kit-components-modal-documentation--technical-information), the component
 
 ```tsx
-import { Modal } from '@ovh-ux/manager-ui-kit';
+import { Modal } from '@ovh-ux/muk';
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 
 function MyModal() {
@@ -96,7 +96,7 @@ The `UpdateNameModal` component is a reusable modal for updating resource names 
 [Here](?path=/story/manager-ui-kit-templates-update-name-modal--update-name-modal), the component
 
 ```tsx
-import { UpdateNameModal } from '@ovh-ux/manager-ui-kit';
+import { UpdateNameModal } from '@ovh-ux/muk';
 
 function MyComponent() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -168,7 +168,7 @@ A reusable confirmation modal for destructive actions:
 [Here](?path=/story/manager-ui-kit-templates-delete-modal--delete-modal), the component
 
 ```tsx
-import { Modal } from '@ovh-ux/manager-ui-kit';
+import { Modal } from '@ovh-ux/muk';
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 
 function DeleteModal({ onClose, onConfirm, resourceName, resourceType = 'resource' }) {

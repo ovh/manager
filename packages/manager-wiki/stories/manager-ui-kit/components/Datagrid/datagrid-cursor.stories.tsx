@@ -11,7 +11,7 @@ import {
   useColumnFilters,
   ActionMenu,
   DataGridTextCell,
-} from '@ovh-ux/manager-ui-kit';
+} from '@ovh-ux/muk';
 import {
   columns,
   columnsFilters,

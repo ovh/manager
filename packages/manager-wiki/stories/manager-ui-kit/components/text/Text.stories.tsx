@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/react';
-import { Text, TextProps } from '@ovh-ux/manager-ui-kit';
+import { Text, TextProps } from '@ovh-ux/muk';
 import { IAM_ACTIONS, IAM_URNS } from '../../../../utils/iam.constants';
 
 export const Default: Meta<TextProps> = {

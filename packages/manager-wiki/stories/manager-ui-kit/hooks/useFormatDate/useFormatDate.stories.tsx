@@ -3,7 +3,7 @@ import {
   DEFAULT_UNKNOWN_DATE_LABEL,
   FormatDateOptions,
   useFormatDate,
-} from '@ovh-ux/manager-ui-kit';
+} from '@ovh-ux/muk';
 
 const FormatDateComponent = ({
   date,

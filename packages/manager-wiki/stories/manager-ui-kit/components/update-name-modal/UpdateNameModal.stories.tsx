@@ -3,7 +3,7 @@ import { Meta } from '@storybook/react';
 import {
   UpdateNameModal as UpdateNameModalComponent,
   UpdateNameModalProps,
-} from '@ovh-ux/manager-ui-kit';
+} from '@ovh-ux/muk';
 
 export const UpdateNameModalDefault = (props: UpdateNameModalProps) => {
   const [isOpen, setIsOpen] = useState(true);

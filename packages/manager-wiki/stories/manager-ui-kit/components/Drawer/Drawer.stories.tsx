@@ -1,5 +1,5 @@
 import React from 'react';
-import { Drawer, DrawerProps } from '@ovh-ux/manager-ui-kit';
+import { Drawer, DrawerProps } from '@ovh-ux/muk';
 import { Meta } from '@storybook/react';
 import { useArgs } from '@storybook/preview-api';
 import { DrawerContent } from './DrawerContent.component';

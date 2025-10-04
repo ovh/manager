@@ -17,7 +17,7 @@ This component also integrates with `ShellContext` from `@ovh-ux/manager-react-s
 #### With LazyRouteConfig function
 
 <Source
-  code={`import { ErrorBoundary } from '@ovh-ux/manager-ui-kit';
+  code={`import { ErrorBoundary } from '@ovh-ux/muk';
 
         const lazyRouteConfig = (importFn: CallableFunction) => ({
             lazy: async () => {
@@ -37,7 +37,7 @@ language="typescript"
 #### With Route component
 
 <Source
-  code={`import { ErrorBoundary } from '@ovh-ux/manager-ui-kit';
+  code={`import { ErrorBoundary } from '@ovh-ux/muk';
   <Route
     id="root"
     path={ROUTE_PATHS.ROOT}

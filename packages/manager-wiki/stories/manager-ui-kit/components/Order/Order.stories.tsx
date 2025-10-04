@@ -2,7 +2,7 @@ import React, { ComponentType } from 'react';
 
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { Meta, StoryObj } from '@storybook/react';
-import { Order } from '@ovh-ux/manager-ui-kit';
+import { Order } from '@ovh-ux/muk';
 
 function renderComponent(args) {
   return (
