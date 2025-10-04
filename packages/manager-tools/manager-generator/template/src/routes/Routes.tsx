@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Navigate, Route } from 'react-router-dom';
 
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+import { ErrorBoundary } from '@ovh-ux/manager-ui-kit';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
 import NotFound from '@/pages/not-found/404.page';

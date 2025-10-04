@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
 
-import { BaseLayout } from '@ovh-ux/manager-react-components';
+import { BaseLayout } from '@ovh-ux/manager-ui-kit';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { appName } from '@/App.constants';

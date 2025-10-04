@@ -5,7 +5,7 @@ import {
   useResourcesIcebergV2,
   useResourcesIcebergV6,
   useResourcesV6,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/manager-ui-kit';
 
 import { APP_FEATURES } from '@/App.constants';
 import { ResourcesFacadeResult, UseResourcesParams } from '@/types/ClientApi.type';

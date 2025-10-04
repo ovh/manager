@@ -15,7 +15,7 @@ async function loadSubject(listingApi: 'v6Iceberg' | 'v2' | 'v6' | undefined) {
   const useResourcesIcebergV6 = vi.fn();
   const useResourcesV6 = vi.fn();
 
-  vi.doMock('@ovh-ux/manager-react-components', () => ({
+  vi.doMock('@ovh-ux/manager-ui-kit', () => ({
     useResourcesIcebergV2,
     useResourcesIcebergV6,
     useResourcesV6,

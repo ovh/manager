@@ -23,7 +23,7 @@ jobs:
       - name: Build covered packages and dependencies
         run: |
           yarn exec turbo -- run build --filter="./packages/manager/core/*" --concurrency=5
-          yarn exec turbo -- run build --filter="./packages/manager-react-components"
+          yarn exec turbo -- run build --filter="./packages/manager-ui-kit"
           yarn exec turbo -- run build --filter="./packages/manager/modules/order"
           yarn exec turbo -- run build --filter="./packages/manager/modules/common-api"
           yarn exec turbo -- run build --filter="./packages/manager/modules/common-translations"

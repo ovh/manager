@@ -4,12 +4,12 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { initialize, mswLoader } from 'msw-storybook-addon';
 import { Preview } from '@storybook/react';
 import './storybook.css';
-import '../../manager-react-components/src/lib.scss';
+import '../../manager-ui-kit/src/lib.scss';
 import '@ovhcloud/ods-themes/default';
 
 import i18n from './i18n';
 import TechnicalInformation from './technical-information.mdx';
-import { normalizeLanguageCode } from '../../manager-react-components/src/utils/translation-helper';
+import { normalizeLanguageCode } from '../../manager-ui-kit/src/utils/translation-helper';
 import { handlers } from './msw-handlers';
 
 const mockQueryClient = new QueryClient({
@@ -53,7 +53,7 @@ const preview: Preview = {
       storySort: {
         order: [
           'Introduction',
-          'Manager React Components',
+          'Manager UI Kit',
           [
             'Introduction',
             "What's new",

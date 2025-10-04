@@ -1,0 +1,60 @@
+import {
+  StoryBookBanner,
+  StorybookHeading,
+  StorybookBestPractices,
+  StorybookIdentityCard,
+  StorybookTable,
+} from '../../../../components/';
+import meta, { Default } from './useFormatDate.stories';
+import { Meta, Source } from '@storybook/blocks';
+
+<Meta title="Manager UI Kit/Hooks/useFormatDate/Documentation" />
+<StoryBookBanner of={meta} />
+
+The useFormatDate hook leverages date-fns for formatting dates in a localized and customizable way.
+
+<StorybookHeading label="Output examples" level={2} />
+<Source
+code={`
+const formatDate = useFormatDate();
+
+// Default format (PP)
+formatDate({ date: '2024-09-14T09:21:21.943Z' });
+// → "14 Sept 2024"
+
+// Custom format with day of the week
+formatDate({ date: '2024-09-14T09:21:21.943Z', format: 'PPPP' });
+// → "Saturday, 14 September 2024"
+
+// Combined date and time
+formatDate({ date: '2024-09-14T09:21:21.943Z', format: 'Pp' });
+// → "14/09/2024, 10:21"
+
+// Full date and time with detailed timezone
+formatDate({ date: '2024-09-14T09:21:21.943Z', format: 'PPPPpppp' });
+// → "Saturday, 14 September 2024 at 10:21:21 GMT+02:00"
+`}
+language="ts"
+/>
+
+<StorybookHeading label="Handling invalid or missing dates" level={2} />
+<Source
+  code={`formatDate({ date: undefined });
+// → "N/A"
+formatDate({ date: null });
+// → "N/A"
+formatDate({ date: '', unknownDateLabel: 'Unknown' });
+// → "Unknown"`}
+  language="ts"
+/>
+<StorybookHeading label="Localization" level={2} />
+
+The locale is automatically determined from the current i18n.language. Only 8 OVH locale are supported : en_GB, fr_FR, fr_CA, de_DE, es_ES, it_IT, pl_PL, pt_PT. If the locale is unsupported or undefined, it defaults to enGB.
+
+If you need use locales for another function of date fns you can use useDateFnsLocale
+
+This allow easy use and optimize bundle size to import only necessay locale.
+
+```tsx
+const localeFns = useDateFnsLocale();
+```

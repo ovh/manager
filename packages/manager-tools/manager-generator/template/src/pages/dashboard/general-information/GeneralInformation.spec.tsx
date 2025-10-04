@@ -15,8 +15,8 @@ interface LinksProps {
 }
 
 // --- Mock Clipboard & Links ---
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
+vi.mock('@ovh-ux/manager-ui-kit', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovh-ux/manager-ui-kit')>();
   return {
     ...actual,
     Clipboard: ({ value }: ClipboardProps) => (

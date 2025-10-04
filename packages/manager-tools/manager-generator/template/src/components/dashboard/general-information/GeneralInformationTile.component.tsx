@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ManagerTile } from '@ovh-ux/manager-react-components';
+import { ManagerTile } from '@ovh-ux/manager-ui-kit';
 
 import { GeneralInformationProps } from '@/types/GeneralInfo.type';
 
