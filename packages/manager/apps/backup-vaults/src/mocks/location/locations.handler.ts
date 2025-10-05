@@ -8,7 +8,9 @@ export type TLocationMockParams = {
   isLocationError?: boolean;
 };
 
-export const getVaultMocks = ({ isLocationError }: TLocationMockParams): Handler[] => [
+export const getLocationMocks = ({
+  isLocationError = false,
+}: TLocationMockParams = {}): Handler[] => [
   {
     url: '/location/:locationName',
     response: (_: unknown, params: PathParams) => {
