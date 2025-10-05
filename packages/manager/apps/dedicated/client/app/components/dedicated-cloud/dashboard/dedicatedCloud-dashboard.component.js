@@ -10,6 +10,8 @@ export default {
     disableVmwareOption: '<',
     zertoAvailability: '<',
     zertoGlobalStatus: '<',
+    zertoMultiSites: '<',
+    isZertoTypeOnPremise: '<',
     editDetails: '<',
     goToZerto: '<',
     goToVcdOrder: '<',
