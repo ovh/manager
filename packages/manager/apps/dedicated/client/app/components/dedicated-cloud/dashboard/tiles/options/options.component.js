@@ -10,12 +10,14 @@ export default {
     deleteZerto: '<',
     zertoAvailability: '<',
     zertoGlobalStatus: '<',
+    zertoMultiSites: '<',
     goToDatacenter: '<',
     goToZerto: '<',
     goToZertoDatacenterSelection: '<',
     goToVpnConfiguration: '<',
 
     isZertoActionPossible: '<',
+    isZertoTypeOnPremise: '<',
 
     onBasicOptionsUpgrade: '&',
     onCertificationUpgrade: '&',

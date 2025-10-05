@@ -1,0 +1,22 @@
+<ul
+    class="pl-0 list-unstyled"
+    data-ng-if="$ctrl.zertoMultiSites.success !== 0 || $ctrl.zertoMultiSites.warning !== 0 || $ctrl.zertoMultiSites.error !== 0"
+>
+    <li
+        data-ng-repeat="state in ['success', 'warning', 'error']"
+        data-ng-if="$ctrl.zertoSiteByState[state] !== 0"
+    >
+        <span
+            data-ng-class="'oui-badge_' + state"
+            class="oui-badge mt-2 text-nowrap"
+            data-translate-values="{ numbers: $ctrl.zertoSiteByState[state] }"
+            data-ng-pluralize
+            data-count="$ctrl.zertoSiteByState[state]"
+            data-when="{
+                                    'one': (('dedicatedCloud_datacenter_zerto_site_state_one_site_state_' + state) | translate),
+                                    'other': (('dedicatedCloud_datacenter_zerto_site_state_multiple_site_state_' + state) | translate:{ numbers: $ctrl.zertoSiteByState[state]}),
+                                }"
+        >
+        </span>
+    </li>
+</ul>
