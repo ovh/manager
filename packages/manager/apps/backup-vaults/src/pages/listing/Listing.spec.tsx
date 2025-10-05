@@ -17,7 +17,7 @@ vi.mock('@ovhcloud/ods-react', () => ({
 
 describe('[INTEGRATION] - Listing page', () => {
   it('Listing page display datagrid', async () => {
-    const { container } = await renderTest();
+    const { container } = await renderTest({ initialRoute: '/' });
 
     await waitFor(
       () => {
