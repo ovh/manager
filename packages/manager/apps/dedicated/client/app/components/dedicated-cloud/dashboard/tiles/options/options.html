@@ -93,15 +93,20 @@
             <span
                 class="oui-badge"
                 data-ng-class="{
-        'oui-badge_error': $ctrl.bindings.options.security.zertoGlobalStatus.value.error,
-        'oui-badge_warning': $ctrl.bindings.options.security.zertoGlobalStatus.value.warning,
-        'oui-badge_success': $ctrl.bindings.options.security.zertoGlobalStatus.value.success
-}"
+                                  'oui-badge_error': $ctrl.zertoGlobalStatus.error,
+                                  'oui-badge_warning': $ctrl.zertoGlobalStatus.warning,
+                                  'oui-badge_success': $ctrl.zertoGlobalStatus.success
+                            }"
             >
                 <span
-                    data-translate="{{:: $ctrl.bindings.options.security.zertoGlobalStatus.detail }}"
+                    data-translate="{{:: 'dedicatedCloud_options_zerto_status_' + $ctrl.currentZerto.state }}"
                 ></span>
             </span>
+
+            <dedicated-cloud-datacenter-zerto-site-state-badge
+                data-ng-if="$ctrl.isZertoTypeOnPremise"
+                data-zerto-multi-sites="$ctrl.zertoMultiSites"
+            ></dedicated-cloud-datacenter-zerto-site-state-badge>
         </oui-tile-description>
 
         <oui-action-menu
