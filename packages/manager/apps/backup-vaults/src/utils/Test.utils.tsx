@@ -1,13 +1,10 @@
 import React from 'react';
 
 import { render } from '@testing-library/react';
-import { SetupServer } from 'msw/node';
 
-import { getAuthenticationMocks, toMswHandlers } from '@ovh-ux/manager-core-test-utils';
-
-import { TVaultMockParams, getVaultMocks } from '@/mocks/vault/vaults.handler';
 import { urls } from '@/routes/Routes.constants';
 import { TestApp } from '@/utils/tests/TestApp';
+import { MockParams, setupMswMock } from '@/utils/tests/setupMsw';
 import { testWrapperBuilder } from '@/utils/tests/testWrapperBuilder';
 
 const formatSafePath = (url?: string) =>
@@ -18,13 +15,8 @@ export const renderTest = async ({
   ...mockParams
 }: {
   initialRoute?: string;
-} & TVaultMockParams = {}) => {
-  (global as unknown as { server: SetupServer }).server?.resetHandlers(
-    ...toMswHandlers([
-      ...getAuthenticationMocks({ isAuthMocked: true }),
-      ...getVaultMocks(mockParams),
-    ]),
-  );
+} & MockParams = {}) => {
+  setupMswMock(mockParams);
 
   const Providers = await testWrapperBuilder()
     .withQueryClient()
