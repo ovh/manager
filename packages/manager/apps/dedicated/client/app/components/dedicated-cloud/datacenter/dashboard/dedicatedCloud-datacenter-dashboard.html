@@ -148,54 +148,10 @@
                             ></span>
                         </span>
 
-                        <ul
+                        <dedicated-cloud-datacenter-zerto-site-state-badge
                             data-ng-if="$ctrl.isZertoTypeOnPremise"
-                            class="pl-0 list-unstyled"
-                        >
-                            <li
-                                data-ng-if="$ctrl.zertoSiteByState.success !== 0"
-                            >
-                                <span
-                                    class="oui-badge mt-2 oui-badge_success text-nowrap"
-                                    data-translate-values="{ numbers: $ctrl.zertoSiteByState.success }"
-                                    data-ng-pluralize
-                                    data-count="$ctrl.zertoSiteByState.success"
-                                    data-when="{
-                                    'one': (('dedicatedCloud_datacenter_zerto_one_site_state_delivered') | translate),
-                                    'other': (('dedicatedCloud_datacenter_zerto_multiple_site_state_delivered') | translate:{ numbers: $ctrl.zertoSiteByState.success}),
-                                }"
-                                >
-                                </span>
-                            </li>
-                            <li
-                                data-ng-if="$ctrl.zertoSiteByState.warning !== 0"
-                            >
-                                <span
-                                    class="oui-badge mt-2 oui-badge_warning text-nowrap"
-                                    data-translate-values="{ numbers: $ctrl.zertoSiteByState.warning }"
-                                    data-ng-pluralize
-                                    data-count="$ctrl.zertoSiteByState.warning"
-                                    data-when="{
-                                    'one': (('dedicatedCloud_datacenter_zerto_one_site_state_wait_action') | translate),
-                                    'other': (('dedicatedCloud_datacenter_zerto_multiple_site_state_wait_action') | translate:{ numbers: $ctrl.zertoSiteByState.warning}),
-                                }"
-                                >
-                                </span>
-                            </li>
-                            <li data-ng-if="$ctrl.zertoSiteByState.error !== 0">
-                                <span
-                                    class="oui-badge mt-2 oui-badge_error text-nowrap"
-                                    data-translate-values="{ numbers: $ctrl.zertoSiteByState.error }"
-                                    data-ng-pluralize
-                                    data-count="$ctrl.zertoSiteByState.error"
-                                    data-when="{
-                                    'one': (('dedicatedCloud_datacenter_zerto_one_site_state_error') | translate),
-                                    'other': (('dedicatedCloud_datacenter_zerto_multiple_site_state_error') | translate:{ numbers: $ctrl.zertoSiteByState.error}),
-                                }"
-                                >
-                                </span>
-                            </li>
-                        </ul>
+                            data-zerto-multi-sites="$ctrl.zertoMultiSites"
+                        ></dedicated-cloud-datacenter-zerto-site-state-badge>
                     </oui-tile-description>
                 </oui-tile-definition>
             </oui-tile>

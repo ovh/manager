@@ -34,8 +34,6 @@ export default class {
       .finally(() => {
         this.loading = false;
       });
-
-    this.zertoSiteByState = this.computeZertoSiteByState(this.zertoMultiSites);
   }
 
   $onDestroy() {
@@ -118,24 +116,6 @@ export default class {
           )} ${get(error, 'data.message', error.message)}`,
         );
       });
-  }
-
-  computeZertoSiteByState(zertoSites) {
-    return {
-      success: zertoSites.filter((site) =>
-        this.dedicatedCloudZerto.constructor.isZertoSiteSuccessState(
-          site.state,
-        ),
-      ).length,
-      error: zertoSites.filter((site) =>
-        this.dedicatedCloudZerto.constructor.isZertoSiteErrorState(site.state),
-      ).length,
-      warning: zertoSites.filter((site) =>
-        this.dedicatedCloudZerto.constructor.isZertoSiteWarningState(
-          site.state,
-        ),
-      ).length,
-    };
   }
 
   /* Update description or name */
