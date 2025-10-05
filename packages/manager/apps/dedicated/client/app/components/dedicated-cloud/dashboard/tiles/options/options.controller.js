@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 import { SNC_LABEL } from './options.constants';
 import { LABELS } from '../../../dedicatedCloud.constant';
+import { DedicatedCloudDatacenterZertoService } from '../../../datacenter/zerto/dedicatedCloud-datacenter-zerto.service';
 
 export default class Options {
   /* @ngInject */
@@ -53,6 +54,9 @@ export default class Options {
         },
       },
     };
+    this.zertoSiteByState = DedicatedCloudDatacenterZertoService.computeZertoSiteByState(
+      this.zertoMultiSites,
+    );
 
     const feature = 'dedicated-cloud:sectorSpecificCompliance';
     return this.$q

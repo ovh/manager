@@ -15,6 +15,7 @@ import vmwareOptionDisable from './vmware-option/disable';
 import vmwareOptionOrder from './vmware-option/order';
 import vcdOrder from './vmware-cloud-director/order';
 import dedicatedCloudDashboardLightModule from '../dashboard-light';
+import dedicatedcloudDatacenterZertoSiteStateBadgeModule from '../../components/dedicated-cloud/datacenter/zerto/siteStateBadge';
 
 const moduleName = 'dedicatedCloudDashboardModule';
 
@@ -34,6 +35,7 @@ angular
     vmwareOptionOrder,
     vcdOrder,
     dedicatedCloudDashboardLightModule,
+    dedicatedcloudDatacenterZertoSiteStateBadgeModule,
   ])
   .config(routing);
 

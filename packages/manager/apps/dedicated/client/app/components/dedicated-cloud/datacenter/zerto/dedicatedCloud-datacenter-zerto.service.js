@@ -806,6 +806,50 @@ export class DedicatedCloudDatacenterZertoService {
       DEDICATEDCLOUD_DATACENTER_DRP_STATUS.disabling,
     ].includes(zertoState);
   }
+
+  static computeZertoSiteByState(zertoSites) {
+    return {
+      success: zertoSites.filter((site) =>
+        DedicatedCloudDatacenterZertoService.isZertoSiteSuccessState(
+          site.state,
+        ),
+      ).length,
+      error: zertoSites.filter((site) =>
+        DedicatedCloudDatacenterZertoService.isZertoSiteErrorState(site.state),
+      ).length,
+      warning: zertoSites.filter((site) =>
+        DedicatedCloudDatacenterZertoService.isZertoSiteWarningState(
+          site.state,
+        ),
+      ).length,
+    };
+  }
+
+  static getZertoGlobalStatus(zertoState) {
+    if (
+      DedicatedCloudDatacenterZertoService.isZertoSiteCriticalState(zertoState)
+    ) {
+      return 'error';
+    }
+
+    if (
+      DedicatedCloudDatacenterZertoService.isZertoSiteWarningState(zertoState)
+    ) {
+      return 'warning';
+    }
+
+    if (
+      DedicatedCloudDatacenterZertoService.isZertoSiteSuccessState(zertoState)
+    ) {
+      return 'success';
+    }
+
+    if (DedicatedCloudDatacenterZertoService.isZertoSiteInfoState(zertoState)) {
+      return 'info';
+    }
+
+    return 'unknown';
+  }
 }
 
 angular
