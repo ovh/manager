@@ -13,11 +13,17 @@ export const ExpirationCell = (server: DedicatedServer) => {
   });
   return (
     <DSBilling server={server}>
-      {(billingInfo) => (
-        <DataGridTextCell>
-          {format(new Date(billingInfo?.billing?.expirationDate))}
-        </DataGridTextCell>
-      )}
+      {(billingInfo) => {
+        const expirationDate = billingInfo?.billing?.engagement
+          ? billingInfo?.billing?.engagement.endDate
+          : billingInfo?.billing?.renew?.current?.nextDate ||
+            billingInfo?.billing?.expirationDate;
+        return (
+          <DataGridTextCell>
+            {expirationDate ? format(new Date(expirationDate)) : ''}
+          </DataGridTextCell>
+        );
+      }}
     </DSBilling>
   );
 };
