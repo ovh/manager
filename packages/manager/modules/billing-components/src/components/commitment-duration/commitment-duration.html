@@ -24,7 +24,9 @@
                 ></span>
                 <div class="ml-auto d-flex flex-column text-right">
                     <del class="small">{{$ctrl.defaultPrice.price.text}}</del>
-                    <span class="oui-heading_6 m-0 oui-color-ae-500"
+                    <span
+                        class="'oui-heading_6 m-0"
+                        data-ng-class="{'oui-color-ae-500': $ctrl.defaultPrice.price.text}"
                         >{{duration.monthlyPrice}}</span
                     >
                     <span
