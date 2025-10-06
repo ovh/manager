@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.51.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.51.1...@ovh-ux/manager-billing@0.51.2) (2025-10-06)
+
+
+### Bug Fixes
+
+* **billing:** fix terminate payload ([d16fc81](https://github.com/ovh/manager/commit/d16fc81596567f7aa445ca835ccd36dde257c59f)), closes [#MANAGER-16806](https://github.com/ovh/manager/issues/MANAGER-16806)
+
+
+
+
+
 ## [0.51.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.51.0...@ovh-ux/manager-billing@0.51.1) (2025-10-02)
 
 
