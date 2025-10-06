@@ -15,7 +15,11 @@ const S3Tabs = ({ s3 }: S3TabsProps) => {
       count: s3.objects.length || 0,
     },
     { href: 'dashboard', label: t('dashboardTab') },
-    { href: 'replication', label: t('replicationTab') },
+    {
+      href: 'replication',
+      label: t('replicationTab'),
+      count: s3.replication?.rules?.length || 0,
+    },
     // { href: 'access-logs', label: t('accessLogsTab') },
     { href: 'settings', label: t('settingsTab') },
   ].filter((tab) => tab);
