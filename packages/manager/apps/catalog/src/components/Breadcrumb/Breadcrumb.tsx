@@ -1,7 +1,10 @@
 import React from 'react';
-import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { useTranslation } from 'react-i18next';
+
+import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
+
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 function Breadcrumb() {
   const { shell } = React.useContext(ShellContext);
