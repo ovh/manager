@@ -1,8 +1,14 @@
 import { CONDITION_TYPES } from '../conditionType.constants';
+import ElementUiService from '../elementUi.service';
 
 const dateKeyTemplate = `date({{timezone}}).${CONDITION_TYPES.DATE}`;
 
 export default class IAMConditionDateController {
+  /* @ngInject */
+  constructor($element) {
+    this.$element = $element;
+  }
+
   $onInit() {
     this.initForm();
   }
@@ -25,5 +31,9 @@ export default class IAMConditionDateController {
     if (criterion && this.dates) {
       this.updateConditionValues();
     }
+  }
+
+  scrollCalendarIntoView() {
+    ElementUiService.scrollOuiCalendarIntoView(this.$element);
   }
 }

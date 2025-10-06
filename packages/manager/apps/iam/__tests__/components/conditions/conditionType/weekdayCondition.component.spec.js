@@ -46,12 +46,15 @@ describe('IAMConditionWeekday component tests suite', () => {
   });
 
   it('should init model value when condition is set', () => {
+    const locals = {
+      $element: angular.element('<div></div>'),
+    };
     const bindings = {
       condition: {
         value: 'Monday,Friday',
       },
     };
-    const $ctrl = $componentController('iamConditionWeekday', null, bindings);
+    const $ctrl = $componentController('iamConditionWeekday', locals, bindings);
     $ctrl.$onInit();
 
     expect($ctrl.weekdays).toBe(weekdays);

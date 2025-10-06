@@ -8,6 +8,7 @@
         data-model="$ctrl.productTypes"
         data-multiple="true"
         data-name="productTypes"
+        data-on-focus="$ctrl.scrollSelectIntoView()"
         data-on-change="$ctrl.updateConditionValues()"
         data-on-load="$ctrl.transformResourceTypes(response.data)"
         data-required="true"

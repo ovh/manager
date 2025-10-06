@@ -1,5 +1,7 @@
 import angular from 'angular';
 
+import elementUiService from './elementUi.service';
+
 import tagCondition from './tag';
 import nameCondition from './name';
 import ipCondition from './ip';
@@ -21,6 +23,7 @@ angular
     hourCondition,
     productTypeCondition,
   ])
+  .service('elementUiService', elementUiService)
   .component(name, component);
 
 export default moduleName;
