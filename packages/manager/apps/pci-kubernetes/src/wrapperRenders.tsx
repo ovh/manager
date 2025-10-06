@@ -1,9 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
 import { vi } from 'vitest';
+
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
 
 export const shellContext = {
   environment: {
@@ -30,9 +28,7 @@ const queryClient = new QueryClient({
 
 export const wrapper = ({ children }) => (
   <QueryClientProvider client={queryClient}>
-    <ShellContext.Provider
-      value={(shellContext as unknown) as ShellContextType}
-    >
+    <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
       {children}
     </ShellContext.Provider>
   </QueryClientProvider>

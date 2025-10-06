@@ -1,10 +1,12 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+
 import { v6 } from '@ovh-ux/manager-core-api';
 
-import { useUpdateAdmissionPlugin } from './useAdmissionPlugin';
-import { wrapper } from '@/wrapperRenders';
 import { TClusterCustomization } from '@/types';
+import { wrapper } from '@/wrapperRenders';
+
+import { useUpdateAdmissionPlugin } from './useAdmissionPlugin';
 
 const customization = {
   apiServer: {
@@ -29,9 +31,7 @@ describe('useUpdateAdmissionPlugin', () => {
       { wrapper },
     );
 
-    result.current.updateAdmissionPlugins(
-      customization as TClusterCustomization,
-    );
+    result.current.updateAdmissionPlugins(customization as TClusterCustomization);
 
     await waitFor(() => expect(mockSuccess).toHaveBeenCalled());
     expect(mockError).not.toHaveBeenCalled();
@@ -58,11 +58,7 @@ describe('useUpdateAdmissionPlugin', () => {
     result.current.updateAdmissionPlugins(customization);
 
     await waitFor(() =>
-      expect(mockError).toHaveBeenCalledWith(
-        new Error('Network Error'),
-        customization,
-        undefined,
-      ),
+      expect(mockError).toHaveBeenCalledWith(new Error('Network Error'), customization, undefined),
     );
     expect(mockSuccess).not.toHaveBeenCalled();
   });

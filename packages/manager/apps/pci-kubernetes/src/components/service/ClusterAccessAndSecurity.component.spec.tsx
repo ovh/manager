@@ -1,12 +1,13 @@
+import { UseQueryResult } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import { vi } from 'vitest';
-import { UseQueryResult } from '@tanstack/react-query';
-import ClusterAccessAndSecurity from '@/components/service/ClusterAccessAndSecurity.component';
-import { wrapper } from '@/wrapperRenders';
-import { DeploymentMode, TKube, TOidcProvider } from '@/types';
-import { useRegionInformations } from '@/api/hooks/useRegionInformations';
+
 import * as useKubernetesModule from '@/api/hooks/useKubernetes';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
+import ClusterAccessAndSecurity from '@/components/service/ClusterAccessAndSecurity.component';
+import { DeploymentMode, TKube, TOidcProvider } from '@/types';
 import { TRegionInformations } from '@/types/region';
+import { wrapper } from '@/wrapperRenders';
 
 vi.mock('@/api/hooks/useRegionInformations', () => ({
   useRegionInformations: vi.fn(),
@@ -32,15 +33,11 @@ describe('ClusterAccessAndSecurity', () => {
 
   it('renders kube API URL with clipboard component', () => {
     const { container } = render(
-      <ClusterAccessAndSecurity
-        kubeDetail={{ url: 'http://api.url' } as TKube}
-      />,
+      <ClusterAccessAndSecurity kubeDetail={{ url: 'http://api.url' } as TKube} />,
       { wrapper },
     );
 
-    const clipboardElement = container.querySelector(
-      '[value="http://api.url"]',
-    );
+    const clipboardElement = container.querySelector('[value="http://api.url"]');
     expect(clipboardElement).toBeVisible();
   });
 
@@ -55,9 +52,7 @@ describe('ClusterAccessAndSecurity', () => {
       { wrapper },
     );
 
-    expect(
-      getByText(/kube_service_restrictions_no_count/i),
-    ).toBeInTheDocument();
+    expect(getByText(/kube_service_restrictions_no_count/i)).toBeInTheDocument();
   });
 
   it('renders restrictions count correctly when one restriction', () => {
@@ -97,9 +92,7 @@ describe('ClusterAccessAndSecurity', () => {
     } as UseQueryResult<TOidcProvider>);
 
     const { container } = render(
-      <ClusterAccessAndSecurity
-        kubeDetail={{ status: 'READY', url: 'kube.url' } as TKube}
-      />,
+      <ClusterAccessAndSecurity kubeDetail={{ status: 'READY', url: 'kube.url' } as TKube} />,
       { wrapper },
     );
 
@@ -118,33 +111,23 @@ describe('ClusterAccessAndSecurity', () => {
       <ClusterAccessAndSecurity kubeDetail={{ status: 'READY' } as TKube} />,
       { wrapper },
     );
-    expect(
-      getByText(/kube_service_access_security_oidc_no_provider/i),
-    ).toBeInTheDocument();
+    expect(getByText(/kube_service_access_security_oidc_no_provider/i)).toBeInTheDocument();
   });
 
   it('renders upgrade policy correctly', () => {
     const { getByText } = render(
-      <ClusterAccessAndSecurity
-        kubeDetail={{ updatePolicy: 'automatic' } as TKube}
-      />,
+      <ClusterAccessAndSecurity kubeDetail={{ updatePolicy: 'automatic' } as TKube} />,
       { wrapper },
     );
-    expect(
-      getByText(/kube_service_upgrade_policy_automatic/i),
-    ).toBeInTheDocument();
+    expect(getByText(/kube_service_upgrade_policy_automatic/i)).toBeInTheDocument();
   });
 
   it('disables kube config button when status is installing', () => {
     const { getByTestId } = render(
-      <ClusterAccessAndSecurity
-        kubeDetail={{ status: 'INSTALLING' } as TKube}
-      />,
+      <ClusterAccessAndSecurity kubeDetail={{ status: 'INSTALLING' } as TKube} />,
       { wrapper },
     );
-    expect(
-      getByTestId('ClusterAccessAndSecurity-DownloadKubeConfig'),
-    ).toBeDisabled();
+    expect(getByTestId('ClusterAccessAndSecurity-DownloadKubeConfig')).toBeDisabled();
   });
 
   it('enables kube config button when status is ready', () => {
@@ -152,9 +135,7 @@ describe('ClusterAccessAndSecurity', () => {
       <ClusterAccessAndSecurity kubeDetail={{ status: 'READY' } as TKube} />,
       { wrapper },
     );
-    expect(
-      getByTestId('ClusterAccessAndSecurity-DownloadKubeConfig'),
-    ).not.toBeDisabled();
+    expect(getByTestId('ClusterAccessAndSecurity-DownloadKubeConfig')).not.toBeDisabled();
   });
 
   it('enables spinner for kube config button when getting data and button disabled', () => {
@@ -165,12 +146,8 @@ describe('ClusterAccessAndSecurity', () => {
       <ClusterAccessAndSecurity kubeDetail={{ status: 'READY' } as TKube} />,
       { wrapper },
     );
-    expect(
-      getByTestId('clusterAccessAndSecurity-spinnerKubeConfig'),
-    ).toBeInTheDocument();
-    expect(
-      getByTestId('ClusterAccessAndSecurity-DownloadKubeConfig'),
-    ).toBeDisabled();
+    expect(getByTestId('clusterAccessAndSecurity-spinnerKubeConfig')).toBeInTheDocument();
+    expect(getByTestId('ClusterAccessAndSecurity-DownloadKubeConfig')).toBeDisabled();
   });
 
   it('renders nodes URL with clipboard component in 1az', () => {
@@ -180,12 +157,8 @@ describe('ClusterAccessAndSecurity', () => {
       />,
       { wrapper },
     );
-    const clipboardElement = container.querySelector(
-      '[value="http://nodes.url"]',
-    );
-    expect(
-      getByText('service:kube_service_cluster_nodes_url'),
-    ).toBeInTheDocument();
+    const clipboardElement = container.querySelector('[value="http://nodes.url"]');
+    expect(getByText('service:kube_service_cluster_nodes_url')).toBeInTheDocument();
     expect(clipboardElement).toBeVisible();
   });
   it('renders nodes URL with clipboard component in 3az', () => {
@@ -201,9 +174,7 @@ describe('ClusterAccessAndSecurity', () => {
       />,
       { wrapper },
     );
-    const clipboardElement = container.querySelector(
-      '[value="http://nodes.url"]',
-    );
+    const clipboardElement = container.querySelector('[value="http://nodes.url"]');
     expect(queryByText('service:kube_service_cluster_nodes_url')).toBeNull();
     expect(clipboardElement).toBeNull();
   });

@@ -1,17 +1,11 @@
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
-import {
-  ODS_TEXT_COLOR_INTENT,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { OsdsTile, OsdsText } from '@ovhcloud/ods-components/react';
 
-import {
-  selectedTileClass,
-  tileClass,
-} from '../UpdatePolicySelector.component';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_COLOR_INTENT, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
+
+import { selectedTileClass, tileClass } from '../UpdatePolicySelector.component';
 
 type DeploymentZoneProps = {
   onSelect: (zone: string) => void;

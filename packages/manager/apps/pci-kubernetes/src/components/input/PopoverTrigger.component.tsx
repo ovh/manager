@@ -5,7 +5,7 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { OsdsText, OsdsIcon } from '@ovhcloud/ods-components/react';
+import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
 
 const PopoverTrigger = ({ title }: { title: string }) => (
   <span slot="popover-trigger">

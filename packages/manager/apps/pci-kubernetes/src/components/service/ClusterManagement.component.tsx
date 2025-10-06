@@ -1,3 +1,9 @@
+import { useMemo } from 'react';
+
+import { useHref } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_DIVIDER_SIZE,
@@ -5,34 +11,23 @@ import {
   ODS_TEXT_SIZE,
   ODS_TILE_VARIANT,
 } from '@ovhcloud/ods-components';
-import {
-  OsdsDivider,
-  OsdsText,
-  OsdsTile,
-} from '@ovhcloud/ods-components/react';
-import { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useHref, useParams } from 'react-router-dom';
-import { TKube } from '@/types';
-import { PROCESSING_STATUS, STATUS } from '@/constants';
+import { OsdsDivider, OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
+
 import { useGetCloudSchema } from '@/api/hooks/useCloud';
+import { PROCESSING_STATUS, STATUS } from '@/constants';
+import { TKube } from '@/types';
+
 import TileButton from './TileButton.component';
-import { useRegionInformations } from '@/api/hooks/useRegionInformations';
-import { isMultiDeploymentZones } from '@/helpers';
 
 export type ClusterManagementProps = {
   kubeDetail: TKube;
 };
 
-export const isProcessing = (status: string) =>
-  PROCESSING_STATUS.includes(status);
+export const isProcessing = (status: string) => PROCESSING_STATUS.includes(status);
 
-export default function ClusterManagement({
-  kubeDetail,
-}: Readonly<ClusterManagementProps>) {
+export default function ClusterManagement({ kubeDetail }: Readonly<ClusterManagementProps>) {
   const { t } = useTranslation('service');
   const { t: tDetail } = useTranslation('listing');
-  const { projectId } = useParams();
 
   const hrefRenameCluster = useHref('./name');
   const hrefResetClusterConfig = useHref('./reset-kubeconfig');
@@ -45,20 +40,16 @@ export default function ClusterManagement({
 
   const { data: cloudSchema } = useGetCloudSchema();
 
+  const isClusterProcessing = isProcessing(kubeDetail?.status);
+
   const clusterMinorVersion = useMemo<string>(() => {
-    const [majorVersion, minorVersion] = kubeDetail?.version
-      ? kubeDetail.version.split('.')
-      : [];
+    const [majorVersion, minorVersion] = kubeDetail?.version ? kubeDetail.version.split('.') : [];
     return `${majorVersion}.${minorVersion}`;
   }, [kubeDetail]);
-  const { data: regionInformations } = useRegionInformations(
-    projectId,
-    kubeDetail?.region,
-  );
   const highestVersion = useMemo<number>(() => {
     if (!cloudSchema) return 0;
 
-    const kubeVersions = cloudSchema.models['cloud.kube.VersionEnum'].enum;
+    const kubeVersions = cloudSchema.models['cloud.kube.VersionEnum']?.enum;
     if (!kubeVersions || kubeVersions.length === 0) return 0;
 
     return kubeVersions
@@ -67,11 +58,7 @@ export default function ClusterManagement({
   }, [cloudSchema]);
 
   return (
-    <OsdsTile
-      className="flex-col w-full shadow-lg"
-      rounded
-      variant={ODS_TILE_VARIANT.ghost}
-    >
+    <OsdsTile className="flex-col w-full shadow-lg" rounded variant={ODS_TILE_VARIANT.ghost}>
       <div className="flex flex-col w-full">
         <OsdsText
           size={ODS_TEXT_SIZE._400}
@@ -82,39 +69,32 @@ export default function ClusterManagement({
           {t('kube_service_manage_title')}
         </OsdsText>
         <OsdsDivider separator size={ODS_DIVIDER_SIZE.zero} />
-
         <TileButton
           title={t('kube_service_common_edit')}
-          isDisabled={isProcessing(kubeDetail?.status)}
+          isDisabled={isClusterProcessing}
           href={hrefRenameCluster}
           dataTestId="clusterManagement-edit"
         />
-
         <TileButton
           title={t('kube_service_reset')}
-          isDisabled={isProcessing(kubeDetail?.status)}
+          isDisabled={isClusterProcessing}
           href={hrefResetCluster}
         />
         <TileButton
           title={tDetail('kube_common_create_node_pool')}
-          isDisabled={isProcessing(kubeDetail?.status)}
+          isDisabled={isClusterProcessing}
           href={hrefCreateNodePool}
         />
-        {regionInformations?.type &&
-          !isMultiDeploymentZones(regionInformations.type) && (
-            <TileButton
-              title={t('kube_service_reset_kubeconfig')}
-              isDisabled={isProcessing(kubeDetail?.status)}
-              href={hrefResetClusterConfig}
-            />
-          )}
-
+        <TileButton
+          title={t('kube_service_reset_kubeconfig')}
+          isDisabled={isClusterProcessing}
+          href={hrefResetClusterConfig}
+        />
         <TileButton
           title={t('kube_service_common_edit_security_update_policy')}
-          isDisabled={isProcessing(kubeDetail?.status)}
+          isDisabled={isClusterProcessing}
           href={hrefUpgradePolicy}
         />
-
         {!kubeDetail.isUpToDate && (
           <TileButton
             title={t('kube_service_common_update')}
@@ -122,18 +102,16 @@ export default function ClusterManagement({
             href={hrefForceUpdate}
           />
         )}
-
         {parseFloat(clusterMinorVersion) !== highestVersion && (
           <TileButton
             title={t('kube_service_minor_version_upgrade')}
-            isDisabled={isProcessing(kubeDetail?.status)}
+            isDisabled={isClusterProcessing}
             href={hrefMinorUpdate}
           />
         )}
-
         <TileButton
           title={t('kube_service_terminate')}
-          isDisabled={isProcessing(kubeDetail?.status)}
+          isDisabled={isClusterProcessing}
           href={hrefTerminateCluster}
           dataTestId="clusterManagement-terminate"
         />

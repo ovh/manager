@@ -11,5 +11,4 @@ export const CLUSTER_NAME_CONSTRAINTS = {
 export const isNodePoolNameValid = (input: string) =>
   NODE_POOL_NAME_CONSTRAINTS.PATTERN.test(input);
 
-export const isClusterNameValid = (input: string) =>
-  CLUSTER_NAME_CONSTRAINTS.PATTERN.test(input);
+export const isClusterNameValid = (input: string) => CLUSTER_NAME_CONSTRAINTS.PATTERN.test(input);

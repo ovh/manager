@@ -1,5 +1,6 @@
 import { renderHook } from '@testing-library/react';
-import { describe, it, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, it, vi } from 'vitest';
+
 import { useResponsiveModal } from './useResizeOsdsModal';
 
 describe('useResponsiveModal', () => {
@@ -46,10 +47,7 @@ describe('useResponsiveModal', () => {
 
     expect(popupElement.style.maxWidth).toBe(size);
     expect(popupElement.style.minWidth).toBe('auto');
-    expect(addEventListenerMock).toHaveBeenCalledWith(
-      'resize',
-      expect.any(Function),
-    );
+    expect(addEventListenerMock).toHaveBeenCalledWith('resize', expect.any(Function));
   });
 
   it('does not apply styles if the popup element does not exist', () => {
@@ -86,9 +84,6 @@ describe('useResponsiveModal', () => {
 
     unmount();
 
-    expect(removeEventListenerMock).toHaveBeenCalledWith(
-      'resize',
-      expect.any(Function),
-    );
+    expect(removeEventListenerMock).toHaveBeenCalledWith('resize', expect.any(Function));
   });
 });

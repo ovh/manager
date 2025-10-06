@@ -1,5 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { vi } from 'vitest';
+
 import { useRestrictionColumns } from './useRestrictionColumns';
 
 describe('useRestrictionColumns', () => {
@@ -22,12 +23,8 @@ describe('useRestrictionColumns', () => {
 
     expect(columns).toHaveLength(1);
 
-    const allowedClientsColumn = columns.find(
-      (col) => col.id === 'allowed-clients',
-    );
+    const allowedClientsColumn = columns.find((col) => col.id === 'allowed-clients');
     expect(allowedClientsColumn).toBeDefined();
-    expect(allowedClientsColumn?.label).toBe(
-      'kube_restrictions_allowed_clients',
-    );
+    expect(allowedClientsColumn?.label).toBe('kube_restrictions_allowed_clients');
   });
 });
