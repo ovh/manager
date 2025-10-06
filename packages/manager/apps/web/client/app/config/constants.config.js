@@ -844,28 +844,27 @@ module.exports = {
     website_url: {
       new_nic: {
         de_DE:
-          'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=DE',
+          'https://manager.eu.ovhcloud.com/signup/#/?ovhCompany=ovh&ovhSubsidiary=DE',
         en_GB:
-          'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=GB',
+          'https://manager.eu.ovhcloud.com/signup/#/?ovhCompany=ovh&ovhSubsidiary=GB',
         es_ES:
-          'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=ES',
-        es_US: 'https://ovhcloud.com/auth/signup/',
+          'https://manager.eu.ovhcloud.com/signup/#/?ovhCompany=ovh&ovhSubsidiary=ES',
         fr_CA:
-          'https://ca.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=CA',
+          'https://manager.ca.ovhcloud.com/signup/#/?ovhCompany=ovh&ovhSubsidiary=CA',
         fr_FR:
-          'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=FR',
+          'https://manager.eu.ovhcloud.com/signup/#/?ovhCompany=ovh&ovhSubsidiary=FR',
         it_IT:
-          'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=IT',
+          'https://manager.eu.ovhcloud.com/signup/#/?ovhCompany=ovh&ovhSubsidiary=IT',
         lt_LT:
-          'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=LT',
+          'https://manager.eu.ovhcloud.com/signup/#/?ovhCompany=ovh&ovhSubsidiary=LT',
         pl_PL:
-          'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=PL',
+          'https://manager.eu.ovhcloud.com/signup/#/?ovhCompany=ovh&ovhSubsidiary=PL',
         pt_PT:
-          'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=PT',
+          'https://manager.eu.ovhcloud.com/signup/#/?ovhCompany=ovh&ovhSubsidiary=PT',
         fi_FI:
-          'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=FI',
+          'https://manager.eu.ovhcloud.com/signup/#/?ovhCompany=ovh&ovhSubsidiary=FI',
         cs_CZ:
-          'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=CZ',
+          'https://manager.eu.ovhcloud.com/signup/#/?ovhCompany=ovh&ovhSubsidiary=CZ',
       },
     },
     flags_options: [
@@ -1266,28 +1265,27 @@ module.exports = {
     website_url: {
       new_nic: {
         de_DE:
-          'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=DE',
+          'https://manager.eu.ovhcloud.com/signup/#/?ovhCompany=ovh&ovhSubsidiary=DE',
         en_GB:
-          'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=GB',
+          'https://manager.eu.ovhcloud.com/signup/#/?ovhCompany=ovh&ovhSubsidiary=GB',
         es_ES:
-          'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=ES',
-        es_US: 'https://ovhcloud.com/auth/signup/',
+          'https://manager.eu.ovhcloud.com/signup/#/?ovhCompany=ovh&ovhSubsidiary=ES',
         fr_CA:
-          'https://ca.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=CA',
+          'https://manager.ca.ovhcloud.com/signup/#/?ovhCompany=ovh&ovhSubsidiary=CA',
         fr_FR:
-          'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=FR',
+          'https://manager.eu.ovhcloud.com/signup/#/?ovhCompany=ovh&ovhSubsidiary=FR',
         it_IT:
-          'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=IT',
+          'https://manager.eu.ovhcloud.com/signup/#/?ovhCompany=ovh&ovhSubsidiary=IT',
         lt_LT:
-          'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=LT',
+          'https://manager.eu.ovhcloud.com/signup/#/?ovhCompany=ovh&ovhSubsidiary=LT',
         pl_PL:
-          'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=PL',
+          'https://manager.eu.ovhcloud.com/signup/#/?ovhCompany=ovh&ovhSubsidiary=PL',
         pt_PT:
-          'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=PT',
+          'https://manager.eu.ovhcloud.com/signup/#/?ovhCompany=ovh&ovhSubsidiary=PT',
         fi_FI:
-          'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=FI',
+          'https://manager.eu.ovhcloud.com/signup/#/?ovhCompany=ovh&ovhSubsidiary=FI',
         cs_CZ:
-          'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=CZ',
+          'https://manager.eu.ovhcloud.com/signup/#/?ovhCompany=ovh&ovhSubsidiary=CZ',
       },
     },
     flags_options: [
