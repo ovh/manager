@@ -1699,6 +1699,9 @@ export default class PciInstancesAddController {
               );
               this.isAddingPrivateNetwork = false;
               this.isAddingPrivateNetworkError = false;
+              this.selectedPrivateNetwork = this.availableLocalPrivateNetworks.find(
+                (n) => n.id === networkId,
+              );
             })
             .catch((error) => {
               this.CucCloudMessage.error(
