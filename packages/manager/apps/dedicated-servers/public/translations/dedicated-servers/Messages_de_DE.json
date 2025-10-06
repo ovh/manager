@@ -44,5 +44,6 @@
   "server_export_csv_on_load_disclaimer": "CSV-Datei wird generiert",
   "server_export_csv_consent_disclaimer": "Exportieren Sie die vollständige Liste Ihrer Server und deren Metadaten im CSV-Format.",
   "server_export_csv_export_completed_title": "Download abgeschlossen",
-  "server_export_csv_export_completed_content": "Denken Sie daran, diese Datei in einem gesicherten Bereich aufzubewahren. Sie enthält technische Informationen zu Ihren Servern."
+  "server_export_csv_export_completed_content": "Denken Sie daran, diese Datei in einem gesicherten Bereich aufzubewahren. Sie enthält technische Informationen zu Ihren Servern.",
+  "server_display_actions": "Aktionen"
 }
