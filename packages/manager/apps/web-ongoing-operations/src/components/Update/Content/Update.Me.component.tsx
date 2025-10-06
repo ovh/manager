@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { Link, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { useNichandle } from '@/hooks/nichandle/useNichandle';
+import { useTrackNavigation } from '@/hooks/tracking/useTrackDatagridNavivationLink';
 
 interface UpdateMeComponentProps {
   readonly argumentKey: string;
@@ -15,6 +16,7 @@ export default function UpdateMeComponent({
   value,
   fields,
 }: UpdateMeComponentProps) {
+  const { trackPageNavivationLink } = useTrackNavigation();
   const { t } = useTranslation('dashboard');
   const { data: accountUrl } = useNavigationGetUrl(['account', '', {}]);
   const { nichandle } = useNichandle();
@@ -45,6 +47,9 @@ export default function UpdateMeComponent({
         className="block modal-link"
         icon="external-link"
         disabled={!url}
+        onClick={() => {
+          trackPageNavivationLink(url, true);
+        }}
       >
         {t(`domain_operations_update_${argumentKey}_click`)}
       </Link>

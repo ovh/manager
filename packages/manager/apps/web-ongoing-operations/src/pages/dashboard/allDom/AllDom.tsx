@@ -14,8 +14,11 @@ import {
 import DashboardPage from '@/components/Dashboard/DashboardPage';
 import { useGetIAMResourceAllDom } from '@/hooks/iam/iam';
 import { urls } from '@/routes/routes.constant';
+import { useTrackNavigation } from '@/hooks/tracking/useTrackDatagridNavivationLink';
 
 export default function AllDom() {
+  const { trackPageNavivationTile } = useTrackNavigation();
+
   // Get IAM authorization for the IAM resource
   // Redirect to domain tab if the user don't have access to the page
   const { data: allDomIAMRessources } = useGetIAMResourceAllDom();
@@ -25,12 +28,16 @@ export default function AllDom() {
     [iamGetAllDomAction],
     urn,
   );
+
   const { data: availability } = useFeatureAvailability([
     allDomFeatureAvailibility,
   ]);
+
   useEffect(() => {
     if (!urn || !availability[allDomFeatureAvailibility] || !isAuthorized) {
-      navigate(`/${urls.domain}`);
+      const url = `/${urls.domain}`;
+      trackPageNavivationTile(url);
+      navigate(url);
     }
   }, [urn, availability, isAuthorized]);
 
