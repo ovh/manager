@@ -5,6 +5,11 @@ import {
   TService,
   TServiceOption,
 } from '@/data/types/service.type';
+import { ProjectActivationResponse } from '../types/project.type';
+import {
+  DISCOVERY_PROJECT_ACTIVATION_PAYLOAD,
+  FULL_PROJECT_PLAN_CODE,
+} from '@/constants';
 
 export const getServices = async (): Promise<FetchResultV6<TService>> => {
   const headers: Record<string, string> = {
@@ -61,5 +66,36 @@ export const getCartServiceOption = async (
   projectId: string,
 ): Promise<TCartServiceOption[]> => {
   const { data } = await v6.get(`/order/cartServiceOption/cloud/${projectId}`);
+  return data;
+};
+
+/**
+ * Simulates the activation of a discovery project
+ * @param serviceId - The service ID of the project
+ * @returns Promise<ProjectActivationResponse>
+ */
+export const simulateActivateDiscoveryProject = async (
+  serviceId: number,
+): Promise<ProjectActivationResponse> => {
+  const { data } = await v6.post<ProjectActivationResponse>(
+    `/services/${serviceId}/upgrade/${FULL_PROJECT_PLAN_CODE}/simulate`,
+    DISCOVERY_PROJECT_ACTIVATION_PAYLOAD,
+  );
+
+  return data;
+};
+
+/**
+ * Activates a discovery project
+ * @param serviceId - The service ID of the project
+ * @returns Promise<ProjectActivationResponse>
+ */
+export const activateDiscoveryProject = async (
+  serviceId: number,
+): Promise<ProjectActivationResponse> => {
+  const { data } = await v6.post<ProjectActivationResponse>(
+    `/services/${serviceId}/upgrade/${FULL_PROJECT_PLAN_CODE}/execute`,
+    DISCOVERY_PROJECT_ACTIVATION_PAYLOAD,
+  );
   return data;
 };

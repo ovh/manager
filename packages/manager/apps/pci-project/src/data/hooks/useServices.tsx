@@ -1,9 +1,11 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import {
+  activateDiscoveryProject,
   getCartServiceOption,
   getProjectService,
   getServiceId,
   getServiceOptions,
+  simulateActivateDiscoveryProject,
 } from '@/data/api/services';
 
 const getServiceIdsQueryKey = (projectId: string) => [
@@ -49,4 +51,23 @@ export const useCartServiceOption = (projectId?: string) =>
     queryKey: getCartServiceOptionQueryKey(projectId as string),
     queryFn: () => getCartServiceOption(projectId as string),
     enabled: !!projectId,
+  });
+
+/**
+ * Simulates project activation to determine if a payment is required
+ * @returns {UseMutationResult<ProjectActivationResponse, ApiError, number>}
+ */
+export const useSimulateProjectActivation = () =>
+  useMutation({
+    mutationFn: (serviceId: number) =>
+      simulateActivateDiscoveryProject(serviceId),
+  });
+
+/**
+ * Activates a discovery project
+ * @returns {UseMutationResult<ProjectActivationResponse, ApiError, number>}
+ */
+export const useActivateProject = () =>
+  useMutation({
+    mutationFn: (serviceId: number) => activateDiscoveryProject(serviceId),
   });

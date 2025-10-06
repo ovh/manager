@@ -1,13 +1,23 @@
-import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
+import { useProject } from '@ovh-ux/manager-pci-common';
 import {
   OdsBreadcrumb,
   OdsBreadcrumbItem,
   OdsButton,
+  OdsCard,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useHref, useNavigate } from 'react-router-dom';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import {
+  BaseLayout,
+  Notifications,
+  OvhSubsidiary,
+} from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { ODS_CARD_COLOR, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { useContext, useEffect, useState } from 'react';
 import activateImage from '@/assets/activate-bg.png';
 import FullPageSpinner from '@/components/FullPageSpinner';
 import { DISCOVERY_PROMOTION_VOUCHER } from '@/constants';
@@ -20,21 +30,12 @@ import { useServiceIds } from '@/data/hooks/useServices';
 import { CartConfiguration } from '@/data/types/cart.type';
 import { TEligibilityVoucher } from '@/data/types/payment/eligibility.type';
 import { useProjectIdFromParams } from '@/hooks/useProjectIdFromParams';
+import CreditConfirmation from '@/pages/creation/components/credit/CreditConfirmation.component';
 import WillPaymentComponent from '@/pages/creation/components/payment/WillPayment.component';
 import Voucher from '@/pages/creation/components/voucher/Voucher';
 import { useWillPayment } from '@/pages/creation/hooks/useWillPayment';
 import { useWillPaymentConfig } from '@/pages/creation/hooks/useWillPaymentConfig';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  BaseLayout,
-  Notifications,
-  OvhSubsidiary,
-} from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { useCallback, useContext, useEffect, useState } from 'react';
 import { useProjectActivation } from './hooks/useActivateProject';
-import CreditConfirmation from '@/pages/creation/components/credit/CreditConfirmation.component';
 
 export default function ActivatePage() {
   const { t } = useTranslation(['activate', NAMESPACES.ACTIONS]);
@@ -57,7 +58,6 @@ export default function ActivatePage() {
   const ovhSubsidiary = user.ovhSubsidiary as OvhSubsidiary;
 
   const { data: project } = useProject();
-  const isDiscovery = isDiscoveryProject(project);
   const hrefProject = useHref('..');
 
   const { mutate: orderProjectItem, data: projectItem } = useOrderProjectItem();
@@ -74,7 +74,7 @@ export default function ActivatePage() {
     isPending: isCheckingEligibility,
   } = useCheckVoucherEligibility({
     onSuccess: (data?: TEligibilityVoucher) => {
-      if (data && data.credit) {
+      if (data?.credit) {
         setPromotionVoucher(data.credit);
       }
     },
@@ -91,14 +91,13 @@ export default function ActivatePage() {
     handleCreditPayment,
     isSubmitting,
     creditPaymentAmount,
-    needsCreditPayment,
   } = useProjectActivation({
     promotionVoucher,
+    serviceId,
   });
 
   const {
     isCreditPayment,
-    creditAmount,
     needsSave,
     isSaved,
     canSubmit,
@@ -112,19 +111,15 @@ export default function ActivatePage() {
     onPaymentStatusChange: handlePaymentStatusChange,
   });
 
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = () => {
     if (needsSave && !isCreditPayment) {
       savePaymentMethod();
     } else if (hasDefaultPaymentMethod || isCreditPayment) {
       handleActivateProject();
+    } else if (isCreditPayment && creditPaymentAmount) {
+      handleCreditPayment();
     }
-  }, [
-    needsSave,
-    hasDefaultPaymentMethod,
-    savePaymentMethod,
-    isCreditPayment,
-    creditAmount,
-  ]);
+  };
 
   /**
    * Auto-proceed with project creation when payment method is saved
@@ -138,7 +133,7 @@ export default function ActivatePage() {
   useEffect(() => {
     createAndAssignCart({ ovhSubsidiary });
     checkEligibility(DISCOVERY_PROMOTION_VOUCHER);
-  }, [createAndAssignCart, orderProjectItem, ovhSubsidiary, isDiscovery]);
+  }, [ovhSubsidiary]);
 
   if (!cart || !projectItem || isCheckingEligibility || !serviceId) {
     return <FullPageSpinner />;
@@ -157,22 +152,20 @@ export default function ActivatePage() {
       }
       header={{}}
     >
-      <div className="flex flex-col-reverse md:flex-row">
+      <div className="mb-6">
         <Notifications />
+      </div>
 
+      <div className="flex flex-col-reverse md:flex-row">
         {/* Form section */}
         <section className="flex flex-col gap-6 mt-6 md:mt-0 md:w-1/2 md:pr-12">
           <OdsText preset="heading-3">
             {t('pci_projects_project_activate_title')}
           </OdsText>
 
-          <OdsText preset="paragraph">
-            {t('pci_projects_project_activate_description_1')}
-          </OdsText>
+          <OdsText>{t('pci_projects_project_activate_description_1')}</OdsText>
 
-          <OdsText preset="paragraph">
-            {t('pci_projects_project_activate_description_2')}
-          </OdsText>
+          <OdsText>{t('pci_projects_project_activate_description_2')}</OdsText>
 
           <Voucher
             cartId={cart.cartId}
@@ -188,8 +181,10 @@ export default function ActivatePage() {
             }
           />
 
-          {needsCreditPayment && creditPaymentAmount && (
-            <CreditConfirmation creditAmount={creditPaymentAmount} />
+          {creditPaymentAmount && (
+            <OdsCard color={ODS_CARD_COLOR.primary} className="my-6 p-6">
+              <CreditConfirmation creditAmount={creditPaymentAmount} />
+            </OdsCard>
           )}
 
           <div className="flex justify-start gap-4">
@@ -197,7 +192,7 @@ export default function ActivatePage() {
               size="sm"
               variant="outline"
               label={t('cancel', { ns: NAMESPACES.ACTIONS })}
-              onClick={() => navigate(-1)}
+              onClick={() => navigate('..')}
             />
             <OdsButton
               color="primary"
@@ -216,34 +211,36 @@ export default function ActivatePage() {
         <section className="flex flex-col gap-6 p-4 md:w-1/2 bg-[var(--ods-color-primary-050)]">
           <div className="flex flex-col gap-6">
             {!promotionVoucher ? (
-              <>
+              <div>
                 <OdsText preset="heading-1">
                   {t('pci_projects_project_activate_banner_no_promotion_title')}
                 </OdsText>
-                <OdsText preset="paragraph">
+                <OdsText>
                   {t(
                     'pci_projects_project_activate_banner_no_promotion_description',
                   )}
                 </OdsText>
-              </>
+              </div>
             ) : (
-              <>
-                <OdsText preset="heading-1">
-                  {t('pci_projects_project_activate_banner_promotion_title', {
-                    amount: promotionVoucher.text,
-                  })}
-                </OdsText>
-                <OdsText preset="paragraph">
+              <div>
+                <Trans t={t}>
+                  <OdsText preset="heading-1">
+                    {t('pci_projects_project_activate_banner_promotion_title', {
+                      amount: promotionVoucher.text,
+                    })}
+                  </OdsText>
+                </Trans>
+                <OdsText>
                   {t(
                     'pci_projects_project_activate_banner_promotion_description_1',
                   )}
                 </OdsText>
-                <OdsText preset="paragraph">
+                <OdsText>
                   {t(
                     'pci_projects_project_activate_banner_promotion_description_2',
                   )}
                 </OdsText>
-              </>
+              </div>
             )}
           </div>
 
@@ -252,7 +249,7 @@ export default function ActivatePage() {
               <OdsText preset="heading-4">
                 {t('pci_projects_project_activate_banner_section_1_title')}
               </OdsText>
-              <OdsText preset="paragraph">
+              <OdsText>
                 {t(
                   'pci_projects_project_activate_banner_section_1_description',
                 )}
@@ -263,7 +260,7 @@ export default function ActivatePage() {
               <OdsText preset="heading-4">
                 {t('pci_projects_project_activate_banner_section_2_title')}
               </OdsText>
-              <OdsText preset="paragraph">
+              <OdsText>
                 {t(
                   'pci_projects_project_activate_banner_section_2_description',
                 )}

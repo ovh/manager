@@ -10,44 +10,45 @@ import {
 import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 import { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHref, useNavigate, useSearchParams } from 'react-router-dom';
-import { PROJECTS_TRACKING } from '@/tracking.constant';
-import { useParam } from '@/hooks/useParam';
+import { useNavigate } from 'react-router-dom';
+import ImageSlider from '@/components/image-slider/ImageSlider';
+import LargeSpinner from '@/components/large-spinner/LargeSpinner';
+import { UPDATING_GUIDE_URLS } from '@/constants';
 import {
   useDeliveredProjectId,
   useOrderFollowUpPolling,
 } from '@/data/hooks/useOrder';
-import { CREATING_GUIDE_URLS } from '@/constants';
-import LargeSpinner from '@/components/large-spinner/LargeSpinner';
-import ImageSlider from '@/components/image-slider/ImageSlider';
+import { useParam } from '@/hooks/useParam';
+import { PROJECTS_TRACKING } from '@/tracking.constant';
+import { useUpdatingTracking } from './hooks/useUpdatingTracking';
 
-export default function CreatingPage() {
-  const { t } = useTranslation('creating');
-  const { trackClick, trackPage } = useOvhTracking();
+export default function UpdatingPage() {
+  const { t } = useTranslation('updating');
+
+  const { trackClick } = useOvhTracking();
+
+  const {
+    trackProjectUpdated,
+    trackActivateProjectSuccess,
+    trackActivateProjectError,
+  } = useUpdatingTracking();
 
   const [isDelivered, setIsDelivered] = useState(false);
-  const [searchParams] = useSearchParams();
 
   const orderId = useParam('orderId');
-  const redirectState = searchParams.get('redirectState');
+  const voucherCode = useParam('voucherCode');
 
   const navigate = useNavigate();
 
   const { environment } = useContext(ShellContext);
   const user = environment.getUser();
 
-  const pciProjectsHref = useHref('..');
-
   const handleProjectDeliveryFail = () => {
-    trackPage({
-      pageName: PROJECTS_TRACKING.CREATING.PROJECT_DELIVERY_FAILED,
-    });
-
-    throw new Error(t('pci_projects_creating_delivery_error'));
+    trackActivateProjectError();
+    throw new Error(t('pci_projects_updating_delivery_error'));
   };
 
-  const guideUrl =
-    CREATING_GUIDE_URLS[user?.ovhSubsidiary] || CREATING_GUIDE_URLS.FR;
+  const guideUrl = UPDATING_GUIDE_URLS[user?.ovhSubsidiary];
 
   useOrderFollowUpPolling({
     orderId: Number(orderId),
@@ -59,15 +60,9 @@ export default function CreatingPage() {
     orderId: Number(orderId),
     enabled: isDelivered,
     onProjectIdDelivered: (projectId: string) => {
-      trackPage({
-        pageName: PROJECTS_TRACKING.CREATING.PROJECT_DELIVERED,
-      });
-
-      if (redirectState) {
-        navigate(redirectState);
-      } else {
-        navigate(`../${projectId}`);
-      }
+      trackProjectUpdated();
+      trackActivateProjectSuccess({ voucherCode });
+      navigate(`../${projectId}`);
     },
   });
 
@@ -76,11 +71,11 @@ export default function CreatingPage() {
       <div className="bg-white min-h-screen w-full max-w-2xl p-10 shadow-lg flex flex-col">
         <div className="flex flex-col justify-center items-center flex-1 gap-8">
           <OdsText preset={ODS_TEXT_PRESET.heading1} className="text-center">
-            {t('pci_projects_creating_main_title')}
+            {t('pci_projects_updating_main_title')}
           </OdsText>
 
           <OdsText preset={ODS_TEXT_PRESET.heading4} className="text-center">
-            {t('pci_projects_creating_secondary_title')}
+            {t('pci_projects_updating_secondary_title')}
           </OdsText>
 
           <LargeSpinner>
@@ -89,41 +84,27 @@ export default function CreatingPage() {
 
           <div className="text-center space-y-4">
             <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              {t('pci_projects_creating_long_time')}
+              {t('pci_projects_updating_long_time')}
             </OdsText>
 
             <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              {t('pci_projects_creating_long_time_wait')}
+              {t('pci_projects_updating_long_time_wait')}
             </OdsText>
           </div>
 
-          <div className="flex gap-8 flex-wrap justify-center">
+          <div>
             <OdsLink
               href={guideUrl}
               target="_blank"
               rel="noopener noreferrer"
               color={ODS_LINK_COLOR.primary}
-              label={t('pci_projects_creating_guides')}
+              label={t('pci_projects_updating_guides')}
               iconAlignment="left"
               icon={ODS_ICON_NAME.externalLink}
               onClick={() => {
                 trackClick({
                   actionType: 'action',
-                  actions: PROJECTS_TRACKING.CREATING.CTA_GUIDE,
-                });
-              }}
-            />
-            <OdsLink
-              href={pciProjectsHref}
-              target="_blank"
-              color={ODS_LINK_COLOR.primary}
-              label={t('pci_projects_creating_other_projects')}
-              iconAlignment="left"
-              icon={ODS_ICON_NAME.folder}
-              onClick={() => {
-                trackClick({
-                  actionType: 'action',
-                  actions: PROJECTS_TRACKING.CREATING.CTA_OTHER_PROJECTS,
+                  actions: PROJECTS_TRACKING.UPDATING.CTA_GUIDE,
                 });
               }}
             />
