@@ -32,6 +32,7 @@
   "sms_senders_add_sender": "Añadir el remitente seleccionado",
   "sms_senders_add_senders": "Añadir los {{ count }} remitentes seleccionados",
   "sms_senders_add_senders_success": "Añadiendo...",
-  "sms_senders_add_sender_supporting_document": "Documento acreditativo",
-  "sms_senders_add_sender_supporting_document_help": "En el marco de nuestra política de seguridad, es necesario que nos envíe un documento acreditativo. Se trata por defecto de un documento en papel con el membrete de la empresa o de la marca, incluyendo la autorización de un responsable con firma y sello de esta empresa, documento de identidad o extracto de registro de comercio (CIF), si no es una marca registrada."
+  "sms_senders_add_sender_supporting_document": "Justificantes",
+  "sms_senders_add_sender_supporting_document_help": "En el marco de nuestra política de seguridad, es necesario que nos envíe un documento acreditativo. Se trata por defecto de un documento en papel con el membrete de la empresa o de la marca, incluyendo la autorización de un responsable con firma y sello de esta empresa, documento de identidad o extracto de registro de comercio (CIF), si no es una marca registrada.",
+  "sms_senders_add_sender_supporting_document_info": "Un máximo de 10 archivos de un tamaño máximo de 10Mo cuyo formato requerido es pdf, jpg, jpeg o png."
 }

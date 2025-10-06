@@ -32,6 +32,7 @@
   "sms_senders_add_sender": "Ajouter l’expéditeur sélectionné",
   "sms_senders_add_senders": "Ajouter les {{ count }} expéditeurs sélectionnés",
   "sms_senders_add_senders_success": "Ajout en cours…",
-  "sms_senders_add_sender_supporting_document": "Documento comprovativo",
-  "sms_senders_add_sender_supporting_document_help": "Solicitamos-lhe um comprovativo no quadro da nossa política de segurança. Trata-se, por predefinição, de um papel timbrado da empresa ou da marca, incluindo a autorização de um responsável com assinatura e carimbo da mesma empresa, de um papel de identificação ou extrato Kbis, se não for uma marca registada."
+  "sms_senders_add_sender_supporting_document": "Documentos necessários",
+  "sms_senders_add_sender_supporting_document_help": "Solicitamos-lhe um comprovativo no quadro da nossa política de segurança. Trata-se, por predefinição, de um papel timbrado da empresa ou da marca, incluindo a autorização de um responsável com assinatura e carimbo da mesma empresa, de um papel de identificação ou extrato Kbis, se não for uma marca registada.",
+  "sms_senders_add_sender_supporting_document_info": "No máximo 10 ficheiros com um tamanho máximo de 10Mo, cujo formato requerido é pdf, jpg, jpeg ou png."
 }

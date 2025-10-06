@@ -32,6 +32,7 @@
   "sms_senders_add_sender": "Add selected sender",
   "sms_senders_add_senders": "Add {{ count }} selected senders",
   "sms_senders_add_senders_success": "Adding...",
-  "sms_senders_add_sender_supporting_document": "Supporting document",
-  "sms_senders_add_sender_supporting_document_help": "As part of our security policy, we ask for a supporting document. By default, this is a company or trademark letterhead, including the authorisation of an official with signature and stamp of the same company, an identity paper, or a Kbis extract if it is not a trademark."
+  "sms_senders_add_sender_supporting_document": "Documents required",
+  "sms_senders_add_sender_supporting_document_help": "As part of our security policy, we ask for a supporting document. By default, this is a company or trademark letterhead, including the authorisation of an official with signature and stamp of the same company, an identity paper, or a Kbis extract if it is not a trademark.",
+  "sms_senders_add_sender_supporting_document_info": "A maximum of 10 files with a maximum size of 10MB, in the required format of pdf, jpg, jpeg, or png."
 }
