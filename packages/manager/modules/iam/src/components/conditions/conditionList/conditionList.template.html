@@ -9,7 +9,9 @@
         data-rows="$ctrl.conditions"
         data-pagination-mode="arrows"
         data-empty-placeholder="{{:: 'iam_condition_list_empty_placeholder' | translate}}"
-        data-page-size="5"
+        data-page-size="{{ $ctrl.pagination.pageSize }}"
+        data-page="{{ $ctrl.pagination.currentPage }}"
+        data-on-page-change="$ctrl.onPageChange($pagination)"
     >
         <oui-datagrid-topbar>
             <oui-button
