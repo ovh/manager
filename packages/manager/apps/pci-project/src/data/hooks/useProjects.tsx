@@ -2,6 +2,7 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import { FetchResultV6 } from '@ovh-ux/manager-react-components';
 import { queryOptions, useMutation, useQuery } from '@tanstack/react-query';
 import {
+  claimVoucher,
   getDefaultProject,
   removeProject,
   setAsDefaultProject,
@@ -119,4 +120,14 @@ export const useIsDefaultProject = (projectId?: string) =>
   useQuery({
     ...getDefaultProjectOptions,
     select: (data) => !!projectId && !!data && data.projectId === projectId,
+  });
+
+/**
+ * Claims a voucher code for a project
+ * @returns {UseMutationResult<void, ApiError, { projectId: string; voucherCode: string }>}
+ */
+export const useClaimVoucher = () =>
+  useMutation<void, ApiError, { projectId: string; voucherCode: string }>({
+    mutationFn: ({ projectId, voucherCode }) =>
+      claimVoucher(projectId, voucherCode),
   });

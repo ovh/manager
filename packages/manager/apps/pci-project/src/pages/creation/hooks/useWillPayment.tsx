@@ -53,6 +53,7 @@ export const useWillPayment = () => {
     }
   }, [isChallengeRequired]);
 
+  const creditData = globalStateStatus?.data as TCreditData | undefined;
   const needsSave = checkIsPaymentMethodSaveRequired(globalStateStatus);
   const isSaved = checkIsPaymentMethodSaved(globalStateStatus);
   const canSubmit = checkIsSubmittingEnabled(
@@ -60,8 +61,6 @@ export const useWillPayment = () => {
     isChallengeRequired,
     needsSave,
   );
-
-  const creditData = globalStateStatus?.data as TCreditData | undefined;
 
   return {
     isCreditPayment: creditData?.isCredit,

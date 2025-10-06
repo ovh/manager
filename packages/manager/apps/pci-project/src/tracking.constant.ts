@@ -55,4 +55,23 @@ export const PROJECTS_TRACKING = {
     PROJECT_DELIVERED: 'project_created',
     PROJECT_DELIVERY_FAILED: 'project_creation_error',
   },
+  UPDATING: {
+    PAGE_NAME: 'projects-updating',
+    CTA_GUIDE: ['page', 'button', 'guide'],
+    PROJECT_UPDATED: 'updated',
+    ACTIVATE_PROJECT_SUCCESS: 'activate-project-success',
+    ACTIVATE_PROJECT_ERROR: 'activate-project-error',
+  },
+  ACTIVATE: {
+    PAGE_NAME: 'activate-project',
+    ERROR_PAGE: 'activate-project-error',
+    SUCCESS_CONVERSION: {
+      name: 'PCI project creation',
+      tc_additional_params: {
+        pcat: 'publiccloud',
+        ot: 'pci_project_creation',
+        pci_mode: 'discovery',
+      },
+    },
+  },
 };
