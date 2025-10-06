@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-private-registry-app",
-  "version": "0.10.12",
+  "version": "0.11.0",
   "private": true,
   "description": "PCI Private registry react app",
   "type": "module",
