@@ -1,7 +1,10 @@
 import { TIMEZONES } from './timezone.constants';
+import ElementUiService from '../elementUi.service';
 
 export default class IAMConditionTimezoneController {
-  constructor() {
+  /* @ngInject */
+  constructor($element) {
+    this.$element = $element;
     this.timezones = TIMEZONES;
   }
 
@@ -23,5 +26,9 @@ export default class IAMConditionTimezoneController {
       const offset = `UTC${utcOffsetHours >= 0 ? '+' : ''}${utcOffsetHours}`;
       this.timezone = TIMEZONES.find(({ utcOffset }) => utcOffset === offset);
     }
+  }
+
+  scrollSelectIntoView() {
+    ElementUiService.scrollCalendarIntoView(this.$element);
   }
 }

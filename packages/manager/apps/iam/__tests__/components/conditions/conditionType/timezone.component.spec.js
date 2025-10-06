@@ -1,7 +1,7 @@
 import '../../../../../../modules/iam/src/components/conditions/conditionType/timezone';
 import { TIMEZONES } from '../../../../../../modules/iam/src/components/conditions/conditionType/timezone/timezone.constants';
 
-describe('IAMConditionDate component tests suite', () => {
+describe('IAMConditionTimezone component tests suite', () => {
   let $componentController;
 
   beforeEach(() => {
@@ -22,10 +22,17 @@ describe('IAMConditionDate component tests suite', () => {
   });
 
   it('should init model value with provided timezone', () => {
+    const locals = {
+      $element: angular.element('<div></div>'),
+    };
     const bindings = {
       defaultTimezone: 'Europe/London',
     };
-    const $ctrl = $componentController('iamConditionTimezone', null, bindings);
+    const $ctrl = $componentController(
+      'iamConditionTimezone',
+      locals,
+      bindings,
+    );
     $ctrl.$onInit();
 
     expect($ctrl.timezone).toEqual({
@@ -35,7 +42,10 @@ describe('IAMConditionDate component tests suite', () => {
   });
 
   it('should init model value witch local timezone', () => {
-    const $ctrl = $componentController('iamConditionTimezone', null, null);
+    const locals = {
+      $element: angular.element('<div></div>'),
+    };
+    const $ctrl = $componentController('iamConditionTimezone', locals, null);
     $ctrl.$onInit();
 
     expect(TIMEZONES).toContain($ctrl.timezone);
