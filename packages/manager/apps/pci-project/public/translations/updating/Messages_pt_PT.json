@@ -1,0 +1,12 @@
+{
+  "pci_projects_updating_main_title": "Poderá em breve iniciar os seus recursos",
+  "pci_projects_updating_secondary_title": "A ativação do seu projeto está em curso",
+  "pci_projects_updating_explain1": "Para finalizar a criação do seu projeto, realize o pagamento da nota de encomenda <a href=\"{{ href }}\">{{ orderId }}</a>.",
+  "pci_projects_updating_explain2": "Se esta página continuar a ser apresentada alguns minutos após o pagamento, agradecemos que contacte o <a href=\"{{ href }}\">nosso serviço de apoio ao cliente</a>.",
+  "pci_projects_updating_long_time": "Esta operação pode demorar alguns minutos.",
+  "pci_projects_updating_long_time_wait": "Entretanto, não hesite em consultar os nossos manuais :)",
+  "pci_projects_updating_guides": "Os nossos manuais de Public Cloud",
+  "pci_projects_updating_delivery_error": "Ocorreu um erro na criação do seu projeto Public Cloud. Vamos resolver isto o mais rápido possível. Receberá um e-mail confirmando a criação. Agradecemos-lhe pela sua paciência e lamentamos o incómodo causado. ",
+  "pci_projects_project_activate_message_with_promotion_success": "O seu projeto foi ativado com sucesso. Beneficia da oferta de {{ amount }} em crédito, válido no universo Public Cloud.",
+  "pci_projects_project_activate_message_without_promotion_success": "O seu projeto foi ativado com sucesso. Pode desde já iniciar a implementação dos seus recursos Cloud."
+}

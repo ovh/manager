@@ -1,0 +1,12 @@
+{
+  "pci_projects_updating_main_title": "You can start using your resources soon",
+  "pci_projects_updating_secondary_title": "Your project is being activated",
+  "pci_projects_updating_explain1": "To finish creating your project, please pay for the amount listed listed on the <a href=\"{{ href }}\">{{ orderId }}</a>.",
+  "pci_projects_updating_explain2": "If this page still appears a few minutes after you have submitted your payment, please contact our <a href=\"{{ href }}\">customer service team</a>",
+  "pci_projects_updating_long_time": "This may take a few minutes.",
+  "pci_projects_updating_long_time_wait": "In the meantime, feel free to consult our guides :)",
+  "pci_projects_updating_guides": "Our Public Cloud guides",
+  "pci_projects_updating_delivery_error": "An error has occurred creating your Public Cloud project. We are working to resolve this as soon as possible. You will receive an email confirming that it has been created. Thank you for your patience, and apologies for any inconvenience caused.",
+  "pci_projects_project_activate_message_with_promotion_success": "Your project has been activated. You get {{ amount }} free credit, valid in the Public Cloud universe.",
+  "pci_projects_project_activate_message_without_promotion_success": "Your project has been activated. You can now start deploying your Cloud resources."
+}

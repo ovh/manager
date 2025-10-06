@@ -71,3 +71,18 @@ export const getDefaultProject = async (): Promise<{
     return null;
   }
 };
+
+/**
+ * Claims a voucher for a project
+ * @param projectId - The project ID
+ * @param voucherCode - The voucher code to claim
+ * @returns Promise<void>
+ */
+export const claimVoucher = async (
+  projectId: string,
+  voucherCode: string,
+): Promise<void> => {
+  await v6.post(`/cloud/project/${projectId}/credit`, {
+    code: voucherCode,
+  });
+};

@@ -1,4 +1,4 @@
-import { useImageSlider } from '../hooks/useImageSlider';
+import { useImageSlider } from '@/hooks/useImageSlider/useImageSlider';
 
 export default function ImageSlider() {
   const { currentImage } = useImageSlider();

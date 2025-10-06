@@ -10,8 +10,8 @@ import {
   TPaymentMethodIntegration,
 } from '@/data/types/payment/payment-method.type';
 import {
-  TEligibility,
   ProjectPrice,
+  TEligibility,
   TEligibilityPaymentMethod,
 } from '@/data/types/payment/eligibility.type';
 import { createWrapper } from '@/wrapperRenders';
