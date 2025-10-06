@@ -10,6 +10,8 @@ export const urls = {
   creation: 'new',
   creating: 'creating/:orderId',
   creatingWithVoucher: 'creating/:orderId/:voucherCode',
+  updating: 'updating/:orderId',
+  updatingWithVoucher: 'updating/:orderId/:voucherCode',
   increaseQuota: 'increase-quota',
   remove: 'remove',
   contactsAndRights: ':projectId/contacts',
