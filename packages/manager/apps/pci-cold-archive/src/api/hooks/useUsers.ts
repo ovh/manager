@@ -302,7 +302,7 @@ export const useImportPolicy = ({
       setIsPending(true);
       const policy = await readFileAsJSON(files[0], t);
 
-      importUserPolicy(projectId, userId, policy);
+      await importUserPolicy(projectId, userId, policy);
       onSuccess();
     } catch (e) {
       onError(e as Error);
