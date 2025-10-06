@@ -23,6 +23,9 @@ describe('IAMConditionProductType component tests suite', () => {
   });
 
   it('should init model value when condition is set', () => {
+    const locals = {
+      $element: angular.element('<div></div>'),
+    };
     const bindings = {
       condition: {
         value: 'dnsZone,cdnArray',
@@ -30,7 +33,7 @@ describe('IAMConditionProductType component tests suite', () => {
     };
     const $ctrl = $componentController(
       'iamConditionProductType',
-      null,
+      locals,
       bindings,
     );
     $ctrl.$onInit();

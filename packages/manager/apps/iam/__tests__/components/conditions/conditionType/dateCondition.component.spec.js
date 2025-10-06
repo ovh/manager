@@ -21,12 +21,15 @@ describe('IAMConditionDate component tests suite', () => {
   });
 
   it('should init model value when condition is set', () => {
+    const locals = {
+      $element: angular.element('<div></div>'),
+    };
     const bindings = {
       condition: {
         value: '2025-09-01,2025-O9-10',
       },
     };
-    const $ctrl = $componentController('iamConditionDate', null, bindings);
+    const $ctrl = $componentController('iamConditionDate', locals, bindings);
     $ctrl.$onInit();
 
     expect($ctrl.dates).toBe('2025-09-01, 2025-O9-10');
