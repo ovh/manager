@@ -54,8 +54,8 @@ export default class {
   }
 
   static getServiceInfosUrl(service) {
-    if (service.route) {
-      return `${service.route}/serviceInfos`;
+    if (service.route?.url) {
+      return `${service.route.url}/serviceInfos`;
     }
 
     const pattern = SERVICE_INFOS_URLS_BY_TYPE[service.serviceType];
