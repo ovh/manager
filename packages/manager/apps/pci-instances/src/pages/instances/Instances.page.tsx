@@ -53,7 +53,6 @@ import { SearchNotifications } from '@/components/SearchNotifications/SearchNoti
 import { CHANGELOG_LINKS } from '@/constants';
 import DatagridComponent from './datagrid/components/Datagrid.component';
 import { useDatagridOperationsPolling } from '@/pages/instances/datagrid/hooks/useDatagridOperationsPolling';
-import { useHasPendingInstanceCreationOperations } from '@/data/hooks/operation/useOperations';
 
 const initialSorting = {
   id: 'name',
@@ -161,20 +160,14 @@ const Instances: FC = () => {
     [addFilter],
   );
 
-  useDatagridOperationsPolling(handleRefresh);
-
   const {
-    hasPendingInstanceCreationOperations,
+    hasOperationsRunning,
     isPending: isOperationsPending,
-  } = useHasPendingInstanceCreationOperations();
+  } = useDatagridOperationsPolling(handleRefresh);
 
   const hasNoInstances = data && !data.length && !filters.length && !isFetching;
 
-  if (
-    hasNoInstances &&
-    !isOperationsPending &&
-    !hasPendingInstanceCreationOperations
-  ) {
+  if (hasNoInstances && !isOperationsPending && !hasOperationsRunning) {
     return <Navigate to={SECTIONS.onboarding} />;
   }
 
@@ -195,16 +188,14 @@ const Instances: FC = () => {
           <OsdsDivider />
           <Notifications />
           <SearchNotifications />
-          {hasNoInstances &&
-            !isOperationsPending &&
-            hasPendingInstanceCreationOperations && (
-              <Message className="mb-4" color="information" dismissible={false}>
-                <MessageIcon name="circle-info" />
-                <MessageBody>
-                  {t('pci_instances_creations_operations_running')}
-                </MessageBody>
-              </Message>
-            )}
+          {hasNoInstances && !isOperationsPending && hasOperationsRunning && (
+            <Message className="mb-4" color="information" dismissible={false}>
+              <MessageIcon name="circle-info" />
+              <MessageBody>
+                {t('pci_instances_creations_operations_running')}
+              </MessageBody>
+            </Message>
+          )}
           <OsdsDivider />
           <div className="sm:flex items-center justify-between mt-4 min-h-[40px]">
             <OsdsButton
@@ -293,7 +284,6 @@ const Instances: FC = () => {
             filters={filters}
             onRefresh={handleRefresh}
             onSortChange={setSorting}
-            checkForOperations={(data?.length || 0) > 0}
           />
           {isFetchingNextPage && (
             <div className="mt-5">

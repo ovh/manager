@@ -11,10 +11,7 @@ import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 import { Message, MessageBody, MessageIcon } from '@ovhcloud/ods-react';
 import { Filter } from '@ovh-ux/manager-core-api';
 import { usePciUrl } from '@ovh-ux/manager-pci-common';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_LEVEL, } from '@ovhcloud/ods-common-theming';
 import { NameIdCell } from '@/pages/instances/datagrid/components/cell/NameIdCell.component';
 import { useInstances } from '@/data/hooks/instance/useInstances';
 import { ActionsCell } from '@/pages/instances/datagrid/components/cell/ActionsCell.component';
@@ -26,9 +23,7 @@ import { useDatagridPolling } from '../hooks/useDatagridPolling';
 import { TextCell } from '@/pages/instances/datagrid/components/cell/TextCell.component';
 import { TaskStatus } from '../../task/TaskStatus.component';
 import { useFormatDate } from '@/hooks/date/useFormatDate';
-import {
-  useDatagridOperationsPolling
-} from '@/pages/instances/datagrid/hooks/useDatagridOperationsPolling';
+import { useDatagridOperationsPolling } from '@/pages/instances/datagrid/hooks/useDatagridOperationsPolling';
 
 type TFilterWithLabel = Filter & { label: string };
 type TSorting = {
@@ -41,7 +36,6 @@ type TDatagridComponentProps = DeepReadonly<{
   filters: TFilterWithLabel[];
   onRefresh: () => void;
   onSortChange: Dispatch<SetStateAction<TSorting>>;
-  checkForOperations?: boolean;
 }>;
 
 const getPlaceHolderData = (count: number): TAggregatedInstance[] =>
@@ -73,7 +67,6 @@ const DatagridComponent = ({
   filters,
   onRefresh,
   onSortChange,
-  checkForOperations = false,
 }: TDatagridComponentProps) => {
   const pciUrl = usePciUrl();
   const { t } = useTranslation([
@@ -308,7 +301,7 @@ const DatagridComponent = ({
 
   return (
     <div className="overflow-x-hidden mt-8">
-      {checkForOperations && hasOperationsRunning && isInfoMessageOpen && (
+      {hasOperationsRunning && isInfoMessageOpen && (
         <Message
           className="mb-4"
           color="information"

@@ -10,10 +10,16 @@ export const isInstanceReinstallOperationInProgress = (operation: TOperation) =>
   operation.action === 'reinstall' &&
   operation.status === 'in-progress';
 
-export const isSubOperationCopyImageInProgress = (
+export const isSubOperationCopyImage = (
   subOperation?: Required<TOperation>['subOperations'][number],
 ) =>
   subOperation &&
   subOperation.section === 'image' &&
-  subOperation.action === 'copytoregion' &&
+  subOperation.action === 'copytoregion';
+
+export const isSubOperationCopyImageInProgress = (
+  subOperation?: Required<TOperation>['subOperations'][number],
+) =>
+  subOperation &&
+  isSubOperationCopyImage(subOperation) &&
   subOperation.status === 'in-progress';

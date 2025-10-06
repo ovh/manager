@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { TOperation } from '@/types/operation/entity.type';
 import { useOperationsPolling } from '@/data/hooks/operation/polling/useOperationsPolling';
@@ -6,52 +6,107 @@ import { shouldRetryAfterNot404Error } from '@/data/hooks/instance/polling/useIn
 import {
   isInstanceCreationOperationInProgress,
   isInstanceReinstallOperationInProgress,
+  isSubOperationCopyImage,
   isSubOperationCopyImageInProgress,
 } from '@/utils/operation/operations.utils';
+
+const getOperationsWithImageCopyInProgress = (operations: TOperation[] = []) =>
+  operations
+    .filter(
+      (operation) =>
+        isInstanceCreationOperationInProgress(operation) ||
+        isInstanceReinstallOperationInProgress(operation),
+    )
+    .flatMap((operation) => operation.subOperations)
+    .filter(isSubOperationCopyImageInProgress).length;
+
+const getCreationOperationWithoutImageCopy = (operations: TOperation[] = []) =>
+  operations
+    .filter(isInstanceCreationOperationInProgress)
+    .filter(
+      (operation) => !operation.subOperations?.some(isSubOperationCopyImage),
+    ).length;
 
 export const useDatagridOperationsPolling = (onComplete?: () => void) => {
   const projectId = useProjectId();
 
   const [
-    numberOfDistantBackupCopyRunning,
-    setNumberOfDistantBackupCopyRunning,
+    numberOfOperationsWithImageCopyInProgress,
+    setNumberOfOperationsWithImageCopyInProgress,
+  ] = useState(0);
+
+  const [
+    numberOfCreationOperationWithoutImageCopyInProgress,
+    setNumberOfCreationOperationWithoutImageCopyInProgress,
   ] = useState(0);
 
   const onSuccess = useCallback(
     (operations?: TOperation[]) => {
       if (!operations) return;
 
-      const newNumberOfDistantBackupCopyRunning = operations
-        .filter(
-          (operation) =>
-            isInstanceCreationOperationInProgress(operation) ||
-            isInstanceReinstallOperationInProgress(operation),
-        )
-        .flatMap((operation) => operation.subOperations)
-        .filter(isSubOperationCopyImageInProgress).length;
+      const newNumberOfOperationsWithImageCopyInProgress = getOperationsWithImageCopyInProgress(
+        operations,
+      );
+
+      const newNumberOfCreationOperationWithoutImageCopyInProgress = getCreationOperationWithoutImageCopy(
+        operations,
+      );
 
       if (
         onComplete &&
-        newNumberOfDistantBackupCopyRunning < numberOfDistantBackupCopyRunning
+        (newNumberOfOperationsWithImageCopyInProgress <
+          numberOfOperationsWithImageCopyInProgress ||
+          newNumberOfCreationOperationWithoutImageCopyInProgress <
+            numberOfCreationOperationWithoutImageCopyInProgress)
       ) {
         onComplete();
       }
-
-      setNumberOfDistantBackupCopyRunning(newNumberOfDistantBackupCopyRunning);
     },
-    [numberOfDistantBackupCopyRunning, onComplete, projectId],
+    [
+      numberOfOperationsWithImageCopyInProgress,
+      numberOfCreationOperationWithoutImageCopyInProgress,
+      onComplete,
+      projectId,
+    ],
   );
 
-  useOperationsPolling(
+  const { isPending, operations } = useOperationsPolling(
     projectId,
     {
-      refetchInterval: numberOfDistantBackupCopyRunning && 5_000,
+      refetchInterval:
+        (numberOfOperationsWithImageCopyInProgress ||
+          numberOfCreationOperationWithoutImageCopyInProgress) &&
+        5_000,
       retry: shouldRetryAfterNot404Error,
     },
     { onSuccess },
   );
 
+  const newNumberOfCreationOfReinstallOperationInProgress = getOperationsWithImageCopyInProgress(
+    operations,
+  );
+
+  const newNumberOfCreationOperationWithoutImageCopyInProgress = getCreationOperationWithoutImageCopy(
+    operations,
+  );
+
+  useEffect(() => {
+    setNumberOfOperationsWithImageCopyInProgress(
+      newNumberOfCreationOfReinstallOperationInProgress,
+    );
+  }, [newNumberOfCreationOfReinstallOperationInProgress]);
+
+  useEffect(() => {
+    setNumberOfCreationOperationWithoutImageCopyInProgress(
+      newNumberOfCreationOperationWithoutImageCopyInProgress,
+    );
+  }, [newNumberOfCreationOperationWithoutImageCopyInProgress]);
+
   return {
-    hasOperationsRunning: numberOfDistantBackupCopyRunning > 0,
+    hasOperationsRunning:
+      newNumberOfCreationOfReinstallOperationInProgress +
+        newNumberOfCreationOperationWithoutImageCopyInProgress >
+      0,
+    isPending,
   };
 };

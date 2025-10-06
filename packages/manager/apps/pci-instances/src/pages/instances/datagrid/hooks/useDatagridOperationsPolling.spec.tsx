@@ -228,6 +228,7 @@ describe('useDatagridOperationsPolling', () => {
         await waitFor(async () => {
           vi.useFakeTimers();
           await vi.advanceTimersToNextTimerAsync();
+          await vi.advanceTimersToNextTimerAsync();
           vi.useRealTimers();
         });
 
