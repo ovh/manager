@@ -1,7 +1,8 @@
-import { vi } from 'vitest';
+/* eslint-disable react/no-multi-comp */
 import type { ReactNode } from 'react';
 
 import { fireEvent, render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 
 import DashboardPage from './Dashboard.page';
 
@@ -57,7 +58,7 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
   Breadcrumb: () => {
     const items = [{ label: 'Home' }, { label: 'Dashboard' }];
     return <nav data-testid="breadcrumb-nav">{items.map((i) => i.label).join(' / ')}</nav>;
-    }
+  },
 }));
 
 interface OdsTabsProps {
