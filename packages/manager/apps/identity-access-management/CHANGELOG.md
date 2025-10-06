@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.1.12...@ovh-ux/manager-identity-access-management-app@0.2.0) (2025-10-06)
+
+
+### Features
+
+* **identity-access-management:** remove count under the datagrid ([8042e34](https://github.com/ovh/manager/commit/8042e3475e8c96dc43cbaa3812bcd8df2cc68ba5)), closes [#MAIAM-12](https://github.com/ovh/manager/issues/MAIAM-12)
+
+
+
+
+
 ## [0.1.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.1.11...@ovh-ux/manager-identity-access-management-app@0.1.12) (2025-10-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
