@@ -75,7 +75,10 @@ const getBaseConfig = (config) => {
       preprocessorOptions: {
         scss: {
           includePaths: [
-            resolve(`${dirname(fileURLToPath(import.meta.url))}`, '../../../../../node_modules'),
+            resolve(
+              `${dirname(fileURLToPath(import.meta.url))}`,
+              '../../../../../node_modules',
+            ),
           ],
         },
       },
