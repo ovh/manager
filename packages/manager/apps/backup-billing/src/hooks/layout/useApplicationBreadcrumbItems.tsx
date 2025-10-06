@@ -2,9 +2,10 @@ import { useHref } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
+import { BreadcrumbItem } from '@ovh-ux/manager-react-components';
+
 import { productName } from '@/App.constants';
 import { urls } from '@/routes/Routes.constants';
-import { BreadcrumbItem } from '@ovh-ux/manager-react-components';
 
 export const useApplicationBreadcrumbItems = (): BreadcrumbItem[] => {
   const { t } = useTranslation(['listing', 'dashboard']);
