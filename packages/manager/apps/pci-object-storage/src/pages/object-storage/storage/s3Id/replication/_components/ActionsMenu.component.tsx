@@ -1,4 +1,4 @@
-import { MoreVertical, Edit, Trash } from 'lucide-react';
+import { MoreVertical, Edit, Trash, MoreHorizontal } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import {
   DropdownMenu,
@@ -6,6 +6,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
   Button,
+  DropdownMenuSeparator,
 } from '@datatr-ux/uxlib';
 import storages from '@/types/Storages';
 
@@ -25,17 +26,21 @@ export function ActionsMenu({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm">
-          <MoreVertical className="size-4" />
+        <Button variant="menu" size="menu">
+          <span className="sr-only">Open menu</span>
+          <MoreHorizontal className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => onEdit(replication)}>
-          <Edit className="mr-2 size-4" />
           {t('actionEdit')}
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => onDelete(replication)}>
-          <Trash className="mr-2 size-4" />
+        <DropdownMenuSeparator />
+
+        <DropdownMenuItem
+          variant="destructive"
+          onClick={() => onDelete(replication)}
+        >
           {t('actionDelete')}
         </DropdownMenuItem>
       </DropdownMenuContent>

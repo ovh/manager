@@ -3,6 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { Badge } from '@datatr-ux/uxlib';
 import storages from '@/types/Storages';
 import { ActionsMenu } from './ActionsMenu.component';
+import LinkComponent from '@/components/links/Link.component';
+import { getStorageClassLabel } from '../utils/storageClass.util';
+import DataTable from '@/components/data-table';
+import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 
 type GetColumnsParams = {
   onEditClicked: (replication: storages.ReplicationRule) => void;
@@ -18,38 +22,70 @@ export function getColumns({
   return [
     {
       accessorKey: 'id',
-      header: t('columnName'),
-      cell: ({ row }) => <span>{row.original.id}</span>,
+      header: ({ column }) => (
+        <DataTable.SortableHeader column={column}>
+          {t('columnName')}
+        </DataTable.SortableHeader>
+      ),
+      cell: ({ row }) => (
+        <LinkComponent to={`./edit/${row.original.id}`}>
+          {row.original.id}
+        </LinkComponent>
+      ),
     },
     {
       accessorKey: 'destination.name',
-      header: t('columnDestinationName'),
+      header: ({ column }) => (
+        <DataTable.SortableHeader column={column}>
+          {t('columnDestinationName')}
+        </DataTable.SortableHeader>
+      ),
       cell: ({ row }) => <span>{row.original.destination.name}</span>,
     },
     {
       accessorKey: 'priority',
-      header: t('columnPriority'),
+      header: ({ column }) => (
+        <DataTable.SortableHeader column={column}>
+          {t('columnPriority')}
+        </DataTable.SortableHeader>
+      ),
       cell: ({ row }) => <span>{row.original.priority}</span>,
     },
     {
       accessorKey: 'destination.region',
-      header: t('columnRegion'),
+      header: ({ column }) => (
+        <DataTable.SortableHeader column={column}>
+          {t('columnRegion')}
+        </DataTable.SortableHeader>
+      ),
       cell: ({ row }) => <span>{row.original.destination.region}</span>,
     },
     {
       accessorKey: 'destination.storageClass',
-      header: t('columnStorageClass'),
-      cell: ({ row }) => <span>{row.original.destination.storageClass}</span>,
+      header: ({ column }) => (
+        <DataTable.SortableHeader column={column}>
+          {t('columnStorageClass')}
+        </DataTable.SortableHeader>
+      ),
+      cell: ({ row }) => (
+        <span>
+          {getStorageClassLabel(row.original.destination.storageClass, t)}
+        </span>
+      ),
     },
     {
       accessorKey: 'status',
-      header: t('columnStatus'),
+      header: ({ column }) => (
+        <DataTable.SortableHeader column={column}>
+          {t('columnStatus')}
+        </DataTable.SortableHeader>
+      ),
       cell: ({ row }) => (
         <Badge
           variant={
             row.original.status === storages.ReplicationRuleStatusEnum.enabled
               ? 'success'
-              : 'error'
+              : 'warning'
           }
         >
           {t(
@@ -61,8 +97,8 @@ export function getColumns({
       ),
     },
     {
-      id: 'actions',
-      header: '',
+      id: MENU_COLUMN_ID,
+      enableGlobalFilter: false,
       cell: ({ row }) => (
         <ActionsMenu
           replication={row.original}

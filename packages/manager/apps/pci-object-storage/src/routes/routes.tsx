@@ -281,7 +281,36 @@ export default [
             id: 's3.dashboard.replication',
             ...lazyLoadRoute(() =>
               import(
-                '@/pages/object-storage/storage/s3Id/repilcation/Replication.page'
+                '@/pages/object-storage/storage/s3Id/replication/Replication.page'
+              ),
+            ),
+            children: [
+              {
+                path: 'delete/:ruleId',
+                id: 'replication.delete',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/storage/s3Id/replication/delete/Delete.modal'
+                  ),
+                ),
+              },
+            ],
+          },
+          {
+            path: 'replication/new',
+            id: 'replication.new',
+            ...lazyLoadRoute(() =>
+              import(
+                '@/pages/object-storage/storage/s3Id/replication/new/New.page'
+              ),
+            ),
+          },
+          {
+            path: 'replication/edit/:ruleId',
+            id: 'replication.edit',
+            ...lazyLoadRoute(() =>
+              import(
+                '@/pages/object-storage/storage/s3Id/replication/edit/Edit.page'
               ),
             ),
           },
