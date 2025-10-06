@@ -9,8 +9,10 @@ import {
   checkVoucherEligibility,
   getEligibility,
 } from '@/data/api/payment/eligibility';
-import { TEligibilityRequiredAction } from '@/data/types/payment/eligibility.type';
-import { TEligibilityVoucher } from '@/data/types/payment/eligibility.type';
+import {
+  TEligibilityRequiredAction,
+  TEligibilityVoucher,
+} from '@/data/types/payment/eligibility.type';
 
 export const eligibilityQueryKey = () => ['cloud', 'eligibility'];
 
