@@ -14,6 +14,7 @@ const MainPage = lazy(() => import('@/pages/home/Header.page'));
 const HomePage = lazy(() => import('@/pages/home/Home.page'));
 const OnboardingPage = lazy(() => import('@/pages/onboarding/Onboarding.page'));
 const CreatingPage = lazy(() => import('@/pages/creating/Creating.page'));
+const UpdatingPage = lazy(() => import('@/pages/updating/Updating.page'));
 const IncreaseQuotaPage = lazy(() =>
   import('@/pages/increase-quota/IncreaseQuota'),
 );
@@ -82,6 +83,26 @@ export default (
         },
       }}
     />
+    <Route
+      path={urls.updating}
+      Component={UpdatingPage}
+      handle={{
+        tracking: {
+          pageName: PROJECTS_TRACKING.UPDATING.PAGE_NAME,
+          pageType: PageType.dashboard,
+        },
+      }}
+    />
+    <Route
+      path={urls.updatingWithVoucher}
+      Component={UpdatingPage}
+      handle={{
+        tracking: {
+          pageName: PROJECTS_TRACKING.UPDATING.PAGE_NAME,
+          pageType: PageType.dashboard,
+        },
+      }}
+    />
     <Route path={urls.project} Component={ProjectDetailPage}>
       <Route path="" Component={MainPage}>
         <Route
@@ -121,7 +142,7 @@ export default (
         Component={ActivatePage}
         handle={{
           tracking: {
-            pageName: 'activate',
+            pageName: PROJECTS_TRACKING.ACTIVATE.PAGE_NAME,
             pageType: PageType.dashboard,
           },
         }}

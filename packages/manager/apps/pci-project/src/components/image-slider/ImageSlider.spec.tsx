@@ -3,9 +3,9 @@ import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import ImageSlider from './ImageSlider';
 import { createWrapper } from '@/wrapperRenders';
-import { useImageSlider } from '../hooks/useImageSlider';
+import { useImageSlider } from '@/hooks/useImageSlider/useImageSlider';
 
-vi.mock('../hooks/useImageSlider', () => ({
+vi.mock('@/hooks/useImageSlider/useImageSlider', () => ({
   useImageSlider: vi.fn(),
 }));
 
