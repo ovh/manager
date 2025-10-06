@@ -1,27 +1,20 @@
-import {
-  OsdsButton,
-  OsdsModal,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
+import { ReactElement, useMemo } from 'react';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
-import { useMemo } from 'react';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_LEVEL } from '@ovhcloud/ods-common-theming';
+import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsButton, OsdsModal, OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
+
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useNodes } from '@/api/hooks/nodes';
+
 import { useSwitchToMonthlyBilling } from '@/api/hooks/instances';
+import { useNodes } from '@/api/hooks/nodes';
 import { useTrack } from '@/hooks/track';
 
-export default function SwitchPage(): JSX.Element {
+export default function SwitchPage(): ReactElement {
   const { projectId, kubeId: clusterId, poolId } = useParams();
   const [searchParams] = useSearchParams();
 
@@ -37,21 +30,11 @@ export default function SwitchPage(): JSX.Element {
   const { t: tKubeNodes } = useTranslation('kube-nodes');
   const { t: tListing } = useTranslation('listing');
 
-  const { data: nodes, isPending: isNodesPending } = useNodes(
-    projectId,
-    clusterId,
-    poolId,
-  );
+  const { data: nodes, isPending: isNodesPending } = useNodes(projectId, clusterId, poolId);
 
-  const node = useMemo(() => nodes?.find((n) => n.id === nodeId), [
-    nodes,
-    nodeId,
-  ]);
+  const node = useMemo(() => nodes?.find((n) => n.id === nodeId), [nodes, nodeId]);
 
-  const {
-    switchToMonthlyBilling,
-    isPending: isSwitching,
-  } = useSwitchToMonthlyBilling({
+  const { switchToMonthlyBilling, isPending: isSwitching } = useSwitchToMonthlyBilling({
     onError(cause: Error & { response: { data: { message: string } } }): void {
       addError(
         tKubeNodes('kube_nodes_switch_billing_type_error', {
@@ -98,11 +81,7 @@ export default function SwitchPage(): JSX.Element {
             </OsdsText>
           </>
         ) : (
-          <OsdsSpinner
-            inline
-            size={ODS_SPINNER_SIZE.md}
-            className="block text-center"
-          />
+          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} className="block text-center" />
         )}
       </slot>
       <OsdsButton
@@ -110,9 +89,7 @@ export default function SwitchPage(): JSX.Element {
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.ghost}
         onClick={() => {
-          trackClick(
-            `details::nodepools::details::nodes::billing-type::cancel`,
-          );
+          trackClick(`details::nodepools::details::nodes::billing-type::cancel`);
           goBack();
         }}
       >
@@ -122,9 +99,7 @@ export default function SwitchPage(): JSX.Element {
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={() => {
-          trackClick(
-            `details::nodepools::details::nodes::billing-type::confirm`,
-          );
+          trackClick(`details::nodepools::details::nodes::billing-type::confirm`);
           switchToMonthlyBilling();
         }}
         {...(isSwitching ? { disabled: true } : {})}

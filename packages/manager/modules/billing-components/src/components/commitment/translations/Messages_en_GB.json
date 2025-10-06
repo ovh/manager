@@ -32,5 +32,5 @@
   "billing_commitment_commit_again_description_with_discount": "You are currently committed to your {{serviceName}} commitment until {{endDate}}. By extending your commitment, you can maintain your discount for your new commitment period. You can also increase your commitment and adjust your payment option for additional discounts.",
   "billing_commitment_payment_pay_now_description": "Get an additional discount by paying the total amount in advance",
   "billing_commitment_info_message": "When you sign up for a subscription, you’re committing to use the service for the entire chosen period. In return, you benefit from discounts, free setup, etc. You can cancel the service whenever you wish; however, ending it before the agreed-upon time could incur fees or require payment for the remaining period.",
-  "billing_commitment_payment_method_error": "We're having a problem with your payment method. We will redirect you to the \"Payment method\" page, so that you can resolve the issue."
+  "billing_commitment_payment_method_error": "There’s a problem with your payment method. You’ll be redirected to the ‘Payment method’ page, so you can resolve it."
 }

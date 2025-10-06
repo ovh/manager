@@ -4,6 +4,7 @@ import {
   SERVICE_GROUP_WITH_AGORA_TERMINATION_REGEX,
   SERVICE_WITH_AGORA_TERMINATION,
   TERMINATION_FORM_NAME,
+  SERVICE_TYPES_WITH_AGORA_TERMINATION,
 } from './confirm-terminate.constants';
 
 export default class BillingTerminate {
@@ -35,16 +36,18 @@ export default class BillingTerminate {
     );
   }
 
-  static hasAgoraTermination(planCode) {
+  static hasAgoraTermination(planCode, serviceType) {
     return (
       SERVICE_WITH_AGORA_TERMINATION.includes(planCode) ||
-      SERVICE_GROUP_WITH_AGORA_TERMINATION_REGEX.test(planCode)
+      SERVICE_GROUP_WITH_AGORA_TERMINATION_REGEX.test(planCode) ||
+      (serviceType &&
+        SERVICE_TYPES_WITH_AGORA_TERMINATION.includes(serviceType))
     );
   }
 
   confirmTermination(service, token) {
     const planCode = service.billing?.plan?.code || '';
-    return BillingTerminate.hasAgoraTermination(planCode)
+    return BillingTerminate.hasAgoraTermination(planCode, service.productType)
       ? this.$http.post(`/services/${service.serviceId}/terminate/confirm`, {
           token,
         })

@@ -1,15 +1,17 @@
 import { useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OsdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { StepState } from '../hooks/useStep';
-import NetworkClusterStep, {
-  TNetworkFormState,
-} from './NetworkClusterStep.component';
+import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
+import { OsdsButton } from '@ovhcloud/ods-components/react';
+
 import { ModeEnum } from '@/components/network/GatewayModeSelector.component';
-import { DeploymentMode } from '@/types';
 import { isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
+import { DeploymentMode } from '@/types';
+
+import { StepState } from '../hooks/useStep';
+import NetworkClusterStep, { TNetworkFormState } from './NetworkClusterStep.component';
 
 export interface NetworkStepProps {
   region: string;
@@ -18,24 +20,15 @@ export interface NetworkStepProps {
   step: StepState;
 }
 
-export function NetworkStep({
-  region,
-  type,
-  onSubmit,
-  step,
-}: Readonly<NetworkStepProps>) {
+export function NetworkStep({ region, type, onSubmit, step }: Readonly<NetworkStepProps>) {
   const { t: tStepper } = useTranslation('stepper');
   const [state, setState] = useState<TNetworkFormState>({});
   const isGatewayValid =
-    !state.gateway?.isEnabled ||
-    state.gateway?.mode === ModeEnum.AUTO ||
-    state.gateway?.ip;
+    !state.gateway?.isEnabled || state.gateway?.mode === ModeEnum.AUTO || state.gateway?.ip;
   const hasPrivateNetwork = state.privateNetwork;
   const isValid =
     (isMonoDeploymentZone(type) && (!hasPrivateNetwork || isGatewayValid)) ||
-    (isMultiDeploymentZones(type) &&
-      hasPrivateNetwork &&
-      state.gateway?.isEnabled);
+    (isMultiDeploymentZones(type) && hasPrivateNetwork && state.gateway?.isEnabled);
 
   return (
     <>
