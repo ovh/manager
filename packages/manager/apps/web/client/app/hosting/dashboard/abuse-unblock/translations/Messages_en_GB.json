@@ -1,0 +1,21 @@
+{
+  "hosting_dashboard_service_abuse_state_modal_title": "Abnormal activity on your hosting system",
+  "hosting_dashboard_service_abuse_state_modal_info_malwares": "We have detected <strong>the presence of malicious files (malware)</strong> on your hosting system. <br/>As a security measure, we have temporarily blocked outgoing requests as well as sending emails via PHP functions.",
+  "hosting_dashboard_service_abuse_state_modal_info_mailsout": "We have detected an <strong>unusually high volume of emails sent</strong> from your hosting system. <br/>As a security measure, we have temporarily blocked emails from being sent via PHP functions.",
+  "hosting_dashboard_service_abuse_state_modal_info_outstate": "We have detected an <strong>abnormally high volume of outgoing requests</strong> from your hosting system. <br/>As a security measure, we have temporarily blocked these requests.",
+  "hosting_dashboard_service_abuse_state_modal_blocked_message_malwares": "Your websites can no longer send emails or communicate with external services until the situation is resolved.",
+  "hosting_dashboard_service_abuse_state_modal_blocked_message_mailsout": "Your websites can no longer send emails until the situation is resolved.",
+  "hosting_dashboard_service_abuse_state_modal_blocked_message_outstate": "Your websites can no longer communicate with external services until the situation is resolved.",
+  "hosting_dashboard_service_abuse_state_modal_button_action_title": "What you need to do:",
+  "hosting_dashboard_service_abuse_state_modal_button_action_first": "Please refer to our guide to help you stop this abnormal activity.",
+  "hosting_dashboard_service_abuse_state_modal_button_action_second": "Once the situation has been resolved, tick the box below to request that the security measures on your hosting plan be lifted.",
+  "hosting_dashboard_service_abuse_state_modal_button_action_guideline": "Guide to troubleshooting abnormal activity",
+  "hosting_dashboard_service_abuse_state_modal_button_action_checkbox": "I confirm that I have performed all the necessary actions to resolve the issue.",
+  "hosting_dashboard_service_abuse_state_modal_button_later": "Later",
+  "hosting_dashboard_service_abuse_state_modal_button_unblock": "Lift security measures",
+  "hosting_dashboard_service_abuse_state_banner_alert_message": "<strong>Abnormal activity detected</strong><br />As a security measure, we have temporarily blocked certain features on your hosting plan.<br/><a href=\"{{ href }}\">Find out more</a>",
+  "hosting_dashboard_service_abuse_state_banner_alert_link": "Find out more",
+  "hosting_dashboard_service_abuse_state_banner_reinsurance_title": "<strong>Your hosting plan is being analysed in order to lift the security measures.</strong><br/><a href=\"{{ href }}\">View tasks in progress</a>",
+  "hosting_dashboard_service_abuse_state_banner_reinsurance_link": "View tasks in progress",
+  "hosting_dashboard_service_abuse_state_unblock_error_message": "An error has occurred: {{error}}."
+}

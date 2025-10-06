@@ -1,0 +1,21 @@
+{
+  "hosting_dashboard_service_abuse_state_modal_title": "Ungewöhnliche Aktivität auf Ihrem Hosting",
+  "hosting_dashboard_service_abuse_state_modal_info_malwares": "Wir haben festgestellt, dass auf Ihrem Hosting <strong>Schadsoftware (Malware) vorhanden</strong> ist. <br/>Aus Sicherheitsgründen haben wir ausgehende Anfragen sowie den Versand von E-Mails über die PHP-Funktionen vorübergehend gesperrt.",
+  "hosting_dashboard_service_abuse_state_modal_info_mailsout": "Wir haben festgestellt<b>, </b>dass <strong>ungewöhnlich viele E-Mails von Ihrem Hosting aus versandt</strong> werden. <br/>Aus Sicherheitsgründen haben wir den Versand über die PHP-Funktionen vorübergehend gesperrt.",
+  "hosting_dashboard_service_abuse_state_modal_info_outstate": "Wir haben <strong>ungewöhnlich viele ausgehende Anfragen</strong> von Ihrem Hosting aus festgestellt. <br/>Aus Sicherheitsgründen haben wir diese Anfragen vorübergehend gesperrt.",
+  "hosting_dashboard_service_abuse_state_modal_blocked_message_malwares": "Ihre Websites können aktuell keine E-Mails mehr versenden und auch nicht mehr mit externen Diensten kommunizieren, bis das Problem behoben ist.",
+  "hosting_dashboard_service_abuse_state_modal_blocked_message_mailsout": "Ihre Websites können aktuell keine E-Mails mehr versenden, bis das Problem behoben ist.",
+  "hosting_dashboard_service_abuse_state_modal_blocked_message_outstate": "Ihre Websites können aktuell nicht mehr mit externen Diensten kommunizieren, bis das Problem behoben ist.",
+  "hosting_dashboard_service_abuse_state_modal_button_action_title": "Was Sie tun müssen:",
+  "hosting_dashboard_service_abuse_state_modal_button_action_first": "Lesen Sie unseren Guide, um diese ungewöhnliche Aktivität zu stoppen.",
+  "hosting_dashboard_service_abuse_state_modal_button_action_second": "Wenn das Problem behoben ist, setzen Sie einen Haken im nachstehenden Feld, um die Aufhebung der Sicherheitsmaßnahmen für Ihr Hosting zu beantragen.",
+  "hosting_dashboard_service_abuse_state_modal_button_action_guideline": "Guide zur Beseitigung anormaler Aktivitäten",
+  "hosting_dashboard_service_abuse_state_modal_button_action_checkbox": "Ich bestätige, dass ich alle erforderlichen Maßnahmen zur Behebung des Problems ergriffen habe.",
+  "hosting_dashboard_service_abuse_state_modal_button_later": "Später",
+  "hosting_dashboard_service_abuse_state_modal_button_unblock": "Sicherheitsmaßnahmen aufheben",
+  "hosting_dashboard_service_abuse_state_banner_alert_message": "<strong>Anormale Aktivität erkannt</strong><br />Aus Sicherheitsgründen haben wir vorübergehend einige Funktionen Ihres Hostings gesperrt.<br/><a href=\"{{ href }}\">Mehr erfahren</a>",
+  "hosting_dashboard_service_abuse_state_banner_alert_link": "Mehr erfahren",
+  "hosting_dashboard_service_abuse_state_banner_reinsurance_title": "<strong>Ihr Hosting wird derzeit zwecks Aufhebung der Sicherheitsmaßnahmen überprüft.</strong><br/><a href=\"{{ href }}\">Aktuelle Tasks anzeigen</a>",
+  "hosting_dashboard_service_abuse_state_banner_reinsurance_link": "Aktuelle Tasks anzeigen",
+  "hosting_dashboard_service_abuse_state_unblock_error_message": "Es ist ein Fehler aufgetreten: {{error}}."
+}
