@@ -1,7 +1,8 @@
-import { vi } from 'vitest';
-import React, { ReactNode } from 'react';
+/* eslint-disable react/no-multi-comp */
+import type { ReactNode } from 'react';
 
 import { fireEvent, render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 
 // --- Mock translation ---
 vi.mock('react-i18next', () => ({
@@ -43,7 +44,7 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
     const items = [{ label: 'home' }];
     return <nav>{items.map((i) => i.label).join('/')}</nav>;
   },
-  // eslint-disable-next-line react/no-multi-comp
+
   Datagrid: <T extends { id: string }>({
     topbar,
     columns,
@@ -66,14 +67,13 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
       )}
     </div>
   ),
-  // eslint-disable-next-line react/no-multi-comp
+
   DataGridTextCell: ({ children }: { children: ReactNode }) => <span>{children}</span>,
   useDataGrid: () => ({ sorting: [] as string[], setSorting: vi.fn() }),
 }));
 
 // --- Mock ODS components ---
 vi.mock('@ovhcloud/ods-components/react', () => ({
-  // eslint-disable-next-line react/no-multi-comp
   OdsButton: ({ label, onClick }: { label: string; onClick: () => void }) => (
     <button onClick={onClick}>{label}</button>
   ),
