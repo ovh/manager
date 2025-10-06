@@ -1,9 +1,10 @@
-import { Deps, TTranslateFn } from '@/deps/deps';
+import { Deps } from '@/deps/deps';
 import { TDeploymentMode } from '@/types/instance/common.type';
 import { TRegion } from '@/domain/entities/instancesCatalog';
 import { Reader } from '@/types/utils.type';
 import { TCountryIsoCode } from '@/components/flag/country-iso-code';
 import { getLocalZoneTranslationKey } from '@/utils';
+import { MessageProviderPort } from '@/domain/port/messageProvider/left/port';
 
 export type TRegionDataForCard = {
   city: string;
@@ -12,7 +13,7 @@ export type TRegionDataForCard = {
   countryCode: TCountryIsoCode | null;
 };
 
-const mapRegionToLocalizationCard = (translate: TTranslateFn) => (
+const mapRegionToLocalizationCard = (getMessageFn: MessageProviderPort["getMessage"]) => (
   region: TRegion,
 ): TRegionDataForCard => {
   const regionName =
@@ -20,7 +21,7 @@ const mapRegionToLocalizationCard = (translate: TTranslateFn) => (
       ? getLocalZoneTranslationKey(region.name)
       : region.name;
   return {
-    city: translate(`regions:manager_components_region_${regionName}`),
+    city: getMessageFn(`regions:manager_components_region_${regionName}`),
     region: region.name,
     countryCode: region.country,
     deploymentMode: region.deploymentMode,
@@ -40,7 +41,7 @@ export const selectLocalizations: Reader<Deps, TSelectLocalizationsForCard> = (
   deploymentModes: TDeploymentMode[],
   continentId: string,
 ): TRegionDataForCard[] => {
-  const { translate, instancesCatalogPort } = deps;
+  const { messageProviderPort, instancesCatalogPort } = deps;
   const data = instancesCatalogPort.selectInstancesCatalog(projectId);
 
   if (!data) return [];
@@ -67,6 +68,6 @@ export const selectLocalizations: Reader<Deps, TSelectLocalizationsForCard> = (
   );
 
   return matchingContinentAndDeploymentModeRegions.map(
-    mapRegionToLocalizationCard(translate),
+    mapRegionToLocalizationCard(messageProviderPort.getMessage),
   );
 };
