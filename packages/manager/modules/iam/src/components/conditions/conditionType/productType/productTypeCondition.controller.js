@@ -1,11 +1,13 @@
 import { URL } from '../../../../iam.service';
 import { CONDITION_TYPES } from '../conditionType.constants';
+import ElementUiService from '../elementUi.service';
 
 const productTypeKeyTemplate = `resource.${CONDITION_TYPES.PRODUCT_TYPE}`;
 
 export default class IAMConditionProductTypeController {
   /* @ngInject */
-  constructor(iamResourceTypeService) {
+  constructor($element, iamResourceTypeService) {
+    this.$element = $element;
     this.iamResourceTypeService = iamResourceTypeService;
     this.URL = URL.RESOURCE_TYPE;
   }
@@ -33,5 +35,9 @@ export default class IAMConditionProductTypeController {
 
   transformResourceTypes(resourceTypes) {
     this.iamResourceTypeService.transformResourceTypes(resourceTypes);
+  }
+
+  scrollSelectIntoView() {
+    ElementUiService.scrollCalendarIntoView(this.$element);
   }
 }

@@ -1,10 +1,12 @@
 import { CONDITION_TYPES } from '../conditionType.constants';
+import ElementUiService from '../elementUi.service';
 
 const weekdayKeyTemplate = `date({{timezone}}).${CONDITION_TYPES.WEEKDAY}`;
 
 export default class IAMConditionWeekdayController {
   /* @ngInject */
-  constructor(iamConditionWeekdayService) {
+  constructor($element, iamConditionWeekdayService) {
+    this.$element = $element;
     this.iamConditionWeekdayService = iamConditionWeekdayService;
   }
 
@@ -35,5 +37,9 @@ export default class IAMConditionWeekdayController {
     if (criterion && this.weekday) {
       this.updateConditionValues();
     }
+  }
+
+  scrollSelectIntoView() {
+    ElementUiService.scrollOuiSelectIntoView(this.$element);
   }
 }

@@ -9,6 +9,7 @@
         data-match="label"
         data-model="$ctrl.weekday"
         data-name="weekday"
+        data-on-focus="$ctrl.scrollSelectIntoView()"
         data-on-change="$ctrl.updateConditionValues()"
         data-required="true"
         data-placeholder="{{:: 'iam_create_condition_weekday_placeholder' | translate}}"
