@@ -2,7 +2,8 @@ import { TDeploymentMode } from '@/types/instance/common.type';
 import InstanceImage from '../../../../../public/assets/instance.png';
 
 import { Reader } from '@/types/utils.type';
-import { Deps, TTranslateFn } from '@/deps/deps';
+import { Deps } from '@/deps/deps';
+import { MessageProviderPort } from '@/domain/port/messageProvider/left/port';
 
 export type TDeploymentModeDataForCard = {
   mode: TDeploymentMode;
@@ -11,14 +12,14 @@ export type TDeploymentModeDataForCard = {
   url: string;
 };
 
-const mapDeploymentModeForCard = (translate: TTranslateFn) => (
+const mapDeploymentModeForCard = (getMessageFn: MessageProviderPort["getMessage"]) => (
   mode: TDeploymentMode,
 ): TDeploymentModeDataForCard => ({
   mode,
-  title: translate(
+  title: getMessageFn(
     `common:pci_instances_common_instance_${mode}_deployment_mode`,
   ),
-  description: translate(
+  description: getMessageFn(
     `common:pci_instances_common_instance_${mode}_deployment_mode_description`,
   ),
   url: InstanceImage,
@@ -32,12 +33,12 @@ export const selectDeploymentModes: Reader<
   Deps,
   TSelectDeploymentModesForCard
 > = (deps) => (projectId: string): TDeploymentModeDataForCard[] => {
-  const { translate, instancesCatalogPort } = deps;
+  const { messageProviderPort, instancesCatalogPort } = deps;
   const data = instancesCatalogPort.selectInstancesCatalog(projectId);
 
   return (
     data?.entities.deploymentModes.allIds.map(
-      mapDeploymentModeForCard(translate),
+      mapDeploymentModeForCard(messageProviderPort.getMessage),
     ) ?? []
   );
 };

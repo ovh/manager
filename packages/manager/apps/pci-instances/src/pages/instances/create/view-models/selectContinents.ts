@@ -15,7 +15,7 @@ export const selectContinent: Reader<Deps, TSelectContinentData> = (
   projectId: string,
   deploymentModes: TDeploymentMode[],
 ): TContinentData[] => {
-  const { translate, instancesCatalogPort } = deps;
+  const { messageProviderPort, instancesCatalogPort } = deps;
   const data = instancesCatalogPort.selectInstancesCatalog(projectId);
 
   if (!data) return [];
@@ -32,7 +32,7 @@ export const selectContinent: Reader<Deps, TSelectContinentData> = (
       ];
 
   return ['all', ...continentsIds].map((continent) => ({
-    label: translate(
+    label: messageProviderPort.getMessage(
       `common:pci_instances_common_instance_continent_${continent}`,
     ),
     value: continent,
