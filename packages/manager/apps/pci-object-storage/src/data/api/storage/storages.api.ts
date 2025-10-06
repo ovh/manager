@@ -1,6 +1,6 @@
 import { PCIData } from '..';
 import { apiClient } from '../api.client';
-import { Storages } from '@/types/Storages';
+import storages, { Storages } from '@/types/Storages';
 
 export interface StoragesParams extends PCIData {
   archive: boolean;
@@ -18,3 +18,8 @@ export const getStorages = async ({
       withObjects,
     },
   });
+
+export const getStorageAccess = async ({ projectId }: PCIData) =>
+  apiClient.v6.post<storages.ContainerAccess>(
+    `/cloud/project/${projectId}/storage/access`,
+  );

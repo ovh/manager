@@ -59,7 +59,7 @@ const Rclone = () => {
         userId: Number(userId),
         region: formValues.region,
       });
-      download(rcloneData.content, 'rclone.conf');
+      download({ type: 'raw', data: rcloneData.content }, 'rclone.conf');
       navigate('../');
     } catch (err) {
       toast.toast({
