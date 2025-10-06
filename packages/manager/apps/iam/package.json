@@ -21,6 +21,7 @@
     "@ovh-ux/manager-at-internet-configuration": "^1.5.0",
     "@ovh-ux/manager-config": "^8.6.3",
     "@ovh-ux/manager-core": "^13.2.10",
+    "@ovh-ux/manager-core-sso": "^0.4.3",
     "@ovh-ux/manager-iam": "^1.21.1",
     "@ovh-ux/manager-log-to-customer": "^2.7.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.12.0",

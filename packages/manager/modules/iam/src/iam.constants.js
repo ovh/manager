@@ -242,11 +242,7 @@ GUIDE.LOGS.SN = GUIDE.LOGS.FR;
 GUIDE.LOGS.TN = GUIDE.LOGS.FR;
 GUIDE.LOGS.MA = GUIDE.LOGS.FR;
 
-const API_KEY_URL = {
-  EU: 'https://www.ovh.com/auth/api/createToken',
-  CA: 'https://ca.ovh.com/auth/api/createToken',
-  US: 'https://us.ovhcloud.com/auth/api/createToken',
-};
+const AUTH_CREATE_TOKEN_API = 'api/createToken';
 
 const PAGE_SIZE = 25;
 
@@ -288,5 +284,5 @@ export {
   URN_VERSION,
   WILDCARD,
   ACTION_DESCRIPTION_UNDEFINED,
-  API_KEY_URL,
+  AUTH_CREATE_TOKEN_API,
 };

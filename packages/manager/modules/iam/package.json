@@ -14,6 +14,7 @@
   "peerDependencies": {
     "@ovh-ux/manager-at-internet-configuration": "^1.5.0",
     "@ovh-ux/manager-core": "^12.16.1",
+    "@ovh-ux/manager-core-sso": "^0.4.1",
     "@ovh-ux/manager-log-to-customer": "^2.5.0",
     "@ovh-ux/manager-ng-apiv2-helper": "^0.1.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.6.2",
