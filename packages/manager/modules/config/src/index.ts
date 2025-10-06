@@ -1,3 +1,4 @@
+import { getLogoutUrl } from '@ovh-ux/manager-core-sso';
 import { useReket } from '@ovh-ux/ovh-reket';
 import { getHeaders } from '@ovh-ux/request-tagger';
 
@@ -5,9 +6,9 @@ import Environment from './environment';
 import { Region } from './environment/region.enum';
 
 export const HOSTNAME_REGIONS: Record<string, Region> = {
-  'www.ovh.com': Region.EU,
-  'ca.ovh.com': Region.CA,
-  'us.ovhcloud.com': Region.US,
+  'manager.eu.ovhcloud.com': Region.EU,
+  'manager.ca.ovhcloud.com': Region.CA,
+  'manager.us.ovhcloud.com': Region.US,
 };
 
 export const RESTRICTED_DEFAULTS: Record<string, string> = {
@@ -72,7 +73,7 @@ export const fetchConfiguration = async (applicationName: string): Promise<Envir
       if (apiError && apiError.status === 401 && !isTopLevelApplication()) {
         window.parent.postMessage({
           id: 'ovh-auth-redirect',
-          url: `/auth?action=disconnect&onsuccess=${encodeURIComponent(window.location.href)}`,
+          url: getLogoutUrl(window.location.href),
         });
       }
       if (apiError?.status === 403) {
