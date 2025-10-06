@@ -101,5 +101,7 @@
   "pci_projects_home_banner_discovery_title_with_promotion": "Attiva il tuo progetto aggiungendo un metodo di pagamento e approfitta di {{ amount }} di credito gratuito.",
   "pci_projects_home_banner_discovery_title_no_promotion": "Inizia a distribuire le tue risorse Cloud.",
   "pci_projects_home_banner_discovery_description": "Attualmente sei in modalità Discovery. Attivando il tuo progetto, potrai avviare le tue risorse cloud in pochi minuti.",
-  "pci_projects_home_banner_discovery_cta": "Attivare"
+  "pci_projects_home_banner_discovery_cta": "Attivare",
+  "pci_projects_beta_public_cloud_banner_info": "Programma beta per Public Cloud: Prova le nostre soluzioni basate su OpenStack (Load Balancer, istanza di routing, Floating IP e Bare Metal as a Service).",
+  "pci_projects_beta_public_cloud_banner_info_link": "Inizia a testare attivando la regione GRA9."
 }
