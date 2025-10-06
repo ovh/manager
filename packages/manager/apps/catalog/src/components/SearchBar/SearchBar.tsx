@@ -16,6 +16,7 @@ import {
   OsdsSearchBarCustomEvent,
   OdsInputValueChangeEventDetail,
 } from '@ovhcloud/ods-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import Filters from '@/components/Filters/Filters';
 import { Product } from '@/api';
 import FilterChip from '../Filters/FilterChip';
@@ -40,6 +41,7 @@ const SearchBar: React.FC<SearchbarProps> = ({
   setIsRouterInitialized,
 }) => {
   const { t } = useTranslation('catalog/search');
+  const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
 
   const [showFilters, setShowFilters] = useState(false);
   const [localSearchValue, setLocalSearchValue] = useState('');
@@ -113,7 +115,7 @@ const SearchBar: React.FC<SearchbarProps> = ({
               color={ODS_THEME_COLOR_INTENT.primary}
               className="mr-2"
             />
-            {t('manager_catalog_search_filter_button')}
+            {tActions('show_hide_filters')}
           </OsdsButton>
         </span>
       </div>
