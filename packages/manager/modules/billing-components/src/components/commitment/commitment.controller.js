@@ -126,7 +126,9 @@ export default class {
       commitment.isPeriodic(),
     );
 
-    this.periodicTotalPrice = periodic.totalPrice.value.toFixed(2);
+    this.periodicTotalPrice = Number.parseFloat(
+      periodic.totalPrice.value.toFixed(2),
+    );
 
     if (upfront && periodic) {
       // compute discount
@@ -151,7 +153,10 @@ export default class {
           },
           this.coreConfig.getUserLocale(),
         ).getPriceAsText(),
-        amountToPay: upfront.totalPrice.text,
+        amountToPay: {
+          text: upfront.totalPrice.text,
+          value: upfront.totalPrice.value,
+        },
       };
     }
   }
