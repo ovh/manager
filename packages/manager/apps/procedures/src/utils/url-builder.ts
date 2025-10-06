@@ -1,10 +1,8 @@
+import { getAuthUrl } from '@ovh-ux/manager-core-sso';
 import { User } from '@/context/User/context';
 
 export const getRedirectLoginUrl = (user: User) => {
-  const loginUrl =
-    window.location.host === 'www.ovhtelecom.fr'
-      ? 'https://www.ovh.com/auth/'
-      : '/auth';
+  const loginUrl = getAuthUrl();
 
   const subsidiaryParams = user?.subsidiary
     ? `?ovhSubsidiary=${user.subsidiary}`
