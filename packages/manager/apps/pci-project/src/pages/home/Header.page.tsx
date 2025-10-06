@@ -19,6 +19,7 @@ import {
 import { ROADMAP_CHANGELOG_LINKS } from '@/constants';
 import { useProjectTabs } from '@/hooks/useProjectTabs';
 import QuotaAlert from './components/QuotaAlert.component';
+import PciAnnouncementBanner from './components/PciAnnouncementBanner.component';
 import { ProjectValidationGuard } from '@/components/project-validation-guard/ProjectValidationGuard';
 
 export default function ProjectHeader() {
@@ -63,6 +64,7 @@ export default function ProjectHeader() {
         }
       >
         <QuotaAlert />
+        <PciAnnouncementBanner />
         <Outlet />
       </BaseLayout>
     </ProjectValidationGuard>
