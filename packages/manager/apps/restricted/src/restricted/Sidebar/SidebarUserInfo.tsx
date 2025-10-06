@@ -17,7 +17,7 @@ const SidebarUserInfos = (): JSX.Element => {
 
   const logout = () => {
     window.location.assign(
-      '/auth/?action=disconnect&onsuccess=https://www.ovh.com/manager/#/hub',
+      '/auth/?action=disconnect&onsuccess=https://manager.eu.ovhcloud.com/#/hub',
     );
   };
 
