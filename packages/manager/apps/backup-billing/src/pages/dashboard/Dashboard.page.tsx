@@ -6,12 +6,12 @@ import { useTranslation } from 'react-i18next';
 
 import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
 
-import { BaseLayout } from '@ovh-ux/manager-react-components';
+import { BaseLayout, Breadcrumb } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
-import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import { useDashboardTabs } from '@/hooks/dashboard/useDashboardTabs';
 import { urls } from '@/routes/Routes.constants';
+import { appName } from '@/App.constants';
 
 export default function DashboardPage() {
   const { t } = useTranslation(['common', 'dashboard']);
@@ -37,7 +37,7 @@ export default function DashboardPage() {
         header={{ title: t('dashboard:title') }}
         backLinkLabel={t('dashboard:back')}
         onClickReturn={onNavigateBackClicked}
-        breadcrumb={<Breadcrumb />}
+        breadcrumb={<Breadcrumb appName={appName} rootLabel={appName} />}
         tabs={
           tabs.length > 0 ? (
             <OdsTabs>

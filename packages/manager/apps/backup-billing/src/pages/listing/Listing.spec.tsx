@@ -1,7 +1,7 @@
+import { vi } from 'vitest';
 import React, { ReactNode } from 'react';
 
 import { fireEvent, render, screen } from '@testing-library/react';
-import { vi } from 'vitest';
 
 // --- Mock translation ---
 vi.mock('react-i18next', () => ({
@@ -39,6 +39,10 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
       {children}
     </div>
   ),
+  Breadcrumb: () => {
+    const items = [{ label: 'home' }];
+    return <nav>{items.map((i) => i.label).join('/')}</nav>;
+  },
   // eslint-disable-next-line react/no-multi-comp
   Datagrid: <T extends { id: string }>({
     topbar,
@@ -80,9 +84,6 @@ vi.mock('@ovhcloud/ods-components', () => ({
 }));
 
 // --- Mock hooks ---
-vi.mock('@/hooks/layout/useBreadcrumb', () => ({
-  useBreadcrumb: () => [{ label: 'home' }],
-}));
 vi.mock('@/hooks/listing/useListingColumns', () => ({
   useListingColumns: () => [
     { id: 'id', label: 'listing:id', isSortable: true, cell: (row: { id: string }) => row.id },
@@ -96,13 +97,6 @@ vi.mock('@/data/hooks/useResources', () => ({
     hasNextPage: true,
     fetchNextPage: vi.fn(),
   }),
-}));
-
-// --- Mock Breadcrumb ---
-vi.mock('@/components/breadcrumb/Breadcrumb.component', () => ({
-  default: ({ items }: { items: { label: string }[] }) => (
-    <nav>{items.map((i) => i.label).join('/')}</nav>
-  ),
 }));
 
 // --- Tests ---
@@ -130,7 +124,7 @@ describe('ListingPage', () => {
     const { default: ListingPage } = await import('./Listing.page');
     render(<ListingPage />);
     fireEvent.click(screen.getByText('listing:open'));
-    expect(navigate).toHaveBeenCalledWith('../dashboard');
+    expect(navigate).toHaveBeenCalledWith('/billing/dashboard');
   });
 
   it('calls fetchNextPage when clicking fetch button', async () => {
