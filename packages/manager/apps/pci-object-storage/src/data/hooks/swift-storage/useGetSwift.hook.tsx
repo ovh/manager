@@ -17,7 +17,7 @@ export function useGetSwift({
   noObjects,
   options,
 }: UseGetSwiftProps) {
-  const queryKey = [projectId, 'storages', containerId];
+  const queryKey = [projectId, 'storage', containerId, { noObjects }];
   return useQueryImmediateRefetch({
     queryKey,
     queryFn: () => getSwiftStorage({ projectId, containerId, noObjects }),
