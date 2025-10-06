@@ -24,7 +24,7 @@ export function useQueryImmediateRefetch<T>({
   queryFn,
   ...options
 }: {
-  queryKey: string[];
+  queryKey: unknown[];
   queryFn: () => Promise<T>;
 } & Omit<UseQueryOptions<T, Error, T, QueryKey>, 'queryKey' | 'queryFn'>) {
   const prevRefetchInterval = useRef(options?.refetchInterval);
