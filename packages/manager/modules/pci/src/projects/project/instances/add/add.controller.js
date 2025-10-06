@@ -1523,6 +1523,12 @@ export default class PciInstancesAddController {
                       ),
                     }
                   : null,
+              gateway:
+                this.subnetGateways?.length === 1 && this.isAttachFloatingIP
+                  ? {
+                      id: this.subnetGateways[0]?.id,
+                    }
+                  : null,
               ip: null,
 
               network: {
