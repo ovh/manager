@@ -95,7 +95,7 @@ describe('StaticLink.component', () => {
     const { queryByTestId } = renderStaticLinkComponent(props);
     expect(queryByTestId(props.node.idAttr)).toHaveAttribute(
       'href',
-      'https://www.ovh.com/manager/#/public-cloud/pci/projects/123456789/rancher',
+      'https://manager.eu.ovhcloud.com/#/public-cloud/pci/projects/123456789/rancher',
     );
   });
 
