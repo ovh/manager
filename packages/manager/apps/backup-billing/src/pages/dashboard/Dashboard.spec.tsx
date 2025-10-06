@@ -1,8 +1,7 @@
-/* eslint-disable react/no-multi-comp */
+import { vi } from 'vitest';
 import type { ReactNode } from 'react';
 
 import { fireEvent, render, screen } from '@testing-library/react';
-import { vi } from 'vitest';
 
 import DashboardPage from './Dashboard.page';
 
@@ -55,6 +54,10 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
       <div data-testid="tabs">{tabs}</div>
     </div>
   ),
+  Breadcrumb: () => {
+    const items = [{ label: 'Home' }, { label: 'Dashboard' }];
+    return <nav data-testid="breadcrumb-nav">{items.map((i) => i.label).join(' / ')}</nav>;
+    }
 }));
 
 interface OdsTabsProps {
@@ -73,16 +76,6 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
   ),
 }));
 
-// --- Mock Breadcrumb ---
-interface BreadcrumbProps {
-  items: { label: string }[];
-}
-vi.mock('@/components/breadcrumb/Breadcrumb.component', () => ({
-  default: ({ items }: BreadcrumbProps) => (
-    <nav data-testid="breadcrumb-nav">{items.map((i) => i.label).join(' / ')}</nav>
-  ),
-}));
-
 // --- Mock useDashboardTabs ---
 vi.mock('@/hooks/dashboard/useDashboardTabs', () => ({
   useDashboardTabs: () => [
@@ -94,11 +87,6 @@ vi.mock('@/hooks/dashboard/useDashboardTabs', () => ({
     },
     { name: 'help', title: 'dashboard:help', to: '/help', trackingActions: ['click::help-tab'] },
   ],
-}));
-
-// --- Mock useBreadcrumb ---
-vi.mock('@/hooks/layout/useBreadcrumb', () => ({
-  useBreadcrumb: () => [{ label: 'Home' }, { label: 'Dashboard' }],
 }));
 
 describe('DashboardPage', () => {

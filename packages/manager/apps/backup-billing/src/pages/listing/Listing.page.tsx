@@ -9,13 +9,13 @@ import { OdsButton } from '@ovhcloud/ods-components/react';
 
 import {
   BaseLayout,
+  Breadcrumb,
   DataGridTextCell,
   Datagrid,
   useDataGrid,
 } from '@ovh-ux/manager-react-components';
 
-import { APP_FEATURES } from '@/App.constants';
-import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
+import { APP_FEATURES, appName } from '@/App.constants';
 import { useListingData } from '@/data/hooks/useResources';
 import { useListingColumns } from '@/hooks/listing/useListingColumns';
 import { urls } from '@/routes/Routes.constants';
@@ -59,7 +59,7 @@ export default function ListingPage() {
   };
 
   return (
-    <BaseLayout breadcrumb={<Breadcrumb />} header={{ title: t('listing:title') }}>
+    <BaseLayout breadcrumb={<Breadcrumb appName={appName} rootLabel={appName} />} header={{ title: t('listing:title') }}>
       <Suspense>
         {columns && (
           <Datagrid
