@@ -15,7 +15,9 @@ const fakeDeps: Deps = {
       .fn()
       .mockReturnValue(mockedInstancesCatalogEntity),
   },
-  translate: vi.fn((key: string) => key),
+  messageProviderPort: {
+    getMessage: vi.fn((key: string) => key)
+  },
 };
 
 describe('SelectLocalizations ViewModel', () => {
