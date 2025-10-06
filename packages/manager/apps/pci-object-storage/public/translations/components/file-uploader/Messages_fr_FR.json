@@ -1,0 +1,10 @@
+{
+  "errorFileRequired": "Merci de séléctionner au moins un fichier",
+  "errorFileNumber": "Vous ne pouvez séléctionner qu'un seul fichier",
+  "prefixRequiredError": "Ce champ est obligatoire",
+  "prefixFieldLabel": "Préfixe",
+  "importFileLabel": "Importer des fichiers",
+  "importFileButton": "Sélectionner des fichiers...",
+  "fileUploaderButtonCancel": "Annuler",
+  "fileUploaderButtonConfirm": "Importer"
+}

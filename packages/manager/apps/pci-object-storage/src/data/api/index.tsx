@@ -7,6 +7,8 @@ export const HeadersIcebergPagination = {
   ...HeadersNoCache,
 };
 
+export const HeaderXAuthToken = 'X-Auth-Token';
+
 export interface PCIData {
   projectId: string;
 }

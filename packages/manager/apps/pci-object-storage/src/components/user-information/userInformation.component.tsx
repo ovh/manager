@@ -29,7 +29,10 @@ const UserInformation = ({ newUser, pwd }: UserInformationProps) => {
       accessKey: newUser.openstackId,
       password: pwd,
     };
-    download(JSON.stringify(userData), `${newUser.username}.txt`);
+    download(
+      { type: 'raw', data: JSON.stringify(userData) },
+      `${newUser.username}.txt`,
+    );
   };
   return (
     <div className="space-y-4">

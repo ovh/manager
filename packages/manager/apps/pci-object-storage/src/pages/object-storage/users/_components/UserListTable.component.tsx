@@ -26,7 +26,7 @@ export default function UsersList({ users }: UsersListProps) {
   const downloadPolicy = async (us: UserWithS3Credentials) => {
     try {
       const policyData = await getUserPolicy({ projectId, userId: us.id });
-      download(policyData.policy, 'userPolicy.json');
+      download({ type: 'raw', data: policyData.policy }, 'userPolicy.json');
     } catch (err) {
       toast.toast({
         title: t('userPolicyDownloadFailed'),

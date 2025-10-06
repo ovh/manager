@@ -9,6 +9,7 @@ import S3Tabs from './_components/SwiftTabs.component';
 import { getSwiftStorage } from '@/data/api/storage/swiftStorage.api';
 import { useGetSwift } from '@/data/hooks/swift-storage/useGetSwift.hook';
 import { SwiftLayoutContext } from './Swift.context';
+import Dashboard from './dashboard/Dashboard.page';
 
 interface SwiftLayoutProps {
   params: {
@@ -69,7 +70,7 @@ export default function SwiftLayout() {
       <>
         <SwiftHeader.Skeleton />
         <TabsMenu.Skeleton />
-        Loading your container data
+        <Dashboard.Skeleton />
       </>
     );
   }
