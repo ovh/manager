@@ -239,7 +239,6 @@ angular
     aapiRouteBase: '/engine/2api',
     apiRouteBase: '/engine/apiv6',
     wsRouteBase: '/engine/ws',
-    loginUrl: WEBPACK_ENV.production ? '/auth' : 'https://www.ovh.com/auth',
     cookieSessionName: 'APIV6_SESSION',
   })
   .constant('CHANGELOG', {
