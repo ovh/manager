@@ -59,7 +59,10 @@ export default function ListingPage() {
   };
 
   return (
-    <BaseLayout breadcrumb={<Breadcrumb appName={appName} rootLabel={appName} />} header={{ title: t('listing:title') }}>
+    <BaseLayout
+      breadcrumb={<Breadcrumb appName={appName} rootLabel={appName} />}
+      header={{ title: t('listing:title') }}
+    >
       <Suspense>
         {columns && (
           <Datagrid

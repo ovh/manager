@@ -9,9 +9,9 @@ import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
 import { BaseLayout, Breadcrumb } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
+import { appName } from '@/App.constants';
 import { useDashboardTabs } from '@/hooks/dashboard/useDashboardTabs';
 import { urls } from '@/routes/Routes.constants';
-import { appName } from '@/App.constants';
 
 export default function DashboardPage() {
   const { t } = useTranslation(['common', 'dashboard']);
