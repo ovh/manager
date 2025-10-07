@@ -3,15 +3,12 @@ import { getBaseConfig } from '@ovh-ux/manager-vite-config';
 import { resolve } from 'path';
 import federation from '@originjs/vite-plugin-federation';
 
-const getWillPaymentEntryUrl = () => {
-  if (process.env.LABEU || process.env.NODE_ENV === 'development') {
-    return 'https://www.build-ovh.com/order/payment/assets/remoteEntry.js'; 
-  }
-  
-  return '/order/payment/assets/remoteEntry.js';
-};
+export default defineConfig(({mode}) => {
+  const isProd = mode === 'production';
+  const WILL_PAYMENT_ENTRY_URL = '/order/payment/assets/remoteEntry.js';
+  const willPaymentEntryUrl = isProd ? WILL_PAYMENT_ENTRY_URL : `https://www.build-ovh.com${WILL_PAYMENT_ENTRY_URL}`;
 
-export default defineConfig({
+  return {
   ...getBaseConfig(),
   root: resolve(process.cwd()),
   plugins: [
@@ -19,10 +16,11 @@ export default defineConfig({
     federation({
       name: 'host-app',
       remotes: {
-        willPayment: getWillPaymentEntryUrl(),
+        willPayment: willPaymentEntryUrl,
       },
-    }),
-  ],
+      }),
+    ],
+  };
 });
 
 
