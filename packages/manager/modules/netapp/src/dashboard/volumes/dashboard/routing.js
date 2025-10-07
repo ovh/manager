@@ -1,3 +1,5 @@
+import { DEFAULT_SNAPSHOT_SIZE } from './constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('netapp.dashboard.volumes.dashboard', {
     url: '/:volumeId',
@@ -96,8 +98,8 @@ export default /* @ngInject */ ($stateProvider) => {
           .get(
             `/storage/netapp/${serviceName}/share/${volumeId}/snapshotReserve`,
           )
-          .then(({ data }) => data?.percent || 5)
-          .catch(() => null),
+          .then(({ data: { percent = DEFAULT_SNAPSHOT_SIZE } }) => percent)
+          .catch(() => DEFAULT_SNAPSHOT_SIZE),
       goToEditVolumeReserveSpace: /* @ngInject */ (
         $state,
         serviceName,
