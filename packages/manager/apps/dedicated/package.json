@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "20.59.8",
+  "version": "20.59.9",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -36,7 +36,7 @@
     "@ovh-ux/manager-core": "^13.2.10",
     "@ovh-ux/manager-dbaas-logs": "^1.33.0",
     "@ovh-ux/manager-error-page": "^2.4.5",
-    "@ovh-ux/manager-exchange": "^4.15.1",
+    "@ovh-ux/manager-exchange": "^4.15.2",
     "@ovh-ux/manager-filters": "^1.1.1",
     "@ovh-ux/manager-iplb": "^1.29.2",
     "@ovh-ux/manager-log-to-customer": "^2.7.1",
