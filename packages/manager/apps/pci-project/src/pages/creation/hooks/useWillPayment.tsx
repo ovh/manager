@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { GlobalStateStatus, TCreditData } from '@/types/WillPayment.type';
 import { triggerSavePaymentMethodEvent } from '../utils/paymentEvents';
 import {

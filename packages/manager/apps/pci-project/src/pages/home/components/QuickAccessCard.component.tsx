@@ -1,7 +1,9 @@
 import { OdsCard, OdsText, OdsIcon } from '@ovhcloud/ods-components/react';
 
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
 import { DashboardItem } from '@/constants';
+import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 type QuickAccessCardProps = {
   item: DashboardItem;
@@ -10,12 +12,25 @@ type QuickAccessCardProps = {
 
 function QuickAccessCard({ item, index }: QuickAccessCardProps) {
   const { t } = useTranslation('home');
+  const { trackClick } = useOvhTracking();
+
+  const handleQuickAccessClick = () => {
+    // Track the click action
+    trackClick({
+      actionType: 'action',
+      actions: [
+        ...PROJECTS_TRACKING.PROJECT_HOME.CTA_QUICK_ACCESS,
+        item.labelTranslationKey,
+      ],
+    });
+  };
 
   return item.link ? (
     <a
       href={item.link}
       className="no-underline"
       key={index}
+      onClick={handleQuickAccessClick}
       aria-label={t('pci_project_quick_access_card_aria_label', {
         title: t(item.labelTranslationKey),
         description: t(item.descriptionTranslationKey),
