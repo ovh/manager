@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { TOperation } from '@/types/operation/entity.type';
 import { useOperationsPolling } from '@/data/hooks/operation/polling/useOperationsPolling';
@@ -10,7 +10,9 @@ import {
   isSubOperationCopyImageInProgress,
 } from '@/utils/operation/operations.utils';
 
-const getOperationsWithImageCopyInProgress = (operations: TOperation[] = []) =>
+const getNumberOfOperationsWithImageCopyInProgress = (
+  operations: TOperation[] = [],
+) =>
   operations
     .filter(
       (operation) =>
@@ -20,93 +22,67 @@ const getOperationsWithImageCopyInProgress = (operations: TOperation[] = []) =>
     .flatMap((operation) => operation.subOperations)
     .filter(isSubOperationCopyImageInProgress).length;
 
-const getCreationOperationWithoutImageCopy = (operations: TOperation[] = []) =>
+const getNumberOfCreationOperationWithoutImageCopy = (
+  operations: TOperation[] = [],
+) =>
   operations
     .filter(isInstanceCreationOperationInProgress)
     .filter(
       (operation) => !operation.subOperations?.some(isSubOperationCopyImage),
     ).length;
 
+const getNumberOfOperationInProgress = (operations: TOperation[] = []) =>
+  getNumberOfOperationsWithImageCopyInProgress(operations) +
+  getNumberOfCreationOperationWithoutImageCopy(operations);
+
 export const useDatagridOperationsPolling = (onComplete?: () => void) => {
   const projectId = useProjectId();
 
   const [
-    numberOfOperationsWithImageCopyInProgress,
-    setNumberOfOperationsWithImageCopyInProgress,
-  ] = useState(0);
-
-  const [
-    numberOfCreationOperationWithoutImageCopyInProgress,
-    setNumberOfCreationOperationWithoutImageCopyInProgress,
+    numberOfOperationsInProgress,
+    setNumberOfOperationsInProgress,
   ] = useState(0);
 
   const onSuccess = useCallback(
     (operations?: TOperation[]) => {
       if (!operations) return;
 
-      const newNumberOfOperationsWithImageCopyInProgress = getOperationsWithImageCopyInProgress(
-        operations,
-      );
-
-      const newNumberOfCreationOperationWithoutImageCopyInProgress = getCreationOperationWithoutImageCopy(
+      const newNumberOfOperationsInProgress = getNumberOfOperationInProgress(
         operations,
       );
 
       if (
         onComplete &&
-        (newNumberOfOperationsWithImageCopyInProgress <
-          numberOfOperationsWithImageCopyInProgress ||
-          newNumberOfCreationOperationWithoutImageCopyInProgress <
-            numberOfCreationOperationWithoutImageCopyInProgress)
+        newNumberOfOperationsInProgress < numberOfOperationsInProgress
       ) {
         onComplete();
       }
     },
-    [
-      numberOfOperationsWithImageCopyInProgress,
-      numberOfCreationOperationWithoutImageCopyInProgress,
-      onComplete,
-      projectId,
-    ],
+    [numberOfOperationsInProgress, onComplete, projectId],
   );
 
   const { isPending, operations } = useOperationsPolling(
     projectId,
     {
-      refetchInterval:
-        (numberOfOperationsWithImageCopyInProgress ||
-          numberOfCreationOperationWithoutImageCopyInProgress) &&
-        5_000,
+      refetchInterval: numberOfOperationsInProgress && 5_000,
       retry: shouldRetryAfterNot404Error,
     },
     { onSuccess },
   );
 
-  const newNumberOfCreationOfReinstallOperationInProgress = getOperationsWithImageCopyInProgress(
-    operations,
-  );
-
-  const newNumberOfCreationOperationWithoutImageCopyInProgress = getCreationOperationWithoutImageCopy(
+  const newNumberOfOperationsInProgress = getNumberOfOperationInProgress(
     operations,
   );
 
   useEffect(() => {
-    setNumberOfOperationsWithImageCopyInProgress(
-      newNumberOfCreationOfReinstallOperationInProgress,
-    );
-  }, [newNumberOfCreationOfReinstallOperationInProgress]);
+    setNumberOfOperationsInProgress(newNumberOfOperationsInProgress);
+  }, [newNumberOfOperationsInProgress]);
 
-  useEffect(() => {
-    setNumberOfCreationOperationWithoutImageCopyInProgress(
-      newNumberOfCreationOperationWithoutImageCopyInProgress,
-    );
-  }, [newNumberOfCreationOperationWithoutImageCopyInProgress]);
-
-  return {
-    hasOperationsRunning:
-      newNumberOfCreationOfReinstallOperationInProgress +
-        newNumberOfCreationOperationWithoutImageCopyInProgress >
-      0,
-    isPending,
-  };
+  return useMemo(
+    () => ({
+      hasOperationsRunning: newNumberOfOperationsInProgress > 0,
+      isPending,
+    }),
+    [newNumberOfOperationsInProgress, isPending],
+  );
 };

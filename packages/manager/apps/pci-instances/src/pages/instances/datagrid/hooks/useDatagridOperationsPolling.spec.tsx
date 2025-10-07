@@ -53,7 +53,21 @@ describe('useDatagridOperationsPolling', () => {
             action: 'create',
             status: 'in-progress',
             subOperations: [
+              { section: 'instance', action: 'create', status: 'in-progress' },
               { section: 'image', action: 'copytoregion', status: 'completed' },
+            ],
+          },
+        ],
+      },
+      {
+        description: 'with a in-progress instance creation with copy completed',
+        operations: [
+          {
+            section: 'instance',
+            action: 'create',
+            status: 'in-progress',
+            subOperations: [
+              { section: 'instance', action: 'create', status: 'in-progress' },
             ],
           },
         ],
@@ -119,6 +133,23 @@ describe('useDatagridOperationsPolling', () => {
               {
                 section: 'image',
                 action: 'copytoregion',
+                status: 'in-progress',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        description: 'with instance creation without copy',
+        operations: [
+          {
+            section: 'instance',
+            action: 'create',
+            status: 'in-progress',
+            subOperations: [
+              {
+                section: 'instance',
+                action: 'create',
                 status: 'in-progress',
               },
             ],
@@ -210,6 +241,39 @@ describe('useDatagridOperationsPolling', () => {
           },
         ],
       },
+      {
+        firstCallDescription:
+          'with first instance creation in-progress without copy',
+        firstOperations: [
+          {
+            section: 'instance',
+            action: 'create',
+            status: 'in-progress',
+            subOperations: [
+              {
+                section: 'instance',
+                action: 'create',
+                status: 'in-progress',
+              },
+            ],
+          },
+        ],
+        secondCallDescription: 'with then creation completed completed',
+        secondOperations: [
+          {
+            section: 'instance',
+            action: 'create',
+            status: 'completed',
+            subOperations: [
+              {
+                section: 'instance',
+                action: 'create',
+                status: 'completed',
+              },
+            ],
+          },
+        ],
+      },
     ])(
       '$firstCallDescription $secondCallDescription',
       async ({ firstOperations, secondOperations }) => {
@@ -227,7 +291,6 @@ describe('useDatagridOperationsPolling', () => {
 
         await waitFor(async () => {
           vi.useFakeTimers();
-          await vi.advanceTimersToNextTimerAsync();
           await vi.advanceTimersToNextTimerAsync();
           vi.useRealTimers();
         });
