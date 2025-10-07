@@ -4,6 +4,8 @@ export const FOLDER_CREATION = 'sudo mkdir /media/nfs01';
 
 export const PATTERN = /^[a-zA-Z0-9._-]{1,255}$/;
 
+export const DEFAULT_SNAPSHOT_SIZE = 5;
+
 export default {
   REDHAT_COMMAND,
   UBUNTU_COMMAND,
