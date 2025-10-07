@@ -32,6 +32,7 @@
   "sms_senders_add_sender": "Dodaj wybranego nadawcę",
   "sms_senders_add_senders": "Dodaj {{count}} wybranych nadawców",
   "sms_senders_add_senders_success": "Dodawanie w trakcie...",
-  "sms_senders_add_sender_supporting_document": "Dowód potwierdzający tożsamość firmy",
-  "sms_senders_add_sender_supporting_document_help": "W związku z prowadzoną przez nas polityką bezpieczeństwa prosimy o dostarczenie dowodu potwierdzającego tożsamość firmy. Może to być oświadczenie wystawione na papierze firmowym przez pracownika kadry zarządzającej, opatrzone jego podpisem i pieczęcią firmową lub inny dowód umożliwiający identyfikację podmiotu gospodarczego, np. odpis z KRS."
+  "sms_senders_add_sender_supporting_document": "Dokumenty potwierdzające",
+  "sms_senders_add_sender_supporting_document_help": "W związku z prowadzoną przez nas polityką bezpieczeństwa prosimy o dostarczenie dowodu potwierdzającego tożsamość firmy. Może to być oświadczenie wystawione na papierze firmowym przez pracownika kadry zarządzającej, opatrzone jego podpisem i pieczęcią firmową lub inny dowód umożliwiający identyfikację podmiotu gospodarczego, np. odpis z KRS.",
+  "sms_senders_add_sender_supporting_document_info": "Maksymalnie 10 plików o maksymalnym rozmiarze 10 MB, których wymagany format to pdf, jpg, jpeg lub png."
 }
