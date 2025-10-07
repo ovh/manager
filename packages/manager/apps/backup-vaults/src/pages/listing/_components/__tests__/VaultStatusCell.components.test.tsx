@@ -11,48 +11,25 @@ vi.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key: string) => key }),
 }));
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="cell">{children}</div>
-  ),
-}));
-
-vi.mock('@ovhcloud/ods-components', () => ({
-  ODS_BADGE_COLOR: {
-    information: 'information',
-    critical: 'critical',
-    success: 'success',
-    warning: 'warning',
-  },
-}));
-
-vi.mock('@ovhcloud/ods-components/react', () => ({
+vi.mock('@/components/VaultStatusBadge/VaultStatusBadge.components', () => ({
   // eslint-disable-next-line react/no-multi-comp
-  OdsBadge: ({ color, label }: { color: string; label: string }) => (
-    <span data-testid="badge" data-color={color}>
-      {label}
+  VaultStatusBadge: ({ vaultStatus }: { vaultStatus: ResourceStatus }) => (
+    <span data-testid="badge">
+      {vaultStatus}
     </span>
   ),
 }));
 
 describe('VaultStatusCell', () => {
-  it('renders translated status and maps READY to success color', () => {
-    const vault = { ...mockVaults[0]!, resourceStatus: 'READY' as ResourceStatus };
+  it.each([
+    ['READY'],
+    ['ERROR'],
+  ])('renders vault with status %s correctly: %s', (status) => {
+    const vault = { ...mockVaults[0]!, resourceStatus: status as ResourceStatus };
 
     render(<VaultStatusCell {...vault} />);
 
     const badge = screen.getByTestId('badge');
-    expect(badge).toHaveTextContent('ready');
-    expect(badge.getAttribute('data-color')).toBe('success');
-  });
-
-  it('maps ERROR to critical color', () => {
-    const vault = { ...mockVaults[0]!, resourceStatus: 'ERROR' as ResourceStatus };
-
-    render(<VaultStatusCell {...vault} />);
-
-    const badge = screen.getByTestId('badge');
-    expect(badge).toHaveTextContent('error');
-    expect(badge.getAttribute('data-color')).toBe('critical');
+    expect(badge).toHaveTextContent(vault.resourceStatus);
   });
 });
