@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 export const MAX_VERSIONS_MIN_VALUE = 0;
-export const MAX_VERSIONS_MAX_VALUE = 24000;
+export const MAX_VERSIONS_MAX_VALUE = 24_000;
 
 export const useSecretMetadataSchema = () => {
   const { t } = useTranslation(['secret-manager', NAMESPACES.FORM]);
