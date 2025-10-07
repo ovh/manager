@@ -13,9 +13,7 @@ export * from './Link';
 export * from './datagrid/datagrid.component';
 export * from './datagrid/text-cell.component';
 export * from './datagrid/clipboard-cell.component';
-
-export * from './drawer/Drawer.component';
-export * from './drawer/DrawerCollapsible.component';
+export * from './drawer';
 
 export * from './guide-menu';
 
