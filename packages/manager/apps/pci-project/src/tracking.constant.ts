@@ -39,6 +39,14 @@ export const PROJECTS_TRACKING = {
   },
   PROJECT_HOME: {
     PAGE_NAME: 'project-detail',
+    CTA_ANNOUNCEMENT_BANNER: [
+      'page',
+      'button',
+      'announcement_banner_activation',
+    ],
+    CTA_DISCOVERY_BANNER: ['page', 'button', 'discovery_banner_activation'],
+    CTA_QUICK_ACCESS: ['page', 'button', 'quick_access'],
+    CTA_OTHER_ACTIONS: ['page', 'button', 'other_actions'],
   },
   CREATING: {
     PAGE_NAME: 'projects-creating',

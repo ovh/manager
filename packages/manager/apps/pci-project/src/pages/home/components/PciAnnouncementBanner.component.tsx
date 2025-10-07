@@ -1,16 +1,21 @@
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { OdsMessage, OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 const FEATURE_FLAG = 'public-cloud:pci-announcement-banner';
 
 export default function PciAnnouncementBanner() {
   const { t } = useTranslation('home');
   const { shell } = useContext(ShellContext);
+  const { trackClick } = useOvhTracking();
   const location = useLocation();
 
   const [canDisplay, setCanDisplay] = useState(false);
@@ -29,6 +34,12 @@ export default function PciAnnouncementBanner() {
   }, [availability]);
 
   const handleActivationRegionLinkClick = () => {
+    // Track the click action
+    trackClick({
+      actionType: 'action',
+      actions: PROJECTS_TRACKING.PROJECT_HOME.CTA_ANNOUNCEMENT_BANNER,
+    });
+
     // Navigate to regions activation page
     shell.navigation.navigateTo(
       'public-cloud',

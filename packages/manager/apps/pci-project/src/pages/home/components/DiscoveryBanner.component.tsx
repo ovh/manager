@@ -7,16 +7,30 @@ import {
 } from '@ovhcloud/ods-components';
 
 import { useProject, isDiscoveryProject } from '@ovh-ux/manager-pci-common';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useActivationUrl } from '@/hooks/useActivationUrl';
 import { useDiscoveryVoucher } from '@/hooks/home/useDiscoveryVoucher';
+import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 function DiscoveryBanner({ className }: { className?: string }) {
   const { t } = useTranslation('home');
   const { data: project } = useProject();
   const { goToActivation } = useActivationUrl();
+  const { trackClick } = useOvhTracking();
 
   const isDiscovery = project ? isDiscoveryProject(project) : false;
   const { data: voucherAmount } = useDiscoveryVoucher(isDiscovery);
+
+  const handleActivationClick = () => {
+    // Track the click action
+    trackClick({
+      actionType: 'action',
+      actions: PROJECTS_TRACKING.PROJECT_HOME.CTA_DISCOVERY_BANNER,
+    });
+
+    // Navigate to activation
+    goToActivation();
+  };
 
   if (!project || !isDiscovery) {
     return null;
@@ -45,7 +59,7 @@ function DiscoveryBanner({ className }: { className?: string }) {
           </div>
           <OdsButton
             size={ODS_BUTTON_SIZE.md}
-            onClick={goToActivation}
+            onClick={handleActivationClick}
             label={t('pci_projects_home_banner_discovery_cta')}
             className="mr-4"
           />
