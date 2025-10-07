@@ -14,7 +14,7 @@
   "billing_autorenew_service_status_automatic": "Automatyczne odnowienie",
   "billing_autorenew_service_status_manual": "Odnowienie ręczne",
   "billing_autorenew_service_status_manualPayment": "Odnowienie ręczne",
-  "billing_autorenew_service_status_pending_debt": "Płatność do uregulowania",
+  "billing_autorenew_service_status_unpaid": "Płatność do uregulowania",
   "billing_autorenew_service_status_delete_at_expiration": "Planowane zakończenie usługi",
   "billing_autorenew_service_status_expired": "Anulowany",
   "billing_autorenew_service_expiration_weeks": "Usługi wygasające w ciągu tygodnia",
@@ -165,14 +165,9 @@
   "billing_autorenew_service_activate_alert_renew2016": "Ta wiadomość nie dotyczy usług Bare Metal i VPS.",
   "billing_autorenew_service_frequency": "Częstotliwość odnawiania",
   "billing_autorenew_service_none": "Brak",
-  "billing_autorenew_service_every_1_month": "Co miesiąc",
-  "billing_autorenew_service_every_3_month": "Co 3 miesiące",
-  "billing_autorenew_service_every_6_month": "Co 6 miesięcy",
-  "billing_autorenew_service_every_12_month": "Co rok",
-  "billing_autorenew_engagement_none": "Bez umowy terminowej",
-  "billing_autorenew_service_status_unpaid": "Płatność do uregulowania",
   "billing_autorenew_service_every_month": "Co miesiąc",
   "billing_autorenew_service_every_x_months": "Co {{months}} m-ce / m-cy",
   "billing_autorenew_service_every_year": "Co rok",
-  "billing_autorenew_service_every_x_years": "Co {{years}} lat/a"
+  "billing_autorenew_service_every_x_years": "Co {{years}} lat/a",
+  "billing_autorenew_engagement_none": "Bez umowy terminowej"
 }

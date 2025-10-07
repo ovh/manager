@@ -14,7 +14,7 @@
   "billing_autorenew_service_status_automatic": "Rinnovo automatico",
   "billing_autorenew_service_status_manual": "Rinnovo manuale",
   "billing_autorenew_service_status_manualPayment": "Rinnovo manuale",
-  "billing_autorenew_service_status_pending_debt": "Fatture da pagare",
+  "billing_autorenew_service_status_unpaid": "Fatture da pagare",
   "billing_autorenew_service_status_delete_at_expiration": "Disattivazione programmata",
   "billing_autorenew_service_status_expired": "Disattivato",
   "billing_autorenew_service_expiration_weeks": "In scadenza tra una settimana",
@@ -165,14 +165,9 @@
   "billing_autorenew_service_activate_alert_renew2016": "Questo messaggio non si applica ai servizi Bare Metal e VPS.",
   "billing_autorenew_service_frequency": "Frequenza di rinnovo",
   "billing_autorenew_service_none": "Nessuna",
-  "billing_autorenew_service_every_1_month": "Ogni mese",
-  "billing_autorenew_service_every_3_month": "Ogni 3 mesi",
-  "billing_autorenew_service_every_6_month": "Ogni 6 mesi",
-  "billing_autorenew_service_every_12_month": "Ogni anno",
-  "billing_autorenew_engagement_none": "Senza impegno contrattuale",
-  "billing_autorenew_service_status_unpaid": "Fatture da pagare",
   "billing_autorenew_service_every_month": "Ogni mese",
   "billing_autorenew_service_every_x_months": "Ogni {{ months }} mesi",
   "billing_autorenew_service_every_year": "Ogni anno",
-  "billing_autorenew_service_every_x_years": "Ogni {{ years }} anni"
+  "billing_autorenew_service_every_x_years": "Ogni {{ years }} anni",
+  "billing_autorenew_engagement_none": "Senza impegno contrattuale"
 }
