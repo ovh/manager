@@ -97,6 +97,15 @@ export default [
                 ),
               },
               {
+                path: 'import-policy/:userId',
+                id: 'users.import-policy',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/users/import-policy/ImportPolicy.modal'
+                  ),
+                ),
+              },
+              {
                 path: 'enable/:userId',
                 id: 'users.enable',
                 ...lazyLoadRoute(() =>

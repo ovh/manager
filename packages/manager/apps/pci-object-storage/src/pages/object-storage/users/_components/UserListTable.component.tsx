@@ -40,7 +40,7 @@ export default function UsersList({ users }: UsersListProps) {
       navigate(`./enable/${us.id}`);
     },
     onImportUserAccessClicked: (us: UserWithS3Credentials) => {
-      console.log(us);
+      navigate(`./import-policy/${us.id}`);
     },
     onDownloadUserAccessClicked: (us: UserWithS3Credentials) => {
       downloadPolicy(us);

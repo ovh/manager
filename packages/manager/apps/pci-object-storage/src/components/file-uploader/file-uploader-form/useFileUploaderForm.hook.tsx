@@ -5,10 +5,12 @@ import { useTranslation } from 'react-i18next';
 
 export interface UseFileUploaderFormProps {
   allowMultipleFile: boolean;
+  jsonFile?: boolean;
 }
 
 export const useFileUploarderForm = ({
   allowMultipleFile,
+  jsonFile,
 }: UseFileUploaderFormProps) => {
   const { t } = useTranslation('components/file-uploader');
   const schema = z
@@ -16,7 +18,7 @@ export const useFileUploarderForm = ({
       prefix: z.string().optional(),
       files: z
         .array(z.instanceof(File))
-        .min(1, { message: 'filesRequiredError' }),
+        .min(1, { message: t('errorFileRequired') }),
     })
     .refine(
       (data) => {
@@ -36,6 +38,22 @@ export const useFileUploarderForm = ({
       {
         message: t('prefixRequiredError'),
         path: ['prefix'],
+      },
+    )
+    .refine(
+      (data) => {
+        if (jsonFile) {
+          return data.files.every(
+            (file) =>
+              file.type === 'application/json' &&
+              file.name.toLowerCase().endsWith('.json'),
+          );
+        }
+        return true;
+      },
+      {
+        message: t('errorJsonFile'),
+        path: ['files'],
       },
     );
 
