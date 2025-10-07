@@ -175,11 +175,10 @@ yarn muk-cli --help
 manager-muk-cli/
 ├─ src/
 │  ├─ commands/
-│  │  ├─ checkVersions.js        # Checks npm versions of ODS packages
-│  │  ├─ checkComponents.js      # Compares ODS vs Manager component lists
-│  │  ├─ updateVersion.js        # Updates ODS versions in package.json
-│  │  ├─ updateComponents.js     # Creates missing component folders
-│  │  └─ update.js               # Combined updater (runs both steps)
+│  │  ├─ check-versions.js        # Checks npm versions of ODS packages
+│  │  ├─ check-components.js      # Compares ODS vs Manager component lists
+│  │  ├─ update-version.js        # Updates ODS versions in package.json
+│  │  └─ update-components.js     # Creates missing component folders
 │  ├─ config/
 │  │  └─ muk-config.js           # Central constants: paths, URLs, packages
 │  ├─ utils/
