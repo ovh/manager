@@ -17,7 +17,6 @@ const DashboardPage = React.lazy(() => import('@/pages/dashboard/Dashboard.page'
 const GeneralInformationPage = React.lazy(
   () => import('@/pages/dashboard/general-information/GeneralInformation.page'),
 );
-const HelpPage = React.lazy(() => import('@/pages/dashboard/help/Help.page'));
 
 const ListingPage = React.lazy(() => import('@/pages/listing/Listing.page'));
 
@@ -50,17 +49,6 @@ export default (
           handle={{
             tracking: {
               pageName: 'dashboard',
-              pageType: PageType.dashboard,
-            },
-          }}
-        />
-        {/* Help tab */}
-        <Route
-          path={subRoutes.help}
-          Component={HelpPage}
-          handle={{
-            tracking: {
-              pageName: 'help',
               pageType: PageType.dashboard,
             },
           }}
