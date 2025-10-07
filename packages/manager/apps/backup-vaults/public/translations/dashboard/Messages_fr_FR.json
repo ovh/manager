@@ -15,5 +15,6 @@
     "messageRequired": "Le message est obligatoire."
   },
   "general-information": "Informations générales",
-  "help": "Aide"
+  "help": "Aide",
+  "type_billing": "Type de facturation"
 }

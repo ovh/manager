@@ -8,7 +8,8 @@
     },
     "outDir": "dist",
     "resolveJsonModule": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "allowSyntheticDefaultImports": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist", "types", "src/__tests__"]
