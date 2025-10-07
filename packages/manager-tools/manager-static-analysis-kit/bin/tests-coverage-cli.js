@@ -8,16 +8,16 @@ import {
   generateTestsCoverageHtml,
 } from '../dist/adapters/tests-coverage/helpers/tests-coverage-analysis-helper.js';
 import {
-  outputRootDir,
   rootDir,
   testsCoverageCombinedHtmlReportName,
   testsCoverageCombinedJsonReportName,
+  testsCoverageOutputRootDir,
   testsCoverageReportsRootDirName,
 } from './cli-path-config.js';
 import { parseCliTargets } from './utils/args-parse-utils.js';
 import { logError, logInfo, logWarn } from './utils/log-utils.js';
-import { runAnalysis } from './utils/runner-utils.js';
-import { buildTurboFilters, runTurboBuild, runTurboTests } from './utils/turbo-utils.js';
+import { runModulesAnalysis } from './utils/runner-utils.js';
+import { runTurboBuild, runTurboTests } from './utils/turbo-utils.js';
 
 /**
  * Locate common coverage artifacts inside an app directory.
@@ -62,7 +62,11 @@ function findCoverageFiles(appDir) {
  */
 function harvestAppCoverage(appDir, appShortName) {
   const { summary, lcov } = findCoverageFiles(appDir);
-  const outDir = path.join(outputRootDir, testsCoverageReportsRootDirName, appShortName);
+  const outDir = path.join(
+    testsCoverageOutputRootDir,
+    testsCoverageReportsRootDirName,
+    appShortName,
+  );
   fs.mkdirSync(outDir, { recursive: true });
 
   if (!summary) {
@@ -88,32 +92,37 @@ function harvestAppCoverage(appDir, appShortName) {
  */
 function main() {
   try {
-    const { appFolders, packageNames, analysisDir } = parseCliTargets();
-    const turboFilters = buildTurboFilters({ analysisDir, appFolders, packageNames });
+    const modules = parseCliTargets();
 
     // 1) Build all selected targets (best-effort)
-    runTurboBuild(rootDir, turboFilters, ['--continue']);
+    runTurboBuild(
+      rootDir,
+      modules.map((item) => item.packageName),
+      ['--continue'],
+    );
 
     // 2) Run tests with coverage; keep args minimal for Vitest/Jest compatibility
     //    (Projects should already be configured to emit json-summary/lcov.)
-    runTurboTests(rootDir, turboFilters, [
-      '--continue', // turbo: keep going even if some tests fail
-      '--', // pass the rest to the test runner
-      '--coverage',
-      '--coverage.reportOnFailure',
-      '--coverage.reporter',
-      'json-summary',
-      '--coverage.reporter',
-      'lcov',
-      '--coverage.reporter',
-      'html',
-    ]);
+    runTurboTests(
+      rootDir,
+      modules.map((item) => item.packageName),
+      [
+        '--continue', // turbo: keep going even if some tests fail
+        '--', // pass the rest to the test runner
+        '--coverage',
+        '--coverage.reportOnFailure',
+        '--coverage.reporter',
+        'json-summary',
+        '--coverage.reporter',
+        'lcov',
+        '--coverage.reporter',
+        'html',
+      ],
+    );
 
     // 3) Per-app harvest + combined reports
-    runAnalysis({
-      analysisDir,
-      folders: appFolders,
-      requireReact: false,
+    runModulesAnalysis({
+      modules,
       binaryLabel: 'Tests coverage',
       analysisRunner: harvestAppCoverage,
       reportsRootDirName: testsCoverageReportsRootDirName,
@@ -123,9 +132,9 @@ function main() {
       generateHtmlFn: (combined) =>
         generateTestsCoverageHtml(
           combined,
-          path.join(outputRootDir, testsCoverageReportsRootDirName),
+          path.join(testsCoverageOutputRootDir, testsCoverageReportsRootDirName),
         ),
-      outputRootDir,
+      outputRootDir: testsCoverageOutputRootDir,
     });
   } catch (err) {
     logError(`Fatal error: ${err.stack || err.message}`);

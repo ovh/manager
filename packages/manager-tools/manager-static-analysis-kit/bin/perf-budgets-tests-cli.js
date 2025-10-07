@@ -5,8 +5,6 @@ import { logError, logInfo } from './utils/log-utils.js';
 
 // Define the set of validation test cases
 const cases = [
-  // This case take too much time since it builds all apps, use it only for debug
-  // { name: 'Auto-discovery (all apps)', cmd: 'yarn manager-perf-budgets', expect: 0 },
   { name: 'Single app (zimbra)', cmd: 'yarn manager-perf-budgets --app zimbra', expect: 0 },
   {
     name: 'Multiple apps (container,zimbra)',
@@ -24,13 +22,48 @@ const cases = [
     expect: 0,
   },
   {
+    name: 'Single library static path by folder name (manager-react-components)',
+    cmd: 'yarn manager-perf-budgets --library manager-react-components',
+    expect: 0,
+  },
+  {
+    name: 'Single library static path by package name (manager-react-components)',
+    cmd: 'yarn manager-perf-budgets --library @ovh-ux/manager-react-components',
+    expect: 0,
+  },
+  {
+    name: 'Single library dynamic path by folder name (shell-client)',
+    cmd: 'yarn manager-perf-budgets --library shell-client',
+    expect: 0,
+  },
+  {
+    name: 'Single library static path by package name (shell-client)',
+    cmd: 'yarn manager-perf-budgets --library @ovh-ux/manager-react-shell-client',
+    expect: 0,
+  },
+  {
+    name: 'Multiple libraries by folder names (manager-wiki,manager-react-components,shell-client,logs-to-customer)',
+    cmd: 'yarn manager-perf-budgets --libraries manager-wiki,manager-react-components,shell-client,logs-to-customer',
+    expect: 0,
+  },
+  {
+    name: 'Multiple libraries by package names (manager-wiki,manager-react-components,shell-client,logs-to-customer)',
+    cmd: 'yarn manager-perf-budgets --libraries @ovh-ux/manager-wiki,@ovh-ux/manager-react-components,@ovh-ux/manager-react-shell-client,@ovh-ux/logs-to-customer',
+    expect: 0,
+  },
+  {
     name: 'Mixed valid+invalid apps',
     cmd: 'yarn manager-perf-budgets --apps zimbra,unknown-app,container',
     expect: 0,
   },
   {
     name: 'Mixed valid+invalid packages',
-    cmd: 'yarn manager-perf-budgets --packages @ovh-ux/manager-zimbra-app,@ovh-ux/manager-ghost-app',
+    cmd: 'yarn manager-perf-budgets --packages @ovh-ux/manager-wiki,manager-react-components,@ovh-ux/manager-ghost-app',
+    expect: 0,
+  },
+  {
+    name: 'Mixed valid+invalid libraries',
+    cmd: 'yarn manager-perf-budgets --libraries @ovh-ux/manager-zimbra-app,@ovh-ux/manager-ghost-app',
     expect: 0,
   },
   {

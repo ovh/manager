@@ -10,13 +10,13 @@ import {
 import {
   codeDupCombinedHtmlReportName,
   codeDupCombinedJsonReportName,
+  codeDupOutputRootDir,
   codeDupReportsRootDirName,
   jscpdBinPath,
-  outputRootDir,
 } from './cli-path-config.js';
 import { buildCodeDuplicationArgs, parseCliTargets } from './utils/args-parse-utils.js';
 import { logError, logInfo, logWarn } from './utils/log-utils.js';
-import { ensureBinExists, runAnalysis, runCommand } from './utils/runner-utils.js';
+import { ensureBinExists, runCommand, runModulesAnalysis } from './utils/runner-utils.js';
 
 /**
  * Run `jscpd` code duplication analysis for a single app.
@@ -27,16 +27,17 @@ import { ensureBinExists, runAnalysis, runCommand } from './utils/runner-utils.j
  */
 function runAppCodeDuplication(appDir, appShortName) {
   try {
-    const absoluteOutputDir = path.join(outputRootDir, codeDupReportsRootDirName, appShortName);
+    const absoluteOutputDir = path.join(
+      codeDupOutputRootDir,
+      codeDupReportsRootDirName,
+      appShortName,
+    );
     fs.mkdirSync(absoluteOutputDir, { recursive: true });
-
-    // Relative output path from the app dir (keeps paths clean inside HTML reports)
-    const relativeOutputDir = path.relative(appDir, absoluteOutputDir);
 
     logInfo(`Running jscpd for ${appShortName} → ${absoluteOutputDir}`);
 
-    const args = [...buildCodeDuplicationArgs(relativeOutputDir), appDir];
-    const ok = runCommand(jscpdBinPath, args, appDir);
+    const args = [...buildCodeDuplicationArgs(absoluteOutputDir), appDir];
+    const ok = runCommand(jscpdBinPath, args, '.');
 
     // Validate expected reports
     const jsonReport = path.join(absoluteOutputDir, 'jscpd-report.json');
@@ -71,12 +72,10 @@ function main() {
   try {
     ensureBinExists(jscpdBinPath, 'jscpd');
 
-    const { appFolders, analysisDir } = parseCliTargets();
+    const modules = parseCliTargets();
 
-    runAnalysis({
-      analysisDir,
-      folders: appFolders,
-      requireReact: true,
+    runModulesAnalysis({
+      modules,
       binaryLabel: 'Code duplication',
       analysisRunner: runAppCodeDuplication,
       reportsRootDirName: codeDupReportsRootDirName,
@@ -84,7 +83,7 @@ function main() {
       combinedHtml: codeDupCombinedHtmlReportName,
       collectFn: collectCodeDuplication,
       generateHtmlFn: generateCodeDuplicationHtml,
-      outputRootDir,
+      outputRootDir: codeDupOutputRootDir,
     });
   } catch (err) {
     logError(`Fatal error: ${err.stack || err.message}`);

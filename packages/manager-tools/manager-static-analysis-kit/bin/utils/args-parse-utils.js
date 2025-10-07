@@ -1,186 +1,106 @@
-import fs from 'node:fs';
-import path from 'node:path';
 import process from 'node:process';
 
 import { codeDuplicationConfig } from '../../dist/configs/code-duplication-config.js';
 import { typesCoverageConfig } from '../../dist/configs/types-coverage-config.js';
-import { appsDir, libraryDir } from '../cli-path-config.js';
-import { logError, logInfo, logWarn } from './log-utils.js';
-import {
-  extractAppFolderFromPackageName,
-  extractLibraryFolderFromPackageName,
-  isExistInLibs,
-  isReactModule,
-} from './module-utils.js';
+import { logError, logInfo } from './log-utils.js';
+import { getModule } from './module-utils.js';
 
 /**
- * Parse CLI arguments for `--apps` or `--app` flags.
+ * Parse CLI arguments to resolve target modules (apps, packages, or libraries).
  *
- * Accepts a comma-separated list of app folder names. Example:
- *   `--apps zimbra,web`
+ * This function looks for one of the supported flags in `process.argv`:
+ * - `--apps` or `--app`
+ * - `--packages` or `--package`
+ * - `--libraries` or `--library`
  *
- * @returns {{appFolders: string[], packageNames: string[]} | null}
- *   Object containing valid app folders and an empty `packageNames` array,
- *   or null if no `--apps`/`--app` flag is provided.
- */
-function parseAppsArg() {
-  const appsArg = process.argv.find((arg) => arg === '--apps' || arg === '--app');
-  if (!appsArg) return null;
-
-  const index = process.argv.indexOf(appsArg);
-  const rawValue = process.argv[index + 1] || '';
-  const appFolders = rawValue
-    .split(',')
-    .map((n) => n.trim())
-    .filter(Boolean);
-
-  const validFolders = appFolders.filter((folder) => {
-    if (!fs.existsSync(path.join(appsDir, folder))) {
-      logError(`❌ App not found: ${folder} → skipping`);
-      return false;
-    }
-    return true;
-  });
-
-  logInfo(`Running in apps mode for: ${validFolders.join(', ')}`);
-  return { analysisDir: appsDir, appFolders: validFolders, packageNames: [] };
-}
-
-/**
- * Parse CLI arguments for `--packages` or `--package` flags.
+ * Each flag must be followed by a comma-separated list of module identifiers.
+ * Each identifier is resolved using {@link getModule}, which returns a module descriptor.
  *
- * Accepts a comma-separated list of **application package names**.
- * Example:
- *   `--packages @ovh-ux/manager-zimbra-app,@ovh-ux/manager-web-app`
+ * For every valid pattern:
+ * - The corresponding module descriptor (containing `fullPath`, `shortPath`, and `packageName`)
+ *   is added to the result list.
+ * - If a module cannot be resolved, an error is logged and it is skipped.
  *
- * Each package name is mapped to an app folder under `appsDir`.
- * If the folder does not exist, it is skipped with an error.
+ * @typedef {Object} ModuleDescriptor
+ * @property {string} fullPath - Absolute path to the module directory.
+ * @property {string} shortPath - Folder name (short identifier) of the module.
+ * @property {string} packageName - Full npm package name (e.g. "@ovh-ux/manager-core-shell").
  *
- * @returns {{appFolders: string[], packageNames: string[]}|null}
- *   Object containing resolved app folder names and the original package names,
- *   or null if no `--packages`/`--package` flag is provided.
+ * @returns {ModuleDescriptor[] | null}
+ * Array of resolved module descriptors, or `null` if no supported CLI flags were provided.
  *
  * @example
- * // CLI: --packages @ovh-ux/manager-zimbra-app
- * parsePackagesArg("/workspace/manager/apps");
- * // → { appFolders: ["zimbra"], packageNames: ["@ovh-ux/manager-zimbra-app"] }
- */
-export function parsePackagesArg() {
-  const packagesArg = process.argv.find((arg) => arg === '--packages' || arg === '--package');
-  if (!packagesArg) return null;
-
-  const index = process.argv.indexOf(packagesArg);
-  const rawValue = process.argv[index + 1] || '';
-  const packageNames = rawValue
-    .split(',')
-    .map((n) => n.trim())
-    .filter(Boolean);
-
-  const mappedFolders = [];
-
-  for (const pkgName of packageNames) {
-    const folder = extractAppFolderFromPackageName(pkgName);
-    if (folder && fs.existsSync(path.join(appsDir, folder))) {
-      mappedFolders.push(folder);
-    } else {
-      logError(`❌ Package ${pkgName} → app folder ${folder} not found, skipping`);
-    }
-  }
-
-  logInfo(
-    `Running in packages mode for: ${packageNames.join(', ')} → apps: ${mappedFolders.join(', ')}`,
-  );
-
-  return { analysisDir: appsDir, appFolders: mappedFolders, packageNames };
-}
-
-/**
- * Parse CLI arguments for `--libraries` or `--library` flags.
- *
- * Accepts a comma-separated list of **library package names**.
- * Example:
- *   `--libraries @ovh-ux/manager-core-shell,@ovh-ux/manager-react-components`
- *
- * Each library name is mapped to its corresponding folder under one
- * of the configured `librariesNames`. If the folder does not exist,
- * it is skipped with an error.
- *
- * @returns {{appFolders: string[], packageNames: string[]}|null}
- *   Object containing resolved library folder names and the original library names,
- *   or null if no `--libraries`/`--library` flag is provided.
+ * // Example 1: Apps mode
+ * // CLI: --apps zimbra,web
+ * parseArgs();
+ * // → [
+ * //   { fullPath: "/.../manager/apps/zimbra", shortPath: "zimbra", packageName: "@ovh-ux/manager-zimbra-app" },
+ * //   { fullPath: "/.../manager/apps/web", shortPath: "web", packageName: "@ovh-ux/manager-web-app" }
+ * // ]
  *
  * @example
- * // CLI: --libraries @ovh-ux/manager-core-shell
- * parseLibrariesArg();
- * // → { libFolders: ["core-shell"], packageNames: ["@ovh-ux/manager-core-shell"] }
+ * // Example 2: Libraries mode
+ * // CLI: --libraries core-shell,react-components
+ * parseArgs();
+ * // → [
+ * //   { fullPath: "/.../packages/manager/core/core-shell", shortPath: "core-shell", packageName: "@ovh-ux/manager-core-shell" },
+ * //   { fullPath: "/.../packages/components/react-components", shortPath: "react-components", packageName: "@ovh-ux/manager-react-components" }
+ * // ]
  */
-export function parseLibrariesArg() {
+export function parseArgs() {
   const libsArg = process.argv.find((arg) => arg === '--libraries' || arg === '--library');
-  if (!libsArg) return null;
+  const packagesArg = process.argv.find((arg) => arg === '--packages' || arg === '--package');
+  const appsArg = process.argv.find((arg) => arg === '--apps' || arg === '--app');
 
-  const index = process.argv.indexOf(libsArg);
+  const moduleModeArgs = libsArg || packagesArg || appsArg;
+
+  if (!moduleModeArgs) return null;
+
+  const index = process.argv.indexOf(moduleModeArgs);
   const rawValue = process.argv[index + 1] || '';
-  const libraryNames = rawValue
+
+  const modulePatterns = rawValue
     .split(',')
     .map((n) => n.trim())
     .filter(Boolean);
 
-  const mappedFolders = [];
+  /** @type {ModuleDescriptor[]} */
+  const modules = [];
 
-  for (const libName of libraryNames) {
-    const folder = extractLibraryFolderFromPackageName(libName);
-
-    if (folder && isExistInLibs(folder) && fs.existsSync(path.join(libraryDir, folder))) {
-      mappedFolders.push(folder);
+  for (const modulePattern of modulePatterns) {
+    const discoveredModule = getModule(modulePattern, !!libsArg);
+    if (discoveredModule) {
+      modules.push(discoveredModule);
     } else {
-      logError(`❌ Library ${libName} → folder ${folder} not found in librariesDirs, skipping`);
+      logError(
+        `❌ Module ${modulePattern} → folder ${discoveredModule?.shortPath || 'unknown'} not found, skipping`,
+      );
     }
   }
 
   logInfo(
-    `Running in libraries mode for: ${libraryNames.join(', ')} → folders: ${mappedFolders.join(', ')}`,
+    `patterns ${modulePatterns.join(', ')} → folders: ${modules
+      .map((item) => item.fullPath)
+      .join(', ')}`,
   );
 
-  return { analysisDir: libraryDir, appFolders: mappedFolders, packageNames: libraryNames };
+  return modules;
 }
 
 /**
- * Discover all React apps in the apps directory when no CLI flags are provided.
+ * Alias for {@link parseArgs}, used for semantic clarity in CLI entrypoints.
  *
- * Only apps that contain a `package.json` file and are identified as React apps
- * (via `isReactApp`) will be included.
+ * This function simply delegates to {@link parseArgs} and returns the same result.
  *
- * @returns {{appFolders: string[], packageNames: string[]}}
- *   Object containing discovered app folders and an empty `packageNames` array.
- */
-function discoverApps() {
-  const discoveredAppFolders = fs.readdirSync(appsDir).filter((dir) => {
-    const pkgPath = path.join(appsDir, dir, 'package.json');
-    return fs.existsSync(pkgPath) && isReactModule(pkgPath);
-  });
-
-  if (discoveredAppFolders.length === 0) {
-    logWarn('⚠️ No React apps found to analyze.');
-    return { appFolders: [], packageNames: [] };
-  }
-
-  logInfo(`Running in auto-discovery mode (${discoveredAppFolders.length} apps).`);
-  return { analysisDir: appsDir, appFolders: discoveredAppFolders, packageNames: [] };
-}
-
-/**
- * Parse CLI arguments to resolve which apps or packages should be analyzed.
+ * @returns {ModuleDescriptor[] | null}
+ * Array of resolved module descriptors, or `null` if no valid flags were provided.
  *
- * Priority order:
- *  1. Explicit `--apps` flag
- *  2. Explicit `--packages` flag
- *  3. Auto-discovery fallback
- *
- * @returns {{appFolders: string[], packageNames: string[]}}
- *   Object containing app folder names and package names for analysis.
+ * @example
+ * parseCliTargets();
+ * // Equivalent to parseArgs(), typically used in CLI commands.
  */
 export function parseCliTargets() {
-  return parseAppsArg() || parsePackagesArg() || parseLibrariesArg() || discoverApps();
+  return parseArgs();
 }
 
 /**
