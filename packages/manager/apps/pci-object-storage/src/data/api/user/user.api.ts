@@ -76,3 +76,17 @@ export const deleteS3Credentials = async ({
   apiClient.v6.delete(
     `/cloud/project/${projectId}/user/${userId}/s3Credentials/${accessKey}`,
   );
+
+export interface PolicyProps extends UserProps {
+  policyData: storages.PolicyRaw;
+}
+
+export const addUserPolicy = async ({
+  projectId,
+  userId,
+  policyData,
+}: PolicyProps) =>
+  apiClient.v6.post(
+    `/cloud/project/${projectId}/user/${userId}/policy`,
+    policyData,
+  );
