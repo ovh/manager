@@ -65,49 +65,15 @@ describe('SecretMetadataSchema test suite', () => {
   });
 
   describe('deactivateVersionAfter field validation', () => {
-    it('should return error for invalid duration format', () => {
+    it.each<[{ desc: string; value: string }]>([
+      [{ desc: 'invalid duration format', value: 'invalid-duration' }],
+      [{ desc: 'duration with invalid units', value: '30x' }],
+      [{ desc: 'duration with no unit', value: '30' }],
+      [{ desc: 'empty string', value: '' }],
+    ])('should return error for %s', ({ value }) => {
       const invalidMetadata = {
         ...MOCK_METADATA_VALID,
-        deactivateVersionAfter: 'invalid-duration',
-      };
-      const result = getSchemaParsingResult(invalidMetadata);
-      expect(result.success).toBe(false);
-      expect(result.error.issues[0].path).toEqual(['deactivateVersionAfter']);
-      expect(result.error.issues[0].message).toBe(
-        labels.secretManager.error_invalid_duration,
-      );
-    });
-
-    it('should return error for duration with invalid units', () => {
-      const invalidMetadata = {
-        ...MOCK_METADATA_VALID,
-        deactivateVersionAfter: '30x',
-      };
-      const result = getSchemaParsingResult(invalidMetadata);
-      expect(result.success).toBe(false);
-      expect(result.error.issues[0].path).toEqual(['deactivateVersionAfter']);
-      expect(result.error.issues[0].message).toBe(
-        labels.secretManager.error_invalid_duration,
-      );
-    });
-
-    it('should return error for duration with no unit', () => {
-      const invalidMetadata = {
-        ...MOCK_METADATA_VALID,
-        deactivateVersionAfter: '30',
-      };
-      const result = getSchemaParsingResult(invalidMetadata);
-      expect(result.success).toBe(false);
-      expect(result.error.issues[0].path).toEqual(['deactivateVersionAfter']);
-      expect(result.error.issues[0].message).toBe(
-        labels.secretManager.error_invalid_duration,
-      );
-    });
-
-    it('should return error for empty string', () => {
-      const invalidMetadata = {
-        ...MOCK_METADATA_VALID,
-        deactivateVersionAfter: '',
+        deactivateVersionAfter: value,
       };
       const result = getSchemaParsingResult(invalidMetadata);
       expect(result.success).toBe(false);
