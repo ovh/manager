@@ -123,7 +123,7 @@ function ContactMeanActionMenu({ contactMean }: { contactMean: ContactMean }) {
         {
           id: 6,
           label: t('delete', { ns: NAMESPACES.ACTIONS }),
-          onClick: () => deleteContactMean(),
+          onClick: () => navigate(urls.ContactsDeleteTo(contactMean.id)),
           iamActions: ['account:apiovh:notification/contactMean/delete'],
           urn: accountUrn,
         },
