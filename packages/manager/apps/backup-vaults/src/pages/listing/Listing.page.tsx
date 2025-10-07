@@ -1,12 +1,11 @@
 import React from 'react';
 import { Suspense } from 'react';
 
+import { Link } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import { OdsButton } from '@ovhcloud/ods-components/react';
-import { Button, Link } from '@ovhcloud/ods-react';
 
 import { BaseLayout, Breadcrumb, Datagrid } from '@ovh-ux/manager-react-components';
 
@@ -33,15 +32,15 @@ export default function ListingPage() {
         <Datagrid
           topbar={
             <div className="flex justify-between" role="toolbar" aria-label={t('more_action')}>
-              <Link className="block" href="/#/">
-                <Button size={ODS_BUTTON_SIZE.md}>{t('listing:order_vault')}</Button>
+              <Link className="block" to="/#/">
+                <OdsButton label={t('listing:order_vault')}></OdsButton>
               </Link>
               <OdsButton
                 icon="refresh"
                 color="primary"
                 onClick={void reloadDatagrid}
                 isLoading={isLoading}
-                data-arialabel="Refresh"
+                data-arialabel="Refresh" // TODO add translation
                 label=""
               />
             </div>
