@@ -5,7 +5,6 @@ import {
   DatagridProps,
   DatagridColumn,
 } from '@ovh-ux/manager-react-components';
-import KmsActionMenu from '@/components/menu/KmsActionMenu.component';
 import {
   DatagridCellId,
   DatagridCellName,
@@ -29,15 +28,7 @@ type OkmsDatagridProps = Omit<
 };
 
 const columnsList: Record<OkmsDatagridType, string[]> = {
-  kms: [
-    'name',
-    'id',
-    'kmip_count',
-    'servicekey_count',
-    'region',
-    'status',
-    'action',
-  ],
+  kms: ['name', 'id', 'kmip_count', 'servicekey_count', 'region', 'status'],
   'secret-manager': ['name', 'id', 'secret_count', 'status'],
 };
 
@@ -83,12 +74,6 @@ export const OkmsDatagrid = ({
       id: 'status',
       cell: DatagridCellStatus,
       label: t('key_management_service_listing_status_cell'),
-    },
-    {
-      id: 'action',
-      cell: KmsActionMenu,
-      isSortable: false,
-      label: '',
     },
   ];
 
