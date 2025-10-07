@@ -14,6 +14,9 @@ const EditContactPage = lazy(() => import('@/pages/contacts/edit/Edit.page'));
 const ValidateContactPage = lazy(() =>
   import('@/pages/contacts/validate/Validate.page'),
 );
+const DeleteContactPage = lazy(() =>
+  import('@/pages/contacts/delete/Delete.page'),
+);
 const CommunicationsPage = lazy(() =>
   import('@/pages/communications/Communications.page'),
 );
@@ -85,6 +88,16 @@ export default (
           handle={{
             tracking: {
               pageName: 'contacts::validate',
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          path={urls.contactsDelete}
+          Component={DeleteContactPage}
+          handle={{
+            tracking: {
+              pageName: 'contacts::delete',
               pageType: PageType.popup,
             },
           }}
