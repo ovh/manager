@@ -10,16 +10,16 @@ import {
 import { bundleAnalysisConfig } from '../dist/configs/bundle-analysis-config.js';
 import {
   bundleAnalyzerBinPath,
-  outputRootDir,
   perfBudgetCombinedHtmlReportName,
   perfBudgetCombinedJsonReportName,
+  perfBudgetOutputRootDir,
   perfBudgetsReportDirName,
   rootDir,
 } from './cli-path-config.js';
 import { parseCliTargets } from './utils/args-parse-utils.js';
 import { logError, logInfo, logWarn } from './utils/log-utils.js';
-import { ensureBinExists, runAnalysis, runCommand } from './utils/runner-utils.js';
-import { buildTurboFilters, runTurboBuild } from './utils/turbo-utils.js';
+import { ensureBinExists, runCommand, runModulesAnalysis } from './utils/runner-utils.js';
+import { runTurboBuild } from './utils/turbo-utils.js';
 
 /**
  * Run vite-bundle-analyzer for a given mode (html or json).
@@ -33,7 +33,7 @@ function runAppBundleAnalyzer(appDir, appShortName, mode) {
   const reportFile = `${bundleAnalysisConfig?.reportFile || 'bundle-report'}${
     mode === 'json' ? '.json' : '.html'
   }`;
-  const outputDir = path.join(outputRootDir, perfBudgetsReportDirName, appShortName);
+  const outputDir = path.join(perfBudgetOutputRootDir, perfBudgetsReportDirName, appShortName);
   fs.mkdirSync(outputDir, { recursive: true });
 
   logInfo(`Running bundle analyzer (${mode}) for ${appShortName} → ${outputDir}`);
@@ -90,17 +90,18 @@ function main() {
   try {
     ensureBinExists(bundleAnalyzerBinPath, 'vite-bundle-analyzer');
 
-    const { appFolders, packageNames, analysisDir } = parseCliTargets();
-    const turboFilters = buildTurboFilters({ analysisDir, appFolders, packageNames });
+    const modules = parseCliTargets();
 
     // Step 1: build
-    runTurboBuild(rootDir, turboFilters, ['--continue']);
+    runTurboBuild(
+      rootDir,
+      modules.map((item) => item.packageName),
+      ['--continue'],
+    );
 
-    // Step 2: analyze apps + combined
-    runAnalysis({
-      analysisDir,
-      folders: appFolders,
-      requireReact: false,
+    // Step 2: analyze
+    runModulesAnalysis({
+      modules,
       binaryLabel: 'Perf budgets',
       analysisRunner: runAppPerfBudgets,
       reportsRootDirName: perfBudgetsReportDirName,
@@ -108,7 +109,7 @@ function main() {
       combinedHtml: perfBudgetCombinedHtmlReportName,
       collectFn: collectPerfBudgets,
       generateHtmlFn: generatePerfBudgetsHtml,
-      outputRootDir,
+      outputRootDir: perfBudgetOutputRootDir,
     });
   } catch (err) {
     logError(`Fatal error: ${err.stack || err.message}`);
