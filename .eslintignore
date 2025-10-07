@@ -1,5 +1,7 @@
 dist
 node_modules
+coverage
+.type-coverage
 packages/manager/core/generator/app/templates
 packages/components/ovh-shell
 www
