@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.25.0...@ovh-ux/manager-cloud-connect@1.26.0) (2025-10-07)
+
+
+### Features
+
+* **dedicated.cloud-connect:** update log guide links ([019cbbb](https://github.com/ovh/manager/commit/019cbbb1e0df0c1e4ca07f332ee9440bfd3c817a)), closes [#MAOBS-41](https://github.com/ovh/manager/issues/MAOBS-41)
+
+
+
+
+
 # [1.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.24.3...@ovh-ux/manager-cloud-connect@1.25.0) (2025-09-01)
 
 
