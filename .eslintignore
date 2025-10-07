@@ -45,3 +45,4 @@ packages/manager/apps/web-domains
 packages/manager/apps/web-hosting
 packages/manager/apps/web-office
 packages/manager/apps/zimbra
+packages/manager/apps/backup-services

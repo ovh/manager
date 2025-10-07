@@ -3,8 +3,8 @@ import { fetch } from 'cross-fetch';
 import 'element-internals-polyfill';
 import { vi } from 'vitest';
 
-import "@ovh-ux/manager-static-analysis-kit/tests/html-a11y-tests-setup";
-import "@ovh-ux/manager-static-analysis-kit/tests/html-w3c-tests-setup";
+import '@ovh-ux/manager-static-analysis-kit/tests/html-a11y-tests-setup';
+import '@ovh-ux/manager-static-analysis-kit/tests/html-w3c-tests-setup';
 
 global.fetch = fetch;
 

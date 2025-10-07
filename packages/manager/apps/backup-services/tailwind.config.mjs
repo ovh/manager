@@ -7,9 +7,6 @@ const pkgDir = (name) => path.dirname(require.resolve(`${name}/package.json`));
 const toGlob = (dir) => `${dir.replace(/\\/g, '/')}/**/*.{js,jsx,ts,tsx}`;
 
 const reactComponentsDir = pkgDir('@ovh-ux/manager-react-components');
-const pciCommonDir = pkgDir('@ovh-ux/manager-pci-common');
-
-const isPciConfig = 'false';
 
 const baseTailwindConfig = [
   ...(baseConfig.content ?? []),
@@ -17,15 +14,10 @@ const baseTailwindConfig = [
   toGlob(reactComponentsDir),
 ];
 
-export const pciTailwindConfig = [
-  ...baseTailwindConfig,
-  toGlob(pciCommonDir),
-];
-
 /** @type {import('tailwindcss').Config} */
 export default {
   ...baseConfig,
-  content: isPciConfig === 'true' ? pciTailwindConfig : baseTailwindConfig,
+  content: baseTailwindConfig,
   corePlugins: {
     preflight: false,
   },

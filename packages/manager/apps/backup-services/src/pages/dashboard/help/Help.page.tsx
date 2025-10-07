@@ -56,7 +56,10 @@ export default function HelpPage() {
           name="email"
           control={control}
           rules={{
-            required: { value: true, message: t('dashboard:errors.emailRequired') },
+            required: {
+              value: true,
+              message: t('dashboard:errors.emailRequired'),
+            },
             pattern: {
               value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
               message: t('dashboard:errors.emailInvalid'),
@@ -64,7 +67,11 @@ export default function HelpPage() {
           }}
           render={({ field, fieldState }) => (
             <OdsFormField className="w-full" error={fieldState.error?.message}>
-              <label htmlFor="email" slot="label" className="text-sm font-medium text-gray-700">
+              <label
+                htmlFor="email"
+                slot="label"
+                className="text-sm font-medium text-gray-700"
+              >
                 {t('dashboard:email')} *
               </label>
               <OdsInput
@@ -83,11 +90,18 @@ export default function HelpPage() {
           name="subject"
           control={control}
           rules={{
-            required: { value: true, message: t('dashboard:errors.subjectRequired') },
+            required: {
+              value: true,
+              message: t('dashboard:errors.subjectRequired'),
+            },
           }}
           render={({ field, fieldState }) => (
             <OdsFormField className="w-full" error={fieldState.error?.message}>
-              <label htmlFor="subject" slot="label" className="text-sm font-medium text-gray-700">
+              <label
+                htmlFor="subject"
+                slot="label"
+                className="text-sm font-medium text-gray-700"
+              >
                 {t('dashboard:subject')} *
               </label>
               <OdsInput
@@ -106,11 +120,18 @@ export default function HelpPage() {
           name="message"
           control={control}
           rules={{
-            required: { value: true, message: t('dashboard:errors.messageRequired') },
+            required: {
+              value: true,
+              message: t('dashboard:errors.messageRequired'),
+            },
           }}
           render={({ field, fieldState }) => (
             <OdsFormField className="w-full" error={fieldState.error?.message}>
-              <label htmlFor="message" slot="label" className="text-sm font-medium text-gray-700">
+              <label
+                htmlFor="message"
+                slot="label"
+                className="text-sm font-medium text-gray-700"
+              >
                 {t('dashboard:message')} *
               </label>
               <OdsTextarea

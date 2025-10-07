@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import type { DashboardTabType } from '@/types/Dashboard.type';
+import { DashboardTabType } from '@/types/Dashboard.type';
 
 import { useDashboardTabs } from './useDashboardTabs';
 
@@ -35,8 +35,10 @@ vi.mock('@/routes/Routes.constants', () => {
 describe('useDashboardTabs', () => {
   it('resolves the :id param in tab "to" field', () => {
     const { result } = renderHook(() => useDashboardTabs());
-    const generalTab = result.current.find((t) => t.name === 'general-information');
+    const generalTab = result.current.find(
+      (t) => t.name === 'general-information',
+    );
     expect(generalTab).toBeDefined();
-    expect(generalTab!.to).toBe('/general-information/123');
+    expect(generalTab.to).toBe('/general-information/123');
   });
 });

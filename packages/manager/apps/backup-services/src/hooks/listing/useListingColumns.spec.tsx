@@ -20,8 +20,8 @@ describe('useListingColumns', () => {
     expect(result.current).toHaveLength(2);
 
     const [idCol, nameCol] = result.current;
-    expect(idCol!.label).toBe('common:id');
-    expect(nameCol!.label).toBe('common:name');
+    expect(idCol.label).toBe('common:id');
+    expect(nameCol.label).toBe('common:name');
   });
 
   it('renders cells with provided values', () => {
@@ -30,10 +30,10 @@ describe('useListingColumns', () => {
 
     const row: TestRow = { id: '42', name: 'Alice' };
 
-    render(idCol!.cell(row));
+    render(idCol.cell(row));
     expect(screen.getByText('42')).toBeInTheDocument();
 
-    render(nameCol!.cell(row));
+    render(nameCol.cell(row));
     expect(screen.getByText('Alice')).toBeInTheDocument();
   });
 
@@ -43,10 +43,10 @@ describe('useListingColumns', () => {
 
     const row = {} as TestRow; // missing both id and name
 
-    render(idCol!.cell(row));
+    render(idCol.cell(row));
     expect(screen.getByText('N/A')).toBeInTheDocument(); // common:na fallback
 
-    render(nameCol!.cell(row));
+    render(nameCol.cell(row));
     expect(screen.getByText('—')).toBeInTheDocument(); // common:empty fallback
   });
 });
