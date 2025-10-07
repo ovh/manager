@@ -30,12 +30,18 @@ interface FileUploaderProps {
   multipleFileImport: boolean;
   onFileSelect: (pref: string, files: File[]) => void;
   pending: boolean;
+  jsonFile?: boolean;
+  description?: string;
 }
 
 const FileUploaderForm = React.forwardRef<HTMLInputElement, FileUploaderProps>(
-  ({ title, multipleFileImport, onFileSelect, pending }, ref) => {
+  (
+    { title, multipleFileImport, onFileSelect, pending, jsonFile, description },
+    ref,
+  ) => {
     const { form } = useFileUploarderForm({
       allowMultipleFile: multipleFileImport,
+      jsonFile,
     });
     const { t } = useTranslation('components/file-uploader');
     const [isDragging, setIsDragging] = useState(false);
@@ -86,6 +92,7 @@ const FileUploaderForm = React.forwardRef<HTMLInputElement, FileUploaderProps>(
             <DialogTitle>{title}</DialogTitle>
           </DialogHeader>
           <ScrollArea className="h-auto max-h-[80vh]">
+            {!!description && <p className="mb-4">{description}</p>}
             <Form {...form}>
               <form onSubmit={onSubmit} className="flex flex-col gap-2">
                 {multipleFileImport && (
