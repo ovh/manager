@@ -2,6 +2,8 @@ import i18next, { InitOptions, i18n } from 'i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import status from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/status/Messages_fr_FR.json';
+import commonDashboard from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/dashboard/Messages_fr_FR.json';
+import billing from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/billing/Messages_fr_FR.json';
 
 import { appName } from '@/App.constants';
 
@@ -23,6 +25,8 @@ function addTranslations() {
     .addResources(defaultLocale, 'dashboard', dashboard)
     .addResources(defaultLocale, 'onboarding', onboarding)
     .addResources(defaultLocale, NAMESPACES.STATUS, status)
+    .addResources(defaultLocale, NAMESPACES.DASHBOARD, commonDashboard)
+    .addResources(defaultLocale, NAMESPACES.BILLING, billing)
     .use({
       type: 'postProcessor',
       name: 'normalize',

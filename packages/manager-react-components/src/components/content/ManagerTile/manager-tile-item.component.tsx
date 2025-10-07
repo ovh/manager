@@ -21,8 +21,16 @@ const ManagerTileItemLabel = ({
   );
 };
 
-const ManagerTileItemDescription = ({ children }: PropsWithChildren) => {
-  return <dd className="m-0">{children}</dd>;
+const ManagerTileItemDescription = ({
+  children,
+  className = '',
+  ...rest
+}: React.ComponentPropsWithoutRef<'dd'>) => {
+  return (
+    <dd className={`m-0 ${className}`} {...rest}>
+      {children}
+    </dd>
+  );
 };
 
 ManagerTileItem.Label = ManagerTileItemLabel;
