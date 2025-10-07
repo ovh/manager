@@ -7,8 +7,9 @@ export const LOCATION_QUERY_KEYS = {
   locationByName: (locationName: string) => ['location', locationName],
 };
 
-export const useLocationDetails = (locationName: string) =>
+export const useLocationDetails = (locationName?: string) =>
   useQuery({
-    queryKey: LOCATION_QUERY_KEYS.locationByName(locationName),
-    queryFn: () => getLocationDetails(locationName),
+    queryKey: LOCATION_QUERY_KEYS.locationByName(locationName!),
+    queryFn: () => getLocationDetails(locationName!),
+    enabled: !!locationName,
   });
