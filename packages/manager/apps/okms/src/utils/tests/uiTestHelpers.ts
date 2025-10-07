@@ -161,3 +161,15 @@ export const changeOdsInputValueByTestId = async (
     expect(input).toHaveValue(value);
   });
 };
+
+type GetOdsClipboardByValueParams = {
+  container: HTMLElement;
+  value: string;
+};
+
+export const getOdsClipboardByValue = ({
+  container,
+  value,
+}: GetOdsClipboardByValueParams) => {
+  return container.querySelector(`ods-clipboard[value="${value}"]`);
+};
