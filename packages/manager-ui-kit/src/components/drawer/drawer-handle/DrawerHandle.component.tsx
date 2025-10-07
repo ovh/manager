@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
-import { OdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import {
+  Icon,
+  ICON_NAME,
+  BUTTON_COLOR,
+  BUTTON_VARIANT,
+} from '@ovhcloud/ods-react';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
-import { DrawerCollapseState } from './Drawer.types';
-import './translations';
-
-type DrawerHandleProps = {
-  onClick: () => void;
-  collapseState: DrawerCollapseState;
-};
+import { DrawerHandleProps } from './DrawerHandle.props';
+import '../translations';
+import { Button } from '../../button/Button.component';
 
 const DrawerHandle = ({ onClick, collapseState }: DrawerHandleProps) => {
   const { t } = useTranslation('drawer');
@@ -50,21 +50,23 @@ const DrawerHandle = ({ onClick, collapseState }: DrawerHandleProps) => {
         )}
       >
         <div>
-          <OdsButton
+          <Button
             data-testid="drawer-handle"
-            label=""
             aria-label={
               collapseState === 'visible' ? t('collapse') : t('expand')
             }
-            icon={
-              collapseState === 'visible'
-                ? 'chevron-double-right'
-                : 'chevron-double-left'
-            }
             onClick={onClick}
-            color={ODS_BUTTON_COLOR.primary}
-            variant={ODS_BUTTON_VARIANT.ghost}
-          />
+            color={BUTTON_COLOR.primary}
+            variant={BUTTON_VARIANT.ghost}
+          >
+            <Icon
+              name={
+                collapseState === 'visible'
+                  ? ICON_NAME.chevronDoubleRight
+                  : ICON_NAME.chevronDoubleLeft
+              }
+            />
+          </Button>
         </div>
       </div>
     </div>
