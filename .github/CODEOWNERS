@@ -44,10 +44,10 @@
 /packages/manager/apps/overthebox @ovh/dev-manager-infrastructure-network
 /packages/manager/apps/pci @ovh/dev-manager-pci-all
 /packages/manager/apps/pci-* @ovh/dev-manager-pci-all
-/packages/manager/apps/pci-ai-endpoints @ovh/dev-manager-pci-all
-/packages/manager/apps/pci-ai-tools @ovh/dev-manager-pci-aidatabase
-/packages/manager/apps/pci-databases-analytics @ovh/dev-manager-pci-aidatabase
-/packages/manager/apps/pci-dataplatform @ovh/dev-manager-pci-aidatabase
+/packages/manager/apps/pci-ai-endpoints @ovh/dev-manager-pci-ai
+/packages/manager/apps/pci-ai-tools @ovh/dev-manager-pci-ai
+/packages/manager/apps/pci-databases-analytics @ovh/dev-manager-pci-database
+/packages/manager/apps/pci-dataplatform @ovh/dev-manager-pci-database
 /packages/manager/apps/procedures @ovh/dev-manager-gcj-all
 /packages/manager/apps/public-cloud @ovh/dev-manager-pci-all
 /packages/manager/apps/restricted @ovh/dev-manager-enablers-all
@@ -112,7 +112,7 @@
 /packages/manager/modules/pci @ovh/dev-manager-pci-all
 /packages/manager/modules/pci-universe-components @ovh/dev-manager-pci-all
 /packages/manager/modules/phone-prefix @ovh/dev-manager-web-collaboration
-/packages/manager/modules/product-offers @ovh/dev-manager-web-collaboration @ovh/dev-manager-web-domain @ovh/dev-manager-web-hosting @ovh/dev-manager-pci-all
+/packages/manager/modules/product-offers @ovh/dev-manager-web-collaboration @ovh/dev-manager-web-domain @ovh/dev-manager-web-hosting
 /packages/manager/modules/resource-tagging @ovh/dev-manager-infrastructure-baremetalstorage @ovh/dev-manager-infrastructure-network
 /packages/manager/modules/sharepoint @ovh/dev-manager-web-collaboration
 /packages/manager/modules/sign-up @ovh/dev-manager-gcj-all
