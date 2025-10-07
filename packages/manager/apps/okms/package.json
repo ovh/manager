@@ -52,6 +52,7 @@
     "@ovh-ux/manager-tests-setup": "latest",
     "@ovh-ux/manager-vite-config": "^0.13.4",
     "@tanstack/react-query-devtools": "^5.51.21",
+    "@testing-library/react": "^16.0.1",
     "@types/file-saver": "^2.0.7",
     "element-internals-polyfill": "^3.0.2",
     "msw": "2.1.7",
