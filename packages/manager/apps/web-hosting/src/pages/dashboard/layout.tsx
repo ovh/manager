@@ -1,6 +1,6 @@
 import { useContext, useEffect, useMemo, useState } from 'react';
 
-import { Outlet, useLocation, useNavigate, useParams, useResolvedPath } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -33,6 +33,7 @@ import {
 import { EmailOptionType } from '@/data/types/product/service';
 import { DashboardTab } from '@/data/types/product/ssl';
 import { useEmailsUrl, useHostingUrl } from '@/hooks';
+import { useOverridePage } from '@/hooks/overridePage/useOverridePage';
 import { subRoutes, urls } from '@/routes/routes.constants';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 
@@ -43,7 +44,7 @@ export default function Layout() {
   const navigate = useNavigate();
   const { serviceName } = useParams();
   const { t } = useTranslation('dashboard');
-
+  const isOverridedPage = useOverridePage();
   const { data } = useGetHostingService(serviceName);
   const { flattenData } = useResourcesIcebergV6<EmailOptionType>({
     route: `/hosting/web/${serviceName}/emailOption`,
@@ -53,11 +54,11 @@ export default function Layout() {
   const [editDisplayName, setEditDisplayName] = useState<boolean>(false);
   const [onUpdateError, setOnUpdateError] = useState<boolean>(false);
 
-  const { pathname: path } = useLocation();
+  const { pathname, hash } = useLocation();
 
   const generalUrl = useHostingUrl(serviceName);
-  const multisiteUrl = useHostingUrl(serviceName, 'multisite');
-  const sslPathname = useResolvedPath('ssl').pathname;
+  const multisiteUrl = `#/${serviceName}/multisite`;
+  const sslPathname = `#/${serviceName}/ssl`;
   const moduleUrl = useHostingUrl(serviceName, 'module');
   const logsUrl = useHostingUrl(serviceName, 'user-logs');
   const ftpUrl = useHostingUrl(serviceName, 'ftp');
@@ -156,10 +157,15 @@ export default function Layout() {
   );
 
   useRouteSynchro();
-
+  const getComparablePath = (tabUrl: string | null | undefined): string => {
+    const safeUrl = tabUrl ?? '';
+    return safeUrl.startsWith('#') ? safeUrl.slice(1) : safeUrl;
+  };
   const activeTab = useMemo(() => {
-    return tabs.find((tab) => tab.to === path);
-  }, [tabs, path]);
+    const currentPath = hash ? hash : pathname;
+
+    return tabs.find((tab) => getComparablePath(tab.to) === currentPath);
+  }, [tabs, pathname, hash]);
 
   useEffect(() => {
     shell.ux.hidePreloader();
@@ -237,47 +243,50 @@ export default function Layout() {
           <GuideButton items={guideItems} />
         </div>
       </div>
-
-      <div className="flex items-center justify-between mb-7">
-        <OdsText>{data?.serviceName}</OdsText>
-        <div className="flex flex-wrap justify-end">
-          <ActionMenu
-            id="add_domain"
-            items={[
-              {
-                id: 1,
-                label: t('hosting_action_add_domain'),
-                onClick: () =>
-                  navigate(urls.orderDomain.replace(subRoutes.serviceName, serviceName)),
-              },
-            ]}
-          />
-        </div>
-      </div>
-      <ExpirationDate />
-      {onUpdateError && (
-        <OdsMessage
-          className="mb-10 w-full"
-          color={ODS_MESSAGE_COLOR.warning}
-          isDismissible
-          onOdsRemove={() => {
-            setOnUpdateError(false);
-          }}
-        >
-          {t('hosting_dashboard_loading_error')}
-        </OdsMessage>
+      {!isOverridedPage && (
+        <>
+          <div className="flex items-center justify-between mb-7">
+            <OdsText>{data?.serviceName}</OdsText>
+            <div className="flex flex-wrap justify-end">
+              <ActionMenu
+                id="add_domain"
+                items={[
+                  {
+                    id: 1,
+                    label: t('hosting_action_add_domain'),
+                    onClick: () =>
+                      navigate(urls.orderDomain.replace(subRoutes.serviceName, serviceName)),
+                  },
+                ]}
+              />
+            </div>
+          </div>
+          <ExpirationDate />
+          {onUpdateError && (
+            <OdsMessage
+              className="mb-10 w-full"
+              color={ODS_MESSAGE_COLOR.warning}
+              isDismissible
+              onOdsRemove={() => {
+                setOnUpdateError(false);
+              }}
+            >
+              {t('hosting_dashboard_loading_error')}
+            </OdsMessage>
+          )}
+          <div className=" mt-8 mb-6">
+            <Tabs>
+              {tabs.map((tab: DashboardTab) => (
+                <a href={tab.to} className="no-underline" key={tab.name}>
+                  <OdsTab isSelected={tab.name === activeTab?.name} role="tab">
+                    {tab.title}
+                  </OdsTab>
+                </a>
+              ))}
+            </Tabs>
+          </div>
+        </>
       )}
-      <div className=" mt-8 mb-6">
-        <Tabs>
-          {tabs.map((tab: DashboardTab) => (
-            <a href={tab.to} className="no-underline" key={tab.name}>
-              <OdsTab isSelected={tab.name === activeTab?.name} role="tab">
-                {tab.title}
-              </OdsTab>
-            </a>
-          ))}
-        </Tabs>
-      </div>
       <Outlet />
     </PageLayout>
   );

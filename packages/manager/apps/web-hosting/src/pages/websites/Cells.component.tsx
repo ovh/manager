@@ -12,6 +12,7 @@ import { BadgeStatus } from '@/components/badgeStatus/BadgeStatus.component';
 import { useWebHostingAttachedDomaindigStatus } from '@/data/hooks/webHostingAttachedDomaindigStatus/useWebHostingAttachedDomaindigStatus';
 import { WebsiteType } from '@/data/types/product/website';
 import { DnsStatus, GitStatus, ServiceStatus } from '@/data/types/status';
+import { useGenerateUrl } from '@/hooks/generateUrl/useGenerateUrl';
 import { useHostingUrl } from '@/hooks/useHostingUrl';
 import { DATAGRID_LINK, DIAGNOSTIC, WEBSITE } from '@/utils/tracking.constants';
 
@@ -20,13 +21,16 @@ const useHostingUrlWithOptions = (
   withMultisite = false,
   withBoost = false,
 ) => {
-  let option;
+  const multisiteUrl = useGenerateUrl(`/${serviceName}/multisite`, 'path');
+  const hostingUrl = useHostingUrl(serviceName);
+  const boostUrl = useHostingUrl(serviceName, 'boost');
   if (withMultisite) {
-    option = 'multisite';
-  } else if (withBoost) {
-    option = 'boost';
+    return `/#/web-hosting${multisiteUrl}`;
   }
-  return useHostingUrl(serviceName, option);
+  if (withBoost) {
+    return boostUrl;
+  }
+  return hostingUrl;
 };
 
 export const DiagnosticCell = ({ webSiteItem }: { webSiteItem: WebsiteType }) => {
