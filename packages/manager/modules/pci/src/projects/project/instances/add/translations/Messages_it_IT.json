@@ -140,5 +140,8 @@
   "pci_projects_project_network_private_create_announce_first_address": "Annunciare il primo indirizzo di un CIDR come gateway predefinito (DHCP opzione 3)",
   "pci_projects_project_network_private_create_configure_api": "È possibile personalizzare le classi via API.",
   "pci_projects_project_instances_add_numInstances_3az_help": "Quando crei più istanze in una Region 3-AZ, saranno tutte nella stessa zona di disponibilità, sia che tu scelga una zona o l'opzione \"Scegli per me\".",
-  "pci_projects_project_instances_add_billing_floating_ip_detail_price_hourly": "Sarà fatturato un importo di {{ floatingIpPrice }} +IVA/ora."
+  "pci_projects_project_instances_add_billing_floating_ip_detail_price_hourly": "Sarà fatturato un importo di {{ floatingIpPrice }} +IVA/ora.",
+  "pci_projects_project_instances_add_image_distant_warning": "La creazione dell’istanza a partire da un backup remoto comporta tempi di elaborazione più lunghi, in base alla dimensione dell’immagine e alla regione remota. Per poter essere creata, una copia locale dell'immagine remota sarà copiata localmente e ti sarà fatturata come un backup locale alla tariffa abituale.",
+  "pci_projects_project_instances_add_success_message_private_network": "L'operazione di creazione dell'istanza è in corso, la creazione dell'istanza può richiedere alcuni minuti",
+  "pci_projects_project_instances_add_success_message_distant_backup": "L'operazione di creazione dell'istanza è in corso, la creazione dell'istanza da un backup remoto comporta un tempo di elaborazione più lungo a seconda delle dimensioni dell'immagine e della regione remota"
 }

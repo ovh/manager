@@ -8,13 +8,15 @@ import { TInstanceActionModalViewModel } from '@/pages/instances/action/view-mod
 export type TActionModalProps = PropsWithChildren<{
   title: string;
   isPending: boolean;
-  handleInstanceAction: () => void;
+  handleInstanceAction?: () => void;
   onModalClose: () => void;
   instance: TInstanceActionModalViewModel;
   section: TSectionType;
   variant?: TModalVariant;
   isLoading: boolean;
   dismissible?: boolean;
+  className?: string;
+  wrapper?: React.ComponentType<PropsWithChildren<unknown>>;
 }>;
 
 export const ActionModal = ({
@@ -28,6 +30,8 @@ export const ActionModal = ({
   variant,
   isLoading,
   dismissible,
+  className,
+  wrapper,
 }: TActionModalProps) => (
   <Modal
     title={title}
@@ -36,6 +40,8 @@ export const ActionModal = ({
     onModalClose={onModalClose}
     variant={variant}
     dismissible={dismissible}
+    wrapper={wrapper}
+    className={className}
   >
     {isPending ? (
       <div className="pt-8">
