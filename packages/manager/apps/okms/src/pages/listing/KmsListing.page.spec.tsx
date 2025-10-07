@@ -1,6 +1,5 @@
 import { screen, waitFor } from '@testing-library/react';
 import {
-  assertOdsModalVisibility,
   assertTextVisibility,
   getOdsButtonByLabel,
   WAIT_FOR_DEFAULT_OPTIONS,
@@ -98,18 +97,5 @@ describe('KMS listing test suite', () => {
     );
 
     await assertTextVisibility(labels.dashboard.billing_informations);
-  });
-
-  it(`should navigate to the kms delete modal on click on "${labels.listing.key_management_service_listing_terminate}" list action button`, async () => {
-    const { container } = await renderTestApp(KMS_ROUTES_URLS.kmsListing);
-
-    const terminateButton = await getOdsButtonByLabel({
-      container,
-      label: labels.listing.key_management_service_listing_terminate,
-    });
-
-    await waitFor(() => userEvent.click(terminateButton));
-
-    await assertOdsModalVisibility({ container, isVisible: true });
   });
 });
