@@ -15,9 +15,7 @@ export * from './datagrid/text-cell.component';
 export * from './datagrid/useDatagrid';
 export * from './datagrid/useDatagridSearchParams';
 export * from './datagrid/clipboard-cell.component';
-
-export * from './drawer/Drawer.component';
-export * from './drawer/DrawerCollapsible.component';
+export * from './drawer';
 
 export * from './guide-menu';
 

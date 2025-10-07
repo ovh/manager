@@ -1,0 +1,939 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Drawer Snapshot Tests > Drawer.Root > should render basic drawer with header and content 1`] = `
+<div>
+  <div
+    class="relative"
+    id="mrc-drawer"
+  >
+    <div
+      data-part="positioner"
+      data-scope="dialog"
+      dir="ltr"
+      id="dialog::r0::positioner"
+    >
+      <div
+        aria-describedby="dialog::r0::description"
+        aria-labelledby="dialog::r0::title"
+        aria-modal="true"
+        class="_drawer-positioner__content_19s0u_2 _drawer-positioner__content--right_19s0u_85 w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden"
+        data-part="content"
+        data-scope="dialog"
+        data-state="open"
+        data-testid="drawer"
+        dir="ltr"
+        id="dialog::r0::content"
+        role="dialog"
+        tabindex="-1"
+      >
+        <div>
+          <div
+            class="h-screen overflow-hidden flex flex-col justify-between"
+          >
+            <button
+              aria-label="Fermer"
+              class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 absolute top-7 right-4"
+              data-testid="drawer-dismiss-button"
+              type="button"
+            >
+              <span
+                class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+              />
+            </button>
+            <header
+              class="min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center"
+            >
+              <div
+                class="flex items-center w-full py-6 space-x-2"
+              >
+                <h2
+                  class="_text--heading-2_1aw48_19"
+                >
+                  Basic Drawer
+                </h2>
+              </div>
+            </header>
+            <section
+              class="px-6 flex-1 overflow-y-auto outline-none"
+            >
+              <h3
+                class="_text--heading-3_1aw48_25"
+              >
+                Basic Drawer
+              </h3>
+              <p>
+                This is the drawer content
+              </p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      aria-label="Fermer"
+      class="fixed inset-0 bg-[var(--ods-color-information-500)] z-40 mrc-drawer-backdrop-fade-in"
+      data-testid="drawer-backdrop"
+      tabindex="0"
+      type="button"
+    />
+  </div>
+</div>
+`;
+
+exports[`Drawer Snapshot Tests > Drawer.Root > should render closed drawer 1`] = `
+<div>
+  <div
+    class="relative"
+    id="mrc-drawer"
+  >
+    <div
+      data-part="positioner"
+      data-scope="dialog"
+      dir="ltr"
+      id="dialog::r2::positioner"
+      style="pointer-events: none;"
+    >
+      <div
+        aria-describedby="dialog::r2::description"
+        aria-labelledby="dialog::r2::title"
+        aria-modal="true"
+        class="_drawer-positioner__content_19s0u_2 _drawer-positioner__content--right_19s0u_85 w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden"
+        data-part="content"
+        data-scope="dialog"
+        data-state="closed"
+        data-testid="drawer"
+        dir="ltr"
+        hidden=""
+        id="dialog::r2::content"
+        role="dialog"
+        tabindex="-1"
+      >
+        <div>
+          <div
+            class="h-screen overflow-hidden flex flex-col justify-between"
+          >
+            <button
+              aria-label="Fermer"
+              class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 absolute top-7 right-4"
+              data-testid="drawer-dismiss-button"
+              type="button"
+            >
+              <span
+                class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+              />
+            </button>
+            <header
+              class="min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center"
+            >
+              <div
+                class="flex items-center w-full py-6 space-x-2"
+              >
+                <h2
+                  class="_text--heading-2_1aw48_19"
+                >
+                  Closed Drawer
+                </h2>
+              </div>
+            </header>
+            <section
+              class="px-6 flex-1 overflow-y-auto outline-none"
+            >
+              <h3
+                class="_text--heading-3_1aw48_25"
+              >
+                Closed Drawer
+              </h3>
+              <p>
+                This drawer is closed
+              </p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with complex content 1`] = `
+<div>
+  <div
+    class="relative"
+    id="mrc-drawer"
+  >
+    <div
+      data-part="positioner"
+      data-scope="dialog"
+      dir="ltr"
+      id="dialog::r5::positioner"
+    >
+      <div
+        aria-describedby="dialog::r5::description"
+        aria-labelledby="dialog::r5::title"
+        aria-modal="true"
+        class="_drawer-positioner__content_19s0u_2 _drawer-positioner__content--right_19s0u_85 w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden"
+        data-part="content"
+        data-scope="dialog"
+        data-state="open"
+        data-testid="drawer"
+        dir="ltr"
+        id="dialog::r5::content"
+        role="dialog"
+        tabindex="-1"
+      >
+        <div>
+          <div
+            class="h-screen overflow-hidden flex flex-col justify-between"
+          >
+            <button
+              aria-label="Fermer"
+              class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 absolute top-7 right-4"
+              data-testid="drawer-dismiss-button"
+              type="button"
+            >
+              <span
+                class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+              />
+            </button>
+            <header
+              class="min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center"
+            >
+              <div
+                class="flex items-center w-full py-6 space-x-2"
+              >
+                <h2
+                  class="_text--heading-2_1aw48_19"
+                >
+                  Complex Content Drawer
+                </h2>
+              </div>
+            </header>
+            <section
+              class="px-6 flex-1 overflow-y-auto outline-none"
+            >
+              <h3
+                class="_text--heading-3_1aw48_25"
+              >
+                Complex Content Drawer
+              </h3>
+              <p>
+                Some text content
+              </p>
+              <ul>
+                <li>
+                  Item 1
+                </li>
+                <li>
+                  Item 2
+                </li>
+                <li>
+                  Item 3
+                </li>
+              </ul>
+            </section>
+            <footer
+              class="p-6 space-x-2"
+            >
+              <button
+                class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+                data-testid="manager-button"
+                type="button"
+              >
+                Save
+              </button>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      aria-label="Fermer"
+      class="fixed inset-0 bg-[var(--ods-color-information-500)] z-40 mrc-drawer-backdrop-fade-in"
+      data-testid="drawer-backdrop"
+      tabindex="0"
+      type="button"
+    />
+  </div>
+</div>
+`;
+
+exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with header, content and footer 1`] = `
+<div>
+  <div
+    class="relative"
+    id="mrc-drawer"
+  >
+    <div
+      data-part="positioner"
+      data-scope="dialog"
+      dir="ltr"
+      id="dialog::r1::positioner"
+    >
+      <div
+        aria-describedby="dialog::r1::description"
+        aria-labelledby="dialog::r1::title"
+        aria-modal="true"
+        class="_drawer-positioner__content_19s0u_2 _drawer-positioner__content--right_19s0u_85 w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden"
+        data-part="content"
+        data-scope="dialog"
+        data-state="open"
+        data-testid="drawer"
+        dir="ltr"
+        id="dialog::r1::content"
+        role="dialog"
+        tabindex="-1"
+      >
+        <div>
+          <div
+            class="h-screen overflow-hidden flex flex-col justify-between"
+          >
+            <button
+              aria-label="Fermer"
+              class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 absolute top-7 right-4"
+              data-testid="drawer-dismiss-button"
+              type="button"
+            >
+              <span
+                class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+              />
+            </button>
+            <header
+              class="min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center"
+            >
+              <div
+                class="flex items-center w-full py-6 space-x-2"
+              >
+                <h2
+                  class="_text--heading-2_1aw48_19"
+                >
+                  Complete Drawer
+                </h2>
+              </div>
+            </header>
+            <section
+              class="px-6 flex-1 overflow-y-auto outline-none"
+            >
+              <h3
+                class="_text--heading-3_1aw48_25"
+              >
+                Drawer with all components
+              </h3>
+              <p>
+                Drawer with all components
+              </p>
+            </section>
+            <footer
+              class="p-6 space-x-2"
+            >
+              <button
+                class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150"
+                data-testid="manager-button"
+                type="button"
+              >
+                Cancel
+              </button>
+              <button
+                class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+                data-testid="manager-button"
+                type="button"
+              >
+                Confirm
+              </button>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      aria-label="Fermer"
+      class="fixed inset-0 bg-[var(--ods-color-information-500)] z-40 mrc-drawer-backdrop-fade-in"
+      data-testid="drawer-backdrop"
+      tabindex="0"
+      type="button"
+    />
+  </div>
+</div>
+`;
+
+exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with trigger element 1`] = `
+<div>
+  <div
+    class="relative"
+    id="mrc-drawer"
+  >
+    <button
+      aria-controls="dialog::r4::content"
+      aria-expanded="true"
+      aria-haspopup="dialog"
+      data-part="trigger"
+      data-scope="dialog"
+      data-state="open"
+      dir="ltr"
+      id="dialog::r4::trigger"
+      type="button"
+    >
+      <button>
+        Open Drawer
+      </button>
+    </button>
+    <div
+      data-part="positioner"
+      data-scope="dialog"
+      dir="ltr"
+      id="dialog::r4::positioner"
+    >
+      <div
+        aria-describedby="dialog::r4::description"
+        aria-labelledby="dialog::r4::title"
+        aria-modal="true"
+        class="_drawer-positioner__content_19s0u_2 _drawer-positioner__content--right_19s0u_85 w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden"
+        data-part="content"
+        data-scope="dialog"
+        data-state="open"
+        data-testid="drawer"
+        dir="ltr"
+        id="dialog::r4::content"
+        role="dialog"
+        tabindex="-1"
+      >
+        <div>
+          <div
+            class="h-screen overflow-hidden flex flex-col justify-between"
+          >
+            <button
+              aria-label="Fermer"
+              class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 absolute top-7 right-4"
+              data-testid="drawer-dismiss-button"
+              type="button"
+            >
+              <span
+                class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+              />
+            </button>
+            <header
+              class="min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center"
+            >
+              <div
+                class="flex items-center w-full py-6 space-x-2"
+              >
+                <h2
+                  class="_text--heading-2_1aw48_19"
+                >
+                  Drawer with Trigger
+                </h2>
+              </div>
+            </header>
+            <section
+              class="px-6 flex-1 overflow-y-auto outline-none"
+            >
+              <h3
+                class="_text--heading-3_1aw48_25"
+              >
+                Drawer with trigger button
+              </h3>
+              <p>
+                Drawer with trigger button
+              </p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      aria-label="Fermer"
+      class="fixed inset-0 bg-[var(--ods-color-information-500)] z-40 mrc-drawer-backdrop-fade-in"
+      data-testid="drawer-backdrop"
+      tabindex="0"
+      type="button"
+    />
+  </div>
+</div>
+`;
+
+exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer without createPortal 1`] = `
+<div>
+  <div
+    class="relative"
+    id="mrc-drawer"
+  >
+    <div
+      data-part="positioner"
+      data-scope="dialog"
+      dir="ltr"
+      id="dialog::r3::positioner"
+    >
+      <div
+        aria-describedby="dialog::r3::description"
+        aria-labelledby="dialog::r3::title"
+        aria-modal="true"
+        class="_drawer-positioner__content_19s0u_2 _drawer-positioner__content--right_19s0u_85 w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden"
+        data-part="content"
+        data-scope="dialog"
+        data-state="open"
+        data-testid="drawer"
+        dir="ltr"
+        id="dialog::r3::content"
+        role="dialog"
+        tabindex="-1"
+      >
+        <div>
+          <div
+            class="h-screen overflow-hidden flex flex-col justify-between"
+          >
+            <button
+              aria-label="Fermer"
+              class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 absolute top-7 right-4"
+              data-testid="drawer-dismiss-button"
+              type="button"
+            >
+              <span
+                class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+              />
+            </button>
+            <header
+              class="min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center"
+            >
+              <div
+                class="flex items-center w-full py-6 space-x-2"
+              >
+                <h2
+                  class="_text--heading-2_1aw48_19"
+                >
+                  No Portal Drawer
+                </h2>
+              </div>
+            </header>
+            <section
+              class="px-6 flex-1 overflow-y-auto outline-none"
+            >
+              <h3
+                class="_text--heading-3_1aw48_25"
+              >
+                Rendered without portal
+              </h3>
+              <p>
+                Rendered without portal
+              </p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      aria-label="Fermer"
+      class="fixed inset-0 bg-[var(--ods-color-information-500)] z-40 mrc-drawer-backdrop-fade-in"
+      data-testid="drawer-backdrop"
+      tabindex="0"
+      type="button"
+    />
+  </div>
+</div>
+`;
+
+exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render basic collapsible drawer 1`] = `
+<div>
+  <div
+    class="relative"
+    id="mrc-drawer"
+  >
+    <div
+      data-part="positioner"
+      data-scope="dialog"
+      dir="ltr"
+      id="dialog::r6::positioner"
+    >
+      <div
+        aria-describedby="dialog::r6::description"
+        aria-labelledby="dialog::r6::title"
+        aria-modal="true"
+        class="_drawer-positioner__content_19s0u_2 _drawer-positioner__content--right_19s0u_85 w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in"
+        data-part="content"
+        data-scope="dialog"
+        data-state="open"
+        data-testid="drawer"
+        dir="ltr"
+        id="dialog::r6::content"
+        role="dialog"
+        tabindex="-1"
+      >
+        <div>
+          <div
+            class="h-screen overflow-hidden flex flex-col justify-between"
+          >
+            <button
+              aria-label="Fermer"
+              class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 absolute top-7 right-4"
+              data-testid="drawer-dismiss-button"
+              type="button"
+            >
+              <span
+                class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+              />
+            </button>
+            <header
+              class="min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center"
+            >
+              <div
+                class="flex items-center w-full py-6 space-x-2"
+              >
+                <h2
+                  class="_text--heading-2_1aw48_19"
+                >
+                  Collapsible Drawer
+                </h2>
+              </div>
+            </header>
+            <section
+              class="px-6 flex-1 overflow-y-auto outline-none"
+            >
+              <h3
+                class="_text--heading-3_1aw48_25"
+              >
+                Collapsible Drawer
+              </h3>
+              <p>
+                This is a collapsible drawer
+              </p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="fixed z-[100] top-[var(--mrc-drawer-header-height)] right-[var(--mrc-drawer-width)] transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in"
+    >
+      <div
+        class="w-[var(--mrc-drawer-handle-size)] h-[var(--mrc-drawer-handle-size)] right-0 bg-white rounded-l-lg justify-center items-center mrc-drawer-handle-shadow hidden sm:flex"
+      >
+        <div>
+          <button
+            aria-label="Replier"
+            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150"
+            data-testid="drawer-handle"
+            type="button"
+          >
+            <span
+              class="_icon_i4xp0_2 _icon--chevron-double-right_i4xp0_67"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render closed collapsible drawer 1`] = `
+<div>
+  <div
+    class="relative"
+    id="mrc-drawer"
+  >
+    <div
+      data-part="positioner"
+      data-scope="dialog"
+      dir="ltr"
+      id="dialog::r8::positioner"
+      style="pointer-events: none;"
+    >
+      <div
+        aria-describedby="dialog::r8::description"
+        aria-labelledby="dialog::r8::title"
+        aria-modal="true"
+        class="_drawer-positioner__content_19s0u_2 _drawer-positioner__content--right_19s0u_85 w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in"
+        data-part="content"
+        data-scope="dialog"
+        data-state="closed"
+        data-testid="drawer"
+        dir="ltr"
+        hidden=""
+        id="dialog::r8::content"
+        role="dialog"
+        tabindex="-1"
+      >
+        <div>
+          <div
+            class="h-screen overflow-hidden flex flex-col justify-between"
+          >
+            <button
+              aria-label="Fermer"
+              class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 absolute top-7 right-4"
+              data-testid="drawer-dismiss-button"
+              type="button"
+            >
+              <span
+                class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+              />
+            </button>
+            <header
+              class="min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center"
+            >
+              <div
+                class="flex items-center w-full py-6 space-x-2"
+              >
+                <h2
+                  class="_text--heading-2_1aw48_19"
+                >
+                  Closed Collapsible
+                </h2>
+              </div>
+            </header>
+            <section
+              class="px-6 flex-1 overflow-y-auto outline-none"
+            >
+              <h3
+                class="_text--heading-3_1aw48_25"
+              >
+                Closed Collapsible Drawer
+              </h3>
+              <p>
+                This collapsible drawer is closed
+              </p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render collapsible drawer with all components 1`] = `
+<div>
+  <div
+    class="relative"
+    id="mrc-drawer"
+  >
+    <div
+      data-part="positioner"
+      data-scope="dialog"
+      dir="ltr"
+      id="dialog::r7::positioner"
+    >
+      <div
+        aria-describedby="dialog::r7::description"
+        aria-labelledby="dialog::r7::title"
+        aria-modal="true"
+        class="_drawer-positioner__content_19s0u_2 _drawer-positioner__content--right_19s0u_85 w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in"
+        data-part="content"
+        data-scope="dialog"
+        data-state="open"
+        data-testid="drawer"
+        dir="ltr"
+        id="dialog::r7::content"
+        role="dialog"
+        tabindex="-1"
+      >
+        <div>
+          <div
+            class="h-screen overflow-hidden flex flex-col justify-between"
+          >
+            <button
+              aria-label="Fermer"
+              class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 absolute top-7 right-4"
+              data-testid="drawer-dismiss-button"
+              type="button"
+            >
+              <span
+                class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+              />
+            </button>
+            <header
+              class="min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center"
+            >
+              <div
+                class="flex items-center w-full py-6 space-x-2"
+              >
+                <h2
+                  class="_text--heading-2_1aw48_19"
+                >
+                  Full Collapsible Drawer
+                </h2>
+              </div>
+            </header>
+            <section
+              class="px-6 flex-1 overflow-y-auto outline-none"
+            >
+              <h3
+                class="_text--heading-3_1aw48_25"
+              >
+                Complete Collapsible Drawer
+              </h3>
+              <p>
+                Complete collapsible drawer
+              </p>
+            </section>
+            <footer
+              class="p-6 space-x-2"
+            >
+              <button
+                class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150"
+                data-testid="manager-button"
+                type="button"
+              >
+                Reset
+              </button>
+              <button
+                class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+                data-testid="manager-button"
+                type="button"
+              >
+                Apply
+              </button>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="fixed z-[100] top-[var(--mrc-drawer-header-height)] right-[var(--mrc-drawer-width)] transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in"
+    >
+      <div
+        class="w-[var(--mrc-drawer-handle-size)] h-[var(--mrc-drawer-handle-size)] right-0 bg-white rounded-l-lg justify-center items-center mrc-drawer-handle-shadow hidden sm:flex"
+      >
+        <div>
+          <button
+            aria-label="Replier"
+            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150"
+            data-testid="drawer-handle"
+            type="button"
+          >
+            <span
+              class="_icon_i4xp0_2 _icon--chevron-double-right_i4xp0_67"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render collapsible drawer with complex content 1`] = `
+<div>
+  <div
+    class="relative"
+    id="mrc-drawer"
+  >
+    <div
+      data-part="positioner"
+      data-scope="dialog"
+      dir="ltr"
+      id="dialog::r9::positioner"
+    >
+      <div
+        aria-describedby="dialog::r9::description"
+        aria-labelledby="dialog::r9::title"
+        aria-modal="true"
+        class="_drawer-positioner__content_19s0u_2 _drawer-positioner__content--right_19s0u_85 w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in"
+        data-part="content"
+        data-scope="dialog"
+        data-state="open"
+        data-testid="drawer"
+        dir="ltr"
+        id="dialog::r9::content"
+        role="dialog"
+        tabindex="-1"
+      >
+        <div>
+          <div
+            class="h-screen overflow-hidden flex flex-col justify-between"
+          >
+            <button
+              aria-label="Fermer"
+              class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 absolute top-7 right-4"
+              data-testid="drawer-dismiss-button"
+              type="button"
+            >
+              <span
+                class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+              />
+            </button>
+            <header
+              class="min-h-[var(--mrc-drawer-header-height)] pl-6 pr-16 flex items-center"
+            >
+              <div
+                class="flex items-center w-full py-6 space-x-2"
+              >
+                <h2
+                  class="_text--heading-2_1aw48_19"
+                >
+                  Complex Collapsible
+                </h2>
+              </div>
+            </header>
+            <section
+              class="px-6 flex-1 overflow-y-auto outline-none"
+            >
+              <h3
+                class="_text--heading-3_1aw48_25"
+              >
+                Complex Collapsible Drawer
+              </h3>
+              <form>
+                <label
+                  for="setting1"
+                >
+                  Setting 1
+                </label>
+                <input
+                  id="setting1"
+                  type="text"
+                  value="value1"
+                />
+                <label
+                  for="setting2"
+                >
+                  Setting 2
+                </label>
+                <input
+                  id="setting2"
+                  type="checkbox"
+                />
+              </form>
+            </section>
+            <footer
+              class="p-6 space-x-2"
+            >
+              <button
+                class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150"
+                data-testid="manager-button"
+                type="button"
+              >
+                Cancel
+              </button>
+              <button
+                class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+                data-testid="manager-button"
+                type="button"
+              >
+                Save Settings
+              </button>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="fixed z-[100] top-[var(--mrc-drawer-header-height)] right-[var(--mrc-drawer-width)] transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out mrc-drawer-handle-fade-in"
+    >
+      <div
+        class="w-[var(--mrc-drawer-handle-size)] h-[var(--mrc-drawer-handle-size)] right-0 bg-white rounded-l-lg justify-center items-center mrc-drawer-handle-shadow hidden sm:flex"
+      >
+        <div>
+          <button
+            aria-label="Replier"
+            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150"
+            data-testid="drawer-handle"
+            type="button"
+          >
+            <span
+              class="_icon_i4xp0_2 _icon--chevron-double-right_i4xp0_67"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

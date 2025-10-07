@@ -3,7 +3,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "dist",
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/setupTest": ["./setupTest.tsx"]
+    }
   },
   "include": [
     "./src/components/error/**/*",
@@ -79,7 +83,8 @@
     "./src/components/onboarding-layout/**/*",
     "./src/components/order/**/*",
     "./src/components/grid-layout/**/*",
-    "./src/hooks/data-api/**/*"
+    "./src/hooks/data-api/**/*",
+    "./src/components/drawer/**/*"
   ],
   "exclude": [
     "./src/components/**/stories.tsx",

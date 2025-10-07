@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import clsx from 'clsx';
-import DrawerHandle from './DrawerHandle.component';
-import { DrawerBase, DrawerBaseProps } from './DrawerBase.component';
-import { DrawerCollapseState } from './Drawer.types';
-import './translations';
+import DrawerHandle from '../drawer-handle/DrawerHandle.component';
+import { DrawerBase } from '../drawer-base/DrawerBase.component';
+import { DrawerCollapseState } from '../Drawer.types';
+import { DrawerRootCollapsibleProps } from './DrawerRootCollapsible.props';
 
-export type DrawerCollapsibleProps = Omit<DrawerBaseProps, 'className'>;
-
-export const DrawerCollapsible = (props: DrawerCollapsibleProps) => {
+export const DrawerRootCollapsible = ({
+  isOpen = true,
+  ...props
+}: DrawerRootCollapsibleProps) => {
   const [collapseState, setCollapseState] =
     useState<DrawerCollapseState>('visible');
 
@@ -20,16 +21,18 @@ export const DrawerCollapsible = (props: DrawerCollapsibleProps) => {
   return (
     <div id="mrc-drawer" className="relative">
       <DrawerBase
+        isOpen={isOpen}
+        createPortal={false}
         {...props}
         className={clsx(
-          '[&::part(drawer)]:duration-[var(--mrc-drawer-collapse-duration)]',
-          '[&::part(drawer)]:ease-in-out',
+          'transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out',
+          'mrc-drawer-handle-fade-in',
           collapseState === 'collapsed' &&
-            '[&::part(drawer)]:translate-x-[var(--mrc-drawer-width)]',
+            'translate-x-[var(--mrc-drawer-width)]',
         )}
       />
 
-      {props.isOpen && (
+      {isOpen && (
         <DrawerHandle
           onClick={handleToggleCollapseState}
           collapseState={collapseState}
