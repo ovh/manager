@@ -54,6 +54,7 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
     mode: 'onTouched',
     resolver: zodResolver(secretSchema),
     defaultValues: {
+      path: '',
       // Prefill data with a template to help the user with the JSON format
       data: SECRET_DATA_TEMPLATE,
     },
