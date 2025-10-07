@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cloud-connect-app",
-  "version": "2.0.67",
+  "version": "2.0.68",
   "private": true,
   "description": "OVHcloud Connect standalone application.",
   "repository": {
@@ -15,7 +15,7 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "@ovh-ux/manager-cloud-connect": "^1.25.0",
+    "@ovh-ux/manager-cloud-connect": "^1.26.0",
     "@ovh-ux/manager-config": "^8.6.3",
     "@ovh-ux/manager-core": "^13.2.10",
     "@ovh-ux/manager-ng-layout-helpers": "^2.12.0",
