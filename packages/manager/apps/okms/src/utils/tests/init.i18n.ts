@@ -5,6 +5,7 @@ import commonDashboard from '../../../../../modules/common-translations/public/t
 import commonForm from '../../../../../modules/common-translations/public/translations/form/Messages_fr_FR.json';
 import commonStatus from '../../../../../modules/common-translations/public/translations/status/Messages_fr_FR.json';
 import commonError from '../../../../../modules/common-translations/public/translations/error/Messages_fr_FR.json';
+import commonRegion from '../../../../../modules/common-translations/public/translations/region/Messages_fr_FR.json';
 import kmsCommon from '../../../public/translations/key-management-service/common/Messages_fr_FR.json';
 import create from '../../../public/translations/key-management-service/create/Messages_fr_FR.json';
 import dashboard from '../../../public/translations/key-management-service/dashboard/Messages_fr_FR.json';
@@ -49,6 +50,7 @@ function addTranslations() {
     .addResources(defaultLocale, NAMESPACES.FORM, commonForm)
     .addResources(defaultLocale, NAMESPACES.STATUS, commonStatus)
     .addResources(defaultLocale, NAMESPACES.ERROR, commonError)
+    .addResources(defaultLocale, NAMESPACES.REGION, commonRegion)
     .addResources(defaultLocale, 'secret-manager', secretManager)
     .use({
       type: 'postProcessor',
@@ -87,6 +89,7 @@ const commonLabels = {
   form: commonForm,
   status: commonStatus,
   error: commonError,
+  region: commonRegion,
 };
 
 export const labels = {
