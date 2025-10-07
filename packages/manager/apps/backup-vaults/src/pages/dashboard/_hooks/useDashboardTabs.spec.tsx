@@ -7,7 +7,7 @@ import { useDashboardTabs } from './useDashboardTabs';
 
 // --- Mock react-router-dom ---
 vi.mock('react-router-dom', () => ({
-  useLocation: () => ({ pathname: '/general-information/123' }),
+  useLocation: () => ({ pathname: '/general-information-tile/123' }),
   useParams: () => ({ id: '123' }),
 }));
 
@@ -16,10 +16,10 @@ vi.mock('@/routes/Routes.constants', () => {
   const tabs: DashboardTabType[] = [
     {
       name: 'general-information',
-      title: 'dashboard:general-information',
-      to: '/general-information/:id',
+      title: 'dashboard:general-information-tile',
+      to: '/general-information-tile/:id',
       pathMatchers: [/^\/general-information\/[^/]+$/],
-      trackingActions: ['click::general-information-tab'],
+      trackingActions: ['click::general-information-tile-tab'],
     },
     {
       name: 'help',
@@ -37,6 +37,6 @@ describe('useDashboardTabs', () => {
     const { result } = renderHook(() => useDashboardTabs());
     const generalTab = result.current.find((t) => t.name === 'general-information');
     expect(generalTab).toBeDefined();
-    expect(generalTab!.to).toBe('/general-information/123');
+    expect(generalTab!.to).toBe('/general-information-tile/123');
   });
 });

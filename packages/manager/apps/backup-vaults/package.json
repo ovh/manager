@@ -19,6 +19,7 @@
     "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
+    "@ovh-ux/billing-informations": "*",
     "@ovh-ux/manager-common-translations": "*",
     "@ovh-ux/manager-config": "*",
     "@ovh-ux/manager-core-api": "*",
