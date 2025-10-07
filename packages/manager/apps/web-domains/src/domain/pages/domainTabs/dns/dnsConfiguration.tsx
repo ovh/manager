@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Trans, useTranslation } from 'react-i18next';
 import { Datagrid } from '@ovh-ux/manager-react-components';
 import {
   Button,
@@ -14,6 +13,7 @@ import {
   MessageIcon,
 } from '@ovhcloud/ods-react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import {
   TDatagridDnsDetails,
   TDomainResource,
@@ -22,6 +22,7 @@ import { useDomainDnsDatagridColumns } from '@/domain/hooks/domainTabs/useDomain
 import { computeDnsDetails } from '@/domain/utils/utils';
 import { NameServerStatusEnum } from '@/domain/enum/nameServerStatus.enum';
 import AnycastOrderButtonComponent from '@/domain/components/AnycastOrder/AnycastOrderButton';
+import { ongoingOperationLink } from '@/domain/constants/serviceDetail';
 
 interface DnsConfigurationTabProps {
   readonly domainResource: TDomainResource;
@@ -30,11 +31,7 @@ interface DnsConfigurationTabProps {
 export default function DnsConfigurationTab({
   domainResource,
 }: DnsConfigurationTabProps) {
-  const { t } = useTranslation([
-    'domain',
-    'web-domains/error',
-    NAMESPACES.ACTIONS,
-  ]);
+  const { t } = useTranslation(['domain', 'web-domains/error']);
   const { state } = useLocation();
   const [localSuccessMessage, setLocalSuccessMessage] = useState<string | null>(
     () => {
@@ -47,10 +44,13 @@ export default function DnsConfigurationTab({
   >(false);
   const navigate = useNavigate();
   const columns = useDomainDnsDatagridColumns();
-
+  const { data: ongoingOperationsURL } = useNavigationGetUrl(
+    ongoingOperationLink,
+  );
   const onOpenAnycastTerminateModal = () => {
     setAnycastTerminateModalOpen(!anycastTerminateModalOpen);
   };
+
   return (
     <div data-testid="datagrid">
       {localSuccessMessage && (
@@ -61,7 +61,7 @@ export default function DnsConfigurationTab({
           onRemove={() => setLocalSuccessMessage(null)}
         >
           <MessageIcon name={ICON_NAME.circleCheck} />
-          <MessageBody>{t(`${NAMESPACES.ACTIONS}:add`)}</MessageBody>
+          <MessageBody>{t(localSuccessMessage)}</MessageBody>
         </Message>
       )}
       {dnsDetails.find((dns) => dns.status === NameServerStatusEnum.ERROR) && (
@@ -71,7 +71,22 @@ export default function DnsConfigurationTab({
           dismissible={false}
         >
           <MessageIcon name="triangle-exclamation" />
-          <MessageBody>{t('domain_tab_DNS_error_warning')}</MessageBody>
+          <MessageBody>
+            <Trans
+              i18nKey={'domain_tab_DNS_error_warning'}
+              t={t}
+              components={{
+                Link: (
+                  <Link href={ongoingOperationsURL}>
+                    {t(
+                      'domain_tab_general_information_banner_link_ongoing_operations',
+                    )}
+                    <Icon name="arrow-right" />
+                  </Link>
+                ),
+              }}
+            />
+          </MessageBody>
         </Message>
       )}
       <Message
