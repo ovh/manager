@@ -17,7 +17,7 @@ export default function OngoingOperationDatagridDomain({
       <Link
         href={url}
         data-testid={value}
-        isDisabled={
+        disabled={
           !url ||
           [
             DomainOperationsEnum.DomainCreate,
