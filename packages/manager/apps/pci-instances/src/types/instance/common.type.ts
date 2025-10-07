@@ -15,7 +15,8 @@ export type TActionName =
   | 'unshelve'
   | 'resume'
   | 'reinstall'
-  | 'delete';
+  | 'delete'
+  | 'vnc';
 
 export type TStatus =
   | 'ACTIVE'
