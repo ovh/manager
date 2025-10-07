@@ -1,3 +1,9 @@
 export const SERVICE_KEYS_LABEL = 'Service Keys';
+export const ID_LABEL = 'ID';
+export const KMIP_LABEL = 'KMIP';
+export const ENPOINT_LABEL = 'Endpoint';
+export const ENDPOINT_RSA_LABEL = 'Endpoint RSA';
+export const REST_API_LABEL = 'Rest API';
+export const SWAGGER_UI_LABEL = 'Swagger UI';
 export const URN_LABEL = 'URN';
 export const PATH_LABEL = 'Path';
