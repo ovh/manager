@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.61.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.60.0...@ovh-ux/manager-dedicated@20.61.0) (2025-10-07)
+
+
+### Features
+
+* **dedicated.nsd:** go to attack event with date - 1h ([0e0f20d](https://github.com/ovh/manager/commit/0e0f20d55fe65af5dafd0a2d46a67d12845f967d)), closes [#MANAGER-19503](https://github.com/ovh/manager/issues/MANAGER-19503)
+
+
+
+
+
 # [20.60.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.59.9...@ovh-ux/manager-dedicated@20.60.0) (2025-10-07)
 
 
