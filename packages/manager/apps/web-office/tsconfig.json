@@ -4,22 +4,11 @@
     "outDir": "dist",
     "allowJs": true,
     "paths": {
-      "@/public/*": [
-        "./public/*"
-      ],
-      "@/*": [
-        "./src/*"
-      ]
+      "@/public/*": ["./public/*"],
+      "@/*": ["./src/*"]
     },
     "baseUrl": "."
   },
-  "include": [
-    "src",
-    "public/**/*.json"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "types",
-  ]
+  "include": ["src", "public/**/*.json"],
+  "exclude": ["node_modules", "dist", "types"]
 }
