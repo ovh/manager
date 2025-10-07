@@ -38,5 +38,5 @@
   "kube_common_node_pool_deploy_description": "W klastrze Kubernetes rozproszonym w trzech strefach dostępności (AZ) zaleca się używanie pul węzłów w każdej strefie, w celu zapewnienia odporności i wysokiej dostępności. Dzięki tej konfiguracji możesz równomiernie rozdzielić obciążenia między AZ, co poprawia tolerancję na awarie i zapewnia optymalną ciągłość usługi.",
   "kube_node_pool": "Konfiguracja puli węzłów",
   "kube_common_estimation_price_free": "Gratis",
-  "kube_common_estimation_total_price": "Szacowana cena całkowita:"
+  "kube_common_estimation_total_price": "Szacunkowa cena całkowita:"
 }
