@@ -2,6 +2,7 @@ export const subRoutes = {
   serviceName: ':serviceName',
   domain: ':domain',
   locationId: ':locationId',
+  path: ':path',
 };
 
 export const urls = {
@@ -17,6 +18,8 @@ export const urls = {
 
   // DOMAIN
   addDomain: `/${subRoutes.serviceName}/add-domain`,
+  detacheDomain: `/${subRoutes.serviceName}/multisite/${subRoutes.domain}/detache-domain`,
+  modifyDomain: `/${subRoutes.serviceName}/multisite/${subRoutes.domain}/modify-domain`,
   orderDomain: `/${subRoutes.serviceName}/order-domain`,
 
   // SSL
@@ -40,4 +43,23 @@ export const urls = {
   managedWordpressResourceImport: `/managed-hosting-for-wordpress/${subRoutes.serviceName}/import`,
   managedWordpressResourceTasks: `/managed-hosting-for-wordpress/${subRoutes.serviceName}/tasks`,
   managedWordpressResourceDeleteModal: `/managed-hosting-for-wordpress/${subRoutes.serviceName}/delete-modal`,
+
+  // MULTISITE
+  addWebSite: `/${subRoutes.serviceName}/multisite/add-website`,
+  multisite: `/${subRoutes.serviceName}/multisite`,
+
+  // GIT
+  associateGit: `/${subRoutes.serviceName}/multisite/${subRoutes.path}/associate-git`,
+  configureGit: `/${subRoutes.serviceName}/multisite/${subRoutes.path}/configure-git`,
+  deleteGit: `/${subRoutes.serviceName}/multisite/${subRoutes.path}/delete-git`,
+  deployeGit: `/${subRoutes.serviceName}/multisite/${subRoutes.path}/deploye-git`,
+  lastDeploymentGit: `/${subRoutes.serviceName}/multisite/${subRoutes.path}/last-deployment-git`,
+
+  // CDN
+  modifyCdn: `/${subRoutes.serviceName}/multisite/${subRoutes.domain}/modify-cdn`,
+  purgeCdn: `/${subRoutes.serviceName}/multisite/${subRoutes.domain}/purge-cdn`,
+
+  // MODULE
+  addModule: `/${subRoutes.serviceName}/add-module`,
+  deleteModule: `/${subRoutes.serviceName}/delete-module/${subRoutes.path}`,
 };
