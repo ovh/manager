@@ -33,7 +33,7 @@ export type TCartItemDetail = {
 const getTotalPrice = (items: TCartItemDetail[]) =>
   items.reduce((prev, curr) => (curr.price ? prev + curr.price : prev), 0);
 
-export const Cart = ({ items }: TCartProps) => {
+  export const Cart = ({ items }: TCartProps) => {
   const { t } = useTranslation('creation');
 
   const details = useMemo(() => items.flatMap(({ details }) => details), [
@@ -41,7 +41,7 @@ export const Cart = ({ items }: TCartProps) => {
   ]);
 
   return (
-    <BaseCart>
+    <BaseCart className="sticky top-8 right-0 bg-white">
       <CartContent
         items={items}
         renderCartItem={({ item, isExpanded }) => (
