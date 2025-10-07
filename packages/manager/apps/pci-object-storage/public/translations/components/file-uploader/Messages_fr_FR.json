@@ -1,6 +1,7 @@
 {
   "errorFileRequired": "Merci de séléctionner au moins un fichier",
   "errorFileNumber": "Vous ne pouvez séléctionner qu'un seul fichier",
+  "errorJsonFile": "Le fichier doit être un JSON",
   "prefixRequiredError": "Ce champ est obligatoire",
   "prefixFieldLabel": "Préfixe",
   "importFileLabel": "Importer des fichiers",
