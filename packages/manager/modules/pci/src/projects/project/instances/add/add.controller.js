@@ -1552,7 +1552,9 @@ export default class PciInstancesAddController {
               },
             }
           : null,
-      public: this.isPublicMode() || this.isAttachPublicNetwork,
+      public:
+        this.isPublicMode() ||
+        (this.isLocalZone() && this.isAttachPublicNetwork),
     };
 
     return this.PciProjectsProjectInstanceService.save(
