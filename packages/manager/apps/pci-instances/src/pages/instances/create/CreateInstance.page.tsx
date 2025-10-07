@@ -58,7 +58,7 @@ const CreateInstance: FC = () => {
   ];
 
   return (
-    <main>
+    <main className="py-8 px-4 mt-8 md:py-9 md:px-10 md:mt-2">
       <section className="mb-8">
         {project && (
           <Breadcrumb
