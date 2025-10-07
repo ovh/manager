@@ -49,7 +49,21 @@ export const MULTISITE = 'multisite';
 
 // domain
 export const ADD_DOMAIN = 'add-domain';
+export const ADD_WEBSITE = 'add-website';
+export const DETACHE_DOMAIN = 'detache-domain';
+export const MODIFY_DOMAIN = 'modify-domain';
 export const ORDER_DOMAIN = 'order-domain';
+
+// git
+export const ASSOCIATE_GIT = 'associate-git';
+export const CONFIGURE_GIT = 'configure-git';
+export const DELETE_GIT = 'delete-git';
+export const DEPLOYE_GIT = 'deploye-git';
+export const LAST_DEPLOYEMENT_GIT = 'last-deployment-git';
+
+// cdn
+export const MODIFY_CDN = 'modify-cdn';
+export const PURGE_CDN = 'purge-cdn';
 
 // module
 export const ADD_MODULE = 'add-module';
