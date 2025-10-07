@@ -12,10 +12,11 @@ import {
 } from '@secret-manager/utils/tests/secret.constants';
 import { SECRET_FORM_TEST_IDS } from '@secret-manager/pages/createSecret/SecretForm.constants';
 import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
-import { fireEvent, act, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { labels, initTestI18n } from '@/utils/tests/init.i18n';
 import { SecretForm } from './SecretForm.component';
 import { SECRET_DATA_TEMPLATE } from './SecretForm.constants';
+import { changeOdsInputValueByTestId } from '@/utils/tests/uiTestHelpers';
 
 let i18nValue: i18n;
 
@@ -26,6 +27,38 @@ vi.mock('react-router-dom', async (importOriginal) => {
     useNavigate: () => vi.fn(),
     useHref: vi.fn((link) => link),
     useSearchParams: vi.fn(),
+  };
+});
+
+// Mocking ODS Input component
+vi.mock('@ovhcloud/ods-components/react', async () => {
+  const original = await vi.importActual('@ovhcloud/ods-components/react');
+  return {
+    ...original,
+    OdsInput: vi.fn(
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      ({ className, onOdsChange, onOdsBlur, ...rest }) => (
+        <input
+          data-testid={rest['data-testid']}
+          className={className}
+          onChange={(e) => onOdsChange && onOdsChange(e.target.value)}
+          onBlur={(e) => onOdsBlur && onOdsBlur(e.target.value)}
+          {...rest}
+        />
+      ),
+    ),
+    OdsTextarea: vi.fn(
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      ({ className, onOdsChange, onOdsBlur, isResizable, ...rest }) => (
+        <textarea
+          data-testid={rest['data-testid']}
+          className={className}
+          onChange={(e) => onOdsChange && onOdsChange(e.target.value)}
+          onBlur={() => onOdsBlur && onOdsBlur()}
+          {...rest}
+        />
+      ),
+    ),
   };
 });
 
@@ -83,29 +116,25 @@ describe('Secrets creation form test suite', () => {
         labels.secretManager.create_secret_form_secret_section_title,
       );
 
-      const inputPath = screen.getByTestId(SECRET_FORM_TEST_IDS.INPUT_PATH);
-      expect(inputPath).toBeInTheDocument();
-      const inputData = screen.getByTestId(
-        SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA,
-      );
-      expect(inputData).toBeInTheDocument();
+      if (path) {
+        await changeOdsInputValueByTestId(
+          SECRET_FORM_TEST_IDS.INPUT_PATH,
+          path,
+        );
+      }
+      if (data) {
+        await changeOdsInputValueByTestId(
+          SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA,
+          data,
+        );
+      }
+
+      // THEN
       const submitButton = screen.getByTestId(
         SECRET_FORM_TEST_IDS.SUBMIT_BUTTON,
       );
       expect(submitButton).toBeInTheDocument();
 
-      // WHEN
-      act(() => {
-        fireEvent.input(inputPath, {
-          target: { value: path },
-        });
-
-        fireEvent.change(inputData, {
-          target: { value: data },
-        });
-      });
-
-      // THEN
       await waitFor(() =>
         shouldButtonBeDisabled
           ? expect(submitButton).toBeDisabled()
