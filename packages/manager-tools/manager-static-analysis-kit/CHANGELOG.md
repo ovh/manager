@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-static-analysis-kit@0.10.0...@ovh-ux/manager-static-analysis-kit@0.11.0) (2025-10-07)
+
+
+### Features
+
+* extends static kit to analyse react libraries ([8c2845c](https://github.com/ovh/manager/commit/8c2845cdc3abc13734831fab312d8ad012b30b16)), closes [#MANAGER-19743](https://github.com/ovh/manager/issues/MANAGER-19743)
+* improve documentation ([4141218](https://github.com/ovh/manager/commit/4141218c63abcab05edc5d4db2eb44f7701c04c7)), closes [#MANAGER-19743](https://github.com/ovh/manager/issues/MANAGER-19743)
+* include mrc on new metrics analysis ([456d311](https://github.com/ovh/manager/commit/456d3118a7d9017d63f19e907b45f2833e4a0348)), closes [#MANAGER-19743](https://github.com/ovh/manager/issues/MANAGER-19743)
+* update documentation ([3b37b1b](https://github.com/ovh/manager/commit/3b37b1b51bd9ff06e23e4d2169511f05b4aec345)), closes [#MANAGER-19743](https://github.com/ovh/manager/issues/MANAGER-19743)
+
+
+
+
+
 # [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-static-analysis-kit@0.9.0...@ovh-ux/manager-static-analysis-kit@0.10.0) (2025-10-02)
 
 
