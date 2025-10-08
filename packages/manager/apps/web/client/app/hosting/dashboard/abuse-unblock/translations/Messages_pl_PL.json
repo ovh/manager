@@ -1,0 +1,21 @@
+{
+  "hosting_dashboard_service_abuse_state_modal_title": "Nietypowa aktywność na Twoim hostingu",
+  "hosting_dashboard_service_abuse_state_modal_info_malwares": "Nasz system wykrył <strong>obecność złośliwych plików (malware)</strong> na Twoim hostingu. <br/>Ze względów bezpieczeństwa tymczasowo zablokowaliśmy zapytania wychodzące oraz wysyłkę e-maili przy użyciu funkcji PHP.",
+  "hosting_dashboard_service_abuse_state_modal_info_mailsout": "Nasz system wykrył <strong>nienaturalnie dużą liczbę wiadomości e-mail wysyłanych</strong> z Twojego hostingu. <br/>Ze względów bezpieczeństwa tymczasowo zablokowaliśmy ich wysyłkę przy użyciu funkcji PHP.",
+  "hosting_dashboard_service_abuse_state_modal_info_outstate": "Nasz system wykrył <strong>nienaturalnie dużą liczbę zapytań wysyłanych</strong> z Twojego hostingu. <br/>Ze względów bezpieczeństwa tymczasowo je zablokowaliśmy.",
+  "hosting_dashboard_service_abuse_state_modal_blocked_message_malwares": "Do czasu rozwiązania problemu Twoje strony nie mogą wysyłać wiadomości ani łączyć się z usługami zewnętrznymi.",
+  "hosting_dashboard_service_abuse_state_modal_blocked_message_mailsout": "Do czasu rozwiązania problemu Twoje strony nie mogą wysyłać wiadomości e-mail.",
+  "hosting_dashboard_service_abuse_state_modal_blocked_message_outstate": "Do czasu rozwiązania problemu Twoje strony nie mogą łączyć się z usługami zewnętrznymi.",
+  "hosting_dashboard_service_abuse_state_modal_button_action_title": "Co musisz zrobić:",
+  "hosting_dashboard_service_abuse_state_modal_button_action_first": "Sprawdź nasz przewodnik, aby dowiedzieć się jakie czynności pozwolą Ci zatrzymać nietypową aktywność.",
+  "hosting_dashboard_service_abuse_state_modal_button_action_second": "Po rozwiązaniu problemu zaznacz poniższe pole, aby złożyć dyspozycję zniesienia środków bezpieczeństwa na Twoim hostingu.",
+  "hosting_dashboard_service_abuse_state_modal_button_action_guideline": "Przewodnik dotyczący reagowania na nietypową aktywność.",
+  "hosting_dashboard_service_abuse_state_modal_button_action_checkbox": "Potwierdzam wykonanie wszystkich niezbędnych czynności w celu rozwiązania problemu.",
+  "hosting_dashboard_service_abuse_state_modal_button_later": "Później",
+  "hosting_dashboard_service_abuse_state_modal_button_unblock": "Zniesienie środków bezpieczeństwa",
+  "hosting_dashboard_service_abuse_state_banner_alert_message": "<strong>Wykryto nietypową aktywność</strong><br />Ze względów bezpieczeństwa zablokowaliśmy tymczasowo niektóre funkcje Twojego hostingu.<br/><a href=\"{{ href }}\">Dowiedz się więcej</a>",
+  "hosting_dashboard_service_abuse_state_banner_alert_link": "Dowiedz się więcej",
+  "hosting_dashboard_service_abuse_state_banner_reinsurance_title": "<strong>Twój hosting jest obecnie analizowany w celu zniesienia środków bezpieczeństwa.</strong><br/><a href=\"{{ href }}\">Wyświetl zadania w toku</a>",
+  "hosting_dashboard_service_abuse_state_banner_reinsurance_link": "Wyświetl zadania w toku",
+  "hosting_dashboard_service_abuse_state_unblock_error_message": "Wystąpił błąd: {{error}}"
+}

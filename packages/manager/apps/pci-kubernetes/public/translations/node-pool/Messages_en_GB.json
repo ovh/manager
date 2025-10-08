@@ -38,5 +38,5 @@
   "kube_common_node_pool_deploy_description": "To achieve high availability and resilience within a three-zone Kubernetes cluster, we recommend deploying one node pool per zone. This configuration allows you to distribute your workloads evenly across the AZ. In addition, it improves fault tolerance and ensures service uptime.",
   "kube_node_pool": "Configure node pool",
   "kube_common_estimation_price_free": "Free",
-  "kube_common_estimation_total_price": "Total estimated price:"
+  "kube_common_estimation_total_price": "Estimated total price:"
 }

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.1...@ovh-ux/manager-exchange@4.15.2) (2025-10-07)
+
+
+### Bug Fixes
+
+* **web.exchange:** fix build standalone app mode ([da9d1a8](https://github.com/ovh/manager/commit/da9d1a831939bf2cebd3a5e8c6afc52320cf32fa)), closes [#PRDCOL-223](https://github.com/ovh/manager/issues/PRDCOL-223)
+
+
+
+
+
 ## [4.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.0...@ovh-ux/manager-exchange@4.15.1) (2025-10-02)
 
 

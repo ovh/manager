@@ -20,6 +20,7 @@ import runtimes from '../runtimes/runtimes.module';
 import task from '../task/task.module';
 import userLogs from '../user-logs/user-logs.module';
 import hostingDomainOffersComponent from '../../components/hosting-domain-offers';
+import hostingAbuseUnblock from './abuse-unblock';
 
 const moduleName = 'ovhManagerHosting';
 
@@ -46,6 +47,7 @@ angular
     task,
     userLogs,
     hostingDomainOffersComponent,
+    hostingAbuseUnblock,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);

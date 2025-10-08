@@ -14,7 +14,7 @@
   "billing_autorenew_service_status_automatic": "Automatic renewal",
   "billing_autorenew_service_status_manual": "Manual renewal",
   "billing_autorenew_service_status_manualPayment": "Manual renewal",
-  "billing_autorenew_service_status_pending_debt": "Bill to pay",
+  "billing_autorenew_service_status_unpaid": "Bill to pay",
   "billing_autorenew_service_status_delete_at_expiration": "Cancellation scheduled",
   "billing_autorenew_service_status_expired": "Cancelled",
   "billing_autorenew_service_expiration_weeks": "Expires in a week",
@@ -165,14 +165,9 @@
   "billing_autorenew_service_activate_alert_renew2016": "This message does not apply to Bare Metal and VPS services.",
   "billing_autorenew_service_frequency": "Renewal frequency",
   "billing_autorenew_service_none": "None",
-  "billing_autorenew_service_every_1_month": "Every month",
-  "billing_autorenew_service_every_3_month": "Every 3 months",
-  "billing_autorenew_service_every_6_month": "Every 6 months",
-  "billing_autorenew_service_every_12_month": "Every year",
-  "billing_autorenew_engagement_none": "No commitment",
-  "billing_autorenew_service_status_unpaid": "Bill to pay",
   "billing_autorenew_service_every_month": "Every month",
   "billing_autorenew_service_every_x_months": "Every {{ months }} months",
   "billing_autorenew_service_every_year": "Every year",
-  "billing_autorenew_service_every_x_years": "Every {{ years }} years"
+  "billing_autorenew_service_every_x_years": "Every {{ years }} years",
+  "billing_autorenew_engagement_none": "No commitment"
 }

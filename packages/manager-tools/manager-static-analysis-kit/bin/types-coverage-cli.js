@@ -9,16 +9,15 @@ import {
   generateTypesCoverageHtml,
 } from '../dist/adapters/types-coverage/helpers/types-coverage-analysis-helper.js';
 import {
-  appsDir,
-  outputRootDir,
   tsTypesCoverageBin,
   typesCoverageCombinedHtmlReportName,
   typesCoverageCombinedJsonReportName,
+  typesCoverageOutputRootDir,
   typesCoverageReportsRootDirName,
 } from './cli-path-config.js';
 import { buildTypesCoverageArgs, parseCliTargets } from './utils/args-parse-utils.js';
 import { logError, logInfo, logWarn } from './utils/log-utils.js';
-import { ensureBinExists, runAppsAnalysis, runCommand } from './utils/runner-utils.js';
+import { ensureBinExists, runCommand, runModulesAnalysis } from './utils/runner-utils.js';
 
 /**
  * Temporarily strip "extends" from tsconfig.json before analysis,
@@ -131,7 +130,7 @@ export function countLooseTypes(appDir) {
 function runAppTypesCoverage(appDir, appShortName) {
   return patchTsConfig(appDir, () => {
     const absoluteOutputDir = path.join(
-      outputRootDir,
+      typesCoverageOutputRootDir,
       typesCoverageReportsRootDirName,
       appShortName,
     );
@@ -171,20 +170,18 @@ function main() {
   try {
     ensureBinExists(tsTypesCoverageBin, 'typescript-coverage-report');
 
-    const { appFolders } = parseCliTargets(appsDir);
+    const modules = parseCliTargets();
 
-    runAppsAnalysis({
-      appsDir,
-      appFolders,
-      requireReact: true,
+    runModulesAnalysis({
+      modules,
       binaryLabel: 'Type coverage',
-      appRunner: runAppTypesCoverage,
+      analysisRunner: runAppTypesCoverage,
       reportsRootDirName: typesCoverageReportsRootDirName,
       combinedJson: typesCoverageCombinedJsonReportName,
       combinedHtml: typesCoverageCombinedHtmlReportName,
       collectFn: collectTypesCoverage,
       generateHtmlFn: generateTypesCoverageHtml,
-      outputRootDir,
+      outputRootDir: typesCoverageOutputRootDir,
     });
   } catch (err) {
     logError(`Fatal error: ${err.stack || err.message}`);
