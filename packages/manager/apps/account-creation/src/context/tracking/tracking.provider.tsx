@@ -37,14 +37,15 @@ export const TrackingProvider = ({
   }, [region, user]);
 
   const trackPage = useCallback(
-    (params: TrackingPageParams) => {
-      plugin.trackPage(
-        getPageProps({
+    (params: TrackingPageParams & { pageCategory?: string }) => {
+      plugin.trackPage({
+        ...getPageProps({
           ...tracking,
           ...params,
           level2: tracking.level2Config[region].config.level2,
         }),
-      );
+        page_category: params?.pageCategory || 'Authentication',
+      });
     },
     [plugin, tracking],
   );
@@ -52,10 +53,10 @@ export const TrackingProvider = ({
   const trackClick = useCallback(
     (
       pageTracking: TrackingPageParams,
-      { location, buttonType, actions, actionType }: TrackingClickParams,
+      { location, buttonType, actions, actionType, pageCategory }: TrackingClickParams & { pageCategory?: string },
     ) => {
-      plugin.trackClick(
-        getClickProps({
+      plugin.trackClick({
+        ...getClickProps({
           ...tracking,
           ...pageTracking,
           location,
@@ -64,7 +65,8 @@ export const TrackingProvider = ({
           actions,
           level2: tracking.level2Config[region].config.level2,
         }),
-      );
+        page_category: pageCategory || 'Authentication',
+      });
     },
     [plugin, tracking],
   );
