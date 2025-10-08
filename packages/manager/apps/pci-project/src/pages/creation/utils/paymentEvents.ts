@@ -6,6 +6,9 @@
 const EVENT_BUS_ID = 'will-payment-event-bus';
 const SAVE_PAYMENT_METHOD_EVENT = 'GO_SAVE_PAYMENT_METHOD';
 const REGISTERED_PM_EVENT = 'WP::USER_ACTION::REGISTERED_PM_SELECTED';
+const REQUIRED_CHALLENGE_EVENT =
+  'WP::USER_ACTION::DEFAULT_PAYMENT_METHOD_CHALLENGE_REQUIRED';
+const SUBMIT_CHALLENGE_EVENT = 'WP::DEFAULT_PAYMENT_METHOD_CHALLENGE::SUBMIT';
 
 /**
  * Triggers the save payment method event via DOM
@@ -21,26 +24,48 @@ export const triggerSavePaymentMethodEvent = (): boolean => {
 };
 
 /**
+ * Triggers the submit challenge event via DOM
+ * @returns boolean indicating if the event was dispatched successfully
+ */
+export const triggerSubmitChallengeEvent = (): boolean => {
+  const eventBus = document.getElementById(EVENT_BUS_ID);
+  if (eventBus) {
+    eventBus.dispatchEvent(new CustomEvent(SUBMIT_CHALLENGE_EVENT));
+    return true;
+  }
+  return false;
+};
+
+/**
  * Sets up listener for registered payment method selection
  * @param handler - Function to handle the event
  * @returns cleanup function to remove the listener
  */
 export const setupRegisteredPaymentMethodListener = (
-  handler: (event: CustomEvent) => void,
+  registeredHandler: (event: CustomEvent) => void,
+  challengeHandler: (event: CustomEvent) => void,
 ): (() => void) | null => {
   const eventBus = document.getElementById(EVENT_BUS_ID);
   if (!eventBus) {
     return null;
   }
 
-  const eventHandler = (event: Event) => {
-    handler(event as CustomEvent);
+  const registeredEventHandler = (event: Event) => {
+    registeredHandler(event as CustomEvent);
+  };
+  const challengeEventHandler = (event: Event) => {
+    challengeHandler(event as CustomEvent);
   };
 
-  eventBus.addEventListener(REGISTERED_PM_EVENT, eventHandler);
+  eventBus.addEventListener(REGISTERED_PM_EVENT, registeredEventHandler);
+  eventBus.addEventListener(REQUIRED_CHALLENGE_EVENT, challengeEventHandler);
 
   // Return cleanup function
   return () => {
-    eventBus.removeEventListener(REGISTERED_PM_EVENT, eventHandler);
+    eventBus.removeEventListener(REGISTERED_PM_EVENT, registeredEventHandler);
+    eventBus.removeEventListener(
+      REQUIRED_CHALLENGE_EVENT,
+      challengeEventHandler,
+    );
   };
 };
