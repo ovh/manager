@@ -6,7 +6,7 @@ import {
   useIsStartupProgramAvailable,
   useStartupProgramAmountText,
 } from './useCredit';
-import { TStartupProgram } from '../types/credit';
+import { TStartupProgram } from '@/data/types/credit.type';
 
 vi.mock('@/data/api/credit', () => ({
   getCreditBalance: vi.fn(),
