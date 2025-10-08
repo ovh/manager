@@ -7,9 +7,9 @@ import { createWrapper, shellContext } from '@/wrapperRenders';
 import {
   TEligibilityPaymentMethod,
   TEligibility,
-} from '@/data/types/payment/eligibility.type';
+} from '@/data/types/eligibility.type';
 import { PlanCode } from '@/data/types/cart.type';
-import { useEligibility } from '@/data/hooks/payment/useEligibility';
+import { useEligibility } from '@/data/hooks/useEligibility';
 import useActiveProjects from '@/data/hooks/useActiveProjects';
 import { TProjectWithService } from '@/data/types/project.type';
 
@@ -37,7 +37,7 @@ vi.mock('@ovh-ux/manager-pci-common', async (importOriginal) => {
   };
 });
 
-vi.mock('@/data/hooks/payment/useEligibility', () => ({
+vi.mock('@/data/hooks/useEligibility', () => ({
   useEligibility: vi.fn(),
 }));
 vi.mock('@/data/hooks/useActiveProjects', () => ({

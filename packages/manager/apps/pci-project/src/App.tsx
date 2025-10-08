@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom';
 import Routes from './routes/routes';
 import queryClient from './queryClient';
-import FullPageSpinner from './components/FullPageSpinner';
+import FullPageSpinner from './components/full-page-spinner/FullPageSpinner';
 
 function App() {
   const { shell } = useContext(ShellContext);

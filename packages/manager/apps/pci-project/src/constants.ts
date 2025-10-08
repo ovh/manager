@@ -255,6 +255,11 @@ export const PCI_PROJECT_ORDER_CART = {
   creditPlanCode: 'credit',
 };
 
+export const CREDIT_ORDER_CART = {
+  projectPlanCode: 'project.2018',
+  planCode: 'cloud.credit',
+};
+
 export const PCI_PROJECT_DISCOVERY_ORDER_CART = {
   productName: 'cloud',
   planCode: 'project.discovery',
