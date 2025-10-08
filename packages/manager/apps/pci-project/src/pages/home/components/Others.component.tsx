@@ -5,14 +5,18 @@ import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { DASHBOARD_OTHER_ACTIONS_ITEMS } from '@/constants';
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
 import { useDashboardLinks } from '@/hooks/home/useDashboardLinks';
+import { useDashboardItemsFilteredByFA } from '@/hooks/useDashboardItemsFilteredByFA';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 function Others() {
   const { t } = useTranslation('home');
   const { trackClick } = useOvhTracking();
 
-  // Convert paths to absolute URLs
-  const otherActionItems = useDashboardLinks(DASHBOARD_OTHER_ACTIONS_ITEMS);
+  // Filter items by feature flags first, then convert paths to absolute URLs
+  const filteredOtherActionItems = useDashboardItemsFilteredByFA(
+    DASHBOARD_OTHER_ACTIONS_ITEMS,
+  );
+  const otherActionItems = useDashboardLinks(filteredOtherActionItems);
 
   const handleOtherActionClick = (item: { labelTranslationKey?: string }) => {
     // Track the click action

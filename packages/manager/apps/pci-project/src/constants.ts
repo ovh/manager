@@ -11,6 +11,46 @@ export const ROADMAP_CHANGELOG_LINKS = {
 };
 
 export const FEATURE_AVAILABILITY = {
+  // Products
+  INSTANCE: 'instance',
+  KUBERNETES: 'kubernetes',
+  OBJECT_STORAGE: 'object-storage',
+  BLOCK_STORAGE: 'block-storage',
+  DATABASES: 'databases',
+  PRIVATE_NETWORK: 'private-network',
+  FAILOVER_IP: 'failover-ip',
+  LOAD_BALANCER: 'load-balancer',
+  NOTEBOOKS: 'pci-ai-notebooks',
+  DATA_PLATFORM: 'pci-dataplatform',
+
+  // Documentation Links
+  CLOUD_ESSENTIAL_INFORMATION: 'public-cloud:link-cloud-essential-information',
+  PUBLIC_CLOUD_INTERFACE: 'public-cloud:link-public-cloud-interface',
+  START_PCI_INSTANCE: 'public-cloud:link-start-public-cloud-instance',
+  CLOUD_BILLING_OPTIONS: 'public-cloud:link-cloud-billing-options',
+  ALL_GUIDES: 'public-cloud:link-all-guides',
+  START_WITH_BLOCK_STORAGE: 'public-cloud:link-start-with-block-storage',
+
+  // Banners
+  BILLING_CHANGE_MEDIATION_BANNER_2:
+    'public-cloud:project:billing-change-mediation-banner_2',
+
+  // Project Settings
+  USERS: 'public-cloud:users',
+  QUOTA: 'public-cloud:quota',
+  REGION: 'public-cloud:region',
+  SSH_KEYS: 'public-cloud:ssh-keys',
+  BILLING: 'public-cloud:billing',
+  VOUCHERS: 'public-cloud:vouchers',
+  CONTACTS: 'public-cloud:contacts',
+  PROJECT: 'public-cloud:project',
+  PROJECT_SETTINGS: 'public-cloud:project-settings',
+
+  // Others
+  CREATE_PROJECT: 'public-cloud:create-project',
+  TRUSTED_ZONE: 'public-cloud:trusted-zone',
+
+  // Existing features
   SAVINGS_PLAN: 'pci-savings-plan',
   DATABASES_ANALYTICS: 'pci-databases-analytics',
   HDS: 'public-cloud:hds',
@@ -289,11 +329,13 @@ export type DashboardItem = {
   price?: string;
   validUntil?: string | null;
   hideTileIfNoOtherItems?: boolean;
+  featureFlag?: string;
 };
 
 // Config type for items that need transformation before becoming DashboardItem
 export type DashboardItemConfig = DashboardItem & {
   documentationGuideKey?: string;
+  featureFlag?: string;
 };
 
 export type DashboardTile = {
@@ -411,26 +453,31 @@ export const DASHBOARD_DOCUMENTATION_LINKS_CONFIG: DashboardItemConfig[] = [
     labelTranslationKey: 'pci_projects_home_getting_started',
     linkLabelTranslationKey: 'pci_projects_home_essential_to_start',
     documentationGuideKey: 'getting_started',
+    featureFlag: FEATURE_AVAILABILITY.CLOUD_ESSENTIAL_INFORMATION,
   },
   {
     labelTranslationKey: 'pci_projects_home_public_cloud',
     linkLabelTranslationKey: 'pci_projects_home_get_familiar',
     documentationGuideKey: 'public_cloud',
+    featureFlag: FEATURE_AVAILABILITY.PUBLIC_CLOUD_INTERFACE,
   },
   {
     labelTranslationKey: 'pci_projects_home_instances',
     linkLabelTranslationKey: 'pci_projects_home_manage_instances',
     documentationGuideKey: 'instances',
+    featureFlag: FEATURE_AVAILABILITY.START_PCI_INSTANCE,
   },
   {
     labelTranslationKey: 'pci_projects_home_billing',
     linkLabelTranslationKey: 'pci_projects_home_understand_manage',
     documentationGuideKey: 'billing',
+    featureFlag: FEATURE_AVAILABILITY.CLOUD_BILLING_OPTIONS,
   },
   {
     labelTranslationKey: 'pci_projects_home_guides',
     linkLabelTranslationKey: 'pci_projects_home_see_all_guides',
     documentationGuideKey: 'guides',
+    featureFlag: FEATURE_AVAILABILITY.ALL_GUIDES,
   },
 ];
 
@@ -466,31 +513,37 @@ export const DASHBOARD_QUICK_ACCESS_ITEMS_BASE: DashboardItem[] = [
     labelTranslationKey: 'pci_projects_home_instances',
     descriptionTranslationKey: 'pci_projects_home_create_instance',
     link: PCI_FEATURES_STATES.INSTANCES.LIST.url,
+    featureFlag: FEATURE_AVAILABILITY.INSTANCE,
   },
   {
     labelTranslationKey: 'pci_projects_home_kubernetes',
     descriptionTranslationKey: 'pci_projects_home_create_cluster',
     link: PCI_FEATURES_STATES.KUBERNETES.LIST.url,
+    featureFlag: FEATURE_AVAILABILITY.KUBERNETES,
   },
   {
     labelTranslationKey: 'pci_projects_home_object_storage',
     descriptionTranslationKey: 'pci_projects_home_create_container',
     link: PCI_FEATURES_STATES.OBJECTS.LIST.url,
+    featureFlag: FEATURE_AVAILABILITY.OBJECT_STORAGE,
   },
   {
     labelTranslationKey: 'pci_projects_home_block_storage',
     descriptionTranslationKey: 'pci_projects_home_create_volume',
     link: PCI_FEATURES_STATES.BLOCKS.LIST.url,
+    featureFlag: FEATURE_AVAILABILITY.BLOCK_STORAGE,
   },
   {
     labelTranslationKey: 'pci_projects_home_network',
     descriptionTranslationKey: 'pci_projects_home_manage_vrack',
     link: PCI_FEATURES_STATES.PRIVATE_NETWORK.LIST.url,
+    featureFlag: FEATURE_AVAILABILITY.PRIVATE_NETWORK,
   },
   {
     labelTranslationKey: 'pci_projects_home_database',
     descriptionTranslationKey: 'pci_projects_home_create_database',
     link: PCI_FEATURES_STATES.DATABASES.ADD.url,
+    featureFlag: FEATURE_AVAILABILITY.DATABASES,
   },
 ];
 
@@ -499,21 +552,25 @@ export const DASHBOARD_OTHER_ACTIONS_ITEMS: DashboardItem[] = [
     iconODS: ODS_ICON_NAME.book,
     labelTranslationKey: 'pci_projects_home_create_ai_notebook',
     link: PCI_FEATURES_STATES.NOTEBOOKS.LIST.url,
+    featureFlag: FEATURE_AVAILABILITY.NOTEBOOKS,
   },
   {
     iconODS: ODS_ICON_NAME.network,
     labelTranslationKey: 'pci_projects_home_create_load_balancer',
     link: PCI_FEATURES_STATES.LOADBALANCER.LIST.url,
+    featureFlag: FEATURE_AVAILABILITY.LOAD_BALANCER,
   },
   {
     iconODS: ODS_ICON_NAME.bill,
     labelTranslationKey: 'pci_projects_home_billing',
     link: PCI_FEATURES_STATES.PROJECT_MANAGEMENT.BILLING_CONTROL.url,
+    featureFlag: FEATURE_AVAILABILITY.BILLING,
   },
   {
     iconODS: ODS_ICON_NAME.cog,
     labelTranslationKey: 'pci_projects_home_quotas',
     link: PCI_FEATURES_STATES.PROJECT_MANAGEMENT.QUOTA_AND_REGIONS.url,
+    featureFlag: FEATURE_AVAILABILITY.QUOTA,
   },
 ];
 const OVH_DOCS_URL = 'https://docs.ovh.com';
