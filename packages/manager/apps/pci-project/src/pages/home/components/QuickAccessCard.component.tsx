@@ -20,7 +20,7 @@ function QuickAccessCard({ item, index }: QuickAccessCardProps) {
       actionType: 'action',
       actions: [
         ...PROJECTS_TRACKING.PROJECT_HOME.CTA_QUICK_ACCESS,
-        item.labelTranslationKey,
+        item.labelTranslationKey || '',
       ],
     });
   };
