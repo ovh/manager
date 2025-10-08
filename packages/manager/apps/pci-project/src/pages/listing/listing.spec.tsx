@@ -22,7 +22,7 @@ vi.mock('@/data/api/projects-with-services', () => ({
   projectsWithServiceQueryKey: () => ['projects-with-services'],
 }));
 
-vi.mock('@/components/ManagerBannerText', () => ({
+vi.mock('@/components/manager-banner-text/ManagerBannerText', () => ({
   __esModule: true,
   default: () => <div data-testid="manager-banner-text" />,
 }));

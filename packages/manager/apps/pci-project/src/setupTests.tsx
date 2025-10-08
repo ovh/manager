@@ -6,14 +6,6 @@ import { ActionMenuItem } from '@ovh-ux/manager-react-components';
 
 global.fetch = fetch;
 
-// Mock PNG assets globally to avoid import issues
-vi.mock('@/assets/credit_card.png', () => ({ default: 'credit_card.png' }));
-vi.mock('@/assets/paypal.png', () => ({ default: 'paypal.png' }));
-vi.mock('@/assets/bank_account.png', () => ({ default: 'bank_account.png' }));
-vi.mock('@/assets/sepa_direct_debit.png', () => ({
-  default: 'sepa_direct_debit.png',
-}));
-
 // Handle unhandled promise rejections in tests to prevent Vitest warnings
 const originalUnhandledRejection = process.listeners('unhandledRejection');
 process.removeAllListeners('unhandledRejection');
@@ -634,85 +626,6 @@ vi.mock('@ovh-ux/manager-react-shell-client', async () => {
     }),
   };
 });
-
-// Mock payment method integrations to prevent component rendering issues
-vi.mock(
-  '@/components/payment/integrations/PaypalPaymentMethodIntegration',
-  () => ({
-    default: ({
-      handleValidityChange,
-    }: {
-      handleValidityChange: (valid: boolean) => void;
-    }) => {
-      React.useEffect(() => {
-        handleValidityChange?.(true);
-      }, [handleValidityChange]);
-      return null;
-    },
-  }),
-);
-
-vi.mock(
-  '@/components/payment/integrations/CreditCardPaymentMethodIntegration',
-  () => ({
-    default: ({
-      handleValidityChange,
-    }: {
-      handleValidityChange: (valid: boolean) => void;
-    }) => {
-      React.useEffect(() => {
-        handleValidityChange?.(true);
-      }, [handleValidityChange]);
-      return null;
-    },
-  }),
-);
-
-vi.mock(
-  '@/components/payment/integrations/RedirectPaymentMethodIntegration',
-  () => ({
-    default: ({
-      handleValidityChange,
-      handleCustomSubmitButton,
-    }: {
-      handleValidityChange: (valid: boolean) => void;
-      handleCustomSubmitButton?: (btn: string) => void;
-    }) => {
-      React.useEffect(() => {
-        handleValidityChange?.(true);
-        if (handleCustomSubmitButton) {
-          handleCustomSubmitButton(
-            'pci_project_new_payment_btn_continue_sepa_direct_debit',
-          );
-        }
-      }, [handleValidityChange, handleCustomSubmitButton]);
-      return null;
-    },
-  }),
-);
-
-vi.mock(
-  '@/components/payment/integrations/BankAccountPaymentMethodIntegration',
-  () => ({
-    default: ({
-      handleValidityChange,
-      handleCustomSubmitButton,
-    }: {
-      handleValidityChange: (valid: boolean) => void;
-      handleCustomSubmitButton?: (btn: string) => void;
-    }) => {
-      React.useEffect(() => {
-        handleValidityChange?.(true);
-        if (handleCustomSubmitButton) {
-          handleCustomSubmitButton(
-            'pci_project_new_payment_btn_continue_bank_account',
-          );
-        }
-      }, [handleValidityChange, handleCustomSubmitButton]);
-      return null;
-    },
-  }),
-);
 
 // Mock the dashboard links hook globally
 vi.mock('@/hooks/home/useProjectIdInLinks', () => ({

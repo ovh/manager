@@ -1,4 +1,4 @@
-import { useIsAskIncreaseProjectsQuota } from '@/data/hooks/payment/useEligibility';
+import { useIsAskIncreaseProjectsQuota } from '@/data/hooks/useEligibility';
 
 export default function useCreationRedirect() {
   const {

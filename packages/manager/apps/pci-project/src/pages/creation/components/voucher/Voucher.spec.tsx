@@ -6,7 +6,7 @@ import { CurrencyCode } from '@ovh-ux/manager-react-components';
 import Voucher from './Voucher';
 import * as useVoucherModule from '../../hooks/useVoucher';
 import { CartConfiguration } from '@/data/types/cart.type';
-import { TEligibilityVoucher } from '@/data/types/payment/eligibility.type';
+import { TEligibilityVoucher } from '@/data/types/eligibility.type';
 
 vi.mock('../../hooks/useVoucher');
 
