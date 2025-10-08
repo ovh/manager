@@ -164,6 +164,52 @@ const URL_LIST: { [guideName: string]: GuideLinks } = {
     WS: 'https://www.ovhcloud.com/es/network/byoip/',
     DEFAULT: 'https://www.ovhcloud.com/en-gb/network/byoip/',
   },
+  aggreateSliceLink: {
+    DE:
+      'https://help.ovhcloud.com/csm/de-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044858',
+    NL:
+      'https://help.ovhcloud.com/csm/en-ie-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044851',
+    ES:
+      'https://help.ovhcloud.com/csm/es-es-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0031977',
+    IE:
+      'https://help.ovhcloud.com/csm/en-ie-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044851',
+    IT:
+      'https://help.ovhcloud.com/csm/it-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044860',
+    PL:
+      'https://help.ovhcloud.com/csm/pl-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044862',
+    PT:
+      'https://help.ovhcloud.com/csm/pt-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044863',
+    FR:
+      'https://help.ovhcloud.com/csm/fr-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044867',
+    GB:
+      'https://help.ovhcloud.com/csm/en-gb-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044849',
+    CA:
+      'https://help.ovhcloud.com/csm/en-ca-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044846',
+    QC:
+      'https://help.ovhcloud.com/csm/fr-ca-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044857',
+    IN:
+      'https://help.ovhcloud.com/csm/en-in-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0068686',
+    SN:
+      'https://help.ovhcloud.com/csm/fr-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044867',
+    MA:
+      'https://help.ovhcloud.com/csm/fr-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044867',
+    TN:
+      'https://help.ovhcloud.com/csm/fr-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044867',
+    SG:
+      'https://help.ovhcloud.com/csm/en-sg-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044855',
+    ASIA:
+      'https://help.ovhcloud.com/csm/asia-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044845',
+    AU:
+      'https://help.ovhcloud.com/csm/en-au-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044847',
+    US:
+      'https://help.ovhcloud.com/csm/en-ie-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044851',
+    WE:
+      'https://help.ovhcloud.com/csm/en-ie-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044851',
+    WS:
+      'https://help.ovhcloud.com/csm/en-ie-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044851',
+    DEFAULT:
+      'https://help.ovhcloud.com/csm/en-ie-network-bring-your-own-ip?id=kb_article_view&sysparm_article=KB0044851',
+  },
   virtualMacLink: {
     DE:
       'https://help.ovhcloud.com/csm/de-dedicated-servers-network-virtual-mac?id=kb_article_view&sysparm_article=KB0030832',
