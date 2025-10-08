@@ -6,7 +6,6 @@ html {
   font-family: var(--ods-font-family-default);
 }
 
-/* Onboarding */
 ods-text.font-bold::part(text) {
   font-weight: bold;
 }
@@ -40,28 +39,4 @@ ods-text.disabled::part(text) {
   top: 8vh;
   right: -20vw;
   width: 70vw;
-}
-
-.challenge-credit-card {
-  height: 129px;
-  width: 208px;
-  position: relative;
-  background-image: url('./assets/cb.png');
-}
-
-.contacts-card {
-  padding: 1.5rem;
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
-}
-
-.contacts-card .row {
-  display: flex;
-  flex-direction: row;
-  gap: 1em;
-}
-
-.contacts-card .contacts-card-info {
-  flex-grow: 1;
-  max-width: 33.3333%;
 }

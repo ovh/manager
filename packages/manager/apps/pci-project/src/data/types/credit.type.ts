@@ -1,3 +1,5 @@
+import { TProjectPrice } from './project.type';
+
 export type CreditDetailsResponse = {
   voucher: string | null;
   description: string;
@@ -9,4 +11,28 @@ export type CreditDetailsResponse = {
     from: string;
     to: string;
   };
+};
+
+export type TStartupProgram = {
+  amount: TProjectPrice;
+  balanceDetails: {
+    amount: TProjectPrice;
+    balanceSubName: string;
+    expiring: {
+      amount: TProjectPrice;
+      creationDate: string;
+      expirationDate: string;
+      lastUpdate: string;
+      sourceObject: {
+        id: string;
+        name: string;
+      };
+    }[];
+  };
+  balanceName: string;
+  booked: [];
+  creationDate: string;
+  expiring: [];
+  lastUpdate: string;
+  type: string;
 };
