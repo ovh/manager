@@ -4,11 +4,7 @@ import https from 'node:https';
 import { createGunzip } from 'node:zlib';
 import tar from 'tar-stream';
 
-import {
-  EMOJIS,
-  MUK_COMPONENTS_SRC,
-  ODS_REACT_LATEST_URL,
-} from '../config/muk-config.js';
+import { EMOJIS, MUK_COMPONENTS_SRC, ODS_REACT_LATEST_URL } from '../config/muk-config.js';
 import { logger } from '../utils/log-manager.js';
 
 /**
