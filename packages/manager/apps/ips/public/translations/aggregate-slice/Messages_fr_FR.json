@@ -1,0 +1,9 @@
+{
+  "aggregateModalTitle": "Agréger le bloc {{ ip }}",
+  "aggregateModalDescription": "Veuillez spécifier le bloc parent désiré",
+  "aggregateModalChildrenIpsDescription": "Cette action entraînera l'agrégation des sous-réseaux suivants :",
+  "aggregateSuccessMessage": "Votre bloc IP va être segmenté. Veuillez actualiser dans quelques minutes.",
+  "noAggregateSliceAvailable": "Aucune configuration de segmentation/agrégation disponible. Pour plus d’informations, veuillez consulter notre guide : ",
+  "noAggregateLinkLabel": "ici",
+  "aggregateSliceOnGoingError": "Une autre action de segmentation ou d'agrégation a été effectuée pour cette adresse IP."
+}

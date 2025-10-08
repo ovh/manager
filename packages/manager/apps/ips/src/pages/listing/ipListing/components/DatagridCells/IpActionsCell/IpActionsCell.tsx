@@ -337,6 +337,17 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
               )}?${search.toString()}`,
           ),
       },
+    ipDetails?.bringYourOwnIp && {
+      id: 12,
+      label: t('listingActionAggregate'),
+      onClick: () =>
+        navigate(
+          `${urls.aggregate.replace(
+            urlDynamicParts.parentId,
+            parentId,
+          )}?${search.toString()}`,
+        ),
+    },
   ].filter(Boolean);
 
   return (
