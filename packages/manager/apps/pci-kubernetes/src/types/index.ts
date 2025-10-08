@@ -202,12 +202,17 @@ export type TScalingState = {
   isAutoscale: boolean;
 };
 
+export type TSelectedAvailabilityZones = {
+  zone: string;
+  checked: boolean;
+}[];
+
 export type NodePoolState = {
   name: string;
   isTouched: boolean;
   scaling: TScalingState;
   antiAffinity: boolean;
-  selectedAvailabilityZone?: string;
+  selectedAvailabilityZones?: TSelectedAvailabilityZones;
 };
 
 export type TCreateNodePoolParam = {
