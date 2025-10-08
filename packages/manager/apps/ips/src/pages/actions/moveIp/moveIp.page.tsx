@@ -15,12 +15,13 @@ import Step2 from './components/Step2';
 import {
   useGetIpdetails,
   useMoveIpService,
-  useServiceList,
+  useGetProductServices,
 } from '@/data/hooks';
 import { TOTAL_STEP_NUMBER } from './moveIp.constant';
 import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
 import { ipParkingOptionValue } from '@/types';
 import { LinkToOtherApp } from '@/components/LinkToOtherApp/LinkToOtherApp';
+import { IpTypeEnum, PRODUCT_PATHS_AND_CATEGORIES } from '@/data/constants';
 
 export default function MoveIpModal() {
   const { id } = useParams<{ id: string }>();
@@ -51,10 +52,10 @@ export default function MoveIpModal() {
   });
 
   const {
+    serviceByCategory: { [IpTypeEnum.VRACK]: vrack },
     isLoading: isServiceListLoading,
-    vrack,
     error: serviceListError,
-  } = useServiceList();
+  } = useGetProductServices([PRODUCT_PATHS_AND_CATEGORIES[IpTypeEnum.VRACK]]);
 
   const {
     isMoveIpServiceLoading,
@@ -91,7 +92,10 @@ export default function MoveIpModal() {
   ]);
 
   const isAttachedToSomeVrack = React.useMemo(
-    () => vrack?.some(({ name }) => name === ipDetails?.routedTo?.serviceName),
+    () =>
+      vrack?.some(
+        ({ serviceName }) => serviceName === ipDetails?.routedTo?.serviceName,
+      ),
     [vrack, ipDetails?.routedTo?.serviceName],
   );
 
