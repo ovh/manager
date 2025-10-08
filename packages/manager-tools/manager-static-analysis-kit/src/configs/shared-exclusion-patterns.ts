@@ -84,6 +84,7 @@ export const sharedTypesExclusionPatterns = [
   '**/tailwind*.*',
   '**/turbo.json',
   '**/tsconfig.json',
+  'vite-env.d.ts',
 
   // assets/docs
   '**/*.svg',
