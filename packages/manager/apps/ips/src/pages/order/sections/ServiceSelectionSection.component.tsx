@@ -10,11 +10,50 @@ import {
 import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import { OrderSection } from '@/components/OrderSection/OrderSection.component';
 import { ComboboxServiceItem } from '@/components/ComboboxServiceItem/ComboboxServiceItem.component';
-import { useServiceList } from '@/data/hooks/useServiceList';
 import { OrderContext } from '../order.context';
-import { useCheckServiceAvailability } from '@/data/hooks/useCheckServiceAvailability';
 import { ServiceRegion } from '@/pages/order/ServiceRegion.component';
-import { IpVersion, ipParkingOptionValue } from '@/types';
+import { IpVersion, ServiceType, ipParkingOptionValue } from '@/types';
+import { IpTypeEnum, PRODUCT_PATHS_AND_CATEGORIES } from '@/data/constants';
+import {
+  ServiceInfo,
+  useGetProductServices,
+  useCheckServiceAvailability,
+} from '@/data/hooks';
+
+const getServiceType = (
+  serviceId: string,
+  servicesByCategory: Record<string, ServiceInfo[]>,
+): ServiceType => {
+  if (serviceId === ipParkingOptionValue) {
+    return ServiceType.ipParking;
+  }
+  if (
+    servicesByCategory[IpTypeEnum.PCC]?.some(
+      ({ serviceName }) => serviceName === serviceId,
+    )
+  ) {
+    return ServiceType.dedicatedCloud;
+  }
+  if (
+    servicesByCategory[IpTypeEnum.DEDICATED]?.some(
+      ({ serviceName }) => serviceName === serviceId,
+    )
+  ) {
+    return ServiceType.server;
+  }
+  if (
+    servicesByCategory[IpTypeEnum.VPS]?.some(
+      ({ serviceName }) => serviceName === serviceId,
+    )
+  ) {
+    return ServiceType.vps;
+  }
+  return servicesByCategory[IpTypeEnum.VRACK]?.some(
+    ({ serviceName }) => serviceName === serviceId,
+  )
+    ? ServiceType.vrack
+    : ServiceType.unknown;
+};
 
 export const ServiceSelectionSection: React.FC = () => {
   const {
@@ -27,16 +66,26 @@ export const ServiceSelectionSection: React.FC = () => {
     addDisabledService,
   } = React.useContext(OrderContext);
   const { t } = useTranslation('order');
+
   const {
-    server,
-    vrack,
-    vps,
-    dedicatedCloud,
-    getServiceType,
+    serviceByCategory,
     isLoading,
     isError,
     error,
-  } = useServiceList();
+  } = useGetProductServices([
+    PRODUCT_PATHS_AND_CATEGORIES[IpTypeEnum.VRACK],
+    PRODUCT_PATHS_AND_CATEGORIES[IpTypeEnum.DEDICATED],
+    PRODUCT_PATHS_AND_CATEGORIES[IpTypeEnum.VPS],
+    PRODUCT_PATHS_AND_CATEGORIES[IpTypeEnum.PCC],
+  ]);
+
+  const {
+    [IpTypeEnum.DEDICATED]: server,
+    [IpTypeEnum.VRACK]: vrack,
+    [IpTypeEnum.VPS]: vps,
+    [IpTypeEnum.PCC]: dedicatedCloud,
+  } = serviceByCategory;
+
   const {
     isServiceInfoLoading,
     hasServiceInfoError,
@@ -65,7 +114,9 @@ export const ServiceSelectionSection: React.FC = () => {
           onOdsChange={(event) => {
             const serviceId = event.detail.value as string;
             setSelectedService(serviceId);
-            setSelectedServiceType(getServiceType(serviceId));
+            setSelectedServiceType(
+              getServiceType(serviceId, serviceByCategory),
+            );
           }}
           isClearable
           allowNewElement={false}
@@ -84,8 +135,10 @@ export const ServiceSelectionSection: React.FC = () => {
               {dedicatedCloud?.map((props) => (
                 <ComboboxServiceItem
                   key={props.id}
+                  name={props.serviceName}
+                  displayName={props.displayName}
                   {...props}
-                  isDisabled={disabledServices.includes(props.name)}
+                  isDisabled={disabledServices.includes(props.serviceName)}
                 />
               ))}
             </OdsComboboxGroup>
@@ -100,8 +153,10 @@ export const ServiceSelectionSection: React.FC = () => {
               {server?.map((props) => (
                 <ComboboxServiceItem
                   key={props.id}
+                  name={props.serviceName}
+                  displayName={props.displayName}
                   {...props}
-                  isDisabled={disabledServices.includes(props.name)}
+                  isDisabled={disabledServices.includes(props.serviceName)}
                 />
               ))}
             </OdsComboboxGroup>
@@ -114,8 +169,10 @@ export const ServiceSelectionSection: React.FC = () => {
               {vps?.map((props) => (
                 <ComboboxServiceItem
                   key={props.id}
+                  name={props.serviceName}
+                  displayName={props.displayName}
                   {...props}
-                  isDisabled={disabledServices.includes(props.name)}
+                  isDisabled={disabledServices.includes(props.serviceName)}
                 />
               ))}
             </OdsComboboxGroup>
@@ -137,8 +194,10 @@ export const ServiceSelectionSection: React.FC = () => {
             {vrack?.map((props) => (
               <ComboboxServiceItem
                 key={props.id}
+                name={props.serviceName}
+                displayName={props.displayName}
                 {...props}
-                isDisabled={disabledServices.includes(props.name)}
+                isDisabled={disabledServices.includes(props.serviceName)}
               />
             ))}
           </OdsComboboxGroup>
