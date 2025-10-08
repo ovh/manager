@@ -139,7 +139,7 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
 }));
 
 // Mock FullPageSpinner component
-vi.mock('@/components/FullPageSpinner', () => ({
+vi.mock('@/components/full-page-spinner/FullPageSpinner', () => ({
   default: () => (
     <div data-testid="full-page-spinner">
       <div data-testid="spinner-md">Loading...</div>
