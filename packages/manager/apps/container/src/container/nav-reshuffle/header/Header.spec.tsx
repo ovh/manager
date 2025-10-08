@@ -116,7 +116,7 @@ vi.mock('@/context/header', () => ({
 }));
 
 vi.mock('react-i18next', async (importOriginal) => ({
-  ...((await importOriginal()) as Record<string, unknown>),
+  ...((await importOriginal())),
   Trans: ({ i18nKey }: { i18nKey: string }) => i18nKey,
   useTranslation: () => ({
     t: (key: string) => key,
