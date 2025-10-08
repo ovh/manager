@@ -1,4 +1,4 @@
-import { TPrice } from '@/data/types/payment/cart.type';
+import { TProjectPrice } from '@/data/types/project.type';
 
 export enum PaymentMethodStatus {
   PROCESSING = 'PROCESSING', // Waiting a backend return
@@ -26,7 +26,7 @@ export enum ComponentStatus {
 
 export type TCreditData = {
   isCredit?: boolean;
-  creditAmount?: TPrice;
+  creditAmount?: TProjectPrice;
 };
 
 export type GlobalStateStatus = {
