@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { OdsSelect } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { IpTypeEnum } from '@/data/api';
+import { IpTypeEnum } from '@/data/constants';
 import { ListingContext } from '@/pages/listing/listingContext';
 
 const ALL_IP_TYPE_OPTION_VALUE = 'all';

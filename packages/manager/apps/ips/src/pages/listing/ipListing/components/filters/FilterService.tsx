@@ -5,11 +5,10 @@ import {
   OdsComboboxItem,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { IpTypeEnum } from '@/data/api';
+import { IpTypeEnum, PRODUCT_PATHS_AND_CATEGORIES } from '@/data/constants';
 import { ListingContext } from '@/pages/listing/listingContext';
 import { ComboboxServiceItem } from '@/components/ComboboxServiceItem/ComboboxServiceItem.component';
 import { useGetProductServices } from '@/data/hooks/useGetProductServices';
-import { PRODUCT_PATHS_AND_CATEGORIES } from '@/data/hooks';
 
 const serviceOrder = [
   IpTypeEnum.ADDITIONAL,

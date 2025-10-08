@@ -17,6 +17,7 @@ export const ComboboxServiceItem: React.FC<ComboboxServiceItemProps> = ({
     className={
       isDisabled ? 'pointer-events-none cursor-not-allowed bg-gray-100' : ''
     }
+    selectionLabel={displayName ?? name}
     value={name}
     aria-disabled={isDisabled}
   >

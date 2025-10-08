@@ -3,7 +3,7 @@ import { availableService, expiredService } from './serviceInfo';
 
 export const vrackMockList = [
   {
-    name: 'vrack-1',
+    name: 'pn-0000001',
     description: 'description of vrack 1',
     iam: {
       id: 'id1',
@@ -11,7 +11,7 @@ export const vrackMockList = [
     },
   },
   {
-    name: '',
+    name: 'pn-0000002',
     description: '',
     iam: {
       id: 'id2',

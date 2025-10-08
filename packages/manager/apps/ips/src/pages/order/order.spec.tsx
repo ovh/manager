@@ -15,7 +15,13 @@ import {
   selectIpv6Option,
   getOrganisationSelect,
 } from '@/test-utils';
-import { resourceMockList, organisationMockList } from '../../../mocks';
+import {
+  vrackMockList,
+  dedicatedCloudMockList,
+  organisationMockList,
+  dedicatedServerMockList,
+  vpsMockList,
+} from '../../../mocks';
 import { IpOffer } from './order.constant';
 import { IpVersion, ipParkingOptionValue } from '@/types';
 
@@ -24,45 +30,45 @@ describe('Order', async () => {
     {
       case: 'vRack',
       ipVersion: IpVersion.ipv4,
-      serviceName: resourceMockList[2].name,
+      serviceName: vrackMockList[0].name,
       region: 'eu-west-lim',
       isOrganisationSectionVisible: true,
       organisation: organisationMockList[2],
       offer: IpOffer.blockAdditionalIp,
       expectedOrderLink:
-        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-000001)~(label~'country~value~'DE)~(label~'organisation~value~'RIPE_1)~(label~'datacenter~value~'LIM))~duration~'P1M~planCode~'ip-v4-s30-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'LIM))",
+        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-0000001)~(label~'country~value~'DE)~(label~'organisation~value~'RIPE_1)~(label~'datacenter~value~'LIM))~duration~'P1M~planCode~'ip-v4-s30-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'LIM))",
     },
     {
       case: 'vRack (Without Organisation)',
       ipVersion: IpVersion.ipv4,
-      serviceName: resourceMockList[2].name,
+      serviceName: vrackMockList[0].name,
       region: 'eu-west-lim',
       isOrganisationSectionVisible: true,
       offer: IpOffer.blockAdditionalIp,
       expectedOrderLink:
-        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-000001)~(label~'country~value~'DE)~(label~'datacenter~value~'LIM))~duration~'P1M~planCode~'ip-v4-s30-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'LIM))",
+        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-0000001)~(label~'country~value~'DE)~(label~'datacenter~value~'LIM))~duration~'P1M~planCode~'ip-v4-s30-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'LIM))",
     },
     {
       case: 'vRack in UK',
       ipVersion: IpVersion.ipv4,
-      serviceName: resourceMockList[3].name,
+      serviceName: vrackMockList[1].name,
       region: 'eu-west-eri',
       isOrganisationSectionVisible: true,
       organisation: organisationMockList[3],
       offer: IpOffer.blockAdditionalIp,
       expectedOrderLink:
-        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-000002)~(label~'country~value~'UK)~(label~'organisation~value~'RIPE_2)~(label~'datacenter~value~'ERI))~duration~'P1M~planCode~'ip-v4-s30-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'ERI))",
+        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-0000002)~(label~'country~value~'UK)~(label~'organisation~value~'RIPE_2)~(label~'datacenter~value~'ERI))~duration~'P1M~planCode~'ip-v4-s30-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'ERI))",
     },
     {
       case: 'vRack in CA',
       ipVersion: IpVersion.ipv4,
-      serviceName: resourceMockList[2].name,
+      serviceName: vrackMockList[0].name,
       region: 'ca-east-bhs',
       isOrganisationSectionVisible: true,
       organisation: organisationMockList[0],
       offer: IpOffer.blockAdditionalIp,
       expectedOrderLink:
-        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-000001)~(label~'country~value~'CA)~(label~'organisation~value~'ARIN_1)~(label~'datacenter~value~'BHS))~duration~'P1M~planCode~'ip-v4-s30-arin~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'BHS))",
+        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-0000001)~(label~'country~value~'CA)~(label~'organisation~value~'ARIN_1)~(label~'datacenter~value~'BHS))~duration~'P1M~planCode~'ip-v4-s30-arin~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~'BHS))",
     },
     {
       case: 'Parking + Additional IP',
@@ -98,7 +104,7 @@ describe('Order', async () => {
     {
       case: 'Dedicated Cloud',
       ipVersion: IpVersion.ipv4,
-      serviceName: resourceMockList[0].name,
+      serviceName: dedicatedCloudMockList[0].serviceName,
       isOrganisationSectionVisible: false,
       offer: IpOffer.blockAdditionalIp,
       expectedOrderLink:
@@ -107,7 +113,7 @@ describe('Order', async () => {
     {
       case: 'Dedicated server (additional IP)',
       ipVersion: IpVersion.ipv4,
-      serviceName: resourceMockList[4].name,
+      serviceName: dedicatedServerMockList[0].name,
       isOrganisationSectionVisible: false,
       offer: IpOffer.additionalIp,
       expectedOrderLink:
@@ -116,7 +122,7 @@ describe('Order', async () => {
     {
       case: 'Dedicated server (Block additional IP)',
       ipVersion: IpVersion.ipv4,
-      serviceName: resourceMockList[4].name,
+      serviceName: dedicatedServerMockList[0].name,
       offer: IpOffer.blockAdditionalIp,
       isOrganisationSectionVisible: true,
       organisation: organisationMockList[0],
@@ -126,7 +132,7 @@ describe('Order', async () => {
     {
       case: 'VPS',
       ipVersion: IpVersion.ipv4,
-      serviceName: resourceMockList[5].name,
+      serviceName: vpsMockList[0].name,
       isOrganisationSectionVisible: false,
       offer: IpOffer.additionalIp,
       expectedOrderLink:
@@ -135,20 +141,20 @@ describe('Order', async () => {
     {
       case: 'IPv6 ARIN',
       ipVersion: IpVersion.ipv6,
-      serviceName: resourceMockList[2].name,
+      serviceName: vrackMockList[0].name,
       region: 'ca-east-bhs',
       isOrganisationSectionVisible: false,
       expectedOrderLink:
-        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-000001)~(label~'ip_region~value~'ca-east-bhs))~duration~'P1M~planCode~'ip-v6-s56-arin~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~null))",
+        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-0000001)~(label~'ip_region~value~'ca-east-bhs))~duration~'P1M~planCode~'ip-v6-s56-arin~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~null))",
     },
     {
       case: 'IPv6 RIPE',
       ipVersion: IpVersion.ipv6,
-      serviceName: resourceMockList[2].name,
+      serviceName: vrackMockList[0].name,
       region: 'eu-west-gra',
       isOrganisationSectionVisible: false,
       expectedOrderLink:
-        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-000001)~(label~'ip_region~value~'eu-west-gra))~duration~'P1M~planCode~'ip-v6-s56-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~null))",
+        "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pn-0000001)~(label~'ip_region~value~'eu-west-gra))~duration~'P1M~planCode~'ip-v6-s56-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~null))",
     },
     {
       case: 'Parking + US user and non-US region',
@@ -222,7 +228,7 @@ describe('Order', async () => {
 
     await selectIpVersion(IpVersion.ipv4);
 
-    await selectService({ container, serviceName: resourceMockList[2].name });
+    await selectService({ container, serviceName: vrackMockList[0].name });
 
     await assertTextVisibility(
       labels.order.service_selection_expired_error_message,
@@ -236,7 +242,10 @@ describe('Order', async () => {
 
     await selectIpVersion(IpVersion.ipv4);
 
-    await selectService({ container, serviceName: resourceMockList[4].name });
+    await selectService({
+      container,
+      serviceName: dedicatedServerMockList[0].name,
+    });
 
     await assertTextVisibility(
       labels.order.service_selection_ip_quota_exceeded_error_message,
@@ -267,7 +276,10 @@ describe('Order', async () => {
   it('displays an error message if the service to retrieve the region is in error', async () => {
     const { container } = await goToOrder({ hasPccZoneError: true });
     await selectIpVersion(IpVersion.ipv4);
-    await selectService({ container, serviceName: resourceMockList[0].name });
+    await selectService({
+      container,
+      serviceName: dedicatedCloudMockList[0].serviceName,
+    });
 
     await assertTextVisibility(
       labels.order.error_message.replace('{{error}}', ''),
@@ -287,7 +299,7 @@ describe('Order', async () => {
   });
 
   it('displays an error after IP version selection if resource list is KO', async () => {
-    await goToOrder({ isResourceListKo: true });
+    await goToOrder({ getVrackKo: true });
     await selectIpVersion(IpVersion.ipv4);
 
     await assertTextVisibility(
@@ -300,7 +312,7 @@ describe('Order', async () => {
     const { container } = await goToOrder({ isIpv6LimitReached: true });
     await selectIpVersion(IpVersion.ipv6);
     await selectIpv6Option({ container });
-    await selectService({ container, serviceName: resourceMockList[2].name });
+    await selectService({ container, serviceName: vrackMockList[0].name });
 
     await assertTextVisibility(labels.order.ipv6_limit_reached_error);
   });

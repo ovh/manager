@@ -1,5 +1,5 @@
 import { IamObject } from '@ovh-ux/manager-react-components';
-import { IpTypeEnum } from '@/data/api';
+import { IpTypeEnum } from '@/data/constants';
 
 export type IpObject = {
   ip: string;

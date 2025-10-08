@@ -8,7 +8,7 @@ export const dedicatedServerMockList: DedicatedServer[] = [
     ip: '111.222.333.444',
     os: 'os',
     iam: {
-      id: 'id-server',
+      id: 'id5',
       urn: 'urn:v1:eu:resource:dedicatedServer:ns1111111.ip-111-222-333.net',
       displayName: 'Dedicated Server Test',
     },

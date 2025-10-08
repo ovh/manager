@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { ODS_BADGE_COLOR, ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
 import { useGetIpdetails } from '@/data/hooks/ip';
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
-import { IpTypeEnum } from '@/data/api';
+import { IpTypeEnum } from '@/data/constants';
 
 export type IpTypeProps = {
   ip: string;

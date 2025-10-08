@@ -1,6 +1,6 @@
 import { aapi } from '@ovh-ux/manager-core-api';
 import { ExportIpToCsvData } from '@/data/hooks';
-import { IpTypeEnum } from './ipDetails';
+import { IpTypeEnum } from '@/data/constants';
 
 export type GetIpExportParams = {
   ip?: string;

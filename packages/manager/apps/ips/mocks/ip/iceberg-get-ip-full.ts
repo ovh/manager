@@ -1,4 +1,4 @@
-import { IpTypeEnum } from '@/data/api';
+import { IpTypeEnum } from '@/data/constants';
 import { IpObject } from '@/types/ipObject';
 
 const regionList = [

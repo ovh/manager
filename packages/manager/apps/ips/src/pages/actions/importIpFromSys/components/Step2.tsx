@@ -11,11 +11,11 @@ import { ODS_MESSAGE_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { TRANSLATION_NAMESPACES } from '@/utils';
 import ModalButtonGroup from './ModalButtonGroup.component';
 import {
-  PRODUCT_PATHS_AND_CATEGORIES,
   useDedicatedServerIpMigrationAvailableDurations,
   useGetProductService,
 } from '@/data/hooks';
 import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
+import { PRODUCT_PATHS_AND_CATEGORIES } from '@/data/constants';
 
 export type Step2Props = {
   onCancel: () => void;

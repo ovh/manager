@@ -92,7 +92,7 @@ export const useGetDedicatedServerTasks = ({
     combine: (results) => ({
       isPending: results.some((result) => result.isPending),
       isLoading: results.some((result) => result.isLoading),
-      error: results.find((result) => result.error),
+      error: results.find((result) => result.error)?.error,
       data: results.some((result) =>
         isUpdateTaskStatus(result.data?.data.status),
       ),

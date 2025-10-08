@@ -1,13 +1,15 @@
-import { useQueries } from '@tanstack/react-query';
+import { useQueries, UseQueryResult } from '@tanstack/react-query';
+import { ApiError, IcebergFetchResultV6 } from '@ovh-ux/manager-core-api';
 import {
   GetProductServicesParams,
   getProductServicesQueryKey,
   getProductServices,
   ProductServicesDetails,
-  IpTypeEnum,
 } from '../api';
+import { IpTypeEnum } from '@/data/constants';
 
-export interface ServiceInfo {
+export interface ServiceInfoWithId {
+  id: string | undefined;
   category: string;
   serviceName: string;
   displayName: string;
@@ -23,6 +25,8 @@ const getDisplayName = (
       return (service?.description as string) || '';
     case IpTypeEnum.VRACK:
       return (service?.name as string) || '';
+    case IpTypeEnum.PCC:
+      return (service?.description as string) || '';
     default:
       iam = service.iam as { displayName?: string } | undefined;
       return iam?.displayName || (service.displayName as string) || '';
@@ -35,37 +39,54 @@ const getDisplayName = (
 export const useGetProductServices = (
   productPathsAndCategories: GetProductServicesParams[],
 ) => {
-  const serviceByCategory = useQueries({
+  const queriesResults = useQueries({
     queries: productPathsAndCategories.map((params) => ({
       queryKey: getProductServicesQueryKey(params as GetProductServicesParams),
       queryFn: () => getProductServices(params as GetProductServicesParams),
     })),
-    combine: (queries) =>
-      queries
+    combine: (
+      results: UseQueryResult<
+        IcebergFetchResultV6<ProductServicesDetails>,
+        ApiError
+      >[],
+    ) => {
+      const data = results
         .map((result, index) => ({
           data: result?.data?.data || [],
           category: productPathsAndCategories[index]?.category,
         }))
-        .reduce((acc, { category, data }) => {
-          acc[category] = data.map((service) => {
-            const iam = service.iam as { urn: string } | undefined;
+        .reduce((acc, { category, data: serviceData }) => {
+          acc[category] = serviceData.map((service) => {
+            const iam = service.iam as { id: string; urn: string } | undefined;
+            const id = iam?.id ?? undefined;
             const extractedServiceName = iam?.urn.split(':').pop() || '';
 
             return {
               category,
+              id,
               serviceName: extractedServiceName,
               displayName:
                 getDisplayName(category, service) || extractedServiceName,
             };
           });
           return acc;
-        }, {} as Record<string, ServiceInfo[]>),
+        }, {} as Record<string, ServiceInfoWithId[]>);
+      return {
+        data,
+        isLoading: results.some((result) => result.isLoading),
+        isError: results.some((result) => result.error),
+        error: results.find((result) => result.error)?.error,
+      };
+    },
   });
 
   return {
-    serviceList: serviceByCategory
-      ? Object.values(serviceByCategory).flatMap((service) => service)
+    serviceList: queriesResults.data
+      ? Object.values(queriesResults.data).flatMap((service) => service)
       : [],
-    serviceByCategory,
+    serviceByCategory: queriesResults.data,
+    isLoading: queriesResults.isLoading,
+    isError: queriesResults.isError,
+    error: queriesResults.error,
   };
 };

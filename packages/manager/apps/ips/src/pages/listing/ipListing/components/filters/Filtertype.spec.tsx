@@ -4,7 +4,7 @@ import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ListingContext } from '@/pages/listing/listingContext';
 import { TypeFilter } from './FilterType';
-import { IpTypeEnum } from '@/data/api';
+import { IpTypeEnum } from '@/data/constants';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
 
 const queryClient = new QueryClient();
