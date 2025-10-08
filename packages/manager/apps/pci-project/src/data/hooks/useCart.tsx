@@ -16,7 +16,7 @@ import {
   removeItemFromCart,
 } from '@/data/api/cart';
 
-import { PCI_HDS_ADDON, PCI_PROJECT_ORDER_CART } from '@/constants';
+import { CREDIT_ORDER_CART, PCI_HDS_ADDON } from '@/constants';
 import {
   Cart,
   CartConfiguration,
@@ -252,13 +252,10 @@ export const useCreateAndAssignCart = ({
 export const useGetHdsAddonOption = (cartId?: string) =>
   useQuery({
     queryKey: [
-      `order/cart/${cartId}/cloud/options?planCode=${PCI_PROJECT_ORDER_CART.planCode}`,
+      `order/cart/${cartId}/cloud/options?planCode=${PlanCode.PROJECT_2018}`,
     ],
     queryFn: async () =>
-      getPublicCloudOptions(
-        cartId as string,
-        PCI_PROJECT_ORDER_CART.planCode as PlanCode,
-      ),
+      getPublicCloudOptions(cartId as string, PlanCode.PROJECT_2018),
     select: (cloudOptions) => {
       // Find HDS addon option based on planCode and family
       const hdsOption = cloudOptions?.find(
@@ -282,7 +279,7 @@ export const useOrderProjectItem = () =>
     mutationFn: async ({ cartId }: { cartId: string }) => {
       const projectItem = await orderCloudProject(
         cartId,
-        PCI_PROJECT_ORDER_CART.planCode as PlanCode,
+        PlanCode.PROJECT_2018,
       );
       return projectItem;
     },
@@ -299,9 +296,7 @@ export const useGetOrderProjectId = (cartId?: string) =>
   useQuery({
     ...getCartItemsQueryOptions(cartId),
     select: (items) =>
-      items.find(
-        (item) => item.settings.planCode === PCI_PROJECT_ORDER_CART.planCode,
-      ),
+      items.find((item) => item.settings.planCode === PlanCode.PROJECT_2018),
   });
 
 export const useIsHdsChecked = (cartId?: string) =>
@@ -323,4 +318,21 @@ export const useGetCartConfiguration = (
     select: (configurations) => {
       return configurations.find((item) => item.label === label);
     },
+  });
+
+export const useGetCreditAddonOption = (cartId?: string) =>
+  useQuery({
+    queryKey: [
+      `order/cart/${cartId}/cloud/options?planCode=${PlanCode.PROJECT_2018}`,
+    ],
+    queryFn: async () =>
+      getPublicCloudOptions(cartId as string, PlanCode.PROJECT_2018),
+    select: (cloudOptions) => {
+      // Find credit addon option based on planCode and family
+      const creditOption = cloudOptions?.find(
+        (option) => option.planCode === CREDIT_ORDER_CART.planCode,
+      );
+      return creditOption;
+    },
+    enabled: !!cartId,
   });
