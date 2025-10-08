@@ -29,6 +29,6 @@ export default class IAMConditionTimezoneController {
   }
 
   scrollSelectIntoView() {
-    ElementUiService.scrollCalendarIntoView(this.$element);
+    ElementUiService.scrollOuiSelectIntoView(this.$element);
   }
 }

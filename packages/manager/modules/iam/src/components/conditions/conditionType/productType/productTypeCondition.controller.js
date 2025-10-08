@@ -38,6 +38,6 @@ export default class IAMConditionProductTypeController {
   }
 
   scrollSelectIntoView() {
-    ElementUiService.scrollCalendarIntoView(this.$element);
+    ElementUiService.scrollOuiSelectIntoView(this.$element);
   }
 }
