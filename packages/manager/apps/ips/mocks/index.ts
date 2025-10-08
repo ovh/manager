@@ -5,7 +5,6 @@ export * from './dedicated-cloud';
 export * from './dedicated-server';
 export * from './vps';
 export * from './vrack';
-export * from './iam';
 export * from './organisations/organisations';
 export * from './cloud/cloud-project.handler';
 export * from './ip-load-balancing';

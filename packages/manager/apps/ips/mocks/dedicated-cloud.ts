@@ -12,6 +12,25 @@ const location: DedicatedCloudLocation = {
   regionLocation: 'Europe (France - Roubaix)',
 };
 
+export const dedicatedCloudMockList = [
+  {
+    iam: {
+      id: 'id1',
+      urn: 'urn:r1:pcc-1',
+    },
+    serviceName: 'pcc-1',
+    description: 'pcc-1',
+  },
+  {
+    iam: {
+      id: 'id2',
+      urn: 'urn:r2:pcc-2',
+    },
+    serviceName: 'pcc-2',
+    description: 'My PCC',
+  },
+];
+
 const orderableIpCountries = [
   'fr',
   'de',
@@ -40,7 +59,7 @@ export const getDedicatedCloudMocks = ({
 }: GetDedicatedCloudMocksParams): Handler[] => [
   {
     url: '/dedicatedCloud',
-    response: [],
+    response: dedicatedCloudMockList,
     api: 'v6',
   },
   {
