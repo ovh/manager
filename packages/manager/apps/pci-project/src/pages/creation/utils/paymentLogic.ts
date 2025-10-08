@@ -39,7 +39,8 @@ export const isPaymentMethodSaved = (
  */
 export const isSubmittingEnabled = (
   hasDefaultPaymentMethod: boolean,
+  isChallengeRequired: boolean,
   saveRequired: boolean,
 ): boolean => {
-  return hasDefaultPaymentMethod || saveRequired;
+  return (hasDefaultPaymentMethod && !isChallengeRequired) || saveRequired;
 };
