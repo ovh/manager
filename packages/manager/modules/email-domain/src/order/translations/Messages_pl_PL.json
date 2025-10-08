@@ -14,5 +14,6 @@
   "mxPlan_price_with_tax": "Cena brutto: ",
   "mxPlan_order_action": "Zamów",
   "mxPlan_order_error_payment": "Wystąpił błąd podczas ładowania Twoich metod płatności.",
-  "mxPlan_order_activate": "Włącz"
+  "mxPlan_order_activate": "Włącz",
+  "mxPlan_order_idn_domain_warning": "Używanie adresu e-mail z domeną IDN w programach pocztowych (np. Outlook, Mail w macOS) nie jest zalecane i może powodować problemy z kompatybilnością."
 }
