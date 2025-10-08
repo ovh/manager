@@ -13,6 +13,7 @@ export default mergeConfig(
     test: {
       setupFiles: [
         '@ovh-ux/manager-core-test-utils/src/utils/setup-test.ts',
+        './src/utils/tests/globalsMock.ts',
         'setupTest.ts',
       ],
       css: false,
