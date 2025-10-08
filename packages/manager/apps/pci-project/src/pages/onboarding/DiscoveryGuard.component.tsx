@@ -3,13 +3,13 @@ import { useNavigate, useResolvedPath } from 'react-router-dom';
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { isDiscoveryProject } from '@ovh-ux/manager-pci-common';
-import { useEligibility } from '@/data/hooks/payment/useEligibility';
-import { TEligibilityPaymentMethod } from '@/data/types/payment/eligibility.type';
 import useActiveProjects from '@/data/hooks/useActiveProjects';
 import { PlanCode } from '@/data/types/cart.type';
 import { TProjectWithService } from '@/data/types/project.type';
 import { urls } from '@/routes/routes.constant';
 import { BASE_PROJECT_PATH } from '@/constants';
+import { useEligibility } from '@/data/hooks/useEligibility';
+import { TEligibilityPaymentMethod } from '@/data/types/eligibility.type';
 
 export default function DiscoveryGuard({ children }: { children: ReactNode }) {
   const navigate = useNavigate();

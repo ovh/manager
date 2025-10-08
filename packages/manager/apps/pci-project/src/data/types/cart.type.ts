@@ -19,6 +19,7 @@ export enum PlanCode {
   PROJECT_2018 = 'project.2018',
   PROJECT_DISCOVERY = 'project.discovery',
   PROJECT_LEGACY = 'project.legacy',
+  HDS = 'certification.hds.2018',
 }
 
 export type CartProduct = {
