@@ -7,8 +7,6 @@ export const TENANTS_MOCKS: Tenant[] = [
     targetSpec: {
       name: 'Tenant1',
     },
-    createdAt: '2025-10-01T09:51:51.572Z',
-    updatedAt: '2025-10-01T09:51:51.572Z',
     currentState: {
       id: '1999f2f7-5140-4000-t1',
       name: 'Tenant1',
@@ -32,14 +30,9 @@ export const TENANTS_MOCKS: Tenant[] = [
         },
       ],
     },
-    currentTasks: [
-      {
-        id: '1999f2f7-5140-4000-8bd4-a0030367a880',
-        link: 'string',
-        status: 'ERROR',
-        type: 'string',
-      },
-    ],
+    currentTasks: [],
+    createdAt: '2025-10-01T09:51:51.572Z',
+    updatedAt: '2025-10-01T09:51:51.572Z',
   },
   {
     id: '1999f2f7-5140-4000-t2',
@@ -47,8 +40,6 @@ export const TENANTS_MOCKS: Tenant[] = [
     targetSpec: {
       name: 'Tenant2',
     },
-    createdAt: '2025-10-01T09:51:51.572Z',
-    updatedAt: '2025-10-01T09:51:51.572Z',
     currentState: {
       id: '1999f2f7-5140-4000-t2',
       name: 'Tenant2',
@@ -72,14 +63,9 @@ export const TENANTS_MOCKS: Tenant[] = [
         },
       ],
     },
-    currentTasks: [
-      {
-        id: '1999f2f7-5140-4000-8bd4-a0030367a880',
-        link: 'string',
-        status: 'ERROR',
-        type: 'string',
-      },
-    ],
+    currentTasks: [],
+    createdAt: '2025-10-01T09:51:51.572Z',
+    updatedAt: '2025-10-01T09:51:51.572Z',
   },
   {
     id: '1999f2f7-5140-4000-t3',
@@ -87,8 +73,6 @@ export const TENANTS_MOCKS: Tenant[] = [
     targetSpec: {
       name: 'Tenant3',
     },
-    createdAt: '2025-10-01T09:51:51.572Z',
-    updatedAt: '2025-10-01T09:51:51.572Z',
     currentState: {
       id: '1999f2f7-5140-4000-t3',
       name: 'Tenant3',
@@ -112,14 +96,9 @@ export const TENANTS_MOCKS: Tenant[] = [
         },
       ],
     },
-    currentTasks: [
-      {
-        id: '1999f2f7-5140-4000-8bd4-a0030367a880',
-        link: 'string',
-        status: 'ERROR',
-        type: 'string',
-      },
-    ],
+    currentTasks: [],
+    createdAt: '2025-10-01T09:51:51.572Z',
+    updatedAt: '2025-10-01T09:51:51.572Z',
   },
   {
     id: '1999f2f7-5140-4000-t4',
@@ -127,8 +106,6 @@ export const TENANTS_MOCKS: Tenant[] = [
     targetSpec: {
       name: 'Tenant4',
     },
-    createdAt: '2025-10-01T09:51:51.572Z',
-    updatedAt: '2025-10-01T09:51:51.572Z',
     currentState: {
       id: '1999f2f7-5140-4000-t4',
       name: 'Tenant4',
@@ -152,14 +129,9 @@ export const TENANTS_MOCKS: Tenant[] = [
         },
       ],
     },
-    currentTasks: [
-      {
-        id: '1999f2f7-5140-4000-8bd4-a0030367a880',
-        link: 'string',
-        status: 'ERROR',
-        type: 'string',
-      },
-    ],
+    currentTasks: [],
+    createdAt: '2025-10-01T09:51:51.572Z',
+    updatedAt: '2025-10-01T09:51:51.572Z',
   },
   {
     id: '1999f2f7-5140-4000-t5',
@@ -167,8 +139,6 @@ export const TENANTS_MOCKS: Tenant[] = [
     targetSpec: {
       name: 'Tenant5',
     },
-    createdAt: '2025-10-01T09:51:51.572Z',
-    updatedAt: '2025-10-01T09:51:51.572Z',
     currentState: {
       id: '1999f2f7-5140-4000-t5',
       name: 'Tenant5',
@@ -192,14 +162,9 @@ export const TENANTS_MOCKS: Tenant[] = [
         },
       ],
     },
-    currentTasks: [
-      {
-        id: '1999f2f7-5140-4000-8bd4-a0030367a880',
-        link: 'string',
-        status: 'ERROR',
-        type: 'string',
-      },
-    ],
+    currentTasks: [],
+    createdAt: '2025-10-01T09:51:51.572Z',
+    updatedAt: '2025-10-01T09:51:51.572Z',
   },
   {
     id: '1999f2f7-5140-4000-t6',
@@ -207,8 +172,6 @@ export const TENANTS_MOCKS: Tenant[] = [
     targetSpec: {
       name: 'Tenant6',
     },
-    createdAt: '2025-10-01T09:51:51.572Z',
-    updatedAt: '2025-10-01T09:51:51.572Z',
     currentState: {
       id: '1999f2f7-5140-4000-t6',
       name: 'Tenant6',
@@ -232,13 +195,8 @@ export const TENANTS_MOCKS: Tenant[] = [
         },
       ],
     },
-    currentTasks: [
-      {
-        id: '1999f2f7-5140-4000-8bd4-a0030367a880',
-        link: 'string',
-        status: 'ERROR',
-        type: 'string',
-      },
-    ],
+    currentTasks: [],
+    createdAt: '2025-10-01T09:51:51.572Z',
+    updatedAt: '2025-10-01T09:51:51.572Z',
   },
 ];
