@@ -6,9 +6,10 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 
 import { Tenant } from '@/types/Tenant.type';
+import { VSPCTenant } from '@/types/VspcTenant.type';
 import { getStatusBadgeColor } from '@/utils/getStatusBadgeColor';
 
-export const TenantStatusCell = (tenant: Tenant) => {
+export const TenantStatusCell = (tenant: Tenant | VSPCTenant) => {
   const { t } = useTranslation(NAMESPACES.STATUS);
 
   return (
