@@ -28,6 +28,10 @@ vi.mock('@/utils/dom/download', () => ({
   initiateTextFileDownload: vi.fn(),
 }));
 
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useOvhTracking: () => ({ trackClick: vi.fn() }),
+}));
+
 const mockOkms = {
   id: 'test-okms-id',
   region: 'test-region',
@@ -55,6 +59,7 @@ const renderComponentAndGetLink = async ({
     container,
     label,
     isLink: true,
+    timeout: 2000,
   });
 
   return { downloadLink };
@@ -69,25 +74,38 @@ describe('DownloadKmsPublicCaLink component tests suite', () => {
     vi.clearAllMocks();
   });
 
-  test('should render publicCa download link correctly', async () => {
-    const { downloadLink } = await renderComponentAndGetLink({
-      type: 'publicCa',
+  const buttons: {
+    type: CertificateType;
+    label: string;
+  }[] = [
+    {
+      type: 'publicCaRest',
       label: 'key_management_service_dashboard_button_label_download_ca',
-    });
-    expect(downloadLink).toBeInTheDocument();
-  });
-
-  test('should render publicRsaCa download link correctly', async () => {
-    const { downloadLink } = await renderComponentAndGetLink({
-      type: 'publicRsaCa',
+    },
+    {
+      type: 'publicCaKmip',
+      label: 'key_management_service_dashboard_button_label_download_ca',
+    },
+    {
+      type: 'publicCaRsaKmip',
       label: 'key_management_service_dashboard_button_label_download_rsa_ca',
-    });
-    expect(downloadLink).toBeInTheDocument();
-  });
+    },
+  ];
+
+  test.each(buttons)(
+    'should render $type download link correctly',
+    async ({ type, label }) => {
+      const { downloadLink } = await renderComponentAndGetLink({
+        type,
+        label,
+      });
+      expect(downloadLink).toBeInTheDocument();
+    },
+  );
 
   test('should download publicCa certificate when clicked', async () => {
     const { downloadLink } = await renderComponentAndGetLink({
-      type: 'publicCa',
+      type: 'publicCaRest',
       label: 'key_management_service_dashboard_button_label_download_ca',
     });
 
@@ -108,7 +126,7 @@ describe('DownloadKmsPublicCaLink component tests suite', () => {
 
   test('should download publicRsaCa certificate when clicked', async () => {
     const { downloadLink } = await renderComponentAndGetLink({
-      type: 'publicRsaCa',
+      type: 'publicCaRsaKmip',
       label: 'key_management_service_dashboard_button_label_download_rsa_ca',
     });
 
@@ -134,7 +152,7 @@ describe('DownloadKmsPublicCaLink component tests suite', () => {
     );
 
     const { downloadLink } = await renderComponentAndGetLink({
-      type: 'publicCa',
+      type: 'publicCaRest',
       label: 'key_management_service_dashboard_button_label_download_ca',
     });
 
