@@ -17,6 +17,7 @@ export type Node = {
   id?: string;
   path?: string;
   serviceType?: string | string[];
+  hideIfFeatures?: string[];
   translation?: string;
   shortTranslation?: string;
   illustration?: string;
@@ -25,7 +26,6 @@ export type Node = {
   separator?: boolean;
   idAttr?: string;
   hideIfEmpty?: boolean;
-  hideIfFeatures?: string[];
   badge?: string;
   forceVisibility?: boolean;
   forceNavigate?: boolean;
