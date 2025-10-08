@@ -1,12 +1,17 @@
 import React from 'react';
 
-import { Route } from 'react-router-dom';
+import { Route, UIMatch } from 'react-router-dom';
+
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
 import NotFound from '@/pages/404';
-import { urls } from '@/routes/routes.constants';
+
+import OrderDomainPage from '../pages/dashboard/OrderDomain.page';
+import OnboardingPage from '../pages/onboarding/Onboarding.page';
+import WebsitesPage from '../pages/websites/Websites.page';
 import {
   ADD_DOMAIN,
   DASHBOARD,
@@ -18,19 +23,24 @@ import {
   SAN_SSL,
   SSL,
   WEBSITE,
-} from '@/utils/tracking.constants';
+} from '../utils/tracking.constants';
+import { DashboardLayout, RootPage } from './pages/default';
+import { AddDomainPage } from './pages/domain';
+import { DisableSslPage, ImportSslPage, OrderSectigoPage, SanSslPage, SslPage } from './pages/ssl';
+import { urls } from './routes.constants';
 
-const RootPage = React.lazy(() => import('@/pages/layout'));
-const WebsitesPage = React.lazy(() => import('@/pages/websites/Websites.page'));
-const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
-const DashboardLayout = React.lazy(() => import('@/pages/dashboard/layout'));
-const SslPage = React.lazy(() => import('@/pages/dashboard/ssl/Ssl.page'));
-const ImportSslPage = React.lazy(() => import('@/pages/dashboard/ssl/add/importSsl.page'));
-const OrderSectigoPage = React.lazy(() => import('@/pages/dashboard/ssl/add/orderSectigo.page'));
-const DisableSslPage = React.lazy(() => import('@/pages/dashboard/ssl/manage/disableSsl.page'));
-const SanSslPage = React.lazy(() => import('@/pages/dashboard/ssl/manage/sanSsl.page'));
-const AddDomainPage = React.lazy(() => import('@/pages/dashboard/AddDomain.page'));
-const OrderDomainPage = React.lazy(() => import('@/pages/dashboard/OrderDomain.page'));
+export type RouteHandle = {
+  isOverridePage?: boolean;
+  tracking?: {
+    pageName?: string;
+    pageType?: PageType;
+  };
+  breadcrumb?: {
+    label: string;
+    icon?: ODS_ICON_NAME;
+  };
+};
+export type RouteMatch = UIMatch<unknown, RouteHandle>;
 
 export default (
   <Route
@@ -76,6 +86,7 @@ export default (
         breadcrumb: { label: ':serviceName' },
       }}
     >
+      {/* Project ONE SSL */}
       <Route
         id={SSL}
         path={urls.ssl}
@@ -134,6 +145,7 @@ export default (
           },
         }}
       />
+
       <Route
         id={ADD_DOMAIN}
         path={urls.addDomain}
