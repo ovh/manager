@@ -51,6 +51,14 @@ vi.mock('@/pages/company/company-tile/CompanyTile.component', () => ({
   ),
 }));
 
+const mockedTrackClick = vi.fn();
+
+vi.mock('@/context/tracking/useTracking', () => ({
+  useTrackingContext: () => ({
+    trackClick: mockedTrackClick,
+  }),
+}));
+
 const queryClient = new QueryClient();
 const renderComponent = () =>
   render(
@@ -66,6 +74,7 @@ describe('SettingsPage', () => {
     const countryComboboxElement = screen.getByTestId('country-combobox');
     const currencySelectElement = screen.getByTestId('currency-select');
     const languageSelectElement = screen.getByTestId('language-select');
+    const validateButtonElement = screen.getByTestId('validate-button');
 
     expect(countryComboboxElement).toBeInTheDocument();
     expect(currencySelectElement).toBeInTheDocument();
@@ -73,6 +82,7 @@ describe('SettingsPage', () => {
 
     expect(currencySelectElement.getAttribute('is-disabled')).toBe('true');
     expect(languageSelectElement.getAttribute('is-disabled')).toBe('true');
+    expect(validateButtonElement.getAttribute('is-disabled')).toBe('true');
   });
 
   it('should enable currency input when a country is selected', async () => {
@@ -93,6 +103,9 @@ describe('SettingsPage', () => {
       );
     });
     expect(languageSelectElement.getAttribute('is-disabled')).toBe('true');
+
+    const validateButtonElement = screen.getByTestId('validate-button');
+    expect(validateButtonElement.getAttribute('is-disabled')).toBe('true');
   });
 
   it('should enable language input when a country and currency are selected', async () => {
@@ -123,6 +136,9 @@ describe('SettingsPage', () => {
         'true',
       );
     });
+
+    const validateButtonElement = screen.getByTestId('validate-button');
+    expect(validateButtonElement.getAttribute('is-disabled')).toBe('true');
   });
 
   it('should preselect currency and language if they have only one option', async () => {
@@ -141,5 +157,18 @@ describe('SettingsPage', () => {
       expect(currencySelectElement.getAttribute('value')).toBe('GBP');
       expect(languageSelectElement.getAttribute('value')).toBe('en-GB');
     });
+
+    const validateButtonElement = screen.getByTestId('validate-button');
+    expect(validateButtonElement.getAttribute('is-disabled')).not.toBe('true');
+
+    await act(() => validateButtonElement.click());
+    expect(mockedTrackClick).toHaveBeenCalledWith(
+      { pageName: 'page-name', pageType: 'page' },
+      {
+        location: 'page',
+        buttonType: 'button',
+        actions: ['account-creation-choose-preferences', 'next', 'GB_en-GB'],
+      },
+    );
   });
 });
