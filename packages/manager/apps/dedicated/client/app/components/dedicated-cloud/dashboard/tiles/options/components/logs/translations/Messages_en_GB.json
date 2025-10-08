@@ -1,0 +1,20 @@
+{
+  "ovhManagerPccDashboardOptionsLogs_name": "Logs",
+  "logs_state_creating": "Creating...",
+  "logs_state_deleted": "Deleted",
+  "logs_state_deleting": "Deleting...",
+  "logs_state_delivered": "Enabled",
+  "logs_state_disabled": "Disabled",
+  "logs_state_pending": "Queued",
+  "logs_state_toCreate": "To be created",
+  "logs_state_updating": "Updating...",
+  "logs_get_status_error": "An error occurred while retrieving the log collection status: {{ error }}",
+  "logs_activate": "Enable",
+  "logs_deactivate": "Disable",
+  "logs_deactivate_modal_title": "Warning: you are about to disable log collection",
+  "logs_deactivate_modal_description": "Disabling this service will stop the collection and viewing of logs. Do you want to continue?",
+  "logs_deactivate_modal_cancel": "Close",
+  "logs_deactivate_modal_confirm": "Disable",
+  "logs_deactivate_success": "Log collection has been disabled. This will take effect in a few minutes.",
+  "logs_deactivate_error": "An error occurred while disabling log collection: {{ error }}"
+}
