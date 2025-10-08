@@ -21,3 +21,4 @@ export * from './useAddIpToVirtualMac';
 export * from './useIsIpHasVmac';
 export * from './useMoveIpService';
 export * from './useGetDedicatedServerTasks';
+export * from './useByoipActions';
