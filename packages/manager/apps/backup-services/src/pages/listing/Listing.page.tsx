@@ -10,15 +10,16 @@ import { OdsButton } from '@ovhcloud/ods-components/react';
 import { BaseLayout, Breadcrumb, Datagrid } from '@ovh-ux/manager-react-components';
 
 import { appName } from '@/App.constants';
-import { useBackupTenantsMocks } from '@/data/hooks/useBackupTenants';
-import { useListingColumns } from '@/pages/listing/_hooks/useTenantListingColumns';
+import { useVSPCTenantsMocks } from '@/data/hooks/useVspcTenants';
 import { urls } from '@/routes/Routes.constants';
+
+import { useVspcListingColumns } from './_hooks/useVspcTenantListingColumns';
 
 export default function ListingPage() {
   const { t } = useTranslation(['common', 'listing']);
   const navigate = useNavigate();
-  const columns = useListingColumns();
-  const { data, isLoading } = useBackupTenantsMocks(); // TODO: unmock (useBackupTenants)
+  const columns = useVspcListingColumns();
+  const { data, isLoading } = useVSPCTenantsMocks(); // TODO: unmock (useVSPCTenants)
 
   const onNavigateToDashboardClicked = () => {
     startTransition(() => navigate(urls.dashboard));

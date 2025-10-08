@@ -8,18 +8,18 @@ import { getBackupTenants } from '../api/Backup.api';
 
 type TUseBackupTenantsResult = UseQueryResult<Tenant[], Error>;
 
-const getBackupTenantsQueryKey = ['backup', 'tenant'];
+export const GET_TENANTS_QUERY_KEY = ['backup', 'tenant'];
 
 export const useBackupTenants = (): TUseBackupTenantsResult =>
   useQuery({
-    queryKey: getBackupTenantsQueryKey,
+    queryKey: GET_TENANTS_QUERY_KEY,
     queryFn: () => getBackupTenants(),
     select: (res) => res.data,
   });
 
 export const useBackupTenantsMocks = (): TUseBackupTenantsResult =>
   useQuery({
-    queryKey: getBackupTenantsQueryKey,
+    queryKey: GET_TENANTS_QUERY_KEY,
     queryFn: () =>
       new Promise((resolve) => {
         console.log('🛜 mocking useBackupTenants api call...');
