@@ -20,6 +20,7 @@ export const subRoutes = {
   moveIp: 'move-ip',
   unblockAntiHack: 'unblock-anti-hack',
   exportIpToCsv: 'export-ip-to-csv',
+  aggregate: 'aggregate',
 };
 
 export const urlDynamicParts = {
@@ -51,5 +52,6 @@ export const urls = {
   manageOrganisations: `${subRoutes.root}/${subRoutes.manageOrganisations}`,
   openOrganisationsModal: `${subRoutes.root}/${subRoutes.manageOrganisations}/${urlDynamicParts.organisationId}/${subRoutes.openOrganisations}`,
   listingConfigureReverseDns: `${subRoutes.root}/${subRoutes.configureReverseDns}/${urlDynamicParts.parentId}/${urlDynamicParts.optionalId}`,
-  byoipOrderModal: `${subRoutes.root}/${subRoutes.byoip}/${subRoutes.byoipOrder}`
+  byoipOrderModal: `${subRoutes.root}/${subRoutes.byoip}/${subRoutes.byoipOrder}`,
+  aggregate: `${subRoutes.root}/${subRoutes.aggregate}/${urlDynamicParts.parentId}`,
 };
