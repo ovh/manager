@@ -20,6 +20,7 @@ export type PaymentStepProps = {
   cartProjectItem: OrderedProduct;
   onPaymentStatusChange?: (willPaymentStatus: GlobalStateStatus) => void;
   onRegisteredPaymentMethodSelected: (event: CustomEvent) => void;
+  onRequiredChallengeEvent: (event: CustomEvent) => void;
 };
 
 type PaymentForm = {
@@ -33,6 +34,7 @@ export default function PaymentStep({
   cartProjectItem,
   onPaymentStatusChange,
   onRegisteredPaymentMethodSelected,
+  onRequiredChallengeEvent,
 }: Readonly<PaymentStepProps>) {
   const [paymentForm, setPaymentForm] = useState<PaymentForm>({
     voucherConfiguration: undefined,
@@ -70,6 +72,7 @@ export default function PaymentStep({
       <WillPaymentComponent
         config={willPaymentConfig}
         onRegisteredPaymentMethodSelected={onRegisteredPaymentMethodSelected}
+        onRequiredChallengeEvent={onRequiredChallengeEvent}
       />
 
       {isStartupProgramAvailable && startupProgramAmountText && (
