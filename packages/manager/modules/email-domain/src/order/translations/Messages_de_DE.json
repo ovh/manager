@@ -14,5 +14,6 @@
   "mxPlan_price_with_tax": "Preis inkl. MwSt.: ",
   "mxPlan_order_action": "Bestellen",
   "mxPlan_order_error_payment": "Beim Laden Ihrer Zahlungsmittel ist ein Fehler aufgetreten.",
-  "mxPlan_order_activate": "Aktivieren"
+  "mxPlan_order_activate": "Aktivieren",
+  "mxPlan_order_idn_domain_warning": "Die Verwendung einer E-Mail-Adresse mit einer IDN-Domain in einem E-Mail-Programm (Outlook, Mail von macOS usw.) wird nicht empfohlen und kann zu Inkompatibilitäten führen."
 }
