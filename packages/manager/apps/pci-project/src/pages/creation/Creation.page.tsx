@@ -107,6 +107,7 @@ export default function ProjectCreation() {
     savePaymentMethod,
     handlePaymentStatusChange,
     handleRegisteredPaymentMethodSelected,
+    handleChallengeRequired,
   } = useWillPayment();
 
   useEffect(() => {
@@ -291,6 +292,7 @@ export default function ProjectCreation() {
             onRegisteredPaymentMethodSelected={
               handleRegisteredPaymentMethodSelected
             }
+            onRequiredChallengeEvent={handleChallengeRequired}
           />
         </StepComponent>
 
