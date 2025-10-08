@@ -4,7 +4,7 @@ import { Divider, Text } from '@ovhcloud/ods-react';
 import { FormProvider } from 'react-hook-form';
 import { AdvancedParameters } from '../AdvancedParameters.component';
 import { CreationCart } from '../CreationCart.component';
-import { DeploymentModeSelection } from '../deploymentMode/DeploymentModeSelection.component';
+import { DeploymentModeSection } from '../deploymentMode/DeploymentModeSection.component';
 import FlavorBlock from '../FlavorBlock.component';
 import { LocalizationSelection } from '../localisationSelection/LocalizationSelection.component';
 import { Localization } from '../Localization.component';
@@ -60,7 +60,7 @@ export const CreateInstanceForm = () => {
           />
           <Divider spacing="64" />
           <Localization />
-          <DeploymentModeSelection />
+          <DeploymentModeSection />
           <LocalizationSelection />
           {microRegions && hasMultiMicroRegions && (
             <div className="pt-7 pb-5">
