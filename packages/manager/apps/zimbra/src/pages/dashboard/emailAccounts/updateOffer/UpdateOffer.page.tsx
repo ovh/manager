@@ -32,13 +32,15 @@ import { useUpgradeMutation } from '@/data/hooks/account/useUpgradeMutation';
 import { useGenerateUrl } from '@/hooks';
 import { BACK_PREVIOUS_PAGE, UPDATE_OFFER_SLOT } from '@/tracking.constants';
 
+const DRIVE_NOT_EMPTY_ERROR = 'Briefcase not empty';
+
 export const UpdateOffer = () => {
   const { platformId } = useParams();
   const context = useContext(ShellContext);
   const locale = context.environment.getUserLocale();
   const { ovhSubsidiary } = context.environment.getUser();
   const { trackClick, trackPage } = useOvhTracking();
-  const { addSuccess, addError, clearNotifications } = useNotifications();
+  const { addSuccess, addError, addWarning, clearNotifications } = useNotifications();
   const { t } = useTranslation(['accounts', 'common', NAMESPACES.ACTIONS]);
   const goBackUrl = useGenerateUrl('../../..', 'href');
   const { slotWithService, isLoading: isSlotWithServiceLoading } = useSlotWithService();
@@ -79,18 +81,29 @@ export const UpdateOffer = () => {
         pageName: UPDATE_OFFER_SLOT,
       });
       clearNotifications();
-      addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {slotWithService?.offer === ZimbraOffer.STARTER
-            ? t('zimbra_account_upgrade_error_message', {
-                error: error.response?.data?.message,
-              })
-            : t('zimbra_account_downgrade_error_message', {
-                error: error.response?.data?.message,
-              })}
-        </OdsText>,
-        true,
-      );
+      if (
+        selectedOffer === ZimbraOffer.STARTER &&
+        error.response?.data?.message?.includes(DRIVE_NOT_EMPTY_ERROR)
+      ) {
+        addWarning(
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            {t('zimbra_account_downgrade_drive_not_empty_warning_message')}
+          </OdsText>,
+        );
+      } else {
+        addError(
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            {slotWithService?.offer === ZimbraOffer.STARTER
+              ? t('zimbra_account_upgrade_error_message', {
+                  error: error.response?.data?.message,
+                })
+              : t('zimbra_account_downgrade_error_message', {
+                  error: error.response?.data?.message,
+                })}
+          </OdsText>,
+          true,
+        );
+      }
     },
     onSettled: async () => {
       await queryClient.invalidateQueries({
@@ -122,11 +135,13 @@ export const UpdateOffer = () => {
   };
 
   const handleUpgrade = () => {
+    const planCode =
+      slotWithService?.offer === ZimbraOffer.PRO
+        ? ZimbraPlanCodes.ZIMBRA_STARTER
+        : ZimbraPlanCodes.ZIMBRA_PRO;
+
     upgradeService({
-      planCode:
-        slotWithService?.offer === ZimbraOffer.PRO
-          ? ZimbraPlanCodes.ZIMBRA_STARTER
-          : ZimbraPlanCodes.ZIMBRA_PRO,
+      planCode,
       serviceName: slotWithService?.id,
     });
   };

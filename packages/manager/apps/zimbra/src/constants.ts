@@ -6,6 +6,9 @@ export const OVH_WEBSITE_ROOT_URL = 'https://ovhcloud.com';
 
 export const ZimbraLabsLink = 'https://labs.ovhcloud.com/en/zimbra-beta/';
 
+export const MAX_STARTER_STORAGE_QUOTA = 16106127360;
+export const MAX_PRO_STORAGE_QUOTA = 53687091200;
+
 export const ZimbraEmailsLink: Record<string, string> = {
   DEFAULT: `${OVH_WEBSITE_ROOT_URL}/en-ie/emails/zimbra-emails/`,
   FR: `${OVH_WEBSITE_ROOT_URL}/fr/emails/zimbra-emails/`,
