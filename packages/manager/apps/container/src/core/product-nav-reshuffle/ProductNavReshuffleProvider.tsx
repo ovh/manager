@@ -101,7 +101,7 @@ export const ProductNavReshuffleProvider = ({
     setIsLocationChangesOnce(true);
   }, [location])
 
-  const pnrContext = {
+  const pnrContext: ProductNavReshuffleContextType = {
    // onboarding
     onboardingOpenedState,
     openOnboarding,
@@ -125,10 +125,8 @@ export const ProductNavReshuffleProvider = ({
     isAnimated,
     setIsAnimated,
     popoverPosition,
-    setPopoverPosition
-    // FIXME: Can be removed after updating Prettier
-    // eslint-disable-next-line prettier/prettier
-  } satisfies ProductNavReshuffleContextType;
+    setPopoverPosition,
+  };
 
   return (
     <ProductNavReshuffleContext.Provider value={pnrContext}>

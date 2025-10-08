@@ -1,7 +1,6 @@
 {
-  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react",
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
   "compilerOptions": {
-    "baseUrl": ".",
     "types": [
       "vite/client",
       "node",
