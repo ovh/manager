@@ -60,7 +60,8 @@ describe('useDatagridOperationsPolling', () => {
         ],
       },
       {
-        description: 'with a in-progress instance creation with copy completed',
+        description:
+          'with in-progress instance reinstall without copy in-progress',
         operations: [
           {
             section: 'instance',
@@ -73,8 +74,7 @@ describe('useDatagridOperationsPolling', () => {
         ],
       },
       {
-        description:
-          'with in-progress instance reinstall without copy in-progress',
+        description: 'with a in-progress instance creation with copy completed',
         operations: [
           {
             section: 'instance',
