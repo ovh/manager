@@ -14,7 +14,7 @@ async function main() {
   } else if (args.includes('--check-components')) {
     await checkComponents();
   } else if (args.includes('--update-version')) {
-    await updateOdsVersions({ withInstall: true });
+    await updateOdsVersions();
   } else {
     logger.warn('Usage: manager-muk-cli --check-versions | --check-components | --update');
   }
