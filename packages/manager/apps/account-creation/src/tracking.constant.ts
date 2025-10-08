@@ -15,6 +15,6 @@ export const LEVEL2 = {
     },
   },
 };
-export const UNIVERSE = 'Account-creation';
-export const SUB_UNIVERSE = 'Account-creation';
+export const UNIVERSE = 'Authentication';
+export const SUB_UNIVERSE = 'account-creation';
 export const APP_NAME = 'account-creation';

@@ -7,10 +7,10 @@ import { User } from '@ovh-ux/manager-config';
 
 export type TrackingContext = {
   setUser: (user: User) => void;
-  trackPage: (params: TrackingPageParams) => void;
+  trackPage: (params: TrackingPageParams & { pageCategory?: string }) => void;
   trackClick: (
     page: TrackingPageParams,
-    { location, buttonType, actions, actionType }: TrackingClickParams,
+    { location, buttonType, actions, actionType, pageCategory }: TrackingClickParams & { pageCategory?: string },
   ) => void;
 };
 

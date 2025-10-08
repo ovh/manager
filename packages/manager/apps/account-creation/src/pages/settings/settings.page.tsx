@@ -15,11 +15,20 @@ import {
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Currency } from '@ovh-ux/manager-config';
 import {
+  ButtonType,
+  PageLocation,
+  usePageTracking,
+} from '@ovh-ux/manager-react-shell-client';
+
+import { useTrackingContext } from '@/context/tracking/useTracking';
+import {
   useCountrySettings,
   useCurrencySettings,
   useLanguageSettings,
+  useSubsidiarySettings,
 } from '@/data/hooks/settings/useSettings';
 import { useSettingsSchema } from '@/hooks/settings/useSettings';
+import { useTrackError } from '@/hooks/tracking/useTracking';
 import { WEBSITE_LABEL_BY_LOCALE } from './settings.constants';
 
 type SettingsFormData = {
@@ -34,6 +43,9 @@ export default function Settings() {
     NAMESPACES.ACTIONS,
     NAMESPACES.FORM,
   ]);
+  const { trackClick } = useTrackingContext();
+  const { trackError } = useTrackError('choose-preferences');
+  const pageTracking = usePageTracking();
 
   const schema = useSettingsSchema();
 
@@ -50,14 +62,23 @@ export default function Settings() {
 
   const selectedCountry = watch('country');
   const selectedCurrency = watch('currency');
+  const selectedLanguage = watch('language');
   const {
     data: countries,
     isLoading: isLoadingCountries,
+    error: errorCountries,
   } = useCountrySettings();
-  const { data: currencies } = useCurrencySettings(selectedCountry);
-  const { data: languages } = useLanguageSettings(
+  const { data: currencies, error: errorCurrencies } = useCurrencySettings(
+    selectedCountry,
+  );
+  const { data: languages, error: errorLanguages } = useLanguageSettings(
     selectedCountry,
     selectedCurrency,
+  );
+  const { data: ovhSubsidiary } = useSubsidiarySettings(
+    selectedCountry,
+    selectedCurrency,
+    selectedLanguage,
   );
 
   const comboboxRef = useRef<HTMLOdsComboboxElement | null>(null);
@@ -89,6 +110,13 @@ export default function Settings() {
     }
   }, [languages, selectedCountry, selectedCurrency]);
 
+  useEffect(() => {
+    const error = errorCountries || errorCurrencies || errorLanguages;
+    if (error) {
+      trackError(error.message);
+    }
+  }, [errorCountries, errorCurrencies, errorLanguages]);
+
   const resetCurrencyAndLanguage = useCallback(() => {
     setValue('currency', '');
     setValue('language', '');
@@ -96,10 +124,27 @@ export default function Settings() {
 
   const submitSettings: SubmitHandler<SettingsFormData> = useCallback(
     ({ country, currency, language }: SettingsFormData) => {
+      trackClick(pageTracking, {
+        location: PageLocation.page,
+        buttonType: ButtonType.button,
+        actions: [
+          'account-creation-choose-preferences',
+          'next',
+          `${ovhSubsidiary}_${language}`,
+        ],
+      });
       console.log({ country, currency, language });
     },
-    [],
+    [ovhSubsidiary],
   );
+
+  const trackAuthLinkClick = useCallback(() => {
+    trackClick(pageTracking, {
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actions: ['login'],
+    });
+  }, [trackClick, pageTracking]);
 
   return (
     <div className={'flex flex-col gap-8'}>
@@ -110,7 +155,9 @@ export default function Settings() {
             t={t}
             i18nKey="description"
             components={{
-              Link: <OdsLink href={'/auth'} />,
+              Link: (
+                <OdsLink href={'/auth'} onClick={() => trackAuthLinkClick()} />
+              ),
             }}
           />
         </OdsText>
@@ -237,6 +284,7 @@ export default function Settings() {
           label={t('validate', { ns: NAMESPACES.ACTIONS })}
           isDisabled={!isValid}
           type="submit"
+          data-testid="validate-button"
         />
       </form>
     </div>
