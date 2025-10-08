@@ -28,6 +28,8 @@
   "zimbra_account_upgrade_error_message": "Votre demande de mise à niveau n'a pas pu aboutir. {{ error }}",
   "zimbra_account_downgrade_success_message": "Votre demande de rétrogradation a bien été prise en compte. Elle sera traitée d'ici quelques instants.",
   "zimbra_account_downgrade_error_message": "Votre demande de rétrogradation n'a pas pu aboutir. {{ error }}",
+  "zimbra_account_downgrade_storage_exceeded_warning_message": "Le stockage utilisé par la boite mail est supérieur au stockage autorisé par l'offre cible. Veuillez nettoyer boite mail.",
+  "zimbra_account_downgrade_drive_not_empty_warning_message": "Nous détectons des fichiers dans la fonctionnalité drive. Veuillez supprimer tous les fichiers du dossier et de la corbeille pour exécuter le changement d'offre.",
   "zimbra_account_plan_feature_storage_starter": "<strong>15 Go</strong> de stockage",
   "zimbra_account_plan_feature_storage_pro": "<strong>50 Go</strong> de stockage",
   "zimbra_account_plan_feature_share_starter": "Partage limité de <strong>calendriers</strong>, <strong>tâches</strong> et <strong>contacts</strong>",
