@@ -23,8 +23,9 @@ export default class IAMConditionDateController {
       this.timezone?.timeZone,
     )}.${this.criterion?.value}`;
     this.condition.values = {
-      [fullKey]: this.dates.replaceAll(' ', ''),
+      [fullKey]: this.dates?.replaceAll(' ', ''),
     };
+    this.condition.hasValue = !!this.condition.values[fullKey];
   }
 
   $onChanges({ criterion }) {

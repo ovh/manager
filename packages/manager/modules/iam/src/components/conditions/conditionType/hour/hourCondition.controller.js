@@ -19,6 +19,7 @@ export default class IAMConditionHourController {
     this.condition.values = {
       [fullKey]: this.hour,
     };
+    this.condition.hasValue = !!this.condition.values[fullKey];
   }
 
   $onChanges({ criterion }) {
