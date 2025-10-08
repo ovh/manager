@@ -1,7 +1,9 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { FetchResultV6 } from '@ovh-ux/manager-react-components';
-import { CreditDetailsResponse } from '@/data/types/credit.type';
-import { TStartupProgram } from '../types/credit';
+import {
+  CreditDetailsResponse,
+  TStartupProgram,
+} from '@/data/types/credit.type';
 
 export const getCreditDetails = async (
   projectId: string,
