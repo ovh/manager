@@ -20,5 +20,8 @@
   "netapp_volumes_acl_cancel": "Abbrechen",
   "netapp_volumes_acl_delete": "Löschen",
   "netapp_volumes_acl_add_success": "Ihre Zugangsregel (ACL) wurde erstellt",
-  "netapp_volumes_acl_add_error": "Ihre Zugangsregel (ACL) konnte nicht erstellt werden, bitte versuchen Sie es erneut"
+  "netapp_volumes_acl_add_error": "Ihre Zugangsregel (ACL) konnte nicht erstellt werden, bitte versuchen Sie es erneut",
+  "netapp_volumes_acl_description_common": "Fügen Sie IP-Adressen oder -Bereiche hinzu, die Zugang zu diesem Volume erhalten sollen. Standardmäßig sind keine IP-Adressen oder -Bereich zugelassen.",
+  "netapp_volumes_acl_description_no_network": "Dieser Enterprise File Storage kann nur mit OVHcloud IPs verwendet werden (Dedicated Server/Virtual Private Server/Public Cloud/So you Start/Kimsufi/ADSL).",
+  "netapp_volumes_acl_description_network": "Dieser Enterprise File Storage kann nur über ein privates vRack Netzwerk verwendet werden."
 }
