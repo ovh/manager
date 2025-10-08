@@ -22,6 +22,8 @@ import {
   ODS_ICON_NAME,
   ODS_BUTTON_VARIANT,
   ODS_BUTTON_SIZE,
+  ODS_TABLE_SIZE,
+  ODS_TABLE_VARIANT,
 } from '@ovhcloud/ods-components';
 import {
   OdsButton,
@@ -169,6 +171,10 @@ export interface DatagridProps<T> {
   resourceType?: string;
   /** Enable and configure row selection */
   rowSelection?: RowSelectionProps<T>;
+  /** ODS Table size property */
+  size?: ODS_TABLE_SIZE;
+  /** ODS Table variant property */
+  variant?: ODS_TABLE_VARIANT;
   /** Use to overwrite row id */
   getRowId?: (originalRow: T, index: number) => string;
 }
@@ -203,6 +209,8 @@ export const Datagrid = <T,>({
   tableLayoutFixed,
   resourceType,
   rowSelection,
+  size,
+  variant,
   getRowId,
 }: DatagridProps<T>) => {
   const { t } = useTranslation('datagrid');
@@ -455,7 +463,7 @@ export const Datagrid = <T,>({
         resourceType={resourceType}
       />
       <div className={`contents px-[1px] ${className || ''}`}>
-        <OdsTable className="overflow-x-visible">
+        <OdsTable className="overflow-x-visible" size={size} variant={variant}>
           <table
             className="w-full border-collapse"
             style={

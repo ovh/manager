@@ -5,6 +5,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import React, { useContext, useEffect, useState } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { ODS_TABLE_SIZE, ODS_TABLE_VARIANT } from '@ovhcloud/ods-components';
 import { useGetIpList } from '@/data/hooks/ip';
 import { ListingContext } from '../../../listingContext';
 import { urls } from '@/routes/routes.constant';
@@ -42,6 +43,8 @@ export const IpDatagrid = () => {
       errorComponent={<ErrorBanner error={error as ApiError} />}
     >
       <Datagrid
+        size={ODS_TABLE_SIZE.sm}
+        variant={ODS_TABLE_VARIANT.striped}
         columns={columns}
         items={paginatedIpList}
         totalItems={filteredIpList?.length}
