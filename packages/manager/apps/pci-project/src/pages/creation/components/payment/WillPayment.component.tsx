@@ -10,6 +10,7 @@ type WillPaymentModuleProps = {
 type WillPaymentComponentProps = {
   config: TWillPaymentConfig;
   onRegisteredPaymentMethodSelected: (event: CustomEvent) => void;
+  onRequiredChallengeEvent: (event: CustomEvent) => void;
 };
 
 /**
@@ -52,16 +53,18 @@ const WillPaymentModule = lazy(() =>
 function WillPaymentComponent({
   config,
   onRegisteredPaymentMethodSelected,
+  onRequiredChallengeEvent,
 }: Readonly<WillPaymentComponentProps>) {
   const slotRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const cleanup = setupRegisteredPaymentMethodListener(
       onRegisteredPaymentMethodSelected,
+      onRequiredChallengeEvent,
     );
 
     return cleanup || undefined;
-  }, [slotRef, onRegisteredPaymentMethodSelected]);
+  }, [slotRef, onRegisteredPaymentMethodSelected, onRequiredChallengeEvent]);
 
   return (
     <div id="will-payment-event-bus" ref={slotRef}>
