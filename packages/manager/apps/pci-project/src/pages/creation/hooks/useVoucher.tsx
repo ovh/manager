@@ -4,8 +4,8 @@ import {
   useAttachConfigurationToCartItem,
   useDeleteConfigurationItemFromCart,
 } from '@/data/hooks/useCart';
-import { useCheckVoucherEligibility } from '@/data/hooks/payment/useEligibility';
 import { CartConfiguration } from '@/data/types/cart.type';
+import { useCheckVoucherEligibility } from '@/data/hooks/useEligibility';
 
 export function useVoucher({
   cartId,

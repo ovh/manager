@@ -26,7 +26,7 @@ import {
   getProjectsWithServices,
   projectsWithServiceQueryKey,
 } from '@/data/api/projects-with-services';
-import ManagerBannerText from '@/components/ManagerBannerText';
+import ManagerBannerText from '@/components/manager-banner-text/ManagerBannerText';
 import useRedirectAfterProjectSelection from '@/hooks/useRedirectAfterProjectSelection';
 import { urls } from '@/routes/routes.constant';
 import { PROJECTS_TRACKING } from '@/tracking.constant';

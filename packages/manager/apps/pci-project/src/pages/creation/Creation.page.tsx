@@ -17,7 +17,7 @@ import {
   useGetOrderProjectId,
   useOrderProjectItem,
 } from '@/data/hooks/useCart';
-import FullPageSpinner from '@/components/FullPageSpinner';
+import FullPageSpinner from '@/components/full-page-spinner/FullPageSpinner';
 import { useConfigForm } from './hooks/useConfigForm';
 import { useProjectCreation } from './hooks/useProjectCreation';
 import { Step, useStepper } from './hooks/useStepper';
@@ -29,8 +29,8 @@ import CreditConfirmation from './components/credit/CreditConfirmation.component
 export default function ProjectCreation() {
   const { t } = useTranslation([
     'new/config',
-    'new/payment',
-    'payment/integrations/credit/confirmation',
+    'payment',
+    'payment/credit',
     NAMESPACES.ACTIONS,
   ]);
 
@@ -203,7 +203,7 @@ export default function ProjectCreation() {
       label={t(
         'pci_project_new_payment_check_anti_fraud_case_fraud_manual_review_link',
         {
-          ns: 'new/payment',
+          ns: 'payment',
         },
       )}
       href={billingHref}
@@ -212,7 +212,7 @@ export default function ProjectCreation() {
     />
   ) : (
     t('pci_project_new_payment_btn_continue_default', {
-      ns: 'new/payment',
+      ns: 'payment',
     })
   );
 
@@ -267,7 +267,7 @@ export default function ProjectCreation() {
           isLocked={isPaymentLocked}
           isChecked={isPaymentChecked}
           title={t('pci_project_new_payment_description_label', {
-            ns: 'new/payment',
+            ns: 'payment',
           })}
           edit={
             isPaymentChecked
@@ -308,12 +308,12 @@ export default function ProjectCreation() {
             isLocked={isCreditConfirmationLocked}
             isChecked={isCreditConfirmationChecked}
             title={t('pci_project_new_payment_credit_confirmation_title', {
-              ns: 'payment/integrations/credit/confirmation',
+              ns: 'payment/credit',
             })}
             next={{
               action: handleCreditAndPay,
               label: t('pci_project_new_payment_credit_credit_and_pay', {
-                ns: 'payment/integrations/credit/confirmation',
+                ns: 'payment/credit',
               }),
               isDisabled: isSubmitting,
               isLoading: isSubmitting,

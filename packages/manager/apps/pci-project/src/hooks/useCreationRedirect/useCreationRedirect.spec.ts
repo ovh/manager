@@ -1,10 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook } from '@testing-library/react';
-import { useIsAskIncreaseProjectsQuota } from '@/data/hooks/payment/useEligibility';
+import { useIsAskIncreaseProjectsQuota } from '@/data/hooks/useEligibility';
 import useCreationRedirect from './useCreationRedirect';
 import { createWrapper } from '@/wrapperRenders';
 
-vi.mock('@/data/hooks/payment/useEligibility', () => ({
+vi.mock('@/data/hooks/useEligibility', () => ({
   useIsAskIncreaseProjectsQuota: vi.fn(),
 }));
 

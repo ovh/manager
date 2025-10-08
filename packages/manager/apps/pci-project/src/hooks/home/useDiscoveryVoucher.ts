@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { checkVoucherEligibility } from '@/data/api/payment/eligibility';
+import { checkVoucherEligibility } from '@/data/api/eligibility';
 
 const DISCOVERY_PROMOTION_VOUCHER = 'FREETRIAL';
 
