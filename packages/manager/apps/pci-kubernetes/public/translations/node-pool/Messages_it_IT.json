@@ -39,5 +39,6 @@
   "kube_node_pool": "Configurare il pool di nodi",
   "kube_common_estimation_price_free": "Gratis",
   "kube_common_estimation_total_price": "Prezzo totale stimato:",
-  "kube_common_node_pool_estimation_cost_tile": "Stima mensile"
+  "kube_common_node_pool_estimation_cost_tile": "Stima mensile",
+  "kube_common_node_pool_select_zone": "Devi selezionare almeno una zona di disponibilità."
 }

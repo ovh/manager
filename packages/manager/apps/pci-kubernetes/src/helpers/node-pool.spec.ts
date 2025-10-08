@@ -1,24 +1,18 @@
 import { describe, expect, it, vi } from 'vitest';
 
 import { DeploymentMode, NodePoolState } from '@/types';
-import { TRegionInformations } from '@/types/region';
 
-import * as deploymentUtils from '.';
 import {
   exceedsMaxNodes,
   hasInvalidScalingOrAntiAffinityConfig,
   hasMax5NodesAntiAffinity,
   isScalingValid,
-  zoneAZisChecked,
+  isZoneAzChecked,
 } from './node-pool';
 
 vi.mock('@/constants', () => ({
   NODE_RANGE: { MAX: 10 },
   ANTI_AFFINITY_MAX_NODES: 5,
-}));
-
-vi.mock('.', () => ({
-  isMonoDeploymentZone: vi.fn(),
 }));
 
 describe('exceedsMaxNodes', () => {
@@ -33,31 +27,26 @@ describe('exceedsMaxNodes', () => {
 
 describe('zoneAZisChecked', () => {
   it('returns true if mono deployment zone', () => {
-    vi.mocked(deploymentUtils.isMonoDeploymentZone).mockReturnValue(true);
-    expect(
-      zoneAZisChecked(
-        { type: DeploymentMode.MONO_ZONE } as TRegionInformations,
-        {} as NodePoolState,
-      ),
-    ).toBe(true);
+    expect(isZoneAzChecked(DeploymentMode.MONO_ZONE, {} as NodePoolState)).toBe(true);
   });
 
   it('returns true if availability zone is selected', () => {
-    vi.mocked(deploymentUtils.isMonoDeploymentZone).mockReturnValue(false);
     const nodePoolState = {
-      selectedAvailabilityZone: 'zone-a',
+      selectedAvailabilityZones: [{ zone: 'zone-a', checked: true }],
     } as NodePoolState;
-    expect(
-      zoneAZisChecked({ type: DeploymentMode.MULTI_ZONES } as TRegionInformations, nodePoolState),
-    ).toBe(true);
+    expect(isZoneAzChecked(DeploymentMode.MULTI_ZONES, nodePoolState)).toBe(true);
+  });
+  it('returns false if availability zone is not selected', () => {
+    const nodePoolState = {
+      selectedAvailabilityZones: [{ zone: 'zone-a', checked: false }],
+    } as NodePoolState;
+
+    expect(isZoneAzChecked(DeploymentMode.MULTI_ZONES, nodePoolState)).toBe(false);
   });
 
   it('returns false otherwise', () => {
-    vi.mocked(deploymentUtils.isMonoDeploymentZone).mockReturnValue(false);
     const nodePoolState = {} as NodePoolState;
-    expect(
-      zoneAZisChecked({ type: DeploymentMode.MULTI_ZONES } as TRegionInformations, nodePoolState),
-    ).toBe(false);
+    expect(isZoneAzChecked(DeploymentMode.MULTI_ZONES, nodePoolState)).toBe(false);
   });
 });
 
@@ -96,47 +85,58 @@ describe('hasInvalidScalingOrAntiAffinityConfig', () => {
     const nodePoolState = {
       scaling: { isAutoscale: false, quantity: { desired: 11 } },
       antiAffinity: false,
-      selectedAvailabilityZone: 'zone',
+      selectedAvailabilityZones: [{ zone: 'zone-1', checked: false }],
     } as NodePoolState;
-    vi.mocked(deploymentUtils.isMonoDeploymentZone).mockReturnValue(false);
-    const region = { type: DeploymentMode.MULTI_ZONES } as TRegionInformations;
 
-    expect(hasInvalidScalingOrAntiAffinityConfig(region, nodePoolState)).toBe(true);
+    expect(hasInvalidScalingOrAntiAffinityConfig(DeploymentMode.MULTI_ZONES, nodePoolState)).toBe(
+      true,
+    );
   });
 
   it('returns true if antiAffinity config is invalid', () => {
     const nodePoolState = {
       scaling: { isAutoscale: false, quantity: { desired: 6 } },
       antiAffinity: true,
-      selectedAvailabilityZone: 'zone',
+      selectedAvailabilityZones: [{ zone: 'zone', checked: false }],
     } as NodePoolState;
-    vi.mocked(deploymentUtils.isMonoDeploymentZone).mockReturnValue(false);
-    const region = { type: DeploymentMode.MULTI_ZONES } as TRegionInformations;
 
-    expect(hasInvalidScalingOrAntiAffinityConfig(region, nodePoolState)).toBe(true);
+    expect(hasInvalidScalingOrAntiAffinityConfig(DeploymentMode.MULTI_ZONES, nodePoolState)).toBe(
+      true,
+    );
   });
 
   it('returns true if zone is not selected and not mono', () => {
     const nodePoolState = {
       scaling: { isAutoscale: false, quantity: { desired: 5 } },
       antiAffinity: false,
-      selectedAvailabilityZone: undefined,
+      selectedAvailabilityZones: undefined,
     } as NodePoolState;
-    vi.mocked(deploymentUtils.isMonoDeploymentZone).mockReturnValue(false);
-    const region = { type: DeploymentMode.MULTI_ZONES } as TRegionInformations;
 
-    expect(hasInvalidScalingOrAntiAffinityConfig(region, nodePoolState)).toBe(true);
+    expect(hasInvalidScalingOrAntiAffinityConfig(DeploymentMode.MULTI_ZONES, nodePoolState)).toBe(
+      true,
+    );
   });
 
   it('returns false if everything is valid', () => {
     const nodePoolState = {
       scaling: { isAutoscale: false, quantity: { desired: 5 } },
       antiAffinity: false,
-      selectedAvailabilityZone: 'zone',
+      selectedAvailabilityZones: [{ zone: 'zone', checked: true }],
     } as NodePoolState;
-    vi.mocked(deploymentUtils.isMonoDeploymentZone).mockReturnValue(false);
-    const region = { type: DeploymentMode.MULTI_ZONES } as TRegionInformations;
 
-    expect(hasInvalidScalingOrAntiAffinityConfig(region, nodePoolState)).toBe(false);
+    expect(hasInvalidScalingOrAntiAffinityConfig(DeploymentMode.MULTI_ZONES, nodePoolState)).toBe(
+      false,
+    );
+  });
+  it('returns false if no checkbox is checked', () => {
+    const nodePoolState = {
+      scaling: { isAutoscale: false, quantity: { desired: 5 } },
+      antiAffinity: false,
+      selectedAvailabilityZones: [{ zone: 'zone', checked: false }],
+    } as NodePoolState;
+
+    expect(hasInvalidScalingOrAntiAffinityConfig(DeploymentMode.MULTI_ZONES, nodePoolState)).toBe(
+      true,
+    );
   });
 });

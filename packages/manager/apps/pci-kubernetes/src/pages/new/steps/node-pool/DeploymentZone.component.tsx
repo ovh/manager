@@ -1,27 +1,109 @@
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_COLOR_INTENT, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  Checkbox,
+  CheckboxControl,
+  CheckboxGroup,
+  CheckboxGroupProp,
+  CheckboxLabel,
+  Message,
+  MessageBody,
+  MessageIcon,
+  Radio,
+  RadioControl,
+  RadioGroup,
+  RadioGroupProp,
+  RadioLabel,
+  RadioValueChangeDetail,
+  Text,
+} from '@ovhcloud/ods-react';
 
-import { selectedTileClass, tileClass } from '../UpdatePolicySelector.component';
+import { PciCard } from '@/components/pciCard/PciCard.component';
+import { TSelectedAvailabilityZones } from '@/types';
 
-type DeploymentZoneProps = {
-  onSelect: (zone: string) => void;
-  selectedAvailabilityZone: string;
-  availabilityZones: string[];
+type GetGroupPropsParams = {
+  multiple: boolean;
+  availabilityZones: TSelectedAvailabilityZones;
+  isInvalid: boolean;
+  handleCheckboxChange: (checkedValues: string[]) => void;
+  handleRadioChange: (checkedValues: RadioValueChangeDetail) => void;
 };
 
-const DeploymentZone = ({
-  onSelect,
-  selectedAvailabilityZone,
+type DeploymentZoneProps = {
+  onSelect: (zone: TSelectedAvailabilityZones) => void;
+  availabilityZones: TSelectedAvailabilityZones;
+  multiple: boolean;
+};
+
+function getGroupProps({
+  multiple,
   availabilityZones,
-}: DeploymentZoneProps) => {
+  isInvalid,
+  handleCheckboxChange,
+  handleRadioChange,
+}: GetGroupPropsParams): CheckboxGroupProp | RadioGroupProp {
+  if (multiple) {
+    return {
+      invalid: isInvalid,
+      defaultValue: availabilityZones.filter(({ checked }) => checked).map(({ zone }) => zone),
+      onValueChange: handleCheckboxChange,
+      className: clsx('gap-4', isInvalid ? 'mt-4' : 'mt-6'),
+    } satisfies CheckboxGroupProp;
+  } else {
+    return {
+      defaultValue: availabilityZones.find(({ checked }) => checked)?.zone,
+      onValueChange: handleRadioChange,
+      className: clsx('gap-4', 'mt-6'),
+    } satisfies RadioGroupProp;
+  }
+}
+
+const DeploymentZone = ({ onSelect, availabilityZones, multiple }: DeploymentZoneProps) => {
   const { t } = useTranslation('node-pool');
 
+  const handleCheckboxChange = (checkedValues: string[]) => {
+    const newStates = availabilityZones.map(({ zone }) => ({
+      zone,
+      checked: checkedValues.includes(zone),
+    }));
+
+    onSelect(newStates);
+  };
+
+  const handleRadioChange = (checkedValues: RadioValueChangeDetail) => {
+    const newStates = availabilityZones.map(({ zone }) => ({
+      zone,
+      checked: zone === checkedValues.value,
+    }));
+
+    onSelect(newStates);
+  };
+
+  const isInvalid = availabilityZones.every(({ checked }) => !checked);
+
+  const groupProps = getGroupProps({
+    multiple,
+    availabilityZones,
+    isInvalid,
+    handleCheckboxChange,
+    handleRadioChange,
+  });
+
+  const Component = multiple ? Checkbox : Radio;
+  const Control = multiple ? CheckboxControl : RadioControl;
+  const Group = (props: CheckboxGroupProp | RadioGroupProp) =>
+    multiple ? (
+      <CheckboxGroup {...(props as CheckboxGroupProp)} />
+    ) : (
+      <RadioGroup {...(props as RadioGroupProp)} />
+    );
+  const Label = multiple ? CheckboxLabel : RadioLabel;
+
   return (
-    <div>
+    <div className="max-w-3xl">
       <OsdsText
         className="mb-4 font-bold block"
         color={ODS_TEXT_COLOR_INTENT.text}
@@ -30,39 +112,34 @@ const DeploymentZone = ({
       >
         {t('kube_common_node_pool_deploy_title')}
       </OsdsText>
-      <OsdsText
-        level={ODS_TEXT_LEVEL.body}
-        size={ODS_TEXT_SIZE._400}
-        color={ODS_THEME_COLOR_INTENT.text}
-      >
-        {t('kube_common_node_pool_deploy_description')}
-      </OsdsText>
-      <div className="flex mt-8 gap-4">
-        {availabilityZones?.map((zone) => (
-          <OsdsTile
-            data-testid={zone}
-            role="button"
-            key={zone}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            className={clsx(
-              tileClass,
-              zone === selectedAvailabilityZone ? selectedTileClass : null,
-              'selectedTileClass',
-            )}
-            onClick={() => onSelect(zone)}
-            inline
-          >
-            <OsdsText
-              className="block w-[20rem]"
-              level={ODS_TEXT_LEVEL.heading}
-              size={ODS_TEXT_SIZE._200}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              {zone}
-            </OsdsText>
-          </OsdsTile>
-        ))}
-      </div>
+      <Text color="text">{t('kube_common_node_pool_deploy_description')}</Text>
+      {multiple && isInvalid && (
+        <Message dismissible={false} className="flex mt-6" variant="default" color="critical">
+          <MessageIcon name="hexagon-exclamation" />
+          <MessageBody>{t('kube_common_node_pool_select_zone')}</MessageBody>
+        </Message>
+      )}
+      <Group {...groupProps}>
+        <div className="flex gap-6  w-full flex-col lg:flex-row">
+          {availabilityZones?.map(({ zone, checked }) => (
+            <Component className="w-full" key={zone} name={zone} value={zone} checked={checked}>
+              <PciCard
+                color={multiple && isInvalid ? 'critical' : 'neutral'}
+                selected={checked}
+                selectable
+                className="w-full"
+              >
+                <div className="flex flex-row items-center gap-4">
+                  <Control />
+                  <Label className="flex font-bold">
+                    <Text className="font-bold text-[--ods-color-heading]">{zone}</Text>
+                  </Label>
+                </div>
+              </PciCard>
+            </Component>
+          ))}
+        </div>
+      </Group>
     </div>
   );
 };

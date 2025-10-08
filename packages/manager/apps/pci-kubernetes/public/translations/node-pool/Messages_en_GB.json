@@ -39,5 +39,6 @@
   "kube_node_pool": "Configure node pool",
   "kube_common_estimation_price_free": "Free",
   "kube_common_estimation_total_price": "Total estimated price:",
-  "kube_common_node_pool_estimation_cost_tile": "Monthly estimate"
+  "kube_common_node_pool_estimation_cost_tile": "Monthly estimate",
+  "kube_common_node_pool_select_zone": "You must select at least one availability zone."
 }
