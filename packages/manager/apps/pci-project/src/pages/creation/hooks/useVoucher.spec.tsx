@@ -7,16 +7,16 @@ import {
   useAttachConfigurationToCartItem,
   useDeleteConfigurationItemFromCart,
 } from '@/data/hooks/useCart';
-import { useCheckVoucherEligibility } from '@/data/hooks/payment/useEligibility';
+import { useCheckVoucherEligibility } from '@/data/hooks/useEligibility';
 import { CartConfiguration } from '@/data/types/cart.type';
-import { TEligibilityVoucher } from '@/data/types/payment/eligibility.type';
+import { TEligibilityVoucher } from '@/data/types/eligibility.type';
 
 vi.mock('@/data/hooks/useCart', () => ({
   useAttachConfigurationToCartItem: vi.fn(),
   useDeleteConfigurationItemFromCart: vi.fn(),
 }));
 
-vi.mock('@/data/hooks/payment/useEligibility', () => ({
+vi.mock('@/data/hooks/useEligibility', () => ({
   useCheckVoucherEligibility: vi.fn(),
 }));
 
