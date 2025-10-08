@@ -13,6 +13,7 @@ import {
   DashboardItem,
 } from '@/constants';
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
+import { useDashboardItemsFilteredByFA } from '@/hooks/useDashboardItemsFilteredByFA';
 
 export function useDashboardSections(projectId: string) {
   const { t } = useTranslation('home');
@@ -59,7 +60,7 @@ export function useDashboardSections(projectId: string) {
     return items;
   }, [isLoading, vouchersCreditDetails, projectId, t, formatDate]);
 
-  const documentationItems = useMemo((): DashboardItem[] => {
+  const documentationItemsConfig = useMemo(() => {
     return DASHBOARD_DOCUMENTATION_LINKS_CONFIG.map((item) => ({
       ...item,
       link: item.documentationGuideKey
@@ -70,6 +71,11 @@ export function useDashboardSections(projectId: string) {
         : item.link,
     }));
   }, [subsidiary]);
+
+  // Filter documentation items by feature flags
+  const documentationItems = useDashboardItemsFilteredByFA(
+    documentationItemsConfig,
+  );
 
   const tiles: DashboardTile[] = useMemo(
     () => [
