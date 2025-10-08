@@ -13,4 +13,5 @@ export const TRANSLATION_NAMESPACES = {
   importIpFromSys: 'import-ip-from-sys',
   moveIp: 'move-ip',
   exportIpToCsv: 'export-ip-to-csv',
+  aggregateSlice: 'aggregate-slice',
 };
