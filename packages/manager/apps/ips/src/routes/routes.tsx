@@ -185,7 +185,20 @@ export const Routes: RouteObject[] = [
                     pageType: PageType.popup,
                   },
                 },
-              }
+              },
+              {
+                id: subRoutes.aggregate,
+                path: urls.aggregate,
+                ...lazyRouteConfig(() =>
+                  import('@/pages/actions/aggregate/aggregate.page'),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'aggregate',
+                    pageType: PageType.popup,
+                  },
+                },
+              },
             ],
           },
           {
