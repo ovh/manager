@@ -38,8 +38,6 @@ import {
   GetVpsMocksParams,
   getOrganisationMocks,
   GetOrganisationMocksParams,
-  getIamMocks,
-  GetIamMocksParams,
   GetCatalogMocksParams,
   getCloudProjectMocks,
   getIpLoadBalancingMocks,
@@ -53,7 +51,6 @@ export type GetUserMocksParams = {
 };
 
 export type MockParams = GetIpsMocksParams &
-  GetIamMocksParams &
   GetDedicatedMocksParams &
   GetServicesMocksParams &
   GetDedicatedCloudMocksParams &
@@ -78,7 +75,6 @@ export const renderTest = async ({
     ...toMswHandlers(
       [
         ...getIpsMocks(mockParams),
-        ...getIamMocks(mockParams),
         ...getDedicatedMocks(mockParams),
         ...getAuthenticationMocks({ isAuthMocked: true }),
         ...getServicesMocks(mockParams),

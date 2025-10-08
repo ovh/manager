@@ -1,5 +1,5 @@
 import { IcebergFetchResultV6, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
-import { IpTypeEnum } from './ipDetails';
+import { IpTypeEnum } from '@/data/constants';
 
 export type GetProductServicesParams = {
   category: IpTypeEnum;

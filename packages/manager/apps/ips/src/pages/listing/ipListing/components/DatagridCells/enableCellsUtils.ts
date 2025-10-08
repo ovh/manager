@@ -1,4 +1,5 @@
-import { IpDetails, IpTypeEnum } from '@/data/api';
+import { IpDetails } from '@/data/api';
+import { IpTypeEnum } from '@/data/constants';
 import { IPRoutedServiceType, getTypeByServiceName } from '@/utils';
 
 export const isAdditionalOrDedicated = (ipDetails: IpDetails) =>

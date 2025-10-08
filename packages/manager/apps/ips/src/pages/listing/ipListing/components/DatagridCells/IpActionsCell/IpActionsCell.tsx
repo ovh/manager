@@ -8,7 +8,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import ipaddr from 'ipaddr.js';
 import { urlDynamicParts, urls } from '@/routes/routes.constant';
 import { fromIpToId, ipFormatter } from '@/utils';
-import { IpTypeEnum } from '@/data/api';
+import { IpTypeEnum, PRODUCT_PATHS_AND_CATEGORIES } from '@/data/constants';
 import { ListingContext } from '@/pages/listing/listingContext';
 import { isGameFirewallEnabled } from '../enableCellsUtils';
 import {
@@ -19,7 +19,6 @@ import {
   useGetAttachedServices,
   useIpHasVmac,
   useIpHasAlerts,
-  PRODUCT_PATHS_AND_CATEGORIES,
 } from '@/data/hooks';
 
 export type IpActionsCellParams = {
@@ -89,9 +88,6 @@ export const IpActionsCell = ({ parentIpGroup, ip }: IpActionsCellParams) => {
   const navigate = useNavigate();
   const [search] = useSearchParams();
   const { t } = useTranslation(['listing', NAMESPACES?.ACTIONS]);
-  const isAdmin = useContext(ShellContext)
-    .environment?.getUser()
-    .auth?.roles?.includes('ADMIN');
 
   const serviceName = ipDetails?.routedTo?.serviceName;
   const {
