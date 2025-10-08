@@ -1,4 +1,3 @@
-// Route URLs
 export const urls = {
   root: '/pci/projects',
   listing: '',
@@ -14,7 +13,4 @@ export const urls = {
   updatingWithVoucher: 'updating/:orderId/:voucherCode',
   increaseQuota: 'increase-quota',
   remove: 'remove',
-  contactsAndRights: ':projectId/contacts',
-  contactAndRightsAdd: 'add',
-  contactAndRightsDelete: 'delete/:accountId',
 } as const;
