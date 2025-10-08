@@ -17,7 +17,9 @@ export default class IAMConditionProductTypeController {
   }
 
   initForm() {
-    this.productTypes = this.condition?.value?.split(',');
+    const resourceTypes = this.condition?.value?.split(',') || [];
+    this.iamResourceTypeService.transformResourceTypes(resourceTypes);
+    this.productTypes = resourceTypes;
   }
 
   updateConditionValues() {
@@ -25,6 +27,7 @@ export default class IAMConditionProductTypeController {
     this.condition.values = {
       [fullKey]: this.productTypes.map(({ value }) => value).join(','),
     };
+    this.condition.hasValue = !!this.condition.values[fullKey];
   }
 
   $onChanges({ criterion }) {

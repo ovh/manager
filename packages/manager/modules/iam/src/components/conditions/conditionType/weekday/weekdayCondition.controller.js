@@ -31,6 +31,7 @@ export default class IAMConditionWeekdayController {
     this.condition.values = {
       [fullKey]: this.weekday.map(({ value }) => value).join(','),
     };
+    this.condition.hasValue = !!this.condition.values[fullKey];
   }
 
   $onChanges({ criterion }) {

@@ -29,6 +29,7 @@ export default class IAMCreateConditionModalController {
       this.currentConditionType = type;
       this.updateCriteria(type);
       this.criterion = this.criteria.find(({ value }) => value === criterion);
+      this.condition.hasValue = !!this.condition.value;
     }
   }
 
