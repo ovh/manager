@@ -16,6 +16,7 @@ export default class IAMConditionIPController {
     this.condition.values = {
       [fullKey]: this.ipValue,
     };
+    this.condition.hasValue = !!this.condition.values[fullKey];
   }
 
   $onChanges({ criterion }) {
