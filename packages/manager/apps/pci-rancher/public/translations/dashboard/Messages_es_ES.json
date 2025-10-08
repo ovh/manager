@@ -58,5 +58,5 @@
   "egress_tooltip": "Las notaciones CIDR representan los rangos de las direcciones IP de salida utilizadas por Rancher. Puede ser necesario autorizar estas direcciones IP («whitelisting») a acceder a sus plataformas de terceros (p. ej., llamadas a la API para aprovisionar recursos).",
   "badRequestSwitchPlan": "Se ha producido un error al cambiar su plan Managed Rancher Service. Actualmente utiliza drivers que no son compatibles con el plan {{plan}}: {{drivers}}",
   "savingsPlanUsage": "Si ya ha contratado uno o varios Saving Plans para el plan seleccionado, las vCPU de sus clústeres «downstream» se contabilizarán automáticamente en este plan.",
-  "iamTemporaryAccessUnavailable": "La funcionalidad \"Generar sus accesos temporales\" no está disponible cuando la autenticación IAM está activada. Para cambiar la contraseña del usuario Admin, utilice la interfaz Rancher."
+  "iamTemporaryAccessUnavailable": "La funcionalidad \"Generar los accesos temporales\" no está disponible cuando la autenticación IAM está activada. Para cambiar la contraseña del usuario Admin, utilice la interfaz Rancher."
 }

@@ -58,5 +58,5 @@
   "egress_tooltip": "CIDRs to zapisy odnoszące się do zakresów adresów IP używanych przez Rancher do ruchu wychodzącego. Może być konieczne dodanie tych adresów IP do białej listy, aby miały dostęp do zewnętrznych platform (np. wywołania API w celu dostarczania zasobów).",
   "badRequestSwitchPlan": "Wystąpił błąd podczas zmiany oferty Managed Rancher Service. Aktualnie korzystasz ze sterowników, które nie są obsługiwane w ofercie {{plan}}: {{drivers}}",
   "savingsPlanUsage": "Jeśli masz już zamówiony jeden lub więcej Saving Plan dla wybranego pakietu, vCPU przypisane do „downstream clusters” będą automatycznie wliczane do tego planu (planów).",
-  "iamTemporaryAccessUnavailable": "Funkcja \"Generuj tymczasowe dostępy\" jest niedostępna, gdy uwierzytelnianie IAM jest włączone. Aby zmienić hasło użytkownika Admin, skorzystaj z interfejsu Rancher."
+  "iamTemporaryAccessUnavailable": "Funkcja „Generuj tymczasowe dostępy” nie działa, gdy uwierzytelnianie IAM jest włączone. Aby zmienić hasło użytkownika Admin, skorzystaj z interfejsu Rancher."
 }
