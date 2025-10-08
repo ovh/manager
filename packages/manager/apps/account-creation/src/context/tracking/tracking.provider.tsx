@@ -8,8 +8,10 @@ import {
   TrackingPageParams,
 } from '@ovh-ux/manager-react-shell-client';
 import { DataUsagePolicy } from '@ovh-ux/manager-gcj-module';
+
 import trackingContext from '@/context/tracking/tracking.context';
 import { APP_NAME, LEVEL2, SUB_UNIVERSE, UNIVERSE } from '@/tracking.constant';
+import { AdditionalTrackingParams } from '@/types/tracking';
 
 type Props = {
   region: Region;
@@ -37,14 +39,16 @@ export const TrackingProvider = ({
   }, [region, user]);
 
   const trackPage = useCallback(
-    (params: TrackingPageParams) => {
-      plugin.trackPage(
-        getPageProps({
+    (params: TrackingPageParams & AdditionalTrackingParams) => {
+      plugin.trackPage({
+        ...getPageProps({
           ...tracking,
           ...params,
           level2: tracking.level2Config[region].config.level2,
         }),
-      );
+        page_category: params?.pageCategory || 'Authentication',
+        ...(params.goalType ? { goalType: params.goalType } : {}),
+      });
     },
     [plugin, tracking],
   );
@@ -52,10 +56,17 @@ export const TrackingProvider = ({
   const trackClick = useCallback(
     (
       pageTracking: TrackingPageParams,
-      { location, buttonType, actions, actionType }: TrackingClickParams,
+      {
+        location,
+        buttonType,
+        actions,
+        actionType,
+        pageCategory,
+        goalType,
+      }: TrackingClickParams & AdditionalTrackingParams,
     ) => {
-      plugin.trackClick(
-        getClickProps({
+      plugin.trackClick({
+        ...getClickProps({
           ...tracking,
           ...pageTracking,
           location,
@@ -64,7 +75,9 @@ export const TrackingProvider = ({
           actions,
           level2: tracking.level2Config[region].config.level2,
         }),
-      );
+        page_category: pageCategory || 'Authentication',
+        ...(goalType ? { goalType } : {}),
+      });
     },
     [plugin, tracking],
   );

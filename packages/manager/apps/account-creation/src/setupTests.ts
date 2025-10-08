@@ -18,6 +18,10 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   return {
     ...original,
     useOvhTracking: () => ({ trackClick: trackClickMock }),
+    usePageTracking: () => ({
+      pageType: 'page',
+      pageName: 'page-name',
+    }),
   };
 });
 
