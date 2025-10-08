@@ -1,4 +1,4 @@
-import { IpTypeEnum } from '@/data/api';
+import { IpTypeEnum } from '@/data/constants';
 import { useGetProductService } from '../useGetProductService';
 
 export type UseIpHasServicesAttachedParams = {

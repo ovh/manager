@@ -4,8 +4,8 @@ import {
   apiClient,
   fetchIcebergV6,
 } from '@ovh-ux/manager-core-api';
-import { IpTypeEnum } from './ipDetails';
 import { IpObject } from '@/types/ipObject';
+import { IpTypeEnum } from '@/data/constants';
 
 export type GetIpListParams = {
   /** Filter the value of campus property (ilike) (alpha) */

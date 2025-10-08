@@ -1,4 +1,5 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
+import { IpTypeEnum } from '@/data/constants';
 
 export type GetIpDetailsParams = {
   ip: string;
@@ -7,25 +8,6 @@ export type GetIpDetailsParams = {
 export type IpRoutedToType = {
   serviceName: string;
 };
-
-export enum IpTypeEnum {
-  CDN = 'cdn',
-  CLOUD = 'cloud',
-  DEDICATED = 'dedicated',
-  ADDITIONAL = 'failover',
-  HOSTED_SSL = 'hosted_ssl',
-  HOUSING = 'housing',
-  LOAD_BALANCING = 'loadBalancing',
-  MAIL = 'mail',
-  OVERTHEBOX = 'overthebox',
-  PCC = 'pcc',
-  PCI = 'pci',
-  PRIVATE = 'private',
-  VPN = 'vpn',
-  VPS = 'vps',
-  VRACK = 'vrack',
-  XDSL = 'xdsl',
-}
 
 export type IpDetails = {
   type: IpTypeEnum;
