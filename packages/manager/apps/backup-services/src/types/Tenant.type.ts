@@ -1,17 +1,13 @@
 import { ApiResourceStatus, ApiTask } from './ApiGeneric.type';
 
-type TenantTargetSpec = {
-  name: string;
-};
-
-type TenantState = {
+type AssociatedTenantVSPC = {
+  azName: string;
   id: string;
   name: string;
-  vaults: TenantVault[];
-  vspcTenants: VSPCTenant[];
+  status: ApiResourceStatus;
 };
 
-export type TenantVault = {
+type TenantVault = {
   azName: string;
   id: string;
   name: string;
@@ -21,11 +17,15 @@ export type TenantVault = {
   type: 'BUNDLE' | 'PAYGO';
 };
 
-export type VSPCTenant = {
-  azName: string;
+type TenantState = {
   id: string;
   name: string;
-  status: ApiResourceStatus;
+  vaults: TenantVault[];
+  vspcTenants: AssociatedTenantVSPC[];
+};
+
+type TenantTargetSpec = {
+  name: string;
 };
 
 export type Tenant = {
