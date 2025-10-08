@@ -1,0 +1,20 @@
+{
+  "ovhManagerPccDashboardOptionsLogs_name": "Logi",
+  "logs_state_creating": "Trwa tworzenie",
+  "logs_state_deleted": "Usunięty",
+  "logs_state_deleting": "Trwa usuwanie",
+  "logs_state_delivered": "Włączony",
+  "logs_state_disabled": "Wyłączony",
+  "logs_state_pending": "Oczekujący",
+  "logs_state_toCreate": "Do utworzenia",
+  "logs_state_updating": "Trwa aktualizacja",
+  "logs_get_status_error": "Wystąpił błąd podczas pobierania statusu gromadzenia logów: {{error}}",
+  "logs_activate": "Włącz",
+  "logs_deactivate": "Wyłącz",
+  "logs_deactivate_modal_title": "Uwaga, wyłączasz gromadzenie logów",
+  "logs_deactivate_modal_description": "Wyłączenie tej usługi zatrzyma gromadzenie i wyświetlanie logów. Czy chcesz kontynuować?",
+  "logs_deactivate_modal_cancel": "Zamknij",
+  "logs_deactivate_modal_confirm": "Wyłącz",
+  "logs_deactivate_success": "Dyspozycja wyłączenia gromadzenia logów została przyjęta i zostanie zrealizowana w ciągu kilku minut.",
+  "logs_deactivate_error": "Wystąpił błąd podczas wyłączania gromadzenia logów: {{error}}"
+}
