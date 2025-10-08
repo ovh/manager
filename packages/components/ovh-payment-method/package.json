@@ -22,9 +22,7 @@
     "dev:watch": "rollup -c --environment BUILD:development --watch",
     "prepare": "rollup -c --environment BUILD:production"
   },
-  "dependencies": {
-    "lodash-es": "^4.17.21"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.1.0"
   }
