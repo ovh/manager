@@ -11,6 +11,7 @@ export default {
     shareACLTypeEnum: '<',
     volumeId: '<',
     trackClick: '<',
+    isNetworkAvailable: '<',
   },
   controller,
   template,
