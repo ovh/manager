@@ -1,6 +1,9 @@
 import { useCallback, useState } from 'react';
 import { GlobalStateStatus, TCreditData } from '@/types/WillPayment.type';
-import { triggerSavePaymentMethodEvent } from '../utils/paymentEvents';
+import {
+  triggerSavePaymentMethodEvent,
+  triggerSubmitChallengeEvent,
+} from '../utils/paymentEvents';
 import {
   isPaymentMethodSaveRequired as checkIsPaymentMethodSaveRequired,
   isPaymentMethodSaved as checkIsPaymentMethodSaved,
@@ -18,10 +21,17 @@ export const useWillPayment = () => {
   ] = useState<GlobalStateStatus | null>(null);
 
   const [hasDefaultPaymentMethod, setHasDefaultPaymentMethod] = useState(false);
+  const [isChallengeRequired, setIsChallengeRequired] = useState(false);
 
   const handleRegisteredPaymentMethodSelected = (event: CustomEvent) => {
     if (event && event.detail) {
       setHasDefaultPaymentMethod(true);
+    }
+  };
+
+  const handleChallengeRequired = (event: CustomEvent) => {
+    if (event && event.detail) {
+      setIsChallengeRequired(event.detail.required);
     }
   };
 
@@ -35,14 +45,19 @@ export const useWillPayment = () => {
   /**
    * Triggers payment method saving via DOM event
    */
-  const savePaymentMethod = () => {
-    triggerSavePaymentMethodEvent();
-  };
+  const savePaymentMethod = useCallback(() => {
+    if (isChallengeRequired) {
+      triggerSubmitChallengeEvent();
+    } else {
+      triggerSavePaymentMethodEvent();
+    }
+  }, [isChallengeRequired]);
 
   const needsSave = checkIsPaymentMethodSaveRequired(globalStateStatus);
   const isSaved = checkIsPaymentMethodSaved(globalStateStatus);
   const canSubmit = checkIsSubmittingEnabled(
     hasDefaultPaymentMethod,
+    isChallengeRequired,
     needsSave,
   );
 
@@ -52,11 +67,13 @@ export const useWillPayment = () => {
     isCreditPayment: creditData?.isCredit,
     creditAmount: creditData?.creditAmount,
     hasDefaultPaymentMethod,
+    isChallengeRequired,
     needsSave,
     isSaved,
     canSubmit,
     savePaymentMethod,
     handlePaymentStatusChange,
     handleRegisteredPaymentMethodSelected,
+    handleChallengeRequired,
   };
 };
