@@ -1,4 +1,19 @@
 {
   "private_databases_title": "Web Cloud Databases",
-  "private_databases_order": "Ordina"
+  "private_databases_order": "Ordina",
+  "private_database_columns_header_servicename": "Nome del servizio",
+  "private_database_columns_header_displayname": "Nome personalizzato del servizio",
+  "private_database_columns_header_hostname": "Hostname",
+  "private_database_columns_header_port": "Porta",
+  "private_database_columns_header_version": "Versione",
+  "private_database_columns_header_cpu": "CPU",
+  "private_database_columns_header_datacenter": "Datacenter",
+  "private_database_columns_header_guiurl": "URL GUI",
+  "private_database_columns_header_hostname_ftp": "Hostname FTP",
+  "private_database_columns_header_infrastructure": "Infrastruttura",
+  "private_database_columns_header_offer": "Piano",
+  "private_database_columns_header_port_ftp": "Porta FTP",
+  "private_database_columns_header_server": "Server",
+  "private_database_columns_header_type": "Tipo",
+  "private_database_columns_header_state": "Stato"
 }

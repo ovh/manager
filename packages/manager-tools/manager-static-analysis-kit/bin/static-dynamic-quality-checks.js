@@ -4,9 +4,9 @@ import { writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import process from 'node:process';
 
-import { outputRootDir } from './cli-path-config.js';
+import { combinedReportOutputRootDir } from './cli-path-config.js';
 
-const qualityCheckEntryFile = resolve(outputRootDir, 'index.html');
+const qualityCheckEntryFile = resolve(combinedReportOutputRootDir, 'index.html');
 
 const isTests = process.argv.includes('--tests');
 

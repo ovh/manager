@@ -14,7 +14,7 @@
   "billing_autorenew_service_status_automatic": "Automatische Verlängerung",
   "billing_autorenew_service_status_manual": "Manuelle Verlängerung",
   "billing_autorenew_service_status_manualPayment": "Manuelle Verlängerung",
-  "billing_autorenew_service_status_pending_debt": "Ausstehende Rechnung",
+  "billing_autorenew_service_status_unpaid": "Ausstehende Rechnung",
   "billing_autorenew_service_status_delete_at_expiration": "Kündigung geplant",
   "billing_autorenew_service_status_expired": "Gekündigt",
   "billing_autorenew_service_expiration_weeks": "Läuft in einer Woche ab",
@@ -165,14 +165,9 @@
   "billing_autorenew_service_activate_alert_renew2016": "Diese Meldung betrifft nicht die Bare-Metal- und VPS-Dienste.",
   "billing_autorenew_service_frequency": "Verlängerungsintervall",
   "billing_autorenew_service_none": "Keine",
-  "billing_autorenew_service_every_1_month": "Jeden Monat",
-  "billing_autorenew_service_every_3_month": "Alle 3 Monate",
-  "billing_autorenew_service_every_6_month": "Alle 6 Monate",
-  "billing_autorenew_service_every_12_month": "Jedes Jahr",
-  "billing_autorenew_engagement_none": "Ohne Vertragsbindung",
-  "billing_autorenew_service_status_unpaid": "Ausstehende Rechnung",
   "billing_autorenew_service_every_month": "Jeden Monat",
   "billing_autorenew_service_every_x_months": "Alle {{ months }} Monate",
   "billing_autorenew_service_every_year": "Jedes Jahr",
-  "billing_autorenew_service_every_x_years": "Alle {{ years }} Jahre"
+  "billing_autorenew_service_every_x_years": "Alle {{ years }} Jahre",
+  "billing_autorenew_engagement_none": "Ohne Vertragsbindung"
 }

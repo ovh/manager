@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.17.0...@ovh-ux/manager-bm-server-components@2.17.1) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
+# [2.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.16.1...@ovh-ux/manager-bm-server-components@2.17.0) (2025-10-07)
+
+
+### Features
+
+* **dedicated:** clean 7th of october 2025 eol personal templates banner ([49402b7](https://github.com/ovh/manager/commit/49402b7ffd821bffc2f17e51365169fae77cb432)), closes [#MANAGER-19856](https://github.com/ovh/manager/issues/MANAGER-19856)
+
+
+
+
+
 ## [2.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.16.0...@ovh-ux/manager-bm-server-components@2.16.1) (2025-10-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-bm-server-components

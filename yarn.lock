@@ -7255,10 +7255,10 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-components@^2.42.1":
-  version "2.42.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-2.42.1.tgz#532c2c56eedbd6616322ffe231f80a50024127cb"
-  integrity sha512-sTuhuj6pmwLu7WbpxfGIrvaWRtVje9XiJycNJ5AxNo8vnAtAhlCTJSIAc4lQkGTtuGtou9cqLg+yyuSGgfh2vQ==
+"@ovh-ux/manager-react-components@^2.42.2":
+  version "2.42.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-2.42.2.tgz#b78eda2feed36c354a062e3c937264ccf41500f8"
+  integrity sha512-85hQoJ1mI+KMqtX7+jpu6QZ62SENk8VWRn+k2+F5eRdwyF02McbzVEZA6XZt0uCu6yNBvbpOWxdDwknsS9Th7g==
   dependencies:
     "@babel/plugin-proposal-private-property-in-object" "^7.21.11"
     "@tanstack/react-query" "^5.51.21"
@@ -20942,9 +20942,9 @@ hosted-git-info@^5.0.0:
     lru-cache "^7.5.1"
 
 hosted-git-info@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-9.0.0.tgz#032951596126ef746eccc3e438bbaeb132619859"
-  integrity sha512-gEf705MZLrDPkbbhi8PnoO4ZwYgKoNL+ISZ3AjZMht2r3N5tuTwncyDi6Fv2/qDnMmZxgs0yI8WDOyR8q3G+SQ==
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-9.0.1.tgz#8d4852bd9673ac78f51fc250b239a29018fa8864"
+  integrity sha512-FLN0k/CSIHgTZr46YbK5od55jQEzWNGCNl8AufispkkTwcIpnxG1NMH52+O7lu0z3mI9bjPfGzcO7MhDesQ1kw==
   dependencies:
     lru-cache "^11.1.0"
 

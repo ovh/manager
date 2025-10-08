@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.25.0...@ovh-ux/manager-web@19.25.1) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [19.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.24.6...@ovh-ux/manager-web@19.25.0) (2025-10-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4380] ([856dcbc](https://github.com/ovh/manager/commit/856dcbc92b7a0def1c249d8802738212dddfc174))
+* **i18n:** add missing translations [CDS 4382] ([b4ccc3e](https://github.com/ovh/manager/commit/b4ccc3e5ce1bdc023ffcc828d799bd1e8b570d71))
+
+
+### Features
+
+* **web-hosting:** create modal and banner for abuse state ([21b6f9f](https://github.com/ovh/manager/commit/21b6f9fd3226553c9207445214d12c4e30a00636)), closes [#PUWEBPT-15](https://github.com/ovh/manager/issues/PUWEBPT-15)
+* **web-hosting:** update default selecton on web cloud database service list ([50b12a0](https://github.com/ovh/manager/commit/50b12a0ef2f0132ee1a94a36e52b77c541d73a5e)), closes [#MANAGER-19524](https://github.com/ovh/manager/issues/MANAGER-19524)
+
+
+
+
+
+## [19.24.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.24.5...@ovh-ux/manager-web@19.24.6) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
 ## [19.24.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.24.4...@ovh-ux/manager-web@19.24.5) (2025-10-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

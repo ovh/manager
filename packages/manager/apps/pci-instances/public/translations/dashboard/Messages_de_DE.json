@@ -28,7 +28,7 @@
   "pci_instances_dashboard_network_floating_title": "Floating IP",
   "pci_instances_dashboard_network_name_label": "Netzwerkname: ",
   "pci_instances_dashboard_backup_empty_message": "Sie haben kein Backup",
-  "pci_instances_dashboard_backup_title": "Verwaltung des Backups",
+  "pci_instances_dashboard_backup_title": "Backup-Verwaltung",
   "pci_instances_dashboard_backup_number_of_backups": "Anzahl der Backups der Instanz",
   "pci_instances_dashboard_backup_last_updated_backups": "Datum des letzten Backups"
 }
