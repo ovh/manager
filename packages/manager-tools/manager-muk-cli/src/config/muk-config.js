@@ -40,4 +40,10 @@ export const EMOJIS = {
   package: '📦',
   folder: '📁',
   info: 'ℹ',
+  search: '🔍',
 };
+
+/**
+ * Excluded ODS components
+ */
+export const ODS_EXCLUDED_COMPONENTS = ['pagination'];
