@@ -6,8 +6,6 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { DISCOVERY_PROMOTION_VOUCHER } from '@/constants';
 
-import { TPrice } from '@/data/types/payment/cart.type';
-import { TEligibilityVoucher } from '@/data/types/payment/eligibility.type';
 import { useProjectIdFromParams } from '@/hooks/useProjectIdFromParams';
 import { useActivateTracking } from './useActivateTracking';
 import {
@@ -15,6 +13,8 @@ import {
   useSimulateProjectActivation,
 } from '@/data/hooks/useServices';
 import { useClaimVoucher } from '@/data/hooks/useProjects';
+import { TProjectPrice } from '@/data/types/project.type';
+import { TEligibilityVoucher } from '@/data/types/eligibility.type';
 
 export type UseProjectActivationProps = {
   promotionVoucher: TEligibilityVoucher['credit'] | null;
@@ -33,9 +33,10 @@ export const useProjectActivation = ({
   const { addError } = useNotifications();
   const { trackActivateError, trackActivateSuccess } = useActivateTracking();
 
-  const [creditPaymentAmount, setCreditPaymentAmount] = useState<TPrice | null>(
-    null,
-  );
+  const [
+    creditPaymentAmount,
+    setCreditPaymentAmount,
+  ] = useState<TProjectPrice | null>(null);
 
   const handleError = (error: ApiError) => {
     trackActivateError();

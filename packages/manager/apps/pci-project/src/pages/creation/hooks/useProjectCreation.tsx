@@ -4,22 +4,25 @@ import { useMutation } from '@tanstack/react-query';
 import { TFunction } from 'i18next';
 import { useContext, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { AntiFraudError, PCI_PROJECT_ORDER_CART } from '@/constants';
 import {
+  AntiFraudError,
+  CREDIT_ORDER_CART,
+  PCI_PROJECT_ORDER_CART,
+} from '@/constants';
+import {
+  addItemToCart,
   checkoutCart,
   getCartCheckout,
   attachConfigurationToCartItem as postAttachConfigurationToCartItem,
 } from '@/data/api/cart';
 import { payWithRegisteredPaymentMean } from '@/data/api/payment';
-import { addCartCreditOption } from '@/data/api/payment/cart';
-import { useGetCreditAddonOption } from '@/data/hooks/payment/useCart';
+import { useGetCreditAddonOption } from '@/data/hooks/useCart';
 import {
   Cart,
   CartSummary,
   OrderedProduct,
   PaymentMean,
 } from '@/data/types/cart.type';
-import { CREDIT_ORDER_CART } from '@/payment/constants';
 import useAntiFraud from './useAntiFraud';
 
 export type UseProjectCreationProps = {
@@ -106,7 +109,7 @@ export const useProjectCreation = ({
         return null;
       }
 
-      return addCartCreditOption(cart!.cartId, {
+      return addItemToCart(cart!.cartId, {
         planCode: CREDIT_ORDER_CART.planCode,
         quantity: Math.floor(
           creditAmount / creditAddonOption.prices[0].price.value,

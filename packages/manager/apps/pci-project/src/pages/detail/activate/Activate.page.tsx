@@ -8,7 +8,6 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useHref, useNavigate } from 'react-router-dom';
-
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   BaseLayout,
@@ -19,16 +18,16 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ODS_CARD_COLOR, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useContext, useEffect, useState } from 'react';
 import activateImage from '@/assets/activate-bg.png';
-import FullPageSpinner from '@/components/FullPageSpinner';
+import FullPageSpinner from '@/components/full-page-spinner/FullPageSpinner';
 import { DISCOVERY_PROMOTION_VOUCHER } from '@/constants';
-import { useCheckVoucherEligibility } from '@/data/hooks/payment/useEligibility';
 import {
   useCreateAndAssignCart,
   useOrderProjectItem,
 } from '@/data/hooks/useCart';
+import { useCheckVoucherEligibility } from '@/data/hooks/useEligibility';
 import { useServiceIds } from '@/data/hooks/useServices';
 import { CartConfiguration } from '@/data/types/cart.type';
-import { TEligibilityVoucher } from '@/data/types/payment/eligibility.type';
+import { TEligibilityVoucher } from '@/data/types/eligibility.type';
 import { useProjectIdFromParams } from '@/hooks/useProjectIdFromParams';
 import CreditConfirmation from '@/pages/creation/components/credit/CreditConfirmation.component';
 import WillPaymentComponent from '@/pages/creation/components/payment/WillPayment.component';
