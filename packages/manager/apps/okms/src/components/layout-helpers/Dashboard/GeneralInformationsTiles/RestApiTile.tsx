@@ -40,6 +40,7 @@ const RestApiTile = ({ okmsData }: RestApiTileProps) => {
         <Links
           type={LinkType.external}
           href={okmsData?.swaggerEndpoint}
+          target="_blank"
           onClickReturn={() =>
             trackClick({
               location: PageLocation.page,
