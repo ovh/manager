@@ -25,6 +25,7 @@ export default class IAMConditionDateController {
     this.condition.values = {
       [fullKey]: this.dates.replaceAll(' ', ''),
     };
+    this.condition.hasValue = !!this.condition.values[fullKey];
   }
 
   $onChanges({ criterion }) {

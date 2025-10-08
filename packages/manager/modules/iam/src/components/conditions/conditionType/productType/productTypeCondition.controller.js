@@ -25,6 +25,7 @@ export default class IAMConditionProductTypeController {
     this.condition.values = {
       [fullKey]: this.productTypes.map(({ value }) => value).join(','),
     };
+    this.condition.hasValue = !!this.condition.values[fullKey];
   }
 
   $onChanges({ criterion }) {

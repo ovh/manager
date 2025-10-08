@@ -16,6 +16,7 @@ export default class IAMConditionNameController {
     this.condition.values = {
       [fullKey]: this.nameValue,
     };
+    this.condition.hasValue = !!this.condition.values[fullKey];
   }
 
   $onChanges({ criterion }) {

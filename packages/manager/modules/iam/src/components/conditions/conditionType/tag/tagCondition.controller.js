@@ -19,6 +19,7 @@ export default class IAMConditionTagController {
     this.condition.values = {
       [fullKey]: this.tagValue,
     };
+    this.condition.hasValue = !!this.condition.values[fullKey];
   }
 
   $onChanges({ criterion }) {

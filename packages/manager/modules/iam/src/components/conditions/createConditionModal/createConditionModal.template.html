@@ -5,7 +5,7 @@
                 data-heading="{{:: 'iam_create_condition_configuration' | translate }}"
                 data-primary-action="$ctrl.addCondition()"
                 data-primary-label="{{:: 'iam_create_condition_configure' | translate }}"
-                data-primary-disabled="$ctrl.conditionForm.$invalid"
+                data-primary-disabled="$ctrl.conditionForm.$invalid || !$ctrl.criterion || !$ctrl.condition.hasValue"
                 data-secondary-action="$ctrl.onClose()"
                 data-secondary-label="{{:: 'iam_create_condition_cancel' | translate }}"
                 data-on-dismiss="$ctrl.onClose()"
