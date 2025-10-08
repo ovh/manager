@@ -9,7 +9,6 @@ import {
   CartConfiguration,
   OrderedProduct,
 } from '@/data/types/cart.type';
-import { TPaymentMethod } from '@/data/types/payment/payment-method.type';
 import { GlobalStateStatus } from '@/types/WillPayment.type';
 import WillPaymentComponent from '../components/payment/WillPayment.component';
 import StartupProgram from '../components/startup-program/StartupProgram';
@@ -25,12 +24,6 @@ export type PaymentStepProps = {
   onVoucherChange?: (voucher: string | null) => void;
 };
 
-type PaymentForm = {
-  voucherConfiguration: CartConfiguration | undefined;
-  paymentMethod: TPaymentMethod | undefined;
-  isAsDefault: boolean;
-};
-
 export default function PaymentStep({
   cart,
   cartProjectItem,
@@ -40,25 +33,20 @@ export default function PaymentStep({
   onVoucherChange,
 }: Readonly<PaymentStepProps>) {
   const [searchParams] = useSearchParams();
-  const [paymentForm, setPaymentForm] = useState<PaymentForm>({
-    voucherConfiguration: undefined,
-    paymentMethod: undefined,
-    isAsDefault: false,
-  });
+  const [voucherConfiguration, setVoucherConfiguration] = useState<
+    CartConfiguration | undefined
+  >(undefined);
+
+  const initialVoucher = searchParams.get('voucher') ?? null;
 
   const willPaymentConfig = useWillPaymentConfig({
     onPaymentStatusChange,
   });
 
-  const initialVoucher = searchParams.get('voucher') ?? null;
-
   const handleVoucherConfigurationChange = (
-    voucherConfiguration: CartConfiguration | undefined,
+    voucherConfig: CartConfiguration | undefined,
   ) => {
-    setPaymentForm((prev) => ({
-      ...prev,
-      voucherConfiguration,
-    }));
+    setVoucherConfiguration(voucherConfig);
     if (voucherConfiguration) {
       // Needed because the voucher configuration might be empty but attached
       if (voucherConfiguration?.value !== '') {
@@ -79,7 +67,7 @@ export default function PaymentStep({
       <Voucher
         cartId={cart.cartId}
         itemId={cartProjectItem.itemId}
-        voucherConfiguration={paymentForm.voucherConfiguration}
+        voucherConfiguration={voucherConfiguration}
         setVoucherConfiguration={handleVoucherConfigurationChange}
         initialVoucher={initialVoucher}
       />

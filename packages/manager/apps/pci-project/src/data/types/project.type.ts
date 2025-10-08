@@ -1,6 +1,13 @@
 import { TProject, TProjectStatus } from '@ovh-ux/manager-pci-common';
-import { ProjectPrice } from './payment/eligibility.type';
+import { CurrencyCode } from '@ovh-ux/manager-react-components';
 import { TService } from './service.type';
+
+export type TProjectPrice = {
+  currencyCode: CurrencyCode;
+  priceInUcents?: number | null | undefined;
+  text: string;
+  value: number;
+};
 
 export type TAggregatedStatus = TProjectStatus | 'unpaid';
 
@@ -25,27 +32,27 @@ export type ProjectActivationResponse = {
       description: string;
       detailType: string;
       domain: string;
-      originalTotalPrice: ProjectPrice;
+      originalTotalPrice: TProjectPrice;
       quantity: number;
-      reductionTotalPrice: ProjectPrice;
+      reductionTotalPrice: TProjectPrice;
       reductions: {
         context: string;
         description: string;
-        price: ProjectPrice;
+        price: TProjectPrice;
         reductionDescription: string;
         type: string;
-        value: ProjectPrice;
+        value: TProjectPrice;
       }[];
-      totalPrice: ProjectPrice;
-      uniProjectPrice: ProjectPrice;
+      totalPrice: TProjectPrice;
+      uniTProjectPrice: TProjectPrice;
     }[];
     orderId: number;
     prices: {
-      originalWithoutTax: ProjectPrice;
-      reduction: ProjectPrice;
-      tax: ProjectPrice;
-      withTax: ProjectPrice;
-      withoutTax: ProjectPrice;
+      originalWithoutTax: TProjectPrice;
+      reduction: TProjectPrice;
+      tax: TProjectPrice;
+      withTax: TProjectPrice;
+      withoutTax: TProjectPrice;
     };
     url: string;
   };
