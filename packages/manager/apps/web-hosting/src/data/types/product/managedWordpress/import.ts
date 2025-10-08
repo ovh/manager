@@ -1,14 +1,29 @@
-import { ManagedWordpressCmsType } from './cms';
+import { CmsType } from './cms';
 
 export type PostImportPayload = {
-  adminLogin: string;
-  adminPassword: string;
-  adminURL?: string;
-  cms: ManagedWordpressCmsType.WORDPRESS;
-  cmsSpecific?: {
-    wordPress?: {
-      language?: string;
-      url?: string;
+  targetSpec: {
+    import: {
+      adminLogin: string;
+      adminPassword: string;
+      adminURL?: string;
+      cms: CmsType.WORDPRESS;
+    };
+  };
+};
+export type PostCreatePayload = {
+  targetSpec: {
+    creation: {
+      adminLogin: string;
+      adminPassword: string;
+      adminURL?: string;
+      cms: CmsType.WORDPRESS;
+      cmsSpecific?: {
+        wordpress?: {
+          language?: string;
+          url?: string;
+        };
+      };
+      phpVersion?: string;
     };
   };
 };
