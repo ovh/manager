@@ -1,6 +1,6 @@
 # 🧩 manager-muk-cli
 
-A Node.js CLI designed to **automate maintenance and synchronization** of the `@ovh-ux/muk` package with OVHcloud Design System (ODS).  
+A Node.js CLI designed to **automate maintenance and synchronization** of the `@ovh-ux/muk` package with OVHcloud Design System (ODS).
 It checks for new ODS releases, ensures component parity, and can automatically update both versions and missing component structures.
 
 ---
@@ -8,13 +8,17 @@ It checks for new ODS releases, ensures component parity, and can automatically 
 ## 🚀 Features
 
 ### 1. `--check-versions`
+
 Checks for new versions of ODS packages on npm and compares them with the versions currently declared in `manager-ui-kit/package.json`.
 
 **Example:**
+
 ```bash
 yarn muk-cli --check-versions
 ```
+
 **Output:**
+
 ```
 ℹ 🔍 Checking ODS package versions...
 ⚠ Updates available:
@@ -26,13 +30,17 @@ yarn muk-cli --check-versions
 ---
 
 ### 2. `--check-components`
+
 Compares the components available in ODS React (`@ovhcloud/ods-react`) with those implemented in `manager-ui-kit/src/components`.
 
 **Example:**
+
 ```bash
 yarn muk-cli --check-components
 ```
+
 **Output:**
+
 ```
 ℹ ℹ Checking component parity between ODS and Manager...
 ℹ 📁 Found 34 local components
@@ -51,13 +59,18 @@ yarn muk-cli --check-components
 ---
 
 ### 3. `--update-version`
+
 Updates the ODS package versions (`@ovhcloud/ods-components`, `@ovhcloud/ods-react`, `@ovhcloud/ods-themes`) in `package.json` to the latest ones published on npm.
+After updating, it automatically runs `yarn install`, `yarn lint:modern`, and `yarn test` to verify that no regressions were introduced.
 
 **Example:**
+
 ```bash
 yarn muk-cli --update-version
 ```
+
 **Output:**
+
 ```
 ✔ ✔ Updated 3 ODS dependencies:
 ℹ @ovhcloud/ods-components: 18.6.2 → 18.6.4
@@ -71,6 +84,7 @@ warning Resolution field "sass@1.56.1" is incompatible with requested version "s
 ```
 
 If no update is available:
+
 ```
 ℹ ✅ Successfully loaded JSON from ./packages/manager-ui-kit/package.json
 • Sample keys: name, version, license, author, types ...
@@ -84,56 +98,44 @@ If no update is available:
 
 ---
 
-### 🧩 Auto-Install Behavior
+### 🧩 Post-Update Verification
 
-After updating package versions, `manager-muk-cli` automatically runs:
+After dependency updates, `manager-muk-cli` automatically executes:
 
-```bash
-yarn install
-```
+1. `yarn install` — ensures the monorepo and lockfile are up to date
+2. `yarn lint:modern` — validates code formatting and rules
+3. `yarn test` — detects regressions and ensures all unit tests pass
 
-from the **repository root**, ensuring that:
-- `yarn.lock` remains synchronized with the new dependency versions,
-- all workspace packages get the correct ODS versions,
-- and `node_modules` are fully up to date.
-
-**Example:**
-```bash
-yarn muk-cli --update-version
-```
-**Output:**
-```
-ℹ Checking for latest ODS versions...
-✔ Updated 3 ODS dependencies:
-ℹ @ovhcloud/ods-components: 18.6.2 → 18.6.4
-ℹ @ovhcloud/ods-react: 19.0.1 → 19.1.0
-ℹ @ovhcloud/ods-themes: 19.0.1 → 19.1.0
-📦 package.json successfully updated at: packages/manager-ui-kit/package.json
-🔧 Running yarn install from project root...
-✅ Yarn install completed successfully.
-```
+This guarantees that each version update is **safe, consistent, and verifiable**.
 
 ---
 
 ### 4. `--update-components`
+
 (Coming next) Detects missing components based on ODS React and creates corresponding placeholder folders and files in `manager-ui-kit/src/components`.
 
-**Example (planned):**
+**Example (TODO):**
+
 ```bash
 yarn muk-cli --update-components
 ```
-Would create missing component directories and log the steps clearly.
+
+Would create missing component directories and log all created resources.
 
 ---
 
 ### 5. `--update`
-Runs both update steps (`--update-version` + `--update-components`) sequentially for full sync automation.
 
-**Example:**
+(Coming next) Runs both update steps (`--update-version` + `--update-components`) sequentially for full ODS synchronization.
+
+**Example (TODO):**
+
 ```bash
 yarn muk-cli --update
 ```
+
 **Output:**
+
 ```
 🔁 Running full update (versions + components)
 ✔ Updated ODS versions successfully.
@@ -146,23 +148,24 @@ yarn muk-cli --update
 ## 🧰 CLI Help
 
 Run:
+
 ```bash
 yarn muk-cli --help
 ```
 
 **Available commands:**
 
-| Command | Description |
-|----------|-------------|
-| `--check-versions` | Check npm for new ODS package versions |
-| `--check-components` | Compare ODS vs Manager React components |
-| `--update-version` | Update ODS versions in `package.json` |
-| `--update-components` | Add missing component folders (planned) |
-| `--update` | Run both updates sequentially |
-| `--with-install` | (optional) Run \`yarn install\` after version updates |
+| Command               | Description                                  |
+| --------------------- |----------------------------------------------|
+| `--check-versions`    | Check npm for new ODS package versions       |
+| `--check-components`  | Compare ODS vs Manager UI components         |
+| `--update-version`    | Update ODS versions and run lint/test checks |
+| `--update-components` | Add missing component folders (TODO)         |
+| `--update`            | Run both updates sequentially (TODO)         |
 
-> 💡 **Tip:** Output uses ANSI colors and icons (✔, ⚠, ℹ).  
-> If running in CI or scripts, you can disable color or redirect to stderr via:
+> 💡 **Tip:** Output uses icons and colors (✔, ⚠, ℹ).
+> Disable colors or redirect output via:
+>
 > ```js
 > setLoggerMode('stderr'); // or 'silent' for no output
 > ```
@@ -177,14 +180,17 @@ manager-muk-cli/
 │  ├─ commands/
 │  │  ├─ check-versions.js        # Checks npm versions of ODS packages
 │  │  ├─ check-components.js      # Compares ODS vs Manager component lists
-│  │  ├─ update-version.js        # Updates ODS versions in package.json
+│  │  ├─ update-version.js        # Updates ODS versions and runs lint/tests
 │  │  └─ update-components.js     # Creates missing component folders
 │  ├─ config/
-│  │  └─ muk-config.js           # Central constants: paths, URLs, packages
+│  │  └─ muk-config.js           # Constants: paths, URLs, packages
 │  ├─ utils/
-│  │  ├─ log-manager.js          # Colorful logging utility (stdout/stderr modes)
-│  │  └─ json-utils.js           # Safe JSON read/write helpers
-│  └─ index.js                   # CLI entrypoint and command dispatcher
+│  │  ├─ log-manager.js          # Colorful logging utility
+│  │  └─ json-utils.js           # Safe JSON helpers
+│  ├─ core/
+│  │  ├─ npm-utils.js            # Fetches latest npm versions
+│  │  └─ tasks-utils.js          # Safe execSync wrapper
+│  └─ index.js                   # CLI entrypoint
 └─ package.json
 ```
 
@@ -192,7 +198,7 @@ manager-muk-cli/
 
 ## ⚙️ Configuration
 
-All key constants (paths, URLs, and package targets) live in `src/config/muk-config.js`:
+All constants (paths, URLs, and package targets) live in `src/config/muk-config.js`:
 
 ```js
 export const TARGET_PACKAGES = [
@@ -202,11 +208,7 @@ export const TARGET_PACKAGES = [
 ];
 
 export const MUK_COMPONENTS_PATH = path.resolve('packages/manager-ui-kit');
-export const MUK_COMPONENTS_SRC = path.join(
-  MUK_COMPONENTS_PATH,
-  'src',
-  'components',
-);
+export const MUK_COMPONENTS_SRC = path.join(MUK_COMPONENTS_PATH, 'src', 'components');
 export const ODS_REACT_LATEST_URL = 'https://registry.npmjs.org/@ovhcloud%2Fods-react/latest';
 ```
 
@@ -214,13 +216,14 @@ export const ODS_REACT_LATEST_URL = 'https://registry.npmjs.org/@ovhcloud%2Fods-
 
 ## 🧠 Design Philosophy
 
-- **Modular commands:** each task has its own file (`check`, `update-version`, `update-components`).
-- **Composable CLI:** `--update` orchestrates both sub-tasks.
-- **Idempotent and safe:** atomic JSON writes and safe folder creation.
-- **Readable logs:** consistent, colorized output across all operations.
+* **Modular commands:** each operation has its own file.
+* **Composable CLI:** `--update` orchestrates multiple sub-tasks.
+* **Idempotent and safe:** atomic JSON writes, no destructive changes.
+* **Transparent validation:** runs lint + test after dependency updates.
+* **Readable logs:** consistent and colorized across all operations.
 
 ---
 
-## License
+## 🪪 License
 
-BSD-3-Clause (c) OVH SAS
+BSD-3-Clause © OVH SAS
