@@ -1,22 +1,20 @@
 # 🧩 manager-muk-cli
 
-A Node.js CLI designed to **automate maintenance and synchronization** of the `@ovh-ux/manager-ui-kit` package with the **OVHcloud Design System (ODS)**.
-It checks for new ODS releases, ensures component parity, and automatically generates missing component structures, hooks, constants, and type passthroughs while preserving test coverage and export integrity.
+A Node.js CLI designed to **automate maintenance and synchronization** of the `@ovh-ux/muk` package with OVHcloud Design System (ODS).
+It checks for new ODS releases, ensures component parity, and can automatically update both versions and missing component structures.
 
 ---
 
 ## 🚀 1. Features Overview
 
 ### 1.1 `--check-versions`
-
 Checks npm for new ODS package versions and compares them with those declared in `manager-ui-kit/package.json`.
 
 ```bash
 yarn muk-cli --check-versions
 ```
 
-**Example Output**
-
+**Example Output:**
 ```
 ℹ 🔍 Checking ODS package versions...
 ⚠ Updates available:
@@ -28,91 +26,84 @@ yarn muk-cli --check-versions
 ---
 
 ### 1.2 `--check-components`
-
-Compares components between `@ovhcloud/ods-react` and `manager-ui-kit/src/components`, identifying missing or outdated ones.
+Compares components between `@ovhcloud/ods-react` and `manager-ui-kit/src/components`.
 
 ```bash
 yarn muk-cli --check-components
 ```
 
-**Example Output**
-
+**Example Output:**
 ```
+ℹ Checking component parity between ODS and Manager...
 ℹ 📁 Found 34 local components
-ℹ 📦 Fetching ODS React v19.2.0 tarball...
-⚠ Missing 8 ODS components:
-ℹ • form-field
-ℹ • form-field-label
-ℹ • form-field-error
-ℹ • range
-ℹ • range-thumb
-ℹ • range-track
+ℹ 📦 Fetching ODS React tarball...
+⚠ Missing 104 ODS components:
+ℹ • accordion
+ℹ • accordion-content
+ℹ • accordion-item
+ℹ • accordion-trigger
 ```
 
 ---
 
-### 1.3 `--update-versions`
-
-Updates all ODS dependencies in `package.json` to their latest versions, validates linting, and runs unit tests.
+### 1.3 `--update-version`
+Updates all ODS packages to the latest versions, then validates with lint and tests.
 
 ```bash
-yarn muk-cli --update-versions
+yarn muk-cli --update-version
 ```
 
-**Example Output**
-
+**Example Output:**
 ```
 ✔ Updated 3 ODS dependencies
 ✔ @ovhcloud/ods-components: 18.6.2 → 18.6.4
-✔ @ovhcloud/ods-react: 19.0.1 → 19.2.0
-✔ @ovhcloud/ods-themes: 19.0.1 → 19.2.0
+✔ @ovhcloud/ods-react: 19.0.1 → 19.1.0
+✔ @ovhcloud/ods-themes: 19.0.1 → 19.1.0
 ✔ package.json successfully updated.
 ```
-
-If all versions are up-to-date:
-
+If everything is already up-to-date:
 ```
-✅ All ODS versions are already up to date!
+✔ ✅ All ODS versions are already up to date!
 ✨ Done in 1.78s.
 ```
 
 ---
 
-### 1.4 `--add-components`
+### 1.4 Post-Update Verification
+After updating, the CLI automatically executes:
+1. `yarn install` — update dependencies
+2. `yarn lint:modern` — enforce consistent lint rules
+3. `yarn test` — run all unit tests to ensure stability
 
-Generates **missing ODS components** and subcomponents directly from the ODS React source tarball.
-
-```bash
-yarn muk-cli --add-components
-```
-
-Supports:
-
-* Simple components (without children, e.g. `badge`, `progress-bar`)
-* Nested components (with children, e.g. `form-field`, `combobox`, `range`, `datepicker`)
-* Hook passthroughs (e.g. `useFormField`)
-* Constants passthroughs (e.g. `DatepickerConstants`)
-* External type re-exports (from contexts or shared ODS types)
+This guarantees that each update is **safe, consistent, and verifiable**.
 
 ---
 
-## 🧱 2. Simple Components (Without Children)
+### 1.5 `--update-components`
+Synchronizes missing components from **ODS → Manager UI Kit**, creating all necessary folders, files, tests, and exports.
 
-A *simple* ODS component has no subcomponents or nested structure.
+This command supports both:
+- **Simple components**
+- **Nested components (with subcomponents)**
 
-**Generated Structure**
+---
+
+## 🧱 2. Simple Components
+
+A *simple component* (e.g. `progress-bar`, `badge`, `error`) is generated as follows:
 
 ```
 progress-bar/
 ├── __tests__/
+│   ├── snapshot/
+│   │   └── .gitkeep
 │   └── ProgressBar.snapshot.test.tsx
 ├── ProgressBar.component.tsx
 ├── ProgressBar.props.ts
 └── index.ts
 ```
 
-**Component**
-
+**Component Example:**
 ```tsx
 import { ProgressBar as OdsProgressBar } from '@ovhcloud/ods-react';
 import { ProgressBarProps } from './ProgressBar.props';
@@ -120,8 +111,7 @@ import { ProgressBarProps } from './ProgressBar.props';
 export const ProgressBar = (props: ProgressBarProps) => <OdsProgressBar {...props} />;
 ```
 
-**Index**
-
+**Index Example:**
 ```ts
 export { ProgressBar } from './ProgressBar.component';
 export type { ProgressBarProps } from './ProgressBar.props';
@@ -129,76 +119,86 @@ export type { ProgressBarProps } from './ProgressBar.props';
 
 ---
 
-## 🪜 3. Nested Components (With Children)
+## 🪜 3. Nested Components
 
-Nested components (e.g. `form-field`, `combobox`, `datepicker`, `range`) contain child components such as `form-field-label` or `datepicker-control`.
-
+Nested components (e.g. `range`, `step`, `tooltip`) have subcomponents such as `range-track` or `step-body`.  
 The CLI automatically:
 
-1. Detects parent–child relationships
-2. Generates base and subcomponent folders
-3. Determines prop inheritance (own vs parent type)
-4. Detects if components **have or lack children**
-5. Creates passthroughs for hooks, constants, and external types
-6. Consolidates all exports into the parent `index.ts`
+1. Detects parent–child relationships from the ODS tarball
+2. Creates a base component folder
+3. Generates subcomponent folders and files
+4. Reuses parent props for subcomponents
+5. Consolidates all exports in the parent’s `index.ts`
 
-**Example Structure**
-
+**Example Structure:**
 ```
-form-field/
+range/
 ├── __tests__/
-│   └── FormField.snapshot.test.tsx
-├── form-field-label/
-│   └── FormFieldLabel.component.tsx
-├── form-field-helper/
-│   └── FormFieldHelper.component.tsx
-├── form-field-error/
-│   └── FormFieldError.component.tsx
-├── constants/
-│   └── FormFieldConstants.ts
-├── hooks/
-│   └── useFormField.ts
-├── FormField.component.tsx
-├── FormField.props.ts
+│   ├── snapshot/
+│   │   └── .gitkeep
+│   └── Range.snapshot.test.tsx
+├── range-track/
+│   ├── RangeTrack.component.tsx
+│   └── __tests__/
+│       └── RangeTrack.component.spec.tsx
+├── range-thumb/
+│   ├── RangeThumb.component.tsx
+│   └── __tests__/
+│       └── RangeThumb.component.spec.tsx
+├── Range.component.tsx
+├── Range.props.ts
 └── index.ts
 ```
 
-**Parent Index**
+**Subcomponent Example:**
+```tsx
+import { PropsWithChildren } from 'react';
+import { RangeProps } from '../Range.props';
 
+export const RangeTrack = ({ children }: PropsWithChildren<RangeProps>) => <>{children}</>;
+```
+
+**Parent Index Example:**
 ```ts
-export { FormField, type FormFieldProps } from './FormField.component';
-export { FormFieldError } from './form-field-error/FormFieldError.component';
-export { FormFieldHelper } from './form-field-helper/FormFieldHelper.component';
-export { FormFieldLabel } from './form-field-label/FormFieldLabel.component';
-export * from './hooks/useFormField';
-export * from './constants/FormFieldConstants';
+export { Range } from './Range.component';
+export type { RangeProps } from './Range.props';
+
+export { RangeTrack } from './range-track/RangeTrack.component';
+export { RangeThumb } from './range-thumb/RangeThumb.component';
+export { RangeBounds } from './range-bounds/RangeBounds.component';
 ```
 
 ---
 
-### 3.1 Detection Logic
+### 3.1 Behavior Summary
 
-| Detection Type     | Logic                                                                     | Examples                                                |
-| ------------------ | ------------------------------------------------------------------------- | ------------------------------------------------------- |
-| **Children**       | Detects `PropsWithChildren`, `children:` props, or `props.children` usage | Differentiates with vs without children                 |
-| **Subcomponent**   | Scans ODS index exports to build parent–child tree                        | `form-field`, `datepicker`                              |
-| **Hooks**          | Detects any export containing `use` prefix                                | Generates `hooks/use<Component>.ts` passthrough         |
-| **Constants**      | Extracts all non-type exports from `constants` paths                      | Creates `constants/<Component>Constants.ts` passthrough |
-| **External Types** | Detects `type` or `interface` exports from non-component paths            | Appends imports/exports in `.props.ts`                  |
+| Type | Structure | Props | Index Linking | Test Coverage |
+|------|------------|--------|----------------|----------------|
+| **Simple Component** | Single folder | Own `.props.ts` | Auto-exported in root index | Snapshot test |
+| **Nested Component** | Parent + children | Children reuse parent props | All subcomponents exported in parent index | Each subcomponent has `.spec.tsx` |
 
 ---
 
-### 3.2 Behavior Summary
+## 🧰 4. CLI Help
 
-| Type                  | Structure            | Children | Hooks    | Constants | Types         | Index Linking | Test Coverage   |
-| --------------------- | -------------------- | -------- | -------- | --------- | ------------- | ------------- | --------------- |
-| **Simple Component**  | Single folder        | No       | Optional | Optional  | Own           | Root index    | Snapshot        |
-| **Nested Component**  | Parent + children    | Yes/No   | Auto     | Auto      | Parent or Own | Parent index  | Snapshot + Spec |
-| **Invalid Component** | Not found in tarball | —        | —        | —         | —             | Skipped       | None            |
+```bash
+yarn muk-cli --help
+```
+
+| Command               | Description                                  |
+| --------------------- |----------------------------------------------|
+| `--check-versions`    | Check npm for new ODS package versions       |
+| `--check-components`  | Compare ODS vs Manager UI components         |
+| `--update-version`    | Update ODS versions and run lint/test checks |
+| `--update-components` | Add missing component folders                |
+| `--update`            | Run both updates sequentially                |
+
+> 💡 **Tip:** Output uses icons and colors (✔, ⚠, ℹ).  
+> Use `setLoggerMode('stderr')` or `'silent'` to disable colored output.
 
 ---
 
-## ⚙️ 4. Architecture Overview
+## 📂 5. Project Structure
 
 ```
 manager-muk-cli/
@@ -207,57 +207,60 @@ manager-muk-cli/
 │  │  ├─ check-versions.js
 │  │  ├─ check-components.js
 │  │  ├─ update-version.js
-│  │  └─ add-components.js
-│  ├─ core/
-│  │  ├─ component-utils.js
-│  │  ├─ ods-tarball-utils.js
-│  │  ├─ file-utils.js
-│  │  └─ tasks-utils.js
+│  │  └─ update-components.js
 │  ├─ config/
 │  │  └─ muk-config.js
-│  └─ utils/
-│     ├─ log-manager.js
-│     └─ json-utils.js
+│  ├─ utils/
+│  │  ├─ log-manager.js
+│  │  └─ json-utils.js
+│  ├─ core/
+│  │  ├─ npm-utils.js
+│  │  └─ tasks-utils.js
+│  └─ index.js
+└─ package.json
 ```
 
 ---
 
-## 🧠 5. Design Principles
+## ⚙️ 6. Configuration
 
-| Principle               | Description                                          |
-| ----------------------- | ---------------------------------------------------- |
-| **Modular CLI**         | Each command is standalone and composable            |
-| **Granular Heuristics** | Detects children, hooks, constants, and type exports |
-| **Idempotent Safety**   | Prevents overwriting or duplication                  |
-| **Verbose Logging**     | Colorized emoji logs for transparency                |
+Defined in `src/config/muk-config.js`:
 
----
+```js
+export const TARGET_PACKAGES = [
+  '@ovhcloud/ods-components',
+  '@ovhcloud/ods-react',
+  '@ovhcloud/ods-themes',
+];
 
-## ✅ 6. Advantages
-
-* Detects components **with and without children**
-* Automatically generates **hooks**, **constants**, and **external types** passthroughs
-* Builds fully linked exports for parent and subcomponents
-* Modularized, reusable, and testable architecture
-* Caches and reuses ODS tarball during execution
-
----
-
-## 🧩 7. Example Output (Range + FormField)
-
-```
-ℹ 📦 Fetching ODS React v19.2.0 tarball...
-👶 form-field supports children
-🚫 range has no children
-🧩 form-field-error exports its own Prop type
-🪝 Created hook passthrough for FormField (1 identifier)
-⚙️ Created constants passthrough for Datepicker (4 identifiers)
-✔ Component structure ready for FormField
-✔ Component structure ready for Range
+export const MUK_COMPONENTS_PATH = path.resolve('packages/manager-ui-kit');
+export const MUK_COMPONENTS_SRC = path.join(MUK_COMPONENTS_PATH, 'src', 'components');
+export const ODS_REACT_LATEST_URL = 'https://registry.npmjs.org/@ovhcloud%2Fods-react/latest';
 ```
 
 ---
 
-## 🪪 8. License
+## ✅ 7. Key Features
+
+- Dynamic detection of missing ODS components
+- Differentiation of **simple** vs **nested** components
+- Shared prop inheritance for subcomponents
+- Auto-generation of `index.ts` exports
+- Full test scaffolding (`snapshot` + `spec`)
+- Safe, idempotent, and repeatable
+
+---
+
+## 🧠 8. Design Philosophy
+
+- **Modular commands** — each operation runs independently
+- **Composable CLI** — `--update` orchestrates all sub-steps
+- **Idempotent & Safe** — no destructive overwrites
+- **Transparent validation** — lint + tests after updates
+- **Readable logs** — colorized and consistent output
+
+---
+
+## 🪪 9. License
 
 BSD-3-Clause © OVH SAS

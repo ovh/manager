@@ -17,18 +17,6 @@ export function toPascalCase(name) {
 }
 
 /**
- * Convert any string to kebab-case (e.g., "FormFieldLabel" → "form-field-label").
- * Ensures consistent folder naming across components and subcomponents.
- */
-export function toKebabCase(value) {
-  return value
-    .replace(/\s*\(.*\)$/, '') // remove parentheses or version suffixes
-    .replace(/([a-z0-9])([A-Z])/g, '$1-$2') // camelCase → kebab-case
-    .replace(/--+/g, '-') // collapse multiple dashes
-    .toLowerCase();
-}
-
-/**
  * Create directory recursively if it doesn't exist.
  * @param {string} dirPath
  */
@@ -113,23 +101,4 @@ export function writeFile(filePath, content = '') {
   } catch (err) {
     logger.error(`❌ Failed to write file at ${filePath}: ${err.message}`);
   }
-}
-
-/**
- * Write a JSON file safely (pretty-printed).
- * @param {string} file - Target path.
- * @param {any} data - Serializable data.
- */
-export function saveJson(file, data) {
-  ensureDir(path.dirname(file));
-  fs.writeFileSync(file, JSON.stringify(data, null, 2));
-}
-
-/**
- * Read a JSON file if it exists.
- * @param {string} file - File path.
- * @returns {any|null} Parsed JSON or null if missing.
- */
-export function loadJson(file) {
-  return fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : null;
 }
