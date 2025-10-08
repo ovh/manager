@@ -7,6 +7,8 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   BaseLayout,
+  Links,
+  LinkType,
   Notifications,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
@@ -15,7 +17,6 @@ import {
   OdsCheckbox,
   OdsFormField,
   OdsInput,
-  OdsLink,
   OdsPhoneNumber,
   OdsRadio,
   OdsSelect,
@@ -25,8 +26,6 @@ import {
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_LINK_ICON_ALIGNMENT,
   ODS_PHONE_NUMBER_COUNTRY_ISO_CODE,
   ODS_TEXT_PRESET,
   OdsPhoneNumberChangeEventDetail,
@@ -34,6 +33,12 @@ import {
 } from '@ovhcloud/ods-components';
 import { User } from '@ovh-ux/manager-config';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  usePageTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useRules } from '@/data/hooks/useRules';
 import { RulesParam } from '@/data/api/rules';
 import { useUserContext } from '@/context/user/useUser';
@@ -46,6 +51,7 @@ import {
 import { putMe } from '@/data/api/me';
 import { putSmsConsent } from '@/data/api/marketing';
 import { urls } from '@/routes/routes.constant';
+import { useTrackingContext } from '@/context/tracking/useTracking';
 import {
   getSirenFromSiret,
   isIndividualLegalForm,
@@ -53,6 +59,11 @@ import {
   shouldEnableSIRENDisplay,
 } from '@/helpers/flowHelper';
 import { useDetailsRedirection } from '@/hooks/redirection/useDetailsRedirection';
+import {
+  useTrackError,
+  useTrackBackButtonClick,
+} from '@/hooks/tracking/useTracking';
+import { TRACKING_GOAL_TYPE } from './accountDetails.constants';
 
 type AccountDetailsFormProps = {
   rules: Record<RuleField, Rule>;
@@ -67,7 +78,7 @@ function AccountDetailsForm({
   currentUser,
   updateRulesParams,
 }: AccountDetailsFormProps) {
-  const { t } = useTranslation([
+  const { t, i18n } = useTranslation([
     'account-details',
     'area',
     NAMESPACES.FORM,
@@ -77,6 +88,9 @@ function AccountDetailsForm({
   const { addError, addSuccess } = useNotifications();
 
   const { url: redirectionUrl, isLoading: isRedirectionUrlLoading } = useDetailsRedirection();
+  const pageTracking = usePageTracking();
+  const { trackClick, trackPage } = useTrackingContext();
+  const { trackError } = useTrackError('final-step');
 
   const {
     legalForm,
@@ -84,6 +98,8 @@ function AccountDetailsForm({
     companyNationalIdentificationNumber,
     address,
     city,
+    ovhSubsidiary,
+    language,
     isSMSConsentAvailable,
   } = useUserContext();
 
@@ -186,6 +202,12 @@ function AccountDetailsForm({
       }
     },
     onSuccess: () => {
+      trackPage({
+        pageName: `final-step_${i18n.language}_${language}_${legalForm}`,
+        pageType: PageType.bannerSuccess,
+        pageCategory: 'banner',
+        goalType: TRACKING_GOAL_TYPE,
+      });
       addSuccess(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('account_details_success_message')}
@@ -194,7 +216,8 @@ function AccountDetailsForm({
       );
       window.location.assign(redirectionUrl!);
     },
-    onError: () => {
+    onError: (error) => {
+      trackError(error.message);
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           {t('account_details_error_message')}
@@ -207,6 +230,18 @@ function AccountDetailsForm({
   const handleValidateClick: SubmitHandler<z.infer<typeof zodSchema>> = (
     formData,
   ) => {
+    if (pageTracking) {
+      trackClick(pageTracking, {
+        location: PageLocation.page,
+        buttonType: ButtonType.button,
+        actions: [
+          'account-create-check-customer-informations',
+          'confirm',
+          `${ovhSubsidiary}_${language}_${legalForm}`,
+        ],
+        goalType: TRACKING_GOAL_TYPE,
+      });
+    }
     addAccountDetails(formData as FormData);
   };
 
@@ -901,6 +936,8 @@ export default function AccountDetailsPage() {
     currentUser?.country,
     legalForm,
   );
+  const { trackBackButtonClick } = useTrackBackButtonClick();
+  const { trackError } = useTrackError('check-customer-informations');
 
   const header = {
     title: t(
@@ -916,7 +953,7 @@ export default function AccountDetailsPage() {
     phoneCountry: currentUser?.country || 'GB',
   });
 
-  const { data: rules, refetch: refetchRules, isLoading } = useRules(
+  const { data: rules, refetch: refetchRules, isLoading, error } = useRules(
     rulesParams,
   );
 
@@ -937,16 +974,22 @@ export default function AccountDetailsPage() {
     refetchRules();
   }, [rulesParams]);
 
+  useEffect(() => {
+    if (error) {
+      trackError(error.message);
+    }
+  }, [error]);
+
   return (
     <>
-      <OdsLink
-        icon={ODS_ICON_NAME.arrowLeft}
-        iconAlignment={ODS_LINK_ICON_ALIGNMENT.left}
+      <Links
+        label={tAction('back')}
+        type={LinkType.back}
         href={`#${
           wentThroughOrganizationSearch ? urls.company : urls.accountType
         }?${searchParams.toString()}`}
-        label={tAction('back')}
         className="flex mb-6"
+        onClickReturn={() => trackBackButtonClick()}
       />
       {wentThroughOrganizationSearch && (
         <OdsText preset={ODS_TEXT_PRESET.caption}>
