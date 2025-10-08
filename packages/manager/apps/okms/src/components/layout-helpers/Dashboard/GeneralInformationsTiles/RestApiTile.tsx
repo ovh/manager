@@ -29,7 +29,7 @@ const RestApiTile = ({ okmsData }: RestApiTileProps) => {
       value: (
         <div className="flex flex-col gap-2">
           <Clipboard className="block w-full" value={okmsData?.restEndpoint} />
-          <DownloadKmsPublicCaLink okms={okmsData} type={'publicCa'} />
+          <DownloadKmsPublicCaLink okms={okmsData} type={'publicCaRest'} />
         </div>
       ),
     },

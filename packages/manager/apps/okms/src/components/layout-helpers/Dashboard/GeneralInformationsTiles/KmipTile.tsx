@@ -19,7 +19,7 @@ const KmipTile = ({ okmsData }: KmipTileProps) => {
       value: (
         <div className="flex flex-col gap-2">
           <Clipboard className="block w-full" value={okmsData?.kmipEndpoint} />
-          <DownloadKmsPublicCaLink okms={okmsData} type={'publicCa'} />
+          <DownloadKmsPublicCaLink okms={okmsData} type={'publicCaKmip'} />
         </div>
       ),
     },
@@ -34,7 +34,7 @@ const KmipTile = ({ okmsData }: KmipTileProps) => {
             className="block w-full"
             value={okmsData.kmipRsaEndpoint}
           />
-          <DownloadKmsPublicCaLink okms={okmsData} type={'publicRsaCa'} />
+          <DownloadKmsPublicCaLink okms={okmsData} type={'publicCaRsaKmip'} />
         </div>
       ),
     });
