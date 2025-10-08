@@ -19,13 +19,6 @@ const IncreaseQuotaPage = lazy(() =>
   import('@/pages/increase-quota/IncreaseQuota'),
 );
 const EditPage = lazy(() => import('@/pages/home/edit/Edit.page'));
-const ContactPage = lazy(() => import('@/pages/contacts/Contacts.page'));
-const AddAccountAcl = lazy(() =>
-  import('@/pages/contacts/components/AddAccountAcl'),
-);
-const DeleteAccountAcl = lazy(() =>
-  import('@/pages/contacts/components/RemoveAccountAcl'),
-);
 const ActivatePage = lazy(() =>
   import('@/pages/detail/activate/Activate.page'),
 );
@@ -147,10 +140,6 @@ export default (
           },
         }}
       />
-    </Route>
-    <Route path={urls.contactsAndRights} Component={ContactPage}>
-      <Route path={urls.contactAndRightsAdd} Component={AddAccountAcl} />
-      <Route path={urls.contactAndRightsDelete} Component={DeleteAccountAcl} />
     </Route>
     <Route
       path={urls.onboarding}
