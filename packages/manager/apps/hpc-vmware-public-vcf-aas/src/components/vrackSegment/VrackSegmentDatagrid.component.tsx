@@ -60,13 +60,19 @@ export const VrackSegmentDatagrid = ({
         ({ resourceStatus }) => !['READY', 'ERROR'].includes(resourceStatus),
       ) && 2000,
     select: (data) =>
-      data.data.map((item) => ({
-        ...item,
-        searchableValue: `${t(
-          'managed_vcd_dashboard_vrack_column_segment_vrack_label',
-          { vlanId: item.targetSpec.vlanId },
-        )} ${item.targetSpec.networks.map((network) => network).join(' ')}`,
-      })),
+      data.data
+        .map((item) => ({
+          ...item,
+          searchableValue: `${t(
+            'managed_vcd_dashboard_vrack_column_segment_vrack_label',
+            { vlanId: item.targetSpec.vlanId },
+          )} ${item.targetSpec.networks.map((network) => network).join(' ')}`,
+        }))
+        .sort((a, b) =>
+          String(a.targetSpec.vlanId).localeCompare(
+            String(b.targetSpec.vlanId),
+          ),
+        ),
   });
 
   const hrefEdit = useHref(
