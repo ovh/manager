@@ -60,7 +60,7 @@ const SuggestionModal: FC = () => {
   );
   const { data } = useSuggestions(Boolean(shouldDisplayModal));
   const suggestions: Suggestion[] = useMemo(() =>
-    (data as Suggestion[] | undefined)?.filter((suggestion: Suggestion) =>
+    (data)?.filter((suggestion: Suggestion) =>
       isSuggestionRelevant(suggestion, user),
     ) || [],
     [data],
