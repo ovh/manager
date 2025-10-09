@@ -7,7 +7,7 @@ import {
 
 export default mergeConfig(createConfig(), {
   test: {
-    setupFiles: 'setupTest.ts',
+    setupFiles: 'setupTest.tsx',
     globals: true,
     environment: 'jsdom',
     coverage: {
@@ -33,6 +33,7 @@ export default mergeConfig(createConfig(), {
   },
   resolve: {
     alias: {
+      '@/setupTest': path.resolve(__dirname, 'setupTest.tsx'),
       '@': path.resolve(__dirname, 'src'),
     },
     mainFields: ['module'],

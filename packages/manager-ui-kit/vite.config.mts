@@ -10,6 +10,12 @@ const baseConfig = getBaseConfig({});
 export default defineConfig({
   ...baseConfig,
   assetsInclude: ['**/*.png', '**/*.jpg', '**/*.svg'],
+  resolve: {
+    alias: {
+      '@/setupTest': path.resolve(__dirname, 'setupTest.tsx'),
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
   plugins: [
     ...baseConfig.plugins,
     dts({

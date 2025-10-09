@@ -1,6 +1,6 @@
 import { vitest } from 'vitest';
 import { ChangelogMenu } from '../ChangelogMenu.component';
-import { render } from '../../../utils/test.provider';
+import { render } from '@/setupTest';
 import { Links, chapters } from './ChangelogMenu.utils';
 
 vitest.mock('@ovh-ux/manager-react-shell-client', () => ({

@@ -1,7 +1,7 @@
 import { vi, vitest } from 'vitest';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { fireEvent, screen, act } from '@testing-library/react';
-import { render } from '../../../utils/test.provider';
+import { render } from '@/setupTest';
 import { OnboardingLayout } from '../index';
 import placeholderSrc from '../../../../public/assets/placeholder.png';
 import { useAuthorizationIam } from '../../../hooks/iam';

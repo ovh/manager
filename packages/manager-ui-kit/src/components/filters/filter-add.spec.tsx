@@ -1,7 +1,7 @@
 import { vi, vitest } from 'vitest';
 import { act, fireEvent, waitFor } from '@testing-library/react';
 import { FilterAdd, FilterAddProps } from './filter-add.component';
-import { render } from '../../utils/test.provider';
+import { render } from '@/setupTest';
 import { TagsFilterFormProps } from './interface';
 
 vi.mock('./tags-filter-form.component', () => {
