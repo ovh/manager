@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.51.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.51.3...@ovh-ux/manager-billing@0.51.4) (2025-10-09)
+
+
+### Bug Fixes
+
+* **billing:** incorrect service infos url generation ([0da74ed](https://github.com/ovh/manager/commit/0da74ed1330c26a22824dfe0e9fc39dda259ae72)), closes [#MANAGER-19966](https://github.com/ovh/manager/issues/MANAGER-19966) [#INC0158577](https://github.com/ovh/manager/issues/INC0158577)
+
+
+
+
+
 ## [0.51.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.51.2...@ovh-ux/manager-billing@0.51.3) (2025-10-07)
 
 
