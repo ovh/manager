@@ -55,7 +55,7 @@ const VersionningStep = React.forwardRef<
               <PopoverTrigger asChild>
                 <HelpCircleIcon className="size-4" />
               </PopoverTrigger>
-              <PopoverContent className="text-xs">
+              <PopoverContent className="text-sm">
                 {t('versionningTypeDisabledPopover')}
               </PopoverContent>
             </Popover>
