@@ -1,12 +1,15 @@
-import { useTranslation } from 'react-i18next';
 import { Archive } from 'lucide-react';
 import { Badge, Skeleton } from '@datatr-ux/uxlib';
 import { getRegionFlag } from '@/lib/flagHelper';
 import Flag from '@/components/flag/Flag.component';
 import storages from '@/types/Storages';
+import {
+  getMacroRegion,
+  useTranslatedMicroRegions,
+} from '@/hooks/useTranslatedMicroRegions';
 
 export const SwiftHeader = ({ swift }: { swift: storages.ContainerDetail }) => {
-  const { t: tRegions } = useTranslation('regions');
+  const { translateMacroRegion } = useTranslatedMicroRegions();
   return (
     <div
       data-testid="notebook-header-container"
@@ -24,10 +27,10 @@ export const SwiftHeader = ({ swift }: { swift: storages.ContainerDetail }) => {
           <Badge variant={'outline'} className="capitalize">
             <div className="flex items-center gap-1">
               <Flag
-                flagName={getRegionFlag(swift.region)}
+                flagName={getRegionFlag(getMacroRegion(swift.region))}
                 className="w-3 h-2"
               />
-              {tRegions(`region_${swift.region}`)}
+              {translateMacroRegion(swift.region)}
             </div>
           </Badge>
         </div>
