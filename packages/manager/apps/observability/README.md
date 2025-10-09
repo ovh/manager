@@ -34,6 +34,14 @@ The app uses **hash-based routing**. Open the dev server URL printed by Vite (de
 ```
 #/[flavor-aware root from Routes.utils.ts]
 ```
+### Enable mock mode for API calls (temporary)
+
+Update `src/__mocks__/mock.config.ts`
+```js
+export const apiConfig = {
+  mode: 'mock',
+};
+```
 ---
 
 ## 📚 Useful Links

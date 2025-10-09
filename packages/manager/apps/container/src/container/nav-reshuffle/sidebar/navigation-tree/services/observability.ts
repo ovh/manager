@@ -45,6 +45,7 @@ sioUniverse.children = [
         routing: {
           application: 'observability',
           hash: '#/metrics/tenants',
+          // TODO: manage patchMather once merged
         },
       },
     ],
