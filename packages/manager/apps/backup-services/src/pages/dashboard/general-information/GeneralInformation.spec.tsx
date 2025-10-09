@@ -16,7 +16,9 @@ interface LinksProps {
 
 // --- Mock Clipboard & Links ---
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
+  const actual = await importOriginal<
+    typeof import('@ovh-ux/manager-react-components')
+  >();
   return {
     ...actual,
     Clipboard: ({ value }: ClipboardProps) => (
@@ -49,14 +51,16 @@ describe('GeneralInformationPage', () => {
 
   it('renders service details and allows clipboard copy', () => {
     const writeText = vi.fn<() => Promise<void>>();
-    Object.assign(navigator, {
+    Object.assign(navigator, ({
       clipboard: { writeText },
-    } as unknown as Navigator);
+    } as unknown) as Navigator);
 
     render(<GeneralInformationPage />);
 
     expect(
-      screen.getByText(/Hosted Private Cloud – VMware vSphere service running in GRA region./i),
+      screen.getByText(
+        /Hosted Private Cloud – VMware vSphere service running in GRA region./i,
+      ),
     ).toBeInTheDocument();
 
     const clipboards = screen.getAllByTestId('clipboard');
@@ -66,8 +70,10 @@ describe('GeneralInformationPage', () => {
     );
     expect(clipboards[1]).toHaveAttribute('data-value', 'srv-12345-abcde');
 
-    fireEvent.click(clipboards.at(0)!); // non-null assertion for TS
-    expect(writeText).toHaveBeenCalledWith('https://api.ovh.com/1.0/hostedprivatecloud');
+    fireEvent.click(clipboards.at(0)); // non-null assertion for TS
+    expect(writeText).toHaveBeenCalledWith(
+      'https://api.ovh.com/1.0/hostedprivatecloud',
+    );
 
     expect(screen.getByText('Active')).toBeInTheDocument();
   });
