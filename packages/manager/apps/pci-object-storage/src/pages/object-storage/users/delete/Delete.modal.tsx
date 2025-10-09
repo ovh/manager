@@ -15,6 +15,7 @@ import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import { useDeleteUser } from '@/data/hooks/user/useDeleteUser.hook';
 import { useObjectStorageData } from '../../ObjectStorage.context';
 import OvhLink from '@/components/links/OvhLink.component';
+import { useGetUserS3Credentials } from '@/data/hooks/user/useGetUserS3Credentials.hook';
 
 const DeleteUser = () => {
   const { projectId, userId } = useParams();
@@ -23,6 +24,9 @@ const DeleteUser = () => {
   const userPath = `#/pci/projects/${projectId}/users`;
   const toast = useToast();
   const user = users.find((us) => us.id === Number(userId));
+  const credsQuery = useGetUserS3Credentials(projectId, user.id, {
+    enabled: !!user.id,
+  });
   const navigate = useNavigate();
   if (!user) navigate('../');
 
@@ -46,11 +50,15 @@ const DeleteUser = () => {
   });
 
   const handleDelete = () => {
-    deleteUser({ projectId, userId: user.id, accessKey: user.access_key });
+    deleteUser({
+      projectId,
+      userId: user.id,
+      accessKey: credsQuery.data?.[0]?.access,
+    });
   };
 
   return (
-    <RouteModal isLoading={!user}>
+    <RouteModal isLoading={!user || !credsQuery.data}>
       <DialogContent className="p-0">
         <DialogHeader className="bg-warning-100 p-6 rounded-t-sm sm:rounded-t-lg ">
           <DialogTitle data-testid="delete-storage-modal">

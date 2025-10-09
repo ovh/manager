@@ -43,7 +43,7 @@ const EncryptStep = React.forwardRef<HTMLInputElement, EncryptStepProps>(
                 <PopoverTrigger asChild>
                   <HelpCircle className="size-4" />
                 </PopoverTrigger>
-                <PopoverContent className="text-xs">
+                <PopoverContent className="text-sm">
                   {t(`encryptionTypeDescription-${encryptionAlgorithm}`)}
                 </PopoverContent>
               </Popover>
