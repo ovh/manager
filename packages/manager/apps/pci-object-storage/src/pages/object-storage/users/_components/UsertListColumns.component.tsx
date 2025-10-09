@@ -147,6 +147,7 @@ export const getColumns = ({
                 onClick={() => {
                   onSecretKeyClicked(row.original);
                 }}
+                disabled={!row.original.access_key}
               >
                 {t('tableActionShowSecretKey')}
               </DropdownMenuItem>
@@ -157,6 +158,7 @@ export const getColumns = ({
                 onClick={() => {
                   onDeleteClicked(row.original);
                 }}
+                disabled={!row.original.access_key}
               >
                 {t('tableActionDisable')}
               </DropdownMenuItem>
