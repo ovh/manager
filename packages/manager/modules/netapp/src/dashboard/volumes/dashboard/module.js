@@ -13,6 +13,8 @@ import snapshotsModule from './snapshots';
 import editSize from './edit-size';
 import editReserveSpace from './edit-reserve-space';
 
+import './style.less';
+
 const moduleName = 'ovhManagerNetAppVolumesDashboard';
 
 angular
