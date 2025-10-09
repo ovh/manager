@@ -25,5 +25,10 @@
   "pci_instance_creation_select_flavor_help_gpu": "<strong>Instances GPU (Graphics Processing Unit) :</strong> équipées de processeurs graphiques (GPU), elles sont conçues pour des tâches telles que le machine learning, la visualisation 3D, la modélisation et la simulation.",
   "pci_instance_creation_select_flavor_help_discovery": "<strong>Instances Discovery :</strong> des instances spécifiques pour le développement et le test d'applications avec des ressources partagées pour limiter les coûts",
   "pci_instance_creation_select_flavor_category_label": "Modèle d'instance",
-  "pci_instance_creation_select_flavor_include_unavailable_action": "Inclure les indisponibles"
+  "pci_instance_creation_select_flavor_include_unavailable_action": "Inclure les indisponibles",
+  "pci_instance_creation_choose_availabilityZone_title": "Choisissez votre zone de disponibilité",
+  "pci_instance_creation_choose_availabilityZone_informations": "Une zone de disponibilité par défaut a été sélectionnée. Vous avez la possibilité de personnaliser ce choix. Pour en savoir plus sur les spécifications des services 3-AZ et comment les utiliser pour concevoir une infrastructure résiliente.",
+  "pci_instance_creation_availabilityZone_choose_for_me": "Choisir pour moi",
+  "pci_instance_creation_availabilityZone_user_choice": "Je choisis ma zone de disponibilité",
+  "pci_instance_creation_availabilityZone_help_description": "Dans un environnement cloud, la disponibilité et la résilience des services sont essentielles pour garantir la continuité des opérations, même en cas de panne d’une zone de disponibilité (AZ). Comme les instances sont des services zonaux, elles ne sont déployées que dans une seule zone de disponibilité. Pour garantir la résilience, il revient donc au client de répartir manuellement ses instances sur plusieurs zones."
 }

@@ -41,6 +41,9 @@ export const useForm = (projectId: string) => {
       ({ name }) => name === flavorCategoryDefaultValue,
     )?.type[0]?.name ?? '';
 
+  const availabilityZoneDefaultValue =
+    localizations[0]!.microRegions[0]?.availabilityZones[0] ?? null;
+
   const formMethods = useReactHookForm({
     resolver: zodResolver(instanceCreationSchema),
     values: {
@@ -52,6 +55,7 @@ export const useForm = (projectId: string) => {
       flavorType: flavorTypeDefaultValue,
       macroRegion: macroRegionDefaultValue,
       microRegion: microRegionDefaultValue,
+      availabilityZone: availabilityZoneDefaultValue,
     },
     mode: 'onChange',
   });
