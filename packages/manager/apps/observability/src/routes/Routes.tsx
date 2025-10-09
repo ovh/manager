@@ -6,14 +6,16 @@ import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 
 import NotFound from '@/pages/not-found/404.page';
 
-import { redirectionApp, MetricSubRoutes, urls } from './Routes.constants';
+import { redirectionApp, subroutes, urls } from './Routes.constants';
 
 const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 
 const DashboardsPage = React.lazy(() => import('@/pages/dashboards/Dashboards.page'));
 
-const MetricsPage = React.lazy(() => import('@/pages/metrics/Metrics.page'));
-const TenantsPage = React.lazy(() => import('@/pages/metrics/tenants/Tenants.page'));
+const TenantsLayoutPage = React.lazy(() => import('@/pages/tenants/Tenants.layout'));
+const TenantsPage = React.lazy(() => import('@/pages/tenants/TenantsListing.page'));
+const OnboardingTenantPage = React.lazy(() => import('@/pages/tenants/TenantsOnboarding.page'));
+const OnboardingServicePage = React.lazy(() => import('@/pages/metrics/OnboardingService.page'));
 
 export default (
   <>
@@ -37,7 +39,7 @@ export default (
 
       {/* Dashboards route */}
       <Route
-        path={urls.dashboards}
+        path={subroutes.dashboards}
         Component={DashboardsPage}
         handle={{
           tracking: {
@@ -47,25 +49,40 @@ export default (
       />
 
       {/* Metrics route */}
-      <Route
-        path={urls.metrics}
-        Component={MetricsPage}
-        handle={{
-          tracking: {
-            pageName: 'metrics',
-          },
-        }}
-      >
-        {/* Metrics subRoutes */}
+      <Route path={subroutes.metrics} Component={TenantsLayoutPage}>
+        {/* Default landing inside root → redirect to Dashboards */}
+        <Route index element={<Navigate to={urls.tenants} replace />} />
+        {/* Onboarding observability service */}
         <Route
-          path={MetricSubRoutes.tenants}
-          Component={TenantsPage}
+          path={subroutes.onboarding}
+          Component={OnboardingServicePage}
           handle={{
             tracking: {
-              pageName: 'tenants',
+              pageName: 'onboarding',
             },
           }}
         />
+        {/* Tenants routes */}
+        <Route path={subroutes.tenants}>
+          <Route
+            index
+            Component={TenantsPage}
+            handle={{
+              tracking: {
+                pageName: 'tenants',
+              },
+            }}
+          />
+          <Route
+            path={subroutes.onboarding}
+            Component={OnboardingTenantPage}
+            handle={{
+              tracking: {
+                pageName: 'tenants-onboarding',
+              },
+            }}
+          />
+        </Route>
       </Route>
 
       {/* Catch-all 404 route inside the app */}
