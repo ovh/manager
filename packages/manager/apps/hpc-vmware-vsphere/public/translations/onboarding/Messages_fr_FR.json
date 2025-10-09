@@ -15,7 +15,6 @@
   "logs_onboarding_activation_caption": "Cela peut prendre quelques minutes",
   "logs_onboarding_default_description": "Vous pouvez récupérer certains logs des composants VMware (ex. ESXi, NSX-T Edge, VCSA, NSX-T Manager) dans l’OVHcloud Data Platform pour analyser le service VMware on OVHcloud. Pour bénéficier de cet avantage, vous devez cependant activer d’abord le service.",
   "logs_onboarding_default_title": "Logs de service VMware",
-  "logs_onboarding_secondary_cta": "En savoir plus sur logs",
   "logs_onboarding_primary_cta_upgrade": "Passer à Premier",
   "logs_onboarding_primary_cta_activate": "Activer le transfert de logs",
   "logs_onboarding_primary_cta_activate_snc": "Activer le transfert de logs via le système Syslog",
