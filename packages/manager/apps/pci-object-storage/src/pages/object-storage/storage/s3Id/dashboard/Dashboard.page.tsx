@@ -1,9 +1,8 @@
 import { Card, CardContent, CardHeader } from '@datatr-ux/uxlib';
-import { Archive, FileKey, Tag } from 'lucide-react';
+import { Archive, Tag } from 'lucide-react';
 import { Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import BucketOverview from './_components/BucketOverview.components';
-import Encryption from './_components/Encryption.component';
 import Tags from './_components/Tags.component';
 
 const Dashboard = () => {
@@ -23,30 +22,17 @@ const Dashboard = () => {
             <BucketOverview />
           </CardContent>
         </Card>
-        <div>
-          <Card>
-            <CardHeader>
-              <h4>
-                <FileKey className="size-4 inline mr-2" />
-                <span>{t('encryptionTitle')}</span>
-              </h4>
-            </CardHeader>
-            <CardContent>
-              <Encryption />
-            </CardContent>
-          </Card>
-          <Card className="mt-2">
-            <CardHeader>
-              <h4>
-                <Tag className="size-4 inline mr-2" />
-                <span>{t('tagsTitle')}</span>
-              </h4>
-            </CardHeader>
-            <CardContent>
-              <Tags />
-            </CardContent>
-          </Card>
-        </div>
+        <Card>
+          <CardHeader>
+            <h4>
+              <Tag className="size-4 inline mr-2" />
+              <span>{t('tagsTitle')}</span>
+            </h4>
+          </CardHeader>
+          <CardContent>
+            <Tags />
+          </CardContent>
+        </Card>
       </div>
       <Outlet />
     </>

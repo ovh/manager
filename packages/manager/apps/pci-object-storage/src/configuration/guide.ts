@@ -28,6 +28,14 @@ export const GUIDES = {
     fr_CA: 'https://docs.ovh.com/fr/storage/sync-rclone-object-storage/',
     default: 'https://docs.ovh.com/gb/en/storage/sync-rclone-object-storage/',
   },
+  OBJ_STO_ENCRYPTION: {
+    fr_FR:
+      'https://help.ovhcloud.com/csm/fr-public-cloud-storage-s3-encrypt-objects-sse-c?id=kb_article_view&sysparm_article=KB0047318',
+    fr_CA:
+      'https://help.ovhcloud.com/csm/en-public-cloud-storage-s3-encrypt-objects-sse-c?id=kb_article_view&sysparm_article=KB0047314',
+    default:
+      'https://help.ovhcloud.com/csm/en-public-cloud-storage-s3-encrypt-objects-sse-c?id=kb_article_view&sysparm_article=KB0047314',
+  },
 };
 
 export function getGuideUrl(
