@@ -1,7 +1,7 @@
 import { vitest } from 'vitest';
 import type { MockInstance } from 'vitest';
 import { TOOLTIP_POSITION } from '@ovhcloud/ods-react';
-import { render } from '../../../utils/test.provider';
+import { render } from '@/setupTest';
 import { Button } from '../index';
 import { useAuthorizationIam } from '../../../hooks/iam';
 

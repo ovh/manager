@@ -16,12 +16,12 @@ exports[`Price Component > displays both GST-excl and GST-incl in Asia format if
       <span
         class="_text--span_1aw48_60 mr-1"
       >
-        price_gst_excl_label
+        ex. GST
       </span>
       <span
         class="_text--span_1aw48_60 mr-1"
       >
-        price_per_month
+        /mois
       </span>
     </span>
     <span
@@ -36,7 +36,7 @@ exports[`Price Component > displays both GST-excl and GST-incl in Asia format if
       <span
         class="_text--span_1aw48_60"
       >
-        price_gst_incl_label
+        incl. GST
       </span>
       )
     </span>
@@ -60,12 +60,12 @@ exports[`Price Component > displays both HT and TTC in French format when tax > 
       <span
         class="_text--span_1aw48_60 mr-1"
       >
-        price_ht_label
+        HT
       </span>
       <span
         class="_text--span_1aw48_60 mr-1"
       >
-        price_per_month
+        /mois
       </span>
     </span>
     <span
@@ -80,7 +80,7 @@ exports[`Price Component > displays both HT and TTC in French format when tax > 
       <span
         class="_text--span_1aw48_60"
       >
-        price_ttc_label
+        TTC
       </span>
       )
     </span>
@@ -104,12 +104,12 @@ exports[`Price Component > displays only GST-excl in Asia format if no tax 1`] =
       <span
         class="_text--span_1aw48_60 mr-1"
       >
-        price_gst_excl_label
+        ex. GST
       </span>
       <span
         class="_text--span_1aw48_60 mr-1"
       >
-        price_per_month
+        /mois
       </span>
     </span>
   </p>
@@ -132,12 +132,12 @@ exports[`Price Component > displays only HT in French format when no tax 1`] = `
       <span
         class="_text--span_1aw48_60 mr-1"
       >
-        price_ht_label
+        HT
       </span>
       <span
         class="_text--span_1aw48_60 mr-1"
       >
-        price_per_month
+        /mois
       </span>
     </span>
   </p>
@@ -160,7 +160,7 @@ exports[`Price Component > displays price with tax in German format 1`] = `
       <span
         class="_text--span_1aw48_60 mr-1"
       >
-        price_per_month
+        /mois
       </span>
     </span>
   </p>
@@ -183,7 +183,7 @@ exports[`Price Component > displays price without tax label in US format 1`] = `
       <span
         class="_text--span_1aw48_60 mr-1"
       >
-        price_per_month
+        /mois
       </span>
     </span>
   </p>
@@ -206,7 +206,7 @@ exports[`Price Component > does not show intervalUnitText if intervalUnit is "no
       <span
         class="_text--span_1aw48_60 mr-1"
       >
-        price_ht_label
+        HT
       </span>
     </span>
     <span
@@ -221,7 +221,7 @@ exports[`Price Component > does not show intervalUnitText if intervalUnit is "no
       <span
         class="_text--span_1aw48_60"
       >
-        price_ttc_label
+        TTC
       </span>
       )
     </span>
@@ -245,12 +245,12 @@ exports[`Price Component > handles different interval units correctly 1`] = `
       <span
         class="_text--span_1aw48_60 mr-1"
       >
-        price_ht_label
+        HT
       </span>
       <span
         class="_text--span_1aw48_60 mr-1"
       >
-        price_per_year
+        /an
       </span>
     </span>
     <span
@@ -265,7 +265,7 @@ exports[`Price Component > handles different interval units correctly 1`] = `
       <span
         class="_text--span_1aw48_60"
       >
-        price_ttc_label
+        TTC
       </span>
       )
     </span>
@@ -279,7 +279,7 @@ exports[`Price Component > renders free price when value is 0 1`] = `
     class="_text--paragraph_1aw48_54"
   >
     <span>
-      price_free
+      Inclus
     </span>
   </p>
 </div>

@@ -13,7 +13,7 @@ import {
   BUTTON_VARIANT,
 } from '@ovhcloud/ods-react';
 import { ActionMenu } from '../index';
-import { render } from '../../../utils/test.provider';
+import { render } from '@/setupTest';
 import { useAuthorizationIam } from '../../../hooks/iam';
 
 // Mock the IAM hook
