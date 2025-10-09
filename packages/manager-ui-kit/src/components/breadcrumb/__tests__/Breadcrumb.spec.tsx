@@ -1,5 +1,5 @@
 import { vitest } from 'vitest';
-import { render } from '../../../utils/test.provider';
+import { render } from '@/setupTest';
 import { Breadcrumb } from '../Breadcrumb.component';
 
 vitest.mock('../../../hooks/breadcrumb/useBreadcrumb', () => ({

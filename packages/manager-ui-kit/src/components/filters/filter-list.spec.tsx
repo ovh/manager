@@ -3,7 +3,7 @@ import { vitest } from 'vitest';
 import { OdsTag } from '@ovhcloud/ods-components';
 import { act } from '@testing-library/react';
 import { FilterList, FilterListProps } from './filter-list.component';
-import { render } from '../../utils/test.provider';
+import { render } from '@/setupTest';
 
 const renderComponent = (props: FilterListProps) => {
   return render(<FilterList {...props} />);

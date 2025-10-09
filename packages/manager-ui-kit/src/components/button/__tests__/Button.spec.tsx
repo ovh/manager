@@ -1,7 +1,7 @@
 import { vitest } from 'vitest';
 import { fireEvent, screen } from '@testing-library/react';
 import { Button, ButtonProps } from '../index';
-import { render } from '../../../utils/test.provider';
+import { render } from '@/setupTest';
 import fr_FR from '../translations/Messages_fr_FR.json';
 import { useAuthorizationIam } from '../../../hooks/iam';
 import { IamAuthorizationResponse } from '../../../hooks/iam/iam.interface';
