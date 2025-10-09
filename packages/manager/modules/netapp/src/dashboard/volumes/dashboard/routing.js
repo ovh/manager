@@ -110,6 +110,13 @@ export default /* @ngInject */ ($stateProvider) => {
           volumeId,
         }),
       breadcrumb: /* @ngInject */ (volumeId) => volumeId,
+      volumeUsages: /* @ngInject */ (
+        NetAppDashboardService,
+        serviceName,
+        volumeId,
+      ) => {
+        return NetAppDashboardService.getVolumeUsages(serviceName, volumeId);
+      },
     },
   });
 };

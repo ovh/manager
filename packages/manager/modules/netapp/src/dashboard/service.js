@@ -4,7 +4,14 @@ import {
   POLLING_TYPE,
   VRACK_ORDER_URLS,
   SNAPSHOT_TYPE,
+  ACTIVES_NFS_LIMITE,
 } from './constants';
+
+import {
+  getMaxFilesQuery,
+  getUsedFilesQuery,
+  getActivesNFSQuery,
+} from './utils';
 
 export default class NetAppDashboardService {
   /* @ngInject */
@@ -242,6 +249,67 @@ export default class NetAppDashboardService {
                 : storage.name,
             };
           });
+      });
+  }
+
+  getVolumeUsages(serviceName, volumeId) {
+    return this.$http
+      .get(`/storage/netapp/${serviceName}/metricsToken`)
+      .then(({ data: { endpoint, token } }) => {
+        const getMetrics = (query) =>
+          this.$http.get(`${endpoint}/prometheus/api/v1/query?query=${query}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+        return this.$q
+          .all([
+            getMetrics(getMaxFilesQuery(serviceName, volumeId)),
+            getMetrics(getUsedFilesQuery(serviceName, volumeId)),
+            getMetrics(getActivesNFSQuery(serviceName, volumeId)),
+          ])
+          .then((results) =>
+            results.map(
+              ({
+                data: {
+                  data: { result },
+                },
+              }) => result,
+            ),
+          )
+          .then(([maxFiles, usedFiles, activesNFS = []]) => {
+            const parseValue = ([metric]) => {
+              const val = metric?.value?.[1];
+              return val ? parseInt(val, 10).toLocaleString() : '0';
+            };
+
+            const isActiveNFSLimitTouched =
+              activesNFS.length > ACTIVES_NFS_LIMITE;
+
+            const activesNFSToDisplay = isActiveNFSLimitTouched
+              ? activesNFS.slice(0, ACTIVES_NFS_LIMITE)
+              : activesNFS;
+            return {
+              maxFiles: parseValue(maxFiles),
+              usedFiles: parseValue(usedFiles),
+              isActiveNFSLimitTouched,
+              activesNFS:
+                activesNFSToDisplay.length &&
+                activesNFSToDisplay.map(
+                  ({ metric: { client_ip: clientIp, protocol }, value }) => ({
+                    clientIp,
+                    protocol,
+                    lastConnection: value[1],
+                  }),
+                ),
+            };
+          })
+          .catch(() => ({
+            maxFiles: '0',
+            usedFiles: '0',
+            isActiveNFSLimitTouched: false,
+            activesNFS: null,
+          }));
       });
   }
 }
