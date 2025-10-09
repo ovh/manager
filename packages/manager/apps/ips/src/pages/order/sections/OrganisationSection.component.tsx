@@ -12,6 +12,7 @@ import {
   OdsSelectChangeEventDetail,
   OdsSelectCustomEvent,
 } from '@ovhcloud/ods-components';
+import { useNavigate } from 'react-router-dom';
 import { OrderSection } from '@/components/OrderSection/OrderSection.component';
 import { useGetOrganisationsList } from '@/data/hooks/organisation';
 import { OrderContext } from '../order.context';
@@ -19,6 +20,7 @@ import { isAvailableOrganisation } from '../order.utils';
 import { isRegionInEu } from '@/components/RegionSelector/region-selector.utils';
 import { useCheckServiceAvailability } from '@/data/hooks/useCheckServiceAvailability';
 import { useServiceRegion } from '@/data/hooks/useServiceRegion';
+import { urls } from '@/routes/routes.constant';
 
 const NO_ORGANISATION = 'no_organisation';
 
@@ -30,8 +32,9 @@ export const OrganisationSection: React.FC = () => {
     selectedRegion,
     selectedService,
     selectedServiceType,
-    addDisabledService
+    addDisabledService,
   } = React.useContext(OrderContext);
+  const navigate = useNavigate();
   const { shell } = React.useContext(ShellContext);
   const { t } = useTranslation('order');
   const { organisations, isLoading } = useGetOrganisationsList();
@@ -46,7 +49,6 @@ export const OrganisationSection: React.FC = () => {
     serviceStatus,
   });
 
-  
   const organisationInfoLabel = useMemo(() => {
     const organisationRegion = selectedRegion ?? selectedServiceRegion;
     if (selectedOrganisation) {
@@ -103,9 +105,7 @@ export const OrganisationSection: React.FC = () => {
       )}
       <Links
         label={t('go_to_organisation_list_link_label')}
-        onClickReturn={() =>
-          shell.navigation.navigateTo('dedicated', '#/ip/organisation', {})
-        }
+        onClickReturn={() => navigate(urls.manageOrganisations)}
       />
     </OrderSection>
   );
