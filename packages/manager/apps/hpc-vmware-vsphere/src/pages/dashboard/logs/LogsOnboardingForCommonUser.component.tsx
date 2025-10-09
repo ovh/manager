@@ -15,13 +15,16 @@ const LogsOnboardingForCommonUser = ({
   const guides = useGuideUtils(LANDING_URL);
   return (
     <>
-      <div className="mb-4">
-        <OdsText preset="heading-6">{t('logs_introduction_title')}</OdsText>
-        <OdsText preset="paragraph" className="mb-4">
-          {t('logs_introduction_description_ldp')}
-          <br />
-          {t('logs_introduction_description_syslog')}
-        </OdsText>
+      <div className="mb-4 flex flex-col justify-between gap-4">
+        <div className="flex flex-col gap-2">
+          <OdsText preset="heading-6">{t('logs_introduction_title')}</OdsText>
+          <OdsText preset="paragraph">
+            {t('logs_introduction_description_ldp')}
+            <br />
+            {t('logs_introduction_description_syslog')}
+          </OdsText>
+        </div>
+
         <Links
           type={LinkType.external}
           label={t('logs_introduction_description_link')}
