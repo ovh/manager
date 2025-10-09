@@ -41,6 +41,11 @@ export const AvailabilityZoneSelection = ({
   };
 
   useEffect(() => {
+    if (choice === 'companyChoice')
+      setValue('availabilityZone', 'companyChoice');
+  }, [choice, setValue]);
+
+  useEffect(() => {
     if (!selectedAvailabilityZone) return;
 
     const availablePreviousAvailabilityZone = availabilityZones.includes(
@@ -61,7 +66,12 @@ export const AvailabilityZoneSelection = ({
           <HelpDrawer>
             <Text className="mb-4">
               {t(
-                'creation:pci_instance_creation_availabilityZone_help_description',
+                'creation:pci_instance_creation_availabilityZone_help_description_p1',
+              )}
+            </Text>
+            <Text className="mb-4">
+              {t(
+                'creation:pci_instance_creation_availabilityZone_help_description_p2',
               )}
             </Text>
             <Link
