@@ -13,15 +13,11 @@ const Users = () => {
     refetchInterval: isUserActive && POLLING.USERS,
   });
 
-  const s3UserQueries = useGetUsersWithS3Credentials(
-    projectId,
-    usersQuery.data,
-  );
 
   if (usersQuery.isLoading) return <UsersList.Skeleton />;
   return (
     <>
-      <UsersList users={s3UserQueries.data || []} />
+      <UsersList users={usersQuery.data || []} />
       <Outlet />
     </>
   );

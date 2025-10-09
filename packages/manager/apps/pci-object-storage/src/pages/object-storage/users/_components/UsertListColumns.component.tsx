@@ -12,18 +12,20 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
+  Skeleton,
 } from '@datatr-ux/uxlib';
 import DataTable from '@/components/data-table';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
-import { UserWithS3Credentials } from '@/data/hooks/user/useGetUsersWithS3Credentials.hook';
+import user from '@/types/User';
+import { useGetUserAccess } from './useGetUserAccess.hook';
 
 interface UsersListColumnsProps {
-  onEnableUserClicked: (user: UserWithS3Credentials) => void;
-  onImportUserAccessClicked: (user: UserWithS3Credentials) => void;
-  onDownloadUserAccessClicked: (user: UserWithS3Credentials) => void;
-  onDownloadRcloneClicked: (user: UserWithS3Credentials) => void;
-  onSecretKeyClicked: (user: UserWithS3Credentials) => void;
-  onDeleteClicked: (user: UserWithS3Credentials) => void;
+  onEnableUserClicked: (user: user.User) => void;
+  onImportUserAccessClicked: (user: user.User) => void;
+  onDownloadUserAccessClicked: (user: user.User) => void;
+  onDownloadRcloneClicked: (user: user.User) => void;
+  onSecretKeyClicked: (user: user.User) => void;
+  onDeleteClicked: (user: user.User) => void;
 }
 export const getColumns = ({
   onEnableUserClicked,
@@ -34,7 +36,7 @@ export const getColumns = ({
   onDeleteClicked,
 }: UsersListColumnsProps) => {
   const { t } = useTranslation('pci-object-storage/users');
-  const columns: ColumnDef<UserWithS3Credentials>[] = [
+  const columns: ColumnDef<user.User>[] = [
     {
       id: 'name',
       header: ({ column }) => (
@@ -55,17 +57,17 @@ export const getColumns = ({
     },
     {
       id: 'access key',
-      header: ({ column }) => (
-        <DataTable.SortableHeader column={column}>
-          {t('tableHeaderAccessKey')}
-        </DataTable.SortableHeader>
-      ),
-      accessorFn: (row) => row.access_key,
+      header: () => t('tableHeaderAccessKey'),
+      cell: ({ row }) => {
+        const accessQuery = useGetUserAccess(row.original.id);
+        if (accessQuery.isPending) return <Skeleton className="h-4 w-32" />;
+        return accessQuery.access;
+      },
     },
     {
       id: 's3 activated',
-      header: ({ column }) => (
-        <>
+      header: () => (
+        <div className="flex items-center">
           <Popover>
             <PopoverTrigger>
               <HelpCircle className="mr-2 size-4" />
@@ -74,28 +76,30 @@ export const getColumns = ({
               <p>{t('s3InfoHelper')}</p>
             </PopoverContent>
           </Popover>
-          <DataTable.SortableHeader column={column}>
-            {t('tableHeaderS3Enabler')}
-          </DataTable.SortableHeader>
-        </>
-      ),
-      accessorFn: (row) => row.access_key,
-      cell: ({ row }) => (
-        <div className="flex items-center gap-2">
-          {row.original.access_key ? (
-            <Badge variant="success">{t('tableS3Enable')}</Badge>
-          ) : (
-            <>
-              <Badge variant="warning">{t('tableS3Disable')}</Badge>
-            </>
-          )}
+          {t('tableHeaderS3Enabler')}
         </div>
       ),
+      cell: ({ row }) => {
+        const accessQuery = useGetUserAccess(row.original.id);
+        if (accessQuery.isPending) return <Skeleton className="h-4 w-32" />;
+        return (
+          <div className="flex items-center gap-2">
+            {accessQuery.access ? (
+              <Badge variant="success">{t('tableS3Enable')}</Badge>
+            ) : (
+              <>
+                <Badge variant="warning">{t('tableS3Disable')}</Badge>
+              </>
+            )}
+          </div>
+        );
+      },
     },
     {
       id: MENU_COLUMN_ID,
       enableGlobalFilter: false,
       cell: ({ row }) => {
+        const accessQuery = useGetUserAccess(row.original.id);
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -109,15 +113,19 @@ export const getColumns = ({
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent data-testid="users-action-content" align="end">
-              <DropdownMenuItem
-                variant="primary"
-                onClick={() => {
-                  onEnableUserClicked(row.original);
-                }}
-                disabled={!!row.original.access_key}
-              >
-                {t('tableActionEnable')}
-              </DropdownMenuItem>
+              {accessQuery.isPending ? (
+                <Skeleton className="h-4 w-32" />
+              ) : (
+                <DropdownMenuItem
+                  variant="primary"
+                  onClick={() => {
+                    onEnableUserClicked(row.original);
+                  }}
+                  disabled={!!accessQuery.access}
+                >
+                  {t('tableActionEnable')}
+                </DropdownMenuItem>
+              )}
               <DropdownMenuItem
                 variant="primary"
                 onClick={() => {
@@ -142,26 +150,34 @@ export const getColumns = ({
               >
                 {t('tableActionDowloadRclone')}
               </DropdownMenuItem>
-              <DropdownMenuItem
-                variant="primary"
-                onClick={() => {
-                  onSecretKeyClicked(row.original);
-                }}
-                disabled={!row.original.access_key}
-              >
-                {t('tableActionShowSecretKey')}
-              </DropdownMenuItem>
+              {accessQuery.isPending ? (
+                <Skeleton className="h-4 w-32" />
+              ) : (
+                <DropdownMenuItem
+                  variant="primary"
+                  onClick={() => {
+                    onSecretKeyClicked(row.original);
+                  }}
+                  disabled={!accessQuery.access}
+                >
+                  {t('tableActionShowSecretKey')}
+                </DropdownMenuItem>
+              )}
               <DropdownMenuSeparator />
-              <DropdownMenuItem
-                data-testid="user-action-delete-button"
-                variant="destructive"
-                onClick={() => {
-                  onDeleteClicked(row.original);
-                }}
-                disabled={!row.original.access_key}
-              >
-                {t('tableActionDisable')}
-              </DropdownMenuItem>
+              {accessQuery.isPending ? (
+                <Skeleton className="h-4 w-32" />
+              ) : (
+                <DropdownMenuItem
+                  data-testid="user-action-delete-button"
+                  variant="destructive"
+                  onClick={() => {
+                    onDeleteClicked(row.original);
+                  }}
+                  disabled={!accessQuery.access}
+                >
+                  {t('tableActionDisable')}
+                </DropdownMenuItem>
+              )}
             </DropdownMenuContent>
           </DropdownMenu>
         );

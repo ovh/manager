@@ -37,9 +37,7 @@ export const useGetUsersWithS3Credentials = (
   }, [s3CredentialsQueries]);
 
   const userWithS3: UserWithS3Credentials[] = s3CredentialsQueries.flatMap(
-    (userS3) => {
-      return userS3.data || [];
-    },
+    (userS3): UserWithS3Credentials[] => (userS3.data ? [userS3.data] : []),
   );
 
   // refetch if pooling changes

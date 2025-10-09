@@ -1,11 +1,11 @@
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { UserWithS3Credentials } from '@/data/hooks/user/useGetUsersWithS3Credentials.hook';
 import storages from '@/types/Storages';
+import user from '@/types/User';
 
 export interface UseUserFormProps {
-  users: UserWithS3Credentials[];
+  users: user.User[];
 }
 export const useUserForm = ({ users }: UseUserFormProps) => {
   const schema = z.object({
