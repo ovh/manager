@@ -11,6 +11,11 @@ export type JsonRequestOptions = {
   disableCache?: boolean;
 };
 
+export type ObservabilityServiceParams = {
+  serviceName: string;
+  signal?: AbortSignal;
+};
+
 export type GetListingParams = {
   route?: string;
   page?: number;
