@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import TabsMenu from '@/components/tabs-menu/TabsMenu.component';
 import { FormattedStorage } from '@/types/Storages';
-import { UserWithS3Credentials } from '@/data/hooks/user/useGetUsersWithS3Credentials.hook';
+import user from '@/types/User';
 
 interface ObjectStorageTabsProps {
   storages: FormattedStorage[];
-  users: UserWithS3Credentials[];
+  users: user.User[];
 }
 
 const ObjectStorageTabs = ({ storages, users }: ObjectStorageTabsProps) => {

@@ -29,7 +29,6 @@ import EncryptStep from './steps/EncryptStep.component';
 import NameInput from './steps/NameStep.component';
 import { isS3Order, isSwiftOrder, useOrderFunnel } from './useOrderFunnel.hook';
 import { ProductAvailability } from '@/types/Availability';
-import { UserWithS3Credentials } from '@/data/hooks/user/useGetUsersWithS3Credentials.hook';
 import { useCreateSwift } from '@/data/hooks/swift-storage/useCreateSwift.hook';
 import { useCreateS3 } from '@/data/hooks/s3-storage/useCreateS3.hook';
 import {
@@ -43,10 +42,11 @@ import { PlanCode } from '@/configuration/project';
 import DiscoveryBanner from '@/components/discovery-banner/DiscoveryBanner';
 import OrderPricing from './OrderPricing.component';
 import A from '@/components/links/A.component';
+import user from '@/types/User';
 
 interface OrderFunnelProps {
   regions: Region[];
-  users: UserWithS3Credentials[];
+  users: user.User[];
   availabilities: ProductAvailability;
   catalog: Catalog;
 }
@@ -213,8 +213,6 @@ const OrderFunnel = ({
                         ]}
                       />
                     }
-
-                    // t('descriptionOffsiteReplication')}
                   >
                     <FormField
                       control={form.control}

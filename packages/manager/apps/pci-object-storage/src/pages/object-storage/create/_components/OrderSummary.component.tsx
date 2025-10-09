@@ -16,11 +16,11 @@ import {
 import { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import Flag from '@/components/flag/Flag.component';
-import { UserWithS3Credentials } from '@/data/hooks/user/useGetUsersWithS3Credentials.hook';
 import { useTranslatedMicroRegions } from '@/hooks/useTranslatedMicroRegions';
 import cloud from '@/types/Cloud';
 import storages from '@/types/Storages';
 import { isS3Order, isSwiftOrder } from './useOrderFunnel.hook';
+import * as Tuser from '@/types/User';
 
 const AnchorLabel = ({
   label,
@@ -71,7 +71,7 @@ const OrderSummary = ({
     | (StorageContainerCreation & { region: string })
     | (ProjectStorageCreation & { containerType: storages.TypeEnum });
   regions: cloud.Region[];
-  users: UserWithS3Credentials[];
+  users: Tuser.default.User[];
 }) => {
   const { t } = useTranslation('pci-object-storage/order-funnel');
 

@@ -24,10 +24,6 @@ export default function DashboardLayout() {
 
   const regionQuery = useGetRegions(projectId);
 
-  const s3UserQueries = useGetUsersWithS3Credentials(
-    projectId,
-    usersQuery.data,
-  );
 
   if (
     usersQuery.isLoading ||
@@ -63,7 +59,7 @@ export default function DashboardLayout() {
       <p>{t('description')}</p>
       <DashboardTabs
         storages={storagesQuery.data.resources}
-        users={s3UserQueries.data}
+        users={usersQuery.data}
       />
       <div className="space-y-2">
         <Outlet />

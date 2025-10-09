@@ -26,14 +26,10 @@ const Service = () => {
   const pricingQuery = useGetCatalog();
   const regionsQuery = useGetRegions(projectId);
   const usersQuery = useGetUsers(projectId);
-  const s3UserQueries = useGetUsersWithS3Credentials(
-    projectId,
-    usersQuery.data,
-  );
 
   if (
     regionsQuery.isPending ||
-    !s3UserQueries.data ||
+    !usersQuery.data ||
     availabilityQuery.isPending ||
     pricingQuery.isPending
   ) {
@@ -47,7 +43,7 @@ const Service = () => {
       </div>
       <OrderFunnel
         regions={regionsQuery.data}
-        users={s3UserQueries.data.filter((u) => u.access_key)}
+        users={usersQuery.data}
         availabilities={availabilityQuery.data}
         catalog={pricingQuery.data}
       />

@@ -7,13 +7,12 @@ import { getColumns } from './UsertListColumns.component';
 import DataTable from '@/components/data-table';
 import { getFilters } from './UserListFilters.component';
 import user from '@/types/User';
-import { UserWithS3Credentials } from '@/data/hooks/user/useGetUsersWithS3Credentials.hook';
 import useDownload from '@/hooks/useDownload';
 import { useObjectStorageData } from '../../ObjectStorage.context';
 import { getUserPolicy } from '@/data/api/user/user.api';
 
 interface UsersListProps {
-  users: UserWithS3Credentials[];
+  users: user.User[];
 }
 
 export default function UsersList({ users }: UsersListProps) {
@@ -23,7 +22,7 @@ export default function UsersList({ users }: UsersListProps) {
   const toast = useToast();
   const { download } = useDownload();
 
-  const downloadPolicy = async (us: UserWithS3Credentials) => {
+  const downloadPolicy = async (us: user.User) => {
     try {
       const policyData = await getUserPolicy({ projectId, userId: us.id });
       download({ type: 'raw', data: policyData.policy }, 'userPolicy.json');
@@ -35,20 +34,20 @@ export default function UsersList({ users }: UsersListProps) {
     }
   };
 
-  const columns: ColumnDef<UserWithS3Credentials>[] = getColumns({
-    onEnableUserClicked: (us: UserWithS3Credentials) => {
+  const columns: ColumnDef<user.User>[] = getColumns({
+    onEnableUserClicked: (us: user.User) => {
       navigate(`./enable/${us.id}`);
     },
-    onImportUserAccessClicked: (us: UserWithS3Credentials) => {
+    onImportUserAccessClicked: (us: user.User) => {
       navigate(`./import-policy/${us.id}`);
     },
-    onDownloadUserAccessClicked: (us: UserWithS3Credentials) => {
+    onDownloadUserAccessClicked: (us: user.User) => {
       downloadPolicy(us);
     },
-    onDownloadRcloneClicked: (us: UserWithS3Credentials) => {
+    onDownloadRcloneClicked: (us: user.User) => {
       navigate(`./rclone/${us.id}`);
     },
-    onSecretKeyClicked: (us: UserWithS3Credentials) => {
+    onSecretKeyClicked: (us: user.User) => {
       navigate(`./user-secret/${us.id}`);
     },
     onDeleteClicked: (us: user.User) => {

@@ -15,20 +15,28 @@ import {
 import { ChevronsUpDownIcon } from 'lucide-react';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
 import UserSecretKey from '@/pages/object-storage/users/show-secret/UserSecretKey.component';
-import { UserWithS3Credentials } from '@/data/hooks/user/useGetUsersWithS3Credentials.hook';
 import AddUserForm from '@/pages/object-storage/users/create/AddUserForm.component';
+
+import * as TUser from '@/types/User';
+import { useGetUserS3Credentials } from '@/data/hooks/user/useGetUserS3Credentials.hook';
 
 interface UserStepProps {
   value?: number;
   onChange?: (newValue: number) => void;
-  users: UserWithS3Credentials[];
+  users: TUser.default.User[];
 }
 const UserStep = React.forwardRef<HTMLButtonElement, UserStepProps>(
   ({ value, onChange, users }, ref) => {
     const { t } = useTranslation('pci-object-storage/order-funnel');
     const [open, setOpen] = useState(false);
     const currentUser = users.find((u) => u.id === value);
+
+    const { projectId } = useParams();
+    const query = useGetUserS3Credentials(projectId, currentUser.id, {
+      enabled: !!currentUser.id,
+    });
     return (
       <div>
         <Popover open={open} onOpenChange={setOpen}>
@@ -88,14 +96,19 @@ const UserStep = React.forwardRef<HTMLButtonElement, UserStepProps>(
             </DialogTrigger>
             <AddUserForm onClose={(user) => onChange(user.id)} />
           </Dialog>
-          {currentUser && (
+          {query.data && query.data?.[0]?.access && (
             <Dialog>
               <DialogTrigger asChild>
                 <Button size={'xs'} mode={'outline'}>
                   {t('userShowCredentialsButton')}
                 </Button>
               </DialogTrigger>
-              <UserSecretKey user={currentUser} />
+              <UserSecretKey
+                user={{
+                  ...currentUser,
+                  access_key: query.data[0].access,
+                }}
+              />
             </Dialog>
           )}
         </div>

@@ -77,7 +77,7 @@ const RegionsStep = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
                 <PopoverTrigger asChild>
                   <HelpCircle className="size-4 ml-2" />
                 </PopoverTrigger>
-                <PopoverContent className="text-xs">
+                <PopoverContent className="text-sm">
                   {t('region-description-1AZ')}
                   {helpLink}
                 </PopoverContent>
@@ -92,7 +92,7 @@ const RegionsStep = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
                 <PopoverTrigger asChild>
                   <HelpCircle className="size-4 ml-2" />
                 </PopoverTrigger>
-                <PopoverContent className="text-xs">
+                <PopoverContent className="text-sm">
                   {t('region-description-3AZ')}
                   {helpLink}
                 </PopoverContent>
