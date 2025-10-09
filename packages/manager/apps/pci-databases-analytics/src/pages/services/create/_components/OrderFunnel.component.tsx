@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
-  Alert,
-  AlertDescription,
   Button,
   Card,
   CardContent,
@@ -66,6 +64,7 @@ const OrderFunnel = ({
     suggestions,
     catalog,
   );
+  const { projectId } = useParams();
   const projectData = usePciProject();
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -80,7 +79,9 @@ const OrderFunnel = ({
       });
     },
     onSuccess: (service) => {
-      navigate(`../${service.id}`);
+      navigate(
+        `/pci/projects/${projectId}/databases-analytics/${service.category}/services/${service.id}`,
+      );
       toast({
         title: t('successCreatingService'),
       });
