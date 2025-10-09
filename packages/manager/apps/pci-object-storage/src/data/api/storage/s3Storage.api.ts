@@ -89,7 +89,7 @@ export const createS3Storage = async ({
   apiClient.v6.post<cloud.StorageContainer>(
     `/cloud/project/${projectId}/region/${region}/storage`,
     data,
-  )
+  );
 
 export interface S3ObjectsParams extends S3Data {
   limit?: number;

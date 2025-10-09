@@ -303,10 +303,19 @@ export default [
             children: [
               {
                 path: 'active-encryption',
-                id: 'dashboard.encryption',
+                id: 'settings.encryption',
                 ...lazyLoadRoute(() =>
                   import(
                     '@/pages/object-storage/storage/s3Id/settings/_components/activate-encryption/ActivateEncryption.modal'
+                  ),
+                ),
+              },
+              {
+                path: 'active-versionning',
+                id: 'settings.versionning',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/storage/s3Id/settings/_components/activate-versionning/ActivateVersionning.modal'
                   ),
                 ),
               },
