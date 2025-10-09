@@ -20,6 +20,7 @@ packages/manager/apps/bmc-backup-agent-baremetal
 packages/manager/modules/backup-agent
 packages/manager-tools/manager-pm
 packages/manager/modules/logs-to-customer
+packages/manager/apps/observability
 packages/manager-ui-kit
 packages/manager-wiki
 packages/manager/modules/backup-agent
@@ -29,7 +30,6 @@ packages/manager-tools/manager-forge-cli/template
 packages/manager-tools/manager-cli-core
 packages/manager/apps/web-ongoing-operations
 packages/manager/apps/communication
-packages/manager/apps/observability
 packages/manager/apps/zimbra
 packages/manager/apps/pci-project
 packages/manager/apps/hub
