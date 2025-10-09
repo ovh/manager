@@ -1,8 +1,10 @@
 import { TCountryIsoCode } from '@/components/flag/country-iso-code';
 import { TDeploymentMode } from '../../types/instance/common.type';
 
-type TRegionName = string;
-export type TRegionID = TRegionName;
+type TMacroRegionName = string;
+type TMicroRegionName = string;
+export type TMacroRegionID = TMacroRegionName;
+export type TMicroRegionID = TMicroRegionName;
 
 export type TDeploymentModeID = TDeploymentMode;
 
@@ -15,16 +17,19 @@ export type TContinent = {
   tags: string[];
 };
 
-export type TRegion = {
-  name: TRegionName;
+export type TMicroRegion = {
+  name: TMicroRegionName;
+  availabilityZones: string[];
+  isActivable: boolean;
+  isInMaintenance: boolean;
+};
+
+export type TMacroRegion = {
+  name: TMacroRegionName;
   deploymentMode: TDeploymentModeID;
   continentIds: TContinentID[];
   country: TCountryIsoCode | null;
-  availabilityZones: string[];
-  isActivable: boolean;
-  isActivated: boolean;
-  isInMaintenance: boolean;
-  microRegions: string[];
+  microRegions: TMicroRegionID[];
 };
 
 export type TDeployment = {
@@ -34,9 +39,13 @@ export type TDeployment = {
 
 export type TInstancesCatalog = {
   entities: {
-    regions: {
-      byId: Map<TRegionID, TRegion>;
-      allIds: TRegionID[];
+    macroRegions: {
+      byId: Map<TMacroRegionID, TMacroRegion>;
+      allIds: TMacroRegionID[];
+    };
+    microRegions: {
+      byId: Map<TMicroRegionID, TMicroRegion>;
+      allIds: TMicroRegionID[];
     };
     deploymentModes: {
       byId: Map<TDeploymentModeID, TDeployment>;

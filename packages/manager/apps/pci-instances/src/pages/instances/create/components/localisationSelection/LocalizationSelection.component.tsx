@@ -6,8 +6,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { HelpDrawer } from '@/components/helpDrawer/HelpDrawer.component';
 import { useGuideLink } from '@/hooks/url/useGuideLink';
 import LocationField from './LocationField.component';
-
-export const localizationDefaultValue = 'eu-west-par';
+import { ContinentSelection } from '../continentSelection/ContinentSelection.component';
 
 export const LocalizationSelection = () => {
   const { t } = useTranslation([NAMESPACES.ONBOARDING, 'creation']);
@@ -38,9 +37,12 @@ export const LocalizationSelection = () => {
         <Text preset="paragraph">
           {t('creation:pci_instance_creation_select_localization_informations')}
         </Text>
+        <div className="pt-7 pb-5">
+          <ContinentSelection />
+        </div>
       </div>
       <Controller
-        name="region"
+        name="macroRegion"
         control={control}
         render={({ field }) => <LocationField onChange={field.onChange} />}
       />
