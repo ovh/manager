@@ -29,9 +29,9 @@
   },
   "telecom": {
     "universe": "telecom",
-    "url": "https://www.ovhtelecom.fr/manager/telecom/",
+    "url": "https://manager.eu.ovhcloud.com/telecom/",
     "container": { "isDefault": false, "enabled": true, "path": "telecom" },
-    "publicURL": "https://www.ovhtelecom.fr/manager/#/telecom"
+    "publicURL": "https://manager.eu.ovhcloud.com/#/telecom"
   },
   "web": {
     "universe": "web",
@@ -76,33 +76,33 @@
   },
   "telephony": {
     "universe": "telecom",
-    "url": "https://www.ovhtelecom.fr/manager/telecom/",
+    "url": "https://manager.eu.ovhcloud.com/telecom/",
     "container": { "isDefault": false },
-    "publicURL": "https://www.ovhtelecom.fr/manager/telecom/"
+    "publicURL": "https://manager.eu.ovhcloud.com/telecom/"
   },
   "pack-xdsl": {
     "universe": "telecom",
-    "url": "https://www.ovhtelecom.fr/manager/telecom/",
+    "url": "https://manager.eu.ovhcloud.com/telecom/",
     "container": { "isDefault": false },
-    "publicURL": "https://www.ovhtelecom.fr/manager/telecom/"
+    "publicURL": "https://manager.eu.ovhcloud.com/telecom/"
   },
   "overthebox": {
     "universe": "telecom",
-    "url": "https://www.ovhtelecom.fr/manager/telecom/",
+    "url": "https://manager.eu.ovhcloud.com/telecom/",
     "container": { "isDefault": false },
-    "publicURL": "https://www.ovhtelecom.fr/manager/telecom/"
+    "publicURL": "https://manager.eu.ovhcloud.com/telecom/"
   },
   "freefax": {
     "universe": "telecom",
-    "url": "https://www.ovhtelecom.fr/manager/telecom/",
+    "url": "https://manager.eu.ovhcloud.com/telecom/",
     "container": { "isDefault": false },
-    "publicURL": "https://www.ovhtelecom.fr/manager/telecom/"
+    "publicURL": "https://manager.eu.ovhcloud.com/telecom/"
   },
   "sms": {
     "universe": "telecom",
-    "url": "https://www.ovhtelecom.fr/manager/telecom/",
+    "url": "https://manager.eu.ovhcloud.com/telecom/",
     "container": { "isDefault": false },
-    "publicURL": "https://www.ovhtelecom.fr/manager/telecom/"
+    "publicURL": "https://manager.eu.ovhcloud.com/telecom/"
   },
   "catalog": {
     "universe": "hub",

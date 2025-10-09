@@ -8,8 +8,6 @@ const redirectTo = (url: string) => {
   return window.location.assign(url);
 };
 
-const isOvhTelecom = () => window.location.host === 'www.ovhtelecom.fr';
-
 export const getAuthUrl = () => {
   const [, region = ''] = window.location.host.split('.');
   return DEFAULT_SSO_AUTH_URL[`${region.toUpperCase() as REGION}`] || `/auth/`; // /auth/ is required for localhost and LABEU
