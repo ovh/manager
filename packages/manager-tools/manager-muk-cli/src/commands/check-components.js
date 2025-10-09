@@ -6,51 +6,79 @@ import { extractOdsTarball, getOdsPackageMetadata } from '../core/ods-tarball-ut
 import { logger } from '../utils/log-manager.js';
 
 /**
- * Get list of local manager-ui-kit (MUK) components.
- * @returns {Promise<string[]>}
+ * Retrieve all local Manager UI Kit (MUK) components.
+ *
+ * @returns {Promise<string[]>} - A list of local component folder names.
  */
 async function getLocalComponents() {
   const entries = await fs.readdir(MUK_COMPONENTS_SRC, { withFileTypes: true });
-  const dirs = entries.filter((e) => e.isDirectory()).map((e) => e.name);
-  logger.info(`${EMOJIS.folder} Found ${dirs.length} local components`);
-  return dirs;
+  const componentDirs = entries.filter((e) => e.isDirectory()).map((e) => e.name);
+
+  logger.info(`${EMOJIS.folder} Found ${componentDirs.length} local components`);
+  return componentDirs;
 }
 
 /**
- * Extract remote component folder names from ODS React npm tarball.
- * @returns {Promise<string[]>} Sorted list of component names.
+ * Extract remote ODS React component names (including subcomponents).
+ *
+ * Handles nested structures such as:
+ *   src/components/accordion/src/components/accordion-item/
+ *
+ * Produces normalized names like:
+ *   accordion, accordion-item, accordion-trigger
+ *
+ * @returns {Promise<string[]>} - Sorted list of normalized ODS component names.
  */
-async function getRemoteOdsComponents() {
+export async function getRemoteOdsComponents() {
   const { version, tarball } = await getOdsPackageMetadata();
   logger.info(`${EMOJIS.package} Fetching ODS React v${version} tarball: ${tarball}`);
 
-  // Extract all files (broad, unfiltered)
   const files = await extractOdsTarball();
-
-  logger.debug(`📦 Extracted ${files.size} files from tarball (showing first 10):`);
-  logger.debug([...files.keys()].slice(0, 10));
-
-  // Derive component names based on directory structure
   const components = new Set();
+
   for (const filePath of files.keys()) {
-    const match = filePath.match(/src\/components\/([^/]+)\//);
-    if (match) components.add(match[1]);
+    // 🔹 Identify the root component name
+    const rootMatch = filePath.match(/src\/components\/([^/]+)\//);
+    if (!rootMatch) continue;
+    const root = rootMatch[1];
+
+    // 🔹 Detect subcomponent paths (e.g., src/components/accordion/src/components/accordion-item)
+    const subMatch = filePath.match(new RegExp(`src/components/${root}/src/components/([^/]+)/`));
+
+    if (subMatch) {
+      let sub = subMatch[1];
+
+      // Normalize redundant prefixes (e.g., accordion-accordion-item → accordion-item)
+      if (sub.startsWith(`${root}-`)) {
+        sub = sub.slice(root.length + 1);
+      }
+
+      // Skip self-subcomponents (e.g., divider-divider)
+      if (sub === root) continue;
+
+      components.add(`${root}-${sub}`);
+    } else {
+      components.add(root);
+    }
   }
 
-  const list = [...components].filter(Boolean).sort();
-  logger.info(`${EMOJIS.check} Extracted ${list.length} components from ODS tarball`);
-  return list;
+  const componentList = [...components].filter(Boolean).sort();
+
+  logger.info(
+    `${EMOJIS.check} Extracted ${componentList.length} ODS components (normalized structure)`,
+  );
+  return componentList;
 }
 
 /**
- * Compare local and remote ODS React component lists.
+ * Compare the component sets between local MUK and remote ODS React sources.
  *
  * @param {object} [options]
- * @param {boolean} [options.returnOnly=false] - If true, return data without printing summary logs.
+ * @param {boolean} [options.returnOnly=false] - If true, skip summary logging and only return data.
  * @returns {Promise<{ missingComponents: string[], extraLocalComponents: string[] }>}
  */
 export async function checkComponents({ returnOnly = false } = {}) {
-  logger.info(`${EMOJIS.info} Checking component parity between ODS React and Manager UI Kit...`);
+  logger.info(`${EMOJIS.info} Comparing component parity between ODS React and Manager UI Kit...`);
 
   const [localComponents, remoteComponents] = await Promise.all([
     getLocalComponents(),
@@ -65,19 +93,19 @@ export async function checkComponents({ returnOnly = false } = {}) {
   }
 
   logger.info(
-    `ℹ Remote count: ${remoteComponents.length}, Local count: ${localComponents.length}`,
+    `ℹ ODS Components: ${remoteComponents.length}, Local Components: ${localComponents.length}`,
   );
 
   if (missingComponents.length === 0) {
-    logger.success('✅ All ODS components exist locally.');
+    logger.success(`${EMOJIS.check} All ODS components exist locally.`);
   } else {
     logger.warn(`⚠ Missing ${missingComponents.length} ODS components:`);
-    missingComponents.forEach((c) => logger.info(`• ${c}`));
+    missingComponents.forEach((name) => logger.info(`• ${name}`));
   }
 
   if (extraLocalComponents.length > 0) {
     logger.debug(
-      `Local-only components (${extraLocalComponents.length}): ${extraLocalComponents.join(', ')}`,
+      `${EMOJIS.folder} Local-only components (${extraLocalComponents.length}): ${extraLocalComponents.join(', ')}`,
     );
   }
 

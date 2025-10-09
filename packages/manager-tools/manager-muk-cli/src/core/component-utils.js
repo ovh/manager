@@ -7,17 +7,12 @@
 export function groupComponentsDynamically(components) {
   const grouped = {};
 
-  // Find all root candidates (i.e. no dash)
-  const roots = components.filter((c) => !c.includes('-'));
+  for (const name of components) {
+    const [parent, ...rest] = name.split('-');
+    const child = rest.length ? rest.join('-') : null;
 
-  for (const comp of components) {
-    const base = comp.split('-')[0];
-    if (roots.includes(base) && comp !== base) {
-      grouped[base] ??= [];
-      grouped[base].push(comp);
-    } else if (!grouped[comp]) {
-      grouped[comp] = [];
-    }
+    if (!grouped[parent]) grouped[parent] = [];
+    if (child) grouped[parent].push(name);
   }
 
   return grouped;
