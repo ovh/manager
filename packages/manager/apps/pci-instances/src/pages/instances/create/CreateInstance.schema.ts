@@ -16,6 +16,8 @@ export const flavorTypeSchema = z.string();
 
 export const microRegionSelectionSchema = z.string().nullable();
 
+export const availabilityZoneSelectionSchema = z.string().nullable();
+
 export const quantityRules = {
   min: 1,
   max: 5,

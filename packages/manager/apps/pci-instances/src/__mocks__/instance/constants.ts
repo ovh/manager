@@ -121,7 +121,7 @@ export const mockedInstancesCatalogDTO: TInstancesCatalogDTO = {
     {
       name: 'EU-SOUTH-LZ-MIL-A',
       type: 'localzone',
-      availabilityZones: [],
+      availabilityZones: ['eu-south-mil-a', 'eu-south-mil-b', 'eu-south-mil-c'],
       isInMaintenance: false,
       country: 'it',
       isActivated: false,
@@ -229,7 +229,11 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
           'EU-SOUTH-LZ-MIL-A',
           {
             name: 'EU-SOUTH-LZ-MIL-A',
-            availabilityZones: [],
+            availabilityZones: [
+              'eu-south-mil-a',
+              'eu-south-mil-b',
+              'eu-south-mil-c',
+            ],
             isInMaintenance: false,
             isActivable: false,
           },
@@ -446,7 +450,11 @@ export const mockedLocalizationsDataForNoneDeploymentZoneAndAllContinents: TRegi
     microRegions: [
       {
         name: 'EU-SOUTH-LZ-MIL-A',
-        availabilityZones: [],
+        availabilityZones: [
+          'eu-south-mil-a',
+          'eu-south-mil-b',
+          'eu-south-mil-c',
+        ],
         isInMaintenance: false,
         isActivable: false,
       },
