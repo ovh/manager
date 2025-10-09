@@ -3,7 +3,7 @@ import { screen, waitFor } from '@testing-library/react';
 import apiClient from '@ovh-ux/manager-core-api';
 import { Link } from '../Link.component';
 import { LinkType } from '../Link.props';
-import { render } from '../../../utils/test.provider';
+import { render } from '@/setupTest';
 
 const PROPS_LINK = {
   children: 'Link',

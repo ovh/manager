@@ -2,7 +2,7 @@ import { vitest } from 'vitest';
 import type { MockInstance } from 'vitest';
 import { screen, act, fireEvent } from '@testing-library/react';
 import { Text } from '../index';
-import { render } from '../../../utils/test.provider';
+import { render } from '@/setupTest';
 import fr_FR from '../translations/Messages_fr_FR.json';
 import { useAuthorizationIam } from '../../../hooks/iam';
 

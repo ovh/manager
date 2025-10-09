@@ -3,7 +3,7 @@ import {
   ShellContext,
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
-import { render } from './test.provider';
+import { render } from '../../setupTest';
 
 export const mockTrackPage = vitest.fn();
 export const mockGetEnvironment = vitest.fn();

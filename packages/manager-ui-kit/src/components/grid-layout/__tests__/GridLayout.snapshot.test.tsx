@@ -1,4 +1,4 @@
-import { render } from '../../../utils/test.provider';
+import { render } from '@/setupTest';
 import { GridLayout } from '../GridLayout.component';
 import { Tile } from '../../tile';
 import { Text } from '../../text';

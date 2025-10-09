@@ -58,7 +58,7 @@ exports[`LinkCard Component Snapshot Tests > renders the complete component 1`] 
             class="_link_udbet_2"
             tab-index="-1"
           >
-            see_more_label
+            En savoir plus
             <span
               class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
             />
@@ -123,7 +123,7 @@ exports[`LinkCard Component Snapshot Tests > renders the component with badges 1
             class="_link_udbet_2"
             tab-index="-1"
           >
-            see_more_label
+            En savoir plus
             <span
               class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
             />
@@ -179,7 +179,7 @@ exports[`LinkCard Component Snapshot Tests > renders the component with image 1`
             class="_link_udbet_2"
             tab-index="-1"
           >
-            see_more_label
+            En savoir plus
             <span
               class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
             />
@@ -230,7 +230,7 @@ exports[`LinkCard Component Snapshot Tests > renders the component with texts 1`
             class="_link_udbet_2"
             tab-index="-1"
           >
-            see_more_label
+            En savoir plus
             <span
               class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
             />

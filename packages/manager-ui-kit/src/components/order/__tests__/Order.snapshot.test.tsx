@@ -1,7 +1,7 @@
 import React from 'react';
 import { vitest } from 'vitest';
 import type { MockInstance } from 'vitest';
-import { render } from '../../../utils/test.provider';
+import { render } from '@/setupTest';
 import { Order } from '../Order.component';
 import { useAuthorizationIam } from '../../../hooks/iam';
 

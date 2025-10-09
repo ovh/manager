@@ -1,8 +1,12 @@
 import { renderHook } from '@testing-library/react';
+import i18n from 'i18next';
 import { useFormatDate } from '../useFormatDate';
 import { DEFAULT_UNKNOWN_DATE_LABEL } from '../useFormatDate.type';
 
 describe('useFormatDate', () => {
+  beforeEach(() => {
+    i18n.changeLanguage('en_GB');
+  });
   it.each([
     {
       case: 'label for no date',

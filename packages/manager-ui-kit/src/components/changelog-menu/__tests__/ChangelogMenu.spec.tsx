@@ -3,7 +3,7 @@ import type { MockInstance } from 'vitest';
 import { act, screen, fireEvent } from '@testing-library/react';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { ChangelogMenu, CHANGELOG_PREFIXES } from '../ChangelogMenu.component';
-import { render } from '../../../utils/test.provider';
+import { render } from '@/setupTest';
 import TradFr from '../translations/Messages_fr_FR.json';
 import { Links, chapters } from './ChangelogMenu.utils';
 
