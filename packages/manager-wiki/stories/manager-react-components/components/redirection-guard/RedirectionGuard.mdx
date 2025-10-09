@@ -1,0 +1,87 @@
+import { Meta, Source } from '@storybook/blocks';
+import { StorybookTable } from '../../../../components/'
+
+<Meta
+  title="Manager React Components/Components/Redirection Guard/Documentation"
+/>
+
+# Redirection Guard
+
+## 🔍 Overview
+
+The RedirectionGuard component is a conditional routing guard used to either:
+
+1. Redirect the user to a specified route,
+2. Render children content,
+3. Show an error UI, or
+4. Display a loading spinner — based on certain conditions.
+
+## 📦 Props
+
+<StorybookTable
+  data={{
+    columns: ['Name', 'Type', 'Required', 'Description'],
+    rows: [
+      {
+        Name: 'route',
+        Type: 'string',
+        Required: '✅ Yes',
+        Description: 'The route to redirect to if the condition is met.'
+      },
+      {
+        Name: 'condition',
+        Type: 'boolean',
+        Required: '✅ Yes',
+        Description: 'If true, the user will be redirected to route.'
+      },
+      {
+        Name: 'isLoading',
+        Type: 'boolean',
+        Required: '✅ Yes',
+        Description: 'If true, displays a loading spinner.'
+      },
+      {
+        Name: 'children',
+        Type: 'React.ReactNode',
+        Required: '✅ Yes',
+        Description: 'Content to render when no redirection is needed.'
+      },
+      {
+        Name: 'isError',
+        Type: 'boolean',
+        Required: '❌ No',
+        Description: 'Indicates whether an error has occurred.'
+      },
+       {
+        Name: 'errorComponent',
+        Type: 'React.ReactNode',
+        Required: '❌ No',
+        Description: 'A custom error component/UI to display if isError is true.'
+      },
+    ],
+  }}
+/>
+
+## Usage
+
+This component is commonly used to manage the display of either a **Listing or Onboarding page.** When a user opens a product in the Manager, they are shown the Listing page if they already have existing services of that product type; otherwise, they are redirected to the Onboarding page.
+This component is handy to handle the loading state, error handling and redirection depending on the condition.
+
+<Source
+  code={`
+    <RedirectionGuard
+      isLoading={isLoading /* Loading Indicator */}
+      condition={data.length === 0 /* Any condition to validate in case redirection to different route is required */}
+      route={'/onboarding' /* Onboarding Route */}
+      isError={isError /* Error Indicator */}
+      errorComponent={<ErrorBanner error={error} /> /* Error page to display in case API call failure */}
+    >
+      <BaseLayout ... >
+        ...
+        <Datagrid items={data} ... />
+        ...
+      </BaseLayout>
+    </RedirectionGuard>
+    `}
+  language="javascript"
+/>

@@ -3,7 +3,7 @@ import { apiClient } from '@ovh-ux/manager-core-api';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { IamCheckResponse, IamInterface, IamObject } from './iam.interface';
 import { formatIamTagsFromResources } from '../../utils/format-tags';
-import { useResourcesIcebergV2 } from '..';
+import { useDataApi } from '..';
 
 export const fetchAuthorizationsCheck = async ({
   actions,
@@ -12,18 +12,19 @@ export const fetchAuthorizationsCheck = async ({
   actions: string[];
   urns: string[];
 }) => {
-  const { data } = await apiClient.v2.post(`/iam/authorization/check`, {
+  const response = await apiClient.v2?.post(`/iam/authorization/check`, {
     actions,
     resourceURNs: urns,
   });
-  return data;
+  return response?.data;
 };
 
 export function useAuthorizationsIam({ actions, urns }: IamInterface) {
   const { data } = useQuery({
     queryKey: ['iam-authorization', urns, actions],
-    queryFn: () => fetchAuthorizationsCheck({ actions, urns }),
-    enabled: urns.length > 0 && actions.length > 0,
+    queryFn: () =>
+      fetchAuthorizationsCheck({ actions: actions || [], urns: urns || [] }),
+    enabled: (urns?.length || 0) > 0 && (actions?.length || 0) > 0,
     placeholderData: keepPreviousData,
   });
 
@@ -38,10 +39,10 @@ export const fetchAuthorizationCheck = async (
   actions: string[],
   urn: string,
 ): Promise<IamCheckResponse> => {
-  const { data } = await apiClient.v2.post(getAuthorizationCheckUrl(urn), {
+  const response = await apiClient.v2?.post(getAuthorizationCheckUrl(urn), {
     actions,
   });
-  return data;
+  return response?.data;
 };
 export function useAuthorizationIam(
   actions: string[],
@@ -85,11 +86,13 @@ export function useGetResourceTags({
     flattenData: resources,
     isError: isTagsError,
     isLoading: isTagsLoading,
-  } = useResourcesIcebergV2<IamObject>({
+  } = useDataApi<IamObject>({
+    version: 'v2',
+    iceberg: true,
     route,
-    queryKey: ['iam/resource', resourceType],
+    cacheKey: ['iam/resource', resourceType || ''],
     enabled,
-    shouldFetchAll: true,
+    fetchAll: true,
   });
 
   const tags = useMemo(() => {

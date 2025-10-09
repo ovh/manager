@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
@@ -10,9 +11,10 @@ import {
   useAuthorizationIam,
   useGetResourceTags,
 } from './useOvhIam';
+import { useDataApi } from '../data-api';
 
 const mocks = vi.hoisted(() => ({
-  fetchIcebergV2: vi.fn(),
+  useDataApi: vi.fn(),
 }));
 
 const shellContext = {
@@ -27,7 +29,7 @@ const shellContext = {
 };
 
 const queryClient = new QueryClient();
-const wrapper = ({ children }) => (
+const wrapper = ({ children }: { children: ReactNode }) => (
   <QueryClientProvider client={queryClient}>
     <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
       {children}
@@ -35,18 +37,9 @@ const wrapper = ({ children }) => (
   </QueryClientProvider>
 );
 
-vi.mock('@ovh-ux/manager-core-api', async (importOriginal) => {
-  const original = await importOriginal<
-    typeof import('@ovh-ux/manager-core-api')
-  >();
+vi.mock('../data-api', () => {
   return {
-    ...original,
-    apiClient: {
-      v2: {
-        get: vi.fn(),
-      },
-    },
-    fetchIcebergV2: mocks.fetchIcebergV2,
+    useDataApi: mocks.useDataApi,
   };
 });
 
@@ -60,16 +53,13 @@ describe('getAuthorizationCheckUrl', () => {
 
 describe('useAuthorizationIam', () => {
   it('should not fetch data if urn is nil', () => {
-    const { result } = renderHook(
-      () => useAuthorizationIam(['test'], undefined),
-      {
-        wrapper,
-      },
-    );
+    const { result } = renderHook(() => useAuthorizationIam(['test'], ''), {
+      wrapper,
+    });
     expect(result.current?.isFetching).toBe(false);
   });
   it('should not fetch data if actions is nil', () => {
-    const { result } = renderHook(() => useAuthorizationIam(undefined, 'urn'), {
+    const { result } = renderHook(() => useAuthorizationIam([], 'urn'), {
       wrapper,
     });
     expect(result.current?.isFetching).toBe(false);
@@ -84,8 +74,8 @@ describe('useAuthorizationIam', () => {
 
 describe('useGetResourceTags', () => {
   it('should get and format iam tags for resourceType', async () => {
-    mocks.fetchIcebergV2.mockResolvedValue({
-      data: [
+    mocks.useDataApi.mockReturnValue({
+      flattenData: [
         {
           tags: {
             test: 'value1',
@@ -98,6 +88,7 @@ describe('useGetResourceTags', () => {
           },
         },
       ],
+      isLoading: false,
     });
     const { result } = renderHook(
       () => useGetResourceTags({ resourceType: 'dedicatedServer' }),

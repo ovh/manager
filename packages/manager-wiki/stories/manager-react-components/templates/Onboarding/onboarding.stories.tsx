@@ -1,8 +1,8 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
-import placeholderSrc from '../../../../../manager-react-components/public/assets/placeholder.png';
-import customImgSrc from '../../../../../manager-react-components/public/assets/error-banner-oops.png';
+import { LinkCard, OnboardingLayout } from '@ovh-ux/manager-react-components';
+import placeholderSrc from '@ovh-ux/manager-react-components/public/assets/placeholder.png';
+import customImgSrc from '@ovh-ux/manager-react-components/public/assets/error-banner-oops.png';
 import { OdsText } from '@ovhcloud/ods-components/react';
 
 export const OnboardingFullExample = () => (
@@ -28,7 +28,7 @@ export const OnboardingFullExample = () => (
     }}
   >
     <>
-      <Card
+      <LinkCard
         href={''}
         texts={{
           title: 'Test Onboarding 1',
@@ -36,7 +36,7 @@ export const OnboardingFullExample = () => (
           category: 'WEB',
         }}
       />
-      <Card
+      <LinkCard
         href={''}
         texts={{
           title: 'Test Onboarding 2',
@@ -44,7 +44,7 @@ export const OnboardingFullExample = () => (
           category: 'CLOUD',
         }}
       />
-      <Card
+      <LinkCard
         href={''}
         texts={{
           title: 'Test Onboarding  3',
@@ -112,7 +112,7 @@ export const OnboardingWithDescription = () => (
 export const OnboardingWithChildren = () => (
   <OnboardingLayout title="Onboarding with Children">
     <>
-      <Card
+      <LinkCard
         href={''}
         texts={{
           title: 'Test Onboarding 1',
@@ -120,7 +120,7 @@ export const OnboardingWithChildren = () => (
           category: 'WEB',
         }}
       />
-      <Card
+      <LinkCard
         href={''}
         texts={{
           title: 'Test Onboarding 2',
@@ -128,7 +128,7 @@ export const OnboardingWithChildren = () => (
           category: 'CLOUD',
         }}
       />
-      <Card
+      <LinkCard
         href={''}
         texts={{
           title: 'Test Onboarding  3',
@@ -146,7 +146,7 @@ export const OnboardingWithoutHeadingSection = () => (
     hideHeadingSection
   >
     <>
-      <Card
+      <LinkCard
         href={''}
         texts={{
           title: 'Test Onboarding 1',
@@ -154,7 +154,7 @@ export const OnboardingWithoutHeadingSection = () => (
           category: 'WEB',
         }}
       />
-      <Card
+      <LinkCard
         href={''}
         texts={{
           title: 'Test Onboarding 2',
@@ -162,7 +162,7 @@ export const OnboardingWithoutHeadingSection = () => (
           category: 'CLOUD',
         }}
       />
-      <Card
+      <LinkCard
         href={''}
         texts={{
           title: 'Test Onboarding  3',
@@ -175,7 +175,7 @@ export const OnboardingWithoutHeadingSection = () => (
 );
 
 const meta: Meta<typeof OnboardingLayout> = {
-  title: 'Manager React Components/Templates/Onboarding',
+  title: 'Manager React Components/Components/OnboardingLayout',
   component: OnboardingLayout,
   argTypes: {
     title: {
