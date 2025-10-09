@@ -1,6 +1,9 @@
 {
-  "title": "Tenants",
   "listing": {
     "title": "Liste des tenants"
+  },
+  "onboarding": {
+    "description": "Créez votre nouveau tenant pour continuer à explorer tout le potentiel des métriques d'observabilité. Vous pourrez envoyer des données, créer des tableaux de bord et configurer des alertes adaptées à vos besoins spécifiques.",
+    "orderButtonLabel": "Créez votre tenant"
   }
 }
