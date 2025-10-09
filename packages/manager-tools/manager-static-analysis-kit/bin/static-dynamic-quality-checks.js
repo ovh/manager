@@ -13,7 +13,7 @@ const isTests = process.argv.includes('--tests');
 const mainScripts = [
   'manager-code-duplication',
   'manager-types-coverage',
-  // 'manager-tests-coverage',
+  'manager-tests-coverage',
   'manager-perf-budgets',
 ];
 

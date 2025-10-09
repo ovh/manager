@@ -54,7 +54,7 @@ export function parseArgs() {
 
   const moduleModeArgs = libsArg || packagesArg || appsArg;
 
-  if (!moduleModeArgs) return discoverModules(false).slice(0, 1);
+  if (!moduleModeArgs) return discoverModules(false);
 
   const index = process.argv.indexOf(moduleModeArgs);
   const rawValue = process.argv[index + 1] || '';
