@@ -23,3 +23,4 @@ packages/manager-tools/manager-forge-cli/template
 packages/manager-tools/manager-cli-core
 packages/manager/apps/web-ongoing-operations
 packages/manager/apps/communication
+packages/manager/apps/observability
