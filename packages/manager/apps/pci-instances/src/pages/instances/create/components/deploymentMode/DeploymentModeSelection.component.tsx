@@ -14,11 +14,9 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { HelpDrawer } from '@/components/helpDrawer/HelpDrawer.component';
 import { TDeploymentMode } from '@/types/instance/common.type';
 import { useGuideLink } from '@/hooks/url/useGuideLink';
-import { selectDeploymentModes } from '../../view-models/selectDeploymentMode';
+import { selectDeploymentModes } from '../../view-models/deploymentModeViewModel';
 import { deps } from '@/deps/deps';
 import { useProjectId } from '@/hooks/project/useProjectId';
-
-export const deploymentModesDefaultValue: TDeploymentMode[] = ['region-3-az'];
 
 type TDeploymentModeSelection = {
   deploymentModes: TDeploymentMode[];
