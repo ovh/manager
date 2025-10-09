@@ -43,6 +43,7 @@ packages/manager-tools/manager-tests-setup
 packages/manager-tools/manager-vite-config
 packages/manager/apps/pci-instances
 packages/manager/apps/pci-workflow
+packages/manager/apps/observability
 packages/manager/apps/web-domains
 packages/manager/apps/web-hosting
 packages/manager/apps/web-office

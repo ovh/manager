@@ -523,7 +523,7 @@ export default function DedicatedSidebar() {
             id: 'tenants',
             href: navigation.getURL('observability', '#/metrics/tenants'),
             label: t('sidebar_observability_metrics_tenants'),
-            pathMatcher: new RegExp('^/observability/metrics/tenants'),
+            pathMatcher: new RegExp('^/observability/metrics'),
             ignoreSearch: true,
             icon: observabilityIcon,
           },
