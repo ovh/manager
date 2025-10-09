@@ -123,6 +123,8 @@ export const SNAPSHOT_TYPE = {
 
 export const CUSTOM_SELECTION = 'Custom';
 
+export const ACTIVES_NFS_LIMITE = 5;
+
 export default {
   MINIMUM_VOLUME_SIZE,
   COMMIT_IMPRESSION_TRACKING_DATA,
