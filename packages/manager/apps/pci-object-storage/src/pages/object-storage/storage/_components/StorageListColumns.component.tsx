@@ -23,6 +23,10 @@ import storages, {
   ObjectStorageTypeEnum,
 } from '@/types/Storages';
 import { octetConverter } from '@/lib/bytesHelper';
+import {
+  getMacroRegion,
+  useTranslatedMicroRegions,
+} from '@/hooks/useTranslatedMicroRegions';
 
 interface StoragesListColumnsProps {
   onSwitchClicked: (storage: FormattedStorage) => void;
@@ -72,17 +76,20 @@ export const getColumns = ({
           {t('tableHeaderLocation')}
         </DataTable.SortableHeader>
       ),
-      cell: ({ row }) => (
-        <div className="flex items-center gap-2">
-          <Flag
-            flagName={getRegionFlag(row.original.region)}
-            className="w-4 h-3"
-          />
-          <span className="whitespace-nowrap">
-            {tRegions(`region_${row.original.region}`)}
-          </span>
-        </div>
-      ),
+      cell: ({ row }) => {
+        const { translateMacroRegion } = useTranslatedMicroRegions();
+        return (
+          <div className="flex items-center gap-2">
+            <Flag
+              flagName={getRegionFlag(getMacroRegion(row.original.region))}
+              className="w-4 h-3"
+            />
+            <span className="whitespace-nowrap">
+              {translateMacroRegion(row.original.region)}
+            </span>
+          </div>
+        );
+      },
     },
     {
       id: 'Mode',

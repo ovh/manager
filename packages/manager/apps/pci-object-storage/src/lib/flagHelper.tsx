@@ -1,10 +1,13 @@
 export const getRegionFlag = (region: string): string | undefined => {
   switch (region) {
     case 'BHS':
+    case 'TOR':
       return 'ca';
     case 'EU-WEST-PAR':
     case 'GRA':
     case 'SBG':
+    case 'PAR':
+    case 'RBX':
       return 'fr';
     case 'WAW':
       return 'pl';
