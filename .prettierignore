@@ -17,3 +17,4 @@ packages/manager-ui-kit
 packages/manager-wiki
 packages/manager-tools/manager-forge-cli
 packages/manager-tools/manager-forge-cli/template
+packages/manager/apps/observability
