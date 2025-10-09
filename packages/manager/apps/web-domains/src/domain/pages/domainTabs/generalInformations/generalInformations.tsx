@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 import BannerStatus from '@/domain/components/BannerStatus/BannerStatus';
 import GeneralInformationsCards from '@/domain/components/InformationsCards/GeneralInformations';
+import SubscriptionCards from '@/domain/components/SubscriptionCards/SubscriptionCards';
 
 export default function GeneralInformations() {
   const { serviceName } = useParams<{ serviceName: string }>();
@@ -26,9 +27,7 @@ export default function GeneralInformations() {
           </ManagerTile>
         </div>
         <div className="row-span-4 col-start-3 row-start-1">
-          <ManagerTile>
-            <ManagerTile.Title>Abonnement</ManagerTile.Title>
-          </ManagerTile>
+          <SubscriptionCards serviceName={serviceName} />
         </div>
       </div>
     </div>

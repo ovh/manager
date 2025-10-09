@@ -15,11 +15,12 @@ import { TDomainZone } from '@/domain/types/domainZone';
 import { order } from '@/domain/types/orderCatalog';
 import { getOrderCatalog } from '@/domain/data/api/order';
 import {
+  getDomainContact,
   getServiceInformation,
   updateServiceOption,
 } from '@/common/data/api/common.api';
 import { ServiceInfoUpdateEnum } from '@/common/enum/common.enum';
-import { TServiceInfo } from '@/common/types/common.types';
+import { TDomainContact, TServiceInfo } from '@/common/types/common.types';
 import { ServiceRoutes } from '@/alldoms/enum/service.enum';
 
 export const useGetDomainResource = (serviceName: string) => {
@@ -172,5 +173,17 @@ export const useUpdateDomainResource = (serviceName: string) => {
   return {
     updateDomain: mutate,
     isUpdateDomainPending: isPending,
+  };
+};
+
+export const useGetDomainContact = (contactID: string) => {
+  const { data, isLoading, error } = useQuery<TDomainContact>({
+    queryKey: ['domain', 'contact', contactID],
+    queryFn: () => getDomainContact(contactID),
+  });
+  return {
+    domainContact: data,
+    isFetchingDomainContact: isLoading,
+    domainContactError: error,
   };
 };
