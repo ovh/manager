@@ -1,21 +1,11 @@
 {
   "dashboardTitle": "Dashboard",
   "overviewTitle": "Aperçu du bucket",
-  "encryptionTitle": "Chiffrement",
   "tagsTitle": "Tags",
   "bucketNameLabel": "Nom du bucket",
   "endpointLabel": "Endpoint",
   "hostLabel": "Virtual Host",
   "copyLabel": "Copié",
   "toastErrorTitle": "Erreur",
-  "toastSuccessTitle": "Succès",
-  "enableEncryptionLabel": "Activé",
-  "disableEncryptionLabel": "Désactivé",
-  "disableEncryptionDesc1": "Les données stockées dans votre bucket ne sont actuellement pas chiffrées.",
-  "disableEncryptionDesc2": "Bénéficiez d'une solution de chiffrement simplifiée avec SSE-OMK.",
-  "enableEncryptionDesc1": "Le chiffrement est automatiquement appliqué aux nouveaux objets stockés dans le bucket.",
-  "enableEncryptionDesc2": "SSE-OMK * (Server-Side Encryption with OVHcloud-Managed Keys)",
-  "encryptionTooltip": "Ce type de chiffrement simplifie le processus en utilisant des clés gérées par OVHcloud. Cette méthode est idéale pour les clients qui souhaitent bénéficier d'une solution de chiffrement robuste sans les complexités liées à la gestion des clés.",
-  "activateEncryptionButton": "Activer",
-  "activateEncryptionToastSuccessDescription": "Le chiffrement a été activé"
+  "toastSuccessTitle": "Succès"
 }

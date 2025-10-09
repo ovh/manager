@@ -13,7 +13,7 @@ import { useS3Data } from '../../S3.context';
 
 const Encryption = () => {
   const { s3 } = useS3Data();
-  const { t } = useTranslation('pci-object-storage/storages/s3/dashboard');
+  const { t } = useTranslation('pci-object-storage/storages/s3/settings');
   const navigate = useNavigate();
   const prefix =
     s3.encryption.sseAlgorithm === EncryptionAlgorithmEnum.plaintext
@@ -30,18 +30,16 @@ const Encryption = () => {
               : 'success'
           }
         >
-          {t(`${prefix}EncryptionLabel`)}
+          {t(`${prefix}Label`)}
         </Badge>
         {s3.encryption.sseAlgorithm === EncryptionAlgorithmEnum.plaintext && (
           <Button
             mode="outline"
             size="sm"
-            onClick={() => navigate('./../settings')}
+            onClick={() => navigate('./active-encryption')}
           >
             <Settings className="size-4 mr-2" />
-            <span className="font-semibold">
-              {t('activateEncryptionButton')}
-            </span>
+            <span className="font-semibold">{t('activateButton')}</span>
           </Button>
         )}
       </div>
