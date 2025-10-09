@@ -1,0 +1,15 @@
+{
+  "pricing_ht": "{{price}} netto",
+  "pricing_ttc": "{{price}} brutto",
+  "pricing_button_hourly": "Godzina",
+  "pricing_button_monthly": "Abonament miesięczny",
+  "pricing_unit_hourly": "/godz.",
+  "pricing_unit_monthly": "/m-c",
+  "pricing_label": "Cena",
+  "freeBetaLabel": "Darmowe testy beta",
+  "freeBetaPopover": "Usługa jest bezpłatna w fazie beta. W fazie ogólnej dostępności będzie oferowana jako płatna.",
+  "pricing_instance_label": "Instancja",
+  "pricing_storage_label": "Przestrzeń dyskowa",
+  "total_hour_label": "Kwota całkowita za godzinę",
+  "estimated_month_label": "Miesięcznie (szacunkowo)"
+}
