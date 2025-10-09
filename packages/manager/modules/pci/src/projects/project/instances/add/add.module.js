@@ -16,6 +16,7 @@ import trustedZoneBanner from '../../../../components/trusted-zone-banner';
 import deploymentModeSelector from '../../../../components/project/deployment-mode-selector';
 import PciProjectAdditionalIpService from '../../additional-ips/service';
 import PciPublicGatewaysService from '../../gateways/service';
+import instanceBackup from '../instance/backup/backup.module';
 
 import component from './add.component';
 import routing from './add.routing';
@@ -38,6 +39,7 @@ angular
     deploymentModeSelector,
     PciProjectAdditionalIpService,
     PciPublicGatewaysService,
+    instanceBackup,
   ])
   .config(routing)
   .component('ovhManagerPciInstancesAdd', component)

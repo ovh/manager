@@ -47,7 +47,7 @@ export default [
   complexityTsJsConfig,
   {
     ...cssEslintConfig,
-    files: ['**/*.css', '**/*.scss'],
+    files: ['**/*.css'],
     languageOptions: {
       ...cssEslintConfig.languageOptions,
       customSyntax: tailwindSyntax,
