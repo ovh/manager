@@ -5,7 +5,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/delete-site/:siteId',
       views: {
         modal: {
-          component: 'managedBaremetalDatacenterZertoDeleteSiteModal',
+          component: 'dedicatedCloudDatacenterZertoDeleteSiteModal',
         },
       },
       layout: 'modal',
@@ -23,12 +23,12 @@ export default /* @ngInject */ ($stateProvider) => {
           Alerter.error(message, 'managedBaremetal_dashboard_alert');
         },
         deleteSite: /* @ngInject */ (
-          managedBaremetalZerto,
+          dedicatedCloudZerto,
           serviceName,
           datacenterId,
           siteId,
         ) => () =>
-          managedBaremetalZerto.deleteZertoRemoteSite({
+          dedicatedCloudZerto.deleteZertoRemoteSite({
             serviceName,
             datacenterId,
             siteId,
