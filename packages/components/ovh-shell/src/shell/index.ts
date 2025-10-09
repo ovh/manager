@@ -69,6 +69,7 @@ export function initShell(environment: Environment): Shell {
   trackingPlugin.configureTracking(
     environment.getRegion(),
     environment.getUser(),
+    environment.getUserLocale(),
   );
 
   shell
