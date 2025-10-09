@@ -194,7 +194,7 @@ export default [
             children: [
               {
                 path: 'delete',
-                id: 'nswift.dashboard.delete',
+                id: 'swift.dashboard.delete',
                 ...lazyLoadRoute(() =>
                   import(
                     '@/pages/object-storage/storage/swiftId/settings/delete/Delete.modal'
@@ -212,20 +212,67 @@ export default [
         ),
         children: [
           {
-            path: '',
-            id: 's3.dashboard',
+            path: 'objects',
+            ...lazyLoadRoute(() =>
+              import(
+                '@/pages/object-storage/storage/s3Id/objects/Objects.layout'
+              ),
+            ),
+            children: [
+              {
+                path: '',
+                id: 's3.objects.list',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/storage/s3Id/objects/Objects.page'
+                  ),
+                ),
+              },
+              {
+                path: ':objectKey',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/storage/s3Id/objects/object/Object.layout'
+                  ),
+                ),
+                children: [
+                  {
+                    path: '',
+                    id: 's3.object.dashboard',
+                    ...lazyLoadRoute(() =>
+                      import(
+                        '@/pages/object-storage/storage/s3Id/objects/object/Object.page'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'versions',
+                    id: 's3.object.versions',
+                    ...lazyLoadRoute(() =>
+                      import(
+                        '@/pages/object-storage/storage/s3Id/objects/object/versions/Versions.page'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'lock',
+                    id: 's3.object.lock',
+                    ...lazyLoadRoute(() =>
+                      import(
+                        '@/pages/object-storage/storage/s3Id/objects/object/object-lock/ObjectLock.page'
+                      ),
+                    ),
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            path: 'dashboard',
+            id: 's3.dashboard.properties',
             ...lazyLoadRoute(() =>
               import(
                 '@/pages/object-storage/storage/s3Id/dashboard/Dashboard.page'
-              ),
-            ),
-          },
-          {
-            path: 'objects',
-            id: 's3.dashboard.objects',
-            ...lazyLoadRoute(() =>
-              import(
-                '@/pages/object-storage/storage/s3Id/objects/Objects.page'
               ),
             ),
           },
@@ -239,7 +286,7 @@ export default [
             ),
           },
           {
-            path: 'logs',
+            path: 'access-logs',
             id: 's3.dashboard.logs',
             ...lazyLoadRoute(() =>
               import('@/pages/object-storage/storage/s3Id/logs/Logs.page'),
@@ -253,6 +300,17 @@ export default [
                 '@/pages/object-storage/storage/s3Id/settings/Settings.page'
               ),
             ),
+            children: [
+              {
+                path: 'active-encryption',
+                id: 'dashboard.encryption',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/storage/s3Id/settings/_components/activate-encryption/ActivateEncryption.modal'
+                  ),
+                ),
+              },
+            ],
           },
         ],
       },

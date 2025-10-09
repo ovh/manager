@@ -1,3 +1,8 @@
+import {
+  StorageContainer,
+  StorageObject,
+  StorageContainerUpdate,
+} from '@datatr-ux/ovhcloud-types/cloud/index';
 import { PCIData } from '..';
 import { apiClient } from '../api.client';
 import storages from '@/types/Storages';
@@ -38,6 +43,21 @@ export const deleteS3Storage = async ({ projectId, region, name }: S3Data) =>
     `/cloud/project/${projectId}/region/${region}/storage/${name}`,
   );
 
+export interface UpdateS3Data extends S3Data {
+  data: StorageContainerUpdate;
+}
+
+export const udpateS3Storage = async ({
+  projectId,
+  region,
+  name,
+  data,
+}: UpdateS3Data) =>
+  apiClient.v6.put<StorageContainer>(
+    `/cloud/project/${projectId}/region/${region}/storage/${name}`,
+    data,
+  );
+
 export interface AddS3Policy extends S3Data {
   userId: number;
   data: {
@@ -69,4 +89,49 @@ export const createS3Storage = async ({
   apiClient.v6.post<cloud.StorageContainer>(
     `/cloud/project/${projectId}/region/${region}/storage`,
     data,
+  )
+
+export interface S3ObjectsParams extends S3Data {
+  limit?: number;
+  keyMarker?: string;
+  prefix?: string;
+  versionIdMarker?: string;
+  withVersions?: boolean;
+}
+
+export const getS3Objects = async ({
+  projectId,
+  region,
+  name,
+  limit,
+  keyMarker,
+  prefix,
+  versionIdMarker,
+  withVersions,
+}: S3ObjectsParams) =>
+  apiClient.v6.get<StorageObject[]>(
+    `/cloud/project/${projectId}/region/${region}/storage/${name}/object`,
+    {
+      params: {
+        limit,
+        keyMarker,
+        prefix,
+        versionIdMarker,
+        withVersions,
+      },
+    },
+  );
+
+export interface S3ObjectParams extends S3Data {
+  key: string;
+}
+
+export const getS3Object = async ({
+  projectId,
+  region,
+  name,
+  key,
+}: S3ObjectParams) =>
+  apiClient.v6.get<StorageObject>(
+    `/cloud/project/${projectId}/region/${region}/storage/${name}/object/${key}`,
   );

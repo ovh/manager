@@ -9,10 +9,14 @@ const S3Tabs = ({ s3 }: S3TabsProps) => {
   const { t } = useTranslation('pci-object-storage/storages/header-tabs');
 
   const tabs = [
-    { href: '', label: t('dashboardTab'), end: true },
-    { href: 'objects', label: t('objectsTab'), count: s3.objectsCount || 0 },
+    {
+      href: 'objects',
+      label: t('objectsTab'),
+      count: s3.objects.length || 0,
+    },
+    { href: 'dashboard', label: t('dashboardTab') },
     { href: 'replication', label: t('replicationTab') },
-    { href: 'logs', label: t('logsTab') },
+    // { href: 'access-logs', label: t('accessLogsTab') },
     { href: 'settings', label: t('settingsTab') },
   ].filter((tab) => tab);
 

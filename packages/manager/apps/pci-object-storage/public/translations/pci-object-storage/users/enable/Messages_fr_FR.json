@@ -2,7 +2,7 @@
   "enableUserTitle": "Activer un utilisateur pour S3",
   "enableUSerDescription": "Cette action vous permet de générer les informations d'identification S3 de l'utilisateur {{ name }}.",
   "enableUserButtonCancel": "Annuler",
-  "denableUserButtonConfirm": "Confirmer",
+  "enableUserButtonConfirm": "Confirmer",
   "enableUserToastErrorTitle": "Erreur",
   "enableUserToastSuccessTitle": "Succès",
   "accessKeyLabel": "Clé d'accès",
