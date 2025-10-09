@@ -85,6 +85,7 @@ export const PCI_FEATURES = {
     BILLING_CHANGE_MEDIATION_BANNER_2:
       'public-cloud:project:billing-change-mediation-banner_2',
     FREE_LOCAL_ZONES_BANNER: 'public-cloud:project:free-local-zones-banner',
+    EOS_IOLB: 'public-cloud:project:eos-load-balancer',
   },
   OTHERS: {
     PUBLIC_CLOUD: 'public-cloud',
