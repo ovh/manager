@@ -19,9 +19,6 @@ export default /* @ngInject */ ($stateProvider) => {
             isZertoOnPremise: transition
               .injector()
               .getAsync('isZertoOnPremise'),
-            shouldBeConfigured: transition
-              .injector()
-              .getAsync('shouldBeConfigured'),
           })
           .then(({ isZertoOnPremise }) => {
             return (
