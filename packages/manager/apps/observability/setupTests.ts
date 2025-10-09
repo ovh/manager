@@ -5,6 +5,13 @@ import { vi } from 'vitest';
 
 global.fetch = fetch;
 
+// TODO remove during unmocking phase
+vi.mock('@/__mocks__/mock.config', () => ({
+  apiConfig: {
+    mode: 'api',
+  },
+}));
+
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (translationKey: string) => translationKey,
