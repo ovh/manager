@@ -6,7 +6,7 @@ import {
   mockedAllContinentsSelectorData,
 } from '@/__mocks__/instance/constants';
 import { Deps } from '@/deps/deps';
-import { selectContinent } from '../selectContinents';
+import { selectContinent } from '../continentsViewModel';
 
 const fakeDeps: Deps = {
   instancesCatalogPort: {

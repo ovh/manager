@@ -5,7 +5,8 @@ import {
   TDeployment,
   TDeploymentModeID,
   TInstancesCatalog,
-  TRegion,
+  TMicroRegion,
+  TMacroRegion,
 } from '@/domain/entities/instancesCatalog';
 import {
   TContinentRegionsDTO,
@@ -23,16 +24,21 @@ type TNormalizedEntity<ID, Entity> = {
 const mapCountry = (country: string | null) =>
   country && iscountryISOCode(country) ? country : null;
 
-const mapRegionDTOtoEntity = (regionDto: TRegionDTO): TRegion => ({
+const mapRegionDTOtoRegionEntity = (regionDto: TRegionDTO): TMacroRegion => ({
   name: regionDto.datacenter,
   deploymentMode: regionDto.type,
   continentIds: regionDto.filters.region,
   country: mapCountry(regionDto.country),
+  microRegions: [regionDto.name],
+});
+
+const mapRegionDTOtoMicroRegionEntity = (
+  regionDto: TRegionDTO,
+): TMicroRegion => ({
+  name: regionDto.name,
   availabilityZones: regionDto.availabilityZones,
   isActivable: regionDto.isActivable,
-  isActivated: regionDto.isActivated,
   isInMaintenance: regionDto.isInMaintenance,
-  microRegions: [regionDto.name],
 });
 
 const mapDeploymentModeDTOToEntity = (
@@ -53,26 +59,49 @@ const normalizeData = <DTOItem extends { name: ItemID }, ItemID, EntityItem>(
     { byId: new Map(), allIds: [] },
   );
 
-const normalizeRegion = (
+type TRegions = {
+  macroRegions: TNormalizedEntity<string, TMacroRegion>;
+  microRegions: TNormalizedEntity<string, TMicroRegion>;
+};
+
+type TNormalizeRegionMappers = {
+  macroRegionMapper: (arg: TRegionDTO) => TMacroRegion;
+  microRegionMapper: (arg: TRegionDTO) => TMicroRegion;
+};
+
+const normalizeRegion = (mappers: TNormalizeRegionMappers) => (
   regions: TRegionDTO[],
-  mapper: (arg: TRegionDTO) => TRegion,
 ) =>
-  regions.reduce<TNormalizedEntity<string, TRegion>>(
+  regions.reduce<TRegions>(
     (acc, region) => {
-      if (!acc.allIds.includes(region.datacenter))
-        acc.allIds.push(region.datacenter);
-      const existingRegion = acc.byId.get(region.datacenter);
+      if (!acc.macroRegions.allIds.includes(region.datacenter))
+        acc.macroRegions.allIds.push(region.datacenter);
+
+      if (!acc.microRegions.allIds.includes(region.name))
+        acc.microRegions.allIds.push(region.name);
+
+      const existingRegion = acc.macroRegions.byId.get(region.datacenter);
+
       if (existingRegion) {
-        acc.byId.set(region.datacenter, {
+        acc.macroRegions.byId.set(region.datacenter, {
           ...existingRegion,
           microRegions: [...existingRegion.microRegions, region.name],
         });
       } else {
-        acc.byId.set(region.datacenter, mapper(region));
+        acc.macroRegions.byId.set(
+          region.datacenter,
+          mappers.macroRegionMapper(region),
+        );
       }
+
+      acc.microRegions.byId.set(region.name, mappers.microRegionMapper(region));
+
       return acc;
     },
-    { byId: new Map(), allIds: [] },
+    {
+      macroRegions: { byId: new Map(), allIds: [] },
+      microRegions: { byId: new Map(), allIds: [] },
+    },
   );
 
 const mapContinentDTOToEntity = (
@@ -103,7 +132,7 @@ const normalizeContinent = (
   continentRegions: TContinentRegionsDTO[],
   regionsDTO: TRegionDTO[],
 ) =>
-  continentRegions.reduce(
+  continentRegions.reduce<TNormalizedEntity<string, TContinent>>(
     (acc, continentRegion) => {
       if (!acc.allIds.includes(continentRegion.name))
         acc.allIds.push(continentRegion.name);
@@ -113,7 +142,7 @@ const normalizeContinent = (
 
       return acc;
     },
-    { byId: new Map(), allIds: [] } as TNormalizedEntity<string, TContinent>,
+    { byId: new Map(), allIds: [] },
   );
 
 const getContinentIdsByDeploymentModeId = (regions: TRegionDTO[]) =>
@@ -136,7 +165,10 @@ export const mapInstancesCatalogDtoToEntity = (
 ): TInstancesCatalog => {
   const catalog: TInstancesCatalog = {
     entities: {
-      regions: normalizeRegion(catalogDTO.regions, mapRegionDTOtoEntity),
+      ...normalizeRegion({
+        macroRegionMapper: mapRegionDTOtoRegionEntity,
+        microRegionMapper: mapRegionDTOtoMicroRegionEntity,
+      })(catalogDTO.regions),
       deploymentModes: normalizeData(
         catalogDTO.filters.deployments,
         mapDeploymentModeDTOToEntity,
