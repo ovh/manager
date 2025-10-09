@@ -4,7 +4,7 @@ import {
   mockedInstancesCatalogEntity,
   mockedProjectId,
 } from '@/__mocks__/instance/constants';
-import { selectDeploymentModes } from '../selectDeploymentMode';
+import { selectDeploymentModes } from '../deploymentModeViewModel';
 import { Deps } from '@/deps/deps';
 
 const fakeDeps: Deps = {
@@ -14,7 +14,7 @@ const fakeDeps: Deps = {
       .mockReturnValue(mockedInstancesCatalogEntity),
   },
   messageProviderPort: {
-    getMessage: vi.fn((key: string) => key)
+    getMessage: vi.fn((key: string) => key),
   },
 };
 
