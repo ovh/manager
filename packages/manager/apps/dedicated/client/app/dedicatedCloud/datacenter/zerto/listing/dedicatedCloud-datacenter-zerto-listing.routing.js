@@ -19,9 +19,10 @@ export default /* @ngInject */ ($stateProvider) => {
               .getAsync('isZertoOnPremise'),
           })
           .then(({ isZertoOnPremise }) => {
-            if (!isZertoOnPremise)
-              return 'app.dedicatedCloud.details.datacenter.details.zerto';
-            return false;
+            return (
+              !isZertoOnPremise &&
+              'app.dedicatedCloud.details.datacenter.details.zerto'
+            );
           });
       },
       resolve: {
