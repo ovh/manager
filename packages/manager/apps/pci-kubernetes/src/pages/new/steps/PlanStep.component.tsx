@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import {
   Badge,
   Button,
+  Divider,
   Icon,
   Message,
   MessageBody,
@@ -103,12 +104,7 @@ const PlanTile = ({
                     />
                   )}
                   <div className="px-6 py-2">
-                    <hr
-                      className={clsx(
-                        'w-full border-solid border-0 border-b border-[--ods-color-neutral-100]',
-                      )}
-                      aria-hidden="true"
-                    />
+                    <Divider />
                   </div>
 
                   <div className="text-sm flex flex-col px-6 py-4 gap-3">

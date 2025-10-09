@@ -6,7 +6,7 @@ import { isMonoDeploymentZone } from '.';
 
 export const exceedsMaxNodes = (quantity: number) => quantity > NODE_RANGE.MAX;
 
-export const zoneAZisChecked = (
+export const isZoneAzChecked = (
   regionInformations: TRegionInformations,
   nodePoolState: NodePoolState,
 ) => isMonoDeploymentZone(regionInformations?.type) || !!nodePoolState.selectedAvailabilityZone;
@@ -41,4 +41,4 @@ export const hasInvalidScalingOrAntiAffinityConfig = (
 ) =>
   !isScalingValid(nodePoolState) ||
   !hasMax5NodesAntiAffinity(nodePoolState) ||
-  !zoneAZisChecked(regionInformations, nodePoolState);
+  !isZoneAzChecked(regionInformations, nodePoolState);

@@ -9,7 +9,7 @@ import {
   hasInvalidScalingOrAntiAffinityConfig,
   hasMax5NodesAntiAffinity,
   isScalingValid,
-  zoneAZisChecked,
+  isZoneAzChecked,
 } from './node-pool';
 
 vi.mock('@/constants', () => ({
@@ -31,11 +31,11 @@ describe('exceedsMaxNodes', () => {
   });
 });
 
-describe('zoneAZisChecked', () => {
+describe('isZoneAzChecked', () => {
   it('returns true if mono deployment zone', () => {
     vi.mocked(deploymentUtils.isMonoDeploymentZone).mockReturnValue(true);
     expect(
-      zoneAZisChecked(
+      isZoneAzChecked(
         { type: DeploymentMode.MONO_ZONE } as TRegionInformations,
         {} as NodePoolState,
       ),
@@ -48,7 +48,7 @@ describe('zoneAZisChecked', () => {
       selectedAvailabilityZone: 'zone-a',
     } as NodePoolState;
     expect(
-      zoneAZisChecked({ type: DeploymentMode.MULTI_ZONES } as TRegionInformations, nodePoolState),
+      isZoneAzChecked({ type: DeploymentMode.MULTI_ZONES } as TRegionInformations, nodePoolState),
     ).toBe(true);
   });
 
@@ -56,7 +56,7 @@ describe('zoneAZisChecked', () => {
     vi.mocked(deploymentUtils.isMonoDeploymentZone).mockReturnValue(false);
     const nodePoolState = {} as NodePoolState;
     expect(
-      zoneAZisChecked({ type: DeploymentMode.MULTI_ZONES } as TRegionInformations, nodePoolState),
+      isZoneAzChecked({ type: DeploymentMode.MULTI_ZONES } as TRegionInformations, nodePoolState),
     ).toBe(false);
   });
 });
