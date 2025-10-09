@@ -1,7 +1,7 @@
-import { StorageContainer } from '@datatr-ux/ovhcloud-types/cloud/index';
 import { PCIData } from '..';
 import { apiClient } from '../api.client';
 import storages from '@/types/Storages';
+import cloud from '@/types/Cloud';
 
 export interface S3Data extends PCIData {
   name: string;
@@ -22,7 +22,7 @@ export const getS3Storage = async ({
   marker,
   prefix,
 }: S3DataParams) =>
-  apiClient.v6.get<StorageContainer>(
+  apiClient.v6.get<cloud.StorageContainer>(
     `/cloud/project/${projectId}/region/${region}/storage/${name}`,
     {
       params: {
@@ -54,5 +54,19 @@ export const addS3UserPolicy = async ({
 }: AddS3Policy) =>
   apiClient.v6.post(
     `/cloud/project/${projectId}/region/${region}/storage/${name}/policy/${userId}`,
+    data,
+  );
+
+export interface CreateS3Storage extends PCIData {
+  region: string;
+  data: cloud.StorageContainerCreation;
+}
+export const createS3Storage = async ({
+  projectId,
+  region,
+  data,
+}: CreateS3Storage) =>
+  apiClient.v6.post<cloud.StorageContainer>(
+    `/cloud/project/${projectId}/region/${region}/storage`,
     data,
   );

@@ -13,7 +13,7 @@ const UserInformation = ({ newUser, pwd }: UserInformationProps) => {
   const { t } = useTranslation('pci-object-storage/users/create');
   const toast = useToast();
   const { download } = useDownload();
-  if (newUser.status !== user.UserStatusEnum.ok) {
+  if (newUser?.status !== user.UserStatusEnum.ok) {
     return (
       <div>
         <p>{t('newUserCreationInProgress')}</p>
