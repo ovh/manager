@@ -261,7 +261,7 @@ describe('ObservabilityServiceContext', () => {
   describe('useObservabilityServiceContext', () => {
     it('should throw error when used outside provider', () => {
       // Arrange
-      const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
+      const consoleError = vi.spyOn(console, 'error').mockImplementation(() => { });
 
       // Act & Assert
       expect(() => {
