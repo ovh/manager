@@ -2,7 +2,7 @@ import { fireEvent, waitFor } from '@testing-library/react';
 import { vi, vitest } from 'vitest';
 import type { MockInstance } from 'vitest';
 import { Order } from '../Order.component';
-import { render } from '../../../utils/test.provider';
+import { render } from '@/setupTest';
 import { useAuthorizationIam } from '../../../hooks/iam';
 import fr_FR from '../translations/Messages_fr_FR.json';
 

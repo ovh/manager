@@ -5,7 +5,7 @@ import {
   TagsFilterForm,
   TagsFilterFormProps,
 } from './tags-filter-form.component';
-import { render } from '../../utils/test.provider';
+import { render } from '@/setupTest';
 
 const mocks = vi.hoisted(() => ({
   useGetResourceTags: vi.fn(),

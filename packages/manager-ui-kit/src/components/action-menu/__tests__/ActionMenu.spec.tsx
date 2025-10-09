@@ -3,7 +3,7 @@ import type { MockInstance } from 'vitest';
 import { act, waitFor, screen, fireEvent } from '@testing-library/react';
 import { POPOVER_POSITION, ICON_NAME } from '@ovhcloud/ods-react';
 import { ActionMenu, ActionMenuProps } from '../index';
-import { render } from '../../../utils/test.provider';
+import { render } from '@/setupTest';
 import { useAuthorizationIam } from '../../../hooks/iam';
 
 vitest.mock('../../../hooks/iam');

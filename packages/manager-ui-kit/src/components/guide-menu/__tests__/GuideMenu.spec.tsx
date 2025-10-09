@@ -2,7 +2,7 @@ import { vi } from 'vitest';
 import { screen, fireEvent, waitFor } from '@testing-library/react';
 import { GuideMenu } from '../GuideMenu.component';
 import { GuideMenuItem } from '../GuideMenu.props';
-import { render } from '../../../utils/test.provider';
+import { render } from '@/setupTest';
 
 describe('GuideMenu component', () => {
   const mockItems: GuideMenuItem[] = [

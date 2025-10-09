@@ -1,7 +1,7 @@
 import { vitest } from 'vitest';
 import { waitFor, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { render } from '../../utils/test.provider';
+import { render } from '@/setupTest';
 import { DeleteModal } from './DeleteModal.component';
 import { DeleteModalProps } from './DeleteModal.props';
 

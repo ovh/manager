@@ -1,6 +1,6 @@
 import { vitest, describe, it, expect, beforeEach } from 'vitest';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
-import { render } from '../../../utils/test.provider';
+import { render } from '@/setupTest';
 import { UpdateNameModal } from '../UpdateNameModal.component';
 import { UpdateNameModalProps } from '../UpdateNameModal.props';
 
