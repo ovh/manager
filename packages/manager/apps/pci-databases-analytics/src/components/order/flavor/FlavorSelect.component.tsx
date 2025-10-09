@@ -40,9 +40,7 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
       });
     };
     const clickInput = (flavorName: string) => {
-      const inputElement = document.getElementById(
-        `flavor-${flavorName}`,
-      ) as HTMLInputElement | null;
+      const inputElement = document.getElementById(`flavor-${flavorName}`);
       if (inputElement) {
         inputElement.click();
       }

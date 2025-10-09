@@ -1,4 +1,9 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+import {
+  apiClient,
+  createHeaders,
+  IcebergPaginationHeaders,
+  NoCacheHeaders,
+} from '@/data/api/api.client';
 import { ServiceData } from '.';
 import * as database from '@/types/cloud/project/database';
 
@@ -7,18 +12,10 @@ export const getMaintenances = async ({
   engine,
   serviceId,
 }: ServiceData) =>
-  apiClient.v6
-    .get(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/maintenance`,
-      {
-        headers: {
-          'X-Pagination-Mode': 'CachedObjectList-Pages',
-          'X-Pagination-Size': '50000',
-          Pragma: 'no-cache',
-        },
-      },
-    )
-    .then((res) => res.data as database.service.Maintenance[]);
+  apiClient.v6.get<database.service.Maintenance[]>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/maintenance`,
+    { headers: createHeaders(NoCacheHeaders, IcebergPaginationHeaders) },
+  );
 
 export interface ApplyMaintenance extends ServiceData {
   maintenanceId: string;
@@ -30,8 +27,6 @@ export const applyMaintenance = async ({
   serviceId,
   maintenanceId,
 }: ApplyMaintenance) =>
-  apiClient.v6
-    .post(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/maintenance/${maintenanceId}/apply`,
-    )
-    .then((res) => res.data as database.service.Maintenance);
+  apiClient.v6.post<database.service.Maintenance>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/maintenance/${maintenanceId}/apply`,
+  );

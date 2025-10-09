@@ -1,0 +1,18 @@
+{
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
+  "compilerOptions": {
+    "types": ["vite/client", "node", "jest", "@testing-library/jest-dom"],
+    "outDir": "dist",
+    "noImplicitAny": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "strict": false,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@playwright-helpers/*": ["../../../../playwright-helpers/*"]
+    },
+    "baseUrl": "."
+  },
+  "include": ["src", "src/**/*.json"],
+  "exclude": ["node_modules", "dist", "types"]
+}

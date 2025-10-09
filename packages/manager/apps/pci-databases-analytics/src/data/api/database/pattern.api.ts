@@ -1,4 +1,9 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+import {
+  apiClient,
+  createHeaders,
+  IcebergPaginationHeaders,
+  NoCacheHeaders,
+} from '@/data/api/api.client';
 import { ServiceData } from '.';
 import * as database from '@/types/cloud/project/database';
 
@@ -7,18 +12,10 @@ export const getPatterns = async ({
   engine,
   serviceId,
 }: ServiceData) =>
-  apiClient.v6
-    .get<database.opensearch.Pattern[]>(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/pattern`,
-      {
-        headers: {
-          'X-Pagination-Mode': 'CachedObjectList-Pages',
-          'X-Pagination-Size': '50000',
-          Pragma: 'no-cache',
-        },
-      },
-    )
-    .then((res) => res.data);
+  apiClient.v6.get<database.opensearch.Pattern[]>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/pattern`,
+    { headers: createHeaders(NoCacheHeaders, IcebergPaginationHeaders) },
+  );
 
 export interface AddPattern extends ServiceData {
   pattern: Omit<database.opensearch.Pattern, 'id'>;
@@ -30,12 +27,10 @@ export const addPattern = async ({
   serviceId,
   pattern,
 }: AddPattern) =>
-  apiClient.v6
-    .post<database.opensearch.Pattern>(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/pattern`,
-      pattern,
-    )
-    .then((res) => res.data);
+  apiClient.v6.post<database.opensearch.Pattern>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/pattern`,
+    pattern,
+  );
 
 export interface DeletePattern extends ServiceData {
   patternId: string;

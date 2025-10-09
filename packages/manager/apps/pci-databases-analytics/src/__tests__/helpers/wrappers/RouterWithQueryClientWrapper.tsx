@@ -1,6 +1,6 @@
 import { vi } from 'vitest';
 import { ShellClientApi } from '@ovh-ux/shell';
-import { Environment } from '@ovh-ux/manager-config';
+import { Environment, Region } from '@ovh-ux/manager-config';
 import { ShellProvider } from '@ovh-ux/manager-react-shell-client';
 import { HashRouterWithLocationWrapper } from './RouterWithLocationWrapper';
 import { QueryClientWrapper } from './QueryClientWrapper';
@@ -8,14 +8,18 @@ import { mockedUser } from '../mocks/user';
 import { UserActivityProvider } from '@/contexts/UserActivityContext';
 import { USER_INACTIVITY_TIMEOUT } from '@/configuration/polling.constants';
 
+type Client = {
+  shell: ShellClientApi;
+  environment: Environment;
+};
 export const RouterWithQueryClientWrapper = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
-  const client = {
+  const client: Client = {
     environment: {
-      region: 'EU',
+      region: Region.EU,
       userLocale: 'en-GB',
       version: '1',
       user: mockedUser,
@@ -147,9 +151,6 @@ export const RouterWithQueryClientWrapper = ({
         debug: vi.fn(),
       },
     },
-  } as {
-    shell: ShellClientApi;
-    environment: Environment;
   };
   return (
     <ShellProvider client={client}>
