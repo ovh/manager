@@ -8,7 +8,7 @@ type TGuideLinkGroup = {
   [key in Subsidiary]?: string;
 };
 
-type TGuideKey = 'LOCATION' | 'FLAVOR';
+type TGuideKey = 'LOCATION' | 'FLAVOR' | 'AVAILABILITY_ZONES';
 
 export const GUIDE_LINKS: Record<TGuideKey, TGuideLinkGroup> = {
   LOCATION: {
@@ -16,6 +16,12 @@ export const GUIDE_LINKS: Record<TGuideKey, TGuideLinkGroup> = {
       'https://help.ovhcloud.com/csm/fr-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066031',
     FR:
       'https://help.ovhcloud.com/csm/fr-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066031',
+  },
+  AVAILABILITY_ZONES: {
+    DEFAULT:
+      ' https://help.ovhcloud.com/csm/fr-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066031',
+    FR:
+      ' https://help.ovhcloud.com/csm/fr-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066031',
   },
   FLAVOR: {
     DEFAULT: `${HELP_ROOT}/fr/public-cloud/virtual-instances/`,

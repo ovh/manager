@@ -63,7 +63,7 @@ const LocationField = ({ onChange }: TLocationFieldProps) => {
       value={selectedRegion}
       onValueChange={({ value }) => handleSelectRegion(value)}
     >
-      <div className="grid grid-cols-[repeat(auto-fit,_minmax(225px,_1fr))] gap-6">
+      <div className="grid grid-cols-3 gap-6">
         {localizations.map(
           ({ city, region, countryCode, deploymentMode }) =>
             region && (

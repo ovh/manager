@@ -15,6 +15,8 @@ import { useForm } from '../../hooks/useForm';
 import { selectMicroRegions } from '../../view-models/microRegionsViewModel';
 import { deps } from '@/deps/deps';
 import { useTranslation } from 'react-i18next';
+import { selectAvailabilityZones } from '../../view-models/availabilityZonesViewModel';
+import { AvailabilityZoneSelection } from '../availabilityZoneSelection/AvailabilityZoneSelection.component';
 
 const quantityHintParams = {
   quota: 1,
@@ -29,9 +31,12 @@ export const CreateInstanceForm = () => {
   const formMethods = useForm(projectId);
   const macroRegion = formMethods.watch('macroRegion');
   const microRegions = selectMicroRegions(deps)(projectId, macroRegion);
+  const availabilityZones = selectAvailabilityZones(deps)(
+    projectId,
+    macroRegion,
+  );
 
   const hasMultiMicroRegions = microRegions ? microRegions.length > 1 : false;
-
   return (
     <FormProvider {...formMethods}>
       <div className="flex gap-6">
@@ -53,6 +58,13 @@ export const CreateInstanceForm = () => {
           {microRegions && hasMultiMicroRegions && (
             <div className="pt-7 pb-5">
               <MicroRegionSelection microRegions={microRegions} />
+            </div>
+          )}
+          {!!availabilityZones.length && (
+            <div className="pt-7 pb-5">
+              <AvailabilityZoneSelection
+                availabilityZones={availabilityZones}
+              />
             </div>
           )}
           <AdvancedParameters />

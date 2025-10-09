@@ -5,6 +5,7 @@ import { TProject } from '@ovh-ux/manager-pci-common';
 import { z } from 'zod';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import {
+  availabilityZoneSelectionSchema,
   continentSelectionSchema,
   deploymentModesSchema,
   flavorCategorySchema,
@@ -29,6 +30,7 @@ export const instanceCreationSchema = z.object({
   flavorType: flavorTypeSchema,
   macroRegion: macroRegionSelectionSchema,
   microRegion: microRegionSelectionSchema,
+  availabilityZone: availabilityZoneSelectionSchema,
 });
 
 const CreateInstance: FC = () => {
