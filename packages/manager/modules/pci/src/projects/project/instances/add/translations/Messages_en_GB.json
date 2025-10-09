@@ -96,7 +96,7 @@
   "pci_projects_project_instances_add_instance_confirmation_cancel": "Cancel",
   "pci_projects_project_instances_add_private_mode1": "Your instance is being created. It may take a few minutes to configure all the components.",
   "pci_projects_project_instances_add_private_mode2": "Please do not leave or refresh this page as this may impact the creation process.",
-  "pci_projects_project_instances_add_success_message": "The {{instance}} instance has been added.",
+  "pci_projects_project_instances_add_success_message": "The instance creation operation(s) is in progress.",
   "pci_projects_project_instances_add_success_multiple_message": "The instances have been added",
   "pci_projects_project_instances_add_error_save": "An error has occurred adding the {{instance}} instance: {{message}}",
   "pci_projects_project_instances_add_error_multiple_save": "An error has occurred adding the instances: {{message}}",
