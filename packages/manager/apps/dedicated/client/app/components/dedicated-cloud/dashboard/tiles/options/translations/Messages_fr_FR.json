@@ -30,6 +30,7 @@
   "ovhManagerPccDashboardOptions_security_drp_status_vpn_configuring": "VPN en cours de configuration",
   "ovhManagerPccDashboardOptions_security_drp_status_vpn_error": "Configuration du VPN en erreur",
   "ovhManagerPccDashboardOptions_security_drp_action_add_configuration": "Configurer",
+  "ovhManagerPccDashboardOptions_security_drp_action_add_site": "Ajouter un site",
   "ovhManagerPccDashboardOptions_security_drp_action_activate": "Activer",
   "ovhManagerPccDashboardOptions_security_drp_action_delete": "Supprimer"
 }

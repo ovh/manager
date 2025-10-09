@@ -127,7 +127,12 @@
                 data-on-click="$ctrl.bindings.options.security.actionMenu.items.goToVpnConfiguration.action()"
             >
                 <span
+                    data-ng-if="$ctrl.currentZerto.drpType !== 'onPremise'"
                     data-translate="ovhManagerPccDashboardOptions_security_drp_action_add_configuration"
+                ></span>
+                <span
+                    data-ng-if="$ctrl.currentZerto.drpType === 'onPremise'"
+                    data-translate="ovhManagerPccDashboardOptions_security_drp_action_add_site"
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item

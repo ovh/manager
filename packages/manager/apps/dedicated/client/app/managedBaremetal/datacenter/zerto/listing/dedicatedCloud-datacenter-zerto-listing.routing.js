@@ -20,9 +20,10 @@ export default /* @ngInject */ ($stateProvider) => {
               .getAsync('isZertoOnPremise'),
           })
           .then(({ isZertoOnPremise }) => {
-            if (!isZertoOnPremise)
-              return 'app.managedBaremetal.details.datacenters.datacenter.zerto';
-            return false;
+            return (
+              !isZertoOnPremise &&
+              'app.managedBaremetal.details.datacenters.datacenter.zerto'
+            );
           });
       },
       resolve: {
