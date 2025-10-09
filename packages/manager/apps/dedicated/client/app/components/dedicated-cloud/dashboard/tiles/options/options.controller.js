@@ -28,6 +28,7 @@ export default class Options {
   }
 
   $onInit() {
+    console.log({ currentZerto: this.currentZerto });
     // used for calculations before passing to bindings
     this.model = {
       currentUser: this.currentUser,
