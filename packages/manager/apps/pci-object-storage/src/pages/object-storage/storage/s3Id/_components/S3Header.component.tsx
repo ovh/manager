@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import {
   RegionTypeEnum,
   StorageContainer,
@@ -8,9 +7,13 @@ import { Badge, Skeleton } from '@datatr-ux/uxlib';
 import { getRegionFlag } from '@/lib/flagHelper';
 import Flag from '@/components/flag/Flag.component';
 import { useObjectStorageData } from '@/pages/object-storage/ObjectStorage.context';
+import {
+  getMacroRegion,
+  useTranslatedMicroRegions,
+} from '@/hooks/useTranslatedMicroRegions';
 
 export const S3Header = ({ s3 }: { s3: StorageContainer }) => {
-  const { t: tRegions } = useTranslation('regions');
+  const { translateMacroRegion } = useTranslatedMicroRegions();
   const { regions } = useObjectStorageData();
   return (
     <div
@@ -28,8 +31,11 @@ export const S3Header = ({ s3 }: { s3: StorageContainer }) => {
           <Badge variant={'outline'}>S3</Badge>
           <Badge variant={'outline'} className="capitalize">
             <div className="flex items-center gap-1">
-              <Flag flagName={getRegionFlag(s3.region)} className="w-3 h-2" />
-              {tRegions(`region_${s3.region}`)}
+              <Flag
+                flagName={getRegionFlag(getMacroRegion(s3.region))}
+                className="w-3 h-2"
+              />
+              {translateMacroRegion(s3.region)}
             </div>
           </Badge>
           {regions?.find((reg) => reg.name === s3.region).type ===
