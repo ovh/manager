@@ -1,6 +1,6 @@
 export const appName = 'observability';
 
-export const AppConfig = {  
+export const AppConfig = {
   rootLabel: appName,
 } as const;
 
