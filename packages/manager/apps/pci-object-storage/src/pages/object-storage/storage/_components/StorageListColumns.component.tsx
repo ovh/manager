@@ -54,7 +54,7 @@ export const getColumns = ({
             <Link
               to={
                 row.original.storageType === ObjectStorageTypeEnum.s3
-                  ? `./s3/${row.original.region}/${row.original.name}`
+                  ? `./s3/${row.original.region}/${row.original.name}/objects`
                   : `./swift/${id}`
               }
             >
