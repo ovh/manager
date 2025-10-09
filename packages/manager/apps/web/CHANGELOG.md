@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.25.1...@ovh-ux/manager-web@19.25.2) (2025-10-09)
+
+
+### Bug Fixes
+
+* **web:** fix placeholder and default value ([#19449](https://github.com/ovh/manager/issues/19449)) ([8d0f752](https://github.com/ovh/manager/commit/8d0f7523af6b19c66177c8c64692741bc813e0f2)), closes [#DCE-61](https://github.com/ovh/manager/issues/DCE-61)
+
+
+
+
+
 ## [19.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.25.0...@ovh-ux/manager-web@19.25.1) (2025-10-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
