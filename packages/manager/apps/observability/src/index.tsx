@@ -10,7 +10,7 @@ import App from './App';
 import './index.scss';
 import './vite-hmr';
 
-const init = async (appName: string) => {
+const init = async () => {
   // Initialize shell context: auth, env, tracking, APIs
   const context = await initShellContext(appName);
 
@@ -23,7 +23,7 @@ const init = async (appName: string) => {
   });
 
   // Configure tracking per region
-  const region = context.environment.getRegion();  
+  const region = context.environment.getRegion();
 
   // Try loading region-specific runtime config (optional)
   try {
@@ -48,4 +48,4 @@ const init = async (appName: string) => {
 };
 
 // Start the app
-void init(appName);
+void init();
