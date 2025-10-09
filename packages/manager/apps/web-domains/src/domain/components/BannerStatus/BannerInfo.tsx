@@ -46,7 +46,7 @@ export default function BannerInfo({ serviceName }: BannerInfoProps) {
     <Message
       color="information"
       dismissible={false}
-      className="w-full pb-6"
+      className="w-full mb-6"
       data-testid={'banner-info'}
     >
       <MessageIcon name={ICON_NAME.circleInfo} />
