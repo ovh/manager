@@ -5,6 +5,7 @@ import {
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useEffect, useState } from 'react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { useEnableLogForwarder } from '@/data/hooks/useVmwareVsphereLogForwarder';
@@ -29,7 +30,7 @@ const LogsActivation = ({
   serviceName,
   isUserTrusted,
 }: LogsActivationProps) => {
-  const { t } = useTranslation('onboarding');
+  const { t } = useTranslation(['onboarding', NAMESPACES.ONBOARDING]);
   const { addInfo } = useNotifications();
   const [taskId, setTaskId] = useState<number | null>(null);
   const {
@@ -102,7 +103,7 @@ const LogsActivation = ({
           {t('logs_onboarding_default_description')}
         </OdsText>
       }
-      moreInfoButtonLabel={t('logs_onboarding_secondary_cta')}
+      moreInfoButtonLabel={t(`${NAMESPACES.ONBOARDING}:find_out_more`)}
       moreInfoHref={guides?.logs_data_platform}
     />
   );
