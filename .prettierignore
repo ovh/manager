@@ -15,6 +15,7 @@ vue
 packages/manager/apps/okms
 packages/manager/apps/pci-databases-analytics/src/components/ui
 packages/manager/apps/pci-databases-analytics/src/lib/utils.ts
+packages/manager/apps/observability
 packages/manager-ui-kit
 packages/manager-wiki
 packages/manager-tools/manager-forge-cli
