@@ -5,13 +5,14 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsText } from '@ovhcloud/ods-components/react';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { LANDING_URL } from '@/hooks/guide/guidesLinks.constants';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import { getHpcVmwareVCsphereExpressOrderLink } from '@/utils/order-utils';
 
 const LogsUpgrade = () => {
   const orderBaseUrl = useOrderURL('express_review_base');
-  const { t } = useTranslation('onboarding');
+  const { t } = useTranslation(['onboarding', NAMESPACES.ONBOARDING]);
   const { shell } = useContext(ShellContext);
   const { environment } = shell;
   const [userRegion, setUserRegion] = useState<Region>();
@@ -41,7 +42,7 @@ const LogsUpgrade = () => {
       title={t('logs_onboarding_default_title')}
       orderButtonLabel={t('logs_onboarding_primary_cta_order')}
       orderHref={orderLink}
-      moreInfoButtonLabel={t('logs_onboarding_secondary_cta')}
+      moreInfoButtonLabel={t(`${NAMESPACES.ONBOARDING}:find_out_more`)}
       moreInfoHref={guides.logs_data_platform}
       description={
         <OdsText preset="paragraph" className="text-center">

@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@ovh-ux/logs-to-customer": "^1.7.7",
+    "@ovh-ux/manager-common-translations": "*",
     "@ovh-ux/manager-config": "^8.6.2",
     "@ovh-ux/manager-core-api": "^0.18.4",
     "@ovh-ux/manager-core-utils": "^0.4.2",
