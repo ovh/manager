@@ -201,7 +201,7 @@
   "exchange_tab_ALIAS_state_TASK_ON_DOING": "Wird ausgeführt",
   "exchange_tab_ALIAS_state_TASK_ON_DOING_tooltip": "Für diesen Alias ist bereits ein Task geplant oder in der Ausführung",
   "exchange_tab_ALIAS_add_button": "Alias hinzufügen",
-  "exchange_tab_ALIAS_creation_quota_description": "Das Quota muss zwischen <strong>{0} {1}</strong> und <strong>{2} {3}</strong> liegen.",
+  "exchange_tab_ALIAS_creation_quota_description": "Das Kontingent muss zwischen <strong>{0} {1}</strong> und <strong>{2} {3}</strong> liegen. Sie haben bereits <strong>{4} {5}</strong> der verfügbaren <strong>{6} {7}</strong> zugewiesen.",
   "exchange_tab_ALIAS_creation_error_no_local_part": "Bitte geben Sie einen personalisierten Namen für die E-Mail-Adresse an (vor dem @-Zeichen).",
   "exchange_tab_ALIAS_creation_error_regex": "Der Name vor dem @-Zeichen muss aus alphanumerischen Zeichen bestehen und darf die Zeichen <strong>.-_+</strong> enthalten (Beispiel: e_mail-3.addresse+abc).",
   "exchange_tab_ALIAS_taken_error_message": "E-Mail-Adresse existiert bereits.",
@@ -1670,5 +1670,6 @@
   "exchange_delete_mfa_error": "Bei der Löschung der Zwei-Faktor-Authentifizierung ist ein Fehler aufgetreten: {{error}}",
   "exchange_tab_LOGS": "Logs",
   "exchange_tab_ACCOUNTS_menu_migrate": "Accounts migrieren",
-  "exchange_server_commercial_version_SE": "SE"
+  "exchange_server_commercial_version_SE": "SE",
+  "exchange_tab_ALIAS_creation_quota_tooltip": "Jeder erworbene Exchange-Account gibt Ihnen Zugang zu 5 GB gemeinsam genutztem Speicher."
 }
