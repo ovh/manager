@@ -12,9 +12,9 @@ import {
 export const CreationCart = () => {
   const { t } = useTranslation('common');
   const { control } = useFormContext<TInstanceCreationForm>();
-  const [name, region] = useWatch({
+  const [name, macroRegion] = useWatch({
     control,
-    name: ['name', 'region'],
+    name: ['name', 'macroRegion'],
   });
 
   const itemDetails: TCartItemDetail[] = useMemo(() => {
@@ -22,13 +22,13 @@ export const CreationCart = () => {
       name: t('localisation'),
       description: (
         <Text preset="heading-6" className="text-[--ods-color-heading]">
-          {region}
+          {macroRegion}
         </Text>
       ),
     };
 
     return [regionDetails];
-  }, [region, t]);
+  }, [macroRegion, t]);
 
   const cartItems: TCartItem[] = useMemo(
     () => [

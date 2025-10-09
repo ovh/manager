@@ -8,11 +8,13 @@ export const deploymentModesSchema = z.array(z.enum(DEPLOYMENT_MODES));
 
 export const continentSelectionSchema = z.string();
 
-export const localizationSelectionSchema = z.string();
+export const macroRegionSelectionSchema = z.string().nullable();
 
 export const flavorCategorySchema = z.string();
 
 export const flavorTypeSchema = z.string();
+
+export const microRegionSelectionSchema = z.string().nullable();
 
 export const quantityRules = {
   min: 1,

@@ -7,7 +7,7 @@ import {
   mockedProjectId,
 } from '@/__mocks__/instance/constants';
 import { Deps } from '@/deps/deps';
-import { selectLocalizations } from '../selectLocalizations';
+import { selectLocalizations } from '../localizationsViewModel';
 
 const fakeDeps: Deps = {
   instancesCatalogPort: {
@@ -16,7 +16,7 @@ const fakeDeps: Deps = {
       .mockReturnValue(mockedInstancesCatalogEntity),
   },
   messageProviderPort: {
-    getMessage: vi.fn((key: string) => key)
+    getMessage: vi.fn((key: string) => key),
   },
 };
 

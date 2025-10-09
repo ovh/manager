@@ -1,12 +1,12 @@
 /* eslint-disable max-lines */
 import { TInstancesCatalogDTO } from '@/adapters/tanstack/instancesCatalog/right/dto.type';
-import { TDeploymentModeDataForCard } from '@/pages/instances/create/view-models/selectDeploymentMode';
+import { TDeploymentModeDataForCard } from '@/pages/instances/create/view-models/deploymentModeViewModel';
 import { TAggregatedInstance } from '@/types/instance/entity.type';
 import { TInstancesCatalog } from '@/domain/entities/instancesCatalog';
 import InstanceImage from '../../../public/assets/instance.png';
 import { TDeploymentMode } from '@/types/instance/common.type';
-import { TRegionDataForCard } from '@/pages/instances/create/view-models/selectLocalizations';
-import { TContinentData } from '@/pages/instances/create/view-models/selectContinents';
+import { TRegionDataForCard } from '@/pages/instances/create/view-models/localizationsViewModel';
+import { TContinentData } from '@/pages/instances/create/view-models/continentsViewModel';
 
 export const mockedInstance: TAggregatedInstance = {
   id: '12345',
@@ -108,7 +108,7 @@ export const mockedInstancesCatalogDTO: TInstancesCatalogDTO = {
       name: 'BHS5',
       type: 'region',
       availabilityZones: [],
-      isInMaintenance: false,
+      isInMaintenance: true,
       country: 'ca',
       isActivated: true,
       isActivable: true,
@@ -125,7 +125,7 @@ export const mockedInstancesCatalogDTO: TInstancesCatalogDTO = {
       isInMaintenance: false,
       country: 'it',
       isActivated: false,
-      isActivable: true,
+      isActivable: false,
       datacenter: 'EU-SOUTH-LZ-MIL',
       filters: {
         deployment: ['localzone'],
@@ -151,19 +151,15 @@ export const mockedInstancesCatalogDTO: TInstancesCatalogDTO = {
 
 export const mockedInstancesCatalogEntity: TInstancesCatalog = {
   entities: {
-    regions: {
+    macroRegions: {
       byId: new Map([
         [
           'GRA',
           {
             name: 'GRA',
             deploymentMode: 'region',
-            availabilityZones: [],
-            isInMaintenance: false,
-            country: 'fr',
-            isActivated: true,
-            isActivable: true,
             continentIds: ['western_europe'],
+            country: 'fr',
             microRegions: ['GRA11', 'GRA7'],
           },
         ],
@@ -172,12 +168,8 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
           {
             name: 'BHS',
             deploymentMode: 'region',
-            availabilityZones: [],
-            isInMaintenance: false,
-            country: 'ca',
-            isActivated: true,
-            isActivable: true,
             continentIds: ['north_america'],
+            country: 'ca',
             microRegions: ['BHS5'],
           },
         ],
@@ -186,12 +178,8 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
           {
             name: 'EU-SOUTH-LZ-MIL',
             deploymentMode: 'localzone',
-            availabilityZones: [],
-            isInMaintenance: false,
-            country: 'it',
-            isActivated: false,
-            isActivable: true,
             continentIds: ['south_europe'],
+            country: 'it',
             microRegions: ['EU-SOUTH-LZ-MIL-A'],
           },
         ],
@@ -200,21 +188,67 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
           {
             name: 'PAR',
             deploymentMode: 'region-3-az',
+            continentIds: ['western_europe'],
+            country: 'fr',
+            microRegions: ['EU-WEST-PAR'],
+          },
+        ],
+      ]),
+      allIds: ['GRA', 'BHS', 'EU-SOUTH-LZ-MIL', 'PAR'],
+    },
+    microRegions: {
+      byId: new Map([
+        [
+          'GRA11',
+          {
+            name: 'GRA11',
+            availabilityZones: [],
+            isInMaintenance: false,
+            isActivable: true,
+          },
+        ],
+        [
+          'GRA7',
+          {
+            name: 'GRA7',
+            availabilityZones: [],
+            isInMaintenance: false,
+            isActivable: true,
+          },
+        ],
+        [
+          'BHS5',
+          {
+            name: 'BHS5',
+            availabilityZones: [],
+            isInMaintenance: true,
+            isActivable: true,
+          },
+        ],
+        [
+          'EU-SOUTH-LZ-MIL-A',
+          {
+            name: 'EU-SOUTH-LZ-MIL-A',
+            availabilityZones: [],
+            isInMaintenance: false,
+            isActivable: false,
+          },
+        ],
+        [
+          'EU-WEST-PAR',
+          {
+            name: 'EU-WEST-PAR',
             availabilityZones: [
               'eu-west-par-a',
               'eu-west-par-b',
               'eu-west-par-c',
             ],
             isInMaintenance: false,
-            country: 'fr',
-            isActivated: true,
             isActivable: true,
-            continentIds: ['western_europe'],
-            microRegions: ['EU-WEST-PAR'],
           },
         ],
       ]),
-      allIds: ['GRA', 'BHS', 'EU-SOUTH-LZ-MIL', 'PAR'],
+      allIds: ['GRA11', 'GRA7', 'BHS5', 'EU-SOUTH-LZ-MIL-A', 'EU-WEST-PAR'],
     },
     deploymentModes: {
       byId: new Map([
@@ -287,12 +321,34 @@ export const mockedLocalizationsData: TRegionDataForCard[] = [
     region: 'GRA',
     countryCode: 'fr',
     deploymentMode: 'region',
+    microRegions: [
+      {
+        name: 'GRA11',
+        availabilityZones: [],
+        isInMaintenance: false,
+        isActivable: true,
+      },
+      {
+        name: 'GRA7',
+        availabilityZones: [],
+        isInMaintenance: false,
+        isActivable: true,
+      },
+    ],
   },
   {
     city: 'regions:manager_components_region_PAR',
-    region: 'PAR',
+    region: 'EU-WEST-PAR',
     countryCode: 'fr',
     deploymentMode: 'region-3-az',
+    microRegions: [
+      {
+        name: 'EU-WEST-PAR',
+        availabilityZones: ['eu-west-par-a', 'eu-west-par-b', 'eu-west-par-c'],
+        isInMaintenance: false,
+        isActivable: true,
+      },
+    ],
   },
 ];
 
@@ -302,18 +358,48 @@ export const mockedLocalizationsDataForSelectedDeploymentZoneAndAllContinents: T
     region: 'GRA',
     countryCode: 'fr',
     deploymentMode: 'region',
+    microRegions: [
+      {
+        name: 'GRA11',
+        availabilityZones: [],
+        isInMaintenance: false,
+        isActivable: true,
+      },
+      {
+        name: 'GRA7',
+        availabilityZones: [],
+        isInMaintenance: false,
+        isActivable: true,
+      },
+    ],
   },
   {
     city: 'regions:manager_components_region_BHS',
-    region: 'BHS',
+    region: 'BHS5',
     countryCode: 'ca',
     deploymentMode: 'region',
+    microRegions: [
+      {
+        name: 'BHS5',
+        availabilityZones: [],
+        isInMaintenance: true,
+        isActivable: true,
+      },
+    ],
   },
   {
     city: 'regions:manager_components_region_PAR',
-    region: 'PAR',
+    region: 'EU-WEST-PAR',
     countryCode: 'fr',
     deploymentMode: 'region-3-az',
+    microRegions: [
+      {
+        name: 'EU-WEST-PAR',
+        availabilityZones: ['eu-west-par-a', 'eu-west-par-b', 'eu-west-par-c'],
+        isInMaintenance: false,
+        isActivable: true,
+      },
+    ],
   },
 ];
 
@@ -323,24 +409,62 @@ export const mockedLocalizationsDataForNoneDeploymentZoneAndAllContinents: TRegi
     region: 'GRA',
     countryCode: 'fr',
     deploymentMode: 'region',
+    microRegions: [
+      {
+        name: 'GRA11',
+        availabilityZones: [],
+        isInMaintenance: false,
+        isActivable: true,
+      },
+      {
+        name: 'GRA7',
+        availabilityZones: [],
+        isInMaintenance: false,
+        isActivable: true,
+      },
+    ],
   },
   {
     city: 'regions:manager_components_region_BHS',
-    region: 'BHS',
+    region: 'BHS5',
     countryCode: 'ca',
     deploymentMode: 'region',
+    microRegions: [
+      {
+        name: 'BHS5',
+        availabilityZones: [],
+        isInMaintenance: true,
+        isActivable: true,
+      },
+    ],
   },
   {
     city: 'regions:manager_components_region_MIL',
-    region: 'EU-SOUTH-LZ-MIL',
+    region: 'EU-SOUTH-LZ-MIL-A',
     countryCode: 'it',
     deploymentMode: 'localzone',
+    microRegions: [
+      {
+        name: 'EU-SOUTH-LZ-MIL-A',
+        availabilityZones: [],
+        isInMaintenance: false,
+        isActivable: false,
+      },
+    ],
   },
   {
     city: 'regions:manager_components_region_PAR',
-    region: 'PAR',
+    region: 'EU-WEST-PAR',
     countryCode: 'fr',
     deploymentMode: 'region-3-az',
+    microRegions: [
+      {
+        name: 'EU-WEST-PAR',
+        availabilityZones: ['eu-west-par-a', 'eu-west-par-b', 'eu-west-par-c'],
+        isInMaintenance: false,
+        isActivable: true,
+      },
+    ],
   },
 ];
 

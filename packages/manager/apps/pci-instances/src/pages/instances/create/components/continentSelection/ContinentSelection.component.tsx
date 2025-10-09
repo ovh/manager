@@ -10,11 +10,9 @@ import { useTranslation } from 'react-i18next';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { TInstanceCreationForm } from '../../CreateInstance.page';
 import { deps } from '@/deps/deps';
-import { selectContinent } from '../../view-models/selectContinents';
+import { selectContinent } from '../../view-models/continentsViewModel';
 import { useEffect } from 'react';
 import { useProjectId } from '@/hooks/project/useProjectId';
-
-export const continentSelectionDefaultValue = 'western_europe';
 
 export const ContinentSelection = () => {
   const projectId = useProjectId();
