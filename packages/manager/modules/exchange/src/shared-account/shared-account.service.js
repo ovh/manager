@@ -4,6 +4,7 @@ import keys from 'lodash/keys';
 export default class ExchangeSharedAccounts {
   /* @ngInject */
   constructor(
+    $q,
     $translate,
     wucExchange,
     OvhHttp,
@@ -11,6 +12,7 @@ export default class ExchangeSharedAccounts {
     WucConverterService,
   ) {
     this.services = {
+      $q,
       $translate,
       wucExchange,
       OvhHttp,
@@ -40,12 +42,73 @@ export default class ExchangeSharedAccounts {
   }
 
   retrievingNewSharedAccountOptions(organization, exchange) {
-    return this.services.OvhHttp.get(
-      `/sws/exchange/${organization}/${exchange}/sharedAccounts/options`,
-      {
-        rootPath: '2api',
-      },
-    );
+    return this.services.$q
+      .all({
+        accounts: this.services.wucExchange.getAccountIds({
+          organizationName: organization,
+          exchangeService: exchange,
+        }),
+        externalContacts: this.services.wucExchange.getExternalContactIds({
+          organizationName: organization,
+          exchangeService: exchange,
+        }),
+        mailingLists: this.services.wucExchange.getMailingListIds({
+          organizationName: organization,
+          exchangeService: exchange,
+        }),
+        sharedAccountQuota: this.retrievingQuota(organization, exchange),
+        domains: this.services.wucExchange.getDomainIds({
+          organizationName: organization,
+          exchangeService: exchange,
+          state: 'ok',
+        }),
+        resourceAccounts: this.services.wucExchange.getResourceAccountIds({
+          organizationName: organization,
+          exchangeService: exchange,
+        }),
+      })
+      .then(
+        ({
+          accounts,
+          externalContacts,
+          mailingLists,
+          sharedAccountQuota,
+          domains,
+          resourceAccounts,
+        }) => ({
+          availableDomains: domains.map((domain) => ({
+            name: domain,
+            displayName: punycode.toUnicode(domain),
+          })),
+          availableSecurity: [
+            // Hardcodded no available in api.
+            'NONE',
+            'VADERETRO',
+          ],
+          takenEmails: [].concat(
+            accounts,
+            mailingLists,
+            externalContacts,
+            resourceAccounts,
+          ),
+          minQuota: {
+            unit: 'MiB',
+            value: 100, // Hardcodded no available in api.
+          },
+          maxQuota: {
+            unit: 'MiB',
+            value: sharedAccountQuota.singleMailboxQuotaLimit,
+          },
+          reservedQuota: {
+            unit: 'MiB',
+            value: sharedAccountQuota.quotaReserved,
+          },
+          totalQuota: {
+            unit: 'MiB',
+            value: sharedAccountQuota.quotaLimit,
+          },
+        }),
+      );
   }
 
   addingSharedAccount(organization, exchange, data) {
