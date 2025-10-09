@@ -1,0 +1,634 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TagsTile Snapshot Tests > Complex Scenarios > should render with many tags 1`] = `
+<div>
+  <div
+    class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
+  >
+    <section
+      class="flex flex-col w-full"
+    >
+      <h4
+        class="_text--heading-4_1aw48_31"
+      >
+        Tags
+      </h4>
+      <hr
+        class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
+      />
+      <dl
+        class="flex flex-col m-0"
+      >
+        <div
+          class="flex flex-col gap-1"
+        >
+          <dt
+            class="flex justify-between"
+          >
+            <div
+              class="flex items-center gap-1 text-[var(--ods-color-text)]"
+            >
+              <span
+                class="_text--span_1aw48_60 font-bold"
+              >
+                Tags assignés
+              </span>
+            </div>
+          </dt>
+          <dd
+            class="m-0"
+          >
+            <div
+              class="w-full min-w-[85px] h-[120px] overflow-auto"
+            >
+              <div
+                class="w-full h-full flex flex-wrap min-w-[85px]"
+              >
+                <span
+                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  style="max-width: -32px;"
+                >
+                  env:production
+                </span>
+                <span
+                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  style="max-width: -32px;"
+                >
+                  team:frontend
+                </span>
+                <span
+                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  style="max-width: -32px;"
+                >
+                  version:1.0.0
+                </span>
+                <span
+                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  style="max-width: -32px;"
+                >
+                  region:eu-west-1
+                </span>
+                <span
+                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  style="max-width: -32px;"
+                >
+                  owner:john-doe
+                </span>
+                <span
+                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  style="max-width: -32px;"
+                >
+                  project:my-project
+                </span>
+                <span
+                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  style="max-width: -32px;"
+                >
+                  cost_center:engineering
+                </span>
+                <span
+                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  style="max-width: -32px;"
+                >
+                  department:IT
+                </span>
+              </div>
+            </div>
+            <a
+              class="_link_udbet_2 mt-4"
+              href="#"
+            >
+              Manager les tags
+              <span
+                class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+              />
+            </a>
+            <hr
+              class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
+            />
+          </dd>
+        </div>
+      </dl>
+    </section>
+  </div>
+</div>
+`;
+
+exports[`TagsTile Snapshot Tests > Complex Scenarios > should render with single tag 1`] = `
+<div>
+  <div
+    class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
+  >
+    <section
+      class="flex flex-col w-full"
+    >
+      <h4
+        class="_text--heading-4_1aw48_31"
+      >
+        Tags
+      </h4>
+      <hr
+        class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
+      />
+      <dl
+        class="flex flex-col m-0"
+      >
+        <div
+          class="flex flex-col gap-1"
+        >
+          <dt
+            class="flex justify-between"
+          >
+            <div
+              class="flex items-center gap-1 text-[var(--ods-color-text)]"
+            >
+              <span
+                class="_text--span_1aw48_60 font-bold"
+              >
+                Tags assignés
+              </span>
+            </div>
+          </dt>
+          <dd
+            class="m-0"
+          >
+            <div
+              class="w-full min-w-[85px] h-[120px] overflow-auto"
+            >
+              <div
+                class="w-full h-full flex flex-wrap min-w-[85px]"
+              >
+                <span
+                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  style="max-width: -32px;"
+                >
+                  environment:staging
+                </span>
+              </div>
+            </div>
+            <a
+              class="_link_udbet_2 mt-4"
+              href="#"
+            >
+              Manager les tags
+              <span
+                class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+              />
+            </a>
+            <hr
+              class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
+            />
+          </dd>
+        </div>
+      </dl>
+    </section>
+  </div>
+</div>
+`;
+
+exports[`TagsTile Snapshot Tests > Empty State > should render empty tags tile 1`] = `
+<div>
+  <div
+    class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
+  >
+    <section
+      class="flex flex-col w-full"
+    >
+      <h4
+        class="_text--heading-4_1aw48_31"
+      >
+        Tags
+      </h4>
+      <hr
+        class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
+      />
+      <dl
+        class="flex flex-col m-0"
+      >
+        <div
+          class="flex flex-col gap-1"
+        >
+          <dt
+            class="flex justify-between"
+          >
+            <div
+              class="flex items-center gap-1 text-[var(--ods-color-text)]"
+            >
+              <span
+                class="_text--span_1aw48_60 font-bold"
+              >
+                Tags assignés
+              </span>
+            </div>
+          </dt>
+          <dd
+            class="m-0"
+          >
+            <div
+              class="w-full min-w-[85px] h-[120px] overflow-auto"
+            >
+              <span>
+                Aucun tag n'est associé
+              </span>
+            </div>
+            <a
+              class="_link_udbet_2 mt-4"
+              href="#"
+            >
+              Ajouter un tag
+              <span
+                class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+              />
+            </a>
+            <hr
+              class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
+            />
+          </dd>
+        </div>
+      </dl>
+    </section>
+  </div>
+</div>
+`;
+
+exports[`TagsTile Snapshot Tests > Empty State > should render with null tags 1`] = `
+<div>
+  <div
+    class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
+  >
+    <section
+      class="flex flex-col w-full"
+    >
+      <h4
+        class="_text--heading-4_1aw48_31"
+      >
+        Tags
+      </h4>
+      <hr
+        class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
+      />
+      <dl
+        class="flex flex-col m-0"
+      >
+        <div
+          class="flex flex-col gap-1"
+        >
+          <dt
+            class="flex justify-between"
+          >
+            <div
+              class="flex items-center gap-1 text-[var(--ods-color-text)]"
+            >
+              <span
+                class="_text--span_1aw48_60 font-bold"
+              >
+                Tags assignés
+              </span>
+            </div>
+          </dt>
+          <dd
+            class="m-0"
+          >
+            <div
+              class="w-full min-w-[85px] h-[120px] overflow-auto"
+            >
+              <span>
+                Aucun tag n'est associé
+              </span>
+            </div>
+            <a
+              class="_link_udbet_2 mt-4"
+              href="#"
+            >
+              Ajouter un tag
+              <span
+                class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+              />
+            </a>
+            <hr
+              class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
+            />
+          </dd>
+        </div>
+      </dl>
+    </section>
+  </div>
+</div>
+`;
+
+exports[`TagsTile Snapshot Tests > Empty State > should render without onEditTags callback 1`] = `
+<div>
+  <div
+    class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
+  >
+    <section
+      class="flex flex-col w-full"
+    >
+      <h4
+        class="_text--heading-4_1aw48_31"
+      >
+        Tags
+      </h4>
+      <hr
+        class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
+      />
+      <dl
+        class="flex flex-col m-0"
+      >
+        <div
+          class="flex flex-col gap-1"
+        >
+          <dt
+            class="flex justify-between"
+          >
+            <div
+              class="flex items-center gap-1 text-[var(--ods-color-text)]"
+            >
+              <span
+                class="_text--span_1aw48_60 font-bold"
+              >
+                Tags assignés
+              </span>
+            </div>
+          </dt>
+          <dd
+            class="m-0"
+          >
+            <div
+              class="w-full min-w-[85px] h-[120px] overflow-auto"
+            >
+              <span>
+                Aucun tag n'est associé
+              </span>
+            </div>
+            <a
+              class="_link_udbet_2 mt-4"
+              href="#"
+            >
+              Ajouter un tag
+              <span
+                class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+              />
+            </a>
+            <hr
+              class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
+            />
+          </dd>
+        </div>
+      </dl>
+    </section>
+  </div>
+</div>
+`;
+
+exports[`TagsTile Snapshot Tests > With Tags > should render tags tile with tags 1`] = `
+<div>
+  <div
+    class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
+  >
+    <section
+      class="flex flex-col w-full"
+    >
+      <h4
+        class="_text--heading-4_1aw48_31"
+      >
+        Tags
+      </h4>
+      <hr
+        class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
+      />
+      <dl
+        class="flex flex-col m-0"
+      >
+        <div
+          class="flex flex-col gap-1"
+        >
+          <dt
+            class="flex justify-between"
+          >
+            <div
+              class="flex items-center gap-1 text-[var(--ods-color-text)]"
+            >
+              <span
+                class="_text--span_1aw48_60 font-bold"
+              >
+                Tags assignés
+              </span>
+            </div>
+          </dt>
+          <dd
+            class="m-0"
+          >
+            <div
+              class="w-full min-w-[85px] h-[120px] overflow-auto"
+            >
+              <div
+                class="w-full h-full flex flex-wrap min-w-[85px]"
+              >
+                <span
+                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  style="max-width: -32px;"
+                >
+                  environment:production
+                </span>
+                <span
+                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  style="max-width: -32px;"
+                >
+                  team:frontend
+                </span>
+                <span
+                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  style="max-width: -32px;"
+                >
+                  version:1.0.0
+                </span>
+              </div>
+            </div>
+            <a
+              class="_link_udbet_2 mt-4"
+              href="#"
+            >
+              Manager les tags
+              <span
+                class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+              />
+            </a>
+            <hr
+              class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
+            />
+          </dd>
+        </div>
+      </dl>
+    </section>
+  </div>
+</div>
+`;
+
+exports[`TagsTile Snapshot Tests > With Tags > should render with custom lineNumber 1`] = `
+<div>
+  <div
+    class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
+  >
+    <section
+      class="flex flex-col w-full"
+    >
+      <h4
+        class="_text--heading-4_1aw48_31"
+      >
+        Tags
+      </h4>
+      <hr
+        class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
+      />
+      <dl
+        class="flex flex-col m-0"
+      >
+        <div
+          class="flex flex-col gap-1"
+        >
+          <dt
+            class="flex justify-between"
+          >
+            <div
+              class="flex items-center gap-1 text-[var(--ods-color-text)]"
+            >
+              <span
+                class="_text--span_1aw48_60 font-bold"
+              >
+                Tags assignés
+              </span>
+            </div>
+          </dt>
+          <dd
+            class="m-0"
+          >
+            <div
+              class="w-full min-w-[85px] h-[120px] overflow-auto"
+            >
+              <div
+                class="w-full h-full flex flex-wrap min-w-[85px]"
+              >
+                <span
+                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  style="max-width: -32px;"
+                >
+                  environment:production
+                </span>
+                <span
+                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  style="max-width: -32px;"
+                >
+                  team:frontend
+                </span>
+                <span
+                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  style="max-width: -32px;"
+                >
+                  version:1.0.0
+                </span>
+              </div>
+            </div>
+            <a
+              class="_link_udbet_2 mt-4"
+              href="#"
+            >
+              Manager les tags
+              <span
+                class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+              />
+            </a>
+            <hr
+              class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
+            />
+          </dd>
+        </div>
+      </dl>
+    </section>
+  </div>
+</div>
+`;
+
+exports[`TagsTile Snapshot Tests > With Tags > should render with displayInternalTags enabled 1`] = `
+<div>
+  <div
+    class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
+  >
+    <section
+      class="flex flex-col w-full"
+    >
+      <h4
+        class="_text--heading-4_1aw48_31"
+      >
+        Tags
+      </h4>
+      <hr
+        class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
+      />
+      <dl
+        class="flex flex-col m-0"
+      >
+        <div
+          class="flex flex-col gap-1"
+        >
+          <dt
+            class="flex justify-between"
+          >
+            <div
+              class="flex items-center gap-1 text-[var(--ods-color-text)]"
+            >
+              <span
+                class="_text--span_1aw48_60 font-bold"
+              >
+                Tags assignés
+              </span>
+            </div>
+          </dt>
+          <dd
+            class="m-0"
+          >
+            <div
+              class="w-full min-w-[85px] h-[120px] overflow-auto"
+            >
+              <div
+                class="w-full h-full flex flex-wrap min-w-[85px]"
+              >
+                <span
+                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  style="max-width: -32px;"
+                >
+                  environment:production
+                </span>
+                <span
+                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  style="max-width: -32px;"
+                >
+                  team:frontend
+                </span>
+                <span
+                  class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  style="max-width: -32px;"
+                >
+                  version:1.0.0
+                </span>
+              </div>
+            </div>
+            <a
+              class="_link_udbet_2 mt-4"
+              href="#"
+            >
+              Manager les tags
+              <span
+                class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+              />
+            </a>
+            <hr
+              class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
+            />
+          </dd>
+        </div>
+      </dl>
+    </section>
+  </div>
+</div>
+`;
