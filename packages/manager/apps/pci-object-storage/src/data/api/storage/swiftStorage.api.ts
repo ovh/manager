@@ -1,6 +1,7 @@
+import cloud from '@/types/Cloud';
+import storages from '@/types/Storages';
 import { PCIData } from '..';
 import { apiClient } from '../api.client';
-import storages from '@/types/Storages';
 
 export interface SwiftData extends PCIData {
   containerId: string;
@@ -46,3 +47,26 @@ export const deleteSwiftStorage = async ({
   containerId,
 }: SwiftData) =>
   apiClient.v6.delete(`/cloud/project/${projectId}/storage/${containerId}`);
+
+export interface CreateSwiftData extends PCIData {
+  container: cloud.ProjectStorageCreation;
+  containerType: storages.TypeEnum;
+}
+export const createSwiftStorage = async ({
+  projectId,
+  container,
+  containerType,
+}: CreateSwiftData) => {
+  const storageData = await apiClient.v6.post<storages.Container>(
+    `/cloud/project/${projectId}/storage/`,
+    container,
+  );
+  await editSwiftStorage({
+    projectId,
+    containerId: storageData.id,
+    data: {
+      containerType,
+    },
+  });
+  return storageData;
+};

@@ -1,5 +1,5 @@
 import * as storages from '@datatr-ux/ovhcloud-types/cloud/storage/index';
-import { RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud/index';
+import cloud from './Cloud';
 
 export default storages;
 
@@ -19,7 +19,7 @@ export interface FormattedStorage extends storages.Container {
   public?: boolean;
   s3StorageType: string;
   virtualHost: string;
-  regionType: RegionTypeEnum;
+  regionType: cloud.RegionTypeEnum;
   storageType: ObjectStorageTypeEnum;
 }
 
