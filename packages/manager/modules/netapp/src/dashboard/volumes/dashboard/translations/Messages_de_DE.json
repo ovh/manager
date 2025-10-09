@@ -46,5 +46,8 @@
   "netapp_volumes_dashboard_volume_used": "Verwendet",
   "netapp_volumes_dashboard_volume_overflow": "Überlauf",
   "netapp_volumes_dashboard_volume_available": "Verfügbar",
-  "netapp_volumes_dashboard_snapshot_space": "Snapshot-Reserve"
+  "netapp_volumes_dashboard_snapshot_space": "Snapshot-Reserve",
+  "netapp_volumes_dashboard_configuration_title": "Netzwerk konfigurieren",
+  "netapp_volumes_dashboard_configuration_bare_metal": "Ein privates Netzwerk für einen Bare-Metal-Server konfigurieren",
+  "netapp_volumes_dashboard_configuration_public_cloud": "Ein privates Netzwerk für eine Instanz/ein Public-Cloud-Projekt konfigurieren"
 }

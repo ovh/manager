@@ -46,5 +46,8 @@
   "netapp_volumes_dashboard_volume_used": "Used",
   "netapp_volumes_dashboard_volume_overflow": "Overflow",
   "netapp_volumes_dashboard_volume_available": "Available",
-  "netapp_volumes_dashboard_snapshot_space": "Snapshot reserve"
+  "netapp_volumes_dashboard_snapshot_space": "Snapshot reserve",
+  "netapp_volumes_dashboard_configuration_title": "Configure network",
+  "netapp_volumes_dashboard_configuration_bare_metal": "Configure a private network for a Bare Metal server",
+  "netapp_volumes_dashboard_configuration_public_cloud": "Configure a private network for a Public Cloud instance/project"
 }

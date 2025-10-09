@@ -46,5 +46,8 @@
   "netapp_volumes_dashboard_volume_used": "Utilisé",
   "netapp_volumes_dashboard_volume_overflow": "Débordement",
   "netapp_volumes_dashboard_volume_available": "Disponible",
-  "netapp_volumes_dashboard_snapshot_space": "Reserve de Snapshot"
+  "netapp_volumes_dashboard_snapshot_space": "Reserve de Snapshot",
+  "netapp_volumes_dashboard_configuration_title": "Configurer le réseau",
+  "netapp_volumes_dashboard_configuration_bare_metal": "Configurer un réseau privé pour un serveur bare metal",
+  "netapp_volumes_dashboard_configuration_public_cloud": "Configurer un réseau privé pour une instance / un projet public cloud"
 }

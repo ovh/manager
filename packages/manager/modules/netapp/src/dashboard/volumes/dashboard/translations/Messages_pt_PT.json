@@ -46,5 +46,8 @@
   "netapp_volumes_dashboard_volume_used": "Utilizado",
   "netapp_volumes_dashboard_volume_overflow": "Gestão de picos de carga",
   "netapp_volumes_dashboard_volume_available": "Disponível",
-  "netapp_volumes_dashboard_snapshot_space": "Reserva de Snapshot"
+  "netapp_volumes_dashboard_snapshot_space": "Reserva de Snapshot",
+  "netapp_volumes_dashboard_configuration_title": "Configurar a rede",
+  "netapp_volumes_dashboard_configuration_bare_metal": "Configurar uma rede privada para um servidor bare metal",
+  "netapp_volumes_dashboard_configuration_public_cloud": "Configurar uma rede privada para uma instância / um projeto Public Cloud"
 }
