@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.155.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.154.2...@ovh-ux/manager-container-app@0.155.0) (2025-10-09)
+
+
+### Features
+
+* **db:** remove db angular app and unused code ([caf83ff](https://github.com/ovh/manager/commit/caf83ff22815731161db0812ccffee36d43ceb6e)), closes [#DATATR-2480](https://github.com/ovh/manager/issues/DATATR-2480)
+
+
+
+
+
 ## [0.154.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.154.1...@ovh-ux/manager-container-app@0.154.2) (2025-10-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

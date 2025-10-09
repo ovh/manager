@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.17.7...@ovh-ux/manager-pci-object-storage-app@0.18.0) (2025-10-09)
+
+
+### Features
+
+* **object-storage:** drawer helper ([d8ede63](https://github.com/ovh/manager/commit/d8ede63a3c7ee6164a1b966b48debdb76ac6f531)), closes [#TAPC-4643](https://github.com/ovh/manager/issues/TAPC-4643)
+
+
+
+
+
 ## [0.17.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.17.6...@ovh-ux/manager-pci-object-storage-app@0.17.7) (2025-10-07)
 
 
