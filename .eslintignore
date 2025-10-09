@@ -46,6 +46,7 @@ packages/manager/apps/cloud-shell/src/wasm_exec.js
 packages/manager/apps/pci-instances
 packages/manager/apps/pci-kubernetes
 packages/manager/apps/pci-workflow
+packages/manager/apps/observability
 packages/manager/apps/web-domains
 packages/manager/apps/web-hosting
 packages/manager/apps/web-office
