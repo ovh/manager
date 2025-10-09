@@ -12,7 +12,11 @@ import {
   useAllServerStorages,
 } from '@/api/hooks/useStorages';
 import { replicationTestWrapper } from '@/wrapperRenders';
-import { STATUS_ENABLED, STATUS_DISABLED } from '@/constants';
+import {
+  STATUS_ENABLED,
+  STATUS_DISABLED,
+  ObjectContainerMode,
+} from '@/constants';
 import { TServerContainer } from '@/api/data/container';
 import { TStorage, TStoragesAapiResult } from '@/api/data/storages';
 import { ReplicationRuleId } from './ReplicationRuleName.component';
@@ -104,7 +108,7 @@ const mockRegion: TRegion = {
   ipCountries: [],
   services: [],
   status: 'UP',
-  type: 'region',
+  type: ObjectContainerMode.MONO_ZONE,
 };
 
 const mockContainerTContainer: TContainer = {

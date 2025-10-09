@@ -28,10 +28,7 @@ import {
 
 import { wrapper } from '@/wrapperRenders';
 import { addUser, deleteSwiftObject } from '../data/objects';
-import {
-  OBJECT_CONTAINER_MODE_MULTI_ZONES,
-  OBJECT_CONTAINER_OFFER_SWIFT,
-} from '@/constants';
+import { ObjectContainerMode, OBJECT_CONTAINER_OFFER_SWIFT } from '@/constants';
 
 vi.mock('../data/storages');
 vi.mock('../data/objects');
@@ -64,12 +61,12 @@ describe('useMappedStorages', () => {
           region: 'region1',
           name: 'storage1',
           s3StorageType: 'storage',
-          deploymentMode: OBJECT_CONTAINER_MODE_MULTI_ZONES,
+          deploymentMode: ObjectContainerMode.MULTI_ZONES,
         },
       ],
     } as unknown) as TStoragesAapiResult;
     const regions = [
-      { name: 'region1', type: OBJECT_CONTAINER_MODE_MULTI_ZONES },
+      { name: 'region1', type: ObjectContainerMode.MULTI_ZONES },
     ] as TRegion[];
 
     vi.mocked(getStorages).mockResolvedValueOnce(storages);
@@ -89,7 +86,7 @@ describe('useMappedStorages', () => {
         name: 'storage1',
         s3StorageType: 'storage',
         offer: 'pci_projects_project_storages_containers_offer_s3',
-        deploymentMode: OBJECT_CONTAINER_MODE_MULTI_ZONES,
+        deploymentMode: ObjectContainerMode.MULTI_ZONES,
         containerCount: 0,
         usedSpace: 0,
       },
@@ -109,7 +106,7 @@ describe('useStorages', () => {
         name: 'storage1',
         region: 'region1',
         s3StorageType: 'storage',
-        deploymentMode: OBJECT_CONTAINER_MODE_MULTI_ZONES,
+        deploymentMode: ObjectContainerMode.MULTI_ZONES,
         offer: 'pci_projects_project_storages_containers_offer_s3',
         mode:
           'pci_projects_project_storages_containers_deployment_mode_region-3-az',
@@ -122,7 +119,7 @@ describe('useStorages', () => {
     } as TStoragesAapiResult);
 
     const regions = [
-      { name: 'region1', type: OBJECT_CONTAINER_MODE_MULTI_ZONES },
+      { name: 'region1', type: ObjectContainerMode.MULTI_ZONES },
     ] as TRegion[];
     vi.mocked(useGetProjectRegions).mockReturnValue({
       data: regions,

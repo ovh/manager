@@ -9,11 +9,7 @@ import {
   OdsRadio,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  OBJECT_CONTAINER_MODE_MONO_ZONE,
-  OBJECT_CONTAINER_MODE_MULTI_ZONES,
-  ReplicationStorageClass,
-} from '@/constants';
+import { ObjectContainerMode, ReplicationStorageClass } from '@/constants';
 
 import { TRegion } from '@/api/data/region';
 
@@ -42,8 +38,8 @@ export function ReplicationRuleStorageClass({
   const showWarning =
     destinationRegion &&
     sourceRegion &&
-    destinationRegion.type === OBJECT_CONTAINER_MODE_MULTI_ZONES &&
-    sourceRegion.type === OBJECT_CONTAINER_MODE_MONO_ZONE;
+    destinationRegion.type === ObjectContainerMode.MULTI_ZONES &&
+    sourceRegion.type === ObjectContainerMode.MONO_ZONE;
 
   return (
     <div className="mt-8 max-w-[800px] block">

@@ -87,7 +87,7 @@ vi.mock('@/hooks/useContainerData', () => ({
     displayEncryptionData: false,
     isPending: false,
     isLocalZone: false,
-    isRightOffer: true,
+    isS3StorageType: true,
   })),
 }));
 
@@ -130,7 +130,7 @@ describe('DashboardPage', () => {
       displayEncryptionData: false,
       isPending: false,
       isLocalZone: false,
-      isRightOffer: true,
+      isS3StorageType: true,
     });
   });
 
@@ -153,7 +153,7 @@ describe('DashboardPage', () => {
       displayEncryptionData: false,
       isPending: true,
       isLocalZone: false,
-      isRightOffer: true,
+      isS3StorageType: true,
     });
 
     renderWithRouter(<DashboardPage />);

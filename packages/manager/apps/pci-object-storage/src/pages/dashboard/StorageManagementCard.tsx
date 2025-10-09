@@ -7,14 +7,14 @@ import { CommonCard } from '@/components/CommonCard';
 
 type TStorageManagementCardProps = {
   isLocalZone: boolean;
-  isRightOffer: boolean;
+  isS3StorageType: boolean;
   showReplicationBanner: boolean;
   manageReplicationsHref: string;
 };
 
 export const StorageManagementCard = ({
   isLocalZone,
-  isRightOffer,
+  isS3StorageType,
   showReplicationBanner,
   manageReplicationsHref,
 }: TStorageManagementCardProps) => {
@@ -25,7 +25,7 @@ export const StorageManagementCard = ({
   ]);
 
   const renderReplicationSection = () => {
-    if (!isRightOffer || isLocalZone) return null;
+    if (!isS3StorageType || isLocalZone) return null;
 
     return (
       <CardSection

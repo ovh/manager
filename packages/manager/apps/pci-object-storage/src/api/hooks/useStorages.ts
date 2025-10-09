@@ -19,9 +19,7 @@ import {
   Replication,
 } from '../data/storages';
 import {
-  OBJECT_CONTAINER_MODE_LOCAL_ZONE,
-  OBJECT_CONTAINER_MODE_MONO_ZONE,
-  OBJECT_CONTAINER_MODE_MULTI_ZONES,
+  ObjectContainerMode,
   OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
   OBJECT_CONTAINER_OFFER_SWIFT,
   OBJECT_CONTAINER_TYPE_PUBLIC,
@@ -144,12 +142,12 @@ export const useStorages = (
         const { deploymentMode } = storage;
         let mode: string;
         switch (deploymentMode) {
-          case OBJECT_CONTAINER_MODE_MULTI_ZONES:
+          case ObjectContainerMode.MULTI_ZONES:
             mode = t(
               `pci_projects_project_storages_containers_deployment_mode_region-3-az`,
             );
             break;
-          case OBJECT_CONTAINER_MODE_MONO_ZONE:
+          case ObjectContainerMode.MONO_ZONE:
             mode =
               availability.isLocalZoneAvailable && availability.is3azAvailable
                 ? t(
@@ -159,7 +157,7 @@ export const useStorages = (
                     'containers/add:pci_projects_project_storages_containers_add_deployment_mode_flipping_region',
                   );
             break;
-          case OBJECT_CONTAINER_MODE_LOCAL_ZONE:
+          case ObjectContainerMode.LOCAL_ZONE:
             mode = t(
               'pci_projects_project_storages_containers_deployment_mode_localzone',
             );
@@ -602,11 +600,11 @@ export const useAllServerStorages = (
       const { deploymentMode } = storage;
 
       switch (deploymentMode) {
-        case OBJECT_CONTAINER_MODE_MULTI_ZONES:
+        case ObjectContainerMode.MULTI_ZONES:
           return t(
             `pci_projects_project_storages_containers_deployment_mode_region-3-az`,
           );
-        case OBJECT_CONTAINER_MODE_MONO_ZONE:
+        case ObjectContainerMode.MONO_ZONE:
           return availability.isLocalZoneAvailable &&
             availability.is3azAvailable
             ? t(
@@ -615,7 +613,7 @@ export const useAllServerStorages = (
             : t(
                 'containers/add:pci_projects_project_storages_containers_add_deployment_mode_flipping_region',
               );
-        case OBJECT_CONTAINER_MODE_LOCAL_ZONE:
+        case ObjectContainerMode.LOCAL_ZONE:
           return t(
             'pci_projects_project_storages_containers_deployment_mode_localzone',
           );
@@ -640,7 +638,7 @@ export const useAllServerStorages = (
       mappedStorages.filter(
         (element) =>
           element.s3StorageType &&
-          element.deploymentMode !== OBJECT_CONTAINER_MODE_LOCAL_ZONE,
+          element.deploymentMode !== ObjectContainerMode.LOCAL_ZONE,
       ),
     [mappedStorages],
   );

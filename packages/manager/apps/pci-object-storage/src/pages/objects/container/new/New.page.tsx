@@ -22,11 +22,10 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import {
-  OBJECT_CONTAINER_MODE_LOCAL_ZONE,
+  ObjectContainerMode,
   OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
   OBJECT_CONTAINER_OFFER_SWIFT,
   STORAGE_PRICES_LINK,
-  OBJECT_CONTAINER_MODE_MULTI_ZONES,
 } from '@/constants';
 import { SolutionStepComponent } from './step/SolutionStep.component';
 import { DeploymentModeStep } from './step/DeploymentModeStep.component';
@@ -162,9 +161,9 @@ export default function ContainerNewPage() {
       <RegionStep />
       {form.offer === OBJECT_CONTAINER_OFFER_SWIFT && <ContainerType />}
       {form.offer === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD &&
-        form.deploymentMode !== OBJECT_CONTAINER_MODE_LOCAL_ZONE && (
+        form.deploymentMode !== ObjectContainerMode.LOCAL_ZONE && (
           <>
-            {form.deploymentMode === OBJECT_CONTAINER_MODE_MULTI_ZONES && (
+            {form.deploymentMode === ObjectContainerMode.MULTI_ZONES && (
               <OffsiteReplication />
             )}
             <VersioningStep />

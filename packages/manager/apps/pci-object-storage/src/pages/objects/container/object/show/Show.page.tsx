@@ -8,6 +8,8 @@ import {
 } from 'react-router-dom';
 import {
   BaseLayout,
+  Links,
+  LinkType,
   Notifications,
   PciGuidesHeader,
   PciMaintenanceBanner,
@@ -18,13 +20,14 @@ import {
   useProductMaintenance,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { TabsPanel, useProject } from '@ovh-ux/manager-pci-common';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import {
   OdsBreadcrumb,
   OdsBreadcrumbItem,
+  OdsMessage,
   OdsSpinner,
 } from '@ovhcloud/ods-components/react';
 
@@ -41,11 +44,7 @@ import { usePaginatedObjects } from '@/api/hooks/useContainer';
 import UseStandardInfrequentAccessAvailability from '@/hooks/useStandardInfrequentAccessAvailability';
 import { useSortedObjects } from './useSortedObjectsWithIndex';
 import { ContainerDatagrid } from './ContainerDataGrid';
-import {
-  CommonContainerContext,
-  S3ContainerContext,
-  SwiftContainerContext,
-} from './ContainerContext';
+import { S3ContainerContext, SwiftContainerContext } from './ContainerContext';
 import { getDashboardTabs } from '@/utils/getDashboardTabs';
 import { useDatagridColumn } from './useDatagridColumn';
 import './style.scss';
@@ -92,8 +91,13 @@ export default function ObjectPage() {
     region,
     isPending,
     isLocalZone,
-    isRightOffer,
+    isS3StorageType,
+    showReplicationBanner,
   } = useContainerData();
+
+  const manageReplicationsHref = useHref(
+    `./replications?region=${regionParam}`,
+  );
 
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(
     project?.project_id,
@@ -234,11 +238,12 @@ export default function ObjectPage() {
     t,
   });
 
+  console.log({ tabs });
+
   if (!container || !url) return <OdsSpinner size="md" />;
 
   const commonContextValue = {
-    isS3StorageType: isRightOffer,
-    isRightOffer,
+    isS3StorageType,
     isLocalZone,
     versioningStatus: container.versioning?.status,
     shouldHideButton,
@@ -313,23 +318,51 @@ export default function ObjectPage() {
       hrefPrevious={objectStorageHref}
     >
       <Notifications />
-      {<TabsPanel tabs={tabs} />}
+      <TabsPanel tabs={tabs} />
 
       {hasMaintenance && (
         <PciMaintenanceBanner maintenanceURL={maintenanceURL} />
       )}
 
-      <CommonContainerContext.Provider value={commonContextValue}>
-        {isRightOffer ? (
-          <S3ContainerContext.Provider value={s3ContextValue}>
-            <ContainerDatagrid />
-          </S3ContainerContext.Provider>
-        ) : (
-          <SwiftContainerContext.Provider value={swiftContextValue}>
-            <ContainerDatagrid />
-          </SwiftContainerContext.Provider>
-        )}
-      </CommonContainerContext.Provider>
+      {showReplicationBanner && (
+        <OdsMessage
+          color="information"
+          className="mt-6 inline-flex items-start"
+          isDismissible={false}
+        >
+          <span>
+            <Trans
+              i18nKey="container:pci_projects_project_storages_containers_container_add_replication_rules_info"
+              components={{
+                1: <Links href={manageReplicationsHref} />,
+                2: (
+                  <Links
+                    href={REPLICATION_LINK}
+                    target="_blank"
+                    type={LinkType.external}
+                  />
+                ),
+              }}
+            />
+          </span>
+        </OdsMessage>
+      )}
+
+      {isS3StorageType ? (
+        <S3ContainerContext.Provider value={s3ContextValue}>
+          <ContainerDatagrid
+            isS3StorageType={isS3StorageType}
+            handleAddObjectClick={handleAddObjectClick}
+          />
+        </S3ContainerContext.Provider>
+      ) : (
+        <SwiftContainerContext.Provider value={swiftContextValue}>
+          <ContainerDatagrid
+            isS3StorageType={isS3StorageType}
+            handleAddObjectClick={handleAddObjectClick}
+          />
+        </SwiftContainerContext.Provider>
+      )}
 
       <Suspense fallback={<OdsSpinner size="md" />}>
         <Outlet />

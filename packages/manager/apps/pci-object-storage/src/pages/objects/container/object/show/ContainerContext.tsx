@@ -4,7 +4,6 @@ import { TrackingClickParams } from '@ovh-ux/manager-react-shell-client';
 
 interface CommonContainerContextType {
   isS3StorageType: boolean;
-  isRightOffer: boolean;
   isLocalZone: boolean;
   versioningStatus: string;
   shouldHideButton: boolean;
@@ -50,10 +49,6 @@ interface SwiftContainerContextType extends CommonContainerContextType {
   filterColumns: any[];
 }
 
-// context used in both S3 and Swift containers datagrids
-export const CommonContainerContext = createContext<
-  CommonContainerContextType | undefined
->(undefined);
 // context used only in S3 container datagrid
 export const S3ContainerContext = createContext<
   S3ContainerContextType | undefined
@@ -62,16 +57,6 @@ export const S3ContainerContext = createContext<
 export const SwiftContainerContext = createContext<
   SwiftContainerContextType | undefined
 >(undefined);
-
-export const useCommonContainerContext = () => {
-  const context = useContext(CommonContainerContext);
-  if (!context) {
-    throw new Error(
-      'useCommonContainerContext must be used within a ContainerProvider',
-    );
-  }
-  return context;
-};
 
 export const useS3ContainerContext = () => {
   return useContext(S3ContainerContext);

@@ -32,7 +32,7 @@ import { useContainerCreationStore } from '../useContainerCreationStore';
 import { useAllowedRegions } from '@/hooks/useAllowedRegions';
 import { groupRegionsByContinent } from '@/domain/regions/regionFilter';
 import {
-  OBJECT_CONTAINER_MODE_MULTI_ZONES,
+  ObjectContainerMode,
   STORAGE_STANDARD_REGION_PLANCODE,
   MEGA_BYTES,
   OFFSITE_REPLICATION_CODE,
@@ -130,7 +130,7 @@ export function OffsiteReplication() {
         plan.regions.some(
           (region: TRegionAvailability) =>
             ((region.type as unknown) as string) ===
-            OBJECT_CONTAINER_MODE_MULTI_ZONES,
+            ObjectContainerMode.MULTI_ZONES,
         ),
       )
       .map(({ code }) =>
