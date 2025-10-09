@@ -11,7 +11,7 @@
   "pci_instances_dashboard_storage_title": "Almacenamiento",
   "pci_instances_dashboard_public_bandwidth_title": "Ancho de banda público",
   "pci_instances_dashboard_attach_volumes": "Asociar un volumen",
-  "pci_instances_dashboard_edit_image": "Editar imagen",
+  "pci_instances_dashboard_edit_image": "Modificar la imagen",
   "pci_instances_dashboard_id_openstack_title": "ID",
   "pci_instances_dashboard_ssh_key": "Llave SSH",
   "pci_instances_dashboard_network_title": "Redes",
@@ -27,8 +27,8 @@
   "pci_instances_dashboard_public_network_title": "Redes públicas",
   "pci_instances_dashboard_network_floating_title": "Floating IP",
   "pci_instances_dashboard_network_name_label": "Nombre de la red: ",
-  "pci_instances_dashboard_backup_empty_message": "No tiene backup",
-  "pci_instances_dashboard_backup_title": "Gestión del backup",
+  "pci_instances_dashboard_backup_empty_message": "No dispone de ningún backup",
+  "pci_instances_dashboard_backup_title": "Gestión de los backup",
   "pci_instances_dashboard_backup_number_of_backups": "Número de backups de la instancia",
   "pci_instances_dashboard_backup_last_updated_backups": "Fecha del último backup"
 }
