@@ -12,7 +12,7 @@ i18n.use(initReactI18next).init({
     escapeValue: false,
   },
   resources: {
-    en: {
+    fr: {
       'action-menu': {
         common_actions: 'Actions',
       },
