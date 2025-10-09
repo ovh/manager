@@ -63,7 +63,7 @@ export const CreateInstanceForm = () => {
           <DeploymentModeSection />
           <LocalizationSelection />
           {microRegions && hasMultiMicroRegions && (
-            <div className="pt-7 pb-5">
+            <div className="pt-7 pb-5 max-w-[32%]">
               <MicroRegionSelection microRegions={microRegions} />
             </div>
           )}
