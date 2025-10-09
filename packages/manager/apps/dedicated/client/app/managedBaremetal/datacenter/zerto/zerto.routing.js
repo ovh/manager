@@ -182,7 +182,7 @@ export default /* @ngInject */ ($stateProvider) => {
           datacenterId,
         ) => () =>
           $state.go(
-            'app.managedBaremetal.details.datacenter.details.zerto.listing.addSite',
+            'app.managedBaremetal.details.datacenters.datacenter.zerto.listing.addSite',
             {
               productId,
               datacenterId,
