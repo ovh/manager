@@ -1,3 +1,5 @@
+import { ACTIVES_NFS_LIMITE } from './constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('netapp.dashboard.volumes.dashboard', {
     url: '/:volumeId',
