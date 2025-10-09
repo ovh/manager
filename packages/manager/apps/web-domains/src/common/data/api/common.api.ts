@@ -1,6 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { ServiceInfoUpdateEnum } from '@/common/enum/common.enum';
-import { TServiceInfo, TServiceOption } from '@/common/types/common.types';
+import { TDomainContact, TServiceInfo, TServiceOption } from '@/common/types/common.types';
 
 export const getServiceInformation = async (
   serviceName: string,
@@ -64,5 +64,12 @@ export const updateServiceOption = async (
   const { data } = await v6.put(`/services/${optionDetails.serviceId}`, {
     terminationPolicy,
   });
+  return data;
+};
+
+export const getDomainContact = async (
+  contactID: string,
+): Promise<TDomainContact> => {
+  const { data } = await v6.get(`/domain/contact/${contactID}`);
   return data;
 };

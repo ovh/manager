@@ -1,13 +1,51 @@
-import { Domain } from 'domain';
-import {
-  AdditionalDomainStateEnum,
-  DomainStateEnum,
-} from '../enum/domainState.enum';
-import { ResourceStatusEnum } from '../enum/resourceStatus.enum';
-import { SuspensionStateEnum } from '../enum/suspensionState.enum';
-import { TDomainResource } from '../types/domainResource';
-import { ProtectionStateEnum } from '../enum/protectionState.enum';
-import { DnsConfigurationTypeEnum } from '../enum/dnsConfigurationType.enum';
+import { TDomainResource } from '@/domain/types/domainResource';
+import { DomainStateEnum } from '@/domain/enum/domainState.enum';
+import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
+import { SuspensionStateEnum } from '@/domain/enum/suspensionState.enum';
+import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
+import { ResourceStatusEnum } from '@/domain/enum/resourceStatus.enum';
+import { AdditionalDomainStateEnum } from '../enum/domainState.enum';
+
+export const domainResourceOK: TDomainResource = {
+  checksum: 'example-checksum',
+  currentState: {
+    additionalStates: [],
+    dnsConfiguration: {
+      configurationType: DnsConfigurationTypeEnum.HOSTING,
+      glueRecordIPv6Supported: true,
+      hostSupported: true,
+      maxDNS: 10,
+      minDNS: 2,
+      nameServers: [
+        {
+          nameServer: 'ns1.ovh.net',
+          nameServerType: DnsConfigurationTypeEnum.HOSTING,
+        },
+        {
+          nameServer: 'ns2.ovh.net',
+          nameServerType: DnsConfigurationTypeEnum.HOSTING,
+        },
+      ],
+      dnssecSupported: true,
+    },
+    extension: '.com',
+    mainState: DomainStateEnum.OK,
+    protectionState: ProtectionStateEnum.PROTECTED,
+    suspensionState: SuspensionStateEnum.NOT_SUSPENDED,
+    contactsConfiguration: {
+      contactOwner: { id: 'owner-id' },
+      contactAdministrator: { id: 'admin-id' },
+      contactTechnical: { id: 'tech-id' },
+      contactBilling: { id: 'billing-id' },
+    },
+    createdAt: '2023-01-01T00:00:00Z',
+    name: 'example.com',
+  },
+  currentTasks: [],
+  iam: null,
+  id: 'example-domain-id',
+  resourceStatus: ResourceStatusEnum.READY,
+};
 
 export const serviceInfoDetail: TDomainResource = {
   id: 'example.com',
@@ -38,6 +76,13 @@ export const serviceInfoDetail: TDomainResource = {
       ],
       configurationType: DnsConfigurationTypeEnum.HOSTING,
     },
+    contactsConfiguration: {
+      contactOwner: { id: 'owner-id' },
+      contactAdministrator: { id: 'admin-id' },
+      contactTechnical: { id: 'tech-id' },
+      contactBilling: { id: 'billing-id' },
+    },
+    createdAt: '2023-01-01T00:00:00Z',
   },
   targetSpec: {
     dnsConfiguration: {
