@@ -41,7 +41,7 @@
 <oui-message
     class="mb-3"
     data-type="warning"
-    data-ng-if="$ctrl.currentZerto.vpnStatus === $ctrl.DRP_VPN_STATUS.notConfigured"
+    data-ng-if="$ctrl.currentZerto.vpnStatus === $ctrl.DRP_VPN_STATUS.notConfigured && $ctrl.currentZerto.drpType !== 'onPremise'"
 >
     <div data-ng-if="!$ctrl.isOnSummaryState()">
         <span
