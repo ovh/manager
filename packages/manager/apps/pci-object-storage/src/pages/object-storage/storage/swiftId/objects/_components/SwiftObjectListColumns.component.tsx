@@ -15,6 +15,7 @@ import storages from '@/types/Storages';
 import { octetConverter } from '@/lib/bytesHelper';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import { ObjectsWithDate } from './SwiftObjectListTable.component';
+import FileIcon from '@/components/fileIcon/FileIcon.component';
 
 interface ObjectListColumnsProps {
   onDownloadClicked: (object: storages.ContainerObject) => void;
@@ -36,6 +37,15 @@ export const getColumns = ({
         </DataTable.SortableHeader>
       ),
       accessorFn: (row) => row.name,
+      cell: ({ row }) => (
+        <div className="flex gap-1 items-center">
+          <FileIcon
+            fileName={row.original.name}
+            className="w-4 h-4 text-muted-foreground"
+          />
+          {row.original.name}
+        </div>
+      ),
     },
     {
       id: 'updateDate',
