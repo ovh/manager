@@ -15,7 +15,7 @@ export const getFilters = () => {
       comparators: FilterCategories.String,
     },
     {
-      id: 'updateDate',
+      id: 'lastModified',
       label: t('tableHeaderUpdateDate'),
       comparators: FilterCategories.Date,
     },
