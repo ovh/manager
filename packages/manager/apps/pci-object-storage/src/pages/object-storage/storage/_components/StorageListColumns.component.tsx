@@ -40,7 +40,6 @@ export const getColumns = ({
 }: StoragesListColumnsProps) => {
   const navigate = useNavigate();
   const { t } = useTranslation('pci-object-storage/storages');
-  const { t: tRegions } = useTranslation('regions');
   const toast = useToast();
   const columns: ColumnDef<FormattedStorage>[] = [
     {
@@ -131,7 +130,10 @@ export const getColumns = ({
     },
     {
       id: 'Objects',
-      accessorFn: (row) => row.objectsCount || row.storedObjects,
+      accessorFn: (row) =>
+        row.storageType === ObjectStorageTypeEnum.s3
+          ? row.objectsCount
+          : row.storedObjects,
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
           {t('tableHeaderObjectNumber')}
@@ -147,7 +149,10 @@ export const getColumns = ({
     },
     {
       id: 'Space',
-      accessorFn: (row) => row.objectsSize,
+      accessorFn: (row) =>
+        row.storageType === ObjectStorageTypeEnum.s3
+          ? row.objectsSize
+          : row.storedBytes,
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
           {t('tableHeaderSpaceUsed')}
