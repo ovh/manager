@@ -41,6 +41,15 @@ export const baseDomainResource: TDomainResource = {
     name: 'example.com',
     protectionState: ProtectionStateEnum.PROTECTED,
     suspensionState: SuspensionStateEnum.NOT_SUSPENDED,
+    contactsConfiguration: {
+      contactAdministrator: { id: 'admin-id' },
+      contactBilling: {
+        id: 'billing-id',
+      },
+      contactOwner: { id: 'owner-id' },
+      contactTechnical: { id: 'technical-id' },
+    },
+    createdAt: '2025-10-11T11:00:00',
   },
   currentTasks: [],
   iam: null,
