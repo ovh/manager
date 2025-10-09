@@ -58,15 +58,15 @@ const EnableUser = () => {
 
   return (
     <RouteModal isLoading={!userToUpate}>
-      <DialogContent className="p-0">
-        <DialogHeader className="p-6 rounded-t-sm sm:rounded-t-lg ">
+      <DialogContent>
+        <DialogHeader className="rounded-t-sm sm:rounded-t-lg ">
           <DialogTitle data-testid="enable-user-s3-modal">
             {t('enableUserTitle')}
           </DialogTitle>
         </DialogHeader>
         {newUser ? (
           <>
-            <div className="flex flex-col gap-2 p-2">
+            <div className="flex flex-col gap-2">
               <Code
                 code={newUser.access}
                 label={t('accessKeyLabel')}
@@ -88,7 +88,7 @@ const EnableUser = () => {
                 }
               />
             </div>
-            <DialogFooter className="flex justify-end mt-4">
+            <DialogFooter className="flex justify-end">
               <DialogClose asChild onClick={() => handleClose()}>
                 <Button
                   data-testid="enable-user-close-button"
@@ -103,11 +103,11 @@ const EnableUser = () => {
         ) : (
           <>
             <p>
-              {t('enableUSerDescription2', {
+              {t('enableUSerDescription', {
                 name: userToUpate?.username,
               })}
             </p>
-            <DialogFooter className="flex justify-end p-6 pt-0">
+            <DialogFooter className="flex justify-end">
               <DialogClose asChild>
                 <Button
                   data-testid="enable-s3-cancel-button"

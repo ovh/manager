@@ -1,13 +1,17 @@
 import { useTranslation } from 'react-i18next';
-import { StorageContainer } from '@datatr-ux/ovhcloud-types/cloud/index';
+import {
+  RegionTypeEnum,
+  StorageContainer,
+} from '@datatr-ux/ovhcloud-types/cloud/index';
 import { Archive } from 'lucide-react';
 import { Badge, Skeleton } from '@datatr-ux/uxlib';
 import { getRegionFlag } from '@/lib/flagHelper';
 import Flag from '@/components/flag/Flag.component';
+import { useObjectStorageData } from '@/pages/object-storage/ObjectStorage.context';
 
 export const S3Header = ({ s3 }: { s3: StorageContainer }) => {
-  const { t } = useTranslation('pci-object-storage/storages/header-tabs');
   const { t: tRegions } = useTranslation('regions');
+  const { regions } = useObjectStorageData();
   return (
     <div
       data-testid="notebook-header-container"
@@ -28,6 +32,16 @@ export const S3Header = ({ s3 }: { s3: StorageContainer }) => {
               {tRegions(`region_${s3.region}`)}
             </div>
           </Badge>
+          {regions?.find((reg) => reg.name === s3.region).type ===
+          RegionTypeEnum['region-3-az'] ? (
+            <Badge className="bg-primary-500">
+              <span className="text-white">3-AZ</span>
+            </Badge>
+          ) : (
+            <Badge className="bg-primary-400">
+              <span className="text-white">1-AZ</span>
+            </Badge>
+          )}
         </div>
       </div>
     </div>
