@@ -64,6 +64,8 @@ export interface TDomainResource {
     name: string;
     protectionState: ProtectionStateEnum;
     suspensionState: SuspensionStateEnum;
+    contactsConfiguration: TContactsConfiguration;
+    createdAt: string;
   };
   currentTasks: Task[];
   iam: IAMResource | null;
@@ -74,6 +76,17 @@ export interface TDomainResource {
       nameServers: TNameServer[];
     };
   };
+}
+
+export interface TContactsConfiguration {
+  contactOwner: TContactDetails;
+  contactAdministrator: TContactDetails;
+  contactTechnical: TContactDetails;
+  contactBilling: TContactDetails;
+}
+
+export interface TContactDetails {
+  id: string;
 }
 
 export interface TDomainOption {
