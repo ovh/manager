@@ -12,7 +12,7 @@ import { Modal } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { DOMAIN_ORDER_OPTIONS_SERVICE } from '@/constants';
-import { useWebHostingAttachedDomain } from '@/data/hooks/webHostingAttachedDomain/useWebHostingAttachedDomain';
+import { useWebHostingAttachedDomain } from '@/data/hooks/webHosting/webHostingAttachedDomain/useWebHostingAttachedDomain';
 import { subRoutes, urls } from '@/routes/routes.constants';
 
 export default function SectigoModal() {

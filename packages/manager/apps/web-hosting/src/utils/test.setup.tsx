@@ -5,6 +5,8 @@ import { Path, To } from 'react-router-dom';
 import { vi } from 'vitest';
 
 import {
+  WebHostingWebsiteDomainMocks,
+  WebHostingWebsiteMocks,
   attachedDomainDigStatusMock,
   domainInformationMock,
   domainZoneMock,
@@ -144,7 +146,7 @@ vi.mock('react-router-dom', async (importActual) => {
   };
 });
 
-vi.mock('@/data/api/index', () => ({
+vi.mock('@/data/api/webHosting', () => ({
   getWebHostingAttachedDomain: vi.fn().mockResolvedValue({
     data: websitesMocks,
     cursorNext: null,
@@ -153,6 +155,11 @@ vi.mock('@/data/api/index', () => ({
   getWebHostingAttachedDomainDigStatus: vi.fn(() => Promise.resolve(attachedDomainDigStatusMock)),
   getWebHostingAttachedDomainDigStatusQueryKey: vi.fn(),
   getManagedCmsResourceWebsiteDetailsQueryKey: vi.fn(),
+  getWebHostingWebsite: vi.fn(() => Promise.resolve(WebHostingWebsiteMocks)),
+  getWebHostingWebsiteDomain: vi.fn(() => Promise.resolve(WebHostingWebsiteDomainMocks)),
+  getWebHostingWebsiteDomainQueryKey: vi.fn(),
+  useWebHostingWebsite: vi.fn(),
+  useWebHostingWebsiteDomain: vi.fn(),
 }));
 
 vi.mock('@/data/api/dashboard', async (importActual) => {

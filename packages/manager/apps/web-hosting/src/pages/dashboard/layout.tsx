@@ -14,11 +14,12 @@ import { OdsButton, OdsInput, OdsMessage, OdsTab, OdsText } from '@ovhcloud/ods-
 
 import {
   ActionMenu,
+  BaseLayout,
   ChangelogButton,
   GuideButton,
   GuideItem,
+  Notifications,
   OvhSubsidiary,
-  PageLayout,
   useResourcesIcebergV6,
 } from '@ovh-ux/manager-react-components';
 import { ShellContext, useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
@@ -59,7 +60,6 @@ export default function Layout() {
   const generalUrl = useHostingUrl(serviceName);
   const multisiteUrl = `#/${serviceName}/multisite`;
   const sslPathname = `#/${serviceName}/ssl`;
-  const moduleUrl = useHostingUrl(serviceName, 'module');
   const logsUrl = useHostingUrl(serviceName, 'user-logs');
   const ftpUrl = useHostingUrl(serviceName, 'ftp');
   const databaseUrl = useHostingUrl(serviceName, 'database');
@@ -87,11 +87,7 @@ export default function Layout() {
         title: t('hosting_tab_SSL'),
         to: sslPathname,
       },
-      {
-        name: 'module',
-        title: t('hosting_tab_MODULE'),
-        to: moduleUrl,
-      },
+
       {
         name: 'logs',
         title: t('hosting_tab_USER_LOGS'),
@@ -143,7 +139,6 @@ export default function Layout() {
       generalUrl,
       multisiteUrl,
       sslPathname,
-      moduleUrl,
       logsUrl,
       ftpUrl,
       databaseUrl,
@@ -199,8 +194,7 @@ export default function Layout() {
   ];
 
   return (
-    <PageLayout>
-      <Breadcrumb />
+    <BaseLayout breadcrumb={<Breadcrumb />}>
       <div className="flex items-center justify-between mt-10">
         {editDisplayName ? (
           <div className="w-2/3 mb-4">
@@ -274,6 +268,7 @@ export default function Layout() {
               {t('hosting_dashboard_loading_error')}
             </OdsMessage>
           )}
+          <Notifications />
           <div className=" mt-8 mb-6">
             <Tabs>
               {tabs.map((tab: DashboardTab) => (
@@ -288,6 +283,6 @@ export default function Layout() {
         </>
       )}
       <Outlet />
-    </PageLayout>
+    </BaseLayout>
   );
 }
