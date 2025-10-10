@@ -16,7 +16,7 @@ export const LocalizationSelection = () => {
   return (
     <section>
       <div className="flex flex-col gap-4">
-        <div className="mt-8 flex items-center space-x-4">
+        <div className="flex items-center space-x-4">
           <Text preset="heading-4">
             {t('creation:pci_instance_creation_choose_localization_title')}
           </Text>
