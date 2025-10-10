@@ -1,9 +1,12 @@
 import { Handler } from '@ovh-ux/manager-core-test-utils';
 import { catalogMock } from './catalog.mock';
+import { buildMswResponseMock } from '@/utils/tests/msw';
 
 export type GetCatalogKmsMocksParams = {
   isCatalogOkmsKo?: boolean;
 };
+
+export const getCatalogKmsErrorMessage = 'catalog error';
 
 export const getCatalogKmsMocks = ({
   isCatalogOkmsKo = false,
@@ -11,11 +14,11 @@ export const getCatalogKmsMocks = ({
   return [
     {
       url: '/order/catalog/public/okms',
-      response: isCatalogOkmsKo
-        ? {
-            message: 'catalog error',
-          }
-        : catalogMock,
+      response: buildMswResponseMock({
+        data: catalogMock,
+        errorMessage: getCatalogKmsErrorMessage,
+        isError: isCatalogOkmsKo,
+      }),
       status: isCatalogOkmsKo ? 500 : 200,
       api: 'v6',
     },

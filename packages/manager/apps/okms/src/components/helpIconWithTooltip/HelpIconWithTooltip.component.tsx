@@ -4,9 +4,13 @@ import { OdsText, OdsIcon, OdsTooltip } from '@ovhcloud/ods-components/react';
 
 type HelpIconWithTooltipProps = {
   label: string;
+  iconColorClass?: string;
 };
 
-export const HelpIconWithTooltip = ({ label }: HelpIconWithTooltipProps) => {
+export const HelpIconWithTooltip = ({
+  label,
+  iconColorClass = 'text-[--ods-color-form-element-text-default]',
+}: HelpIconWithTooltipProps) => {
   const tooltipId = useId();
 
   return (
@@ -14,7 +18,7 @@ export const HelpIconWithTooltip = ({ label }: HelpIconWithTooltipProps) => {
       <OdsIcon
         id={`trigger-${tooltipId}`}
         aria-labelledby={`tooltip-${tooltipId}`}
-        className="text-[--ods-color-form-element-text-default]"
+        className={iconColorClass}
         name="circle-question"
       />
       <OdsTooltip
