@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.98.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.97.0...@ovh-ux/manager-pci@6.98.0) (2025-10-09)
+
+
+### Features
+
+* **db:** remove db angular app and unused code ([caf83ff](https://github.com/ovh/manager/commit/caf83ff22815731161db0812ccffee36d43ceb6e)), closes [#DATATR-2480](https://github.com/ovh/manager/issues/DATATR-2480)
+
+
+
+
+
+# [6.97.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.96.1...@ovh-ux/manager-pci@6.97.0) (2025-10-06)
+
+
+### Features
+
+* **pci-kubernetes:** update eos load balancer ([144f1fd](https://github.com/ovh/manager/commit/144f1fd3b65911a1f4e4780caac2e44484c5ac30)), closes [#TAPC-5168](https://github.com/ovh/manager/issues/TAPC-5168)
+
+
+
+
+
 ## [6.96.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.96.0...@ovh-ux/manager-pci@6.96.1) (2025-09-25)
 
 

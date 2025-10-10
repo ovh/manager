@@ -12,6 +12,9 @@ export enum Locale {
   'pt_PT' = 'pt_PT',
 }
 
+const isLocale = (value: unknown): value is Locale =>
+  Object.values(Locale).some((locale) => locale === value);
+
 /**
  * Fetches and keep synced the current locale
  * @returns The current locale string
@@ -22,14 +25,18 @@ export function useLocale() {
   // fetch initial locale
   useEffect(() => {
     const fetchLocale = async () => {
-      const l = (await shellCtx.i18n.getLocale()) as Locale;
-      setLocale(l);
+      const l = await shellCtx.i18n.getLocale();
+      if (isLocale(l)) {
+        setLocale(l);
+      }
     };
     fetchLocale();
   }, [shellCtx.i18n]);
   // update on locale change
   shellCtx.i18n.onLocaleChange(({ locale: newLocale }: { locale: string }) => {
-    setLocale(newLocale as Locale);
+    if (isLocale(newLocale)) {
+      setLocale(newLocale);
+    }
   });
   return locale;
 }

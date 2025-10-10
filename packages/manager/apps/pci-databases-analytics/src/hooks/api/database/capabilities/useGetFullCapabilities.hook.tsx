@@ -1,12 +1,13 @@
-import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
 import * as database from '@/types/cloud/project/database';
 import {
   getCapabilities,
   getEnginesCapabilities,
   getRegionsCapabilities,
 } from '@/data/api/database/capabilities.api';
-import { CdbError } from '@/data/api/database';
-import { useQueryImmediateRefetch } from '../../useImmediateRefetch';
+import {
+  OptionsFor,
+  useQueryImmediateRefetch,
+} from '../../useImmediateRefetch';
 
 export interface FullCapabilities {
   /** Disks available */
@@ -22,33 +23,37 @@ export interface FullCapabilities {
   /** Regions available */
   regions: database.capabilities.RegionCapabilities[];
 }
+
+const getFullCapabilities = async (
+  projectId: string,
+): Promise<FullCapabilities> => {
+  const [
+    capabilities,
+    engineCapabilities,
+    regionsCapabilities,
+  ] = await Promise.all([
+    getCapabilities(projectId),
+    getEnginesCapabilities(projectId),
+    getRegionsCapabilities(projectId),
+  ]);
+
+  return {
+    disks: capabilities.disks,
+    engines: engineCapabilities,
+    flavors: capabilities.flavors,
+    options: capabilities.options,
+    plans: capabilities.plans,
+    regions: regionsCapabilities,
+  };
+};
 export function useGetFullCapabilities(
   projectId: string,
-  options: Omit<QueryObserverOptions, 'queryKey'> = {},
+  options?: OptionsFor<typeof getFullCapabilities>,
 ) {
   const queryKey = [projectId, 'database/full-capabilities'];
   return useQueryImmediateRefetch({
     queryKey,
-    queryFn: async () => {
-      const [
-        capabilities,
-        engineCapabilities,
-        regionsCapabilities,
-      ] = await Promise.all([
-        getCapabilities(projectId),
-        getEnginesCapabilities(projectId),
-        getRegionsCapabilities(projectId),
-      ]);
-
-      return {
-        disks: capabilities.disks,
-        engines: engineCapabilities,
-        flavors: capabilities.flavors,
-        options: capabilities.options,
-        plans: capabilities.plans,
-        regions: regionsCapabilities,
-      };
-    },
+    queryFn: () => getFullCapabilities(projectId),
     ...options,
-  }) as UseQueryResult<FullCapabilities, CdbError>;
+  });
 }

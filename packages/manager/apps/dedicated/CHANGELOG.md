@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.61.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.61.1...@ovh-ux/manager-dedicated@20.61.2) (2025-10-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.61.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.61.0...@ovh-ux/manager-dedicated@20.61.1) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+# [20.61.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.60.0...@ovh-ux/manager-dedicated@20.61.0) (2025-10-07)
+
+
+### Features
+
+* **dedicated.nsd:** go to attack event with date - 1h ([0e0f20d](https://github.com/ovh/manager/commit/0e0f20d55fe65af5dafd0a2d46a67d12845f967d)), closes [#MANAGER-19503](https://github.com/ovh/manager/issues/MANAGER-19503)
+
+
+
+
+
+# [20.60.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.59.9...@ovh-ux/manager-dedicated@20.60.0) (2025-10-07)
+
+
+### Features
+
+* **dedicated:** clean 7th of october 2025 eol personal templates banner ([49402b7](https://github.com/ovh/manager/commit/49402b7ffd821bffc2f17e51365169fae77cb432)), closes [#MANAGER-19856](https://github.com/ovh/manager/issues/MANAGER-19856)
+
+
+
+
+
+## [20.59.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.59.8...@ovh-ux/manager-dedicated@20.59.9) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.59.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.59.7...@ovh-ux/manager-dedicated@20.59.8) (2025-10-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
 ## [20.59.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.59.6...@ovh-ux/manager-dedicated@20.59.7) (2025-10-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

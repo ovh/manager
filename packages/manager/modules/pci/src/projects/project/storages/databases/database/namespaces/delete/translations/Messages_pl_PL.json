@@ -1,8 +1,0 @@
-{
-  "pci_databases_namespaces_delete_namespace_confirm": "Zatwierdź",
-  "pci_databases_namespaces_delete_namespace_cancel": "Anuluj",
-  "pci_databases_namespaces_delete_namespace": "Usuń przestrzeń nazw",
-  "pci_databases_namespaces_delete_namespace_description": "Czy chcesz usunąć przestrzeń nazw?",
-  "pci_databases_namespaces_delete_namespace_success_message": "Przestrzeń nazw została usunięta.",
-  "pci_databases_namespaces_delete_namespace_error_message": "Wystąpił błąd podczas usuwania przestrzeni nazw: {{message}}"
-}

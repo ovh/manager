@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-exchange",
-  "version": "4.15.1",
+  "version": "4.15.2",
   "private": true,
   "description": "Exchange product.",
   "repository": {
@@ -27,7 +27,7 @@
     "@ovh-ux/ng-log-live-tail": "^2.6.0",
     "@ovh-ux/ng-ovh-chart": "^1.0.0",
     "@ovh-ux/ng-ovh-export-csv": "^2.0.4",
-    "@ovh-ux/ng-ovh-feature-flipping": "^1.1.1",
+    "@ovh-ux/ng-ovh-feature-flipping": "^1.1.6",
     "@ovh-ux/ng-ovh-http": "^5.0.4",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.5",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.4",

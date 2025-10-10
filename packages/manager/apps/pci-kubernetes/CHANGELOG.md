@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.32.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.32.1...@ovh-ux/manager-pci-kubernetes-app@0.32.2) (2025-10-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4391] ([d81075a](https://github.com/ovh/manager/commit/d81075a6695478d7dc99506b5dd13e2c465aa464))
+
+
+
+
+
+## [0.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.32.0...@ovh-ux/manager-pci-kubernetes-app@0.32.1) (2025-10-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4383] ([05a1ea9](https://github.com/ovh/manager/commit/05a1ea9330111c74151177ea18570a7eda24a5c3))
+
+
+
+
+
+# [0.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.31.3...@ovh-ux/manager-pci-kubernetes-app@0.32.0) (2025-10-06)
+
+
+### Features
+
+* **pci-kubernetes:** add reset kubeconfig for 3az ([de1dc68](https://github.com/ovh/manager/commit/de1dc68dbf5e15e112336c68fc01e16244fcc032)), closes [#TAPC-4368](https://github.com/ovh/manager/issues/TAPC-4368)
+
+
+
+
+
 ## [0.31.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.31.2...@ovh-ux/manager-pci-kubernetes-app@0.31.3) (2025-10-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app

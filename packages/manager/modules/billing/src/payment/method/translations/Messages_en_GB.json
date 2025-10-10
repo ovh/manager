@@ -19,6 +19,6 @@
   "billing_payment_method_table_action_delete": "Delete this payment method",
   "billing_payment_method_information_add_ovh_sas": "When you register a payment method, you authorise OVH S.A.S to keep it in order to facilitate payment for your future orders.",
   "billing_payment_method_information_add_default": "The means of payment registered as the “default” payment method is used automatically at each expiry date to pay for your services with automatic renewal and pay-as-you-go. You will be notified before each new payment date. You can change, delete or add payment methods at any time using the interface below. To use services with automatic renewal or pay-as-you-go, you need to have at least one valid payment method registered.",
-  "billing_payment_method_payment_by_cheque_information": "Payment by check will no longer be accepted from 01 December 2025. To simplify your regulations, we offer other alternatives. Please click on the action button ",
-  "billing_payment_method_payment_by_cheque_information_button": "\"Add a payment method\""
+  "billing_payment_method_payment_by_cheque_information": "Starting on 1 December 2025, we’ll no longer accept payment via cheque. See the other methods we’ve made available to simplify your payments. Click the button ",
+  "billing_payment_method_payment_by_cheque_information_button": "‘Add a payment method’"
 }

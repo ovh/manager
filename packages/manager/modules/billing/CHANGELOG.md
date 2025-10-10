@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.51.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.51.3...@ovh-ux/manager-billing@0.51.4) (2025-10-09)
+
+
+### Bug Fixes
+
+* **billing:** incorrect service infos url generation ([0da74ed](https://github.com/ovh/manager/commit/0da74ed1330c26a22824dfe0e9fc39dda259ae72)), closes [#MANAGER-19966](https://github.com/ovh/manager/issues/MANAGER-19966) [#INC0158577](https://github.com/ovh/manager/issues/INC0158577)
+
+
+
+
+
+## [0.51.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.51.2...@ovh-ux/manager-billing@0.51.3) (2025-10-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4377] ([619575d](https://github.com/ovh/manager/commit/619575df48aa15cb882ed39168b77073a3a6434b))
+* **i18n:** add missing translations [CDS 4381] ([4945007](https://github.com/ovh/manager/commit/494500772213000e029a07753e43cd5515fe3df3))
+* remove unused translations [CDS] ([b7ea633](https://github.com/ovh/manager/commit/b7ea633a831e20a52039e453cc41b9a486e5967a))
+
+
+
+
+
+## [0.51.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.51.1...@ovh-ux/manager-billing@0.51.2) (2025-10-06)
+
+
+### Bug Fixes
+
+* **billing:** fix terminate payload ([d16fc81](https://github.com/ovh/manager/commit/d16fc81596567f7aa445ca835ccd36dde257c59f)), closes [#MANAGER-16806](https://github.com/ovh/manager/issues/MANAGER-16806)
+
+
+
+
+
 ## [0.51.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.51.0...@ovh-ux/manager-billing@0.51.1) (2025-10-02)
 
 

@@ -1,5 +1,7 @@
 import { useMemo } from 'react';
+
 import { useParams } from 'react-router-dom';
+
 import { useProductAvailability } from '@ovh-ux/manager-pci-common';
 
 export enum RegionType {
@@ -15,9 +17,7 @@ const useHas3AZRegions = () => {
     product: 'kubernetes',
   });
 
-  const product = availability?.products.find(
-    ({ name }) => name === 'kubernetes',
-  );
+  const product = availability?.products.find(({ name }) => name === 'kubernetes');
 
   const regionTypes = product?.regions.map(({ type }) => type) || [];
 
@@ -28,9 +28,7 @@ const useHas3AZRegions = () => {
   }) as RegionType[];
 
   return {
-    contains3AZ: useMemo(() => uniqueRegions.includes(RegionType.Region3Az), [
-      uniqueRegions,
-    ]),
+    contains3AZ: useMemo(() => uniqueRegions.includes(RegionType.Region3Az), [uniqueRegions]),
     uniqueRegions,
   };
 };

@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.18.0...@ovh-ux/manager-pci-object-storage-app@0.18.1) (2025-10-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4391] ([d81075a](https://github.com/ovh/manager/commit/d81075a6695478d7dc99506b5dd13e2c465aa464))
+
+
+
+
+
+# [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.17.7...@ovh-ux/manager-pci-object-storage-app@0.18.0) (2025-10-09)
+
+
+### Features
+
+* **object-storage:** drawer helper ([d8ede63](https://github.com/ovh/manager/commit/d8ede63a3c7ee6164a1b966b48debdb76ac6f531)), closes [#TAPC-4643](https://github.com/ovh/manager/issues/TAPC-4643)
+
+
+
+
+
+## [0.17.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.17.6...@ovh-ux/manager-pci-object-storage-app@0.17.7) (2025-10-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4381] ([4945007](https://github.com/ovh/manager/commit/494500772213000e029a07753e43cd5515fe3df3))
+* **i18n:** add missing translations [CDS 4383] ([05a1ea9](https://github.com/ovh/manager/commit/05a1ea9330111c74151177ea18570a7eda24a5c3))
+
+
+
+
+
 ## [0.17.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.17.5...@ovh-ux/manager-pci-object-storage-app@0.17.6) (2025-10-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app

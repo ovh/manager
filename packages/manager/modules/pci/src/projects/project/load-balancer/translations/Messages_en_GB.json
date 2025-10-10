@@ -10,7 +10,7 @@
   "pci_projects_project_load_balancer_list_region": "Region",
   "pci_projects_project_load_balancer_list_id": "ID",
   "pci_projects_project_load_balancer_list_order": "Order",
-  "pci_projects_project_load_balancer_end_service": "The Load Balancer for Managed Kubernetes Service will be discontinued (End of Sale and End of Support) in September 2025, with EoL scheduled for March 2026. To keep accessing supported services, we recommend starting your migration before September 2025, and ideally completing it before March 2026 to avoid any service interruptions.",
-  "pci_projects_project_load_balancer_end_service_welcome": "The Load Balancer for Managed Kubernetes Service will be discontinued (End of Sale and End of Support) in September 2025, with EoL scheduled for March 2026. To avoid the need to migrate later, we recommend switching to the Public Cloud Load Balancer (Octavia) right away.",
+  "pci_projects_project_load_balancer_end_service": "The Load Balancer for Managed Kubernetes Service will be discontinued (End of Sale and End of Support) on 6 November 2025, with EoL scheduled for July 2026. To keep accessing supported services, we recommend starting your migration before 6 November 2025, and ideally completing it before July 2026 to avoid any service interruptions.",
+  "pci_projects_project_load_balancer_end_service_welcome": "The Load Balancer for Managed Kubernetes Service will be discontinued (End of Sale and End of Support) on 6 November 2025, with EoL scheduled for July 2026. To avoid the need to migrate later, we recommend switching to the Public Cloud Load Balancer (Octavia) right away.",
   "pci_projects_project_load_balancer_more_information": "More information here"
 }

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.11.0...@ovh-ux/manager-pci-private-registry-app@0.11.1) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
+
+
+
+
+
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.10.12...@ovh-ux/manager-pci-private-registry-app@0.11.0) (2025-10-06)
+
+
+### Features
+
+* **pci-private-registry:** select default 3-az tile ([d9654c5](https://github.com/ovh/manager/commit/d9654c51fc6b881a2118e9c372645fd883d05695)), closes [#TAPC-4984](https://github.com/ovh/manager/issues/TAPC-4984)
+
+
+
+
+
 ## [0.10.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.10.11...@ovh-ux/manager-pci-private-registry-app@0.10.12) (2025-10-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app

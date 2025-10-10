@@ -1,4 +1,8 @@
-import { OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,
@@ -6,13 +10,13 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { Notifications, useMe } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
+
 import { LogsView } from '@ovh-ux/manager-pci-common';
-import { LOGS_INFO } from './constants';
+import { Notifications, useMe } from '@ovh-ux/manager-react-components';
+
 import { KubeLogsProvider } from './KubeLogsProvider';
+import { LOGS_INFO } from './constants';
 
 export default function LogsPage() {
   const { t } = useTranslation('logs');

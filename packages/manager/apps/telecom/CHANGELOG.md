@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.16.2...@ovh-ux/manager-telecom@16.16.3) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.16.1...@ovh-ux/manager-telecom@16.16.2) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
 ## [16.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.16.0...@ovh-ux/manager-telecom@16.16.1) (2025-10-02)
 
 

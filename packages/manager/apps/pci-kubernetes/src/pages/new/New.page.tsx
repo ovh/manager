@@ -1,7 +1,14 @@
 import { useContext } from 'react';
+
 import { useHref, useNavigate } from 'react-router-dom';
+
 import { Translation, useTranslation } from 'react-i18next';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import { OsdsBreadcrumb, OsdsIcon, OsdsLink } from '@ovhcloud/ods-components/react';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   PciDiscoveryBanner,
@@ -10,15 +17,6 @@ import {
   useProject,
   useParam as useSafeParams,
 } from '@ovh-ux/manager-pci-common';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
-
-import {
-  OsdsBreadcrumb,
-  OsdsIcon,
-  OsdsLink,
-} from '@ovhcloud/ods-components/react';
 import {
   Headers,
   Notifications,
@@ -26,23 +24,23 @@ import {
   useNotifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
+import { useCreateKubernetesCluster } from '@/api/hooks/useKubernetes';
+import { isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
+import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import useHas3AZRegions from '@/hooks/useHas3AZRegions';
+import { PAGE_PREFIX } from '@/tracking.constants';
+import { DeploymentMode, TClusterPlanEnum } from '@/types';
+
 import {
   TClusterCreationForm,
   TNonNullableForm,
   useClusterCreationStepper,
 } from './hooks/useCusterCreationStepper';
-
-import { useCreateKubernetesCluster } from '@/api/hooks/useKubernetes';
-import { PAGE_PREFIX } from '@/tracking.constants';
 import stepsConfig from './steps/stepsConfig';
-import useHas3AZRegions from '@/hooks/useHas3AZRegions';
-import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
-import { isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
-import { DeploymentMode, TClusterPlanEnum } from '@/types';
 
-const formIsNonNullable = (
-  form: TClusterCreationForm,
-): form is TNonNullableForm => {
+const formIsNonNullable = (form: TClusterCreationForm): form is TNonNullableForm => {
   if (!form.region?.type) return false;
 
   const regionType = form.region.type as DeploymentMode;
@@ -70,27 +68,18 @@ export default function NewPage() {
   const hrefProject = useProjectUrl('public-cloud');
   const stepper = useClusterCreationStepper(has3AZ);
   const { addError, addSuccess } = useNotifications();
-  const isDiscovery = isDiscoveryProject(project as TProject);
+  const isDiscovery = isDiscoveryProject(project);
 
-  const {
-    createCluster,
-    isPending: isCreationPending,
-  } = useCreateKubernetesCluster({
+  const { createCluster, isPending: isCreationPending } = useCreateKubernetesCluster({
     projectId,
     onSuccess: () => {
       navigate('..');
-      addSuccess(
-        <Translation ns="add">
-          {(tr) => tr('kubernetes_add_success')}
-        </Translation>,
-        true,
-      );
+      addSuccess(<Translation ns="add">{(tr) => tr('kubernetes_add_success')}</Translation>, true);
     },
     onError: (err: ApiError) => {
       stepper.confirm.step.unlock();
       if (err.status === 412) {
-        const kubeErrorId = (err?.response?.data?.message?.match(/\[(.*)\]/) ||
-          [])[0];
+        const kubeErrorId = (err?.response?.data?.message?.match(/\[(.*)\]/) || [])[0];
         addError(
           <>
             <Translation ns="add">
@@ -158,8 +147,7 @@ export default function NewPage() {
         nodesSubnetId: stepper.form.network.subnet?.id,
         privateNetworkConfiguration: {
           defaultVrackGateway: stepper.form.network.gateway?.ip || '',
-          privateNetworkRoutingAsDefault:
-            stepper.form.network.gateway?.isEnabled,
+          privateNetworkRoutingAsDefault: stepper.form.network.gateway?.isEnabled,
         },
       });
   };
@@ -195,9 +183,7 @@ export default function NewPage() {
         <Headers title={t('kubernetes_add')} />
       </div>
       {/**  need to hide the global notif if opened * */}
-      {(!stepper.location.step.isOpen || stepper.location.step.isChecked) && (
-        <Notifications />
-      )}
+      {(!stepper.location.step.isOpen || stepper.location.step.isChecked) && <Notifications />}
 
       <div className="mb-5 sticky top-0 z-50">
         {project && <PciDiscoveryBanner project={project} />}
@@ -210,7 +196,7 @@ export default function NewPage() {
             (
               {
                 key,
-                // eslint-disable-next-line @typescript-eslint/naming-convention
+
                 component: StepComponent,
                 titleKey,
                 extraProps = {},
@@ -225,8 +211,7 @@ export default function NewPage() {
                 edit={{
                   action: stepper[key].edit,
                   label: t('stepper:common_stepper_modify_this_step'),
-                  isDisabled:
-                    isCreationPending || (key === 'location' && isDiscovery),
+                  isDisabled: isCreationPending || (key === 'location' && isDiscovery),
                 }}
               >
                 <StepComponent

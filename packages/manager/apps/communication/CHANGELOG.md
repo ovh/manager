@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.1.10...@ovh-ux/manager-communication-app@0.1.11) (2025-10-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-communication-app
+
+
+
+
+
+## [0.1.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.1.9...@ovh-ux/manager-communication-app@0.1.10) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-communication-app
+
+
+
+
+
 ## [0.1.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.1.8...@ovh-ux/manager-communication-app@0.1.9) (2025-10-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-communication-app

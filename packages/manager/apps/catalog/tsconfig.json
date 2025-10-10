@@ -1,29 +1,18 @@
 {
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react",
   "compilerOptions": {
-    "lib": ["dom", "es2021"],
-    "noEmit": true,
-    "target": "es2021",
     "types": ["vite/client", "node"],
-    "module": "ES2020",
-    "moduleResolution": "node",
-    "removeComments": true,
     "outDir": "dist",
-    "esModuleInterop": true,
-    "isolatedModules": true,
-    "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true,
     "noImplicitAny": true,
-    "declaration": true,
     "resolveJsonModule": true,
     "allowJs": true,
-    "jsx": "react",
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
       "@playwright-helpers": ["../../../../playwright-helpers/index"],
       "@playwright-helpers/*": ["../../../../playwright-helpers/*"]
-    }
+    },
+    "baseUrl": "."
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "src/**/*.json"],
   "exclude": ["node_modules", "dist", "types", "src/__tests__"]
 }

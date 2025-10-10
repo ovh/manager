@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-databases-analytics-app",
-  "version": "1.28.5",
+  "version": "1.29.0",
   "private": true,
   "description": "pci-databases-analytics",
   "repository": {
@@ -13,10 +13,13 @@
   "type": "module",
   "scripts": {
     "build": "tsc --project tsconfig.build.json && vite build",
-    "coverage": "vitest run --coverage",
+    "build:strict": "tsc --project tsconfig.strict.json && vite build",
+    "coverage": "manager-test run --coverage",
+    "lint:modern": "manager-lint --config eslint.config.mjs ./src",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "start": "tsc && vite",
-    "test": "vitest run",
-    "test-ui": "vitest --ui --coverage.enabled=true"
+    "test": "manager-test run",
+    "test-ui": "manager-test --ui --coverage.enabled=true"
   },
   "dependencies": {
     "@datatr-ux/ods-tailwind-config": "1.0.3",
@@ -24,13 +27,13 @@
     "@datatr-ux/uxlib": "0.0.12-beta-3",
     "@hookform/resolvers": "^3.3.4",
     "@monaco-editor/react": "^4.7.0",
-    "@ovh-ux/manager-config": "^8.6.3",
-    "@ovh-ux/manager-core-api": "^0.18.5",
+    "@ovh-ux/manager-config": "^8.6.4",
+    "@ovh-ux/manager-core-api": "^0.18.6",
     "@ovh-ux/manager-pci-common": "^0.16.4",
     "@ovh-ux/manager-react-components": "^1.46.0",
     "@ovh-ux/manager-react-shell-client": "^0.9.3",
-    "@ovh-ux/request-tagger": "^0.5.3",
-    "@ovh-ux/shell": "^4.7.8",
+    "@ovh-ux/request-tagger": "^0.5.4",
+    "@ovh-ux/shell": "^4.7.9",
     "@ovhcloud/ods-theme-blue-jeans": "17.2.2",
     "@tanstack/react-query": "^5.51.21",
     "@tanstack/react-table": "^8.20.1",
@@ -55,21 +58,15 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
-    "@ovh-ux/manager-vite-config": "^0.13.2",
+    "@ovh-ux/manager-static-analysis-kit": "*",
+    "@ovh-ux/manager-tests-setup": "latest",
+    "@ovh-ux/manager-vite-config": "^0.13.3",
     "@tanstack/react-query-devtools": "^5.51.21",
-    "@testing-library/jest-dom": "^6.1.5",
-    "@testing-library/react": "^14.1.2",
-    "@testing-library/user-event": "^13.2.1",
     "@types/jest": "^29.5.11",
     "@types/node": "^20.10.6",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",
-    "@vitejs/plugin-react": "^4.2.1",
-    "@vitest/coverage-v8": "^2.1.9",
-    "@vitest/ui": "^2.1.9",
-    "monaco-editor": "^0.52.2",
-    "typescript": "^5.3.3",
-    "vitest": "^2.1.9"
+    "monaco-editor": "^0.52.2"
   },
   "regions": [
     "CA",

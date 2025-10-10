@@ -1,35 +1,30 @@
+import { FormEvent, useMemo, useState } from 'react';
+
+import { Button } from '@datatr-ux/uxlib';
+import { Check, Clock12 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+
 import {
-  OsdsMessage,
-  OsdsText,
-  OsdsSpinner,
-} from '@ovhcloud/ods-components/react';
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import {
   ODS_MESSAGE_TYPE,
   ODS_SPINNER_SIZE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { Check, Clock12 } from 'lucide-react';
-import { Button } from '@datatr-ux/uxlib';
-import { useMemo, useState } from 'react';
-import {
-  useCatalogPrice,
-  convertHourlyPriceToMonthly,
-} from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
+import { OsdsMessage, OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { convertHourlyPriceToMonthly, useCatalogPrice } from '@ovh-ux/manager-react-components';
+
 import RadioTile from '@/components/radio-tile/RadioTile.component';
-
-import { StepState } from '../hooks/useStep';
 import { cn, isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
-
 import { DeploymentMode, TClusterPlan, TClusterPlanEnum } from '@/types';
 
 import usePlanData from '../hooks/usePlanData';
+import { StepState } from '../hooks/useStep';
 
 const PlanTile = ({
   onSubmit,
@@ -41,13 +36,11 @@ const PlanTile = ({
   type: DeploymentMode;
 }) => {
   const [selected, setSelected] = useState<TClusterPlan>(
-    isMonoDeploymentZone(type)
-      ? TClusterPlanEnum.FREE
-      : TClusterPlanEnum.STANDARD,
+    isMonoDeploymentZone(type) ? TClusterPlanEnum.FREE : TClusterPlanEnum.STANDARD,
   );
   const { t } = useTranslation(['add', 'stepper']);
 
-  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSubmit(selected);
   };
@@ -68,10 +61,7 @@ const PlanTile = ({
       : () => 0;
   };
 
-  const sortedPlans = useMemo(() => [...plans].sort(getSortOrder(type)), [
-    type,
-    plans,
-  ]);
+  const sortedPlans = useMemo(() => [...plans].sort(getSortOrder(type)), [type, plans]);
 
   return (
     <form data-testid="form" onSubmit={onSubmitHandler}>
@@ -98,9 +88,7 @@ const PlanTile = ({
                   data-testid={`plan-tile-radio-tile-${plan.value}`}
                   name="plan-select"
                   tileClassName="h-full "
-                  onChange={() =>
-                    !planIsDisabled(plan.value) && setSelected(plan.value)
-                  }
+                  onChange={() => !planIsDisabled(plan.value) && setSelected(plan.value)}
                   value={plan.value}
                   checked={selected === plan.value}
                 >
@@ -108,9 +96,7 @@ const PlanTile = ({
                     <PlanTile.Header
                       type={type}
                       value={plan.value}
-                      selected={
-                        !planIsDisabled(plan.value) && selected === plan.value
-                      }
+                      selected={!planIsDisabled(plan.value) && selected === plan.value}
                       title={plan.title}
                       description={plan.description}
                       disabled={planIsDisabled(plan.value)}
@@ -181,17 +167,10 @@ PlanTile.Banner = function PlanTileBanner({ type }: { type: DeploymentMode }) {
   );
 };
 
-PlanTile.LockedView = function PlanTileLockedView({
-  value,
-}: {
-  value: TClusterPlan;
-}) {
+PlanTile.LockedView = function PlanTileLockedView({ value }: { value: TClusterPlan }) {
   const { t } = useTranslation(['add']);
   const { plans } = usePlanData();
-  const plan = useMemo(() => plans.find((p) => p.value === value), [
-    plans,
-    value,
-  ]);
+  const plan = useMemo(() => plans.find((p) => p.value === value), [plans, value]);
 
   if (!plan) return null;
 
@@ -280,23 +259,16 @@ PlanTile.Footer = function PlanTileFooter({
   isDisabled: boolean;
 }) {
   const { t } = useTranslation(['add', 'stepper', 'flavor-billing']);
-  const {
-    getFormattedHourlyCatalogPrice,
-    getFormattedMonthlyCatalogPrice,
-  } = useCatalogPrice(5);
+  const { getFormattedHourlyCatalogPrice, getFormattedMonthlyCatalogPrice } = useCatalogPrice(5);
   const hasValidPrice = typeof price === 'number';
-  const hourlyPrice = hasValidPrice
-    ? getFormattedHourlyCatalogPrice(price)
-    : null;
+  const hourlyPrice = hasValidPrice ? getFormattedHourlyCatalogPrice(price) : null;
 
   const monthlyPrice = hasValidPrice
     ? getFormattedMonthlyCatalogPrice(convertHourlyPriceToMonthly(price))
     : null;
 
   if (isDisabled)
-    return (
-      <div className=" mt-auto w-full rounded-b-md border-none bg-neutral-100 min-h-10" />
-    );
+    return <div className=" mt-auto w-full rounded-b-md border-none bg-neutral-100 min-h-10" />;
 
   return (
     <div className=" mt-auto w-full rounded-b-md border-none bg-neutral-100">
