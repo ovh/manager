@@ -44,8 +44,8 @@
     "pnpm": "packages/manager/modules/billing-components"
   },
   {
-    "turbo": "--filter @ovh-ux/billing-informations",
-    "pnpm": "packages/manager/modules/billing-informations"
+    "turbo": "--filter @ovh-ux/manager-billing-informations",
+    "pnpm": "packages/manager/modules/manager-billing-informations"
   },
   {
     "turbo": "--filter @ovh-ux/manager-bm-server-components",
