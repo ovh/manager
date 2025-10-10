@@ -3,6 +3,7 @@ import useTranslation from '@/hooks/usePermissiveTranslation.hook';
 import { useProjectIdFromParams } from '@/hooks/useProjectIdFromParams';
 import { useDashboardSections } from './useDashboardSections.hook';
 import TileItem from './TileItem.component';
+import { DashboardTile } from '@/data/types/dashboard.type';
 
 export default function DashboardTiles() {
   const projectId = useProjectIdFromParams();
@@ -21,7 +22,7 @@ export default function DashboardTiles() {
     >
       {tiles
         .filter(
-          (tile) =>
+          (tile: DashboardTile) =>
             tile.items.some((item) => !item.hideTileIfNoOtherItems) &&
             tile.items.length > 0,
         )
@@ -44,7 +45,7 @@ export default function DashboardTiles() {
                     <ManagerTile.Divider />
                   </>
                 )}
-                {tile.items.map((item, itemIdx) => (
+                {tile.items.map((item, itemIdx: number) => (
                   <TileItem
                     key={`${tileIdx}-${itemIdx}`}
                     item={item}
