@@ -12,6 +12,7 @@ export type UserContext = {
   address?: string;
   city?: string;
   setCompany: (company: Company | null) => void;
+  isSMSConsentAvailable: boolean;
 };
 
 const userContext = createContext<UserContext | undefined>(undefined);
