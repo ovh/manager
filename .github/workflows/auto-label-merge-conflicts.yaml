@@ -1,6 +1,6 @@
 name: Auto-label merge conflicts
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   triage:
@@ -10,5 +10,5 @@ jobs:
         with:
           CONFLICT_LABEL_NAME: "has conflicts"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MAX_RETRIES: 5
-          WAIT_MS: 5000
+          MAX_RETRIES: 10
+          WAIT_MS: 10000
