@@ -4,7 +4,7 @@ import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { DASHBOARD_OTHER_ACTIONS_ITEMS } from '@/constants';
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
-import { useDashboardLinks } from '@/hooks/home/useDashboardLinks';
+import { useProjectIdInLinks } from '@/hooks/home/useProjectIdInLinks';
 import { useDashboardItemsFilteredByFA } from '@/hooks/useDashboardItemsFilteredByFA';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
 
@@ -16,7 +16,7 @@ function Others() {
   const filteredOtherActionItems = useDashboardItemsFilteredByFA(
     DASHBOARD_OTHER_ACTIONS_ITEMS,
   );
-  const otherActionItems = useDashboardLinks(filteredOtherActionItems);
+  const otherActionItems = useProjectIdInLinks(filteredOtherActionItems);
 
   const handleOtherActionClick = (item: { labelTranslationKey?: string }) => {
     // Track the click action

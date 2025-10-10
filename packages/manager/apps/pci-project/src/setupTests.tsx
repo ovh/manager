@@ -713,3 +713,8 @@ vi.mock(
     },
   }),
 );
+
+// Mock the dashboard links hook globally
+vi.mock('@/hooks/home/useProjectIdInLinks', () => ({
+  useProjectIdInLinks: (items: unknown[]) => items,
+}));
