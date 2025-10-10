@@ -17,7 +17,7 @@ export const urls = {
   dashboard: `/${subRoutes.serviceName}`,
 
   // DOMAIN
-  addDomain: `/${subRoutes.serviceName}/add-domain`,
+  addDomain: `/${subRoutes.serviceName}/multisite/add-domain`,
   detacheDomain: `/${subRoutes.serviceName}/multisite/${subRoutes.domain}/detache-domain`,
   modifyDomain: `/${subRoutes.serviceName}/multisite/${subRoutes.domain}/modify-domain`,
   orderDomain: `/${subRoutes.serviceName}/order-domain`,
@@ -47,6 +47,7 @@ export const urls = {
   // MULTISITE
   addWebSite: `/${subRoutes.serviceName}/multisite/add-website`,
   multisite: `/${subRoutes.serviceName}/multisite`,
+  editName: `/${subRoutes.serviceName}/multisite/edit-name`,
 
   // GIT
   associateGit: `/${subRoutes.serviceName}/multisite/${subRoutes.path}/associate-git`,
@@ -60,6 +61,6 @@ export const urls = {
   purgeCdn: `/${subRoutes.serviceName}/multisite/${subRoutes.domain}/purge-cdn`,
 
   // MODULE
-  addModule: `/${subRoutes.serviceName}/add-module`,
-  deleteModule: `/${subRoutes.serviceName}/delete-module/${subRoutes.path}`,
+  addModule: `/${subRoutes.serviceName}/multisite/add-module`,
+  deleteModule: `/${subRoutes.serviceName}/multisite/delete-module/${subRoutes.path}`,
 };
