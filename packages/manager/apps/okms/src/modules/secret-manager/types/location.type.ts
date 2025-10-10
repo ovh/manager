@@ -11,7 +11,7 @@ type CardinalPoint =
 
 type SpecificType = 'BACKUP' | 'LZ' | 'SNC' | 'STANDARD';
 
-type LocationType = 'LOCAL-ZONE' | 'REGION-1-AZ' | 'REGION-3-AZ';
+export type LocationType = 'LOCAL-ZONE' | 'REGION-1-AZ' | 'REGION-3-AZ';
 
 export type Location = {
   availabilityZones: string[];

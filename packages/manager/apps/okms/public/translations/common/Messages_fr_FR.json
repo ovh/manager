@@ -1,0 +1,5 @@
+{
+  "region_local_zone_description": "Déploiement de vos applications au plus près de vos utilisatrices et utilisateurs pour une faible latence et la résidence des données.",
+  "region_1_az_description": "Déploiement résilient et économique sur 1 zone de disponibilité.",
+  "region_3_az_description": "Déploiement haute résilience/haute disponibilité pour vos applications critiques sur 3 zones de disponibilité"
+}
