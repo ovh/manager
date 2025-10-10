@@ -8,5 +8,11 @@
   "pci_instance_creation_select_localization_label": "Select a location: ",
   "pci_instance_creation_select_localization_informations": "Local Zones are not eligible for Savings Plans.",
   "pci_instance_creation_continue_order": "Continue my order",
-  "pci_instance_creation_configuration_code": "Code of my configuration"
+  "pci_instance_creation_configuration_code": "Code of my configuration",
+  "pci_instance_creation_select_deployment_mode_title": "Filter a deployment mode",
+  "pci_instance_creation_select_deployment_mode_help_p1": "OVHcloud provides a robust and adaptable infrastructure, designed to meet a wide variety of use cases through deployment models that balance cost-effectiveness, redundancy, and fault tolerance. These different options allow users to choose the approach that best suits their requirements for resilience, availability, and performance.",
+  "pci_instance_creation_select_deployment_mode_help_p2": "1-AZ Region: These single-zone regions are optimal for workloads where cost optimization is a priority. They are perfectly suited for general needs such as storage, backup, or applications whose availability requirements do not necessitate multi-zone redundancy. They offer a good compromise between reliability, performance, and cost control.",
+  "pci_instance_creation_select_deployment_mode_help_p3": "3-AZ Region: This model is designed for critical applications requiring high availability and increased resilience. By replicating data across three distinct availability zones, 3-AZ regions significantly reduce the risk of downtime, ensuring business continuity even in the event of incidents affecting one or more zones. This level of redundancy is particularly suited to demanding production environments. To find out more, click here.",
+  "pci_instance_creation_select_deployment_mode_help_p4": "Local Zones: These infrastructures are specifically designed to meet needs requiring ultra-low latency or strict geographical constraints. By placing resources close to end users, Local Zones are ideal for use cases such as edge computing, video gaming, content delivery, or solutions requiring local regulatory compliance.",
+  "pci_instance_creation_select_localization_help": "OVHcloud offers its Public Cloud solution worldwide through our data centers located on several continents. It is therefore accessible in Europe, North America, and Asia-Pacific. Our goal: to expand the availability of our services to new geographical areas."
 }
