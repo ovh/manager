@@ -92,10 +92,12 @@ export const updateSecret = async ({
   cas,
   data: updateData,
 }: UpdateSecretParams) => {
+  const url = `okms/resource/${okmsId}/secret/${encodeURIComponent(
+    path,
+  )}${buildQueryString({ cas })}`;
+
   const { data } = await apiClient.v2.put<UpdateSecretResponse>(
-    `okms/resource/${okmsId}/secret/${encodeURIComponent(
-      path,
-    )}${buildQueryString({ cas })}`,
+    url,
     updateData,
   );
   return data;
