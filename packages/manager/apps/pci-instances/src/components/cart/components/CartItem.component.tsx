@@ -6,7 +6,11 @@ type TCartItemProps = PropsWithChildren<{
 }>;
 
 export const CartItem = ({ value, children }: TCartItemProps) => (
-  <AccordionItem value={value} data-testid={`cart-item-${value}`}>
+  <AccordionItem
+    className="border-none [&>button]:rounded-tl-[10px] [&>button]:rounded-tr-[10px]"
+    value={value}
+    data-testid={`cart-item-${value}`}
+  >
     {children}
   </AccordionItem>
 );
