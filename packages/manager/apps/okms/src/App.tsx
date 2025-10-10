@@ -1,7 +1,6 @@
-import React, { useEffect, useContext, Suspense } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   RouterProvider,
   createHashRouter,
@@ -11,6 +10,7 @@ import secretManagerRoutes from '@secret-manager/routes/routes';
 import rootRoutes from '@/routes/rootRoutes';
 import kmsRoutes from '@/routes/routes';
 import Loading from '@/components/Loading/Loading';
+import { useShellContext } from '@/common/hooks/useShellContext';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,7 +21,7 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-  const { shell } = useContext(ShellContext);
+  const { shell } = useShellContext();
   const router = createHashRouter(
     createRoutesFromElements([rootRoutes, kmsRoutes, secretManagerRoutes]),
   );
