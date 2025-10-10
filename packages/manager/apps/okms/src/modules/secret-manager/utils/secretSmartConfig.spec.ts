@@ -37,7 +37,11 @@ describe('getSecretSmartConfig', () => {
     expectedValue: string | number | boolean;
     expectedOrigin: 'SECRET' | 'DOMAIN' | 'DEFAULT';
     expectedIsCasRequiredSetOnOkms: boolean;
-    testedProperty: Exclude<keyof SecretSmartConfig, 'isCasRequiredSetOnOkms'>;
+    expectedMaxVersionsDefault?: number;
+    testedProperty: Exclude<
+      keyof SecretSmartConfig,
+      'isCasRequiredSetOnOkms' | 'maxVersionsDefault'
+    >;
   };
 
   const runTests = (testCases: TestCase[]) => {
@@ -49,6 +53,7 @@ describe('getSecretSmartConfig', () => {
         expectedValue,
         expectedOrigin,
         expectedIsCasRequiredSetOnOkms,
+        expectedMaxVersionsDefault,
         testedProperty,
       }) => {
         const secret = createMockSecret(secretOverrides);
@@ -65,11 +70,14 @@ describe('getSecretSmartConfig', () => {
         expect(result.isCasRequiredSetOnOkms).toBe(
           expectedIsCasRequiredSetOnOkms,
         );
+        if (expectedMaxVersionsDefault) {
+          expect(result.maxVersionsDefault).toBe(expectedMaxVersionsDefault);
+        }
       },
     );
   };
 
-  describe('When secret and domain config is not set', () => {
+  describe('When secret and domain config are both not set', () => {
     const testCases: TestCase[] = [
       {
         description: 'uses default maxVersion',
@@ -78,6 +86,7 @@ describe('getSecretSmartConfig', () => {
         expectedValue: 10,
         expectedOrigin: 'DEFAULT',
         expectedIsCasRequiredSetOnOkms: false,
+        expectedMaxVersionsDefault: 10,
         testedProperty: 'maxVersions',
       },
       {
