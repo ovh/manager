@@ -43,6 +43,7 @@ import {
   useZodTranslatedError,
 } from '@/hooks/zod/useZod';
 import { putMe } from '@/data/api/me';
+import { putSmsConsent } from '@/data/api/marketing';
 import { urls } from '@/routes/routes.constant';
 import { shouldAccessCompanySearch } from '@/helpers/flowHelper';
 
@@ -69,6 +70,7 @@ function AccountDetailsForm({
     companyNationalIdentificationNumber,
     address,
     city,
+    isSMSConsentAvailable,
   } = useUserContext();
 
   /**
@@ -77,11 +79,16 @@ function AccountDetailsForm({
   // const { t: tCountry } = useTranslation(NAMESPACES.COUNTRY);
   // const { t: tLanguage } = useTranslation(NAMESPACES.LANGUAGE);
 
-  type FormData = Partial<User> & { confirmSend?: boolean };
+  type FormData = Partial<User> & {
+    confirmSend?: boolean;
+    phoneType?: string;
+    smsConsent?: boolean;
+  };
 
   const zodSchema = useMemo(() => {
     return getZodSchemaFromRule(rules).extend({
       confirmSend: z.literal(true),
+      smsConsent: z.boolean().optional(),
     });
   }, [rules]);
 
@@ -108,12 +115,20 @@ function AccountDetailsForm({
       address: address || currentUser.address,
       city: city || currentUser.city,
       legalform: legalForm,
+      smsConsent: false,
     },
     mode: 'onTouched',
     resolver: zodResolver(zodSchema),
   });
 
   const phoneCountry = watch('phoneCountry');
+  const phoneType = watch('phoneType');
+
+  useEffect(() => {
+    if (phoneType === 'landline' && isSMSConsentAvailable) {
+      setValue('smsConsent', false);
+    }
+  }, [phoneType, isSMSConsentAvailable, setValue]);
 
   useEffect(() => {
     if (phoneCountry) {
@@ -122,10 +137,14 @@ function AccountDetailsForm({
   }, [phoneCountry]);
 
   const { mutate: addAccountDetails, isPending: isFormPending } = useMutation({
-    mutationFn: (payload: FormData) => {
+    mutationFn: async (payload: FormData) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { confirmSend, ...updatedUser } = payload;
-      return putMe(updatedUser);
+      const { confirmSend, smsConsent, ...updatedUser } = payload;
+      await putMe(updatedUser);
+
+      if (isSMSConsentAvailable && payload.phoneType === 'mobile') {
+        await putSmsConsent(smsConsent);
+      }
     },
     onSuccess: () => {
       // TODO: redirect user to query param or the hub
@@ -637,6 +656,45 @@ function AccountDetailsForm({
             )}
           />
         </div>
+
+        {isSMSConsentAvailable && phoneType === 'mobile' && (
+          <div className="flex flex-col">
+            <Controller
+              control={control}
+              name="smsConsent"
+              render={({ field: { name, value, onChange, onBlur } }) => (
+                <OdsFormField>
+                  <div className="w-full flex flex-row gap-4 items-center cursor-pointer ">
+                    <OdsCheckbox
+                      inputId={name}
+                      hasError={!!errors[name]}
+                      id={name}
+                      name={name}
+                      onBlur={onBlur}
+                      isChecked={Boolean(value)}
+                      value={(value as unknown) as string}
+                      onClick={() => onChange(!value)}
+                      class="flex-1"
+                    ></OdsCheckbox>
+                    <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                      <label htmlFor={name}>
+                        {t('account_details_field_sms_consent')}
+                      </label>
+                    </OdsText>
+                  </div>
+                  {errors.smsConsent && (
+                    <OdsText
+                      className="text-critical leading-[0.8]"
+                      preset="caption"
+                    >
+                      {tForm('required_field')}
+                    </OdsText>
+                  )}
+                </OdsFormField>
+              )}
+            />
+          </div>
+        )}
 
         <div className="flex flex-col">
           <Controller

@@ -23,6 +23,7 @@ export type RuleField =
   | 'phoneType'
   | 'purposeOfPurchase'
   | 'sex'
+  | 'smsConsent'
   | 'spareEmail'
   | 'vat'
   | 'zip';
