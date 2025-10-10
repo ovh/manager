@@ -82,6 +82,10 @@ This guarantees that each update is **safe, consistent, and verifiable**.
 ### 1.5 `--update-components`
 Synchronizes missing components from **ODS → Manager UI Kit**, creating all necessary folders, files, tests, and exports.
 
+```bash
+yarn muk-cli --update-components
+```
+
 This command supports both:
 - **Simple components**
 - **Nested components (with subcomponents)**
