@@ -6,7 +6,6 @@ import {
   BaseLayout,
   HeadersProps,
   ErrorBanner,
-  ChangelogButton,
   useFeatureAvailability,
   useServiceDetails,
 } from '@ovh-ux/manager-react-components';
@@ -17,14 +16,15 @@ import Loading from '@/components/Loading/Loading';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
-import { getOkmsResourceQueryKey } from '@/data/api/okms';
+import { okmsQueryKeys } from '@/data/api/okms';
 import { useOkmsById } from '@/data/hooks/useOkms';
-import { CHANGELOG_LINKS, SERVICE_KEYS_LABEL } from '@/constants';
+import { SERVICE_KEYS_LABEL } from '@/constants';
 import KmsTabs, {
   KmsTabProps,
 } from '@/components/layout-helpers/Dashboard/KmsTabs';
 import { KMS_FEATURES } from '@/utils/feature-availability/feature-availability.constants';
 import { KmsDashboardOutletContext } from './KmsDashboard.type';
+import { KmsChangelogButton } from '@/components/kmsChangelogButton/KmsChangelogButton.component';
 
 export default function DashboardPage() {
   const { t } = useTranslation([
@@ -140,7 +140,7 @@ export default function DashboardPage() {
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={() =>
           queryClient.refetchQueries({
-            queryKey: getOkmsResourceQueryKey(okmsId),
+            queryKey: okmsQueryKeys.detail(okmsId),
           })
         }
       />
@@ -150,7 +150,7 @@ export default function DashboardPage() {
   const headerProps: HeadersProps = {
     title: displayName,
     headerButton: <KmsGuidesHeader />,
-    changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+    changelogButton: <KmsChangelogButton />,
   };
 
   const contextValue: KmsDashboardOutletContext = {

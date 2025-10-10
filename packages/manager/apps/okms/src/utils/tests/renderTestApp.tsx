@@ -10,13 +10,43 @@ import {
   getServicesMocks,
   GetServicesMocksParams,
 } from '@ovh-ux/manager-module-common-api';
+
 import { render, waitFor, screen } from '@testing-library/react';
 import {
   getAuthenticationMocks,
   toMswHandlers,
   WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
-import { TestApp } from './TestApp';
+import {
+  createSecretsMock,
+  CreateSecretsMockParams,
+  deleteSecretMock,
+  DeleteSecretMockParams,
+  getSecretMock,
+  GetSecretMockParams,
+  getSecretsMock,
+  GetSecretsMockParams,
+} from '@secret-manager/mocks/secrets/secrets.handler';
+import {
+  getSecretConfigOkmsMock,
+  GetSecretConfigOkmsMockParams,
+} from '@secret-manager/mocks/secretConfigOkms/secretConfigOkms.handler';
+import {
+  getSecretConfigReferenceMock,
+  GetSecretConfigReferenceMockParams,
+} from '@secret-manager/mocks/secretReference/secretReference.handler';
+import { getLocationsMock } from '@secret-manager/mocks/locations/locations.handler';
+import {
+  getVersionMock,
+  GetVersionMockParams,
+  getVersionsMock,
+  GetVersionsMockParams,
+  createVersionMock,
+  CreateVersionMockParams,
+  updateVersionMock,
+  UpdateVersionMockParams,
+} from '@secret-manager/mocks/versions/versions.handler';
+import { removeHandlersDelay } from './testUtils';
 import { initTestI18n } from './init.i18n';
 import { getOkmsMocks, GetOkmsMocksParams } from '@/mocks/kms/okms.handler';
 import {
@@ -50,39 +80,68 @@ import {
 } from '@/mocks/reference/reference.handler';
 import { getIdentityUserIds } from '@/mocks/identity/identityUserIds.handler';
 import { getIdentityUsers } from '@/mocks/identity/identityUsers.handler';
+import { TestApp } from './TestApp';
 
 let context: ShellContextType;
 let i18nValue: i18n;
 
+export type RenderTestMockParams = GetOkmsMocksParams &
+  GetServiceKeysMockParams &
+  GetCredentialsMockParams &
+  GetServicesMocksParams &
+  GetFeatureAvailabilityMocksParams &
+  GetCatalogKmsMocksParams &
+  GetReferenceMockParams &
+  GetIamAuthorizationMockParams &
+  DeleteCredentialsMockParams &
+  CreateCredentialsMockParams &
+  GetSecretsMockParams &
+  GetSecretMockParams &
+  CreateSecretsMockParams &
+  DeleteSecretMockParams &
+  GetSecretConfigOkmsMockParams &
+  GetSecretConfigReferenceMockParams &
+  GetVersionsMockParams &
+  GetVersionMockParams &
+  CreateVersionMockParams &
+  UpdateVersionMockParams;
+
 export const renderTestApp = async (
   initialRoute = '/',
-  mockParams: GetOkmsMocksParams &
-    GetServiceKeysMockParams &
-    GetCredentialsMockParams &
-    GetServicesMocksParams &
-    GetFeatureAvailabilityMocksParams &
-    GetCatalogKmsMocksParams &
-    GetReferenceMockParams &
-    GetIamAuthorizationMockParams &
-    DeleteCredentialsMockParams &
-    CreateCredentialsMockParams = {},
+  mockParams: RenderTestMockParams = {},
 ) => {
   global.server?.resetHandlers(
-    ...toMswHandlers([
-      ...getAuthenticationMocks({ isAuthMocked: true }),
-      ...getOkmsMocks(mockParams),
-      ...getServiceKeysMock(mockParams),
-      ...getServicesMocks({ ...mockParams, serviceResponse: kmsServicesMock }),
-      ...getIamMocks(mockParams),
-      ...getCredentialsMock(mockParams),
-      ...getFeatureAvailabilityMocks(mockParams),
-      ...getCatalogKmsMocks(mockParams),
-      ...getReferenceMock(mockParams),
-      ...createCredentialsMock(mockParams),
-      ...deleteCredentialMock(mockParams),
-      ...getIdentityUserIds(),
-      ...getIdentityUsers(),
-    ]),
+    ...toMswHandlers(
+      removeHandlersDelay([
+        ...getAuthenticationMocks({ isAuthMocked: true }),
+        ...getOkmsMocks(mockParams),
+        ...getServiceKeysMock(mockParams),
+        ...getServicesMocks({
+          ...mockParams,
+          serviceResponse: kmsServicesMock,
+        }),
+        ...getIamMocks(mockParams),
+        ...getCredentialsMock(mockParams),
+        ...getFeatureAvailabilityMocks(mockParams),
+        ...getCatalogKmsMocks(mockParams),
+        ...getReferenceMock(mockParams),
+        ...createCredentialsMock(mockParams),
+        ...deleteCredentialMock(mockParams),
+        ...getIdentityUserIds(),
+        ...getIdentityUsers(),
+        ...getLocationsMock(),
+        ...getSecretsMock(mockParams),
+        ...getSecretMock(mockParams),
+        ...createSecretsMock(mockParams),
+        ...deleteSecretMock(mockParams),
+        ...getSecretConfigOkmsMock(mockParams),
+        ...getSecretConfigReferenceMock(mockParams),
+        ...getVersionsMock(mockParams),
+        ...getVersionMock(mockParams),
+        ...createVersionMock(mockParams),
+        ...updateVersionMock(mockParams),
+      ]),
+    ),
   );
 
   if (!context) {
