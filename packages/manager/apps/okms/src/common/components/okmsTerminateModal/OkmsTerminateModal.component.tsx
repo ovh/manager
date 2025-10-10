@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
-  ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
 import { useDeleteService } from '@ovh-ux/manager-module-common-api';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
@@ -17,6 +16,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { okmsQueryKeys } from '@/data/api/okms';
+import { useShellContext } from '@/common/hooks/useShellContext';
 
 type OkmsTerminateModalProps = {
   okmsId: string;
@@ -32,7 +32,7 @@ export default function OkmsTerminateModal({
   ]);
   const { trackPage, trackClick } = useOvhTracking();
   const { addError, addSuccess, clearNotifications } = useNotifications();
-  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
+  const { ovhSubsidiary } = useShellContext().environment.getUser();
 
   const closeModal = () => {
     navigate('..');
