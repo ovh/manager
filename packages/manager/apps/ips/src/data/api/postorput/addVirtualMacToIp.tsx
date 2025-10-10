@@ -16,13 +16,9 @@ export const addVirtualMacToIp = async ({
   ip,
   type,
   virtualMachineName,
-}: AddVirtualMacToIpParams): Promise<ApiResponse<void>> => {
-  return apiClient.v6.post<void>(
-    `/dedicated/server/${serviceName}/virtualMac`,
-    {
-      ipAddress: ip,
-      type,
-      virtualMachineName,
-    },
-  );
-};
+}: AddVirtualMacToIpParams): Promise<ApiResponse<void>> =>
+  apiClient.v6.post<void>(`/dedicated/server/${serviceName}/virtualMac`, {
+    ipAddress: ip,
+    type,
+    virtualMachineName,
+  });
