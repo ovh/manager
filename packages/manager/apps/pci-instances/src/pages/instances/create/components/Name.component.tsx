@@ -16,11 +16,13 @@ export const Name = () => {
   } = useFormContext<{ name: string }>();
 
   return (
-    <article className="flex flex-col w-full mb-8">
-      <hr className={'h-px my-8 bg-gray-200 border-0 w-full'} />
+    <article className="flex flex-col w-full">
+      <Text preset="heading-2">
+        {t('common:pci_instances_common_instance_name')}
+      </Text>
       {/* TODO: Pre-fill name with combination of {flavor_name region_id month day hour minute} */}
-      <div className="pt-3 pb-4">
-        <FormField>
+      <div className="mt-4 pt-3 pb-4">
+        <FormField className="max-w-[50%]">
           <FormFieldLabel>
             {t('common:pci_instances_common_instance_name')}
           </FormFieldLabel>

@@ -45,13 +45,20 @@ export const CreateInstanceForm = () => {
             <Text preset="heading-1">
               {t('common:pci_instances_common_create_instance')}
             </Text>
-            <Text preset="paragraph">
+            <Text className="mt-4" preset="paragraph">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. (Not
               mandatory) Si besoin d’un texte d’introduction... .
             </Text>
           </article>
           <Name />
+          <Divider spacing="64" />
+          <QuantitySelector
+            quota={quantityHintParams.quota}
+            type={quantityHintParams.type}
+            region={quantityHintParams.region}
+          />
+          <Divider spacing="64" />
           <Localization />
           <DeploymentModeSelection />
           <LocalizationSelection />
@@ -67,14 +74,9 @@ export const CreateInstanceForm = () => {
               />
             </div>
           )}
-          <AdvancedParameters />
-          <QuantitySelector
-            quota={quantityHintParams.quota}
-            type={quantityHintParams.type}
-            region={quantityHintParams.region}
-          />
           <Divider spacing="64" />
           <FlavorBlock />
+          <AdvancedParameters />
           <PciCardShowcaseComponent />
         </section>
         <aside className="min-w-[280px] w-1/3 max-w-[640px]">
