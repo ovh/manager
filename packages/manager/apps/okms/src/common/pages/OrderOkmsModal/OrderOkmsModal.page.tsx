@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
@@ -11,8 +11,8 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { Links, LinkType } from '@ovh-ux/manager-react-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { CreateCartResult } from '@ovh-ux/manager-module-order';
+import { useShellContext } from '@/common/hooks/useShellContext';
 import { useCreateCart } from '@/data/hooks/useCreateCart';
 import { useCheckoutOrder } from '@/data/hooks/useCheckoutOrder';
 import {
@@ -125,7 +125,7 @@ const OrderOkmsModal = () => {
     NAMESPACES.ERROR,
     NAMESPACES.ACTIONS,
   ]);
-  const { environment } = useContext(ShellContext);
+  const { environment } = useShellContext();
   const { region } = useParams();
   const { ovhSubsidiary } = environment.getUser();
   const navigate = useNavigate();

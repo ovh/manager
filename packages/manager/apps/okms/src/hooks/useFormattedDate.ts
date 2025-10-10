@@ -1,5 +1,5 @@
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useContext, useMemo } from 'react';
+import { useMemo } from 'react';
+import { useShellContext } from '@/common/hooks/useShellContext';
 
 type UseDateProps = {
   date: Date;
@@ -7,10 +7,8 @@ type UseDateProps = {
 };
 
 export const useFormattedDate = ({ date, options }: UseDateProps): string => {
-  const {
-    environment: { userLocale },
-  } = useContext(ShellContext);
-
+  const { environment } = useShellContext();
+  const { userLocale } = environment;
   return useMemo(() => {
     return Intl.DateTimeFormat(userLocale.replace('_', '-'), options).format(
       date,
