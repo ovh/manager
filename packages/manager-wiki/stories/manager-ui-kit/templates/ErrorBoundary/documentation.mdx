@@ -1,0 +1,52 @@
+import { Meta, Canvas, Source } from '@storybook/blocks';
+
+<Meta title="Manager UI Kit/ErrorBoundary/Documentation" />
+
+# ErrorBoundary
+
+## Overview
+
+The `ErrorBoundary` component is designed to handle errors occurring in routed components inside a **React Router** application. It leverages `useRouteError` from `react-router-dom` to capture errors and display an `ErrorBanner`.
+
+This component also integrates with `ShellContext` from `@ovh-ux/manager-react-shell-client` to provide navigation functions such as **reloading the page** or **redirecting to a specific app**.
+
+## Usage
+
+### Importing the Component in your routes.tsx file
+
+#### With LazyRouteConfig function
+
+<Source
+  code={`import { ErrorBoundary } from '@ovh-ux/muk';
+
+        const lazyRouteConfig = (importFn: CallableFunction) => ({
+            lazy: async () => {
+              const { default: moduleDefault, ...moduleExports } = await importFn();
+              return {
+                Component: moduleDefault,
+                ...moduleExports,
+              };
+          },
+          // Just add this following line and fill the redirectionApp
+          errorElement: <ErrorBoundary redirectionApp="key-management-service" />
+      });`}
+
+language="typescript"
+/>
+
+#### With Route component
+
+<Source
+  code={`import { ErrorBoundary } from '@ovh-ux/muk';
+  <Route
+    id="root"
+    path={ROUTE_PATHS.ROOT}
+    Component={LayoutPage}
+    // Just add this following line and fill the redirectionApp
+    errorElement={<ErrorBoundary redirectionApp="key-management-service" />}
+  >
+    <Route path="notFound" element={<>Page not found</>}></Route>
+`}
+
+language="typescript"
+/>

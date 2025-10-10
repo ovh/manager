@@ -1,0 +1,64 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Manager UI Kit/What's new/Migration guides/Move to Manager UI Kit v1" />
+
+# Move to Manager UI Kit v1
+
+This guide documents the initial migration from `manager-ui-kit` to `manager-ui-kit` within the repository.
+
+## Summary
+
+- Package renamed: `packages/manager-ui-kit` → `packages/manager-ui-kit`.
+- New package name: `@ovh-ux/muk`.
+- Wiki stories moved to `packages/manager-wiki/stories/manager-ui-kit/**`.
+- Root configs updated to reference `packages/manager-ui-kit`.
+- Apps and modules were NOT migrated (they still use `@ovh-ux/muk`).
+
+## Install
+
+Update your `package.json` if you plan to adopt the new package in your project:
+
+```json
+"@ovh-ux/muk": "^1.x"
+```
+
+Import the stylesheet if needed:
+
+```js
+import '@ovh-ux/muk/dist/style.css';
+```
+
+## Imports (before → after)
+
+```ts
+// Before
+import { Button } from '@ovh-ux/muk';
+
+// After
+import { Button } from '@ovh-ux/muk';
+```
+
+Assets referenced from the package should also point to the new scope if you adopt it:
+
+```ts
+// Before
+import placeholder from '@ovh-ux/muk/public/assets/placeholder.png';
+
+// After
+import placeholder from '@ovh-ux/muk/public/assets/placeholder.png';
+```
+
+## Storybook structure
+
+- Stories moved from `stories/manager-ui-kit/**` to `stories/manager-ui-kit/**`.
+- Sidebar category now appears under "Manager UI Kit/...".
+
+## Quick checklist
+
+- Update imports to `@ovh-ux/muk` (only where migrating now).
+- Keep apps/modules unchanged unless explicitly migrating.
+- Update CSS import if you rely on the kit’s stylesheet.
+
+If you have questions or issues, reach control twoer team to the UI Kit maintainers.
+
+

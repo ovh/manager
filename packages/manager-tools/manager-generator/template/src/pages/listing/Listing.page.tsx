@@ -12,7 +12,7 @@ import {
   DataGridTextCell,
   Datagrid,
   useDataGrid,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/muk';
 
 import { APP_FEATURES, appName } from '@/App.constants';
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
@@ -31,9 +31,13 @@ export default function ListingPage() {
     appName,
   });
 
-  const { items, total, isLoading, hasNextPage, fetchNextPage } = useListingData<ListingItemType>(
-    APP_FEATURES.listingEndpoint,
-  );
+  const {
+    items,
+    total,
+    isLoading,
+    hasNextPage,
+    fetchNextPage,
+  } = useListingData<ListingItemType>(APP_FEATURES.listingEndpoint);
 
   const baseColumns = useListingColumns<ListingItemType>();
 
@@ -49,13 +53,18 @@ export default function ListingPage() {
         label: t('listing:auto_column', 'Result'),
         isSortable: false,
         cell: (row: ListingItemType) => (
-          <DataGridTextCell>{row ? JSON.stringify(row) : EMPTY}</DataGridTextCell>
+          <DataGridTextCell>
+            {row ? JSON.stringify(row) : EMPTY}
+          </DataGridTextCell>
         ),
       },
     ];
   }, [baseColumns, t]);
 
-  const initialSort = useMemo(() => ({ id: columns[0]?.id ?? 'auto', desc: false }), [columns]);
+  const initialSort = useMemo(
+    () => ({ id: columns[0]?.id ?? 'auto', desc: false }),
+    [columns],
+  );
   const { sorting, setSorting } = useDataGrid(initialSort);
 
   const totalItems = Number.isFinite(total) ? total : items.length;

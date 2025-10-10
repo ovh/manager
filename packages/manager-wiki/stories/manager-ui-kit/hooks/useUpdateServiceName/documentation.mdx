@@ -1,0 +1,79 @@
+import { Meta } from '@storybook/blocks';
+import { StorybookHeading } from '../../../../components/';
+
+<Meta title="Manager UI Kit/Hooks/useUpdateServiceName" />
+<StorybookHeading label="Overview" level={2} />
+
+A React Query mutation hook that handles updating a service's display name.
+
+<StorybookHeading label="Api" level={2} />
+
+The hook uses two API endpoints:
+
+1. Get Service ID:
+
+   ```typescript
+   GET /services?resourceName={resourceName}
+   ```
+
+   - Method: `GET`
+   - Query Parameters:
+     - `resourceName`: Filter on a specific service family
+   - Response: `number[]` (array of service IDs)
+
+2. Update Service Name:
+   ```typescript
+   PUT / services / { serviceId };
+   ```
+   - Method: `PUT`
+   - Path Parameters:
+     - `serviceId`: The ID of the service to update
+   - Request Body:
+     ```typescript
+     {
+       displayName: string;
+     }
+     ```
+
+<StorybookHeading label="Parameters" level={2} />
+
+```typescript
+type UseUpdateServiceDisplayNameParams = {
+  /** Callback function called on successful update */
+  onSuccess?: () => void;
+  /** Callback function called when update fails */
+  onError?: (result: ApiError) => void;
+  /** Optional custom mutation key */
+  mutationKey?: string[];
+};
+```
+
+<StorybookHeading label="Returns" level={2} />
+
+Returns an object containing:
+
+- `updateDisplayName`: Function to trigger display name update
+- `isLoading`: Loading state
+- `isError`: Error state
+- `error`: Error object if any
+- Other mutation properties
+
+<StorybookHeading label="Exemple" level={2} />
+
+```tsx
+const { updateDisplayName, isLoading } = useUpdateServiceDisplayName({
+  onSuccess: () => {
+    // Handle successful update
+  },
+  onError: (error) => {
+    // Handle error
+  },
+});
+
+const handleUpdate = () => {
+  updateDisplayName({
+    resourceName: 'my-service',
+    displayName: 'New Name',
+  });
+};
+```

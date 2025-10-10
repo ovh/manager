@@ -6,7 +6,7 @@ const require = createRequire(import.meta.url);
 const pkgDir = (name) => path.dirname(require.resolve(`${name}/package.json`));
 const toGlob = (dir) => `${dir.replace(/\\/g, '/')}/**/*.{js,jsx,ts,tsx}`;
 
-const reactComponentsDir = pkgDir('@ovh-ux/manager-react-components');
+const reactComponentsDir = pkgDir('@ovh-ux/muk');
 const pciCommonDir = pkgDir('@ovh-ux/manager-pci-common');
 
 const isPciConfig = '{{isPci}}';
@@ -17,10 +17,7 @@ const baseTailwindConfig = [
   toGlob(reactComponentsDir),
 ];
 
-export const pciTailwindConfig = [
-  ...baseTailwindConfig,
-  toGlob(pciCommonDir),
-];
+export const pciTailwindConfig = [...baseTailwindConfig, toGlob(pciCommonDir)];
 
 /** @type {import('tailwindcss').Config} */
 export default {
