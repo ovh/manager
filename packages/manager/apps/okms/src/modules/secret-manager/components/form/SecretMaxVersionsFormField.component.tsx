@@ -16,10 +16,17 @@ type FormFieldInput = {
   maxVersions: number;
 };
 
+type SecretMaxVersionsFormFieldProps<
+  T extends FormFieldInput
+> = UseControllerProps<T> & {
+  defaultMaxVersions: number;
+};
+
 export const SecretMaxVersionsFormField = <T extends FormFieldInput>({
   name,
   control,
-}: UseControllerProps<T>) => {
+  defaultMaxVersions,
+}: SecretMaxVersionsFormFieldProps<T>) => {
   const { t } = useTranslation('secret-manager');
   return (
     <Controller
@@ -42,7 +49,7 @@ export const SecretMaxVersionsFormField = <T extends FormFieldInput>({
             className="justify-start"
           />
           <OdsText slot="helper" preset="caption">
-            {t('form_helper_max_versions')}
+            {t('form_helper_max_versions', { default: defaultMaxVersions })}
           </OdsText>
         </OdsFormField>
       )}
