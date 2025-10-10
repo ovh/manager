@@ -14,7 +14,7 @@ const KmsListing = React.lazy(() => import('@/pages/listing'));
 const KmsTerminateModal = React.lazy(() =>
   import('@/pages/dashboard/generalInformations/terminate/TerminateKms'),
 );
-const KmsCreate = React.lazy(() => import('@/pages/create'));
+const KmsCreate = React.lazy(() => import('@/pages/create/CreateKms.page'));
 const KmsOnboarding = React.lazy(() => import('@/pages/onboarding'));
 const KmsDashboard = React.lazy(() => import('@/pages/dashboard'));
 const KmsGeneralInformations = React.lazy(() =>
