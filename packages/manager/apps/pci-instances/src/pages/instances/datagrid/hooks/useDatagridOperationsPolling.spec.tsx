@@ -53,6 +53,7 @@ describe('useDatagridOperationsPolling', () => {
             action: 'create',
             status: 'in-progress',
             subOperations: [
+              { section: 'instance', action: 'create', status: 'in-progress' },
               { section: 'image', action: 'copytoregion', status: 'completed' },
             ],
           },
@@ -61,6 +62,19 @@ describe('useDatagridOperationsPolling', () => {
       {
         description:
           'with in-progress instance reinstall without copy in-progress',
+        operations: [
+          {
+            section: 'instance',
+            action: 'create',
+            status: 'in-progress',
+            subOperations: [
+              { section: 'instance', action: 'create', status: 'in-progress' },
+            ],
+          },
+        ],
+      },
+      {
+        description: 'with a in-progress instance creation with copy completed',
         operations: [
           {
             section: 'instance',
@@ -119,6 +133,23 @@ describe('useDatagridOperationsPolling', () => {
               {
                 section: 'image',
                 action: 'copytoregion',
+                status: 'in-progress',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        description: 'with instance creation without copy',
+        operations: [
+          {
+            section: 'instance',
+            action: 'create',
+            status: 'in-progress',
+            subOperations: [
+              {
+                section: 'instance',
+                action: 'create',
                 status: 'in-progress',
               },
             ],
@@ -204,6 +235,39 @@ describe('useDatagridOperationsPolling', () => {
               {
                 section: 'image',
                 action: 'copytoregion',
+                status: 'completed',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        firstCallDescription:
+          'with first instance creation in-progress without copy',
+        firstOperations: [
+          {
+            section: 'instance',
+            action: 'create',
+            status: 'in-progress',
+            subOperations: [
+              {
+                section: 'instance',
+                action: 'create',
+                status: 'in-progress',
+              },
+            ],
+          },
+        ],
+        secondCallDescription: 'with then creation completed completed',
+        secondOperations: [
+          {
+            section: 'instance',
+            action: 'create',
+            status: 'completed',
+            subOperations: [
+              {
+                section: 'instance',
+                action: 'create',
                 status: 'completed',
               },
             ],

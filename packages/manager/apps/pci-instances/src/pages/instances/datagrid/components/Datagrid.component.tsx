@@ -11,10 +11,7 @@ import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 import { Message, MessageBody, MessageIcon } from '@ovhcloud/ods-react';
 import { Filter } from '@ovh-ux/manager-core-api';
 import { usePciUrl } from '@ovh-ux/manager-pci-common';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_LEVEL, } from '@ovhcloud/ods-common-theming';
 import { NameIdCell } from '@/pages/instances/datagrid/components/cell/NameIdCell.component';
 import { useInstances } from '@/data/hooks/instance/useInstances';
 import { ActionsCell } from '@/pages/instances/datagrid/components/cell/ActionsCell.component';
@@ -26,9 +23,7 @@ import { useDatagridPolling } from '../hooks/useDatagridPolling';
 import { TextCell } from '@/pages/instances/datagrid/components/cell/TextCell.component';
 import { TaskStatus } from '../../task/TaskStatus.component';
 import { useFormatDate } from '@/hooks/date/useFormatDate';
-import {
-  useDatagridOperationsPolling
-} from '@/pages/instances/datagrid/hooks/useDatagridOperationsPolling';
+import { useDatagridOperationsPolling } from '@/pages/instances/datagrid/hooks/useDatagridOperationsPolling';
 
 type TFilterWithLabel = Filter & { label: string };
 type TSorting = {

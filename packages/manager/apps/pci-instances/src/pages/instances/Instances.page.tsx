@@ -154,10 +154,16 @@ const Instances: FC = () => {
     [addFilter],
   );
 
-  useDatagridOperationsPolling(handleRefresh);
+  const {
+    hasOperationsRunning,
+    isPending: isOperationsPending,
+  } = useDatagridOperationsPolling(handleRefresh);
 
-  if (data && !data.length && !filters.length && !isFetching)
+  const hasNoInstances = data && !data.length && !filters.length && !isFetching;
+
+  if (hasNoInstances && !isOperationsPending && !hasOperationsRunning) {
     return <Navigate to={SECTIONS.onboarding} />;
+  }
 
   return (
     <>
