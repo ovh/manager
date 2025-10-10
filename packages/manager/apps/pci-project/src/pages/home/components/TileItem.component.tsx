@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 
-import { DashboardTile, DashboardItem } from '@/constants';
+import { DashboardTile, DashboardItem } from '@/data/types/dashboard.type';
 import BillingItem from './BillingItem.component';
 import StandardItem from './StandardItem.component';
 
