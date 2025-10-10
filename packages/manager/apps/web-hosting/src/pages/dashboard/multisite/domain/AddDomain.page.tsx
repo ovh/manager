@@ -41,7 +41,6 @@ import {
 } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
 import { TExistingDomain } from '@/data/types/product/domain';
 import { HostingCountries, HostingDomainStatus } from '@/data/types/product/webHosting';
-import { subRoutes, urls } from '@/routes/routes.constants';
 import { isValidDomain } from '@/utils/validator';
 
 const formSchema = z.object({
@@ -63,7 +62,7 @@ type FormData = z.infer<typeof formSchema>;
 export default function AddDomainModal() {
   const { serviceName } = useParams();
   const navigate = useNavigate();
-  const closeModal = () => navigate(urls.ssl.replace(subRoutes.serviceName, serviceName));
+  const closeModal = () => navigate(-1);
   const hostingService = useGetHostingService(serviceName);
   const domainZone = useGetDomainZone();
   const { addSuccess, addWarning } = useNotifications();

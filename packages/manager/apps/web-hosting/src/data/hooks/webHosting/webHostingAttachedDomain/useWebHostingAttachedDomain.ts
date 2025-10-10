@@ -9,7 +9,7 @@ import {
 import {
   getWebHostingAttachedDomain,
   getWebHostingAttachedDomainQueryKey,
-} from '@/data/api/AttachedDomain';
+} from '@/data/api/webHosting';
 import { WebsiteType } from '@/data/types/product/website';
 import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
 
