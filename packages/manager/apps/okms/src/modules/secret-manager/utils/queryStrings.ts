@@ -13,5 +13,5 @@ export const buildQueryString = (params: Record<string, QueryStringValue>) => {
     }
   });
   const queryString = queryParams.toString();
-  return queryString ? `?${queryString}` : null;
+  return queryString ? `?${queryString}` : '';
 };
