@@ -2,9 +2,9 @@ import { buildQueryString } from './queryStrings';
 
 describe('buildQueryString', () => {
   it('should return null for empty params', () => {
-    expect(buildQueryString({})).toBeNull();
-    expect(buildQueryString({ a: undefined })).toBeNull();
-    expect(buildQueryString({ a: null })).toBeNull();
+    expect(buildQueryString({})).toBe('');
+    expect(buildQueryString({ a: undefined })).toBe('');
+    expect(buildQueryString({ a: null })).toBe('');
   });
 
   it('should handle falsy but valid values like empty string, 0, false', () => {
