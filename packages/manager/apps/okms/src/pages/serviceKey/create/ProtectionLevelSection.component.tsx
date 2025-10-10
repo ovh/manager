@@ -8,17 +8,15 @@ import {
 import { ODS_CARD_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText, OdsCard, OdsSkeleton } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useOrderCatalogOkms } from '@/data/hooks/useOrderCatalogOkms';
+import { useShellContext } from '@/common/hooks/useShellContext';
 
 export const ProtectionLevelSection: React.FC = () => {
   const { t } = useTranslation('key-management-service/serviceKeys');
-  const { environment } = React.useContext(ShellContext);
+  const { environment } = useShellContext();
   const { ovhSubsidiary } = environment.getUser();
   const userLocale = environment.getUserLocale();
-  const { data: catalog, isLoading, isPending } = useOrderCatalogOkms(
-    ovhSubsidiary,
-  );
+  const { data: catalog, isLoading, isPending } = useOrderCatalogOkms();
   const [pricingData, setPricingData] = useState({
     price: 0,
     tax: 0,
