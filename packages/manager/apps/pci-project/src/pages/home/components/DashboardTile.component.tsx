@@ -1,6 +1,6 @@
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 
-import { DashboardItem } from '@/constants';
+import { DashboardItem } from '@/data/types/dashboard.type';
 import StandardItem from './StandardItem.component';
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
 

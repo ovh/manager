@@ -9,10 +9,11 @@ import {
   DASHBOARD_CREDIT_VOUCHER_LINK,
   getDocumentationGuideLink,
   BASE_PROJECT_PATH,
-  DashboardTile,
-  DashboardItem,
 } from '@/constants';
+import { DashboardTile, DashboardItem } from '@/data/types/dashboard.type';
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
+import { useDashboardItemsFilteredByFA } from '@/hooks/useDashboardItemsFilteredByFA';
+import { useProjectIdInLinks } from '@/hooks/home/useProjectIdInLinks';
 
 export function useDashboardSections(projectId: string) {
   const { t } = useTranslation('home');
@@ -28,9 +29,8 @@ export function useDashboardSections(projectId: string) {
     error,
   } = useCreditDetails(projectId);
 
-  const billingItems = useMemo((): DashboardItem[] => {
+  const billingItemsBase = useMemo((): DashboardItem[] => {
     let items: DashboardItem[] = [];
-    const baseProjectPath = BASE_PROJECT_PATH.replace(':projectId', projectId);
 
     // Add voucher credits from API
     if (!isLoading) {
@@ -53,13 +53,15 @@ export function useDashboardSections(projectId: string) {
 
     items.push({
       ...DASHBOARD_CREDIT_VOUCHER_LINK,
-      link: baseProjectPath + DASHBOARD_CREDIT_VOUCHER_LINK.link,
+      link: BASE_PROJECT_PATH + DASHBOARD_CREDIT_VOUCHER_LINK.link,
     });
 
     return items;
-  }, [isLoading, vouchersCreditDetails, projectId, t, formatDate]);
+  }, [isLoading, vouchersCreditDetails, t, formatDate]);
 
-  const documentationItems = useMemo((): DashboardItem[] => {
+  const billingItems = useProjectIdInLinks(billingItemsBase);
+
+  const documentationItemsConfig = useMemo(() => {
     return DASHBOARD_DOCUMENTATION_LINKS_CONFIG.map((item) => ({
       ...item,
       link: item.documentationGuideKey
@@ -70,6 +72,11 @@ export function useDashboardSections(projectId: string) {
         : item.link,
     }));
   }, [subsidiary]);
+
+  // Filter documentation items by feature flags
+  const documentationItems = useDashboardItemsFilteredByFA(
+    documentationItemsConfig,
+  );
 
   const tiles: DashboardTile[] = useMemo(
     () => [

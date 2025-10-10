@@ -7,10 +7,6 @@ import {
   useIsHdsFeatureAvailabilityEnabled,
 } from './useHds';
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  useFeatureAvailability: vi.fn(),
-}));
-
 vi.mock('@/data/api/services', () => ({
   getServiceId: vi.fn(),
   getServiceOptions: vi.fn(),
