@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, vi } from 'vitest';
 import { websitesMocks } from '@/data/__mocks__';
 import { wrapper } from '@/utils/test.provider';
 
-import { useWebHostingAttachedDomain } from './useWebHostingAttachedDomain';
+import { useWebHostingAttachedDomain } from '../useWebHostingAttachedDomain';
 
 vi.mock('@ovh-ux/manager-core-api', () => ({
   fetchIcebergV2: vi.fn().mockResolvedValue({
