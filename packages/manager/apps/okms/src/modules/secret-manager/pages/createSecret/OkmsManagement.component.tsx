@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import { SECRET_MANAGER_SEARCH_PARAMS } from '@secret-manager/routes/routes.constants';
 import { filterOkmsListByRegion } from '@secret-manager/utils/okms';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   OdsMessage,
   OdsSpinner,
@@ -31,12 +30,11 @@ export const OkmsManagement = ({
 }: OkmsManagementProps) => {
   const { t } = useTranslation(['secret-manager', NAMESPACES.ERROR]);
   const { addSuccess } = useNotifications();
-  const { environment } = useContext(ShellContext);
   const {
     data: orderCatalogOKMS,
     error: orderCatalogError,
     isLoading: isLoadingOrderCatalog,
-  } = useOrderCatalogOkms(environment.getUser().ovhSubsidiary);
+  } = useOrderCatalogOkms();
 
   const regions = orderCatalogOKMS?.plans[0]?.configurations[0]?.values;
 

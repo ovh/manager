@@ -1,4 +1,4 @@
-import React, { useContext, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   OdsText,
@@ -18,7 +18,6 @@ import {
 import {
   ButtonType,
   PageLocation,
-  ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
@@ -40,13 +39,12 @@ const RegionSelector = ({
 }: RegionSelectorProps) => {
   const { t } = useTranslation('key-management-service/create');
   const { trackClick } = useOvhTracking();
-  const { environment } = useContext(ShellContext);
   const {
     data: orderCatalogOKMS,
     isError,
     error,
     isLoading,
-  } = useOrderCatalogOkms(environment.getUser().ovhSubsidiary);
+  } = useOrderCatalogOkms();
   const navigate = useNavigate();
 
   if (isError && error) {
