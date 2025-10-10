@@ -96,7 +96,7 @@
   "pci_projects_project_instances_add_instance_confirmation_cancel": "Nie",
   "pci_projects_project_instances_add_private_mode1": "Trwa tworzenie instancji. Konfiguracja wszystkich komponentów może zająć kilka minut.",
   "pci_projects_project_instances_add_private_mode2": "Prosimy nie opuszczać ani nie odświeżać tej strony, ponieważ może to zaburzyć proces tworzenia instancji.",
-  "pci_projects_project_instances_add_success_message": "Operacja tworzenia instancji jest w toku",
+  "pci_projects_project_instances_add_success_message": "Operacja tworzenia instancji jest w toku, proszę czekać, może to potrwać kilka minut, proszę odświeżyć stronę.",
   "pci_projects_project_instances_add_success_multiple_message": "Instancje zostały dodane.",
   "pci_projects_project_instances_add_error_save": "Wystąpił błąd podczas dodawania instancji {{instance}}: {{message}}.",
   "pci_projects_project_instances_add_error_multiple_save": "Wystąpił błąd podczas dodawania instancji: {{message}}.",

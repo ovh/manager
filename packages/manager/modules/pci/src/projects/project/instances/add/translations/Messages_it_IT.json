@@ -96,7 +96,7 @@
   "pci_projects_project_instances_add_instance_confirmation_cancel": "No",
   "pci_projects_project_instances_add_private_mode1": "Creazione dell'istanza in corso... La configurazione di tutti i componenti potrebbe richiedere alcuni minuti.",
   "pci_projects_project_instances_add_private_mode2": "Non chiudere o aggiornare la pagina: questa azione potrebbe avere un impatto sul processo di creazione.",
-  "pci_projects_project_instances_add_success_message": "L'operazione di creazione dell'istanza è in corso",
+  "pci_projects_project_instances_add_success_message": "L'operazione di creazione dell'istanza è in corso, si prega di attendere, potrebbe richiedere alcuni minuti, si prega di aggiornare la pagina.",
   "pci_projects_project_instances_add_success_multiple_message": "Le istanze sono state aggiunte.",
   "pci_projects_project_instances_add_error_save": "Si è verificato un errore durante l’aggiunta dell'istanza {{ instance }}: {{ message }}",
   "pci_projects_project_instances_add_error_multiple_save": "Si è verificato un errore durante l’aggiunta delle istanze: {{message}}",

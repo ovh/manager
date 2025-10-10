@@ -96,7 +96,7 @@
   "pci_projects_project_instances_add_instance_confirmation_cancel": "Não",
   "pci_projects_project_instances_add_private_mode1": "A sua instância está a ser criada. A configuração de todos os componentes pode demorar alguns minutos.",
   "pci_projects_project_instances_add_private_mode2": "Por favor, não saia ou atualize esta página: tais ações podem afetar o processo de criação.",
-  "pci_projects_project_instances_add_success_message": "A(s) operação(ões) de criação de instância(s) está(ão) em curso.",
+  "pci_projects_project_instances_add_success_message": "A(s) operação(ões) de criação de instância(s) está(ão) em andamento, por favor, aguarde, isso pode levar alguns minutos, por favor, atualize a página.",
   "pci_projects_project_instances_add_success_multiple_message": "As instâncias foram adicionadas.",
   "pci_projects_project_instances_add_error_save": "Ocorreu um erro ao adicionar a instância {{ instance }}: {{ message }}",
   "pci_projects_project_instances_add_error_multiple_save": "Ocorreu um erro ao adicionar as instâncias: {{ message }}",
