@@ -3,7 +3,7 @@
   "pci_instances_creation_advanced_parameters": "Paramètres avancés",
   "pci_instances_creation_quantity_title": "Choisir une quantité",
   "pci_instances_creation_quantity_label": "Nombre d'instances à créer",
-  "pci_instance_creation_quantity_rule": "Votre quota actuel vous permet de créer simultanément jusqu'à {{ quota }} instance(s) de type {{ type }} pour la région de {{ region }}.",
+  "pci_instance_creation_quantity_rule": "Votre quota actuel vous permet de créer simultanément jusqu'à {{ quota }} instance(s) de type {{ type }} pour la région de {{ region }}. <Link>Consultez votre quota.</Link>",
   "pci_instance_creation_select_deployment_mode_title": "Filtrez un mode de déploiement",
   "pci_instance_creation_select_deployment_mode_help_p1": "OVHcloud fournit une infrastructure robuste et adaptable, conçue pour répondre à une grande variété de cas d'utilisation grâce à des modèles de déploiement qui équilibrent rentabilité, redondance et tolérance aux pannes. Ces différentes options permettent aux utilisateurs de choisir l’approche la plus adaptée à leurs exigences en matière de résilience, de disponibilité et de performance.",
   "pci_instance_creation_select_deployment_mode_help_p2": "Région 1-AZ : Ces régions à zone unique sont optimales pour les charges de travail où l’optimisation des coûts est prioritaire. Elles conviennent parfaitement aux besoins généraux tels que le stockage, la sauvegarde ou les applications dont les exigences en matière de disponibilité ne nécessitent pas une redondance multi-zones. Elles offrent un bon compromis entre fiabilité, performance et maîtrise des coûts.",

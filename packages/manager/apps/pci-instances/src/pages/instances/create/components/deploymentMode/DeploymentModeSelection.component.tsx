@@ -32,8 +32,8 @@ export const DeploymentModeSelection = () => {
   return (
     <section className="my-8">
       <div className="flex flex-col gap-4">
-        <div className="mt-8 flex items-center space-x-4">
-          <Text preset="heading-3">
+        <div className="flex items-center space-x-4">
+          <Text preset="heading-4">
             {t('creation:pci_instance_creation_select_deployment_mode_title')}
           </Text>
           <HelpDrawer>
