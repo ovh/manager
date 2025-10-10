@@ -7,7 +7,7 @@ import { usePciUrl } from '@ovh-ux/manager-pci-common';
  * @param items - Array of items with optional link property
  * @returns Array of items with links containing actual project ID
  */
-export const useDashboardLinks = <T extends { link?: string }>(
+export const useProjectIdInLinks = <T extends { link?: string }>(
   items: T[],
 ): T[] => {
   const basePciUrl = usePciUrl(); // Returns '#/pci/projects/{actualId}'

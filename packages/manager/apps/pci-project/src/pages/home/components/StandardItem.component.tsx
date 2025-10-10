@@ -1,7 +1,7 @@
 import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_LINK_COLOR } from '@ovhcloud/ods-components';
 
-import { DashboardItem } from '@/constants';
+import { DashboardItem } from '@/data/types/dashboard.type';
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
 
 function StandardItem(item: DashboardItem) {

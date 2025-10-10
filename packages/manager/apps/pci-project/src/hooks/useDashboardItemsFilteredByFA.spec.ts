@@ -2,7 +2,10 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useDashboardItemsFilteredByFA } from './useDashboardItemsFilteredByFA';
-import { DashboardItem, DashboardItemConfig } from '@/constants';
+import {
+  DashboardItem,
+  DashboardItemConfig,
+} from '@/data/types/dashboard.type';
 
 // Mock the external hook
 vi.mock('@ovh-ux/manager-react-components', () => ({

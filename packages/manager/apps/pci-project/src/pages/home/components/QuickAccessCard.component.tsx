@@ -2,7 +2,7 @@ import { OdsCard, OdsText, OdsIcon } from '@ovhcloud/ods-components/react';
 
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
-import { DashboardItem } from '@/constants';
+import { DashboardItem } from '@/data/types/dashboard.type';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 type QuickAccessCardProps = {

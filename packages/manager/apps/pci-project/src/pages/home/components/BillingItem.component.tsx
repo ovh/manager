@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { DashboardItem } from '@/constants';
+import { DashboardItem } from '@/data/types/dashboard.type';
 import BillingItemSkeleton from './BillingItemSkeleton.component';
 
 type BillingItemProps = {
