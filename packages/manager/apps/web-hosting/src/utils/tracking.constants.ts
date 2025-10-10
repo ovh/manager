@@ -46,6 +46,7 @@ export const GUIDE_EDIT_DNS_ZONE = 'edit-dns-zone-guide';
 export const GUIDE_GETTING_STARTED = 'getting-started-guide';
 export const GUIDE_PUBLISHING = 'publishing-guide';
 export const MULTISITE = 'multisite';
+export const EDIT_NAME = 'edit-name';
 
 // domain
 export const ADD_DOMAIN = 'add-domain';

@@ -85,7 +85,7 @@ describe('OrderDomainModal', () => {
 
     expect(navigate.mock.calls.length).toBe(1);
     const mocks = navigate.mock.calls[0];
-    expect(mocks[0]).toBe('/serviceName/add-domain');
+    expect(mocks[0]).toBe('/serviceName/multisite/add-domain');
   });
 
   it('cancel button close modal', () => {

@@ -13,6 +13,8 @@ import { I18nextProvider, initReactI18next } from 'react-i18next';
 import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
 
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import dashboardTranslation from '@/public/translations/dashboard/Messages_fr_FR.json';
+import multisiteTranslation from '@/public/translations/multisite/Messages_fr_FR.json';
 import onboardingTranslation from '@/public/translations/onboarding/Messages_fr_FR.json';
 
 i18n
@@ -23,10 +25,12 @@ i18n
     resources: {
       fr: {
         common: commonTranslation,
+        dashboard: dashboardTranslation,
         onboarding: onboardingTranslation,
+        multisite: multisiteTranslation,
       },
     },
-    ns: ['common', 'onboarding'],
+    ns: ['common', 'onboarding', 'multisite', 'dashboard'],
   })
   .catch(console.error);
 

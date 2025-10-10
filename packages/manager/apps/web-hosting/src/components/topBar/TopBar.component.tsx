@@ -10,7 +10,7 @@ import { OdsButton, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 
 import { useCreateDomainCertificates } from '@/data/hooks/ssl/useSsl';
-import { useWebHostingAttachedDomain } from '@/data/hooks/webHostingAttachedDomain/useWebHostingAttachedDomain';
+import { useWebHostingAttachedDomain } from '@/data/hooks/webHosting/webHostingAttachedDomain/useWebHostingAttachedDomain';
 import { ServiceStatus } from '@/data/types/status';
 import { subRoutes, urls } from '@/routes/routes.constants';
 

@@ -1,6 +1,6 @@
 {
   "hosting_tab_GENERAL_INFORMATIONS": "Informations générales",
-  "hosting_tab_MULTISITE": "Multisite",
+  "hosting_tab_MULTISITE": "Mes sites",
   "hosting_tab_SSL": "Certificats SSL",
   "hosting_tab_MODULE": "Modules en 1 clic",
   "hosting_tab_USER_LOGS": "Statistiques et logs",
@@ -86,6 +86,10 @@
   "hosting_tab_DOMAINS_configuration_add_success_finish": "L'ajout du ou des domaines à votre hébergement mutualisé a été effectué avec succès.",
   "hosting_tab_DOMAINS_configuration_add_failure": "Une erreur est survenue lors de l'ajout du ou des domaines à votre hébergement mutualisé.",
   "hosting_managed_wordpress_websites_description": "Créez un nouveau site ou importez en quelques clics un site existant vers ce compte.",
-  "hosting_managed_wordpress_websites_description_without_import": "Créez un nouveau site en quelques clics sur ce compte."
-
+  "hosting_managed_wordpress_websites_description_without_import": "Créez un nouveau site en quelques clics sur ce compte.",
+  "hosting_dashboard_modal_update_headline": "Changer le nom de votre site",
+  "hosting_dashboard_modal_update_description": "Veuillez saisir le nouveau nom que vous souhaitez donner à votre site. Il s’agit d’un nom interne, visible uniquement par vous.",
+  "hosting_dashboard_modal_update_input_label": "Nouveau nom",
+  "hosting_dashboard_modal_update_success": "Le nom de votre site a été mis à jour avec succès"
+  
 }

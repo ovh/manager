@@ -1,6 +1,8 @@
 import { CurrencyCode } from '@ovh-ux/manager-react-components';
 
-import { OngoingTaskStatus } from '../status';
+import { GitStatus, OngoingTaskStatus, ResourceStatus, ServiceStatus, TaskStatus } from '../status';
+import { CmsType } from './managedWordpress/cms';
+import { TaskType } from './website';
 
 export enum HostingState {
   ACTIVE = 'active',
@@ -151,4 +153,72 @@ export type TaskDetailsType = {
   objectType: string;
   startDate: string;
   status: OngoingTaskStatus;
+};
+
+export type WebHostingWebsiteType = {
+  id: number;
+  checksum: string;
+  currentState?: {
+    path: string;
+    name: string;
+    linkedDomains: number;
+    git?: {
+      status: GitStatus;
+      vcsBranch: string;
+      vcsUrl: string;
+    };
+    module?: { name: CmsType };
+  };
+  currentTasks?: {
+    id?: string;
+    link?: string;
+    status?: TaskStatus | null;
+    type?: TaskType;
+  }[];
+  resourceStatus: ResourceStatus;
+  targetSpec?: { name: string };
+};
+
+export type WebHostingWebsiteDomainType = {
+  id: number;
+  checksum: string;
+  currentState: {
+    fqdn: string;
+    firewall: { status: ServiceStatus };
+    cdn: { status: ServiceStatus };
+    name: string;
+    path: string;
+    websiteId: number;
+  };
+  currentTasks?: {
+    id?: string;
+    link?: string;
+    status?: TaskStatus | null;
+    type?: TaskType;
+  }[];
+  resourceStatus: ResourceStatus;
+  targetSpec: {
+    firewall: ServiceStatus;
+    cdn: ServiceStatus;
+  };
+};
+
+export type PostWebHostingWebsitePayload = {
+  targetSpec: {
+    bypassDNSConfiguration?: boolean;
+    cdn?: ServiceStatus;
+    cms?: CmsType;
+    firewall?: ServiceStatus;
+    fqdn?: string;
+    ipLocation?: string;
+    name?: string;
+    path?: string;
+    phpVersion?: string;
+  };
+};
+
+export type PutWebHostingWebsitePayload = {
+  targetSpec: {
+    name: string;
+  };
 };
