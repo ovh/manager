@@ -1,11 +1,5 @@
 import { Subtitle } from '@ovh-ux/manager-react-components';
-import React, {
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   OdsButton,
@@ -23,7 +17,6 @@ import {
 import {
   ButtonType,
   PageLocation,
-  ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -33,6 +26,7 @@ import IdentitiesRootAccount from './identities/IdentitiesRootAccount.component'
 import IdentitiesSelectedUsersList from './identities/IdentitiesSelectedUsersList.component';
 import IdentitiesSelectedGroups from './identities/IdentitiesSelectedGroups.component';
 import IdentitiesSelectedServiceAccounts from './identities/IdentitiesSelectedServiceAccounts.component';
+import { useShellContext } from '@/common/hooks/useShellContext';
 
 type CreateAddIdentitiesProps = {
   identityURNs: string[];
@@ -52,8 +46,9 @@ const CreateAddIdentities = ({
   const { okmsId } = useParams() as { okmsId: string };
   const [isRootAccount, setIsRootAccount] = useState<boolean>(false);
   const { userList, groupList, serviceAccountList } = useIdentityData();
-  const { auth } = useContext(ShellContext).environment.getUser();
-  const region = useContext(ShellContext).environment.getRegion();
+  const { environment } = useShellContext();
+  const { auth } = environment.getUser();
+  const region = environment.getRegion();
   const { trackClick } = useOvhTracking();
 
   useEffect(() => {
