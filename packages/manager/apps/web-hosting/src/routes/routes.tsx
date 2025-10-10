@@ -24,6 +24,7 @@ import {
   DEPLOYE_GIT,
   DETACHE_DOMAIN,
   DISABLE_SSL,
+  EDIT_NAME,
   GENERAL_INFORMATION,
   IMPORT,
   IMPORT_SSL,
@@ -79,7 +80,7 @@ import {
 import { AddModuleModal, DeleteModuleModal } from './pages/module';
 import { DisableSslPage, ImportSslPage, OrderSectigoPage, SanSslPage, SslPage } from './pages/ssl';
 import { OngoingTaskPage } from './pages/task';
-import { AddWebsitePage } from './pages/website';
+import { AddWebsitePage, UpdateDisplayNameModalComponent } from './pages/website';
 import { urls } from './routes.constants';
 
 export type RouteHandle = {
@@ -342,6 +343,19 @@ export default (
         }}
       >
         <Route
+          id={EDIT_NAME}
+          path={urls.editName}
+          Component={UpdateDisplayNameModalComponent}
+          handle={{
+            tracking: {
+              pageType: PageType.dashboard,
+            },
+            breadcrumb: {
+              label: 'common:edit-displayname',
+            },
+          }}
+        />
+        <Route
           id={ADD_WEBSITE}
           path={urls.addWebSite}
           Component={AddWebsitePage}
@@ -384,6 +398,28 @@ export default (
           }}
         />
         <Route
+          id={DELETE_GIT}
+          path={urls.deleteGit}
+          Component={DeleteGitModal}
+          handle={{
+            tracking: {
+              pageName: DELETE_GIT,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id={DEPLOYE_GIT}
+          path={urls.deployeGit}
+          Component={DeployeGitModal}
+          handle={{
+            tracking: {
+              pageName: DEPLOYE_GIT,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
           id={MODIFY_CDN}
           path={urls.modifyCdn}
           Component={ModifyCdnPage}
@@ -397,40 +433,86 @@ export default (
             isOverridePage: true,
           }}
         />
+        <Route
+          id={LAST_DEPLOYEMENT_GIT}
+          path={urls.lastDeploymentGit}
+          Component={LastDeploymentGitModal}
+          handle={{
+            tracking: {
+              pageName: LAST_DEPLOYEMENT_GIT,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id={DETACHE_DOMAIN}
+          path={urls.detacheDomain}
+          Component={DetacheDomainModal}
+          handle={{
+            tracking: {
+              pageName: DETACHE_DOMAIN,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id={MODIFY_DOMAIN}
+          path={urls.modifyDomain}
+          Component={ModifyDomainModal}
+          handle={{
+            tracking: {
+              pageName: MODIFY_DOMAIN,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+
+        <Route
+          id={ADD_MODULE}
+          path={urls.addModule}
+          Component={AddModuleModal}
+          handle={{
+            tracking: {
+              pageName: ADD_MODULE,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id={DELETE_MODULE}
+          path={urls.deleteModule}
+          Component={DeleteModuleModal}
+          handle={{
+            tracking: {
+              pageName: DELETE_MODULE,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id={PURGE_CDN}
+          path={urls.purgeCdn}
+          Component={PurgeCdnModal}
+          handle={{
+            tracking: {
+              pageName: PURGE_CDN,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id={ADD_DOMAIN}
+          path={urls.addDomain}
+          Component={AddDomainPage}
+          handle={{
+            tracking: {
+              pageName: ADD_DOMAIN,
+              pageType: PageType.popup,
+            },
+          }}
+        />
       </Route>
-      <Route
-        id={ADD_DOMAIN}
-        path={urls.addDomain}
-        Component={AddDomainPage}
-        handle={{
-          tracking: {
-            pageName: ADD_DOMAIN,
-            pageType: PageType.popup,
-          },
-        }}
-      />
-      <Route
-        id={DETACHE_DOMAIN}
-        path={urls.detacheDomain}
-        Component={DetacheDomainModal}
-        handle={{
-          tracking: {
-            pageName: DETACHE_DOMAIN,
-            pageType: PageType.popup,
-          },
-        }}
-      />
-      <Route
-        id={MODIFY_DOMAIN}
-        path={urls.modifyDomain}
-        Component={ModifyDomainModal}
-        handle={{
-          tracking: {
-            pageName: MODIFY_DOMAIN,
-            pageType: PageType.popup,
-          },
-        }}
-      />
+
       <Route
         id={ORDER_DOMAIN}
         path={urls.orderDomain}
@@ -438,72 +520,6 @@ export default (
         handle={{
           tracking: {
             pageName: ORDER_DOMAIN,
-            pageType: PageType.popup,
-          },
-        }}
-      />
-      <Route
-        id={DELETE_GIT}
-        path={urls.deleteGit}
-        Component={DeleteGitModal}
-        handle={{
-          tracking: {
-            pageName: DELETE_GIT,
-            pageType: PageType.popup,
-          },
-        }}
-      />
-      <Route
-        id={DEPLOYE_GIT}
-        path={urls.deployeGit}
-        Component={DeployeGitModal}
-        handle={{
-          tracking: {
-            pageName: DEPLOYE_GIT,
-            pageType: PageType.popup,
-          },
-        }}
-      />
-      <Route
-        id={LAST_DEPLOYEMENT_GIT}
-        path={urls.lastDeploymentGit}
-        Component={LastDeploymentGitModal}
-        handle={{
-          tracking: {
-            pageName: LAST_DEPLOYEMENT_GIT,
-            pageType: PageType.popup,
-          },
-        }}
-      />
-      <Route
-        id={ADD_MODULE}
-        path={urls.addModule}
-        Component={AddModuleModal}
-        handle={{
-          tracking: {
-            pageName: ADD_MODULE,
-            pageType: PageType.popup,
-          },
-        }}
-      />
-      <Route
-        id={DELETE_MODULE}
-        path={urls.deleteModule}
-        Component={DeleteModuleModal}
-        handle={{
-          tracking: {
-            pageName: DELETE_MODULE,
-            pageType: PageType.popup,
-          },
-        }}
-      />
-      <Route
-        id={PURGE_CDN}
-        path={urls.purgeCdn}
-        Component={PurgeCdnModal}
-        handle={{
-          tracking: {
-            pageName: PURGE_CDN,
             pageType: PageType.popup,
           },
         }}
