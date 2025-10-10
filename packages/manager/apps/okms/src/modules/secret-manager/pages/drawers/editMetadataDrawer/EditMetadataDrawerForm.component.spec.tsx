@@ -41,6 +41,7 @@ const mockSecretConfig: SecretSmartConfig = {
     origin: 'SECRET',
   },
   isCasRequiredSetOnOkms: true,
+  maxVersionsDefault: 10,
 };
 
 const mockOnDismiss = vi.fn();

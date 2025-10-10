@@ -45,6 +45,7 @@ const mockSecretSmartConfig: SecretSmartConfig = {
     origin: 'DOMAIN',
   },
   isCasRequiredSetOnOkms: true,
+  maxVersionsDefault: 10,
 };
 
 let i18nValue: i18n;
