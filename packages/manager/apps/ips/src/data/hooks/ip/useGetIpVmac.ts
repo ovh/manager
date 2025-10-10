@@ -24,13 +24,13 @@ export const useGetIpVmac = ({
   } = useQuery<IcebergFetchResultV6<DedicatedServerVmacType>, ApiError>({
     queryKey: getdedicatedServerVmacQueryKey({ serviceName }),
     queryFn: () => getdedicatedServerVmac({ serviceName }),
-    enabled,
+    enabled: enabled && !!serviceName,
     staleTime: Number.POSITIVE_INFINITY,
     retry: false,
   });
 
   return {
-    vmacs: dedicatedServerVmacResponse?.data,
+    vmacs: dedicatedServerVmacResponse?.data || [],
     isLoading,
     isError,
     error,

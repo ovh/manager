@@ -41,22 +41,22 @@ export const useGetDedicatedServerTasks = ({
 
   const parameterSets = useMemo(
     () =>
-      functionList.flatMap((taskFunction) =>
-        statusList.map((status) => ({ taskFunction, status, serviceName })),
-      ),
+      serviceName
+        ? functionList.flatMap((taskFunction) =>
+            statusList.map((status) => ({ taskFunction, status, serviceName })),
+          )
+        : [],
     [],
   );
 
   const tasksQueriesResult = useQueries({
     queries: parameterSets.map(
-      (queryParams): UseQueryOptions<ApiResponse<number[]>, ApiError> => {
-        return {
-          queryKey: getDedicatedServerTasksQueryKey(queryParams),
-          queryFn: () => getDedicatedServerTasks(queryParams),
-          retry: false,
-          enabled,
-        };
-      },
+      (queryParams): UseQueryOptions<ApiResponse<number[]>, ApiError> => ({
+        queryKey: getDedicatedServerTasksQueryKey(queryParams),
+        queryFn: () => getDedicatedServerTasks(queryParams),
+        retry: false,
+        enabled,
+      }),
     ),
     combine: (results) => ({
       isPending: results.some((result) => result.isPending),
