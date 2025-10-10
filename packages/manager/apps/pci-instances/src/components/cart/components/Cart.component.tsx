@@ -1,9 +1,9 @@
 import { PropsWithChildren } from 'react';
-import { clsx } from "clsx";
+import { clsx } from 'clsx';
 
 type TCartProps = PropsWithChildren<{
-  className?: string
-}>
+  className?: string;
+}>;
 
 export const Cart = ({ children, className }: TCartProps) => (
   <div
