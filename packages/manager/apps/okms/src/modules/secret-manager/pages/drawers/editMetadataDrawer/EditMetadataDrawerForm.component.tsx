@@ -95,7 +95,11 @@ export const EditMetadataDrawerForm = ({
             name="deactivateVersionAfter"
             control={control}
           />
-          <SecretMaxVersionsFormField name="maxVersions" control={control} />
+          <SecretMaxVersionsFormField
+            name="maxVersions"
+            control={control}
+            defaultMaxVersions={secretConfig.maxVersionsDefault}
+          />
           <SecretCasRequiredFormField
             name="casRequired"
             control={control}
