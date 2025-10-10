@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 # How to implement Modal
 
-This guide explains how to implement different types of modals in the OVHcloud Manager using the `@ovh-ux/manager-react-components` library.
+This guide explains how to implement different types of modals in the OVHcloud Manager using the `@ovh-ux/muk` library.
 
 ## Modal in Routes.tsx in child path
 
@@ -42,14 +42,14 @@ Example route patterns:
 <Route path=":id/modal" element={<ResourceModal />} />
 ```
 
-## Modal from manager-react-components
+## Modal from manager-ui-kit
 
 The Modal component provides a consistent interface for displaying modal dialogs. Here's how to use it:
 
-[Here](?path=/docs/manager-react-components-components-modal-documentation--technical-information), the component
+[Here](?path=/docs/manager-ui-kit-components-modal-documentation--technical-information), the component
 
 ```tsx
-import { Modal } from '@ovh-ux/manager-react-components';
+import { Modal } from '@ovh-ux/muk';
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 
 function MyModal() {
@@ -93,10 +93,10 @@ function App() {
 
 The `UpdateNameModal` component is a reusable modal for updating resource names or other text fields. It provides a consistent interface for name updates across the application.
 
-[Here](?path=/story/manager-react-components-templates-update-name-modal--update-name-modal), the component
+[Here](?path=/story/manager-ui-kit-templates-update-name-modal--update-name-modal), the component
 
 ```tsx
-import { UpdateNameModal } from '@ovh-ux/manager-react-components';
+import { UpdateNameModal } from '@ovh-ux/muk';
 
 function MyComponent() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -165,10 +165,10 @@ interface UpdateNameModalProps {
 
 A reusable confirmation modal for destructive actions:
 
-[Here](?path=/story/manager-react-components-templates-delete-modal--delete-modal), the component
+[Here](?path=/story/manager-ui-kit-templates-delete-modal--delete-modal), the component
 
 ```tsx
-import { Modal } from '@ovh-ux/manager-react-components';
+import { Modal } from '@ovh-ux/muk';
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 
 function DeleteModal({ onClose, onConfirm, resourceName, resourceType = 'resource' }) {

@@ -7257,7 +7257,7 @@
 
 "@ovh-ux/manager-react-components@^2.42.2":
   version "2.42.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-2.42.2.tgz#b78eda2feed36c354a062e3c937264ccf41500f8"
+  resolved "https://registry.npmjs.org/@ovh-ux/manager-react-components/-/manager-react-components-2.42.2.tgz#b78eda2feed36c354a062e3c937264ccf41500f8"
   integrity sha512-85hQoJ1mI+KMqtX7+jpu6QZ62SENk8VWRn+k2+F5eRdwyF02McbzVEZA6XZt0uCu6yNBvbpOWxdDwknsS9Th7g==
   dependencies:
     "@babel/plugin-proposal-private-property-in-object" "^7.21.11"
@@ -20942,9 +20942,9 @@ hosted-git-info@^5.0.0:
     lru-cache "^7.5.1"
 
 hosted-git-info@^9.0.0:
-  version "9.0.1"
-  resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-9.0.1.tgz#8d4852bd9673ac78f51fc250b239a29018fa8864"
-  integrity sha512-FLN0k/CSIHgTZr46YbK5od55jQEzWNGCNl8AufispkkTwcIpnxG1NMH52+O7lu0z3mI9bjPfGzcO7MhDesQ1kw==
+  version "9.0.2"
+  resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-9.0.2.tgz#b38c8a802b274e275eeeccf9f4a1b1a0a8557ada"
+  integrity sha512-M422h7o/BR3rmCQ8UHi7cyyMqKltdP9Uo+J2fXK+RSAY+wTcKOIRyhTuKv4qn+DJf3g+PL890AzId5KZpX+CBg==
   dependencies:
     lru-cache "^11.1.0"
 
@@ -21376,7 +21376,7 @@ ignore@^5.3.2:
 
 ignore@^7.0.0:
   version "7.0.5"
-  resolved "https://registry.yarnpkg.com/ignore/-/ignore-7.0.5.tgz#4cb5f6cd7d4c7ab0365738c7aea888baa6d7efd9"
+  resolved "https://registry.npmjs.org/ignore/-/ignore-7.0.5.tgz#4cb5f6cd7d4c7ab0365738c7aea888baa6d7efd9"
   integrity sha512-Hs59xBNfUIunMFgWAbGX5cq6893IbWg4KnrjbYwX3tx0ztorVgTDA6B2sxf8ejHJ4wz8BqGUMYlnzNBer5NvGg==
 
 image-size@~0.5.0:

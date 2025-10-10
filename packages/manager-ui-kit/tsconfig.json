@@ -1,0 +1,14 @@
+{
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "dist",
+    "jsx": "react-jsx",
+    "paths": {
+      "@/setupTest": ["./setupTest.tsx"]
+    }
+  },
+  "files": ["global.d.ts", "setupTest.tsx"],
+  "include": ["src/**/*", "*.spec.tsx", ".storybook/i18n.ts", "**/*.json"],
+  "exclude": ["./src/**/*.stories.*"]
+}

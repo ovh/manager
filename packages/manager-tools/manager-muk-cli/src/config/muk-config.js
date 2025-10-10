@@ -9,7 +9,7 @@ import path from 'node:path';
 /**
  * Base directories
  */
-export const MUK_COMPONENTS_PATH = path.resolve('packages/manager-react-components');
+export const MUK_COMPONENTS_PATH = path.resolve('packages/manager-ui-kit');
 export const MUK_COMPONENTS_SRC = path.join(MUK_COMPONENTS_PATH, 'src', 'components');
 
 /**

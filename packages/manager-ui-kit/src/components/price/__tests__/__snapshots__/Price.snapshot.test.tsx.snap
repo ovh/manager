@@ -1,0 +1,286 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Price Component > displays both GST-excl and GST-incl in Asia format if tax exists 1`] = `
+<div>
+  <p
+    class="_text--paragraph_1aw48_54"
+  >
+    <span
+      class="_text--span_1aw48_60 font-semibold text-[--ods-color-text] text-[16px] leading-[20px]"
+    >
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        10,00 $SG
+      </span>
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        ex. GST
+      </span>
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        /mois
+      </span>
+    </span>
+    <span
+      class="_text--span_1aw48_60 font-semibold text-[--ods-color-neutral-500] text-[14px] leading-[18px]"
+    >
+      (
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        10,00 $SG
+      </span>
+      <span
+        class="_text--span_1aw48_60"
+      >
+        incl. GST
+      </span>
+      )
+    </span>
+  </p>
+</div>
+`;
+
+exports[`Price Component > displays both HT and TTC in French format when tax > 0 1`] = `
+<div>
+  <p
+    class="_text--paragraph_1aw48_54"
+  >
+    <span
+      class="_text--span_1aw48_60 font-semibold text-[--ods-color-text] text-[16px] leading-[20px]"
+    >
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        10,00 €
+      </span>
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        HT
+      </span>
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        /mois
+      </span>
+    </span>
+    <span
+      class="_text--span_1aw48_60 font-semibold text-[--ods-color-neutral-500] text-[14px] leading-[18px]"
+    >
+      (
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        10,00 €
+      </span>
+      <span
+        class="_text--span_1aw48_60"
+      >
+        TTC
+      </span>
+      )
+    </span>
+  </p>
+</div>
+`;
+
+exports[`Price Component > displays only GST-excl in Asia format if no tax 1`] = `
+<div>
+  <p
+    class="_text--paragraph_1aw48_54"
+  >
+    <span
+      class="_text--span_1aw48_60 font-semibold text-[--ods-color-text] text-[16px] leading-[20px]"
+    >
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        10,00 $SG
+      </span>
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        ex. GST
+      </span>
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        /mois
+      </span>
+    </span>
+  </p>
+</div>
+`;
+
+exports[`Price Component > displays only HT in French format when no tax 1`] = `
+<div>
+  <p
+    class="_text--paragraph_1aw48_54"
+  >
+    <span
+      class="_text--span_1aw48_60 font-semibold text-[--ods-color-text] text-[16px] leading-[20px]"
+    >
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        10,00 €
+      </span>
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        HT
+      </span>
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        /mois
+      </span>
+    </span>
+  </p>
+</div>
+`;
+
+exports[`Price Component > displays price with tax in German format 1`] = `
+<div>
+  <p
+    class="_text--paragraph_1aw48_54"
+  >
+    <span
+      class="_text--span_1aw48_60 font-semibold text-[--ods-color-text] text-[16px] leading-[20px]"
+    >
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        10,00 €
+      </span>
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        /mois
+      </span>
+    </span>
+  </p>
+</div>
+`;
+
+exports[`Price Component > displays price without tax label in US format 1`] = `
+<div>
+  <p
+    class="_text--paragraph_1aw48_54"
+  >
+    <span
+      class="_text--span_1aw48_60 font-semibold text-[--ods-color-text] text-[16px] leading-[20px]"
+    >
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        10,00 $US
+      </span>
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        /mois
+      </span>
+    </span>
+  </p>
+</div>
+`;
+
+exports[`Price Component > does not show intervalUnitText if intervalUnit is "none" 1`] = `
+<div>
+  <p
+    class="_text--paragraph_1aw48_54"
+  >
+    <span
+      class="_text--span_1aw48_60 font-semibold text-[--ods-color-text] text-[16px] leading-[20px]"
+    >
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        10,00 €
+      </span>
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        HT
+      </span>
+    </span>
+    <span
+      class="_text--span_1aw48_60 font-semibold text-[--ods-color-neutral-500] text-[14px] leading-[18px]"
+    >
+      (
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        12,00 €
+      </span>
+      <span
+        class="_text--span_1aw48_60"
+      >
+        TTC
+      </span>
+      )
+    </span>
+  </p>
+</div>
+`;
+
+exports[`Price Component > handles different interval units correctly 1`] = `
+<div>
+  <p
+    class="_text--paragraph_1aw48_54"
+  >
+    <span
+      class="_text--span_1aw48_60 font-semibold text-[--ods-color-text] text-[16px] leading-[20px]"
+    >
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        10,00 €
+      </span>
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        HT
+      </span>
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        /an
+      </span>
+    </span>
+    <span
+      class="_text--span_1aw48_60 font-semibold text-[--ods-color-neutral-500] text-[14px] leading-[18px]"
+    >
+      (
+      <span
+        class="_text--span_1aw48_60 mr-1"
+      >
+        12,00 €
+      </span>
+      <span
+        class="_text--span_1aw48_60"
+      >
+        TTC
+      </span>
+      )
+    </span>
+  </p>
+</div>
+`;
+
+exports[`Price Component > renders free price when value is 0 1`] = `
+<div>
+  <p
+    class="_text--paragraph_1aw48_54"
+  >
+    <span>
+      Inclus
+    </span>
+  </p>
+</div>
+`;

@@ -44,7 +44,7 @@ interface BaseLayoutProps {
   breadcrumb: ReactNode;
   tabs: ReactNode;
 }
-vi.mock('@ovh-ux/manager-react-components', () => ({
+vi.mock('@ovh-ux/muk', () => ({
   BaseLayout: ({ header, backLinkLabel, onClickReturn, breadcrumb, tabs }: BaseLayoutProps) => (
     <div>
       <h1>{header.title}</h1>

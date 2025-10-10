@@ -1,7 +1,5 @@
 import React, { ReactNode } from 'react';
-
-import { Price } from '@ovh-ux/manager-react-components';
-import { OvhSubsidiary } from '@ovh-ux/manager-react-components/src/enumTypes';
+import { Price, OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import { OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';

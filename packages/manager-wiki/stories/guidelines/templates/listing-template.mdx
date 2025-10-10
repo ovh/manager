@@ -29,7 +29,7 @@ Here you can find the differents use cases for your app.
 
 #### 🚀 APIV6
 
-`useResourcesIcebergV6` (by default), [documentation](?path=/docs/manager-react-components-hooks-useresourcesicebergv6--technical-information) :
+`useResourcesIcebergV6` (by default), [documentation](?path=/docs/manager-ui-kit-hooks-useresourcesicebergv6--technical-information) :
 
   - Advanced hook for Iceberg V6 API calls
   - Data Filtering, searching, sorting features
@@ -38,7 +38,7 @@ Here you can find the differents use cases for your app.
   > 🔄 Sorting, Searching and filtering are provided by Iceberg
 
 
-`useResourcesV6` [documentation](?path=/docs/manager-react-components-hooks-useresourcesv6--technical-information) :
+`useResourcesV6` [documentation](?path=/docs/manager-ui-kit-hooks-useresourcesv6--technical-information) :
 
   - Basic hook for V6 API calls
   - Handles data fetching and state management
@@ -53,7 +53,7 @@ If you want to change, the search columns, you have to update your columns defin
 
 #### 🚀 APIV2
 
-- `useResourcesIcebergV2` [documentation](?path=/docs/manager-react-components-hooks-useresourcesicebergv2--technical-information) :
+- `useResourcesIcebergV2` [documentation](?path=/docs/manager-ui-kit-hooks-useresourcesicebergv2--technical-information) :
   - Advanced hook for Iceberg V2 API calls
   - Sorting feature
 
@@ -113,10 +113,10 @@ If you want to :
 
 <img src={listingActionsImg} alt="Listing Page headers buttons" width="200" />
 
-When you want to trigger action from a service, you can use `ActionMenu` component from `manager-react-components`
+When you want to trigger action from a service, you can use `ActionMenu` component from `manager-ui-kit`
 
 ```tsx
-import { ActionMenu } from '@ovh-ux/manager-react-components';
+import { ActionMenu } from '@ovh-ux/muk';
 
 const Actions = () => {
   const actionItems = [
@@ -162,7 +162,7 @@ import {
   BaseLayout,
   ChangelogButton,
   GuideMenu,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/muk';
 
 const guideItems = [
   {
@@ -224,7 +224,7 @@ const {
 
 ## 🚨 Handling errors
 
-In case of API V6 or V2, response error for the main request, app will be display `ErrorBanner` from `manager-react-components`.
+In case of API V6 or V2, response error for the main request, app will be display `ErrorBanner` from `manager-ui-kit`.
 
 We redirect the user to the error page, if the main request endpoint is in failure.
 
@@ -249,7 +249,7 @@ if (isError) {
 
 <img src={listingCtaImg} alt="Listing Page cta" />
 
-The CTA button is alway at datagrid top left, you need to fill `topbar` attributes of `datagrid` component from `manager-react-components`
+The CTA button is alway at datagrid top left, you need to fill `topbar` attributes of `datagrid` component from `manager-ui-kit`
 
 ## 📊 TRACKING Checklist
 
@@ -261,7 +261,7 @@ The CTA button is alway at datagrid top left, you need to fill `topbar` attribut
 
 ## ✅ Code Review Checklist
 
-- [ ] Use `BaseLayout` Component from `manager-react-components`
+- [ ] Use `BaseLayout` Component from `manager-ui-kit`
 - API call :
   - [ ] For V2 API call with Iceberg, use `useResourcesIcebergV2`
   - [ ] For V6 API call with Iceberg, use `useResourcesIcebergV6`

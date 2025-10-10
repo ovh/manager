@@ -1,0 +1,39 @@
+import { Meta, Canvas, Source } from '@storybook/blocks';
+
+<Meta title="Manager UI Kit/Components/OnboardingLayout/Documentation" />
+
+# Onboarding Layout
+
+## Overview
+
+The `OnboardingLayout` component is a comprehensive, responsive layout designed to create engaging onboarding experiences for OVHcloud applications. It provides a structured template that combines a prominent header section with an optional grid of content cards, making it ideal for welcoming users and guiding them through new features or services.
+
+## Recommandation
+
+For the the `description` property, please be sure to wrap the component with a paragraph or Text component.
+
+<Source
+ code={`
+    import { OnboardingLayout } from '@ovh-ux/muk';
+
+    render(
+        <OnboardingLayout
+            title="Welcome Onboarding"
+            orderHref="https://example.com/order"
+            orderButtonLabel="Order Now"
+            moreInfoHref="https://example.com/more-info"
+            moreInfoButtonLabel="Learn More"
+            img={{ src: placeholderSrc, style: { filter: 'grayscale(100%)' } }}
+            description={
+                <Text preset="paragraph" className="text-center">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat.
+                </Text>
+            }
+        />
+    );
+ `}
+language="typescript"
+/>

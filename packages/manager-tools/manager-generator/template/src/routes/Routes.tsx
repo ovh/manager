@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Navigate, Route } from 'react-router-dom';
 
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+import { ErrorBoundary } from '@ovh-ux/muk';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
 import NotFound from '@/pages/not-found/404.page';
@@ -11,11 +11,15 @@ import { redirectionApp, subRoutes, urls } from './Routes.constants';
 
 const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 
-const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
+const OnboardingPage = React.lazy(() =>
+  import('@/pages/onboarding/Onboarding.page'),
+);
 
-const DashboardPage = React.lazy(() => import('@/pages/dashboard/Dashboard.page'));
-const GeneralInformationPage = React.lazy(
-  () => import('@/pages/dashboard/general-information/GeneralInformation.page'),
+const DashboardPage = React.lazy(() =>
+  import('@/pages/dashboard/Dashboard.page'),
+);
+const GeneralInformationPage = React.lazy(() =>
+  import('@/pages/dashboard/general-information/GeneralInformation.page'),
 );
 const HelpPage = React.lazy(() => import('@/pages/dashboard/help/Help.page'));
 

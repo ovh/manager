@@ -1,0 +1,19 @@
+import { Meta } from '@storybook/blocks';
+import { StorybookHeading } from '../../../../components/';
+
+<Meta title="Manager UI Kit/Hooks/useResourcesV6" />
+<StorybookHeading label="Overview" level={2} />
+
+A React Query hook that handles data retrieval, filtering, sorting and searching.
+
+<StorybookHeading label="Api" level={2} />
+
+`useResourcesV6` takes an object with the following definition as parameter:
+
+- `queryKey` (`string[]`, mandatory): The unique key identifying the query (used for caching purpose)
+- `queryFn` (`(route: string) => Promise<FetchResultV6<T>>`, optional): Define this function to override the query function used to retrieve the data. By default, `V6` api is used.
+- `refetchInterval` (`(query: Query<FetchResultV6<T>>) => number | false`, optional): If you need polling, you can define this function. It takes the query and must return the interval in ms before the next query, or `false` to stop polling.
+- `columns` (`DatagridColumn<T>[]`, mandatory): Columns used in the datagrid (used for searching, sorting and filtering).
+- `defaultSorting` (`ColumnSort`, optional): By default, no sorting is done. The object take the name (`id` property) of the column and a `desc` boolean property.
+- `route` (`string`, mandatory): The endpoint to get the data from.
+- `pageSize` (`number`, optional): The number of items to return per page (defaults to 10).
