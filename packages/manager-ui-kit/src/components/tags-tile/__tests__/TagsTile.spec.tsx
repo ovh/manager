@@ -1,7 +1,7 @@
 import { screen, fireEvent } from '@testing-library/react';
 import { vitest } from 'vitest';
 import { TagsTile } from '../TagsTile.component';
-import { render } from '../../../utils/test.provider';
+import { render } from '../../../../setupTest';
 import fr_FR from '../translations/Messages_fr_FR.json';
 
 describe('TagsTile component', () => {
