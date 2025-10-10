@@ -1,4 +1,4 @@
-import { screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import {
   assertTextVisibility,
   getOdsButtonByLabel,
@@ -78,7 +78,7 @@ describe('KMS listing test suite', () => {
     await waitFor(() => userEvent.click(button));
 
     await assertTextVisibility(
-      labels.create.key_management_service_create_subtitle,
+      labels.create.key_management_service_create_title,
     );
   });
 
@@ -91,10 +91,7 @@ describe('KMS listing test suite', () => {
       isLink: true,
     });
 
-    await waitFor(
-      () => userEvent.click(dashboardLink),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    await act(() => userEvent.click(dashboardLink));
 
     await assertTextVisibility(labels.dashboard.billing_informations);
   });
