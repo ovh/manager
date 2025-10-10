@@ -10,6 +10,7 @@ import { Company } from '@/types/company';
 import { useLegacySignupRedirection } from '@/hooks/legacySignupRedirection/useLegacySignupRedirection';
 
 const NEW_ACCOUNT_CREATION_ACCESS_FEATURE = 'account-creation';
+const SMS_CONSENT_FEATURE = 'account:sms-consent';
 
 type Props = {
   children: JSX.Element | JSX.Element[];
@@ -20,7 +21,7 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   const { setUser } = useTrackingContext();
   const { data: me, isFetched, error } = useMe({ retry: 0 });
   const { data: availability } = useFeatureAvailability(
-    [NEW_ACCOUNT_CREATION_ACCESS_FEATURE],
+    [NEW_ACCOUNT_CREATION_ACCESS_FEATURE, SMS_CONSENT_FEATURE],
     { enabled: Boolean(isFetched && me) },
   );
   const redirectToLegacySignup = useLegacySignupRedirection();
@@ -101,6 +102,7 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
     address,
     city,
     setCompany,
+    isSMSConsentAvailable: availability?.[SMS_CONSENT_FEATURE] ?? false,
   };
 
   return (
