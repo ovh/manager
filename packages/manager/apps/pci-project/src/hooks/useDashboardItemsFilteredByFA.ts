@@ -1,6 +1,9 @@
 import { useMemo } from 'react';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
-import { DashboardItem, DashboardItemConfig } from '@/constants';
+import {
+  DashboardItem,
+  DashboardItemConfig,
+} from '@/data/types/dashboard.type';
 
 /**
  * Hook to filter dashboard items based on feature flag availability
