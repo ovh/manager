@@ -4,6 +4,7 @@ import { Outlet } from 'react-router-dom';
 
 import {
   isDiscoveryProject,
+  PciAnnouncementBanner,
   TabsPanel,
   useProject,
   usePciUrl,
@@ -19,7 +20,6 @@ import {
 import { ROADMAP_CHANGELOG_LINKS } from '@/constants';
 import { useProjectTabs } from '@/hooks/useProjectTabs';
 import QuotaAlert from './components/QuotaAlert.component';
-import PciAnnouncementBanner from './components/PciAnnouncementBanner.component';
 import { ProjectValidationGuard } from '@/components/project-validation-guard/ProjectValidationGuard';
 
 export default function ProjectHeader() {
@@ -64,7 +64,7 @@ export default function ProjectHeader() {
         }
       >
         <QuotaAlert />
-        <PciAnnouncementBanner />
+        <PciAnnouncementBanner projectId={project?.project_id} />
         <Outlet />
       </BaseLayout>
     </ProjectValidationGuard>
