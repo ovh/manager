@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "@hookform/resolvers": "5.2.1",
-    "@ovh-ux/billing-informations": "^1.4.9",
     "@ovh-ux/logs-to-customer": "^1.8.0",
+    "@ovh-ux/manager-billing-informations": "^1.4.9",
     "@ovh-ux/manager-common-translations": "^0.23.1",
     "@ovh-ux/manager-config": "^8.7.1",
     "@ovh-ux/manager-core-api": "^0.19.2",

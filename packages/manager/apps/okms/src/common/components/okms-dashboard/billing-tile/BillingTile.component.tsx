@@ -1,5 +1,5 @@
 import React from 'react';
-import { BillingInformationsTileStandard } from '@ovh-ux/billing-informations';
+import { BillingInformationsTileStandard } from '@ovh-ux/manager-billing-informations';
 import { useNavigate } from 'react-router-dom';
 import {
   ButtonType,
