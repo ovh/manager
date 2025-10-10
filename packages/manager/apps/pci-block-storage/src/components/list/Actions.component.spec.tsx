@@ -3,6 +3,7 @@ import { render } from '@testing-library/react';
 import { useHref } from 'react-router-dom';
 import ActionsComponent from '@/components/list/Actions.component';
 import { TVolume } from '@/api/hooks/useVolume';
+import { createWrapper } from '@/__tests__/shellTestUtils';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key: string) => key }),
@@ -47,6 +48,9 @@ const mockVolumeDetach = {
   canDetachInstance: true,
   maxAttachedInstances: 1,
 } as TVolume;
+
+const wrapper = createWrapper();
+
 describe('ActionsComponent', () => {
   it('ActionsComponent renders correct button with correct links', () => {
     vi.mocked(useHref)
@@ -56,6 +60,7 @@ describe('ActionsComponent', () => {
       .mockReturnValueOnce('./delete/1');
     const { getByTestId } = render(
       <ActionsComponent volume={mockVolume} projectUrl="/project" />,
+      { wrapper }
     );
 
     expect(getByTestId('actionComponent-create-backup-button')).toHaveAttribute(
@@ -82,6 +87,7 @@ describe('ActionsComponent', () => {
       .mockReturnValueOnce('./delete/1');
     const { getByTestId } = render(
       <ActionsComponent volume={mockVolumeDetach} projectUrl="/project" />,
+      { wrapper }
     );
 
     expect(getByTestId('actionComponent-detach-button')).toHaveAttribute(
