@@ -3,8 +3,9 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 
 import QuickAccessCard from './QuickAccessCard.component';
-import { DASHBOARD_QUICK_ACCESS_ITEMS_BASE, DashboardItem } from '@/constants';
-import { useDashboardLinks } from '@/hooks/home/useDashboardLinks';
+import { DASHBOARD_QUICK_ACCESS_ITEMS_BASE } from '@/constants';
+import { DashboardItem } from '@/data/types/dashboard.type';
+import { useProjectIdInLinks } from '@/hooks/home/useProjectIdInLinks';
 import { useDashboardItemsFilteredByFA } from '@/hooks/useDashboardItemsFilteredByFA';
 
 import IconInstances from '@/assets/home/instances.svg?url';
@@ -27,12 +28,10 @@ const iconMap: Record<string, string> = {
 function QuickAccess() {
   const { t } = useTranslation('home');
 
-  // Filter items by feature flags first
   const filteredItems = useDashboardItemsFilteredByFA(
     DASHBOARD_QUICK_ACCESS_ITEMS_BASE,
   );
 
-  // Add iconImage to filtered items using label translation key mapping
   const itemsWithIcons: DashboardItem[] = filteredItems.map((item) => ({
     ...item,
     iconImage: item.labelTranslationKey
@@ -40,7 +39,7 @@ function QuickAccess() {
       : undefined,
   }));
 
-  const itemsWithLinksAndIcons = useDashboardLinks(itemsWithIcons);
+  const itemsWithLinksAndIcons = useProjectIdInLinks(itemsWithIcons);
 
   return (
     <>

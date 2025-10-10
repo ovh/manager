@@ -1,5 +1,9 @@
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import {
+  DashboardItem,
+  DashboardItemConfig,
+} from './data/types/dashboard.type';
 
 export const QUOTA_THRESHOLD = 80;
 
@@ -45,10 +49,6 @@ export const FEATURE_AVAILABILITY = {
   CONTACTS: 'public-cloud:contacts',
   PROJECT: 'public-cloud:project',
   PROJECT_SETTINGS: 'public-cloud:project-settings',
-
-  // Others
-  CREATE_PROJECT: 'public-cloud:create-project',
-  TRUSTED_ZONE: 'public-cloud:trusted-zone',
 
   // Existing features
   SAVINGS_PLAN: 'pci-savings-plan',
@@ -310,39 +310,6 @@ export const PAYPAL_BUTTON_OPTIONS = {
 export const PAYPAL_SCRIPT = {
   src: 'https://www.paypalobjects.com/api/checkout.js',
   id: 'paypal_checkout_script',
-};
-
-// Dashboard Tile Types and Constants
-export type DashboardItem = {
-  label?: string;
-  labelTranslationKey?: string;
-  description?: string;
-  descriptionTranslationKey?: string;
-  link?: string;
-  linkLabelTranslationKey?: string;
-  iconODS?: ODS_ICON_NAME;
-  iconImage?: string;
-  target?: string;
-  rel?: string;
-  color?: string;
-  ariaLabelTranslationKey?: string;
-  price?: string;
-  validUntil?: string | null;
-  hideTileIfNoOtherItems?: boolean;
-  featureFlag?: string;
-};
-
-// Config type for items that need transformation before becoming DashboardItem
-export type DashboardItemConfig = DashboardItem & {
-  documentationGuideKey?: string;
-  featureFlag?: string;
-};
-
-export type DashboardTile = {
-  titleTranslationKey: string;
-  // Tile type. Defaults to 'standard' if not specified.
-  type?: 'standard' | 'billing';
-  items: DashboardItem[];
 };
 
 // Function to get documentation guide URL for a given guide and subsidiary

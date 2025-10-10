@@ -3,33 +3,12 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { createWrapper } from '@/wrapperRenders';
 import Others from './Others.component';
-import { DASHBOARD_OTHER_ACTIONS_ITEMS } from '@/constants';
-
-// Mock the external hook
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  useFeatureAvailability: vi.fn(),
-}));
 
 // Mock the translation hook
 vi.mock('@/hooks/usePermissiveTranslation.hook', () => ({
   default: () => ({
     t: (key: string) => key,
   }),
-}));
-
-// Mock the dashboard links hook
-vi.mock('@/hooks/home/useDashboardLinks', () => ({
-  useDashboardLinks: (items: any[]) => items,
-}));
-
-// Mock the tracking hook
-vi.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useOvhTracking: () => ({
-    trackClick: vi.fn(),
-  }),
-  ShellContext: {
-    Provider: ({ children }: { children: React.ReactNode }) => children,
-  },
 }));
 
 const mockUseFeatureAvailability = vi.mocked(useFeatureAvailability);
