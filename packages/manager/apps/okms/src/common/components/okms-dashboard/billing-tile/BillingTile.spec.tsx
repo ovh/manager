@@ -35,7 +35,7 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   };
 });
 
-vi.mock('@ovh-ux/billing-informations', async (original) => ({
+vi.mock('@ovh-ux/manager-billing-informations', async (original) => ({
   ...(await original()),
   BillingInformationsTileStandard: vi.fn(
     ({ onResiliateLinkClick, resourceName }) => (
