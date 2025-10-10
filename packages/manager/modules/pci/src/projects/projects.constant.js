@@ -18,7 +18,6 @@ export const PCI_FEATURES = {
     BLOCK_STORAGE: 'block-storage',
     VOLUME_BACKUP: 'volume-backup',
     OBJECT_STORAGE: 'object-storage',
-    DATABASES: 'databases',
     DATABASES_ANALYTICS: 'pci-databases-analytics',
     SNAPSHOT: 'snapshot',
     CLOUD_ARCHIVE: 'archive',
@@ -118,10 +117,6 @@ export const PCI_FEATURES_STATES = {
   OBJECTS: {
     LIST: 'pci.projects.project.storages.object-storage',
     ADD: 'pci.projects.project.storages.object-storage.add',
-  },
-  DATABASES: {
-    LIST: 'pci.projects.project.storages.databases',
-    ADD: 'pci.projects.project.storages.databases.add',
   },
   ARCHIVES: {
     LIST: 'pci.projects.project.storages.archives',

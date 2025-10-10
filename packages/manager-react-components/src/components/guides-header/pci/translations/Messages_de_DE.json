@@ -1,7 +1,7 @@
 {
   "pci_project_guides_header": "Guides",
   "pci_project_guides_header_all_guides": "Alle Anleitungen",
-  "pci_project_guides_header_all_storage_guides": "Alle Object Storage-Anleitungen",
+  "pci_project_guides_header_all_storage_guides": "Alle Guides zu Object Storage",
   "pci_project_guides_header_first_steps_with_instances": "Erste Schritte mit den Instanzen",
   "pci_project_guides_header_storages_volume_backup_overview": "Backup eines Volumes erstellen",
   "pci_project_guides_header_ip_fail_over": "Failover-IP",

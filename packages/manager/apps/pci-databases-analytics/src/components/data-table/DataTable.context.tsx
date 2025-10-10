@@ -48,7 +48,7 @@ export function DataTableProvider<TData, TValue>({
 }: DataTableProviderProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([
     {
-      id: columns[0]?.id as string,
+      id: columns[0]?.id || '',
       desc: false,
     },
   ]);
@@ -56,7 +56,7 @@ export function DataTableProvider<TData, TValue>({
   const columnFilters = useColumnFilters();
 
   const filteredData = useMemo(
-    () => applyFilters(data || [], columnFilters.filters) as TData[],
+    () => applyFilters<TData>(data || [], columnFilters.filters),
     [columnFilters.filters, data],
   );
   const table = useReactTable({
@@ -119,5 +119,5 @@ export function useDataTableContext<TData>() {
       'useDataTableContext must be used within a DataTableProvider',
     );
   }
-  return context as DataTableContextValue<TData>;
+  return context;
 }

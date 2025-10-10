@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { Params, useParams, useLocation, useMatches } from 'react-router-dom';
+import {
+  Params,
+  useParams,
+  useLocation,
+  useMatches,
+  UIMatch,
+} from 'react-router-dom';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { Skeleton } from '@datatr-ux/uxlib';
 import usePciProject from '@/hooks/api/project/usePciProject.hook';
@@ -10,19 +16,12 @@ export type BreadcrumbHandleParams = {
   data: unknown;
   params: Params<string>;
 };
-
-export interface MatchWithBreadcrumb {
-  id: string;
-  pathname: string;
-  params: Params<string>;
-  data: unknown;
-  handle: {
-    breadcrumb?: (breadcrumbParams: {
-      params: Params<string>;
-      data: unknown;
-    }) => React.ReactElement | null;
-  };
-}
+type BreadcrumbHandle = {
+  breadcrumb?: (args: {
+    params: Params<string>;
+    data: unknown;
+  }) => React.ReactElement | null;
+};
 
 function Breadcrumb(): JSX.Element {
   const { projectId } = useParams();
@@ -32,7 +31,7 @@ function Breadcrumb(): JSX.Element {
 
   const navigation = useNavigation();
   const [baseUrl, setBaseUrl] = useState('');
-  const matches = useMatches() as MatchWithBreadcrumb[];
+  const matches: UIMatch<unknown, BreadcrumbHandle>[] = useMatches();
   const [breadcrumbData, setBreadcrumbData] = React.useState([]);
 
   React.useEffect(() => {
@@ -50,7 +49,9 @@ function Breadcrumb(): JSX.Element {
   React.useEffect(() => {
     const updateNav = async () => {
       const url = await navigation.getURL('public-cloud', ``, {});
-      setBaseUrl(url as string);
+      if (typeof url === 'string') {
+        setBaseUrl(url);
+      }
     };
     updateNav();
   }, [navigation]);

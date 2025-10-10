@@ -25,5 +25,21 @@
   "pci_projects_project_storages_dashboard_enable_encryption": "Włącz szyfrowanie",
   "pci_projects_project_storages_dashboard_didacticiel": "SAMOUCZEK",
   "pci_projects_project_storages_dashboard_data_encryption_enabled": "SSE-OMK",
-  "pci_projects_project_storages_dashboard_cname": "Wartość rekordu CNAME/TXT"
+  "pci_projects_project_storages_dashboard_cname": "Wartość rekordu CNAME/TXT",
+  "pci_projects_project_storages_dashboard_helper_drawer_title": "Zrozumieć interfejs",
+  "pci_projects_project_storages_dashboard_helper_drawer_description": "Dowiedz się, jak w pełni korzystać z funkcji dashboardu.",
+  "pci_projects_project_storages_dashboard_container_cname_txt_description_with_link": "Użyj kontenera \"Hosting statyczny\" dla domeny lub subdomeny. Zmień strefę DNS, dodając rekord CNAME z tą wartością.",
+  "pci_projects_project_storages_dashboard_object_lock_description_with_link": "Zablokuj zasoby, aby je chronić przed nieoczekiwanym usunięciem lub zmianą, przez określony czas lub bez czasu. <1>Więcej informacji</1>",
+  "pci_projects_project_storages_dashboard_versioning_description_with_link": "Zachowaj historię obiektów, aby móc przeglądać i przywracać poprzednie wersje. <1>Więcej informacji</1>",
+  "pci_projects_project_storages_dashboard_tags_description_with_link": "Oznaczaj przedmioty, aby je organizować i zarządzać nimi w prosty sposób.",
+  "pci_projects_project_storages_dashboard_access_log_description_with_link": "Sprawdź historię dostępów do kontenerów, aby monitorować ich aktywność. <1>Więcej informacji</1>",
+  "pci_projects_project_storages_dashboard_hosting_static_website_description_with_link": "Hostuj statyczne strony WWW bezpośrednio w kontenerze i zapewnij szybkie i bezpieczne udostępnianie. <1>Więcej informacji</1>",
+  "pci_projects_project_storages_dashboard_container_localisation_description_with_link": "Lokalizacja odpowiada regionowi wybranemu podczas tworzenia kontenera i wyboru sposobu jego wdrożenia. <1>Więcej informacji</1>",
+  "pci_projects_project_storages_dashboard_container_objects_number_description_with_link": "Liczba obiektów może się różnić w zależności od tego, czy opcja jest włączona czy nie (np. versioning, MPU). <1>Więcej informacji</1>",
+  "pci_projects_project_storages_dashboard_container_used_space_description_with_link": "Używane miejsce jest wartością w bajtach. <1>Więcej informacji</1>",
+  "pci_projects_project_storages_dashboard_container_endpoint_description_with_link": "Ta informacja jest niezbędna do pobierania obiektów lub ich obsługi za pośrednictwem API. <1>Więcej informacji</1>",
+  "pci_projects_project_storages_dashboard_container_virtual_hosted_style_description_with_link": "Udostępniaj kontenery i obiekty w sieci. Ustaw uprawnienia dostępu (dla każdego obiektu) i zapewnij dostęp publiczny. Są one dostępne za pośrednictwem adresu Virtual Hosted-Style.",
+  "pci_projects_project_storages_dashboard_async_replication_description_with_link": "Reguła replikacji automatycznej lub ręcznej została skonfigurowana lub nie w tym kontenerze. <1>Więcej informacji</1>",
+  "pci_projects_project_storages_dashboard_lifecycle_description_with_link": "Zarządzaj automatycznie cyklem życia obiektów. <1>Więcej informacji</1>",
+  "pci_projects_project_storages_dashboard_default_encryption_description_with_link": "OVHcloud Managed Keys są zarządzane i używane w Twoim imieniu przez zintegrowaną i wzmocnioną usługę KMS OVHcloud."
 }

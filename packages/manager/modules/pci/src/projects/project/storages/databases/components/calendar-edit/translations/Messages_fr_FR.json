@@ -1,3 +1,0 @@
-{
-  "pci_database_calendar_edit_local_hour": "Heure locale ({{gmt}}) : {{localTime | date:'HH:mm'}}"
-}

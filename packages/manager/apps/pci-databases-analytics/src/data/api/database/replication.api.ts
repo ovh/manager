@@ -1,20 +1,22 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+import {
+  apiClient,
+  createHeaders,
+  IcebergPaginationHeaders,
+  NoCacheHeaders,
+} from '@/data/api/api.client';
 import * as database from '@/types/cloud/project/database';
-import { HeadersIcebergPagination, ServiceData } from '.';
+import { ServiceData } from '.';
+import { omit } from '@/lib/omit';
 
 export const getReplications = async ({
   projectId,
   engine,
   serviceId,
 }: ServiceData) =>
-  apiClient.v6
-    .get<database.service.Replication[]>(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/replication`,
-      {
-        headers: HeadersIcebergPagination,
-      },
-    )
-    .then((res) => res.data);
+  apiClient.v6.get<database.service.Replication[]>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/replication`,
+    createHeaders(NoCacheHeaders, IcebergPaginationHeaders),
+  );
 
 export interface IAddReplication extends ServiceData {
   replication: Omit<database.service.Replication, 'id'>;
@@ -25,12 +27,10 @@ export const addReplication = async ({
   serviceId,
   replication,
 }: IAddReplication) =>
-  apiClient.v6
-    .post<database.service.Replication>(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/replication`,
-      replication,
-    )
-    .then((res) => res.data);
+  apiClient.v6.post<database.service.Replication>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/replication`,
+    replication,
+  );
 
 export interface IEditReplication extends ServiceData {
   replication: database.service.Replication;
@@ -41,19 +41,15 @@ export const editReplication = async ({
   serviceId,
   replication,
 }: IEditReplication) => {
-  const {
-    id,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars, prettier/prettier
-    sourceIntegration,
-    targetIntegration,
-    ...replicationWithoutId
-  } = replication;
-  return apiClient.v6
-    .put<database.service.Replication>(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/replication/${id}`,
-      replicationWithoutId,
-    )
-    .then((res) => res.data);
+  const { id } = replication;
+  const replicationWithoutId = omit(replication, [
+    'sourceIntegration',
+    'targetIntegration',
+  ]);
+  return apiClient.v6.put<database.service.Replication>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/replication/${id}`,
+    replicationWithoutId,
+  );
 };
 
 export interface IDeleteReplication extends ServiceData {
