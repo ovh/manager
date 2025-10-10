@@ -125,32 +125,27 @@ export const getDedicatedServerTaskQueryKey = (
 export const createDedicatedServerTasksQueryKeyPredicate = (
   serviceName: string,
   functionList: string[],
-) => ({ queryKey }: Query) => {
-  return (
-    queryKey[0] === getDedicatedServerTasksBaseQueryKey(serviceName) &&
-    functionList.includes(
-      (queryKey[1] as { taskFunction: string })?.taskFunction,
-    )
+) => ({ queryKey }: Query) =>
+  queryKey[0] === getDedicatedServerTasksBaseQueryKey(serviceName) &&
+  functionList.includes(
+    (queryKey[1] as { taskFunction: string })?.taskFunction,
   );
-};
 
 export const getDedicatedServerTasks = async ({
   serviceName,
   taskFunction,
   status,
-}: GetDedicatedServerTasksParams): Promise<ApiResponse<number[]>> => {
-  return apiClient.v6.get<number[]>(
+}: GetDedicatedServerTasksParams): Promise<ApiResponse<number[]>> =>
+  apiClient.v6.get<number[]>(
     `/dedicated/server/${encodeURIComponent(
       serviceName,
     )}/task?function=${taskFunction}&status=${status}`,
   );
-};
 
 export const getDedicatedServerTask = async (
   serviceName: string,
   taskId: number,
-): Promise<ApiResponse<DedicatedServerTaskResponse>> => {
-  return apiClient.v6.get<DedicatedServerTaskResponse>(
+): Promise<ApiResponse<DedicatedServerTaskResponse>> =>
+  apiClient.v6.get<DedicatedServerTaskResponse>(
     `/dedicated/server/${encodeURIComponent(serviceName)}/task/${taskId}`,
   );
-};
