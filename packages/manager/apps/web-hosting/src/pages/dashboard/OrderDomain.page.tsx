@@ -17,7 +17,7 @@ import { subRoutes, urls } from '@/routes/routes.constants';
 export default function OrderDomainModal() {
   const { serviceName } = useParams();
   const navigate = useNavigate();
-  const closeModal = () => navigate(urls.ssl.replace(subRoutes.serviceName, serviceName));
+  const closeModal = () => navigate(-1);
   const context = useContext(ShellContext);
   const region = context.environment.getRegion();
   const { ovhSubsidiary } = context.environment.getUser();
