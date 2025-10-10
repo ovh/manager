@@ -6,30 +6,30 @@ interface Links {
 export default {
   moreInfo: {
     FR:
-      'https://www.ovh.com/fr/support/documents_legaux/politique_cookies_ovh.xml',
+      'https://www.ovhcloud.com/fr/terms-and-conditions/cookies-policy/',
 
-    GB: 'https://www.ovh.co.uk/support/termsofservice/cookies_ovh.xml',
-    IE: 'https://www.ovh.ie/support/termsofservice/cookies_ovh.xml',
-    DE: 'https://www.ovh.de/support/agb/cookies_ovh.xml',
-    ES: 'https://www.ovh.es/soporte/documentos_legales/cookies_ovh.xml',
-    IT: 'https://www.ovh.it/supporto/documenti_legali/cookies_ovh.xml',
-    NL: 'https://www.ovh.nl/support/algemene_voorwaarden/cookies_ovh.xml',
-    PL: 'https://www.ovh.pl/pomoc/dokumenty/cookies_ovh.xml',
-    PT: 'https://www.ovh.pt/suporte/documentos_legais/cookies_ovh.xml',
-    SN: 'https://www.ovh.sn/support/documents_legaux/politique_cookies_ovh.xml',
+    GB: 'https://www.ovhcloud.com/en-gb/terms-and-conditions/cookies-policy/',
+    IE: 'https://www.ovhcloud.com/en-ie/terms-and-conditions/cookies-policy/',
+    DE: 'https://www.ovhcloud.com/de/terms-and-conditions/cookies-policy/',
+    ES: 'https://www.ovhcloud.com/es-es/terms-and-conditions/cookies-policy/',
+    IT: 'https://www.ovhcloud.com/it/terms-and-conditions/cookies-policy/',
+    NL: 'https://www.ovhcloud.com/nl/terms-and-conditions/cookies-policy/',
+    PL: 'https://www.ovhcloud.com/pl/terms-and-conditions/cookies-policy/',
+    PT: 'https://www.ovhcloud.com/pt/terms-and-conditions/cookies-policy/',
+    SN: 'https://www.ovhcloud.com/fr-sn/terms-and-conditions/cookies-policy/',
     TN:
-      'https://www.ovh.com/tn/support/documents_legaux/politique_cookies_ovh.xml',
+      'https://www.ovhcloud.com/fr-tn/terms-and-conditions/cookies-policy/',
     MA:
-      'https://www.ovh.com/ma/support/documents_legaux/politique_cookies_ovh.xml',
-    QC: 'https://www.ovh.com/ca/fr/support/documents_legaux/cookies_ovh.xml',
-    CA: 'https://www.ovh.com/ca/en/support/termsofservice/cookies_ovh.xml',
-    WE: 'https://www.ovh.com/world/support/termsofservice/cookies_ovh.xml',
+      'https://www.ovhcloud.com/fr-ma/terms-and-conditions/cookies-policy/',
+    QC: 'https://www.ovhcloud.com/fr-ca/terms-and-conditions/cookies-policy/',
+    CA: 'https://www.ovhcloud.com/en-ca/terms-and-conditions/cookies-policy/',
+    WE: 'https://www.ovhcloud.com/en/terms-and-conditions/cookies-policy/',
     WS:
-      'https://www.ovh.com/world/es/soporte/documentos_legales/cookies_ovh.xml',
-    AU: 'https://www.ovh.com.au/support/termsofservice/cookies_ovh.xml',
-    SG: 'https://www.ovh.com/sg/support/termsofservice/cookies_ovh.xml',
-    ASIA: 'https://www.ovh.com/asia/support/termsofservice/cookies_ovh.xml',
-    IN: 'https://www.ovhcloud.com/en-in/support/termsofservice/cookies_ovh.xml',
+      'https://www.ovhcloud.com/es/terms-and-conditions/cookies-policy/',
+    AU: 'https://www.ovhcloud.com/en-au/terms-and-conditions/cookies-policy/',
+    SG: 'https://www.ovhcloud.com/en-sg/terms-and-conditions/cookies-policy/',
+    ASIA: 'https://www.ovhcloud.com/asia/terms-and-conditions/cookies-policy/',
+    IN: 'https://www.ovhcloud.com/en-in/terms-and-conditions/cookies-policy/',
   },
   changeOpinionLink: {
     FR:
