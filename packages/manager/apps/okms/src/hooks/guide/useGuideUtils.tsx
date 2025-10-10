@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CountryCode } from '@ovh-ux/manager-config';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { GUIDE_LIST, SUPPORT_URL } from './guidesLinks.constant';
+import { useShellContext } from '@/common/hooks/useShellContext';
 
 type GetGuideLinkProps = {
   name?: string;
@@ -26,8 +26,7 @@ interface GuideLinkProps {
 }
 
 function useGuideUtils() {
-  const { shell } = useContext(ShellContext);
-  const { environment } = shell;
+  const { environment } = useShellContext().shell;
   const [list, setList] = useState({});
 
   useEffect(() => {
