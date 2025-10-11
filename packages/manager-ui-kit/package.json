@@ -25,7 +25,7 @@
     "lint:modern": "manager-lint --config eslint.config.mjs ./src",
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "prepare": "tsc && vite build",
-    "test": "TZ=UTC manager-test",
+    "test": "TZ=UTC manager-test run",
     "test:ci": "TZ=UTC manager-test run --coverage"
   },
   "lint-staged": {

@@ -1,0 +1,24 @@
+{
+  "name": "@ovh-ux/manager-muk-cli",
+  "version": "0.0.1",
+  "private": true,
+  "description": "",
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "type": "module",
+  "bin": {
+    "muk-cli": "src/index.js"
+  },
+  "scripts": {
+    "lint:modern": "manager-lint --config eslint.config.mjs './src/**/*.js'",
+    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs './src/**/*.js'"
+  },
+  "dependencies": {
+    "pacote": "^21.0.3",
+    "tar-stream": "^3.1.7"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-kit": "*",
+    "typescript": "^5.9.2"
+  }
+}
