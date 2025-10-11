@@ -208,6 +208,8 @@ async function createComponentsStructure() {
 export async function updateComponents() {
   logger.info(`${EMOJIS.info} Running component synchronization pipeline...`);
 
+  // Create missing component structures
+  // Populate base templates
   const created = await createComponentsStructure();
 
   if (created.length === 0) {
@@ -215,11 +217,10 @@ export async function updateComponents() {
     return;
   }
 
+  // Update UI Kit index exports
   await updateComponentsIndexExports(created);
 
-  // Future extensions
-  // await syncTypesFromODS(created);
-
+  // Run validation tasks (install, build, tests) after workspace updates
   runPostUpdateChecks();
 
   logger.success(
