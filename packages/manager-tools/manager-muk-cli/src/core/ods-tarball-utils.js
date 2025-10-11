@@ -1,10 +1,79 @@
+import crypto from 'node:crypto';
+import fs from 'node:fs';
 import https from 'node:https';
+import process from 'node:process';
 import { createGunzip } from 'node:zlib';
 import tar from 'tar-stream';
 
-import { EMOJIS, ODS_REACT_LATEST_URL } from '../config/muk-config.js';
+import {
+  CACHE_DIR,
+  EMOJIS,
+  META_CACHE_FILE,
+  ODS_REACT_LATEST_URL,
+  TAR_CACHE_FILE,
+} from '../config/muk-config.js';
 import { logger } from '../utils/log-manager.js';
 import { toPascalCase } from './file-utils.js';
+
+/**
+ * Ensure that the ODS tarball cache directory exists.
+ * Creates `target/.cache/ods-tarball` recursively if missing.
+ * @returns {void}
+ */
+function ensureCacheDir() {
+  if (!fs.existsSync(CACHE_DIR)) fs.mkdirSync(CACHE_DIR, { recursive: true });
+}
+
+/**
+ * Save the extracted tarball contents and metadata to disk.
+ *
+ * @param {string} version - ODS React package version (e.g. "19.3.1").
+ * @param {Map<string, string>} filesMap - Map of extracted file paths → contents.
+ * @returns {void}
+ */
+function saveCache(version, filesMap) {
+  ensureCacheDir();
+  const filesObject = Object.fromEntries(filesMap);
+  const checksum = crypto.createHash('sha256').update(JSON.stringify(filesObject)).digest('hex');
+
+  fs.writeFileSync(TAR_CACHE_FILE, JSON.stringify(filesObject, null, 2));
+  fs.writeFileSync(
+    META_CACHE_FILE,
+    JSON.stringify({ version, checksum, timestamp: Date.now() }, null, 2),
+  );
+
+  logger.info(`${EMOJIS.disk} Saved ODS tarball cache (v${version})`);
+}
+
+/**
+ * Attempt to load the cached tarball files if version matches and cache is valid.
+ *
+ * @param {string} version - Current ODS React package version.
+ * @returns {Map<string, string>|null} Cached file map or null if cache invalid/missing.
+ */
+function loadCache(version) {
+  if (!fs.existsSync(TAR_CACHE_FILE) || !fs.existsSync(META_CACHE_FILE)) return null;
+  try {
+    const meta = JSON.parse(fs.readFileSync(META_CACHE_FILE, 'utf8'));
+    if (meta.version !== version) return null; // Invalidate cache on version mismatch
+
+    const files = JSON.parse(fs.readFileSync(TAR_CACHE_FILE, 'utf8'));
+    const map = new Map(Object.entries(files));
+
+    // Guard against incomplete caches (e.g., interrupted downloads)
+    if (map.size < 50) {
+      logger.warn('⚠️ Cache appears incomplete — regenerating tarball extraction.');
+      fs.rmSync(CACHE_DIR, { recursive: true, force: true });
+      return null;
+    }
+
+    logger.info(`${EMOJIS.package} Using cached ODS React v${version} tarball`);
+    return map;
+  } catch (err) {
+    logger.warn(`⚠️ Failed to load ODS cache (${err.message})`);
+    return null;
+  }
+}
 
 /**
  * Fetch JSON metadata for the latest ODS React package.
@@ -30,12 +99,31 @@ export async function getOdsPackageMetadata() {
 }
 
 /**
- * Download and extract the ODS React tarball.
- * @param {RegExp} [pattern] - Optional regex to match entries (e.g., /\.d\.ts$/)
- * @returns {Promise<Map<string, string>>} Map of file paths → contents
+ * Download, extract, and (optionally) cache the ODS React tarball.
+ * If a valid cache exists for the current version, it will be used instead.
+ *
+ * @param {RegExp} [pattern] - Optional regex to match entries (e.g., /\.d\.ts$/).
+ * @returns {Promise<Map<string, string>>} Map of file paths → contents.
  */
 export async function extractOdsTarball(pattern) {
   const { version, tarball } = await getOdsPackageMetadata();
+  ensureCacheDir();
+
+  const disableCache = !!process.env.ADD_COMPONENTS_NO_CACHE;
+
+  // Try loading from cache unless explicitly disabled
+  if (!disableCache) {
+    const cachedFiles = loadCache(version);
+    if (cachedFiles) {
+      if (pattern) {
+        const filtered = new Map([...cachedFiles.entries()].filter(([name]) => pattern.test(name)));
+        return filtered;
+      }
+      return cachedFiles;
+    }
+  }
+
+  // Fallback — live extraction from tarball
   logger.info(`${EMOJIS.package} Fetching ODS React v${version} tarball: ${tarball}`);
 
   const extract = tar.extract();
@@ -58,7 +146,11 @@ export async function extractOdsTarball(pattern) {
       }
     });
 
-    extract.on('finish', () => resolve(files));
+    extract.on('finish', () => {
+      saveCache(version, files);
+      resolve(files);
+    });
+
     extract.on('error', reject);
     gunzip.on('error', reject);
 
