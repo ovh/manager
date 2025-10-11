@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 import process from 'node:process';
 
+import { addComponents } from './commands/add-components.js';
 import { checkComponents } from './commands/check-components.js';
 import { checkVersions } from './commands/check-versions.js';
-import { updateComponents } from './commands/update-components.js';
 import { updateOdsVersions } from './commands/update-versions.js';
 import { logger } from './utils/log-manager.js';
 
@@ -16,10 +16,10 @@ async function main() {
     await checkComponents();
   } else if (args.includes('--update-version')) {
     await updateOdsVersions();
-  } else if (args.includes('--update-components')) {
-    await updateComponents();
+  } else if (args.includes('--add-components')) {
+    await addComponents();
   } else {
-    logger.warn('Usage: manager-muk-cli --check-versions | --check-components | --update');
+    logger.warn('Usage: manager-muk-cli --check-versions | --check-components | --add-components');
   }
 }
 

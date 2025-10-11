@@ -17,6 +17,18 @@ export function toPascalCase(name) {
 }
 
 /**
+ * Convert any string to kebab-case (e.g., "FormFieldLabel" → "form-field-label").
+ * Ensures consistent folder naming across components and subcomponents.
+ */
+export function toKebabCase(value) {
+  return value
+    .replace(/\s*\(.*\)$/, '') // remove parentheses or version suffixes
+    .replace(/([a-z0-9])([A-Z])/g, '$1-$2') // camelCase → kebab-case
+    .replace(/--+/g, '-') // collapse multiple dashes
+    .toLowerCase();
+}
+
+/**
  * Create directory recursively if it doesn't exist.
  * @param {string} dirPath
  */
