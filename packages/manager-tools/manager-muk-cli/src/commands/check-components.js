@@ -19,15 +19,14 @@ async function getLocalComponents() {
 }
 
 /**
- * Extract remote ODS React component names (including subcomponents).
+ * Extract exported ODS React components by analyzing index.ts files.
+ * Only considers exports from `./components/...`, excluding contexts, constants, and utils.
  *
- * Handles nested structures such as:
- *   src/components/accordion/src/components/accordion-item/
- *
- * Produces normalized names like:
- *   accordion, accordion-item, accordion-trigger
- *
- * @returns {Promise<string[]>} - Sorted list of normalized ODS component names.
+ * Handles:
+ * - Multi-line exports
+ * - Type exports
+ * - Redundant prefixes (e.g., combobox-combobox-item)
+ * - Root component fallback
  */
 export async function getRemoteOdsComponents() {
   const { version, tarball } = await getOdsPackageMetadata();
@@ -36,37 +35,46 @@ export async function getRemoteOdsComponents() {
   const files = await extractOdsTarball();
   const components = new Set();
 
-  for (const filePath of files.keys()) {
-    // 🔹 Identify the root component name
-    const rootMatch = filePath.match(/src\/components\/([^/]+)\//);
+  // Locate index.ts files under src/components/<name>/src/index.ts
+  const indexFiles = [...files.keys()].filter((p) =>
+    /src\/components\/[^/]+\/src\/index\.ts$/.test(p),
+  );
+
+  for (const filePath of indexFiles) {
+    const rootMatch = filePath.match(/src\/components\/([^/]+)\/src\/index\.ts$/);
     if (!rootMatch) continue;
     const root = rootMatch[1];
 
-    // 🔹 Detect subcomponent paths (e.g., src/components/accordion/src/components/accordion-item)
-    const subMatch = filePath.match(new RegExp(`src/components/${root}/src/components/([^/]+)/`));
+    const fileBuffer = files.get(filePath);
+    if (!fileBuffer) {
+      logger.warn(`${EMOJIS.warning} Skipping ${filePath} (not found in tarball)`);
+      continue;
+    }
 
-    if (subMatch) {
-      let sub = subMatch[1];
+    const content = fileBuffer.toString('utf8');
 
-      // Normalize redundant prefixes (e.g., accordion-accordion-item → accordion-item)
-      if (sub.startsWith(`${root}-`)) {
-        sub = sub.slice(root.length + 1);
-      }
+    // Match multi-line export blocks from components folder only
+    const exportBlocks = content.matchAll(
+      /export\s*\{[\s\S]*?\}\s*from\s*['"]\.\/components\/([^/'"]+)\/?/g,
+    );
 
-      // Skip self-subcomponents (e.g., divider-divider)
+    for (const match of exportBlocks) {
+      let sub = match[1].trim();
+
+      if (sub.startsWith(`${root}-`)) sub = sub.slice(root.length + 1);
       if (sub === root) continue;
 
       components.add(`${root}-${sub}`);
-    } else {
-      components.add(root);
     }
+
+    components.add(root);
   }
 
-  const componentList = [...components].filter(Boolean).sort();
-
+  const componentList = [...components].sort();
   logger.info(
-    `${EMOJIS.check} Extracted ${componentList.length} ODS components (normalized structure)`,
+    `${EMOJIS.check} Extracted ${componentList.length} exported ODS components (public API only).`,
   );
+
   return componentList;
 }
 
@@ -75,7 +83,7 @@ export async function getRemoteOdsComponents() {
  *
  * @param {object} [options]
  * @param {boolean} [options.returnOnly=false] - If true, skip summary logging and only return data.
- * @returns {Promise<{ missingComponents: string[], extraLocalComponents: string[] }>}
+ * @returns {Promise<{missingComponents: T[], extraLocalComponents: T[]}>}
  */
 export async function checkComponents({ returnOnly = false } = {}) {
   logger.info(`${EMOJIS.info} Comparing component parity between ODS React and Manager UI Kit...`);

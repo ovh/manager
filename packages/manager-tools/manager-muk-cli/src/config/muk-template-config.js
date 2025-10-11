@@ -127,16 +127,78 @@ describe('${compName}', () => {
 }
 
 /**
- * Generate subcomponent implementation that reuses parent props.
- * @param {string} compName - PascalCase subcomponent name.
- * @param {string} parentName - PascalCase parent component name.
+ * Generate subcomponent props definition.
+ *
+ * @param {string} subName - PascalCase subcomponent name
+ * @param {string} parentName - PascalCase parent component name
+ * @param {boolean} hasOwnType - Whether the ODS package exports a dedicated prop type for this subcomponent
+ * @param {boolean} hasChildren - Whether the subcomponent supports children
  * @returns {string}
  */
-export function buildSubcomponentTemplate(compName, parentName) {
-  return `import { PropsWithChildren } from 'react';
+export function buildSubcomponentPropsTemplate(
+  subName,
+  parentName,
+  hasOwnType = false,
+  hasChildren = false,
+) {
+  if (hasOwnType) {
+    const importBase = `import { ${subName}Prop as Ods${subName}Props } from '@ovhcloud/ods-react';`;
+
+    if (hasChildren) {
+      return `${importBase}
+import { PropsWithChildren } from 'react';
+
+export type ${subName}Props = PropsWithChildren<Ods${subName}Props> & {};
+`;
+    }
+
+    return `${importBase}
+
+export type ${subName}Props = Ods${subName}Props & {};
+`;
+  }
+
+  // Fallback to parent props
+  if (hasChildren) {
+    return `import { PropsWithChildren } from 'react';
 import { ${parentName}Props } from '../${parentName}.props';
 
-export const ${compName} = ({ children }: PropsWithChildren<${parentName}Props>) => <>{children}</>;
+export type ${subName}Props = PropsWithChildren<${parentName}Props> & {};
+`;
+  }
+
+  return `import { ${parentName}Props } from '../${parentName}.props';
+
+export type ${subName}Props = ${parentName}Props & {};
+`;
+}
+
+/**
+ * Generate subcomponent implementation.
+ *
+ * @param {string} compName - PascalCase subcomponent name.
+ * @param {boolean} hasChildren - Whether the subcomponent supports children.
+ * @returns {string}
+ */
+export function buildSubcomponentTemplate(compName, hasChildren = false) {
+  const importBase = `import { ${compName} as ODS${compName} } from '@ovhcloud/ods-react';
+import { ${compName}Props } from './${compName}.props';`;
+
+  if (hasChildren) {
+    return `${importBase}
+import { PropsWithChildren } from 'react';
+
+export const ${compName} = ({ children, ...props }: PropsWithChildren<${compName}Props>) => (
+  <ODS${compName} {...props}>{children}</ODS${compName}>
+);
+`;
+  }
+
+  return `${importBase}
+
+export const ${compName} = (props: ${compName}Props) => (
+  <ODS${compName} {...props} />
+);
 `;
 }
 

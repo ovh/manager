@@ -4,6 +4,7 @@ import tar from 'tar-stream';
 
 import { EMOJIS, ODS_REACT_LATEST_URL } from '../config/muk-config.js';
 import { logger } from '../utils/log-manager.js';
+import { toPascalCase } from './file-utils.js';
 
 /**
  * Fetch JSON metadata for the latest ODS React package.
@@ -71,70 +72,87 @@ export async function extractOdsTarball(pattern) {
 }
 
 /**
- * Detects whether a given ODS React component uses "children"
- * by inspecting only its main .tsx file from the npm tarball.
+ * Detects if a given component (or subcomponent) supports children by inspecting its source.
  *
- * This version terminates cleanly (no hanging).
- *
- * @param {string} component - kebab-case ODS component name (e.g. "accordion")
- * @returns {Promise<boolean>} true if the component uses "children"
+ * @param {string} parent - kebab-case parent name (e.g. 'tooltip')
+ * @param {string} [subcomponent] - optional subcomponent name (e.g. 'tooltip-trigger')
+ * @returns {Promise<boolean>}
  */
-export async function detectHasChildrenFromTarball(component) {
-  const { version, tarball } = await getOdsPackageMetadata();
-  logger.info(`${EMOJIS.package} Fetching ODS React v${version} tarball to inspect "${component}"`);
+export async function detectHasChildrenFromTarball(parent, subcomponent) {
+  const files = await extractOdsTarball();
 
-  const extract = tar.extract();
-  const gunzip = createGunzip();
+  // Handle possible tarball path prefixes like "package/"
+  const possiblePaths = subcomponent
+    ? [
+        `src/components/${parent}/src/components/${subcomponent}/${toPascalCase(subcomponent)}.tsx`,
+        `package/src/components/${parent}/src/components/${subcomponent}/${toPascalCase(subcomponent)}.tsx`,
+      ]
+    : [
+        `src/components/${parent}/src/components/${parent}/${toPascalCase(parent)}.tsx`,
+        `package/src/components/${parent}/src/components/${parent}/${toPascalCase(parent)}.tsx`,
+      ];
 
-  const targetFile = `src/components/${component}/src/components/${component}/${component
-    .charAt(0)
-    .toUpperCase()}${component.slice(1)}.tsx`;
+  const fileEntry = possiblePaths.map((p) => files.get(p)).find(Boolean);
 
-  return new Promise((resolve, reject) => {
-    let hasChildren = false;
-    let finished = false;
-    let req;
+  if (!fileEntry) {
+    logger.warn(`⚠ Could not find source file for ${subcomponent ?? parent}`);
+    return false;
+  }
 
-    const cleanup = () => {
-      if (finished) return;
-      finished = true;
+  const content = fileEntry.toString('utf8');
 
-      try {
-        extract.destroy();
-        gunzip.destroy();
-        if (req && req.abort) req.abort();
-      } catch (error) {
-        logger.debug(`An error occurred. ${error.message}`);
-      }
+  // Refined heuristic detection patterns
+  const patterns = [
+    /\bPropsWithChildren\b/, // imported React helper
+    /\bchildren\s*:\s*/, // prop destructuring pattern
+    /\bchildren\b(?=.*<\/)/s, // children in JSX (non-greedy, cross-line)
+    /<.*>\s*{.*children.*}\s*<\/.*>/s, // explicit children interpolation
+    /props\.children/, // direct props access
+  ];
 
-      resolve(hasChildren);
-    };
+  const hasChildren = patterns.some((re) => re.test(content));
 
-    extract.on('entry', (header, stream, next) => {
-      if (header.name.endsWith(targetFile)) {
-        let content = '';
-        stream.on('data', (chunk) => (content += chunk.toString()));
-        stream.on('end', () => {
-          hasChildren =
-            content.includes('children') ||
-            content.includes('{children}') ||
-            content.includes('PropsWithChildren<');
-          logger.debug(
-            hasChildren ? `✅ ${component} uses children` : `🚫 ${component} does not use children`,
-          );
-          cleanup();
-        });
-      } else {
-        stream.resume();
-        stream.on('end', next);
-      }
-    });
+  logger.info(
+    `${hasChildren ? '👶' : '🚫'} ${subcomponent ?? parent} ${hasChildren ? 'supports' : 'has no'} children`,
+  );
 
-    extract.on('finish', () => cleanup());
-    extract.on('error', reject);
-    gunzip.on('error', reject);
+  return hasChildren;
+}
 
-    req = https.get(tarball, (res) => res.pipe(gunzip).pipe(extract));
-    req.on('error', reject);
-  });
+/**
+ * Detects whether a subcomponent has its own exported Prop type in the parent index.ts
+ *
+ * @param {string} parent - kebab-case parent component (e.g. 'tooltip')
+ * @param {string} subcomponent - kebab-case subcomponent (e.g. 'tooltip-trigger')
+ * @returns {Promise<boolean>}
+ */
+export async function detectHasTypeExportFromIndex(parent, subcomponent) {
+  const files = await extractOdsTarball();
+
+  const possiblePaths = [
+    `src/components/${parent}/src/index.ts`,
+    `package/src/components/${parent}/src/index.ts`,
+  ];
+  const fileEntry = possiblePaths.map((p) => files.get(p)).find(Boolean);
+  if (!fileEntry) {
+    logger.warn(`⚠ Could not find index.ts for ${parent}`);
+    return false;
+  }
+
+  const content = fileEntry.toString('utf8');
+  const subPascal = toPascalCase(subcomponent);
+  const typeName = `${subPascal}Prop`; // e.g., TooltipTriggerProp
+
+  // look for `type TooltipTriggerProp` or `export { ..., type TooltipTriggerProp }`
+  const typeExportRegex = new RegExp(`\\btype\\s+${typeName}\\b|\\b${typeName}\\b`, 'g');
+
+  const found = typeExportRegex.test(content);
+
+  logger.info(
+    `${found ? '🧩' : '🚫'} ${subcomponent} ${
+      found ? 'exports' : 'does not export'
+    } its own Prop type`,
+  );
+
+  return found;
 }
