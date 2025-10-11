@@ -88,15 +88,15 @@ yarn muk-cli --add-components
 
 Supports:
 
-* Simple components (e.g. `badge`, `progress-bar`)
-* Nested components (e.g. `form-field`, `combobox`, `range`, `datepicker`)
+* Simple components (without children, e.g. `badge`, `progress-bar`)
+* Nested components (with children, e.g. `form-field`, `combobox`, `range`, `datepicker`)
 * Hook passthroughs (e.g. `useFormField`)
 * Constants passthroughs (e.g. `DatepickerConstants`)
 * External type re-exports (from contexts or shared ODS types)
 
 ---
 
-## 🧱 2. Simple Components
+## 🧱 2. Simple Components (Without Children)
 
 A *simple* ODS component has no subcomponents or nested structure.
 
@@ -129,7 +129,7 @@ export type { ProgressBarProps } from './ProgressBar.props';
 
 ---
 
-## 🪜 3. Nested Components
+## 🪜 3. Nested Components (With Children)
 
 Nested components (e.g. `form-field`, `combobox`, `datepicker`, `range`) contain child components such as `form-field-label` or `datepicker-control`.
 
@@ -145,25 +145,33 @@ The CLI automatically:
 **Example Structure**
 
 ```
-range/
+form-field/
 ├── __tests__/
-│   └── Range.snapshot.test.tsx
-├── range-track/
-│   └── RangeTrack.component.tsx
-├── range-thumb/
-│   └── RangeThumb.component.tsx
-├── Range.component.tsx
-├── Range.props.ts
+│   └── FormField.snapshot.test.tsx
+├── form-field-label/
+│   └── FormFieldLabel.component.tsx
+├── form-field-helper/
+│   └── FormFieldHelper.component.tsx
+├── form-field-error/
+│   └── FormFieldError.component.tsx
+├── constants/
+│   └── FormFieldConstants.ts
+├── hooks/
+│   └── useFormField.ts
+├── FormField.component.tsx
+├── FormField.props.ts
 └── index.ts
 ```
 
 **Parent Index**
 
 ```ts
-export { Range } from './Range.component';
-export type { RangeProps } from './Range.props';
-export { RangeTrack } from './range-track/RangeTrack.component';
-export { RangeThumb } from './range-thumb/RangeThumb.component';
+export { FormField, type FormFieldProps } from './FormField.component';
+export { FormFieldError } from './form-field-error/FormFieldError.component';
+export { FormFieldHelper } from './form-field-helper/FormFieldHelper.component';
+export { FormFieldLabel } from './form-field-label/FormFieldLabel.component';
+export * from './hooks/useFormField';
+export * from './constants/FormFieldConstants';
 ```
 
 ---
