@@ -4,13 +4,17 @@ import path from 'node:path';
 import { EMOJIS, MUK_COMPONENTS_SRC, ODS_EXCLUDED_COMPONENTS } from '../config/muk-config.js';
 import {
   buildComponentsIndexTemplate,
+  buildSubcomponentPropsTemplate,
   buildSubcomponentSpecTemplate,
   buildSubcomponentTemplate,
   getComponentTemplates,
 } from '../config/muk-template-config.js';
 import { groupComponentsDynamically } from '../core/component-utils.js';
 import { createFile, ensureDir, readFile, toPascalCase, writeFile } from '../core/file-utils.js';
-import { detectHasChildrenFromTarball } from '../core/ods-tarball-utils.js';
+import {
+  detectHasChildrenFromTarball,
+  detectHasTypeExportFromIndex,
+} from '../core/ods-tarball-utils.js';
 import { runPostUpdateChecks } from '../core/tasks-utils.js';
 import { logger } from '../utils/log-manager.js';
 import { checkComponents } from './check-components.js';
@@ -75,7 +79,6 @@ function buildComponentFiles(componentName, hasChildren = false) {
 
   const componentDir = path.join(MUK_COMPONENTS_SRC, folderName);
   const testsDir = path.join(componentDir, testFolder);
-  const snapshotDir = path.join(testsDir, 'snapshot');
 
   const pascalName = toPascalCase(componentName);
   const templates = getComponentTemplates(pascalName, hasChildren);
@@ -86,7 +89,6 @@ function buildComponentFiles(componentName, hasChildren = false) {
     paths: {
       base: componentDir,
       tests: testsDir,
-      snapshot: snapshotDir,
     },
     files: {
       component: {
@@ -105,10 +107,6 @@ function buildComponentFiles(componentName, hasChildren = false) {
         path: path.join(componentDir, 'index.ts'),
         content: templates.index,
       },
-      gitkeep: {
-        path: path.join(snapshotDir, '.gitkeep'),
-        content: '',
-      },
     },
   };
 }
@@ -121,14 +119,15 @@ function buildComponentFiles(componentName, hasChildren = false) {
  * @returns {Promise<void>}
  */
 async function generateComponentStructure(parent, children = []) {
+  // 🧠 Detect if parent supports children
   const hasChildren = await detectHasChildrenFromTarball(parent);
   const { componentName, paths, files } = buildComponentFiles(parent, hasChildren);
 
-  // 🏗 Create base directories and files
+  // 🏗 Create base directories and files for parent
   Object.values(paths).forEach(ensureDir);
   Object.values(files).forEach(({ path: filePath, content }) => createFile(filePath, content));
 
-  // 📁 Create subcomponents
+  // 📦 Handle subcomponents
   for (const child of children) {
     const subDir = path.join(paths.base, child);
     const subTestsDir = path.join(subDir, '__tests__');
@@ -136,13 +135,28 @@ async function generateComponentStructure(parent, children = []) {
     ensureDir(subTestsDir);
 
     const subPascal = toPascalCase(child);
-    const subComponentContent = buildSubcomponentTemplate(subPascal, componentName);
+
+    const subHasChildren = await detectHasChildrenFromTarball(parent, child);
+    const subHasOwnType = await detectHasTypeExportFromIndex(parent, child);
+
+    const subPropsContent = buildSubcomponentPropsTemplate(
+      subPascal,
+      componentName,
+      subHasOwnType,
+      subHasChildren,
+    );
+    const subComponentContent = buildSubcomponentTemplate(subPascal, subHasChildren);
     const subSpecContent = buildSubcomponentSpecTemplate(subPascal);
 
+    createFile(path.join(subDir, `${subPascal}.props.ts`), subPropsContent);
     createFile(path.join(subDir, `${subPascal}.component.tsx`), subComponentContent);
     createFile(path.join(subTestsDir, `${subPascal}.component.spec.tsx`), subSpecContent);
 
-    logger.info(`📁 Created subcomponent '${child}' with __tests__`);
+    logger.info(
+      `${EMOJIS.folder} Created subcomponent '${child}' (${subHasOwnType ? '🧩 own type' : '↩ uses parent type'}, ${
+        subHasChildren ? '👶 supports' : '🚫 no'
+      } children)`,
+    );
   }
 
   // 🔗 Add export lines to parent index.ts
@@ -176,7 +190,11 @@ async function createComponentsStructure() {
   logger.info(`${EMOJIS.info} Starting ODS → Manager UI Kit component sync...`);
 
   const { missingComponents = [] } = await checkComponents({ returnOnly: true });
-  const componentsToCreate = missingComponents.filter((c) => !ODS_EXCLUDED_COMPONENTS.includes(c));
+  const componentsToCreate = missingComponents
+    .filter((c) => !ODS_EXCLUDED_COMPONENTS.includes(c))
+    .filter(
+      (item) => item.includes('combobox') || item.includes('datepicker') || item.includes('range'),
+    );
 
   if (!componentsToCreate.length) {
     logger.success('✅ All relevant ODS components are already present.');
