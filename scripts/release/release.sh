@@ -241,6 +241,15 @@ main() {
   update_sonar_version "$next_tag"
   run_lerna_version
 
+  # --- Commit Lerna version bumps early (like old script) ---
+  if [ "${DRY_RELEASE}" != true ]; then
+    if ! git diff --quiet; then
+      echo "Committing Lerna version bumps..."
+      git add -A
+      git commit -s -m "chore(release): version bump"
+    fi
+  fi
+
   # Undo any file changes produced by Lerna during dry-run
   if [ "${DRY_RELEASE}" = true ]; then
     dry_restore_clean
