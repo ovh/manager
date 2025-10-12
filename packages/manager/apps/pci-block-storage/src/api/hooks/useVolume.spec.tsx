@@ -1,5 +1,4 @@
 import { act, renderHook, waitFor } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { describe, it, vi } from 'vitest';
 import {
   useAttachVolume,
@@ -16,6 +15,7 @@ import {
   detachVolume,
   TAPIVolume,
 } from '@/api/data/volume';
+import { createWrapper } from '@/__tests__/shellTestUtils';
 
 vi.mock('@/api/data/volume', async (importOriginal) => {
   const actual: any = await importOriginal();
@@ -31,11 +31,7 @@ vi.mock('@/api/data/volume', async (importOriginal) => {
 
 vi.mock('@/api/data/catalog');
 
-const queryClient = new QueryClient();
-
-const wrapper = ({ children }) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
+const wrapper = createWrapper();
 
 afterAll(() => {
   vi.restoreAllMocks();

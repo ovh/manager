@@ -82,10 +82,18 @@ export default function ListingPage() {
           />
         )}
         <div className="header mb-10 mt-8">
-            <Headers title={t('pci_projects_project_network_private')} headerButton={<PciGuidesHeader category="instances"></PciGuidesHeader>} changelogButton={<ChangelogButton
+          <Headers
+            title={t('pci_projects_project_network_private')}
+            headerButton={
+              <PciGuidesHeader category="instances"></PciGuidesHeader>
+            }
+            changelogButton={
+              <ChangelogButton
                 links={CHANGELOG_LINKS}
                 chapters={CHANGELOG_CHAPTERS}
-              />} />
+              />
+            }
+          />
         </div>
 
         <PciAnnouncementBanner projectId={projectId} />
