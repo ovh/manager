@@ -202,8 +202,12 @@ main() {
 
   local changed_packages
   changed_packages="$(get_changed_packages || true)"
+
   if [ -z "${changed_packages}" ]; then
     printf "%s\n" "Nothing to release"
+    # Clean up possible version bump residue from Lerna
+    git restore package.json 2>/dev/null || true
+    git restore lerna.json 2>/dev/null || true
     exit 0
   fi
 
