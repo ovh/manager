@@ -3,7 +3,7 @@ import process from 'node:process';
 import { codeDuplicationConfig } from '../../dist/configs/code-duplication-config.js';
 import { typesCoverageConfig } from '../../dist/configs/types-coverage-config.js';
 import { logError, logInfo } from './log-utils.js';
-import { getModule } from './module-utils.js';
+import { discoverModules, getModule } from './module-utils.js';
 
 /**
  * Parse CLI arguments to resolve target modules (apps, packages, or libraries).
@@ -54,7 +54,7 @@ export function parseArgs() {
 
   const moduleModeArgs = libsArg || packagesArg || appsArg;
 
-  if (!moduleModeArgs) return null;
+  if (!moduleModeArgs) return discoverModules(false);
 
   const index = process.argv.indexOf(moduleModeArgs);
   const rawValue = process.argv[index + 1] || '';
