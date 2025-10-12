@@ -205,9 +205,9 @@ main() {
 
   if [ -z "${changed_packages}" ]; then
     printf "%s\n" "Nothing to release"
-    # Clean up possible version bump residue from Lerna
-    git restore package.json 2>/dev/null || true
-    git restore lerna.json 2>/dev/null || true
+    # Clean up any residue to guarantee a pristine tree
+    git reset --hard HEAD >/dev/null 2>&1 || true
+    git clean -fd          >/dev/null 2>&1 || true
     exit 0
   fi
 
