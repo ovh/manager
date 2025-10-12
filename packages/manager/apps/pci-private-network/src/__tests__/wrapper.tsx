@@ -1,6 +1,10 @@
 import { PropsWithChildren } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import {
+  ShellContext,
+  ShellContextType,
+} from '@ovh-ux/manager-react-shell-client';
 import { NewPrivateNetworkForm } from '@/types/private-network-form.type';
 import { NEW_PRIVATE_NETWORK_FORM_SCHEMA } from '@/pages/new/new.constants';
 
@@ -9,5 +13,9 @@ export function NewPrivateNetworkWrapper({ children }: PropsWithChildren) {
     resolver: zodResolver(NEW_PRIVATE_NETWORK_FORM_SCHEMA),
   });
 
-  return <FormProvider {...form}>{children}</FormProvider>;
+  return (
+    <ShellContext.Provider value={{} as ShellContextType}>
+      <FormProvider {...form}>{children}</FormProvider>
+    </ShellContext.Provider>
+  );
 }
