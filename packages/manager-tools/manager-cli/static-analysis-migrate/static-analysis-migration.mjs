@@ -25,5 +25,4 @@ runMigration({
   dryRun: isDryRun,
   docLink: '/development-guidelines/static-analysis-kit-migration/',
   enableLintFix: false,
-  enablePrettier: true,
 });
