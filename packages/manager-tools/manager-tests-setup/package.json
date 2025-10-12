@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-tests-setup",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "Manager common tests configuration",
   "bugs": {
     "url": "https://github.com/ovh/manager/issues"
@@ -24,7 +24,7 @@
     "test": "vitest run --config src/__tests__/vite.config.mjs"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "*",
+    "@ovh-ux/manager-static-analysis-kit": "^0.11.1",
     "@testing-library/dom": "10.4.0",
     "@testing-library/jest-dom": "6.6.3",
     "@vitejs/plugin-react-swc": "3.10.2",
@@ -38,8 +38,8 @@
     "@testing-library/jest-dom": "6.6.3",
     "@vitest/coverage-v8": "2.1.9",
     "@vitest/ui": "2.1.9",
-    "vitest": "3.2.4",
     "vite": "6.3.4",
+    "vitest": "3.2.4",
     "webdriverio": "9.16.2"
   }
 }

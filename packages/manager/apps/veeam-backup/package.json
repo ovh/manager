@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-veeam-backup-app",
-  "version": "0.21.8",
+  "version": "0.21.9",
   "private": true,
   "description": "veeam backup app",
   "repository": {
@@ -18,16 +18,16 @@
   },
   "dependencies": {
     "@ovh-ux/manager-common-translations": "^0.9.1",
-    "@ovh-ux/manager-config": "^8.6.4",
-    "@ovh-ux/manager-core-api": "^0.18.6",
-    "@ovh-ux/manager-core-utils": "^0.4.4",
-    "@ovh-ux/manager-module-common-api": "^0.5.6",
-    "@ovh-ux/manager-module-order": "^0.11.6",
-    "@ovh-ux/manager-module-vcd-api": "^0.8.11",
-    "@ovh-ux/manager-react-components": "^2.42.3",
-    "@ovh-ux/manager-react-core-application": "^0.12.7",
+    "@ovh-ux/manager-config": "^8.6.5",
+    "@ovh-ux/manager-core-api": "^0.18.7",
+    "@ovh-ux/manager-core-utils": "^0.4.5",
+    "@ovh-ux/manager-module-common-api": "^0.5.7",
+    "@ovh-ux/manager-module-order": "^0.11.7",
+    "@ovh-ux/manager-module-vcd-api": "^0.8.12",
+    "@ovh-ux/manager-react-components": "^2.42.4",
+    "@ovh-ux/manager-react-core-application": "^0.12.8",
     "@ovh-ux/manager-react-shell-client": "^0.9.3",
-    "@ovh-ux/request-tagger": "^0.5.4",
+    "@ovh-ux/request-tagger": "^0.5.5",
     "@ovhcloud/ods-components": "^18.6.2",
     "@ovhcloud/ods-themes": "^18.6.2",
     "@tanstack/react-query": "^5.51.21",
@@ -44,9 +44,9 @@
     "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-test-utils": "^0.7.6",
+    "@ovh-ux/manager-core-test-utils": "^0.7.7",
     "@ovh-ux/manager-tests-setup": "latest",
-    "@ovh-ux/manager-vite-config": "^0.13.3",
+    "@ovh-ux/manager-vite-config": "^0.13.4",
     "msw": "2.1.7",
     "typescript": "^5.1.6",
     "vitest": "^2.1.9"

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.20.13...@ovh-ux/manager-pci-block-storage-app@0.20.14) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
+
+
+
+
+
 ## [0.20.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.20.12...@ovh-ux/manager-pci-block-storage-app@0.20.13) (2025-10-07)
 
 
