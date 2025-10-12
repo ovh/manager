@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { bytesConverter } from '@/lib/bytesHelper';
-import { OrderVolumes } from '@/types/orderFunnel';
+import { OrderVolumes, Qpu } from '@/types/orderFunnel';
 import { humanizeFramework } from '@/lib/orderFunnelHelper';
 import ai from '@/types/AI';
 
@@ -17,6 +17,7 @@ interface OrderSummaryProps {
   order: {
     region: ai.capabilities.Region;
     flavor: ai.capabilities.Flavor;
+    QPUFlavor? : Qpu;
     resourcesQuantity: number;
     framework: ai.capabilities.notebook.Framework;
     version: string;
@@ -95,7 +96,7 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
 
       {order.flavor && (
         <div>
-          <div className="flex items-center pl-4">
+          <div className="flex items-center pl-4 gap-2">
             <Cpu className="size-4" />
             <span>
               {t('summaryFieldFlavorCores', {
@@ -143,12 +144,18 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
               })}
             </span>
           </div>
-          <span className="capitalize"> 1 Pasqal QPU</span>
+          {order.QPUFlavor && (
+            <>
+              <span className="capitalize"> 1 {order.QPUFlavor?.name}</span>
 
-          <div className="flex items-center pl-4">
-            <Cpu className="size-4" />
-            <span>20 {t('qpuQubits')}</span>
-          </div>
+              <div className="flex items-center pl-4 gap-2">
+                <Cpu className="size-4" />
+                <span>
+                  {order.QPUFlavor?.qubits} {t('qpuQubits')}
+                </span>
+              </div>
+            </>
+          )}
         </div>
       )}
     </div>

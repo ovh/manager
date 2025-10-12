@@ -359,7 +359,7 @@ const OrderFunnel = ({
                           <FrameworksSelect
                             {...field}
                             frameworks={model.lists.frameworks}
-                            value={model.result.framework.id}
+                            value={model.result.framework?.id}
                             onChange={(newFramework) => {
                               model.form.setValue(
                                 'frameworkWithVersion.framework',
@@ -483,24 +483,19 @@ const OrderFunnel = ({
 
                 <FormField
                   control={model.form.control}
-                  name="flavorWithQuantity.flavor"
+                  name="QPUFlavor"
                   render={({ field }) => {
                     return (
                       <FormItem>
                         <FormControl>
                           <QpusSelect
                             {...field}
-                            qpus={model.lists.flavors}
+                            qpus={model.lists.qpuFlavors}
                             value={field.value}
-                            resourcesQuantity={model.result.resourcesQuantity}
-                            onChange={(newFlavor) => {
+                            onChange={(newQPUFlavor) => {
                               model.form.setValue(
-                                'flavorWithQuantity.flavor',
-                                newFlavor,
-                              );
-                              model.form.setValue(
-                                'flavorWithQuantity.quantity',
-                                1,
+                                'QPUFlavor',
+                                newQPUFlavor,
                               );
                             }}
                           />

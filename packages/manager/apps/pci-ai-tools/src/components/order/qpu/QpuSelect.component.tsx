@@ -10,21 +10,20 @@ import {
   TableRow,
 } from '@datatr-ux/uxlib';
 import { cn } from '@/lib/utils';
-import { Flavor } from '@/types/orderFunnel';
+import { Qpu } from '@/types/orderFunnel';
 import ai from '@/types/AI';
 import Price from '@/components/price/Price.component';
 
 interface QpusSelectProps {
-  qpus: Flavor[];
-  value: string;
-  resourcesQuantity: number;
+  qpus: Qpu[];
+  value: string; 
   onChange: (newQpu: string) => void;
   className?: string;
   isUpdate?: boolean;
 }
 
 const QpusSelect = React.forwardRef<HTMLTableElement, QpusSelectProps>(
-  ({ qpus, value, resourcesQuantity, onChange, isUpdate, className }, ref) => {
+  ({ qpus, value, onChange, isUpdate, className }, ref) => {
     const { t } = useTranslation('ai-tools/components/qpu');
 
     qpus.sort((a, b) => a.pricing[0].price - b.pricing[0].price);
@@ -108,16 +107,16 @@ const QpusSelect = React.forwardRef<HTMLTableElement, QpusSelectProps>(
                 </TableCell>
               )}
               <TableCell className="text-[#4d5592] border capitalize">
-                {resourcesQuantity * qpu.resourcesPerUnit.cpu}
+                {qpu.qubits}
               </TableCell>
 
               <TableCell className="text-[#4d5592] border capitalize">
-                <Price
-                  priceInUcents={60 * resourcesQuantity * qpu.pricing[0]?.price}
-                  taxInUcents={60 * resourcesQuantity * qpu.pricing[0]?.tax}
+            {/*    <Price
+                  priceInUcents={60 * resourcesQuantity * (qpu.pricing[0]?.price || 0)}
+                  taxInUcents={60 * resourcesQuantity * (qpu.pricing[0]?.tax|| 0)}
                   decimals={2}
                   displayInHour={false}
-                />
+                />*/}
               </TableCell>
             </TableRow>
           ))}

@@ -8,6 +8,7 @@ import {
   NotebookSuggestions,
   OrderSshKey,
   PrivacyEnum,
+  Qpu,
 } from '@/types/orderFunnel';
 import ai from '@/types/AI';
 
@@ -23,6 +24,8 @@ import publicCatalog from '@/types/Catalog';
 import { useGetFramework } from '@/data/hooks/ai/capabilities/useGetFramework.hook';
 import { useGetEditor } from '@/data/hooks/ai/capabilities/useGetEditor.hook';
 import { useQuantum } from '@/hooks/useQuantum.hook';
+import { createQPUFlavorPricingList } from '@/lib/priceQPUFlavorHelper';
+import { useGetQPUFlavor } from '@/data/hooks/ai/capabilities/useGetQPUFlavor.hook';
 
 export function useOrderFunnel(
   regions: ai.capabilities.Region[],
@@ -37,6 +40,7 @@ export function useOrderFunnel(
       flavor: z.string(),
       quantity: z.coerce.number(),
     }),
+    QPUFlavor: z.string().optional(),
     frameworkWithVersion: z.object({
       framework: z.string(),
       version: z.string(),
@@ -84,6 +88,7 @@ export function useOrderFunnel(
       region: suggestions.defaultRegion,
       flavorWithQuantity: { flavor: '', quantity: 1 },
       frameworkWithVersion: { framework: '', version: '' },
+      QPUFlavor: '',
       editor: '',
       notebookName: generateName(),
       privacy: suggestions.suggestions.find(
@@ -106,10 +111,12 @@ export function useOrderFunnel(
   const labels = form.watch('labels');
   const sshKey = form.watch('sshKey');
   const volumes = form.watch('volumes');
-
+  const QPUFlavorId = form.watch('QPUFlavor');
+  
   const frameworkQuery = useGetFramework(projectId, region);
   const editorQuery = useGetEditor(projectId, region);
   const flavorQuery = useGetFlavor(projectId, region);
+  const QPUFlavorQuery = useGetQPUFlavor(projectId, region);
   const datastoreQuery = useGetDatastores(projectId, region);
   const containersQuery = useGetDatastoresWithContainers(
     projectId,
@@ -149,6 +156,18 @@ export function useOrderFunnel(
       listFramework.find((fmk) => fmk.id === frameworkWithversion.framework),
     [listFramework, frameworkWithversion.framework],
   );
+
+  const listQpuFlavor: Qpu[] = useMemo(() => {
+    if (QPUFlavorQuery.isLoading) return [];
+    let allQpus = createQPUFlavorPricingList( QPUFlavorQuery.data, catalog, 'ai-notebook'); 
+    if (!frameworkObject || !frameworkObject.supportedQpus) return [];
+    return allQpus.filter((qpu) =>frameworkObject.supportedQpus?.includes(qpu.id));
+  }, [region, QPUFlavorQuery.isSuccess, QPUFlavorQuery.data, frameworkObject]);
+
+  const QpuflavorObject: Qpu | undefined = useMemo(() => {
+    if (!listQpuFlavor?.length) return undefined;
+    return listQpuFlavor.find((qpu) => qpu.id === QPUFlavorId);
+  }, [listQpuFlavor, QPUFlavorId]);
 
   const versionObject: string | undefined = useMemo(
     () =>
@@ -223,6 +242,7 @@ export function useOrderFunnel(
       frameworks: listFramework,
       editors: listEditor,
       volumes: listDatastores,
+      qpuFlavors: listQpuFlavor,
     },
     result: {
       region: regionObject,
@@ -236,6 +256,7 @@ export function useOrderFunnel(
       labels: labelsObject,
       sshKey: publicSshKeyList,
       volumes,
+      QPUFlavor: QpuflavorObject,
     },
   };
 }

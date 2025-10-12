@@ -30,6 +30,7 @@ export interface FrameworkWithVersion {
 
 export interface Qpu {
   id: string;
+  name: string;
   type: string;
   default: boolean;
   description: string;
@@ -139,6 +140,7 @@ export interface NotebookOrderResult {
   };
   sshKey: string[];
   volumes: OrderVolumes[];
+  QPUFlavor?: Qpu;
 }
 
 export interface JobOrderResult {
