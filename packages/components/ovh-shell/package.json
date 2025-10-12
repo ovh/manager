@@ -29,7 +29,6 @@
     "@ovh-ux/manager-core-api": "^0.18.6",
     "@ovh-ux/manager-core-sso": "^0.4.4",
     "@ovh-ux/ovh-at-internet": "^0.24.6",
-    "@ovh-ux/ovh-reket": "^2.1.16",
     "@ovh-ux/request-tagger": "^0.5.4",
     "@ovh-ux/url-builder": "^2.1.4",
     "dompurify": "^3.2.4",
