@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@7.1.0...@ovh-ux/manager-webpack-config@7.1.1) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-webpack-config
+
+
+
+
+
 # [7.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-webpack-config@7.0.8...@ovh-ux/manager-webpack-config@7.1.0) (2025-08-07)
 
 

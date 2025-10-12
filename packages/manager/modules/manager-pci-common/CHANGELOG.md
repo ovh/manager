@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.7.16...@ovh-ux/manager-pci-common@2.7.17) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-common
+
+
+
+
+
 ## [2.7.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@2.7.15...@ovh-ux/manager-pci-common@2.7.16) (2025-10-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-common

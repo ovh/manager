@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ovh-product-icons",
-  "version": "0.13.4",
+  "version": "0.13.5",
   "private": true,
   "description": "Ovh product icons",
   "license": "BSD-3-Clause",
@@ -24,9 +24,9 @@
     "@ovhcloud/ods-theme-blue-jeans": "17.2.2"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "^0.11.0",
+    "@ovh-ux/manager-static-analysis-kit": "^0.11.1",
     "@ovh-ux/manager-tests-setup": "latest",
-    "@ovh-ux/manager-vite-config": "^0.13.3",
+    "@ovh-ux/manager-vite-config": "^0.13.4",
     "react": "^18.2.0"
   },
   "peerDependencies": {

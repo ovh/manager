@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dev-server",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "Provide OVHcloud Manager dev server",
   "keywords": [
     "dev-server",
@@ -19,7 +19,7 @@
     "manager-dev-server": "bin/manager-dev-server.js"
   },
   "dependencies": {
-    "@ovh-ux/manager-dev-server-config": "^6.2.0",
+    "@ovh-ux/manager-dev-server-config": "^6.2.1",
     "commander": "^6.0.0",
     "express": "^4.17.1",
     "http-proxy-middleware": "^2.0.7"

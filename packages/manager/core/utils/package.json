@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-core-utils",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "private": true,
   "description": "OVHcloud manager core utils.",
   "repository": {
@@ -17,9 +17,8 @@
     "lint:modern": "manager-lint --config eslint.config.mjs ./src/**.ts ./src/**/**.ts",
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src/**.ts ./src/**/**.ts"
   },
-  "dependencies": {},
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "^0.11.0",
+    "@ovh-ux/manager-static-analysis-kit": "^0.11.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0"
