@@ -46,12 +46,15 @@ const mocksHostingUrl = vi.hoisted(() => ({
   },
 }));
 
+export const deleteMock = vi.fn();
+
 vi.mock('@ovh-ux/manager-core-api', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@ovh-ux/manager-core-api')>()),
   v6: {
     put: vi.fn().mockResolvedValue({ data: {} }),
     post: vi.fn().mockResolvedValue({ data: {} }),
-    delete: vi.fn(),
+    delete: deleteMock,
+    fetchIcebergV2: vi.fn().mockResolvedValue({ data: {}, cursorNext: null }),
   },
 }));
 
@@ -167,6 +170,7 @@ vi.mock('@/data/api/webHosting', () => ({
   getWebHostingWebsiteDomainQueryKey: vi.fn(),
   useWebHostingWebsite: vi.fn(),
   useWebHostingWebsiteDomain: vi.fn(),
+  deleteAttachedDomains: vi.fn(),
 }));
 
 vi.mock('@/data/api/dashboard', async (importActual) => {
@@ -223,3 +227,23 @@ vi.mock('@/data/api/managedWordpress', () => ({
 afterEach(() => {
   vi.clearAllMocks();
 });
+
+vi.mock(
+  '@/data/hooks/webHosting/webHostingAttachedDomain/useWebHostingAttachedDomain',
+  async (importActual) => {
+    const actual =
+      await importActual<
+        typeof import('@/data/hooks/webHosting/webHostingAttachedDomain/useWebHostingAttachedDomain')
+      >();
+    return {
+      ...actual,
+      useWebHostingAttachedDomain: vi.fn(() => ({
+        data: websitesMocks,
+        isSuccess: true,
+        isLoading: false,
+        isError: false,
+        status: 'success',
+      })),
+    };
+  },
+);
