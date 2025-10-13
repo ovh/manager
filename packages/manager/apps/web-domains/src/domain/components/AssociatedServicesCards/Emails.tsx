@@ -6,7 +6,7 @@ import { useEmailService } from '@/domain/hooks/data/query';
 import { AssociatedEmailsServicesEnum } from '@/domain/enum/associatedServices.enum';
 
 interface EmailsProps {
-  serviceName: string;
+  readonly serviceName: string;
 }
 
 export default function Emails({ serviceName }: EmailsProps) {
@@ -14,8 +14,8 @@ export default function Emails({ serviceName }: EmailsProps) {
   const { data } = useEmailService(serviceName);
 
   const { data: mxPlanURL } = useNavigationGetUrl([
-    'web/email_domain',
-    `/${serviceName}`,
+    'web',
+    `/email_domain/${serviceName}`,
     {},
   ]);
 
@@ -26,8 +26,8 @@ export default function Emails({ serviceName }: EmailsProps) {
   ]);
 
   const { data: redirectionURL } = useNavigationGetUrl([
-    'web/email_domain',
-    `/${serviceName}/email/redirection`,
+    'web',
+    `/email_domain/${serviceName}/email/redirection`,
     {},
   ]);
 
