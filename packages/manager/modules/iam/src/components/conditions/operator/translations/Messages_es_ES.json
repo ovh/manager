@@ -1,0 +1,13 @@
+{
+  "iam_create_condition_operator_EQ": "Igual a",
+  "iam_create_condition_operator_BEFORE": "Antes",
+  "iam_create_condition_operator_AFTER": "Después",
+  "iam_create_condition_operator_GE": "Superior o igual a",
+  "iam_create_condition_operator_LE": "Inferior o igual a",
+  "iam_create_condition_operator_GT": "Estrictamente superior a",
+  "iam_create_condition_operator_LT": "Estrictamente inferior a",
+  "iam_create_condition_operator_IN": "Incluido en",
+  "iam_create_condition_operator_IN_RANGE": "Incluido en el rango",
+  "iam_create_condition_operator_STARTS_WITH": "Empieza por",
+  "iam_create_condition_operator_ENDS_WITH": "Termina por"
+}

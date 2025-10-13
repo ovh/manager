@@ -1,0 +1,5 @@
+{
+  "iam_create_condition_hour_label": "Uhr",
+  "iam_create_condition_hour_helper": "Trennen Sie jede Uhrzeit durch ein Komma (8,10,11)",
+  "iam_create_condition_hour_placeholder": "Geben Sie eine Uhrzeit ein"
+}
