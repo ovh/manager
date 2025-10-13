@@ -40,7 +40,6 @@
   "packages/manager/apps/pci-databases-analytics",
   "packages/manager/apps/pci-dataplatform",
   "packages/manager/apps/pci-gateway",
-  "packages/manager/apps/pci-instances",
   "packages/manager/apps/pci-kubernetes",
   "packages/manager/apps/pci-load-balancer",
   "packages/manager/apps/pci-object-storage",
