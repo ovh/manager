@@ -42,6 +42,11 @@ dry_stash_begin() {
 }
 
 dry_restore_clean() {
+  # Only run if we actually stashed
+    if [ "${DRY_STASHED}" -ne 1 ]; then
+      return
+    fi
+
   # Remove any changes made by Lerna and restore user's stash if any
   if [ "${DRY_RELEASE}" = true ]; then
     git reset --hard >/dev/null
@@ -205,9 +210,16 @@ main() {
 
   if [ -z "${changed_packages}" ]; then
     printf "%s\n" "Nothing to release"
-    # Clean up any residue to guarantee a pristine tree
-    git reset --hard HEAD >/dev/null 2>&1 || true
-    git clean -fd          >/dev/null 2>&1 || true
+
+    # If dry-run, restore any stashed changes safely
+    if [ "${DRY_RELEASE}" = true ]; then
+      dry_restore_clean
+    else
+      # Clean up any residue to guarantee a pristine tree
+      git reset --hard HEAD >/dev/null 2>&1 || true
+      git clean -fd          >/dev/null 2>&1 || true
+    fi
+
     exit 0
   fi
 
