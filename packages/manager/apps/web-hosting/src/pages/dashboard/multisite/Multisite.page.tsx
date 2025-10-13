@@ -14,7 +14,12 @@ import {
 } from '@ovhcloud/ods-components';
 import { OdsBadge, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
 
-import { Datagrid, DatagridColumn, ManagerButton } from '@ovh-ux/manager-react-components';
+import {
+  Datagrid,
+  DatagridColumn,
+  ManagerButton,
+  Notifications,
+} from '@ovh-ux/manager-react-components';
 
 import { getStatusColor } from '@/components/badgeStatus/BadgeStatus.component';
 import { useWebHostingWebsite } from '@/data/hooks/webHosting/webHostingWebsite/useWebHostingWebsite';
@@ -136,6 +141,7 @@ export default function MultisitePage() {
 
   return (
     <>
+      <Notifications />
       {!isOverridedPage && (
         <Datagrid
           columns={columns}
