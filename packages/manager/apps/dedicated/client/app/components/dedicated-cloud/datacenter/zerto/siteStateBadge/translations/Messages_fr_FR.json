@@ -1,4 +1,5 @@
 {
+  "dedicatedCloud_datacenter_zerto_site_state_no_site_configured": "Aucun site configuré",
   "dedicatedCloud_datacenter_zerto_site_state_one_site_state_success": "1 site délivré",
   "dedicatedCloud_datacenter_zerto_site_state_one_site_state_warning": "1 site en attente",
   "dedicatedCloud_datacenter_zerto_site_state_one_site_state_error": "1 site en erreur",

@@ -1,7 +1,12 @@
-<ul
-    class="pl-0 list-unstyled"
-    data-ng-if="$ctrl.zertoMultiSites.success !== 0 || $ctrl.zertoMultiSites.warning !== 0 || $ctrl.zertoMultiSites.error !== 0"
->
+<ul class="pl-0 list-unstyled">
+    <li
+        data-ng-if="$ctrl.zertoSiteByState.success === 0 && $ctrl.zertoSiteByState.warning === 0 && $ctrl.zertoSiteByState.error === 0"
+    >
+        <span
+            class="oui-badge oui-badge_warning mt-2 text-nowrap"
+            data-translate="dedicatedCloud_datacenter_zerto_site_state_no_site_configured"
+        ></span>
+    </li>
     <li
         data-ng-repeat="state in ['success', 'warning', 'error']"
         data-ng-if="$ctrl.zertoSiteByState[state] !== 0"
