@@ -215,5 +215,12 @@
                 </ovh-manager-pcc-dashboard-options-nsxt>
             </oui-tile-description>
         </oui-tile-definition>
+        <ovh-manager-pcc-dashboard-options-logs
+            data-ng-if=":: !$ctrl.isLogsDisabled"
+            data-current-service="$ctrl.currentService"
+            data-on-deactivate-logs="$ctrl.onDeactivateLogs"
+            data-is-disabled=":: $ctrl.model.currentUser.isTrusted"
+        >
+        </ovh-manager-pcc-dashboard-options-logs>
     </div>
 </oui-tile>

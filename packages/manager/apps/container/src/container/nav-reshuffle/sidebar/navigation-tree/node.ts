@@ -1,6 +1,7 @@
 export type NodeRouting = {
   application?: string;
   hash?: string;
+  pathMatcher?: RegExp
 };
 
 export enum NodeTag {
