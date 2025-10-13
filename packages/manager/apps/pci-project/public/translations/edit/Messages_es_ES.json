@@ -1,6 +1,7 @@
 {
   "pci_projects_project_edit_project_name": "Nombre del proyecto",
   "pci_projects_project_edit_default_project": "Proyecto por defecto",
+  "pci_projects_project_edit_set_as_default_project": "",
   "pci_projects_project_edit_default_project_description": "Este será el proyecto utilizado por defecto cada vez que se conecte al área de cliente de Public Cloud.",
   "pci_projects_project_edit_update": "Actualizar",
   "pci_projects_project_edit_update_success": "Se ha actualizado el proyecto.",
