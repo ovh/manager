@@ -63,7 +63,7 @@ webCloudUniverse.children = [
           application: 'web-domains',
           hash: '#/domain',
         },
-        features: ['web-domains'],
+        features: ['web-domains:domains'],
       },
       {
         id: 'alldom',

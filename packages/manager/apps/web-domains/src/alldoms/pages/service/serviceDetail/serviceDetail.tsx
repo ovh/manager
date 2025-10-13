@@ -34,7 +34,7 @@ import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
 import { urls } from '@/alldoms/routes/routes.constant';
 import appConfig from '@/web-domains.config';
 import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
-import { ServiceRoutes } from '@/alldoms/enum/service.enum';
+import { ServiceRoutes } from '@/common/enum/common.enum';
 
 export default function ServiceDetail() {
   const [isManualRenewMessage, setIsManualRenewMessage] = useState<boolean>(

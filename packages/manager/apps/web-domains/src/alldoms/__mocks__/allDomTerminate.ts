@@ -1,4 +1,4 @@
-import { TServiceInfo } from '@/alldoms/types';
+import { TServiceInfo } from '@/common/types/common.types';
 import { LifecycleCapacitiesEnum } from '../enum/service.enum';
 
 export const allDomTerminate: TServiceInfo[] = [

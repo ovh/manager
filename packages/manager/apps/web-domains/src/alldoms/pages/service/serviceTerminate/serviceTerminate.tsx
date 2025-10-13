@@ -7,7 +7,7 @@ import { toUnicode } from 'punycode';
 import { ODS_MODAL_COLOR as MODAL_COLOR } from '@ovhcloud/ods-components';
 import { useGetAllDomResource } from '@/alldoms/hooks/data/query';
 import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
-import { ServiceRoutes } from '@/alldoms/enum/service.enum';
+import { ServiceRoutes } from '@/common/enum/common.enum';
 import TerminateModalStepOne from '@/alldoms/components/terminate/steps/Terminate.stepOne';
 import TerminateModalStepTwo from '@/alldoms/components/terminate/steps/Terminate.stepTwo';
 
