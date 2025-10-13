@@ -13,7 +13,7 @@ import {
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useContext, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
 import { useProjectIdFromParams } from '@/hooks/useProjectIdFromParams';
@@ -64,7 +64,12 @@ export default function RemovePage() {
       pageType: PageType.bannerSuccess,
       pageName: PROJECTS_TRACKING.DELETE.REQUEST_SUCCESS,
     });
-    addSuccess(t('pci_projects_project_edit_remove_success'));
+    addSuccess(
+      <Translation ns="remove">
+        {(_t) => _t('pci_projects_project_edit_remove_success')}
+      </Translation>,
+    );
+
     goBack();
   };
 
@@ -74,9 +79,13 @@ export default function RemovePage() {
       pageName: PROJECTS_TRACKING.DELETE.REQUEST_FAIL,
     });
     addError(
-      t('pci_projects_project_edit_remove_error', {
-        error: error.message,
-      }),
+      <Translation ns="remove">
+        {(_t) =>
+          _t('pci_projects_project_edit_remove_error', {
+            error: error.message,
+          })
+        }
+      </Translation>,
     );
 
     goBack();

@@ -30,7 +30,7 @@ vi.mock('react-i18next', () => ({
       changeLanguage: () => new Promise(() => {}),
     },
   }),
-  // Trans: ({ children }: { children: React.ReactNode }) => children,
+  Translation: vi.fn(({ children }) => children((key: string) => key)),
   Trans: ({ i18nKey }: { i18nKey: string }) => <span>{i18nKey}</span>,
 }));
 
