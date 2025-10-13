@@ -1,7 +1,9 @@
 import {
+  ApiResponse,
   IcebergFetchParamsV2,
   IcebergFetchResultV2,
   fetchIcebergV2,
+  v2,
 } from '@ovh-ux/manager-core-api';
 
 import { Tenant } from '@/types/Tenant.type';
@@ -19,3 +21,6 @@ export const getVSPCTenants = async (
   params?: Omit<IcebergFetchParamsV2, 'route'>,
 ): Promise<IcebergFetchResultV2<VSPCTenant>> =>
   fetchIcebergV2({ ...params, route: GET_VSPC_TENANTS_ROUTE });
+
+export const deleteVSPCTenant = async (vspcTenantId: string): Promise<ApiResponse<string>> =>
+  v2.delete(`${GET_VSPC_TENANTS_ROUTE}/${vspcTenantId}`);
