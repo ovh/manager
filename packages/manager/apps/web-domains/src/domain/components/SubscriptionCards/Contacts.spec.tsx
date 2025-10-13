@@ -6,7 +6,7 @@ import { wrapper } from '@/common/utils/test.provider';
 import Contacts from '@/domain/components/SubscriptionCards/Contacts';
 import { domainResourceOK } from '@/domain/__mocks__/serviceInfoDetail';
 import { useGetDomainContact } from '@/domain/hooks/data/query';
-import { domainContact } from '@/domain/__mocks__/contact';
+import { domainContactIndividual } from '@/domain/__mocks__/contact';
 
 vi.mock('@/domain/hooks/data/query', () => ({
   useGetDomainContact: vi.fn(),
@@ -22,7 +22,7 @@ describe('Contacts component', () => {
       <Contacts
         domainResource={domainResourceOK}
         serviceName="example.com"
-        domainContact={domainContact}
+        domainContact={domainContactIndividual}
         isFetchingDomainContact={false}
       />,
       { wrapper },

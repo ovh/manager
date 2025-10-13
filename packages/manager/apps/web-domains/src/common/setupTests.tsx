@@ -2,6 +2,7 @@ import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 import React from 'react';
 import { UseQueryResult } from '@tanstack/react-query';
+import { nichandle } from './__mocks__/nichandle';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -85,10 +86,10 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => ({
   },
 }));
 
-vi.mock('@/alldoms/hooks/nichandle/useNichandle', () => ({
-  useNichandle: vi.fn(() => {
+vi.mock('@/common/hooks/nichandle/useNichandleInformation', () => ({
+  useNichandleInformation: vi.fn(() => {
     return {
-      nichandle: 'aa00001-ovh',
+      nichandleInformation: nichandle,
     };
   }),
 }));
