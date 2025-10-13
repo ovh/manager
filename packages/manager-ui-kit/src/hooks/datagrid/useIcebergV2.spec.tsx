@@ -26,7 +26,7 @@ const mockAddFilter = vitest.fn();
 const mockRemoveFilter = vitest.fn();
 const mockFilters: any[] = [];
 
-vitest.mock('../../components', () => ({
+vitest.mock('../data-api/useColumnFilters', () => ({
   useColumnFilters: () => ({
     filters: mockFilters,
     addFilter: mockAddFilter,
