@@ -4,11 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNavigate } from 'react-router-dom';
 import { updateService } from '@/alldoms/data/api/web-domains';
+import { ServiceInfoUpdateEnum } from '@/alldoms/enum/service.enum';
 import {
-  ServiceInfoUpdateEnum,
+  ServiceInfoRenewModeEnum,
   ServiceRoutes,
-} from '@/alldoms/enum/service.enum';
-import { ServiceInfoRenewModeEnum } from '@/common/enum/common.enum';
+} from '@/common/enum/common.enum';
 import { TDomainsInfo } from '@/alldoms/types';
 import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
 import { useCloseModal } from '@/common/hooks/closeModal/useCloseModal';
