@@ -49,7 +49,8 @@ export function useRegionSelector({
     () =>
       continentRegions.filter((region) => {
         const children = continentRegions.filter(
-          ({ macro, isMacro }) => macro === region.macro && isMacro === false,
+          ({ macro, isMacro, type }) =>
+            macro === region.macro && type === region.type && isMacro === false,
         );
         // only display macro regions with one or more micro regions
         // otherwise only display the micro region
@@ -68,6 +69,7 @@ export function useRegionSelector({
         continentRegions.filter(
           (region) =>
             region.macro === selectedMacroRegion.macro &&
+            region.type === selectedMacroRegion.type &&
             region.isMacro === false &&
             region !== selectedMacroRegion,
         )) ||
@@ -79,6 +81,7 @@ export function useRegionSelector({
     const micros = continentRegions.filter(
       (_region) =>
         _region.macro === region.macro &&
+        _region.type === region.type &&
         _region.isMacro === false &&
         _region !== region,
     );
