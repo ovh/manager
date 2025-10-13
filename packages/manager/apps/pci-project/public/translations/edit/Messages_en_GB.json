@@ -1,6 +1,7 @@
 {
   "pci_projects_project_edit_project_name": "Project name",
   "pci_projects_project_edit_default_project": "Default project",
+  "pci_projects_project_edit_set_as_default_project": "",
   "pci_projects_project_edit_default_project_description": "Default project for every login to the Public Cloud Control Panel",
   "pci_projects_project_edit_update": "Update",
   "pci_projects_project_edit_update_success": "Project successfully updated.",
