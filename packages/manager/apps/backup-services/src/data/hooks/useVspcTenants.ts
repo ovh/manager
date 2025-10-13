@@ -9,7 +9,7 @@ import { GET_TENANTS_QUERY_KEY } from './useBackupTenants';
 
 type TUseVSPCTenantsResult = UseQueryResult<VSPCTenant[], Error>;
 
-const GET_VSPC_TENANTS_QUERY_KEY = [...GET_TENANTS_QUERY_KEY, 'vspc'];
+export const GET_VSPC_TENANTS_QUERY_KEY = [...GET_TENANTS_QUERY_KEY, 'vspc'];
 
 export const useVSPCTenants = (): TUseVSPCTenantsResult =>
   useQuery({

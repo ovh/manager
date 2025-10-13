@@ -1,13 +1,13 @@
 import { Suspense, startTransition } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
 import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OdsButton } from '@ovhcloud/ods-components/react';
 
-import { BaseLayout, Breadcrumb, Datagrid } from '@ovh-ux/manager-react-components';
+import { BaseLayout, Breadcrumb, Datagrid, Notifications } from '@ovh-ux/manager-react-components';
 
 import { appName } from '@/App.constants';
 import { useVSPCTenantsMocks } from '@/data/hooks/useVspcTenants';
@@ -29,6 +29,7 @@ export default function ListingPage() {
     <BaseLayout
       breadcrumb={<Breadcrumb rootLabel={appName} appName={appName} />}
       header={{ title: t('listing:title') }}
+      message={<Notifications />}
     >
       <Suspense>
         {columns && (
@@ -48,6 +49,7 @@ export default function ListingPage() {
           />
         )}
       </Suspense>
+      <Outlet />
     </BaseLayout>
   );
 }
