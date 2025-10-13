@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.20.0...@ovh-ux/manager-pci-common@0.20.1) (2025-10-13)
+
+
+### Bug Fixes
+
+* **pci-instances:** add the type to filter macro regions ([184b8b2](https://github.com/ovh/manager/commit/184b8b25389fb3052029d173a1390d7c07756fda))
+
+
+
+
+
 # [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-common@0.18.3...@ovh-ux/manager-pci-common@0.20.0) (2025-08-25)
 
 
