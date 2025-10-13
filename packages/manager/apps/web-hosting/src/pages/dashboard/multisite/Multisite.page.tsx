@@ -4,7 +4,12 @@ import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { Datagrid, DatagridColumn, ManagerButton } from '@ovh-ux/manager-react-components';
+import {
+  Datagrid,
+  DatagridColumn,
+  ManagerButton,
+  Notifications,
+} from '@ovh-ux/manager-react-components';
 
 import { useOverridePage } from '@/hooks/overridePage/useOverridePage';
 import { subRoutes, urls } from '@/routes/routes.constants';
@@ -84,6 +89,7 @@ export default function MultisitePage() {
   );
   return (
     <>
+      <Notifications />
       {!isOverridedPage && (
         <Datagrid
           columns={columns}
