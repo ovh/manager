@@ -1,6 +1,6 @@
 import { useEffect, Suspense } from 'react';
 import { useHref, Outlet, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { Translation, useTranslation } from 'react-i18next';
 
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { OdsButton } from '@ovhcloud/ods-components/react';
@@ -90,7 +90,11 @@ export default function Listing() {
 
   useEffect(() => {
     if (isRedirectRequired) {
-      addInfo(t('pci_projects_redirect_to_dedicated_page'));
+      addInfo(
+        <Translation ns="listing">
+          {(_t) => _t('pci_projects_redirect_to_dedicated_page')}
+        </Translation>,
+      );
     }
   }, [isRedirectRequired, addInfo]);
 
