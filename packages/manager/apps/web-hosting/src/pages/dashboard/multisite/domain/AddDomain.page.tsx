@@ -89,7 +89,7 @@ export default function AddDomainModal() {
 
   const formValues = watch();
 
-  const existingDomain = useGetAddDomainExisting(serviceName, formValues?.path, step === 1);
+  const existingDomain = useGetAddDomainExisting(serviceName, formValues?.path === 'B', step === 1);
 
   useEffect(() => {
     if (existingDomain !== undefined) {
