@@ -4,13 +4,13 @@ import { vi } from 'vitest';
 import { render } from '@testing-library/react';
 import { wrapper } from '@/common/utils/test.provider';
 import BannerInfo from './BannerInfo';
-import { useGetServiceInformation } from '@/domain/hooks/data/query';
+import { useGetServiceInformation } from '@/common/hooks/data/query';
 import {
   serviceInfoAuto,
   serviceInfoManuel,
 } from '@/domain/__mocks__/serviceInfo';
 
-vi.mock('@/domain/hooks/data/query', () => ({
+vi.mock('@/common/hooks/data/query', () => ({
   useGetServiceInformation: vi.fn(),
 }));
 

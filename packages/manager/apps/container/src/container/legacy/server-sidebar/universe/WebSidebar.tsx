@@ -18,6 +18,7 @@ export const webFeatures = [
   'web:domains:all-dom',
   'web:domains:zone',
   'web-domains:alldoms',
+  'web-domains:domains',
   'web-domains',
   'web-ongoing-operations',
   'web-hosting:websites',
@@ -53,7 +54,7 @@ export default function WebSidebar() {
   const getWebMenu = (features: Record<string, boolean>) => {
     const menu = [];
 
-    if (features['web:domains']) {
+    if (features['web:domains'] || features['web-domains']) {
       menu.push({
         id: 'domains',
         state: 'app.domain.all',
@@ -84,23 +85,24 @@ export default function WebSidebar() {
               id: 'domain_operations',
               label: t('sidebar_domain_operations'),
               href: navigation.getURL('web-ongoing-operations', '#/'),
-              routeMatcher: new RegExp('/'),
+              routeMatcher: new RegExp('^/web-ongoing-operations/'),
               icon: getIcon('ovh-font ovh-font-config'),
               ignoreSearch: true,
             },
-            features['web-domains'] && {
-              id: 'domains',
-              label: t('sidebar_domain'),
-              href: navigation.getUrl('web-domains', '#/domain'),
-              icon: getIcon('oui-icon oui-icon-list'),
-              ignoreSearch: true,
-            },
+            features['web-domains:domains'] && {
+                id: 'domains_list',
+                label: t('sidebar_domain_list'),
+                href: navigation.getURL('web-domains', '#/domain'),
+                routeMatcher: new RegExp('^/web-domains/domain/'),
+                icon: getIcon('oui-icon oui-icon-list'),
+                ignoreSearch: true,
+              },
             features['web-domains:alldoms'] &&
               allDom.length > 0 && {
                 id: 'alldoms',
                 label: t('sidebar_alldom_list'),
                 href: navigation.getURL('web-domains', '#/alldoms'),
-                routeMatcher: new RegExp('/'),
+                routeMatcher: new RegExp('^/web-domains/alldoms/'),
                 icon: getIcon('ovh-font ovh-font-config'),
                 ignoreSearch: true,
               },

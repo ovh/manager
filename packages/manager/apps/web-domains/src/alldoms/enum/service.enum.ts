@@ -1,8 +1,3 @@
-export enum ServiceRoutes {
-  Domain = '/domain',
-  AllDom = '/allDom',
-}
-
 export enum ServiceInfoType {
   French = 'FRENCH',
   FrenchInternational = 'FRENCH+INTERNATIONAL',
@@ -19,12 +14,6 @@ export enum ServiceInfoUpdateEnum {
   Empty = 'empty',
   TerminateAtEngagementDate = 'terminateAtEngagementDate',
   TerminateAtExpirationDate = 'terminateAtExpirationDate',
-}
-
-export enum ServiceInfoContactEnum {
-  Administrator = 'administrator',
-  Technical = 'technical',
-  Billing = 'billing',
 }
 
 export enum DomainRegistrationStateEnum {

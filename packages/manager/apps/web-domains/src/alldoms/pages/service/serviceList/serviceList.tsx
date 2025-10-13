@@ -14,11 +14,11 @@ import { toASCII } from 'punycode';
 import { useAllDomDatagridColumns } from '@/alldoms/hooks/allDomDatagrid/useAllDomDatagridColumns';
 import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
 import { AlldomService } from '@/alldoms/types';
+import { findContact } from '@/common/utils/utils';
 import {
-  ServiceInfoContactEnum,
   ServiceRoutes,
-} from '@/alldoms/enum/service.enum';
-import { findContact } from '@/alldoms/utils/utils';
+  ServiceInfoContactEnum,
+} from '@/common/enum/common.enum';
 
 export default function ServiceList() {
   const { t } = useTranslation(['allDom']);
