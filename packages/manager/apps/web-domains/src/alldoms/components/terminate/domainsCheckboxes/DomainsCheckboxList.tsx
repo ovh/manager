@@ -1,5 +1,5 @@
 import React from 'react';
-import { TServiceInfo } from '@/alldoms/types';
+import { TServiceInfo } from '@/common/types/common.types';
 import DomainsCheckboxItem from '@/alldoms/components/terminate/domainsCheckboxes/DomainCheckboxItem';
 import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
 
