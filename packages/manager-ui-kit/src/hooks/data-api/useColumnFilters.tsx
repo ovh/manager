@@ -1,11 +1,11 @@
+import { useState } from 'react';
 import {
   Filter,
   FilterComparator,
   FilterTypeCategories,
 } from '@ovh-ux/manager-core-api';
-import { useState } from 'react';
-import { FilterWithLabel } from './interface';
-import './translations';
+import { FilterWithLabel } from '../../components/filters/interface';
+import '../../components/filters/translations';
 
 const filterEquals = (a: Filter, b: Filter) =>
   a.key === b.key && a.value === b.value && a.comparator === b.comparator;
@@ -24,9 +24,6 @@ export function useColumnFilters() {
           ))
       ) {
         setFilters((previousFilters) => {
-          /**
-           * ? To remove the duplication from the filters
-           */
           if (previousFilters.some((f) => filterEquals(f, filter))) {
             return previousFilters;
           }
