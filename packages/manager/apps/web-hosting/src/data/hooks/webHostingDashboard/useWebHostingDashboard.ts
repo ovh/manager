@@ -40,10 +40,14 @@ export const useGetDomainService = (serviceName: string) =>
     enabled: Boolean(serviceName),
   });
 
-export const useGetAddDomainExisting = (serviceName: string, path: string, enabled: boolean) =>
+export const useGetAddDomainExisting = (
+  serviceName: string,
+  tokenNeeded: boolean,
+  enabled: boolean,
+) =>
   useQuery({
-    queryKey: ['sws', 'hosting', 'web', serviceName, 'add-domain-existing', path],
-    queryFn: () => getAddDomainExisting(serviceName, path),
+    queryKey: ['sws', 'hosting', 'web', serviceName, 'add-domain-existing', tokenNeeded],
+    queryFn: () => getAddDomainExisting(serviceName, tokenNeeded),
     enabled,
   });
 
