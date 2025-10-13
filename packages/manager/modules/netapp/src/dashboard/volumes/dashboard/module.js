@@ -12,6 +12,7 @@ import aclModule from './acl';
 import snapshotsModule from './snapshots';
 import editSize from './edit-size';
 import editReserveSpace from './edit-reserve-space';
+import activesNFSModule from './actives-nfs';
 
 import './style.less';
 
@@ -27,6 +28,7 @@ angular
     snapshotsModule,
     editSize,
     editReserveSpace,
+    activesNFSModule,
   ])
   .config(routing)
   .component('ovhManagerNetAppVolumesDashboard', component)
