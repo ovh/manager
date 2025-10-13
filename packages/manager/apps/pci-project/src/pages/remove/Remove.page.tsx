@@ -51,7 +51,7 @@ export default function RemovePage() {
 
   const {
     data: hasActiveOrPendingSavingPlan,
-    isPending: isSavingsPlansPending,
+    isLoading: isSavingsPlansLoading,
   } = useHasActiveOrPendingSavingsPlan(serviceId, isSavingPlansAvailable);
 
   const {
@@ -78,6 +78,7 @@ export default function RemovePage() {
         error: error.message,
       }),
     );
+
     goBack();
   };
 
@@ -135,7 +136,7 @@ export default function RemovePage() {
   }, [project, hasActiveOrPendingSavingPlan, t]);
 
   const isPending =
-    isSavingsPlansPending || isDefaultProjectLoading || isRemovePending;
+    isSavingsPlansLoading || isDefaultProjectLoading || isRemovePending;
 
   return (
     <Modal
