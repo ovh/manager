@@ -1,18 +1,18 @@
 import '@testing-library/jest-dom';
-import { renderHook, waitFor } from '@testing-library/react';
+import { act, renderHook, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, vi } from 'vitest';
 
 import { websitesMocks } from '@/data/__mocks__';
 import { wrapper } from '@/utils/test.provider';
+import { deleteMock } from '@/utils/test.setup';
 
-import { useWebHostingAttachedDomain } from './useWebHostingAttachedDomain';
+import {
+  useDeleteAttachedDomains,
+  useWebHostingAttachedDomain,
+} from './useWebHostingAttachedDomain';
 
-vi.mock('@ovh-ux/manager-core-api', () => ({
-  fetchIcebergV2: vi.fn().mockResolvedValue({
-    data: websitesMocks,
-    cursorNext: null,
-  }),
-}));
+const onSuccess = vi.fn();
+const onError = vi.fn();
 
 describe('useWebHostingAttachedDomain', () => {
   beforeEach(() => {
@@ -29,5 +29,35 @@ describe('useWebHostingAttachedDomain', () => {
     });
 
     expect(result.current.data).toEqual(websitesMocks);
+  });
+});
+
+describe('useDeleteAttachedDomains', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('delete attached domain', async () => {
+    const { result } = renderHook(
+      () => useDeleteAttachedDomains('serviceName', onSuccess, onError),
+      {
+        wrapper,
+      },
+    );
+
+    act(() =>
+      result.current.mutate({
+        domains: ['domain1'],
+        bypassDNSConfiguration: false,
+      }),
+    );
+
+    await waitFor(() => {
+      expect(deleteMock).toHaveBeenCalledWith(
+        `/hosting/web/serviceName/attachedDomain/domain1?bypassDNSConfiguration=false`,
+      );
+
+      expect(onSuccess).toHaveBeenCalled();
+    });
   });
 });
