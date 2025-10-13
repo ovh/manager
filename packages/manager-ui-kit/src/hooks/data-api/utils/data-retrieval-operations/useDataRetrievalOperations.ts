@@ -1,10 +1,7 @@
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import { FilterComparator } from '@ovh-ux/manager-core-api';
-import {
-  useColumnFilters,
-  ColumnSort,
-  DatagridColumn,
-} from '../../../../components';
+import { ColumnSort, DatagridColumn } from '../../../../components';
+import { useColumnFilters } from '../../useColumnFilters';
 
 export const useDataRetrievalOperations = <TData = Record<string, unknown>>({
   defaultSorting,
