@@ -1,6 +1,6 @@
 ---
 title: OVHcloud Design System (ODS) React Components
-last_update: 2025-10-13
+last_update: 2025-01-27
 tags: [ods, design-system, ui, ovhcloud, react, components, documentation]
 ai: true
 ---
@@ -14,93 +14,623 @@ Official documentation: [ODS Storybook](https://ovh.github.io/design-system/late
 
 ---
 
-## ⚙️ Installation
+## 🧭 Purpose
 
-Install ODS React and Themes packages:
-
-```bash
-npm install --save-exact @ovhcloud/ods-react @ovhcloud/ods-themes
-# or
-yarn add --exact @ovhcloud/ods-react @ovhcloud/ods-themes
-```
+This documentation provides comprehensive guidance for AI systems to generate correct, secure, and performant React code using ODS components. It includes complete prop interfaces, usage patterns, and best practices.
 
 ---
 
-## 🚀 Basic Usage
+## ⚙️ Context
 
-```tsx
-import { Button } from '@ovhcloud/ods-react';
-
-export default function App() {
-  return <Button color="primary">Click Me</Button>;
-}
-```
-
-Compatible with **React v18.2+** and **v19+**.
-
----
-
-## 🧩 React Components Overview
-
-Below is the list of all main ODS React components available in **v19.1.0**, grouped by functional category.
-
-| Component | Category | Description | Import | Example |
-|------------|-----------|--------------|---------|----------|
-| **Accordion** | Layout | Expandable/collapsible container. | `import { Accordion } from '@ovhcloud/ods-react';` | `<Accordion summary="Details">Content</Accordion>` |
-| **Badge** | Feedback | Displays a visual indicator (state, label, or number). | `import { Badge } from '@ovhcloud/ods-react';` | `<Badge color="success">Active</Badge>` |
-| **Breadcrumb** | Navigation | Displays hierarchical navigation path. | `import { Breadcrumb } from '@ovhcloud/ods-react';` | `<Breadcrumb items={[{label:'Home'},{label:'Page'}]} />` |
-| **Button** | Inputs | Primary interactive element for actions. | `import { Button } from '@ovhcloud/ods-react';` | `<Button color="primary">Submit</Button>` |
-| **Card** | Layout | Visual container for grouped content. | `import { Card } from '@ovhcloud/ods-react';` | `<Card title="Information">Content</Card>` |
-| **Checkbox** | Inputs | Boolean selection control. | `import { Checkbox } from '@ovhcloud/ods-react';` | `<Checkbox label="Accept terms" />` |
-| **Clipboard** | Utility | Copy content to clipboard. | `import { Clipboard } from '@ovhcloud/ods-react';` | `<Clipboard value="copied text" />` |
-| **Code** | Display | Syntax-highlighted code block. | `import { Code } from '@ovhcloud/ods-react';` | `<Code language="ts">const x = 42;</Code>` |
-| **Combobox** | Inputs | Text input combined with dropdown selection. | `import { Combobox } from '@ovhcloud/ods-react';` | `<Combobox options={['One', 'Two']} />` |
-| **Datepicker** | Inputs | Date selection input. | `import { Datepicker } from '@ovhcloud/ods-react';` | `<Datepicker value={new Date()} />` |
-| **Divider** | Layout | Visual separator for sections. | `import { Divider } from '@ovhcloud/ods-react';` | `<Divider />` |
-| **Drawer** | Layout | Sliding side panel. | `import { Drawer } from '@ovhcloud/ods-react';` | `<Drawer open>Content</Drawer>` |
-| **File Upload** | Inputs | Upload file interface. | `import { FileUpload } from '@ovhcloud/ods-react';` | `<FileUpload label="Upload file" />` |
-| **Form Field** | Inputs | Combines label, help text, and input control. | `import { FormField } from '@ovhcloud/ods-react';` | `<FormField label="Name"><Input /></FormField>` |
-| **Icon** | Display | Displays an ODS SVG icon. | `import { Icon } from '@ovhcloud/ods-react';` | `<Icon name="cloud" />` |
-| **Input** | Inputs | Basic text input field. | `import { Input } from '@ovhcloud/ods-react';` | `<Input placeholder="Enter name" />` |
-| **Link** | Navigation | Styled link with optional target. | `import { Link } from '@ovhcloud/ods-react';` | `<Link href="#">Read more</Link>` |
-| **Medium** | Display | Displays media like image or video. | `import { Medium } from '@ovhcloud/ods-react';` | `<Medium src="demo.png" alt="Demo" />` |
-| **Message** | Feedback | Feedback alert (info, error, success). | `import { Message } from '@ovhcloud/ods-react';` | `<Message type="success">Saved</Message>` |
-| **Modal** | Layout | Centered dialog window. | `import { Modal } from '@ovhcloud/ods-react';` | `<Modal open title="Confirm">Are you sure?</Modal>` |
-| **Pagination** | Navigation | Page navigation control. | `import { Pagination } from '@ovhcloud/ods-react';` | `<Pagination total={100} pageSize={10} />` |
-| **Password** | Inputs | Secure text input with mask toggle. | `import { Password } from '@ovhcloud/ods-react';` | `<Password />` |
-| **Phone Number** | Inputs | International phone input field. | `import { PhoneNumber } from '@ovhcloud/ods-react';` | `<PhoneNumber />` |
-| **Popover** | Overlay | Tooltip-like popup triggered by event. | `import { Popover } from '@ovhcloud/ods-react';` | `<Popover content="Help text"><Button>Info</Button></Popover>` |
-| **Progress Bar** | Feedback | Displays progress value. | `import { ProgressBar } from '@ovhcloud/ods-react';` | `<ProgressBar value={70} />` |
-| **Quantity** | Inputs | Numeric quantity selector. | `import { Quantity } from '@ovhcloud/ods-react';` | `<Quantity value={1} />` |
-| **Radio Group** | Inputs | Multiple choice group. | `import { RadioGroup } from '@ovhcloud/ods-react';` | `<RadioGroup options={['Yes','No']} />` |
-| **Range** | Inputs | Slider for selecting a numeric range. | `import { Range } from '@ovhcloud/ods-react';` | `<Range min={0} max={100} />` |
-| **Select** | Inputs | Standard dropdown selection. | `import { Select } from '@ovhcloud/ods-react';` | `<Select options={['A','B']} />` |
-| **Skeleton** | Feedback | Loading placeholder element. | `import { Skeleton } from '@ovhcloud/ods-react';` | `<Skeleton width="100%" height="20px" />` |
-| **Spinner** | Feedback | Circular loading indicator. | `import { Spinner } from '@ovhcloud/ods-react';` | `<Spinner />` |
-
----
-
-## 🧱 Best Practices for Implementation
-
-- Always use the `@ovhcloud/ods-themes` package to ensure design consistency.
-- Use semantic HTML wrapped with ODS components for accessibility (ARIA compliance).
-- Favor ODS components over custom ones — they are versioned, tested, and supported.
-- Combine ODS styling with **Tailwind CSS** or **SCSS modules** when necessary.
-- Keep imports scoped (e.g. `import { Button } from '@ovhcloud/ods-react'`) — do not import the whole library.
+ODS is built on modern web standards and provides:
+- **React 18.2+** compatibility
+- **TypeScript** support with full type definitions
+- **Accessibility** compliance (WCAG 2.1)
+- **Theme system** with multiple variants
+- **Performance** optimized components
 
 ---
 
 ## 🔗 References
 
-- [📘 ODS Storybook – Get Started](https://ovh.github.io/design-system/latest/?path=/docs/ovhcloud-design-system-get-started--docs)
-- [🧩 NPM: @ovhcloud/ods-react](https://www.npmjs.com/package/@ovhcloud/ods-react)
-- [🎨 NPM: @ovhcloud/ods-themes](https://www.npmjs.com/package/@ovhcloud/ods-themes)
+- [ODS GitHub Repository](https://github.com/ovh/design-system) - Source code and issues
+- [ODS Storybook Documentation](https://ovh.github.io/design-system/latest/) - Interactive component examples
+- [ODS Migration Guide](https://ovh.github.io/design-system/latest/?path=/docs/migration--page) - Version migration help
+- [ODS Contributing Guide](https://github.com/ovh/design-system/blob/master/CONTRIBUTING.md) - How to contribute
 
 ---
 
-## 🤖 AI Integration Notes
+## 📘 Guidelines / Implementation
 
-This Markdown is designed to be consumed by AI systems (like NIA) for **React code generation assistance**.  
-Each component section includes an example, import path, and behavior context.  
-The AI can use these examples to auto-complete component implementations while respecting ODS conventions.
+### Installation and Setup
 
+```bash
+# Install ODS React and Themes packages
+npm install --save-exact @ovhcloud/ods-react @ovhcloud/ods-themes
+# or
+yarn add --exact @ovhcloud/ods-react @ovhcloud/ods-themes
+```
+
+```typescript
+// Always import theme first
+import '@ovhcloud/ods-themes/default';
+// Then import components
+import { Button, Modal, Input } from '@ovhcloud/ods-react';
+```
+
+### Component Library Overview
+
+| Component | Category | Description | Import | Basic Example |
+|-----------|----------|-------------|---------|---------------|
+| **Button** | Inputs | Primary interactive element for actions | `import { Button } from '@ovhcloud/ods-react';` | `<Button color="primary">Submit</Button>` |
+| **Modal** | Layout | Centered dialog window | `import { Modal } from '@ovhcloud/ods-react';` | `<Modal open title="Confirm">Content</Modal>` |
+| **Input** | Inputs | Basic text input field | `import { Input } from '@ovhcloud/ods-react';` | `<Input placeholder="Enter name" />` |
+| **Select** | Inputs | Standard dropdown selection | `import { Select } from '@ovhcloud/ods-react';` | `<Select options={[{value:'1',label:'Option 1'}]} />` |
+| **Checkbox** | Inputs | Boolean selection control | `import { Checkbox } from '@ovhcloud/ods-react';` | `<Checkbox label="Accept terms" />` |
+| **FormField** | Inputs | Combines label, help text, and input control | `import { FormField } from '@ovhcloud/ods-react';` | `<FormField label="Name"><Input /></FormField>` |
+| **Message** | Feedback | Feedback alert (info, error, success) | `import { Message } from '@ovhcloud/ods-react';` | `<Message type="success">Saved</Message>` |
+| **Card** | Layout | Visual container for grouped content | `import { Card } from '@ovhcloud/ods-react';` | `<Card title="Information">Content</Card>` |
+| **Badge** | Feedback | Displays a visual indicator | `import { Badge } from '@ovhcloud/ods-react';` | `<Badge color="success">Active</Badge>` |
+| **Accordion** | Layout | Expandable/collapsible container | `import { Accordion } from '@ovhcloud/ods-react';` | `<Accordion summary="Details">Content</Accordion>` |
+| **Breadcrumb** | Navigation | Displays hierarchical navigation path | `import { Breadcrumb } from '@ovhcloud/ods-react';` | `<Breadcrumb items={[{label:'Home'}]} />` |
+| **Drawer** | Layout | Sliding side panel | `import { Drawer } from '@ovhcloud/ods-react';` | `<Drawer open>Content</Drawer>` |
+| **Pagination** | Navigation | Page navigation control | `import { Pagination } from '@ovhcloud/ods-react';` | `<Pagination total={100} pageSize={10} />` |
+| **Spinner** | Feedback | Circular loading indicator | `import { Spinner } from '@ovhcloud/ods-react';` | `<Spinner />` |
+| **Skeleton** | Feedback | Loading placeholder element | `import { Skeleton } from '@ovhcloud/ods-react';` | `<Skeleton width="100%" height="20px" />` |
+
+### Complete Component Props Reference
+
+#### Button Component
+```typescript
+interface ButtonProps {
+  color?: 'primary' | 'secondary' | 'tertiary' | 'critical' | 'success';
+  variant?: 'flat' | 'stroked' | 'ghost';
+  size?: 'xs' | 's' | 'm' | 'l';
+  isDisabled?: boolean;
+  isLoading?: boolean;
+  onClick?: (event: MouseEvent) => void;
+  children?: React.ReactNode;
+  className?: string;
+  dataTestId?: string;
+}
+
+// Usage Examples
+<Button color="primary" onClick={handleSubmit}>Submit</Button>
+<Button color="critical" isLoading={isDeleting}>Delete</Button>
+<Button variant="ghost" size="s">Cancel</Button>
+```
+
+#### Modal Component
+```typescript
+interface ModalProps {
+  open: boolean;                    // Required
+  title?: string;
+  onClose?: () => void;
+  size?: 'xs' | 's' | 'm' | 'l' | 'xl';
+  color?: 'default' | 'critical' | 'information' | 'success' | 'warning';
+  isDismissible?: boolean;
+  children?: React.ReactNode;
+  className?: string;
+  dataTestId?: string;
+}
+
+// Usage Examples
+<Modal open={isOpen} onClose={() => setIsOpen(false)} title="Confirm">
+  <p>Are you sure you want to delete this item?</p>
+</Modal>
+
+<Modal open={isOpen} color="critical" isDismissible={false}>
+  <h2>Critical Action Required</h2>
+  <p>This action cannot be undone.</p>
+</Modal>
+```
+
+#### Input Component
+```typescript
+interface InputProps {
+  value?: string;
+  placeholder?: string;
+  isDisabled?: boolean;
+  isReadOnly?: boolean;
+  isRequired?: boolean;
+  hasError?: boolean;
+  errorMessage?: string;
+  helpText?: string;
+  label?: string;
+  onChange?: (value: string) => void;  // Note: ODS provides value directly
+  onBlur?: () => void;
+  onFocus?: () => void;
+  type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url';
+  className?: string;
+  dataTestId?: string;
+}
+
+// Usage Examples
+<Input 
+  value={email} 
+  onChange={setEmail}
+  type="email"
+  placeholder="Enter your email"
+  isRequired
+/>
+
+<Input 
+  value={password}
+  onChange={setPassword}
+  type="password"
+  hasError={!!passwordError}
+  errorMessage={passwordError}
+/>
+```
+
+#### Select Component
+```typescript
+interface SelectProps {
+  options: Array<{              // Required
+    value: string;
+    label: string;
+    disabled?: boolean;
+  }>;
+  value?: string;
+  placeholder?: string;
+  isDisabled?: boolean;
+  isRequired?: boolean;
+  hasError?: boolean;
+  errorMessage?: string;
+  helpText?: string;
+  label?: string;
+  onChange?: (value: string) => void;
+  className?: string;
+  dataTestId?: string;
+}
+
+// Usage Examples
+<Select 
+  options={[
+    { value: '1', label: 'Option 1' },
+    { value: '2', label: 'Option 2' }
+  ]}
+  value={selectedValue}
+  onChange={setSelectedValue}
+  placeholder="Choose an option"
+/>
+
+<Select 
+  options={countries}
+  value={country}
+  onChange={setCountry}
+  hasError={!!countryError}
+  errorMessage={countryError}
+  isRequired
+/>
+```
+
+#### Checkbox Component
+```typescript
+interface CheckboxProps {
+  checked?: boolean;
+  isIndeterminate?: boolean;
+  isDisabled?: boolean;
+  isRequired?: boolean;
+  hasError?: boolean;
+  errorMessage?: string;
+  helpText?: string;
+  label?: string;
+  onChange?: (checked: boolean) => void;
+  className?: string;
+  dataTestId?: string;
+}
+
+// Usage Examples
+<Checkbox 
+  checked={isAccepted}
+  onChange={setIsAccepted}
+  label="I accept the terms and conditions"
+  isRequired
+/>
+
+<Checkbox 
+  checked={isIndeterminate}
+  isIndeterminate={isIndeterminate}
+  onChange={handleIndeterminateChange}
+  label="Select all items"
+/>
+```
+
+#### FormField Component
+```typescript
+interface FormFieldProps {
+  label?: string;
+  helpText?: string;
+  errorMessage?: string;
+  isRequired?: boolean;
+  hasError?: boolean;
+  children?: React.ReactNode;    // Required: Input component
+  className?: string;
+  dataTestId?: string;
+}
+
+// Usage Examples
+<FormField 
+  label="Email Address" 
+  helpText="We'll never share your email"
+  hasError={!!emailError}
+  errorMessage={emailError}
+  isRequired
+>
+  <Input 
+    type="email"
+    value={email}
+    onChange={setEmail}
+    hasError={!!emailError}
+  />
+</FormField>
+```
+
+#### Message Component
+```typescript
+interface MessageProps {
+  type: 'info' | 'success' | 'warning' | 'error';  // Required
+  title?: string;
+  children?: React.ReactNode;
+  isDismissible?: boolean;
+  onDismiss?: () => void;
+  className?: string;
+  dataTestId?: string;
+}
+
+// Usage Examples
+<Message type="success" title="Success!">
+  Your changes have been saved successfully.
+</Message>
+
+<Message type="error" isDismissible onDismiss={handleDismiss}>
+  An error occurred while processing your request.
+</Message>
+```
+
+#### Card Component
+```typescript
+interface CardProps {
+  title?: string;
+  subtitle?: string;
+  image?: {
+    src: string;
+    alt: string;
+  };
+  actions?: React.ReactNode;
+  children?: React.ReactNode;
+  className?: string;
+  dataTestId?: string;
+}
+
+// Usage Examples
+<Card 
+  title="Product Information"
+  subtitle="Basic details"
+  image={{ src: "/product.jpg", alt: "Product image" }}
+  actions={<Button>Edit</Button>}
+>
+  <p>Product description goes here.</p>
+</Card>
+```
+
+#### Badge Component
+```typescript
+interface BadgeProps {
+  color?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info';
+  variant?: 'flat' | 'stroked';
+  size?: 'xs' | 's' | 'm' | 'l';
+  children?: React.ReactNode;
+  className?: string;
+  dataTestId?: string;
+}
+
+// Usage Examples
+<Badge color="success">Active</Badge>
+<Badge color="warning" variant="stroked">Pending</Badge>
+<Badge color="error" size="s">Error</Badge>
+```
+
+### Essential Usage Patterns
+
+#### 1. Form Validation Pattern
+```typescript
+const [email, setEmail] = useState('');
+const [emailError, setEmailError] = useState('');
+
+const validateEmail = (value: string) => {
+  if (!value) {
+    setEmailError('Email is required');
+    return false;
+  }
+  if (!/\S+@\S+\.\S+/.test(value)) {
+    setEmailError('Invalid email format');
+    return false;
+  }
+  setEmailError('');
+  return true;
+};
+
+<FormField 
+  label="Email" 
+  hasError={!!emailError}
+  errorMessage={emailError}
+  isRequired
+>
+  <Input 
+    type="email"
+    value={email}
+    onChange={(value) => {
+      setEmail(value);
+      validateEmail(value);
+    }}
+    hasError={!!emailError}
+  />
+</FormField>
+```
+
+#### 2. Modal with Confirmation Pattern
+```typescript
+const [isModalOpen, setIsModalOpen] = useState(false);
+const [isDeleting, setIsDeleting] = useState(false);
+
+const handleDelete = async () => {
+  setIsDeleting(true);
+  try {
+    await deleteItem(itemId);
+    setIsModalOpen(false);
+    // Handle success
+  } catch (error) {
+    // Handle error
+  } finally {
+    setIsDeleting(false);
+  }
+};
+
+<Modal 
+  open={isModalOpen} 
+  onClose={() => setIsModalOpen(false)}
+  title="Delete Item"
+  color="critical"
+>
+  <p>Are you sure you want to delete this item? This action cannot be undone.</p>
+  <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end', marginTop: '16px' }}>
+    <Button variant="ghost" onClick={() => setIsModalOpen(false)}>
+      Cancel
+    </Button>
+    <Button 
+      color="critical" 
+      isLoading={isDeleting}
+      onClick={handleDelete}
+    >
+      Delete
+    </Button>
+  </div>
+</Modal>
+```
+
+#### 3. Loading States Pattern
+```typescript
+const [isLoading, setIsLoading] = useState(false);
+const [data, setData] = useState(null);
+
+const fetchData = async () => {
+  setIsLoading(true);
+  try {
+    const result = await api.getData();
+    setData(result);
+  } catch (error) {
+    // Handle error
+  } finally {
+    setIsLoading(false);
+  }
+};
+
+{isLoading ? (
+  <Skeleton width="100%" height="200px" />
+) : (
+  <Card title="Data">
+    {data ? <DataDisplay data={data} /> : <p>No data available</p>}
+  </Card>
+)}
+```
+
+#### 4. Select with Dynamic Options Pattern
+```typescript
+const [countries, setCountries] = useState([]);
+const [selectedCountry, setSelectedCountry] = useState('');
+const [isLoadingCountries, setIsLoadingCountries] = useState(false);
+
+useEffect(() => {
+  const loadCountries = async () => {
+    setIsLoadingCountries(true);
+    try {
+      const data = await api.getCountries();
+      setCountries(data.map(country => ({
+        value: country.code,
+        label: country.name
+      })));
+    } catch (error) {
+      // Handle error
+    } finally {
+      setIsLoadingCountries(false);
+    }
+  };
+  
+  loadCountries();
+}, []);
+
+<Select 
+  options={countries}
+  value={selectedCountry}
+  onChange={setSelectedCountry}
+  placeholder={isLoadingCountries ? "Loading countries..." : "Select a country"}
+  isDisabled={isLoadingCountries}
+/>
+```
+
+### Common Pitfalls and Solutions
+
+#### ❌ Wrong: Missing Required Props
+```typescript
+// Missing required 'open' prop
+<Modal>Content</Modal>
+```
+
+#### ✅ Correct: All Required Props
+```typescript
+<Modal open={isOpen} onClose={() => setIsOpen(false)}>Content</Modal>
+```
+
+#### ❌ Wrong: Incorrect Event Handler
+```typescript
+// ODS Input provides value directly, not event
+<Input onChange={(e) => setValue(e.target.value)} />
+```
+
+#### ✅ Correct: Proper Event Handler
+```typescript
+<Input onChange={setValue} />
+```
+
+#### ❌ Wrong: Missing Form Validation
+```typescript
+<Input value={email} />
+```
+
+#### ✅ Correct: With Validation
+```typescript
+<FormField hasError={!!emailError} errorMessage={emailError}>
+  <Input value={email} onChange={setEmail} hasError={!!emailError} />
+</FormField>
+```
+
+#### ❌ Wrong: No Loading States
+```typescript
+<Button onClick={handleSubmit}>Submit</Button>
+```
+
+#### ✅ Correct: With Loading State
+```typescript
+<Button isLoading={isSubmitting} onClick={handleSubmit}>
+  {isSubmitting ? 'Submitting...' : 'Submit'}
+</Button>
+```
+
+### Performance Best Practices
+
+#### 1. Memoization
+```typescript
+// Memoize expensive computations
+const memoizedOptions = useMemo(() => 
+  data.map(item => ({ value: item.id, label: item.name })), 
+  [data]
+);
+
+// Memoize event handlers
+const handleSubmit = useCallback((e) => {
+  e.preventDefault();
+  onSubmit(formData);
+}, [formData, onSubmit]);
+```
+
+#### 2. Conditional Rendering
+```typescript
+// Efficient conditional rendering
+{isLoading ? (
+  <Spinner />
+) : error ? (
+  <Message type="error">{error}</Message>
+) : (
+  <DataComponent data={data} />
+)}
+```
+
+### Testing Guidelines
+
+#### 1. Test IDs
+```typescript
+// Always include test IDs
+<Button dataTestId="submit-button" onClick={handleSubmit}>
+  Submit
+</Button>
+
+<Input 
+  dataTestId="email-input"
+  value={email}
+  onChange={setEmail}
+/>
+```
+
+#### 2. Accessibility
+```typescript
+// Include proper ARIA attributes
+<Button 
+  aria-label="Close modal"
+  onClick={onClose}
+  dataTestId="close-button"
+>
+  <Icon name="close" />
+</Button>
+```
+
+### Integration with Manager React Components
+
+```typescript
+// Use ODS for basic UI components
+import { Button, Modal, Input } from '@ovhcloud/ods-react';
+
+// Use MRC for Manager-specific functionality with IAM
+import { ManagerButton, ManagerText } from '@ovh-ux/manager-react-components';
+
+// Basic ODS usage
+<Button color="primary" onClick={handleClick}>Basic Action</Button>
+
+// Manager-specific usage with authorization
+<ManagerButton
+  id="delete-resource"
+  label="Delete"
+  iamActions={['resource:delete']}
+  urn={`urn:v1:eu:resource:${resourceId}`}
+/>
+```
+
+### Theme Integration
+
+```typescript
+// Import theme first
+import '@ovhcloud/ods-themes/default';
+
+// Or use specific theme
+import '@ovhcloud/ods-themes/blue-jeans';
+
+// Import components
+import { Button, Modal } from '@ovhcloud/ods-react';
+```
+
+---
+
+## 🤖 AI Development Guidelines
+
+### Essential Rules for AI Code Generation
+
+1. **Always import theme first**: `import '@ovhcloud/ods-themes/default';`
+2. **Use specific imports**: `import { Button, Modal } from '@ovhcloud/ods-react';`
+3. **Include all required props**: Check interface definitions above
+4. **Handle loading states**: Use `isLoading` props and conditional rendering
+5. **Implement validation**: Use `FormField` with `hasError` and `errorMessage`
+6. **Add test IDs**: Include `dataTestId` for all interactive elements
+7. **Use semantic colors**: `primary`, `critical`, `success`, `warning`, `error`
+8. **Handle events correctly**: ODS provides values directly, not events
+9. **Implement accessibility**: Include ARIA attributes where needed
+10. **Optimize performance**: Use memoization for expensive operations
+
+### Component Selection Guide
+
+- **Basic UI**: Use ODS components (`Button`, `Input`, `Modal`)
+- **Manager-specific**: Use MRC components (`ManagerButton`, `ManagerText`)
+- **Forms**: Always wrap inputs with `FormField`
+- **Feedback**: Use `Message` for alerts, `Spinner`/`Skeleton` for loading
+- **Navigation**: Use `Breadcrumb`, `Pagination` for navigation
+- **Layout**: Use `Card`, `Accordion`, `Drawer` for content organization
