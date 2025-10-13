@@ -1,0 +1,13 @@
+{
+  "iam_create_condition_operator_EQ": "Gleich",
+  "iam_create_condition_operator_BEFORE": "Vor",
+  "iam_create_condition_operator_AFTER": "Nach",
+  "iam_create_condition_operator_GE": "Größer oder gleich",
+  "iam_create_condition_operator_LE": "Kleiner oder gleich",
+  "iam_create_condition_operator_GT": "Strikt größer als",
+  "iam_create_condition_operator_LT": "Strikt kleiner als",
+  "iam_create_condition_operator_IN": "Enthalten in",
+  "iam_create_condition_operator_IN_RANGE": "Enthalten im Bereich",
+  "iam_create_condition_operator_STARTS_WITH": "Beginnt mit",
+  "iam_create_condition_operator_ENDS_WITH": "Endet mit"
+}
