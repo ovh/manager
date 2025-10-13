@@ -34,11 +34,9 @@ import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
 import { urls } from '@/alldoms/routes/routes.constant';
 import appConfig from '@/web-domains.config';
 import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
-import {
-  DomainRegistrationStateEnum,
-  ServiceRoutes,
-} from '@/alldoms/enum/service.enum';
-import NotFound from '../../404';
+import { DomainRegistrationStateEnum } from '@/alldoms/enum/service.enum';
+import { ServiceRoutes } from '@/common/enum/common.enum';
+import NotFound from '@/pages/404';
 
 export default function ServiceDetail() {
   const [isManualRenewMessage, setIsManualRenewMessage] = useState<boolean>(

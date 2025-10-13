@@ -11,7 +11,16 @@ export default mergeConfig(
   createConfig({
     test: {
       coverage: {
-        exclude: [...defaultExcludedFiles, 'src/pages/layout.tsx'],
+        exclude: [
+          ...defaultExcludedFiles,
+          'src/pages/layout.tsx',
+          'src/**/routes.tsx',
+          'src/**/__tests__',
+          'src/**/__mocks__',
+          'src/**/data/**/*',
+          'src/**/hooks/**/*',
+          'src/**/types/**/*',
+        ],
       },
       setupFiles: 'src/common/setupTests.tsx',
       server: {

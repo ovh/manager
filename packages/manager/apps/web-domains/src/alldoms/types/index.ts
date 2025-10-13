@@ -5,6 +5,7 @@ import {
   ServiceInfoUpdateEnum,
 } from '@/alldoms/enum/service.enum';
 import { ServiceInfoRenewModeEnum } from '@/common/enum/common.enum';
+import { TServiceInfo } from '@/common/types/common.types';
 
 export interface TAllDomDomains {
   currentState: {
@@ -12,34 +13,6 @@ export interface TAllDomDomains {
     type: ServiceInfoType;
     domains: TDomainsInfo[];
     extensions: string[];
-  };
-}
-
-export interface TServiceInfo {
-  serviceId: number;
-  billing: {
-    expirationDate: string | null;
-    renew?: {
-      current: {
-        mode: ServiceInfoRenewModeEnum | null;
-        nextDate: string;
-      };
-    } | null;
-    lifecycle?: {
-      current: {
-        creationDate: string | null;
-        pendingActions: LifecycleCapacitiesEnum[];
-      };
-    } | null;
-  };
-  customer?: {
-    contacts: {
-      customerCode: string;
-      type: string;
-    }[];
-  };
-  resource: {
-    name: string;
   };
 }
 

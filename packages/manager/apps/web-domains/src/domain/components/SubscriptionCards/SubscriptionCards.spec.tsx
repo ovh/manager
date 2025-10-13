@@ -7,15 +7,18 @@ import SubscriptionCards from '@/domain/components/SubscriptionCards/Subscriptio
 import {
   useGetDomainContact,
   useGetDomainResource,
-  useGetServiceInformation,
 } from '@/domain/hooks/data/query';
 import { domainResourceOK } from '@/domain/__mocks__/serviceInfoDetail';
 import { serviceInfoPremium } from '@/domain/__mocks__/serviceInfo';
+import { useGetServiceInformation } from '@/common/hooks/data/query';
 
 vi.mock('@/domain/hooks/data/query', () => ({
   useGetDomainResource: vi.fn(),
-  useGetServiceInformation: vi.fn(),
   useGetDomainContact: vi.fn(),
+}));
+
+vi.mock('@/common/hooks/data/query', () => ({
+  useGetServiceInformation: vi.fn(),
 }));
 
 describe('SubscriptionCards component', () => {
