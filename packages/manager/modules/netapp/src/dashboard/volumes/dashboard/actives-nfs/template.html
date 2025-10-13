@@ -1,0 +1,40 @@
+<div>
+    <h2 data-translate="netapp_volumes_dashboard_actives_nfs_title"></h2>
+    <table
+        data-ng-if="$ctrl.activesNFS.length"
+        class="oui-table"
+        aria-describedby="netapp_volumes_dashboard_actives_nfs_description"
+    >
+        <thead>
+            <tr>
+                <th
+                    class="oui-table__header"
+                    scope="col"
+                    ng-repeat="trade in $ctrl.tableHeaders track by $index"
+                >
+                    <span data-translate="{{trade}}"></span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr
+                class="oui-table__row"
+                data-ng-repeat="nfs in $ctrl.activesNFS track by $index"
+            >
+                <td class="oui-table__cell">
+                    <span>{{nfs.clientIp}}</span>
+                </td>
+                <td class="oui-table__cell">
+                    <span>{{nfs.protocol}}</span>
+                </td>
+                <td class="oui-table__cell">
+                    <span>{{nfs.lastConnection}}</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <span
+        data-ng-if="!$ctrl.activesNFS.length"
+        data-translate="netapp_volumes_dashboard_usage_no_nfs_client"
+    ></span>
+</div>
