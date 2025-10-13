@@ -5,6 +5,7 @@ import { OsdsButton, OsdsText, OsdsLink } from '@ovhcloud/ods-components/react';
 import { useSearchParams } from 'react-router-dom';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import FilterItem from './FilterItem';
 import LoadingFilterItem from './LoadingFilterItem';
@@ -80,7 +81,8 @@ const Filters: React.FC<FiltersProps> = ({
     setParentSelectedUniverses([]);
   };
 
-  const { t } = useTranslation('catalog/filters');
+  const { t: tNavigation } = useTranslation(NAMESPACES.NAVIGATION);
+  const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
 
   const handleCheckboxChange = (
     type: 'category' | 'universe',
@@ -110,7 +112,7 @@ const Filters: React.FC<FiltersProps> = ({
             color={ODS_THEME_COLOR_INTENT.text}
             className="inline-block"
           >
-            {t('manager_catalog_filters_universes')}
+            {tNavigation('manager_navigation_universes')}
           </OsdsText>
           <span className="grid grid-cols-1">
             {universes.length ? (
@@ -141,7 +143,7 @@ const Filters: React.FC<FiltersProps> = ({
             color={ODS_THEME_COLOR_INTENT.text}
             className="title"
           >
-            {t('manager_catalog_filters_categories')}
+            {tNavigation('manager_navigation_categories')}
           </OsdsText>
           <span className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {categories.length ? (
@@ -175,7 +177,7 @@ const Filters: React.FC<FiltersProps> = ({
             }
             data-tracking="filter::reset"
           >
-            {t('manager_catalog_filters_reset')}
+            {tActions('reset')}
           </OsdsLink>
           <OsdsButton
             disabled={!hasInteracted || undefined}
@@ -186,7 +188,7 @@ const Filters: React.FC<FiltersProps> = ({
             }
             data-tracking="filter::apply"
           >
-            {t('manager_catalog_filters_button_apply')}
+            {tActions('filters_apply')}
           </OsdsButton>
         </span>
       </span>
