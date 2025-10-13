@@ -1,6 +1,9 @@
+import { ObservabilityServiceParams } from '@/types/ClientApi.type';
 import { Tenant } from '@/types/observability.type';
 
-export const getTenants = async (serviceName: string): Promise<Tenant[]> => {
+export const getTenants = async ({
+  serviceName,
+}: ObservabilityServiceParams): Promise<Tenant[]> => {
   const isOnboarding = serviceName !== 'ldp-rg-93836'; // '[DO NOT TOUCH] Monito service'
   console.info(
     `[MOCK-ADAPTER][getTenants] is onboarding mock for ${serviceName} -> `,

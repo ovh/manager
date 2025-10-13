@@ -54,7 +54,10 @@ describe('useTenants', () => {
 
     // Assert
     await waitFor(() => {
-      expect(mockGetTenants).toHaveBeenCalledWith(serviceName, expect.any(AbortSignal));
+      expect(mockGetTenants).toHaveBeenCalledWith({
+        serviceName,
+        signal: expect.any(AbortSignal) as AbortSignal,
+      });
     });
   });
 

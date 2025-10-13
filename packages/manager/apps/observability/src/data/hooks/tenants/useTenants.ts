@@ -11,7 +11,7 @@ export const useTenants = (
 ) => {
   return useQuery({
     queryKey: getTenantsQueryKey(serviceName),
-    queryFn: ({ signal }) => getTenants(serviceName, signal),
+    queryFn: ({ signal }) => getTenants({ serviceName, signal }),
     enabled: !!serviceName,
     ...queryOptions,
   });
