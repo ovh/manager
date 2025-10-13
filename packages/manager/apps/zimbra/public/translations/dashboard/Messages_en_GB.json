@@ -61,5 +61,8 @@
   "zimbra_dashboard_email_accounts_order": "Order email accounts",
   "zimbra_dashboard_tile_status_ongoingTask_none": "No task in progress",
   "zimbra_dashboard_domains_verify": "Verification",
-  "zimbra_dashboard_domains_diagnostics": "Diagnostics"
+  "zimbra_dashboard_domains_diagnostics": "Diagnostics",
+  "zimbra_mail_configure_guide": "Log in to an email account",
+  "zimbra_mail_migrate_guide": "Migrate an email account",
+  "zimbra_dashboard_ovh_mail_migrator": "Migration tool"
 }

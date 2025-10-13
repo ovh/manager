@@ -80,5 +80,6 @@
   "exchange_ACTION_update_no_domains": "Ainda não adicionou nenhum domínio ou este ainda não foi validado. <br/>Deve adicionar um domínio e aguardar que o mesmo seja validado para criar uma conta Exchange.",
   "exchange_ACTION_update_account_option_fail": "Ocorreu um erro aquando do carregamento dos seus domínios.",
   "exchange_ACTION_update_account_fetchingAccountCreationOptions_error": "Ocorreu um erro durante a obtenção das opções de criação de uma conta Exchange.",
-  "exchange_ACTION_update_account_error_message": "Ocorreu um erro aquando da criação da conta Exchange: {{message}}"
+  "exchange_ACTION_update_account_error_message": "Ocorreu um erro aquando da criação da conta Exchange: {{message}}",
+  "exchange_account_update_contact_phone_error_text": "Espaço interdito"
 }

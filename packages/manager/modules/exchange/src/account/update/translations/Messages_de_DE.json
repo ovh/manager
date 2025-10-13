@@ -80,5 +80,6 @@
   "exchange_ACTION_update_no_domains": "Entweder Sie haben noch keine Domain hinzugefügt oder diese wurde noch nicht validiert. <br/>Wenn Sie einen Exchange Account erstellen möchten, müssen Sie zuerst eine Domain hinzufügen und deren Validierung abwarten.",
   "exchange_ACTION_update_account_option_fail": "Beim Laden Ihrer Domains ist ein Fehler aufgetreten.",
   "exchange_ACTION_update_account_fetchingAccountCreationOptions_error": "Beim Abruf der Optionen zur Erstellung eines Exchange Accounts ist ein Fehler aufgetreten.",
-  "exchange_ACTION_update_account_error_message": "Bei der Erstellung des Exchange Accounts ist ein Fehler aufgetreten: {{message}}"
+  "exchange_ACTION_update_account_error_message": "Bei der Erstellung des Exchange Accounts ist ein Fehler aufgetreten: {{message}}",
+  "exchange_account_update_contact_phone_error_text": "Leerzeichen nicht zulässig"
 }

@@ -356,12 +356,13 @@
             ></div>
         </div>
 
-        <div class="col-md-3 mt-5 mt-lg-0" data-ng-if="!exchange.isMXPlan">
+        <div class="col-md-3 mt-5 mt-lg-0">
             <button
                 class="btn btn-block btn-default"
                 type="button"
                 data-ng-click="newAccount()"
                 data-ng-disabled="addAccountOptionNotAvailable()"
+                data-ng-if="!exchange.isMXPlan"
             >
                 <span
                     data-translate="emailpro_ACTION_order_accounts_button"
@@ -372,14 +373,13 @@
                     data-ng-if="!isNewAccountOrder()"
                 ></span>
             </button>
-        </div>
 
-        <div class="col-md-3 mt-5 mt-lg-0" data-ng-if="exchange.isMXPlan">
             <button
                 class="btn btn-block btn-default"
                 type="button"
                 data-ng-click="addNewConfigureAccount()"
                 data-ng-disabled="loadingNewConfiguredAccount"
+                data-ng-if="exchange.isMXPlan"
             >
                 <oui-spinner
                     size="s"
@@ -387,6 +387,20 @@
                 ></oui-spinner>
                 <span
                     data-translate="emailpro_ACTION_add_account_button"
+                ></span>
+            </button>
+
+            <button
+                class="btn btn-block btn-default"
+                type="button"
+                data-ng-click="goToOvhMailMigrator()"
+            >
+                <span
+                    data-translate="emailpro_ACTION_migrate_account_button"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
                 ></span>
             </button>
         </div>
