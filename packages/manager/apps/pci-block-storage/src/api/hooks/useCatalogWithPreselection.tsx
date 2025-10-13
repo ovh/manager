@@ -14,7 +14,7 @@ import {
   TModelPreselection,
   TModelPrice,
 } from '@/api/select/catalog';
-import { getEncryption, isClassicMultiAttach } from '@/api/select/volume';
+import { isClassicMultiAttach } from '@/api/select/volume';
 
 export type TVolumeRetypeModel = TModelPrice &
   TModelAvailabilityZones &
@@ -40,30 +40,26 @@ export const useCatalogWithPreselection = (
     hideTaxLabel: true,
   });
 
-  const [data, preselectedEncryptionType] = useMemo(() => {
-    if (!catalogData || !volumeData) return [null, null];
+  const data = useMemo(() => {
+    if (!catalogData || !volumeData) return null;
 
     if (
       is3az(catalogData.regions, volumeData.region) &&
       isClassicMultiAttach(volumeData)
     ) {
-      return [[], null];
+      return [];
     }
 
-    return [
-      mapRetypingVolumeCatalog(
-        volumeData.region,
-        getFormattedCatalogPrice,
-        t,
-        volumeData?.type,
-      )(catalogData),
-      getEncryption(catalogData)(volumeData).encryptionType,
-    ];
+    return mapRetypingVolumeCatalog(
+      volumeData.region,
+      getFormattedCatalogPrice,
+      t,
+      volumeData?.type,
+    )(catalogData);
   }, [volumeData, catalogData, getFormattedCatalogPrice, t]);
 
   return {
     data,
-    preselectedEncryptionType,
     isPending: restVolumeQuery.isPending || restCatalogQuery.isPending,
   };
 };
