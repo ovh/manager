@@ -1,0 +1,5 @@
+{
+  "iam_create_condition_hour_label": "Hour",
+  "iam_create_condition_hour_helper": "Separate each hour with a comma (8,10,11)",
+  "iam_create_condition_hour_placeholder": "Enter a time"
+}

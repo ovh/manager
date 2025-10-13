@@ -1,0 +1,6 @@
+{
+  "iam_create_condition_tag_key_label": "Tag",
+  "iam_create_condition_tag_key_placeholder": "Geben Sie einen Tag-Namen ein",
+  "iam_create_condition_tag_value_label": "Wert",
+  "iam_create_condition_tag_value_placeholder": "Geben Sie einen Wert ein"
+}
