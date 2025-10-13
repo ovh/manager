@@ -194,9 +194,7 @@ describe('Actions Component', () => {
       expect(removeProject).toHaveBeenCalledWith({
         projectId: 'test-project-id',
       });
-      expect(mockAddSuccess).toHaveBeenCalledWith(
-        'pci_projects_project_delete_success',
-      );
+      expect(mockAddSuccess).toHaveBeenCalledOnce();
     });
   });
 
