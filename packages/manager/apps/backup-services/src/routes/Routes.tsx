@@ -17,6 +17,7 @@ const GeneralInformationPage = React.lazy(
 );
 const HelpPage = React.lazy(() => import('@/pages/dashboard/help/Help.page'));
 const ListingPage = React.lazy(() => import('@/pages/listing/Listing.page'));
+const DeleteTenantPage = React.lazy(() => import('@/pages/listing/delete/DeleteTenant.page'));
 
 export default (
   <>
@@ -34,12 +35,20 @@ export default (
       }
     >
       <Route
-        index
+        path={urls.listing}
         Component={ListingPage}
         handle={{
           tracking: { pageName: 'listing', pageType: PageType.listing },
         }}
-      />
+      >
+        <Route
+          path={subRoutes.delete}
+          Component={DeleteTenantPage}
+          handle={{
+            tracking: { pageName: 'deleteVSPC', pageType: PageType.popup },
+          }}
+        />
+      </Route>
       <Route
         path={subRoutes.onboarding}
         Component={OnboardingPage}
