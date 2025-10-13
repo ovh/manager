@@ -14,13 +14,13 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   useGetDomainContact,
   useGetDomainResource,
-  useGetServiceInformation,
 } from '@/domain/hooks/data/query';
 import Contacts from './Contacts';
-import { ServiceRoutes } from '@/alldoms/enum/service.enum';
+import { ServiceRoutes } from '@/common/enum/common.enum';
 import { domainIsPremium } from '@/domain/constants/susbcriptions';
 import CreationDate from './CreationDate';
 import RenewFrequency from './RenewFrequency';
+import { useGetServiceInformation } from '@/common/hooks/data/query';
 
 interface SubscriptionCardsProps {
   readonly serviceName: string;
@@ -33,6 +33,7 @@ export default function SubscriptionCards({
     serviceName,
   );
   const { isServiceInfoLoading, serviceInfo } = useGetServiceInformation(
+    'domain',
     serviceName,
     ServiceRoutes.Domain,
   );

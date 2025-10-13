@@ -1,3 +1,14 @@
+export enum ServiceRoutes {
+  Domain = '/domain',
+  AllDom = '/allDom',
+}
+
+export enum ServiceInfoContactEnum {
+  Administrator = 'administrator',
+  Technical = 'technical',
+  Billing = 'billing',
+}
+
 export enum ServiceInfoUpdateEnum {
   Empty = 'empty',
   TerminateAtEngagementDate = 'terminateAtEngagementDate',

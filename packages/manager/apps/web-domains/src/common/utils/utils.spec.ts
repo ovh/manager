@@ -1,7 +1,7 @@
 import '@/common/setupTests';
-import { findContact } from '@/alldoms/utils/utils';
+import { findContact } from '@/common/utils/utils';
 import { serviceInfo } from '@/alldoms/__mocks__/serviceInfo';
-import { ServiceInfoContactEnum } from '@/alldoms/enum/service.enum';
+import { ServiceInfoContactEnum } from '@/common/enum/common.enum';
 
 test('display the correct contact', () => {
   expect(
