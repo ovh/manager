@@ -1,4 +1,4 @@
-import { fetchIcebergV2 } from '@ovh-ux/manager-core-api';
+import { fetchIcebergV2, v6 } from '@ovh-ux/manager-core-api';
 
 import { WebsiteType } from '../types/product/website';
 
@@ -45,4 +45,31 @@ export const getAllWebHostingAttachedDomain = async (searchParams?: string) => {
 
   await fetchPages(null);
   return { data: allDataArray };
+};
+
+export const deleteAttachedDomain = async (
+  serviceName: string,
+  domain: string,
+  bypassDNSConfiguration: boolean,
+): Promise<void> => {
+  await v6.delete(
+    `/hosting/web/${serviceName}/attachedDomain/${domain}?bypassDNSConfiguration=${bypassDNSConfiguration}`,
+  );
+};
+
+export const deleteAttachedDomains = async (
+  serviceName: string,
+  domains: string[],
+  bypassDNSConfiguration: boolean,
+): Promise<PromiseSettledResult<void>[]> => {
+  const results = await Promise.allSettled(
+    domains?.map((domain) => deleteAttachedDomain(serviceName, domain, bypassDNSConfiguration)),
+  );
+  const failed = results.find((r): r is PromiseRejectedResult => r.status === 'rejected');
+
+  if (failed) {
+    throw failed.reason ?? new Error('Domain deletion failed');
+  }
+
+  return results;
 };

@@ -21,10 +21,14 @@ const mocksHostingUrl = vi.hoisted(() => ({
   },
 }));
 
+export const deleteMock = vi.fn();
+
 vi.mock('@ovh-ux/manager-core-api', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@ovh-ux/manager-core-api')>()),
   v6: {
     put: vi.fn().mockResolvedValue({ data: {} }),
+    delete: deleteMock,
+    fetchIcebergV2: vi.fn().mockResolvedValue({ data: {}, cursorNext: null }),
   },
 }));
 
@@ -111,6 +115,26 @@ vi.mock('@/data/api/index', () => ({
   getWebHostingAttachedDomainDigStatus: vi.fn(() => Promise.resolve(attachedDomainDigStatusMock)),
   getWebHostingAttachedDomainDigStatusQueryKey: vi.fn(),
 }));
+
+vi.mock(
+  '@/data/hooks/webHostingAttachedDomain/useWebHostingAttachedDomain',
+  async (importActual) => {
+    const actual =
+      await importActual<
+        typeof import('@/data/hooks/webHostingAttachedDomain/useWebHostingAttachedDomain')
+      >();
+    return {
+      ...actual,
+      useWebHostingAttachedDomain: vi.fn(() => ({
+        data: websitesMocks,
+        isSuccess: true,
+        isLoading: false,
+        isError: false,
+        status: 'success',
+      })),
+    };
+  },
+);
 
 afterEach(() => {
   vi.clearAllMocks();

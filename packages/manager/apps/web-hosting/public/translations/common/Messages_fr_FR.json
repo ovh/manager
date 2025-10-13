@@ -79,5 +79,13 @@
   "web_hosting_dashboard_offer_hosting-performance-2": "Performance 2",
   "web_hosting_dashboard_offer_hosting-performance-3": "Performance 3",
   "web_hosting_dashboard_offer_hosting-performance-4": "Performance 4",
-  "web_hosting_dashboard_action_statistics": "Statistiques des visites"
+  "web_hosting_dashboard_action_statistics": "Statistiques des visites",
+  "hosting_tab_DOMAINS_configuration_remove_title": "Êtes-vous sûr de vouloir détacher le domaine suivant de votre hébergement mutualisé ?",
+  "hosting_tab_DOMAINS_configuration_domain_name": "Nom du domaine",
+  "hosting_tab_DOMAINS_configuration_home": "Dossier racine",
+  "hosting_tab_DOMAINS_configuration_autoconfigure": "Configuration automatique",
+  "hosting_tab_DOMAINS_configuration_autoconfigure_remove_text": "La configuration automatique correspond à la suppression des champs A et AAAA dans la zone DNS du domaine.",
+  "hosting_tab_DOMAINS_configuration_remove_step1_www": "Supprimer aussi le domaine {{domain}}",
+  "hosting_tab_DOMAINS_configuration_remove_step1_git_warning": "Si vous voulez détacher votre nom de domaine, vous devez au préalable supprimer votre configuration Git pour prévenir d'éventuels problèmes de suivi des modifications et de gestion des déploiements.",
+  "hosting_dashboard_ssl_delete_error": "Une erreur est survenue lors de la suppression d'un certificat SSL. {{error}}"
 }
