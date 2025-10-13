@@ -1,6 +1,5 @@
 ---
 title: GitHub Branching and Commits
-owner: docs-team
 last_update: 2025-10-13
 tags: [github, workflow, branching, commits, ovhcloud, manager]
 ai: true

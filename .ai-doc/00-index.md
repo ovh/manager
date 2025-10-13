@@ -31,9 +31,9 @@ The goal of this documentation is to:
 | `_doc-template.md` | Template used for new documentation files. |
 | `_references.md` | Unified human + machine list of all external documentation and source URLs. |
 | `00-index.md` | This file — serves as the main entry point. |
-| `10-architecture/` | Explains Manager architecture, APIs, µApp containerization, and related commands. |
-| `20-design-system/` | Documents ODS and MRC component libraries and Storybooks. |
-| `30-best-practices/` | Contains coding conventions and frontend design patterns. |
+| `10-architecture/` | Explains Manager architecture, APIs, µApp containerization, module integration, and related commands. |
+| `20-design-system/` | Documents ODS and MRC component libraries, Storybooks, and module integrations. |
+| `30-best-practices/` | Contains coding conventions, frontend design patterns, React best practices, and accessibility testing. |
 | `40-workflow/` | Describes branching, commit, and review processes. |
 | `50-testing/` | Defines testing and static analysis strategies. |
 
