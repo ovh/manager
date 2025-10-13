@@ -164,11 +164,18 @@ export type AddEmailAccountSchema = z.infer<typeof addEmailAccountSchema>;
 export type AddEmailAccountsSchema = z.infer<typeof addEmailAccountsSchema>;
 export type EditEmailAccountSchema = z.infer<typeof editEmailAccountSchema>;
 
-export const orderEmailAccountSchema = z.object({
-  consent: z.literal<boolean>(true),
-  [ZimbraPlanCodes.ZIMBRA_STARTER]: z.number().positive().min(1).max(1000),
-  commitment: z.enum(['1', '12']),
-});
+export const orderEmailAccountSchema = z
+  .object({
+    [ZimbraPlanCodes.ZIMBRA_STARTER]: z.number().min(0).max(1000).optional(),
+    [ZimbraPlanCodes.ZIMBRA_PRO]: z.number().min(0).max(1000).optional(),
+    consent: z.literal<boolean>(true),
+    commitment: z.enum(['1', '12']),
+  })
+  .refine((data) => {
+    const hasStarter = data[ZimbraPlanCodes.ZIMBRA_STARTER] > 0;
+    const hasPro = data[ZimbraPlanCodes.ZIMBRA_PRO] > 0;
+    return hasStarter || hasPro;
+  });
 
 export type OrderEmailAccountSchema = z.infer<typeof orderEmailAccountSchema>;
 
