@@ -9,6 +9,7 @@ export type OKMS = {
   swaggerEndpoint: string;
   serviceKeyCount: number;
   kmipObjectCount: number;
+  secretCount: number;
   iam: IAM;
 };
 
@@ -21,6 +22,7 @@ export type IAM = {
   displayName: string;
   id: string;
   urn: string;
+  tags?: Record<string, string>;
 };
 
 export type OKMSOptions = {

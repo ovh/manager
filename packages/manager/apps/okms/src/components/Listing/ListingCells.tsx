@@ -4,8 +4,6 @@ import {
   Clipboard,
   DataGridTextCell,
   Links,
-  Region,
-  useServiceDetails,
 } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
@@ -13,79 +11,13 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OKMS } from '@/types/okms.type';
 import { OkmsServiceKey } from '@/types/okmsServiceKey.type';
 import { useServiceKeyTypeTranslations } from '@/hooks/serviceKey/useServiceKeyTypeTranslations';
 import { ServiceKeyStatus } from '../serviceKey/serviceKeyStatus/serviceKeyStatus.component';
 import useServiceKeyActionsList from '@/hooks/serviceKey/useServiceKeyActionsList';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
-import { OkmsServiceState } from '../layout-helpers/Dashboard/okmsServiceState/OkmsServiceState.component';
-import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
-
-export const DatagridCellId = (props: OKMS | OkmsServiceKey) => {
-  return <Clipboard className="w-full" value={props.id} />;
-};
-
-export const DatagridCellName = (props: OKMS) => {
-  const { trackClick } = useOvhTracking();
-  const navigate = useNavigate();
-
-  return (
-    <Links
-      onClickReturn={() => {
-        trackClick({
-          location: PageLocation.datagrid,
-          buttonType: ButtonType.link,
-          actionType: 'navigation',
-          actions: ['go-to-kms'],
-        });
-        navigate(KMS_ROUTES_URLS.kmsDashboard(props?.id));
-      }}
-      label={props?.iam.displayName}
-    />
-  );
-};
-
-export const DatagridCellRegion = (kms: OKMS) => {
-  return (
-    <DataGridTextCell>
-      <Region
-        mode="region"
-        name={kms.region.toLowerCase().replaceAll('_', '-')}
-      />
-    </DataGridTextCell>
-  );
-};
-
-export const DatagridCellStatus = (kms: OKMS) => {
-  const { data: okmsService, isPending, isError } = useServiceDetails({
-    resourceName: kms.id,
-  });
-
-  if (isPending) {
-    return <OdsSpinner size={ODS_SPINNER_SIZE.sm} />;
-  }
-
-  if (isError) {
-    return <></>;
-  }
-
-  return <OkmsServiceState state={okmsService.data.resource.state} />;
-};
-
-export const DatagridResourceKmipCountCell = (kms: OKMS) => {
-  return <DataGridTextCell>{kms.kmipObjectCount}</DataGridTextCell>;
-};
-
-export const DatagridResourceServiceKeyCountCell = (kms: OKMS) => {
-  return <DataGridTextCell>{kms.serviceKeyCount}</DataGridTextCell>;
-};
 
 export const DatagridServiceKeyCellName = (props: OkmsServiceKey) => {
   const navigate = useNavigate();
