@@ -68,14 +68,6 @@ export default function ActionsComponent({
       onClick: () => onTrackingClick('create_volume_backup'),
     },
     {
-      id: 4,
-      href: hrefRetype,
-      label: t('pci_projects_project_storages_blocks_change_encryption'),
-      dataTestid: 'actionComponent-change-encryption-button',
-      disabled: isVolumeClassic3az,
-      ...retypeTitleIfDeactivated,
-    },
-    {
       id: 5,
       href: hrefRetype,
       label: t('pci_projects_project_storages_blocks_change_type'),
