@@ -1,6 +1,7 @@
+import React from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
-import { useColumnFilters } from '../../../../../components';
+import { useColumnFilters } from '../../../useColumnFilters';
 
 import { useDataRetrievalOperations } from '../useDataRetrievalOperations';
 
@@ -11,13 +12,9 @@ vi.mock('@ovh-ux/manager-core-api', () => ({
   },
 }));
 
-vi.mock('../../../../../components', async () => {
-  const actual = await vi.importActual('@tanstack/react-query');
-  return {
-    ...actual,
-    useColumnFilters: vi.fn(),
-  };
-});
+vi.mock('../../../useColumnFilters', () => ({
+  useColumnFilters: vi.fn(),
+}));
 
 describe('useDataRetrievalOperations', () => {
   const mockColumns = [
@@ -37,7 +34,7 @@ describe('useDataRetrievalOperations', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    (useColumnFilters as any).mockReturnValue(mockUseColumnFiltersResult);
+    vi.mocked(useColumnFilters).mockReturnValue(mockUseColumnFiltersResult);
   });
 
   it('initializes with default sorting and empty search', () => {
