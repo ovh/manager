@@ -208,6 +208,10 @@
     "pnpm": "packages/manager/modules/request-tagger"
   },
   {
+    "turbo": "--filter @ovh-ux/request-tagger",
+    "pnpm": "packages/manager/core/request-tagger"
+  },
+  {
     "turbo": "--filter @ovh-ux/manager-resource-tagging",
     "pnpm": "packages/manager/modules/resource-tagging"
   },

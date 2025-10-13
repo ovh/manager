@@ -80,6 +80,7 @@ clean_tags() {
 
 run_lerna_version() {
   ensure_git_branch
+
   if [[ "${GIT_BRANCH}" != "master" && "${DRY_RELEASE}" != true ]]; then
     printf "%s\n" "Only dry releases are allowed on side branches"
     exit 1
@@ -89,23 +90,17 @@ run_lerna_version() {
     version
     --conventional-commits
     --no-commit-hooks
-    --no-git-tag-version
-    --no-push
     --yes
   )
 
   if [ "${DRY_RELEASE}" = true ]; then
-    printf "%s\n" "Dry releasing (no commit/tag/push)"
-    args+=(--allow-branch="${GIT_BRANCH}")
+    printf "%s\n" "Dry releasing (no push)"
+    args+=(--no-push --no-git-tag-version --allow-branch="${GIT_BRANCH}")
   else
-    printf "%s\n" "Releasing"
+    printf "%s\n" "Releasing (commits, tags, changelogs)"
   fi
 
-  if [ "${FORWARD_ARGS+set}" = "set" ] && [ "${#FORWARD_ARGS[@]}" -gt 0 ]; then
-    node_modules/.bin/lerna "${args[@]}" "${FORWARD_ARGS[@]}"
-  else
-    node_modules/.bin/lerna "${args[@]}"
-  fi
+  node_modules/.bin/lerna "${args[@]}"
 }
 
 get_changed_packages() {
