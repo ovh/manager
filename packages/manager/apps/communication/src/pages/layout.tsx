@@ -2,16 +2,17 @@ import React, { useEffect, useContext, Suspense } from 'react';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
 import {
-  useOvhTracking,
   useRouteSynchro,
   ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
+import { usePageTracking, useTracking } from '@/hooks/useTracking/useTracking';
 
 export default function Layout() {
   const location = useLocation();
   const { shell } = useContext(ShellContext);
   const matches = useMatches();
-  const { trackCurrentPage } = useOvhTracking();
+  const { trackPage } = useTracking();
+  const pageTracking = usePageTracking();
   useRouteSynchro();
 
   useEffect(() => {
@@ -20,8 +21,14 @@ export default function Layout() {
   }, [location]);
 
   useEffect(() => {
-    trackCurrentPage();
-  }, [location]);
+    if (!pageTracking) return;
+    const { pageName, pageType, subApp } = pageTracking;
+    trackPage({
+      pageName,
+      pageType,
+      subApp,
+    });
+  }, [location, pageTracking, trackPage]);
 
   useEffect(() => {
     shell.ux.hidePreloader();
