@@ -15,12 +15,14 @@ import {
 
 export default class NetAppDashboardService {
   /* @ngInject */
-  constructor($http, $q, Apiv2Service, Poller, iceberg) {
+  constructor($http, $q, Apiv2Service, Poller, iceberg, coreConfig) {
     this.Apiv2Service = Apiv2Service;
     this.$http = $http;
     this.$q = $q;
     this.Poller = Poller;
     this.iceberg = iceberg;
+    this.coreConfig = coreConfig;
+    this.activesNFS = [];
   }
 
   /**
@@ -311,5 +313,21 @@ export default class NetAppDashboardService {
             activesNFS: null,
           }));
       });
+  }
+
+  setActivesNFS(activesNFS) {
+    this.activesNFS = activesNFS.map(
+      ({ metric: { client_ip: clientIp, protocol }, value: minutes }) => {
+        const language = this.coreConfig.getUserLocale().replace('_', '-');
+        const lastConnection = new Intl.DateTimeFormat(language, {
+          dateStyle: 'short',
+          timeStyle: 'short',
+        })
+          .format(new Date() - minutes[1] * 1000)
+          .replace(' ', ' - ');
+
+        return { clientIp, protocol, lastConnection };
+      },
+    );
   }
 }
