@@ -21,13 +21,11 @@ import { getOrderCatalog } from '@/domain/data/api/order';
 import {
   getDomainContact,
   getMXPlan,
-  getServiceInformation,
   getZimbra,
   updateServiceOption,
 } from '@/common/data/api/common.api';
 import { ServiceInfoUpdateEnum } from '@/common/enum/common.enum';
 import { TDomainContact, TServiceInfo } from '@/common/types/common.types';
-import { ServiceRoutes } from '@/alldoms/enum/service.enum';
 import { AssociatedEmailsServicesEnum } from '@/domain/enum/associatedServices.enum';
 import { emailOfferRedirect } from '@/domain/constants/susbcriptions';
 
@@ -133,20 +131,6 @@ export const useTerminateAnycastMutation = (
   };
 };
 
-export const useGetServiceInformation = (
-  serviceName: string,
-  serviceRoute: ServiceRoutes,
-) => {
-  const { data, isLoading } = useQuery({
-    queryKey: ['domain', 'service', serviceName],
-    queryFn: () => getServiceInformation(serviceName, serviceRoute),
-  });
-
-  return {
-    serviceInfo: data,
-    isServiceInfoLoading: isLoading,
-  };
-};
 export const useUpdateDomainResource = (serviceName: string) => {
   const queryClient = useQueryClient();
 
