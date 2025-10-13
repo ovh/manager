@@ -369,9 +369,9 @@ const OrderFunnel = ({
                     <FormItem className="flex flex-col gap-1">
                       <PrivacyRadioInput
                         value={field.value}
-                        onChange={(newPrivacyValue: PrivacyEnum) => {
-                          model.form.setValue('privacy', newPrivacyValue);
-                        }}
+                        onChange={(newPrivacyValue: PrivacyEnum) =>
+                          model.form.setValue('privacy', newPrivacyValue)
+                        }
                       />
                     </FormItem>
                   )}
