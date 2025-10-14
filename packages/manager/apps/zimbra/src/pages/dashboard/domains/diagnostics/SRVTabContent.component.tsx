@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import { Trans, useTranslation } from 'react-i18next';
 
 import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
@@ -15,6 +17,7 @@ import {
 import { GUIDES_LIST, Guide } from '@/guides.constants';
 import { AUTO_CONFIGURE_DOMAIN } from '@/tracking.constants';
 import { DnsRecordType } from '@/utils/dnsconfig.constants';
+import { parseSRVRecord } from '@/utils/domains';
 
 import StatusBadge from './StatusBadge.component';
 
@@ -35,6 +38,11 @@ const SRVTabContent = ({
 }) => {
   const { t } = useTranslation('domains/diagnostic');
   const { trackClick } = useOvhTracking();
+  const { subdomain, priority, weight, port, target } = useMemo(() => {
+    if (expectedDNSConfig?.autodiscover) {
+      return parseSRVRecord(expectedDNSConfig?.autodiscover);
+    }
+  }, [expectedDNSConfig?.autodiscover]);
 
   if (!diagnostic) {
     return (
@@ -98,10 +106,38 @@ const SRVTabContent = ({
                 </tr>
                 <tr key="srv">
                   <td>
-                    <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                    <OdsText preset={ODS_TEXT_PRESET.paragraph} className="min-w-32">
+                      <strong className="mr-4">
+                        {t('zimbra_domain_diagnostic_field_subdomain')}
+                      </strong>
+                    </OdsText>
+                    <Clipboard value={subdomain} />
+                  </td>
+                  <td>
+                    <OdsText preset={ODS_TEXT_PRESET.paragraph} className="min-w-32">
+                      <strong className="mr-4">
+                        {t('zimbra_domain_diagnostic_field_priority')}
+                      </strong>
+                    </OdsText>
+                    <Clipboard value={String(priority)} />
+                  </td>
+                  <td>
+                    <OdsText preset={ODS_TEXT_PRESET.paragraph} className="min-w-32">
+                      <strong className="mr-4">{t('zimbra_domain_diagnostic_field_weight')}</strong>
+                    </OdsText>
+                    <Clipboard value={String(weight)} />
+                  </td>
+                  <td>
+                    <OdsText preset={ODS_TEXT_PRESET.paragraph} className="min-w-32">
+                      <strong className="mr-4">{t('zimbra_domain_diagnostic_field_port')}</strong>
+                    </OdsText>
+                    <Clipboard value={String(port)} />
+                  </td>
+                  <td>
+                    <OdsText preset={ODS_TEXT_PRESET.paragraph} className="min-w-32">
                       <strong className="mr-4">{t('zimbra_domain_diagnostic_field_target')}</strong>
                     </OdsText>
-                    <Clipboard value={expectedDNSConfig?.autodiscover} />
+                    <Clipboard value={target} />
                   </td>
                 </tr>
               </tbody>
