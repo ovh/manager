@@ -1,77 +1,77 @@
 /**
  * Generate content for props file.
- * @param {string} compName - PascalCase component name.
+ * @param {string} componentName - PascalCase component name.
  * @param {boolean} hasChildren - Whether the component supports children.
  * @returns {string}
  */
-export function buildPropsTemplate(compName, hasChildren = false) {
-  const importBase = `import { ${compName}Prop as Ods${compName}Props } from '@ovhcloud/ods-react';`;
+export function buildPropsTemplate(componentName, hasChildren = false) {
+  const importBase = `import { ${componentName}Prop as Ods${componentName}Props } from '@ovhcloud/ods-react';`;
 
   if (hasChildren) {
     return `${importBase}
 import { PropsWithChildren } from 'react';
 
-export type ${compName}Props = PropsWithChildren<Ods${compName}Props> & {};
+export type ${componentName}Props = PropsWithChildren<Ods${componentName}Props> & {};
 `;
   }
 
   return `${importBase}
 
-export type ${compName}Props = Ods${compName}Props & {};
+export type ${componentName}Props = Ods${componentName}Props & {};
 `;
 }
 
 /**
  * Generate content for component file.
- * @param {string} compName - PascalCase component name.
+ * @param {string} componentName - PascalCase component name.
  * @param {boolean} hasChildren - Whether the component supports children.
  * @returns {string}
  */
-export function buildComponentTemplate(compName, hasChildren = false) {
-  const importLine = `import { ${compName} as Ods${compName} } from '@ovhcloud/ods-react';
-import { ${compName}Props } from './${compName}.props';`;
+export function buildComponentTemplate(componentName, hasChildren = false) {
+  const importLine = `import { ${componentName} as Ods${componentName} } from '@ovhcloud/ods-react';
+import { ${componentName}Props } from './${componentName}.props';`;
 
   if (hasChildren) {
     return `${importLine}
 
-export const ${compName} = ({ children, ...others }: ${compName}Props) => (
-  <Ods${compName} {...others}>{children}</Ods${compName}>
+export const ${componentName} = ({ children, ...others }: ${componentName}Props) => (
+  <Ods${componentName} {...others}>{children}</Ods${componentName}>
 );
 `;
   }
 
   return `${importLine}
 
-export const ${compName} = (props: ${compName}Props) => <Ods${compName} {...props} />;
+export const ${componentName} = (props: ${componentName}Props) => <Ods${componentName} {...props} />;
 `;
 }
 
 /**
  * Generate index.ts template.
- * @param {string} compName - PascalCase component name.
+ * @param {string} componentName - PascalCase component name.
  * @returns {string}
  */
-export function buildIndexTemplate(compName) {
-  return `export { ${compName} } from './${compName}.component';
-export type { ${compName}Props } from './${compName}.props';
+export function buildIndexTemplate(componentName) {
+  return `export { ${componentName} } from './${componentName}.component';
+export type { ${componentName}Props } from './${componentName}.props';
 `;
 }
 
 /**
  * Generate snapshot test template.
- * @param {string} compName - PascalCase component name.
+ * @param {string} componentName - PascalCase component name.
  * @param {boolean} hasChildren - Whether the component supports children.
  * @returns {string}
  */
-export function buildSnapshotTestTemplate(compName, hasChildren = false) {
+export function buildSnapshotTestTemplate(componentName, hasChildren = false) {
   if (hasChildren) {
     return `import { describe, it, expect } from 'vitest';
 import { render } from '@testing-library/react';
-import { ${compName}, ${compName}Props } from '..';
+import { ${componentName}, ${componentName}Props } from '..';
 
-describe('${compName} Snapshot tests', () => {
+describe('${componentName} Snapshot tests', () => {
   it('renders the component with default props and children', () => {
-    const { container } = render(<${compName}>Hello</${compName}>);
+    const { container } = render(<${componentName}>Hello</${componentName}>);
     expect(container).toMatchSnapshot();
   });
 });
@@ -80,11 +80,11 @@ describe('${compName} Snapshot tests', () => {
 
   return `import { describe, it, expect } from 'vitest';
 import { render } from '@testing-library/react';
-import { ${compName}, ${compName}Props } from '..';
+import { ${componentName}, ${componentName}Props } from '..';
 
-describe('${compName} Snapshot tests', () => {
+describe('${componentName} Snapshot tests', () => {
   it('renders the component with default props', () => {
-    const { container } = render(<${compName} />);
+    const { container } = render(<${componentName} />);
     expect(container).toMatchSnapshot();
   });
 });
@@ -109,17 +109,17 @@ export function buildComponentsIndexTemplate() {
 
 /**
  * Generate spec test template for subcomponents.
- * @param {string} compName - PascalCase subcomponent name.
+ * @param {string} componentName - PascalCase subcomponent name.
  * @returns {string}
  */
-export function buildSubcomponentSpecTemplate(compName) {
+export function buildSubcomponentSpecTemplate(componentName) {
   return `import { describe, it, expect } from 'vitest';
 import { render } from '@testing-library/react';
-import { ${compName} } from '../${compName}.component';
+import { ${componentName} } from '../${componentName}.component';
 
-describe('${compName}', () => {
+describe('${componentName}', () => {
   it('renders without crashing', () => {
-    const { container } = render(<${compName} />);
+    const { container } = render(<${componentName} />);
     expect(container).toBeTruthy();
   });
 });
@@ -176,52 +176,52 @@ export type ${subName}Props = ${parentName}Props & {};
 /**
  * Generate subcomponent implementation.
  *
- * @param {string} compName - PascalCase subcomponent name.
+ * @param {string} componentName - PascalCase subcomponent name.
  * @param {boolean} hasChildren - Whether the subcomponent supports children.
  * @returns {string}
  */
-export function buildSubcomponentTemplate(compName, hasChildren = false) {
-  const importBase = `import { ${compName} as ODS${compName} } from '@ovhcloud/ods-react';
-import { ${compName}Props } from './${compName}.props';`;
+export function buildSubcomponentTemplate(componentName, hasChildren = false) {
+  const importBase = `import { ${componentName} as ODS${componentName} } from '@ovhcloud/ods-react';
+import { ${componentName}Props } from './${componentName}.props';`;
 
   if (hasChildren) {
     return `${importBase}
 import { PropsWithChildren } from 'react';
 
-export const ${compName} = ({ children, ...props }: PropsWithChildren<${compName}Props>) => (
-  <ODS${compName} {...props}>{children}</ODS${compName}>
+export const ${componentName} = ({ children, ...props }: PropsWithChildren<${componentName}Props>) => (
+  <ODS${componentName} {...props}>{children}</ODS${componentName}>
 );
 `;
   }
 
   return `${importBase}
 
-export const ${compName} = (props: ${compName}Props) => (
-  <ODS${compName} {...props} />
+export const ${componentName} = (props: ${componentName}Props) => (
+  <ODS${componentName} {...props} />
 );
 `;
 }
 
 /**
  * Generate index template for subcomponents (future-proof for nested children).
- * @param {string} compName - PascalCase subcomponent name.
+ * @param {string} componentName - PascalCase subcomponent name.
  * @returns {string}
  */
-export function buildSubcomponentIndexTemplate(compName) {
-  return `export { ${compName} } from './${compName}.component';
+export function buildSubcomponentIndexTemplate(componentName) {
+  return `export { ${componentName} } from './${componentName}.component';
 `;
 }
 
 /**
  * Extend getComponentTemplates with subcomponent templates
  */
-export function getComponentTemplates(compName, hasChildren = false) {
+export function getComponentTemplates(componentName, hasChildren = false) {
   return {
-    props: buildPropsTemplate(compName, hasChildren),
-    component: buildComponentTemplate(compName, hasChildren),
-    index: buildIndexTemplate(compName),
-    test: buildSnapshotTestTemplate(compName, hasChildren),
-    subSpec: buildSubcomponentSpecTemplate(compName),
-    subIndex: buildSubcomponentIndexTemplate(compName),
+    props: buildPropsTemplate(componentName, hasChildren),
+    component: buildComponentTemplate(componentName, hasChildren),
+    index: buildIndexTemplate(componentName),
+    test: buildSnapshotTestTemplate(componentName, hasChildren),
+    subSpec: buildSubcomponentSpecTemplate(componentName),
+    subIndex: buildSubcomponentIndexTemplate(componentName),
   };
 }

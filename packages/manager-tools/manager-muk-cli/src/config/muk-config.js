@@ -63,6 +63,7 @@ export const EMOJIS = {
   error: '❌',
   success: '🎉',
   disk: '💾',
+  rocket: '🚀',
 };
 
 /**
