@@ -1,24 +1,25 @@
 import { useState } from 'react';
 import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud/index';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { ColumnDef } from '@tanstack/react-table';
-import { Plus } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Button, useToast } from '@datatr-ux/uxlib';
-import { getColumns } from './S3ObjectListColumns.component';
+import { useToast } from '@datatr-ux/uxlib';
+import { getColumns } from './S3ObjectVersionListColumns.component';
 import DataTable from '@/components/data-table';
-import { getFilters } from './S3ObjectFilters.component';
+import { getFilters } from './S3VersionObjectFilters.component';
 import storages from '@/types/Storages';
 import useDownload from '@/hooks/useDownload';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import { useGetPresignUrlS3 } from '@/data/hooks/s3-storage/useGetPresignUrlS3.hook';
-import { useS3Data } from '../../S3.context';
+import { useS3Data } from '../../../../S3.context';
+import Link from '@/components/links/Link.component';
 
 interface ObjectsListProps {
   objects: StorageObject[];
 }
 
-export default function S3ObjectsList({ objects }: ObjectsListProps) {
+export default function S3ObjectVersionList({ objects }: ObjectsListProps) {
   const { projectId } = useParams();
   const { s3 } = useS3Data();
   const [objectName, setObjectName] = useState<string>('');
@@ -26,6 +27,8 @@ export default function S3ObjectsList({ objects }: ObjectsListProps) {
   const navigate = useNavigate();
   const toast = useToast();
   const { download } = useDownload();
+  const [searchParams] = useSearchParams();
+  const objectKey = searchParams.get('objectKey');
 
   const {
     getPresignUrlS3,
@@ -56,33 +59,33 @@ export default function S3ObjectsList({ objects }: ObjectsListProps) {
           method: storages.PresignedURLMethodEnum.GET,
           object: object.key,
           storageClass: object.storageClass,
-          versionId: '',
+          versionId: object.versionId,
         },
       });
     },
     onDeleteClicked: (object: StorageObject) => {
-      return navigate(`./delete-object?objectKey=${object.key}`);
+      return navigate(
+        `./delete-version/${object.versionId}?objectKey=${object.key}`,
+      );
     },
   });
-  const objectsFilters = getFilters();
+  const storagesFilters = getFilters();
 
   return (
     <DataTable.Provider
       columns={columns}
       data={objects}
       pageSize={25}
-      filtersDefinition={objectsFilters}
+      filtersDefinition={storagesFilters}
     >
       <DataTable.Header>
         <DataTable.Action>
-          <Button
-            onClick={() => {
-              navigate('./add-object');
-            }}
+          <Link
+            to={`../?objectKey=${objectKey}`}
+            className="flex items-center w-full"
           >
-            <Plus className="size-6 mr-2 text-primary-foreground" />
-            {t('addNewObject')}
-          </Button>
+            <ArrowLeft className="w-4 h-4 mr-2" /> {t('objectBackLink')}
+          </Link>
         </DataTable.Action>
         <DataTable.SearchBar />
         <DataTable.FiltersButton />

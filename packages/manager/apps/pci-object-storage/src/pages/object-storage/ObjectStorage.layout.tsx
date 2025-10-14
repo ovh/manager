@@ -5,7 +5,6 @@ import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.co
 import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { useGetStorages } from '@/data/hooks/storage/useGetStorages.hook';
 import { useGetUsers } from '@/data/hooks/user/useGetUsers.hook';
-import { useGetUsersWithS3Credentials } from '@/data/hooks/user/useGetUsersWithS3Credentials.hook';
 import { POLLING } from '@/configuration/polling.constants';
 import StoragesList from './storage/_components/StorageListTable.component';
 import TabsMenu from '@/components/tabs-menu/TabsMenu.component';
@@ -23,7 +22,6 @@ export default function DashboardLayout() {
   });
 
   const regionQuery = useGetRegions(projectId);
-
 
   if (
     usersQuery.isLoading ||
@@ -47,13 +45,6 @@ export default function DashboardLayout() {
         <h2>{t('title')}</h2>
         <div className="flex flex-wrap justify-end gap-1">
           <RoadmapChangelog />
-          {/* <Guides
-            section={GuideSections.landing}
-            noEngineFilter
-            onGuideClick={(guide) =>
-              track(TRACKING.servicesList.guideClick(guide.title))
-            }
-          /> */}
         </div>
       </div>
       <p>{t('description')}</p>

@@ -91,6 +91,38 @@ export const createS3Storage = async ({
     data,
   );
 
+export interface PresignS3Params extends S3Data {
+  data: storages.PresignedURLInput;
+}
+
+export const getPresignUrlS3 = async ({
+  projectId,
+  region,
+  name,
+  data,
+}: PresignS3Params) =>
+  apiClient.v6.post<storages.PresignedURL>(
+    `/cloud/project/${projectId}/region/${region}/storage/${name}/presign`,
+    data,
+  );
+
+export interface AddS3ObjectParams extends storages.PresignedURL {
+  file: File;
+}
+
+export const addS3Object = async ({
+  signedHeaders,
+  url,
+  file,
+}: AddS3ObjectParams): Promise<Response> => {
+  return apiClient.ws.put(url, file, {
+    headers: {
+      'Content-Type': file.type,
+      ...signedHeaders,
+    },
+  });
+};
+
 export interface S3ObjectsParams extends S3Data {
   limit?: number;
   keyMarker?: string;
@@ -133,5 +165,74 @@ export const getS3Object = async ({
   key,
 }: S3ObjectParams) =>
   apiClient.v6.get<StorageObject>(
-    `/cloud/project/${projectId}/region/${region}/storage/${name}/object/${key}`,
+    `/cloud/project/${projectId}/region/${region}/storage/${name}/object/${encodeURIComponent(
+      key,
+    )}`,
+  );
+
+export const deleteS3Object = async ({
+  projectId,
+  region,
+  name,
+  key,
+}: S3ObjectParams) =>
+  apiClient.v6.delete(
+    `/cloud/project/${projectId}/region/${region}/storage/${name}/object/${encodeURIComponent(
+      key,
+    )}`,
+  );
+
+export interface S3ObjectsVersionsParams extends S3ObjectParams {
+  limit?: number;
+  versionIdMarker?: string;
+}
+
+export const getS3ObjectVersions = async ({
+  projectId,
+  region,
+  name,
+  key,
+  limit,
+  versionIdMarker,
+}: S3ObjectsVersionsParams) =>
+  apiClient.v6.get<StorageObject[]>(
+    `/cloud/project/${projectId}/region/${region}/storage/${name}/object/${encodeURIComponent(
+      key,
+    )}/version`,
+    {
+      params: {
+        limit,
+        versionIdMarker,
+      },
+    },
+  );
+
+export interface S3ObjectsVersionParams extends S3ObjectParams {
+  versionId: string;
+}
+
+export const getS3ObjectVersion = async ({
+  projectId,
+  region,
+  name,
+  key,
+  versionId,
+}: S3ObjectsVersionParams) =>
+  apiClient.v6.get<StorageObject>(
+    `/cloud/project/${projectId}/region/${region}/storage/${name}/object/${encodeURIComponent(
+      key,
+    )}/version/${versionId}`,
+  );
+
+export const deleteS3ObjectVersion = async ({
+  projectId,
+  region,
+  name,
+  key,
+  versionId,
+}: S3ObjectsVersionParams) =>
+  apiClient.v6.delete(
+    `/cloud/project/${projectId}/region/${region}/storage/${name}/object/${encodeURIComponent(
+      key,
+    )}/version/${versionId}`,
   );

@@ -227,9 +227,29 @@ export default [
                     '@/pages/object-storage/storage/s3Id/objects/Objects.page'
                   ),
                 ),
+                children: [
+                  {
+                    path: 'add-object',
+                    id: 's3.objects.add',
+                    ...lazyLoadRoute(() =>
+                      import(
+                        '@/pages/object-storage/storage/s3Id/objects/add/Add.modal'
+                      ),
+                    ),
+                  },
+                  {
+                    path: 'delete-object',
+                    id: 's3.objects.delete',
+                    ...lazyLoadRoute(() =>
+                      import(
+                        '@/pages/object-storage/storage/s3Id/objects/delete/DeleteObject.modal'
+                      ),
+                    ),
+                  },
+                ],
               },
               {
-                path: ':objectKey',
+                path: 'object',
                 ...lazyLoadRoute(() =>
                   import(
                     '@/pages/object-storage/storage/s3Id/objects/object/Object.layout'
@@ -253,15 +273,17 @@ export default [
                         '@/pages/object-storage/storage/s3Id/objects/object/versions/Versions.page'
                       ),
                     ),
-                  },
-                  {
-                    path: 'lock',
-                    id: 's3.object.lock',
-                    ...lazyLoadRoute(() =>
-                      import(
-                        '@/pages/object-storage/storage/s3Id/objects/object/object-lock/ObjectLock.page'
-                      ),
-                    ),
+                    children: [
+                      {
+                        path: 'delete-version/:versionId',
+                        id: 'versions.delete',
+                        ...lazyLoadRoute(() =>
+                          import(
+                            '@/pages/object-storage/storage/s3Id/objects/object/versions/delete/DeleteObjectVersion.modal'
+                          ),
+                        ),
+                      },
+                    ],
                   },
                 ],
               },
