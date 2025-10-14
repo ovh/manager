@@ -1,7 +1,6 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import { Step, StepProps } from '@ovh-ux/muk';
+import { Meta } from '@storybook/react';
+import { Step, StepProps, Text } from '@ovh-ux/muk';
 
 const renderComponent = ({
   order,
@@ -26,7 +25,7 @@ const renderComponent = ({
       edit={edit}
       skip={skip}
     >
-      <OdsText preset="span">Hello world!!!!</OdsText>
+      <Text preset="span">Hello world!!!!</Text>
     </Step>
   );
 };
