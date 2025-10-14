@@ -42,7 +42,9 @@ export const OkmsSelector = ({
 }: OkmsSelectorProps) => {
   const { t } = useTranslation('secret-manager');
 
-  if (!selectedRegion || okmsList.length === 1) return null;
+  if (!selectedRegion || okmsList.length === 1) {
+    return null;
+  }
 
   if (okmsList.length === 0) {
     return (
@@ -58,7 +60,7 @@ export const OkmsSelector = ({
       <OdsText preset="heading-4">
         {t('create_secret_form_okms_selector_title')}
       </OdsText>
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
+      <div className="space-y-3">
         {okmsList.map((okms) => (
           <RadioCard
             id={okms.id}

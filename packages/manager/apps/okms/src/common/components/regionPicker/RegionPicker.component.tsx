@@ -6,6 +6,7 @@ import { RadioCard } from '../RadioCard/RadioCard.component';
 import { RegionTypeBadge } from '@/components/regionTypeBadge/RegionTypeBadge.component';
 import { useOrderCatalogOkms } from '@/data/hooks/useOrderCatalogOkms';
 import { useNotificationAddErrorOnce } from '@/hooks/useNotificationAddErrorOnce';
+import { REGION_PICKER_TEST_IDS } from './regionPicker.constants';
 
 type RegionPickerProps = {
   selectedRegion: string;
@@ -40,7 +41,7 @@ export const RegionPicker = ({
   if (isPending) {
     return (
       <div>
-        <OdsSpinner size="md" />
+        <OdsSpinner size="md" data-testid={REGION_PICKER_TEST_IDS.SPINNER} />
       </div>
     );
   }
