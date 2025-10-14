@@ -50,7 +50,7 @@ The Modal component provides a consistent interface for displaying modal dialogs
 
 ```tsx
 import { Modal } from '@ovh-ux/muk';
-import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+import { Link, ICON_NAME, MODAL_COLOR } from '@ovhcloud/ods-react';
 
 function MyModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -58,7 +58,7 @@ function MyModal() {
   return (
     <Modal
       heading="Modal Title"
-      type={ODS_MODAL_COLOR.information}
+      type={MODAL_COLOR.information}
       isOpen={isOpen}
       onDismiss={() => setIsOpen(false)}
       primaryLabel="Confirm"
@@ -169,7 +169,7 @@ A reusable confirmation modal for destructive actions:
 
 ```tsx
 import { Modal } from '@ovh-ux/muk';
-import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+import { MODAL_COLOR } from '@ovhcloud/ods-react';
 
 function DeleteModal({ onClose, onConfirm, resourceName, resourceType = 'resource' }) {
   const [isDeleting, setIsDeleting] = useState(false);
@@ -189,7 +189,7 @@ function DeleteModal({ onClose, onConfirm, resourceName, resourceType = 'resourc
   return (
     <Modal
       heading={`Delete ${resourceType}`}
-      type={ODS_MODAL_COLOR.critical}
+      type={MODAL_COLOR.critical}
       isOpen={true}
       onDismiss={onClose}
       primaryLabel="Delete"
