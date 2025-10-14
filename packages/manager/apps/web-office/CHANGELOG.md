@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.22](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.21...@ovh-ux/manager-web-office-app@0.4.22) (2025-10-14)
+
+
+### Bug Fixes
+
+* **web-office:** fix tsconfig json format ([6ddb99b](https://github.com/ovh/manager/commit/6ddb99ba0560ec8446f6fa2c42dbf007bea83736)), closes [#PRDCOL-225](https://github.com/ovh/manager/issues/PRDCOL-225)
+
+
+
+
+
 ## [0.4.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.20...@ovh-ux/manager-web-office-app@0.4.21) (2025-10-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-office-app

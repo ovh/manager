@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.17.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.17.4...@ovh-ux/manager-emailpro@3.17.5) (2025-10-14)
+
+
+### Bug Fixes
+
+* **web.mxplan-emailpro:** add ovh mail migrator ([6563f12](https://github.com/ovh/manager/commit/6563f12bb809c0d0a10dab4d94f4aa6500b47d4a)), closes [#PRDCOL-203](https://github.com/ovh/manager/issues/PRDCOL-203)
+
+
+
+
+
 ## [3.17.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.17.3...@ovh-ux/manager-emailpro@3.17.4) (2025-07-17)
 
 
