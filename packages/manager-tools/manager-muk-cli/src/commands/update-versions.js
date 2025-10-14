@@ -59,5 +59,5 @@ export async function updateOdsVersions() {
   logger.info(`📦 Saved to: ${pkgPath}`);
 
   // Run post-update validation (install + lint + test)
-  await runPostUpdateChecks();
+  runPostUpdateChecks();
 }
