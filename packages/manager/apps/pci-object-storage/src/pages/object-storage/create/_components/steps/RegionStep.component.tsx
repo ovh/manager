@@ -99,6 +99,21 @@ const RegionsStep = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
               </Popover>
             </Badge>
           );
+        case RegionTypeEnum.localzone:
+          return (
+            <Badge className="bg-primary-300 text-white">
+              <span>LocalZone</span>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <HelpCircle className="size-4 ml-2" />
+                </PopoverTrigger>
+                <PopoverContent className="text-sm">
+                  {t('region-description-localzone')}
+                  {helpLink}
+                </PopoverContent>
+              </Popover>
+            </Badge>
+          );
         default:
           return <Badge className="bg-neutral-100 text-text">?</Badge>;
       }
@@ -167,7 +182,9 @@ const RegionsStep = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
                     <div className="flex items-center gap-2">
                       <RadioIndicator />
                       <h5 className="flex gap-2 items-center">
-                        <Flag flagName={region.countryCode} />
+                        {region.countryCode && (
+                          <Flag flagName={region.countryCode} />
+                        )}
                         {region.label}
                       </h5>
                     </div>
