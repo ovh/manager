@@ -1,4 +1,4 @@
-import camelCase from 'lodash/camelCase';
+import punycode from 'punycode';
 
 export default class ExchangeResources {
   /* @ngInject */
@@ -44,17 +44,56 @@ export default class ExchangeResources {
    * Return the options for creating resources
    */
   getResourcesOptions(organization, serviceName) {
-    return this.services.OvhHttp.get(
-      '/sws/exchange/{organization}/{exchange}/resources/options',
-      {
-        rootPath: '2api',
-        clearCache: true,
-        urlParams: {
-          organization,
-          exchange: serviceName,
-        },
-      },
-    );
+    return this.services.$q
+      .all({
+        accounts: this.services.wucExchange.getAccountIds({
+          organizationName: organization,
+          exchangeService: serviceName,
+        }),
+        externalContacts: this.services.wucExchange.getExternalContactIds({
+          organizationName: organization,
+          exchangeService: serviceName,
+        }),
+        mailingLists: this.services.wucExchange.getMailingListIds({
+          organizationName: organization,
+          exchangeService: serviceName,
+        }),
+        models: this.services.wucExchange.getModels(),
+        domains: this.services.wucExchange.getDomainIds({
+          organizationName: organization,
+          exchangeService: serviceName,
+          state: 'ok',
+        }),
+        resourceAccounts: this.services.wucExchange.getResourceAccountIds({
+          organizationName: organization,
+          exchangeService: serviceName,
+        }),
+      })
+      .then(
+        ({
+          accounts,
+          externalContacts,
+          mailingLists,
+          models,
+          domains,
+          resourceAccounts,
+        }) => ({
+          availableDomains: domains.map((domain) => ({
+            name: domain,
+            displayName: punycode.toUnicode(domain),
+          })),
+          resourceTypeEnum:
+            models.models['email.exchange.ResourceTypeEnum'].enum,
+          showMeetingDetailsEnum:
+            models.models['email.exchange.ShowMeetingDetailsEnum'].enum,
+          takenEmails: [].concat(
+            accounts,
+            mailingLists,
+            externalContacts,
+            resourceAccounts,
+          ),
+        }),
+      );
   }
 
   addResource(organization, serviceName, resource) {
@@ -66,14 +105,7 @@ export default class ExchangeResources {
           organization,
           exchange: serviceName,
         },
-        data: {
-          allowConflict: resource.allowConflict,
-          capacity: resource.capacity,
-          type: camelCase(resource.resourceType),
-          resourceEmailAddress: resource.resourceEmailAddress,
-          displayName: resource.displayName,
-          company: resource.company,
-        },
+        data: resource,
       },
     ).then((response) => {
       this.services.wucExchange.resetResources();
@@ -83,7 +115,12 @@ export default class ExchangeResources {
     });
   }
 
-  updateResource(organization, serviceName, resource) {
+  updateResource(
+    organization,
+    serviceName,
+    currentResourceEmailAddress,
+    resource,
+  ) {
     return this.services.OvhHttp.put(
       '/email/exchange/{organization}/service/{exchange}/resourceAccount/{resourceEmailAddress}',
       {
@@ -91,14 +128,9 @@ export default class ExchangeResources {
         urlParams: {
           organization,
           exchange: serviceName,
-          resourceEmailAddress: resource.resourceEmailAddress,
+          resourceEmailAddress: currentResourceEmailAddress,
         },
-        data: {
-          allowConflict: resource.allowConflict,
-          capacity: resource.capacity,
-          displayName: resource.displayName,
-          company: resource.company,
-        },
+        data: resource,
       },
     ).then((response) => {
       this.services.wucExchange.resetResources();
