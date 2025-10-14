@@ -43,23 +43,18 @@ get_changed_packages() {
 get_release_name() {
   seed="$1"
   release_name=$(node scripts/release/index.js "$seed")
-  latest_release="$(git tag -l "${release_name}*" --sort=taggerdate | tail -1)"
 
-  id="${latest_release/$release_name-/}"
-  next_id="$((id + 1))"
-  printf "%s\n" "$release_name-$next_id"
-
-  #if [ -z "$latest_release" ]; then
-   # printf "%s\n" "$release_name"
-  #else
-   # id="${latest_release/$release_name-/}"
-   # if [ -z "$id" ]; then
-     # printf "%s\n" "$release_name-1"
-    #else
-   #   next_id="$((id + 1))"
-    #  printf "%s\n" "$release_name-$next_id"
-    #fi
-  #fi
+  if git tag -l | grep -q "^$release_name$"; then
+      id="${release_name##*-}"
+      if [ -z "$id" ]; then
+        printf "%s\n" "$release_name-1"
+      else
+        next_id="$((id + 1))"
+        printf "%s\n" "$release_name-$next_id"
+      fi
+  else
+      printf "%s\n" "$release_name"
+  fi
 }
 
 create_release_note() (
