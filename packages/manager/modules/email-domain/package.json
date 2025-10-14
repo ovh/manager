@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-email-domain",
-  "version": "1.11.6",
+  "version": "1.11.7",
   "private": true,
   "description": "Email domain product.",
   "repository": {
