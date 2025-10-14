@@ -101,6 +101,7 @@
   },
   "scripts": {
     "build": "yarn pm:build:ci",
+    "build:low": "yarn pm:build:ci -- --concurrency=1",
     "build:turbo": "yarn pm:build:ci",
     "clean": "yarn run clean:dist && rimraf node_modules",
     "clean:dist": "rimraf \"packages/**/dist\"",
