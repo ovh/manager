@@ -25,6 +25,7 @@ import {
   IpSpamType,
 } from '@/data/api';
 import { IpTask, IpTaskFunction, IpTaskStatus } from '@/types';
+import { GetByoipMocksParams, getByoipMocks } from './byoip';
 
 export type GetIpsMocksParams = {
   nbIp?: number;
@@ -41,7 +42,7 @@ export type GetIpsMocksParams = {
     firewallModeEnabled?: boolean;
     state?: IpGameFirewallStateEnum;
   };
-};
+} & GetByoipMocksParams;
 
 export const getIpsMocks = ({
   nbIp = 0,
@@ -54,7 +55,17 @@ export const getIpsMocks = ({
   hasIpTask = false,
   getIpMoveKo = false,
   gameFirewallConfig,
+  hasAggregates,
+  hasSlices,
+  isPostAggregateKo,
+  isPostSliceKo,
 }: GetIpsMocksParams): Handler[] => [
+  ...getByoipMocks({
+    hasAggregates,
+    hasSlices,
+    isPostAggregateKo,
+    isPostSliceKo,
+  }),
   {
     url: '/ip/:ip/move',
     response: () =>

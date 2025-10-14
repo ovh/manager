@@ -1,22 +1,7 @@
-export type GetTypeByServiceNameParams = {
-  serviceName: string;
-};
+import { IpTypeEnum } from '@/data/constants';
 
-export enum IPRoutedServiceType {
-  DEDICATED = 'dedicated',
-  HOSTING = 'housing',
-  PCC = 'pcc',
-  CLOUD = 'cloud',
-  VPS = 'vps',
-  VRACK = 'vrack',
-  LOADBALANCER = 'lb',
-  PARKING = 'parking',
-}
-
-export const getTypeByServiceName = ({
-  serviceName,
-}: GetTypeByServiceNameParams): IPRoutedServiceType => {
-  if (!serviceName) return IPRoutedServiceType.PARKING;
+export const getTypeByServiceName = (serviceName: string): IpTypeEnum => {
+  if (!serviceName) return null;
 
   const dedicatedRegex = new RegExp(/^([a-z]{2}\d+.ip-[\d-]+.\w+)/);
   const pccRegex = new RegExp(/^(pcc[\d-]+)/);
@@ -25,13 +10,12 @@ export const getTypeByServiceName = ({
   const vrackRegex = new RegExp(/^pn[\w\d-.]+/);
   const loadBalancerRegex = new RegExp(/^loadbalancer-[\w\d]+/);
 
-  if (dedicatedRegex.test(serviceName)) return IPRoutedServiceType.DEDICATED;
-  if (pccRegex.test(serviceName)) return IPRoutedServiceType.PCC;
-  if (cloudRegex.test(serviceName)) return IPRoutedServiceType.CLOUD;
-  if (vpsRegex.test(serviceName)) return IPRoutedServiceType.VPS;
-  if (vrackRegex.test(serviceName)) return IPRoutedServiceType.VRACK;
-  if (loadBalancerRegex.test(serviceName))
-    return IPRoutedServiceType.LOADBALANCER;
+  if (dedicatedRegex.test(serviceName)) return IpTypeEnum.DEDICATED;
+  if (pccRegex.test(serviceName)) return IpTypeEnum.PCC;
+  if (cloudRegex.test(serviceName)) return IpTypeEnum.CLOUD;
+  if (vpsRegex.test(serviceName)) return IpTypeEnum.VPS;
+  if (vrackRegex.test(serviceName)) return IpTypeEnum.VRACK;
+  if (loadBalancerRegex.test(serviceName)) return IpTypeEnum.LOAD_BALANCING;
 
-  return IPRoutedServiceType.PARKING;
+  return null;
 };

@@ -9,6 +9,7 @@ import { ListingContext } from '@/pages/listing/listingContext';
 export type IpAlertsProps = {
   ip: string;
   subIp?: string;
+  isByoipSlice?: boolean;
 };
 
 /**
@@ -18,14 +19,14 @@ export type IpAlertsProps = {
  * @param subIp the sub ip to check
  * @returns React component
  */
-export const IpAlerts = ({ ip, subIp }: IpAlertsProps) => {
+export const IpAlerts = ({ ip, subIp, isByoipSlice }: IpAlertsProps) => {
   const { expiredIps } = useContext(ListingContext);
   const { t } = useTranslation('listing');
 
   const { hasAlerts, isLoading } = useIpHasAlerts({
     ip,
     subIp,
-    enabled: expiredIps.indexOf(ip) === -1,
+    enabled: expiredIps.indexOf(ip) === -1 && !isByoipSlice,
   });
 
   if (
@@ -43,19 +44,19 @@ export const IpAlerts = ({ ip, subIp }: IpAlertsProps) => {
         <OdsBadge
           label={t('listingColumnsIpAlertsAntihack')}
           color={ODS_BADGE_COLOR.critical}
-        ></OdsBadge>
+        />
       )}
       {!!hasAlerts?.spam?.length && (
         <OdsBadge
           label={t('listingColumnsIpAlertsSpam')}
           color={ODS_BADGE_COLOR.critical}
-        ></OdsBadge>
+        />
       )}
       {!!hasAlerts?.mitigation?.length && (
         <OdsBadge
           label={t('listingColumnsIpAlertsMitigation')}
           color={ODS_BADGE_COLOR.critical}
-        ></OdsBadge>
+        />
       )}
     </SkeletonCell>
   );

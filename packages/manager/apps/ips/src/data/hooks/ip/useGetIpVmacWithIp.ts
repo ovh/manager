@@ -52,17 +52,17 @@ export const useGetIpVmacWithIp = ({
     queryKeyToInvalidate: getdedicatedServerVmacQueryKey({ serviceName }),
   });
 
-  const formattedResult = {
+  return {
     isLoading:
       isLoading ||
       !!results.find((result) => !!result.isLoading) ||
       hasVmacTasks,
     isError: isError || !!results.find((result) => !!result.isError),
-    vmacsWithIp: results?.map(({ data }, index) => ({
-      ...vmacs?.[index],
-      ip: data?.data,
-    })) as VmacWithIpType[],
+    vmacsWithIp: results?.map(
+      ({ data }, index): VmacWithIpType => ({
+        ...vmacs?.[index],
+        ip: data?.data,
+      }),
+    ),
   };
-
-  return formattedResult;
 };
