@@ -19,10 +19,11 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render bas
     id="dialog::r0::positioner"
   >
     <div
-      aria-describedby="dialog::r0::description"
-      aria-labelledby="dialog::r0::title"
+      aria-describedby=""
+      aria-labelledby=""
       aria-modal="true"
       class="_modal-content_inusz_35"
+      data-ods="modal-content"
       data-part="content"
       data-scope="dialog"
       data-state="open"
@@ -32,10 +33,12 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render bas
       tabindex="-1"
     >
       <div
-        class="_modal-header_1q85x_2 _modal-header--information_1q85x_17"
+        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
       >
         <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+          aria-label="Close"
+          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
           dir="ltr"
@@ -43,46 +46,50 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render bas
           type="button"
         >
           <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
           />
         </button>
       </div>
       <div
         class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
       >
-        <div
-          class="flex items-center mb-4"
+        <h4
+          class="_text--heading-4_1aw48_31 mb-4"
+          data-ods="text"
         >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-          >
-            Update Name
-          </h4>
-        </div>
+          Update Name
+        </h4>
         <div
           class="flex flex-col text-left"
         >
           <div>
             <div
               class="_form-field_112eg_2"
+              data-ods="form-field"
               role="group"
             >
               <label
                 class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+                data-ods="form-field-label"
                 for="update-name-modal-input"
                 id=":r2:"
               >
                 Display Name
               </label>
               <div
-                class="_input_1p31i_2"
+                class="_input_1cnfv_2"
                 data-invalid="true"
               >
                 <input
+                  aria-busy="false"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1p31i_35"
+                  class="_input__field_1cnfv_35"
                   data-invalid="true"
+                  data-ods="input"
                   data-testid="update-name-modal-input"
                   id="update-name-modal-input"
                   type="text"
@@ -96,14 +103,16 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render bas
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 mt-4"
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            data-ods="button"
             data-testid="secondary-button"
             type="button"
           >
             Annuler
           </button>
           <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 mt-4"
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            data-ods="button"
             data-testid="primary-button"
             type="button"
           >
@@ -117,7 +126,9 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render bas
 `;
 
 exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render modal when closed 1`] = `
-<body>
+<body
+  data-scroll-lock=""
+>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -126,82 +137,89 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render mod
     data-state="closed"
     dir="ltr"
     hidden=""
-    id="dialog::r6::backdrop"
+    id="dialog::r8::backdrop"
   />
   <div
     class="_modal-positioner_inusz_29"
     data-part="positioner"
     data-scope="dialog"
     dir="ltr"
-    id="dialog::r6::positioner"
+    id="dialog::r8::positioner"
     style="pointer-events: none;"
   >
     <div
-      aria-describedby="dialog::r6::description"
-      aria-labelledby="dialog::r6::title"
+      aria-describedby=""
+      aria-labelledby=""
       aria-modal="true"
       class="_modal-content_inusz_35"
+      data-ods="modal-content"
       data-part="content"
       data-scope="dialog"
       data-state="closed"
       dir="ltr"
       hidden=""
-      id="dialog::r6::content"
+      id="dialog::r8::content"
       role="dialog"
       tabindex="-1"
     >
       <div
-        class="_modal-header_1q85x_2 _modal-header--information_1q85x_17"
+        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
       >
         <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+          aria-label="Close"
+          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
           dir="ltr"
-          id="dialog::r6::close"
+          id="dialog::r8::close"
           type="button"
         >
           <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
           />
         </button>
       </div>
       <div
         class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
       >
-        <div
-          class="flex items-center mb-4"
+        <h4
+          class="_text--heading-4_1aw48_31 mb-4"
+          data-ods="text"
         >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-          >
-            Update Name
-          </h4>
-        </div>
+          Update Name
+        </h4>
         <div
           class="flex flex-col text-left"
         >
           <div>
             <div
               class="_form-field_112eg_2"
+              data-ods="form-field"
               role="group"
             >
               <label
                 class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+                data-ods="form-field-label"
                 for="update-name-modal-input"
-                id=":r8:"
+                id=":ra:"
               >
                 Display Name
               </label>
               <div
-                class="_input_1p31i_2"
+                class="_input_1cnfv_2"
                 data-invalid="true"
               >
                 <input
+                  aria-busy="false"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1p31i_35"
+                  class="_input__field_1cnfv_35"
                   data-invalid="true"
+                  data-ods="input"
                   data-testid="update-name-modal-input"
                   id="update-name-modal-input"
                   type="text"
@@ -215,14 +233,16 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render mod
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 mt-4"
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            data-ods="button"
             data-testid="secondary-button"
             type="button"
           >
             Annuler
           </button>
           <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 mt-4"
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            data-ods="button"
             data-testid="primary-button"
             type="button"
           >
@@ -244,86 +264,94 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render mod
     data-scope="dialog"
     data-state="open"
     dir="ltr"
-    id="dialog::r3::backdrop"
+    id="dialog::r4::backdrop"
   />
   <div
     class="_modal-positioner_inusz_29"
     data-part="positioner"
     data-scope="dialog"
     dir="ltr"
-    id="dialog::r3::positioner"
+    id="dialog::r4::positioner"
   >
     <div
-      aria-describedby="dialog::r3::description"
-      aria-labelledby="dialog::r3::title"
+      aria-describedby=""
+      aria-labelledby=""
       aria-modal="true"
       class="_modal-content_inusz_35"
+      data-ods="modal-content"
       data-part="content"
       data-scope="dialog"
       data-state="open"
       dir="ltr"
-      id="dialog::r3::content"
+      id="dialog::r4::content"
       role="dialog"
       tabindex="-1"
     >
       <div
-        class="_modal-header_1q85x_2 _modal-header--information_1q85x_17"
+        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
       >
         <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+          aria-label="Close"
+          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
           dir="ltr"
-          id="dialog::r3::close"
+          id="dialog::r4::close"
           type="button"
         >
           <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
           />
         </button>
       </div>
       <div
         class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
       >
-        <div
-          class="flex items-center mb-4"
+        <h4
+          class="_text--heading-4_1aw48_31 mb-4"
+          data-ods="text"
         >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-          >
-            Update Display Name
-          </h4>
-        </div>
+          Update Display Name
+        </h4>
         <div
           class="flex flex-col text-left"
         >
           <div>
             <p
               class="_text--paragraph_1aw48_54 pt-1 pb-3"
+              data-ods="text"
             >
               Please enter a new display name for your account
             </p>
             <div
               class="_form-field_112eg_2"
+              data-ods="form-field"
               role="group"
             >
               <label
                 class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+                data-ods="form-field-label"
                 for="update-name-modal-input"
-                id=":r5:"
+                id=":r6:"
               >
                 Display Name
               </label>
               <div
-                class="_input_1p31i_2"
+                class="_input_1cnfv_2"
                 data-invalid="true"
               >
                 <input
+                  aria-busy="false"
                   aria-describedby="update-name-modal-pattern-message"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1p31i_35"
+                  class="_input__field_1cnfv_35"
                   data-invalid="true"
+                  data-ods="input"
                   data-testid="update-name-modal-input"
                   id="update-name-modal-input"
                   type="text"
@@ -332,6 +360,7 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render mod
               </div>
               <span
                 class="_text--span_1aw48_60 text-right"
+                data-ods="text"
                 id="update-name-modal-pattern-message"
                 style="color: var(--ods-color-critical-400);"
               >
@@ -344,14 +373,16 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render mod
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 mt-4"
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            data-ods="button"
             data-testid="secondary-button"
             type="button"
           >
             Cancel
           </button>
           <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 mt-4"
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            data-ods="button"
             data-testid="primary-button"
             type="button"
           >
@@ -365,7 +396,9 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render mod
 `;
 
 exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal with all features enabled 1`] = `
-<body>
+<body
+  data-scroll-lock=""
+>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -373,86 +406,94 @@ exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal 
     data-scope="dialog"
     data-state="open"
     dir="ltr"
-    id="dialog::r1p::backdrop"
+    id="dialog::r2c::backdrop"
   />
   <div
     class="_modal-positioner_inusz_29"
     data-part="positioner"
     data-scope="dialog"
     dir="ltr"
-    id="dialog::r1p::positioner"
+    id="dialog::r2c::positioner"
   >
     <div
-      aria-describedby="dialog::r1p::description"
-      aria-labelledby="dialog::r1p::title"
+      aria-describedby=""
+      aria-labelledby=""
       aria-modal="true"
       class="_modal-content_inusz_35"
+      data-ods="modal-content"
       data-part="content"
       data-scope="dialog"
       data-state="open"
       dir="ltr"
-      id="dialog::r1p::content"
+      id="dialog::r2c::content"
       role="dialog"
       tabindex="-1"
     >
       <div
-        class="_modal-header_1q85x_2 _modal-header--information_1q85x_17"
+        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
       >
         <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+          aria-label="Close"
+          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
           dir="ltr"
-          id="dialog::r1p::close"
+          id="dialog::r2c::close"
           type="button"
         >
           <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
           />
         </button>
       </div>
       <div
         class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
       >
-        <div
-          class="flex items-center mb-4"
+        <h4
+          class="_text--heading-4_1aw48_31 mb-4"
+          data-ods="text"
         >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-          >
-            Update Display Name
-          </h4>
-        </div>
+          Update Display Name
+        </h4>
         <div
           class="flex flex-col text-left"
         >
           <div>
             <p
               class="_text--paragraph_1aw48_54 pt-1 pb-3"
+              data-ods="text"
             >
               Please enter a new display name for your account. This name will be visible to other users.
             </p>
             <div
               class="_form-field_112eg_2"
+              data-ods="form-field"
               role="group"
             >
               <label
                 class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+                data-ods="form-field-label"
                 for="update-name-modal-input"
-                id=":r1r:"
+                id=":r2e:"
               >
                 Display Name
               </label>
               <div
-                class="_input_1p31i_2"
+                class="_input_1cnfv_2"
                 data-invalid="true"
               >
                 <input
+                  aria-busy="false"
                   aria-describedby="update-name-modal-pattern-message"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1p31i_35"
+                  class="_input__field_1cnfv_35"
                   data-invalid="true"
+                  data-ods="input"
                   data-testid="update-name-modal-input"
                   id="update-name-modal-input"
                   type="text"
@@ -461,6 +502,7 @@ exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal 
               </div>
               <span
                 class="_text--span_1aw48_60 text-right"
+                data-ods="text"
                 id="update-name-modal-pattern-message"
                 style="color: var(--ods-color-critical-400);"
               >
@@ -473,14 +515,16 @@ exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal 
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 mt-4"
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            data-ods="button"
             data-testid="secondary-button"
             type="button"
           >
             Cancel Changes
           </button>
           <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 mt-4"
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            data-ods="button"
             data-testid="primary-button"
             type="button"
           >
@@ -494,7 +538,9 @@ exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal 
 `;
 
 exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal with loading, error, and pattern validation 1`] = `
-<body>
+<body
+  data-scroll-lock=""
+>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -502,107 +548,123 @@ exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal 
     data-scope="dialog"
     data-state="open"
     dir="ltr"
-    id="dialog::r1m::backdrop"
+    id="dialog::r28::backdrop"
   />
   <div
     class="_modal-positioner_inusz_29"
     data-part="positioner"
     data-scope="dialog"
     dir="ltr"
-    id="dialog::r1m::positioner"
+    id="dialog::r28::positioner"
   >
     <div
-      aria-describedby="dialog::r1m::description"
-      aria-labelledby="dialog::r1m::title"
+      aria-describedby=""
+      aria-labelledby=""
       aria-modal="true"
       class="_modal-content_inusz_35"
+      data-ods="modal-content"
       data-part="content"
       data-scope="dialog"
       data-state="open"
       dir="ltr"
-      id="dialog::r1m::content"
+      id="dialog::r28::content"
       role="dialog"
       tabindex="-1"
     >
       <div
-        class="_modal-header_1q85x_2 _modal-header--information_1q85x_17"
+        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
       >
         <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+          aria-label="Close"
+          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
           dir="ltr"
-          id="dialog::r1m::close"
+          id="dialog::r28::close"
           type="button"
         >
           <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
           />
         </button>
       </div>
       <div
         class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
       >
-        <div
-          class="flex items-center mb-4"
+        <h4
+          class="_text--heading-4_1aw48_31 mb-4"
+          data-ods="text"
         >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-          >
-            Update Name
-          </h4>
-        </div>
+          Update Name
+        </h4>
         <div
           class="flex flex-col text-left"
         >
           <div>
             <div
-              class="_message_udq9t_2 _message--critical_udq9t_9 _message--default_udq9t_9"
+              class="_message_1oosv_2 _message--critical_1oosv_9 _message--default_1oosv_9"
+              data-ods="message"
             >
               <span
-                class="_icon_i4xp0_2 _icon--triangle-exclamation_i4xp0_421 _message-icon_mpgx8_2"
+                class="_icon_10c23_2 _icon--triangle-exclamation_10c23_538 _message-icon_mpgx8_2"
+                data-ods="message-icon"
+                role="presentation"
               />
               <div
                 class="_message-body_fe7x3_2"
+                data-ods="message-body"
               >
                 L'erreur suivante est survenue : Name too short.
               </div>
               <button
-                class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150 _message__close_udq9t_57"
+                aria-label="Close"
+                class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _message__close_1oosv_25"
+                data-ods="button"
                 type="button"
               >
                 <span
-                  class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+                  class="_icon_10c23_2 _icon--xmark_10c23_562"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </button>
             </div>
             <p
               class="_text--paragraph_1aw48_54 pt-1 pb-3"
+              data-ods="text"
             >
               Please enter a valid name
             </p>
             <div
               class="_form-field_112eg_2"
+              data-ods="form-field"
               role="group"
             >
               <label
                 class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+                data-ods="form-field-label"
                 for="update-name-modal-input"
-                id=":r1o:"
+                id=":r2a:"
               >
                 Display Name
               </label>
               <div
-                class="_input_1p31i_2"
+                class="_input_1cnfv_2"
                 data-disabled="true"
                 data-invalid="true"
               >
                 <input
+                  aria-busy="false"
                   aria-describedby="update-name-modal-pattern-message"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1p31i_35"
+                  class="_input__field_1cnfv_35"
                   data-invalid="true"
+                  data-ods="input"
                   data-testid="update-name-modal-input"
                   disabled=""
                   id="update-name-modal-input"
@@ -612,6 +674,7 @@ exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal 
               </div>
               <span
                 class="_text--span_1aw48_60 text-right"
+                data-ods="text"
                 id="update-name-modal-pattern-message"
                 style="color: var(--ods-color-critical-400);"
               >
@@ -624,14 +687,16 @@ exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal 
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 mt-4"
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            data-ods="button"
             data-testid="secondary-button"
             type="button"
           >
             Annuler
           </button>
           <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 mt-4"
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            data-ods="button"
             data-testid="primary-button"
             type="button"
           >
@@ -645,7 +710,9 @@ exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal 
 `;
 
 exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render modal with custom button labels 1`] = `
-<body>
+<body
+  data-scroll-lock=""
+>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -653,80 +720,87 @@ exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render m
     data-scope="dialog"
     data-state="open"
     dir="ltr"
-    id="dialog::ru::backdrop"
+    id="dialog::r18::backdrop"
   />
   <div
     class="_modal-positioner_inusz_29"
     data-part="positioner"
     data-scope="dialog"
     dir="ltr"
-    id="dialog::ru::positioner"
+    id="dialog::r18::positioner"
   >
     <div
-      aria-describedby="dialog::ru::description"
-      aria-labelledby="dialog::ru::title"
+      aria-describedby=""
+      aria-labelledby=""
       aria-modal="true"
       class="_modal-content_inusz_35"
+      data-ods="modal-content"
       data-part="content"
       data-scope="dialog"
       data-state="open"
       dir="ltr"
-      id="dialog::ru::content"
+      id="dialog::r18::content"
       role="dialog"
       tabindex="-1"
     >
       <div
-        class="_modal-header_1q85x_2 _modal-header--information_1q85x_17"
+        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
       >
         <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+          aria-label="Close"
+          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
           dir="ltr"
-          id="dialog::ru::close"
+          id="dialog::r18::close"
           type="button"
         >
           <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
           />
         </button>
       </div>
       <div
         class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
       >
-        <div
-          class="flex items-center mb-4"
+        <h4
+          class="_text--heading-4_1aw48_31 mb-4"
+          data-ods="text"
         >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-          >
-            Update Name
-          </h4>
-        </div>
+          Update Name
+        </h4>
         <div
           class="flex flex-col text-left"
         >
           <div>
             <div
               class="_form-field_112eg_2"
+              data-ods="form-field"
               role="group"
             >
               <label
                 class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+                data-ods="form-field-label"
                 for="update-name-modal-input"
-                id=":r10:"
+                id=":r1a:"
               >
                 Display Name
               </label>
               <div
-                class="_input_1p31i_2"
+                class="_input_1cnfv_2"
                 data-invalid="true"
               >
                 <input
+                  aria-busy="false"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1p31i_35"
+                  class="_input__field_1cnfv_35"
                   data-invalid="true"
+                  data-ods="input"
                   data-testid="update-name-modal-input"
                   id="update-name-modal-input"
                   type="text"
@@ -740,14 +814,16 @@ exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render m
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 mt-4"
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            data-ods="button"
             data-testid="secondary-button"
             type="button"
           >
             Go Back
           </button>
           <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 mt-4"
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            data-ods="button"
             data-testid="primary-button"
             type="button"
           >
@@ -761,352 +837,9 @@ exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render m
 `;
 
 exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render modal with custom cancel button only 1`] = `
-<body>
-  <div />
-  <div
-    class="_modal-backdrop_inusz_22"
-    data-part="backdrop"
-    data-scope="dialog"
-    data-state="open"
-    dir="ltr"
-    id="dialog::r14::backdrop"
-  />
-  <div
-    class="_modal-positioner_inusz_29"
-    data-part="positioner"
-    data-scope="dialog"
-    dir="ltr"
-    id="dialog::r14::positioner"
-  >
-    <div
-      aria-describedby="dialog::r14::description"
-      aria-labelledby="dialog::r14::title"
-      aria-modal="true"
-      class="_modal-content_inusz_35"
-      data-part="content"
-      data-scope="dialog"
-      data-state="open"
-      dir="ltr"
-      id="dialog::r14::content"
-      role="dialog"
-      tabindex="-1"
-    >
-      <div
-        class="_modal-header_1q85x_2 _modal-header--information_1q85x_17"
-      >
-        <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
-          data-part="close-trigger"
-          data-scope="dialog"
-          dir="ltr"
-          id="dialog::r14::close"
-          type="button"
-        >
-          <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
-          />
-        </button>
-      </div>
-      <div
-        class="_modal-body_3om6u_2 text-left"
-      >
-        <div
-          class="flex items-center mb-4"
-        >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-          >
-            Update Name
-          </h4>
-        </div>
-        <div
-          class="flex flex-col text-left"
-        >
-          <div>
-            <div
-              class="_form-field_112eg_2"
-              role="group"
-            >
-              <label
-                class="_text--label_1aw48_49 _form-field-label_1udkg_2"
-                for="update-name-modal-input"
-                id=":r16:"
-              >
-                Display Name
-              </label>
-              <div
-                class="_input_1p31i_2"
-                data-invalid="true"
-              >
-                <input
-                  aria-invalid="true"
-                  aria-label="update-input"
-                  class="_input__field_1p31i_35"
-                  data-invalid="true"
-                  data-testid="update-name-modal-input"
-                  id="update-name-modal-input"
-                  type="text"
-                  value=""
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="flex justify-end flex-wrap gap-4"
-        >
-          <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 mt-4"
-            data-testid="secondary-button"
-            type="button"
-          >
-            Back
-          </button>
-          <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 mt-4"
-            data-testid="primary-button"
-            type="button"
-          >
-            Confirmer
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
-`;
-
-exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render modal with custom confirm button only 1`] = `
-<body>
-  <div />
-  <div
-    class="_modal-backdrop_inusz_22"
-    data-part="backdrop"
-    data-scope="dialog"
-    data-state="open"
-    dir="ltr"
-    id="dialog::r11::backdrop"
-  />
-  <div
-    class="_modal-positioner_inusz_29"
-    data-part="positioner"
-    data-scope="dialog"
-    dir="ltr"
-    id="dialog::r11::positioner"
-  >
-    <div
-      aria-describedby="dialog::r11::description"
-      aria-labelledby="dialog::r11::title"
-      aria-modal="true"
-      class="_modal-content_inusz_35"
-      data-part="content"
-      data-scope="dialog"
-      data-state="open"
-      dir="ltr"
-      id="dialog::r11::content"
-      role="dialog"
-      tabindex="-1"
-    >
-      <div
-        class="_modal-header_1q85x_2 _modal-header--information_1q85x_17"
-      >
-        <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
-          data-part="close-trigger"
-          data-scope="dialog"
-          dir="ltr"
-          id="dialog::r11::close"
-          type="button"
-        >
-          <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
-          />
-        </button>
-      </div>
-      <div
-        class="_modal-body_3om6u_2 text-left"
-      >
-        <div
-          class="flex items-center mb-4"
-        >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-          >
-            Update Name
-          </h4>
-        </div>
-        <div
-          class="flex flex-col text-left"
-        >
-          <div>
-            <div
-              class="_form-field_112eg_2"
-              role="group"
-            >
-              <label
-                class="_text--label_1aw48_49 _form-field-label_1udkg_2"
-                for="update-name-modal-input"
-                id=":r13:"
-              >
-                Display Name
-              </label>
-              <div
-                class="_input_1p31i_2"
-                data-invalid="true"
-              >
-                <input
-                  aria-invalid="true"
-                  aria-label="update-input"
-                  class="_input__field_1p31i_35"
-                  data-invalid="true"
-                  data-testid="update-name-modal-input"
-                  id="update-name-modal-input"
-                  type="text"
-                  value=""
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="flex justify-end flex-wrap gap-4"
-        >
-          <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 mt-4"
-            data-testid="secondary-button"
-            type="button"
-          >
-            Annuler
-          </button>
-          <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 mt-4"
-            data-testid="primary-button"
-            type="button"
-          >
-            Save
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
-`;
-
-exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with empty default value 1`] = `
-<body>
-  <div />
-  <div
-    class="_modal-backdrop_inusz_22"
-    data-part="backdrop"
-    data-scope="dialog"
-    data-state="open"
-    dir="ltr"
-    id="dialog::r17::backdrop"
-  />
-  <div
-    class="_modal-positioner_inusz_29"
-    data-part="positioner"
-    data-scope="dialog"
-    dir="ltr"
-    id="dialog::r17::positioner"
-  >
-    <div
-      aria-describedby="dialog::r17::description"
-      aria-labelledby="dialog::r17::title"
-      aria-modal="true"
-      class="_modal-content_inusz_35"
-      data-part="content"
-      data-scope="dialog"
-      data-state="open"
-      dir="ltr"
-      id="dialog::r17::content"
-      role="dialog"
-      tabindex="-1"
-    >
-      <div
-        class="_modal-header_1q85x_2 _modal-header--information_1q85x_17"
-      >
-        <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
-          data-part="close-trigger"
-          data-scope="dialog"
-          dir="ltr"
-          id="dialog::r17::close"
-          type="button"
-        >
-          <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
-          />
-        </button>
-      </div>
-      <div
-        class="_modal-body_3om6u_2 text-left"
-      >
-        <div
-          class="flex items-center mb-4"
-        >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-          >
-            Update Name
-          </h4>
-        </div>
-        <div
-          class="flex flex-col text-left"
-        >
-          <div>
-            <div
-              class="_form-field_112eg_2"
-              role="group"
-            >
-              <label
-                class="_text--label_1aw48_49 _form-field-label_1udkg_2"
-                for="update-name-modal-input"
-                id=":r19:"
-              >
-                Display Name
-              </label>
-              <div
-                class="_input_1p31i_2"
-              >
-                <input
-                  aria-label="update-input"
-                  class="_input__field_1p31i_35"
-                  data-testid="update-name-modal-input"
-                  id="update-name-modal-input"
-                  type="text"
-                  value=""
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="flex justify-end flex-wrap gap-4"
-        >
-          <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 mt-4"
-            data-testid="secondary-button"
-            type="button"
-          >
-            Annuler
-          </button>
-          <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 mt-4"
-            data-testid="primary-button"
-            type="button"
-          >
-            Confirmer
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
-`;
-
-exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with long text content 1`] = `
-<body>
+<body
+  data-scroll-lock=""
+>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -1124,10 +857,11 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
     id="dialog::r1g::positioner"
   >
     <div
-      aria-describedby="dialog::r1g::description"
-      aria-labelledby="dialog::r1g::title"
+      aria-describedby=""
+      aria-labelledby=""
       aria-modal="true"
       class="_modal-content_inusz_35"
+      data-ods="modal-content"
       data-part="content"
       data-scope="dialog"
       data-state="open"
@@ -1137,10 +871,12 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
       tabindex="-1"
     >
       <div
-        class="_modal-header_1q85x_2 _modal-header--information_1q85x_17"
+        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
       >
         <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+          aria-label="Close"
+          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
           dir="ltr"
@@ -1148,69 +884,460 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
           type="button"
         >
           <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
           />
         </button>
       </div>
       <div
         class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
       >
-        <div
-          class="flex items-center mb-4"
+        <h4
+          class="_text--heading-4_1aw48_31 mb-4"
+          data-ods="text"
         >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-          >
-            This is a very long headline that might wrap to multiple lines in the modal
-          </h4>
-        </div>
+          Update Name
+        </h4>
         <div
           class="flex flex-col text-left"
         >
           <div>
             <div
-              class="_message_udq9t_2 _message--critical_udq9t_9 _message--default_udq9t_9"
-            >
-              <span
-                class="_icon_i4xp0_2 _icon--triangle-exclamation_i4xp0_421 _message-icon_mpgx8_2"
-              />
-              <div
-                class="_message-body_fe7x3_2"
-              >
-                L'erreur suivante est survenue : This is a very long error message that might wrap to multiple lines in the error display area.
-              </div>
-              <button
-                class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150 _message__close_udq9t_57"
-                type="button"
-              >
-                <span
-                  class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
-                />
-              </button>
-            </div>
-            <p
-              class="_text--paragraph_1aw48_54 pt-1 pb-3"
-            >
-              This is a very long description text that contains a lot of information about what the user should do when updating their display name. It might wrap to multiple lines and should be displayed properly in the modal.
-            </p>
-            <div
               class="_form-field_112eg_2"
+              data-ods="form-field"
               role="group"
             >
               <label
                 class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+                data-ods="form-field-label"
                 for="update-name-modal-input"
                 id=":r1i:"
               >
                 Display Name
               </label>
               <div
-                class="_input_1p31i_2"
+                class="_input_1cnfv_2"
+                data-invalid="true"
               >
                 <input
+                  aria-busy="false"
+                  aria-invalid="true"
+                  aria-label="update-input"
+                  class="_input__field_1cnfv_35"
+                  data-invalid="true"
+                  data-ods="input"
+                  data-testid="update-name-modal-input"
+                  id="update-name-modal-input"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex justify-end flex-wrap gap-4"
+        >
+          <button
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            data-ods="button"
+            data-testid="secondary-button"
+            type="button"
+          >
+            Back
+          </button>
+          <button
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            data-ods="button"
+            data-testid="primary-button"
+            type="button"
+          >
+            Confirmer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render modal with custom confirm button only 1`] = `
+<body
+  data-scroll-lock=""
+>
+  <div />
+  <div
+    class="_modal-backdrop_inusz_22"
+    data-part="backdrop"
+    data-scope="dialog"
+    data-state="open"
+    dir="ltr"
+    id="dialog::r1c::backdrop"
+  />
+  <div
+    class="_modal-positioner_inusz_29"
+    data-part="positioner"
+    data-scope="dialog"
+    dir="ltr"
+    id="dialog::r1c::positioner"
+  >
+    <div
+      aria-describedby=""
+      aria-labelledby=""
+      aria-modal="true"
+      class="_modal-content_inusz_35"
+      data-ods="modal-content"
+      data-part="content"
+      data-scope="dialog"
+      data-state="open"
+      dir="ltr"
+      id="dialog::r1c::content"
+      role="dialog"
+      tabindex="-1"
+    >
+      <div
+        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
+      >
+        <button
+          aria-label="Close"
+          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          data-ods="button"
+          data-part="close-trigger"
+          data-scope="dialog"
+          dir="ltr"
+          id="dialog::r1c::close"
+          type="button"
+        >
+          <span
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
+          />
+        </button>
+      </div>
+      <div
+        class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
+      >
+        <h4
+          class="_text--heading-4_1aw48_31 mb-4"
+          data-ods="text"
+        >
+          Update Name
+        </h4>
+        <div
+          class="flex flex-col text-left"
+        >
+          <div>
+            <div
+              class="_form-field_112eg_2"
+              data-ods="form-field"
+              role="group"
+            >
+              <label
+                class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+                data-ods="form-field-label"
+                for="update-name-modal-input"
+                id=":r1e:"
+              >
+                Display Name
+              </label>
+              <div
+                class="_input_1cnfv_2"
+                data-invalid="true"
+              >
+                <input
+                  aria-busy="false"
+                  aria-invalid="true"
+                  aria-label="update-input"
+                  class="_input__field_1cnfv_35"
+                  data-invalid="true"
+                  data-ods="input"
+                  data-testid="update-name-modal-input"
+                  id="update-name-modal-input"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex justify-end flex-wrap gap-4"
+        >
+          <button
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            data-ods="button"
+            data-testid="secondary-button"
+            type="button"
+          >
+            Annuler
+          </button>
+          <button
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            data-ods="button"
+            data-testid="primary-button"
+            type="button"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with empty default value 1`] = `
+<body
+  data-scroll-lock=""
+>
+  <div />
+  <div
+    class="_modal-backdrop_inusz_22"
+    data-part="backdrop"
+    data-scope="dialog"
+    data-state="open"
+    dir="ltr"
+    id="dialog::r1k::backdrop"
+  />
+  <div
+    class="_modal-positioner_inusz_29"
+    data-part="positioner"
+    data-scope="dialog"
+    dir="ltr"
+    id="dialog::r1k::positioner"
+  >
+    <div
+      aria-describedby=""
+      aria-labelledby=""
+      aria-modal="true"
+      class="_modal-content_inusz_35"
+      data-ods="modal-content"
+      data-part="content"
+      data-scope="dialog"
+      data-state="open"
+      dir="ltr"
+      id="dialog::r1k::content"
+      role="dialog"
+      tabindex="-1"
+    >
+      <div
+        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
+      >
+        <button
+          aria-label="Close"
+          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          data-ods="button"
+          data-part="close-trigger"
+          data-scope="dialog"
+          dir="ltr"
+          id="dialog::r1k::close"
+          type="button"
+        >
+          <span
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
+          />
+        </button>
+      </div>
+      <div
+        class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
+      >
+        <h4
+          class="_text--heading-4_1aw48_31 mb-4"
+          data-ods="text"
+        >
+          Update Name
+        </h4>
+        <div
+          class="flex flex-col text-left"
+        >
+          <div>
+            <div
+              class="_form-field_112eg_2"
+              data-ods="form-field"
+              role="group"
+            >
+              <label
+                class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+                data-ods="form-field-label"
+                for="update-name-modal-input"
+                id=":r1m:"
+              >
+                Display Name
+              </label>
+              <div
+                class="_input_1cnfv_2"
+              >
+                <input
+                  aria-busy="false"
+                  aria-label="update-input"
+                  class="_input__field_1cnfv_35"
+                  data-ods="input"
+                  data-testid="update-name-modal-input"
+                  id="update-name-modal-input"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex justify-end flex-wrap gap-4"
+        >
+          <button
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            data-ods="button"
+            data-testid="secondary-button"
+            type="button"
+          >
+            Annuler
+          </button>
+          <button
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            data-ods="button"
+            data-testid="primary-button"
+            type="button"
+          >
+            Confirmer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with long text content 1`] = `
+<body
+  data-scroll-lock=""
+>
+  <div />
+  <div
+    class="_modal-backdrop_inusz_22"
+    data-part="backdrop"
+    data-scope="dialog"
+    data-state="open"
+    dir="ltr"
+    id="dialog::r20::backdrop"
+  />
+  <div
+    class="_modal-positioner_inusz_29"
+    data-part="positioner"
+    data-scope="dialog"
+    dir="ltr"
+    id="dialog::r20::positioner"
+  >
+    <div
+      aria-describedby=""
+      aria-labelledby=""
+      aria-modal="true"
+      class="_modal-content_inusz_35"
+      data-ods="modal-content"
+      data-part="content"
+      data-scope="dialog"
+      data-state="open"
+      dir="ltr"
+      id="dialog::r20::content"
+      role="dialog"
+      tabindex="-1"
+    >
+      <div
+        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
+      >
+        <button
+          aria-label="Close"
+          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          data-ods="button"
+          data-part="close-trigger"
+          data-scope="dialog"
+          dir="ltr"
+          id="dialog::r20::close"
+          type="button"
+        >
+          <span
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
+          />
+        </button>
+      </div>
+      <div
+        class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
+      >
+        <h4
+          class="_text--heading-4_1aw48_31 mb-4"
+          data-ods="text"
+        >
+          This is a very long headline that might wrap to multiple lines in the modal
+        </h4>
+        <div
+          class="flex flex-col text-left"
+        >
+          <div>
+            <div
+              class="_message_1oosv_2 _message--critical_1oosv_9 _message--default_1oosv_9"
+              data-ods="message"
+            >
+              <span
+                class="_icon_10c23_2 _icon--triangle-exclamation_10c23_538 _message-icon_mpgx8_2"
+                data-ods="message-icon"
+                role="presentation"
+              />
+              <div
+                class="_message-body_fe7x3_2"
+                data-ods="message-body"
+              >
+                L'erreur suivante est survenue : This is a very long error message that might wrap to multiple lines in the error display area.
+              </div>
+              <button
+                aria-label="Close"
+                class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _message__close_1oosv_25"
+                data-ods="button"
+                type="button"
+              >
+                <span
+                  class="_icon_10c23_2 _icon--xmark_10c23_562"
+                  data-ods="icon"
+                  role="presentation"
+                />
+              </button>
+            </div>
+            <p
+              class="_text--paragraph_1aw48_54 pt-1 pb-3"
+              data-ods="text"
+            >
+              This is a very long description text that contains a lot of information about what the user should do when updating their display name. It might wrap to multiple lines and should be displayed properly in the modal.
+            </p>
+            <div
+              class="_form-field_112eg_2"
+              data-ods="form-field"
+              role="group"
+            >
+              <label
+                class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+                data-ods="form-field-label"
+                for="update-name-modal-input"
+                id=":r22:"
+              >
+                Display Name
+              </label>
+              <div
+                class="_input_1cnfv_2"
+              >
+                <input
+                  aria-busy="false"
                   aria-describedby="update-name-modal-pattern-message"
                   aria-label="update-input"
-                  class="_input__field_1p31i_35"
+                  class="_input__field_1cnfv_35"
+                  data-ods="input"
                   data-testid="update-name-modal-input"
                   id="update-name-modal-input"
                   type="text"
@@ -1219,6 +1346,7 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
               </div>
               <span
                 class="_text--span_1aw48_60 text-right"
+                data-ods="text"
                 id="update-name-modal-pattern-message"
                 style="color: var(--ods-color-text);"
               >
@@ -1231,14 +1359,16 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 mt-4"
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            data-ods="button"
             data-testid="secondary-button"
             type="button"
           >
             Annuler
           </button>
           <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 mt-4"
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            data-ods="button"
             data-testid="primary-button"
             type="button"
           >
@@ -1252,7 +1382,9 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
 `;
 
 exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with null default value 1`] = `
-<body>
+<body
+  data-scroll-lock=""
+>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -1260,80 +1392,87 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
     data-scope="dialog"
     data-state="open"
     dir="ltr"
-    id="dialog::r1a::backdrop"
+    id="dialog::r1o::backdrop"
   />
   <div
     class="_modal-positioner_inusz_29"
     data-part="positioner"
     data-scope="dialog"
     dir="ltr"
-    id="dialog::r1a::positioner"
+    id="dialog::r1o::positioner"
   >
     <div
-      aria-describedby="dialog::r1a::description"
-      aria-labelledby="dialog::r1a::title"
+      aria-describedby=""
+      aria-labelledby=""
       aria-modal="true"
       class="_modal-content_inusz_35"
+      data-ods="modal-content"
       data-part="content"
       data-scope="dialog"
       data-state="open"
       dir="ltr"
-      id="dialog::r1a::content"
+      id="dialog::r1o::content"
       role="dialog"
       tabindex="-1"
     >
       <div
-        class="_modal-header_1q85x_2 _modal-header--information_1q85x_17"
+        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
       >
         <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+          aria-label="Close"
+          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
           dir="ltr"
-          id="dialog::r1a::close"
+          id="dialog::r1o::close"
           type="button"
         >
           <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
           />
         </button>
       </div>
       <div
         class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
       >
-        <div
-          class="flex items-center mb-4"
+        <h4
+          class="_text--heading-4_1aw48_31 mb-4"
+          data-ods="text"
         >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-          >
-            Update Name
-          </h4>
-        </div>
+          Update Name
+        </h4>
         <div
           class="flex flex-col text-left"
         >
           <div>
             <div
               class="_form-field_112eg_2"
+              data-ods="form-field"
               role="group"
             >
               <label
                 class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+                data-ods="form-field-label"
                 for="update-name-modal-input"
-                id=":r1c:"
+                id=":r1q:"
               >
                 Display Name
               </label>
               <div
-                class="_input_1p31i_2"
+                class="_input_1cnfv_2"
                 data-invalid="true"
               >
                 <input
+                  aria-busy="false"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1p31i_35"
+                  class="_input__field_1cnfv_35"
                   data-invalid="true"
+                  data-ods="input"
                   data-testid="update-name-modal-input"
                   id="update-name-modal-input"
                   type="text"
@@ -1347,14 +1486,16 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 mt-4"
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            data-ods="button"
             data-testid="secondary-button"
             type="button"
           >
             Annuler
           </button>
           <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 mt-4"
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            data-ods="button"
             data-testid="primary-button"
             type="button"
           >
@@ -1368,7 +1509,9 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
 `;
 
 exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with special characters in text 1`] = `
-<body>
+<body
+  data-scroll-lock=""
+>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -1376,103 +1519,119 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
     data-scope="dialog"
     data-state="open"
     dir="ltr"
-    id="dialog::r1j::backdrop"
+    id="dialog::r24::backdrop"
   />
   <div
     class="_modal-positioner_inusz_29"
     data-part="positioner"
     data-scope="dialog"
     dir="ltr"
-    id="dialog::r1j::positioner"
+    id="dialog::r24::positioner"
   >
     <div
-      aria-describedby="dialog::r1j::description"
-      aria-labelledby="dialog::r1j::title"
+      aria-describedby=""
+      aria-labelledby=""
       aria-modal="true"
       class="_modal-content_inusz_35"
+      data-ods="modal-content"
       data-part="content"
       data-scope="dialog"
       data-state="open"
       dir="ltr"
-      id="dialog::r1j::content"
+      id="dialog::r24::content"
       role="dialog"
       tabindex="-1"
     >
       <div
-        class="_modal-header_1q85x_2 _modal-header--information_1q85x_17"
+        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
       >
         <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+          aria-label="Close"
+          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
           dir="ltr"
-          id="dialog::r1j::close"
+          id="dialog::r24::close"
           type="button"
         >
           <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
           />
         </button>
       </div>
       <div
         class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
       >
-        <div
-          class="flex items-center mb-4"
+        <h4
+          class="_text--heading-4_1aw48_31 mb-4"
+          data-ods="text"
         >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-          >
-            Update Name & Details
-          </h4>
-        </div>
+          Update Name & Details
+        </h4>
         <div
           class="flex flex-col text-left"
         >
           <div>
             <div
-              class="_message_udq9t_2 _message--critical_udq9t_9 _message--default_udq9t_9"
+              class="_message_1oosv_2 _message--critical_1oosv_9 _message--default_1oosv_9"
+              data-ods="message"
             >
               <span
-                class="_icon_i4xp0_2 _icon--triangle-exclamation_i4xp0_421 _message-icon_mpgx8_2"
+                class="_icon_10c23_2 _icon--triangle-exclamation_10c23_538 _message-icon_mpgx8_2"
+                data-ods="message-icon"
+                role="presentation"
               />
               <div
                 class="_message-body_fe7x3_2"
+                data-ods="message-body"
               >
                 L'erreur suivante est survenue : Error: Invalid characters found!.
               </div>
               <button
-                class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150 _message__close_udq9t_57"
+                aria-label="Close"
+                class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _message__close_1oosv_25"
+                data-ods="button"
                 type="button"
               >
                 <span
-                  class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+                  class="_icon_10c23_2 _icon--xmark_10c23_562"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </button>
             </div>
             <p
               class="_text--paragraph_1aw48_54 pt-1 pb-3"
+              data-ods="text"
             >
               Please enter your name (required field)
             </p>
             <div
               class="_form-field_112eg_2"
+              data-ods="form-field"
               role="group"
             >
               <label
                 class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+                data-ods="form-field-label"
                 for="update-name-modal-input"
-                id=":r1l:"
+                id=":r26:"
               >
                 Name:
               </label>
               <div
-                class="_input_1p31i_2"
+                class="_input_1cnfv_2"
               >
                 <input
+                  aria-busy="false"
                   aria-describedby="update-name-modal-pattern-message"
                   aria-label="update-input"
-                  class="_input__field_1p31i_35"
+                  class="_input__field_1cnfv_35"
+                  data-ods="input"
                   data-testid="update-name-modal-input"
                   id="update-name-modal-input"
                   type="text"
@@ -1481,6 +1640,7 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
               </div>
               <span
                 class="_text--span_1aw48_60 text-right"
+                data-ods="text"
                 id="update-name-modal-pattern-message"
                 style="color: var(--ods-color-text);"
               >
@@ -1493,14 +1653,16 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 mt-4"
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            data-ods="button"
             data-testid="secondary-button"
             type="button"
           >
             Annuler
           </button>
           <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 mt-4"
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            data-ods="button"
             data-testid="primary-button"
             type="button"
           >
@@ -1514,7 +1676,9 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
 `;
 
 exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal without onClose handler 1`] = `
-<body>
+<body
+  data-scroll-lock=""
+>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -1522,80 +1686,87 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal witho
     data-scope="dialog"
     data-state="open"
     dir="ltr"
-    id="dialog::r1d::backdrop"
+    id="dialog::r1s::backdrop"
   />
   <div
     class="_modal-positioner_inusz_29"
     data-part="positioner"
     data-scope="dialog"
     dir="ltr"
-    id="dialog::r1d::positioner"
+    id="dialog::r1s::positioner"
   >
     <div
-      aria-describedby="dialog::r1d::description"
-      aria-labelledby="dialog::r1d::title"
+      aria-describedby=""
+      aria-labelledby=""
       aria-modal="true"
       class="_modal-content_inusz_35"
+      data-ods="modal-content"
       data-part="content"
       data-scope="dialog"
       data-state="open"
       dir="ltr"
-      id="dialog::r1d::content"
+      id="dialog::r1s::content"
       role="dialog"
       tabindex="-1"
     >
       <div
-        class="_modal-header_1q85x_2 _modal-header--information_1q85x_17"
+        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
       >
         <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+          aria-label="Close"
+          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
           dir="ltr"
-          id="dialog::r1d::close"
+          id="dialog::r1s::close"
           type="button"
         >
           <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
           />
         </button>
       </div>
       <div
         class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
       >
-        <div
-          class="flex items-center mb-4"
+        <h4
+          class="_text--heading-4_1aw48_31 mb-4"
+          data-ods="text"
         >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-          >
-            Update Name
-          </h4>
-        </div>
+          Update Name
+        </h4>
         <div
           class="flex flex-col text-left"
         >
           <div>
             <div
               class="_form-field_112eg_2"
+              data-ods="form-field"
               role="group"
             >
               <label
                 class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+                data-ods="form-field-label"
                 for="update-name-modal-input"
-                id=":r1f:"
+                id=":r1u:"
               >
                 Display Name
               </label>
               <div
-                class="_input_1p31i_2"
+                class="_input_1cnfv_2"
                 data-invalid="true"
               >
                 <input
+                  aria-busy="false"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1p31i_35"
+                  class="_input__field_1cnfv_35"
                   data-invalid="true"
+                  data-ods="input"
                   data-testid="update-name-modal-input"
                   id="update-name-modal-input"
                   type="text"
@@ -1609,14 +1780,16 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal witho
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 mt-4"
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            data-ods="button"
             data-testid="secondary-button"
             type="button"
           >
             Annuler
           </button>
           <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 mt-4"
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            data-ods="button"
             data-testid="primary-button"
             type="button"
           >
@@ -1630,765 +1803,9 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal witho
 `;
 
 exports[`UpdateNameModal Snapshot Tests > Error States > should render modal with error and description 1`] = `
-<body>
-  <div />
-  <div
-    class="_modal-backdrop_inusz_22"
-    data-part="backdrop"
-    data-scope="dialog"
-    data-state="open"
-    dir="ltr"
-    id="dialog::ri::backdrop"
-  />
-  <div
-    class="_modal-positioner_inusz_29"
-    data-part="positioner"
-    data-scope="dialog"
-    dir="ltr"
-    id="dialog::ri::positioner"
-  >
-    <div
-      aria-describedby="dialog::ri::description"
-      aria-labelledby="dialog::ri::title"
-      aria-modal="true"
-      class="_modal-content_inusz_35"
-      data-part="content"
-      data-scope="dialog"
-      data-state="open"
-      dir="ltr"
-      id="dialog::ri::content"
-      role="dialog"
-      tabindex="-1"
-    >
-      <div
-        class="_modal-header_1q85x_2 _modal-header--information_1q85x_17"
-      >
-        <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
-          data-part="close-trigger"
-          data-scope="dialog"
-          dir="ltr"
-          id="dialog::ri::close"
-          type="button"
-        >
-          <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
-          />
-        </button>
-      </div>
-      <div
-        class="_modal-body_3om6u_2 text-left"
-      >
-        <div
-          class="flex items-center mb-4"
-        >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-          >
-            Update Name
-          </h4>
-        </div>
-        <div
-          class="flex flex-col text-left"
-        >
-          <div>
-            <div
-              class="_message_udq9t_2 _message--critical_udq9t_9 _message--default_udq9t_9"
-            >
-              <span
-                class="_icon_i4xp0_2 _icon--triangle-exclamation_i4xp0_421 _message-icon_mpgx8_2"
-              />
-              <div
-                class="_message-body_fe7x3_2"
-              >
-                L'erreur suivante est survenue : Invalid name format.
-              </div>
-              <button
-                class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150 _message__close_udq9t_57"
-                type="button"
-              >
-                <span
-                  class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
-                />
-              </button>
-            </div>
-            <p
-              class="_text--paragraph_1aw48_54 pt-1 pb-3"
-            >
-              Please enter a new name
-            </p>
-            <div
-              class="_form-field_112eg_2"
-              role="group"
-            >
-              <label
-                class="_text--label_1aw48_49 _form-field-label_1udkg_2"
-                for="update-name-modal-input"
-                id=":rk:"
-              >
-                Display Name
-              </label>
-              <div
-                class="_input_1p31i_2"
-                data-invalid="true"
-              >
-                <input
-                  aria-invalid="true"
-                  aria-label="update-input"
-                  class="_input__field_1p31i_35"
-                  data-invalid="true"
-                  data-testid="update-name-modal-input"
-                  id="update-name-modal-input"
-                  type="text"
-                  value=""
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="flex justify-end flex-wrap gap-4"
-        >
-          <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 mt-4"
-            data-testid="secondary-button"
-            type="button"
-          >
-            Annuler
-          </button>
-          <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 mt-4"
-            data-testid="primary-button"
-            type="button"
-          >
-            Confirmer
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
-`;
-
-exports[`UpdateNameModal Snapshot Tests > Error States > should render modal with error message 1`] = `
-<body>
-  <div />
-  <div
-    class="_modal-backdrop_inusz_22"
-    data-part="backdrop"
-    data-scope="dialog"
-    data-state="open"
-    dir="ltr"
-    id="dialog::rf::backdrop"
-  />
-  <div
-    class="_modal-positioner_inusz_29"
-    data-part="positioner"
-    data-scope="dialog"
-    dir="ltr"
-    id="dialog::rf::positioner"
-  >
-    <div
-      aria-describedby="dialog::rf::description"
-      aria-labelledby="dialog::rf::title"
-      aria-modal="true"
-      class="_modal-content_inusz_35"
-      data-part="content"
-      data-scope="dialog"
-      data-state="open"
-      dir="ltr"
-      id="dialog::rf::content"
-      role="dialog"
-      tabindex="-1"
-    >
-      <div
-        class="_modal-header_1q85x_2 _modal-header--information_1q85x_17"
-      >
-        <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
-          data-part="close-trigger"
-          data-scope="dialog"
-          dir="ltr"
-          id="dialog::rf::close"
-          type="button"
-        >
-          <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
-          />
-        </button>
-      </div>
-      <div
-        class="_modal-body_3om6u_2 text-left"
-      >
-        <div
-          class="flex items-center mb-4"
-        >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-          >
-            Update Name
-          </h4>
-        </div>
-        <div
-          class="flex flex-col text-left"
-        >
-          <div>
-            <div
-              class="_message_udq9t_2 _message--critical_udq9t_9 _message--default_udq9t_9"
-            >
-              <span
-                class="_icon_i4xp0_2 _icon--triangle-exclamation_i4xp0_421 _message-icon_mpgx8_2"
-              />
-              <div
-                class="_message-body_fe7x3_2"
-              >
-                L'erreur suivante est survenue : Name already exists.
-              </div>
-              <button
-                class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150 _message__close_udq9t_57"
-                type="button"
-              >
-                <span
-                  class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
-                />
-              </button>
-            </div>
-            <div
-              class="_form-field_112eg_2"
-              role="group"
-            >
-              <label
-                class="_text--label_1aw48_49 _form-field-label_1udkg_2"
-                for="update-name-modal-input"
-                id=":rh:"
-              >
-                Display Name
-              </label>
-              <div
-                class="_input_1p31i_2"
-                data-invalid="true"
-              >
-                <input
-                  aria-invalid="true"
-                  aria-label="update-input"
-                  class="_input__field_1p31i_35"
-                  data-invalid="true"
-                  data-testid="update-name-modal-input"
-                  id="update-name-modal-input"
-                  type="text"
-                  value=""
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="flex justify-end flex-wrap gap-4"
-        >
-          <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 mt-4"
-            data-testid="secondary-button"
-            type="button"
-          >
-            Annuler
-          </button>
-          <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 mt-4"
-            data-testid="primary-button"
-            type="button"
-          >
-            Confirmer
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
-`;
-
-exports[`UpdateNameModal Snapshot Tests > Loading States > should render modal in loading state 1`] = `
-<body>
-  <div />
-  <div
-    class="_modal-backdrop_inusz_22"
-    data-part="backdrop"
-    data-scope="dialog"
-    data-state="open"
-    dir="ltr"
-    id="dialog::r9::backdrop"
-  />
-  <div
-    class="_modal-positioner_inusz_29"
-    data-part="positioner"
-    data-scope="dialog"
-    dir="ltr"
-    id="dialog::r9::positioner"
-  >
-    <div
-      aria-describedby="dialog::r9::description"
-      aria-labelledby="dialog::r9::title"
-      aria-modal="true"
-      class="_modal-content_inusz_35"
-      data-part="content"
-      data-scope="dialog"
-      data-state="open"
-      dir="ltr"
-      id="dialog::r9::content"
-      role="dialog"
-      tabindex="-1"
-    >
-      <div
-        class="_modal-header_1q85x_2 _modal-header--information_1q85x_17"
-      >
-        <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
-          data-part="close-trigger"
-          data-scope="dialog"
-          dir="ltr"
-          id="dialog::r9::close"
-          type="button"
-        >
-          <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
-          />
-        </button>
-      </div>
-      <div
-        class="_modal-body_3om6u_2 text-left"
-      >
-        <div
-          class="flex items-center mb-4"
-        >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-          >
-            Update Name
-          </h4>
-        </div>
-        <div
-          class="flex flex-col text-left"
-        >
-          <div>
-            <div
-              class="_form-field_112eg_2"
-              role="group"
-            >
-              <label
-                class="_text--label_1aw48_49 _form-field-label_1udkg_2"
-                for="update-name-modal-input"
-                id=":rb:"
-              >
-                Display Name
-              </label>
-              <div
-                class="_input_1p31i_2"
-                data-disabled="true"
-                data-invalid="true"
-              >
-                <input
-                  aria-invalid="true"
-                  aria-label="update-input"
-                  class="_input__field_1p31i_35"
-                  data-invalid="true"
-                  data-testid="update-name-modal-input"
-                  disabled=""
-                  id="update-name-modal-input"
-                  type="text"
-                  value=""
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="flex justify-end flex-wrap gap-4"
-        >
-          <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 mt-4"
-            data-testid="secondary-button"
-            type="button"
-          >
-            Annuler
-          </button>
-          <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 mt-4"
-            data-testid="primary-button"
-            type="button"
-          >
-            Confirmer
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
-`;
-
-exports[`UpdateNameModal Snapshot Tests > Loading States > should render modal with loading state and default value 1`] = `
-<body>
-  <div />
-  <div
-    class="_modal-backdrop_inusz_22"
-    data-part="backdrop"
-    data-scope="dialog"
-    data-state="open"
-    dir="ltr"
-    id="dialog::rc::backdrop"
-  />
-  <div
-    class="_modal-positioner_inusz_29"
-    data-part="positioner"
-    data-scope="dialog"
-    dir="ltr"
-    id="dialog::rc::positioner"
-  >
-    <div
-      aria-describedby="dialog::rc::description"
-      aria-labelledby="dialog::rc::title"
-      aria-modal="true"
-      class="_modal-content_inusz_35"
-      data-part="content"
-      data-scope="dialog"
-      data-state="open"
-      dir="ltr"
-      id="dialog::rc::content"
-      role="dialog"
-      tabindex="-1"
-    >
-      <div
-        class="_modal-header_1q85x_2 _modal-header--information_1q85x_17"
-      >
-        <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
-          data-part="close-trigger"
-          data-scope="dialog"
-          dir="ltr"
-          id="dialog::rc::close"
-          type="button"
-        >
-          <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
-          />
-        </button>
-      </div>
-      <div
-        class="_modal-body_3om6u_2 text-left"
-      >
-        <div
-          class="flex items-center mb-4"
-        >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-          >
-            Update Name
-          </h4>
-        </div>
-        <div
-          class="flex flex-col text-left"
-        >
-          <div>
-            <div
-              class="_form-field_112eg_2"
-              role="group"
-            >
-              <label
-                class="_text--label_1aw48_49 _form-field-label_1udkg_2"
-                for="update-name-modal-input"
-                id=":re:"
-              >
-                Display Name
-              </label>
-              <div
-                class="_input_1p31i_2"
-                data-disabled="true"
-              >
-                <input
-                  aria-label="update-input"
-                  class="_input__field_1p31i_35"
-                  data-testid="update-name-modal-input"
-                  disabled=""
-                  id="update-name-modal-input"
-                  type="text"
-                  value="Current Name"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="flex justify-end flex-wrap gap-4"
-        >
-          <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 mt-4"
-            data-testid="secondary-button"
-            type="button"
-          >
-            Annuler
-          </button>
-          <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 mt-4"
-            data-testid="primary-button"
-            type="button"
-          >
-            Confirmer
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
-`;
-
-exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should render modal with complex pattern validation 1`] = `
-<body>
-  <div />
-  <div
-    class="_modal-backdrop_inusz_22"
-    data-part="backdrop"
-    data-scope="dialog"
-    data-state="open"
-    dir="ltr"
-    id="dialog::rr::backdrop"
-  />
-  <div
-    class="_modal-positioner_inusz_29"
-    data-part="positioner"
-    data-scope="dialog"
-    dir="ltr"
-    id="dialog::rr::positioner"
-  >
-    <div
-      aria-describedby="dialog::rr::description"
-      aria-labelledby="dialog::rr::title"
-      aria-modal="true"
-      class="_modal-content_inusz_35"
-      data-part="content"
-      data-scope="dialog"
-      data-state="open"
-      dir="ltr"
-      id="dialog::rr::content"
-      role="dialog"
-      tabindex="-1"
-    >
-      <div
-        class="_modal-header_1q85x_2 _modal-header--information_1q85x_17"
-      >
-        <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
-          data-part="close-trigger"
-          data-scope="dialog"
-          dir="ltr"
-          id="dialog::rr::close"
-          type="button"
-        >
-          <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
-          />
-        </button>
-      </div>
-      <div
-        class="_modal-body_3om6u_2 text-left"
-      >
-        <div
-          class="flex items-center mb-4"
-        >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-          >
-            Update Name
-          </h4>
-        </div>
-        <div
-          class="flex flex-col text-left"
-        >
-          <div>
-            <div
-              class="_form-field_112eg_2"
-              role="group"
-            >
-              <label
-                class="_text--label_1aw48_49 _form-field-label_1udkg_2"
-                for="update-name-modal-input"
-                id=":rt:"
-              >
-                Display Name
-              </label>
-              <div
-                class="_input_1p31i_2"
-                data-invalid="true"
-              >
-                <input
-                  aria-describedby="update-name-modal-pattern-message"
-                  aria-invalid="true"
-                  aria-label="update-input"
-                  class="_input__field_1p31i_35"
-                  data-invalid="true"
-                  data-testid="update-name-modal-input"
-                  id="update-name-modal-input"
-                  type="text"
-                  value=""
-                />
-              </div>
-              <span
-                class="_text--span_1aw48_60 text-right"
-                id="update-name-modal-pattern-message"
-                style="color: var(--ods-color-critical-400);"
-              >
-                3-20 characters, letters, numbers, underscore, and dash only
-              </span>
-            </div>
-          </div>
-        </div>
-        <div
-          class="flex justify-end flex-wrap gap-4"
-        >
-          <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 mt-4"
-            data-testid="secondary-button"
-            type="button"
-          >
-            Annuler
-          </button>
-          <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 mt-4"
-            data-testid="primary-button"
-            type="button"
-          >
-            Confirmer
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
-`;
-
-exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should render modal with pattern validation 1`] = `
-<body>
-  <div />
-  <div
-    class="_modal-backdrop_inusz_22"
-    data-part="backdrop"
-    data-scope="dialog"
-    data-state="open"
-    dir="ltr"
-    id="dialog::rl::backdrop"
-  />
-  <div
-    class="_modal-positioner_inusz_29"
-    data-part="positioner"
-    data-scope="dialog"
-    dir="ltr"
-    id="dialog::rl::positioner"
-  >
-    <div
-      aria-describedby="dialog::rl::description"
-      aria-labelledby="dialog::rl::title"
-      aria-modal="true"
-      class="_modal-content_inusz_35"
-      data-part="content"
-      data-scope="dialog"
-      data-state="open"
-      dir="ltr"
-      id="dialog::rl::content"
-      role="dialog"
-      tabindex="-1"
-    >
-      <div
-        class="_modal-header_1q85x_2 _modal-header--information_1q85x_17"
-      >
-        <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
-          data-part="close-trigger"
-          data-scope="dialog"
-          dir="ltr"
-          id="dialog::rl::close"
-          type="button"
-        >
-          <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
-          />
-        </button>
-      </div>
-      <div
-        class="_modal-body_3om6u_2 text-left"
-      >
-        <div
-          class="flex items-center mb-4"
-        >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-          >
-            Update Name
-          </h4>
-        </div>
-        <div
-          class="flex flex-col text-left"
-        >
-          <div>
-            <div
-              class="_form-field_112eg_2"
-              role="group"
-            >
-              <label
-                class="_text--label_1aw48_49 _form-field-label_1udkg_2"
-                for="update-name-modal-input"
-                id=":rn:"
-              >
-                Display Name
-              </label>
-              <div
-                class="_input_1p31i_2"
-                data-invalid="true"
-              >
-                <input
-                  aria-describedby="update-name-modal-pattern-message"
-                  aria-invalid="true"
-                  aria-label="update-input"
-                  class="_input__field_1p31i_35"
-                  data-invalid="true"
-                  data-testid="update-name-modal-input"
-                  id="update-name-modal-input"
-                  type="text"
-                  value=""
-                />
-              </div>
-              <span
-                class="_text--span_1aw48_60 text-right"
-                id="update-name-modal-pattern-message"
-                style="color: var(--ods-color-critical-400);"
-              >
-                Only letters and spaces allowed
-              </span>
-            </div>
-          </div>
-        </div>
-        <div
-          class="flex justify-end flex-wrap gap-4"
-        >
-          <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 mt-4"
-            data-testid="secondary-button"
-            type="button"
-          >
-            Annuler
-          </button>
-          <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 mt-4"
-            data-testid="primary-button"
-            type="button"
-          >
-            Confirmer
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
-`;
-
-exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should render modal with pattern validation and default value 1`] = `
-<body>
+<body
+  data-scroll-lock=""
+>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -2406,10 +1823,11 @@ exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should ren
     id="dialog::ro::positioner"
   >
     <div
-      aria-describedby="dialog::ro::description"
-      aria-labelledby="dialog::ro::title"
+      aria-describedby=""
+      aria-labelledby=""
       aria-modal="true"
       class="_modal-content_inusz_35"
+      data-ods="modal-content"
       data-part="content"
       data-scope="dialog"
       data-state="open"
@@ -2419,10 +1837,12 @@ exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should ren
       tabindex="-1"
     >
       <div
-        class="_modal-header_1q85x_2 _modal-header--information_1q85x_17"
+        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
       >
         <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+          aria-label="Close"
+          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
           dir="ltr"
@@ -2430,55 +1850,767 @@ exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should ren
           type="button"
         >
           <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
           />
         </button>
       </div>
       <div
         class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
       >
-        <div
-          class="flex items-center mb-4"
+        <h4
+          class="_text--heading-4_1aw48_31 mb-4"
+          data-ods="text"
         >
-          <h4
-            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
-          >
-            Update Name
-          </h4>
-        </div>
+          Update Name
+        </h4>
         <div
           class="flex flex-col text-left"
         >
           <div>
             <div
+              class="_message_1oosv_2 _message--critical_1oosv_9 _message--default_1oosv_9"
+              data-ods="message"
+            >
+              <span
+                class="_icon_10c23_2 _icon--triangle-exclamation_10c23_538 _message-icon_mpgx8_2"
+                data-ods="message-icon"
+                role="presentation"
+              />
+              <div
+                class="_message-body_fe7x3_2"
+                data-ods="message-body"
+              >
+                L'erreur suivante est survenue : Invalid name format.
+              </div>
+              <button
+                aria-label="Close"
+                class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _message__close_1oosv_25"
+                data-ods="button"
+                type="button"
+              >
+                <span
+                  class="_icon_10c23_2 _icon--xmark_10c23_562"
+                  data-ods="icon"
+                  role="presentation"
+                />
+              </button>
+            </div>
+            <p
+              class="_text--paragraph_1aw48_54 pt-1 pb-3"
+              data-ods="text"
+            >
+              Please enter a new name
+            </p>
+            <div
               class="_form-field_112eg_2"
+              data-ods="form-field"
               role="group"
             >
               <label
                 class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+                data-ods="form-field-label"
                 for="update-name-modal-input"
                 id=":rq:"
               >
                 Display Name
               </label>
               <div
-                class="_input_1p31i_2"
+                class="_input_1cnfv_2"
                 data-invalid="true"
               >
                 <input
-                  aria-describedby="update-name-modal-pattern-message"
+                  aria-busy="false"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1p31i_35"
+                  class="_input__field_1cnfv_35"
                   data-invalid="true"
+                  data-ods="input"
                   data-testid="update-name-modal-input"
                   id="update-name-modal-input"
                   type="text"
-                  value="John Doe"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex justify-end flex-wrap gap-4"
+        >
+          <button
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            data-ods="button"
+            data-testid="secondary-button"
+            type="button"
+          >
+            Annuler
+          </button>
+          <button
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            data-ods="button"
+            data-testid="primary-button"
+            type="button"
+          >
+            Confirmer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`UpdateNameModal Snapshot Tests > Error States > should render modal with error message 1`] = `
+<body
+  data-scroll-lock=""
+>
+  <div />
+  <div
+    class="_modal-backdrop_inusz_22"
+    data-part="backdrop"
+    data-scope="dialog"
+    data-state="open"
+    dir="ltr"
+    id="dialog::rk::backdrop"
+  />
+  <div
+    class="_modal-positioner_inusz_29"
+    data-part="positioner"
+    data-scope="dialog"
+    dir="ltr"
+    id="dialog::rk::positioner"
+  >
+    <div
+      aria-describedby=""
+      aria-labelledby=""
+      aria-modal="true"
+      class="_modal-content_inusz_35"
+      data-ods="modal-content"
+      data-part="content"
+      data-scope="dialog"
+      data-state="open"
+      dir="ltr"
+      id="dialog::rk::content"
+      role="dialog"
+      tabindex="-1"
+    >
+      <div
+        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
+      >
+        <button
+          aria-label="Close"
+          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          data-ods="button"
+          data-part="close-trigger"
+          data-scope="dialog"
+          dir="ltr"
+          id="dialog::rk::close"
+          type="button"
+        >
+          <span
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
+          />
+        </button>
+      </div>
+      <div
+        class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
+      >
+        <h4
+          class="_text--heading-4_1aw48_31 mb-4"
+          data-ods="text"
+        >
+          Update Name
+        </h4>
+        <div
+          class="flex flex-col text-left"
+        >
+          <div>
+            <div
+              class="_message_1oosv_2 _message--critical_1oosv_9 _message--default_1oosv_9"
+              data-ods="message"
+            >
+              <span
+                class="_icon_10c23_2 _icon--triangle-exclamation_10c23_538 _message-icon_mpgx8_2"
+                data-ods="message-icon"
+                role="presentation"
+              />
+              <div
+                class="_message-body_fe7x3_2"
+                data-ods="message-body"
+              >
+                L'erreur suivante est survenue : Name already exists.
+              </div>
+              <button
+                aria-label="Close"
+                class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _message__close_1oosv_25"
+                data-ods="button"
+                type="button"
+              >
+                <span
+                  class="_icon_10c23_2 _icon--xmark_10c23_562"
+                  data-ods="icon"
+                  role="presentation"
+                />
+              </button>
+            </div>
+            <div
+              class="_form-field_112eg_2"
+              data-ods="form-field"
+              role="group"
+            >
+              <label
+                class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+                data-ods="form-field-label"
+                for="update-name-modal-input"
+                id=":rm:"
+              >
+                Display Name
+              </label>
+              <div
+                class="_input_1cnfv_2"
+                data-invalid="true"
+              >
+                <input
+                  aria-busy="false"
+                  aria-invalid="true"
+                  aria-label="update-input"
+                  class="_input__field_1cnfv_35"
+                  data-invalid="true"
+                  data-ods="input"
+                  data-testid="update-name-modal-input"
+                  id="update-name-modal-input"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex justify-end flex-wrap gap-4"
+        >
+          <button
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            data-ods="button"
+            data-testid="secondary-button"
+            type="button"
+          >
+            Annuler
+          </button>
+          <button
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            data-ods="button"
+            data-testid="primary-button"
+            type="button"
+          >
+            Confirmer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`UpdateNameModal Snapshot Tests > Loading States > should render modal in loading state 1`] = `
+<body
+  data-scroll-lock=""
+>
+  <div />
+  <div
+    class="_modal-backdrop_inusz_22"
+    data-part="backdrop"
+    data-scope="dialog"
+    data-state="open"
+    dir="ltr"
+    id="dialog::rc::backdrop"
+  />
+  <div
+    class="_modal-positioner_inusz_29"
+    data-part="positioner"
+    data-scope="dialog"
+    dir="ltr"
+    id="dialog::rc::positioner"
+  >
+    <div
+      aria-describedby=""
+      aria-labelledby=""
+      aria-modal="true"
+      class="_modal-content_inusz_35"
+      data-ods="modal-content"
+      data-part="content"
+      data-scope="dialog"
+      data-state="open"
+      dir="ltr"
+      id="dialog::rc::content"
+      role="dialog"
+      tabindex="-1"
+    >
+      <div
+        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
+      >
+        <button
+          aria-label="Close"
+          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          data-ods="button"
+          data-part="close-trigger"
+          data-scope="dialog"
+          dir="ltr"
+          id="dialog::rc::close"
+          type="button"
+        >
+          <span
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
+          />
+        </button>
+      </div>
+      <div
+        class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
+      >
+        <h4
+          class="_text--heading-4_1aw48_31 mb-4"
+          data-ods="text"
+        >
+          Update Name
+        </h4>
+        <div
+          class="flex flex-col text-left"
+        >
+          <div>
+            <div
+              class="_form-field_112eg_2"
+              data-ods="form-field"
+              role="group"
+            >
+              <label
+                class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+                data-ods="form-field-label"
+                for="update-name-modal-input"
+                id=":re:"
+              >
+                Display Name
+              </label>
+              <div
+                class="_input_1cnfv_2"
+                data-disabled="true"
+                data-invalid="true"
+              >
+                <input
+                  aria-busy="false"
+                  aria-invalid="true"
+                  aria-label="update-input"
+                  class="_input__field_1cnfv_35"
+                  data-invalid="true"
+                  data-ods="input"
+                  data-testid="update-name-modal-input"
+                  disabled=""
+                  id="update-name-modal-input"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex justify-end flex-wrap gap-4"
+        >
+          <button
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            data-ods="button"
+            data-testid="secondary-button"
+            type="button"
+          >
+            Annuler
+          </button>
+          <button
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            data-ods="button"
+            data-testid="primary-button"
+            type="button"
+          >
+            Confirmer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`UpdateNameModal Snapshot Tests > Loading States > should render modal with loading state and default value 1`] = `
+<body
+  data-scroll-lock=""
+>
+  <div />
+  <div
+    class="_modal-backdrop_inusz_22"
+    data-part="backdrop"
+    data-scope="dialog"
+    data-state="open"
+    dir="ltr"
+    id="dialog::rg::backdrop"
+  />
+  <div
+    class="_modal-positioner_inusz_29"
+    data-part="positioner"
+    data-scope="dialog"
+    dir="ltr"
+    id="dialog::rg::positioner"
+  >
+    <div
+      aria-describedby=""
+      aria-labelledby=""
+      aria-modal="true"
+      class="_modal-content_inusz_35"
+      data-ods="modal-content"
+      data-part="content"
+      data-scope="dialog"
+      data-state="open"
+      dir="ltr"
+      id="dialog::rg::content"
+      role="dialog"
+      tabindex="-1"
+    >
+      <div
+        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
+      >
+        <button
+          aria-label="Close"
+          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          data-ods="button"
+          data-part="close-trigger"
+          data-scope="dialog"
+          dir="ltr"
+          id="dialog::rg::close"
+          type="button"
+        >
+          <span
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
+          />
+        </button>
+      </div>
+      <div
+        class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
+      >
+        <h4
+          class="_text--heading-4_1aw48_31 mb-4"
+          data-ods="text"
+        >
+          Update Name
+        </h4>
+        <div
+          class="flex flex-col text-left"
+        >
+          <div>
+            <div
+              class="_form-field_112eg_2"
+              data-ods="form-field"
+              role="group"
+            >
+              <label
+                class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+                data-ods="form-field-label"
+                for="update-name-modal-input"
+                id=":ri:"
+              >
+                Display Name
+              </label>
+              <div
+                class="_input_1cnfv_2"
+                data-disabled="true"
+              >
+                <input
+                  aria-busy="false"
+                  aria-label="update-input"
+                  class="_input__field_1cnfv_35"
+                  data-ods="input"
+                  data-testid="update-name-modal-input"
+                  disabled=""
+                  id="update-name-modal-input"
+                  type="text"
+                  value="Current Name"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex justify-end flex-wrap gap-4"
+        >
+          <button
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            data-ods="button"
+            data-testid="secondary-button"
+            type="button"
+          >
+            Annuler
+          </button>
+          <button
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            data-ods="button"
+            data-testid="primary-button"
+            type="button"
+          >
+            Confirmer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should render modal with complex pattern validation 1`] = `
+<body
+  data-scroll-lock=""
+>
+  <div />
+  <div
+    class="_modal-backdrop_inusz_22"
+    data-part="backdrop"
+    data-scope="dialog"
+    data-state="open"
+    dir="ltr"
+    id="dialog::r14::backdrop"
+  />
+  <div
+    class="_modal-positioner_inusz_29"
+    data-part="positioner"
+    data-scope="dialog"
+    dir="ltr"
+    id="dialog::r14::positioner"
+  >
+    <div
+      aria-describedby=""
+      aria-labelledby=""
+      aria-modal="true"
+      class="_modal-content_inusz_35"
+      data-ods="modal-content"
+      data-part="content"
+      data-scope="dialog"
+      data-state="open"
+      dir="ltr"
+      id="dialog::r14::content"
+      role="dialog"
+      tabindex="-1"
+    >
+      <div
+        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
+      >
+        <button
+          aria-label="Close"
+          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          data-ods="button"
+          data-part="close-trigger"
+          data-scope="dialog"
+          dir="ltr"
+          id="dialog::r14::close"
+          type="button"
+        >
+          <span
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
+          />
+        </button>
+      </div>
+      <div
+        class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
+      >
+        <h4
+          class="_text--heading-4_1aw48_31 mb-4"
+          data-ods="text"
+        >
+          Update Name
+        </h4>
+        <div
+          class="flex flex-col text-left"
+        >
+          <div>
+            <div
+              class="_form-field_112eg_2"
+              data-ods="form-field"
+              role="group"
+            >
+              <label
+                class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+                data-ods="form-field-label"
+                for="update-name-modal-input"
+                id=":r16:"
+              >
+                Display Name
+              </label>
+              <div
+                class="_input_1cnfv_2"
+                data-invalid="true"
+              >
+                <input
+                  aria-busy="false"
+                  aria-describedby="update-name-modal-pattern-message"
+                  aria-invalid="true"
+                  aria-label="update-input"
+                  class="_input__field_1cnfv_35"
+                  data-invalid="true"
+                  data-ods="input"
+                  data-testid="update-name-modal-input"
+                  id="update-name-modal-input"
+                  type="text"
+                  value=""
                 />
               </div>
               <span
                 class="_text--span_1aw48_60 text-right"
+                data-ods="text"
+                id="update-name-modal-pattern-message"
+                style="color: var(--ods-color-critical-400);"
+              >
+                3-20 characters, letters, numbers, underscore, and dash only
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex justify-end flex-wrap gap-4"
+        >
+          <button
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            data-ods="button"
+            data-testid="secondary-button"
+            type="button"
+          >
+            Annuler
+          </button>
+          <button
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            data-ods="button"
+            data-testid="primary-button"
+            type="button"
+          >
+            Confirmer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should render modal with pattern validation 1`] = `
+<body
+  data-scroll-lock=""
+>
+  <div />
+  <div
+    class="_modal-backdrop_inusz_22"
+    data-part="backdrop"
+    data-scope="dialog"
+    data-state="open"
+    dir="ltr"
+    id="dialog::rs::backdrop"
+  />
+  <div
+    class="_modal-positioner_inusz_29"
+    data-part="positioner"
+    data-scope="dialog"
+    dir="ltr"
+    id="dialog::rs::positioner"
+  >
+    <div
+      aria-describedby=""
+      aria-labelledby=""
+      aria-modal="true"
+      class="_modal-content_inusz_35"
+      data-ods="modal-content"
+      data-part="content"
+      data-scope="dialog"
+      data-state="open"
+      dir="ltr"
+      id="dialog::rs::content"
+      role="dialog"
+      tabindex="-1"
+    >
+      <div
+        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
+      >
+        <button
+          aria-label="Close"
+          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          data-ods="button"
+          data-part="close-trigger"
+          data-scope="dialog"
+          dir="ltr"
+          id="dialog::rs::close"
+          type="button"
+        >
+          <span
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
+          />
+        </button>
+      </div>
+      <div
+        class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
+      >
+        <h4
+          class="_text--heading-4_1aw48_31 mb-4"
+          data-ods="text"
+        >
+          Update Name
+        </h4>
+        <div
+          class="flex flex-col text-left"
+        >
+          <div>
+            <div
+              class="_form-field_112eg_2"
+              data-ods="form-field"
+              role="group"
+            >
+              <label
+                class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+                data-ods="form-field-label"
+                for="update-name-modal-input"
+                id=":ru:"
+              >
+                Display Name
+              </label>
+              <div
+                class="_input_1cnfv_2"
+                data-invalid="true"
+              >
+                <input
+                  aria-busy="false"
+                  aria-describedby="update-name-modal-pattern-message"
+                  aria-invalid="true"
+                  aria-label="update-input"
+                  class="_input__field_1cnfv_35"
+                  data-invalid="true"
+                  data-ods="input"
+                  data-testid="update-name-modal-input"
+                  id="update-name-modal-input"
+                  type="text"
+                  value=""
+                />
+              </div>
+              <span
+                class="_text--span_1aw48_60 text-right"
+                data-ods="text"
                 id="update-name-modal-pattern-message"
                 style="color: var(--ods-color-critical-400);"
               >
@@ -2491,14 +2623,152 @@ exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should ren
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 mt-4"
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            data-ods="button"
             data-testid="secondary-button"
             type="button"
           >
             Annuler
           </button>
           <button
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 mt-4"
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            data-ods="button"
+            data-testid="primary-button"
+            type="button"
+          >
+            Confirmer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should render modal with pattern validation and default value 1`] = `
+<body
+  data-scroll-lock=""
+>
+  <div />
+  <div
+    class="_modal-backdrop_inusz_22"
+    data-part="backdrop"
+    data-scope="dialog"
+    data-state="open"
+    dir="ltr"
+    id="dialog::r10::backdrop"
+  />
+  <div
+    class="_modal-positioner_inusz_29"
+    data-part="positioner"
+    data-scope="dialog"
+    dir="ltr"
+    id="dialog::r10::positioner"
+  >
+    <div
+      aria-describedby=""
+      aria-labelledby=""
+      aria-modal="true"
+      class="_modal-content_inusz_35"
+      data-ods="modal-content"
+      data-part="content"
+      data-scope="dialog"
+      data-state="open"
+      dir="ltr"
+      id="dialog::r10::content"
+      role="dialog"
+      tabindex="-1"
+    >
+      <div
+        class="_modal-header_1qhu0_2 _modal-header--information_1qhu0_17"
+      >
+        <button
+          aria-label="Close"
+          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          data-ods="button"
+          data-part="close-trigger"
+          data-scope="dialog"
+          dir="ltr"
+          id="dialog::r10::close"
+          type="button"
+        >
+          <span
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
+          />
+        </button>
+      </div>
+      <div
+        class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
+      >
+        <h4
+          class="_text--heading-4_1aw48_31 mb-4"
+          data-ods="text"
+        >
+          Update Name
+        </h4>
+        <div
+          class="flex flex-col text-left"
+        >
+          <div>
+            <div
+              class="_form-field_112eg_2"
+              data-ods="form-field"
+              role="group"
+            >
+              <label
+                class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+                data-ods="form-field-label"
+                for="update-name-modal-input"
+                id=":r12:"
+              >
+                Display Name
+              </label>
+              <div
+                class="_input_1cnfv_2"
+                data-invalid="true"
+              >
+                <input
+                  aria-busy="false"
+                  aria-describedby="update-name-modal-pattern-message"
+                  aria-invalid="true"
+                  aria-label="update-input"
+                  class="_input__field_1cnfv_35"
+                  data-invalid="true"
+                  data-ods="input"
+                  data-testid="update-name-modal-input"
+                  id="update-name-modal-input"
+                  type="text"
+                  value="John Doe"
+                />
+              </div>
+              <span
+                class="_text--span_1aw48_60 text-right"
+                data-ods="text"
+                id="update-name-modal-pattern-message"
+                style="color: var(--ods-color-critical-400);"
+              >
+                Only letters and spaces allowed
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex justify-end flex-wrap gap-4"
+        >
+          <button
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            data-ods="button"
+            data-testid="secondary-button"
+            type="button"
+          >
+            Annuler
+          </button>
+          <button
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            data-ods="button"
             data-testid="primary-button"
             type="button"
           >
