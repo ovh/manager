@@ -17,7 +17,9 @@ export default class IAMConditionProductTypeController {
   }
 
   initForm() {
-    this.productTypes = this.condition?.value?.split(',');
+    const resourceTypes = this.condition?.value?.split(',') || [];
+    this.iamResourceTypeService.transformResourceTypes(resourceTypes);
+    this.productTypes = resourceTypes;
   }
 
   updateConditionValues() {

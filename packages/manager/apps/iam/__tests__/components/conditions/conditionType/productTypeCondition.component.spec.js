@@ -25,6 +25,9 @@ describe('IAMConditionProductType component tests suite', () => {
   it('should init model value when condition is set', () => {
     const locals = {
       $element: angular.element('<div></div>'),
+      iamResourceTypeService: {
+        transformResourceTypes: () => {},
+      },
     };
     const bindings = {
       condition: {
