@@ -72,6 +72,10 @@ export default class ovhManagerRegionService {
     const translatedMacroRegion = this.$translate.instant(
       `manager_components_region_${this.constructor.getMacroRegion(region)}`,
     );
+    if (region === 'EU-SOUTH-LZ-MIL-A') {
+      return `${translatedMacroRegion}-LZ`;
+    }
+
     return translatedMacroRegion || region;
   }
 
