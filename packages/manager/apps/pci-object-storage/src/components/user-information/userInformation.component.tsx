@@ -1,4 +1,4 @@
-import { Button, Code, githubDark, useToast, yaml } from '@datatr-ux/uxlib';
+import { Button, Clipboard, useToast } from '@datatr-ux/uxlib';
 import { useTranslation } from 'react-i18next';
 import { Download } from 'lucide-react';
 import user from '@/types/User';
@@ -13,6 +13,10 @@ const UserInformation = ({ newUser, pwd }: UserInformationProps) => {
   const { t } = useTranslation('pci-object-storage/users/create');
   const toast = useToast();
   const { download } = useDownload();
+  const onCopy = () =>
+    toast.toast({
+      title: t('passwordCopy'),
+    });
   if (newUser?.status !== user.UserStatusEnum.ok) {
     return (
       <div>
@@ -35,7 +39,7 @@ const UserInformation = ({ newUser, pwd }: UserInformationProps) => {
     );
   };
   return (
-    <div className="space-y-4">
+    <div className="flex flex-col gap-2">
       <div className="flex flex-row justify-between">
         <h5>{t('newUserInformationTitle')}</h5>
         <Button
@@ -50,50 +54,22 @@ const UserInformation = ({ newUser, pwd }: UserInformationProps) => {
         </Button>
       </div>
       <p>{t('newUserInformationLabel', { name: newUser.username })}</p>
-      <Code
-        code={newUser.username}
-        label={t('newUserUsernameLabel')}
-        theme={githubDark}
-        lang={yaml}
-        onCopied={() =>
-          toast.toast({
-            title: t('passwordCopy'),
-          })
-        }
-      />
-      <Code
-        code={newUser.description}
-        label={t('newUserDescriptionLabel')}
-        theme={githubDark}
-        lang={yaml}
-        onCopied={() =>
-          toast.toast({
-            title: t('passwordCopy'),
-          })
-        }
-      />
-      <Code
-        code={newUser.openstackId}
-        label={t('newUserAccessKeyLabel')}
-        theme={githubDark}
-        lang={yaml}
-        onCopied={() =>
-          toast.toast({
-            title: t('passwordCopy'),
-          })
-        }
-      />
-      <Code
-        code={pwd}
-        label={t('newUserPwdLabel')}
-        theme={githubDark}
-        lang={yaml}
-        onCopied={() =>
-          toast.toast({
-            title: t('passwordCopy'),
-          })
-        }
-      />
+      <span className="text-sm font-medium leading-none">
+        {t('newUserUsernameLabel')}
+      </span>
+      <Clipboard value={newUser.username} onCopy={onCopy} />
+      <span className="text-sm font-medium leading-none">
+        {t('newUserDescriptionLabel')}
+      </span>
+      <Clipboard value={newUser.description} onCopy={onCopy} />
+      <span className="text-sm font-medium leading-none">
+        {t('newUserAccessKeyLabel')}
+      </span>
+      <Clipboard value={newUser.openstackId} onCopy={onCopy} secret />
+      <span className="text-sm font-medium leading-none">
+        {t('newUserPwdLabel')}
+      </span>
+      <Clipboard value={newUser.openstackId} onCopy={onCopy} secret />
     </div>
   );
 };
