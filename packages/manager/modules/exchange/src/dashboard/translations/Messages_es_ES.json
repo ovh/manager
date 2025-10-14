@@ -1667,5 +1667,6 @@
   "exchange_reset_mfa_success": "Se ha reiniciado la doble autenticación.",
   "exchange_mfa_error": "Se ha producido un error: {{error}}",
   "exchange_delete_mfa_success": "Se ha eliminado la doble autenticación.",
-  "exchange_delete_mfa_error": "Se ha producido un error al eliminar la doble autenticación: {{error}}"
+  "exchange_delete_mfa_error": "Se ha producido un error al eliminar la doble autenticación: {{error}}",
+  "exchange_tab_LOGS": "Logs"
 }

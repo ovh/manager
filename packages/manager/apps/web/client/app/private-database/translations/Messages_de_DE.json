@@ -1,4 +1,19 @@
 {
   "private_databases_title": "Web Cloud Databases",
-  "private_databases_order": "Bestellen"
+  "private_databases_order": "Bestellen",
+  "private_database_columns_header_servicename": "Name des Dienstes",
+  "private_database_columns_header_displayname": "Benutzerdefinierter Name des Dienstes",
+  "private_database_columns_header_hostname": "Hostname",
+  "private_database_columns_header_port": "Port",
+  "private_database_columns_header_version": "Version",
+  "private_database_columns_header_cpu": "CPU",
+  "private_database_columns_header_datacenter": "Rechenzentrum",
+  "private_database_columns_header_guiurl": "GUI-URL",
+  "private_database_columns_header_hostname_ftp": "FTP-Hostname",
+  "private_database_columns_header_infrastructure": "Infrastruktur",
+  "private_database_columns_header_offer": "Angebot",
+  "private_database_columns_header_port_ftp": "FTP-Port",
+  "private_database_columns_header_server": "Server",
+  "private_database_columns_header_type": "Typ",
+  "private_database_columns_header_state": "Status"
 }

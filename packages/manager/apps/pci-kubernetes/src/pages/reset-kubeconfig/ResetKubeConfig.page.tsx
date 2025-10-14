@@ -1,20 +1,18 @@
-import {
-  OsdsButton,
-  OsdsModal,
-  OsdsSpinner,
-} from '@ovhcloud/ods-components/react';
-import { Translation, useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useContext } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { Translation, useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OsdsButton, OsdsModal, OsdsSpinner } from '@ovhcloud/ods-components/react';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import {
-  useKubernetesCluster,
-  useResetKubeConfig,
-} from '@/api/hooks/useKubernetes';
+
+import { useKubernetesCluster, useResetKubeConfig } from '@/api/hooks/useKubernetes';
 import ResetKubeConfigContent from '@/components/reset-kubeconfig/ResetKubeConfigContent';
 import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
 
@@ -22,31 +20,24 @@ export default function ResetKubeConfigPage() {
   const { t: tResetKubeConfig } = useTranslation('reset-kubeconfig');
   const { projectId, kubeId } = useParams();
   const { addError, addSuccess } = useNotifications();
-  const {
-    data: kubernetesCluster,
-    isPending: isPendingCluster,
-  } = useKubernetesCluster(projectId, kubeId);
+  const { data: kubernetesCluster, isPending: isPendingCluster } = useKubernetesCluster(
+    projectId,
+    kubeId,
+  );
   const navigate = useNavigate();
   const onClose = () => navigate('..');
   const { tracking } = useContext(ShellContext)?.shell || {};
 
-  const {
-    resetKubeConfig,
-    isPending: isPendingResetKubeConfig,
-  } = useResetKubeConfig({
+  const { resetKubeConfig, isPending: isPendingResetKubeConfig } = useResetKubeConfig({
     projectId,
     kubeId,
     onError(error: ApiError) {
       addError(
         <Translation ns="reset-kubeconfig">
           {(_t) =>
-            _t(
-              'pci_projects_project_kubernetes_service_reset_kubeconfig_error',
-              {
-                message:
-                  error?.response?.data?.message || error?.message || null,
-              },
-            )
+            _t('pci_projects_project_kubernetes_service_reset_kubeconfig_error', {
+              message: error?.response?.data?.message || error?.message || null,
+            })
           }
         </Translation>,
         true,
@@ -56,11 +47,7 @@ export default function ResetKubeConfigPage() {
     onSuccess() {
       addSuccess(
         <Translation ns="reset-kubeconfig">
-          {(_t) =>
-            _t(
-              'pci_projects_project_kubernetes_service_reset_kubeconfig_success',
-            )
-          }
+          {(_t) => _t('pci_projects_project_kubernetes_service_reset_kubeconfig_success')}
         </Translation>,
         true,
       );
@@ -78,9 +65,7 @@ export default function ResetKubeConfigPage() {
         });
         onClose();
       }}
-      headline={tResetKubeConfig(
-        'pci_projects_project_kubernetes_service_reset_kubeconfig',
-      )}
+      headline={tResetKubeConfig('pci_projects_project_kubernetes_service_reset_kubeconfig')}
     >
       <slot name="content">
         {isPending ? (
@@ -91,9 +76,7 @@ export default function ResetKubeConfigPage() {
             data-testid="resetKubeConfig-spinner"
           />
         ) : (
-          <ResetKubeConfigContent
-            isClusterReady={kubernetesCluster?.isClusterReady}
-          />
+          <ResetKubeConfigContent isClusterReady={kubernetesCluster?.isClusterReady} />
         )}
       </slot>
       <OsdsButton
@@ -108,9 +91,7 @@ export default function ResetKubeConfigPage() {
         }}
         data-testid="resetKubeConfig-button_cancel"
       >
-        {tResetKubeConfig(
-          'pci_projects_project_kubernetes_service_reset_kubeconfig_common_cancel',
-        )}
+        {tResetKubeConfig('pci_projects_project_kubernetes_service_reset_kubeconfig_common_cancel')}
       </OsdsButton>
       <OsdsButton
         slot="actions"

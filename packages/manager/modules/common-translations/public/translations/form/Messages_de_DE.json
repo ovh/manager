@@ -27,5 +27,10 @@
   "change_password_helper1": "Bitte beachten Sie, dass das Passwort nach folgenden Regeln vergeben werden muss:",
   "change_password_helper2": "Mindestens 1 Kleinbuchstabe, 1 Großbuchstabe, 1 Ziffer oder 1 Sonderzeichen",
   "price": "Preis",
-  "stepPlaceholder": "Schritt {{current}} von {{total}}"
+  "stepPlaceholder": "Schritt {{current}} von {{total}}",
+  "yes": "Ja",
+  "no": "Nein",
+  "ok": "OK",
+  "optional": "wahlweise",
+  "step_number": "Schritt {{step}}"
 }

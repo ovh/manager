@@ -1,0 +1,21 @@
+{
+  "hosting_dashboard_service_abuse_state_modal_title": "Actividad inusual en su alojamiento",
+  "hosting_dashboard_service_abuse_state_modal_info_malwares": "Hemos detectado <strong>la presencia de archivos maliciosos (malware)</strong> en su alojamiento. <br/>Como medida de protección, hemos bloqueado temporalmente las peticiones salientes, así como el envío de emails a través de las funciones PHP.",
+  "hosting_dashboard_service_abuse_state_modal_info_mailsout": "Hemos detectado<b> </b><strong>un volumen anormalmente elevado de mensajes de correo enviados</strong><b> </b>desde su alojamiento <br/>Como medida de seguridad, hemos bloqueado temporalmente sus envíos a través de PHP.",
+  "hosting_dashboard_service_abuse_state_modal_info_outstate": "Hemos detectado un <strong>volumen anormalmente elevado de peticiones salientes</strong> desde su alojamiento. <br/>Como medida de seguridad, hemos bloqueado temporalmente estas solicitudes.",
+  "hosting_dashboard_service_abuse_state_modal_blocked_message_malwares": "Sus sitios web ya no pueden enviar correos electrónicos ni comunicarse con servicios externos hasta que se resuelva la situación.",
+  "hosting_dashboard_service_abuse_state_modal_blocked_message_mailsout": "Sus sitios web ya no pueden enviar correos electrónicos hasta que se resuelva la situación.",
+  "hosting_dashboard_service_abuse_state_modal_blocked_message_outstate": "Sus sitios web ya no pueden comunicarse con servicios externos hasta que se resuelva la situación.",
+  "hosting_dashboard_service_abuse_state_modal_button_action_title": "¿Qué debo hacer?",
+  "hosting_dashboard_service_abuse_state_modal_button_action_first": "Consulte nuestra guía para detener esta actividad inusual.",
+  "hosting_dashboard_service_abuse_state_modal_button_action_second": "Una vez resuelta la situación, marque la casilla que aparece a continuación para solicitar la anulación de las medidas de seguridad en su alojamiento.",
+  "hosting_dashboard_service_abuse_state_modal_button_action_guideline": "Guía para resolver una actividad inusual",
+  "hosting_dashboard_service_abuse_state_modal_button_action_checkbox": "Confirmo que he realizado todas las acciones necesarias para solucionar el problema.",
+  "hosting_dashboard_service_abuse_state_modal_button_later": "Más tarde",
+  "hosting_dashboard_service_abuse_state_modal_button_unblock": "Anular las medidas de seguridad",
+  "hosting_dashboard_service_abuse_state_banner_alert_message": "<strong>Actividad inusual detectada</strong><br />Como medida de seguridad, hemos bloqueado temporalmente algunas funcionalidades de su alojamiento.<br/><a href=\"{{ href }}\">Más información</a>",
+  "hosting_dashboard_service_abuse_state_banner_alert_link": "Más información",
+  "hosting_dashboard_service_abuse_state_banner_reinsurance_title": "<strong>Se están analizando su alojamiento para anular las medidas de seguridad.</strong><br/><a href=\"{{ href }}\">Ver las tareas en curso</a>",
+  "hosting_dashboard_service_abuse_state_banner_reinsurance_link": "Ver las tareas en curso",
+  "hosting_dashboard_service_abuse_state_unblock_error_message": "Se ha producido un error: {{error}}."
+}

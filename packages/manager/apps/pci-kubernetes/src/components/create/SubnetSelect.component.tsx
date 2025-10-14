@@ -1,14 +1,19 @@
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { Links, LinkType } from '@ovh-ux/manager-react-components';
+import { useContext } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { OsdsText } from '@ovhcloud/ods-components/react';
-import { useContext } from 'react';
-import { useTranslation } from 'react-i18next';
-import { SUBNET_DOC } from '@/constants';
-import { SubnetSelector } from '../network/SubnetSelector.component';
+
+import { LinkType, Links } from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { TNetworkRegion } from '@/api/data/network';
 import { TPrivateNetworkSubnet } from '@/api/data/subnets';
+import { SUBNET_DOC } from '@/constants';
+
+import { SubnetSelector } from '../network/SubnetSelector.component';
 
 export type SubnetSelectProps = {
   projectId: string;
@@ -30,8 +35,7 @@ export default function SubnetSelect({
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
 
-  const subnetDocumentationLink =
-    SUBNET_DOC[ovhSubsidiary] ?? SUBNET_DOC.DEFAULT;
+  const subnetDocumentationLink = SUBNET_DOC[ovhSubsidiary] ?? SUBNET_DOC.DEFAULT;
 
   return (
     <div className={className}>

@@ -1,12 +1,6 @@
 import { FC, PropsWithChildren } from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import {
-  ODS_THEME_COLOR_HUE,
-  ODS_THEME_COLOR_INTENT,
-} from '@ovhcloud/ods-common-theming';
-import { FormField, FormFieldLabel } from '@ovhcloud/ods-react';
+import { FormField, FormFieldLabel, Text } from '@ovhcloud/ods-react';
 import StatusChip from '@/components/statusChip/StatusChip.component';
 import { ActionsMenu } from '@/components/menu/ActionsMenu.component';
 import { TInstanceAddress } from '@/types/instance/entity.type';
@@ -51,14 +45,10 @@ const NetworkItem: FC<PropsWithChildren<TNetworkItemProps>> = ({
   return (
     <section className="my-5">
       <div className="flex items-center gap-x-4">
-        <OsdsText
-          size={ODS_TEXT_SIZE._400}
-          level={ODS_TEXT_LEVEL.body}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          hue={ODS_THEME_COLOR_HUE._800}
-        >
+        <Text className="my-4">
+          {t('pci_instances_dashboard_network_name_label')}
           {address.subnet?.network.name}
-        </OsdsText>
+        </Text>
         {isFloatingIp && (
           <StatusChip
             status={{

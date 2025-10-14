@@ -14,7 +14,7 @@
   "billing_autorenew_service_status_automatic": "Rinnovo automatico",
   "billing_autorenew_service_status_manual": "Rinnovo manuale",
   "billing_autorenew_service_status_manualPayment": "Rinnovo manuale",
-  "billing_autorenew_service_status_pending_debt": "Fatture da pagare",
+  "billing_autorenew_service_status_unpaid": "Fatture da pagare",
   "billing_autorenew_service_status_delete_at_expiration": "Disattivazione programmata",
   "billing_autorenew_service_status_expired": "Disattivato",
   "billing_autorenew_service_expiration_weeks": "In scadenza tra una settimana",

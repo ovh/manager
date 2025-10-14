@@ -7,5 +7,7 @@ export default {
   bindings: {
     showRepaymentLink: '<',
     svaWallet: '<',
+    isSvaWalletValid: '<',
+    svaWalletOnboarding: '<',
   },
 };

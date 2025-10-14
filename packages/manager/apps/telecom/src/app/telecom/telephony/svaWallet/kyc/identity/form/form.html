@@ -65,6 +65,21 @@
     </oui-field>
 
     <oui-field
+        label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_company_registration_date' | translate }}"
+        size="xl"
+        data-ng-if="!$ctrl.editMode"
+    >
+        <oui-calendar
+            name="registrationDate"
+            model="$ctrl.wallet.company.registrationDate"
+            format="Y-m-d"
+            placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_company_registration_date' | translate }}"
+            required
+        >
+        </oui-calendar>
+    </oui-field>
+
+    <oui-field
         label="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_company_kind' | translate }}"
         size="xl"
     >
@@ -396,7 +411,7 @@
                 placeholder="{{:: 'telephony_billingAccount_svaWallet_kyc_identity_iban' | translate }}"
                 type="text"
                 data-ng-model="$ctrl.bankAccount.iban"
-                data-ui-validate="{ iban: '!$ctrl.isValidIban($ctrl.bankAccount.iban)' }"
+                data-ui-validate="{ iban: '$ctrl.isValidIban($value)' }"
                 required
             />
         </oui-field>

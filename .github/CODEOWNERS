@@ -6,6 +6,9 @@
 
 # Apps
 /packages/manager/apps/account @ovh/dev-manager-gcj-all
+/packages/manager/apps/backup-billing @ovh/dev-manager-enterprise-nutanixBackup
+/packages/manager/apps/backup-services @ovh/dev-manager-enterprise-nutanixBackup
+/packages/manager/apps/backup-vaults @ovh/dev-manager-enterprise-nutanixBackup
 /packages/manager/apps/billing @ovh/dev-manager-gcj-all
 /packages/manager/apps/carbon-calculator @ovh/dev-manager-gcj-all
 /packages/manager/apps/carrier-sip @ovh/dev-manager-web-collaboration

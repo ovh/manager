@@ -3,6 +3,84 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.4.20...@ovh-ux/manager-dedicated-servers-app@0.4.21) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
+## [0.4.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.4.19...@ovh-ux/manager-dedicated-servers-app@0.4.20) (2025-10-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
+## [0.4.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.4.18...@ovh-ux/manager-dedicated-servers-app@0.4.19) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
+## [0.4.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.4.17...@ovh-ux/manager-dedicated-servers-app@0.4.18) (2025-10-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4350] ([262b328](https://github.com/ovh/manager/commit/262b328dfd85001da0b4995c932a7f7da0679acf)), closes [#MANAGER-19811](https://github.com/ovh/manager/issues/MANAGER-19811)
+
+
+
+
+
+## [0.4.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.4.16...@ovh-ux/manager-dedicated-servers-app@0.4.17) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
+## [0.4.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.4.15...@ovh-ux/manager-dedicated-servers-app@0.4.16) (2025-10-01)
+
+
+### Bug Fixes
+
+* **dedicated-servers:** fix datagrid errors ([8b7b2b9](https://github.com/ovh/manager/commit/8b7b2b9ac21de1d59f4352213951c34539dd4838)), closes [#MANAGER-19003](https://github.com/ovh/manager/issues/MANAGER-19003)
+
+
+
+
+
+## [0.4.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.4.14...@ovh-ux/manager-dedicated-servers-app@0.4.15) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
+## [0.4.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.4.13...@ovh-ux/manager-dedicated-servers-app@0.4.14) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
+## [0.4.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.4.12...@ovh-ux/manager-dedicated-servers-app@0.4.13) (2025-09-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
 ## [0.4.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.4.11...@ovh-ux/manager-dedicated-servers-app@0.4.12) (2025-09-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app

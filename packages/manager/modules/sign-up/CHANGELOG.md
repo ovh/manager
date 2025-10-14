@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.3](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@3.3.2...@ovh-ux/sign-up@3.3.3) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/sign-up
+
+
+
+
+
+## [3.3.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@3.3.1...@ovh-ux/sign-up@3.3.2) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/sign-up
+
+
+
+
+
+## [3.3.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@3.3.0...@ovh-ux/sign-up@3.3.1) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/sign-up
+
+
+
+
+
 # [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@3.2.5...@ovh-ux/sign-up@3.3.0) (2025-09-22)
 
 

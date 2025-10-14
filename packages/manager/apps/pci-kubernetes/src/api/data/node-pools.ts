@@ -1,4 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+
 import { TCreateNodePoolParam } from '@/types';
 
 type TRawClusterNodePool = {
@@ -86,15 +87,11 @@ export const getClusterNodePools = async (
         ...(item.availabilityZones && {
           availabilityZones: item.availabilityZones,
         }),
-      } as TClusterNodePool),
+      }) as TClusterNodePool,
   );
 };
 
-export const deleteNodePool = async (
-  projectId: string,
-  clusterId: string,
-  poolId: string,
-) =>
+export const deleteNodePool = async (projectId: string, clusterId: string, poolId: string) =>
   v6.delete(`/cloud/project/${projectId}/kube/${clusterId}/nodepool/${poolId}`);
 
 export type TUpdateNodePoolSizeParam = {
@@ -109,14 +106,7 @@ export const updateNodePoolSize = async (
   clusterId: string,
   poolId: string,
   param: TUpdateNodePoolSizeParam,
-) =>
-  v6.put(
-    `/cloud/project/${projectId}/kube/${clusterId}/nodepool/${poolId}`,
-    param,
-  );
+) => v6.put(`/cloud/project/${projectId}/kube/${clusterId}/nodepool/${poolId}`, param);
 
-export const createNodePool = (
-  projectId: string,
-  clusterId: string,
-  param: TCreateNodePoolParam,
-) => v6.post(`/cloud/project/${projectId}/kube/${clusterId}/nodepool`, param);
+export const createNodePool = (projectId: string, clusterId: string, param: TCreateNodePoolParam) =>
+  v6.post(`/cloud/project/${projectId}/kube/${clusterId}/nodepool`, param);

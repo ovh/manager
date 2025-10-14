@@ -1,3 +1,7 @@
+import { useHref } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -13,24 +17,21 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { useHref } from 'react-router-dom';
-import { TKube } from '@/types';
-import { PROCESSING_STATUS } from '@/constants';
-import { useRegionSubnets } from '@/api/hooks/useSubnets';
-import TileLine from './TileLine.component';
-import { isMonoDeploymentZone } from '@/helpers';
+
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
+import { useRegionSubnets } from '@/api/hooks/useSubnets';
+import { PROCESSING_STATUS } from '@/constants';
+import { isMonoDeploymentZone } from '@/helpers';
+import { TKube } from '@/types';
+
+import TileLine from './TileLine.component';
 
 export type ClusterNetworkProps = {
   projectId: string;
   kubeDetail: TKube;
 };
 
-export default function ClusterNetwork({
-  projectId,
-  kubeDetail,
-}: Readonly<ClusterNetworkProps>) {
+export default function ClusterNetwork({ projectId, kubeDetail }: Readonly<ClusterNetworkProps>) {
   const { t } = useTranslation('service');
   const { t: tKubernetes } = useTranslation('kubernetes');
   const editNetworkHref = useHref('./edit-network');
@@ -41,10 +42,10 @@ export default function ClusterNetwork({
     kubeDetail.privateNetworkId,
   );
 
-  const {
-    data: regionInformations,
-    isPending: isPendingRegionInformation,
-  } = useRegionInformations(projectId, kubeDetail.region);
+  const { data: regionInformations, isPending: isPendingRegionInformation } = useRegionInformations(
+    projectId,
+    kubeDetail.region,
+  );
 
   const shouldLoadSubnets = !!kubeDetail.privateNetworkId;
 
@@ -57,23 +58,15 @@ export default function ClusterNetwork({
     !kubeDetail?.privateNetworkConfiguration ||
     !kubeDetail?.privateNetworkConfiguration?.privateNetworkRoutingAsDefault;
 
-  const privateNetwork =
-    kubeDetail?.privateNetworkConfiguration?.privateNetworkRoutingAsDefault;
+  const privateNetwork = kubeDetail?.privateNetworkConfiguration?.privateNetworkRoutingAsDefault;
 
-  const kubeSubnet = subnets?.find(
-    ({ id }) => id === kubeDetail?.nodesSubnetId,
-  );
+  const kubeSubnet = subnets?.find(({ id }) => id === kubeDetail?.nodesSubnetId);
   const kubeLoadBalancerSubnet = subnets?.find(
     ({ id }) => id === kubeDetail?.loadBalancersSubnetId,
   );
 
   return (
-    <OsdsTile
-      className="w-full flex-col shadow-md"
-      inline
-      rounded
-      variant={ODS_TILE_VARIANT.ghost}
-    >
+    <OsdsTile className="w-full flex-col shadow-md" inline rounded variant={ODS_TILE_VARIANT.ghost}>
       <div className="flex flex-col w-full">
         <OsdsText
           size={ODS_TEXT_SIZE._400}
@@ -94,9 +87,7 @@ export default function ClusterNetwork({
               color={ODS_THEME_COLOR_INTENT.text}
             >
               {!kubeDetail?.privateNetworkId && (
-                <span className="block">
-                  {t('kube_service_cluster_network_public')}
-                </span>
+                <span className="block">{t('kube_service_cluster_network_public')}</span>
               )}
 
               {kubeDetail?.privateNetworkId && (
@@ -183,9 +174,7 @@ export default function ClusterNetwork({
             variant={ODS_BUTTON_VARIANT.ghost}
             size={ODS_BUTTON_SIZE.sm}
             href={editNetworkHref}
-            disabled={
-              PROCESSING_STATUS.includes(kubeDetail.status) || undefined
-            }
+            disabled={PROCESSING_STATUS.includes(kubeDetail.status) || undefined}
           >
             {t('kube_service_network_edit')}
           </OsdsButton>

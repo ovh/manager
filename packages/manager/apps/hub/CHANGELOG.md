@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.25.2...@ovh-ux/manager-hub-app@0.25.3) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [0.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.25.1...@ovh-ux/manager-hub-app@0.25.2) (2025-10-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4377] ([619575d](https://github.com/ovh/manager/commit/619575df48aa15cb882ed39168b77073a3a6434b))
+
+
+
+
+
+## [0.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.25.0...@ovh-ux/manager-hub-app@0.25.1) (2025-10-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4375] ([b64bc5e](https://github.com/ovh/manager/commit/b64bc5e7ac85abea5918b83836b0b748944923b5))
+
+
+
+
+
+# [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.24.1...@ovh-ux/manager-hub-app@0.25.0) (2025-09-30)
+
+
+### Bug Fixes
+
+* **hub:** correct displayed status for notpaid orders ([46c9ac7](https://github.com/ovh/manager/commit/46c9ac7e21591e4d12fda4164c12ccc1e265ea59)), closes [#MANAGER-19809](https://github.com/ovh/manager/issues/MANAGER-19809)
+
+
+### Features
+
+* **hub:** add url to roadmap changelog ([da2d280](https://github.com/ovh/manager/commit/da2d280fea7e1ca78dc9355b16897830a5dba0e2)), closes [#MANAGER-19542](https://github.com/ovh/manager/issues/MANAGER-19542)
+
+
+
+
+
 ## [0.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.24.0...@ovh-ux/manager-hub-app@0.24.1) (2025-09-23)
 
 

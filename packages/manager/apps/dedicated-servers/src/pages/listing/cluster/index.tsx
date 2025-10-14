@@ -29,7 +29,7 @@ export default function Listing() {
   const { t: tCommon } = useTranslation(NAMESPACES.ACTIONS);
   const links = useLinkUtils<UrlEntry>(orderLinks);
   const { sorting, setSorting } = useDataGrid({
-    id: 'displayName',
+    id: 'iam.displayName',
     desc: false,
   });
   const {
@@ -56,7 +56,7 @@ export default function Listing() {
     const clusterList = [...originalList];
     clusterList.sort((item1, item2) => {
       switch (cluSorting?.id) {
-        case 'displayName':
+        case 'iam.displayName':
           return (item1.iam?.displayName).localeCompare(item2.iam?.displayName);
         case 'model':
           return (item1.model || '').localeCompare(item2.model);
@@ -72,7 +72,7 @@ export default function Listing() {
 
   const clusterColumns: DatagridColumn<Cluster>[] = [
     {
-      id: 'name',
+      id: 'iam.displayName',
       isSearchable: true,
       isFilterable: true,
       enableHiding: false,

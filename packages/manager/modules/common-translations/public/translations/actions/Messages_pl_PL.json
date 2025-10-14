@@ -49,9 +49,13 @@
   "start": "Zacznij",
   "renew": "Odnów",
   "restore": "Przywróć",
-  "see_details": "Przejdź do szczegółów",
+  "see_details": "Wyświetl szczegóły",
   "order_users": "Dodaj użytkownika",
   "edit_account": "Edytuj konto",
   "change_password": "Zmień hasło",
-  "delete_account": "Usuń konto"
+  "delete_account": "Usuń konto",
+  "copy": "Kopiuj",
+  "select_imperative": "Wybierz",
+  "go_to_details": "Przejdź do szczegółów",
+  "display_recap": "Wyświetl podsumowanie"
 }

@@ -1,4 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
+
 import { useProjectLocalisation } from '@/api/hooks/useRegions';
 import { TLocation } from '@/types/region';
 
@@ -19,18 +20,10 @@ export function useRegionSelector({
     id: string;
     name: string;
   } | null>(null);
-  const [selectedMacroRegion, setSelectedMacroRegion] = useState<string | null>(
-    null,
-  );
-  const [selectedMicroRegion, setSelectedMicroRegion] = useState<string | null>(
-    null,
-  );
-  const { localisationData: query, isPending } = useProjectLocalisation(
-    projectId,
-    'kubernetes',
-  );
-  const { continents: unfilteredContinents, regions: unfilteredRegions } =
-    query || {};
+  const [selectedMacroRegion, setSelectedMacroRegion] = useState<string | null>(null);
+  const [selectedMicroRegion, setSelectedMicroRegion] = useState<string | null>(null);
+  const { localisationData: query, isPending } = useProjectLocalisation(projectId, 'kubernetes');
+  const { continents: unfilteredContinents, regions: unfilteredRegions } = query || {};
   const regions = unfilteredRegions?.filter((region) =>
     regionFilter ? regionFilter(region) : true,
   );
@@ -46,9 +39,8 @@ export function useRegionSelector({
     () =>
       (selectedContinent?.id === WORLD
         ? regions
-        : regions?.filter(
-            ({ continentLabel }) => continentLabel === selectedContinent?.name,
-          )) || [],
+        : regions?.filter(({ continentLabel }) => continentLabel === selectedContinent?.name)) ||
+      [],
     [selectedContinent, regions],
   );
 
@@ -73,9 +65,7 @@ export function useRegionSelector({
     (region: TLocation) =>
       continentRegions.filter(
         (_region) =>
-          _region.macro === region?.macro &&
-          _region?.isMacro === false &&
-          _region !== region,
+          _region.macro === region?.macro && _region?.isMacro === false && _region !== region,
       ),
     [continentRegions],
   );
@@ -94,18 +84,14 @@ export function useRegionSelector({
 
   // list of displayed micro regions
   const microRegions = useMemo(() => {
-    const actualRegions = macroRegions.find(
-      (region) => region.name === selectedMacroRegion,
-    );
+    const actualRegions = macroRegions.find((region) => region.name === selectedMacroRegion);
     return actualRegions ? filterMicrosRegions(actualRegions) : [];
   }, [macroRegions, selectedMacroRegion]);
 
   const selectedRegionIsDisabled = useMemo(
     () =>
       [selectedMacroRegion, selectedMicroRegion].some((name) => {
-        const r = [...macroRegions, ...microRegions].find(
-          (region) => region.name === name,
-        );
+        const r = [...macroRegions, ...microRegions].find((region) => region.name === name);
         return r?.enabled === false;
       }),
     [macroRegions, microRegions, selectedMacroRegion, selectedMicroRegion],

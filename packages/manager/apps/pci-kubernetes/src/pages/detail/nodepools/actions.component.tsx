@@ -1,15 +1,16 @@
 import { useHref } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
+
 import { ActionMenu } from '@ovh-ux/manager-react-components';
+
 import { TClusterNodePool } from '@/api/data/node-pools';
 
 type ActionsComponentProps = {
   pool: TClusterNodePool;
 };
 
-export default function ActionsComponent({
-  pool,
-}: Readonly<ActionsComponentProps>) {
+export default function ActionsComponent({ pool }: Readonly<ActionsComponentProps>) {
   const { t } = useTranslation('node-pool');
 
   const scaleHref = useHref(`./scale?nodePoolId=${pool.id}`);

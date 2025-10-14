@@ -23,6 +23,8 @@
 
     <telephony-sva-wallet-status-banner
         sva-wallet="DashboardCtrl.svaWallet"
+        is-sva-wallet-valid="DashboardCtrl.isSvaWalletValid"
+        sva-wallet-onboarding="DashboardCtrl.svaWalletOnboarding"
     ></telephony-sva-wallet-status-banner>
     <div
         class="row d-md-flex mb-5"
@@ -226,6 +228,8 @@
                     class="h100 mb-5"
                     data-ng-if="DashboardCtrl.showSvaProfile"
                     sva-wallet="DashboardCtrl.svaWallet"
+                    is-sva-wallet-valid="DashboardCtrl.isSvaWalletValid"
+                    sva-wallet-onboarding="DashboardCtrl.svaWalletOnboarding"
                     data-show-repayment-link="true"
                 ></telephony-sva-wallet-profile-tile>
             </div>

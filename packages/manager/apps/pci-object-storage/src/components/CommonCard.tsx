@@ -14,7 +14,7 @@ export const CommonCard = ({
   <OdsCard className={`flex-col h-fit ${className}`} color="neutral">
     <div className="flex flex-col w-full">
       <div className="mx-8">
-        <div className="flex flex-col w-full my-6">
+        <div className="flex flex-col w-full my-5">
           <OdsText preset="heading-4" className="font-semibold">
             {title}
           </OdsText>

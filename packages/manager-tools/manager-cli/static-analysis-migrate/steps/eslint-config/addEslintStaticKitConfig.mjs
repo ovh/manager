@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { access, writeFile } from 'fs/promises';
+import { access, appendFile, readFile, writeFile } from 'fs/promises';
 import { spawn } from 'node:child_process';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -19,9 +19,73 @@ const isDryRun = process.argv.includes('--dry-run');
 
 const applicationPath = path.resolve(applicationsBasePath, appName);
 const eslintConfigPath = path.join(applicationPath, 'eslint.config.mjs');
+const repoRoot = path.resolve(__dirname, '../../../../../..');
 
 /**
- * Runs `yarn lint:tsx` for a specific app, optionally with --fix.
+ * Generic helper to upsert ignore entries into root-level ignore files.
+ * Supports ESLint, Prettier, and Stylelint in a unified way.
+ */
+
+const IGNORE_TARGETS = [
+  { file: '.eslintignore', label: 'ESLint' },
+  { file: '.prettierignore', label: 'Prettier' },
+  { file: '.stylelintignore', label: 'Stylelint' },
+];
+
+/**
+ * Ensures the migrated app is excluded from legacy root linters by appending
+ * its relative path to each target ignore file.
+ * - Creates the file if missing
+ * - Avoids duplicates (idempotent)
+ * - Appends at the end
+ */
+const upsertRootIgnoreFiles = async () => {
+  const relativeFromRoot = path.relative(repoRoot, applicationPath).split(path.sep).join('/');
+
+  for (const { file, label } of IGNORE_TARGETS) {
+    const targetPath = path.join(repoRoot, file);
+
+    let current = '';
+    try {
+      current = await readFile(targetPath, 'utf-8');
+    } catch {
+      if (isDryRun) {
+        console.log(`🧪 [dry-run] Would create ${file} at repo root`);
+      } else {
+        await writeFile(targetPath, '', 'utf-8');
+        console.log(`🆕 Created empty ${file} at repo root`);
+      }
+    }
+
+    // Read again if file was created
+    if (!current) {
+      try {
+        current = await readFile(targetPath, 'utf-8');
+      } catch {
+        current = '';
+      }
+    }
+
+    const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const exists = new RegExp(`^\\s*${escapeRegex(relativeFromRoot)}\\s*$`, 'm').test(current);
+
+    if (exists) {
+      console.log(`ℹ️  "${relativeFromRoot}" already present in ${file}. Skipping append.`);
+      continue;
+    }
+
+    const toAppend = (current.endsWith('\n') ? '' : '\n') + relativeFromRoot + '\n';
+    if (isDryRun) {
+      console.log(`🧪 [dry-run] Would append to ${file}:\n${relativeFromRoot}`);
+    } else {
+      await appendFile(targetPath, toAppend, 'utf-8');
+      console.log(`➕ Appended "${relativeFromRoot}" to ${file} (${label} will ignore this app).`);
+    }
+  }
+};
+
+/**
+ * Runs lint for a specific app, optionally with --fix.
  *
  * @param {string} appName - The application name (e.g., 'zimbra').
  * @param {Object} [options] - Linting options.
@@ -34,15 +98,16 @@ export const runLintTSCli = (appName, { fix = false } = {}) => {
     return;
   }
 
-  const args = ['lint:tsx', '--', '--app', pkgName];
+  const args = ['pm:lint:app', '--app', pkgName];
   if (fix) args.push('--fix');
 
   console.log(`\n🚦 Running lint check for "${appName}" via \`yarn ${args.join(' ')}\`\n`);
 
+  // Run app lint
   const proc = spawn('yarn', args, {
     shell: true,
     stdio: 'inherit',
-    cwd: path.resolve(__dirname, '../../../..'),
+    cwd: repoRoot,
   });
 
   proc.on('close', (code) => {
@@ -54,7 +119,7 @@ export const runLintTSCli = (appName, { fix = false } = {}) => {
   });
 
   proc.on('error', (err) => {
-    console.error(`❌ Failed to run lint:tsx for "${appName}": ${err.message}`);
+    console.error(`❌ Failed to run lint for "${appName}": ${err.message}`);
   });
 };
 
@@ -158,15 +223,19 @@ const addEslintStaticKitConfig = async () => {
     }
   }
 
-  // 2. Run the build script using yarn workspace command
+  // 2. Build static-analysis-kit locally
   console.log(
     `🛠 Running build script inside 'manager/packages/manager-tools/manager-static-analysis-kit'...`,
   );
-  const buildProc = spawn('yarn', ['workspace', '@ovh-ux/manager-static-analysis-kit', 'build'], {
-    shell: true,
-    stdio: 'inherit',
-    cwd: path.resolve(__dirname, '../../../..'), // Run from the root directory
-  });
+  const buildProc = spawn(
+    'yarn',
+    ['pm:build:ci', '--filter="@ovh-ux/manager-static-analysis-kit"'],
+    {
+      shell: true,
+      stdio: 'inherit',
+      cwd: repoRoot, // Run from the root directory
+    },
+  );
 
   buildProc.on('close', (code) => {
     if (code === 0) {
@@ -207,7 +276,10 @@ const addEslintStaticKitConfig = async () => {
     writePackageJson(applicationPath, pkg);
   }
 
-  // 4. Final suggestion
+  // 4. Exclude this app from legacy root config (eslint, prettier, stylelint, ...)
+  await upsertRootIgnoreFiles();
+
+  // 5. Final suggestion
   console.log(`\n✅ ESLint static analysis setup complete for "${appName}".`);
   console.log(`📘 You can now progressively enable rules for full adoption.`);
   console.log(`📄 See: /development-guidelines/static-analysis-kit-migration/`);

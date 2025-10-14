@@ -1,15 +1,14 @@
-import { useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
+
+import { useQuery } from '@tanstack/react-query';
+
 import {
+  TPrivateNetworkSubnet,
   getPrivateNetworkSubnets,
   getRegionSubnets,
-  TPrivateNetworkSubnet,
 } from '@/api/data/subnets';
 
-export const getPrivateNetworkSubnetsQuery = (
-  projectId: string,
-  privateNetworkId: string,
-) => ({
+export const getPrivateNetworkSubnetsQuery = (projectId: string, privateNetworkId: string) => ({
   queryKey: ['project', projectId, 'network', privateNetworkId, 'subnet'],
   queryFn: (): Promise<TPrivateNetworkSubnet[]> =>
     getPrivateNetworkSubnets(projectId, privateNetworkId),
@@ -33,9 +32,7 @@ export const usePrivateNetworkSubnets = (
 
   return useMemo(() => {
     const subnetsByRegion = regionName
-      ? data?.filter(({ ipPools }) =>
-          ipPools.some((ipPool) => ipPool.region === regionName),
-        )
+      ? data?.filter(({ ipPools }) => ipPools.some((ipPool) => ipPool.region === regionName))
       : data;
 
     return {
@@ -53,11 +50,7 @@ export const getRegionSubsnetsQueryKey = (
   networkId: string,
 ) => ['region-subnets', projectId, 'region', regionName, 'network', networkId];
 
-export const useRegionSubnets = (
-  projectId: string,
-  regionName: string,
-  networkId: string,
-) =>
+export const useRegionSubnets = (projectId: string, regionName: string, networkId: string) =>
   useQuery({
     queryKey: getRegionSubsnetsQueryKey(projectId, regionName, networkId),
     queryFn: (): Promise<TPrivateNetworkSubnet[]> =>

@@ -5,7 +5,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { Icon, Link, Text } from '@ovhcloud/ods-react';
 import DashboardCardLayout from './DashboardCardLayout.component';
 import { useDashboard } from '../hooks/useDashboard';
-import { DashboardTileBlock } from './DashboardTile.component';
+import { DashboardTileBlock } from './tile/DashboardTile.component';
 import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceActionModal';
 import { Clipboard } from '@/components/clipboard/Clipboard.component';
 
@@ -43,7 +43,7 @@ const InstancePropertyBlock: FC = () => {
               <Link
                 key={id}
                 href={`${projectUrl}/storages/blocks/${id}/edit`}
-                className="block whitespace-nowrap overflow-hidden text-ellipsis max-w-[13rem]"
+                className="block whitespace-nowrap overflow-hidden text-ellipsis max-w-[13rem] visited:text-[var(--ods-color-primary-500)]"
               >
                 {name}
               </Link>
@@ -52,7 +52,11 @@ const InstancePropertyBlock: FC = () => {
             <Text className="my-4">-</Text>
           )}
           {instance?.isEditEnabled && (
-            <Link as={RouterLink} to="./attach">
+            <Link
+              as={RouterLink}
+              to="./attach"
+              className="visited:text-[var(--ods-color-primary-500)]"
+            >
               {t('pci_instances_dashboard_attach_volumes')}
               <Icon name="arrow-right" />
             </Link>
@@ -65,7 +69,11 @@ const InstancePropertyBlock: FC = () => {
       >
         <Text className="my-4">{instance?.image}</Text>
         {instance?.isEditEnabled && (
-          <Link as={RouterLink} to={`../${instanceId}/edit`}>
+          <Link
+            as={RouterLink}
+            to={`../${instanceId}/edit`}
+            className="visited:text-[var(--ods-color-primary-500)]"
+          >
             {t('pci_instances_dashboard_edit_image')}
             <Icon name="arrow-right" />
           </Link>
@@ -82,7 +90,6 @@ const InstancePropertyBlock: FC = () => {
       {instance?.login && (
         <DashboardTileBlock
           label={t('pci_instances_dashboard_network_connexion')}
-          withoutDivider
         >
           <div className="flex">
             <Clipboard value={instance.login} />

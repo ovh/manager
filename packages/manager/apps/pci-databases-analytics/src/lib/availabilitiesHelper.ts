@@ -301,7 +301,7 @@ export function createTree(
   suggestions: database.availability.Suggestion[],
   catalog: order.publicOrder.Catalog,
 ) {
-  const tree = availabilities.reduce((acc, curr) => {
+  const tree = availabilities.reduce<Engine[]>((acc, curr) => {
     const engineSuggestion = suggestions.find((s) => s.engine === curr.engine);
     // Map engine
     const treeEngine = mapEngine(acc, curr, capabilities, engineSuggestion);
@@ -345,7 +345,7 @@ export function createTree(
     // Set prices
     setPrices(curr, catalog, treeFlavor);
     return acc;
-  }, [] as Engine[]);
+  }, []);
   // sanitize: if default version returned from suggestions by api does not exist,
   // set the last one as default
   tree.forEach((engine) => {

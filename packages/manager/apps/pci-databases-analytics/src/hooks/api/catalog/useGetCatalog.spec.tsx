@@ -21,7 +21,7 @@ vi.mock('@/hooks/useUser', () => {
 
 describe('useGetCatalog', () => {
   it('should return OVH Catalog', async () => {
-    vi.mocked(API.catalogApi.getCatalog).mockResolvedValue([mockedCatalog]);
+    vi.mocked(API.catalogApi.getCatalog).mockResolvedValue(mockedCatalog);
 
     const { result } = renderHook(() => useGetCatalog(), {
       wrapper: QueryClientWrapper,
@@ -29,7 +29,7 @@ describe('useGetCatalog', () => {
 
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true);
-      expect(result.current.data).toEqual([mockedCatalog]);
+      expect(result.current.data).toEqual(mockedCatalog);
       expect(API.catalogApi.getCatalog).toHaveBeenCalled();
     });
   });

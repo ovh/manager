@@ -1,7 +1,9 @@
 import { render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import BillingStep, { TBillingStepProps } from './BillingStep.component';
+
 import { wrapper } from '@/wrapperRenders';
+
+import BillingStep, { TBillingStepProps } from './BillingStep.component';
 
 const defaultProps: TBillingStepProps = {
   price: 0,

@@ -186,18 +186,21 @@ export default class EditOwnerFormFieldController {
   // Returns a list of fields that are required to pass the validation rules.
   // In some cases we need to return a list of fields even though the rule says otherwise.
   isRequired() {
-    return Object.values(FORCED_FIELDS).includes(this.rule?.label) || !!this.rule?.constraints
-      .filter((constraint) => constraint.operator === 'required')
-      .find((rules) => {
-        if (rules?.conditions) {
-          return rules?.conditions?.and
-            ? !rules?.conditions?.and
-                .map((rule) => this.checkConstraint(rule.fields))
-                .some((e) => e === false)
-            : this.checkConstraint(rules);
-        }
-        return !!rules;
-      });
+    return (
+      Object.values(FORCED_FIELDS).includes(this.rule?.label) ||
+      !!this.rule?.constraints
+        .filter((constraint) => constraint.operator === 'required')
+        .find((rules) => {
+          if (rules?.conditions) {
+            return rules?.conditions?.and
+              ? !rules?.conditions?.and
+                  .map((rule) => this.checkConstraint(rule.fields))
+                  .some((e) => e === false)
+              : this.checkConstraint(rules);
+          }
+          return !!rules;
+        })
+    );
   }
 
   isReadOnly() {
@@ -227,35 +230,40 @@ export default class EditOwnerFormFieldController {
       this.contactInformations,
       this.rule.label,
     );
+
     if (this.rule.placeholder && !value) {
       if (this.getFieldType() === 'select') {
-        this.value = {
-          key: this.rule.placeholder,
-        };
-      } else {
-        this.value = this.rule.placeholder;
+        const enums = this.getTranslatedEnums();
+
+        if (this.rule.label === this.FIELD_NAME_LIST.language) {
+          const languageKey = this.contactInformations.language;
+          this.value = enums.find((item) => item.key === languageKey) || null;
+          return;
+        }
+
+        if (this.rule.label === this.FIELD_NAME_LIST.country) {
+          const countryKey = this.contactInformations.country;
+          this.value = enums.find((item) => item.key === countryKey) || null;
+        }
       }
     }
   }
 
   // if rule has an initialValue, use it
   setInitialValue() {
+    if (!this.rule || !this.contactInformations) return;
+    const enums = this.getTranslatedEnums();
     const initialValue = this.getDescendantProp(
       this.contactInformations,
       this.rule.label,
     );
-    if (initialValue) {
-      let value = angular.copy(initialValue);
-      if (this.getFieldType() === 'select') {
-        const translated = this.getFormattedTranslation(this.rule, value);
-        value = {
-          key: value,
-          translated,
-        };
-      } else if (this.getFieldType() === 'date') {
-        value = moment(initialValue, 'YYYY-MM-DD').toDate();
-      }
-      this.value = value;
+
+    if (this.getFieldType() === 'select') {
+      this.value = enums.find((item) => item.key === initialValue) || null;
+    } else if (this.getFieldType() === 'date') {
+      this.value = moment(initialValue, 'YYYY-MM-DD').toDate();
+    } else {
+      this.value = angular.copy(initialValue);
     }
   }
 
@@ -357,12 +365,7 @@ export default class EditOwnerFormFieldController {
           translated,
         };
       })
-      .sort((a, b) => {
-        if (a.translated > b.translated) {
-          return 1;
-        }
-        return -1;
-      });
+      .sort((a, b) => a.translated.localeCompare(b.translated));
 
     this.translatedEnumCache = result;
     return result;

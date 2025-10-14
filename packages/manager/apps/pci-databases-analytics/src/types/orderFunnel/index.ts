@@ -7,7 +7,7 @@ export interface EngineWithVersion {
 }
 
 export interface NetworkOptionValue {
-  type: database.NetworkTypeEnum;
+  type?: database.NetworkTypeEnum;
   networkId?: string;
   subnetId?: string;
 }

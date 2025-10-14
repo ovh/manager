@@ -1,16 +1,16 @@
 import { useCallback } from 'react';
-import {
-  TRegion,
-  useProductAvailability,
-  RegionSelectorProps,
-} from '@ovh-ux/manager-pci-common';
-import { OsdsSpinner } from '@ovhcloud/ods-components/react';
+
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import './KubeRegionSelector.css';
+import { OsdsSpinner } from '@ovhcloud/ods-components/react';
+
+import { RegionSelectorProps, TRegion, useProductAvailability } from '@ovh-ux/manager-pci-common';
+
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
-import { RegionSelector } from './RegionSelector.component';
 import useHas3AZRegions from '@/hooks/useHas3AZRegions';
 import { TLocation } from '@/types/region';
+
+import './KubeRegionSelector.css';
+import { RegionSelector } from './RegionSelector.component';
 
 export interface KubeRegionSelectorProps {
   projectId: string;
@@ -34,9 +34,7 @@ export function KubeRegionSelector({
 
   const regionFilter = useCallback(
     (region: TLocation) => {
-      const product = availability?.products.find(
-        ({ name }) => name === 'kubernetes',
-      );
+      const product = availability?.products.find(({ name }) => name === 'kubernetes');
 
       return Boolean(
         region.isMacro ||
@@ -51,9 +49,7 @@ export function KubeRegionSelector({
   );
 
   if (isPending) {
-    return (
-      <OsdsSpinner data-testid="spinner" inline size={ODS_SPINNER_SIZE.md} />
-    );
+    return <OsdsSpinner data-testid="spinner" inline size={ODS_SPINNER_SIZE.md} />;
   }
 
   return (

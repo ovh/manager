@@ -3,15 +3,12 @@ import { spawnSync } from 'node:child_process';
 
 import { logError, logInfo } from './utils/log-utils.js';
 
-// Define the set of validation test cases for types-coverage-tests CLI
+// Define the set of validation test cases
 const cases = [
-  // Debug only — very slow, runs across all apps
-  // { name: 'Auto-discovery (all apps)', cmd: 'yarn manager-types-coverage', expect: 0 },
-
   { name: 'Single app (zimbra)', cmd: 'yarn manager-types-coverage --app zimbra', expect: 0 },
   {
-    name: 'Multiple apps (container,zimbra,web-ongoing-operations,key-management-service)',
-    cmd: 'yarn manager-types-coverage --apps container,zimbra,web-ongoing-operations,key-management-service',
+    name: 'Multiple apps (container,zimbra)',
+    cmd: 'yarn manager-types-coverage --apps container,zimbra',
     expect: 0,
   },
   {
@@ -25,13 +22,48 @@ const cases = [
     expect: 0,
   },
   {
+    name: 'Single library static path by folder name (manager-react-components)',
+    cmd: 'yarn manager-types-coverage --library manager-react-components',
+    expect: 0,
+  },
+  {
+    name: 'Single library static path by package name (manager-react-components)',
+    cmd: 'yarn manager-types-coverage --library @ovh-ux/manager-react-components',
+    expect: 0,
+  },
+  {
+    name: 'Single library dynamic path by folder name (shell-client)',
+    cmd: 'yarn manager-types-coverage --library shell-client',
+    expect: 0,
+  },
+  {
+    name: 'Single library static path by package name (shell-client)',
+    cmd: 'yarn manager-types-coverage --library @ovh-ux/manager-react-shell-client',
+    expect: 0,
+  },
+  {
+    name: 'Multiple libraries by folder names (manager-wiki,manager-react-components,shell-client,logs-to-customer)',
+    cmd: 'yarn manager-types-coverage --libraries manager-wiki,manager-react-components,shell-client,logs-to-customer',
+    expect: 0,
+  },
+  {
+    name: 'Multiple libraries by package names (manager-wiki,manager-react-components,shell-client,logs-to-customer)',
+    cmd: 'yarn manager-types-coverage --libraries @ovh-ux/manager-wiki,@ovh-ux/manager-react-components,@ovh-ux/manager-react-shell-client,@ovh-ux/logs-to-customer',
+    expect: 0,
+  },
+  {
     name: 'Mixed valid+invalid apps',
     cmd: 'yarn manager-types-coverage --apps zimbra,unknown-app,container',
     expect: 0,
   },
   {
     name: 'Mixed valid+invalid packages',
-    cmd: 'yarn manager-types-coverage --packages @ovh-ux/manager-zimbra-app,@ovh-ux/manager-ghost-app',
+    cmd: 'yarn manager-types-coverage --packages @ovh-ux/manager-wiki,manager-react-components,@ovh-ux/manager-ghost-app',
+    expect: 0,
+  },
+  {
+    name: 'Mixed valid+invalid libraries',
+    cmd: 'yarn manager-types-coverage --libraries @ovh-ux/manager-zimbra-app,@ovh-ux/manager-ghost-app',
     expect: 0,
   },
   {
@@ -43,6 +75,11 @@ const cases = [
     name: 'All invalid packages',
     cmd: 'yarn manager-types-coverage --packages @ovh-ux/manager-ghost-app,@ovh-ux/manager-missing-app',
     expect: 1,
+  },
+  {
+    name: 'Turbo build failure simulation (pci-ai-tools)',
+    cmd: 'yarn manager-types-coverage --app pci-ai-tools',
+    expect: 0,
   },
 ];
 

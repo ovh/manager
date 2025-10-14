@@ -1,6 +1,0 @@
-{
-  "pci_databases_connectors_add_back": "Konektory",
-  "pci_databases_connectors_add_button": "Dodaj konektor",
-  "pci_databases_connectors_add_success_message": "Konektor został utworzony.",
-  "pci_databases_connectors_add_error_message": "Wystąpił błąd podczas tworzenia konektora: {{details}}"
-}

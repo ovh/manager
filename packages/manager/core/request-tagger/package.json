@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/request-tagger",
-  "version": "0.5.2",
+  "version": "0.5.5",
   "description": "OVHcloud control panel Request tagger",
   "repository": {
     "type": "git",
@@ -17,13 +17,14 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc",
+    "build": "tsc && tsc-alias",
+    "dev": "tsc && tsc-alias",
     "lint:modern": "manager-lint --config eslint.config.mjs ./src/**.ts",
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src/**.ts",
     "prepare": "tsc"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "^0.9.0"
+    "@ovh-ux/manager-static-analysis-kit": "^0.11.1",
+    "tsc-alias": "^1.8.16"
   }
 }

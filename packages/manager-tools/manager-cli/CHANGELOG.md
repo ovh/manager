@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.13.0...@ovh-ux/manager-cli@0.13.1) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-cli
+
+
+
+
+
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.12.2...@ovh-ux/manager-cli@0.13.0) (2025-10-07)
+
+
+### Features
+
+* ignore modern lint apps from legacy one ([c81e411](https://github.com/ovh/manager/commit/c81e411ef176a7ceaac367c8761e875e844f4266)), closes [#MANAGER-19804](https://github.com/ovh/manager/issues/MANAGER-19804)
+
+
+
+
+
+## [0.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.12.1...@ovh-ux/manager-cli@0.12.2) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-cli
+
+
+
+
+
+## [0.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.12.0...@ovh-ux/manager-cli@0.12.1) (2025-09-30)
+
+
+### Bug Fixes
+
+* static kit reporting case of full migration ([108aedb](https://github.com/ovh/manager/commit/108aedb8dfc744284ce2d2024801d42584025acf)), closes [#MANAGER-17961](https://github.com/ovh/manager/issues/MANAGER-17961)
+
+
+
+
+
 # [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.11.1...@ovh-ux/manager-cli@0.12.0) (2025-09-18)
 
 

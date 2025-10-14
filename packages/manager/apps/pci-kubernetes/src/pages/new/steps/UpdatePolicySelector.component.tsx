@@ -1,13 +1,10 @@
-import {
-  OsdsFormField,
-  OsdsText,
-  OsdsTile,
-  OsdsLink,
-  OsdsIcon,
-  OsdsChip,
-} from '@ovhcloud/ods-components/react';
+import { useContext } from 'react';
+
+import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
+
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_CHIP_SIZE,
   ODS_ICON_NAME,
@@ -15,12 +12,18 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import clsx from 'clsx';
-import { useTranslation } from 'react-i18next';
-import { useContext } from 'react';
-import { UPGRADE_POLICIES } from '@/constants';
+import {
+  OsdsChip,
+  OsdsFormField,
+  OsdsIcon,
+  OsdsLink,
+  OsdsText,
+  OsdsTile,
+} from '@ovhcloud/ods-components/react';
 
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
+import { UPGRADE_POLICIES } from '@/constants';
 import { DOCUMENTATION_LINK } from '@/pages/upgrade-policy/UpgradePolicy.constant';
 import { UpdatePolicy } from '@/types';
 
@@ -53,9 +56,7 @@ export function UpdatePolicySelector({
         </OsdsText>
       </OsdsFormField>
       <div className="my-4">
-        <OsdsText>
-          {t('kube_update_policy_picker_documentation_text', { ns: 'add' })}
-        </OsdsText>{' '}
+        <OsdsText>{t('kube_update_policy_picker_documentation_text', { ns: 'add' })}</OsdsText>{' '}
         <OsdsLink
           color={ODS_THEME_COLOR_INTENT.primary}
           href={DOCUMENTATION_LINK[shell.environment.getUser().ovhSubsidiary]}
@@ -78,10 +79,7 @@ export function UpdatePolicySelector({
             data-testid={policy}
             role="button"
             key={policy}
-            className={clsx(
-              tileClass,
-              policy === selectPolicy ? selectedTileClass : null,
-            )}
+            className={clsx(tileClass, policy === selectPolicy ? selectedTileClass : null)}
             onClick={() => onPolicyChange(policy)}
           >
             <div slot="end" className="align-bottom inline-block">
@@ -89,21 +87,14 @@ export function UpdatePolicySelector({
                 <OsdsText
                   color={ODS_THEME_COLOR_INTENT.text}
                   size={ODS_TEXT_SIZE._600}
-                  className={`block ${
-                    selectPolicy === policy ? 'font-bold' : 'font-normal'
-                  }`}
+                  className={`block ${selectPolicy === policy ? 'font-bold' : 'font-normal'}`}
                 >
                   {t(`service:kube_service_upgrade_policy_${policy}`)}
                   {/**  add chip if update policy  equal last version */}
                 </OsdsText>
                 {policy === UpdatePolicy.AlwaysUpdate && (
-                  <OsdsChip
-                    color={ODS_THEME_COLOR_INTENT.success}
-                    size={ODS_CHIP_SIZE.sm}
-                  >
-                    {t(
-                      'versions:pci_project_versions_recommended_version_female',
-                    )}
+                  <OsdsChip color={ODS_THEME_COLOR_INTENT.success} size={ODS_CHIP_SIZE.sm}>
+                    {t('versions:pci_project_versions_recommended_version_female')}
                   </OsdsChip>
                 )}
               </div>

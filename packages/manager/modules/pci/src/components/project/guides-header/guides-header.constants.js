@@ -599,24 +599,6 @@ export const GUIDES_LIST = {
       tracking: '::guides::go_to_configure_reverse_dns_instance',
     },
   },
-  databases: {
-    ...DEFAULT_GUIDES,
-    first_steps_with_databases: {
-      url: FIRST_STEPS_WITH_DATABASES,
-      key: 'first_steps_with_databases',
-      tracking: '::guides::go_to_getting_started',
-    },
-    mongo_db_capabilities_and_limitations: {
-      url: MONGO_DB_CAPABILITIES_AND_LIMITATIONS,
-      key: 'mongo_db_capabilities_and_limitations',
-      tracking: '::guides::go_to_mongodb_capabilities',
-    },
-    mysql_capabilities_and_limitations: {
-      url: MYSQL_CAPABILITIES_AND_LIMITATIONS,
-      key: 'mysql_capabilities_and_limitations',
-      tracking: '::guides::go_to_mysql_capabilities',
-    },
-  },
   kubernetes: {
     ...DEFAULT_GUIDES,
     create_a_cluster: {

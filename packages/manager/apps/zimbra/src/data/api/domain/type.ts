@@ -6,6 +6,7 @@ export type DomainBodyParamsType = {
   autoConfigureMX: boolean;
   autoConfigureSPF: boolean;
   autoConfigureDKIM: boolean;
+  dkimEnabled?: boolean;
 };
 
 export type DomainType = {
@@ -115,6 +116,8 @@ export enum DomainDiagnosisTestDKIMErrorCodeEnum {
   'MISSING_ONE_SELECTOR' = 'MISSING_ONE_SELECTOR',
   'OVH_NOT_INCLUDED' = 'OVH_NOT_INCLUDED',
   'TASK_FAILED' = 'TASK_FAILED',
+  'TASK_RUNNING' = 'TASK_RUNNING',
+  'DKIM_DISABLED' = 'DKIM_DISABLED',
 }
 
 /** DKIM Diagnosis test result */
@@ -159,6 +162,7 @@ export enum DomainDiagnosisTestStatusEnum {
   'ERROR' = 'ERROR',
   'OK' = 'OK',
   'WARNING' = 'WARNING',
+  'DISABLED' = 'DISABLED',
 }
 
 /** Details on the SPF error diagnosis error */

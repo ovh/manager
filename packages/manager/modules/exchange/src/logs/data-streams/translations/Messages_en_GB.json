@@ -1,0 +1,3 @@
+{
+  "exchange_logs_data_streams_description": "By subscribing to Exchange service logs, they will be transferred to the Logs Data Platform. This platform gives you access to advanced features such as alerting, search execution, and retention management."
+}

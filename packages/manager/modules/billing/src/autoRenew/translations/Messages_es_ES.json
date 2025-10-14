@@ -14,7 +14,7 @@
   "billing_autorenew_service_status_automatic": "Renovación automática",
   "billing_autorenew_service_status_manual": "Renovación manual",
   "billing_autorenew_service_status_manualPayment": "Renovación manual",
-  "billing_autorenew_service_status_pending_debt": "Factura pendiente",
+  "billing_autorenew_service_status_unpaid": "Factura pendiente",
   "billing_autorenew_service_status_delete_at_expiration": "Baja programada",
   "billing_autorenew_service_status_expired": "Dado de baja",
   "billing_autorenew_service_expiration_weeks": "Expiración en una semana ",

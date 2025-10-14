@@ -1,17 +1,19 @@
 import { useState } from 'react';
+
 import { TLocalisation } from '@ovh-ux/manager-pci-common';
-import { useStep } from './useStep';
-import { TNetworkFormState } from '../steps/NetworkClusterStep.component';
-import { TClusterPlan, UpdatePolicy } from '@/types';
 
 import { NodePoolPrice } from '@/api/data/kubernetes';
+import { TClusterPlan, UpdatePolicy } from '@/types';
+
+import { TNetworkFormState } from '../steps/NetworkClusterStep.component';
+import { useStep } from './useStep';
 
 export type TClusterCreationForm = {
   region: TLocalisation | null;
   version: string;
   updatePolicy: UpdatePolicy | null;
   network: TNetworkFormState | null;
-  nodePools?: NodePoolPrice[];
+  nodePools?: NodePoolPrice[] | null;
   plan: TClusterPlan | null;
   clusterName: string;
 };
@@ -55,14 +57,9 @@ export function useClusterCreationStepper(has3AZRegions = false) {
       step: clusterNameStep,
       edit: () => {
         clusterNameStep.unlock();
-        [
-          locationStep,
-          planStep,
-          versionStep,
-          networkStep,
-          nodeStep,
-          confirmStep,
-        ].forEach(stepReset);
+        [locationStep, planStep, versionStep, networkStep, nodeStep, confirmStep].forEach(
+          stepReset,
+        );
       },
       update: (clusterName: string) => {
         setForm((f) => ({
@@ -84,9 +81,7 @@ export function useClusterCreationStepper(has3AZRegions = false) {
       step: locationStep,
       edit: () => {
         locationStep.unlock();
-        [planStep, versionStep, networkStep, nodeStep, confirmStep].forEach(
-          stepReset,
-        );
+        [planStep, versionStep, networkStep, nodeStep, confirmStep].forEach(stepReset);
       },
       submit: (region: TLocalisation) => {
         setForm((f) => ({
@@ -159,7 +154,7 @@ export function useClusterCreationStepper(has3AZRegions = false) {
       submit: (nodePools: NodePoolPrice[] | null) => {
         setForm((f) => ({
           ...f,
-          ...(nodePools && { nodePools }),
+          nodePools,
         }));
         nodeStep.check();
         nodeStep.lock();

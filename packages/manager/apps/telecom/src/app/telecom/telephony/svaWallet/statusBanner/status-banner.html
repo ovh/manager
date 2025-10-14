@@ -17,10 +17,23 @@
     <a
         class="oui-link_icon"
         data-ui-sref="telecom.telephony.billingAccount.svaWallet"
+        data-ng-if="!$ctrl.svaWalletOnboarding"
     >
         <span
             data-translate="telephony_billingAccount_svaWallet_status_banner_edit_kyc"
         ></span>
         <span class="oui-icon oui-icon-arrow-right" aria-hidden="true"></span>
+    </a>
+
+    <a
+        class="oui-link_icon"
+        data-ng-if="$ctrl.svaWalletOnboarding"
+        href="{{:: $ctrl.svaWalletOnboarding.url}}"
+        target="_top"
+    >
+        <span
+            data-translate="telephony_billingAccount_svaWallet_status_banner_edit_kyc"
+        ></span>
+        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
     </a>
 </div>

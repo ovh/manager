@@ -223,5 +223,5 @@ export const getColumns = ({
     creationDateColumn,
     statusColumn,
     actionsColumn,
-  ] as ColumnDef<GenericUser>[];
+  ];
 };

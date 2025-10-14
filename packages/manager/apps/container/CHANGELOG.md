@@ -3,6 +3,86 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.155.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.155.1...@ovh-ux/manager-container-app@0.155.2) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.155.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.155.0...@ovh-ux/manager-container-app@0.155.1) (2025-10-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4393] ([7d75150](https://github.com/ovh/manager/commit/7d7515069dbad4ce06aa42d375510fc604684e0d))
+
+
+
+
+
+# [0.155.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.154.2...@ovh-ux/manager-container-app@0.155.0) (2025-10-09)
+
+
+### Features
+
+* **db:** remove db angular app and unused code ([caf83ff](https://github.com/ovh/manager/commit/caf83ff22815731161db0812ccffee36d43ceb6e)), closes [#DATATR-2480](https://github.com/ovh/manager/issues/DATATR-2480)
+
+
+
+
+
+## [0.154.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.154.1...@ovh-ux/manager-container-app@0.154.2) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.154.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.154.0...@ovh-ux/manager-container-app@0.154.1) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.154.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.153.0...@ovh-ux/manager-container-app@0.154.0) (2025-09-30)
+
+
+### Features
+
+* **container:** wrap modal handlers with usecallback ([7864882](https://github.com/ovh/manager/commit/78648826f66a7d82fd7b9578271c4a0ab561c8da)), closes [#MANAGER-18812](https://github.com/ovh/manager/issues/MANAGER-18812)
+
+
+
+
+
+# [0.153.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.152.1...@ovh-ux/manager-container-app@0.153.0) (2025-09-29)
+
+
+### Features
+
+* **pci-ai-tools:** add menu Qpu ([e148767](https://github.com/ovh/manager/commit/e148767a220b125c5de4180a02e9657dde0920a8)), closes [#AIS-1207](https://github.com/ovh/manager/issues/AIS-1207)
+
+
+
+
+
+## [0.152.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.152.0...@ovh-ux/manager-container-app@0.152.1) (2025-09-24)
+
+
+### Bug Fixes
+
+* **container:** issue with usecallback in suggestion modal ([f99fe64](https://github.com/ovh/manager/commit/f99fe646e25800910efaeb6b86135f99dd847e71)), closes [#MANAGER-19872](https://github.com/ovh/manager/issues/MANAGER-19872)
+* **container:** suggestion modal error management ([d5d67e7](https://github.com/ovh/manager/commit/d5d67e7e9db62fb5970afc3d7ba664303c37212a)), closes [#MANAGER-14721](https://github.com/ovh/manager/issues/MANAGER-14721)
+
+
+
+
+
 # [0.152.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.151.1...@ovh-ux/manager-container-app@0.152.0) (2025-09-23)
 
 

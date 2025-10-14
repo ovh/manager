@@ -1,0 +1,40 @@
+<oui-modal
+    data-heading="{{'hosting_dashboard_service_abuse_state_modal_title' | translate }}"
+    data-primary-action="$ctrl.primaryAction()"
+    data-primary-disabled="!$ctrl.actionCheckbox"
+    data-secondary-action="$ctrl.secondaryAction()"
+    data-primary-label="{{'hosting_dashboard_service_abuse_state_modal_button_unblock' | translate }}"
+    data-secondary-label="{{'hosting_dashboard_service_abuse_state_modal_button_later' | translate }}"
+    data-type="warning"
+    data-on-dismiss="$ctrl.secondaryAction()"
+    data-loading="$ctrl.isLoading"
+>
+    <div>
+        <p data-translate="{{$ctrl.stateInfoKey}}"></p>
+        <strong data-translate="{{$ctrl.stateMessageKey}}"></strong>
+        <hr />
+        <strong
+            data-translate="hosting_dashboard_service_abuse_state_modal_button_action_title"
+        ></strong>
+        <ol>
+            <li
+                data-translate="hosting_dashboard_service_abuse_state_modal_button_action_first"
+            ></li>
+            <a href="{{ :: $ctrl.languagesHackedWebsiteUrl }}" target="_blank">
+                <span class="oui-icon oui-icon-book" aria-hidden="true"></span>
+                <span
+                    data-translate="hosting_dashboard_service_abuse_state_modal_button_action_guideline"
+                ></span>
+            </a>
+            <li
+                data-translate="hosting_dashboard_service_abuse_state_modal_button_action_second"
+            ></li>
+        </ol>
+        <oui-checkbox data-model="$ctrl.actionCheckbox" class="mt-4">
+            <oui-checkbox-label
+                data-translate="hosting_dashboard_service_abuse_state_modal_button_action_checkbox"
+            >
+            </oui-checkbox-label>
+        </oui-checkbox>
+    </div>
+</oui-modal>

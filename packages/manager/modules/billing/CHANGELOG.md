@@ -3,6 +3,68 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.51.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.51.3...@ovh-ux/manager-billing@0.51.4) (2025-10-09)
+
+
+### Bug Fixes
+
+* **billing:** incorrect service infos url generation ([0da74ed](https://github.com/ovh/manager/commit/0da74ed1330c26a22824dfe0e9fc39dda259ae72)), closes [#MANAGER-19966](https://github.com/ovh/manager/issues/MANAGER-19966) [#INC0158577](https://github.com/ovh/manager/issues/INC0158577)
+
+
+
+
+
+## [0.51.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.51.2...@ovh-ux/manager-billing@0.51.3) (2025-10-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4377] ([619575d](https://github.com/ovh/manager/commit/619575df48aa15cb882ed39168b77073a3a6434b))
+* **i18n:** add missing translations [CDS 4381] ([4945007](https://github.com/ovh/manager/commit/494500772213000e029a07753e43cd5515fe3df3))
+* remove unused translations [CDS] ([b7ea633](https://github.com/ovh/manager/commit/b7ea633a831e20a52039e453cc41b9a486e5967a))
+
+
+
+
+
+## [0.51.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.51.1...@ovh-ux/manager-billing@0.51.2) (2025-10-06)
+
+
+### Bug Fixes
+
+* **billing:** fix terminate payload ([d16fc81](https://github.com/ovh/manager/commit/d16fc81596567f7aa445ca835ccd36dde257c59f)), closes [#MANAGER-16806](https://github.com/ovh/manager/issues/MANAGER-16806)
+
+
+
+
+
+## [0.51.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.51.0...@ovh-ux/manager-billing@0.51.1) (2025-10-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4375] ([b64bc5e](https://github.com/ovh/manager/commit/b64bc5e7ac85abea5918b83836b0b748944923b5))
+
+
+
+
+
+# [0.51.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.50.1...@ovh-ux/manager-billing@0.51.0) (2025-09-30)
+
+
+### Bug Fixes
+
+* **billing:** replace invalid status for unpaid services ([c08bf08](https://github.com/ovh/manager/commit/c08bf08b90f91f860b027c2c2abad90df9fe7480)), closes [#MANAGER-19485](https://github.com/ovh/manager/issues/MANAGER-19485)
+
+
+### Features
+
+* **billing:** add default filter to orders ([fca8643](https://github.com/ovh/manager/commit/fca86430dd62760eee66b0dffb7eb84cd9a1a4f4)), closes [#MANAGER-19041](https://github.com/ovh/manager/issues/MANAGER-19041)
+
+
+
+
+
 ## [0.50.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.50.0...@ovh-ux/manager-billing@0.50.1) (2025-09-23)
 
 

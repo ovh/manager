@@ -18,7 +18,7 @@ describe('useRoadmapChangelog', () => {
         cloud: [
           {
             title: 'title',
-            description: 'description',
+            url: 'url',
             changelog: 'changelog',
             product: 'product',
             releaseDate: 'releaseDate',
@@ -28,7 +28,7 @@ describe('useRoadmapChangelog', () => {
         hostingCollab: [
           {
             title: 'title',
-            description: 'description',
+            url: 'url',
             changelog: 'changelog',
             product: 'product',
             releaseDate: 'releaseDate',

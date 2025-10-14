@@ -1,17 +1,15 @@
-import { describe, it, vi } from 'vitest';
-import { fireEvent, render } from '@testing-library/react';
 import { UseMutationResult, UseQueryResult } from '@tanstack/react-query';
-import RemoveOIDCProvider from '@/pages/oidc-provider/remove/RemoveOIDCProvider.page';
-import { wrapper } from '@/wrapperRenders';
-import { TOidcProvider } from '@/types';
-import * as useKubernetesModule from '@/api/hooks/useKubernetes';
+import { fireEvent, render } from '@testing-library/react';
+import { describe, it, vi } from 'vitest';
 
-type RemoveOIDCProviderPageReturnType = UseMutationResult<
-  never,
-  Error,
-  void,
-  unknown
-> & { removeOidcProvider: () => void };
+import * as useKubernetesModule from '@/api/hooks/useKubernetes';
+import RemoveOIDCProvider from '@/pages/oidc-provider/remove/RemoveOIDCProvider.page';
+import { TOidcProvider } from '@/types';
+import { wrapper } from '@/wrapperRenders';
+
+type RemoveOIDCProviderPageReturnType = UseMutationResult<never, Error, void, unknown> & {
+  removeOidcProvider: () => void;
+};
 
 describe('RemoveOIDCProviderPage', () => {
   it('renders loading spinner when data is pending', () => {
@@ -37,20 +35,20 @@ describe('RemoveOIDCProviderPage', () => {
 
   it('calls removeOidcProvider on confirm button click', () => {
     const mockRemoveOidcProvider = vi.fn();
-    vi.spyOn(useKubernetesModule, 'useRemoveOidcProvider').mockReturnValue(({
+    vi.spyOn(useKubernetesModule, 'useRemoveOidcProvider').mockReturnValue({
       removeOidcProvider: mockRemoveOidcProvider,
       isPending: false,
-    } as unknown) as RemoveOIDCProviderPageReturnType);
+    } as unknown as RemoveOIDCProviderPageReturnType);
     const { getByTestId } = render(<RemoveOIDCProvider />, { wrapper });
     fireEvent.click(getByTestId('removeOIDCProvider-button_submit'));
     expect(mockRemoveOidcProvider).toHaveBeenCalled();
   });
 
   it('disables confirm button when removal is pending', () => {
-    vi.spyOn(useKubernetesModule, 'useRemoveOidcProvider').mockReturnValue(({
+    vi.spyOn(useKubernetesModule, 'useRemoveOidcProvider').mockReturnValue({
       removeOidcProvider: vi.fn(),
       isPending: true,
-    } as unknown) as RemoveOIDCProviderPageReturnType);
+    } as unknown as RemoveOIDCProviderPageReturnType);
     const { getByTestId } = render(<RemoveOIDCProvider />, { wrapper });
     expect(getByTestId('removeOIDCProvider-button_submit')).toBeDisabled();
   });

@@ -66,7 +66,7 @@ const SuggestionModal: FC = () => {
     [data],
   );
 
-  const closeModal = () => useCallback(() => {
+  const closeModal = useCallback(() => {
     setShowModal(false);
     ux.notifyModalActionDone(SuggestionModal.name);
     // Update preference so the modal is not display until 30 days later, time for the update to be done on our side

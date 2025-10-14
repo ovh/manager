@@ -1,10 +1,8 @@
 import { useMemo } from 'react';
+
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import {
-  getMacroRegion,
-  useTranslatedMicroRegions,
-} from '@ovh-ux/manager-react-components';
+
 import {
   TContinent,
   TProductAvailabilityRegion,
@@ -12,15 +10,14 @@ import {
   TRegionType,
   useProductAvailability,
 } from '@ovh-ux/manager-pci-common';
-import { getProjectRegions } from '../../api/data/regions';
-import { isLocalDeploymentZone } from '@/helpers';
-import { TProjectLocation, TLocation } from '@/types/region';
+import { getMacroRegion, useTranslatedMicroRegions } from '@ovh-ux/manager-react-components';
 
-export const getRegionQueryKey = (projectId: string) => [
-  'project',
-  projectId,
-  'region',
-];
+import { isLocalDeploymentZone } from '@/helpers';
+import { TLocation, TProjectLocation } from '@/types/region';
+
+import { getProjectRegions } from '../../api/data/regions';
+
+export const getRegionQueryKey = (projectId: string) => ['project', projectId, 'region'];
 
 const extractBaseAndId = (name: string): [string, number] => {
   const base = name.replace(/[\d]+/, '');
@@ -58,16 +55,9 @@ const buildLocalisationData = (
   tAllLabel: string,
 ): TProjectLocation => {
   const enabledNames = new Set(projectRegions.map((r) => r.name));
-  const mergedRegions = [
-    ...projectRegions,
-    ...allRegions.filter((r) => !enabledNames.has(r.name)),
-  ];
+  const mergedRegions = [...projectRegions, ...allRegions.filter((r) => !enabledNames.has(r.name))];
 
-  const {
-    translateMicroRegion,
-    translateMacroRegion,
-    translateContinentRegion,
-  } = translate;
+  const { translateMicroRegion, translateMacroRegion, translateContinentRegion } = translate;
 
   const regions: TLocation[] = mergedRegions
     .map((region) => {
@@ -77,10 +67,7 @@ const buildLocalisationData = (
         enabled: (region as TProductAvailabilityRegion).enabled ?? true,
         isMacro: region.name === macro,
         isLocalZone: isLocalDeploymentZone(
-          region.type as Extract<
-            TRegionType,
-            'region' | 'localzone' | 'region-3-az'
-          >,
+          region.type as Extract<TRegionType, 'region' | 'localzone' | 'region-3-az'>,
         ),
         macro,
         macroLabel: translateMacroRegion(region.name) || macro,
@@ -97,10 +84,7 @@ const buildLocalisationData = (
 
   return {
     regions,
-    continents: [
-      { id: 'WORLD', code: 'WORLD', name: tAllLabel },
-      ...uniqueContinents,
-    ],
+    continents: [{ id: 'WORLD', code: 'WORLD', name: tAllLabel }, ...uniqueContinents],
   };
 };
 
@@ -108,12 +92,12 @@ export const useProjectLocalisation = (projectId: string, product: string) => {
   const { t } = useTranslation('region-selector');
   const translate = useTranslatedMicroRegions();
 
-  const {
-    data: availability,
-    isPending: isPendingAvailability,
-  } = useProductAvailability(projectId, {
-    product,
-  });
+  const { data: availability, isPending: isPendingAvailability } = useProductAvailability(
+    projectId,
+    {
+      product,
+    },
+  );
 
   const { data: projectRegions, isPending: isPendingRegions } = useQuery({
     queryKey: getRegionQueryKey(projectId),

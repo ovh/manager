@@ -72,10 +72,6 @@ export default class ProjectController {
         PCI_FEATURES.PRODUCTS.DATABASES_ANALYTICS,
       )
     ) {
-      // remove link for old application
-      this.actions = this.actions.filter(
-        (action) => action.feature !== PCI_FEATURES.PRODUCTS.DATABASES,
-      );
       // add new link for uApp
       this.getUAppUrl(
         DATABASE_UAPP_CONFIG.universe,

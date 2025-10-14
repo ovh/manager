@@ -1,11 +1,13 @@
 import { renderHook } from '@testing-library/react';
-import { describe, it, vi, beforeEach, afterEach, expect, Mock } from 'vitest';
 import { useTranslation } from 'react-i18next';
-import { oidcSchema, PlaceHolder } from '@/types';
+import { Mock, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { CheckBoxFormField } from '@/components/oidc/CheckBoxFormField.component';
 import { InputFormField } from '@/components/oidc/InputFormField.component';
 import { TextAreaFormField } from '@/components/oidc/TextAreaFormField.component';
 import { camelToSnake, filterSchemaKeys } from '@/helpers';
+import { PlaceHolder, oidcSchema } from '@/types';
+
 import useFormFields from './useFormField';
 
 vi.mock('react-i18next', () => ({
@@ -71,10 +73,7 @@ describe('useFormFields', () => {
       },
     ]);
 
-    expect(filterSchemaKeys).toHaveBeenCalledWith(oidcSchema, [
-      'issuerUrl',
-      'clientId',
-    ]);
+    expect(filterSchemaKeys).toHaveBeenCalledWith(oidcSchema, ['issuerUrl', 'clientId']);
     expect(camelToSnake).toHaveBeenCalledWith('signingAlgorithms');
     expect(camelToSnake).toHaveBeenCalledWith('caContent');
     expect(camelToSnake).toHaveBeenCalledWith('usernameClaim');

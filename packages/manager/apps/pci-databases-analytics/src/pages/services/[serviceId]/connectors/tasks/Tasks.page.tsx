@@ -107,7 +107,7 @@ const Tasks = () => {
           </>
         )}
         {tasksQuery.data?.length === 0 && (
-          <Alert variant="info" className="mt-4">
+          <Alert className="mt-4">
             <AlertTitle>{t('noTasksMessage')}</AlertTitle>
           </Alert>
         )}

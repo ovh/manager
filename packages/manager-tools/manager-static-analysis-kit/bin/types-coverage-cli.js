@@ -2,22 +2,22 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
+import ts from 'typescript';
 
 import {
   collectTypesCoverage,
   generateTypesCoverageHtml,
 } from '../dist/adapters/types-coverage/helpers/types-coverage-analysis-helper.js';
 import {
-  appsDir,
-  outputRootDir,
   tsTypesCoverageBin,
   typesCoverageCombinedHtmlReportName,
   typesCoverageCombinedJsonReportName,
+  typesCoverageOutputRootDir,
   typesCoverageReportsRootDirName,
 } from './cli-path-config.js';
 import { buildTypesCoverageArgs, parseCliTargets } from './utils/args-parse-utils.js';
 import { logError, logInfo, logWarn } from './utils/log-utils.js';
-import { ensureBinExists, runAppsAnalysis, runCommand } from './utils/runner-utils.js';
+import { ensureBinExists, runCommand, runModulesAnalysis } from './utils/runner-utils.js';
 
 /**
  * Temporarily strip "extends" from tsconfig.json before analysis,
@@ -61,6 +61,66 @@ function patchTsConfig(appDir, fn) {
 }
 
 /**
+ * Count loose TypeScript constructs (`as`, `any`, `unknown`) in src/.
+ *
+ * Uses the TypeScript compiler API to avoid false positives from strings, comments, etc.
+ *
+ * @param {string} appDir Absolute path to app root
+ * @returns {{ as: number; any: number; unknown: number }}
+ */
+export function countLooseTypes(appDir) {
+  const srcDir = path.join(appDir, 'src');
+  let asCount = 0;
+  let anyCount = 0;
+  let unknownCount = 0;
+
+  function analyzeFile(filePath) {
+    const content = fs.readFileSync(filePath, 'utf8');
+    const source = ts.createSourceFile(filePath, content, ts.ScriptTarget.Latest, true);
+
+    function visit(node) {
+      // "as" expressions: foo as string
+      if (ts.isAsExpression(node)) {
+        asCount++;
+        if (node.type.kind === ts.SyntaxKind.AnyKeyword) {
+          anyCount++;
+        } else if (node.type.kind === ts.SyntaxKind.UnknownKeyword) {
+          unknownCount++;
+        }
+      }
+
+      // Type annotations like let x: any or function foo(x: unknown)
+      if (node.kind === ts.SyntaxKind.AnyKeyword) {
+        anyCount++;
+      } else if (node.kind === ts.SyntaxKind.UnknownKeyword) {
+        unknownCount++;
+      }
+
+      ts.forEachChild(node, visit);
+    }
+
+    visit(source);
+  }
+
+  function walk(dir) {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        walk(fullPath);
+      } else if (/\.(ts|tsx)$/.test(entry.name)) {
+        analyzeFile(fullPath);
+      }
+    }
+  }
+
+  if (fs.existsSync(srcDir)) {
+    walk(srcDir);
+  }
+
+  return { as: asCount, any: anyCount, unknown: unknownCount };
+}
+
+/**
  * Run TypeScript coverage for one app.
  *
  * @param {string} appDir - Absolute app directory
@@ -70,7 +130,7 @@ function patchTsConfig(appDir, fn) {
 function runAppTypesCoverage(appDir, appShortName) {
   return patchTsConfig(appDir, () => {
     const absoluteOutputDir = path.join(
-      outputRootDir,
+      typesCoverageOutputRootDir,
       typesCoverageReportsRootDirName,
       appShortName,
     );
@@ -82,6 +142,10 @@ function runAppTypesCoverage(appDir, appShortName) {
     const args = buildTypesCoverageArgs(relativeOutputDir);
     const ok = runCommand(tsTypesCoverageBin, args, appDir);
 
+    const looseTypes = countLooseTypes(appDir);
+    const looseTypeReport = path.join(absoluteOutputDir, 'loose-types.json');
+    fs.writeFileSync(looseTypeReport, JSON.stringify(looseTypes, null, 2));
+
     const jsonReport = path.join(absoluteOutputDir, 'typescript-coverage.json');
     const htmlReport = path.join(absoluteOutputDir, 'index.html');
 
@@ -90,6 +154,9 @@ function runAppTypesCoverage(appDir, appShortName) {
     }
     if (!fs.existsSync(htmlReport)) {
       logWarn(`⚠️ Missing index.html at ${htmlReport}`);
+    }
+    if (!fs.existsSync(looseTypeReport)) {
+      logWarn(`⚠️ Missing loose-types.json at ${looseTypeReport}`);
     }
 
     return ok;
@@ -103,20 +170,18 @@ function main() {
   try {
     ensureBinExists(tsTypesCoverageBin, 'typescript-coverage-report');
 
-    const { appFolders } = parseCliTargets(appsDir);
+    const modules = parseCliTargets();
 
-    runAppsAnalysis({
-      appsDir,
-      appFolders,
-      requireReact: true,
+    runModulesAnalysis({
+      modules,
       binaryLabel: 'Type coverage',
-      appRunner: runAppTypesCoverage,
+      analysisRunner: runAppTypesCoverage,
       reportsRootDirName: typesCoverageReportsRootDirName,
       combinedJson: typesCoverageCombinedJsonReportName,
       combinedHtml: typesCoverageCombinedHtmlReportName,
       collectFn: collectTypesCoverage,
       generateHtmlFn: generateTypesCoverageHtml,
-      outputRootDir,
+      outputRootDir: typesCoverageOutputRootDir,
     });
   } catch (err) {
     logError(`Fatal error: ${err.stack || err.message}`);

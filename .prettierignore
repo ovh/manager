@@ -1,6 +1,9 @@
 packages/manager/apps/container
 custom-elements-bundle
-dist
+**/dist/
+**/node_modules/
+**/coverage/
+**/.type-coverage/
 custom-elements
 loader
 react

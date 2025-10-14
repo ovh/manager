@@ -11,7 +11,6 @@ runMigration({
     'node ./routes-migrate/steps/transform-routes-cli.mjs',
     'node ./routes-migrate/steps/update-routers-init-cli.mjs',
   ],
-  formatGlob: '*.tsx',
   dryRun: isDryRun,
   docLink: '/development-guidelines/update-react-routes/',
 });

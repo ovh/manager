@@ -1,49 +1,47 @@
 import { useEffect, useRef } from 'react';
 import {
   useQuery,
-  UseQueryResult,
   UseQueryOptions,
   QueryKey,
-  DefinedInitialDataOptions,
-  UndefinedInitialDataOptions,
-  QueryClient,
-  DefinedUseQueryResult,
   DefaultError,
 } from '@tanstack/react-query';
 
-type UseQueryWrapperOptions<
-  TQueryFnData,
-  TError,
-  TData,
-  TQueryKey extends QueryKey
-> =
-  | DefinedInitialDataOptions<TQueryFnData, TError, TData, TQueryKey>
-  | UndefinedInitialDataOptions<TQueryFnData, TError, TData, TQueryKey>
-  | UseQueryOptions<TQueryFnData, TError, TData, TQueryKey>;
+export type DataFrom<F> = F extends (...a: unknown[]) => Promise<infer R>
+  ? R
+  : never;
 
-export function useQueryImmediateRefetch<
-  TQueryFnData = unknown,
+export type OptionsFor<
+  F extends (...a: unknown[]) => Promise<unknown>,
   TError = DefaultError,
-  TData = TQueryFnData,
-  TQueryKey extends QueryKey = QueryKey
->(
-  options: UseQueryWrapperOptions<TQueryFnData, TError, TData, TQueryKey>,
-  queryClient?: QueryClient,
-): UseQueryResult<TData, TError> | DefinedUseQueryResult<TData, TError> {
+  TKey extends QueryKey = QueryKey
+> = Omit<
+  UseQueryOptions<DataFrom<F>, TError, DataFrom<F>, TKey>,
+  'queryKey' | 'queryFn'
+>;
+
+export function useQueryImmediateRefetch<T>({
+  queryKey,
+  queryFn,
+  ...options
+}: {
+  queryKey: string[];
+  queryFn: () => Promise<T>;
+} & Omit<UseQueryOptions<T, Error, T, QueryKey>, 'queryKey' | 'queryFn'>) {
   const prevRefetchInterval = useRef(options?.refetchInterval);
-
-  const query = useQuery(options, queryClient);
-
+  const query = useQuery({
+    queryKey,
+    queryFn,
+    ...options,
+  });
   useEffect(() => {
     if (
       options?.enabled !== false &&
-      options.refetchInterval !== undefined &&
-      options.refetchInterval !== prevRefetchInterval.current
+      options?.refetchInterval !== undefined &&
+      options?.refetchInterval !== prevRefetchInterval.current
     ) {
       query.refetch();
     }
-    prevRefetchInterval.current = options.refetchInterval;
-  }, [options.refetchInterval, options.queryKey, options.enabled, query]);
-
+    prevRefetchInterval.current = options?.refetchInterval;
+  }, [options?.refetchInterval, queryKey, options?.enabled, query]);
   return query;
 }

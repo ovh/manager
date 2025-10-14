@@ -1,19 +1,9 @@
-import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
-import { useProject } from '@ovh-ux/manager-pci-common';
-import {
-  ChangelogButton,
-  Datagrid,
-  FilterAdd,
-  FilterList,
-  Headers,
-  Notifications,
-  PciGuidesHeader,
-  RedirectionGuard,
-  useColumnFilters,
-  useDataGrid,
-  useNotifications,
-  useProjectUrl,
-} from '@ovh-ux/manager-react-components';
+import { useRef, useState } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -31,13 +21,29 @@ import {
   OsdsSearchBar,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import { useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+
+import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
+import { useProject } from '@ovh-ux/manager-pci-common';
+import {
+  ChangelogButton,
+  Datagrid,
+  FilterAdd,
+  FilterList,
+  Headers,
+  Notifications,
+  PciGuidesHeader,
+  RedirectionGuard,
+  useColumnFilters,
+  useDataGrid,
+  useNotifications,
+  useProjectUrl,
+} from '@ovh-ux/manager-react-components';
+
 import { useKubes } from '@/api/hooks/useKubernetes';
-import { useDatagridColumn } from './useDatagridColumn';
-import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
 import { CHANGELOG_LINKS } from '@/constants';
+import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
+
+import { useDatagridColumn } from './useDatagridColumn';
 
 export default function ListPage() {
   const { t } = useTranslation('listing');
@@ -87,10 +93,7 @@ export default function ListPage() {
             </>
           }
           changelogButton={
-            <ChangelogButton
-              links={CHANGELOG_LINKS}
-              chapters={CHANGELOG_CHAPTERS}
-            />
+            <ChangelogButton links={CHANGELOG_LINKS} chapters={CHANGELOG_CHAPTERS} />
           }
         />
       </div>
@@ -187,11 +190,7 @@ export default function ListPage() {
 
       {isPending ? (
         <div className="text-center">
-          <OsdsSpinner
-            inline
-            size={ODS_SPINNER_SIZE.md}
-            data-testid="List-spinner"
-          />
+          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} data-testid="List-spinner" />
         </div>
       ) : (
         <div>

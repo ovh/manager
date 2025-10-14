@@ -1667,5 +1667,6 @@
   "exchange_reset_mfa_success": "The two-factor authentication has been successfully reset.",
   "exchange_mfa_error": "An error has occurred: {{error}}",
   "exchange_delete_mfa_success": "The two-factor authentication was successfully deleted.",
-  "exchange_delete_mfa_error": "An error has occurred deleting the two-factor authentication: {{error}}"
+  "exchange_delete_mfa_error": "An error has occurred deleting the two-factor authentication: {{error}}",
+  "exchange_tab_LOGS": "Logs"
 }

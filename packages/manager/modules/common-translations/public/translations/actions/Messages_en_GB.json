@@ -49,9 +49,13 @@
   "start": "Start",
   "renew": "Renew",
   "restore": "Restore",
-  "see_details": "See details",
+  "see_details": "See more information",
   "order_users": "Add user",
   "edit_account": "Edit account",
   "change_password": "Modify password",
-  "delete_account": "Delete account"
+  "delete_account": "Delete account",
+  "copy": "Copy",
+  "select_imperative": "Select",
+  "go_to_details": "See details",
+  "display_recap": "Show summary"
 }

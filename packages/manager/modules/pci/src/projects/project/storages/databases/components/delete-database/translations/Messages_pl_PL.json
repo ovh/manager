@@ -1,8 +1,0 @@
-{
-  "pci_database_delete_database_title": "Usuń usługę",
-  "pci_database_delete_database_submit_label": "Zatwierdź",
-  "pci_database_delete_database_cancel_label": "Anuluj",
-  "pci_database_delete_database_content": "Czy na pewno chcesz usunąć usługę {{ databaseName }}?",
-  "pci_database_delete_database_success": "Usługa {{ databaseName }} została usunięta.",
-  "pci_database_delete_database_error": "Wystąpił błąd podczas usuwania usługi {{ databaseName }}: {{ message }}."
-}

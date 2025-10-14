@@ -13,12 +13,14 @@ export default class ChangelogButtonCtrl {
       acc[chapterKeys[index]] = value;
       return acc;
     }, {});
-    this.formatedTrackingContext = `${this.computedTrackingContext.join('::')}`;
+    this.formatedTrackingContext = `${this.chapters
+      ?.filter((chapter) => chapter !== '')
+      ?.join('::')}::tile-changelog-roadmap::external-link::go-to-`;
   }
 
   trackClick(key) {
     this.atInternet.trackClick({
-      name: `${this.formatedTrackingContext}::tile-changelog-roadmap::external-link::go-to-${key}`,
+      name: `${this.formatedTrackingContext}${key}`,
       type: 'action',
       ...this.computedTrackingContext,
     });

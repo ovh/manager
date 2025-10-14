@@ -1,22 +1,18 @@
 import { useState } from 'react';
-import { TabsComponent } from '@ovh-ux/manager-react-components';
-import { OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
 import clsx from 'clsx';
-import {
-  useMergedKubeFlavors,
-  KUBE_FLAVOR_CATEGORIES,
-} from '@/hooks/useFlavors';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { TabsComponent } from '@ovh-ux/manager-react-components';
+
+import { KUBE_FLAVOR_CATEGORIES, useMergedKubeFlavors } from '@/hooks/useFlavors';
+
 import { FlavorTile } from './FlavorTile.component';
 
-export type TComputedKubeFlavor = ReturnType<
-  typeof useMergedKubeFlavors
->['mergedFlavors'][0];
+export type TComputedKubeFlavor = ReturnType<typeof useMergedKubeFlavors>['mergedFlavors'][0];
 
 interface FlavorSelectorProps {
   projectId: string;
@@ -24,11 +20,7 @@ interface FlavorSelectorProps {
   onSelect?: (flavor: TComputedKubeFlavor) => void;
 }
 
-export function FlavorSelector({
-  projectId,
-  region,
-  onSelect,
-}: Readonly<FlavorSelectorProps>) {
+export function FlavorSelector({ projectId, region, onSelect }: Readonly<FlavorSelectorProps>) {
   const { mergedFlavors, isPending } = useMergedKubeFlavors(projectId, region);
   const [selectedFlavor, setSelectedFlavor] = useState(null);
 
@@ -44,18 +36,9 @@ export function FlavorSelector({
         <OsdsText
           breakSpaces={false}
           size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-          color={
-            isSelected
-              ? ODS_THEME_COLOR_INTENT.text
-              : ODS_THEME_COLOR_INTENT.primary
-          }
+          color={isSelected ? ODS_THEME_COLOR_INTENT.text : ODS_THEME_COLOR_INTENT.primary}
         >
-          <span
-            className={clsx(
-              isSelected && 'font-bold',
-              'whitespace-nowrap text-lg',
-            )}
-          >
+          <span className={clsx(isSelected && 'font-bold', 'whitespace-nowrap text-lg')}>
             {category.title}
           </span>
         </OsdsText>

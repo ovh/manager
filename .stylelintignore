@@ -1,3 +1,7 @@
 packages/manager/apps/dedicated/client/app/account/user/components/directives/checkboxSwitch/checkboxSwitch.css
 packages/manager/apps/dedicated/client/app/account/user/components/directives/checkboxSwitch/checkboxSwitch-2.css
 packages/manager/apps/dedicated/client/app/css/less/common/buttonIcons.less
+**/dist/
+**/node_modules/
+**/coverage/
+**/.type-coverage/

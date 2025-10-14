@@ -1,6 +1,9 @@
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useContext, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
@@ -9,77 +12,59 @@ import {
   ODS_TEXT_SIZE,
   ODS_TILE_VARIANT,
 } from '@ovhcloud/ods-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   OsdsDivider,
-  OsdsText,
-  OsdsPopover,
-  OsdsTile,
   OsdsIcon,
+  OsdsPopover,
   OsdsPopoverContent,
+  OsdsText,
+  OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { RegionChipByType, useParam } from '@ovh-ux/manager-pci-common';
 import {
   Clipboard,
-  Links,
   LinkType,
+  Links,
   TileBlock as TileLine,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import { RegionChipByType } from '@ovh-ux/manager-pci-common';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { DeploymentMode, TKube } from '@/types';
-import ClusterStatus from './ClusterStatus.component';
-import ClusterETCD from './ClusterETCD.component';
-import TileLineLegacy from './TileLine.component';
-import AdmissionPlugins from './AdmissionPlugins.component';
-import { isProcessing } from './ClusterManagement.component';
-import ClusterTile from './ClusterTile.component';
 
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
-
-import { isMultiDeploymentZones } from '@/helpers';
-
-import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 import { PLAN_DOC_LINKS } from '@/constants';
+import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import { DeploymentMode, TKube } from '@/types';
+
+import AdmissionPlugins from './AdmissionPlugins.component';
+import ClusterEtcd from './ClusterETCD.component';
+import { isProcessing } from './ClusterManagement.component';
+import ClusterStatus from './ClusterStatus.component';
+import ClusterTile from './ClusterTile.component';
+import TileLineLegacy from './TileLine.component';
 
 export type ClusterInformationProps = {
   kubeDetail: TKube;
 };
 
-export default function ClusterInformation({
-  kubeDetail,
-}: Readonly<ClusterInformationProps>) {
-  const { t } = useTranslation([
-    'service',
-    'listing',
-    'kube',
-    NAMESPACES.ONBOARDING,
-  ]);
+export default function ClusterInformation({ kubeDetail }: Readonly<ClusterInformationProps>) {
+  const { t } = useTranslation(['service', 'listing', 'kube', NAMESPACES.ONBOARDING]);
 
-  const { projectId } = useParams();
+  const { projectId } = useParam('projectId');
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
   const { clearNotifications } = useNotifications();
   const has3AZ = use3AZPlanAvailable();
 
   const planDocumentationLink =
-    PLAN_DOC_LINKS[ovhSubsidiary] ?? PLAN_DOC_LINKS.DEFAULT;
+    PLAN_DOC_LINKS[ovhSubsidiary as keyof typeof PLAN_DOC_LINKS] ?? PLAN_DOC_LINKS.DEFAULT;
 
-  const { data: regionInformations } = useRegionInformations(
-    projectId,
-    kubeDetail.region,
-  );
-  useEffect(() => clearNotifications, []);
+  const { data: regionInformations } = useRegionInformations(projectId, kubeDetail.region);
+  useEffect(() => () => clearNotifications(), [clearNotifications]);
 
   return (
-    <OsdsTile
-      className="flex-col w-full shadow-lg"
-      inline
-      rounded
-      variant={ODS_TILE_VARIANT.ghost}
-    >
+    <OsdsTile className="flex-col w-full shadow-lg" inline rounded variant={ODS_TILE_VARIANT.ghost}>
       <div className="flex flex-col w-full">
         <OsdsText
           size={ODS_TEXT_SIZE._400}
@@ -191,9 +176,7 @@ export default function ClusterInformation({
           </div>
         </TileLine>
 
-        {!isMultiDeploymentZones(regionInformations?.type) && (
-          <TileLineLegacy title={<ClusterTile />} value={<ClusterETCD />} />
-        )}
+        <TileLineLegacy title={<ClusterTile />} value={<ClusterEtcd />} />
 
         <TileLine label={t('service:kube_service_cluster_admission_plugins')}>
           <AdmissionPlugins

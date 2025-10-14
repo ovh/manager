@@ -1,16 +1,16 @@
+import { useEffect, useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OdsChipAttribute } from '@ovhcloud/ods-components';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 type ClusterStatusProps = {
   status: string;
 };
 
-export default function ClusterStatus({
-  status,
-}: Readonly<ClusterStatusProps>) {
+export default function ClusterStatus({ status }: Readonly<ClusterStatusProps>) {
   const { i18n, t } = useTranslation('service');
 
   const [chipAttribute, setChipAttribute] = useState<OdsChipAttribute>({
@@ -58,11 +58,7 @@ export default function ClusterStatus({
       : '';
 
   return (
-    <OsdsChip
-      {...chipAttribute}
-      className="w-fit"
-      data-testid="clusterStatus-chip"
-    >
+    <OsdsChip {...chipAttribute} className="w-fit" data-testid="clusterStatus-chip">
       {getStatusLabel(status) || status}
     </OsdsChip>
   );

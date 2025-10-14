@@ -1,5 +1,0 @@
-{
-  "pci_databases_connectors_edit_button": "Zmień konektor",
-  "pci_databases_connectors_edit_success_message": "Konfiguracja konektora została zmodyfikowana.",
-  "pci_databases_connectors_edit_error_message": "Wystąpił błąd podczas modyfikowania konektora: {{details}}"
-}

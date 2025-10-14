@@ -101,7 +101,7 @@ const DataTableDefaultFilterButton = ({
             name="add-operator"
             value={selectedId}
             onValueChange={(column) => {
-              setSelectedId(column as string);
+              setSelectedId(column);
             }}
           >
             <SelectTrigger>
@@ -121,8 +121,8 @@ const DataTableDefaultFilterButton = ({
           <Select
             name="add-operator"
             value={selectedComparator}
-            onValueChange={(operator) => {
-              setSelectedComparator(operator as FilterComparator);
+            onValueChange={(operator: FilterComparator) => {
+              setSelectedComparator(operator);
             }}
           >
             <SelectTrigger>

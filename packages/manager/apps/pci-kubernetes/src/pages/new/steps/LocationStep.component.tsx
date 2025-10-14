@@ -1,7 +1,16 @@
 import { useContext, useEffect, useState } from 'react';
-import { Translation, useTranslation } from 'react-i18next';
-import { RegionChipByType } from '@ovh-ux/manager-pci-common';
 
+import clsx from 'clsx';
+import { Translation, useTranslation } from 'react-i18next';
+
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_CHIP_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsChip,
@@ -9,36 +18,31 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { RegionChipByType } from '@ovh-ux/manager-pci-common';
 import {
-  ODS_BUTTON_SIZE,
-  ODS_CHIP_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import clsx from 'clsx';
-import {
-  Links,
   LinkType,
+  Links,
   Notifications,
   Subtitle,
   TRegion,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { KubeRegionSelector } from '@/components/region-selector/KubeRegionSelector.component';
-import { StepState } from '../hooks/useStep';
+
+import { useAddProjectRegion } from '@/api/hooks/useAddRegion';
+import { useRefreshProductAvailability } from '@/api/hooks/useAvailability';
 import { KubeDeploymentTile } from '@/components/region-selector/KubeDeploymentTile';
+import { KubeRegionSelector } from '@/components/region-selector/KubeRegionSelector.component';
 import { DEPLOYMENT_URL } from '@/constants';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 import useHas3AZRegions from '@/hooks/useHas3AZRegions';
-import { useRefreshProductAvailability } from '@/api/hooks/useAvailability';
-import { useAddProjectRegion } from '@/api/hooks/useAddRegion';
-import Loader from './Loader';
-import { TLocation } from '@/types/region';
 import { DeploymentMode } from '@/types';
+import { TLocation } from '@/types/region';
+
+import { StepState } from '../hooks/useStep';
+import Loader from './Loader';
 
 export interface LocationStepProps {
   projectId: string;
@@ -52,17 +56,8 @@ export enum RegionType {
   Region3Az = 'region-3-az',
 }
 
-export function LocationStep({
-  projectId,
-  onSubmit,
-  step,
-}: Readonly<LocationStepProps>) {
-  const { t } = useTranslation([
-    'stepper',
-    'add',
-    'region-selector',
-    'versions',
-  ]);
+export function LocationStep({ projectId, onSubmit, step }: Readonly<LocationStepProps>) {
+  const { t } = useTranslation(['stepper', 'add', 'region-selector', 'versions']);
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
   const [region, setRegion] = useState<TLocation | undefined>();
@@ -70,18 +65,15 @@ export function LocationStep({
 
   const { uniqueRegions, contains3AZ } = useHas3AZRegions();
   const has3AZ = contains3AZ && featureFlipping3az;
-  const [selectedDeployment, setSelectedDeployment] = useState<
-    TRegion['type'] | undefined
-  >(undefined);
+  const [selectedDeployment, setSelectedDeployment] = useState<TRegion['type'] | undefined>(
+    undefined,
+  );
 
   const tilesData = uniqueRegions.map((regionType: TRegion['type']) => ({
     title: t(`add:kubernetes_add_region_title_${regionType}`),
     badge: () =>
       DeploymentMode.MULTI_ZONES === regionType ? (
-        <OsdsChip
-          color={ODS_THEME_COLOR_INTENT.success}
-          size={ODS_CHIP_SIZE.sm}
-        >
+        <OsdsChip color={ODS_THEME_COLOR_INTENT.success} size={ODS_CHIP_SIZE.sm}>
           {t('versions:pci_project_versions_recommended_version_male')}
         </OsdsChip>
       ) : null,
@@ -90,13 +82,9 @@ export function LocationStep({
     regionType,
   }));
   const { addError, addSuccess, clearNotifications } = useNotifications();
-  const { refresh: refreshRegionStatus } = useRefreshProductAvailability(
-    projectId,
-    ovhSubsidiary,
-    {
-      product: 'kubernetes',
-    },
-  );
+  const { refresh: refreshRegionStatus } = useRefreshProductAvailability(projectId, ovhSubsidiary, {
+    product: 'kubernetes',
+  });
 
   useEffect(() => {
     if (!step.isLocked) {
@@ -132,14 +120,10 @@ export function LocationStep({
       addError(
         <Translation ns="region-selector">
           {(_t) =>
-            _t(
-              'pci_projects_project_storages_containers_add_add_region_error',
-              {
-                message:
-                  error?.response?.data?.message || error?.message || null,
-                requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
-              },
-            )
+            _t('pci_projects_project_storages_containers_add_add_region_error', {
+              message: error?.response?.data?.message || error?.message || null,
+              requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
+            })
           }
         </Translation>,
         true,
@@ -175,9 +159,8 @@ export function LocationStep({
               <Links
                 target={OdsHTMLAnchorElementTarget._blank}
                 href={
-                  DEPLOYMENT_URL[
-                    ovhSubsidiary as keyof typeof DEPLOYMENT_URL
-                  ] ?? DEPLOYMENT_URL.DEFAULT
+                  DEPLOYMENT_URL[ovhSubsidiary as keyof typeof DEPLOYMENT_URL] ??
+                  DEPLOYMENT_URL.DEFAULT
                 }
                 label={t('add:kubernetes_add_find_out_more')}
                 type={LinkType.next}
@@ -185,26 +168,22 @@ export function LocationStep({
             </div>
 
             <div className="grid md:grid-cols-4 gap-4 my-5">
-              {tilesData.map(
-                ({ title, pillLabel, description, regionType, badge }) => (
-                  <KubeDeploymentTile
-                    key={regionType}
-                    title={title}
-                    badge={badge}
-                    description={description}
-                    pillLabel={pillLabel}
-                    onSelectedDeployment={() => {
-                      setSelectedDeployment(regionType);
-                      setRegion(undefined);
-                    }}
-                    isSelected={regionType === selectedDeployment}
-                  />
-                ),
-              )}
+              {tilesData.map(({ title, pillLabel, description, regionType, badge }) => (
+                <KubeDeploymentTile
+                  key={regionType}
+                  title={title}
+                  badge={badge}
+                  description={description}
+                  pillLabel={pillLabel}
+                  onSelectedDeployment={() => {
+                    setSelectedDeployment(regionType);
+                    setRegion(undefined);
+                  }}
+                  isSelected={regionType === selectedDeployment}
+                />
+              ))}
             </div>
-            <Subtitle className="mb-6">
-              {t('add:kubernetes_add_region_title')}
-            </Subtitle>
+            <Subtitle className="mb-6">{t('add:kubernetes_add_region_title')}</Subtitle>
           </>
         )}
         <KubeRegionSelector

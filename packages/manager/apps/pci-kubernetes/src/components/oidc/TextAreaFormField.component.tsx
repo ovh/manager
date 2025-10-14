@@ -1,11 +1,10 @@
 import React, { FormEvent } from 'react';
+
 import { OsdsTextarea } from '@ovhcloud/ods-components/react';
 
-export type TTextAreaFormFieldProps = React.ComponentProps<
-  typeof OsdsTextarea
-> & {
+export type TTextAreaFormFieldProps = React.ComponentProps<typeof OsdsTextarea> & {
   name: string;
-  onChange: (event: FormEvent<HTMLOsdsTextareaElement>) => void;
+  onChange: (event: FormEvent<HTMLTextAreaElement>) => void;
   onBlur: () => void;
   onOdsValueChange: () => void;
   error: boolean;

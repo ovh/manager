@@ -3,6 +3,80 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.7.5...@ovh-ux/manager-pci-instances-app@0.7.6) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
+## [0.7.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.7.4...@ovh-ux/manager-pci-instances-app@0.7.5) (2025-10-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4391] ([d81075a](https://github.com/ovh/manager/commit/d81075a6695478d7dc99506b5dd13e2c465aa464))
+* **i18n:** add missing translations [CDS 4393] ([7d75150](https://github.com/ovh/manager/commit/7d7515069dbad4ce06aa42d375510fc604684e0d))
+
+
+
+
+
+## [0.7.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.7.3...@ovh-ux/manager-pci-instances-app@0.7.4) (2025-10-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4383] ([05a1ea9](https://github.com/ovh/manager/commit/05a1ea9330111c74151177ea18570a7eda24a5c3))
+
+
+
+
+
+## [0.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.7.2...@ovh-ux/manager-pci-instances-app@0.7.3) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
+## [0.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.7.1...@ovh-ux/manager-pci-instances-app@0.7.2) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
+## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.7.0...@ovh-ux/manager-pci-instances-app@0.7.1) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.6.0...@ovh-ux/manager-pci-instances-app@0.7.0) (2025-09-29)
+
+
+### Bug Fixes
+
+* **pci-instances:** qa design feedback ([d07ed33](https://github.com/ovh/manager/commit/d07ed331c8de9feaa48225832d5ebbba5e1cf900)), closes [#TAPC-5081](https://github.com/ovh/manager/issues/TAPC-5081)
+* **pci-instances:** remove divider for the last item ([490601d](https://github.com/ovh/manager/commit/490601d622b36bb8136488697f8a9cdafac22f77)), closes [#TAPC-4967](https://github.com/ovh/manager/issues/TAPC-4967)
+* **pci-instances:** remove mitigation link since depreciation annoncement ([80fc0f9](https://github.com/ovh/manager/commit/80fc0f93931d180cc5cf6263eed5334d40b41495)), closes [#TAPC-5091](https://github.com/ovh/manager/issues/TAPC-5091)
+* **pci-instances:** replace translation of 'changer image' ([1d9a850](https://github.com/ovh/manager/commit/1d9a85038f8de21fc2b4f9293c481150d4bacd7c)), closes [#TAPC-5127](https://github.com/ovh/manager/issues/TAPC-5127)
+
+
+### Features
+
+* **pci-instances:** add backup info ([b2c0af5](https://github.com/ovh/manager/commit/b2c0af54f4bcccd836f68873d61d0b4fb7d7989e)), closes [#TAPC-4488](https://github.com/ovh/manager/issues/TAPC-4488)
+
+
+
+
+
 # [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.5.1...@ovh-ux/manager-pci-instances-app@0.6.0) (2025-09-23)
 
 
