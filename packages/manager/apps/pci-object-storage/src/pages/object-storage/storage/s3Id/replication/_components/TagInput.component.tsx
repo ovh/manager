@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Plus, X } from 'lucide-react';
 import { Button, Input } from '@datatr-ux/uxlib';
-import { TagMap, TagValidationErrors } from './types/tags.types';
+import { TagMap, TagValidationErrors } from '../../../../../../types/Tag';
 
 type TagInputProps = {
   tags: TagMap;

@@ -15,11 +15,8 @@ import {
   Switch,
 } from '@datatr-ux/uxlib';
 import { AddReplicationFormValues } from '../new/formAddReplication/useAddReplicationForm.hook';
-import {
-  getStorageClassLabel,
-  storageClassOptions,
-} from '../utils/storageClass.util';
 import { ReplicationRuleContainer } from './ReplicatationRuleContainer';
+import storages from '@/types/Storages';
 
 type ReplicationRuleAdvancedProps = {
   form: UseFormReturn<AddReplicationFormValues>;
@@ -35,6 +32,9 @@ export const ReplicationRuleAdvanced = ({
   isDeleteMarkerDisabled,
 }: ReplicationRuleAdvancedProps) => {
   const { t } = useTranslation('pci-object-storage/replication');
+  const { t: tObj } = useTranslation(
+    'pci-object-storage/storages/s3/object-class',
+  );
 
   return (
     <>
@@ -78,11 +78,15 @@ export const ReplicationRuleAdvanced = ({
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {storageClassOptions.map((storageClass) => (
-                      <SelectItem key={storageClass} value={storageClass}>
-                        {getStorageClassLabel(storageClass, t)}
-                      </SelectItem>
-                    ))}
+                    {Object.values(storages.StorageClassEnum)
+                      .filter(
+                        (st) => st !== storages.StorageClassEnum.DEEP_ARCHIVE,
+                      )
+                      .map((storeClass: storages.StorageClassEnum) => (
+                        <SelectItem key={storeClass} value={storeClass}>
+                          {tObj(`objectClass_${storeClass}`)}
+                        </SelectItem>
+                      ))}
                   </SelectContent>
                 </Select>
                 <FormMessage />

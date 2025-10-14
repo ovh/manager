@@ -1,4 +1,4 @@
-import { TagMap } from '../components/types/tags.types';
+import { TagMap } from '../types/Tag';
 
 export const transformTagsToApi = (tags?: TagMap): Record<string, string> => {
   if (!tags) return {};

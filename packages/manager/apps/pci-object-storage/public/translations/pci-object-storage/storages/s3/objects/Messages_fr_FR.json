@@ -21,7 +21,7 @@
   "deleteObjectButtonConfirm": "Supprimer",
   "objTitle": "Objet",
   "objectInfoTitle": "Caractéristique de l'objet",
-  "versionsTitle": "Versions",
+  "versionsTitle": "Versions de l'objet",
   "versionsNumber": "Nombre de version",
   "versionTotalSize": "Taille des versions",
   "versionLink": "Gérer les versions",

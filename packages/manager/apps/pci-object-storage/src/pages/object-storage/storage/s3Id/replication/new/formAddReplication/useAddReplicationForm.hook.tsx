@@ -5,7 +5,7 @@ import storages from '@/types/Storages';
 import {
   createReplicationFormSchema,
   ReplicationFormValues,
-} from '../../schemas/replicationForm.schema';
+} from '../../_components/replicationForm.schema';
 
 export type AddReplicationFormValues = ReplicationFormValues;
 

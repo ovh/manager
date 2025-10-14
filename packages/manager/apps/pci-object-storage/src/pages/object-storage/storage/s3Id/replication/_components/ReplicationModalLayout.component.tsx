@@ -1,11 +1,11 @@
 import { ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { UseFormReturn } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Button, Form } from '@datatr-ux/uxlib';
 import { ReplicationForm } from './ReplicationForm.component';
 import { AddReplicationFormValues } from '../new/formAddReplication/useAddReplicationForm.hook';
 import { FormattedStorage } from '@/types/Storages';
+import Link from '@/components/links/Link.component';
 
 interface ReplicationModalLayoutProps {
   title: string;
@@ -29,14 +29,11 @@ export const ReplicationModalLayout = ({
 
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div>
         <h3>{title}</h3>
-        <Link
-          to="../replicate"
-          className="flex items-center text-sm hover:underline"
-        >
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          {t('backLink')}
+
+        <Link to="../replication" className="flex items-center">
+          <ArrowLeft className="w-4 h-4 mr-2" /> {t('backLink')}
         </Link>
       </div>
       <Form {...form}>
