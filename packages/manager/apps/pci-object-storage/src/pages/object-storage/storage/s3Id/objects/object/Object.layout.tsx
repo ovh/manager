@@ -1,12 +1,17 @@
-import { Outlet } from 'react-router-dom';
-import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
+import { Outlet, useSearchParams } from 'react-router-dom';
 import { useS3Data } from '../../S3.context';
 
-export function breadcrumb() {
-  return <BreadcrumbItem translationKey="Object-name" namespace="" />;
+function ObjectKey() {
+  const [searchParams] = useSearchParams();
+  const objectKey = searchParams.get('objectKey');
+  return objectKey;
 }
 
-export default function Layout() {
+export function breadcrumb() {
+  return <ObjectKey />;
+}
+
+export default function ObjectLayout() {
   const parentOutletData = useS3Data();
   return <Outlet context={parentOutletData} />;
 }

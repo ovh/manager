@@ -33,7 +33,7 @@ const ImportPolicyModal = () => {
     <FileUploader
       multipleFileImport={false}
       description={t('addUserPolicyDescription')}
-      onFileSelect={async (pref, files) => {
+      onFileSelect={async (files) => {
         try {
           const policyJson = await readJsonFile(files[0]);
           addUserPolicy({

@@ -53,7 +53,7 @@ const AddObjectModal = () => {
       newfiles.map((file: File) =>
         addSwiftObject({
           url: `${swiftUrl}/${swift.name}${encodeURIComponent(
-            prefix ? `${prefix}/${file.name}` : file.name,
+            prefix ? `${prefix}/${file.name}` : `/${file.name}`,
           )}`,
           file,
           token: access.token,
@@ -66,11 +66,12 @@ const AddObjectModal = () => {
   return (
     <FileUploader
       multipleFileImport={true}
-      onFileSelect={(pref, files) => {
+      onFileSelect={(files, pref) => {
         setNewFiles(files);
         setPrefix(pref);
         getStorageAccess({ projectId });
       }}
+      isS3={false}
       title={t('addOjectModalTitle')}
       pending={pendingGetStorage || pendingAddSwift}
     />
