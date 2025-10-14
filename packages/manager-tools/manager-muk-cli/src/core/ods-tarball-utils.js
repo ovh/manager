@@ -27,7 +27,7 @@ function ensureCacheDir() {
 /**
  * Save the extracted tarball contents and metadata to disk.
  *
- * @param {string} version - ODS React package version (e.g. "19.3.1").
+ * @param {string} version - ODS React package version (e.g., "19.3.1").
  * @param {Map<string, string>} filesMap - Map of extracted file paths → contents.
  * @returns {void}
  */
@@ -55,12 +55,11 @@ function loadCache(version) {
   if (!fs.existsSync(TAR_CACHE_FILE) || !fs.existsSync(META_CACHE_FILE)) return null;
   try {
     const meta = JSON.parse(fs.readFileSync(META_CACHE_FILE, 'utf8'));
-    if (meta.version !== version) return null; // Invalidate cache on version mismatch
+    if (meta.version !== version) return null;
 
     const files = JSON.parse(fs.readFileSync(TAR_CACHE_FILE, 'utf8'));
     const map = new Map(Object.entries(files));
 
-    // Guard against incomplete caches (e.g., interrupted downloads)
     if (map.size < 50) {
       logger.warn('⚠️ Cache appears incomplete — regenerating tarball extraction.');
       fs.rmSync(CACHE_DIR, { recursive: true, force: true });
@@ -77,7 +76,7 @@ function loadCache(version) {
 
 /**
  * Fetch JSON metadata for the latest ODS React package.
- * @returns {Promise<{ version: string, tarball: string }>}
+ * @returns {Promise<{ version: string, tarball: string }>} Latest version and tarball URL.
  */
 export async function getOdsPackageMetadata() {
   return new Promise((resolve, reject) => {
@@ -103,7 +102,7 @@ export async function getOdsPackageMetadata() {
  * If a valid cache exists for the current version, it will be used instead.
  *
  * @param {RegExp} [pattern] - Optional regex to match entries (e.g., /\.d\.ts$/).
- * @returns {Promise<Map<string, string>>} Map of file paths → contents.
+ * @returns {Promise<Map<string, string>>} Map of file paths → file contents.
  */
 export async function extractOdsTarball(pattern) {
   const { version, tarball } = await getOdsPackageMetadata();
@@ -116,8 +115,7 @@ export async function extractOdsTarball(pattern) {
     const cachedFiles = loadCache(version);
     if (cachedFiles) {
       if (pattern) {
-        const filtered = new Map([...cachedFiles.entries()].filter(([name]) => pattern.test(name)));
-        return filtered;
+        return new Map([...cachedFiles.entries()].filter(([name]) => pattern.test(name)));
       }
       return cachedFiles;
     }
@@ -164,43 +162,105 @@ export async function extractOdsTarball(pattern) {
 }
 
 /**
- * Build all plausible source file paths for a given ODS component or subcomponent.
+ * @typedef {Object} OdsPathContext
+ * @property {string} parent - Kebab-case parent component name.
+ * @property {string} target - Subcomponent or parent name.
+ * @property {string} pascalParent - PascalCase parent name.
+ * @property {string} pascalSub - PascalCase subcomponent name.
  */
-function buildPossibleOdsPaths(parent, subcomponent) {
+
+/**
+ * Centralized declarative pattern definitions for ODS component paths.
+ * Each key describes a semantic category (legacyNested, flatModern, etc.).
+ */
+const ODS_PATH_PATTERNS = {
+  withSub: {
+    /** Legacy nested component structure */
+    legacyNested: 'components/${parent}/src/components/${target}/${pascalSub}.tsx',
+    /** Modern flat structure */
+    flatModern: 'components/${parent}/src/${pascalSub}.tsx',
+    /** PascalCase subfolder structure (rare) */
+    pascalFolder: 'components/${parent}/src/components/${pascalSub}/${pascalSub}.tsx',
+  },
+  withoutSub: {
+    /** Modern ODS (typical) */
+    modern: 'components/${parent}/src/${pascalParent}.tsx',
+    /** Legacy nested variant */
+    legacyNested: 'components/${parent}/src/components/${parent}/${pascalParent}.tsx',
+    /** Direct ODS 19.x component form */
+    direct: 'components/${parent}/${pascalParent}.tsx',
+  },
+};
+
+/**
+ * Expands a template string using contextual replacements.
+ * @param {string} template - Path template containing placeholders.
+ * @param {OdsPathContext} context - Replacement values.
+ * @returns {string} The expanded path string.
+ */
+function expandTemplate(template, context) {
+  return template
+    .replace(/\$\{parent\}/g, context.parent)
+    .replace(/\$\{target\}/g, context.target)
+    .replace(/\$\{pascalParent\}/g, context.pascalParent)
+    .replace(/\$\{pascalSub\}/g, context.pascalSub);
+}
+
+/**
+ * Factory that builds all possible ODS component path variants.
+ *
+ * @param {string} parent - Parent component name (e.g., "button").
+ * @param {string} [subcomponent] - Optional subcomponent name (e.g., "icon").
+ * @returns {{
+ *   buildAll: () => string[],
+ *   build: (filter?: string) => string[],
+ *   buildByKey: (key: string) => string[]
+ * }}
+ *
+ * @example
+ * const factory = createOdsPath('button', 'icon');
+ * factory.buildAll();        // → all path variants
+ * factory.build('legacy');   // → only legacy variants
+ * factory.buildByKey('flatModern'); // → specific pattern variant
+ */
+function createOdsPath(parent, subcomponent) {
   const pascalParent = toPascalCase(parent);
   const pascalSub = subcomponent ? toPascalCase(subcomponent) : pascalParent;
+  const target = subcomponent ?? parent;
+  const roots = ['src', 'package/src'];
+  const patternGroup = subcomponent ? ODS_PATH_PATTERNS.withSub : ODS_PATH_PATTERNS.withoutSub;
 
-  return subcomponent
-    ? [
-        // Legacy nested component structure
-        `src/components/${parent}/src/components/${subcomponent}/${pascalSub}.tsx`,
-        `package/src/components/${parent}/src/components/${subcomponent}/${pascalSub}.tsx`,
+  const buildSet = (patterns) =>
+    roots.flatMap((root) =>
+      patterns.map(
+        (tpl) => `${root}/${expandTemplate(tpl, { parent, target, pascalParent, pascalSub })}`,
+      ),
+    );
 
-        // Flat (modern)
-        `src/components/${parent}/src/${pascalSub}.tsx`,
-        `package/src/components/${parent}/src/${pascalSub}.tsx`,
-
-        // PascalCase subfolder (rare)
-        `src/components/${parent}/src/components/${pascalSub}/${pascalSub}.tsx`,
-        `package/src/components/${parent}/src/components/${pascalSub}/${pascalSub}.tsx`,
-      ]
-    : [
-        // Modern ODS (range, combobox, etc.)
-        `src/components/${parent}/src/${pascalParent}.tsx`,
-        `package/src/components/${parent}/src/${pascalParent}.tsx`,
-
-        // Legacy nested
-        `src/components/${parent}/src/components/${parent}/${pascalParent}.tsx`,
-        `package/src/components/${parent}/src/components/${parent}/${pascalParent}.tsx`,
-
-        // 🔥 ODS 19.x direct component (like Range)
-        `src/components/${parent}/${pascalParent}.tsx`,
-        `package/src/components/${parent}/${pascalParent}.tsx`,
-      ];
+  return {
+    buildAll() {
+      return buildSet(Object.values(patternGroup));
+    },
+    build(filter) {
+      const filtered = Object.entries(patternGroup)
+        .filter(([key]) => !filter || key.includes(filter))
+        .map(([, tpl]) => tpl);
+      return buildSet(filtered);
+    },
+    buildByKey(key) {
+      const tpl = patternGroup[key];
+      return tpl ? buildSet([tpl]) : [];
+    },
+  };
 }
 
 /**
  * Find and return the source file content for a given component path list.
+ *
+ * @param {Map<string,string>} files - Tarball-extracted file map.
+ * @param {string[]} possiblePaths - Candidate relative paths.
+ * @param {string} name - Component or subcomponent name (for logging).
+ * @returns {string|null} UTF-8 file contents or null if not found.
  */
 function findOdsSourceFile(files, possiblePaths, name) {
   const fileEntry = possiblePaths.map((p) => files.get(p)).find(Boolean);
@@ -213,6 +273,8 @@ function findOdsSourceFile(files, possiblePaths, name) {
 
 /**
  * Detect whether a component file supports children based on its source code content.
+ * @param {string} content - Source file content.
+ * @returns {boolean} True if children detected, false otherwise.
  */
 function detectChildrenHeuristics(content) {
   return [
@@ -226,15 +288,17 @@ function detectChildrenHeuristics(content) {
 /**
  * Main entry — Detect if an ODS component exists and whether it supports children.
  *
- * @returns {Promise<boolean|null>} true = supports children, false = stateless, null = invalid
+ * @param {string} parent - Kebab-case parent component (e.g., 'button').
+ * @param {string} [subcomponent] - Optional subcomponent (e.g., 'icon').
+ * @returns {Promise<boolean|null>} true = supports children, false = stateless, null = not found.
  */
 export async function detectHasChildrenFromTarball(parent, subcomponent) {
   const files = await extractOdsTarball();
-  const possiblePaths = buildPossibleOdsPaths(parent, subcomponent);
+  const factory = createOdsPath(parent, subcomponent);
+  const possiblePaths = factory.buildAll();
   const content = findOdsSourceFile(files, possiblePaths, subcomponent ?? parent);
 
-  if (!content) return null; // ❌ not found
-
+  if (!content) return null;
   const hasChildren = detectChildrenHeuristics(content);
 
   logger.info(
@@ -247,15 +311,14 @@ export async function detectHasChildrenFromTarball(parent, subcomponent) {
 }
 
 /**
- * Detects whether a subcomponent has its own exported Prop type in the parent index.ts
+ * Detects whether a subcomponent has its own exported Prop type in the parent index.ts.
  *
- * @param {string} parent - kebab-case parent component (e.g. 'tooltip')
- * @param {string} subcomponent - kebab-case subcomponent (e.g. 'tooltip-trigger')
- * @returns {Promise<boolean>}
+ * @param {string} parent - Kebab-case parent component (e.g., 'tooltip').
+ * @param {string} subcomponent - Kebab-case subcomponent (e.g., 'tooltip-trigger').
+ * @returns {Promise<boolean>} True if type export exists.
  */
 export async function detectHasTypeExportFromIndex(parent, subcomponent) {
   const files = await extractOdsTarball();
-
   const possiblePaths = [
     `src/components/${parent}/src/index.ts`,
     `package/src/components/${parent}/src/index.ts`,
@@ -269,24 +332,24 @@ export async function detectHasTypeExportFromIndex(parent, subcomponent) {
   const content = fileEntry.toString('utf8');
   const subPascal = toPascalCase(subcomponent);
   const typeName = `${subPascal}Prop`;
-
   const typeExportRegex = new RegExp(`\\btype\\s+${typeName}\\b|\\b${typeName}\\b`, 'g');
   const found = typeExportRegex.test(content);
 
   logger.info(
-    `${found ? '🧩' : '🚫'} ${subcomponent} ${found ? 'exports' : 'does not export'} its own Prop type`,
+    `${found ? '🧩' : '🚫'} ${subcomponent} ${
+      found ? 'exports' : 'does not export'
+    } its own Prop type`,
   );
   return found;
 }
 
 /**
  * Categorize ODS index exports into:
- * - subcomponents (handled elsewhere)
- * - hooks (identifiers starting with "use")
- * - constants (from constants paths, excluding types)
- * - externalTypes (types from any non-components path)
+ *  - hooks (identifiers starting with "use")
+ *  - constants (from constants paths, excluding types)
+ *  - externalTypes (types from non-component paths)
  *
- * @param {string} parent - kebab-case ODS component name (e.g. 'datepicker')
+ * @param {string} parent - Kebab-case ODS component name (e.g. 'datepicker').
  * @returns {Promise<{ hooks: string[], constants: string[], externalTypes: string[] }>}
  */
 export async function extractOdsExportsByCategory(parent) {
@@ -313,16 +376,15 @@ export async function extractOdsExportsByCategory(parent) {
       .map((i) => i.trim())
       .filter(Boolean);
 
-    // 🧩 1. Components — handled elsewhere
     if (fromPath.includes('components')) continue;
 
-    // 🎣 2. Hooks — detect "use" in identifiers across all paths
-    const hookNames = identifiers
+    // Hooks
+    identifiers
       .map((id) => id.replace(/^type\s+/, ''))
-      .filter((id) => /^use[A-Z]/.test(id));
-    hookNames.forEach((h) => hooks.add(h));
+      .filter((id) => /^use[A-Z]/.test(id))
+      .forEach((h) => hooks.add(h));
 
-    // ⚙️ 3. Constants — from constants path, all non-type exports
+    // Constants
     if (fromPath.includes('constants')) {
       identifiers
         .filter((id) => !/^type\s+/i.test(id) && !/^interface\s+/i.test(id))
@@ -330,7 +392,7 @@ export async function extractOdsExportsByCategory(parent) {
       continue;
     }
 
-    // 🧠 4. External Types — all "type" or "interface" from non-components paths
+    // External Types
     identifiers
       .filter((id) => /^type\s+/i.test(id) || /^interface\s+/i.test(id))
       .map((id) => id.replace(/^(type|interface)\s+/, ''))
