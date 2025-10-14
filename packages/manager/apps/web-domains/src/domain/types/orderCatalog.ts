@@ -6,7 +6,6 @@ import {
   CurrencyCode,
 } from '@ovh-ux/manager-react-components';
 
-/* eslint-disable @typescript-eslint/no-namespace */
 export namespace order {
   export namespace cart {
     /** Type of a pricing */
