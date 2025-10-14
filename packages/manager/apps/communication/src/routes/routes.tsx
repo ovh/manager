@@ -24,7 +24,7 @@ const CommunicationsPage = lazy(() =>
 const CommunicationsDetailPage = lazy(() =>
   import('@/pages/communications/detail/CommunicationsDetail.page'),
 );
-const SettingsPage = lazy(() => import('@/pages/settings'));
+const SettingsPage = lazy(() => import('@/pages/settings/Settings.page'));
 
 export default (
   <Route
