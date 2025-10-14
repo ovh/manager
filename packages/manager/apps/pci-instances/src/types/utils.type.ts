@@ -20,7 +20,7 @@ export type DeepReadonly<T> = T extends Primitive
   ? T
   : T extends Map<infer K, infer V>
   ? DeepReadonlyMap<K, V>
-  : T extends Record<string, unknown>
+  : T extends object
   ? DeepReadonlyObject<T>
   : T extends Array<infer U>
   ? DeepReadonlyArray<U>
