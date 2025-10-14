@@ -46,6 +46,12 @@ const getNewUrl = (appName = '', currentValue = '', region: 'EU' | 'CA' | 'US') 
     return currentValue;
   }
 
+  const telecomApps = ['telecom', 'telephony', 'freefax', 'overthebox', 'pack-xdsl', 'sms'];
+
+  if (telecomApps.indexOf(appName) !== -1) {
+    return currentValue.replace('www.ovhtelecom.fr/manager', 'manager.eu.ovhcloud.com');
+  }
+
   const oldDomains = {
     EU: 'www.ovh.com/manager',
     CA: 'ca.ovh.com/manager',

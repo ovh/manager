@@ -45,9 +45,9 @@ describe('sso module', () => {
     it('With Telecom', () => {
       vi.stubGlobal('window', {
         location: {
-          host: 'www.ovhtelecom.fr',
-          hostname: 'www.ovhtelecom.fr',
-          href: 'https://www.ovhtelecom.fr/manager/#/telecom/',
+          host: 'manager.eu.ovhcloud.com',
+          hostname: 'manager.eu.ovhcloud.com',
+          href: 'https://manager.eu.ovhcloud.com/#/telecom/',
           hash: '#/telecom/',
           assign: vi.fn(),
         },
@@ -144,22 +144,6 @@ describe('sso module', () => {
       );
     });
 
-    it('For telecom application', () => {
-      vi.stubGlobal('window', {
-        location: {
-          host: 'www.ovhtelecom.fr',
-          href: 'https://www.ovhtelecom.fr/manager/#/telecom/',
-          hash: '#/telecom/',
-          assign: vi.fn(),
-        },
-      });
-      const windowLocationSpy = vi.spyOn(window.location, 'assign');
-      redirectToLoginPage();
-      expect(windowLocationSpy).toHaveBeenCalledWith(
-        'https://www.ovh.com/auth/?onsuccess=https%3A%2F%2Fwww.ovhtelecom.fr%2Fmanager%2F%23%2Ftelecom%2F',
-      );
-    });
-
     it('logins in development mode', () => {
       vi.stubGlobal('window', {
         location: {
@@ -203,22 +187,6 @@ describe('sso module', () => {
       redirectToLogoutPage();
       expect(windowLocationSpy).toHaveBeenCalledWith(
         'https://www.ovh.com/auth/?action=disconnect&onsuccess=https%3A%2F%2Fmanager.eu.ovhcloud.com%2F%23%2Fhub%2F&from=https%3A%2F%2Fmanager.eu.ovhcloud.com%2F',
-      );
-    });
-
-    it('For telecom application', () => {
-      vi.stubGlobal('window', {
-        location: {
-          host: 'www.ovhtelecom.fr',
-          href: 'https://www.ovhtelecom.fr/manager/#/telecom/',
-          hash: '#/telecom/',
-          assign: vi.fn(),
-        },
-      });
-      const windowLocationSpy = vi.spyOn(window.location, 'assign');
-      redirectToLogoutPage();
-      expect(windowLocationSpy).toHaveBeenCalledWith(
-        'https://www.ovh.com/auth/?action=disconnect&onsuccess=https%3A%2F%2Fwww.ovhtelecom.fr%2Fmanager%2F%23%2Ftelecom%2F',
       );
     });
 

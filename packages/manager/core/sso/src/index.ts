@@ -8,14 +8,9 @@ const redirectTo = (url: string) => {
   return window.location.assign(url);
 };
 
-const isOvhTelecom = () => window.location.host === 'www.ovhtelecom.fr';
-
 export const getAuthUrl = () => {
   if (window.location.hostname === 'localhost') {
     return '/auth/';
-  }
-  if (isOvhTelecom()) {
-    return DEFAULT_SSO_AUTH_URL.EU;
   }
   const [, region] = window.location.host.split('.');
   return DEFAULT_SSO_AUTH_URL[`${(region || 'eu').toUpperCase() as REGION}`];

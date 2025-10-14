@@ -385,7 +385,7 @@ export const ORDER_URLS: Record<'EU' | 'CA' | 'US', Record<string, Record<string
       FR: 'https://www.ovhtelecom.fr/sharepoint/?range=mail',
     },
     telephony_accessory_order: {
-      FR: 'https://www.ovhtelecom.fr/manager/#/telecom/orders/accessories',
+      FR: 'https://manager.eu.ovhcloud.com/#/telecom/orders/accessories',
     },
     telephony_voip: {
       FR: 'https://www.ovhtelecom.fr/telephonie/voip/',
