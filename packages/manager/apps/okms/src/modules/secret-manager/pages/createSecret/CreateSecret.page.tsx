@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { BaseLayout, Notifications } from '@ovh-ux/manager-react-components';
+import {
+  BaseLayout,
+  Notifications,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { OdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import { RootBreadcrumbItem } from '@secret-manager/components/breadcrumb';
@@ -11,6 +15,7 @@ import { OrderOkmsModalProvider } from '@/common/pages/OrderOkmsModal/OrderOkmsM
 
 export default function SecretCreatePage() {
   const { t } = useTranslation('secret-manager');
+  const { notifications } = useNotifications();
 
   const [selectedOkmsId, setSelectedOkmsId] = useState<string | undefined>();
 
@@ -26,9 +31,9 @@ export default function SecretCreatePage() {
             <RootBreadcrumbItem />
           </OdsBreadcrumb>
         }
-        message={<Notifications />}
+        message={notifications.length > 0 ? <Notifications /> : null}
       >
-        <div className="flex flex-col gap-8 max-w-screen-xxl">
+        <div className="flex flex-col gap-8 max-w-2xl">
           <OkmsManagement
             selectedOkmsId={selectedOkmsId}
             setSelectedOkmsId={setSelectedOkmsId}
