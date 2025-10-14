@@ -839,5 +839,16 @@
   "domain_dashboard_general_information_being_suspended_by_procedure_message": "Su dominio está sujeto a un procedimiento de verificación de los datos de contacto. Revise las operaciones en curso para determinar si es necesaria alguna acción. ",
   "domain_dashboard_general_information_see_operations": "Ver las operaciones en curso",
   "domain_tab_DNS_state_error": "En error",
-  "domain_tab_DNS_error_warning": "Se ha detectado un error al actualizar los DNS. Por favor, corríjalos."
+  "domain_tab_DNS_error_warning": "Se ha detectado un error al actualizar los DNS. Por favor, corríjalos.",
+  "domain_configuration_dns_entry_add_step1_helpwizard_https_svcb": "SVCB y HTTPS",
+  "domain_configuration_dns_entry_add_step1_helpwizard_https_svcb_desc": "Especifica el servidor y los parámetros de conexión que se usarán para obtener acceso a un servicio en un dominio.",
+  "domain_configuration_dns_entry_add_step1_helpwizard_rp": "RP",
+  "domain_configuration_dns_entry_add_step1_helpwizard_rp_desc": "Permite declarar el email de la persona responsable del dominio.",
+  "domain_configuration_dns_entry_add_rp_mbox": "Contacto",
+  "domain_configuration_dns_entry_add_rp_txt_dname": "Información",
+  "domain_configuration_dns_entry_add_svcb_priority": "Prioridad",
+  "domain_configuration_dns_entry_add_svcb_target": "Destino",
+  "domain_configuration_dns_entry_add_svcb_params": "Ajustes",
+  "domain_configuration_dns_entry_add_svcb_priority_help": "Una prioridad de 0 indica el modo alias. Cualquier otro valor corresponde al modo servicio.",
+  "domain_configuration_dns_entry_add_svcb_params_help": "Si la prioridad es 0, este campo debe estar vacío. De lo contrario, el formato es ipv4hint=\"127.0.0.1\" alpn=\"h2,h3\""
 }

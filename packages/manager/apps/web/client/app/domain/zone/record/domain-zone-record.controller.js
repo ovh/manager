@@ -143,6 +143,58 @@ angular.module('App').controller(
       );
     }
 
+    checkRpMbox(input) {
+      const mail = get(this.model, 'target.mbox');
+      input.$setValidity(
+        'mbox',
+        mail === null || mail === '' || this.DomainValidator.isValidFqdn(mail),
+      );
+    }
+
+    checkRpTxt(input) {
+      const txt = get(this.model, 'target.txt');
+      input.$setValidity(
+        'txt',
+        txt === null || txt === '' || this.DomainValidator.isValidFqdn(txt),
+      );
+    }
+
+    checkSvcbTarget(input) {
+      const target = get(this.model, 'target.target');
+      input.$setValidity(
+        'target',
+        target === null ||
+          target === '' ||
+          this.DomainValidator.isValidFqdn(target),
+      );
+    }
+
+    checkSvcbParams(inputParam, inputPriority) {
+      const params = get(this.model, 'target.params');
+      const priority = get(this.model, 'target.priority');
+      if (priority === 0 && params && params.trim() !== '') {
+        inputParam.$setValidity('params', false);
+        inputPriority.$setValidity('priority', false);
+        return;
+      }
+
+      inputPriority.$setValidity('priority', true);
+      function isValidSvcParam(str) {
+        if (str == null || !str.trim()) return true;
+
+        return str
+          .trim()
+          .split(/\s+/)
+          .every((param) => {
+            const [key, value] = param.split('=', 2);
+            const validKey = /^[a-z0-9-]{1,63}$/.test(key);
+            const validValue = value === undefined || !/\s/.test(value);
+            return validKey && validValue;
+          });
+      }
+      inputParam.$setValidity('params', isValidSvcParam(params));
+    }
+
     checkNaptrReplaceField(input) {
       const value = get(this.model, 'target.replace');
       input.$setValidity(
@@ -331,6 +383,9 @@ angular.module('App').controller(
         case 'NAPTR':
           this.loadNaptrModel(this.edit.target);
           break;
+        case 'RP':
+          this.loadRpModel(this.edit.targetToDisplay);
+          break;
         case 'SPF':
           this.loadSpfModel(this.edit.targetToDisplay);
           break;
@@ -339,6 +394,10 @@ angular.module('App').controller(
           break;
         case 'SSHFP':
           this.loadSshfpModel(this.edit.targetToDisplay);
+          break;
+        case 'SVCB':
+        case 'HTTPS':
+          this.loadSvcbModel(this.edit.targetToDisplay);
           break;
         case 'TLSA':
           this.loadTslaModel(this.edit.targetToDisplay);
@@ -495,6 +554,23 @@ angular.module('App').controller(
           ? splitted[5].replace(/\\{2,}/g, '\\')
           : null;
         this.model.target.replace = splitted[6] === '.' ? '' : splitted[6]; // If only ".": hide
+      }
+    }
+
+    loadRpModel(target) {
+      const splitted = target.match(this.DomainValidator.regex.RP);
+      if (isArray(splitted) && splitted.length > 0) {
+        this.model.target.mbox = splitted[1] || '';
+        this.model.target.txt = splitted[2] || '';
+      }
+    }
+
+    loadSvcbModel(target) {
+      const splitted = target.match(this.DomainValidator.regex.SVCB);
+      if (isArray(splitted) && splitted.length > 0) {
+        this.model.target.priority = parseInt(splitted[1], 10);
+        this.model.target.target = splitted[2] || '';
+        this.model.target.params = splitted[3] || '';
       }
     }
 
@@ -659,6 +735,17 @@ angular.module('App').controller(
           break;
         case 'caa':
           this.model.target.value = this.DomainValidator.constructor.transformCAATarget(
+            this.model.target,
+          );
+          break;
+        case 'rp':
+          this.model.target.value = this.DomainValidator.constructor.transformRPTarget(
+            this.model.target,
+          );
+          break;
+        case 'svcb':
+        case 'https':
+          this.model.target.value = this.DomainValidator.constructor.transformSVCBTarget(
             this.model.target,
           );
           break;
