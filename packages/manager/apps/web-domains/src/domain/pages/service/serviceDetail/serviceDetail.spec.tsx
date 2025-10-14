@@ -1,7 +1,7 @@
 import '@/common/setupTests';
 import React from 'react';
 import { vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { wrapper } from '@/common/utils/test.provider';
 import { useGetDomainResource } from '@/domain/hooks/data/query';
 import { serviceInfoDetail } from '@/domain/__mocks__/serviceInfoDetail';
@@ -23,8 +23,8 @@ describe('Domain detail', () => {
       isFetchingDomainResource: true,
     });
 
-    const { getByTestId } = render(<ServiceDetail />, { wrapper });
-    expect(getByTestId('listing-page-spinner')).toBeInTheDocument();
+    render(<ServiceDetail />, { wrapper });
+    expect(screen.getByTestId('listing-page-spinner')).toBeInTheDocument();
   });
 
   it('display the information of Domain', async () => {
@@ -33,13 +33,11 @@ describe('Domain detail', () => {
       isFetchingDomainResource: false,
     });
 
-    const { getByTestId } = render(<ServiceDetail />, { wrapper });
+    render(<ServiceDetail />, { wrapper });
 
     // Check all tab declared in ServiceDetailTabsProps is present in dom
-    await waitFor(() => {
-      expect(
-        ServiceDetailTabsProps.every((tab) => !!getByTestId(tab.value)),
-      ).toBe(true);
+    ServiceDetailTabsProps.forEach((key) => {
+      expect(screen.getByTestId(key.id)).toBeInTheDocument();
     });
   });
 });
