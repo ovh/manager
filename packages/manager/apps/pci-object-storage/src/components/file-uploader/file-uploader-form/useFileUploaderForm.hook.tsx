@@ -59,13 +59,8 @@ export const useFileUploarderForm = ({
 
   type ValidationSchema = z.infer<typeof schema>;
 
-  const defaultValues: ValidationSchema = {
-    prefix: '/',
-  };
-
   const form = useForm<ValidationSchema>({
     resolver: zodResolver(schema),
-    defaultValues,
   });
 
   return { form, schema };

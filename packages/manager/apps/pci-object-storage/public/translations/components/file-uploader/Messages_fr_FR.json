@@ -7,5 +7,9 @@
   "importFileLabel": "Importer des fichiers",
   "importFileButton": "Sélectionner des fichiers...",
   "fileUploaderButtonCancel": "Annuler",
-  "fileUploaderButtonConfirm": "Importer"
+  "fileUploaderButtonConfirm": "Importer",
+  "storageClassLabel": "Classe de stockage",
+  "popOverDesc1": "Retrouvez les informations concernant :",
+  "popOverDesc2": "Les classes de stockages",
+  "popOverDesc3": "Les prix"
 }
