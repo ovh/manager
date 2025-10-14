@@ -133,7 +133,8 @@ main() {
     create_smoke_tag "$current_tag" "$name" "$version"
   done <<< "$changed_packages"
 
-  next_tag=$(get_release_name "$SEED")
+  # next_tag=$(get_release_name "$SEED")
+  next_tag="osmium-trout-2"
   printf "%s\n" "New tag is $next_tag"
 
   RELEASE_NOTE+="# Release $next_tag\
