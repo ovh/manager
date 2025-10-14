@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.16.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.16.5...@ovh-ux/manager-telecom@16.16.6) (2025-10-14)
+
+
+### Bug Fixes
+
+* **telecom.telephony:** optimise the check for onboarding sva ([b2753ba](https://github.com/ovh/manager/commit/b2753bac0361001808be0ccb44ebb7a4f4cf5e6f)), closes [#PRDCOL-222](https://github.com/ovh/manager/issues/PRDCOL-222)
+
+
+
+
+
 ## [16.16.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.16.4...@ovh-ux/manager-telecom@16.16.5) (2025-10-14)
 
 

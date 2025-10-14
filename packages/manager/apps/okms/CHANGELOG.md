@@ -3,6 +3,78 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.34.0...@ovh-ux/manager-okms-app@0.35.0) (2025-10-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 672] ([652bfc6](https://github.com/ovh/manager/commit/652bfc61d53c0636ddc5ba10b85f6936f7689135))
+* **kms:** fetch 100 domains on secret's domains page ([0ce1693](https://github.com/ovh/manager/commit/0ce1693192734d7ad9b24affc0744ff26eb4e358)), closes [#MANAGER-18850](https://github.com/ovh/manager/issues/MANAGER-18850)
+* **kms:** rename sms to secret-manager ([9de7689](https://github.com/ovh/manager/commit/9de76895c9f4ab43a0b4243a6ad63084b9dd32ab)), closes [#MANAGER-18508](https://github.com/ovh/manager/issues/MANAGER-18508)
+* **kms:** secret deactivate_version_after label ([4a3fece](https://github.com/ovh/manager/commit/4a3fece8a33aa7de186b40eaa58e47bbcaed55d3)), closes [#MANAGER-17850](https://github.com/ovh/manager/issues/MANAGER-17850)
+* **kms:** secrets listing error state ([03d4eb4](https://github.com/ovh/manager/commit/03d4eb495fd5e752d58d836884a05300583cc093)), closes [#MANAGER-17850](https://github.com/ovh/manager/issues/MANAGER-17850)
+* **kms:** secrets listing loading state ([0ecf5c4](https://github.com/ovh/manager/commit/0ecf5c4f8858256a0fcd3e8ef659be242171a92e)), closes [#MANAGER-17850](https://github.com/ovh/manager/issues/MANAGER-17850)
+* **kms:** secrets onboarding illustration ([b6fbf7a](https://github.com/ovh/manager/commit/b6fbf7a4e6df44835d7da8f9792bdc296c97bb99)), closes [#MANAGER-17850](https://github.com/ovh/manager/issues/MANAGER-17850)
+* **okms:** add okms root redirection to kms ([a29538d](https://github.com/ovh/manager/commit/a29538d8acb72c232f21c496f15b37f061ee0fca)), closes [#MANAGER-18172](https://github.com/ovh/manager/issues/MANAGER-18172)
+* **okms:** broken secret version state update ([8fbd4f5](https://github.com/ovh/manager/commit/8fbd4f5744a58426b144c7a9e43f5489d976e066)), closes [#MANAGER-18303](https://github.com/ovh/manager/issues/MANAGER-18303)
+* **okms:** comment create secret wip sections ([4ba6f31](https://github.com/ovh/manager/commit/4ba6f31c2b7a034b85fe6b05b48a20d772d178c1)), closes [#MANAGER-18309](https://github.com/ovh/manager/issues/MANAGER-18309)
+* **okms:** delete version modal test ([6ddd970](https://github.com/ovh/manager/commit/6ddd970e74b77fc8d4e22d77d8fcc218e8d2ae36)), closes [#MANAGER-18303](https://github.com/ovh/manager/issues/MANAGER-18303)
+* **okms:** fix <DomainSelector /> return value ([d5ebe2f](https://github.com/ovh/manager/commit/d5ebe2fdffa70e89aa436d602d5c013655a1e467)), closes [#MANAGER-18248](https://github.com/ovh/manager/issues/MANAGER-18248)
+* **okms:** fix back to domain list link ([8a631e3](https://github.com/ovh/manager/commit/8a631e381b528c3e83a746c36a4d89348853abce)), closes [#MANAGER-18851](https://github.com/ovh/manager/issues/MANAGER-18851)
+* **okms:** fix checkout order error message ([c68ff92](https://github.com/ovh/manager/commit/c68ff92a9010967655b87f358511f72c2fc925cd)), closes [#MANAGER-18309](https://github.com/ovh/manager/issues/MANAGER-18309)
+* **okms:** fix create secret error management ([518e68a](https://github.com/ovh/manager/commit/518e68aa33871b4c994c301a73f046f57b0aa461)), closes [#MANAGER-18248](https://github.com/ovh/manager/issues/MANAGER-18248)
+* **okms:** fix order okms tests and modal page ([c8595a2](https://github.com/ovh/manager/commit/c8595a2a2d584615bc2d4559d9eedcc1ea548be4)), closes [#MANAGER-18309](https://github.com/ovh/manager/issues/MANAGER-18309)
+* **okms:** fix secret translations ([123d630](https://github.com/ovh/manager/commit/123d6302d5a32ea3df60aeb6769b523d0f24ee5b)), closes [#MANAGER-19708](https://github.com/ovh/manager/issues/MANAGER-19708)
+* **okms:** fix secret version data type ([ce750bf](https://github.com/ovh/manager/commit/ce750bf1ab5aa1ee0127c5b6e1139b4c1803522f)), closes [#MANAGER-18248](https://github.com/ovh/manager/issues/MANAGER-18248)
+* **okms:** fix secret-manager automatic translations ([2ef940a](https://github.com/ovh/manager/commit/2ef940a2e2a317d3af97e77d15b2c713d79d2f17)), closes [#MANAGER-19754](https://github.com/ovh/manager/issues/MANAGER-19754)
+* **okms:** fix silent okms order tests ([03be92b](https://github.com/ovh/manager/commit/03be92b46bb5d83d9f564c3c8092af54bfa2d039)), closes [#MANAGER-18309](https://github.com/ovh/manager/issues/MANAGER-18309)
+* **okms:** fix silent okms order tests ([f44553f](https://github.com/ovh/manager/commit/f44553f4da52d743cdcdb041a5f3125d305f674e)), closes [#MANAGER-18309](https://github.com/ovh/manager/issues/MANAGER-18309)
+* **okms:** fix succesful domain creation on secret form ([a128724](https://github.com/ovh/manager/commit/a1287246c3a4f8d1effa2c241e24b3252ac9ffa0)), closes [#MANAGER-18309](https://github.com/ovh/manager/issues/MANAGER-18309)
+* **okms:** fix tsconfig aliases ([b29e35b](https://github.com/ovh/manager/commit/b29e35bcdc432afbb0d9afbd782e7ec4c49b3543)), closes [#MANAGER-18248](https://github.com/ovh/manager/issues/MANAGER-18248)
+* **okms:** remove msw handlers delay ([c76ea5d](https://github.com/ovh/manager/commit/c76ea5d93d8ba23dcabd32bf159cb5c8e46a3185)), closes [#MANAGER-18309](https://github.com/ovh/manager/issues/MANAGER-18309)
+* **okms:** rename secret constant file ([f3ea11f](https://github.com/ovh/manager/commit/f3ea11f6cfc8de1d7798a3ac557e87d126589e95)), closes [#MANAGER-18248](https://github.com/ovh/manager/issues/MANAGER-18248)
+* **okms:** update create secret domain management ([71dd901](https://github.com/ovh/manager/commit/71dd9019168424b4a38bb6024d6e90aedaa1828b)), closes [#MANAGER-18248](https://github.com/ovh/manager/issues/MANAGER-18248)
+* **okms:** update create secret input validation ([9d0e716](https://github.com/ovh/manager/commit/9d0e716911923eb6729100b019586f78ade156c1)), closes [#MANAGER-18248](https://github.com/ovh/manager/issues/MANAGER-18248)
+* **okms:** update okms mocks ([09cda9e](https://github.com/ovh/manager/commit/09cda9eeb9af3b12c7e397c173c081a79a0348d1)), closes [#MANAGER-18248](https://github.com/ovh/manager/issues/MANAGER-18248)
+* **okms:** use common translation ([30040a0](https://github.com/ovh/manager/commit/30040a008c4c2abc7ae78405efd62651b248e2ca)), closes [#MANAGER-18248](https://github.com/ovh/manager/issues/MANAGER-18248)
+* **okms:** use datagrid action topbar ([5911aec](https://github.com/ovh/manager/commit/5911aecdbcf42904dd18bee1e996f673a4e0e84c)), closes [#MANAGER-18951](https://github.com/ovh/manager/issues/MANAGER-18951)
+* **okms:** use smart config to check if CAS is required… ([0800e0d](https://github.com/ovh/manager/commit/0800e0d20d416d28e49c17473ea65ce94c3d2ce7)), closes [#MANAGER-19608](https://github.com/ovh/manager/issues/MANAGER-19608)
+
+
+### Features
+
+* **kms:** add a region selector to secret list page ([3ef524d](https://github.com/ovh/manager/commit/3ef524dd3bf4b82018a3a2173d41858567424841)), closes [#MANAGER-18247](https://github.com/ovh/manager/issues/MANAGER-18247)
+* **kms:** add first secrets routes ([ae70c0c](https://github.com/ovh/manager/commit/ae70c0cc8092e479b90113477993af30b0065645)), closes [#MANAGER-17869](https://github.com/ovh/manager/issues/MANAGER-17869)
+* **kms:** domains list page for secrets ([34e3bcc](https://github.com/ovh/manager/commit/34e3bcc572639753664177921fce3a0530b0fd51)), closes [#MANAGER-18850](https://github.com/ovh/manager/issues/MANAGER-18850)
+* **kms:** secret dashboard page ([52b9217](https://github.com/ovh/manager/commit/52b921718f0d42cfa75086582e1a7653c4d052ce)), closes [#MANAGER-17850](https://github.com/ovh/manager/issues/MANAGER-17850)
+* **kms:** secrets listing page ([486cd3f](https://github.com/ovh/manager/commit/486cd3f95dab67c8fbadc6e6940a145ddf7c95d2)), closes [#MANAGER-18246](https://github.com/ovh/manager/issues/MANAGER-18246)
+* **kms:** secrets onboarding page ([898ac2f](https://github.com/ovh/manager/commit/898ac2ff75dca67ea7f3d00b89375d1f5cd0d97a)), closes [#MANAGER-18240](https://github.com/ovh/manager/issues/MANAGER-18240)
+* **okms:** add addSecret button on okmsList page ([554f071](https://github.com/ovh/manager/commit/554f071242e29e116aa03b8d6b7a4646c1decabe)), closes [#MANAGER-19710](https://github.com/ovh/manager/issues/MANAGER-19710)
+* **okms:** add back to domains button ([e948472](https://github.com/ovh/manager/commit/e948472222b15e8e89f6db57e6de1d591b747fcc)), closes [#MANAGER-18851](https://github.com/ovh/manager/issues/MANAGER-18851)
+* **okms:** add CAS parameter support for creating secret versions ([29aa98e](https://github.com/ovh/manager/commit/29aa98eed6614416d555b60f89b028fbd87bc75b)), closes [#MANAGER-19608](https://github.com/ovh/manager/issues/MANAGER-19608)
+* **okms:** add changelog buttons ([ed0216a](https://github.com/ovh/manager/commit/ed0216a5adda46e29983a47591ab574063b65ad3)), closes [#MANAGER-19653](https://github.com/ovh/manager/issues/MANAGER-19653)
+* **okms:** add create secret page ([c99e5e6](https://github.com/ovh/manager/commit/c99e5e6318a3cfc5ed66d2a61dfce6e7e9b34f09)), closes [#MANAGER-18248](https://github.com/ovh/manager/issues/MANAGER-18248)
+* **okms:** add delete secret modal ([7ad3d43](https://github.com/ovh/manager/commit/7ad3d434ab6f421e56b22ec98ac572b184cd600f)), closes [#MANAGER-18306](https://github.com/ovh/manager/issues/MANAGER-18306)
+* **okms:** add message on add a version drawer ([0103225](https://github.com/ovh/manager/commit/01032253577a8beb0aa5c91247dacf7e322532cd)), closes [#MANAGER-19659](https://github.com/ovh/manager/issues/MANAGER-19659)
+* **okms:** add order okms modal on create secret page ([77bcdd6](https://github.com/ovh/manager/commit/77bcdd6d7629958df217914d15250283b06d8ac4)), closes [#MANAGER-18309](https://github.com/ovh/manager/issues/MANAGER-18309)
+* **okms:** add secret api types ([e857fb2](https://github.com/ovh/manager/commit/e857fb2936eef994cb3d0b578d608feb6d47e3b0)), closes [#MANAGER-18248](https://github.com/ovh/manager/issues/MANAGER-18248)
+* **okms:** add secret manager breadcrumb ([96f0dd3](https://github.com/ovh/manager/commit/96f0dd3f936540ff6a3518379a0e8462515fce7e)), closes [#MANAGER-18759](https://github.com/ovh/manager/issues/MANAGER-18759)
+* **okms:** add secret reveal value drawer ([04f8c94](https://github.com/ovh/manager/commit/04f8c94f67d34f0df6c3d1b243e1b8e627822b6d)), closes [#MANAGER-18314](https://github.com/ovh/manager/issues/MANAGER-18314)
+* **okms:** add secret version list ([7a2996e](https://github.com/ovh/manager/commit/7a2996e56a6ee2336b707a198665a0cc079546e5)), closes [#MANAGER-17851](https://github.com/ovh/manager/issues/MANAGER-17851)
+* **okms:** add tooltips on secret dashboard ([63c9bdb](https://github.com/ovh/manager/commit/63c9bdbe92f0babebc47681d628ec9b2f2f51fdc)), closes [#MANAGER-18985](https://github.com/ovh/manager/issues/MANAGER-18985)
+* **okms:** add version list value drawer ([df6802b](https://github.com/ovh/manager/commit/df6802b497db98d8e2d460db08f160bdac55c00e)), closes [#MANAGER-19513](https://github.com/ovh/manager/issues/MANAGER-19513)
+* **okms:** bump zod v4 ([092b536](https://github.com/ovh/manager/commit/092b536c6b3c77160d6c5606a27bb47bcbbd207b)), closes [#MANAGER-18248](https://github.com/ovh/manager/issues/MANAGER-18248)
+* **okms:** create secret version drawer ([a95d4c9](https://github.com/ovh/manager/commit/a95d4c9810a642d5782681b08e2a29fdd9d029ef)), closes [#MANAGER-18317](https://github.com/ovh/manager/issues/MANAGER-18317)
+* **okms:** prefill secret data input with a template ([a223826](https://github.com/ovh/manager/commit/a223826d487ecd4d1060628372ee8acd6f8dd303)), closes [#MANAGER-19164](https://github.com/ovh/manager/issues/MANAGER-19164)
+* **okms:** secret settings smart display ([da53d4a](https://github.com/ovh/manager/commit/da53d4a59fa9271c4bb073f551534e811a2f1c68)), closes [#MANAGER-19067](https://github.com/ovh/manager/issues/MANAGER-19067)
+* **okms:** update secret version state ([56cbe15](https://github.com/ovh/manager/commit/56cbe15a2598ba6911e99a887f26fca4728dd2f3)), closes [#MANAGER-18303](https://github.com/ovh/manager/issues/MANAGER-18303)
+* **okms:** use pagination on secret list ([8ce22b3](https://github.com/ovh/manager/commit/8ce22b3cf8bbc312a87ec092ab5801f924b02190)), closes [#MANAGER-18758](https://github.com/ovh/manager/issues/MANAGER-18758)
+* **okms:** use pagination on secret version list ([6c31ae7](https://github.com/ovh/manager/commit/6c31ae72ef1dd56004830fd3aab4e069c53c6579)), closes [#MANAGER-18951](https://github.com/ovh/manager/issues/MANAGER-18951)
+
+
+
+
+
 # [0.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.33.21...@ovh-ux/manager-okms-app@0.34.0) (2025-10-14)
 
 
