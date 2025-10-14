@@ -105,6 +105,7 @@ export default function ActivatePage() {
     savePaymentMethod,
     handlePaymentStatusChange,
     handleRegisteredPaymentMethodSelected,
+    handleChallengeRequired,
   } = useWillPayment();
 
   const willPaymentConfig = useWillPaymentConfig({
@@ -179,6 +180,7 @@ export default function ActivatePage() {
             onRegisteredPaymentMethodSelected={
               handleRegisteredPaymentMethodSelected
             }
+            onRequiredChallengeEvent={handleChallengeRequired}
           />
 
           {creditPaymentAmount && (
