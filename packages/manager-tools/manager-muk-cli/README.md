@@ -51,12 +51,12 @@ yarn muk-cli --check-components
 
 ---
 
-### 1.3 `--update-version`
+### 1.3 `--update-versions`
 
 Updates all ODS dependencies in `package.json` to their latest versions, validates linting, and runs unit tests.
 
 ```bash
-yarn muk-cli --update-version
+yarn muk-cli --update-versions
 ```
 
 **Example Output**
