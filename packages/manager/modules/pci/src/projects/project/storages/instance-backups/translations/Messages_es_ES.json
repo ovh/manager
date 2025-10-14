@@ -12,5 +12,6 @@
   "pci_projects_project_storages_instance-backups_instance_create_label": "Crear una instancia",
   "pci_projects_project_storages_instance-backups_delete_label": "Eliminar",
   "pci_projects_project_storages_instance-backups_add_label": "Crear un backup de instancia",
-  "pci_projects_project_storages_instance-backups_id_label": "ID"
+  "pci_projects_project_storages_instance-backups_id_label": "ID",
+  "pci_projects_project_storages_instance-backups_status_importing": "Copiando..."
 }
