@@ -27,8 +27,6 @@ export function useDeleteS3ObjectVersion({
           variable.region,
           'storage',
           variable.name,
-          'object',
-          variable.key,
         ],
       });
       onDeleteSuccess();

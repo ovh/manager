@@ -1,5 +1,5 @@
-import { AddReplicationFormValues } from '../new/formAddReplication/useAddReplicationForm.hook';
-import { transformTagsToApi } from '../utils/transformTags.util';
+import { AddReplicationFormValues } from '../pages/object-storage/storage/s3Id/replication/new/formAddReplication/useAddReplicationForm.hook';
+import { transformTagsToApi } from '../lib/transformTagsHelper';
 import storages, { FormattedStorage } from '@/types/Storages';
 
 interface UseReplicationFormSubmitParams {

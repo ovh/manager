@@ -3,11 +3,11 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import storages, { FormattedStorage } from '@/types/Storages';
-import { transformTagsFromApi } from '../utils/transformTags.util';
+import { transformTagsFromApi } from '../../../../../../lib/transformTagsHelper';
 import {
   createReplicationFormSchema,
   ReplicationFormValues,
-} from '../schemas/replicationForm.schema';
+} from '../_components/replicationForm.schema';
 
 export type EditReplicationFormValues = ReplicationFormValues;
 

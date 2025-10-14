@@ -1,11 +1,11 @@
 import {
   Button,
+  Clipboard,
   Tooltip,
   TooltipProvider,
   TooltipTrigger,
   useToast,
 } from '@datatr-ux/uxlib';
-import { Files } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -14,30 +14,13 @@ const Configuration = () => {
   const toast = useToast();
   const { swiftId } = useParams();
   const navigate = useNavigate();
+  const onCopy = () => toast.toast({ title: t('successCopy') });
+
   return (
     <div data-testid="configuration-container">
-      <div className="flex justify-between items-center text-base mr-2">
-        <div className="flex flex-row gap-2">
-          <p className="font-semibold">{t('swiftIdLabel')}</p>
-          <p>{swiftId}</p>
-        </div>
-        <Button
-          data-testid="dashboard-copy-id-button"
-          type="button"
-          size="menu"
-          variant="menu"
-          mode="menu"
-          className="shrink-0"
-          onClick={() => {
-            navigator.clipboard.writeText(swiftId);
-            toast.toast({
-              title: t('successCopy'),
-            });
-          }}
-        >
-          <Files className="w-4 h-4" />
-          <span className="sr-only">copy</span>
-        </Button>
+      <div className="space-y-2">
+        <h5>{t('swiftIdLabel')}</h5>
+        <Clipboard value={swiftId} onCopy={onCopy} />
       </div>
       <TooltipProvider>
         <Tooltip>

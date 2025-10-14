@@ -86,18 +86,19 @@ const Object = () => {
                     {octetConverter(objectQuery.data.size, true, 2)}
                   </TableCell>
                 </TableRow>
+                {objectQuery.data.storageClass && (
+                  <TableRow>
+                    <TableCell className="text-semibold">
+                      {t('tableHeaderStorageClass')}
+                    </TableCell>
+                    <TableCell>
+                      {tObj(`objectClass_${objectQuery.data.storageClass}`)}
+                    </TableCell>
+                  </TableRow>
+                )}
                 <TableRow>
                   <TableCell className="text-semibold">
-                    {t('tableHeaderType')}
-                  </TableCell>
-                  <TableCell>
-                    {tObj(`objectClass_${objectQuery.data.storageClass}`)}
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="text-semibold">
-                    {!objectQuery.data.isDeleteMarker &&
-                      t('tableHeaderUpdateDate')}
+                    {t('tableHeaderUpdateDate')}
                   </TableCell>
                   <TableCell>
                     <FormattedDate

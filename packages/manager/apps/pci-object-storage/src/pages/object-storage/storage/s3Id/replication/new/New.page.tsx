@@ -6,8 +6,8 @@ import { useAddReplicationForm } from './formAddReplication/useAddReplicationFor
 import { useAddReplication } from '@/data/hooks/replication/useAddReplication.hook';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import { useGetStorages } from '@/data/hooks/storage/useGetStorages.hook';
-import { ReplicationModalLayout } from '../components/ReplicationModalLayout.component';
-import { useReplicationFormSubmit } from '../hooks/useReplicationFormSubmit.hook';
+import { ReplicationModalLayout } from '../_components/ReplicationModalLayout.component';
+import { useReplicationFormSubmit } from '../../../../../../hooks/useReplicationFormSubmit.hook';
 
 const CreateReplication = () => {
   const { t } = useTranslation('pci-object-storage/replication');

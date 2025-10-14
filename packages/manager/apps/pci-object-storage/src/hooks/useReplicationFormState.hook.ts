@@ -1,5 +1,5 @@
 import { UseFormReturn } from 'react-hook-form';
-import { ReplicationFormValues } from '../schemas/replicationForm.schema';
+import { ReplicationFormValues } from '../pages/object-storage/storage/s3Id/replication/_components/replicationForm.schema';
 
 export const useReplicationFormState = (
   form: UseFormReturn<ReplicationFormValues>,

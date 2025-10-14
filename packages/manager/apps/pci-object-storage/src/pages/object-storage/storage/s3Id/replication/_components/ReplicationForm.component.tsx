@@ -5,7 +5,7 @@ import { ReplicationRuleIdentification } from './ReplicationRuleIdentification.c
 import { ReplicationRuleScope } from './ReplicationRuleScope.component';
 import { ReplicationRuleDestination } from './ReplicationRuleDestination.component';
 import { ReplicationRuleAdvanced } from './ReplicationRuleAdvanced.component';
-import { useReplicationFormState } from '../hooks/useReplicationFormState.hook';
+import { useReplicationFormState } from '../../../../../../hooks/useReplicationFormState.hook';
 
 type ReplicationFormProps = {
   form: UseFormReturn<AddReplicationFormValues>;
