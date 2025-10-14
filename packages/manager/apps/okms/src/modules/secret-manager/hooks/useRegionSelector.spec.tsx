@@ -25,10 +25,8 @@ vi.mock('react-router-dom', () => ({
 }));
 
 // Mock the useLocations fetch function
-vi.mock('@/modules/secret-manager/data/api/location', async () => {
-  const actual = await vi.importActual(
-    '@/modules/secret-manager/data/api/location',
-  );
+vi.mock('@/common/data/api/location', async () => {
+  const actual = await vi.importActual('@/common/data/api/location');
   return {
     ...actual,
     getLocations: vi.fn().mockResolvedValue(locationsMock),
@@ -54,7 +52,7 @@ import { getOkmsList } from '@/data/api/okms';
 const mockGetOkmsList = vi.mocked(getOkmsList);
 
 // eslint-disable-next-line import/first, import/newline-after-import
-import { getLocations } from '@/modules/secret-manager/data/api/location';
+import { getLocations } from '@/common/data/api/location';
 const mockGetLocations = vi.mocked(getLocations);
 
 // Mock the useCurrentRegion hook
