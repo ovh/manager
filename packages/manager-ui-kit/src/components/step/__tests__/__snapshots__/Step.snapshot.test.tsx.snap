@@ -9,7 +9,9 @@ exports[`Step Component - Snapshot Tests > renders the Step with Edit Button 1`]
       class="basis-[40px]"
     >
       <span
-        class="_icon_i4xp0_2 _icon--check_i4xp0_61 block p-[12px] text-[20px] text-[--ods-color-primary-500]"
+        class="_icon_10c23_2 _icon--check_10c23_76 block p-[12px] text-[20px] text-[--ods-color-primary-500]"
+        data-ods="icon"
+        role="presentation"
       />
     </div>
     <div
@@ -23,6 +25,7 @@ exports[`Step Component - Snapshot Tests > renders the Step with Edit Button 1`]
         >
           <h4
             class="_text--heading-4_1aw48_31"
+            data-ods="text"
           >
             Test Step
           </h4>
@@ -58,7 +61,9 @@ exports[`Step Component - Snapshot Tests > renders the Step with Edit Button dis
       class="basis-[40px]"
     >
       <span
-        class="_icon_i4xp0_2 _icon--check_i4xp0_61 block p-[12px] text-[20px] text-[--ods-color-primary-500]"
+        class="_icon_10c23_2 _icon--check_10c23_76 block p-[12px] text-[20px] text-[--ods-color-primary-500]"
+        data-ods="icon"
+        role="presentation"
       />
     </div>
     <div
@@ -72,6 +77,7 @@ exports[`Step Component - Snapshot Tests > renders the Step with Edit Button dis
         >
           <h4
             class="_text--heading-4_1aw48_31"
+            data-ods="text"
           >
             Test Step
           </h4>
@@ -123,6 +129,7 @@ exports[`Step Component - Snapshot Tests > renders the Step with Next button dis
         >
           <h4
             class="_text--heading-4_1aw48_31"
+            data-ods="text"
           >
             Test Step
           </h4>
@@ -145,7 +152,8 @@ exports[`Step Component - Snapshot Tests > renders the Step with Next button dis
         class="flex items-center gap-6 mt-6"
       >
         <button
-          class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 w-fit"
+          class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 w-fit"
+          data-ods="button"
           data-testid="next-cta"
           disabled=""
           type="button"
@@ -183,6 +191,7 @@ exports[`Step Component - Snapshot Tests > renders the Step with Next button ena
         >
           <h4
             class="_text--heading-4_1aw48_31"
+            data-ods="text"
           >
             Test Step
           </h4>
@@ -205,7 +214,8 @@ exports[`Step Component - Snapshot Tests > renders the Step with Next button ena
         class="flex items-center gap-6 mt-6"
       >
         <button
-          class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 w-fit"
+          class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 w-fit"
+          data-ods="button"
           data-testid="next-cta"
           type="button"
         >
@@ -242,11 +252,13 @@ exports[`Step Component - Snapshot Tests > renders the Step with Skip button 1`]
         >
           <h4
             class="_text--heading-4_1aw48_31"
+            data-ods="text"
           >
             Test Step
           </h4>
           <span
             class="_text--span_1aw48_60 ml-2"
+            data-ods="text"
           >
             (Optional)
           </span>
@@ -269,7 +281,8 @@ exports[`Step Component - Snapshot Tests > renders the Step with Skip button 1`]
         class="flex items-center gap-6 mt-6"
       >
         <button
-          class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 w-fit"
+          class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 w-fit"
+          data-ods="button"
           type="button"
         >
           Skip this step
@@ -305,11 +318,13 @@ exports[`Step Component - Snapshot Tests > renders the Step with Skip button dis
         >
           <h4
             class="_text--heading-4_1aw48_31"
+            data-ods="text"
           >
             Test Step
           </h4>
           <span
             class="_text--span_1aw48_60 ml-2"
+            data-ods="text"
           >
             (Optional)
           </span>
@@ -332,7 +347,8 @@ exports[`Step Component - Snapshot Tests > renders the Step with Skip button dis
         class="flex items-center gap-6 mt-6"
       >
         <button
-          class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--ghost_10f3x_150 w-fit"
+          class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 w-fit"
+          data-ods="button"
           disabled=""
           type="button"
         >
@@ -369,6 +385,7 @@ exports[`Step Component - Snapshot Tests > renders the Step with Title and Subti
         >
           <h4
             class="_text--heading-4_1aw48_31"
+            data-ods="text"
           >
             Test Step
           </h4>
@@ -404,7 +421,9 @@ exports[`Step Component - Snapshot Tests > renders the checked and locked Step 1
       class="basis-[40px]"
     >
       <span
-        class="_icon_i4xp0_2 _icon--check_i4xp0_61 block p-[12px] text-[20px] text-[--ods-color-primary-500]"
+        class="_icon_10c23_2 _icon--check_10c23_76 block p-[12px] text-[20px] text-[--ods-color-primary-500]"
+        data-ods="icon"
+        role="presentation"
       />
     </div>
     <div
@@ -418,6 +437,7 @@ exports[`Step Component - Snapshot Tests > renders the checked and locked Step 1
         >
           <h4
             class="_text--heading-4_1aw48_31"
+            data-ods="text"
           >
             Test Step
           </h4>
@@ -448,7 +468,9 @@ exports[`Step Component - Snapshot Tests > renders the closed Step 1`] = `
       class="basis-[40px]"
     >
       <span
-        class="_icon_i4xp0_2 _icon--check_i4xp0_61 block p-[12px] text-[20px] text-[--ods-color-primary-500]"
+        class="_icon_10c23_2 _icon--check_10c23_76 block p-[12px] text-[20px] text-[--ods-color-primary-500]"
+        data-ods="icon"
+        role="presentation"
       />
     </div>
     <div
@@ -462,6 +484,7 @@ exports[`Step Component - Snapshot Tests > renders the closed Step 1`] = `
         >
           <h4
             class="_text--heading-4_1aw48_31"
+            data-ods="text"
           >
             Test Step
           </h4>

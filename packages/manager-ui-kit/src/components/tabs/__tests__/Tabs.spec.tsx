@@ -1,6 +1,7 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { screen, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { render } from '@/setupTest';
 import { TabsComponent } from '../Tabs.component';
 
 describe('TabsComponent', () => {
@@ -11,7 +12,7 @@ describe('TabsComponent', () => {
     it('should render the component with default items', () => {
       render(<TabsComponent items={mockItems} />);
 
-      // // Check that tabs are rendered
+      // Check that tabs are rendered
       expect(screen.getAllByText('tab1')[0]).toBeInTheDocument();
       expect(screen.getByText('tab2')).toBeInTheDocument();
       expect(screen.getByText('tab3')).toBeInTheDocument();

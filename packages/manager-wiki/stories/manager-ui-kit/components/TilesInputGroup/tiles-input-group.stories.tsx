@@ -1,9 +1,8 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { OdsText } from '@ovhcloud/ods-components/react';
 import { useArgs } from '@storybook/preview-api';
 import { clsx } from 'clsx';
-import { TilesInputGroupComponent } from '@ovh-ux/muk';
+import { TilesInputGroupComponent, Text } from '@ovh-ux/muk';
 import {
   countries as allCountries,
   TCountry,
@@ -42,9 +41,9 @@ const commonArgs = {
   items: allCountries,
   value: undefined,
   label: (country: TCountry) => (
-    <OdsText preset="span" className="text-center w-full">
+    <Text preset="span" className="text-center w-full">
       {country?.name}
-    </OdsText>
+    </Text>
   ),
   tileClass: {
     active: 'font-bold text-red-500 bg-orange-100',
@@ -63,10 +62,10 @@ DemoStack.args = {
     by: (country: TCountry) => country?.language,
     label: (language: string, countries: TCountry[]) => {
       return (
-        <OdsText
+        <Text
           preset="span"
           className="text-center w-full"
-        >{`${language} (${countries.length})`}</OdsText>
+        >{`${language} (${countries.length})`}</Text>
       );
     },
     title: (language: string, countries: TCountry[]) =>
@@ -82,7 +81,7 @@ DemoGroup.args = {
     by: (country: TCountry) => country?.continent,
     label: (group: string) => (
       <div className={clsx('font-bold', 'whitespace-nowrap px-2 text-lg')}>
-        <OdsText>{group}</OdsText>
+        <Text>{group}</Text>
       </div>
     ),
     showAllTab: true,
@@ -97,7 +96,7 @@ DemoGroupStack.args = {
     by: (country: TCountry) => country.continent,
     label: (group: string) => (
       <div className={clsx('font-bold', 'whitespace-nowrap px-2 text-lg')}>
-        <OdsText>{group}</OdsText>
+        <Text>{group}</Text>
       </div>
     ),
     showAllTab: true,
@@ -107,10 +106,10 @@ DemoGroupStack.args = {
     by: (country: TCountry) => country?.language,
     label: (language: string, countries: TCountry[]) => {
       return (
-        <OdsText
+        <Text
           preset="span"
           className="text-center w-full"
-        >{`${language} (${countries.length})`}</OdsText>
+        >{`${language} (${countries.length})`}</Text>
       );
     },
     title: (language: string, countries: TCountry[]) =>

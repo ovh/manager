@@ -1,24 +1,18 @@
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OdsLink } from '@ovhcloud/ods-components/react';
-import { navigate } from '@storybook/addon-links';
+import { Link, ICON_NAME } from '@ovhcloud/ods-react';
 import React from 'react';
 
 type Props = {
   className?: string;
-  icon?: ODS_ICON_NAME;
+  icon?: ICON_NAME;
   label: string;
   href?: string;
 };
 
 const StorybookLink = ({ className, icon, label, href = '' }: Props) => {
   return (
-    <OdsLink
-      className={className || ''}
-      href={href}
-      icon={icon}
-      target="_blank"
-      label={label}
-    />
+    <Link className={className || ''} href={href} icon={icon} target="_blank">
+      {label}
+    </Link>
   );
 };
 

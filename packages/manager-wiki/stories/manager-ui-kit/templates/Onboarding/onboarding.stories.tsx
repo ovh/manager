@@ -3,7 +3,7 @@ import { Meta } from '@storybook/react';
 import { LinkCard, OnboardingLayout } from '@ovh-ux/muk';
 import placeholderSrc from '@ovh-ux/muk/public/assets/placeholder.png';
 import customImgSrc from '@ovh-ux/muk/public/assets/error-banner-oops.png';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 export const OnboardingFullExample = () => (
   <OnboardingLayout
@@ -14,12 +14,12 @@ export const OnboardingFullExample = () => (
     moreInfoButtonLabel="Learn More"
     img={{ src: placeholderSrc, style: { filter: 'grayscale(100%)' } }}
     description={
-      <OdsText preset="paragraph" className="text-center">
+      <Text preset="paragraph" className="text-center">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
         commodo consequat.
-      </OdsText>
+      </Text>
     }
     orderIam={{
       urn: 'urn:v1:eu:resource:vrackServices:vrs-bby-zkm-3a9-tlk',
@@ -99,12 +99,12 @@ export const OnboardingWithDescription = () => (
   <OnboardingLayout
     title="Onboarding with Description"
     description={
-      <OdsText preset="paragraph" className="text-center">
+      <Text preset="paragraph" className="text-center">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
         commodo consequat.
-      </OdsText>
+      </Text>
     }
   />
 );

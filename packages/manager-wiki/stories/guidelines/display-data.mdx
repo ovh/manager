@@ -60,23 +60,23 @@ Here some examples :
 
 ```tsx
 import { useFormatDate } from '@ovh-ux/muk';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovh-ux/muk';
 
 // Basic usage with default format (PP)
 const formatDate = useFormatDate({ date: '2024-09-14T09:21:21.943Z' });
-<OdsText>{formatDate}</OdsText> // Displays "14 Sep 2024"
+<Text>{formatDate}</Text> // Displays "14 Sep 2024"
 
 // With invalid date handling
 const formatDate = useFormatDate({ 
   date: 'invalid-date',
   invalidDateDisplayLabel: 'Date inconnue' 
 });
-<OdsText>{formatDate}</OdsText> // Displays "Date inconnue"
+<Text>{formatDate}</Text> // Displays "Date inconnue"
 
 // Example with a component
 const DateDisplay = ({ date, format = 'PP' }) => {
   const formattedDate = useFormatDate({ date, format });
-  return <OdsText>{formattedDate}</OdsText>;
+  return <Text>{formattedDate}</Text>;
 };
 
 // Usage
@@ -115,7 +115,7 @@ import { Storage } from '@ovh-ux/muk';
 ### Loading States
 
 ```tsx
-import { Skeleton } from '@ovhcloud/ods-components/react';
+import { Skeleton } from from '@ovhcloud/ods-react';
 
 // Loading state for price
 <Skeleton width="100px" height="24px" />

@@ -1,15 +1,12 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
 import {
-  DashboardTile,
+  Tile,
   BaseLayout,
   GuideMenu,
   GuideMenuItem,
-  DashboardGridLayout,
-  ActionMenu,
-  ChangelogLinks,
-  ChangelogButton,
+  GridLayout,
+  ChangelogMenu,
 } from '@ovh-ux/muk';
 import {
   Message,
@@ -67,7 +64,7 @@ const rows = [
 
 const changelogChapters: string[] = ['baremetal', 'server', 'dedicated'];
 
-const changelogLinks: ChangelogLinks = {
+const changelogLinks = {
   roadmap:
     'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Baremetal',
   changelog:
@@ -127,7 +124,7 @@ export const completeBaseLayoutExample = {
     title: 'Title of the Page',
     GuideMenu: <GuideMenu items={guideItems} />,
     changelogButton: (
-      <ChangelogButton links={changelogLinks} chapters={changelogChapters} />
+      <ChangelogMenu links={changelogLinks} chapters={changelogChapters} />
     ),
   },
   backLink: {
@@ -157,7 +154,7 @@ const listingTemplateProps = {
     title: 'Vrack Services',
     GuideMenu: <GuideMenu items={guideItems} />,
     changelogButton: (
-      <ChangelogButton links={changelogLinks} chapters={changelogChapters} />
+      <ChangelogMenu links={changelogLinks} chapters={changelogChapters} />
     ),
   },
   description:
@@ -180,7 +177,7 @@ const dashboardTemplateProps = {
     title: 'Vrack Services',
     GuideMenu: <GuideMenu items={guideItems} />,
     changelogButton: (
-      <ChangelogButton links={changelogLinks} chapters={changelogChapters} />
+      <ChangelogMenu links={changelogLinks} chapters={changelogChapters} />
     ),
   },
   backLink: {
@@ -199,55 +196,42 @@ const dashboardTemplateProps = {
   ),
   tabs: <SampleTabs />,
   children: (
-    <DashboardGridLayout>
-      <DashboardTile
-        key={1}
-        title="General info"
-        items={[
-          { id: '1', label: 'Name', value: 'name 1' },
-          { id: '2', label: 'Service ID', value: 'xxxx-128875' },
-          {
-            id: '3',
-            label: 'Datacentre location',
-            value: (
-              <div className="flex">
-                <div className="mr-auto">Test value</div>
-                <ActionMenu
-                  id="base-story-action-menu"
-                  isCompact
-                  items={[
-                    {
-                      id: 1,
-                      label: 'Edit',
-                    },
-                    {
-                      id: 2,
-                      label: 'Delete',
-                    },
-                  ]}
-                />
-              </div>
-            ),
-          },
-        ]}
-      />
-      <DashboardTile
-        key={2}
-        title="Configuration"
-        items={[
-          { id: '1', label: 'Quota', value: <div>Quota description</div> },
-        ]}
-      />
-      <DashboardTile
-        key={3}
-        title="Billing"
-        items={[
-          { id: '1', label: 'Creation date', value: '15 July 2022' },
-          { id: '2', label: 'Next payment', value: '1 February 2023' },
-          { id: '3', label: 'Contact', value: 'Manager contact' },
-        ]}
-      />
-    </DashboardGridLayout>
+    <GridLayout>
+      <Tile.Root title="General info">
+        <Tile.Item.Root>
+          <Tile.Item.Term label="Name" />
+          <Tile.Item.Description>
+            <div>Name description</div>
+          </Tile.Item.Description>
+        </Tile.Item.Root>
+        <Tile.Item.Root>
+          <Tile.Item.Term label="Service ID" />
+          <Tile.Item.Description>
+            <div>Service ID description</div>
+          </Tile.Item.Description>
+        </Tile.Item.Root>
+        <Tile.Item.Root>
+          <Tile.Item.Term label="Datacentre location" />
+          <Tile.Item.Description>
+            <div>Datacentre location description</div>
+          </Tile.Item.Description>
+        </Tile.Item.Root>
+      </Tile.Root>
+      <Tile.Item.Root title="Configuration">
+        <Tile.Item.Term label="Quota" />
+        <Tile.Item.Description>
+          <div>Quota description</div>
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+      <Tile.Root title="Billing">
+        <Tile.Item.Root>
+          <Tile.Item.Term label="Creation date" />
+          <Tile.Item.Description>
+            <div>Creation date description</div>
+          </Tile.Item.Description>
+        </Tile.Item.Root>
+      </Tile.Root>
+    </GridLayout>
   ),
 };
 
@@ -257,7 +241,7 @@ export const DashboardTemplate = () => (
 
 const meta: Meta<typeof BaseLayout> = {
   decorators: [withRouter],
-  title: 'Manager UI Kit/Templates/Base Layout',
+  title: 'Manager React Components/Templates/Base Layout',
   component: BaseLayout,
   argTypes: {},
   args: completeBaseLayoutExample,

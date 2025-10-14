@@ -45,7 +45,7 @@ const ConfigPage = () => {
 
 ```tsx
 import { BaseLayout } from '@ovh-ux/muk';
-import { OdsFormField, OdsSelect, OdsCheckbox } from '@ovhcloud/ods-components/react';
+import { FormField, Select, Checkbox } from '@ovhcloud/ods-react';
 
 const ConfigPage = () => {
   const [settings, setSettings] = useState({
@@ -72,15 +72,15 @@ const ConfigPage = () => {
       }}
     >
       <form onSubmit={handleSubmit}>
-        <OdsFormField label={t('config.setting1.label')}>
-          <OdsCheckbox
+        <FormField label={t('config.setting1.label')}>
+          <Checkbox
             checked={settings.setting1}
             onChange={(value) => setSettings({ ...settings, setting1: value })}
           />
-        </OdsFormField>
+        </FormField>
 
-        <OdsFormField label={t('config.setting2.label')}>
-          <OdsSelect
+        <FormField label={t('config.setting2.label')}>
+          <Select
             value={settings.setting2}
             onChange={(value) => setSettings({ ...settings, setting2: value })}
             items={[
@@ -88,7 +88,7 @@ const ConfigPage = () => {
               { value: 'option2', label: t('config.setting2.option2') },
             ]}
           />
-        </OdsFormField>
+        </FormField>
 
         <button type="submit">{t('config.save')}</button>
       </form>
