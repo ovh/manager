@@ -11,9 +11,8 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { useOkmsList } from '@/data/hooks/useOkms';
-import { useOrderCatalogOkms } from '@/data/hooks/useOrderCatalogOkms';
 import { OkmsSelector } from './OkmsSelector.component';
-import { RegionSelector } from './RegionSelector.component';
+import { RegionPicker } from '@/common/components/regionPicker/RegionPicker.component';
 import { useOrderOkmsModalContext } from '@/common/pages/OrderOkmsModal/OrderOkmsModalContext';
 
 const OKMS_LIST_REFETCH_INTERVAL_DISABLE = 0;
@@ -30,13 +29,6 @@ export const OkmsManagement = ({
 }: OkmsManagementProps) => {
   const { t } = useTranslation(['secret-manager', NAMESPACES.ERROR]);
   const { addSuccess } = useNotifications();
-  const {
-    data: orderCatalogOKMS,
-    error: orderCatalogError,
-    isLoading: isLoadingOrderCatalog,
-  } = useOrderCatalogOkms();
-
-  const regions = orderCatalogOKMS?.plans[0]?.configurations[0]?.values;
 
   const [selectedRegion, setSelectedRegion] = useState<string | undefined>();
 
@@ -122,34 +114,31 @@ export const OkmsManagement = ({
     setSelectedOkmsId(regionOkmsList[0].id);
   };
 
-  if (orderCatalogError || okmsError) {
-    const message = orderCatalogError
-      ? orderCatalogError.response?.data?.message
-      : okmsError.response?.data?.message;
-
+  if (okmsError) {
     return (
       <OdsMessage color="danger">
         {t(`${NAMESPACES.ERROR}:error_message`, {
-          message,
+          message: okmsError.response?.data?.message,
         })}
       </OdsMessage>
     );
   }
 
-  if (isLoadingOrderCatalog || isOkmsListLoading) {
+  if (isOkmsListLoading) {
     return <OdsSpinner data-testid="regionsSpinner" />;
   }
 
   return (
-    <div className="flex flex-col gap-5">
-      <OdsText preset="heading-2">
-        {t('create_secret_form_region_section_title')}
-      </OdsText>
-      <RegionSelector
-        regions={regions}
-        selectedRegion={selectedRegion}
-        setSelectedRegion={handleRegionSelection}
-      />
+    <div className="space-y-10">
+      <div className="space-y-5">
+        <OdsText preset="heading-2">
+          {t('create_secret_form_region_section_title')}
+        </OdsText>
+        <RegionPicker
+          selectedRegion={selectedRegion}
+          setSelectedRegion={handleRegionSelection}
+        />
+      </div>
       <OkmsSelector
         okmsList={filterOkmsListByRegion(okmsList, selectedRegion)}
         selectedRegion={selectedRegion}
