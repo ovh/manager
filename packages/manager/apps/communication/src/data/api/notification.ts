@@ -1,5 +1,6 @@
 import apiClient from '@ovh-ux/manager-core-api';
 import { NotificationReference } from '../types/reference.type';
+import { Notification } from '../types/notification.type';
 
 export const getNotificationReference = async (): Promise<NotificationReference> => {
   const { data } = await apiClient.v2.get('/notification/reference');
