@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.15.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.3...@ovh-ux/manager-exchange@4.15.4) (2025-10-14)
+
+
+### Bug Fixes
+
+* **web.exchange:** add ovh mail migrator link ([1ae5142](https://github.com/ovh/manager/commit/1ae5142d2c3a8e12ad8e3b730e522291360cf1e0)), closes [#PRDCOL-202](https://github.com/ovh/manager/issues/PRDCOL-202)
+* **web.exchange:** change rule for phone mobile and fax field ([e54ea60](https://github.com/ovh/manager/commit/e54ea60b1eabbb63d6a92db337434dcc1cbca046)), closes [#PRDCOL-178](https://github.com/ovh/manager/issues/PRDCOL-178)
+
+
+
+
+
 ## [4.15.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.2...@ovh-ux/manager-exchange@4.15.3) (2025-10-14)
 
 

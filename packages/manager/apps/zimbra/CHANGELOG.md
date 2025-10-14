@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.34.0...@ovh-ux/manager-zimbra-app@0.35.0) (2025-10-14)
+
+
+### Bug Fixes
+
+* **zimbra:** add detailed account status ([b4a57c0](https://github.com/ovh/manager/commit/b4a57c00cef95a0d309e1524c7e0cb828de878d3)), closes [#MANAGER-15520](https://github.com/ovh/manager/issues/MANAGER-15520)
+* **zimbra:** add ovh mail migrator link ([6e2a3a1](https://github.com/ovh/manager/commit/6e2a3a1fb41c4e410a7346c8ef543903a57f6936)), closes [#PRDCOL-201](https://github.com/ovh/manager/issues/PRDCOL-201)
+* **zimbra:** add several guides on top guides menu ([0f89709](https://github.com/ovh/manager/commit/0f897094b48a494ce0990f3ed69627d66dca27d0)), closes [#PRDCOL-184](https://github.com/ovh/manager/issues/PRDCOL-184)
+
+
+### Features
+
+* **zimbra:** add srv autodiscover ([b87f624](https://github.com/ovh/manager/commit/b87f6241248d0f3e419c23f705bcfe0e50283781)), closes [#PRDCOL-139](https://github.com/ovh/manager/issues/PRDCOL-139)
+
+
+
+
+
 # [0.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.33.6...@ovh-ux/manager-zimbra-app@0.34.0) (2025-10-14)
 
 
