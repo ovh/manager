@@ -90,12 +90,14 @@ run_lerna_version() {
     version
     --conventional-commits
     --no-commit-hooks
+    --no-git-tag-version
+    --no-push
     --yes
   )
 
   if [ "${DRY_RELEASE}" = true ]; then
     printf "%s\n" "Dry releasing (no push)"
-    args+=(--no-push --no-git-tag-version --allow-branch="${GIT_BRANCH}")
+    args+=(--allow-branch="${GIT_BRANCH}")
   else
     printf "%s\n" "Releasing (commits, tags, changelogs)"
   fi
