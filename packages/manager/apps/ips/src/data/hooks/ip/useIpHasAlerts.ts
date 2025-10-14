@@ -25,24 +25,34 @@ export const useIpHasAlerts = ({
     ip,
     enabled,
   });
+
   const { ipSpam, isLoading: isIpSpamLoading } = useGetIpSpam({ ip, enabled });
-  const {
-    ipMitigation,
-    isLoading: isIpMitigationLoading,
-  } = useGetIpMitigation({ ip, enabled });
+
+  const { ipMitigation, isLoading: isIpMitigationLoading } = useGetIpMitigation(
+    {
+      ip,
+      enabled,
+    },
+  );
 
   return {
     isLoading: isIpAntihackLoading && isIpMitigationLoading && isIpSpamLoading,
     hasAlerts: {
-      antihack: ipAntihack?.filter((antihack) =>
-        antihack.state === IpAntihackStateEnum.BLOCKED
-        && isSubIpBlocked(antihack.ipBlocked, subIp)),
-      spam: ipSpam?.filter((spam) => spam.state === IpSpamStateEnum.BLOCKED 
-        && isSubIpBlocked(spam.ipSpamming, subIp)),
+      antihack: ipAntihack?.filter(
+        (antihack) =>
+          antihack.state === IpAntihackStateEnum.BLOCKED &&
+          isSubIpBlocked(antihack.ipBlocked, subIp),
+      ),
+      spam: ipSpam?.filter(
+        (spam) =>
+          spam.state === IpSpamStateEnum.BLOCKED &&
+          isSubIpBlocked(spam.ipSpamming, subIp),
+      ),
       mitigation: ipMitigation?.filter(
         (mitigation) =>
-          mitigation.state === IpMitigationStateEnum.OK
-          && mitigation.auto && isSubIpBlocked(mitigation.ipOnMitigation, subIp)
+          mitigation.state === IpMitigationStateEnum.OK &&
+          mitigation.auto &&
+          isSubIpBlocked(mitigation.ipOnMitigation, subIp),
       ),
     },
   };

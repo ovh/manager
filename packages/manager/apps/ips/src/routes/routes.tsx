@@ -187,6 +187,19 @@ export const Routes: RouteObject[] = [
                 },
               },
               {
+                id: subRoutes.slice,
+                path: urls.slice,
+                ...lazyRouteConfig(() =>
+                  import('@/pages/actions/slice/slice.page'),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'slice',
+                    pageType: PageType.popup,
+                  },
+                },
+              },
+              {
                 id: subRoutes.aggregate,
                 path: urls.aggregate,
                 ...lazyRouteConfig(() =>
