@@ -87,5 +87,6 @@
   "region_continent_all": "Toutes les localisations",
   "help-link-more-info": "En savoir plus",
   "region-description-1AZ": "Une région 1-AZ (zone de disponibilité) regroupe un ou plusieurs datacenters localisés sur un même site.",
-  "region-description-3AZ": " Une région 3-AZ comprend trois zones de disponibilités situées dans une même aire métropolitaine, séparées par quelques kilomètres. Elle répond aux exigences les plus élevées en matière de résilience tout en garantissant une latence extrêmement faible entre les AZ."
+  "region-description-3AZ": " Une région 3-AZ comprend trois zones de disponibilités situées dans une même aire métropolitaine, séparées par quelques kilomètres. Elle répond aux exigences les plus élevées en matière de résilience tout en garantissant une latence extrêmement faible entre les AZ.",
+  "region-description-localzone": "Une Local Zone correspond à un mode de déploiement des produits Public Cloud d’OVHcloud dans des datacenters situés au plus près des utilisateurs finaux."
 }

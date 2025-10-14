@@ -93,8 +93,10 @@ const OrderSummary = ({
     const rInfo = regions.find((r) => r.name === region);
     return regionInfo ? (
       <div className="flex gap-2 items-center">
-        <Flag className="w-[1rem] h-[0.8rem]" flagName={rInfo.countryCode} />
-        <span>{translateMicroRegion(rInfo.name)}</span>
+        {rInfo?.countryCode && (
+          <Flag className="w-[1rem] h-[0.8rem]" flagName={rInfo?.countryCode} />
+        )}
+        <span>{rInfo ? translateMicroRegion(rInfo?.name) : region}</span>
       </div>
     ) : (
       <span>-</span>

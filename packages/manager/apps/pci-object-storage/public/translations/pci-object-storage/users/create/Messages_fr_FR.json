@@ -10,7 +10,7 @@
   "newUserCreationInProgress": "Création de l'utilisateur en cours...",
   "newUserInformationTitle": "Informations de l'utilisateur",
   "downloadUserButton": "Télécharger",
-  "newUserInformationLabel": "Retrouvez ci-dessoucs les informations d'identification Object Storage pour l'utilisateur {{ name }}.",
+  "newUserInformationLabel": "Retrouvez ci-dessous les informations d'identification Object Storage pour l'utilisateur {{ name }}.",
   "newUserUsernameLabel": "Votre nom d'utilisateur :",
   "newUserDescriptionLabel": "Votre description :",
   "newUserAccessKeyLabel": "Votre clé d'accès :",

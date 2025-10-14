@@ -8,8 +8,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  Code,
-  githubDark,
+  Clipboard,
 } from '@datatr-ux/uxlib';
 import { useState } from 'react';
 import RouteModal from '@/components/route-modal/RouteModal';
@@ -67,21 +66,24 @@ const EnableUser = () => {
         {newUser ? (
           <>
             <div className="flex flex-col gap-2">
-              <Code
-                code={newUser.access}
-                label={t('accessKeyLabel')}
-                theme={githubDark}
-                onCopied={() =>
+              <span className="text-sm font-medium leading-none">
+                {t('accessKeyLabel')}
+              </span>
+              <Clipboard
+                value={newUser.access}
+                onCopy={() =>
                   toast.toast({
                     title: t('passwordCopy'),
                   })
                 }
               />
-              <Code
-                code={newUser.secret}
-                label={t('secretKeyLabel')}
-                theme={githubDark}
-                onCopied={() =>
+              <span className="text-sm font-medium leading-none">
+                {t('secretKeyLabel')}
+              </span>
+              <Clipboard
+                value={newUser.secret}
+                secret
+                onCopy={() =>
                   toast.toast({
                     title: t('passwordCopy'),
                   })
