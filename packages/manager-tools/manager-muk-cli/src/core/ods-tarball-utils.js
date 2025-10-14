@@ -1,9 +1,5 @@
-import crypto from 'node:crypto';
-import fs from 'node:fs';
 import https from 'node:https';
 import process from 'node:process';
-import { createGunzip } from 'node:zlib';
-import tar from 'tar-stream';
 
 import {
   CACHE_DIR,
@@ -14,68 +10,10 @@ import {
 } from '../config/muk-config.js';
 import { logger } from '../utils/log-manager.js';
 import { toPascalCase } from './file-utils.js';
+import { createTarballCache, streamTarGz } from './tarball-cache-utils.js';
 
 /**
- * Ensure that the ODS tarball cache directory exists.
- * Creates `target/.cache/ods-tarball` recursively if missing.
- * @returns {void}
- */
-function ensureCacheDir() {
-  if (!fs.existsSync(CACHE_DIR)) fs.mkdirSync(CACHE_DIR, { recursive: true });
-}
-
-/**
- * Save the extracted tarball contents and metadata to disk.
- *
- * @param {string} version - ODS React package version (e.g., "19.3.1").
- * @param {Map<string, string>} filesMap - Map of extracted file paths → contents.
- * @returns {void}
- */
-function saveCache(version, filesMap) {
-  ensureCacheDir();
-  const filesObject = Object.fromEntries(filesMap);
-  const checksum = crypto.createHash('sha256').update(JSON.stringify(filesObject)).digest('hex');
-
-  fs.writeFileSync(TAR_CACHE_FILE, JSON.stringify(filesObject, null, 2));
-  fs.writeFileSync(
-    META_CACHE_FILE,
-    JSON.stringify({ version, checksum, timestamp: Date.now() }, null, 2),
-  );
-
-  logger.info(`${EMOJIS.disk} Saved ODS tarball cache (v${version})`);
-}
-
-/**
- * Attempt to load the cached tarball files if version matches and cache is valid.
- *
- * @param {string} version - Current ODS React package version.
- * @returns {Map<string, string>|null} Cached file map or null if cache invalid/missing.
- */
-function loadCache(version) {
-  if (!fs.existsSync(TAR_CACHE_FILE) || !fs.existsSync(META_CACHE_FILE)) return null;
-  try {
-    const meta = JSON.parse(fs.readFileSync(META_CACHE_FILE, 'utf8'));
-    if (meta.version !== version) return null;
-
-    const files = JSON.parse(fs.readFileSync(TAR_CACHE_FILE, 'utf8'));
-    const map = new Map(Object.entries(files));
-
-    if (map.size < 50) {
-      logger.warn('⚠️ Cache appears incomplete — regenerating tarball extraction.');
-      fs.rmSync(CACHE_DIR, { recursive: true, force: true });
-      return null;
-    }
-
-    logger.info(`${EMOJIS.package} Using cached ODS React v${version} tarball`);
-    return map;
-  } catch (err) {
-    logger.warn(`⚠️ Failed to load ODS cache (${err.message})`);
-    return null;
-  }
-}
-
-/**
- * Fetch JSON metadata for the latest ODS React package.
+ * Fetch metadata for the latest ODS React package from npm.
  * @returns {Promise<{ version: string, tarball: string }>} Latest version and tarball URL.
  */
 export async function getOdsPackageMetadata() {
@@ -98,67 +36,49 @@ export async function getOdsPackageMetadata() {
 }
 
 /**
- * Download, extract, and (optionally) cache the ODS React tarball.
- * If a valid cache exists for the current version, it will be used instead.
+ * Download, extract, and cache the ODS React tarball.
+ * If a valid cache exists, it is used instead of re-downloading.
  *
- * @param {RegExp} [pattern] - Optional regex to match entries (e.g., /\.d\.ts$/).
- * @returns {Promise<Map<string, string>>} Map of file paths → file contents.
+ * @param {RegExp} [pattern] - Optional regex filter to extract only matching entries.
+ * @returns {Promise<Map<string, string>>} Map of file paths → contents.
  */
 export async function extractOdsTarball(pattern) {
   const { version, tarball } = await getOdsPackageMetadata();
-  ensureCacheDir();
+
+  // Use functional cache version
+  const cache = createTarballCache({
+    cacheDir: CACHE_DIR,
+    metaFile: META_CACHE_FILE,
+    dataFile: TAR_CACHE_FILE,
+  });
 
   const disableCache = !!process.env.ADD_COMPONENTS_NO_CACHE;
 
-  // Try loading from cache unless explicitly disabled
+  // Load from cache if available and not disabled
   if (!disableCache) {
-    const cachedFiles = loadCache(version);
-    if (cachedFiles) {
+    const cached = cache.load(version);
+    if (cached) {
       if (pattern) {
-        return new Map([...cachedFiles.entries()].filter(([name]) => pattern.test(name)));
+        return new Map([...cached.entries()].filter(([name]) => pattern.test(name)));
       }
-      return cachedFiles;
+      return cached;
     }
   }
 
-  // Fallback — live extraction from tarball
   logger.info(`${EMOJIS.package} Fetching ODS React v${version} tarball: ${tarball}`);
 
-  const extract = tar.extract();
-  const gunzip = createGunzip();
   const files = new Map();
 
-  return new Promise((resolve, reject) => {
-    extract.on('entry', (header, stream, next) => {
-      const shouldExtract = !pattern || pattern.test(header.name);
-      if (shouldExtract) {
-        let content = '';
-        stream.on('data', (chunk) => (content += chunk.toString()));
-        stream.on('end', () => {
-          files.set(header.name, content);
-          next();
-        });
-      } else {
-        stream.resume();
-        stream.on('end', next);
-      }
-    });
+  await streamTarGz(
+    tarball,
+    (entryPath) => !pattern || pattern.test(entryPath),
+    async (entryPath, content) => {
+      files.set(entryPath, content.toString());
+    },
+  );
 
-    extract.on('finish', () => {
-      saveCache(version, files);
-      resolve(files);
-    });
-
-    extract.on('error', reject);
-    gunzip.on('error', reject);
-
-    https
-      .get(tarball, (res) => {
-        res.on('error', reject);
-        res.pipe(gunzip).pipe(extract);
-      })
-      .on('error', reject);
-  });
+  cache.save(version, files);
+  return files;
 }
 
 /**
@@ -171,32 +91,25 @@ export async function extractOdsTarball(pattern) {
 
 /**
  * Centralized declarative pattern definitions for ODS component paths.
- * Each key describes a semantic category (legacyNested, flatModern, etc.).
  */
 const ODS_PATH_PATTERNS = {
   withSub: {
-    /** Legacy nested component structure */
     legacyNested: 'components/${parent}/src/components/${target}/${pascalSub}.tsx',
-    /** Modern flat structure */
     flatModern: 'components/${parent}/src/${pascalSub}.tsx',
-    /** PascalCase subfolder structure (rare) */
     pascalFolder: 'components/${parent}/src/components/${pascalSub}/${pascalSub}.tsx',
   },
   withoutSub: {
-    /** Modern ODS (typical) */
     modern: 'components/${parent}/src/${pascalParent}.tsx',
-    /** Legacy nested variant */
     legacyNested: 'components/${parent}/src/components/${parent}/${pascalParent}.tsx',
-    /** Direct ODS 19.x component form */
     direct: 'components/${parent}/${pascalParent}.tsx',
   },
 };
 
 /**
- * Expands a template string using contextual replacements.
- * @param {string} template - Path template containing placeholders.
- * @param {OdsPathContext} context - Replacement values.
- * @returns {string} The expanded path string.
+ * Expand a path template using contextual replacements.
+ * @param {string} template - Template string with placeholders.
+ * @param {OdsPathContext} context - Replacement context.
+ * @returns {string} Expanded path string.
  */
 function expandTemplate(template, context) {
   return template
@@ -207,21 +120,14 @@ function expandTemplate(template, context) {
 }
 
 /**
- * Factory that builds all possible ODS component path variants.
- *
- * @param {string} parent - Parent component name (e.g., "button").
- * @param {string} [subcomponent] - Optional subcomponent name (e.g., "icon").
+ * Factory that builds possible ODS source file paths for a given component.
+ * @param {string} parent - Parent component name (kebab-case).
+ * @param {string} [subcomponent] - Optional subcomponent name (kebab-case).
  * @returns {{
  *   buildAll: () => string[],
  *   build: (filter?: string) => string[],
  *   buildByKey: (key: string) => string[]
  * }}
- *
- * @example
- * const factory = createOdsPath('button', 'icon');
- * factory.buildAll();        // → all path variants
- * factory.build('legacy');   // → only legacy variants
- * factory.buildByKey('flatModern'); // → specific pattern variant
  */
 function createOdsPath(parent, subcomponent) {
   const pascalParent = toPascalCase(parent);
@@ -256,11 +162,10 @@ function createOdsPath(parent, subcomponent) {
 
 /**
  * Find and return the source file content for a given component path list.
- *
  * @param {Map<string,string>} files - Tarball-extracted file map.
  * @param {string[]} possiblePaths - Candidate relative paths.
- * @param {string} name - Component or subcomponent name (for logging).
- * @returns {string|null} UTF-8 file contents or null if not found.
+ * @param {string} name - Component name for logging.
+ * @returns {string|null} UTF-8 content or null.
  */
 function findOdsSourceFile(files, possiblePaths, name) {
   const fileEntry = possiblePaths.map((p) => files.get(p)).find(Boolean);
@@ -272,9 +177,9 @@ function findOdsSourceFile(files, possiblePaths, name) {
 }
 
 /**
- * Detect whether a component file supports children based on its source code content.
- * @param {string} content - Source file content.
- * @returns {boolean} True if children detected, false otherwise.
+ * Heuristic detection of `children` support in ODS component source.
+ * @param {string} content - Component source code.
+ * @returns {boolean} True if children detected.
  */
 function detectChildrenHeuristics(content) {
   return [
@@ -286,10 +191,9 @@ function detectChildrenHeuristics(content) {
 }
 
 /**
- * Main entry — Detect if an ODS component exists and whether it supports children.
- *
- * @param {string} parent - Kebab-case parent component (e.g., 'button').
- * @param {string} [subcomponent] - Optional subcomponent (e.g., 'icon').
+ * Detect if an ODS component supports children based on source analysis.
+ * @param {string} parent - Kebab-case parent name.
+ * @param {string} [subcomponent] - Optional subcomponent.
  * @returns {Promise<boolean|null>} true = supports children, false = stateless, null = not found.
  */
 export async function detectHasChildrenFromTarball(parent, subcomponent) {
@@ -311,10 +215,9 @@ export async function detectHasChildrenFromTarball(parent, subcomponent) {
 }
 
 /**
- * Detects whether a subcomponent has its own exported Prop type in the parent index.ts.
- *
- * @param {string} parent - Kebab-case parent component (e.g., 'tooltip').
- * @param {string} subcomponent - Kebab-case subcomponent (e.g., 'tooltip-trigger').
+ * Detect whether a subcomponent has its own exported Prop type in the parent index.ts.
+ * @param {string} parent - Parent component (e.g., "tooltip").
+ * @param {string} subcomponent - Subcomponent (e.g., "tooltip-trigger").
  * @returns {Promise<boolean>} True if type export exists.
  */
 export async function detectHasTypeExportFromIndex(parent, subcomponent) {
@@ -344,12 +247,8 @@ export async function detectHasTypeExportFromIndex(parent, subcomponent) {
 }
 
 /**
- * Categorize ODS index exports into:
- *  - hooks (identifiers starting with "use")
- *  - constants (from constants paths, excluding types)
- *  - externalTypes (types from non-component paths)
- *
- * @param {string} parent - Kebab-case ODS component name (e.g. 'datepicker').
+ * Extract hooks, constants, and external types from an ODS component index.ts.
+ * @param {string} parent - ODS component name (e.g., "datepicker").
  * @returns {Promise<{ hooks: string[], constants: string[], externalTypes: string[] }>}
  */
 export async function extractOdsExportsByCategory(parent) {
@@ -378,13 +277,11 @@ export async function extractOdsExportsByCategory(parent) {
 
     if (fromPath.includes('components')) continue;
 
-    // Hooks
     identifiers
       .map((id) => id.replace(/^type\s+/, ''))
       .filter((id) => /^use[A-Z]/.test(id))
       .forEach((h) => hooks.add(h));
 
-    // Constants
     if (fromPath.includes('constants')) {
       identifiers
         .filter((id) => !/^type\s+/i.test(id) && !/^interface\s+/i.test(id))
@@ -392,7 +289,6 @@ export async function extractOdsExportsByCategory(parent) {
       continue;
     }
 
-    // External Types
     identifiers
       .filter((id) => /^type\s+/i.test(id) || /^interface\s+/i.test(id))
       .map((id) => id.replace(/^(type|interface)\s+/, ''))
