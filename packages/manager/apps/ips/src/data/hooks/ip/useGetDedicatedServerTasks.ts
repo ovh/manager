@@ -13,9 +13,11 @@ import {
   getDedicatedServerTasksQueryKey,
 } from '@/data/api';
 import {
+  getTypeByServiceName,
   INVALIDATED_REFRESH_PERIOD,
   UPDATE_TASKS_QUERY_KEY_PARAMS,
 } from '@/utils';
+import { IpTypeEnum } from '@/data/constants';
 
 export type UseGetDedicatedServerTasksParams = {
   serviceName: string;
@@ -41,7 +43,7 @@ export const useGetDedicatedServerTasks = ({
 
   const parameterSets = useMemo(
     () =>
-      serviceName
+      serviceName && getTypeByServiceName(serviceName) === IpTypeEnum.DEDICATED
         ? functionList.flatMap((taskFunction) =>
             statusList.map((status) => ({ taskFunction, status, serviceName })),
           )

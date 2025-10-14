@@ -5,7 +5,13 @@ import React, {
   createContext,
 } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { GetIpListParams } from '@/data/api';
+import { useQueries, useQueryClient } from '@tanstack/react-query';
+import {
+  getIpDetails,
+  getIpDetailsQueryKey,
+  GetIpListParams,
+  getIpListQueryKey,
+} from '@/data/api';
 
 export type ListingContextType = {
   apiFilter: GetIpListParams;
@@ -13,6 +19,12 @@ export type ListingContextType = {
   hasNoApiFilter: boolean;
   expiredIps: string[];
   addExpiredIp: (expiredIp: string) => void;
+  onGoingSlicedIps: string[];
+  setOnGoingSlicedIps: React.Dispatch<React.SetStateAction<string[]>>;
+  onGoingAggregatedIps: string[];
+  setOnGoingAggregatedIps: React.Dispatch<React.SetStateAction<string[]>>;
+  onGoingCreatedIps?: string[];
+  setOnGoingCreatedIps?: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 export const ListingContext = createContext<ListingContextType>({
@@ -21,6 +33,12 @@ export const ListingContext = createContext<ListingContextType>({
   expiredIps: [],
   hasNoApiFilter: true,
   setApiFilter: () => {},
+  onGoingSlicedIps: [],
+  onGoingAggregatedIps: [],
+  setOnGoingAggregatedIps: () => {},
+  setOnGoingSlicedIps: () => {},
+  onGoingCreatedIps: [],
+  setOnGoingCreatedIps: () => {},
 });
 
 function cleanApiFilter(apiFilter: GetIpListParams) {
@@ -58,11 +76,41 @@ function searchToApiFilter(search?: URLSearchParams): GetIpListParams {
 }
 
 export const ListingContextProvider = ({ children }: PropsWithChildren) => {
+  const queryClient = useQueryClient();
   const [search, setSearch] = useSearchParams();
   const [expiredIps, setExpiredIps] = useState<string[]>([]);
   const [apiFilter, setApiFilter] = useState<GetIpListParams>(
     searchToApiFilter(search),
   );
+  const [onGoingSlicedIps, setOnGoingSlicedIps] = useState<string[]>([]);
+  const [onGoingAggregatedIps, setOnGoingAggregatedIps] = useState<string[]>(
+    [],
+  );
+  const [onGoingCreatedIps, setOnGoingCreatedIps] = useState<string[]>([]);
+
+  useQueries({
+    queries: onGoingCreatedIps.map((ip) => ({
+      queryKey: getIpDetailsQueryKey({ ip }),
+      queryFn: async () => {
+        const result = await getIpDetails({ ip });
+
+        queryClient.invalidateQueries({
+          queryKey: getIpListQueryKey(apiFilter),
+        });
+
+        setOnGoingCreatedIps((ips) =>
+          ips.filter((ongoingIp) => ongoingIp !== ip),
+        );
+        setOnGoingAggregatedIps([]);
+        setOnGoingSlicedIps([]);
+
+        return result;
+      },
+      // Refetch until IP is available or 30 tries
+      retryDelay: 10000,
+      retry: 30,
+    })),
+  });
 
   React.useEffect(() => {
     setApiFilter((prev) => ({ ...prev, ...searchToApiFilter(search) }));
@@ -84,12 +132,9 @@ export const ListingContextProvider = ({ children }: PropsWithChildren) => {
   );
 
   const addExpiredIp = React.useCallback((expiredIp: string) => {
-    setExpiredIps((ips) => {
-      if (ips.indexOf(expiredIp) === -1) {
-        return ips.concat(expiredIp);
-      }
-      return ips;
-    });
+    setExpiredIps((ips) =>
+      ips.indexOf(expiredIp) === -1 ? ips.concat(expiredIp) : ips,
+    );
   }, []);
 
   const listingContext = useMemo(
@@ -99,8 +144,20 @@ export const ListingContextProvider = ({ children }: PropsWithChildren) => {
       hasNoApiFilter: !search || search.size === 0,
       expiredIps,
       addExpiredIp,
+      onGoingSlicedIps,
+      onGoingAggregatedIps,
+      setOnGoingSlicedIps,
+      setOnGoingAggregatedIps,
+      onGoingCreatedIps,
+      setOnGoingCreatedIps,
     }),
-    [apiFilter, expiredIps],
+    [
+      apiFilter,
+      expiredIps,
+      onGoingAggregatedIps,
+      onGoingSlicedIps,
+      onGoingCreatedIps,
+    ],
   );
 
   return (

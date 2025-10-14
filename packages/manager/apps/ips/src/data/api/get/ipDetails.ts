@@ -28,7 +28,7 @@ export const getIpDetailsQueryKey = (params: GetIpDetailsParams) => [
 /**
  * Your IP : Get this object properties
  */
-export const getIpdetails = async (
+export const getIpDetails = async (
   params: GetIpDetailsParams,
 ): Promise<ApiResponse<IpDetails>> =>
   apiClient.v6.get<IpDetails>(`/ip/${encodeURIComponent(params.ip)}`);
