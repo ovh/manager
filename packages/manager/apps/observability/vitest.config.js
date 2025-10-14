@@ -2,6 +2,7 @@ import path from 'path';
 
 import {
   createConfig,
+  defaultDedupedDependencies,
   defaultExcludedFiles,
   mergeConfig,
   sharedConfig,
@@ -27,7 +28,8 @@ export default mergeConfig(
         ],
       },
     },
-    resolve: {
+    resolve: { 
+      dedupe: [...defaultDedupedDependencies],
       alias: {
         // eslint-disable-next-line no-undef
         '@': path.resolve(__dirname, 'src'),
