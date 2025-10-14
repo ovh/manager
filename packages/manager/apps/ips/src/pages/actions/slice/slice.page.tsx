@@ -17,16 +17,13 @@ import {
   TRANSLATION_NAMESPACES,
   useGuideUtils,
 } from '@/utils';
-import { useByoipAggregate } from '@/data/hooks/ip';
+import { useByoipSlice, useGetIpdetails } from '@/data/hooks/ip';
 import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
 import { ListingContext } from '@/pages/listing/listingContext';
 import { getIpDetailsQueryKey } from '@/data/api';
 
-export default function AggregateModal() {
+export default function SliceModal() {
   const queryClient = useQueryClient();
-  const { setOnGoingCreatedIps, setOnGoingAggregatedIps } = useContext(
-    ListingContext,
-  );
   const { parentId } = useParams();
   const { ipGroup } = ipFormatter(fromIdToIp(parentId));
   const { t } = useTranslation([
@@ -37,35 +34,44 @@ export default function AggregateModal() {
   const { addSuccess } = useNotifications();
   const navigate = useNavigate();
   const [search] = useSearchParams();
-  const [aggregationIp, setAggregationIp] = React.useState('');
+  const [slicingSize, setSlizingSize] = React.useState<number | undefined>();
+  const { setOnGoingCreatedIps, setOnGoingSlicedIps } = useContext(
+    ListingContext,
+  );
 
   const closeModal = () => {
     navigate(`..?${search.toString()}`);
   };
 
   const {
-    aggregate,
+    slice,
     isLoading,
     error,
-    aggregateError,
-    isAggregatePending,
-    postAggregate,
-  } = useByoipAggregate({
+    isSlicePending,
+    slicingError,
+    postSlice,
+  } = useByoipSlice({
     ip: ipGroup,
     onSuccess: () => {
-      addSuccess(t('aggregateSuccessMessage'));
+      addSuccess(t('sliceSuccessMessage'));
       closeModal();
       const childrenIps =
-        aggregate.find((a) => a.aggregationIp === aggregationIp)?.childrenIps ||
-        [];
+        slice.find((a) => a.slicingSize === slicingSize)?.childrenIps || [];
 
-      queryClient.invalidateQueries({
-        queryKey: getIpDetailsQueryKey({ ip: aggregationIp }),
-      });
+      childrenIps?.map((ip) =>
+        queryClient.invalidateQueries({
+          queryKey: getIpDetailsQueryKey({ ip }),
+        }),
+      );
 
-      setOnGoingCreatedIps((prev) => [...prev, aggregationIp]);
-      setOnGoingAggregatedIps((prev) => [...prev, ...childrenIps]);
+      setOnGoingCreatedIps((prev) => [...prev, ...childrenIps]);
+      setOnGoingSlicedIps((prev) => [...prev, ipGroup]);
     },
+  });
+
+  useGetIpdetails({
+    ip: ipGroup,
+    enabled: true,
   });
 
   const cancel = React.useCallback(() => {
@@ -73,31 +79,31 @@ export default function AggregateModal() {
   }, []);
 
   React.useEffect(() => {
-    if (!aggregationIp && aggregate && aggregate.length > 0) {
-      setAggregationIp(
-        aggregate.find((a) => a.childrenIps.length > 0)?.aggregationIp || '',
+    if (!slicingSize && slice && slice.length > 0) {
+      setSlizingSize(
+        slice.find((a) => a.childrenIps.length > 0)?.slicingSize || undefined,
       );
     }
-  }, [aggregate, aggregationIp]);
+  }, [slice, slicingSize]);
 
-  const apiError = error || aggregateError;
+  const apiError = error || slicingError;
 
   return (
     <Modal
       isOpen
-      heading={t('aggregateModalTitle', { ip: ipGroup })}
+      heading={t('sliceModalTitle', { ip: ipGroup })}
       isLoading={isLoading}
       onDismiss={cancel}
       onSecondaryButtonClick={cancel}
-      onPrimaryButtonClick={() => postAggregate({ aggregationIp })}
+      onPrimaryButtonClick={() => postSlice({ slicingSize })}
       primaryLabel={t('confirm', { ns: NAMESPACES.ACTIONS })}
       primaryButtonTestId="confirm-button"
-      isPrimaryButtonLoading={isAggregatePending}
+      isPrimaryButtonLoading={isSlicePending}
       secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
       secondaryButtonTestId="cancel-button"
-      isPrimaryButtonDisabled={!aggregationIp}
+      isPrimaryButtonDisabled={!slicingSize}
     >
-      {!isLoading && aggregate.length === 0 && !apiError && (
+      {!isLoading && slice.length === 0 && !apiError && (
         <OdsMessage className="mb-4" color={ODS_MESSAGE_COLOR.warning}>
           <div className="inline">
             {t('noAggregateSliceAvailable')}
@@ -110,34 +116,34 @@ export default function AggregateModal() {
           </div>
         </OdsMessage>
       )}
-      {aggregate.length > 0 && (
+      {slice.length > 0 && (
         <>
           <OdsText className="block mb-4" preset={ODS_TEXT_PRESET.paragraph}>
-            {t('aggregateModalDescription')}
+            {t('sliceModalDescription')}
           </OdsText>
           <OdsSelect
             className="block"
-            name="aggregation-ip"
-            value={aggregationIp}
+            name="slicing-size"
+            value={slicingSize?.toString()}
             onOdsChange={(e) => {
-              const newValue = e.detail.value as string;
+              const newValue = parseInt(e.detail.value, 10);
               if (newValue) {
-                setAggregationIp(newValue);
+                setSlizingSize(newValue);
               }
             }}
           >
-            {aggregate.map((a) => (
-              <option key={a.aggregationIp} value={a.aggregationIp}>
-                {a.aggregationIp}
+            {slice.map((a) => (
+              <option key={a.slicingSize} value={a.slicingSize}>
+                /{a.slicingSize}
               </option>
             ))}
           </OdsSelect>
           <section className="bg-neutral-100 p-4 mb-4">
-            <OdsText>{t('aggregateModalChildrenIpsDescription')}</OdsText>
+            <OdsText>{t('sliceModalChildrenIpsDescription')}</OdsText>
             <ul>
-              {aggregate
-                .find((a) => a.aggregationIp === aggregationIp)
-                ?.childrenIps.map((ip) => (
+              {slice
+                .find((a) => a.slicingSize === slicingSize)
+                ?.childrenIps?.map((ip) => (
                   <li key={ip}>
                     <OdsText>{ip}</OdsText>
                   </li>

@@ -76,6 +76,7 @@
   "listingActionEditDescription": "Editer la description",
   "listingActionDeleteVirtualMac": "Supprimer la MAC virtuelle",
   "listingActionByoipTerminate": "Résilier le service BYOIP",
+  "listingActionSlice": "Segmenter",
   "listingActionAggregate": "Agréger",
   "listingActionUnblockHackedIP": "Déblocage anti-hack",
   "listingUpsertDescription": "Description",
@@ -107,5 +108,8 @@
   "all_items_loadBalancing": "Tous les OVHcloud Load Balancer",
   "all_items_xdsl": "Toutes les Offres internet",
   "all_items_overthebox": "Tous les Over The Box",
-  "all_items_failover": "Toutes les Additional IP"
+  "all_items_failover": "Toutes les Additional IP",
+  "slice_in_progress": "Segmentation en cours",
+  "aggregate_in_progress": "Agrégation en cours",
+  "creation_in_progress": "Création en cours"
 }
