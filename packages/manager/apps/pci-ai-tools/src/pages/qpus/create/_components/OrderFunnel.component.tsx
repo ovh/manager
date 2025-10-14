@@ -64,6 +64,7 @@ import publicCatalog from '@/types/Catalog';
 import { cn } from '@/lib/utils';
 import { useTrackAction, useTrackBanner } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
+import Price from '@/components/price/Price.component';
 
 interface OrderFunnelProps {
   regions: ai.capabilities.Region[];
@@ -701,21 +702,44 @@ const OrderFunnel = ({
               />
               <Separator className="my-2" />
               {model.result.flavor && (
-                <>
+                <OrderPrice
+                  minuteConverter={60}
+                  price={model.result.flavor.pricing[0]}
+                  quantity={model.result.resourcesQuantity}
+                  section="Notebook: "
+                />
+              )}
+              {model.result.QPUFlavor && (
+                <span>
                   <OrderPrice
-                    minuteConverter={60}
-                    price={model.result.flavor.pricing[0]}
-                    quantity={model.result.resourcesQuantity}
-                    section="Notebook: "
-                  />
-                  <OrderPrice
-                    minuteConverter={60}
-                    price={model.result.flavor.pricing[0]}
-                    quantity={model.result.resourcesQuantity}
+                    minuteConverter={1}
+                    price={model.result.QPUFlavor.pricing[0]}
+                    quantity={1}
                     section="QPU: "
                     showPriceLabel={false}
+                    isQPU={true}
                   />
-                </>
+
+                  <div className="inline-block mt-2">
+                    <span className="font-bold">Total: </span>
+                    <Price
+                      priceInUcents={
+                        (model.result.flavor?.pricing[0]?.price || 0) *
+                          (model.result.resourcesQuantity || 0) *
+                          60 +
+                        (model.result.QPUFlavor.pricing[0]?.price || 0) * 3600
+                      }
+                      taxInUcents={
+                        (model.result.flavor?.pricing[0]?.tax || 0) *
+                          (model.result.resourcesQuantity || 0) *
+                          60 +
+                        (model.result.QPUFlavor.pricing[0]?.tax || 0) * 3600
+                      }
+                      decimals={2}
+                      displayInHour={true}
+                    />
+                  </div>
+                </span>
               )}
             </CardContent>
             <CardFooter className="flex flex-col gap-2">

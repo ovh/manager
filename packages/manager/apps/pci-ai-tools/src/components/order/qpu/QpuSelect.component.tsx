@@ -16,7 +16,7 @@ import Price from '@/components/price/Price.component';
 
 interface QpusSelectProps {
   qpus: Qpu[];
-  value: string; 
+  value: string;
   onChange: (newQpu: string) => void;
   className?: string;
   isUpdate?: boolean;
@@ -109,14 +109,14 @@ const QpusSelect = React.forwardRef<HTMLTableElement, QpusSelectProps>(
               <TableCell className="text-[#4d5592] border capitalize">
                 {qpu.qubits}
               </TableCell>
-
               <TableCell className="text-[#4d5592] border capitalize">
-            {/*    <Price
-                  priceInUcents={60 * resourcesQuantity * (qpu.pricing[0]?.price || 0)}
-                  taxInUcents={60 * resourcesQuantity * (qpu.pricing[0]?.tax|| 0)}
+                <Price
+                  priceInUcents={qpu.pricing[0]?.price}
+                  taxInUcents={qpu.pricing[0]?.tax}
                   decimals={2}
-                  displayInHour={false}
-                />*/}
+                  displayInHour={true}
+                  isQPU={true}
+                />
               </TableCell>
             </TableRow>
           ))}

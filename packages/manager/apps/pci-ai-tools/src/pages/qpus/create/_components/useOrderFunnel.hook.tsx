@@ -162,7 +162,7 @@ export function useOrderFunnel(
     const allQpus = createQPUFlavorPricingList(
       QPUFlavorQuery.data,
       catalog,
-      'ai-notebook',
+      'quantum-processing-unit',
     );
     if (!frameworkObject || !frameworkObject.supportedQpus) return [];
     return allQpus.filter((qpu) =>
