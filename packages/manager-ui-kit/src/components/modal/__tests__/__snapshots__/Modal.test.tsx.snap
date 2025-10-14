@@ -50,11 +50,15 @@ exports[`Modal Snapshot Tests > displays disabled primary and secondary buttons 
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Example Heading
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Example Heading
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -150,11 +154,15 @@ exports[`Modal Snapshot Tests > displays loading Modal 1`] = `
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Example Heading
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Example Heading
+          </h4>
+        </div>
         <div
           class="flex justify-center my-5"
           data-testid="spinner"
@@ -252,11 +260,15 @@ exports[`Modal Snapshot Tests > displays loading primary and secondary buttons 1
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Example Heading
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Example Heading
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -430,11 +442,15 @@ exports[`Modal Snapshot Tests > displays the basic modal 1`] = `
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Example Heading
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Example Heading
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -513,11 +529,15 @@ exports[`Modal Snapshot Tests > displays the modal with actions 1`] = `
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Example Heading
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Example Heading
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -611,11 +631,15 @@ exports[`Modal Snapshot Tests > displays the modal with critical type 1`] = `
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Example Heading
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Example Heading
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
