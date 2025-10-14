@@ -21,7 +21,6 @@ import ContactMeanStatusChip from '@/components/contactMeanStatus/contactMeanSta
 import { useAccountUrn } from '@/data';
 import { urls } from '@/routes/routes.constant';
 import {
-  useDeleteContactMean,
   useChangeContactMeanStatus,
   useRestartValidationContactMean,
 } from '@/data/hooks/useContactMean/useContactMean';
@@ -35,17 +34,6 @@ function ContactMeanActionMenu({ contactMean }: { contactMean: ContactMean }) {
   const { t } = useTranslation(['contacts', NAMESPACES.ACTIONS, 'common']);
   const { addSuccess, addError, clearNotifications } = useNotifications();
   const { data: accountUrn } = useAccountUrn();
-  const { mutate: deleteContactMean } = useDeleteContactMean({
-    id: contactMean.id,
-    onSuccess: () => {
-      clearNotifications();
-      addSuccess(t('delete_contact_success_message'));
-    },
-    onError: () => {
-      clearNotifications();
-      addError(t('delete_contact_error_message'));
-    },
-  });
   const { mutate: disableContactMean } = useChangeContactMeanStatus({
     contactMeanId: contactMean.id,
     onSuccess: () => {
