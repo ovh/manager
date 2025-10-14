@@ -1,6 +1,6 @@
 import React from 'react';
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
-import { useLocations } from '@secret-manager/data/hooks/useLocation';
+import { useLocations } from '@/common/data/hooks/useLocation';
 import { useRegionName } from '@/hooks/useRegionName';
 import { RadioCard } from '../RadioCard/RadioCard.component';
 import { RegionTypeBadge } from '@/components/regionTypeBadge/RegionTypeBadge.component';
