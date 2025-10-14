@@ -7,6 +7,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
 >
   <table
     class="_table--md_1xkmm_54 w-full"
+    data-ods="table"
   >
     <thead
       class="sticky top-[-1px] z-10 bg-white overflow-hidden"
@@ -27,7 +28,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
               class="align-middle inline-block pl-1 -mt-1"
             >
               <span
-                class="_icon_i4xp0_2 _icon--arrow-down_i4xp0_16 invisible"
+                class="_icon_10c23_2 _icon--arrow-down_10c23_19 invisible"
+                data-ods="icon"
+                role="presentation"
               />
             </span>
           </div>
@@ -43,6 +46,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
             <span>
               <label
                 class="_checkbox_18i6t_2"
+                data-ods="checkbox"
                 data-part="root"
                 data-scope="checkbox"
                 data-state="unchecked"
@@ -52,7 +56,8 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
               >
                 <div
                   aria-hidden="true"
-                  class="_checkbox-control_r0pkw_2"
+                  class="_checkbox-control_gr69e_2"
+                  data-ods="checkbox-control"
                   data-part="control"
                   data-scope="checkbox"
                   data-state="unchecked"
@@ -67,7 +72,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
                     hidden=""
                   >
                     <span
-                      class="_icon_i4xp0_2 _icon--check_i4xp0_61 _checkbox-control__icon_r0pkw_48"
+                      class="_icon_10c23_2 _icon--check_10c23_76 _checkbox-control__icon_gr69e_49"
+                      data-ods="icon"
+                      role="presentation"
                     />
                   </div>
                   <div
@@ -78,25 +85,30 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
                     hidden=""
                   >
                     <span
-                      class="_icon_i4xp0_2 _icon--minus_i4xp0_298 _checkbox-control__icon_r0pkw_48"
+                      class="_icon_10c23_2 _icon--minus_10c23_376 _checkbox-control__icon_gr69e_49"
+                      data-ods="icon"
+                      role="presentation"
                     />
                   </div>
-                  <input
-                    aria-labelledby="checkbox:select-all:label"
-                    id="checkbox:select-all:input"
-                    name="select-all"
-                    style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
-                    type="checkbox"
-                    value="on"
-                  />
                 </div>
+                <input
+                  aria-invalid="false"
+                  aria-labelledby="checkbox:select-all:label"
+                  id="checkbox:select-all:input"
+                  name="select-all"
+                  style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+                  type="checkbox"
+                  value="on"
+                />
               </label>
             </span>
             <span
               class="align-middle inline-block pl-1 -mt-1"
             >
               <span
-                class="_icon_i4xp0_2 _icon--arrow-down_i4xp0_16 invisible"
+                class="_icon_10c23_2 _icon--arrow-down_10c23_19 invisible"
+                data-ods="icon"
+                role="presentation"
               />
             </span>
           </div>
@@ -116,7 +128,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
               class="align-middle inline-block pl-1 -mt-1"
             >
               <span
-                class="_icon_i4xp0_2 _icon--arrow-up_i4xp0_34"
+                class="_icon_10c23_2 _icon--arrow-up_10c23_37"
+                data-ods="icon"
+                role="presentation"
               />
             </span>
           </div>
@@ -136,7 +150,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
               class="align-middle inline-block pl-1 -mt-1"
             >
               <span
-                class="_icon_i4xp0_2 _icon--arrow-down_i4xp0_16 invisible"
+                class="_icon_10c23_2 _icon--arrow-down_10c23_19 invisible"
+                data-ods="icon"
+                role="presentation"
               />
             </span>
           </div>
@@ -164,12 +180,15 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
               style="padding-left: 0rem;"
             >
               <button
-                class="_button_10f3x_2 _button--primary_10f3x_99 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+                class="_button_1koyw_2 _button--primary_1koyw_100 _button--xs_1koyw_25 _button--ghost_1koyw_151"
+                data-ods="button"
                 data-testid="manager-button"
                 type="button"
               >
                 <span
-                  class="_icon_i4xp0_2 _icon--chevron-right_i4xp0_76"
+                  class="_icon_10c23_2 _icon--chevron-right_10c23_97"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </button>
             </div>
@@ -184,6 +203,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
           >
             <label
               class="_checkbox_18i6t_2"
+              data-ods="checkbox"
               data-part="root"
               data-scope="checkbox"
               data-state="unchecked"
@@ -193,7 +213,8 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
             >
               <div
                 aria-hidden="true"
-                class="_checkbox-control_r0pkw_2"
+                class="_checkbox-control_gr69e_2"
+                data-ods="checkbox-control"
                 data-part="control"
                 data-scope="checkbox"
                 data-state="unchecked"
@@ -208,7 +229,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
                   hidden=""
                 >
                   <span
-                    class="_icon_i4xp0_2 _icon--check_i4xp0_61 _checkbox-control__icon_r0pkw_48"
+                    class="_icon_10c23_2 _icon--check_10c23_76 _checkbox-control__icon_gr69e_49"
+                    data-ods="icon"
+                    role="presentation"
                   />
                 </div>
                 <div
@@ -219,18 +242,21 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
                   hidden=""
                 >
                   <span
-                    class="_icon_i4xp0_2 _icon--minus_i4xp0_298 _checkbox-control__icon_r0pkw_48"
+                    class="_icon_10c23_2 _icon--minus_10c23_376 _checkbox-control__icon_gr69e_49"
+                    data-ods="icon"
+                    role="presentation"
                   />
                 </div>
-                <input
-                  aria-labelledby="checkbox:0:label"
-                  id="checkbox:0:input"
-                  name="select-0"
-                  style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
-                  type="checkbox"
-                  value="on"
-                />
               </div>
+              <input
+                aria-invalid="false"
+                aria-labelledby="checkbox:0:label"
+                id="checkbox:0:input"
+                name="select-0"
+                style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+                type="checkbox"
+                value="on"
+              />
             </label>
           </div>
         </td>
@@ -276,12 +302,15 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
               style="padding-left: 0rem;"
             >
               <button
-                class="_button_10f3x_2 _button--primary_10f3x_99 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+                class="_button_1koyw_2 _button--primary_1koyw_100 _button--xs_1koyw_25 _button--ghost_1koyw_151"
+                data-ods="button"
                 data-testid="manager-button"
                 type="button"
               >
                 <span
-                  class="_icon_i4xp0_2 _icon--chevron-right_i4xp0_76"
+                  class="_icon_10c23_2 _icon--chevron-right_10c23_97"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </button>
             </div>
@@ -296,6 +325,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
           >
             <label
               class="_checkbox_18i6t_2"
+              data-ods="checkbox"
               data-part="root"
               data-scope="checkbox"
               data-state="unchecked"
@@ -305,7 +335,8 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
             >
               <div
                 aria-hidden="true"
-                class="_checkbox-control_r0pkw_2"
+                class="_checkbox-control_gr69e_2"
+                data-ods="checkbox-control"
                 data-part="control"
                 data-scope="checkbox"
                 data-state="unchecked"
@@ -320,7 +351,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
                   hidden=""
                 >
                   <span
-                    class="_icon_i4xp0_2 _icon--check_i4xp0_61 _checkbox-control__icon_r0pkw_48"
+                    class="_icon_10c23_2 _icon--check_10c23_76 _checkbox-control__icon_gr69e_49"
+                    data-ods="icon"
+                    role="presentation"
                   />
                 </div>
                 <div
@@ -331,18 +364,21 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
                   hidden=""
                 >
                   <span
-                    class="_icon_i4xp0_2 _icon--minus_i4xp0_298 _checkbox-control__icon_r0pkw_48"
+                    class="_icon_10c23_2 _icon--minus_10c23_376 _checkbox-control__icon_gr69e_49"
+                    data-ods="icon"
+                    role="presentation"
                   />
                 </div>
-                <input
-                  aria-labelledby="checkbox:1:label"
-                  id="checkbox:1:input"
-                  name="select-1"
-                  style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
-                  type="checkbox"
-                  value="on"
-                />
               </div>
+              <input
+                aria-invalid="false"
+                aria-labelledby="checkbox:1:label"
+                id="checkbox:1:input"
+                name="select-1"
+                style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+                type="checkbox"
+                value="on"
+              />
             </label>
           </div>
         </td>
@@ -383,6 +419,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with basic props 1`] = 
 >
   <table
     class="_table--md_1xkmm_54 w-full"
+    data-ods="table"
   >
     <thead
       class="sticky top-[-1px] z-10 bg-white overflow-hidden"
@@ -480,6 +517,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with column visibility 
 >
   <table
     class="_table--md_1xkmm_54 w-full"
+    data-ods="table"
   >
     <thead
       class="sticky top-[-1px] z-10 bg-white overflow-hidden"
@@ -577,6 +615,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with custom container h
 >
   <table
     class="_table--md_1xkmm_54 w-full"
+    data-ods="table"
   >
     <thead
       class="sticky top-[-1px] z-10 bg-white overflow-hidden"
@@ -674,6 +713,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with empty data 1`] = `
 >
   <table
     class="_table--md_1xkmm_54 w-full"
+    data-ods="table"
   >
     <thead
       class="sticky top-[-1px] z-10 bg-white overflow-hidden"
@@ -705,6 +745,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with empty data 1`] = `
         >
           <p
             class="_text--paragraph_1aw48_54"
+            data-ods="text"
           >
             Aucun résultat
           </p>
@@ -722,6 +763,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
 >
   <table
     class="_table--md_1xkmm_54 w-full"
+    data-ods="table"
   >
     <thead
       class="sticky top-[-1px] z-10 bg-white overflow-hidden"
@@ -768,12 +810,15 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
               style="padding-left: 0rem;"
             >
               <button
-                class="_button_10f3x_2 _button--primary_10f3x_99 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+                class="_button_1koyw_2 _button--primary_1koyw_100 _button--xs_1koyw_25 _button--ghost_1koyw_151"
+                data-ods="button"
                 data-testid="manager-button"
                 type="button"
               >
                 <span
-                  class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+                  class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </button>
             </div>
@@ -950,12 +995,15 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
               style="padding-left: 0rem;"
             >
               <button
-                class="_button_10f3x_2 _button--primary_10f3x_99 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+                class="_button_1koyw_2 _button--primary_1koyw_100 _button--xs_1koyw_25 _button--ghost_1koyw_151"
+                data-ods="button"
                 data-testid="manager-button"
                 type="button"
               >
                 <span
-                  class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+                  class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </button>
             </div>
@@ -998,6 +1046,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with filters enabled 1`
 >
   <table
     class="_table--md_1xkmm_54 w-full"
+    data-ods="table"
   >
     <thead
       class="sticky top-[-1px] z-10 bg-white overflow-hidden"
@@ -1095,6 +1144,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with loading state 1`] 
 >
   <table
     class="_table--md_1xkmm_54 w-full"
+    data-ods="table"
   >
     <thead
       class="sticky top-[-1px] z-10 bg-white overflow-hidden"
@@ -1191,7 +1241,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with loading state 1`] 
             class="w-full"
           >
             <div
+              aria-hidden="true"
               class="_skeleton_kauw8_2"
+              data-ods="skeleton"
             />
           </div>
         </td>
@@ -1203,35 +1255,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with loading state 1`] 
             class="w-full"
           >
             <div
+              aria-hidden="true"
               class="_skeleton_kauw8_2"
-            />
-          </div>
-        </td>
-      </tr>
-      <tr
-        class="h-[50px]"
-      >
-        <td
-          class="overflow-hidden py-[8px]"
-        >
-          <div
-            aria-busy="true"
-            class="w-full"
-          >
-            <div
-              class="_skeleton_kauw8_2"
-            />
-          </div>
-        </td>
-        <td
-          class="overflow-hidden py-[8px]"
-        >
-          <div
-            aria-busy="true"
-            class="w-full"
-          >
-            <div
-              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
             />
           </div>
         </td>
@@ -1247,7 +1273,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with loading state 1`] 
             class="w-full"
           >
             <div
+              aria-hidden="true"
               class="_skeleton_kauw8_2"
+              data-ods="skeleton"
             />
           </div>
         </td>
@@ -1259,35 +1287,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with loading state 1`] 
             class="w-full"
           >
             <div
+              aria-hidden="true"
               class="_skeleton_kauw8_2"
-            />
-          </div>
-        </td>
-      </tr>
-      <tr
-        class="h-[50px]"
-      >
-        <td
-          class="overflow-hidden py-[8px]"
-        >
-          <div
-            aria-busy="true"
-            class="w-full"
-          >
-            <div
-              class="_skeleton_kauw8_2"
-            />
-          </div>
-        </td>
-        <td
-          class="overflow-hidden py-[8px]"
-        >
-          <div
-            aria-busy="true"
-            class="w-full"
-          >
-            <div
-              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
             />
           </div>
         </td>
@@ -1303,7 +1305,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with loading state 1`] 
             class="w-full"
           >
             <div
+              aria-hidden="true"
               class="_skeleton_kauw8_2"
+              data-ods="skeleton"
             />
           </div>
         </td>
@@ -1315,35 +1319,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with loading state 1`] 
             class="w-full"
           >
             <div
+              aria-hidden="true"
               class="_skeleton_kauw8_2"
-            />
-          </div>
-        </td>
-      </tr>
-      <tr
-        class="h-[50px]"
-      >
-        <td
-          class="overflow-hidden py-[8px]"
-        >
-          <div
-            aria-busy="true"
-            class="w-full"
-          >
-            <div
-              class="_skeleton_kauw8_2"
-            />
-          </div>
-        </td>
-        <td
-          class="overflow-hidden py-[8px]"
-        >
-          <div
-            aria-busy="true"
-            class="w-full"
-          >
-            <div
-              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
             />
           </div>
         </td>
@@ -1359,7 +1337,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with loading state 1`] 
             class="w-full"
           >
             <div
+              aria-hidden="true"
               class="_skeleton_kauw8_2"
+              data-ods="skeleton"
             />
           </div>
         </td>
@@ -1371,35 +1351,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with loading state 1`] 
             class="w-full"
           >
             <div
+              aria-hidden="true"
               class="_skeleton_kauw8_2"
-            />
-          </div>
-        </td>
-      </tr>
-      <tr
-        class="h-[50px]"
-      >
-        <td
-          class="overflow-hidden py-[8px]"
-        >
-          <div
-            aria-busy="true"
-            class="w-full"
-          >
-            <div
-              class="_skeleton_kauw8_2"
-            />
-          </div>
-        </td>
-        <td
-          class="overflow-hidden py-[8px]"
-        >
-          <div
-            aria-busy="true"
-            class="w-full"
-          >
-            <div
-              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
             />
           </div>
         </td>
@@ -1415,7 +1369,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with loading state 1`] 
             class="w-full"
           >
             <div
+              aria-hidden="true"
               class="_skeleton_kauw8_2"
+              data-ods="skeleton"
             />
           </div>
         </td>
@@ -1427,7 +1383,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with loading state 1`] 
             class="w-full"
           >
             <div
+              aria-hidden="true"
               class="_skeleton_kauw8_2"
+              data-ods="skeleton"
             />
           </div>
         </td>
@@ -1443,7 +1401,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with loading state 1`] 
             class="w-full"
           >
             <div
+              aria-hidden="true"
               class="_skeleton_kauw8_2"
+              data-ods="skeleton"
             />
           </div>
         </td>
@@ -1455,7 +1415,137 @@ exports[`Datagrid Snapshot Tests > should match snapshot with loading state 1`] 
             class="w-full"
           >
             <div
+              aria-hidden="true"
               class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="h-[50px]"
+      >
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="h-[50px]"
+      >
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="h-[50px]"
+      >
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="h-[50px]"
+      >
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
             />
           </div>
         </td>
@@ -1472,6 +1562,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with pagination 1`] = `
 >
   <table
     class="_table--md_1xkmm_54 w-full"
+    data-ods="table"
   >
     <thead
       class="sticky top-[-1px] z-10 bg-white overflow-hidden"
@@ -1569,6 +1660,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] 
 >
   <table
     class="_table--md_1xkmm_54 w-full"
+    data-ods="table"
   >
     <thead
       class="sticky top-[-1px] z-10 bg-white overflow-hidden"
@@ -1582,6 +1674,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] 
         >
           <label
             class="_checkbox_18i6t_2"
+            data-ods="checkbox"
             data-part="root"
             data-scope="checkbox"
             data-state="unchecked"
@@ -1591,7 +1684,8 @@ exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] 
           >
             <div
               aria-hidden="true"
-              class="_checkbox-control_r0pkw_2"
+              class="_checkbox-control_gr69e_2"
+              data-ods="checkbox-control"
               data-part="control"
               data-scope="checkbox"
               data-state="unchecked"
@@ -1606,7 +1700,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] 
                 hidden=""
               >
                 <span
-                  class="_icon_i4xp0_2 _icon--check_i4xp0_61 _checkbox-control__icon_r0pkw_48"
+                  class="_icon_10c23_2 _icon--check_10c23_76 _checkbox-control__icon_gr69e_49"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </div>
               <div
@@ -1617,18 +1713,21 @@ exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] 
                 hidden=""
               >
                 <span
-                  class="_icon_i4xp0_2 _icon--minus_i4xp0_298 _checkbox-control__icon_r0pkw_48"
+                  class="_icon_10c23_2 _icon--minus_10c23_376 _checkbox-control__icon_gr69e_49"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </div>
-              <input
-                aria-labelledby="checkbox:select-all:label"
-                id="checkbox:select-all:input"
-                name="select-all"
-                style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
-                type="checkbox"
-                value="on"
-              />
             </div>
+            <input
+              aria-invalid="false"
+              aria-labelledby="checkbox:select-all:label"
+              id="checkbox:select-all:input"
+              name="select-all"
+              style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+              type="checkbox"
+              value="on"
+            />
           </label>
         </th>
         <th
@@ -1663,6 +1762,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] 
           >
             <label
               class="_checkbox_18i6t_2"
+              data-ods="checkbox"
               data-part="root"
               data-scope="checkbox"
               data-state="unchecked"
@@ -1672,7 +1772,8 @@ exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] 
             >
               <div
                 aria-hidden="true"
-                class="_checkbox-control_r0pkw_2"
+                class="_checkbox-control_gr69e_2"
+                data-ods="checkbox-control"
                 data-part="control"
                 data-scope="checkbox"
                 data-state="unchecked"
@@ -1687,7 +1788,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] 
                   hidden=""
                 >
                   <span
-                    class="_icon_i4xp0_2 _icon--check_i4xp0_61 _checkbox-control__icon_r0pkw_48"
+                    class="_icon_10c23_2 _icon--check_10c23_76 _checkbox-control__icon_gr69e_49"
+                    data-ods="icon"
+                    role="presentation"
                   />
                 </div>
                 <div
@@ -1698,18 +1801,21 @@ exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] 
                   hidden=""
                 >
                   <span
-                    class="_icon_i4xp0_2 _icon--minus_i4xp0_298 _checkbox-control__icon_r0pkw_48"
+                    class="_icon_10c23_2 _icon--minus_10c23_376 _checkbox-control__icon_gr69e_49"
+                    data-ods="icon"
+                    role="presentation"
                   />
                 </div>
-                <input
-                  aria-labelledby="checkbox:0:label"
-                  id="checkbox:0:input"
-                  name="select-0"
-                  style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
-                  type="checkbox"
-                  value="on"
-                />
               </div>
+              <input
+                aria-invalid="false"
+                aria-labelledby="checkbox:0:label"
+                id="checkbox:0:input"
+                name="select-0"
+                style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+                type="checkbox"
+                value="on"
+              />
             </label>
           </div>
         </td>
@@ -1752,6 +1858,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] 
           >
             <label
               class="_checkbox_18i6t_2"
+              data-ods="checkbox"
               data-part="root"
               data-scope="checkbox"
               data-state="unchecked"
@@ -1761,7 +1868,8 @@ exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] 
             >
               <div
                 aria-hidden="true"
-                class="_checkbox-control_r0pkw_2"
+                class="_checkbox-control_gr69e_2"
+                data-ods="checkbox-control"
                 data-part="control"
                 data-scope="checkbox"
                 data-state="unchecked"
@@ -1776,7 +1884,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] 
                   hidden=""
                 >
                   <span
-                    class="_icon_i4xp0_2 _icon--check_i4xp0_61 _checkbox-control__icon_r0pkw_48"
+                    class="_icon_10c23_2 _icon--check_10c23_76 _checkbox-control__icon_gr69e_49"
+                    data-ods="icon"
+                    role="presentation"
                   />
                 </div>
                 <div
@@ -1787,18 +1897,21 @@ exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] 
                   hidden=""
                 >
                   <span
-                    class="_icon_i4xp0_2 _icon--minus_i4xp0_298 _checkbox-control__icon_r0pkw_48"
+                    class="_icon_10c23_2 _icon--minus_10c23_376 _checkbox-control__icon_gr69e_49"
+                    data-ods="icon"
+                    role="presentation"
                   />
                 </div>
-                <input
-                  aria-labelledby="checkbox:1:label"
-                  id="checkbox:1:input"
-                  name="select-1"
-                  style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
-                  type="checkbox"
-                  value="on"
-                />
               </div>
+              <input
+                aria-invalid="false"
+                aria-labelledby="checkbox:1:label"
+                id="checkbox:1:input"
+                name="select-1"
+                style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+                type="checkbox"
+                value="on"
+              />
             </label>
           </div>
         </td>
@@ -1839,6 +1952,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with search enabled 1`]
 >
   <table
     class="_table--md_1xkmm_54 w-full"
+    data-ods="table"
   >
     <thead
       class="sticky top-[-1px] z-10 bg-white overflow-hidden"
@@ -1936,6 +2050,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with sorting enabled 1`
 >
   <table
     class="_table--md_1xkmm_54 w-full"
+    data-ods="table"
   >
     <thead
       class="sticky top-[-1px] z-10 bg-white overflow-hidden"
@@ -1958,7 +2073,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with sorting enabled 1`
               class="align-middle inline-block pl-1 -mt-1"
             >
               <span
-                class="_icon_i4xp0_2 _icon--arrow-up_i4xp0_34"
+                class="_icon_10c23_2 _icon--arrow-up_10c23_37"
+                data-ods="icon"
+                role="presentation"
               />
             </span>
           </div>
@@ -1978,7 +2095,9 @@ exports[`Datagrid Snapshot Tests > should match snapshot with sorting enabled 1`
               class="align-middle inline-block pl-1 -mt-1"
             >
               <span
-                class="_icon_i4xp0_2 _icon--arrow-down_i4xp0_16 invisible"
+                class="_icon_10c23_2 _icon--arrow-down_10c23_19 invisible"
+                data-ods="icon"
+                role="presentation"
               />
             </span>
           </div>

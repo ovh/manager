@@ -19,23 +19,26 @@ exports[`Delete Modal component > renders basic modal 1`] = `
     id="dialog::r0::positioner"
   >
     <div
-      aria-describedby="dialog::r0::description"
-      aria-labelledby="dialog::r0::title"
+      aria-describedby=""
+      aria-labelledby=""
       aria-modal="true"
       class="_modal-content_inusz_35"
+      data-ods="modal-content"
       data-part="content"
       data-scope="dialog"
       data-state="open"
       dir="ltr"
       id="dialog::r0::content"
-      role="dialog"
+      role="alertdialog"
       tabindex="-1"
     >
       <div
-        class="_modal-header_1q85x_2 _modal-header--critical_1q85x_14"
+        class="_modal-header_1qhu0_2 _modal-header--critical_1qhu0_14"
       >
         <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+          aria-label="Close"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
+          data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
           dir="ltr"
@@ -43,18 +46,22 @@ exports[`Delete Modal component > renders basic modal 1`] = `
           type="button"
         >
           <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
           />
         </button>
       </div>
       <div
         class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
       >
         <div
           class="flex items-center mb-4"
         >
           <h4
             class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+            data-ods="text"
           >
             Résilier serviceType ?
           </h4>
@@ -67,6 +74,7 @@ exports[`Delete Modal component > renders basic modal 1`] = `
           >
             <p
               class="_text--paragraph_1aw48_54"
+              data-ods="text"
               data-testid="manager-delete-modal-description"
               id="delete-modal-description"
             >
@@ -78,14 +86,16 @@ exports[`Delete Modal component > renders basic modal 1`] = `
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_10f3x_2 _button--critical_10f3x_48 _button--md_10f3x_41 _button--ghost_10f3x_150 mt-4"
+            class="_button_1koyw_2 _button--critical_1koyw_49 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
+            data-ods="button"
             data-testid="manager-delete-modal-cancel"
             type="button"
           >
             Non, refuser
           </button>
           <button
-            class="_button_10f3x_2 _button--critical_10f3x_48 _button--md_10f3x_41 _button--default_10f3x_48 mt-4"
+            class="_button_1koyw_2 _button--critical_1koyw_49 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
+            data-ods="button"
             data-testid="manager-delete-modal-confirm"
             type="button"
           >
@@ -117,23 +127,26 @@ exports[`Delete Modal component > renders loading modal 1`] = `
     id="dialog::r1::positioner"
   >
     <div
-      aria-describedby="dialog::r1::description"
-      aria-labelledby="dialog::r1::title"
+      aria-describedby=""
+      aria-labelledby=""
       aria-modal="true"
       class="_modal-content_inusz_35"
+      data-ods="modal-content"
       data-part="content"
       data-scope="dialog"
       data-state="open"
       dir="ltr"
       id="dialog::r1::content"
-      role="dialog"
+      role="alertdialog"
       tabindex="-1"
     >
       <div
-        class="_modal-header_1q85x_2 _modal-header--critical_1q85x_14"
+        class="_modal-header_1qhu0_2 _modal-header--critical_1qhu0_14"
       >
         <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+          aria-label="Close"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
+          data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
           dir="ltr"
@@ -141,18 +154,22 @@ exports[`Delete Modal component > renders loading modal 1`] = `
           type="button"
         >
           <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
           />
         </button>
       </div>
       <div
         class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
       >
         <div
           class="flex items-center mb-4"
         >
           <h4
             class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+            data-ods="text"
           >
             Résilier serviceType ?
           </h4>
@@ -163,9 +180,11 @@ exports[`Delete Modal component > renders loading modal 1`] = `
         >
           <span
             class="_spinner_o7c7y_10 _spinner--primary_o7c7y_29 _spinner--md_o7c7y_20"
+            data-ods="spinner"
             role="progressbar"
           >
             <svg
+              aria-hidden="true"
               class="_spinner__svg_o7c7y_32"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
@@ -223,23 +242,26 @@ exports[`Delete Modal component > renders modal with children content 1`] = `
     id="dialog::r4::positioner"
   >
     <div
-      aria-describedby="dialog::r4::description"
-      aria-labelledby="dialog::r4::title"
+      aria-describedby=""
+      aria-labelledby=""
       aria-modal="true"
       class="_modal-content_inusz_35"
+      data-ods="modal-content"
       data-part="content"
       data-scope="dialog"
       data-state="open"
       dir="ltr"
       id="dialog::r4::content"
-      role="dialog"
+      role="alertdialog"
       tabindex="-1"
     >
       <div
-        class="_modal-header_1q85x_2 _modal-header--critical_1q85x_14"
+        class="_modal-header_1qhu0_2 _modal-header--critical_1qhu0_14"
       >
         <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+          aria-label="Close"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
+          data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
           dir="ltr"
@@ -247,18 +269,22 @@ exports[`Delete Modal component > renders modal with children content 1`] = `
           type="button"
         >
           <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
           />
         </button>
       </div>
       <div
         class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
       >
         <div
           class="flex items-center mb-4"
         >
           <h4
             class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+            data-ods="text"
           >
             Résilier serviceType ?
           </h4>
@@ -271,6 +297,7 @@ exports[`Delete Modal component > renders modal with children content 1`] = `
           >
             <p
               class="_text--paragraph_1aw48_54"
+              data-ods="text"
               data-testid="manager-delete-modal-description"
               id="delete-modal-description"
             >
@@ -285,14 +312,16 @@ exports[`Delete Modal component > renders modal with children content 1`] = `
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_10f3x_2 _button--critical_10f3x_48 _button--md_10f3x_41 _button--ghost_10f3x_150 mt-4"
+            class="_button_1koyw_2 _button--critical_1koyw_49 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
+            data-ods="button"
             data-testid="manager-delete-modal-cancel"
             type="button"
           >
             Non, refuser
           </button>
           <button
-            class="_button_10f3x_2 _button--critical_10f3x_48 _button--md_10f3x_41 _button--default_10f3x_48 mt-4"
+            class="_button_1koyw_2 _button--critical_1koyw_49 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
+            data-ods="button"
             data-testid="manager-delete-modal-confirm"
             type="button"
           >
@@ -324,23 +353,26 @@ exports[`Delete Modal component > renders modal with custom service type 1`] = `
     id="dialog::r3::positioner"
   >
     <div
-      aria-describedby="dialog::r3::description"
-      aria-labelledby="dialog::r3::title"
+      aria-describedby=""
+      aria-labelledby=""
       aria-modal="true"
       class="_modal-content_inusz_35"
+      data-ods="modal-content"
       data-part="content"
       data-scope="dialog"
       data-state="open"
       dir="ltr"
       id="dialog::r3::content"
-      role="dialog"
+      role="alertdialog"
       tabindex="-1"
     >
       <div
-        class="_modal-header_1q85x_2 _modal-header--critical_1q85x_14"
+        class="_modal-header_1qhu0_2 _modal-header--critical_1qhu0_14"
       >
         <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+          aria-label="Close"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
+          data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
           dir="ltr"
@@ -348,18 +380,22 @@ exports[`Delete Modal component > renders modal with custom service type 1`] = `
           type="button"
         >
           <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
           />
         </button>
       </div>
       <div
         class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
       >
         <div
           class="flex items-center mb-4"
         >
           <h4
             class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+            data-ods="text"
           >
             Résilier Custom Service ?
           </h4>
@@ -372,6 +408,7 @@ exports[`Delete Modal component > renders modal with custom service type 1`] = `
           >
             <p
               class="_text--paragraph_1aw48_54"
+              data-ods="text"
               data-testid="manager-delete-modal-description"
               id="delete-modal-description"
             >
@@ -383,14 +420,16 @@ exports[`Delete Modal component > renders modal with custom service type 1`] = `
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_10f3x_2 _button--critical_10f3x_48 _button--md_10f3x_41 _button--ghost_10f3x_150 mt-4"
+            class="_button_1koyw_2 _button--critical_1koyw_49 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
+            data-ods="button"
             data-testid="manager-delete-modal-cancel"
             type="button"
           >
             Non, refuser
           </button>
           <button
-            class="_button_10f3x_2 _button--critical_10f3x_48 _button--md_10f3x_41 _button--default_10f3x_48 mt-4"
+            class="_button_1koyw_2 _button--critical_1koyw_49 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
+            data-ods="button"
             data-testid="manager-delete-modal-confirm"
             type="button"
           >
@@ -422,23 +461,26 @@ exports[`Delete Modal component > renders modal with error 1`] = `
     id="dialog::r2::positioner"
   >
     <div
-      aria-describedby="dialog::r2::description"
-      aria-labelledby="dialog::r2::title"
+      aria-describedby=""
+      aria-labelledby=""
       aria-modal="true"
       class="_modal-content_inusz_35"
+      data-ods="modal-content"
       data-part="content"
       data-scope="dialog"
       data-state="open"
       dir="ltr"
       id="dialog::r2::content"
-      role="dialog"
+      role="alertdialog"
       tabindex="-1"
     >
       <div
-        class="_modal-header_1q85x_2 _modal-header--critical_1q85x_14"
+        class="_modal-header_1qhu0_2 _modal-header--critical_1qhu0_14"
       >
         <button
-          class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+          aria-label="Close"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
+          data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
           dir="ltr"
@@ -446,18 +488,22 @@ exports[`Delete Modal component > renders modal with error 1`] = `
           type="button"
         >
           <span
-            class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+            class="_icon_10c23_2 _icon--xmark_10c23_562"
+            data-ods="icon"
+            role="presentation"
           />
         </button>
       </div>
       <div
         class="_modal-body_3om6u_2 text-left"
+        data-ods="modal-body"
       >
         <div
           class="flex items-center mb-4"
         >
           <h4
             class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+            data-ods="text"
           >
             Résilier serviceType ?
           </h4>
@@ -469,27 +515,36 @@ exports[`Delete Modal component > renders modal with error 1`] = `
             class="flex flex-col gap-4"
           >
             <div
-              class="_message_udq9t_2 _message--warning_udq9t_29 _message--default_udq9t_9"
+              class="_message_1oosv_2 _message--warning_1oosv_32 _message--default_1oosv_9"
+              data-ods="message"
             >
               <span
-                class="_icon_i4xp0_2 _icon--triangle-exclamation_i4xp0_421 _message-icon_mpgx8_2"
+                class="_icon_10c23_2 _icon--triangle-exclamation_10c23_538 _message-icon_mpgx8_2"
+                data-ods="message-icon"
+                role="presentation"
               />
               <div
                 class="_message-body_fe7x3_2"
+                data-ods="message-body"
               >
                 L'erreur suivante est survenue : Test error message.
               </div>
               <button
-                class="_button_10f3x_2 _button--neutral_10f3x_82 _button--xs_10f3x_25 _button--ghost_10f3x_150 _message__close_udq9t_57"
+                aria-label="Close"
+                class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _message__close_1oosv_25"
+                data-ods="button"
                 type="button"
               >
                 <span
-                  class="_icon_i4xp0_2 _icon--xmark_i4xp0_442"
+                  class="_icon_10c23_2 _icon--xmark_10c23_562"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </button>
             </div>
             <p
               class="_text--paragraph_1aw48_54"
+              data-ods="text"
               data-testid="manager-delete-modal-description"
               id="delete-modal-description"
             >
@@ -501,14 +556,16 @@ exports[`Delete Modal component > renders modal with error 1`] = `
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_10f3x_2 _button--critical_10f3x_48 _button--md_10f3x_41 _button--ghost_10f3x_150 mt-4"
+            class="_button_1koyw_2 _button--critical_1koyw_49 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
+            data-ods="button"
             data-testid="manager-delete-modal-cancel"
             type="button"
           >
             Non, refuser
           </button>
           <button
-            class="_button_10f3x_2 _button--critical_10f3x_48 _button--md_10f3x_41 _button--default_10f3x_48 mt-4"
+            class="_button_1koyw_2 _button--critical_1koyw_49 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
+            data-ods="button"
             data-testid="manager-delete-modal-confirm"
             type="button"
           >
