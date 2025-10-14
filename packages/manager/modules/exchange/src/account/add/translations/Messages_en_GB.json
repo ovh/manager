@@ -4,7 +4,7 @@
   "exchange_account_add_emailAddress_hint_part_1": "must begin and end with a letter or number",
   "exchange_account_add_emailAddress_hint_part_2": "authorised special characters are ‘.’, ‘+’, ‘-’ and ‘_’",
   "exchange_account_add_emailAddress_hint_part_3": "special characters cannot be placed side by side",
-  "exchange_account_add_phone_help_text": "Please enter a phone number in international format (00xx etc.).",
+  "exchange_account_add_phone_error_text": "No spaces allowed",
   "exchange_account_country_AD": "Andorra",
   "exchange_account_country_AE": "United Arab Emirates",
   "exchange_account_country_AF": "Afghanistan",
@@ -263,6 +263,5 @@
   "exchange_account_country_EA": "Ceuta",
   "exchange_account_country_IC": "Canary islands ",
   "exchange_account_country_TA": "Tristan da Cunha (archipelago)",
-  "exchange_account_country_XK": "Republic of Kosovo",
-  "exchange_account_add_phone_error_text": "No spaces allowed"
+  "exchange_account_country_XK": "Republic of Kosovo"
 }

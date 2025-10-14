@@ -4,7 +4,7 @@
   "exchange_account_add_emailAddress_hint_part_1": "deve começar e acabar por uma letra ou um algarismo;",
   "exchange_account_add_emailAddress_hint_part_2": "os caracteres especiais autorizados são \".\", \"+\", \"-\" e \"_\";",
   "exchange_account_add_emailAddress_hint_part_3": "não é possível usar caracteres especiais seguidos.",
-  "exchange_account_add_phone_help_text": "Introduza um número no formato internacional (00xx ...).",
+  "exchange_account_add_phone_error_text": "Espaço interdito",
   "exchange_account_country_AD": "Andorra",
   "exchange_account_country_AE": "Emirados Árabes Unidos",
   "exchange_account_country_AF": "Afeganistão",
@@ -263,6 +263,5 @@
   "exchange_account_country_EA": "Ceuta",
   "exchange_account_country_IC": "Ilhas Canárias",
   "exchange_account_country_TA": "Tristão da Cunha (arquipélago)",
-  "exchange_account_country_XK": "República do Kosovo",
-  "exchange_account_add_phone_error_text": "Espaço interdito"
+  "exchange_account_country_XK": "República do Kosovo"
 }
