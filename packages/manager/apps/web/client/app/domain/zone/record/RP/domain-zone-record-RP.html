@@ -1,0 +1,75 @@
+<form class="form-horizontal" name="ctrl.zoneRecordForm">
+    <div data-ng-include="'domain/zone/record/header.html'"></div>
+
+    <div
+        class="form-group"
+        data-ng-class="{ 'has-error': ctrl.zoneRecordForm.mbox.$dirty && ctrl.zoneRecordForm.mbox.$invalid  }"
+    >
+        <label
+            class="control-label col-md-3 required"
+            for="mbox"
+            data-translate="domain_configuration_dns_entry_add_rp_mbox"
+        ></label>
+        <div class="col-md-9">
+            <div class="input-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    id="mbox"
+                    name="mbox"
+                    maxlength="255"
+                    required
+                    data-ng-change="ctrl.checkRpMbox(ctrl.zoneRecordForm.mbox); ctrl.setTargetValue('RP')"
+                    data-ng-model="ctrl.model.target.mbox"
+                    data-ng-maxlength="255"
+                /><span
+                    class="input-group-addon"
+                    data-oui-tooltip="{{:: 'domain_configuration_dns_entry_add_target_host_valid' | translate }}"
+                    data-oui-tooltip-placement="bottom"
+                >
+                    <span
+                        class="fa fa-question-circle"
+                        aria-hidden="true"
+                    ></span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div
+        class="form-group"
+        data-ng-class="{ 'has-error': ctrl.zoneRecordForm.txt.$dirty && ctrl.zoneRecordForm.txt.$invalid }"
+    >
+        <label
+            class="control-label col-md-3 required"
+            for="txt"
+            data-translate="domain_configuration_dns_entry_add_rp_txt_dname"
+        ></label>
+        <div class="col-md-9">
+            <div class="input-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    id="txt"
+                    name="txt"
+                    maxlength="255"
+                    required
+                    data-ng-change="ctrl.checkRpTxt(ctrl.zoneRecordForm.txt); ctrl.setTargetValue('RP')"
+                    data-ng-model="ctrl.model.target.txt"
+                    data-ng-maxlength="255"
+                /><span
+                    class="input-group-addon"
+                    data-oui-tooltip="{{:: 'domain_configuration_dns_entry_add_target_host_valid' | translate }}"
+                    data-oui-tooltip-placement="bottom"
+                >
+                    <span
+                        class="fa fa-question-circle"
+                        aria-hidden="true"
+                    ></span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div data-ng-include="'domain/zone/record/bottom.html'"></div>
+</form>

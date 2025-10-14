@@ -1,0 +1,111 @@
+<form class="form-horizontal" name="ctrl.zoneRecordForm">
+    <div data-ng-include="'domain/zone/record/header.html'"></div>
+
+    <div
+        class="form-group"
+        data-ng-class="{ 'has-error': ctrl.zoneRecordForm.priority.$dirty && ctrl.zoneRecordForm.priority.$invalid  }"
+    >
+        <label
+            class="control-label col-md-3 required"
+            for="priority"
+            data-translate="domain_configuration_dns_entry_add_svcb_priority"
+        ></label>
+        <div class="col-md-4">
+            <div class="input-group">
+                <input
+                    type="number"
+                    class="form-control"
+                    id="priority"
+                    name="priority"
+                    required
+                    data-ng-change="ctrl.checkSvcbParams(ctrl.zoneRecordForm.params, ctrl.zoneRecordForm.priority); ctrl.setTargetValue('SVCB')"
+                    data-ng-model="ctrl.model.target.priority"
+                    step="1"
+                    data-ng-min="0"
+                    min="0"
+                    data-ng-max="65535"
+                    max="65535"
+                />
+                <span
+                    class="input-group-addon"
+                    data-oui-tooltip="{{:: 'domain_configuration_dns_entry_add_svcb_priority_help' | translate }}"
+                    data-oui-tooltip-placement="bottom"
+                >
+                    <span
+                        class="fa fa-question-circle"
+                        aria-hidden="true"
+                    ></span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div
+        class="form-group"
+        data-ng-class="{ 'has-error': ctrl.zoneRecordForm.target.$dirty && ctrl.zoneRecordForm.target.$invalid  }"
+    >
+        <label
+            class="control-label col-md-3 required"
+            for="target"
+            data-translate="domain_configuration_dns_entry_add_svcb_target"
+        ></label>
+        <div class="col-md-9">
+            <div class="input-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    id="target"
+                    name="target"
+                    required
+                    data-ng-change="ctrl.checkSvcbTarget(ctrl.zoneRecordForm.target); ctrl.setTargetValue('SVCB')"
+                    data-ng-model="ctrl.model.target.target"
+                />
+                <span
+                    class="input-group-addon"
+                    data-oui-tooltip="{{:: 'domain_configuration_dns_entry_add_target_host_valid' | translate }}"
+                    data-oui-tooltip-placement="bottom"
+                >
+                    <span
+                        class="fa fa-question-circle"
+                        aria-hidden="true"
+                    ></span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div
+        class="form-group"
+        data-ng-class="{ 'has-error': ctrl.zoneRecordForm.params.$dirty && ctrl.zoneRecordForm.params.$invalid  }"
+    >
+        <label
+            class="control-label col-md-3 required"
+            for="params"
+            data-translate="domain_configuration_dns_entry_add_svcb_params"
+        ></label>
+        <div class="col-md-9">
+            <div class="input-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    id="params"
+                    name="params"
+                    data-ng-change="ctrl.checkSvcbParams(ctrl.zoneRecordForm.params, ctrl.zoneRecordForm.priority); ctrl.setTargetValue('SVCB')"
+                    data-ng-model="ctrl.model.target.params"
+                />
+                <span
+                    class="input-group-addon"
+                    data-oui-tooltip="{{:: 'domain_configuration_dns_entry_add_svcb_params_help' | translate }}"
+                    data-oui-tooltip-placement="bottom"
+                >
+                    <span
+                        class="fa fa-question-circle"
+                        aria-hidden="true"
+                    ></span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div data-ng-include="'domain/zone/record/bottom.html'"></div>
+</form>
