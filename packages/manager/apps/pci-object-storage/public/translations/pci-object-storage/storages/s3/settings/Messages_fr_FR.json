@@ -10,7 +10,7 @@
   "confirmButton": "Confirmer",
   "objectLockTitle": "Object lock",
   "staticHostingTitle": "Hébergement de sites web statiques",
-  "comingSoonLabel": "Bientôt disponible",
+  "comingSoonLabel": "Disponible via API",
   "disableEncryptionDesc1": "Les données stockées dans votre bucket ne sont actuellement pas chiffrées.",
   "disableEncryptionDesc2": "Bénéficiez d'une solution de chiffrement simplifiée avec SSE-OMK.",
   "enableEncryptionDesc1": "Le chiffrement est automatiquement appliqué aux nouveaux objets stockés dans le bucket.",

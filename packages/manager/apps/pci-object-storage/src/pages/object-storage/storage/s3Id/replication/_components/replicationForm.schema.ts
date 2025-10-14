@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import i18next from 'i18next';
-import { TagMap } from '../components/types/tags.types';
+import { TagMap } from '../../../../../../types/Tag';
 import storages from '@/types/Storages';
 
 const validIdRegex = /^[\x20-\x7E]{3,255}$/;

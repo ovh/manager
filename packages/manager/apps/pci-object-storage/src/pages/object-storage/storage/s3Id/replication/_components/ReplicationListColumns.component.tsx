@@ -4,7 +4,6 @@ import { Badge } from '@datatr-ux/uxlib';
 import storages from '@/types/Storages';
 import { ActionsMenu } from './ActionsMenu.component';
 import LinkComponent from '@/components/links/Link.component';
-import { getStorageClassLabel } from '../utils/storageClass.util';
 import DataTable from '@/components/data-table';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 
@@ -18,6 +17,9 @@ export function getColumns({
   onDeleteClicked,
 }: GetColumnsParams): ColumnDef<storages.ReplicationRule>[] {
   const { t } = useTranslation('pci-object-storage/replication');
+  const { t: tObj } = useTranslation(
+    'pci-object-storage/storages/s3/object-class',
+  );
 
   return [
     {
@@ -69,7 +71,7 @@ export function getColumns({
       ),
       cell: ({ row }) => (
         <span>
-          {getStorageClassLabel(row.original.destination.storageClass, t)}
+          {tObj(`objectClass_${row.original.destination.storageClass}`)}
         </span>
       ),
     },

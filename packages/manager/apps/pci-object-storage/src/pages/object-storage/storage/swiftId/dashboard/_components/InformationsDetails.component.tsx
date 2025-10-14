@@ -20,38 +20,25 @@ const InformationsDetails = ({
   const onCopy = () => toast.toast({ title: t('copyLabel') });
 
   return (
-    <dl
-      data-testid="informations-details-container"
-      className="
-        grid gap-x-2 gap-y-1 items-center text-sm
-        grid-cols-1
-        sm:grid-cols-[max-content_1fr]
-      "
-    >
-      <dt className="font-semibold whitespace-nowrap">
-        {t('spaceUsedTableHeader')}
-      </dt>
-      <dd>{octetConverter(swift.storedBytes, true, 2)}</dd>
-
-      <dt className="font-semibold whitespace-nowrap">
-        {t('endpointRegionTableHeader')}
-      </dt>
-      <dd className="min-w-0">
+    <div data-testid="swift-container" className="space-y-2">
+      <div className="space-y-2">
+        <h5>{t('endpointRegionTableHeader')}</h5>
         <Clipboard
           value={`${
             region.services.find((s) => s.name === 'storage').endpoint
           }/${swiftId}`}
           onCopy={onCopy}
         />
-      </dd>
-
-      <dt className="font-semibold whitespace-nowrap">
-        {t('cnameTableHeader')}
-      </dt>
-      <dd className="min-w-0">
+      </div>
+      <div className="space-y-2">
+        <h5>{t('cnameTableHeader')}</h5>
         <Clipboard value={swift.staticUrl} onCopy={onCopy} />
-      </dd>
-    </dl>
+      </div>
+      <div className="space-y-2">
+        <h5>{t('spaceUsedTableHeader')}</h5>
+        <p>{octetConverter(swift.storedBytes, true, 2)}</p>
+      </div>
+    </div>
   );
 };
 

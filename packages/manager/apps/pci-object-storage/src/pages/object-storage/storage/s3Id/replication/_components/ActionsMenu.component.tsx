@@ -1,4 +1,4 @@
-import { MoreVertical, Edit, Trash, MoreHorizontal } from 'lucide-react';
+import { MoreHorizontal } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import {
   DropdownMenu,

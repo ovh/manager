@@ -52,7 +52,7 @@
   "editReplicationToastSuccessDescription": "La règle de réplication a été modifiée avec succès.",
   "replicationRuleNotFound": "La règle de réplication n'a pas été trouvée.",
   "close": "Fermer",
-  "backLink": "Retour",
+  "backLink": "Retour aux réplications",
   "replicationConfigurationTitle": "Configuration de la réplication",
   "additionalOptionsTitle": "Options de réplication supplémentaires",
   "storageClass_STANDARD": "Standard",
