@@ -54,6 +54,7 @@ export async function fillStep1({
       container,
       name: 'next-hop',
     });
+
     await waitFor(
       () =>
         expect(
@@ -69,5 +70,10 @@ export async function fillStep1({
     });
 
     await waitFor(() => fireEvent(nextHopSelect, event2));
+
+    await waitFor(
+      () => expect(nextHopSelect).toHaveValue(nextHop),
+      WAIT_FOR_DEFAULT_OPTIONS,
+    );
   }
 }

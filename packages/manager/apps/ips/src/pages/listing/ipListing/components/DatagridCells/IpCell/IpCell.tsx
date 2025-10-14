@@ -1,7 +1,11 @@
-import React from 'react';
-import { OdsSkeleton } from '@ovhcloud/ods-components/react';
+import React, { useContext } from 'react';
+import { OdsBadge, OdsSkeleton } from '@ovhcloud/ods-components/react';
+import { useTranslation } from 'react-i18next';
+import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { ipFormatter } from '@/utils/ipFormatter';
 import { useGetIpdetails } from '@/data/hooks/ip';
+import { ListingContext } from '@/pages/listing/listingContext';
+import { TRANSLATION_NAMESPACES } from '@/utils';
 
 export type IpCellProps = {
   ip: string;
@@ -17,6 +21,12 @@ export type IpCellProps = {
  * @returns React Component
  */
 export const IpCell = ({ ip, parentIpGroup }: IpCellProps) => {
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.listing);
+  const {
+    onGoingAggregatedIps,
+    onGoingSlicedIps,
+    onGoingCreatedIps,
+  } = useContext(ListingContext);
   const { ipDetails, isLoading } = useGetIpdetails({ ip: parentIpGroup || ip });
 
   return (
@@ -24,12 +34,32 @@ export const IpCell = ({ ip, parentIpGroup }: IpCellProps) => {
       <div>{ipFormatter(ip).ip}</div>
       {isLoading && (
         <div className="mt-2">
-          <OdsSkeleton></OdsSkeleton>
+          <OdsSkeleton />
         </div>
       )}
       {!isLoading && !!ipDetails?.description && (
         <small className="mt-2 inline-block">{ipDetails?.description}</small>
       )}
+      <div className="mt-2">
+        {onGoingAggregatedIps.includes(ip) && (
+          <OdsBadge
+            label={t('aggregate_in_progress')}
+            color={ODS_BADGE_COLOR.information}
+          />
+        )}
+        {onGoingSlicedIps.includes(ip) && (
+          <OdsBadge
+            label={t('slice_in_progress')}
+            color={ODS_BADGE_COLOR.information}
+          />
+        )}
+        {onGoingCreatedIps.includes(ip) && (
+          <OdsBadge
+            label={t('creation_in_progress')}
+            color={ODS_BADGE_COLOR.information}
+          />
+        )}
+      </div>
     </>
   );
 };

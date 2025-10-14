@@ -81,7 +81,10 @@ describe('Move IP modal', () => {
       '',
     );
     const confirmNode = await screen.getByText(confirmText, { exact: false });
-    expect(confirmNode.parentElement.innerHTML).toMatchSnapshot();
+    await waitFor(
+      () => expect(confirmNode.parentElement.innerHTML).toMatchSnapshot(),
+      WAIT_FOR_DEFAULT_OPTIONS,
+    );
   });
 
   it('displays a success message if the IP migration order is successful', async () => {

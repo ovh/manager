@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { IpDetails, getIpDetailsQueryKey, getIpdetails } from '@/data/api';
+import { IpDetails, getIpDetailsQueryKey, getIpDetails } from '@/data/api';
 
 export type UseGetIpDetailsParams = {
   ip: string;
@@ -16,7 +16,7 @@ export const useGetIpdetails = ({
     ApiError
   >({
     queryKey: getIpDetailsQueryKey({ ip }),
-    queryFn: () => getIpdetails({ ip }),
+    queryFn: () => getIpDetails({ ip }),
     enabled,
     staleTime: Number.POSITIVE_INFINITY,
     retry: false,
