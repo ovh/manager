@@ -50,11 +50,15 @@ exports[`Delete Modal component > renders basic modal 1`] = `
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Résilier serviceType ?
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Résilier serviceType ?
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -144,11 +148,15 @@ exports[`Delete Modal component > renders loading modal 1`] = `
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Résilier serviceType ?
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Résilier serviceType ?
+          </h4>
+        </div>
         <div
           class="flex justify-center my-5"
           data-testid="spinner"
@@ -246,11 +254,15 @@ exports[`Delete Modal component > renders modal with children content 1`] = `
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Résilier serviceType ?
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Résilier serviceType ?
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -343,11 +355,15 @@ exports[`Delete Modal component > renders modal with custom service type 1`] = `
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Résilier Custom Service ?
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Résilier Custom Service ?
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -437,11 +453,15 @@ exports[`Delete Modal component > renders modal with error 1`] = `
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Résilier serviceType ?
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Résilier serviceType ?
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >

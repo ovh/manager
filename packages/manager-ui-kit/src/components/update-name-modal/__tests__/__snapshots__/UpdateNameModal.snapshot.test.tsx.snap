@@ -50,11 +50,15 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render bas
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Update Name
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Update Name
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -165,11 +169,15 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render mod
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Update Name
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Update Name
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -277,11 +285,15 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render mod
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Update Display Name
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Update Display Name
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -402,11 +414,15 @@ exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal 
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Update Display Name
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Update Display Name
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -527,11 +543,15 @@ exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal 
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Update Name
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Update Name
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -674,11 +694,15 @@ exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render m
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Update Name
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Update Name
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -786,11 +810,15 @@ exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render m
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Update Name
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Update Name
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -898,11 +926,15 @@ exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render m
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Update Name
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Update Name
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -1010,11 +1042,15 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Update Name
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Update Name
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -1119,11 +1155,15 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          This is a very long headline that might wrap to multiple lines in the modal
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            This is a very long headline that might wrap to multiple lines in the modal
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -1261,11 +1301,15 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Update Name
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Update Name
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -1373,11 +1417,15 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Update Name & Details
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Update Name & Details
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -1515,11 +1563,15 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal witho
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Update Name
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Update Name
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -1627,11 +1679,15 @@ exports[`UpdateNameModal Snapshot Tests > Error States > should render modal wit
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Update Name
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Update Name
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -1764,11 +1820,15 @@ exports[`UpdateNameModal Snapshot Tests > Error States > should render modal wit
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Update Name
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Update Name
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -1896,11 +1956,15 @@ exports[`UpdateNameModal Snapshot Tests > Loading States > should render modal i
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Update Name
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Update Name
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -2010,11 +2074,15 @@ exports[`UpdateNameModal Snapshot Tests > Loading States > should render modal w
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Update Name
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Update Name
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -2121,11 +2189,15 @@ exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should ren
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Update Name
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Update Name
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -2241,11 +2313,15 @@ exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should ren
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Update Name
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Update Name
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >
@@ -2361,11 +2437,15 @@ exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should ren
       <div
         class="_modal-body_3om6u_2 text-left"
       >
-        <h4
-          class="_text--heading-4_1aw48_31 mb-4"
+        <div
+          class="flex items-center mb-4"
         >
-          Update Name
-        </h4>
+          <h4
+            class="_text--heading-4_1aw48_31 block mr-3 flex-1"
+          >
+            Update Name
+          </h4>
+        </div>
         <div
           class="flex flex-col text-left"
         >

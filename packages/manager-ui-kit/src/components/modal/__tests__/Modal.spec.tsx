@@ -137,4 +137,27 @@ describe('Modal Tests', () => {
 
     expect(primaryButton.className).toContain('critical');
   });
+  it('should display the basic modal with steps', () => {
+    renderModal({
+      heading,
+      children: <ModalContent />,
+      ...actions,
+      type: MODAL_COLOR.critical,
+      step: { current: 1, total: 5 },
+    });
+    expect(screen.getByTestId('step-placeholder')).toBeVisible();
+    expect(screen.getByText(heading)).toBeVisible();
+  });
+
+  it('should not display the step count', () => {
+    renderModal({
+      heading,
+      children: <ModalContent />,
+      ...actions,
+      type: MODAL_COLOR.critical,
+      step: { total: 5 },
+    });
+    expect(screen.queryByTestId('step-placeholder')).not.toBeInTheDocument();
+    expect(screen.getByText(heading)).toBeVisible();
+  });
 });
