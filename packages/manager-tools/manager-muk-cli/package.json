@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "pacote": "^21.0.3",
-    "tar-stream": "^3.1.7"
+    "tar-stream": "^3.1.7",
+    "semver": "^7.7.3"
   },
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "*",
