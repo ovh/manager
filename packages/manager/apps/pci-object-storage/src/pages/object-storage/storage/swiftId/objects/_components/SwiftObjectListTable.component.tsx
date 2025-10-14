@@ -9,14 +9,9 @@ import { getColumns } from './SwiftObjectListColumns.component';
 import DataTable from '@/components/data-table';
 import { getFilters } from './SwiftObjectFilters.component';
 import storages from '@/types/Storages';
-import { createObjectWithDate } from '@/lib/objectsHelper';
 import useDownload from '@/hooks/useDownload';
 import { useDownloadSwiftObject } from '@/data/hooks/swift-storage/useDownloadObject.hook';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
-
-export interface ObjectsWithDate extends storages.ContainerObject {
-  lastModifiedDate: Date;
-}
 
 interface ObjectsListProps {
   objects: storages.ContainerObject[];
@@ -46,12 +41,9 @@ export default function SwiftObjectsList({ objects }: ObjectsListProps) {
     },
   });
 
-  const objectsWithDate: ObjectsWithDate[] =
-    objects.length > 0 ? createObjectWithDate(objects) : [];
-
-  const columns: ColumnDef<ObjectsWithDate>[] = getColumns({
+  const columns: ColumnDef<storages.ContainerObject>[] = getColumns({
     isPending: isDownloadPending,
-    onDownloadClicked: (object: ObjectsWithDate) => {
+    onDownloadClicked: (object: storages.ContainerObject) => {
       setObjectName(object.name);
       const oneWeekDate = add(new Date(), { weeks: 1 });
       return downloadSwiftObject({
@@ -63,7 +55,7 @@ export default function SwiftObjectsList({ objects }: ObjectsListProps) {
         },
       });
     },
-    onDeleteClicked: (object: ObjectsWithDate) => {
+    onDeleteClicked: (object: storages.ContainerObject) => {
       return navigate(`./delete-object?objectName=${object.name}`);
     },
   });
@@ -72,7 +64,7 @@ export default function SwiftObjectsList({ objects }: ObjectsListProps) {
   return (
     <DataTable.Provider
       columns={columns}
-      data={objectsWithDate}
+      data={objects}
       pageSize={25}
       filtersDefinition={storagesFilters}
     >

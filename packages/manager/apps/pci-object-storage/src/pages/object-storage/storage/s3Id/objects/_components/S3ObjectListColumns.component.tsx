@@ -2,7 +2,10 @@ import { ColumnDef } from '@tanstack/react-table';
 import { MoreHorizontal } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud/index';
+import { useNavigate } from 'react-router-dom';
+import { VersioningStatusEnum } from '@datatr-ux/ovhcloud-types/cloud/storage/VersioningStatusEnum';
 import {
+  Badge,
   Button,
   DropdownMenu,
   DropdownMenuContent,
@@ -15,20 +18,25 @@ import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 import { octetConverter } from '@/lib/bytesHelper';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import Link from '@/components/links/Link.component';
+import FileIcon from '@/components/fileIcon/FileIcon.component';
+import { useS3Data } from '../../S3.context';
 
 interface ObjectListColumnsProps {
   onDownloadClicked: (object: StorageObject) => void;
   onDeleteClicked: (object: StorageObject) => void;
-  onShowVersionClicked: (object: StorageObject) => void;
   isPending: boolean;
 }
 export const getColumns = ({
   isPending,
   onDownloadClicked,
   onDeleteClicked,
-  onShowVersionClicked,
 }: ObjectListColumnsProps) => {
+  const { s3 } = useS3Data();
   const { t } = useTranslation('pci-object-storage/storages/s3/objects');
+  const { t: tObj } = useTranslation(
+    'pci-object-storage/storages/s3/object-class',
+  );
+  const navigate = useNavigate();
   const columns: ColumnDef<StorageObject>[] = [
     {
       id: 'name',
@@ -38,14 +46,26 @@ export const getColumns = ({
         </DataTable.SortableHeader>
       ),
       accessorFn: (row) => row.key,
-      cell: ({ row }) => {
-        const { key } = row.original;
-        return (
-          <div className="flex flex-col flex-nowrap text-left">
-            <Link to={`./${key}`}>{key}</Link>
+      cell: ({ row }) => (
+        <div>
+          <div className="flex gap-1 items-center">
+            <FileIcon
+              fileName={row.original.key}
+              className="w-4 h-4 text-muted-foreground"
+            />
+            <Link
+              to={`./object?objectKey=${encodeURIComponent(row.original.key)}`}
+            >
+              {row.original.key}
+            </Link>
           </div>
-        );
-      },
+          {row.original.isDeleteMarker && (
+            <Badge className="ml-2" variant="info">
+              {t('tableSuppressionBadgeLabel')}
+            </Badge>
+          )}
+        </div>
+      ),
     },
     {
       id: 'updateDate',
@@ -77,6 +97,12 @@ export const getColumns = ({
         <DataTable.SortableHeader column={column}>
           {t('tableHeaderStorageClass')}
         </DataTable.SortableHeader>
+      ),
+      cell: ({ row }) => (
+        <span>
+          {!row.original.isDeleteMarker &&
+            tObj(`objectClass_${row.original.storageClass}`)}
+        </span>
       ),
     },
     {
@@ -113,20 +139,42 @@ export const getColumns = ({
               <DropdownMenuItem
                 variant="primary"
                 disabled={isPending}
-                onClick={() => onDownloadClicked(object)}
+                onClick={() =>
+                  navigate(
+                    `./object?objectKey=${encodeURIComponent(object.key)}`,
+                  )
+                }
               >
-                {t('tableActionDownload')}
+                {t('tableActionManage')}
               </DropdownMenuItem>
-              <DropdownMenuItem
-                variant="primary"
-                disabled={isPending}
-                onClick={() => onShowVersionClicked(object)}
-              >
-                {t('tableActionShowVersion')}
-              </DropdownMenuItem>
+              {!object.isDeleteMarker && (
+                <DropdownMenuItem
+                  variant="primary"
+                  disabled={isPending}
+                  onClick={() => onDownloadClicked(object)}
+                >
+                  {t('tableActionDownload')}
+                </DropdownMenuItem>
+              )}
+              {s3.versioning.status === VersioningStatusEnum.enabled && (
+                <DropdownMenuItem
+                  variant="primary"
+                  disabled={isPending}
+                  onClick={() =>
+                    navigate(
+                      `./object/versions?objectKey=${encodeURIComponent(
+                        object.key,
+                      )}`,
+                    )
+                  }
+                >
+                  {t('tableActionShowVersion')}
+                </DropdownMenuItem>
+              )}
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 variant="destructive"
+                disabled={!!object.isDeleteMarker}
                 onClick={() => {
                   onDeleteClicked(object);
                 }}
