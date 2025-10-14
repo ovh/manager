@@ -7,6 +7,8 @@ ai: true
 
 # OVHcloud Design System (ODS) — React Components
 
+> **📦 Version:** `@ovhcloud/ods-components@^18.6.2`
+
 The **OVHcloud Design System (ODS)** provides a unified and reusable set of **React UI components** used across OVHcloud products to ensure a consistent, accessible, and modern user experience.  
 It is the **single source of truth** for UI patterns and interactions in the OVHcloud ecosystem.
 
@@ -26,7 +28,7 @@ ODS is built on modern web standards and provides:
 - **React 18.2+** compatibility
 - **TypeScript** support with full type definitions
 - **Accessibility** compliance (WCAG 2.1)
-- **Theme system** with multiple variants
+- **Theme system** with multiple variants (v18.6.2)
 - **Performance** optimized components
 
 ---
@@ -37,6 +39,7 @@ ODS is built on modern web standards and provides:
 - [ODS Storybook Documentation](https://ovh.github.io/design-system/latest/) - Interactive component examples
 - [ODS Migration Guide](https://ovh.github.io/design-system/latest/?path=/docs/migration--page) - Version migration help
 - [ODS Contributing Guide](https://github.com/ovh/design-system/blob/master/CONTRIBUTING.md) - How to contribute
+- [ODS Themes Documentation](./ods-themes.md) - Theme system documentation
 
 ---
 
@@ -45,38 +48,38 @@ ODS is built on modern web standards and provides:
 ### Installation and Setup
 
 ```bash
-# Install ODS React and Themes packages
-npm install --save-exact @ovhcloud/ods-react @ovhcloud/ods-themes
+# Install ODS Components and Themes packages
+npm install --save-exact @ovhcloud/ods-components@^18.6.2 @ovhcloud/ods-themes@^18.6.2
 # or
-yarn add --exact @ovhcloud/ods-react @ovhcloud/ods-themes
+yarn add --exact @ovhcloud/ods-components@^18.6.2 @ovhcloud/ods-themes@^18.6.2
 ```
 
 ```typescript
 // Always import theme first
 import '@ovhcloud/ods-themes/default';
-// Then import components
-import { Button, Modal, Input } from '@ovhcloud/ods-react';
+// Then import components from the React package
+import { Button, Modal, Input } from '@ovhcloud/ods-components/react';
 ```
 
 ### Component Library Overview
 
 | Component | Category | Description | Import | Basic Example |
 |-----------|----------|-------------|---------|---------------|
-| **Button** | Inputs | Primary interactive element for actions | `import { Button } from '@ovhcloud/ods-react';` | `<Button color="primary">Submit</Button>` |
-| **Modal** | Layout | Centered dialog window | `import { Modal } from '@ovhcloud/ods-react';` | `<Modal open title="Confirm">Content</Modal>` |
-| **Input** | Inputs | Basic text input field | `import { Input } from '@ovhcloud/ods-react';` | `<Input placeholder="Enter name" />` |
-| **Select** | Inputs | Standard dropdown selection | `import { Select } from '@ovhcloud/ods-react';` | `<Select options={[{value:'1',label:'Option 1'}]} />` |
-| **Checkbox** | Inputs | Boolean selection control | `import { Checkbox } from '@ovhcloud/ods-react';` | `<Checkbox label="Accept terms" />` |
-| **FormField** | Inputs | Combines label, help text, and input control | `import { FormField } from '@ovhcloud/ods-react';` | `<FormField label="Name"><Input /></FormField>` |
-| **Message** | Feedback | Feedback alert (info, error, success) | `import { Message } from '@ovhcloud/ods-react';` | `<Message type="success">Saved</Message>` |
-| **Card** | Layout | Visual container for grouped content | `import { Card } from '@ovhcloud/ods-react';` | `<Card title="Information">Content</Card>` |
-| **Badge** | Feedback | Displays a visual indicator | `import { Badge } from '@ovhcloud/ods-react';` | `<Badge color="success">Active</Badge>` |
-| **Accordion** | Layout | Expandable/collapsible container | `import { Accordion } from '@ovhcloud/ods-react';` | `<Accordion summary="Details">Content</Accordion>` |
-| **Breadcrumb** | Navigation | Displays hierarchical navigation path | `import { Breadcrumb } from '@ovhcloud/ods-react';` | `<Breadcrumb items={[{label:'Home'}]} />` |
-| **Drawer** | Layout | Sliding side panel | `import { Drawer } from '@ovhcloud/ods-react';` | `<Drawer open>Content</Drawer>` |
-| **Pagination** | Navigation | Page navigation control | `import { Pagination } from '@ovhcloud/ods-react';` | `<Pagination total={100} pageSize={10} />` |
-| **Spinner** | Feedback | Circular loading indicator | `import { Spinner } from '@ovhcloud/ods-react';` | `<Spinner />` |
-| **Skeleton** | Feedback | Loading placeholder element | `import { Skeleton } from '@ovhcloud/ods-react';` | `<Skeleton width="100%" height="20px" />` |
+| **Button** | Inputs | Primary interactive element for actions | `import { Button } from '@ovhcloud/ods-components/react';` | `<Button color="primary">Submit</Button>` |
+| **Modal** | Layout | Centered dialog window | `import { Modal } from '@ovhcloud/ods-components/react';` | `<Modal open title="Confirm">Content</Modal>` |
+| **Input** | Inputs | Basic text input field | `import { Input } from '@ovhcloud/ods-components/react';` | `<Input placeholder="Enter name" />` |
+| **Select** | Inputs | Standard dropdown selection | `import { Select } from '@ovhcloud/ods-components/react';` | `<Select options={[{value:'1',label:'Option 1'}]} />` |
+| **Checkbox** | Inputs | Boolean selection control | `import { Checkbox } from '@ovhcloud/ods-components/react';` | `<Checkbox label="Accept terms" />` |
+| **FormField** | Inputs | Combines label, help text, and input control | `import { FormField } from '@ovhcloud/ods-components/react';` | `<FormField label="Name"><Input /></FormField>` |
+| **Message** | Feedback | Feedback alert (info, error, success) | `import { Message } from '@ovhcloud/ods-components/react';` | `<Message type="success">Saved</Message>` |
+| **Card** | Layout | Visual container for grouped content | `import { Card } from '@ovhcloud/ods-components/react';` | `<Card title="Information">Content</Card>` |
+| **Badge** | Feedback | Displays a visual indicator | `import { Badge } from '@ovhcloud/ods-components/react';` | `<Badge color="success">Active</Badge>` |
+| **Accordion** | Layout | Expandable/collapsible container | `import { Accordion } from '@ovhcloud/ods-components/react';` | `<Accordion summary="Details">Content</Accordion>` |
+| **Breadcrumb** | Navigation | Displays hierarchical navigation path | `import { Breadcrumb } from '@ovhcloud/ods-components/react';` | `<Breadcrumb items={[{label:'Home'}]} />` |
+| **Drawer** | Layout | Sliding side panel | `import { Drawer } from '@ovhcloud/ods-components/react';` | `<Drawer open>Content</Drawer>` |
+| **Pagination** | Navigation | Page navigation control | `import { Pagination } from '@ovhcloud/ods-components/react';` | `<Pagination total={100} pageSize={10} />` |
+| **Spinner** | Feedback | Circular loading indicator | `import { Spinner } from '@ovhcloud/ods-components/react';` | `<Spinner />` |
+| **Skeleton** | Feedback | Loading placeholder element | `import { Skeleton } from '@ovhcloud/ods-components/react';` | `<Skeleton width="100%" height="20px" />` |
 
 ### Complete Component Props Reference
 
@@ -88,7 +91,7 @@ interface ButtonProps {
   size?: 'xs' | 's' | 'm' | 'l';
   isDisabled?: boolean;
   isLoading?: boolean;
-  onClick?: (event: MouseEvent) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   children?: React.ReactNode;
   className?: string;
   dataTestId?: string;
@@ -579,7 +582,7 @@ const handleSubmit = useCallback((e) => {
 
 ```typescript
 // Use ODS for basic UI components
-import { Button, Modal, Input } from '@ovhcloud/ods-react';
+import { Button, Modal, Input } from '@ovhcloud/ods-components/react';
 
 // Use MRC for Manager-specific functionality with IAM
 import { ManagerButton, ManagerText } from '@ovh-ux/manager-react-components';
@@ -606,7 +609,7 @@ import '@ovhcloud/ods-themes/default';
 import '@ovhcloud/ods-themes/blue-jeans';
 
 // Import components
-import { Button, Modal } from '@ovhcloud/ods-react';
+import { Button, Modal } from '@ovhcloud/ods-components/react';
 ```
 
 ---
@@ -616,7 +619,7 @@ import { Button, Modal } from '@ovhcloud/ods-react';
 ### Essential Rules for AI Code Generation
 
 1. **Always import theme first**: `import '@ovhcloud/ods-themes/default';`
-2. **Use specific imports**: `import { Button, Modal } from '@ovhcloud/ods-react';`
+2. **Use specific imports**: `import { Button, Modal } from '@ovhcloud/ods-components/react';`
 3. **Include all required props**: Check interface definitions above
 4. **Handle loading states**: Use `isLoading` props and conditional rendering
 5. **Implement validation**: Use `FormField` with `hasError` and `errorMessage`

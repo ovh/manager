@@ -7,6 +7,8 @@ ai: true
 
 # Manager React Components (MRC) Library
 
+> **📦 Version:** `@ovh-ux/manager-react-components@^2.36.0`
+
 ## 🧭 Purpose
 
 The **Manager React Components (MRC)** library is the centralized React component system for the OVHcloud Manager ecosystem. It provides a collection of reusable components, custom hooks, and utilities that standardize the user interface and interactions across all Manager applications.
@@ -18,7 +20,7 @@ This library ensures visual and functional consistency by building upon the **OD
 MRC is built on the following foundations:
 
 - **React 18+** : Base framework for components
-- **ODS Components** : Base components from the OVHcloud design system
+- **ODS Components v18.6.2** : Base components from the OVHcloud design system
 - **Tailwind CSS** : Utility-first styling system
 - **TypeScript** : Static typing for robustness
 - **React Query** : Server state management and caching
@@ -29,7 +31,8 @@ The library is distributed via npm under the name `@ovh-ux/manager-react-compone
 
 ## 🔗 References
 
-- [ODS Components](../20-design-system/ods-components.md)
+- [ODS Components](./ods-components.md)
+- [ODS Themes](./ods-themes.md)
 - [Frontend React Patterns](../30-best-practices/frontend-react-patterns.md)
 - [Manager API Overview](../10-architecture/api-overview.md)
 - [Package Repository](https://github.com/ovh/manager/tree/master/packages/manager-react-components)
@@ -222,9 +225,9 @@ MRC builds upon ODS for base components:
 
 ```typescript
 import { 
-  OdsButton, 
-  OdsModal, 
-  OdsText,
+  Button, 
+  Modal, 
+  Text,
   ODS_BUTTON_VARIANT,
   ODS_MODAL_COLOR 
 } from '@ovhcloud/ods-components/react';
@@ -479,6 +482,9 @@ yarn prepare      # Build before publishing
 // ✅ CORRECT: Import from the main package
 import { ManagerButton, Datagrid, useDatagrid } from '@ovh-ux/manager-react-components';
 
+// ✅ CORRECT: Import ODS components from the React package
+import { Button, Modal, Text } from '@ovhcloud/ods-components/react';
+
 // ❌ WRONG: Direct component imports
 import ManagerButton from '@ovh-ux/manager-react-components/src/components/ManagerButton';
 ```
@@ -594,7 +600,7 @@ const columns = [
 ##### ManagerText
 - Use for text that requires IAM authorization
 - Provide `iamActions` and `urn` for sensitive content
-- Fallback to regular `OdsText` for non-sensitive content
+- Fallback to regular `Text` from ODS for non-sensitive content
 
 #### Performance Considerations
 
@@ -639,6 +645,15 @@ const handleClick = useCallback(() => {
   data-testid="test-button"
   label="Test"
 />
+
+// For ODS components, use dataTestId prop
+<Button 
+  color="primary"
+  dataTestId="test-button"
+  onClick={handleClick}
+>
+  Test
+</Button>
 ```
 
 ##### 2. Mock IAM
