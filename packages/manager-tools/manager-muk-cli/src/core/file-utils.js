@@ -114,3 +114,22 @@ export function writeFile(filePath, content = '') {
     logger.error(`❌ Failed to write file at ${filePath}: ${err.message}`);
   }
 }
+
+/**
+ * Write a JSON file safely (pretty-printed).
+ * @param {string} file - Target path.
+ * @param {any} data - Serializable data.
+ */
+export function saveJson(file, data) {
+  ensureDir(path.dirname(file));
+  fs.writeFileSync(file, JSON.stringify(data, null, 2));
+}
+
+/**
+ * Read a JSON file if it exists.
+ * @param {string} file - File path.
+ * @returns {any|null} Parsed JSON or null if missing.
+ */
+export function loadJson(file) {
+  return fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : null;
+}
