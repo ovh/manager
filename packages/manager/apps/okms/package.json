@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-okms-app",
-  "version": "0.33.21",
+  "version": "0.34.0",
   "private": true,
   "description": "ovh okms",
   "repository": {
