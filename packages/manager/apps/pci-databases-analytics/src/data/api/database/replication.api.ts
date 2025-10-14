@@ -15,7 +15,7 @@ export const getReplications = async ({
 }: ServiceData) =>
   apiClient.v6.get<database.service.Replication[]>(
     `/cloud/project/${projectId}/database/${engine}/${serviceId}/replication`,
-    createHeaders(NoCacheHeaders, IcebergPaginationHeaders),
+    { headers: createHeaders(NoCacheHeaders, IcebergPaginationHeaders) },
   );
 
 export interface IAddReplication extends ServiceData {
