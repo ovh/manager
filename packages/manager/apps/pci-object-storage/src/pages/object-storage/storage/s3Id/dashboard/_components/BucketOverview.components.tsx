@@ -1,6 +1,5 @@
-import { Files } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Button, useToast } from '@datatr-ux/uxlib';
+import { Clipboard, Skeleton, useToast } from '@datatr-ux/uxlib';
 import { useS3Data } from '../../S3.context';
 import { useObjectStorageData } from '@/pages/object-storage/ObjectStorage.context';
 import { S3RegionServicesTypeEnum } from '@/types/Region';
@@ -10,6 +9,7 @@ const BucketOverview = () => {
   const { regions } = useObjectStorageData();
   const { t } = useTranslation('pci-object-storage/storages/s3/dashboard');
   const toast = useToast();
+  const onCopy = () => toast.toast({ title: t('copyLabel') });
 
   const endpoint = regions
     ?.find((reg) => reg.name === s3.region)
@@ -21,69 +21,19 @@ const BucketOverview = () => {
     <div data-testid="bucket-container">
       <div>
         <h5>{t('bucketNameLabel')}</h5>
-        <div className="flex justify-between items-center text-base mr-2">
-          <p>{s3.name}</p>
-          <Button
-            type="button"
-            size="menu"
-            variant="menu"
-            mode="menu"
-            className="shrink-0"
-            onClick={() => {
-              navigator.clipboard.writeText(s3.name);
-              toast.toast({
-                title: t('copyLabel'),
-              });
-            }}
-          >
-            <Files className="w-4 h-4" />
-            <span className="sr-only">copy</span>
-          </Button>
-        </div>
+        <Clipboard value={s3.name} onCopy={onCopy} />
       </div>
       <div className="mt-4">
         <h5>{t('endpointLabel')}</h5>
-        <div className="flex justify-between items-center text-base mr-2">
-          <p>{endpoint}</p>
-          <Button
-            type="button"
-            size="menu"
-            variant="menu"
-            mode="menu"
-            className="shrink-0"
-            onClick={() => {
-              navigator.clipboard.writeText(endpoint);
-              toast.toast({
-                title: t('copyLabel'),
-              });
-            }}
-          >
-            <Files className="w-4 h-4" />
-            <span className="sr-only">copy</span>
-          </Button>
-        </div>
+        {endpoint ? (
+          <Clipboard value={endpoint} onCopy={onCopy} />
+        ) : (
+          <Skeleton className="h-9 w-full" />
+        )}
       </div>
       <div className="mt-4">
         <h5>{t('hostLabel')}</h5>
-        <div className="flex justify-between items-center text-base mr-2">
-          <p>{s3.virtualHost}</p>
-          <Button
-            type="button"
-            size="menu"
-            variant="menu"
-            mode="menu"
-            className="shrink-0"
-            onClick={() => {
-              navigator.clipboard.writeText(s3.virtualHost);
-              toast.toast({
-                title: t('copyLabel'),
-              });
-            }}
-          >
-            <Files className="w-4 h-4" />
-            <span className="sr-only">copy</span>
-          </Button>
-        </div>
+        <Clipboard value={s3.virtualHost} onCopy={onCopy} />
       </div>
     </div>
   );

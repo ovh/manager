@@ -3,13 +3,12 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
-  Code,
+  Clipboard,
   DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  githubDark,
   useToast,
 } from '@datatr-ux/uxlib';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
@@ -55,23 +54,24 @@ const UserSecretKey = ({ user }: SecretKeyProps) => {
         </DialogTitle>
       </DialogHeader>
       <div className="flex flex-col gap-2 p-2">
-        <p>{t('accessKeyLabel')}</p>
-        <Code
-          code={user.access_key}
-          label={t('accessKeyLabel')}
-          theme={githubDark}
-          onCopied={() =>
+        <span className="text-sm font-medium leading-none">
+          {t('accessKeyLabel')}
+        </span>
+        <Clipboard
+          value={user.access_key}
+          onCopy={() =>
             toast.toast({
               title: t('passwordCopy'),
             })
           }
         />
-        <p>{t('secretKeyLabel')}</p>
-        <Code
-          code={secret}
-          label={t('secretKeyLabel')}
-          theme={githubDark}
-          onCopied={() =>
+        <span className="text-sm font-medium leading-none">
+          {t('secretKeyLabel')}
+        </span>
+        <Clipboard
+          secret
+          value={secret}
+          onCopy={() =>
             toast.toast({
               title: t('passwordCopy'),
             })
