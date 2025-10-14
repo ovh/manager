@@ -5,19 +5,24 @@ exports[`ActionMenu Snapshot Tests > Button variants > should match snapshot wit
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::r6::content"
+    aria-controls=":rd:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--default_10f3x_48"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--default_1koyw_49 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
-    id="popover::r6::trigger"
+    id="popover::rc::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+      data-ods="icon"
+      role="presentation"
     />
     Actions
   </button>
@@ -29,19 +34,24 @@ exports[`ActionMenu Snapshot Tests > Button variants > should match snapshot wit
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::r5::content"
+    aria-controls=":rb:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
-    id="popover::r5::trigger"
+    id="popover::ra::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+      data-ods="icon"
+      role="presentation"
     />
     Actions
   </button>
@@ -53,19 +63,24 @@ exports[`ActionMenu Snapshot Tests > Button variants > should match snapshot wit
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::r4::content"
+    aria-controls=":r9:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
-    id="popover::r4::trigger"
+    id="popover::r8::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+      data-ods="icon"
+      role="presentation"
     />
     Actions
   </button>
@@ -77,19 +92,24 @@ exports[`ActionMenu Snapshot Tests > Compact mode > should match snapshot in com
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::r2::content"
+    aria-controls=":r5:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
-    id="popover::r2::trigger"
+    id="popover::r4::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_icon_i4xp0_2 _icon--ellipsis-vertical_i4xp0_163"
+      class="_icon_10c23_2 _icon--ellipsis-vertical_10c23_205"
+      data-ods="icon"
+      role="presentation"
     />
   </button>
 </div>
@@ -100,19 +120,24 @@ exports[`ActionMenu Snapshot Tests > Compact mode > should match snapshot in com
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::r3::content"
+    aria-controls=":r7:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
-    id="popover::r3::trigger"
+    id="popover::r6::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_icon_i4xp0_2 _icon--ellipsis-horizontal_i4xp0_160"
+      class="_icon_10c23_2 _icon--ellipsis-horizontal_10c23_202"
+      data-ods="icon"
+      role="presentation"
     />
   </button>
 </div>
@@ -123,19 +148,24 @@ exports[`ActionMenu Snapshot Tests > Custom labels and icons > should match snap
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::rb::content"
+    aria-controls=":rn:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
-    id="popover::rb::trigger"
+    id="popover::rm::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_icon_i4xp0_2 _icon--plus_i4xp0_316"
+      class="_icon_10c23_2 _icon--plus_10c23_409"
+      data-ods="icon"
+      role="presentation"
     />
     Actions
   </button>
@@ -147,19 +177,24 @@ exports[`ActionMenu Snapshot Tests > Custom labels and icons > should match snap
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::ra::content"
+    aria-controls=":rl:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
-    id="popover::ra::trigger"
+    id="popover::rk::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+      data-ods="icon"
+      role="presentation"
     />
     Custom Actions
   </button>
@@ -171,19 +206,24 @@ exports[`ActionMenu Snapshot Tests > Custom labels and icons > should match snap
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::rc::content"
+    aria-controls=":rp:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
-    id="popover::rc::trigger"
+    id="popover::ro::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_icon_i4xp0_2 _icon--plus_i4xp0_316"
+      class="_icon_10c23_2 _icon--plus_10c23_409"
+      data-ods="icon"
+      role="presentation"
     />
     Settings
   </button>
@@ -195,19 +235,24 @@ exports[`ActionMenu Snapshot Tests > Default rendering > should match snapshot w
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::r0::content"
+    aria-controls=":r1:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
     id="popover::r0::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+      data-ods="icon"
+      role="presentation"
     />
     Actions
   </button>
@@ -219,19 +264,24 @@ exports[`ActionMenu Snapshot Tests > Default rendering > should match snapshot w
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::r1::content"
+    aria-controls=":r3:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
-    id="popover::r1::trigger"
+    id="popover::r2::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+      data-ods="icon"
+      role="presentation"
     />
     Actions
   </button>
@@ -243,19 +293,24 @@ exports[`ActionMenu Snapshot Tests > Edge cases > should match snapshot with emp
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::rk::content"
+    aria-controls=":r19:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
-    id="popover::rk::trigger"
+    id="popover::r18::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+      data-ods="icon"
+      role="presentation"
     />
     Actions
   </button>
@@ -267,19 +322,24 @@ exports[`ActionMenu Snapshot Tests > Edge cases > should match snapshot with man
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::rm::content"
+    aria-controls=":r1d:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
-    id="popover::rm::trigger"
+    id="popover::r1c::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+      data-ods="icon"
+      role="presentation"
     />
     Actions
   </button>
@@ -291,19 +351,24 @@ exports[`ActionMenu Snapshot Tests > Edge cases > should match snapshot with sin
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::rl::content"
+    aria-controls=":r1b:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
-    id="popover::rl::trigger"
+    id="popover::r1a::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+      data-ods="icon"
+      role="presentation"
     />
     Actions
   </button>
@@ -315,19 +380,24 @@ exports[`ActionMenu Snapshot Tests > IAM authorization states > should match sna
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::rn::content"
+    aria-controls=":r1f:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
-    id="popover::rn::trigger"
+    id="popover::r1e::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+      data-ods="icon"
+      role="presentation"
     />
     Actions
   </button>
@@ -339,19 +409,24 @@ exports[`ActionMenu Snapshot Tests > IAM authorization states > should match sna
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::ro::content"
+    aria-controls=":r1h:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
-    id="popover::ro::trigger"
+    id="popover::r1g::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+      data-ods="icon"
+      role="presentation"
     />
     Actions
   </button>
@@ -363,19 +438,24 @@ exports[`ActionMenu Snapshot Tests > Item variations > should match snapshot wit
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::ri::content"
+    aria-controls=":r15:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
-    id="popover::ri::trigger"
+    id="popover::r14::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+      data-ods="icon"
+      role="presentation"
     />
     Actions
   </button>
@@ -387,19 +467,24 @@ exports[`ActionMenu Snapshot Tests > Item variations > should match snapshot wit
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::rj::content"
+    aria-controls=":r17:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
-    id="popover::rj::trigger"
+    id="popover::r16::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+      data-ods="icon"
+      role="presentation"
     />
     Actions
   </button>
@@ -411,19 +496,24 @@ exports[`ActionMenu Snapshot Tests > Item variations > should match snapshot wit
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::rh::content"
+    aria-controls=":r13:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
-    id="popover::rh::trigger"
+    id="popover::r12::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+      data-ods="icon"
+      role="presentation"
     />
     Actions
   </button>
@@ -435,19 +525,24 @@ exports[`ActionMenu Snapshot Tests > Item variations > should match snapshot wit
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::rg::content"
+    aria-controls=":r11:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
-    id="popover::rg::trigger"
+    id="popover::r10::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+      data-ods="icon"
+      role="presentation"
     />
     Actions
   </button>
@@ -459,19 +554,24 @@ exports[`ActionMenu Snapshot Tests > Popover positions > should match snapshot w
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::rf::content"
+    aria-controls=":rv:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
-    id="popover::rf::trigger"
+    id="popover::ru::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+      data-ods="icon"
+      role="presentation"
     />
     Actions
   </button>
@@ -483,19 +583,24 @@ exports[`ActionMenu Snapshot Tests > Popover positions > should match snapshot w
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::re::content"
+    aria-controls=":rt:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
-    id="popover::re::trigger"
+    id="popover::rs::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+      data-ods="icon"
+      role="presentation"
     />
     Actions
   </button>
@@ -507,19 +612,24 @@ exports[`ActionMenu Snapshot Tests > Popover positions > should match snapshot w
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::rd::content"
+    aria-controls=":rr:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
-    id="popover::rd::trigger"
+    id="popover::rq::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+      data-ods="icon"
+      role="presentation"
     />
     Actions
   </button>
@@ -531,20 +641,25 @@ exports[`ActionMenu Snapshot Tests > States > should match snapshot when disable
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::r7::content"
+    aria-controls=":rf:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
     disabled=""
-    id="popover::r7::trigger"
+    id="popover::re::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+      data-ods="icon"
+      role="presentation"
     />
     Actions
   </button>
@@ -556,26 +671,31 @@ exports[`ActionMenu Snapshot Tests > States > should match snapshot when disable
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::r9::content"
+    aria-controls=":rj:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
     disabled=""
-    id="popover::r9::trigger"
+    id="popover::ri::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_button__spinner_10f3x_372"
+      class="_button__spinner_1koyw_373"
     >
       <span
         class="_spinner_o7c7y_10 _spinner--neutral_o7c7y_26 _spinner--sm_o7c7y_17"
-        role="progressbar"
+        data-ods="spinner"
+        role="none"
       >
         <svg
+          aria-hidden="true"
           class="_spinner__svg_o7c7y_32"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
@@ -609,7 +729,9 @@ exports[`ActionMenu Snapshot Tests > States > should match snapshot when disable
       </span>
     </span>
     <span
-      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+      data-ods="icon"
+      role="presentation"
     />
     Actions
   </button>
@@ -621,25 +743,30 @@ exports[`ActionMenu Snapshot Tests > States > should match snapshot when loading
   data-testid="navigation-action-trigger-action"
 >
   <button
-    aria-controls="popover::r8::content"
+    aria-controls=":rh:"
     aria-expanded="false"
     aria-haspopup="dialog"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
-    id="popover::r8::trigger"
+    id="popover::rg::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_button__spinner_10f3x_372"
+      class="_button__spinner_1koyw_373"
     >
       <span
         class="_spinner_o7c7y_10 _spinner--neutral_o7c7y_26 _spinner--sm_o7c7y_17"
-        role="progressbar"
+        data-ods="spinner"
+        role="none"
       >
         <svg
+          aria-hidden="true"
           class="_spinner__svg_o7c7y_32"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
@@ -673,7 +800,9 @@ exports[`ActionMenu Snapshot Tests > States > should match snapshot when loading
       </span>
     </span>
     <span
-      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+      data-ods="icon"
+      role="presentation"
     />
     Actions
   </button>

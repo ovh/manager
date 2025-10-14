@@ -4,17 +4,20 @@ exports[`TagsTile Snapshot Tests > Complex Scenarios > should render with many t
 <div>
   <div
     class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
+    data-ods="card"
   >
     <section
       class="flex flex-col w-full"
     >
       <h4
         class="_text--heading-4_1aw48_31"
+        data-ods="text"
       >
         Tags
       </h4>
       <hr
         class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
+        data-ods="divider"
       />
       <dl
         class="flex flex-col m-0"
@@ -30,6 +33,7 @@ exports[`TagsTile Snapshot Tests > Complex Scenarios > should render with many t
             >
               <span
                 class="_text--span_1aw48_60 font-bold"
+                data-ods="text"
               >
                 Tags assignés
               </span>
@@ -46,48 +50,56 @@ exports[`TagsTile Snapshot Tests > Complex Scenarios > should render with many t
               >
                 <span
                   class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  data-ods="badge"
                   style="max-width: -32px;"
                 >
                   env:production
                 </span>
                 <span
                   class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  data-ods="badge"
                   style="max-width: -32px;"
                 >
                   team:frontend
                 </span>
                 <span
                   class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  data-ods="badge"
                   style="max-width: -32px;"
                 >
                   version:1.0.0
                 </span>
                 <span
                   class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  data-ods="badge"
                   style="max-width: -32px;"
                 >
                   region:eu-west-1
                 </span>
                 <span
                   class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  data-ods="badge"
                   style="max-width: -32px;"
                 >
                   owner:john-doe
                 </span>
                 <span
                   class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  data-ods="badge"
                   style="max-width: -32px;"
                 >
                   project:my-project
                 </span>
                 <span
                   class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  data-ods="badge"
                   style="max-width: -32px;"
                 >
                   cost_center:engineering
                 </span>
                 <span
                   class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  data-ods="badge"
                   style="max-width: -32px;"
                 >
                   department:IT
@@ -95,16 +107,20 @@ exports[`TagsTile Snapshot Tests > Complex Scenarios > should render with many t
               </div>
             </div>
             <a
-              class="_link_udbet_2 mt-4"
+              class="_link_1y3p4_2 mt-4"
+              data-ods="link"
               href="#"
             >
               Manager les tags
               <span
-                class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+                class="_icon_10c23_2 _icon--external-link_10c23_232"
+                data-ods="icon"
+                role="presentation"
               />
             </a>
             <hr
               class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
+              data-ods="divider"
             />
           </dd>
         </div>
@@ -118,17 +134,20 @@ exports[`TagsTile Snapshot Tests > Complex Scenarios > should render with single
 <div>
   <div
     class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
+    data-ods="card"
   >
     <section
       class="flex flex-col w-full"
     >
       <h4
         class="_text--heading-4_1aw48_31"
+        data-ods="text"
       >
         Tags
       </h4>
       <hr
         class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
+        data-ods="divider"
       />
       <dl
         class="flex flex-col m-0"
@@ -144,6 +163,7 @@ exports[`TagsTile Snapshot Tests > Complex Scenarios > should render with single
             >
               <span
                 class="_text--span_1aw48_60 font-bold"
+                data-ods="text"
               >
                 Tags assignés
               </span>
@@ -160,6 +180,7 @@ exports[`TagsTile Snapshot Tests > Complex Scenarios > should render with single
               >
                 <span
                   class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  data-ods="badge"
                   style="max-width: -32px;"
                 >
                   environment:staging
@@ -167,16 +188,20 @@ exports[`TagsTile Snapshot Tests > Complex Scenarios > should render with single
               </div>
             </div>
             <a
-              class="_link_udbet_2 mt-4"
+              class="_link_1y3p4_2 mt-4"
+              data-ods="link"
               href="#"
             >
               Manager les tags
               <span
-                class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+                class="_icon_10c23_2 _icon--external-link_10c23_232"
+                data-ods="icon"
+                role="presentation"
               />
             </a>
             <hr
               class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
+              data-ods="divider"
             />
           </dd>
         </div>
@@ -190,17 +215,20 @@ exports[`TagsTile Snapshot Tests > Empty State > should render empty tags tile 1
 <div>
   <div
     class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
+    data-ods="card"
   >
     <section
       class="flex flex-col w-full"
     >
       <h4
         class="_text--heading-4_1aw48_31"
+        data-ods="text"
       >
         Tags
       </h4>
       <hr
         class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
+        data-ods="divider"
       />
       <dl
         class="flex flex-col m-0"
@@ -216,6 +244,7 @@ exports[`TagsTile Snapshot Tests > Empty State > should render empty tags tile 1
             >
               <span
                 class="_text--span_1aw48_60 font-bold"
+                data-ods="text"
               >
                 Tags assignés
               </span>
@@ -232,16 +261,20 @@ exports[`TagsTile Snapshot Tests > Empty State > should render empty tags tile 1
               </span>
             </div>
             <a
-              class="_link_udbet_2 mt-4"
+              class="_link_1y3p4_2 mt-4"
+              data-ods="link"
               href="#"
             >
               Ajouter un tag
               <span
-                class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+                class="_icon_10c23_2 _icon--external-link_10c23_232"
+                data-ods="icon"
+                role="presentation"
               />
             </a>
             <hr
               class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
+              data-ods="divider"
             />
           </dd>
         </div>
@@ -255,17 +288,20 @@ exports[`TagsTile Snapshot Tests > Empty State > should render with null tags 1`
 <div>
   <div
     class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
+    data-ods="card"
   >
     <section
       class="flex flex-col w-full"
     >
       <h4
         class="_text--heading-4_1aw48_31"
+        data-ods="text"
       >
         Tags
       </h4>
       <hr
         class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
+        data-ods="divider"
       />
       <dl
         class="flex flex-col m-0"
@@ -281,6 +317,7 @@ exports[`TagsTile Snapshot Tests > Empty State > should render with null tags 1`
             >
               <span
                 class="_text--span_1aw48_60 font-bold"
+                data-ods="text"
               >
                 Tags assignés
               </span>
@@ -297,16 +334,20 @@ exports[`TagsTile Snapshot Tests > Empty State > should render with null tags 1`
               </span>
             </div>
             <a
-              class="_link_udbet_2 mt-4"
+              class="_link_1y3p4_2 mt-4"
+              data-ods="link"
               href="#"
             >
               Ajouter un tag
               <span
-                class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+                class="_icon_10c23_2 _icon--external-link_10c23_232"
+                data-ods="icon"
+                role="presentation"
               />
             </a>
             <hr
               class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
+              data-ods="divider"
             />
           </dd>
         </div>
@@ -320,17 +361,20 @@ exports[`TagsTile Snapshot Tests > Empty State > should render without onEditTag
 <div>
   <div
     class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
+    data-ods="card"
   >
     <section
       class="flex flex-col w-full"
     >
       <h4
         class="_text--heading-4_1aw48_31"
+        data-ods="text"
       >
         Tags
       </h4>
       <hr
         class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
+        data-ods="divider"
       />
       <dl
         class="flex flex-col m-0"
@@ -346,6 +390,7 @@ exports[`TagsTile Snapshot Tests > Empty State > should render without onEditTag
             >
               <span
                 class="_text--span_1aw48_60 font-bold"
+                data-ods="text"
               >
                 Tags assignés
               </span>
@@ -362,16 +407,20 @@ exports[`TagsTile Snapshot Tests > Empty State > should render without onEditTag
               </span>
             </div>
             <a
-              class="_link_udbet_2 mt-4"
+              class="_link_1y3p4_2 mt-4"
+              data-ods="link"
               href="#"
             >
               Ajouter un tag
               <span
-                class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+                class="_icon_10c23_2 _icon--external-link_10c23_232"
+                data-ods="icon"
+                role="presentation"
               />
             </a>
             <hr
               class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
+              data-ods="divider"
             />
           </dd>
         </div>
@@ -385,17 +434,20 @@ exports[`TagsTile Snapshot Tests > With Tags > should render tags tile with tags
 <div>
   <div
     class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
+    data-ods="card"
   >
     <section
       class="flex flex-col w-full"
     >
       <h4
         class="_text--heading-4_1aw48_31"
+        data-ods="text"
       >
         Tags
       </h4>
       <hr
         class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
+        data-ods="divider"
       />
       <dl
         class="flex flex-col m-0"
@@ -411,6 +463,7 @@ exports[`TagsTile Snapshot Tests > With Tags > should render tags tile with tags
             >
               <span
                 class="_text--span_1aw48_60 font-bold"
+                data-ods="text"
               >
                 Tags assignés
               </span>
@@ -427,18 +480,21 @@ exports[`TagsTile Snapshot Tests > With Tags > should render tags tile with tags
               >
                 <span
                   class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  data-ods="badge"
                   style="max-width: -32px;"
                 >
                   environment:production
                 </span>
                 <span
                   class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  data-ods="badge"
                   style="max-width: -32px;"
                 >
                   team:frontend
                 </span>
                 <span
                   class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  data-ods="badge"
                   style="max-width: -32px;"
                 >
                   version:1.0.0
@@ -446,16 +502,20 @@ exports[`TagsTile Snapshot Tests > With Tags > should render tags tile with tags
               </div>
             </div>
             <a
-              class="_link_udbet_2 mt-4"
+              class="_link_1y3p4_2 mt-4"
+              data-ods="link"
               href="#"
             >
               Manager les tags
               <span
-                class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+                class="_icon_10c23_2 _icon--external-link_10c23_232"
+                data-ods="icon"
+                role="presentation"
               />
             </a>
             <hr
               class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
+              data-ods="divider"
             />
           </dd>
         </div>
@@ -469,17 +529,20 @@ exports[`TagsTile Snapshot Tests > With Tags > should render with custom lineNum
 <div>
   <div
     class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
+    data-ods="card"
   >
     <section
       class="flex flex-col w-full"
     >
       <h4
         class="_text--heading-4_1aw48_31"
+        data-ods="text"
       >
         Tags
       </h4>
       <hr
         class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
+        data-ods="divider"
       />
       <dl
         class="flex flex-col m-0"
@@ -495,6 +558,7 @@ exports[`TagsTile Snapshot Tests > With Tags > should render with custom lineNum
             >
               <span
                 class="_text--span_1aw48_60 font-bold"
+                data-ods="text"
               >
                 Tags assignés
               </span>
@@ -511,18 +575,21 @@ exports[`TagsTile Snapshot Tests > With Tags > should render with custom lineNum
               >
                 <span
                   class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  data-ods="badge"
                   style="max-width: -32px;"
                 >
                   environment:production
                 </span>
                 <span
                   class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  data-ods="badge"
                   style="max-width: -32px;"
                 >
                   team:frontend
                 </span>
                 <span
                   class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  data-ods="badge"
                   style="max-width: -32px;"
                 >
                   version:1.0.0
@@ -530,16 +597,20 @@ exports[`TagsTile Snapshot Tests > With Tags > should render with custom lineNum
               </div>
             </div>
             <a
-              class="_link_udbet_2 mt-4"
+              class="_link_1y3p4_2 mt-4"
+              data-ods="link"
               href="#"
             >
               Manager les tags
               <span
-                class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+                class="_icon_10c23_2 _icon--external-link_10c23_232"
+                data-ods="icon"
+                role="presentation"
               />
             </a>
             <hr
               class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
+              data-ods="divider"
             />
           </dd>
         </div>
@@ -553,17 +624,20 @@ exports[`TagsTile Snapshot Tests > With Tags > should render with displayInterna
 <div>
   <div
     class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"
+    data-ods="card"
   >
     <section
       class="flex flex-col w-full"
     >
       <h4
         class="_text--heading-4_1aw48_31"
+        data-ods="text"
       >
         Tags
       </h4>
       <hr
         class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37 w-full"
+        data-ods="divider"
       />
       <dl
         class="flex flex-col m-0"
@@ -579,6 +653,7 @@ exports[`TagsTile Snapshot Tests > With Tags > should render with displayInterna
             >
               <span
                 class="_text--span_1aw48_60 font-bold"
+                data-ods="text"
               >
                 Tags assignés
               </span>
@@ -595,18 +670,21 @@ exports[`TagsTile Snapshot Tests > With Tags > should render with displayInterna
               >
                 <span
                   class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  data-ods="badge"
                   style="max-width: -32px;"
                 >
                   environment:production
                 </span>
                 <span
                   class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  data-ods="badge"
                   style="max-width: -32px;"
                 >
                   team:frontend
                 </span>
                 <span
                   class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+                  data-ods="badge"
                   style="max-width: -32px;"
                 >
                   version:1.0.0
@@ -614,16 +692,20 @@ exports[`TagsTile Snapshot Tests > With Tags > should render with displayInterna
               </div>
             </div>
             <a
-              class="_link_udbet_2 mt-4"
+              class="_link_1y3p4_2 mt-4"
+              data-ods="link"
               href="#"
             >
               Manager les tags
               <span
-                class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+                class="_icon_10c23_2 _icon--external-link_10c23_232"
+                data-ods="icon"
+                role="presentation"
               />
             </a>
             <hr
               class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
+              data-ods="divider"
             />
           </dd>
         </div>
