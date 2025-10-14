@@ -7,42 +7,48 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
   >
     <div
       class="_form-field_112eg_2"
+      data-ods="form-field"
       role="group"
     >
       <label
         class="_text--label_1aw48_49 _form-field-label_1udkg_2"
-        for=":r8:"
-        id=":r9:"
+        data-ods="form-field-label"
+        for=":r9:"
+        id=":ra:"
       >
         Colonne
       </label>
       <div
+        data-ods="select"
         data-part="root"
         data-scope="select"
         data-testid="add-filter_select_idColumn"
         dir="ltr"
-        id="select::r8:"
+        id="select::r9:"
       >
         <div
           data-part="control"
           data-scope="select"
           data-state="closed"
           dir="ltr"
-          id="select::r8::control"
+          id="select::r9::control"
         >
           <button
-            aria-controls="select::r8::content"
+            aria-controls="select::r9::content"
             aria-describedby=""
+            aria-disabled="false"
             aria-expanded="false"
             aria-haspopup="listbox"
-            aria-labelledby="select::r8::label"
+            aria-invalid="false"
+            aria-labelledby=":ra:"
             class="_select-control_1mzzf_2"
             data-empty="false"
+            data-ods="select-control"
             data-part="trigger"
             data-scope="select"
             data-state="closed"
             dir="ltr"
-            id="select::r8::trigger"
+            id="select::r9::trigger"
             role="combobox"
             type="button"
           >
@@ -55,17 +61,19 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
             </span>
             <span
               aria-hidden="true"
-              class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70 _select-control__icon_1mzzf_55"
+              class="_icon_10c23_2 _icon--chevron-down_10c23_85 _select-control__icon_1mzzf_55"
+              data-ods="icon"
               data-part="indicator"
               data-scope="select"
               data-state="closed"
               dir="ltr"
+              role="presentation"
             />
           </button>
           <select
             aria-hidden="true"
-            aria-labelledby="select::r8::label"
-            id=":r8:"
+            aria-labelledby="select::r9::label"
+            id=":r9:"
             name="add-filter_select_idColumn-createdAt"
             style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
             tabindex="-1"
@@ -82,19 +90,20 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
           data-part="positioner"
           data-scope="select"
           dir="ltr"
-          id="select::r8::positioner"
+          id="select::r9::positioner"
           style="position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);"
         >
           <div
-            aria-labelledby="select::r8::label"
+            aria-labelledby="select::r9::label"
             class="_select-content_1jhsg_2"
             data-empty="false"
+            data-ods="select-content"
             data-part="content"
             data-scope="select"
             data-state="closed"
             dir="ltr"
             hidden=""
-            id="select::r8::content"
+            id="select::r9::content"
             role="listbox"
             tabindex="0"
           >
@@ -106,7 +115,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
               data-state="checked"
               data-value="createdAt"
               dir="ltr"
-              id="select::r8::option:createdAt"
+              id="select::r9::option:createdAt"
               role="option"
             >
               <span
@@ -127,12 +136,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
   >
     <div
       class="_form-field_112eg_2"
+      data-ods="form-field"
       role="group"
     >
       <label
         class="_text--label_1aw48_49 _form-field-label_1udkg_2"
-        for=":rb:"
-        id=":rc:"
+        data-ods="form-field-label"
+        for=":rc:"
+        id=":rd:"
       >
         Condition
       </label>
@@ -140,31 +151,35 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
         data-testid="add-operator-createdAt"
       >
         <div
+          data-ods="select"
           data-part="root"
           data-scope="select"
           dir="ltr"
-          id="select::rb:"
+          id="select::rc:"
         >
           <div
             data-part="control"
             data-scope="select"
             data-state="closed"
             dir="ltr"
-            id="select::rb::control"
+            id="select::rc::control"
           >
             <button
-              aria-controls="select::rb::content"
+              aria-controls="select::rc::content"
               aria-describedby=""
+              aria-disabled="false"
               aria-expanded="false"
               aria-haspopup="listbox"
-              aria-labelledby="select::rb::label"
+              aria-invalid="false"
+              aria-labelledby=":rd:"
               class="_select-control_1mzzf_2"
               data-empty="false"
+              data-ods="select-control"
               data-part="trigger"
               data-scope="select"
               data-state="closed"
               dir="ltr"
-              id="select::rb::trigger"
+              id="select::rc::trigger"
               role="combobox"
               type="button"
             >
@@ -177,17 +192,19 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
               </span>
               <span
                 aria-hidden="true"
-                class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70 _select-control__icon_1mzzf_55"
+                class="_icon_10c23_2 _icon--chevron-down_10c23_85 _select-control__icon_1mzzf_55"
+                data-ods="icon"
                 data-part="indicator"
                 data-scope="select"
                 data-state="closed"
                 dir="ltr"
+                role="presentation"
               />
             </button>
             <select
               aria-hidden="true"
-              aria-labelledby="select::rb::label"
-              id=":rb:"
+              aria-labelledby="select::rc::label"
+              id=":rc:"
               name="add-operator-createdAt"
               style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
               tabindex="-1"
@@ -214,19 +231,20 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
             data-part="positioner"
             data-scope="select"
             dir="ltr"
-            id="select::rb::positioner"
+            id="select::rc::positioner"
             style="position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);"
           >
             <div
-              aria-labelledby="select::rb::label"
+              aria-labelledby="select::rc::label"
               class="_select-content_1jhsg_2"
               data-empty="false"
+              data-ods="select-content"
               data-part="content"
               data-scope="select"
               data-state="closed"
               dir="ltr"
               hidden=""
-              id="select::rb::content"
+              id="select::rc::content"
               role="listbox"
               tabindex="0"
             >
@@ -238,7 +256,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                 data-state="checked"
                 data-value="is_before"
                 dir="ltr"
-                id="select::rb::option:is_before"
+                id="select::rc::option:is_before"
                 role="option"
               >
                 <span
@@ -257,7 +275,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                 data-state="unchecked"
                 data-value="is_after"
                 dir="ltr"
-                id="select::rb::option:is_after"
+                id="select::rc::option:is_after"
                 role="option"
               >
                 <span
@@ -276,7 +294,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                 data-state="unchecked"
                 data-value="is_equal"
                 dir="ltr"
-                id="select::rb::option:is_equal"
+                id="select::rc::option:is_equal"
                 role="option"
               >
                 <span
@@ -298,12 +316,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
   >
     <div
       class="_form-field_112eg_2"
+      data-ods="form-field"
       role="group"
     >
       <label
         class="_text--label_1aw48_49 _form-field-label_1udkg_2"
-        for=":re:"
-        id=":rf:"
+        data-ods="form-field-label"
+        for=":rf:"
+        id=":rg:"
       >
         Valeur
       </label>
@@ -313,33 +333,36 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
       >
         <div
           class="_datepicker_2mvgz_2 border"
+          data-ods="datepicker"
           data-part="root"
           data-scope="date-picker"
           data-state="closed"
           dir="ltr"
-          id="datepicker::re:"
+          id="datepicker::rf:"
         >
           <div
             class="_datepicker-control_1at68_2"
             data-part="control"
             data-scope="date-picker"
             dir="ltr"
-            id="datepicker::re::control"
+            id="datepicker::rf::control"
           >
             <div
-              class="_input_1p31i_2 _datepicker-control__input_1at68_7"
+              class="_input_ff5b7_2 _datepicker-control__input_1at68_7"
             >
               <input
+                aria-busy="false"
                 aria-describedby=""
                 autocomplete="off"
                 autocorrect="off"
-                class="_input__field_1p31i_35"
+                class="_input__field_ff5b7_41"
                 data-index="0"
+                data-ods="datepicker-control"
                 data-part="input"
                 data-scope="date-picker"
                 data-state="closed"
                 dir="ltr"
-                id=":re:"
+                id=":rf:"
                 name="filter-add_value-date"
                 placeholder="mm/dd/yyyy"
                 spellcheck="false"
@@ -348,19 +371,22 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
               />
             </div>
             <button
-              aria-controls="datepicker::re::content"
+              aria-controls="datepicker::rf::content"
               aria-haspopup="grid"
               aria-label="Open calendar"
-              class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--outline_10f3x_258 _datepicker-control__trigger_1at68_18"
+              class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--outline_1koyw_259 _datepicker-control__trigger_1at68_18"
+              data-ods="button"
               data-part="trigger"
               data-scope="date-picker"
               data-state="closed"
               dir="ltr"
-              id="datepicker::re::trigger"
+              id="datepicker::rf::trigger"
               type="button"
             >
               <span
-                class="_icon_i4xp0_2 _icon--calendar_i4xp0_58"
+                class="_icon_10c23_2 _icon--calendar_10c23_70"
+                data-ods="icon"
+                role="presentation"
               />
             </button>
           </div>
@@ -368,19 +394,20 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
             data-part="positioner"
             data-scope="date-picker"
             dir="ltr"
-            id="datepicker::re::positioner"
+            id="datepicker::rf::positioner"
             style="position: absolute; isolation: isolate; min-width: max-content; pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);"
           >
             <div
               aria-label="calendar"
               aria-roledescription="datepicker"
               class="_datepicker-content_1i4ys_2"
+              data-ods="datepicker-content"
               data-part="content"
               data-scope="date-picker"
               data-state="closed"
               dir="ltr"
               hidden=""
-              id="datepicker::re::content"
+              id="datepicker::rf::content"
               role="application"
               tabindex="-1"
             >
@@ -397,25 +424,29 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                 >
                   <button
                     aria-label="Switch to previous month"
-                    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+                    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151"
+                    data-ods="button"
                     data-part="prev-trigger"
                     data-scope="date-picker"
                     dir="ltr"
-                    id="datepicker::re::prev:day"
+                    id="datepicker::rf::prev:day"
                     type="button"
                   >
                     <span
-                      class="_icon_i4xp0_2 _icon--chevron-left_i4xp0_73"
+                      class="_icon_10c23_2 _icon--chevron-left_10c23_88"
+                      data-ods="icon"
+                      role="presentation"
                     />
                   </button>
                   <button
                     aria-label="Switch to year view"
-                    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+                    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151"
+                    data-ods="button"
                     data-part="view-trigger"
                     data-scope="date-picker"
                     data-view="day"
                     dir="ltr"
-                    id="datepicker::re::view:day"
+                    id="datepicker::rf::view:day"
                     type="button"
                   >
                     <div
@@ -427,20 +458,25 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                     </div>
                      
                     <span
-                      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+                      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+                      data-ods="icon"
+                      role="presentation"
                     />
                   </button>
                   <button
                     aria-label="Switch to next month"
-                    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+                    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151"
+                    data-ods="button"
                     data-part="next-trigger"
                     data-scope="date-picker"
                     dir="ltr"
-                    id="datepicker::re::next:day"
+                    id="datepicker::rf::next:day"
                     type="button"
                   >
                     <span
-                      class="_icon_i4xp0_2 _icon--chevron-right_i4xp0_76"
+                      class="_icon_10c23_2 _icon--chevron-right_10c23_97"
+                      data-ods="icon"
+                      role="presentation"
                     />
                   </button>
                 </div>
@@ -452,7 +488,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                   data-scope="date-picker"
                   data-view="day"
                   dir="ltr"
-                  id="datepicker::re::table:day :rh:"
+                  id="datepicker::rf::table:day :rj:"
                   role="grid"
                   tabindex="-1"
                 >
@@ -552,7 +588,8 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Sunday, September 28, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-outside-range=""
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
@@ -560,7 +597,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                           data-view="day"
                           data-weekend=""
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-09-28"
+                          id="datepicker::rf::cell-trigger:2025-09-28"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -577,14 +614,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Monday, September 29, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-outside-range=""
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-09-29"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-09-29"
+                          id="datepicker::rf::cell-trigger:2025-09-29"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -601,14 +639,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Tuesday, September 30, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-outside-range=""
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-09-30"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-09-30"
+                          id="datepicker::rf::cell-trigger:2025-09-30"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -625,13 +664,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Wednesday, October 1, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-01"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-01"
+                          id="datepicker::rf::cell-trigger:2025-10-01"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -648,13 +688,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Thursday, October 2, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-02"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-02"
+                          id="datepicker::rf::cell-trigger:2025-10-02"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -671,13 +712,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Friday, October 3, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-03"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-03"
+                          id="datepicker::rf::cell-trigger:2025-10-03"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -694,14 +736,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Saturday, October 4, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-04"
                           data-view="day"
                           data-weekend=""
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-04"
+                          id="datepicker::rf::cell-trigger:2025-10-04"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -724,14 +767,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Sunday, October 5, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-05"
                           data-view="day"
                           data-weekend=""
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-05"
+                          id="datepicker::rf::cell-trigger:2025-10-05"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -748,13 +792,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Monday, October 6, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-06"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-06"
+                          id="datepicker::rf::cell-trigger:2025-10-06"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -771,13 +816,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Tuesday, October 7, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-07"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-07"
+                          id="datepicker::rf::cell-trigger:2025-10-07"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -794,13 +840,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Wednesday, October 8, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-08"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-08"
+                          id="datepicker::rf::cell-trigger:2025-10-08"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -817,13 +864,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Thursday, October 9, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-09"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-09"
+                          id="datepicker::rf::cell-trigger:2025-10-09"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -840,13 +888,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Friday, October 10, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-10"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-10"
+                          id="datepicker::rf::cell-trigger:2025-10-10"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -863,14 +912,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Saturday, October 11, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-11"
                           data-view="day"
                           data-weekend=""
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-11"
+                          id="datepicker::rf::cell-trigger:2025-10-11"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -893,14 +943,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Sunday, October 12, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-12"
                           data-view="day"
                           data-weekend=""
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-12"
+                          id="datepicker::rf::cell-trigger:2025-10-12"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -917,13 +968,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Monday, October 13, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-13"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-13"
+                          id="datepicker::rf::cell-trigger:2025-10-13"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -940,13 +992,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Tuesday, October 14, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-14"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-14"
+                          id="datepicker::rf::cell-trigger:2025-10-14"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -963,13 +1016,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Wednesday, October 15, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-15"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-15"
+                          id="datepicker::rf::cell-trigger:2025-10-15"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -986,13 +1040,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Thursday, October 16, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-16"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-16"
+                          id="datepicker::rf::cell-trigger:2025-10-16"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1009,13 +1064,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Friday, October 17, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-17"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-17"
+                          id="datepicker::rf::cell-trigger:2025-10-17"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1032,14 +1088,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Saturday, October 18, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-18"
                           data-view="day"
                           data-weekend=""
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-18"
+                          id="datepicker::rf::cell-trigger:2025-10-18"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1062,14 +1119,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Sunday, October 19, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-19"
                           data-view="day"
                           data-weekend=""
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-19"
+                          id="datepicker::rf::cell-trigger:2025-10-19"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1086,13 +1144,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Monday, October 20, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-20"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-20"
+                          id="datepicker::rf::cell-trigger:2025-10-20"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1110,15 +1169,16 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Tuesday, October 21, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
                           data-focus=""
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-today=""
                           data-value="2025-10-21"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-21"
+                          id="datepicker::rf::cell-trigger:2025-10-21"
                           role="button"
                           tabindex="0"
                           type="button"
@@ -1135,13 +1195,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Wednesday, October 22, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-22"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-22"
+                          id="datepicker::rf::cell-trigger:2025-10-22"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1158,13 +1219,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Thursday, October 23, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-23"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-23"
+                          id="datepicker::rf::cell-trigger:2025-10-23"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1181,13 +1243,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Friday, October 24, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-24"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-24"
+                          id="datepicker::rf::cell-trigger:2025-10-24"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1204,14 +1267,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Saturday, October 25, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-25"
                           data-view="day"
                           data-weekend=""
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-25"
+                          id="datepicker::rf::cell-trigger:2025-10-25"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1234,14 +1298,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Sunday, October 26, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-26"
                           data-view="day"
                           data-weekend=""
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-26"
+                          id="datepicker::rf::cell-trigger:2025-10-26"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1258,13 +1323,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Monday, October 27, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-27"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-27"
+                          id="datepicker::rf::cell-trigger:2025-10-27"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1281,13 +1347,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Tuesday, October 28, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-28"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-28"
+                          id="datepicker::rf::cell-trigger:2025-10-28"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1304,13 +1371,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Wednesday, October 29, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-29"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-29"
+                          id="datepicker::rf::cell-trigger:2025-10-29"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1327,13 +1395,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Thursday, October 30, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-30"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-30"
+                          id="datepicker::rf::cell-trigger:2025-10-30"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1350,13 +1419,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Friday, October 31, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-10-31"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-10-31"
+                          id="datepicker::rf::cell-trigger:2025-10-31"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1373,7 +1443,8 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Saturday, November 1, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-outside-range=""
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
@@ -1381,7 +1452,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                           data-view="day"
                           data-weekend=""
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-11-01"
+                          id="datepicker::rf::cell-trigger:2025-11-01"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1404,7 +1475,8 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Sunday, November 2, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-outside-range=""
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
@@ -1412,7 +1484,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                           data-view="day"
                           data-weekend=""
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-11-02"
+                          id="datepicker::rf::cell-trigger:2025-11-02"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1429,14 +1501,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Monday, November 3, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-outside-range=""
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-11-03"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-11-03"
+                          id="datepicker::rf::cell-trigger:2025-11-03"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1453,14 +1526,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Tuesday, November 4, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-outside-range=""
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-11-04"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-11-04"
+                          id="datepicker::rf::cell-trigger:2025-11-04"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1477,14 +1551,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Wednesday, November 5, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-outside-range=""
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-11-05"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-11-05"
+                          id="datepicker::rf::cell-trigger:2025-11-05"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1501,14 +1576,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Thursday, November 6, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-outside-range=""
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-11-06"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-11-06"
+                          id="datepicker::rf::cell-trigger:2025-11-06"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1525,14 +1601,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Friday, November 7, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-outside-range=""
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025-11-07"
                           data-view="day"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-11-07"
+                          id="datepicker::rf::cell-trigger:2025-11-07"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1549,7 +1626,8 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="Choose Saturday, November 8, 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__day_1i4ys_26"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-ods="button"
                           data-outside-range=""
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
@@ -1557,7 +1635,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                           data-view="day"
                           data-weekend=""
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025-11-08"
+                          id="datepicker::rf::cell-trigger:2025-11-08"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1583,25 +1661,29 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                 >
                   <button
                     aria-label="Switch to previous year"
-                    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+                    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151"
+                    data-ods="button"
                     data-part="prev-trigger"
                     data-scope="date-picker"
                     dir="ltr"
-                    id="datepicker::re::prev:month"
+                    id="datepicker::rf::prev:month"
                     type="button"
                   >
                     <span
-                      class="_icon_i4xp0_2 _icon--chevron-left_i4xp0_73"
+                      class="_icon_10c23_2 _icon--chevron-left_10c23_88"
+                      data-ods="icon"
+                      role="presentation"
                     />
                   </button>
                   <button
                     aria-label="Switch to day view"
-                    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+                    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151"
+                    data-ods="button"
                     data-part="view-trigger"
                     data-scope="date-picker"
                     data-view="month"
                     dir="ltr"
-                    id="datepicker::re::view:month"
+                    id="datepicker::rf::view:month"
                     type="button"
                   >
                     <div
@@ -1613,20 +1695,25 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                     </div>
                      
                     <span
-                      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+                      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+                      data-ods="icon"
+                      role="presentation"
                     />
                   </button>
                   <button
                     aria-label="Switch to next year"
-                    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+                    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151"
+                    data-ods="button"
                     data-part="next-trigger"
                     data-scope="date-picker"
                     dir="ltr"
-                    id="datepicker::re::next:month"
+                    id="datepicker::rf::next:month"
                     type="button"
                   >
                     <span
-                      class="_icon_i4xp0_2 _icon--chevron-right_i4xp0_76"
+                      class="_icon_10c23_2 _icon--chevron-right_10c23_97"
+                      data-ods="icon"
+                      role="presentation"
                     />
                   </button>
                 </div>
@@ -1638,7 +1725,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                   data-scope="date-picker"
                   data-view="month"
                   dir="ltr"
-                  id="datepicker::re::table:month :ri:"
+                  id="datepicker::rf::table:month :rk:"
                   role="grid"
                   tabindex="-1"
                 >
@@ -1661,13 +1748,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="January 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__month_1i4ys_50"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__month_1i4ys_50"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="1"
                           data-view="month"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:1"
+                          id="datepicker::rf::cell-trigger:1"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1684,13 +1772,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="February 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__month_1i4ys_50"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__month_1i4ys_50"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2"
                           data-view="month"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2"
+                          id="datepicker::rf::cell-trigger:2"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1707,13 +1796,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="March 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__month_1i4ys_50"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__month_1i4ys_50"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="3"
                           data-view="month"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:3"
+                          id="datepicker::rf::cell-trigger:3"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1730,13 +1820,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="April 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__month_1i4ys_50"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__month_1i4ys_50"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="4"
                           data-view="month"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:4"
+                          id="datepicker::rf::cell-trigger:4"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1759,13 +1850,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="May 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__month_1i4ys_50"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__month_1i4ys_50"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="5"
                           data-view="month"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:5"
+                          id="datepicker::rf::cell-trigger:5"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1782,13 +1874,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="June 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__month_1i4ys_50"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__month_1i4ys_50"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="6"
                           data-view="month"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:6"
+                          id="datepicker::rf::cell-trigger:6"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1805,13 +1898,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="July 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__month_1i4ys_50"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__month_1i4ys_50"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="7"
                           data-view="month"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:7"
+                          id="datepicker::rf::cell-trigger:7"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1828,13 +1922,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="August 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__month_1i4ys_50"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__month_1i4ys_50"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="8"
                           data-view="month"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:8"
+                          id="datepicker::rf::cell-trigger:8"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1857,13 +1952,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="September 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__month_1i4ys_50"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__month_1i4ys_50"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="9"
                           data-view="month"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:9"
+                          id="datepicker::rf::cell-trigger:9"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1880,14 +1976,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="October 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__month_1i4ys_50"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__month_1i4ys_50"
                           data-focus=""
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="10"
                           data-view="month"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:10"
+                          id="datepicker::rf::cell-trigger:10"
                           role="button"
                           tabindex="0"
                           type="button"
@@ -1904,13 +2001,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="November 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__month_1i4ys_50"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__month_1i4ys_50"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="11"
                           data-view="month"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:11"
+                          id="datepicker::rf::cell-trigger:11"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1927,13 +2025,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="December 2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__month_1i4ys_50"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__month_1i4ys_50"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="12"
                           data-view="month"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:12"
+                          id="datepicker::rf::cell-trigger:12"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -1959,25 +2058,29 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                 >
                   <button
                     aria-label="Switch to previous decade"
-                    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+                    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151"
+                    data-ods="button"
                     data-part="prev-trigger"
                     data-scope="date-picker"
                     dir="ltr"
-                    id="datepicker::re::prev:year"
+                    id="datepicker::rf::prev:year"
                     type="button"
                   >
                     <span
-                      class="_icon_i4xp0_2 _icon--chevron-left_i4xp0_73"
+                      class="_icon_10c23_2 _icon--chevron-left_10c23_88"
+                      data-ods="icon"
+                      role="presentation"
                     />
                   </button>
                   <button
                     aria-label="Switch to month view"
-                    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+                    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151"
+                    data-ods="button"
                     data-part="view-trigger"
                     data-scope="date-picker"
                     data-view="year"
                     dir="ltr"
-                    id="datepicker::re::view:year"
+                    id="datepicker::rf::view:year"
                     type="button"
                   >
                     <div
@@ -1989,20 +2092,25 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                     </div>
                      
                     <span
-                      class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+                      class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+                      data-ods="icon"
+                      role="presentation"
                     />
                   </button>
                   <button
                     aria-label="Switch to next decade"
-                    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+                    class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151"
+                    data-ods="button"
                     data-part="next-trigger"
                     data-scope="date-picker"
                     dir="ltr"
-                    id="datepicker::re::next:year"
+                    id="datepicker::rf::next:year"
                     type="button"
                   >
                     <span
-                      class="_icon_i4xp0_2 _icon--chevron-right_i4xp0_76"
+                      class="_icon_10c23_2 _icon--chevron-right_10c23_97"
+                      data-ods="icon"
+                      role="presentation"
                     />
                   </button>
                 </div>
@@ -2014,7 +2122,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                   data-scope="date-picker"
                   data-view="year"
                   dir="ltr"
-                  id="datepicker::re::table:year :rj:"
+                  id="datepicker::rf::table:year :rl:"
                   role="grid"
                   tabindex="-1"
                 >
@@ -2031,42 +2139,20 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       <td
                         data-part="table-cell"
                         data-scope="date-picker"
-                        data-value="2019"
-                        dir="ltr"
-                        role="gridcell"
-                      >
-                        <button
-                          aria-label="2019"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__year_1i4ys_50"
-                          data-part="table-cell-trigger"
-                          data-scope="date-picker"
-                          data-value="2019"
-                          data-view="year"
-                          dir="ltr"
-                          id="datepicker::re::cell-trigger:2019"
-                          role="button"
-                          tabindex="-1"
-                          type="button"
-                        >
-                          2019
-                        </button>
-                      </td>
-                      <td
-                        data-part="table-cell"
-                        data-scope="date-picker"
                         data-value="2020"
                         dir="ltr"
                         role="gridcell"
                       >
                         <button
                           aria-label="2020"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__year_1i4ys_50"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__year_1i4ys_50"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2020"
                           data-view="year"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2020"
+                          id="datepicker::rf::cell-trigger:2020"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -2083,13 +2169,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="2021"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__year_1i4ys_50"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__year_1i4ys_50"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2021"
                           data-view="year"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2021"
+                          id="datepicker::rf::cell-trigger:2021"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -2106,18 +2193,43 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="2022"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__year_1i4ys_50"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__year_1i4ys_50"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2022"
                           data-view="year"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2022"
+                          id="datepicker::rf::cell-trigger:2022"
                           role="button"
                           tabindex="-1"
                           type="button"
                         >
                           2022
+                        </button>
+                      </td>
+                      <td
+                        data-part="table-cell"
+                        data-scope="date-picker"
+                        data-value="2023"
+                        dir="ltr"
+                        role="gridcell"
+                      >
+                        <button
+                          aria-label="2023"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__year_1i4ys_50"
+                          data-ods="button"
+                          data-part="table-cell-trigger"
+                          data-scope="date-picker"
+                          data-value="2023"
+                          data-view="year"
+                          dir="ltr"
+                          id="datepicker::rf::cell-trigger:2023"
+                          role="button"
+                          tabindex="-1"
+                          type="button"
+                        >
+                          2023
                         </button>
                       </td>
                     </tr>
@@ -2129,42 +2241,20 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       <td
                         data-part="table-cell"
                         data-scope="date-picker"
-                        data-value="2023"
-                        dir="ltr"
-                        role="gridcell"
-                      >
-                        <button
-                          aria-label="2023"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__year_1i4ys_50"
-                          data-part="table-cell-trigger"
-                          data-scope="date-picker"
-                          data-value="2023"
-                          data-view="year"
-                          dir="ltr"
-                          id="datepicker::re::cell-trigger:2023"
-                          role="button"
-                          tabindex="-1"
-                          type="button"
-                        >
-                          2023
-                        </button>
-                      </td>
-                      <td
-                        data-part="table-cell"
-                        data-scope="date-picker"
                         data-value="2024"
                         dir="ltr"
                         role="gridcell"
                       >
                         <button
                           aria-label="2024"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__year_1i4ys_50"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__year_1i4ys_50"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2024"
                           data-view="year"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2024"
+                          id="datepicker::rf::cell-trigger:2024"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -2181,14 +2271,15 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="2025"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__year_1i4ys_50"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__year_1i4ys_50"
                           data-focus=""
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2025"
                           data-view="year"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2025"
+                          id="datepicker::rf::cell-trigger:2025"
                           role="button"
                           tabindex="0"
                           type="button"
@@ -2205,18 +2296,43 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="2026"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__year_1i4ys_50"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__year_1i4ys_50"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2026"
                           data-view="year"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2026"
+                          id="datepicker::rf::cell-trigger:2026"
                           role="button"
                           tabindex="-1"
                           type="button"
                         >
                           2026
+                        </button>
+                      </td>
+                      <td
+                        data-part="table-cell"
+                        data-scope="date-picker"
+                        data-value="2027"
+                        dir="ltr"
+                        role="gridcell"
+                      >
+                        <button
+                          aria-label="2027"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__year_1i4ys_50"
+                          data-ods="button"
+                          data-part="table-cell-trigger"
+                          data-scope="date-picker"
+                          data-value="2027"
+                          data-view="year"
+                          dir="ltr"
+                          id="datepicker::rf::cell-trigger:2027"
+                          role="button"
+                          tabindex="-1"
+                          type="button"
+                        >
+                          2027
                         </button>
                       </td>
                     </tr>
@@ -2228,42 +2344,20 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       <td
                         data-part="table-cell"
                         data-scope="date-picker"
-                        data-value="2027"
-                        dir="ltr"
-                        role="gridcell"
-                      >
-                        <button
-                          aria-label="2027"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__year_1i4ys_50"
-                          data-part="table-cell-trigger"
-                          data-scope="date-picker"
-                          data-value="2027"
-                          data-view="year"
-                          dir="ltr"
-                          id="datepicker::re::cell-trigger:2027"
-                          role="button"
-                          tabindex="-1"
-                          type="button"
-                        >
-                          2027
-                        </button>
-                      </td>
-                      <td
-                        data-part="table-cell"
-                        data-scope="date-picker"
                         data-value="2028"
                         dir="ltr"
                         role="gridcell"
                       >
                         <button
                           aria-label="2028"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__year_1i4ys_50"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__year_1i4ys_50"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2028"
                           data-view="year"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2028"
+                          id="datepicker::rf::cell-trigger:2028"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -2280,13 +2374,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="2029"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__year_1i4ys_50"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__year_1i4ys_50"
+                          data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2029"
                           data-view="year"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2029"
+                          id="datepicker::rf::cell-trigger:2029"
                           role="button"
                           tabindex="-1"
                           type="button"
@@ -2303,18 +2398,45 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                       >
                         <button
                           aria-label="2030"
-                          class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150 _datepicker-content__table__year_1i4ys_50"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__year_1i4ys_50"
+                          data-ods="button"
+                          data-outside-range=""
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
                           data-value="2030"
                           data-view="year"
                           dir="ltr"
-                          id="datepicker::re::cell-trigger:2030"
+                          id="datepicker::rf::cell-trigger:2030"
                           role="button"
                           tabindex="-1"
                           type="button"
                         >
                           2030
+                        </button>
+                      </td>
+                      <td
+                        data-part="table-cell"
+                        data-scope="date-picker"
+                        data-value="2031"
+                        dir="ltr"
+                        role="gridcell"
+                      >
+                        <button
+                          aria-label="2031"
+                          class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__year_1i4ys_50"
+                          data-ods="button"
+                          data-outside-range=""
+                          data-part="table-cell-trigger"
+                          data-scope="date-picker"
+                          data-value="2031"
+                          data-view="year"
+                          dir="ltr"
+                          id="datepicker::rf::cell-trigger:2031"
+                          role="button"
+                          tabindex="-1"
+                          type="button"
+                        >
+                          2031
                         </button>
                       </td>
                     </tr>
@@ -2331,7 +2453,8 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
     class="mt-4 w-full"
   >
     <button
-      class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--default_10f3x_48 w-full filter-add-button-submit z-[1]"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--default_1koyw_49 w-full filter-add-button-submit z-[1]"
+      data-ods="button"
       data-testid="filter-add_submit"
       disabled=""
       type="button"
@@ -2349,42 +2472,48 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
   >
     <div
       class="_form-field_112eg_2"
+      data-ods="form-field"
       role="group"
     >
       <label
         class="_text--label_1aw48_49 _form-field-label_1udkg_2"
-        for=":r1h:"
-        id=":r1i:"
+        data-ods="form-field-label"
+        for=":r1s:"
+        id=":r1t:"
       >
         Colonne
       </label>
       <div
+        data-ods="select"
         data-part="root"
         data-scope="select"
         data-testid="add-filter_select_idColumn"
         dir="ltr"
-        id="select::r1h:"
+        id="select::r1s:"
       >
         <div
           data-part="control"
           data-scope="select"
           data-state="closed"
           dir="ltr"
-          id="select::r1h::control"
+          id="select::r1s::control"
         >
           <button
-            aria-controls="select::r1h::content"
+            aria-controls="select::r1s::content"
             aria-describedby=""
+            aria-disabled="false"
             aria-expanded="false"
             aria-haspopup="listbox"
-            aria-labelledby="select::r1h::label"
+            aria-invalid="false"
+            aria-labelledby=":r1t:"
             class="_select-control_1mzzf_2"
             data-empty="false"
+            data-ods="select-control"
             data-part="trigger"
             data-scope="select"
             data-state="closed"
             dir="ltr"
-            id="select::r1h::trigger"
+            id="select::r1s::trigger"
             role="combobox"
             type="button"
           >
@@ -2397,17 +2526,19 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
             </span>
             <span
               aria-hidden="true"
-              class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70 _select-control__icon_1mzzf_55"
+              class="_icon_10c23_2 _icon--chevron-down_10c23_85 _select-control__icon_1mzzf_55"
+              data-ods="icon"
               data-part="indicator"
               data-scope="select"
               data-state="closed"
               dir="ltr"
+              role="presentation"
             />
           </button>
           <select
             aria-hidden="true"
-            aria-labelledby="select::r1h::label"
-            id=":r1h:"
+            aria-labelledby="select::r1s::label"
+            id=":r1s:"
             name="add-filter_select_idColumn-username"
             style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
             tabindex="-1"
@@ -2434,19 +2565,20 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
           data-part="positioner"
           data-scope="select"
           dir="ltr"
-          id="select::r1h::positioner"
+          id="select::r1s::positioner"
           style="position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);"
         >
           <div
-            aria-labelledby="select::r1h::label"
+            aria-labelledby="select::r1s::label"
             class="_select-content_1jhsg_2"
             data-empty="false"
+            data-ods="select-content"
             data-part="content"
             data-scope="select"
             data-state="closed"
             dir="ltr"
             hidden=""
-            id="select::r1h::content"
+            id="select::r1s::content"
             role="listbox"
             tabindex="0"
           >
@@ -2458,7 +2590,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
               data-state="checked"
               data-value="username"
               dir="ltr"
-              id="select::r1h::option:username"
+              id="select::r1s::option:username"
               role="option"
             >
               <span
@@ -2477,7 +2609,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
               data-state="unchecked"
               data-value="age"
               dir="ltr"
-              id="select::r1h::option:age"
+              id="select::r1s::option:age"
               role="option"
             >
               <span
@@ -2496,7 +2628,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
               data-state="unchecked"
               data-value="createdAt"
               dir="ltr"
-              id="select::r1h::option:createdAt"
+              id="select::r1s::option:createdAt"
               role="option"
             >
               <span
@@ -2517,12 +2649,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
   >
     <div
       class="_form-field_112eg_2"
+      data-ods="form-field"
       role="group"
     >
       <label
         class="_text--label_1aw48_49 _form-field-label_1udkg_2"
-        for=":r1k:"
-        id=":r1l:"
+        data-ods="form-field-label"
+        for=":r1v:"
+        id=":r20:"
       >
         Condition
       </label>
@@ -2530,31 +2664,35 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
         data-testid="add-operator-username"
       >
         <div
+          data-ods="select"
           data-part="root"
           data-scope="select"
           dir="ltr"
-          id="select::r1k:"
+          id="select::r1v:"
         >
           <div
             data-part="control"
             data-scope="select"
             data-state="closed"
             dir="ltr"
-            id="select::r1k::control"
+            id="select::r1v::control"
           >
             <button
-              aria-controls="select::r1k::content"
+              aria-controls="select::r1v::content"
               aria-describedby=""
+              aria-disabled="false"
               aria-expanded="false"
               aria-haspopup="listbox"
-              aria-labelledby="select::r1k::label"
+              aria-invalid="false"
+              aria-labelledby=":r20:"
               class="_select-control_1mzzf_2"
               data-empty="false"
+              data-ods="select-control"
               data-part="trigger"
               data-scope="select"
               data-state="closed"
               dir="ltr"
-              id="select::r1k::trigger"
+              id="select::r1v::trigger"
               role="combobox"
               type="button"
             >
@@ -2567,17 +2705,19 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
               </span>
               <span
                 aria-hidden="true"
-                class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70 _select-control__icon_1mzzf_55"
+                class="_icon_10c23_2 _icon--chevron-down_10c23_85 _select-control__icon_1mzzf_55"
+                data-ods="icon"
                 data-part="indicator"
                 data-scope="select"
                 data-state="closed"
                 dir="ltr"
+                role="presentation"
               />
             </button>
             <select
               aria-hidden="true"
-              aria-labelledby="select::r1k::label"
-              id=":r1k:"
+              aria-labelledby="select::r1v::label"
+              id=":r1v:"
               name="add-operator-username"
               style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
               tabindex="-1"
@@ -2599,19 +2739,20 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
             data-part="positioner"
             data-scope="select"
             dir="ltr"
-            id="select::r1k::positioner"
+            id="select::r1v::positioner"
             style="position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);"
           >
             <div
-              aria-labelledby="select::r1k::label"
+              aria-labelledby="select::r1v::label"
               class="_select-content_1jhsg_2"
               data-empty="false"
+              data-ods="select-content"
               data-part="content"
               data-scope="select"
               data-state="closed"
               dir="ltr"
               hidden=""
-              id="select::r1k::content"
+              id="select::r1v::content"
               role="listbox"
               tabindex="0"
             >
@@ -2623,7 +2764,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
                 data-state="checked"
                 data-value="includes"
                 dir="ltr"
-                id="select::r1k::option:includes"
+                id="select::r1v::option:includes"
                 role="option"
               >
                 <span
@@ -2642,7 +2783,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
                 data-state="unchecked"
                 data-value="is_equal"
                 dir="ltr"
-                id="select::r1k::option:is_equal"
+                id="select::r1v::option:is_equal"
                 role="option"
               >
                 <span
@@ -2664,23 +2805,27 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
   >
     <div
       class="_form-field_112eg_2"
+      data-ods="form-field"
       role="group"
     >
       <label
         class="_text--label_1aw48_49 _form-field-label_1udkg_2"
-        for=":r1n:"
-        id=":r1o:"
+        data-ods="form-field-label"
+        for=":r22:"
+        id=":r23:"
       >
         Valeur
       </label>
       <div
-        class="_input_1p31i_2 border"
+        class="_input_ff5b7_2 border"
       >
         <input
+          aria-busy="false"
           aria-describedby=""
-          class="_input__field_1p31i_35"
+          class="_input__field_ff5b7_41"
+          data-ods="input"
           data-testid="filter-add_value-input"
-          id=":r1n:"
+          id=":r22:"
           name="filter-add_value-input"
           type="text"
           value=""
@@ -2692,7 +2837,8 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with multiple columns 
     class="mt-4 w-full"
   >
     <button
-      class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--default_10f3x_48 w-full filter-add-button-submit z-[1]"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--default_1koyw_49 w-full filter-add-button-submit z-[1]"
+      data-ods="button"
       data-testid="filter-add_submit"
       disabled=""
       type="button"
@@ -2710,42 +2856,48 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
   >
     <div
       class="_form-field_112eg_2"
+      data-ods="form-field"
       role="group"
     >
       <label
         class="_text--label_1aw48_49 _form-field-label_1udkg_2"
-        for=":rk:"
-        id=":rl:"
+        data-ods="form-field-label"
+        for=":rm:"
+        id=":rn:"
       >
         Colonne
       </label>
       <div
+        data-ods="select"
         data-part="root"
         data-scope="select"
         data-testid="add-filter_select_idColumn"
         dir="ltr"
-        id="select::rk:"
+        id="select::rm:"
       >
         <div
           data-part="control"
           data-scope="select"
           data-state="closed"
           dir="ltr"
-          id="select::rk::control"
+          id="select::rm::control"
         >
           <button
-            aria-controls="select::rk::content"
+            aria-controls="select::rm::content"
             aria-describedby=""
+            aria-disabled="false"
             aria-expanded="false"
             aria-haspopup="listbox"
-            aria-labelledby="select::rk::label"
+            aria-invalid="false"
+            aria-labelledby=":rn:"
             class="_select-control_1mzzf_2"
             data-empty="false"
+            data-ods="select-control"
             data-part="trigger"
             data-scope="select"
             data-state="closed"
             dir="ltr"
-            id="select::rk::trigger"
+            id="select::rm::trigger"
             role="combobox"
             type="button"
           >
@@ -2758,17 +2910,19 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
             </span>
             <span
               aria-hidden="true"
-              class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70 _select-control__icon_1mzzf_55"
+              class="_icon_10c23_2 _icon--chevron-down_10c23_85 _select-control__icon_1mzzf_55"
+              data-ods="icon"
               data-part="indicator"
               data-scope="select"
               data-state="closed"
               dir="ltr"
+              role="presentation"
             />
           </button>
           <select
             aria-hidden="true"
-            aria-labelledby="select::rk::label"
-            id=":rk:"
+            aria-labelledby="select::rm::label"
+            id=":rm:"
             name="add-filter_select_idColumn-age"
             style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
             tabindex="-1"
@@ -2785,19 +2939,20 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
           data-part="positioner"
           data-scope="select"
           dir="ltr"
-          id="select::rk::positioner"
+          id="select::rm::positioner"
           style="position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);"
         >
           <div
-            aria-labelledby="select::rk::label"
+            aria-labelledby="select::rm::label"
             class="_select-content_1jhsg_2"
             data-empty="false"
+            data-ods="select-content"
             data-part="content"
             data-scope="select"
             data-state="closed"
             dir="ltr"
             hidden=""
-            id="select::rk::content"
+            id="select::rm::content"
             role="listbox"
             tabindex="0"
           >
@@ -2809,7 +2964,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
               data-state="checked"
               data-value="age"
               dir="ltr"
-              id="select::rk::option:age"
+              id="select::rm::option:age"
               role="option"
             >
               <span
@@ -2830,12 +2985,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
   >
     <div
       class="_form-field_112eg_2"
+      data-ods="form-field"
       role="group"
     >
       <label
         class="_text--label_1aw48_49 _form-field-label_1udkg_2"
-        for=":rn:"
-        id=":ro:"
+        data-ods="form-field-label"
+        for=":rp:"
+        id=":rq:"
       >
         Condition
       </label>
@@ -2843,31 +3000,35 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
         data-testid="add-operator-age"
       >
         <div
+          data-ods="select"
           data-part="root"
           data-scope="select"
           dir="ltr"
-          id="select::rn:"
+          id="select::rp:"
         >
           <div
             data-part="control"
             data-scope="select"
             data-state="closed"
             dir="ltr"
-            id="select::rn::control"
+            id="select::rp::control"
           >
             <button
-              aria-controls="select::rn::content"
+              aria-controls="select::rp::content"
               aria-describedby=""
+              aria-disabled="false"
               aria-expanded="false"
               aria-haspopup="listbox"
-              aria-labelledby="select::rn::label"
+              aria-invalid="false"
+              aria-labelledby=":rq:"
               class="_select-control_1mzzf_2"
               data-empty="false"
+              data-ods="select-control"
               data-part="trigger"
               data-scope="select"
               data-state="closed"
               dir="ltr"
-              id="select::rn::trigger"
+              id="select::rp::trigger"
               role="combobox"
               type="button"
             >
@@ -2880,17 +3041,19 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
               </span>
               <span
                 aria-hidden="true"
-                class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70 _select-control__icon_1mzzf_55"
+                class="_icon_10c23_2 _icon--chevron-down_10c23_85 _select-control__icon_1mzzf_55"
+                data-ods="icon"
                 data-part="indicator"
                 data-scope="select"
                 data-state="closed"
                 dir="ltr"
+                role="presentation"
               />
             </button>
             <select
               aria-hidden="true"
-              aria-labelledby="select::rn::label"
-              id=":rn:"
+              aria-labelledby="select::rp::label"
+              id=":rp:"
               name="add-operator-age"
               style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
               tabindex="-1"
@@ -2917,19 +3080,20 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
             data-part="positioner"
             data-scope="select"
             dir="ltr"
-            id="select::rn::positioner"
+            id="select::rp::positioner"
             style="position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);"
           >
             <div
-              aria-labelledby="select::rn::label"
+              aria-labelledby="select::rp::label"
               class="_select-content_1jhsg_2"
               data-empty="false"
+              data-ods="select-content"
               data-part="content"
               data-scope="select"
               data-state="closed"
               dir="ltr"
               hidden=""
-              id="select::rn::content"
+              id="select::rp::content"
               role="listbox"
               tabindex="0"
             >
@@ -2941,7 +3105,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
                 data-state="checked"
                 data-value="is_lower"
                 dir="ltr"
-                id="select::rn::option:is_lower"
+                id="select::rp::option:is_lower"
                 role="option"
               >
                 <span
@@ -2960,7 +3124,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
                 data-state="unchecked"
                 data-value="is_higher"
                 dir="ltr"
-                id="select::rn::option:is_higher"
+                id="select::rp::option:is_higher"
                 role="option"
               >
                 <span
@@ -2979,7 +3143,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
                 data-state="unchecked"
                 data-value="is_equal"
                 dir="ltr"
-                id="select::rn::option:is_equal"
+                id="select::rp::option:is_equal"
                 role="option"
               >
                 <span
@@ -3001,23 +3165,27 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
   >
     <div
       class="_form-field_112eg_2"
+      data-ods="form-field"
       role="group"
     >
       <label
         class="_text--label_1aw48_49 _form-field-label_1udkg_2"
-        for=":rq:"
-        id=":rr:"
+        data-ods="form-field-label"
+        for=":rs:"
+        id=":rt:"
       >
         Valeur
       </label>
       <div
-        class="_input_1p31i_2 border"
+        class="_input_ff5b7_2 border"
       >
         <input
+          aria-busy="false"
           aria-describedby=""
-          class="_input__field_1p31i_35"
+          class="_input__field_ff5b7_41"
+          data-ods="input"
           data-testid="filter-add_value-numeric"
-          id=":rq:"
+          id=":rs:"
           name="filter-add_value-input"
           pattern="(\\+|-)?[0-9]+([.][0-9]+)?"
           type="text"
@@ -3030,7 +3198,8 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with numeric filter ty
     class="mt-4 w-full"
   >
     <button
-      class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--default_10f3x_48 w-full filter-add-button-submit z-[1]"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--default_1koyw_49 w-full filter-add-button-submit z-[1]"
+      data-ods="button"
       data-testid="filter-add_submit"
       disabled=""
       type="button"
@@ -3048,42 +3217,48 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
   >
     <div
       class="_form-field_112eg_2"
+      data-ods="form-field"
       role="group"
     >
       <label
         class="_text--label_1aw48_49 _form-field-label_1udkg_2"
-        for=":rs:"
-        id=":rt:"
+        data-ods="form-field-label"
+        for=":rv:"
+        id=":r10:"
       >
         Colonne
       </label>
       <div
+        data-ods="select"
         data-part="root"
         data-scope="select"
         data-testid="add-filter_select_idColumn"
         dir="ltr"
-        id="select::rs:"
+        id="select::rv:"
       >
         <div
           data-part="control"
           data-scope="select"
           data-state="closed"
           dir="ltr"
-          id="select::rs::control"
+          id="select::rv::control"
         >
           <button
-            aria-controls="select::rs::content"
+            aria-controls="select::rv::content"
             aria-describedby=""
+            aria-disabled="false"
             aria-expanded="false"
             aria-haspopup="listbox"
-            aria-labelledby="select::rs::label"
+            aria-invalid="false"
+            aria-labelledby=":r10:"
             class="_select-control_1mzzf_2"
             data-empty="false"
+            data-ods="select-control"
             data-part="trigger"
             data-scope="select"
             data-state="closed"
             dir="ltr"
-            id="select::rs::trigger"
+            id="select::rv::trigger"
             role="combobox"
             type="button"
           >
@@ -3096,17 +3271,19 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
             </span>
             <span
               aria-hidden="true"
-              class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70 _select-control__icon_1mzzf_55"
+              class="_icon_10c23_2 _icon--chevron-down_10c23_85 _select-control__icon_1mzzf_55"
+              data-ods="icon"
               data-part="indicator"
               data-scope="select"
               data-state="closed"
               dir="ltr"
+              role="presentation"
             />
           </button>
           <select
             aria-hidden="true"
-            aria-labelledby="select::rs::label"
-            id=":rs:"
+            aria-labelledby="select::rv::label"
+            id=":rv:"
             name="add-filter_select_idColumn-status"
             style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
             tabindex="-1"
@@ -3123,19 +3300,20 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
           data-part="positioner"
           data-scope="select"
           dir="ltr"
-          id="select::rs::positioner"
+          id="select::rv::positioner"
           style="position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);"
         >
           <div
-            aria-labelledby="select::rs::label"
+            aria-labelledby="select::rv::label"
             class="_select-content_1jhsg_2"
             data-empty="false"
+            data-ods="select-content"
             data-part="content"
             data-scope="select"
             data-state="closed"
             dir="ltr"
             hidden=""
-            id="select::rs::content"
+            id="select::rv::content"
             role="listbox"
             tabindex="0"
           >
@@ -3147,7 +3325,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
               data-state="checked"
               data-value="status"
               dir="ltr"
-              id="select::rs::option:status"
+              id="select::rv::option:status"
               role="option"
             >
               <span
@@ -3168,12 +3346,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
   >
     <div
       class="_form-field_112eg_2"
+      data-ods="form-field"
       role="group"
     >
       <label
         class="_text--label_1aw48_49 _form-field-label_1udkg_2"
-        for=":rv:"
-        id=":r10:"
+        data-ods="form-field-label"
+        for=":r12:"
+        id=":r13:"
       >
         Condition
       </label>
@@ -3181,31 +3361,35 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
         data-testid="add-operator-status"
       >
         <div
+          data-ods="select"
           data-part="root"
           data-scope="select"
           dir="ltr"
-          id="select::rv:"
+          id="select::r12:"
         >
           <div
             data-part="control"
             data-scope="select"
             data-state="closed"
             dir="ltr"
-            id="select::rv::control"
+            id="select::r12::control"
           >
             <button
-              aria-controls="select::rv::content"
+              aria-controls="select::r12::content"
               aria-describedby=""
+              aria-disabled="false"
               aria-expanded="false"
               aria-haspopup="listbox"
-              aria-labelledby="select::rv::label"
+              aria-invalid="false"
+              aria-labelledby=":r13:"
               class="_select-control_1mzzf_2"
               data-empty="false"
+              data-ods="select-control"
               data-part="trigger"
               data-scope="select"
               data-state="closed"
               dir="ltr"
-              id="select::rv::trigger"
+              id="select::r12::trigger"
               role="combobox"
               type="button"
             >
@@ -3218,17 +3402,19 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
               </span>
               <span
                 aria-hidden="true"
-                class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70 _select-control__icon_1mzzf_55"
+                class="_icon_10c23_2 _icon--chevron-down_10c23_85 _select-control__icon_1mzzf_55"
+                data-ods="icon"
                 data-part="indicator"
                 data-scope="select"
                 data-state="closed"
                 dir="ltr"
+                role="presentation"
               />
             </button>
             <select
               aria-hidden="true"
-              aria-labelledby="select::rv::label"
-              id=":rv:"
+              aria-labelledby="select::r12::label"
+              id=":r12:"
               name="add-operator-status"
               style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
               tabindex="-1"
@@ -3250,19 +3436,20 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
             data-part="positioner"
             data-scope="select"
             dir="ltr"
-            id="select::rv::positioner"
+            id="select::r12::positioner"
             style="position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);"
           >
             <div
-              aria-labelledby="select::rv::label"
+              aria-labelledby="select::r12::label"
               class="_select-content_1jhsg_2"
               data-empty="false"
+              data-ods="select-content"
               data-part="content"
               data-scope="select"
               data-state="closed"
               dir="ltr"
               hidden=""
-              id="select::rv::content"
+              id="select::r12::content"
               role="listbox"
               tabindex="0"
             >
@@ -3274,7 +3461,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
                 data-state="checked"
                 data-value="is_equal"
                 dir="ltr"
-                id="select::rv::option:is_equal"
+                id="select::r12::option:is_equal"
                 role="option"
               >
                 <span
@@ -3293,7 +3480,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
                 data-state="unchecked"
                 data-value="is_different"
                 dir="ltr"
-                id="select::rv::option:is_different"
+                id="select::r12::option:is_different"
                 role="option"
               >
                 <span
@@ -3315,42 +3502,48 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
   >
     <div
       class="_form-field_112eg_2"
+      data-ods="form-field"
       role="group"
     >
       <label
         class="_text--label_1aw48_49 _form-field-label_1udkg_2"
-        for=":r12:"
-        id=":r13:"
+        data-ods="form-field-label"
+        for=":r15:"
+        id=":r16:"
       >
         Valeur
       </label>
       <div
+        data-ods="select"
         data-part="root"
         data-scope="select"
         data-testid="filter-add_value-select"
         dir="ltr"
-        id="select::r12:"
+        id="select::r15:"
       >
         <div
           data-part="control"
           data-scope="select"
           data-state="closed"
           dir="ltr"
-          id="select::r12::control"
+          id="select::r15::control"
         >
           <button
-            aria-controls="select::r12::content"
+            aria-controls="select::r15::content"
             aria-describedby=""
+            aria-disabled="false"
             aria-expanded="false"
             aria-haspopup="listbox"
-            aria-labelledby="select::r12::label"
+            aria-invalid="false"
+            aria-labelledby=":r16:"
             class="_select-control_1mzzf_2"
             data-empty="false"
+            data-ods="select-control"
             data-part="trigger"
             data-scope="select"
             data-state="closed"
             dir="ltr"
-            id="select::r12::trigger"
+            id="select::r15::trigger"
             role="combobox"
             type="button"
           >
@@ -3361,17 +3554,19 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
             />
             <span
               aria-hidden="true"
-              class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70 _select-control__icon_1mzzf_55"
+              class="_icon_10c23_2 _icon--chevron-down_10c23_85 _select-control__icon_1mzzf_55"
+              data-ods="icon"
               data-part="indicator"
               data-scope="select"
               data-state="closed"
               dir="ltr"
+              role="presentation"
             />
           </button>
           <select
             aria-hidden="true"
-            aria-labelledby="select::r12::label"
-            id=":r12:"
+            aria-labelledby="select::r15::label"
+            id=":r15:"
             name="filter-add_value-select-status"
             style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
             tabindex="-1"
@@ -3392,19 +3587,20 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
           data-part="positioner"
           data-scope="select"
           dir="ltr"
-          id="select::r12::positioner"
+          id="select::r15::positioner"
           style="position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);"
         >
           <div
-            aria-labelledby="select::r12::label"
+            aria-labelledby="select::r15::label"
             class="_select-content_1jhsg_2"
             data-empty="false"
+            data-ods="select-content"
             data-part="content"
             data-scope="select"
             data-state="closed"
             dir="ltr"
             hidden=""
-            id="select::r12::content"
+            id="select::r15::content"
             role="listbox"
             tabindex="0"
           >
@@ -3416,7 +3612,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
               data-state="unchecked"
               data-value="active"
               dir="ltr"
-              id="select::r12::option:active"
+              id="select::r15::option:active"
               role="option"
             >
               <span
@@ -3435,7 +3631,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
               data-state="unchecked"
               data-value="inactive"
               dir="ltr"
-              id="select::r12::option:inactive"
+              id="select::r15::option:inactive"
               role="option"
             >
               <span
@@ -3455,7 +3651,8 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with select options 1`
     class="mt-4 w-full"
   >
     <button
-      class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--default_10f3x_48 w-full filter-add-button-submit z-[1]"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--default_1koyw_49 w-full filter-add-button-submit z-[1]"
+      data-ods="button"
       data-testid="filter-add_submit"
       disabled=""
       type="button"
@@ -3473,16 +3670,19 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with string filter typ
   >
     <div
       class="_form-field_112eg_2"
+      data-ods="form-field"
       role="group"
     >
       <label
         class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+        data-ods="form-field-label"
         for=":r0:"
         id=":r1:"
       >
         Colonne
       </label>
       <div
+        data-ods="select"
         data-part="root"
         data-scope="select"
         data-testid="add-filter_select_idColumn"
@@ -3499,11 +3699,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with string filter typ
           <button
             aria-controls="select::r0::content"
             aria-describedby=""
+            aria-disabled="false"
             aria-expanded="false"
             aria-haspopup="listbox"
-            aria-labelledby="select::r0::label"
+            aria-invalid="false"
+            aria-labelledby=":r1:"
             class="_select-control_1mzzf_2"
             data-empty="false"
+            data-ods="select-control"
             data-part="trigger"
             data-scope="select"
             data-state="closed"
@@ -3521,11 +3724,13 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with string filter typ
             </span>
             <span
               aria-hidden="true"
-              class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70 _select-control__icon_1mzzf_55"
+              class="_icon_10c23_2 _icon--chevron-down_10c23_85 _select-control__icon_1mzzf_55"
+              data-ods="icon"
               data-part="indicator"
               data-scope="select"
               data-state="closed"
               dir="ltr"
+              role="presentation"
             />
           </button>
           <select
@@ -3555,6 +3760,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with string filter typ
             aria-labelledby="select::r0::label"
             class="_select-content_1jhsg_2"
             data-empty="false"
+            data-ods="select-content"
             data-part="content"
             data-scope="select"
             data-state="closed"
@@ -3593,10 +3799,12 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with string filter typ
   >
     <div
       class="_form-field_112eg_2"
+      data-ods="form-field"
       role="group"
     >
       <label
         class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+        data-ods="form-field-label"
         for=":r3:"
         id=":r4:"
       >
@@ -3606,6 +3814,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with string filter typ
         data-testid="add-operator-username"
       >
         <div
+          data-ods="select"
           data-part="root"
           data-scope="select"
           dir="ltr"
@@ -3621,11 +3830,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with string filter typ
             <button
               aria-controls="select::r3::content"
               aria-describedby=""
+              aria-disabled="false"
               aria-expanded="false"
               aria-haspopup="listbox"
-              aria-labelledby="select::r3::label"
+              aria-invalid="false"
+              aria-labelledby=":r4:"
               class="_select-control_1mzzf_2"
               data-empty="false"
+              data-ods="select-control"
               data-part="trigger"
               data-scope="select"
               data-state="closed"
@@ -3643,11 +3855,13 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with string filter typ
               </span>
               <span
                 aria-hidden="true"
-                class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70 _select-control__icon_1mzzf_55"
+                class="_icon_10c23_2 _icon--chevron-down_10c23_85 _select-control__icon_1mzzf_55"
+                data-ods="icon"
                 data-part="indicator"
                 data-scope="select"
                 data-state="closed"
                 dir="ltr"
+                role="presentation"
               />
             </button>
             <select
@@ -3697,6 +3911,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with string filter typ
               aria-labelledby="select::r3::label"
               class="_select-content_1jhsg_2"
               data-empty="false"
+              data-ods="select-content"
               data-part="content"
               data-scope="select"
               data-state="closed"
@@ -3812,21 +4027,25 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with string filter typ
   >
     <div
       class="_form-field_112eg_2"
+      data-ods="form-field"
       role="group"
     >
       <label
         class="_text--label_1aw48_49 _form-field-label_1udkg_2"
+        data-ods="form-field-label"
         for=":r6:"
         id=":r7:"
       >
         Valeur
       </label>
       <div
-        class="_input_1p31i_2 border"
+        class="_input_ff5b7_2 border"
       >
         <input
+          aria-busy="false"
           aria-describedby=""
-          class="_input__field_1p31i_35"
+          class="_input__field_ff5b7_41"
+          data-ods="input"
           data-testid="filter-add_value-input"
           id=":r6:"
           name="filter-add_value-input"
@@ -3840,7 +4059,8 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with string filter typ
     class="mt-4 w-full"
   >
     <button
-      class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--default_10f3x_48 w-full filter-add-button-submit z-[1]"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--default_1koyw_49 w-full filter-add-button-submit z-[1]"
+      data-ods="button"
       data-testid="filter-add_submit"
       disabled=""
       type="button"
@@ -3858,42 +4078,48 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
   >
     <div
       class="_form-field_112eg_2"
+      data-ods="form-field"
       role="group"
     >
       <label
         class="_text--label_1aw48_49 _form-field-label_1udkg_2"
-        for=":r15:"
-        id=":r16:"
+        data-ods="form-field-label"
+        for=":r18:"
+        id=":r19:"
       >
         Colonne
       </label>
       <div
+        data-ods="select"
         data-part="root"
         data-scope="select"
         data-testid="add-filter_select_idColumn"
         dir="ltr"
-        id="select::r15:"
+        id="select::r18:"
       >
         <div
           data-part="control"
           data-scope="select"
           data-state="closed"
           dir="ltr"
-          id="select::r15::control"
+          id="select::r18::control"
         >
           <button
-            aria-controls="select::r15::content"
+            aria-controls="select::r18::content"
             aria-describedby=""
+            aria-disabled="false"
             aria-expanded="false"
             aria-haspopup="listbox"
-            aria-labelledby="select::r15::label"
+            aria-invalid="false"
+            aria-labelledby=":r19:"
             class="_select-control_1mzzf_2"
             data-empty="false"
+            data-ods="select-control"
             data-part="trigger"
             data-scope="select"
             data-state="closed"
             dir="ltr"
-            id="select::r15::trigger"
+            id="select::r18::trigger"
             role="combobox"
             type="button"
           >
@@ -3906,17 +4132,19 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
             </span>
             <span
               aria-hidden="true"
-              class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70 _select-control__icon_1mzzf_55"
+              class="_icon_10c23_2 _icon--chevron-down_10c23_85 _select-control__icon_1mzzf_55"
+              data-ods="icon"
               data-part="indicator"
               data-scope="select"
               data-state="closed"
               dir="ltr"
+              role="presentation"
             />
           </button>
           <select
             aria-hidden="true"
-            aria-labelledby="select::r15::label"
-            id=":r15:"
+            aria-labelledby="select::r18::label"
+            id=":r18:"
             name="add-filter_select_idColumn-tags"
             style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
             tabindex="-1"
@@ -3933,19 +4161,20 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
           data-part="positioner"
           data-scope="select"
           dir="ltr"
-          id="select::r15::positioner"
+          id="select::r18::positioner"
           style="position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);"
         >
           <div
-            aria-labelledby="select::r15::label"
+            aria-labelledby="select::r18::label"
             class="_select-content_1jhsg_2"
             data-empty="false"
+            data-ods="select-content"
             data-part="content"
             data-scope="select"
             data-state="closed"
             dir="ltr"
             hidden=""
-            id="select::r15::content"
+            id="select::r18::content"
             role="listbox"
             tabindex="0"
           >
@@ -3957,7 +4186,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
               data-state="checked"
               data-value="tags"
               dir="ltr"
-              id="select::r15::option:tags"
+              id="select::r18::option:tags"
               role="option"
             >
               <span
@@ -3978,12 +4207,14 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
   >
     <div
       class="_form-field_112eg_2"
+      data-ods="form-field"
       role="group"
     >
       <label
         class="_text--label_1aw48_49 _form-field-label_1udkg_2"
-        for=":r18:"
-        id=":r19:"
+        data-ods="form-field-label"
+        for=":r1b:"
+        id=":r1c:"
       >
         Condition
       </label>
@@ -3991,31 +4222,35 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
         data-testid="add-operator-tags"
       >
         <div
+          data-ods="select"
           data-part="root"
           data-scope="select"
           dir="ltr"
-          id="select::r18:"
+          id="select::r1b:"
         >
           <div
             data-part="control"
             data-scope="select"
             data-state="closed"
             dir="ltr"
-            id="select::r18::control"
+            id="select::r1b::control"
           >
             <button
-              aria-controls="select::r18::content"
+              aria-controls="select::r1b::content"
               aria-describedby=""
+              aria-disabled="false"
               aria-expanded="false"
               aria-haspopup="listbox"
-              aria-labelledby="select::r18::label"
+              aria-invalid="false"
+              aria-labelledby=":r1c:"
               class="_select-control_1mzzf_2"
               data-empty="false"
+              data-ods="select-control"
               data-part="trigger"
               data-scope="select"
               data-state="closed"
               dir="ltr"
-              id="select::r18::trigger"
+              id="select::r1b::trigger"
               role="combobox"
               type="button"
             >
@@ -4028,17 +4263,19 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
               </span>
               <span
                 aria-hidden="true"
-                class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70 _select-control__icon_1mzzf_55"
+                class="_icon_10c23_2 _icon--chevron-down_10c23_85 _select-control__icon_1mzzf_55"
+                data-ods="icon"
                 data-part="indicator"
                 data-scope="select"
                 data-state="closed"
                 dir="ltr"
+                role="presentation"
               />
             </button>
             <select
               aria-hidden="true"
-              aria-labelledby="select::r18::label"
-              id=":r18:"
+              aria-labelledby="select::r1b::label"
+              id=":r1b:"
               name="add-operator-tags"
               style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
               tabindex="-1"
@@ -4070,19 +4307,20 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
             data-part="positioner"
             data-scope="select"
             dir="ltr"
-            id="select::r18::positioner"
+            id="select::r1b::positioner"
             style="position: absolute; isolation: isolate; width: var(--reference-width); pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);"
           >
             <div
-              aria-labelledby="select::r18::label"
+              aria-labelledby="select::r1b::label"
               class="_select-content_1jhsg_2"
               data-empty="false"
+              data-ods="select-content"
               data-part="content"
               data-scope="select"
               data-state="closed"
               dir="ltr"
               hidden=""
-              id="select::r18::content"
+              id="select::r1b::content"
               role="listbox"
               tabindex="0"
             >
@@ -4094,7 +4332,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
                 data-state="checked"
                 data-value="EQ"
                 dir="ltr"
-                id="select::r18::option:EQ"
+                id="select::r1b::option:EQ"
                 role="option"
               >
                 <span
@@ -4113,7 +4351,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
                 data-state="unchecked"
                 data-value="NEQ"
                 dir="ltr"
-                id="select::r18::option:NEQ"
+                id="select::r1b::option:NEQ"
                 role="option"
               >
                 <span
@@ -4132,7 +4370,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
                 data-state="unchecked"
                 data-value="EXISTS"
                 dir="ltr"
-                id="select::r18::option:EXISTS"
+                id="select::r1b::option:EXISTS"
                 role="option"
               >
                 <span
@@ -4151,7 +4389,7 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
                 data-state="unchecked"
                 data-value="NOT_EXISTS"
                 dir="ltr"
-                id="select::r18::option:NOT_EXISTS"
+                id="select::r1b::option:NOT_EXISTS"
                 role="option"
               >
                 <span
@@ -4174,46 +4412,42 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
   >
     <div
       class="_form-field_112eg_2 mt-4 w-full w-[186px]"
+      data-ods="form-field"
       role="group"
     >
       <div
         class="_form-field_112eg_2"
+        data-ods="form-field"
         role="group"
       >
         Clé
       </div>
       <div
         class="w-full"
-        data-part="root"
-        data-scope="combobox"
+        data-ods="combobox"
         data-testid="tags-filter-form-key-field"
-        dir="ltr"
-        id="combobox::r1d:"
       >
         <div
-          class="_combobox-control_1d5vx_2"
-          data-part="control"
-          data-scope="combobox"
-          data-state="closed"
-          dir="ltr"
-          id="combobox::r1d::control"
+          class="_combobox-control_14h0r_2"
+          data-ods="combobox-control"
+          id=":r1g:"
         >
           <div
-            class="_input_1p31i_2 _combobox-control__input_1d5vx_39"
+            class="_input_ff5b7_2 _combobox-control__input_14h0r_49"
           >
             <input
+              aria-activedescendant=""
               aria-autocomplete="list"
-              aria-controls="combobox::r1d::content"
+              aria-busy="false"
+              aria-controls=":r1i:"
+              aria-describedby=""
               aria-expanded="false"
               autocapitalize="none"
               autocomplete="off"
               autocorrect="off"
-              class="_input__field_1p31i_35"
-              data-part="input"
-              data-scope="combobox"
-              data-state="closed"
-              dir="ltr"
-              id="combobox::r1d::input"
+              class="_input__field_ff5b7_41"
+              data-ods="input"
+              id=":r1e:"
               name="tag-key"
               role="combobox"
               spellcheck="false"
@@ -4226,50 +4460,45 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
     </div>
     <div
       class="_form-field_112eg_2 mt-4 w-[186px]"
+      data-ods="form-field"
       role="group"
     >
       <label
         class="_text--label_1aw48_49 _form-field-label_1udkg_2"
-        for=":r1e:"
-        id=":r1f:"
+        data-ods="form-field-label"
+        for=":r1l:"
+        id=":r1m:"
       >
         Valeur
       </label>
       <div
         class="w-full"
-        data-part="root"
-        data-scope="combobox"
+        data-ods="combobox"
         data-testid="tags-filter-form-value-field"
-        dir="ltr"
-        id="combobox::r1g:"
       >
         <div
-          class="_combobox-control_1d5vx_2"
-          data-disabled=""
-          data-part="control"
-          data-scope="combobox"
-          data-state="closed"
-          dir="ltr"
-          id="combobox::r1g::control"
+          class="_combobox-control_14h0r_2 _combobox-control--disabled_14h0r_16"
+          data-ods="combobox-control"
+          id=":r1n:"
         >
           <div
-            class="_input_1p31i_2 _combobox-control__input_1d5vx_39"
+            class="_input_ff5b7_2 _combobox-control__input_14h0r_49"
             data-disabled="true"
           >
             <input
+              aria-activedescendant=""
               aria-autocomplete="list"
-              aria-controls="combobox::r1g::content"
+              aria-busy="false"
+              aria-controls=":r1p:"
+              aria-describedby=""
               aria-expanded="false"
               autocapitalize="none"
               autocomplete="off"
               autocorrect="off"
-              class="_input__field_1p31i_35"
-              data-part="input"
-              data-scope="combobox"
-              data-state="closed"
-              dir="ltr"
+              class="_input__field_ff5b7_41"
+              data-ods="input"
               disabled=""
-              id="combobox::r1g::input"
+              id=":r1l:"
               name="tag-value"
               role="combobox"
               spellcheck="false"
@@ -4285,7 +4514,8 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with tags filter type 
     class="mt-4 w-full"
   >
     <button
-      class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--default_10f3x_48 w-full filter-add-button-submit z-[1]"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--default_1koyw_49 w-full filter-add-button-submit z-[1]"
+      data-ods="button"
       data-testid="filter-add_submit"
       disabled=""
       type="button"

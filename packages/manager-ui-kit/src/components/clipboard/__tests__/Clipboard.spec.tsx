@@ -21,9 +21,9 @@ describe('Clipboard', () => {
 
   it('should render loading Clipboard', () => {
     renderClipboardComponent({ loading: true });
-    expect(
-      screen.getByTestId('clipboard').getElementsByTagName('span')[0],
-    ).toHaveRole('progressbar');
+    const clipboardEl = screen.getByTestId('clipboard');
+    const spinner = clipboardEl.querySelector('[data-ods="spinner"]');
+    expect(spinner).toBeInTheDocument();
   });
 
   it('should render masked Clipboard', () => {

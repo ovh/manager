@@ -73,7 +73,7 @@ export const Default: Story = {
   },
 ];
 
-<ActionMenu 
+<ActionMenu
   id="action-menu-default"
   items={actionItems}
   isCompact={false}
@@ -95,7 +95,7 @@ export const Compact: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<ActionMenu 
+        code: `<ActionMenu
   id="action-menu-compact"
   items={actionItems}
   isCompact={true}

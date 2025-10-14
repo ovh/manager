@@ -3,7 +3,8 @@
 exports[`Button Snapshot Tests > Authorized Button States > should render basic button when authorized 1`] = `
 <div>
   <button
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49"
+    data-ods="button"
     data-testid="manager-button"
     type="button"
   >
@@ -15,7 +16,8 @@ exports[`Button Snapshot Tests > Authorized Button States > should render basic 
 exports[`Button Snapshot Tests > Authorized Button States > should render button with IAM props when authorized 1`] = `
 <div>
   <button
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49"
+    data-ods="button"
     data-testid="manager-button"
     type="button"
   >
@@ -27,7 +29,8 @@ exports[`Button Snapshot Tests > Authorized Button States > should render button
 exports[`Button Snapshot Tests > Authorized Button States > should render button with ODS button props when authorized 1`] = `
 <div>
   <button
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49"
+    data-ods="button"
     data-testid="manager-button"
     type="button"
   >
@@ -39,7 +42,8 @@ exports[`Button Snapshot Tests > Authorized Button States > should render button
 exports[`Button Snapshot Tests > Edge Cases > should render button when no IAM props provided 1`] = `
 <div>
   <button
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49"
+    data-ods="button"
     data-testid="manager-button"
     type="button"
   >
@@ -51,7 +55,8 @@ exports[`Button Snapshot Tests > Edge Cases > should render button when no IAM p
 exports[`Button Snapshot Tests > Edge Cases > should render button when only iamActions provided 1`] = `
 <div>
   <button
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49"
+    data-ods="button"
     data-testid="manager-button"
     type="button"
   >
@@ -63,7 +68,8 @@ exports[`Button Snapshot Tests > Edge Cases > should render button when only iam
 exports[`Button Snapshot Tests > Edge Cases > should render button when only urn provided 1`] = `
 <div>
   <button
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49"
+    data-ods="button"
     data-testid="manager-button"
     type="button"
   >
@@ -75,7 +81,8 @@ exports[`Button Snapshot Tests > Edge Cases > should render button when only urn
 exports[`Button Snapshot Tests > Edge Cases > should render button with JSX children 1`] = `
 <div>
   <button
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49"
+    data-ods="button"
     data-testid="manager-button"
     type="button"
   >
@@ -89,7 +96,8 @@ exports[`Button Snapshot Tests > Edge Cases > should render button with JSX chil
 exports[`Button Snapshot Tests > Edge Cases > should render button with isIamTrigger set to false 1`] = `
 <div>
   <button
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49"
+    data-ods="button"
     data-testid="manager-button"
     type="button"
   >
@@ -101,7 +109,8 @@ exports[`Button Snapshot Tests > Edge Cases > should render button with isIamTri
 exports[`Button Snapshot Tests > Loading States > should render button when IAM is loading 1`] = `
 <div>
   <button
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 _tooltip-trigger_wxukn_2"
+    data-ods="tooltip-trigger"
     data-part="trigger"
     data-scope="tooltip"
     data-state="closed"
@@ -109,6 +118,8 @@ exports[`Button Snapshot Tests > Loading States > should render button when IAM 
     dir="ltr"
     disabled=""
     id="tooltip::r3::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     Loading IAM Button
@@ -119,7 +130,8 @@ exports[`Button Snapshot Tests > Loading States > should render button when IAM 
 exports[`Button Snapshot Tests > Loading States > should render button when IAM is loading and authorized 1`] = `
 <div>
   <button
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49"
+    data-ods="button"
     data-testid="manager-button"
     type="button"
   >
@@ -131,7 +143,8 @@ exports[`Button Snapshot Tests > Loading States > should render button when IAM 
 exports[`Button Snapshot Tests > Unauthorized Button States > should render disabled button with all ODS props when unauthorized 1`] = `
 <div>
   <button
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 _tooltip-trigger_wxukn_2"
+    data-ods="tooltip-trigger"
     data-part="trigger"
     data-scope="tooltip"
     data-state="closed"
@@ -139,6 +152,8 @@ exports[`Button Snapshot Tests > Unauthorized Button States > should render disa
     dir="ltr"
     disabled=""
     id="tooltip::r2::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     Unauthorized Full Featured Button
@@ -149,7 +164,8 @@ exports[`Button Snapshot Tests > Unauthorized Button States > should render disa
 exports[`Button Snapshot Tests > Unauthorized Button States > should render disabled button with custom tooltip position 1`] = `
 <div>
   <button
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 _tooltip-trigger_wxukn_2"
+    data-ods="tooltip-trigger"
     data-part="trigger"
     data-scope="tooltip"
     data-state="closed"
@@ -157,6 +173,8 @@ exports[`Button Snapshot Tests > Unauthorized Button States > should render disa
     dir="ltr"
     disabled=""
     id="tooltip::r1::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     Unauthorized Button Top Tooltip
@@ -167,7 +185,8 @@ exports[`Button Snapshot Tests > Unauthorized Button States > should render disa
 exports[`Button Snapshot Tests > Unauthorized Button States > should render disabled button with tooltip when unauthorized 1`] = `
 <div>
   <button
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 _tooltip-trigger_wxukn_2"
+    data-ods="tooltip-trigger"
     data-part="trigger"
     data-scope="tooltip"
     data-state="closed"
@@ -175,6 +194,8 @@ exports[`Button Snapshot Tests > Unauthorized Button States > should render disa
     dir="ltr"
     disabled=""
     id="tooltip::r0::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     Unauthorized Button
@@ -185,7 +206,8 @@ exports[`Button Snapshot Tests > Unauthorized Button States > should render disa
 exports[`Button Snapshot Tests > Unauthorized Button States > should render disabled button without tooltip when unauthorized 1`] = `
 <div>
   <button
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48"
+    class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49"
+    data-ods="button"
     data-testid="manager-button-without-tooltip"
     disabled=""
     type="button"

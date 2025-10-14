@@ -1,19 +1,15 @@
-import { vi } from 'vitest';
+import { vi, beforeEach } from 'vitest';
+import { act } from '@testing-library/react';
 import { FilterAdd } from '../Filteradd.component';
 import { FilterAddProps } from '../FilterAdd.props';
-import { render } from '@/setupTest';
+import { render, cleanup } from '@/setupTest';
+
+const mockUseGetResourceTags = vi.fn();
+const mockUseAuthorizationIam = vi.fn();
 
 vi.mock('../../../../hooks/iam/useOvhIam', () => ({
-  useGetResourceTags: vi.fn().mockReturnValue({
-    tags: [],
-    isError: false,
-    isLoading: false,
-  }),
-  useAuthorizationIam: vi.fn().mockReturnValue({
-    isAuthorized: true,
-    isLoading: false,
-    isFetched: true,
-  }),
+  useGetResourceTags: () => mockUseGetResourceTags(),
+  useAuthorizationIam: () => mockUseAuthorizationIam(),
 }));
 
 const renderComponent = (props: FilterAddProps) => {
@@ -21,6 +17,38 @@ const renderComponent = (props: FilterAddProps) => {
 };
 
 describe('FilterAdd Snapshot Tests', () => {
+  beforeEach(() => {
+    mockUseGetResourceTags.mockReturnValue({
+      tags: [],
+      isError: false,
+      isLoading: false,
+    });
+    mockUseAuthorizationIam.mockReturnValue({
+      isAuthorized: true,
+      isLoading: false,
+      isFetched: true,
+    });
+  });
+
+  afterEach(async () => {
+    // Wait for all pending async operations and state updates
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    });
+
+    cleanup();
+
+    // Wait for cleanup and any library internal async operations
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    });
+
+    vi.resetAllMocks();
+
+    // Remove scroll lock attribute that modal/popover adds to body
+    document.body.removeAttribute('data-scroll-lock');
+  });
+
   it('should match snapshot with string filter type', () => {
     const props = {
       columns: [

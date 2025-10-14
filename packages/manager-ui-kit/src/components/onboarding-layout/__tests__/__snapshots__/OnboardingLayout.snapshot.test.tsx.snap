@@ -20,6 +20,7 @@ exports[`OnboardingLayout Snapshot Tests > Basic OnboardingLayout States > shoul
       </div>
       <h1
         class="_text--heading-1_1aw48_13 text-center"
+        data-ods="text"
       >
         Welcome to OVHcloud
       </h1>
@@ -49,6 +50,7 @@ exports[`OnboardingLayout Snapshot Tests > Basic OnboardingLayout States > shoul
       </div>
       <h1
         class="_text--heading-1_1aw48_13 text-center"
+        data-ods="text"
       >
         Welcome to OVHcloud
       </h1>
@@ -57,21 +59,25 @@ exports[`OnboardingLayout Snapshot Tests > Basic OnboardingLayout States > shoul
         class="flex flex-col gap-3 sm:gap-4 w-full sm:w-fit sm:flex-row sm:items-center sm:justify-center"
       >
         <button
-          class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 [&::part(button)]:w-full sm:w-auto"
+          class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 [&::part(button)]:w-full sm:w-auto"
+          data-ods="button"
           data-testid="manager-button"
           type="button"
         >
           Get Started
         </button>
         <button
-          class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--outline_10f3x_258 [&::part(button)]:w-full sm:w-auto"
+          class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--outline_1koyw_259 [&::part(button)]:w-full sm:w-auto"
+          data-ods="button"
           data-testid="manager-button"
           type="button"
         >
           Learn More
           <span
             aria-hidden="true"
-            class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+            class="_icon_10c23_2 _icon--external-link_10c23_232"
+            data-ods="icon"
+            role="presentation"
           />
         </button>
       </div>
@@ -108,6 +114,7 @@ exports[`OnboardingLayout Snapshot Tests > Basic OnboardingLayout States > shoul
       </div>
       <h1
         class="_text--heading-1_1aw48_13 text-center"
+        data-ods="text"
       >
         Welcome to OVHcloud
       </h1>
@@ -137,6 +144,7 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
       </div>
       <h1
         class="_text--heading-1_1aw48_13 text-center"
+        data-ods="text"
       >
         Welcome to OVHcloud
       </h1>
@@ -145,7 +153,8 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
         class="flex flex-col gap-3 sm:gap-4 w-full sm:w-fit sm:flex-row sm:items-center sm:justify-center"
       >
         <button
-          class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 [&::part(button)]:w-full sm:w-auto"
+          class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 [&::part(button)]:w-full sm:w-auto"
+          data-ods="button"
           data-testid="manager-button"
           disabled=""
           type="button"
@@ -153,7 +162,8 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
           Get Started
         </button>
         <button
-          class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--outline_10f3x_258 [&::part(button)]:w-full sm:w-auto"
+          class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--outline_1koyw_259 [&::part(button)]:w-full sm:w-auto"
+          data-ods="button"
           data-testid="manager-button"
           disabled=""
           type="button"
@@ -161,7 +171,9 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
           Learn More
           <span
             aria-hidden="true"
-            class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+            class="_icon_10c23_2 _icon--external-link_10c23_232"
+            data-ods="icon"
+            role="presentation"
           />
         </button>
       </div>
@@ -176,6 +188,7 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+          data-ods="card"
         >
           <div
             class="flex flex-col h-full"
@@ -185,17 +198,20 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
             >
               <h4
                 class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+                data-ods="text"
               >
                 Compute
               </h4>
             </div>
             <h3
               class="_text--heading-3_1aw48_25 mb-[8px]"
+              data-ods="text"
             >
               Virtual Machines
             </h3>
             <p
               class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+              data-ods="text"
             >
               Deploy and manage your virtual machines
             </p>
@@ -203,12 +219,15 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
               class="mt-auto"
             >
               <a
-                class="_link_udbet_2"
+                class="_link_1y3p4_2"
+                data-ods="link"
                 tab-index="-1"
               >
                 Learn more
                 <span
-                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                  class="_icon_10c23_2 _icon--arrow-right_10c23_34"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </a>
             </div>
@@ -240,6 +259,7 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
       </div>
       <h1
         class="_text--heading-1_1aw48_13 text-center"
+        data-ods="text"
       >
         Welcome to OVHcloud
       </h1>
@@ -269,6 +289,7 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
       </div>
       <h1
         class="_text--heading-1_1aw48_13 text-center"
+        data-ods="text"
       >
         Welcome to OVHcloud
       </h1>
@@ -284,6 +305,7 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+          data-ods="card"
         >
           <div
             class="flex flex-col h-full"
@@ -293,17 +315,20 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
             >
               <h4
                 class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+                data-ods="text"
               >
                 Compute
               </h4>
             </div>
             <h3
               class="_text--heading-3_1aw48_25 mb-[8px]"
+              data-ods="text"
             >
               Virtual Machines
             </h3>
             <p
               class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+              data-ods="text"
             >
               Deploy and manage your virtual machines
             </p>
@@ -311,12 +336,15 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
               class="mt-auto"
             >
               <a
-                class="_link_udbet_2"
+                class="_link_1y3p4_2"
+                data-ods="link"
                 tab-index="-1"
               >
                 Learn more
                 <span
-                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                  class="_icon_10c23_2 _icon--arrow-right_10c23_34"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </a>
             </div>
@@ -333,6 +361,7 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+          data-ods="card"
         >
           <div
             class="flex flex-col h-full"
@@ -342,17 +371,20 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
             >
               <h4
                 class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+                data-ods="text"
               >
                 Storage
               </h4>
             </div>
             <h3
               class="_text--heading-3_1aw48_25 mb-[8px]"
+              data-ods="text"
             >
               Object Storage
             </h3>
             <p
               class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+              data-ods="text"
             >
               Store and retrieve your data
             </p>
@@ -360,12 +392,15 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
               class="mt-auto"
             >
               <a
-                class="_link_udbet_2"
+                class="_link_1y3p4_2"
+                data-ods="link"
                 tab-index="-1"
               >
                 View docs
                 <span
-                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                  class="_icon_10c23_2 _icon--arrow-right_10c23_34"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </a>
             </div>
@@ -397,6 +432,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
       </div>
       <h1
         class="_text--heading-1_1aw48_13 text-center"
+        data-ods="text"
       >
         Welcome to OVHcloud
       </h1>
@@ -412,6 +448,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+          data-ods="card"
         >
           <div
             class="flex flex-col h-full"
@@ -421,17 +458,20 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
             >
               <h4
                 class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+                data-ods="text"
               >
                 Compute
               </h4>
             </div>
             <h3
               class="_text--heading-3_1aw48_25 mb-[8px]"
+              data-ods="text"
             >
               Virtual Machines
             </h3>
             <p
               class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+              data-ods="text"
             >
               Deploy and manage your virtual machines
             </p>
@@ -439,12 +479,15 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
               class="mt-auto"
             >
               <a
-                class="_link_udbet_2"
+                class="_link_1y3p4_2"
+                data-ods="link"
                 tab-index="-1"
               >
                 Learn more
                 <span
-                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                  class="_icon_10c23_2 _icon--arrow-right_10c23_34"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </a>
             </div>
@@ -458,6 +501,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+          data-ods="card"
         >
           <div
             class="flex flex-col h-full"
@@ -467,17 +511,20 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
             >
               <h4
                 class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+                data-ods="text"
               >
                 Storage
               </h4>
             </div>
             <h3
               class="_text--heading-3_1aw48_25 mb-[8px]"
+              data-ods="text"
             >
               Object Storage
             </h3>
             <p
               class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+              data-ods="text"
             >
               Store and retrieve your data
             </p>
@@ -485,12 +532,15 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
               class="mt-auto"
             >
               <a
-                class="_link_udbet_2"
+                class="_link_1y3p4_2"
+                data-ods="link"
                 tab-index="-1"
               >
                 View docs
                 <span
-                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                  class="_icon_10c23_2 _icon--arrow-right_10c23_34"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </a>
             </div>
@@ -522,6 +572,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
       </div>
       <h1
         class="_text--heading-1_1aw48_13 text-center"
+        data-ods="text"
       >
         Welcome to OVHcloud
       </h1>
@@ -537,6 +588,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+          data-ods="card"
           data-tracking="onboarding-vm-card"
         >
           <div
@@ -552,6 +604,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
             >
               <h4
                 class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+                data-ods="text"
               >
                 Compute
               </h4>
@@ -560,11 +613,13 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
               >
                 <span
                   class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56 mr-1"
+                  data-ods="badge"
                 >
                   Popular
                 </span>
                 <span
                   class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56 mr-1"
+                  data-ods="badge"
                 >
                   Recommended
                 </span>
@@ -572,11 +627,13 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
             </div>
             <h3
               class="_text--heading-3_1aw48_25 mb-[8px]"
+              data-ods="text"
             >
               Virtual Machines
             </h3>
             <p
               class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+              data-ods="text"
             >
               Deploy and manage your virtual machines with full control over your infrastructure
             </p>
@@ -584,12 +641,15 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
               class="mt-auto"
             >
               <a
-                class="_link_udbet_2"
+                class="_link_1y3p4_2"
+                data-ods="link"
                 tab-index="-1"
               >
                 Learn more
                 <span
-                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                  class="_icon_10c23_2 _icon--arrow-right_10c23_34"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </a>
             </div>
@@ -603,6 +663,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+          data-ods="card"
           data-tracking="onboarding-k8s-card"
         >
           <div
@@ -618,6 +679,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
             >
               <h4
                 class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+                data-ods="text"
               >
                 Container
               </h4>
@@ -626,6 +688,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
               >
                 <span
                   class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56 mr-1"
+                  data-ods="badge"
                 >
                   New
                 </span>
@@ -633,11 +696,13 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
             </div>
             <h3
               class="_text--heading-3_1aw48_25 mb-[8px]"
+              data-ods="text"
             >
               Kubernetes
             </h3>
             <p
               class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+              data-ods="text"
             >
               Orchestrate your containers with managed Kubernetes
             </p>
@@ -645,12 +710,15 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
               class="mt-auto"
             >
               <a
-                class="_link_udbet_2"
+                class="_link_1y3p4_2"
+                data-ods="link"
                 tab-index="-1"
               >
                 View docs
                 <span
-                  class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+                  class="_icon_10c23_2 _icon--external-link_10c23_232"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </a>
             </div>
@@ -682,6 +750,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
       </div>
       <h1
         class="_text--heading-1_1aw48_13 text-center"
+        data-ods="text"
       >
         Welcome to OVHcloud
       </h1>
@@ -692,21 +761,25 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
         class="flex flex-col gap-3 sm:gap-4 w-full sm:w-fit sm:flex-row sm:items-center sm:justify-center"
       >
         <button
-          class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--default_10f3x_48 [&::part(button)]:w-full sm:w-auto"
+          class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 [&::part(button)]:w-full sm:w-auto"
+          data-ods="button"
           data-testid="manager-button"
           type="button"
         >
           Get Started
         </button>
         <button
-          class="_button_10f3x_2 _button--primary_10f3x_99 _button--md_10f3x_41 _button--outline_10f3x_258 [&::part(button)]:w-full sm:w-auto"
+          class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--outline_1koyw_259 [&::part(button)]:w-full sm:w-auto"
+          data-ods="button"
           data-testid="manager-button"
           type="button"
         >
           Learn More
           <span
             aria-hidden="true"
-            class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+            class="_icon_10c23_2 _icon--external-link_10c23_232"
+            data-ods="icon"
+            role="presentation"
           />
         </button>
       </div>
@@ -721,6 +794,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+          data-ods="card"
         >
           <div
             class="flex flex-col h-full"
@@ -730,17 +804,20 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
             >
               <h4
                 class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+                data-ods="text"
               >
                 Compute
               </h4>
             </div>
             <h3
               class="_text--heading-3_1aw48_25 mb-[8px]"
+              data-ods="text"
             >
               Virtual Machines
             </h3>
             <p
               class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+              data-ods="text"
             >
               Deploy and manage your virtual machines
             </p>
@@ -748,12 +825,15 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
               class="mt-auto"
             >
               <a
-                class="_link_udbet_2"
+                class="_link_1y3p4_2"
+                data-ods="link"
                 tab-index="-1"
               >
                 Learn more
                 <span
-                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                  class="_icon_10c23_2 _icon--arrow-right_10c23_34"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </a>
             </div>
@@ -767,6 +847,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+          data-ods="card"
         >
           <div
             class="flex flex-col h-full"
@@ -776,17 +857,20 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
             >
               <h4
                 class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+                data-ods="text"
               >
                 Storage
               </h4>
             </div>
             <h3
               class="_text--heading-3_1aw48_25 mb-[8px]"
+              data-ods="text"
             >
               Object Storage
             </h3>
             <p
               class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+              data-ods="text"
             >
               Store and retrieve your data
             </p>
@@ -794,12 +878,15 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
               class="mt-auto"
             >
               <a
-                class="_link_udbet_2"
+                class="_link_1y3p4_2"
+                data-ods="link"
                 tab-index="-1"
               >
                 View docs
                 <span
-                  class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+                  class="_icon_10c23_2 _icon--external-link_10c23_232"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </a>
             </div>
@@ -831,6 +918,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
       </div>
       <h1
         class="_text--heading-1_1aw48_13 text-center"
+        data-ods="text"
       >
         Welcome to OVHcloud
       </h1>
@@ -848,6 +936,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+          data-ods="card"
         >
           <div
             class="flex flex-col h-full"
@@ -857,6 +946,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
             >
               <h4
                 class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+                data-ods="text"
               >
                 Compute
               </h4>
@@ -865,6 +955,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
               >
                 <span
                   class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56 mr-1"
+                  data-ods="badge"
                 >
                   Popular
                 </span>
@@ -872,11 +963,13 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
             </div>
             <h3
               class="_text--heading-3_1aw48_25 mb-[8px]"
+              data-ods="text"
             >
               Virtual Machines
             </h3>
             <p
               class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+              data-ods="text"
             >
               Deploy and manage your virtual machines
             </p>
@@ -884,12 +977,15 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
               class="mt-auto"
             >
               <a
-                class="_link_udbet_2"
+                class="_link_1y3p4_2"
+                data-ods="link"
                 tab-index="-1"
               >
                 Learn more
                 <span
-                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                  class="_icon_10c23_2 _icon--arrow-right_10c23_34"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </a>
             </div>
@@ -903,6 +999,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+          data-ods="card"
         >
           <div
             class="flex flex-col h-full"
@@ -917,17 +1014,20 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
             >
               <h4
                 class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+                data-ods="text"
               >
                 Storage
               </h4>
             </div>
             <h3
               class="_text--heading-3_1aw48_25 mb-[8px]"
+              data-ods="text"
             >
               Object Storage
             </h3>
             <p
               class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+              data-ods="text"
             >
               Store and retrieve your data
             </p>
@@ -935,12 +1035,15 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
               class="mt-auto"
             >
               <a
-                class="_link_udbet_2"
+                class="_link_1y3p4_2"
+                data-ods="link"
                 tab-index="-1"
               >
                 View docs
                 <span
-                  class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+                  class="_icon_10c23_2 _icon--external-link_10c23_232"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </a>
             </div>
@@ -954,6 +1057,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+          data-ods="card"
         >
           <div
             class="flex flex-col h-full"
@@ -963,6 +1067,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
             >
               <h4
                 class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+                data-ods="text"
               >
                 Network
               </h4>
@@ -971,11 +1076,13 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
               >
                 <span
                   class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56 mr-1"
+                  data-ods="badge"
                 >
                   New
                 </span>
                 <span
                   class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56 mr-1"
+                  data-ods="badge"
                 >
                   Beta
                 </span>
@@ -983,11 +1090,13 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
             </div>
             <h3
               class="_text--heading-3_1aw48_25 mb-[8px]"
+              data-ods="text"
             >
               Network Services
             </h3>
             <p
               class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+              data-ods="text"
             >
               Connect your resources securely
             </p>
@@ -995,12 +1104,15 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
               class="mt-auto"
             >
               <a
-                class="_link_udbet_2"
+                class="_link_1y3p4_2"
+                data-ods="link"
                 tab-index="-1"
               >
                 Explore
                 <span
-                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                  class="_icon_10c23_2 _icon--arrow-right_10c23_34"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </a>
             </div>
@@ -1032,6 +1144,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
       </div>
       <h1
         class="_text--heading-1_1aw48_13 text-center"
+        data-ods="text"
       >
         Welcome to OVHcloud
       </h1>
@@ -1047,6 +1160,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+          data-ods="card"
         >
           <div
             class="flex flex-col h-full"
@@ -1056,17 +1170,20 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
             >
               <h4
                 class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+                data-ods="text"
               >
                 Compute
               </h4>
             </div>
             <h3
               class="_text--heading-3_1aw48_25 mb-[8px]"
+              data-ods="text"
             >
               Virtual Machines
             </h3>
             <p
               class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+              data-ods="text"
             >
               Deploy and manage your virtual machines
             </p>
@@ -1074,12 +1191,15 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
               class="mt-auto"
             >
               <a
-                class="_link_udbet_2"
+                class="_link_1y3p4_2"
+                data-ods="link"
                 tab-index="-1"
               >
                 Learn more
                 <span
-                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                  class="_icon_10c23_2 _icon--arrow-right_10c23_34"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </a>
             </div>
@@ -1111,6 +1231,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
       </div>
       <h1
         class="_text--heading-1_1aw48_13 text-center"
+        data-ods="text"
       >
         Welcome to OVHcloud
       </h1>
@@ -1126,6 +1247,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+          data-ods="card"
         >
           <div
             class="flex flex-col h-full"
@@ -1135,6 +1257,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
             >
               <h4
                 class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+                data-ods="text"
               >
                 Category 1
               </h4>
@@ -1143,6 +1266,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
               >
                 <span
                   class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56 mr-1"
+                  data-ods="badge"
                 >
                   Popular
                 </span>
@@ -1150,11 +1274,13 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
             </div>
             <h3
               class="_text--heading-3_1aw48_25 mb-[8px]"
+              data-ods="text"
             >
               Service 1
             </h3>
             <p
               class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+              data-ods="text"
             >
               Description for service 1
             </p>
@@ -1162,12 +1288,15 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
               class="mt-auto"
             >
               <a
-                class="_link_udbet_2"
+                class="_link_1y3p4_2"
+                data-ods="link"
                 tab-index="-1"
               >
                 Learn more
                 <span
-                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                  class="_icon_10c23_2 _icon--arrow-right_10c23_34"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </a>
             </div>
@@ -1181,6 +1310,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+          data-ods="card"
         >
           <div
             class="flex flex-col h-full"
@@ -1190,17 +1320,20 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
             >
               <h4
                 class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+                data-ods="text"
               >
                 Category 2
               </h4>
             </div>
             <h3
               class="_text--heading-3_1aw48_25 mb-[8px]"
+              data-ods="text"
             >
               Service 2
             </h3>
             <p
               class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+              data-ods="text"
             >
               Description for service 2
             </p>
@@ -1208,12 +1341,15 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
               class="mt-auto"
             >
               <a
-                class="_link_udbet_2"
+                class="_link_1y3p4_2"
+                data-ods="link"
                 tab-index="-1"
               >
                 Learn more
                 <span
-                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                  class="_icon_10c23_2 _icon--arrow-right_10c23_34"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </a>
             </div>
@@ -1227,6 +1363,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+          data-ods="card"
         >
           <div
             class="flex flex-col h-full"
@@ -1236,6 +1373,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
             >
               <h4
                 class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+                data-ods="text"
               >
                 Category 3
               </h4>
@@ -1244,6 +1382,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
               >
                 <span
                   class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56 mr-1"
+                  data-ods="badge"
                 >
                   Popular
                 </span>
@@ -1251,11 +1390,13 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
             </div>
             <h3
               class="_text--heading-3_1aw48_25 mb-[8px]"
+              data-ods="text"
             >
               Service 3
             </h3>
             <p
               class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+              data-ods="text"
             >
               Description for service 3
             </p>
@@ -1263,12 +1404,15 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
               class="mt-auto"
             >
               <a
-                class="_link_udbet_2"
+                class="_link_1y3p4_2"
+                data-ods="link"
                 tab-index="-1"
               >
                 Learn more
                 <span
-                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                  class="_icon_10c23_2 _icon--arrow-right_10c23_34"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </a>
             </div>
@@ -1282,6 +1426,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+          data-ods="card"
         >
           <div
             class="flex flex-col h-full"
@@ -1291,17 +1436,20 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
             >
               <h4
                 class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+                data-ods="text"
               >
                 Category 4
               </h4>
             </div>
             <h3
               class="_text--heading-3_1aw48_25 mb-[8px]"
+              data-ods="text"
             >
               Service 4
             </h3>
             <p
               class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+              data-ods="text"
             >
               Description for service 4
             </p>
@@ -1309,12 +1457,15 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
               class="mt-auto"
             >
               <a
-                class="_link_udbet_2"
+                class="_link_1y3p4_2"
+                data-ods="link"
                 tab-index="-1"
               >
                 Learn more
                 <span
-                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                  class="_icon_10c23_2 _icon--arrow-right_10c23_34"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </a>
             </div>
@@ -1328,6 +1479,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+          data-ods="card"
         >
           <div
             class="flex flex-col h-full"
@@ -1337,6 +1489,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
             >
               <h4
                 class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+                data-ods="text"
               >
                 Category 5
               </h4>
@@ -1345,6 +1498,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
               >
                 <span
                   class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56 mr-1"
+                  data-ods="badge"
                 >
                   Popular
                 </span>
@@ -1352,11 +1506,13 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
             </div>
             <h3
               class="_text--heading-3_1aw48_25 mb-[8px]"
+              data-ods="text"
             >
               Service 5
             </h3>
             <p
               class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+              data-ods="text"
             >
               Description for service 5
             </p>
@@ -1364,12 +1520,15 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
               class="mt-auto"
             >
               <a
-                class="_link_udbet_2"
+                class="_link_1y3p4_2"
+                data-ods="link"
                 tab-index="-1"
               >
                 Learn more
                 <span
-                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                  class="_icon_10c23_2 _icon--arrow-right_10c23_34"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </a>
             </div>
@@ -1383,6 +1542,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+          data-ods="card"
         >
           <div
             class="flex flex-col h-full"
@@ -1392,17 +1552,20 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
             >
               <h4
                 class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+                data-ods="text"
               >
                 Category 6
               </h4>
             </div>
             <h3
               class="_text--heading-3_1aw48_25 mb-[8px]"
+              data-ods="text"
             >
               Service 6
             </h3>
             <p
               class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+              data-ods="text"
             >
               Description for service 6
             </p>
@@ -1410,12 +1573,15 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
               class="mt-auto"
             >
               <a
-                class="_link_udbet_2"
+                class="_link_1y3p4_2"
+                data-ods="link"
                 tab-index="-1"
               >
                 Learn more
                 <span
-                  class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+                  class="_icon_10c23_2 _icon--arrow-right_10c23_34"
+                  data-ods="icon"
+                  role="presentation"
                 />
               </a>
             </div>
