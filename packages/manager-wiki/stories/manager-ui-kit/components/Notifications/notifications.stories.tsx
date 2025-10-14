@@ -1,7 +1,6 @@
 import React from 'react';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import { OdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
+import { Button, BUTTON_SIZE, BUTTON_COLOR } from '@ovhcloud/ods-react';
 
 import { Notifications, useNotifications } from '@ovh-ux/muk';
 
@@ -16,32 +15,37 @@ const NotificationsStory = () => {
   return (
     <>
       <div className="flex">
-        <OdsButton
+        <Button
           className="mr-2"
-          size={ODS_BUTTON_SIZE.md}
+          size={BUTTON_SIZE.md}
           onClick={() => addSuccess('success message')}
-          label="Add success"
-        />
-        <OdsButton
+        >
+          Add success
+        </Button>
+
+        <Button
           className="mr-2"
-          size={ODS_BUTTON_SIZE.md}
-          color={ODS_BUTTON_COLOR.critical}
+          size={BUTTON_SIZE.md}
+          color={BUTTON_COLOR.critical}
           onClick={() => addWarning('warning message')}
-          label="Add warning"
-        />
-        <OdsButton
+        >
+          Add warning
+        </Button>
+        <Button
           className="mr-2"
-          size={ODS_BUTTON_SIZE.md}
-          color={ODS_BUTTON_COLOR.critical}
+          size={BUTTON_SIZE.md}
+          color={BUTTON_COLOR.critical}
           onClick={() => addError('error message')}
-          label="Add error"
-        />
-        <OdsButton
+        >
+          Add error
+        </Button>
+        <Button
           className="mr-2"
-          size={ODS_BUTTON_SIZE.md}
+          size={BUTTON_SIZE.md}
           onClick={clearNotifications}
-          label="Clear"
-        />
+        >
+          Clear
+        </Button>
       </div>
       <div className="mt-4">
         <Notifications />

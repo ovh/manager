@@ -1,8 +1,7 @@
 import React, { ComponentType } from 'react';
 
-import { OdsText } from '@ovhcloud/ods-components/react';
 import { Meta, StoryObj } from '@storybook/react';
-import { Order } from '@ovh-ux/muk';
+import { Order, Text } from '@ovh-ux/muk';
 
 function renderComponent(args) {
   return (
@@ -13,9 +12,9 @@ function renderComponent(args) {
         isValid={args.isValid}
       >
         <p>
-          <OdsText preset="code" className="italic">
+          <Text preset="code" className="italic">
             ...|order configuration steps| ...
-          </OdsText>
+          </Text>
         </p>
       </Order.Configuration>
       <Order.Summary
