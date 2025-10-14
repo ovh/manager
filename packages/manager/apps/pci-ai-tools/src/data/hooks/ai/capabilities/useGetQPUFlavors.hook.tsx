@@ -1,12 +1,11 @@
 import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
-import { getQPUFlavor } from '@/data/api/ai/capabilities/capabilities.api';
+import { getQPUFlavors } from '@/data/api/ai/capabilities/capabilities.api';
 import { useQueryImmediateRefetch } from '@/hooks/useImmediateRefetch';
 import { Qpu } from '@/types/orderFunnel';
 
-export function useGetQPUFlavor(
+export function useGetQPUFlavors(
   projectId: string,
   region: string,
-  qpuFlavorId: string,
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [
@@ -16,11 +15,10 @@ export function useGetQPUFlavor(
     'region',
     region,
     'qpuFlavor',
-    qpuFlavorId,
   ];
   return useQueryImmediateRefetch({
     queryKey,
-    queryFn: () => getQPUFlavor({ projectId, region, qpuFlavorId }),
+    queryFn: () => getQPUFlavors({ projectId, region }),
     ...options,
-  }) as UseQueryResult<Qpu, Error>;
+  }) as UseQueryResult<Qpu[], Error>;
 }

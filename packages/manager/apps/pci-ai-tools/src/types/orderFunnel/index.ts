@@ -1,6 +1,7 @@
 import { ResourcesPerUnit } from '@datatr-ux/ovhcloud-types/cloud/project/ai/capabilities/flavor/ResourcesPerUnit';
 import ai from '../AI';
 import catalog from '../Catalog';
+import quantum from '../Quantum';
 
 export interface AppPricing {
   price: number;
@@ -37,6 +38,10 @@ export interface Qpu {
   qubits: number;
   pricing: catalog.Pricing[];
   resourcesPerUnit: ResourcesPerUnit;
+}
+
+export interface NotebookWithQpu extends ai.notebook.Notebook {
+  qpuDetail?: quantum.capabilities.QPUFlavor;
 }
 
 export interface OrderLabel {

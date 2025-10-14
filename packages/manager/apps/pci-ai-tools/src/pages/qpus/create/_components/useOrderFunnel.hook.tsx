@@ -25,7 +25,7 @@ import { useGetFramework } from '@/data/hooks/ai/capabilities/useGetFramework.ho
 import { useGetEditor } from '@/data/hooks/ai/capabilities/useGetEditor.hook';
 import { useQuantum } from '@/hooks/useQuantum.hook';
 import { createQPUFlavorPricingList } from '@/lib/priceQPUFlavorHelper';
-import { useGetQPUFlavor } from '@/data/hooks/ai/capabilities/useGetQPUFlavor.hook';
+import { useGetQPUFlavors } from '@/data/hooks/ai/capabilities/useGetQPUFlavors.hook';
 
 export function useOrderFunnel(
   regions: ai.capabilities.Region[],
@@ -112,11 +112,11 @@ export function useOrderFunnel(
   const sshKey = form.watch('sshKey');
   const volumes = form.watch('volumes');
   const QPUFlavorId = form.watch('QPUFlavor');
-  
+
   const frameworkQuery = useGetFramework(projectId, region);
   const editorQuery = useGetEditor(projectId, region);
   const flavorQuery = useGetFlavor(projectId, region);
-  const QPUFlavorQuery = useGetQPUFlavor(projectId, region);
+  const QPUFlavorQuery = useGetQPUFlavors(projectId, region);
   const datastoreQuery = useGetDatastores(projectId, region);
   const containersQuery = useGetDatastoresWithContainers(
     projectId,
@@ -159,9 +159,15 @@ export function useOrderFunnel(
 
   const listQpuFlavor: Qpu[] = useMemo(() => {
     if (QPUFlavorQuery.isLoading) return [];
-    let allQpus = createQPUFlavorPricingList( QPUFlavorQuery.data, catalog, 'ai-notebook'); 
+    const allQpus = createQPUFlavorPricingList(
+      QPUFlavorQuery.data,
+      catalog,
+      'ai-notebook',
+    );
     if (!frameworkObject || !frameworkObject.supportedQpus) return [];
-    return allQpus.filter((qpu) =>frameworkObject.supportedQpus?.includes(qpu.id));
+    return allQpus.filter((qpu) =>
+      frameworkObject.supportedQpus?.includes(qpu.id),
+    );
   }, [region, QPUFlavorQuery.isSuccess, QPUFlavorQuery.data, frameworkObject]);
 
   const QpuflavorObject: Qpu | undefined = useMemo(() => {

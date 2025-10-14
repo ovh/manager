@@ -6,6 +6,8 @@ import {
   getAppImages,
   getEditor,
   getFramework,
+  getQPUFlavors,
+  getQPUFlavor,
 } from './capabilities.api';
 
 describe('Capabilities functions', () => {
@@ -70,6 +72,29 @@ describe('Capabilities functions', () => {
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
       '/cloud/project/projectId/ai/capabilities/region/region/notebook/framework',
+    );
+  });
+
+  it('should call getQPUFlavors', async () => {
+    expect(apiClient.v6.get).not.toHaveBeenCalled();
+    await getQPUFlavors({
+      projectId: 'projectId',
+      region: 'regionId',
+    });
+    expect(apiClient.v6.get).toHaveBeenCalledWith(
+      '/cloud/project/projectId/quantum/capabilities/region/regionId/qpu',
+    );
+  });
+
+  it('should call getQPUFlavor', async () => {
+    expect(apiClient.v6.get).not.toHaveBeenCalled();
+    await getQPUFlavor({
+      projectId: 'projectId',
+      region: 'regionId',
+      qpuFlavorId: 'flavorId',
+    });
+    expect(apiClient.v6.get).toHaveBeenCalledWith(
+      '/cloud/project/projectId/quantum/capabilities/region/regionId/qpu/flavorId',
     );
   });
 });

@@ -22,7 +22,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@datatr-ux/uxlib';
-import ai from '@/types/AI';
+import { NotebookWithQpu } from '@/types/orderFunnel';
 
 import Link from '@/components/links/Link.component';
 import { convertSecondsToTimeString } from '@/lib/durationHelper';
@@ -37,11 +37,12 @@ import {
 } from '@/lib/statusHelper';
 import { useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
+import ai from '@/types/AI';
 
 interface NotebooksListColumnsProps {
-  onStartClicked: (notebook: ai.notebook.Notebook) => void;
-  onStopClicked: (notebook: ai.notebook.Notebook) => void;
-  onDeleteClicked: (notebook: ai.notebook.Notebook) => void;
+  onStartClicked: (notebook: NotebookWithQpu) => void;
+  onStopClicked: (notebook: NotebookWithQpu) => void;
+  onDeleteClicked: (notebook: NotebookWithQpu) => void;
 }
 
 export const getColumns = ({
@@ -53,7 +54,7 @@ export const getColumns = ({
   const track = useTrackAction();
   const { t } = useTranslation('ai-tools/notebooks');
   const { t: tRegions } = useTranslation('regions');
-  const columns: ColumnDef<ai.notebook.Notebook>[] = [
+  const columns: ColumnDef<NotebookWithQpu>[] = [
     {
       id: 'name/id',
       header: ({ column }) => (
@@ -152,6 +153,7 @@ export const getColumns = ({
       ),
       cell: ({ row }) => {
         const { cpu, gpu, gpuModel } = row.original.spec.resources;
+        const qpuName = row.original.qpuDetail?.name;
         return (
           <div>
             {gpu > 0 ? (
@@ -169,10 +171,12 @@ export const getColumns = ({
                 </div>
               </>
             )}
-            <div className="flex gap-2 items-center">
-              <Cpu className="size-4 shrink-0" />
-              <span>{`${gpu} GPU ${gpuModel}`} QPUTest</span>
-            </div>
+            {qpuName && (
+              <div className="flex gap-2 items-center">
+                <Cpu className="size-4 shrink-0" />
+                <span>{`QPU ${qpuName}`}</span>
+              </div>
+            )}
           </div>
         );
       },

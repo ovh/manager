@@ -15,6 +15,7 @@ export const getRegions = async ({ projectId }: PCIAi) =>
 
 export interface AIRegion extends PCIAi {
   region: string;
+  qpuFlavorId?: string;
 }
 
 export const getFramework = async ({ projectId, region }: AIRegion) =>
@@ -36,10 +37,23 @@ export const getFlavor = async ({ projectId, region }: AIRegion) =>
     .get(`/cloud/project/${projectId}/ai/capabilities/region/${region}/flavor`)
     .then((res) => res.data as ai.capabilities.Flavor[]);
 
-export const getQPUFlavor = async ({ projectId, region }: AIRegion) =>
+export const getQPUFlavors = async ({ projectId, region }: AIRegion) =>
   apiClient.v6
-    .get(`/cloud/project/${projectId}/quantum/capabilities/region/${region}/qpu`)
+    .get(
+      `/cloud/project/${projectId}/quantum/capabilities/region/${region}/qpu`,
+    )
     .then((res) => res.data as quantum.capabilities.QPUFlavor[]);
+
+export const getQPUFlavor = async ({
+  projectId,
+  region,
+  qpuFlavorId,
+}: AIRegion) =>
+  apiClient.v6
+    .get(
+      `/cloud/project/${projectId}/quantum/capabilities/region/${region}/qpu/${qpuFlavorId}`,
+    )
+    .then((res) => res.data as quantum.capabilities.QPUFlavor);
 
 export const getAppImages = async ({ projectId, region }: AIRegion) =>
   apiClient.v6
