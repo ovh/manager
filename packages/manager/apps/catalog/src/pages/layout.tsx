@@ -20,6 +20,7 @@ export default function Layout() {
 
   return (
     <>
+      This is a test change on catalog dont merge!
       <Outlet />
       <OvhTracking shell={shell} environment={null} />
     </>
