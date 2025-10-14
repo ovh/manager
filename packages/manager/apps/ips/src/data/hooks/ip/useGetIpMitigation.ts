@@ -27,7 +27,21 @@ export const useGetIpMitigation = ({
     ApiError
   >({
     queryKey: getIpMitigationQueryKey({ ip }),
-    queryFn: () => getIpMitigation({ ip }),
+    queryFn: async () => {
+      try {
+        return await getIpMitigation({ ip });
+      } catch (apiError) {
+        const err = apiError as ApiError;
+        if (err.response?.status === 404) {
+          return {
+            status: 200,
+            totalCount: 0,
+            data: [],
+          };
+        }
+        throw error;
+      }
+    },
     enabled,
     staleTime: Number.POSITIVE_INFINITY,
     retry: false,

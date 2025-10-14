@@ -2,6 +2,7 @@ import { vi } from 'vitest';
 import React from 'react';
 import '@testing-library/jest-dom';
 import { NavLinkProps } from 'react-router-dom';
+import { ListingContextType } from '@/pages/listing/listingContext';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -37,4 +38,10 @@ export const listingContextDefaultParams = {
   apiFilter: {},
   setApiFilter: vi.fn(),
   hasNoApiFilter: true,
+  onGoingAggregatedIps: [] as string[],
+  setOnGoingAggregatedIps: vi.fn(),
+  onGoingSlicedIps: [] as string[],
+  setOnGoingSlicedIps: vi.fn(),
+  onGoingCreatedIps: [] as string[],
+  setOnGoingCreatedIps: vi.fn(),
 };

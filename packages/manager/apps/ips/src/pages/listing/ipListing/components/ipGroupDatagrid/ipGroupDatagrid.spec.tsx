@@ -7,7 +7,11 @@ import { Row } from '@tanstack/react-table';
 import ipReverseList from '../../../../../../mocks/ip/get-ip-reverse-for-block.json';
 import ipDetailsList from '../../../../../../mocks/ip/get-ip-details.json';
 import { IpGroupDatagrid } from './ipGroupDatagrid';
-import { VmacWithIpType } from '@/data/hooks/ip';
+import {
+  useByoipAggregate,
+  useByoipSlice,
+  VmacWithIpType,
+} from '@/data/hooks/ip';
 import {
   IpEdgeFirewallStateEnum,
   IpEdgeFirewallType,
@@ -60,6 +64,28 @@ const useGetIpVmacWithIpMock = vi.hoisted(() =>
   })),
 );
 
+const useByoipSliceMock = vi.hoisted(() =>
+  vi.fn(() => ({
+    slice: [],
+    isLoading: false,
+    error: null,
+    postSlice: vi.fn(),
+    isSlicePending: false,
+    slicingError: null,
+  })),
+);
+
+const useByoipAggregateMock = vi.hoisted(() =>
+  vi.fn(() => ({
+    aggregate: [],
+    isLoading: false,
+    error: null,
+    postAggregate: vi.fn(),
+    isAggregatePending: false,
+    aggregateError: null,
+  })),
+);
+
 vi.mock('@/data/hooks/ip', () => ({
   useGetIpdetails: useGetIpDetailsMock,
   useGetIcebergIpReverse: useGetIcebergIpReverseMock,
@@ -67,6 +93,8 @@ vi.mock('@/data/hooks/ip', () => ({
   useGetIpEdgeFirewall: useGetIpEdgeFirewallMock,
   useGetIpGameFirewall: useGetIpGameFirewallMock,
   useGetIpVmacWithIp: useGetIpVmacWithIpMock,
+  useByoipSlice: useByoipSliceMock,
+  useByoipAggregate: useByoipAggregateMock,
 }));
 
 vi.mock('../DatagridCells', () => ({

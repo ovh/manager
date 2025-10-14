@@ -5,6 +5,8 @@ import {
   getdedicatedServerVmac,
   getdedicatedServerVmacQueryKey,
 } from '@/data/api';
+import { IpTypeEnum } from '@/data/constants';
+import { getTypeByServiceName } from '@/utils';
 
 export type UseGetIpVmacParams = {
   serviceName: string;
@@ -24,7 +26,10 @@ export const useGetIpVmac = ({
   } = useQuery<IcebergFetchResultV6<DedicatedServerVmacType>, ApiError>({
     queryKey: getdedicatedServerVmacQueryKey({ serviceName }),
     queryFn: () => getdedicatedServerVmac({ serviceName }),
-    enabled: enabled && !!serviceName,
+    enabled:
+      enabled &&
+      !!serviceName &&
+      getTypeByServiceName(serviceName) === IpTypeEnum.DEDICATED,
     staleTime: Number.POSITIVE_INFINITY,
     retry: false,
   });
