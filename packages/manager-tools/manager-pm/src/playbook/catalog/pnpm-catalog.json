@@ -1,6 +1,7 @@
 [
   "packages/manager/apps/bmc-backup-agent-baremetal",
   "packages/manager/apps/hpc-backup-agent-iaas",
+  "packages/manager/apps/observability",
   "packages/manager/apps/account",
   "packages/manager/apps/account-creation",
   "packages/manager/apps/web-office",
