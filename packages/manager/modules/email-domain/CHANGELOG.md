@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.11.8...@ovh-ux/manager-email-domain@1.11.9) (2025-10-14)
+
+
+### Bug Fixes
+
+* **web-email:** add warning no rollback available on email migration ([3971e22](https://github.com/ovh/manager/commit/3971e22d9c5e28ef1c8bcb9a6ce8bb1d8f36d47f)), closes [#PRDCOL-85](https://github.com/ovh/manager/issues/PRDCOL-85)
+
+
+
+
+
 ## [1.11.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.11.7...@ovh-ux/manager-email-domain@1.11.8) (2025-10-14)
 
 
