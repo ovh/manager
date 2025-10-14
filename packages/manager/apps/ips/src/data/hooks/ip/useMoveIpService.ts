@@ -1,5 +1,10 @@
 import { useCallback } from 'react';
-import { useQueries, useQuery, useMutation } from '@tanstack/react-query';
+import {
+  useQueries,
+  useQuery,
+  useMutation,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   getMoveIpAvailableDestinations,
@@ -17,6 +22,8 @@ export function useMoveIpService({
   ip: string;
   onMoveIpSuccess?: () => void;
 }) {
+  const queryClient = useQueryClient();
+
   const taskQueries = useQueries({
     queries: [IpTaskStatus.init, IpTaskStatus.todo, IpTaskStatus.doing].map(
       (status) => ({
@@ -84,7 +91,18 @@ export function useMoveIpService({
     error: moveIpError,
   } = useMutation({
     mutationFn: apiPostMoveIp,
-    onSuccess: onMoveIpSuccess,
+    onSuccess: () => {
+      [IpTaskStatus.init, IpTaskStatus.todo, IpTaskStatus.doing].map((status) =>
+        queryClient.invalidateQueries({
+          queryKey: getIpTaskQueryKey({
+            ip,
+            fn: IpTaskFunction.genericMoveFloatingIp,
+            status,
+          }),
+        }),
+      );
+      onMoveIpSuccess?.();
+    },
   });
 
   return {

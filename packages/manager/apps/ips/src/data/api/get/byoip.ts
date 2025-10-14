@@ -39,3 +39,27 @@ export const postAggregate = ({
       aggregationIp,
     },
   );
+
+export type SliceResponse = {
+  slicingSize: number;
+  childrenIps: string[];
+}[];
+
+export const getSlice = (ip: string) =>
+  apiClient.v6.get<SliceResponse>(
+    `/ip/${encodeURIComponent(ip)}/bringYourOwnIp/slice`,
+  );
+
+export const postSlice = ({
+  ip,
+  slicingSize,
+}: {
+  ip: string;
+  slicingSize: number;
+}) =>
+  apiClient.v6.post<IpTask>(
+    `/ip/${encodeURIComponent(ip)}/bringYourOwnIp/slice`,
+    {
+      slicingSize,
+    },
+  );

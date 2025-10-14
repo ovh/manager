@@ -1,8 +1,6 @@
 import { ClientNavigationApi } from '@ovh-ux/shell/dist/types/plugin/navigation';
-import {
-  IPRoutedServiceType,
-  getTypeByServiceName,
-} from './getTypeByServiceName';
+import { getTypeByServiceName } from './getTypeByServiceName';
+import { IpTypeEnum } from '@/data/constants';
 
 export type GetLinkByServiceNameParams = {
   serviceName: string;
@@ -14,40 +12,40 @@ export const getLinkByServiceName = ({
   navigation,
 }: GetLinkByServiceNameParams): Promise<string> => {
   if (!serviceName || !navigation) return Promise.resolve(null);
-  const serviceType = getTypeByServiceName({ serviceName });
+  const serviceType = getTypeByServiceName(serviceName);
 
   switch (serviceType) {
-    case IPRoutedServiceType.DEDICATED:
+    case IpTypeEnum.DEDICATED:
       return navigation.getURL(
         'dedicated',
         `#/server/${serviceName}`,
         {},
       ) as Promise<string>;
-    case IPRoutedServiceType.PCC:
+    case IpTypeEnum.PCC:
       return navigation.getURL(
         'dedicated',
         `#/dedicated_cloud/${serviceName}`,
         {},
       ) as Promise<string>;
-    case IPRoutedServiceType.CLOUD:
+    case IpTypeEnum.CLOUD:
       return navigation.getURL(
         'public-cloud',
         `#/pci/project/${serviceName}`,
         {},
       ) as Promise<string>;
-    case IPRoutedServiceType.VRACK:
+    case IpTypeEnum.VRACK:
       return navigation.getURL(
         'dedicated',
         `#/vrack/${serviceName}`,
         {},
       ) as Promise<string>;
-    case IPRoutedServiceType.VPS:
+    case IpTypeEnum.VPS:
       return navigation.getURL(
         'dedicated',
         `#/vps/${serviceName}`,
         {},
       ) as Promise<string>;
-    case IPRoutedServiceType.LOADBALANCER:
+    case IpTypeEnum.LOAD_BALANCING:
       return navigation.getURL(
         'dedicated',
         `#/iplb/${serviceName}`,

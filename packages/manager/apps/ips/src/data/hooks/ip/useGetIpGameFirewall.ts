@@ -22,7 +22,21 @@ export const useGetIpGameFirewall = ({
   const getQuery = useQuery<IcebergFetchResultV6<IpGameFirewallType>, ApiError>(
     {
       queryKey: getIpGameFirewallQueryKey({ ip }),
-      queryFn: () => getIpGameFirewall({ ip }),
+      queryFn: async () => {
+        try {
+          return await getIpGameFirewall({ ip });
+        } catch (error) {
+          const err = error as ApiError;
+          if (err.response?.status === 404) {
+            return {
+              status: 200,
+              totalCount: 0,
+              data: [],
+            };
+          }
+          throw error;
+        }
+      },
       enabled,
       staleTime: Number.POSITIVE_INFINITY,
       retry: false,
