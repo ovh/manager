@@ -14,12 +14,14 @@ async function main() {
     await checkVersions();
   } else if (args.includes('--check-components')) {
     await checkComponents();
-  } else if (args.includes('--update-version')) {
+  } else if (args.includes('--update-versions')) {
     await updateOdsVersions();
   } else if (args.includes('--add-components')) {
     await addComponents();
   } else {
-    logger.warn('Usage: manager-muk-cli --check-versions | --check-components | --add-components');
+    logger.warn(
+      'Usage: manager-muk-cli --check-versions | --update-versions | --check-components | --add-components',
+    );
   }
 }
 
