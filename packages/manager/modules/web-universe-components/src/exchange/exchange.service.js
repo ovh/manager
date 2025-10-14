@@ -108,6 +108,12 @@ export default class Exchange {
     };
   }
 
+  getModels() {
+    return this.services.$http
+      .get('/email/exchange.json')
+      .then(({ data }) => data);
+  }
+
   /*
    * Private function to reset the cache
    */
@@ -1789,6 +1795,39 @@ export default class Exchange {
         serviceName: exchange.domain,
       },
     });
+  }
+
+  getExternalContactIds(opts) {
+    return this.services.$http
+      .get(
+        `/email/exchange/${opts.organizationName}/service/${opts.exchangeService}/externalContact`,
+      )
+      .then(({ data }) => data);
+  }
+
+  getMailingListIds(opts) {
+    return this.services.$http
+      .get(
+        `/email/exchange/${opts.organizationName}/service/${opts.exchangeService}/mailingList`,
+      )
+      .then(({ data }) => data);
+  }
+
+  getDomainIds(opts) {
+    return this.services.$http
+      .get(
+        `/email/exchange/${opts.organizationName}/service/${opts.exchangeService}/domain`,
+        { state: opts.state || 'ok' },
+      )
+      .then(({ data }) => data);
+  }
+
+  getResourceAccountIds(opts) {
+    return this.services.$http
+      .get(
+        `/email/exchange/${opts.organizationName}/service/${opts.exchangeService}/resourceAccount`,
+      )
+      .then(({ data }) => data);
   }
 
   /**
