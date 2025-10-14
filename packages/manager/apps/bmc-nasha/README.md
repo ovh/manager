@@ -146,21 +146,21 @@ From the root:
 
 ```bash
 # Install dependencies
-yarn install
+yarn workspace @ovh-ux/manager-bmc-nasha-app install
 
 # Start dev server (Vite)
-yarn start
+yarn workspace @ovh-ux/manager-bmc-nasha-app start
 
 # Build for production
-yarn build
+yarn workspace @ovh-ux/manager-bmc-nasha-app build
 
 # Lint
-yarn lint:modern
-yarn lint:modern:fix
+yarn workspace @ovh-ux/manager-bmc-nasha-app lint:modern
+yarn workspace @ovh-ux/manager-bmc-nasha-app lint:modern:fix
 
 # Test
-yarn test
-yarn test:coverage
+yarn workspace @ovh-ux/manager-bmc-nasha-app test
+yarn workspace @ovh-ux/manager-bmc-nasha-app test:coverage
 ```
 
 The app uses **hash-based routing**. Open the dev server URL printed by Vite (default `http://localhost:5173/`) and navigate under:
