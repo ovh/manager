@@ -15,7 +15,7 @@ export const getTopicAcls = async ({
 }: ServiceData) =>
   apiClient.v6.get<database.kafka.TopicAcl[]>(
     `/cloud/project/${projectId}/database/${engine}/${serviceId}/acl`,
-    createHeaders(NoCacheHeaders, IcebergPaginationHeaders),
+    { headers: createHeaders(NoCacheHeaders, IcebergPaginationHeaders) },
   );
 
 export interface AddTopicAcl extends ServiceData {
