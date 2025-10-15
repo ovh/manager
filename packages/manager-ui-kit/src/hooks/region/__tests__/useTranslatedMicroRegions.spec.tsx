@@ -1,10 +1,10 @@
 import { vitest } from 'vitest';
 import { renderHook } from '@testing-library/react';
+import { useTranslatedMicroRegions } from '../useTranslatedMicroRegions';
 import {
   getMacroRegion,
   isLocalZone,
-  useTranslatedMicroRegions,
-} from './useTranslatedMicroRegions';
+} from '../useTranslatedMicroRegions.utils';
 
 vitest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -43,7 +43,7 @@ describe('useTranslatedMicroRegions', () => {
   it('returns translated region', () => {
     const { result } = renderHook(() => useTranslatedMicroRegions());
     expect(result.current.translateMicroRegion('WES-1')).toBe(
-      'manager_components_region_WES_micro',
+      'region_WES_micro',
     );
   });
 });
