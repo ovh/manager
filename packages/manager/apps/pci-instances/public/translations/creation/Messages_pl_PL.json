@@ -6,7 +6,6 @@
   "pci_instance_creation_quantity_rule": "Twój aktualny limit pozwala na jednoczesne utworzenie do {{ quota }} instancji typu {{ type }} w regionie {{ region }}.",
   "pci_instance_creation_choose_localization_title": "Wybierz lokalizację",
   "pci_instance_creation_select_localization_label": "Wybierz lokalizację: ",
-  "pci_instance_creation_select_localization_informations": "Strefy lokalne nie kwalifikują się do planów oszczędnościowych.",
   "pci_instance_creation_continue_order": "Kontynuuj moje zamówienie",
   "pci_instance_creation_configuration_code": "Kod mojej konfiguracji",
   "pci_instance_creation_select_deployment_mode_title": "Filtruj tryb wdrożenia",

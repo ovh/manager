@@ -6,7 +6,6 @@
   "pci_instance_creation_quantity_rule": "Il tuo attuale limite ti consente di creare simultaneamente fino a {{ quota }} istanza(e) di tipo {{ type }} per la regione {{ region }}.",
   "pci_instance_creation_choose_localization_title": "Scegli una posizione",
   "pci_instance_creation_select_localization_label": "Seleziona una posizione: ",
-  "pci_instance_creation_select_localization_informations": "Le Zone Locali non sono idonee ai Savings Plans.",
   "pci_instance_creation_continue_order": "Continua il mio ordine",
   "pci_instance_creation_configuration_code": "Codice della mia configurazione",
   "pci_instance_creation_select_deployment_mode_title": "Filtra un modo di distribuzione",

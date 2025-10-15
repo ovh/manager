@@ -5,6 +5,7 @@ import {
   SelectControl,
   SelectContent,
   SelectValueChangeDetail,
+  Text,
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
@@ -33,30 +34,37 @@ export const MicroRegionSelection = ({
   }, [microRegions, selectedMicroRegion, setValue]);
 
   return (
-    <Controller
-      name="microRegion"
-      control={control}
-      render={({ field }) => {
-        const handleMicroRegionChange = (
-          microRegions: SelectValueChangeDetail,
-        ) => field.onChange(microRegions.value[0]);
+    <div className=" flex flex-col gap-4 pt-9 pb-5">
+      <Text preset="heading-4">
+        {t('creation:pci_instance_creation_select_datacenter_label')}
+      </Text>
+      <div className="max-w-[32%]">
+        <Controller
+          name="microRegion"
+          control={control}
+          render={({ field }) => {
+            const handleMicroRegionChange = (
+              microRegions: SelectValueChangeDetail,
+            ) => field.onChange(microRegions.value[0]);
 
-        return (
-          <FormField>
-            <FormFieldLabel>
-              {t('pci_instance_creation_select_localization_label')}
-            </FormFieldLabel>
-            <Select
-              items={microRegions}
-              value={selectedMicroRegion ? [selectedMicroRegion] : []}
-              onValueChange={handleMicroRegionChange}
-            >
-              <SelectControl />
-              <SelectContent />
-            </Select>
-          </FormField>
-        );
-      }}
-    />
+            return (
+              <FormField>
+                <FormFieldLabel>
+                  {t('pci_instance_creation_choose_datacenter_label')}
+                </FormFieldLabel>
+                <Select
+                  items={microRegions}
+                  value={selectedMicroRegion ? [selectedMicroRegion] : []}
+                  onValueChange={handleMicroRegionChange}
+                >
+                  <SelectControl />
+                  <SelectContent />
+                </Select>
+              </FormField>
+            );
+          }}
+        />
+      </div>
+    </div>
   );
 };
