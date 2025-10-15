@@ -11,6 +11,9 @@ const URIS = {
   order: 'order',
   value: 'value',
   delete: 'delete',
+  update: 'update',
+  terminate: 'terminate',
+  dashboard: 'dashboard',
 };
 
 const URLS = {
@@ -24,6 +27,15 @@ const URLS = {
     `/${URIS.root}/${URIS.create}/${URIS.order}/${regionId}`,
 
   okmsList: (regionId: string) => `/${URIS.root}/${URIS.region}/${regionId}`,
+
+  okmsDashboard: (okmsId: string) =>
+    `/${URIS.root}/${okmsId}/${URIS.dashboard}`,
+
+  okmsUpdateNameModal: (okmsId: string) =>
+    `/${URIS.root}/${okmsId}/${URIS.dashboard}/${URIS.update}`,
+
+  okmsTerminateModal: (okmsId: string) =>
+    `/${URIS.root}/${okmsId}/${URIS.dashboard}/${URIS.terminate}`,
 
   secretList: (okmsId: string) => `/${URIS.root}/${okmsId}`,
 
