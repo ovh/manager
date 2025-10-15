@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.26.2...@ovh-ux/manager-billing-components@4.27.0) (2025-10-15)
+
+
+### Bug Fixes
+
+* **billing:** fix behavior on commitment page without discount ([36da208](https://github.com/ovh/manager/commit/36da208036466abcdfc146d4e47208773ff15652)), closes [#MANAGER-19948](https://github.com/ovh/manager/issues/MANAGER-19948)
+
+
+### Features
+
+* **billing:** replace renew mode by status ([03520f2](https://github.com/ovh/manager/commit/03520f2f741b23f1327b2d4e5a284f7def520e7d)), closes [#MANAGER-19540](https://github.com/ovh/manager/issues/MANAGER-19540)
+
+
+
+
+
 ## [4.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.26.1...@ovh-ux/manager-billing-components@4.26.2) (2025-10-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components
