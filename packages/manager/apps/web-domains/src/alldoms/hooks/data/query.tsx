@@ -1,9 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import {
-  getAllDomResource,
-} from '@/alldoms/data/api/web-domains';
+import { getAllDomResource } from '@/alldoms/data/api/web-domains';
 import { ServiceRoutes } from '@/alldoms/enum/service.enum';
-import { getServiceInformation } from '@/common/data/api/common.api';
+import {
+  getMXPlan,
+  getServiceInformation,
+  getZimbra,
+} from '@/common/data/api/common.api';
+import { TMxPlan, TZimbra } from '@/common/types/common.types';
 
 export const useGetServiceInformation = (
   serviceName: string,
