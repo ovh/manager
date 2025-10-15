@@ -123,4 +123,8 @@ export default class SiretCtrl {
       type: 'navigation',
     });
   }
+
+  shouldApplyFrenchRules() {
+    return this.model.country === 'FR';
+  }
 }
