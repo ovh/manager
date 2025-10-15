@@ -20,8 +20,6 @@ import {
   RadioGroupItem,
   Input,
   useToast,
-  ScrollArea,
-  ScrollBar,
   Button,
   Popover,
   PopoverContent,
@@ -36,6 +34,8 @@ import {
   AccordionItem,
   AccordionTrigger,
   CommandList,
+  Code,
+  json,
 } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
 import {
@@ -287,16 +287,15 @@ const AdvancedConfigurationForm = ({
             </div>
           </AccordionTrigger>
           <AccordionContent>
-            <ScrollArea
-              className="p-2 bg-[#122844] text-white whitespace-pre w-full"
-              viewportClassName="max-h-[400px]"
-            >
-              <div>
-                {model.result.payload &&
-                  JSON.stringify(model.result.payload, null, 2)}
-              </div>
-              <ScrollBar orientation="horizontal" />
-            </ScrollArea>
+            <Code
+              className="max-h-[400px]"
+              lang={json}
+              code={
+                model.result.payload
+                  ? JSON.stringify(model.result.payload, null, 2)
+                  : '{}'
+              }
+            ></Code>
           </AccordionContent>
         </AccordionItem>
       </Accordion>

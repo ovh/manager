@@ -22,7 +22,7 @@ const AdvancedConfigurationUpdate = () => {
   );
   return (
     <>
-      <Alert variant="primary">
+      <Alert variant="information">
         <AlertDescription>
           {t('advancedConfigurationAlertMessage')}
         </AlertDescription>

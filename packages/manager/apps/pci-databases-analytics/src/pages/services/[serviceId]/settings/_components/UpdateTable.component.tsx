@@ -85,8 +85,8 @@ const UpdateTable = () => {
           <TableRow key={row.title}>
             <TableCell className="font-semibold">{row.title}</TableCell>
             <TableCell>{row.cell}</TableCell>
-            {row.updateButtonDisplayed && (
-              <TableCell className="text-right">
+            <TableCell className="text-right">
+              {row.updateButtonDisplayed && (
                 <Button
                   data-testid={`update-button-${row.title}`}
                   className="py-0 h-auto"
@@ -98,45 +98,48 @@ const UpdateTable = () => {
                 >
                   {t('tableUpdateButton')}
                 </Button>
-              </TableCell>
-            )}
+              )}
+            </TableCell>
           </TableRow>
         ))}
         <TableRow>
           <TableCell className="font-semibold">{t('tableNodes')}</TableCell>
           <TableCell>{service.nodes.length}</TableCell>
-          {availabilitiesFlavorQuery.data?.length > 1 && (
-            <TableCell className="flex gap-2 justify-end">
-              {service.capabilities.nodes?.delete && (
-                <Button
-                  data-testid="delete-node-button"
-                  mode={'ghost'}
-                  className="p-0 h-auto text-destructive"
-                  onClick={() => navigate('./delete-node')}
-                  disabled={
-                    service.capabilities.nodes?.delete ===
-                    database.service.capability.StateEnum.disabled
-                  }
-                >
-                  <MinusCircle />
-                </Button>
-              )}
-              {service.capabilities.nodes?.create && (
-                <Button
-                  data-testid="create-node-button"
-                  mode={'ghost'}
-                  className="p-0 h-auto text-primary"
-                  onClick={() => navigate('./add-node')}
-                  disabled={
-                    service.capabilities.nodes?.create ===
-                    database.service.capability.StateEnum.disabled
-                  }
-                >
-                  <PlusCircle />
-                </Button>
-              )}
-            </TableCell>
-          )}
+          <TableCell>
+            {availabilitiesFlavorQuery.data?.length > 1 && (
+              <div className="flex gap-2 justify-end">
+                {service.capabilities.nodes?.delete && (
+                  <Button
+                    data-testid="delete-node-button"
+                    mode={'ghost'}
+                    variant="critical"
+                    className="p-0 h-auto"
+                    onClick={() => navigate('./delete-node')}
+                    disabled={
+                      service.capabilities.nodes?.delete ===
+                      database.service.capability.StateEnum.disabled
+                    }
+                  >
+                    <MinusCircle className="size-4" />
+                  </Button>
+                )}
+                {service.capabilities.nodes?.create && (
+                  <Button
+                    data-testid="create-node-button"
+                    mode={'ghost'}
+                    className="p-0 h-auto"
+                    onClick={() => navigate('./add-node')}
+                    disabled={
+                      service.capabilities.nodes?.create ===
+                      database.service.capability.StateEnum.disabled
+                    }
+                  >
+                    <PlusCircle className="size-4" />
+                  </Button>
+                )}
+              </div>
+            )}
+          </TableCell>
         </TableRow>
       </TableBody>
     </Table>

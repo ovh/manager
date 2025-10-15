@@ -61,6 +61,7 @@ const Backups = () => {
                   number: service.backups?.retentionDays,
                 })}
               </TableCell>
+              <TableCell />
             </TableRow>
             <TableRow>
               <TableCell className="font-semibold">
@@ -70,7 +71,8 @@ const Backups = () => {
               <TableCell>
                 <Button
                   type="button"
-                  className="p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
+                  mode="ghost"
+                  className="rounded-full aspect-square h-auto p-1"
                 >
                   <Link to="./../settings">
                     <Pen className="w-4 h-4" />
