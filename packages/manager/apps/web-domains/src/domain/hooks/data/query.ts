@@ -9,19 +9,27 @@ import {
   getDomainResource,
   updateDomainResource,
 } from '@/domain/data/api/domainResources';
-import { TDomainOption, TDomainResource } from '@/domain/types/domainResource';
+import {
+  ServiceType,
+  TDomainOption,
+  TDomainResource,
+} from '@/domain/types/domainResource';
 import { getDomainZone } from '@/domain/data/api/domainZone';
 import { TDomainZone } from '@/domain/types/domainZone';
 import { order } from '@/domain/types/orderCatalog';
 import { getOrderCatalog } from '@/domain/data/api/order';
 import {
   getDomainContact,
+  getMXPlan,
   getServiceInformation,
+  getZimbra,
   updateServiceOption,
 } from '@/common/data/api/common.api';
 import { ServiceInfoUpdateEnum } from '@/common/enum/common.enum';
 import { TDomainContact, TServiceInfo } from '@/common/types/common.types';
 import { ServiceRoutes } from '@/alldoms/enum/service.enum';
+import { AssociatedEmailsServicesEnum } from '@/domain/enum/associatedServices.enum';
+import { emailOfferRedirect } from '@/domain/constants/susbcriptions';
 
 export const useGetDomainResource = (serviceName: string) => {
   const { data, isLoading, error } = useQuery<TDomainResource>({
@@ -187,3 +195,46 @@ export const useGetDomainContact = (contactID: string) => {
     domainContactError: error,
   };
 };
+
+export function useEmailService(serviceName: string) {
+  return useQuery<ServiceType>({
+    queryKey: ['service-detection', serviceName],
+    queryFn: async (): Promise<ServiceType> => {
+      try {
+        const zimbra = await getZimbra(serviceName);
+        if (zimbra && zimbra.length > 0) {
+          return {
+            serviceDetected: AssociatedEmailsServicesEnum.ZIMBRA,
+            data: zimbra[0].id,
+          };
+        }
+      } catch (_) {
+        // Zimbra not found try mxPlan
+      }
+
+      try {
+        const mxplan = await getMXPlan(serviceName);
+        if (mxplan) {
+          if (mxplan.offer === emailOfferRedirect) {
+            return {
+              serviceDetected: AssociatedEmailsServicesEnum.REDIRECTION,
+              data: serviceName,
+            };
+          }
+          return {
+            serviceDetected: AssociatedEmailsServicesEnum.MXPLAN,
+            data: serviceName,
+          };
+        }
+      } catch (_) {
+        // MXplan not found return redirect
+      }
+
+      return {
+        serviceDetected: AssociatedEmailsServicesEnum.REDIRECTION,
+        data: serviceName,
+      };
+    },
+    staleTime: 60_000,
+  });
+}

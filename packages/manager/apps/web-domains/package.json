@@ -48,9 +48,9 @@
     "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
-    "@ovh-ux/manager-vite-config": "0.13.4",
     "@ovh-ux/manager-static-analysis-kit": "*",
     "@ovh-ux/manager-tests-setup": "latest",
+    "@ovh-ux/manager-vite-config": "0.13.4",
     "@tanstack/react-query-devtools": "5.90.2"
   },
   "regions": [
