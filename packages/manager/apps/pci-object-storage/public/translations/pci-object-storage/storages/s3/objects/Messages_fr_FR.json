@@ -20,6 +20,7 @@
   "deleteObjectButtonCancel": "Annuler",
   "deleteObjectButtonConfirm": "Supprimer",
   "objTitle": "Objet",
+  "objectsBackLink": "Retour aux objets",
   "objectInfoTitle": "Caractéristique de l'objet",
   "versionsTitle": "Versions de l'objet",
   "versionsNumber": "Nombre de version",
