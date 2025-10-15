@@ -1,4 +1,5 @@
 import { LANGUAGES, fetchConfiguration } from '@ovh-ux/manager-config';
+import { getAuthUrl } from '@ovh-ux/manager-core-sso';
 
 import angular from 'angular';
 import { set, kebabCase } from 'lodash-es';
@@ -185,12 +186,7 @@ export const registerCoreModule = (environment, { onLocaleChange } = {}) => {
     .run((ssoAuthentication) => {
       ssoAuthentication.setLoggedIn(environment.getUser());
     })
-    .constant(
-      'OVH_SSO_AUTH_LOGIN_URL',
-      window.location.host === 'www.ovhtelecom.fr'
-        ? 'https://www.ovh.com/auth/'
-        : '/auth',
-    )
+    .constant('OVH_SSO_AUTH_LOGIN_URL', getAuthUrl())
     .factory('serviceTypeInterceptor', () => ({
       request(config) {
         const localConfig = config;
@@ -217,7 +213,7 @@ export const registerCoreModule = (environment, { onLocaleChange } = {}) => {
           `${OVH_SSO_AUTH_LOGIN_URL}?action=disconnect`,
         );
         ssoAuthenticationProvider.setSignUpUrl(
-          `${OVH_SSO_AUTH_LOGIN_URL}/signup/new/`,
+          `${window.location.origin}/signup/`,
         );
 
         // if (!constants.prodMode) {

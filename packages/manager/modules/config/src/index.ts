@@ -1,13 +1,15 @@
+import { getLogoutUrl } from '@ovh-ux/manager-core-sso';
 import { useReket } from '@ovh-ux/ovh-reket';
 import { getHeaders } from '@ovh-ux/request-tagger';
 
+import { Application } from './application';
 import Environment from './environment';
 import { Region } from './environment/region.enum';
 
 export const HOSTNAME_REGIONS: Record<string, Region> = {
-  'www.ovh.com': Region.EU,
-  'ca.ovh.com': Region.CA,
-  'us.ovhcloud.com': Region.US,
+  'manager.eu.ovhcloud.com': Region.EU,
+  'manager.ca.ovhcloud.com': Region.CA,
+  'manager.us.ovhcloud.com': Region.US,
 };
 
 export const RESTRICTED_DEFAULTS: Record<string, string> = {
@@ -39,6 +41,38 @@ interface ApiError {
   };
 }
 
+const getNewUrl = (appName = '', currentValue = '', region: 'EU' | 'CA' | 'US') => {
+  if (appName === 'sunrise') {
+    return currentValue;
+  }
+
+  const oldDomains = {
+    EU: 'www.ovh.com/manager',
+    CA: 'ca.ovh.com/manager',
+    US: 'us.ovhcloud.com/manager',
+  };
+
+  return currentValue.replace(oldDomains[region], `manager.${region.toLowerCase()}.ovhcloud.com`);
+};
+
+// TODO: Temporarily update the domains of µ-app URLs as they are still pointing to the old ones from BFF. To clean this method after BFF deployment
+const updateDomain = (configObj: Environment) => {
+  const { region } = configObj;
+  Object.entries(configObj.applicationURLs).forEach(([key, value]) => {
+    configObj.applicationURLs[key] = getNewUrl(key, value, region);
+  });
+  Object.entries(configObj.applications).forEach(([key, value]) => {
+    (configObj.applications[key] as Application).url = getNewUrl(key, value.url, region);
+    if ((configObj.applications[key] as Application).publicURL) {
+      (configObj.applications[key] as Application).publicURL = getNewUrl(
+        key,
+        value.publicURL,
+        region,
+      );
+    }
+  });
+};
+
 export const fetchConfiguration = async (applicationName: string): Promise<Environment> => {
   const environment = new Environment();
   const configRequestOptions = {
@@ -59,6 +93,7 @@ export const fetchConfiguration = async (applicationName: string): Promise<Envir
 
   return Reket.get<Environment>(configurationURL, configRequestOptions)
     .then((config) => {
+      updateDomain(config);
       environment.setRegion(config.region);
       environment.setUser(config.user);
       environment.setApplicationURLs(config.applicationURLs);
@@ -72,7 +107,7 @@ export const fetchConfiguration = async (applicationName: string): Promise<Envir
       if (apiError && apiError.status === 401 && !isTopLevelApplication()) {
         window.parent.postMessage({
           id: 'ovh-auth-redirect',
-          url: `/auth?action=disconnect&onsuccess=${encodeURIComponent(window.location.href)}`,
+          url: getLogoutUrl(window.location.href),
         });
       }
       if (apiError?.status === 403) {

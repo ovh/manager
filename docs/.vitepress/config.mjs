@@ -18,7 +18,7 @@ export default defineConfig({
       {
         text: 'Links',
         items: [
-          { text: 'Manager', link: 'https://www.ovh.com/manager' },
+          { text: 'Manager', link: 'https://manager.eu.ovhcloud.com' },
           {
             text: 'Stay Tuned',
             items: [

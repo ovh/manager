@@ -647,7 +647,7 @@ describe('Layout.page', () => {
       expect(serviceLink).not.toBeNull();
       expect(serviceLink).toHaveAttribute(
         'href',
-        'https://www.ovh.com/manager/#/web/configuration/hosting/serviceResiliated',
+        'https://manager.eu.ovhcloud.com/#/web/configuration/hosting/serviceResiliated',
       );
 
       expect(getByTestId('service_with_termination_date')).not.toBeNull();
@@ -661,7 +661,7 @@ describe('Layout.page', () => {
       expect(serviceLink).not.toBeNull();
       expect(serviceLink).toHaveAttribute(
         'href',
-        'https://www.ovh.com/manager/#/web/configuration/domain/serviceWithManualRenewNotResiliatedWithoutDebt/information',
+        'https://manager.eu.ovhcloud.com/#/web/configuration/domain/serviceWithManualRenewNotResiliatedWithoutDebt/information',
       );
 
       expect(getByTestId('service_valid_until_date')).not.toBeNull();
@@ -673,7 +673,7 @@ describe('Layout.page', () => {
       expect(serviceLink).not.toBeNull();
       expect(serviceLink).toHaveAttribute(
         'href',
-        'https://www.ovh.com/manager/#/dedicated/server/serviceOneShotWithoutResiliation',
+        'https://manager.eu.ovhcloud.com/#/dedicated/server/serviceOneShotWithoutResiliation',
       );
 
       expect(getByTestId('service_without_expiration_date')).not.toBeNull();

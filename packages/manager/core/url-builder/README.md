@@ -15,12 +15,12 @@ When you want to build an URL for an outside application, you will use `url-buil
 
 ### Examples
 
-Build the URL that redirect to `#/catalog` state from the `https://www.ovh.com/manager/` base URL with query parameter (`expand`)
+Build the URL that redirect to `#/catalog` state from the `https://manager.eu.ovhcloud.com/` base URL with query parameter (`expand`)
 
 ```ts
 import { buildURL } from '@ovh-ux/url-builder';
 
-const url = buildURL('https://www.ovh.com/manager/', '#/catalog', {
+const url = buildURL('https://manager.eu.ovhcloud.com/', '#/catalog', {
   expand: true,
 });
 // use `url`;
@@ -33,11 +33,11 @@ import { buildURLs } from '@ovh-ux/url-builder';
 
 const [dashboard, catalog] = buildURLs([
   {
-    baseURL: 'https://www.ovh.com/manager/',
+    baseURL: 'https://manager.eu.ovhcloud.com/',
     path: '#/',
     params: { expand: true },
   },
-  { baseURL: 'https://www.ovh.com/manager/', path: '#/catalog' },
+  { baseURL: 'https://manager.eu.ovhcloud.com/', path: '#/catalog' },
 ]);
 // use `dashboard` and `catalog` URLs
 ```
@@ -49,13 +49,13 @@ import { buildURLs } from '@ovh-ux/url-builder';
 
 const { dashboard, catalog } = buildURLs({
   dashboard: {
-    baseURL: 'https://www.ovh.com/manager/',
+    baseURL: 'https://manager.eu.ovhcloud.com/',
     path: '#/',
     params: { expand: true },
   },
-  catalog: { baseURL: 'https://www.ovh.com/manager/', path: '#/catalog' },
+  catalog: { baseURL: 'https://manager.eu.ovhcloud.com/', path: '#/catalog' },
   emailDomainProducts: {
-    baseURL: 'https://www.ovh.com/manager/',
+    baseURL: 'https://manager.eu.ovhcloud.com/',
     path: '#/:product',
     params: { product: 'email_domain' },
   },
