@@ -32,21 +32,3 @@ export function createQPUFlavorPricingList(
     return qpu;
   });
 }
-
-export function getQPUFlavorPricing(
-  qpuFlavorId: string,
-  catalog: publicCatalog.Catalog,
-  productPrefix: string,
-): AppPricing {
-  const qpuFlavorPlanCode = `${productPrefix}.${qpuFlavorId}.unit.consumption`;
-  const qpuFlavorPrice = catalog.addons.find(
-    (ad) => ad.planCode === qpuFlavorPlanCode,
-  )?.pricings;
-  if (!qpuFlavorPrice?.length) {
-    return { price: 0, tax: 0 };
-  }
-  return {
-    price: qpuFlavorPrice[0].price,
-    tax: qpuFlavorPrice[0].tax,
-  };
-}

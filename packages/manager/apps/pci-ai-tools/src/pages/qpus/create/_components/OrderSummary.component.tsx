@@ -9,15 +9,16 @@ import {
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { bytesConverter } from '@/lib/bytesHelper';
-import { OrderVolumes, Qpu } from '@/types/orderFunnel';
+import { OrderVolumes } from '@/types/orderFunnel';
 import { humanizeFramework } from '@/lib/orderFunnelHelper';
 import ai from '@/types/AI';
+import quantum from '@/types/Quantum';
 
 interface OrderSummaryProps {
   order: {
     region: ai.capabilities.Region;
     flavor: ai.capabilities.Flavor;
-    QPUFlavor? : Qpu;
+    qpuFlavor: quantum.capabilities.QPUFlavor;
     resourcesQuantity: number;
     framework: ai.capabilities.notebook.Framework;
     version: string;
@@ -144,14 +145,14 @@ const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
               })}
             </span>
           </div>
-          {order.QPUFlavor && (
+          {order.qpuFlavor && (
             <>
-              <span className="capitalize"> 1 {order.QPUFlavor?.name}</span>
+              <span className="capitalize"> 1 {order.qpuFlavor?.name}</span>
 
               <div className="flex items-center pl-4 gap-2">
                 <Cpu className="size-4" />
                 <span>
-                  {order.QPUFlavor?.qubits} {t('qpuQubits')}
+                  {order.qpuFlavor?.qubits} {t('qpuQubits')}
                 </span>
               </div>
             </>

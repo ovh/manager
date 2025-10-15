@@ -23,7 +23,6 @@ import { createFlavorPricingList } from '@/lib/priceFlavorHelper';
 import publicCatalog from '@/types/Catalog';
 import { useGetFramework } from '@/data/hooks/ai/capabilities/useGetFramework.hook';
 import { useGetEditor } from '@/data/hooks/ai/capabilities/useGetEditor.hook';
-import { useQuantum } from '@/hooks/useQuantum.hook';
 import { createQPUFlavorPricingList } from '@/lib/priceQPUFlavorHelper';
 import { useGetQPUFlavors } from '@/data/hooks/ai/capabilities/useGetQPUFlavors.hook';
 
@@ -33,14 +32,13 @@ export function useOrderFunnel(
   suggestions: NotebookSuggestions,
 ) {
   const { projectId } = useParams();
-  const { isQuantum } = useQuantum();
   const orderSchema = z.object({
     region: z.string(),
     flavorWithQuantity: z.object({
       flavor: z.string(),
       quantity: z.coerce.number(),
     }),
-    QPUFlavor: z.string().optional(),
+    qpuFlavor: z.string().optional(),
     frameworkWithVersion: z.object({
       framework: z.string(),
       version: z.string(),
@@ -88,7 +86,7 @@ export function useOrderFunnel(
       region: suggestions.defaultRegion,
       flavorWithQuantity: { flavor: '', quantity: 1 },
       frameworkWithVersion: { framework: '', version: '' },
-      QPUFlavor: '',
+      qpuFlavor: '',
       editor: '',
       notebookName: generateName(),
       privacy: suggestions.suggestions.find(
@@ -111,12 +109,12 @@ export function useOrderFunnel(
   const labels = form.watch('labels');
   const sshKey = form.watch('sshKey');
   const volumes = form.watch('volumes');
-  const QPUFlavorId = form.watch('QPUFlavor');
+  const qpuFlavorId = form.watch('qpuFlavor');
 
   const frameworkQuery = useGetFramework(projectId, region);
   const editorQuery = useGetEditor(projectId, region);
   const flavorQuery = useGetFlavor(projectId, region);
-  const QPUFlavorQuery = useGetQPUFlavors(projectId, region);
+  const qpuFlavorQuery = useGetQPUFlavors(projectId, region);
   const datastoreQuery = useGetDatastores(projectId, region);
   const containersQuery = useGetDatastoresWithContainers(
     projectId,
@@ -158,9 +156,9 @@ export function useOrderFunnel(
   );
 
   const listQpuFlavor: Qpu[] = useMemo(() => {
-    if (QPUFlavorQuery.isLoading) return [];
+    if (qpuFlavorQuery.isLoading) return [];
     const allQpus = createQPUFlavorPricingList(
-      QPUFlavorQuery.data,
+      qpuFlavorQuery.data,
       catalog,
       'quantum-processing-unit',
     );
@@ -168,12 +166,12 @@ export function useOrderFunnel(
     return allQpus.filter((qpu) =>
       frameworkObject.supportedQpus?.includes(qpu.id),
     );
-  }, [region, QPUFlavorQuery.isSuccess, QPUFlavorQuery.data, frameworkObject]);
+  }, [region, qpuFlavorQuery.isSuccess, qpuFlavorQuery.data, frameworkObject]);
 
-  const QpuflavorObject: Qpu | undefined = useMemo(() => {
+  const qpuflavorObject: Qpu | undefined = useMemo(() => {
     if (!listQpuFlavor?.length) return undefined;
-    return listQpuFlavor.find((qpu) => qpu.id === QPUFlavorId);
-  }, [listQpuFlavor, QPUFlavorId]);
+    return listQpuFlavor.find((qpu) => qpu.id === qpuFlavorId);
+  }, [listQpuFlavor, qpuFlavorId]);
 
   const versionObject: string | undefined = useMemo(
     () =>
@@ -262,7 +260,7 @@ export function useOrderFunnel(
       labels: labelsObject,
       sshKey: publicSshKeyList,
       volumes,
-      QPUFlavor: QpuflavorObject,
+      qpuFlavor: qpuflavorObject,
     },
   };
 }

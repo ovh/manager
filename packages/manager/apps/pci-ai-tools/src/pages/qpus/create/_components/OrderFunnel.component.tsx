@@ -484,7 +484,7 @@ const OrderFunnel = ({
 
                 <FormField
                   control={model.form.control}
-                  name="QPUFlavor"
+                  name="qpuFlavor"
                   render={({ field }) => {
                     return (
                       <FormItem>
@@ -494,7 +494,7 @@ const OrderFunnel = ({
                             qpus={model.lists.qpuFlavors}
                             value={field.value}
                             onChange={(newQPUFlavor) => {
-                              model.form.setValue('QPUFlavor', newQPUFlavor);
+                              model.form.setValue('qpuFlavor', newQPUFlavor);
                             }}
                           />
                         </FormControl>
@@ -709,11 +709,11 @@ const OrderFunnel = ({
                   section="Notebook: "
                 />
               )}
-              {model.result.QPUFlavor && (
+              {model.result.qpuFlavor && (
                 <span>
                   <OrderPrice
                     minuteConverter={1}
-                    price={model.result.QPUFlavor.pricing[0]}
+                    price={model.result.qpuFlavor.pricing[0]}
                     quantity={1}
                     section="QPU: "
                     showPriceLabel={false}
@@ -727,13 +727,13 @@ const OrderFunnel = ({
                         (model.result.flavor?.pricing[0]?.price || 0) *
                           (model.result.resourcesQuantity || 0) *
                           60 +
-                        (model.result.QPUFlavor.pricing[0]?.price || 0) * 3600
+                        (model.result.qpuFlavor.pricing[0]?.price || 0) * 3600
                       }
                       taxInUcents={
                         (model.result.flavor?.pricing[0]?.tax || 0) *
                           (model.result.resourcesQuantity || 0) *
                           60 +
-                        (model.result.QPUFlavor.pricing[0]?.tax || 0) * 3600
+                        (model.result.qpuFlavor.pricing[0]?.tax || 0) * 3600
                       }
                       decimals={2}
                       displayInHour={true}

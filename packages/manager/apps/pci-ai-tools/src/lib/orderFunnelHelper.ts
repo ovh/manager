@@ -58,7 +58,7 @@ export function getNotebookSpec(formResult: NotebookOrderResult) {
     sshPublicKeys: formResult.sshKey,
     labels: formResult.labels,
     quantumResources: {
-      qpuFlavorId: formResult?.QPUFlavor?.id,
+      qpuFlavorId: formResult?.qpuFlavor?.id,
     },
   };
 

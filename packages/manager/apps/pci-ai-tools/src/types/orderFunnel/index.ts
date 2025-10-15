@@ -145,7 +145,7 @@ export interface NotebookOrderResult {
   };
   sshKey: string[];
   volumes: OrderVolumes[];
-  QPUFlavor?: Qpu;
+  qpuFlavor?: Qpu;
 }
 
 export interface JobOrderResult {

@@ -1,7 +1,7 @@
 import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
 import { getQPUFlavor } from '@/data/api/ai/capabilities/capabilities.api';
 import { useQueryImmediateRefetch } from '@/hooks/useImmediateRefetch';
-import { Qpu } from '@/types/orderFunnel';
+import quantum from '@/types/Quantum';
 
 export function useGetQPUFlavor(
   projectId: string,
@@ -22,5 +22,5 @@ export function useGetQPUFlavor(
     queryKey,
     queryFn: () => getQPUFlavor({ projectId, region, qpuFlavorId }),
     ...options,
-  }) as UseQueryResult<Qpu, Error>;
+  }) as UseQueryResult<quantum.capabilities.QPUFlavor[], Error>;
 }

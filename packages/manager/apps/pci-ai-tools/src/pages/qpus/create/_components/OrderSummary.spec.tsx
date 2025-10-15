@@ -13,12 +13,14 @@ import { mockedEditor } from '@/__tests__/helpers/mocks/capabilities/notebookEdi
 import { mockedOrderVolumesS3 } from '@/__tests__/helpers/mocks/volume/datastore';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedFramework } from '@/__tests__/helpers/mocks/capabilities/notebookFramework';
+import { mockedCapabilitiesQPUFlavor } from '@/__tests__/helpers/mocks/capabilities/qpuFlavor';
 
 const mockedOrder = {
   region: mockedCapabilitiesRegionGRA,
   flavor: mockedCapabilitiesFlavorCPU,
   resourcesQuantity: 2,
   framework: mockedFramework,
+  qpuFlavor: mockedCapabilitiesQPUFlavor,
   version: 'version',
   editor: mockedEditor,
   notebookName: 'myNotebook',

@@ -11,7 +11,6 @@ import {
 } from '@datatr-ux/uxlib';
 import { cn } from '@/lib/utils';
 import { Qpu } from '@/types/orderFunnel';
-import ai from '@/types/AI';
 import Price from '@/components/price/Price.component';
 
 interface QpusSelectProps {
