@@ -1,6 +1,13 @@
-import { v6 } from '@ovh-ux/manager-core-api';
+import { v2, v6 } from '@ovh-ux/manager-core-api';
 import { ServiceInfoUpdateEnum } from '@/common/enum/common.enum';
-import { TDomainContact, TServiceInfo, TServiceOption } from '@/common/types/common.types';
+import {
+  TDomainContact,
+  TMxPlan,
+  TServiceInfo,
+  TServiceOption,
+  TZimbra,
+  TZimbraPlateform,
+} from '@/common/types/common.types';
 
 export const getServiceInformation = async (
   serviceName: string,
@@ -72,4 +79,27 @@ export const getDomainContact = async (
 ): Promise<TDomainContact> => {
   const { data } = await v6.get(`/domain/contact/${contactID}`);
   return data;
+};
+
+export const getZimbra = async (serviceName: string): Promise<TZimbra[]> => {
+  const { data: zimbraPlateform } = await v2.get<TZimbraPlateform[]>(
+    `/zimbra/platform`,
+  );
+
+  const { data: zimbraDetails } = await v2.get<TZimbra[]>(
+    `/zimbra/platform/${zimbraPlateform[0].id}/domain?domainName=${serviceName}`,
+  );
+  if (zimbraDetails.length > 0) {
+    return zimbraDetails.map((val) => ({
+      ...val,
+      plateformId: zimbraPlateform[0].id,
+    }));
+  }
+
+  return zimbraDetails;
+};
+
+export const getMXPlan = async (serviceName: string): Promise<TMxPlan> => {
+  const { data: mxPlan } = await v6.get(`/email/domain/${serviceName}`);
+  return mxPlan;
 };
