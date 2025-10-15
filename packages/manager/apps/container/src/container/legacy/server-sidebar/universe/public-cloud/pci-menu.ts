@@ -44,7 +44,6 @@ export const features = [
   'public-cloud:contacts',
   'public-cloud:project-settings',
   'data-platform',
-  'key-management-service',
   'okms',
   'okms:key-management-service',
   'okms:secret-manager',
@@ -426,20 +425,6 @@ export function getPciProjectMenu(
               'https://auth.cloud.ovh.us/v3/auth/OS-FEDERATION/identity_providers/ovhcloud-us/protocols/openid/websso?origin=https://horizon.cloud.ovh.us/auth/websso/',
           }[region],
           external: true,
-        },
-      ],
-    });
-  }
-
-  if (isFeaturesAvailable('key-management-service')) {
-    pciMenu.push({
-      id: 'identity-security-legacy',
-      title: 'Identity, Security & Operations',
-      subItems: [
-        {
-          id: 'key-management-service',
-          title: 'Key Management Service',
-          href: getURL('key-management-service', `/`),
         },
       ],
     });
