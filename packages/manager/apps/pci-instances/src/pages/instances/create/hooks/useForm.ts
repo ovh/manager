@@ -23,10 +23,11 @@ export const useForm = (projectId: string) => {
 
   const continentDefaultValue = continents[0]!.value;
 
-  const localizations = selectLocalizations(deps)(
+  const { localizations } = selectLocalizations(deps)(
     projectId,
     deploymentModesDefaultValue,
     continentDefaultValue,
+    'total',
   );
 
   const macroRegionDefaultValue = localizations[0]!.region;

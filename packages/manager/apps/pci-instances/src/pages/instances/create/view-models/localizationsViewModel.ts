@@ -6,6 +6,8 @@ import { TCountryIsoCode } from '@/components/flag/country-iso-code';
 import { getLocalZoneTranslationKey } from '@/utils';
 import { MessageProviderPort } from '@/domain/port/messageProvider/left/port';
 
+const MAX_DISPLAYED_LOCALIZATIONS = 12;
+
 type TMicroRegionDataForCard = {
   name: string;
   availabilityZones: string[];
@@ -13,7 +15,7 @@ type TMicroRegionDataForCard = {
   isInMaintenance: boolean;
 };
 
-export type TRegionDataForCard = {
+export type TRegionData = {
   city: string;
   region: string | null;
   deploymentMode: TDeploymentMode;
@@ -35,7 +37,7 @@ const mapRegionToLocalizationCard = (
   microRegionsById: Map<string, TMicroRegion>,
 
   getMessageFn: MessageProviderPort['getMessage'],
-) => (region: TMacroRegion): TRegionDataForCard => {
+) => (region: TMacroRegion): TRegionData => {
   const regionName =
     region.deploymentMode === 'localzone'
       ? getLocalZoneTranslationKey(region.name)
@@ -52,30 +54,38 @@ const mapRegionToLocalizationCard = (
     }),
   };
 };
-type TSelectLocalizationsForCard = (
+
+export type TRegionDataForCard = {
+  localizations: TRegionData[];
+  hasMoreLocalizations: boolean;
+};
+
+type TSelectLocalizationsData = (
   projectId: string,
   deploymentMode: TDeploymentMode[],
   continentId: string,
-) => TRegionDataForCard[];
+  display: 'partial' | 'total',
+) => TRegionDataForCard;
 
-export const selectLocalizations: Reader<Deps, TSelectLocalizationsForCard> = (
+const emptyLocalizations = {
+  localizations: [],
+  hasMoreLocalizations: false,
+};
+
+export const selectLocalizations: Reader<Deps, TSelectLocalizationsData> = (
   deps,
-) => (
-  projectId: string,
-  deploymentModes: TDeploymentMode[],
-  continentId: string,
-): TRegionDataForCard[] => {
+) => (projectId, deploymentModes, continentId, display) => {
   const { messageProviderPort, instancesCatalogPort } = deps;
   const data = instancesCatalogPort.selectInstancesCatalog(projectId);
 
-  if (!data) return [];
+  if (!data) return emptyLocalizations;
 
   const macroRegionsIds =
     continentId === 'all'
       ? data.entities.macroRegions.allIds
       : data.entities.continents.byId.get(continentId)?.datacenterIds;
 
-  if (!macroRegionsIds) return [];
+  if (!macroRegionsIds) return emptyLocalizations;
 
   const matchingContinentAndDeploymentModeRegions = macroRegionsIds.reduce(
     (acc, macroRegionId): TMacroRegion[] => {
@@ -93,10 +103,18 @@ export const selectLocalizations: Reader<Deps, TSelectLocalizationsForCard> = (
     [] as TMacroRegion[],
   );
 
-  return matchingContinentAndDeploymentModeRegions.map(
+  const localizations = matchingContinentAndDeploymentModeRegions.map(
     mapRegionToLocalizationCard(
       data.entities.microRegions.byId,
       messageProviderPort.getMessage,
     ),
   );
+
+  return {
+    localizations:
+      display === 'total'
+        ? localizations
+        : localizations.slice(0, MAX_DISPLAYED_LOCALIZATIONS),
+    hasMoreLocalizations: localizations.length > MAX_DISPLAYED_LOCALIZATIONS,
+  };
 };

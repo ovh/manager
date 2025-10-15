@@ -46,7 +46,7 @@ export const ContinentSelection = () => {
         return (
           <FormField className="max-w-[32%]">
             <FormFieldLabel>
-              {t('pci_instance_creation_select_localization_label')}
+              {t('pci_instance_creation_select_continent_label')}
             </FormFieldLabel>
             <Select
               items={continentOptions}

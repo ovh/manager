@@ -5,7 +5,7 @@ import { TAggregatedInstance } from '@/types/instance/entity.type';
 import { TInstancesCatalog } from '@/domain/entities/instancesCatalog';
 import InstanceImage from '../../../public/assets/instance.png';
 import { TDeploymentMode } from '@/types/instance/common.type';
-import { TRegionDataForCard } from '@/pages/instances/create/view-models/localizationsViewModel';
+import { TRegionData } from '@/pages/instances/create/view-models/localizationsViewModel';
 import { TContinentData } from '@/pages/instances/create/view-models/continentsViewModel';
 
 export const mockedInstance: TAggregatedInstance = {
@@ -319,7 +319,7 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
   },
 };
 
-export const mockedLocalizationsData: TRegionDataForCard[] = [
+export const mockedLocalizationsData: TRegionData[] = [
   {
     city: 'regions:manager_components_region_GRA',
     region: 'GRA',
@@ -356,7 +356,7 @@ export const mockedLocalizationsData: TRegionDataForCard[] = [
   },
 ];
 
-export const mockedLocalizationsDataForSelectedDeploymentZoneAndAllContinents: TRegionDataForCard[] = [
+export const mockedLocalizationsDataForSelectedDeploymentZoneAndAllContinents: TRegionData[] = [
   {
     city: 'regions:manager_components_region_GRA',
     region: 'GRA',
@@ -407,7 +407,7 @@ export const mockedLocalizationsDataForSelectedDeploymentZoneAndAllContinents: T
   },
 ];
 
-export const mockedLocalizationsDataForNoneDeploymentZoneAndAllContinents: TRegionDataForCard[] = [
+export const mockedLocalizationsDataForNoneDeploymentZoneAndAllContinents: TRegionData[] = [
   {
     city: 'regions:manager_components_region_GRA',
     region: 'GRA',
@@ -478,16 +478,16 @@ export const mockedLocalizationsDataForNoneDeploymentZoneAndAllContinents: TRegi
 
 export const mockedContinentsSelectorData: TContinentData[] = [
   {
-    label: 'common:pci_instances_common_instance_continent_all',
-    value: 'all',
-  },
-  {
     label: 'common:pci_instances_common_instance_continent_western_europe',
     value: 'western_europe',
   },
   {
     label: 'common:pci_instances_common_instance_continent_north_america',
     value: 'north_america',
+  },
+  {
+    label: 'common:pci_instances_common_instance_continent_all',
+    value: 'all',
   },
 ];
 

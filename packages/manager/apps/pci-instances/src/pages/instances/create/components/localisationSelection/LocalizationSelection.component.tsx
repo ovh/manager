@@ -1,51 +1,126 @@
-import { Link, Text } from '@ovhcloud/ods-react';
-import { useTranslation } from 'react-i18next';
-import { Controller, useFormContext } from 'react-hook-form';
+import {
+  PageLocation,
+  ButtonType,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import {
+  Checkbox,
+  CheckboxControl,
+  CheckboxLabel,
+  RadioGroup,
+} from '@ovhcloud/ods-react';
+import { LocalizationCard } from '@/components/localizationCard/LocalizationCard.component';
+import { deps } from '@/deps/deps';
+import { selectLocalizations } from '../../view-models/localizationsViewModel';
+import { useProjectId } from '@/hooks/project/useProjectId';
+import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { TInstanceCreationForm } from '../../CreateInstance.page';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { HelpDrawer } from '@/components/helpDrawer/HelpDrawer.component';
-import { useGuideLink } from '@/hooks/url/useGuideLink';
-import LocationField from './LocationField.component';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { isMicroRegionAvailable } from '../../view-models/microRegionsViewModel';
+import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 import { ContinentSelection } from '../continentSelection/ContinentSelection.component';
 
 export const LocalizationSelection = () => {
-  const { t } = useTranslation([NAMESPACES.ONBOARDING, 'creation']);
-  const { control } = useFormContext<TInstanceCreationForm>();
-  const guide = useGuideLink('LOCATION');
+  const projectId = useProjectId();
+  const { trackClick } = useOvhTracking();
+  const [seeAll, setSeeAll] = useState(false);
+  const { t } = useTranslation('creation');
+
+  const { control, setValue } = useFormContext<TInstanceCreationForm>();
+  const [deploymentModes, selectedContinent, selectedRegion] = useWatch({
+    control,
+    name: ['deploymentModes', 'continent', 'macroRegion'],
+  });
+
+  const { localizations, hasMoreLocalizations } = useMemo(
+    () =>
+      selectLocalizations(deps)(
+        projectId,
+        deploymentModes,
+        selectedContinent,
+        seeAll ? 'total' : 'partial',
+      ),
+    [deploymentModes, projectId, seeAll, selectedContinent],
+  );
+
+  const isRegionAvailable = useCallback(
+    (region: string) => isMicroRegionAvailable(deps)(projectId, region),
+    [projectId],
+  );
+
+  const handleSelectRegion = (region: string | null) => {
+    if (!region) return;
+    setValue('macroRegion', region);
+    trackClick({
+      location: PageLocation.funnel,
+      buttonType: ButtonType.tile,
+      actionType: 'action',
+      actions: ['add_instance', 'select_localisation', region],
+    });
+  };
+
+  const handleDisplayChange = () => setSeeAll(!seeAll);
+
+  useEffect(() => {
+    const availablePreviousSelectedLocalization = localizations.find(
+      (localization) => localization.region === selectedRegion,
+    );
+
+    if (!availablePreviousSelectedLocalization && localizations[0]?.region) {
+      setValue('macroRegion', localizations[0].region);
+    }
+  }, [localizations, selectedRegion, setValue]);
 
   return (
     <section>
-      <div className="flex flex-col gap-4">
-        <div className="flex items-center space-x-4">
-          <Text preset="heading-4">
-            {t('creation:pci_instance_creation_choose_localization_title')}
-          </Text>
-          <HelpDrawer>
-            <Text preset="paragraph" className="mb-4">
-              {t('creation:pci_instance_creation_select_localization_help')}
-            </Text>
-            <Link
-              className="visited:text-[var(--ods-color-primary-500)]"
-              href={guide}
-              target="_blank"
-            >
-              {t('find_out_more')}
-            </Link>
-          </HelpDrawer>
-        </div>
-
-        <Text preset="paragraph">
-          {t('creation:pci_instance_creation_select_localization_informations')}
-        </Text>
-        <div className="pt-7 pb-5">
-          <ContinentSelection />
-        </div>
+      <div className="flex justify-between pt-5 pb-5">
+        <ContinentSelection />
+        <Checkbox
+          className="self-end"
+          disabled={!hasMoreLocalizations}
+          onCheckedChange={handleDisplayChange}
+        >
+          <CheckboxControl />
+          <CheckboxLabel className="text-[--ods-color-text]">
+            {t('creation:pci_instance_creation_show_all_localizations')}
+          </CheckboxLabel>
+        </Checkbox>
       </div>
-      <Controller
-        name="macroRegion"
-        control={control}
-        render={({ field }) => <LocationField onChange={field.onChange} />}
-      />
+      {selectedRegion && (
+        <Controller
+          name="macroRegion"
+          control={control}
+          render={() => (
+            <div className="flex flex-col">
+              <div className={clsx(seeAll && 'max-h-[450px] overflow-auto')}>
+                <RadioGroup
+                  value={selectedRegion}
+                  onValueChange={({ value }) => handleSelectRegion(value)}
+                >
+                  <div className="grid grid-cols-3 gap-6">
+                    {localizations.map(
+                      ({ city, region, countryCode, deploymentMode }) =>
+                        region && (
+                          <LocalizationCard
+                            key={region}
+                            title={city}
+                            region={region}
+                            countryCode={countryCode}
+                            deploymentMode={deploymentMode}
+                            onSelect={handleSelectRegion}
+                            isSelected={selectedRegion === region}
+                            disabled={!isRegionAvailable(region)}
+                          />
+                        ),
+                    )}
+                  </div>
+                </RadioGroup>
+              </div>
+            </div>
+          )}
+        />
+      )}
     </section>
   );
 };

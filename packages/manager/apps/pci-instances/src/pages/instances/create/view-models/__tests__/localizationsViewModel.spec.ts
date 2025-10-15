@@ -27,8 +27,12 @@ describe('SelectLocalizations ViewModel', () => {
         mockedProjectId,
         ['region', 'region-3-az'],
         'western_europe',
+        'total',
       ),
-    ).toStrictEqual(mockedLocalizationsData);
+    ).toStrictEqual({
+      localizations: mockedLocalizationsData,
+      hasMoreLocalizations: false,
+    });
   });
 
   it('should return all regions for the selected deployment zones & "all" continent selected', () => {
@@ -37,17 +41,20 @@ describe('SelectLocalizations ViewModel', () => {
         mockedProjectId,
         ['region', 'region-3-az'],
         'all',
+        'total',
       ),
-    ).toStrictEqual(
-      mockedLocalizationsDataForSelectedDeploymentZoneAndAllContinents,
-    );
+    ).toStrictEqual({
+      localizations: mockedLocalizationsDataForSelectedDeploymentZoneAndAllContinents,
+      hasMoreLocalizations: false,
+    });
   });
 
   it('should return all available regions for "all" continent selected and none deployment zone selected', () => {
     expect(
-      selectLocalizations(fakeDeps)(mockedProjectId, [], 'all'),
-    ).toStrictEqual(
-      mockedLocalizationsDataForNoneDeploymentZoneAndAllContinents,
-    );
+      selectLocalizations(fakeDeps)(mockedProjectId, [], 'all', 'total'),
+    ).toStrictEqual({
+      localizations: mockedLocalizationsDataForNoneDeploymentZoneAndAllContinents,
+      hasMoreLocalizations: false,
+    });
   });
 });

@@ -21,7 +21,7 @@ export const selectContinent: Reader<Deps, TSelectContinentData> = (
   if (!data) return [];
 
   const continentsIds = !deploymentModes.length
-    ? data.entities.continents.allIds
+    ? ['all', ...data.entities.continents.allIds]
     : [
         ...new Set(
           deploymentModes.flatMap(
@@ -29,9 +29,10 @@ export const selectContinent: Reader<Deps, TSelectContinentData> = (
               data.relations.continentIdsByDeploymentModeId.get(mode) ?? [],
           ),
         ),
+        'all',
       ];
 
-  return ['all', ...continentsIds].map((continent) => ({
+  return continentsIds.map((continent) => ({
     label: messageProviderPort.getMessage(
       `common:pci_instances_common_instance_continent_${continent}`,
     ),
