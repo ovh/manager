@@ -12,6 +12,7 @@ import { SuspensionStateEnum } from '@/domain/enum/suspensionState.enum';
 import { TaskStatusEnum } from '@/domain/enum/taskStatus.enum';
 import { OptionStateEnum } from '../enum/optionState.enum';
 import { OptionEnum } from '../../common/enum/option.enum';
+import { AssociatedEmailsServicesEnum } from '../enum/associatedServices.enum';
 
 export interface TNameServer {
   ipv4?: string | null;
@@ -115,3 +116,8 @@ export type StatusDetails = {
   statusColor: BADGE_COLOR;
   i18nKey: string;
 };
+
+export type ServiceType =
+  | { serviceDetected: AssociatedEmailsServicesEnum.ZIMBRA; data: string }
+  | { serviceDetected: AssociatedEmailsServicesEnum.MXPLAN; data: string }
+  | { serviceDetected: AssociatedEmailsServicesEnum.REDIRECTION; data: string };
