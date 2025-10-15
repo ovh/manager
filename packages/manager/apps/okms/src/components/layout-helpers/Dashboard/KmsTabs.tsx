@@ -67,6 +67,7 @@ const KmsTabs: React.FC<KmsTabsProps> = ({ tabs }) => {
     >
       {tabs.map((tab: KmsTabProps, index) => (
         <OdsTab
+          data-testid={tab.url}
           key={`ods-tab-bar-item-${tab.url}`}
           id={tab.url}
           isSelected={index === activeTabIndex}
