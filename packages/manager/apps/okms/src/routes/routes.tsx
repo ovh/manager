@@ -12,7 +12,7 @@ export const COMMON_PATH = '/key-management-service';
 const KmsLayout = React.lazy(() => import('@/pages/layout'));
 const KmsListing = React.lazy(() => import('@/pages/listing'));
 const KmsTerminateModal = React.lazy(() =>
-  import('@/pages/listing/terminate/TerminateKms'),
+  import('@/pages/dashboard/generalInformations/terminate/TerminateKms'),
 );
 const KmsCreate = React.lazy(() => import('@/pages/create'));
 const KmsOnboarding = React.lazy(() => import('@/pages/onboarding'));
@@ -110,18 +110,7 @@ export default (
           pageType: PageType.listing,
         },
       }}
-    >
-      <Route
-        path={`${KMS_ROUTES_URIS.kmsTerminate}/${KMS_URL_PARAMS.okmsId}`}
-        Component={KmsTerminateModal}
-        handle={{
-          tracking: {
-            pageName: 'terminate',
-            pageType: PageType.popup,
-          },
-        }}
-      />
-    </Route>
+    />
     <Route
       path={KMS_ROUTES_URIS.serviceKeyCreate}
       Component={KmsCreate}
