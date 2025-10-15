@@ -18,7 +18,7 @@ const fakeDeps: Deps = {
 };
 
 describe('selectContinents ViewModel', () => {
-  it(`should return matching continents of the deployment zones with "all" preselected`, () => {
+  it(`should return matching continents of the deployment zones`, () => {
     expect(
       selectContinent(fakeDeps)(mockedProjectId, ['region', 'region-3-az']),
     ).toStrictEqual(mockedContinentsSelectorData);

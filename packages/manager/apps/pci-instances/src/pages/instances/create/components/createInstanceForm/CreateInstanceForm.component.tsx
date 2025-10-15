@@ -6,7 +6,6 @@ import { AdvancedParameters } from '../AdvancedParameters.component';
 import { CreationCart } from '../CreationCart.component';
 import { DeploymentModeSection } from '../deploymentMode/DeploymentModeSection.component';
 import FlavorBlock from '../FlavorBlock.component';
-import { LocalizationSelection } from '../localisationSelection/LocalizationSelection.component';
 import { Localization } from '../Localization.component';
 import { MicroRegionSelection } from '../microRegionSelection/MicroRegionSelection.component';
 import { Name } from '../Name.component';
@@ -17,6 +16,7 @@ import { deps } from '@/deps/deps';
 import { useTranslation } from 'react-i18next';
 import { selectAvailabilityZones } from '../../view-models/availabilityZonesViewModel';
 import { AvailabilityZoneSelection } from '../availabilityZoneSelection/AvailabilityZoneSelection.component';
+import { LocalizationSelection } from '../localisationSelection/LocalizationSelection.component';
 
 const quantityHintParams = {
   quota: 1,
@@ -63,16 +63,10 @@ export const CreateInstanceForm = () => {
           <DeploymentModeSection />
           <LocalizationSelection />
           {microRegions && hasMultiMicroRegions && (
-            <div className="pt-7 pb-5 max-w-[32%]">
-              <MicroRegionSelection microRegions={microRegions} />
-            </div>
+            <MicroRegionSelection microRegions={microRegions} />
           )}
           {!!availabilityZones.length && (
-            <div className="pt-7 pb-5">
-              <AvailabilityZoneSelection
-                availabilityZones={availabilityZones}
-              />
-            </div>
+            <AvailabilityZoneSelection availabilityZones={availabilityZones} />
           )}
           <Divider spacing="64" />
           <FlavorBlock />
