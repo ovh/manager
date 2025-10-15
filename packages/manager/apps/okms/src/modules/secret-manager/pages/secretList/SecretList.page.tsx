@@ -105,7 +105,16 @@ export default function SecretListPage() {
       backLinkLabel={okmsListUrl ? t('back_to_okms_list') : null}
     >
       <div className="space-y-6">
-        <RegionSelector />
+        <div className="flex justify-between">
+          <RegionSelector />
+          <OdsButton
+            label={t('okms_manage_label')}
+            variant="outline"
+            onClick={() =>
+              navigate(SECRET_MANAGER_ROUTES_URLS.okmsDashboard(okmsId))
+            }
+          />
+        </div>
         <Datagrid
           columns={columns}
           items={secrets || []}
