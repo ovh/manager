@@ -3,11 +3,14 @@
 exports[`Link component > renders a back link correctly 1`] = `
 <DocumentFragment>
   <a
-    class="_link_udbet_2"
+    class="_link_1y3p4_2"
+    data-ods="link"
     href="https://www.example.com"
   >
     <span
-      class="_icon_i4xp0_2 _icon--arrow-left_i4xp0_25"
+      class="_icon_10c23_2 _icon--arrow-left_10c23_28"
+      data-ods="icon"
+      role="presentation"
     />
     Back to the list
   </a>
@@ -17,13 +20,16 @@ exports[`Link component > renders a back link correctly 1`] = `
 exports[`Link component > renders a disabled link with urn and iamActions correctly 1`] = `
 <DocumentFragment>
   <a
-    class="_link_udbet_2 _link--disabled_udbet_32"
+    aria-disabled="true"
+    class="_link_1y3p4_2 _link--disabled_1y3p4_43 _tooltip-trigger_wxukn_2"
+    data-ods="tooltip-trigger"
     data-part="trigger"
     data-scope="tooltip"
     data-state="closed"
     dir="ltr"
     href="https://www.example.com"
     id="tooltip::r1::trigger"
+    role="button"
     tabindex="-1"
   >
     Disabled Protected Link
@@ -34,13 +40,16 @@ exports[`Link component > renders a disabled link with urn and iamActions correc
 exports[`Link component > renders a external link correctly with label as prop 1`] = `
 <DocumentFragment>
   <a
-    class="_link_udbet_2"
+    class="_link_1y3p4_2"
+    data-ods="link"
     href="https://www.ovhcloud.com/"
     target="_blank"
   >
     External Page
     <span
-      class="_icon_i4xp0_2 _icon--external-link_i4xp0_190"
+      class="_icon_10c23_2 _icon--external-link_10c23_232"
+      data-ods="icon"
+      role="presentation"
     />
   </a>
 </DocumentFragment>
@@ -49,13 +58,16 @@ exports[`Link component > renders a external link correctly with label as prop 1
 exports[`Link component > renders a link with custom className and IAM props 1`] = `
 <DocumentFragment>
   <a
-    class="_link_udbet_2 _link--disabled_udbet_32 custom-link-class"
+    aria-disabled="true"
+    class="_link_1y3p4_2 _link--disabled_1y3p4_43 _tooltip-trigger_wxukn_2 custom-link-class"
+    data-ods="tooltip-trigger"
     data-part="trigger"
     data-scope="tooltip"
     data-state="closed"
     dir="ltr"
     href="https://www.example.com"
     id="tooltip::r4::trigger"
+    role="button"
     tabindex="-1"
   >
     Custom Styled Protected Link
@@ -66,13 +78,16 @@ exports[`Link component > renders a link with custom className and IAM props 1`]
 exports[`Link component > renders a link with disabled IAM check 1`] = `
 <DocumentFragment>
   <a
-    class="_link_udbet_2 _link--disabled_udbet_32"
+    aria-disabled="true"
+    class="_link_1y3p4_2 _link--disabled_1y3p4_43 _tooltip-trigger_wxukn_2"
+    data-ods="tooltip-trigger"
     data-part="trigger"
     data-scope="tooltip"
     data-state="closed"
     dir="ltr"
     href="https://www.example.com"
     id="tooltip::r2::trigger"
+    role="button"
     tabindex="-1"
   >
     Link with Disabled IAM Check
@@ -83,13 +98,16 @@ exports[`Link component > renders a link with disabled IAM check 1`] = `
 exports[`Link component > renders a link with multiple iamActions 1`] = `
 <DocumentFragment>
   <a
-    class="_link_udbet_2 _link--disabled_udbet_32"
+    aria-disabled="true"
+    class="_link_1y3p4_2 _link--disabled_1y3p4_43 _tooltip-trigger_wxukn_2"
+    data-ods="tooltip-trigger"
     data-part="trigger"
     data-scope="tooltip"
     data-state="closed"
     dir="ltr"
     href="https://www.example.com"
     id="tooltip::r3::trigger"
+    role="button"
     tabindex="-1"
   >
     Link with Multiple IAM Actions
@@ -100,13 +118,16 @@ exports[`Link component > renders a link with multiple iamActions 1`] = `
 exports[`Link component > renders a link with urn and iamActions correctly 1`] = `
 <DocumentFragment>
   <a
-    class="_link_udbet_2 _link--disabled_udbet_32"
+    aria-disabled="true"
+    class="_link_1y3p4_2 _link--disabled_1y3p4_43 _tooltip-trigger_wxukn_2"
+    data-ods="tooltip-trigger"
     data-part="trigger"
     data-scope="tooltip"
     data-state="closed"
     dir="ltr"
     href="https://www.example.com"
     id="tooltip::r0::trigger"
+    role="button"
     tabindex="-1"
   >
     Protected Link
@@ -117,7 +138,9 @@ exports[`Link component > renders a link with urn and iamActions correctly 1`] =
 exports[`Link component > renders a link with urn and iamActions without tooltip 1`] = `
 <DocumentFragment>
   <a
-    class="_link_udbet_2 _link--disabled_udbet_32"
+    aria-disabled="true"
+    class="_link_1y3p4_2 _link--disabled_1y3p4_43"
+    data-ods="link"
     href="https://www.example.com"
     tabindex="-1"
   >
@@ -129,12 +152,15 @@ exports[`Link component > renders a link with urn and iamActions without tooltip
 exports[`Link component > renders a next link correctly 1`] = `
 <DocumentFragment>
   <a
-    class="_link_udbet_2"
+    class="_link_1y3p4_2"
+    data-ods="link"
     href="https://www.example.com"
   >
     Next Page
     <span
-      class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+      class="_icon_10c23_2 _icon--arrow-right_10c23_34"
+      data-ods="icon"
+      role="presentation"
     />
   </a>
 </DocumentFragment>
@@ -143,7 +169,8 @@ exports[`Link component > renders a next link correctly 1`] = `
 exports[`Link component > renders a simple link correctly 1`] = `
 <DocumentFragment>
   <a
-    class="_link_udbet_2"
+    class="_link_1y3p4_2"
+    data-ods="link"
     href="https://www.example.com"
   >
     test link

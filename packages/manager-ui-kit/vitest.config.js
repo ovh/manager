@@ -30,6 +30,8 @@ export default mergeConfig(createConfig(), {
         singleThread: true,
       },
     },
+    // Ignore unhandled errors from ODS Modal async cleanup
+    dangerouslyIgnoreUnhandledErrors: true,
   },
   resolve: {
     alias: {

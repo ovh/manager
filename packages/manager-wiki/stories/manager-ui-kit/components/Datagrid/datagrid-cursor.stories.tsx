@@ -1,7 +1,12 @@
 import React, { useState, useMemo } from 'react';
 import { ColumnSort } from '@tanstack/react-table';
-import { OdsDivider, OdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import {
+  Button,
+  Icon,
+  Divider,
+  BUTTON_VARIANT,
+  ICON_NAME,
+} from '@ovhcloud/ods-react';
 import { FilterComparator, applyFilters } from '@ovh-ux/manager-core-api';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import { useSearchParams } from 'react-router-dom';
@@ -89,7 +94,7 @@ const DatagridStory = (args) => {
       {`${searchParams}` && (
         <>
           <pre>Search params: ?{`${searchParams}`}</pre>
-          <OdsDivider />
+          <Divider />
         </>
       )}
       <Datagrid
@@ -198,7 +203,7 @@ WithActions.args = {
           <div>
             <ActionMenu
               isCompact={true}
-              variant={ODS_BUTTON_VARIANT.ghost}
+              variant={BUTTON_VARIANT.ghost}
               id={i.toString()}
               items={[
                 {
@@ -268,7 +273,10 @@ Visibility.args = {
 export const Topbar = DatagridStory.bind({});
 
 const TopbarComponent = () => (
-  <OdsButton label="Add item" icon={ODS_ICON_NAME.plus} />
+  <Button>
+    <Icon name={ICON_NAME.plus} />
+    Add item
+  </Button>
 );
 
 Topbar.args = {

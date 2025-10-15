@@ -3,21 +3,26 @@
 exports[`GuideMenu > GuideMenu snapshots > should match snapshot with default props 1`] = `
 <div>
   <button
-    aria-controls="popover::r0::content"
+    aria-controls=":r1:"
     aria-expanded="false"
     aria-haspopup="dialog"
     aria-label="Guides"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+    class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--sm_1sbbz_34 _button--ghost_1sbbz_150 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
     id="popover::r0::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
       aria-hidden="true"
-      class="_icon_i4xp0_2 _icon--book_i4xp0_52"
+      class="_icon_10c23_2 _icon--book_10c23_55"
+      data-ods="icon"
+      role="presentation"
     />
     Guides
   </button>
@@ -27,21 +32,26 @@ exports[`GuideMenu > GuideMenu snapshots > should match snapshot with default pr
 exports[`GuideMenu > GuideMenu snapshots > should match snapshot with empty items 1`] = `
 <div>
   <button
-    aria-controls="popover::r2::content"
+    aria-controls=":r5:"
     aria-expanded="false"
     aria-haspopup="dialog"
     aria-label="Guides"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+    class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--sm_1sbbz_34 _button--ghost_1sbbz_150 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
-    id="popover::r2::trigger"
+    id="popover::r4::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
       aria-hidden="true"
-      class="_icon_i4xp0_2 _icon--book_i4xp0_52"
+      class="_icon_10c23_2 _icon--book_10c23_55"
+      data-ods="icon"
+      role="presentation"
     />
     Guides
   </button>
@@ -51,27 +61,32 @@ exports[`GuideMenu > GuideMenu snapshots > should match snapshot with empty item
 exports[`GuideMenu > GuideMenu snapshots > should match snapshot with loading state 1`] = `
 <div>
   <button
-    aria-controls="popover::r1::content"
+    aria-controls=":r3:"
     aria-expanded="false"
     aria-haspopup="dialog"
     aria-label="Guides"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+    class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--sm_1sbbz_34 _button--ghost_1sbbz_150 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
     disabled=""
-    id="popover::r1::trigger"
+    id="popover::r2::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
-      class="_button__spinner_10f3x_372"
+      class="_button__spinner_1sbbz_372"
     >
       <span
         class="_spinner_o7c7y_10 _spinner--neutral_o7c7y_26 _spinner--sm_o7c7y_17"
-        role="progressbar"
+        data-ods="spinner"
+        role="none"
       >
         <svg
+          aria-hidden="true"
           class="_spinner__svg_o7c7y_32"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
@@ -106,7 +121,9 @@ exports[`GuideMenu > GuideMenu snapshots > should match snapshot with loading st
     </span>
     <span
       aria-hidden="true"
-      class="_icon_i4xp0_2 _icon--book_i4xp0_52"
+      class="_icon_10c23_2 _icon--book_10c23_55"
+      data-ods="icon"
+      role="presentation"
     />
     Guides
   </button>
@@ -116,21 +133,26 @@ exports[`GuideMenu > GuideMenu snapshots > should match snapshot with loading st
 exports[`GuideMenu > GuideMenu snapshots > should match snapshot with single item 1`] = `
 <div>
   <button
-    aria-controls="popover::r3::content"
+    aria-controls=":r7:"
     aria-expanded="false"
     aria-haspopup="dialog"
     aria-label="Guides"
-    class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+    class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--sm_1sbbz_34 _button--ghost_1sbbz_150 _popover-trigger_a014q_2"
+    data-ods="popover-trigger"
     data-part="trigger"
     data-scope="popover"
     data-state="closed"
     dir="ltr"
-    id="popover::r3::trigger"
+    id="popover::r6::trigger"
+    role="button"
+    tabindex="0"
     type="button"
   >
     <span
       aria-hidden="true"
-      class="_icon_i4xp0_2 _icon--book_i4xp0_52"
+      class="_icon_10c23_2 _icon--book_10c23_55"
+      data-ods="icon"
+      role="presentation"
     />
     Guides
   </button>

@@ -9,6 +9,7 @@ exports[`LinkCard Component Snapshot Tests > renders the complete component 1`] 
   >
     <div
       class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+      data-ods="card"
     >
       <div
         class="flex flex-col h-full"
@@ -23,6 +24,7 @@ exports[`LinkCard Component Snapshot Tests > renders the complete component 1`] 
         >
           <h4
             class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+            data-ods="text"
           >
             NAS
           </h4>
@@ -31,11 +33,13 @@ exports[`LinkCard Component Snapshot Tests > renders the complete component 1`] 
           >
             <span
               class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56 mr-1"
+              data-ods="badge"
             >
               Cloud computing
             </span>
             <span
               class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56 mr-1"
+              data-ods="badge"
             >
               Beta
             </span>
@@ -43,11 +47,13 @@ exports[`LinkCard Component Snapshot Tests > renders the complete component 1`] 
         </div>
         <h3
           class="_text--heading-3_1aw48_25 mb-[8px]"
+          data-ods="text"
         >
           Titre du produit
         </h3>
         <p
           class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+          data-ods="text"
         >
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
         </p>
@@ -55,12 +61,15 @@ exports[`LinkCard Component Snapshot Tests > renders the complete component 1`] 
           class="mt-auto"
         >
           <a
-            class="_link_udbet_2"
+            class="_link_1y3p4_2"
+            data-ods="link"
             tab-index="-1"
           >
             En savoir plus
             <span
-              class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+              class="_icon_10c23_2 _icon--arrow-right_10c23_34"
+              data-ods="icon"
+              role="presentation"
             />
           </a>
         </div>
@@ -79,6 +88,7 @@ exports[`LinkCard Component Snapshot Tests > renders the component with badges 1
   >
     <div
       class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+      data-ods="card"
     >
       <div
         class="flex flex-col h-full"
@@ -88,6 +98,7 @@ exports[`LinkCard Component Snapshot Tests > renders the component with badges 1
         >
           <h4
             class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+            data-ods="text"
           >
             NAS
           </h4>
@@ -96,11 +107,13 @@ exports[`LinkCard Component Snapshot Tests > renders the component with badges 1
           >
             <span
               class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56 mr-1"
+              data-ods="badge"
             >
               Cloud computing
             </span>
             <span
               class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56 mr-1"
+              data-ods="badge"
             >
               Beta
             </span>
@@ -108,11 +121,13 @@ exports[`LinkCard Component Snapshot Tests > renders the component with badges 1
         </div>
         <h3
           class="_text--heading-3_1aw48_25 mb-[8px]"
+          data-ods="text"
         >
           Titre du produit
         </h3>
         <p
           class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+          data-ods="text"
         >
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
         </p>
@@ -120,12 +135,15 @@ exports[`LinkCard Component Snapshot Tests > renders the component with badges 1
           class="mt-auto"
         >
           <a
-            class="_link_udbet_2"
+            class="_link_1y3p4_2"
+            data-ods="link"
             tab-index="-1"
           >
             En savoir plus
             <span
-              class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+              class="_icon_10c23_2 _icon--arrow-right_10c23_34"
+              data-ods="icon"
+              role="presentation"
             />
           </a>
         </div>
@@ -144,6 +162,7 @@ exports[`LinkCard Component Snapshot Tests > renders the component with image 1`
   >
     <div
       class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+      data-ods="card"
     >
       <div
         class="flex flex-col h-full"
@@ -158,17 +177,20 @@ exports[`LinkCard Component Snapshot Tests > renders the component with image 1`
         >
           <h4
             class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+            data-ods="text"
           >
             NAS
           </h4>
         </div>
         <h3
           class="_text--heading-3_1aw48_25 mb-[8px]"
+          data-ods="text"
         >
           Titre du produit
         </h3>
         <p
           class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+          data-ods="text"
         >
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
         </p>
@@ -176,12 +198,15 @@ exports[`LinkCard Component Snapshot Tests > renders the component with image 1`
           class="mt-auto"
         >
           <a
-            class="_link_udbet_2"
+            class="_link_1y3p4_2"
+            data-ods="link"
             tab-index="-1"
           >
             En savoir plus
             <span
-              class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+              class="_icon_10c23_2 _icon--arrow-right_10c23_34"
+              data-ods="icon"
+              role="presentation"
             />
           </a>
         </div>
@@ -200,6 +225,7 @@ exports[`LinkCard Component Snapshot Tests > renders the component with texts 1`
   >
     <div
       class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
+      data-ods="card"
     >
       <div
         class="flex flex-col h-full"
@@ -209,17 +235,20 @@ exports[`LinkCard Component Snapshot Tests > renders the component with texts 1`
         >
           <h4
             class="_text--heading-4_1aw48_31 text-[--ods-color-primary-500]"
+            data-ods="text"
           >
             NAS
           </h4>
         </div>
         <h3
           class="_text--heading-3_1aw48_25 mb-[8px]"
+          data-ods="text"
         >
           Titre du produit
         </h3>
         <p
           class="_text--paragraph_1aw48_54 m-0 p-0 mb-4"
+          data-ods="text"
         >
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
         </p>
@@ -227,12 +256,15 @@ exports[`LinkCard Component Snapshot Tests > renders the component with texts 1`
           class="mt-auto"
         >
           <a
-            class="_link_udbet_2"
+            class="_link_1y3p4_2"
+            data-ods="link"
             tab-index="-1"
           >
             En savoir plus
             <span
-              class="_icon_i4xp0_2 _icon--arrow-right_i4xp0_31"
+              class="_icon_10c23_2 _icon--arrow-right_10c23_34"
+              data-ods="icon"
+              role="presentation"
             />
           </a>
         </div>

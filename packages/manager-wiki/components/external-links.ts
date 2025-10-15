@@ -7,7 +7,7 @@ const externalLinks = {
   },
   ods: {
     button:
-      'https://ovh.github.io/design-system/latest/?path=/docs/ods-components-button--documentation',
+      'https://ovh.github.io/design-system/latest/?path=/docs/react-components-button--documentation',
     datepicker:
       'https://ovh.github.io/design-system/latest/?path=/docs/ods-components-form-elements-datepicker--documentation',
     formField:
@@ -29,7 +29,7 @@ const externalLinks = {
     text:
       'https://ovh.github.io/design-system/latest/?path=/docs/ods-components-text--documentation',
     tooltip:
-      'https://ovh.github.io/design-system/latest/?path=/docs/ods-components-tooltip--documentation',
+      'https://ovh.github.io/design-system/latest/?path=/docs/react-components-tooltip--documentation',
     card:
       'https://ovh.github.io/design-system/latest/?path=/docs/react-components-card--documentation',
     divider:

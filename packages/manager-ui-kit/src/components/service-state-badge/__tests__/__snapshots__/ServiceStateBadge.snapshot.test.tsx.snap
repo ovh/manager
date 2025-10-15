@@ -3,7 +3,9 @@
 exports[`should display manager state with the good color > should display loading Badge 1`] = `
 <div>
   <div
+    aria-hidden="true"
     class="_skeleton_kauw8_2"
+    data-ods="skeleton"
     data-testid="badge"
   />
 </div>
@@ -13,6 +15,7 @@ exports[`should display manager state with the good color > should display manag
 <div>
   <span
     class="_badge_vpjtq_2 _badge--success_vpjtq_43 _badge--md_vpjtq_56"
+    data-ods="badge"
     data-testid="badge"
   >
     service_state_active
@@ -24,6 +27,7 @@ exports[`should display manager state with the good color > should display manag
 <div>
   <span
     class="_badge_vpjtq_2 _badge--critical_vpjtq_19 _badge--md_vpjtq_56"
+    data-ods="badge"
     data-testid="badge"
   >
     service_state_deleted
@@ -35,6 +39,7 @@ exports[`should display manager state with the good color > should display manag
 <div>
   <span
     class="_badge_vpjtq_2 _badge--critical_vpjtq_19 _badge--md_vpjtq_56"
+    data-ods="badge"
     data-testid="badge"
   >
     service_state_deleted
@@ -46,6 +51,7 @@ exports[`should display manager state with the good color > should display manag
 <div>
   <span
     class="_badge_vpjtq_2 _badge--warning_vpjtq_47 _badge--md_vpjtq_56"
+    data-ods="badge"
     data-testid="badge"
   >
     service_state_suspended
@@ -57,6 +63,7 @@ exports[`should display manager state with the good color > should display manag
 <div>
   <span
     class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56"
+    data-ods="badge"
     data-testid="badge"
   >
     service_state_toActivate
@@ -68,6 +75,7 @@ exports[`should display manager state with the good color > should display manag
 <div>
   <span
     class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56"
+    data-ods="badge"
     data-testid="badge"
   >
     service_state_toDelete
@@ -79,6 +87,7 @@ exports[`should display manager state with the good color > should display manag
 <div>
   <span
     class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56"
+    data-ods="badge"
     data-testid="badge"
   >
     service_state_toSuspend
@@ -90,6 +99,7 @@ exports[`should display manager state with the good color > should display manag
 <div>
   <span
     class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--md_vpjtq_56"
+    data-ods="badge"
     data-testid="badge"
   >
     unknown
