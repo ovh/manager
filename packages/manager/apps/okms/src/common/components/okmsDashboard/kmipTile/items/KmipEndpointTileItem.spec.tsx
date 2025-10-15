@@ -7,7 +7,7 @@ import { ENPOINT_LABEL } from '@/constants';
 import { getOdsClipboardByValue } from '@/utils/tests/uiTestHelpers';
 import {
   DownloadOkmsPublicCaLink,
-  DownloadOkmsPublicCaLinkParams,
+  DownloadOkmsPublicCaLinkProps,
 } from '@/common/components/downloadOkmsPublicCaLink/DownloadOkmsPublicCaLink';
 import { renderWithI18n } from '@/utils/tests/testUtils';
 
@@ -39,7 +39,7 @@ describe('OKMS Kmip endpoint Tile Item test suite', () => {
 
     expect(DownloadOkmsPublicCaLink).toHaveBeenCalledTimes(1);
     expect(vi.mocked(DownloadOkmsPublicCaLink).mock.calls[0][0]).toEqual<
-      DownloadOkmsPublicCaLinkParams
+      DownloadOkmsPublicCaLinkProps
     >({
       okms: okmsMocked,
       type: 'publicCaKmip',
