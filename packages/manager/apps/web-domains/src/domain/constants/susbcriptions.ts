@@ -10,3 +10,5 @@ export const contactsMapping: Record<string, string> = {
 export const domainIsPremium = (pricingMode: string) => {
   return pricingMode.includes('premium');
 };
+
+export const emailOfferRedirect = 'redirect';

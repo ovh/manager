@@ -21,6 +21,8 @@ import {
   ResourceStateEnum,
   StateEnum,
 } from '../enum/option.enum';
+import { TaskStatusEnum } from '@/domain/enum/taskStatus.enum';
+import { ResourceStatusEnum } from '@/domain/enum/resourceStatus.enum';
 
 export interface TServiceInfo {
   serviceId: number;
@@ -237,4 +239,109 @@ export interface TContactAdress {
   otherDetails?: string;
   province: string;
   zip: string;
+}
+
+export interface TZimbraPlateform {
+  checksum: string;
+  currentState: {
+    accountsStatistics: {
+      availableAccountsCount: number;
+      configuredAccountsCount: number;
+      offer: 'PRO' | 'STARTER';
+    };
+    description: string;
+    name: string;
+    numberOfOrganizations: number;
+    quota: number;
+  };
+  currentTasks: {
+    id: string;
+    link: string;
+    status: TaskStatusEnum;
+    type: string;
+  };
+  iam: {
+    displayName: string | null;
+    id: string;
+    tags: string[];
+    urn: string;
+  };
+  id: string;
+  resourceStatus: ResourceStatusEnum;
+  targetSpec: {
+    description: string;
+    name: string;
+  };
+}
+
+export interface TZimbra {
+  checksum: string;
+  currentState: {
+    accountsStatistics: {
+      availableAccountsCount: number;
+      configuredAccountsCount: number;
+      offer: 'PRO' | 'STARTER';
+    };
+    createdAt: string;
+    expectedDNSConfig: {
+      autodiscover: string;
+      dkim: {
+        cnames: {
+          name: string;
+          value: string;
+        }[];
+      };
+      mx: {
+        priority: number;
+        target: string;
+      }[];
+      ownership: {
+        cname: string | null;
+      };
+      spf: string;
+    };
+    name: string;
+    organizationId: string;
+    organizationLabel: string;
+    status: 'READY';
+    updatedAt: string;
+  };
+  currentTasks: {
+    id: string;
+    link: string;
+    status: TaskStatusEnum;
+    type: string;
+  };
+  iam: {
+    displayName: string | null;
+    id: string;
+    tags: string[];
+    urn: string;
+  };
+  id: string;
+  resourceStatus: ResourceStatusEnum;
+  targetSpec: {
+    dkimEnabled: boolean;
+    organizationId: string;
+  };
+  plateformId: string;
+}
+
+export interface TMxPlan {
+  allowedAccountSize: number[];
+  creationDate: string;
+  domain: string;
+  filerz: number | null;
+  iam: {
+    displayName: string | null;
+    id: string;
+    tags: string[];
+    urn: string;
+  };
+  isMXValid: 'checkFail' | 'invalid' | 'none' | 'unknown' | 'valid';
+  isSPFValid: 'checkFail' | 'invalid' | 'none' | 'unknown' | 'valid';
+  linkTo: string | null;
+  migratedMXPlanServiceName: string | null;
+  offer: string | null;
+  status: 'close' | 'ok' | 'readOnly' | 'unknown';
 }
