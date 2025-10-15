@@ -9,5 +9,6 @@
   "temporaryLocalStorageField": "Storage locale temporaneo: {{ storage }} SSD",
   "temporaryLocalStorageHelper": "Storage locale performante senza backup",
   "modifyLabel": "Modificare",
-  "disabledButtonTooltip": "Il notebook deve essere in stato “Arrestato”"
+  "disabledButtonTooltip": "Il notebook deve essere in stato “Arrestato”",
+  "qpuQubits": "Qubit: "
 }
