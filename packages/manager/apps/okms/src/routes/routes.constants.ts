@@ -21,8 +21,6 @@ const URIS = {
 const URLS = {
   kmsOnboarding: `/${URIS.root}/${URIS.kmsOnboarding}`,
   kmsListing: `/${URIS.root}`,
-  kmsListingTerminate: (okmsId: string) =>
-    `/${URIS.root}/${URIS.kmsTerminate}/${okmsId}`,
   kmsCreate: `/${URIS.root}/${URIS.kmsCreate}`,
   kmsDashboard: (okmsId: string) => `/${URIS.root}/${okmsId}`,
   kmsDashboardTerminate: (okmsId: string) =>
