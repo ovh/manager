@@ -57,9 +57,9 @@ export const AvailabilityZoneSelection = ({
   }, [availabilityZones, selectedAvailabilityZone, setValue]);
 
   return (
-    <section>
+    <section className="pt-9 pb-5">
       <div className="flex flex-col gap-4">
-        <div className="mt-8 flex items-center space-x-4">
+        <div className="flex items-center space-x-4">
           <Text preset="heading-4">
             {t('creation:pci_instance_creation_choose_availabilityZone_title')}
           </Text>

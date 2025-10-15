@@ -6,7 +6,6 @@
   "pci_instance_creation_quantity_rule": "Su cuota actual le permite crear simultáneamente hasta {{ quota }} instancia(s) de tipo {{ type }} para la región de {{ region }}.",
   "pci_instance_creation_choose_localization_title": "Elija una ubicación",
   "pci_instance_creation_select_localization_label": "Seleccione una ubicación: ",
-  "pci_instance_creation_select_localization_informations": "Las Zonas Locales no son elegibles para los Savings Plans.",
   "pci_instance_creation_continue_order": "Continuar mi pedido",
   "pci_instance_creation_configuration_code": "Código de mi configuración",
   "pci_instance_creation_select_deployment_mode_title": "Filtre un modo de despliegue",
