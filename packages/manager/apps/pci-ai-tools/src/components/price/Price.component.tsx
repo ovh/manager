@@ -5,14 +5,16 @@ import { useGetCatalog } from '@/data/hooks/catalog/useGetCatalog.hook';
 interface PriceProps {
   priceInUcents: number;
   taxInUcents: number;
-  decimals: number;
-  displayInHour: boolean;
+  decimals?: number;
+  displayInHour?: boolean;
+  isQPU?: boolean;
 }
 const Price = ({
   priceInUcents,
   taxInUcents,
   decimals = 2,
   displayInHour = true,
+  isQPU = false,
 }: PriceProps) => {
   const { t } = useTranslation('ai-tools/pricing');
   const catalog = useGetCatalog();
@@ -28,8 +30,10 @@ const Price = ({
   }
 
   const ucentToEur = 100_000_000;
-  const price = priceInUcents / ucentToEur;
-  const priceWithTax = (priceInUcents + taxInUcents) / ucentToEur;
+  // price/s price/h
+  const factor = isQPU ? 3600 : 1;
+  const price = (priceInUcents / ucentToEur) * factor;
+  const priceWithTax = ((priceInUcents + taxInUcents) / ucentToEur) * factor;
   const formatPrice = (value: number) => {
     const formatter = new Intl.NumberFormat(locale.replace('_', '-'), {
       style: 'currency',
