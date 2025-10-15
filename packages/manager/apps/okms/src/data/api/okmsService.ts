@@ -1,5 +1,5 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { ServiceDetails } from '@ovh-ux/manager-react-components';
+import { ServiceDetails } from '@ovh-ux/manager-module-common-api';
 
 export type UpdateOkmsNameParams = {
   serviceId: number;
@@ -12,7 +12,7 @@ export const updateOkmsName = async ({
   serviceId,
   displayName,
 }: UpdateOkmsNameParams) =>
-  apiClient.v6.put(`/services/${serviceId}`, {
+  apiClient.v6.put<ServiceDetails>(`/services/${serviceId}`, {
     displayName,
   });
 
@@ -20,6 +20,7 @@ export const getOkmsServiceIdQueryKey = (okmsId: string) => [
   `get/okms/services`,
   okmsId,
 ];
+
 /**
  * allowedServices operations : List all services allowed in this kms
  */
