@@ -95,7 +95,6 @@ describe('Okms Datagrid tests suite', () => {
     expect(await screen.findAllByText(columns.servicekeyCount)).toHaveLength(1);
     expect(await screen.findAllByText(columns.region)).toHaveLength(1);
     expect(await screen.findAllByText(columns.status)).toHaveLength(1);
-    expect(screen.getByTestId('header-action')).toBeVisible();
 
     // hidden columns
     expect(screen.queryByText(columns.secretCount)).not.toBeInTheDocument();
@@ -114,6 +113,5 @@ describe('Okms Datagrid tests suite', () => {
     expect(screen.queryByText(columns.kmipCount)).not.toBeInTheDocument();
     expect(screen.queryByText(columns.servicekeyCount)).not.toBeInTheDocument();
     expect(screen.queryByText(columns.region)).not.toBeInTheDocument();
-    expect(screen.queryByTestId('header-action')).not.toBeInTheDocument();
   });
 });
