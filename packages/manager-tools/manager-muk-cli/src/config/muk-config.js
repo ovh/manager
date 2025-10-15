@@ -32,6 +32,14 @@ export const META_CACHE_FILE = path.join(CACHE_DIR, 'ods-tarball-meta.json');
 export const MUK_COMPONENTS_PATH = path.resolve('packages/manager-react-components');
 export const MUK_COMPONENTS_SRC = path.join(MUK_COMPONENTS_PATH, 'src', 'components');
 
+export const MUK_WIKI_PATH = path.resolve('packages/manager-wiki');
+export const MUK_WIKI_COMPONENTS = path.join(
+  MUK_WIKI_PATH,
+  'stories',
+  'manager-ui-kit',
+  'components',
+);
+
 /**
  * Target packages to check and potentially update.
  */
