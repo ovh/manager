@@ -6,7 +6,7 @@ import { ENDPOINT_RSA_LABEL } from '@/constants';
 import { getOdsClipboardByValue } from '@/utils/tests/uiTestHelpers';
 import {
   DownloadOkmsPublicCaLink,
-  DownloadOkmsPublicCaLinkParams,
+  DownloadOkmsPublicCaLinkProps,
 } from '@/common/components/downloadOkmsPublicCaLink/DownloadOkmsPublicCaLink';
 import { KmipEndpointRsaTileItem } from './KmipEndpointRsaTileItem.component';
 import { renderWithI18n } from '@/utils/tests/testUtils';
@@ -39,7 +39,7 @@ describe('OKMS Kmip endpoint RSA Tile Item test suite', () => {
 
     expect(DownloadOkmsPublicCaLink).toHaveBeenCalledTimes(1);
     expect(vi.mocked(DownloadOkmsPublicCaLink).mock.calls[0][0]).toEqual<
-      DownloadOkmsPublicCaLinkParams
+      DownloadOkmsPublicCaLinkProps
     >({
       okms: okmsMocked,
       type: 'publicCaRsaKmip',
