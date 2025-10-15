@@ -10,7 +10,7 @@ import {
   getOdsButtonByLabel,
   getOdsButtonByIcon,
 } from '@/utils/tests/uiTestHelpers';
-import { initTestI18n } from '@/utils/tests/init.i18n';
+import { initTestI18n, labels } from '@/utils/tests/init.i18n';
 import {
   GeographyGroup,
   RegionOption,
@@ -161,7 +161,7 @@ describe('RegionSelector Component', () => {
       const { container } = await renderRegionSelector();
 
       // Then
-      expect(screen.getByText('region')).toBeInTheDocument();
+      expect(screen.getByText(labels.common.region.region)).toBeInTheDocument();
       await getOdsButtonByLabel({ container, label: mockCurrentRegion.label });
     });
 

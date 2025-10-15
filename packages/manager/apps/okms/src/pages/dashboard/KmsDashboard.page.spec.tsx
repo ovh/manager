@@ -13,7 +13,17 @@ import { KMS_FEATURES } from '@/utils/feature-availability/feature-availability.
 import { SERVICE_KEYS_LABEL } from '@/constants';
 import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
 
-const mockPageUrl = KMS_ROUTES_URLS.kmsDashboard(okmsMock[0].id);
+const mockedOkms = okmsMock[0];
+const mockPageUrl = KMS_ROUTES_URLS.kmsDashboard(mockedOkms.id);
+
+const generalInformationTabTestId = KMS_ROUTES_URLS.kmsDashboard(mockedOkms.id);
+const serviceKeyListTabTestId = KMS_ROUTES_URLS.serviceKeyListing(
+  mockedOkms.id,
+);
+const credentialListTabTestId = KMS_ROUTES_URLS.credentialListing(
+  mockedOkms.id,
+);
+const logTabTestId = KMS_ROUTES_URLS.kmsLogs(mockedOkms.id);
 
 describe('KMS dashboard test suite', () => {
   it('should display an error if the API is KO', async () => {
@@ -34,14 +44,10 @@ describe('KMS dashboard test suite', () => {
 
     await waitFor(
       () => {
-        expect(
-          screen.getAllByText(labels.dashboard.general_informations)[0],
-        ).toBeVisible();
-        expect(screen.getByText(SERVICE_KEYS_LABEL)).toBeVisible();
-        expect(
-          screen.getByText(labels.dashboard.access_certificates),
-        ).toBeVisible();
-        expect(screen.getByText(labels.dashboard.logs)).toBeVisible();
+        expect(screen.getByTestId(generalInformationTabTestId)).toBeVisible();
+        expect(screen.getByTestId(serviceKeyListTabTestId)).toBeVisible();
+        expect(screen.getByTestId(credentialListTabTestId)).toBeVisible();
+        expect(screen.getByTestId(logTabTestId)).toBeVisible();
       },
 
       WAIT_FOR_DEFAULT_OPTIONS,
@@ -71,11 +77,15 @@ describe('KMS dashboard test suite', () => {
     await renderTestApp(mockPageUrl);
 
     await waitFor(
-      () => expect(screen.getByText(SERVICE_KEYS_LABEL)).toBeEnabled(),
+      () => expect(screen.getByTestId(serviceKeyListTabTestId)).toBeEnabled(),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
 
-    await waitFor(() => userEvent.click(screen.getByText(SERVICE_KEYS_LABEL)));
+    await waitFor(() =>
+      userEvent.click(
+        screen.getByTestId(KMS_ROUTES_URLS.serviceKeyListing(mockedOkms.id)),
+      ),
+    );
 
     await waitFor(
       () =>
@@ -92,10 +102,7 @@ describe('KMS dashboard test suite', () => {
     await renderTestApp(mockPageUrl);
 
     await waitFor(
-      () =>
-        expect(
-          screen.getByText(labels.dashboard.access_certificates),
-        ).toBeEnabled(),
+      () => expect(screen.getByTestId(credentialListTabTestId)).toBeEnabled(),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
 
@@ -128,9 +135,7 @@ describe('KMS dashboard test suite', () => {
     await assertOdsModalVisibility({ container, isVisible: true });
 
     expect(
-      await screen.findByText(
-        labels.credentials.key_management_service_credential_dashboard_name,
-      ),
+      await screen.findByText(labels.common.actions.modify_name),
     ).toBeVisible();
   });
 });
