@@ -3,4 +3,5 @@ export const BREADCRUMB_ITEM_TEST_IDS = {
   CREATE_SECRET: 'create-secret-breadcrumb-item',
   OKMS: 'okms-breadcrumb-item',
   SECRET: 'secret-breadcrumb-item',
+  OKMS_DASHBOARD: 'okms-dashboard-breadcrumb-item',
 };

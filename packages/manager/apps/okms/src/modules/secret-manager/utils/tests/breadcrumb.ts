@@ -8,6 +8,7 @@ const breadcrumbTestIdMap: Record<BreadcrumbItemName, string> = {
   CreateSecretBreadcrumbItem: BREADCRUMB_ITEM_TEST_IDS.CREATE_SECRET,
   RootBreadcrumbItem: BREADCRUMB_ITEM_TEST_IDS.ROOT,
   OkmsBreadcrumbItem: BREADCRUMB_ITEM_TEST_IDS.OKMS,
+  OkmsDashboardBreadcrumbItem: BREADCRUMB_ITEM_TEST_IDS.OKMS_DASHBOARD,
   SecretBreadcrumbItem: BREADCRUMB_ITEM_TEST_IDS.SECRET,
 };
 
