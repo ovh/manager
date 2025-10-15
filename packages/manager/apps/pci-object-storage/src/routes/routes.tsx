@@ -1,3 +1,4 @@
+import { Navigate } from 'react-router-dom';
 import NotFound from '../pages/404.page';
 import ErrorBoundary from '../components/error-boundary/ErrorBoundary.component';
 
@@ -211,6 +212,10 @@ export default [
           import('@/pages/object-storage/storage/s3Id/S3.layout'),
         ),
         children: [
+          {
+            index: true,
+            element: <Navigate to="objects" />,
+          },
           {
             path: 'objects',
             ...lazyLoadRoute(() =>
