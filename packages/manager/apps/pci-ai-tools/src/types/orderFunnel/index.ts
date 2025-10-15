@@ -37,7 +37,6 @@ export interface Qpu {
   description: string;
   qubits: number;
   pricing: catalog.Pricing[];
-  resourcesPerUnit: ResourcesPerUnit;
 }
 
 export interface NotebookWithQpu extends ai.notebook.Notebook {

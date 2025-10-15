@@ -21,13 +21,6 @@ export function createQPUFlavorPricingList(
       description: qpuFlavor.description,
       qubits: qpuFlavor.qubits,
       pricing: qpuFlavorPrice,
-      resourcesPerUnit: {
-        cpu: 0,
-        memory: 0,
-        ephemeralStorage: 0,
-        privateNetwork: 0,
-        publicNetwork: 0,
-      },
     };
     return qpu;
   });
