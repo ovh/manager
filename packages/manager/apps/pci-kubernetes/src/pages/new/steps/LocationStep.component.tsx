@@ -167,7 +167,7 @@ export function LocationStep({ projectId, onSubmit, step }: Readonly<LocationSte
               />
             </div>
 
-            <div className="grid md:grid-cols-4 gap-4 my-5">
+            <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6 my-5">
               {tilesData.map(({ title, pillLabel, description, regionType, badge }) => (
                 <KubeDeploymentTile
                   key={regionType}
