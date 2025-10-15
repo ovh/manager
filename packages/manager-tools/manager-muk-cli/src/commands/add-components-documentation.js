@@ -1,32 +1,26 @@
-import fs from 'node:fs';
-import path from 'node:path';
-
-import { EMOJIS, MUK_WIKI_COMPONENTS } from '../config/muk-config.js';
-import { ensureDir } from '../core/file-utils.js';
-import { extractDesignSystemDocs } from '../core/github-tarball-utils.js';
+import { EMOJIS } from '../config/muk-config.js';
+import { syncComponentDocs } from '../core/component-documentation-utils.js';
 import { logger } from '../utils/log-manager.js';
 
+/**
+ * Entry point for the addComponentsDocumentation command.
+ * Downloads, extracts, and synchronizes base documentation for all components.
+ *
+ * Uses a hybrid streaming approach for maximum performance and minimal memory.
+ *
+ * @async
+ * @returns {Promise<void>}
+ */
 export async function addComponentsDocumentation() {
-  const designSystemMarker = '/packages/storybook/stories/components/';
-  fs.rmSync(MUK_WIKI_COMPONENTS, { recursive: true, force: true });
-  ensureDir(MUK_WIKI_COMPONENTS);
+  logger.info(`${EMOJIS.package} Starting Design System documentation sync…`);
 
-  let extractedCount = 0;
-
-  await extractDesignSystemDocs({
-    filter: (entryPath) => entryPath.includes(designSystemMarker),
-    async onFile(entryPath, fileContent) {
-      const relativePath = entryPath.slice(
-        entryPath.indexOf(designSystemMarker) + designSystemMarker.length,
-      );
-      const targetPath = path.join(MUK_WIKI_COMPONENTS, relativePath);
-      ensureDir(path.dirname(targetPath));
-      fs.writeFileSync(targetPath, fileContent);
-      extractedCount++;
-    },
-  });
+  const { created = 0, updated = 0, total = 0 } = (await syncComponentDocs()) || {};
 
   logger.success(
-    `${EMOJIS.check} Copied ${extractedCount} documentation files to ${MUK_WIKI_COMPONENTS}`,
+    `${EMOJIS.check} Sync complete — ${created} new, ${updated} updated, ${total} files streamed.`,
+  );
+
+  logger.info(
+    `${EMOJIS.rocket} Documentation synced into 'base-component-doc' folders under each component.`,
   );
 }
