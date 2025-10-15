@@ -17,11 +17,11 @@
   "domain_dns_table_header_ip": "IP associée",
   "domain_dns_table_header_status": "Statut",
   "domain_dns_table_header_type": "Type de serveurs DNS",
-  "domain_dns_table_state_deleting": "En cours de suppression",
-  "domain_dns_table_state_activating": "En cours d'activation",
-  "domain_dns_table_state_enabled": "Actif",
-  "domain_dns_table_state_error": "En erreur",
-  "domain_dns_table_type_external": "Personnalisé",
+  "domain_table_state_deleting": "En cours de suppression",
+  "domain_table_state_activating": "En cours d'activation",
+  "domain_table_state_enabled": "Actif",
+  "domain_table_state_error": "En erreur",
+  "domain_table_type_external": "Personnalisé",
   "domain_dns_table_type_anycast": "Anycast",
   "domain_dns_table_type_standard": "Standard",
   "domain_dns_table_type_dedicated": "Secondaire",
@@ -161,5 +161,10 @@
   "domain_tab_contact_management_tech_description": "Il gère les aspects techniques d'un service. Il est responsable de la définition des serveurs DNS autoritaires.",
   "domain_tab_contact_management_billing_description": "Il gère la facturation d'un service ainsi que ses prélèvements.",
   "domain_tab_contact_management_button_reassign": "Réassigner",
-  "domain_tab_contact_management_holder_placeholder_personal_informations": "Pour voir les informations du titulaire, veuillez vous connecter avec le compte administrateur."
+  "domain_tab_contact_management_holder_placeholder_personal_informations": "Pour voir les informations du titulaire, veuillez vous connecter avec le compte administrateur.",
+  "domain_tab_hosts_listing_table_host": "Hôte",
+  "domain_tab_hosts_listing_table_target": "Cible(s)",
+  "domain_tab_hosts_listing_warning_title": "Accès non autorisé",
+  "domain_tab_hosts_listing_warning_sub_1": "Vous n’avez pas les droits nécessaires pour utiliser ce service.",
+  "domain_tab_hosts_listing_warning_sub_2": "Veuillez contacter votre administrateur pour obtenir les autorisations requises."
 }
