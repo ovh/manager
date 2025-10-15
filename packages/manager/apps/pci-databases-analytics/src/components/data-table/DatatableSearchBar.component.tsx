@@ -16,7 +16,7 @@ export function DatatableSearchBar({ children }: { children?: ReactNode }) {
             className="max-w-full sm:max-w-72 rounded-r-none focus-visible:ring-transparent focus-visible:bg-primary-50"
           />
           <Button
-            className="rounded-l-none"
+            className="rounded-l-none h-8"
             onClick={() => table.setGlobalFilter(globalFilter)}
           >
             <Search />

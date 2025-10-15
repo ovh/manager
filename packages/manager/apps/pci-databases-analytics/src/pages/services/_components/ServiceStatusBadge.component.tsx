@@ -21,7 +21,7 @@ const ServiceStatusBadge = ({
       break;
     case 'ERROR':
     case 'ERROR_INCONSISTENT_SPEC':
-      variant = badgeVariants({ variant: 'destructive' });
+      variant = badgeVariants({ variant: 'critical' });
       break;
     case 'READY':
       variant = badgeVariants({ variant: 'success' });

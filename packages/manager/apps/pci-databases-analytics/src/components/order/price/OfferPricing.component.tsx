@@ -13,11 +13,11 @@ const OfferPricing = ({ prices }: TablePriceProps) => {
     <div data-testid="table-price-container">
       <Table>
         <TableBody>
-          <TableRow className="text-xs">
-            <TableCell className="px-0 align-top">
+          <TableRow className="text-xs p-0">
+            <TableCell className="px-0 align-top py-0 bg-red-500">
               {t('pricing_instance_label')}
             </TableCell>
-            <TableCell className="text-right px-0">
+            <TableCell className="text-right px-0 py-0">
               <Price
                 className="flex flex-row justify-end items-center flex-wrap gap-2"
                 decimals={3}
@@ -26,11 +26,11 @@ const OfferPricing = ({ prices }: TablePriceProps) => {
               />
             </TableCell>
           </TableRow>
-          <TableRow className="text-xs">
-            <TableCell className="px-0 align-top">
+          <TableRow className="text-xs py-0">
+            <TableCell className="px-0 align-top py-0 bg-red-200">
               {t('pricing_storage_label')}
             </TableCell>
-            <TableCell className="text-right px-0">
+            <TableCell className="text-right px-0 py-0">
               <Price
                 className="flex flex-row justify-end items-center flex-wrap gap-2"
                 decimals={3}
@@ -40,10 +40,10 @@ const OfferPricing = ({ prices }: TablePriceProps) => {
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell className="font-semibold text-text px-0 align-top min-w-[110px]">
+            <TableCell className="font-semibold text-text px-0 align-top min-w-[110px] py-0">
               {t('total_hour_label')}
             </TableCell>
-            <TableCell className="text-right px-0">
+            <TableCell className="text-right px-0 py-0">
               <Price
                 className="flex flex-row justify-end items-center flex-wrap gap-2"
                 decimals={3}
@@ -52,11 +52,11 @@ const OfferPricing = ({ prices }: TablePriceProps) => {
               />
             </TableCell>
           </TableRow>
-          <TableRow className="text-sm text-gray-500 italic">
-            <TableCell className="px-0 align-top">
+          <TableRow className="text-sm text-gray-500 italic ">
+            <TableCell className="px-0 align-top py-0">
               {t('estimated_month_label')}
             </TableCell>
-            <TableCell className="text-right px-0">
+            <TableCell className="text-right px-0 py-0">
               <Price
                 className="flex flex-row justify-end items-center flex-wrap gap-2"
                 decimals={0}

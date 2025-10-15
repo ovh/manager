@@ -95,10 +95,11 @@ const ServiceConfiguration = () => {
                     service.capabilities.service?.update ===
                     database.service.capability.StateEnum.disabled
                   }
-                  className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
+                  mode="ghost"
+                  className="rounded-full aspect-square h-auto p-1"
                   onClick={() => navigate('./rename')}
                 >
-                  <Pen />
+                  <Pen className="size-4" />
                 </Button>
               </TableCell>
             )}
@@ -162,10 +163,11 @@ const ServiceConfiguration = () => {
                     service.capabilities.deletionProtection?.update ===
                     database.service.capability.StateEnum.disabled
                   }
-                  className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
+                  mode="ghost"
+                  className="rounded-full aspect-square h-auto p-1"
                   onClick={() => navigate('./deletion-protection')}
                 >
-                  <Pen />
+                  <Pen className="size-4" />
                 </Button>
               </TableCell>
             </TableRow>
@@ -179,8 +181,8 @@ const ServiceConfiguration = () => {
             service.capabilities.service?.delete ===
             database.service.capability.StateEnum.disabled
           }
-          variant="destructive"
-          className="w-full bg-background border-2 hover:bg-destructive/10 font-semibold border-destructive text-destructive"
+          mode="outline"
+          variant="critical"
           onClick={() => navigate('./delete')}
         >
           {t('serviceConfigurationDeleteService')}

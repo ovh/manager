@@ -357,7 +357,7 @@ const OrderFunnel = ({
             </OrderSection>
           </div>
 
-          <Card className="sticky top-4 h-fit shadow-lg">
+          <Card className="sticky top-4 h-fit">
             <CardHeader>
               <CardTitle>{t('summaryTitle')}</CardTitle>
             </CardHeader>
