@@ -7,12 +7,10 @@ import {
   HeadersProps,
   ErrorBanner,
   useFeatureAvailability,
-  useServiceDetails,
 } from '@ovh-ux/manager-react-components';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import KmsGuidesHeader from '@/components/Guide/KmsGuidesHeader';
-import Loading from '@/components/Loading/Loading';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@/routes/routes.constants';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
@@ -25,6 +23,7 @@ import KmsTabs, {
 import { KMS_FEATURES } from '@/utils/feature-availability/feature-availability.constants';
 import { KmsDashboardOutletContext } from './KmsDashboard.type';
 import { KmsChangelogButton } from '@/components/kmsChangelogButton/KmsChangelogButton.component';
+import { PageSpinner } from '@/common/components/pageSpinner/PageSpinner.component';
 
 export default function DashboardPage() {
   const { t } = useTranslation([
@@ -42,11 +41,6 @@ export default function DashboardPage() {
     isPending: isOkmsLoading,
     error: okmsError,
   } = useOkmsById(okmsId);
-
-  const {
-    data: okmsService,
-    isPending: isOkmsServiceLoading,
-  } = useServiceDetails({ resourceName: okmsId });
 
   const {
     data: features,
@@ -92,10 +86,25 @@ export default function DashboardPage() {
     return tabs;
   }, [features, t, okmsId]);
 
-  // If the service information is not accessible, we fallback to the okms id
-  const displayName = okmsService
-    ? okmsService?.data?.resource.displayName
-    : okmsId;
+  if (isOkmsLoading || isFeatureAvailabilityLoading) {
+    return <PageSpinner />;
+  }
+
+  if (okmsError) {
+    return (
+      <ErrorBanner
+        error={okmsError.response}
+        onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
+        onReloadPage={() =>
+          queryClient.refetchQueries({
+            queryKey: okmsQueryKeys.detail(okmsId),
+          })
+        }
+      />
+    );
+  }
+
+  const { displayName } = okms.data.iam;
 
   const breadcrumbItems: BreadcrumbItem[] = [
     {
@@ -129,24 +138,6 @@ export default function DashboardPage() {
     },
   ];
 
-  if (isOkmsServiceLoading || isOkmsLoading || isFeatureAvailabilityLoading) {
-    return <Loading />;
-  }
-
-  if (okmsError) {
-    return (
-      <ErrorBanner
-        error={okmsError.response}
-        onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
-        onReloadPage={() =>
-          queryClient.refetchQueries({
-            queryKey: okmsQueryKeys.detail(okmsId),
-          })
-        }
-      />
-    );
-  }
-
   const headerProps: HeadersProps = {
     title: displayName,
     headerButton: <KmsGuidesHeader />,
@@ -155,12 +146,10 @@ export default function DashboardPage() {
 
   const contextValue: KmsDashboardOutletContext = {
     okms: okms.data,
-    okmsDisplayName: displayName,
-    okmsService: okmsService?.data,
   };
 
   return (
-    <Suspense fallback={<Loading />}>
+    <Suspense fallback={<PageSpinner />}>
       <BaseLayout
         header={headerProps}
         onClickReturn={() => {
