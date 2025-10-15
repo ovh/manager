@@ -9,7 +9,7 @@ import {
   TableRow,
 } from '@datatr-ux/uxlib';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, FileStack } from 'lucide-react';
+import { ArrowLeft, ArrowRight, FileStack } from 'lucide-react';
 import { Outlet, useParams, useSearchParams } from 'react-router-dom';
 import { useGetS3ObjectVersions } from '@/data/hooks/s3-storage/useGetS3ObjectVersions.hook';
 import { useS3Data } from '../../S3.context';
@@ -58,6 +58,9 @@ const Object = () => {
   return (
     <>
       <h2>{t('objTitle')}</h2>
+      <Link to={'../'} className="flex items-center w-full">
+        <ArrowLeft className="w-4 h-4 mr-2" /> {t('objectsBackLink')}
+      </Link>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card>
           <CardHeader>
