@@ -1,6 +1,7 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import ai from '@/types/AI';
 import { PCIAi } from '../..';
+import quantum from '@/types/Quantum';
 
 export const getRegions = async ({ projectId }: PCIAi) =>
   apiClient.v6
@@ -34,6 +35,11 @@ export const getFlavor = async ({ projectId, region }: AIRegion) =>
   apiClient.v6
     .get(`/cloud/project/${projectId}/ai/capabilities/region/${region}/flavor`)
     .then((res) => res.data as ai.capabilities.Flavor[]);
+
+export const getQPUFlavor = async ({ projectId, region }: AIRegion) =>
+  apiClient.v6
+    .get(`/cloud/project/${projectId}/quantum/capabilities/region/${region}/qpu`)
+    .then((res) => res.data as quantum.capabilities.QPUFlavor[]);
 
 export const getAppImages = async ({ projectId, region }: AIRegion) =>
   apiClient.v6

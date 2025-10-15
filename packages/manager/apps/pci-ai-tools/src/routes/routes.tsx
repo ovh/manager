@@ -1132,6 +1132,41 @@ export default [
                   import('@/pages/qpus/onboarding/Onboarding.page'),
                 ),
               },
+
+              {
+                path: 'new',
+                id: 'qpu.create',
+                ...lazyRouteConfig(() =>
+                  import('@/pages/qpus/create/Create.page'),
+                ),
+                handle: {
+                  tracking: {
+                    id: 'qpu.funnel.create_qpu',
+                    category: 'funnel',
+                  },
+                  breadcrumb: () => (
+                    <BreadcrumbItem
+                      translationKey="breadcrumb"
+                      namespace="ai-tools/qpu/create"
+                    />
+                  ),
+                },
+                children: [
+                  {
+                    path: 'add-sshkey',
+                    id: 'qpu.create.add-sshkey',
+                    handle: {
+                      tracking: {
+                        id: 'qpu.funnel.popup.add-sshkey',
+                        category: 'funnel',
+                      },
+                    },
+                    ...lazyRouteConfig(() =>
+                      import('@/pages/_components/AddSSHKey.modal'),
+                    ),
+                  },
+                ],
+              },
             ],
           },
         ],
