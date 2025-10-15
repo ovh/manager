@@ -1,46 +1,29 @@
 import { useTranslation } from 'react-i18next';
-import './translations';
-
-export const isLocalZone = (region: string) => {
-  const localZonePattern = /^lz/i;
-  return localZonePattern.test(region.split('-')?.slice(2)?.join('-'));
-};
-
-export const getMacroRegion = (region: string): string => {
-  const regionSubStrings = region.split('-');
-  const macroRegionMap = [
-    null,
-    regionSubStrings?.[0]?.split(/(\d)/)[0],
-    regionSubStrings[0],
-    regionSubStrings[2],
-    regionSubStrings[2] === 'LZ' ? regionSubStrings[3] : regionSubStrings[2],
-    regionSubStrings[3],
-  ];
-  return macroRegionMap[regionSubStrings.length] || 'Unknown_Macro_Region';
-};
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { getMacroRegion } from './useTranslatedMicroRegions.utils';
 
 export const useTranslatedMicroRegions = () => {
-  const { i18n, t } = useTranslation('region');
+  const { i18n, t } = useTranslation(NAMESPACES.REGION);
 
   return {
     translateMicroRegion: (region: string) => {
       const macro = getMacroRegion(region);
-      if (i18n.exists(`region:manager_components_region_${macro}_micro`)) {
-        return t(`manager_components_region_${macro}_micro`, { micro: region });
+      if (i18n.exists(`region:region_${macro}_micro`)) {
+        return t(`region_${macro}_micro`, { micro: region });
       }
       return '';
     },
     translateMacroRegion: (region: string) => {
       const macro = getMacroRegion(region);
-      if (i18n.exists(`region:manager_components_region_${macro}`)) {
-        return t(`manager_components_region_${macro}`);
+      if (i18n.exists(`region:region_${macro}`)) {
+        return t(`region_${macro}`);
       }
       return '';
     },
     translateContinentRegion: (region: string) => {
       const macro = getMacroRegion(region);
-      if (i18n.exists(`region:manager_components_region_continent_${macro}`)) {
-        return t(`manager_components_region_continent_${macro}`);
+      if (i18n.exists(`region:region_continent_${macro}`)) {
+        return t(`region_continent_${macro}`);
       }
       return '';
     },
