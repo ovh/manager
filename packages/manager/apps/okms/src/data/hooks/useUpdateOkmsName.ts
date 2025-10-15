@@ -1,10 +1,8 @@
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import {
-  getServiceDetailsQueryKey,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { okmsQueryKeys } from '../api/okms';
 import {
   updateOkmsNameQueryKey,
@@ -12,15 +10,14 @@ import {
   getOkmsServiceId,
   updateOkmsName,
 } from '../api/okmsService';
+import { OKMS } from '@/types/okms.type';
 
 export type UpdateOkmsParams = {
-  okmsId: string;
+  okms: OKMS;
   onSuccess: () => void;
   onError?: (result: ApiError) => void;
 };
 export type UpdateOkmsNameMutationParams = {
-  /** Okms service id */
-  okms: string;
   /** Okms service new display name */
   displayName: string;
 };
@@ -29,60 +26,66 @@ export type UpdateOkmsNameMutationParams = {
  * Get the function to mutate a okms Services
  */
 export const useUpdateOkmsName = ({
-  okmsId,
+  okms,
   onSuccess,
   onError,
 }: UpdateOkmsParams) => {
   const queryClient = useQueryClient();
-  const { t } = useTranslation('key-management-service/serviceKeys');
-  const { addError, addSuccess, clearNotifications } = useNotifications();
+  const { t } = useTranslation([NAMESPACES.ACTIONS, NAMESPACES.ERROR]);
+  const { addSuccess, clearNotifications } = useNotifications();
 
-  const {
-    mutate: updateKmsName,
-    isPending,
-    error: updateNameError,
-  } = useMutation({
+  const { mutate, isPending, error: updateNameError } = useMutation({
     mutationKey: updateOkmsNameQueryKey(),
-    mutationFn: async ({ okms, displayName }: UpdateOkmsNameMutationParams) => {
+    mutationFn: async ({ displayName }: UpdateOkmsNameMutationParams) => {
       const { data: servicesId } = await queryClient.fetchQuery<
         ApiResponse<number[]>
       >({
-        queryKey: getOkmsServiceIdQueryKey(okms),
-        queryFn: () => getOkmsServiceId(okms),
+        queryKey: getOkmsServiceIdQueryKey(okms.id),
+        queryFn: () => getOkmsServiceId(okms.id),
       });
       return updateOkmsName({ serviceId: servicesId[0], displayName });
     },
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
+    onSuccess: (_, { displayName }) => {
+      const previousData = queryClient.getQueryData<{ data: OKMS }>(
+        okmsQueryKeys.detail(okms.id),
+      );
+
+      // Optimistically update the OKMS domain cache
+      queryClient.setQueryData(okmsQueryKeys.detail(okms.id), {
+        data: {
+          ...previousData.data,
+          iam: {
+            ...previousData.data.iam,
+            displayName,
+          },
+        },
+      });
+
+      queryClient.invalidateQueries({
         queryKey: okmsQueryKeys.listDatagrid,
       });
-      await queryClient.invalidateQueries({
-        queryKey: getServiceDetailsQueryKey(okmsId),
-      });
-      await queryClient.invalidateQueries({
-        queryKey: okmsQueryKeys.detail(okmsId),
-      });
+
+      // Wait for the renaming to be effective in the backend before refetching the data
+      setTimeout(async () => {
+        queryClient.invalidateQueries({
+          queryKey: okmsQueryKeys.detail(okms.id),
+        });
+        queryClient.invalidateQueries({
+          queryKey: okmsQueryKeys.listDatagrid,
+        });
+      }, 3000);
+
       clearNotifications();
-      addSuccess(
-        t('key_management_service_service-keys_update_name_success'),
-        true,
-      );
+      addSuccess(t('modify_name_success', { ns: NAMESPACES.ACTIONS }), true);
       onSuccess?.();
     },
     onError: (result: ApiError) => {
-      clearNotifications();
-      addError(
-        t('key_management_service_service-keys_update_error', {
-          error: result.message,
-        }),
-        true,
-      );
       onError?.(result);
     },
   });
 
   return {
-    updateKmsName,
+    updateOkmsName: mutate,
     isPending,
     error: updateNameError,
   };
