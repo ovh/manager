@@ -11,13 +11,13 @@ import { SecretsTile } from './secretsTile/SecretsTile.component';
 import { ServiceKeysTile } from './serviceKeysTile/ServiceKeysTile.component';
 import { KmipObjectsTile } from './kmipObjectsTile/KmipObjectsTile.component';
 
-type OkmsDomainDashboardTilesParams = {
+type OkmsDomainDashboardTilesProps = {
   okms: OKMS;
 };
 
 export const OkmsDomainDashboardTiles = ({
   okms,
-}: OkmsDomainDashboardTilesParams) => {
+}: OkmsDomainDashboardTilesProps) => {
   const { t } = useTranslation('key-management-service/dashboard');
 
   return (
