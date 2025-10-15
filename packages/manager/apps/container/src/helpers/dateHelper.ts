@@ -1,7 +1,5 @@
 import parse from 'date-fns/parse';
 import formatDistanceStrict from 'date-fns/formatDistanceStrict';
-// TODO: upgrade prettier
-// eslint-disable-next-line prettier/prettier
 import type { Locale } from 'date-fns';
 
 export const fromNow = async (date: string, locale: string): Promise<string> => {

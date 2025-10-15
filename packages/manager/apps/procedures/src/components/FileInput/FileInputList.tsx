@@ -1,11 +1,14 @@
 import React, { FunctionComponent, MouseEvent, useContext } from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OsdsText } from '@ovhcloud/ods-components/react';
+
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+
 import { FileInputContext } from './FileInputContainer';
 import { FileInputListItem } from './FileInputListItem';
 
@@ -16,9 +19,7 @@ type Props = {
 export const FileInputList: FunctionComponent<Props> = ({ className }) => {
   const context = useContext(FileInputContext);
   if (!context) {
-    throw Error(
-      'The component <FileInputList /> must be a child of FileInputContainer',
-    );
+    throw Error('The component <FileInputList /> must be a child of FileInputContainer');
   }
   const { t } = useTranslation('account-disable-2fa');
 

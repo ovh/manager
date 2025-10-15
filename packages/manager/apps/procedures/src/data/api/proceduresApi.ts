@@ -1,5 +1,7 @@
-import { v6 } from '@ovh-ux/manager-core-api';
 import axios from 'axios';
+
+import { v6 } from '@ovh-ux/manager-core-api';
+
 import { Procedure } from '@/types/procedure';
 
 export type UploadLink = {
@@ -16,10 +18,7 @@ export type UploadDocuments = {
 
 const s3AxiosInstance = axios.create({});
 
-const uploadDocument: (link: UploadLink, file: File) => Promise<void> = (
-  link,
-  file,
-) => {
+const uploadDocument: (link: UploadLink, file: File) => Promise<void> = (link, file) => {
   return s3AxiosInstance.put(link.link, file, {
     headers: {
       ...link.headers,
@@ -40,12 +39,10 @@ export const getProceduresAPI = (procedure: Procedure) => {
   ): Promise<UploadLink[]> => {
     return v6
       .post(uri, dataQuery)
-      .then(({ data: dataResponse } : { data: Record<string, any> }) => dataResponse.uploadLinks);
+      .then(({ data: dataResponse }: { data: Record<string, any> }) => dataResponse.uploadLinks);
   };
 
-  const finalize: (finalizeData?: Record<string, any>) => Promise<void> = (
-    finalizeData,
-  ) => {
+  const finalize: (finalizeData?: Record<string, any>) => Promise<void> = (finalizeData) => {
     return v6.post(`${uri}/finalize`, finalizeData).then(({ data }) => data);
   };
 
@@ -54,9 +51,7 @@ export const getProceduresAPI = (procedure: Procedure) => {
     files,
     finalizeData,
   }) => {
-    await Promise.all(
-      links.map((link, index) => uploadDocument(link, files[index])),
-    );
+    await Promise.all(links.map((link, index) => uploadDocument(link, files[index])));
     return finalize(finalizeData);
   };
 

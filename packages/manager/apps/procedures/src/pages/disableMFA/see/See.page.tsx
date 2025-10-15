@@ -1,15 +1,10 @@
-import { OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_LEVEL } from '@ovhcloud/ods-common-theming';
+import { ODS_ICON_NAME, ODS_ICON_SIZE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 
 export default function SeeRequest() {
   const { t } = useTranslation('account-disable-2fa');
@@ -73,11 +68,7 @@ export default function SeeRequest() {
       >
         {t('account-disable-2fa-back-home')}
         <span slot="end">
-          <OsdsIcon
-            name={ODS_ICON_NAME.ARROW_RIGHT}
-            size={ODS_ICON_SIZE.xs}
-            hoverable
-          ></OsdsIcon>
+          <OsdsIcon name={ODS_ICON_NAME.ARROW_RIGHT} size={ODS_ICON_SIZE.xs} hoverable></OsdsIcon>
         </span>
       </OsdsLink>
     </div>

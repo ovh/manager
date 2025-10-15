@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Select, { StylesConfig } from 'react-select';
 import { PciProject } from './PciProject';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 const getProjectOption = (option: Record<string, any>): JSX.Element => {
   return (
     <div style={{ alignItems: 'center', display: 'flex' }}>

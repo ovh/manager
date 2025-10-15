@@ -1,11 +1,7 @@
-import React, {
-  FunctionComponent,
-  UIEvent,
-  SyntheticEvent,
-  createContext,
-} from 'react';
-import { FileInputList } from './FileInputList';
+import React, { FunctionComponent, SyntheticEvent, UIEvent, createContext } from 'react';
+
 import { FileInput } from './FileInput';
+import { FileInputList } from './FileInputList';
 import { FileInputTooltip } from './FileInputTooltip';
 
 export type FileWithError = File & {
@@ -32,9 +28,7 @@ export type FileInputProps = {
   disabled: boolean;
 };
 
-export const FileInputContext = createContext<FileInputProps | undefined>(
-  undefined,
-);
+export const FileInputContext = createContext<FileInputProps | undefined>(undefined);
 
 const Container: FunctionComponent<FileInputProps> = (props) => {
   return (

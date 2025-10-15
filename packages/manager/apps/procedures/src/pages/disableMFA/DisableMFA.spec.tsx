@@ -1,6 +1,8 @@
 import React from 'react';
-import { describe, expect, it, vi } from 'vitest';
+
 import { render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import Home from './DisableMFA.page';
 
 const mockedUsedNavigate = vi.fn();
@@ -46,10 +48,7 @@ describe('DisableMFA.page', () => {
 
     render(<Home />);
 
-    expect(mockedUsedNavigate).toHaveBeenCalledWith(
-      '/account-disable-2fa/see',
-      { replace: true },
-    );
+    expect(mockedUsedNavigate).toHaveBeenCalledWith('/account-disable-2fa/see', { replace: true });
   });
 
   it('should navigate to create page when status is creationAuthorized', async () => {
@@ -66,12 +65,9 @@ describe('DisableMFA.page', () => {
 
     render(<Home />);
 
-    expect(mockedUsedNavigate).toHaveBeenCalledWith(
-      '/account-disable-2fa/create',
-      {
-        replace: true,
-      },
-    );
+    expect(mockedUsedNavigate).toHaveBeenCalledWith('/account-disable-2fa/create', {
+      replace: true,
+    });
   });
 
   it('should navigate to error page when api respond a non 404 error', async () => {
@@ -83,12 +79,9 @@ describe('DisableMFA.page', () => {
 
     render(<Home />);
 
-    expect(mockedUsedNavigate).toHaveBeenCalledWith(
-      '/account-disable-2fa/error',
-      {
-        replace: true,
-      },
-    );
+    expect(mockedUsedNavigate).toHaveBeenCalledWith('/account-disable-2fa/error', {
+      replace: true,
+    });
   });
 
   it('should render outlet component when isFetched is true', async () => {

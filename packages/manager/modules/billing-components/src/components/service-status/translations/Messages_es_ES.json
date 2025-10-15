@@ -9,5 +9,13 @@
   "manager_billing_service_status_expired": "Dado de baja",
   "manager_billing_service_status_billing_suspended": "Facturación aplazada",
   "manager_billing_service_status_forced_manual": "Renovación manual",
-  "manager_billing_service_status_restorable": "Restaurable"
+  "manager_billing_service_status_restorable": "Restaurable",
+  "manager_billing_service_status_unpaid": "Impago",
+  "manager_billing_service_status_terminated": "Dado de baja",
+  "manager_billing_service_status_unrenewed": "Expirado/a",
+  "manager_billing_service_status_active": "Activo",
+  "manager_billing_service_status_error": "En error",
+  "manager_billing_service_status_in_creation": "Instalación en curso",
+  "manager_billing_service_status_rupture": "Dado de baja",
+  "manager_billing_service_status_to_renew": "Pendiente de renovación"
 }

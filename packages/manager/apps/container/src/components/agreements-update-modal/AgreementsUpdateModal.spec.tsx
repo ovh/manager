@@ -23,9 +23,9 @@ vi.mock('@tanstack/react-query', async (importOriginal) => {
 vi.mock('@/context', () => ({
   useApplication: () => ({
     shell: {
-      // eslint-disable-next-line consistent-return
+       
       getPlugin: (plugin: string) => {
-        // eslint-disable-next-line default-case
+         
         switch (plugin) {
           case 'navigation':
             return {

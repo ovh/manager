@@ -1,0 +1,10 @@
+{
+  "billing_autorenew_service_pending_actions": "Laufende Vorgänge",
+  "billing_autorenew_service_pending_actions_autorenewInProgress": "Verlängerung wird vorgenommen",
+  "billing_autorenew_service_pending_actions_deleteAtExpiration": "Kündigung angefordert",
+  "billing_autorenew_service_pending_actions_earlyRenewal": "Verlängerung",
+  "billing_autorenew_service_pending_actions_pendingCreate": "Wird geliefert",
+  "billing_autorenew_service_pending_actions_terminate": "Gekündigt",
+  "billing_autorenew_service_pending_actions_terminateAtEngagementDate": "Kündigung angefordert",
+  "billing_autorenew_service_pending_actions_terminateAtExpirationDate": "Kündigung angefordert"
+}
