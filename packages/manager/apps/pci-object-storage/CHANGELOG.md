@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.18.2...@ovh-ux/manager-pci-object-storage-app@0.18.3) (2025-10-15)
+
+
+### Bug Fixes
+
+* **object-storage:** error message not handle ([177d5fc](https://github.com/ovh/manager/commit/177d5fc673a22d5afe92f8a4f67b388e9a3f399f)), closes [#TAPC-4693](https://github.com/ovh/manager/issues/TAPC-4693)
+
+
+
+
+
 ## [0.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.18.1...@ovh-ux/manager-pci-object-storage-app@0.18.2) (2025-10-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app

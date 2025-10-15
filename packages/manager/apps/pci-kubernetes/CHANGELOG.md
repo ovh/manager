@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.32.3...@ovh-ux/manager-pci-kubernetes-app@0.33.0) (2025-10-15)
+
+
+### Features
+
+* **pci-kubernetes:** add estimated monthly price ([b71d229](https://github.com/ovh/manager/commit/b71d22978868e6d935031fbadbae9a0a4749a120)), closes [#TAPC-4727](https://github.com/ovh/manager/issues/TAPC-4727)
+* **pci-kubernetes:** delete shadcn and update to ods 19 ([45c0597](https://github.com/ovh/manager/commit/45c05979645085aceb14005c959dd3bff113bf62)), closes [#TAPC-5164](https://github.com/ovh/manager/issues/TAPC-5164)
+
+
+
+
+
 ## [0.32.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.32.2...@ovh-ux/manager-pci-kubernetes-app@0.32.3) (2025-10-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
