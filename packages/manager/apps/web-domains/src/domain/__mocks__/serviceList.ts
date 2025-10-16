@@ -51,6 +51,48 @@ export const serviceList: TDomainResource[] = [
       },
       authInfoManagedByOVHcloud: true,
       authInfoSupported: true,
+      dnssecConfiguration: {
+        dnssecSupported: true,
+        dsData: [
+          {
+            algorithm: 8,
+            keyTag: 0,
+            keyType: 0,
+            publicKey:
+              'MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgGlVDb17VQPrH7bOLBGc6N+/D84tbly3RQ/kQLPq73H6nhCI+vg1euNvnZaFBDiHktGRDlmayzoo5k/j/65V5TkoFE/x5yaiPGHXKIb+QsZCbHeNkEx/di4meHY7sETyla97uBM5BJUBc7ZhCoR2+Jc+HHdBLrQ5/9LpR0nEsfn7AgMBAAE=',
+          },
+        ],
+        supportedAlgorithms: [
+          {
+            name: 'RSASHA1',
+            number: 5,
+          },
+          {
+            name: 'RSASHA1-NSEC3-SHA1',
+            number: 7,
+          },
+          {
+            name: 'RSASHA256',
+            number: 8,
+          },
+          {
+            name: 'RSASHA512',
+            number: 10,
+          },
+          {
+            name: 'ECDSAP256SHA256',
+            number: 13,
+          },
+          {
+            name: 'ECDSAP384SHA384',
+            number: 14,
+          },
+          {
+            name: 'ED25519',
+            number: 15,
+          },
+        ],
+      },
       contactsConfiguration: {
         contactAdministrator: { id: 'admin-id' },
         contactBilling: {

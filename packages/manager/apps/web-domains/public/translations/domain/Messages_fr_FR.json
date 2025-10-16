@@ -284,5 +284,9 @@
   "domain_tab_hosts_modal_delete_title": "Supprimer l'hôte {{hostname}}",
   "domain_tab_hosts_modal_delete_information_message": "Êtes-vous sur de voulour supprimer cet hôte ?",
   "domain_tab_hosts_modal_delete_success_message": "L'hôte est en cours de suppression",
-  "domain_tab_hosts_modal_delete_error_message": "Une erreur a été détectée lors de la suppression de l'hôte"
+  "domain_tab_hosts_modal_delete_error_message": "Une erreur a été détectée lors de la suppression de l'hôte",
+  "domain_dsrecords_table_header_keyTag": "Key tag",
+  "domain_dsrecords_table_header_flag": "Flag",
+  "domain_dsrecords_table_header_algo": "Algorithme",
+  "domain_dsrecords_table_header_publicKey": "Clé publique (encodée base64)"
 }
