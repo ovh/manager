@@ -33,6 +33,10 @@ const HostsListingTab = React.lazy(() =>
   import('@/domain/pages/domainTabs/hosts/hostsListing'),
 );
 
+const HostConfigurationDeletePage = React.lazy(() =>
+  import('@/domain/pages/domainTabs/hosts/hostDelete'),
+);
+
 const ContactManagementPage = React.lazy(() =>
   import('@/domain/pages/domainTabs/contactManagement/contactManagement'),
 );
@@ -94,7 +98,13 @@ export default (
         <Route path={urls.domainTabDns} Component={Outlet} />
         <Route path={urls.domainTabRedirection} Component={Outlet} />
         <Route path={urls.domainTabDynHost} Component={Outlet} />
-        <Route path={urls.domainTabHost} Component={HostsListingTab} />
+
+        <Route path={urls.domainTabHost} Component={HostsListingTab}>
+          <Route
+            path={urls.domainTabHostDelete}
+            Component={HostConfigurationDeletePage}
+          />
+        </Route>
         <Route path={urls.domainTabDnssec} Component={Outlet} />
         <Route
           path={urls.domainTabContactManagement}
