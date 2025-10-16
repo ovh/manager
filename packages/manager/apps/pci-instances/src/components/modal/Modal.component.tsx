@@ -9,9 +9,21 @@ import {
   ModalContent,
   Text,
   TEXT_PRESET,
+  ModalProp,
 } from '@ovhcloud/ods-react';
 
 export type TModalVariant = 'primary' | 'warning' | 'critical';
+
+type TModalProps = ModalProp & {
+  title: string;
+  onModalClose: () => void;
+  children: React.ReactNode;
+  isPending: boolean;
+  handleInstanceAction: () => void;
+  variant?: TModalVariant;
+  dismissible?: boolean;
+  disabled?: boolean;
+};
 
 const Modal = ({
   title,
@@ -22,22 +34,14 @@ const Modal = ({
   variant = 'primary',
   dismissible = false,
   disabled,
-}: {
-  title: string;
-  onModalClose: () => void;
-  children: React.ReactNode;
-  isPending: boolean;
-  handleInstanceAction: () => void;
-  variant?: TModalVariant;
-  dismissible?: boolean;
-  disabled?: boolean;
-}) => {
+  ...props
+}: TModalProps) => {
   const { t } = useTranslation(NAMESPACES.ACTIONS);
   const id = useId();
 
   return (
     <ODSModal
-      defaultOpen
+      {...('open' in props ? { open: props.open } : { defaultOpen: true })}
       onOpenChange={onModalClose}
       closeOnInteractOutside
       closeOnEscape

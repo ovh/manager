@@ -89,7 +89,7 @@ describe('FlavorsTable', () => {
         caption="Flavors"
         columns={columns}
         rows={rows}
-        onClick={onClick}
+        onRowClick={onClick}
         selectable
       />,
     );

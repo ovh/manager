@@ -3,7 +3,7 @@
   "pci_instances_creation_advanced_parameters": "Advanced settings",
   "pci_instances_creation_quantity_title": "Choose a quantity",
   "pci_instances_creation_quantity_label": "Number of instances to create",
-  "pci_instance_creation_quantity_rule": "Your current quota allows you to create up to {{ quota }} instance(s) of type {{ type }} for the {{ region }} region simultaneously.",
+  "pci_instance_creation_quantity_rule": "Your current quota allows you to create up to {{ quota }} instance(s) of type {{ type }} simultaneously for the {{ region }} region. <Link>Check your quota.</Link>",
   "pci_instance_creation_choose_localization_title": "Choose a location",
   "pci_instance_creation_select_localization_label": "Select a location: ",
   "pci_instance_creation_continue_order": "Continue my order",
@@ -31,5 +31,9 @@
   "pci_instance_creation_flavor_unavailable_quota": "Quota unavailable",
   "pci_instance_creation_flavor_unavailable_help": "This model is not available in your selected region. However, you can select it, but you will need to choose another region for this model.",
   "pci_instance_creation_flavor_unavailable_quota_help": "Your quota does not allow you to choose this instance type. Please increase your quota.",
-  "pci_instance_creation_select_flavor_price_hint": "* Lorem ipsum dolor sit amet"
+  "pci_instance_creation_select_flavor_price_hint": "* Lorem ipsum dolor sit amet",
+  "pci_instance_creation_select_new_region_title": "Choose a new region",
+  "pci_instance_creation_select_new_region_label": "Select a region",
+  "pci_instance_creation_select_new_region_for_flavor": "This model <strong>({{ flavor }})</strong> is not available in your <strong>selected region</strong>. However, you can select it, but you will need to choose another available region for this model.",
+  "pci_instance_creation_select_new_region": "Choose a region"
 }
