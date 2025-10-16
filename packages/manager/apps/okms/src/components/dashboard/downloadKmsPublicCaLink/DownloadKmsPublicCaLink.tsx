@@ -14,7 +14,7 @@ import {
   PUBLIC_CA_FILENAME,
   PUBLIC_RSA_CA_FILENAME,
 } from './downloadKmsPublicCaLink.constants';
-import { OKMS } from '@/types/okms.type';
+import { OKMS, OkmsPublicCa } from '@/types/okms.type';
 
 export type CertificateType =
   | 'publicCaRest'
@@ -24,6 +24,7 @@ export type CertificateType =
 type ButtonResource = {
   label: string;
   filename: string;
+  certificateType: keyof OkmsPublicCa;
   tracking: string;
 };
 
@@ -45,16 +46,19 @@ export const DownloadKmsPublicCaLink = ({
     publicCaRest: {
       label: t('key_management_service_dashboard_button_label_download_ca'),
       filename: PUBLIC_CA_FILENAME,
+      certificateType: 'publicCA',
       tracking: 'download_rest-api-endpoint-ca',
     },
     publicCaKmip: {
       label: t('key_management_service_dashboard_button_label_download_ca'),
-      filename: PUBLIC_RSA_CA_FILENAME,
+      filename: PUBLIC_CA_FILENAME,
+      certificateType: 'publicCA',
       tracking: 'download_kmip-endpoint-ca',
     },
     publicCaRsaKmip: {
       label: t('key_management_service_dashboard_button_label_download_rsa_ca'),
       filename: PUBLIC_RSA_CA_FILENAME,
+      certificateType: 'publicRsaCA',
       tracking: 'download_kmip-endpoint-ca-rsa',
     },
   };
@@ -68,14 +72,8 @@ export const DownloadKmsPublicCaLink = ({
       setLoading(true);
       const certificates = await getOkmsPublicCa(okms.id);
 
-      const content: Record<CertificateType, string> = {
-        publicCaRest: certificates.publicCA,
-        publicCaKmip: certificates.publicRsaCA,
-        publicCaRsaKmip: certificates.publicRsaCA,
-      };
-
       initiateTextFileDownload({
-        text: content[type],
+        text: certificates[resources[type].certificateType],
         filename: resources[type].filename.replace('{region}', okms.region),
       });
 
