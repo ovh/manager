@@ -39,9 +39,28 @@ describe('HostForm', () => {
     vi.clearAllMocks();
   });
 
-  it('renders the host form', () => {
+  it('renders correctly with required fields', () => {
     render(<HostForm {...defaultProps} />);
+
     expect(screen.getByTestId('host-form')).toBeInTheDocument();
+    expect(
+      screen.getByText('domain_tab_hosts_drawer_add_form_hostName_label'),
+    ).toBeInTheDocument();
+
+    expect(screen.getByText('.foobar')).toBeInTheDocument();
+  });
+
+  it('hostname is readOnly in Modify mode', () => {
+    render(
+      <HostForm
+        {...defaultProps}
+        drawerAction={DrawerActionEnum.Modify}
+        formData={{ host: 'ns2.foobar', ips: [] }}
+      />,
+    );
+
+    const hostnameInput = screen.getAllByRole('textbox')[0];
+    expect(hostnameInput).toHaveAttribute('readOnly');
   });
 
   it('updates host value and triggers validation after debounce', () => {
@@ -77,7 +96,7 @@ describe('HostForm', () => {
 
     expect(typeof updateFn).toBe('function');
 
-    const result = updateFn({ errorHost: 'INCORRECT', errorIps: false });
+    const result = updateFn({ errorHost: '', errorIps: false });
 
     expect(result).toEqual(expect.objectContaining({ errorHost: false }));
   });
@@ -139,6 +158,43 @@ describe('HostForm', () => {
 
     expect(
       screen.getByText('domain_tab_hosts_drawer_add_form_warning_message'),
+    ).toBeInTheDocument();
+  });
+
+  it('shows warning message when at least one IP is provided', () => {
+    render(
+      <HostForm
+        {...defaultProps}
+        formData={{ host: 'ns1', ips: ['1.1.1.1'] }}
+      />,
+    );
+
+    expect(
+      screen.getByText('domain_tab_hosts_drawer_add_form_warning_message'),
+    ).toBeInTheDocument();
+  });
+
+  it('displays hostname error message when error.errorHost is set', () => {
+    render(
+      <HostForm
+        {...defaultProps}
+        error={{ errorHost: 'error_invalid_hostname', errorIps: false }}
+      />,
+    );
+
+    expect(screen.getByText('error_invalid_hostname')).toBeInTheDocument();
+  });
+
+  it('displays IP error message when error.errorIps = true', () => {
+    render(
+      <HostForm
+        {...defaultProps}
+        error={{ errorHost: null, errorIps: true }}
+      />,
+    );
+
+    expect(
+      screen.getByText('domain_tab_hosts_drawer_add_invalid_ips'),
     ).toBeInTheDocument();
   });
 });

@@ -90,7 +90,7 @@ export default function HostsListingTab() {
     setIsLoading(false);
   }, [domainResource]);
 
-  const columns = useHostsDatagridColumns();
+  const columns = useHostsDatagridColumns({ setDrawer, setFormData });
 
   if (isLoading && nichandleInformation) {
     return <Loading />;
