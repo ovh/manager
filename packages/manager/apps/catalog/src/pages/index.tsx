@@ -50,6 +50,7 @@ export default function Catalog() {
     <div className="m-10">
       <Breadcrumb />
       <br />
+      This is a small changes to test pnpm release dont merge!
       <OsdsText
         level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
         size={ODS_THEME_TYPOGRAPHY_SIZE._600}
