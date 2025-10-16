@@ -152,14 +152,14 @@ const IpsRestrictionsForm = React.forwardRef<
                 onSubmit();
               }
             }}
-            className="grid md:flex md:flex-row md:items-start gap-2"
+            className="flex flex-col md:flex-row md:items-end gap-2"
           >
             <FormField
               control={form.control}
               name="ip"
               defaultValue=""
               render={({ field }) => (
-                <FormItem className="w-full">
+                <FormItem className="flex-1">
                   <FormLabel data-testid="ip-field-label">
                     {t('ipFieldLabel')}
                   </FormLabel>
@@ -182,7 +182,7 @@ const IpsRestrictionsForm = React.forwardRef<
               render={({ field }) => (
                 <FormItem
                   data-testid="ip-description-field-label"
-                  className="w-full"
+                  className="flex-1"
                 >
                   <FormLabel>{t('ipDescriptionFieldLabel')}</FormLabel>
                   <FormControl>
@@ -197,7 +197,8 @@ const IpsRestrictionsForm = React.forwardRef<
             />
             <Button
               data-testid="ip-add-button"
-              className="md:mt-8"
+              className="w-full md:w-auto md:ml-2"
+              size="sm"
               mode={'outline'}
               disabled={disabled}
               onClick={onSubmit}
@@ -231,7 +232,7 @@ const IpsRestrictionsForm = React.forwardRef<
                     data-testid={`ip-remove-button-${idx}`}
                     className="text-red-500 rounded-full p-2 hover:text-red-500 size-8"
                     mode={'ghost'}
-                    variant={'destructive'}
+                    variant={'critical'}
                     type="button"
                     onClick={() => removeIp(idx)}
                     disabled={disabled}

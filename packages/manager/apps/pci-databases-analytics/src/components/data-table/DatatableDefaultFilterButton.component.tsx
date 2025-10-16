@@ -87,8 +87,8 @@ const DataTableDefaultFilterButton = ({
   return (
     <DropdownMenu open={filtersOpen} onOpenChange={setFiltersOpen}>
       <DropdownMenuTrigger asChild>
-        <Button mode="outline">
-          <FilterIcon className="size-4 md:mr-1" />
+        <Button mode="outline" className="h-8 px-4">
+          <FilterIcon className="size-4" />
           <span className="hidden md:block">
             {t('common_criteria_adder_filter_label')}
           </span>

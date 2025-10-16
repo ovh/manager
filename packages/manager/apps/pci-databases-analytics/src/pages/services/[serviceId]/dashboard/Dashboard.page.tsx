@@ -22,7 +22,9 @@ import {
   Alert,
   AlertDescription,
   Skeleton,
+  Clipboard,
 } from '@datatr-ux/uxlib';
+import { Button as OdsButton } from '@ovhcloud/ods-react';
 import { useServiceData } from '../Service.context';
 import MetricChart from '../metrics/_components/MetricChart.component';
 import * as database from '@/types/cloud/project/database';
@@ -108,27 +110,20 @@ const Dashboard = () => {
           <Guides section={GuideSections.dashboard} engine={service.engine} />
         </div>
       </div>
-      <Alert variant="primary">
-        <AlertDescription className="text-base">
-          <div className="flex flex-col items-stretch  md:flex-row md:items-center justify-between gap-4">
-            <div className="flex flex-row gap-5 items-center">
-              <AlertCircle className="h-6 w-6" />
-              <p>{t('upgradeAlertDescription')}</p>
-            </div>
-            <Button
-              data-testid="dashboard-upgrade-button"
-              type="button"
-              asChild
+      <Alert variant="information">
+        <AlertCircle className="h-6 w-6" />
+
+        <AlertDescription className="flex flex-col md:flex-row justify-between w-full">
+          <p>{t('upgradeAlertDescription')}</p>
+          <Button data-testid="dashboard-upgrade-button" type="button" asChild>
+            <Link
+              className="flex items-center hover:no-underline hover:text-primary-foreground"
+              to={'settings#update'}
             >
-              <Link
-                className="hover:no-underline hover:text-primary-foreground"
-                to={'settings#update'}
-              >
-                {t('upgradeButton')}
-                <ArrowRight className="w-4 h-4 ml-2 mt-1" />
-              </Link>
-            </Button>
-          </div>
+              {t('upgradeButton')}
+              <ArrowRight className="w-4 h-4 ml-2 mt-1" />
+            </Link>
+          </Button>
         </AlertDescription>
       </Alert>
 
@@ -240,24 +235,9 @@ const Dashboard = () => {
             </h5>
           </CardHeader>
           <CardContent>
-            <div className="flex justify-between text-base mr-2">
-              <div className="flex flex-row gap-2">
-                <p className="font-semibold">{t('serviceIdLabel')}</p>
-                <p>{service.id}</p>
-              </div>
-              <Button
-                data-testid="dashboard-copy-id-button"
-                type="button"
-                className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
-                onClick={() => {
-                  navigator.clipboard.writeText(service.id);
-                  toast.toast({
-                    title: t('serviceIdCopyToast'),
-                  });
-                }}
-              >
-                <Files className="w-4 h-4" />
-              </Button>
+            <div>
+              <p className="font-semibold">{t('serviceIdLabel')}</p>
+              <Clipboard value={service.id} />
             </div>
             <div
               data-testid="dashboard-support-link"

@@ -112,7 +112,7 @@ export const getColumns = ({
             badgeVariant = 'warning';
             break;
           case database.kafkaConnect.connector.StatusEnum.FAILED:
-            badgeVariant = 'destructive';
+            badgeVariant = 'critical';
             break;
           default:
             badgeVariant = 'primary';

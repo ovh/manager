@@ -23,7 +23,7 @@ export function DatatableHeader({ children }: { children: ReactNode }) {
   return (
     <div className="w-full flex justify-between flex-col sm:flex-row gap-2">
       {actionButton}
-      <div className="flex w-full justify-end gap-2">
+      <div className="flex justify-end gap-2">
         {searchbar}
         {filters}
       </div>

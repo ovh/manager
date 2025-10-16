@@ -8,6 +8,8 @@ import {
   TableHeader,
   TableRow,
   Badge,
+  RadioGroup,
+  RadioGroupItem,
 } from '@datatr-ux/uxlib';
 import { formatStorage } from '@/lib/bytesHelper';
 import { Flavor } from '@/types/orderFunnel';
@@ -82,57 +84,57 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
           </TableRow>
         </TableHeader>
         <TableBody data-testid="flavor-select-table-body">
-          {flavors.map((flavor) => (
-            <TableRow
-              data-testid={`flavor-table-row-${flavor.name}`}
-              tabIndex={0}
-              onClick={() => clickInput(flavor.name)}
-              onKeyDown={(e) => handleKeyDown(e, flavor.name)}
-              key={flavor.name}
-              className={`border hover:bg-primary-50 cursor-pointer text-[#4d5592] ${
-                value === flavor.name
-                  ? 'bg-primary-50 font-semibold !border-2 border-primary-500'
-                  : ''
-              }`}
-            >
-              <td className="hidden">
-                <input
-                  type="radio"
-                  name="flavor-select"
-                  onChange={(e) => onChange(e.target.value)}
-                  className="hidden"
-                  id={`flavor-${flavor.name}`}
-                  value={flavor.name}
-                  checked={value === flavor.name}
-                />
-              </td>
-              <TableCell className={cn(classNameTableCell, 'capitalize')}>
-                <div className="flex gap-2 w-full justify-between items-center flex-nowrap">
-                  <span>{flavor.name}</span>
-                  <div className="hidden md:flex gap-1">
-                    {flavor.tags.map((tag) => (
-                      <Badge
-                        key={tag}
-                        variant={getTagVariant(tag)}
-                        className="text-xs h-4"
-                      >
-                        {t(`flavorTag-${tag}`, tag)}
-                      </Badge>
-                    ))}
+          <RadioGroup
+            value={value}
+            className="contents"
+            onValueChange={onChange}
+          >
+            {flavors.map((flavor) => (
+              <TableRow
+                data-testid={`flavor-table-row-${flavor.name}`}
+                tabIndex={0}
+                onClick={() => clickInput(flavor.name)}
+                onKeyDown={(e) => handleKeyDown(e, flavor.name)}
+                key={flavor.name}
+                className={`border hover:bg-primary-50 cursor-pointer text-[#4d5592] ${
+                  value === flavor.name
+                    ? 'bg-primary-50 font-semibold !border-2 border-primary-500'
+                    : ''
+                }`}
+              >
+                <TableCell className={cn(classNameTableCell, 'capitalize')}>
+                  <div className="flex gap-2 w-full items-center flex-nowrap">
+                    <RadioGroupItem
+                      id={`flavor-${flavor.name}`}
+                      value={flavor.name}
+                      checked={value === flavor.name}
+                    />
+                    <span>{flavor.name}</span>
+                    <div className="hidden md:flex gap-1">
+                      {flavor.tags.map((tag) => (
+                        <Badge
+                          key={tag}
+                          variant={getTagVariant(tag)}
+                          className="text-xs h-4"
+                        >
+                          {t(`flavorTag-${tag}`, tag)}
+                        </Badge>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </TableCell>
-              <TableCell className={classNameTableCell}>
-                {flavor.vcores ?? '-'}
-              </TableCell>
-              <TableCell className={classNameTableCell}>
-                {flavor.ram ? `${formatStorage(flavor.ram)}` : '-'}
-              </TableCell>
-              <TableCell className={classNameTableCell}>
-                <Storage flavor={flavor} />
-              </TableCell>
-            </TableRow>
-          ))}
+                </TableCell>
+                <TableCell className={classNameTableCell}>
+                  {flavor.vcores ?? '-'}
+                </TableCell>
+                <TableCell className={classNameTableCell}>
+                  {flavor.ram ? `${formatStorage(flavor.ram)}` : '-'}
+                </TableCell>
+                <TableCell className={classNameTableCell}>
+                  <Storage flavor={flavor} />
+                </TableCell>
+              </TableRow>
+            ))}
+          </RadioGroup>
         </TableBody>
       </Table>
     );

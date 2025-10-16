@@ -53,7 +53,7 @@ const Maintenances = () => {
   }
   if (maintenanceQuery.data.length === 0) {
     return (
-      <Alert variant="primary">
+      <Alert variant="information">
         <AlertDescription>
           {t('maintenancesNoPlannedMaintenance')}
         </AlertDescription>
@@ -74,7 +74,7 @@ const Maintenances = () => {
   ): BadgeProps['variant'] => {
     switch (status) {
       case database.service.maintenance.StatusEnum.ERROR:
-        return 'destructive';
+        return 'critical';
       case database.service.maintenance.StatusEnum.APPLIED:
         return 'success';
       case database.service.maintenance.StatusEnum.APPLYING:
@@ -88,7 +88,7 @@ const Maintenances = () => {
   return (
     <div className="grid gap-2">
       {maintenanceQuery.data.map((maintenance) => (
-        <Alert variant="primary" key={maintenance.id}>
+        <Alert variant="information" key={maintenance.id}>
           <AlertDescription>
             <div className="flex flex-col items-stretch md:flex-row md:items-center justify-between gap-4">
               <div className="flex flex-col items-start w-full">

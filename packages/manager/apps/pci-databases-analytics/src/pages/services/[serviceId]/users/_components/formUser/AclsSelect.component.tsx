@@ -91,7 +91,7 @@ const AclsSelect = React.forwardRef<HTMLInputElement, AclsSelectProps>(
 
     return (
       <>
-        <Alert variant="primary">
+        <Alert variant="information">
           <InfoIcon className="h-6 w-6" />
           <AlertDescription>
             <p>{t('formUserAclPatternAlertInfo')}</p>

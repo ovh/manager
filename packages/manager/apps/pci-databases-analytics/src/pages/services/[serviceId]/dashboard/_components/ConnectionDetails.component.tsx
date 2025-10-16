@@ -1,23 +1,16 @@
 import { useState } from 'react';
-import { Download, Files } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import {
-  Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-  useToast,
+  Clipboard,
 } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
 import { useGetCertificate } from '@/hooks/api/database/certificate/useGetCertificate.hook';
-import useDownload from '@/hooks/useDownload';
 
 interface ConnectionDetailsProps {
   endpoints: database.service.Endpoint[];
@@ -43,8 +36,6 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/dashboard',
   );
-  const toast = useToast();
-  const { download } = useDownload();
   return (
     <div data-testid="connection-details-container">
       {endpoints.length > 1 && (
@@ -71,139 +62,84 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
           </SelectContent>
         </Select>
       )}
-      <Table>
-        <TableBody>
-          {selectedEndpoint?.domain && (
-            <TableRow>
-              <TableCell className="font-semibold">
-                {t('connectionDetailsTableHeaderHost')}
-              </TableCell>
-              <TableCell>
-                <p
-                  className="flex-1 truncate h-6 max-w-[250px] m-0"
-                  title={selectedEndpoint.domain}
-                >
-                  {selectedEndpoint.domain}
-                </p>
-              </TableCell>
-              <TableCell className="justify-items-center">
-                <Button
-                  data-testid="dashboard-connection-detail-domain-button"
-                  type="button"
-                  className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
-                  onClick={() => {
-                    navigator.clipboard.writeText(selectedEndpoint.domain);
-                    toast.toast({
-                      title: t('connectionDetailsHostCopyToast'),
-                    });
-                  }}
-                >
-                  <Files className="w-4 h-4" />
-                </Button>
-              </TableCell>
-            </TableRow>
-          )}
-          {selectedEndpoint?.port > 0 && (
-            <TableRow>
-              <TableCell className="font-semibold">
-                {t('connectionDetailsTableHeaderPort')}
-              </TableCell>
-              <TableCell>{selectedEndpoint.port}</TableCell>
-            </TableRow>
-          )}
-          {selectedEndpoint?.scheme && (
-            <TableRow>
-              <TableCell className="font-semibold">
-                {t('connectionDetailsTableHeaderScheme')}
-              </TableCell>
-              <TableCell>{selectedEndpoint.scheme}</TableCell>
-            </TableRow>
-          )}
-          {selectedEndpoint?.sslMode && (
-            <TableRow>
-              <TableCell className="font-semibold">
-                {t('connectionDetailsTableHeaderSSLMode')}
-              </TableCell>
-              <TableCell>{t('connectionDetailsTableSSLMode')}</TableCell>
-            </TableRow>
-          )}
-          {selectedEndpoint?.uri && (
-            <TableRow>
-              <TableCell className="font-semibold">
-                {t('connectionDetailsTableHeaderURI')}
-              </TableCell>
-              <TableCell>
-                <p
-                  className="flex-1 truncate h-6 max-w-[250px]"
-                  title={selectedEndpoint.uri}
-                >
-                  {selectedEndpoint.uri}
-                </p>
-              </TableCell>
-              <TableCell>
-                <Button
-                  data-testid="dashboard-connection-detail-uri-button"
-                  type="button"
-                  className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
-                  onClick={() => {
-                    navigator.clipboard.writeText(selectedEndpoint.uri);
-                    toast.toast({
-                      title: t('connectionDetailsURICopyToast'),
-                    });
-                  }}
-                >
-                  <Files className="w-4 h-4" />
-                </Button>
-              </TableCell>
-            </TableRow>
-          )}
-          {certificateQuery.isSuccess && certificateQuery?.data?.ca && (
-            <TableRow>
-              <TableCell className="font-semibold">
-                {t('connectionDetailsCertificateLabel')}
-              </TableCell>
-              <TableCell>
-                <p
-                  className="flex-1 truncate h-6 max-w-[250px]"
-                  title={certificateQuery.data.ca}
-                >
-                  {certificateQuery.data.ca}
-                </p>
-              </TableCell>
-              <TableCell>
-                <div className="flex flex-row gap-1">
-                  <Button
-                    data-testid="connection-details-copy-certificate-action"
-                    type="button"
-                    className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
-                    onClick={() => {
-                      navigator.clipboard.writeText(certificateQuery.data.ca);
-                      toast.toast({
-                        title: t('connectionDetailsCertificateCopyToast'),
-                      });
-                    }}
-                  >
-                    <Files className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    data-testid="connection-details-download-ca-action"
-                    type="button"
-                    className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 my-auto"
-                    onClick={() => {
-                      download(certificateQuery.data.ca, 'ca.pem');
-                      toast.toast({
-                        title: t('connectionDetailsCertificateDownloadToast'),
-                      });
-                    }}
-                  >
-                    <Download className="w-4 h-4" />
-                  </Button>
-                </div>
-              </TableCell>
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
+      <dl
+        data-testid="connection-details-container"
+        className="
+            grid gap-x-2 gap-y-1 items-center text-sm
+            grid-cols-1
+            sm:grid-cols-[max-content_1fr]
+          "
+      >
+        {selectedEndpoint?.domain && (
+          <>
+            <dt className="font-semibold whitespace-nowrap">
+              {t('connectionDetailsTableHeaderHost')}
+            </dt>
+            <dd className="min-w-0">
+              <Clipboard value={selectedEndpoint.domain} />
+            </dd>
+          </>
+        )}
+
+        {selectedEndpoint?.port > 0 && (
+          <>
+            <dt className="font-semibold whitespace-nowrap">
+              {t('connectionDetailsTableHeaderPort')}
+            </dt>
+            <dd>
+              <Clipboard value={`${selectedEndpoint.port}`} />
+            </dd>
+          </>
+        )}
+
+        {selectedEndpoint?.scheme && (
+          <>
+            <dt className="font-semibold whitespace-nowrap">
+              {t('connectionDetailsTableHeaderScheme')}
+            </dt>
+            <dd>
+              <Clipboard value={selectedEndpoint.scheme} />
+            </dd>
+          </>
+        )}
+
+        {selectedEndpoint?.sslMode && (
+          <>
+            <dt className="font-semibold whitespace-nowrap">
+              {t('connectionDetailsTableHeaderSSLMode')}
+            </dt>
+            <dd>
+              <Clipboard value={t('connectionDetailsTableSSLMode')} />
+            </dd>
+          </>
+        )}
+
+        {selectedEndpoint?.uri && (
+          <>
+            <dt className="font-semibold whitespace-nowrap">
+              {t('connectionDetailsTableHeaderURI')}
+            </dt>
+            <dd className="min-w-0">
+              <Clipboard value={selectedEndpoint.uri} />
+            </dd>
+          </>
+        )}
+
+        {certificateQuery.isSuccess && certificateQuery?.data?.ca && (
+          <>
+            <dt className="font-semibold whitespace-nowrap">
+              {t('connectionDetailsCertificateLabel')}
+            </dt>
+            <dd className="min-w-0">
+              <Clipboard
+                value={certificateQuery.data.ca}
+                secret
+                showDownloadButton
+              />
+            </dd>
+          </>
+        )}
+      </dl>
     </div>
   );
 };

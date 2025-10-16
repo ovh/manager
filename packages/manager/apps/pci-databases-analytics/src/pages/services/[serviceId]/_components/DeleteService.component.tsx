@@ -128,7 +128,7 @@ const DeleteService = ({
         </DialogHeader>
         <div className="p-6 pt-0">
           {integratedServices?.length > 0 && (
-            <Alert variant="primary">
+            <Alert variant="information">
               <AlertDescription className="mt-2 text-base">
                 <div className="flex flex-row gap-5 items-center text-foreground">
                   <AlertTriangle className="h-6 w-6" />

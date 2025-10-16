@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Table, TableBody, TableCell, TableRow } from '@datatr-ux/uxlib';
+import { Button } from '@ovhcloud/ods-react';
 import Price from '@/components/price/Price.component';
 import { ServicePricing } from '@/lib/pricingHelper';
 
@@ -11,10 +12,11 @@ const OfferPricing = ({ prices }: TablePriceProps) => {
 
   return (
     <div data-testid="table-price-container">
+      <Button>ODS</Button>
       <Table>
-        <TableBody>
-          <TableRow className="text-xs">
-            <TableCell className="px-0 align-top">
+        <TableBody className="[&_tr>td]:py-2">
+          <TableRow className="text-xs p-0">
+            <TableCell className="px-0 align-top bg-red-500">
               {t('pricing_instance_label')}
             </TableCell>
             <TableCell className="text-right px-0">
@@ -27,7 +29,7 @@ const OfferPricing = ({ prices }: TablePriceProps) => {
             </TableCell>
           </TableRow>
           <TableRow className="text-xs">
-            <TableCell className="px-0 align-top">
+            <TableCell className="px-0 align-top bg-red-200">
               {t('pricing_storage_label')}
             </TableCell>
             <TableCell className="text-right px-0">
@@ -52,7 +54,7 @@ const OfferPricing = ({ prices }: TablePriceProps) => {
               />
             </TableCell>
           </TableRow>
-          <TableRow className="text-sm text-gray-500 italic">
+          <TableRow className="text-sm text-gray-500 italic ">
             <TableCell className="px-0 align-top">
               {t('estimated_month_label')}
             </TableCell>
