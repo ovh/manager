@@ -2,7 +2,6 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useNavigate } from 'react-router-dom';
 import { updateService } from '@/alldoms/data/api/web-domains';
 import {
   ServiceInfoRenewMode,
@@ -11,6 +10,7 @@ import {
 } from '@/alldoms/enum/service.enum';
 import { TDomainsInfo } from '@/alldoms/types';
 import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
+import { useCloseModal } from '@/common/hooks/closeModal/useCloseModal';
 
 export const useCancelAllDomTerminate = (
   serviceName: string,
@@ -19,7 +19,7 @@ export const useCancelAllDomTerminate = (
   const { addError, addSuccess } = useNotifications();
   const { t } = useTranslation(['allDom', NAMESPACES.ACTIONS]);
   const queryClient = useQueryClient();
-  const navigate = useNavigate();
+  const closeModal = useCloseModal();
 
   const { data: services } = useGetServices({
     names: domains.map((domain) => domain.name),
@@ -60,16 +60,17 @@ export const useCancelAllDomTerminate = (
           serviceName,
         }),
       );
-      navigate(-1);
     },
 
     onError: () => {
-      navigate(-1);
       addError(
         t('allDom_cancel_terminate_error', {
           serviceName,
         }),
       );
+    },
+    onSettled: () => {
+      closeModal();
     },
   });
 };
