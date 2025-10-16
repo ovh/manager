@@ -7,6 +7,8 @@ ai: true
 
 # Logs to Customer Module Integration
 
+> **📦 Version:** `@ovh-ux/logs-to-customer@^1.7.12`
+
 ## 🧭 Purpose
 
 This document explains how to integrate the "Logs to Customer" module into OVHcloud Manager applications. The module provides essential functionality for log management including live tail viewing and CRUD operations for data-stream subscriptions.
@@ -47,7 +49,7 @@ This module is part of the OVHcloud Manager ecosystem and follows established pa
 ```json
 {
   "dependencies": {
-    "@ovh-ux/logs-to-customer": "^1.0.0"
+    "@ovh-ux/logs-to-customer": "^1.7.12"
   }
 }
 ```
