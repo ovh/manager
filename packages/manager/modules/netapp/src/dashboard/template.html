@@ -6,10 +6,23 @@
                     class="oui-header__title"
                     data-translate="{{:: $ctrl.storage.name }}"
                 ></h1>
-                <changelog-button
-                    links="$ctrl.constants.CHANGELOG.file_storage.links"
-                    chapters="$ctrl.constants.CHANGELOG.file_storage.chapters"
-                ></changelog-button>
+                <div class="d-flex">
+                    <changelog-button
+                        links="$ctrl.constants.CHANGELOG.file_storage.links"
+                        chapters="$ctrl.constants.CHANGELOG.file_storage.chapters"
+                    ></changelog-button>
+                    <oui-guide-menu
+                        text="{{:: 'netapp_dashboard_guide_title' | translate }}"
+                    >
+                        <oui-guide-menu-item
+                            ng-repeat="link in $ctrl.GUIDE_LINKS"
+                            data-ng-href="{{ link.href }}"
+                            data-external="true"
+                        >
+                            <span data-translate="{{:: link.text}}"></span>
+                        </oui-guide-menu-item>
+                    </oui-guide-menu>
+                </div>
             </div>
         </oui-header-heading>
         <oui-header-tabs>
