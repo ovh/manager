@@ -9,8 +9,6 @@
     "build-dependencies": "turbo run build --filter=\"@ovh-ux/manager-wiki\"",
     "build:storybook": "storybook build",
     "dev": "tsc",
-    "lint:modern": "manager-lint --config eslint.config.mjs ./src",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "start": "yarn run build-dependencies && rm -rf dist/.cache/storybook && storybook dev -p 6006"
   },
   "dependencies": {
@@ -50,7 +48,6 @@
     "@storybook/preview-api": "^8.6.7",
     "@storybook/react": "^8.6.7",
     "@storybook/react-vite": "^8.6.7",
-    "@ovh-ux/manager-static-analysis-kit": "*",
     "@storybook/test": "^8.6.7",
     "@storybook/theming": "^8.6.7",
     "@storybook/types": "^8.6.12",
