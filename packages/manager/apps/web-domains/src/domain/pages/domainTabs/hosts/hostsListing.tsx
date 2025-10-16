@@ -7,12 +7,29 @@ import { useEffect, useState } from 'react';
 import { useHostsDatagridColumns } from '@/domain/hooks/domainTabs/useHostsDatagridColumns';
 import { useGetDomainResource } from '@/domain/hooks/data/query';
 import { StatusEnum } from '@/domain/enum/Status.enum';
+import { DrawerActionEnum } from '@/domain/enum/hostConfiguration.enum';
+import HostDrawer from '@/domain/components/Host/HostDrawer';
 
 export default function HostsListing() {
   const params = useParams();
   const { t } = useTranslation(['domain', NAMESPACES.ACTIONS, NAMESPACES.FORM]);
   const [hostsArray, setHostsArray] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const [drawer, setDrawer] = useState<{
+    isOpen: boolean;
+    action?: DrawerActionEnum;
+  }>({
+    isOpen: false,
+  });
+
+  const [formData, setFormData] = useState<{
+    host: string;
+    ips: string[];
+  }>({
+    host: '',
+    ips: [],
+  });
 
   const { domainResource } = useGetDomainResource(params.serviceName);
 
@@ -72,9 +89,35 @@ export default function HostsListing() {
         totalItems={hostsArray.length}
         isLoading={isLoading}
         topbar={
-          <Button className="mb-4" size={BUTTON_SIZE.sm}>
+          <Button
+            className="mb-4"
+            size={BUTTON_SIZE.sm}
+            onClick={() =>
+              setDrawer({
+                isOpen: true,
+                action: DrawerActionEnum.Add,
+              })
+            }
+          >
             {t(`${NAMESPACES.ACTIONS}:add`)}
           </Button>
+        }
+      />
+
+      <HostDrawer
+        drawerAction={DrawerActionEnum.Add}
+        formData={formData}
+        drawer={drawer}
+        setFormData={setFormData}
+        setDrawer={setDrawer}
+        ipv4Supported={
+          domainResource?.currentState?.hostsConfiguration.ipv4Supported
+        }
+        ipv6Supported={
+          domainResource?.currentState?.hostsConfiguration.ipv6Supported
+        }
+        multipleIPsSupported={
+          domainResource?.currentState?.hostsConfiguration.multipleIPsSupported
         }
       />
     </section>

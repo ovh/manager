@@ -10,6 +10,7 @@ import {
 } from '@/domain/utils/dnsUtils';
 import { StatusEnum } from '@/domain/enum/Status.enum';
 import { DNS_UPDATE_OPERATION } from '../constants/dns.const';
+import { IpsSupportedEnum } from '@/domain/enum/hostConfiguration.enum';
 
 export function getLanguageKey(lang: string): LangCode {
   const code = lang.split(/[-_]/)[0].toUpperCase();
@@ -47,4 +48,32 @@ export function computeDnsDetails(
     .map((dns) => transformCurrent(dns, StatusEnum.DELETING));
 
   return [...activated, ...activating, ...deleting];
+}
+
+export function getIpsSupported(
+  ipv4Supported: boolean,
+
+  ipv6Supported: boolean,
+
+  multipleIPsSupported: boolean,
+): IpsSupportedEnum {
+  if (ipv4Supported && ipv6Supported) {
+    return multipleIPsSupported
+      ? IpsSupportedEnum.All
+      : IpsSupportedEnum.OnlyIPv4IPv6;
+  }
+
+  if (ipv4Supported) {
+    return multipleIPsSupported
+      ? IpsSupportedEnum.MultipleIPv4
+      : IpsSupportedEnum.OnlyIPv4;
+  }
+
+  if (ipv6Supported) {
+    return multipleIPsSupported
+      ? IpsSupportedEnum.MultipleIPv6
+      : IpsSupportedEnum.OnlyIPv6;
+  }
+
+  throw new Error('Unsupported combination: no IP version supported');
 }

@@ -129,5 +129,17 @@
   "domain_tab_hosts_listing_table_host": "Hôte",
   "domain_tab_hosts_listing_table_target": "Cible(s)",
   "domain_tab_hosts_drawer_add_title": "Ajout d'un nouvel host",
-  "domain_tab_hosts_drawer_modify_title": "Modifier l'host"
+  "domain_tab_hosts_drawer_add_form_information": "Veuillez renseigner les champs suivants :",
+  "domain_tab_hosts_drawer_add_form_hostName_label": "Nom de l'hôte",
+  "domain_tab_hosts_drawer_add_form_hostName_ip": "IP(s) de destination",
+  "domain_tab_hosts_drawer_add_form_warning_message": "Attention, après validation et afin que votre enregistrement GLUE fonctionne, vous devrez modifier votre zone DNS en ajoutant :",
+  "domain_tab_hosts_drawer_add_form_warning_list_one": "un champ de type A pour une adresse IPv4,",
+  "domain_tab_hosts_drawer_add_form_warning_list_ipv4": "un champ de type A pour une adresse IPv4,",
+  "domain_tab_hosts_drawer_add_form_warning_list_ipv6": "un champ de type AAAA pour une adresse IPv6.",
+  "domain_tab_hosts_drawer_add_form_helper_all_supported": "Vous pouvez spécifier plusieurs IPv4 et IPv6, séparées par une virgule.",
+  "domain_tab_hosts_drawer_add_form_helper_all_supported_no_multiple_ips": "Vous pouvez spécifier une IPv4 ou une IPv6.",
+  "domain_tab_hosts_drawer_add_form_helper_only_ipv4": "Vous devez spécifier une IPv4.",
+  "domain_tab_hosts_drawer_add_form_helper_only_ipv6": "Vous devez spécifier une IPv6.",
+  "domain_tab_hosts_drawer_add_form_helper_multiple_ipv4": "Vous pouvez spécifier plusieurs IPv4, séparées par une virgule.",
+  "domain_tab_hosts_drawer_add_form_helper_multiple_ipv6": "Vous pouvez spécifier plusieurs IPv6, séparées par une virgule."
 }
