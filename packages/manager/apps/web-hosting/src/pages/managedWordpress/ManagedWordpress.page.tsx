@@ -45,7 +45,8 @@ export default function ManagedWordpressPage() {
       {
         id: 'plan',
         cell: (item) => {
-          const match = item?.currentState?.plan.match(/managed-cms-(\d+)/);
+          // warning for beta and final version the naming change to /managed-cms-beta- and /managed-cms-
+          const match = item?.currentState?.plan.match(/managed-cms-alpha-(\d+)/);
           const numberOfSites = match ? match[1] : '?';
           return <span>{`${numberOfSites} ${t('common:web_hosting_sites')}`}</span>;
         },
