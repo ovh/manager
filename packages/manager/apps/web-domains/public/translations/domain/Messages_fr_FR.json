@@ -186,5 +186,10 @@
   "domain_tab_hosts_drawer_add_invalid_host": "Le nom d’hôte saisi n’est pas au bon format ou existe déjà",
   "domain_tab_hosts_drawer_add_invalid_ips": "Une ou plusieurs adresses IP sont invalides. Veuillez saisir des adresses IPv4 ou IPv6 valides.",
   "domain_tab_hosts_drawer_add_success_message": "{{ host }} a été ajouté avec succès",
-  "domain_tab_hosts_drawer_add_error_message": "Une erreur a été détecté lors de l'ajout de l'host : {{ error }}"
+  "domain_tab_hosts_drawer_modify_success_message": "{{ host }} a été modifié avec succès",
+  "domain_tab_hosts_drawer_add_error_message": "Une erreur a été détecté lors de l'ajout de l'host : {{ error }}",
+  "domain_tab_hosts_modal_delete_title": "Supprimer l'host {{hostname}}",
+  "domain_tab_hosts_modal_delete_information_message": "Êtes-vous sur de voulour supprimer cet host ?",
+  "domain_tab_hosts_modal_delete_success_message": "L'host est en cours de suppression",
+  "domain_tab_hosts_modal_delete_error_message": "Une erreur a été détecté lors de la suppression du host"
 }
