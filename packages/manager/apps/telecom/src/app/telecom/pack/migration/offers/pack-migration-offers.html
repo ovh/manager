@@ -102,7 +102,7 @@
 
                                     <!-- Other Promotion -->
                                     <div
-                                        data-ng-if="offer.promotion && offer.promotion.id === $ctrl.PROMO_DISPLAY.PROMO_FTTH_2020"
+                                        data-ng-if="offer.promotion"
                                         class="oui-message oui-message_info mt-2"
                                     >
                                         <span
@@ -114,8 +114,7 @@
                                             data-translate-values="{ 'endDate' : (offer.promotion.endDate | date : short) }"
                                         ></div>
                                         <strong
-                                            data-translate="telecom_pack_migration_promotion_subscription_months_offered"
-                                            data-translate-values="{ 'duration' :  $ctrl.PROMO_DISPLAY[offer.promotion.subscription.duration].value }"
+                                            data-ng-bind="$ctrl.getPromotionSubscriptionDisplay(offer)"
                                         >
                                         </strong>
                                     </div>
@@ -188,13 +187,13 @@
                                     data-ng-repeat="offer in $ctrl.process.migrationOffers.result.offers track by $index"
                                 >
                                     <span
-                                        ng-if="offer.installFees && offer.promotion.id!='FTTH_MIGRATION_AND_ADRESSMOVE_2020'"
-                                        data-ng-bind-html="offer.installFees.text | tucFormatPrice"
+                                        ng-if="offer.installFees && !offer.promotion"
+                                        data-ng-bind-html="offer.installFees.text | tucFormatPrice: { withoutTax: false }"
                                     ></span>
 
                                     <!-- Other promotion -->
                                     <div
-                                        data-ng-if="offer.promotion.id=='FTTH_MIGRATION_AND_ADRESSMOVE_2020'"
+                                        data-ng-if="offer.promotion"
                                         class="oui-message oui-message_info mt-2"
                                     >
                                         <span
