@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@datatr-ux/ovhcloud-types": "1.0.11",
-    "@datatr-ux/uxlib": "1.0.0-alpha-07",
+    "@datatr-ux/uxlib": "1.0.0-alpha-16",
     "@hookform/resolvers": "^3.3.4",
     "@monaco-editor/react": "^4.7.0",
     "@ovh-ux/manager-config": "^8.6.5",
