@@ -1,8 +1,7 @@
-import React from 'react';
 import { vitest } from 'vitest';
-import { OdsTag } from '@ovhcloud/ods-components';
-import { act } from '@testing-library/react';
-import { FilterList, FilterListProps } from './filter-list.component';
+import { act, fireEvent } from '@testing-library/react';
+import { FilterList } from '../FilterList.component';
+import { FilterListProps } from '../FilterList.props';
 import { render } from '@/setupTest';
 
 const renderComponent = (props: FilterListProps) => {
@@ -92,8 +91,8 @@ describe('FilterList tests', () => {
     const filterChipItem = getByTestId('filter-list_tag_item');
 
     expect(container).not.toBeEmptyDOMElement();
-    expect(filterChipItem.getAttribute('label')).toContain('Creation Date');
-    expect(filterChipItem.getAttribute('label')).toContain('01/10/2023');
+    expect(filterChipItem.textContent).toContain('Creation Date');
+    expect(filterChipItem.textContent).toContain('01/10/2023');
   });
 
   it('should call onRemoveFilter function when the chip cross is clicked', () => {
@@ -112,12 +111,10 @@ describe('FilterList tests', () => {
 
     const { getByTestId } = renderComponent(propsWithOneFiltersItem);
 
-    const filterChipItem = getByTestId(
-      'filter-list_tag_item',
-    ) as unknown as OdsTag;
+    const filterChipItem = getByTestId('filter-list_tag_item');
 
     act(() => {
-      filterChipItem.onClick();
+      fireEvent.click(filterChipItem);
     });
 
     expect(mockOnRemoveFilter).toHaveBeenNthCalledWith(1, {
