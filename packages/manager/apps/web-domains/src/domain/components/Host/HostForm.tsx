@@ -27,12 +27,14 @@ interface HostFormProps {
     SetStateAction<{ host?: string; ips?: string[] }>
   >;
   readonly ipsSupported: IpsSupportedEnum;
+  readonly hostName: string;
 }
 
 export default function HostForm({
   drawerAction,
   formData,
   ipsSupported,
+  hostName,
   setFormData,
 }: HostFormProps) {
   const { t } = useTranslation('domain');
@@ -58,10 +60,10 @@ export default function HostForm({
               onChange={(e) =>
                 setFormData((prev) => ({
                   ...prev,
-
                   host: e.target.value,
                 }))
               }
+              defaultValue={hostName}
             />
 
             <Text

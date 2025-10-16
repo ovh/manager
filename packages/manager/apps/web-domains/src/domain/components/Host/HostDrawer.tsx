@@ -72,6 +72,7 @@ export default function HostDrawer({
         formData={formData}
         setFormData={setFormData}
         ipsSupported={ipsSupported}
+        hostName={hostName}
       />
     </Drawer>
   );

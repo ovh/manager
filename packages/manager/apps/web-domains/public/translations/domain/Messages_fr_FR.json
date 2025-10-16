@@ -129,6 +129,7 @@
   "domain_tab_hosts_listing_table_host": "Hôte",
   "domain_tab_hosts_listing_table_target": "Cible(s)",
   "domain_tab_hosts_drawer_add_title": "Ajout d'un nouvel host",
+  "domain_tab_hosts_drawer_modify_title": "Modifier l'host",
   "domain_tab_hosts_drawer_add_form_information": "Veuillez renseigner les champs suivants :",
   "domain_tab_hosts_drawer_add_form_hostName_label": "Nom de l'hôte",
   "domain_tab_hosts_drawer_add_form_hostName_ip": "IP(s) de destination",

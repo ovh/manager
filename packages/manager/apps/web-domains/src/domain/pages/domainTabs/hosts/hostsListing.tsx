@@ -69,7 +69,7 @@ export default function HostsListing() {
     setIsLoading(false);
   }, [domainResource]);
 
-  const columns = useHostsDatagridColumns();
+  const columns = useHostsDatagridColumns({ setDrawer, setFormData });
 
   return (
     <section>
