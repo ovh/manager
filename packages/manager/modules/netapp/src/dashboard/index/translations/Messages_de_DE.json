@@ -8,7 +8,7 @@
   "netapp_dashboard_information_quota_formatted": "{{ quota }} GB",
   "netapp_dashboard_network_configuration": "Netzwerkkonfiguration",
   "netapp_dashboard_network_configuration_status": "Status",
-  "netapp_dashboard_network_configuration_status_to_configure": "Bereit zum Konfigurieren",
+  "netapp_dashboard_network_configuration_status_to_configure": "Nutzerkonfiguration erforderlich",
   "netapp_dashboard_network_configuration_status_associating": "Wird bereitgestellt",
   "netapp_dashboard_network_configuration_status_dissociating": "Wird getrennt",
   "netapp_dashboard_network_configuration_status_associated": "Eingesetzt",
