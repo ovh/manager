@@ -9,5 +9,6 @@
   "temporaryLocalStorageField": "Temporärer lokaler Speicher: {{ storage }} SSD",
   "temporaryLocalStorageHelper": "Leistungsstarker lokaler Speicher ohne Backup",
   "modifyLabel": "Ändern",
-  "disabledButtonTooltip": "Das Notebook muss sich im Status „Angehalten“ befinden"
+  "disabledButtonTooltip": "Das Notebook muss sich im Status „Angehalten“ befinden",
+  "qpuQubits": "Qubits: "
 }

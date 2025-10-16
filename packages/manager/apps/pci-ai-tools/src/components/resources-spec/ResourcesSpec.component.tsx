@@ -20,18 +20,22 @@ import {
 } from '@datatr-ux/uxlib';
 import { bytesConverter, octetConverter } from '@/lib/bytesHelper';
 import ai from '@/types/AI';
+import quantum from '@/types/Quantum';
 
 interface ResourcesProps {
   resources: ai.Resources;
+  qpuDetail?: quantum.capabilities.QPUFlavor;
   allowUpdate?: boolean;
   disabled?: boolean;
 }
 const ResourcesSpec = ({
   resources,
+  qpuDetail,
   allowUpdate = false,
   disabled,
 }: ResourcesProps) => {
   const { t } = useTranslation('ai-tools/components/resources');
+  const tr = useTranslation('ai-tools/notebooks/create').t;
   const navigate = useNavigate();
   return (
     <>
@@ -52,6 +56,8 @@ const ResourcesSpec = ({
                 memory: bytesConverter(resources.gpuMemory, false, 0),
               })}
             </span>
+
+            {qpuDetail && <span>1 x {qpuDetail.name}</span>}
           </div>
         ) : (
           <div className="flex flex-col">
@@ -63,6 +69,7 @@ const ResourcesSpec = ({
               {`${resources.cpu} x ${resources.flavor}`}
             </span>
             <span>{`${resources.cpu} x INTEL CPU VCORES`}</span>
+            {qpuDetail && <span>1 x {qpuDetail.name}</span>}
           </div>
         )}
         {allowUpdate && (
@@ -119,6 +126,11 @@ const ResourcesSpec = ({
             network: bytesConverter(resources.publicNetwork, true, 2),
           })}
         </span>
+        {qpuDetail && (
+          <span>
+            {tr('qpuQubits')}: {qpuDetail.qubits}
+          </span>
+        )}
 
         <div className="flex flex-row gap-2 items-center mt-2">
           <h5>{t('storageTitleSection')}</h5>

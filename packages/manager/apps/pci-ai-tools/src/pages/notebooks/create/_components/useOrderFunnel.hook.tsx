@@ -193,8 +193,8 @@ export function useOrderFunnel(
   // Select default Flavor Id / Flavor number when region change
   useEffect(() => {
     const suggestedFlavor =
-      suggestions.suggestions.find((sug) => sug.region === regionObject.id)
-        .resources.flavorId ?? listFlavor[0].id;
+      suggestions.suggestions.find((sug) => sug.region === regionObject?.id)
+        ?.resources?.flavorId ?? listFlavor[0]?.id;
     const suggestedQuantity =
       suggestions.suggestions.find((sug) => sug.region === regionObject.id)
         .resources.quantity ?? 1;

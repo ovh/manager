@@ -52,5 +52,6 @@
   "fieldFrameworkVersionDescription": "Selezionare la versione",
   "fieldConfigurationPrivacyLabel": "Privacy",
   "sshKeyConfigurationHelperBis": "Utilizza il menu a tendina qui sotto per associare chiavi SSH al tuo notebook",
-  "summaryFieldFlavorVMemory": "{{memory}} VRAM"
+  "summaryFieldFlavorVMemory": "{{memory}} VRAM",
+  "qpuQubits": "Qubit"
 }
