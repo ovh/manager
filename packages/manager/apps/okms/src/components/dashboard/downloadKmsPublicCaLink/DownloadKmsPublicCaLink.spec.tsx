@@ -77,18 +77,30 @@ describe('DownloadKmsPublicCaLink component tests suite', () => {
   const buttons: {
     type: CertificateType;
     label: string;
+    expectedCa: 'publicCA' | 'publicRsaCA';
+    expectedFilename: string;
+    expectedCertificate: string;
   }[] = [
     {
       type: 'publicCaRest',
       label: 'key_management_service_dashboard_button_label_download_ca',
+      expectedCa: 'publicCA',
+      expectedFilename: 'okms_test-region_public_ca.pem',
+      expectedCertificate: mockCertificates.publicCA,
     },
     {
       type: 'publicCaKmip',
       label: 'key_management_service_dashboard_button_label_download_ca',
+      expectedCa: 'publicCA',
+      expectedFilename: 'okms_test-region_public_ca.pem',
+      expectedCertificate: mockCertificates.publicCA,
     },
     {
       type: 'publicCaRsaKmip',
       label: 'key_management_service_dashboard_button_label_download_rsa_ca',
+      expectedCa: 'publicRsaCA',
+      expectedFilename: 'okms_test-region_public_rsa_ca.pem',
+      expectedCertificate: mockCertificates.publicRsaCA,
     },
   ];
 
@@ -103,26 +115,29 @@ describe('DownloadKmsPublicCaLink component tests suite', () => {
     },
   );
 
-  test('should download publicCa certificate when clicked', async () => {
-    const { downloadLink } = await renderComponentAndGetLink({
-      type: 'publicCaRest',
-      label: 'key_management_service_dashboard_button_label_download_ca',
-    });
-
-    const user = userEvent.setup();
-    await waitFor(() => user.click(downloadLink));
-
-    await waitFor(() => {
-      expect(api.getOkmsPublicCa).toHaveBeenCalledWith(mockOkms.id);
-    });
-
-    await waitFor(() => {
-      expect(initiateTextFileDownload).toHaveBeenCalledWith({
-        text: mockCertificates.publicCA,
-        filename: 'okms_test-region_public_ca.pem',
+  test.each(buttons)(
+    'should download $expectedCa certificate when clicked on $type button',
+    async ({ type, label, expectedFilename, expectedCertificate }) => {
+      const { downloadLink } = await renderComponentAndGetLink({
+        type,
+        label,
       });
-    });
-  });
+
+      const user = userEvent.setup();
+      await waitFor(() => user.click(downloadLink));
+
+      await waitFor(() => {
+        expect(api.getOkmsPublicCa).toHaveBeenCalledWith(mockOkms.id);
+      });
+
+      await waitFor(() => {
+        expect(initiateTextFileDownload).toHaveBeenCalledWith({
+          text: expectedCertificate,
+          filename: expectedFilename,
+        });
+      });
+    },
+  );
 
   test('should download publicRsaCa certificate when clicked', async () => {
     const { downloadLink } = await renderComponentAndGetLink({
