@@ -58,34 +58,125 @@ yarn add --exact @ovhcloud/ods-components@^18.6.2 @ovhcloud/ods-themes@^18.6.2
 // Always import theme first
 import '@ovhcloud/ods-themes/default';
 // Then import components from the React package
-import { Button, Modal, Input } from '@ovhcloud/ods-components/react';
+import { 
+  OsdsButton, 
+  OsdsModal, 
+  OsdsInput,
+  OsdsText,
+  OsdsIcon,
+  OsdsTable,
+  OsdsPagination
+} from '@ovhcloud/ods-components/react';
 ```
 
 ### Component Library Overview
 
-| Component | Category | Description | Import | Basic Example |
-|-----------|----------|-------------|---------|---------------|
-| **Button** | Inputs | Primary interactive element for actions | `import { Button } from '@ovhcloud/ods-components/react';` | `<Button color="primary">Submit</Button>` |
-| **Modal** | Layout | Centered dialog window | `import { Modal } from '@ovhcloud/ods-components/react';` | `<Modal open title="Confirm">Content</Modal>` |
-| **Input** | Inputs | Basic text input field | `import { Input } from '@ovhcloud/ods-components/react';` | `<Input placeholder="Enter name" />` |
-| **Select** | Inputs | Standard dropdown selection | `import { Select } from '@ovhcloud/ods-components/react';` | `<Select options={[{value:'1',label:'Option 1'}]} />` |
-| **Checkbox** | Inputs | Boolean selection control | `import { Checkbox } from '@ovhcloud/ods-components/react';` | `<Checkbox label="Accept terms" />` |
-| **FormField** | Inputs | Combines label, help text, and input control | `import { FormField } from '@ovhcloud/ods-components/react';` | `<FormField label="Name"><Input /></FormField>` |
-| **Message** | Feedback | Feedback alert (info, error, success) | `import { Message } from '@ovhcloud/ods-components/react';` | `<Message type="success">Saved</Message>` |
-| **Card** | Layout | Visual container for grouped content | `import { Card } from '@ovhcloud/ods-components/react';` | `<Card title="Information">Content</Card>` |
-| **Badge** | Feedback | Displays a visual indicator | `import { Badge } from '@ovhcloud/ods-components/react';` | `<Badge color="success">Active</Badge>` |
-| **Accordion** | Layout | Expandable/collapsible container | `import { Accordion } from '@ovhcloud/ods-components/react';` | `<Accordion summary="Details">Content</Accordion>` |
-| **Breadcrumb** | Navigation | Displays hierarchical navigation path | `import { Breadcrumb } from '@ovhcloud/ods-components/react';` | `<Breadcrumb items={[{label:'Home'}]} />` |
-| **Drawer** | Layout | Sliding side panel | `import { Drawer } from '@ovhcloud/ods-components/react';` | `<Drawer open>Content</Drawer>` |
-| **Pagination** | Navigation | Page navigation control | `import { Pagination } from '@ovhcloud/ods-components/react';` | `<Pagination total={100} pageSize={10} />` |
-| **Spinner** | Feedback | Circular loading indicator | `import { Spinner } from '@ovhcloud/ods-components/react';` | `<Spinner />` |
-| **Skeleton** | Feedback | Loading placeholder element | `import { Skeleton } from '@ovhcloud/ods-components/react';` | `<Skeleton width="100%" height="20px" />` |
+#### Input Components
+| Component | Description | Import | Basic Example |
+|-----------|-------------|---------|---------------|
+| **OsdsButton** | Primary interactive element for actions | `import { OsdsButton } from '@ovhcloud/ods-components/react';` | `<OsdsButton color="primary">Submit</OsdsButton>` |
+| **OsdsInput** | Basic text input field | `import { OsdsInput } from '@ovhcloud/ods-components/react';` | `<OsdsInput placeholder="Enter name" />` |
+| **OsdsSelect** | Standard dropdown selection | `import { OsdsSelect } from '@ovhcloud/ods-components/react';` | `<OsdsSelect options={[{value:'1',label:'Option 1'}]} />` |
+| **OsdsCheckbox** | Boolean selection control | `import { OsdsCheckbox } from '@ovhcloud/ods-components/react';` | `<OsdsCheckbox label="Accept terms" />` |
+| **OsdsCheckboxButton** | Checkbox styled as button | `import { OsdsCheckboxButton } from '@ovhcloud/ods-components/react';` | `<OsdsCheckboxButton label="Option" />` |
+| **OsdsRadio** | Single selection from multiple options | `import { OsdsRadio } from '@ovhcloud/ods-components/react';` | `<OsdsRadio name="choice" value="1" />` |
+| **OsdsRadioButton** | Radio styled as button | `import { OsdsRadioButton } from '@ovhcloud/ods-components/react';` | `<OsdsRadioButton name="choice" value="1" />` |
+| **OsdsRadioGroup** | Group of radio buttons | `import { OsdsRadioGroup } from '@ovhcloud/ods-components/react';` | `<OsdsRadioGroup name="choice">...</OsdsRadioGroup>` |
+| **OsdsSwitch** | Toggle switch control | `import { OsdsSwitch } from '@ovhcloud/ods-components/react';` | `<OsdsSwitch checked={isOn} />` |
+| **OsdsSwitchItem** | Switch item for grouped switches | `import { OsdsSwitchItem } from '@ovhcloud/ods-components/react';` | `<OsdsSwitchItem label="Option" />` |
+| **OsdsToggle** | Toggle button control | `import { OsdsToggle } from '@ovhcloud/ods-components/react';` | `<OsdsToggle checked={isOn} />` |
+| **OsdsRange** | Slider input for numeric values | `import { OsdsRange } from '@ovhcloud/ods-components/react';` | `<OsdsRange min={0} max={100} value={50} />` |
+| **OsdsPassword** | Password input with visibility toggle | `import { OsdsPassword } from '@ovhcloud/ods-components/react';` | `<OsdsPassword placeholder="Password" />` |
+| **OsdsTextarea** | Multi-line text input | `import { OsdsTextarea } from '@ovhcloud/ods-components/react';` | `<OsdsTextarea placeholder="Enter text" />` |
+| **OsdsDatepicker** | Date selection input | `import { OsdsDatepicker } from '@ovhcloud/ods-components/react';` | `<OsdsDatepicker value={date} />` |
+| **OsdsPhoneNumber** | Phone number input with validation | `import { OsdsPhoneNumber } from '@ovhcloud/ods-components/react';` | `<OsdsPhoneNumber value={phone} />` |
+| **OsdsSearchBar** | Search input with icon | `import { OsdsSearchBar } from '@ovhcloud/ods-components/react';` | `<OsdsSearchBar placeholder="Search..." />` |
+| **OsdsQuantity** | Numeric input with increment/decrement | `import { OsdsQuantity } from '@ovhcloud/ods-components/react';` | `<OsdsQuantity value={1} min={0} max={10} />` |
+
+#### Layout Components
+| Component | Description | Import | Basic Example |
+|-----------|-------------|---------|---------------|
+| **OsdsModal** | Centered dialog window | `import { OsdsModal } from '@ovhcloud/ods-components/react';` | `<OsdsModal open title="Confirm">Content</OsdsModal>` |
+| **OsdsAccordion** | Expandable/collapsible container | `import { OsdsAccordion } from '@ovhcloud/ods-components/react';` | `<OsdsAccordion summary="Details">Content</OsdsAccordion>` |
+| **OsdsAccordionGroup** | Group of accordions | `import { OsdsAccordionGroup } from '@ovhcloud/ods-components/react';` | `<OsdsAccordionGroup>...</OsdsAccordionGroup>` |
+| **OsdsCollapsible** | Collapsible content container | `import { OsdsCollapsible } from '@ovhcloud/ods-components/react';` | `<OsdsCollapsible open>Content</OsdsCollapsible>` |
+| **OsdsTabs** | Tab container | `import { OsdsTabs } from '@ovhcloud/ods-components/react';` | `<OsdsTabs>...</OsdsTabs>` |
+| **OsdsTabBar** | Tab navigation bar | `import { OsdsTabBar } from '@ovhcloud/ods-components/react';` | `<OsdsTabBar>...</OsdsTabBar>` |
+| **OsdsTabBarItem** | Individual tab item | `import { OsdsTabBarItem } from '@ovhcloud/ods-components/react';` | `<OsdsTabBarItem label="Tab 1" />` |
+| **OsdsTabPanel** | Tab content panel | `import { OsdsTabPanel } from '@ovhcloud/ods-components/react';` | `<OsdsTabPanel>Content</OsdsTabPanel>` |
+| **OsdsTile** | Visual container for grouped content | `import { OsdsTile } from '@ovhcloud/ods-components/react';` | `<OsdsTile title="Information">Content</OsdsTile>` |
+| **OsdsDivider** | Visual separator line | `import { OsdsDivider } from '@ovhcloud/ods-components/react';` | `<OsdsDivider />` |
+
+#### Navigation Components
+| Component | Description | Import | Basic Example |
+|-----------|-------------|---------|---------------|
+| **OsdsBreadcrumb** | Hierarchical navigation path | `import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';` | `<OsdsBreadcrumb items={[{label:'Home'}]} />` |
+| **OsdsBreadcrumbItem** | Individual breadcrumb item | `import { OsdsBreadcrumbItem } from '@ovhcloud/ods-components/react';` | `<OsdsBreadcrumbItem label="Home" />` |
+| **OsdsPagination** | Page navigation control | `import { OsdsPagination } from '@ovhcloud/ods-components/react';` | `<OsdsPagination total={100} pageSize={10} />` |
+| **OsdsMenu** | Dropdown menu container | `import { OsdsMenu } from '@ovhcloud/ods-components/react';` | `<OsdsMenu>...</OsdsMenu>` |
+| **OsdsMenuGroup** | Grouped menu items | `import { OsdsMenuGroup } from '@ovhcloud/ods-components/react';` | `<OsdsMenuGroup label="Group">...</OsdsMenuGroup>` |
+| **OsdsMenuItem** | Individual menu item | `import { OsdsMenuItem } from '@ovhcloud/ods-components/react';` | `<OsdsMenuItem label="Item" />` |
+
+#### Feedback Components
+| Component | Description | Import | Basic Example |
+|-----------|-------------|---------|---------------|
+| **OsdsMessage** | Feedback alert (info, error, success) | `import { OsdsMessage } from '@ovhcloud/ods-components/react';` | `<OsdsMessage type="success">Saved</OsdsMessage>` |
+| **OsdsSpinner** | Circular loading indicator | `import { OsdsSpinner } from '@ovhcloud/ods-components/react';` | `<OsdsSpinner />` |
+| **OsdsSkeleton** | Loading placeholder element | `import { OsdsSkeleton } from '@ovhcloud/ods-components/react';` | `<OsdsSkeleton width="100%" height="20px" />` |
+| **OsdsProgressBar** | Progress indicator | `import { OsdsProgressBar } from '@ovhcloud/ods-components/react';` | `<OsdsProgressBar value={50} max={100} />` |
+| **OsdsChip** | Small labeled element | `import { OsdsChip } from '@ovhcloud/ods-components/react';` | `<OsdsChip color="primary">Tag</OsdsChip>` |
+
+#### Data Display Components
+| Component | Description | Import | Basic Example |
+|-----------|-------------|---------|---------------|
+| **OsdsTable** | Data table | `import { OsdsTable } from '@ovhcloud/ods-components/react';` | `<OsdsTable data={rows} columns={columns} />` |
+| **OsdsDatagrid** | Advanced data grid | `import { OsdsDatagrid } from '@ovhcloud/ods-components/react';` | `<OsdsDatagrid data={data} />` |
+| **OsdsText** | Text display component | `import { OsdsText } from '@ovhcloud/ods-components/react';` | `<OsdsText>Hello World</OsdsText>` |
+| **OsdsCode** | Code display with syntax highlighting | `import { OsdsCode } from '@ovhcloud/ods-components/react';` | `<OsdsCode language="javascript">code</OsdsCode>` |
+| **OsdsFlag** | Country flag display | `import { OsdsFlag } from '@ovhcloud/ods-components/react';` | `<OsdsFlag iso="FR" />` |
+| **OsdsIcon** | Icon display | `import { OsdsIcon } from '@ovhcloud/ods-components/react';` | `<OsdsIcon name="home" />` |
+| **OsdsMedium** | Media display component | `import { OsdsMedium } from '@ovhcloud/ods-components/react';` | `<OsdsMedium src="image.jpg" />` |
+
+#### Form Components
+| Component | Description | Import | Basic Example |
+|-----------|-------------|---------|---------------|
+| **OsdsFormField** | Combines label, help text, and input control | `import { OsdsFormField } from '@ovhcloud/ods-components/react';` | `<OsdsFormField label="Name"><OsdsInput /></OsdsFormField>` |
+| **OsdsSelectGroup** | Grouped select options | `import { OsdsSelectGroup } from '@ovhcloud/ods-components/react';` | `<OsdsSelectGroup label="Group">...</OsdsSelectGroup>` |
+| **OsdsSelectOption** | Individual select option | `import { OsdsSelectOption } from '@ovhcloud/ods-components/react';` | `<OsdsSelectOption value="1" label="Option 1" />` |
+
+#### Overlay Components
+| Component | Description | Import | Basic Example |
+|-----------|-------------|---------|---------------|
+| **OsdsPopover** | Floating content container | `import { OsdsPopover } from '@ovhcloud/ods-components/react';` | `<OsdsPopover>Content</OsdsPopover>` |
+| **OsdsPopoverContent** | Popover content wrapper | `import { OsdsPopoverContent } from '@ovhcloud/ods-components/react';` | `<OsdsPopoverContent>Content</OsdsPopoverContent>` |
+| **OsdsTooltip** | Hover information display | `import { OsdsTooltip } from '@ovhcloud/ods-components/react';` | `<OsdsTooltip>Tooltip text</OsdsTooltip>` |
+| **OsdsTooltipContent** | Tooltip content wrapper | `import { OsdsTooltipContent } from '@ovhcloud/ods-components/react';` | `<OsdsTooltipContent>Content</OsdsTooltipContent>` |
+
+#### Utility Components
+| Component | Description | Import | Basic Example |
+|-----------|-------------|---------|---------------|
+| **OsdsLink** | Styled link component | `import { OsdsLink } from '@ovhcloud/ods-components/react';` | `<OsdsLink href="/path">Link</OsdsLink>` |
+| **OsdsClipboard** | Copy to clipboard functionality | `import { OsdsClipboard } from '@ovhcloud/ods-components/react';` | `<OsdsClipboard value="text to copy" />` |
+| **OsdsContentAddon** | Content addon wrapper | `import { OsdsContentAddon } from '@ovhcloud/ods-components/react';` | `<OsdsContentAddon>Content</OsdsContentAddon>` |
+
+#### Cart Components (E-commerce)
+| Component | Description | Import | Basic Example |
+|-----------|-------------|---------|---------------|
+| **OsdsCart** | Shopping cart container | `import { OsdsCart } from '@ovhcloud/ods-components/react';` | `<OsdsCart>...</OsdsCart>` |
+| **OsdsCartManager** | Cart management system | `import { OsdsCartManager } from '@ovhcloud/ods-components/react';` | `<OsdsCartManager>...</OsdsCartManager>` |
+| **OsdsCartHeader** | Cart header section | `import { OsdsCartHeader } from '@ovhcloud/ods-components/react';` | `<OsdsCartHeader>Header</OsdsCartHeader>` |
+| **OsdsCartSection** | Cart section divider | `import { OsdsCartSection } from '@ovhcloud/ods-components/react';` | `<OsdsCartSection>Section</OsdsCartSection>` |
+| **OsdsCartItem** | Individual cart item | `import { OsdsCartItem } from '@ovhcloud/ods-components/react';` | `<OsdsCartItem>Item</OsdsCartItem>` |
+| **OsdsCartItemOption** | Cart item option | `import { OsdsCartItemOption } from '@ovhcloud/ods-components/react';` | `<OsdsCartItemOption>Option</OsdsCartItemOption>` |
+| **OsdsCartFooter** | Cart footer section | `import { OsdsCartFooter } from '@ovhcloud/ods-components/react';` | `<OsdsCartFooter>Footer</OsdsCartFooter>` |
+| **OsdsCartFooterItem** | Cart footer item | `import { OsdsCartFooterItem } from '@ovhcloud/ods-components/react';` | `<OsdsCartFooterItem>Item</OsdsCartFooterItem>` |
+| **OsdsCartTotal** | Cart total display | `import { OsdsCartTotal } from '@ovhcloud/ods-components/react';` | `<OsdsCartTotal total={100} />` |
 
 ### Complete Component Props Reference
 
-#### Button Component
+#### OsdsButton Component
 ```typescript
-interface ButtonProps {
+interface OsdsButtonProps {
   color?: 'primary' | 'secondary' | 'tertiary' | 'critical' | 'success';
   variant?: 'flat' | 'stroked' | 'ghost';
   size?: 'xs' | 's' | 'm' | 'l';
@@ -98,14 +189,14 @@ interface ButtonProps {
 }
 
 // Usage Examples
-<Button color="primary" onClick={handleSubmit}>Submit</Button>
-<Button color="critical" isLoading={isDeleting}>Delete</Button>
-<Button variant="ghost" size="s">Cancel</Button>
+<OsdsButton color="primary" onClick={handleSubmit}>Submit</OsdsButton>
+<OsdsButton color="critical" isLoading={isDeleting}>Delete</OsdsButton>
+<OsdsButton variant="ghost" size="s">Cancel</OsdsButton>
 ```
 
-#### Modal Component
+#### OsdsModal Component
 ```typescript
-interface ModalProps {
+interface OsdsModalProps {
   open: boolean;                    // Required
   title?: string;
   onClose?: () => void;
@@ -118,19 +209,19 @@ interface ModalProps {
 }
 
 // Usage Examples
-<Modal open={isOpen} onClose={() => setIsOpen(false)} title="Confirm">
+<OsdsModal open={isOpen} onClose={() => setIsOpen(false)} title="Confirm">
   <p>Are you sure you want to delete this item?</p>
-</Modal>
+</OsdsModal>
 
-<Modal open={isOpen} color="critical" isDismissible={false}>
+<OsdsModal open={isOpen} color="critical" isDismissible={false}>
   <h2>Critical Action Required</h2>
   <p>This action cannot be undone.</p>
-</Modal>
+</OsdsModal>
 ```
 
-#### Input Component
+#### OsdsInput Component
 ```typescript
-interface InputProps {
+interface OsdsInputProps {
   value?: string;
   placeholder?: string;
   isDisabled?: boolean;
@@ -149,7 +240,7 @@ interface InputProps {
 }
 
 // Usage Examples
-<Input 
+<OsdsInput 
   value={email} 
   onChange={setEmail}
   type="email"
@@ -157,7 +248,7 @@ interface InputProps {
   isRequired
 />
 
-<Input 
+<OsdsInput 
   value={password}
   onChange={setPassword}
   type="password"
@@ -166,9 +257,9 @@ interface InputProps {
 />
 ```
 
-#### Select Component
+#### OsdsSelect Component
 ```typescript
-interface SelectProps {
+interface OsdsSelectProps {
   options: Array<{              // Required
     value: string;
     label: string;
@@ -188,7 +279,7 @@ interface SelectProps {
 }
 
 // Usage Examples
-<Select 
+<OsdsSelect 
   options={[
     { value: '1', label: 'Option 1' },
     { value: '2', label: 'Option 2' }
@@ -198,7 +289,7 @@ interface SelectProps {
   placeholder="Choose an option"
 />
 
-<Select 
+<OsdsSelect 
   options={countries}
   value={country}
   onChange={setCountry}
@@ -208,9 +299,9 @@ interface SelectProps {
 />
 ```
 
-#### Checkbox Component
+#### OsdsCheckbox Component
 ```typescript
-interface CheckboxProps {
+interface OsdsCheckboxProps {
   checked?: boolean;
   isIndeterminate?: boolean;
   isDisabled?: boolean;
@@ -225,14 +316,14 @@ interface CheckboxProps {
 }
 
 // Usage Examples
-<Checkbox 
+<OsdsCheckbox 
   checked={isAccepted}
   onChange={setIsAccepted}
   label="I accept the terms and conditions"
   isRequired
 />
 
-<Checkbox 
+<OsdsCheckbox 
   checked={isIndeterminate}
   isIndeterminate={isIndeterminate}
   onChange={handleIndeterminateChange}
@@ -240,9 +331,9 @@ interface CheckboxProps {
 />
 ```
 
-#### FormField Component
+#### OsdsFormField Component
 ```typescript
-interface FormFieldProps {
+interface OsdsFormFieldProps {
   label?: string;
   helpText?: string;
   errorMessage?: string;
@@ -254,25 +345,25 @@ interface FormFieldProps {
 }
 
 // Usage Examples
-<FormField 
+<OsdsFormField 
   label="Email Address" 
   helpText="We'll never share your email"
   hasError={!!emailError}
   errorMessage={emailError}
   isRequired
 >
-  <Input 
+  <OsdsInput 
     type="email"
     value={email}
     onChange={setEmail}
     hasError={!!emailError}
   />
-</FormField>
+</OsdsFormField>
 ```
 
-#### Message Component
+#### OsdsMessage Component
 ```typescript
-interface MessageProps {
+interface OsdsMessageProps {
   type: 'info' | 'success' | 'warning' | 'error';  // Required
   title?: string;
   children?: React.ReactNode;
@@ -283,18 +374,18 @@ interface MessageProps {
 }
 
 // Usage Examples
-<Message type="success" title="Success!">
+<OsdsMessage type="success" title="Success!">
   Your changes have been saved successfully.
-</Message>
+</OsdsMessage>
 
-<Message type="error" isDismissible onDismiss={handleDismiss}>
+<OsdsMessage type="error" isDismissible onDismiss={handleDismiss}>
   An error occurred while processing your request.
-</Message>
+</OsdsMessage>
 ```
 
-#### Card Component
+#### OsdsTile Component
 ```typescript
-interface CardProps {
+interface OsdsTileProps {
   title?: string;
   subtitle?: string;
   image?: {
@@ -308,19 +399,19 @@ interface CardProps {
 }
 
 // Usage Examples
-<Card 
+<OsdsTile 
   title="Product Information"
   subtitle="Basic details"
   image={{ src: "/product.jpg", alt: "Product image" }}
-  actions={<Button>Edit</Button>}
+  actions={<OsdsButton>Edit</OsdsButton>}
 >
   <p>Product description goes here.</p>
-</Card>
+</OsdsTile>
 ```
 
-#### Badge Component
+#### OsdsChip Component
 ```typescript
-interface BadgeProps {
+interface OsdsChipProps {
   color?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info';
   variant?: 'flat' | 'stroked';
   size?: 'xs' | 's' | 'm' | 'l';
@@ -330,9 +421,96 @@ interface BadgeProps {
 }
 
 // Usage Examples
-<Badge color="success">Active</Badge>
-<Badge color="warning" variant="stroked">Pending</Badge>
-<Badge color="error" size="s">Error</Badge>
+<OsdsChip color="success">Active</OsdsChip>
+<OsdsChip color="warning" variant="stroked">Pending</OsdsChip>
+<OsdsChip color="error" size="s">Error</OsdsChip>
+```
+
+#### OsdsText Component
+```typescript
+interface OsdsTextProps {
+  color?: 'primary' | 'secondary' | 'tertiary' | 'success' | 'warning' | 'error' | 'info';
+  size?: 'xs' | 's' | 'm' | 'l' | 'xl';
+  weight?: 'light' | 'regular' | 'medium' | 'bold';
+  children?: React.ReactNode;
+  className?: string;
+  dataTestId?: string;
+}
+
+// Usage Examples
+<OsdsText size="l" weight="bold">Heading</OsdsText>
+<OsdsText color="secondary">Secondary text</OsdsText>
+<OsdsText size="s" color="error">Error message</OsdsText>
+```
+
+#### OsdsIcon Component
+```typescript
+interface OsdsIconProps {
+  name: string;                    // Required - icon name
+  size?: 'xs' | 's' | 'm' | 'l' | 'xl';
+  color?: 'primary' | 'secondary' | 'tertiary' | 'success' | 'warning' | 'error' | 'info';
+  className?: string;
+  dataTestId?: string;
+}
+
+// Usage Examples
+<OsdsIcon name="home" size="m" />
+<OsdsIcon name="check" color="success" />
+<OsdsIcon name="warning" color="warning" size="l" />
+```
+
+#### OsdsTable Component
+```typescript
+interface OsdsTableProps {
+  data: Array<any>;               // Required
+  columns: Array<{
+    key: string;
+    label: string;
+    sortable?: boolean;
+    render?: (value: any, row: any) => React.ReactNode;
+  }>;
+  sortable?: boolean;
+  onSort?: (column: string, direction: 'asc' | 'desc') => void;
+  className?: string;
+  dataTestId?: string;
+}
+
+// Usage Examples
+<OsdsTable 
+  data={users}
+  columns={[
+    { key: 'name', label: 'Name', sortable: true },
+    { key: 'email', label: 'Email' },
+    { key: 'status', label: 'Status', render: (value) => <OsdsChip color={value === 'active' ? 'success' : 'error'}>{value}</OsdsChip> }
+  ]}
+  onSort={handleSort}
+/>
+```
+
+#### OsdsPagination Component
+```typescript
+interface OsdsPaginationProps {
+  total: number;                  // Required
+  pageSize: number;               // Required
+  currentPage?: number;
+  onPageChange?: (page: number) => void;
+  showSizeChanger?: boolean;
+  pageSizeOptions?: number[];
+  onPageSizeChange?: (size: number) => void;
+  className?: string;
+  dataTestId?: string;
+}
+
+// Usage Examples
+<OsdsPagination 
+  total={100}
+  pageSize={10}
+  currentPage={currentPage}
+  onPageChange={setCurrentPage}
+  showSizeChanger
+  pageSizeOptions={[10, 20, 50]}
+  onPageSizeChange={setPageSize}
+/>
 ```
 
 ### Essential Usage Patterns
@@ -355,13 +533,13 @@ const validateEmail = (value: string) => {
   return true;
 };
 
-<FormField 
+<OsdsFormField 
   label="Email" 
   hasError={!!emailError}
   errorMessage={emailError}
   isRequired
 >
-  <Input 
+  <OsdsInput 
     type="email"
     value={email}
     onChange={(value) => {
@@ -370,7 +548,7 @@ const validateEmail = (value: string) => {
     }}
     hasError={!!emailError}
   />
-</FormField>
+</OsdsFormField>
 ```
 
 #### 2. Modal with Confirmation Pattern
@@ -391,7 +569,7 @@ const handleDelete = async () => {
   }
 };
 
-<Modal 
+<OsdsModal 
   open={isModalOpen} 
   onClose={() => setIsModalOpen(false)}
   title="Delete Item"
@@ -399,18 +577,18 @@ const handleDelete = async () => {
 >
   <p>Are you sure you want to delete this item? This action cannot be undone.</p>
   <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end', marginTop: '16px' }}>
-    <Button variant="ghost" onClick={() => setIsModalOpen(false)}>
+    <OsdsButton variant="ghost" onClick={() => setIsModalOpen(false)}>
       Cancel
-    </Button>
-    <Button 
+    </OsdsButton>
+    <OsdsButton 
       color="critical" 
       isLoading={isDeleting}
       onClick={handleDelete}
     >
       Delete
-    </Button>
+    </OsdsButton>
   </div>
-</Modal>
+</OsdsModal>
 ```
 
 #### 3. Loading States Pattern
@@ -431,11 +609,11 @@ const fetchData = async () => {
 };
 
 {isLoading ? (
-  <Skeleton width="100%" height="200px" />
+  <OsdsSkeleton width="100%" height="200px" />
 ) : (
-  <Card title="Data">
-    {data ? <DataDisplay data={data} /> : <p>No data available</p>}
-  </Card>
+  <OsdsTile title="Data">
+    {data ? <DataDisplay data={data} /> : <OsdsText>No data available</OsdsText>}
+  </OsdsTile>
 )}
 ```
 
@@ -464,7 +642,7 @@ useEffect(() => {
   loadCountries();
 }, []);
 
-<Select 
+<OsdsSelect 
   options={countries}
   value={selectedCountry}
   onChange={setSelectedCountry}
@@ -473,52 +651,178 @@ useEffect(() => {
 />
 ```
 
+#### 5. Data Table with Pagination Pattern
+```typescript
+const [data, setData] = useState([]);
+const [currentPage, setCurrentPage] = useState(1);
+const [pageSize, setPageSize] = useState(10);
+const [isLoading, setIsLoading] = useState(false);
+
+const columns = [
+  { key: 'name', label: 'Name', sortable: true },
+  { key: 'email', label: 'Email' },
+  { 
+    key: 'status', 
+    label: 'Status', 
+    render: (value) => (
+      <OsdsChip color={value === 'active' ? 'success' : 'error'}>
+        {value}
+      </OsdsChip>
+    )
+  }
+];
+
+const handlePageChange = (page: number) => {
+  setCurrentPage(page);
+  fetchData(page, pageSize);
+};
+
+{isLoading ? (
+  <OsdsSkeleton width="100%" height="300px" />
+) : (
+  <>
+    <OsdsTable 
+      data={data}
+      columns={columns}
+      onSort={handleSort}
+    />
+    <OsdsPagination 
+      total={totalItems}
+      pageSize={pageSize}
+      currentPage={currentPage}
+      onPageChange={handlePageChange}
+      showSizeChanger
+      pageSizeOptions={[10, 20, 50]}
+      onPageSizeChange={setPageSize}
+    />
+  </>
+)}
+```
+
+#### 6. Tabs with Content Pattern
+```typescript
+const [activeTab, setActiveTab] = useState('tab1');
+
+<OsdsTabs>
+  <OsdsTabBar>
+    <OsdsTabBarItem 
+      label="General" 
+      active={activeTab === 'tab1'}
+      onClick={() => setActiveTab('tab1')}
+    />
+    <OsdsTabBarItem 
+      label="Settings" 
+      active={activeTab === 'tab2'}
+      onClick={() => setActiveTab('tab2')}
+    />
+  </OsdsTabBar>
+  
+  <OsdsTabPanel active={activeTab === 'tab1'}>
+    <OsdsText>General information content</OsdsText>
+  </OsdsTabPanel>
+  
+  <OsdsTabPanel active={activeTab === 'tab2'}>
+    <OsdsText>Settings content</OsdsText>
+  </OsdsTabPanel>
+</OsdsTabs>
+```
+
+#### 7. Accordion with Dynamic Content Pattern
+```typescript
+const [expandedItems, setExpandedItems] = useState<string[]>([]);
+
+const toggleItem = (itemId: string) => {
+  setExpandedItems(prev => 
+    prev.includes(itemId) 
+      ? prev.filter(id => id !== itemId)
+      : [...prev, itemId]
+  );
+};
+
+<OsdsAccordionGroup>
+  {items.map(item => (
+    <OsdsAccordion
+      key={item.id}
+      summary={item.title}
+      open={expandedItems.includes(item.id)}
+      onToggle={() => toggleItem(item.id)}
+    >
+      <OsdsText>{item.content}</OsdsText>
+    </OsdsAccordion>
+  ))}
+</OsdsAccordionGroup>
+```
+
 ### Common Pitfalls and Solutions
 
 #### ❌ Wrong: Missing Required Props
 ```typescript
 // Missing required 'open' prop
-<Modal>Content</Modal>
+<OsdsModal>Content</OsdsModal>
 ```
 
 #### ✅ Correct: All Required Props
 ```typescript
-<Modal open={isOpen} onClose={() => setIsOpen(false)}>Content</Modal>
+<OsdsModal open={isOpen} onClose={() => setIsOpen(false)}>Content</OsdsModal>
 ```
 
 #### ❌ Wrong: Incorrect Event Handler
 ```typescript
 // ODS Input provides value directly, not event
-<Input onChange={(e) => setValue(e.target.value)} />
+<OsdsInput onChange={(e) => setValue(e.target.value)} />
 ```
 
 #### ✅ Correct: Proper Event Handler
 ```typescript
-<Input onChange={setValue} />
+<OsdsInput onChange={setValue} />
 ```
 
 #### ❌ Wrong: Missing Form Validation
 ```typescript
-<Input value={email} />
+<OsdsInput value={email} />
 ```
 
 #### ✅ Correct: With Validation
 ```typescript
-<FormField hasError={!!emailError} errorMessage={emailError}>
-  <Input value={email} onChange={setEmail} hasError={!!emailError} />
-</FormField>
+<OsdsFormField hasError={!!emailError} errorMessage={emailError}>
+  <OsdsInput value={email} onChange={setEmail} hasError={!!emailError} />
+</OsdsFormField>
 ```
 
 #### ❌ Wrong: No Loading States
 ```typescript
-<Button onClick={handleSubmit}>Submit</Button>
+<OsdsButton onClick={handleSubmit}>Submit</OsdsButton>
 ```
 
 #### ✅ Correct: With Loading State
 ```typescript
-<Button isLoading={isSubmitting} onClick={handleSubmit}>
+<OsdsButton isLoading={isSubmitting} onClick={handleSubmit}>
   {isSubmitting ? 'Submitting...' : 'Submit'}
-</Button>
+</OsdsButton>
+```
+
+#### ❌ Wrong: Using Old Component Names
+```typescript
+// Old naming convention
+import { Button, Input, Modal } from '@ovhcloud/ods-components/react';
+<Button>Click me</Button>
+```
+
+#### ✅ Correct: Using ODS Component Names
+```typescript
+// Correct ODS naming convention
+import { OsdsButton, OsdsInput, OsdsModal } from '@ovhcloud/ods-components/react';
+<OsdsButton>Click me</OsdsButton>
+```
+
+#### ❌ Wrong: Missing Icon Name
+```typescript
+<OsdsIcon />
+```
+
+#### ✅ Correct: With Required Icon Name
+```typescript
+<OsdsIcon name="home" />
 ```
 
 ### Performance Best Practices
@@ -542,12 +846,33 @@ const handleSubmit = useCallback((e) => {
 ```typescript
 // Efficient conditional rendering
 {isLoading ? (
-  <Spinner />
+  <OsdsSpinner />
 ) : error ? (
-  <Message type="error">{error}</Message>
+  <OsdsMessage type="error">{error}</OsdsMessage>
 ) : (
   <DataComponent data={data} />
 )}
+```
+
+#### 3. Lazy Loading for Large Lists
+```typescript
+// Use virtual scrolling for large datasets
+import { FixedSizeList as List } from 'react-window';
+
+const VirtualizedTable = ({ items }) => (
+  <List
+    height={400}
+    itemCount={items.length}
+    itemSize={50}
+    itemData={items}
+  >
+    {({ index, style, data }) => (
+      <div style={style}>
+        <OsdsText>{data[index].name}</OsdsText>
+      </div>
+    )}
+  </List>
+);
 ```
 
 ### Testing Guidelines
@@ -555,11 +880,11 @@ const handleSubmit = useCallback((e) => {
 #### 1. Test IDs
 ```typescript
 // Always include test IDs
-<Button dataTestId="submit-button" onClick={handleSubmit}>
+<OsdsButton dataTestId="submit-button" onClick={handleSubmit}>
   Submit
-</Button>
+</OsdsButton>
 
-<Input 
+<OsdsInput 
   dataTestId="email-input"
   value={email}
   onChange={setEmail}
@@ -569,26 +894,47 @@ const handleSubmit = useCallback((e) => {
 #### 2. Accessibility
 ```typescript
 // Include proper ARIA attributes
-<Button 
+<OsdsButton 
   aria-label="Close modal"
   onClick={onClose}
   dataTestId="close-button"
 >
-  <Icon name="close" />
-</Button>
+  <OsdsIcon name="close" />
+</OsdsButton>
+```
+
+#### 3. Component Testing
+```typescript
+// Example test with React Testing Library
+import { render, screen, fireEvent } from '@testing-library/react';
+import { OsdsButton } from '@ovhcloud/ods-components/react';
+
+test('button calls onClick when clicked', () => {
+  const handleClick = jest.fn();
+  render(<OsdsButton onClick={handleClick}>Click me</OsdsButton>);
+  
+  fireEvent.click(screen.getByRole('button'));
+  expect(handleClick).toHaveBeenCalledTimes(1);
+});
 ```
 
 ### Integration with Manager React Components
 
 ```typescript
 // Use ODS for basic UI components
-import { Button, Modal, Input } from '@ovhcloud/ods-components/react';
+import { 
+  OsdsButton, 
+  OsdsModal, 
+  OsdsInput,
+  OsdsText,
+  OsdsIcon 
+} from '@ovhcloud/ods-components/react';
 
 // Use MRC for Manager-specific functionality with IAM
 import { ManagerButton, ManagerText } from '@ovh-ux/manager-react-components';
 
 // Basic ODS usage
-<Button color="primary" onClick={handleClick}>Basic Action</Button>
+<OsdsButton color="primary" onClick={handleClick}>Basic Action</OsdsButton>
 
 // Manager-specific usage with authorization
 <ManagerButton
@@ -597,6 +943,16 @@ import { ManagerButton, ManagerText } from '@ovh-ux/manager-react-components';
   iamActions={['resource:delete']}
   urn={`urn:v1:eu:resource:${resourceId}`}
 />
+
+// Combining ODS and MRC
+<OsdsTile title="Resource Management">
+  <OsdsText>Manage your resources</OsdsText>
+  <ManagerButton
+    id="create-resource"
+    label="Create Resource"
+    iamActions={['resource:create']}
+  />
+</OsdsTile>
 ```
 
 ### Theme Integration
@@ -609,7 +965,91 @@ import '@ovhcloud/ods-themes/default';
 import '@ovhcloud/ods-themes/blue-jeans';
 
 // Import components
-import { Button, Modal } from '@ovhcloud/ods-components/react';
+import { 
+  OsdsButton, 
+  OsdsModal,
+  OsdsInput,
+  OsdsText,
+  OsdsIcon
+} from '@ovhcloud/ods-components/react';
+```
+
+### Advanced Component Usage
+
+#### 1. Custom Form Components
+```typescript
+// Create reusable form components
+const FormInput = ({ label, error, ...props }) => (
+  <OsdsFormField 
+    label={label}
+    hasError={!!error}
+    errorMessage={error}
+  >
+    <OsdsInput {...props} hasError={!!error} />
+  </OsdsFormField>
+);
+
+// Usage
+<FormInput 
+  label="Email"
+  value={email}
+  onChange={setEmail}
+  error={emailError}
+  type="email"
+/>
+```
+
+#### 2. Data Display Components
+```typescript
+// Create data display components
+const StatusChip = ({ status }) => {
+  const colorMap = {
+    active: 'success',
+    inactive: 'error',
+    pending: 'warning'
+  };
+  
+  return (
+    <OsdsChip color={colorMap[status] || 'secondary'}>
+      {status}
+    </OsdsChip>
+  );
+};
+
+// Usage in table
+<OsdsTable 
+  data={users}
+  columns={[
+    { key: 'name', label: 'Name' },
+    { 
+      key: 'status', 
+      label: 'Status',
+      render: (value) => <StatusChip status={value} />
+    }
+  ]}
+/>
+```
+
+#### 3. Layout Components
+```typescript
+// Create layout components
+const PageLayout = ({ title, children, actions }) => (
+  <div>
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+      <OsdsText size="xl" weight="bold">{title}</OsdsText>
+      {actions && <div>{actions}</div>}
+    </div>
+    {children}
+  </div>
+);
+
+// Usage
+<PageLayout 
+  title="User Management"
+  actions={<OsdsButton color="primary">Add User</OsdsButton>}
+>
+  <OsdsTable data={users} columns={columns} />
+</PageLayout>
 ```
 
 ---
@@ -619,10 +1059,10 @@ import { Button, Modal } from '@ovhcloud/ods-components/react';
 ### Essential Rules for AI Code Generation
 
 1. **Always import theme first**: `import '@ovhcloud/ods-themes/default';`
-2. **Use specific imports**: `import { Button, Modal } from '@ovhcloud/ods-components/react';`
+2. **Use ODS component names**: `import { OsdsButton, OsdsModal, OsdsInput } from '@ovhcloud/ods-components/react';`
 3. **Include all required props**: Check interface definitions above
 4. **Handle loading states**: Use `isLoading` props and conditional rendering
-5. **Implement validation**: Use `FormField` with `hasError` and `errorMessage`
+5. **Implement validation**: Use `OsdsFormField` with `hasError` and `errorMessage`
 6. **Add test IDs**: Include `dataTestId` for all interactive elements
 7. **Use semantic colors**: `primary`, `critical`, `success`, `warning`, `error`
 8. **Handle events correctly**: ODS provides values directly, not events
@@ -631,9 +1071,67 @@ import { Button, Modal } from '@ovhcloud/ods-components/react';
 
 ### Component Selection Guide
 
-- **Basic UI**: Use ODS components (`Button`, `Input`, `Modal`)
+- **Basic UI**: Use ODS components (`OsdsButton`, `OsdsInput`, `OsdsModal`, `OsdsText`, `OsdsIcon`)
 - **Manager-specific**: Use MRC components (`ManagerButton`, `ManagerText`)
-- **Forms**: Always wrap inputs with `FormField`
-- **Feedback**: Use `Message` for alerts, `Spinner`/`Skeleton` for loading
-- **Navigation**: Use `Breadcrumb`, `Pagination` for navigation
-- **Layout**: Use `Card`, `Accordion`, `Drawer` for content organization
+- **Forms**: Always wrap inputs with `OsdsFormField`
+- **Feedback**: Use `OsdsMessage` for alerts, `OsdsSpinner`/`OsdsSkeleton` for loading
+- **Navigation**: Use `OsdsBreadcrumb`, `OsdsPagination` for navigation
+- **Layout**: Use `OsdsTile`, `OsdsAccordion`, `OsdsTabs` for content organization
+- **Data Display**: Use `OsdsTable`, `OsdsDatagrid` for data presentation
+- **Input Controls**: Use `OsdsSelect`, `OsdsCheckbox`, `OsdsRadio`, `OsdsSwitch` for form controls
+- **Overlays**: Use `OsdsModal`, `OsdsPopover`, `OsdsTooltip` for overlays
+
+### Complete Component Import Reference
+
+```typescript
+// Input Components
+import { 
+  OsdsButton, OsdsInput, OsdsSelect, OsdsCheckbox, OsdsCheckboxButton,
+  OsdsRadio, OsdsRadioButton, OsdsRadioGroup, OsdsSwitch, OsdsSwitchItem,
+  OsdsToggle, OsdsRange, OsdsPassword, OsdsTextarea, OsdsDatepicker,
+  OsdsPhoneNumber, OsdsSearchBar, OsdsQuantity
+} from '@ovhcloud/ods-components/react';
+
+// Layout Components
+import { 
+  OsdsModal, OsdsAccordion, OsdsAccordionGroup, OsdsCollapsible,
+  OsdsTabs, OsdsTabBar, OsdsTabBarItem, OsdsTabPanel, OsdsTile, OsdsDivider
+} from '@ovhcloud/ods-components/react';
+
+// Navigation Components
+import { 
+  OsdsBreadcrumb, OsdsBreadcrumbItem, OsdsPagination, OsdsMenu,
+  OsdsMenuGroup, OsdsMenuItem
+} from '@ovhcloud/ods-components/react';
+
+// Feedback Components
+import { 
+  OsdsMessage, OsdsSpinner, OsdsSkeleton, OsdsProgressBar, OsdsChip
+} from '@ovhcloud/ods-components/react';
+
+// Data Display Components
+import { 
+  OsdsTable, OsdsDatagrid, OsdsText, OsdsCode, OsdsFlag, OsdsIcon, OsdsMedium
+} from '@ovhcloud/ods-components/react';
+
+// Form Components
+import { 
+  OsdsFormField, OsdsSelectGroup, OsdsSelectOption
+} from '@ovhcloud/ods-components/react';
+
+// Overlay Components
+import { 
+  OsdsPopover, OsdsPopoverContent, OsdsTooltip, OsdsTooltipContent
+} from '@ovhcloud/ods-components/react';
+
+// Utility Components
+import { 
+  OsdsLink, OsdsClipboard, OsdsContentAddon
+} from '@ovhcloud/ods-components/react';
+
+// Cart Components (E-commerce)
+import { 
+  OsdsCart, OsdsCartManager, OsdsCartHeader, OsdsCartSection,
+  OsdsCartItem, OsdsCartItemOption, OsdsCartFooter, OsdsCartFooterItem, OsdsCartTotal
+} from '@ovhcloud/ods-components/react';
+```

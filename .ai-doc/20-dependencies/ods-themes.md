@@ -59,53 +59,81 @@ yarn add --exact @ovhcloud/ods-themes@^18.6.2
 import '@ovhcloud/ods-themes/default';
 
 // Import components after theme
-import { Button, Modal, Input } from '@ovhcloud/ods-components/react';
+import { OsdsButton, OsdsModal, OsdsInput } from '@ovhcloud/ods-components/react';
 ```
 
 ### Available Themes
 
 | Theme | Import | Description | Use Case |
 |-------|--------|-------------|----------|
-| **default** | `import '@ovhcloud/ods-themes/default';` | Standard OVHcloud theme | Default applications |
-| **blue-jeans** | `import '@ovhcloud/ods-themes/blue-jeans';` | Blue accent theme | Specialized applications |
-| **dark** | `import '@ovhcloud/ods-themes/dark';` | Dark mode variant | Dark mode support |
+| **default** | `import '@ovhcloud/ods-themes/default';` | Standard OVHcloud theme | All OVHcloud applications |
+
+> **⚠️ Note:** Currently, only the `default` theme is available in `@ovhcloud/ods-themes@^18.6.2`. Additional themes like `blue-jeans` and `dark` are not yet available in this version.
 
 ### Theme Structure
 
 ```css
-/* CSS Custom Properties Structure */
+/* CSS Custom Properties Structure (Actual ODS v18.6.2) */
 :root {
-  /* Colors */
-  --ods-color-primary-500: #0072ff;
-  --ods-color-primary-600: #0056b3;
-  --ods-color-secondary-500: #6c757d;
+  /* Colors - Primary Palette */
+  --ods-color-primary-000: #ffffff;
+  --ods-color-primary-050: #e6faff;
+  --ods-color-primary-100: #bef1ff;
+  --ods-color-primary-200: #85d9fd;
+  --ods-color-primary-300: #4bb2f6;
+  --ods-color-primary-400: #157eea;
+  --ods-color-primary-500: #0050d7;
+  --ods-color-primary-600: #002dbe;
+  --ods-color-primary-700: #000e9c;
+  --ods-color-primary-800: #00185e;
+  --ods-color-primary-900: #000d1f;
   
-  /* Spacing */
-  --ods-size-01: 0.25rem;  /* 4px */
-  --ods-size-02: 0.5rem;   /* 8px */
-  --ods-size-03: 0.75rem;  /* 12px */
-  --ods-size-04: 1rem;     /* 16px */
-  --ods-size-05: 1.25rem;  /* 20px */
-  --ods-size-06: 1.5rem;   /* 24px */
+  /* Colors - Neutral Palette */
+  --ods-color-neutral-000: #ffffff;
+  --ods-color-neutral-050: #f2f2f2;
+  --ods-color-neutral-100: #e6e6e6;
+  --ods-color-neutral-200: #cccccc;
+  --ods-color-neutral-300: #b3b3b3;
+  --ods-color-neutral-400: #999999;
+  --ods-color-neutral-500: #808080;
+  --ods-color-neutral-600: #666666;
+  --ods-color-neutral-700: #4d4d4d;
+  --ods-color-neutral-800: #333333;
+  --ods-color-neutral-900: #1a1a1a;
+  
+  /* Colors - Semantic Colors */
+  --ods-color-success-500: #2b8000;
+  --ods-color-warning-500: #ff8b00;
+  --ods-color-critical-500: #d70022;
+  --ods-color-information-500: #0050d7;
   
   /* Typography */
-  --ods-font-family-primary: 'Inter', sans-serif;
-  --ods-font-size-xs: 0.75rem;
-  --ods-font-size-s: 0.875rem;
-  --ods-font-size-m: 1rem;
-  --ods-font-size-l: 1.125rem;
-  --ods-font-size-xl: 1.25rem;
-  
-  /* Shadows */
-  --ods-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --ods-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --ods-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --ods-font-family-default: 'Source Sans Pro', 'Trebuchet MS', arial, 'Segoe UI', sans-serif;
+  --ods-font-family-code: 'Source Code Pro', arial;
+  --ods-color-text: var(--ods-color-neutral-800);
+  --ods-color-heading: var(--ods-color-neutral-900);
   
   /* Border Radius */
-  --ods-border-radius-sm: 0.25rem;
-  --ods-border-radius-md: 0.375rem;
-  --ods-border-radius-lg: 0.5rem;
-  --ods-border-radius-xl: 0.75rem;
+  --ods-border-radius-xs: 0.125rem;  /* 2px */
+  --ods-border-radius-sm: 0.25rem;   /* 4px */
+  --ods-border-radius-md: 0.375rem;  /* 6px */
+  --ods-border-radius-lg: 0.5rem;    /* 8px */
+  
+  /* Border Width */
+  --ods-border-width-sm: 1px;
+  --ods-border-width-md: 2px;
+  
+  /* Form Elements */
+  --ods-form-element-input-height: 2.5rem;  /* 40px */
+  --ods-color-form-element-background-default: var(--ods-color-neutral-000);
+  --ods-color-form-element-border-default: var(--ods-color-neutral-300);
+  --ods-color-form-element-text-default: var(--ods-color-text);
+  
+  /* Focus Outline */
+  --ods-outline-color-default: var(--ods-color-primary-500);
+  --ods-outline-width: 2px;
+  --ods-outline-offset: 2px;
+  --ods-outline-style-default: solid;
 }
 ```
 
@@ -116,67 +144,60 @@ import { Button, Modal, Input } from '@ovhcloud/ods-components/react';
 ```typescript
 // App.tsx or main entry point
 import '@ovhcloud/ods-themes/default';
-import { Button, Modal } from '@ovhcloud/ods-components/react';
+import { OsdsButton, OsdsModal } from '@ovhcloud/ods-components/react';
 
 function App() {
   return (
     <div className="ods-theme">
-      <Button color="primary">Themed Button</Button>
+      <OsdsButton color="primary">Themed Button</OsdsButton>
     </div>
   );
 }
 ```
 
-#### 2. Multiple Theme Support
+#### 2. Theme Provider (Single Theme)
 
 ```typescript
-// Theme provider component
-import { useState, useEffect } from 'react';
+// Theme provider component for single theme
+import { ReactNode } from 'react';
 import '@ovhcloud/ods-themes/default';
-import '@ovhcloud/ods-themes/blue-jeans';
-import '@ovhcloud/ods-themes/dark';
 
-type Theme = 'default' | 'blue-jeans' | 'dark';
-
-function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('default');
-
-  useEffect(() => {
-    // Apply theme class to document
-    document.documentElement.className = `ods-theme-${theme}`;
-  }, [theme]);
-
+function ThemeProvider({ children }: { children: ReactNode }) {
   return (
-    <div className={`ods-theme-${theme}`}>
+    <div className="ods-theme">
       {children}
     </div>
   );
 }
 ```
 
-#### 3. Dynamic Theme Switching
+#### 3. Custom Theme Variables Override
 
 ```typescript
 import { useState } from 'react';
 import '@ovhcloud/ods-themes/default';
-import '@ovhcloud/ods-themes/blue-jeans';
-import { Button } from '@ovhcloud/ods-components/react';
+import { OsdsButton } from '@ovhcloud/ods-components/react';
 
-function ThemeSwitcher() {
-  const [currentTheme, setCurrentTheme] = useState<'default' | 'blue-jeans'>('default');
+function CustomThemeExample() {
+  const [useCustomTheme, setUseCustomTheme] = useState(false);
 
-  const switchTheme = () => {
-    const newTheme = currentTheme === 'default' ? 'blue-jeans' : 'default';
-    setCurrentTheme(newTheme);
+  const toggleCustomTheme = () => {
+    setUseCustomTheme(!useCustomTheme);
     
-    // Update document class
-    document.documentElement.className = `ods-theme-${newTheme}`;
+    // Apply custom theme class
+    if (useCustomTheme) {
+      document.documentElement.classList.remove('custom-theme');
+    } else {
+      document.documentElement.classList.add('custom-theme');
+    }
   };
 
   return (
-    <Button onClick={switchTheme}>
-      Switch to {currentTheme === 'default' ? 'Blue Jeans' : 'Default'} Theme
-    </Button>
+    <div className={useCustomTheme ? 'custom-theme' : ''}>
+      <OsdsButton onClick={toggleCustomTheme}>
+        {useCustomTheme ? 'Use Default Theme' : 'Use Custom Theme'}
+      </OsdsButton>
+    </div>
   );
 }
 ```
@@ -185,21 +206,26 @@ function ThemeSwitcher() {
 
 ```css
 /* Custom theme overrides */
-.ods-theme-custom {
+.custom-theme {
   /* Override primary colors */
   --ods-color-primary-500: #ff6b35;
   --ods-color-primary-600: #e55a2b;
   
-  /* Override spacing */
-  --ods-size-04: 1.125rem; /* 18px instead of 16px */
+  /* Override neutral colors */
+  --ods-color-neutral-100: #f8f9fa;
+  --ods-color-neutral-200: #e9ecef;
   
   /* Override typography */
-  --ods-font-family-primary: 'Roboto', sans-serif;
+  --ods-font-family-default: 'Roboto', sans-serif;
+  
+  /* Override border radius */
+  --ods-border-radius-md: 0.5rem; /* 8px instead of 6px */
 }
 
-/* Apply custom theme */
-.custom-theme {
-  @apply ods-theme-custom;
+/* Apply custom theme to specific components */
+.custom-themed-button {
+  --ods-color-primary-500: #28a745;
+  --ods-color-primary-600: #218838;
 }
 ```
 
@@ -207,23 +233,22 @@ function ThemeSwitcher() {
 // Using custom theme
 import '@ovhcloud/ods-themes/default';
 import './custom-theme.css';
-import { Button } from '@ovhcloud/ods-components/react';
+import { OsdsButton } from '@ovhcloud/ods-components/react';
 
 function CustomThemedComponent() {
   return (
     <div className="custom-theme">
-      <Button color="primary">Custom Themed Button</Button>
+      <OsdsButton color="primary">Custom Themed Button</OsdsButton>
     </div>
   );
 }
 ```
 
-### Dark Mode Implementation
+### Dark Mode Implementation (Custom)
 
 ```typescript
 import { useState, useEffect } from 'react';
 import '@ovhcloud/ods-themes/default';
-import '@ovhcloud/ods-themes/dark';
 
 function DarkModeProvider({ children }: { children: React.ReactNode }) {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -237,9 +262,9 @@ function DarkModeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     // Apply dark mode class
     if (isDarkMode) {
-      document.documentElement.classList.add('ods-theme-dark');
+      document.documentElement.classList.add('dark-mode');
     } else {
-      document.documentElement.classList.remove('ods-theme-dark');
+      document.documentElement.classList.remove('dark-mode');
     }
   }, [isDarkMode]);
 
@@ -248,13 +273,40 @@ function DarkModeProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <div className={isDarkMode ? 'ods-theme-dark' : 'ods-theme-default'}>
+    <div className={isDarkMode ? 'dark-mode' : ''}>
       <button onClick={toggleDarkMode}>
         {isDarkMode ? 'Light Mode' : 'Dark Mode'}
       </button>
       {children}
     </div>
   );
+}
+```
+
+```css
+/* Custom dark mode implementation */
+.dark-mode {
+  /* Override colors for dark mode */
+  --ods-color-neutral-000: #1a1a1a;
+  --ods-color-neutral-050: #2d2d2d;
+  --ods-color-neutral-100: #404040;
+  --ods-color-neutral-200: #525252;
+  --ods-color-neutral-300: #666666;
+  --ods-color-neutral-400: #808080;
+  --ods-color-neutral-500: #999999;
+  --ods-color-neutral-600: #b3b3b3;
+  --ods-color-neutral-700: #cccccc;
+  --ods-color-neutral-800: #e6e6e6;
+  --ods-color-neutral-900: #ffffff;
+  
+  /* Override text colors */
+  --ods-color-text: var(--ods-color-neutral-800);
+  --ods-color-heading: var(--ods-color-neutral-900);
+  
+  /* Override form element colors */
+  --ods-color-form-element-background-default: var(--ods-color-neutral-100);
+  --ods-color-form-element-border-default: var(--ods-color-neutral-300);
+  --ods-color-form-element-text-default: var(--ods-color-neutral-800);
 }
 ```
 
@@ -268,12 +320,11 @@ import '@ovhcloud/ods-themes/default';
 const StyledCard = styled.div`
   background-color: var(--ods-color-neutral-100);
   border-radius: var(--ods-border-radius-md);
-  padding: var(--ods-size-04);
-  box-shadow: var(--ods-shadow-sm);
-  border: 1px solid var(--ods-color-neutral-200);
+  padding: 1rem; /* Use standard CSS units for spacing */
+  border: var(--ods-border-width-sm) solid var(--ods-color-neutral-200);
   
   &:hover {
-    box-shadow: var(--ods-shadow-md);
+    border-color: var(--ods-color-neutral-300);
   }
 `;
 
@@ -282,9 +333,9 @@ const StyledButton = styled.button`
   color: var(--ods-color-neutral-000);
   border: none;
   border-radius: var(--ods-border-radius-sm);
-  padding: var(--ods-size-02) var(--ods-size-04);
-  font-family: var(--ods-font-family-primary);
-  font-size: var(--ods-font-size-m);
+  padding: 0.5rem 1rem;
+  font-family: var(--ods-font-family-default);
+  height: var(--ods-form-element-input-height);
   
   &:hover {
     background-color: var(--ods-color-primary-600);
@@ -293,6 +344,11 @@ const StyledButton = styled.button`
   &:disabled {
     background-color: var(--ods-color-neutral-300);
     cursor: not-allowed;
+  }
+  
+  &:focus {
+    outline: var(--ods-outline-width) var(--ods-outline-style-default) var(--ods-outline-color-default);
+    outline-offset: var(--ods-outline-offset);
   }
 `;
 ```
@@ -314,36 +370,31 @@ module.exports = {
           100: 'var(--ods-color-neutral-100)',
           200: 'var(--ods-color-neutral-200)',
           300: 'var(--ods-color-neutral-300)',
+          800: 'var(--ods-color-neutral-800)',
+          900: 'var(--ods-color-neutral-900)',
+        },
+        success: {
+          500: 'var(--ods-color-success-500)',
+        },
+        warning: {
+          500: 'var(--ods-color-warning-500)',
+        },
+        critical: {
+          500: 'var(--ods-color-critical-500)',
         }
       },
-      spacing: {
-        'ods-01': 'var(--ods-size-01)',
-        'ods-02': 'var(--ods-size-02)',
-        'ods-03': 'var(--ods-size-03)',
-        'ods-04': 'var(--ods-size-04)',
-        'ods-05': 'var(--ods-size-05)',
-        'ods-06': 'var(--ods-size-06)',
-      },
       fontFamily: {
-        primary: ['var(--ods-font-family-primary)'],
-      },
-      fontSize: {
-        'ods-xs': 'var(--ods-font-size-xs)',
-        'ods-s': 'var(--ods-font-size-s)',
-        'ods-m': 'var(--ods-font-size-m)',
-        'ods-l': 'var(--ods-font-size-l)',
-        'ods-xl': 'var(--ods-font-size-xl)',
-      },
-      boxShadow: {
-        'ods-sm': 'var(--ods-shadow-sm)',
-        'ods-md': 'var(--ods-shadow-md)',
-        'ods-lg': 'var(--ods-shadow-lg)',
+        default: ['var(--ods-font-family-default)'],
+        code: ['var(--ods-font-family-code)'],
       },
       borderRadius: {
+        'ods-xs': 'var(--ods-border-radius-xs)',
         'ods-sm': 'var(--ods-border-radius-sm)',
         'ods-md': 'var(--ods-border-radius-md)',
         'ods-lg': 'var(--ods-border-radius-lg)',
-        'ods-xl': 'var(--ods-border-radius-xl)',
+      },
+      height: {
+        'ods-input': 'var(--ods-form-element-input-height)',
       }
     }
   },
@@ -357,13 +408,16 @@ import '@ovhcloud/ods-themes/default';
 
 function TailwindThemedComponent() {
   return (
-    <div className="bg-neutral-100 p-ods-04 rounded-ods-md shadow-ods-sm">
-      <h2 className="font-primary text-ods-l text-primary-500">
+    <div className="bg-neutral-100 p-4 rounded-ods-md border border-neutral-200">
+      <h2 className="font-default text-lg text-primary-500">
         Themed Heading
       </h2>
-      <p className="text-ods-m text-neutral-700">
+      <p className="text-base text-neutral-800">
         Themed paragraph with ODS design tokens
       </p>
+      <button className="bg-primary-500 text-white px-4 py-2 rounded-ods-sm h-ods-input">
+        Themed Button
+      </button>
     </div>
   );
 }
@@ -374,25 +428,23 @@ function TailwindThemedComponent() {
 #### 1. Theme Loading Optimization
 
 ```typescript
-// Lazy load themes
+// Lazy load theme (only default available)
 const loadTheme = async (themeName: string) => {
   switch (themeName) {
     case 'default':
       await import('@ovhcloud/ods-themes/default');
       break;
-    case 'blue-jeans':
-      await import('@ovhcloud/ods-themes/blue-jeans');
-      break;
-    case 'dark':
-      await import('@ovhcloud/ods-themes/dark');
+    default:
+      console.warn(`Theme '${themeName}' not available. Using default theme.`);
+      await import('@ovhcloud/ods-themes/default');
       break;
   }
 };
 
 // Usage
 useEffect(() => {
-  loadTheme(selectedTheme);
-}, [selectedTheme]);
+  loadTheme('default'); // Only default theme available
+}, []);
 ```
 
 #### 2. CSS Custom Properties Fallbacks
@@ -400,10 +452,13 @@ useEffect(() => {
 ```css
 /* Always provide fallbacks for CSS custom properties */
 .themed-element {
-  background-color: #0072ff; /* Fallback */
-  background-color: var(--ods-color-primary-500, #0072ff);
-  padding: 16px; /* Fallback */
-  padding: var(--ods-size-04, 16px);
+  background-color: #0050d7; /* Fallback */
+  background-color: var(--ods-color-primary-500, #0050d7);
+  padding: 1rem; /* Fallback */
+  border-radius: 0.375rem; /* Fallback */
+  border-radius: var(--ods-border-radius-md, 0.375rem);
+  font-family: 'Source Sans Pro', sans-serif; /* Fallback */
+  font-family: var(--ods-font-family-default, 'Source Sans Pro', sans-serif);
 }
 ```
 
@@ -413,10 +468,10 @@ useEffect(() => {
 
 ```typescript
 // Missing theme import
-import { Button } from '@ovhcloud/ods-components/react';
+import { OsdsButton } from '@ovhcloud/ods-components/react';
 
 function App() {
-  return <Button>Unstyled Button</Button>; // No theme applied
+  return <OsdsButton>Unstyled Button</OsdsButton>; // No theme applied
 }
 ```
 
@@ -425,29 +480,26 @@ function App() {
 ```typescript
 // Import theme first
 import '@ovhcloud/ods-themes/default';
-import { Button } from '@ovhcloud/ods-components/react';
+import { OsdsButton } from '@ovhcloud/ods-components/react';
 
 function App() {
-  return <Button>Themed Button</Button>; // Properly themed
+  return <OsdsButton>Themed Button</OsdsButton>; // Properly themed
 }
 ```
 
-#### ❌ Wrong: Incorrect Theme Class Application
+#### ❌ Wrong: Using Non-existent Themes
 
 ```typescript
-// Wrong theme class
-<div className="ods-theme-default"> // Incorrect class name
-  <Button>Themed Button</Button>
-</div>
+// Wrong - these themes don't exist
+import '@ovhcloud/ods-themes/blue-jeans'; // ❌ Doesn't exist
+import '@ovhcloud/ods-themes/dark'; // ❌ Doesn't exist
 ```
 
-#### ✅ Correct: Proper Theme Class
+#### ✅ Correct: Using Available Theme
 
 ```typescript
-// Correct theme class
-<div className="ods-theme"> // Correct class name
-  <Button>Themed Button</Button>
-</div>
+// Correct - only default theme is available
+import '@ovhcloud/ods-themes/default'; // ✅ Available
 ```
 
 #### ❌ Wrong: Missing CSS Custom Properties
@@ -455,8 +507,9 @@ function App() {
 ```css
 /* Missing CSS custom properties */
 .custom-component {
-  background-color: #0072ff; /* Hardcoded color */
-  padding: 16px; /* Hardcoded spacing */
+  background-color: #0050d7; /* Hardcoded color */
+  padding: 1rem; /* Hardcoded spacing */
+  border-radius: 0.375rem; /* Hardcoded border radius */
 }
 ```
 
@@ -466,7 +519,9 @@ function App() {
 /* Using CSS custom properties */
 .custom-component {
   background-color: var(--ods-color-primary-500);
-  padding: var(--ods-size-04);
+  padding: 1rem; /* Use standard CSS units for spacing */
+  border-radius: var(--ods-border-radius-md);
+  font-family: var(--ods-font-family-default);
 }
 ```
 
@@ -475,19 +530,19 @@ function App() {
 #### 1. Theme Testing
 
 ```typescript
-// Test theme switching
+// Test theme application
 import { render, screen } from '@testing-library/react';
 import '@ovhcloud/ods-themes/default';
 import { ThemeProvider } from './ThemeProvider';
 
 test('applies correct theme class', () => {
   render(
-    <ThemeProvider theme="blue-jeans">
+    <ThemeProvider>
       <div>Test content</div>
     </ThemeProvider>
   );
   
-  expect(document.documentElement).toHaveClass('ods-theme-blue-jeans');
+  expect(document.documentElement).toHaveClass('ods-theme');
 });
 ```
 
@@ -528,20 +583,18 @@ test('applies CSS custom properties', () => {
 
 ### Theme Selection Guide
 
-- **Default Theme**: Use for standard OVHcloud applications
-- **Blue Jeans Theme**: Use for specialized or branded applications
-- **Dark Theme**: Use for dark mode support
-- **Custom Themes**: Create for specific brand requirements
+- **Default Theme**: Use for all OVHcloud applications (only theme available)
+- **Custom Themes**: Create for specific brand requirements by overriding CSS custom properties
 
 ### Integration with ODS Components
 
 ```typescript
 // Always import theme before components
 import '@ovhcloud/ods-themes/default';
-import { Button, Modal, Input } from '@ovhcloud/ods-components/react';
+import { OsdsButton, OsdsModal, OsdsInput } from '@ovhcloud/ods-components/react';
 
 // Theme is automatically applied to ODS components
-<Button color="primary">Themed Button</Button>
+<OsdsButton color="primary">Themed Button</OsdsButton>
 ```
 
 ### Integration with Manager React Components
