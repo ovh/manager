@@ -12,8 +12,8 @@ import {
   FilterComparator,
   FilterTypeCategories as DatagridColumnTypes,
 } from '@ovh-ux/manager-core-api';
-import { Option } from '../filters/filter-add.component';
-import { FilterWithLabel } from '../filters/interface';
+import { Option } from '../filters';
+import { FilterWithLabel } from '../filters/Filter.props';
 
 export interface RowSelectionProps<T> {
   onRowSelectionChange?: (selectedRows: T[]) => void;

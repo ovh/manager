@@ -352,11 +352,7 @@ describe('Datagrid', () => {
 
     it('should handle loading state', () => {
       const { container } = render(
-        <Datagrid
-          columns={mockBasicColumns}
-          data={mockData}
-          isLoading={true}
-        />,
+        <Datagrid columns={mockBasicColumns} data={[]} isLoading={true} />,
       );
       // expect td that contains skeleton in the class
       const targetDiv = container.querySelector('tbody tr td div div');

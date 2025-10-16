@@ -10,7 +10,7 @@ import {
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '../../../button/Button.component';
-import { ColumnFilter, FilterAdd } from '../../../filters/filter-add.component';
+import { ColumnFilter, FilterAdd } from '../../../filters';
 import { FilterProps } from '../../Datagrid.props';
 
 interface ColumnsFilteringComponentProps {
@@ -39,7 +39,7 @@ export const ColumnsFilteringComponent = ({
           </>
         </Button>
       </PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent createPortal={false}>
         <FilterAdd
           columns={columns}
           resourceType={resourceType}

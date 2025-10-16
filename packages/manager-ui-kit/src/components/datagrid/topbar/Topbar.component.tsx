@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { ColumnVisibility } from './columns-visibility/ColumnsVisibility.component';
 import { ColumnsVisibilityProps } from './columns-visibility/ColumnsVisiblity.props';
 import { ColumnsFilteringComponent } from './columns-filtering/ColumnsFiltering.component';
-import { FilterList } from '../../filters/filter-list.component';
+import { FilterList } from '../../filters';
 import { ColumnsSearch } from './columns-search/ColumnsSearch.component';
 import { useDatagridTopbar } from './useDatagridTopbar';
 

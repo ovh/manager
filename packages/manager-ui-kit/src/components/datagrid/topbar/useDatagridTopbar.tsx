@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { FilterCategories } from '@ovh-ux/manager-core-api';
-import { ColumnFilter } from '../../filters/filter-add.component';
+import { ColumnFilter } from '../../filters';
 import { UseDatagridTopbarProps } from './useDatagridTopbar.props';
 
 export const useDatagridTopbar = <T,>({

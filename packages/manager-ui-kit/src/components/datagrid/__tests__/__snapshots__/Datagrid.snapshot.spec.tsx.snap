@@ -157,89 +157,105 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
           style="width: 20px; min-width: 20px; max-width: 20px;"
         >
           <div
-            class="text-center"
-            style="padding-left: 0rem;"
+            class="overflow-hidden text-ellipsis block w-full"
           >
-            <button
-              class="_button_10f3x_2 _button--primary_10f3x_99 _button--xs_10f3x_25 _button--ghost_10f3x_150"
-              data-testid="manager-button"
-              type="button"
+            <div
+              class="text-center"
+              style="padding-left: 0rem;"
             >
-              <span
-                class="_icon_i4xp0_2 _icon--chevron-right_i4xp0_76"
-              />
-            </button>
+              <button
+                class="_button_10f3x_2 _button--primary_10f3x_99 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+                data-testid="manager-button"
+                type="button"
+              >
+                <span
+                  class="_icon_i4xp0_2 _icon--chevron-right_i4xp0_76"
+                />
+              </button>
+            </div>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 20px; min-width: 20px; max-width: 20px;"
         >
-          <label
-            class="_checkbox_18i6t_2"
-            data-part="root"
-            data-scope="checkbox"
-            data-state="unchecked"
-            dir="ltr"
-            for="checkbox:0:input"
-            id="checkbox:0"
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
           >
-            <div
-              aria-hidden="true"
-              class="_checkbox-control_r0pkw_2"
-              data-part="control"
+            <label
+              class="_checkbox_18i6t_2"
+              data-part="root"
               data-scope="checkbox"
               data-state="unchecked"
               dir="ltr"
-              id="checkbox:0:control"
+              for="checkbox:0:input"
+              id="checkbox:0"
             >
               <div
-                data-part="indicator"
+                aria-hidden="true"
+                class="_checkbox-control_r0pkw_2"
+                data-part="control"
                 data-scope="checkbox"
                 data-state="unchecked"
                 dir="ltr"
-                hidden=""
+                id="checkbox:0:control"
               >
-                <span
-                  class="_icon_i4xp0_2 _icon--check_i4xp0_61 _checkbox-control__icon_r0pkw_48"
+                <div
+                  data-part="indicator"
+                  data-scope="checkbox"
+                  data-state="unchecked"
+                  dir="ltr"
+                  hidden=""
+                >
+                  <span
+                    class="_icon_i4xp0_2 _icon--check_i4xp0_61 _checkbox-control__icon_r0pkw_48"
+                  />
+                </div>
+                <div
+                  data-part="indicator"
+                  data-scope="checkbox"
+                  data-state="unchecked"
+                  dir="ltr"
+                  hidden=""
+                >
+                  <span
+                    class="_icon_i4xp0_2 _icon--minus_i4xp0_298 _checkbox-control__icon_r0pkw_48"
+                  />
+                </div>
+                <input
+                  aria-labelledby="checkbox:0:label"
+                  id="checkbox:0:input"
+                  name="select-0"
+                  style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+                  type="checkbox"
+                  value="on"
                 />
               </div>
-              <div
-                data-part="indicator"
-                data-scope="checkbox"
-                data-state="unchecked"
-                dir="ltr"
-                hidden=""
-              >
-                <span
-                  class="_icon_i4xp0_2 _icon--minus_i4xp0_298 _checkbox-control__icon_r0pkw_48"
-                />
-              </div>
-              <input
-                aria-labelledby="checkbox:0:label"
-                id="checkbox:0:input"
-                name="select-0"
-                style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
-                type="checkbox"
-                value="on"
-              />
-            </div>
-          </label>
-        </td>
-        <td
-          class="py-[8px] pl-4"
-          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
-        >
-          <div>
-            John Doe
+            </label>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            30
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              30
+            </div>
           </div>
         </td>
       </tr>
@@ -253,89 +269,105 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
           style="width: 20px; min-width: 20px; max-width: 20px;"
         >
           <div
-            class="text-center"
-            style="padding-left: 0rem;"
+            class="overflow-hidden text-ellipsis block w-full"
           >
-            <button
-              class="_button_10f3x_2 _button--primary_10f3x_99 _button--xs_10f3x_25 _button--ghost_10f3x_150"
-              data-testid="manager-button"
-              type="button"
+            <div
+              class="text-center"
+              style="padding-left: 0rem;"
             >
-              <span
-                class="_icon_i4xp0_2 _icon--chevron-right_i4xp0_76"
-              />
-            </button>
+              <button
+                class="_button_10f3x_2 _button--primary_10f3x_99 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+                data-testid="manager-button"
+                type="button"
+              >
+                <span
+                  class="_icon_i4xp0_2 _icon--chevron-right_i4xp0_76"
+                />
+              </button>
+            </div>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 20px; min-width: 20px; max-width: 20px;"
         >
-          <label
-            class="_checkbox_18i6t_2"
-            data-part="root"
-            data-scope="checkbox"
-            data-state="unchecked"
-            dir="ltr"
-            for="checkbox:1:input"
-            id="checkbox:1"
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
           >
-            <div
-              aria-hidden="true"
-              class="_checkbox-control_r0pkw_2"
-              data-part="control"
+            <label
+              class="_checkbox_18i6t_2"
+              data-part="root"
               data-scope="checkbox"
               data-state="unchecked"
               dir="ltr"
-              id="checkbox:1:control"
+              for="checkbox:1:input"
+              id="checkbox:1"
             >
               <div
-                data-part="indicator"
+                aria-hidden="true"
+                class="_checkbox-control_r0pkw_2"
+                data-part="control"
                 data-scope="checkbox"
                 data-state="unchecked"
                 dir="ltr"
-                hidden=""
+                id="checkbox:1:control"
               >
-                <span
-                  class="_icon_i4xp0_2 _icon--check_i4xp0_61 _checkbox-control__icon_r0pkw_48"
+                <div
+                  data-part="indicator"
+                  data-scope="checkbox"
+                  data-state="unchecked"
+                  dir="ltr"
+                  hidden=""
+                >
+                  <span
+                    class="_icon_i4xp0_2 _icon--check_i4xp0_61 _checkbox-control__icon_r0pkw_48"
+                  />
+                </div>
+                <div
+                  data-part="indicator"
+                  data-scope="checkbox"
+                  data-state="unchecked"
+                  dir="ltr"
+                  hidden=""
+                >
+                  <span
+                    class="_icon_i4xp0_2 _icon--minus_i4xp0_298 _checkbox-control__icon_r0pkw_48"
+                  />
+                </div>
+                <input
+                  aria-labelledby="checkbox:1:label"
+                  id="checkbox:1:input"
+                  name="select-1"
+                  style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+                  type="checkbox"
+                  value="on"
                 />
               </div>
-              <div
-                data-part="indicator"
-                data-scope="checkbox"
-                data-state="unchecked"
-                dir="ltr"
-                hidden=""
-              >
-                <span
-                  class="_icon_i4xp0_2 _icon--minus_i4xp0_298 _checkbox-control__icon_r0pkw_48"
-                />
-              </div>
-              <input
-                aria-labelledby="checkbox:1:label"
-                id="checkbox:1:input"
-                name="select-1"
-                style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
-                type="checkbox"
-                value="on"
-              />
-            </div>
-          </label>
-        </td>
-        <td
-          class="py-[8px] pl-4"
-          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
-        >
-          <div>
-            Jane Smith
+            </label>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            25
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              Jane Smith
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              25
+            </div>
           </div>
         </td>
       </tr>
@@ -385,16 +417,24 @@ exports[`Datagrid Snapshot Tests > should match snapshot with basic props 1`] = 
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            John Doe
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe
+            </div>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            30
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              30
+            </div>
           </div>
         </td>
       </tr>
@@ -407,16 +447,24 @@ exports[`Datagrid Snapshot Tests > should match snapshot with basic props 1`] = 
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            Jane Smith
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              Jane Smith
+            </div>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            25
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              25
+            </div>
           </div>
         </td>
       </tr>
@@ -466,16 +514,24 @@ exports[`Datagrid Snapshot Tests > should match snapshot with column visibility 
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            John Doe
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe
+            </div>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            30
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              30
+            </div>
           </div>
         </td>
       </tr>
@@ -488,16 +544,24 @@ exports[`Datagrid Snapshot Tests > should match snapshot with column visibility 
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            Jane Smith
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              Jane Smith
+            </div>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            25
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              25
+            </div>
           </div>
         </td>
       </tr>
@@ -547,16 +611,24 @@ exports[`Datagrid Snapshot Tests > should match snapshot with custom container h
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            John Doe
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe
+            </div>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            30
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              30
+            </div>
           </div>
         </td>
       </tr>
@@ -569,16 +641,24 @@ exports[`Datagrid Snapshot Tests > should match snapshot with custom container h
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            Jane Smith
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              Jane Smith
+            </div>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            25
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              25
+            </div>
           </div>
         </td>
       </tr>
@@ -681,34 +761,46 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
           style="width: 20px; min-width: 20px; max-width: 20px;"
         >
           <div
-            class="text-center"
-            style="padding-left: 0rem;"
+            class="overflow-hidden text-ellipsis block w-full"
           >
-            <button
-              class="_button_10f3x_2 _button--primary_10f3x_99 _button--xs_10f3x_25 _button--ghost_10f3x_150"
-              data-testid="manager-button"
-              type="button"
+            <div
+              class="text-center"
+              style="padding-left: 0rem;"
             >
-              <span
-                class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
-              />
-            </button>
+              <button
+                class="_button_10f3x_2 _button--primary_10f3x_99 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+                data-testid="manager-button"
+                type="button"
+              >
+                <span
+                  class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+                />
+              </button>
+            </div>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            John Doe
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe
+            </div>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            30
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              30
+            </div>
           </div>
         </td>
       </tr>
@@ -722,24 +814,36 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
           style="width: 20px; min-width: 20px; max-width: 20px;"
         >
           <div
-            class="text-center"
-            style="padding-left: 2rem;"
-          />
-        </td>
-        <td
-          class="py-[8px] pl-4"
-          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
-        >
-          <div>
-            John Doe Jr.
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div
+              class="text-center"
+              style="padding-left: 2rem;"
+            />
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            10
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe Jr.
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              10
+            </div>
           </div>
         </td>
       </tr>
@@ -753,24 +857,36 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
           style="width: 20px; min-width: 20px; max-width: 20px;"
         >
           <div
-            class="text-center"
-            style="padding-left: 2rem;"
-          />
-        </td>
-        <td
-          class="py-[8px] pl-4"
-          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
-        >
-          <div>
-            John Doe Jr. 2
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div
+              class="text-center"
+              style="padding-left: 2rem;"
+            />
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            11
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe Jr. 2
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              11
+            </div>
           </div>
         </td>
       </tr>
@@ -784,24 +900,36 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
           style="width: 20px; min-width: 20px; max-width: 20px;"
         >
           <div
-            class="text-center"
-            style="padding-left: 2rem;"
-          />
-        </td>
-        <td
-          class="py-[8px] pl-4"
-          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
-        >
-          <div>
-            John Doe Jr. 3
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div
+              class="text-center"
+              style="padding-left: 2rem;"
+            />
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            12
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe Jr. 3
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              12
+            </div>
           </div>
         </td>
       </tr>
@@ -815,34 +943,46 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
           style="width: 20px; min-width: 20px; max-width: 20px;"
         >
           <div
-            class="text-center"
-            style="padding-left: 0rem;"
+            class="overflow-hidden text-ellipsis block w-full"
           >
-            <button
-              class="_button_10f3x_2 _button--primary_10f3x_99 _button--xs_10f3x_25 _button--ghost_10f3x_150"
-              data-testid="manager-button"
-              type="button"
+            <div
+              class="text-center"
+              style="padding-left: 0rem;"
             >
-              <span
-                class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
-              />
-            </button>
+              <button
+                class="_button_10f3x_2 _button--primary_10f3x_99 _button--xs_10f3x_25 _button--ghost_10f3x_150"
+                data-testid="manager-button"
+                type="button"
+              >
+                <span
+                  class="_icon_i4xp0_2 _icon--chevron-down_i4xp0_70"
+                />
+              </button>
+            </div>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            Jane Smith
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              Jane Smith
+            </div>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            25
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              25
+            </div>
           </div>
         </td>
       </tr>
@@ -892,16 +1032,24 @@ exports[`Datagrid Snapshot Tests > should match snapshot with filters enabled 1`
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            John Doe
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe
+            </div>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            30
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              30
+            </div>
           </div>
         </td>
       </tr>
@@ -914,16 +1062,24 @@ exports[`Datagrid Snapshot Tests > should match snapshot with filters enabled 1`
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            Jane Smith
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              Jane Smith
+            </div>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            25
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              25
+            </div>
           </div>
         </td>
       </tr>
@@ -973,16 +1129,24 @@ exports[`Datagrid Snapshot Tests > should match snapshot with loading state 1`] 
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            John Doe
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe
+            </div>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            30
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              30
+            </div>
           </div>
         </td>
       </tr>
@@ -995,16 +1159,24 @@ exports[`Datagrid Snapshot Tests > should match snapshot with loading state 1`] 
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            Jane Smith
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              Jane Smith
+            </div>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            25
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              25
+            </div>
           </div>
         </td>
       </tr>
@@ -1334,16 +1506,24 @@ exports[`Datagrid Snapshot Tests > should match snapshot with pagination 1`] = `
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            John Doe
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe
+            </div>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            30
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              30
+            </div>
           </div>
         </td>
       </tr>
@@ -1356,16 +1536,24 @@ exports[`Datagrid Snapshot Tests > should match snapshot with pagination 1`] = `
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            Jane Smith
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              Jane Smith
+            </div>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            25
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              25
+            </div>
           </div>
         </td>
       </tr>
@@ -1470,71 +1658,83 @@ exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] 
           class="py-[8px] pl-4"
           style="width: 20px; min-width: 20px; max-width: 20px;"
         >
-          <label
-            class="_checkbox_18i6t_2"
-            data-part="root"
-            data-scope="checkbox"
-            data-state="unchecked"
-            dir="ltr"
-            for="checkbox:0:input"
-            id="checkbox:0"
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
           >
-            <div
-              aria-hidden="true"
-              class="_checkbox-control_r0pkw_2"
-              data-part="control"
+            <label
+              class="_checkbox_18i6t_2"
+              data-part="root"
               data-scope="checkbox"
               data-state="unchecked"
               dir="ltr"
-              id="checkbox:0:control"
+              for="checkbox:0:input"
+              id="checkbox:0"
             >
               <div
-                data-part="indicator"
+                aria-hidden="true"
+                class="_checkbox-control_r0pkw_2"
+                data-part="control"
                 data-scope="checkbox"
                 data-state="unchecked"
                 dir="ltr"
-                hidden=""
+                id="checkbox:0:control"
               >
-                <span
-                  class="_icon_i4xp0_2 _icon--check_i4xp0_61 _checkbox-control__icon_r0pkw_48"
+                <div
+                  data-part="indicator"
+                  data-scope="checkbox"
+                  data-state="unchecked"
+                  dir="ltr"
+                  hidden=""
+                >
+                  <span
+                    class="_icon_i4xp0_2 _icon--check_i4xp0_61 _checkbox-control__icon_r0pkw_48"
+                  />
+                </div>
+                <div
+                  data-part="indicator"
+                  data-scope="checkbox"
+                  data-state="unchecked"
+                  dir="ltr"
+                  hidden=""
+                >
+                  <span
+                    class="_icon_i4xp0_2 _icon--minus_i4xp0_298 _checkbox-control__icon_r0pkw_48"
+                  />
+                </div>
+                <input
+                  aria-labelledby="checkbox:0:label"
+                  id="checkbox:0:input"
+                  name="select-0"
+                  style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+                  type="checkbox"
+                  value="on"
                 />
               </div>
-              <div
-                data-part="indicator"
-                data-scope="checkbox"
-                data-state="unchecked"
-                dir="ltr"
-                hidden=""
-              >
-                <span
-                  class="_icon_i4xp0_2 _icon--minus_i4xp0_298 _checkbox-control__icon_r0pkw_48"
-                />
-              </div>
-              <input
-                aria-labelledby="checkbox:0:label"
-                id="checkbox:0:input"
-                name="select-0"
-                style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
-                type="checkbox"
-                value="on"
-              />
-            </div>
-          </label>
-        </td>
-        <td
-          class="py-[8px] pl-4"
-          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
-        >
-          <div>
-            John Doe
+            </label>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            30
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              30
+            </div>
           </div>
         </td>
       </tr>
@@ -1547,71 +1747,83 @@ exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] 
           class="py-[8px] pl-4"
           style="width: 20px; min-width: 20px; max-width: 20px;"
         >
-          <label
-            class="_checkbox_18i6t_2"
-            data-part="root"
-            data-scope="checkbox"
-            data-state="unchecked"
-            dir="ltr"
-            for="checkbox:1:input"
-            id="checkbox:1"
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
           >
-            <div
-              aria-hidden="true"
-              class="_checkbox-control_r0pkw_2"
-              data-part="control"
+            <label
+              class="_checkbox_18i6t_2"
+              data-part="root"
               data-scope="checkbox"
               data-state="unchecked"
               dir="ltr"
-              id="checkbox:1:control"
+              for="checkbox:1:input"
+              id="checkbox:1"
             >
               <div
-                data-part="indicator"
+                aria-hidden="true"
+                class="_checkbox-control_r0pkw_2"
+                data-part="control"
                 data-scope="checkbox"
                 data-state="unchecked"
                 dir="ltr"
-                hidden=""
+                id="checkbox:1:control"
               >
-                <span
-                  class="_icon_i4xp0_2 _icon--check_i4xp0_61 _checkbox-control__icon_r0pkw_48"
+                <div
+                  data-part="indicator"
+                  data-scope="checkbox"
+                  data-state="unchecked"
+                  dir="ltr"
+                  hidden=""
+                >
+                  <span
+                    class="_icon_i4xp0_2 _icon--check_i4xp0_61 _checkbox-control__icon_r0pkw_48"
+                  />
+                </div>
+                <div
+                  data-part="indicator"
+                  data-scope="checkbox"
+                  data-state="unchecked"
+                  dir="ltr"
+                  hidden=""
+                >
+                  <span
+                    class="_icon_i4xp0_2 _icon--minus_i4xp0_298 _checkbox-control__icon_r0pkw_48"
+                  />
+                </div>
+                <input
+                  aria-labelledby="checkbox:1:label"
+                  id="checkbox:1:input"
+                  name="select-1"
+                  style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+                  type="checkbox"
+                  value="on"
                 />
               </div>
-              <div
-                data-part="indicator"
-                data-scope="checkbox"
-                data-state="unchecked"
-                dir="ltr"
-                hidden=""
-              >
-                <span
-                  class="_icon_i4xp0_2 _icon--minus_i4xp0_298 _checkbox-control__icon_r0pkw_48"
-                />
-              </div>
-              <input
-                aria-labelledby="checkbox:1:label"
-                id="checkbox:1:input"
-                name="select-1"
-                style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
-                type="checkbox"
-                value="on"
-              />
-            </div>
-          </label>
-        </td>
-        <td
-          class="py-[8px] pl-4"
-          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
-        >
-          <div>
-            Jane Smith
+            </label>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            25
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              Jane Smith
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              25
+            </div>
           </div>
         </td>
       </tr>
@@ -1661,16 +1873,24 @@ exports[`Datagrid Snapshot Tests > should match snapshot with search enabled 1`]
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            John Doe
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe
+            </div>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            30
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              30
+            </div>
           </div>
         </td>
       </tr>
@@ -1683,16 +1903,24 @@ exports[`Datagrid Snapshot Tests > should match snapshot with search enabled 1`]
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            Jane Smith
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              Jane Smith
+            </div>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            25
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              25
+            </div>
           </div>
         </td>
       </tr>
@@ -1770,16 +1998,24 @@ exports[`Datagrid Snapshot Tests > should match snapshot with sorting enabled 1`
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            Jane Smith
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              Jane Smith
+            </div>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            25
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              25
+            </div>
           </div>
         </td>
       </tr>
@@ -1792,16 +2028,24 @@ exports[`Datagrid Snapshot Tests > should match snapshot with sorting enabled 1`
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            John Doe
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe
+            </div>
           </div>
         </td>
         <td
           class="py-[8px] pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
-          <div>
-            30
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              30
+            </div>
           </div>
         </td>
       </tr>
