@@ -13,6 +13,7 @@ import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
 import { SuspensionStateEnum } from '@/domain/enum/suspensionState.enum';
 import { ResourceStatusEnum } from '@/domain/enum/resourceStatus.enum';
 import { OptionEnum } from '@/common/enum/option.enum';
+import { supportedAlgorithms } from '@/domain/constants/dsRecords';
 
 describe('DnsState component', () => {
   const mockDomainResource: TDomainResource = {
@@ -47,6 +48,19 @@ describe('DnsState component', () => {
         multipleIPsSupported: true,
         hostSupported: true,
         hosts: [],
+      },
+      dnssecConfiguration: {
+        dnssecSupported: true,
+        supportedAlgorithms,
+        dsData: [
+          {
+            algorithm: 8,
+            keyTag: 0,
+            flags: 0,
+            publicKey:
+              'MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgGlVDb17VQPrH7bOLBGc6N+/D84tbly3RQ/kQLPq73H6nhCI+vg1euNvnZaFBDiHktGRDlmayzoo5k/j/65V5TkoFE/x5yaiPGHXKIb+QsZCbHeNkEx/di4meHY7sETyla97uBM5BJUBc7ZhCoR2+Jc+HHdBLrQ5/9LpR0nEsfn7AgMBAAE=',
+          },
+        ],
       },
       contactsConfiguration: {
         contactAdministrator: {
