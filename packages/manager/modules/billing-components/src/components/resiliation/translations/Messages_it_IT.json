@@ -10,5 +10,7 @@
   "billing_resiliation_success": "La richiesta di disattivazione del servizio è stata inviata.",
   "billing_resiliation_error": "Si è verificato un errore durante la richiesta di disattivazione del servizio.",
   "billing_resiliation_cancel": "No, annulla",
-  "billing_resiliation_validate": "Sì, disattiva"
+  "billing_resiliation_validate": "Sì, disattiva",
+  "billing_resiliation_title_us": "Disattivare l'impegno contrattuale",
+  "billing_resiliation_choice_STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE_us": "Eliminare l’impegno contrattuale e conservare il servizio in modalità senza impegno"
 }

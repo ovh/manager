@@ -13,5 +13,7 @@
   "billing_resiliate_terminateAtEngagementDate_error": "Se ha producido un error al solicitar la baja en la fecha de finalización del compromiso del servicio:",
   "billing_resiliate_terminateAtExpirationDate_success": "La solicitud para dar de baja este servicio en la fecha de expiración se ha registrado correctamente.",
   "billing_resiliate_terminateAtExpirationDate_error": "Se ha producido un error al solicitar la baja del servicio en la fecha de expiración:",
-  "billing_resiliate_error": "Se ha producido un error al solicitar la baja:"
+  "billing_resiliate_error": "Se ha producido un error al solicitar la baja:",
+  "billing_resiliate_terminateAtEngagementDate_us": "Dar de baja el servicio en la fecha de finalización del compromiso",
+  "billing_resiliate_terminateAtEngagementDate_error_us": "Se ha producido un error al solicitar la baja en la fecha de finalización del compromiso del servicio:"
 }
