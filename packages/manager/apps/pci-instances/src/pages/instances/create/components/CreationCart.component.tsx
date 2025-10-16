@@ -8,27 +8,35 @@ import {
   TCartItem,
   TCartItemDetail,
 } from '@/components/cart/Cart.component';
+import { FlavorDetails } from '@/pages/instances/create/components/cart/FlavorDetails.component';
 
 export const CreationCart = () => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation(['common', 'creation']);
   const { control } = useFormContext<TInstanceCreationForm>();
-  const [name, macroRegion, availabilityZone] = useWatch({
+  const [name, macroRegion, availabilityZone, quantity, flavor] = useWatch({
     control,
-    name: ['name', 'macroRegion', 'availabilityZone'],
+    name: ['name', 'macroRegion', 'availabilityZone', 'quantity', 'flavor'],
   });
 
   const itemDetails: TCartItemDetail[] = useMemo(() => {
     const regionDetails = {
-      name: t('localisation'),
+      name: t(
+        'creation:pci_instance_creation_select_localization_cart_section',
+      ),
       description: (
-        <Text preset="heading-6" className="text-[--ods-color-heading]">
+        <Text className="font-semibold text-[--ods-color-heading]">
           {macroRegion} {availabilityZone && `(${availabilityZone})`}
         </Text>
       ),
     };
 
-    return [regionDetails];
-  }, [macroRegion, availabilityZone, t]);
+    const flavorDetails = {
+      name: t('creation:pci_instance_creation_select_flavor_cart_section'),
+      description: <FlavorDetails quantity={quantity} flavor={flavor} />,
+    };
+
+    return [regionDetails, flavorDetails];
+  }, [macroRegion, availabilityZone, quantity, flavor, t]);
 
   const cartItems: TCartItem[] = useMemo(
     () => [

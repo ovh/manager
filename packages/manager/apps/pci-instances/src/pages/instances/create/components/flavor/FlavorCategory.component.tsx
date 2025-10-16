@@ -21,7 +21,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { TInstanceCreationForm } from '../../CreateInstance.page';
 
-const FlavorCategory: FC = () => {
+export const FlavorCategory: FC = () => {
   const { t } = useTranslation('creation');
   const { trackClick } = useOvhTracking();
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
@@ -77,5 +77,3 @@ const FlavorCategory: FC = () => {
     />
   );
 };
-
-export default FlavorCategory;

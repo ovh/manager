@@ -3,6 +3,7 @@ import { useRouteLoaderData } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { TProject } from '@ovh-ux/manager-pci-common';
 import { z } from 'zod';
+import { Spinner } from '@ovhcloud/ods-react';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import {
   availabilityZoneSelectionSchema,
@@ -10,6 +11,7 @@ import {
   deploymentModesSchema,
   flavorCategorySchema,
   flavorTypeSchema,
+  flavorSchema,
   macroRegionSelectionSchema,
   microRegionSelectionSchema,
   nameSchema,
@@ -18,7 +20,6 @@ import {
 
 import { useInstancesCatalog } from '@/data/hooks/catalog/useInstancesCatalog';
 import { CreateInstanceForm } from './components/createInstanceForm/CreateInstanceForm.component';
-import { Spinner } from '@ovhcloud/ods-react';
 
 export type TInstanceCreationForm = z.infer<typeof instanceCreationSchema>;
 export const instanceCreationSchema = z.object({
@@ -28,6 +29,7 @@ export const instanceCreationSchema = z.object({
   continent: continentSelectionSchema,
   flavorCategory: flavorCategorySchema,
   flavorType: flavorTypeSchema,
+  flavor: flavorSchema,
   macroRegion: macroRegionSelectionSchema,
   microRegion: microRegionSelectionSchema,
   availabilityZone: availabilityZoneSelectionSchema,
