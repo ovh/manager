@@ -4,14 +4,14 @@ import { useTranslation } from 'react-i18next';
 
 import { OdsText } from '@ovhcloud/ods-components/react';
 
-import type { DatagridColumn } from '@ovh-ux/manager-react-components';
+import { DatagridColumn } from '@ovh-ux/manager-react-components';
 
 import { DefaultListingItemType } from '@/types/Listing.type';
 
 export function useListingColumns<
-  T extends DefaultListingItemType = DefaultListingItemType,
+  T extends DefaultListingItemType = DefaultListingItemType
 >(): DatagridColumn<T>[] {
-  const { t } = useTranslation(['common', 'status']);
+  const { t } = useTranslation(['common', 'status', 'listing']);
 
   return useMemo<DatagridColumn<T>[]>(() => {
     const EMPTY = t('common:empty', '—');
@@ -19,16 +19,52 @@ export function useListingColumns<
 
     return [
       {
-        id: 'id',
-        label: 'common:id',
+        id: 'serviceName',
+        label: 'listing:serviceName',
         isSortable: true,
-        cell: (row: T): JSX.Element => <OdsText>{row.id ?? NA}</OdsText>,
+        cell: (row: T): JSX.Element => (
+          <OdsText>{row.serviceName ?? NA}</OdsText>
+        ),
       },
       {
-        id: 'name',
-        label: 'common:name',
+        id: 'canCreatePartition',
+        label: 'listing:canCreatePartition',
         isSortable: false,
-        cell: (row: T): JSX.Element => <OdsText>{row.name ?? EMPTY}</OdsText>,
+        cell: (row: T): JSX.Element => (
+          <OdsText>
+            {t(`listing:canCreatePartition_${row.canCreatePartition}`)}
+          </OdsText>
+        ),
+      },
+      {
+        id: 'customName',
+        label: 'listing:customName',
+        isSortable: false,
+        cell: (row: T): JSX.Element => (
+          <OdsText>{row.customName ?? EMPTY}</OdsText>
+        ),
+      },
+      {
+        id: 'datacenter',
+        label: 'listing:datacenter',
+        isSortable: false,
+        cell: (row: T): JSX.Element => (
+          <OdsText>{row.datacenter ?? NA}</OdsText>
+        ),
+      },
+      {
+        id: 'diskType',
+        label: 'listing:diskType',
+        isSortable: false,
+        cell: (row: T): JSX.Element => <OdsText>{row.diskType ?? NA}</OdsText>,
+      },
+      {
+        id: 'monitored',
+        label: 'listing:monitored',
+        isSortable: false,
+        cell: (row: T): JSX.Element => (
+          <OdsText>{t(`listing:monitored_${row.monitored}`)}</OdsText>
+        ),
       },
     ];
   }, [t]);
