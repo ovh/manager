@@ -86,6 +86,17 @@ export const serviceList: TDomainResource[] = [
           },
         ],
       },
+      dnssecConfiguration: {
+        dsData: [
+          {
+            algorithm: 8,
+            keyTag: 0,
+            flags: 0,
+            publicKey:
+              'MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgGlVDb17VQPrH7bOLBGc6N+/D84tbly3RQ/kQLPq73H6nhCI+vg1euNvnZaFBDiHktGRDlmayzoo5k/j/65V5TkoFE/x5yaiPGHXKIb+QsZCbHeNkEx/di4meHY7sETyla97uBM5BJUBc7ZhCoR2+Jc+HHdBLrQ5/9LpR0nEsfn7AgMBAAE=',
+          },
+        ],
+      },
       protectionState: ProtectionStateEnum.PROTECTED,
     },
     currentTasks: [],

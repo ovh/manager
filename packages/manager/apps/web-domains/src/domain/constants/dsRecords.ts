@@ -1,5 +1,6 @@
 export const algorithm_RSASHZA3457 = { name: 'RSASHZA3457', number: 3 };
 export const domain_dsrecords_key_signing_ksk = 'Key Signing Key (KSK)';
+export const flagsValue = 257;
 export const supportedAlgorithms = [
   {
     name: 'RSASHA1',
@@ -30,3 +31,5 @@ export const supportedAlgorithms = [
     number: 15,
   },
 ];
+export const min_keyTag = 0;
+export const max_keytag = 65535;

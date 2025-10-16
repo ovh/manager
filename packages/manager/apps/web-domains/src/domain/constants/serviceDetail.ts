@@ -2,7 +2,6 @@ import { ChangelogLinks } from '@ovh-ux/manager-react-components';
 import { ParamValueType } from '@ovh-ux/url-builder';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { BADGE_COLOR, ICON_NAME } from '@ovhcloud/ods-react';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { DashboardTabItemProps } from '@/domain/types/serviceDetail';
 import {
   AdditionalDomainStateEnum,
@@ -15,7 +14,6 @@ import {
   ComboRule,
   StatusDetails,
   TransferLockStatusEnum,
-  DnssecStateEnum,
 } from '../types/domainResource';
 import { DnssecStatusEnum } from '../enum/dnnecStatus.enum';
 import { LifecycleCapacitiesEnum } from '@/common/enum/common.enum';
@@ -50,11 +48,15 @@ export const ServiceDetailTabsProps: DashboardTabItemProps[] = [
     id: 'hosts',
     name: 'domain_tab_name_host',
     value: 'hosts',
+    rule: (domainResource) =>
+      !domainResource.currentState.hostsConfiguration.hostSupported,
   },
   {
     id: 'ds-records',
     name: 'domain_tab_name_ds_records',
     value: 'ds-records',
+    rule: (domainResource) =>
+      !domainResource.currentState.dnssecConfiguration.dnssecSupported,
   },
   {
     id: 'contact-management',

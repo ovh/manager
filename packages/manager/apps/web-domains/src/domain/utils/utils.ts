@@ -205,3 +205,15 @@ export const getSupportedAlgorithm = (
     }
   );
 };
+
+export const getPublicKeyError = (value: string) => {
+  if (value === '') {
+    return 'domain_tab_dsrecords_drawer_form_error_empty';
+  }
+
+  if (!z.base64().safeParse(value).success) {
+    return 'domain_tab_dsrecords_drawer_form_publicKey_error';
+  }
+
+  return '';
+};

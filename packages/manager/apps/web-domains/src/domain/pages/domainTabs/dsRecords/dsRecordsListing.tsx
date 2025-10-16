@@ -1,22 +1,40 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useTranslation } from 'react-i18next';
 import { Datagrid } from '@ovh-ux/manager-react-components';
-import { Button, BUTTON_SIZE } from '@ovhcloud/ods-react';
+import {
+  Button,
+  BUTTON_SIZE,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDomainDsRecordsDatagridColumns } from '@/domain/hooks/domainTabs/useDomainDsRecordsDatagridColumns';
-import { useGetDomainResource } from '@/domain/hooks/data/query';
+import {
+  useGetDomainResource,
+  useGetDomainZone,
+} from '@/domain/hooks/data/query';
 import { TDsDataInterface } from '@/domain/types/dnssecConfiguration';
 import { StatusEnum } from '@/domain/enum/Status.enum';
 import { areDsRecordsEqual, getSupportedAlgorithm } from '@/domain/utils/utils';
+import { DrawerBehavior } from '@/common/types/common.types';
+import { DrawerActionEnum } from '@/common/enum/common.enum';
+import DsRecordsDrawer from '@/domain/components/DsRecords/DsRecordsDrawer';
+import { ActiveConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
+import { computeActiveConfiguration } from '@/domain/utils/dnsUtils';
 
 export default function DsRecordsListing() {
   const { t } = useTranslation(['domain', NAMESPACES.ACTIONS, NAMESPACES.FORM]);
   const { serviceName } = useParams();
   const { domainResource } = useGetDomainResource(serviceName);
+  const { domainZone, isFetchingDomainZone } = useGetDomainZone(serviceName);
   const [items, setItems] = useState<TDsDataInterface[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const columns = useDomainDsRecordsDatagridColumns();
+  const [drawer, setDrawer] = useState<DrawerBehavior>({
+    isOpen: false,
+    action: null,
+  });
 
   useEffect(() => {
     const {
@@ -84,17 +102,61 @@ export default function DsRecordsListing() {
     setIsLoading(false);
   }, [domainResource]);
 
+  const activeConfiguration = computeActiveConfiguration(
+    domainResource,
+    domainZone,
+  );
+
+  const isAddActionDisabled = (
+    activeConfiguration: ActiveConfigurationTypeEnum,
+  ) => activeConfiguration === ActiveConfigurationTypeEnum.INTERNAL;
+
+  const columns = useDomainDsRecordsDatagridColumns();
+
   return (
     <div data-testid="datagrid">
       <Datagrid
         columns={columns}
         items={items}
         totalItems={items.length}
-        isLoading={isLoading}
+        isLoading={isLoading || isFetchingDomainZone}
         topbar={
-          <Button size={BUTTON_SIZE.sm}>
-            {t(`${NAMESPACES.ACTIONS}:add`)}
-          </Button>
+          !isLoading && (
+            <div className="flex items-center gap-x-4">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    size={BUTTON_SIZE.sm}
+                    data-testid="addButton"
+                    onClick={() =>
+                      setDrawer({
+                        isOpen: true,
+                        action: DrawerActionEnum.Add,
+                      })
+                    }
+                    disabled={isAddActionDisabled(activeConfiguration)}
+                  >
+                    {t(`${NAMESPACES.ACTIONS}:add`)}
+                  </Button>
+                </TooltipTrigger>
+                {isAddActionDisabled(activeConfiguration) ? (
+                  <TooltipContent>
+                    {t('domain_tab_dsrecords_add_disabled')}
+                  </TooltipContent>
+                ) : null}
+              </Tooltip>
+            </div>
+          )
+        }
+      />
+      <DsRecordsDrawer
+        drawer={drawer}
+        serviceName={serviceName}
+        targetSpec={domainResource.targetSpec}
+        checksum={domainResource.checksum}
+        setDrawer={setDrawer}
+        supportedAlgorithms={
+          domainResource.currentState.dnssecConfiguration.supportedAlgorithms
         }
       />
     </div>

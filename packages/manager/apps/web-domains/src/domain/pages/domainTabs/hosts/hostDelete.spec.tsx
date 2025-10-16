@@ -5,6 +5,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import HostDelete from '@/domain/pages/domainTabs/hosts/hostDelete';
 import { wrapper } from '@/common/utils/test.provider';
 import { urls } from '@/domain/routes/routes.constant';
+import { supportedAlgorithms } from '@/domain/constants/dsRecords';
 
 const updateDomain = vi.fn();
 const navigate = vi.fn();
@@ -63,6 +64,19 @@ vi.mock('@/domain/hooks/data/query', () => ({
             { host: 'ns1.foobar', ips: ['1.1.1.1'] },
             { host: 'ns2.foobar', ips: ['2.2.2.2'] },
           ],
+        },
+        dnssecConfiguration: {
+          dnssecSupported: true,
+          dsData: [
+            {
+              algorithm: 8,
+              keyTag: 0,
+              flags: 0,
+              publicKey:
+                'MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgGlVDb17VQPrH7bOLBGc6N+/D84tbly3RQ/kQLPq73H6nhCI+vg1euNvnZaFBDiHktGRDlmayzoo5k/j/65V5TkoFE/x5yaiPGHXKIb+QsZCbHeNkEx/di4meHY7sETyla97uBM5BJUBc7ZhCoR2+Jc+HHdBLrQ5/9LpR0nEsfn7AgMBAAE=',
+            },
+          ],
+          supportedAlgorithms,
         },
       },
       isFetchingDomainResource: false,
