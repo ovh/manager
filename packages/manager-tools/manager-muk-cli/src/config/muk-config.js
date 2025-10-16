@@ -129,6 +129,30 @@ export const MUK_WIKI_COMPONENTS = path.join(
 );
 
 /**
+ * Absolute path to the Manager Wiki components directory.
+ * This is where base component documentation (e.g. `base-component-doc`) is stored.
+ *
+ * @constant {string}
+ */
+export const MUK_WIKI_BASED_DOCUMENT = path.join(
+  MUK_WIKI_PATH,
+  'stories',
+  'manager-ui-kit',
+  'base-documents',
+);
+
+/**
+ * Subpath inside the ODS tarball where Storybook sources live.
+ * We will mirror {components,constants,helpers} from here.
+ *
+ * Example tar paths:
+ *   design-system-<tag>/packages/storybook/src/components/...
+ *   design-system-<tag>/packages/storybook/src/constants/...
+ *   design-system-<tag>/packages/storybook/src/helpers/...
+ */
+export const ODS_STORYBOOK_SRC_SUBPATH = 'packages/storybook/src';
+
+/**
  * NPM package names that are validated and potentially updated
  * during version synchronization and documentation refresh.
  *
@@ -168,6 +192,14 @@ export const ODS_COMPONENTS_LATEST_URL = `${NPM_REGISTRY_BASE}/@ovhcloud%2Fods-r
  * @constant {string}
  */
 export const ODS_TAR_COMPONENTS_PATH = '/packages/storybook/stories/components/';
+
+/**
+ * Absolute path (within the ODS tarball) to Storybook base source files.
+ * These include components, constants, and helpers inside `packages/storybook/src`.
+ *
+ * @constant {string}
+ */
+export const ODS_TAR_STORYBOOK_PATH = 'packages/storybook/src/';
 
 /**
  * GitHub repository slug (organization/name) where the ODS tarball is hosted.

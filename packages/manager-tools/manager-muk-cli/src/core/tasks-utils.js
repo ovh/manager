@@ -1,7 +1,7 @@
 import { execSync } from 'node:child_process';
 import path from 'node:path';
 
-import { MUK_COMPONENTS_PATH } from '../config/muk-config.js';
+import { EMOJIS, MUK_COMPONENTS_PATH } from '../config/muk-config.js';
 import { logger } from '../utils/log-manager.js';
 
 /**
@@ -138,4 +138,42 @@ export function createAsyncQueue() {
       };
     },
   };
+}
+
+/**
+ * Aggregates statistics from multiple synchronization operations.
+ *
+ * @param {Array<{created:number, updated:number, total:number}>} results
+ * @returns {{created:number, updated:number, total:number}} Combined totals.
+ */
+export function aggregateOperationsStats(results) {
+  return results.reduce(
+    (acc, curr) => ({
+      created: acc.created + (curr.created || 0),
+      updated: acc.updated + (curr.updated || 0),
+      total: acc.total + (curr.total || 0),
+    }),
+    { created: 0, updated: 0, total: 0 },
+  );
+}
+
+/**
+ * Executes a sync operation safely, with clear contextual logging.
+ *
+ * @async
+ * @param {string} label - Descriptive name for the operation (e.g., "component base-docs").
+ * @param {Function} syncFn - The synchronization function to execute.
+ * @returns {Promise<{created:number, updated:number, total:number}>}
+ * Returns counts even if the operation fails.
+ */
+export async function safeSync(label, syncFn) {
+  try {
+    logger.info(`${EMOJIS.info} Syncing ${label}...`);
+    const result = (await syncFn()) || { created: 0, updated: 0, total: 0 };
+    logger.info(`${EMOJIS.disk} ${label} → ${result.total} files processed.`);
+    return result;
+  } catch (error) {
+    logger.error(`${EMOJIS.error} Failed to sync ${label}: ${error.message}`);
+    return { created: 0, updated: 0, total: 0 };
+  }
 }

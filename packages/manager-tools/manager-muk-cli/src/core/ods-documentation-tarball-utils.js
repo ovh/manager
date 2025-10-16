@@ -42,58 +42,65 @@ function getOdsDocsCache(cache, version) {
     return null;
   }
 
+  // 🧠 Validation: ensure cache includes storybook/src files
+  const hasStorybookSrc = entries.some(([p]) => p.includes('packages/storybook/src/'));
+  if (!hasStorybookSrc) {
+    logger.warn(`${EMOJIS.warn} Cache missing Storybook sources — forcing re-download.`);
+    return null;
+  }
+
   logger.info(`${EMOJIS.check} Using cached ODS documentation (v${version})`);
   return entries;
 }
 
 /**
- * Stream documentation files from cache.
- * @param {[string, Buffer][]} entries
- * @param {(path: string) => boolean} filter
- * @param {(path: string, buffer: Buffer) => Promise<void>} onFile
- * @param {(path: string, stream: Readable) => Promise<void>|null} onFileStream
+ * Stream documentation files from cache after applying filter.
  */
 async function streamCachedDocs(entries, filter, onFile, onFileStream) {
+  let streamed = 0;
+
   for (const [entryPath, buffer] of entries) {
     if (!filter(entryPath)) continue;
-    const buf = Buffer.isBuffer(buffer) ? buffer : Buffer.from(buffer);
 
+    const buf = Buffer.isBuffer(buffer) ? buffer : Buffer.from(buffer);
     if (onFileStream) {
       const stream = Readable.from(buf);
       await onFileStream(entryPath, stream);
     } else {
       await onFile(entryPath, buf);
     }
+    streamed++;
   }
 
-  logger.success(`${EMOJIS.disk} Served ${entries.length} documentation files from cache.`);
+  logger.success(`${EMOJIS.disk} Streamed ${streamed} documentation files from cache.`);
 }
 
 /**
  * Download ODS docs tarball, stream files, and save cache.
- * @param {string} url - Tarball URL.
- * @param {string} version - Version for cache.
- * @param {(path: string) => boolean} filter
- * @param {(path: string, buffer: Buffer) => Promise<void>} onFile
- * @param {(path: string, stream: Readable) => Promise<void>|null} onFileStream
- * @param {ReturnType<typeof createTarballCache>} cache
+ * The filter is applied *after* caching, so the cache always contains the full tarball.
  */
 async function downloadAndCacheDocs({ url, version, filter, onFile, onFileStream, cache }) {
   logger.info(`${EMOJIS.package} Fetching ODS Design System tarball from ${url}`);
   const files = new Map();
 
-  await streamTarGz(url, filter, async (entryPath, content) => {
-    const buffer = Buffer.isBuffer(content) ? content : Buffer.from(content);
-    files.set(entryPath, buffer);
+  await streamTarGz(
+    url,
+    () => true,
+    async (entryPath, content) => {
+      const buffer = Buffer.isBuffer(content) ? content : Buffer.from(content);
+      files.set(entryPath, buffer);
 
-    // Immediately stream to consumer while downloading
-    if (onFileStream) {
-      const stream = Readable.from(buffer);
-      await onFileStream(entryPath, stream);
-    } else {
-      await onFile(entryPath, buffer);
-    }
-  });
+      // Apply filter only for streamed consumer events
+      if (!filter(entryPath)) return;
+
+      if (onFileStream) {
+        const stream = Readable.from(buffer);
+        await onFileStream(entryPath, stream);
+      } else {
+        await onFile(entryPath, buffer);
+      }
+    },
+  );
 
   cache.save(version, files);
   logger.success(
@@ -104,13 +111,6 @@ async function downloadAndCacheDocs({ url, version, filter, onFile, onFileStream
 /**
  * High-level orchestrator for ODS Design System documentation extraction.
  * Uses cache when available, otherwise streams from tarball.
- *
- * @async
- * @param {Object} options
- * @param {(entryPath: string) => boolean} [options.filter=() => true]
- * @param {(entryPath: string, content: Buffer) => Promise<void>} [options.onFile=async()=>{}]
- * @param {(entryPath: string, stream: Readable) => Promise<void>} [options.onFileStream=null]
- * @param {string} [options.tag] - Optional explicit version tag
  */
 export async function extractDesignSystemDocs({
   filter = () => true,
@@ -150,8 +150,6 @@ export async function extractDesignSystemDocs({
 
 /**
  * Extract component-level info from tarball entry path.
- * @param {string} tarPath
- * @returns {{component: string|null, relPath: string|null}}
  */
 export function extractComponentDocumentationInfos(tarPath) {
   const idx = tarPath.indexOf(ODS_TAR_COMPONENTS_PATH);

@@ -5,9 +5,11 @@ import { pipeline } from 'node:stream/promises';
 
 import {
   EMOJIS,
+  MUK_WIKI_BASED_DOCUMENT,
   MUK_WIKI_COMPONENTS,
   ODS_REACT_PACKAGE_NAME,
   ODS_TAR_COMPONENTS_PATH,
+  ODS_TAR_STORYBOOK_PATH,
 } from '../config/muk-config.js';
 import { logger } from '../utils/log-manager.js';
 import { ensureDir } from './file-utils.js';
@@ -208,4 +210,122 @@ export async function syncComponentDocs() {
 
   // 💾 Consumer: write streamed documentation files
   return streamComponentDocs(queue);
+}
+
+/**
+ * Determines whether a tar entry corresponds to Storybook source files
+ * under `packages/storybook/src/{components,constants,helpers}`.
+ *
+ * @param {string} tarPath
+ * @returns {boolean}
+ */
+function isStorybookBaseDocEntry(tarPath) {
+  const normalized = tarPath.replaceAll('\\', '/');
+  return /packages\/storybook\/src\/(components|constants|helpers)\//.test(normalized);
+}
+
+/**
+ * Maps a tar entry path under `packages/storybook/src/`
+ * to the Manager Wiki base-documents directory.
+ *
+ * Example:
+ *   design-system-19.2.1/packages/storybook/src/helpers/date/formatDate.ts
+ * → packages/manager-wiki/stories/manager-ui-kit/base-documents/helpers/date/formatDate.ts
+ */
+function mapStorybookPathToWiki(tarPath) {
+  const normalized = tarPath.replaceAll('\\', '/');
+  const marker = ODS_TAR_STORYBOOK_PATH;
+  const idx = normalized.indexOf(marker);
+
+  if (idx === -1) {
+    logger.warn(`${EMOJIS.warn} Unexpected tar path: ${tarPath}`);
+    return path.join(MUK_WIKI_BASED_DOCUMENT, path.basename(tarPath));
+  }
+
+  const rel = normalized.substring(idx + marker.length);
+  return path.join(MUK_WIKI_BASED_DOCUMENT, rel);
+}
+
+/**
+ * Writes a streamed Storybook file from the tarball to disk.
+ * Creates all required directories if they do not exist.
+ *
+ * @async
+ * @param {string} tarPath - Path of the file in the tar archive.
+ * @param {ReadableStream} fileStream - The stream for the tar entry.
+ * @returns {Promise<{created:number, updated:number}>} Statistics on the write operation.
+ */
+async function writeStorybookFile(tarPath, fileStream) {
+  const target = mapStorybookPathToWiki(tarPath);
+  await ensureDir(path.dirname(target));
+  try {
+    await pipeline(fileStream, fs.createWriteStream(target));
+    logger.debug(`${EMOJIS.disk} ${path.relative(process.cwd(), target)}`);
+    return { created: 1, updated: 0 };
+  } catch (err) {
+    logger.error(`${EMOJIS.error} Failed to write ${target}: ${err.message}`);
+    return { created: 0, updated: 0 };
+  }
+}
+
+/**
+ * Ensures that all base Storybook folders exist in the wiki output,
+ * even if the tarball doesn’t contain any file for them.
+ *
+ * This prevents missing directories like "helpers" or "constants"
+ * when they have no eligible files or only subfolders.
+ *
+ * @param {string} baseDir - The base wiki directory (MUK_WIKI_BASED_DOCUMENT).
+ */
+function ensureBaseStorybookFolders(baseDir) {
+  const directories = ['components', 'constants', 'helpers'];
+  for (const directory of directories) {
+    const target = path.join(baseDir, directory);
+    if (!fs.existsSync(target)) {
+      fs.mkdirSync(target, { recursive: true });
+      logger.info(
+        `${EMOJIS.folder} Created base Storybook folder: ${path.relative(process.cwd(), target)}`,
+      );
+    }
+  }
+}
+
+/**
+ * Synchronizes all Storybook base documents from the ODS tarball into
+ * the Manager Wiki. This includes every file located under:
+ *
+ * - packages/storybook/src/components/
+ * - packages/storybook/src/constants/
+ * - packages/storybook/src/helpers/
+ *
+ * @async
+ * @param {Object} [options] - Optional configuration.
+ * @param {string} [options.tag] - Specific ODS release tag to download. Defaults to latest.
+ * @returns {Promise<{created:number, updated:number, total:number}>}
+ * Count of streamed and written files.
+ *
+ * @example
+ * await syncStorybookBaseDocuments({ tag: '19.2.1' })
+ * // → { created: 53, updated: 0, total: 53 }
+ */
+export async function syncStorybookBaseDocuments({ tag } = {}) {
+  let created = 0;
+  let updated = 0;
+  let total = 0;
+
+  // 🗂 Ensure base folders exist even if empty
+  ensureBaseStorybookFolders(MUK_WIKI_BASED_DOCUMENT);
+
+  await extractDesignSystemDocs({
+    tag,
+    filter: isStorybookBaseDocEntry,
+    onFileStream: async (tarPath, fileStream) => {
+      const res = await writeStorybookFile(tarPath, fileStream);
+      created += res.created;
+      updated += res.updated;
+      total += 1;
+    },
+  });
+
+  return { created, updated, total };
 }
