@@ -14,6 +14,7 @@ import { vi } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ActionMenuTransFR from './src/components/action-menu/translations/Messages_fr_FR.json';
 import DatagridTransFR from './src/components/datagrid/translations/Messages_fr_FR.json';
+import FiltersransFR from './src/components/filters/translations/Messages_fr_FR.json';
 
 i18n.use(initReactI18next).init({
   fallbackLng: 'fr_FR',
@@ -27,6 +28,9 @@ i18n.use(initReactI18next).init({
       },
       datagrid: {
         ...DatagridTransFR,
+      },
+      filterAdd: {
+        ...FiltersransFR,
       },
     },
   },

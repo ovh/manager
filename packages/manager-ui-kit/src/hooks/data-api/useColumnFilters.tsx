@@ -4,7 +4,7 @@ import {
   FilterComparator,
   FilterTypeCategories,
 } from '@ovh-ux/manager-core-api';
-import { FilterWithLabel } from '../../components/filters/interface';
+import { FilterWithLabel } from '../../components/filters/Filter.props';
 import '../../components/filters/translations';
 
 const filterEquals = (a: Filter, b: Filter) =>

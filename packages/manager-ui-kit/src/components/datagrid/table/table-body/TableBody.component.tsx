@@ -92,7 +92,7 @@ export const TableBody = <T,>({
               style={{
                 left: -1,
                 height: `${maxRowHeight}px`,
-                transform: `translateY(${virtualRow.start + offset}px)`,
+                transform: `translateY(${virtualRow.start}px)`,
               }}
             >
               {row.getVisibleCells().map((cell) => (
@@ -106,7 +106,9 @@ export const TableBody = <T,>({
                     borderTop: 'none',
                   }}
                 >
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  <div className="overflow-hidden text-ellipsis block w-full">
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </div>
                 </td>
               ))}
             </tr>
