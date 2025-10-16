@@ -4,9 +4,9 @@ import { resolve } from 'path';
 import federation from '@originjs/vite-plugin-federation';
 
 export default defineConfig(() => {
-  const isProd = process.env.NODE_ENV === 'production';
-  const WILL_PAYMENT_ENTRY_URL = '/order/payment/assets/remoteEntry.js';
-  const willPaymentEntryUrl = isProd ? WILL_PAYMENT_ENTRY_URL : `https://www.build-ovh.com${WILL_PAYMENT_ENTRY_URL}`;
+  const isLABEU = process.env.LABEU === 'true';
+  const WILL_PAYMENT_REMOTE_ENTRY_URL = '/order/payment/assets/remoteEntry.js';
+  const willPaymentUrl = isLABEU ? `https://www.build-ovh.com${WILL_PAYMENT_REMOTE_ENTRY_URL}`: `https://www.ovhcloud.com${WILL_PAYMENT_REMOTE_ENTRY_URL}`;
 
   return {
   ...getBaseConfig(),
@@ -16,7 +16,7 @@ export default defineConfig(() => {
     federation({
       name: 'host-app',
       remotes: {
-        willPayment: willPaymentEntryUrl,
+        willPayment: willPaymentUrl,
       },
       }),
     ],
