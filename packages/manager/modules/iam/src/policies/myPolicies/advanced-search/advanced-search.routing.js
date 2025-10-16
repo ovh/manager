@@ -7,6 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       breadcrumb: () => null,
+      goBack: /* @ngInject */ ($state) => (params) => $state.go('^', params),
     },
   });
 };
