@@ -4,9 +4,11 @@ import { Datagrid } from '@ovh-ux/manager-react-components';
 import {
   Button,
   BUTTON_SIZE,
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
+  ICON_NAME,
+  Message,
+  MESSAGE_COLOR,
+  MessageBody,
+  MessageIcon,
 } from '@ovhcloud/ods-react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -17,12 +19,16 @@ import {
 } from '@/domain/hooks/data/query';
 import { TDsDataInterface } from '@/domain/types/dnssecConfiguration';
 import { StatusEnum } from '@/domain/enum/Status.enum';
-import { areDsRecordsEqual, getSupportedAlgorithm } from '@/domain/utils/utils';
+import {
+  areDsRecordsEqual,
+  getSupportedAlgorithm,
+  isDsRecordActionDisabled,
+} from '@/domain/utils/utils';
 import { DrawerBehavior } from '@/common/types/common.types';
 import { DrawerActionEnum } from '@/common/enum/common.enum';
 import DsRecordsDrawer from '@/domain/components/DsRecords/DsRecordsDrawer';
-import { ActiveConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 import { computeActiveConfiguration } from '@/domain/utils/dnsUtils';
+import { flagsValue } from '@/domain/constants/dsRecords';
 
 export default function DsRecordsListing() {
   const { t } = useTranslation(['domain', NAMESPACES.ACTIONS, NAMESPACES.FORM]);
@@ -34,6 +40,14 @@ export default function DsRecordsListing() {
   const [drawer, setDrawer] = useState<DrawerBehavior>({
     isOpen: false,
     action: null,
+  });
+  const [dsRecordsData, setDsRecordsData] = useState<TDsDataInterface>({
+    keyTag: null,
+    flags: flagsValue,
+    algorithm:
+      domainResource?.currentState?.dnssecConfiguration?.dsData[0]?.algorithm ??
+      0,
+    publicKey: '',
   });
 
   useEffect(() => {
@@ -107,11 +121,11 @@ export default function DsRecordsListing() {
     domainZone,
   );
 
-  const isAddActionDisabled = (
-    activeConfiguration: ActiveConfigurationTypeEnum,
-  ) => activeConfiguration === ActiveConfigurationTypeEnum.INTERNAL;
-
-  const columns = useDomainDsRecordsDatagridColumns();
+  const columns = useDomainDsRecordsDatagridColumns({
+    setDrawer,
+    setDsRecordsData,
+    activeConfiguration,
+  });
 
   return (
     <div data-testid="datagrid">
@@ -121,32 +135,33 @@ export default function DsRecordsListing() {
         totalItems={items.length}
         isLoading={isLoading || isFetchingDomainZone}
         topbar={
-          !isLoading && (
-            <div className="flex items-center gap-x-4">
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    size={BUTTON_SIZE.sm}
-                    data-testid="addButton"
-                    onClick={() =>
-                      setDrawer({
-                        isOpen: true,
-                        action: DrawerActionEnum.Add,
-                      })
-                    }
-                    disabled={isAddActionDisabled(activeConfiguration)}
-                  >
-                    {t(`${NAMESPACES.ACTIONS}:add`)}
-                  </Button>
-                </TooltipTrigger>
-                {isAddActionDisabled(activeConfiguration) ? (
-                  <TooltipContent>
-                    {t('domain_tab_dsrecords_add_disabled')}
-                  </TooltipContent>
-                ) : null}
-              </Tooltip>
-            </div>
-          )
+          <div className="flex flex-col gap-y-6 items-start">
+            {isDsRecordActionDisabled(activeConfiguration) ? (
+              <Message
+                color={MESSAGE_COLOR.information}
+                dismissible={false}
+                className="w-full"
+              >
+                <MessageIcon name={ICON_NAME.circleInfo} />
+                <MessageBody>
+                  {t('domain_tab_dsrecords_actions_disabled')}
+                </MessageBody>
+              </Message>
+            ) : (
+              <Button
+                size={BUTTON_SIZE.sm}
+                data-testid="addButton"
+                onClick={() =>
+                  setDrawer({
+                    isOpen: true,
+                    action: DrawerActionEnum.Add,
+                  })
+                }
+              >
+                {t(`${NAMESPACES.ACTIONS}:add`)}
+              </Button>
+            )}
+          </div>
         }
       />
       <DsRecordsDrawer
@@ -158,6 +173,7 @@ export default function DsRecordsListing() {
         supportedAlgorithms={
           domainResource.currentState.dnssecConfiguration.supportedAlgorithms
         }
+        dsRecordsData={dsRecordsData}
       />
     </div>
   );

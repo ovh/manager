@@ -6,6 +6,7 @@ import DsRecordsListing from '@/domain/pages/domainTabs/dsRecords/dsRecordsListi
 import { serviceInfoDetail } from '@/domain/__mocks__/serviceInfoDetail';
 import { useDomainDsRecordsDatagridColumns } from '@/domain/hooks/domainTabs/useDomainDsRecordsDatagridColumns';
 import { domainZoneMock } from '@/domain/__mocks__/dnsDetails';
+import { ActiveConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 
 vi.mock('@/domain/hooks/data/query', () => ({
   useGetDomainResource: vi.fn(() => ({
@@ -21,14 +22,50 @@ vi.mock('@/domain/hooks/data/query', () => ({
   })),
 }));
 
+vi.mock('@/domain/utils/utils', async () => {
+  const actual = await vi.importActual<typeof import('@/domain/utils/utils')>(
+    '@/domain/utils/utils',
+  );
+
+  return {
+    ...actual,
+    isDsRecordActionDisabled: vi.fn(() => false),
+  };
+});
+
 describe('DS Records Columns', () => {
-  const { result } = renderHook(() => useDomainDsRecordsDatagridColumns());
-  const columns = result.current;
+  const setDrawer = vi.fn();
+  const setDsRecordsData = vi.fn();
+  const activeConfiguration = ActiveConfigurationTypeEnum.EXTERNAL;
+
   it('should return the correct number of column', () => {
+    const { result } = renderHook(
+      () =>
+        useDomainDsRecordsDatagridColumns({
+          setDrawer,
+          setDsRecordsData,
+          activeConfiguration,
+        }),
+      { wrapper },
+    );
+
+    const columns = result.current;
     expect(columns).toHaveLength(6);
   });
 
   it('should return the good labels', () => {
+    const { result } = renderHook(
+      () =>
+        useDomainDsRecordsDatagridColumns({
+          setDrawer,
+          setDsRecordsData,
+          activeConfiguration,
+        }),
+      { wrapper },
+    );
+
+    const columns = result.current;
+
     const tests: Record<string, string> = {
       keyTag: 'domain_dsrecords_table_header_keyTag',
       flags: 'domain_dsrecords_table_header_flags',

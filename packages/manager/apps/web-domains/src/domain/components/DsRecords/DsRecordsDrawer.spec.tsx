@@ -5,6 +5,8 @@ import { vi, describe, it, beforeEach, expect } from 'vitest';
 import DsRecordsDrawer from '@/domain/components/DsRecords/DsRecordsDrawer';
 import { useUpdateDomainResource } from '@/domain/hooks/data/query';
 import { serviceInfoDetail } from '@/domain/__mocks__/serviceInfoDetail';
+import { DrawerActionEnum } from '@/common/enum/common.enum';
+import React from 'react';
 
 vi.mock('@/domain/utils/utils', () => ({
   getPublicKeyError: vi.fn(() => ''),
@@ -18,11 +20,40 @@ const addSuccess = vi.fn();
 const addError = vi.fn();
 const clearNotifications = vi.fn();
 
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const actual = (await importOriginal()) as typeof import('@ovh-ux/manager-react-components');
+vi.mock('@ovh-ux/manager-react-components', async () => {
+  const actual = await vi.importActual('@ovh-ux/manager-react-components');
+
+  type DrawerProps = {
+    isOpen: boolean;
+    heading: string;
+    primaryButtonLabel: string;
+    secondaryButtonLabel: string;
+    onPrimaryButtonClick: () => void;
+    onSecondaryButtonClick: () => void;
+    children?: React.ReactNode;
+  };
 
   return {
     ...actual,
+    Drawer: ({
+      isOpen,
+      heading,
+      primaryButtonLabel,
+      secondaryButtonLabel,
+      onPrimaryButtonClick,
+      onSecondaryButtonClick,
+      children,
+    }: DrawerProps) =>
+      isOpen ? (
+        <div data-testid="drawer">
+          <h1>{heading}</h1>
+          <button onClick={onSecondaryButtonClick}>
+            {secondaryButtonLabel}
+          </button>
+          <button onClick={onPrimaryButtonClick}>{primaryButtonLabel}</button>
+          {children}
+        </div>
+      ) : null,
     useNotifications: () => ({
       addSuccess,
       addError,
@@ -44,27 +75,22 @@ describe('DsRecordsDrawer', () => {
   const supportedAlgorithms =
     targetSpec.dnssecConfiguration.supportedAlgorithms;
 
-  const baseProps = {
-    drawer: { isOpen: true, action: 'add' } as any,
+  const dsRecordsData = targetSpec.dnssecConfiguration.dsData[0];
+
+  const basePropsAdd = {
+    drawer: { isOpen: true, action: DrawerActionEnum.Add },
     targetSpec,
     serviceName: serviceInfoDetail.id,
     checksum: serviceInfoDetail.checksum,
     supportedAlgorithms,
+    dsRecordsData,
     setDrawer,
-  };
+  } as const;
 
-  const getPrimaryButton = () => {
-    const drawer = screen.getByTestId('drawer');
-    const button = drawer.querySelector(
-      'ods-button[variant="default"]',
-    ) as HTMLElement | null;
-
-    if (!button) {
-      throw new Error('Primary button not found');
-    }
-
-    return button;
-  };
+  const basePropsModify = {
+    ...basePropsAdd,
+    drawer: { isOpen: true, action: DrawerActionEnum.Modify },
+  } as const;
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -77,8 +103,8 @@ describe('DsRecordsDrawer', () => {
     } as any);
   });
 
-  it('Display the drawer with good informations', () => {
-    render(<DsRecordsDrawer {...baseProps} />);
+  it('Display the drawer with good informations in Add mode', () => {
+    render(<DsRecordsDrawer {...basePropsAdd} />);
 
     expect(screen.getByTestId('drawer')).toBeInTheDocument();
     expect(
@@ -88,8 +114,8 @@ describe('DsRecordsDrawer', () => {
     expect(screen.getByText(/error_required_fields$/)).toBeInTheDocument();
   });
 
-  it('submit the form and call the useUpdateResource function', async () => {
-    render(<DsRecordsDrawer {...baseProps} />);
+  it('submit the form and call useUpdateDomainResource in Add mode', async () => {
+    render(<DsRecordsDrawer {...basePropsAdd} />);
 
     const keyTagInput = screen.getByPlaceholderText('32456');
     const publicKeyTextarea = screen.getByPlaceholderText(
@@ -101,10 +127,8 @@ describe('DsRecordsDrawer', () => {
       target: { value: 'validPublicKey' },
     });
 
-    const primaryButton = getPrimaryButton();
-
-    await waitFor(() => {
-      expect(primaryButton).not.toBeDisabled();
+    const primaryButton = screen.getByRole('button', {
+      name: /actions:validate/i,
     });
 
     fireEvent.click(primaryButton);
@@ -169,10 +193,83 @@ describe('DsRecordsDrawer', () => {
       resetError,
     } as any);
 
-    render(<DsRecordsDrawer {...baseProps} />);
+    render(<DsRecordsDrawer {...basePropsAdd} />);
 
     expect(
       screen.getByText('domain_tab_dsrecords_drawer_add_error'),
     ).toBeInTheDocument();
+  });
+
+  it('prefills form and uses modify title in Modify mode', async () => {
+    render(<DsRecordsDrawer {...basePropsModify} />);
+
+    expect(
+      screen.getByText('domain_tab_dsrecords_drawer_modify_title'),
+    ).toBeInTheDocument();
+
+    const keyTagInput = screen.getByPlaceholderText('32456');
+    const publicKeyTextarea = screen.getByPlaceholderText(
+      'SreztregdhtfjghkvjbhlNcqityzfEZFjyfchgvkliYHELVBQSFHCJVD',
+    );
+
+    expect(keyTagInput).toHaveValue(dsRecordsData.keyTag);
+    expect(publicKeyTextarea).toHaveValue(dsRecordsData.publicKey);
+
+    fireEvent.change(keyTagInput, { target: { value: '60000' } });
+    fireEvent.change(publicKeyTextarea, {
+      target: { value: 'updatedPublicKey' },
+    });
+
+    const primaryButton = screen.getByRole('button', {
+      name: /actions:validate/i,
+    });
+
+    fireEvent.click(primaryButton);
+
+    await waitFor(() => {
+      expect(updateDomain).toHaveBeenCalledTimes(1);
+    });
+
+    const [[payload, callbacks]] = updateDomain.mock.calls as [
+      [
+        {
+          checksum: string;
+          currentTargetSpec: unknown;
+          updatedSpec: {
+            dnssecConfiguration: { dsData: any[] };
+          };
+        },
+        {
+          onSuccess: () => void;
+          onSettled: () => void;
+        },
+      ],
+    ];
+
+    const { dsData } = payload.updatedSpec.dnssecConfiguration;
+
+    expect(dsData).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          keyTag: 60000,
+          flags: 257,
+          algorithm: dsRecordsData.algorithm,
+          publicKey: 'updatedPublicKey',
+        }),
+      ]),
+    );
+
+    callbacks.onSuccess();
+    expect(addSuccess).toHaveBeenCalledWith(
+      'domain_tab_dsrecords_drawer_modify_success',
+    );
+    expect(setDrawer).toHaveBeenCalledWith({
+      isOpen: false,
+      action: null,
+    });
+    expect(resetError).toHaveBeenCalled();
+
+    callbacks.onSettled();
+    expect(clearNotifications).toHaveBeenCalled();
   });
 });
