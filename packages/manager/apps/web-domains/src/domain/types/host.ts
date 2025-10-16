@@ -10,6 +10,6 @@ export interface THostsconfiguration {
 
 export interface THost {
   host: string | null;
-  status: StatusEnum;
+  status?: StatusEnum;
   ips: string[] | null;
 }

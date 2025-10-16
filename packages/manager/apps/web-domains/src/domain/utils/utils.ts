@@ -1,3 +1,4 @@
+import { z } from 'zod';
 import { GUIDES_LIST, LangCode } from '@/domain/constants/guideLinks';
 import {
   TDatagridDnsDetails,
@@ -11,6 +12,8 @@ import {
 import { StatusEnum } from '@/domain/enum/Status.enum';
 import { DNS_UPDATE_OPERATION } from '../constants/dns.const';
 import { FreeHostingOptions } from '../components/AssociatedServicesCards/Hosting';
+import { IpsSupportedEnum } from '../enum/hostConfiguration.enum';
+import { THost } from '../types/host';
 
 export function getLanguageKey(lang: string): LangCode {
   const code = lang.split(/[-_]/)[0].toUpperCase();
@@ -63,4 +66,75 @@ export const formatConfigurationValue = (
     return 'RESET_ONLY_MX';
   }
   return 'NO_CHANGE';
+};
+
+export function getIpsSupported(
+  ipv4Supported: boolean,
+
+  ipv6Supported: boolean,
+
+  multipleIPsSupported: boolean,
+): IpsSupportedEnum {
+  if (ipv4Supported && ipv6Supported) {
+    return multipleIPsSupported
+      ? IpsSupportedEnum.All
+      : IpsSupportedEnum.OnlyIPv4IPv6;
+  }
+
+  if (ipv4Supported) {
+    return multipleIPsSupported
+      ? IpsSupportedEnum.MultipleIPv4
+      : IpsSupportedEnum.OnlyIPv4;
+  }
+
+  if (ipv6Supported) {
+    return multipleIPsSupported
+      ? IpsSupportedEnum.MultipleIPv6
+      : IpsSupportedEnum.OnlyIPv6;
+  }
+
+  return IpsSupportedEnum.All;
+}
+
+export const isHostnameInvalid = (
+  hostname: string,
+  serviceName: string,
+  hosts: THost[],
+) => {
+  const hostnameFormat = z.hostname();
+  if (
+    hosts.some(
+      (host) => host.host.toLowerCase() === `${hostname}.${serviceName}`,
+    )
+  ) {
+    return true;
+  }
+  return !hostnameFormat.safeParse(`${hostname}.${serviceName}`).success;
+};
+
+export const isIpsInvalid = (ips: string[], ipsSupported: IpsSupportedEnum) => {
+  const ipv4 = z.ipv4();
+  const ipv6 = z.ipv6();
+
+  switch (ipsSupported) {
+    case IpsSupportedEnum.All:
+      return ips.some(
+        (ip) => !ipv4.safeParse(ip).success && !ipv6.safeParse(ip).success,
+      );
+
+    case IpsSupportedEnum.OnlyIPv4:
+      return ips.length !== 1 || !ipv4.safeParse(ips[0]).success;
+
+    case IpsSupportedEnum.OnlyIPv6:
+      return ips.length !== 1 || !ipv6.safeParse(ips[0]).success;
+
+    case IpsSupportedEnum.MultipleIPv4:
+      return ips.some((ip) => !ipv4.safeParse(ip).success);
+
+    case IpsSupportedEnum.MultipleIPv6:
+      return ips.some((ip) => !ipv6.safeParse(ip).success);
+
+    default:
+      return true;
+  }
 };
