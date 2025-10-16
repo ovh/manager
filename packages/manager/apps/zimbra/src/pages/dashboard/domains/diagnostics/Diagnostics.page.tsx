@@ -35,7 +35,6 @@ import {
   DOMAIN_DIAGNOSTICS_SPF,
   DOMAIN_DIAGNOSTICS_SRV,
 } from '@/tracking.constants';
-import { FEATURE_FLAGS } from '@/utils';
 import { DnsRecordType } from '@/utils/dnsconfig.constants';
 
 import DKIMTabContent from './DKIMTabContent.component';
@@ -104,15 +103,20 @@ export const DomainDiagnostics = () => {
     {
       name: DnsRecordType.SRV,
       trackingName: DOMAIN_DIAGNOSTICS_SRV,
-      title: <TabTitle title={DnsRecordType.SRV} hasError={false} />,
+      title: (
+        <TabTitle
+          title={DnsRecordType.SRV}
+          hasError={!isFetching && isDiagnosticError(domain?.result?.autodiscover)}
+        />
+      ),
       to: useGenerateUrl('../diagnostics/srv', 'path'),
-      hidden: !FEATURE_FLAGS.DOMAIN_DIAGNOSTICS_SRV,
       pathMatchers: useComputePathMatchers([urls.domains_diagnostic_srv]),
       component: (
         <SRVTabContent
-          diagnostic={null}
+          diagnostic={domain?.result?.autodiscover}
           recordType={DnsRecordType.SRV}
           trackingName={DOMAIN_DIAGNOSTICS_SRV}
+          expectedDNSConfig={expectedDNSConfig}
           isAutoConfigurable={false}
         />
       ),
