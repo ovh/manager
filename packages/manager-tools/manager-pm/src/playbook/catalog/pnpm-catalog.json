@@ -1,4 +1,5 @@
 [
+  "packages/manager/apps/hpc-backup-agent-iaas",
   "packages/manager/apps/web-office",
   "packages/manager/apps/web-hosting",
   "packages/manager/apps/web-ongoing-operations",
