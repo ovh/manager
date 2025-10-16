@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useMemo } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Drawer, useNotifications } from '@ovh-ux/manager-react-components';
 import { Text } from '@ovhcloud/ods-react';
@@ -12,12 +12,14 @@ import {
 import { useUpdateDomainResource } from '@/domain/hooks/data/query';
 import { TDomainResource } from '@/domain/types/domainResource';
 import { FormProvider, useForm } from 'react-hook-form';
+import { THost } from '@/domain/types/host';
 
 interface HostDrawerProps {
   readonly drawer: { isOpen: boolean; action: DrawerActionEnum };
   readonly setDrawer: Dispatch<
     SetStateAction<{ isOpen: boolean; action: DrawerActionEnum }>
   >;
+  readonly hostData: THost;
   readonly ipv4Supported: boolean;
   readonly ipv6Supported: boolean;
   readonly multipleIPsSupported: boolean;
@@ -34,14 +36,16 @@ export default function HostDrawer({
   serviceName,
   checksum,
   targetSpec,
+  hostData,
   setDrawer,
 }: HostDrawerProps) {
   const { t } = useTranslation('domain');
+  const { hostsConfiguration, dnsConfiguration } = targetSpec;
+  const { addError, addSuccess, clearNotifications } = useNotifications();
+  const isAddAction = drawer.action === DrawerActionEnum.Add;
   const { updateDomain, isUpdateDomainPending } = useUpdateDomainResource(
     serviceName,
   );
-  const { addError, addSuccess, clearNotifications } = useNotifications();
-
   const ipsSupported = getIpsSupported(
     ipv4Supported,
     ipv6Supported,
@@ -50,26 +54,25 @@ export default function HostDrawer({
 
   const formData = useForm({
     mode: 'onChange',
-    defaultValues: {
-      host: '',
-      ips: '',
+    values: {
+      host:
+        drawer.action === DrawerActionEnum.Modify
+          ? hostData.host.split('.')[0]
+          : '',
+      ips:
+        drawer.action === DrawerActionEnum.Modify ? String(hostData.ips) : '',
     },
   });
-  const { handleSubmit, formState, reset, clearErrors } = formData;
+
+  const { handleSubmit, formState, clearErrors } = formData;
 
   const onDismiss = () => {
     setDrawer({
       isOpen: false,
       action: null,
     });
-    reset({
-      host: '',
-      ips: '',
-    });
     clearErrors();
   };
-
-  const { hostsConfiguration, dnsConfiguration } = targetSpec;
 
   return (
     <Drawer
@@ -102,9 +105,13 @@ export default function HostDrawer({
           {
             onSuccess: () => {
               addSuccess(
-                t('domain_tab_hosts_drawer_add_success_message', {
-                  host: `${values.host}.${serviceName}`,
-                }),
+                isAddAction
+                  ? t('domain_tab_hosts_drawer_add_success_message', {
+                      host: `${values.host}.${serviceName}`,
+                    })
+                  : t('domain_tab_hosts_drawer_modify_success_message', {
+                      host: `${values.host}.${serviceName}`,
+                    }),
               );
             },
             onError: (e) => {
