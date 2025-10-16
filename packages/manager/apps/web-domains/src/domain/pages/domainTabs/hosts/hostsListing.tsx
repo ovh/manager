@@ -80,7 +80,7 @@ export default function HostsListingTab() {
     setIsLoading(false);
   }, [domainResource]);
 
-  const columns = useHostsDatagridColumns();
+  const columns = useHostsDatagridColumns({ setDrawer, setFormData });
 
   if (isLoading && nichandleInformation) {
     return <Loading />;
@@ -144,7 +144,7 @@ export default function HostsListingTab() {
       </div>
 
       <HostDrawer
-        drawerAction={DrawerActionEnum.Add}
+        drawerAction={drawer.action}
         formData={formData}
         drawer={drawer}
         setFormData={setFormData}
