@@ -10,5 +10,7 @@
   "billing_resiliation_success": "Ihre Kündigungsanfrage wurde durchgeführt.",
   "billing_resiliation_error": "Bei der Kündigungsanfrage ist ein Fehler aufgetreten.",
   "billing_resiliation_cancel": "Nein, ablehnen",
-  "billing_resiliation_validate": "Ja, kündigen"
+  "billing_resiliation_validate": "Ja, kündigen",
+  "billing_resiliation_title_us": "Ihre Vertragsbindung beenden",
+  "billing_resiliation_choice_STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE_us": "Ihre Vertragsbindung beenden und Ihren Dienst ohne Vertragsbindung beibehalten."
 }
