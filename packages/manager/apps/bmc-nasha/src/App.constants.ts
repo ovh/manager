@@ -1,4 +1,4 @@
-import type { OnboardingConfigType } from '@/types/Onboarding.type';
+import { OnboardingConfigType } from '@/types/Onboarding.type';
 
 export const appName = 'bmc-nasha';
 
@@ -33,7 +33,7 @@ export type ListingApi = 'v6Iceberg' | 'v6' | 'v2';
 export type DashboardApi = 'v6' | 'v2';
 
 export const APP_FEATURES = {
-  listingApi: 'v6' as ListingApi,
+  listingApi: 'v6Iceberg' as ListingApi,
   dashboardApi: 'v6' as DashboardApi,
   listingEndpoint: '/dedicated/nasha',
   dashboardEndpoint: '/dedicated/nasha',

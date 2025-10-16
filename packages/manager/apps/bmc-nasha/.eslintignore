@@ -1,0 +1,10 @@
+# Exclude build output directories
+dist/
+build/
+coverage/
+
+# Exclude node_modules
+node_modules/
+
+# Exclude other generated files
+*.d.ts

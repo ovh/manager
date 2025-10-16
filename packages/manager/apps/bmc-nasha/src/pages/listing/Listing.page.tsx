@@ -4,13 +4,14 @@ import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import { OdsButton } from '@ovhcloud/ods-components/react';
 
 import {
   BaseLayout,
   DataGridTextCell,
   Datagrid,
+  ManagerButton,
   useDataGrid,
 } from '@ovh-ux/manager-react-components';
 
@@ -31,9 +32,13 @@ export default function ListingPage() {
     appName,
   });
 
-  const { items, total, isLoading, hasNextPage, fetchNextPage } = useListingData<ListingItemType>(
-    APP_FEATURES.listingEndpoint,
-  );
+  const {
+    items,
+    total,
+    isLoading,
+    hasNextPage,
+    fetchNextPage,
+  } = useListingData<ListingItemType>(APP_FEATURES.listingEndpoint);
 
   const baseColumns = useListingColumns<ListingItemType>();
 
@@ -49,19 +54,29 @@ export default function ListingPage() {
         label: t('listing:auto_column', 'Result'),
         isSortable: false,
         cell: (row: ListingItemType) => (
-          <DataGridTextCell>{row ? JSON.stringify(row) : EMPTY}</DataGridTextCell>
+          <DataGridTextCell>
+            {row ? JSON.stringify(row) : EMPTY}
+          </DataGridTextCell>
         ),
       },
     ];
   }, [baseColumns, t]);
 
-  const initialSort = useMemo(() => ({ id: columns[0]?.id ?? 'auto', desc: false }), [columns]);
+  const initialSort = useMemo(
+    () => ({ id: columns[0]?.id ?? 'auto', desc: false }),
+    [columns],
+  );
   const { sorting, setSorting } = useDataGrid(initialSort);
 
   const totalItems = Number.isFinite(total) ? total : items.length;
 
   const onNavigateToDashboardClicked = () => {
     startTransition(() => navigate(`../${urls.dashboard}`));
+  };
+
+  const onOrderClicked = () => {
+    // TODO: Implement order functionality
+    // Navigate to order page or open order modal
   };
 
   return (
@@ -73,12 +88,22 @@ export default function ListingPage() {
         {columns && (
           <Datagrid
             topbar={
-              <OdsButton
-                icon={ODS_ICON_NAME.network}
-                size={ODS_BUTTON_SIZE.md}
-                label={t('listing:open')}
-                onClick={onNavigateToDashboardClicked}
-              />
+              <div
+                style={{ display: 'flex', gap: '8px', alignItems: 'center' }}
+              >
+                <ManagerButton
+                  id="order-nasha"
+                  label={t('listing:order')}
+                  onClick={onOrderClicked}
+                />
+                <OdsButton
+                  size={ODS_BUTTON_SIZE.md}
+                  onClick={onNavigateToDashboardClicked}
+                  label={t('listing:open')}
+                >
+                  {t('listing:open')}
+                </OdsButton>
+              </div>
             }
             columns={columns}
             items={items || []}

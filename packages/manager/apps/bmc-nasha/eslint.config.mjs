@@ -39,4 +39,8 @@ export default [
       'css/no-invalid-properties': 'off',
     },
   },
+  // Exclude dist folders and their contents from linting
+  {
+    ignores: ['**/dist/**', '**/build/**', '**/coverage/**'],
+  },
 ];
