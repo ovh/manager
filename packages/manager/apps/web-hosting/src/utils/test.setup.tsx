@@ -4,7 +4,18 @@ import { Path, To } from 'react-router-dom';
 
 import { vi } from 'vitest';
 
-import { attachedDomainDigStatusMock, websitesMocks } from '../data/__mocks__';
+import { attachedDomainDigStatusMock, websitesMocks } from '@/data/__mocks__';
+import { managedWordpressRerefenceAvailableLanguageMock } from '@/data/__mocks__/managedWordpress/language';
+import {
+  managedWordpressResourceDetailsMock,
+  managedWordpressResourceMock,
+} from '@/data/__mocks__/managedWordpress/ressource';
+import { managedWordpressWebsitesTaskMock } from '@/data/__mocks__/managedWordpress/tasks';
+import {
+  managedWordpressWebsitesDeleteMock,
+  managedWordpressWebsitesDetailsMock,
+  managedWordpressWebsitesMock,
+} from '@/data/__mocks__/managedWordpress/website';
 
 const mocksAxios = vi.hoisted(() => ({
   get: vi.fn(),
@@ -99,6 +110,7 @@ vi.mock('react-router-dom', async (importActual) => {
     useHref: vi.fn<(url: To) => string>((url) =>
       typeof url === 'string' ? url : (url as Path).pathname,
     ),
+    useParams: vi.fn(() => ({}) as Record<string, string | undefined>),
   };
 });
 
@@ -111,7 +123,19 @@ vi.mock('@/data/api/index', () => ({
   getWebHostingAttachedDomainDigStatus: vi.fn(() => Promise.resolve(attachedDomainDigStatusMock)),
   getWebHostingAttachedDomainDigStatusQueryKey: vi.fn(),
 }));
-
+vi.mock('@/data/api/managedWordpress', () => ({
+  getManagedCmsResource: vi.fn(() => Promise.resolve(managedWordpressResourceMock)),
+  getManagedCmsResourceDetails: vi.fn(() => Promise.resolve(managedWordpressResourceDetailsMock)),
+  getManagedCmsResourceWebsites: vi.fn(() => Promise.resolve(managedWordpressWebsitesMock)),
+  getManagedCmsResourceWebsiteDetails: vi.fn(() =>
+    Promise.resolve(managedWordpressWebsitesDetailsMock),
+  ),
+  deleteManagedCmsResourceWebsite: vi.fn(() => Promise.resolve(managedWordpressWebsitesDeleteMock)),
+  getManagedCmsResourceWebsiteTasks: vi.fn(() => Promise.resolve(managedWordpressWebsitesTaskMock)),
+  getManagedCmsReferenceAvailableLanguages: vi.fn(() =>
+    Promise.resolve(managedWordpressRerefenceAvailableLanguageMock),
+  ),
+}));
 afterEach(() => {
   vi.clearAllMocks();
 });
