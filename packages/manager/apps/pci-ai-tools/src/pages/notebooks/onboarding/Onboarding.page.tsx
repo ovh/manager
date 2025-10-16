@@ -4,7 +4,7 @@ import Link from '@/components/links/Link.component';
 import onboardingImgSrc from '@/../public/assets/notebooks.png';
 import { useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
-import onboardingQuantumImgSrc from '@/../public/assets/quantum-notebooks.png';
+import onboardingQuantumImgSrc from '@/../public/assets/quantum-notebooks-qpu.png';
 import {
   GUIDES,
   getGuideUrl,
