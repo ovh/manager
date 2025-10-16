@@ -52,6 +52,7 @@ export const mockedUser: User = {
   },
   vat: '',
   zip: '',
+  complementaryAddress: '',
 };
 
 export const mockedUserDetails: user.UserDetail = {

@@ -37,7 +37,7 @@
   "exchange_account_update_contact_phone_label": "Numer telefonu stacjonarnego",
   "exchange_account_update_contact_mobile_label": "Numer telefonu komórkowego",
   "exchange_account_update_contact_fax_label": "Numer faksu",
-  "exchange_account_update_contact_phone_help_text": "Wpisz numer w formacie międzynarodowym (00xx ...).",
+  "exchange_account_update_contact_phone_error_text": "Spacja niedozwolona",
   "exchange_account_update_company_label": "Firma",
   "exchange_account_update_exchange_guid": "Exchange GUID:",
   "exchange_account_update_password_button_show": "Wyświetl hasło",
@@ -80,6 +80,5 @@
   "exchange_ACTION_update_no_domains": "Nie dodałeś/-aś jeszcze domeny lub domena nie została zatwierdzona. <br/>Dodaj najpierw domenę i zaczekaj na jej zatwierdzenie, aby utworzyć konto Exchange.",
   "exchange_ACTION_update_account_option_fail": "Wystąpił błąd podczas pobierania domen.",
   "exchange_ACTION_update_account_fetchingAccountCreationOptions_error": "Wystąpił błąd podczas pobierania opcji tworzenia konta Exchange.",
-  "exchange_ACTION_update_account_error_message": "Wystąpił błąd podczas zakładania konta Exchange: {{message}}",
-  "exchange_account_update_contact_phone_error_text": "Spacja niedozwolona"
+  "exchange_ACTION_update_account_error_message": "Wystąpił błąd podczas zakładania konta Exchange: {{message}}"
 }
