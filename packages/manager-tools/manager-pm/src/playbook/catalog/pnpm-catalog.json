@@ -1,1 +1,5 @@
-["packages/manager/apps/web-office", "packages/manager/apps/zimbra"]
+[
+  "packages/manager/apps/hpc-backup-agent-iaas",
+  "packages/manager/apps/web-office",
+  "packages/manager/apps/zimbra"
+]
