@@ -13,7 +13,7 @@ import {
   Link,
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useHostsDatagridColumns } from '@/domain/hooks/domainTabs/useHostsDatagridColumns';
 import { useGetDomainResource } from '@/domain/hooks/data/query';
@@ -172,6 +172,7 @@ export default function HostsListingTab() {
         checksum={domainResource?.checksum}
         targetSpec={domainResource?.targetSpec}
       />
+      <Outlet />
     </section>
   );
 }
