@@ -1,4 +1,5 @@
 [
+  "packages/manager/apps/hpc-backup-agent-iaas",
   "packages/manager/apps/account",
   "packages/manager/apps/account-creation",
   "packages/manager/apps/web-office",
