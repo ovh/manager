@@ -1,6 +1,6 @@
 ---
 title: OVHcloud Manager — Documentation Overview
-last_update: 2025-10-13
+last_update: 2025-01-27
 tags: [overview, architecture, best-practices, ovhcloud, manager]
 ai: true
 ---
@@ -21,6 +21,7 @@ The goal of this documentation is to:
 - Detail **GitHub workflows** and review processes for collaborative development.
 - Clarify **testing strategies** to ensure quality and maintainability.
 - Provide **references and templates** for developers and automation tools.
+- Support **AI-assisted migration** from AngularJS to React with comprehensive patterns and guidelines.
 
 ---
 
@@ -32,10 +33,9 @@ The goal of this documentation is to:
 | `_references.md` | Unified human + machine list of all external documentation and source URLs. |
 | `00-index.md` | This file — serves as the main entry point. |
 | `10-architecture/` | Explains Manager architecture, APIs, µApp containerization, module integration, and related commands. |
-| `20-design-system/` | Documents ODS and MRC component libraries, Storybooks, and module integrations. |
-| `30-best-practices/` | Contains coding conventions, frontend design patterns, React best practices, and accessibility testing. |
+| `20-dependencies/` | Documents ODS and MRC component libraries, module integrations, and external dependencies. |
+| `30-best-practices/` | Contains coding conventions, frontend design patterns, React best practices, migration patterns, and accessibility testing. |
 | `40-workflow/` | Describes branching, commit, and review processes. |
-| `50-testing/` | Defines testing and static analysis strategies. |
 
 ---
 
