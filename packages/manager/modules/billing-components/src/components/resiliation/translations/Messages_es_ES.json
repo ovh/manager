@@ -10,5 +10,7 @@
   "billing_resiliation_success": "La solicitud de baja se ha enviado.",
   "billing_resiliation_error": "Se ha producido un error al solicitar la baja.",
   "billing_resiliation_cancel": "No, denegar",
-  "billing_resiliation_validate": "Sí, cancelar"
+  "billing_resiliation_validate": "Sí, cancelar",
+  "billing_resiliation_title_us": "Cancelar el compromiso",
+  "billing_resiliation_choice_STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE_us": "Cancelar el compromiso y mantener el servicio en la modalidad sin compromiso de permanencia."
 }

@@ -32,5 +32,6 @@
   "billing_commitment_summary_description_end": "Après le {{ endDate }} votre service sera tacitement réengagé pour une durée similaire à votre dernier engagement.",
   "billing_commitment_savings": "Économisez un total de {{ price }}",
   "billing_commitment_payment_upfront_pay_now": "Payez {{ price }} maintenant",
-  "billing_commitment_info_message": "En choisissant une offre avec engagement, vous vous engagez à utiliser le service pendant toute la durée choisie. En contrepartie, vous bénéficiez d’un avantage (ex. : réduction de tarif, frais d’installation offerts). Vous restez libre d’arrêter le service à tout moment, mais une résiliation anticipée peut entraîner des frais ou le paiement des mois restants."
+  "billing_commitment_info_message": "En choisissant une offre avec engagement, vous vous engagez à utiliser le service pendant toute la durée choisie. En contrepartie, vous bénéficiez d’un avantage (ex. : réduction de tarif, frais d’installation offerts). Vous restez libre d’arrêter le service à tout moment, mais une résiliation anticipée peut entraîner des frais ou le paiement des mois restants.",
+  "billing_commitment_info_message_us": "En choisissant une offre avec engagement, vous vous engagez à utiliser le service pendant toute la durée choisie. En contrepartie, vous bénéficiez d’un avantage (ex. : réduction de tarif, frais d’installation offerts). Vous restez libre d’arrêter le service à tout moment, mais une résiliation anticipée peut entraîner des frais ou le paiement des mois restants."
 }

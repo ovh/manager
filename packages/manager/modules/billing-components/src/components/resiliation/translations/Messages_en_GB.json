@@ -10,5 +10,7 @@
   "billing_resiliation_success": "Your cancellation request has been processed.",
   "billing_resiliation_error": "An error has occurred submitting the cancellation request.",
   "billing_resiliation_cancel": "No, dismiss",
-  "billing_resiliation_validate": "Yes, cancel"
+  "billing_resiliation_validate": "Yes, cancel",
+  "billing_resiliation_title_us": "Cancel your commitment",
+  "billing_resiliation_choice_STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE_us": "Opt out of your current commitment and switch to a month-to-month commitment."
 }

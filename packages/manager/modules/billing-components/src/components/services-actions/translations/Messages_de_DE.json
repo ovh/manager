@@ -24,5 +24,8 @@
   "billing_services_actions_menu_resiliate_LICENSE_HYCU": "Meine HYCU-Lizenz löschen",
   "billing_services_actions_menu_resiliate_HOSTING_WEB_SUSPENDED": "Das Hosting und die zugehörigen Daten endgültig löschen",
   "billing_services_actions_menu_restore": "Dienst wiederherstellen",
-  "billing_services_actions_menu_restore_label": "Dienst wiederherstellen: {{ serviceName }} (Neues Fenster)"
+  "billing_services_actions_menu_restore_label": "Dienst wiederherstellen: {{ serviceName }} (Neues Fenster)",
+  "billing_services_actions_menu_resiliate_us": "Meinen Dienst kündigen",
+  "billing_services_actions_menu_resiliate_my_engagement_us": "Meine Vertragsbindung kündigen",
+  "billing_services_actions_menu_commit_cancel_us": "Anfrage zur Vertragsbindung stornieren"
 }
