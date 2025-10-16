@@ -60,7 +60,7 @@ import {
   ORGANIZATION,
   REDIRECTION,
   UNDO_CANCEL_SLOT,
-  UPGRADE_SLOT,
+  UPDATE_OFFER_SLOT,
   VERIFY_DOMAIN,
 } from '@/tracking.constants';
 
@@ -113,8 +113,8 @@ const CancelSlotPage = React.lazy(
 const UndoCancelSlotPage = React.lazy(
   () => import('@/pages/dashboard/emailAccounts/undoCancel/UndoCancel.modal'),
 );
-const UpgradeAccountPage = React.lazy(
-  () => import('@/pages/dashboard/emailAccounts/upgrade/Upgrade.page'),
+const UpdateOfferAccountPage = React.lazy(
+  () => import('@/pages/dashboard/emailAccounts/updateOffer/UpdateOffer.page'),
 );
 const AliasPage = React.lazy(
   () => import('@/pages/dashboard/emailAccounts/settings/aliases/Aliases.page'),
@@ -441,12 +441,12 @@ export default (
           }}
         />
         <Route
-          path={'slot/:slotId/upgrade'}
-          Component={UpgradeAccountPage}
+          path={'slot/:slotId/update_offer'}
+          Component={UpdateOfferAccountPage}
           handle={{
             isOverridePage: true,
             tracking: {
-              pageName: UPGRADE_SLOT,
+              pageName: UPDATE_OFFER_SLOT,
               pageType: PageType.funnel,
             },
             breadcrumb: {

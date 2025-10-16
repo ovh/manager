@@ -34,12 +34,14 @@ describe('EmailAccounts datagrid action menu', () => {
 
     const menuItems = container.querySelectorAll('ods-popover ods-button');
 
-    expect(menuItems.length).toBe(3);
+    expect(menuItems.length).toBe(4);
 
     expect(menuItems[0]).toHaveAttribute('label', 'modify');
 
     expect(menuItems[1]).toHaveAttribute('label', commonTranslation.alias);
 
-    expect(menuItems[2]).toHaveAttribute('label', 'delete');
+    expect(menuItems[2]).toHaveAttribute('label', commonTranslation.update_offer);
+
+    expect(menuItems[3]).toHaveAttribute('label', 'delete');
   });
 });

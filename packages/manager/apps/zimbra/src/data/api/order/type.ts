@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 // TODO: Dupilicate of packages/manager/apps/pci-databases-analytics/src/types/catalog.ts
 // share it across projects and remove this
 import { Order } from '@ovh-ux/manager-module-order';
@@ -658,7 +659,7 @@ export namespace order {
 export type UpgradeServiceOrderParamsType = {
   serviceName: string;
   planCode: ZimbraPlanCodes;
-  autoPay: boolean;
+  autoPay?: boolean;
 };
 
 export type UpgradeServiceOrderResponse = {
