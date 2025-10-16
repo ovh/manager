@@ -49,7 +49,7 @@ export const DownloadKmsPublicCaLink = ({
     },
     publicCaKmip: {
       label: t('key_management_service_dashboard_button_label_download_ca'),
-      filename: PUBLIC_RSA_CA_FILENAME,
+      filename: PUBLIC_CA_FILENAME,
       tracking: 'download_kmip-endpoint-ca',
     },
     publicCaRsaKmip: {
