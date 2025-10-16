@@ -1,5 +1,5 @@
 /* stylelint-disable */
 @import '@ovhcloud/ods-theme-blue-jeans';
-/* @tailwind base; */
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
