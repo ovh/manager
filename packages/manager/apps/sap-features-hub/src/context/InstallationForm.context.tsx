@@ -35,12 +35,17 @@ type InitializationState = {
 };
 
 export type FormContextType = {
+  // State
   values: InstallationFormValues;
-  setValues: Dispatch<SetStateAction<InstallationFormValues>>;
   errors: InstallationFormErrors;
-  setErrors: Dispatch<SetStateAction<InstallationFormErrors>>;
   initializationState: InitializationState;
+
+  // React Setters
+  setValues: Dispatch<SetStateAction<InstallationFormValues>>;
+  setErrors: Dispatch<SetStateAction<InstallationFormErrors>>;
   setInitializationState: Dispatch<SetStateAction<InitializationState>>;
+
+  // Handlers
   clearInstallationForm: () => void;
 };
 

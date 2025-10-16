@@ -5,6 +5,7 @@ import {
   ENABLEMENT_FORM_SCHEMA,
   ENABLEMENT_LOGS_DATA_PLATFORM,
 } from '../schema/form.schema';
+
 import { DeploymentType } from './sapCapabilities.type';
 import {
   ApplicationServer,
