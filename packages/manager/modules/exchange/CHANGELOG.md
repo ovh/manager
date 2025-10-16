@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.15.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.5...@ovh-ux/manager-exchange@4.15.6) (2025-10-16)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([329af5d](https://github.com/ovh/manager/commit/329af5d2897d50daab145b3947b8129cdf8058bf))
+
+
+
+
+
 ## [4.15.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.4...@ovh-ux/manager-exchange@4.15.5) (2025-10-14)
 
 

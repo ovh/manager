@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.30.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.30.1...@ovh-ux/manager-pci-databases-analytics-app@1.30.2) (2025-10-16)
+
+
+### Bug Fixes
+
+* **config:** add missing complementaryAddress field to the user type ([7412865](https://github.com/ovh/manager/commit/74128656ce66647ce3c98d82334a53d120e2e620)), closes [#DCE-32](https://github.com/ovh/manager/issues/DCE-32)
+
+
+
+
+
 ## [1.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.30.0...@ovh-ux/manager-pci-databases-analytics-app@1.30.1) (2025-10-15)
 
 
