@@ -46,5 +46,8 @@
   "tableActionDelete": "Löschen",
   "tableActionEdit": "Ändern",
   "breadcrumb": "Topics",
-  "formTopicErrorPattern": "Muss zwischen 1 und 249 Zeichen enthalten; nur alphanumerische Zeichen, Bindestriche (-), Unterstriche (_) oder Punkte (.) zulässig"
+  "formTopicErrorPattern": "Muss zwischen 1 und 249 Zeichen enthalten; nur alphanumerische Zeichen, Bindestriche (-), Unterstriche (_) oder Punkte (.) zulässig",
+  "editTopicToastErrorTitle": "Ein Fehler ist aufgetreten, als Ihr Thema geändert wurde",
+  "topicToastSuccessTitle": "Erfolg",
+  "editTopicToastSuccessDescription": "Ihr Thema \"{{name}}\" wurde erfolgreich geändert."
 }

@@ -59,7 +59,7 @@ const AddEditTopic = ({ service, topics, editedTopic }: AddEditTopicProps) => {
     },
     onSuccess: (addedTopic) => {
       toast.toast({
-        title: t(`${prefix}TopicToastSuccessTitle`),
+        title: t(`topicToastSuccessTitle`),
         description: t(`${prefix}TopicToastSuccessDescription`, {
           name: addedTopic.name,
         }),

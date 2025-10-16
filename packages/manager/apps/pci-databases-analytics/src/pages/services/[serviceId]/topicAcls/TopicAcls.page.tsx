@@ -16,7 +16,7 @@ export function breadcrumb() {
   return (
     <BreadcrumbItem
       translationKey="breadcrumb"
-      namespace="pci-databases-analytics/services/service/topicAcl"
+      namespace="pci-databases-analytics/services/service/topicAcls"
     />
   );
 }

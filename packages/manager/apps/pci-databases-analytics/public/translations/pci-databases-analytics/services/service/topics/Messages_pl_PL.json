@@ -46,5 +46,8 @@
   "tableActionDelete": "Usuń",
   "tableActionEdit": "Zmodyfikuj",
   "breadcrumb": "Topiki",
-  "formTopicErrorPattern": "Może zawierać wyłącznie od 1 do 249 znaków alfanumerycznych, myślniki (-), podkreślenia (_) lub kropki (.)"
+  "formTopicErrorPattern": "Może zawierać wyłącznie od 1 do 249 znaków alfanumerycznych, myślniki (-), podkreślenia (_) lub kropki (.)",
+  "editTopicToastErrorTitle": "Wystąpił błąd podczas edytowania twojego tematu",
+  "topicToastSuccessTitle": "Sukces",
+  "editTopicToastSuccessDescription": "Twój temat \"{{name}}\" został pomyślnie zmodyfikowany."
 }
