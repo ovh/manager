@@ -12,9 +12,11 @@ import {
   DASHBOARD,
   DISABLE_SSL,
   IMPORT_SSL,
+  LOCAL_SEO,
   ONBOARDING,
   ORDER_DOMAIN,
   ORDER_SECTIGO,
+  REMOVE_SEO_SUBSCIPTION,
   SAN_SSL,
   SSL,
   WEBSITE,
@@ -31,6 +33,10 @@ const DisableSslPage = React.lazy(() => import('@/pages/dashboard/ssl/manage/dis
 const SanSslPage = React.lazy(() => import('@/pages/dashboard/ssl/manage/sanSsl.page'));
 const AddDomainPage = React.lazy(() => import('@/pages/dashboard/AddDomain.page'));
 const OrderDomainPage = React.lazy(() => import('@/pages/dashboard/OrderDomain.page'));
+const LocalSeoPage = React.lazy(() => import('@/pages/dashboard/local-seo/LocalSeo.page'));
+const RemoveSeoSubscriptionPage = React.lazy(
+  () => import('@/pages/dashboard/local-seo/manage/RemoveSeoSubscription.page'),
+);
 
 export default (
   <Route
@@ -152,6 +158,28 @@ export default (
         handle={{
           tracking: {
             pageName: ORDER_DOMAIN,
+            pageType: PageType.popup,
+          },
+        }}
+      />
+      <Route
+        id={LOCAL_SEO}
+        path={urls.localSeo}
+        Component={LocalSeoPage}
+        handle={{
+          tracking: {
+            pageName: LOCAL_SEO,
+            pageType: PageType.listing,
+          },
+        }}
+      />
+      <Route
+        id={REMOVE_SEO_SUBSCIPTION}
+        path={urls.removeSeoSubsciption}
+        Component={RemoveSeoSubscriptionPage}
+        handle={{
+          tracking: {
+            pageName: REMOVE_SEO_SUBSCIPTION,
             pageType: PageType.popup,
           },
         }}

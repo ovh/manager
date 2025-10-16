@@ -21,6 +21,13 @@ export enum GitStatus {
   INITIALERROR = 'INITIAL_ERROR',
 }
 
+export enum SeoStatus {
+  CREATED = 'created',
+  CREATING = 'creating',
+  DELETING = 'deleting',
+  UPDATING = 'updating',
+}
+
 export enum TaskStatus {
   ERROR = 'ERROR',
   PENDING = 'PENDING',
