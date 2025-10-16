@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { THost } from '@/domain/types/host';
 import DatagridColumnStatus from '@/domain/components/DatagridColumns/DatagridColumnStatus';
 import { StatusEnum } from '@/domain/enum/Status.enum';
-import { DrawerActionEnum } from '@/domain/enum/hostConfiguration.enum';
+import { DrawerActionEnum } from '@/common/enum/common.enum';
 
 interface UseHostsDatagridColumnsProps {
   readonly setDrawer: Dispatch<

@@ -1,8 +1,3 @@
-export enum DrawerActionEnum {
-  Add = 'add',
-  Modify = 'modify',
-}
-
 export enum IpsSupportedEnum {
   All = 'all',
   OneIPv4 = 'oneIPv4',

@@ -8,6 +8,7 @@ import {
 import { OptionEnum } from '@/common/enum/option.enum';
 import { THost } from '@/domain/types/host';
 import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
+import { TDsDataInterface } from '@/domain/types/dnssecConfiguration';
 
 /**
  *  : Get this Domain properties

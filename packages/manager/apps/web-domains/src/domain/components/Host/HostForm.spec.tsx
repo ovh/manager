@@ -4,11 +4,9 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { FormProvider, useForm } from 'react-hook-form';
 import HostForm from '@/domain/components/Host/HostForm';
-import {
-  DrawerActionEnum,
-  IpsSupportedEnum,
-} from '@/domain/enum/hostConfiguration.enum';
+import { IpsSupportedEnum } from '@/domain/enum/hostConfiguration.enum';
 import { serviceInfoDetail } from '@/domain/__mocks__/serviceInfoDetail';
+import { DrawerActionEnum } from '@/common/enum/common.enum';
 
 const mocks = vi.hoisted(() => ({
   getHostnameErrorMessageMock: vi.fn(),

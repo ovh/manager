@@ -2,6 +2,7 @@ import { Country, UserLocales } from '@ovh-ux/manager-config';
 import {
   BillingCapacitiesEnum,
   BillingTypeEnum,
+  DrawerActionEnum,
   LegalFormEnum,
   LifecycleCapacitiesEnum,
   PrincingTypeEnum,
@@ -350,3 +351,7 @@ export interface TMxPlan {
   status: 'close' | 'ok' | 'readOnly' | 'unknown';
 }
 
+export interface DrawerBehavior {
+  isOpen: boolean;
+  action: DrawerActionEnum;
+}

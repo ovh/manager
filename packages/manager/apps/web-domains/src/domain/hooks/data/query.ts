@@ -53,6 +53,7 @@ import { FreeHostingOptions } from '@/domain/components/AssociatedServicesCards/
 import { THost } from '@/domain/types/host';
 import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
 import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
+import { TDsDataInterface } from '@/domain/types/dnssecConfiguration';
 
 export const useGetDomainResource = (serviceName: string) => {
   const { data, isLoading, error } = useQuery<TDomainResource>({

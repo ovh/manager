@@ -1,14 +1,23 @@
 import '@/common/setupTests';
 import { vi, describe, it, expect } from 'vitest';
-import { render, renderHook } from '@testing-library/react';
+import { fireEvent, render, renderHook } from '@testing-library/react';
 import { wrapper } from '@/common/utils/test.provider';
 import DsRecordsListing from '@/domain/pages/domainTabs/dsRecords/dsRecordsListing';
 import { serviceInfoDetail } from '@/domain/__mocks__/serviceInfoDetail';
 import { useDomainDsRecordsDatagridColumns } from '@/domain/hooks/domainTabs/useDomainDsRecordsDatagridColumns';
+import { domainZoneMock } from '@/domain/__mocks__/dnsDetails';
 
 vi.mock('@/domain/hooks/data/query', () => ({
   useGetDomainResource: vi.fn(() => ({
     domainResource: serviceInfoDetail,
+  })),
+  useUpdateDomainResource: vi.fn(() => ({
+    updateDomain: vi.fn(),
+    isUpdateDomainPending: false,
+  })),
+  useGetDomainZone: vi.fn(() => ({
+    domainZone: domainZoneMock,
+    isFetchingDomainZone: false,
   })),
 }));
 
@@ -41,5 +50,13 @@ describe('DS Records Datagrid', () => {
       wrapper,
     });
     expect(getByTestId('datagrid')).toBeInTheDocument();
+
+    const addButton = getByTestId('addButton');
+    expect(addButton).toBeInTheDocument();
+
+    fireEvent.click(addButton);
+
+    const drawer = getByTestId('drawer');
+    expect(drawer).toBeInTheDocument();
   });
 });

@@ -162,7 +162,6 @@ export const serviceInfoDetail: TDomainResource = {
         },
       ],
     },
-    protectionState: ProtectionStateEnum.PROTECTED,
     dnssecConfiguration: {
       dsData: [
         {
@@ -174,6 +173,7 @@ export const serviceInfoDetail: TDomainResource = {
         },
       ],
     },
+    protectionState: ProtectionStateEnum.PROTECTED,
   },
   currentTasks: [],
   iam: {
