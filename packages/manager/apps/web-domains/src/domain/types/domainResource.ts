@@ -14,6 +14,7 @@ import { OptionStateEnum } from '../enum/optionState.enum';
 import { OptionEnum } from '../../common/enum/option.enum';
 import { AssociatedEmailsServicesEnum } from '../enum/associatedServices.enum';
 import { THost, THostsconfiguration } from './host';
+import { TDnssecConfiguration } from './dnssecConfiguration';
 
 export interface TNameServer {
   ipv4?: string | null;
@@ -70,6 +71,7 @@ export interface TDomainResource {
     suspensionState: SuspensionStateEnum;
     contactsConfiguration: TContactsConfiguration;
     hostsConfiguration: THostsconfiguration;
+    dnssecConfiguration: TDnssecConfiguration;
     createdAt: string;
   };
   currentTasks: Task[];
