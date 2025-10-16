@@ -26,7 +26,6 @@
   "packages/manager/apps/key-management-service",
   "packages/manager/apps/metrics",
   "packages/manager/apps/nasha",
-  "packages/manager/apps/bmc-nasha",
   "packages/manager/apps/netapp",
   "packages/manager/apps/nutanix",
   "packages/manager/apps/okms",

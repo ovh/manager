@@ -56,7 +56,10 @@ export default function HelpPage() {
           name="email"
           control={control}
           rules={{
-            required: { value: true, message: t('dashboard:errors.emailRequired') },
+            required: {
+              value: true,
+              message: t('dashboard:errors.emailRequired'),
+            },
             pattern: {
               value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
               message: t('dashboard:errors.emailInvalid'),
@@ -83,7 +86,10 @@ export default function HelpPage() {
           name="subject"
           control={control}
           rules={{
-            required: { value: true, message: t('dashboard:errors.subjectRequired') },
+            required: {
+              value: true,
+              message: t('dashboard:errors.subjectRequired'),
+            },
           }}
           render={({ field, fieldState }) => (
             <OdsFormField className="w-full" error={fieldState.error?.message}>
@@ -106,7 +112,10 @@ export default function HelpPage() {
           name="message"
           control={control}
           rules={{
-            required: { value: true, message: t('dashboard:errors.messageRequired') },
+            required: {
+              value: true,
+              message: t('dashboard:errors.messageRequired'),
+            },
           }}
           render={({ field, fieldState }) => (
             <OdsFormField className="w-full" error={fieldState.error?.message}>
