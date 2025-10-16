@@ -23,7 +23,7 @@ export const SubRow = ({
       transform: `translateY(${virtualRow.start + offset + maxRowHeight}px)`,
     }}
   >
-    <div className="overflow-hidden p-[8px] w-full">
+    <div className="overflow-hidden p-[8px] text-ellipsis block w-full">
       {renderSubComponent(row)}
     </div>
   </tr>
