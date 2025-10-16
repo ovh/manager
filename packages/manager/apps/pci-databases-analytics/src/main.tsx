@@ -5,9 +5,9 @@ import {
   initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
 
-import '@ovhcloud/ods-themes/default';
-import '@datatr-ux/uxlib/style.css';
 import './global.css';
+import '@datatr-ux/uxlib/style.css';
+import '@ovhcloud/ods-themes/default';
 
 import initI18n from './i18n';
 import App from './App';

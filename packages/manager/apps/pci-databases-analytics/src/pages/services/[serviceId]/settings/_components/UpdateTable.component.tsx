@@ -89,7 +89,7 @@ const UpdateTable = () => {
               {row.updateButtonDisplayed && (
                 <Button
                   data-testid={`update-button-${row.title}`}
-                  className="py-0 h-auto"
+                  size="xs"
                   onClick={row.onClick}
                   disabled={
                     service.capabilities.service.update ===
