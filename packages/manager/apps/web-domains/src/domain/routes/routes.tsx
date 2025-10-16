@@ -29,6 +29,10 @@ const GeneralInformationsPage = React.lazy(() =>
   import('@/domain/pages/domainTabs/generalInformations/generalInformations'),
 );
 
+const DsRecordsPage = React.lazy(() =>
+  import('@/domain/pages/domainTabs/dnssec/dnssecListing'),
+);
+
 function RedirectToDefaultTab() {
   const { serviceName } = useParams<{ serviceName: string }>();
   return (
@@ -87,7 +91,7 @@ export default (
         <Route path={urls.domainTabRedirection} Component={Outlet} />
         <Route path={urls.domainTabDynHost} Component={Outlet} />
         <Route path={urls.domainTabHost} Component={Outlet} />
-        <Route path={urls.domainTabDnssec} Component={Outlet} />
+        <Route path={urls.domainTabDnssec} Component={DsRecordsPage} />
         <Route path={urls.domainTabContactManagement} Component={Outlet} />
       </Route>
       <Route path={urls.domainTabOrderAnycast} Component={AnycastOrderPage} />
