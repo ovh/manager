@@ -46,5 +46,8 @@
   "tableActionDelete": "Eliminar",
   "tableActionEdit": "Editar",
   "breadcrumb": "Topics",
-  "formTopicErrorPattern": "Debe contener entre 1 y 249 caracteres alfanuméricos, guiones (-), barras bajas (_) o puntos (.) únicamente"
+  "formTopicErrorPattern": "Debe contener entre 1 y 249 caracteres alfanuméricos, guiones (-), barras bajas (_) o puntos (.) únicamente",
+  "editTopicToastErrorTitle": "Se ha producido un error al modificar su tema",
+  "topicToastSuccessTitle": "Éxito",
+  "editTopicToastSuccessDescription": "Su tema \"{{name}}\" se ha modificado con éxito."
 }

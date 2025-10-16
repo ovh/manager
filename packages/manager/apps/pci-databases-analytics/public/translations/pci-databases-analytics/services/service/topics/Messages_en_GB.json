@@ -46,5 +46,8 @@
   "tableActionDelete": "Delete",
   "tableActionEdit": "Edit",
   "breadcrumb": "Topics",
-  "formTopicErrorPattern": "Must contain 1 to 249 alphanumeric characters, dashes (-), underscores (_) or full stops (.) only"
+  "formTopicErrorPattern": "Must contain 1 to 249 alphanumeric characters, dashes (-), underscores (_) or full stops (.) only",
+  "editTopicToastErrorTitle": "An error occurred while modifying your topic",
+  "topicToastSuccessTitle": "Success",
+  "editTopicToastSuccessDescription": "Your topic \"{{name}}\" has been successfully modified."
 }
