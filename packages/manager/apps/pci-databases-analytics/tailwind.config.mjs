@@ -15,19 +15,15 @@ export default {
       path.dirname(require.resolve('@ovh-ux/manager-pci-common')),
       '**/*.{js,jsx,ts,tsx}',
     ),
+    './node_modules/@datatr-ux/uxlib/dist/components/ui/**/*.{js,jsx,ts,tsx}',
     './src/**/*.{js,jsx,ts,tsx}',
   ],
   presets: [odsPreset],
   theme: {
-    extend: {
-      // screens: {
-      //   sm: '640px',
-      //   md: '768px',
-      //   lg: '1024px',
-      //   xl: '1280px',
-      //   '2xl': '1536px',
-      // },
-    },
+    extend: {},
   },
   plugins: [],
+  corePlugins: {
+    preflight: false,
+  },
 };

@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Table, TableBody, TableCell, TableRow } from '@datatr-ux/uxlib';
+import { Button } from '@ovhcloud/ods-react';
 import Price from '@/components/price/Price.component';
 import { ServicePricing } from '@/lib/pricingHelper';
 
@@ -11,13 +12,14 @@ const OfferPricing = ({ prices }: TablePriceProps) => {
 
   return (
     <div data-testid="table-price-container">
+      <Button>ODS</Button>
       <Table>
-        <TableBody>
+        <TableBody className="[&_tr>td]:py-2">
           <TableRow className="text-xs p-0">
-            <TableCell className="px-0 align-top py-0 bg-red-500">
+            <TableCell className="px-0 align-top bg-red-500">
               {t('pricing_instance_label')}
             </TableCell>
-            <TableCell className="text-right px-0 py-0">
+            <TableCell className="text-right px-0">
               <Price
                 className="flex flex-row justify-end items-center flex-wrap gap-2"
                 decimals={3}
@@ -26,11 +28,11 @@ const OfferPricing = ({ prices }: TablePriceProps) => {
               />
             </TableCell>
           </TableRow>
-          <TableRow className="text-xs py-0">
-            <TableCell className="px-0 align-top py-0 bg-red-200">
+          <TableRow className="text-xs">
+            <TableCell className="px-0 align-top bg-red-200">
               {t('pricing_storage_label')}
             </TableCell>
-            <TableCell className="text-right px-0 py-0">
+            <TableCell className="text-right px-0">
               <Price
                 className="flex flex-row justify-end items-center flex-wrap gap-2"
                 decimals={3}
@@ -40,10 +42,10 @@ const OfferPricing = ({ prices }: TablePriceProps) => {
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell className="font-semibold text-text px-0 align-top min-w-[110px] py-0">
+            <TableCell className="font-semibold text-text px-0 align-top min-w-[110px]">
               {t('total_hour_label')}
             </TableCell>
-            <TableCell className="text-right px-0 py-0">
+            <TableCell className="text-right px-0">
               <Price
                 className="flex flex-row justify-end items-center flex-wrap gap-2"
                 decimals={3}
@@ -53,10 +55,10 @@ const OfferPricing = ({ prices }: TablePriceProps) => {
             </TableCell>
           </TableRow>
           <TableRow className="text-sm text-gray-500 italic ">
-            <TableCell className="px-0 align-top py-0">
+            <TableCell className="px-0 align-top">
               {t('estimated_month_label')}
             </TableCell>
-            <TableCell className="text-right px-0 py-0">
+            <TableCell className="text-right px-0">
               <Price
                 className="flex flex-row justify-end items-center flex-wrap gap-2"
                 decimals={0}

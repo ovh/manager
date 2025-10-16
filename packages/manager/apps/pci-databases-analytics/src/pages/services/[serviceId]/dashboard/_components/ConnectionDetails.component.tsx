@@ -109,7 +109,7 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
               {t('connectionDetailsTableHeaderSSLMode')}
             </dt>
             <dd>
-              <Clipboard value={t('connectionDetailsTableSSLMode')} />
+              <Clipboard value={selectedEndpoint.sslMode} />
             </dd>
           </>
         )}
