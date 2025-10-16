@@ -5,6 +5,9 @@ import { pipeline } from 'node:stream/promises';
 
 import {
   EMOJIS,
+  MUK_IMPORT_REWRITE_RULES,
+  MUK_STORYBOOK_ENTRY_REGEX,
+  MUK_STORYBOOK_FOLDERS,
   MUK_WIKI_BASED_DOCUMENT,
   MUK_WIKI_COMPONENTS,
   ODS_REACT_PACKAGE_NAME,
@@ -221,7 +224,7 @@ export async function syncComponentDocs() {
  */
 function isStorybookBaseDocEntry(tarPath) {
   const normalized = tarPath.replaceAll('\\', '/');
-  return /packages\/storybook\/src\/(components|constants|helpers)\//.test(normalized);
+  return MUK_STORYBOOK_ENTRY_REGEX.test(normalized);
 }
 
 /**
@@ -278,8 +281,7 @@ async function writeStorybookFile(tarPath, fileStream) {
  * @param {string} baseDir - The base wiki directory (MUK_WIKI_BASED_DOCUMENT).
  */
 function ensureBaseStorybookFolders(baseDir) {
-  const directories = ['components', 'constants', 'helpers'];
-  for (const directory of directories) {
+  for (const directory of MUK_STORYBOOK_FOLDERS) {
     const target = path.join(baseDir, directory);
     if (!fs.existsSync(target)) {
       fs.mkdirSync(target, { recursive: true });
@@ -328,4 +330,68 @@ export async function syncStorybookBaseDocuments({ tag } = {}) {
   });
 
   return { created, updated, total };
+}
+
+/**
+ * Recursively collect all source files inside a directory.
+ * @param {string} dir - The root directory to scan.
+ * @param {string[]} exts - File extensions to include (e.g. ['.ts', '.tsx', '.mdx'])
+ * @returns {string[]} Absolute paths of matching files.
+ */
+function collectSourceFiles(dir, exts = ['.ts', '.tsx', '.mdx']) {
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  const files = [];
+
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...collectSourceFiles(fullPath, exts));
+    } else if (exts.includes(path.extname(entry.name))) {
+      files.push(fullPath);
+    }
+  }
+
+  return files;
+}
+
+/**
+ * Apply import path rewrites for Manager Wiki component documentation.
+ *
+ * Rewrites two patterns:
+ * 1) `../../../src/` → `../../../base-documents/`
+ * 2) `/ods-react/src/` → `@ovhcloud/ods-react`
+ *
+ * Example:
+ * ```diff
+ * - import { CONTROL_CATEGORY } from '../../../src/constants/controls';
+ * + import { CONTROL_CATEGORY } from '../../../base-documents/constants/controls';
+ *
+ * - import { Accordion } from '../../../../ods-react/src/components/accordion/src';
+ * + import { Accordion } from '@ovhcloud/ods-react';
+ * ```
+ *
+ * @param {string} componentsRoot - Absolute path to wiki components root (MUK_WIKI_COMPONENTS)
+ */
+export function rewriteWikiComponentImports(componentsRoot) {
+  const files = collectSourceFiles(componentsRoot);
+  let updatedCount = 0;
+
+  logger.info(`${EMOJIS.info} Rewriting import paths inside wiki component documentation…`);
+
+  for (const file of files) {
+    let content = fs.readFileSync(file, 'utf8');
+    let modified = content;
+
+    for (const rule of MUK_IMPORT_REWRITE_RULES) {
+      modified = modified.replace(rule.pattern, rule.replacer);
+    }
+
+    if (modified !== content) {
+      fs.writeFileSync(file, modified, 'utf8');
+      updatedCount++;
+      logger.info(`${EMOJIS.disk} Updated imports → ${path.relative(process.cwd(), file)}`);
+    }
+  }
+
+  logger.success(`${EMOJIS.check} Rewrote imports in ${updatedCount} files.`);
 }

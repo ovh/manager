@@ -17,7 +17,6 @@ yarn muk-cli --check-versions
 ```
 
 **Example Output**
-
 ```
 ℹ 🔍 Checking ODS package versions...
 ⚠ Updates available:
@@ -37,7 +36,6 @@ yarn muk-cli --check-components
 ```
 
 **Example Output**
-
 ```
 ℹ 📁 Found 34 local components
 ℹ 📦 Fetching ODS React v19.2.0 tarball...
@@ -60,7 +58,6 @@ yarn muk-cli --update-versions
 ```
 
 **Example Output**
-
 ```
 ✔ Updated 3 ODS dependencies
 ✔ @ovhcloud/ods-components: 18.6.2 → 18.6.4
@@ -70,7 +67,6 @@ yarn muk-cli --update-versions
 ```
 
 If all are current:
-
 ```
 ✅ All ODS versions are already up to date!
 ✨ Done in 1.78s.
@@ -87,7 +83,6 @@ yarn muk-cli --add-components
 ```
 
 #### Supported Scenarios
-
 * Simple components (no children, e.g. `badge`, `progress-bar`)
 * Nested components (with subcomponents, e.g. `form-field`, `datepicker`, `range`)
 * Hook passthroughs (`useFormField`)
@@ -105,7 +100,6 @@ yarn muk-cli --add-components-documentation
 ```
 
 #### 🧠 What It Does
-
 1. Detects the latest `@ovhcloud/ods-react` version from npm.
 2. Downloads (or reuses) the GitHub tarball for that version.
 3. Streams documentation files under `/storybook/stories/components/`.
@@ -114,159 +108,79 @@ yarn muk-cli --add-components-documentation
    packages/manager-wiki/stories/manager-ui-kit/components/<component>/base-component-doc/
    ```
 5. Caches the tarball for **7 days** to avoid redundant downloads.
+6. Synchronizes Storybook base-documents:
+   ```
+   packages/manager-wiki/stories/manager-ui-kit/base-documents/
+   ```
+7. Rewrites imports:
+  - `../../../src/` → `../../../base-documents/`
+  - `ods-react/src/` → `@ovhcloud/ods-react`
 
----
-
-### 🪄 Example Output
-
+**Example Output**
 ```
 ℹ 📦 Starting Design System documentation sync…
 ℹ ℹ️ ODS React latest version: 19.2.1
-ℹ 📦 Preparing to extract ODS docs (v19.2.1)…
-ℹ 📦 Using cached v19.2.1 (age: 0.0 days, fresh < 7.0 days)
 ✔ 💾 Served 85 documentation files from cache.
-ℹ ℹ️ Starting component documentation sync (streaming mode)…
 ℹ 📁 Found existing component: 'accordion'
-ℹ 💾 Writing file → packages/manager-wiki/.../accordion/base-component-doc/documentation.mdx
-ℹ 💾 Writing file → packages/manager-wiki/.../accordion/base-component-doc/technical-information.mdx
-✔ ✅ Completed streaming sync — created: 2, updated: 40, files written: 84
-✔ ✅ Sync complete — 2 new, 40 updated, 84 files streamed.
+✔ ✅ Sync complete — 45 new, 42 updated, 171 files streamed.
 ```
 
 ---
 
 ## ⚙️ 2. Streaming Architecture
 
-### 🧩 High-Level Data Flow
-
+### 2.1 High-Level Flow
 ```
 GitHub tarball (.tar.gz)
    │
-   ├─▶ streamTarGz(url)
-   │     ├─→ Reads tarball as Node.js stream (HTTP + gzip)
-   │     └─→ Emits each entry (file) as a readable stream
-   │
+   ├─▶ streamTarGz()
    ├─▶ extractDesignSystemDocs()
-   │     ├─→ Wraps tar stream with cache management
-   │     └─→ Calls onFileStream(entryPath, stream)
-   │
    ├─▶ createAsyncQueue()
-   │     ├─→ Async generator buffering file streams
-   │     └─→ Handles backpressure automatically
-   │
    └─▶ streamComponentDocs()
-         ├─→ Extracts component name and relative path
-         ├─→ Ensures directories exist
-         └─→ Pipes content stream to disk
 ```
 
----
-
-### ⚙️ Core Streaming Mechanisms
-
-#### 2.1 Stream Extraction
-
-`streamTarGz()` uses Node’s streaming API to extract `.tar.gz` contents:
-
+### 2.2 Core Streaming Functions
+#### Stream Extraction
 ```js
 pipeline(
   https.get(url),
   zlib.createGunzip(),
   tar.extract({ onentry(entry) { ... } })
-)
-```
-
-Each `entry` is processed **as it’s read** — no full-file buffering.
-
----
-
-#### 2.2 Stream Bridge (Async Queue)
-
-To decouple producer (tar extractor) and consumer (file writer):
-
-```js
-const queue = createAsyncQueue();
-
-await extractDesignSystemDocs({
-  onFileStream: async (tarPath, fileStream) => {
-    await queue.push({ tarPath, stream: fileStream });
-  },
-});
-
-queue.end();
-await streamComponentDocs(queue);
-```
-
-`createAsyncQueue()` exposes an async iterator with controlled concurrency and backpressure handling — perfect for file I/O workloads.
-
----
-
-#### 2.3 Stream Consumer (File Writer)
-
-Each `.mdx` file is streamed to disk via `stream.pipeline()` for safety:
-
-```js
-await pipeline(
-  fileStream,
-  fs.createWriteStream(destFile)
 );
 ```
+Each `entry` is processed **as it’s read** — no full buffering.
 
-This ensures:
-- Automatic cleanup on error
-- Backpressure-aware writes
-- Consistent memory usage even for large archives
-
----
-
-#### 2.4 Cache Layer
-
-ODS tarballs and extracted documentation are cached in:
-
+#### Stream Bridge
+```js
+const queue = createAsyncQueue();
+await extractDesignSystemDocs({ onFileStream: q.push });
+await streamComponentDocs(queue);
 ```
-packages/manager-tools/manager-muk-cli/target/.cache/ods-docs/
-│
-├── ods-docs-meta.json        # { version, timestamp, checksum }
-├── ods-docs-files.json       # Extracted files (path → buffer)
-└── history/                  # (optional future rollback snapshots)
+Manages concurrency and backpressure.
+
+#### Stream Consumer
+```js
+await pipeline(fileStream, fs.createWriteStream(destFile));
 ```
+Backpressure-safe, cleans up on error.
 
-TTL: 7 days. Subsequent runs read directly from cache if fresh.
-
----
-
-### ⚡ Why Streams?
-
-| Concern | Solution |
-|----------|-----------|
-| Large tarballs | Streamed processing — no buffering in memory |
-| Network efficiency | Progressive gzip decompression |
-| Parallel tasks | Async queue for backpressure-safe file writes |
-| Crash safety | `pipeline()` handles errors atomically |
-| Reuse | Cached tarball enables offline operation |
+#### Cache Layer
+```
+target/.cache/ods-docs/
+├── ods-docs-meta.json
+└── ods-docs-files.json
+```
+TTL: 7 days — fully reusable offline.
 
 ---
 
 ## 🧱 3. Codebase Layout
-
 ```
 manager-muk-cli/
 ├─ src/
 │  ├─ commands/
-│  │  ├─ check-versions.js
-│  │  ├─ check-components.js
-│  │  ├─ update-versions.js
-│  │  ├─ add-components.js
-│  │  └─ add-components-documentation.js
 │  ├─ core/
-│  │  ├─ ods-documentation-tarball-utils.js
-│  │  ├─ ods-components-tarball-utils.js
-│  │  ├─ tarball-utils.js
-│  │  ├─ file-utils.js
-│  │  ├─ tasks-utils.js
-│  │  └─ log-manager.js
 │  ├─ config/
-│  │  └─ muk-config.js
 └─ target/.cache/ods-docs/
 ```
 
@@ -276,37 +190,54 @@ manager-muk-cli/
 
 | Principle | Description |
 |------------|--------------|
-| **Streaming-first** | All large I/O and network ops use Node.js streams |
-| **Memory-safe** | No buffering — constant memory footprint |
-| **Composable** | Modular functions for each pipeline stage |
-| **Idempotent** | Re-running the CLI produces deterministic results |
-| **Offline-safe** | Cached tarballs enable repeated runs without network |
-| **Verbose logging** | Emoji logs for visibility at every stage |
+| **Streaming-first** | All I/O ops use Node streams |
+| **Memory-safe** | Constant memory footprint |
+| **Composable** | Modular, small functions |
+| **Idempotent** | Deterministic results |
+| **Offline-safe** | Cache-first retry |
+| **Verbose logging** | Emoji logs for visibility |
+| **Configurable** | Rewrite rules in `muk-config.js` |
 
 ---
 
 ## ✅ 5. Advantages
-
-* 🔁 Automatic synchronization of ODS documentation
+* 🔁 Auto-synced ODS documentation and base-docs
 * ⚡ Cached and resumable (7-day TTL)
-* 🧩 Full parity with ODS components
-* 🧠 Low-memory stream pipeline with async backpressure
-* 🪶 Reusable architecture (can be extended for storybook or theme docs)
-* 🧱 Modular, testable, and CI-ready
+* 🧩 Full parity with ODS React components
+* 🧠 Low-memory async pipeline
+* 🧱 Modular, testable, CI-ready
+* 🔧 Configurable rewriting rules
 
 ---
 
 ## 🧩 6. Cache Troubleshooting
-
-Remove corrupted cache:
 ```bash
 rm -rf packages/manager-tools/manager-muk-cli/target/.cache/ods-docs
 ```
-
-Re-run the sync to rebuild it.
+Rebuilds clean cache on rerun.
 
 ---
 
-## 🪪 7. License
+## 🧩 7. Configuration Extraction
 
+`muk-config.js` centralizes regex, rewrite, and Storybook folder logic.
+
+```js
+export const MUK_IMPORT_REWRITE_RULES = [
+  {
+    name: 'base-documents',
+    pattern: /((?:\..\/){2,3})src\//g,
+    replacer: (_, prefix) => `${prefix}base-documents/`,
+  },
+  {
+    name: 'ods-react',
+    pattern: /(['"])[^'"]*ods-react\/src[^'"]*/g,
+    replacer: (_, quote) => `${quote}@ovhcloud/ods-react`,
+  },
+];
+```
+
+---
+
+## 🪪 8. License
 BSD-3-Clause © OVH SAS

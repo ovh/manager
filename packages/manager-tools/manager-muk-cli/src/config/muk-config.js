@@ -142,15 +142,28 @@ export const MUK_WIKI_BASED_DOCUMENT = path.join(
 );
 
 /**
- * Subpath inside the ODS tarball where Storybook sources live.
- * We will mirror {components,constants,helpers} from here.
- *
- * Example tar paths:
- *   design-system-<tag>/packages/storybook/src/components/...
- *   design-system-<tag>/packages/storybook/src/constants/...
- *   design-system-<tag>/packages/storybook/src/helpers/...
+ * Wiki import-rewrite configuration
  */
-export const ODS_STORYBOOK_SRC_SUBPATH = 'packages/storybook/src';
+export const MUK_IMPORT_REWRITE_RULES = [
+  {
+    name: 'base-documents',
+    pattern: /((?:\.\.\/){2,3})src\//g,
+    replacer: (_, prefix) => `${prefix}base-documents/`,
+  },
+  {
+    name: 'ods-react',
+    pattern: /(['"])[^'"]*ods-react\/src[^'"]*/g,
+    replacer: (_, quote) => `${quote}@ovhcloud/ods-react`,
+  },
+];
+
+/**
+ * Storybook folder and path configuration
+ */
+export const MUK_STORYBOOK_FOLDERS = ['components', 'constants', 'helpers'];
+
+export const MUK_STORYBOOK_ENTRY_REGEX =
+  /packages\/storybook\/src\/(components|constants|helpers)\//;
 
 /**
  * NPM package names that are validated and potentially updated

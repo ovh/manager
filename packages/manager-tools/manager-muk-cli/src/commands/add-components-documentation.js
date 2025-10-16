@@ -1,5 +1,6 @@
-import { EMOJIS } from '../config/muk-config.js';
+import { EMOJIS, MUK_WIKI_COMPONENTS } from '../config/muk-config.js';
 import {
+  rewriteWikiComponentImports,
   syncComponentDocs,
   syncStorybookBaseDocuments,
 } from '../core/component-documentation-utils.js';
@@ -29,20 +30,22 @@ import { logger } from '../utils/log-manager.js';
 export async function addComponentsDocumentation() {
   logger.info(`${EMOJIS.package} Starting Design System documentation sync…`);
 
-  // --- Step 1: Component documentation sync
+  // 1 Components
   const componentResult = await safeSync('component base-docs', syncComponentDocs);
 
-  // --- Step 2: Storybook base documents sync
+  // 2 Storybook base-documents
   const storybookResult = await safeSync('storybook base-documents', syncStorybookBaseDocuments);
 
-  // --- Aggregate statistics
-  const stats = aggregateOperationsStats([componentResult, storybookResult]);
+  // 3 Rewrite imports
+  rewriteWikiComponentImports(MUK_WIKI_COMPONENTS);
 
+  // 4 Aggregate
+  const stats = aggregateOperationsStats([componentResult, storybookResult]);
   logger.success(
     `${EMOJIS.check} Sync complete — ${stats.created} new, ${stats.updated} updated, ${stats.total} files streamed.`,
   );
 
   logger.info(
-    `${EMOJIS.rocket} Components updated under their base-doc folders, and Storybook sources mirrored to 'stories/manager-ui-kit/base-documents'.`,
+    `${EMOJIS.rocket} Components updated and imports normalized under 'stories/manager-ui-kit'.`,
   );
 }
