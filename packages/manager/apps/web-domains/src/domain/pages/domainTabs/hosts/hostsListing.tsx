@@ -17,16 +17,31 @@ import { useEffect, useState } from 'react';
 import { useHostsDatagridColumns } from '@/domain/hooks/domainTabs/useHostsDatagridColumns';
 import { useGetDomainResource } from '@/domain/hooks/data/query';
 import { StatusEnum } from '@/domain/enum/Status.enum';
+import { DrawerActionEnum } from '@/domain/enum/hostConfiguration.enum';
+import HostDrawer from '@/domain/components/Host/HostDrawer';
+import { THost } from '@/domain/types/host';
 import Loading from '@/domain/components/Loading/Loading';
 import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleInformation';
 
 export default function HostsListingTab() {
-  const params = useParams();
   const { t } = useTranslation(['domain', NAMESPACES.ACTIONS, NAMESPACES.FORM]);
   const [hostsArray, setHostsArray] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { serviceName } = useParams<{ serviceName: string }>();
 
-  const { domainResource } = useGetDomainResource(params.serviceName);
+  const [drawer, setDrawer] = useState<{
+    isOpen: boolean;
+    action?: DrawerActionEnum;
+  }>({
+    isOpen: false,
+  });
+
+  const [formData, setFormData] = useState<THost>({
+    host: '',
+    ips: [],
+  });
+
+  const { domainResource } = useGetDomainResource(serviceName);
   const { nichandleInformation } = useNichandleInformation();
 
   useEffect(() => {
@@ -112,12 +127,42 @@ export default function HostsListingTab() {
           items={hostsArray}
           totalItems={hostsArray.length}
           topbar={
-            <Button className="mb-4" size={BUTTON_SIZE.sm}>
+            <Button
+              className="mb-6"
+              size={BUTTON_SIZE.sm}
+              onClick={() =>
+                setDrawer({
+                  isOpen: true,
+                  action: DrawerActionEnum.Add,
+                })
+              }
+              data-testid="addButton"
+            >
               {t(`${NAMESPACES.ACTIONS}:add`)}
             </Button>
           }
         />
       </div>
+
+      <HostDrawer
+        drawerAction={DrawerActionEnum.Add}
+        formData={formData}
+        drawer={drawer}
+        setFormData={setFormData}
+        setDrawer={setDrawer}
+        ipv4Supported={
+          domainResource?.currentState?.hostsConfiguration.ipv4Supported
+        }
+        ipv6Supported={
+          domainResource?.currentState?.hostsConfiguration.ipv6Supported
+        }
+        multipleIPsSupported={
+          domainResource?.currentState?.hostsConfiguration.multipleIPsSupported
+        }
+        serviceName={serviceName}
+        checksum={domainResource?.checksum}
+        hostsTargetSpec={domainResource?.targetSpec.hostsConfiguration.hosts}
+      />
     </section>
   );
 }

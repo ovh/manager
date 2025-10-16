@@ -42,6 +42,7 @@ import {
   orderFreeHosting,
 } from '@/domain/data/api/hosting';
 import { FreeHostingOptions } from '@/domain/components/AssociatedServicesCards/Hosting';
+import { THost } from '@/domain/types/host';
 
 export const useGetDomainResource = (serviceName: string) => {
   const { data, isLoading, error } = useQuery<TDomainResource>({
@@ -152,19 +153,24 @@ export const useUpdateDomainResource = (serviceName: string) => {
     mutationFn: ({
       checksum,
       nameServers,
+      hosts,
     }: {
       checksum: string;
-      nameServers: {
+      nameServers?: {
         nameServer: string;
         ipv4?: string;
         ipv6?: string;
       }[];
+      hosts?: THost[];
     }) =>
       updateDomainResource(serviceName, {
         checksum,
         targetSpec: {
           dnsConfiguration: {
             nameServers,
+          },
+          hostsConfiguration: {
+            hosts,
           },
         },
       }),

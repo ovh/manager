@@ -1,6 +1,7 @@
 import { v2, v6 } from '@ovh-ux/manager-core-api';
 import { TDomainOption, TDomainResource } from '@/domain/types/domainResource';
 import { OptionEnum } from '@/common/enum/option.enum';
+import { THost } from '@/domain/types/host';
 
 /**
  *  : Get this Domain properties
@@ -29,12 +30,15 @@ export const updateDomainResource = async (
   payload: {
     checksum: string;
     targetSpec: {
-      dnsConfiguration: {
+      dnsConfiguration?: {
         nameServers: {
           nameServer: string;
           ipv4?: string;
           ipv6?: string;
         }[];
+      };
+      hostsConfiguration?: {
+        hosts: THost[];
       };
     };
   },
