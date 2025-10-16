@@ -12,6 +12,7 @@ import {
 import { TDomainResource } from '@/domain/types/domainResource';
 import { useUpdateDomainResource } from '@/domain/hooks/data/query';
 import { Text } from '@ovhcloud/ods-react';
+import { DrawerActionEnum } from '@/common/enum/common.enum';
 
 interface DnssecDrawerProps {
   readonly drawer: DrawerBehavior;
@@ -19,6 +20,7 @@ interface DnssecDrawerProps {
   readonly serviceName: string;
   readonly checksum: string;
   readonly supportedAlgorithms: TDnssecConfiguration['supportedAlgorithms'];
+  readonly dsRecordsData: TDsDataInterface;
   readonly setDrawer: Dispatch<SetStateAction<DrawerBehavior>>;
 }
 
@@ -28,20 +30,23 @@ export default function DsRecordsDrawer({
   serviceName,
   checksum,
   supportedAlgorithms,
+  dsRecordsData,
   setDrawer,
 }: DnssecDrawerProps) {
   const { t } = useTranslation('domain');
+  const isAddAction = drawer.action === DrawerActionEnum.Add;
   const { addError, addSuccess, clearNotifications } = useNotifications();
   const { updateDomain, isUpdateDomainPending } = useUpdateDomainResource(
     serviceName,
   );
   const { dnssecConfiguration } = targetSpec;
+  const { keyTag, algorithm, publicKey } = dsRecordsData;
   const formDataValues: TDsDataInterface = {
-    keyTag: null,
+    keyTag: isAddAction ? null : keyTag,
     flags: 257,
     //We set the first value from the api return
-    algorithm: supportedAlgorithms[0]?.number,
-    publicKey: '',
+    algorithm: isAddAction ? supportedAlgorithms[0]?.number : algorithm,
+    publicKey: isAddAction ? '' : publicKey,
   };
   const formData = useForm<TDsDataInterface>({
     mode: 'onChange',
@@ -49,7 +54,10 @@ export default function DsRecordsDrawer({
   });
   const { handleSubmit, formState, clearErrors, reset } = formData;
   const onDismiss = () => {
-    reset(formDataValues);
+    // We added the if here to allow the input to be empty if you re-open the drawer on add mode.
+    if (isAddAction) {
+      reset(formDataValues);
+    }
     setDrawer({
       isOpen: false,
       action: null,
@@ -59,7 +67,11 @@ export default function DsRecordsDrawer({
   return (
     <Drawer
       data-testid="drawer"
-      heading={t('domain_tab_dsrecords_drawer_add_title')}
+      heading={
+        isAddAction
+          ? t('domain_tab_dsrecords_drawer_add_title')
+          : t('domain_tab_dsrecords_drawer_modify_title')
+      }
       isOpen={drawer.isOpen}
       onDismiss={() => onDismiss()}
       primaryButtonLabel={t(`${NAMESPACES.ACTIONS}:validate`)}
@@ -88,16 +100,24 @@ export default function DsRecordsDrawer({
           {
             onSuccess: () => {
               addSuccess(
-                t('domain_tab_dsrecords_drawer_add_success', {
-                  keyTag: values.keyTag,
-                }),
+                isAddAction
+                  ? t('domain_tab_dsrecords_drawer_add_success', {
+                      keyTag: values.keyTag,
+                    })
+                  : t('domain_tab_dsrecords_drawer_modify_success', {
+                      keyTag: values.keyTag,
+                    }),
               );
             },
             onError: (e) => {
               addError(
-                t('domain_tab_dsrecords_drawer_add_error', {
-                  error: e.message,
-                }),
+                isAddAction
+                  ? t('domain_tab_dsrecords_drawer_add_error', {
+                      error: e.message,
+                    })
+                  : t('domain_tab_dsrecords_drawer_modify_error', {
+                      error: e.message,
+                    }),
               );
             },
             onSettled: () => {

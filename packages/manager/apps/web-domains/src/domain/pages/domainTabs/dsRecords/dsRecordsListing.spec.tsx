@@ -6,6 +6,7 @@ import DsRecordsListing from '@/domain/pages/domainTabs/dsRecords/dsRecordsListi
 import { serviceInfoDetail } from '@/domain/__mocks__/serviceInfoDetail';
 import { useDomainDsRecordsDatagridColumns } from '@/domain/hooks/domainTabs/useDomainDsRecordsDatagridColumns';
 import { domainZoneMock } from '@/domain/__mocks__/dnsDetails';
+import { ActiveConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 
 vi.mock('@/domain/hooks/data/query', () => ({
   useGetDomainResource: vi.fn(() => ({
@@ -21,8 +22,25 @@ vi.mock('@/domain/hooks/data/query', () => ({
   })),
 }));
 
+vi.mock(import('@/domain/utils/utils'), async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...actual,
+    isDsRecordActionDisabled: vi.fn(() => false),
+  };
+});
+
 describe('DS Records Columns', () => {
-  const { result } = renderHook(() => useDomainDsRecordsDatagridColumns());
+  const setDrawer = vi.fn();
+  const setDsRecordsData = vi.fn();
+  const activeConfiguration = ActiveConfigurationTypeEnum.EXTERNAL;
+  const { result } = renderHook(() =>
+    useDomainDsRecordsDatagridColumns({
+      setDrawer,
+      setDsRecordsData,
+      activeConfiguration,
+    }),
+  );
   const columns = result.current;
   it('should return the correct number of column', () => {
     expect(columns).toHaveLength(6);

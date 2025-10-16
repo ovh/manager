@@ -16,6 +16,7 @@ import { IpsSupportedEnum } from '../enum/hostConfiguration.enum';
 import { THost } from '../types/host';
 import { TDsDataInterface } from '../types/dnssecConfiguration';
 import { algorithm_3 } from '../constants/dsRecords';
+import { ActiveConfigurationTypeEnum } from '../enum/dnsConfigurationType.enum';
 
 export function getLanguageKey(lang: string): LangCode {
   const code = lang.split(/[-_]/)[0].toUpperCase();
@@ -216,4 +217,13 @@ export const getPublicKeyError = (value: string) => {
   }
 
   return '';
+};
+
+export const isDsRecordActionDisabled = (
+  activeConfiguration: ActiveConfigurationTypeEnum,
+) => {
+  if (activeConfiguration === ActiveConfigurationTypeEnum.INTERNAL) {
+    return true;
+  }
+  return false;
 };
