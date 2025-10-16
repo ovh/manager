@@ -27,7 +27,7 @@ export type TFlavorsTableProps = TableProp &
     columns: TableColumn[];
     rows: TableRow[];
     selectable?: boolean;
-    onClick?: (flavorName: string) => void;
+    onRowClick?: (flavorName: string) => void;
   };
 
 const stickyFirstColumnClasses = [
@@ -49,7 +49,7 @@ export const FlavorsTable = memo(
     columns,
     rows,
     className,
-    onClick,
+    onRowClick: onClick,
     selectable = false,
     size = TABLE_SIZE.md,
     variant = TABLE_VARIANT.default,

@@ -3,7 +3,7 @@
   "pci_instances_creation_advanced_parameters": "Erweiterte Einstellungen",
   "pci_instances_creation_quantity_title": "Wählen Sie eine Menge",
   "pci_instances_creation_quantity_label": "Anzahl der zu erstellenden Instanzen",
-  "pci_instance_creation_quantity_rule": "Ihr aktuelles Kontingent erlaubt es Ihnen, gleichzeitig bis zu {{ quota }} Instanz(en) vom Typ {{ type }} für die Region {{ region }} zu erstellen.",
+  "pci_instance_creation_quantity_rule": "Ihr aktuelles Kontingent erlaubt es Ihnen, gleichzeitig bis zu {{ quota }} Instanz(en) vom Typ {{ type }} für die Region {{ region }} zu erstellen. <Link>Überprüfen Sie Ihr Kontingent.</Link>",
   "pci_instance_creation_choose_localization_title": "Wählen Sie einen Standort",
   "pci_instance_creation_select_localization_label": "Wählen Sie einen Standort aus: ",
   "pci_instance_creation_continue_order": "Meine Bestellung fortsetzen",
@@ -31,5 +31,9 @@
   "pci_instance_creation_flavor_unavailable_help": "Dieses Modell ist in Ihrer ausgewählten Region nicht verfügbar. Sie können es jedoch auswählen, müssen aber eine andere Region für dieses Modell wählen.",
   "pci_instance_creation_flavor_unavailable_quota": "Quota nicht verfügbar",
   "pci_instance_creation_flavor_unavailable_quota_help": "Ihr Kontingent erlaubt es Ihnen nicht, dieses Instanzmodell auszuwählen. Bitte erhöhen Sie Ihr Kontingent.",
-  "pci_instance_creation_select_flavor_price_hint": "* Lorem ipsum dolor sit amet"
+  "pci_instance_creation_select_flavor_price_hint": "* Lorem ipsum dolor sit amet",
+  "pci_instance_creation_select_new_region_title": "Wählen Sie eine neue Region",
+  "pci_instance_creation_select_new_region_label": "Wählen Sie eine Region aus",
+  "pci_instance_creation_select_new_region_for_flavor": "Dieses Modell <strong>({{ flavor }})</strong> ist in Ihrer <strong>ausgewählten Region</strong> nicht verfügbar. Sie können es jedoch auswählen, müssen aber eine andere verfügbare Region für dieses Modell wählen.",
+  "pci_instance_creation_select_new_region": "Wählen Sie eine Region aus"
 }

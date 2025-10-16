@@ -3,7 +3,7 @@
   "pci_instances_creation_advanced_parameters": "Configurações avançadas",
   "pci_instances_creation_quantity_title": "Escolher uma quantidade",
   "pci_instances_creation_quantity_label": "Número de instâncias a criar",
-  "pci_instance_creation_quantity_rule": "O seu quota atual permite-lhe criar simultaneamente até {{ quota }} instância(s) do tipo {{ type }} para a região {{ region }}.",
+  "pci_instance_creation_quantity_rule": "O seu quota atual permite-lhe criar simultaneamente até {{ quota }} instância(s) do tipo {{ type }} para a região de {{ region }}. <Link>Consulte o seu quota.</Link>",
   "pci_instance_creation_choose_localization_title": "Escolha uma localização",
   "pci_instance_creation_select_localization_label": "Selecione uma localização: ",
   "pci_instance_creation_continue_order": "Continuar a minha encomenda",
@@ -31,5 +31,9 @@
   "pci_instance_creation_flavor_unavailable_quota": "Quota indisponível",
   "pci_instance_creation_flavor_unavailable_help": "Este modelo não está disponível na sua região selecionada. No entanto, você pode selecioná-lo, mas terá que escolher outra região para este modelo.",
   "pci_instance_creation_flavor_unavailable_quota_help": "O seu quota não permite escolher este modelo de instância. Por favor, aumente o seu quota.",
-  "pci_instance_creation_select_flavor_price_hint": "* Lorem ipsum dolor sit amet"
+  "pci_instance_creation_select_flavor_price_hint": "* Lorem ipsum dolor sit amet",
+  "pci_instance_creation_select_new_region_title": "Escolher uma nova região",
+  "pci_instance_creation_select_new_region_label": "Selecionar uma região",
+  "pci_instance_creation_select_new_region_for_flavor": "Este modelo <strong>({{ flavor }})</strong> não está disponível na sua <strong>região selecionada</strong>. No entanto, você pode selecioná-lo, mas terá que escolher outra região disponível para este modelo.",
+  "pci_instance_creation_select_new_region": "Escolha uma região"
 }

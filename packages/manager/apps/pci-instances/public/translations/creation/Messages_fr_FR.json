@@ -52,5 +52,9 @@
   "pci_instance_creation_availabilityZone_choose_for_me": "Choisir pour moi",
   "pci_instance_creation_availabilityZone_user_choice": "Je choisis ma zone de disponibilité",
   "pci_instance_creation_availabilityZone_help_description_p1": "Dans un environnement cloud, la disponibilité et la résilience des services sont essentielles pour garantir la continuité des opérations, même en cas de panne d’une zone de disponibilité (AZ).",
-  "pci_instance_creation_availabilityZone_help_description_p2": "Comme les instances sont des services zonaux, elles ne sont déployées que dans une seule zone de disponibilité. Pour garantir la résilience, il revient donc au client de répartir manuellement ses instances sur plusieurs zones."
+  "pci_instance_creation_availabilityZone_help_description_p2": "Comme les instances sont des services zonaux, elles ne sont déployées que dans une seule zone de disponibilité. Pour garantir la résilience, il revient donc au client de répartir manuellement ses instances sur plusieurs zones.",
+  "pci_instance_creation_select_new_region_title": "Choisir une nouvelle région",
+  "pci_instance_creation_select_new_region_label": "Selectionner une région",
+  "pci_instance_creation_select_new_region_for_flavor": "Ce modèle <strong>({{ flavor }})</strong> n'est pas disponible dans votre <strong>région selectionnée</strong>. Vous pouvez toutefois le sélectionner mais vous devrez choisir une autre région disponible pour ce modèle.",
+  "pci_instance_creation_select_new_region": "Choisissez une région"
 }
