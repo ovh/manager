@@ -33,5 +33,8 @@
   "netapp_volumes_dashboard_acl": "Contrôle d'accès (ACL)",
   "netapp_volumes_dashboard_snapshots": "Snapshots",
   "netapp_volumes_dashboard_volume_pattern": "Doit uniquement contenir des nombres, lettres, underscores, tirets ou points et un maximum de 256 caractères.",
-  "netapp_volumes_dashboard_mount_path_not_configurated": "Paramètres réseaux non configurés"
+  "netapp_volumes_dashboard_mount_path_not_configurated": "Paramètres réseaux non configurés",
+  "netapp_volumes_dashboard_configuration_title": "Configurer le réseau",
+  "netapp_volumes_dashboard_configuration_bare_metal": "Configurer un réseau privé pour un serveur bare metal",
+  "netapp_volumes_dashboard_configuration_public_cloud": "Configurer un réseau privé pour une instance/ un projet public cloud"
 }
