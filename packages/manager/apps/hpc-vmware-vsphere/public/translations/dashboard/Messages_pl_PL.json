@@ -1,0 +1,16 @@
+{
+  "title": "Dashboard page",
+  "error_service": "No services info",
+  "tabs_label_general_informations": "Informacje ogólne",
+  "tab2": "Tab 2",
+  "back_link": "Powrót do listy",
+  "tabs_label_datacenters": "Centra danych",
+  "tabs_label_users": "Użytkownicy",
+  "tabs_label_security": "Bezpieczeństwo",
+  "tabs_label_operations": "Operacje",
+  "tabs_label_license": "Licencja Windows",
+  "tabs_label_logs": "Logi",
+  "guides_label_discover": "Poznaj Panel klienta",
+  "guides_label_vsphere_access": "Dostęp do vSphere",
+  "guides_label_veeam_backup": "Aktywacja i korzystanie z Veeam Backup"
+}

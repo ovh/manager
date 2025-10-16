@@ -47,6 +47,7 @@
   "dedicatedCloud_configuration_add_datacenter_title": "Ajout d'un datacentre",
   "dedicatedCloud_tab_no_data": "Aucunes données",
   "dedicatedCloud_tab_license": "Licence Windows",
+  "dedicatedCloud_tab_logs": "Logs",
   "dedicatedCloud_datacenter_label": "Datacentre",
   "dedicatedCloud_datacenter_delete": "Supprimer le datacentre",
   "dedicatedCloud_datacenter_loading_error": "Une erreur est survenue lors du chargement des informations de votre datacenter.",

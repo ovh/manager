@@ -1,0 +1,16 @@
+{
+  "title": "Dashboard page",
+  "error_service": "No service",
+  "tabs_label_general_informations": "General information",
+  "tab2": "Tab 2",
+  "back_link": "Back to list",
+  "tabs_label_datacenters": "Datacenters",
+  "tabs_label_users": "Users",
+  "tabs_label_security": "Security",
+  "tabs_label_operations": "Operations",
+  "tabs_label_license": "Windows licence ",
+  "tabs_label_logs": "Logs",
+  "guides_label_discover": "Explore the OVHcloud Control Panel",
+  "guides_label_vsphere_access": "Go to vSphere",
+  "guides_label_veeam_backup": "Enable and use Veeam Backup"
+}

@@ -13,6 +13,7 @@ export const getLogKindsV2 = async (logKindUrl: ApiUrls['logKind']) => {
 export const getLogKindsV6 = async (logKindUrl: ApiUrls['logKind']) => {
   const { data } = await fetchIcebergV6<LogKind>({
     route: logKindUrl,
+    sortBy: 'name',
   });
   return data;
 };
