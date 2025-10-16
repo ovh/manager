@@ -36,7 +36,9 @@
     </div>
 
     <oui-message type="info"
-        ><span data-translate="billing_commitment_info_message"></span
+        ><span
+            data-translate="{{ $ctrl.isUSRegion ? 'billing_commitment_info_message_us' : 'billing_commitment_info_message' }}"
+        ></span
     ></oui-message>
 
     <h4

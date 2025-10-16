@@ -80,7 +80,7 @@
         top
     >
         <span
-            data-translate="billing_services_actions_menu_commit_cancel"
+            data-translate="{{ $ctrl.isUSRegion ? 'billing_services_actions_menu_commit_cancel_us' : 'billing_services_actions_menu_commit_cancel' }}"
         ></span>
     </oui-action-menu-item>
 
@@ -122,11 +122,11 @@
         >
             <span
                 data-ng-if="::!$ctrl.service.hasEngagement()"
-                data-translate="billing_services_actions_menu_resiliate"
+                data-translate="{{ $ctrl.isUSRegion ? 'billing_services_actions_menu_resiliate_us' : 'billing_services_actions_menu_resiliate' }}"
             ></span>
             <span
                 data-ng-if="::$ctrl.service.hasEngagement()"
-                data-translate="billing_services_actions_menu_resiliate_my_engagement"
+                data-translate="{{ $ctrl.isUSRegion ? 'billing_services_actions_menu_resiliate_my_engagement_us' : 'billing_services_actions_menu_resiliate_my_engagement' }}"
             ></span>
         </oui-action-menu-item>
     </div>
@@ -142,11 +142,11 @@
         >
             <span
                 data-ng-if="::!$ctrl.service.hasEngagement()"
-                data-translate="billing_services_actions_menu_resiliate"
+                data-translate="{{ $ctrl.isUSRegion ? 'billing_services_actions_menu_resiliate_us' : 'billing_services_actions_menu_resiliate' }}"
             ></span>
             <span
                 data-ng-if="::$ctrl.service.hasEngagement()"
-                data-translate="billing_services_actions_menu_resiliate_my_engagement"
+                data-translate="{{ $ctrl.isUSRegion ? 'billing_services_actions_menu_resiliate_my_engagement_us' : 'billing_services_actions_menu_resiliate_my_engagement' }}"
             ></span>
         </oui-action-menu-item>
 

@@ -11,6 +11,8 @@
   "billing_resiliate_terminate_error": "Une erreur est survenue lors de la demande de résiliation de ce service :",
   "billing_resiliate_terminateAtEngagementDate_success": "La demande de résiliation de ce service à la date de fin d'engagement a bien été suspendue.",
   "billing_resiliate_terminateAtEngagementDate_error": "Une erreur est survenue lors de la demande de résiliation à la date de fin d'engagement de ce service :",
+  "billing_resiliate_terminateAtEngagementDate_us": "Résilier le service à la date de fin d'engagement",
+  "billing_resiliate_terminateAtEngagementDate_error_us": "Une erreur est survenue lors de la demande de résiliation à la date de fin d'engagement de ce service :",
   "billing_resiliate_terminateAtExpirationDate_success": "La demande de résiliation de ce service à la date d'expiration a bien été prise en compte.",
   "billing_resiliate_terminateAtExpirationDate_error": "Une erreur est survenue lors de la demande de résiliation à expiration de ce service :",
   "billing_resiliate_error": "Une erreur est survenue lors de la demande de résiliation :"

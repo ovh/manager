@@ -1,6 +1,8 @@
 <header class="ml-4 mt-4">
     <oui-back-button on-click="$ctrl.goBack()">
-        <span data-translate="billing_resiliation_title"></span>
+        <span
+            data-translate="{{ $ctrl.isUSRegion ? 'billing_resiliation_title_us' : 'billing_resiliation_title' }}"
+        ></span>
     </oui-back-button>
 </header>
 
@@ -28,7 +30,7 @@
                             value="strategy.strategy"
                         >
                             <span
-                                data-translate="{{'billing_resiliation_choice_' + strategy.strategy }}"
+                                data-translate="{{ strategy.strategy === 'STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE' && $ctrl.isUSRegion ? ('billing_resiliation_choice_' + strategy.strategy + '_us') : ('billing_resiliation_choice_' + strategy.strategy) }}"
                             ></span>
                         </oui-radio>
                     </div>

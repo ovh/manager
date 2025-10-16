@@ -2,11 +2,16 @@ import { SERVICE_TYPE } from '../utils/constants';
 
 export default class BillingResiliationController {
   /* @ngInject */
-  constructor($translate, atInternet, BillingService) {
+  constructor($translate, atInternet, BillingService, coreConfig) {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.BillingService = BillingService;
     this.SERVICE_TYPE = SERVICE_TYPE;
+    this.coreConfig = coreConfig;
+  }
+
+  $onInit() {
+    this.isUSRegion = this.coreConfig.isRegion('US');
   }
 
   resiliate() {
