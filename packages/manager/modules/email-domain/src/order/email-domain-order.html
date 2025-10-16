@@ -25,13 +25,19 @@
             data-editable="!$ctrl.loading.checkout"
         >
             <oui-select
-                class="oui-select_m"
+                class="oui-select_m mb-3"
                 data-items="$ctrl.domains"
                 data-model="$ctrl.model.selectedDomain"
                 data-on-change="$ctrl.onDomainChange()"
                 data-placeholder="{{:: 'mxPlan_order_domain_pick' | translate }}"
             >
             </oui-select>
+            <oui-message data-ng-if="$ctrl.isIdnDomainName" data-type="warning">
+                <p
+                    class="mb-0"
+                    data-translate="mxPlan_order_idn_domain_warning"
+                ></p>
+            </oui-message>
         </oui-step-form>
         <oui-step-form
             data-header="{{:: 'mxPlan_order_offer' | translate }}"
