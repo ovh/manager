@@ -32,7 +32,8 @@ export const FlavorsTableBody = memo(
           <FlavorsTableTr
             key={row.id}
             className={rowClasses}
-            onClick={() => onClick?.(row.id)}
+            {...(onClick &&
+              !row.disabled && { onClick: () => onClick(row.id) })}
             disabled={row.disabled}
           >
             {columns.map((col, colIndex) => {
