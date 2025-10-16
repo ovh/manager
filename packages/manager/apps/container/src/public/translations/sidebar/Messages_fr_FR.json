@@ -28,6 +28,8 @@
   "sidebar_ovhcloud_backup": "OVHcloud Backup",
   "sidebar_backup_billing": "Facturation",
   "sidebar_backup_services": "Services",
+  "sidebar_backup_agent_iaas": "Backup Agent for IaaS",
+  "sidebar_backup_agent_baremetal": "Backup Agent for Bare Metal",
   "sidebar_veeam_backup": "Managed Veeam for VCD",
   "sidebar_all_veeam_backup": "Tous les services",
   "sidebar_dedicated_cloud": "Managed Bare Metal",
