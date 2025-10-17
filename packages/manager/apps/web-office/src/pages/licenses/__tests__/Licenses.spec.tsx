@@ -24,3 +24,13 @@ describe('Licenses Page', () => {
     expect(sortedRows).toHaveTextContent('service_name');
   });
 });
+
+describe('Licenses W3C Validation', () => {
+  // issue with ods on label and input (for / id)
+  it.skip('should have a valid html', async () => {
+    const { container } = render(<Licenses />);
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+});

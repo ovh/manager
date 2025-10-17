@@ -68,3 +68,12 @@ describe('TabsPanel component', () => {
     expect(link1).toHaveAttribute('is-selected', 'false');
   });
 });
+
+describe('TabsPanel W3C Validation', () => {
+  it('should have a valid html', async () => {
+    const { container } = render(<TabsPanel tabs={tabs} />);
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+});

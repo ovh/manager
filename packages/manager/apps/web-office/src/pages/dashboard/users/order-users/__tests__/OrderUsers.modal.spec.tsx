@@ -87,3 +87,13 @@ describe('ModalOrderUsers Component', () => {
     expect(postOrderUsers).toHaveBeenCalledOnce();
   });
 });
+
+describe('ModalOrderUsers W3C Validation', () => {
+  // issue with ods on ods-select and option child element
+  it.skip('should have a valid html', async () => {
+    const { container } = render(<ModalOrderUsers />);
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+});

@@ -42,7 +42,7 @@ const TabsPanel: React.FC<TabsProps> = ({ tabs }) => {
     <OdsTabs>
       {tabs.map((tab: TabItemProps) => (
         <NavLink key={`osds-tab-bar-item-${tab.name}`} to={tab.to} className="no-underline">
-          <OdsTab id={tab.name} role="tab" isSelected={activePanel === tab.name}>
+          <OdsTab id={tab.name} isSelected={activePanel === tab.name}>
             {tab.title}
           </OdsTab>
         </NavLink>

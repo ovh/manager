@@ -59,3 +59,13 @@ describe('Users page', () => {
     expect(orderButton).toHaveAttribute('label', commonTranslation.users_order_licenses);
   });
 });
+
+describe('Users page W3C Validation', () => {
+  // issue with ods on label and input (for / id)
+  it.skip('should have a valid html', async () => {
+    const { container } = render(<Users />);
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+});

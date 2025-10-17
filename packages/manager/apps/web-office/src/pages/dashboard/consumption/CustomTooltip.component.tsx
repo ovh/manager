@@ -36,19 +36,19 @@ const CustomTooltip: React.FC<CustomTooltipProps> = ({ payload, locale }) => {
       <OdsText preset={ODS_TEXT_PRESET.paragraph}>
         <span data-testid="relative-date">{relativeDate}</span>
 
-        <span className="flex">
-          <div className="mr-4" data-testid="officeBusiness">
+        <div className="flex">
+          <span className="mr-4" data-testid="officeBusiness">
             {t('officeBusiness_serie_name')}
-          </div>
+          </span>
           {officeBusiness}
-        </span>
+        </div>
 
-        <span className="flex">
-          <div className="mr-4" data-testid="officeProPlus">
+        <div className="flex">
+          <span className="mr-4" data-testid="officeProPlus">
             {t('officeProPlus_serie_name')}
-          </div>
+          </span>
           {officeProPlus}
-        </span>
+        </div>
       </OdsText>
     </div>
   );

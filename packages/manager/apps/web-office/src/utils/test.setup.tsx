@@ -3,6 +3,8 @@ import React from 'react';
 import type { ResponsiveContainerProps } from 'recharts';
 import { afterEach, vi } from 'vitest';
 
+import '@ovh-ux/manager-static-analysis-kit/tests/html-w3c-tests-setup';
+
 import {
   licensesMock,
   licensesPrepaidExpandedMock,
