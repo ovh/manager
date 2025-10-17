@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 export enum Step {
-  Config = 0,
-  Payment = 1,
-  CreditConfirmation = 2,
+  Config = 1,
+  Payment = 2,
+  CreditConfirmation = 3,
 }
 
 const getStepStates = (currentStep: Step) => ({
