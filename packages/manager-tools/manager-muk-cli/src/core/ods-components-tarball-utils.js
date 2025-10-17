@@ -1,25 +1,32 @@
 import https from 'node:https';
-import process from 'node:process';
 
 import {
-  CACHE_DIR,
+  DISABLE_ODS_COMPONENTS_CACHE,
   EMOJIS,
-  META_CACHE_FILE,
-  ODS_REACT_LATEST_URL,
-  TAR_CACHE_FILE,
+  ODS_COMPONENTS_CACHE_DIR,
+  ODS_COMPONENTS_LATEST_URL,
+  ODS_COMPONENTS_META_CACHE_FILE,
+  ODS_COMPONENTS_TAR_CACHE_FILE,
 } from '../config/muk-config.js';
 import { logger } from '../utils/log-manager.js';
 import { toPascalCase } from './file-utils.js';
-import { createTarballCache, streamTarGz } from './tarball-cache-utils.js';
+import { createTarballCache } from './tarball-cache-utils.js';
+import { streamTarGz } from './tarball-utils.js';
 
 /**
- * Fetch metadata for the latest ODS React package from npm.
- * @returns {Promise<{ version: string, tarball: string }>} Latest version and tarball URL.
+ * Fetch the latest metadata for the ODS Components NPM package.
+ *
+ * This function retrieves the `version` and `dist.tarball` URL from the NPM registry.
+ * It is used by `extractOdsComponentsTarball()` to determine which version of the
+ * tarball to download.
+ *
+ * @async
+ * @returns {Promise<{ version: string, tarball: string }>} Package version and tarball URL.
  */
-export async function getOdsPackageMetadata() {
+export async function getOdsComponentsPackageMetadata() {
   return new Promise((resolve, reject) => {
     https
-      .get(ODS_REACT_LATEST_URL, (res) => {
+      .get(ODS_COMPONENTS_LATEST_URL, (res) => {
         let data = '';
         res.on('data', (chunk) => (data += chunk));
         res.on('end', () => {
@@ -36,26 +43,30 @@ export async function getOdsPackageMetadata() {
 }
 
 /**
- * Download, extract, and cache the ODS React tarball.
- * If a valid cache exists, it is used instead of re-downloading.
+ * Extracts and caches the contents of the latest ODS Components tarball.
  *
- * @param {RegExp} [pattern] - Optional regex filter to extract only matching entries.
- * @returns {Promise<Map<string, string>>} Map of file paths → contents.
+ * The tarball is downloaded from the NPM registry, decompressed, and parsed.
+ * Extracted file contents are stored in a `Map` keyed by their relative paths.
+ *
+ * To avoid redundant network calls, the result is cached locally using
+ * `createTarballCache()`. Cache can be disabled with the environment variable:
+ * `ADD_COMPONENTS_NO_CACHE=1`
+ *
+ * @async
+ * @param {RegExp} [pattern] - Optional RegExp to filter which paths to include.
+ * @returns {Promise<Map<string, string>>} Map of file paths → file contents (UTF-8).
  */
-export async function extractOdsTarball(pattern) {
-  const { version, tarball } = await getOdsPackageMetadata();
+export async function extractOdsComponentsTarball(pattern) {
+  const { version, tarball } = await getOdsComponentsPackageMetadata();
 
-  // Use functional cache version
   const cache = createTarballCache({
-    cacheDir: CACHE_DIR,
-    metaFile: META_CACHE_FILE,
-    dataFile: TAR_CACHE_FILE,
+    cacheDir: ODS_COMPONENTS_CACHE_DIR,
+    metaFile: ODS_COMPONENTS_META_CACHE_FILE,
+    dataFile: ODS_COMPONENTS_TAR_CACHE_FILE,
   });
 
-  const disableCache = !!process.env.ADD_COMPONENTS_NO_CACHE;
-
-  // Load from cache if available and not disabled
-  if (!disableCache) {
+  // Try to load from cache unless disabled
+  if (!DISABLE_ODS_COMPONENTS_CACHE) {
     const cached = cache.load(version);
     if (cached) {
       if (pattern) {
@@ -82,15 +93,11 @@ export async function extractOdsTarball(pattern) {
 }
 
 /**
- * @typedef {Object} OdsPathContext
- * @property {string} parent - Kebab-case parent component name.
- * @property {string} target - Subcomponent or parent name.
- * @property {string} pascalParent - PascalCase parent name.
- * @property {string} pascalSub - PascalCase subcomponent name.
- */
-
-/**
- * Centralized declarative pattern definitions for ODS component paths.
+ * Component file path templates used to locate `.tsx` source files
+ * across various ODS directory structures.
+ *
+ * Some components live under `src/components`, others under
+ * `package/src/components`, and subcomponents often use PascalCase folders.
  */
 const ODS_PATH_PATTERNS = {
   withSub: {
@@ -106,10 +113,10 @@ const ODS_PATH_PATTERNS = {
 };
 
 /**
- * Expand a path template using contextual replacements.
- * @param {string} template - Template string with placeholders.
- * @param {OdsPathContext} context - Replacement context.
- * @returns {string} Expanded path string.
+ * Expand a template string with provided path parameters.
+ * @param {string} template - Path template with placeholders.
+ * @param {object} context - Replacement values for placeholders.
+ * @returns {string} Expanded file path.
  */
 function expandTemplate(template, context) {
   return template
@@ -120,16 +127,17 @@ function expandTemplate(template, context) {
 }
 
 /**
- * Factory that builds possible ODS source file paths for a given component.
+ * Factory function that returns path builders for ODS component files.
+ *
  * @param {string} parent - Parent component name (kebab-case).
- * @param {string} [subcomponent] - Optional subcomponent name (kebab-case).
+ * @param {string} [subcomponent] - Optional subcomponent name.
  * @returns {{
- *   buildAll: () => string[],
- *   build: (filter?: string) => string[],
- *   buildByKey: (key: string) => string[]
+ *   buildAll(): string[],
+ *   build(filter?: string): string[],
+ *   buildByKey(key: string): string[]
  * }}
  */
-function createOdsPath(parent, subcomponent) {
+function createOdsComponentsPath(parent, subcomponent) {
   const pascalParent = toPascalCase(parent);
   const pascalSub = subcomponent ? toPascalCase(subcomponent) : pascalParent;
   const target = subcomponent ?? parent;
@@ -161,13 +169,14 @@ function createOdsPath(parent, subcomponent) {
 }
 
 /**
- * Find and return the source file content for a given component path list.
- * @param {Map<string,string>} files - Tarball-extracted file map.
- * @param {string[]} possiblePaths - Candidate relative paths.
- * @param {string} name - Component name for logging.
- * @returns {string|null} UTF-8 content or null.
+ * Attempt to find and return a matching component source file from the tarball.
+ *
+ * @param {Map<string,string>} files - Map of tarball entries.
+ * @param {string[]} possiblePaths - List of possible candidate paths.
+ * @param {string} name - Component name (for logging).
+ * @returns {string|null} File content as UTF-8 string, or null if not found.
  */
-function findOdsSourceFile(files, possiblePaths, name) {
+function findOdsComponentsSourceFile(files, possiblePaths, name) {
   const fileEntry = possiblePaths.map((p) => files.get(p)).find(Boolean);
   if (!fileEntry) {
     logger.warn(`⚠ Could not find source file for ${name}`);
@@ -177,9 +186,15 @@ function findOdsSourceFile(files, possiblePaths, name) {
 }
 
 /**
- * Heuristic detection of `children` support in ODS component source.
- * @param {string} content - Component source code.
- * @returns {boolean} True if children detected.
+ * Simple heuristic-based detection for `children` support in React components.
+ * Checks for patterns like:
+ * - `PropsWithChildren`
+ * - `children:` in prop definitions
+ * - `props.children` usage
+ * - JSX child placeholders
+ *
+ * @param {string} content - TypeScript source file content.
+ * @returns {boolean} Whether the component likely accepts `children`.
  */
 function detectChildrenHeuristics(content) {
   return [
@@ -191,16 +206,21 @@ function detectChildrenHeuristics(content) {
 }
 
 /**
- * Detect if an ODS component supports children based on source analysis.
- * @param {string} parent - Kebab-case parent name.
+ * Detect whether an ODS component (or subcomponent) supports React `children`.
+ *
+ * Downloads (or loads from cache) the ODS tarball, locates the relevant `.tsx` file,
+ * and applies heuristic-based analysis.
+ *
+ * @async
+ * @param {string} parent - Component name (kebab-case).
  * @param {string} [subcomponent] - Optional subcomponent.
- * @returns {Promise<boolean|null>} true = supports children, false = stateless, null = not found.
+ * @returns {Promise<boolean|null>} True if supports children, false otherwise, null if not found.
  */
 export async function detectHasChildrenFromTarball(parent, subcomponent) {
-  const files = await extractOdsTarball();
-  const factory = createOdsPath(parent, subcomponent);
+  const files = await extractOdsComponentsTarball();
+  const factory = createOdsComponentsPath(parent, subcomponent);
   const possiblePaths = factory.buildAll();
-  const content = findOdsSourceFile(files, possiblePaths, subcomponent ?? parent);
+  const content = findOdsComponentsSourceFile(files, possiblePaths, subcomponent ?? parent);
 
   if (!content) return null;
   const hasChildren = detectChildrenHeuristics(content);
@@ -215,13 +235,17 @@ export async function detectHasChildrenFromTarball(parent, subcomponent) {
 }
 
 /**
- * Detect whether a subcomponent has its own exported Prop type in the parent index.ts.
- * @param {string} parent - Parent component (e.g., "tooltip").
- * @param {string} subcomponent - Subcomponent (e.g., "tooltip-trigger").
- * @returns {Promise<boolean>} True if type export exists.
+ * Detect whether a subcomponent exports its own prop type (e.g., `type MySubProp`).
+ *
+ * Used to infer type granularity for documentation generation.
+ *
+ * @async
+ * @param {string} parent - Parent component name.
+ * @param {string} subcomponent - Subcomponent name.
+ * @returns {Promise<boolean>} Whether a prop type is exported from its index.
  */
 export async function detectHasTypeExportFromIndex(parent, subcomponent) {
-  const files = await extractOdsTarball();
+  const files = await extractOdsComponentsTarball();
   const possiblePaths = [
     `src/components/${parent}/src/index.ts`,
     `package/src/components/${parent}/src/index.ts`,
@@ -247,12 +271,14 @@ export async function detectHasTypeExportFromIndex(parent, subcomponent) {
 }
 
 /**
- * Extract hooks, constants, and external types from an ODS component index.ts.
- * @param {string} parent - ODS component name (e.g., "datepicker").
- * @returns {Promise<{ hooks: string[], constants: string[], externalTypes: string[] }>}
+ * Extract categorized exports (hooks, constants, external types) from a component index file.
+ *
+ * @async
+ * @param {string} parent - Component name.
+ * @returns {Promise<{hooks: string[], constants: string[], externalTypes: string[]}>}
  */
-export async function extractOdsExportsByCategory(parent) {
-  const files = await extractOdsTarball(/src\/components\/.*\/src\/index\.ts$/);
+export async function extractOdsComponentsExportsByCategory(parent) {
+  const files = await extractOdsComponentsTarball(/src\/components\/.*\/src\/index\.ts$/);
   const entry = [...files.entries()].find(([p]) =>
     p.endsWith(`src/components/${parent}/src/index.ts`),
   );
@@ -275,6 +301,7 @@ export async function extractOdsExportsByCategory(parent) {
       .map((i) => i.trim())
       .filter(Boolean);
 
+    // Ignore re-exports from subcomponents
     if (fromPath.includes('components')) continue;
 
     identifiers
