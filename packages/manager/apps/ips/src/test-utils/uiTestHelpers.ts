@@ -228,3 +228,12 @@ export const getToggleByName = async ({
   }, WAIT_FOR_DEFAULT_OPTIONS);
   return toggle;
 };
+
+export const getModal = async (container: HTMLElement) => {
+  let modal: HTMLOdsModalElement;
+  await waitFor(() => {
+    modal = container.querySelector('ods-modal');
+    expect(modal).toBeInTheDocument();
+  }, WAIT_FOR_DEFAULT_OPTIONS);
+  return modal;
+};
