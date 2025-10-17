@@ -12,6 +12,7 @@
   "account_details_field_name": "Nombre",
   "account_details_field_corporation_name": "Razón social",
   "account_details_field_siret": "SIRET",
+  "account_details_field_siren": "SIREN",
   "account_details_field_vat": "Número de IVA",
   "account_details_field_country": "País de residencia",
   "account_details_field_address": "Dirección",
