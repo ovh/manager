@@ -1,5 +1,5 @@
 import { act } from '@testing-library/react';
-import { beforeEach, vi } from 'vitest';
+import { afterEach, beforeEach, vi } from 'vitest';
 
 import { cleanup, render } from '@/setupTest';
 
@@ -30,9 +30,11 @@ describe('FilterAdd Snapshot Tests', () => {
       isLoading: false,
       isFetched: true,
     });
+    vi.useFakeTimers();
   });
 
   afterEach(async () => {
+    vi.useRealTimers();
     // Wait for all pending async operations and state updates
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 100));
@@ -69,6 +71,7 @@ describe('FilterAdd Snapshot Tests', () => {
   });
 
   it('should match snapshot with date filter type', () => {
+    vi.setSystemTime(new Date(2025, 9, 23, 13));
     const props = {
       columns: [
         {

@@ -25,6 +25,9 @@ export function Price({
   ovhSubsidiary,
   locale,
   isConvertIntervalUnit,
+  isStartingPrice,
+  suffix = '',
+  freePriceLabel,
 }: Readonly<PriceProps>) {
   const { t } = useTranslation('price');
 
@@ -53,7 +56,7 @@ export function Price({
   const components = [
     {
       condition: value === 0,
-      component: <span>{t('price_free')}</span>,
+      component: <span>{freePriceLabel ?? t('price_free')}</span>,
     },
     {
       condition: isFrenchFormat && tax > 0,
@@ -63,6 +66,7 @@ export function Price({
             price={priceWithoutTax}
             label={t('price_ht_label')}
             intervalUnitText={intervalUnitText}
+            suffix={suffix}
           />
           <PriceText
             price={priceWithTax}
@@ -79,12 +83,15 @@ export function Price({
           price={priceWithoutTax}
           label={t('price_ht_label')}
           intervalUnitText={intervalUnitText}
+          suffix={suffix}
         />
       ),
     },
     {
       condition: isGermanFormat && tax > 0,
-      component: <PriceText price={priceWithTax} intervalUnitText={intervalUnitText} />,
+      component: (
+        <PriceText price={priceWithTax} intervalUnitText={intervalUnitText} suffix={suffix} />
+      ),
     },
     {
       condition: isAsiaFormat && (!tax || tax === 0),
@@ -93,6 +100,7 @@ export function Price({
           price={priceWithoutTax}
           label={t('price_gst_excl_label')}
           intervalUnitText={intervalUnitText}
+          suffix={suffix}
         />
       ),
     },
@@ -104,6 +112,7 @@ export function Price({
             price={priceWithoutTax}
             label={t('price_gst_excl_label')}
             intervalUnitText={intervalUnitText}
+            suffix={suffix}
           />
           <PriceText
             price={priceWithTax}
@@ -115,7 +124,9 @@ export function Price({
     },
     {
       condition: isUSFormat,
-      component: <PriceText price={priceWithoutTax} intervalUnitText={intervalUnitText} />,
+      component: (
+        <PriceText price={priceWithoutTax} intervalUnitText={intervalUnitText} suffix={suffix} />
+      ),
     },
   ];
 
@@ -124,7 +135,12 @@ export function Price({
     return null;
   }
 
-  return <Text>{matchingComponent.component}</Text>;
+  return (
+    <Text>
+      {isStartingPrice && value > 0 ? t('price_from_label') : ''}
+      {matchingComponent.component}
+    </Text>
+  );
 }
 
 export default Price;

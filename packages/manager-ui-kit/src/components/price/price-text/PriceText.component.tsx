@@ -11,6 +11,7 @@ export const PriceText: React.FC<PriceTextProps> = ({
   price,
   intervalUnitText,
   label,
+  suffix,
 }) => (
   <Text
     preset={TEXT_PRESET.span}
@@ -33,6 +34,11 @@ export const PriceText: React.FC<PriceTextProps> = ({
     {intervalUnitText && preset === PriceTextPreset.BASE && (
       <Text preset={TEXT_PRESET.span} className="mr-1">
         {intervalUnitText}
+      </Text>
+    )}
+    {suffix && (
+      <Text preset={TEXT_PRESET.span} className="mr-1">
+        {suffix}
       </Text>
     )}
     {preset === PriceTextPreset.WITH_TAX && ')'}
