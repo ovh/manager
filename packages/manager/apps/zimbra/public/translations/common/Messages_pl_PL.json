@@ -147,5 +147,6 @@
   "contactInformation_city": "Miasto",
   "contactInformation_country": "Kraj",
   "redirections": "Przekierowania",
-  "delete_redirections": "Usuń przekierowania"
+  "delete_redirections": "Usuń przekierowania",
+  "delete_email_accounts": "Usuń konta"
 }
