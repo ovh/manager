@@ -1,85 +1,56 @@
-import { Buffer } from 'node:buffer';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
-import https from 'node:https';
-import { createGunzip } from 'node:zlib';
-import tar from 'tar-stream';
 
 import { logger } from '../utils/log-manager.js';
-import { loadJson, saveJson } from './file-utils.js';
+import { ensureDir, loadJson, saveJson } from './file-utils.js';
 
 /**
- * Ensure that a directory exists, creating it recursively if missing.
- * @param {string} dir - Directory path to create.
+ * Validate cache metadata consistency with expected version.
+ * @param {object} meta - Metadata object read from cache.
+ * @param {string} version - Expected version string.
+ * @returns {string|null} Error message if invalid, otherwise null.
  */
-export function ensureDir(dir) {
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+function validateMeta(meta, version) {
+  if (!meta || typeof meta !== 'object') return 'invalid metadata';
+  if (meta.version !== version) return `version mismatch (${meta.version} ≠ ${version})`;
+  return null;
 }
 
 /**
- * Compute a SHA256 checksum for an object or string.
- * @param {object|string} obj - Data to hash.
+ * Validate cache freshness based on timestamp and TTL.
+ * @param {number} timestamp - Unix epoch of cache creation.
+ * @param {number} ttlMs - Time-to-live in milliseconds.
+ * @returns {{ expired: boolean, age?: number, message?: string }}
+ *  `expired` is true if TTL exceeded, otherwise contains age in ms.
+ */
+function validateTTL(timestamp, ttlMs) {
+  const age = Date.now() - timestamp;
+  if (age > ttlMs) {
+    const daysOld = (age / 86_400_000).toFixed(1);
+    return { expired: true, message: `${daysOld} days old` };
+  }
+  return { expired: false, age };
+}
+
+/**
+ * Compute SHA256 checksum for any serializable data.
+ * @param {object|string} obj - Object or string to hash.
  * @returns {string} SHA256 hex digest.
  */
-export function computeChecksum(obj) {
-  return crypto.createHash('sha256').update(JSON.stringify(obj)).digest('hex');
+function computeChecksum(obj) {
+  const data = typeof obj === 'string' ? obj : JSON.stringify(obj);
+  return crypto.createHash('sha256').update(data).digest('hex');
 }
 
 /**
- * Stream and extract a remote `.tar.gz` file, calling a handler for each matched file.
- * Handles redirects transparently.
- *
- * @param {string} url - Remote tarball URL.
- * @param {(entryPath: string) => boolean} filter - Predicate selecting entries to extract.
- * @param {(entryPath: string, content: Buffer) => Promise<void>} onFile - Async handler for file contents.
- * @returns {Promise<void>} Resolves when extraction completes.
+ * Verify that a file map matches the checksum stored in metadata.
+ * @param {object|Map<string,string>} files - Cached file mapping.
+ * @param {{ checksum: string }} meta - Metadata object containing checksum.
+ * @returns {boolean} True if checksum matches.
  */
-export async function streamTarGz(url, filter, onFile) {
-  await new Promise((resolve, reject) => {
-    https
-      .get(url, { headers: { 'User-Agent': 'manager-muk-cli' } }, (res) => {
-        // Handle HTTP redirects
-        if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-          res.resume();
-          streamTarGz(res.headers.location, filter, onFile).then(resolve).catch(reject);
-          return;
-        }
-
-        if (res.statusCode !== 200) {
-          reject(new Error(`Download failed: ${res.statusCode}`));
-          return;
-        }
-
-        const gunzip = createGunzip();
-        const extract = tar.extract();
-
-        extract.on('entry', (header, stream, next) => {
-          const entryPath = header.name;
-          if (header.type === 'file' && filter(entryPath)) {
-            const chunks = [];
-            stream.on('data', (c) => chunks.push(c));
-            stream.on('end', async () => {
-              try {
-                await onFile(entryPath, Buffer.concat(chunks));
-                next();
-              } catch (e) {
-                reject(e);
-              }
-            });
-          } else {
-            stream.resume();
-            stream.on('end', next);
-          }
-        });
-
-        extract.on('finish', resolve);
-        extract.on('error', reject);
-        gunzip.on('error', reject);
-
-        res.pipe(gunzip).pipe(extract);
-      })
-      .on('error', reject);
-  });
+function verifyChecksum(files, meta) {
+  const obj = files instanceof Map ? Object.fromEntries(files) : files;
+  return computeChecksum(obj) === meta.checksum;
 }
 
 /**
@@ -87,76 +58,93 @@ export async function streamTarGz(url, filter, onFile) {
  * @property {string} cacheDir - Directory to store cache files.
  * @property {string} metaFile - Path to metadata JSON file.
  * @property {string} dataFile - Path to cached data JSON file.
+ * @property {number} [ttlMs=604800000] - Time-to-live in milliseconds (default: 7 days).
  */
 
 /**
- * Create a functional tarball cache handler.
- * Provides save/load/clear operations for extracted tarball data.
+ * Create a TTL-aware, checksum-validated tarball cache handler.
  *
- * @param {TarballCacheConfig} config - Cache directory and file paths.
+ * Provides:
+ * - `save(version, filesMap)` → persist cache
+ * - `load(version)` → load cache if valid, unexpired, and consistent
+ * - `clear()` → delete cache directory
+ *
+ * @param {TarballCacheConfig} config - Cache configuration.
  * @returns {{
- *   save: (version: string, filesMap: Map<string,string>) => void,
+ *   save: (version: string, filesMap: Map<string,string>|object) => void,
  *   load: (version: string) => Map<string,string>|null,
  *   clear: () => void
  * }}
- *
- * @example
- * const cache = createTarballCache({ cacheDir, metaFile, dataFile });
- * cache.save('19.3.1', filesMap);
- * const files = cache.load('19.3.1');
  */
-export function createTarballCache({ cacheDir, metaFile, dataFile }) {
+export function createTarballCache({
+  cacheDir,
+  metaFile,
+  dataFile,
+  ttlMs = 7 * 24 * 60 * 60 * 1000,
+}) {
   /**
-   * Save versioned tarball cache to disk.
-   * @param {string} version - Package version (e.g., "19.3.1").
-   * @param {Map<string,string>} filesMap - Extracted file map.
+   * Remove all cache files from the cache directory.
    */
-  function save(version, filesMap) {
-    ensureDir(cacheDir);
-    const filesObject = Object.fromEntries(filesMap);
-    const checksum = computeChecksum(filesObject);
-
-    saveJson(dataFile, filesObject);
-    saveJson(metaFile, { version, checksum, timestamp: Date.now() });
-    logger.info(`💾 Saved cache for v${version}`);
-  }
+  const clear = () => {
+    fs.rmSync(cacheDir, { recursive: true, force: true });
+    logger.info(`🗑️ Cleared cache directory: ${cacheDir}`);
+  };
 
   /**
-   * Load cache if valid for the given version.
-   * @param {string} version - Package version to validate.
-   * @returns {Map<string,string>|null} Cached data, or null if invalid/missing.
+   * Persist current files and metadata to disk.
+   * @param {string} version - Version identifier.
+   * @param {Map<string,string>|object} filesMap - Files to cache.
    */
-  function load(version) {
+  const save = (version, filesMap) => {
+    try {
+      ensureDir(cacheDir);
+      const files = filesMap instanceof Map ? Object.fromEntries(filesMap) : filesMap || {};
+      const checksum = computeChecksum(files);
+      const meta = { version, checksum, timestamp: Date.now() };
+
+      saveJson(dataFile, files);
+      saveJson(metaFile, meta);
+      logger.info(`💾 Saved cache for v${version} (TTL: ${(ttlMs / 86_400_000).toFixed(1)} days)`);
+    } catch (err) {
+      logger.error(`❌ Failed to save cache: ${err.message}`);
+    }
+  };
+
+  /**
+   * Attempt to load a valid cache from disk.
+   * @param {string} version - Version identifier.
+   * @returns {Map<string,string>|null} Cached files map or null if invalid.
+   */
+  const load = (version) => {
     if (!fs.existsSync(metaFile) || !fs.existsSync(dataFile)) return null;
 
     try {
       const meta = loadJson(metaFile);
-      if (meta.version !== version) return null;
+      const invalid = validateMeta(meta, version);
+      if (invalid) return (logger.warn(`⚠️ Invalid cache meta: ${invalid}`), clear(), null);
+
+      const ttl = validateTTL(meta.timestamp, ttlMs);
+      if (ttl.expired) return (logger.warn(`⚠️ Cache expired (${ttl.message})`), clear(), null);
 
       const files = loadJson(dataFile);
-      const map = new Map(Object.entries(files));
 
-      if (map.size < 5) {
-        logger.warn(`⚠️ Cache incomplete for v${version}, regenerating...`);
-        clear();
-        return null;
+      if (!files || typeof files !== 'object') {
+        return (logger.warn(`⚠️ Corrupted cache data`), clear(), null);
       }
 
-      logger.info(`📦 Using cached v${version}`);
+      if (!verifyChecksum(files, meta)) {
+        return (logger.warn(`⚠️ Checksum mismatch`), clear(), null);
+      }
+
+      const map = new Map(Object.entries(files));
+      logger.info(`📦 Using cached v${version} (age ${(ttl.age / 86_400_000).toFixed(1)} days)`);
       return map;
     } catch (err) {
       logger.warn(`⚠️ Failed to load cache: ${err.message}`);
+      clear();
       return null;
     }
-  }
-
-  /**
-   * Remove the entire cache directory recursively.
-   */
-  function clear() {
-    fs.rmSync(cacheDir, { recursive: true, force: true });
-    logger.info(`🗑️ Cleared cache directory: ${cacheDir}`);
-  }
+  };
 
   return { save, load, clear };
 }

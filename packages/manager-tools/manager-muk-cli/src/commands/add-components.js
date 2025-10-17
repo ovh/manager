@@ -21,8 +21,8 @@ import {
 import {
   detectHasChildrenFromTarball,
   detectHasTypeExportFromIndex,
-  extractOdsExportsByCategory,
-} from '../core/ods-tarball-utils.js';
+  extractOdsComponentsExportsByCategory,
+} from '../core/ods-components-tarball-utils.js';
 import { runPostUpdateChecks } from '../core/tasks-utils.js';
 import { logger } from '../utils/log-manager.js';
 import { checkComponents } from './check-components.js';
@@ -152,7 +152,7 @@ export type { ${externalTypes.join(', ')} };
  * @returns {Promise<{ hasHooks: boolean, hasConstants: boolean }>} Whether hooks/constants were created.
  */
 async function createHooksAndConstants(componentName, baseDir, odsName, propsPath) {
-  const { hooks, constants, externalTypes } = await extractOdsExportsByCategory(odsName);
+  const { hooks, constants, externalTypes } = await extractOdsComponentsExportsByCategory(odsName);
 
   // 🪝 Hooks passthrough
   if (hooks.length) {
