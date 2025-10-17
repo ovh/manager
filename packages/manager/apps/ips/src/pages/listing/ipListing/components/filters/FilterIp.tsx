@@ -21,6 +21,12 @@ export const IpFilter = ({ className }: { className?: string }) => {
     }));
   };
 
+  React.useEffect(() => {
+    if (inputValue) {
+      setInputValue((prev) => prev.replace(/[^0-9,./:a-fA-F]/g, '') || '');
+    }
+  }, [inputValue]);
+
   return (
     <form className={className} onSubmit={onSubmit}>
       <OdsInput
@@ -28,7 +34,9 @@ export const IpFilter = ({ className }: { className?: string }) => {
         data-testid="search-ip"
         name="search-ip"
         type={ODS_INPUT_TYPE.search}
-        onOdsChange={(e) => setInputValue(e.target.value as string)}
+        onOdsChange={(e) => {
+          setInputValue(e.detail.value as string);
+        }}
         value={inputValue}
         isClearable
         placeholder={t('listingFilterIp')}
