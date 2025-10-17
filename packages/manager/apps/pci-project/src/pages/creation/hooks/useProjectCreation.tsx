@@ -27,14 +27,12 @@ import {
 import useAntiFraud from './useAntiFraud';
 
 export type UseProjectCreationProps = {
-  t: TFunction;
   cart?: Cart;
   projectItem?: OrderedProduct;
   goToCreditConfirmation: () => void;
 };
 
 export const useProjectCreation = ({
-  t,
   cart,
   projectItem,
   goToCreditConfirmation,
