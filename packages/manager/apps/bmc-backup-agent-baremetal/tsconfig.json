@@ -10,6 +10,6 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.json"],
+  "include": ["src"],
   "exclude": ["node_modules", "dist", "types", "src/__tests__"]
 }
