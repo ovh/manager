@@ -1,0 +1,5 @@
+{
+  "iam_create_condition_hour_label": "Heure",
+  "iam_create_condition_hour_helper": "Séparez chaque heure par une virgule (8,10,11)",
+  "iam_create_condition_hour_placeholder": "Saisissez une heure"
+}

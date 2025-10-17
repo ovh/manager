@@ -1,0 +1,13 @@
+{
+  "iam_create_condition_operator_EQ": "Równy",
+  "iam_create_condition_operator_BEFORE": "Przed",
+  "iam_create_condition_operator_AFTER": "Po",
+  "iam_create_condition_operator_GE": "Większy lub równy",
+  "iam_create_condition_operator_LE": "Mniejszy lub równy",
+  "iam_create_condition_operator_GT": "Większy niż",
+  "iam_create_condition_operator_LT": "Mniejszy niż",
+  "iam_create_condition_operator_IN": "Zawarty w",
+  "iam_create_condition_operator_IN_RANGE": "Zawarty w zakresie",
+  "iam_create_condition_operator_STARTS_WITH": "Zaczyna się od",
+  "iam_create_condition_operator_ENDS_WITH": "Kończy się na"
+}

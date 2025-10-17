@@ -1,0 +1,46 @@
+import { URL } from '../../../../iam.service';
+import { CONDITION_TYPES } from '../conditionType.constants';
+import ElementUiService from '../elementUi.service';
+
+const productTypeKeyTemplate = `resource.${CONDITION_TYPES.PRODUCT_TYPE}`;
+
+export default class IAMConditionProductTypeController {
+  /* @ngInject */
+  constructor($element, iamResourceTypeService) {
+    this.$element = $element;
+    this.iamResourceTypeService = iamResourceTypeService;
+    this.URL = URL.RESOURCE_TYPE;
+  }
+
+  $onInit() {
+    this.initForm();
+  }
+
+  initForm() {
+    const resourceTypes = this.condition?.value?.split(',') || [];
+    this.iamResourceTypeService.transformResourceTypes(resourceTypes);
+    this.productTypes = resourceTypes;
+  }
+
+  updateConditionValues() {
+    const fullKey = `${productTypeKeyTemplate}.${this.criterion?.value}`;
+    this.condition.values = {
+      [fullKey]: this.productTypes.map(({ value }) => value).join(','),
+    };
+    this.condition.hasValue = !!this.condition.values[fullKey];
+  }
+
+  $onChanges({ criterion }) {
+    if (criterion && this.productTypes) {
+      this.updateConditionValues();
+    }
+  }
+
+  transformResourceTypes(resourceTypes) {
+    this.iamResourceTypeService.transformResourceTypes(resourceTypes);
+  }
+
+  scrollSelectIntoView() {
+    ElementUiService.scrollOuiSelectIntoView(this.$element);
+  }
+}

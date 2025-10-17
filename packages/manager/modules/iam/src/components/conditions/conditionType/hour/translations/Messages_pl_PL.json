@@ -1,0 +1,5 @@
+{
+  "iam_create_condition_hour_label": "Godzina",
+  "iam_create_condition_hour_helper": "Oddziel godziny przecinkami (8,10,11)",
+  "iam_create_condition_hour_placeholder": "Wprowadź godzinę"
+}
