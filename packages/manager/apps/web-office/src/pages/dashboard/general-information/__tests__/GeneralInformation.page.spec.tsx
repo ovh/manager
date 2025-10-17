@@ -104,3 +104,12 @@ describe('GeneralInformation page', () => {
     });
   });
 });
+
+describe('GeneralInformation W3C Validation', () => {
+  it('should have a valid html', async () => {
+    const { container } = render(<GeneralInformation />);
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+});

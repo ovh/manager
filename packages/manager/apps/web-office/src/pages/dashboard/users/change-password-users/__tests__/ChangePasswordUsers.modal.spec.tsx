@@ -102,3 +102,13 @@ describe('ModalChangePasswordUsers Component', () => {
     expect(postUsersPassword).toHaveBeenCalledOnce();
   });
 });
+
+describe('ModalChangePasswordUsers W3C Validation', () => {
+  // issue with ods on label and input (for / id)
+  it.skip('should have a valid html', async () => {
+    const { container } = render(<ModalChangePasswordUsers />);
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+});
