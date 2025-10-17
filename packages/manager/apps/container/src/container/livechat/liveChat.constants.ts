@@ -8,3 +8,5 @@ export const ADRIELLY_CHAT_ORIGIN = 'https://chatbot.ovhcloud.com';
 export function adriellyChatUrl(customerLevel: string, subsidiary: string, language: string): string {
   return `https://chatbot.ovhcloud.com/livechat-manager/${customerLevel}/${subsidiary}_${language}/docs/index2.html`;
 }
+export const ADRIELLY_LABEU_CHAT_URL = 'https://eceweb.ovhcloud.dev/system/templates/livechat-manager/STD/FR_fr/docs/index2.html';
+export const SNOW_LABEU_INSTANCE_URL = 'https://agent-chat.build-ovhcloud.tools';

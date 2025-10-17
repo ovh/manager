@@ -25,6 +25,8 @@ import {
   SNOW_CHAT_QUEUE_STORAGE_KEY,
   CHAT_STATE_STORAGE_KEY,
   CHAT_TYPE_STORAGE_KEY,
+  ADRIELLY_LABEU_CHAT_URL,
+  SNOW_LABEU_INSTANCE_URL
 } from './liveChat.constants';
 import { generateSnowChatUrl, generateAdriellyChatUrl } from './liveChat.helpers';
 import ChatDialog from './ChatDialog.component';
@@ -131,8 +133,8 @@ export default function LiveChat({
       ev: MessageEvent<{ event: string; queue: string }>,
     ) => {
 
-      if (ev.origin !== ADRIELLY_CHAT_ORIGIN) return;
-      ev.stopPropagation();
+      // if (ev.origin !== ADRIELLY_CHAT_ORIGIN) return;
+      // ev.stopPropagation();
 
       if (typeof ev.data !== 'object' || ev.data.event !== 'open_agent_chat')
         return;
@@ -171,10 +173,15 @@ export default function LiveChat({
     }
   }, [chatType, chatState]);
 
-  if (region === 'US') return null;
+  let adrielly_url = generateAdriellyChatUrl({ level: 'standard'}, ovhSubsidiary, language);
+  let snow_url = SNOW_INSTANCE_URL;
 
+  if (window.location.hostname.includes('labeu')) {
+    adrielly_url = ADRIELLY_LABEU_CHAT_URL;
+    snow_url = SNOW_LABEU_INSTANCE_URL;
+  }
 
-  if (!chatbotOpen) return null;
+  if (!chatbotOpen || region === 'US') return null;
   return (
     <div
       data-testid="live-chat-wrapper"
@@ -186,7 +193,7 @@ export default function LiveChat({
           title="OVHcloud Chat"
           chatIFrame={chatIFrame}
           visible={!chatbotReduced}
-          url={generateAdriellyChatUrl(supportLevel, ovhSubsidiary, language)}
+          url={adrielly_url}
           key={chatType}
           onClose={handleCloseChat}
           onReduce={() => handleReduceChat(true)}
@@ -198,7 +205,7 @@ export default function LiveChat({
           chatIFrame={chatIFrame}
           showHeader={false}
           visible={!chatbotReduced}
-          url={generateSnowChatUrl(SNOW_INSTANCE_URL, snowContext)}
+          url={generateSnowChatUrl(snow_url, snowContext)}
           key={chatType}
           onClose={handleCloseChat}
           onReduce={() => handleReduceChat(true)}
