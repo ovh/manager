@@ -1,8 +1,6 @@
-import {
-  LifecycleActionsEnum,
-  ServiceInfoRenewMode,
-} from '@/alldoms/enum/service.enum';
-import { TServiceInfo } from '@/alldoms/types';
+import { LifecycleCapacitiesEnum } from '@/alldoms/enum/service.enum';
+import { ServiceInfoRenewModeEnum } from '@/common/enum/common.enum';
+import { TServiceInfo } from '@/common/types/common.types';
 
 export const serviceInfo: TServiceInfo = {
   serviceId: 1111111,
@@ -10,14 +8,15 @@ export const serviceInfo: TServiceInfo = {
     expirationDate: '2026-02-01',
     renew: {
       current: {
-        mode: ServiceInfoRenewMode.Automatic,
+        mode: ServiceInfoRenewModeEnum.Automatic,
         nextDate: '2024-09-25T06:40:26Z',
+        period: 'P1Y',
       },
     },
     lifecycle: {
       current: {
         creationDate: '2024-09-25T06:40:26Z',
-        pendingActions: [LifecycleActionsEnum.EarlyRenewal],
+        pendingActions: [LifecycleCapacitiesEnum.EarlyRenewal],
       },
     },
   },
