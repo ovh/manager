@@ -35,7 +35,6 @@ export default (
           tracking: { pageName: 'onboarding', pageType: PageType.onboarding },
         }}
       />
-      {BackupAgentRoutes}
       <Route path="*" element={<NotFound />} />
     </Route>
   </>
