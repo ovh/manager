@@ -2,12 +2,13 @@ import { Suspense, useRef, useState } from 'react';
 import { Navigate, Outlet, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
-  BaseLayout,
   ChangelogButton,
   Datagrid,
   FilterAdd,
   FilterList,
+  Headers,
   Notifications,
+  PageLayout,
   useColumnFilters,
   useDataGrid,
   useProjectUrl,
@@ -30,8 +31,9 @@ import { CHANGELOG_LINKS } from '@/constants';
 import { ButtonLink } from '@/components/button-link/ButtonLink';
 import { Button } from '@/components/button/Button';
 import { StorageGuidesHeader } from '@/pages/list/StorageGuidesHeader.component';
+import { FileStorageAlphaBanner } from '@/components/banner/FileStorageAlphaBanner.component';
 
-export default function ListingPage() {
+export const ListingPage = () => {
   const { t } = useTranslation(['common', NAMESPACES.ACTIONS]);
   const projectUrl = useProjectUrl('public-cloud');
 
@@ -58,8 +60,8 @@ export default function ListingPage() {
     return <Navigate to="./onboarding" />;
 
   return (
-    <BaseLayout
-      breadcrumb={
+    <PageLayout>
+      <div className="mb-6">
         <OsdsBreadcrumb
           items={[
             {
@@ -71,20 +73,18 @@ export default function ListingPage() {
             },
           ]}
         />
-      }
-      header={{
-        title: t('pci_projects_project_storages_blocks_title'),
-        headerButton: <StorageGuidesHeader />,
-        changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
-      }}
-      message={
-        <div>
-          <PciAnnouncementBanner />
+      </div>
+      <Headers
+        title={t('pci_projects_project_storages_blocks_title')}
+        headerButton={<StorageGuidesHeader />}
+        changelogButton={<ChangelogButton links={CHANGELOG_LINKS} />}
+      />
+      <FileStorageAlphaBanner />
+      <div className="my-5 max-w-[800px]">
+        <PciAnnouncementBanner />
 
-          <Notifications />
-        </div>
-      }
-    >
+        <Notifications />
+      </div>
       <div className="flex items-center flex-wrap justify-between mt-4 gap-y-2">
         <ButtonLink
           to="./new"
@@ -206,6 +206,8 @@ export default function ListingPage() {
       <Suspense>
         <Outlet />
       </Suspense>
-    </BaseLayout>
+    </PageLayout>
   );
-}
+};
+
+export default ListingPage;
