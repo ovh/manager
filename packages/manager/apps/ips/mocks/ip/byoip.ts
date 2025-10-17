@@ -32,6 +32,7 @@ export const getByoipMocks = ({
       : { taskId: '1234' },
     api: 'v6',
     method: 'post',
+    status: isPostAggregateKo ? 400 : 200,
   },
   {
     url: '/ip/:ip/bringYourOwnIp/slice',
@@ -45,5 +46,6 @@ export const getByoipMocks = ({
     response: isPostSliceKo ? { message: 'POST Slice KO' } : { taskId: '1234' },
     api: 'v6',
     method: 'post',
+    status: isPostSliceKo ? 400 : 200,
   },
 ];
