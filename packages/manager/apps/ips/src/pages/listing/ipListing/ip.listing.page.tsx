@@ -13,12 +13,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import Loading from '@/components/Loading/Loading';
 import { urls } from '@/routes/routes.constant';
 import { IpDatagrid } from './components';
-import {
-  IpFilter,
-  TypeFilter,
-  QuickFilter,
-  FilterService,
-} from './components/filters';
+import { IpFilter, QuickFilter, FilterService } from './components/filters';
 import { ListingContextProvider } from '../listingContext';
 import { TRANSLATION_NAMESPACES } from '@/utils';
 
@@ -60,7 +55,6 @@ export default function IpListingPage() {
       <div className="flex flex-row">
         <div className="flex flex-col flex-1 mr-2 md:mr-8 md:flex-row gap-2">
           <IpFilter className="min-w-[200px] max-w-[400px] flex-1" />
-          <TypeFilter className="min-w-[200px] max-w-[400px] flex-1" />
           <FilterService className="min-w-[200px] max-w-[400px] flex-1" />
         </div>
 

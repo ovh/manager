@@ -22,9 +22,9 @@ export const ComboboxServiceItem: React.FC<ComboboxServiceItemProps> = ({
     aria-disabled={isDisabled}
   >
     {!displayName || displayName === name ? (
-      <OdsText className="py-2">{name}</OdsText>
+      <OdsText className="py-1">{name}</OdsText>
     ) : (
-      <div className="flex flex-col py-2">
+      <div className="flex flex-col py-1">
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>{displayName}</OdsText>
         <OdsText preset={ODS_TEXT_PRESET.caption}>{name}</OdsText>
       </div>
