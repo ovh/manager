@@ -8,27 +8,42 @@ import {
   TCartItem,
   TCartItemDetail,
 } from '@/components/cart/Cart.component';
+import { deps } from '@/deps/deps';
+import { selectLocalisationDetails } from '../view-models/cartViewModel';
+import { useProjectId } from '@/hooks/project/useProjectId';
 
 export const CreationCart = () => {
   const { t } = useTranslation('common');
+  const projectId = useProjectId();
   const { control } = useFormContext<TInstanceCreationForm>();
-  const [name, macroRegion, availabilityZone] = useWatch({
+  const [name, macroRegion, microRegion, availabilityZone] = useWatch({
     control,
-    name: ['name', 'macroRegion', 'availabilityZone'],
+    name: ['name', 'macroRegion', 'microRegion', 'availabilityZone'],
   });
 
-  const itemDetails: TCartItemDetail[] = useMemo(() => {
-    const regionDetails = {
-      name: t('localisation'),
-      description: (
-        <Text preset="heading-6" className="text-[--ods-color-heading]">
-          {macroRegion} {availabilityZone && `(${availabilityZone})`}
-        </Text>
-      ),
-    };
+  const localizationDetails = selectLocalisationDetails(deps)(
+    projectId,
+    macroRegion,
+    microRegion,
+    availabilityZone,
+  );
 
-    return [regionDetails];
-  }, [macroRegion, availabilityZone, t]);
+  const itemDetails: TCartItemDetail[] = useMemo(() => {
+    const regionDetails = localizationDetails
+      ? [
+          {
+            name: t('localisation'),
+            description: (
+              <Text preset="heading-6" className="text-[--ods-color-heading]">
+                {`${localizationDetails.city} (${localizationDetails.datacenterDetails})`}
+              </Text>
+            ),
+          },
+        ]
+      : [];
+
+    return [...regionDetails];
+  }, [t, localizationDetails]);
 
   const cartItems: TCartItem[] = useMemo(
     () => [
