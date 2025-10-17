@@ -11,7 +11,7 @@ import {
   FormMessage,
   Input,
 } from '@datatr-ux/uxlib';
-import { AddReplicationFormValues } from '../new/formAddReplication/useAddReplicationForm.hook';
+import { AddReplicationFormValues } from '../new/useAddReplicationForm.hook';
 import { TagInput } from './TagInput.component';
 import { ReplicationRuleContainer } from './ReplicatationRuleContainer';
 
