@@ -145,7 +145,10 @@ export default function PaymentStatus() {
           )}
         </div>
         {isLoading || areBillingServicesLoading ? (
-          <OsdsTable className="block overflow-visible" data-testid="payment_status_skeleton_table">
+          <OsdsTable
+            className="block overflow-visible overflow-x-clip max-w-full"
+            data-testid="payment_status_skeleton_table"
+          >
             <table className="table-auto">
               <tbody>
                 {[1, 2, 3, 4].map((line: number) => (
@@ -219,7 +222,10 @@ export default function PaymentStatus() {
                     {t('ovh_manager_hub_payment_status_tile_no_services')}
                   </OsdsText>
                 ) : (
-                  <OsdsTable className="block overflow-visible" data-testid="payment_status_table">
+                  <OsdsTable
+                    className="block overflow-visible max-w-full"
+                    data-testid="payment_status_table"
+                  >
                     <table className="table-auto">
                       <tbody>
                         {services.map((service: BillingService) => (
@@ -227,7 +233,7 @@ export default function PaymentStatus() {
                             <td scope="row" className="!p-4">
                               {service.url ? (
                                 <OsdsLink
-                                  className="block mb-3"
+                                  className="block mb-3 break-all"
                                   href={service.url}
                                   onClick={trackServiceAccess}
                                   target={OdsHTMLAnchorElementTarget._top}
@@ -240,12 +246,13 @@ export default function PaymentStatus() {
                                   level={ODS_TEXT_LEVEL.body}
                                   size={ODS_TEXT_SIZE._400}
                                   color={ODS_THEME_COLOR_INTENT.text}
+                                  className="break-all"
                                 >
                                   {service.domain}
                                 </OsdsText>
                               )}
                               <OsdsText
-                                className="mb-0"
+                                className="mb-0 break-all"
                                 level={ODS_TEXT_LEVEL.caption}
                                 size={ODS_TEXT_SIZE._200}
                                 color={ODS_THEME_COLOR_INTENT.text}
@@ -253,7 +260,7 @@ export default function PaymentStatus() {
                                 {tProducts(`manager_hub_products_${service.serviceType}`)}
                               </OsdsText>
                             </td>
-                            <td scope="row" className="!p-4">
+                            <td scope="row" className="!p-4 !min-w-min">
                               <div className="lg:inline mb-1">
                                 <Suspense
                                   fallback={
@@ -310,7 +317,7 @@ export default function PaymentStatus() {
                               )}
                             </td>
                             {autorenewLink && (
-                              <td>
+                              <td className="!min-w-min">
                                 <Suspense
                                   fallback={
                                     <OsdsSkeleton data-testid="services_actions_skeleton" />
