@@ -72,7 +72,6 @@ export const createSwiftStorage = async ({
   });
   return storageData;
 };
-
 export interface DownloadSwiftData extends SwiftData {
   data: ProjectStoragePublicUrlCreation;
 }
