@@ -6,7 +6,6 @@ import { ShellContext, useOvhTracking, useRouteSynchro } from '@ovh-ux/manager-r
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 
 import { appName } from '@/App.constants';
-import { BackupAgentContext } from "@ovh-ux/backup-agent/src/BackupAgent.context";
 
 export default function MainLayout() {
   const location = useLocation();
@@ -36,10 +35,8 @@ export default function MainLayout() {
   }, [shell]);
 
   return (
-    <BackupAgentContext.Provider value={{ appName, scope: "Baremetal" }}>
-      <Suspense fallback={null /* Replace with loader if desired */}>
-        <Outlet />
-      </Suspense>
-    </BackupAgentContext.Provider>
+    <Suspense fallback={null /* Replace with loader if desired */}>
+      <Outlet />
+    </Suspense>
   );
 }
