@@ -12,6 +12,19 @@ export const DeleteModalDefault = (props: DeleteModalProps) => {
   return <DeleteModal {...props} open={isOpen} onClose={handleClose} />;
 };
 
+DeleteModalDefault.parameters = {
+  docs: {
+    source: {
+      code: `<DeleteModal 
+  open={isOpen}
+  onClose={handleClose}
+  onConfirmDelete={() => console.log('onDelete')}
+  serviceTypeName="SQL Server"
+/>`,
+    },
+  },
+};
+
 export const DeleteModalWithError = (props: DeleteModalProps) => {
   const [isOpen, setIsOpen] = useState(true);
 
@@ -49,13 +62,16 @@ export const DeleteModalIsLoading = (props: DeleteModalProps) => {
 const meta: Meta = {
   title: 'Manager UI Kit/Components/Delete Modal',
   component: DeleteModal,
+  tags: ['autodocs'],
   argTypes: {
     isOpen: { control: 'boolean' },
     isLoading: { control: 'boolean' },
     error: { control: 'text' },
   },
   args: {
-    onConfirmDelete: () => console.log('onDelete'),
+    onConfirmDelete: () => {
+      // Handle delete action
+    },
     serviceTypeName: 'SQL Server',
     isLoading: false,
   },

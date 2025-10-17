@@ -42,11 +42,33 @@ export const DemoOrder: Story = {
     onClickLink: () => {},
   },
   render: renderComponent,
+  parameters: {
+    docs: {
+      source: {
+        code: `<Order>
+  <Order.Configuration
+    onCancel={handleCancel}
+    onConfirm={handleConfirm}
+    isValid={isValid}
+  >
+    <p>Your order configuration steps here</p>
+  </Order.Configuration>
+  <Order.Summary
+    onFinish={handleFinish}
+    orderLink="https://www.ovh.com"
+    onClickLink={handleClickLink}
+    productName="Product Name"
+  />
+</Order>`,
+      },
+    },
+  },
 };
 
 const meta: Meta = {
   title: 'Manager UI Kit/Components/Order',
   component: Order,
+  tags: ['autodocs'],
   subcomponents: {
     'Order.Summary': Order.Summary as ComponentType<unknown>,
     'Order.Configuration': Order.Configuration as ComponentType<unknown>,

@@ -4,6 +4,7 @@ import { TagsTile } from '@ovh-ux/muk';
 const managerTagsTile = {
   title: 'Manager UI Kit/Components/TagsTile',
   component: TagsTile,
+  tags: ['autodocs'],
 };
 
 type Story = StoryObj<typeof managerTagsTile>;
@@ -30,6 +31,22 @@ export const DemoTagsTile: Story = {
     displayInternalTags: false,
     lineNumber: 5,
     onEditTags: () => {},
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<TagsTile 
+  tags={{
+    Team: 'Support-team',
+    Environment: 'Production',
+    Department: 'Finance',
+  }}
+  displayInternalTags={false}
+  lineNumber={5}
+  onEditTags={() => console.log('Edit tags')}
+/>`,
+      },
+    },
   },
 };
 

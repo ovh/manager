@@ -8,6 +8,18 @@ export const Default = {
     color: BADGE_COLOR.information,
     size: BADGE_SIZE.md,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Badge 
+  color={BADGE_COLOR.information}
+  size={BADGE_SIZE.md}
+>
+  Active
+</Badge>`,
+      },
+    },
+  },
 };
 
 function renderComponent({ children, ...args }) {
@@ -16,6 +28,8 @@ function renderComponent({ children, ...args }) {
 
 const simpleBadge: Meta<BadgeProps> = {
   title: 'Manager UI Kit/Components/Badges/Badge',
+  component: Badge,
+  tags: ['autodocs'],
   render: renderComponent,
   parameters: {
     docs: {
