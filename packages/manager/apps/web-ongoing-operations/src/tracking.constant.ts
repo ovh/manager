@@ -18,3 +18,5 @@ export const LEVEL2 = {
 export const UNIVERSE = 'Web';
 export const SUB_UNIVERSE = 'Web';
 export const APP_NAME = 'web-ongoing-operations';
+
+export const GO_TO = (link: string) => `go-to-${link}`;
