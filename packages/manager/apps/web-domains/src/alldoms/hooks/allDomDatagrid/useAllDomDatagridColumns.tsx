@@ -12,12 +12,12 @@ import DatagridColumnRenewMode from '@/alldoms/components/AllDomDatagridColumns/
 import ServiceActionMenu from '@/alldoms/components/ActionMenu/ServiceActionMenu';
 import { ActionEnum } from '@/alldoms/enum/service.enum';
 import DatagridColumnSkeleton from '@/alldoms/components/AllDomDatagridColumns/DatagridColumnSkeleton';
-import { useNichandle } from '@/alldoms/hooks/nichandle/useNichandle';
+import { useNichandleInformations } from '@/common/hooks/nichandle/useNichandleInformations';
 import { CANCEL_TERMINATE_URL, TERMINATE_URL } from '@/alldoms/constants';
 
 export const useAllDomDatagridColumns = () => {
   const { t } = useTranslation('allDom');
-  const { nichandle } = useNichandle();
+  const { nichandleInformations } = useNichandleInformations();
   const { data: accountUrl } = useNavigationGetUrl(['account', '', {}]);
 
   const columns = [
@@ -81,7 +81,7 @@ export const useAllDomDatagridColumns = () => {
           <DatagridColumnContact
             contact={props.nicAdmin}
             url={
-              props.nicAdmin === nichandle &&
+              props.nicAdmin === nichandleInformations.nichandle &&
               `${accountUrl as string}/useraccount/infos`
             }
           />
@@ -96,7 +96,7 @@ export const useAllDomDatagridColumns = () => {
           <DatagridColumnContact
             contact={props.nicTechnical}
             url={
-              props.nicTechnical === nichandle &&
+              props.nicTechnical === nichandleInformations.nichandle &&
               `${accountUrl as string}/useraccount/infos`
             }
           />
@@ -112,7 +112,7 @@ export const useAllDomDatagridColumns = () => {
           <DatagridColumnContact
             contact={props.nicBilling}
             url={
-              props.nicBilling === nichandle &&
+              props.nicBilling === nichandleInformations.nichandle &&
               `${accountUrl as string}/useraccount/infos`
             }
           />

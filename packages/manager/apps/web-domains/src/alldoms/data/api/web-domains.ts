@@ -1,14 +1,11 @@
 import { v2, v6, aapi } from '@ovh-ux/manager-core-api';
+import { TAllDomDomains, DomainBillingInformation } from '@/alldoms/types';
+import { ServiceInfoUpdateEnum } from '@/alldoms/enum/service.enum';
 import {
-  TAllDomDomains,
-  TServiceInfo,
-  DomainBillingInformation,
-} from '@/alldoms/types';
-import {
-  ServiceInfoUpdateEnum,
+  ServiceInfoRenewModeEnum,
   ServiceRoutes,
-} from '@/alldoms/enum/service.enum';
-import { ServiceInfoRenewModeEnum } from '@/common/enum/common.enum';
+} from '@/common/enum/common.enum';
+import { TServiceInfo } from '@/common/types/common.types';
 
 /**
  *  : List available AllDom services

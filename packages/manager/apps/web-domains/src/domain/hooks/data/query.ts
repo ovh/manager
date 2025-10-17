@@ -14,14 +14,10 @@ import { getDomainZone } from '@/domain/data/api/domainZone';
 import { TDomainZone } from '@/domain/types/domainZone';
 import { order } from '@/domain/types/orderCatalog';
 import { getOrderCatalog } from '@/domain/data/api/order';
-import {
-  getDomainContact,
-  getServiceInformation,
-  updateServiceOption,
-} from '@/common/data/api/common.api';
+import { updateServiceOption } from '@/common/data/api/common.api';
 import { ServiceInfoUpdateEnum } from '@/common/enum/common.enum';
-import { TDomainContact, TServiceInfo } from '@/common/types/common.types';
-import { ServiceRoutes } from '@/alldoms/enum/service.enum';
+import { TServiceInfo, TDomainContact } from '@/common/types/common.types';
+import { getDomainContact } from '@/domain/data/api/domainContact';
 
 export const useGetDomainResource = (serviceName: string) => {
   const { data, isLoading, error } = useQuery<TDomainResource>({
@@ -125,20 +121,6 @@ export const useTerminateAnycastMutation = (
   };
 };
 
-export const useGetServiceInformation = (
-  serviceName: string,
-  serviceRoute: ServiceRoutes,
-) => {
-  const { data, isLoading } = useQuery({
-    queryKey: ['domain', 'service', serviceName],
-    queryFn: () => getServiceInformation(serviceName, serviceRoute),
-  });
-
-  return {
-    serviceInfo: data,
-    isServiceInfoLoading: isLoading,
-  };
-};
 export const useUpdateDomainResource = (serviceName: string) => {
   const queryClient = useQueryClient();
 
