@@ -1,0 +1,15 @@
+{
+  "pricing_ht": "{{ price }} + IVA",
+  "pricing_ttc": "{{ price }} IVA incl.",
+  "pricing_button_hourly": "Hora",
+  "pricing_button_monthly": "Mensual",
+  "pricing_unit_hourly": "/hora",
+  "pricing_unit_monthly": "/mes",
+  "pricing_label": "Precio",
+  "freeBetaLabel": "Beta gratuita",
+  "freeBetaPopover": "El servicio es gratuito durante la fase beta y pasará a ser de pago tras pasar a disponibilidad general.",
+  "pricing_instance_label": "Instancia",
+  "pricing_storage_label": "Almacenamiento",
+  "total_hour_label": "Total por hora",
+  "estimated_month_label": "Mensual (estimado)"
+}

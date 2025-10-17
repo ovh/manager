@@ -1,0 +1,11 @@
+{
+  "dashboardTitle": "Dashboard",
+  "overviewTitle": "Aperçu du bucket",
+  "tagsTitle": "Tags",
+  "bucketNameLabel": "Nom du bucket",
+  "endpointLabel": "Endpoint",
+  "hostLabel": "Virtual Host",
+  "copyLabel": "Copié",
+  "toastErrorTitle": "Erreur",
+  "toastSuccessTitle": "Succès"
+}

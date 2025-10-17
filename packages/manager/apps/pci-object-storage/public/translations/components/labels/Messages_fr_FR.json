@@ -1,0 +1,6 @@
+{
+  "keyFieldLabel": "Clé",
+  "valueFieldLabel": "Valeur",
+  "existingKeyError": "Cette clé existe déjà",
+  "addButtonLabel": "Ajouter"
+}
