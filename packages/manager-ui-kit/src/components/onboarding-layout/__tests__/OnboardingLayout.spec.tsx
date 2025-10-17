@@ -1,7 +1,7 @@
 import { vi, vitest } from 'vitest';
-import { OdsText } from '@ovhcloud/ods-components/react';
 import { fireEvent, screen, act } from '@testing-library/react';
 import { render } from '@/setupTest';
+import { Text } from '../../text';
 import { OnboardingLayout } from '../index';
 import placeholderSrc from '../../../../public/assets/placeholder.png';
 import { useAuthorizationIam } from '../../../hooks/iam';
@@ -38,9 +38,9 @@ describe('specs:onboarding', () => {
         <OnboardingLayout
           title={customTitle}
           description={
-            <OdsText preset="paragraph" className="text-center">
+            <Text preset="paragraph" className="text-center">
               {descriptionText}
-            </OdsText>
+            </Text>
           }
         />,
       );
