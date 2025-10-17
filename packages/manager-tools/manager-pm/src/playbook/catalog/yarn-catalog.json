@@ -23,6 +23,7 @@
   "packages/manager/apps/iam",
   "packages/manager/apps/identity-access-management",
   "packages/manager/apps/iplb",
+  "packages/manager/apps/ips",
   "packages/manager/apps/key-management-service",
   "packages/manager/apps/metrics",
   "packages/manager/apps/nasha",
