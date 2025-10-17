@@ -57,6 +57,7 @@ export default function BillingStatus({ service }: BillingStatusProps) {
             ODS_THEME_COLOR_INTENT[BADGE_INTENT_BY_STATUS[service.getRenew()]]
           }
           inline
+          className="min-h-min"
         >
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.text}
