@@ -31,7 +31,7 @@ Here's a comprehensive example showing all the features of the OnboardingLayout 
 
 ```tsx
 import { OnboardingLayout, LinkCard } from '@ovh-ux/muk';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovh-ux/muk';
 
 const OnboardingPage = () => (
   <OnboardingLayout
@@ -40,10 +40,10 @@ const OnboardingPage = () => (
     
     // Description with rich text
     description={
-      <OdsText preset="paragraph" className="text-center">
+      <Text preset="paragraph" className="text-center">
         Get started with your new service. Follow these simple steps to configure
         and customize your experience.
-      </OdsText>
+      </Text>
     }
     
     // Header image

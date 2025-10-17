@@ -5,24 +5,14 @@ import {
   FilterTypeCategories,
 } from '@ovh-ux/manager-core-api';
 import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-} from '@ovhcloud/ods-components';
-import {
-  OdsButton,
-  OdsPopover,
-  OdsInput,
-} from '@ovhcloud/ods-components/react';
-import {
-  BUTTON_SIZE,
-  BUTTON_VARIANT,
   Button,
   Popover,
   PopoverTrigger,
   PopoverContent,
   Input,
   Icon,
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
   ICON_NAME,
 } from '@ovhcloud/ods-react';
 import { withRouter } from 'storybook-addon-react-router-v6';
@@ -39,11 +29,11 @@ const FiltersStory = () => {
           name="ods-input-username"
           className="w-[30%] mr-2"
           value={searchField}
-          onChange={(event) => setSearchField(event.target.value)}
+          onChange={(e) => setSearchField(e.target.value)}
         />
         <Button
           className="mr-5"
-          size={ODS_BUTTON_SIZE.sm}
+          size={BUTTON_SIZE.sm}
           onClick={() => {
             addFilter({
               key: 'username',

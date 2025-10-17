@@ -1,5 +1,4 @@
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OdsLink } from '@ovhcloud/ods-components/react';
+import { Link, ICON_NAME } from '@ovhcloud/ods-react';
 import { Table } from '@storybook/components';
 import React, { Fragment, ReactNode } from 'react';
 import { StorybookLink } from '../storybook-link';
@@ -43,7 +42,6 @@ const StorybookIdentityCard = ({
                     <Fragment key={idx}>
                       <StorybookLink
                         label={relatedComponent.name}
-                        story="test"
                         href={relatedComponent.href}
                       />
 
@@ -56,10 +54,10 @@ const StorybookIdentityCard = ({
           <tr>
             <th scope="row">Links</th>
             <td>
-              <OdsLink
+              <Link
                 className={styles['identity-card__app-link']}
                 href={githubUrl}
-                icon={ODS_ICON_NAME.externalLink}
+                icon={ICON_NAME.externalLink}
                 label="Github"
                 target="_blank"
               />

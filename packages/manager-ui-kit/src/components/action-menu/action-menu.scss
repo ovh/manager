@@ -26,6 +26,9 @@
       border: none;
       background: none;
     }
+    a::after {
+      background: none;
+    }
 
     &:hover {
       background-color: var(--ods-color-primary-100);

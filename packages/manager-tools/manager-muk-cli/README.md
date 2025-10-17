@@ -17,6 +17,7 @@ yarn muk-cli --check-versions
 ```
 
 **Example Output**
+
 ```
 ℹ 🔍 Checking ODS package versions...
 ⚠ Updates available:
@@ -36,6 +37,7 @@ yarn muk-cli --check-components
 ```
 
 **Example Output**
+
 ```
 ℹ 📁 Found 34 local components
 ℹ 📦 Fetching ODS React v19.2.0 tarball...
@@ -58,6 +60,7 @@ yarn muk-cli --update-versions
 ```
 
 **Example Output**
+
 ```
 ✔ Updated 3 ODS dependencies
 ✔ @ovhcloud/ods-components: 18.6.2 → 18.6.4
@@ -67,6 +70,7 @@ yarn muk-cli --update-versions
 ```
 
 If all are current:
+
 ```
 ✅ All ODS versions are already up to date!
 ✨ Done in 1.78s.
@@ -83,11 +87,12 @@ yarn muk-cli --add-components
 ```
 
 #### Supported Scenarios
-* Simple components (no children, e.g. `badge`, `progress-bar`)
-* Nested components (with subcomponents, e.g. `form-field`, `datepicker`, `range`)
-* Hook passthroughs (`useFormField`)
-* Constants passthroughs (`DatepickerConstants`)
-* External type re-exports
+
+- Simple components (no children, e.g. `badge`, `progress-bar`)
+- Nested components (with subcomponents, e.g. `form-field`, `datepicker`, `range`)
+- Hook passthroughs (`useFormField`)
+- Constants passthroughs (`DatepickerConstants`)
+- External type re-exports
 
 ---
 
@@ -100,6 +105,7 @@ yarn muk-cli --add-components-documentation
 ```
 
 #### 🧠 What It Does
+
 1. Detects the latest `@ovhcloud/ods-react` version from npm.
 2. Downloads (or reuses) the GitHub tarball for that version.
 3. Streams documentation files under `/storybook/stories/components/`.
@@ -113,10 +119,12 @@ yarn muk-cli --add-components-documentation
    packages/manager-wiki/stories/manager-ui-kit/base-documents/
    ```
 7. Rewrites imports:
-  - `../../../src/` → `../../../base-documents/`
-  - `ods-react/src/` → `@ovhcloud/ods-react`
+
+- `../../../src/` → `../../../base-documents/`
+- `ods-react/src/` → `@ovhcloud/ods-react`
 
 **Example Output**
+
 ```
 ℹ 📦 Starting Design System documentation sync…
 ℹ ℹ️ ODS React latest version: 19.2.1
@@ -130,6 +138,7 @@ yarn muk-cli --add-components-documentation
 ## ⚙️ 2. Streaming Architecture
 
 ### 2.1 High-Level Flow
+
 ```
 GitHub tarball (.tar.gz)
    │
@@ -140,7 +149,9 @@ GitHub tarball (.tar.gz)
 ```
 
 ### 2.2 Core Streaming Functions
+
 #### Stream Extraction
+
 ```js
 pipeline(
   https.get(url),
@@ -148,33 +159,41 @@ pipeline(
   tar.extract({ onentry(entry) { ... } })
 );
 ```
+
 Each `entry` is processed **as it’s read** — no full buffering.
 
 #### Stream Bridge
+
 ```js
 const queue = createAsyncQueue();
 await extractDesignSystemDocs({ onFileStream: q.push });
 await streamComponentDocs(queue);
 ```
+
 Manages concurrency and backpressure.
 
 #### Stream Consumer
+
 ```js
 await pipeline(fileStream, fs.createWriteStream(destFile));
 ```
+
 Backpressure-safe, cleans up on error.
 
 #### Cache Layer
+
 ```
 target/.cache/ods-docs/
 ├── ods-docs-meta.json
 └── ods-docs-files.json
 ```
+
 TTL: 7 days — fully reusable offline.
 
 ---
 
 ## 🧱 3. Codebase Layout
+
 ```
 manager-muk-cli/
 ├─ src/
@@ -188,32 +207,35 @@ manager-muk-cli/
 
 ## 🧠 4. Design Principles
 
-| Principle | Description |
-|------------|--------------|
-| **Streaming-first** | All I/O ops use Node streams |
-| **Memory-safe** | Constant memory footprint |
-| **Composable** | Modular, small functions |
-| **Idempotent** | Deterministic results |
-| **Offline-safe** | Cache-first retry |
-| **Verbose logging** | Emoji logs for visibility |
-| **Configurable** | Rewrite rules in `muk-config.js` |
+| Principle           | Description                      |
+| ------------------- | -------------------------------- |
+| **Streaming-first** | All I/O ops use Node streams     |
+| **Memory-safe**     | Constant memory footprint        |
+| **Composable**      | Modular, small functions         |
+| **Idempotent**      | Deterministic results            |
+| **Offline-safe**    | Cache-first retry                |
+| **Verbose logging** | Emoji logs for visibility        |
+| **Configurable**    | Rewrite rules in `muk-config.js` |
 
 ---
 
 ## ✅ 5. Advantages
-* 🔁 Auto-synced ODS documentation and base-docs
-* ⚡ Cached and resumable (7-day TTL)
-* 🧩 Full parity with ODS React components
-* 🧠 Low-memory async pipeline
-* 🧱 Modular, testable, CI-ready
-* 🔧 Configurable rewriting rules
+
+- 🔁 Auto-synced ODS documentation and base-docs
+- ⚡ Cached and resumable (7-day TTL)
+- 🧩 Full parity with ODS React components
+- 🧠 Low-memory async pipeline
+- 🧱 Modular, testable, CI-ready
+- 🔧 Configurable rewriting rules
 
 ---
 
 ## 🧩 6. Cache Troubleshooting
+
 ```bash
 rm -rf packages/manager-tools/manager-muk-cli/target/.cache/ods-docs
 ```
+
 Rebuilds clean cache on rerun.
 
 ---
@@ -240,4 +262,5 @@ export const MUK_IMPORT_REWRITE_RULES = [
 ---
 
 ## 🪪 8. License
+
 BSD-3-Clause © OVH SAS
