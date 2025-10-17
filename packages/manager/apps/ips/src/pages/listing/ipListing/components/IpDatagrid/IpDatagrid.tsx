@@ -70,7 +70,6 @@ export const IpDatagrid = () => {
     >
       <Datagrid
         size={ODS_TABLE_SIZE.sm}
-        variant={ODS_TABLE_VARIANT.striped}
         columns={columns}
         items={paginatedIpList}
         totalItems={filteredIpList?.length}
