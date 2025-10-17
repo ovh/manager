@@ -44,11 +44,6 @@ import {
 } from '@/constants';
 import LabelComponent from '@/components/Label.component';
 
-enum LocationSelectionType {
-  AUTO = 'auto',
-  MANUAL = 'manual',
-}
-
 export function OffsiteReplication() {
   const { t } = useTranslation(['containers/add', 'pci-common']);
   const { trackClick } = useOvhTracking();
@@ -87,10 +82,6 @@ export function OffsiteReplication() {
     submitOffsiteReplication,
     editOffsiteReplication,
   } = useContainerCreationStore();
-
-  const [locationSelection, setLocationSelection] = useState<
-    LocationSelectionType
-  >(LocationSelectionType.AUTO);
 
   const {
     allowedRegions,
@@ -162,21 +153,10 @@ export function OffsiteReplication() {
     (value: boolean) => {
       setOffsiteReplication(value);
       if (!value) {
-        setLocationSelection(LocationSelectionType.AUTO);
         setOffsiteReplicationRegion('');
       }
     },
     [setOffsiteReplication, setOffsiteReplicationRegion],
-  );
-
-  const handleLocationSelectionChange = useCallback(
-    (value: LocationSelectionType) => {
-      setLocationSelection(value);
-      if (value === LocationSelectionType.AUTO) {
-        setOffsiteReplicationRegion('');
-      }
-    },
-    [setOffsiteReplicationRegion],
   );
 
   const handleRegionSelectChange = useCallback(
@@ -208,9 +188,7 @@ export function OffsiteReplication() {
       isLocked={stepper.offsiteReplication.isLocked}
       order={4}
       next={{
-        isDisabled:
-          locationSelection === LocationSelectionType.MANUAL &&
-          !form.offsiteReplicationRegion,
+        isDisabled: form.offsiteReplication && !form.offsiteReplicationRegion,
         action: () => {
           const replicationAction = form.offsiteReplication
             ? 'activate_offsite_replication'
@@ -355,77 +333,9 @@ export function OffsiteReplication() {
             )}
 
             {form.offsiteReplication && (
-              <div className="my-6">
-                <OdsText preset="heading-6" className="mb-4">
-                  {t(
-                    'pci_projects_project_storages_containers_offsite_replication_location_choice_title',
-                  )}
-                </OdsText>
-
+              <div className="my-3">
                 <div className="flex flex-col gap-4">
-                  <div className="flex items-center gap-4">
-                    <OdsRadio
-                      value="auto"
-                      data-testid="location_auto"
-                      isChecked={
-                        locationSelection === LocationSelectionType.AUTO
-                      }
-                      name="locationSelection"
-                      inputId="locationSelection-auto"
-                      onOdsChange={() =>
-                        handleLocationSelectionChange(
-                          LocationSelectionType.AUTO,
-                        )
-                      }
-                    />
-                    <label htmlFor="locationSelection-auto">
-                      <OdsText>
-                        {t(
-                          'pci_projects_project_storages_containers_offsite_replication_location_auto',
-                        )}
-                      </OdsText>
-                      <div>
-                        <OdsText preset="caption">
-                          {t(
-                            'pci_projects_project_storages_containers_offsite_replication_location_auto_description',
-                          )}
-                        </OdsText>
-                      </div>
-                    </label>
-                  </div>
-
-                  <div className="flex items-center gap-4">
-                    <OdsRadio
-                      value="manual"
-                      data-testid="location_manual"
-                      isChecked={
-                        locationSelection === LocationSelectionType.MANUAL
-                      }
-                      name="locationSelection"
-                      inputId="locationSelection-manual"
-                      onOdsChange={() =>
-                        handleLocationSelectionChange(
-                          LocationSelectionType.MANUAL,
-                        )
-                      }
-                    />
-                    <label htmlFor="locationSelection-manual">
-                      <OdsText>
-                        {t(
-                          'pci_projects_project_storages_containers_offsite_replication_location_manual',
-                        )}
-                      </OdsText>
-                      <div>
-                        <OdsText preset="caption">
-                          {t(
-                            'pci_projects_project_storages_containers_offsite_replication_location_manual_description',
-                          )}
-                        </OdsText>
-                      </div>
-                    </label>
-                  </div>
-
-                  {locationSelection === LocationSelectionType.MANUAL && (
+                  {form.offsiteReplication && (
                     <OdsFormField className="mt-4">
                       <LabelComponent
                         className="label-upload"
