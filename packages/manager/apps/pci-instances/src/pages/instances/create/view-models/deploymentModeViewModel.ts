@@ -12,9 +12,9 @@ export type TDeploymentModeDataForCard = {
   url: string;
 };
 
-const mapDeploymentModeForCard = (getMessageFn: MessageProviderPort["getMessage"]) => (
-  mode: TDeploymentMode,
-): TDeploymentModeDataForCard => ({
+const mapDeploymentModeForCard = (
+  getMessageFn: MessageProviderPort['getMessage'],
+) => (mode: TDeploymentMode): TDeploymentModeDataForCard => ({
   mode,
   title: getMessageFn(
     `common:pci_instances_common_instance_${mode}_deployment_mode`,
