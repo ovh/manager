@@ -93,7 +93,7 @@ describe('DownloadKmsPublicCaLink component tests suite', () => {
       label: 'key_management_service_dashboard_button_label_download_ca',
       expectedCa: 'publicCA',
       expectedFilename: 'okms_test-region_public_ca.pem',
-      expectedCertificate: mockCertificates.publicRsaCA,
+      expectedCertificate: mockCertificates.publicCA,
     },
     {
       type: 'publicCaRsaKmip',
