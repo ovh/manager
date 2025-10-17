@@ -728,3 +728,56 @@ export const mockedFlavorCategories = [
     tags: null,
   },
 ];
+
+export const mockedFlavorAvailableRegions = [
+  {
+    label: 'Europe',
+    options: [
+      {
+        customRendererData: {
+          countryCode: 'be',
+          deploymentMode: 'localzone',
+        },
+        label: 'Bruxelles',
+        value: 'EU-WEST-LZ-BRU-A',
+      },
+      {
+        customRendererData: {
+          countryCode: 'fr',
+          deploymentMode: 'region',
+        },
+        label: 'GRA11',
+        value: 'GRA11',
+      },
+      {
+        customRendererData: {
+          countryCode: 'fr',
+          deploymentMode: 'region',
+        },
+        label: 'GRA7',
+        value: 'GRA7',
+      },
+    ],
+  },
+  {
+    label: 'Amerique du Nord',
+    options: [
+      {
+        customRendererData: {
+          countryCode: 'ca',
+          deploymentMode: 'region',
+        },
+        label: 'Beauharnois',
+        value: 'BHS5',
+      },
+      {
+        customRendererData: {
+          countryCode: 'ca',
+          deploymentMode: 'region-3-az',
+        },
+        label: 'Toronto',
+        value: 'TORONTO',
+      },
+    ],
+  },
+];
