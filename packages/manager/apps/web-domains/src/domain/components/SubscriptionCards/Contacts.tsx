@@ -48,12 +48,16 @@ export default function Contacts({
           .filter(Boolean)
           .join(' ');
         return (
-          <Text>{`${displayName}: ${t(contactsMapping[contactType])}`}</Text>
+          <Text
+            key={`${contactDetail.id}-${contactType}`}
+          >{`${displayName}: ${t(contactsMapping[contactType])}`}</Text>
         );
       }
 
       return (
-        <Text>{`${contactDetail.id}: ${t(contactsMapping[contactType])}`}</Text>
+        <Text key={`${contactDetail.id}-${contactType}`}>{`${
+          contactDetail.id
+        }: ${t(contactsMapping[contactType])}`}</Text>
       );
     });
   };
@@ -64,13 +68,13 @@ export default function Contacts({
         {t(`${NAMESPACES.CONTACT}:contacts`)}
       </ManagerTile.Item.Label>
       <div className="flex items-center justify-between">
-        {renderContactsList()}
+        <div>{renderContactsList()}</div>
         <ActionMenu
           id="contacts"
           isCompact
           items={[
             {
-              id: 3,
+              id: 1,
               label: t(
                 'domain_tab_general_information_subscription_handle_contacts',
               ),
