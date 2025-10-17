@@ -12,7 +12,10 @@ import {
   TEXT_PRESET,
 } from '@ovhcloud/ods-react';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
-import { useInstanceBackupPrice } from '@/data/hooks/instance/action/useInstanceBackupPrice';
+import {
+  DistantContinents,
+  useInstanceBackupPrice,
+} from '@/data/hooks/instance/action/useInstanceBackupPrice';
 import { ComboboxField, InputField } from '@/components/form';
 import { TFormFieldsValues } from '@/pages/instances/action/hooks/useBackupFormShema';
 
@@ -21,7 +24,7 @@ export const DistantSnapshotSection = ({
   continents,
 }: {
   projectId: string;
-  continents: ReturnType<typeof useInstanceBackupPrice>['distantContinents'];
+  continents: DistantContinents;
 }) => {
   const { t } = useTranslation('actions');
   const { control } = useFormContext<TFormFieldsValues>();

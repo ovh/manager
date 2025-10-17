@@ -16,6 +16,8 @@ type ContinentRegion = Pick<TProductAvailabilityRegion, 'enabled' | 'name'> & {
   label: string;
 };
 
+export type DistantContinents = Map<string, ContinentRegion[]>;
+
 export const useInstanceBackupPrice = (projectId: string, region: string) => {
   const { i18n } = useTranslation('actions');
   const {
@@ -62,7 +64,7 @@ export const useInstanceBackupPrice = (projectId: string, region: string) => {
     [currentPlan, region],
   );
 
-  const distantContinents = useMemo<Map<string, ContinentRegion[]>>(() => {
+  const distantContinents = useMemo<DistantContinents>(() => {
     if (
       !productAvailability ||
       !currentRegion ||
