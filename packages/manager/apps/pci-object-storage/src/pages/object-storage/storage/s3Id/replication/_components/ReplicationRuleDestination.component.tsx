@@ -13,7 +13,7 @@ import {
   SelectValue,
 } from '@datatr-ux/uxlib';
 import { FormattedStorage } from '@/types/Storages';
-import { AddReplicationFormValues } from '../new/formAddReplication/useAddReplicationForm.hook';
+import { AddReplicationFormValues } from '../new/useAddReplicationForm.hook';
 import { ReplicationRuleContainer } from './ReplicatationRuleContainer';
 
 type ReplicationRuleDestinationProps = {

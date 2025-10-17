@@ -4,12 +4,16 @@ import { Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import BucketOverview from './_components/BucketOverview.components';
 import Tags from './_components/Tags.component';
+import Guides from '@/components/guides/Guides.component';
 
 const Dashboard = () => {
   const { t } = useTranslation('pci-object-storage/storages/s3/dashboard');
   return (
     <>
-      <h2>{t('dashboardTitle')}</h2>
+      <div className="flex justify-between w-full items-center">
+        <h2>{t('dashboardTitle')}</h2>
+        <Guides />
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card>
           <CardHeader>

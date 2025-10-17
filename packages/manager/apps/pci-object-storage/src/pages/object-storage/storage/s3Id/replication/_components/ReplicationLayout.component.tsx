@@ -3,11 +3,11 @@ import { UseFormReturn } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Button, Form } from '@datatr-ux/uxlib';
 import { ReplicationForm } from './ReplicationForm.component';
-import { AddReplicationFormValues } from '../new/formAddReplication/useAddReplicationForm.hook';
+import { AddReplicationFormValues } from '../new/useAddReplicationForm.hook';
 import { FormattedStorage } from '@/types/Storages';
 import Link from '@/components/links/Link.component';
 
-interface ReplicationModalLayoutProps {
+interface ReplicationLayoutProps {
   title: string;
   isLoading: boolean;
   form: UseFormReturn<AddReplicationFormValues>;
@@ -17,14 +17,14 @@ interface ReplicationModalLayoutProps {
   submitButtonText: string;
 }
 
-export const ReplicationModalLayout = ({
+export const ReplicationLayout = ({
   title,
   form,
   availableDestinations,
   isPending,
   onSubmit,
   submitButtonText,
-}: ReplicationModalLayoutProps) => {
+}: ReplicationLayoutProps) => {
   const { t } = useTranslation('pci-object-storage/replication');
 
   return (
