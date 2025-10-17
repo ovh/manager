@@ -142,6 +142,9 @@ const DeleteAutoReplyPage = React.lazy(
 const DeleteEmailAccountPage = React.lazy(
   () => import('@/pages/dashboard/emailAccounts/delete/Delete.modal'),
 );
+const DeleteAllEmailAccountPage = React.lazy(
+  () => import('@/pages/dashboard/emailAccounts/delete-all/DeleteAll.modal'),
+);
 const OrderZimbraAccountsPage = React.lazy(
   () => import('@/pages/dashboard/emailAccounts/order/Order.page'),
 );
@@ -411,6 +414,19 @@ export default (
             },
             breadcrumb: {
               label: 'common:add_email_account',
+            },
+          }}
+        />
+        <Route
+          path={'delete_all'}
+          Component={DeleteAllEmailAccountPage}
+          handle={{
+            tracking: {
+              pageName: DELETE_EMAIL_ACCOUNT,
+              pageType: PageType.popup,
+            },
+            breadcrumb: {
+              label: 'common:delete_email_accounts',
             },
           }}
         />
