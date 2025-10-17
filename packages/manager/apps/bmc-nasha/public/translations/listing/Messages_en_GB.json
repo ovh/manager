@@ -1,8 +1,9 @@
 {
   "home": "Home",
-  "order": "Order",
+  "order": "Order a HA-NAS",
   "open": "Open dashboard",
-  "title": "List",
+  "title": "NAS-HA",
+  "empty_message": "No NASHA services found",
   "serviceName": "Service ID",
   "canCreatePartition": "Partition creation",
   "canCreatePartition_true": "Allowed",

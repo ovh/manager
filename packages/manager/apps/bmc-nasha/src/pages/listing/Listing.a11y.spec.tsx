@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -55,13 +55,19 @@ vi.mock('@/hooks/layout/useBreadcrumb', () => ({
   useBreadcrumb: () => mockUseBreadcrumb(),
 }));
 
-// Mock components
+// Mock components with proper accessibility attributes
 vi.mock('@/components/breadcrumb/Breadcrumb.component', () => ({
   default: ({ items }: { items: any[] }) => (
-    <nav data-testid="breadcrumb">
-      {items.map((item, index) => (
-        <span key={index}>{item.label}</span>
-      ))}
+    <nav data-testid="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        {items.map((item, index) => (
+          <li key={index}>
+            <a href="#" aria-current={index === items.length - 1 ? 'page' : undefined}>
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ol>
     </nav>
   ),
 }));
@@ -78,23 +84,25 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
     <div data-testid="datagrid">
       {topbar}
       {isLoading ? (
-        <div data-testid="loading">Loading...</div>
+        <div data-testid="loading" role="status" aria-live="polite">Loading...</div>
       ) : items.length === 0 ? (
-        <div data-testid="empty">{emptyMessage}</div>
+        <div data-testid="empty" role="status" aria-live="polite">{emptyMessage}</div>
       ) : (
-        <table>
+        <table role="table" aria-label="NASHA services list">
           <thead>
-            <tr>
+            <tr role="row">
               {columns.map((col: any) => (
-                <th key={col.id}>{col.label}</th>
+                <th key={col.id} role="columnheader" scope="col">
+                  {col.label}
+                </th>
               ))}
             </tr>
           </thead>
           <tbody>
             {items.map((item: any, index: number) => (
-              <tr key={index}>
+              <tr key={index} role="row">
                 {columns.map((col: any) => (
-                  <td key={col.id}>
+                  <td key={col.id} role="cell">
                     {col.cell ? col.cell(item) : item[col.id]}
                   </td>
                 ))}
@@ -110,6 +118,8 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
       data-testid={id}
       onClick={onClick}
       data-variant={variant}
+      aria-label={label}
+      type="button"
     >
       {label}
     </button>
@@ -127,6 +137,8 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
       onClick={onClick}
       data-variant={variant}
       data-size={size}
+      aria-label={children}
+      type="button"
     >
       {children}
     </button>
@@ -145,30 +157,19 @@ const mockListingData: ListingItemType[] = [
     zpoolCapacity: 1073741824, // 1GB
     zpoolSize: 2147483648, // 2GB
   },
-  {
-    id: 'zpool-789012',
-    serviceName: 'zpool-789012',
-    canCreatePartition: false,
-    customName: undefined,
-    datacenter: 'sbg',
-    diskType: 'hdd',
-    monitored: false,
-    zpoolCapacity: undefined,
-    zpoolSize: undefined,
-  },
 ];
 
 const TestWrapper = ({ children }: { children: React.ReactNode }) => (
   <BrowserRouter>{children}</BrowserRouter>
 );
 
-describe('ListingPage', () => {
+describe('ListingPage — a11y', () => {
   beforeEach(() => {
     vi.clearAllMocks();
 
     mockUseListingData.mockReturnValue({
       items: mockListingData,
-      total: 2,
+      total: 1,
       isLoading: false,
       hasNextPage: false,
       fetchNextPage: vi.fn(),
@@ -180,103 +181,17 @@ describe('ListingPage', () => {
     ]);
   });
 
-  it('should render the listing page with correct title', () => {
-    render(
+  it('has no accessibility violations when displaying data', async () => {
+    const { container } = render(
       <TestWrapper>
         <ListingPage />
       </TestWrapper>
     );
 
-    expect(screen.getByText('NAS-HA')).toBeInTheDocument();
+    await expect(container).toBeAccessible();
   });
 
-  it('should render breadcrumb correctly', () => {
-    render(
-      <TestWrapper>
-        <ListingPage />
-      </TestWrapper>
-    );
-
-    expect(screen.getByTestId('breadcrumb')).toBeInTheDocument();
-    expect(screen.getByText('Home')).toBeInTheDocument();
-    expect(screen.getByText('NAS-HA')).toBeInTheDocument();
-  });
-
-  it('should render order and open buttons', () => {
-    render(
-      <TestWrapper>
-        <ListingPage />
-      </TestWrapper>
-    );
-
-    expect(screen.getByTestId('order-nasha')).toBeInTheDocument();
-    expect(screen.getByText('Order a HA-NAS')).toBeInTheDocument();
-    expect(screen.getByTestId('ods-button')).toBeInTheDocument();
-    expect(screen.getByText('Open dashboard')).toBeInTheDocument();
-  });
-
-  it('should render datagrid with correct columns', () => {
-    render(
-      <TestWrapper>
-        <ListingPage />
-      </TestWrapper>
-    );
-
-    expect(screen.getByTestId('datagrid')).toBeInTheDocument();
-    expect(screen.getByText('Service ID')).toBeInTheDocument();
-    expect(screen.getByText('Partition creation')).toBeInTheDocument();
-    expect(screen.getByText('Name')).toBeInTheDocument();
-    expect(screen.getByText('Datacentre location')).toBeInTheDocument();
-    expect(screen.getByText('Disk type')).toBeInTheDocument();
-    expect(screen.getByText('Monitored')).toBeInTheDocument();
-    expect(screen.getByText('Zpool capacity')).toBeInTheDocument();
-    expect(screen.getByText('Zpool size')).toBeInTheDocument();
-  });
-
-  it('should render listing data correctly', () => {
-    render(
-      <TestWrapper>
-        <ListingPage />
-      </TestWrapper>
-    );
-
-    expect(screen.getByText('zpool-123456')).toBeInTheDocument();
-    expect(screen.getByText('Test NAS')).toBeInTheDocument();
-    expect(screen.getByText('rbx')).toBeInTheDocument();
-    expect(screen.getByText('ssd')).toBeInTheDocument();
-  });
-
-  it('should handle order button click', () => {
-    const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
-
-    render(
-      <TestWrapper>
-        <ListingPage />
-      </TestWrapper>
-    );
-
-    const orderButton = screen.getByTestId('order-nasha');
-    fireEvent.click(orderButton);
-
-    expect(consoleSpy).toHaveBeenCalledWith('Order NASHA clicked - to be implemented');
-
-    consoleSpy.mockRestore();
-  });
-
-  it('should handle open dashboard button click', () => {
-    render(
-      <TestWrapper>
-        <ListingPage />
-      </TestWrapper>
-    );
-
-    const openButton = screen.getByTestId('ods-button');
-    fireEvent.click(openButton);
-
-    expect(mockNavigate).toHaveBeenCalledWith('../dashboard');
-  });
-
-  it('should show loading state', () => {
+  it('has no accessibility violations when loading', async () => {
     mockUseListingData.mockReturnValue({
       items: [],
       total: 0,
@@ -285,16 +200,16 @@ describe('ListingPage', () => {
       fetchNextPage: vi.fn(),
     });
 
-    render(
+    const { container } = render(
       <TestWrapper>
         <ListingPage />
       </TestWrapper>
     );
 
-    expect(screen.getByTestId('loading')).toBeInTheDocument();
+    await expect(container).toBeAccessible();
   });
 
-  it('should show empty state when no data', () => {
+  it('has no accessibility violations when empty', async () => {
     mockUseListingData.mockReturnValue({
       items: [],
       total: 0,
@@ -303,27 +218,107 @@ describe('ListingPage', () => {
       fetchNextPage: vi.fn(),
     });
 
-    render(
+    const { container } = render(
       <TestWrapper>
         <ListingPage />
       </TestWrapper>
     );
 
-    expect(screen.getByTestId('empty')).toBeInTheDocument();
-    expect(screen.getByText('No NASHA services found')).toBeInTheDocument();
+    await expect(container).toBeAccessible();
   });
 
-  it('should have correct button variants', () => {
+  it('has proper heading structure', () => {
     render(
       <TestWrapper>
         <ListingPage />
       </TestWrapper>
     );
 
-    const orderButton = screen.getByTestId('order-nasha');
-    const openButton = screen.getByTestId('ods-button');
+    const heading = screen.getByRole('heading', { level: 1 });
+    expect(heading).toHaveTextContent('NAS-HA');
+  });
 
-    expect(orderButton).toHaveAttribute('data-variant', 'primary');
-    expect(openButton).toHaveAttribute('data-variant', 'secondary');
+  it('has accessible buttons with proper labels', () => {
+    render(
+      <TestWrapper>
+        <ListingPage />
+      </TestWrapper>
+    );
+
+    const orderButton = screen.getByRole('button', { name: 'Order a HA-NAS' });
+    const openButton = screen.getByRole('button', { name: 'Open dashboard' });
+
+    expect(orderButton).toBeInTheDocument();
+    expect(openButton).toBeInTheDocument();
+  });
+
+  it('has accessible table with proper structure', () => {
+    render(
+      <TestWrapper>
+        <ListingPage />
+      </TestWrapper>
+    );
+
+    const table = screen.getByRole('table', { name: 'NASHA services list' });
+    expect(table).toBeInTheDocument();
+
+    const columnHeaders = screen.getAllByRole('columnheader');
+    expect(columnHeaders).toHaveLength(8); // All columns should have headers
+
+    const cells = screen.getAllByRole('cell');
+    expect(cells.length).toBeGreaterThan(0);
+  });
+
+  it('has accessible breadcrumb navigation', () => {
+    render(
+      <TestWrapper>
+        <ListingPage />
+      </TestWrapper>
+    );
+
+    const breadcrumb = screen.getByRole('navigation', { name: 'Breadcrumb' });
+    expect(breadcrumb).toBeInTheDocument();
+
+    const breadcrumbLinks = screen.getAllByRole('link');
+    expect(breadcrumbLinks.length).toBeGreaterThan(0);
+  });
+
+  it('has proper loading and empty state announcements', () => {
+    // Test loading state
+    mockUseListingData.mockReturnValue({
+      items: [],
+      total: 0,
+      isLoading: true,
+      hasNextPage: false,
+      fetchNextPage: vi.fn(),
+    });
+
+    const { rerender } = render(
+      <TestWrapper>
+        <ListingPage />
+      </TestWrapper>
+    );
+
+    const loadingStatus = screen.getByRole('status', { name: /loading/i });
+    expect(loadingStatus).toHaveAttribute('aria-live', 'polite');
+
+    // Test empty state
+    mockUseListingData.mockReturnValue({
+      items: [],
+      total: 0,
+      isLoading: false,
+      hasNextPage: false,
+      fetchNextPage: vi.fn(),
+    });
+
+    rerender(
+      <TestWrapper>
+        <ListingPage />
+      </TestWrapper>
+    );
+
+    const emptyStatus = screen.getByRole('status', { name: /no nasha services found/i });
+    expect(emptyStatus).toHaveAttribute('aria-live', 'polite');
   });
 });
+

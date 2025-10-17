@@ -8,6 +8,11 @@ import { DatagridColumn } from '@ovh-ux/manager-react-components';
 
 import { DefaultListingItemType } from '@/types/Listing.type';
 
+/**
+ * Custom hook for NASHA listing columns configuration
+ * Provides columns matching the original AngularJS directory page
+ * @returns Array of DatagridColumn configurations
+ */
 export function useListingColumns<
   T extends DefaultListingItemType = DefaultListingItemType
 >(): DatagridColumn<T>[] {
@@ -17,6 +22,16 @@ export function useListingColumns<
     const EMPTY = t('common:empty', '—');
     const NA = t('common:na', 'N/A');
 
+    // Format bytes to human readable format
+    const formatBytes = (bytes?: number): string => {
+      if (!bytes || bytes === 0) return EMPTY;
+
+      const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(1024));
+      return `${(bytes / Math.pow(1024, i)).toFixed(1)} ${sizes[i]}`;
+    };
+
+    // Columns in the same order as the original AngularJS directory page
     return [
       {
         id: 'serviceName',
@@ -64,6 +79,22 @@ export function useListingColumns<
         isSortable: false,
         cell: (row: T): JSX.Element => (
           <OdsText>{t(`listing:monitored_${row.monitored}`)}</OdsText>
+        ),
+      },
+      {
+        id: 'zpoolCapacity',
+        label: 'listing:zpoolCapacity',
+        isSortable: false,
+        cell: (row: T): JSX.Element => (
+          <OdsText>{formatBytes(row.zpoolCapacity)}</OdsText>
+        ),
+      },
+      {
+        id: 'zpoolSize',
+        label: 'listing:zpoolSize',
+        isSortable: false,
+        cell: (row: T): JSX.Element => (
+          <OdsText>{formatBytes(row.zpoolSize)}</OdsText>
         ),
       },
     ];

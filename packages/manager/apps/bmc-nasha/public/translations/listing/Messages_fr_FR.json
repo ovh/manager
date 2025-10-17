@@ -1,8 +1,9 @@
 {
   "home": "Accueil",
-  "order": "Commander",
+  "order": "Commander un NAS-HA",
   "open": "Ouvrir le tableau de bord",
-  "title": "Liste",
+  "title": "NAS-HA",
+  "empty_message": "Aucun service NAS-HA trouvé",
   "serviceName": "ID Service",
   "canCreatePartition": "Création de partition",
   "canCreatePartition_true": "Autorisée",
