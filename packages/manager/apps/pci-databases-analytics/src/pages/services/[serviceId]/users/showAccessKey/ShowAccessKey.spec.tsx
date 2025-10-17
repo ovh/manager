@@ -51,7 +51,7 @@ describe('Show Access Key modal', () => {
             },
           },
         },
-        category: 'streaming',
+        category: 'analytics',
         serviceQuery: {} as UseQueryResult<database.Service, Error>,
       })),
     }));

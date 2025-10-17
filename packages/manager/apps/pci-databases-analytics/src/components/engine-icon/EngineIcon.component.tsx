@@ -1,4 +1,4 @@
-import { Glasses, TrendingUp, Database } from 'lucide-react';
+import { Glasses, Database } from 'lucide-react';
 import * as database from '@/types/cloud/project/database';
 import { cn } from '@/lib/utils';
 
@@ -17,7 +17,6 @@ export const EngineIcon = ({
 }: EngineIconProps) => {
   const categoryIcons: Record<database.engine.CategoryEnum, JSX.Element> = {
     [database.engine.CategoryEnum.analysis]: <Glasses size={iconSize} />,
-    [database.engine.CategoryEnum.streaming]: <TrendingUp size={iconSize} />,
     [database.engine.CategoryEnum.operational]: <Database size={iconSize} />,
     [database.engine.CategoryEnum.all]: <Database size={iconSize} />,
   };

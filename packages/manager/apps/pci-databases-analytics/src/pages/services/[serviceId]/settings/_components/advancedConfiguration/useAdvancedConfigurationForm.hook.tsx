@@ -169,7 +169,7 @@ export const useAdvancedConfigurationForm = ({
     const p: Record<string, string> = {};
     if (!formValues) return p;
     Object.keys(formValues).forEach((key) => {
-      p[key.replace(':', '.')] = `${formValues[key]}`;
+      p[key.replaceAll('::', '.')] = `${formValues[key]}`;
     });
     return p;
   }, [formValues]);

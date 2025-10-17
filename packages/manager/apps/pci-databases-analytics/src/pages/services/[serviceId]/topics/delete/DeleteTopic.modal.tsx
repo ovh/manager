@@ -42,7 +42,7 @@ const DeleteTopic = () => {
     },
     onSuccess: () => {
       toast.toast({
-        title: t('deleteTopicToastSuccessTitle'),
+        title: t('topicToastSuccessTitle'),
         description: t('deleteTopicToastSuccessDescription', {
           name: deletedTopic.name,
         }),

@@ -355,7 +355,6 @@ pciNode.children = [
       'logs-data-platform',
       'pci-databases-analytics-analysis',
       'pci-databases-analytics-operational',
-      'pci-databases-analytics-streaming',
     ],
     forceVisibility: true,
     children: [
@@ -372,19 +371,6 @@ pciNode.children = [
             '#/pci/projects/{projectId}/databases-analytics/operational/services',
         },
         features: ['pci-databases-analytics-operational'],
-        forceVisibility: true,
-      },
-      // Entry menu for PCI Data Streaming for React
-      {
-        id: 'pci-databases-analytics-streaming',
-        translation: 'sidebar_pci_analytics_data_streaming',
-        serviceType: 'CLOUD_PROJECT_DATABASE',
-        routing: {
-          application: 'public-cloud',
-          hash:
-            '#/pci/projects/{projectId}/databases-analytics/streaming/services',
-        },
-        features: ['pci-databases-analytics-streaming'],
         forceVisibility: true,
       },
       // Entry menu for PCI Data Analysis for React
@@ -422,8 +408,7 @@ pciNode.children = [
         hasService: false,
         routing: {
           application: 'public-cloud',
-          hash:
-            '#/pci/projects/{projectId}/dataplatform',
+          hash: '#/pci/projects/{projectId}/dataplatform',
         },
         features: ['pci-dataplatform'],
         tag: NodeTag.NEW,
@@ -517,10 +502,7 @@ pciNode.children = [
     idAttr: 'pci-quantum-link',
     universe: PUBLICCLOUD_UNIVERSE_ID,
     translation: 'sidebar_pci_quantum',
-    features: [
-      'pci-quantum-emulators',
-      'pci-quantum-qpu',
-    ],
+    features: ['pci-quantum-emulators', 'pci-quantum-qpu'],
     forceVisibility: true,
     children: [
       {
@@ -536,20 +518,20 @@ pciNode.children = [
         forceVisibility: true,
         features: ['pci-quantum-emulators'],
       },
-       {
-         id: 'pci-quantum-qpu',
-         idAttr: 'pci-quantum-qpu-link',
-         universe: PUBLICCLOUD_UNIVERSE_ID,
-         translation: 'sidebar_pci_quantum_qpu',
-         serviceType: 'CLOUD_PROJECT_QUANTUM_QPU',
-         routing: {
-           application: 'public-cloud',
-            hash: '#/pci/projects/{projectId}/ai-ml/quantum/qpu',
-         },
-         forceVisibility: true,
-         features: ['pci-quantum-qpu'],
-         tag: NodeTag.NEW
-       },
+      {
+        id: 'pci-quantum-qpu',
+        idAttr: 'pci-quantum-qpu-link',
+        universe: PUBLICCLOUD_UNIVERSE_ID,
+        translation: 'sidebar_pci_quantum_qpu',
+        serviceType: 'CLOUD_PROJECT_QUANTUM_QPU',
+        routing: {
+          application: 'public-cloud',
+          hash: '#/pci/projects/{projectId}/ai-ml/quantum/qpu',
+        },
+        forceVisibility: true,
+        features: ['pci-quantum-qpu'],
+        tag: NodeTag.NEW,
+      },
     ],
   },
   {

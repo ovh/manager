@@ -12,7 +12,7 @@ import ClusterStatus from '@/components/service/ClusterStatus.component';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 import { TKube } from '@/types';
 
-import Mode from './Mode';
+import Mode from '../components/Mode.component';
 
 export const useDatagridColumn = () => {
   const { t } = useTranslation(['listing', 'kube']);

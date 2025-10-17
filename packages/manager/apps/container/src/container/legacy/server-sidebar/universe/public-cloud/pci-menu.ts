@@ -17,7 +17,6 @@ export const features = [
   'pci-ai-training',
   'pci-ai-deploy',
   'pci-databases-analytics-operational',
-  'pci-databases-analytics-streaming',
   'pci-databases-analytics-analysis',
   'pci-dataplatform',
   'archive',
@@ -258,7 +257,6 @@ export function getPciProjectMenu(
     isFeaturesAvailable(
       'pci-databases-analytics-operational',
       'pci-databases-analytics-streaming',
-      'pci-databases-analytics-analysis',
       'pci-dataplatform',
       'data-platform',
       'logs-data-platform',
@@ -277,19 +275,10 @@ export function getPciProjectMenu(
             `#/pci/projects/${projectId}/databases-analytics/operational/services`,
           ),
         },
-        // Entry menu for PCI Data Streaming for React
-        isFeaturesAvailable('pci-databases-analytics-streaming') && {
-          id: 'pci-databases-analytics-streaming',
-          title: 'Data Streaming',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/databases-analytics/streaming/services`,
-          ),
-        },
         // Entry menu for PCI Data Analysis for React
         isFeaturesAvailable('pci-databases-analytics-analysis') && {
           id: 'pci-databases-analytics-analysis',
-          title: 'Data Analysis',
+          title: 'Analytics',
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/databases-analytics/analysis/services`,
