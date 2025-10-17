@@ -5,18 +5,18 @@ import { describe, expect, it } from 'vitest';
 
 import CustomTooltip from '../CustomTooltip.component';
 
+const testPayload = [
+  {
+    payload: {
+      rawDate: new Date(Date.now() - 1000 * 60 * 60 * 24),
+      officeBusiness: 5,
+      officeProPlus: 10,
+    },
+  },
+];
+
 describe('CustomTooltip', () => {
   it('load data on tooltip', () => {
-    const testPayload = [
-      {
-        payload: {
-          rawDate: new Date(Date.now() - 1000 * 60 * 60 * 24),
-          officeBusiness: 5,
-          officeProPlus: 10,
-        },
-      },
-    ];
-
     const { getByTestId } = render(<CustomTooltip locale={fr} payload={testPayload} />);
 
     const relativeDate = getByTestId('relative-date');
@@ -29,5 +29,14 @@ describe('CustomTooltip', () => {
   it('return null when payload is undifined', () => {
     const { container } = render(<CustomTooltip locale={fr} payload={[]} />);
     expect(container.firstChild).toBeNull();
+  });
+});
+
+describe('Consumption W3C Validation', () => {
+  it('should have a valid html', async () => {
+    const { container } = render(<CustomTooltip locale={fr} payload={testPayload} />);
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
   });
 });

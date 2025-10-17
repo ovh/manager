@@ -56,3 +56,14 @@ describe('Users datagrid (licence) action menu', () => {
     expect(menuItems[0]).toHaveAttribute('label', actions.edit_account);
   });
 });
+
+describe('Users datagrid (licence) action menu W3C Validation', () => {
+  it('should have a valid html', async () => {
+    const { container } = render(
+      <ActionButtonUsers usersItem={usersMock[0]} licenceDetail={licensesMock[0]} />,
+    );
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+});

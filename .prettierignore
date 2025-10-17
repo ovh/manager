@@ -1,4 +1,5 @@
 packages/manager/apps/container
+packages/manager/apps/web-office
 custom-elements-bundle
 **/dist/
 **/node_modules/

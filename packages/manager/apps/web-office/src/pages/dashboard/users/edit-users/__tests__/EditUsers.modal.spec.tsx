@@ -108,3 +108,13 @@ describe('ModalEditUsers Component', () => {
     expect(putOfficeUserDetail).toHaveBeenCalledOnce();
   });
 });
+
+describe('ModalEditUsers W3C Validation', () => {
+  // issue with ods on label and input (for / id)
+  it.skip('should have a valid html', async () => {
+    const { container } = render(<ModalEditUsers />);
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+});
