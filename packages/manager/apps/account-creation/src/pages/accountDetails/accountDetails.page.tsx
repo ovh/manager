@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, SubmitHandler, useForm, useWatch } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -45,7 +45,11 @@ import {
 import { putMe } from '@/data/api/me';
 import { putSmsConsent } from '@/data/api/marketing';
 import { urls } from '@/routes/routes.constant';
-import { shouldAccessCompanySearch } from '@/helpers/flowHelper';
+import {
+  getSirenFromSiret,
+  shouldAccessOrganizationSearch,
+  shouldEnableSIRENDisplay,
+} from '@/helpers/flowHelper';
 
 type AccountDetailsFormProps = {
   rules: Record<RuleField, Rule>;
@@ -120,6 +124,28 @@ function AccountDetailsForm({
     mode: 'onTouched',
     resolver: zodResolver(zodSchema),
   });
+
+  const shouldDisplaySIREN = useMemo(
+    () => shouldEnableSIRENDisplay(currentUser.country, legalForm),
+    [currentUser.country, legalForm],
+  );
+
+  const corporationIdValue = useWatch({
+    control,
+    name: 'companyNationalIdentificationNumber',
+  });
+
+  const sirenValue = useMemo(
+    () =>
+      getSirenFromSiret(
+        corporationIdValue,
+        rules?.companyNationalIdentificationNumber?.regularExpression,
+      ),
+    [
+      corporationIdValue,
+      rules?.companyNationalIdentificationNumber?.regularExpression,
+    ],
+  );
 
   const phoneCountry = watch('phoneCountry');
   const phoneType = watch('phoneType');
@@ -310,41 +336,63 @@ function AccountDetailsForm({
                 control={control}
                 name="companyNationalIdentificationNumber"
                 render={({ field: { name, value, onChange, onBlur } }) => (
-                  <OdsFormField>
-                    <label
-                      htmlFor={name}
-                      slot="label"
-                      aria-label={t('account_details_field_siret')}
-                    >
-                      <OdsText preset="caption">
-                        {t('account_details_field_siret')}
-                      </OdsText>
-                    </label>
-                    <OdsInput
-                      isReadonly={Boolean(companyNationalIdentificationNumber)}
-                      name="companyNationalIdentificationNumber"
-                      value={value}
-                      maxlength={
-                        rules?.companyNationalIdentificationNumber.maxLength ||
-                        undefined
-                      }
-                      hasError={!!errors[name]}
-                      onOdsChange={onChange}
-                      onOdsBlur={onBlur}
-                    />
-                    {errors[name] &&
-                      rules?.companyNationalIdentificationNumber && (
-                        <OdsText
-                          className="text-critical leading-[0.8]"
-                          preset="caption"
-                        >
-                          {renderTranslatedZodError(
-                            errors[name].message,
-                            rules?.companyNationalIdentificationNumber,
-                          )}
+                  <>
+                    <OdsFormField>
+                      <label
+                        htmlFor={name}
+                        slot="label"
+                        aria-label={t('account_details_field_siret')}
+                      >
+                        <OdsText preset="caption">
+                          {t('account_details_field_siret')}
                         </OdsText>
-                      )}
-                  </OdsFormField>
+                      </label>
+                      <OdsInput
+                        isReadonly={Boolean(
+                          companyNationalIdentificationNumber,
+                        )}
+                        name="companyNationalIdentificationNumber"
+                        value={value}
+                        maxlength={
+                          rules?.companyNationalIdentificationNumber
+                            .maxLength || undefined
+                        }
+                        hasError={!!errors[name]}
+                        onOdsChange={onChange}
+                        onOdsBlur={onBlur}
+                      />
+                      {errors[name] &&
+                        rules?.companyNationalIdentificationNumber && (
+                          <OdsText
+                            className="text-critical leading-[0.8]"
+                            preset="caption"
+                          >
+                            {renderTranslatedZodError(
+                              errors[name].message,
+                              rules?.companyNationalIdentificationNumber,
+                            )}
+                          </OdsText>
+                        )}
+                    </OdsFormField>
+                    {shouldDisplaySIREN && (
+                      <OdsFormField>
+                        <label
+                          htmlFor="companyNationalRegistrationNumber"
+                          slot="label"
+                          aria-label={t('account_details_field_siren')}
+                        >
+                          <OdsText preset="caption">
+                            {t('account_details_field_siren')}
+                          </OdsText>
+                        </label>
+                        <OdsInput
+                          isReadonly
+                          name="companyNationalRegistrationNumber"
+                          value={sirenValue}
+                        />
+                      </OdsFormField>
+                    )}
+                  </>
                 )}
               />
             )}
@@ -753,7 +801,7 @@ export default function AccountDetailsPage() {
   const { t: tAction } = useTranslation(NAMESPACES.ACTIONS);
   const { legalForm, organisation } = useUserContext();
   const { data: currentUser } = useMe();
-  const wentThroughCompanySearch = shouldAccessCompanySearch(
+  const wentThroughOrganizationSearch = shouldAccessOrganizationSearch(
     currentUser?.country,
     legalForm,
   );
@@ -798,11 +846,13 @@ export default function AccountDetailsPage() {
       <OdsLink
         icon={ODS_ICON_NAME.arrowLeft}
         iconAlignment={ODS_LINK_ICON_ALIGNMENT.left}
-        href={`#${wentThroughCompanySearch ? urls.company : urls.accountType}`}
+        href={`#${
+          wentThroughOrganizationSearch ? urls.company : urls.accountType
+        }`}
         label={tAction('back')}
         className="flex mb-6"
       />
-      {wentThroughCompanySearch && (
+      {wentThroughOrganizationSearch && (
         <OdsText preset={ODS_TEXT_PRESET.caption}>
           {tCommon('step', { current: 2, total: 2 })}
         </OdsText>

@@ -12,6 +12,7 @@
   "account_details_field_name": "Name",
   "account_details_field_corporation_name": "Firmenname",
   "account_details_field_siret": "SIRET",
+  "account_details_field_siren": "SIREN",
   "account_details_field_vat": "USt - IdNr.",
   "account_details_field_country": "Land des Wohnsitzes",
   "account_details_field_address": "Adresse",
