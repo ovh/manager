@@ -4,12 +4,10 @@ import { Navigate, Route } from 'react-router-dom';
 
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
-import { BackupAgentRoutes } from "@ovh-ux/backup-agent"
 
 import NotFound from '@/pages/not-found/404.page';
 
 import { redirectionApp, subRoutes, urls } from './Routes.constants';
-
 
 const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
@@ -36,7 +34,6 @@ export default (
           tracking: { pageName: 'onboarding', pageType: PageType.onboarding },
         }}
       />
-      {BackupAgentRoutes}
       <Route path="*" element={<NotFound />} />
     </Route>
   </>
