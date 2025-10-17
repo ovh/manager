@@ -1,8 +1,5 @@
 import { Deps } from '@/deps/deps';
-import {
-  TInstancesCatalog,
-  TMicroRegion,
-} from '@/domain/entities/instancesCatalog';
+import { TMicroRegion } from '@/domain/entities/instancesCatalog';
 import { Reader } from '@/types/utils.type';
 
 export type TMicroRegionData = {
@@ -22,36 +19,25 @@ const mapMicroRegion = (foundMicroRegion: TMicroRegion) => ({
   disabled: !foundMicroRegion.isActivable || foundMicroRegion.isInMaintenance,
 });
 
-const createMicroRegions = (data: TInstancesCatalog, id: string) => {
-  const { macroRegions, microRegions } = data.entities;
-
-  const isMacroRegion = macroRegions.allIds.includes(id);
-
-  if (isMacroRegion) {
-    const foundMacroRegion = macroRegions.byId.get(id);
-    if (!foundMacroRegion) return [];
-
-    return foundMacroRegion.microRegions.flatMap((microRegion) => {
-      const foundMicroRegion = microRegions.byId.get(microRegion);
-      return foundMicroRegion ? mapMicroRegion(foundMicroRegion) : [];
-    });
-  } else {
-    const foundMicroRegion = microRegions.byId.get(id);
-    return foundMicroRegion ? [mapMicroRegion(foundMicroRegion)] : [];
-  }
-};
-
 export const selectMicroRegions: Reader<Deps, TSelectMicroRegionData> = (
   deps,
-) => (projectId, id) => {
-  if (!id) return null;
+) => (projectId, macroRegionId) => {
+  if (!macroRegionId) return null;
 
   const { instancesCatalogPort } = deps;
   const data = instancesCatalogPort.selectInstancesCatalog(projectId);
 
   if (!data) return [];
 
-  return createMicroRegions(data, id);
+  const { macroRegions, microRegions } = data.entities;
+
+  const foundMacroRegion = macroRegions.byId.get(macroRegionId);
+  if (!foundMacroRegion) return [];
+
+  return foundMacroRegion.microRegions.flatMap((microRegion) => {
+    const foundMicroRegion = microRegions.byId.get(microRegion);
+    return foundMicroRegion ? mapMicroRegion(foundMicroRegion) : [];
+  });
 };
 
 type TSelectMicroRegionAvailabilityForCard = (

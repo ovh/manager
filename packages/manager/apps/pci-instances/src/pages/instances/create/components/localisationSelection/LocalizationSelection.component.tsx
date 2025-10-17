@@ -16,7 +16,10 @@ import { useProjectId } from '@/hooks/project/useProjectId';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { TInstanceCreationForm } from '../../CreateInstance.page';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { isMicroRegionAvailable } from '../../view-models/microRegionsViewModel';
+import {
+  isMicroRegionAvailable,
+  selectMicroRegions,
+} from '../../view-models/microRegionsViewModel';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import { ContinentSelection } from '../continentSelection/ContinentSelection.component';
@@ -28,7 +31,7 @@ export const LocalizationSelection = () => {
   const { t } = useTranslation('creation');
 
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
-  const [deploymentModes, selectedContinent, selectedRegion] = useWatch({
+  const [deploymentModes, selectedContinent, selectedMacroRegion] = useWatch({
     control,
     name: ['deploymentModes', 'continent', 'macroRegion'],
   });
@@ -49,28 +52,41 @@ export const LocalizationSelection = () => {
     [projectId],
   );
 
-  const handleSelectRegion = (region: string | null) => {
-    if (!region) return;
-    setValue('macroRegion', region);
+  const updateSelection = (macroRegion: string, microRegion: string) => {
+    setValue('availabilityZone', null);
+    setValue('macroRegion', macroRegion);
+    setValue('microRegion', microRegion);
+
     trackClick({
       location: PageLocation.funnel,
       buttonType: ButtonType.tile,
       actionType: 'action',
-      actions: ['add_instance', 'select_localisation', region],
+      actions: ['add_instance', 'select_localisation', microRegion],
     });
+  };
+
+  const handleSelectRegion = (macroRegion: string | null) => {
+    if (!macroRegion) return;
+    const microRegions = selectMicroRegions(deps)(projectId, macroRegion);
+    if (microRegions?.[0]) {
+      updateSelection(macroRegion, microRegions[0].value);
+    }
   };
 
   const handleDisplayChange = () => setSeeAll(!seeAll);
 
   useEffect(() => {
     const availablePreviousSelectedLocalization = localizations.find(
-      (localization) => localization.region === selectedRegion,
+      (localization) => localization.macroRegion === selectedMacroRegion,
     );
 
-    if (!availablePreviousSelectedLocalization && localizations[0]?.region) {
-      setValue('macroRegion', localizations[0].region);
+    if (
+      !availablePreviousSelectedLocalization &&
+      localizations[0]?.macroRegion
+    ) {
+      setValue('macroRegion', localizations[0].macroRegion);
     }
-  }, [localizations, selectedRegion, setValue]);
+  }, [localizations, selectedMacroRegion, setValue]);
 
   return (
     <section>
@@ -87,7 +103,7 @@ export const LocalizationSelection = () => {
           </CheckboxLabel>
         </Checkbox>
       </div>
-      {selectedRegion && (
+      {selectedMacroRegion && (
         <Controller
           name="macroRegion"
           control={control}
@@ -95,24 +111,38 @@ export const LocalizationSelection = () => {
             <div className="flex flex-col">
               <div className={clsx(seeAll && 'max-h-[450px] overflow-auto')}>
                 <RadioGroup
-                  value={selectedRegion}
+                  value={selectedMacroRegion}
                   onValueChange={({ value }) => handleSelectRegion(value)}
                 >
                   <div className="grid grid-cols-3 gap-6">
                     {localizations.map(
-                      ({ city, region, countryCode, deploymentMode }) =>
-                        region && (
+                      ({
+                        city,
+                        datacenterDetails,
+                        macroRegion,
+                        microRegion,
+                        countryCode,
+                        deploymentMode,
+                      }) => {
+                        const displayCard =
+                          macroRegion && microRegion && datacenterDetails;
+
+                        return displayCard ? (
                           <LocalizationCard
-                            key={region}
-                            title={city}
-                            region={region}
+                            key={microRegion}
+                            city={city}
+                            datacenterDetails={datacenterDetails}
+                            macroRegion={macroRegion}
                             countryCode={countryCode}
                             deploymentMode={deploymentMode}
-                            onSelect={handleSelectRegion}
-                            isSelected={selectedRegion === region}
-                            disabled={!isRegionAvailable(region)}
+                            onSelect={() =>
+                              updateSelection(macroRegion, microRegion)
+                            }
+                            isSelected={selectedMacroRegion === macroRegion}
+                            disabled={!isRegionAvailable(macroRegion)}
                           />
-                        ),
+                        ) : null;
+                      },
                     )}
                   </div>
                 </RadioGroup>

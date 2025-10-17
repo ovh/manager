@@ -38,12 +38,8 @@ export const AvailabilityZoneSelection = ({
 
   const handleChoiceChange = (choice: RadioValueChangeDetail) => {
     if (choice.value) setChoice(choice.value as TChoice);
+    if (choice.value === 'companyChoice') setValue('availabilityZone', null);
   };
-
-  useEffect(() => {
-    if (choice === 'companyChoice')
-      setValue('availabilityZone', 'companyChoice');
-  }, [choice, setValue]);
 
   useEffect(() => {
     if (!selectedAvailabilityZone) return;
@@ -55,6 +51,8 @@ export const AvailabilityZoneSelection = ({
     if (!availablePreviousAvailabilityZone && availabilityZones[0])
       setValue('availabilityZone', availabilityZones[0]);
   }, [availabilityZones, selectedAvailabilityZone, setValue]);
+
+  useEffect(() => setChoice('companyChoice'), [availabilityZones]);
 
   return (
     <section className="pt-9 pb-5">

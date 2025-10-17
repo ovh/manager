@@ -17,23 +17,23 @@ const fakeDeps: Deps = {
 
 describe('selectMicroRegionAvailability ViewModel', () => {
   type Data = {
-    region: string;
+    macroRegionId: string;
     available: boolean;
   };
 
   describe.each`
-    region                 | available
-    ${'GRA11'}             | ${true}
-    ${'GRA7'}              | ${true}
-    ${'BHS5'}              | ${false}
-    ${'EU-SOUTH-LZ-MIL-A'} | ${false}
-    ${'EU-WEST-PAR'}       | ${true}
-  `('Given an input <$region>', ({ region, available }: Data) => {
+    macroRegionId        | available
+    ${'GRA'}             | ${true}
+    ${'GRA'}             | ${true}
+    ${'BHS'}             | ${false}
+    ${'EU-SOUTH-LZ-MIL'} | ${false}
+    ${'PAR'}             | ${true}
+  `('Given an input <$macroRegionId>', ({ macroRegionId, available }: Data) => {
     test(`Then, expect the region to be ${
       available ? 'available' : 'unavailable'
     }'`, () => {
       expect(
-        isMicroRegionAvailable(fakeDeps)(mockedProjectId, region),
+        isMicroRegionAvailable(fakeDeps)(mockedProjectId, macroRegionId),
       ).toStrictEqual(available);
     });
   });

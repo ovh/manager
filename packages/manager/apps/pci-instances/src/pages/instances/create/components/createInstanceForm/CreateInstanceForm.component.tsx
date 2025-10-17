@@ -33,7 +33,7 @@ export const CreateInstanceForm = () => {
   const microRegions = selectMicroRegions(deps)(projectId, macroRegion);
   const availabilityZones = selectAvailabilityZones(deps)(
     projectId,
-    macroRegion,
+    microRegions?.[0]?.value ?? null,
   );
 
   const hasMultiMicroRegions = microRegions ? microRegions.length > 1 : false;
