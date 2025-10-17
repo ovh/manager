@@ -20,7 +20,7 @@
     "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
-    "@hookform/resolvers": "^4.1.2",
+    "@hookform/resolvers": "4.1.3",
     "@ovh-ux/manager-common-translations": "^0.19.3",
     "@ovh-ux/manager-config": "^8.6.6",
     "@ovh-ux/manager-core-api": "^0.18.7",
@@ -37,14 +37,14 @@
     "@tanstack/react-query": "^5.51.21",
     "@tanstack/react-table": "^8.20.1",
     "date-fns": "^3.6.0",
-    "i18next": "^23.8.2",
+    "i18next": "23.8.2",
     "i18next-http-backend": "2.5.0",
     "jsurl": "^0.1.5",
-    "react": "^18.2.0",
+    "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hook-form": "^7.50.1",
-    "react-i18next": "^14.0.5",
-    "react-router-dom": "^6.3.0",
+    "react-hook-form": "7.51.2",
+    "react-i18next": "14.1.0",
+    "react-router-dom": "6.16.0",
     "recharts": "^2.13.3",
     "tailwindcss": "^3.4.4",
     "zod": "^3.24.2"
@@ -53,10 +53,10 @@
     "@ovh-ux/manager-static-analysis-kit": "^0.11.1",
     "@ovh-ux/manager-tests-setup": "latest",
     "@ovh-ux/manager-vite-config": "^0.13.4",
-    "@tanstack/react-query-devtools": "^5.51.21",
-    "@types/jest": "^29.5.12",
-    "@types/react": "^18.2.55",
-    "@types/react-dom": "^18.2.19"
+    "@tanstack/react-query-devtools": "5.51.21",
+    "@types/jest": "29.5.12",
+    "@types/react": "18.2.55",
+    "@types/react-dom": "18.3.0"
   },
   "regions": [
     "EU"
