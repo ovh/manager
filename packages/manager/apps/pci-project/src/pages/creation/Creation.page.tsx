@@ -96,7 +96,7 @@ export default function ProjectCreation() {
     handleProjectCreation,
     handleCreditAndPay,
     setVoucherCode,
-  } = useProjectCreation({ t, cart, projectItem, goToCreditConfirmation });
+  } = useProjectCreation({ cart, projectItem, goToCreditConfirmation });
 
   const {
     isCreditPayment,

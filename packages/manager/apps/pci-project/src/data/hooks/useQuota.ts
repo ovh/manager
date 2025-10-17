@@ -52,6 +52,8 @@ export const useQuotas = (projectId: string): UseQueryResult<Quota[]> => {
           quotaAboveThreshold,
         } as Quota;
       }),
+    throwOnError: true,
+    retry: false,
   });
 };
 
