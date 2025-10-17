@@ -22,5 +22,35 @@ export const useSecretDataSchema = () => {
       {
         error: t('error_invalid_json'),
       },
+    )
+    .refine(
+      (value) => {
+        try {
+          const parsedJSON = JSON.parse(value);
+          const keys = Object.keys(parsedJSON);
+          // check if keys are unique
+          const uniqueKeys = new Set(keys);
+          return uniqueKeys.size === keys.length;
+        } catch (error) {
+          return true;
+        }
+      },
+      {
+        error: t('error_duplicated_keys'),
+      },
+    )
+    .refine(
+      (value) => {
+        try {
+          const parsedJSON = JSON.parse(value);
+          const keys = Object.keys(parsedJSON);
+          return keys.every((key) => key !== '');
+        } catch (error) {
+          return true;
+        }
+      },
+      {
+        error: t('error_empty_keys'),
+      },
     );
 };
