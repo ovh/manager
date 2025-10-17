@@ -8,4 +8,5 @@ export type PriceTextProps = {
   price: string;
   label?: string;
   intervalUnitText?: string;
+  suffix?: string;
 };
