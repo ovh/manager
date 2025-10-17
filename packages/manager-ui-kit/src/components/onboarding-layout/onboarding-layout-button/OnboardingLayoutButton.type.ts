@@ -1,4 +1,4 @@
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ICON_NAME } from '@ovhcloud/ods-react';
 
 export type OnboardingLayoutButtonProps = {
   orderButtonLabel?: string;
@@ -11,7 +11,7 @@ export type OnboardingLayoutButtonProps = {
     displayTooltip?: boolean;
   };
   moreInfoHref?: string;
-  moreInfoButtonIcon?: ODS_ICON_NAME;
+  moreInfoButtonIcon?: ICON_NAME;
   moreInfoButtonLabel?: string;
   isMoreInfoButtonDisabled?: boolean;
 };
