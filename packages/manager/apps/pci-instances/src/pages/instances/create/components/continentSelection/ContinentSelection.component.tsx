@@ -44,7 +44,7 @@ export const ContinentSelection = () => {
           field.onChange(continents.value[0]);
 
         return (
-          <FormField className="max-w-[32%]">
+          <FormField className="w-[32%]">
             <FormFieldLabel>
               {t('pci_instance_creation_select_continent_label')}
             </FormFieldLabel>
