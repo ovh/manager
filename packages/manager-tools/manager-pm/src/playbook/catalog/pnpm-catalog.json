@@ -1,4 +1,5 @@
 [
+  "packages/manager/apps/bmc-backup-agent-baremetal",
   "packages/manager/apps/hpc-backup-agent-iaas",
   "packages/manager/apps/web-office",
   "packages/manager/apps/zimbra",
