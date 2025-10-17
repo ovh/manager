@@ -1,11 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { TDomainsInfo } from '@/alldoms/types';
-import DomainDatagridColumnRegisteredStatus from '@/alldoms/components/DomainDatagridColumns/DomainDatagridColumnRegisteredStatus';
+import DomainDatagridColumnRegisteredStatus from '@/alldoms/components/domainDatagridColumns/DomainDatagridColumnRegisteredStatus';
 import { DomainRegistrationStateEnum } from '@/alldoms/enum/service.enum';
-import DomainDatagridColumnDate from '@/alldoms/components/DomainDatagridColumns/DomainDatagridColumnDate';
-import DomainDatagridColumnDomain from '@/alldoms/components/DomainDatagridColumns/DomainDatagridColumnDomain';
-import DomainDatagridColumnRenewMode from '@/alldoms/components/DomainDatagridColumns/DomainDatagridColumnRenewMode';
+import DomainDatagridColumnDate from '@/alldoms/components/domainDatagridColumns/DomainDatagridColumnDate';
+import DomainDatagridColumnDomain from '@/alldoms/components/domainDatagridColumns/DomainDatagridColumnDomain';
+import DomainDatagridColumnRenewMode from '@/alldoms/components/domainDatagridColumns/DomainDatagridColumnRenewMode';
 
 interface DomainDatagridColumnsProps {
   readonly alldomTerminated: boolean;

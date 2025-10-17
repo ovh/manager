@@ -1,8 +1,7 @@
-import React from 'react';
 import { vi } from 'vitest';
 import { fireEvent, render, waitFor, screen } from '@testing-library/react';
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
-import ServiceList from './serviceList';
+import ServiceList from '@/alldoms/pages/service/serviceList/serviceList';
 import { wrapper } from '@/alldoms/utils/test.provider';
 import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
 import { serviceInfo } from '@/alldoms/__mocks__/serviceInfo';
