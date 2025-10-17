@@ -19,6 +19,24 @@ export const UpdateNameModalDefault = (props: UpdateNameModalProps) => {
   );
 };
 
+UpdateNameModalDefault.parameters = {
+  docs: {
+    source: {
+      code: `<UpdateNameModal 
+  isOpen={isOpen}
+  onClose={handleClose}
+  updateDisplayName={(name) => console.log('updateDisplayName', name)}
+  headline="Update Resource Name"
+  description="Do you really want to update the display name of this resource?"
+  inputLabel="New display name"
+  defaultValue="oldDisplayName"
+  cancelButtonLabel="Cancel"
+  confirmButtonLabel="Confirm"
+/>`,
+    },
+  },
+};
+
 export const UpdateNameModalWithError = (props: UpdateNameModalProps) => {
   const [isOpen, setIsOpen] = useState(true);
   const handleClose = () => {
@@ -37,6 +55,7 @@ export const UpdateNameModalWithError = (props: UpdateNameModalProps) => {
 const meta: Meta = {
   title: 'Manager UI Kit/Components/Update Name Modal',
   component: UpdateNameModalComponent,
+  tags: ['autodocs'],
   argTypes: {
     isLoading: { control: 'boolean' },
     error: { control: 'text' },
@@ -52,8 +71,12 @@ const meta: Meta = {
   },
   args: {
     isOpen: true,
-    onClose: () => console.log('close'),
-    updateDisplayName: (name: string) => console.log('updateDisplayName', name),
+    onClose: () => {
+      // Handle close
+    },
+    updateDisplayName: () => {
+      // Handle update display name
+    },
     headline: 'headline',
     description:
       'Do you really want to update the display name of this resource ?',
