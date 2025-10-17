@@ -82,7 +82,7 @@ describe('Move IP modal', () => {
     );
     const confirmNode = await screen.getByText(confirmText, { exact: false });
     await waitFor(
-      () => expect(confirmNode.parentElement.innerHTML).toMatchSnapshot(),
+      () => expect(confirmNode.parentElement).toMatchSnapshot(),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
   });

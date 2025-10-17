@@ -79,7 +79,7 @@ export type IpActionsCellParams = {
 export const IpActionsCell = ({
   parentIpGroup,
   ip,
-  isByoipSlice,
+  isByoipSlice = false,
 }: IpActionsCellParams) => {
   const {
     expiredIps,
@@ -199,46 +199,11 @@ export const IpActionsCell = ({
             )}?${search.toString()}`,
         ),
     },
-    !!ipDetails?.canBeTerminated &&
-      !ipDetails.bringYourOwnIp &&
-      [IpTypeEnum.ADDITIONAL, IpTypeEnum.PCC, IpTypeEnum.VRACK].includes(
-        ipDetails?.type,
-      ) && {
-        id: 2,
-        label: `${t('terminate', {
-          ns: NAMESPACES.ACTIONS,
-        })} Additional IP`,
-        isLoading,
-        onClick: () =>
-          navigate(
-            `${urls.listingIpTerminate.replace(
-              urlDynamicParts.id,
-              id,
-            )}?${search.toString()}`,
-          ),
-      },
-    !!ipDetails?.canBeTerminated &&
-      ipDetails.bringYourOwnIp &&
-      [IpTypeEnum.ADDITIONAL, IpTypeEnum.PCC, IpTypeEnum.VRACK].includes(
-        ipDetails?.type,
-      ) &&
-      !isByoipSlice && {
-        id: 2,
-        label: t('listingActionByoipTerminate'),
-        isLoading,
-        onClick: () =>
-          navigate(
-            `${urls.listingByoipTerminate.replace(
-              urlDynamicParts.id,
-              id,
-            )}?${search.toString()}`,
-          ),
-      },
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
       !hasCloudServiceAttachedToIP &&
       Boolean(ipGameFirewall?.length) && {
-        id: 3,
+        id: 2,
         label: t('listingActionManageGameMitigation'),
         onClick: () =>
           navigate(
@@ -252,7 +217,7 @@ export const IpActionsCell = ({
       ipaddr.IPv4.isIPv4(ipAddress) &&
       !hasForcedMitigation &&
       !hasHousingServiceAttachedToIp && {
-        id: 4,
+        id: 3,
         label: t('listingActionConfigureEdgeNetworkFirewall'),
         onClick: () =>
           navigate(
@@ -261,7 +226,7 @@ export const IpActionsCell = ({
       },
     ipaddr.IPv6.isIPv6(ipAddress) &&
       ipDetails?.type === IpTypeEnum.VRACK && {
-        id: 5,
+        id: 4,
         label: t('listingActionManageSubnetInVrack'),
         onClick: () => {
           window.top.location.href = vrackPage;
@@ -270,7 +235,7 @@ export const IpActionsCell = ({
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
       ipDetails?.type === IpTypeEnum.ADDITIONAL && {
-        id: 6,
+        id: 5,
         label: t('listingActionAddVirtualMac'),
         onClick: () =>
           navigate(
@@ -292,7 +257,7 @@ export const IpActionsCell = ({
       !isVmacLoading &&
       isVmacAlreadyExist &&
       hasDedicatedServiceAttachedToIp && {
-        id: 7,
+        id: 6,
         label: t('listingActionViewVirtualMac'),
         onClick: () =>
           navigate(
@@ -308,7 +273,7 @@ export const IpActionsCell = ({
       ipaddr.IPv4.isIPv4(ipAddress) &&
       !isVmacLoading &&
       isVmacAlreadyExist && {
-        id: 8,
+        id: 7,
         label: t('listingActionDeleteVirtualMac'),
         onClick: () =>
           navigate(
@@ -322,8 +287,9 @@ export const IpActionsCell = ({
       },
     ipaddr.IPv4.isIPv4(ipAddress) &&
       ipDetails?.type === IpTypeEnum.ADDITIONAL &&
+      !parentIpGroup &&
       !isByoipSlice && {
-        id: 10,
+        id: 8,
         label: `${t('move', { ns: NAMESPACES.ACTIONS })} Additional IP`,
         onClick: () =>
           navigate(
@@ -336,7 +302,7 @@ export const IpActionsCell = ({
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
       !!hasAlerts?.antihack?.length && {
-        id: 11,
+        id: 9,
         label: t('listingActionUnblockHackedIP'),
         onClick: () =>
           navigate(
@@ -353,7 +319,7 @@ export const IpActionsCell = ({
       !isByoipSlice &&
       isGroup &&
       parseInt(range, 10) < 32 && {
-        id: 12,
+        id: 10,
         label: t('listingActionSlice'),
         isDisabled:
           onGoingSlicedIps?.includes(ip) || onGoingAggregatedIps?.includes(ip),
@@ -369,7 +335,7 @@ export const IpActionsCell = ({
       (isByoipSlice
         ? parseInt(parentIpRange, 10) > 24 && parseInt(parentIpRange, 10) < 31
         : parseInt(range, 10) > 24 && parseInt(range, 10) < 31) && {
-        id: 13,
+        id: 11,
         label: t('listingActionAggregate'),
         isDisabled:
           onGoingSlicedIps?.includes(ip) || onGoingAggregatedIps?.includes(ip),
@@ -378,6 +344,43 @@ export const IpActionsCell = ({
             `${urls.aggregate.replace(
               urlDynamicParts.parentId,
               parentId,
+            )}?${search.toString()}`,
+          ),
+      },
+    !!ipDetails?.canBeTerminated &&
+      !ipDetails.bringYourOwnIp &&
+      !parentIpGroup &&
+      [IpTypeEnum.ADDITIONAL, IpTypeEnum.PCC, IpTypeEnum.VRACK].includes(
+        ipDetails?.type,
+      ) && {
+        id: 12,
+        label: `${t('terminate', {
+          ns: NAMESPACES.ACTIONS,
+        })} Additional IP`,
+        isLoading,
+        onClick: () =>
+          navigate(
+            `${urls.listingIpTerminate.replace(
+              urlDynamicParts.id,
+              parentId,
+            )}?${search.toString()}`,
+          ),
+      },
+    !!ipDetails?.canBeTerminated &&
+      ipDetails.bringYourOwnIp &&
+      !parentIpGroup &&
+      [IpTypeEnum.ADDITIONAL, IpTypeEnum.PCC, IpTypeEnum.VRACK].includes(
+        ipDetails?.type,
+      ) &&
+      !isByoipSlice && {
+        id: 13,
+        label: t('listingActionByoipTerminate'),
+        isLoading,
+        onClick: () =>
+          navigate(
+            `${urls.listingByoipTerminate.replace(
+              urlDynamicParts.id,
+              id,
             )}?${search.toString()}`,
           ),
       },
