@@ -34,8 +34,8 @@ const UserStep = React.forwardRef<HTMLButtonElement, UserStepProps>(
     const currentUser = users.find((u) => u.id === value);
 
     const { projectId } = useParams();
-    const query = useGetUserS3Credentials(projectId, currentUser.id, {
-      enabled: !!currentUser.id,
+    const query = useGetUserS3Credentials(projectId, currentUser?.id, {
+      enabled: !!currentUser?.id,
     });
     return (
       <div>

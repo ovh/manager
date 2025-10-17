@@ -50,4 +50,5 @@ export const mockedUser: User = {
   },
   vat: '',
   zip: '',
+  complementaryAddress: '',
 };
