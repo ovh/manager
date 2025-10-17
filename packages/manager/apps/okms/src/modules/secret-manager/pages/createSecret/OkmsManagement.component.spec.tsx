@@ -23,6 +23,7 @@ import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { waitFor } from '@testing-library/dom';
 import { act, render, screen } from '@testing-library/react';
 import { SECRET_ACTIVATE_OKMS_TEST_IDS } from '@secret-manager/pages/createSecret/ActivateRegion.contants';
+import { locationsMock } from '@secret-manager/mocks/locations/locations.mock';
 import { labels, initTestI18n } from '@/utils/tests/init.i18n';
 import { OkmsManagement } from './OkmsManagement.component';
 import { catalogMock } from '@/mocks/catalog/catalog.mock';
@@ -35,13 +36,24 @@ import {
 import { useOkmsList } from '@/data/hooks/useOkms';
 import { OKMS } from '@/types/okms.type';
 import { getOrderCatalogOKMS } from '@/data/api/orderCatalogOKMS';
+import * as locationApi from '@/common/data/api/location';
 import { ErrorResponse } from '@/types/api.type';
 import { OrderOkmsModalProvider } from '@/common/pages/OrderOkmsModal/OrderOkmsModalContext';
+import { REGION_PICKER_TEST_IDS } from '@/common/components/regionPicker/regionPicker.constants';
+import { createErrorResponseMock } from '@/utils/tests/testUtils';
+import { useNotificationAddErrorOnce } from '@/hooks/useNotificationAddErrorOnce';
 
 let i18nValue: i18n;
 
+const mockedGetOrderCatalogOKMS = vi.mocked(getOrderCatalogOKMS);
 vi.mock('@/data/api/orderCatalogOKMS', () => ({
   getOrderCatalogOKMS: vi.fn(),
+}));
+
+vi.spyOn(locationApi, 'getLocations').mockResolvedValue(locationsMock);
+
+vi.mock('@/hooks/useNotificationAddErrorOnce', () => ({
+  useNotificationAddErrorOnce: vi.fn(),
 }));
 
 vi.mock('react-router-dom', async (importOriginal) => {
@@ -213,37 +225,32 @@ const selectRegion = async (user: UserEvent, region: string) => {
 describe('OKMS management test suite', () => {
   it('should display a spinner when loading', async () => {
     // GIVEN
-    vi.mocked(getOrderCatalogOKMS).mockResolvedValueOnce(catalogMock);
+    mockedGetOrderCatalogOKMS.mockResolvedValueOnce(catalogMock);
     // WHEN
     await renderOkmsManagement();
 
     // THEN
-    const regionsSpinner = screen.getByTestId('regionsSpinner');
+    const regionsSpinner = screen.getByTestId(REGION_PICKER_TEST_IDS.SPINNER);
     expect(regionsSpinner).toBeVisible();
   });
 
   it('should display a notification message when error on catalog api', async () => {
     // GIVEN
-    const mockError: ErrorResponse = {
-      response: { data: { message: 'errorCatalog' }, status: 500 },
-    };
-    vi.mocked(getOrderCatalogOKMS).mockRejectedValue(mockError);
+    const mockError = createErrorResponseMock('errorCatalog');
+    mockedGetOrderCatalogOKMS.mockRejectedValue(mockError);
 
     // WHEN
     await renderOkmsManagement();
 
     // THEN
-    await assertTextVisibility(
-      labels.common.error.error_message.replace(
-        '{{message}}',
-        mockError.response.data.message,
-      ),
-    );
+    await waitFor(() => {
+      expect(useNotificationAddErrorOnce).toHaveBeenCalledWith(mockError);
+    });
   });
 
   it('should display the available region list', async () => {
     // GIVEN
-    vi.mocked(getOrderCatalogOKMS).mockResolvedValueOnce(catalogMock);
+    mockedGetOrderCatalogOKMS.mockResolvedValueOnce(catalogMock);
     // WHEN
     await renderOkmsManagement();
     await assertTextVisibility(
@@ -262,7 +269,7 @@ describe('OKMS management test suite', () => {
       it('should display a CTA', async () => {
         const user = userEvent.setup();
         // GIVEN
-        vi.mocked(getOrderCatalogOKMS).mockResolvedValueOnce(catalogMock);
+        mockedGetOrderCatalogOKMS.mockResolvedValueOnce(catalogMock);
 
         await renderOkmsManagement();
         await assertTextVisibility(
@@ -284,7 +291,7 @@ describe('OKMS management test suite', () => {
       it('should display a loading state when an order is processing', async () => {
         const user = userEvent.setup();
         // GIVEN
-        vi.mocked(getOrderCatalogOKMS).mockResolvedValueOnce(catalogMock);
+        mockedGetOrderCatalogOKMS.mockResolvedValueOnce(catalogMock);
 
         await renderOkmsManagement('rbx');
         await assertTextVisibility(
@@ -305,7 +312,7 @@ describe('OKMS management test suite', () => {
     it('should not display anything when there is exactly one okms', async () => {
       const user = userEvent.setup();
       // GIVEN
-      vi.mocked(getOrderCatalogOKMS).mockResolvedValueOnce(catalogMock);
+      mockedGetOrderCatalogOKMS.mockResolvedValueOnce(catalogMock);
 
       await renderOkmsManagement();
       await assertTextVisibility(
@@ -329,7 +336,7 @@ describe('OKMS management test suite', () => {
       const user = userEvent.setup();
 
       // GIVEN
-      vi.mocked(getOrderCatalogOKMS).mockResolvedValueOnce(catalogMock);
+      mockedGetOrderCatalogOKMS.mockResolvedValueOnce(catalogMock);
 
       await renderOkmsManagement();
       await assertTextVisibility(
@@ -360,7 +367,7 @@ describe('OKMS management test suite', () => {
 
   describe('When there is a okmsId search param', () => {
     beforeEach(() => {
-      vi.mocked(getOrderCatalogOKMS).mockResolvedValueOnce(catalogMock);
+      mockedGetOrderCatalogOKMS.mockResolvedValueOnce(catalogMock);
     });
     it('should pre-select the right region and okms', async () => {
       // GIVEN
