@@ -1,0 +1,20 @@
+{
+  "description": "Définissez vos règles de diffusion pour choisir quels contacts recevront les communications, en fonction des catégories et priorités que vous sélectionnez.",
+  "table_column_name": "Nom",
+  "table_column_status": "Statut",
+  "add_routing_button": "Créer une règle",
+  "status_enabled": "Activé",
+  "status_disabled": "Désactivé",
+  "actions_menu_label": "Actions",
+  "table_action_deactivate": "Désactiver",
+  "add_routing_error_message": "Une erreur est survenue lors de la création de la règle.",
+  "add_routing_success_message": "La règle a été créée avec succès.",
+  "edit_routing_error_message": "Une erreur est survenue lors de la modification de la règle.",
+  "edit_routing_success_message": "La règle a été modifiée avec succès.",
+  "delete_routing_error_message": "Une erreur est survenue lors de la suppression de la règle.",
+  "delete_routing_success_message": "La règle a été supprimée avec succès.",
+  "add_routing_modal_title": "Créer une règle",
+  "edit_routing_modal_title": "Modifier la règle",
+  "delete_routing_modal_title": "Supprimer la règle",
+  "delete_routing_modal_info": "Êtes-vous sûr de vouloir supprimer la règle <strong>{{ routingName }}</strong> ?"
+}
