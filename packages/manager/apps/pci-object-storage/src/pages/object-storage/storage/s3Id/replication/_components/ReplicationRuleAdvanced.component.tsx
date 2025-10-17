@@ -14,7 +14,7 @@ import {
   SelectValue,
   Switch,
 } from '@datatr-ux/uxlib';
-import { AddReplicationFormValues } from '../new/formAddReplication/useAddReplicationForm.hook';
+import { AddReplicationFormValues } from '../new/useAddReplicationForm.hook';
 import { ReplicationRuleContainer } from './ReplicatationRuleContainer';
 import storages from '@/types/Storages';
 
