@@ -4,7 +4,7 @@ import {
   syncComponentDocs,
   syncStorybookBaseDocuments,
 } from '../core/component-documentation-utils.js';
-import { aggregateOperationsStats, safeSync } from '../core/tasks-utils.js';
+import { aggregateOperationsStats, runPostUpdateChecks, safeSync } from '../core/tasks-utils.js';
 import { logger } from '../utils/log-manager.js';
 
 /**
@@ -44,6 +44,9 @@ export async function addComponentsDocumentation() {
   logger.success(
     `${EMOJIS.check} Sync complete — ${stats.created} new, ${stats.updated} updated, ${stats.total} files streamed.`,
   );
+
+  // Run validation tasks (install, build, tests) after workspace updates
+  runPostUpdateChecks();
 
   logger.info(
     `${EMOJIS.rocket} Components updated and imports normalized under 'stories/manager-ui-kit'.`,
