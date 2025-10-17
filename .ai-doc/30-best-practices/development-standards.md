@@ -172,11 +172,11 @@ const processData = (data: string): Promise<string> => {
 // ✅ CORRECT: Always handle rejections and return values
 const handlePromise = processData(input)
   .then((result: string) => {
-    console.log('Success:', result);
     return result; // Always return success
   })
   .catch((error: Error) => {
-    console.error('Error:', error);
+    // Use notifications instead of console.error
+    addError('Failed to process data');
     return Promise.reject(error); // Always transfer rejection
   });
 
@@ -210,13 +210,14 @@ function createDataStream(): Observable<string> {
 // ✅ CORRECT: Proper subscription handling
 const subscription = createDataStream().subscribe(
   (data: string) => {
-    console.log('Data:', data);
+    // Handle data
   },
   (error: Error) => {
-    console.error('Error:', error);
+    // Use notifications instead of console.error
+    addError('Data stream error');
   },
   () => {
-    console.log('Stream completed');
+    // Stream completed
   }
 );
 
@@ -231,7 +232,8 @@ let parsedData: any;
 try {
   parsedData = JSON.parse(jsonString);
 } catch (error) {
-  console.error('JSON parsing failed:', error);
+  // Use notifications instead of console.error
+  addError('Failed to parse JSON data');
   parsedData = {}; // Default fallback
 }
 
@@ -583,12 +585,50 @@ npm publish
 9. **Optimize builds**: Use proper bundling and chunking strategies
 10. **Maintain dependencies**: Keep packages updated and secure
 
+### Error Handling and Notifications
+
+#### Use Notifications Instead of Console Logs
+
+**❌ WRONG: Using console.log/console.error**
+```typescript
+try {
+  await apiCall();
+} catch (error) {
+  console.error('API call failed:', error);
+}
+```
+
+**✅ CORRECT: Using useNotifications hook**
+```typescript
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
+function MyComponent() {
+  const { addSuccess, addError } = useNotifications();
+
+  const handleApiCall = async () => {
+    try {
+      await apiCall();
+      addSuccess('Operation completed successfully');
+    } catch (error) {
+      addError('Operation failed. Please try again.');
+    }
+  };
+}
+```
+
+#### Notification Types
+- `addSuccess(message)` - Success notifications
+- `addError(message)` - Error notifications  
+- `addWarning(message)` - Warning notifications
+- `addInfo(message)` - Information notifications
+
 ### Code Quality Checklist
 
 - [ ] All variables are explicitly typed
 - [ ] TSLint passes without errors
 - [ ] All public methods have JSDoc documentation
 - [ ] Error handling is implemented for all async operations
+- [ ] **Notifications are used instead of console.log/console.error**
 - [ ] Unit tests cover all public methods
 - [ ] Code coverage meets 80% threshold
 - [ ] Dependencies are up to date and secure

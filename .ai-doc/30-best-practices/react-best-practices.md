@@ -530,9 +530,9 @@ But for readability, always use the semantically correct one.
 // ❌ WRONG: Overuse of memoization
 const simpleValue = useMemo(() => a + b, [a, b]); // Unnecessary for simple math
 
-// ❌ WRONG: Missing dependencies
+// ❌ WRONG: Missing dependencies and using console.log
 const handleClick = useCallback(() => {
-  console.log(data); // data not in deps
+  console.log(data); // data not in deps, and should use notifications
 }, []); // Missing data dependency
 
 // ❌ WRONG: Memoizing everything
@@ -997,13 +997,48 @@ useEffect(() => {
 
 ---
 
+### Error Handling and User Feedback
+
+#### Use Notifications Instead of Console Logs
+
+**❌ WRONG: Using console.log/console.error**
+```typescript
+const handleSubmit = async () => {
+  try {
+    await submitData();
+    console.log('Success!');
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+```
+
+**✅ CORRECT: Using useNotifications**
+```typescript
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
+const MyComponent = () => {
+  const { addSuccess, addError } = useNotifications();
+
+  const handleSubmit = async () => {
+    try {
+      await submitData();
+      addSuccess('Data submitted successfully');
+    } catch (error) {
+      addError('Failed to submit data. Please try again.');
+    }
+  };
+};
+```
+
 ## ⚖️ The React Developer's Moral
 
 - **Hooks are the foundation** of modern React development
 - **Pure components** are predictable and testable
 - **Proper cleanup** prevents memory leaks and bugs
 - **Performance optimization** should be measured, not assumed
+- **User feedback** should use notifications, not console logs
 
-**👉 Good React code is readable, maintainable, and follows the rules of Hooks.**
+**👉 Good React code is readable, maintainable, follows the rules of Hooks, and provides proper user feedback.**
 
 React best practices ensure that your components are predictable, performant, and free from common pitfalls. By following these guidelines, you'll write code that's easier to debug, test, and maintain in the long run.

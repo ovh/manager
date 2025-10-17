@@ -199,6 +199,39 @@ import { useBytes, useNotifications, useBreadcrumb } from '@ovh-ux/manager-react
 import { useTask } from '@ovh-ux/manager-react-components';
 ```
 
+#### useNotifications Hook
+```typescript
+// Notification system for user feedback
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
+function MyComponent() {
+  const { addSuccess, addError, addWarning, addInfo } = useNotifications();
+
+  const handleOperation = async () => {
+    try {
+      await apiCall();
+      addSuccess('Operation completed successfully');
+    } catch (error) {
+      addError('Operation failed. Please try again.');
+    }
+  };
+
+  return (
+    <button onClick={handleOperation}>
+      Perform Operation
+    </button>
+  );
+}
+```
+
+**Available Methods:**
+- `addSuccess(message: string)` - Display success notification
+- `addError(message: string)` - Display error notification  
+- `addWarning(message: string)` - Display warning notification
+- `addInfo(message: string)` - Display info notification
+
+**⚠️ Important:** Always use `useNotifications` instead of `console.log` or `console.error` for user feedback.
+
 ### Utilities and Types
 
 #### Utility Functions
