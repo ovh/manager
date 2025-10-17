@@ -33,11 +33,18 @@ const UNBUNDLING = {
 
 const PROMO_DISPLAY = {
   PROMO_FTTH_2020: 'FTTH_MIGRATION_AND_ADRESSMOVE_2020',
+  PROMO_FTTH_2025: 'FTTH_MIGRATION_AND_ADRESSMOVE_2025',
   P3M: {
     key: 'P3M',
     value: 3,
   },
+  P6M: {
+    key: 'P6M',
+    value: 6,
+  },
 };
+
+const QUANTITY = 1;
 
 const MODEM_LIST = ['yes', 'recycled'];
 
@@ -81,6 +88,7 @@ export {
   STEPS,
   UNBUNDLING,
   PROMO_DISPLAY,
+  QUANTITY,
   MODEM_LIST,
   MODEM_OPTION_NAME,
   OFFER_TYPE_XDSL,

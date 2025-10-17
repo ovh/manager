@@ -1,8 +1,13 @@
 export const PROMO_DISPLAY = {
   PROMO_FTTH_2020: 'FTTH_MIGRATION_AND_ADRESSMOVE_2020',
+  PROMO_FTTH_2025: 'FTTH_MIGRATION_AND_ADRESSMOVE_2025',
   P3M: {
     key: 'P3M',
     value: 3,
+  },
+  P6M: {
+    key: 'P6M',
+    value: 6,
   },
 };
 
