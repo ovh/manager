@@ -66,8 +66,6 @@ export default defineConfig({
         'zustand',
         '@ovhcloud/ods-common-core',
         '@ovhcloud/ods-common-theming',
-        '@ovhcloud/ods-components',
-        '@ovhcloud/ods-components/react',
         '@ovhcloud/ods-theme-blue-jeans',
         '@ovhcloud/ods-react',
       ],

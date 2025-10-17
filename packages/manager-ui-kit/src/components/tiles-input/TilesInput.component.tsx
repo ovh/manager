@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { OdsCard } from '@ovhcloud/ods-components/react';
+import { Card } from '@ovhcloud/ods-react';
 import { clsx } from 'clsx';
 import isEqual from 'lodash.isequal';
 import { hashCode } from '../../utils';
@@ -107,7 +107,7 @@ export const TilesInputComponent = <T, S>({
 
               return (
                 <li className="w-full px-1" key={hashCode(key)}>
-                  <OdsCard
+                  <Card
                     onClick={() =>
                       is.stack.singleton(key)
                         ? set.value(stackItem[0] as T)
@@ -122,13 +122,13 @@ export const TilesInputComponent = <T, S>({
                     {is.stack.singleton(key)
                       ? label(stackItem[0] as T)
                       : key !== undefined && stack?.label(key, stackItem)}
-                  </OdsCard>
+                  </Card>
                 </li>
               );
             })
           : items.map((item: T) => (
               <li className="w-full px-1" key={hashCode(item)}>
-                <OdsCard
+                <Card
                   onClick={() => set.value(item)}
                   className={`${clsx(
                     isEqual(value, item)
@@ -137,7 +137,7 @@ export const TilesInputComponent = <T, S>({
                   )} w-full px-[24px] py-[16px]`}
                 >
                   {label(item)}
-                </OdsCard>
+                </Card>
               </li>
             ))}
       </ul>

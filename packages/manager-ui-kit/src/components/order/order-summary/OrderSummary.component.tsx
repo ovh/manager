@@ -1,6 +1,6 @@
 import { useEffect, FC } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { TEXT_PRESET } from '@ovhcloud/ods-react';
 import { useOrderContext } from '../Order.context';
 import { Link, LinkType } from '../../Link';
 import { Button } from '../../button';
@@ -31,10 +31,10 @@ export const OrderSummary: FC<OrderSummaryProps> = ({
 
   return (
     <section className="flex flex-col gap-4">
-      <Text preset={ODS_TEXT_PRESET.heading2} data-testid="order-summary-title">
+      <Text preset={TEXT_PRESET.heading2} data-testid="order-summary-title">
         {t('order_summary_order_initiated_title', { product })}
       </Text>
-      <Text preset={ODS_TEXT_PRESET.paragraph}>
+      <Text preset={TEXT_PRESET.paragraph}>
         <Trans
           t={t}
           i18nKey="order_summary_order_initiated_subtitle"
@@ -51,7 +51,7 @@ export const OrderSummary: FC<OrderSummaryProps> = ({
           }}
         />
       </Text>
-      <Text preset={ODS_TEXT_PRESET.paragraph}>
+      <Text preset={TEXT_PRESET.paragraph}>
         {t('order_summary_order_initiated_info', { product })}
       </Text>
       <Button
