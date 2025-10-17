@@ -1,4 +1,3 @@
-import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import {
   POPOVER_POSITION,
@@ -57,6 +56,33 @@ export const Default: Story = {
     isDisabled: false,
     isLoading: false,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `const actionItems = [
+  {
+    id: 1,
+    href: 'https://www.ovhcloud.com',
+    target: '_blank',
+    label: 'external link',
+  },
+  {
+    id: 2,
+    onClick: () => handleAction(),
+    label: 'action',
+  },
+];
+
+<ActionMenu 
+  id="action-menu-default"
+  items={actionItems}
+  isCompact={false}
+  popoverPosition={POPOVER_POSITION.bottom}
+  variant={BUTTON_VARIANT.outline}
+/>`,
+      },
+    },
+  },
 };
 
 export const Compact: Story = {
@@ -65,6 +91,18 @@ export const Compact: Story = {
     items: actionItems,
     isCompact: true,
     popoverPosition: POPOVER_POSITION.bottom,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<ActionMenu 
+  id="action-menu-compact"
+  items={actionItems}
+  isCompact={true}
+  popoverPosition={POPOVER_POSITION.bottom}
+/>`,
+      },
+    },
   },
 };
 

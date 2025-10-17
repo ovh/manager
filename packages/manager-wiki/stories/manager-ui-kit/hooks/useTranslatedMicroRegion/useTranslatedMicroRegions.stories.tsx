@@ -24,6 +24,7 @@ const TranslatedMicroRegionsComponent = ({ region }: { region: string }) => {
 export default {
   title: 'Manager UI Kit/Hooks/useTranslatedMicroRegions',
   component: TranslatedMicroRegionsComponent,
+  tags: ['autodocs'],
   argTypes: {
     region: {
       control: 'text',

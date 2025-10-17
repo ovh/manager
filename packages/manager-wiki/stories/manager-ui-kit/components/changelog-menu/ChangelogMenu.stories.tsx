@@ -21,10 +21,30 @@ export const changelogMenu: ChangelogMenuProps = {
   chapters: changelogChapters,
 };
 
+changelogMenu.parameters = {
+  docs: {
+    source: {
+      code: `const changelogLinks = {
+  roadmap: 'https://github.com/orgs/ovh/projects/16/...',
+  changelog: 'https://github.com/orgs/ovh/projects/16/...',
+  'feature-request': 'https://github.com/orgs/ovh/projects/16/...',
+};
+
+const changelogChapters = ['baremetal', 'server', 'dedicated'];
+
+<ChangelogMenu 
+  links={changelogLinks}
+  chapters={changelogChapters}
+/>`,
+    },
+  },
+};
+
 const meta: Meta<ChangelogMenuProps> = {
   title: 'Manager UI Kit/Components/ChangelogMenu',
   decorators: [withRouter],
   component: ChangelogMenu,
+  tags: ['autodocs'],
   argTypes: {},
   args: changelogMenu,
 };
