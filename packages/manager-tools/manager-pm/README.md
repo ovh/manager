@@ -588,13 +588,13 @@ Because the monorepo runs **Yarn at the root** and **PNPM per-app**, you must fo
 
 2. **Run `yarn install` from the root**  
    This updates the root lockfile and triggers `manager-pm` hooks to:
-  - normalize versions
-  - rebuild PNPM overrides
-  - re-install PNPM apps if necessary
+- normalize versions
+- rebuild PNPM overrides
+- re-install PNPM apps if necessary
 
 3. **Verify**
-  - For Yarn apps: `yarn workspace <app> why <dep>`
-  - For PNPM apps: `manager-pm --type pnpm --action build --app <app>`
+- For Yarn apps: `yarn workspace <app> why <dep>`
+- For PNPM apps: `manager-pm --type pnpm --action build --app <app>`
 
 ---
 
