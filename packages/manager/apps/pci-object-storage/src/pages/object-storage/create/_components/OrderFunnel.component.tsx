@@ -109,7 +109,11 @@ const OrderFunnel = ({
     if (isSwiftOrder(result)) {
       createSwift({
         projectId,
-        container: result,
+        container: {
+          archive: result.archive,
+          containerName: result.containerName,
+          region: result.region,
+        },
         containerType: form.getValues('containerType'),
       });
     } else if (isS3Order(result)) {
