@@ -70,6 +70,9 @@ export type TPrice = {
 
 export type TRegionType = 'region' | 'localzone' | 'region-3-az' | string;
 
+export const DEPLOYMENT_MODES = ['region', 'localzone', 'region-3-az'] as const;
+export type TDeploymentMode = typeof DEPLOYMENT_MODES[number];
+
 export type TSubnet = {
   id: string;
   name: string;
@@ -103,3 +106,5 @@ export type TStatusSeverity = {
   label: TStatus;
   severity: TSeverity;
 };
+
+export type TFlavorTypeTag = 'new' | 'savings_plan' | 'coming_soon';
