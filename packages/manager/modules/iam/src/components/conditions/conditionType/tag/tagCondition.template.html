@@ -1,0 +1,28 @@
+<oui-field
+    data-label="{{:: 'iam_create_condition_tag_key_label' | translate }}"
+>
+    <input
+        type="text"
+        class="oui-input"
+        name="tagKey"
+        id="tagKey"
+        data-ng-model="$ctrl.tagKey"
+        data-ng-required="true"
+        placeholder="{{:: 'iam_create_condition_tag_key_placeholder' | translate}}"
+    />
+</oui-field>
+<oui-field
+    data-label="{{:: 'iam_create_condition_tag_value_label' | translate }}"
+>
+    <input
+        type="text"
+        class="oui-input"
+        name="tagValue"
+        id="tagValue"
+        data-ng-model="$ctrl.tagValue"
+        data-ng-required="true"
+        data-ng-change="$ctrl.updateConditionValues()"
+        data-ng-disabled="!$ctrl.tagKey"
+        placeholder="{{:: 'iam_create_condition_tag_value_placeholder' | translate}}"
+    />
+</oui-field>
