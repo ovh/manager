@@ -5,6 +5,7 @@ import { Outlet, useParams } from 'react-router-dom';
 import { useSwiftData } from '../Swift.context';
 import { useObjectStorageData } from '@/pages/object-storage/ObjectStorage.context';
 import InformationsDetails from './_components/InformationsDetails.component';
+import Guides from '@/components/guides/Guides.component';
 
 const Dashboard = () => {
   const { swift } = useSwiftData();
@@ -15,7 +16,10 @@ const Dashboard = () => {
   if (!regions) return <Dashboard.Skeleton />;
   return (
     <>
-      <h2>{t('dashboardTitle')}</h2>
+      <div className="flex justify-between w-full items-center">
+        <h2>{t('dashboardTitle')}</h2>
+        <Guides selectors={['swift']} />
+      </div>
       <Card>
         <CardHeader>
           <h5>

@@ -1,4 +1,5 @@
 {
+  "title": "Réplication",
   "createReplication": "Ajouter une règle de réplication",
   "columnName": "Nom",
   "columnDestinationName": "Nom de destination",
