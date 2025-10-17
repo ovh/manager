@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.30.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.30.1...@ovh-ux/manager-pci-databases-analytics-app@1.30.2) (2025-10-16)
+
+
+### Bug Fixes
+
+* **config:** add missing complementaryAddress field to the user type ([7412865](https://github.com/ovh/manager/commit/74128656ce66647ce3c98d82334a53d120e2e620)), closes [#DCE-32](https://github.com/ovh/manager/issues/DCE-32)
+
+
+
+
+
+## [1.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.30.0...@ovh-ux/manager-pci-databases-analytics-app@1.30.1) (2025-10-15)
+
+
+### Bug Fixes
+
+* **pci-databases-analytics:** update api call to add Iceberg headers and get data ([f956c52](https://github.com/ovh/manager/commit/f956c526b260ba1fdd3209050fb6ac67005cfa3b)), closes [#DATATR-2578](https://github.com/ovh/manager/issues/DATATR-2578)
+
+
+
+
+
+# [1.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.29.1...@ovh-ux/manager-pci-databases-analytics-app@1.30.0) (2025-10-15)
+
+
+### Features
+
+* **pci.db:** update streaming deep links ([#19625](https://github.com/ovh/manager/issues/19625)) ([bf84207](https://github.com/ovh/manager/commit/bf842076ff9e3c19b7203054f258a2285d1d0af3)), closes [#DATATR-2558](https://github.com/ovh/manager/issues/DATATR-2558)
+
+
+
+
+
+## [1.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.29.0...@ovh-ux/manager-pci-databases-analytics-app@1.29.1) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
+
+
+
+
+
 # [1.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.28.6...@ovh-ux/manager-pci-databases-analytics-app@1.29.0) (2025-10-09)
 
 

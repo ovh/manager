@@ -40,6 +40,7 @@ import { KeyTypeSection } from './KeyTypeSection.component';
 import { KeyUsageSection } from './KeyUsageSection.component';
 import { CREATE_KEY_TEST_IDS } from './CreateKey.constants';
 import { SERVICE_KEYS_LABEL } from '@/constants';
+import { KmsChangelogButton } from '@/components/kmsChangelogButton/KmsChangelogButton.component';
 
 export default function CreateKey() {
   const { okmsId } = useParams() as { okmsId: string };
@@ -180,6 +181,7 @@ export default function CreateKey() {
           title: t('key_management_service_service-keys_create_title'),
           description: t('key_management_service_service-keys_create_subtitle'),
           headerButton: <KmsGuidesHeader />,
+          changelogButton: <KmsChangelogButton />,
         }}
         message={<Notifications />}
       >

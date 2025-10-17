@@ -19,6 +19,6 @@ export default class LogLiveTailService {
   }
 
   getLogs(url) {
-    return this.$http.get(`${url}&sort=asc&limit=20`).then(({ data }) => data);
+    return this.$http.get(`${url}&limit=20`).then(({ data }) => data);
   }
 }

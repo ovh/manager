@@ -37,5 +37,6 @@
   "zimbra_account_upgrade_offer_details": "Oferujemy możliwość bezpłatnego upgrade’u konta na czas trwania fazy beta.",
   "zimbra_account_upgrade_lab_page": "Aby uzyskać więcej informacji, sprawdź <Link href=\"{{ zimbra_beta_link }}\">warunki korzystania z wersji beta na stronie lab</Link>.",
   "zimbra_account_upgrade_success_message": "Dyspozycja upgrade’u została przyjęta. Zostanie przetworzona w ciągu kilku minut.",
-  "zimbra_account_upgrade_error_message": "Upgrade nie powiódł się. {{error}}"
+  "zimbra_account_upgrade_error_message": "Upgrade nie powiódł się. {{error}}",
+  "zimbra_account_account_migrate": "Migracja konta"
 }

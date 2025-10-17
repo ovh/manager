@@ -25,6 +25,72 @@ export { mergeConfig };
 export { defaultCoverageConfig };
 
 /**
+ * Default dependency list to deduplicate in Vitest/Vite `resolve.dedupe`.
+ *
+ * Ensures that critical runtime libraries (React, i18next, ODS, etc.)
+ * are always resolved as a single instance during testing.
+ *
+ * This prevents issues such as:
+ *  - Multiple React copies leading to "hooks called from invalid React" errors
+ *  - Duplicate i18next instances causing inconsistent translations
+ *  - ODS theming components not sharing context
+ *
+ * ## Usage
+ *
+ * ### Common config
+ * ```ts
+ * import {
+ *   createConfig,
+ *   mergeConfig,
+ *   sharedConfig,
+ *   defaultDedupedDependencies,
+ * } from '@ovh-ux/manager-tests-setup';
+ *
+ * export default mergeConfig(
+ *   sharedConfig,
+ *   createConfig({
+ *     resolve: {
+ *       dedupe: [...defaultDedupedDependencies],
+ *     },
+ *   }),
+ * );
+ * ```
+ *
+ * ### Standalone config
+ * ```ts
+ * import { defineConfig } from 'vitest/config';
+ * import { defaultDedupedDependencies } from '@ovh-ux/manager-tests-setup';
+ *
+ * export default defineConfig({
+ *   resolve: {
+ *     dedupe: [...defaultDedupedDependencies],
+ *   },
+ * });
+ * ```
+ */
+export const defaultDedupedDependencies = [
+  '@ovh-ux/manager-core-api',
+  '@ovh-ux/manager-react-shell-client',
+  '@tanstack/react-query',
+  'i18next',
+  'react',
+  'react-dom',
+  'react-i18next',
+  'react-router-dom',
+  '@ovhcloud/ods-common-core',
+  '@ovhcloud/ods-common-testing',
+  '@ovhcloud/ods-common-theming',
+  '@ovhcloud/ods-components',
+  '@ovhcloud/ods-theme-blue-jeans',
+  'vite',
+  'vitest',
+  '@vitest',
+  'typescript',
+  'date-fns',
+  '@ovh-ux/manager-react-components',
+];
+
+/**
  * Manager default excluded files.
  */
 export const defaultExcludedFiles = [

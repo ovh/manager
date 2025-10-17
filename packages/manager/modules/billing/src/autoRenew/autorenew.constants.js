@@ -65,8 +65,6 @@ export const SERVICE_STATES = {
 };
 
 export const SERVICE_STATUS = {
-  AUTOMATIC: 'auto',
-  MANUAL: 'manual',
   UNPAID: 'unpaid',
   PENDING_RESILIATION: 'delete_at_expiration',
   RESILIATED: 'expired',

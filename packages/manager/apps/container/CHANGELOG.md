@@ -3,6 +3,93 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.158.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.158.1...@ovh-ux/manager-container-app@0.158.2) (2025-10-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.158.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.158.0...@ovh-ux/manager-container-app@0.158.1) (2025-10-15)
+
+
+### Bug Fixes
+
+* **container:** fix static analysis kit version on container ([3249ee0](https://github.com/ovh/manager/commit/3249ee0d4debd165adb57ce9fe81c00ae6582f6a)), closes [#MANAGER-19276](https://github.com/ovh/manager/issues/MANAGER-19276)
+
+
+
+
+
+# [0.158.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.157.0...@ovh-ux/manager-container-app@0.158.0) (2025-10-14)
+
+
+### Bug Fixes
+
+* fix okms container menus ([bed2171](https://github.com/ovh/manager/commit/bed21712ca4348d549745158eeed866970a26c9c)), closes [#MANAGER-18172](https://github.com/ovh/manager/issues/MANAGER-18172)
+* **i18n:** add missing translations [CDS 672] ([652bfc6](https://github.com/ovh/manager/commit/652bfc61d53c0636ddc5ba10b85f6936f7689135))
+* **kms:** rename sms to secret-manager ([9de7689](https://github.com/ovh/manager/commit/9de76895c9f4ab43a0b4243a6ad63084b9dd32ab)), closes [#MANAGER-18508](https://github.com/ovh/manager/issues/MANAGER-18508)
+
+
+### Features
+
+* add secret-manager beta badge on main navigation ([5f3a226](https://github.com/ovh/manager/commit/5f3a2265def57e7e83cedbd34e015e85f2625e8d)), closes [#MANAGER-19502](https://github.com/ovh/manager/issues/MANAGER-19502)
+* **kms:** add secret-manager to legacy menu ([c92af9e](https://github.com/ovh/manager/commit/c92af9eb4787d9e3c437ba2143f197cab849c670)), closes [#MANAGER-18508](https://github.com/ovh/manager/issues/MANAGER-18508)
+* **okms:** add secret-management-service menu entry ([d46326c](https://github.com/ovh/manager/commit/d46326cf5ea66d217f89b35728cc46972af3cbdd)), closes [#MANAGER-17869](https://github.com/ovh/manager/issues/MANAGER-17869)
+
+
+
+
+
+# [0.157.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.156.0...@ovh-ux/manager-container-app@0.157.0) (2025-10-14)
+
+
+### Bug Fixes
+
+* fix okms container menus ([bed2171](https://github.com/ovh/manager/commit/bed21712ca4348d549745158eeed866970a26c9c)), closes [#MANAGER-18172](https://github.com/ovh/manager/issues/MANAGER-18172)
+* **i18n:** add missing translations [CDS 672] ([652bfc6](https://github.com/ovh/manager/commit/652bfc61d53c0636ddc5ba10b85f6936f7689135))
+* **kms:** rename sms to secret-manager ([9de7689](https://github.com/ovh/manager/commit/9de76895c9f4ab43a0b4243a6ad63084b9dd32ab)), closes [#MANAGER-18508](https://github.com/ovh/manager/issues/MANAGER-18508)
+
+
+### Features
+
+* add secret-manager beta badge on main navigation ([5f3a226](https://github.com/ovh/manager/commit/5f3a2265def57e7e83cedbd34e015e85f2625e8d)), closes [#MANAGER-19502](https://github.com/ovh/manager/issues/MANAGER-19502)
+* **kms:** add secret-manager to legacy menu ([c92af9e](https://github.com/ovh/manager/commit/c92af9eb4787d9e3c437ba2143f197cab849c670)), closes [#MANAGER-18508](https://github.com/ovh/manager/issues/MANAGER-18508)
+* **okms:** add secret-management-service menu entry ([d46326c](https://github.com/ovh/manager/commit/d46326cf5ea66d217f89b35728cc46972af3cbdd)), closes [#MANAGER-17869](https://github.com/ovh/manager/issues/MANAGER-17869)
+
+
+
+
+
+# [0.156.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.155.2...@ovh-ux/manager-container-app@0.156.0) (2025-10-14)
+
+
+### Bug Fixes
+
+* fix okms container menus ([bed2171](https://github.com/ovh/manager/commit/bed21712ca4348d549745158eeed866970a26c9c)), closes [#MANAGER-18172](https://github.com/ovh/manager/issues/MANAGER-18172)
+* **i18n:** add missing translations [CDS 672] ([652bfc6](https://github.com/ovh/manager/commit/652bfc61d53c0636ddc5ba10b85f6936f7689135))
+* **kms:** rename sms to secret-manager ([9de7689](https://github.com/ovh/manager/commit/9de76895c9f4ab43a0b4243a6ad63084b9dd32ab)), closes [#MANAGER-18508](https://github.com/ovh/manager/issues/MANAGER-18508)
+
+
+### Features
+
+* add secret-manager beta badge on main navigation ([5f3a226](https://github.com/ovh/manager/commit/5f3a2265def57e7e83cedbd34e015e85f2625e8d)), closes [#MANAGER-19502](https://github.com/ovh/manager/issues/MANAGER-19502)
+* **kms:** add secret-manager to legacy menu ([c92af9e](https://github.com/ovh/manager/commit/c92af9eb4787d9e3c437ba2143f197cab849c670)), closes [#MANAGER-18508](https://github.com/ovh/manager/issues/MANAGER-18508)
+* **okms:** add secret-management-service menu entry ([d46326c](https://github.com/ovh/manager/commit/d46326cf5ea66d217f89b35728cc46972af3cbdd)), closes [#MANAGER-17869](https://github.com/ovh/manager/issues/MANAGER-17869)
+
+
+
+
+
+## [0.155.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.155.1...@ovh-ux/manager-container-app@0.155.2) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
 ## [0.155.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.155.0...@ovh-ux/manager-container-app@0.155.1) (2025-10-09)
 
 

@@ -359,5 +359,6 @@
   "emails_create_account": "Załóż konto",
   "emails_create_account_new_window": "(Nowe okno)",
   "emails_general_information_diagnostic": "Diagnostyka",
-  "emails_general_information_diagnostic_dkim": "DKIM"
+  "emails_general_information_diagnostic_dkim": "DKIM",
+  "email_tab_modal_migrate_alert_dont_rollback_available": "Uwaga: po rozpoczęciu migracji konta powrót do poprzedniej oferty nie będzie możliwy "
 }

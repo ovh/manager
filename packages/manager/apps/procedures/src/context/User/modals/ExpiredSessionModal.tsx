@@ -1,17 +1,16 @@
 import React, { FunctionComponent } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_VARIANT,
   ODS_TEXT_COLOR_HUE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import {
-  OsdsButton,
-  OsdsModal,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OsdsButton, OsdsModal, OsdsText } from '@ovhcloud/ods-components/react';
+
 import { InformationIcon } from '@/components/Icons/InformationIcon';
 
 type Props = {

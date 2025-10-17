@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.52.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.51.4...@ovh-ux/manager-billing@0.52.0) (2025-10-15)
+
+
+### Bug Fixes
+
+* fix bad rebase and static kit version ([55bdff1](https://github.com/ovh/manager/commit/55bdff1139f28288646b46f0a9499ac0fcb46ee2)), closes [#MANAGER-19540](https://github.com/ovh/manager/issues/MANAGER-19540) [#MANAGER-19277](https://github.com/ovh/manager/issues/MANAGER-19277) [#MANAGER-19276](https://github.com/ovh/manager/issues/MANAGER-19276) [#MANAGER-19277](https://github.com/ovh/manager/issues/MANAGER-19277)
+
+
+### Features
+
+* **billing:** add pending actions columns in my services ([960214d](https://github.com/ovh/manager/commit/960214d09c885442d943a5c0a4280fa5e2077c1a)), closes [#MANAGER-19540](https://github.com/ovh/manager/issues/MANAGER-19540)
+* **billing:** replace renew mode by status ([03520f2](https://github.com/ovh/manager/commit/03520f2f741b23f1327b2d4e5a284f7def520e7d)), closes [#MANAGER-19540](https://github.com/ovh/manager/issues/MANAGER-19540)
+
+
+
+
+
 ## [0.51.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.51.3...@ovh-ux/manager-billing@0.51.4) (2025-10-09)
 
 

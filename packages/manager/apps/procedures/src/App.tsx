@@ -1,34 +1,25 @@
 import React, { Suspense } from 'react';
+
+import { RouterProvider, createHashRouter, createRoutesFromElements } from 'react-router-dom';
+
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
 import { odsSetup } from '@ovhcloud/ods-common-core';
-import {
-  useDefaultLanguage,
-  findAvailableLocale,
-  detectUserLocale,
-} from '@ovh-ux/manager-config';
-import {
-  RouterProvider,
-  createHashRouter,
-  createRoutesFromElements,
-} from 'react-router-dom';
-import '@ovhcloud/ods-theme-blue-jeans';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
-import queryClient from '@/query.client';
-import Routes, {
-  accountDisable2faRoute,
-  exercisingYourRightsRoute,
-} from '@/routes/routes';
-import { decodeToken, extractToken } from '@/utils/token';
-import initI18n from '@/i18n';
+import '@ovhcloud/ods-theme-blue-jeans';
+
+import { detectUserLocale, findAvailableLocale, useDefaultLanguage } from '@ovh-ux/manager-config';
+
+import UserProvider from '@/context/User/provider';
 import initAuthenticationInterceptor from '@/data/authentication.interceptor';
 import initInterceptor from '@/data/invisible-challenge.interceptor';
-import UserProvider from '@/context/User/provider';
-import {
-  getRedirectLoginUrl,
-  getWebSiteRedirectUrl,
-} from '@/utils/url-builder';
+import initI18n from '@/i18n';
+import queryClient from '@/query.client';
+import Routes, { accountDisable2faRoute, exercisingYourRightsRoute } from '@/routes/routes';
+import { decodeToken, extractToken } from '@/utils/token';
+import { getRedirectLoginUrl, getWebSiteRedirectUrl } from '@/utils/url-builder';
 
 function getSubsidiary(subsidiary: string, locale: string) {
   if (subsidiary?.trim()?.length === 0)
@@ -64,11 +55,7 @@ initI18n(locale, getSubsidiary(subsidiary, locale));
 odsSetup();
 initInterceptor();
 
-if (
-  activateAuthenticationInterceptorForPath.some((path) =>
-    window.location.href.includes(path),
-  )
-) {
+if (activateAuthenticationInterceptorForPath.some((path) => window.location.href.includes(path))) {
   initAuthenticationInterceptor(token);
 }
 

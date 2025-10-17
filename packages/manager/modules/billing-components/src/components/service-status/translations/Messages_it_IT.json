@@ -9,5 +9,13 @@
   "manager_billing_service_status_expired": "Disattivato",
   "manager_billing_service_status_billing_suspended": "Fatturazione rinviata",
   "manager_billing_service_status_forced_manual": "Rinnovo manuale",
-  "manager_billing_service_status_restorable": "Ripristinabile"
+  "manager_billing_service_status_restorable": "Ripristinabile",
+  "manager_billing_service_status_unpaid": "Mancato pagamento",
+  "manager_billing_service_status_terminated": "Disattivato",
+  "manager_billing_service_status_unrenewed": "Scaduto",
+  "manager_billing_service_status_active": "Attivo",
+  "manager_billing_service_status_error": "In errore",
+  "manager_billing_service_status_in_creation": "Installazione in corso",
+  "manager_billing_service_status_rupture": "Disattivato",
+  "manager_billing_service_status_to_renew": "Da rinnovare"
 }

@@ -61,5 +61,8 @@
   "zimbra_dashboard_email_accounts_order": "Contratar cuentas de correo",
   "zimbra_dashboard_tile_status_ongoingTask_none": "No hay tareas en curso.",
   "zimbra_dashboard_domains_verify": "Verificación",
-  "zimbra_dashboard_domains_diagnostics": "Diagnóstico"
+  "zimbra_dashboard_domains_diagnostics": "Diagnóstico",
+  "zimbra_mail_configure_guide": "Conectar una cuenta de correo",
+  "zimbra_mail_migrate_guide": "Migrar una cuenta de correo",
+  "zimbra_dashboard_ovh_mail_migrator": "Herramienta de migración"
 }

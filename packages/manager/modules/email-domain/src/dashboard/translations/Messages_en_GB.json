@@ -359,5 +359,6 @@
   "emails_create_account": "Create an account",
   "emails_create_account_new_window": "(New window)",
   "emails_general_information_diagnostic": "Diagnostic",
-  "emails_general_information_diagnostic_dkim": "DKIM"
+  "emails_general_information_diagnostic_dkim": "DKIM",
+  "email_tab_modal_migrate_alert_dont_rollback_available": "Careful, you cannot switch back to the previous solution once the account migration has been launched"
 }

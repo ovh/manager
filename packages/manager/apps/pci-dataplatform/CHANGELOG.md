@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-dataplatform-app@1.6.10...@ovh-ux/manager-pci-dataplatform-app@1.6.11) (2025-10-16)
+
+
+### Bug Fixes
+
+* **config:** add missing complementaryAddress field to the user type ([7412865](https://github.com/ovh/manager/commit/74128656ce66647ce3c98d82334a53d120e2e620)), closes [#DCE-32](https://github.com/ovh/manager/issues/DCE-32)
+
+
+
+
+
+## [1.6.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-dataplatform-app@1.6.9...@ovh-ux/manager-pci-dataplatform-app@1.6.10) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-dataplatform-app
+
+
+
+
+
 ## [1.6.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-dataplatform-app@1.6.8...@ovh-ux/manager-pci-dataplatform-app@1.6.9) (2025-10-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-dataplatform-app

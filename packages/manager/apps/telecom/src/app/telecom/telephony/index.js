@@ -63,8 +63,10 @@ angular
               $q,
               isSvaWalletFeatureAvailable,
               TelephonySvaWalletService,
+              svaWallet,
+              isSvaWalletValid,
             ) =>
-              isSvaWalletFeatureAvailable
+              svaWallet && !isSvaWalletValid && isSvaWalletFeatureAvailable
                 ? TelephonySvaWalletService.getWalletOnboarding()
                 : $q.resolve(false),
 

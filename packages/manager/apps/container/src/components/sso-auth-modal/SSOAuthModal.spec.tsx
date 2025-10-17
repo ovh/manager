@@ -37,7 +37,7 @@ vi.mock('@/context', () => ({
 }));
 
 vi.mock('react-i18next', async (importOriginal) => ({
-  ...((await importOriginal()) as object),
+  ...((await importOriginal())),
   Trans: ({ i18nKey }: { i18nKey: string }) => i18nKey || 'translated-text',
 }));
 

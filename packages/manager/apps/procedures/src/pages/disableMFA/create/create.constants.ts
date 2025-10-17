@@ -1,6 +1,5 @@
 export const LegalPolicyLinkByLanguage = {
-  DEFAULT:
-    'https://www.ovhcloud.com/en-ie/terms-and-conditions/privacy-policy/',
+  DEFAULT: 'https://www.ovhcloud.com/en-ie/terms-and-conditions/privacy-policy/',
   en_CA: 'https://www.ovhcloud.com/en-ca/terms-and-conditions/privacy-policy/',
   de_DE: 'https://www.ovhcloud.com/de/terms-and-conditions/privacy-policy/',
   es_ES: 'https://www.ovhcloud.com/es-es/terms-and-conditions/privacy-policy/',

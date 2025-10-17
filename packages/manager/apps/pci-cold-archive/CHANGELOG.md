@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.45](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-cold-archive-app@0.3.44...@ovh-ux/manager-pci-cold-archive-app@0.3.45) (2025-10-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-cold-archive-app
+
+
+
+
+
+## [0.3.44](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-cold-archive-app@0.3.43...@ovh-ux/manager-pci-cold-archive-app@0.3.44) (2025-10-15)
+
+
+### Bug Fixes
+
+* **cold-archive:** wrong error message on success banner ([9f62d8a](https://github.com/ovh/manager/commit/9f62d8a360c9ff1e6642edaefea78fe3368e57d0)), closes [#TAPC-4881](https://github.com/ovh/manager/issues/TAPC-4881)
+* **object-storage:** error message not handle ([177d5fc](https://github.com/ovh/manager/commit/177d5fc673a22d5afe92f8a4f67b388e9a3f399f)), closes [#TAPC-4693](https://github.com/ovh/manager/issues/TAPC-4693)
+
+
+
+
+
+## [0.3.43](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-cold-archive-app@0.3.42...@ovh-ux/manager-pci-cold-archive-app@0.3.43) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-cold-archive-app
+
+
+
+
+
 ## [0.3.42](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-cold-archive-app@0.3.41...@ovh-ux/manager-pci-cold-archive-app@0.3.42) (2025-10-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-cold-archive-app

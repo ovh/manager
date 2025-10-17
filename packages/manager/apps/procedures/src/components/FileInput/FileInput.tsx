@@ -1,4 +1,7 @@
 import React, { FunctionComponent, useContext, useRef } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -7,7 +10,7 @@ import {
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
 import { OsdsButton, OsdsIcon } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+
 import { FileInputContext, FileWithError } from './FileInputContainer';
 
 type Props = {
@@ -17,9 +20,7 @@ type Props = {
 export const FileInput: FunctionComponent<Props> = ({ className }) => {
   const context = useContext(FileInputContext);
   if (!context) {
-    throw Error(
-      'The component <FileInput /> must be a child of FileInputContainer',
-    );
+    throw Error('The component <FileInput /> must be a child of FileInputContainer');
   }
   const {
     onChange,
@@ -37,9 +38,7 @@ export const FileInput: FunctionComponent<Props> = ({ className }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const parseContentTypes = (inputString: string) => {
-    const typesArray = inputString
-      .split(',')
-      .map((type) => type.trim().split('/')[1]);
+    const typesArray = inputString.split(',').map((type) => type.trim().split('/')[1]);
     const lastType = typesArray.pop();
     return { types: typesArray.join(', '), lastType };
   };
@@ -82,9 +81,7 @@ export const FileInput: FunctionComponent<Props> = ({ className }) => {
 
     const files = value || [];
 
-    const newFiles: File[] = multiple
-      ? [...files, ...Array.from(fileList)]
-      : Array.from(fileList);
+    const newFiles: File[] = multiple ? [...files, ...Array.from(fileList)] : Array.from(fileList);
 
     onChange?.({
       files: mapToFilesWithError(newFiles.slice(0, maxFiles)),

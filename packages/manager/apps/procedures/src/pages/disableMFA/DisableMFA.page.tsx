@@ -1,17 +1,16 @@
 import React, { useEffect } from 'react';
+
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+
 import { AxiosError } from 'axios';
-import { Status2fa } from '@/types/status.type';
-import {
-  createRoutePath,
-  seeRoutePath,
-  errorRoutePath,
-} from '@/routes/mfa.constants';
-import { accountDisable2faRoute } from '@/routes/routes';
+
 import { SkeletonLoading } from '@/components/Loading/SkeletonLoading';
-import { SessionModals } from '@/context/User/modals/SessionModals';
 import { PageLayout } from '@/components/PageLayout/PageLayout.component';
+import { SessionModals } from '@/context/User/modals/SessionModals';
 import { useProcedures } from '@/data/hooks/useProcedures';
+import { createRoutePath, errorRoutePath, seeRoutePath } from '@/routes/mfa.constants';
+import { accountDisable2faRoute } from '@/routes/routes';
+import { Status2fa } from '@/types/status.type';
 
 const redirectStrategies: Record<Status2fa['status'] | 'error', string> = {
   open: `${accountDisable2faRoute}/${seeRoutePath}`,
@@ -38,15 +37,13 @@ export default function DisableMFA() {
 
   const { useStatus } = useProcedures('2FA');
 
-  const { data, error, isSuccess, isFetched, isLoading } = useStatus<
-    Status2fa
-  >();
+  const { data, error, isSuccess, isFetched, isLoading } = useStatus<Status2fa>();
   const route = redirectStrategies[data?.status];
   useEffect(() => {
     if (isFetched) {
       if (isSuccess) {
         navigateTo(route);
-      } else if (checkIfCreationIsAllowed(error as AxiosError)) {
+      } else if (checkIfCreationIsAllowed(error)) {
         navigateTo(redirectStrategies.creationAuthorized);
       } else {
         navigateTo(redirectStrategies.error);

@@ -1,6 +1,8 @@
 dist
 node_modules
 coverage
+.turbo
+build
 .type-coverage
 packages/manager/core/generator/app/templates
 packages/components/ovh-shell
@@ -41,6 +43,7 @@ packages/manager-tools/manager-static-analysis-kit
 packages/manager-tools/manager-tailwind-config
 packages/manager-tools/manager-tests-setup
 packages/manager-tools/manager-vite-config
+packages/manager-tools/manager-pm
 packages/manager/apps/pci-instances
 packages/manager/apps/pci-workflow
 packages/manager/apps/web-domains
