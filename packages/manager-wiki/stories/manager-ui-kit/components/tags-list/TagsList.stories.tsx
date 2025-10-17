@@ -12,6 +12,7 @@ import { TagsList } from '../../../../../manager-ui-kit/src/components';
 const managerTagsList = {
   title: 'Manager UI Kit/Components/TagsList',
   component: TagsList,
+  tags: ['autodocs'],
 };
 
 type Story = StoryObj<typeof managerTagsList>;

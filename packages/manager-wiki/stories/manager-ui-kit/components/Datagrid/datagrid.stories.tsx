@@ -438,6 +438,7 @@ FullFooter.args = {
 const meta = {
   title: 'Manager UI Kit/Components/Datagrid New',
   component: Datagrid,
+  tags: ['autodocs'],
   decorators: [withRouter],
   parameters: {
     docs: {

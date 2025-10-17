@@ -61,5 +61,6 @@ export const Primary = {
 export default {
   title: 'Manager UI Kit/Components/Notifications',
   component: NotificationsStory,
+  tags: ['autodocs'],
   decorators: [withRouter],
 };

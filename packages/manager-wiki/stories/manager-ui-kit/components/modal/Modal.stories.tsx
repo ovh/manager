@@ -43,6 +43,16 @@ Basic.parameters = {
   controls: {
     include: ['heading', 'children'],
   },
+  docs: {
+    source: {
+      code: `<Modal 
+  heading="Example of modal"
+  open={true}
+>
+  <div>Example of content</div>
+</Modal>`,
+    },
+  },
 };
 
 Basic.args = basicMock;
@@ -52,6 +62,25 @@ export const Actions = ModalStory.bind({});
 Actions.parameters = {
   controls: {
     include: ['onOpenChange', 'primaryButton', 'secondaryButton'],
+  },
+  docs: {
+    source: {
+      code: `<Modal 
+  heading="Example of modal"
+  open={true}
+  primaryButton={{
+    label: 'Confirm',
+    onClick: () => {},
+  }}
+  secondaryButton={{
+    label: 'Cancel',
+    onClick: () => {},
+  }}
+  onOpenChange={() => {}}
+>
+  <div>Example of content</div>
+</Modal>`,
+    },
   },
 };
 
@@ -65,6 +94,25 @@ export const Type = ModalStory.bind({});
 Type.parameters = {
   controls: {
     include: ['type'],
+  },
+  docs: {
+    source: {
+      code: `<Modal 
+  heading="Example of modal"
+  type={MODAL_COLOR.warning}
+  open={true}
+  primaryButton={{
+    label: 'Confirm',
+    onClick: () => {},
+  }}
+  secondaryButton={{
+    label: 'Cancel',
+    onClick: () => {},
+  }}
+>
+  <div>Example of content</div>
+</Modal>`,
+    },
   },
 };
 
@@ -80,6 +128,25 @@ Loading.parameters = {
   controls: {
     include: ['loading'],
   },
+  docs: {
+    source: {
+      code: `<Modal 
+  heading="Example of modal"
+  loading={true}
+  open={true}
+  primaryButton={{
+    label: 'Confirm',
+    onClick: () => {},
+  }}
+  secondaryButton={{
+    label: 'Cancel',
+    onClick: () => {},
+  }}
+>
+  <div>Example of content</div>
+</Modal>`,
+    },
+  },
 };
 
 Loading.args = {
@@ -93,6 +160,28 @@ export const Step = ModalStory.bind({});
 Step.parameters = {
   controls: {
     include: ['step'],
+  },
+  docs: {
+    source: {
+      code: `<Modal 
+  heading="Example of modal"
+  open={true}
+  step={{
+    current: 1,
+    total: 3,
+  }}
+  primaryButton={{
+    label: 'Confirm',
+    onClick: () => {},
+  }}
+  secondaryButton={{
+    label: 'Cancel',
+    onClick: () => {},
+  }}
+>
+  <div>Example of content</div>
+</Modal>`,
+    },
   },
 };
 
@@ -115,4 +204,5 @@ Full.args = {
 export default {
   title: 'Manager UI Kit/Components/Modal',
   component: Modal,
+  tags: ['autodocs'],
 };

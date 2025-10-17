@@ -54,6 +54,8 @@ const iamLinkWithoutAuthAndTooltip: LinkProps = {
 const meta: Meta<LinkProps> = {
   title: 'Manager UI Kit/Components/Link',
   decorators: [(story) => <div>{story()}</div>],
+  component: Link,
+  tags: ['autodocs'],
   argTypes: {},
   args: backLink,
 };
@@ -61,19 +63,103 @@ const meta: Meta<LinkProps> = {
 export default meta;
 
 export const BackLink = () => <Link {...backLink} />;
+BackLink.parameters = {
+  docs: {
+    source: {
+      code: `<Link 
+  type={LinkType.back}
+  href="https://www.ovhcloud.com"
+  target="_blank"
+>
+  Back to the list
+</Link>`,
+    },
+  },
+};
 
 export const NextLink = () => <Link {...nextLink} />;
+NextLink.parameters = {
+  docs: {
+    source: {
+      code: `<Link 
+  type={LinkType.next}
+  href="https://www.ovhcloud.com"
+  target="_blank"
+>
+  Next Page
+</Link>`,
+    },
+  },
+};
 
 export const ExternalLink = () => <Link {...externalLink} />;
+ExternalLink.parameters = {
+  docs: {
+    source: {
+      code: `<Link 
+  type={LinkType.external}
+  href="https://www.ovhcloud.com"
+  target="_blank"
+>
+  External Page
+</Link>`,
+    },
+  },
+};
 
 export const IamLinkWithAuthorization = () => (
   <Link {...iamLinkWithAuthorization} />
 );
+IamLinkWithAuthorization.parameters = {
+  docs: {
+    source: {
+      code: `<Link 
+  href="https://www.ovhcloud.com"
+  target="_blank"
+  urn="urn:v9:eu:resource:vrackServices:vrs-xxx-xxx"
+  iamActions={['vrackServices:apiovh:iam/resource/tag/remove']}
+  displayTooltip={true}
+>
+  Resiliate Link
+</Link>`,
+    },
+  },
+};
 
 export const IamLinkWithoutAuthorization = () => (
   <Link {...iamLinkWithoutAuthorization} />
 );
+IamLinkWithoutAuthorization.parameters = {
+  docs: {
+    source: {
+      code: `<Link 
+  href="https://www.ovhcloud.com"
+  target="_blank"
+  urn="urn:v9:eu:resource:vrackServices:vrs-xxx-xxx"
+  iamActions={['vrackServices:apiovh:iam/resource/tag/remove']}
+  displayTooltip={true}
+>
+  Resiliate Link
+</Link>`,
+    },
+  },
+};
 
 export const IamLinkWithoutAuthAndTooltip = () => (
   <Link {...iamLinkWithoutAuthAndTooltip} />
 );
+IamLinkWithoutAuthAndTooltip.parameters = {
+  docs: {
+    source: {
+      code: `<Link 
+  href="https://www.ovhcloud.com"
+  target="_blank"
+  urn="urn:v9:eu:resource:vrackServices:vrs-xxx-xxx"
+  iamActions={['vrackServices:apiovh:iam/resource/tag/remove']}
+  displayTooltip={false}
+>
+  Resiliate Link
+</Link>`,
+    },
+  },
+};

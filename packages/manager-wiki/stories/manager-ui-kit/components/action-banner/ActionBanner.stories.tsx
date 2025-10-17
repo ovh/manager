@@ -10,11 +10,23 @@ export const Default = {
     color: MESSAGE_COLOR.information,
     dismissible: true,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<ActionBanner 
+  message="This is a test message. <strong>This message is in bold.</strong>"
+  color={MESSAGE_COLOR.information}
+  dismissible={true}
+/>`,
+      },
+    },
+  },
 };
 
 const SampleActionBanner: Meta<ActionBannerProps> = {
   title: 'Manager UI Kit/Components/Action Banner',
   component: ActionBanner,
+  tags: ['autodocs'],
 };
 
 export const ActionBannerWithMessageVariants: Meta<ActionBannerProps> = {
