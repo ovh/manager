@@ -153,7 +153,7 @@ export default function PaymentStatus() {
         </div>
         {isLoading || areBillingServicesLoading ? (
           <OsdsTable
-            className="block overflow-visible"
+            className="block overflow-visible overflow-x-clip max-w-full"
             data-testid="payment_status_skeleton_table"
           >
             <table className="table-auto">
@@ -237,7 +237,7 @@ export default function PaymentStatus() {
                   </OsdsText>
                 ) : (
                   <OsdsTable
-                    className="block overflow-visible"
+                    className="block overflow-visible max-w-full"
                     data-testid="payment_status_table"
                   >
                     <table className="table-auto">
@@ -250,7 +250,7 @@ export default function PaymentStatus() {
                             <td scope="row" className="!p-4">
                               {service.url ? (
                                 <OsdsLink
-                                  className="block mb-3"
+                                  className="block mb-3 break-all"
                                   href={service.url}
                                   onClick={trackServiceAccess}
                                   target={OdsHTMLAnchorElementTarget._top}
@@ -278,7 +278,7 @@ export default function PaymentStatus() {
                                 )}
                               </OsdsText>
                             </td>
-                            <td scope="row" className="!p-4">
+                            <td scope="row" className="!p-4 !min-w-min">
                               <div className="lg:inline mb-1">
                                 <Suspense
                                   fallback={
@@ -350,7 +350,7 @@ export default function PaymentStatus() {
                               )}
                             </td>
                             {autorenewLink && (
-                              <td>
+                              <td className="!min-w-min">
                                 <Suspense
                                   fallback={
                                     <OsdsSkeleton data-testid="services_actions_skeleton" />
