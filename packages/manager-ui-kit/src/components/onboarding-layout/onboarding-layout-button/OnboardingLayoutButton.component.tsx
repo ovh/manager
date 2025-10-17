@@ -1,6 +1,10 @@
 import { FC } from 'react';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
-import { Icon, ICON_NAME } from '@ovhcloud/ods-react';
+import {
+  Icon,
+  ICON_NAME,
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+} from '@ovhcloud/ods-react';
 import { Button } from '../../button';
 import { OnboardingLayoutButtonProps } from './OnboardingLayoutButton.type';
 
@@ -24,7 +28,7 @@ const OnboardingLayoutButton: FC<OnboardingLayoutButtonProps> = ({
       {orderButtonLabel && (onOrderButtonClick || orderHref) && (
         <Button
           className="[&::part(button)]:w-full sm:w-auto"
-          size={ODS_BUTTON_SIZE.md}
+          size={BUTTON_SIZE.md}
           onClick={() => {
             onOrderButtonClick?.();
             if (orderHref) {
@@ -40,8 +44,8 @@ const OnboardingLayoutButton: FC<OnboardingLayoutButtonProps> = ({
       {moreInfoButtonLabel && moreInfoHref && (
         <Button
           className="[&::part(button)]:w-full sm:w-auto"
-          size={ODS_BUTTON_SIZE.md}
-          variant={ODS_BUTTON_VARIANT.outline}
+          size={BUTTON_SIZE.md}
+          variant={BUTTON_VARIANT.outline}
           onClick={() => {
             if (!isMoreInfoButtonDisabled) {
               if (moreInfoHref) {
