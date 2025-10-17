@@ -11,4 +11,5 @@ vue
 packages/manager/apps/pci-databases-analytics/src/components/ui
 packages/manager/apps/pci-databases-analytics/src/lib/utils.ts
 packages/manager/apps/hpc-backup-agent-iaas
+packages/manager/apps/bmc-backup-agent-baremetal
 packages/manager-tools/manager-pm
