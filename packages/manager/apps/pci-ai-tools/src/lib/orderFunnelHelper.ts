@@ -57,6 +57,9 @@ export function getNotebookSpec(formResult: NotebookOrderResult) {
     unsecureHttp: formResult.unsecureHttp,
     sshPublicKeys: formResult.sshKey,
     labels: formResult.labels,
+    quantumResources: {
+      qpuFlavorId: formResult?.qpuFlavor?.id,
+    },
   };
 
   if (formResult.volumes.length > 0) {
