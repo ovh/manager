@@ -2,11 +2,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useToast } from '@datatr-ux/uxlib';
 import { useS3Data } from '../../S3.context';
-import { useAddReplicationForm } from './formAddReplication/useAddReplicationForm.hook';
+import { useAddReplicationForm } from './useAddReplicationForm.hook';
 import { useAddReplication } from '@/data/hooks/replication/useAddReplication.hook';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import { useGetStorages } from '@/data/hooks/storage/useGetStorages.hook';
-import { ReplicationModalLayout } from '../_components/ReplicationModalLayout.component';
+import { ReplicationLayout } from '../_components/ReplicationLayout.component';
 import { useReplicationFormSubmit } from '../../../../../../hooks/useReplicationFormSubmit.hook';
 
 const CreateReplication = () => {
@@ -56,7 +56,7 @@ const CreateReplication = () => {
   });
 
   return (
-    <ReplicationModalLayout
+    <ReplicationLayout
       title={t('addReplicationTitle')}
       isLoading={s3Query.isLoading || storagesQuery.isLoading}
       form={form}
