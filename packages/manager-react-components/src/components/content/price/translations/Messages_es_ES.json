@@ -6,5 +6,6 @@
   "price_gst_incl_label": "GST incl.",
   "price_per_month": "/mes",
   "price_per_year": "/año",
-  "price_per_day": "/día"
+  "price_per_day": "/día",
+  "price_from_label": "desde "
 }
