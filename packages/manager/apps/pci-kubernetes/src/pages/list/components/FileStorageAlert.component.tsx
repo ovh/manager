@@ -6,7 +6,7 @@ const FileStorageAlert = () => {
   const { t } = useTranslation('listing');
 
   return (
-    <Message color="information" className="mb-6">
+    <Message color="information" className="mb-6" dismissible={false}>
       <MessageIcon name={ICON_NAME.circleInfo} />
       <div className="">
         <Text preset="heading-5" className="mb-4 text-[--ods-color-information-700]">
