@@ -1,4 +1,4 @@
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, redirect, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import DashboardTabs from './_components/ObjectStorageTabs.component';
 import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
@@ -9,6 +9,32 @@ import { POLLING } from '@/configuration/polling.constants';
 import StoragesList from './storage/_components/StorageListTable.component';
 import TabsMenu from '@/components/tabs-menu/TabsMenu.component';
 import { useGetRegions } from '@/data/hooks/region/useGetRegions.hook';
+import queryClient from '@/query.client';
+import { getStorages } from '@/data/api/storage/storages.api';
+
+interface ObjectStorageProps {
+  params: {
+    projectId: string;
+  };
+  request: Request;
+}
+export const Loader = ({ params }: ObjectStorageProps) => {
+  const { projectId } = params;
+  return queryClient
+    .fetchQuery({
+      queryKey: [projectId, 'storages'],
+      queryFn: () =>
+        getStorages({ projectId, archive: false, withObjects: false }),
+    })
+    .then((container) => {
+      if (container.resources.length === 0) {
+        return redirect(
+          `/pci/projects/${projectId}/storages/objects/onboarding`,
+        );
+      }
+      return null;
+    });
+};
 
 export default function DashboardLayout() {
   const { t } = useTranslation('pci-object-storage');
