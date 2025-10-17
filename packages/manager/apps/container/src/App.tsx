@@ -18,6 +18,7 @@ import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 import { ContainerProvider } from '@/core/container';
 import { setupDevApplication } from '@/core/dev';
+import { setupZendeskConfig } from '@/container/zendesk';
 import { ApplicationProvider } from '@/context';
 import Container from '@/container';
 import { ApiError } from './types/error.type';
@@ -103,6 +104,10 @@ const App = () => {
       const shellObj = initShell(data || responseError.environment);
       const environmentObj = shellObj.getPlugin('environment').getEnvironment();
       setupI18n(environmentObj.getUserLocale());
+
+      if (environmentObj.getRegion() === 'US') {
+        setupZendeskConfig();
+      }
       const config = () => import(`./config-${environmentObj.getRegion()}.js`);
       setupDevApplication(shellObj);
       config()
