@@ -1,0 +1,71 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { navigate } from '@/utils/test.setup';
+
+import SectigoModal from './orderSectigo.page';
+
+const queryClient = new QueryClient();
+
+describe('SectigoModal', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('should render select with domain options', () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <SectigoModal />
+      </QueryClientProvider>,
+    );
+
+    const select = screen.getByTestId('ssl-select-domain');
+    expect(select).not.toBeNull();
+  });
+
+  it('should open order page with right link and close modal on validate', () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <SectigoModal />
+      </QueryClientProvider>,
+    );
+
+    const select = screen.getByTestId('ssl-select-domain');
+    fireEvent.change(select, { target: { value: 'beta.example.com' } });
+    expect((select as HTMLSelectElement).value).to.equal('beta.example.com');
+
+    const openSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
+
+    const primaryBtn = screen.getByTestId('primary-button');
+    expect(primaryBtn).not.toBeNull();
+    fireEvent.click(primaryBtn);
+
+    const expectedUrl =
+      "https://www.ovh.com/fr/order/domain/#/legacy/domain/hosting/choose?options=~(~(flow~'hosting_existing_service~serviceName~'serviceName))&fqdn=";
+
+    expect(openSpy).toHaveBeenCalledOnce();
+    const [urlArg, targetArg] = openSpy.mock.calls[0];
+    expect(urlArg).to.equal(expectedUrl);
+    expect(targetArg).to.equal('_blank');
+
+    expect(navigate).toHaveBeenCalled();
+  });
+
+  it('should close modal on cancel', () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <SectigoModal />
+      </QueryClientProvider>,
+    );
+
+    const openSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
+
+    const cancelBtn = screen.getByTestId('secondary-button');
+    expect(cancelBtn).not.toBeNull();
+    fireEvent.click(cancelBtn);
+
+    expect(navigate).toHaveBeenCalled();
+    expect(openSpy).not.toHaveBeenCalled();
+  });
+});

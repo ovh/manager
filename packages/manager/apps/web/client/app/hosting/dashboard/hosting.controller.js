@@ -138,7 +138,6 @@ export default class {
     this.privateDatabasesDetachable = privateDatabasesDetachable;
     this.privateDatabasesIds = privateDatabasesIds;
     this.runtimesLink = runtimesLink;
-    this.taskLink = taskLink;
     this.user = user;
     this.userLogsLink = userLogsLink;
     this.DOMAIN_ORDER_URL = DOMAIN_ORDER_URL;
@@ -147,6 +146,11 @@ export default class {
     this.sslCertificateLink = coreURLBuilder.buildURL(
       'web-hosting',
       '#/:serviceName/ssl',
+      { serviceName },
+    );
+    this.taskLink = coreURLBuilder.buildURL(
+      'web-hosting',
+      '#/:serviceName/task',
       { serviceName },
     );
   }

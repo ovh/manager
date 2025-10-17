@@ -1,6 +1,6 @@
 import { useContext, useEffect, useMemo, useState } from 'react';
 
-import { Outlet, useLocation, useNavigate, useParams, useResolvedPath } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -53,16 +53,16 @@ export default function Layout() {
   const [editDisplayName, setEditDisplayName] = useState<boolean>(false);
   const [onUpdateError, setOnUpdateError] = useState<boolean>(false);
 
-  const { pathname: path } = useLocation();
+  const { pathname, hash } = useLocation();
 
   const generalUrl = useHostingUrl(serviceName);
   const multisiteUrl = useHostingUrl(serviceName, 'multisite');
-  const sslPathname = useResolvedPath('ssl').pathname;
+  const sslPathname = `#/${serviceName}/ssl`;
   const moduleUrl = useHostingUrl(serviceName, 'module');
   const logsUrl = useHostingUrl(serviceName, 'user-logs');
   const ftpUrl = useHostingUrl(serviceName, 'ftp');
   const databaseUrl = useHostingUrl(serviceName, 'database');
-  const taskUrl = useHostingUrl(serviceName, 'task');
+  const taskUrl = `#/${serviceName}/task`;
   const automatedEmailsUrl = useHostingUrl(serviceName, 'automated-emails');
   const cronUrl = useHostingUrl(serviceName, 'cron');
   const seoUrl = useHostingUrl(serviceName, 'localSeo');
@@ -156,10 +156,14 @@ export default function Layout() {
   );
 
   useRouteSynchro();
-
+  const getComparablePath = (tabUrl: string | null | undefined): string => {
+    const safeUrl = tabUrl ?? '';
+    return safeUrl.startsWith('#') ? safeUrl.slice(1) : safeUrl;
+  };
   const activeTab = useMemo(() => {
-    return tabs.find((tab) => tab.to === path);
-  }, [tabs, path]);
+    const currentPath = hash || pathname;
+    return tabs.find((tab) => getComparablePath(tab.to) === currentPath);
+  }, [tabs, pathname, hash]);
 
   useEffect(() => {
     shell.ux.hidePreloader();
