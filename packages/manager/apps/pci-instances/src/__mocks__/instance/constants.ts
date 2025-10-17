@@ -322,7 +322,9 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
 export const mockedLocalizationsData: TRegionData[] = [
   {
     city: 'regions:manager_components_region_GRA',
-    region: 'GRA',
+    macroRegion: 'GRA',
+    microRegion: 'GRA11',
+    datacenterDetails: 'GRA',
     countryCode: 'fr',
     deploymentMode: 'region',
     microRegions: [
@@ -342,7 +344,9 @@ export const mockedLocalizationsData: TRegionData[] = [
   },
   {
     city: 'regions:manager_components_region_PAR',
-    region: 'EU-WEST-PAR',
+    macroRegion: 'PAR',
+    microRegion: 'EU-WEST-PAR',
+    datacenterDetails: 'EU-WEST-PAR',
     countryCode: 'fr',
     deploymentMode: 'region-3-az',
     microRegions: [
@@ -359,7 +363,9 @@ export const mockedLocalizationsData: TRegionData[] = [
 export const mockedLocalizationsDataForSelectedDeploymentZoneAndAllContinents: TRegionData[] = [
   {
     city: 'regions:manager_components_region_GRA',
-    region: 'GRA',
+    macroRegion: 'GRA',
+    microRegion: 'GRA11',
+    datacenterDetails: 'GRA',
     countryCode: 'fr',
     deploymentMode: 'region',
     microRegions: [
@@ -379,7 +385,9 @@ export const mockedLocalizationsDataForSelectedDeploymentZoneAndAllContinents: T
   },
   {
     city: 'regions:manager_components_region_BHS',
-    region: 'BHS5',
+    macroRegion: 'BHS',
+    microRegion: 'BHS5',
+    datacenterDetails: 'BHS5',
     countryCode: 'ca',
     deploymentMode: 'region',
     microRegions: [
@@ -393,7 +401,9 @@ export const mockedLocalizationsDataForSelectedDeploymentZoneAndAllContinents: T
   },
   {
     city: 'regions:manager_components_region_PAR',
-    region: 'EU-WEST-PAR',
+    macroRegion: 'PAR',
+    microRegion: 'EU-WEST-PAR',
+    datacenterDetails: 'EU-WEST-PAR',
     countryCode: 'fr',
     deploymentMode: 'region-3-az',
     microRegions: [
@@ -410,7 +420,9 @@ export const mockedLocalizationsDataForSelectedDeploymentZoneAndAllContinents: T
 export const mockedLocalizationsDataForNoneDeploymentZoneAndAllContinents: TRegionData[] = [
   {
     city: 'regions:manager_components_region_GRA',
-    region: 'GRA',
+    macroRegion: 'GRA',
+    microRegion: 'GRA11',
+    datacenterDetails: 'GRA',
     countryCode: 'fr',
     deploymentMode: 'region',
     microRegions: [
@@ -430,7 +442,9 @@ export const mockedLocalizationsDataForNoneDeploymentZoneAndAllContinents: TRegi
   },
   {
     city: 'regions:manager_components_region_BHS',
-    region: 'BHS5',
+    macroRegion: 'BHS',
+    microRegion: 'BHS5',
+    datacenterDetails: 'BHS5',
     countryCode: 'ca',
     deploymentMode: 'region',
     microRegions: [
@@ -444,7 +458,9 @@ export const mockedLocalizationsDataForNoneDeploymentZoneAndAllContinents: TRegi
   },
   {
     city: 'regions:manager_components_region_MIL',
-    region: 'EU-SOUTH-LZ-MIL-A',
+    macroRegion: 'EU-SOUTH-LZ-MIL',
+    microRegion: 'EU-SOUTH-LZ-MIL-A',
+    datacenterDetails: 'EU-SOUTH-LZ-MIL-A',
     countryCode: 'it',
     deploymentMode: 'localzone',
     microRegions: [
@@ -462,7 +478,9 @@ export const mockedLocalizationsDataForNoneDeploymentZoneAndAllContinents: TRegi
   },
   {
     city: 'regions:manager_components_region_PAR',
-    region: 'EU-WEST-PAR',
+    macroRegion: 'PAR',
+    microRegion: 'EU-WEST-PAR',
+    datacenterDetails: 'EU-WEST-PAR',
     countryCode: 'fr',
     deploymentMode: 'region-3-az',
     microRegions: [

@@ -30,7 +30,7 @@ export const useForm = (projectId: string) => {
     'total',
   );
 
-  const macroRegionDefaultValue = localizations[0]!.region;
+  const macroRegionDefaultValue = localizations[0]!.macroRegion;
 
   const microRegionDefaultValue =
     localizations[0]!.microRegions[0]?.name ?? null;
@@ -42,8 +42,7 @@ export const useForm = (projectId: string) => {
       ({ name }) => name === flavorCategoryDefaultValue,
     )?.type[0]?.name ?? '';
 
-  const availabilityZoneDefaultValue =
-    localizations[0]!.microRegions[0]?.availabilityZones[0] ?? null;
+  const availabilityZoneDefaultValue = null;
 
   const formMethods = useReactHookForm({
     resolver: zodResolver(instanceCreationSchema),

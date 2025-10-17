@@ -17,41 +17,59 @@ type TMicroRegionDataForCard = {
 
 export type TRegionData = {
   city: string;
-  region: string | null;
+  datacenterDetails: string | null;
+  macroRegion: string | null;
+  microRegion: string | null;
   deploymentMode: TDeploymentMode;
   countryCode: TCountryIsoCode | null;
   microRegions: TMicroRegionDataForCard[];
 };
 
-const getRegionName = (
+export const getRegionNameKey = (
+  deploymentMode: TDeploymentMode,
+  name: string,
+) => (deploymentMode === 'localzone' ? getLocalZoneTranslationKey(name) : name);
+
+const getMicroRegionName = (
   region: TMacroRegion,
   microRegionsById: Map<string, TMicroRegion>,
 ) => {
   if (!region.microRegions[0]) return null;
-  return region.microRegions.length > 1
-    ? region.name
-    : microRegionsById.get(region.microRegions[0])?.name ?? null;
+  return microRegionsById.get(region.microRegions[0])?.name ?? null;
 };
+
+const getDatacenterDetails = (
+  region: TMacroRegion,
+  microRegionsById: Map<string, TMicroRegion>,
+) =>
+  region.microRegions.length > 1
+    ? region.name
+    : getMicroRegionName(region, microRegionsById);
+
+const getMicroRegions = (
+  region: TMacroRegion,
+  microRegionsById: Map<string, TMicroRegion>,
+) =>
+  region.microRegions.flatMap((regionId) => {
+    const microRegion = microRegionsById.get(regionId);
+    return microRegion ? [microRegion] : [];
+  });
 
 const mapRegionToLocalizationCard = (
   microRegionsById: Map<string, TMicroRegion>,
 
   getMessageFn: MessageProviderPort['getMessage'],
 ) => (region: TMacroRegion): TRegionData => {
-  const regionName =
-    region.deploymentMode === 'localzone'
-      ? getLocalZoneTranslationKey(region.name)
-      : region.name;
+  const regionName = getRegionNameKey(region.deploymentMode, region.name);
 
   return {
     city: getMessageFn(`regions:manager_components_region_${regionName}`),
-    region: getRegionName(region, microRegionsById),
+    datacenterDetails: getDatacenterDetails(region, microRegionsById),
+    macroRegion: region.name,
+    microRegion: getMicroRegionName(region, microRegionsById),
     countryCode: region.country,
     deploymentMode: region.deploymentMode,
-    microRegions: region.microRegions.flatMap((regionId) => {
-      const microRegion = microRegionsById.get(regionId);
-      return microRegion ? [microRegion] : [];
-    }),
+    microRegions: getMicroRegions(region, microRegionsById),
   };
 };
 
