@@ -334,7 +334,7 @@ function AccountDetailsForm({
                     </OdsFormField>
                     <OdsFormField>
                       <label
-                        htmlFor={name}
+                        htmlFor="companyNationalRegistrationNumber"
                         slot="label"
                         aria-label={t('account_details_field_siren')}
                       >
