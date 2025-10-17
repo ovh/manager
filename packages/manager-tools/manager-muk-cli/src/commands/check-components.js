@@ -2,7 +2,10 @@
 import { promises as fs } from 'node:fs';
 
 import { EMOJIS, MUK_COMPONENTS_SRC } from '../config/muk-config.js';
-import { extractOdsTarball, getOdsPackageMetadata } from '../core/ods-tarball-utils.js';
+import {
+  extractOdsComponentsTarball,
+  getOdsComponentsPackageMetadata,
+} from '../core/ods-components-tarball-utils.js';
 import { logger } from '../utils/log-manager.js';
 
 /**
@@ -29,10 +32,10 @@ async function getLocalComponents() {
  * - Root component fallback
  */
 export async function getRemoteOdsComponents() {
-  const { version, tarball } = await getOdsPackageMetadata();
+  const { version, tarball } = await getOdsComponentsPackageMetadata();
   logger.info(`${EMOJIS.package} Fetching ODS React v${version} tarball: ${tarball}`);
 
-  const files = await extractOdsTarball();
+  const files = await extractOdsComponentsTarball();
   const components = new Set();
 
   // Locate index.ts files under src/components/<name>/src/index.ts
@@ -47,7 +50,7 @@ export async function getRemoteOdsComponents() {
 
     const fileBuffer = files.get(filePath);
     if (!fileBuffer) {
-      logger.warn(`${EMOJIS.warning} Skipping ${filePath} (not found in tarball)`);
+      logger.warn(`${EMOJIS.warn} Skipping ${filePath} (not found in tarball)`);
       continue;
     }
 
