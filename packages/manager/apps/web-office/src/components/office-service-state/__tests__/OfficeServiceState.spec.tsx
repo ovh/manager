@@ -101,3 +101,12 @@ describe('OfficeServiceState component', () => {
     expect(badge).toHaveAttribute('color', ODS_BADGE_COLOR.information);
   });
 });
+
+describe('OfficeServiceState W3C Validation', () => {
+  it('should have a valid html', async () => {
+    const { container } = render(<OfficeServiceState state={StateEnum.OK} />);
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+});
