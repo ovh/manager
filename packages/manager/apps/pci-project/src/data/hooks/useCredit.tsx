@@ -27,6 +27,8 @@ export const useCreditDetails = (projectId: string) => {
     },
     enabled: !!projectId,
     refetchOnWindowFocus: false,
+    throwOnError: true,
+    retry: false,
   });
 };
 
