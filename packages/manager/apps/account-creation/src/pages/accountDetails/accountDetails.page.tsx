@@ -44,7 +44,10 @@ import {
 } from '@/hooks/zod/useZod';
 import { putMe } from '@/data/api/me';
 import { urls } from '@/routes/routes.constant';
-import { shouldAccessCompanySearch } from '@/helpers/flowHelper';
+import {
+  getSirenFromSiret,
+  shouldAccessCompanySearch,
+} from '@/helpers/flowHelper';
 
 type AccountDetailsFormProps = {
   rules: Record<RuleField, Rule>;
@@ -291,41 +294,65 @@ function AccountDetailsForm({
                 control={control}
                 name="companyNationalIdentificationNumber"
                 render={({ field: { name, value, onChange, onBlur } }) => (
-                  <OdsFormField>
-                    <label
-                      htmlFor={name}
-                      slot="label"
-                      aria-label={t('account_details_field_siret')}
-                    >
-                      <OdsText preset="caption">
-                        {t('account_details_field_siret')}
-                      </OdsText>
-                    </label>
-                    <OdsInput
-                      isReadonly={Boolean(companyNationalIdentificationNumber)}
-                      name="companyNationalIdentificationNumber"
-                      value={value}
-                      maxlength={
-                        rules?.companyNationalIdentificationNumber.maxLength ||
-                        undefined
-                      }
-                      hasError={!!errors[name]}
-                      onOdsChange={onChange}
-                      onOdsBlur={onBlur}
-                    />
-                    {errors[name] &&
-                      rules?.companyNationalIdentificationNumber && (
-                        <OdsText
-                          className="text-critical leading-[0.8]"
-                          preset="caption"
-                        >
-                          {renderTranslatedZodError(
-                            errors[name].message,
-                            rules?.companyNationalIdentificationNumber,
-                          )}
+                  <>
+                    <OdsFormField>
+                      <label
+                        htmlFor={name}
+                        slot="label"
+                        aria-label={t('account_details_field_siret')}
+                      >
+                        <OdsText preset="caption">
+                          {t('account_details_field_siret')}
                         </OdsText>
-                      )}
-                  </OdsFormField>
+                      </label>
+                      <OdsInput
+                        isReadonly={Boolean(
+                          companyNationalIdentificationNumber,
+                        )}
+                        name="companyNationalIdentificationNumber"
+                        value={value}
+                        maxlength={
+                          rules?.companyNationalIdentificationNumber
+                            .maxLength || undefined
+                        }
+                        hasError={!!errors[name]}
+                        onOdsChange={onChange}
+                        onOdsBlur={onBlur}
+                      />
+                      {errors[name] &&
+                        rules?.companyNationalIdentificationNumber && (
+                          <OdsText
+                            className="text-critical leading-[0.8]"
+                            preset="caption"
+                          >
+                            {renderTranslatedZodError(
+                              errors[name].message,
+                              rules?.companyNationalIdentificationNumber,
+                            )}
+                          </OdsText>
+                        )}
+                    </OdsFormField>
+                    <OdsFormField>
+                      <label
+                        htmlFor={name}
+                        slot="label"
+                        aria-label={t('account_details_field_siren')}
+                      >
+                        <OdsText preset="caption">
+                          {t('account_details_field_siren')}
+                        </OdsText>
+                      </label>
+                      <OdsInput
+                        isReadonly
+                        name="companyNationalRegistrationNumber"
+                        value={getSirenFromSiret(
+                          value,
+                          rules.companyNationalIdentificationNumber
+                            .regularExpression,
+                        )}
+                      />
+                    </OdsFormField>
+                  </>
                 )}
               />
             )}

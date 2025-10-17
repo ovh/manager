@@ -12,6 +12,7 @@
   "account_details_field_name": "Name",
   "account_details_field_corporation_name": "Name of company",
   "account_details_field_siret": "SIRET",
+  "account_details_field_siren": "SIREN",
   "account_details_field_vat": "VAT number",
   "account_details_field_country": "Country of residence",
   "account_details_field_address": "Address ",
