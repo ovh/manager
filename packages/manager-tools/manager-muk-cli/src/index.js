@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import process from 'node:process';
 
+import { addComponentsDocumentation } from './commands/add-components-documentation.js';
 import { addComponents } from './commands/add-components.js';
 import { checkComponents } from './commands/check-components.js';
 import { checkVersions } from './commands/check-versions.js';
@@ -18,9 +19,11 @@ async function main() {
     await updateOdsVersions();
   } else if (args.includes('--add-components')) {
     await addComponents();
+  } else if (args.includes('--add-components-documentation')) {
+    await addComponentsDocumentation();
   } else {
     logger.warn(
-      'Usage: manager-muk-cli --check-versions | --update-versions | --check-components | --add-components',
+      'Usage: manager-muk-cli --check-versions | --update-versions | --check-components | --add-components | --add-components-documentation',
     );
   }
 }

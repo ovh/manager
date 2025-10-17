@@ -7,7 +7,7 @@ import { loadJson } from '../utils/json-utils.js';
 import { logger } from '../utils/log-manager.js';
 
 /**
- * 🚀 Compare local and remote ODS package versions.
+ * Compare local and remote ODS package versions.
  *
  * Uses semantic versioning to detect:
  * - ⚠️ Outdated packages (local < npm)
