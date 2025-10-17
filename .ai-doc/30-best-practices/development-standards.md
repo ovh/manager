@@ -28,37 +28,209 @@ The standards are designed to be flexible enough to adapt to different language 
 
 - [Frontend React Patterns](../30-best-practices/frontend-react-patterns.md)
 - [Manager API Overview](../10-architecture/api-overview.md)
-- [MRC Components](../20-design-system/mrc-components.md)
-- [ODS Components](../20-design-system/ods-components.md)
+- [MRC Components](../20-dependencies/mrc-components.md)
+- [ODS Components](../20-dependencies/ods-components.md)
 - [TypeDoc Documentation](https://typedoc.org/guides/doccomments/)
-- [TSLint Configuration](https://stash.ovh.net/projects/NETAUTO/repos/coding-style/browse)
+- [TSLint Configuration](STASH_OVH/NETAUTO/repos/coding-style/browse)
 
 ## 📘 Guidelines / Implementation
 
-### Project Directory Structure
+### µApplication Folder Structure
+
+Since we expect to create a number of µ-applications, it is important to structure the applications in a similar manner to have better readability and maintainability.
+
+Here's the standard structure that every µ-application must follow:
 
 ```
-├── jest.config.js              # Jest testing configuration
-├── Makefile                    # Build automation
-├── __mocks__                   # Jest mocks
-│   ├── fileMock.js
-│   └── ...
-├── package.json                # Dependencies and scripts
-├── package-lock.json           # Lock file for npm
-├── README.md                   # Project documentation
-├── __setup__                   # Jest setup files
-├── src/                        # Source code
-│   ├── @types/                 # Custom TypeScript types
-│   ├── models/                 # Data models
-│   ├── services/               # Business logic services
-│   ├── styles/                 # CSS/SCSS files
-│   └── main.ts                 # Application entry point
-├── __tests__/                  # Jest test files
-│   └── services/
-├── tsconfig.json               # TypeScript configuration
-├── tslint.json                 # TSLint configuration
-└── yarn.lock                   # Lock file for yarn
+µ-application-name/
+├── public/
+│   └── translations/
+│       └── namespace-name/
+│           ├── Messages_de_DE.json
+│           ├── Messages_en_GB.json
+│           ├── Messages_es_ES.json
+│           ├── Messages_fr_CA.json
+│           ├── Messages_fr_FR.json
+│           ├── Messages_it_IT.json
+│           ├── Messages_pl_PL.json
+│           └── Messages_pt_PT.json
+├── src/
+│   ├── components/
+│   │   └── componentName/
+│   │       ├── ComponentName.component.tsx
+│   │       ├── componentName.constants.ts
+│   │       └── ComponentName.spec.tsx
+│   ├── data/
+│   │   ├── api/
+│   │   │   └── apiGroup.ts
+│   │   └── hooks/
+│   │       └── apiGroup/
+│   │           ├── useApiGroup.tsx
+│   │           └── useApiGroup.spec.tsx
+│   ├── hooks/
+│   │   └── hookName/
+│   │       ├── useHookName.tsx
+│   │       └── useHookName.spec.tsx
+│   ├── types/
+│   │   ├── interface-name.interface.ts
+│   │   └── type-name.type.ts
+│   ├── pages/
+│   │   └── pageName/
+│   │       ├── children/
+│   │       │   ├── Children.page.tsx
+│   │       │   └── children.constants.ts
+│   │       ├── PageName.page.tsx
+│   │       └── pageName.constants.ts
+│   ├── routes/
+│   │   ├── routes.tsx
+│   │   └── routes.constants.ts
+│   ├── App.tsx
+│   ├── i18n.ts
+│   ├── index.scss
+│   ├── main.tsx
+│   └── queryClient.ts
+├── .eslintrc.cjs
+├── .gitignore
+└── index.html
 ```
+
+#### Folder Structure Guidelines
+
+**Components**
+React components which are used in more than one page, can be added in the components folder. Be sure to add the components that are reusable only in the context of the particular µ-application where it is defined. If the component can be shared among more than one application, consider defining the component in other reusable folders like manager-components.
+
+> **Info**: Each component must be defined inside a sub-folder with name of the sub-folder being the name of the component. This leads to group the related files like spec, constants and component definition files in single place.
+
+**Data**
+All the code related to backend interaction must go in the data folders. Furthermore, the code to interact with backend are divided into 2 sub-groups:
+
+- **api folder** contains the definition of functions to make the HTTP calls using the axios library.
+- **hooks folder** contains the creation of custom hooks using the capabilities of data-fetching library tanstack-query. The custom hooks utilise the functions defined in the api folder and serves data to the components.
+
+For detailed implementation on backend interaction, check out [Data Fetching Patterns](../10-architecture/data-fetching.md).
+
+**Hooks**
+This folder is dedicated to defining the custom hooks that are reusable in the context of the application where it is defined. Similar to components, if the custom hook can be reused in more than 1 application, consider defining the hooks in other reusable folders like manager-components.
+
+> **Info**: Each hook must be defined inside a sub-folder with name of the sub-folder being the name of the hook. This ensures to group the related files like spec, constants and hook definition files in single place.
+
+**Types**
+Utilise this folder to define the required interfaces/types/enums.
+
+**Pages**
+Each folder inside the pages folder represents the route on the application. Every folder contains the definition of component associated (with extension being .page.tsx) to the route and the sub-folders indicating all the children of the associated routes. Also, each tab and modal must be associated to a separate route and defined as a page.
+
+A typical µ-application contains the following pages:
+
+- **Onboarding page** to provide some useful information about the product if user does not already have any resource of the product on OVHcloud.
+- **Listing page** to list the resources user has on OVHcloud. User will have the ability to order new resources, delete or modify the existing resources and other product specific actions.
+- **Details section** for each resource which can contain:
+  - **Dashboard** to display the important details related to the product. User has the ability to perform actions related to the product like updating the display name, deleting the resource and so on.
+  - **Multiple tabs** specific to the product and user will have the ability to perform product specific operations on each tab. Each tab can also serve as listing page of multiple resources and subsequently have detailed page for each item on the listing page.
+
+> **Info**: As you may have noticed, deleting a resource is possible from listing page as well as the resource dashboard. Such common component definition can be done in components folder and define 2 pages as a children of listing and dashboard page.
+
+**Example pages folder structure:**
+```
+pages/
+├── onboarding/
+├── listing/
+│   ├── add/
+│   ├── delete/
+│   └── update/
+└── dashboard/
+    ├── general-information/
+    │   ├── delete/
+    │   └── update/
+    └── items/
+        ├── item/
+        │   └── dashboard/
+        │       └── general-information/
+        │           ├── deleteItem/
+        │           └── updateItem/
+        ├── addItem/
+        ├── deleteItem/
+        └── updateItem/
+```
+
+**Routes**
+Typically contains the routes.tsx and routes.constants.ts file to define all the routes of the application.
+
+> **Info**: Each different view must be associated to a route. Generally, every page or tab has it's own route and all the actions which user can perform like add/edit/delete will be the child routes. Every modal must also be associated with a route.
+
+**Example routes configuration:**
+```typescript
+export const ROUTE_PATHS = {
+  root: '/µ-application-name',
+  onboarding: '/onboarding',
+  listing: '/µ-application-name',
+  listingAdd: '/add',
+  listingDelete: '/delete/:resource-id',
+  listingUpdate: '/update/:resource-id',
+  dashboard: '/:resource-id',
+  dashboardDelete: '/delete',
+  dashboardUpdate: '/update',
+  items: '/items',
+  itemsAdd: '/add',
+  itemsDelete: '/delete',
+  itemsUpdate: '/update',
+  item: '/:item-id',
+  itemDelete: '/delete',
+  itemUpdate: '/update',
+};
+
+import { Route } from 'react-router-dom';
+import { ROUTE_PATHS } from '@/src/routes/routes.constants';
+
+export (
+  <Route
+    path={ROUTE_PATHS.root}
+    Component={LayoutComponent}
+    errorElement={
+      <ErrorBoundary redirectionApp="vrack-services" />
+    }
+  >
+    <Route path={ROUTE_PATHS.listing}>
+      <Route path={ROUTE_PATHS.listingAdd}>
+      <Route path={ROUTE_PATHS.listingDelete}>
+      <Route path={ROUTE_PATHS.listingUpdate}>
+    </Route>
+    <Route path={ROUTE_PATHS.dashboard}>
+      <Route path={ROUTE_PATHS.dashboard}>
+        <Route path={ ROUTE_PATHS.item} />
+        <Route path={ROUTE_PATHS.dashboardUpdate} />
+      </Route>
+      <Route path={ROUTE_PATHS.items}>
+        <Route path={ROUTE_PATHS.item}>
+          <Route path={ROUTE_PATHS.itemDelete} />
+          <Route path={ROUTE_PATHS.itemUpdate} />
+        </Route>
+        <Route path={ROUTE_PATHS.itemsAdd} />
+        <Route path={ROUTE_PATHS.itemsDelete} />
+        <Route path={ROUTE_PATHS.itemsUpdate} />
+      </Route>
+    </Route>
+    <Route path={ROUTE_PATHS.onboarding} />
+  </Route>
+)
+```
+
+**App.tsx**
+App component is used to create and register the application level providers like QueryClientProvider, RouterProvider. Also, set-up the ODS at this component.
+
+**i18n.ts**
+To initialise the i18n for localising the application.
+
+**index.scss**
+Generally used to import the tailwind utilities and components.
+
+**main.tsx**
+The root component which will be loaded in the index.html. This component is used to:
+- initialise the ShellContext for the µ-app.
+- define the callback function to be called on locale change which happens in the container µ-app.
+
+**queryClient.ts**
+Define and export the React Query Client and also take the opportunity to override the defaults at the application level.
 
 ### Coding Style
 
@@ -71,15 +243,6 @@ For comprehensive TypeScript guidelines, patterns, and best practices, refer to 
 - Avoid `any` type - use specific types or interfaces
 - Use strict type checking configuration
 - Follow defensive programming patterns
-
-#### Linter Configuration
-
-**TSLint Rules**: Available in the [OVH Stash repository](https://stash.ovh.net/projects/NETAUTO/repos/coding-style/browse)
-
-**IDE Plugins**:
-- **VSCode**: [TypeScript TSLint Plugin](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin)
-- **PyCharm**: [TSLint Integration](https://www.jetbrains.com/help/pycharm/using-tslint-code-quality-tool.html)
-- **IntelliJ**: [TSLint Integration](https://www.jetbrains.com/help/idea/using-tslint-code-quality-tool.html)
 
 **Installation and Usage**:
 ```bash

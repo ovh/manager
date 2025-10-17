@@ -23,7 +23,7 @@ Examples:
 - [Manager API Overview](../10-architecture/api-overview.md)
 - [Frontend React Patterns](../30-best-practices/frontend-react-patterns.md)
 - [ODS Components](../20-dependencies/ods-components.md)
-- [Migration Patterns](../30-best-practices/migration-patterns.md)
+- [Migration Guide](../30-best-practices/migration-guide.md)
 
 ## 📘 Guidelines / Implementation
 Explain main principles, best practices, or technical steps.

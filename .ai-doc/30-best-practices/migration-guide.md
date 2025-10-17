@@ -55,7 +55,7 @@ The templates provided in this document are used to:
 
 ## 🔗 References
 
-- [Manager Architecture](../10-architecture/manager-architecture.md)
+- [Manager Architecture Overview](../10-architecture/api-overview.md)
 - [Development Standards](./development-standards.md)
 - [React Patterns](./frontend-react-patterns.md)
 - [MRC Components](../20-dependencies/mrc-components.md)

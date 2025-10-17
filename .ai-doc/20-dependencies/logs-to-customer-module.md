@@ -1,7 +1,7 @@
 ---
 title: Logs to Customer Module Integration
 last_update: 2025-01-27
-tags: [logs, customer, module, integration, uapp, ovhcloud, manager]
+tags: [logs, customer, module, integration, µapp, ovhcloud, manager]
 ai: true
 ---
 
@@ -25,7 +25,7 @@ The Logs to Customer module is designed for:
 - **Standardized tracking** for analytics and monitoring
 
 This module is part of the OVHcloud Manager ecosystem and follows established patterns for:
-- **Module integration** in UApps
+- **Module integration** in µApps
 - **API versioning** and endpoint configuration
 - **IAM action mapping** for security
 - **Route configuration** with React Router
@@ -33,18 +33,18 @@ This module is part of the OVHcloud Manager ecosystem and follows established pa
 
 ## 🔗 References
 
-- [Manager Architecture Overview](../10-architecture/manager-architecture.md)
-- [UApp Integration Guide](../10-architecture/uapp-integration.md)
-- [IAM Integration Patterns](../10-architecture/iam-integration.md)
-- [API Configuration Standards](../10-architecture/api-configuration.md)
-- [React Router Configuration](../10-architecture/react-router-setup.md)
-- [Tailwind CSS Integration](../10-architecture/tailwind-integration.md)
+- [Manager Architecture Overview](../10-architecture/api-overview.md)
+- [µApp Containerization](../10-architecture/uapp-containerization.md)
+- [Data Fetching Patterns](../10-architecture/data-fetching.md)
+- [Feature Flipping](../10-architecture/feature-flipping.md)
+- [React Tracking](../10-architecture/react-tracking.md)
+- [Common Translations](../10-architecture/common-translations.md)
 
 ## 📘 Guidelines / Implementation
 
 ### Package Installation
 
-#### 1. Add the Package to Your UApp
+#### 1. Add the Package to Your µApp
 
 ```json
 {
@@ -121,7 +121,7 @@ export default function LogsPage({ product }: LogsPageProps) {
 }
 ```
 
-#### 2. Configure UApp Routes
+#### 2. Configure µApp Routes
 
 Set up routing to handle all logs-related navigation:
 

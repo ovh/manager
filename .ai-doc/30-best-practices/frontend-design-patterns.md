@@ -32,8 +32,8 @@ This guide covers patterns specifically relevant to:
 
 - [Development Standards](../30-best-practices/development-standards.md)
 - [TypeScript Cheat Sheet](../30-best-practices/typescript-cheatsheet.md)
-- [MRC Components](../20-design-system/mrc-components.md)
-- [ODS Components](../20-design-system/ods-components.md)
+- [MRC Components](../20-dependencies/mrc-components.md)
+- [ODS Components](../20-dependencies/ods-components.md)
 - [Manager API Overview](../10-architecture/api-overview.md)
 
 ## 📘 Guidelines / Implementation

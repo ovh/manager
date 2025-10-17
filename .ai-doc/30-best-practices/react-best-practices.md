@@ -33,8 +33,8 @@ This guide is designed for developers working with:
 - [Development Standards](./development-standards.md)
 - [TypeScript Cheat Sheet](./typescript-cheatsheet.md)
 - [Frontend Design Patterns](./frontend-design-patterns.md)
-- [MRC Components](../20-design-system/mrc-components.md)
-- [ODS Components](../20-design-system/ods-components.md)
+- [MRC Components](../20-dependencies/mrc-components.md)
+- [ODS Components](../20-dependencies/ods-components.md)
 - [React Official Documentation](https://react.dev/)
 - [React Hooks Documentation](https://react.dev/reference/react)
 
