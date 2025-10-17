@@ -1,15 +1,18 @@
 import path from 'path';
+
 import {
-  sharedConfig,
-  mergeConfig,
-  createConfig, 	defaultDedupedDependencies,
+  createConfig,
+  defaultDedupedDependencies,
   defaultExcludedFiles,
+  mergeConfig,
+  sharedConfig,
 } from '@ovh-ux/manager-tests-setup';
 
 export default mergeConfig(
   sharedConfig,
   createConfig({
     test: {
+      environment: 'jsdom',
       setupFiles: ['src/utils/test.setup.tsx'],
       coverage: {
         exclude: [
@@ -25,7 +28,8 @@ export default mergeConfig(
         ],
       },
     },
-    resolve: { dedupe: [...defaultDedupedDependencies], 
+    resolve: {
+      dedupe: [...defaultDedupedDependencies],
       alias: {
         '@/public': path.resolve(__dirname, 'public'),
         '@': path.resolve(__dirname, 'src'),

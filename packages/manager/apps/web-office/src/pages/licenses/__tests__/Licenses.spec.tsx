@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import actions from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/actions/Messages_fr_FR.json';
 
 import { render, waitFor } from '@/utils/Test.provider';
@@ -22,5 +24,15 @@ describe('Licenses Page', () => {
     expect(orderButton).toHaveAttribute('variant', 'outline');
 
     expect(sortedRows).toHaveTextContent('service_name');
+  });
+});
+
+describe('Licenses W3C Validation', () => {
+  // issue with ods on label and input (for / id)
+  it.skip('should have a valid html', async () => {
+    const { container } = render(<Licenses />);
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
   });
 });

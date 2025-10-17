@@ -39,3 +39,13 @@ describe('modal order license', () => {
     expect(quantityInput).toHaveAttribute('min', '1');
   });
 });
+
+describe('ModalOrderLicenses W3C Validation', () => {
+  // issue with ods on ods-select and option child element
+  it.skip('should have a valid html', async () => {
+    const { container } = render(<ModalOrderLicenses />);
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+});

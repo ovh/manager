@@ -46,3 +46,12 @@ describe('ModalDeleteUsers Component', () => {
     expect(deleteOfficeUser).toHaveBeenCalledOnce();
   });
 });
+
+describe('ModalDeleteUsers W3C Validation', () => {
+  it('should have a valid html', async () => {
+    const { container } = render(<ModalDeleteUsers />);
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+});
