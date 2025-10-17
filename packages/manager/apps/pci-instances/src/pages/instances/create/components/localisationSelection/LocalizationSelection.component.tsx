@@ -82,9 +82,11 @@ export const LocalizationSelection = () => {
 
     if (
       !availablePreviousSelectedLocalization &&
-      localizations[0]?.macroRegion
+      localizations[0]?.macroRegion &&
+      localizations[0].microRegion
     ) {
       setValue('macroRegion', localizations[0].macroRegion);
+      setValue('microRegion', localizations[0].microRegion);
     }
   }, [localizations, selectedMacroRegion, setValue]);
 

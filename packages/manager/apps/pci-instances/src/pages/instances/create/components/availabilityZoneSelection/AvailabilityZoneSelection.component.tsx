@@ -52,7 +52,12 @@ export const AvailabilityZoneSelection = ({
       setValue('availabilityZone', availabilityZones[0]);
   }, [availabilityZones, selectedAvailabilityZone, setValue]);
 
-  useEffect(() => setChoice('companyChoice'), [availabilityZones]);
+  useEffect(() => {
+    setChoice('companyChoice');
+    return () => {
+      setValue('availabilityZone', null);
+    };
+  }, [availabilityZones, setValue]);
 
   return (
     <section className="pt-9 pb-5">
