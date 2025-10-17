@@ -1,6 +1,6 @@
 import { UseFormReturn } from 'react-hook-form';
 import { FormattedStorage } from '@/types/Storages';
-import { AddReplicationFormValues } from '../new/formAddReplication/useAddReplicationForm.hook';
+import { AddReplicationFormValues } from '../new/useAddReplicationForm.hook';
 import { ReplicationRuleIdentification } from './ReplicationRuleIdentification.component';
 import { ReplicationRuleScope } from './ReplicationRuleScope.component';
 import { ReplicationRuleDestination } from './ReplicationRuleDestination.component';

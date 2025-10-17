@@ -6,7 +6,7 @@ import { useEditReplicationForm } from './useEditReplicationForm.hook';
 import { useUpdateReplication } from '@/data/hooks/replication/useUpdateReplication.hook';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import { useGetStorages } from '@/data/hooks/storage/useGetStorages.hook';
-import { ReplicationModalLayout } from '../_components/ReplicationModalLayout.component';
+import { ReplicationLayout } from '../_components/ReplicationLayout.component';
 import { useReplicationFormSubmit } from '../../../../../../hooks/useReplicationFormSubmit.hook';
 
 const EditReplication = () => {
@@ -86,7 +86,7 @@ const EditReplication = () => {
   }
 
   return (
-    <ReplicationModalLayout
+    <ReplicationLayout
       title={t('editReplicationTitle')}
       isLoading={isLoading}
       form={form}
