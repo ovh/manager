@@ -11,6 +11,7 @@ import {
 export default {
   title: 'Manager UI Kit/Components/TilesInputGroup',
   component: TilesInputGroupComponent,
+  tags: ['autodocs'],
   parameters: {
     docs: {
       description: {

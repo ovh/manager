@@ -33,7 +33,18 @@ const config: StorybookConfig = {
     reactDocgenTypescriptOptions: {
       shouldExtractLiteralValuesFromEnum: true,
       shouldRemoveUndefinedFromOptional: true,
-      propFilter: () => true, // ← include all props, even from node_modules
+      compilerOptions: {
+        allowSyntheticDefaultImports: true,
+        esModuleInterop: true,
+      },
+      propFilter: (prop) => {
+        // Include all props from our components
+        if (prop.parent) {
+          // Exclude props from node_modules except from our components
+          return !prop.parent.fileName.includes('node_modules');
+        }
+        return true;
+      },
     },
     check: false,
   },

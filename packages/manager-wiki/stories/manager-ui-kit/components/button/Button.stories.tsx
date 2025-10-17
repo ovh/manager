@@ -6,12 +6,28 @@ export const Default: Meta<ButtonProps> = {
   args: {
     children: 'Remove Button',
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Button>Remove Button</Button>`,
+      },
+    },
+  },
 };
 
 export const IsLoading: Meta<ButtonProps> = {
   args: {
     children: 'Remove Button',
     loading: true,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Button loading={true}>
+  Remove Button
+</Button>`,
+      },
+    },
   },
 };
 
@@ -21,6 +37,18 @@ export const ButtonWithIamAuthorization: Meta<ButtonProps> = {
     urn: IAM_URNS.WITH_AUTH,
     iamActions: IAM_ACTIONS,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Button 
+  urn="urn:v9:eu:resource:vrackServices:vrs-xxx-xxx"
+  iamActions={['vrackServices:apiovh:iam/resource/tag/remove']}
+>
+  Remove button
+</Button>`,
+      },
+    },
+  },
 };
 
 export const ButtonWithoutIamAuthorization: Meta<ButtonProps> = {
@@ -29,11 +57,24 @@ export const ButtonWithoutIamAuthorization: Meta<ButtonProps> = {
     urn: IAM_URNS.WITHOUT_AUTH,
     iamActions: IAM_ACTIONS,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<Button 
+  urn="urn:v9:eu:resource:vrackServices:vrs-xxx-xxx"
+  iamActions={['vrackServices:apiovh:iam/resource/tag/remove']}
+>
+  Remove button
+</Button>`,
+      },
+    },
+  },
 };
 
 const meta = {
   title: 'Manager UI Kit/Components/Button',
   component: Button,
+  tags: ['autodocs'],
   args: {
     children: 'Remove button',
   },

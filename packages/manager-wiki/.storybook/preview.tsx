@@ -40,7 +40,11 @@ const preview: Preview = {
       },
       source: {
         excludeDecorators: true,
-        state: 'open',
+        state: 'shown',
+        type: 'dynamic',
+      },
+      canvas: {
+        sourceState: 'shown',
       },
       page: TechnicalInformation,
     },
@@ -88,7 +92,7 @@ const preview: Preview = {
   },
 };
 
-const withI18next = (Story, context) => {
+const withI18next = (story, context) => {
   const { locale } = context.globals;
   const [isLoading, setIsLoading] = useState(true);
 
@@ -107,6 +111,7 @@ const withI18next = (Story, context) => {
           setIsLoading(false);
         }
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.error('Language change failed:', error);
         if (isMounted) {
           setIsLoading(false);
@@ -124,15 +129,15 @@ const withI18next = (Story, context) => {
   useEffect(() => {
     const handleBrowserLanguageChange = () => {
       const normalizedLang = normalizeLanguageCode(navigator.language);
+      // eslint-disable-next-line no-console
       console.info('Browser language changed:', normalizedLang);
-      i18n
-        .changeLanguage(normalizedLang)
-        .catch((err) =>
-          console.error(
-            'Failed to change language on system languagechange:',
-            err,
-          ),
+      i18n.changeLanguage(normalizedLang).catch((err) => {
+        // eslint-disable-next-line no-console
+        console.error(
+          'Failed to change language on system languagechange:',
+          err,
         );
+      });
     };
 
     window.addEventListener('languagechange', handleBrowserLanguageChange);
@@ -146,11 +151,13 @@ const withI18next = (Story, context) => {
     return <div>Loading translations...</div>;
   }
 
+  const StoryComponent = story;
+
   return (
     <Suspense fallback={<div>loading translations...</div>}>
       <I18nextProvider i18n={i18n}>
         <QueryClientProvider client={mockQueryClient}>
-          <Story />
+          <StoryComponent />
         </QueryClientProvider>
       </I18nextProvider>
     </Suspense>

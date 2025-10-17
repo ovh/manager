@@ -56,6 +56,7 @@ export const UnknownDate = {
 const useFormatDateStories = {
   title: 'Manager UI Kit/Hooks/useFormatDate',
   component: FormatDateComponent,
+  tags: ['autodocs'],
   argTypes: {
     invalidDateDisplayLabel: {
       control: 'text',

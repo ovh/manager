@@ -243,6 +243,7 @@ const meta: Meta<typeof BaseLayout> = {
   decorators: [withRouter],
   title: 'Manager React Components/Templates/Base Layout',
   component: BaseLayout,
+  tags: ['autodocs'],
   argTypes: {},
   args: completeBaseLayoutExample,
 };

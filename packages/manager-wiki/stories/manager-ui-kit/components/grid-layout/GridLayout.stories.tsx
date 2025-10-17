@@ -5,6 +5,7 @@ import { GridLayout, Tile, Text } from '@ovh-ux/muk';
 const meta: Meta<typeof GridLayout> = {
   title: 'Manager UI Kit/Components/GridLayout',
   component: GridLayout,
+  tags: ['autodocs'],
   decorators: [(story) => <div>{story()}</div>],
 };
 
