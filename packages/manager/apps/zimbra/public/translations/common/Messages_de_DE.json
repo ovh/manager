@@ -147,5 +147,6 @@
   "contactInformation_city": "Stadt",
   "contactInformation_country": "Land",
   "redirections": "Weiterleitungen",
-  "delete_redirections": "Weiterleitungen entfernen"
+  "delete_redirections": "Weiterleitungen entfernen",
+  "delete_email_accounts": "Accounts löschen"
 }
