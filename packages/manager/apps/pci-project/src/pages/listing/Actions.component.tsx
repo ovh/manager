@@ -5,7 +5,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useContext, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Translation, useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -55,17 +55,32 @@ export default function Actions({
   const handleDeleteProject = () => {
     trackDeleteProjectClick();
     removeProject({ projectId: projectWithService.project_id }).then(() =>
-      addSuccess(t('pci_projects_project_delete_success')),
+      addSuccess(
+        <Translation ns="listing">
+          {(_t) => _t('pci_projects_project_delete_success')}
+        </Translation>,
+      ),
     );
   };
 
   const { mutate: setAsDefaultProject } = useSetAsDefaultProject({
     onSuccess: () => {
-      addSuccess(t('pci_projects_project_edit_update_success', { ns: 'edit' }));
+      addSuccess(
+        <Translation ns="edit">
+          {(_t) => _t('pci_projects_project_edit_update_success')}
+        </Translation>,
+      );
     },
     onError: (error: ApiError) => {
       addError(
-        t('error_message', { message: error.message, ns: NAMESPACES.ERROR }),
+        <Translation ns={NAMESPACES.ERROR}>
+          {(_t) =>
+            _t('error_message', {
+              message: error.message,
+              ns: NAMESPACES.ERROR,
+            })
+          }
+        </Translation>,
       );
     },
   });
