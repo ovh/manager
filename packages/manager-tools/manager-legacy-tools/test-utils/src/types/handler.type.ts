@@ -1,6 +1,7 @@
 export type Handler<T = any> = {
   url: string;
   response?: T;
+  icebergResponse?: T;
   headers?: HeadersInit;
   statusText?: string;
   type?: ResponseType;

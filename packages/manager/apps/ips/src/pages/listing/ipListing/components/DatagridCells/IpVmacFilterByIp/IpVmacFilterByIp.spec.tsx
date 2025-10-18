@@ -1,0 +1,71 @@
+import React from 'react';
+import { describe, expect, it } from 'vitest';
+import { render, waitFor } from '@testing-library/react';
+import { IpVmacFilterByIp, IpVmacFilterByIpProps } from './IpVmacFilterByIp';
+import { ListingContext } from '@/pages/listing/listingContext';
+import { MacAddressTypeEnum } from '@/data/api';
+import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
+
+/** RENDER */
+const renderComponent = (params: IpVmacFilterByIpProps) => {
+  return render(
+    <ListingContext.Provider value={listingContextDefaultParams}>
+      <IpVmacFilterByIp {...params} />
+    </ListingContext.Provider>,
+  );
+};
+
+describe('IpVmacFilterByIp Component', async () => {
+  it('Should display vmac if exist for given ip', async () => {
+    const { getByText } = renderComponent({
+      ip: '123.123.123.160',
+      vmacsWithIp: [
+        {
+          ip: ['123.123.123.161', '123.123.123.160'],
+          macAddress: 'mac',
+          type: MacAddressTypeEnum.OVH,
+        },
+      ],
+      isLoading: false,
+    });
+    await waitFor(() => {
+      expect(getByText('mac')).toBeDefined();
+    });
+  });
+
+  it('Should display - if no vmac exist for given ip', async () => {
+    const { getByText } = renderComponent({
+      ip: '123.123.123.163',
+      vmacsWithIp: [
+        {
+          ip: ['123.123.123.161', '123.123.123.160'],
+          macAddress: 'mac',
+          type: MacAddressTypeEnum.OVH,
+        },
+      ],
+      isLoading: false,
+    });
+    await waitFor(() => {
+      expect(getByText('-')).toBeDefined();
+    });
+  });
+
+  it('Should display nothing if not enabled', async () => {
+    const { queryByText } = renderComponent({
+      ip: '123.123.123.163',
+      vmacsWithIp: [
+        {
+          ip: ['123.123.123.161', '123.123.123.160'],
+          macAddress: 'mac',
+          type: MacAddressTypeEnum.OVH,
+        },
+      ],
+      enabled: false,
+      isLoading: false,
+    });
+    await waitFor(() => {
+      expect(queryByText('-')).toBeNull();
+      expect(queryByText('mac')).toBeNull();
+    });
+  });
+});

@@ -1,0 +1,60 @@
+import React from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { DATACENTER_TO_REGION } from './catalog.utils';
+import { useCatalogIps } from './useCatalogIps';
+import { IpVersion, ServiceType } from '@/types';
+
+export const useAdditionalIpsRegions = ({
+  ipVersion,
+  serviceType,
+}: {
+  ipVersion: IpVersion;
+  serviceType: ServiceType;
+}) => {
+  const { environment } = React.useContext(ShellContext);
+  const { data, ...query } = useCatalogIps({
+    subsidiary: environment.user.ovhSubsidiary,
+  });
+
+  const configurationName =
+    serviceType === ServiceType.vrack &&
+    (environment.user.ovhSubsidiary !== 'US' || ipVersion !== IpVersion.ipv4)
+      ? 'ip_region'
+      : 'datacenter';
+
+  return {
+    ...query,
+    regionList: data?.data?.plans
+      ? Array.from(
+          new Set(
+            data.data.plans
+              .filter(({ planCode }) => {
+                switch (serviceType) {
+                  case ServiceType.ipParking:
+                    return planCode.includes('failover');
+                  case ServiceType.vrack:
+                    return environment.user.ovhSubsidiary === 'US' &&
+                      ipVersion === IpVersion.ipv4
+                      ? planCode.includes('failover')
+                      : planCode.includes('ip-v6');
+                  default:
+                    return planCode.includes('ip-v4');
+                }
+              })
+              .map((plan) =>
+                plan.details.product.configurations
+                  .flatMap((config) =>
+                    config.name === configurationName ? config : undefined,
+                  )
+                  .filter(Boolean)
+                  .flatMap((config) => config.values),
+              )
+              .flat(),
+          ),
+        ).map(
+          (regionOrDatacenter) =>
+            DATACENTER_TO_REGION[regionOrDatacenter] || regionOrDatacenter,
+        )
+      : [],
+  };
+};
