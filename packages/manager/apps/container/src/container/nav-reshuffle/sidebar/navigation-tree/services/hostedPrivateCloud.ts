@@ -34,13 +34,14 @@ hostedPrivateCloudUniverse.children = [
       },
       {
         id: 'hpc-managed-vcd',
+        idAttr: 'hpc-managed-vcd-link',
         universe: hostedPrivateCloudUniverse.id,
         translation: 'sidebar_vmware_vcd',
         serviceType: 'MANAGED_VCD',
         tag: NodeTag.NEW,
         routing: {
-          application: 'hpc-vmware-public-vcf-aas',
-          hash: '#/',
+          application: 'vmware',
+          hash: '#/public-vcf-aas',
         },
         features: ['hpc-vmware-public-vcf-aas'],
       },
