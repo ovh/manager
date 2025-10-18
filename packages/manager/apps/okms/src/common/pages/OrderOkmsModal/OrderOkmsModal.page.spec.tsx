@@ -105,7 +105,7 @@ const clickOnConfirmCheckbox = async () => {
     ORDER_OKMS_TC_CONFIRM_CHECKBOX_TEST_ID,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ) as any;
-  await act(() => {
+  act(() => {
     confirmCheckbox.odsChange.emit({
       checked: 'true',
     });
@@ -113,11 +113,13 @@ const clickOnConfirmCheckbox = async () => {
 };
 
 const clickOnConfirmButton = async (user: UserEvent) => {
-  const confirmButton = screen.getByTestId(
-    ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID,
-  );
+  // Small wait to ensure state updates
+  // Fails intermittently without this - button click does not always works
+  await wait(300);
 
+  let confirmButton: HTMLElement;
   await waitFor(() => {
+    confirmButton = screen.getByTestId(ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID);
     expect(confirmButton).toHaveAttribute('is-disabled', 'false');
   });
   await act(() => user.click(confirmButton));
@@ -273,12 +275,10 @@ describe('Order Okms Modal test suite', () => {
       );
 
       // WHEN
-      await clickOnConfirmCheckbox();
-      // Small wait to ensure state updates
-      // Fails intermittently without this - button click does not always works
-      await wait(500);
-      const confirmButton = await clickOnConfirmButton(user);
 
+      // THEN - Test loading state
+      await clickOnConfirmCheckbox();
+      const confirmButton = await clickOnConfirmButton(user);
       // THEN - Test loading state
       await waitFor(() => {
         expect(confirmButton).toHaveAttribute('is-loading', 'true');
@@ -296,9 +296,6 @@ describe('Order Okms Modal test suite', () => {
 
       // WHEN
       await clickOnConfirmCheckbox();
-      // Small wait to ensure state updates
-      // Fails intermittently without this - button click does not always works
-      await wait(500);
       await clickOnConfirmButton(user);
 
       // THEN

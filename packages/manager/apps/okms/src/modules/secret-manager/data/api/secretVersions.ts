@@ -4,6 +4,7 @@ import {
   SecretVersionDataField,
   SecretVersionWithData,
 } from '@secret-manager/types/secret.type';
+import { buildQueryString } from '@secret-manager/utils/queryStrings';
 
 export const secretVersionsQueryKeys = {
   list: (okmsId: string, path: string) => ['secret', okmsId, path, 'versions'],
@@ -47,14 +48,9 @@ export const createSecretVersion = async ({
   data,
   cas,
 }: CreateSecretVersionParams) => {
-  const queryParams = new URLSearchParams();
-  if (cas) {
-    queryParams.set('cas', cas.toString());
-  }
-  const queryString = queryParams.toString();
   const url = `okms/resource/${okmsId}/secret/${encodeURIComponent(
     path,
-  )}/version${queryString ? `?${queryString}` : ''}`;
+  )}/version${buildQueryString({ cas })}`;
 
   const { data: response } = await apiClient.v2.post<
     CreateSecretVersionResponse
