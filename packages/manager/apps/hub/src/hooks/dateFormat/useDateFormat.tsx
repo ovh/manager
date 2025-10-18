@@ -1,5 +1,6 @@
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import React, { useContext } from 'react';
+
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 type Props = {
   options?: Intl.DateTimeFormatOptions;

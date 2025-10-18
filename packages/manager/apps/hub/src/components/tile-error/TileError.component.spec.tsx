@@ -1,12 +1,8 @@
 import React from 'react';
-import {
-  render,
-  screen,
-  fireEvent,
-  act,
-  waitFor,
-} from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import TileError from './TileError.component';
 
 describe('TileError Component', () => {
@@ -17,9 +13,7 @@ describe('TileError Component', () => {
 
     expect(screen.getByText('manager_hub_error_tile_oops')).toBeInTheDocument();
     expect(screen.getByText('Error message details')).toBeInTheDocument();
-    expect(
-      screen.getByText('manager_hub_error_tile_retry'),
-    ).toBeInTheDocument();
+    expect(screen.getByText('manager_hub_error_tile_retry')).toBeInTheDocument();
   });
 
   it('calls refetch function when the button is clicked', async () => {

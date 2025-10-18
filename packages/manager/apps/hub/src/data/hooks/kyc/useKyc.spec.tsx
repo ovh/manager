@@ -1,8 +1,11 @@
 import React, { PropsWithChildren } from 'react';
-import { renderHook, waitFor } from '@testing-library/react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { renderHook, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+
 import { v6 as Api } from '@ovh-ux/manager-core-api';
+
 import { useKyc } from '@/data/hooks/kyc/useKyc';
 import { KycProcedures } from '@/types/kyc.type';
 
@@ -24,9 +27,7 @@ describe('useKyc', () => {
   });
 
   it('should make a call to the correct API given a kyc procedure name', async () => {
-    const apiGet = vi
-      .spyOn(Api, 'get')
-      .mockReturnValue(Promise.resolve({ status: 'required' }));
+    const apiGet = vi.spyOn(Api, 'get').mockReturnValue(Promise.resolve({ status: 'required' }));
 
     renderHook(() => useKyc(KycProcedures.INDIA).useKycStatus(), {
       wrapper,

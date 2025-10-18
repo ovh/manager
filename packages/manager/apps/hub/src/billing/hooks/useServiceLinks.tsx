@@ -1,13 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
+
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
+import { RENEW_URL, SERVICE_TYPE } from '@/billing.constants';
 import { BillingService } from '@/billing/types/billingServices.type';
 import { ServiceLinks } from '@/billing/types/service-links.type';
-import { RENEW_URL, SERVICE_TYPE } from '@/billing.constants';
 
-export const useServiceLinks = (
-  service: BillingService,
-  autoRenewLink?: string,
-) => {
+export const useServiceLinks = (service: BillingService, autoRenewLink?: string) => {
   const {
     shell: { navigation },
     environment: { user },
@@ -17,12 +16,8 @@ export const useServiceLinks = (
   useEffect(() => {
     const determineLinks = async () => {
       const availableLinks: ServiceLinks = {};
-      const serviceTypeParam = service.serviceType
-        ? `&serviceType=${service.serviceType}`
-        : '';
-      const renewUrl = `${RENEW_URL[user.ovhSubsidiary] || RENEW_URL.default}${
-        service.serviceId
-      }`;
+      const serviceTypeParam = service.serviceType ? `&serviceType=${service.serviceType}` : '';
+      const renewUrl = `${RENEW_URL[user.ovhSubsidiary] || RENEW_URL.default}${service.serviceId}`;
       const [organization, exchangeName] = service.serviceId.split('/service/');
       // When we will fully migrate billing in React, we should add a possibility to give
       // the cancelResiliation link (with an additional parameter in useServiceLinks)
@@ -50,11 +45,9 @@ export const useServiceLinks = (
           )) as string;
           break;
         case SERVICE_TYPE.PACK_XDSL:
-          resiliateLink = (await navigation.getURL(
-            'telecom',
-            '#/pack/:serviceName',
-            { serviceName: service.serviceId },
-          )) as string;
+          resiliateLink = (await navigation.getURL('telecom', '#/pack/:serviceName', {
+            serviceName: service.serviceId,
+          })) as string;
           break;
         case SERVICE_TYPE.ALL_DOM:
           resiliateLink = service.canResiliateByEndRule()
@@ -77,11 +70,7 @@ export const useServiceLinks = (
         availableLinks.cancelCommitment = `${autoRenewLink}/${service.id}/cancel-commitment`;
       }
 
-      if (
-        autoRenewLink &&
-        service.hasDebt() &&
-        !service.hasBillingRights(user.nichandle)
-      ) {
+      if (autoRenewLink && service.hasDebt() && !service.hasBillingRights(user.nichandle)) {
         availableLinks.warnBillingNic = `${autoRenewLink}/warn-nic?nic=${service.contactBilling}`;
       }
       if (service.hasDebt() && service.hasBillingRights(user.nichandle)) {
@@ -106,11 +95,7 @@ export const useServiceLinks = (
           ) {
             availableLinks.configureRenewal = `${autoRenewLink}/update?serviceId=${service.serviceId}${serviceTypeParam}`;
           }
-          if (
-            !service.hasManualRenew() &&
-            !service.canBeEngaged &&
-            !service.hasPendingEngagement
-          ) {
+          if (!service.hasManualRenew() && !service.canBeEngaged && !service.hasPendingEngagement) {
             availableLinks.anticipatePayment = renewUrl;
           }
         }
@@ -128,8 +113,9 @@ export const useServiceLinks = (
         availableLinks.manageCommitment = `${autoRenewLink}/${service.id}/commitment`;
       }
       if (service.serviceType === SERVICE_TYPE.EXCHANGE) {
-        const exchangeBillingLink = `${autoRenewLink}/exchange?organization=${organization}&exchangeName=${exchangeName ||
-          service.serviceId}`;
+        const exchangeBillingLink = `${autoRenewLink}/exchange?organization=${organization}&exchangeName=${
+          exchangeName || service.serviceId
+        }`;
         if (service.menuItems?.manageEmailAccountsInBilling) {
           availableLinks.modifyExchangeBilling = exchangeBillingLink;
         } else if (service.menuItems?.manageEmailAccountsInExchange) {
@@ -153,8 +139,7 @@ export const useServiceLinks = (
       ) {
         if (
           resiliateLink &&
-          (service.hasAdminRights(user.auth.account) ||
-            service.hasAdminRights(user.nichandle))
+          (service.hasAdminRights(user.auth.account) || service.hasAdminRights(user.nichandle))
         ) {
           availableLinks.resiliate = resiliateLink;
         }
@@ -180,8 +165,7 @@ export const useServiceLinks = (
       }
       if (
         cancelResiliationLink &&
-        (service.canBeUnresiliated(user.nichandle) ||
-          service.canCancelResiliationByEndRule())
+        (service.canBeUnresiliated(user.nichandle) || service.canCancelResiliationByEndRule())
       ) {
         availableLinks.cancelResiliation = cancelResiliationLink;
       }

@@ -1,10 +1,13 @@
-import { renderHook, waitFor } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { vi, describe, it, expect } from 'vitest';
 import { PropsWithChildren } from 'react';
-import { useOrderCompleteHistory } from './useOrderCompleteHistory';
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { renderHook, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { getCompleteHistory } from '@/data/api/order/order';
 import { OrderHistory } from '@/types/order.type';
+
+import { useOrderCompleteHistory } from './useOrderCompleteHistory';
 
 vi.mock('@/data/api/order/order', () => ({
   getCompleteHistory: vi.fn(),
@@ -29,12 +32,9 @@ describe('useOrderCompleteHistory', () => {
     ];
     vi.mocked(getCompleteHistory).mockResolvedValue(mockedHistory);
 
-    const { result } = renderHook(
-      () => useOrderCompleteHistory(1, 'processed', '2025-10-22'),
-      {
-        wrapper,
-      },
-    );
+    const { result } = renderHook(() => useOrderCompleteHistory(1, 'processed', '2025-10-22'), {
+      wrapper,
+    });
 
     await waitFor(() => !result.current.isLoading);
 
@@ -47,9 +47,9 @@ describe('useOrderCompleteHistory', () => {
     const { result } = renderHook(
       () =>
         useOrderCompleteHistory(
-          (undefined as unknown) as number,
-          (undefined as unknown) as string,
-          (undefined as unknown) as string,
+          undefined as unknown as number,
+          undefined as unknown as string,
+          undefined as unknown as string,
         ),
       {
         wrapper,

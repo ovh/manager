@@ -1,9 +1,11 @@
 import React, { PropsWithChildren } from 'react';
-import { renderHook, waitFor } from '@testing-library/react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { renderHook, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import { useLastOrder } from '@/data/hooks/lastOrder/useLastOrder';
+
 import * as LastOrderApi from '@/data/api/order/order';
+import { useLastOrder } from '@/data/hooks/lastOrder/useLastOrder';
 import { LastOrder } from '@/types/order.type';
 
 const queryClient = new QueryClient();
@@ -40,8 +42,7 @@ describe('useLastOrder', () => {
         expirationDate: '2024-09-05T23:29:59+02:00',
         orderId: 99999999999,
         password: 'fakepassword',
-        pdfUrl:
-          'https://www.fake-order-url.com?orderId=fakeId&orderPassword=fakePassword',
+        pdfUrl: 'https://www.fake-order-url.com?orderId=fakeId&orderPassword=fakePassword',
         priceWithTax: {
           currencyCode: 'points',
           text: '0 PTS',
@@ -58,8 +59,7 @@ describe('useLastOrder', () => {
           text: '0 PTS',
           value: 0,
         },
-        url:
-          'https://www.fake-order-url.com?orderId=fakeId&orderPassword=fakePassword',
+        url: 'https://www.fake-order-url.com?orderId=fakeId&orderPassword=fakePassword',
       },
     };
     vi.spyOn(LastOrderApi, 'getLastOrder').mockReturnValue(

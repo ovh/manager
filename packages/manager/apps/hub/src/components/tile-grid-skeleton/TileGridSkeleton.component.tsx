@@ -1,6 +1,8 @@
 import React from 'react';
-import { OsdsSkeleton } from '@ovhcloud/ods-components/react';
+
 import { ODS_SKELETON_SIZE } from '@ovhcloud/ods-components';
+import { OsdsSkeleton } from '@ovhcloud/ods-components/react';
+
 import TileSkeleton from '@/components/tile-grid-skeleton/tile-skeleton/TileSkeleton.component';
 
 export default function TileGridSkeleton() {

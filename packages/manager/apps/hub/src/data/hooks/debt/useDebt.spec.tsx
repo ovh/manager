@@ -1,9 +1,11 @@
 import React, { PropsWithChildren } from 'react';
-import { renderHook, waitFor } from '@testing-library/react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { renderHook, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import { useFetchHubDebt } from '@/data/hooks/debt/useDebt';
+
 import * as DebtApi from '@/data/api/debt';
+import { useFetchHubDebt } from '@/data/hooks/debt/useDebt';
 import { Debt } from '@/types/debt.type';
 
 const queryClient = new QueryClient();
@@ -15,9 +17,7 @@ const wrapper = ({ children }: PropsWithChildren) => (
 describe('useFetchHubDebt', () => {
   it('returns no debt if api returned none', async () => {
     const debt: Debt | null = null;
-    const getDebt = vi
-      .spyOn(DebtApi, 'getDebt')
-      .mockReturnValue(Promise.resolve(debt));
+    const getDebt = vi.spyOn(DebtApi, 'getDebt').mockReturnValue(Promise.resolve(debt));
 
     const { result } = renderHook(() => useFetchHubDebt(), {
       wrapper,

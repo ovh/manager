@@ -1,5 +1,7 @@
+import { AxiosResponse } from 'axios';
+
 import { v6 } from '@ovh-ux/manager-core-api';
-import { AxiosResponse } from 'axios/index';
+
 import { Debt } from '@/types/debt.type';
 
 export const getDebt: () => Promise<Debt> = async () => {
