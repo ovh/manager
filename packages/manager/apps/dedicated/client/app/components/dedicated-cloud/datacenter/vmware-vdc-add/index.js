@@ -13,6 +13,7 @@ angular
   .module(moduleName, [ngAtInternet, 'oui', 'pascalprecht.translate'])
   .component('ovhManagerDedicatedCloudVmwareVdcAdd', component)
   .service('VmwareVdcAddService', service)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */)
+  .run(/* @ngTranslationsInject:json ../translations */);
 
 export default moduleName;

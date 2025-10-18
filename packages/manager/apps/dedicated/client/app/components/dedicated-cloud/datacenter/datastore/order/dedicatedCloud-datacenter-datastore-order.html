@@ -51,20 +51,11 @@
     <div class="mt-4">
         <oui-button
             data-variant="primary"
+            on-click="$ctrl.confirmOrder()"
             data-disabled="!$ctrl.selectedOffer"
-            data-ng-if="!$ctrl.selectedOffer"
             ><span
                 data-translate="dedicatedCloud_datastore_order_confirm"
             ></span>
         </oui-button>
-        <a
-            class="btn btn-primary"
-            href="{{ $ctrl.getOrderUrl() }}"
-            target="_blank"
-            rel="noopener"
-            data-translate="dedicatedCloud_datastore_order_confirm"
-            data-ng-if="$ctrl.selectedOffer"
-        >
-        </a>
     </div>
 </div>
