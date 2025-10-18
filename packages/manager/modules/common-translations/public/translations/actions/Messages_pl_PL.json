@@ -57,5 +57,8 @@
   "copy": "Kopiuj",
   "select_imperative": "Wybierz",
   "go_to_details": "Przejdź do szczegółów",
-  "display_recap": "Wyświetl podsumowanie"
+  "display_recap": "Wyświetl podsumowanie",
+  "reset": "Wyczyść wszystko",
+  "filters_apply": "Zastosuj filtry",
+  "show_hide_filters": "Pokaż / Ukryj filtry"
 }

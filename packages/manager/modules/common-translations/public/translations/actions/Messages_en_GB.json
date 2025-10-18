@@ -57,5 +57,8 @@
   "copy": "Copy",
   "select_imperative": "Select",
   "go_to_details": "See details",
-  "display_recap": "Show summary"
+  "display_recap": "Show summary",
+  "reset": "Clear all",
+  "filters_apply": "Apply filters",
+  "show_hide_filters": "Show/Hide filters"
 }
