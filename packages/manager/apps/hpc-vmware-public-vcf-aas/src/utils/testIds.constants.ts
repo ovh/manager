@@ -17,6 +17,7 @@ const TEST_IDS = {
   backupBadgeError: 'backup-badge-error',
   backupBadgeNone: 'backup-badge-none',
   vcdOrderCta: 'vcd-order-cta',
+  networkAclCta: 'network-acl-cta',
 } as const;
 
 export default TEST_IDS;
