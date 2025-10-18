@@ -21,9 +21,13 @@ export const ManagerTile = ({
   );
 };
 
-type ManagerTileTitleProps = React.PropsWithChildren;
-const ManagerTileTitle = ({ children }: ManagerTileTitleProps) => {
-  return <OdsText preset={ODS_TEXT_PRESET.heading4}>{children}</OdsText>;
+type ManagerTileTitleProps = React.ComponentProps<typeof OdsText>;
+const ManagerTileTitle = ({ children, ...rest }: ManagerTileTitleProps) => {
+  return (
+    <OdsText preset={ODS_TEXT_PRESET.heading4} {...rest}>
+      {children}
+    </OdsText>
+  );
 };
 
 const ManagerTileDivider = () => <OdsDivider spacing="24" />;
