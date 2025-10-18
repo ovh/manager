@@ -1,6 +1,5 @@
 import 'element-internals-polyfill';
 import '@testing-library/jest-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
 import { act, render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, vi } from 'vitest';
@@ -14,6 +13,8 @@ import {
 } from '@/context/installationInitialValues.constants';
 import { InstallationFormValues } from '@/types/form.type';
 import { FormContextType } from '@/context/InstallationForm.context';
+import { labels } from '@/test-utils';
+import { testWrapperBuilder } from '@/test-utils/testWrapperBuilder';
 
 const trackClickMock = vi.fn();
 const useMutateSpy = vi.fn();
@@ -56,30 +57,32 @@ vi.mock('@tanstack/react-query', async (importOriginal) => {
   };
 });
 
-const renderStepOSConfig = () =>
-  render(
-    <QueryClientProvider client={new QueryClient()}>
-      <InstallationStepOSConfig />
-    </QueryClientProvider>,
-  );
+const renderStepOSConfig = async () => {
+  const wrapper = await testWrapperBuilder()
+    .withI18next()
+    .build();
+  return render(<InstallationStepOSConfig />, { wrapper });
+};
+const { installation: l, system: lSystem, form: lForm } = labels;
 
 describe('InstallationStepOSConfig page unit test suite', () => {
-  it('should render field with correct titles and inputs', () => {
+  it('should render field with correct titles and inputs', async () => {
     vi.mock('@/context/InstallationForm.context', () => ({
       useInstallationFormContext: () => initialContext,
     }));
 
-    renderStepOSConfig();
+    await renderStepOSConfig();
 
     const elements = [
-      'os_config_title',
-      'os_config_subtitle',
-      'os_config_input_domain',
-      'os_config_input_suse (optional_label)',
-      'os_config_toggle_update',
-      'os_config_toggle_firewall_service',
-      'os_config_toggle_firewall_server',
-      'os_config_toggle_firewall_database',
+      l.os_config_title,
+      l.os_config_title,
+      l.os_config_subtitle,
+      lSystem.domain_name,
+      `${l.os_config_input_suse} (${lForm.optional})`,
+      l.os_config_toggle_update,
+      l.os_config_toggle_firewall_service,
+      l.os_config_toggle_firewall_server,
+      l.os_config_toggle_firewall_database,
     ];
 
     elements.forEach((element) =>
@@ -98,7 +101,7 @@ describe('InstallationStepOSConfig page unit test suite', () => {
       }),
     }));
 
-    renderStepOSConfig();
+    await renderStepOSConfig();
 
     const user = userEvent.setup();
     const submitCta = screen.getByTestId(testIds.formSubmitCta);
@@ -125,7 +128,7 @@ describe('Tracking test suite', () => {
       }),
     }));
 
-    renderStepOSConfig();
+    await renderStepOSConfig();
 
     const user = userEvent.setup();
     const submitCta = screen.getByTestId(testIds.formSubmitCta);

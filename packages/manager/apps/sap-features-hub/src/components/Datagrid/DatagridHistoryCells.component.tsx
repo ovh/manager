@@ -4,6 +4,7 @@ import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsButton, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { TSAPInstallationWithService } from '@/types/installation.type';
 import { InstallationStatus } from '../InstallationStatus/InstallationStatus.component';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
@@ -60,7 +61,7 @@ export const StatusCell = (installation: TSAPInstallationWithService) => (
 );
 
 export const DetailIconCell = (installation: TSAPInstallationWithService) => {
-  const { t } = useTranslation('listing');
+  const { t } = useTranslation(NAMESPACES.ACTIONS);
   const navigate = useNavigate();
 
   const { serviceName, taskId } = installation;
@@ -84,7 +85,7 @@ export const DetailIconCell = (installation: TSAPInstallationWithService) => {
       />
       <OdsTooltip role="tooltip" triggerId={viewButtonId}>
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('sap_hub_history_installation_see_detail')}
+          {t(`${NAMESPACES.ACTIONS}:see_details`)}
         </OdsText>
       </OdsTooltip>
       <OdsButton

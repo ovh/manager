@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { OdsText } from '@ovhcloud/ods-components/react';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { LABELS } from '@/utils/label.constants';
 import { FormFieldSummary } from '@/components/Form/FormFieldSummary.component';
 import { StepFieldData } from '@/types/formStep.type';
@@ -13,7 +14,12 @@ export const InstallationDetailsSummary = ({
   serviceName,
   taskId,
 }: Readonly<TGetInstallationTaskParams>) => {
-  const { t } = useTranslation(['dashboard/installation', 'installation']);
+  const { t } = useTranslation([
+    'dashboard/installation',
+    'installation',
+    NAMESPACES.DASHBOARD,
+    NAMESPACES.TIME,
+  ]);
   const formatDate = useFormatDate();
 
   const {
@@ -25,18 +31,14 @@ export const InstallationDetailsSummary = ({
     () =>
       [
         {
-          label: t(
-            'dashboard/installation:dashboard_installation_item_start_date',
-          ),
+          label: t(`${NAMESPACES.TIME}:date_launch`),
           value: formatDate({
             date: installationTaskDetails?.startTime,
             format: 'PPp',
           }),
         },
         {
-          label: t(
-            'dashboard/installation:dashboard_installation_item_end_date',
-          ),
+          label: t(`${NAMESPACES.TIME}:date_end`),
           value:
             installationTaskDetails?.endTime &&
             formatDate({
@@ -81,9 +83,7 @@ export const InstallationDetailsSummary = ({
   return (
     <div className="flex flex-col gap-y-6">
       <OdsText preset="heading-3">
-        {t(
-          'dashboard/installation:dashboard_installation_general_informations',
-        )}
+        {t(`${NAMESPACES.DASHBOARD}:general_information`)}
       </OdsText>
       <div className="flex flex-col gap-y-1">
         {fields.map((field) => (
