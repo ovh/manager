@@ -32,9 +32,12 @@ jobs:
           NUMBER_PULL=$(echo "$PR_JSON" | jq -r '.[0].number')
           labels=$(gh pr view $NUMBER_PULL --repo ovh/manager --json labels --jq '.labels[].name')
 
-          if echo "$labels" | grep -wq "translation required "; then
+          if echo "$labels" | grep -wq "translation required"; then
             echo "✅ Translation required: Check the duplicate translation pls!..."
-  
+            SHOULD_CONTINUE=true
+            echo "should_continue<<EOF" >> $GITHUB_OUTPUT
+            echo "$SHOULD_CONTINUE" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT  
           else
             echo "❌ Translation label does not exist, exit..."
             SHOULD_CONTINUE=false
