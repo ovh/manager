@@ -1,17 +1,17 @@
 import React from 'react';
-import {
-  DrawerCollapsible,
-  DrawerCollapsibleProps,
-} from '@ovh-ux/manager-react-components';
 import { Meta } from '@storybook/react';
 import { useArgs } from '@storybook/preview-api';
-import { DrawerContent } from './DrawerContent.component';
+import {
+  DrawerCollapsibleComposed,
+  DrawerComposedProps,
+} from './mocks/DrawerComposed.component';
+import { Content } from './mocks/Content.component';
 
-const meta: Meta<typeof DrawerCollapsible> = {
+const meta: Meta<typeof DrawerCollapsibleComposed> = {
   title: 'Manager React Components/Components/Drawer',
-  component: DrawerCollapsible,
+  component: DrawerCollapsibleComposed,
   args: {
-    heading: 'Drawer Title',
+    title: 'Drawer Title',
     isOpen: true,
     isLoading: false,
     primaryButtonLabel: 'Confirm',
@@ -23,16 +23,16 @@ const meta: Meta<typeof DrawerCollapsible> = {
     isPrimaryButtonDisabled: false,
     isSecondaryButtonLoading: false,
     isSecondaryButtonDisabled: false,
-    children: <DrawerContent size="short" />,
+    content: <Content size="short" />,
   },
   argTypes: {
-    heading: {
+    title: {
       description: 'Header title of the drawer',
     },
   },
   parameters: {
     controls: {
-      exclude: ['children'],
+      exclude: ['content'],
     },
   },
   render: function Render(args) {
@@ -41,7 +41,7 @@ const meta: Meta<typeof DrawerCollapsible> = {
     const onDismiss = () => updateArgs({ isOpen: !isOpen });
 
     return (
-      <DrawerCollapsible
+      <DrawerCollapsibleComposed
         {...args}
         isOpen={isOpen}
         onDismiss={onDismiss}
@@ -54,9 +54,9 @@ const meta: Meta<typeof DrawerCollapsible> = {
 
 export default meta;
 
-export const Collapsible: Meta<DrawerCollapsibleProps> = {
+export const Collapsible: Meta<DrawerComposedProps> = {
   args: {
-    heading: 'Collapsible Drawer',
+    title: 'Collapsible Drawer',
     isOpen: true,
   },
 };

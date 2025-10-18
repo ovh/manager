@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import clsx from 'clsx';
-import DrawerHandle from './DrawerHandle.component';
-import { DrawerBase, DrawerBaseProps } from './DrawerBase.component';
-import { DrawerCollapseState } from './Drawer.types';
-import './translations';
+import DrawerHandle from '../drawer-handle/DrawerHandle.component';
+import { DrawerBase } from '../drawer-base/DrawerBase.component';
+import { DrawerCollapseState } from '../drawer.types';
+import { DrawerRootCollapsibleProps } from './DrawerRootCollapsible.props';
 
-export type DrawerCollapsibleProps = Omit<DrawerBaseProps, 'className'>;
-
-export const DrawerCollapsible = (props: DrawerCollapsibleProps) => {
+export const DrawerRootCollapsible = ({
+  isOpen = true,
+  ...props
+}: DrawerRootCollapsibleProps) => {
   const [collapseState, setCollapseState] =
     useState<DrawerCollapseState>('visible');
 
@@ -20,6 +21,7 @@ export const DrawerCollapsible = (props: DrawerCollapsibleProps) => {
   return (
     <div id="mrc-drawer" className="relative">
       <DrawerBase
+        isOpen={isOpen}
         {...props}
         className={clsx(
           '[&::part(drawer)]:duration-[var(--mrc-drawer-collapse-duration)]',
@@ -29,7 +31,7 @@ export const DrawerCollapsible = (props: DrawerCollapsibleProps) => {
         )}
       />
 
-      {props.isOpen && (
+      {isOpen && (
         <DrawerHandle
           onClick={handleToggleCollapseState}
           collapseState={collapseState}
