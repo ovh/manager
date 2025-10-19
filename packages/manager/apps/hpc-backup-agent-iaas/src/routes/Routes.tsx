@@ -9,6 +9,8 @@ import NotFound from '@/pages/not-found/404.page';
 
 import { redirectionApp, subRoutes, urls } from './Routes.constants';
 
+import { BackupAgentRoutes } from "@ovh-ux/backup-agent"
+
 const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
 
@@ -34,6 +36,7 @@ export default (
           tracking: { pageName: 'onboarding', pageType: PageType.onboarding },
         }}
       />
+      {BackupAgentRoutes}
       <Route path="*" element={<NotFound />} />
     </Route>
   </>
