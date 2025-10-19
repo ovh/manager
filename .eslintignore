@@ -44,6 +44,7 @@ packages/manager-tools/manager-tests-setup
 packages/manager-tools/manager-vite-config
 packages/manager-tools/manager-pm
 packages/manager-tools/manager-muk-cli
+packages/manager/modules/backup-agent
 packages/manager/apps/backup-vaults
 packages/manager/apps/backup-services
 packages/manager/apps/backup-billing
