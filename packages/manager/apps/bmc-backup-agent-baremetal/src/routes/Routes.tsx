@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Navigate, Route } from 'react-router-dom';
 
+import { BackupAgentRoutes } from '@ovh-ux/backup-agent';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
@@ -34,6 +35,7 @@ export default (
           tracking: { pageName: 'onboarding', pageType: PageType.onboarding },
         }}
       />
+      {BackupAgentRoutes}
       <Route path="*" element={<NotFound />} />
     </Route>
   </>
