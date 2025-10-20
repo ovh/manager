@@ -1,0 +1,20 @@
+{
+  "ovhManagerPccDashboardOptionsLogs_name": "Logs",
+  "logs_state_creating": "Wird erstellt",
+  "logs_state_deleted": "Gelöscht",
+  "logs_state_deleting": "Wird gelöscht",
+  "logs_state_delivered": "Aktiviert",
+  "logs_state_disabled": "Deaktiviert",
+  "logs_state_pending": "Ausstehend",
+  "logs_state_toCreate": "Zu erstellen",
+  "logs_state_updating": "Wird aktualisiert",
+  "logs_get_status_error": "Beim Abrufen des Status der Log-Erfassung ist ein Fehler aufgetreten: {{ error }}",
+  "logs_activate": "Aktivieren",
+  "logs_deactivate": "Deaktivieren",
+  "logs_deactivate_modal_title": "Achtung, Sie werden die Log-Erfassung deaktivieren.",
+  "logs_deactivate_modal_description": "Die Deaktivierung dieses Dienstes führt dazu, dass die Erfassung und Visualisierung von Logs eingestellt wird. Möchten Sie fortfahren?",
+  "logs_deactivate_modal_cancel": "Schließen",
+  "logs_deactivate_modal_confirm": "Deaktivieren",
+  "logs_deactivate_success": "Die Deaktivierung der Log-Erfassung wurde registriert und wird in wenigen Minuten wirksam.",
+  "logs_deactivate_error": "Bei der Deaktivierung der Log-Erfassung ist ein Fehler aufgetreten: {{ error }}"
+}
