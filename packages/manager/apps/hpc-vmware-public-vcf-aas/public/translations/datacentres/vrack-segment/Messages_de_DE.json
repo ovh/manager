@@ -8,7 +8,7 @@
   "managed_vcd_dashboard_vrack_network_address": "Subnetzadresse im Format Gateway-Adresse / Maske",
   "managed_vcd_dashboard_vrack_network": "Subnetz",
   "managed_vcd_dashboard_vrack_vlan_id": "VLAN-ID",
-  "managed_vcd_dashboard_vrack_vlan_id_helper": "Die VLAN-ID muss zwischen 1 und 4095 liegen.",
+  "managed_vcd_dashboard_vrack_vlan_id_helper": "Die VLAN-ID muss zwischen {{minId}} und {{maxId}} liegen.",
   "managed_vcd_dashboard_vrack_form_vlan_id_description": "Um Ihre Hybrid-Cloud-Deployments zu vereinfachen, müssen Sie möglicherweise dieselbe VLAN-ID sowohl auf Ihrem Dedicated Server als auch auf Ihrem Public-Cloud-Projekt verwenden.",
   "managed_vcd_dashboard_vrack_edit_success": "Ihre Änderungsanfrage für die VLAN-ID wurde registriert.",
   "managed_vcd_dashboard_vrack_edit_error": "Bei der Änderung der VLAN-ID ist ein Fehler aufgetreten: {{errorApi}}",

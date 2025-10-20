@@ -8,7 +8,7 @@
   "managed_vcd_dashboard_vrack_network_address": "Adres podsieci w formacie adres gateway / maska",
   "managed_vcd_dashboard_vrack_network": "Podsieć",
   "managed_vcd_dashboard_vrack_vlan_id": "ID VLAN",
-  "managed_vcd_dashboard_vrack_vlan_id_helper": "ID VLAN musi być zawarty w przedziale od 1 do 4095",
+  "managed_vcd_dashboard_vrack_vlan_id_helper": "ID VLAN musi być zawarty w przedziale od {{minId}} do {{maxId}}",
   "managed_vcd_dashboard_vrack_form_vlan_id_description": "Aby ułatwić wdrożenia chmury hybrydowej, może być konieczne użycie tego samego identyfikatora VLAN zarówno na Twoim serwerze dedykowanym, jak i na Twoim projekcie Public Cloud.",
   "managed_vcd_dashboard_vrack_edit_success": "Żądanie zmiany ID VLAN zostało przyjęte.",
   "managed_vcd_dashboard_vrack_edit_error": "Wystąpił błąd podczas modyfikacji ID VLAN: {{errorApi}}",

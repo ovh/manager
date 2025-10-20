@@ -8,7 +8,7 @@
   "managed_vcd_dashboard_vrack_network_address": "Dirección de subred en formato de dirección de gateway/máscara",
   "managed_vcd_dashboard_vrack_network": "Subred",
   "managed_vcd_dashboard_vrack_vlan_id": "VLAN ID",
-  "managed_vcd_dashboard_vrack_vlan_id_helper": "El VLAN ID debe estar comprendido entre 1 y 4095",
+  "managed_vcd_dashboard_vrack_vlan_id_helper": "El VLAN ID debe estar comprendido entre {{minId}} y {{maxId}}",
   "managed_vcd_dashboard_vrack_form_vlan_id_description": "Para facilitar sus despliegues en la nube híbrida, es posible que necesite utilizar el mismo VLAN ID tanto en su servidor dedicado como en su proyecto de Public Cloud.",
   "managed_vcd_dashboard_vrack_edit_success": "La solicitud de cambio del VLAN ID se ha enviado.",
   "managed_vcd_dashboard_vrack_edit_error": "Se ha producido un error al modificar el VLAN ID: {{errorApi}}",
