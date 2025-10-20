@@ -11,9 +11,6 @@ import { redirectionApp, urls } from './Routes.constants';
 
 const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 
-const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
-
-
 const ListingPage = React.lazy(() => import('@/pages/listing/Listing.page'));
 
 export default (
@@ -45,18 +42,6 @@ export default (
           tracking: {
             pageName: 'listing',
             pageType: PageType.listing,
-          },
-        }}
-      />
-
-      {/* Onboarding route */}
-      <Route
-        path={urls.onboarding}
-        Component={OnboardingPage}
-        handle={{
-          tracking: {
-            pageName: 'onboarding',
-            pageType: PageType.onboarding,
           },
         }}
       />

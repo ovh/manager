@@ -2,7 +2,11 @@ import React from 'react';
 
 import ReactDOM from 'react-dom/client';
 
-import { ShellContext, initI18n, initShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  initI18n,
+  initShellContext,
+} from '@ovh-ux/manager-react-shell-client';
 
 import { appName } from '@/App.constants';
 
@@ -20,16 +24,16 @@ const trackingContext = {
   level2Config: LEVEL2,
 };
 
-const init = async (appName: string) => {
+const init = async (appNameParam: string) => {
   // Initialize shell context: auth, env, tracking, APIs
-  const context = await initShellContext(appName, trackingContext);
+  const context = await initShellContext(appNameParam, trackingContext);
 
   // Initialize i18n with default namespaces
   await initI18n({
     context,
     reloadOnLocaleChange: true,
-    defaultNS: appName,
-    ns: ['listing', 'dashboard', 'onboarding'],
+    defaultNS: appNameParam,
+    ns: ['listing'],
   });
 
   // Configure tracking per region
@@ -59,4 +63,7 @@ const init = async (appName: string) => {
 };
 
 // Start the app
-void init(appName);
+init(appName).catch((error) => {
+  // eslint-disable-next-line no-console
+  console.error(error);
+});
