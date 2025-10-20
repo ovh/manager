@@ -455,4 +455,33 @@ export default class PackMoveOffersCtrl {
       );
     }
   }
+
+  getPromotionToDisplay(offer) {
+    switch (offer.prices.promotion.id) {
+      case this.PROMO_DISPLAY.PROMO_FTTH_2020:
+        return this.$translate.instant(
+          'pack_move_promotion_subscription_months_offered',
+
+          {
+            duration: this.PROMO_DISPLAY[
+              offer.prices.promotion.subscription.duration
+            ].value,
+          },
+        );
+
+      case this.PROMO_DISPLAY.PROMO_FTTH_2025:
+        return this.$translate.instant(
+          'telecom_pack_migration_promotion_subscription_months_reduces',
+
+          {
+            duration: this.PROMO_DISPLAY[
+              offer.prices.promotion.subscription.duration
+            ].value,
+          },
+        );
+
+      default:
+        return '';
+    }
+  }
 }
