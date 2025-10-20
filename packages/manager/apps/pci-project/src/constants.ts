@@ -484,7 +484,7 @@ export const DASHBOARD_QUICK_ACCESS_ITEMS_BASE: DashboardItem[] = [
   {
     labelTranslationKey: 'pci_projects_home_instances',
     descriptionTranslationKey: 'pci_projects_home_create_instance',
-    link: PCI_FEATURES_STATES.INSTANCES.LIST.url,
+    link: PCI_FEATURES_STATES.INSTANCES.ADD.url,
     featureFlag: FEATURE_AVAILABILITY.INSTANCE,
   },
   {
@@ -496,7 +496,7 @@ export const DASHBOARD_QUICK_ACCESS_ITEMS_BASE: DashboardItem[] = [
   {
     labelTranslationKey: 'pci_projects_home_object_storage',
     descriptionTranslationKey: 'pci_projects_home_create_container',
-    link: PCI_FEATURES_STATES.OBJECTS.LIST.url,
+    link: PCI_FEATURES_STATES.OBJECTS.ADD.url,
     featureFlag: FEATURE_AVAILABILITY.OBJECT_STORAGE,
   },
   {

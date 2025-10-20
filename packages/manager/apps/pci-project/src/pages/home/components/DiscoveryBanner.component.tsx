@@ -1,40 +1,33 @@
-import { useTranslation } from 'react-i18next';
-import { OdsMessage, OdsText, OdsButton } from '@ovhcloud/ods-components/react';
 import {
+  ODS_BUTTON_SIZE,
   ODS_MESSAGE_COLOR,
   ODS_MESSAGE_VARIANT,
-  ODS_BUTTON_SIZE,
 } from '@ovhcloud/ods-components';
+import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import { useTranslation } from 'react-i18next';
 
-import { useProject, isDiscoveryProject } from '@ovh-ux/manager-pci-common';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { useActivationUrl } from '@/hooks/useActivationUrl';
+import { useNavigate } from 'react-router-dom';
 import { useDiscoveryVoucher } from '@/hooks/home/useDiscoveryVoucher';
+import { urls } from '@/routes/routes.constant';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
 
 function DiscoveryBanner({ className }: { className?: string }) {
   const { t } = useTranslation('home');
-  const { data: project } = useProject();
-  const { goToActivation } = useActivationUrl();
+
+  const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
 
-  const isDiscovery = project ? isDiscoveryProject(project) : false;
-  const { data: voucherAmount } = useDiscoveryVoucher(isDiscovery);
+  const { data: voucherAmount } = useDiscoveryVoucher();
 
   const handleActivationClick = () => {
-    // Track the click action
     trackClick({
       actionType: 'action',
       actions: PROJECTS_TRACKING.PROJECT_HOME.CTA_DISCOVERY_BANNER,
     });
 
-    // Navigate to activation
-    goToActivation();
+    navigate(urls.activate);
   };
-
-  if (!project || !isDiscovery) {
-    return null;
-  }
 
   return (
     <>
