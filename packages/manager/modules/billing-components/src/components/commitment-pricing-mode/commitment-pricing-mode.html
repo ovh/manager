@@ -24,7 +24,7 @@
                             data-translate="{{:: ('billing_commitment_payment_' + engagement.commitmentType) }}"
                         ></span>
                         <span
-                            data-ng-if="$ctrl.upfrontSavings.amountToPay.value !== $ctrl.periodicTotalPrice"
+                            data-ng-if="$ctrl.upfrontSavings && $ctrl.upfrontSavings.amountToPay.value !== $ctrl.periodicTotalPrice"
                             data-translate="billing_commitment_payment_pay_now_description"
                             class="small oui-color-p-400 mt-2"
                         ></span>
@@ -32,14 +32,21 @@
                     <div class="d-flex flex-column ml-auto text-right">
                         <del
                             class="small"
-                            data-ng-if="$ctrl.upfrontSavings.amountToPay.value !== $ctrl.periodicTotalPrice"
+                            data-ng-if="$ctrl.upfrontSavings && $ctrl.upfrontSavings.amountToPay.value !== $ctrl.periodicTotalPrice"
                             >{{$ctrl.periodicTotalPrice}}</del
                         >
                         <span
                             class="'oui-heading_6 m-0"
+                            data-ng-if="$ctrl.upfrontSavings"
                             data-ng-class="{'oui-color-ae-500': $ctrl.upfrontSavings.amountToPay.value !== $ctrl.periodicTotalPrice}"
                             >{{$ctrl.upfrontSavings.amountToPay.text}}</span
                         >
+                        <span
+                            data-ng-if="!$ctrl.upfrontSavings"
+                            class="'oui-heading_6 m-0"
+                            data-ng-bind="engagement.totalPrice.text"
+                        >
+                        </span>
                         <span
                             data-translate="billing_commitment_payment_total"
                             data-translate-values="{ duration: engagement.durationInMonths}"
