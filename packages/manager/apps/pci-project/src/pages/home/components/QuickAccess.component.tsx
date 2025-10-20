@@ -46,7 +46,7 @@ function QuickAccess() {
       <OdsText preset={ODS_TEXT_PRESET.heading3}>
         {t('pci_projects_home_quick_access')}
       </OdsText>
-      <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-5 m-6">
+      <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 my-6">
         {itemsWithLinksAndIcons.map((item, idx) => (
           <QuickAccessCard key={idx} item={item} index={idx} />
         ))}
