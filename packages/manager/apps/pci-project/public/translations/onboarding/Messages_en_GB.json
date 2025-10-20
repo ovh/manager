@@ -1,0 +1,18 @@
+{
+  "pci_projects_onboarding_title": "Welcome to the Public Cloud ecosystem",
+  "pci_projects_onboarding_description1": "By creating a Public Cloud project, you will enjoy access to various resources available on demand for your application. Here are some examples.",
+  "pci_projects_onboarding_description2": "You can start SQL or NoSQL databases, test your application on a Kubernetes cluster, use artificial intelligence tools for a few hours, or automate the deployment of your cloud servers with Terraform.",
+  "pci_projects_onboarding_contracts_agreements_label": "I have understood and accept the following contracts: ",
+  "pci_projects_onboarding_create_project": "Discover the Public Cloud universe",
+  "pci_projects_onboarding_us_title": "Your open and reversible Public Cloud platform",
+  "pci_projects_onboarding_us_description1": "You are familiar with DevOps and cloud-ready practices, and can manage your infrastructure using APIs and orchestration tools. You are looking for pre-installed or “as-a-service” solutions, with flexible, pay-as-you-go billing, so you can focus on your core business to accelerate production.",
+  "pci_projects_onboarding_us_description2": "In this space, you get a wide selection of services to develop innovative solutions. These allow you, while leveraging OVHcloud, to focus on your high-value activities.",
+  "pci_projects_onboarding_us_description3": "By structuring your architectures by project, you can segment cloud deployments based on your functional and operational domains. For example, you can create a project for your development environment and another for your production environment. You can also segment applications based on type, for example, “back-office” and “e-commerce” project",
+  "pci_projects_onboarding_us_create_project": "Create your first OVHcloud Public Cloud project",
+  "pci_projects_onboarding_us_banner_trusted_customer_info_1": "Need more information, or want to place an order?",
+  "pci_projects_onboarding_us_banner_trusted_customer_info_2": "Request a free call-back from an OVHcloud advisor",
+  "pci_projects_onboarding_banner_trusted_customer_info_1": "Need more information, or want to place an order?",
+  "pci_projects_onboarding_banner_trusted_customer_info_2": "Request a free call-back from an OVHcloud advisor",
+  "pci_projects_onboarding_banner_kyc_validation_under_verification_description": "Before creating a Public Cloud project, you will need to verify your identity in compliance with applicable regulations. Your documents are currently being processed by our team. For more information, please refer to ",
+  "pci_projects_onboarding_banner_kyc_validation_under_verification_link": "My support tickets "
+}

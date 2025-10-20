@@ -37,7 +37,7 @@
   "exchange_account_update_contact_phone_label": "Festnetznummer",
   "exchange_account_update_contact_mobile_label": "Mobiltelefonnummer",
   "exchange_account_update_contact_fax_label": "Faxnummer",
-  "exchange_account_update_contact_phone_help_text": "Bitte geben Sie eine Nummer im internationalen Format an (00xx ...).",
+  "exchange_account_update_contact_phone_error_text": "Leerzeichen nicht zulässig",
   "exchange_account_update_company_label": "Unternehmen",
   "exchange_account_update_exchange_guid": "Exchange GUID",
   "exchange_account_update_password_button_show": "Passwort anzeigen",

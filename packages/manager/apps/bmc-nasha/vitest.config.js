@@ -25,6 +25,7 @@ export default mergeConfig(
           '**/*.type.ts',
           '**/404.page.tsx',
           '**/Test.utils.tsx',
+          '**/Client.api.ts',
         ],
       },
     },

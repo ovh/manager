@@ -357,7 +357,7 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/databases-analytics/streaming/services/new?STEP_1=kafka"
+      "path": "/pci/projects/{project}/databases-analytics/all/services/new?STEP_1=kafka"
     }
   },
   {
@@ -367,7 +367,7 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/databases-analytics/streaming/services/new?STEP_1=kafkaConnect"
+      "path": "/pci/projects/{project}/databases-analytics/all/services/new?STEP_1=kafkaConnect"
     }
   },
   {
@@ -377,7 +377,7 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/databases-analytics/streaming/services/new?STEP_1=kafkaMirrorMaker"
+      "path": "/pci/projects/{project}/databases-analytics/all/services/new?STEP_1=kafkaMirrorMaker"
     }
   },
   {

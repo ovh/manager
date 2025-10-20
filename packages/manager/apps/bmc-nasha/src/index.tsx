@@ -2,11 +2,7 @@ import React from 'react';
 
 import ReactDOM from 'react-dom/client';
 
-import {
-  ShellContext,
-  initI18n,
-  initShellContext,
-} from '@ovh-ux/manager-react-shell-client';
+import { ShellContext, initI18n, initShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { appName } from '@/App.constants';
 
@@ -64,6 +60,5 @@ const init = async (appNameParam: string) => {
 
 // Start the app
 init(appName).catch((error) => {
-  // eslint-disable-next-line no-console
   console.error(error);
 });

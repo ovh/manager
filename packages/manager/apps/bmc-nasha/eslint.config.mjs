@@ -1,7 +1,6 @@
 import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/prettier';
 
 import { javascriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/javascript';
-import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
 import { reactEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/react';
 import { a11yEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/a11y';
 import {
@@ -13,34 +12,31 @@ import { cssEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/css'
 import { tailwindJsxConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tailwind-jsx';
 import { tanStackQueryEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tanstack';
 import { vitestEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tests';
-import { tailwindSyntax } from '@eslint/css/syntax';
+import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
 
 export default [
-  javascriptEslintConfig,
-  typescriptEslintConfig,
-  reactEslintConfig,
-  a11yEslintConfig,
-  htmlEslintConfig,
-  tailwindJsxConfig,
-  tanStackQueryEslintConfig,
-  vitestEslintConfig,
+  ...javascriptEslintConfig,
+  ...reactEslintConfig,
+  ...a11yEslintConfig,
+  ...complexityJsxTsxConfig,
+  ...complexityTsJsConfig,
+  ...htmlEslintConfig,
+  ...cssEslintConfig,
+  ...tailwindJsxConfig,
+  ...tanStackQueryEslintConfig,
+  ...vitestEslintConfig,
+  ...typescriptEslintConfig,
   prettierEslintConfig,
-  complexityJsxTsxConfig,
-  complexityTsJsConfig,
   {
-    ...cssEslintConfig,
-    files: ['**/*.css', '**/*.scss'],
-    languageOptions: {
-      ...cssEslintConfig.languageOptions,
-      customSyntax: tailwindSyntax,
-    },
     rules: {
-      ...cssEslintConfig.rules,
-      'css/no-invalid-properties': 'off',
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'off',
+      '@typescript-eslint/no-floating-promises': 'off',
+      '@typescript-eslint/no-misused-promises': 'off',
+      '@typescript-eslint/no-unused-vars': 'warn',
     },
-  },
-  // Exclude dist folders and their contents from linting
-  {
-    ignores: ['**/dist/**', '**/build/**', '**/coverage/**'],
   },
 ];

@@ -1,13 +1,22 @@
 # bmc-nasha — OVHcloud Manager Application
 
 > Universe: **Baremetal / Dedicated**
-> Migration in progress from: packages/manager/modules/nasha (AngularJS)
+> Product: **NAS-HA (Network Attached Storage High Availability)**
 
 ## Overview
 
-This application is a single-page React app integrated into the OVHcloud Manager ecosystem.  
+This application is a single-page React app integrated into the OVHcloud Manager ecosystem for managing NAS-HA services.  
 It is fully **flavor-driven**, meaning routing, tracking, and API configuration are centralized in [`src/App.constants.ts`](src/App.constants.ts).  
 The same codebase supports multiple product universes (PCI, Hub, Web, Zimbra) by changing only constants.
+
+## Features
+
+- **Service Management**: Create, view, and delete NAS-HA services
+- **Partition Management**: Create and manage storage partitions
+- **Access Control**: Configure IP-based access rules
+- **Monitoring**: View service status and usage statistics
+- **Snapshots**: View and manage service snapshots
+- **Quotas**: Monitor user and group quotas
 
 ---
 

@@ -12,6 +12,7 @@ import { redirectionApp, urls } from './Routes.constants';
 const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 
 const ListingPage = React.lazy(() => import('@/pages/listing/Listing.page'));
+const DashboardPage = React.lazy(() => import('@/pages/dashboard/Dashboard.page'));
 
 export default (
   <>
@@ -41,6 +42,18 @@ export default (
         handle={{
           tracking: {
             pageName: 'listing',
+            pageType: PageType.listing,
+          },
+        }}
+      />
+
+      {/* Dashboard route */}
+      <Route
+        path={urls.dashboard}
+        Component={DashboardPage}
+        handle={{
+          tracking: {
+            pageName: 'dashboard',
             pageType: PageType.listing,
           },
         }}

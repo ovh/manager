@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.29.1...@ovh-ux/manager-pci-databases-analytics-app@1.30.0) (2025-10-15)
+
+
+### Features
+
+* **pci.db:** update streaming deep links ([#19625](https://github.com/ovh/manager/issues/19625)) ([bf84207](https://github.com/ovh/manager/commit/bf842076ff9e3c19b7203054f258a2285d1d0af3)), closes [#DATATR-2558](https://github.com/ovh/manager/issues/DATATR-2558)
+
+
+
+
+
 ## [1.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.29.0...@ovh-ux/manager-pci-databases-analytics-app@1.29.1) (2025-10-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app

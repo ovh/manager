@@ -1,0 +1,7 @@
+{
+  "pci_project_new_payment_credit_thanks": "Dziękujemy! Odnotowaliśmy rejestrację Twojego sposobu płatności.",
+  "pci_project_new_payment_credit_explain": "Abyś mógł jak najszybciej zacząć korzystać z pełnej mocy Public Cloud, prosimy zasilenie konta kwotą {{amount}}. Kwota ta zostanie przeliczona na zasilenia* do wykorzystania jako płatność za Twój projekt.",
+  "pci_project_new_payment_credit_info": "* Środki z zasileń nie mogą być przenoszone między kontami, nie podlegają zwrotom i nie posiadają wartości pieniężnej.  Zasilenie niewykorzystane w ciągu 13 miesięcy od zakupu traci swoją ważność. Po kliknięciu na „Zasil i utwórz projekt” zostaniesz przekierowany do zamówienia, abyś mógł uregulować należność za pomocą karty kredytowej lub PayPal.",
+  "pci_project_new_payment_credit_credit_and_pay": "Zasil konto i utwórz projekt",
+  "pci_project_new_payment_credit_checkout_error": "Wystąpił błąd podczas tworzenia projektu Public Cloud.  Spróbuj ponownie później."
+}

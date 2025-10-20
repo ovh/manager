@@ -1,110 +1,38 @@
 #!/usr/bin/env bash
-set -euo pipefail
 
 RELEASE_NOTE=""
 DRY_RELEASE=false
-SEED=""
-TAG=""
-FORWARD_ARGS=()  # forwarded to `lerna version`
-DRY_STASHED=0    # indicates we stashed local changes for dry run
 
-# ---------- portability helpers ----------
-sedi() {
-  # usage: sedi 's/foo/bar/' file
-  if sed --version >/dev/null 2>&1; then
-    sed -i -e "$1" "$2"         # GNU sed
-  else
-    sed -i '' -e "$1" "$2"      # BSD sed (macOS)
-  fi
-}
-
-ensure_git_branch() {
-  if [ -z "${GIT_BRANCH:-}" ]; then
-    if ! GIT_BRANCH="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"; then
-      printf "%s\n" "Missing GIT_BRANCH and unable to infer from git"
-      exit 1
-    fi
-    export GIT_BRANCH
-  fi
-}
-
-# ---------- dry-run safety (preserve working tree) ----------
-dry_stash_begin() {
-  # Stash user's current changes (tracked + untracked) so we can safely wipe Lerna edits
-  if [ "${DRY_RELEASE}" = true ]; then
-    local status
-    status="$(git status --porcelain || true)"
-    if [ -n "${status}" ]; then
-      git stash push -u -m "release-dry-$(date +%s)" >/dev/null
-      DRY_STASHED=1
-    fi
-  fi
-}
-
-dry_restore_clean() {
-  # Only run if we actually stashed
-    if [ "${DRY_STASHED}" -ne 1 ]; then
-      return
-    fi
-
-  # Remove any changes made by Lerna and restore user's stash if any
-  if [ "${DRY_RELEASE}" = true ]; then
-    git reset --hard >/dev/null
-    git clean -fd >/dev/null
-    if [ "${DRY_STASHED}" -eq 1 ]; then
-      # Pop may conflict; don't fail the whole script
-      set +e
-      git stash pop --index >/dev/null
-      set -e
-    fi
-  fi
-}
-
-# ---------- hardened helpers ----------
 create_smoke_tag() {
-  local target="$1" name="$2" version="$3" t="${name}@${version}"
-  if git rev-parse -q --verify "refs/tags/$t" >/dev/null; then
-    echo "• Smoke tag $t already exists — skipping"
-  else
-    git tag "$t" "$target"
-  fi
+  git tag "$2@$3" "$1"
 }
 
 clean_tags() {
-  local tags
-  tags="$(git tag -l '@ovh*' || true)"
-  while read -r t; do
-    [ -n "$t" ] && git tag -d "$t" >/dev/null
+  tags="$(git tag -l '@ovh*')"
+  while read -r tag; do
+    git tag -d "$tag"
   done <<< "$tags"
 }
 
-run_lerna_version() {
-  ensure_git_branch
-  if [[ "${GIT_BRANCH}" != "master" && "${DRY_RELEASE}" != true ]]; then
+version() {
+  if [ -z "${GIT_BRANCH}" ]; then
+    printf "%s\n" "Missing GIT_BRANCH environment variable"
+    exit 1
+  fi
+
+  if [[ "${GIT_BRANCH}" != "master" && ! "${DRY_RELEASE}" ]]; then
     printf "%s\n" "Only dry releases are allowed on side branches"
     exit 1
   fi
 
-  local args=(
-    version
-    --conventional-commits
-    --no-commit-hooks
-    --no-git-tag-version
-    --no-push
-    --yes
-  )
+  tag="$1"
 
-  if [ "${DRY_RELEASE}" = true ]; then
-    printf "%s\n" "Dry releasing (no commit/tag/push)"
-    args+=(--allow-branch="${GIT_BRANCH}")
+  if "${DRY_RELEASE}"; then
+    printf "%s\n" "Dry releasing"
+    node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push --allow-branch="${GIT_BRANCH}" --yes
   else
     printf "%s\n" "Releasing"
-  fi
-
-  if [ "${FORWARD_ARGS+set}" = "set" ] && [ "${#FORWARD_ARGS[@]}" -gt 0 ]; then
-    node_modules/.bin/lerna "${args[@]}" "${FORWARD_ARGS[@]}"
-  else
-    node_modules/.bin/lerna "${args[@]}"
+    node_modules/.bin/lerna version --conventional-commits --no-commit-hooks --no-git-tag-version --no-push  --yes
   fi
 }
 
@@ -113,29 +41,43 @@ get_changed_packages() {
 }
 
 get_release_name() {
-  local seed="$1"
-  local base latest suffix next
+  seed="$1"
+  release_name=$(node scripts/release/index.js "$seed")
 
-  base="$(node scripts/release/index.js "$seed")"
-
-  # Find the most recent tag that starts with "<base>-"
-  # Prefer version-like sorting, fall back to date.
-  latest="$(git tag -l "${base}-*" --sort=-version:refname --sort=-creatordate | head -1 || true)"
-
-  if [[ -z "$latest" ]]; then
-    printf "%s\n" "${base}-1"
+  # If the base tag doesn't exist, return it directly
+  if ! git rev-parse "$release_name" >/dev/null 2>&1; then
+    printf "%s\n" "$release_name"
     return
   fi
 
-  # If latest is "<base>-<number>", increment; else start at 1
-  if [[ "$latest" =~ ^${base}-([0-9]+)$ ]]; then
-    suffix="${BASH_REMATCH[1]}"
-    next=$((suffix + 1))
-    printf "%s\n" "${base}-${next}"
+  # Extract trailing numeric ID if present
+  if [[ "$release_name" =~ ^(.+)-([0-9]+)$ ]]; then
+    prefix="${BASH_REMATCH[1]}"
+    id="${BASH_REMATCH[2]}"
+    next_id=$((id + 1))
   else
-    # Non-numeric suffix like "<base>-ox" → start numeric series
-    printf "%s\n" "${base}-1"
+    prefix="$release_name"
+    next_id=1
   fi
+
+  candidate="${prefix}-${next_id}"
+  max_attempts=50
+  counter=0
+
+  # Try until we find a free tag name
+  while [ $counter -lt $max_attempts ]; do
+    if ! git rev-parse "$candidate" >/dev/null 2>&1; then
+      printf "%s\n" "$candidate"
+      return
+    fi
+
+    next_id=$((next_id + 1))
+    candidate="${prefix}-${next_id}"
+    counter=$((counter + 1))
+  done
+
+  echo "❌ Error: Could not find a free tag name after ${max_attempts} attempts." >&2
+  exit 1
 }
 
 create_release_note() (
@@ -143,154 +85,103 @@ create_release_note() (
 )
 
 push_and_release() {
-  if [ "${DRY_RELEASE}" = true ]; then
-    printf "%s\n" "[DRY-RUN] Skipping commit, tag, push and GH release"
-    return
-  fi
-
   printf "%s\n" "Commit and tag"
+  git restore package.json
   git add .
   git commit -s -m "release(*): $1"
   git tag -a -m "release: $1" "$1"
-  gh config set prompt disabled
-  git push origin "${GIT_BRANCH}" --tags
-  echo "${RELEASE_NOTE}" | gh release create "$1" -F -
+  if ! "${DRY_RELEASE}"; then
+    gh config set prompt disabled
+    git push origin "${GIT_BRANCH}" --tags
+    echo "${RELEASE_NOTE}" | gh release create "$1" -F -
+  fi
 }
 
 update_sonar_version() {
-  if [ "${DRY_RELEASE}" = true ]; then
-    printf "%s\n" "[DRY-RUN] Skipping sonar version update"
-    return
-  fi
   printf "%s\n" "Updating sonar"
-  if [ -f ".sonarcloud.properties" ]; then
-    sedi "s/^sonar\.projectVersion=.*/sonar.projectVersion=$1/" ".sonarcloud.properties" || {
-      printf "%s\n" "Warning: failed to update .sonarcloud.properties (sed). Continuing…"
-    }
+
+  # Works on both macOS (BSD) and Linux (GNU)
+  if sed --version >/dev/null 2>&1; then
+    # GNU sed
+    sed -i "s/sonar\.projectVersion=.*/sonar\.projectVersion=$1/" ".sonarcloud.properties"
   else
-    printf "%s\n" "Warning: .sonarcloud.properties not found. Skipping sonar version update."
+    # BSD/macOS sed
+    sed -i '' "s/sonar\.projectVersion=.*/sonar\.projectVersion=$1/" ".sonarcloud.properties"
   fi
 }
 
-help() {
-  cat <<EOF
-Release monorepository
-
-options:
-  -d, --dry-run         Dry release (no tags/commits/push; no file changes persist)
-  -s, --seed <value>    Seed to generate release name
-  -t, --tag  <name>     Force a specific release tag (skips name generation)
-  -h, --help            Show this help
-
-Any extra flags are forwarded to 'lerna version'.
-EOF
-}
-
-# ---------- args ----------
-parse_args() {
-  while [[ $# -gt 0 ]]; do
-    case "$1" in
-      -d|--dry-run|--dryrun) DRY_RELEASE=true; shift ;;
-      -s|--seed)             SEED="$2"; shift 2 ;;
-      -t|--tag)              TAG="$2";  shift 2 ;;
-      -h|--help)             help; exit 0 ;;
-      --)                    shift; break ;;
-      *)  FORWARD_ARGS+=("$1")
-          if [[ $# -gt 1 && ! "$2" =~ ^- ]]; then FORWARD_ARGS+=("$2"); shift; fi
-          shift ;;
-    esac
-  done
+help()
+{
+   # Display Help
+   echo "Release monorepository"
+   echo
+   echo "options:"
+   echo "d     Dry release. Create a release in local without pushing or tagging to remote"
+   echo "s     Seed. Specify seed to generate release name"
+   echo "h     help."
+   echo
 }
 
 main() {
-  parse_args "$@"
+  # Parse options
+  while getopts "dsh" option; do
+    case "${option}" in
+      d)
+        DRY_RELEASE=true
+        ;;
+      s)
+        SEED="${OPTARG}"
+        ;;
+      h)
+        help
+        ;;
+      *)
+        help
+        ;;
+    esac
+  done
 
-  local changed_packages
-  changed_packages="$(get_changed_packages || true)"
-
-  if [ -z "${changed_packages}" ]; then
+  changed_packages=$(get_changed_packages)
+  if [ -z "$changed_packages" ]; then
     printf "%s\n" "Nothing to release"
-
-    # If dry-run, restore any stashed changes safely
-    if [ "${DRY_RELEASE}" = true ]; then
-      dry_restore_clean
-    else
-      # Clean up any residue to guarantee a pristine tree
-      git reset --hard HEAD >/dev/null 2>&1 || true
-      git clean -fd          >/dev/null 2>&1 || true
-    fi
-
     exit 0
   fi
 
-  local current_tag
-  current_tag="$(git describe --tags --abbrev=0 2>/dev/null || echo '0.0.0')"
+  current_tag="$(git describe --abbrev=0)"
   printf "%s\n" "Previous tag was $current_tag"
 
-  if [ "${DRY_RELEASE}" = true ]; then
-    printf "%s\n" "[DRY-RUN] Skipping smoke tag creation"
-  else
-    while read -r package; do
-      [ -z "$package" ] && continue
-      local name version
-      name=$(echo "$package" | cut -d ':' -f 2)
-      version=$(echo "$package" | cut -d ':' -f 3)
-      [ -n "$name" ] && [ -n "$version" ] && create_smoke_tag "$current_tag" "$name" "$version"
-    done <<< "$changed_packages"
-  fi
+  #For each package create semver tag in order to be used by lerna version
+  while read -r package; do
+    name=$(echo "$package" | cut -d ':' -f 2)
+    version=$(echo "$package" | cut -d ':' -f 3)
+    create_smoke_tag "$current_tag" "$name" "$version"
+  done <<< "$changed_packages"
 
-  local next_tag
-  if [ -n "$TAG" ]; then
-    next_tag="$TAG"
-  else
-    next_tag="$(get_release_name "$SEED")"
-  fi
+  next_tag=$(get_release_name "$SEED")
   printf "%s\n" "New tag is $next_tag"
 
-  RELEASE_NOTE+="# Release $next_tag\n\n"
+  RELEASE_NOTE+="# Release $next_tag\
 
-  # In dry mode, protect working tree around Lerna edits
-  if [ "${DRY_RELEASE}" = true ]; then
-    dry_stash_begin
-  fi
+
+"
 
   update_sonar_version "$next_tag"
-  run_lerna_version
+  version "$next_tag"
 
-  # --- Commit Lerna version bumps early (like old script) ---
-  if [ "${DRY_RELEASE}" != true ]; then
-    if ! git diff --quiet; then
-      echo "Committing Lerna version bumps..."
-      git add -A
-      git commit -s -m "chore(release): version bump"
-    fi
-  fi
+  #For each package generate formatted section in release note
+  while read -r package; do
+    path=$(echo "$package" | cut -d ':' -f 1)
+    name=$(echo "$package" | cut -d ':' -f 2)
+    RELEASE_NOTE+="$(create_release_note "$path" "$name")\
 
-  # Undo any file changes produced by Lerna during dry-run
-  if [ "${DRY_RELEASE}" = true ]; then
-    dry_restore_clean
-  fi
 
-  if [ "${DRY_RELEASE}" = true ]; then
-    echo "[DRY-RUN] Skipping release note generation"
-  else
-    while read -r package; do
-      [ -z "$package" ] && continue
-      local path name
-      path=$(echo "$package" | cut -d ':' -f 1)
-      name=$(echo "$package" | cut -d ':' -f 2)
-      [ -n "$path" ] && [ -n "$name" ] && RELEASE_NOTE+="$(create_release_note "$path" "$name")\n\n"
-    done <<< "$changed_packages"
-  fi
+"
+  done <<< "$changed_packages"
 
-  if [ "${DRY_RELEASE}" != true ]; then
-    clean_tags
-  else
-    printf "%s\n" "[DRY-RUN] Skipping cleanup of package-specific tags"
-  fi
+  #Remove package specific tags
+  clean_tags
 
   push_and_release "$next_tag"
-  echo "✔ Done."
 }
 
-main "$@"
+main "${@}"

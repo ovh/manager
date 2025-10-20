@@ -13,7 +13,7 @@ export type ListingApi = 'v6Iceberg' | 'v6' | 'v2';
 
 export const APP_FEATURES = {
   listingApi: 'v6Iceberg' as ListingApi,
-  listingEndpoint: '/dedicated/nasha/{serviceName}',
+  listingEndpoint: '/dedicated/nasha',
   isPci: false,
   routeFlavor: 'generic' as const,
   basePrefix: '',

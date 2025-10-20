@@ -48,7 +48,10 @@
     "@ovh-ux/manager-tailwind-config": "0.5.5",
     "@ovh-ux/manager-tests-setup": "latest",
     "@ovh-ux/manager-vite-config": "*",
-    "@tanstack/react-query-devtools": "5.51.21"
+    "@tanstack/react-query-devtools": "5.51.21",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "typescript": "^5.4.4"
   },
   "regions": [
     "CA",

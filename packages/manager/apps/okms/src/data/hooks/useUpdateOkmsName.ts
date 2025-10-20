@@ -5,10 +5,7 @@ import {
   getServiceDetailsQueryKey,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
-import {
-  getOkmsResourceQueryKey,
-  getOkmsServicesResourceListQueryKey,
-} from '../api/okms';
+import { okmsQueryKeys } from '../api/okms';
 import {
   updateOkmsNameQueryKey,
   getOkmsServiceIdQueryKey,
@@ -57,13 +54,13 @@ export const useUpdateOkmsName = ({
     },
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: getOkmsServicesResourceListQueryKey,
+        queryKey: okmsQueryKeys.listDatagrid,
       });
       await queryClient.invalidateQueries({
         queryKey: getServiceDetailsQueryKey(okmsId),
       });
       await queryClient.invalidateQueries({
-        queryKey: getOkmsResourceQueryKey(okmsId),
+        queryKey: okmsQueryKeys.detail(okmsId),
       });
       clearNotifications();
       addSuccess(

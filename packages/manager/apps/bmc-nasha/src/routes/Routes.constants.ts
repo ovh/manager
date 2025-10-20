@@ -5,6 +5,7 @@ import { getRoot } from './Routes.utils';
 export const urls = {
   root: getRoot(),
   listing: 'listing',
+  dashboard: 'dashboard/:serviceName',
 } as const;
 
 export const redirectionApp = APP_FEATURES.isPci

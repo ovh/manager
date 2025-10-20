@@ -226,5 +226,6 @@
   "sidebar_alldom": "Alldom",
   "sidebar_alldom_list": "I miei Alldom",
   "sidebar_security_identity_operations_iam_tag-management": "Tag Management",
-  "sidebar_pci_quantum_qpu": "QPU"
+  "sidebar_pci_quantum_qpu": "QPU",
+  "sidebar_security_identity_operations_secret_manager": "Secret Manager"
 }
