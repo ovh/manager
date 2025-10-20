@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.158.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.158.2...@ovh-ux/manager-container-app@0.158.3) (2025-10-20)
+
+
+### Bug Fixes
+
+* **container:** fix legacy menu display for vmware log tab ([d0d5937](https://github.com/ovh/manager/commit/d0d5937692ffbb33205ca5506f01e323f32edf88)), closes [#MAOBS-23](https://github.com/ovh/manager/issues/MAOBS-23)
+* **container:** fix node selection in pnr menu for custom path ([fb45a25](https://github.com/ovh/manager/commit/fb45a252393f0ee1a4f6d0e23c4c44b85e578f4b)), closes [#MAOBS-23](https://github.com/ovh/manager/issues/MAOBS-23)
+
+
+
+
+
 ## [0.158.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.158.1...@ovh-ux/manager-container-app@0.158.2) (2025-10-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app
