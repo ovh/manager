@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.62.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.61.8...@ovh-ux/manager-dedicated@20.62.0) (2025-10-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4390] ([4a17d54](https://github.com/ovh/manager/commit/4a17d549608631e9155f0a4e2fa9564f2013b0d0)), closes [#MAOBS-23](https://github.com/ovh/manager/issues/MAOBS-23)
+* **vmware-vsphere:** add beta tag on logs tabs ([f713725](https://github.com/ovh/manager/commit/f7137250e679b3196fadc1a1d9e8726494314970)), closes [#MAOBS-113](https://github.com/ovh/manager/issues/MAOBS-113)
+
+
+### Features
+
+* **dedicated.pcc:** hide logs in managed baremetal dashboard ([c3bd8f1](https://github.com/ovh/manager/commit/c3bd8f1621607308aec3def26bce4ac7fbff5822)), closes [#MANAGER-18987](https://github.com/ovh/manager/issues/MANAGER-18987)
+* **dedicated:** add logs tab ([335af00](https://github.com/ovh/manager/commit/335af00af27cab892dd6ed6fee0d7d349861b4cf)), closes [#MANAGER-17704](https://github.com/ovh/manager/issues/MANAGER-17704)
+* **vmware-sphere:** add VMware log compatibility state ([44fe9ce](https://github.com/ovh/manager/commit/44fe9cef9e564e14ea34110cf664d8910db99420)), closes [#MANAGER-18169](https://github.com/ovh/manager/issues/MANAGER-18169)
+* **vmware-vsphere:** disable logs action for trusted NIC ([ef023ef](https://github.com/ovh/manager/commit/ef023efd311fe1a034316c7ae854e53d328b93e2)), closes [#MAOBS-108](https://github.com/ovh/manager/issues/MAOBS-108)
+* **vmware-vsphere:** disable logs for managed baremetal ([2f4f6f8](https://github.com/ovh/manager/commit/2f4f6f86c117ac885825eef62d3501a251ec19ef)), closes [#MANAGER-18710](https://github.com/ovh/manager/issues/MANAGER-18710)
+
+
+
+
+
 ## [20.61.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.61.7...@ovh-ux/manager-dedicated@20.61.8) (2025-10-16)
 
 
