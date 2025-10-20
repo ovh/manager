@@ -29,14 +29,8 @@ enum ReplicationMode {
   Enabled = 'enabled',
 }
 
-enum RegionSelectionMode {
-  Automatic = 'automatic',
-  Manual = 'manual',
-}
-
 type OffsiteReplicationValue = {
   enabled?: boolean;
-  automaticRegionSelection?: boolean;
   region?: string;
 };
 interface OffsiteReplicationStepProps {
@@ -71,11 +65,16 @@ const OffsiteReplicationStep = React.forwardRef<
   ];
   const RECOMMENEDED_REPLICATION_MODE = ReplicationMode.Enabled;
 
-  const REGION_SELECTION_MODES_OPTIONS: RegionSelectionMode[] = [
-    RegionSelectionMode.Automatic,
-    RegionSelectionMode.Manual,
-  ];
-
+  const onSelectRegion = (newValue: string) => {
+    const newRegion = mappedRegions.find((re) => re.label === newValue);
+    setOpen(false);
+    if (newRegion.name !== value.region) {
+      onChange({
+        ...value,
+        region: newRegion.name,
+      });
+    }
+  };
   return (
     <div className="flex flex-col gap-4">
       <div>
@@ -100,7 +99,7 @@ const OffsiteReplicationStep = React.forwardRef<
           ref={ref}
         >
           {REPLICATION_MODES_OPTIONS.map((replicationMode) => (
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3" key={replicationMode}>
               <RadioGroupItem
                 value={replicationMode}
                 id={`offsite-replication-${replicationMode}-option`}
@@ -122,45 +121,6 @@ const OffsiteReplicationStep = React.forwardRef<
       </div>
 
       {value.enabled && (
-        <div>
-          <span
-            className="text-sm leading-none font-medium"
-            id="offsite-replication-radio"
-          >
-            {t('offsiteReplicationAutomaticRegionGroupLabel')}
-          </span>
-          <RadioGroup
-            aria-labelledby="automatic-region-replication-radio"
-            value={
-              value.automaticRegionSelection
-                ? RegionSelectionMode.Automatic
-                : RegionSelectionMode.Manual
-            }
-            onValueChange={(newValue: string) => {
-              onChange({
-                ...value,
-                automaticRegionSelection:
-                  newValue === RegionSelectionMode.Automatic,
-              });
-            }}
-            data-testid="automatic-region-replication-select-container"
-          >
-            {REGION_SELECTION_MODES_OPTIONS.map((regionMode) => (
-              <div className="flex items-center gap-3">
-                <RadioGroupItem
-                  value={regionMode}
-                  id={`${regionMode}-region-replication-option`}
-                />
-                <Label htmlFor={`${regionMode}-region-replication-option`}>
-                  {t(`offsiteReplicationAutomaticRegion-${regionMode}`)}
-                </Label>
-              </div>
-            ))}
-          </RadioGroup>
-        </div>
-      )}
-
-      {value.automaticRegionSelection === false && (
         <div>
           <span
             className="text-sm leading-none font-medium"
@@ -204,18 +164,7 @@ const OffsiteReplicationStep = React.forwardRef<
                           <CommandItem
                             key={r.name}
                             value={r.label}
-                            onSelect={(newValue) => {
-                              const newRegion = mappedRegions.find(
-                                (re) => re.label === newValue,
-                              );
-                              setOpen(false);
-                              if (newRegion.name !== value.region) {
-                                onChange({
-                                  ...value,
-                                  region: newRegion.name,
-                                });
-                              }
-                            }}
+                            onSelect={onSelectRegion}
                             className="flex gap-2"
                           >
                             <Flag flagName={r.countryCode} />
@@ -230,6 +179,7 @@ const OffsiteReplicationStep = React.forwardRef<
           </Popover>
         </div>
       )}
+
       {value.enabled && (
         <Alert>
           <AlertDescription>
