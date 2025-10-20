@@ -1,0 +1,25 @@
+#dashboard-widget-modal-content {
+  [class^="_modal-header_"] {
+    display: none !important;
+  }
+}
+
+[data-scope="dialog"][data-part="content"] {
+  max-width: calc(100% - 64px) !important;
+  max-height: calc(100vh - 64px) !important;
+}
+
+[data-scope="dialog"] .chart-component-wrapper {
+  height: calc(100vh - 100px);  
+}
+
+@media (min-width: 1024px) {
+  [data-scope="dialog"][data-part="content"] {
+    max-width: calc(100% - 100px) !important;
+    max-height: calc(100vh - 200px) !important;
+  }
+
+  [data-scope="dialog"] .chart-component-wrapper {
+    height: calc(100vh - 400px);    
+  }
+}
