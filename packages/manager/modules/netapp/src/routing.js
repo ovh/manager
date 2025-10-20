@@ -31,13 +31,12 @@ export default /* @ngInject */ ($stateProvider) => {
       Promise.all([
         transition.injector().getAsync('resources'),
         transition.injector().getAsync('features'),
-      ]).then(([services, features]) =>
-        services.data.length === 0 &&
-        features.isFeatureAvailable('netapp:order')
-          ? {
-              state: 'netapp.onboarding',
-            }
-          : false,
+      ]).then(
+        ([services, features]) =>
+          !services.data.length &&
+          features.isFeatureAvailable('netapp:order') && {
+            state: 'netapp.onboarding',
+          },
       ),
     resolve: {
       ...ListLayoutHelper.stateResolves,
@@ -49,6 +48,7 @@ export default /* @ngInject */ ($stateProvider) => {
             hidden: false,
             property: 'id',
             serviceLink: true,
+            typeOptions: { operators: ['is', 'isNot'] },
           },
           {
             label: $translate.instant(`netapp_list_columns_header_name`),
@@ -57,7 +57,6 @@ export default /* @ngInject */ ($stateProvider) => {
           {
             label: $translate.instant(`netapp_list_columns_header_status`),
             property: 'status',
-            format: (value) => value.status,
             map: (row) => {
               switch (row.status) {
                 case 'creating':
@@ -74,6 +73,7 @@ export default /* @ngInject */ ($stateProvider) => {
                   return 'info';
               }
             },
+            format: (value) => value.status || value,
           },
           {
             label: $translate.instant(`netapp_list_columns_header_region`),
@@ -97,8 +97,8 @@ export default /* @ngInject */ ($stateProvider) => {
         ],
       }),
       dataModel: () => 'storage.NetAppService',
-      defaultFilterColumn: () => 'id',
-      header: () => 'Enterprise File Storage',
+      defaultFilterColumn: () => 'name',
+      header: ($translate) => $translate.instant('netapp_title'),
       changelog: () => 'file_storage',
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({ id }) =>
