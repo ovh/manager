@@ -102,6 +102,34 @@
                                 ></td>
                             </tr>
                             <tr
+                                data-ng-if="$ctrl.process.selectedOffer.promotion"
+                            >
+                                <th
+                                    scope="row"
+                                    data-translate="telecom_pack_migration_confirm_promotion_table"
+                                    data-translate-values="{ duration: $ctrl.PROMO_DISPLAY[$ctrl.process.selectedOffer.promotion.subscription.duration].value }"
+                                    data-title="{{ 'telecom_pack_migration_confirm_header_entitled' | translate }}"
+                                ></th>
+
+                                <td
+                                    class="text-price text-right"
+                                    data-ng-bind="$ctrl.process.selectedOffer.promotion.subscription.discount.text"
+                                    data-title="{{ 'telecom_pack_migration_confirm_header_price' | translate }}"
+                                ></td>
+
+                                <td
+                                    class="text-right"
+                                    data-title="{{ 'telecom_pack_migration_confirm_header_quantity' | translate }}"
+                                    data-ng-bind="$ctrl.QUANTITY"
+                                ></td>
+
+                                <td
+                                    class="text-price text-right"
+                                    data-ng-bind="$ctrl.process.selectedOffer.promotion.subscription.discount.text"
+                                    data-title="{{ 'telecom_pack_migration_confirm_header_total' | translate }}"
+                                ></td>
+                            </tr>
+                            <tr
                                 data-ng-if="$ctrl.MODEM_LIST.includes($ctrl.process.selectedOffer.modem)"
                             >
                                 <th
@@ -226,6 +254,15 @@
                         data-translate="telecom_pack_migration_confirm_resume_total"
                     ></span>
                     <span
+                        data-ng-if="$ctrl.discountPrice"
+                        data-ng-bind-html="$ctrl.discountPrice.text | tucFormatPrice"
+                    ></span>
+                    <span
+                        data-ng-if="$ctrl.discountPrice"
+                        data-translate="telecom_pack_migration_confirm_discount_displayed"
+                        data-translate-values="{ duration: $ctrl.PROMO_DISPLAY[$ctrl.process.selectedOffer.promotion.subscription.duration].value }"
+                    ></span>
+                    <span
                         data-ng-bind-html="$ctrl.process.selectedOffer.displayedPrice.text | tucFormatPrice"
                     ></span>
                 </p>
@@ -235,10 +272,15 @@
                 <p
                     data-translate="telecom_pack_migration_confirm_new_offer_price"
                     data-translate-values="{ price : $ctrl.process.selectedOffer.displayedPrice.text }"
+                    data-ng-if="!$ctrl.process.selectedOffer.promotion"
+                ></p>
+                <p
+                    data-translate="telecom_pack_migration_confirm_new_offer_price_discount"
+                    data-translate-values="{ priceDiscount: $ctrl.discountPrice.text, duration: $ctrl.PROMO_DISPLAY[$ctrl.process.selectedOffer.promotion.subscription.duration].value, price : $ctrl.process.selectedOffer.displayedPrice.text }"
+                    data-ng-if="$ctrl.process.selectedOffer.promotion"
                 ></p>
                 <p
                     data-translate="telecom_pack_migration_confirm_promotion"
-                    data-translate-values="{ duration: $ctrl.PROMO_DISPLAY[$ctrl.process.selectedOffer.promotion.subscription.duration].value }"
                     data-ng-if="$ctrl.process.selectedOffer.promotion"
                 ></p>
                 <p

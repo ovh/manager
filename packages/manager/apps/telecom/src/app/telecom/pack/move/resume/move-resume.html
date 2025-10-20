@@ -63,9 +63,8 @@
                                 <td
                                     class="text-right"
                                     data-title="{{ 'pack_move_confirm_header_quantity' | translate }}"
-                                >
-                                    1
-                                </td>
+                                    data-ng-bind="$ctrl.QUANTITY"
+                                ></td>
                                 <td
                                     class="text-price text-right"
                                     data-ng-bind="$ctrl.offer.selected.offer.prices.price.price.text"
@@ -86,12 +85,36 @@
                                 <td
                                     class="text-right"
                                     data-title="{{ 'pack_move_confirm_header_quantity' | translate }}"
-                                >
-                                    1
-                                </td>
+                                    data-ng-bind="$ctrl.QUANTITY"
+                                ></td>
                                 <td
                                     class="text-price text-right"
                                     data-ng-bind="$ctrl.getPriceStruct($ctrl.firstYearPromo, true).text"
+                                    data-title="{{ 'pack_move_confirm_header_total' | translate }}"
+                                ></td>
+                            </tr>
+                            <tr
+                                data-ng-if="$ctrl.offer.selected.offer.prices.promotion"
+                            >
+                                <th
+                                    scope="row"
+                                    data-translate="pack_move_confirm_promotion_table"
+                                    data-translate-values="{ duration: $ctrl.PROMO_DISPLAY[$ctrl.offer.selected.offer.prices.promotion.subscription.duration].value }"
+                                    data-title="{{ 'pack_move_confirm_header_entitled' | translate }}"
+                                ></th>
+                                <td
+                                    class="text-price text-right"
+                                    data-ng-bind="$ctrl.offer.selected.offer.prices.promotion.subscription.discount.text"
+                                    data-title="{{ 'pack_move_confirm_header_price' | translate }}"
+                                ></td>
+                                <td
+                                    class="text-right"
+                                    data-title="{{ 'pack_move_confirm_header_quantity' | translate }}"
+                                    data-ng-bind="$ctrl.QUANTITY"
+                                ></td>
+                                <td
+                                    class="text-price text-right"
+                                    data-ng-bind="$ctrl.offer.selected.offer.prices.promotion.subscription.discount.text"
                                     data-title="{{ 'pack_move_confirm_header_total' | translate }}"
                                 ></td>
                             </tr>
@@ -111,9 +134,8 @@
                                 <td
                                     class="text-right"
                                     data-title="{{ 'pack_move_confirm_header_quantity' | translate }}"
-                                >
-                                    1
-                                </td>
+                                    data-ng-bind="$ctrl.QUANTITY"
+                                ></td>
                                 <td
                                     class="text-price text-right"
                                     data-ng-bind="$ctrl.offer.selected.offer.prices.modemRental.price.text"
@@ -136,9 +158,8 @@
                                 <td
                                     class="text-right"
                                     data-title="{{ 'pack_move_confirm_header_quantity' | translate }}"
-                                >
-                                    1
-                                </td>
+                                    data-ng-bind="$ctrl.QUANTITY"
+                                ></td>
                                 <td
                                     class="text-price text-right"
                                     data-ng-bind="$ctrl.offer.selected.offer.prices.providerOrange.price.text"
@@ -161,9 +182,8 @@
                                 <td
                                     class="text-right"
                                     data-title="{{ 'pack_move_confirm_header_quantity' | translate }}"
-                                >
-                                    1
-                                </td>
+                                    data-ng-bind="$ctrl.QUANTITY"
+                                ></td>
                                 <td
                                     class="text-price text-right"
                                     data-ng-bind="$ctrl.offer.selected.offer.prices.providerAI.price.text"
@@ -209,6 +229,15 @@
                         data-translate="pack_move_confirm_resume_total"
                     ></span>
                     <span
+                        data-ng-if="$ctrl.discountPrice"
+                        data-ng-bind-html="$ctrl.discountPrice.text | tucFormatPrice"
+                    ></span>
+                    <span
+                        data-ng-if="$ctrl.discountPrice"
+                        data-translate="pack_move_confirm_discount_displayed"
+                        data-translate-values="{ duration: $ctrl.PROMO_DISPLAY[$ctrl.offer.selected.offer.prices.promotion.subscription.duration].value }"
+                    ></span>
+                    <span
                         data-ng-bind-html="$ctrl.offer.selected.offer.displayedPrice.text | tucFormatPrice"
                     ></span>
                 </p>
@@ -218,10 +247,15 @@
                 <p
                     data-translate="pack_move_confirm_new_offer_price"
                     data-translate-values="{ price : $ctrl.offer.selected.offer.displayedPrice.text }"
+                    data-ng-if="!$ctrl.offer.selected.offer.prices.promotion"
                 ></p>
                 <p
-                    data-translate="pack_move_resume_promotion"
-                    data-translate-values="{ duration: $ctrl.PROMO_DISPLAY[$ctrl.offer.selected.offer.prices.promotion.subscription.duration].value }"
+                    data-translate="pack_move_confirm_new_offer_price_discount"
+                    data-translate-values="{ priceDiscount: $ctrl.discountPrice.text, duration: $ctrl.PROMO_DISPLAY[$ctrl.offer.selected.offer.prices.promotion.subscription.duration].value, price : $ctrl.offer.selected.offer.displayedPrice.text }"
+                    data-ng-if="$ctrl.offer.selected.offer.prices.promotion"
+                ></p>
+                <p
+                    data-translate="pack_move_confirm_promotion"
                     data-ng-if="$ctrl.offer.selected.offer.prices.promotion"
                 ></p>
                 <p
