@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.159.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.158.3...@ovh-ux/manager-container-app@0.159.0) (2025-10-20)
+
+
+### Features
+
+* **pci-db-analytics:** change pci menu and clean streaming and fix advanced config ([559f0e7](https://github.com/ovh/manager/commit/559f0e73978e82ec10a2d43e45b178615d2a4365)), closes [#DATATR-2583](https://github.com/ovh/manager/issues/DATATR-2583) [#DATATR-2580](https://github.com/ovh/manager/issues/DATATR-2580)
+
+
+
+
+
 ## [0.158.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.158.2...@ovh-ux/manager-container-app@0.158.3) (2025-10-20)
 
 
