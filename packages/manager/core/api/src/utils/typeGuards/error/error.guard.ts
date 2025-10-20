@@ -8,7 +8,11 @@ export const isApiCustomError = (error: unknown): error is TApiCustomError => {
   const axiosError = error as AxiosError;
   const data = axiosError?.response?.data;
 
-  return typeof data === 'object' && 'message' in (data || {}) && 'class' in (data || {});
+  return (
+    typeof data === 'object' &&
+    'message' in (data || {}) &&
+    'class' in (data || {})
+  );
 };
 
 export const isMaxQuotaReachedError = (error: TApiCustomError) =>
