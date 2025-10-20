@@ -30,7 +30,7 @@ const EncryptStep = React.forwardRef<HTMLInputElement, EncryptStepProps>(
         ref={ref}
       >
         {ENCRYPTION_TYPES.map((encryptionAlgorithm) => (
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3" key={encryptionAlgorithm}>
             <RadioGroupItem
               value={encryptionAlgorithm}
               id={`encrypt-step-${encryptionAlgorithm}`}

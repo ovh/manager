@@ -102,6 +102,7 @@ const OrderSummary = ({
       <span>-</span>
     );
   };
+
   if (!order) return <Skeleton className="w-full h-[40vh]" />;
   return (
     <div className="grid grid-cols-1 gap-2 bg-neutral-50 border border-neutral-200 px-3 py-2 rounded-sm text-heading font-semibold text-sm max-h-[40vh] overflow-auto">
@@ -148,16 +149,12 @@ const OrderSummary = ({
                   <Globe className="size-4" />
                   <div className="flex gap-2 flex-wrap">
                     {t('summaryOffsiteReplicationRegion')}
-                    {order.replication?.rules?.[0].destination ? (
+                    {order.replication?.rules?.[0].destination && (
                       <RegionInfo
                         region={
                           order.replication?.rules?.[0].destination.region
                         }
                       />
-                    ) : (
-                      <span>
-                        {t('summaryOffsiteReplicationRegionAutomatic')}
-                      </span>
                     )}
                   </div>
                 </SummaryItem>
