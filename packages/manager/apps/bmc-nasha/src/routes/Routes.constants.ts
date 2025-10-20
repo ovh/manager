@@ -4,10 +4,6 @@ import { getRoot } from './Routes.utils';
 
 const { isPci } = APP_FEATURES;
 
-export const subRoutes = {
-  ...(isPci ? { quota: 'quota' as const } : {}),
-} as const;
-
 export const urls = {
   root: getRoot(),
   onboarding: 'onboarding',

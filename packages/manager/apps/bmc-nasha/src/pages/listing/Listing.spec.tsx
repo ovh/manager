@@ -1,329 +1,163 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { describe, expect, it, vi, beforeEach } from 'vitest';
-import { BrowserRouter } from 'react-router-dom';
+import React, { ReactNode } from 'react';
 
-import ListingPage from './Listing.page';
-import { ListingItemType } from '@/types/Listing.type';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 
-// Mock react-router-dom
-const mockNavigate = vi.fn();
-vi.mock('react-router-dom', async () => {
-  const actual = await vi.importActual('react-router-dom');
-  return {
-    ...actual,
-    useNavigate: () => mockNavigate,
-  };
-});
-
-// Mock react-i18next
+// --- Mock translation ---
 vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string, fallback?: string) => {
-      const translations: Record<string, string> = {
-        'common:home': 'Home',
-        'listing:title': 'NAS-HA',
-        'listing:order': 'Order a HA-NAS',
-        'listing:open': 'Open dashboard',
-        'listing:empty_message': 'No NASHA services found',
-        'listing:serviceName': 'Service ID',
-        'listing:canCreatePartition': 'Partition creation',
-        'listing:canCreatePartition_true': 'Allowed',
-        'listing:canCreatePartition_false': 'Not allowed',
-        'listing:customName': 'Name',
-        'listing:datacenter': 'Datacentre location',
-        'listing:diskType': 'Disk type',
-        'listing:monitored': 'Monitored',
-        'listing:monitored_true': 'Yes',
-        'listing:monitored_false': 'No',
-        'listing:zpoolCapacity': 'Zpool capacity',
-        'listing:zpoolSize': 'Zpool size',
-      };
-      return translations[key] || fallback || key;
-    },
-  }),
+  useTranslation: () => ({ t: (k: string) => k }),
 }));
 
-// Mock hooks
-const mockUseListingData = vi.fn();
-const mockUseBreadcrumb = vi.fn();
-
-vi.mock('@/data/hooks/useResources', () => ({
-  useListingData: () => mockUseListingData(),
+// --- Mock router ---
+const navigate = vi.fn();
+vi.mock('react-router-dom', () => ({
+  useNavigate: () => navigate,
 }));
 
-vi.mock('@/hooks/layout/useBreadcrumb', () => ({
-  useBreadcrumb: () => mockUseBreadcrumb(),
-}));
+// --- Mock manager-react-components ---
+interface BaseLayoutProps {
+  header: { title: string };
+  children?: ReactNode;
+  breadcrumb?: ReactNode;
+}
 
-// Mock components
-vi.mock('@/components/breadcrumb/Breadcrumb.component', () => ({
-  default: ({ items }: { items: any[] }) => (
-    <nav data-testid="breadcrumb">
-      {items.map((item, index) => (
-        <span key={index}>{item.label}</span>
-      ))}
-    </nav>
-  ),
-}));
+interface DataGridProps<T> {
+  topbar?: ReactNode;
+  columns: { id: string; label: string; isSortable?: boolean; cell?: (row: T) => ReactNode }[];
+  items: T[];
+  totalItems: number;
+  hasNextPage: boolean;
+  onFetchNextPage?: () => void;
+  isLoading: boolean;
+}
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
-  BaseLayout: ({ children, breadcrumb, header }: any) => (
-    <div data-testid="base-layout">
-      {breadcrumb}
+  BaseLayout: ({ header, children, breadcrumb }: BaseLayoutProps) => (
+    <div>
       <h1>{header.title}</h1>
+      <div data-testid="breadcrumb">{breadcrumb}</div>
       {children}
     </div>
   ),
-  Datagrid: ({ columns, items, topbar, isLoading, emptyMessage }: any) => (
-    <div data-testid="datagrid">
-      {topbar}
-      {isLoading ? (
-        <div data-testid="loading">Loading...</div>
-      ) : items.length === 0 ? (
-        <div data-testid="empty">{emptyMessage}</div>
-      ) : (
-        <table>
-          <thead>
-            <tr>
-              {columns.map((col: any) => (
-                <th key={col.id}>{col.label}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {items.map((item: any, index: number) => (
-              <tr key={index}>
-                {columns.map((col: any) => (
-                  <td key={col.id}>
-                    {col.cell ? col.cell(item) : item[col.id]}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+  // eslint-disable-next-line react/no-multi-comp
+  Datagrid: <T extends { id: string }>({
+    topbar,
+    columns,
+    items,
+    totalItems,
+    hasNextPage,
+    onFetchNextPage,
+    isLoading,
+  }: DataGridProps<T>) => (
+    <div>
+      <div data-testid="topbar">{topbar}</div>
+      <div data-testid="columns">{columns.map((c) => c.label).join(',')}</div>
+      <div data-testid="items">{items.map((i) => i.id).join(',')}</div>
+      <div data-testid="total">{totalItems}</div>
+      <div data-testid="loading">{String(isLoading)}</div>
+      {hasNextPage && (
+        <button data-testid="fetch" onClick={onFetchNextPage}>
+          fetch more
+        </button>
       )}
     </div>
   ),
-  ManagerButton: ({ id, label, onClick, variant }: any) => (
-    <button
-      data-testid={id}
-      onClick={onClick}
-      data-variant={variant}
-    >
-      {label}
-    </button>
+  // eslint-disable-next-line react/no-multi-comp
+  DataGridTextCell: ({ children }: { children: ReactNode }) => <span>{children}</span>,
+  useDataGrid: () => ({ sorting: [] as string[], setSorting: vi.fn() }),
+}));
+
+// --- Mock ODS components ---
+vi.mock('@ovhcloud/ods-components/react', () => ({
+  // eslint-disable-next-line react/no-multi-comp
+  OdsButton: ({ label, onClick }: { label: string; onClick: () => void }) => (
+    <button onClick={onClick}>{label}</button>
   ),
-  useDataGrid: () => ({
-    sorting: { id: 'serviceName', desc: false },
-    setSorting: vi.fn(),
+}));
+vi.mock('@ovhcloud/ods-components', () => ({
+  ODS_BUTTON_SIZE: { md: 'md' },
+  ODS_ICON_NAME: { network: 'network' },
+}));
+
+// --- Mock hooks ---
+vi.mock('@/hooks/layout/useBreadcrumb', () => ({
+  useBreadcrumb: () => [{ label: 'home' }],
+}));
+vi.mock('@/hooks/listing/useListingColumns', () => ({
+  useListingColumns: () => [
+    { id: 'id', label: 'listing:id', isSortable: true, cell: (row: { id: string }) => row.id },
+  ],
+}));
+vi.mock('@/data/hooks/useResources', () => ({
+  useListingData: () => ({
+    items: [{ id: '1' }, { id: '2' }],
+    total: 2,
+    isLoading: false,
+    hasNextPage: true,
+    fetchNextPage: vi.fn(),
   }),
 }));
 
-vi.mock('@ovhcloud/ods-components/react', () => ({
-  OdsButton: ({ children, onClick, variant, size }: any) => (
-    <button
-      data-testid="ods-button"
-      onClick={onClick}
-      data-variant={variant}
-      data-size={size}
-    >
-      {children}
-    </button>
+// --- Mock Breadcrumb ---
+vi.mock('@/components/breadcrumb/Breadcrumb.component', () => ({
+  default: ({ items }: { items: { label: string }[] }) => (
+    <nav>{items.map((i) => i.label).join('/')}</nav>
   ),
 }));
 
-const mockListingData: ListingItemType[] = [
-  {
-    id: 'zpool-123456',
-    serviceName: 'zpool-123456',
-    canCreatePartition: true,
-    customName: 'Test NAS',
-    datacenter: 'rbx',
-    diskType: 'ssd',
-    monitored: true,
-    zpoolCapacity: 1073741824, // 1GB
-    zpoolSize: 2147483648, // 2GB
-  },
-  {
-    id: 'zpool-789012',
-    serviceName: 'zpool-789012',
-    canCreatePartition: false,
-    customName: undefined,
-    datacenter: 'sbg',
-    diskType: 'hdd',
-    monitored: false,
-    zpoolCapacity: undefined,
-    zpoolSize: undefined,
-  },
-];
-
-const TestWrapper = ({ children }: { children: React.ReactNode }) => (
-  <BrowserRouter>{children}</BrowserRouter>
-);
-
+// --- Tests ---
 describe('ListingPage', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-
-    mockUseListingData.mockReturnValue({
-      items: mockListingData,
-      total: 2,
-      isLoading: false,
-      hasNextPage: false,
-      fetchNextPage: vi.fn(),
-    });
-
-    mockUseBreadcrumb.mockReturnValue([
-      { label: 'Home' },
-      { label: 'NAS-HA' },
-    ]);
+  afterEach(() => {
+    vi.resetModules();
   });
 
-  it('should render the listing page with correct title', () => {
-    render(
-      <TestWrapper>
-        <ListingPage />
-      </TestWrapper>
-    );
-
-    expect(screen.getByText('NAS-HA')).toBeInTheDocument();
+  it('renders header and breadcrumb', async () => {
+    const { default: ListingPage } = await import('./Listing.page');
+    render(<ListingPage />);
+    expect(screen.getByText('listing:title')).toBeInTheDocument();
+    expect(screen.getByTestId('breadcrumb')).toHaveTextContent('home');
   });
 
-  it('should render breadcrumb correctly', () => {
-    render(
-      <TestWrapper>
-        <ListingPage />
-      </TestWrapper>
-    );
-
-    expect(screen.getByTestId('breadcrumb')).toBeInTheDocument();
-    expect(screen.getByText('Home')).toBeInTheDocument();
-    expect(screen.getByText('NAS-HA')).toBeInTheDocument();
+  it('renders datagrid with columns and items', async () => {
+    const { default: ListingPage } = await import('./Listing.page');
+    render(<ListingPage />);
+    expect(screen.getByTestId('columns')).toHaveTextContent('listing:id');
+    expect(screen.getByTestId('items')).toHaveTextContent('1,2');
+    expect(screen.getByTestId('total')).toHaveTextContent('2');
   });
 
-  it('should render order and open buttons', () => {
-    render(
-      <TestWrapper>
-        <ListingPage />
-      </TestWrapper>
-    );
-
-    expect(screen.getByTestId('order-nasha')).toBeInTheDocument();
-    expect(screen.getByText('Order a HA-NAS')).toBeInTheDocument();
-    expect(screen.getByTestId('ods-button')).toBeInTheDocument();
-    expect(screen.getByText('Open dashboard')).toBeInTheDocument();
+  it('navigates to dashboard when button clicked', async () => {
+    const { default: ListingPage } = await import('./Listing.page');
+    render(<ListingPage />);
+    fireEvent.click(screen.getByText('listing:open'));
+    expect(navigate).toHaveBeenCalledWith('../dashboard');
   });
 
-  it('should render datagrid with correct columns', () => {
-    render(
-      <TestWrapper>
-        <ListingPage />
-      </TestWrapper>
-    );
+  it('calls fetchNextPage when clicking fetch button', async () => {
+    const fetchNextPage = vi.fn();
+    vi.doMock('@/data/hooks/useResources', () => ({
+      useListingData: () => ({
+        items: [{ id: '1' }],
+        total: 1,
+        isLoading: false,
+        hasNextPage: true,
+        fetchNextPage,
+      }),
+    }));
 
-    expect(screen.getByTestId('datagrid')).toBeInTheDocument();
-    expect(screen.getByText('Service ID')).toBeInTheDocument();
-    expect(screen.getByText('Partition creation')).toBeInTheDocument();
-    expect(screen.getByText('Name')).toBeInTheDocument();
-    expect(screen.getByText('Datacentre location')).toBeInTheDocument();
-    expect(screen.getByText('Disk type')).toBeInTheDocument();
-    expect(screen.getByText('Monitored')).toBeInTheDocument();
-    expect(screen.getByText('Zpool capacity')).toBeInTheDocument();
-    expect(screen.getByText('Zpool size')).toBeInTheDocument();
+    const { default: Page } = await import('./Listing.page');
+    render(<Page />);
+    fireEvent.click(screen.getByTestId('fetch'));
+    expect(fetchNextPage).toHaveBeenCalled();
   });
 
-  it('should render listing data correctly', () => {
-    render(
-      <TestWrapper>
-        <ListingPage />
-      </TestWrapper>
-    );
+  it('renders fallback auto column if no baseColumns', async () => {
+    vi.doMock('@/hooks/listing/useListingColumns', () => ({
+      useListingColumns: () => [],
+    }));
 
-    expect(screen.getByText('zpool-123456')).toBeInTheDocument();
-    expect(screen.getByText('Test NAS')).toBeInTheDocument();
-    expect(screen.getByText('rbx')).toBeInTheDocument();
-    expect(screen.getByText('ssd')).toBeInTheDocument();
-  });
-
-  it('should handle order button click', () => {
-    const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {});
-
-    render(
-      <TestWrapper>
-        <ListingPage />
-      </TestWrapper>
-    );
-
-    const orderButton = screen.getByTestId('order-nasha');
-    fireEvent.click(orderButton);
-
-    expect(consoleSpy).toHaveBeenCalledWith('Order NASHA clicked - to be implemented');
-
-    consoleSpy.mockRestore();
-  });
-
-  it('should handle open dashboard button click', () => {
-    render(
-      <TestWrapper>
-        <ListingPage />
-      </TestWrapper>
-    );
-
-    const openButton = screen.getByTestId('ods-button');
-    fireEvent.click(openButton);
-
-    expect(mockNavigate).toHaveBeenCalledWith('../dashboard');
-  });
-
-  it('should show loading state', () => {
-    mockUseListingData.mockReturnValue({
-      items: [],
-      total: 0,
-      isLoading: true,
-      hasNextPage: false,
-      fetchNextPage: vi.fn(),
-    });
-
-    render(
-      <TestWrapper>
-        <ListingPage />
-      </TestWrapper>
-    );
-
-    expect(screen.getByTestId('loading')).toBeInTheDocument();
-  });
-
-  it('should show empty state when no data', () => {
-    mockUseListingData.mockReturnValue({
-      items: [],
-      total: 0,
-      isLoading: false,
-      hasNextPage: false,
-      fetchNextPage: vi.fn(),
-    });
-
-    render(
-      <TestWrapper>
-        <ListingPage />
-      </TestWrapper>
-    );
-
-    expect(screen.getByTestId('empty')).toBeInTheDocument();
-    expect(screen.getByText('No NASHA services found')).toBeInTheDocument();
-  });
-
-  it('should have correct button variants', () => {
-    render(
-      <TestWrapper>
-        <ListingPage />
-      </TestWrapper>
-    );
-
-    const orderButton = screen.getByTestId('order-nasha');
-    const openButton = screen.getByTestId('ods-button');
-
-    expect(orderButton).toHaveAttribute('data-variant', 'primary');
-    expect(openButton).toHaveAttribute('data-variant', 'secondary');
+    const { default: Page } = await import('./Listing.page');
+    render(<Page />);
+    expect(screen.getByTestId('columns')).toHaveTextContent('listing:auto_column');
   });
 });

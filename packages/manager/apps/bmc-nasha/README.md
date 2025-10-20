@@ -36,9 +36,9 @@ export const APP_FEATURES = {
   // Tracking
   tracking: {
     level2ByRegion: {
-      EU: { level2: '0' },
-      CA: { level2: '0' },
-      US: { level2: '0' },
+      EU: { level2: '57' },
+      CA: { level2: '57' },
+      US: { level2: '57' },
     },
     universe: 'Baremetal',
     subUniverse: 'Dedicated',

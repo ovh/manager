@@ -11,9 +11,8 @@ import { redirectionApp, urls } from './Routes.constants';
 
 const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 
-const OnboardingPage = React.lazy(() =>
-  import('@/pages/onboarding/Onboarding.page'),
-);
+const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
+
 
 const ListingPage = React.lazy(() => import('@/pages/listing/Listing.page'));
 

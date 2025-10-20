@@ -4,14 +4,13 @@ import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
+import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OdsButton } from '@ovhcloud/ods-components/react';
 
 import {
   BaseLayout,
   DataGridTextCell,
   Datagrid,
-  ManagerButton,
   useDataGrid,
 } from '@ovh-ux/manager-react-components';
 
@@ -23,11 +22,6 @@ import { useListingColumns } from '@/hooks/listing/useListingColumns';
 import { urls } from '@/routes/Routes.constants';
 import { ListingItemType } from '@/types/Listing.type';
 
-/**
- * NASHA Listing Page Component
- * Displays a list of NASHA services with sorting, pagination, and actions
- * Migrated from AngularJS directory module to React/TypeScript
- */
 export default function ListingPage() {
   const { t } = useTranslation(['common', 'listing']);
   const navigate = useNavigate();
@@ -37,13 +31,9 @@ export default function ListingPage() {
     appName,
   });
 
-  const {
-    items,
-    total,
-    isLoading,
-    hasNextPage,
-    fetchNextPage,
-  } = useListingData<ListingItemType>(APP_FEATURES.listingEndpoint);
+  const { items, total, isLoading, hasNextPage, fetchNextPage } = useListingData<ListingItemType>(
+    APP_FEATURES.listingEndpoint,
+  );
 
   const baseColumns = useListingColumns<ListingItemType>();
 
@@ -59,40 +49,19 @@ export default function ListingPage() {
         label: t('listing:auto_column', 'Result'),
         isSortable: false,
         cell: (row: ListingItemType) => (
-          <DataGridTextCell>
-            {row ? JSON.stringify(row) : EMPTY}
-          </DataGridTextCell>
+          <DataGridTextCell>{row ? JSON.stringify(row) : EMPTY}</DataGridTextCell>
         ),
       },
     ];
   }, [baseColumns, t]);
 
-  // Default sort by serviceName (first column) as in the original
-  const initialSort = useMemo(
-    () => ({ id: 'serviceName', desc: false }),
-    [],
-  );
+  const initialSort = useMemo(() => ({ id: columns[0]?.id ?? 'auto', desc: false }), [columns]);
   const { sorting, setSorting } = useDataGrid(initialSort);
 
   const totalItems = Number.isFinite(total) ? total : items.length;
 
-  /**
-   * Navigate to dashboard page
-   * Equivalent to the original 'Open dashboard' functionality
-   */
   const onNavigateToDashboardClicked = () => {
     startTransition(() => navigate(`../${urls.dashboard}`));
-  };
-
-  /**
-   * Handle order button click
-   * Equivalent to the original 'Order a HA-NAS' functionality
-   */
-  const onOrderClicked = () => {
-    // TODO: Implement order functionality
-    // Navigate to order page or open order modal
-    // This should match the original AngularJS order flow
-    console.log('Order NASHA clicked - to be implemented');
   };
 
   return (
@@ -100,33 +69,16 @@ export default function ListingPage() {
       breadcrumb={<Breadcrumb items={breadcrumbItems} />}
       header={{ title: t('listing:title') }}
     >
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense>
         {columns && (
           <Datagrid
             topbar={
-              <div
-                style={{
-                  display: 'flex',
-                  gap: '8px',
-                  alignItems: 'center',
-                  justifyContent: 'flex-start'
-                }}
-              >
-                <ManagerButton
-                  id="order-nasha"
-                  label={t('listing:order')}
-                  onClick={onOrderClicked}
-                  variant="primary"
-                />
-                <OdsButton
-                  size={ODS_BUTTON_SIZE.md}
-                  onClick={onNavigateToDashboardClicked}
-                  label={t('listing:open')}
-                  variant="secondary"
-                >
-                  {t('listing:open')}
-                </OdsButton>
-              </div>
+              <OdsButton
+                icon={ODS_ICON_NAME.network}
+                size={ODS_BUTTON_SIZE.md}
+                label={t('listing:open')}
+                onClick={onNavigateToDashboardClicked}
+              />
             }
             columns={columns}
             items={items || []}
@@ -136,7 +88,6 @@ export default function ListingPage() {
             sorting={sorting}
             onSortChange={setSorting}
             isLoading={isLoading}
-            emptyMessage={t('listing:empty_message', 'No NASHA services found')}
           />
         )}
       </Suspense>

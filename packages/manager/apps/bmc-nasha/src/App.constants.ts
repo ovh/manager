@@ -35,7 +35,7 @@ export type DashboardApi = 'v6' | 'v2';
 export const APP_FEATURES = {
   listingApi: 'v6Iceberg' as ListingApi,
   dashboardApi: 'v6' as DashboardApi,
-  listingEndpoint: '/dedicated/nasha',
+  listingEndpoint: '/dedicated/nasha/{serviceName}',
   dashboardEndpoint: '/dedicated/nasha',
   isPci: false,
   routeFlavor: 'generic' as const,
@@ -45,9 +45,9 @@ export const APP_FEATURES = {
   appSlug: 'bmc-nasha',
   tracking: {
     level2ByRegion: {
-      EU: { level2: '0' },
-      CA: { level2: '0' },
-      US: { level2: '0' },
+      EU: { level2: '57' },
+      CA: { level2: '57' },
+      US: { level2: '57' },
     } as const,
     universe: 'Baremetal' as const,
     subUniverse: 'Dedicated' as const,

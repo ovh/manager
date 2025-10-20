@@ -1,19 +1,6 @@
 {
   "home": "Home",
-  "order": "Order a HA-NAS",
+  "order": "Order",
   "open": "Open dashboard",
-  "title": "NAS-HA",
-  "empty_message": "No NASHA services found",
-  "serviceName": "Service ID",
-  "canCreatePartition": "Partition creation",
-  "canCreatePartition_true": "Allowed",
-  "canCreatePartition_false": "Not allowed",
-  "customName": "Name",
-  "datacenter": "Datacentre location",
-  "diskType": "Disk type",
-  "monitored": "Monitored",
-  "monitored_true": "Yes",
-  "monitored_false": "No",
-  "zpoolCapacity": "Zpool capacity",
-  "zpoolSize": "Zpool size"
+  "title": "List"
 }

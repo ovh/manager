@@ -21,21 +21,6 @@ const makeResponse = <T>(data: T): AxiosResponse<T> => ({
   } as InternalAxiosRequestConfig,
 });
 
-/**
- * Mock the @ovh-ux/manager-core-api module safely.
- * This ensures fetchIcebergV6 and fetchIcebergV2 are configurable mock functions.
- */
-vi.mock('@ovh-ux/manager-core-api', async () => {
-  const actual = await vi.importActual<typeof import('@ovh-ux/manager-core-api')>(
-    '@ovh-ux/manager-core-api',
-  );
-  return {
-    ...actual,
-    fetchIcebergV6: vi.fn(),
-    fetchIcebergV2: vi.fn(),
-  };
-});
-
 // eslint-disable-next-line max-lines-per-function
 describe('API client helpers', () => {
   const mockGet = vi.fn();
@@ -108,17 +93,12 @@ describe('API client helpers', () => {
 
 // eslint-disable-next-line max-lines-per-function
 describe('fetchListing', () => {
-  const mockedCoreApi = coreApi as unknown as {
-    fetchIcebergV6: ReturnType<typeof vi.fn>;
-    fetchIcebergV2: ReturnType<typeof vi.fn>;
-  };
-
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   it('calls fetchIcebergV6 when APP_FEATURES.listingApi = v6Iceberg', async () => {
-    mockedCoreApi.fetchIcebergV6.mockResolvedValue({
+    vi.spyOn(coreApi, 'fetchIcebergV6').mockResolvedValue({
       data: [{ id: 1 }],
       totalCount: 42,
       status: 200,
@@ -130,8 +110,7 @@ describe('fetchListing', () => {
     });
 
     const result = await fetchListing('/my/route', { page: 2 });
-
-    expect(mockedCoreApi.fetchIcebergV6).toHaveBeenCalledWith(
+    expect(coreApi.fetchIcebergV6).toHaveBeenCalledWith(
       expect.objectContaining({ route: '/my/route', page: 2 }),
     );
     expect(result.data).toEqual([{ id: 1 }]);
@@ -139,7 +118,7 @@ describe('fetchListing', () => {
   });
 
   it('calls fetchIcebergV2 when APP_FEATURES.listingApi = v2', async () => {
-    mockedCoreApi.fetchIcebergV2.mockResolvedValue({
+    vi.spyOn(coreApi, 'fetchIcebergV2').mockResolvedValue({
       data: [{ id: 1 }],
       cursorNext: 'next',
       status: 200,
@@ -151,8 +130,7 @@ describe('fetchListing', () => {
     });
 
     const result = await fetchListing('/my/route', { cursor: 'cur' });
-
-    expect(mockedCoreApi.fetchIcebergV2).toHaveBeenCalledWith(
+    expect(coreApi.fetchIcebergV2).toHaveBeenCalledWith(
       expect.objectContaining({ route: '/my/route', cursor: 'cur' }),
     );
     expect(result.data).toEqual([{ id: 1 }]);

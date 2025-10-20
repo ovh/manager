@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect, useState } from 'react';
 
 import { useLocation } from 'react-router-dom';
 
 import { useProject } from '@ovh-ux/manager-pci-common';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useProjectUrl } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { BreadcrumbItem, BreadcrumbProps } from '@/types/Breadcrumb.type';
@@ -13,7 +14,7 @@ export const usePciBreadcrumb = ({ projectId, appName }: BreadcrumbProps) => {
   const [root, setRoot] = useState<BreadcrumbItem[]>([]);
   const [appRoot, setAppRoot] = useState<BreadcrumbItem[]>([]);
   const { data: project } = useProject(projectId);
-  const { addError } = useNotifications();
+  const hrefProject = useProjectUrl('public-cloud');
 
   useEffect(() => {
     const fetchRoot = async () => {
@@ -25,20 +26,20 @@ export const usePciBreadcrumb = ({ projectId, appName }: BreadcrumbProps) => {
         )) as string;
         const rootItem = {
           label: project?.description,
-          href: response,
+          href: hrefProject,
         };
-        const appRootItem = {
+        const appRoot = {
           label: appName || '',
           href: response.split('public-cloud')[1] || '',
         };
         setRoot([rootItem]);
-        setAppRoot([appRootItem]);
+        setAppRoot([appRoot]);
       } catch (error) {
-        addError('Failed to load navigation data');
+        console.error('Error fetching root URL:', error);
       }
     };
     if (project) {
-      fetchRoot();
+      void fetchRoot();
     }
   }, [project]);
 
@@ -65,7 +66,7 @@ export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
         // Fetch navigation error
       }
     };
-    fetchRoot();
+    void fetchRoot();
   }, [rootLabel, appName, shell?.navigation]);
 
   useEffect(() => {
