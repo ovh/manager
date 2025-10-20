@@ -41,6 +41,8 @@ export function useOrderFunnel({
   const { t } = useTranslation('pci-object-storage/order-funnel');
   const orderFunnelFormSchema = createOrderFunnelFormSchema(t);
 
+  const defaultReplicationRegion = regions?.[0]?.name;
+
   const defaultValuesByOffer: Record<
     ObjectContainerOffers,
     Partial<OrderFunnelFormValues>
@@ -51,7 +53,7 @@ export function useOrderFunnel({
       region: regions.find((r) => r.name === 'EU-WEST-PAR')?.name || '',
       replication: {
         enabled: true,
-        automaticRegionSelection: true,
+        region: defaultReplicationRegion,
       },
       versioning: storages.VersioningStatusEnum.disabled,
       user: users[0]?.id ?? null,
@@ -110,7 +112,6 @@ export function useOrderFunnel({
       form.setValue(
         'replication',
         {
-          automaticRegionSelection: false,
           enabled: false,
           region: undefined,
         },
@@ -120,9 +121,8 @@ export function useOrderFunnel({
       form.setValue(
         'replication',
         {
-          automaticRegionSelection: true,
           enabled: true,
-          region: undefined,
+          region: defaultReplicationRegion,
         },
         { shouldValidate: true },
       );
@@ -152,21 +152,20 @@ export function useOrderFunnel({
       region,
     };
     if (replication?.enabled) {
-      const rule: storages.ReplicationRuleIn = {
-        id: '',
-        deleteMarkerReplication:
-          storages.ReplicationRuleDeleteMarkerReplicationStatusEnum.enabled,
-        status: storages.ReplicationRuleStatusEnum.enabled,
-        priority: 1,
-      };
-      if (replication?.automaticRegionSelection === false) {
-        rule.destination = {
-          name: '',
-          region: replication?.region,
-        };
-      }
       s3.replication = {
-        rules: [rule],
+        rules: [
+          {
+            id: '',
+            deleteMarkerReplication:
+              storages.ReplicationRuleDeleteMarkerReplicationStatusEnum.enabled,
+            status: storages.ReplicationRuleStatusEnum.enabled,
+            priority: 1,
+            destination: {
+              name: '',
+              region: replication?.region,
+            },
+          },
+        ],
       };
     }
 
