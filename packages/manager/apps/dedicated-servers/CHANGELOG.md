@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.23](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.4.22...@ovh-ux/manager-dedicated-servers-app@0.4.23) (2025-10-20)
+
+
+### Bug Fixes
+
+* **dedicated:** monitoring status in listing page ([a95c913](https://github.com/ovh/manager/commit/a95c913d410eccd8834eec086adc68a8f934ad74)), closes [#MANAGER-19387](https://github.com/ovh/manager/issues/MANAGER-19387)
+
+
+
+
+
 ## [0.4.22](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.4.21...@ovh-ux/manager-dedicated-servers-app@0.4.22) (2025-10-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
