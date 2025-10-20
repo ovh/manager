@@ -19,10 +19,8 @@
   "pci_instances_common_instance_region-3-az_deployment_mode_description": "Wdrożenie o wysokiej odporności/wysokiej dostępności dla Twoich krytycznych aplikacji w 3 strefach dostępności.",
   "pci_instances_common_instance_localzone_deployment_mode_description": "Wdrożenie Twoich aplikacji jak najbliżej użytkowników w celu zapewnienia niskiej latencji i lokalizacji danych.",
   "pci_instances_common_instance_continent_north_america": "Ameryka Północna",
-  "pci_instances_common_instance_continent_western_europe": "Europa Zachodnia",
-  "pci_instances_common_instance_continent_central_europe": "Europa Środkowa",
-  "pci_instances_common_instance_continent_south_europe": "Europa Południowa",
   "pci_instances_common_instance_continent_north_africa": "Afryka Północna",
   "pci_instances_common_instance_continent_south_east_asia": "Azja Południowo-Wschodnia",
-  "pci_instances_common_instance_continent_oceania": "Oceania"
+  "pci_instances_common_instance_continent_oceania": "Oceania",
+  "pci_instances_common_instance_continent_europe": "Europa"
 }
