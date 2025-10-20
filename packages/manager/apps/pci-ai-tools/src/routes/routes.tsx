@@ -1213,7 +1213,7 @@ export default [
               {
                 path: ':notebookId',
                 ...lazyRouteConfig(() =>
-                  import('@/pages/qpus/[notebookId]/Notebook.layout'),
+                  import('@/pages/notebooks/[notebookId]/Notebook.layout'),
                 ),
                 children: [
                   {
@@ -1227,7 +1227,7 @@ export default [
                     },
                     ...lazyRouteConfig(() =>
                       import(
-                        '@/pages/qpus/[notebookId]/dashboard/Dashboard.page'
+                        '@/pages/notebooks/[notebookId]/dashboard/Dashboard.page'
                       ),
                     ),
                     children: [
@@ -1242,7 +1242,7 @@ export default [
                         },
                         ...lazyRouteConfig(() =>
                           import(
-                            '@/pages/qpus/[notebookId]/dashboard/delete/Delete.modal'
+                            '@/pages/notebooks/[notebookId]/dashboard/delete/Delete.modal'
                           ),
                         ),
                       },
@@ -1258,7 +1258,7 @@ export default [
                         },
                         ...lazyRouteConfig(() =>
                           import(
-                            '@/pages/qpus/[notebookId]/dashboard/_components/update-flavor/UpdateFlavor.modal'
+                            '@/pages/notebooks/[notebookId]/dashboard/_components/update-flavor/UpdateFlavor.modal'
                           ),
                         ),
                       },
@@ -1275,7 +1275,7 @@ export default [
                     },
                     ...lazyRouteConfig(() =>
                       import(
-                        '@/pages/qpus/[notebookId]/containers/Containers.page'
+                        '@/pages/notebooks/[notebookId]/containers/Containers.page'
                       ),
                     ),
                     children: [
@@ -1290,7 +1290,7 @@ export default [
                         },
                         ...lazyRouteConfig(() =>
                           import(
-                            '@/pages/qpus/[notebookId]/containers/dataSync/DataSync.modal'
+                            '@/pages/notebooks/[notebookId]/containers/dataSync/DataSync.modal'
                           ),
                         ),
                       },
@@ -1305,7 +1305,7 @@ export default [
                         },
                         ...lazyRouteConfig(() =>
                           import(
-                            '@/pages/qpus/[notebookId]/containers/addVolume/AddVolume.modal'
+                            '@/pages/notebooks/[notebookId]/containers/addVolume/AddVolume.modal'
                           ),
                         ),
                       },
@@ -1320,7 +1320,7 @@ export default [
                         },
                         ...lazyRouteConfig(() =>
                           import(
-                            '@/pages/qpus/[notebookId]/containers/deleteVolume/DeleteVolume.modal'
+                            '@/pages/notebooks/[notebookId]/containers/deleteVolume/DeleteVolume.modal'
                           ),
                         ),
                       },
@@ -1335,7 +1335,7 @@ export default [
                         },
                         ...lazyRouteConfig(() =>
                           import(
-                            '@/pages/qpus/[notebookId]/containers/dataSync/DataSync.modal'
+                            '@/pages/notebooks/[notebookId]/containers/dataSync/DataSync.modal'
                           ),
                         ),
                       },
@@ -1352,7 +1352,7 @@ export default [
                     },
                     ...lazyRouteConfig(() =>
                       import(
-                        '@/pages/qpus/[notebookId]/public-git/PublicGit.page'
+                        '@/pages/notebooks/[notebookId]/public-git/PublicGit.page'
                       ),
                     ),
                     children: [
@@ -1367,7 +1367,7 @@ export default [
                         },
                         ...lazyRouteConfig(() =>
                           import(
-                            '@/pages/qpus/[notebookId]/public-git/addVolume/AddVolume.modal'
+                            '@/pages/notebooks/[notebookId]/public-git/addVolume/AddVolume.modal'
                           ),
                         ),
                       },
@@ -1382,7 +1382,7 @@ export default [
                         },
                         ...lazyRouteConfig(() =>
                           import(
-                            '@/pages/qpus/[notebookId]/public-git/deleteVolume/DeleteVolume.modal'
+                            '@/pages/notebooks/[notebookId]/public-git/deleteVolume/DeleteVolume.modal'
                           ),
                         ),
                       },
@@ -1398,7 +1398,7 @@ export default [
                       },
                     },
                     ...lazyRouteConfig(() =>
-                      import('@/pages/qpus/[notebookId]/logs/Logs.page'),
+                      import('@/pages/notebooks/[notebookId]/logs/Logs.page'),
                     ),
                   },
                   {
@@ -1411,7 +1411,9 @@ export default [
                       },
                     },
                     ...lazyRouteConfig(() =>
-                      import('@/pages/qpus/[notebookId]/backups/Backups.page'),
+                      import(
+                        '@/pages/notebooks/[notebookId]/backups/Backups.page'
+                      ),
                     ),
                     children: [
                       {
@@ -1425,7 +1427,7 @@ export default [
                         },
                         ...lazyRouteConfig(() =>
                           import(
-                            '@/pages/qpus/[notebookId]/backups/fork/Fork.modal'
+                            '@/pages/notebooks/[notebookId]/backups/fork/Fork.modal'
                           ),
                         ),
                       },

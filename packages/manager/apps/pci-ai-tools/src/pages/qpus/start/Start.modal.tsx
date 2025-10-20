@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import StartNotebook from '../[notebookId]/_components/StartNotebook.component';
 import { useGetNotebook } from '@/data/hooks/ai/notebook/useGetNotebook.hook';
+import StartNotebook from '@/pages/notebooks/[notebookId]/_components/StartNotebook.component';
 
 const StartNotebookModal = () => {
   const { projectId, notebookId } = useParams();

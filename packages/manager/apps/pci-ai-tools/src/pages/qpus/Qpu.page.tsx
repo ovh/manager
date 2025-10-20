@@ -112,8 +112,8 @@ const Qpus = () => {
           <RoadmapChangelog links={QpuRoadmapLinks} />
         </div>
       </div>
-      <QpusList qpus={filteredNotebooks} />
       <Outlet />
+      <QpusList qpus={filteredNotebooks} />
     </>
   );
 };
