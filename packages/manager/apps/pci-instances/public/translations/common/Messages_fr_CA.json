@@ -19,10 +19,9 @@
   "pci_instances_common_instance_region-3-az_deployment_mode_description": "Déploiement haute résilience/haute disponibilité pour vos applications critiques sur 3 zones de disponibilité.",
   "pci_instances_common_instance_localzone_deployment_mode_description": "Déploiement de vos applications au plus près de vos utilisateurs pour une faible latence et la résidence des données.",
   "pci_instances_common_instance_continent_north_america": "Amérique du Nord",
-  "pci_instances_common_instance_continent_western_europe": "Europe de l'Ouest",
-  "pci_instances_common_instance_continent_central_europe": "Europe Centrale",
-  "pci_instances_common_instance_continent_south_europe": "Europe du Sud",
+  "pci_instances_common_instance_continent_europe": "Europe",
   "pci_instances_common_instance_continent_north_africa": "Afrique du Nord",
   "pci_instances_common_instance_continent_south_east_asia": "Asie du Sud Est",
-  "pci_instances_common_instance_continent_oceania": "Océanie"
+  "pci_instances_common_instance_continent_oceania": "Océanie",
+  "pci_instances_common_instance_continent_all": "Tous"
 }
