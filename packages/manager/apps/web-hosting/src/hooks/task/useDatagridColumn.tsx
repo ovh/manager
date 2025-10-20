@@ -27,7 +27,9 @@ export default function useDatagridColumn() {
       id: 'task',
       cell: (props: TaskDetailsType) => (
         <DataGridTextCell>
-          {t(`hosting_tab_TASKS_function_${props?.function?.replace('/', '_')}`)}
+          {t(`hosting_tab_TASKS_function_${props?.function?.replace('/', '_')}`, {
+            defaultValue: props?.function,
+          })}
         </DataGridTextCell>
       ),
       label: t('hosting_tab_TASKS_table_function'),

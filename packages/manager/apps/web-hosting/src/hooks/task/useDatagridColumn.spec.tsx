@@ -41,9 +41,7 @@ describe('useDatagridColumn', () => {
     const startDateCell = columns[2].cell(tasksMocks[0]) as ElementWithStringChildren;
     const finishDateCell = columns[3].cell(tasksMocks[0]) as ElementWithStringChildren;
 
-    expect(taskCell.props.children).toBe(
-      `hosting_tab_TASKS_function_${tasksMocks[0].function?.replace('/', '_')}`,
-    );
+    expect(taskCell.props.children).toBe(tasksMocks[0].function);
     expect(startDateCell.props.children).toBe(
       formatDate({ date: tasksMocks[0].startDate, format: 'Pp' }),
     );
