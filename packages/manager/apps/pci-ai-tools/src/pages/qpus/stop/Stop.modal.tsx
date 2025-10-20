@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import StopNotebook from '../[notebookId]/_components/StopNotebook.component';
 import { useGetNotebook } from '@/data/hooks/ai/notebook/useGetNotebook.hook';
+import StopNotebook from '@/pages/notebooks/[notebookId]/_components/StopNotebook.component';
 
 const StopNotebookModal = () => {
   const { projectId, notebookId } = useParams();

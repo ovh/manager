@@ -4,11 +4,11 @@ import { ColumnDef } from '@tanstack/react-table';
 import { useNavigate } from 'react-router-dom';
 import { Button, Skeleton } from '@datatr-ux/uxlib';
 import { getColumns } from './NotebooksListColumns.component';
-import { getFilters } from './NotebookListFilters.component';
 import DataTable from '@/components/data-table';
 import { useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
 import { NotebookWithQpu } from '@/types/orderFunnel';
+import { getFilters } from '@/pages/notebooks/_components/NotebookListFilters.component';
 
 interface QpusListProps {
   qpus: NotebookWithQpu[];

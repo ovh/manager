@@ -26,7 +26,6 @@ import { NotebookWithQpu } from '@/types/orderFunnel';
 
 import Link from '@/components/links/Link.component';
 import { convertSecondsToTimeString } from '@/lib/durationHelper';
-import NotebookStatusBadge from './NotebookStatusBadge.component';
 
 import A from '@/components/links/A.component';
 import DataTable from '@/components/data-table';
@@ -38,6 +37,7 @@ import {
 import { useTrackAction } from '@/hooks/useTracking';
 import { TRACKING } from '@/configuration/tracking.constants';
 import ai from '@/types/AI';
+import NotebookStatusBadge from '@/pages/notebooks/_components/NotebookStatusBadge.component';
 
 interface NotebooksListColumnsProps {
   onStartClicked: (notebook: NotebookWithQpu) => void;
