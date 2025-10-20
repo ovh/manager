@@ -1,0 +1,10 @@
+{
+  "time-controls-button-cancel": "Annuler",
+  "time-controls-option-custom": "Personnalisé",
+  "time-controls-option-day": "1 jour",
+  "time-controls-option-days": "{{nbDays}} jours",
+  "time-controls-button-refresh": "Actualiser",
+  "time-controls-time-range-from": "De",
+  "time-controls-time-range-to": "Au",
+  "time-controls-apply-time-range": "Appliquer"
+}

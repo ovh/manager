@@ -11,3 +11,4 @@ vue
 packages/manager/apps/pci-databases-analytics/src/components/ui
 packages/manager/apps/pci-databases-analytics/src/lib/utils.ts
 packages/manager/apps/observability
+packages/manager/modules/observability-to-customer

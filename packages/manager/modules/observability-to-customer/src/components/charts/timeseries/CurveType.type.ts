@@ -1,0 +1,16 @@
+export type CurveType =
+  | 'basis'
+  | 'basisClosed'
+  | 'basisOpen'
+  | 'bumpX'
+  | 'bumpY'
+  | 'bump'
+  | 'linear'
+  | 'linearClosed'
+  | 'natural'
+  | 'monotoneX'
+  | 'monotoneY'
+  | 'monotone'
+  | 'step'
+  | 'stepBefore'
+  | 'stepAfter';
