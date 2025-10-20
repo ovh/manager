@@ -49,6 +49,7 @@ export default /* @ngInject */ ($stateProvider) => {
             hidden: false,
             property: 'id',
             serviceLink: true,
+            typeOptions: { operators: ['is', 'isNot'] },
           },
           {
             label: $translate.instant(`netapp_list_columns_header_name`),
@@ -57,7 +58,7 @@ export default /* @ngInject */ ($stateProvider) => {
           {
             label: $translate.instant(`netapp_list_columns_header_status`),
             property: 'status',
-            format: (value) => value.status,
+            format: (value) => value.status || value,
             map: (row) => {
               switch (row.status) {
                 case 'creating':
@@ -97,7 +98,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ],
       }),
       dataModel: () => 'storage.NetAppService',
-      defaultFilterColumn: () => 'id',
+      defaultFilterColumn: () => 'name',
       header: () => 'Enterprise File Storage',
       changelog: () => 'file_storage',
       customizableColumns: () => true,
