@@ -1,0 +1,187 @@
+[
+  {
+    "id": "chart-1",
+    "title": "Disk Read Bytes",
+    "unit": "KiB/s",
+    "colspan": 2,
+    "tooltip": {
+      "title": "Metrics Description",
+      "content": "Average number of read bytes over a specific period of time"
+    },
+    "query": "prometheus_tsdb_head_chunks_storage_size_bytes",
+    "chart": {
+      "type": "TimeSeries",
+      "curveType": "linear",
+      "XAxis": {
+        "dataKey": "timestamp",
+        "formatter": "formatTimestamp",
+        "interval": 10
+      },
+      "YAxis": {
+        "dataKeys": ["value"]
+      }
+    }
+  },
+  {
+    "id": "chart-2",
+    "title": "Disk Read IOPS",
+    "unit": "IOPS",
+    "colspan": 2,
+    "query": "demo_api_http_requests_in_progress",
+    "chart": {
+      "type": "TimeSeries",
+      "XAxis": {
+        "dataKey": "timestamp",
+        "formatter": "formatTimestamp",
+        "interval": 10
+      },
+      "YAxis": {
+        "dataKeys": ["value"]
+      }
+    }
+  },
+  {
+    "id": "chart-3",
+    "title": "Disk Write Throughput",
+    "unit": "KiB/s",
+    "colspan": 2,
+    "query": "node_disk_written_bytes_total",
+    "chart": {
+      "type": "TimeSeries",
+      "XAxis": {
+        "dataKey": "timestamp",
+        "formatter": "formatTimestamp",
+        "interval": 10
+      },
+      "YAxis": {
+        "dataKeys": ["value"]
+      }
+    }
+  },
+  {
+    "id": "chart-4",
+    "title": "Disk Write IOPS",
+    "unit": "IOPS",
+    "colspan": 2,
+    "query": "container_memory_usage_bytes",
+    "chart": {
+      "type": "TimeSeries",
+      "XAxis": {
+        "dataKey": "timestamp",
+        "formatter": "formatTimestamp",
+        "interval": 10
+      },
+      "YAxis": {
+        "dataKeys": ["value"]
+      }
+    }
+  },
+  {
+    "id": "chart-5",
+    "title": "Network Packats In",
+    "unit": "Count",
+    "colspan": 2,
+    "query": "container_memory_usage_bytes",
+    "chart": {
+      "type": "TimeSeries",
+      "XAxis": {
+        "dataKey": "timestamp",
+        "formatter": "formatTimestamp",
+        "interval": 10
+      },
+      "YAxis": {
+        "dataKeys": ["value"]
+      }
+    }
+  },
+  {
+    "id": "chart-6",
+    "title": "Network Packats out",
+    "unit": "Count",
+    "colspan": 2,
+    "query": "container_memory_usage_bytes",
+    "chart": {
+      "type": "TimeSeries",
+      "XAxis": {
+        "dataKey": "timestamp",
+        "formatter": "formatTimestamp",
+        "interval": 10
+      },
+      "YAxis": {
+        "dataKeys": ["value"]
+      }
+    }
+  },
+  {
+    "id": "chart-7",
+    "title": "Network In",
+    "unit": "Bytes",
+    "colspan": 2,
+    "query": "container_memory_usage_bytes",
+    "chart": {
+      "type": "TimeSeries",
+      "XAxis": {
+        "dataKey": "timestamp",
+        "formatter": "formatTimestamp",
+        "interval": 10
+      },
+      "YAxis": {
+        "dataKeys": ["value"]
+      }
+    }
+  },
+  {
+    "id": "chart-8",
+    "title": "Network Out",
+    "unit": "Bytes",
+    "colspan": 2,
+    "query": "demo_batch_last_run_processed_bytes",
+    "chart": {
+      "type": "TimeSeries",
+      "XAxis": {
+        "dataKey": "timestamp",
+        "formatter": "formatTimestamp",
+        "interval": 10
+      },
+      "YAxis": {
+        "dataKeys": ["value1", "value2"]
+      }
+    }
+  },
+  {
+    "id": "chart-9",
+    "title": "CPU Utilization",
+    "unit": "Percent",
+    "colspan": 2,
+    "query": "demo_batch_last_run_processed_bytes",
+    "chart": {
+      "type": "TimeSeries",
+      "XAxis": {
+        "dataKey": "timestamp",
+        "formatter": "formatTimestamp",
+        "interval": 10
+      },
+      "YAxis": {
+        "dataKeys": ["value1", "value2"]
+      }
+    }
+  },
+  {
+    "id": "chart-10",
+    "title": "Memory Utilization",
+    "unit": "Percent",
+    "colspan": 2,
+    "query": "demo_memory_usage_bytes",
+    "chart": {
+      "type": "TimeSeries",
+      "XAxis": {
+        "dataKey": "timestamp",
+        "formatter": "formatTimestamp",
+        "interval": 10
+      },
+      "YAxis": {
+        "dataKeys": ["value1", "value2"]
+      }
+    }
+  }
+]
