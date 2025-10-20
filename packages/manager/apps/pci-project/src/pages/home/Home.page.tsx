@@ -1,17 +1,22 @@
 import { OdsDivider } from '@ovhcloud/ods-components/react';
 
+import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
+import { ODS_DIVIDER_SPACING } from '@ovhcloud/ods-components';
 import QuickAccess from './components/QuickAccess.component';
 import Others from './components/Others.component';
 import DiscoveryBanner from './components/DiscoveryBanner.component';
 import DashboardTiles from './components/DashboardTiles.component';
 
 export default function Home() {
+  const { data: project } = useProject();
+  const isDiscovery = project ? isDiscoveryProject(project) : false;
+
   return (
     <>
-      <DiscoveryBanner className="mb-6 w-full" />
+      {isDiscovery && <DiscoveryBanner className="mb-6 w-full" />}
       <QuickAccess />
       <Others />
-      <OdsDivider className="my-8 block" />
+      <OdsDivider spacing={ODS_DIVIDER_SPACING._48} />
       <DashboardTiles />
     </>
   );
