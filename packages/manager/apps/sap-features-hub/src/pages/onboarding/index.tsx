@@ -1,12 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import onboardingImgSrc from './onboarding-img.png';
 
 export default function Onboarding() {
-  const { t } = useTranslation('onboarding');
+  const { t } = useTranslation(['onboarding', NAMESPACES.ONBOARDING]);
   const link = useGuideUtils();
 
   const tileList = [
@@ -15,7 +16,7 @@ export default function Onboarding() {
       texts: {
         title: t('guide1Title'),
         description: t('guide1Description'),
-        category: t('guideCategory'),
+        category: t(`${NAMESPACES.ONBOARDING}:tutorial`),
       },
       href: link?.guideLink1,
     },
@@ -24,7 +25,7 @@ export default function Onboarding() {
       texts: {
         title: t('guide2Title'),
         description: t('guide2Description'),
-        category: t('guideCategory'),
+        category: t(`${NAMESPACES.ONBOARDING}:tutorial`),
       },
       href: link?.guideLink2,
     },
@@ -33,7 +34,7 @@ export default function Onboarding() {
       texts: {
         title: t('guide3Title'),
         description: t('guide3Description'),
-        category: t('guideCategory'),
+        category: t(`${NAMESPACES.ONBOARDING}:tutorial`),
       },
       href: link?.guideLink3,
     },
