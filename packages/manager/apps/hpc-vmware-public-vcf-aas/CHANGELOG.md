@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.25.7...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.25.8) (2025-10-20)
+
+
+### Bug Fixes
+
+* **public-vcf:** update max id value of vlan ([92c676d](https://github.com/ovh/manager/commit/92c676d4212a5472762e89ca84657b981f5a051e)), closes [#MANAGER-19419](https://github.com/ovh/manager/issues/MANAGER-19419)
+* **vcfaas:** sort sergment by id order on vrack ([315ec19](https://github.com/ovh/manager/commit/315ec1961f9a172acbdde060effde460137a9b6b)), closes [#MANAGER-19434](https://github.com/ovh/manager/issues/MANAGER-19434)
+
+
+
+
+
 ## [0.25.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.25.6...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.25.7) (2025-10-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-public-vcf-aas-app
