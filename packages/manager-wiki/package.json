@@ -6,7 +6,7 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "scripts": {
-    "build-dependencies": "turbo run build --filter=\"@ovh-ux/manager-wiki\"",
+    "build-dependencies": "yarn --cwd ../../ build --filter=\"@ovh-ux/manager-wiki\"",
     "build:storybook": "storybook build",
     "dev": "tsc",
     "start": "yarn run build-dependencies && rm -rf dist/.cache/storybook && storybook dev -p 6006"
