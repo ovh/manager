@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.33.1...@ovh-ux/manager-pci-kubernetes-app@0.34.0) (2025-10-20)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** add FF on US banner storage ([4352d73](https://github.com/ovh/manager/commit/4352d734bb9ecd22e317953c576c65b395751d56)), closes [#TAPC-5191](https://github.com/ovh/manager/issues/TAPC-5191)
+
+
+### Features
+
+* **pci-kubernetes:** add translation file storage banner ([bba2500](https://github.com/ovh/manager/commit/bba2500b9be531aa321dc8eb10a2756dec0388db)), closes [#TAPC-5191](https://github.com/ovh/manager/issues/TAPC-5191)
+
+
+
+
+
 ## [0.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.33.0...@ovh-ux/manager-pci-kubernetes-app@0.33.1) (2025-10-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
