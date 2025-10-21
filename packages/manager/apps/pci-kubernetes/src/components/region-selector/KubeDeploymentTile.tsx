@@ -36,7 +36,7 @@ export function KubeDeploymentTile({
         <div className="flex flex-col lg:flex-row gap-1 lg:gap-4 items-center lg:items-baseline">
           <h2
             className={clsx(
-              'text-base text-[--ods-color-text-500] mb-0 lg:mb-2',
+              'text-base text-[--ods-color-text-500] mb-0 lg:mb-2 text-nowrap',
               isSelected ? 'font-bold' : 'font-normal',
             )}
           >
