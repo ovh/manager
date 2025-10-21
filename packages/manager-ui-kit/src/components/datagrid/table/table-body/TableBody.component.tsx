@@ -92,7 +92,7 @@ export const TableBody = <T,>({
               style={{
                 left: -1,
                 height: `${maxRowHeight}px`,
-                transform: `translateY(${virtualRow.start}px)`,
+                transform: `translateY(${virtualRow.start + offset}px)`,
               }}
             >
               {row.getVisibleCells().map((cell) => (
