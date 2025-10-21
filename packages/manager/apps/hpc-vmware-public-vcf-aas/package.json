@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hpc-vmware-public-vcf-aas-app",
-  "version": "0.25.8",
+  "version": "0.25.9",
   "private": true,
   "description": "New managed VMware Public VCF aas offers",
   "repository": {
@@ -23,10 +23,10 @@
     "@ovh-ux/manager-config": "^8.6.6",
     "@ovh-ux/manager-core-api": "^0.18.7",
     "@ovh-ux/manager-core-utils": "^0.4.5",
-    "@ovh-ux/manager-module-common-api": "^0.5.7",
+    "@ovh-ux/manager-module-common-api": "^0.5.8",
     "@ovh-ux/manager-module-order": "^0.11.7",
-    "@ovh-ux/manager-module-vcd-api": "^0.8.12",
-    "@ovh-ux/manager-react-components": "^2.42.4",
+    "@ovh-ux/manager-module-vcd-api": "^0.8.13",
+    "@ovh-ux/manager-react-components": "^2.43.0",
     "@ovh-ux/manager-react-core-application": "^0.12.9",
     "@ovh-ux/manager-react-shell-client": "^0.9.3",
     "@ovh-ux/request-tagger": "^0.5.5",
@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@effect/vitest": "^0.25.1",
-    "@ovh-ux/manager-core-test-utils": "^0.7.7",
+    "@ovh-ux/manager-core-test-utils": "^0.8.0",
     "@ovh-ux/manager-tests-setup": "latest",
     "@ovh-ux/manager-vite-config": "^0.13.4",
     "@types/react": "^18.2.55",
