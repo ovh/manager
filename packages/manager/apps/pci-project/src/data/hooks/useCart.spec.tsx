@@ -39,7 +39,7 @@ import {
   useGetCart,
   useGetCartSummary,
   useGetHdsAddonOption,
-  useGetOrderProjectId,
+  useGetProjectItem,
   useGetCartConfiguration,
   useIsHdsChecked,
   useOrderProjectItem,
@@ -594,11 +594,11 @@ describe('useCart hooks', () => {
     });
   });
 
-  describe('useGetOrderProjectId', () => {
+  describe('useGetProjectItem', () => {
     it('should fetch and select project item when cartId is provided', async () => {
       vi.mocked(getCartItems).mockResolvedValue([mockOrderedProduct]);
 
-      const { result } = renderHook(() => useGetOrderProjectId('cart-1'), {
+      const { result } = renderHook(() => useGetProjectItem('cart-1'), {
         wrapper: createWrapper(),
       });
 
@@ -620,7 +620,7 @@ describe('useCart hooks', () => {
       };
       vi.mocked(getCartItems).mockResolvedValue([nonProjectItem]);
 
-      const { result } = renderHook(() => useGetOrderProjectId('cart-1'), {
+      const { result } = renderHook(() => useGetProjectItem('cart-1'), {
         wrapper: createWrapper(),
       });
 

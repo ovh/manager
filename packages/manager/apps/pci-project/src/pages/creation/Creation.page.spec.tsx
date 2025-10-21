@@ -54,14 +54,14 @@ vi.mock('react-i18next', () => ({
 // Mock cart hooks from @/data/hooks/useCart
 const mockUseCreateAndAssignCart = vi.fn();
 const mockUseGetCart = vi.fn();
-const mockUseGetOrderProjectId = vi.fn();
+const mockuseGetProjectItem = vi.fn();
 const mockUseOrderProjectItem = vi.fn();
 const mockUseAttachConfigurationToCartItem = vi.fn();
 
 vi.mock('@/data/hooks/useCart', () => ({
   useCreateAndAssignCart: () => mockUseCreateAndAssignCart(),
   useGetCart: () => mockUseGetCart(),
-  useGetOrderProjectId: () => mockUseGetOrderProjectId(),
+  useGetProjectItem: () => mockuseGetProjectItem(),
   useOrderProjectItem: () => mockUseOrderProjectItem(),
   useAttachConfigurationToCartItem: () =>
     mockUseAttachConfigurationToCartItem(),
@@ -213,7 +213,7 @@ describe('Creation Page', () => {
       error: null,
     });
 
-    mockUseGetOrderProjectId.mockReturnValue({
+    mockuseGetProjectItem.mockReturnValue({
       data: {
         itemId: 'test-project-item-id',
         cartId: 'test-cart-id',
@@ -327,7 +327,7 @@ describe('Creation Page', () => {
       error: null,
     });
 
-    mockUseGetOrderProjectId.mockReturnValue({
+    mockuseGetProjectItem.mockReturnValue({
       data: null, // No existing project item
       isLoading: false,
       error: null,
@@ -362,7 +362,7 @@ describe('Creation Page', () => {
       error,
     });
 
-    mockUseGetOrderProjectId.mockReturnValue({
+    mockuseGetProjectItem.mockReturnValue({
       data: null,
       isLoading: false,
       error,

@@ -6,7 +6,7 @@ import { format } from 'date-fns';
 import { useConfigForm, ConfigFormState } from './useConfigForm';
 import {
   useGetCartConfiguration,
-  useGetOrderProjectId,
+  useGetProjectItem,
   useIsHdsChecked,
 } from '@/data/hooks/useCart';
 import { OrderedProduct, CartConfiguration } from '@/data/types/cart.type';
@@ -17,7 +17,7 @@ vi.mock('date-fns', () => ({
 
 vi.mock('@/data/hooks/useCart', () => ({
   useGetCartConfiguration: vi.fn(),
-  useGetOrderProjectId: vi.fn(),
+  useGetProjectItem: vi.fn(),
   useIsHdsChecked: vi.fn(),
 }));
 
@@ -62,7 +62,7 @@ describe('useConfigForm', () => {
     vi.clearAllMocks();
 
     // Setup default mock returns
-    vi.mocked(useGetOrderProjectId).mockReturnValue({
+    vi.mocked(useGetProjectItem).mockReturnValue({
       data: undefined,
       isLoading: false,
     } as UseQueryResult<OrderedProduct | undefined, Error>);
@@ -130,7 +130,7 @@ describe('useConfigForm', () => {
 
   describe('loading states', () => {
     it('should return loading true when project is loading', () => {
-      vi.mocked(useGetOrderProjectId).mockReturnValue({
+      vi.mocked(useGetProjectItem).mockReturnValue({
         data: undefined,
         isLoading: true,
       } as UseQueryResult<OrderedProduct | undefined, Error>);
@@ -179,7 +179,7 @@ describe('useConfigForm', () => {
 
   describe('data synchronization effects', () => {
     it('should update description when cart configuration is available', () => {
-      vi.mocked(useGetOrderProjectId).mockReturnValue(({
+      vi.mocked(useGetProjectItem).mockReturnValue(({
         data: mockProjectItem,
         isLoading: false,
       } as unknown) as UseQueryResult<OrderedProduct | undefined, Error>);
@@ -197,7 +197,7 @@ describe('useConfigForm', () => {
     });
 
     it('should handle empty cart configuration value', () => {
-      vi.mocked(useGetOrderProjectId).mockReturnValue(({
+      vi.mocked(useGetProjectItem).mockReturnValue(({
         data: mockProjectItem,
         isLoading: false,
       } as unknown) as UseQueryResult<OrderedProduct | undefined, Error>);
@@ -245,14 +245,14 @@ describe('useConfigForm', () => {
   });
 
   describe('hook calls with correct parameters', () => {
-    it('should call useGetOrderProjectId with cartId', () => {
+    it('should call useGetProjectItem with cartId', () => {
       renderHook(() => useConfigForm(OvhSubsidiary.FR, 'test-cart'));
 
-      expect(useGetOrderProjectId).toHaveBeenCalledWith('test-cart');
+      expect(useGetProjectItem).toHaveBeenCalledWith('test-cart');
     });
 
     it('should call useGetCartConfiguration with correct parameters', () => {
-      vi.mocked(useGetOrderProjectId).mockReturnValue(({
+      vi.mocked(useGetProjectItem).mockReturnValue(({
         data: mockProjectItem,
         isLoading: false,
       } as unknown) as UseQueryResult<OrderedProduct | undefined, Error>);

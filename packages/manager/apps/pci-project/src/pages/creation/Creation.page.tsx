@@ -14,7 +14,7 @@ import {
   useAttachConfigurationToCartItem,
   useCreateAndAssignCart,
   useGetCart,
-  useGetOrderProjectId,
+  useGetProjectItem,
   useOrderProjectItem,
 } from '@/data/hooks/useCart';
 import FullPageSpinner from '@/components/full-page-spinner/FullPageSpinner';
@@ -46,7 +46,7 @@ export default function ProjectCreation() {
     data: createdCart,
   } = useCreateAndAssignCart();
   const { data: existingCart } = useGetCart(
-    hasInitialCart ? searchParams.get('cartId') || undefined : undefined,
+    searchParams.get('cartId') || undefined,
   );
 
   const {
@@ -54,10 +54,7 @@ export default function ProjectCreation() {
     setForm,
     isConfigFormValid,
     isLoading: isLoadingConfigForm,
-  } = useConfigForm(
-    ovhSubsidiary,
-    hasInitialCart ? searchParams.get('cartId') || undefined : undefined,
-  );
+  } = useConfigForm(ovhSubsidiary, searchParams.get('cartId') || undefined);
 
   const cart = hasInitialCart ? existingCart : createdCart;
 
@@ -65,8 +62,9 @@ export default function ProjectCreation() {
     mutate: orderProjectItem,
     data: createdProjectItem,
   } = useOrderProjectItem();
-  const { data: existingProjectItem } = useGetOrderProjectId(
-    hasInitialCart ? searchParams.get('cartId') || undefined : undefined,
+
+  const { data: existingProjectItem } = useGetProjectItem(
+    searchParams.get('cartId') || undefined,
   );
 
   const projectItem = hasInitialCart ? existingProjectItem : createdProjectItem;
