@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.5.10...@ovh-ux/manager-sap-features-hub-app@0.5.11) (2025-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-sap-features-hub-app
+
+
+
+
+
 ## [0.5.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-sap-features-hub-app@0.5.9...@ovh-ux/manager-sap-features-hub-app@0.5.10) (2025-10-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-sap-features-hub-app

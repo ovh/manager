@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.100](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@3.0.99...@ovh-ux/manager-dbaas-logs-app@3.0.100) (2025-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-dbaas-logs-app
+
+
+
+
+
 ## [3.0.99](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs-app@3.0.98...@ovh-ux/manager-dbaas-logs-app@3.0.99) (2025-10-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-dbaas-logs-app

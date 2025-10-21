@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.0...@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.1) (2025-10-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4415] ([224b837](https://github.com/ovh/manager/commit/224b8376271874131463fb6e120b28e6e0b9a6f3))
+
+
+
+
+
 # [0.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-vsphere-app@0.0.0...@ovh-ux/manager-hpc-vmware-vsphere-app@0.1.0) (2025-10-20)
 
 

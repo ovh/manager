@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.7.7...@ovh-ux/manager-core-test-utils@0.8.0) (2025-10-21)
+
+
+### Features
+
+* **legacy-tools:** adding iceberg response handler ([9360206](https://github.com/ovh/manager/commit/9360206e8819dc290443bbdaed7b67a24386cb7b)), closes [#MANAGER-15320](https://github.com/ovh/manager/issues/MANAGER-15320)
+
+
+
+
+
 ## [0.7.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.7.6...@ovh-ux/manager-core-test-utils@0.7.7) (2025-10-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-core-test-utils

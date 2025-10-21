@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.42.4...@ovh-ux/manager-react-components@2.43.0) (2025-10-21)
+
+### Bug Fixes
+
+- **manager-react-components:** deprecate useDatagrid hook ([270781b](https://github.com/ovh/manager/commit/270781bfee57458cf98155632932684422c789c8)), closes [#MANAGER-19376](https://github.com/ovh/manager/issues/MANAGER-19376)
+
+### Features
+
+- **mrc:** datagrid customization props ([977a7b0](https://github.com/ovh/manager/commit/977a7b03b251325ad325870679860f7e33e78469)), closes [#ISSUE-19588](https://github.com/ovh/manager/issues/ISSUE-19588)
+
 ## [2.42.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.42.3...@ovh-ux/manager-react-components@2.42.4) (2025-10-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-react-components

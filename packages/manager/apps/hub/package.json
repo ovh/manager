@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hub-app",
-  "version": "0.25.4",
+  "version": "0.25.5",
   "private": true,
   "description": "OVHcloud Dashboard control panel.",
   "repository": {
@@ -44,8 +44,8 @@
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-tailwind-config": "^0.5.5",
     "@ovh-ux/manager-static-analysis-kit": "^0.11.0",
+    "@ovh-ux/manager-tailwind-config": "^0.5.5",
     "@ovh-ux/manager-tests-setup": "^0.2.0",
     "@ovh-ux/manager-vite-config": "^0.13.4",
     "@tanstack/react-query-devtools": "^5.51.21",
