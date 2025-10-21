@@ -8,8 +8,7 @@ import {
   v6,
 } from '@ovh-ux/manager-core-api';
 import { Query, useQuery } from '@tanstack/react-query';
-import { DatagridColumn, ColumnSort } from '../../components';
-import { useColumnFilters } from '../data-api/useColumnFilters';
+import { DatagridColumn, useColumnFilters, ColumnSort } from '../../components';
 
 export type FetchResultV6<T> = {
   data: T[];

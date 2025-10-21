@@ -42,7 +42,6 @@ const meta: Meta<typeof LinkCard> = {
     ),
   ],
   component: LinkCard,
-  tags: ['autodocs'],
   argTypes: {
     texts: {
       title: { control: 'text', description: 'Title of the Card' },
@@ -93,42 +92,11 @@ WithDescription.args = {
   ...defaultProps,
   texts: textsWithDescription,
 };
-WithDescription.parameters = {
-  docs: {
-    source: {
-      code: `<LinkCard 
-  href="https://ovh.com"
-  texts={{
-    title: 'Title of the Card',
-    category: 'Tutorial',
-    description: 'Card description text here...',
-  }}
-/>`,
-    },
-  },
-};
 
 export const WithImage = Template.bind({});
 WithImage.args = {
   ...defaultProps,
   img,
-};
-WithImage.parameters = {
-  docs: {
-    source: {
-      code: `<LinkCard 
-  href="https://ovh.com"
-  texts={{
-    title: 'Title of the Card',
-    category: 'Tutorial',
-  }}
-  img={{
-    alt: 'offer',
-    src: 'https://www.ovhcloud.com/sites/default/files/styles/offer_range_card/public/2021-06/1886_AI_Notebook1_Hero_600x400.png',
-  }}
-/>`,
-    },
-  },
 };
 
 export const WithBadges = Template.bind({});

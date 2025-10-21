@@ -8,15 +8,21 @@ exports[`BaseLayout component - Snapshot tests > renders the complete Base Layou
     <div>
       <nav
         class=""
+        data-ods="breadcrumb"
+        id=":r0:"
+        role="navigation"
       >
         <ol
           class="_breadcrumb__list_1jn0o_2"
         >
           <li
-            class="_breadcrumb-item_vrq54_2"
+            class="_breadcrumb-item_1bnix_2"
+            data-ods="breadcrumb-item"
+            role="listitem"
           >
             <span
               aria-current="page"
+              data-ods="breadcrumb-link"
               href="#/foo"
             >
               foo
@@ -33,6 +39,7 @@ exports[`BaseLayout component - Snapshot tests > renders the complete Base Layou
       >
         <h1
           class="_text--heading-1_1aw48_13"
+          data-ods="text"
         >
           Title of the page
         </h1>
@@ -40,21 +47,26 @@ exports[`BaseLayout component - Snapshot tests > renders the complete Base Layou
           class="flex flex-wrap justify-end items-center"
         >
           <button
-            aria-controls="popover::r0::content"
+            aria-controls=":r2:"
             aria-expanded="false"
             aria-haspopup="dialog"
             aria-label="Guides"
-            class="_button_10f3x_2 _button--primary_10f3x_99 _button--sm_10f3x_34 _button--ghost_10f3x_150"
+            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--sm_1sbbz_34 _button--ghost_1sbbz_150 _popover-trigger_a014q_2"
+            data-ods="popover-trigger"
             data-part="trigger"
             data-scope="popover"
             data-state="closed"
             dir="ltr"
-            id="popover::r0::trigger"
+            id="popover::r1::trigger"
+            role="button"
+            tabindex="0"
             type="button"
           >
             <span
               aria-hidden="true"
-              class="_icon_i4xp0_2 _icon--book_i4xp0_52"
+              class="_icon_10c23_2 _icon--book_10c23_55"
+              data-ods="icon"
+              role="presentation"
             />
             Guides
           </button>
@@ -65,18 +77,22 @@ exports[`BaseLayout component - Snapshot tests > renders the complete Base Layou
       class="mb-[16px]"
     >
       <a
-        class="_link_udbet_2"
+        class="_link_1y3p4_2"
+        data-ods="link"
         data-testid="manager-back-link"
         target="_self"
       >
         <span
-          class="_icon_i4xp0_2 _icon--arrow-left_i4xp0_25"
+          class="_icon_10c23_2 _icon--arrow-left_10c23_28"
+          data-ods="icon"
+          role="presentation"
         />
         back Link Label
       </a>
     </div>
     <span
       class="_text--span_1aw48_60 inline-block mb-[16px]"
+      data-ods="text"
     >
       Sample description of the page.
     </span>
@@ -85,6 +101,7 @@ exports[`BaseLayout component - Snapshot tests > renders the complete Base Layou
     />
     <h3
       class="_text--heading-3_1aw48_25 block mb-6"
+      data-ods="text"
     >
       Sample Sub-title of the page
     </h3>
@@ -93,60 +110,72 @@ exports[`BaseLayout component - Snapshot tests > renders the complete Base Layou
     >
       <div>
         <div
-          class="_tabs_4moa9_2"
+          data-ods="tabs"
           data-orientation="horizontal"
           data-part="root"
           data-scope="tabs"
           dir="ltr"
-          id="tabs::r1:"
+          id="tabs::r3:"
         >
           <div
             aria-orientation="horizontal"
-            class="_tab-list_9h120_2"
+            class="_tab-list_1vjsr_2"
+            data-ods="tab-list"
             data-orientation="horizontal"
             data-part="list"
             data-scope="tabs"
             dir="ltr"
-            id="tabs::r1::list"
+            id="tabs::r3::list"
             role="tablist"
           >
-            <button
-              aria-controls="tabs::r1::content-tab1"
-              aria-selected="true"
-              class="_tab_1ddod_2"
-              data-focus=""
-              data-orientation="horizontal"
-              data-ownedby="tabs::r1::list"
-              data-part="trigger"
-              data-scope="tabs"
-              data-selected=""
-              data-ssr=""
-              data-value="tab1"
-              dir="ltr"
-              id="tabs::r1::trigger-tab1"
-              role="tab"
-              tabindex="0"
-              type="button"
-            >
-              tab1
-            </button>
-            <button
-              aria-selected="false"
-              class="_tab_1ddod_2"
-              data-orientation="horizontal"
-              data-ownedby="tabs::r1::list"
-              data-part="trigger"
-              data-scope="tabs"
-              data-ssr=""
-              data-value="tab2"
-              dir="ltr"
-              id="tabs::r1::trigger-tab2"
-              role="tab"
+            <div
+              class="_tab-list__container_1vjsr_40"
               tabindex="-1"
-              type="button"
             >
-              tab2
-            </button>
+              <div
+                class="_tab-list__container__tabs_1vjsr_51"
+              >
+                <button
+                  aria-controls="tabs::r3::content-tab1"
+                  aria-selected="true"
+                  class="_tab_1h8j5_2"
+                  data-focus=""
+                  data-ods="tab"
+                  data-orientation="horizontal"
+                  data-ownedby="tabs::r3::list"
+                  data-part="trigger"
+                  data-scope="tabs"
+                  data-selected=""
+                  data-ssr=""
+                  data-value="tab1"
+                  dir="ltr"
+                  id="tabs::r3::trigger-tab1"
+                  role="tab"
+                  tabindex="0"
+                  type="button"
+                >
+                  tab1
+                </button>
+                <button
+                  aria-selected="false"
+                  class="_tab_1h8j5_2"
+                  data-ods="tab"
+                  data-orientation="horizontal"
+                  data-ownedby="tabs::r3::list"
+                  data-part="trigger"
+                  data-scope="tabs"
+                  data-ssr=""
+                  data-value="tab2"
+                  dir="ltr"
+                  id="tabs::r3::trigger-tab2"
+                  role="tab"
+                  tabindex="-1"
+                  type="button"
+                >
+                  tab2
+                </button>
+              </div>
+            </div>
           </div>
         </div>
         <div

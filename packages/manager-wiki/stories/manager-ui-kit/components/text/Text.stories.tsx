@@ -8,36 +8,12 @@ export const Default: Meta<TextProps> = {
     iamActions: IAM_ACTIONS,
     children: 'lorem ipsum dolor sit amet',
   },
-  parameters: {
-    docs: {
-      source: {
-        code: `<Text 
-  urn="urn:v9:eu:resource:vrackServices:vrs-xxx-xxx"
-  iamActions={['vrackServices:apiovh:iam/resource/tag/remove']}
->
-  lorem ipsum dolor sit amet
-</Text>`,
-      },
-    },
-  },
 };
 
 export const TextWithAuthorization: Meta<TextProps> = {
   args: {
     urn: IAM_URNS.WITH_AUTH,
     iamActions: IAM_ACTIONS,
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `<Text 
-  urn="urn:v9:eu:resource:vrackServices:vrs-xxx-xxx"
-  iamActions={['vrackServices:apiovh:iam/resource/tag/remove']}
->
-  Confidential information
-</Text>`,
-      },
-    },
   },
 };
 
@@ -46,24 +22,11 @@ export const TextWithoutAuthorization: Meta<TextProps> = {
     ...Default.args,
     urn: IAM_URNS.WITHOUT_AUTH,
   },
-  parameters: {
-    docs: {
-      source: {
-        code: `<Text 
-  urn="urn:v9:eu:resource:vrackServices:vrs-xxx-xxx-unauthorized"
-  iamActions={['vrackServices:apiovh:iam/resource/tag/remove']}
->
-  HIDDEN (user without authorization)
-</Text>`,
-      },
-    },
-  },
 };
 
 const meta = {
   title: 'Manager UI Kit/Components/Text',
   component: Text,
-  tags: ['autodocs'],
   args: {
     ...Default.args,
     children:

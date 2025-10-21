@@ -6,8 +6,7 @@ import {
 } from '@ovh-ux/manager-core-api';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { defaultPageSize } from './index';
-import { DatagridColumn, ColumnSort } from '../../components';
-import { useColumnFilters } from '../data-api/useColumnFilters';
+import { DatagridColumn, useColumnFilters, ColumnSort } from '../../components';
 
 interface IcebergV6Hook<T> {
   queryKey: string[];

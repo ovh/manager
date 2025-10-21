@@ -113,7 +113,6 @@ export const DefaultProps = {
 const meta = {
   title: 'Manager UI Kit/Components/Filters',
   component: FiltersStory,
-  tags: ['autodocs'],
   decorators: [withRouter],
 };
 

@@ -11,8 +11,6 @@ import {
   Text,
   TEXT_PRESET,
 } from '@ovhcloud/ods-react';
-import { useTranslation } from 'react-i18next';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ModalProps } from './Modal.props';
 
 export const Modal = forwardRef(
@@ -27,11 +25,9 @@ export const Modal = forwardRef(
       dismissible = true,
       open = true,
       children,
-      step,
     }: ModalProps,
     ref: ForwardedRef<ElementRef<typeof ModalContent>>,
   ) => {
-    const { t } = useTranslation(NAMESPACES.FORM);
     const buttonColor = useMemo(
       () =>
         type === MODAL_COLOR.critical
@@ -45,27 +41,9 @@ export const Modal = forwardRef(
         <ModalContent color={MODAL_COLOR[type]} dismissible={!!dismissible}>
           <ModalBody ref={ref} className="text-left">
             {heading && (
-              <div className="flex items-center mb-4">
-                <Text
-                  className="block mr-3 flex-1"
-                  preset={TEXT_PRESET.heading4}
-                >
-                  {heading}
-                </Text>
-                {Number.isInteger(step?.current) &&
-                  Number.isInteger(step?.total) && (
-                    <Text
-                      className="ml-auto"
-                      preset={TEXT_PRESET.caption}
-                      data-testid="step-placeholder"
-                    >
-                      {t('stepPlaceholder', {
-                        current: step.current,
-                        total: step.total,
-                      })}
-                    </Text>
-                  )}
-              </div>
+              <Text className="mb-4" preset={TEXT_PRESET.heading4}>
+                {heading}
+              </Text>
             )}
             {loading && (
               <div data-testid="spinner" className="flex justify-center my-5">

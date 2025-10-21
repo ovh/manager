@@ -1,7 +1,6 @@
-import React from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
-import { useColumnFilters } from '../../../useColumnFilters';
+import { useColumnFilters } from '../../../../../components';
 
 import { useDataRetrievalOperations } from '../useDataRetrievalOperations';
 
@@ -12,9 +11,13 @@ vi.mock('@ovh-ux/manager-core-api', () => ({
   },
 }));
 
-vi.mock('../../../useColumnFilters', () => ({
-  useColumnFilters: vi.fn(),
-}));
+vi.mock('../../../../../components', async () => {
+  const actual = await vi.importActual('@tanstack/react-query');
+  return {
+    ...actual,
+    useColumnFilters: vi.fn(),
+  };
+});
 
 describe('useDataRetrievalOperations', () => {
   const mockColumns = [
@@ -24,7 +27,7 @@ describe('useDataRetrievalOperations', () => {
     { id: 'status', isSearchable: false, cell: () => <></>, label: 'Status' },
   ];
 
-  const mockDefaultSorting = [{ id: 'name', desc: false }];
+  const mockDefaultSorting = { id: 'name', desc: false };
 
   const mockUseColumnFiltersResult = {
     filters: [],
@@ -34,7 +37,7 @@ describe('useDataRetrievalOperations', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    vi.mocked(useColumnFilters).mockReturnValue(mockUseColumnFiltersResult);
+    (useColumnFilters as any).mockReturnValue(mockUseColumnFiltersResult);
   });
 
   it('initializes with default sorting and empty search', () => {
@@ -63,6 +66,7 @@ describe('useDataRetrievalOperations', () => {
       result.current.onSearch('john');
     });
 
+    expect(result.current.searchInput).toBe('john');
     expect(result.current.searchFilters).toEqual([
       { key: 'name', value: 'john', comparator: 'includes' },
     ]);
@@ -114,13 +118,36 @@ describe('useDataRetrievalOperations', () => {
       }),
     );
 
-    const newSort = [{ id: 'email', desc: true }];
+    const newSort = { id: 'email', desc: true };
 
     act(() => {
       result.current.setSorting(newSort);
     });
 
     expect(result.current.sorting).toEqual(newSort);
+  });
+
+  it('allows updating searchInput directly via setter', () => {
+    const { result } = renderHook(() =>
+      useDataRetrievalOperations({
+        defaultSorting: undefined,
+        columns: mockColumns,
+      }),
+    );
+
+    act(() => {
+      result.current.setSearchInput('manual input');
+    });
+
+    expect(result.current.searchInput).toBe('manual input');
+    expect(result.current.searchFilters.length).toEqual(1);
+    expect(result.current.searchFilters[0]).toEqual(
+      expect.objectContaining({
+        key: 'name',
+        value: 'manual input',
+        comparator: 'includes',
+      }),
+    );
   });
 
   it('allows updating searchFilters directly via setter', () => {

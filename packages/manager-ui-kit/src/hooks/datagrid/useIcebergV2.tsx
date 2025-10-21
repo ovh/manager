@@ -12,8 +12,7 @@ import {
   UseInfiniteQueryResult,
 } from '@tanstack/react-query';
 import { defaultPageSize } from './index';
-import { ColumnSort, DatagridColumn } from '../../components';
-import { useColumnFilters } from '../data-api/useColumnFilters';
+import { ColumnSort, DatagridColumn, useColumnFilters } from '../../components';
 
 interface IcebergFilter {
   key: string;

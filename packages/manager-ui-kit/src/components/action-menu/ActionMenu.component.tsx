@@ -27,7 +27,6 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   displayIcon = true,
   popoverPosition = POPOVER_POSITION.bottom,
   label,
-  size = BUTTON_SIZE.sm,
 }) => {
   const { t } = useTranslation('action-menu');
   const [isTrigger, setIsTrigger] = React.useState(false);
@@ -39,7 +38,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
           loading={isLoading}
           variant={variant}
           disabled={isDisabled}
-          size={size}
+          size={BUTTON_SIZE.sm}
           onClick={() => setIsTrigger(true)}
         >
           {displayIcon && (

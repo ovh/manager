@@ -1,10 +1,10 @@
+import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { Price, OvhSubsidiary, IntervalUnitType } from '@ovh-ux/muk';
 
 const meta = {
   title: 'Manager UI Kit/Components/Price',
   component: Price,
-  tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
@@ -53,17 +53,6 @@ export const Basic: Story = {
     ovhSubsidiary: OvhSubsidiary.FR,
     locale: 'fr-FR',
   },
-  parameters: {
-    docs: {
-      source: {
-        code: `<Price 
-  value={3948000000} 
-  ovhSubsidiary={OvhSubsidiary.FR} 
-  locale="fr-FR" 
-/>`,
-      },
-    },
-  },
 };
 
 // Price with tax
@@ -73,18 +62,6 @@ export const WithTax: Story = {
     tax: 789600000,
     ovhSubsidiary: OvhSubsidiary.FR,
     locale: 'fr-FR',
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `<Price 
-  value={3948000000} 
-  tax={789600000}
-  ovhSubsidiary={OvhSubsidiary.FR} 
-  locale="fr-FR" 
-/>`,
-      },
-    },
   },
 };
 
@@ -96,18 +73,6 @@ export const WithInterval: Story = {
     ovhSubsidiary: OvhSubsidiary.FR,
     locale: 'fr-FR',
   },
-  parameters: {
-    docs: {
-      source: {
-        code: `<Price 
-  value={3948000000} 
-  intervalUnit={IntervalUnitType.month}
-  ovhSubsidiary={OvhSubsidiary.FR} 
-  locale="fr-FR" 
-/>`,
-      },
-    },
-  },
 };
 
 // Price with tax and interval
@@ -118,19 +83,6 @@ export const WithTaxAndInterval: Story = {
     intervalUnit: IntervalUnitType.month,
     ovhSubsidiary: OvhSubsidiary.FR,
     locale: 'fr-FR',
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `<Price 
-  value={3948000000} 
-  tax={789600000}
-  intervalUnit={IntervalUnitType.month}
-  ovhSubsidiary={OvhSubsidiary.FR} 
-  locale="fr-FR" 
-/>`,
-      },
-    },
   },
 };
 

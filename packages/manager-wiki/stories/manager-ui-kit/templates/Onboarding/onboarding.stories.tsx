@@ -177,7 +177,6 @@ export const OnboardingWithoutHeadingSection = () => (
 const meta: Meta<typeof OnboardingLayout> = {
   title: 'Manager UI Kit/Components/OnboardingLayout',
   component: OnboardingLayout,
-  tags: ['autodocs'],
   argTypes: {
     title: {
       description: 'The main title of the onboarding layout',

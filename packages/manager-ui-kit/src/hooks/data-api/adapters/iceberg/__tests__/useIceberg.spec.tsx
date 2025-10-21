@@ -1,3 +1,4 @@
+import React from 'react';
 import { vi, describe, it } from 'vitest';
 import { renderHook, RenderHookResult } from '@testing-library/react';
 import { fetchWithIceberg, IcebergFetchParams } from '@ovh-ux/manager-core-api';
@@ -64,7 +65,7 @@ describe('useIceberg hook', () => {
   });
 
   it('tests default sorting', () => {
-    renderUseIcebergHook({ defaultSorting: [getSorting('number', false)] });
+    renderUseIcebergHook({ defaultSorting: getSorting('number', false) });
     const callArg = vi.mocked(fetchWithIceberg).mock.calls[0]?.[0];
     expect((callArg as IcebergFetchParams).sortBy).toEqual('number');
     expect((callArg as IcebergFetchParams).sortOrder).toEqual('ASC');
