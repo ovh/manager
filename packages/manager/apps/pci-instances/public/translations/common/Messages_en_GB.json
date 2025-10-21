@@ -22,5 +22,7 @@
   "pci_instances_common_instance_continent_north_africa": "North Africa",
   "pci_instances_common_instance_continent_south_east_asia": "Southeast Asia",
   "pci_instances_common_instance_continent_oceania": "Oceania",
-  "pci_instances_common_instance_continent_europe": "Europe"
+  "pci_instances_common_instance_continent_europe": "Europe",
+  "pci_instances_common_instance_category": "Instance model",
+  "pci_instances_common_instance_type": "Type"
 }

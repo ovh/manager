@@ -8,7 +8,10 @@ import { selectContinent } from '../view-models/continentsViewModel';
 import { selectDeploymentModes } from '../view-models/deploymentModeViewModel';
 import { selectLocalizations } from '../view-models/localizationsViewModel';
 import { TDeploymentMode } from '@/types/instance/common.type';
-import { mockedFlavorCategories } from '@/__mocks__/instance/constants';
+import {
+  selectCategories,
+  selectTypes,
+} from '../view-models/categoriesTypesViewModel';
 
 export const useForm = (projectId: string) => {
   const deploymentModes = selectDeploymentModes(deps)(projectId);
@@ -35,12 +38,12 @@ export const useForm = (projectId: string) => {
   const microRegionDefaultValue =
     localizations[0]!.microRegions[0]?.name ?? null;
 
-  const flavorCategoryDefaultValue = mockedFlavorCategories[0]?.name ?? '';
+  const categories = selectCategories(deps)(projectId);
+
+  const flavorCategoryDefaultValue = categories[0]?.value ?? null;
 
   const flavorTypeDefaultValue =
-    mockedFlavorCategories.find(
-      ({ name }) => name === flavorCategoryDefaultValue,
-    )?.type[0]?.name ?? '';
+    selectTypes(deps)(projectId, flavorCategoryDefaultValue)[0]?.value ?? null;
 
   const availabilityZoneDefaultValue = null;
 

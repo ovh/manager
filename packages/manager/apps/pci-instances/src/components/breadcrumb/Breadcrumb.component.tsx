@@ -35,7 +35,7 @@ export const Breadcrumb: FC<TBreadcrumbProps> = ({
   return (
     <ODSBreadcrumb>
       {breadcrumbItems.map((item) => (
-        <BreadcrumbItem key={item.href}>
+        <BreadcrumbItem key={item.label}>
           <BreadcrumbLink href={item.href}>{item.label}</BreadcrumbLink>
         </BreadcrumbItem>
       ))}

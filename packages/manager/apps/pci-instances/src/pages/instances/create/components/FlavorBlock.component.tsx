@@ -7,11 +7,24 @@ import {
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import FlavorHelper from './flavor/FlavorHelper.component';
-import FlavorCategory from './flavor/FlavorCategory.component';
-import FlavorType from './flavor/flavorType/FlavorType.component';
+import FlavorCategoryTypeSelect from './flavor/select/FlavorSelect.component';
+import { useProjectId } from '@/hooks/project/useProjectId';
+import {
+  selectCategories,
+  selectTypes,
+} from '../view-models/categoriesTypesViewModel';
+import { deps } from '@/deps/deps';
+import { useFormContext, useWatch } from 'react-hook-form';
+import { TInstanceCreationForm } from '../CreateInstance.page';
 
 const FlavorBlock: FC = () => {
   const { t } = useTranslation('creation');
+  const projectId = useProjectId();
+  const { control } = useFormContext<TInstanceCreationForm>();
+  const flavorCategory = useWatch({ control, name: 'flavorCategory' });
+
+  const categories = selectCategories(deps)(projectId);
+  const types = selectTypes(deps)(projectId, flavorCategory);
 
   return (
     <section>
@@ -28,8 +41,12 @@ const FlavorBlock: FC = () => {
       </Text>
       <div className="flex justify-between mt-6 flex-wrap">
         <div className="flex gap-x-4 gap-y-6">
-          <FlavorCategory />
-          <FlavorType />
+          {categories.length && (
+            <FlavorCategoryTypeSelect items={categories} option="category" />
+          )}
+          {types.length && (
+            <FlavorCategoryTypeSelect items={types} option="type" />
+          )}
         </div>
         <Checkbox className="self-end">
           <CheckboxControl />

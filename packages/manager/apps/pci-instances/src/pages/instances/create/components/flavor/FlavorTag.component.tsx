@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { Badge, BADGE_COLOR } from '@ovhcloud/ods-react';
-import { TFlavorTypeTag } from '@/types/instance/common.type';
+import { TFlavorTag } from '@/types/instance/common.type';
 
 type TFlavorTagProps = {
-  tag: TFlavorTypeTag;
+  tag: TFlavorTag;
 };
 
-const getBadgeColor = (tag: TFlavorTypeTag) => {
+const getBadgeColor = (tag: TFlavorTag) => {
   switch (tag) {
     case 'savings_plan':
       return BADGE_COLOR.promotion;
@@ -19,8 +19,8 @@ const getBadgeColor = (tag: TFlavorTypeTag) => {
   }
 };
 
-const FlavorTypeTag: FC<TFlavorTagProps> = ({ tag }) => (
+const FlavorTag: FC<TFlavorTagProps> = ({ tag }) => (
   <Badge color={getBadgeColor(tag)}>{tag}</Badge>
 );
 
-export default FlavorTypeTag;
+export default FlavorTag;
