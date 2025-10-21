@@ -183,6 +183,8 @@ export const STORAGE_LOCALISATION_LINKS = {
     'https://help.ovhcloud.com/csm/es-public-cloud-storage-s3-location?id=kb_article_view&sysparm_article=KB0047386',
   QC:
     'https://help.ovhcloud.com/csm/fr-ca-public-cloud-storage-s3-location?id=kb_article_view&sysparm_article=KB0047387',
+  FR:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-storage-s3-location?id=kb_article_view&sysparm_article=KB0047389',
   MA:
     'https://help.ovhcloud.com/csm/fr-public-cloud-storage-s3-location?id=kb_article_view&sysparm_article=KB0047389',
   SN:
