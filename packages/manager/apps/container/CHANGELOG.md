@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.160.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.159.0...@ovh-ux/manager-container-app@0.160.0) (2025-10-21)
+
+
+### Bug Fixes
+
+* **cookie-policy:** update cookie policy urls ([881a38c](https://github.com/ovh/manager/commit/881a38c65f6c464080f315011df3bd83f2d58c5e)), closes [#MANAGER-20036](https://github.com/ovh/manager/issues/MANAGER-20036)
+
+
+### Features
+
+* **container:** einvoicing modify the content of the pop up to update ([f1d572d](https://github.com/ovh/manager/commit/f1d572df53281dae8bd766baaf70e8290283b326)), closes [#MANAGER-19880](https://github.com/ovh/manager/issues/MANAGER-19880)
+
+
+
+
+
 # [0.159.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.158.3...@ovh-ux/manager-container-app@0.159.0) (2025-10-20)
 
 
