@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.6.10...@ovh-ux/manager-web-hosting-app@0.7.0) (2025-10-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4401] ([cf2cd26](https://github.com/ovh/manager/commit/cf2cd26e4e9a63c6b8d2e7da22c54fe9d055a43e))
+* **web-hosting:** display function name if trad is missing ([5b59820](https://github.com/ovh/manager/commit/5b598202af7a7c8c4c67951d3029df1d8fc89e72)), closes [#PUWEBPT-90](https://github.com/ovh/manager/issues/PUWEBPT-90)
+
+
+### Features
+
+* **web-hosting:** add unit tests on micro app ([4ea36de](https://github.com/ovh/manager/commit/4ea36de39487fa879055e25fbe722ffec24c4a62)), closes [#WEB-21100](https://github.com/ovh/manager/issues/WEB-21100)
+* **web-hosting:** migrate ongoing task tab in react ([593d5b2](https://github.com/ovh/manager/commit/593d5b293334e9100214094a328791df2cbe71b9)), closes [#WEB-21008](https://github.com/ovh/manager/issues/WEB-21008)
+
+
+
+
+
 ## [0.6.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.6.9...@ovh-ux/manager-web-hosting-app@0.6.10) (2025-10-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
