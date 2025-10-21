@@ -81,6 +81,48 @@ The templates provided in this document are used to:
 | Forms                    | React Hook Form + Yup           | Typed validation |
 | i18n (angular-translate) | react-i18next                   | @ovh-ux/manager-common-translations |
 
+## 🎨 OUI-Kit → ODS/MRC Component Mapping
+
+### Base Components
+| OUI-Kit (AngularJS) | ODS/MRC (React) | Notes |
+|---------------------|-----------------|-------|
+| `<oui-tile>` | `ManagerTile` | MRC component with IAM integration |
+| `<oui-tile-definition>` | `ManagerTileItem` | MRC component for tile content |
+| `<oui-header-tabs>` | `<OdsTabs>` + `<OdsTab>` | ODS tabs with React Router integration |
+| `<oui-datagrid>` | `Datagrid` | MRC datagrid with sorting/filtering |
+| `<oui-action-menu>` | `ActionMenu` | MRC component with IAM actions |
+| `<oui-progress>` | Custom component | Build with OdsProgressBar base |
+
+### Layout Components
+| OUI-Kit (AngularJS) | ODS/MRC (React) | Notes |
+|---------------------|-----------------|-------|
+| `<manager-on-boarding-layout>` | `OnboardingLayout` | MRC layout component |
+| Custom headers | `DashboardHeader` | Custom component with editable name |
+
+### Custom Components
+| Component | Purpose | Implementation |
+|-----------|---------|---------------|
+| `SpaceMeter` | Storage usage visualization | Custom component with ODS styling |
+| `StorageProgressBar` | Multi-segment progress bar | Custom component for data/snapshots |
+| `DashboardHeader` | Page header with guides | Custom component with ODS integration |
+
+### Migration Examples
+```typescript
+// OUI-Kit (AngularJS)
+<oui-tile>
+  <oui-tile-definition title="Storage">
+    <oui-progress value="75" max="100" />
+  </oui-tile-definition>
+</oui-tile>
+
+// ODS/MRC (React)
+<ManagerTile>
+  <ManagerTileItem title="Storage">
+    <SpaceMeter value={75} max={100} />
+  </ManagerTileItem>
+</ManagerTile>
+```
+
 ## 🔄 Strangler Pattern Strategy
 
 ### 1. Progressive Cohabitation

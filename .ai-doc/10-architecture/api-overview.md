@@ -13,6 +13,7 @@ This document provides an overview of the different API versions available in th
 ### API V6
 Legacy customer-facing REST API. No deprecation plan.
 - RESTful architecture
+
 - OAuth2 authentication
 - Resource management for all OVHcloud products
 
