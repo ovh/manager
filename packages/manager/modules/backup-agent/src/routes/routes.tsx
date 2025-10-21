@@ -4,13 +4,20 @@ import { Route } from 'react-router-dom';
 
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
-import {subRoutes} from './Routes.constants';
+import {subRoutes, urlParams} from './Routes.constants';
 
 const MainLayout = React.lazy(() => import('../pages/MainLayout.component'));
 
 const ListingPage = React.lazy(() => import('../pages/listing/Listing.page'));
 
+const VaultListingPage = React.lazy(() => import('../pages/vaults/listing/Listing.page'));
+
+const VaultDashboardPage =  React.lazy(() => import("@/pages/vaults/dashboard/Dashboard.page"));
+
+const VaultGeneralInformationPage = React.lazy(() => import('../pages/vaults/dashboard/general-information/GeneralInformation.page'));
+
 export default (
+  <>
   <Route path="" Component={MainLayout}>
       <Route
         path={subRoutes.services}
@@ -22,9 +29,10 @@ export default (
           },
         }}
       />
+    <Route path={subRoutes.vaults}>
     <Route
-      path={subRoutes.vaults}
-      Component={ListingPage}
+      path=""
+      Component={VaultListingPage}
       handle={{
         tracking: {
           pageName: 'vaults',
@@ -32,15 +40,30 @@ export default (
         },
       }}
     />
+    </Route>
     <Route
       path={subRoutes.billing}
       Component={ListingPage}
       handle={{
         tracking: {
-          pageName: 'listing',
+          pageName: 'billing',
           pageType: PageType.listing,
         },
       }}
     />
   </Route>
+    <Route
+      path={subRoutes.vaults}
+    >
+    <Route
+      path={subRoutes.dashboard}
+      Component={VaultDashboardPage}
+    >
+      <Route
+        path={urlParams.vaultId}
+        Component={VaultGeneralInformationPage}
+      />
+    </Route>
+    </Route>
+  </>
 );
