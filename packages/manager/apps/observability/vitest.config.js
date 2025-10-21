@@ -28,12 +28,15 @@ export default mergeConfig(
         ],
       },
     },
-    resolve: { 
+    resolve: {
       dedupe: [...defaultDedupedDependencies],
       alias: {
         // eslint-disable-next-line no-undef
         '@': path.resolve(__dirname, 'src'),
       },
+    },
+    optimizeDeps: {
+      include: ['element-internals-polyfill', 'react-i18next'],
     },
   }),
 );

@@ -1,5 +1,5 @@
 import { ObservabilityServiceParams } from '@/data/api/observability.props';
-import { GetTenantPayload } from '@/data/api/tenants.props';
+import { CreateTenantsPayload, GetTenantPayload } from '@/data/api/tenants.props';
 import { Tenant } from '@/types/tenants.type';
 
 const tenantsDataset: Tenant[] = [
@@ -102,4 +102,13 @@ export const deleteTenant = async ({
   }
 
   return Promise.resolve(tenant);
+};
+
+export const createTenant = async function ({
+  resourceName,
+  targetSpec,
+}: CreateTenantsPayload): Promise<Tenant> {
+  console.info(`[MOCK-ADAPTER][createTenant] mock creation of tenant for ${resourceName}`);
+  console.info(`[MOCK-ADAPTER][createTenant] targetSpec -> `, targetSpec);
+  return Promise.resolve(tenantsDataset[0]!);
 };
