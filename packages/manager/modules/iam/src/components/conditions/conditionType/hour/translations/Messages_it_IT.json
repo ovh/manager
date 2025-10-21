@@ -1,0 +1,5 @@
+{
+  "iam_create_condition_hour_label": "Ora",
+  "iam_create_condition_hour_helper": "Separa ogni ora con una virgola (8,10,11)",
+  "iam_create_condition_hour_placeholder": "Inserisci un'ora"
+}
