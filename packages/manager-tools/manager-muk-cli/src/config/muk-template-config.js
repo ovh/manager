@@ -118,7 +118,7 @@ import { render } from '@testing-library/react';
 import { ${componentName} } from '../${componentName}.component';
 
 describe('${componentName}', () => {
-  it('renders without crashing', () => {
+  it('renders the component with default props', () => {
     const { container } = render(<${componentName} />);
     expect(container).toBeTruthy();
   });
