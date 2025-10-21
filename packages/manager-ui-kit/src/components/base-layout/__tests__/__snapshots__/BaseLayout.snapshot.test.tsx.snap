@@ -51,7 +51,7 @@ exports[`BaseLayout component - Snapshot tests > renders the complete Base Layou
             aria-expanded="false"
             aria-haspopup="dialog"
             aria-label="Guides"
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--sm_1sbbz_34 _button--ghost_1sbbz_150 _popover-trigger_a014q_2"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _popover-trigger_a014q_2"
             data-ods="popover-trigger"
             data-part="trigger"
             data-scope="popover"
@@ -119,7 +119,7 @@ exports[`BaseLayout component - Snapshot tests > renders the complete Base Layou
         >
           <div
             aria-orientation="horizontal"
-            class="_tab-list_1vjsr_2"
+            class="_tab-list_wv0v9_2"
             data-ods="tab-list"
             data-orientation="horizontal"
             data-part="list"
@@ -129,16 +129,16 @@ exports[`BaseLayout component - Snapshot tests > renders the complete Base Layou
             role="tablist"
           >
             <div
-              class="_tab-list__container_1vjsr_40"
+              class="_tab-list__container_wv0v9_40"
               tabindex="-1"
             >
               <div
-                class="_tab-list__container__tabs_1vjsr_51"
+                class="_tab-list__container__tabs_wv0v9_60"
               >
                 <button
                   aria-controls="tabs::r3::content-tab1"
                   aria-selected="true"
-                  class="_tab_1h8j5_2"
+                  class="_tab_bhw12_2"
                   data-focus=""
                   data-ods="tab"
                   data-orientation="horizontal"
@@ -158,7 +158,7 @@ exports[`BaseLayout component - Snapshot tests > renders the complete Base Layou
                 </button>
                 <button
                   aria-selected="false"
-                  class="_tab_1h8j5_2"
+                  class="_tab_bhw12_2"
                   data-ods="tab"
                   data-orientation="horizontal"
                   data-ownedby="tabs::r3::list"

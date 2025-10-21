@@ -37,7 +37,7 @@ exports[`Modal Snapshot Tests > displays disabled primary and secondary buttons 
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -85,7 +85,7 @@ exports[`Modal Snapshot Tests > displays disabled primary and secondary buttons 
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
             data-ods="button"
             data-testid="secondary-button"
             disabled=""
@@ -94,7 +94,7 @@ exports[`Modal Snapshot Tests > displays disabled primary and secondary buttons 
             Cancel
           </button>
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
             data-ods="button"
             data-testid="primary-button"
             disabled=""
@@ -146,7 +146,7 @@ exports[`Modal Snapshot Tests > displays loading Modal 1`] = `
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -257,7 +257,7 @@ exports[`Modal Snapshot Tests > displays loading primary and secondary buttons 1
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -305,13 +305,13 @@ exports[`Modal Snapshot Tests > displays loading primary and secondary buttons 1
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
             data-ods="button"
             data-testid="secondary-button"
             type="button"
           >
             <span
-              class="_button__spinner_1sbbz_372"
+              class="_button__spinner_1koyw_373"
             >
               <span
                 class="_spinner_o7c7y_10 _spinner--neutral_o7c7y_26 _spinner--sm_o7c7y_17"
@@ -355,13 +355,13 @@ exports[`Modal Snapshot Tests > displays loading primary and secondary buttons 1
             Cancel
           </button>
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
             data-ods="button"
             data-testid="primary-button"
             type="button"
           >
             <span
-              class="_button__spinner_1sbbz_372"
+              class="_button__spinner_1koyw_373"
             >
               <span
                 class="_spinner_o7c7y_10 _spinner--neutral_o7c7y_26 _spinner--sm_o7c7y_17"
@@ -448,7 +448,7 @@ exports[`Modal Snapshot Tests > displays the basic modal 1`] = `
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -538,7 +538,7 @@ exports[`Modal Snapshot Tests > displays the modal with actions 1`] = `
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -586,7 +586,7 @@ exports[`Modal Snapshot Tests > displays the modal with actions 1`] = `
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
             data-ods="button"
             data-testid="secondary-button"
             type="button"
@@ -594,7 +594,7 @@ exports[`Modal Snapshot Tests > displays the modal with actions 1`] = `
             Cancel
           </button>
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
             data-ods="button"
             data-testid="primary-button"
             type="button"
@@ -645,7 +645,7 @@ exports[`Modal Snapshot Tests > displays the modal with critical type 1`] = `
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -693,7 +693,7 @@ exports[`Modal Snapshot Tests > displays the modal with critical type 1`] = `
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_1sbbz_2 _button--critical_1sbbz_48 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            class="_button_1koyw_2 _button--critical_1koyw_49 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
             data-ods="button"
             data-testid="secondary-button"
             type="button"
@@ -701,7 +701,7 @@ exports[`Modal Snapshot Tests > displays the modal with critical type 1`] = `
             Cancel
           </button>
           <button
-            class="_button_1sbbz_2 _button--critical_1sbbz_48 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            class="_button_1koyw_2 _button--critical_1koyw_49 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
             data-ods="button"
             data-testid="primary-button"
             type="button"

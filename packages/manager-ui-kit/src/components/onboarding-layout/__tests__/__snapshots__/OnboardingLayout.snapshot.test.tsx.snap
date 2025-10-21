@@ -59,7 +59,7 @@ exports[`OnboardingLayout Snapshot Tests > Basic OnboardingLayout States > shoul
         class="flex flex-col gap-3 sm:gap-4 w-full sm:w-fit sm:flex-row sm:items-center sm:justify-center"
       >
         <button
-          class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 [&::part(button)]:w-full sm:w-auto"
+          class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 [&::part(button)]:w-full sm:w-auto"
           data-ods="button"
           data-testid="manager-button"
           type="button"
@@ -67,7 +67,7 @@ exports[`OnboardingLayout Snapshot Tests > Basic OnboardingLayout States > shoul
           Get Started
         </button>
         <button
-          class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--outline_1sbbz_258 [&::part(button)]:w-full sm:w-auto"
+          class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--outline_1koyw_259 [&::part(button)]:w-full sm:w-auto"
           data-ods="button"
           data-testid="manager-button"
           type="button"
@@ -153,7 +153,7 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
         class="flex flex-col gap-3 sm:gap-4 w-full sm:w-fit sm:flex-row sm:items-center sm:justify-center"
       >
         <button
-          class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 [&::part(button)]:w-full sm:w-auto"
+          class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 [&::part(button)]:w-full sm:w-auto"
           data-ods="button"
           data-testid="manager-button"
           disabled=""
@@ -162,7 +162,7 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
           Get Started
         </button>
         <button
-          class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--outline_1sbbz_258 [&::part(button)]:w-full sm:w-auto"
+          class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--outline_1koyw_259 [&::part(button)]:w-full sm:w-auto"
           data-ods="button"
           data-testid="manager-button"
           disabled=""
@@ -761,7 +761,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
         class="flex flex-col gap-3 sm:gap-4 w-full sm:w-fit sm:flex-row sm:items-center sm:justify-center"
       >
         <button
-          class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 [&::part(button)]:w-full sm:w-auto"
+          class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 [&::part(button)]:w-full sm:w-auto"
           data-ods="button"
           data-testid="manager-button"
           type="button"
@@ -769,7 +769,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
           Get Started
         </button>
         <button
-          class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--outline_1sbbz_258 [&::part(button)]:w-full sm:w-auto"
+          class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--outline_1koyw_259 [&::part(button)]:w-full sm:w-auto"
           data-ods="button"
           data-testid="manager-button"
           type="button"

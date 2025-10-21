@@ -9,7 +9,7 @@ exports[`Order Snapshot Tests > should render Order with Configuration component
     class="flex flex-row gap-4"
   >
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
       data-ods="button"
       data-testid="cta-order-configuration-cancel"
       type="button"
@@ -17,7 +17,7 @@ exports[`Order Snapshot Tests > should render Order with Configuration component
       Annuler
     </button>
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49"
       data-ods="button"
       data-testid="cta-order-configuration-order"
       type="button"
@@ -42,7 +42,7 @@ exports[`Order Snapshot Tests > should render Order with Configuration in invali
     class="flex flex-row gap-4"
   >
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
       data-ods="button"
       data-testid="cta-order-configuration-cancel"
       type="button"
@@ -50,7 +50,7 @@ exports[`Order Snapshot Tests > should render Order with Configuration in invali
       Annuler
     </button>
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49"
       data-ods="button"
       data-testid="cta-order-configuration-order"
       disabled=""
@@ -80,7 +80,7 @@ exports[`Order Snapshot Tests > should render Order with both Configuration and 
     class="flex flex-row gap-4"
   >
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
       data-ods="button"
       data-testid="cta-order-configuration-cancel"
       type="button"
@@ -88,7 +88,7 @@ exports[`Order Snapshot Tests > should render Order with both Configuration and 
       Annuler
     </button>
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49"
       data-ods="button"
       data-testid="cta-order-configuration-order"
       disabled=""
@@ -129,7 +129,7 @@ exports[`Order Snapshot Tests > should render Order with complex nested content 
     class="flex flex-row gap-4"
   >
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151"
       data-ods="button"
       data-testid="cta-order-configuration-cancel"
       type="button"
@@ -137,7 +137,7 @@ exports[`Order Snapshot Tests > should render Order with complex nested content 
       Annuler
     </button>
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49"
       data-ods="button"
       data-testid="cta-order-configuration-order"
       type="button"

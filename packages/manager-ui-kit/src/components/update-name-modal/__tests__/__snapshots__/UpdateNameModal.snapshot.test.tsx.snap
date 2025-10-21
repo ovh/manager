@@ -37,7 +37,7 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render bas
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -80,14 +80,14 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render bas
                 Display Name
               </label>
               <div
-                class="_input_1cnfv_2"
+                class="_input_ff5b7_2"
                 data-invalid="true"
               >
                 <input
                   aria-busy="false"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1cnfv_35"
+                  class="_input__field_ff5b7_41"
                   data-invalid="true"
                   data-ods="input"
                   data-testid="update-name-modal-input"
@@ -103,7 +103,7 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render bas
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
             data-ods="button"
             data-testid="secondary-button"
             type="button"
@@ -111,7 +111,7 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render bas
             Annuler
           </button>
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
             data-ods="button"
             data-testid="primary-button"
             type="button"
@@ -167,7 +167,7 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render mod
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -210,14 +210,14 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render mod
                 Display Name
               </label>
               <div
-                class="_input_1cnfv_2"
+                class="_input_ff5b7_2"
                 data-invalid="true"
               >
                 <input
                   aria-busy="false"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1cnfv_35"
+                  class="_input__field_ff5b7_41"
                   data-invalid="true"
                   data-ods="input"
                   data-testid="update-name-modal-input"
@@ -233,7 +233,7 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render mod
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
             data-ods="button"
             data-testid="secondary-button"
             type="button"
@@ -241,7 +241,7 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render mod
             Annuler
           </button>
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
             data-ods="button"
             data-testid="primary-button"
             type="button"
@@ -292,7 +292,7 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render mod
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -341,7 +341,7 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render mod
                 Display Name
               </label>
               <div
-                class="_input_1cnfv_2"
+                class="_input_ff5b7_2"
                 data-invalid="true"
               >
                 <input
@@ -349,7 +349,7 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render mod
                   aria-describedby="update-name-modal-pattern-message"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1cnfv_35"
+                  class="_input__field_ff5b7_41"
                   data-invalid="true"
                   data-ods="input"
                   data-testid="update-name-modal-input"
@@ -373,7 +373,7 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render mod
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
             data-ods="button"
             data-testid="secondary-button"
             type="button"
@@ -381,7 +381,7 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render mod
             Cancel
           </button>
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
             data-ods="button"
             data-testid="primary-button"
             type="button"
@@ -434,7 +434,7 @@ exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal 
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -483,7 +483,7 @@ exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal 
                 Display Name
               </label>
               <div
-                class="_input_1cnfv_2"
+                class="_input_ff5b7_2"
                 data-invalid="true"
               >
                 <input
@@ -491,7 +491,7 @@ exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal 
                   aria-describedby="update-name-modal-pattern-message"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1cnfv_35"
+                  class="_input__field_ff5b7_41"
                   data-invalid="true"
                   data-ods="input"
                   data-testid="update-name-modal-input"
@@ -515,7 +515,7 @@ exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal 
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
             data-ods="button"
             data-testid="secondary-button"
             type="button"
@@ -523,7 +523,7 @@ exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal 
             Cancel Changes
           </button>
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
             data-ods="button"
             data-testid="primary-button"
             type="button"
@@ -576,7 +576,7 @@ exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal 
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -622,7 +622,7 @@ exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal 
               </div>
               <button
                 aria-label="Close"
-                class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _message__close_1oosv_25"
+                class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _message__close_1oosv_25"
                 data-ods="button"
                 type="button"
               >
@@ -653,7 +653,7 @@ exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal 
                 Display Name
               </label>
               <div
-                class="_input_1cnfv_2"
+                class="_input_ff5b7_2"
                 data-disabled="true"
                 data-invalid="true"
               >
@@ -662,7 +662,7 @@ exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal 
                   aria-describedby="update-name-modal-pattern-message"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1cnfv_35"
+                  class="_input__field_ff5b7_41"
                   data-invalid="true"
                   data-ods="input"
                   data-testid="update-name-modal-input"
@@ -687,7 +687,7 @@ exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal 
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
             data-ods="button"
             data-testid="secondary-button"
             type="button"
@@ -695,7 +695,7 @@ exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal 
             Annuler
           </button>
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
             data-ods="button"
             data-testid="primary-button"
             type="button"
@@ -748,7 +748,7 @@ exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render m
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -791,14 +791,14 @@ exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render m
                 Display Name
               </label>
               <div
-                class="_input_1cnfv_2"
+                class="_input_ff5b7_2"
                 data-invalid="true"
               >
                 <input
                   aria-busy="false"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1cnfv_35"
+                  class="_input__field_ff5b7_41"
                   data-invalid="true"
                   data-ods="input"
                   data-testid="update-name-modal-input"
@@ -814,7 +814,7 @@ exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render m
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
             data-ods="button"
             data-testid="secondary-button"
             type="button"
@@ -822,7 +822,7 @@ exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render m
             Go Back
           </button>
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
             data-ods="button"
             data-testid="primary-button"
             type="button"
@@ -875,7 +875,7 @@ exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render m
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -918,14 +918,14 @@ exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render m
                 Display Name
               </label>
               <div
-                class="_input_1cnfv_2"
+                class="_input_ff5b7_2"
                 data-invalid="true"
               >
                 <input
                   aria-busy="false"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1cnfv_35"
+                  class="_input__field_ff5b7_41"
                   data-invalid="true"
                   data-ods="input"
                   data-testid="update-name-modal-input"
@@ -941,7 +941,7 @@ exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render m
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
             data-ods="button"
             data-testid="secondary-button"
             type="button"
@@ -949,7 +949,7 @@ exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render m
             Back
           </button>
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
             data-ods="button"
             data-testid="primary-button"
             type="button"
@@ -1002,7 +1002,7 @@ exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render m
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -1045,14 +1045,14 @@ exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render m
                 Display Name
               </label>
               <div
-                class="_input_1cnfv_2"
+                class="_input_ff5b7_2"
                 data-invalid="true"
               >
                 <input
                   aria-busy="false"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1cnfv_35"
+                  class="_input__field_ff5b7_41"
                   data-invalid="true"
                   data-ods="input"
                   data-testid="update-name-modal-input"
@@ -1068,7 +1068,7 @@ exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render m
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
             data-ods="button"
             data-testid="secondary-button"
             type="button"
@@ -1076,7 +1076,7 @@ exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render m
             Annuler
           </button>
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
             data-ods="button"
             data-testid="primary-button"
             type="button"
@@ -1129,7 +1129,7 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -1172,12 +1172,12 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
                 Display Name
               </label>
               <div
-                class="_input_1cnfv_2"
+                class="_input_ff5b7_2"
               >
                 <input
                   aria-busy="false"
                   aria-label="update-input"
-                  class="_input__field_1cnfv_35"
+                  class="_input__field_ff5b7_41"
                   data-ods="input"
                   data-testid="update-name-modal-input"
                   id="update-name-modal-input"
@@ -1192,7 +1192,7 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
             data-ods="button"
             data-testid="secondary-button"
             type="button"
@@ -1200,7 +1200,7 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
             Annuler
           </button>
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
             data-ods="button"
             data-testid="primary-button"
             type="button"
@@ -1253,7 +1253,7 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -1299,7 +1299,7 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
               </div>
               <button
                 aria-label="Close"
-                class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _message__close_1oosv_25"
+                class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _message__close_1oosv_25"
                 data-ods="button"
                 type="button"
               >
@@ -1330,13 +1330,13 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
                 Display Name
               </label>
               <div
-                class="_input_1cnfv_2"
+                class="_input_ff5b7_2"
               >
                 <input
                   aria-busy="false"
                   aria-describedby="update-name-modal-pattern-message"
                   aria-label="update-input"
-                  class="_input__field_1cnfv_35"
+                  class="_input__field_ff5b7_41"
                   data-ods="input"
                   data-testid="update-name-modal-input"
                   id="update-name-modal-input"
@@ -1359,7 +1359,7 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
             data-ods="button"
             data-testid="secondary-button"
             type="button"
@@ -1367,7 +1367,7 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
             Annuler
           </button>
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
             data-ods="button"
             data-testid="primary-button"
             type="button"
@@ -1420,7 +1420,7 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -1463,14 +1463,14 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
                 Display Name
               </label>
               <div
-                class="_input_1cnfv_2"
+                class="_input_ff5b7_2"
                 data-invalid="true"
               >
                 <input
                   aria-busy="false"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1cnfv_35"
+                  class="_input__field_ff5b7_41"
                   data-invalid="true"
                   data-ods="input"
                   data-testid="update-name-modal-input"
@@ -1486,7 +1486,7 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
             data-ods="button"
             data-testid="secondary-button"
             type="button"
@@ -1494,7 +1494,7 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
             Annuler
           </button>
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
             data-ods="button"
             data-testid="primary-button"
             type="button"
@@ -1547,7 +1547,7 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -1593,7 +1593,7 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
               </div>
               <button
                 aria-label="Close"
-                class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _message__close_1oosv_25"
+                class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _message__close_1oosv_25"
                 data-ods="button"
                 type="button"
               >
@@ -1624,13 +1624,13 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
                 Name:
               </label>
               <div
-                class="_input_1cnfv_2"
+                class="_input_ff5b7_2"
               >
                 <input
                   aria-busy="false"
                   aria-describedby="update-name-modal-pattern-message"
                   aria-label="update-input"
-                  class="_input__field_1cnfv_35"
+                  class="_input__field_ff5b7_41"
                   data-ods="input"
                   data-testid="update-name-modal-input"
                   id="update-name-modal-input"
@@ -1653,7 +1653,7 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
             data-ods="button"
             data-testid="secondary-button"
             type="button"
@@ -1661,7 +1661,7 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
             Annuler
           </button>
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
             data-ods="button"
             data-testid="primary-button"
             type="button"
@@ -1714,7 +1714,7 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal witho
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -1757,14 +1757,14 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal witho
                 Display Name
               </label>
               <div
-                class="_input_1cnfv_2"
+                class="_input_ff5b7_2"
                 data-invalid="true"
               >
                 <input
                   aria-busy="false"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1cnfv_35"
+                  class="_input__field_ff5b7_41"
                   data-invalid="true"
                   data-ods="input"
                   data-testid="update-name-modal-input"
@@ -1780,7 +1780,7 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal witho
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
             data-ods="button"
             data-testid="secondary-button"
             type="button"
@@ -1788,7 +1788,7 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal witho
             Annuler
           </button>
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
             data-ods="button"
             data-testid="primary-button"
             type="button"
@@ -1841,7 +1841,7 @@ exports[`UpdateNameModal Snapshot Tests > Error States > should render modal wit
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -1887,7 +1887,7 @@ exports[`UpdateNameModal Snapshot Tests > Error States > should render modal wit
               </div>
               <button
                 aria-label="Close"
-                class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _message__close_1oosv_25"
+                class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _message__close_1oosv_25"
                 data-ods="button"
                 type="button"
               >
@@ -1918,14 +1918,14 @@ exports[`UpdateNameModal Snapshot Tests > Error States > should render modal wit
                 Display Name
               </label>
               <div
-                class="_input_1cnfv_2"
+                class="_input_ff5b7_2"
                 data-invalid="true"
               >
                 <input
                   aria-busy="false"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1cnfv_35"
+                  class="_input__field_ff5b7_41"
                   data-invalid="true"
                   data-ods="input"
                   data-testid="update-name-modal-input"
@@ -1941,7 +1941,7 @@ exports[`UpdateNameModal Snapshot Tests > Error States > should render modal wit
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
             data-ods="button"
             data-testid="secondary-button"
             type="button"
@@ -1949,7 +1949,7 @@ exports[`UpdateNameModal Snapshot Tests > Error States > should render modal wit
             Annuler
           </button>
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
             data-ods="button"
             data-testid="primary-button"
             type="button"
@@ -2002,7 +2002,7 @@ exports[`UpdateNameModal Snapshot Tests > Error States > should render modal wit
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -2048,7 +2048,7 @@ exports[`UpdateNameModal Snapshot Tests > Error States > should render modal wit
               </div>
               <button
                 aria-label="Close"
-                class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _message__close_1oosv_25"
+                class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _message__close_1oosv_25"
                 data-ods="button"
                 type="button"
               >
@@ -2073,14 +2073,14 @@ exports[`UpdateNameModal Snapshot Tests > Error States > should render modal wit
                 Display Name
               </label>
               <div
-                class="_input_1cnfv_2"
+                class="_input_ff5b7_2"
                 data-invalid="true"
               >
                 <input
                   aria-busy="false"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1cnfv_35"
+                  class="_input__field_ff5b7_41"
                   data-invalid="true"
                   data-ods="input"
                   data-testid="update-name-modal-input"
@@ -2096,7 +2096,7 @@ exports[`UpdateNameModal Snapshot Tests > Error States > should render modal wit
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
             data-ods="button"
             data-testid="secondary-button"
             type="button"
@@ -2104,7 +2104,7 @@ exports[`UpdateNameModal Snapshot Tests > Error States > should render modal wit
             Annuler
           </button>
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
             data-ods="button"
             data-testid="primary-button"
             type="button"
@@ -2157,7 +2157,7 @@ exports[`UpdateNameModal Snapshot Tests > Loading States > should render modal i
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -2200,7 +2200,7 @@ exports[`UpdateNameModal Snapshot Tests > Loading States > should render modal i
                 Display Name
               </label>
               <div
-                class="_input_1cnfv_2"
+                class="_input_ff5b7_2"
                 data-disabled="true"
                 data-invalid="true"
               >
@@ -2208,7 +2208,7 @@ exports[`UpdateNameModal Snapshot Tests > Loading States > should render modal i
                   aria-busy="false"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1cnfv_35"
+                  class="_input__field_ff5b7_41"
                   data-invalid="true"
                   data-ods="input"
                   data-testid="update-name-modal-input"
@@ -2225,7 +2225,7 @@ exports[`UpdateNameModal Snapshot Tests > Loading States > should render modal i
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
             data-ods="button"
             data-testid="secondary-button"
             type="button"
@@ -2233,7 +2233,7 @@ exports[`UpdateNameModal Snapshot Tests > Loading States > should render modal i
             Annuler
           </button>
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
             data-ods="button"
             data-testid="primary-button"
             type="button"
@@ -2286,7 +2286,7 @@ exports[`UpdateNameModal Snapshot Tests > Loading States > should render modal w
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -2329,13 +2329,13 @@ exports[`UpdateNameModal Snapshot Tests > Loading States > should render modal w
                 Display Name
               </label>
               <div
-                class="_input_1cnfv_2"
+                class="_input_ff5b7_2"
                 data-disabled="true"
               >
                 <input
                   aria-busy="false"
                   aria-label="update-input"
-                  class="_input__field_1cnfv_35"
+                  class="_input__field_ff5b7_41"
                   data-ods="input"
                   data-testid="update-name-modal-input"
                   disabled=""
@@ -2351,7 +2351,7 @@ exports[`UpdateNameModal Snapshot Tests > Loading States > should render modal w
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
             data-ods="button"
             data-testid="secondary-button"
             type="button"
@@ -2359,7 +2359,7 @@ exports[`UpdateNameModal Snapshot Tests > Loading States > should render modal w
             Annuler
           </button>
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
             data-ods="button"
             data-testid="primary-button"
             type="button"
@@ -2412,7 +2412,7 @@ exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should ren
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -2455,7 +2455,7 @@ exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should ren
                 Display Name
               </label>
               <div
-                class="_input_1cnfv_2"
+                class="_input_ff5b7_2"
                 data-invalid="true"
               >
                 <input
@@ -2463,7 +2463,7 @@ exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should ren
                   aria-describedby="update-name-modal-pattern-message"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1cnfv_35"
+                  class="_input__field_ff5b7_41"
                   data-invalid="true"
                   data-ods="input"
                   data-testid="update-name-modal-input"
@@ -2487,7 +2487,7 @@ exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should ren
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
             data-ods="button"
             data-testid="secondary-button"
             type="button"
@@ -2495,7 +2495,7 @@ exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should ren
             Annuler
           </button>
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
             data-ods="button"
             data-testid="primary-button"
             type="button"
@@ -2548,7 +2548,7 @@ exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should ren
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -2591,7 +2591,7 @@ exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should ren
                 Display Name
               </label>
               <div
-                class="_input_1cnfv_2"
+                class="_input_ff5b7_2"
                 data-invalid="true"
               >
                 <input
@@ -2599,7 +2599,7 @@ exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should ren
                   aria-describedby="update-name-modal-pattern-message"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1cnfv_35"
+                  class="_input__field_ff5b7_41"
                   data-invalid="true"
                   data-ods="input"
                   data-testid="update-name-modal-input"
@@ -2623,7 +2623,7 @@ exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should ren
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
             data-ods="button"
             data-testid="secondary-button"
             type="button"
@@ -2631,7 +2631,7 @@ exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should ren
             Annuler
           </button>
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
             data-ods="button"
             data-testid="primary-button"
             type="button"
@@ -2684,7 +2684,7 @@ exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should ren
       >
         <button
           aria-label="Close"
-          class="_button_1sbbz_2 _button--neutral_1sbbz_82 _button--xs_1sbbz_25 _button--ghost_1sbbz_150 _modal-header__close_1qhu0_26"
+          class="_button_1koyw_2 _button--neutral_1koyw_83 _button--xs_1koyw_25 _button--ghost_1koyw_151 _modal-header__close_1qhu0_26"
           data-ods="button"
           data-part="close-trigger"
           data-scope="dialog"
@@ -2727,7 +2727,7 @@ exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should ren
                 Display Name
               </label>
               <div
-                class="_input_1cnfv_2"
+                class="_input_ff5b7_2"
                 data-invalid="true"
               >
                 <input
@@ -2735,7 +2735,7 @@ exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should ren
                   aria-describedby="update-name-modal-pattern-message"
                   aria-invalid="true"
                   aria-label="update-input"
-                  class="_input__field_1cnfv_35"
+                  class="_input__field_ff5b7_41"
                   data-invalid="true"
                   data-ods="input"
                   data-testid="update-name-modal-input"
@@ -2759,7 +2759,7 @@ exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should ren
           class="flex justify-end flex-wrap gap-4"
         >
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 mt-4"
             data-ods="button"
             data-testid="secondary-button"
             type="button"
@@ -2767,7 +2767,7 @@ exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should ren
             Annuler
           </button>
           <button
-            class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 mt-4"
+            class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 mt-4"
             data-ods="button"
             data-testid="primary-button"
             type="button"

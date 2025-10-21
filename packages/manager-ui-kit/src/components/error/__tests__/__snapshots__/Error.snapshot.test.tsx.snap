@@ -57,7 +57,7 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with 401 unauthorize
     class="overflow-hidden mt-5 py-2"
   >
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 error-template-actions w-full"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 error-template-actions w-full"
       data-ods="button"
       data-testid="error-template-action-home"
       type="button"
@@ -65,7 +65,7 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with 401 unauthorize
       Retour à la page d'accueil
     </button>
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 error-template-actions w-full"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 error-template-actions w-full"
       data-ods="button"
       data-testid="error-template-action-reload"
       type="button"
@@ -133,7 +133,7 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with 500 server erro
     class="overflow-hidden mt-5 py-2"
   >
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 error-template-actions w-full"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 error-template-actions w-full"
       data-ods="button"
       data-testid="error-template-action-home"
       type="button"
@@ -141,7 +141,7 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with 500 server erro
       Retour à la page d'accueil
     </button>
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 error-template-actions w-full"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 error-template-actions w-full"
       data-ods="button"
       data-testid="error-template-action-reload"
       type="button"
@@ -210,7 +210,7 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with all props 1`] =
     class="overflow-hidden mt-5 py-2"
   >
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 error-template-actions w-full"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 error-template-actions w-full"
       data-ods="button"
       data-testid="error-template-action-home"
       type="button"
@@ -218,7 +218,7 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with all props 1`] =
       Retour à la page d'accueil
     </button>
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 error-template-actions w-full"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 error-template-actions w-full"
       data-ods="button"
       data-testid="error-template-action-reload"
       type="button"
@@ -286,7 +286,7 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with complex error m
     class="overflow-hidden mt-5 py-2"
   >
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 error-template-actions w-full"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 error-template-actions w-full"
       data-ods="button"
       data-testid="error-template-action-home"
       type="button"
@@ -294,7 +294,7 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with complex error m
       Retour à la page d'accueil
     </button>
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 error-template-actions w-full"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 error-template-actions w-full"
       data-ods="button"
       data-testid="error-template-action-reload"
       type="button"
@@ -331,7 +331,7 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with custom classNam
     class="overflow-hidden mt-5 py-2"
   >
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 error-template-actions w-full"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 error-template-actions w-full"
       data-ods="button"
       data-testid="error-template-action-home"
       type="button"
@@ -339,7 +339,7 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with custom classNam
       Retour à la page d'accueil
     </button>
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 error-template-actions w-full"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 error-template-actions w-full"
       data-ods="button"
       data-testid="error-template-action-reload"
       type="button"
@@ -376,7 +376,7 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with custom label tr
     class="overflow-hidden mt-5 py-2"
   >
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 error-template-actions w-full"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 error-template-actions w-full"
       data-ods="button"
       data-testid="error-template-action-home"
       type="button"
@@ -384,7 +384,7 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with custom label tr
       Retour à la page d'accueil
     </button>
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 error-template-actions w-full"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 error-template-actions w-full"
       data-ods="button"
       data-testid="error-template-action-reload"
       type="button"
@@ -421,7 +421,7 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with default 404 err
     class="overflow-hidden mt-5 py-2"
   >
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 error-template-actions w-full"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 error-template-actions w-full"
       data-ods="button"
       data-testid="error-template-action-home"
       type="button"
@@ -429,7 +429,7 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with default 404 err
       Retour à la page d'accueil
     </button>
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 error-template-actions w-full"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 error-template-actions w-full"
       data-ods="button"
       data-testid="error-template-action-reload"
       type="button"
@@ -490,7 +490,7 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with error without d
     class="overflow-hidden mt-5 py-2"
   >
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 error-template-actions w-full"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 error-template-actions w-full"
       data-ods="button"
       data-testid="error-template-action-home"
       type="button"
@@ -498,7 +498,7 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with error without d
       Retour à la page d'accueil
     </button>
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 error-template-actions w-full"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 error-template-actions w-full"
       data-ods="button"
       data-testid="error-template-action-reload"
       type="button"
@@ -535,7 +535,7 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with error without q
     class="overflow-hidden mt-5 py-2"
   >
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 error-template-actions w-full"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 error-template-actions w-full"
       data-ods="button"
       data-testid="error-template-action-home"
       type="button"
@@ -543,7 +543,7 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with error without q
       Retour à la page d'accueil
     </button>
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 error-template-actions w-full"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 error-template-actions w-full"
       data-ods="button"
       data-testid="error-template-action-reload"
       type="button"
@@ -580,7 +580,7 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with minimal error o
     class="overflow-hidden mt-5 py-2"
   >
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 error-template-actions w-full"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 error-template-actions w-full"
       data-ods="button"
       data-testid="error-template-action-home"
       type="button"
@@ -588,7 +588,7 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with minimal error o
       Retour à la page d'accueil
     </button>
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 error-template-actions w-full"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 error-template-actions w-full"
       data-ods="button"
       data-testid="error-template-action-reload"
       type="button"
@@ -626,7 +626,7 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with null error 1`] 
     class="overflow-hidden mt-5 py-2"
   >
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--ghost_1sbbz_150 error-template-actions w-full"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--ghost_1koyw_151 error-template-actions w-full"
       data-ods="button"
       data-testid="error-template-action-home"
       type="button"
@@ -634,7 +634,7 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with null error 1`] 
       Retour à la page d'accueil
     </button>
     <button
-      class="_button_1sbbz_2 _button--primary_1sbbz_99 _button--md_1sbbz_41 _button--default_1sbbz_48 error-template-actions w-full"
+      class="_button_1koyw_2 _button--primary_1koyw_100 _button--md_1koyw_42 _button--default_1koyw_49 error-template-actions w-full"
       data-ods="button"
       data-testid="error-template-action-reload"
       type="button"
