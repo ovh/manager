@@ -56,10 +56,10 @@ import {
 } from '@/tracking.constants';
 import { AutoReplySchema, autoReplySchema } from '@/utils';
 
-export enum AutoReplyDurations {
-  TEMPORARY = 'temporary',
-  PERMANENT = 'permanent',
-}
+export const AutoReplyDurations = {
+  TEMPORARY: 'temporary',
+  PERMANENT: 'permanent',
+};
 
 const durationChoices = [
   {
