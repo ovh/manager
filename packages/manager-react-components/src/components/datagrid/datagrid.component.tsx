@@ -209,8 +209,8 @@ export const Datagrid = <T,>({
   tableLayoutFixed,
   resourceType,
   rowSelection,
-  size,
-  variant,
+  size = ODS_TABLE_SIZE.md,
+  variant = ODS_TABLE_VARIANT.default,
   getRowId,
 }: DatagridProps<T>) => {
   const { t } = useTranslation('datagrid');
