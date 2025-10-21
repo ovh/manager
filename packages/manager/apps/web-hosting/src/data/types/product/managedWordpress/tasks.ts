@@ -1,16 +1,18 @@
 import { Status } from '../ssl';
 
 export type PostImportTaskPayload = {
-  'import.cmsSpecific.wordpress.selection': {
-    plugins: { name: string; version: string; enabled: boolean }[];
-    themes: { name: string; version: string; active: boolean }[];
-    wholeDatabase: boolean;
-    media: boolean;
-    posts: boolean;
-    pages: boolean;
-    comments: boolean;
-    tags: boolean;
-    users: boolean;
+  inputs: {
+    'import.cmsSpecific.wordpress.selection': {
+      plugins: { name: string; version: string; enabled: boolean }[];
+      themes: { name: string; version: string; active: boolean }[];
+      wholeDatabase: boolean;
+      media: boolean;
+      posts: boolean;
+      pages: boolean;
+      comments: boolean;
+      tags: boolean;
+      users: boolean;
+    };
   };
 };
 

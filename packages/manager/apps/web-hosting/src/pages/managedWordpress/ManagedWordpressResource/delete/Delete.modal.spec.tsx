@@ -1,4 +1,4 @@
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 import { describe, expect, it, vi } from 'vitest';
 
@@ -10,12 +10,13 @@ import DeleteModal from './Delete.modal';
 describe('Deletemodal Component', () => {
   it('deletion for a website', async () => {
     vi.mocked(useParams).mockReturnValue({ serviceName: 'test-service' });
-    vi.mocked(useSearchParams).mockReturnValue([
-      new URLSearchParams({
-        websiteIds: 'testID',
-      }),
-      vi.fn(),
-    ]);
+    vi.mocked(useLocation).mockReturnValue({
+      state: { websiteIds: ['testID'] },
+      pathname: '/delete',
+      search: '',
+      hash: '',
+      key: '',
+    });
 
     const { getByTestId } = render(<DeleteModal />);
     const deleteButton = getByTestId('primary-button');
@@ -25,7 +26,7 @@ describe('Deletemodal Component', () => {
     });
 
     await waitFor(() => {
-      expect(deleteManagedCmsResourceWebsite).toHaveBeenCalled();
+      expect(deleteManagedCmsResourceWebsite).toHaveBeenCalledWith('test-service', 'testID');
     });
   });
 });

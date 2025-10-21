@@ -19,7 +19,9 @@ import { LinkType, Links, ManagerButton, useNotifications } from '@ovh-ux/manage
 
 import { postManagedCmsResourceWebsite } from '@/data/api/managedWordpress';
 import { useManagedWordpressReferenceAvailableLanguages } from '@/data/hooks/managedWordpress/managedWordpressReferenceAvailableLanguages/useManagedWordpressReferenceAvailableLanguages';
-import { ManagedWordpressCmsType } from '@/data/types/product/managedWordpress/cms';
+import { useManagedCmsLatestPhpVersion } from '@/data/hooks/managedWordpress/managedWordpressReferenceSupportedPHPVersions/managedWordpressReferenceSupportedPHPVersions';
+import { useManagedWordpressResourceDetails } from '@/data/hooks/managedWordpress/managedWordpressResourceDetails/useManagedWordpressResourceDetails';
+import { CmsType } from '@/data/types/product/managedWordpress/cms';
 import { useGenerateUrl } from '@/hooks';
 import { zForm } from '@/utils';
 
@@ -39,6 +41,8 @@ export default function CreatePage() {
   const { data } = useManagedWordpressReferenceAvailableLanguages() as {
     data: LanguageOption[] | undefined;
   };
+  const { refetch } = useManagedWordpressResourceDetails(serviceName);
+  const { data: phpVersion } = useManagedCmsLatestPhpVersion();
   const { addError, addSuccess } = useNotifications();
 
   const {
@@ -50,10 +54,11 @@ export default function CreatePage() {
       adminLogin: '',
       adminPassword: '',
       cmsSpecific: {
-        wordPress: {
+        wordpress: {
           language: '',
         },
       },
+      phpVersion: '',
     },
     mode: 'onTouched',
     resolver: zodResolver(zForm(t).CREATE_SITE_FORM_SCHEMA),
@@ -64,21 +69,28 @@ export default function CreatePage() {
       adminLogin,
       adminPassword,
       cmsSpecific: {
-        wordPress: { language },
+        wordpress: { language },
       },
+      phpVersion,
     }: {
       adminLogin: string;
       adminPassword: string;
       cmsSpecific: {
-        wordPress: { language: string };
+        wordpress: { language: string };
       };
+      phpVersion: string;
     }) => {
       return postManagedCmsResourceWebsite(serviceName, {
-        adminLogin,
-        adminPassword,
-        cms: ManagedWordpressCmsType.WORDPRESS,
-        cmsSpecific: {
-          wordPress: { language },
+        targetSpec: {
+          creation: {
+            adminLogin,
+            adminPassword,
+            cms: CmsType.WORDPRESS,
+            cmsSpecific: {
+              wordpress: { language },
+            },
+            phpVersion,
+          },
         },
       });
     },
@@ -99,6 +111,7 @@ export default function CreatePage() {
       );
     },
     onSettled: () => {
+      void refetch();
       onClose();
     },
   });
@@ -107,24 +120,29 @@ export default function CreatePage() {
     adminLogin: string;
     adminPassword: string;
     cmsSpecific: {
-      wordPress: { language: string };
+      wordpress: { language: string };
     };
+    phpVersion: string;
   }> = ({
     adminLogin,
     adminPassword,
     cmsSpecific: {
-      wordPress: { language },
+      wordpress: { language },
     },
+    phpVersion,
   }) => {
     createWebsite({
       adminLogin,
       adminPassword,
       cmsSpecific: {
-        wordPress: { language },
+        wordpress: { language },
       },
+      phpVersion,
     });
   };
-
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    void handleSubmit(onCreateSubmit)(e);
+  };
   return (
     <div className="flex flex-col items-start w-full md:w-1/2 gap-4 mt-4">
       <OdsText preset={ODS_TEXT_PRESET.heading1} className="mb-4">
@@ -137,12 +155,12 @@ export default function CreatePage() {
         className="mb-4"
       />
       <OdsText preset={ODS_TEXT_PRESET.span}>{t(`${NAMESPACES.FORM}:mandatory_fields`)}</OdsText>
-      <form onSubmit={() => handleSubmit(onCreateSubmit)}>
+      <form onSubmit={onSubmit}>
         <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
           {t('managedWordpress:web_hosting_managed_wordpress_create_webiste_create_login')}
         </OdsText>
         <Controller
-          name="cmsSpecific.wordPress.language"
+          name="cmsSpecific.wordpress.language"
           control={control}
           render={({ field }) => (
             <OdsFormField className="w-full mb-4">
@@ -167,7 +185,32 @@ export default function CreatePage() {
             </OdsFormField>
           )}
         />
-
+        <Controller
+          name="phpVersion"
+          control={control}
+          render={({ field }) => (
+            <OdsFormField className="w-full mb-4">
+              <label slot="label">
+                {t('managedWordpress:web_hosting_managed_wordpress_create_webiste_php_version')}*
+              </label>
+              <OdsSelect
+                name={field.name}
+                data-testid="input-phpVersion"
+                value={field.value}
+                placeholder={t(
+                  'managedWordpress:web_hosting_managed_wordpress_create_webiste_select_version',
+                )}
+                onOdsChange={(e) => field.onChange(e.target?.value)}
+              >
+                {phpVersion?.map((version) => (
+                  <option key={version} value={version}>
+                    {version}
+                  </option>
+                ))}
+              </OdsSelect>
+            </OdsFormField>
+          )}
+        />
         <Controller
           name="adminLogin"
           control={control}

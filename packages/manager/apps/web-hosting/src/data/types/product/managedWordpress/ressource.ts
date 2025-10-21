@@ -37,7 +37,7 @@ export type ManagedWordpressResourceType = {
       };
     };
     dashboards: {
-      wordPress: string;
+      wordpress: string;
     };
     createdAt: string;
   };
@@ -64,7 +64,7 @@ export type ManagedWordpressResourceDetailsType = {
     plan: string;
     createdAt: string;
     dashboards: {
-      wordPress?: string;
+      wordpress?: string;
     };
     quotas: {
       disk: {
