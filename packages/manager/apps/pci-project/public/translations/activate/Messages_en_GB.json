@@ -16,5 +16,8 @@
   "pci_projects_project_activate_message_fail": "An error occurred while activating your project: {{ message }}.",
   "pci_projects_project_activate_credit_payment_title": "Credit required",
   "pci_projects_project_activate_credit_payment_description": "To activate your project, you need to add {{ amount }} in credit to your account.",
-  "pci_projects_project_activate_credit_payment_info": "You will be redirected to the payment page to complete this transaction."
+  "pci_projects_project_activate_credit_payment_info": "You will be redirected to the payment page to complete this transaction.",
+
+  "pci_projects_project_activateDiscovery_heading": "Activate a project",
+  "pci_projects_project_activateDiscovery_info": "Before you create a new project, you must activate this project. Not ready yet? You can continue exploring the Public Cloud universe in Discovery mode."
 }
