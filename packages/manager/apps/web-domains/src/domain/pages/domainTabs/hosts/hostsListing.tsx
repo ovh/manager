@@ -19,11 +19,12 @@ import { useEffect, useState } from 'react';
 import { useHostsDatagridColumns } from '@/domain/hooks/domainTabs/useHostsDatagridColumns';
 import { useGetDomainResource } from '@/domain/hooks/data/query';
 import { StatusEnum } from '@/domain/enum/Status.enum';
-import { DrawerActionEnum } from '@/domain/enum/hostConfiguration.enum';
 import HostDrawer from '@/domain/components/Host/HostDrawer';
 import Loading from '@/domain/components/Loading/Loading';
 import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleInformation';
 import { THost } from '@/domain/types/host';
+import { DrawerInformation } from '@/common/types/common.types';
+import { DrawerActionEnum } from '@/common/enum/common.enum';
 
 export default function HostsListingTab() {
   const { t } = useTranslation([
@@ -36,10 +37,7 @@ export default function HostsListingTab() {
   const [isLoading, setIsLoading] = useState(true);
   const { serviceName } = useParams<{ serviceName: string }>();
 
-  const [drawer, setDrawer] = useState<{
-    isOpen: boolean;
-    action: DrawerActionEnum;
-  }>({
+  const [drawer, setDrawer] = useState<DrawerInformation>({
     isOpen: false,
     action: null,
   });

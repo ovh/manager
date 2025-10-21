@@ -20,7 +20,7 @@ export const useDomainDsRecordsDatagridColumns = () => {
       id: 'flag',
       cell: (props: TDsDataInterface) => (
         <DataGridTextCell>
-          {props.keyType} - Key Signing Key (KSK)
+          {props.flags} - Key Signing Key (KSK)
         </DataGridTextCell>
       ),
       label: t('domain_dsrecords_table_header_flag'),

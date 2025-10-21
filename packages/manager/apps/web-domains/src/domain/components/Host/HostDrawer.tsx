@@ -3,7 +3,6 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Drawer, useNotifications } from '@ovh-ux/manager-react-components';
 import { Text } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
-import { DrawerActionEnum } from '@/domain/enum/hostConfiguration.enum';
 import HostForm from './HostForm';
 import {
   getIpsSupported,
@@ -13,12 +12,12 @@ import { useUpdateDomainResource } from '@/domain/hooks/data/query';
 import { TDomainResource } from '@/domain/types/domainResource';
 import { FormProvider, useForm } from 'react-hook-form';
 import { THost } from '@/domain/types/host';
+import { DrawerInformation } from '@/common/types/common.types';
+import { DrawerActionEnum } from '@/common/enum/common.enum';
 
 interface HostDrawerProps {
-  readonly drawer: { isOpen: boolean; action: DrawerActionEnum };
-  readonly setDrawer: Dispatch<
-    SetStateAction<{ isOpen: boolean; action: DrawerActionEnum }>
-  >;
+  readonly drawer: DrawerInformation;
+  readonly setDrawer: Dispatch<SetStateAction<DrawerInformation>>;
   readonly hostData: THost;
   readonly ipv4Supported: boolean;
   readonly ipv6Supported: boolean;
@@ -40,7 +39,12 @@ export default function HostDrawer({
   setDrawer,
 }: HostDrawerProps) {
   const { t } = useTranslation('domain');
-  const { hostsConfiguration, dnsConfiguration } = targetSpec;
+  const {
+    hostsConfiguration,
+    dnsConfiguration,
+    protectionState,
+    dnssecConfiguration,
+  } = targetSpec;
   const { addError, addSuccess, clearNotifications } = useNotifications();
   const isAddAction = drawer.action === DrawerActionEnum.Add;
   const { updateDomain, isUpdateDomainPending } = useUpdateDomainResource(
@@ -97,7 +101,8 @@ export default function HostDrawer({
           {
             checksum,
             nameServers: dnsConfiguration.nameServers,
-            protectionState: targetSpec.protectionState,
+            protectionState,
+            dsData: dnssecConfiguration.dsData,
             hosts: [
               ...hostsConfiguration.hosts,
               {

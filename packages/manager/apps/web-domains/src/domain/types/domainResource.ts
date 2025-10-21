@@ -12,9 +12,9 @@ import { SuspensionStateEnum } from '@/domain/enum/suspensionState.enum';
 import { TaskStatusEnum } from '@/domain/enum/taskStatus.enum';
 import { OptionStateEnum } from '../enum/optionState.enum';
 import { OptionEnum } from '../../common/enum/option.enum';
-import { AssociatedEmailsServicesEnum } from '../enum/associatedServices.enum';
-import { THost, THostsconfiguration } from './host';
-import { TDnssecConfiguration } from './dnssecConfiguration';
+import { AssociatedEmailsServicesEnum } from '@/domain/enum/associatedServices.enum';
+import { THost, THostsconfiguration } from '@/domain/types/host';
+import { TDnssecConfiguration, TDsDataInterface } from './dnssecConfiguration';
 
 export interface TNameServer {
   ipv4?: string | null;
@@ -86,6 +86,9 @@ export interface TDomainResource {
       hosts: THost[];
     };
     protectionState: ProtectionStateEnum;
+    dnssecConfiguration?: {
+      dsData: TDsDataInterface[];
+    };
   };
 }
 

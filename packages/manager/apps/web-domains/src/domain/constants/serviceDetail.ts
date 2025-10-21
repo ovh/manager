@@ -2,7 +2,6 @@ import { ChangelogLinks } from '@ovh-ux/manager-react-components';
 import { ParamValueType } from '@ovh-ux/url-builder';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { BADGE_COLOR, ICON_NAME } from '@ovhcloud/ods-react';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { DashboardTabItemProps } from '@/domain/types/serviceDetail';
 import {
   AdditionalDomainStateEnum,

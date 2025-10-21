@@ -288,5 +288,9 @@
   "domain_dsrecords_table_header_keyTag": "Key tag",
   "domain_dsrecords_table_header_flag": "Flag",
   "domain_dsrecords_table_header_algo": "Algorithme",
-  "domain_dsrecords_table_header_publicKey": "Clé publique (encodée base64)"
+  "domain_dsrecords_table_header_publicKey": "Clé publique (encodée base64)",
+  "domain_tab_dsrecords_drawer_add_title": "Ajouter une nouvelle entrée",
+  "domain_tab_dsrecords_drawer_information_1": "L’application des changements peut prendre du temps et rend toute autre modification sur ce domaine impossible tant que la tâche de modification n’est pas terminée.",
+  "domain_tab_dsrecords_drawer_information_2": "Êtes-vous sûr de vouloir appliquer ces changement maintenant ?",
+  "domain_tab_dsrecords_drawer_form_publicKey_error": "La clé publique renseignée n'est pas au bon format"
 }

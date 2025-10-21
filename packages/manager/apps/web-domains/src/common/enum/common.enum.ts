@@ -63,3 +63,8 @@ export enum LegalFormEnum {
   Other = 'other',
   Personalcorporation = 'personalcorporation',
 }
+
+export enum DrawerActionEnum {
+  Add = 'add',
+  Modify = 'modify',
+}

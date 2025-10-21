@@ -7,6 +7,9 @@ import { useEffect, useState } from 'react';
 import { useDomainDsRecordsDatagridColumns } from '@/domain/hooks/domainTabs/useDomainDsRecordsDatagridColumns';
 import { useGetDomainResource } from '@/domain/hooks/data/query';
 import { TDsDataInterface } from '@/domain/types/dnssecConfiguration';
+import DsRecordsDrawer from '@/domain/components/DsRecords/DsRecordsDrawer';
+import { DrawerInformation } from '@/common/types/common.types';
+import { DrawerActionEnum } from '@/common/enum/common.enum';
 
 export default function DsRecordsListing() {
   const { t } = useTranslation(['domain', NAMESPACES.ACTIONS, NAMESPACES.FORM]);
@@ -15,6 +18,10 @@ export default function DsRecordsListing() {
   const [items, setItems] = useState<TDsDataInterface[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const columns = useDomainDsRecordsDatagridColumns();
+  const [drawer, setDrawer] = useState<DrawerInformation>({
+    isOpen: false,
+    action: null,
+  });
 
   useEffect(() => {
     const { dnssecConfiguration } = domainResource.currentState;
@@ -56,10 +63,25 @@ export default function DsRecordsListing() {
         totalItems={items.length}
         isLoading={isLoading}
         topbar={
-          <Button size={BUTTON_SIZE.sm}>
+          <Button
+            size={BUTTON_SIZE.sm}
+            onClick={() =>
+              setDrawer({
+                isOpen: true,
+                action: DrawerActionEnum.Add,
+              })
+            }
+          >
             {t(`${NAMESPACES.ACTIONS}:add`)}
           </Button>
         }
+      />
+      <DsRecordsDrawer
+        drawer={drawer}
+        serviceName={serviceName}
+        targetSpec={domainResource.targetSpec}
+        checksum={domainResource.checksum}
+        setDrawer={setDrawer}
       />
     </div>
   );

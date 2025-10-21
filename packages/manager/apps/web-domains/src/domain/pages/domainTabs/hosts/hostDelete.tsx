@@ -38,6 +38,8 @@ export default function HostDelete() {
             checksum: domainResource?.checksum,
             nameServers:
               domainResource?.targetSpec.dnsConfiguration.nameServers,
+            protectionState: domainResource?.targetSpec.protectionState,
+            dsData: domainResource?.targetSpec.dnssecConfiguration.dsData,
             hosts: [
               ...domainResource.targetSpec.hostsConfiguration.hosts.filter(
                 (item) => item.host !== hostname,

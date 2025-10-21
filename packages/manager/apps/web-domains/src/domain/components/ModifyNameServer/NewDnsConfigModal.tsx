@@ -52,6 +52,7 @@ export default function NewDnsConfigModal({
         nameServers: cleanedNameServers,
         hosts: domainResource?.targetSpec.hostsConfiguration.hosts,
         protectionState: domainResource?.targetSpec.protectionState,
+        dsData: domainResource?.targetSpec.dnssecConfiguration.dsData,
       },
       {
         onSuccess: () => {

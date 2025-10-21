@@ -176,3 +176,11 @@ export const getIpsErrorMessage = (
 export const tranformIpsStringToArray = (ipString: string) => {
   return ipString?.split(',').map((ip: string) => ip.trim());
 };
+
+export const getPublicKeyError = (value: string) => {
+  if (!z.base64().safeParse(value).success) {
+    return 'domain_tab_dsrecords_drawer_form_publicKey_error';
+  }
+
+  return '';
+};

@@ -52,6 +52,7 @@ import { FreeHostingOptions } from '@/domain/components/AssociatedServicesCards/
 import { THost } from '@/domain/types/host';
 import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
 import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
+import { TDsDataInterface } from '@/domain/types/dnssecConfiguration';
 
 export const useGetDomainResource = (serviceName: string) => {
   const { data, isLoading, error } = useQuery<TDomainResource>({
@@ -165,6 +166,7 @@ export const useUpdateDomainResource = (serviceName: string) => {
       nameServers,
       hosts,
       protectionState,
+      dsData,
     }: {
       checksum: string;
       nameServers: {
@@ -174,6 +176,7 @@ export const useUpdateDomainResource = (serviceName: string) => {
       }[];
       hosts: THost[];
       protectionState: ProtectionStateEnum;
+      dsData: TDsDataInterface[];
     }) =>
       updateDomainResource(serviceName, {
         checksum,
@@ -185,6 +188,9 @@ export const useUpdateDomainResource = (serviceName: string) => {
             hosts,
           },
           protectionState,
+          dnssecConfiguration: {
+            dsData,
+          },
         },
       }),
     onSuccess: () => {

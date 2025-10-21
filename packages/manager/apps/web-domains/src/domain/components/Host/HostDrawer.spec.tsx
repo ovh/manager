@@ -2,7 +2,7 @@ import '@/common/setupTests';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import HostDrawer from '@/domain/components/Host/HostDrawer';
-import { DrawerActionEnum } from '@/domain/enum/hostConfiguration.enum';
+import { DrawerActionEnum } from '@/common/enum/common.enum';
 import { serviceInfoDetail } from '@/domain/__mocks__/serviceInfoDetail';
 import { useUpdateDomainResource } from '@/domain/hooks/data/query';
 
