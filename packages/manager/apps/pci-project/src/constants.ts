@@ -1,4 +1,7 @@
-import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import {
+  ChangelogLinks,
+  OvhSubsidiary,
+} from '@ovh-ux/manager-react-components';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
   DashboardItem,
@@ -7,9 +10,9 @@ import {
 
 export const QUOTA_THRESHOLD = 80;
 
-export const ROADMAP_CHANGELOG_LINKS = {
+export const CHANGELOG_LINKS: ChangelogLinks = {
   changelog: 'https://github.com/orgs/ovh/projects/16/views/6?pane=info',
-  roadmap: 'https://github.com/ovh/public-cloud-roadmap/projects',
+  roadmap: 'https://github.com/orgs/ovh/projects/16/views/1?pane=info',
   'feature-request':
     'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
 };
@@ -458,7 +461,7 @@ export const DASHBOARD_COMMUNITY_LINKS: DashboardItem[] = [
   {
     labelTranslationKey: 'pci_projects_home_roadmap',
     linkLabelTranslationKey: 'pci_projects_home_discover_participate',
-    link: ROADMAP_CHANGELOG_LINKS.roadmap,
+    link: CHANGELOG_LINKS.roadmap,
   },
   {
     labelTranslationKey: 'pci_projects_home_community',

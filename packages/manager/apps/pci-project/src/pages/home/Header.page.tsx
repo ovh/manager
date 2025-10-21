@@ -6,8 +6,8 @@ import {
   isDiscoveryProject,
   PciAnnouncementBanner,
   TabsPanel,
-  useProject,
   usePciUrl,
+  useProject,
 } from '@ovh-ux/manager-pci-common';
 import { BaseLayout, ChangelogButton } from '@ovh-ux/manager-react-components';
 import { ODS_BADGE_COLOR, ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
@@ -17,10 +17,10 @@ import {
   OdsSkeleton,
 } from '@ovhcloud/ods-components/react';
 
-import { ROADMAP_CHANGELOG_LINKS } from '@/constants';
+import { ProjectValidationGuard } from '@/components/project-validation-guard/ProjectValidationGuard';
+import { CHANGELOG_LINKS } from '@/constants';
 import { useProjectTabs } from '@/hooks/useProjectTabs';
 import QuotaAlert from './components/QuotaAlert.component';
-import { ProjectValidationGuard } from '@/components/project-validation-guard/ProjectValidationGuard';
 
 export default function ProjectHeader() {
   const { t } = useTranslation(['home', NAMESPACES.FORM]);
@@ -55,7 +55,7 @@ export default function ProjectHeader() {
                 label: t('pci_projects_home_label_discovery'),
               }
             : undefined,
-          changelogButton: <ChangelogButton links={ROADMAP_CHANGELOG_LINKS} />,
+          changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
         }}
         tabs={
           <nav aria-label={t('pci_projects_home_main_navigation')}>
