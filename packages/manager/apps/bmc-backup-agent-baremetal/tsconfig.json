@@ -8,8 +8,8 @@
     },
     "outDir": "dist",
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true
   },
+  "declarationDir": "./dist/types",
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.json"],
   "exclude": ["node_modules", "dist", "types", "src/__tests__"]
 }
