@@ -1,9 +1,90 @@
-import { within, waitFor, screen, fireEvent } from '@testing-library/react';
+import {
+  render,
+  within,
+  waitFor,
+  screen,
+  fireEvent,
+} from '@testing-library/react';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
 import '@testing-library/jest-dom';
+import {
+  initShellContext,
+  ShellContextType,
+} from '@ovh-ux/manager-react-shell-client';
+import { i18n } from 'i18next';
+import { SetupServer } from 'msw/node';
+import {
+  initTestI18n,
+  WAIT_FOR_DEFAULT_OPTIONS,
+  getAuthenticationMocks,
+  toMswHandlers,
+} from '@ovh-ux/manager-core-test-utils';
+import {
+  getServicesMocks,
+  GetServicesMocksParams,
+} from '@ovh-ux/manager-module-common-api';
+import {
+  NetworkConfigParams,
+  getNetworkConfig,
+} from '@ovh-ux/manager-network-common';
+import { translations, labels } from './test-i18n';
+import { GetIamMocksParams, getIamMocks } from '../../__mocks__/iam';
+import { RenderTest } from './render-test';
 
 export const DEFAULT_LISTING_ERROR = 'An error occured while fetching data';
+
+const APP_NAME = 'vrack-services';
+
+let context: ShellContextType;
+let i18nState: i18n;
+
+export const renderTest = async ({
+  initialRoute,
+  ...mockParams
+}: {
+  initialRoute?: string;
+} & GetServicesMocksParams &
+  GetIamMocksParams &
+  NetworkConfigParams = {}) => {
+  ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
+    ...toMswHandlers([
+      ...getAuthenticationMocks({ isAuthMocked: true }),
+      ...getServicesMocks(mockParams),
+      ...getNetworkConfig(mockParams),
+      ...getIamMocks(mockParams),
+    ]),
+  );
+
+  if (!context) {
+    context = await initShellContext(APP_NAME);
+  }
+
+  if (!i18nState) {
+    i18nState = await initTestI18n(APP_NAME, translations);
+  }
+
+  const result = render(
+    RenderTest({
+      initialRoute,
+      shellContext: context,
+      i18nState,
+    }),
+  );
+
+  if (!initialRoute || initialRoute === '/') {
+    await waitFor(
+      () =>
+        expect(
+          screen.getAllByText(labels.listing.listingTitle, {
+            exact: false,
+          }).length,
+        ).toBeGreaterThan(0),
+      { timeout: 30000 },
+    );
+  }
+
+  return result;
+};
 
 const getOdsComponentByAttribute = <T, A = string>(
   componentTag: string,
