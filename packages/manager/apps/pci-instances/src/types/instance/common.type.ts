@@ -108,4 +108,4 @@ export type TStatusSeverity = {
   severity: TSeverity;
 };
 
-export type TFlavorTypeTag = 'new' | 'savings_plan' | 'coming_soon';
+export type TFlavorTag = 'new' | 'savings_plan' | 'coming_soon';

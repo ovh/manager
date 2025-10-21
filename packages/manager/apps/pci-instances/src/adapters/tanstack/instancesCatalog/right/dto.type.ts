@@ -23,12 +23,25 @@ export type TRegionDTO = {
 export type TContinentRegionsDTO = {
   name: string;
   regions: string[];
-  tags: string[];
+  tags: string[] | null;
+};
+
+export type TFlavorSubCategoryDTO = {
+  name: string;
+  flavors: string[];
+  tags: string[] | null;
+};
+
+export type TFlavorCategoryDTO = {
+  name: string;
+  subCategories: TFlavorSubCategoryDTO[];
+  tags: string[] | null;
 };
 
 type TFiltersDTO = {
   deployments: TDeploymentModeDTO[];
   regions: TContinentRegionsDTO[];
+  categories: TFlavorCategoryDTO[];
 };
 
 export type TInstancesCatalogDTO = {
