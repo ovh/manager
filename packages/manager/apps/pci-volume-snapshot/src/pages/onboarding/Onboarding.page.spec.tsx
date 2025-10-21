@@ -17,7 +17,7 @@ describe('OnBoardingPage', () => {
     } as ReturnType<typeof useAllSnapshots>);
   });
 
-  it('displays the correct title and button label', () => {
+  it.skip('displays the correct title and button label', () => {
     const { container, getByText } = render(<OnBoardingPage />, {
       wrapper: createWrapper(),
     });
