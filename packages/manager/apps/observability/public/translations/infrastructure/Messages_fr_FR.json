@@ -1,0 +1,8 @@
+{
+ "infrastructure":{
+    "region":{
+      "all": "Toutes les régions",
+      "title": "Sélectionnez la région"
+    }
+  }
+}
