@@ -47,6 +47,10 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
   const { projectId } = useParam('projectId');
   const [nodePoolEnabled, setNodePoolEnabled] = useState(true);
   const { data: regionInformations } = useRegionInformations(projectId, name ?? null);
+  const selectedAvailabilityZones = nodePoolState.selectedAvailabilityZones?.filter(
+    ({ checked }) => checked,
+  );
+
   const price = useMergedFlavorById<{ hour: number; month?: number } | null>(
     projectId,
     name ?? null,
@@ -56,7 +60,8 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
         getPriceByDesiredScale(
           flavor.pricingsHourly?.price,
           flavor.pricingsMonthly?.price,
-          nodePoolState.scaling?.quantity.desired,
+
+          nodePoolState.scaling?.quantity.desired * (selectedAvailabilityZones?.length ?? 1),
         ),
     },
   );
