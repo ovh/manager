@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.25.7...@ovh-ux/manager-web@19.26.0) (2025-10-21)
+
+
+### Features
+
+* **web-hosting:** migrate ongoing task tab in react ([593d5b2](https://github.com/ovh/manager/commit/593d5b293334e9100214094a328791df2cbe71b9)), closes [#WEB-21008](https://github.com/ovh/manager/issues/WEB-21008)
+
+
+
+
+
 ## [19.25.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.25.6...@ovh-ux/manager-web@19.25.7) (2025-10-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
