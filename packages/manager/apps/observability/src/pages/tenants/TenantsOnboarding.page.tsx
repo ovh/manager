@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
 
 import { OdsText } from '@ovhcloud/ods-components/react';
@@ -15,6 +17,7 @@ import { ONBOARDING_IMG_SRC } from '@/utils/onboarding.constants';
 
 const TenantsOnboarding: React.FC = () => {
   const { t } = useTranslation(['tenants', NAMESPACES.ONBOARDING]);
+  const navigate = useNavigate();
   const { selectedService, isLoading, isSuccess } = useObservabilityServiceContext();
   return (
     <RedirectionGuard
@@ -36,7 +39,7 @@ const TenantsOnboarding: React.FC = () => {
           displayTooltip: true,
         }}
         orderButtonLabel={t('tenants:onboarding.orderButtonLabel')}
-        orderHref="https://www.ovh.com" // TODO
+        onOrderButtonClick={() => navigate(urls.tenantsCreation)}
         moreInfoButtonLabel={t(`${NAMESPACES.ONBOARDING}:find_out_more`)}
         moreInfoHref={'https://www.ovh.com'} // TODO
       />
