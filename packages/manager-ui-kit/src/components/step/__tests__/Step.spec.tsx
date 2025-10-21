@@ -1,6 +1,7 @@
 import React from 'react';
-import { expect, it, vitest } from 'vitest';
+
 import { render, screen } from '@testing-library/react';
+import { expect, it, vitest } from 'vitest';
 
 import { Step } from '../Step.component';
 import { StepContext } from '../StepContext';
@@ -86,8 +87,6 @@ describe('Step Component', () => {
       </Step>,
     );
 
-    expect(screen.getByTestId('context-values')).toHaveTextContent(
-      'Context is correct',
-    );
+    expect(screen.getByTestId('context-values')).toHaveTextContent('Context is correct');
   });
 });

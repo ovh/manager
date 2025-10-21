@@ -1,4 +1,5 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
 import { filterTags } from '../TagsList.utils';
 
 describe('filterTags', () => {
@@ -18,11 +19,7 @@ describe('filterTags', () => {
 
   it('should filter out internal tags (starting with ovh:) when displayInternalTags is false', () => {
     const result = filterTags({ tags: mockTags, displayInternalTags: false });
-    expect(result).toEqual([
-      'env:production',
-      'version:1.0.0',
-      'team:frontend',
-    ]);
+    expect(result).toEqual(['env:production', 'version:1.0.0', 'team:frontend']);
     expect(result).not.toContain('ovh:internal:secret-value');
     expect(result).not.toContain('ovh:debug:debug-info');
     expect(result).not.toContain('ovh:temp:temporary-data');

@@ -1,10 +1,11 @@
 import {
-  POPOVER_POSITION,
-  BUTTON_VARIANT,
   BUTTON_COLOR,
   BUTTON_SIZE,
+  BUTTON_VARIANT,
   ICON_NAME,
+  POPOVER_POSITION,
 } from '@ovhcloud/ods-react';
+
 import { LinkType } from '../Link';
 
 export interface ActionMenuItem {

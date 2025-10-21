@@ -1,19 +1,15 @@
 import {
-  Text,
-  TEXT_PRESET,
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
   Icon,
+  TEXT_PRESET,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
 } from '@ovhcloud/ods-react';
+
 import { TileItemTermProps } from './TileItemTerm.props';
 
-export const TileItemTerm = ({
-  label,
-  tooltip,
-  actions,
-  ...rest
-}: TileItemTermProps) => {
+export const TileItemTerm = ({ label, tooltip, actions, ...rest }: TileItemTermProps) => {
   return (
     <dt className="flex justify-between" {...rest}>
       <div className="flex items-center gap-1 text-[var(--ods-color-text)]">

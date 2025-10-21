@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PhoneNumber Snapshot tests > renders the component with default props and children 1`] = `
+<div>
+  <div
+    class="_phone-number_10do6_2"
+    data-ods="phone-number"
+    role="group"
+  >
+    Hello
+  </div>
+</div>
+`;

@@ -1,5 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import i18n from 'i18next';
+
 import { useFormatDate } from '../useFormatDate';
 import { DEFAULT_UNKNOWN_DATE_LABEL } from '../useFormatDate.type';
 
@@ -85,13 +86,8 @@ describe('useFormatDate', () => {
       format: 'PPPpp',
       expected: '14 January 2024 at 09:21:21',
     },
-  ])(
-    'displays %s if the date is %s',
-    async ({ dateString, format, expected }) => {
-      const { result } = renderHook(() => useFormatDate({}));
-      expect(result.current({ date: dateString || undefined, format })).toBe(
-        expected,
-      );
-    },
-  );
+  ])('displays %s if the date is %s', async ({ dateString, format, expected }) => {
+    const { result } = renderHook(() => useFormatDate({}));
+    expect(result.current({ date: dateString || undefined, format })).toBe(expected);
+  });
 });

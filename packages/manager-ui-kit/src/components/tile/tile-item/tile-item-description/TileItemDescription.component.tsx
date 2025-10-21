@@ -1,4 +1,5 @@
-import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
+
 import { TileDivider } from '../../tile-divider/TileDivider.component';
 import { TileItemDescriptionProps } from './TileItemDescription.props';
 

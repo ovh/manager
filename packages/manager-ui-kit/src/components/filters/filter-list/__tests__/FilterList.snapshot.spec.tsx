@@ -1,7 +1,9 @@
 import { vi } from 'vitest';
+
+import { render } from '@/setupTest';
+
 import { FilterList } from '../FilterList.component';
 import { FilterListProps } from '../FilterList.props';
-import { render } from '@/setupTest';
 
 const renderComponent = (props: FilterListProps) => {
   return render(<FilterList {...props} />);

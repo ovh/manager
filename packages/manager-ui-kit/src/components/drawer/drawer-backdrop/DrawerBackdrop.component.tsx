@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { DrawerBackdropProps } from './DrawerBackdrop.props';
+
 import '../translations';
+import { DrawerBackdropProps } from './DrawerBackdrop.props';
 
 const DrawerBackdrop = ({ onClick }: DrawerBackdropProps) => {
   const { t } = useTranslation('drawer');

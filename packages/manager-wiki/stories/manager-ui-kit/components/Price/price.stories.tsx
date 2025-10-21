@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { Price, OvhSubsidiary, IntervalUnitType } from '@ovh-ux/muk';
+import { IntervalUnitType, OvhSubsidiary, Price } from '@ovh-ux/muk';
 
 const meta = {
   title: 'Manager UI Kit/Components/Price',
@@ -56,10 +56,10 @@ export const Basic: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<Price 
-  value={3948000000} 
-  ovhSubsidiary={OvhSubsidiary.FR} 
-  locale="fr-FR" 
+        code: `<Price
+  value={3948000000}
+  ovhSubsidiary={OvhSubsidiary.FR}
+  locale="fr-FR"
 />`,
       },
     },
@@ -77,11 +77,11 @@ export const WithTax: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<Price 
-  value={3948000000} 
+        code: `<Price
+  value={3948000000}
   tax={789600000}
-  ovhSubsidiary={OvhSubsidiary.FR} 
-  locale="fr-FR" 
+  ovhSubsidiary={OvhSubsidiary.FR}
+  locale="fr-FR"
 />`,
       },
     },
@@ -99,11 +99,11 @@ export const WithInterval: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<Price 
-  value={3948000000} 
+        code: `<Price
+  value={3948000000}
   intervalUnit={IntervalUnitType.month}
-  ovhSubsidiary={OvhSubsidiary.FR} 
-  locale="fr-FR" 
+  ovhSubsidiary={OvhSubsidiary.FR}
+  locale="fr-FR"
 />`,
       },
     },
@@ -122,12 +122,12 @@ export const WithTaxAndInterval: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<Price 
-  value={3948000000} 
+        code: `<Price
+  value={3948000000}
   tax={789600000}
   intervalUnit={IntervalUnitType.month}
-  ovhSubsidiary={OvhSubsidiary.FR} 
-  locale="fr-FR" 
+  ovhSubsidiary={OvhSubsidiary.FR}
+  locale="fr-FR"
 />`,
       },
     },

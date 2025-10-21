@@ -1,6 +1,8 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, beforeAll, afterAll, vi } from 'vitest';
+
+import { fireEvent, render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { TagsModal } from '../TagsModal.component';
 
 vi.mock('react-i18next', () => ({
@@ -32,27 +34,13 @@ describe('TagsModal', () => {
   });
 
   it('renders the Tags Modal without "Edit Tags" button', () => {
-    render(
-      <TagsModal
-        open={true}
-        heading={heading}
-        tags={mockTags}
-        onCancel={onCancel}
-      />,
-    );
+    render(<TagsModal open={true} heading={heading} tags={mockTags} onCancel={onCancel} />);
 
     expect(screen.queryByText('edit_tags')).not.toBeInTheDocument();
   });
 
   it('calls "onClose" callback when close button is clicked', () => {
-    render(
-      <TagsModal
-        open={true}
-        heading={heading}
-        tags={mockTags}
-        onCancel={onCancel}
-      />,
-    );
+    render(<TagsModal open={true} heading={heading} tags={mockTags} onCancel={onCancel} />);
     const closeButton = screen.getByText('back');
     fireEvent.click(closeButton);
     expect(onCancel).toHaveBeenCalledOnce();

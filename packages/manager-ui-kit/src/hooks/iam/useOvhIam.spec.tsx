@@ -1,17 +1,13 @@
 import { ReactNode } from 'react';
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
-import {
-  getAuthorizationCheckUrl,
-  useAuthorizationIam,
-  useGetResourceTags,
-} from './useOvhIam';
+
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
 import { useDataApi } from '../data-api';
+import { getAuthorizationCheckUrl, useAuthorizationIam, useGetResourceTags } from './useOvhIam';
 
 const mocks = vi.hoisted(() => ({
   useDataApi: vi.fn(),
@@ -90,12 +86,9 @@ describe('useGetResourceTags', () => {
       ],
       isLoading: false,
     });
-    const { result } = renderHook(
-      () => useGetResourceTags({ resourceType: 'dedicatedServer' }),
-      {
-        wrapper,
-      },
-    );
+    const { result } = renderHook(() => useGetResourceTags({ resourceType: 'dedicatedServer' }), {
+      wrapper,
+    });
 
     await waitFor(() => {
       expect(result.current.isLoading).toBe(false);

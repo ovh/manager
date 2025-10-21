@@ -1,12 +1,14 @@
 import { useContext } from 'react';
+
 import { clsx } from 'clsx';
-import { Button, BUTTON_VARIANT, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
-import { StepContext } from '../StepContext';
+
+import { BUTTON_VARIANT, Button, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
+
 import { StepProps } from '../Step.props';
+import { StepContext } from '../StepContext';
 
 export const StepHeader = () => {
-  const { id, title, edit, locked, open, skip } =
-    useContext<StepProps>(StepContext);
+  const { id, title, edit, locked, open, skip } = useContext<StepProps>(StepContext);
   return (
     <div className="flex flex-col md:flex-row">
       <div

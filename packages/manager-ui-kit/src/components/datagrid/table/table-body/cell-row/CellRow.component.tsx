@@ -1,7 +1,9 @@
 import React from 'react';
+
 import { BADGE_COLOR } from '@ovhcloud/ods-react';
-import { Badge } from '../../../../badge';
+
 import { Link } from '../../../../Link';
+import { Badge } from '../../../../badge';
 import { Text } from '../../../../text';
 import { ColumnMetaType } from '../../../Datagrid.props';
 
@@ -37,9 +39,5 @@ export const CellRow = ({
       </Badge>
     );
   }
-  return className ? (
-    <div className={className}>{children}</div>
-  ) : (
-    <>{children}</>
-  );
+  return className ? <div className={className}>{children}</div> : <>{children}</>;
 };

@@ -1,0 +1,71 @@
+import { Canvas, Meta, Source } from '@storybook/blocks';
+import * as SpecificationsLink from '@ovhcloud/ods-react';
+import { Banner } from '../../../base-documents/components/banner/Banner';
+import { Canvas as OdsCanvas } from '../../../base-documents/components/canvas/Canvas';
+import { ExternalLink } from '../../../base-documents/components/externalLink/ExternalLink';
+import { Heading } from '../../../base-documents/components/heading/Heading';
+import { TechnicalSpecification } from '../../../base-documents/components/technicalSpecification/TechnicalSpecification';
+import * as LinkStories from './link.stories';
+
+<Meta of={ LinkStories } name="Technical information" />
+
+<Banner of={ LinkStories } />
+
+<Heading label="Overview" level={ 2 } />
+
+<Canvas of={ LinkStories.Overview } sourceState="none" />
+
+<Heading label="Anatomy" level={ 2 } />
+
+![Component anatomy](/assets/base-assets/components/link/anatomy-tech.png "Component anatomy")
+
+1. **Link**
+
+<TechnicalSpecification
+  data={ SpecificationsLink }
+  extraInfo={{
+    'Link': {
+      extendAttribute: {
+        name: 'a',
+        url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/a#attributes',
+      },
+    },
+  }}
+  of={ LinkStories } />
+
+<Heading label="Examples" level={ 2 } />
+
+<Heading label="Default" level={ 3 } />
+
+<OdsCanvas of={ LinkStories.Default } sourceState="shown" />
+
+<Heading label="Disabled" level={ 3 } />
+
+<OdsCanvas of={ LinkStories.Disabled } sourceState="shown" />
+
+<Heading label="With Icon" level={ 3 } />
+
+<OdsCanvas of={ LinkStories.WithIcon } sourceState="shown" />
+
+<Heading label="React Router integration" level={ 3 } />
+
+Using the `as` attribute, you can use the **Link** component with external libraries like <ExternalLink href="https://reactrouter.com/">React Router</ExternalLink>.
+
+<Source code={`
+import { Link as OdsLink } from '@ovhcloud/ods-react';
+import { Link as RouterLink } from 'react-router-dom';
+
+const Link = ({ children, route }) => {
+  return (
+    <OdsLink
+      as={ RouterLink }
+      to={ route }>
+      { children }
+    </OdsLink>
+  );
+};
+
+export { Link };
+`}
+        dark="true"
+        language="typescript" />

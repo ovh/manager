@@ -1,5 +1,6 @@
-import { ColumnSort } from '@tanstack/react-table';
 import { useSearchParams } from 'react-router-dom';
+
+import { ColumnSort } from '@tanstack/react-table';
 
 /**
  * This hooks allows to store and synchronize the datagrid sorting
@@ -12,10 +13,7 @@ const getSearchParamsObject = (search: URLSearchParams) =>
   Object.fromEntries([...search.entries()]);
 
 /* Parse column sorting from URL search params */
-const parseSorting = (
-  params: URLSearchParams,
-  defaultSorting?: ColumnSort,
-): ColumnSort => {
+const parseSorting = (params: URLSearchParams, defaultSorting?: ColumnSort): ColumnSort => {
   const sorting: ColumnSort = {
     id: '',
     desc: false,

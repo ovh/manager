@@ -1,5 +1,5 @@
-import { FooterInfos } from './footer-infos/FooterInfos.component';
 import { FooterActions } from './footer-actions/FooterActions.component';
+import { FooterInfos } from './footer-infos/FooterInfos.component';
 
 export const TableFooter = ({
   hasNextPage,
@@ -33,9 +33,7 @@ export const TableFooter = ({
         )}
       </div>
       <div className="flex-1 flex justify-end">
-        {totalCount && (
-          <FooterInfos totalCount={totalCount} itemsCount={itemsCount} />
-        )}
+        {totalCount && <FooterInfos totalCount={totalCount} itemsCount={itemsCount} />}
       </div>
     </div>
   );

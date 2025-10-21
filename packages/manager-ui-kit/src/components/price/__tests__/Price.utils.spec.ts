@@ -1,10 +1,7 @@
-import { vi, describe, it, expect } from 'vitest';
-import {
-  getPrice,
-  convertIntervalPrice,
-  getPriceTextFormatted,
-} from '../Price.utils';
+import { describe, expect, it, vi } from 'vitest';
+
 import { IntervalUnitType, OvhSubsidiary } from '../../../enumTypes';
+import { convertIntervalPrice, getPrice, getPriceTextFormatted } from '../Price.utils';
 
 describe('getPrice', () => {
   it('should return value divided by 100000000 when tax is not provided', () => {
@@ -50,16 +47,14 @@ describe('getPriceTextFormatted', () => {
   const mockFormat = vi.fn();
 
   // Mock the Intl.NumberFormat class
-  const mockNumberFormat = vi
-    .spyOn(Intl, 'NumberFormat')
-    .mockImplementation((locale) => {
-      if (locale === 'invalid-locale') {
-        throw new Error('Invalid locale');
-      }
-      return {
-        format: mockFormat,
-      } as unknown as Intl.NumberFormat;
-    });
+  const mockNumberFormat = vi.spyOn(Intl, 'NumberFormat').mockImplementation((locale) => {
+    if (locale === 'invalid-locale') {
+      throw new Error('Invalid locale');
+    }
+    return {
+      format: mockFormat,
+    } as unknown as Intl.NumberFormat;
+  });
 
   beforeEach(() => {
     mockFormat.mockReset();

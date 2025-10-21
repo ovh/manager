@@ -1,9 +1,12 @@
 import React, { useMemo } from 'react';
+
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
+
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { useQuery, keepPreviousData } from '@tanstack/react-query';
-import { IamCheckResponse, IamInterface, IamObject } from './iam.interface';
-import { formatIamTagsFromResources } from '../../utils/format-tags';
+
 import { useDataApi } from '..';
+import { formatIamTagsFromResources } from '../../utils/format-tags';
+import { IamCheckResponse, IamInterface, IamObject } from './iam.interface';
 
 export const fetchAuthorizationsCheck = async ({
   actions,
@@ -22,8 +25,7 @@ export const fetchAuthorizationsCheck = async ({
 export function useAuthorizationsIam({ actions, urns }: IamInterface) {
   const { data } = useQuery({
     queryKey: ['iam-authorization', urns, actions],
-    queryFn: () =>
-      fetchAuthorizationsCheck({ actions: actions || [], urns: urns || [] }),
+    queryFn: () => fetchAuthorizationsCheck({ actions: actions || [], urns: urns || [] }),
     enabled: (urns?.length || 0) > 0 && (actions?.length || 0) > 0,
     placeholderData: keepPreviousData,
   });
@@ -54,9 +56,7 @@ export function useAuthorizationIam(
   const { data, ...query } = useQuery({
     queryKey: [urn, actions],
     queryFn: () => fetchAuthorizationCheck(actions, urn),
-    enabled: Boolean(
-      urn && urn.length > 0 && actions && actions.length > 0 && isTrigger,
-    ),
+    enabled: Boolean(urn && urn.length > 0 && actions && actions.length > 0 && isTrigger),
     placeholderData: keepPreviousData,
   });
 

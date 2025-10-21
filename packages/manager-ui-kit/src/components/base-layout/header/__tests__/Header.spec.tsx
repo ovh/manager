@@ -1,5 +1,6 @@
-import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+
 import Header from '../Header.component';
 
 describe('Header Component', () => {
@@ -27,19 +28,9 @@ describe('Header Component', () => {
   });
 
   it('does not render buttons when both are not provided', () => {
-    render(
-      <Header
-        {...defaultProps}
-        guideMenu={undefined}
-        changelogButton={undefined}
-      />,
-    );
-    expect(
-      screen.queryByRole('button', { name: /Guide/i }),
-    ).not.toBeInTheDocument();
-    expect(
-      screen.queryByRole('button', { name: /Changelog/i }),
-    ).not.toBeInTheDocument();
+    render(<Header {...defaultProps} guideMenu={undefined} changelogButton={undefined} />);
+    expect(screen.queryByRole('button', { name: /Guide/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /Changelog/i })).not.toBeInTheDocument();
   });
 
   it('renders only guide button when only guideMenu is provided', () => {

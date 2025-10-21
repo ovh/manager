@@ -1,8 +1,10 @@
 import React from 'react';
-import { vitest } from 'vitest';
+
 import { fireEvent, render, screen } from '@testing-library/react';
-import { IamAuthorizationResponse } from '../../../hooks/iam/iam.interface';
+import { vitest } from 'vitest';
+
 import { BaseLayout } from '..';
+import { IamAuthorizationResponse } from '../../../hooks/iam/iam.interface';
 import { GuideMenu, GuideMenuItem } from '../../guide-menu';
 
 vitest.mock('../../../hooks/iam', () => ({

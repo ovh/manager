@@ -1,15 +1,14 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { getVisibleTagCount } from '../TagsStack.utils';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { HTMLBadgeElement } from '../TagsStack.type';
+import { getVisibleTagCount } from '../TagsStack.utils';
 
 // mock canvas element context for determining the width of the Badge
 const mockConvasElementContext = {
   measureText: vi.fn().mockReturnValue({ width: 60 }),
   font: '',
 };
-global.HTMLCanvasElement.prototype.getContext = vi
-  .fn()
-  .mockReturnValue(mockConvasElementContext);
+global.HTMLCanvasElement.prototype.getContext = vi.fn().mockReturnValue(mockConvasElementContext);
 
 // mock window.getComputedStyle that determing sample badge's styles
 Object.defineProperty(window, 'getComputedStyle', {

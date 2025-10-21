@@ -1,8 +1,4 @@
-import {
-  Filter,
-  FilterComparator,
-  FilterTypeCategories,
-} from '@ovh-ux/manager-core-api';
+import { Filter, FilterComparator, FilterTypeCategories } from '@ovh-ux/manager-core-api';
 
 export type Option = {
   label: string;

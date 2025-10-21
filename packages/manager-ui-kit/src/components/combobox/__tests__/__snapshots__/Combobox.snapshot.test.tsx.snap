@@ -1,0 +1,37 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Combobox Snapshot tests > renders the component with default props and children 1`] = `
+<div>
+  <div
+    data-ods="combobox"
+  >
+    <div
+      class="_combobox-control_14h0r_2"
+      data-ods="combobox-control"
+      id=":r0:"
+    >
+      <div
+        class="_input_ff5b7_2 _combobox-control__input_14h0r_49"
+      >
+        <input
+          aria-activedescendant=""
+          aria-autocomplete="list"
+          aria-busy="false"
+          aria-controls=":r2:"
+          aria-expanded="false"
+          autocapitalize="none"
+          autocomplete="off"
+          autocorrect="off"
+          class="_input__field_ff5b7_41"
+          data-ods="input"
+          id=":r1:"
+          role="combobox"
+          spellcheck="false"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

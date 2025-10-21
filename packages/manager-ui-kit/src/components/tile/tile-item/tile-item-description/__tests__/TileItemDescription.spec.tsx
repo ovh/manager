@@ -1,5 +1,6 @@
-import { describe, it, expect, vitest } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { describe, expect, it, vitest } from 'vitest';
+
 import { TileItemDescription } from '../TileItemDescription.component';
 
 // Since HR element does not specific text or role, it's hard to get this element.
@@ -47,9 +48,7 @@ describe('TileItemDescription', () => {
   });
 
   it('should conditionally show/hide divider based on prop', () => {
-    const { rerender } = render(
-      <TileItemDescription label="Desc" divider={true} />,
-    );
+    const { rerender } = render(<TileItemDescription label="Desc" divider={true} />);
 
     expect(screen.getByTestId('tile-divider')).toBeInTheDocument();
 

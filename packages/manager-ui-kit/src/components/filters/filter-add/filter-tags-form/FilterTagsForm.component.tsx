@@ -1,21 +1,18 @@
+import { useTranslation } from 'react-i18next';
+
 import {
+  Combobox,
+  ComboboxContent,
+  ComboboxControl,
   FormField,
   FormFieldLabel,
-  Combobox,
   Skeleton,
-  ComboboxControl,
-  ComboboxContent,
 } from '@ovhcloud/ods-react';
-import { useTranslation } from 'react-i18next';
+
 import { useGetResourceTags } from '../../../../hooks/iam/useOvhIam';
 import { FilterTagsFormProps } from './FilterTagsForm.props';
 
-export function FilterTagsForm({
-  resourceType,
-  tagKey,
-  setTagKey,
-  setValue,
-}: FilterTagsFormProps) {
+export function FilterTagsForm({ resourceType, tagKey, setTagKey, setValue }: FilterTagsFormProps) {
   const { t } = useTranslation('filters');
   const {
     tags,
@@ -69,9 +66,7 @@ export function FilterTagsForm({
         )}
       </FormField>
       <FormField className="mt-4 w-[186px]">
-        <FormFieldLabel>
-          {t('common_criteria_adder_value_label')}
-        </FormFieldLabel>
+        <FormFieldLabel>{t('common_criteria_adder_value_label')}</FormFieldLabel>
         {isTagsLoading ? (
           <TagsLoading />
         ) : (

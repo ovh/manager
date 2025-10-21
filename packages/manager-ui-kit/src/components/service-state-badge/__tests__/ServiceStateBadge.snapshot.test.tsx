@@ -1,15 +1,15 @@
 import React from 'react';
-import { vitest } from 'vitest';
+
 import { render } from '@testing-library/react';
-import { ResourceStatus } from '../ServiceStateBadge.props';
+import { vitest } from 'vitest';
+
 import { ServiceStateBadge } from '../ServiceStateBadge.component';
+import { ResourceStatus } from '../ServiceStateBadge.props';
 import { SERVICE_STATES } from './ServiceStateBadge.spec.util';
 
 vitest.mock('../../hooks/iam');
 
-const renderComponent = (
-  props: React.ComponentProps<typeof ServiceStateBadge>,
-) => {
+const renderComponent = (props: React.ComponentProps<typeof ServiceStateBadge>) => {
   return render(<ServiceStateBadge {...props} data-testid="badge" />);
 };
 

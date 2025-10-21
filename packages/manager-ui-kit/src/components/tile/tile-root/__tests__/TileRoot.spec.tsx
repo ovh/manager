@@ -1,6 +1,8 @@
-import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+
 import { CARD_COLOR } from '@ovhcloud/ods-react';
+
 import { TileRoot } from '../TileRoot.component';
 
 describe('TileRoot', () => {
@@ -29,13 +31,7 @@ describe('TileRoot', () => {
   });
 
   it('should allow custom color to be passed', () => {
-    render(
-      <TileRoot
-        {...defaultProps}
-        color={CARD_COLOR.information}
-        data-testid="card"
-      />,
-    );
+    render(<TileRoot {...defaultProps} color={CARD_COLOR.information} data-testid="card" />);
     const card = screen.getByTestId('card');
     expect(card.className).toContain(`${CARD_COLOR.information}`);
   });
@@ -48,11 +44,7 @@ describe('TileRoot', () => {
 
   it('should apply default className and merge custom className', () => {
     render(
-      <TileRoot
-        {...defaultProps}
-        className="custom-class extra-padding"
-        data-testid="card"
-      />,
+      <TileRoot {...defaultProps} className="custom-class extra-padding" data-testid="card" />,
     );
 
     const card = screen.getByTestId('card');

@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react';
 import { Button, ButtonProps } from '@ovh-ux/muk';
-import { IAM_URNS, IAM_ACTIONS } from '../../../../utils/iam.constants';
+import { IAM_ACTIONS, IAM_URNS } from '../../../../utils/iam.constants';
 
 export const Default: Meta<ButtonProps> = {
   args: {
@@ -40,7 +40,7 @@ export const ButtonWithIamAuthorization: Meta<ButtonProps> = {
   parameters: {
     docs: {
       source: {
-        code: `<Button 
+        code: `<Button
   urn="urn:v9:eu:resource:vrackServices:vrs-xxx-xxx"
   iamActions={['vrackServices:apiovh:iam/resource/tag/remove']}
 >
@@ -60,7 +60,7 @@ export const ButtonWithoutIamAuthorization: Meta<ButtonProps> = {
   parameters: {
     docs: {
       source: {
-        code: `<Button 
+        code: `<Button
   urn="urn:v9:eu:resource:vrackServices:vrs-xxx-xxx"
   iamActions={['vrackServices:apiovh:iam/resource/tag/remove']}
 >

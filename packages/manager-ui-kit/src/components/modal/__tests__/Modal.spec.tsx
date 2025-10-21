@@ -1,7 +1,9 @@
-import { vi, describe, it, beforeEach } from 'vitest';
+import { fireEvent, screen } from '@testing-library/react';
+import { beforeEach, describe, it, vi } from 'vitest';
+
 import { MODAL_COLOR } from '@ovhcloud/ods-react';
-import { fireEvent, screen, within } from '@testing-library/react';
-import { renderModal, heading, ModalContent, actions } from './ModalTest.utils';
+
+import { ModalContent, actions, heading, renderModal } from './ModalTest.utils';
 
 describe('Modal Tests', () => {
   beforeEach(() => {
@@ -45,9 +47,7 @@ describe('Modal Tests', () => {
     expect(screen.queryByLabelText('Test Input')).not.toBeInTheDocument();
     expect(screen.queryByTestId('primary-button')).not.toBeInTheDocument();
     expect(screen.queryByTestId('secondary-button')).not.toBeInTheDocument();
-    expect(
-      screen.getByTestId('spinner').querySelector('[data-ods="spinner"]'),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('spinner').querySelector('[data-ods="spinner"]')).toBeInTheDocument();
   });
 
   it('displays disabled primary and secondary buttons', () => {
@@ -98,12 +98,8 @@ describe('Modal Tests', () => {
     const primaryButton = screen.getByTestId('primary-button');
     const secondaryButton = screen.getByTestId('secondary-button');
 
-    expect(
-      primaryButton.querySelector('[data-ods="spinner"]'),
-    ).toBeInTheDocument();
-    expect(
-      secondaryButton.querySelector('[data-ods="spinner"]'),
-    ).toBeInTheDocument();
+    expect(primaryButton.querySelector('[data-ods="spinner"]')).toBeInTheDocument();
+    expect(secondaryButton.querySelector('[data-ods="spinner"]')).toBeInTheDocument();
   });
 
   it('displays he modal whith new test ids', () => {
@@ -123,9 +119,7 @@ describe('Modal Tests', () => {
     });
 
     expect(screen.getByTestId('new-primary-button-testid')).toBeInTheDocument();
-    expect(
-      screen.getByTestId('new-secondary-button-testid'),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('new-secondary-button-testid')).toBeInTheDocument();
   });
 
   it('displays the modal with critical type', () => {

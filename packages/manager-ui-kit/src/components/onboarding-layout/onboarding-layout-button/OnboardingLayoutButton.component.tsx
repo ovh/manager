@@ -1,10 +1,7 @@
 import { FC } from 'react';
-import {
-  Icon,
-  ICON_NAME,
-  BUTTON_SIZE,
-  BUTTON_VARIANT,
-} from '@ovhcloud/ods-react';
+
+import { BUTTON_SIZE, BUTTON_VARIANT, ICON_NAME, Icon } from '@ovhcloud/ods-react';
+
 import { Button } from '../../button';
 import { OnboardingLayoutButtonProps } from './OnboardingLayoutButton.type';
 

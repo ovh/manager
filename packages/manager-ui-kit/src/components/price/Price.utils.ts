@@ -1,12 +1,8 @@
-import {
-  OvhSubsidiary,
-  IntervalUnitType,
-  OVH_CURRENCY_BY_SUBSIDIARY,
-} from '../../enumTypes';
+import { IntervalUnitType, OVH_CURRENCY_BY_SUBSIDIARY, OvhSubsidiary } from '../../enumTypes';
 import {
   ASIAN_FORMAT_SUBSIDIARIES,
-  GERMAN_FORMAT_SUBSIDIARIES,
   FRENCH_FORMAT_SUBSIDIARIES,
+  GERMAN_FORMAT_SUBSIDIARIES,
   US_FORMAT_SUBSIDIARIES,
 } from './Price.constants';
 
@@ -15,10 +11,7 @@ export const getPrice = (value: number, tax?: number): number => {
   return valueWithTax / 100000000;
 };
 
-export const convertIntervalPrice = (
-  price: number,
-  intervalUnit: IntervalUnitType,
-): number => {
+export const convertIntervalPrice = (price: number, intervalUnit: IntervalUnitType): number => {
   const conversionRates = {
     [IntervalUnitType.day]: price / 365,
     [IntervalUnitType.month]: price / 12,

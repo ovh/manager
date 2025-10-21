@@ -1,10 +1,12 @@
-import { vitest } from 'vitest';
 import { fireEvent, screen } from '@testing-library/react';
-import { Button, ButtonProps } from '../index';
+import { vitest } from 'vitest';
+
 import { render } from '@/setupTest';
-import fr_FR from '../translations/Messages_fr_FR.json';
+
 import { useAuthorizationIam } from '../../../hooks/iam';
 import { IamAuthorizationResponse } from '../../../hooks/iam/iam.interface';
+import { Button, ButtonProps } from '../index';
+import fr_FR from '../translations/Messages_fr_FR.json';
 
 vitest.mock('../../../hooks/iam', () => ({
   useAuthorizationIam: vitest.fn().mockReturnValue({
@@ -18,8 +20,7 @@ const renderComponent = (props: ButtonProps) => {
   return render(<Button {...props} />);
 };
 
-const mockedHook =
-  useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
+const mockedHook = useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
 
 describe('Button tests', () => {
   afterEach(() => {
@@ -35,9 +36,7 @@ describe('Button tests', () => {
       });
       renderComponent({
         urn: 'urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd',
-        iamActions: [
-          'manager-react-components:apiovh:manager-react-components/attach-action',
-        ],
+        iamActions: ['manager-react-components:apiovh:manager-react-components/attach-action'],
         children: 'foo-manager-button',
       });
       expect(screen.getByTestId('manager-button')).not.toBeNull();
@@ -51,15 +50,11 @@ describe('Button tests', () => {
       });
       renderComponent({
         urn: 'urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd',
-        iamActions: [
-          'manager-react-components:apiovh:manager-react-components/attach',
-        ],
+        iamActions: ['manager-react-components:apiovh:manager-react-components/attach'],
         children: 'fo manager button',
       });
       expect(screen.getByTestId('manager-button-tooltip')).not.toBeNull();
-      expect(screen.getByTestId('manager-button-tooltip')).toHaveAttribute(
-        'disabled',
-      );
+      expect(screen.getByTestId('manager-button-tooltip')).toHaveAttribute('disabled');
     });
   });
 
@@ -72,20 +67,14 @@ describe('Button tests', () => {
       });
       renderComponent({
         urn: 'urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd',
-        iamActions: [
-          'manager-react-components:apiovh:manager-react-components/attach-action',
-        ],
+        iamActions: ['manager-react-components:apiovh:manager-react-components/attach-action'],
         children: 'foo-manager-button',
       });
       expect(screen.getByTestId('manager-button-tooltip')).not.toBeNull();
-      expect(screen.getByTestId('manager-button-tooltip')).toHaveAttribute(
-        'disabled',
-      );
+      expect(screen.getByTestId('manager-button-tooltip')).toHaveAttribute('disabled');
       const button = screen.getByTestId('manager-button-tooltip');
       fireEvent.mouseOver(button);
-      expect(
-        screen.getAllByText(fr_FR.common_iam_actions_message),
-      ).not.toBeNull();
+      expect(screen.getAllByText(fr_FR.common_iam_actions_message)).not.toBeNull();
     });
   });
 });

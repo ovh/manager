@@ -1,0 +1,18 @@
+.class-module__properties__header {
+  font-weight: bold;
+  text-align: center;
+}
+
+.class-module__properties__body code {
+  white-space: break-spaces;
+}
+
+.class-module__properties__body__default-value,
+.class-module__properties__body__extend,
+.class-module__properties__body__is-required {
+  text-align: center;
+}
+
+.class-module__properties__body__is-required--required {
+  color: var(--ods-color-success-500);
+}

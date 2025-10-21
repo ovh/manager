@@ -1,6 +1,8 @@
 import React from 'react';
-import { vi, describe, it, expect, beforeEach } from 'vitest';
+
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { TagsList } from '../TagsList.component';
 import * as tagsStackUtils from '../tags-stack/TagsStack.utils';
 
@@ -43,9 +45,7 @@ describe('TagsList Component - Snapshot Tests', () => {
   it('displays all tags', () => {
     vi.mocked(tagsStackUtils.getVisibleTagCount).mockReturnValue(8);
 
-    const { container } = render(
-      <TagsList tags={mockTags} modalHeading={modalHeader} />,
-    );
+    const { container } = render(<TagsList tags={mockTags} modalHeading={modalHeader} />);
 
     expect(container).toMatchSnapshot();
   });

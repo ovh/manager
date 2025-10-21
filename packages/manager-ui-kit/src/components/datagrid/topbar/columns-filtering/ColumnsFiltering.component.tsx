@@ -1,14 +1,16 @@
+import { useTranslation } from 'react-i18next';
+
 import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  Icon,
-  ICON_NAME,
   BUTTON_SIZE,
   BUTTON_VARIANT,
+  ICON_NAME,
+  Icon,
   POPOVER_POSITION,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
 } from '@ovhcloud/ods-react';
-import { useTranslation } from 'react-i18next';
+
 import { Button } from '../../../button/Button.component';
 import { ColumnFilter, FilterAdd } from '../../../filters';
 import { FilterProps } from '../../Datagrid.props';

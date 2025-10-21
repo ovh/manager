@@ -1,19 +1,22 @@
 import React from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import {
-  Button,
   BUTTON_SIZE,
   BUTTON_VARIANT,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  POPOVER_POSITION,
-  Icon,
+  Button,
   ICON_NAME,
+  Icon,
+  POPOVER_POSITION,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
 } from '@ovhcloud/ods-react';
-import { useTranslation } from 'react-i18next';
+
 import { Link, LinkType } from '../Link';
-import './translations/translation';
 import { GuideMenuProps } from './GuideMenu.props';
+import './translations/translation';
 
 export const GuideMenu: React.FC<GuideMenuProps> = ({ isLoading, items }) => {
   const { t } = useTranslation('guide-button');
@@ -33,12 +36,7 @@ export const GuideMenu: React.FC<GuideMenuProps> = ({ isLoading, items }) => {
       <PopoverContent>
         <div className="flex flex-col gap-2 py-1">
           {items.map(({ id, onClick, ...rest }) => (
-            <Link
-              key={id}
-              type={LinkType.external}
-              onClick={onClick}
-              {...rest}
-            />
+            <Link key={id} type={LinkType.external} onClick={onClick} {...rest} />
           ))}
         </div>
       </PopoverContent>

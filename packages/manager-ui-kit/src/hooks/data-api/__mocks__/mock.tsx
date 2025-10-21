@@ -1,4 +1,5 @@
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
+
 import { DatagridColumn } from '../../../components';
 
 export type ResultObj = {

@@ -1,11 +1,9 @@
-import { BUTTON_VARIANT, BUTTON_COLOR } from '@ovhcloud/ods-react';
-import { DrawerFooterProps } from './DrawerFooter.props';
-import { Button } from '../../button/Button.component';
+import { BUTTON_COLOR, BUTTON_VARIANT } from '@ovhcloud/ods-react';
 
-export const DrawerFooter = ({
-  primaryButton,
-  secondaryButton,
-}: DrawerFooterProps) => {
+import { Button } from '../../button/Button.component';
+import { DrawerFooterProps } from './DrawerFooter.props';
+
+export const DrawerFooter = ({ primaryButton, secondaryButton }: DrawerFooterProps) => {
   const {
     label: primaryButtonLabel,
     isLoading: isPrimaryButtonLoading,

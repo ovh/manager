@@ -1,0 +1,55 @@
+import { Canvas, Meta } from '@storybook/blocks';
+import * as SpecificationsText from '@ovhcloud/ods-react';
+import { Banner } from '../../../base-documents/components/banner/Banner';
+import { Canvas as OdsCanvas } from '../../../base-documents/components/canvas/Canvas';
+import { Heading } from '../../../base-documents/components/heading/Heading';
+import { TechnicalSpecification } from '../../../base-documents/components/technicalSpecification/TechnicalSpecification';
+import * as TextStories from './text.stories';
+
+<Meta of={ TextStories } name="Technical information" />
+
+<Banner of={ TextStories } />
+
+<Heading label="Overview" level={ 2 } />
+
+<Canvas of={ TextStories.Overview } sourceState="none" />
+
+<Heading label="Anatomy" level={ 2 } />
+
+![Component anatomy](/assets/base-assets/components/text/anatomy-tech.png "Component anatomy")
+
+1. **Text**
+
+<TechnicalSpecification
+  data={ SpecificationsText }
+  extraInfo={{
+    'Text': {
+      extendAttribute: {
+        name: 'text elements',
+        url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/label#attributes',
+      },
+    },
+  }}
+  of={ TextStories } />
+
+<Heading label="Examples" level={ 2 } />
+
+<Heading label="Default" level={ 3 } />
+
+<OdsCanvas of={ TextStories.Default } sourceState="shown" />
+
+<Heading label="Preset" level={ 3 } />
+
+**Caption** preset can be used should you need ODS caption custom style.
+
+For actual `<caption>` (used in a table) or `<figcaption>` (image), use the native tag using either an OdsText inside of it or the Saas mixin.
+
+<OdsCanvas of={ TextStories.Preset } sourceState="shown" />
+
+<Heading label="Caption preset in <table>" level={ 3 } />
+
+<OdsCanvas of={ TextStories.TableCaption } sourceState="shown" />
+
+<Heading label="Caption preset in <figcaption>" level={ 3 } />
+
+<OdsCanvas of={ TextStories.FigCaption } sourceState="shown" />

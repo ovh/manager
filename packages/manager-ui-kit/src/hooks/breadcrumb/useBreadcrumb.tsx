@@ -1,5 +1,7 @@
-import { useEffect, useState, useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
+
 import { useLocation } from 'react-router-dom';
+
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 export type BreadcrumbItem = {
@@ -27,11 +29,7 @@ export const useBreadcrumb = ({
   useEffect(() => {
     const fetchRoot = async () => {
       try {
-        const response = await shell?.navigation.getURL(
-          appName as string,
-          '#/',
-          {},
-        );
+        const response = await shell?.navigation.getURL(appName as string, '#/', {});
         const rootItem = {
           label: rootLabel,
           href: String(response),

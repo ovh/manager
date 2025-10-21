@@ -1,17 +1,20 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
+
 import {
+  ICON_NAME,
+  MESSAGE_COLOR,
+  MODAL_COLOR,
   Message,
   MessageBody,
   MessageIcon,
-  MODAL_COLOR,
-  MESSAGE_COLOR,
-  ICON_NAME,
 } from '@ovhcloud/ods-react';
-import './translations/translations';
+
 import { Modal } from '../modal';
 import { Text } from '../text';
 import { DeleteModalProps } from './DeleteModal.props';
+import './translations/translations';
 
 export const DeleteModal: React.FC<DeleteModalProps> = ({
   open = false,
@@ -56,10 +59,7 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
             <MessageBody>{t('deleteModalError', { error })}</MessageBody>
           </Message>
         )}
-        <Text
-          data-testid="manager-delete-modal-description"
-          id="delete-modal-description"
-        >
+        <Text data-testid="manager-delete-modal-description" id="delete-modal-description">
           {t('deleteModalDescription')}
         </Text>
         {children && <>{children}</>}

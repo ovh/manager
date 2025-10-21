@@ -1,4 +1,5 @@
 import React, { DOMAttributes } from 'react';
+
 import { LinkProp } from '@ovhcloud/ods-react';
 
 export enum LinkType {

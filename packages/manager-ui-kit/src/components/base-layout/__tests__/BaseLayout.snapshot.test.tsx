@@ -1,11 +1,12 @@
-import { vitest, describe, it } from 'vitest';
 import { render } from '@testing-library/react';
+import { describe, it, vitest } from 'vitest';
+
 import { BaseLayout } from '..';
-import { GuideMenu, GuideMenuItem } from '../../guide-menu';
-import { ChangelogMenu, ChangelogMenuLinks } from '../../changelog-menu';
 import { Breadcrumb } from '../../breadcrumb';
-import { TabsComponent } from '../../tabs';
+import { ChangelogMenu, ChangelogMenuLinks } from '../../changelog-menu';
+import { GuideMenu, GuideMenuItem } from '../../guide-menu';
 import { Notifications } from '../../notifications';
+import { TabsComponent } from '../../tabs';
 
 vitest.mock('react-router-dom', async () => ({
   ...(await vitest.importActual('react-router-dom')),

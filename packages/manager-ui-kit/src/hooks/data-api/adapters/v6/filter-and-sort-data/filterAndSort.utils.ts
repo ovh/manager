@@ -17,14 +17,9 @@ export const compare = (
     case FilterTypeCategories.Numeric:
       return parseFloat(firstOperand) - parseFloat(secondOperand);
     case FilterTypeCategories.Date:
-      return (
-        new Date(firstOperand).getTime() - new Date(secondOperand).getTime()
-      );
+      return new Date(firstOperand).getTime() - new Date(secondOperand).getTime();
     case FilterTypeCategories.Boolean:
-      return (
-        Number(getBooleanValue(firstOperand)) -
-        Number(getBooleanValue(secondOperand))
-      );
+      return Number(getBooleanValue(firstOperand)) - Number(getBooleanValue(secondOperand));
     case FilterTypeCategories.String:
       return firstOperand
         ?.trim()

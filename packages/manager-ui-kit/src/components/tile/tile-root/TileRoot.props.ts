@@ -1,5 +1,6 @@
 import { ComponentProps } from 'react';
-import { Card, CARD_COLOR } from '@ovhcloud/ods-react';
+
+import { CARD_COLOR, Card } from '@ovhcloud/ods-react';
 
 export interface TileRootProps extends ComponentProps<typeof Card> {
   className?: string;

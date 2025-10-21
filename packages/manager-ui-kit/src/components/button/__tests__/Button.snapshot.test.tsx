@@ -1,9 +1,12 @@
-import { vitest } from 'vitest';
 import type { MockInstance } from 'vitest';
+import { vitest } from 'vitest';
+
 import { TOOLTIP_POSITION } from '@ovhcloud/ods-react';
+
 import { render } from '@/setupTest';
-import { Button } from '../index';
+
 import { useAuthorizationIam } from '../../../hooks/iam';
+import { Button } from '../index';
 
 vitest.mock('../../../hooks/iam', () => ({
   useAuthorizationIam: vitest.fn().mockReturnValue({
@@ -106,11 +109,7 @@ describe('Button Snapshot Tests', () => {
       });
 
       const { container } = render(
-        <Button
-          iamActions={['test:action']}
-          urn="urn:test:resource"
-          displayTooltip={false}
-        >
+        <Button iamActions={['test:action']} urn="urn:test:resource" displayTooltip={false}>
           Unauthorized Button No Tooltip
         </Button>,
       );
@@ -195,9 +194,7 @@ describe('Button Snapshot Tests', () => {
         isFetched: true,
       });
 
-      const { container } = render(
-        <Button urn="urn:test:resource">URN Only Button</Button>,
-      );
+      const { container } = render(<Button urn="urn:test:resource">URN Only Button</Button>);
 
       expect(container).toMatchSnapshot();
     });
@@ -226,11 +223,7 @@ describe('Button Snapshot Tests', () => {
       });
 
       const { container } = render(
-        <Button
-          iamActions={['test:action']}
-          urn="urn:test:resource"
-          isIamTrigger={false}
-        >
+        <Button iamActions={['test:action']} urn="urn:test:resource" isIamTrigger={false}>
           Non-IAM Trigger Button
         </Button>,
       );

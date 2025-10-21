@@ -1,6 +1,8 @@
 import { vitest } from 'vitest';
-import { ChangelogMenu } from '../ChangelogMenu.component';
+
 import { render } from '@/setupTest';
+
+import { ChangelogMenu } from '../ChangelogMenu.component';
 import { Links, chapters } from './ChangelogMenu.utils';
 
 vitest.mock('@ovh-ux/manager-react-shell-client', () => ({
@@ -16,20 +18,14 @@ describe('ChangelogMenu Snapshot Tests', () => {
   });
 
   it('should match snapshot with chapters prop', () => {
-    const { container } = render(
-      <ChangelogMenu links={Links} chapters={chapters} />,
-    );
+    const { container } = render(<ChangelogMenu links={Links} chapters={chapters} />);
     expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should match snapshot with custom prefixes', () => {
     const customPrefixes = ['custom-prefix-1', 'custom-prefix-2'];
     const { container } = render(
-      <ChangelogMenu
-        links={Links}
-        chapters={chapters}
-        prefixes={customPrefixes}
-      />,
+      <ChangelogMenu links={Links} chapters={chapters} prefixes={customPrefixes} />,
     );
     expect(container.firstChild).toMatchSnapshot();
   });
@@ -40,16 +36,12 @@ describe('ChangelogMenu Snapshot Tests', () => {
       roadmap: 'https://custom-roadmap.com',
       'feature-request': 'https://custom-feature-request.com',
     };
-    const { container } = render(
-      <ChangelogMenu links={customLinks} chapters={chapters} />,
-    );
+    const { container } = render(<ChangelogMenu links={customLinks} chapters={chapters} />);
     expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should match snapshot with single chapter', () => {
-    const { container } = render(
-      <ChangelogMenu links={Links} chapters={['single-chapter']} />,
-    );
+    const { container } = render(<ChangelogMenu links={Links} chapters={['single-chapter']} />);
     expect(container.firstChild).toMatchSnapshot();
   });
 
@@ -62,9 +54,7 @@ describe('ChangelogMenu Snapshot Tests', () => {
       'feature-request':
         'https://very-long-url-that-might-affect-rendering.com/path/to/feature-request?param1=value1&param2=value2&param3=value3',
     };
-    const { container } = render(
-      <ChangelogMenu links={longUrls} chapters={chapters} />,
-    );
+    const { container } = render(<ChangelogMenu links={longUrls} chapters={chapters} />);
     expect(container.firstChild).toMatchSnapshot();
   });
 });

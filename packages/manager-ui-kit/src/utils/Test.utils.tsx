@@ -1,8 +1,7 @@
 import { ReactNode } from 'react';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
 import { render } from '../../setupTest';
 
 export const mockTrackPage = vitest.fn();

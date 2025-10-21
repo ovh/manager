@@ -1,10 +1,12 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { TagsList, TagsListProps } from '../tags-list';
-import './translations';
-import { Tile } from '../tile';
+
 import { Link, LinkType } from '../Link';
+import { TagsList } from '../tags-list';
+import { Tile } from '../tile';
 import { TagsTileProps } from './TagsTile.props';
+import './translations';
 
 export const TagsTile: React.FC<TagsTileProps> = ({
   tags,

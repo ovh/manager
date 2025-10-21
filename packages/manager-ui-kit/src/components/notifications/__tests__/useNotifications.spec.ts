@@ -1,8 +1,7 @@
-import { vi, describe, it, expect } from 'vitest';
-import useNotifications, {
-  NOTIFICATION_MINIMAL_DISPLAY_TIME,
-} from '../useNotifications';
+import { describe, expect, it, vi } from 'vitest';
+
 import { NotificationType } from '../Notifications.type';
+import useNotifications, { NOTIFICATION_MINIMAL_DISPLAY_TIME } from '../useNotifications';
 
 describe('useNotifications Hook', () => {
   beforeEach(() => {
@@ -39,15 +38,9 @@ describe('useNotifications Hook', () => {
   });
 
   it('should increment UID for each new notification', () => {
-    useNotifications
-      .getState()
-      .addNotification('1st', NotificationType.Success);
-    useNotifications
-      .getState()
-      .addNotification('2nd', NotificationType.Success);
-    useNotifications
-      .getState()
-      .addNotification('3rd', NotificationType.Success);
+    useNotifications.getState().addNotification('1st', NotificationType.Success);
+    useNotifications.getState().addNotification('2nd', NotificationType.Success);
+    useNotifications.getState().addNotification('3rd', NotificationType.Success);
 
     const state = useNotifications.getState();
 
@@ -83,15 +76,9 @@ describe('useNotifications Hook', () => {
   });
 
   it('should clear a specific notification by UID', () => {
-    useNotifications
-      .getState()
-      .addNotification('1st', NotificationType.Success);
-    useNotifications
-      .getState()
-      .addNotification('2nd', NotificationType.Success);
-    useNotifications
-      .getState()
-      .addNotification('3rd', NotificationType.Success);
+    useNotifications.getState().addNotification('1st', NotificationType.Success);
+    useNotifications.getState().addNotification('2nd', NotificationType.Success);
+    useNotifications.getState().addNotification('3rd', NotificationType.Success);
 
     useNotifications.getState().clearNotification(1);
 
@@ -107,9 +94,7 @@ describe('useNotifications Hook', () => {
     // Mock Date.now() to simulate consistent timing
     vi.spyOn(Date, 'now').mockImplementation(() => now);
 
-    useNotifications
-      .getState()
-      .addNotification('Recent', NotificationType.Success);
+    useNotifications.getState().addNotification('Recent', NotificationType.Success);
 
     // Simulate that this notification was shown just now
     const recentTimestamp = now;

@@ -1,6 +1,8 @@
-import { vitest, describe, it, expect, beforeEach } from 'vitest';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vitest } from 'vitest';
+
 import { render } from '@/setupTest';
+
 import { UpdateNameModal } from '../UpdateNameModal.component';
 import { UpdateNameModalProps } from '../UpdateNameModal.props';
 
@@ -46,9 +48,7 @@ describe('UpdateNameModal', () => {
       expect(screen.getByDisplayValue('John Doe')).toBeInTheDocument();
       expect(screen.getByText('Cancel')).toBeInTheDocument();
       expect(screen.getByText('Update')).toBeInTheDocument();
-      expect(
-        screen.getByText('Only letters and spaces allowed'),
-      ).toBeInTheDocument();
+      expect(screen.getByText('Only letters and spaces allowed')).toBeInTheDocument();
     });
 
     it('should not render when isOpen is false', () => {
@@ -64,16 +64,12 @@ describe('UpdateNameModal', () => {
 
     it('should not render description when description prop is not provided', () => {
       renderComponent();
-      expect(
-        screen.queryByText('Please enter a new name'),
-      ).not.toBeInTheDocument();
+      expect(screen.queryByText('Please enter a new name')).not.toBeInTheDocument();
     });
 
     it('should not render pattern message when patternMessage prop is not provided', () => {
       renderComponent();
-      expect(
-        screen.queryByText('Only letters and spaces allowed'),
-      ).not.toBeInTheDocument();
+      expect(screen.queryByText('Only letters and spaces allowed')).not.toBeInTheDocument();
     });
   });
 
@@ -87,9 +83,7 @@ describe('UpdateNameModal', () => {
         onClose: mockOnClose,
       });
 
-      expect(
-        screen.getByText('Please enter your new name'),
-      ).toBeInTheDocument();
+      expect(screen.getByText('Please enter your new name')).toBeInTheDocument();
       expect(screen.getByDisplayValue('Old Name')).toBeInTheDocument();
 
       const input = screen.getByLabelText('Display Name');

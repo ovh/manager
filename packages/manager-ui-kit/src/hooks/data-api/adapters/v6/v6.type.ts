@@ -1,6 +1,7 @@
 import { SortingState } from '@tanstack/react-table';
-import { TRefetchInterval } from '../../infra/tanstack/common.types';
+
 import { DatagridColumn } from '../../../../components';
+import { TRefetchInterval } from '../../infra/tanstack/common.types';
 
 export type FetchV6Result<TData> = {
   data: TData[];

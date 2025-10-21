@@ -1,11 +1,13 @@
+import { act, fireEvent, screen } from '@testing-library/react';
 import { vi, vitest } from 'vitest';
-import { fireEvent, screen, act } from '@testing-library/react';
+
 import { render } from '@/setupTest';
-import { Text } from '../../text';
-import { OnboardingLayout } from '../index';
+
 import placeholderSrc from '../../../../public/assets/placeholder.png';
 import { useAuthorizationIam } from '../../../hooks/iam';
 import { IamAuthorizationResponse } from '../../../hooks/iam/iam.interface';
+import { Text } from '../../text';
+import { OnboardingLayout } from '../index';
 
 vitest.mock('../../../hooks/iam', () => ({
   useAuthorizationIam: vitest.fn().mockReturnValue({
@@ -15,8 +17,7 @@ vitest.mock('../../../hooks/iam', () => ({
   }),
 }));
 
-const mockedHook =
-  useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
+const mockedHook = useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
 const customTitle = 'onboarding title';
 const imgAltText = 'img alt text';
 const descriptionText = 'description text';
@@ -48,10 +49,7 @@ describe('specs:onboarding', () => {
     });
     it('displays img correctly', () => {
       render(
-        <OnboardingLayout
-          title={customTitle}
-          img={{ src: placeholderSrc, alt: imgAltText }}
-        />,
+        <OnboardingLayout title={customTitle} img={{ src: placeholderSrc, alt: imgAltText }} />,
       );
       expect(screen.getByAltText(imgAltText)).toBeVisible();
     });
@@ -122,9 +120,7 @@ describe('specs:onboarding', () => {
         isLoading: false,
         isFetched: true,
       });
-      render(
-        <OnboardingLayout title={customTitle}>{children}</OnboardingLayout>,
-      );
+      render(<OnboardingLayout title={customTitle}>{children}</OnboardingLayout>);
       const card = screen.getByText('Test Onboarding 1');
       expect(card).toBeVisible();
     });

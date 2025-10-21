@@ -1,8 +1,10 @@
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
-import { screen, fireEvent, waitFor } from '@testing-library/react';
+
+import { render } from '@/setupTest';
+
 import { GuideMenu } from '../GuideMenu.component';
 import { GuideMenuItem } from '../GuideMenu.props';
-import { render } from '@/setupTest';
 
 // Mock IntersectionObserver for this component
 global.IntersectionObserver = vi.fn().mockImplementation(() => ({

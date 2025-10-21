@@ -1,21 +1,23 @@
 import React from 'react';
-import {
-  Button,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  POPOVER_POSITION,
-  BUTTON_VARIANT,
-  BUTTON_SIZE,
-  Icon,
-  ICON_NAME,
-} from '@ovhcloud/ods-react';
-import { useTranslation } from 'react-i18next';
-import './translations/translation';
 
-import { MenuItem } from './menu-item';
+import { useTranslation } from 'react-i18next';
+
+import {
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+  Button,
+  ICON_NAME,
+  Icon,
+  POPOVER_POSITION,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@ovhcloud/ods-react';
+
 import { ActionMenuProps } from './ActionMenu.props';
 import './action-menu.scss';
+import { MenuItem } from './menu-item';
+import './translations/translation';
 
 export const ActionMenu: React.FC<ActionMenuProps> = ({
   items,
@@ -43,12 +45,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
           onClick={() => setIsTrigger(true)}
         >
           {displayIcon && (
-            <Icon
-              name={
-                icon ||
-                (isCompact ? ICON_NAME.ellipsisVertical : ICON_NAME.chevronDown)
-              }
-            />
+            <Icon name={icon || (isCompact ? ICON_NAME.ellipsisVertical : ICON_NAME.chevronDown)} />
           )}
           {!isCompact && (label || t('common_actions'))}
         </Button>

@@ -1,15 +1,13 @@
 import { useEffect, useState } from 'react';
-import {
-  Icon,
-  ICON_NAME,
-  BUTTON_COLOR,
-  BUTTON_VARIANT,
-} from '@ovhcloud/ods-react';
+
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
-import { DrawerHandleProps } from './DrawerHandle.props';
-import '../translations';
+
+import { BUTTON_COLOR, BUTTON_VARIANT, ICON_NAME, Icon } from '@ovhcloud/ods-react';
+
 import { Button } from '../../button/Button.component';
+import '../translations';
+import { DrawerHandleProps } from './DrawerHandle.props';
 
 const DrawerHandle = ({ onClick, collapseState }: DrawerHandleProps) => {
   const { t } = useTranslation('drawer');
@@ -35,8 +33,7 @@ const DrawerHandle = ({ onClick, collapseState }: DrawerHandleProps) => {
         'transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out',
         'mrc-drawer-handle-fade-in',
         hasEscapeBeenPressed && 'hidden',
-        collapseState === 'collapsed' &&
-          'translate-x-[var(--mrc-drawer-width)]',
+        collapseState === 'collapsed' && 'translate-x-[var(--mrc-drawer-width)]',
       )}
     >
       <div
@@ -52,9 +49,7 @@ const DrawerHandle = ({ onClick, collapseState }: DrawerHandleProps) => {
         <div>
           <Button
             data-testid="drawer-handle"
-            aria-label={
-              collapseState === 'visible' ? t('collapse') : t('expand')
-            }
+            aria-label={collapseState === 'visible' ? t('collapse') : t('expand')}
             onClick={onClick}
             color={BUTTON_COLOR.primary}
             variant={BUTTON_VARIANT.ghost}

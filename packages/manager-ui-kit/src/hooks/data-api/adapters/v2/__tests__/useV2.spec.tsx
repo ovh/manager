@@ -1,8 +1,10 @@
-import { vi, describe, it, expect } from 'vitest';
 import { renderHook } from '@testing-library/react';
-import { fetchV2, FetchV2Params } from '@ovh-ux/manager-core-api';
-import { getWrapper } from '../../../__tests__/Test.utils';
+import { describe, expect, it, vi } from 'vitest';
+
+import { FetchV2Params, fetchV2 } from '@ovh-ux/manager-core-api';
+
 import { items } from '../../../__mocks__/mock';
+import { getWrapper } from '../../../__tests__/Test.utils';
 import { useV2 } from '../useV2';
 import { UseV2Params } from '../useV2.types';
 

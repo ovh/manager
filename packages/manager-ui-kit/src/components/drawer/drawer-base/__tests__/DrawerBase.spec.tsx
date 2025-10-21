@@ -1,10 +1,12 @@
-import '../../__tests__/drawer.mocks'; // import the mock first
-import { vi, type MockInstance } from 'vitest';
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+// import the mock first
+import { type MockInstance, vi } from 'vitest';
+
+import { useAuthorizationIam } from '../../../../hooks/iam';
+import '../../__tests__/drawer.mocks';
 import { DrawerBase } from '../DrawerBase.component';
 import { DrawerBaseProps } from '../DrawerBase.props';
-import { useAuthorizationIam } from '../../../../hooks/iam';
 
 vi.mock('../../../../hooks/iam');
 

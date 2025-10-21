@@ -1,15 +1,15 @@
-import React, { useId } from 'react';
+import React from 'react';
 import { Meta } from '@storybook/react';
 import {
-  Skeleton,
-  Text,
-  Link,
-  Icon,
-  ICON_NAME,
   Badge,
   Button,
+  Icon,
+  ICON_NAME,
+  Link,
+  Skeleton,
+  Text,
 } from '@ovhcloud/ods-react';
-import { Clipboard, ActionMenu, Tile } from '@ovh-ux/muk';
+import { ActionMenu, Clipboard, Tile } from '@ovh-ux/muk';
 
 const actionItems = [
   {

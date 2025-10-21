@@ -1,7 +1,8 @@
 import { render } from '@/setupTest';
-import { GridLayout } from '../GridLayout.component';
-import { Tile } from '../../tile';
+
 import { Text } from '../../text';
+import { Tile } from '../../tile';
+import { GridLayout } from '../GridLayout.component';
 
 describe('GridLayout Snapshot Tests', () => {
   it('should render empty grid layout', () => {

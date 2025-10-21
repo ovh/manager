@@ -1,14 +1,13 @@
 import type { Dispatch, SetStateAction } from 'react';
-import { Filter } from '@ovh-ux/manager-core-api';
+
 import { SortingState } from '@tanstack/react-table';
+
+import { Filter } from '@ovh-ux/manager-core-api';
+
+import { ColumnSort, DatagridColumn, FilterWithLabel } from '../../../../components';
 import { TRefetchInterval } from '../../infra/tanstack/common.types';
-import { UseQueryResult } from '../../infra/tanstack/use-query';
 import { UseInifiniteQueryResult } from '../../infra/tanstack/use-infinite-query';
-import {
-  ColumnSort,
-  FilterWithLabel,
-  DatagridColumn,
-} from '../../../../components';
+import { UseQueryResult } from '../../infra/tanstack/use-query';
 
 export type UseDataApiOptions<TData = Record<string, unknown>> = {
   route?: string;

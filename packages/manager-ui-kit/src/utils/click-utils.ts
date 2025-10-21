@@ -1,4 +1,4 @@
-import { MouseEventHandler, KeyboardEvent } from 'react';
+import { KeyboardEvent, MouseEventHandler } from 'react';
 
 /**
  * Assign the function passed to the onClick event handler

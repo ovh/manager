@@ -1,21 +1,22 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
+
 import { Text } from '@ovhcloud/ods-react';
 
 import { IntervalUnitType } from '../../enumTypes';
 import { PriceProps } from './Price.props';
 import {
-  getPrice,
-  convertIntervalPrice,
-  getPriceTextFormatted,
   checkAsianFormat,
-  checkGermanFormat,
   checkFranceFormat,
+  checkGermanFormat,
   checkUSFormat,
+  convertIntervalPrice,
+  getPrice,
+  getPriceTextFormatted,
 } from './Price.utils';
-import './translations';
-
 import { PriceText, PriceTextPreset } from './price-text';
+import './translations';
 
 export function Price({
   value,
@@ -33,20 +34,12 @@ export function Price({
   const isUSFormat = checkUSFormat(ovhSubsidiary);
 
   const convertedValue =
-    isConvertIntervalUnit && intervalUnit
-      ? convertIntervalPrice(value, intervalUnit)
-      : value;
+    isConvertIntervalUnit && intervalUnit ? convertIntervalPrice(value, intervalUnit) : value;
 
   const convertedTax =
-    isConvertIntervalUnit && intervalUnit
-      ? convertIntervalPrice(tax, intervalUnit)
-      : tax;
+    isConvertIntervalUnit && intervalUnit ? convertIntervalPrice(tax, intervalUnit) : tax;
 
-  const priceWithoutTax = getPriceTextFormatted(
-    ovhSubsidiary,
-    locale,
-    getPrice(convertedValue),
-  );
+  const priceWithoutTax = getPriceTextFormatted(ovhSubsidiary, locale, getPrice(convertedValue));
 
   const priceWithTax = getPriceTextFormatted(
     ovhSubsidiary,
@@ -55,9 +48,7 @@ export function Price({
   );
 
   const intervalUnitText =
-    intervalUnit && intervalUnit !== IntervalUnitType.none
-      ? t(`price_per_${intervalUnit}`)
-      : '';
+    intervalUnit && intervalUnit !== IntervalUnitType.none ? t(`price_per_${intervalUnit}`) : '';
 
   const components = [
     {
@@ -93,9 +84,7 @@ export function Price({
     },
     {
       condition: isGermanFormat && tax > 0,
-      component: (
-        <PriceText price={priceWithTax} intervalUnitText={intervalUnitText} />
-      ),
+      component: <PriceText price={priceWithTax} intervalUnitText={intervalUnitText} />,
     },
     {
       condition: isAsiaFormat && (!tax || tax === 0),
@@ -126,12 +115,7 @@ export function Price({
     },
     {
       condition: isUSFormat,
-      component: (
-        <PriceText
-          price={priceWithoutTax}
-          intervalUnitText={intervalUnitText}
-        />
-      ),
+      component: <PriceText price={priceWithoutTax} intervalUnitText={intervalUnitText} />,
     },
   ];
 

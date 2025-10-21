@@ -1,5 +1,7 @@
 import { memo } from 'react';
+
 import { useTranslation } from 'react-i18next';
+
 import { Text } from '../../../../text';
 
 const FooterInformationsComponent = ({
@@ -13,8 +15,7 @@ const FooterInformationsComponent = ({
   return (
     <div className="text-right h-full flex items-bottom justify-end">
       <Text>
-        {itemsCount}{' '}
-        {totalCount && `${t('common_pagination_of')} ${totalCount}`}{' '}
+        {itemsCount} {totalCount && `${t('common_pagination_of')} ${totalCount}`}{' '}
         {`${t('common_pagination_results')}`}
       </Text>
     </div>

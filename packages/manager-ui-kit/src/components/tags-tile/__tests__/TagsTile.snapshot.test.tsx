@@ -1,6 +1,7 @@
 import { vitest } from 'vitest';
-import { TagsTile } from '../TagsTile.component';
+
 import { render } from '../../../../setupTest';
+import { TagsTile } from '../TagsTile.component';
 
 describe('TagsTile Snapshot Tests', () => {
   const mockOnEditTags = vitest.fn();
@@ -11,17 +12,13 @@ describe('TagsTile Snapshot Tests', () => {
 
   describe('Empty State', () => {
     it('should render empty tags tile', () => {
-      const { container } = render(
-        <TagsTile tags={{}} onEditTags={mockOnEditTags} />,
-      );
+      const { container } = render(<TagsTile tags={{}} onEditTags={mockOnEditTags} />);
 
       expect(container).toMatchSnapshot();
     });
 
     it('should render with null tags', () => {
-      const { container } = render(
-        <TagsTile tags={null} onEditTags={mockOnEditTags} />,
-      );
+      const { container } = render(<TagsTile tags={null} onEditTags={mockOnEditTags} />);
 
       expect(container).toMatchSnapshot();
     });
@@ -41,9 +38,7 @@ describe('TagsTile Snapshot Tests', () => {
     };
 
     it('should render tags tile with tags', () => {
-      const { container } = render(
-        <TagsTile tags={mockTags} onEditTags={mockOnEditTags} />,
-      );
+      const { container } = render(<TagsTile tags={mockTags} onEditTags={mockOnEditTags} />);
 
       expect(container).toMatchSnapshot();
     });
@@ -58,11 +53,7 @@ describe('TagsTile Snapshot Tests', () => {
 
     it('should render with displayInternalTags enabled', () => {
       const { container } = render(
-        <TagsTile
-          tags={mockTags}
-          onEditTags={mockOnEditTags}
-          displayInternalTags={true}
-        />,
+        <TagsTile tags={mockTags} onEditTags={mockOnEditTags} displayInternalTags={true} />,
       );
 
       expect(container).toMatchSnapshot();
@@ -83,11 +74,7 @@ describe('TagsTile Snapshot Tests', () => {
       };
 
       const { container } = render(
-        <TagsTile
-          tags={manyTags}
-          onEditTags={mockOnEditTags}
-          lineNumber={10}
-        />,
+        <TagsTile tags={manyTags} onEditTags={mockOnEditTags} lineNumber={10} />,
       );
 
       expect(container).toMatchSnapshot();
@@ -96,9 +83,7 @@ describe('TagsTile Snapshot Tests', () => {
     it('should render with single tag', () => {
       const singleTag = { environment: 'staging' };
 
-      const { container } = render(
-        <TagsTile tags={singleTag} onEditTags={mockOnEditTags} />,
-      );
+      const { container } = render(<TagsTile tags={singleTag} onEditTags={mockOnEditTags} />);
 
       expect(container).toMatchSnapshot();
     });

@@ -1,10 +1,11 @@
-import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { renderHook } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import * as managerCoreApi from '@ovh-ux/manager-core-api';
 
-import { useFilterAndSortData } from '../useFilterAndSortData';
-import { columns, items, ResultObj } from '../../../../__mocks__/mock';
+import { ResultObj, columns, items } from '../../../../__mocks__/mock';
 import { getFilter, getSorting } from '../../../../__tests__/Test.utils';
+import { useFilterAndSortData } from '../useFilterAndSortData';
 
 describe('useFilterAndSortData hook', () => {
   beforeEach(() => {
@@ -45,9 +46,7 @@ describe('useFilterAndSortData hook', () => {
       });
     });
     expect(result.current.filteredAndSortedData.length).toBe(1);
-    expect(
-      (result.current.filteredAndSortedData[0] as ResultObj).name,
-    ).toContain(searchTerm);
+    expect((result.current.filteredAndSortedData[0] as ResultObj).name).toContain(searchTerm);
   });
 
   it('tests for filter', () => {
@@ -70,9 +69,7 @@ describe('useFilterAndSortData hook', () => {
     });
     expect(result.current.filteredAndSortedData.length).toBe(35);
     result.current.filteredAndSortedData.forEach((item) => {
-      expect(parseInt(item.number, 10)).toBeGreaterThan(
-        parseInt(searchTerm, 10),
-      );
+      expect(parseInt(item.number, 10)).toBeGreaterThan(parseInt(searchTerm, 10));
     });
   });
 

@@ -1,7 +1,8 @@
-import { useMemo, useState, lazy, FC, Suspense } from 'react';
-import { TagsStack } from './tags-stack/TagsStack.component';
-import { filterTags } from './TagsList.utils';
+import { FC, Suspense, lazy, useMemo, useState } from 'react';
+
 import { TagsListProps } from './TagsList.props';
+import { filterTags } from './TagsList.utils';
+import { TagsStack } from './tags-stack/TagsStack.component';
 
 const TagsModal = lazy(() => import('./tags-modal/TagsModal.component'));
 

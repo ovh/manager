@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
 import { TabsComponent } from '../Tabs.component';
 
 describe('TabsComponent', () => {
@@ -17,9 +18,7 @@ describe('TabsComponent', () => {
     });
 
     it('should match snapshot with custom className', () => {
-      const { container } = render(
-        <TabsComponent items={mockItems} className="custom-class" />,
-      );
+      const { container } = render(<TabsComponent items={mockItems} className="custom-class" />);
       expect(container).toMatchSnapshot();
     });
 
@@ -44,16 +43,11 @@ describe('TabsComponent', () => {
 
     it('should match snapshot with custom contentElement', () => {
       const customContentElement = ({ item }: { item?: string }) => (
-        <div data-testid={`custom-content-${item}`}>
-          Custom content for {item}
-        </div>
+        <div data-testid={`custom-content-${item}`}>Custom content for {item}</div>
       );
 
       const { container } = render(
-        <TabsComponent
-          items={mockItems}
-          contentElement={customContentElement}
-        />,
+        <TabsComponent items={mockItems} contentElement={customContentElement} />,
       );
       expect(container).toMatchSnapshot();
     });

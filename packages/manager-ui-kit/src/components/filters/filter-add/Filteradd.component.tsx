@@ -1,28 +1,25 @@
-import { useEffect, useMemo, useState, Fragment } from 'react';
+import { Fragment, useEffect, useMemo, useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
-import {
-  FilterComparator,
-  FilterTypeCategories,
-} from '@ovh-ux/manager-core-api';
+
 import {
   BUTTON_SIZE,
   FormField,
   FormFieldLabel,
   Select,
-  SelectControl,
   SelectContent,
+  SelectControl,
 } from '@ovhcloud/ods-react';
-import { FilterSectionValue } from './filter-section-value/FilterSectionValue.component';
-import { Button } from '../../button/Button.component';
-import { FilterTagsForm } from './filter-tags-form/FilterTagsForm.component';
-import { FilterAddProps } from './FilterAdd.props';
-import '../translations';
 
-export function FilterAdd({
-  columns,
-  onAddFilter,
-  resourceType,
-}: Readonly<FilterAddProps>) {
+import { FilterComparator, FilterTypeCategories } from '@ovh-ux/manager-core-api';
+
+import { Button } from '../../button/Button.component';
+import '../translations';
+import { FilterAddProps } from './FilterAdd.props';
+import { FilterSectionValue } from './filter-section-value/FilterSectionValue.component';
+import { FilterTagsForm } from './filter-tags-form/FilterTagsForm.component';
+
+export function FilterAdd({ columns, onAddFilter, resourceType }: Readonly<FilterAddProps>) {
   const { t } = useTranslation('filters');
 
   const [selectedId, setSelectedId] = useState(columns?.[0]?.id || '');
@@ -50,9 +47,7 @@ export function FilterAdd({
       return (
         (!!tagKey && !!value) ||
         (!!tagKey &&
-          [FilterComparator.TagExists, FilterComparator.TagNotExists].includes(
-            selectedComparator,
-          ))
+          [FilterComparator.TagExists, FilterComparator.TagNotExists].includes(selectedComparator))
       );
     }
 
@@ -82,9 +77,7 @@ export function FilterAdd({
   };
 
   useEffect(() => {
-    setSelectedComparator(
-      selectedColumn?.comparators?.[0] || FilterComparator.IsEqual,
-    );
+    setSelectedComparator(selectedColumn?.comparators?.[0] || FilterComparator.IsEqual);
     setValue('');
     setTagKey('');
     setDateValue(null);
@@ -94,9 +87,7 @@ export function FilterAdd({
     <>
       <div className="w-full">
         <FormField>
-          <FormFieldLabel>
-            {t('common_criteria_adder_column_label')}
-          </FormFieldLabel>
+          <FormFieldLabel>{t('common_criteria_adder_column_label')}</FormFieldLabel>
           <Select
             key={`add-filter_select_idColumn-${selectedId}`}
             name={`add-filter_select_idColumn-${selectedId}`}
@@ -115,9 +106,7 @@ export function FilterAdd({
       </div>
       <div className="mt-4 w-full">
         <FormField>
-          <FormFieldLabel>
-            {t('common_criteria_adder_operator_label')}
-          </FormFieldLabel>
+          <FormFieldLabel>{t('common_criteria_adder_operator_label')}</FormFieldLabel>
           {selectedColumn && (
             <div data-testid={`add-operator-${selectedColumn.id}`}>
               <Select
@@ -142,9 +131,7 @@ export function FilterAdd({
       {selectedColumn?.type !== FilterTypeCategories.Tags && (
         <div className="mt-4 w-full">
           <FormField>
-            <FormFieldLabel>
-              {t('common_criteria_adder_value_label')}
-            </FormFieldLabel>
+            <FormFieldLabel>{t('common_criteria_adder_value_label')}</FormFieldLabel>
             <FilterSectionValue
               selectedColumn={selectedColumn}
               value={value}

@@ -1,7 +1,10 @@
 import React from 'react';
-import { vi } from 'vitest';
+
 import { waitFor } from '@testing-library/react';
+import { vi } from 'vitest';
+
 import { render } from '@/setupTest';
+
 import { FilterTagsForm } from '../FilterTagsForm.component';
 import { FilterTagsFormProps } from '../FilterTagsForm.props';
 
@@ -42,9 +45,7 @@ describe('FilterTagValue', () => {
     const { container, queryByTestId } = render(<TestWrapper />);
 
     expect(queryByTestId('tags-filter-form-key-field')).not.toBeInTheDocument();
-    expect(
-      queryByTestId('tags-filter-form-value-field'),
-    ).not.toBeInTheDocument();
+    expect(queryByTestId('tags-filter-form-value-field')).not.toBeInTheDocument();
 
     const skeletons = container.querySelectorAll('[class*="skeleton"]');
     expect(skeletons.length).toBeGreaterThan(0);
