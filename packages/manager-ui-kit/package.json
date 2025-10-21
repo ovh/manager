@@ -5,8 +5,18 @@
   "author": "OVH SAS",
   "description": "MUK:Manager UI Kit",
   "types": "dist/types/src/lib.d.ts",
-  "main": "dist/src/lib.js",
-  "browser": "dist/manager-ui-kit-lib.es.ts",
+  "main": "dist/manager-ui-kit-lib.cjs.js",
+  "module": "dist/manager-ui-kit-lib.es.js",
+  "style": "dist/style.css",
+  "sideEffects": true,
+  "exports": {
+    ".": {
+      "types": "./dist/types/src/lib.d.ts",
+      "import": "./dist/manager-ui-kit-lib.es.js",
+      "require": "./dist/manager-ui-kit-lib.cjs.js"
+    },
+    "./style.css": "./dist/style.css"
+  },
   "homepage": "https://github.com/ovh/manager/blob/master/packages/manager-ui-kit/README.md",
   "bugs": {
     "url": "https://github.com/ovh/manager/issues"
@@ -20,11 +30,11 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc && vite build",
-    "build:strict": "tsc --project tsconfig.strict.json && vite build",
+    "build": "tsc && vite build && node scripts/inject-css.mjs",
+    "build:strict": "tsc --project tsconfig.strict.json && vite build && node scripts/inject-css.mjs",
     "lint:modern": "manager-lint --config eslint.config.mjs ./src",
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
-    "prepare": "tsc && vite build",
+    "prepare": "tsc && vite build && node scripts/inject-css.mjs",
     "test": "TZ=UTC manager-test run",
     "test:ci": "TZ=UTC manager-test run --coverage"
   },
