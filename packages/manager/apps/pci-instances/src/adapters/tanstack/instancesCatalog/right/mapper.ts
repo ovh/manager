@@ -7,10 +7,14 @@ import {
   TInstancesCatalog,
   TMicroRegion,
   TMacroRegion,
+  TFlavorCategory,
+  TFlavorType,
 } from '@/domain/entities/instancesCatalog';
 import {
   TContinentRegionsDTO,
   TDeploymentModeDTO,
+  TFlavorCategoryDTO,
+  TFlavorSubCategoryDTO,
   TInstancesCatalogDTO,
   TRegionDTO,
 } from './dto.type';
@@ -43,9 +47,13 @@ const mapRegionDTOtoMicroRegionEntity = (
 
 const mapDeploymentModeDTOToEntity = (
   mode: TDeploymentModeDTO,
-): TDeployment => ({ name: mode.name, tags: mode.tags ?? [] });
+): TDeployment => ({ name: mode.name, tags: mode.tags });
 
-const normalizeData = <DTOItem extends { name: ItemID }, ItemID, EntityItem>(
+const normalizeData = <
+  ItemID extends string,
+  DTOItem extends { name: ItemID },
+  EntityItem
+>(
   items: DTOItem[],
   mapper: (arg: DTOItem) => EntityItem,
 ) =>
@@ -101,6 +109,63 @@ const normalizeRegion = (mappers: TNormalizeRegionMappers) => (
     {
       macroRegions: { byId: new Map(), allIds: [] },
       microRegions: { byId: new Map(), allIds: [] },
+    },
+  );
+
+type TFlavorCategories = {
+  flavorCategories: TNormalizedEntity<string, TFlavorCategory>;
+  flavorTypes: TNormalizedEntity<string, TFlavorType>;
+};
+
+type TNormalizeCategoryMappers = {
+  flavorCategoryMapper: (arg: TFlavorCategoryDTO) => TFlavorCategory;
+  flavorTypeMapper: (arg: TFlavorType) => TFlavorType;
+};
+
+const mapCategoryDTOToFlavorCategoryEntity = (
+  category: TFlavorCategoryDTO,
+): TFlavorCategory => ({
+  name: category.name,
+  types: category.subCategories.map((subC) => subC.name),
+  tags: category.tags,
+});
+
+const mapSubCategoryDTOToFlavorTypeEntity = (
+  subCategory: TFlavorSubCategoryDTO,
+): TFlavorType => ({
+  name: subCategory.name,
+  flavors: subCategory.flavors,
+  tags: subCategory.tags,
+});
+
+const normalizeFlavorCategories = (mappers: TNormalizeCategoryMappers) => (
+  categories: TFlavorCategoryDTO[],
+) =>
+  categories.reduce<TFlavorCategories>(
+    (acc, category) => {
+      if (!acc.flavorCategories.allIds.includes(category.name))
+        acc.flavorCategories.allIds.push(category.name);
+
+      acc.flavorCategories.byId.set(
+        category.name,
+        mappers.flavorCategoryMapper(category),
+      );
+
+      const { byId: typeById, allIds: typeAllIds } = normalizeData(
+        category.subCategories,
+        mappers.flavorTypeMapper,
+      );
+
+      acc.flavorTypes = {
+        byId: new Map([...acc.flavorTypes.byId, ...typeById]),
+        allIds: Array.from(new Set([...acc.flavorTypes.allIds, ...typeAllIds])),
+      };
+
+      return acc;
+    },
+    {
+      flavorCategories: { byId: new Map(), allIds: [] },
+      flavorTypes: { byId: new Map(), allIds: [] },
     },
   );
 
@@ -177,6 +242,10 @@ export const mapInstancesCatalogDtoToEntity = (
         catalogDTO.filters.regions,
         catalogDTO.regions,
       ),
+      ...normalizeFlavorCategories({
+        flavorCategoryMapper: mapCategoryDTOToFlavorCategoryEntity,
+        flavorTypeMapper: mapSubCategoryDTOToFlavorTypeEntity,
+      })(catalogDTO.filters.categories),
     },
     relations: {
       continentIdsByDeploymentModeId: getContinentIdsByDeploymentModeId(
