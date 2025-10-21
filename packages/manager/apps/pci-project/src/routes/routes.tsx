@@ -5,6 +5,7 @@ import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { urls } from '@/routes/routes.constant';
 import { PROJECTS_TRACKING } from '@/tracking.constant';
 import CreationGuard from '@/components/creation-guard/CreationGuard';
+import ActivationGuard from '@/components/activation-guard/ActivationGuard';
 
 const LayoutPage = lazy(() => import('@/pages/Layout'));
 const ListingPage = lazy(() => import('@/pages/listing/Listing'));
@@ -19,9 +20,6 @@ const IncreaseQuotaPage = lazy(() =>
   import('@/pages/increase-quota/IncreaseQuota'),
 );
 const EditPage = lazy(() => import('@/pages/home/edit/Edit.page'));
-const ActivatePage = lazy(() =>
-  import('@/pages/detail/activate/Activate.page'),
-);
 
 export default (
   <Route
@@ -132,7 +130,7 @@ export default (
       </Route>
       <Route
         path={urls.activate}
-        Component={ActivatePage}
+        Component={ActivationGuard}
         handle={{
           tracking: {
             pageName: PROJECTS_TRACKING.ACTIVATE.PAGE_NAME,
