@@ -13,6 +13,8 @@ const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 
 const ListingPage = React.lazy(() => import('@/pages/listing/Listing.page'));
 const DashboardPage = React.lazy(() => import('@/pages/dashboard/Dashboard.page'));
+const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
+const LandingRedirect = React.lazy(() => import('@/components/LandingRedirect/LandingRedirect'));
 
 export default (
   <>
@@ -32,8 +34,20 @@ export default (
         />
       }
     >
-      {/* Default landing inside root → redirect to listing */}
-      <Route index element={<Navigate to="listing" replace />} />
+      {/* Default landing inside root → smart redirect based on services */}
+      <Route index Component={LandingRedirect} />
+
+      {/* Onboarding route */}
+      <Route
+        path={urls.onboarding}
+        Component={OnboardingPage}
+        handle={{
+          tracking: {
+            pageName: 'onboarding',
+            pageType: PageType.listing,
+          },
+        }}
+      />
 
       {/* Listing route */}
       <Route

@@ -6,6 +6,7 @@ export const urls = {
   root: getRoot(),
   listing: 'listing',
   dashboard: 'dashboard/:serviceName',
+  onboarding: 'onboarding',
 } as const;
 
 export const redirectionApp = APP_FEATURES.isPci

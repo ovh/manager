@@ -93,10 +93,11 @@ export default function NashaCreateModal({ isOpen, onClose }: NashaCreateModalPr
       isPrimaryButtonDisabled={createService.isPending}
     >
       <div className="space-y-4">
-        <OdsFormField label={t('datacenter')} error={errors.datacenter}>
+        <div className="space-y-2">
+          <label className="text-sm font-medium">{t('datacenter')}</label>
           <OdsSelect
             value={formData.datacenter}
-            onValueChange={(value) => setFormData({ ...formData, datacenter: value })}
+            onValueChange={(value: any) => setFormData({ ...formData, datacenter: value })}
             placeholder={t('select_datacenter')}
           >
             {datacentersData?.datacenters.map((datacenter) => (
@@ -105,40 +106,46 @@ export default function NashaCreateModal({ isOpen, onClose }: NashaCreateModalPr
               </option>
             ))}
           </OdsSelect>
-        </OdsFormField>
+          {errors.datacenter && <p className="text-sm text-red-600">{errors.datacenter}</p>}
+        </div>
 
-        <OdsFormField label={t('protocol')} error={errors.protocol}>
+        <div className="space-y-2">
+          <label className="text-sm font-medium">{t('protocol')}</label>
           <OdsSelect
             value={formData.protocol}
-            onValueChange={(value) =>
+            onValueChange={(value: any) =>
               setFormData({ ...formData, protocol: value as 'NFS' | 'CIFS' })
             }
           >
             <option value="NFS">NFS</option>
             <option value="CIFS">CIFS</option>
           </OdsSelect>
-        </OdsFormField>
+          {errors.protocol && <p className="text-sm text-red-600">{errors.protocol}</p>}
+        </div>
 
-        <OdsFormField label={t('size_gb')} error={errors.size}>
+        <div className="space-y-2">
+          <label className="text-sm font-medium">{t('size_gb')}</label>
           <OdsInput
             type="number"
             value={formData.size.toString()}
-            onValueChange={(value) => setFormData({ ...formData, size: parseInt(value, 10) || 0 })}
+            onValueChange={(value: any) => setFormData({ ...formData, size: parseInt(value, 10) || 0 })}
             min="100"
             step="1"
             placeholder="100"
           />
-        </OdsFormField>
+          {errors.size && <p className="text-sm text-red-600">{errors.size}</p>}
+        </div>
 
-        <OdsFormField label={t('custom_name')} optional>
+        <div className="space-y-2">
+          <label className="text-sm font-medium">{t('custom_name')} (optionnel)</label>
           <OdsInput
             value={formData.customName || ''}
-            onValueChange={(value) => setFormData({ ...formData, customName: value })}
+            onValueChange={(value: any) => setFormData({ ...formData, customName: value })}
             placeholder={t('custom_name_placeholder')}
           />
-        </OdsFormField>
+        </div>
 
-        <OdsText preset="caption-1" color="neutral-600">
+        <OdsText preset="caption" color="neutral-600">
           {t('create_service_info')}
         </OdsText>
       </div>

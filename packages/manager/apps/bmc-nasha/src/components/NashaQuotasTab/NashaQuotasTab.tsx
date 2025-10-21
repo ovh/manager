@@ -4,7 +4,8 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OdsCard, OdsIcon, OdsTable, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsCard, OdsIcon, OdsText } from '@ovhcloud/ods-components/react';
+import { Datagrid, DataGridTextCell } from '@ovh-ux/manager-react-components';
 
 import { useBytes } from '@ovh-ux/manager-react-components';
 
@@ -21,34 +22,49 @@ export default function NashaQuotasTab({ serviceName, quotas }: NashaQuotasTabPr
 
   const columns = [
     {
-      header: t('uid'),
-      accessorKey: 'uid',
+      id: 'uid',
+      label: t('uid'),
+      cell: (quota: NashaQuota) => (
+        <DataGridTextCell>{quota.uid}</DataGridTextCell>
+      ),
     },
     {
-      header: t('gid'),
-      accessorKey: 'gid',
+      id: 'gid',
+      label: t('gid'),
+      cell: (quota: NashaQuota) => (
+        <DataGridTextCell>{quota.gid}</DataGridTextCell>
+      ),
     },
     {
-      header: t('path'),
-      accessorKey: 'path',
+      id: 'path',
+      label: t('path'),
+      cell: (quota: NashaQuota) => (
+        <DataGridTextCell>{quota.path}</DataGridTextCell>
+      ),
     },
     {
-      header: t('quota_size'),
-      accessorKey: 'size',
-      cell: ({ row }: any) => formatBytes(row.original.size * 1024 * 1024 * 1024),
+      id: 'size',
+      label: t('quota_size'),
+      cell: (quota: NashaQuota) => (
+        <DataGridTextCell>{formatBytes(quota.size * 1024 * 1024 * 1024)}</DataGridTextCell>
+      ),
     },
     {
-      header: t('used'),
-      accessorKey: 'used',
-      cell: ({ row }: any) => formatBytes(row.original.used * 1024 * 1024 * 1024),
+      id: 'used',
+      label: t('used'),
+      cell: (quota: NashaQuota) => (
+        <DataGridTextCell>{formatBytes(quota.used * 1024 * 1024 * 1024)}</DataGridTextCell>
+      ),
     },
     {
-      header: t('usage_percentage'),
       id: 'usage',
-      cell: ({ row }: any) => {
+      label: t('usage_percentage'),
+      cell: (quota: NashaQuota) => {
         const percentage =
-          row.original.size > 0 ? (row.original.used / row.original.size) * 100 : 0;
-        return `${percentage.toFixed(1)}%`;
+          quota.size > 0 ? (quota.used / quota.size) * 100 : 0;
+        return (
+          <DataGridTextCell>{`${percentage.toFixed(1)}%`}</DataGridTextCell>
+        );
       },
     },
   ];
@@ -56,11 +72,11 @@ export default function NashaQuotasTab({ serviceName, quotas }: NashaQuotasTabPr
   if (quotas.length === 0) {
     return (
       <div className="text-center py-12">
-        <OdsIcon name={ODS_ICON_NAME.USER} size="xl" className="mx-auto mb-4 text-neutral-400" />
+        <OdsIcon name={ODS_ICON_NAME.user} className="mx-auto mb-4 text-neutral-400" />
         <OdsText preset="heading-3" className="mb-2">
           {t('no_quotas')}
         </OdsText>
-        <OdsText preset="body-2" color="neutral-600">
+        <OdsText preset="paragraph" color="neutral-600">
           {t('no_quotas_description')}
         </OdsText>
       </div>
@@ -76,7 +92,12 @@ export default function NashaQuotasTab({ serviceName, quotas }: NashaQuotasTabPr
       </div>
 
       <OdsCard className="p-6">
-        <OdsTable columns={columns} data={quotas} className="w-full" />
+        <Datagrid
+          columns={columns}
+          items={quotas}
+          totalItems={quotas.length}
+          noResultLabel={t('no_quotas')}
+        />
       </OdsCard>
     </div>
   );

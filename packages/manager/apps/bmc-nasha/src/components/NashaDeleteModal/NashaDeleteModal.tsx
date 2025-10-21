@@ -48,18 +48,18 @@ export default function NashaDeleteModal({
       isPrimaryButtonDisabled={deleteService.isPending}
     >
       <div className="space-y-4">
-        <OdsText preset="body-1">
+        <OdsText preset="paragraph">
           {t('delete_service_confirmation', {
             serviceName: serviceDisplayName || serviceName,
           })}
         </OdsText>
 
-        <OdsText preset="body-2" color="neutral-600">
+        <OdsText preset="paragraph" color="neutral-600">
           {t('delete_service_warning')}
         </OdsText>
 
         <div className="bg-neutral-50 p-4 rounded-lg">
-          <OdsText preset="caption-1" color="neutral-600">
+          <OdsText preset="caption" color="neutral-600">
             {t('service_name')}: {serviceName}
           </OdsText>
         </div>

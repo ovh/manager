@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useMemo, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 import { OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 
-import { BaseLayout, ManagerButton, useDataGrid } from '@ovh-ux/manager-react-components';
+import { BaseLayout, ManagerButton, useDataGrid, Datagrid, DataGridTextCell } from '@ovh-ux/manager-react-components';
 
 import NashaCreateModal from '@/components/NashaCreateModal/NashaCreateModal';
 import NashaDeleteModal from '@/components/NashaDeleteModal/NashaDeleteModal';
@@ -28,7 +28,7 @@ export default function ListingPage() {
     serviceName: '',
   });
 
-  const { pagination, sorting } = useDataGrid();
+  const { pagination, setPagination, sorting, setSorting } = useDataGrid();
 
   const { data, isLoading, error } = useNashaServices({
     page: pagination.pageIndex + 1,
@@ -71,69 +71,109 @@ export default function ListingPage() {
     );
   }
 
-  return (
-    <BaseLayout>
-      <div className="space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <OdsText preset="heading-1" className="mb-2">
-              {t('title')}
-            </OdsText>
-            <OdsText preset="paragraph" color="neutral-600">
-              {t('subtitle')}
-            </OdsText>
-          </div>
-          <ManagerButton
-            id="create-nasha-service"
-            label={t('create_service')}
-            iamActions={['nasha:create']}
-            onClick={() => setIsCreateModalOpen(true)}
-          />
-        </div>
-
-        {/* Services Grid */}
-        {isLoading && (
-          <div className="flex justify-center py-8">
-            <OdsSpinner />
-          </div>
-        )}
-
-        {!isLoading && data?.data && data.data.length === 0 && (
-          <div className="text-center py-12">
-            <OdsText preset="heading-3" className="mb-2">
-              {t('no_services')}
-            </OdsText>
-            <OdsText preset="paragraph" color="neutral-600" className="mb-4">
-              {t('no_services_description')}
-            </OdsText>
+  const columns = useMemo(
+    () => [
+      {
+        id: 'serviceName',
+        label: t('service_name'),
+        cell: (service: any) => (
+          <DataGridTextCell>
             <ManagerButton
-              id="create-first-service"
-              label={t('create_first_service')}
+              id={`view-service-${service.serviceName}`}
+              variant="ghost"
+              label={service.serviceName}
+              onClick={() => handleViewDetails(service.serviceName)}
+            />
+          </DataGridTextCell>
+        ),
+      },
+      {
+        id: 'datacenter',
+        label: t('datacenter'),
+        cell: (service: any) => <DataGridTextCell>{service.datacenter}</DataGridTextCell>,
+      },
+      {
+        id: 'diskType',
+        label: t('disk_type'),
+        cell: (service: any) => <DataGridTextCell>{service.diskType || 'N/A'}</DataGridTextCell>,
+      },
+      {
+        id: 'zpoolSize',
+        label: t('size'),
+        cell: (service: any) => <DataGridTextCell>{service.zpoolSize || 'N/A'}</DataGridTextCell>,
+      },
+      {
+        id: 'zpoolCapacity',
+        label: t('capacity'),
+        cell: (service: any) => <DataGridTextCell>{service.zpoolCapacity || 'N/A'}</DataGridTextCell>,
+      },
+      {
+        id: 'actions',
+        label: t('actions'),
+        cell: (service: any) => (
+          <div className="flex gap-2">
+            <ManagerButton
+              id={`view-details-${service.serviceName}`}
+              label={t('view_details')}
+              iamActions={['nasha:read']}
+              urn={`urn:v1:eu:nasha:${service.serviceName}`}
+              onClick={() => handleViewDetails(service.serviceName)}
+            />
+            <ManagerButton
+              id={`delete-${service.serviceName}`}
+              label={t('delete')}
+              iamActions={['nasha:delete']}
+              urn={`urn:v1:eu:nasha:${service.serviceName}`}
+              onClick={() => handleDelete(service.serviceName)}
+            />
+          </div>
+        ),
+      },
+    ],
+    [t, handleViewDetails, handleDelete],
+  );
+
+  return (
+    <BaseLayout
+      header={{
+        title: t('title'),
+        description: t('subtitle'),
+        headerButton: (
+          <div className="flex gap-2">
+            <ManagerButton
+              id="guides-button"
+              label="Guides"
+              icon="book"
+              variant="ghost"
+              onClick={() => window.open('https://docs.ovh.com/fr/storage/nas/decouverte/', '_blank')}
+            />
+            <ManagerButton
+              id="create-nasha-service"
+              label={t('create_service')}
+              icon="plus"
               iamActions={['nasha:create']}
               onClick={() => setIsCreateModalOpen(true)}
             />
           </div>
-        )}
+        ),
+      }}
+    >
+      <div className="space-y-6">
 
-        {!isLoading && data?.data && data.data.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {data?.data.map((service) => (
-              <NashaServiceCard
-                key={service.serviceName}
-                service={service}
-                onViewDetails={handleViewDetails}
-                onDelete={handleDelete}
-                onUpdateName={() => {}} // TODO: Implement update name functionality
-              />
-            ))}
-          </div>
-        )}
-
-        {/* Pagination */}
-        {data?.totalCount && data.totalCount > pagination.pageSize && (
-          <div className="flex justify-center">{/* TODO: Add pagination component */}</div>
-        )}
+        {/* Services Datagrid */}
+        <Datagrid
+          columns={columns}
+          items={data?.data || []}
+          totalItems={data?.totalCount || 0}
+          pagination={pagination}
+          sorting={sorting}
+          onPaginationChange={setPagination}
+          onSortChange={setSorting}
+          manualPagination
+          manualSorting
+          isLoading={isLoading}
+          noResultLabel={t('no_services')}
+        />
       </div>
 
       {/* Modals */}

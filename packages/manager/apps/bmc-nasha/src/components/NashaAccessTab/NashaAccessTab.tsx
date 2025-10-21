@@ -4,9 +4,9 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OdsCard, OdsIcon, OdsTable, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsCard, OdsIcon, OdsText } from '@ovhcloud/ods-components/react';
 
-import { ManagerButton } from '@ovh-ux/manager-react-components';
+import { ManagerButton, Datagrid, DataGridTextCell } from '@ovh-ux/manager-react-components';
 
 import { useDeleteNashaAccess } from '@/data/api/hooks/useNashaAccess';
 import type { NashaAccess } from '@/types/Nasha.type';
@@ -49,39 +49,46 @@ export default function NashaAccessTab({ serviceName, access }: NashaAccessTabPr
 
   const columns = [
     {
-      header: t('ip_address'),
-      accessorKey: 'ip',
-    },
-    {
-      header: t('type'),
-      accessorKey: 'type',
-      cell: ({ row }: any) => (
-        <span
-          className={`px-2 py-1 rounded text-xs ${
-            row.original.type === 'readwrite'
-              ? 'bg-green-100 text-green-800'
-              : 'bg-blue-100 text-blue-800'
-          }`}
-        >
-          {row.original.type}
-        </span>
+      id: 'ip',
+      label: t('ip_address'),
+      cell: (access: NashaAccess) => (
+        <DataGridTextCell>{access.ip}</DataGridTextCell>
       ),
     },
     {
-      header: t('description'),
-      accessorKey: 'description',
-      cell: ({ row }: any) => row.original.description || '-',
+      id: 'type',
+      label: t('type'),
+      cell: (access: NashaAccess) => (
+        <DataGridTextCell>
+          <span
+            className={`px-2 py-1 rounded text-xs ${
+              access.type === 'readwrite'
+                ? 'bg-green-100 text-green-800'
+                : 'bg-blue-100 text-blue-800'
+            }`}
+          >
+            {access.type}
+          </span>
+        </DataGridTextCell>
+      ),
     },
     {
-      header: t('actions'),
+      id: 'description',
+      label: t('description'),
+      cell: (access: NashaAccess) => (
+        <DataGridTextCell>{access.description || '-'}</DataGridTextCell>
+      ),
+    },
+    {
       id: 'actions',
-      cell: ({ row }: any) => (
+      label: t('actions'),
+      cell: (access: NashaAccess) => (
         <ManagerButton
-          id={`delete-access-${row.original.ip}`}
+          id={`delete-access-${access.ip}`}
           label={t('delete')}
           iamActions={['nasha:access:delete']}
-          urn={`urn:v1:eu:nasha:${serviceName}:access:${row.original.ip}`}
-          onClick={() => handleDelete(row.original.ip)}
+          urn={`urn:v1:eu:nasha:${serviceName}:access:${access.ip}`}
+          onClick={() => handleDelete(access.ip)}
         />
       ),
     },
@@ -90,11 +97,11 @@ export default function NashaAccessTab({ serviceName, access }: NashaAccessTabPr
   if (access.length === 0) {
     return (
       <div className="text-center py-12">
-        <OdsIcon name={ODS_ICON_NAME.SHIELD} size="xl" className="mx-auto mb-4 text-neutral-400" />
+        <OdsIcon name={ODS_ICON_NAME.shield} className="mx-auto mb-4 text-neutral-400" />
         <OdsText preset="heading-3" className="mb-2">
           {t('no_access_rules')}
         </OdsText>
-        <OdsText preset="body-2" color="neutral-600" className="mb-4">
+        <OdsText preset="paragraph" color="neutral-600" className="mb-4">
           {t('no_access_rules_description')}
         </OdsText>
         <ManagerButton
@@ -124,7 +131,12 @@ export default function NashaAccessTab({ serviceName, access }: NashaAccessTabPr
       </div>
 
       <OdsCard className="p-6">
-        <OdsTable columns={columns} data={access} className="w-full" />
+        <Datagrid
+          columns={columns}
+          items={access}
+          totalItems={access.length}
+          noResultLabel={t('no_access_rules')}
+        />
       </OdsCard>
 
       {/* Delete Confirmation Modal */}
@@ -134,7 +146,7 @@ export default function NashaAccessTab({ serviceName, access }: NashaAccessTabPr
             <OdsText preset="heading-3" className="mb-4">
               {t('delete_access_rule')}
             </OdsText>
-            <OdsText preset="body-1" className="mb-6">
+            <OdsText preset="paragraph" className="mb-6">
               {t('delete_access_rule_confirmation', { ip: deleteModal.ip })}
             </OdsText>
             <div className="flex gap-3 justify-end">

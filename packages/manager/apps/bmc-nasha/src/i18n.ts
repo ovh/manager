@@ -16,7 +16,7 @@ export default async function initI18n(locale = 'fr_FR', availablesLocales = ['f
       fallbackLng: 'fr_FR',
       supportedLngs: availablesLocales,
       defaultNS: 'common',
-      ns: ['common'], // namespaces to load by default
+      ns: ['common', 'listing', 'dashboard', 'onboarding'], // namespaces to load by default
       backend: {
         loadPath: (lngs: string[], namespaces: string[]) =>
           `${import.meta.env.BASE_URL}translations/${namespaces[0]}/Messages_${lngs[0]}.json`,

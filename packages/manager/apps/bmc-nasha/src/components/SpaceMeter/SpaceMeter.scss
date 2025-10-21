@@ -1,0 +1,12 @@
+/* SpaceMeter - Motif rayé pour segment données */
+.stripe-pattern-green {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.2) 40%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 50%
+  );
+  background-size: 8px 8px;
+}

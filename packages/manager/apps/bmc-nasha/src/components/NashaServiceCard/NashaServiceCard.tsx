@@ -29,7 +29,7 @@ export default function NashaServiceCard({
   };
 
   const getProtocolIcon = (diskType?: string) => {
-    return diskType === 'ssd' ? ODS_ICON_NAME.STORAGE : ODS_ICON_NAME.SERVER;
+    return diskType === 'ssd' ? ODS_ICON_NAME.store : ODS_ICON_NAME.server;
   };
 
   return (
@@ -87,13 +87,13 @@ export default function NashaServiceCard({
         </div>
       </div>
 
-      {service.description && (
+      {service.customName && (
         <div className="mb-4">
           <OdsText preset="caption" color="neutral-600" className="mb-1">
             {t('description')}
           </OdsText>
           <OdsText preset="paragraph">
-            {service.description}
+            {service.customName}
           </OdsText>
         </div>
       )}

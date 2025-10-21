@@ -4,7 +4,8 @@ import React, { Suspense, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OdsCard, OdsIcon, OdsTable, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsCard, OdsIcon, OdsText } from '@ovhcloud/ods-components/react';
+import { Datagrid, DataGridTextCell } from '@ovh-ux/manager-react-components';
 
 import { ManagerButton, useBytes } from '@ovh-ux/manager-react-components';
 
@@ -50,37 +51,50 @@ export default function NashaPartitionsTab({ serviceName, partitions }: NashaPar
 
   const columns = [
     {
-      header: t('partition_name'),
-      accessorKey: 'partitionName',
+      id: 'partitionName',
+      label: t('partition_name'),
+      cell: (partition: NashaPartition) => (
+        <DataGridTextCell>{partition.partitionName}</DataGridTextCell>
+      ),
     },
     {
-      header: t('size'),
-      accessorKey: 'size',
-      cell: ({ row }: any) => formatBytes(row.original.size * 1024 * 1024 * 1024),
+      id: 'size',
+      label: t('size'),
+      cell: (partition: NashaPartition) => (
+        <DataGridTextCell>{formatBytes(partition.size * 1024 * 1024 * 1024)}</DataGridTextCell>
+      ),
     },
     {
-      header: t('used'),
-      accessorKey: 'used',
-      cell: ({ row }: any) => formatBytes(row.original.used * 1024 * 1024 * 1024),
+      id: 'used',
+      label: t('used'),
+      cell: (partition: NashaPartition) => (
+        <DataGridTextCell>{formatBytes(typeof partition.use?.value === 'number' ? partition.use.value : 0)}</DataGridTextCell>
+      ),
     },
     {
-      header: t('protocol'),
-      accessorKey: 'protocol',
+      id: 'protocol',
+      label: t('protocol'),
+      cell: (partition: NashaPartition) => (
+        <DataGridTextCell>{partition.protocol}</DataGridTextCell>
+      ),
     },
     {
-      header: t('path'),
-      accessorKey: 'path',
+      id: 'path',
+      label: t('path'),
+      cell: (partition: NashaPartition) => (
+        <DataGridTextCell>{partition.path}</DataGridTextCell>
+      ),
     },
     {
-      header: t('actions'),
       id: 'actions',
-      cell: ({ row }: any) => (
+      label: t('actions'),
+      cell: (partition: NashaPartition) => (
         <ManagerButton
-          id={`delete-partition-${row.original.partitionName}`}
+          id={`delete-partition-${partition.partitionName}`}
           label={t('delete')}
           iamActions={['nasha:partition:delete']}
-          urn={`urn:v1:eu:nasha:${serviceName}:partition:${row.original.partitionName}`}
-          onClick={() => handleDelete(row.original.partitionName)}
+          urn={`urn:v1:eu:nasha:${serviceName}:partition:${partition.partitionName}`}
+          onClick={() => handleDelete(partition.partitionName)}
         />
       ),
     },
@@ -89,11 +103,11 @@ export default function NashaPartitionsTab({ serviceName, partitions }: NashaPar
   if (partitions.length === 0) {
     return (
       <div className="text-center py-12">
-        <OdsIcon name={ODS_ICON_NAME.FOLDER} size="xl" className="mx-auto mb-4 text-neutral-400" />
+        <OdsIcon name={ODS_ICON_NAME.folder} className="mx-auto mb-4 text-neutral-400" />
         <OdsText preset="heading-3" className="mb-2">
           {t('no_partitions')}
         </OdsText>
-        <OdsText preset="body-2" color="neutral-600" className="mb-4">
+        <OdsText preset="paragraph" color="neutral-600" className="mb-4">
           {t('no_partitions_description')}
         </OdsText>
         <ManagerButton
@@ -123,7 +137,12 @@ export default function NashaPartitionsTab({ serviceName, partitions }: NashaPar
       </div>
 
       <OdsCard className="p-6">
-        <OdsTable columns={columns} data={partitions} className="w-full" />
+        <Datagrid
+          columns={columns}
+          items={partitions}
+          totalItems={partitions.length}
+          noResultLabel={t('no_partitions')}
+        />
       </OdsCard>
 
       {/* Delete Confirmation Modal */}
@@ -133,7 +152,7 @@ export default function NashaPartitionsTab({ serviceName, partitions }: NashaPar
             <OdsText preset="heading-3" className="mb-4">
               {t('delete_partition')}
             </OdsText>
-            <OdsText preset="body-1" className="mb-6">
+            <OdsText preset="paragraph" className="mb-6">
               {t('delete_partition_confirmation', { partitionName: deleteModal.partitionName })}
             </OdsText>
             <div className="flex gap-3 justify-end">

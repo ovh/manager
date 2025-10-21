@@ -5,3 +5,8 @@ export { default as NashaPartitionsTab } from './NashaPartitionsTab/NashaPartiti
 export { default as NashaAccessTab } from './NashaAccessTab/NashaAccessTab';
 export { default as NashaSnapshotsTab } from './NashaSnapshotsTab/NashaSnapshotsTab';
 export { default as NashaQuotasTab } from './NashaQuotasTab/NashaQuotasTab';
+export { default as OnboardingLayout } from './OnboardingLayout/OnboardingLayout';
+
+// New components for UI parity
+export { SpaceMeter } from './SpaceMeter';
+export { DashboardHeader } from './DashboardHeader';
