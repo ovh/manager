@@ -74,16 +74,26 @@ describe('cart API', () => {
   });
 
   describe('attachConfigurationToCartItem', () => {
-    it('should call v6.post with correct endpoint and payload', async () => {
-      mockedV6Post.mockResolvedValue({});
-
+    it('should call v6.post with correct endpoint and payload and return configuration', async () => {
       const payload = { label: 'description', value: 'Test project' };
-      await attachConfigurationToCartItem('cart-1', 123, payload);
+      const mockConfiguration: CartConfiguration = {
+        id: 789,
+        label: 'description',
+        value: 'Test project',
+      };
+      mockedV6Post.mockResolvedValue({ data: mockConfiguration });
+
+      const result = await attachConfigurationToCartItem(
+        'cart-1',
+        123,
+        payload,
+      );
 
       expect(mockedV6Post).toHaveBeenCalledWith(
         'order/cart/cart-1/item/123/configuration',
         payload,
       );
+      expect(result).toBe(mockConfiguration);
     });
 
     it('should throw error when API call fails', async () => {
@@ -489,33 +499,49 @@ describe('cart API', () => {
   });
 
   describe('getCartItems', () => {
-    it('should call v6.get with correct endpoint and headers', async () => {
-      const mockItems: OrderedProduct[] = [
-        {
-          cartId: 'cart-1',
-          itemId: 123,
-          productId: 'product-1',
-          configuration: [],
-          duration: 'P1M',
-          options: [],
-          prices: [],
-          settings: {
-            planCode: 'project.2018',
-            pricingMode: 'default',
-            quantity: 1,
-          },
+    it('should call v6.get with correct endpoints and return items', async () => {
+      const mockItemIds = [123, 456];
+      const mockItem1: OrderedProduct = {
+        cartId: 'cart-1',
+        itemId: 123,
+        productId: 'product-1',
+        configuration: [],
+        duration: 'P1M',
+        options: [],
+        prices: [],
+        settings: {
+          planCode: 'project.2018',
+          pricingMode: 'default',
+          quantity: 1,
         },
-      ];
-      mockedV6Get.mockResolvedValue({ data: mockItems });
+      };
+      const mockItem2: OrderedProduct = {
+        cartId: 'cart-1',
+        itemId: 456,
+        productId: 'product-2',
+        configuration: [],
+        duration: 'P1M',
+        options: [],
+        prices: [],
+        settings: {
+          planCode: 'project.2018',
+          pricingMode: 'default',
+          quantity: 1,
+        },
+      };
+
+      // First call returns the list of item IDs
+      mockedV6Get.mockResolvedValueOnce({ data: mockItemIds });
+      // Subsequent calls return individual items
+      mockedV6Get.mockResolvedValueOnce({ data: mockItem1 });
+      mockedV6Get.mockResolvedValueOnce({ data: mockItem2 });
 
       const result = await getCartItems('cart-1');
 
-      expect(mockedV6Get).toHaveBeenCalledWith('/order/cart/cart-1/item', {
-        headers: {
-          'x-pagination-mode': 'CachedObjectList-Pages',
-        },
-      });
-      expect(result).toBe(mockItems);
+      expect(mockedV6Get).toHaveBeenCalledWith('/order/cart/cart-1/item');
+      expect(mockedV6Get).toHaveBeenCalledWith('/order/cart/cart-1/item/123');
+      expect(mockedV6Get).toHaveBeenCalledWith('/order/cart/cart-1/item/456');
+      expect(result).toEqual([mockItem1, mockItem2]);
     });
 
     it('should throw error when API call fails', async () => {
@@ -560,27 +586,37 @@ describe('cart API', () => {
   });
 
   describe('getCartConfiguration', () => {
-    it('should call v6.get with correct endpoint and headers', async () => {
-      const mockConfigurations: CartConfiguration[] = [
-        {
-          id: 123,
-          label: 'description',
-          value: 'Test description',
-        },
-      ];
-      mockedV6Get.mockResolvedValue({ data: mockConfigurations });
+    it('should call v6.get with correct endpoints and return configurations', async () => {
+      const mockConfigurationIds = [123, 456];
+      const mockConfiguration1: CartConfiguration = {
+        id: 123,
+        label: 'description',
+        value: 'Test description',
+      };
+      const mockConfiguration2: CartConfiguration = {
+        id: 456,
+        label: 'voucher',
+        value: 'VOUCHER123',
+      };
 
-      const result = await getCartConfiguration('cart-1', 456);
+      // First call returns the list of configuration IDs
+      mockedV6Get.mockResolvedValueOnce({ data: mockConfigurationIds });
+      // Subsequent calls return individual configurations
+      mockedV6Get.mockResolvedValueOnce({ data: mockConfiguration1 });
+      mockedV6Get.mockResolvedValueOnce({ data: mockConfiguration2 });
+
+      const result = await getCartConfiguration('cart-1', 789);
 
       expect(mockedV6Get).toHaveBeenCalledWith(
-        'order/cart/cart-1/item/456/configuration',
-        {
-          headers: {
-            'x-pagination-mode': 'CachedObjectList-Pages',
-          },
-        },
+        'order/cart/cart-1/item/789/configuration',
       );
-      expect(result).toBe(mockConfigurations);
+      expect(mockedV6Get).toHaveBeenCalledWith(
+        '/order/cart/cart-1/item/789/configuration/123',
+      );
+      expect(mockedV6Get).toHaveBeenCalledWith(
+        '/order/cart/cart-1/item/789/configuration/456',
+      );
+      expect(result).toEqual([mockConfiguration1, mockConfiguration2]);
     });
 
     it('should throw error when API call fails', async () => {
@@ -609,172 +645,6 @@ describe('cart API', () => {
       await expect(
         deleteConfigurationItemFromCart('cart-1', 123, 456),
       ).rejects.toThrow('API Error');
-    });
-  });
-
-  describe('getCart', () => {
-    it('should call v6.get with correct endpoint and return cart data', async () => {
-      const mockCart: Cart = {
-        cartId: 'cart-1',
-        description: 'Test cart',
-        expire: '2024-12-31',
-        readonly: false,
-        prices: {
-          withTax: {
-            value: 100,
-          },
-        },
-        url: 'https://example.com/cart',
-      };
-      mockedV6Get.mockResolvedValue({ data: mockCart });
-
-      const result = await getCart('cart-1');
-
-      expect(mockedV6Get).toHaveBeenCalledWith('/order/cart/cart-1');
-      expect(result).toBe(mockCart);
-    });
-
-    it('should throw error when API call fails', async () => {
-      mockedV6Get.mockRejectedValue(new Error('API Error'));
-
-      await expect(getCart('cart-1')).rejects.toThrow('API Error');
-    });
-  });
-
-  describe('assignCart', () => {
-    it('should call v6.post with correct endpoint and payload', async () => {
-      mockedV6Post.mockResolvedValueOnce(undefined);
-
-      await assignCart('cart-1');
-
-      expect(mockedV6Post).toHaveBeenCalledWith('/order/cart/cart-1/assign', {
-        cartId: 'cart-1',
-      });
-    });
-
-    it('should throw error when API call fails', async () => {
-      mockedV6Post.mockRejectedValue(new Error('API Error'));
-
-      await expect(assignCart('cart-1')).rejects.toThrow('API Error');
-    });
-  });
-
-  describe('removeItemFromCart', () => {
-    it('should call v6.delete with correct endpoint', async () => {
-      mockedV6Delete.mockResolvedValueOnce(undefined);
-
-      await removeItemFromCart('cart-1', 123);
-
-      expect(mockedV6Delete).toHaveBeenCalledWith(
-        '/order/cart/cart-1/item/123',
-      );
-    });
-
-    it('should throw error when API call fails', async () => {
-      mockedV6Delete.mockRejectedValue(new Error('API Error'));
-
-      await expect(removeItemFromCart('cart-1', 123)).rejects.toThrow(
-        'API Error',
-      );
-    });
-  });
-
-  describe('checkoutCart', () => {
-    it('should call v6.post with correct endpoint and return cart summary', async () => {
-      const mockSummary: CartSummary = {
-        orderId: 123,
-        url: 'https://order-url',
-        details: [],
-        prices: {
-          originalWithoutTax: {
-            value: 10,
-            currencyCode: 'EUR',
-            text: '10.00 €',
-          },
-          reduction: { value: 0, currencyCode: 'EUR', text: '0.00 €' },
-          tax: { value: 2, currencyCode: 'EUR', text: '2.00 €' },
-          withTax: { value: 12, currencyCode: 'EUR', text: '12.00 €' },
-          withoutTax: { value: 10, currencyCode: 'EUR', text: '10.00 €' },
-        },
-        contracts: [],
-      };
-      mockedV6Post.mockResolvedValue({ data: mockSummary });
-
-      const result = await checkoutCart('cart-1');
-
-      expect(mockedV6Post).toHaveBeenCalledWith('/order/cart/cart-1/checkout', {
-        cartId: 'cart-1',
-      });
-      expect(result).toBe(mockSummary);
-    });
-
-    it('should throw error when API call fails', async () => {
-      mockedV6Post.mockRejectedValue(new Error('API Error'));
-
-      await expect(checkoutCart('cart-1')).rejects.toThrow('API Error');
-    });
-  });
-
-  describe('addOptionToCart', () => {
-    it('should call v6.post with correct endpoint and return response', async () => {
-      const mockResponse: AddOptionToCartResponse = {
-        cartId: 'cart-1',
-        itemId: 123,
-        prices: [
-          {
-            price: {
-              value: 10,
-              currencyCode: 'EUR',
-              priceInUcents: 1000,
-              text: '10.00 EUR',
-            },
-            label: 'Monthly',
-          },
-        ],
-        duration: 'P1M',
-        settings: {
-          cartId: 'cart-1',
-          pricingMode: 'default',
-          subscription_id: 123,
-          planCode: 'plan-code',
-          quantity: 1,
-        },
-        offerId: 'offer-1',
-        options: [],
-        productId: 'product-1',
-      };
-      const options = {
-        cartId: 'cart-1',
-        duration: 'P1M',
-        planCode: 'plan-code',
-        pricingMode: 'default',
-        quantity: 1,
-      };
-
-      mockedV6Post.mockResolvedValue({ data: mockResponse });
-
-      const result = await addOptionToCart('project-1', options);
-
-      expect(mockedV6Post).toHaveBeenCalledWith(
-        '/order/cartServiceOption/cloud/project-1',
-        options,
-      );
-      expect(result).toBe(mockResponse);
-    });
-
-    it('should throw error when API call fails', async () => {
-      const options = {
-        cartId: 'cart-1',
-        duration: 'P1M',
-        planCode: 'plan-code',
-        pricingMode: 'default',
-        quantity: 1,
-      };
-      mockedV6Post.mockRejectedValue(new Error('API Error'));
-
-      await expect(addOptionToCart('project-1', options)).rejects.toThrow(
-        'API Error',
-      );
     });
   });
 });
