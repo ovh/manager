@@ -1,4 +1,4 @@
-import { ManagedWordpressCmsType } from '@/data/types/product/managedWordpress/cms';
+import { CmsType } from '@/data/types/product/managedWordpress/cms';
 import {
   ManagedWordpressWebsiteDetails,
   ManagedWordpressWebsites,
@@ -12,7 +12,7 @@ export const managedWordpressWebsitesMock: ManagedWordpressWebsites[] = [
     resourceStatus: ResourceStatus.READY,
     checksum: 'aaaaa',
     currentState: {
-      cms: ManagedWordpressCmsType.WORDPRESS,
+      cms: CmsType.WORDPRESS,
       createdAt: '2025-01-01T08:00:00+01:00',
       defaultFQDN: '5281b1f7a943.foo.managed-cms.ovh',
       diskUsageBytes: 1073741824,
@@ -41,7 +41,7 @@ export const managedWordpressWebsitesMock: ManagedWordpressWebsites[] = [
     resourceStatus: ResourceStatus.CREATING,
     checksum: 'aaaaa',
     currentState: {
-      cms: ManagedWordpressCmsType.WORDPRESS,
+      cms: CmsType.WORDPRESS,
       createdAt: '2025-01-01T08:00:00+01:00',
       defaultFQDN: 'test.fr',
       diskUsageBytes: 0,
@@ -50,7 +50,7 @@ export const managedWordpressWebsitesMock: ManagedWordpressWebsites[] = [
       import: {
         checkResult: {
           cmsSpecific: {
-            wordPress: {
+            wordpress: {
               plugins: [],
               themes: [],
             },
@@ -75,9 +75,9 @@ export const managedWordpressWebsitesMock: ManagedWordpressWebsites[] = [
     targetSpec: {
       creation: {
         adminLogin: 'admin@admin.com',
-        cms: ManagedWordpressCmsType.WORDPRESS,
+        cms: CmsType.WORDPRESS,
         cmsSpecific: {
-          wordPress: {
+          wordpress: {
             language: 'fr_FR',
           },
         },
@@ -86,9 +86,9 @@ export const managedWordpressWebsitesMock: ManagedWordpressWebsites[] = [
       import: {
         adminLogin: 'admin@admin.com',
         adminURL: 'https://test.fr/wp-admin',
-        cms: ManagedWordpressCmsType.WORDPRESS,
+        cms: CmsType.WORDPRESS,
         cmsSpecific: {
-          wordPress: {
+          wordpress: {
             selection: {
               comments: null,
               media: null,
@@ -115,18 +115,18 @@ export const managedWordpressWebsitesDetailsMock: ManagedWordpressWebsiteDetails
     import: {
       adminURL: 'https://someexternalwordpress.com/wp-admin.php',
       adminLogin: 'admin',
-      cms: ManagedWordpressCmsType.WORDPRESS,
+      cms: CmsType.WORDPRESS,
     },
   },
   currentState: {
-    cms: ManagedWordpressCmsType.WORDPRESS,
+    cms: CmsType.WORDPRESS,
     createdAt: '2025-01-01T08:00:00+01:00',
     defaultFQDN: 'example.com',
     diskUsageBytes: 0,
     import: {
       checkResult: {
         cmsSpecific: {
-          wordPress: {
+          wordpress: {
             plugins: [
               { name: 'plugin1', version: '1.0', enabled: true },
               { name: 'plugin2', version: '2.0', enabled: false },
@@ -156,7 +156,7 @@ export const managedWordpressWebsitesDeleteMock: ManagedWordpressWebsiteDetails 
   resourceStatus: ResourceStatus.DELETING,
   checksum: 'bbbbb',
   currentState: {
-    cms: ManagedWordpressCmsType.WORDPRESS,
+    cms: CmsType.WORDPRESS,
     phpVersion: '8.4',
     createdAt: '2025-01-01T08:00:00+01:00',
     defaultFQDN: '5281b1f7a943.foo.managed-cms.ovh',

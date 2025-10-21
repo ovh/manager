@@ -1,6 +1,7 @@
-import { useMemo } from 'react';
+//@todo to analyse for step 2 for import when the customer quit the page before the step 2
+import { /* useCallback, */ useMemo } from 'react';
 
-import { useParams } from 'react-router-dom';
+import { /* useNavigate, */ useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -8,12 +9,18 @@ import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OdsBadge, OdsButton, OdsProgressBar } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Datagrid, DatagridColumn, useFormatDate } from '@ovh-ux/manager-react-components';
+import {
+  // ActionMenu,
+  Datagrid,
+  DatagridColumn,
+  useFormatDate,
+} from '@ovh-ux/manager-react-components';
 
 import { useManagedWordpressResourceTasks } from '@/data/hooks/managedWordpress/managedWordpressResourceTasks/useManagedWordpressResourceTasks';
 import { useManagedWordpressWebsites } from '@/data/hooks/managedWordpress/managedWordpressWebsites/useManagedWordpressWebsites';
 import { ManagedWordpressResourceTask } from '@/data/types/product/managedWordpress/tasks';
 import { Status } from '@/data/types/product/ssl';
+// import { useGenerateUrl } from '@/hooks/generateUrl/useGenerateUrl';
 import { getStatusColor } from '@/utils/getStatusColor';
 
 export default function TasksPage() {
@@ -22,7 +29,21 @@ export default function TasksPage() {
 
   const { data, refetch, isFetching } = useManagedWordpressResourceTasks(serviceName);
   const formatDate = useFormatDate();
-  const { data: websitesList } = useManagedWordpressWebsites(serviceName);
+  const { data: websitesList } = useManagedWordpressWebsites();
+  /*   const navigate = useNavigate();
+  const goToStep2 = useGenerateUrl(`../import`, 'path');
+
+  const handleResumeImport = useCallback(
+    (item: ManagedWordpressResourceTask) => {
+      const match = item.link.match(/\/website\/([^/]+)/);
+      const websiteId = match ? match[1] : null;
+
+      if (!websiteId) return;
+
+      navigate(goToStep2, { state: { websiteId, step: 2 } });
+    },
+    [navigate, goToStep2],
+  ); */
 
   const columns: DatagridColumn<ManagedWordpressResourceTask>[] = useMemo(
     () => [
@@ -82,8 +103,8 @@ export default function TasksPage() {
         isSortable: true,
       },
       {
-        id: 'startedAt',
-        cell: (item) => <div>{formatDate({ date: item.startedAt, format: 'Pp' })}</div>,
+        id: 'createdAt',
+        cell: (item) => <div>{formatDate({ date: item.createdAt, format: 'Pp' })}</div>,
         label: t('web_hosting_common_creation_date'),
         isSortable: true,
       },
@@ -93,8 +114,30 @@ export default function TasksPage() {
         label: t('web_hosting_common_update_date'),
         isSortable: true,
       },
+      /*  {
+        id: 'actions',
+        cell: (item) => {
+          if (item.status === Status.WAITING_USER_INPUT) {
+            return (
+              <ActionMenu
+                items={[
+                  {
+                    id: 1,
+                    label: t('common:action_user_import'),
+                    onClick: () => handleResumeImport(item),
+                  },
+                ]}
+                isCompact
+                variant={ODS_BUTTON_VARIANT.ghost}
+                id={item.id}
+              />
+            );
+          }
+        },
+        label: '',
+      }, */
     ],
-    [t, formatDate, websitesList],
+    [t, formatDate, websitesList /* , handleResumeImport */],
   );
   const handleRefreshClick = () => {
     void refetch();

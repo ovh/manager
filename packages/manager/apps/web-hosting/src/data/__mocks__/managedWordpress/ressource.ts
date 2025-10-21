@@ -50,7 +50,7 @@ export const managedWordpressResourceMock: ManagedWordpressResourceType[] = [
         },
       },
       dashboards: {
-        wordPress: '50ef1921508f.foo.managed-cms.ovh',
+        wordpress: '50ef1921508f.foo.managed-cms.ovh',
       },
       createdAt: '2025-01-01T08:00:00+01:00',
     },
@@ -95,7 +95,7 @@ export const managedWordpressResourceMock: ManagedWordpressResourceType[] = [
         },
       },
       dashboards: {
-        wordPress: '70fc9615159c.foo.managed-cms.ovh',
+        wordpress: '70fc9615159c.foo.managed-cms.ovh',
       },
       createdAt: '2025-01-01T08:00:00+01:00',
     },
@@ -128,7 +128,7 @@ export const managedWordpressResourceDetailsMock: ManagedWordpressResourceDetail
     plan: 'wp-professional',
     createdAt: '2024-01-15T10:30:00.000Z',
     dashboards: {
-      wordPress: 'https://www.my-ovh-wordpress-dashboard.com',
+      wordpress: 'https://www.my-ovh-wordpress-dashboard.com',
     },
     quotas: {
       disk: {

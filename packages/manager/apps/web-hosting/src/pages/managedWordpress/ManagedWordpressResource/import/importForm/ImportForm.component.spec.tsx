@@ -49,9 +49,13 @@ describe('ImportForm Component', () => {
     const submitButton = getByTestId('import-step1');
 
     act(() => {
-      fireEvent.input(adminURLInput, { target: { value: 'http://example.com' } });
+      fireEvent.input(adminURLInput, {
+        target: { value: 'http://example.com' },
+      });
       fireEvent.input(adminLoginInput, { target: { value: 'admin' } });
-      fireEvent.input(adminPasswordInput, { target: { value: 'Password12345' } });
+      fireEvent.input(adminPasswordInput, {
+        target: { value: 'Password12345' },
+      });
     });
 
     act(() => {
@@ -72,7 +76,9 @@ describe('ImportForm Component', () => {
     const submitButton = getByTestId('import-step1');
 
     act(() => {
-      fireEvent.input(adminURLInput, { target: { value: 'http://example.com' } });
+      fireEvent.input(adminURLInput, {
+        target: { value: 'http://example.com' },
+      });
       fireEvent.input(adminLoginInput, { target: { value: 'Test12345' } });
       fireEvent.input(adminPasswordInput, { target: { value: 'Test12345' } });
     });
