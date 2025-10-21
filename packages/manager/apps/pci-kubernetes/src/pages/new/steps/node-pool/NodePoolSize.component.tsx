@@ -1,39 +1,51 @@
+import { useMemo } from 'react';
+
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_COLOR_INTENT, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { OsdsText } from '@ovhcloud/ods-components/react';
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { Autoscaling } from '@/components/Autoscaling.component';
-import { TScalingState } from '@/types';
+import { TScalingState, TSelectedAvailabilityZones } from '@/types';
 
 export interface NodeSizeStepProps {
   isMonthlyBilled: boolean;
   antiAffinity: boolean;
+  isAutoscale: boolean;
+  initialScaling: TScalingState['quantity'];
   onScaleChange: (scaling: TScalingState) => void;
+  selectedAvailabilityZones?: TSelectedAvailabilityZones;
 }
 
 export default function NodePoolSize({
   onScaleChange,
+  isAutoscale,
+  initialScaling,
   isMonthlyBilled,
   antiAffinity,
+  selectedAvailabilityZones,
 }: Readonly<NodeSizeStepProps>) {
   const { t } = useTranslation('node-pool');
+
+  const totalNodes = useMemo(() => {
+    const zonesChecked = selectedAvailabilityZones?.filter((e) => e.checked).length ?? 0;
+    const desiredNodes = initialScaling?.desired;
+    if (!zonesChecked || !desiredNodes) return null;
+    const total = desiredNodes * zonesChecked;
+    return total === desiredNodes ? null : total;
+  }, [selectedAvailabilityZones, initialScaling]);
+
   return (
     <div className="mb-8">
-      <OsdsText
-        className="font-bold"
-        color={ODS_TEXT_COLOR_INTENT.text}
-        level={ODS_TEXT_LEVEL.heading}
-        size={ODS_TEXT_SIZE._400}
-        slot="label"
-      >
+      <Text className="font-bold text-[--ods-color-text-500]" preset={TEXT_PRESET.heading4}>
         {t('kube_common_node_pool_size_title')}
-      </OsdsText>
+      </Text>
       <Autoscaling
-        autoscale={false}
+        initialScaling={initialScaling}
+        isAutoscale={isAutoscale}
         isAntiAffinity={antiAffinity}
         onChange={onScaleChange}
         isMonthlyBilling={isMonthlyBilled}
+        totalNodes={totalNodes}
       />
     </div>
   );
