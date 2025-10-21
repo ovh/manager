@@ -389,6 +389,8 @@ export default function NewPage(): ReactElement {
           <div />
         )}
         <NodePoolSize
+          isAutoscale={store.scaling?.isAutoscale}
+          initialScaling={store.scaling?.quantity}
           isMonthlyBilled={store.isMonthlyBilling}
           onScaleChange={(auto) => store.set.scaling(auto)}
           antiAffinity={billingState.antiAffinity.isChecked}
