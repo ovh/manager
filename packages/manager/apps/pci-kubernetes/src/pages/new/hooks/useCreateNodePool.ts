@@ -6,11 +6,12 @@ import { convertHourlyPriceToMonthly } from '@ovh-ux/manager-react-components';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import { TComputedKubeFlavor } from '@/components/flavor-selector/FlavorSelector.component';
 import { NODE_RANGE, TAGS_BLOB } from '@/constants';
-import { checkIfNameExists, generateUniqueName } from '@/helpers';
-import { isNodePoolNameValid } from '@/helpers/matchers/matchers';
+import { ensureNameIsUnique, generateUniqueName } from '@/helpers';
 import { hasInvalidScalingOrAntiAffinityConfig } from '@/helpers/node-pool';
 import useMergedFlavorById, { getPriceByDesiredScale } from '@/hooks/useMergedFlavorById';
 import { NodePoolPrice, NodePoolState } from '@/types';
+
+import { useNodePoolErrors } from './useNodePoolErrors';
 
 function generateUniqueNameWithZone(
   baseName: string,
@@ -21,12 +22,21 @@ function generateUniqueNameWithZone(
   const zoneSuffix = zoneName?.split('-').pop();
   const nameWithSuffix = zoneSuffix && multipleNodes ? `${baseName}-${zoneSuffix}` : baseName;
 
-  const nameExists = checkIfNameExists(nameWithSuffix, existingNodePools);
+  ensureNameIsUnique(nameWithSuffix, existingNodePools);
 
-  if (nameExists) {
-    throw new Error('Le nom de nodepool est déjà utilisé. Veuillez en choisir un autre.');
-  }
   return generateUniqueName(nameWithSuffix, existingNodePools);
+}
+
+function canSubmitNodePools(
+  isStepUnlocked: boolean,
+  nodePoolEnabled: boolean,
+  nodes: NodePoolPrice[] | null,
+): boolean {
+  if (!isStepUnlocked) return false;
+
+  if (!nodePoolEnabled) return true;
+
+  return Array.isArray(nodes) && nodes.length > 0;
 }
 
 const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boolean }) => {
@@ -34,7 +44,6 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
   const [selectedFlavor, setSelectedFlavor] = useState<TComputedKubeFlavor | null>(null);
 
   const [isMonthlyBilled, setIsMonthlyBilled] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [nodePoolState, setNodePoolState] = useState<NodePoolState>({
     antiAffinity: false,
     name: '',
@@ -47,6 +56,12 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
   const { projectId } = useParam('projectId');
   const [nodePoolEnabled, setNodePoolEnabled] = useState(true);
   const { data: regionInformations } = useRegionInformations(projectId, name ?? null);
+
+  const { error, isValidName, handleCreationError, clearExistsError } = useNodePoolErrors(
+    nodePoolState,
+    nodes,
+  );
+
   const price = useMergedFlavorById<{ hour: number; month?: number } | null>(
     projectId,
     name ?? null,
@@ -101,16 +116,23 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
         name: '',
         isTouched: false,
       }));
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        setError(err.message);
-      }
+      clearExistsError();
+    } catch (err) {
+      handleCreationError(err);
     }
-  }, [nodes, nodePoolState, selectedFlavor, name, isMonthlyBilled, price]);
+  }, [
+    nodes,
+    nodePoolState,
+    selectedFlavor,
+    name,
+    isMonthlyBilled,
+    price,
+    clearExistsError,
+    handleCreationError,
+  ]);
 
-  const isValidName = isNodePoolNameValid(nodePoolState.name);
-
-  const isNodePoolValid = !nodePoolEnabled || (Boolean(selectedFlavor) && isValidName);
+  const isNodePoolValid =
+    !nodePoolEnabled || (Boolean(selectedFlavor) && isValidName && !error?.exists);
 
   const isButtonDisabled =
     !isNodePoolValid ||
@@ -121,21 +143,9 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
 
   const isStepUnlocked = !isLocked;
 
-  const canSubmit =
-    (isStepUnlocked && !nodePoolEnabled) ||
-    (isStepUnlocked && nodePoolEnabled && Array.isArray(nodes) && nodes.length > 0);
+  const canSubmit = canSubmitNodePools(isStepUnlocked, nodePoolEnabled, nodes);
 
   useEffect(() => setIsMonthlyBilled(false), [selectedFlavor]);
-
-  useEffect(
-    () =>
-      setError(
-        !isValidName && nodePoolState.isTouched
-          ? 'kube_add_node_pool_name_input_pattern_validation_error'
-          : null,
-      ),
-    [isValidName, nodePoolState.isTouched],
-  );
 
   useEffect(() => {
     if (regionInformations?.availabilityZones.length) {
@@ -188,7 +198,7 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
 
     view: {
       isValidName,
-      error,
+      error: error ? Object.values(error).find((err) => err) : null,
       isNodePoolValid,
       isButtonDisabled,
       isPricingComingSoon,

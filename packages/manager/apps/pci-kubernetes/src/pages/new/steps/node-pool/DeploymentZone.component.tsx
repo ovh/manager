@@ -1,8 +1,6 @@
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_COLOR_INTENT, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   Checkbox,
   CheckboxControl,
@@ -18,6 +16,7 @@ import {
   RadioGroupProp,
   RadioLabel,
   RadioValueChangeDetail,
+  TEXT_PRESET,
   Text,
 } from '@ovhcloud/ods-react';
 
@@ -104,15 +103,19 @@ const DeploymentZone = ({ onSelect, availabilityZones, multiple }: DeploymentZon
 
   return (
     <div className="max-w-3xl">
-      <OsdsText
-        className="mb-4 font-bold block"
-        color={ODS_TEXT_COLOR_INTENT.text}
-        level={ODS_TEXT_LEVEL.heading}
-        size={ODS_TEXT_SIZE._400}
-      >
+      <Text className="text-[--ods-color-text-500]" preset={TEXT_PRESET.heading4}>
         {t('kube_common_node_pool_deploy_title')}
-      </OsdsText>
-      <Text color="text">{t('kube_common_node_pool_deploy_description')}</Text>
+      </Text>
+      <Text className="mt-6">{t('kube_common_node_pool_deploy_description')}</Text>
+      {multiple && (
+        <Text className="mt-6">
+          <strong>
+            {t('kube_common_node_pool_deploy_description_explanation_multiple_zone_repartition')}
+            {': '}
+          </strong>
+          {t('kube_common_node_pool_deploy_description_explanation_multiple_zone')}
+        </Text>
+      )}
       {multiple && isInvalid && (
         <Message dismissible={false} className="flex mt-6" variant="default" color="critical">
           <MessageIcon name="hexagon-exclamation" />
