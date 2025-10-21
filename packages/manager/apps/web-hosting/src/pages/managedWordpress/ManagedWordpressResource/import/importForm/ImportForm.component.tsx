@@ -1,41 +1,48 @@
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsMessage, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import {
   postManagedCmsResourceWebsite,
   putManagedCmsResourceWebsiteTasks,
 } from '@/data/api/managedWordpress';
 import { useManagedWordpressWebsiteDetails } from '@/data/hooks/managedWordpress/managedWordpressWebsiteDetails/useManagedWordpressWebsiteDetails';
-import { ManagedWordpressCmsType } from '@/data/types/product/managedWordpress/cms';
+import { CmsType } from '@/data/types/product/managedWordpress/cms';
+import { PostImportTaskPayload } from '@/data/types/product/managedWordpress/tasks';
 import { useGenerateUrl } from '@/hooks';
 import { zForm } from '@/utils/formSchemas.utils';
 
-import Step1, { Step1FormValues } from './ImportForm/Step1';
-import Step2 from './ImportForm/Step2';
-import { Step2FormValues } from './ImportForm/types';
+import Step1, { Step1FormValues } from './ImportFormSteps/Step1';
+import Step2 from './ImportFormSteps/Step2';
+import { Step2FormValues } from './ImportFormSteps/types';
 
+interface ImportFormLocationState {
+  websiteId?: string;
+  step?: number;
+}
 export default function ImportForm() {
   const { t } = useTranslation([NAMESPACES.FORM, NAMESPACES.ERROR, 'common', 'managedWordpress']);
   const { serviceName } = useParams();
-  const [step, setStep] = useState(1);
-  const { environment } = useContext(ShellContext);
-  const { language } = environment.getUser();
+  const { state } = useLocation() as {
+    state: ImportFormLocationState;
+  };
+  const [websiteId, setWebsiteId] = useState<string | null>(state?.websiteId ?? null);
+  const [step, setStep] = useState<number>(state?.step ?? 1);
   const { addError, addSuccess } = useNotifications();
+
   // form control for step 1
   const {
     control,
@@ -51,11 +58,38 @@ export default function ImportForm() {
     resolver: zodResolver(zForm(t).ADD_SITE_FORM_SCHEMA),
   });
 
-  const [websiteId, setWebsiteId] = useState<string | null>(null);
-  const { data } = useManagedWordpressWebsiteDetails(serviceName, websiteId);
+  const { data, refetch } = useManagedWordpressWebsiteDetails(serviceName, websiteId);
   const navigate = useNavigate();
   const goBackUrl = useGenerateUrl('..', 'path');
-  const onClose = () => navigate(goBackUrl);
+  const onClose = useCallback(() => navigate(goBackUrl), [navigate, goBackUrl]);
+  useEffect(() => {
+    if (!websiteId || step === 2) return;
+
+    let attempts = 0;
+    const maxAttempts = 3;
+
+    const interval = setInterval(() => {
+      attempts += 1;
+
+      void (async () => {
+        const { data: refreshed } = await refetch();
+        const hasImportData = !!refreshed?.currentState.import;
+        if (hasImportData) {
+          clearInterval(interval);
+          setStep(2);
+        } else if (attempts >= maxAttempts) {
+          clearInterval(interval);
+          addError(
+            <OdsText>{t('managedWordpress:web_hosting_managed_wordpress_import_timeout')}</OdsText>,
+            true,
+          );
+          onClose();
+        }
+      })();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [websiteId, step, refetch, addError, onClose, t]);
 
   const { mutate: createWebsite, isPending: isSubmittingStep1 } = useMutation({
     mutationFn: async ({
@@ -68,26 +102,27 @@ export default function ImportForm() {
       adminURL: string;
     }) => {
       return postManagedCmsResourceWebsite(serviceName, {
-        adminLogin,
-        adminPassword,
-        adminURL,
-        cms: ManagedWordpressCmsType.WORDPRESS,
-        cmsSpecific: {
-          wordPress: { language },
+        targetSpec: {
+          import: {
+            adminLogin,
+            adminPassword,
+            adminURL,
+            cms: CmsType.WORDPRESS,
+          },
         },
       });
     },
     onSuccess: (response: { id?: string } | void) => {
       if (response && typeof response === 'object' && 'id' in response && response.id) {
         setWebsiteId(response.id);
-        setStep(2);
       }
     },
-    onError: (error: unknown) => {
+
+    onError: (error: ApiError) => {
       addError(
         <OdsText>
-          {t(`${NAMESPACES.ERROR}error_message`, {
-            error: (error as ApiError)?.response?.data?.message,
+          {t(`${NAMESPACES.ERROR}:error_message`, {
+            message: error?.response?.data?.message,
           })}
         </OdsText>,
         true,
@@ -105,23 +140,22 @@ export default function ImportForm() {
 
   // form control for step 2
   const defaultValuesStep2 = useMemo<Step2FormValues | null>(() => {
-    if (!data?.currentState.import.checkResult.cmsSpecific.wordPress) {
+    const wordpressData = data?.currentState?.import?.checkResult?.cmsSpecific?.wordpress;
+
+    if (!wordpressData) {
       return null;
     }
-    const plugins = data?.currentState.import.checkResult.cmsSpecific.wordPress.plugins.map(
-      (plugin) => ({
-        name: plugin.name,
-        version: plugin.version,
-        enabled: true,
-      }),
-    );
-    const themes = data?.currentState.import.checkResult.cmsSpecific.wordPress.themes.map(
-      (theme) => ({
-        name: theme.name,
-        version: theme.version,
-        active: true,
-      }),
-    );
+
+    const plugins = wordpressData.plugins.map((plugin) => ({
+      name: plugin.name,
+      version: plugin.version,
+      enabled: true,
+    }));
+    const themes = wordpressData.themes.map((theme) => ({
+      name: theme.name,
+      version: theme.version,
+      active: true,
+    }));
     return {
       plugins,
       themes,
@@ -149,17 +183,20 @@ export default function ImportForm() {
     },
     mode: 'onChange',
   });
+
+  const taskId = data?.currentTasks?.[0]?.id;
+
   useEffect(() => {
-    if (data?.currentState.import.checkResult.cmsSpecific.wordPress) {
+    const wordpressData = data?.currentState?.import?.checkResult?.cmsSpecific?.wordpress;
+
+    if (wordpressData) {
       step2Form.reset({
-        plugins: data?.currentState.import.checkResult.cmsSpecific.wordPress.plugins.map(
-          (plugin) => ({
-            name: plugin.name,
-            version: plugin.version,
-            enabled: true,
-          }),
-        ),
-        themes: data?.currentState.import.checkResult.cmsSpecific.wordPress.themes.map((theme) => ({
+        plugins: wordpressData.plugins.map((plugin) => ({
+          name: plugin.name,
+          version: plugin.version,
+          enabled: true,
+        })),
+        themes: wordpressData.themes.map((theme) => ({
           name: theme.name,
           version: theme.version,
           active: true,
@@ -181,25 +218,31 @@ export default function ImportForm() {
 
   const { mutate: launchImport, isPending: isSubmittingStep2 } = useMutation({
     mutationFn: async (values: Step2FormValues) => {
-      const inputs = {
-        'import.cmsSpecific.wordpress.selection': {
-          plugins: values.plugins
-            .filter((plugin) => plugin.enabled)
-            .map(({ name, version, enabled }) => ({ name, version, enabled })),
-          themes: values.themes
-            .filter((theme) => theme.active)
-            .map(({ name, version, active }) => ({ name, version, active })),
-          wholeDatabase: values.wholeDatabase,
-          media: values.media,
-          posts: values.posts,
-          pages: values.pages,
-          comments: values.comments,
-          tags: values.tags,
-          users: values.users,
+      const inputs: PostImportTaskPayload = {
+        inputs: {
+          'import.cmsSpecific.wordpress.selection': {
+            plugins: values.plugins
+              .filter((plugin) => plugin.enabled)
+              .map(({ name, version, enabled }) => ({
+                name,
+                version,
+                enabled,
+              })),
+            themes: values.themes
+              .filter((theme) => theme.active)
+              .map(({ name, version, active }) => ({ name, version, active })),
+            wholeDatabase: values.wholeDatabase,
+            media: values.media,
+            posts: values.posts,
+            pages: values.pages,
+            comments: values.comments,
+            tags: values.tags,
+            users: values.users,
+          },
         },
       };
-      const currentTaskId = data?.currentTasks?.[0]?.id;
-      return putManagedCmsResourceWebsiteTasks(serviceName, inputs, currentTaskId);
+
+      return putManagedCmsResourceWebsiteTasks(serviceName, inputs, taskId);
     },
     onSuccess: () => {
       addSuccess(
@@ -236,10 +279,9 @@ export default function ImportForm() {
   const onStep2Submit: SubmitHandler<Step2FormValues> = (values) => {
     launchImport(values);
   };
-
   return (
     <>
-      {step === 1 && (
+      {step === 1 && !websiteId && (
         <Step1
           t={t}
           control={control}
@@ -253,7 +295,16 @@ export default function ImportForm() {
           }}
         />
       )}
-      {step === 2 && (
+
+      {websiteId && step === 1 && (
+        <>
+          <OdsMessage isDismissible={false} className="w-full">
+            {t('managedWordpress:web_hosting_managed_wordpress_import_before_select_element')}
+            <OdsSpinner size={ODS_SPINNER_SIZE.sm} className="ml-auto inline-block" />
+          </OdsMessage>
+        </>
+      )}
+      {step === 2 && websiteId && (
         <Step2
           t={t}
           step2Form={step2Form}

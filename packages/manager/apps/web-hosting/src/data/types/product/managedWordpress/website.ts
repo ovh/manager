@@ -1,6 +1,6 @@
 import { TaskStatus } from '../../status';
 import { ResourceStatus, Status } from '../ssl';
-import { ManagedWordpressCmsType } from './cms';
+import { CmsType } from './cms';
 
 export type ManagedWordpressWebsiteDetails = {
   id: string;
@@ -12,14 +12,14 @@ export type ManagedWordpressWebsiteDetails = {
     urn: string;
   };
   currentState: {
-    cms: ManagedWordpressCmsType;
+    cms: CmsType;
     createdAt: string;
     defaultFQDN: string;
     diskUsageBytes: number;
     import?: {
       checkResult: {
         cmsSpecific: {
-          wordPress: {
+          wordpress: {
             plugins: {
               enabled: boolean;
               name: string;
@@ -47,10 +47,10 @@ export type ManagedWordpressWebsiteDetails = {
   targetSpec?: {
     creation?: {
       adminLogin: string;
-      cms: ManagedWordpressCmsType;
+      cms: CmsType;
       adminPassword?: string;
       cmsSpecific?: {
-        wordPress?: {
+        wordpress?: {
           language?: string;
           url?: string;
         };
@@ -61,9 +61,9 @@ export type ManagedWordpressWebsiteDetails = {
       adminLogin: string;
       adminPassword?: string;
       adminURL: string;
-      cms: ManagedWordpressCmsType;
+      cms: CmsType;
       cmsSpecific?: {
-        wordPress?: {
+        wordpress?: {
           selection?: {
             comments?: boolean;
             media?: boolean;
@@ -92,14 +92,14 @@ export type ManagedWordpressWebsites = {
   id: string;
   checksum: string;
   currentState: {
-    cms?: ManagedWordpressCmsType;
+    cms?: CmsType;
     createdAt: string;
     defaultFQDN?: string;
     diskUsageBytes: number;
     import: {
       checkResult: {
         cmsSpecific: {
-          wordPress: {
+          wordpress: {
             plugins: {
               enabled: boolean;
               name: string;
@@ -133,10 +133,10 @@ export type ManagedWordpressWebsites = {
   targetSpec?: {
     creation?: {
       adminLogin: string;
-      cms: ManagedWordpressCmsType;
+      cms: CmsType;
       adminPassword?: string;
       cmsSpecific?: {
-        wordPress?: {
+        wordpress?: {
           language?: string;
           url?: string;
         };
@@ -147,9 +147,9 @@ export type ManagedWordpressWebsites = {
       adminLogin: string;
       adminPassword?: string;
       adminURL: string;
-      cms: ManagedWordpressCmsType;
+      cms: CmsType;
       cmsSpecific?: {
-        wordPress?: {
+        wordpress?: {
           selection?: {
             comments?: boolean;
             media?: boolean;
