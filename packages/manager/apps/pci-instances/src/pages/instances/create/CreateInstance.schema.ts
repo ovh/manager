@@ -10,9 +10,9 @@ export const continentSelectionSchema = z.string();
 
 export const macroRegionSelectionSchema = z.string().nullable();
 
-export const flavorCategorySchema = z.string();
+export const flavorCategorySchema = z.string().nullable();
 
-export const flavorTypeSchema = z.string();
+export const flavorTypeSchema = z.string().nullable();
 
 export const microRegionSelectionSchema = z.string().nullable();
 

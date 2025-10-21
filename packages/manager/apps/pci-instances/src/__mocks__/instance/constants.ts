@@ -7,6 +7,7 @@ import InstanceImage from '../../../public/assets/instance.png';
 import { TDeploymentMode } from '@/types/instance/common.type';
 import { TRegionData } from '@/pages/instances/create/view-models/localizationsViewModel';
 import { TContinentData } from '@/pages/instances/create/view-models/continentsViewModel';
+import { TOptionsData } from '@/pages/instances/create/view-models/categoriesTypesViewModel';
 
 export const mockedInstance: TAggregatedInstance = {
   id: '12345',
@@ -72,6 +73,19 @@ export const mockedInstancesCatalogDTO: TInstancesCatalogDTO = {
       {
         name: 'localzone',
         tags: [],
+      },
+    ],
+    categories: [
+      {
+        name: 'Best Sellers!',
+        subCategories: [
+          {
+            name: 'Novelties',
+            flavors: ['d2-2', 'd2-4', 'b3-8'],
+            tags: ['New!'],
+          },
+        ],
+        tags: ['New!'],
       },
     ],
   },
@@ -308,6 +322,32 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
         ],
       ]),
       allIds: ['north_america', 'western_europe', 'south_europe'],
+    },
+    flavorCategories: {
+      byId: new Map([
+        [
+          'Best Sellers!',
+          {
+            name: 'Best Sellers!',
+            types: ['Novelties'],
+            tags: ['New!'],
+          },
+        ],
+      ]),
+      allIds: ['Best Sellers!'],
+    },
+    flavorTypes: {
+      byId: new Map([
+        [
+          'Novelties',
+          {
+            name: 'Novelties',
+            flavors: ['d2-2', 'd2-4', 'b3-8'],
+            tags: ['New!'],
+          },
+        ],
+      ]),
+      allIds: ['Novelties'],
     },
   },
   relations: {
@@ -549,6 +589,22 @@ export const mockedDeploymentModesSelectorData: TDeploymentModeDataForCard[] = [
     description:
       'common:pci_instances_common_instance_localzone_deployment_mode_description',
     url: InstanceImage,
+  },
+];
+
+export const mockedFlavorCategoriesSelectorData: TOptionsData[] = [
+  {
+    name: 'Best Sellers!',
+    value: 'Best Sellers!',
+    tags: ['New!'],
+  },
+];
+
+export const mockedFlavorTypesSelectorData: TOptionsData[] = [
+  {
+    name: 'Novelties',
+    value: 'Novelties',
+    tags: ['New!'],
   },
 ];
 
