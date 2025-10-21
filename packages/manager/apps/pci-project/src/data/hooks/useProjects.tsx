@@ -1,9 +1,11 @@
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { FetchResultV6 } from '@ovh-ux/manager-react-components';
 import { queryOptions, useMutation, useQuery } from '@tanstack/react-query';
+import { TProject } from '@ovh-ux/manager-pci-common';
 import {
   claimVoucher,
   getDefaultProject,
+  getProjects,
   removeProject,
   setAsDefaultProject,
   unFavProject,
@@ -14,6 +16,7 @@ import {
 } from '@/data/api/projects-with-services';
 import { TProjectWithService } from '@/data/types/project.type';
 import queryClient from '@/queryClient';
+import { DISCOVERY_PROJECT_PLANCODE } from '@/constants';
 
 type DeleteProjectParams = {
   projectId: string;
@@ -130,4 +133,24 @@ export const useClaimVoucher = () =>
   useMutation<void, ApiError, { projectId: string; voucherCode: string }>({
     mutationFn: ({ projectId, voucherCode }) =>
       claimVoucher(projectId, voucherCode),
+  });
+
+/**
+ * Custom hook to get the discovery project if one exists.
+ * Discovery projects need to be activated before users can create new projects.
+ *
+ * @returns {UseQueryResult<TProject | undefined, ApiError>} The query result containing:
+ *   - data: The discovery project if found, undefined otherwise
+ *   - isPending: boolean indicating if the query is loading
+ *   - error: ApiError | null if an error occurred
+ */
+export const useDiscoveryProject = () =>
+  useQuery({
+    queryKey: ['/cloud/project'],
+    queryFn: () => getProjects(),
+    select: ({ data }) => {
+      return data.find(
+        (project) => project.planCode === DISCOVERY_PROJECT_PLANCODE,
+      );
+    },
   });

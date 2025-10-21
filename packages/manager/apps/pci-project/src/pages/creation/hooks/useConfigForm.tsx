@@ -28,7 +28,7 @@ export const useConfigForm = (
   const { data: projectItem, isLoading: isLoadingProject } = useGetProjectItem(
     cartId,
   );
-  console.log('projectItem', projectItem);
+
   const {
     data: cartConfiguration,
     isLoading: isLoadingCartConfig,
