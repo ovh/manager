@@ -1,4 +1,5 @@
 import { ComponentProps } from 'react';
+
 import { Badge } from '../badge';
 
 export type ResourceStatus =
@@ -9,9 +10,6 @@ export type ResourceStatus =
   | 'toDelete'
   | 'toSuspend';
 
-export type ServiceStateBadgeProps = Omit<
-  ComponentProps<typeof Badge>,
-  'color' | 'label'
-> & {
+export type ServiceStateBadgeProps = Omit<ComponentProps<typeof Badge>, 'color' | 'label'> & {
   state: ResourceStatus;
 };

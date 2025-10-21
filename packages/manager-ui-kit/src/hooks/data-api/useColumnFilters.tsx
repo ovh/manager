@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import {
-  Filter,
-  FilterComparator,
-  FilterTypeCategories,
-} from '@ovh-ux/manager-core-api';
+
+import { Filter, FilterComparator, FilterTypeCategories } from '@ovh-ux/manager-core-api';
+
 import { FilterWithLabel } from '../../components/filters/Filter.props';
 import '../../components/filters/translations';
 
@@ -19,9 +17,7 @@ export function useColumnFilters() {
       if (
         filter.value ||
         (filter.type === FilterTypeCategories.Tags &&
-          [FilterComparator.TagExists, FilterComparator.TagNotExists].includes(
-            filter.comparator,
-          ))
+          [FilterComparator.TagExists, FilterComparator.TagNotExists].includes(filter.comparator))
       ) {
         setFilters((previousFilters) => {
           if (previousFilters.some((f) => filterEquals(f, filter))) {
@@ -32,9 +28,7 @@ export function useColumnFilters() {
       }
     },
     removeFilter: (filter: Filter) => {
-      setFilters((previousFilters) =>
-        previousFilters.filter((f) => !filterEquals(f, filter)),
-      );
+      setFilters((previousFilters) => previousFilters.filter((f) => !filterEquals(f, filter)));
     },
   };
 }

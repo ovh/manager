@@ -1,9 +1,11 @@
-import { useRef, useState, useEffect, MouseEvent, FC } from 'react';
-import { Badge, BADGE_COLOR, Icon, ICON_NAME, Link } from '@ovhcloud/ods-react';
-import { getVisibleTagCount } from './TagsStack.utils';
-import { HTMLBadgeElement } from './TagsStack.type';
+import { FC, MouseEvent, useEffect, useRef, useState } from 'react';
+
+import { BADGE_COLOR, Badge, ICON_NAME, Icon, Link } from '@ovhcloud/ods-react';
+
 import { BADGE_SPACINGS, MORE_TAGS_ICON_WIDTH } from './TagsStack.constants';
 import { TagsStackProps } from './TagsStack.props';
+import { HTMLBadgeElement } from './TagsStack.type';
+import { getVisibleTagCount } from './TagsStack.utils';
 
 export const TagsStack: FC<TagsStackProps> = ({ tags, maxLines, onClick }) => {
   const [visibleTagCount, setVisibleTagCount] = useState<number>(0);
@@ -37,11 +39,7 @@ export const TagsStack: FC<TagsStackProps> = ({ tags, maxLines, onClick }) => {
 
   useEffect(() => {
     if (containerRef.current) {
-      setMaxWidth(
-        containerRef.current.offsetWidth -
-          BADGE_SPACINGS -
-          MORE_TAGS_ICON_WIDTH,
-      );
+      setMaxWidth(containerRef.current.offsetWidth - BADGE_SPACINGS - MORE_TAGS_ICON_WIDTH);
     }
   }, [containerRef]);
 
@@ -50,10 +48,7 @@ export const TagsStack: FC<TagsStackProps> = ({ tags, maxLines, onClick }) => {
   }
 
   return (
-    <div
-      ref={containerRef}
-      className="w-full h-full flex flex-wrap min-w-[85px]"
-    >
+    <div ref={containerRef} className="w-full h-full flex flex-wrap min-w-[85px]">
       <Badge
         className="mr-1 mb-1 truncate inline-block"
         color={BADGE_COLOR.neutral}

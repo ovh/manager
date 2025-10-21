@@ -1,20 +1,24 @@
 import React, { useEffect } from 'react';
+
 import { useTranslation } from 'react-i18next';
+
 import {
-  Text,
-  Button,
-  Message,
-  MessageIcon,
-  MessageBody,
   BUTTON_VARIANT,
+  Button,
   MESSAGE_COLOR,
+  Message,
+  MessageBody,
+  MessageIcon,
   TEXT_PRESET,
+  Text,
 } from '@ovhcloud/ods-react';
+
 import { PageType, ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { ErrorProps } from './Error.props';
-import './translations/translations';
-import { getTrackingTypology } from './Error.utils';
+
 import ErrorImg from '../../../public/assets/error-banner-oops.png';
+import { ErrorProps } from './Error.props';
+import { getTrackingTypology } from './Error.utils';
+import './translations/translations';
 
 export const Error = ({
   error,
@@ -55,48 +59,39 @@ export const Error = ({
       <img src={ErrorImg} alt="OOPS" className="w-full" />
       <Text preset={TEXT_PRESET.heading1} className="pt-2">
         {error?.status === 404 && <> {t('manager_error_page_404_title')}</>}
-        {error?.status && error?.status !== 404 && (
-          <>{t('manager_error_api_page_title')}</>
-        )}
+        {error?.status && error?.status !== 404 && <>{t('manager_error_api_page_title')}</>}
         {isBoundaryError && <> {t('manager_error_page_boundary_title')}</>}
       </Text>
       <Text preset={TEXT_PRESET.heading2} className="pt-1 pb-2">
-        {error?.status === 404 && (
-          <>{t('manager_error_page_404_description')}</>
-        )}
-        {error?.status && error?.status !== 404 && (
-          <>{t('manager_error_page_api_description')}</>
-        )}
-        {isBoundaryError && (
-          <> {t('manager_error_page_boundary_description')}</>
-        )}
+        {error?.status === 404 && <>{t('manager_error_page_404_description')}</>}
+        {error?.status && error?.status !== 404 && <>{t('manager_error_page_api_description')}</>}
+        {isBoundaryError && <> {t('manager_error_page_boundary_description')}</>}
       </Text>
-      {error?.status !== 404 &&
-        (error?.data?.message || error?.headers?.['x-ovh-queryid']) && (
-          <Message
-            color={MESSAGE_COLOR.warning}
-            data-tracking={labelTracking}
-            dismissible={false}
-            className="w-full"
-          >
-            <MessageIcon name="triangle-exclamation" />
-            <MessageBody>
-              <p className="m-0 p-O">
-                {error?.data?.message && (
-                  <span className="block">
-                    <strong>{error.data.message}</strong>
-                  </span>
-                )}
-                {error?.headers?.['x-ovh-queryid'] && (
-                  <span className="block py-[10px]">
-                    {t('manager_error_page_detail_code')}
-                    {error.headers['x-ovh-queryid']}
-                  </span>
-                )}
-              </p>
-            </MessageBody>
-          </Message>
-        )}
+      {error?.status !== 404 && (error?.data?.message || error?.headers?.['x-ovh-queryid']) && (
+        <Message
+          color={MESSAGE_COLOR.warning}
+          data-tracking={labelTracking}
+          dismissible={false}
+          className="w-full"
+        >
+          <MessageIcon name="triangle-exclamation" />
+          <MessageBody>
+            <p className="m-0 p-O">
+              {error?.data?.message && (
+                <span className="block">
+                  <strong>{error.data.message}</strong>
+                </span>
+              )}
+              {error?.headers?.['x-ovh-queryid'] && (
+                <span className="block py-[10px]">
+                  {t('manager_error_page_detail_code')}
+                  {error.headers['x-ovh-queryid']}
+                </span>
+              )}
+            </p>
+          </MessageBody>
+        </Message>
+      )}
       <div className="overflow-hidden mt-5 py-2">
         <Button
           data-testid="error-template-action-home"

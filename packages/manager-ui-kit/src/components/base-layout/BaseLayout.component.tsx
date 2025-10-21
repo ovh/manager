@@ -1,8 +1,10 @@
 import React from 'react';
-import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
-import { Header } from './header/Header.component';
-import { LinkType, Link } from '../Link';
+
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
+
+import { Link, LinkType } from '../Link';
 import { BaseLayoutProps } from './BaseLayout.props';
+import { Header } from './header/Header.component';
 
 export const BaseLayout = ({
   backLink,

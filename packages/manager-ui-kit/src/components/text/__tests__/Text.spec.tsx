@@ -1,10 +1,12 @@
-import { vitest } from 'vitest';
+import { screen } from '@testing-library/react';
 import type { MockInstance } from 'vitest';
-import { screen, act, fireEvent } from '@testing-library/react';
-import { Text } from '../index';
+import { vitest } from 'vitest';
+
 import { render } from '@/setupTest';
-import fr_FR from '../translations/Messages_fr_FR.json';
+
 import { useAuthorizationIam } from '../../../hooks/iam';
+import { Text } from '../index';
+import fr_FR from '../translations/Messages_fr_FR.json';
 
 vitest.mock('../../../hooks/iam', () => ({
   useAuthorizationIam: vitest.fn().mockReturnValue({
@@ -31,9 +33,7 @@ describe('Text tests', () => {
       render(
         <Text
           urn="urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd"
-          iamActions={[
-            'manager-react-components:apiovh:manager-react-components/get-display',
-          ]}
+          iamActions={['manager-react-components:apiovh:manager-react-components/get-display']}
         >
           <div>foo-manager-text</div>
         </Text>,
@@ -51,9 +51,7 @@ describe('Text tests', () => {
       render(
         <Text
           urn="urn:v9:eu:resource:manager-react-components:vrz-a878-dsflkds-fdsfsd"
-          iamActions={[
-            'manager-react-components:apiovh:manager-react-components/get-display',
-          ]}
+          iamActions={['manager-react-components:apiovh:manager-react-components/get-display']}
         >
           <div>foo-manager-text</div>
         </Text>,

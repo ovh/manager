@@ -1,7 +1,8 @@
-import { screen, fireEvent } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import { vitest } from 'vitest';
-import { TagsTile } from '../TagsTile.component';
+
 import { render } from '../../../../setupTest';
+import { TagsTile } from '../TagsTile.component';
 import fr_FR from '../translations/Messages_fr_FR.json';
 
 describe('TagsTile component', () => {

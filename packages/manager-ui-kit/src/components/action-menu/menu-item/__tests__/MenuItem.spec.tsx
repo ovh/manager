@@ -1,14 +1,15 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { ActionMenuItem } from '@/components';
+import { useAuthorizationIam } from '@/hooks';
+import { IamAuthorizationResponse } from '@/hooks';
+
 import { MenuItem } from '../MenuItem.component';
-import { useAuthorizationIam } from '../../../../hooks/iam';
-import { IamAuthorizationResponse } from '../../../../hooks/iam/iam.interface';
-import { ActionMenuItem } from '../../ActionMenu.props';
 
 vi.mock('../../../../hooks/iam');
 
-const mockedHook =
-  useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
+const mockedHook = useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
 
 describe('MenuItem', () => {
   const mockItem: Omit<ActionMenuItem, 'id'> = {
@@ -57,9 +58,7 @@ describe('MenuItem', () => {
         isLoading: false,
         isFetched: true,
       });
-      render(
-        <MenuItem item={itemWithHrefIamActions} isTrigger={false} id={1} />,
-      );
+      render(<MenuItem item={itemWithHrefIamActions} isTrigger={false} id={1} />);
 
       expect(screen.getByText('Action 1')).toBeInTheDocument();
       expect(screen.getByText('Action 1')).not.toBeDisabled();
@@ -80,9 +79,7 @@ describe('MenuItem', () => {
         isLoading: false,
         isFetched: true,
       });
-      render(
-        <MenuItem item={itemWithHrefIamActions} isTrigger={false} id={1} />,
-      );
+      render(<MenuItem item={itemWithHrefIamActions} isTrigger={false} id={1} />);
       expect(screen.getByText('Action 1')).toBeInTheDocument();
     });
   });
@@ -138,9 +135,7 @@ describe('MenuItem', () => {
         isLoading: false,
         isFetched: true,
       });
-      render(
-        <MenuItem item={itemWithHrefIamActions} isTrigger={false} id={1} />,
-      );
+      render(<MenuItem item={itemWithHrefIamActions} isTrigger={false} id={1} />);
 
       // Remove comment after merging Button Component
       //   const button = screen.getByRole('Button');
@@ -160,9 +155,7 @@ describe('MenuItem', () => {
         isLoading: false,
         isFetched: true,
       });
-      render(
-        <MenuItem item={itemWithHrefIamActions} isTrigger={false} id={1} />,
-      );
+      render(<MenuItem item={itemWithHrefIamActions} isTrigger={false} id={1} />);
       // Remove comment after merging Button Component
       //   const button = screen.getByRole('button');
       //   expect(button).toHaveTextContent('Action 2');

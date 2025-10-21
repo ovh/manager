@@ -1,6 +1,9 @@
 import { memo } from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { BUTTON_VARIANT, BUTTON_SIZE } from '@ovhcloud/ods-react';
+
+import { BUTTON_SIZE, BUTTON_VARIANT } from '@ovhcloud/ods-react';
+
 import { Button } from '../../../../button';
 
 const FooterActionsComponent = ({

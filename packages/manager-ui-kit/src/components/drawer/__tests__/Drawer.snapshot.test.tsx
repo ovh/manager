@@ -1,8 +1,11 @@
 import { vitest } from 'vitest';
+
 import { TEXT_PRESET } from '@ovhcloud/ods-react';
-import { Drawer } from '../index';
+
 import { render } from '@/setupTest';
+
 import { Text } from '../../text/Text.component';
+import { Drawer } from '../index';
 import './drawer.mocks';
 
 describe('Drawer Snapshot Tests', () => {
@@ -32,9 +35,7 @@ describe('Drawer Snapshot Tests', () => {
         <Drawer.Root isOpen={true} onDismiss={mockOnDismiss}>
           <Drawer.Header title="Complete Drawer" />
           <Drawer.Content>
-            <Text preset={TEXT_PRESET.heading3}>
-              Drawer with all components
-            </Text>
+            <Text preset={TEXT_PRESET.heading3}>Drawer with all components</Text>
             <p>Drawer with all components</p>
           </Drawer.Content>
           <Drawer.Footer
@@ -69,11 +70,7 @@ describe('Drawer Snapshot Tests', () => {
 
     it('should render drawer without createPortal', () => {
       const { container } = render(
-        <Drawer.Root
-          isOpen={true}
-          onDismiss={mockOnDismiss}
-          createPortal={false}
-        >
+        <Drawer.Root isOpen={true} onDismiss={mockOnDismiss} createPortal={false}>
           <Drawer.Header title="No Portal Drawer" />
           <Drawer.Content>
             <Text preset={TEXT_PRESET.heading3}>Rendered without portal</Text>
@@ -87,16 +84,10 @@ describe('Drawer Snapshot Tests', () => {
 
     it('should render drawer with trigger element', () => {
       const { container } = render(
-        <Drawer.Root
-          isOpen={true}
-          onDismiss={mockOnDismiss}
-          trigger={<button>Open Drawer</button>}
-        >
+        <Drawer.Root isOpen={true} onDismiss={mockOnDismiss} trigger={<button>Open Drawer</button>}>
           <Drawer.Header title="Drawer with Trigger" />
           <Drawer.Content>
-            <Text preset={TEXT_PRESET.heading3}>
-              Drawer with trigger button
-            </Text>
+            <Text preset={TEXT_PRESET.heading3}>Drawer with trigger button</Text>
             <p>Drawer with trigger button</p>
           </Drawer.Content>
         </Drawer.Root>,
@@ -151,9 +142,7 @@ describe('Drawer Snapshot Tests', () => {
         <Drawer.RootCollapsible isOpen={true} onDismiss={mockOnDismiss}>
           <Drawer.Header title="Full Collapsible Drawer" />
           <Drawer.Content>
-            <Text preset={TEXT_PRESET.heading3}>
-              Complete Collapsible Drawer
-            </Text>
+            <Text preset={TEXT_PRESET.heading3}>Complete Collapsible Drawer</Text>
             <p>Complete collapsible drawer</p>
           </Drawer.Content>
           <Drawer.Footer
@@ -191,9 +180,7 @@ describe('Drawer Snapshot Tests', () => {
         <Drawer.RootCollapsible isOpen={true} onDismiss={mockOnDismiss}>
           <Drawer.Header title="Complex Collapsible" />
           <Drawer.Content>
-            <Text preset={TEXT_PRESET.heading3}>
-              Complex Collapsible Drawer
-            </Text>
+            <Text preset={TEXT_PRESET.heading3}>Complex Collapsible Drawer</Text>
             <form>
               <label htmlFor="setting1">Setting 1</label>
               <input id="setting1" type="text" defaultValue="value1" />

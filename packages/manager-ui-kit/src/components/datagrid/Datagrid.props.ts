@@ -1,17 +1,20 @@
-import { MutableRefObject, ReactNode, Dispatch, SetStateAction } from 'react';
+import { Dispatch, MutableRefObject, ReactNode, SetStateAction } from 'react';
+
 import {
   ColumnDef,
-  ColumnSort as TanstackColumnSort,
+  ExpandedState,
   Row,
-  VisibilityState,
   RowSelectionState,
   SortingState,
-  ExpandedState,
+  ColumnSort as TanstackColumnSort,
+  VisibilityState,
 } from '@tanstack/react-table';
+
 import {
-  FilterComparator,
   FilterTypeCategories as DatagridColumnTypes,
+  FilterComparator,
 } from '@ovh-ux/manager-core-api';
+
 import { Option } from '../filters';
 import { FilterWithLabel } from '../filters/Filter.props';
 

@@ -1,16 +1,20 @@
 import React from 'react';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  Link as OdsLink,
-  Icon,
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-  TOOLTIP_POSITION,
-} from '@ovhcloud/ods-react';
+
 import { useTranslation } from 'react-i18next';
-import { LinkType, LinkProps, LinkIconsProps } from './Link.props';
+
+import {
+  Icon,
+  Link as OdsLink,
+  TOOLTIP_POSITION,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { useAuthorizationIam } from '../../hooks';
+import { LinkIconsProps, LinkProps, LinkType } from './Link.props';
 
 const LinkIcons: React.FC<LinkIconsProps> = ({ type, children }) => (
   <>
@@ -34,11 +38,7 @@ export const Link: React.FC<LinkProps> = ({
   ...props
 }) => {
   const { t } = useTranslation(NAMESPACES.IAM);
-  const { isAuthorized } = useAuthorizationIam(
-    iamActions || [],
-    urn || '',
-    !disableIamCheck,
-  );
+  const { isAuthorized } = useAuthorizationIam(iamActions || [], urn || '', !disableIamCheck);
 
   const getLinkProps = (isDisabled = false) => ({
     className,

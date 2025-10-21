@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react';
+
 import { LinkCard, LinkCardProps } from '..';
 
 export const texts = {
@@ -25,5 +26,4 @@ export const badges = [
   },
 ];
 
-export const renderLinkCard = (props?: LinkCardProps) =>
-  render(<LinkCard {...props} />);
+export const renderLinkCard = (props?: LinkCardProps) => render(<LinkCard {...props} />);

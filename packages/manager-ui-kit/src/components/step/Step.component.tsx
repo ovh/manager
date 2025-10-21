@@ -1,10 +1,11 @@
 import { v4 as uuidV4 } from 'uuid';
+
 import StepProps from './Step.props';
-import { StepIndicator } from './step-indicator/StepIndicator.component';
-import { StepHeader } from './step-header/StepHeader.component';
+import { StepContext } from './StepContext';
 import { StepBody } from './step-body/StepBody.component';
 import { StepFooter } from './step-footer/StepFooter.component';
-import { StepContext } from './StepContext';
+import { StepHeader } from './step-header/StepHeader.component';
+import { StepIndicator } from './step-indicator/StepIndicator.component';
 
 export const Step = ({
   id = uuidV4(),

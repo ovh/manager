@@ -1,4 +1,4 @@
-import { MESSAGE_VARIANT, MESSAGE_COLOR } from '@ovhcloud/ods-react';
+import { MESSAGE_COLOR, MESSAGE_VARIANT } from '@ovhcloud/ods-react';
 
 export type ActionBannerProps = {
   message: string;

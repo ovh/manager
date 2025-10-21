@@ -1,7 +1,9 @@
-import { vitest } from 'vitest';
-import { waitFor, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { vitest } from 'vitest';
+
 import { render } from '@/setupTest';
+
 import { DeleteModal } from './DeleteModal.component';
 import { DeleteModalProps } from './DeleteModal.props';
 
@@ -15,24 +17,16 @@ export const sharedProps: DeleteModalProps = {
 describe('Delete Modal component', () => {
   it('renders correctly', () => {
     render(<DeleteModal {...sharedProps} />);
-    expect(
-      screen.getByTestId('manager-delete-modal-description'),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByTestId('manager-delete-modal-cancel'),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByTestId('manager-delete-modal-confirm'),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('manager-delete-modal-description')).toBeInTheDocument();
+    expect(screen.getByTestId('manager-delete-modal-cancel')).toBeInTheDocument();
+    expect(screen.getByTestId('manager-delete-modal-confirm')).toBeInTheDocument();
   });
 
   it('renders error message in modal', () => {
     const errorMessage = 'Error message';
     render(<DeleteModal {...sharedProps} error={errorMessage} />);
     waitFor(() => {
-      expect(
-        screen.getByText(errorMessage, { exact: false }),
-      ).toBeInTheDocument();
+      expect(screen.getByText(errorMessage, { exact: false })).toBeInTheDocument();
     });
   });
 

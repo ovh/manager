@@ -1,17 +1,15 @@
 import React from 'react';
+
+import { fireEvent, render, screen } from '@testing-library/react';
 import { vitest } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
-import StepFooter from '../StepFooter.component';
+
 import { StepContext } from '../../StepContext';
+import StepFooter from '../StepFooter.component';
 
 // Mocking Button component to easily test different variants and size without depending on ODS
 vitest.mock('@ovhcloud/ods-react', () => ({
   Button: vitest.fn(({ children, variant = '', size, onClick, disabled }) => (
-    <button
-      data-testid={`button-${variant}-${size}`}
-      onClick={onClick}
-      disabled={disabled}
-    >
+    <button data-testid={`button-${variant}-${size}`} onClick={onClick} disabled={disabled}>
       {children}
     </button>
   )),

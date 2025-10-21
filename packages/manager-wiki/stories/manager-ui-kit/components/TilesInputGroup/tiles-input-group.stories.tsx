@@ -2,7 +2,7 @@ import React from 'react';
 import { Meta } from '@storybook/react';
 import { useArgs } from '@storybook/preview-api';
 import { clsx } from 'clsx';
-import { TilesInputGroupComponent, Text } from '@ovh-ux/muk';
+import { Text, TilesInputGroupComponent } from '@ovh-ux/muk';
 import {
   countries as allCountries,
   TCountry,

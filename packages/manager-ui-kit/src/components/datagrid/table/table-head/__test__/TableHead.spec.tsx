@@ -1,7 +1,8 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { TableHeaderContent } from '../table-header-content/TableHeaderContent.component';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { mockHeaderGroups, mockOnSortChange } from '../../../__mocks__';
+import { TableHeaderContent } from '../table-header-content/TableHeaderContent.component';
 
 describe('TableHead', () => {
   it('should render all headers correctly', () => {

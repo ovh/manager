@@ -1,5 +1,5 @@
+import { render } from '@testing-library/react';
 import { expect, it, vitest } from 'vitest';
-import { render, screen } from '@testing-library/react';
 
 import { Step } from '../Step.component';
 

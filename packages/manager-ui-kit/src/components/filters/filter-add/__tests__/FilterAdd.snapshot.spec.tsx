@@ -1,8 +1,10 @@
-import { vi, beforeEach } from 'vitest';
 import { act } from '@testing-library/react';
-import { FilterAdd } from '../Filteradd.component';
+import { beforeEach, vi } from 'vitest';
+
+import { cleanup, render } from '@/setupTest';
+
 import { FilterAddProps } from '../FilterAdd.props';
-import { render, cleanup } from '@/setupTest';
+import { FilterAdd } from '../Filteradd.component';
 
 const mockUseGetResourceTags = vi.fn();
 const mockUseAuthorizationIam = vi.fn();
@@ -55,13 +57,7 @@ describe('FilterAdd Snapshot Tests', () => {
         {
           id: 'username',
           label: "Nom d'utilisateur",
-          comparators: [
-            'includes',
-            'starts_with',
-            'ends_with',
-            'is_equal',
-            'is_different',
-          ],
+          comparators: ['includes', 'starts_with', 'ends_with', 'is_equal', 'is_different'],
           type: 'String',
         },
       ],

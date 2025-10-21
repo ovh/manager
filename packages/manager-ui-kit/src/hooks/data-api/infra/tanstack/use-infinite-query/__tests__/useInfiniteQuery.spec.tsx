@@ -1,12 +1,10 @@
 import React from 'react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { renderHook } from '@testing-library/react';
-import {
-  QueryClient,
-  useInfiniteQuery as tanstackUseInfiniteQuery,
-} from '@tanstack/react-query';
-import { getWrapper } from '../../../../__tests__/Test.utils';
 
+import { QueryClient, useInfiniteQuery as tanstackUseInfiniteQuery } from '@tanstack/react-query';
+import { renderHook } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { getWrapper } from '../../../../__tests__/Test.utils';
 // Import your hook
 import { useInfiniteQuery } from '../useInfiniteQuery';
 

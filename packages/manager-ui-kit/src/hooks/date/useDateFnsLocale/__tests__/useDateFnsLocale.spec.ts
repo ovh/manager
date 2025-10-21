@@ -1,7 +1,9 @@
-import { vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { useTranslation } from 'react-i18next';
+import { vi } from 'vitest';
+
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
+
 import { useDateFnsLocale } from '../useDateFnsLocale';
 
 vi.mock('@ovh-ux/manager-core-utils', () => ({

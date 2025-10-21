@@ -1,16 +1,14 @@
-import { Tag, TAG_COLOR } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
-import { formatFilter } from '../filters.utils';
-import { FilterListProps } from './FilterList.props';
-import '../translations';
 
-export function FilterList({
-  filters,
-  onRemoveFilter,
-}: Readonly<FilterListProps>) {
+import { TAG_COLOR, Tag } from '@ovhcloud/ods-react';
+
+import { formatFilter } from '../filters.utils';
+import '../translations';
+import { FilterListProps } from './FilterList.props';
+
+export function FilterList({ filters, onRemoveFilter }: Readonly<FilterListProps>) {
   const { t, i18n } = useTranslation('filters');
-  const tComp = (comparator: string) =>
-    t(`common_criteria_adder_operator_${comparator}`);
+  const tComp = (comparator: string) => t(`common_criteria_adder_operator_${comparator}`);
   const locale = i18n.language?.replace('_', '-') || 'FR-fr';
 
   return (

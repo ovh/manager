@@ -1,12 +1,10 @@
 import React from 'react';
-import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
+
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
+
 import { HeaderProps } from './Header.props';
 
-export const Header: React.FC<HeaderProps> = ({
-  title,
-  guideMenu,
-  changelogButton,
-}) => {
+export const Header: React.FC<HeaderProps> = ({ title, guideMenu, changelogButton }) => {
   return (
     <header className="flex items-start justify-between">
       {title && <Text preset={TEXT_PRESET.heading1}>{title}</Text>}

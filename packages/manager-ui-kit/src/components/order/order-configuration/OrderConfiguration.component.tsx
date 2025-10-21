@@ -1,10 +1,13 @@
 import { FC } from 'react';
+
 import { useTranslation } from 'react-i18next';
+
 import { BUTTON_VARIANT, ICON_NAME, Icon } from '@ovhcloud/ods-react';
-import { useOrderContext } from '../Order.context';
+
 import { Button } from '../../button';
-import { OrderConfigurationProps } from './OrderConfiguration.props';
 import { Text } from '../../text';
+import { useOrderContext } from '../Order.context';
+import { OrderConfigurationProps } from './OrderConfiguration.props';
 
 export const OrderConfiguration: FC<OrderConfigurationProps> = ({
   children,
@@ -12,8 +15,7 @@ export const OrderConfiguration: FC<OrderConfigurationProps> = ({
   onConfirm,
   isValid,
 }: OrderConfigurationProps): JSX.Element => {
-  const { isOrderInitialized, setIsOrderInitialized, error } =
-    useOrderContext();
+  const { isOrderInitialized, setIsOrderInitialized, error } = useOrderContext();
   const { t } = useTranslation('order');
 
   if (isOrderInitialized) {

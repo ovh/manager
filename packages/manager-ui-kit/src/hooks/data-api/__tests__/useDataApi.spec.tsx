@@ -1,12 +1,13 @@
-import { vi, describe, it, expect } from 'vitest';
 import { renderHook } from '@testing-library/react';
-import { useDataApi } from '../ports/use-data-api/useDataApi';
-import { useV6 } from '../adapters/v6/useV6';
-import { useV2 } from '../adapters/v2/useV2';
+import { describe, expect, it, vi } from 'vitest';
+
+import { ResultObj, columns } from '../__mocks__/mock';
 import { useIceberg } from '../adapters/iceberg/useIceberg';
-import { columns, ResultObj } from '../__mocks__/mock';
-import { getSorting } from './Test.utils';
+import { useV2 } from '../adapters/v2/useV2';
+import { useV6 } from '../adapters/v6/useV6';
+import { useDataApi } from '../ports/use-data-api/useDataApi';
 import { UseDataApiOptions } from '../ports/use-data-api/useDataApi.types';
+import { getSorting } from './Test.utils';
 
 vi.mock('../adapters/v6/useV6', () => {
   return {

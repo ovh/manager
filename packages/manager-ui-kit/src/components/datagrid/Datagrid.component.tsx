@@ -1,12 +1,14 @@
 import { useRef } from 'react';
+
 import { Table } from '@ovhcloud/ods-react';
-import { TableHeaderContent } from './table/table-head/table-header-content/TableHeaderContent.component';
-import { TableFooter } from './table/table-footer/TableFooter.component';
-import { TableBody } from './table/table-body/TableBody.component';
-import { useDatagrid } from './useDatagrid';
+
 import { DatagridProps } from './Datagrid.props';
+import { TableBody } from './table/table-body/TableBody.component';
+import { TableFooter } from './table/table-footer/TableFooter.component';
+import { TableHeaderContent } from './table/table-head/table-header-content/TableHeaderContent.component';
 import { Topbar } from './topbar/Topbar.component';
 import './translations';
+import { useDatagrid } from './useDatagrid';
 
 const DEFAULT_ROW_HEIGHT = 50;
 const DEFAULT_CONTAINER_HEIGHT = 570;
@@ -54,28 +56,20 @@ export const Datagrid = <T extends Record<string, unknown>>({
     rowSelection,
     expandable,
   });
-  const {
-    hasSortingFeature,
-    hasSearchFeature,
-    hasColumnVisibilityFeature,
-    hasFilterFeature,
-  } = features;
+  const { hasSortingFeature, hasSearchFeature, hasColumnVisibilityFeature, hasFilterFeature } =
+    features;
   const rowModel = getRowModel();
   const { rows } = rowModel;
   const headerGroups = getHeaderGroups();
   const tableContainerRef = useRef<HTMLDivElement>(null);
   const visibleColumns = getAllLeafColumns();
-  const containerSize =
-    data?.length < 10 ? '100%' : `${DEFAULT_CONTAINER_HEIGHT}px`;
+  const containerSize = data?.length < 10 ? '100%' : `${DEFAULT_CONTAINER_HEIGHT}px`;
   const containerStyle = {
     maxHeight: containerHeight ? `${containerHeight}px` : containerSize,
     height: containerHeight ? `${containerHeight}px` : containerSize,
   };
   const shouldRenderTopbar =
-    topbar ||
-    hasSearchFeature ||
-    hasFilterFeature ||
-    hasColumnVisibilityFeature;
+    topbar || hasSearchFeature || hasFilterFeature || hasColumnVisibilityFeature;
   return (
     <>
       {shouldRenderTopbar && (
@@ -95,11 +89,7 @@ export const Datagrid = <T extends Record<string, unknown>>({
           setColumnVisibility={columnVisibility?.setColumnVisibility}
         />
       )}
-      <div
-        className="overflow-auto relative w-full"
-        ref={tableContainerRef}
-        style={containerStyle}
-      >
+      <div className="overflow-auto relative w-full" ref={tableContainerRef} style={containerStyle}>
         <Table className="w-full">
           <TableHeaderContent<T>
             headerGroups={headerGroups}

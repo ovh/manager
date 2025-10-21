@@ -1,11 +1,8 @@
-import { vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
+import { vi } from 'vitest';
+
+import { HOUR_IN_MONTH, convertHourlyPriceToMonthly, priceToUcent } from './useCatalog.utils';
 import { useCatalogPrice } from './useCatalogPrice';
-import {
-  priceToUcent,
-  convertHourlyPriceToMonthly,
-  HOUR_IN_MONTH,
-} from './useCatalog.utils';
 
 const mocks = vi.hoisted(() => ({
   useMe: vi.fn(() => ({
@@ -116,9 +113,7 @@ describe('useCatalogPrice', () => {
       },
     });
     const { result } = renderHook(() => useCatalogPrice(1));
-    const textPrice = result.current.getFormattedCatalogPrice(
-      priceToUcent(25.152),
-    );
+    const textPrice = result.current.getFormattedCatalogPrice(priceToUcent(25.152));
     expect(textPrice).toBe('25,2 €');
   });
 

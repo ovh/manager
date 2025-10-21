@@ -1,7 +1,9 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { screen, fireEvent } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { describe, expect, it, vi } from 'vitest';
+
 import { render } from '@/setupTest';
+
 import { TabsComponent } from '../Tabs.component';
 
 describe('TabsComponent', () => {
@@ -39,9 +41,7 @@ describe('TabsComponent', () => {
 
     it('should apply the custom CSS class', () => {
       const customClass = 'custom-tabs-class';
-      const { container } = render(
-        <TabsComponent items={mockItems} className={customClass} />,
-      );
+      const { container } = render(<TabsComponent items={mockItems} className={customClass} />);
 
       const div = container.querySelector('div');
       expect(div).toHaveClass(customClass);
@@ -112,9 +112,7 @@ describe('TabsComponent', () => {
         ),
       );
 
-      render(
-        <TabsComponent items={mockItems} titleElement={customTitleElement} />,
-      );
+      render(<TabsComponent items={mockItems} titleElement={customTitleElement} />);
 
       // Check that the first tab (selected by default) has isSelected=true
       const firstTabTitle = screen.getByTestId('custom-title-tab1');
@@ -127,17 +125,10 @@ describe('TabsComponent', () => {
 
     it('should render custom contentElement with selected item', () => {
       const customContentElement = vi.fn(({ item }: { item?: string }) => (
-        <div data-testid={`custom-content-${item}`}>
-          Custom content for {item}
-        </div>
+        <div data-testid={`custom-content-${item}`}>Custom content for {item}</div>
       ));
 
-      render(
-        <TabsComponent
-          items={mockItems}
-          contentElement={customContentElement}
-        />,
-      );
+      render(<TabsComponent items={mockItems} contentElement={customContentElement} />);
 
       // Should render content for the first tab (selected by default)
       expect(screen.getByTestId('custom-content-tab1')).toBeInTheDocument();
@@ -146,17 +137,10 @@ describe('TabsComponent', () => {
 
     it('should update content when switching tabs', async () => {
       const customContentElement = vi.fn(({ item }: { item?: string }) => (
-        <div data-testid={`custom-content-${item}`}>
-          Custom content for {item}
-        </div>
+        <div data-testid={`custom-content-${item}`}>Custom content for {item}</div>
       ));
 
-      render(
-        <TabsComponent
-          items={mockItems}
-          contentElement={customContentElement}
-        />,
-      );
+      render(<TabsComponent items={mockItems} contentElement={customContentElement} />);
 
       // Initially should show content for first tab
       expect(screen.getByTestId('custom-content-tab1')).toBeInTheDocument();

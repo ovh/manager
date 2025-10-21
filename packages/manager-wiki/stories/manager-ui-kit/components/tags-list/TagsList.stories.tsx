@@ -2,9 +2,9 @@ import React from 'react';
 import { StoryObj } from '@storybook/react';
 import {
   Message,
+  MESSAGE_COLOR,
   MessageBody,
   MessageIcon,
-  MESSAGE_COLOR,
   Text,
 } from '@ovhcloud/ods-react';
 import { TagsList } from '../../../../../manager-ui-kit/src/components';

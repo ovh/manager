@@ -1,14 +1,13 @@
 import { useEffect } from 'react';
-import { fetchWithIceberg, IcebergFetchResult } from '@ovh-ux/manager-core-api';
-import { UseDataApiResult } from '../../ports/use-data-api/useDataApi.types';
-import {
-  useInfiniteQuery,
-  UseInifiniteQueryResult,
-} from '../../infra/tanstack/use-infinite-query';
+
+import { IcebergFetchResult, fetchWithIceberg } from '@ovh-ux/manager-core-api';
+
+import { UseInifiniteQueryResult, useInfiniteQuery } from '../../infra/tanstack/use-infinite-query';
 import { DEFAULT_PAGE_SIZE } from '../../ports/use-data-api/useDataApi.constants';
+import { UseDataApiResult } from '../../ports/use-data-api/useDataApi.types';
 import { useDataRetrievalOperations } from '../../utils/data-retrieval-operations/useDataRetrievalOperations';
-import { UseIcebergParams, UseIcebergData } from './useIceberg.type';
 import { API_V6_MAX_PAGE_SIZE } from './useIceberg.constants';
+import { UseIcebergData, UseIcebergParams } from './useIceberg.type';
 
 export const useIceberg = <TData = Record<string, unknown>>({
   version = 'v6',
@@ -54,9 +53,7 @@ export const useIceberg = <TData = Record<string, unknown>>({
       searchFilters,
     ],
     enabled,
-    fetchDataFn: ({
-      pageParam: pageIndex,
-    }): Promise<IcebergFetchResult<TData>> =>
+    fetchDataFn: ({ pageParam: pageIndex }): Promise<IcebergFetchResult<TData>> =>
       fetchWithIceberg<TData>({
         version,
         route,

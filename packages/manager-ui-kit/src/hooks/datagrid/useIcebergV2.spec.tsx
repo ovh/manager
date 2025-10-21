@@ -1,12 +1,11 @@
 import React from 'react';
+
+import { QueryClient, QueryClientProvider, useInfiniteQuery } from '@tanstack/react-query';
+import { act, renderHook, waitFor } from '@testing-library/react';
 import { vitest } from 'vitest';
-import {
-  QueryClient,
-  QueryClientProvider,
-  useInfiniteQuery,
-} from '@tanstack/react-query';
-import { renderHook, act, waitFor } from '@testing-library/react';
+
 import { FilterComparator } from '@ovh-ux/manager-core-api';
+
 import { useResourcesIcebergV2 } from './useIcebergV2';
 
 interface TestData {
@@ -57,9 +56,7 @@ const renderUseIcebergV2Hook = (props = {}) => {
             id: 'newUpgradeSystem',
             isFilterable: true,
             label: 'Upgrade System',
-            cell: (cellProps) => (
-              <div>{cellProps.row.original.newUpgradeSystem}</div>
-            ),
+            cell: (cellProps) => <div>{cellProps.row.original.newUpgradeSystem}</div>,
           },
         ],
         ...props,

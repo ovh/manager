@@ -1,8 +1,10 @@
 import React from 'react';
-import { vitest, expect, it } from 'vitest';
+
 import { render, screen } from '@testing-library/react';
-import StepBody from '../StepBody.component';
+import { expect, it, vitest } from 'vitest';
+
 import { StepContext } from '../../StepContext';
+import StepBody from '../StepBody.component';
 
 // Mocking Suspense fallback to avoid rendering real spinner
 vitest.mock('@ovhcloud/ods-react', () => ({
@@ -19,10 +21,7 @@ describe('StepBody Component', () => {
     );
 
   it('renders the subtitle when provided', () => {
-    renderWithStepContext(
-      { subtitle: 'This is a subtitle', locked: false },
-      'Step Content',
-    );
+    renderWithStepContext({ subtitle: 'This is a subtitle', locked: false }, 'Step Content');
     expect(screen.getByText(/This is a subtitle/i)).toBeInTheDocument();
   });
 

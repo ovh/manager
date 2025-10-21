@@ -1,8 +1,11 @@
 import React from 'react';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { useTranslation } from 'react-i18next';
-import { ServiceStateBadgeProps } from './ServiceStateBadge.props';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { Badge } from '../badge';
+import { ServiceStateBadgeProps } from './ServiceStateBadge.props';
 
 const STATES = {
   active: { label: 'service_state_active', color: 'success' },
@@ -13,10 +16,7 @@ const STATES = {
   toSuspend: { label: 'service_state_toSuspend', color: 'information' },
 } as const;
 
-export const ServiceStateBadge = ({
-  state,
-  ...rest
-}: ServiceStateBadgeProps) => {
+export const ServiceStateBadge = ({ state, ...rest }: ServiceStateBadgeProps) => {
   const { t } = useTranslation(NAMESPACES.SERVICE);
 
   const { label, color } = STATES[state] ?? {

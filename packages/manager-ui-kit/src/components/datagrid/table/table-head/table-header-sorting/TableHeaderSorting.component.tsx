@@ -1,15 +1,12 @@
-import { Icon, ICON_NAME } from '@ovhcloud/ods-react';
 import { flexRender } from '@tanstack/react-table';
+
+import { ICON_NAME, Icon } from '@ovhcloud/ods-react';
+
 import { TableHeaderSortingProps } from './TableHeaderSorting.props';
 
-export const TableHeaderSorting = <T,>({
-  header,
-  onSortChange,
-}: TableHeaderSortingProps<T>) => {
+export const TableHeaderSorting = <T,>({ header, onSortChange }: TableHeaderSortingProps<T>) => {
   const canSort = header.column.getCanSort();
-  const handleClick = onSortChange
-    ? header.column.getToggleSortingHandler()
-    : undefined;
+  const handleClick = onSortChange ? header.column.getToggleSortingHandler() : undefined;
   const containerClassName = `${canSort ? 'cursor-pointer select-none' : ''} h-[20px]`;
 
   return (
@@ -18,9 +15,7 @@ export const TableHeaderSorting = <T,>({
       data-testid={`header-${header.id}`}
       className={containerClassName}
     >
-      <span>
-        {flexRender(header.column.columnDef.header, header.getContext())}
-      </span>
+      <span>{flexRender(header.column.columnDef.header, header.getContext())}</span>
       <span className="align-middle inline-block pl-1 -mt-1">
         <Icon
           className={header.column.getIsSorted() ? '' : 'invisible'}

@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
 import {
-  POPOVER_POSITION,
   BUTTON_VARIANT,
   ICON_NAME,
+  POPOVER_POSITION,
 } from '@ovhcloud/ods-react';
 import { ActionMenu, ActionMenuItem, ActionMenuProps } from '@ovh-ux/muk';
 

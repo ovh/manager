@@ -1,6 +1,6 @@
-import { useV6 } from '../../adapters/v6/useV6';
-import { useV2 } from '../../adapters/v2/useV2';
 import { useIceberg } from '../../adapters/iceberg/useIceberg';
+import { useV2 } from '../../adapters/v2/useV2';
+import { useV6 } from '../../adapters/v6/useV6';
 import { UseDataApiOptions, UseDataApiResult } from './useDataApi.types';
 
 export const useDataApi = <TData = Record<string, unknown>>({

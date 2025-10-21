@@ -1,10 +1,12 @@
+import { fireEvent, screen } from '@testing-library/react';
 import { vi } from 'vitest';
-import { screen, fireEvent } from '@testing-library/react';
-import '../../__tests__/drawer.mocks';
+
 import { render } from '@/setupTest';
-import { DrawerRoot } from '../DrawerRoot.component';
+
 import { useAuthorizationIam } from '../../../../hooks/iam';
 import { IamAuthorizationResponse } from '../../../../hooks/iam/iam.interface';
+import '../../__tests__/drawer.mocks';
+import { DrawerRoot } from '../DrawerRoot.component';
 
 vitest.mock('../../../../hooks/iam', () => ({
   useAuthorizationIam: vitest.fn().mockReturnValue({
@@ -14,8 +16,7 @@ vitest.mock('../../../../hooks/iam', () => ({
   }),
 }));
 
-const mockedHook =
-  useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
+const mockedHook = useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
 
 describe('DrawerRoot', () => {
   beforeEach(() => {

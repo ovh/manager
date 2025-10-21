@@ -1,10 +1,12 @@
-import { vitest } from 'vitest';
-import { screen, fireEvent } from '@testing-library/react';
 import { useRouteError } from 'react-router-dom';
+
+import { fireEvent, screen } from '@testing-library/react';
+import { vitest } from 'vitest';
+
+import { renderWithContext, shellContext } from '../../../utils/Test.utils';
+import { ErrorProps } from '../../error/Error.props';
 import tradFr from '../../error/translations/Messages_fr_FR.json';
 import { ErrorBoundary } from '../ErrorBoundary.component';
-import { ErrorProps } from '../../error/Error.props';
-import { renderWithContext, shellContext } from '../../../utils/Test.utils';
 
 vitest.mock('react-router-dom', (importOriginal) => ({
   ...importOriginal(),
@@ -30,9 +32,7 @@ describe('ErrorBoundary Tests render without error', () => {
 
     const img = screen.getByAltText('OOPS');
     const title = screen.queryByText(tradFr.manager_error_page_boundary_title);
-    const errorMessage = screen.queryByText(
-      tradFr.manager_error_page_boundary_description,
-    );
+    const errorMessage = screen.queryByText(tradFr.manager_error_page_boundary_description);
 
     expect(img).not.toBeNull();
     expect(title).toBeTruthy();
@@ -50,25 +50,17 @@ describe('ErrorBoundary Tests render without error', () => {
     renderWithContext({
       children: <ErrorBoundary redirectionApp="test" />,
     });
-    const navigateToHomePage = screen.getByText(
-      tradFr.manager_error_page_action_home_label,
-    );
+    const navigateToHomePage = screen.getByText(tradFr.manager_error_page_action_home_label);
     expect(navigateToHomePage).toBeTruthy();
     fireEvent.click(navigateToHomePage);
-    expect(shellContext.shell.navigation.navigateTo).toHaveBeenCalledWith(
-      'test',
-      '',
-      {},
-    );
+    expect(shellContext.shell.navigation.navigateTo).toHaveBeenCalledWith('test', '', {});
   });
 
   it('should call reload when onRedirectReload is called', () => {
     renderWithContext({
       children: <ErrorBoundary redirectionApp="test" />,
     });
-    const reload = screen.getByText(
-      tradFr.manager_error_page_action_reload_label,
-    );
+    const reload = screen.getByText(tradFr.manager_error_page_action_reload_label);
     expect(reload).toBeTruthy();
     fireEvent.click(reload);
     expect(shellContext.shell.navigation.reload).toHaveBeenCalled();
@@ -83,9 +75,7 @@ describe('ErrorBoundary Tests render without error', () => {
 
   it('should not render ShellRoutingSync component when isRouteShellSync is false', () => {
     renderWithContext({
-      children: (
-        <ErrorBoundary redirectionApp="test" isRouteShellSync={false} />
-      ),
+      children: <ErrorBoundary redirectionApp="test" isRouteShellSync={false} />,
     });
     expect(screen.getByTestId('error-template-action-reload')).toBeTruthy();
   });

@@ -1,9 +1,7 @@
 import { vitest } from 'vitest';
+
+import { mockGetEnvironment, renderWithContext } from '../../../utils/Test.utils';
 import { ErrorBoundary } from '../ErrorBoundary.component';
-import {
-  renderWithContext,
-  mockGetEnvironment,
-} from '../../../utils/Test.utils';
 
 vitest.mock('react-router-dom', (importOriginal) => ({
   ...importOriginal(),

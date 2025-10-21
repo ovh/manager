@@ -10,12 +10,7 @@ export const DrawerRoot = ({
 }: DrawerRootProps) => {
   return (
     <div id="mrc-drawer" className="relative">
-      <DrawerBase
-        createPortal={createPortal}
-        isOpen={isOpen}
-        trigger={trigger}
-        {...props}
-      />
+      <DrawerBase createPortal={createPortal} isOpen={isOpen} trigger={trigger} {...props} />
       {isOpen && <DrawerBackdrop onClick={props.onDismiss} />}
     </div>
   );

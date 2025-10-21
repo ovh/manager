@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
+
 import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
 import { useMe } from '../useMe';
 import { IMe } from '../useMe.props';
 

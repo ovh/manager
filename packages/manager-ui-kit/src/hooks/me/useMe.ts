@@ -1,5 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
+
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { IMe } from './useMe.props';
 
 export const useMe = () => {

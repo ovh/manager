@@ -1,8 +1,11 @@
 import React from 'react';
+
 import clsx from 'clsx';
-import { Card, CARD_COLOR, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
-import { TileRootProps } from './TileRoot.props';
+
+import { CARD_COLOR, Card, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
+
 import { TileDivider } from '../tile-divider/TileDivider.component';
+import { TileRootProps } from './TileRoot.props';
 
 export const TileRoot = ({
   className,

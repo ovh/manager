@@ -1,20 +1,15 @@
-import { vi } from 'vitest';
 import { useQuery } from '@tanstack/react-query';
-import { act, renderHook, RenderHookResult } from '@testing-library/react';
-import {
-  FilterComparator,
-  FilterTypeCategories,
-} from '@ovh-ux/manager-core-api';
+import { RenderHookResult, act, renderHook } from '@testing-library/react';
+import { vi } from 'vitest';
+
+import { FilterComparator, FilterTypeCategories } from '@ovh-ux/manager-core-api';
+
+import { ResultObj, columns, items } from '../../../__mocks__/mock';
+import { getFilter, getSorting, getWrapper } from '../../../__tests__/Test.utils';
+import { UseQueryOptions } from '../../../infra/tanstack/use-query';
+import { UseDataApiResult } from '../../../ports/use-data-api/useDataApi.types';
 import { useV6 } from '../useV6';
 import { ResourcesV6Params } from '../v6.type';
-import {
-  getWrapper,
-  getSorting,
-  getFilter,
-} from '../../../__tests__/Test.utils';
-import { items, columns, ResultObj } from '../../../__mocks__/mock';
-import { UseDataApiResult } from '../../../ports/use-data-api/useDataApi.types';
-import { UseQueryOptions } from '../../../infra/tanstack/use-query';
 
 vi.mock('@tanstack/react-query', async () => {
   const originalModule = await vi.importActual('@tanstack/react-query');
@@ -32,10 +27,7 @@ function fetchNextPage(fn: () => void, numberOfTimes: number) {
 
 const renderUseV6Hook = (
   hookParams: Partial<ResourcesV6Params<ResultObj>> = {},
-): RenderHookResult<
-  UseDataApiResult<ResultObj>,
-  ResourcesV6Params<ResultObj>
-> => {
+): RenderHookResult<UseDataApiResult<ResultObj>, ResourcesV6Params<ResultObj>> => {
   return renderHook(
     () =>
       useV6({
@@ -180,8 +172,7 @@ describe('useV6', () => {
     expect(result.current.flattenData.length).toBe(20);
     result.current.flattenData.forEach((item: ResultObj) => {
       expect(
-        parseInt(item.number, 10) > filterTerm1 &&
-          parseInt(item.number, 10) < filterTerm2,
+        parseInt(item.number, 10) > filterTerm1 && parseInt(item.number, 10) < filterTerm2,
       ).toBeTruthy();
     });
 
@@ -210,12 +201,7 @@ describe('useV6', () => {
     // then apply filter num > 15
     act(() => {
       result.current.filters!.add(
-        getFilter(
-          'number',
-          String(15),
-          FilterComparator.IsHigher,
-          FilterTypeCategories.Numeric,
-        ),
+        getFilter('number', String(15), FilterComparator.IsHigher, FilterTypeCategories.Numeric),
       );
     });
     act(() => {
@@ -228,9 +214,7 @@ describe('useV6', () => {
 
     // apply sorting descending order
     act(() => {
-      (result.current as UseDataApiResult).sorting!.setSorting!([
-        { id: 'number', desc: true },
-      ]);
+      (result.current as UseDataApiResult).sorting!.setSorting!([{ id: 'number', desc: true }]);
     });
     act(() => {
       fetchNextPage(result.current.fetchNextPage, 4);

@@ -1,7 +1,10 @@
-import { vi } from 'vitest';
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+
 import { Navigate } from 'react-router-dom';
+
+import { render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
+
 import { RedirectionGuard } from '../RedirectionGuard.component';
 
 vi.mock('react-router-dom', () => ({

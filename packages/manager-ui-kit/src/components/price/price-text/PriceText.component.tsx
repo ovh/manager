@@ -1,7 +1,10 @@
 import React from 'react';
+
 import clsx from 'clsx';
-import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
-import { PriceTextProps, PriceTextPreset } from './PriceText.props';
+
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
+
+import { PriceTextPreset, PriceTextProps } from './PriceText.props';
 
 export const PriceText: React.FC<PriceTextProps> = ({
   preset = PriceTextPreset.BASE,
@@ -23,10 +26,7 @@ export const PriceText: React.FC<PriceTextProps> = ({
       {price}
     </Text>
     {label && (
-      <Text
-        preset={TEXT_PRESET.span}
-        className={clsx(preset === PriceTextPreset.BASE && 'mr-1')}
-      >
+      <Text preset={TEXT_PRESET.span} className={clsx(preset === PriceTextPreset.BASE && 'mr-1')}>
         {label}
       </Text>
     )}

@@ -1,4 +1,5 @@
 import isDate from 'lodash.isdate';
+
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
 
 export const getDataType = (data: unknown) => {

@@ -1,12 +1,6 @@
-import { describe, it, expect, vi } from 'vitest';
-import {
-  render,
-  screen,
-  fireEvent,
-  waitFor,
-  act,
-  within,
-} from '@testing-library/react';
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { TagsList } from '../TagsList.component';
 import * as TagsStackUtils from '../tags-stack/TagsStack.utils';
 
@@ -61,14 +55,10 @@ describe('TagsList Component', () => {
     const moreTagsButton = screen.getByRole('link');
     fireEvent.click(moreTagsButton);
     await waitFor(() => {
-      expect(
-        screen.getByText(new RegExp(modalHeader, 'gi')),
-      ).toBeInTheDocument();
+      expect(screen.getByText(new RegExp(modalHeader, 'gi'))).toBeInTheDocument();
       const closeButton = within(baseElement).getByTestId('secondary-button');
       fireEvent.click(closeButton);
-      expect(
-        screen.queryByText(new RegExp(modalHeader, 'gi')),
-      ).not.toBeInTheDocument();
+      expect(screen.queryByText(new RegExp(modalHeader, 'gi'))).not.toBeInTheDocument();
     });
   });
 

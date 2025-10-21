@@ -1,29 +1,16 @@
 import { useTranslation } from 'react-i18next';
+
 import { useMe } from '../me';
 import { CatalogPriceOptions } from './useCatalog.props';
-import {
-  ASIA_FORMAT,
-  FRENCH_FORMAT,
-  GERMAN_FORMAT,
-  priceFromUcent,
-} from './useCatalog.utils';
+import { ASIA_FORMAT, FRENCH_FORMAT, GERMAN_FORMAT, priceFromUcent } from './useCatalog.utils';
 
-export const useCatalogPrice = (
-  maximumFractionDigits?: number,
-  options?: CatalogPriceOptions,
-) => {
+export const useCatalogPrice = (maximumFractionDigits?: number, options?: CatalogPriceOptions) => {
   const { i18n, t } = useTranslation('order-price');
   const { me } = useMe();
 
-  const isFrench = me?.ovhSubsidiary
-    ? FRENCH_FORMAT.includes(me.ovhSubsidiary)
-    : false;
-  const isAsia = me?.ovhSubsidiary
-    ? ASIA_FORMAT.includes(me.ovhSubsidiary)
-    : false;
-  const isGerman = me?.ovhSubsidiary
-    ? GERMAN_FORMAT.includes(me.ovhSubsidiary)
-    : false;
+  const isFrench = me?.ovhSubsidiary ? FRENCH_FORMAT.includes(me.ovhSubsidiary) : false;
+  const isAsia = me?.ovhSubsidiary ? ASIA_FORMAT.includes(me.ovhSubsidiary) : false;
+  const isGerman = me?.ovhSubsidiary ? GERMAN_FORMAT.includes(me.ovhSubsidiary) : false;
   const isTaxExcl = options?.exclVat || isAsia || isFrench || isGerman;
 
   const getTextPrice = (priceInCents: number) => {
@@ -49,14 +36,10 @@ export const useCatalogPrice = (
       : getTextPrice(price);
 
   const getFormattedHourlyCatalogPrice = (price: number) =>
-    `${getFormattedCatalogPrice(price)} / ${t(
-      `order_catalog_price_interval_hour`,
-    )}`;
+    `${getFormattedCatalogPrice(price)} / ${t(`order_catalog_price_interval_hour`)}`;
 
   const getFormattedMonthlyCatalogPrice = (price: number) =>
-    `${getFormattedCatalogPrice(price)} / ${t(
-      `order_catalog_price_interval_month`,
-    )}`;
+    `${getFormattedCatalogPrice(price)} / ${t(`order_catalog_price_interval_month`)}`;
 
   return {
     getTextPrice,

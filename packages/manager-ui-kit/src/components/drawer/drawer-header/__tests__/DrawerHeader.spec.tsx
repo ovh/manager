@@ -1,8 +1,10 @@
 import { screen } from '@testing-library/react';
+
 import { render } from '@/setupTest';
-import { DrawerHeader } from '../DrawerHeader.component';
+
 import { useAuthorizationIam } from '../../../../hooks/iam';
 import { IamAuthorizationResponse } from '../../../../hooks/iam/iam.interface';
+import { DrawerHeader } from '../DrawerHeader.component';
 
 vitest.mock('../../../../hooks/iam', () => ({
   useAuthorizationIam: vitest.fn().mockReturnValue({
@@ -12,8 +14,7 @@ vitest.mock('../../../../hooks/iam', () => ({
   }),
 }));
 
-const mockedHook =
-  useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
+const mockedHook = useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
 
 describe('DrawerHeader', () => {
   beforeEach(() => {

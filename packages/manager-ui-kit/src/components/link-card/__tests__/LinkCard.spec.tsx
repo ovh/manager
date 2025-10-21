@@ -1,14 +1,7 @@
-import React from 'react';
-import { vitest, describe, it } from 'vitest';
 import { fireEvent, screen } from '@testing-library/react';
-import {
-  texts,
-  href,
-  description,
-  img,
-  renderLinkCard,
-  badges,
-} from './LinkCard.spec.utils';
+import { describe, it, vitest } from 'vitest';
+
+import { badges, description, href, img, renderLinkCard, texts } from './LinkCard.spec.utils';
 
 vitest.mock('../../../hooks/iam', () => ({
   useAuthorizationIam: vi.fn(() => ({ isAuthorized: true })),
@@ -77,8 +70,6 @@ describe('LinkCard tests', () => {
   it('sets data-tracking label', () => {
     const trackingLabel = 'Tracking Label';
     const { container } = renderLinkCard({ texts, href, trackingLabel });
-    expect(
-      container.querySelector(`[data-tracking="${trackingLabel}"]`),
-    ).toBeInTheDocument();
+    expect(container.querySelector(`[data-tracking="${trackingLabel}"]`)).toBeInTheDocument();
   });
 });

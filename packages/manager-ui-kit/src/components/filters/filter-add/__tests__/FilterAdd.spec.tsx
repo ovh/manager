@@ -1,11 +1,13 @@
-import { vi, vitest } from 'vitest';
 import { act, fireEvent, waitFor } from '@testing-library/react';
-import { FilterAdd } from '../Filteradd.component';
-import { FilterAddProps } from '../FilterAdd.props';
+import { vi, vitest } from 'vitest';
+
 import { render } from '@/setupTest';
-import { TagsFilterFormProps } from '../../Filter.props';
+
 import { useAuthorizationIam } from '../../../../hooks/iam';
 import { IamAuthorizationResponse } from '../../../../hooks/iam/iam.interface';
+import { TagsFilterFormProps } from '../../Filter.props';
+import { FilterAddProps } from '../FilterAdd.props';
+import { FilterAdd } from '../Filteradd.component';
 
 vi.mock('../../../../hooks/iam');
 
@@ -34,17 +36,12 @@ vi.mock('@ovhcloud/ods-react', async () => {
         {children}
       </div>
     ),
-    DatepickerControl: ({ children, ...props }: any) => (
-      <div {...props}>{children}</div>
-    ),
-    DatepickerContent: ({ children, ...props }: any) => (
-      <div {...props}>{children}</div>
-    ),
+    DatepickerControl: ({ children, ...props }: any) => <div {...props}>{children}</div>,
+    DatepickerContent: ({ children, ...props }: any) => <div {...props}>{children}</div>,
   };
 });
 
-const mockedHook =
-  useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
+const mockedHook = useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
 
 const renderComponent = (props: FilterAddProps) => {
   return render(<FilterAdd {...props} />);
@@ -66,13 +63,7 @@ describe('FilterAdd tests', () => {
         {
           id: 'username',
           label: "Nom d'utilisateur",
-          comparators: [
-            'includes',
-            'starts_with',
-            'ends_with',
-            'is_equal',
-            'is_different',
-          ],
+          comparators: ['includes', 'starts_with', 'ends_with', 'is_equal', 'is_different'],
         },
       ],
       onAddFilter: mockOnAddFilter,
@@ -91,13 +82,7 @@ describe('FilterAdd tests', () => {
         {
           id: 'username',
           label: "Nom d'utilisateur",
-          comparators: [
-            'includes',
-            'starts_with',
-            'ends_with',
-            'is_equal',
-            'is_different',
-          ],
+          comparators: ['includes', 'starts_with', 'ends_with', 'is_equal', 'is_different'],
         },
       ],
       onAddFilter: mockOnAddFilter,
@@ -232,13 +217,7 @@ describe('FilterAdd tests', () => {
         {
           id: 'status',
           label: 'Status',
-          comparators: [
-            'includes',
-            'starts_with',
-            'ends_with',
-            'is_equal',
-            'is_different',
-          ],
+          comparators: ['includes', 'starts_with', 'ends_with', 'is_equal', 'is_different'],
           options: [
             { label: 'option1', value: 'option_1' },
             { label: 'option2', value: 'option_2' },
@@ -315,8 +294,7 @@ describe('FilterAdd tests', () => {
       target: { value: 'tags' },
     });
 
-    const operatorSelect =
-      getByTestId('add-operator-tags')?.querySelector('select');
+    const operatorSelect = getByTestId('add-operator-tags')?.querySelector('select');
     fireEvent.change(operatorSelect, {
       target: { value: 'EQ' },
     });

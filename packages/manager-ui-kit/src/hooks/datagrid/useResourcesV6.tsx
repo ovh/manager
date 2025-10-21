@@ -1,14 +1,17 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+
+import { Query, useQuery } from '@tanstack/react-query';
 import isDate from 'lodash.isdate';
+
 import {
-  applyFilters,
-  FilterTypeCategories,
-  FilterComparator,
   Filter,
+  FilterComparator,
+  FilterTypeCategories,
+  applyFilters,
   v6,
 } from '@ovh-ux/manager-core-api';
-import { Query, useQuery } from '@tanstack/react-query';
-import { DatagridColumn, ColumnSort } from '../../components';
+
+import { ColumnSort, DatagridColumn } from '../../components';
 import { useColumnFilters } from '../data-api/useColumnFilters';
 
 export type FetchResultV6<T> = {
@@ -33,18 +36,11 @@ export function dataType(a: any) {
   return typeof a;
 }
 
-function sortColumn(
-  type: FilterTypeCategories,
-  a: string,
-  b: string,
-  desc: boolean,
-) {
+function sortColumn(type: FilterTypeCategories, a: string, b: string, desc: boolean) {
   if (!a || !b) return -1;
   switch (type) {
     case FilterTypeCategories.Numeric:
-      return desc
-        ? parseFloat(b) - parseFloat(a)
-        : parseFloat(a) - parseFloat(b);
+      return desc ? parseFloat(b) - parseFloat(a) : parseFloat(a) - parseFloat(b);
     case FilterTypeCategories.Date:
       return desc
         ? new Date(b).getTime() - new Date(a).getTime()
@@ -54,11 +50,7 @@ function sortColumn(
     case FilterTypeCategories.String:
       return desc
         ? b?.trim().toLowerCase()?.localeCompare?.(a?.trim().toLowerCase())
-        : a
-            .trim()
-            ?.toString()
-            ?.toLowerCase()
-            ?.localeCompare?.(b?.trim()?.toLowerCase());
+        : a.trim()?.toString()?.toLowerCase()?.localeCompare?.(b?.trim()?.toLowerCase());
     default:
       return -1;
   }
@@ -71,10 +63,7 @@ function applySearch<T>(items: T[], filters: Filter[], searchInput: string) {
     filters?.some(({ key }) => {
       const value = (item as any)[key];
       if (value === null || value === undefined) return false;
-      return value
-        ?.toString()
-        ?.toLowerCase()
-        ?.includes(searchInput?.toLowerCase());
+      return value?.toString()?.toLowerCase()?.includes(searchInput?.toLowerCase());
     }),
   );
 }
@@ -90,18 +79,14 @@ export function useResourcesV6<T extends Record<string, unknown>>({
 }: ResourcesV6Params<T>) {
   const [searchInput, setSearchInput] = useState('');
   const [searchFilters, setSearchFilters] = useState<Filter[]>([]);
-  const { data, isError, isLoading, error, status } = useQuery<
-    FetchResultV6<T>
-  >({
+  const { data, isError, isLoading, error, status } = useQuery<FetchResultV6<T>>({
     queryKey: [queryKey],
     queryFn: queryFn ? () => queryFn(route) : () => v6.get(route),
     refetchInterval: refetchInterval || false,
     retry: false,
   });
 
-  const [sorting, setSorting] = useState<ColumnSort | undefined>(
-    defaultSorting,
-  );
+  const [sorting, setSorting] = useState<ColumnSort | undefined>(defaultSorting);
   const [pageIndex, setPageIndex] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
   const [flattenData, setFlattenData] = useState<T[]>([]);
@@ -109,24 +94,15 @@ export function useResourcesV6<T extends Record<string, unknown>>({
 
   const filteredData = useMemo(() => {
     if (!data?.data) return [];
-    return applyFilters(
-      applySearch(data?.data, searchFilters, searchInput),
-      filters,
-    );
+    return applyFilters(applySearch(data?.data, searchFilters, searchInput), filters);
   }, [searchFilters, data?.data, filters]);
 
   const filteredAndSortedData = useMemo(() => {
     if (sorting) {
       const columnType =
-        columns.find((col) => col.id === sorting.id)?.type ||
-        FilterTypeCategories.String;
+        columns.find((col) => col.id === sorting.id)?.type || FilterTypeCategories.String;
       return [...filteredData].sort((a, b) =>
-        sortColumn(
-          columnType,
-          `${a?.[sorting.id]}`,
-          `${b?.[sorting.id]}`,
-          sorting.desc,
-        ),
+        sortColumn(columnType, `${a?.[sorting.id]}`, `${b?.[sorting.id]}`, sorting.desc),
       );
     }
     return filteredData;

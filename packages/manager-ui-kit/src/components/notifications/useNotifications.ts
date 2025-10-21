@@ -1,17 +1,15 @@
 import { ReactNode } from 'react';
+
 import { create } from 'zustand';
-import { NotificationType, NotificationState } from './Notifications.type';
+
+import { NotificationState, NotificationType } from './Notifications.type';
 
 export const NOTIFICATION_MINIMAL_DISPLAY_TIME = 1000;
 
 export const useNotifications = create<NotificationState>((set, get) => ({
   uid: 0,
   notifications: [],
-  addNotification: (
-    content: ReactNode,
-    type: NotificationType,
-    dismissible = false,
-  ) =>
+  addNotification: (content: ReactNode, type: NotificationType, dismissible = false) =>
     set((state) => ({
       uid: state.uid + 1,
       notifications: [
@@ -35,17 +33,14 @@ export const useNotifications = create<NotificationState>((set, get) => ({
     get().addNotification(content, NotificationType.Info, dismissible),
   clearNotification: (toRemoveUid: number) =>
     set((state) => ({
-      notifications: state.notifications.filter(
-        ({ uid }) => uid !== toRemoveUid,
-      ),
+      notifications: state.notifications.filter(({ uid }) => uid !== toRemoveUid),
     })),
   clearNotifications: () =>
     set((state) => ({
       notifications: state.notifications.filter(
         (notification) =>
           notification.creationTimestamp &&
-          Date.now() - notification.creationTimestamp <
-            NOTIFICATION_MINIMAL_DISPLAY_TIME,
+          Date.now() - notification.creationTimestamp < NOTIFICATION_MINIMAL_DISPLAY_TIME,
       ),
     })),
 }));

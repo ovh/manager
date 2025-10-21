@@ -45,46 +45,27 @@ export const buildTranslationResources =
     // Always load fallbackLang once, before the user language
     if (!i18next.hasResourceBundle(fallbackLang, namespace)) {
       try {
-        console.info(
-          `Loading fallback language: ${fallbackLang} for namespace: ${namespace}`,
-        );
+        console.info(`Loading fallback language: ${fallbackLang} for namespace: ${namespace}`);
         const fallbackLoader = translationLoaders[fallbackLang];
         if (fallbackLoader) {
           const fallbackModule = await fallbackLoader();
-          i18next.addResources(
-            fallbackLang,
-            namespace,
-            fallbackModule.default || fallbackModule,
-          );
+          i18next.addResources(fallbackLang, namespace, fallbackModule.default || fallbackModule);
         }
       } catch (error) {
-        console.error(
-          `Failed to load fallback translations (${fallbackLang}):`,
-          error,
-        );
+        console.error(`Failed to load fallback translations (${fallbackLang}):`, error);
       }
     }
 
     // Then load the requested language
-    if (
-      normalizedLang !== fallbackLang &&
-      !i18next.hasResourceBundle(normalizedLang, namespace)
-    ) {
+    if (normalizedLang !== fallbackLang && !i18next.hasResourceBundle(normalizedLang, namespace)) {
       try {
         const loader = translationLoaders[normalizedLang];
         if (loader) {
           const module = await loader();
-          i18next.addResources(
-            normalizedLang,
-            namespace,
-            module.default || module,
-          );
+          i18next.addResources(normalizedLang, namespace, module.default || module);
         }
       } catch (error) {
-        console.warn(
-          `Could not load ${normalizedLang}. Will fallback to ${fallbackLang}.`,
-          error,
-        );
+        console.warn(`Could not load ${normalizedLang}. Will fallback to ${fallbackLang}.`, error);
       }
     }
 
@@ -103,10 +84,7 @@ export const buildTranslationManager = (
   translationLoaders: Record<string, () => Promise<any>>,
   namespace: string,
 ) => {
-  const loadTranslations = buildTranslationResources(
-    translationLoaders,
-    namespace,
-  );
+  const loadTranslations = buildTranslationResources(translationLoaders, namespace);
 
   const handleLanguageChange = async (lang: string) => {
     const normalizedLang = normalizeLanguageCode(lang);

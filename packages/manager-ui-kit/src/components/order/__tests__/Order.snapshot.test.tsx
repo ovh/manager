@@ -1,9 +1,12 @@
 import React from 'react';
-import { vitest } from 'vitest';
+
 import type { MockInstance } from 'vitest';
+import { vitest } from 'vitest';
+
 import { render } from '@/setupTest';
-import { Order } from '../Order.component';
+
 import { useAuthorizationIam } from '../../../hooks/iam';
+import { Order } from '../Order.component';
 
 vitest.mock('../../../hooks/iam', () => ({
   useAuthorizationIam: vitest.fn().mockReturnValue({
@@ -41,11 +44,7 @@ describe('Order Snapshot Tests', () => {
   it('should render Order with Configuration component', () => {
     const { container } = render(
       <Order>
-        <Order.Configuration
-          isValid={true}
-          onCancel={() => {}}
-          onConfirm={() => {}}
-        >
+        <Order.Configuration isValid={true} onCancel={() => {}} onConfirm={() => {}}>
           <p>Configuration content</p>
         </Order.Configuration>
       </Order>,
@@ -71,11 +70,7 @@ describe('Order Snapshot Tests', () => {
   it('should render Order with both Configuration and Summary components', () => {
     const { container } = render(
       <Order>
-        <Order.Configuration
-          isValid={false}
-          onCancel={() => {}}
-          onConfirm={() => {}}
-        >
+        <Order.Configuration isValid={false} onCancel={() => {}} onConfirm={() => {}}>
           <p>Configuration steps</p>
         </Order.Configuration>
         <Order.Summary
@@ -92,11 +87,7 @@ describe('Order Snapshot Tests', () => {
   it('should render Order with Configuration in invalid state', () => {
     const { container } = render(
       <Order>
-        <Order.Configuration
-          isValid={false}
-          onCancel={() => {}}
-          onConfirm={() => {}}
-        >
+        <Order.Configuration isValid={false} onCancel={() => {}} onConfirm={() => {}}>
           <p>Invalid configuration</p>
         </Order.Configuration>
       </Order>,
@@ -118,11 +109,7 @@ describe('Order Snapshot Tests', () => {
   it('should render Order with complex nested content', () => {
     const { container } = render(
       <Order>
-        <Order.Configuration
-          isValid={true}
-          onCancel={() => {}}
-          onConfirm={() => {}}
-        >
+        <Order.Configuration isValid={true} onCancel={() => {}} onConfirm={() => {}}>
           <div className="complex-content">
             <h2>Order Steps</h2>
             <ul>

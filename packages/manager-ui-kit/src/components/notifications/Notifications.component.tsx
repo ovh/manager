@@ -1,9 +1,12 @@
-import React, { useEffect, useState, FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
+
 import { useLocation } from 'react-router-dom';
-import { Message, MESSAGE_COLOR } from '@ovhcloud/ods-react';
-import { useNotifications } from './useNotifications';
-import { NotificationType, Notification } from './Notifications.type';
+
+import { MESSAGE_COLOR, Message } from '@ovhcloud/ods-react';
+
 import { NotificationProps } from './Notifications.props';
+import { Notification, NotificationType } from './Notifications.type';
+import { useNotifications } from './useNotifications';
 
 const NOTIFICATION_TYPE_MAP = {
   [NotificationType.Success]: MESSAGE_COLOR.success,
@@ -21,17 +24,13 @@ const NOTIFICATION_TYPE_MAP = {
  * It replicates the current behavior of public cloud notifications for
  * actions (success / errors / etc)
  */
-export const Notifications: FC<NotificationProps> = ({
-  clearAfterRead = true,
-}) => {
+export const Notifications: FC<NotificationProps> = ({ clearAfterRead = true }) => {
   const location = useLocation();
   const [originLocation] = useState(location);
-  const { notifications, clearNotifications, clearNotification } =
-    useNotifications();
+  const { notifications, clearNotifications, clearNotification } = useNotifications();
 
   useEffect(() => {
-    if (clearAfterRead && originLocation.pathname !== location.pathname)
-      clearNotifications();
+    if (clearAfterRead && originLocation.pathname !== location.pathname) clearNotifications();
   }, [clearAfterRead, location.pathname]);
 
   return (

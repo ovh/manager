@@ -1,11 +1,11 @@
 import { useContext, useEffect } from 'react';
+
 import { useRouteError } from 'react-router-dom';
-import {
-  ShellContext,
-  useRouteSynchro,
-} from '@ovh-ux/manager-react-shell-client';
-import { ErrorBoundaryProps, ResponseAPIError } from './ErrorBoundary.props';
+
+import { ShellContext, useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
+
 import { Error } from '../error/Error.component';
+import { ErrorBoundaryProps, ResponseAPIError } from './ErrorBoundary.props';
 
 const ShellRoutingSync = () => {
   useRouteSynchro();
@@ -44,11 +44,7 @@ export const ErrorBoundary = ({
 
   return (
     <>
-      <Error
-        onReloadPage={reloadPage}
-        onRedirectHome={navigateToHomePage}
-        error={errorObject}
-      />
+      <Error onReloadPage={reloadPage} onRedirectHome={navigateToHomePage} error={errorObject} />
       {isRouteShellSync && <ShellRoutingSync />}
     </>
   );

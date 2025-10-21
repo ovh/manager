@@ -1,14 +1,12 @@
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { vitest } from 'vitest';
+
 import { PageType } from '@ovh-ux/manager-react-shell-client';
-import { waitFor, screen, fireEvent } from '@testing-library/react';
+
+import { mockGetEnvironment, mockTrackPage, renderWithContext } from '../../../utils/Test.utils';
 import { Error } from '../Error.component';
-import tradFr from '../translations/Messages_fr_FR.json';
 import { ErrorObject, ErrorProps } from '../Error.props';
-import {
-  renderWithContext,
-  mockTrackPage,
-  mockGetEnvironment,
-} from '../../../utils/Test.utils';
+import tradFr from '../translations/Messages_fr_FR.json';
 
 const defaultProps: ErrorProps = {
   error: {
@@ -30,9 +28,7 @@ describe('specs:error.component', () => {
     renderWithContext({ children: <Error error={defaultProps.error} /> });
     const img = screen.getByAltText('OOPS');
     const title = screen.queryByText(tradFr.manager_error_page_404_title);
-    const errorMessage = screen.queryByText(
-      tradFr.manager_error_page_404_description,
-    );
+    const errorMessage = screen.queryByText(tradFr.manager_error_page_404_description);
 
     expect(img).not.toBeNull();
     expect(title).toBeInTheDocument();
@@ -113,12 +109,7 @@ describe('specs:error.component', () => {
     it('calls onRedirectHome when home button is clicked', () => {
       const onRedirectHomeMock = vitest.fn();
       const { getByTestId } = renderWithContext({
-        children: (
-          <Error
-            error={defaultProps.error}
-            onRedirectHome={onRedirectHomeMock}
-          />
-        ),
+        children: <Error error={defaultProps.error} onRedirectHome={onRedirectHomeMock} />,
       });
 
       const homeButton = getByTestId('error-template-action-home');
@@ -129,9 +120,7 @@ describe('specs:error.component', () => {
     it('calls onReloadPage when reload button is clicked', () => {
       const onReloadPageMock = vitest.fn();
       const { getByTestId } = renderWithContext({
-        children: (
-          <Error error={defaultProps.error} onReloadPage={onReloadPageMock} />
-        ),
+        children: <Error error={defaultProps.error} onReloadPage={onReloadPageMock} />,
       });
       const reloadButton = getByTestId('error-template-action-reload');
       fireEvent.click(reloadButton);

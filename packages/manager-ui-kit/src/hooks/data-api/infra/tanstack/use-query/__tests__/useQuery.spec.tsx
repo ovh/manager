@@ -1,12 +1,10 @@
 import React from 'react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { renderHook } from '@testing-library/react';
-import {
-  QueryClient,
-  useQuery as tanstackUseQuery,
-} from '@tanstack/react-query';
-import { getWrapper } from '../../../../__tests__/Test.utils';
 
+import { QueryClient, useQuery as tanstackUseQuery } from '@tanstack/react-query';
+import { renderHook } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { getWrapper } from '../../../../__tests__/Test.utils';
 import { useQuery } from '../useQuery';
 
 // Mock TanStack's useQuery
@@ -87,16 +85,12 @@ describe('useQuery', () => {
 
     const options = {
       cacheKey: ['user'],
-      fetchDataFn: (): Promise<User> =>
-        Promise.resolve({ id: 1, name: 'Alice' }),
+      fetchDataFn: (): Promise<User> => Promise.resolve({ id: 1, name: 'Alice' }),
     };
 
-    const { result } = renderHook(
-      () => useQuery<User, string[], Error>(options),
-      {
-        wrapper: getWrapper(),
-      },
-    );
+    const { result } = renderHook(() => useQuery<User, string[], Error>(options), {
+      wrapper: getWrapper(),
+    });
 
     expect(result.current).toBeDefined();
     expect(result.current.data).toStrictEqual({});
