@@ -174,6 +174,18 @@ export const Routes: RouteObject[] = [
                 },
               },
               {
+                id: subRoutes.unblockAntiSpam,
+                path: urls.unblockAntiSpam,
+                ...lazyRouteConfig(() =>
+                  import('@/pages/actions/antiSpam/unblockAntiSpam.page'),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'listing-unblock-anti-spam',
+                  },
+                },
+              },
+              {
                 id: subRoutes.exportIpToCsv,
                 path: urls.listingExportIpToCsv,
                 ...lazyRouteConfig(() =>
@@ -235,6 +247,21 @@ export const Routes: RouteObject[] = [
                   tracking: {
                     pageName: 'manage-organisations-open',
                     pageType: PageType.listing,
+                  },
+                },
+              },
+              {
+                id: subRoutes.deleteOrganisation,
+                path: urls.deleteOrganisation,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/actions/organisation/deleteOrganisation.page'
+                  ),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: subRoutes.deleteOrganisation,
+                    pageType: PageType.popup,
                   },
                 },
               },
