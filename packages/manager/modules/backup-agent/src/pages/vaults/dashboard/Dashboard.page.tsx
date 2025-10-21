@@ -14,8 +14,8 @@ import { urls } from '@/routes/Routes.constants';
 import { useDashboardTabs } from './_hooks/useDashboardTabs';
 import {BackupAgentContext} from "@/BackupAgent.context";
 
-export default function MainLayout() {
-  const { appName } = useContext(BackupAgentContext);
+export default function DashboardPage() {
+  const { appName } = useContext(BackupAgentContext)
   const { t } = useTranslation(['common', 'dashboard']);
   const navigate = useNavigate();
 
@@ -26,13 +26,14 @@ export default function MainLayout() {
 
   const activeTab = useMemo(
     () =>
-      tabs.find((tab) => tab.to && location.pathname.startsWith(`/${tab.to}`)) ??
+      tabs.find((tab) => location.pathname === `${urls.dashboard}/${tab.to}`) ??
+      tabs.find((tab) => tab.to && location.pathname.startsWith(`${urls.dashboard}/${tab.to}`)) ??
       tabs[0],
     [tabs, location.pathname],
   );
 
   const onNavigateBackClicked = () => {
-    startTransition(() => navigate(`../}`));
+    startTransition(() => navigate(`../`));
   };
 
   return (
@@ -60,12 +61,9 @@ export default function MainLayout() {
         </OdsTabs>
       }
     >
-      <BackupAgentContext.Provider value={{appName: "Backup Agent", scope: "Enterprise"}}>
-        <Suspense fallback={null}>
-          <Outlet />
-        </Suspense>
-
-      </BackupAgentContext.Provider>
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
     </BaseLayout>
   );
 }
