@@ -21,7 +21,11 @@ import { useRegionFlavors } from '@/api/hooks/flavors';
 import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { compareFunction, paginateResults } from '@/helpers';
 
-export const useClusterNodePools = (projectId: string, clusterId: string) => {
+export const useClusterNodePools = <T = TClusterNodePool[]>(
+  projectId: string,
+  clusterId: string,
+  select?: (pools: TClusterNodePool[]) => T,
+) => {
   const { i18n } = useTranslation('common');
   const locales = useRef({ ...dateFnsLocales }).current;
   const userLocale = getDateFnsLocale(i18n.language);
@@ -34,12 +38,13 @@ export const useClusterNodePools = (projectId: string, clusterId: string) => {
         return {
           ...pool,
           createdAt: format(createdAt, 'dd MMM yyyy HH:mm:ss', {
-            locale: locales[userLocale],
+            locale: locales[userLocale as keyof typeof locales],
           }),
         };
       });
     },
     throwOnError: true,
+    select,
   });
 };
 
