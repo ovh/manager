@@ -1,16 +1,23 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { TProject } from '@ovh-ux/manager-pci-common';
 import { renderHook } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { useIsAskIncreaseProjectsQuota } from '@/data/hooks/useEligibility';
-import useCreationRedirect from './useCreationRedirect';
+import { useDiscoveryProject } from '@/data/hooks/useProjects';
 import { createWrapper } from '@/wrapperRenders';
+import useCreationRedirect from './useCreationRedirect';
 
 vi.mock('@/data/hooks/useEligibility', () => ({
   useIsAskIncreaseProjectsQuota: vi.fn(),
 }));
 
+vi.mock('@/data/hooks/useProjects', () => ({
+  useDiscoveryProject: vi.fn(),
+}));
+
 const mockUseIsAskIncreaseProjectsQuota = vi.mocked(
   useIsAskIncreaseProjectsQuota,
 );
+const mockUseDiscoveryProject = vi.mocked(useDiscoveryProject);
 
 describe('useCreationRedirect', () => {
   beforeEach(() => {
@@ -24,133 +31,108 @@ describe('useCreationRedirect', () => {
     });
   };
 
-  it('should return loading state when query is loading', () => {
+  const mockDiscoveryProject: TProject = {
+    project_id: 'discovery-123',
+    planCode: 'project.discovery',
+    description: 'Discovery Project',
+    status: 'ok',
+  } as TProject;
+
+  it('should return loading state when quota query is loading', () => {
     mockUseIsAskIncreaseProjectsQuota.mockReturnValue({
       data: undefined,
       isLoading: true,
-      isError: false,
-      error: null,
-      isSuccess: false,
     } as ReturnType<typeof useIsAskIncreaseProjectsQuota>);
-
-    const { result } = renderHookWithWrapper();
-
-    expect(result.current).toEqual({
-      shouldRedirectToIncreaseQuota: false,
-      isLoading: true,
-    });
-  });
-
-  it('should return false for shouldRedirectToIncreaseQuota when data is false', () => {
-    mockUseIsAskIncreaseProjectsQuota.mockReturnValue({
-      data: false,
-      isLoading: false,
-      isError: false,
-      error: null,
-      isSuccess: true,
-    } as ReturnType<typeof useIsAskIncreaseProjectsQuota>);
-
-    const { result } = renderHookWithWrapper();
-
-    expect(result.current).toEqual({
-      shouldRedirectToIncreaseQuota: false,
-      isLoading: false,
-    });
-  });
-
-  it('should return true for shouldRedirectToIncreaseQuota when data is true', () => {
-    mockUseIsAskIncreaseProjectsQuota.mockReturnValue({
-      data: true,
-      isLoading: false,
-      isError: false,
-      error: null,
-      isSuccess: true,
-    } as ReturnType<typeof useIsAskIncreaseProjectsQuota>);
-
-    const { result } = renderHookWithWrapper();
-
-    expect(result.current).toEqual({
-      shouldRedirectToIncreaseQuota: true,
-      isLoading: false,
-    });
-  });
-
-  it('should return false for shouldRedirectToIncreaseQuota when query has error', () => {
-    mockUseIsAskIncreaseProjectsQuota.mockReturnValue({
+    mockUseDiscoveryProject.mockReturnValue({
       data: undefined,
-      isLoading: false,
-      isError: true,
-      error: new Error('Test error'),
-      isSuccess: false,
-    } as ReturnType<typeof useIsAskIncreaseProjectsQuota>);
-
-    const { result } = renderHookWithWrapper();
-
-    expect(result.current).toEqual({
-      shouldRedirectToIncreaseQuota: false,
-      isLoading: false,
-    });
-  });
-
-  it('should handle null data gracefully', () => {
-    mockUseIsAskIncreaseProjectsQuota.mockReturnValue(({
-      data: null,
-      isLoading: false,
-      isError: false,
-      error: null,
-      isSuccess: true,
-    } as unknown) as ReturnType<typeof useIsAskIncreaseProjectsQuota>);
-
-    const { result } = renderHookWithWrapper();
-
-    expect(result.current).toEqual({
-      shouldRedirectToIncreaseQuota: false,
-      isLoading: false,
-    });
-  });
-
-  it('should return correct loading state when query is loading', () => {
-    mockUseIsAskIncreaseProjectsQuota.mockReturnValue({
-      data: undefined,
-      isLoading: true,
-      isError: false,
-      error: null,
-      isSuccess: false,
-    } as ReturnType<typeof useIsAskIncreaseProjectsQuota>);
+      isPending: false,
+    } as ReturnType<typeof useDiscoveryProject>);
 
     const { result } = renderHookWithWrapper();
 
     expect(result.current.isLoading).toBe(true);
   });
 
-  it('should return correct loading state when query is not loading', () => {
+  it('should return loading state when discovery project query is pending', () => {
     mockUseIsAskIncreaseProjectsQuota.mockReturnValue({
       data: false,
       isLoading: false,
-      isError: false,
-      error: null,
-      isSuccess: true,
     } as ReturnType<typeof useIsAskIncreaseProjectsQuota>);
+    mockUseDiscoveryProject.mockReturnValue({
+      data: undefined,
+      isPending: true,
+    } as ReturnType<typeof useDiscoveryProject>);
 
     const { result } = renderHookWithWrapper();
 
+    expect(result.current.isLoading).toBe(true);
+  });
+
+  it('should not block creation when no conditions are met', () => {
+    mockUseIsAskIncreaseProjectsQuota.mockReturnValue({
+      data: false,
+      isLoading: false,
+    } as ReturnType<typeof useIsAskIncreaseProjectsQuota>);
+    mockUseDiscoveryProject.mockReturnValue({
+      data: undefined,
+      isPending: false,
+    } as ReturnType<typeof useDiscoveryProject>);
+
+    const { result } = renderHookWithWrapper();
+
+    expect(result.current.shouldBlockCreation).toBe(false);
     expect(result.current.isLoading).toBe(false);
   });
 
-  it('should maintain consistent return structure', () => {
+  it('should block creation and redirect to increase quota when user needs quota increase', () => {
     mockUseIsAskIncreaseProjectsQuota.mockReturnValue({
       data: true,
       isLoading: false,
-      isError: false,
-      error: null,
-      isSuccess: true,
     } as ReturnType<typeof useIsAskIncreaseProjectsQuota>);
+    mockUseDiscoveryProject.mockReturnValue({
+      data: undefined,
+      isPending: false,
+    } as ReturnType<typeof useDiscoveryProject>);
 
     const { result } = renderHookWithWrapper();
 
-    expect(result.current).toHaveProperty('shouldRedirectToIncreaseQuota');
-    expect(result.current).toHaveProperty('isLoading');
-    expect(typeof result.current.shouldRedirectToIncreaseQuota).toBe('boolean');
-    expect(typeof result.current.isLoading).toBe('boolean');
+    expect(result.current.shouldBlockCreation).toBe(true);
+    expect(result.current.redirectRoute).toContain('increase-quota');
+  });
+
+  it('should block creation and redirect to discovery project when discovery project exists', () => {
+    mockUseIsAskIncreaseProjectsQuota.mockReturnValue({
+      data: false,
+      isLoading: false,
+    } as ReturnType<typeof useIsAskIncreaseProjectsQuota>);
+    mockUseDiscoveryProject.mockReturnValue({
+      data: mockDiscoveryProject,
+      isPending: false,
+    } as ReturnType<typeof useDiscoveryProject>);
+
+    const { result } = renderHookWithWrapper();
+
+    expect(result.current.shouldBlockCreation).toBe(true);
+    expect(result.current.redirectRoute).toBe(
+      `../${mockDiscoveryProject.project_id}?activateDiscovery=1`,
+    );
+  });
+
+  it('should prioritize discovery project route when both conditions are true', () => {
+    mockUseIsAskIncreaseProjectsQuota.mockReturnValue({
+      data: true,
+      isLoading: false,
+    } as ReturnType<typeof useIsAskIncreaseProjectsQuota>);
+    mockUseDiscoveryProject.mockReturnValue({
+      data: mockDiscoveryProject,
+      isPending: false,
+    } as ReturnType<typeof useDiscoveryProject>);
+
+    const { result } = renderHookWithWrapper();
+
+    expect(result.current.shouldBlockCreation).toBe(true);
+    expect(result.current.redirectRoute).toBe(
+      `../${mockDiscoveryProject.project_id}?activateDiscovery=1`,
+    );
   });
 });
