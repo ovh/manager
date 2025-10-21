@@ -27,7 +27,7 @@ type Step2Props = {
       import?: {
         checkResult?: {
           cmsSpecific?: {
-            wordPress?: {
+            wordpress?: {
               plugins: Array<{
                 name: string;
                 [key: string]: unknown;
@@ -47,10 +47,13 @@ type Step2Props = {
   isSubmitting: boolean;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 };
-
 export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSubmit }: Step2Props) {
   const { control, watch } = step2Form;
   const wholeDatabase = watch('wholeDatabase');
+  const watchedPlugins = step2Form.watch('plugins');
+  const themes = watch('themes');
+  const hasActivePlugin = watchedPlugins?.some((plugin) => plugin.enabled);
+  const hasActiveTheme = themes?.some((t) => t.active);
 
   return (
     <form onSubmit={onSubmit}>
@@ -87,7 +90,7 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
             </label>
           </div>
           <div className="ml-8">
-            {(data?.currentState?.import?.checkResult?.cmsSpecific?.wordPress?.plugins ?? []).map(
+            {(data?.currentState?.import?.checkResult?.cmsSpecific?.wordpress?.plugins ?? []).map(
               (plugin: { name: string; version: string }, index: number) => (
                 <div key={plugin.name}>
                   <input
@@ -149,8 +152,8 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
             </label>
           </div>
           <div className="ml-8">
-            {(Array.isArray(data?.currentState?.import?.checkResult?.cmsSpecific?.wordPress?.themes)
-              ? (data.currentState.import.checkResult.cmsSpecific.wordPress.themes as {
+            {(Array.isArray(data?.currentState?.import?.checkResult?.cmsSpecific?.wordpress?.themes)
+              ? (data.currentState.import.checkResult.cmsSpecific.wordpress.themes as {
                   name: string;
                   version: string;
                 }[])
@@ -405,7 +408,7 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
         <ManagerButton
           type="submit"
           label={t('common:web_hosting_common_action_launch_import')}
-          isDisabled={!isValid || isSubmitting}
+          isDisabled={!isValid || isSubmitting || !hasActiveTheme || !hasActivePlugin}
           isLoading={isSubmitting}
           color={ODS_BUTTON_COLOR.primary}
           id="import-step2"

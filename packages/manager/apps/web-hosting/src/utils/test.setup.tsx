@@ -17,6 +17,7 @@ import {
   managedWordpressResourceDetailsMock,
   managedWordpressResourceMock,
 } from '@/data/__mocks__/managedWordpress/ressource';
+import { managedWordpressRerefenceSupportedVersionMock } from '@/data/__mocks__/managedWordpress/supportedPhpVersion';
 import { managedWordpressWebsitesTaskMock } from '@/data/__mocks__/managedWordpress/tasks';
 import {
   managedWordpressWebsitesDeleteMock,
@@ -151,6 +152,7 @@ vi.mock('@/data/api/index', () => ({
   getWebHostingAttachedDomainQueryKey: vi.fn(),
   getWebHostingAttachedDomainDigStatus: vi.fn(() => Promise.resolve(attachedDomainDigStatusMock)),
   getWebHostingAttachedDomainDigStatusQueryKey: vi.fn(),
+  getManagedCmsResourceWebsiteDetailsQueryKey: vi.fn(),
 }));
 
 vi.mock('@/data/api/dashboard', async (importActual) => {
@@ -189,6 +191,7 @@ vi.mock('@/data/api/managedWordpress', () => ({
   getManagedCmsResource: vi.fn(() => Promise.resolve(managedWordpressResourceMock)),
   getManagedCmsResourceDetails: vi.fn(() => Promise.resolve(managedWordpressResourceDetailsMock)),
   getManagedCmsResourceWebsites: vi.fn(() => Promise.resolve(managedWordpressWebsitesMock)),
+  getAllManagedCmsResourceWebsites: vi.fn(() => Promise.resolve(managedWordpressWebsitesMock)),
   getManagedCmsResourceWebsiteDetails: vi.fn(() =>
     Promise.resolve(managedWordpressWebsitesDetailsMock),
   ),
@@ -197,6 +200,11 @@ vi.mock('@/data/api/managedWordpress', () => ({
   getManagedCmsReferenceAvailableLanguages: vi.fn(() =>
     Promise.resolve(managedWordpressRerefenceAvailableLanguageMock),
   ),
+  getManagedCmsSupportedPHPVersions: vi.fn(() =>
+    Promise.resolve(managedWordpressRerefenceSupportedVersionMock),
+  ),
+  getManagedCmsResourceWebsiteDetailsQueryKey: vi.fn(),
+  getManagedCmsResourceWebsitesQueryKey: vi.fn(),
 }));
 afterEach(() => {
   vi.clearAllMocks();

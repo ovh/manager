@@ -4,17 +4,22 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { PASSWORD_REGEX } from './form';
 
-// @todo: to verify with requester for schemas
 export const zForm = (t: (key: string, params?: Record<string, unknown>) => string) => {
   const ADD_SITE_FORM_SCHEMA = z.object({
     adminLogin: z
       .string()
       .min(1, t(`${NAMESPACES.FORM}:min_chars`, { value: 1 }))
       .max(60, t(`${NAMESPACES.FORM}:max_chars`, { value: 60 }))
-      .regex(/^[\w.@\-\s]{1,60}$/, t(`${NAMESPACES.FORM}:invalid_format`)),
+      .regex(/^[\w.@\-\s]{1,60}$/, t(`${NAMESPACES.FORM}:error_email`)),
     adminPassword: z
       .string()
-      .regex(PASSWORD_REGEX, t(`${NAMESPACES.FORM}:error_pattern`))
+      .regex(
+        PASSWORD_REGEX,
+        t(`${NAMESPACES.FORM}:error_between_min_max_chars`, {
+          min: 8,
+          max: 50,
+        }),
+      )
       .min(8, t(`${NAMESPACES.FORM}:min_chars`, { value: 8 }))
       .max(50, t(`${NAMESPACES.FORM}:max_chars`, { value: 50 })),
 
@@ -25,18 +30,25 @@ export const zForm = (t: (key: string, params?: Record<string, unknown>) => stri
       .string()
       .min(1, t(`${NAMESPACES.FORM}:min_chars`, { value: 1 }))
       .max(60, t(`${NAMESPACES.FORM}:max_chars`, { value: 60 }))
-      .email(t(`${NAMESPACES.FORM}:invalid_format`)),
+      .email(t(`${NAMESPACES.FORM}:error_pattern`)),
     adminPassword: z
       .string()
-      .regex(PASSWORD_REGEX, t(`${NAMESPACES.FORM}:error_pattern`))
+      .regex(
+        PASSWORD_REGEX,
+        t(`${NAMESPACES.FORM}:error_between_min_max_chars`, {
+          min: 8,
+          max: 30,
+        }),
+      )
       .min(8, t(`${NAMESPACES.FORM}:min_chars`, { value: 8 }))
       .max(50, t(`${NAMESPACES.FORM}:max_chars`, { value: 30 })),
 
     cmsSpecific: z.object({
-      wordPress: z.object({
-        language: z.string(),
+      wordpress: z.object({
+        language: z.string().min(1, t(`${NAMESPACES.FORM}:required_field`)),
       }),
     }),
+    phpVersion: z.string().min(1, t(`${NAMESPACES.FORM}:required_field`)),
   });
   return {
     ADD_SITE_FORM_SCHEMA,
