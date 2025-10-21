@@ -161,7 +161,7 @@
   "billing_autorenew_service_type_VRACK_SERVICES_RESOURCE": "vRack Services",
   "billing_autorenew_service_type_NUTANIX": "Nutanix",
   "billing_autorenew_service_type_OKMS_RESOURCE": "OVHcloud KMS",
-  "billing_autorenew_service_type_ZIMBRA_SLOT": "Zimbra Starter",
+  "billing_autorenew_service_type_ZIMBRA_SLOT": "Compte Email Zimbra",
   "billing_autorenew_service_type_HOSTING_WEB_CDN": "Shared CDN",
   "billing_export_csv": "Exporter en CSV",
   "billing_common_link_new_window": "(nouvelle fenêtre)",
