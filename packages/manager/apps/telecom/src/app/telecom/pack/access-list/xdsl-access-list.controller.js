@@ -100,9 +100,12 @@ export default class XdslAccessListCtrl {
     // Retrieve service info for each service
     const serviceList = sortedServices.map((service) => {
       if (
-        ![this.ACCESS_TYPE.ftth, this.ACCESS_TYPE.sdsl].includes(
-          service.accessType,
-        )
+        ![
+          this.ACCESS_TYPE.ftth,
+          this.ACCESS_TYPE.ftte,
+          this.ACCESS_TYPE.ftto,
+          this.ACCESS_TYPE.sdsl,
+        ].includes(service.accessType)
       ) {
         return this.XdslAccessListService.getFiberEligibilityList(
           service.accessName,
