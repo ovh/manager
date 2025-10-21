@@ -40,5 +40,8 @@
   "kube_common_estimation_price_free": "Gratis",
   "kube_common_estimation_total_price": "Precio total estimado:",
   "kube_common_node_pool_estimation_cost_tile": "Estimación mensual",
-  "kube_common_node_pool_select_zone": "Debes seleccionar al menos una zona de disponibilidad."
+  "kube_common_node_pool_select_zone": "Debe seleccionar al menos una zona de disponibilidad.",
+  "kube_common_add_node_pool_plural": "Agregar {{count}} grupos de nodos",
+  "kube_common_node_pool_deploy_description_explanation_multiple_zone": "Si se seleccionan varias zonas de disponibilidad (AZ), la configuración se duplicará automáticamente para crear un grupo de nodos distinto en cada zona.",
+  "kube_common_node_pool_deploy_description_explanation_multiple_zone_repartition": "Reparto AZ"
 }
