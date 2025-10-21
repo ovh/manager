@@ -17,6 +17,7 @@ const DashboardsPage = React.lazy(() => import('@/pages/dashboards/Dashboards.pa
 const TenantsLayoutPage = React.lazy(() => import('@/pages/tenants/Tenants.layout'));
 
 const OnboardingTenantPage = React.lazy(() => import('@/pages/tenants/TenantsOnboarding.page'));
+const TenantsCreationPage = React.lazy(() => import('@/pages/tenants/TenantsCreation.page'));
 const OnboardingServicePage = React.lazy(() => import('@/pages/metrics/OnboardingService.page'));
 
 export default (
@@ -52,7 +53,7 @@ export default (
 
       {/* Metrics route */}
       <Route path={subroutes.metrics} Component={TenantsLayoutPage}>
-        {/* Default landing inside root → redirect to Dashboards */}
+        {/* Default landing inside root → redirect to tenants */}
         <Route index element={<Navigate to={urls.tenants} replace />} />
         {/* Onboarding observability service */}
         <Route
@@ -92,6 +93,15 @@ export default (
             handle={{
               tracking: {
                 pageName: 'tenants-onboarding',
+              },
+            }}
+          />
+          <Route
+            path={subroutes.creation}
+            Component={TenantsCreationPage}
+            handle={{
+              tracking: {
+                pageName: 'tenants-creation',
               },
             }}
           />
