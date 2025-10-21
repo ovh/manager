@@ -19,5 +19,21 @@
   "onboarding": {
     "description": "Créez votre nouveau tenant pour continuer à explorer tout le potentiel des métriques d'observabilité. Vous pourrez envoyer des données, créer des tableaux de bord et configurer des alertes adaptées à vos besoins spécifiques.",
     "orderButtonLabel": "Créez votre tenant"
+  },
+  "creation": {
+    "title": "Créer un tenant",
+    "tenantInformation": "Saisir les informations du tenant",
+    "namePlaceholder": "Nom du tenant", 
+    "description":"Description (optionnelle)",
+    "descriptionPlaceholder": "Ajoutez une description des metrics que vous allez écrire dans ce tenant"
+  },
+  "configuration": {
+    "title": "Configurez votre tenant",
+    "retention": "Rétention",
+    "retentionPlaceholder": "Sélectionnez la rétention des données",
+    "limit": {
+      "title": "Limite d'ingestion (métriques actives)",
+      "description": "Définissez la limite maximale du nombre de métriques actives pour ce tenant."
+    }
   }
 }
