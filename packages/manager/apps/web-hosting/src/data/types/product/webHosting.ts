@@ -1,5 +1,7 @@
 import { CurrencyCode } from '@ovh-ux/manager-react-components';
 
+import { OngoingTaskStatus } from '../status';
+
 export enum HostingState {
   ACTIVE = 'active',
   BLOQUED = 'bloqued',
@@ -138,4 +140,15 @@ export type WebHostingType = {
     value: number;
   };
   updates: string[];
+};
+
+export type TaskDetailsType = {
+  doneDate: string;
+  function: string;
+  id: number;
+  lastUpdate: string;
+  objectId: string;
+  objectType: string;
+  startDate: string;
+  status: OngoingTaskStatus;
 };

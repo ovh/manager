@@ -29,12 +29,6 @@ vi.mock('@/data/hooks/webHostingAttachedDomain/useWebHostingAttachedDomain', () 
   };
 });
 
-vi.mock('export-to-csv', () => ({
-  generateCsv: () => vi.fn().mockReturnValue('csv-content'),
-  mkConfig: vi.fn().mockReturnValue({ filename: 'websites.csv' }),
-  download: vi.fn().mockImplementation(() => vi.fn()),
-}));
-
 describe('Websites page', () => {
   beforeEach(() => {
     hoistedMock.useWebHostingAttachedDomaindigStatus.mockReturnValue({
