@@ -45,10 +45,12 @@ const NetworkItem: FC<PropsWithChildren<TNetworkItemProps>> = ({
   return (
     <section className="my-5">
       <div className="flex items-center gap-x-4">
-        <Text className="my-4">
-          {t('pci_instances_dashboard_network_name_label')}
-          {address.subnet?.network.name}
-        </Text>
+        {address.subnet?.network.name && (
+          <Text className="my-4">
+            {t('pci_instances_dashboard_network_name_label')}
+            {address.subnet.network.name}
+          </Text>
+        )}
         {isFloatingIp && (
           <StatusChip
             status={{
