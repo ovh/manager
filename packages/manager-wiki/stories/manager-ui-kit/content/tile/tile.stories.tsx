@@ -39,25 +39,6 @@ export const SimpleTile = () => (
   </Tile.Root>
 );
 
-SimpleTile.parameters = {
-  docs: {
-    source: {
-      code: `<Tile.Root title="Sample Tile Header">
-  <Tile.Item.Root>
-    <Tile.Item.Term label="Term" />
-    <Tile.Item.Description label="Description" />
-  </Tile.Item.Root>
-  <Tile.Item.Root>
-    <Tile.Item.Term label="Last Term" />
-    <Tile.Item.Description divider={false}>
-      <Text>Description without Divider</Text>
-    </Tile.Item.Description>
-  </Tile.Item.Root>
-</Tile.Root>`,
-    },
-  },
-};
-
 export const TileWithLink = () => (
   <Tile.Root title="Sample Tile Header">
     <Tile.Item.Root>
@@ -76,28 +57,6 @@ export const TileWithLink = () => (
   </Tile.Root>
 );
 
-TileWithLink.parameters = {
-  docs: {
-    source: {
-      code: `<Tile.Root title="Sample Tile Header">
-  <Tile.Item.Root>
-    <Tile.Item.Term label="Term" />
-    <Tile.Item.Description label="Description" />
-  </Tile.Item.Root>
-  <Tile.Item.Root>
-    <Tile.Item.Term label="Last Term" />
-    <Tile.Item.Description divider={false} label="Sample Description" />
-    <Tile.Item.Description>
-      <Link href="https://www.ovhcloud.com">
-        Link <Icon name={ICON_NAME.externalLink} />
-      </Link>
-    </Tile.Item.Description>
-  </Tile.Item.Root>
-</Tile.Root>`,
-    },
-  },
-};
-
 export const TileWithActionMenuAndTooltip = () => (
   <Tile.Root title="Sample Tile Header">
     <Tile.Item.Root>
@@ -115,29 +74,8 @@ export const TileWithActionMenuAndTooltip = () => (
   </Tile.Root>
 );
 
-TileWithActionMenuAndTooltip.parameters = {
-  docs: {
-    source: {
-      code: `const actionItems = [
-  { id: 1, href: 'https://ovhcloud.com', label: 'Action 1' },
-  { id: 2, onClick: () => handleAction(), label: 'Action 2' },
-];
-
-<Tile.Root title="Sample Tile Header">
-  <Tile.Item.Root>
-    <Tile.Item.Term
-      label="Term"
-      tooltip="Lorem ipsum dolor sit amet."
-      actions={<ActionMenu id="action-menu" items={actionItems} isCompact />}
-    />
-    <Tile.Item.Description label="Description" />
-  </Tile.Item.Root>
-</Tile.Root>`,
-    },
-  },
-};
-
 export const CompleteExample = () => {
+  const id = useId();
   return (
     <div className="w-1/3">
       <Tile.Root title="Tile Header">
@@ -220,7 +158,6 @@ export const CompleteExample = () => {
 const meta: Meta = {
   title: 'Manager UI Kit/Content/Tile',
   component: Tile,
-  tags: ['autodocs'],
   argTypes: {},
   args: {},
 };

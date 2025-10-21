@@ -34,8 +34,6 @@ const externalLinks = {
       'https://ovh.github.io/design-system/latest/?path=/docs/react-components-card--documentation',
     divider:
       'https://ovh.github.io/design-system/latest/?path=/docs/react-components-divider--documentation',
-    table:
-      'https://ovh.github.io/design-system/latest/?path=/docs/react-components-table--documentation',
   },
   github: {
     action:

@@ -23,18 +23,6 @@ Basic.args = {
   hideRootLabel: false,
 };
 
-Basic.parameters = {
-  docs: {
-    source: {
-      code: `<Breadcrumb 
-  rootLabel="vRack Services"
-  appName="vrack-services"
-  hideRootLabel={false}
-/>`,
-    },
-  },
-};
-
 export const HideRootLabel = BreadcrumbStory.bind({});
 
 HideRootLabel.args = {
@@ -43,22 +31,9 @@ HideRootLabel.args = {
   hideRootLabel: true,
 };
 
-HideRootLabel.parameters = {
-  docs: {
-    source: {
-      code: `<Breadcrumb 
-  rootLabel="vRack Services"
-  appName="vrack-services"
-  hideRootLabel={true}
-/>`,
-    },
-  },
-};
-
 export default {
   title: 'Manager UI Kit/Components/Breadcrumb',
   component: Breadcrumb,
-  tags: ['autodocs'],
   decorators: [withRouter],
   parameters: {
     docs: {

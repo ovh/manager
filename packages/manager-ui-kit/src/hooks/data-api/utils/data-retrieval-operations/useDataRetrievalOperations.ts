@@ -1,19 +1,21 @@
-import { useState, useMemo, useCallback } from 'react';
-import { SortingState } from '@tanstack/react-table';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import { FilterComparator } from '@ovh-ux/manager-core-api';
-import { useColumnFilters } from '../../useColumnFilters';
-import { DatagridColumn } from '../../../../components';
+import {
+  useColumnFilters,
+  ColumnSort,
+  DatagridColumn,
+} from '../../../../components';
 
 export const useDataRetrievalOperations = <TData = Record<string, unknown>>({
   defaultSorting,
   columns = [],
 }: {
-  defaultSorting: SortingState | undefined;
+  defaultSorting: ColumnSort | undefined;
   columns: DatagridColumn<TData>[];
 }) => {
   const [searchInput, setSearchInput] = useState<string>('');
   const [searchFilters, setSearchFilters] = useState<any>([]);
-  const [sorting, setSorting] = useState<SortingState | undefined>(
+  const [sorting, setSorting] = useState<ColumnSort | undefined>(
     defaultSorting,
   );
   const { filters, addFilter, removeFilter } = useColumnFilters();
@@ -26,6 +28,7 @@ export const useDataRetrievalOperations = <TData = Record<string, unknown>>({
 
   const onSearch = useCallback(
     (search: string | undefined) => {
+      setSearchInput(search || '');
       setSearchFilters(
         !search
           ? []
@@ -38,6 +41,10 @@ export const useDataRetrievalOperations = <TData = Record<string, unknown>>({
     },
     [searchableColumns],
   );
+
+  useEffect(() => {
+    onSearch(searchInput);
+  }, [searchInput]);
 
   return {
     searchInput,

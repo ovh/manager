@@ -5,4 +5,8 @@ export * from './date';
 export * from './iam';
 export * from './bytes/useBytes';
 export * from './data-api';
-export * from './region';
+export {
+  getMacroRegion,
+  useTranslatedMicroRegions,
+  isLocalZone,
+} from './region/useTranslatedMicroRegions';

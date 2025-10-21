@@ -2,7 +2,6 @@ import {
   POPOVER_POSITION,
   BUTTON_VARIANT,
   BUTTON_COLOR,
-  BUTTON_SIZE,
   ICON_NAME,
 } from '@ovhcloud/ods-react';
 import { LinkType } from '../Link';
@@ -37,5 +36,4 @@ export interface ActionMenuProps {
   isLoading?: boolean;
   popoverPosition?: POPOVER_POSITION;
   label?: string;
-  size?: BUTTON_SIZE;
 }

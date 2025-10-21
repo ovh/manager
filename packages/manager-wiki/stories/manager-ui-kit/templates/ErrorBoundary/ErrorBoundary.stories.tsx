@@ -12,7 +12,6 @@ const defaultsProps = {
 const meta: Meta = {
   title: 'Manager UI Kit/Components/ErrorBoundary',
   component: ErrorBoundary,
-  tags: ['autodocs'],
   decorators: [withRouter],
   args: defaultsProps,
 };

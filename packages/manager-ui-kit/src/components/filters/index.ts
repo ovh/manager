@@ -1,8 +1,5 @@
-export { FilterAdd } from './filter-add/Filteradd.component';
-export { FilterList } from './filter-list/FilterList.component';
-export type { FilterWithLabel } from './Filter.props';
-export type {
-  Option,
-  ColumnFilter,
-  FilterAddProps,
-} from './filter-add/FilterAdd.props';
+export { FilterAdd } from './filter-add.component';
+export { FilterList } from './filter-list.component';
+export { useColumnFilters } from './useColumnFilters';
+export * from './tags-filter-form.component';
+export type { FilterWithLabel } from './interface';

@@ -1,188 +1,67 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Drawer, DrawerProps } from '@ovh-ux/muk';
 import { Meta } from '@storybook/react';
-import { Button } from '@ovh-ux/muk';
-import { DrawerBase } from '@ovh-ux/muk/src/components/drawer/drawer-base/DrawerBase.component';
+import { useArgs } from '@storybook/preview-api';
 import { DrawerContent } from './DrawerContent.component';
-import { Content } from './mocks/Content.component';
-import {
-  DrawerComposed,
-  DrawerComposedProps,
-  DrawerCollapsibleComposed,
-} from './mocks/DrawerComposed.component';
 
-const meta = {
+const meta: Meta<typeof Drawer> = {
   title: 'Manager UI Kit/Components/Drawer',
-  component: DrawerBase,
-  tags: ['autodocs'],
+  component: Drawer,
   args: {
-    isOpen: false,
+    heading: 'Drawer Title',
+    isOpen: true,
     isLoading: false,
-    primaryButton: {
-      label: 'Confirm',
-      isLoading: false,
-      isDisabled: false,
-      onClick: () => {},
-    },
-    secondaryButton: {
-      label: 'Cancel',
-      isLoading: false,
-      isDisabled: false,
-      onClick: () => {},
-    },
+    primaryButtonLabel: 'Confirm',
+    onPrimaryButtonClick: () => {},
+    secondaryButtonLabel: 'Cancel',
+    onSecondaryButtonClick: () => {},
     onDismiss: () => {},
-    content: <Content size="short" />,
+    isPrimaryButtonLoading: false,
+    isPrimaryButtonDisabled: false,
+    isSecondaryButtonLoading: false,
+    isSecondaryButtonDisabled: false,
+    children: <DrawerContent size="short" />,
   },
   argTypes: {
-    title: {
+    heading: {
       description: 'Header title of the drawer',
     },
   },
+  parameters: {
+    controls: {
+      exclude: ['children'],
+    },
+  },
   render: function Render(args) {
-    const [isOpen, setIsOpen] = useState(args.isOpen);
-    const triggerDrawer = () => setIsOpen(!isOpen);
+    const [{ isOpen }, updateArgs] = useArgs();
 
-    const title = args.title as string;
+    const onDismiss = () => updateArgs({ isOpen: !isOpen });
+
     return (
-      <>
-        {!title.includes('Collapsible') && (
-          <Button onClick={triggerDrawer}>Open Drawer</Button>
-        )}
-        {title.includes('Collapsible') ? (
-          <DrawerCollapsibleComposed
-            {...args}
-            isOpen={isOpen}
-            onDismiss={() => {
-              // Dismiss action
-            }}
-            primaryButton={{
-              ...args.primaryButton,
-              onClick: triggerDrawer,
-            }}
-            secondaryButton={{
-              ...args.secondaryButton,
-              onClick: triggerDrawer,
-            }}
-          />
-        ) : (
-          <DrawerComposed
-            {...args}
-            isOpen={isOpen}
-            onDismiss={triggerDrawer}
-            primaryButton={{
-              ...args.primaryButton,
-              onClick: triggerDrawer,
-            }}
-            secondaryButton={{
-              ...args.secondaryButton,
-              onClick: triggerDrawer,
-            }}
-          />
-        )}
-      </>
+      <Drawer
+        {...args}
+        isOpen={isOpen}
+        onDismiss={onDismiss}
+        onPrimaryButtonClick={onDismiss}
+        onSecondaryButtonClick={onDismiss}
+      />
     );
   },
 };
 
 export default meta;
 
-export const Default: Meta<DrawerComposedProps> = {
+export const Default: Meta<DrawerProps> = {
   args: {
-    title: 'Classic Drawer',
+    heading: 'Classic Drawer',
     isOpen: true,
-    children: <div>Children drawer story</div>,
-    content: <DrawerContent size="short" />,
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `<Drawer.Root 
-  isOpen={isOpen}
-  onDismiss={handleDismiss}
->
-  <Drawer.Header title="Classic Drawer" />
-  <Drawer.Content>
-    <div>Your drawer content here</div>
-  </Drawer.Content>
-  <Drawer.Footer
-    primaryButton={{
-      label: 'Confirm',
-      onClick: handleConfirm,
-    }}
-    secondaryButton={{
-      label: 'Cancel',
-      onClick: handleCancel,
-    }}
-  />
-</Drawer.Root>`,
-      },
-    },
   },
 };
 
-export const ScrollableContent: Meta<DrawerComposedProps> = {
+export const ScrollableContent: Meta<DrawerProps> = {
   args: {
-    title: 'Scrollable Content',
+    heading: 'Scrollable Content',
     isOpen: true,
-    children: <div>Children scrollable drawer story</div>,
-    content: <DrawerContent size="long" />,
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `<Drawer.Root 
-  isOpen={isOpen}
-  onDismiss={handleDismiss}
->
-  <Drawer.Header title="Scrollable Content" />
-  <Drawer.Content>
-    <div>Long scrollable content here...</div>
-  </Drawer.Content>
-  <Drawer.Footer
-    primaryButton={{
-      label: 'Confirm',
-      onClick: handleConfirm,
-    }}
-    secondaryButton={{
-      label: 'Cancel',
-      onClick: handleCancel,
-    }}
-  />
-</Drawer.Root>`,
-      },
-    },
-  },
-};
-
-export const Collapsible: Meta<DrawerComposedProps> = {
-  args: {
-    title: 'Collapsible Drawer',
-    isOpen: true,
-    children: <div>Children Collapsible drawer story</div>,
-    content: <DrawerContent size="short" />,
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `<Drawer.RootCollapsible 
-  isOpen={isOpen}
-  onDismiss={handleDismiss}
->
-  <Drawer.Header title="Collapsible Drawer" />
-  <Drawer.Content>
-    <div>Your drawer content here</div>
-  </Drawer.Content>
-  <Drawer.Footer
-    primaryButton={{
-      label: 'Confirm',
-      onClick: handleConfirm,
-    }}
-    secondaryButton={{
-      label: 'Cancel',
-      onClick: handleCancel,
-    }}
-  />
-</Drawer.RootCollapsible>`,
-      },
-    },
+    children: <DrawerContent size="long" />,
   },
 };

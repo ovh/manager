@@ -1,5 +1,6 @@
+import React from 'react';
 import { vi } from 'vitest';
-import { render } from '@/setupTest';
+import { render } from '@testing-library/react';
 import { Modal } from '../Modal.component';
 
 export const heading = 'Example Heading';

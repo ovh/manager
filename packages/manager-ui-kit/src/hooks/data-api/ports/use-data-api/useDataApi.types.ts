@@ -1,6 +1,5 @@
 import type { Dispatch, SetStateAction } from 'react';
 import { Filter } from '@ovh-ux/manager-core-api';
-import { SortingState } from '@tanstack/react-table';
 import { TRefetchInterval } from '../../infra/tanstack/common.types';
 import { UseQueryResult } from '../../infra/tanstack/use-query';
 import { UseInifiniteQueryResult } from '../../infra/tanstack/use-infinite-query';
@@ -18,7 +17,7 @@ export type UseDataApiOptions<TData = Record<string, unknown>> = {
   enabled?: boolean;
   refetchInterval?: TRefetchInterval;
   pageSize?: number;
-  defaultSorting?: SortingState;
+  defaultSorting?: ColumnSort;
   fetchAll?: boolean;
   disableCache?: boolean;
   columns?: DatagridColumn<TData>[];
@@ -34,11 +33,8 @@ export type UseDataApiResult<TData = Record<string, unknown>> = (
   totalCount?: number;
   flattenData: TData[];
   pageIndex?: number;
-  sorting?: {
-    sorting: SortingState;
-    setSorting: Dispatch<SetStateAction<SortingState>>;
-    manualSorting: boolean;
-  };
+  sorting?: ColumnSort;
+  setSorting?: Dispatch<SetStateAction<ColumnSort | undefined>>;
   filters?: {
     filters: FilterWithLabel[];
     add: (filter: FilterWithLabel) => void;

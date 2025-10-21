@@ -1,333 +1,425 @@
-import {
-  StoryBookBanner,
-  StorybookHeading,
-  StorybookBestPractices,
-  StorybookIdentityCard,
-  StorybookTable,
-} from '../../../../components/';
 import { Meta, Canvas, Source } from '@storybook/blocks';
-import meta, { Default} from './datagrid.stories';
-import Datagrid from '../../../../components/external-links';
 
-<Meta title="Manager UI Kit/Components/Datagrid New/Documentation" />
+<Meta title="Manager UI Kit/Components/Datagrid Cursor/Documentation" />
 
-<StoryBookBanner of={meta} />
+# Datagrid
 
-<Canvas layout="centered" of={Default} sourceState="none" />
+## Overview
 
-<StorybookHeading label="Overview" level={2} />
+The `Datagrid` is table component used for displaying and interacting with data
 
-<StorybookIdentityCard
-  name="Datagrid"
-  relatedComponents={[
-    { name: 'Table', href: Datagrid.ods.table },
-  ]}
->
-The Datagrid component is a powerful data table built on top of TanStack Table, providing advanced features for displaying and interacting with tabular data. It supports sorting, filtering, pagination, and customizable column definitions.
-</StorybookIdentityCard>
+It supports advanced features like:
 
-<StorybookHeading label="Features" level={3} />
+- **Sorting**: Enable column sorting with custom logic.
+- **Infinite Scrolling**: Load additional data on demand with a "Load More" button.
+- **Pagination**: Load additional data on demand with a "Load More" button.
 
-<StorybookTable
-  data={{
-    columns: ['feature', 'description', 'status'],
-    rows: [
-      {
-        feature: 'Column Sorting',
-        description: 'Client-side and server-side sorting with TanStack Table integration',
-        status: '✅',
-      },
-      {
-        feature: 'Manual Sorting',
-        description: 'Server-side sorting control with manualSorting prop',
-        status: '✅',
-      },
-      {
-        feature: 'Custom Columns',
-        description: 'Flexible column definitions with custom cell renderers',
-        status: '✅',
-      },
-      {
-        feature: 'Pagination',
-        description: 'Progressive data loading with Load more and Load all actions',
-        status: '✅',
-      },
-      {
-        feature: 'Search',
-        description: 'Global search input to filter rows across searchable columns',
-        status: '✅',
-      },
-      {
-        feature: 'Filters',
-        description: 'Column-level filters with comparators, options and removable chips',
-        status: '✅',
-      },
-      {
-        feature: 'Columns visiblity',
-        description: 'Toggle column visibility via a columns picker with Select all',
-        status: '✅',
-      },
-      {
-        feature: 'Row selection',
-        description: 'Single or multi-row selection with a header master checkbox',
-        status: '✅',
-      },
-      {
-        feature: 'Column Expandable',
-        description: 'Expandable rows to display hierarchical or nested data',
-        status: '✅',
-      },
-      {
-        feature: 'Subcomponent',
-        description: 'Custom sub-rows to render additional content below a row',
-        status: '✅',
-      },
-    ],
-  }}
+## Usage
+
+- Can be use with API V6 and API V2
+- `Pagination` mode is now deprecated
+- `Cursor` navigation is recommended <a target="_blank" href="https://apiv2.pages.ovhcloud.tools/deep-dive/seamless/pagination/">link</a>
+
+---
+
+### Tanstack Table <a target="_blank" href="https://tanstack.com/table/latest/docs/introduction">V8</a>
+
+The TanStack Table (formerly React Table) is a lightweight, powerful, and highly customizable library for building data grids and tables in React applications. It provides a modular architecture and advanced features to handle complex table requirements efficiently.
+
+Why Use TanStack Table?
+
+- **Flexibility**: Customize every aspect of the table, from rendering to state management.
+- **Performance**: Lightweight and optimized for large datasets.
+- **Feature-Rich**: Sorting, filtering, pagination, and virtualization out of the box.
+
+---
+
+### Filters
+
+#### How to use It
+
+1 - In your columns definition, fill `type` and/or `comparator` attributes
+
+- `type` is a `FilterTypeCategories` and will allow you to have enhanced filters (datepicker for date type, etc...)
+
+- `comparator` is a `string` of `FilterCategories`. Use this option to define the set of comparators that can be applied on the data. By default, Datagrid determines the set of comparators that can be applied depending on the `type` field. **Only use this option if default comparators does not match your need.**
+
+<Source
+  code={`
+    export const columns = [
+        {
+            id: 'label',
+            cell: (item: Item) => {
+                return <DataGridTextCell>{item.label}</DataGridTextCell>;
+            },
+            label: 'Label',
+            type: FilterTypeCategories.String
+        },
+        {
+            id: 'price',
+            cell: (item: Item) => {
+                return <DataGridTextCell>{item.price} €</DataGridTextCell>;
+            },
+            label: 'Price',
+            comparator: FilterCategories.String,
+        },
+        {
+            id: 'creationDate',
+            cell: (item: Item) => {
+                return <DataGridTextCell>{useFormattedDate(item.creationDate)}</DataGridTextCell>;
+            },
+            label: 'Creation date',
+            type: FilterTypeCategories.Date
+            comparator: FilterCategories.Date,
+        },
+    ];
+    `}
+  language="javascript"
 />
 
-<StorybookHeading label="Virtualization" level={3} />
+2 - In the datagrid component, pass `filters` object
 
-The Datagrid uses row virtualization (TanStack Virtual) to render only the visible rows, ensuring smooth scrolling and performance with large datasets. The container height is auto-calculated, and you can override it with the `containerHeight` prop if needed.
+<Source
+  code={`
+import { useResourcesV6, useResourcesIcebergV6 } from '@ovh-ux/muk';
 
+const { filters } = useResourcesIcebergV6({ ... });
+const { filters } = useResourcesV6({ ... });
 
-<StorybookHeading label="Sorting Configuration" level={3} />
-
-The Datagrid supports two sorting modes:
-
-**Client-side Sorting (Default)**
-```tsx
 <Datagrid
-  columns={columns}
-  data={data}
-  sorting={sorting}
-  onSortChange={setSorting}
-  manualSorting={false} // Default
+    {...}
+    filters={filters}
 />
-```
+    `}
 
-**Server-side Sorting (Manual)**
-```tsx
-<Datagrid
-  columns={columns}
-  data={data}
-  sorting={sorting}
-  onSortChange={setSorting}
-  manualSorting={true} // Server handles sorting
+language="javascript"
 />
-```
 
-<StorybookHeading label="Footer Actions" level={3} />
+If you are using a custom hook
 
-The Datagrid includes built-in pagination controls in the footer for progressive data loading.
+<Source
+  code={`
+import { useColumnFilters } from '@ovh-ux/muk';
 
-**Load More Button**
-Incrementally loads additional data when clicked.
+const { filters, addFilter, removeFilter } = useColumnFilters();
 
-```tsx
 <Datagrid
-  columns={columns}
-  data={data}
-  hasNextPage={true}
-  onFetchNextPage={() => {
-    // Fetch next page of data
-  }}
+    {...}
+    filters={{filters: filters, add: addFilter, remove: removeFilter}}
 />
-```
+    `}
 
-**Load All Button**
-Loads all remaining data at once.
-
-```tsx
-<Datagrid
-  columns={columns}
-  data={data}
-  hasNextPage={true}
-  onFetchAllPages={() => {
-    // Fetch all remaining data
-  }}
+language="javascript"
 />
-```
 
-**Loading State**
-Both buttons can show loading indicators when data is being fetched.
+---
 
-```tsx
-<Datagrid
-  columns={columns}
-  data={data}
-  hasNextPage={true}
-  onFetchNextPage={handleFetchNext}
-  onFetchAllPages={handleFetchAll}
-  isLoading={true} // Shows loading state
+### Filters with Tags
+
+#### How to use It
+
+1 - In your columns definition, use `type: Tags` attribute to use iam Tag filters for this column
+
+- `type` is a `FilterTypeCategories`
+
+<Source
+  code={`
+    export const columns = [
+        {
+            id: 'tags',
+            cell: (item: Item) => {
+                return <DataGridTextCell>{JSON.stringify(item.iam?.tags)}</DataGridTextCell>;
+            },
+            label: 'Tags',
+            type: FilterTypeCategories.Tags
+        }
+    ];
+  `}
+  language="javascript"
 />
-```
 
+2 - Get only tags for corresponding resource
 
-<StorybookHeading label="Custom Columns" level={3} />
+By default, the tag filter will fetch all the user existing tags but most of the time you would like to have only the tags for the resource displayed in the datagrid.
+To be able to get only the tags associate to the resource, you can use `resourceType` property on Datagrid definition.
 
-Define columns with custom cell renderers.
+- `resourceType` can be found on APIv2 /iam/reference/resource/type.
 
-```tsx
-const columns = [
-  {
-    id: 'name',
-    header: 'Name',
-    accessorKey: 'name',
-    cell: ({ getValue }) => <strong>{getValue<string>()}</strong>,
-  },
-  {
-    id: 'age',
-    header: 'Age',
-    accessorKey: 'age',
-  },
-];
+<Source
+  code={`
+<Datagrid
+    {...}
+    resourceType="dedicatedServer"
+/>
+    `}
 
-<Datagrid columns={columns} data={data} />
-```
+language="javascript"
+/>
 
-<StorybookHeading label="Search" level={3} />
+**Note:** Filters on Tags type of column is currently supported only on the primary resources.
 
-Enable a global search input.
+---
 
-```tsx
-const [searchInput, setSearchInput] = useState('');
+### Search
+
+#### How to use It
+
+1 - In your columns definition, fill `isSearchable` attribute, it will display the search input in datagrid topbar.
+
+<Source
+  code={`
+    export const columns = [
+        {
+            id: 'label',
+            cell: (item: Item) => {
+                return <DataGridTextCell>{item.label}</DataGridTextCell>;
+            },
+            label: 'Label',
+            isFilterable: true,
+            isSearchable: true,
+        }
+    ];
+    `}
+  language="javascript"
+/>
+
+2 - Pass `search` object to Datagrid component
+
+<Source
+  code={`
+<Datagrid
+    {...}
+    search={search}
+/>`}
+  language="javascript"
+/>
+
+What contains `search` object :
+
+- **searchInput**: react state, can be string | number | null
+- **setSearchInput**: setter of search input state
+- **onSearch**: handler when user click on the button search.
+
+#### With useResourcesIcebergV6 hook
+
+**_note : apiv6 only support operator `&`, we can't combine multiple search_**
+
+1 - Fill `columns` attribute with your columns definition. The`search` object returned by the `useResourcesIcebergV6` hook must be passed to your `Datagrid`'s props
+
+<Source
+  code={`
+import {
+  useResourcesIcebergV6,
+} from '@ovh-ux/muk';
+  const {
+    {...}
+    search, // it return search object
+  } = useResourcesIcebergV6({
+    {...}
+    columns, // you have to pass the columns definition now
+  });
 
 <Datagrid
-  columns={columns}
-  data={data}
-  enableSearch
-  search={{
-    searchInput,
-    setSearchInput,
-    onSearch: (value) => {
-      // Trigger server or client-side search
-      console.log('search', value);
-    },
-    placeholder: 'Search...',
-  }}
-  enableSearch={true}
-/>;
-```
+    {...}
+    filters={filters}
+    search={search} // pass the params search here
+    isLoading={isLoading}
+/>
+    `}
+  language="javascript"
+/>
 
-<StorybookHeading label="Filters" level={3} />
+Exemple of column definition
 
-Add column-level filters with a filter popover and removable chips.
+<Source
+  code={`
+    const columns = [
+        {
+            id: 'label',
+            cell: (item: Item) => {
+                return <DataGridTextCell>{item.label}</DataGridTextCell>;
+            },
+            label: 'Label',
+            isFilterable: true,
+            isSearchable: true,
+            comparator: FilterCategories.String,
+        },
+        {
+            id: 'ip',
+            cell: (item: Item) => {
+                return <DataGridTextCell>{item.ip}</DataGridTextCell>;
+            },
+            label: 'ip',
+            isFilterable: true,
+            isSearchable: false, // only one column can be searchable
+            comparator: FilterCategories.String,
+        }
+    ];
+    `}
+  language="javascript"
+/>
 
-```tsx
-const [filters, setFilters] = useState([]);
+#### With useResourcesV6 hook
+
+**_note : You can apply search in multiples columns and type attribute is mandatory in your column definition_**
+
+Fill `columns` attribute with your columns definition. The`search` object returned by the `useResourcesV6` hook must be passed to your `Datagrid`'s props
+
+<Source
+  code={`
+import {
+  useResourcesV6,
+} from '@ovh-ux/muk';
+  const {
+    {...}
+    search, // it return search object
+  } = useResourcesV6({
+    {...}
+    columns, // you have to pass the columns definition now
+  });
+]
 
 <Datagrid
-  columns={columns}
-  data={data}
-  enableFilter
-  filters={{
-    filters,
-    add: (f) => setFilters((prev) => [...prev, f]),
-    remove: (f) => setFilters((prev) => prev.filter((x) => x.key !== f.key)),
-  }}
-  resourceType="example"
-  enableSorting={true}
-/>;
-```
+    {...}
+    filters={filters}
+    search={search} // pass the params search here
+    isLoading={isLoading}
+/>
+`}
 
-<StorybookHeading label="Columns visibility" level={3} />
+language="javascript"
+/>
 
-Toggle columns on and off via the visibility menu.
+Exemple of column definition
 
-```tsx
-const [columnVisibility, setColumnVisibility] = useState({});
+<Source
+  code={`
+    const columns = [
+        {
+            id: 'label',
+            cell: (item: Item) => {
+                return <DataGridTextCell>{item.label}</DataGridTextCell>;
+            },
+            label: 'Label',
+            isFilterable: true,
+            isSearchable: true, // you can define multiple searchable column
+            comparator: FilterCategories.String,
+            type: FilterTypeCategories.String // type attribute is mandatory
+        },
+        {
+            id: 'ip',
+            cell: (item: Item) => {
+                return <DataGridTextCell>{item.ip}</DataGridTextCell>;
+            },
+            label: 'ip',
+            isFilterable: true,
+            isSearchable: true, // you can define multiple searchable column
+            comparator: FilterCategories.String,
+            type: FilterTypeCategories.String // type attribute is mandatory
+        }
+    ];
+    `}
+  language="javascript"
+/>
 
-const columns = [
-  { id: 'name', header: 'Name', accessorKey: 'name', enableHiding: true },
-  { id: 'age', header: 'Age', accessorKey: 'age', enableHiding: true },
-];
+---
 
-<Datagrid
-  columns={columns}
-  data={data}
-  enableColumnvisibility
-  columnVisibility={columnVisibility}
-  setColumnVisibility={setColumnVisibility}
-  enableColumnvisibility={true}
-/>;
-```
+### Row selection
 
-<StorybookHeading label="Row selection" level={3} />
+#### How to use It
 
-Allow selecting one or multiple rows.
+To activate default row selection, use `rowSelection` attribute on the Datagrid definition.
 
 ```tsx
 const [rowSelection, setRowSelection] = useState({});
 
-<Datagrid
-  columns={columns}
-  data={data}
-  rowSelection={{
-    rowSelection,
-    setRowSelection,
-    onRowSelectionChange: (rows) => console.log('selected rows', rows),
-    // Optionally restrict selection
-    // enableRowSelection: (row) => row.original.locked !== true,
-  }}
-/>;
+return
+  <Datagrid
+    ...
+    rowSelection={{
+      rowSelection,
+      setRowSelection,
+      onRowSelectionChange, // Optional
+      enableRowSelection // optional
+    }}
+  />;
 ```
 
-<StorybookHeading label="Expandable rows" level={3} />
+A new column is automatically displayed at the 1st place of the datagrid with checkboxes to select each row but also checkbox in the header to select / unselect all the rows.
 
-Display hierarchical data with expandable rows, use `subRow` in your data items.
+#### Disable the selection for some of the rows
+
+`enableRowsSelection` is a function that can be use inside `rowSelection` attribute to tell the Datagrid which row should be selectable or not.
+The row is passed in the parameters of the function so it is easy to use on parent side.
+
+example:
 
 ```tsx
-const items = [
-  {
-    id: '1,
-    person: 'John Doe',
-    subRows: [
-      {
-        id: '99,
-        person: 'Joahn Cruyff',
-      },
-      {
-        id: '100,
-        person: 'Michel Platini',
-      },
-      {
-        id: '101',
-        person: 'Lionel Messi',
-      }
-    ]
-  }
-];
-const [expanded, setExpanded] = useState<ExpandedState>({});
+const [rowSelection, setRowSelection] = useState({});
 
-<Datagrid<Item>
-  columns={columns}
-  data={items}
-  expandable={{
-    expanded,
-    setExpanded,
-    enableExpanded
-  }}
-/>;
+const isSelectable = (item: Item) => item.price > 10;
+
+return
+  <Datagrid
+    ...
+    rowSelection={{
+      rowSelection,
+      setRowSelection,
+      enableRowSelection: ({ original: item }) => isSelectable(item)
+    }}
+  />;
 ```
 
-<StorybookHeading label="Subcomponent" level={3} />
+In that case, only items with price > 10 would be selectable and others would have disabled checkbox. When using "select all" checkbox, only available checkboxes is selected.
 
-Render a custom sub-row below a row.
+#### onRowSelectionChange Callback
+
+You can get the list of selectedRows using the onRowSelectionChange callback?
 
 ```tsx
-<Datagrid
-  columns={columns}
-  data={data}
-  renderSubComponent={(row) => (
-    <div>Details for {row.original.name}</div>
-  )}
-  subComponentHeight={80}
-/>;
+const [rowSelection, setRowSelection] = useState({});
+
+const onRowSelectionChange = (selectedRows: Row<T>[]) => {
+    // Compute anything with slected rows here
+};
+
+return
+  <Datagrid
+    ...
+    rowSelection={{
+      rowSelection,
+      setRowSelection,
+      onRowSelectionChange
+    }}
+  />;
 ```
 
-<StorybookHeading label="External Resources" level={3} />
+#### Overwrite the rowId for better row selection
 
-- **TanStack Table**: [Official Documentation](https://tanstack.com/table/latest)
-- **ODS Table Component**: [Design System Table]({Datagrid.ods.table})
-- **React Table Examples**: [GitHub Examples](https://github.com/TanStack/table/tree/main/examples/react/sorting)
+By default, the row id is the index of the item within the datagrid. To be able to better know which row has been selected,
+you should always overwrite the row id with `getRowId` attribute.
+
+`getRowId` is a function that have row item passed as a parameter and should return the custom id as a string.
+
+```tsx
+const getRowId = (item) => item.label;
+
+return
+  <Datagrid
+    ...
+    getRowId={getRowId}
+  />;
+```
+
+when using this attribute, the selected rows will be defined by the custom id to be easier to work with.
+
+#### Select all behavior
+Because most of the time, the pagination is made on api side, datagrid will only be able to select the items passed to it.
+this means if the user select all and then load more, the newly displayed rows won't be selected.
+To keep the consistency accros the manager, this behavior should be the same if the pagination is managed by the front.
+
+#### Row selection and datagrid filter
+The defined behavior of row selection while filtering the item list is:
+- If the selected row still appear on the list after filtering, it stay selected
+- If the selected row is hidden after filtering, it is removed from the selection
+- When cancelling the filter to show all the rows, the rows selected while filtered are still selected

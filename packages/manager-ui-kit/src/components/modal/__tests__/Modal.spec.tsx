@@ -46,7 +46,7 @@ describe('Modal Tests', () => {
     expect(screen.queryByTestId('primary-button')).not.toBeInTheDocument();
     expect(screen.queryByTestId('secondary-button')).not.toBeInTheDocument();
     expect(
-      within(screen.getByTestId('spinner')).queryByRole('progressbar'),
+      screen.getByTestId('spinner').querySelector('[data-ods="spinner"]'),
     ).toBeInTheDocument();
   });
 
@@ -95,11 +95,14 @@ describe('Modal Tests', () => {
       },
     });
 
+    const primaryButton = screen.getByTestId('primary-button');
+    const secondaryButton = screen.getByTestId('secondary-button');
+
     expect(
-      within(screen.getByTestId('primary-button')).queryByRole('progressbar'),
+      primaryButton.querySelector('[data-ods="spinner"]'),
     ).toBeInTheDocument();
     expect(
-      within(screen.getByTestId('secondary-button')).queryByRole('progressbar'),
+      secondaryButton.querySelector('[data-ods="spinner"]'),
     ).toBeInTheDocument();
   });
 
@@ -136,28 +139,5 @@ describe('Modal Tests', () => {
     const primaryButton = screen.getByTestId('primary-button');
 
     expect(primaryButton.className).toContain('critical');
-  });
-  it('should display the basic modal with steps', () => {
-    renderModal({
-      heading,
-      children: <ModalContent />,
-      ...actions,
-      type: MODAL_COLOR.critical,
-      step: { current: 1, total: 5 },
-    });
-    expect(screen.getByTestId('step-placeholder')).toBeVisible();
-    expect(screen.getByText(heading)).toBeVisible();
-  });
-
-  it('should not display the step count', () => {
-    renderModal({
-      heading,
-      children: <ModalContent />,
-      ...actions,
-      type: MODAL_COLOR.critical,
-      step: { total: 5 },
-    });
-    expect(screen.queryByTestId('step-placeholder')).not.toBeInTheDocument();
-    expect(screen.getByText(heading)).toBeVisible();
   });
 });

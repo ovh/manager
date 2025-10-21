@@ -26,7 +26,7 @@ const mockAddFilter = vitest.fn();
 const mockRemoveFilter = vitest.fn();
 const mockFilters: any[] = [];
 
-vitest.mock('../data-api/useColumnFilters', () => ({
+vitest.mock('../../components', () => ({
   useColumnFilters: () => ({
     filters: mockFilters,
     addFilter: mockAddFilter,
@@ -51,15 +51,13 @@ const renderUseIcebergV2Hook = (props = {}) => {
             id: 'ip',
             isSearchable: true,
             label: 'IP Address',
-            cell: (cellProps) => <div>{cellProps.row.original.ip}</div>,
+            cell: (data: TestData) => <div>{data.ip}</div>,
           },
           {
             id: 'newUpgradeSystem',
             isFilterable: true,
             label: 'Upgrade System',
-            cell: (cellProps) => (
-              <div>{cellProps.row.original.newUpgradeSystem}</div>
-            ),
+            cell: (data: TestData) => <div>{data.newUpgradeSystem}</div>,
           },
         ],
         ...props,

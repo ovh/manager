@@ -4,17 +4,6 @@ import { GuideMenu } from '../GuideMenu.component';
 import { GuideMenuItem } from '../GuideMenu.props';
 import { render } from '@/setupTest';
 
-// Mock IntersectionObserver for this component
-global.IntersectionObserver = vi.fn().mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-  root: null,
-  rootMargin: '',
-  thresholds: [],
-  takeRecords: vi.fn().mockReturnValue([]),
-}));
-
 describe('GuideMenu component', () => {
   const mockItems: GuideMenuItem[] = [
     {

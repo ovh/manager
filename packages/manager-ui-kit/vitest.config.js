@@ -30,15 +30,13 @@ export default mergeConfig(createConfig(), {
         singleThread: true,
       },
     },
+    // Ignore unhandled errors from ODS Modal async cleanup
+    dangerouslyIgnoreUnhandledErrors: true,
   },
   resolve: {
     alias: {
       '@/setupTest': path.resolve(__dirname, 'setupTest.tsx'),
       '@': path.resolve(__dirname, 'src'),
-      '@tanstack/react-virtual': path.resolve(
-        __dirname,
-        'src/__mocks__/@tanstack/react-virtual.ts',
-      ),
     },
     mainFields: ['module'],
   },

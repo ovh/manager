@@ -25,13 +25,6 @@ export type ModalProps = ComponentPropsWithRef<typeof Modal> & {
   primaryButton?: ModalButton;
   /** Secondary button details */
   secondaryButton?: ModalButton;
-  /** Properties for the step number displayed on the top right of the modal */
-  step?: {
-    /** Current step displayed on the modal (must define heading and total) */
-    current?: number;
-    /** Total number of steps in the modal (must defined heading and current) */
-    total?: number;
-  };
   /** Display dismissible button */
   dismissible?: boolean;
   /** Callback fired when the modal open state changes. */

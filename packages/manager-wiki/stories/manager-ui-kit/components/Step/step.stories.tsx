@@ -2,9 +2,29 @@ import React from 'react';
 import { Meta } from '@storybook/react';
 import { Step, StepProps, Text } from '@ovh-ux/muk';
 
-const renderComponent = (args: StepProps) => {
+const renderComponent = ({
+  order,
+  title,
+  subtitle,
+  open,
+  checked,
+  locked,
+  next,
+  edit,
+  skip,
+}) => {
   return (
-    <Step {...args}>
+    <Step
+      order={order}
+      title={title}
+      subtitle={subtitle}
+      open={open}
+      checked={checked}
+      locked={locked}
+      next={next}
+      edit={edit}
+      skip={skip}
+    >
       <Text preset="span">Hello world!!!!</Text>
     </Step>
   );
@@ -19,47 +39,20 @@ export const Default = {
     checked: false,
     locked: false,
     next: {
-      action: () => {},
+      action: (_id: string) => {},
       label: 'Next',
       disabled: false,
     },
     edit: {
-      action: () => {},
+      action: (_id: string) => {},
       label: 'Edit',
       disabled: false,
-    },
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `<Step
-  order={1}
-  title="Title"
-  open={true}
-  checked={false}
-  locked={false}
-  next={{
-    action: (id) => handleNext(id),
-    label: 'Next',
-    disabled: false,
-  }}
-  edit={{
-    action: (id) => handleEdit(id),
-    label: 'Edit',
-    disabled: false,
-  }}
->
-  <Text preset="span">Step content here</Text>
-</Step>`,
-      },
     },
   },
 };
 
 const StepStory: Meta<StepProps> = {
   title: 'Manager UI Kit/Components/Step',
-  component: Step,
-  tags: ['autodocs'],
   render: renderComponent,
 };
 
@@ -67,22 +60,8 @@ export const Checked: Meta<StepProps> = {
   title: 'Manager UI Kit/Components/Step',
   render: renderComponent,
   args: {
-    order: 1,
-    title: 'Title',
-    subtitle: '',
-    open: true,
+    ...Default.args,
     checked: true,
-    locked: false,
-    next: {
-      action: () => {},
-      label: 'Next',
-      disabled: false,
-    },
-    edit: {
-      action: () => {},
-      label: 'Edit',
-      disabled: false,
-    },
   },
 };
 
@@ -90,22 +69,9 @@ export const CheckedAndLocked: Meta<StepProps> = {
   title: 'Manager UI Kit/Components/Step',
   render: renderComponent,
   args: {
-    order: 1,
-    title: 'Title',
-    subtitle: '',
-    open: true,
+    ...Default.args,
     checked: true,
     locked: true,
-    next: {
-      action: () => {},
-      label: 'Next',
-      disabled: false,
-    },
-    edit: {
-      action: () => {},
-      label: 'Edit',
-      disabled: false,
-    },
   },
 };
 
@@ -113,19 +79,11 @@ export const CheckedAndLockedWithoutEdit: Meta<StepProps> = {
   title: 'Manager UI Kit/Components/Step',
   render: renderComponent,
   args: {
-    order: 1,
-    title: 'Title',
-    subtitle: '',
-    open: true,
+    ...Default.args,
     checked: true,
     locked: true,
-    next: {
-      action: () => {},
-      label: 'Next',
-      disabled: false,
-    },
     edit: {
-      action: () => {},
+      action: (_id: string) => {},
       label: 'Edit',
       disabled: true,
     },
@@ -136,22 +94,10 @@ export const Closed: Meta<StepProps> = {
   title: 'Manager UI Kit/Components/Step',
   render: renderComponent,
   args: {
-    order: 1,
-    title: 'Title',
-    subtitle: '',
-    open: false,
+    ...Default.args,
     checked: true,
+    open: false,
     locked: true,
-    next: {
-      action: () => {},
-      label: 'Next',
-      disabled: false,
-    },
-    edit: {
-      action: () => {},
-      label: 'Edit',
-      disabled: false,
-    },
   },
 };
 
@@ -159,22 +105,10 @@ export const UncheckedAndClosed: Meta<StepProps> = {
   title: 'Manager UI Kit/Components/Step',
   render: renderComponent,
   args: {
-    order: 1,
-    title: 'Title',
-    subtitle: '',
-    open: false,
+    ...Default.args,
     checked: false,
+    open: false,
     locked: true,
-    next: {
-      action: () => {},
-      label: 'Next',
-      disabled: false,
-    },
-    edit: {
-      action: () => {},
-      label: 'Edit',
-      disabled: false,
-    },
   },
 };
 
@@ -182,21 +116,11 @@ export const NextButtonDisabled: Meta<StepProps> = {
   title: 'Manager UI Kit/Components/Step',
   render: renderComponent,
   args: {
-    order: 1,
-    title: 'Title',
-    subtitle: '',
-    open: true,
-    checked: false,
-    locked: false,
+    ...Default.args,
     next: {
-      action: () => {},
+      action: (_id: string) => {},
       label: 'Next',
       disabled: true,
-    },
-    edit: {
-      action: () => {},
-      label: 'Edit',
-      disabled: false,
     },
   },
 };
@@ -205,24 +129,9 @@ export const Skip: Meta<StepProps> = {
   title: 'Manager UI Kit/Components/Step',
   render: renderComponent,
   args: {
-    order: 1,
-    title: 'Title',
-    subtitle: '',
-    open: true,
-    checked: false,
-    locked: false,
-    next: {
-      action: () => {},
-      label: 'Next',
-      disabled: false,
-    },
-    edit: {
-      action: () => {},
-      label: 'Edit',
-      disabled: false,
-    },
+    ...Default.args,
     skip: {
-      action: () => {},
+      action: (_id: string) => {},
       label: 'Skip',
       disabled: false,
       hint: '(Optional)',
