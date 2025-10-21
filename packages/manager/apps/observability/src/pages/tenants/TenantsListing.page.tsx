@@ -3,13 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { OdsText } from '@ovhcloud/ods-components/react';
 
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
-import { useTenants } from '@/data/hooks/tenants/useTenants';
-import { Tenant } from '@/types/observability.type';
+import { useTenants } from '@/data/hooks/tenants/useTenants.hook';
+import { Tenant } from '@/types/tenants.type';
 
 export default function TenantsListingPage() {
   const { t } = useTranslation(['common', 'tenants']);
   const { selectedService } = useObservabilityServiceContext();
-  const { data: tenants, isSuccess } = useTenants(selectedService || '');
+  const { data: tenants, isSuccess } = useTenants(selectedService?.id || '');
 
   // TODO : implement the listing page
   return tenants && isSuccess ? (
