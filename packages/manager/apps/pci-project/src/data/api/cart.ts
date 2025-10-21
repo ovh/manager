@@ -35,19 +35,32 @@ export const attachConfigurationToCartItem = async (
   return data;
 };
 
+export const getCartConfigurationDetail = async (
+  cartId: string,
+  itemId: number,
+  configurationId: number,
+): Promise<CartConfiguration> => {
+  const { data } = await v6.get<CartConfiguration>(
+    `/order/cart/${cartId}/item/${itemId}/configuration/${configurationId}`,
+  );
+  return data;
+};
+
 export const getCartConfiguration = async (
   cartId: string,
   itemId: number,
 ): Promise<CartConfiguration[]> => {
-  const headers: Record<string, string> = {
-    'x-pagination-mode': 'CachedObjectList-Pages',
-  };
-  const { data } = await v6.get<CartConfiguration[]>(
+  const { data: configurationIds } = await v6.get<number[]>(
     `order/cart/${cartId}/item/${itemId}/configuration`,
-    { headers },
   );
 
-  return data;
+  const configurations = await Promise.all(
+    configurationIds.map((configurationId) =>
+      getCartConfigurationDetail(cartId, itemId, configurationId),
+    ),
+  );
+
+  return configurations;
 };
 
 export const deleteConfigurationItemFromCart = async (
@@ -161,19 +174,28 @@ export const removeItemFromCart = async (cartId: string, itemId: number) => {
   await v6.delete(`/order/cart/${cartId}/item/${itemId}`);
 };
 
+export const getCartItemDetail = async (
+  cartId: string,
+  itemId: number,
+): Promise<OrderedProduct> => {
+  const { data } = await v6.get<OrderedProduct>(
+    `/order/cart/${cartId}/item/${itemId}`,
+  );
+  return data;
+};
+
 export const getCartItems = async (
   cartId: string,
 ): Promise<OrderedProduct[]> => {
-  const headers: Record<string, string> = {
-    'x-pagination-mode': 'CachedObjectList-Pages',
-  };
-  const { data } = await v6.get<OrderedProduct[]>(
+  const { data: itemIds } = await v6.get<number[]>(
     `/order/cart/${cartId}/item`,
-    {
-      headers,
-    },
   );
-  return data;
+
+  const items = await Promise.all(
+    itemIds.map((itemId) => getCartItemDetail(cartId, itemId)),
+  );
+
+  return items;
 };
 
 export const checkoutCart = async (cartId: string): Promise<CartSummary> => {

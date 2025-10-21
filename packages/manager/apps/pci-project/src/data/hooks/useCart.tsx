@@ -292,7 +292,7 @@ export const getCartItemsQueryOptions = (cartId?: string) =>
     enabled: !!cartId,
   });
 
-export const useGetOrderProjectId = (cartId?: string) =>
+export const useGetProjectItem = (cartId?: string) =>
   useQuery({
     ...getCartItemsQueryOptions(cartId),
     select: (items) =>
