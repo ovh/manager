@@ -1,4 +1,5 @@
 {
   "dedicated_server_ftp_backup": "Backup Storage",
-  "dedicated_server_ftp_backup_documentation": "Documentación"
+  "dedicated_server_ftp_backup_documentation": "Documentación",
+  "dedicated_server_ftp_backup_region": "Servicio alojado en {{region}}"
 }
