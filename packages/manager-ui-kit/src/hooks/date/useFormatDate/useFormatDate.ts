@@ -1,10 +1,9 @@
 import { useCallback } from 'react';
+
 import { format as formatDateFns, isValid } from 'date-fns';
+
 import { useDateFnsLocale } from '../useDateFnsLocale';
-import {
-  FormatDateOptions,
-  DEFAULT_UNKNOWN_DATE_LABEL,
-} from './useFormatDate.type';
+import { DEFAULT_UNKNOWN_DATE_LABEL, FormatDateOptions } from './useFormatDate.type';
 
 export const useFormatDate = ({
   invalidDateDisplayLabel = DEFAULT_UNKNOWN_DATE_LABEL,

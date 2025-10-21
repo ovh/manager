@@ -1,13 +1,12 @@
-import { useEffect, useState, useMemo } from 'react';
-import {
-  IcebergFetchParamsV6,
-  fetchIcebergV6,
-  FilterComparator,
-} from '@ovh-ux/manager-core-api';
+import { useEffect, useMemo, useState } from 'react';
+
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { defaultPageSize } from './index';
-import { DatagridColumn, ColumnSort } from '../../components';
+
+import { FilterComparator, IcebergFetchParamsV6, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+
+import { ColumnSort, DatagridColumn } from '../../components';
 import { useColumnFilters } from '../data-api/useColumnFilters';
+import { defaultPageSize } from './index';
 
 interface IcebergV6Hook<T> {
   queryKey: string[];
@@ -34,9 +33,7 @@ export function useResourcesIcebergV6<T = unknown>({
 }: IcebergFetchParamsV6 & IcebergV6Hook<T>) {
   const [searchInput, setSearchInput] = useState('');
   const [searchFilter, setSearchFilter] = useState<any>(null);
-  const [sorting, setSorting] = useState<ColumnSort | undefined>(
-    defaultSorting,
-  );
+  const [sorting, setSorting] = useState<ColumnSort | undefined>(defaultSorting);
   const { filters, addFilter, removeFilter } = useColumnFilters();
 
   const {
@@ -46,13 +43,7 @@ export function useResourcesIcebergV6<T = unknown>({
     ...rest
   } = useInfiniteQuery({
     initialPageParam: 1,
-    queryKey: [
-      ...queryKey,
-      shouldFetchAll ? 'all' : pageSize,
-      sorting,
-      filters,
-      searchFilter,
-    ],
+    queryKey: [...queryKey, shouldFetchAll ? 'all' : pageSize, sorting, filters, searchFilter],
     staleTime: Infinity,
     retry: false,
     queryFn: ({ pageParam: pageIndex }) =>
@@ -87,9 +78,7 @@ export function useResourcesIcebergV6<T = unknown>({
   const searchableColumn = useMemo(
     () =>
       columns?.find(
-        (item) =>
-          Object.prototype.hasOwnProperty.call(item, 'isSearchable') &&
-          item.isSearchable,
+        (item) => Object.prototype.hasOwnProperty.call(item, 'isSearchable') && item.isSearchable,
       ),
     [columns],
   );

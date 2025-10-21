@@ -1,10 +1,13 @@
-import { vitest } from 'vitest';
+import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import type { MockInstance } from 'vitest';
-import { act, waitFor, screen, fireEvent } from '@testing-library/react';
-import { POPOVER_POSITION, ICON_NAME } from '@ovhcloud/ods-react';
-import { ActionMenu, ActionMenuProps } from '../index';
+import { vitest } from 'vitest';
+
+import { ICON_NAME, POPOVER_POSITION } from '@ovhcloud/ods-react';
+
+import { useAuthorizationIam } from '@/hooks';
 import { render } from '@/setupTest';
-import { useAuthorizationIam } from '../../../hooks/iam';
+
+import { ActionMenu, ActionMenuProps } from '../index';
 
 vitest.mock('../../../hooks/iam');
 
@@ -33,9 +36,7 @@ const actionItems: ActionMenuProps = {
     },
     {
       id: 4,
-      href: `data:text/json;charset=utf-8,${encodeURIComponent(
-        JSON.stringify({ name: 'john' }),
-      )}`,
+      href: `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify({ name: 'john' }))}`,
       download: 'test.json',
       target: '_blank',
       label: 'download',
@@ -73,9 +74,7 @@ describe('ActionMenu', () => {
     const { container } = setupSpecTest();
 
     act(() => {
-      const actionMenuIcon = screen.getByTestId(
-        'navigation-action-trigger-action',
-      );
+      const actionMenuIcon = screen.getByTestId('navigation-action-trigger-action');
       fireEvent.click(actionMenuIcon);
     });
 
@@ -108,18 +107,12 @@ describe('ActionMenu', () => {
     });
 
     act(() => {
-      const actionMenuIcon = screen.getByTestId(
-        'navigation-action-trigger-action',
-      );
+      const actionMenuIcon = screen.getByTestId('navigation-action-trigger-action');
       fireEvent.click(actionMenuIcon);
     });
     waitFor(() => {
-      const popoverPosition = container.parentElement?.querySelector(
-        'div[data-scope="popover"]',
-      );
-      expect(popoverPosition?.children[0].getAttribute('data-placement')).toBe(
-        'right',
-      );
+      const popoverPosition = container.parentElement?.querySelector('div[data-scope="popover"]');
+      expect(popoverPosition?.children[0].getAttribute('data-placement')).toBe('right');
     });
   });
 });

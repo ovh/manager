@@ -1,6 +1,8 @@
 import { describe, it } from 'vitest';
+
 import { MODAL_COLOR } from '@ovhcloud/ods-react';
-import { renderModal, heading, actions, ModalContent } from './ModalTest.utils';
+
+import { ModalContent, actions, heading, renderModal } from './ModalTest.utils';
 
 describe('Modal Snapshot Tests', () => {
   it('displays the basic modal', () => {

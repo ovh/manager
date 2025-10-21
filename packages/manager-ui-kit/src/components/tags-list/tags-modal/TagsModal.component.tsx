@@ -1,34 +1,24 @@
-import React, {
-  forwardRef,
-  ElementRef,
-  useState,
-  useCallback,
-  ForwardedRef,
-} from 'react';
+import React, { ElementRef, ForwardedRef, forwardRef, useCallback, useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
+
 import {
-  Button,
-  BUTTON_VARIANT,
   BUTTON_SIZE,
+  BUTTON_VARIANT,
+  Button,
   Input,
   MODAL_COLOR,
   ModalContent,
 } from '@ovhcloud/ods-react';
+
 import { Modal } from '../../modal';
-import './translations';
 import { TagsStack } from '../tags-stack/TagsStack.component';
 import { TagsModalProps } from './TagsModal.props';
+import './translations';
 
 export const TagsModal = forwardRef(
   (
-    {
-      open = false,
-      heading,
-      tags,
-      onEditTags,
-      onCancel,
-      onOpenChange,
-    }: TagsModalProps,
+    { open = false, heading, tags, onEditTags, onCancel, onOpenChange }: TagsModalProps,
     ref: ForwardedRef<ElementRef<typeof ModalContent>>,
   ) => {
     const { t } = useTranslation('tags-modal');
@@ -67,11 +57,7 @@ export const TagsModal = forwardRef(
               setSearch(event.target.value);
             }}
           />
-          <Button
-            variant={BUTTON_VARIANT.outline}
-            size={BUTTON_SIZE.sm}
-            onClick={handleSearch}
-          >
+          <Button variant={BUTTON_VARIANT.outline} size={BUTTON_SIZE.sm} onClick={handleSearch}>
             {t('search')}
           </Button>
         </div>

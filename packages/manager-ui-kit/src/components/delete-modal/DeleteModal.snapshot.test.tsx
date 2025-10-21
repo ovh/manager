@@ -1,5 +1,7 @@
 import { vitest } from 'vitest';
+
 import { render } from '@/setupTest';
+
 import { DeleteModal } from './DeleteModal.component';
 import { DeleteModalProps } from './DeleteModal.props';
 
@@ -22,16 +24,12 @@ describe('Delete Modal component', () => {
   });
 
   it('renders modal with error', () => {
-    const { container } = render(
-      <DeleteModal {...sharedProps} error="Test error message" />,
-    );
+    const { container } = render(<DeleteModal {...sharedProps} error="Test error message" />);
     expect(container.parentElement).toMatchSnapshot();
   });
 
   it('renders modal with custom service type', () => {
-    const { container } = render(
-      <DeleteModal {...sharedProps} serviceTypeName="Custom Service" />,
-    );
+    const { container } = render(<DeleteModal {...sharedProps} serviceTypeName="Custom Service" />);
     expect(container.parentElement).toMatchSnapshot();
   });
 

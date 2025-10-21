@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
+
 import { Column, VisibilityState } from '@tanstack/react-table';
+
 import { DatagridColumn, FilterProps, SearchProps } from '../../Datagrid.props';
 
 export type ColumnsVisibilityProps<T> = {

@@ -1,12 +1,14 @@
 import { Row } from '@tanstack/react-table';
+
 import {
   BUTTON_SIZE,
   BUTTON_VARIANT,
   Checkbox,
   CheckboxControl,
-  Icon,
   ICON_NAME,
+  Icon,
 } from '@ovhcloud/ods-react';
+
 import { Button } from '../../button';
 import { ExpandedProps } from '../Datagrid.props';
 
@@ -25,13 +27,7 @@ export const getExpandable = <T,>(expandable: ExpandedProps) => ({
             variant={BUTTON_VARIANT.ghost}
             size={BUTTON_SIZE.xs}
           >
-            <Icon
-              name={
-                row.getIsExpanded()
-                  ? ICON_NAME.chevronDown
-                  : ICON_NAME.chevronRight
-              }
-            />
+            <Icon name={row.getIsExpanded() ? ICON_NAME.chevronDown : ICON_NAME.chevronRight} />
           </Button>
         )}
       </div>

@@ -1,25 +1,25 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import {
-  Tile,
   BaseLayout,
+  ChangelogMenu,
+  GridLayout,
   GuideMenu,
   GuideMenuItem,
-  GridLayout,
-  ChangelogMenu,
+  Tile,
 } from '@ovh-ux/muk';
 import {
-  Message,
-  MESSAGE_COLOR,
-  MessageIcon,
+  Badge,
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
-  Tabs,
-  TabList,
+  Message,
+  MESSAGE_COLOR,
+  MessageIcon,
   Tab,
   Table,
-  Badge,
+  TabList,
+  Tabs,
 } from '@ovhcloud/ods-react';
 
 import { withRouter } from 'storybook-addon-react-router-v6';

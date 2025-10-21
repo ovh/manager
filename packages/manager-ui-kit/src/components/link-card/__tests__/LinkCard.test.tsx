@@ -1,12 +1,6 @@
-import { vitest, describe, it } from 'vitest';
-import {
-  texts,
-  href,
-  description,
-  img,
-  renderLinkCard,
-  badges,
-} from './LinkCard.spec.utils';
+import { describe, it, vitest } from 'vitest';
+
+import { badges, description, href, img, renderLinkCard, texts } from './LinkCard.spec.utils';
 
 vitest.mock('../../../hooks/iam', () => ({
   useAuthorizationIam: vi.fn(() => ({ isAuthorized: true })),

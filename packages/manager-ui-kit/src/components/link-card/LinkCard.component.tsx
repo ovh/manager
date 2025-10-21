@@ -1,10 +1,13 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { Card, CARD_COLOR, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
+
+import { CARD_COLOR, Card, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
+
+import { Link, LinkType } from '../Link';
 import { Badge } from '../badge';
-import { LinkType, Link } from '../Link';
+import { LinkCardBadge, LinkCardProps } from './LinkCard.props';
 import './translations/translations';
-import { LinkCardProps, LinkCardBadge } from './LinkCard.props';
 
 export const LinkCard: React.FC<LinkCardProps> = ({
   href,
@@ -22,31 +25,16 @@ export const LinkCard: React.FC<LinkCardProps> = ({
   const { t } = useTranslation('card');
 
   return (
-    <a
-      target="_blank"
-      href={href}
-      className="no-underline"
-      onClick={onClick}
-      {...props}
-    >
+    <a target="_blank" href={href} className="no-underline" onClick={onClick} {...props}>
       <Card
         className="w-full h-full p-[1rem]"
         color={CARD_COLOR.neutral}
         data-tracking={trackingLabel}
       >
         <div className="flex flex-col h-full">
-          {img?.src && (
-            <img
-              className="max-w-full my-3 mx-auto"
-              src={img.src}
-              alt={img.alt}
-            />
-          )}
+          {img?.src && <img className="max-w-full my-3 mx-auto" src={img.src} alt={img.alt} />}
           <div className="flex flex-row leading-[28px]">
-            <Text
-              preset={TEXT_PRESET.heading4}
-              className="text-[--ods-color-primary-500]"
-            >
+            <Text preset={TEXT_PRESET.heading4} className="text-[--ods-color-primary-500]">
               {category}
             </Text>
             {badges && badges.length > 0 && (
@@ -69,10 +57,7 @@ export const LinkCard: React.FC<LinkCardProps> = ({
             </Text>
           )}
           <div className="mt-auto">
-            <Link
-              tab-index="-1"
-              type={externalHref ? LinkType.external : LinkType.next}
-            >
+            <Link tab-index="-1" type={externalHref ? LinkType.external : LinkType.next}>
               {hrefLabel ?? t('see_more_label')}
             </Link>
           </div>

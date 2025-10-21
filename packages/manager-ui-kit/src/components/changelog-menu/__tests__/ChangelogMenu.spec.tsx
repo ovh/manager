@@ -1,9 +1,12 @@
-import { vitest } from 'vitest';
+import { act, fireEvent, screen } from '@testing-library/react';
 import type { MockInstance } from 'vitest';
-import { act, screen, fireEvent } from '@testing-library/react';
+import { vitest } from 'vitest';
+
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { ChangelogMenu, CHANGELOG_PREFIXES } from '../ChangelogMenu.component';
+
 import { render } from '@/setupTest';
+
+import { CHANGELOG_PREFIXES, ChangelogMenu } from '../ChangelogMenu.component';
 import TradFr from '../translations/Messages_fr_FR.json';
 import { Links, chapters } from './ChangelogMenu.utils';
 
@@ -34,9 +37,7 @@ describe('ChangelogMenu', () => {
     it('renders the changelog menu button correctly', () => {
       setupSpecTest();
 
-      const changelogActionButton = screen.getByText(
-        TradFr.mrc_changelog_header,
-      );
+      const changelogActionButton = screen.getByText(TradFr.mrc_changelog_header);
       expect(changelogActionButton).toBeInTheDocument();
 
       const changelogButton = screen.getByText(TradFr.mrc_changelog_changelog);
@@ -45,9 +46,7 @@ describe('ChangelogMenu', () => {
       const roadmapButton = screen.getByText(TradFr.mrc_changelog_roadmap);
       expect(roadmapButton).toBeInTheDocument();
 
-      const featureRequest = screen.getByText(
-        TradFr['mrc_changelog_feature-request'],
-      );
+      const featureRequest = screen.getByText(TradFr['mrc_changelog_feature-request']);
       expect(featureRequest).toBeInTheDocument();
     });
   });
@@ -101,9 +100,7 @@ describe('ChangelogMenu', () => {
 
       setupSpecTest();
 
-      const featureRequestButton = screen.getByText(
-        TradFr['mrc_changelog_feature-request'],
-      );
+      const featureRequestButton = screen.getByText(TradFr['mrc_changelog_feature-request']);
 
       await act(async () => {
         fireEvent.click(featureRequestButton);
@@ -141,22 +138,15 @@ describe('ChangelogMenu', () => {
     it('has external links with correct href attributes', () => {
       setupSpecTest();
 
-      const changelogLink = screen
-        .getByText(TradFr.mrc_changelog_changelog)
-        .closest('a');
-      const roadmapLink = screen
-        .getByText(TradFr.mrc_changelog_roadmap)
-        .closest('a');
+      const changelogLink = screen.getByText(TradFr.mrc_changelog_changelog).closest('a');
+      const roadmapLink = screen.getByText(TradFr.mrc_changelog_roadmap).closest('a');
       const featureRequestLink = screen
         .getByText(TradFr['mrc_changelog_feature-request'])
         .closest('a');
 
       expect(changelogLink).toHaveAttribute('href', Links.changelog);
       expect(roadmapLink).toHaveAttribute('href', Links.roadmap);
-      expect(featureRequestLink).toHaveAttribute(
-        'href',
-        Links['feature-request'],
-      );
+      expect(featureRequestLink).toHaveAttribute('href', Links['feature-request']);
     });
   });
 });

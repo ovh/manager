@@ -1,8 +1,10 @@
-import { describe, it, expect, vi } from 'vitest';
-import { screen, fireEvent } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+
 import { render } from '@/setupTest';
+
+import { mockOnFetchAllPages, mockOnFetchNextPage } from '../../../__mocks__';
 import { FooterActions } from './FooterActions.component';
-import { mockOnFetchNextPage, mockOnFetchAllPages } from '../../../__mocks__';
 
 describe('FooterActions', () => {
   it('should render the footer actions', () => {
@@ -19,23 +21,13 @@ describe('FooterActions', () => {
   });
 
   it('should render only Charger plus  actions', () => {
-    render(
-      <FooterActions
-        hasNextPage={true}
-        onFetchNextPage={mockOnFetchNextPage}
-      />,
-    );
+    render(<FooterActions hasNextPage={true} onFetchNextPage={mockOnFetchNextPage} />);
     expect(screen.getByText('Charger plus')).toBeInTheDocument();
     expect(screen.queryByText('Charger tout')).not.toBeInTheDocument();
   });
 
   it('should not render Charger plus action when hasNextPage is false', () => {
-    render(
-      <FooterActions
-        hasNextPage={false}
-        onFetchNextPage={mockOnFetchNextPage}
-      />,
-    );
+    render(<FooterActions hasNextPage={false} onFetchNextPage={mockOnFetchNextPage} />);
     expect(screen.queryByText('Charger plus')).not.toBeInTheDocument();
   });
 

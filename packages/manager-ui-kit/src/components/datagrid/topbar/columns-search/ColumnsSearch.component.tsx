@@ -1,6 +1,9 @@
 import { memo } from 'react';
-import { Input } from '@ovhcloud/ods-react';
+
 import { useTranslation } from 'react-i18next';
+
+import { Input } from '@ovhcloud/ods-react';
+
 import { SearchProps } from '../../Datagrid.props';
 
 const ColumnsSearchComponent = ({ search }: { search: SearchProps }) => {

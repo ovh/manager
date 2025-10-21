@@ -1,9 +1,11 @@
 import { fireEvent, waitFor } from '@testing-library/react';
-import { vi, vitest } from 'vitest';
 import type { MockInstance } from 'vitest';
-import { Order } from '../Order.component';
+import { vi, vitest } from 'vitest';
+
 import { render } from '@/setupTest';
+
 import { useAuthorizationIam } from '../../../hooks/iam';
+import { Order } from '../Order.component';
 import fr_FR from '../translations/Messages_fr_FR.json';
 
 vitest.mock('../../../hooks/iam', () => ({
@@ -38,18 +40,10 @@ describe('<Order> tests suite', () => {
     vitest.resetAllMocks();
   });
 
-  const renderComponent = (
-    isValid: boolean,
-    link: string,
-    productName: string,
-  ) =>
+  const renderComponent = (isValid: boolean, link: string, productName: string) =>
     render(
       <Order>
-        <Order.Configuration
-          isValid={isValid}
-          onCancel={onCancelSpy}
-          onConfirm={onValidateSpy}
-        >
+        <Order.Configuration isValid={isValid} onCancel={onCancelSpy} onConfirm={onValidateSpy}>
           <p>Order steps</p>
         </Order.Configuration>
         <Order.Summary
@@ -98,11 +92,7 @@ describe('<Order> tests suite', () => {
     expect(getByTestId('order-summary-link')).toBeVisible();
 
     expect(window.open).toHaveBeenCalledTimes(1);
-    expect(window.open).toHaveBeenCalledWith(
-      orderLink,
-      '_blank',
-      'noopener,noreferrer',
-    );
+    expect(window.open).toHaveBeenCalledWith(orderLink, '_blank', 'noopener,noreferrer');
   });
 
   it('should open order link when order link is clicked', () => {
@@ -130,11 +120,7 @@ describe('<Order> tests suite', () => {
     'should display given product name with value $productName',
     ({ productName }) => {
       vi.spyOn(window, 'open');
-      const { getByTestId, getByText } = renderComponent(
-        true,
-        orderLink,
-        productName,
-      );
+      const { getByTestId, getByText } = renderComponent(true, orderLink, productName);
       fireEvent.click(getByText(fr_FR.order_configuration_order));
       fireEvent.click(getByTestId('order-summary-link'));
       const product = productName || 'service';

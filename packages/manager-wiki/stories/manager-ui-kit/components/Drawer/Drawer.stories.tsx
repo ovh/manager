@@ -5,9 +5,9 @@ import { DrawerBase } from '@ovh-ux/muk/src/components/drawer/drawer-base/Drawer
 import { DrawerContent } from './DrawerContent.component';
 import { Content } from './mocks/Content.component';
 import {
+  DrawerCollapsibleComposed,
   DrawerComposed,
   DrawerComposedProps,
-  DrawerCollapsibleComposed,
 } from './mocks/DrawerComposed.component';
 
 const meta = {
@@ -95,7 +95,7 @@ export const Default: Meta<DrawerComposedProps> = {
   parameters: {
     docs: {
       source: {
-        code: `<Drawer.Root 
+        code: `<Drawer.Root
   isOpen={isOpen}
   onDismiss={handleDismiss}
 >
@@ -129,7 +129,7 @@ export const ScrollableContent: Meta<DrawerComposedProps> = {
   parameters: {
     docs: {
       source: {
-        code: `<Drawer.Root 
+        code: `<Drawer.Root
   isOpen={isOpen}
   onDismiss={handleDismiss}
 >
@@ -163,7 +163,7 @@ export const Collapsible: Meta<DrawerComposedProps> = {
   parameters: {
     docs: {
       source: {
-        code: `<Drawer.RootCollapsible 
+        code: `<Drawer.RootCollapsible
   isOpen={isOpen}
   onDismiss={handleDismiss}
 >

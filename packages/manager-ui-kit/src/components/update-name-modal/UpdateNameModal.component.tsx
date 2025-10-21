@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
+
 import {
+  FormField,
+  FormFieldLabel,
+  ICON_NAME,
+  INPUT_TYPE,
+  Input,
+  MESSAGE_COLOR,
   Message,
   MessageBody,
   MessageIcon,
   TEXT_PRESET,
-  MESSAGE_COLOR,
-  ICON_NAME,
-  Input,
-  INPUT_TYPE,
-  FormField,
-  FormFieldLabel,
 } from '@ovhcloud/ods-react';
+
 import { Modal } from '../modal';
 import { Text } from '../text';
-import './translations/translations';
 import { UpdateNameModalProps } from './UpdateNameModal.props';
+import './translations/translations';
 
 export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
   headline,
@@ -77,9 +80,7 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
           </Text>
         )}
         <FormField>
-          <FormFieldLabel htmlFor="update-name-modal-input">
-            {inputLabel}
-          </FormFieldLabel>
+          <FormFieldLabel htmlFor="update-name-modal-input">{inputLabel}</FormFieldLabel>
           <Input
             id="update-name-modal-input"
             aria-label="update-input"
@@ -89,9 +90,7 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
             value={displayName}
             invalid={isPatternError || undefined}
             onChange={(e) => setDisplayName(e.target.value)}
-            aria-describedby={
-              patternMessage ? 'update-name-modal-pattern-message' : undefined
-            }
+            aria-describedby={patternMessage ? 'update-name-modal-pattern-message' : undefined}
           />
           {patternMessage && (
             <Text

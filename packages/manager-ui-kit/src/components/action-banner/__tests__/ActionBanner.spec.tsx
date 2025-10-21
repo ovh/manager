@@ -1,11 +1,12 @@
 import React from 'react';
-import { vitest } from 'vitest';
-import { fireEvent, screen, render, act } from '@testing-library/react';
-import { ActionBannerProps } from '../ActionBanner.props';
-import { ActionBanner } from '../ActionBanner.component';
 
-const renderComponent = (props: ActionBannerProps) =>
-  render(<ActionBanner {...props} />);
+import { act, fireEvent, render, screen } from '@testing-library/react';
+import { vitest } from 'vitest';
+
+import { ActionBanner } from '../ActionBanner.component';
+import { ActionBannerProps } from '../ActionBanner.props';
+
+const renderComponent = (props: ActionBannerProps) => render(<ActionBanner {...props} />);
 
 describe('ActionBanner tests', () => {
   it('should display message', () => {

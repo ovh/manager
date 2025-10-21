@@ -1,8 +1,8 @@
-import { describe, it, expect, vi } from 'vitest';
 import { render } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
 
+import { IntervalUnitType, OvhSubsidiary } from '../../../enumTypes';
 import Price from '../Price.component';
-import { OvhSubsidiary, IntervalUnitType } from '../../../enumTypes';
 
 describe('Price Component', () => {
   const defaultProps = {
@@ -55,23 +55,17 @@ describe('Price Component', () => {
   });
 
   it('displays price without tax label in US format', () => {
-    const { container } = render(
-      <Price {...defaultProps} ovhSubsidiary={OvhSubsidiary.US} />,
-    );
+    const { container } = render(<Price {...defaultProps} ovhSubsidiary={OvhSubsidiary.US} />);
     expect(container).toMatchSnapshot();
   });
 
   it('handles different interval units correctly', () => {
-    const { container } = render(
-      <Price {...defaultProps} intervalUnit={IntervalUnitType.year} />,
-    );
+    const { container } = render(<Price {...defaultProps} intervalUnit={IntervalUnitType.year} />);
     expect(container).toMatchSnapshot();
   });
 
   it('does not show intervalUnitText if intervalUnit is "none"', () => {
-    const { container } = render(
-      <Price {...defaultProps} intervalUnit={IntervalUnitType.none} />,
-    );
+    const { container } = render(<Price {...defaultProps} intervalUnit={IntervalUnitType.none} />);
     expect(container).toMatchSnapshot();
   });
 });

@@ -1,9 +1,11 @@
 import { FC } from 'react';
+
 import { TEXT_PRESET } from '@ovhcloud/ods-react';
-import { Text } from '../text';
-import { OnboardingLayoutButton } from './onboarding-layout-button';
-import { OnboardingLayoutProps } from './OnboardingLayout.type';
+
 import placeholderSrc from '../../../public/assets/placeholder.png';
+import { Text } from '../text';
+import { OnboardingLayoutProps } from './OnboardingLayout.type';
+import { OnboardingLayoutButton } from './onboarding-layout-button';
 
 export const OnboardingLayout: FC<OnboardingLayoutProps> = ({
   hideHeadingSection,

@@ -1,9 +1,8 @@
 import React from 'react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import {
-  FilterComparator,
-  FilterTypeCategories,
-} from '@ovh-ux/manager-core-api';
+
+import { FilterComparator, FilterTypeCategories } from '@ovh-ux/manager-core-api';
 
 export const getWrapper = () => {
   const queryClient = new QueryClient();

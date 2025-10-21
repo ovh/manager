@@ -1,10 +1,13 @@
-import { useEffect, FC } from 'react';
+import { FC, useEffect } from 'react';
+
 import { Trans, useTranslation } from 'react-i18next';
+
 import { TEXT_PRESET } from '@ovhcloud/ods-react';
-import { useOrderContext } from '../Order.context';
+
 import { Link, LinkType } from '../../Link';
 import { Button } from '../../button';
 import { Text } from '../../text';
+import { useOrderContext } from '../Order.context';
 import { OrderSummaryProps } from './OrderSummary.type';
 
 export const OrderSummary: FC<OrderSummaryProps> = ({

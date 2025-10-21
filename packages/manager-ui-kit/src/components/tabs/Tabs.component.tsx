@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Tabs, TabList, Tab, TabsValueChangeEvent } from '@ovhcloud/ods-react';
+
+import { Tab, TabList, Tabs, TabsValueChangeEvent } from '@ovhcloud/ods-react';
+
 import { TabsProps } from './Tabs.props';
 
 export function TabsComponent<Item>({
@@ -9,9 +11,7 @@ export function TabsComponent<Item>({
   className,
   onChange,
 }: TabsProps<Item>): JSX.Element {
-  const [selectedTabItem, setselectedTabItem] = useState<string>(
-    items?.[0] as string,
-  );
+  const [selectedTabItem, setselectedTabItem] = useState<string>(items?.[0] as string);
 
   const TitleComponent = titleElement;
   const ContentComponent = contentElement;
@@ -28,10 +28,7 @@ export function TabsComponent<Item>({
         <TabList>
           {items.map((item) => (
             <Tab key={item as string} value={item as string}>
-              <TitleComponent
-                item={item}
-                isSelected={item === selectedTabItem}
-              />
+              <TitleComponent item={item} isSelected={item === selectedTabItem} />
             </Tab>
           ))}
         </TabList>

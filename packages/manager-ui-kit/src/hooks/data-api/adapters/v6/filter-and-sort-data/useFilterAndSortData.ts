@@ -1,10 +1,9 @@
 import { useMemo } from 'react';
-import {
-  applyFilters,
-  FilterTypeCategories,
-  Filter,
-} from '@ovh-ux/manager-core-api';
+
 import { SortingState } from '@tanstack/react-table';
+
+import { Filter, FilterTypeCategories, applyFilters } from '@ovh-ux/manager-core-api';
+
 import { DatagridColumn } from '../../../../../components';
 import { compare } from './filterAndSort.utils';
 
@@ -29,8 +28,7 @@ export const useFilterAndSortData = <TData = Record<string, unknown>>({
   const filteredAndSortedData: TData[] = useMemo(() => {
     if (sorting) {
       const columnType =
-        columns.find((col) => col.id === sorting[0]?.id)?.type ||
-        FilterTypeCategories.String;
+        columns.find((col) => col.id === sorting[0]?.id)?.type || FilterTypeCategories.String;
       return [...filteredData].sort((a: TData, b: TData) =>
         compare(
           columnType,

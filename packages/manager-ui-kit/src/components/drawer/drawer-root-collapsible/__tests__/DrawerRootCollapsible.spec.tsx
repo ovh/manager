@@ -1,8 +1,11 @@
-import '../../__tests__/drawer.mocks'; // import the mock first
-import { vi } from 'vitest';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+// import the mock first
+import { vi } from 'vitest';
+
 import { render } from '@/setupTest';
+
+import '../../__tests__/drawer.mocks';
 import { DrawerRootCollapsible } from '../DrawerRootCollapsible.component';
 
 vi.mock('react-i18next', () => ({
@@ -31,9 +34,7 @@ it('should collapse and reopen the drawer when the handle is clicked', async () 
   await waitFor(() => {
     const drawer = screen.getByTestId('drawer');
     const classList = Array.from(drawer.classList);
-    const hasTranslateX = classList.some((className) =>
-      className.includes('translate-x'),
-    );
+    const hasTranslateX = classList.some((className) => className.includes('translate-x'));
     expect(hasTranslateX).toBe(true);
   });
 
@@ -43,9 +44,7 @@ it('should collapse and reopen the drawer when the handle is clicked', async () 
   await waitFor(() => {
     const drawer = screen.getByTestId('drawer');
     const classList = Array.from(drawer.classList);
-    const hasTranslateX = classList.some((className) =>
-      className.includes('translate-x'),
-    );
+    const hasTranslateX = classList.some((className) => className.includes('translate-x'));
     expect(hasTranslateX).toBe(false);
   });
 });

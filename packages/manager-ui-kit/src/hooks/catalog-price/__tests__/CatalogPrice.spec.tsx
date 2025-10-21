@@ -1,7 +1,8 @@
-import { vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
+import { vi } from 'vitest';
+
+import { convertHourlyPriceToMonthly, priceToUcent } from '../useCatalog.utils';
 import { useCatalogPrice } from '../useCatalogPrice';
-import { priceToUcent, convertHourlyPriceToMonthly } from '../useCatalog.utils';
 
 const mocks = vi.hoisted(() => ({
   useMe: vi.fn(() => ({
@@ -91,9 +92,7 @@ describe('useCatalogPrice Hook', () => {
   describe('getFormattedCatalogPrice', () => {
     it('should display tax excl label for French subsidiary', () => {
       const { result } = renderHook(() => useCatalogPrice());
-      const formatted = result.current.getFormattedCatalogPrice(
-        priceToUcent(10),
-      );
+      const formatted = result.current.getFormattedCatalogPrice(priceToUcent(10));
 
       expect(mocks.t).toHaveBeenCalledWith(
         'order_catalog_price_tax_excl_label',
@@ -115,9 +114,7 @@ describe('useCatalogPrice Hook', () => {
       });
 
       const { result } = renderHook(() => useCatalogPrice());
-      const formatted = result.current.getFormattedCatalogPrice(
-        priceToUcent(10),
-      );
+      const formatted = result.current.getFormattedCatalogPrice(priceToUcent(10));
 
       expect(formatted).toContain('10,00');
       expect(formatted).toContain('$US');
@@ -134,21 +131,15 @@ describe('useCatalogPrice Hook', () => {
       });
 
       const { result } = renderHook(() => useCatalogPrice());
-      const formatted = result.current.getFormattedCatalogPrice(
-        priceToUcent(10),
-      );
+      const formatted = result.current.getFormattedCatalogPrice(priceToUcent(10));
 
       expect(formatted).toContain('10,00');
       expect(formatted).toContain('€');
     });
 
     it('should hide tax label when hideTaxLabel option is true', () => {
-      const { result } = renderHook(() =>
-        useCatalogPrice(undefined, { hideTaxLabel: true }),
-      );
-      const formatted = result.current.getFormattedCatalogPrice(
-        priceToUcent(10),
-      );
+      const { result } = renderHook(() => useCatalogPrice(undefined, { hideTaxLabel: true }));
+      const formatted = result.current.getFormattedCatalogPrice(priceToUcent(10));
 
       expect(formatted).toContain('10,00');
       expect(formatted).toContain('€');
@@ -164,12 +155,8 @@ describe('useCatalogPrice Hook', () => {
         },
       });
 
-      const { result } = renderHook(() =>
-        useCatalogPrice(undefined, { exclVat: true }),
-      );
-      const formatted = result.current.getFormattedCatalogPrice(
-        priceToUcent(10),
-      );
+      const { result } = renderHook(() => useCatalogPrice(undefined, { exclVat: true }));
+      const formatted = result.current.getFormattedCatalogPrice(priceToUcent(10));
 
       expect(mocks.t).toHaveBeenCalledWith(
         'order_catalog_price_tax_excl_label',
@@ -183,9 +170,7 @@ describe('useCatalogPrice Hook', () => {
   describe('getFormattedHourlyCatalogPrice', () => {
     it('should format hourly catalog price with interval', () => {
       const { result } = renderHook(() => useCatalogPrice());
-      const formatted = result.current.getFormattedHourlyCatalogPrice(
-        priceToUcent(5),
-      );
+      const formatted = result.current.getFormattedHourlyCatalogPrice(priceToUcent(5));
 
       expect(mocks.t).toHaveBeenCalledWith('order_catalog_price_interval_hour');
       expect(formatted).toContain('order_catalog_price_interval_hour');
@@ -195,13 +180,9 @@ describe('useCatalogPrice Hook', () => {
   describe('getFormattedMonthlyCatalogPrice', () => {
     it('should format monthly catalog price with interval', () => {
       const { result } = renderHook(() => useCatalogPrice());
-      const formatted = result.current.getFormattedMonthlyCatalogPrice(
-        priceToUcent(50),
-      );
+      const formatted = result.current.getFormattedMonthlyCatalogPrice(priceToUcent(50));
 
-      expect(mocks.t).toHaveBeenCalledWith(
-        'order_catalog_price_interval_month',
-      );
+      expect(mocks.t).toHaveBeenCalledWith('order_catalog_price_interval_month');
       expect(formatted).toContain('order_catalog_price_interval_month');
     });
   });

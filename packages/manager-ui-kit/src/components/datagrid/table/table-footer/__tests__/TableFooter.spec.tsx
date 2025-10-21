@@ -1,14 +1,15 @@
-import { describe, it, expect, vi } from 'vitest';
-import { screen, fireEvent } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { render } from '@/setupTest';
-import { TableFooter } from '../TableFooter.component';
+
 import { useAuthorizationIam } from '../../../../../hooks/iam';
 import { IamAuthorizationResponse } from '../../../../../hooks/iam/iam.interface';
+import { TableFooter } from '../TableFooter.component';
 
 vi.mock('../../../../../hooks/iam');
 
-const mockedHook =
-  useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
+const mockedHook = useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
 
 describe('TableFooter', () => {
   beforeEach(() => {
@@ -20,14 +21,7 @@ describe('TableFooter', () => {
   });
 
   it('should render the footer with basic props', () => {
-    render(
-      <TableFooter
-        hasNextPage={false}
-        isLoading={false}
-        itemsCount={10}
-        totalCount={100}
-      />,
-    );
+    render(<TableFooter hasNextPage={false} isLoading={false} itemsCount={10} totalCount={100} />);
 
     // Should render footer info
     expect(screen.getByText('10 sur 100 résultats')).toBeInTheDocument();
@@ -155,40 +149,19 @@ describe('TableFooter', () => {
   });
 
   it('should render footer info with only itemsCount when totalCount is not provided', () => {
-    render(
-      <TableFooter
-        hasNextPage={false}
-        isLoading={false}
-        itemsCount={5}
-        totalCount={5}
-      />,
-    );
+    render(<TableFooter hasNextPage={false} isLoading={false} itemsCount={5} totalCount={5} />);
 
     expect(screen.getByText('5 sur 5 résultats')).toBeInTheDocument();
   });
 
   it('should render footer info with itemsCount and totalCount', () => {
-    render(
-      <TableFooter
-        hasNextPage={false}
-        isLoading={false}
-        itemsCount={25}
-        totalCount={150}
-      />,
-    );
+    render(<TableFooter hasNextPage={false} isLoading={false} itemsCount={25} totalCount={150} />);
 
     expect(screen.getByText('25 sur 150 résultats')).toBeInTheDocument();
   });
 
   it('should render footer info with zero itemsCount', () => {
-    render(
-      <TableFooter
-        hasNextPage={false}
-        isLoading={false}
-        itemsCount={0}
-        totalCount={100}
-      />,
-    );
+    render(<TableFooter hasNextPage={false} isLoading={false} itemsCount={0} totalCount={100} />);
 
     expect(screen.getByText('0 sur 100 résultats')).toBeInTheDocument();
   });
@@ -250,12 +223,7 @@ describe('TableFooter', () => {
 
   it('should render with large numbers', () => {
     render(
-      <TableFooter
-        hasNextPage={false}
-        isLoading={false}
-        itemsCount={9999}
-        totalCount={99999}
-      />,
+      <TableFooter hasNextPage={false} isLoading={false} itemsCount={9999} totalCount={99999} />,
     );
 
     // ODS 19.2.0 may format numbers, so use flexible matcher

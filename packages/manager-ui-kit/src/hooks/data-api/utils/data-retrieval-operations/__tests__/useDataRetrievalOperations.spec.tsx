@@ -1,8 +1,9 @@
 import React from 'react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { renderHook, act } from '@testing-library/react';
-import { useColumnFilters } from '../../../useColumnFilters';
 
+import { act, renderHook } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { useColumnFilters } from '../../../useColumnFilters';
 import { useDataRetrievalOperations } from '../useDataRetrievalOperations';
 
 // Mock dependencies
@@ -101,9 +102,7 @@ describe('useDataRetrievalOperations', () => {
     );
 
     expect(result.current.addFilter).toBe(mockUseColumnFiltersResult.addFilter);
-    expect(result.current.removeFilter).toBe(
-      mockUseColumnFiltersResult.removeFilter,
-    );
+    expect(result.current.removeFilter).toBe(mockUseColumnFiltersResult.removeFilter);
   });
 
   it('allows updating sorting state', () => {

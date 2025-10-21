@@ -1,4 +1,4 @@
-import { JSX, ComponentProps } from 'react';
+import { ComponentProps, JSX } from 'react';
 
 export type TileItemTermProps = Omit<ComponentProps<'dt'>, 'className'> & {
   label: string;

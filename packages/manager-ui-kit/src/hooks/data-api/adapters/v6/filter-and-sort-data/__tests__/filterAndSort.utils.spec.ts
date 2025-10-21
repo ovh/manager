@@ -1,5 +1,7 @@
 import { describe, it } from 'vitest';
+
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
+
 import { compare } from '../filterAndSort.utils';
 
 describe('compare Function', () => {
@@ -27,12 +29,7 @@ describe('compare Function', () => {
 
   it('compares Date type', () => {
     // ascending order
-    let res = compare(
-      FilterTypeCategories.Date,
-      '01/01/2025',
-      '02/01/2025',
-      false,
-    );
+    let res = compare(FilterTypeCategories.Date, '01/01/2025', '02/01/2025', false);
     expect(res < 0).toBeTruthy();
     res = compare(FilterTypeCategories.Date, '02/01/2025', '01/01/2025', false);
     expect(res > 0).toBeTruthy();
@@ -44,21 +41,11 @@ describe('compare Function', () => {
     expect(res < 0).toBeTruthy();
 
     // equal with ascending order
-    res = compare(
-      FilterTypeCategories.Numeric,
-      '01/01/2025',
-      '01/01/2025',
-      false,
-    );
+    res = compare(FilterTypeCategories.Numeric, '01/01/2025', '01/01/2025', false);
     expect(res === 0).toBeTruthy();
 
     // equal with descending order
-    res = compare(
-      FilterTypeCategories.Numeric,
-      '01/01/2025',
-      '01/01/2025',
-      true,
-    );
+    res = compare(FilterTypeCategories.Numeric, '01/01/2025', '01/01/2025', true);
     expect(res === 0).toBeTruthy();
   });
 

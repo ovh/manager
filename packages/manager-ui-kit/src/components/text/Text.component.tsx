@@ -1,15 +1,16 @@
+import { useTranslation } from 'react-i18next';
+
 import {
   Text as OdsText,
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
   TOOLTIP_POSITION,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
 } from '@ovhcloud/ods-react';
-import { useTranslation } from 'react-i18next';
-import './translations';
 
 import { useAuthorizationIam } from '../../hooks/iam';
 import { TextProps } from './Text.props';
+import './translations';
 
 export const Text = ({
   children,

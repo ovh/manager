@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/react';
-import { MESSAGE_VARIANT, MESSAGE_COLOR } from '@ovhcloud/ods-react';
+import { MESSAGE_COLOR, MESSAGE_VARIANT } from '@ovhcloud/ods-react';
 import { ActionBanner, ActionBannerProps } from '@ovh-ux/muk';
 
 export const Default = {
@@ -13,7 +13,7 @@ export const Default = {
   parameters: {
     docs: {
       source: {
-        code: `<ActionBanner 
+        code: `<ActionBanner
   message="This is a test message. <strong>This message is in bold.</strong>"
   color={MESSAGE_COLOR.information}
   dismissible={true}

@@ -1,24 +1,59 @@
 #!/usr/bin/env node
 import { promises as fs } from 'node:fs';
-
+import path from 'node:path';
 import { EMOJIS, MUK_COMPONENTS_SRC } from '../config/muk-config.js';
 import {
   extractOdsComponentsTarball,
   getOdsComponentsPackageMetadata,
 } from '../core/ods-components-tarball-utils.js';
 import { logger } from '../utils/log-manager.js';
+import { toKebabCase } from '../core/file-utils.js';
 
 /**
- * Retrieve all local Manager UI Kit (MUK) components.
- *
- * @returns {Promise<string[]>} - A list of local component folder names.
+ * Recursively retrieve all local Manager UI Kit (MUK) components,
+ * including subcomponents (e.g., form-field-label, modal-body).
+ * Normalizes redundant prefixes like `modal-modal-body` → `modal-body`.
  */
-async function getLocalComponents() {
-  const entries = await fs.readdir(MUK_COMPONENTS_SRC, { withFileTypes: true });
-  const componentDirs = entries.filter((e) => e.isDirectory()).map((e) => e.name);
+async function getLocalComponents(baseDir = MUK_COMPONENTS_SRC, parent = '') {
+  const entries = await fs.readdir(baseDir, { withFileTypes: true });
+  const components = [];
 
-  logger.info(`${EMOJIS.folder} Found ${componentDirs.length} local components`);
-  return componentDirs;
+  for (const entry of entries) {
+    if (!entry.isDirectory()) continue;
+
+    const folder = entry.name;
+    const fullPath = path.join(baseDir, folder);
+
+    // Build the compound name
+    let compoundName = parent ? `${parent}-${folder}` : folder;
+
+    // 🧠 Normalize redundant prefixes: "modal-modal-body" → "modal-body"
+    if (parent && compoundName.startsWith(`${parent}-${parent}-`)) {
+      compoundName = compoundName.replace(`${parent}-${parent}-`, `${parent}-`);
+    }
+
+    // Also handle direct duplication: "form-field-form-field-label" → "form-field-label"
+    const doublePrefixRegex = new RegExp(`^(${parent})-\\1-`);
+    if (doublePrefixRegex.test(compoundName)) {
+      compoundName = compoundName.replace(doublePrefixRegex, `$1-`);
+    }
+
+    components.push(compoundName);
+
+    // Recurse into potential subcomponents
+    const subEntries = await fs.readdir(fullPath, { withFileTypes: true });
+    const hasNested = subEntries.some((sub) => sub.isDirectory() && sub.name !== '__tests__');
+    if (hasNested) {
+      const subComponents = await getLocalComponents(fullPath, compoundName);
+      components.push(...subComponents);
+    }
+  }
+
+  if (!parent) {
+    logger.info(`${EMOJIS.folder} Found ${components.length} local components (recursive, normalized)`);
+  }
+
+  return components;
 }
 
 /**
@@ -96,12 +131,23 @@ export async function checkComponents({ returnOnly = false } = {}) {
     getRemoteOdsComponents(),
   ]);
 
-  const missingComponents = remoteComponents.filter((remote) => !localComponents.includes(remote));
-  const extraLocalComponents = localComponents.filter((local) => !remoteComponents.includes(local));
+  const normalizedLocal = localComponents.map(toKebabCase);
+  const normalizedRemote = remoteComponents.map(toKebabCase);
 
-  if (returnOnly) {
-    return { missingComponents, extraLocalComponents };
-  }
+  const missingComponents = normalizedRemote.filter((remote) => {
+    // If exact match exists, OK
+    if (normalizedLocal.includes(remote)) return false;
+
+    // Otherwise, check if parent folder exists locally
+    const parent = remote.split('-')[0]; // e.g. tabs-tab → tabs
+    return !normalizedLocal.includes(parent);
+  });
+
+  const extraLocalComponents = normalizedLocal.filter(
+    (local) => !normalizedRemote.includes(local),
+  );
+
+  if (returnOnly) return { missingComponents, extraLocalComponents };
 
   logger.info(
     `ℹ ODS Components: ${remoteComponents.length}, Local Components: ${localComponents.length}`,

@@ -1,4 +1,5 @@
-import { ReactNode, ComponentProps, PropsWithChildren } from 'react';
+import { ComponentProps, PropsWithChildren, ReactNode } from 'react';
+
 import { OnboardingLayoutButtonProps } from './onboarding-layout-button';
 
 export type OnboardingLayoutProps = OnboardingLayoutButtonProps &

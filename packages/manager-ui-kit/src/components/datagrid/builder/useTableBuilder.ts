@@ -1,12 +1,13 @@
 import {
+  TableOptions,
   getCoreRowModel,
   getExpandedRowModel,
   getSortedRowModel,
-  TableOptions,
 } from '@tanstack/react-table';
-import { getExpandable, getRowSelection } from './TableHeaderBuilder';
-import { TableBuilderProps } from './TableBuilderProps.props';
+
 import { ExpandableRow } from '../useDatagrid.props';
+import { TableBuilderProps } from './TableBuilderProps.props';
+import { getExpandable, getRowSelection } from './TableHeaderBuilder';
 
 export const useTableBuilder = <T extends ExpandableRow<T>>({
   columns,

@@ -1,5 +1,5 @@
-import { HTMLBadgeElement } from './TagsStack.type';
 import { MORE_TAGS_ICON_WIDTH } from './TagsStack.constants';
+import { HTMLBadgeElement } from './TagsStack.type';
 
 const getBadgeSpacings = (badgeStyles: CSSStyleDeclaration) => {
   return (
@@ -64,9 +64,7 @@ export const getVisibleTagCount = (
         currentLine += 1;
         // allocate space for displaying more tags link for the last line
         availableWidth =
-          containerWidth -
-          textWidth -
-          (currentLine === maxLines ? MORE_TAGS_ICON_WIDTH : 0);
+          containerWidth - textWidth - (currentLine === maxLines ? MORE_TAGS_ICON_WIDTH : 0);
       } else {
         break;
       }

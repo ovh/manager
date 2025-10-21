@@ -1,0 +1,132 @@
+import { Icon, ICON_NAME } from '@ovhcloud/ods-react';
+import { Canvas, Meta } from '@storybook/blocks';
+import * as LinkStories from './link.stories';
+import { Banner } from '../../../base-documents/components/banner/Banner';
+import { BestPractices } from '../../../base-documents/components/bestPractices/BestPractices';
+import { Canvas as OdsCanvas } from '../../../base-documents/components/canvas/Canvas';
+import { ExternalLink } from '../../../base-documents/components/externalLink/ExternalLink';
+import { Heading } from '../../../base-documents/components/heading/Heading';
+import { IdentityCard } from '../../../base-documents/components/identityCard/IdentityCard';
+
+<Meta of={ LinkStories } name="Documentation" />
+
+<Banner of={ LinkStories } />
+
+_**Link** is a component that enables redirection to a new page, section, website or other resources:_
+
+<Canvas of={ LinkStories.Overview } sourceState="none" />
+
+<Heading label="Overview" level={ 2 } />
+
+<IdentityCard aliases={ ['Hyperlink', 'Anchor'] }
+              figmaLink="https://www.figma.com/design/9jDDTcR4a9jPRFcdjawAlf/ODS---UI-Kit?node-id=44-6837"
+              githubUrl="@ovhcloud/ods-react"
+              name="Link">
+  A **Link** allows users to move through a website by redirecting them to a different page or section.
+
+  It can also enables **Links** to other resources.
+</IdentityCard>
+
+<Heading label="Usage" level={ 2 } />
+
+**Links** are used as navigational elements.
+
+They are also used when linking to another document. In that case, **Link** description should contain type and size of document.
+
+<Heading label="When to use a link or a button?" level={ 3 } />
+
+Links and buttons serve different purposes, and using them correctly improves both accessibility and user experience.
+
+* Use a link when the action navigates the user to another page or resource, either within your application or to an external site
+* Use a button when the action performs a function or triggers a behavior on the current page, like submitting a form, opening a modal, or toggling a menu.
+
+A button should not mimic a link. It can lead to confusion for users and assistive technologies, as buttons are not typically expected to handle navigation.
+
+<Heading label="Dos & Don'ts" level={ 3 } />
+
+<BestPractices
+  donts={[
+    '- Don\'t use a link to perform actions like "save", "submit", or "cancel", use a button for that',
+    '- Don\'t use vague text like "Click here" or "Read more", it provides no context for screen readers or SEO',
+    '- Don\'t write entire sentences as link label',
+    '- Don\'t apply different colors to a link and its adjacent icon. They should appear as one cohesive element',
+    '- Don\'t open a link in a new tab or window unless it\'s clearly indicated and necessary (e.g., for external sites)',
+    '- Don\'t forget to set appropriate rel attributes (e.g., rel="noopener noreferrer") for external links opened in new tabs',
+  ]}
+  dos={[
+    '- Use a link to navigate to another page, section, or external website, not to trigger actions',
+    '- Make link labels clear and descriptive, so users understand where the link will take them',
+    '- Keep link labels short ideally 1–4 words',
+    '- Indicate when a link leads to a document or file by including its type and size (e.g., "Annual Report (PDF, 1.2MB)")',
+    '- Optionally include an icon, but ensure it\'s styled consistently with the link label',
+  ]}
+/>
+
+<Heading label="Best Practices in Context" level={ 3 } />
+
+![Component anatomy](/assets/base-assets/components/link/anatomy.png "Component anatomy")
+
+1. **Link**
+2. **Label** - optional
+3. **Icon** - optional (left or right)
+
+<Heading label="Placement" level={ 2 } />
+
+A **Link** can stand alone on a page, or it can be placed within a sentence or a paragraph.
+
+<Heading label="Behavior" level={ 2 } />
+
+**Link** component can be hovered, focused, clicked and disabled.
+
+When disabled, users cannot focus nor click on the **Link**.
+
+On hover, **Link** is underlined and its color changes.
+
+An optional icon can be displayed on the left or right of the **Link** label content. Icon-only **Link** also exists but it must meet accessibility requirements. See Accessibility section below.
+
+When users clicks anywhere on the **Link**, even its optional icon, they are redirected to the expected page or section.
+
+<Heading label="Navigation" level={ 2 } />
+
+<Heading label="Focus Management" level={ 3 } />
+
+The **Link** component can receive keyboard focus and is part of the standard tab order.
+
+<Heading label="General Keyboard Shortcuts" level={ 3 } />
+
+Pressing `Enter` while a **Link** is focused activates it, navigating to the associated destination.
+
+Pressing `Shift` + `Tab` moves focus to the previous interactive element.
+
+If a **Link** opens in a new tab, focus remains on the original page unless otherwise specified.
+
+<Heading label="Accessibility" level={ 2 } />
+
+This component complies with the <ExternalLink href="https://www.w3.org/WAI/ARIA/apg/patterns/link/">Link WAI-ARIA design pattern</ExternalLink>.
+
+<Heading label="Icon-only Link" level={ 3 } />
+
+If a **Link** is represented only by an **Icon**, it must have an explicit accessible label to provide context about its destination or action.
+
+<OdsCanvas of={ LinkStories.AccessibilityIconOnlyLink } sourceState="shown" />
+
+<Icon name={ ICON_NAME.circleCheck }
+      style={{ color: 'var(--ods-color-success-500)' }} /> Screen readers will announce the link and its label.
+
+<Heading label="Link opening in a new tab" level={ 3 } />
+
+When a **Link** opens in a new tab (`target="_blank"`), users should be informed to avoid confusion. This can be done by adding a visual indicator (e.g., Icon: "external") and using `aria-label` to provide context.
+
+<OdsCanvas of={ LinkStories.AccessibilityInANewTab } sourceState="shown" />
+
+<Icon name={ ICON_NAME.circleCheck }
+      style={{ color: 'var(--ods-color-success-500)' }} /> The screen reader will announce the link, the opening in a new tab behavior and the link label.
+
+<Heading label="Downloadable files" level={ 3 } />
+
+If a **Link** points to a file download, it should include the file type and size information.
+
+<OdsCanvas of={ LinkStories.AccessibilityFileDownload } sourceState="shown" />
+
+<Icon name={ ICON_NAME.circleCheck }
+      style={{ color: 'var(--ods-color-success-500)' }} /> Screen readers will announce the link, the link label with the file name, type and size, ensuring users know they are downloading a file.

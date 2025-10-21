@@ -1,12 +1,11 @@
 import { useMemo } from 'react';
+
 import { FilterCategories } from '@ovh-ux/manager-core-api';
+
 import { ColumnFilter } from '../../filters';
 import { UseDatagridTopbarProps } from './useDatagridTopbar.props';
 
-export const useDatagridTopbar = <T,>({
-  columns,
-  visibleColumns,
-}: UseDatagridTopbarProps<T>) => {
+export const useDatagridTopbar = <T,>({ columns, visibleColumns }: UseDatagridTopbarProps<T>) => {
   const hasVisibilityFeature = useMemo(
     () => visibleColumns?.some((col) => col.columnDef?.enableHiding),
     [visibleColumns],
@@ -16,9 +15,7 @@ export const useDatagridTopbar = <T,>({
       columns
         ?.filter(
           (item) =>
-            ('comparator' in item || 'type' in item) &&
-            'isFilterable' in item &&
-            item.isFilterable,
+            ('comparator' in item || 'type' in item) && 'isFilterable' in item && item.isFilterable,
         )
         .map((column) => ({
           id: column.id || '',

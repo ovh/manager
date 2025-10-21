@@ -1,10 +1,12 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+
 import { v6 } from '@ovh-ux/manager-core-api';
+
+import { useQuery } from '../../infra/tanstack/use-query';
 import { UseDataApiResult } from '../../ports/use-data-api/useDataApi.types';
 import { useDataRetrievalOperations } from '../../utils/data-retrieval-operations/useDataRetrievalOperations';
-import { useQuery } from '../../infra/tanstack/use-query';
-import { ResourcesV6Params, FetchV6Result } from './v6.type';
 import { useFilterAndSortData } from './filter-and-sort-data/useFilterAndSortData';
+import { FetchV6Result, ResourcesV6Params } from './v6.type';
 
 export const useV6 = <TData = Record<string, unknown>>({
   route = '',
@@ -31,15 +33,16 @@ export const useV6 = <TData = Record<string, unknown>>({
   const [totalCount, setTotalCount] = useState(0);
   const [flattenData, setFlattenData] = useState<TData[]>([]);
 
-  const { data, error, isError, isFetching, isLoading, isSuccess, status } =
-    useQuery<FetchV6Result<TData>>({
-      cacheKey: [cacheKey],
-      fetchDataFn: () => {
-        return fetchDataFn ? fetchDataFn(route) : v6.get(route);
-      },
-      refetchInterval: refetchInterval || false,
-      enabled,
-    });
+  const { data, error, isError, isFetching, isLoading, isSuccess, status } = useQuery<
+    FetchV6Result<TData>
+  >({
+    cacheKey: [cacheKey],
+    fetchDataFn: () => {
+      return fetchDataFn ? fetchDataFn(route) : v6.get(route);
+    },
+    refetchInterval: refetchInterval || false,
+    enabled,
+  });
 
   const { filteredAndSortedData } = useFilterAndSortData({
     items: data?.data,

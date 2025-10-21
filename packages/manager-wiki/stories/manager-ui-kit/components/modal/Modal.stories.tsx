@@ -2,12 +2,12 @@ import React from 'react';
 import { MODAL_COLOR } from '@ovhcloud/ods-react';
 import { Modal } from '@ovh-ux/muk';
 import {
-  basic as basicMock,
   actions as actionsMock,
-  type as typeMock,
+  basic as basicMock,
   loading as loadingMock,
   other as otherMock,
   step as stepMock,
+  type as typeMock,
 } from './Modal.mock';
 
 const ModalStory = ({
@@ -45,7 +45,7 @@ Basic.parameters = {
   },
   docs: {
     source: {
-      code: `<Modal 
+      code: `<Modal
   heading="Example of modal"
   open={true}
 >
@@ -65,7 +65,7 @@ Actions.parameters = {
   },
   docs: {
     source: {
-      code: `<Modal 
+      code: `<Modal
   heading="Example of modal"
   open={true}
   primaryButton={{
@@ -97,7 +97,7 @@ Type.parameters = {
   },
   docs: {
     source: {
-      code: `<Modal 
+      code: `<Modal
   heading="Example of modal"
   type={MODAL_COLOR.warning}
   open={true}
@@ -130,7 +130,7 @@ Loading.parameters = {
   },
   docs: {
     source: {
-      code: `<Modal 
+      code: `<Modal
   heading="Example of modal"
   loading={true}
   open={true}
@@ -163,7 +163,7 @@ Step.parameters = {
   },
   docs: {
     source: {
-      code: `<Modal 
+      code: `<Modal
   heading="Example of modal"
   open={true}
   step={{

@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { getMacroRegion } from './useTranslatedMicroRegions.utils';
 
 export const useTranslatedMicroRegions = () => {

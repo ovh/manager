@@ -1,4 +1,5 @@
 import { vi } from 'vitest';
+
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
 
 // Mock IAM hook response

@@ -1,5 +1,7 @@
 import { memo } from 'react';
+
 import { flexRender } from '@tanstack/react-table';
+
 import { TableHeaderContentProps } from '../TableHeaderContent.props';
 import { TableHeaderSorting } from '../table-header-sorting/TableHeaderSorting.component';
 
@@ -26,17 +28,9 @@ const TableHeaderContentComponent = <T,>({
           >
             {!header.isPlaceholder &&
               (enableSorting && onSortChange ? (
-                <TableHeaderSorting
-                  header={header}
-                  onSortChange={onSortChange}
-                />
+                <TableHeaderSorting header={header} onSortChange={onSortChange} />
               ) : (
-                <>
-                  {flexRender(
-                    header.column.columnDef.header,
-                    header.getContext(),
-                  )}
-                </>
+                <>{flexRender(header.column.columnDef.header, header.getContext())}</>
               ))}
           </th>
         ))}
@@ -45,8 +39,6 @@ const TableHeaderContentComponent = <T,>({
   </thead>
 );
 
-export const TableHeaderContent = memo(TableHeaderContentComponent) as <
-  T = unknown,
->(
+export const TableHeaderContent = memo(TableHeaderContentComponent) as <T = unknown>(
   props: TableHeaderContentProps<T>,
 ) => JSX.Element;

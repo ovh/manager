@@ -1,8 +1,10 @@
 import React from 'react';
+
+import { render, screen } from '@testing-library/react';
 import { vitest } from 'vitest';
-import { screen, render } from '@testing-library/react';
-import Price from '../Price.component';
+
 import { IntervalUnitType, OvhSubsidiary } from '../../../enumTypes';
+import Price from '../Price.component';
 
 vitest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -12,11 +14,9 @@ vitest.mock('react-i18next', () => ({
 
 // Mock sub-components
 vitest.mock('../price-text', async () => {
-  const PriceText = ({
-    price = '',
-    label = '',
-    intervalUnitText = '',
-  }: any) => <span>{`${price} ${label} ${intervalUnitText} `}</span>;
+  const PriceText = ({ price = '', label = '', intervalUnitText = '' }: any) => (
+    <span>{`${price} ${label} ${intervalUnitText} `}</span>
+  );
   return {
     PriceTextPreset: {
       WITH_TAX: 'with-tax',
@@ -116,9 +116,7 @@ describe('Price component', () => {
     };
     renderPriceComponent(props);
     const priceElementTTC = screen.getByText('$3.29', { exact: false });
-    expect(priceElementTTC).toHaveTextContent(
-      '$3.29 price_gst_excl_label price_per_month',
-    );
+    expect(priceElementTTC).toHaveTextContent('$3.29 price_gst_excl_label price_per_month');
   });
 
   it('renders a price Deutch correctly', () => {

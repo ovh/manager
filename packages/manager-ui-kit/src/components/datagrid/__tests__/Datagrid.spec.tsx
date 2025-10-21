@@ -1,29 +1,30 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { screen, fireEvent } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { render } from '@/setupTest';
-import { Datagrid } from '../Datagrid.component';
+
 import { useAuthorizationIam } from '../../../hooks/iam';
 import { IamAuthorizationResponse } from '../../../hooks/iam/iam.interface';
+import { Datagrid } from '../Datagrid.component';
 import {
-  mockIamResponse,
   mockBasicColumns,
+  mockColumnVisibility,
   mockColumns,
   mockData,
-  mockOnSortChange,
-  mockSearch,
   mockFilters,
-  mockColumnVisibility,
-  mockSetColumnVisibility,
+  mockIamResponse,
+  mockOnFetchAllPages,
+  mockOnFetchNextPage,
+  mockOnSortChange,
   mockRenderSubComponent,
   mockRowSelection,
-  mockOnFetchNextPage,
-  mockOnFetchAllPages,
+  mockSearch,
+  mockSetColumnVisibility,
 } from '../__mocks__';
 
 vi.mock('../../../hooks/iam');
 
-const mockedHook =
-  useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
+const mockedHook = useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
 
 const virtualWindowStart = 0;
 const virtualWindowSize = 20;
@@ -78,15 +79,9 @@ describe('Datagrid', () => {
 
     it('should apply container height styles', () => {
       const { container } = render(
-        <Datagrid
-          columns={mockBasicColumns}
-          data={mockData}
-          containerHeight={400}
-        />,
+        <Datagrid columns={mockBasicColumns} data={mockData} containerHeight={400} />,
       );
-      const tableContainer = container.querySelector(
-        '.overflow-auto.relative.w-full',
-      );
+      const tableContainer = container.querySelector('.overflow-auto.relative.w-full');
       expect(tableContainer).toHaveStyle('height: 400px');
     });
   });
@@ -94,34 +89,20 @@ describe('Datagrid', () => {
   describe('Topbar Features', () => {
     it('should render custom topbar', () => {
       const customTopbar = <div data-testid="custom-topbar">Custom Topbar</div>;
-      render(
-        <Datagrid
-          columns={mockBasicColumns}
-          data={mockData}
-          topbar={customTopbar}
-        />,
-      );
+      render(<Datagrid columns={mockBasicColumns} data={mockData} topbar={customTopbar} />);
 
       expect(screen.getByTestId('custom-topbar')).toBeInTheDocument();
     });
 
     it('should render search when enabled', () => {
-      render(
-        <Datagrid columns={mockColumns} data={mockData} search={mockSearch} />,
-      );
+      render(<Datagrid columns={mockColumns} data={mockData} search={mockSearch} />);
 
       expect(screen.getByTestId('topbar-container')).toBeInTheDocument();
       expect(screen.getByRole('searchbox')).toBeInTheDocument();
     });
 
     it('should render filters when enabled', () => {
-      render(
-        <Datagrid
-          columns={mockColumns}
-          data={mockData}
-          filters={mockFilters}
-        />,
-      );
+      render(<Datagrid columns={mockColumns} data={mockData} filters={mockFilters} />);
 
       expect(screen.getByTestId('topbar-container')).toBeInTheDocument();
       expect(screen.getByTestId('datagrid-topbar-filters')).toBeInTheDocument();
@@ -166,9 +147,7 @@ describe('Datagrid', () => {
       const NameHeaderButton = screen.getByText('name');
       expect(NameHeaderButton).toBeInTheDocument();
       fireEvent.click(NameHeaderButton);
-      expect(mockOnSortChange).toHaveBeenCalledWith([
-        { id: 'name', desc: true },
-      ]);
+      expect(mockOnSortChange).toHaveBeenCalledWith([{ id: 'name', desc: true }]);
     });
 
     it('should handle manual sorting', () => {
@@ -191,18 +170,14 @@ describe('Datagrid', () => {
 
   describe('Search & Filter Interactions', () => {
     it('should handle search input changes', () => {
-      render(
-        <Datagrid columns={mockColumns} data={mockData} search={mockSearch} />,
-      );
+      render(<Datagrid columns={mockColumns} data={mockData} search={mockSearch} />);
       const searchInput = screen.getByRole('searchbox');
       fireEvent.change(searchInput, { target: { value: 'new search' } });
       expect(mockSearch.setSearchInput).toHaveBeenCalledWith('new search');
     });
 
     it('should handle search form submission', () => {
-      render(
-        <Datagrid columns={mockColumns} data={mockData} search={mockSearch} />,
-      );
+      render(<Datagrid columns={mockColumns} data={mockData} search={mockSearch} />);
 
       const form = screen.getByRole('searchbox').closest('form');
       fireEvent.submit(form!);
@@ -223,13 +198,7 @@ describe('Datagrid', () => {
         ],
       };
 
-      render(
-        <Datagrid
-          columns={mockColumns}
-          data={mockData}
-          filters={filtersWithData}
-        />,
-      );
+      render(<Datagrid columns={mockColumns} data={mockData} filters={filtersWithData} />);
       expect(screen.getByTestId('datagrid-filter-list')).toBeInTheDocument();
     });
   });
@@ -286,32 +255,18 @@ describe('Datagrid', () => {
 
   describe('Footer & Results', () => {
     it('should render footer with items count and total count', () => {
-      render(
-        <Datagrid
-          columns={mockBasicColumns}
-          data={mockData}
-          totalCount={100}
-        />,
-      );
+      render(<Datagrid columns={mockBasicColumns} data={mockData} totalCount={100} />);
       expect(screen.getByText('2 sur 100 résultats')).toBeInTheDocument();
     });
 
     it('should render footer with only items count when totalCount is provided', () => {
-      render(
-        <Datagrid
-          columns={mockBasicColumns}
-          data={mockData}
-          totalCount={100}
-        />,
-      );
+      render(<Datagrid columns={mockBasicColumns} data={mockData} totalCount={100} />);
 
       expect(screen.getByText('2 sur 100 résultats')).toBeInTheDocument();
     });
 
     it('should render footer with zero items count', () => {
-      render(
-        <Datagrid columns={mockBasicColumns} data={[]} totalCount={100} />,
-      );
+      render(<Datagrid columns={mockBasicColumns} data={[]} totalCount={100} />);
       expect(screen.getByText('0 sur 100 résultats')).toBeInTheDocument();
     });
   });
@@ -319,11 +274,7 @@ describe('Datagrid', () => {
   describe('Advanced Features', () => {
     it('should handle row selection', () => {
       const { container } = render(
-        <Datagrid
-          columns={mockBasicColumns}
-          data={mockData}
-          rowSelection={mockRowSelection}
-        />,
+        <Datagrid columns={mockBasicColumns} data={mockData} rowSelection={mockRowSelection} />,
       );
       const targetDiv = container.querySelector('thead tr th label');
       expect(targetDiv).toBeInTheDocument();
@@ -361,24 +312,12 @@ describe('Datagrid', () => {
     });
 
     it('should handle content alignment left', () => {
-      render(
-        <Datagrid
-          columns={mockBasicColumns}
-          data={mockData}
-          contentAlignLeft={true}
-        />,
-      );
+      render(<Datagrid columns={mockBasicColumns} data={mockData} contentAlignLeft={true} />);
       expect(screen.getByText('name')).toHaveClass('pl-4');
     });
 
     it('should handle content alignment center', () => {
-      render(
-        <Datagrid
-          columns={mockBasicColumns}
-          data={mockData}
-          contentAlignLeft={false}
-        />,
-      );
+      render(<Datagrid columns={mockBasicColumns} data={mockData} contentAlignLeft={false} />);
       expect(screen.getByText('name')).toHaveClass('text-center');
     });
   });

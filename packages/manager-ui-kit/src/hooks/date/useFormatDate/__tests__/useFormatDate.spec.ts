@@ -1,5 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { vitest } from 'vitest';
+
 import { useFormatDate } from '../useFormatDate';
 import { DEFAULT_UNKNOWN_DATE_LABEL } from '../useFormatDate.type';
 
@@ -91,15 +92,10 @@ describe('useFormatDate', () => {
       format: 'PPPpp',
       expected: '14 janvier 2024 à 09:21:21',
     },
-  ])(
-    'displays %s if the date is %s',
-    async ({ dateString, format, expected }) => {
-      const { result } = renderHook(() => useFormatDate());
-      expect(result.current({ date: dateString || undefined, format })).toBe(
-        expected,
-      );
-    },
-  );
+  ])('displays %s if the date is %s', async ({ dateString, format, expected }) => {
+    const { result } = renderHook(() => useFormatDate());
+    expect(result.current({ date: dateString || undefined, format })).toBe(expected);
+  });
 
   it('should return invalidDateDisplayLabel when formatDateFns throws an exception', () => {
     const customInvalidLabel = 'Custom Invalid Date';

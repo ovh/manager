@@ -1,4 +1,5 @@
 import { renderHook } from '@testing-library/react';
+
 import { useBytes } from './useBytes';
 
 describe('useBytes', () => {

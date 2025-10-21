@@ -1,6 +1,8 @@
-import { describe, it, expect } from 'vitest';
 import { render } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+
 import { BADGE_COLOR, BADGE_SIZE } from '@ovhcloud/ods-react';
+
 import { Badge } from '../badge.component';
 
 describe('Badge Snapshot Tests', () => {

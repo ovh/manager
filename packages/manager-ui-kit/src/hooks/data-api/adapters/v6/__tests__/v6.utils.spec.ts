@@ -1,5 +1,7 @@
 import { describe, it } from 'vitest';
+
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
+
 import { getDataType } from '../v6.utils';
 
 describe('getDataType Function', () => {

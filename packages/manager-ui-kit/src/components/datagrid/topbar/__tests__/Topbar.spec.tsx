@@ -1,7 +1,10 @@
-import { describe, it, expect, vi } from 'vitest';
-import { screen, fireEvent } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
+
 import { render } from '@/setupTest';
+
 import { Topbar } from '../Topbar.component';
 
 // Mock the IAM hook
@@ -157,9 +160,7 @@ describe('Topbar', () => {
         toggleAllColumnsVisible={vi.fn()}
       />,
     );
-    expect(
-      screen.queryByTestId('datagrid-topbar-filters'),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByTestId('datagrid-topbar-filters')).not.toBeInTheDocument();
   });
 
   it('should render column visibility when enabled', () => {
@@ -236,9 +237,7 @@ describe('Topbar', () => {
         toggleAllColumnsVisible={vi.fn()}
       />,
     );
-    expect(
-      screen.queryByTestId('datagrid-filter-list'),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByTestId('datagrid-filter-list')).not.toBeInTheDocument();
   });
 
   it('should render all features when enabled', () => {

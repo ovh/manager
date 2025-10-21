@@ -1,18 +1,22 @@
 import { ElementRef, ForwardedRef, forwardRef, useMemo } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import {
-  Button,
   BUTTON_VARIANT,
-  Modal as OdsModal,
+  Button,
+  MODAL_COLOR,
   ModalBody,
   ModalContent,
-  MODAL_COLOR,
-  Spinner,
+  Modal as OdsModal,
   SPINNER_SIZE,
-  Text,
+  Spinner,
   TEXT_PRESET,
+  Text,
 } from '@ovhcloud/ods-react';
-import { useTranslation } from 'react-i18next';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { ModalProps } from './Modal.props';
 
 export const Modal = forwardRef(
@@ -33,10 +37,7 @@ export const Modal = forwardRef(
   ) => {
     const { t } = useTranslation(NAMESPACES.FORM);
     const buttonColor = useMemo(
-      () =>
-        type === MODAL_COLOR.critical
-          ? MODAL_COLOR.critical
-          : MODAL_COLOR.primary,
+      () => (type === MODAL_COLOR.critical ? MODAL_COLOR.critical : MODAL_COLOR.primary),
       [type],
     );
 
@@ -46,25 +47,21 @@ export const Modal = forwardRef(
           <ModalBody ref={ref} className="text-left">
             {heading && (
               <div className="flex items-center mb-4">
-                <Text
-                  className="block mr-3 flex-1"
-                  preset={TEXT_PRESET.heading4}
-                >
+                <Text className="block mr-3 flex-1" preset={TEXT_PRESET.heading4}>
                   {heading}
                 </Text>
-                {Number.isInteger(step?.current) &&
-                  Number.isInteger(step?.total) && (
-                    <Text
-                      className="ml-auto"
-                      preset={TEXT_PRESET.caption}
-                      data-testid="step-placeholder"
-                    >
-                      {t('stepPlaceholder', {
-                        current: step.current,
-                        total: step.total,
-                      })}
-                    </Text>
-                  )}
+                {Number.isInteger(step?.current) && Number.isInteger(step?.total) && (
+                  <Text
+                    className="ml-auto"
+                    preset={TEXT_PRESET.caption}
+                    data-testid="step-placeholder"
+                  >
+                    {t('stepPlaceholder', {
+                      current: step.current,
+                      total: step.total,
+                    })}
+                  </Text>
+                )}
               </div>
             )}
             {loading && (

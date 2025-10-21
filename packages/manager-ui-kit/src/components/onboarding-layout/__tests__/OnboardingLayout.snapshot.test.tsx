@@ -1,9 +1,11 @@
-import { vitest } from 'vitest';
 import type { MockInstance } from 'vitest';
+import { vitest } from 'vitest';
+
 import { render } from '@/setupTest';
-import { OnboardingLayout } from '../OnboardingLayout.component';
-import { LinkCard } from '../../link-card/LinkCard.component';
+
 import { useAuthorizationIam } from '../../../hooks/iam';
+import { LinkCard } from '../../link-card/LinkCard.component';
+import { OnboardingLayout } from '../OnboardingLayout.component';
 
 vitest.mock('../../../hooks/iam', () => ({
   useAuthorizationIam: vitest.fn().mockReturnValue({
@@ -256,8 +258,7 @@ describe('OnboardingLayout Snapshot Tests', () => {
             externalHref={true}
             texts={{
               title: 'Kubernetes',
-              description:
-                'Orchestrate your containers with managed Kubernetes',
+              description: 'Orchestrate your containers with managed Kubernetes',
               category: 'Container',
             }}
             hrefLabel="View docs"

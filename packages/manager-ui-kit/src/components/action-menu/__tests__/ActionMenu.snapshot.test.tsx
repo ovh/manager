@@ -1,20 +1,12 @@
-import {
-  describe,
-  expect,
-  it,
-  vi,
-  beforeEach,
-  type MockInstance,
-} from 'vitest';
-import { act, screen, fireEvent } from '@testing-library/react';
-import {
-  POPOVER_POSITION,
-  ICON_NAME,
-  BUTTON_VARIANT,
-} from '@ovhcloud/ods-react';
-import { ActionMenu } from '../index';
+import { act, fireEvent, screen } from '@testing-library/react';
+import { type MockInstance, beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { BUTTON_VARIANT, ICON_NAME, POPOVER_POSITION } from '@ovhcloud/ods-react';
+
+import { useAuthorizationIam } from '@/hooks';
 import { render } from '@/setupTest';
-import { useAuthorizationIam } from '../../../hooks/iam';
+
+import { ActionMenu } from '../index';
 
 // Mock the IAM hook
 vi.mock('../../../hooks/iam');
@@ -45,9 +37,7 @@ describe('ActionMenu Snapshot Tests', () => {
     },
     {
       id: 4,
-      href: `data:text/json;charset=utf-8,${encodeURIComponent(
-        JSON.stringify({ name: 'john' }),
-      )}`,
+      href: `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify({ name: 'john' }))}`,
       download: 'test.json',
       target: '_blank',
       label: 'Download File',
@@ -126,11 +116,7 @@ describe('ActionMenu Snapshot Tests', () => {
     it('should match snapshot with outline variant', () => {
       const { container } = render(
         <div data-testid="navigation-action-trigger-action">
-          <ActionMenu
-            id="outline-variant"
-            items={baseItems}
-            variant={BUTTON_VARIANT.outline}
-          />
+          <ActionMenu id="outline-variant" items={baseItems} variant={BUTTON_VARIANT.outline} />
         </div>,
       );
       expect(container.firstChild).toMatchSnapshot('outline-variant');
@@ -139,11 +125,7 @@ describe('ActionMenu Snapshot Tests', () => {
     it('should match snapshot with ghost variant', () => {
       const { container } = render(
         <div data-testid="navigation-action-trigger-action">
-          <ActionMenu
-            id="ghost-variant"
-            items={baseItems}
-            variant={BUTTON_VARIANT.ghost}
-          />
+          <ActionMenu id="ghost-variant" items={baseItems} variant={BUTTON_VARIANT.ghost} />
         </div>,
       );
       expect(container.firstChild).toMatchSnapshot('ghost-variant');
@@ -152,11 +134,7 @@ describe('ActionMenu Snapshot Tests', () => {
     it('should match snapshot with default variant', () => {
       const { container } = render(
         <div data-testid="navigation-action-trigger-action">
-          <ActionMenu
-            id="default-variant"
-            items={baseItems}
-            variant={BUTTON_VARIANT.default}
-          />
+          <ActionMenu id="default-variant" items={baseItems} variant={BUTTON_VARIANT.default} />
         </div>,
       );
       expect(container.firstChild).toMatchSnapshot('default-variant');
@@ -201,11 +179,7 @@ describe('ActionMenu Snapshot Tests', () => {
     it('should match snapshot with custom label', () => {
       const { container } = render(
         <div data-testid="navigation-action-trigger-action">
-          <ActionMenu
-            id="custom-label-menu"
-            items={baseItems}
-            label="Custom Actions"
-          />
+          <ActionMenu id="custom-label-menu" items={baseItems} label="Custom Actions" />
         </div>,
       );
       expect(container.firstChild).toMatchSnapshot('custom-label');
@@ -214,11 +188,7 @@ describe('ActionMenu Snapshot Tests', () => {
     it('should match snapshot with custom icon', () => {
       const { container } = render(
         <div data-testid="navigation-action-trigger-action">
-          <ActionMenu
-            id="custom-icon-menu"
-            items={baseItems}
-            icon={ICON_NAME.plus}
-          />
+          <ActionMenu id="custom-icon-menu" items={baseItems} icon={ICON_NAME.plus} />
         </div>,
       );
       expect(container.firstChild).toMatchSnapshot('custom-icon');
@@ -251,9 +221,7 @@ describe('ActionMenu Snapshot Tests', () => {
         </div>,
       );
       act(() => {
-        const actionMenuIcon = screen.getByTestId(
-          'navigation-action-trigger-action',
-        );
+        const actionMenuIcon = screen.getByTestId('navigation-action-trigger-action');
         fireEvent.click(actionMenuIcon);
       });
       expect(container.firstChild).toMatchSnapshot('top-position');
@@ -270,9 +238,7 @@ describe('ActionMenu Snapshot Tests', () => {
         </div>,
       );
       act(() => {
-        const actionMenuIcon = screen.getByTestId(
-          'navigation-action-trigger-action',
-        );
+        const actionMenuIcon = screen.getByTestId('navigation-action-trigger-action');
         fireEvent.click(actionMenuIcon);
       });
       expect(container.firstChild).toMatchSnapshot('right-position');
@@ -289,9 +255,7 @@ describe('ActionMenu Snapshot Tests', () => {
         </div>,
       );
       act(() => {
-        const actionMenuIcon = screen.getByTestId(
-          'navigation-action-trigger-action',
-        );
+        const actionMenuIcon = screen.getByTestId('navigation-action-trigger-action');
         fireEvent.click(actionMenuIcon);
       });
       expect(container.firstChild).toMatchSnapshot('left-position');
@@ -405,9 +369,7 @@ describe('ActionMenu Snapshot Tests', () => {
         </div>,
       );
       act(() => {
-        const actionMenuIcon = screen.getByTestId(
-          'navigation-action-trigger-action',
-        );
+        const actionMenuIcon = screen.getByTestId('navigation-action-trigger-action');
         fireEvent.click(actionMenuIcon);
       });
       expect(container.firstChild).toMatchSnapshot('mixed-item-types');

@@ -1,9 +1,12 @@
-import AxiosMockAdapter from 'axios-mock-adapter';
 import { screen, waitFor } from '@testing-library/react';
+import AxiosMockAdapter from 'axios-mock-adapter';
+
 import apiClient from '@ovh-ux/manager-core-api';
+
+import { render } from '@/setupTest';
+
 import { Link } from '../Link.component';
 import { LinkType } from '../Link.props';
-import { render } from '@/setupTest';
 
 const PROPS_LINK = {
   children: 'Link',
@@ -32,9 +35,7 @@ describe('Link component', () => {
     const linkElement = screen.getByText('Back to the list');
     expect(linkElement).toBeInTheDocument();
 
-    const iconElement = linkElement
-      .closest('a')
-      ?.querySelector('[class*="arrow-left"]');
+    const iconElement = linkElement.closest('a')?.querySelector('[class*="arrow-left"]');
     expect(iconElement).toBeInTheDocument();
     expect(linkElement).toHaveAttribute('href', 'https://www.example.com');
   });
@@ -49,9 +50,7 @@ describe('Link component', () => {
     const linkElement = screen.getByText('Next Page');
     expect(linkElement).toBeInTheDocument();
 
-    const iconElement = linkElement
-      .closest('a')
-      ?.querySelector('[class*="arrow-right"]');
+    const iconElement = linkElement.closest('a')?.querySelector('[class*="arrow-right"]');
     expect(iconElement).toBeInTheDocument();
     expect(linkElement).toHaveAttribute('href', 'https://www.example.com');
   });
@@ -68,9 +67,7 @@ describe('Link component', () => {
     const linkElement = screen.getByText('External Page');
     expect(linkElement).toBeInTheDocument();
 
-    const iconElement = linkElement
-      .closest('a')
-      ?.querySelector('[class*="external-link"]');
+    const iconElement = linkElement.closest('a')?.querySelector('[class*="external-link"]');
     expect(iconElement).toBeInTheDocument();
     expect(linkElement).toHaveAttribute('href', 'https://www.ovhcloud.com/');
   });
@@ -109,14 +106,7 @@ describe('Link component', () => {
       .onPost('/iam/resource/test/authorization/check')
       .reply(200, { authorizedActions: ['subscribe'] });
 
-    render(
-      <Link
-        urn="test"
-        iamActions={['subscribe']}
-        {...PROPS_LINK}
-        disabled={true}
-      />,
-    );
+    render(<Link urn="test" iamActions={['subscribe']} {...PROPS_LINK} disabled={true} />);
     const linkElement = screen.getByText('Link');
     expect(linkElement).toBeInTheDocument();
 

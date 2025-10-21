@@ -1,7 +1,9 @@
 import { vi } from 'vitest';
+
+import { render } from '@/setupTest';
+
 import { GuideMenu } from '../GuideMenu.component';
 import { GuideMenuItem } from '../GuideMenu.props';
-import { render } from '@/setupTest';
 
 describe('GuideMenu', () => {
   const mockItems: GuideMenuItem[] = [
@@ -37,9 +39,7 @@ describe('GuideMenu', () => {
     });
 
     it('should match snapshot with loading state', () => {
-      const { container } = render(
-        <GuideMenu {...defaultProps} isLoading={true} />,
-      );
+      const { container } = render(<GuideMenu {...defaultProps} isLoading={true} />);
       expect(container).toMatchSnapshot();
     });
 

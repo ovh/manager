@@ -1,14 +1,16 @@
-import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
 import {
   Datepicker,
-  DatepickerControl,
   DatepickerContent,
-  Input,
+  DatepickerControl,
   INPUT_TYPE,
+  Input,
   Select,
-  SelectControl,
   SelectContent,
+  SelectControl,
 } from '@ovhcloud/ods-react';
+
+import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
+
 import { FilterSectionValueProps } from './FilterSectionValue.props';
 
 export const FilterSectionValue = ({

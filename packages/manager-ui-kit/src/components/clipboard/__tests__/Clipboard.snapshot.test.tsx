@@ -1,6 +1,7 @@
-import { describe, it, expect, vitest } from 'vitest';
 import { render } from '@testing-library/react';
-import { Clipboard } from '../Clipboard.component';
+import { describe, expect, it } from 'vitest';
+
+import { Clipboard } from '@/components';
 
 describe('Clipboard Snapshot Tests', () => {
   it('Displays Clipboard', () => {

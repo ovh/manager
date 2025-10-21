@@ -1,7 +1,7 @@
 import React from 'react';
 import {
-  withRouter,
   reactRouterParameters,
+  withRouter,
 } from 'storybook-addon-react-router-v6';
 import { Breadcrumb } from '@ovh-ux/muk';
 
@@ -26,7 +26,7 @@ Basic.args = {
 Basic.parameters = {
   docs: {
     source: {
-      code: `<Breadcrumb 
+      code: `<Breadcrumb
   rootLabel="vRack Services"
   appName="vrack-services"
   hideRootLabel={false}
@@ -46,7 +46,7 @@ HideRootLabel.args = {
 HideRootLabel.parameters = {
   docs: {
     source: {
-      code: `<Breadcrumb 
+      code: `<Breadcrumb
   rootLabel="vRack Services"
   appName="vrack-services"
   hideRootLabel={true}

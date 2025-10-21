@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+
 import { Text } from '../../../../text';
 
 export const EmptyRow = () => {

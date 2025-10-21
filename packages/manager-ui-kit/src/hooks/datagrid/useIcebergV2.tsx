@@ -1,19 +1,22 @@
-import React, { useEffect, useMemo, useState, useCallback } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+
 import {
+  InfiniteData,
+  UseInfiniteQueryOptions,
+  UseInfiniteQueryResult,
+  useInfiniteQuery,
+} from '@tanstack/react-query';
+
+import {
+  FilterComparator,
   IcebergFetchParamsV2,
   IcebergFetchResultV2,
   fetchIcebergV2,
-  FilterComparator,
 } from '@ovh-ux/manager-core-api';
-import {
-  InfiniteData,
-  useInfiniteQuery,
-  UseInfiniteQueryOptions,
-  UseInfiniteQueryResult,
-} from '@tanstack/react-query';
-import { defaultPageSize } from './index';
+
 import { ColumnSort, DatagridColumn } from '../../components';
 import { useColumnFilters } from '../data-api/useColumnFilters';
+import { defaultPageSize } from './index';
 
 interface IcebergFilter {
   key: string;
@@ -71,15 +74,12 @@ export function useResourcesIcebergV2<T>({
   shouldFetchAll = false,
   disableCache,
   ...options
-}: IcebergFetchParamsV2 &
-  IcebergV2HookParams<T>): UseResourcesIcebergV2Result<T> {
+}: IcebergFetchParamsV2 & IcebergV2HookParams<T>): UseResourcesIcebergV2Result<T> {
   const [flattenData, setFlattenData] = useState<T[]>([]);
 
   const [searchInput, setSearchInput] = useState('');
   const [searchFilter, setSearchFilter] = useState<any>(null);
-  const [sorting, setSorting] = useState<ColumnSort | undefined>(
-    defaultSorting,
-  );
+  const [sorting, setSorting] = useState<ColumnSort | undefined>(defaultSorting);
   const { filters, addFilter, removeFilter } = useColumnFilters();
 
   const query = useInfiniteQuery({
@@ -119,9 +119,7 @@ export function useResourcesIcebergV2<T>({
   const searchableColumn = useMemo(
     () =>
       columns?.find(
-        (item) =>
-          Object.prototype.hasOwnProperty.call(item, 'isSearchable') &&
-          item.isSearchable,
+        (item) => Object.prototype.hasOwnProperty.call(item, 'isSearchable') && item.isSearchable,
       ),
     [columns],
   );

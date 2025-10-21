@@ -1,28 +1,29 @@
-import { describe, it, expect, vi } from 'vitest';
-import { screen, fireEvent, act } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { render } from '@/setupTest';
-import { Datagrid } from '../Datagrid.component';
+
 import { useAuthorizationIam } from '../../../hooks/iam';
 import { IamAuthorizationResponse } from '../../../hooks/iam/iam.interface';
+import { Datagrid } from '../Datagrid.component';
 import {
-  mockIamResponse,
   mockBasicColumns,
-  mockData,
-  mockOnSortChange,
-  mockSearch,
-  mockFilters,
   mockColumnVisibility,
-  mockSetColumnVisibility,
+  mockData,
+  mockFilters,
+  mockIamResponse,
+  mockOnFetchAllPages,
+  mockOnFetchNextPage,
+  mockOnSortChange,
   mockRenderSubComponent,
   mockRowSelection,
-  mockOnFetchNextPage,
-  mockOnFetchAllPages,
+  mockSearch,
+  mockSetColumnVisibility,
 } from '../__mocks__';
 
 vi.mock('../../../hooks/iam');
 
-const mockedHook =
-  useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
+const mockedHook = useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
 
 describe('Datagrid Snapshot Tests', () => {
   beforeEach(() => {
@@ -30,9 +31,7 @@ describe('Datagrid Snapshot Tests', () => {
   });
 
   it('should match snapshot with basic props', () => {
-    const { container } = render(
-      <Datagrid columns={mockBasicColumns} data={mockData} />,
-    );
+    const { container } = render(<Datagrid columns={mockBasicColumns} data={mockData} />);
     expect(container.firstChild).toMatchSnapshot();
   });
 
@@ -53,22 +52,14 @@ describe('Datagrid Snapshot Tests', () => {
 
   it('should match snapshot with search enabled', () => {
     const { container } = render(
-      <Datagrid
-        columns={mockBasicColumns}
-        data={mockData}
-        search={mockSearch}
-      />,
+      <Datagrid columns={mockBasicColumns} data={mockData} search={mockSearch} />,
     );
     expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should match snapshot with filters enabled', () => {
     const { container } = render(
-      <Datagrid
-        columns={mockBasicColumns}
-        data={mockData}
-        filters={mockFilters}
-      />,
+      <Datagrid columns={mockBasicColumns} data={mockData} filters={mockFilters} />,
     );
     expect(container.firstChild).toMatchSnapshot();
   });
@@ -110,9 +101,7 @@ describe('Datagrid Snapshot Tests', () => {
   });
 
   it('should match snapshot with empty data', () => {
-    const { container } = render(
-      <Datagrid columns={mockBasicColumns} data={[]} />,
-    );
+    const { container } = render(<Datagrid columns={mockBasicColumns} data={[]} />);
     expect(container.firstChild).toMatchSnapshot();
   });
 
@@ -135,22 +124,14 @@ describe('Datagrid Snapshot Tests', () => {
 
   it('should match snapshot with row selection', () => {
     const { container } = render(
-      <Datagrid
-        columns={mockBasicColumns}
-        data={mockData}
-        rowSelection={mockRowSelection}
-      />,
+      <Datagrid columns={mockBasicColumns} data={mockData} rowSelection={mockRowSelection} />,
     );
     expect(container.firstChild).toMatchSnapshot();
   });
 
   it('should match snapshot with custom container height', () => {
     const { container } = render(
-      <Datagrid
-        columns={mockBasicColumns}
-        data={mockData}
-        containerHeight={400}
-      />,
+      <Datagrid columns={mockBasicColumns} data={mockData} containerHeight={400} />,
     );
     expect(container.firstChild).toMatchSnapshot();
   });

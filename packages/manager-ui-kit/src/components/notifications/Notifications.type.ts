@@ -19,11 +19,7 @@ export interface Notification {
 export interface NotificationState {
   uid: number;
   notifications: Notification[];
-  addNotification: (
-    content: ReactNode,
-    type: NotificationType,
-    dismissible?: boolean,
-  ) => void;
+  addNotification: (content: ReactNode, type: NotificationType, dismissible?: boolean) => void;
   addSuccess: (content: ReactNode, dismissible?: boolean) => void;
   addError: (content: ReactNode, dismissible?: boolean) => void;
   addWarning: (content: ReactNode, dismissible?: boolean) => void;

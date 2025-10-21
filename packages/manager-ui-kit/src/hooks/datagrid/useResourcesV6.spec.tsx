@@ -1,16 +1,11 @@
 import React from 'react';
-import { vitest } from 'vitest';
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-} from '@tanstack/react-query';
+
+import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
 import { act, renderHook, waitFor } from '@testing-library/react';
-import {
-  FilterCategories,
-  FilterComparator,
-  FilterTypeCategories,
-} from '@ovh-ux/manager-core-api';
+import { vitest } from 'vitest';
+
+import { FilterCategories, FilterComparator, FilterTypeCategories } from '@ovh-ux/manager-core-api';
+
 import { ResourcesV6Params, useResourcesV6 } from './useResourcesV6';
 
 vitest.mock('@tanstack/react-query', async () => {
@@ -21,9 +16,7 @@ vitest.mock('@tanstack/react-query', async () => {
   };
 });
 
-function renderUseResourcesV6Hook<T>(
-  hookParams: Partial<ResourcesV6Params<T>> = {},
-) {
+function renderUseResourcesV6Hook<T>(hookParams: Partial<ResourcesV6Params<T>> = {}) {
   const queryClient = new QueryClient();
 
   const wrapper = ({ children }: React.PropsWithChildren) => (
@@ -102,9 +95,7 @@ describe('useResourcesV6', () => {
     const { flattenData } = hook.result.current as unknown as {
       flattenData: { name: string }[];
     };
-    expect(new Set(flattenData.map((data) => data.name)).size).toEqual(
-      flattenData.length,
-    );
+    expect(new Set(flattenData.map((data) => data.name)).size).toEqual(flattenData.length);
     expect(flattenData.length).toEqual(20);
   });
 
@@ -179,9 +170,7 @@ describe('useResourcesV6', () => {
     waitFor(() => {
       const { current } = result;
       expect(current.flattenData.length).toBe(1);
-      expect(current.flattenData?.[0]?.name).toBe(
-        'ns5007027.ip-51-21-XXXXX5.net',
-      );
+      expect(current.flattenData?.[0]?.name).toBe('ns5007027.ip-51-21-XXXXX5.net');
       expect(current.flattenData?.[0]?.age).toBe(21);
     });
   });

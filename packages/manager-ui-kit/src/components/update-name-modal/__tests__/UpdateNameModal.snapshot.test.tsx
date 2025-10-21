@@ -1,6 +1,8 @@
-import { vitest } from 'vitest';
 import { act } from '@testing-library/react';
-import { render, cleanup } from '@/setupTest';
+import { vitest } from 'vitest';
+
+import { cleanup, render } from '@/setupTest';
+
 import { UpdateNameModal } from '../UpdateNameModal.component';
 
 const mockUpdateDisplayName = vitest.fn();

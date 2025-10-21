@@ -1,6 +1,7 @@
+import { render } from '@/setupTest';
+
 import { Link } from '../Link.component';
 import { LinkType } from '../Link.props';
-import { render } from '@/setupTest';
 
 describe('Link component', () => {
   it('renders a simple link correctly', () => {

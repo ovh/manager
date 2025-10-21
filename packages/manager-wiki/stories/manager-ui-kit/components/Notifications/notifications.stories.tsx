@@ -1,16 +1,12 @@
 import React from 'react';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import { Button, BUTTON_SIZE, BUTTON_COLOR } from '@ovhcloud/ods-react';
+import { Button, BUTTON_COLOR, BUTTON_SIZE } from '@ovhcloud/ods-react';
 
 import { Notifications, useNotifications } from '@ovh-ux/muk';
 
 const NotificationsStory = () => {
-  const {
-    addSuccess,
-    addWarning,
-    addError,
-    clearNotifications,
-  } = useNotifications();
+  const { addSuccess, addWarning, addError, clearNotifications } =
+    useNotifications();
 
   return (
     <>

@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { BUTTON_VARIANT } from '@ovhcloud/ods-react';
+
 import { useTranslation } from 'react-i18next';
+
+import { BUTTON_VARIANT } from '@ovhcloud/ods-react';
+
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { ActionMenu } from '../action-menu';
+
 import { LinkType } from '../Link';
-import { ChangelogMenuProps, ChangelogMenuLinks } from './ChangelogMenu.props';
+import { ActionMenu } from '../action-menu';
+import { ChangelogMenuLinks, ChangelogMenuProps } from './ChangelogMenu.props';
 import './translations/translation';
 
 export const CHANGELOG_PREFIXES = ['tile-changelog-roadmap', 'external-link'];
@@ -16,11 +20,7 @@ const LinksTrad = {
   'feature-request': 'mrc_changelog_feature-request',
 };
 
-export const ChangelogMenu: React.FC<ChangelogMenuProps> = ({
-  links,
-  chapters = [],
-  prefixes,
-}) => {
+export const ChangelogMenu: React.FC<ChangelogMenuProps> = ({ links, chapters = [], prefixes }) => {
   const { t } = useTranslation('changelog-menu');
   const { trackClick } = useOvhTracking();
   const [linksArray, setLinksArray] = useState<

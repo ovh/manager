@@ -1,5 +1,7 @@
 import clsx from 'clsx';
+
 import { TEXT_PRESET } from '@ovhcloud/ods-react';
+
 import { Text } from '../../text/Text.component';
 import { DrawerHeaderProps } from './DrawerHeader.props';
 

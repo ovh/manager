@@ -1,22 +1,25 @@
 import { memo } from 'react';
+
 import { useTranslation } from 'react-i18next';
+
 import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  Icon,
-  ICON_NAME,
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
   Checkbox,
   CheckboxControl,
   CheckboxLabel,
   FormField,
-  BUTTON_SIZE,
-  BUTTON_VARIANT,
+  ICON_NAME,
+  Icon,
   POPOVER_POSITION,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
 } from '@ovhcloud/ods-react';
-import { ColumnsVisibilityProps } from './ColumnsVisiblity.props';
+
 import { Button } from '../../../button/Button.component';
 import { Text } from '../../../text/Text.component';
+import { ColumnsVisibilityProps } from './ColumnsVisiblity.props';
 
 export const INTERNAL_COLUMNS = ['expander', 'actions'];
 
@@ -27,11 +30,8 @@ const ColumnsVisibilityComponent = <T,>({
 }: ColumnsVisibilityProps<T>) => {
   const { t } = useTranslation('datagrid');
   const eligibleColumns =
-    visibleColumns?.filter((column) => !INTERNAL_COLUMNS.includes(column.id)) ||
-    [];
-  const visibleColumnsCount = eligibleColumns.filter((column) =>
-    column.getIsVisible(),
-  ).length;
+    visibleColumns?.filter((column) => !INTERNAL_COLUMNS.includes(column.id)) || [];
+  const visibleColumnsCount = eligibleColumns.filter((column) => column.getIsVisible()).length;
   const isAllColumnsVisible = getIsAllColumnsVisible?.() || false;
   return (
     <Popover position={POPOVER_POSITION.bottom}>
@@ -44,9 +44,7 @@ const ColumnsVisibilityComponent = <T,>({
           <>
             <Icon name={ICON_NAME.columns} />
             {`${t('common_topbar_columns')}${
-              visibleColumnsCount < eligibleColumns.length
-                ? ` (${visibleColumnsCount})`
-                : ''
+              visibleColumnsCount < eligibleColumns.length ? ` (${visibleColumnsCount})` : ''
             }`}
           </>
         </Button>

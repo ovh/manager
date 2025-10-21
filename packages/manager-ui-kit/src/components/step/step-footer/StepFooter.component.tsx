@@ -1,7 +1,9 @@
 import { useContext } from 'react';
-import { Button, BUTTON_SIZE, BUTTON_VARIANT } from '@ovhcloud/ods-react';
-import { StepContext } from '../StepContext';
+
+import { BUTTON_SIZE, BUTTON_VARIANT, Button } from '@ovhcloud/ods-react';
+
 import { StepProps } from '../Step.props';
+import { StepContext } from '../StepContext';
 
 export const StepFooter = () => {
   const { id, next, locked, skip } = useContext<StepProps>(StepContext);

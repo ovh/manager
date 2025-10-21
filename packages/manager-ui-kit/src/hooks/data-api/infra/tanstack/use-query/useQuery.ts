@@ -1,4 +1,5 @@
-import { useQuery as tanstackUseQuery, QueryKey } from '@tanstack/react-query';
+import { QueryKey, useQuery as tanstackUseQuery } from '@tanstack/react-query';
+
 import { UseQueryOptions, UseQueryResult } from './useQuery.types';
 
 export const useQuery = <

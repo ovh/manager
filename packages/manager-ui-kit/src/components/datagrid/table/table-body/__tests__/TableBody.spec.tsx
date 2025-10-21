@@ -1,20 +1,18 @@
 import { useState } from 'react';
-import { describe, it, expect, vi } from 'vitest';
-import { screen, fireEvent } from '@testing-library/react';
+
+import { fireEvent, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { render } from '@/setupTest';
-import { Datagrid } from '../../../Datagrid.component';
+
 import { useAuthorizationIam } from '../../../../../hooks/iam';
 import { IamAuthorizationResponse } from '../../../../../hooks/iam/iam.interface';
-import {
-  mockIamResponse,
-  mockBasicColumns,
-  mockExtendedData,
-} from '../../../__mocks__';
+import { Datagrid } from '../../../Datagrid.component';
+import { mockBasicColumns, mockExtendedData, mockIamResponse } from '../../../__mocks__';
 
 vi.mock('../../../../../hooks/iam');
 
-const mockedHook =
-  useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
+const mockedHook = useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
 
 let virtualWindowStart = 0;
 let virtualWindowSize = 20;
@@ -88,13 +86,7 @@ describe('TableBodyComponent', () => {
     mockedHook.mockReturnValue(mockIamResponse);
   });
   it('should render the table body', () => {
-    render(
-      <Datagrid
-        columns={mockBasicColumns}
-        data={mockExtendedData}
-        containerHeight={300}
-      />,
-    );
+    render(<Datagrid columns={mockBasicColumns} data={mockExtendedData} containerHeight={300} />);
     expect(screen.getByText('Person 1')).toBeInTheDocument();
     expect(screen.getByText('Person 2')).toBeInTheDocument();
     expect(screen.getByText('Person 3')).toBeInTheDocument();

@@ -1,21 +1,23 @@
+import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
+
 import {
-  Drawer,
-  DrawerTrigger,
-  DrawerContent,
-  DrawerBody,
   BUTTON_COLOR,
   BUTTON_VARIANT,
   DRAWER_POSITION,
-  Spinner,
-  SPINNER_SIZE,
-  Icon,
+  Drawer,
+  DrawerBody,
+  DrawerContent,
+  DrawerTrigger,
   ICON_NAME,
+  Icon,
+  SPINNER_SIZE,
+  Spinner,
 } from '@ovhcloud/ods-react';
-import clsx from 'clsx';
-import { useTranslation } from 'react-i18next';
-import { DrawerBaseProps } from './DrawerBase.props';
-import '../translations';
+
 import { Button } from '../../button/Button.component';
+import '../translations';
+import { DrawerBaseProps } from './DrawerBase.props';
 
 export const DrawerBase = ({
   children,
@@ -54,10 +56,7 @@ export const DrawerBase = ({
             </Button>
 
             {isLoading && (
-              <div
-                data-testid="drawer-spinner"
-                className="h-full flex justify-center items-center"
-              >
+              <div data-testid="drawer-spinner" className="h-full flex justify-center items-center">
                 <Spinner size={SPINNER_SIZE.md} />
               </div>
             )}

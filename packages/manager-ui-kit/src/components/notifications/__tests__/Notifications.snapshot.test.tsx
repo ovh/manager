@@ -1,12 +1,11 @@
-import { vitest } from 'vitest';
 import React from 'react';
+
 import { act, render, renderHook } from '@testing-library/react';
-import {
-  useNotifications,
-  NOTIFICATION_MINIMAL_DISPLAY_TIME,
-} from '../useNotifications';
+import { vitest } from 'vitest';
+
 import { Notifications } from '../Notifications.component';
 import { NotificationType } from '../Notifications.type';
+import { useNotifications } from '../useNotifications';
 
 vitest.useFakeTimers();
 
@@ -22,14 +21,8 @@ describe('Notifications component - Snapshot Testing', () => {
     let { container } = render(<Notifications />);
     const { result } = renderHook(() => useNotifications());
     act(() => {
-      result.current.addNotification(
-        'Notification-1',
-        NotificationType.Success,
-      );
-      result.current.addNotification(
-        'Notification-2',
-        NotificationType.Warning,
-      );
+      result.current.addNotification('Notification-1', NotificationType.Success);
+      result.current.addNotification('Notification-2', NotificationType.Warning);
       result.current.addNotification('Notification-3', NotificationType.Info);
       result.current.addNotification('Notification-4', NotificationType.Error);
     });

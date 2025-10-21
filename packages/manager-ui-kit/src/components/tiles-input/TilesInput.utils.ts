@@ -15,10 +15,7 @@ function getItemsByKey<I, U>(items: I[], cb: (item: I) => U): I[] {
   ];
 }
 
-function stackItems<I, U>(
-  items: I[],
-  cb?: (item: I) => U,
-): Map<U | undefined, I[]> {
+function stackItems<I, U>(items: I[], cb?: (item: I) => U): Map<U | undefined, I[]> {
   const stacks = new Map<U | undefined, I[]>();
 
   if (cb) {
@@ -28,9 +25,7 @@ function stackItems<I, U>(
       stacks.set(key, []);
       const stackItem = stacks.get(key);
       if (stackItem && items) {
-        const filteredItems = items.filter(
-          (item) => item && isEqual(key, cb(item)),
-        );
+        const filteredItems = items.filter((item) => item && isEqual(key, cb(item)));
         stackItem.push(...filteredItems);
       }
     });

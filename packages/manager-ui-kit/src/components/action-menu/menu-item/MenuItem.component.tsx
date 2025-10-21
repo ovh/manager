@@ -1,7 +1,8 @@
 import { BUTTON_SIZE, BUTTON_VARIANT } from '@ovhcloud/ods-react';
+
 import { Link } from '../../Link';
-import { ActionMenuItem } from '../ActionMenu.props';
 import { Button } from '../../button';
+import { ActionMenuItem } from '../ActionMenu.props';
 
 export const MenuItem = ({
   item,

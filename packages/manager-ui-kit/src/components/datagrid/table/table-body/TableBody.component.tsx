@@ -1,11 +1,13 @@
-import { useEffect, useCallback, Fragment, useMemo } from 'react';
+import { Fragment, useCallback, useEffect, useMemo } from 'react';
+
 import { Row, flexRender } from '@tanstack/react-table';
 import { useVirtualizer } from '@tanstack/react-virtual';
+
 import { TableBodyProps } from './TableBody.props';
 import { EmptyRow } from './empty-row/EmptyRow.component';
-import { usePrevious } from './usePrevious';
-import { SubRowMemo } from './sub-row/SubRow.component';
 import { LoadingRow } from './loading-row/LoadingRow.component';
+import { SubRowMemo } from './sub-row/SubRow.component';
+import { usePrevious } from './usePrevious';
 
 export const TableBody = <T,>({
   autoScroll = true,
@@ -27,19 +29,14 @@ export const TableBody = <T,>({
     estimateSize: useCallback(() => maxRowHeight, [maxRowHeight]),
     getScrollElement: () => tableContainerRef.current,
     measureElement:
-      typeof window !== 'undefined' &&
-      navigator.userAgent.indexOf('Firefox') === -1
+      typeof window !== 'undefined' && navigator.userAgent.indexOf('Firefox') === -1
         ? (el) => el?.getBoundingClientRect().height
         : undefined,
     overscan: 15,
   });
 
   useEffect(() => {
-    if (
-      autoScroll &&
-      previousRowsLength !== undefined &&
-      rows?.length > previousRowsLength
-    ) {
+    if (autoScroll && previousRowsLength !== undefined && rows?.length > previousRowsLength) {
       rowVirtualizer.scrollToIndex(previousRowsLength, { align: 'start' });
     }
   }, [rows?.length]);
@@ -58,13 +55,9 @@ export const TableBody = <T,>({
 
   const totalHeight = useMemo(() => {
     const total = rows.reduce((acc, row) => {
-      return (
-        acc + maxRowHeight + (row.getIsExpanded() ? subComponentHeight : 0)
-      );
+      return acc + maxRowHeight + (row.getIsExpanded() ? subComponentHeight : 0);
     }, 0);
-    return isLoading
-      ? total + (pageSize - 1) * maxRowHeight
-      : total + rows.length;
+    return isLoading ? total + (pageSize - 1) * maxRowHeight : total + rows.length;
   }, [rows, maxRowHeight, subComponentHeight, isLoading, expanded]);
 
   if (rows?.length === 0 && !isLoading) {

@@ -1,8 +1,10 @@
-import { vitest } from 'vitest';
 import { act, fireEvent } from '@testing-library/react';
+import { vitest } from 'vitest';
+
+import { render } from '@/setupTest';
+
 import { FilterList } from '../FilterList.component';
 import { FilterListProps } from '../FilterList.props';
-import { render } from '@/setupTest';
 
 const renderComponent = (props: FilterListProps) => {
   return render(<FilterList {...props} />);
@@ -33,9 +35,7 @@ describe('FilterList tests', () => {
       onRemoveFilter: vitest.fn(),
     } as FilterListProps;
 
-    const { container, getAllByTestId } = renderComponent(
-      propsWithOneFiltersItem,
-    );
+    const { container, getAllByTestId } = renderComponent(propsWithOneFiltersItem);
 
     const filterChipItems = getAllByTestId('filter-list_tag_item');
 
@@ -62,9 +62,7 @@ describe('FilterList tests', () => {
       onRemoveFilter: vitest.fn(),
     } as FilterListProps;
 
-    const { container, getAllByTestId } = renderComponent(
-      propsWithTwoFiltersItem,
-    );
+    const { container, getAllByTestId } = renderComponent(propsWithTwoFiltersItem);
 
     const filterChipItems = getAllByTestId('filter-list_tag_item');
 

@@ -1,8 +1,11 @@
 import { useContext } from 'react';
+
 import { clsx } from 'clsx';
-import { Icon, ICON_NAME } from '@ovhcloud/ods-react';
-import { StepContext } from '../StepContext';
+
+import { ICON_NAME, Icon } from '@ovhcloud/ods-react';
+
 import { StepProps } from '../Step.props';
+import { StepContext } from '../StepContext';
 
 export const StepIndicator = () => {
   const { checked, open, order } = useContext<StepProps>(StepContext);

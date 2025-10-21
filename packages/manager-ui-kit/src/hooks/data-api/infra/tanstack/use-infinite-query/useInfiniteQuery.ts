@@ -1,12 +1,10 @@
 import {
-  useInfiniteQuery as tanstackUseInfiniteQuery,
-  QueryKey,
   InfiniteData,
+  QueryKey,
+  useInfiniteQuery as tanstackUseInfiniteQuery,
 } from '@tanstack/react-query';
-import {
-  UseInfiniteQueryOptions,
-  UseInifiniteQueryResult,
-} from './useInfiniteQuery.types';
+
+import { UseInfiniteQueryOptions, UseInifiniteQueryResult } from './useInfiniteQuery.types';
 
 export const useInfiniteQuery = <
   TQueryFnData = Record<string, unknown>,
@@ -38,13 +36,7 @@ export const useInfiniteQuery = <
     fetchNextPage,
     isFetchingNextPage,
     hasNextPage,
-  } = tanstackUseInfiniteQuery<
-    TQueryFnData,
-    TError,
-    TSelectData,
-    TQueryKey,
-    TPageParam
-  >({
+  } = tanstackUseInfiniteQuery<TQueryFnData, TError, TSelectData, TQueryKey, TPageParam>({
     initialPageParam,
     queryKey: cacheKey,
     staleTime: Infinity,
@@ -60,9 +52,7 @@ export const useInfiniteQuery = <
     ): TPageParam | null => {
       return getNextPageParam(currentLastPage, currentPageIndex);
     },
-    select: (
-      queryFnResponse: InfiniteData<TQueryFnData, TPageParam>,
-    ): TSelectData => {
+    select: (queryFnResponse: InfiniteData<TQueryFnData, TPageParam>): TSelectData => {
       return transformFn(queryFnResponse.pages, queryFnResponse.pageParams);
     },
   });

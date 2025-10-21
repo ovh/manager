@@ -1,5 +1,6 @@
-import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+
 import { PriceText } from '../PriceText.component';
 import { PriceTextPreset } from '../PriceText.props';
 
@@ -39,17 +40,9 @@ describe('PriceText Component', () => {
   });
 
   it('should render label without mr-1 when using WITH_TAX preset', () => {
-    render(
-      <PriceText
-        {...defaultProps}
-        label="incl. tax"
-        preset={PriceTextPreset.WITH_TAX}
-      />,
-    );
+    render(<PriceText {...defaultProps} label="incl. tax" preset={PriceTextPreset.WITH_TAX} />);
     expect(screen.getByText('incl. tax')).toBeInTheDocument();
-    expect(screen.queryByText('incl. tax')?.classList.contains('mr-1')).toBe(
-      false,
-    );
+    expect(screen.queryByText('incl. tax')?.classList.contains('mr-1')).toBe(false);
   });
 
   it('should render intervalUnitText only with BASE preset', () => {
@@ -59,11 +52,7 @@ describe('PriceText Component', () => {
 
   it('should NOT render intervalUnitText with non-BASE preset', () => {
     render(
-      <PriceText
-        {...defaultProps}
-        intervalUnitText="/mo"
-        preset={PriceTextPreset.WITH_TAX}
-      />,
+      <PriceText {...defaultProps} intervalUnitText="/mo" preset={PriceTextPreset.WITH_TAX} />,
     );
     expect(screen.queryByText('/mo')).not.toBeInTheDocument();
   });

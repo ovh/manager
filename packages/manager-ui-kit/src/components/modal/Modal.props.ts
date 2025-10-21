@@ -1,5 +1,6 @@
-import { ReactNode, ComponentPropsWithRef } from 'react';
-import { Modal, MODAL_COLOR } from '@ovhcloud/ods-react';
+import { ComponentPropsWithRef, ReactNode } from 'react';
+
+import { MODAL_COLOR, Modal } from '@ovhcloud/ods-react';
 
 type ModalButton = {
   /** Label of the button */

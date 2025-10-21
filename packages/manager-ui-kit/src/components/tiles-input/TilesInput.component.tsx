@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Card } from '@ovhcloud/ods-react';
+
 import { clsx } from 'clsx';
 import isEqual from 'lodash.isequal';
+
+import { Card } from '@ovhcloud/ods-react';
+
 import { hashCode } from '../../utils';
 import { TilesInputProps, TilesInputState } from './TilesInput.props';
 import { stackItems } from './TilesInput.utils';
@@ -37,9 +40,7 @@ export const TilesInputComponent = <T, S>({
           const stackItem = state.stacks?.get(s);
           return stackItem && stackItem.length > 1
             ? isEqual(state.selectedStack, s)
-            : stackItem &&
-                stackItem.length === 1 &&
-                isEqual(stackItem[0], value);
+            : stackItem && stackItem.length === 1 && isEqual(stackItem[0], value);
         },
         [state.stacks, state.selectedStack, value],
       ),
@@ -72,10 +73,7 @@ export const TilesInputComponent = <T, S>({
 
   // Warn parent on stack change
   useEffect(() => {
-    if (
-      typeof stack?.onChange === 'function' &&
-      state.selectedStack !== undefined
-    ) {
+    if (typeof stack?.onChange === 'function' && state.selectedStack !== undefined) {
       stack.onChange(state.selectedStack);
     }
   }, [state.selectedStack, stack?.onChange]);
@@ -114,9 +112,7 @@ export const TilesInputComponent = <T, S>({
                         : key !== undefined && set.selectedStack(key)
                     }
                     className={`${clsx(
-                      is.stack.checked(key)
-                        ? state.activeClass
-                        : state.inactiveClass,
+                      is.stack.checked(key) ? state.activeClass : state.inactiveClass,
                     )} w-full px-[24px] py-[16px]`}
                   >
                     {is.stack.singleton(key)
@@ -131,9 +127,7 @@ export const TilesInputComponent = <T, S>({
                 <Card
                   onClick={() => set.value(item)}
                   className={`${clsx(
-                    isEqual(value, item)
-                      ? state.activeClass
-                      : state.inactiveClass,
+                    isEqual(value, item) ? state.activeClass : state.inactiveClass,
                   )} w-full px-[24px] py-[16px]`}
                 >
                   {label(item)}
@@ -149,10 +143,7 @@ export const TilesInputComponent = <T, S>({
           <>
             <div className="mt-6 ml-8">
               <span className="text-[--ods-color-heading] leading-[22px] font-bold">
-                {stack?.title(
-                  state.selectedStack,
-                  state.stacks.get(state.selectedStack) || [],
-                )}
+                {stack?.title(state.selectedStack, state.stacks.get(state.selectedStack) || [])}
               </span>
             </div>
             <TilesInputComponent
