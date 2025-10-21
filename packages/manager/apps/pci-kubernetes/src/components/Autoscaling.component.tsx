@@ -1,29 +1,15 @@
-import { useEffect, useState } from 'react';
-
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_MESSAGE_TYPE,
-  ODS_TEXT_COLOR_INTENT,
-  ODS_TEXT_LEVEL,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsFormField,
-  OsdsIcon,
-  OsdsLink,
-  OsdsMessage,
-  OsdsText,
-  OsdsToggle,
-} from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
+import { OsdsMessage } from '@ovhcloud/ods-components/react';
+import { Icon, Link, Text, Toggle, ToggleControl, ToggleLabel } from '@ovhcloud/ods-react';
 
-import { QuantitySelector } from '@ovh-ux/manager-pci-common';
 import { useMe } from '@ovh-ux/manager-react-components';
 
+import { QuantitySelector } from '@/components/quantity-selector/QuantitySelector.component';
 import { ANTI_AFFINITY_MAX_NODES, AUTOSCALING_LINK, NODE_RANGE } from '@/constants';
 import { TScalingState } from '@/types';
 
@@ -37,121 +23,116 @@ export interface AutoscalingProps {
   initialScaling?: TScalingState['quantity'];
   isMonthlyBilling?: boolean;
   isAntiAffinity?: boolean;
-  autoscale?: TScalingState['isAutoscale'];
+  isAutoscale: TScalingState['isAutoscale'];
   onChange?: (scaling: TScalingState) => void;
+  totalNodes?: number | null;
 }
 
 export function Autoscaling({
   initialScaling,
+  isAutoscale,
   isAntiAffinity,
-  autoscale,
   onChange,
+  totalNodes,
 }: Readonly<AutoscalingProps>) {
   const { t } = useTranslation('autoscaling');
   const ovhSubsidiary = useMe()?.me?.ovhSubsidiary;
   const infosURL =
     AUTOSCALING_LINK[ovhSubsidiary as keyof typeof AUTOSCALING_LINK] || AUTOSCALING_LINK.DEFAULT;
-  const [isAutoscale, setIsAutoscale] = useState<boolean>(!!autoscale);
-  const [quantity, setQuantity] = useState({
+
+  const maxValue = isAntiAffinity ? ANTI_AFFINITY_MAX_NODES : NODE_RANGE.MAX;
+
+  const quantity = {
     desired: initialScaling ? initialScaling.desired : NODE_RANGE.MIN,
     min: initialScaling ? initialScaling.min : 0,
     max: initialScaling ? initialScaling.max : NODE_RANGE.MAX,
-  });
-  const maxValue = isAntiAffinity ? ANTI_AFFINITY_MAX_NODES : NODE_RANGE.MAX;
-
-  useEffect(() => {
-    onChange?.({
-      quantity,
-      isAutoscale,
-    });
-  }, [quantity, isAutoscale]);
+  };
 
   return (
-    <>
+    <div className="max-w-3xl">
       <QuantitySelector
         className="mt-4"
-        label={t('kubernetes_node_pool_autoscaling_desired_nodes_size')}
+        label={`${t('kubernetes_node_pool_autoscaling_desired_nodes_size')} ${
+          totalNodes ? `(${t('kubernetes_node_pool_autoscaling_by_zone')})` : ''
+        }`}
+        description={
+          totalNodes ? t('kubernetes_node_pool_autoscaling_total_nodes', { totalNodes }) : undefined
+        }
         value={quantity.desired}
-        onValueChange={(desired) => {
-          setQuantity((q) => ({
-            ...q,
-            desired,
-          }));
+        onValueChange={(valueAsNumber) => {
+          onChange?.({
+            isAutoscale,
+            quantity: { ...quantity, desired: valueAsNumber },
+          });
         }}
         min={0}
         max={maxValue}
       />
-      <OsdsFormField className="mt-8" inline>
-        <OsdsToggle
-          disabled={isAntiAffinity || undefined}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          checked={isAutoscale || undefined}
-          onClick={() => !isAntiAffinity && setIsAutoscale((auto) => !auto)}
+
+      <div className="mt-8">
+        <Toggle
+          disabled={isAntiAffinity}
+          checked={isAutoscale}
+          onChange={() => {
+            if (!isAntiAffinity) {
+              onChange?.({ isAutoscale: !isAutoscale, quantity });
+            }
+          }}
         >
-          <OsdsText
-            className="ml-4 font-bold"
-            color={ODS_TEXT_COLOR_INTENT.text}
-            level={ODS_TEXT_LEVEL.body}
-            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-            slot="end"
-          >
-            {t(`kubernetes_node_pool_autoscaling_autoscale_toggle_${isAutoscale}`)}
-          </OsdsText>
-        </OsdsToggle>
-      </OsdsFormField>
-      <OsdsText
-        color={ODS_TEXT_COLOR_INTENT.text}
-        level={ODS_TEXT_LEVEL.body}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-        className="block"
-      >
+          <ToggleControl />
+          <ToggleLabel>
+            <Text className="ml-4 font-bold" color="text">
+              {t(`kubernetes_node_pool_autoscaling_autoscale_toggle_${isAutoscale}`)}
+            </Text>
+          </ToggleLabel>
+        </Toggle>
+      </div>
+      <Text className="mt-6" color={'text'}>
         {t('kubernetes_node_pool_autoscaling_description')}
         {ovhSubsidiary && (
-          <OsdsLink
+          <Link
             className="ml-4"
             color={ODS_THEME_COLOR_INTENT.primary}
             href={infosURL}
             target={OdsHTMLAnchorElementTarget._blank}
           >
             {t('kubernetes_node_pool_autoscaling_description_link')}
-            <OsdsIcon
-              className="ml-3"
-              slot="end"
-              name={ODS_ICON_NAME.EXTERNAL_LINK}
-              size={ODS_ICON_SIZE.xxs}
-              color={ODS_THEME_COLOR_INTENT.primary}
-            ></OsdsIcon>
-          </OsdsLink>
+            <Icon className="ml-3" slot="end" name="external-link" color="primary" />
+          </Link>
         )}
-      </OsdsText>
+      </Text>
       {isAutoscale && (
-        <div className={clsx('gap-4 flex')}>
-          <QuantitySelector
-            className="mt-8 max-w-32"
-            label={t('kubernetes_node_pool_autoscaling_lowest_nodes_size')}
-            value={quantity.min}
-            onValueChange={(min) =>
-              setQuantity((q) => ({
-                ...q,
-                min,
-              }))
-            }
-            min={0}
-            max={quantity.max <= maxValue ? quantity.desired : maxValue}
-          />
-          <QuantitySelector
-            className="mt-8 max-w-32"
-            label={t('kubernetes_node_pool_autoscaling_highest_nodes_size')}
-            value={quantity.max}
-            onValueChange={(max) =>
-              setQuantity((q) => ({
-                ...q,
-                max,
-              }))
-            }
-            min={getDesiredQuantity(quantity, maxValue)}
-            max={maxValue}
-          />
+        <div className="mt-8">
+          <div className={clsx('gap-4 flex')}>
+            <QuantitySelector
+              id="min-nodes"
+              className="max-w-32"
+              label={t('kubernetes_node_pool_autoscaling_lowest_nodes_size')}
+              value={quantity.min}
+              onValueChange={(valueAsNumber) => {
+                onChange?.({
+                  isAutoscale,
+                  quantity: { ...quantity, min: valueAsNumber },
+                });
+              }}
+              min={0}
+              max={quantity.max <= maxValue ? quantity.desired : maxValue}
+            />
+            <QuantitySelector
+              id="max-nodes"
+              className="max-w-32"
+              label={t('kubernetes_node_pool_autoscaling_highest_nodes_size')}
+              value={quantity.max}
+              onValueChange={(valueAsNumber) => {
+                onChange?.({
+                  isAutoscale,
+                  quantity: { ...quantity, max: valueAsNumber },
+                });
+              }}
+              min={getDesiredQuantity(quantity, maxValue)}
+              max={maxValue}
+            />
+          </div>
         </div>
       )}
 
@@ -160,6 +141,6 @@ export function Autoscaling({
           {t('kubernetes_node_pool_autoscaling_desired_nodes_warning')}
         </OsdsMessage>
       )}
-    </>
+    </div>
   );
 }
