@@ -1,4 +1,6 @@
 import React, { Suspense, useState } from 'react';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_TYPE,
@@ -16,15 +18,12 @@ import {
   OsdsPopoverContent,
   OsdsSkeleton,
 } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  ServiceAction,
-  useServiceActions,
-} from '@/billing/hooks/useServiceActions';
-import { BillingService } from '@/billing/types/billingServices.type';
-import { useServiceLinks } from '@/billing/hooks/useServiceLinks';
-import { getPendingEngagement } from '@/data/api/billingServices';
+
 import { SERVICE_TYPES_WITH_COMMITMENT } from '@/billing.constants';
+import { ServiceAction, useServiceActions } from '@/billing/hooks/useServiceActions';
+import { useServiceLinks } from '@/billing/hooks/useServiceLinks';
+import { BillingService } from '@/billing/types/billingServices.type';
+import { getPendingEngagement } from '@/data/api/billingServices';
 
 type ServicesActionsProps = {
   service: BillingService;
@@ -40,15 +39,9 @@ export default function ServicesActions({
   const [service, setService] = useState(initialService);
 
   const links = useServiceLinks(service, autoRenewLink);
-  const items: ServiceAction[] = useServiceActions(
-    service,
-    links,
-    trackingPrefix,
-  );
+  const items: ServiceAction[] = useServiceActions(service, links, trackingPrefix);
   const shouldBeDisplayed =
-    Boolean(autoRenewLink) ||
-    service.canBeEngaged ||
-    service.hasPendingEngagement;
+    Boolean(autoRenewLink) || service.canBeEngaged || service.hasPendingEngagement;
 
   const onOpenPopOver = async () => {
     if (
@@ -98,10 +91,7 @@ export default function ServicesActions({
           {items.map((item, index) => {
             const { disabled, external, ...link } = item;
             return (
-              <div
-                className="text-left"
-                key={`service_action_${service.domain}_${index}`}
-              >
+              <div className="text-left" key={`service_action_${service.domain}_${index}`}>
                 {index > 0 && <OsdsDivider size={ODS_DIVIDER_SIZE.four} />}
                 <OsdsLink
                   color={ODS_THEME_COLOR_INTENT.primary}

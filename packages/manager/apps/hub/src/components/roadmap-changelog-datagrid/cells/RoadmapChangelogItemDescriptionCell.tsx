@@ -1,17 +1,12 @@
-import { OsdsLink } from '@ovhcloud/ods-components/react';
+import { OdsHTMLAnchorElementRel, OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OsdsLink } from '@ovhcloud/ods-components/react';
+
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
-import {
-  OdsHTMLAnchorElementTarget,
-  OdsHTMLAnchorElementRel,
-} from '@ovhcloud/ods-common-core';
+
 import { RoadmapChangelogItem } from '@/types/roadmapchangelog.type';
 
-export const RoadmapChangelogItemDescriptionCell = ({
-  item,
-}: {
-  item: RoadmapChangelogItem;
-}) => {
+export const RoadmapChangelogItemDescriptionCell = ({ item }: { item: RoadmapChangelogItem }) => {
   return (
     <DataGridTextCell>
       <OsdsLink

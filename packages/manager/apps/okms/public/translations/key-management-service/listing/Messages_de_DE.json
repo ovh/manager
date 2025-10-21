@@ -32,5 +32,5 @@
   "key_management_service_listing_status_cell": "Status",
   "key_management_service_listing_service_key_cell": "Schlüssel",
   "key_management_service_listing_kmip_cell": "KMIP",
-  "key_management_service_listing_secret_cell": "Geheimnisse"
+  "key_management_service_listing_secret_cell": "Secrets"
 }

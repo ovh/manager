@@ -1,63 +1,44 @@
-import {
-  useEffect,
-  useContext,
-  useRef,
-  Suspense,
-  lazy,
-  useState,
-  useMemo,
-} from 'react';
+import { Suspense, lazy, useContext, useEffect, useMemo, useRef, useState } from 'react';
+
 import { useLocation } from 'react-router-dom';
-import {
-  useOvhTracking,
-  useRouteSynchro,
-  ShellContext,
-} from '@ovh-ux/manager-react-shell-client';
-import { OsdsButton } from '@ovhcloud/ods-components/react';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { OsdsButton } from '@ovhcloud/ods-components/react';
+
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-import { features } from '@/pages/dashboard/dashboard.constants';
-import { useFetchHubServices } from '@/data/hooks/services/useServices';
-import { useLastOrder } from '@/data/hooks/lastOrder/useLastOrder';
+import { ShellContext, useOvhTracking, useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
+
+import Banner from '@/components/banner/Banner.component';
 // Components used in Suspense's fallback cannot be lazy loaded (break testing)
 import TileGridSkeleton from '@/components/tile-grid-skeleton/TileGridSkeleton.component';
-import { Context } from '@/pages/dashboard/context';
-
 import Welcome from '@/components/welcome/Welcome.component';
-import Banner from '@/components/banner/Banner.component';
+import { useLastOrder } from '@/data/hooks/lastOrder/useLastOrder';
+import { useFetchHubServices } from '@/data/hooks/services/useServices';
 import HubDashboardSubtitle from '@/pages/dashboard/HubDashboardSubtitle';
+import { Context } from '@/pages/dashboard/context';
+import { features } from '@/pages/dashboard/dashboard.constants';
+
 import NotificationsEmailUnreachable from './NotificationsEmailUnreachable.component';
 
 const Products = lazy(() => import('@/components/products/Products.component'));
 const Catalog = lazy(() => import('@/pages/dashboard/Catalog.component'));
-const OrderTracking = lazy(() =>
-  import('@/components/hub-order-tracking/HubOrderTracking.component'),
+const OrderTracking = lazy(
+  () => import('@/components/hub-order-tracking/HubOrderTracking.component'),
 );
-const HubSupport = lazy(() =>
-  import('@/components/hub-support/HubSupport.component'),
+const HubSupport = lazy(() => import('@/components/hub-support/HubSupport.component'));
+const BillingSummary = lazy(() => import('@/pages/dashboard/BillingSummary.component'));
+const EnterpriseBillingSummary = lazy(
+  () => import('@/pages/dashboard/EnterpriseBillingSummary.component'),
 );
-const BillingSummary = lazy(() =>
-  import('@/pages/dashboard/BillingSummary.component'),
-);
-const EnterpriseBillingSummary = lazy(() =>
-  import('@/pages/dashboard/EnterpriseBillingSummary.component'),
-);
-const PaymentStatus = lazy(() =>
-  import('@/pages/dashboard/PaymentStatus.component'),
-);
-const SiretBanner = lazy(() =>
-  import('@/pages/dashboard/SiretBanner.component'),
-);
-const KycIndiaBanner = lazy(() =>
-  import('@/pages/dashboard/KycIndiaBanner.component'),
-);
-const KycFraudBanner = lazy(() =>
-  import('@/pages/dashboard/KycFraudBanner.component'),
-);
-const NotificationsCarousel = lazy(() =>
-  import('@/pages/dashboard/NotificationsCarousel.component'),
+const PaymentStatus = lazy(() => import('@/pages/dashboard/PaymentStatus.component'));
+const SiretBanner = lazy(() => import('@/pages/dashboard/SiretBanner.component'));
+const KycIndiaBanner = lazy(() => import('@/pages/dashboard/KycIndiaBanner.component'));
+const KycFraudBanner = lazy(() => import('@/pages/dashboard/KycFraudBanner.component'));
+const NotificationsCarousel = lazy(
+  () => import('@/pages/dashboard/NotificationsCarousel.component'),
 );
 
 export default function Dashboard() {
@@ -85,10 +66,7 @@ export default function Dashboard() {
   }, []);
 
   const { data: availability } = useFeatureAvailability(features);
-  const {
-    data: services,
-    isPending: areServicesLoading,
-  } = useFetchHubServices();
+  const { data: services, isPending: areServicesLoading } = useFetchHubServices();
   const { data: lastOrder, isPending: isLastOrderLoading } = useLastOrder();
 
   const isLoading = areServicesLoading || isLastOrderLoading;
@@ -141,11 +119,7 @@ export default function Dashboard() {
                     </div>
                     <div className="md:w-4/12 mb-6 md:mb-8 order-3 md:order-2 px-6 box-border">
                       <Suspense>
-                        {user.enterprise ? (
-                          <EnterpriseBillingSummary />
-                        ) : (
-                          <BillingSummary />
-                        )}
+                        {user.enterprise ? <EnterpriseBillingSummary /> : <BillingSummary />}
                       </Suspense>
                     </div>
                     <div className="md:w-8/12 mb-6 md:mb-8 order-2 md:order-3 box-border">

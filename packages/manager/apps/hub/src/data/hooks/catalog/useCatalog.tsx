@@ -1,5 +1,6 @@
-import { AxiosError } from 'axios';
 import { useQuery } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
+
 import { getCatalog } from '@/data/api/catalog';
 import { CatalogItem } from '@/types/catalog';
 

@@ -1,35 +1,33 @@
-import { useContext, useState, useEffect } from 'react';
-import { BaseLayout, HeadersProps } from '@ovh-ux/manager-react-components';
-import { useTranslation, Trans } from 'react-i18next';
-import {
-  OsdsText,
-  OsdsLink,
-  OsdsIcon,
-  OsdsBreadcrumb,
-  OsdsTabBarItem,
-  OsdsTabPanel,
-  OsdsTabs,
-  OsdsTabBar,
-  OsdsTile,
-} from '@ovhcloud/ods-components/react';
+import { useContext, useEffect, useState } from 'react';
+
+import { Trans, useTranslation } from 'react-i18next';
+
+import { OdsHTMLAnchorElementRel, OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
+  ODS_TABS_SIZE,
   ODS_TEXT_COLOR_HUE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
-  ODS_TABS_SIZE,
   OdsBreadcrumbAttributeItem,
 } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  OdsHTMLAnchorElementRel,
-  OdsHTMLAnchorElementTarget,
-} from '@ovhcloud/ods-common-core';
-import {
-  ShellContext,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+  OsdsBreadcrumb,
+  OsdsIcon,
+  OsdsLink,
+  OsdsTabBar,
+  OsdsTabBarItem,
+  OsdsTabPanel,
+  OsdsTabs,
+  OsdsText,
+  OsdsTile,
+} from '@ovhcloud/ods-components/react';
+
+import { BaseLayout, HeadersProps } from '@ovh-ux/manager-react-components';
+import { ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { EXTERNAL_LINKS } from '@/changelog.constants';
 import RoadmapChangelogDatagrids from '@/components/roadmap-changelog-datagrid/RoadmapChangelogDatagrids';
 import { useHubNavigation } from '@/hooks/useHubNavigation/useHubNavigation';
@@ -70,14 +68,9 @@ export default function Changelog() {
       data-testid="roadmap-changelog-page"
     >
       <div
-        className={`hub-main ${
-          isAccountSidebarVisible ? 'hub-main-view_sidebar_expanded' : ''
-        }`}
+        className={`hub-main ${isAccountSidebarVisible ? 'hub-main-view_sidebar_expanded' : ''}`}
       >
-        <BaseLayout
-          header={header}
-          breadcrumb={<OsdsBreadcrumb items={breadcrumbItems} />}
-        >
+        <BaseLayout header={header} breadcrumb={<OsdsBreadcrumb items={breadcrumbItems} />}>
           <div className="grid gap-y-6">
             <div className="pt-6">
               <OsdsText
@@ -131,10 +124,7 @@ export default function Changelog() {
 
             <div className="grid gap-y-6 grid-cols-1 xxl:grid-cols-2 xxl:gap-x-10 items-start">
               <div className="grid gap-y-6">
-                <OsdsTabs
-                  panel="roadmap-changelog-tab-tiles-cloud"
-                  size={ODS_TABS_SIZE.md}
-                >
+                <OsdsTabs panel="roadmap-changelog-tab-tiles-cloud" size={ODS_TABS_SIZE.md}>
                   <OsdsTabBar>
                     <OsdsTabBarItem panel="roadmap-changelog-tab-tiles-cloud">
                       {t('changelog_roadmap_cloud_tab')}
@@ -201,9 +191,7 @@ export default function Changelog() {
                             color={ODS_THEME_COLOR_INTENT.primary}
                             href={EXTERNAL_LINKS.PUBLIC_CLOUD_ROADMAP.url}
                             onClick={() => {
-                              trackClick(
-                                EXTERNAL_LINKS.PUBLIC_CLOUD_ROADMAP.tracking,
-                              );
+                              trackClick(EXTERNAL_LINKS.PUBLIC_CLOUD_ROADMAP.tracking);
                             }}
                             data-testid="changelog-public-cloud-link"
                           >
@@ -260,11 +248,7 @@ export default function Changelog() {
                               hue={ODS_TEXT_COLOR_HUE._400}
                               className="color-[var(--ods-color-default-500)]"
                             >
-                              {t(
-                                `changelog_infra_product_list${
-                                  isRegionUS ? '_us' : ''
-                                }`,
-                              )}
+                              {t(`changelog_infra_product_list${isRegionUS ? '_us' : ''}`)}
                             </OsdsText>
                           </div>
                         </div>
@@ -288,9 +272,7 @@ export default function Changelog() {
                             color={ODS_THEME_COLOR_INTENT.primary}
                             href={EXTERNAL_LINKS.PRIVATE_CLOUD_ROADMAP.url}
                             onClick={() => {
-                              trackClick(
-                                EXTERNAL_LINKS.PRIVATE_CLOUD_ROADMAP.tracking,
-                              );
+                              trackClick(EXTERNAL_LINKS.PRIVATE_CLOUD_ROADMAP.tracking);
                             }}
                           >
                             {t(EXTERNAL_LINKS.PRIVATE_CLOUD_ROADMAP.label_key)}
@@ -311,11 +293,7 @@ export default function Changelog() {
                               hue={ODS_TEXT_COLOR_HUE._400}
                               className="color-[var(--ods-color-default-500)]"
                             >
-                              {t(
-                                `changelog_private_cloud_product_list${
-                                  isRegionUS ? '_us' : ''
-                                }`,
-                              )}
+                              {t(`changelog_private_cloud_product_list${isRegionUS ? '_us' : ''}`)}
                             </OsdsText>
                           </div>
                         </div>
@@ -339,9 +317,7 @@ export default function Changelog() {
                             color={ODS_THEME_COLOR_INTENT.primary}
                             href={EXTERNAL_LINKS.SECURITY_ROADMAP.url}
                             onClick={() => {
-                              trackClick(
-                                EXTERNAL_LINKS.SECURITY_ROADMAP.tracking,
-                              );
+                              trackClick(EXTERNAL_LINKS.SECURITY_ROADMAP.tracking);
                             }}
                           >
                             {t(EXTERNAL_LINKS.SECURITY_ROADMAP.label_key)}
@@ -416,9 +392,7 @@ export default function Changelog() {
                               color={ODS_THEME_COLOR_INTENT.primary}
                               href={EXTERNAL_LINKS.DOMAIN_ROADMAP.url}
                               onClick={() => {
-                                trackClick(
-                                  EXTERNAL_LINKS.DOMAIN_ROADMAP.tracking,
-                                );
+                                trackClick(EXTERNAL_LINKS.DOMAIN_ROADMAP.tracking);
                               }}
                             >
                               {t(EXTERNAL_LINKS.DOMAIN_ROADMAP.label_key)}
@@ -453,9 +427,7 @@ export default function Changelog() {
                               color={ODS_THEME_COLOR_INTENT.primary}
                               href={EXTERNAL_LINKS.COLLAB_ROADMAP.url}
                               onClick={() => {
-                                trackClick(
-                                  EXTERNAL_LINKS.COLLAB_ROADMAP.tracking,
-                                );
+                                trackClick(EXTERNAL_LINKS.COLLAB_ROADMAP.tracking);
                               }}
                             >
                               {t(EXTERNAL_LINKS.COLLAB_ROADMAP.label_key)}

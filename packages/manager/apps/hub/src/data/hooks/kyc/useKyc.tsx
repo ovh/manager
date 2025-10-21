@@ -1,12 +1,11 @@
-import { useQuery, DefinedInitialDataOptions } from '@tanstack/react-query';
+import { DefinedInitialDataOptions, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { KycProcedures, KycStatus } from '@/types/kyc.type';
+
 import { getKycStatus } from '@/data/api/kyc';
+import { KycProcedures, KycStatus } from '@/types/kyc.type';
 
 export const useKyc = (procedure: KycProcedures) => {
-  const useKycStatus = (
-    options?: Partial<DefinedInitialDataOptions<KycStatus, AxiosError>>,
-  ) =>
+  const useKycStatus = (options?: Partial<DefinedInitialDataOptions<KycStatus, AxiosError>>) =>
     useQuery<KycStatus, AxiosError>({
       ...options,
       queryKey: ['getKycStatus', procedure],

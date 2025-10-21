@@ -1,33 +1,26 @@
 import React, { useContext, useEffect, useState } from 'react';
-import {
-  OsdsChip,
-  OsdsIcon,
-  OsdsLink,
-  OsdsText,
-  OsdsTile,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
+
+import { useTranslation } from 'react-i18next';
+
+import { OdsHTMLAnchorElementRel, OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_LEVEL } from '@ovhcloud/ods-common-theming';
 import {
   ODS_CHIP_SIZE,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
+import { OsdsChip, OsdsIcon, OsdsLink, OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
+
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import {
-  OdsHTMLAnchorElementRel,
-  OdsHTMLAnchorElementTarget,
-} from '@ovhcloud/ods-common-core';
+
+import { Skeletons } from '@/components/skeletons/Skeletons.component';
 import { useFetchHubSupport } from '@/data/hooks/apiHubSupport/useHubSupport';
+
+import TileError from '../tile-error/TileError.component';
 import { SUPPORT_URLS } from './HubSupport.constants';
 import { HubSupportHelp } from './hub-support-help/HubSupportHelp.component';
 import { HubSupportTable } from './hub-support-table/HubSupportTable.component';
-import TileError from '../tile-error/TileError.component';
-import { Skeletons } from '@/components/skeletons/Skeletons.component';
 
 export default function HubSupport() {
   const { t } = useTranslation('hub/support');
@@ -58,11 +51,7 @@ export default function HubSupport() {
       ) : (
         <div className="flex flex-col">
           {error && (
-            <TileError
-              className="block p-4"
-              message={t('hub_support_error')}
-              refetch={refetch}
-            />
+            <TileError className="block p-4" message={t('hub_support_error')} refetch={refetch} />
           )}
           {!error && !data.count && <HubSupportHelp />}
           {!error && !!data.count && (
@@ -76,10 +65,7 @@ export default function HubSupport() {
                 >
                   {t('hub_support_title')}
                 </OsdsText>
-                <OsdsChip
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  size={ODS_CHIP_SIZE.sm}
-                >
+                <OsdsChip color={ODS_THEME_COLOR_INTENT.primary} size={ODS_CHIP_SIZE.sm}>
                   {data.count}
                 </OsdsChip>
                 <div className="ml-auto flex items-center gap-4">
@@ -99,9 +85,7 @@ export default function HubSupport() {
                         ? OdsHTMLAnchorElementTarget._blank
                         : OdsHTMLAnchorElementTarget._self
                     }
-                    rel={
-                      isEUOrCA ? OdsHTMLAnchorElementRel.noreferrer : undefined
-                    }
+                    rel={isEUOrCA ? OdsHTMLAnchorElementRel.noreferrer : undefined}
                     color={ODS_THEME_COLOR_INTENT.primary}
                     className="font-bold text-right"
                   >

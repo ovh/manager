@@ -1,15 +1,11 @@
 import React from 'react';
-import {
-  render,
-  screen,
-  fireEvent,
-  act,
-  waitFor,
-} from '@testing-library/react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { describe, it, expect, vi } from 'vitest';
-import HubOrderTracking from '@/components/hub-order-tracking/HubOrderTracking.component';
 import '@testing-library/jest-dom';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
+import HubOrderTracking from '@/components/hub-order-tracking/HubOrderTracking.component';
 
 const queryClient = new QueryClient();
 
@@ -18,9 +14,7 @@ const { refetch } = vi.hoisted(() => ({
 }));
 
 const renderComponent = (component: React.ReactNode) => {
-  return render(
-    <QueryClientProvider client={queryClient}>{component}</QueryClientProvider>,
-  );
+  return render(<QueryClientProvider client={queryClient}>{component}</QueryClientProvider>);
 };
 
 const trackClickMock = vi.fn();
@@ -148,17 +142,13 @@ describe('HubOrderTracking Component', async () => {
       orderId: 231474541,
       date: new Date().toISOString(),
       status: 'notPaid',
-      history: [
-        { date: new Date().toISOString(), label: 'PAYMENT_INITIATED' },
-      ],
+      history: [{ date: new Date().toISOString(), label: 'PAYMENT_INITIATED' }],
     };
 
     renderComponent(<HubOrderTracking />);
 
     await waitFor(() => {
-      expect(
-        screen.getByText('order_tracking_history_custom_payment_waiting'),
-      ).toBeInTheDocument();
+      expect(screen.getByText('order_tracking_history_custom_payment_waiting')).toBeInTheDocument();
     });
   });
 });

@@ -1,20 +1,21 @@
 import { FunctionComponent, Suspense, useContext, useMemo } from 'react';
-import {
-  OsdsLink,
-  OsdsMessage,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+
+import { Await } from 'react-router-dom';
+
+import { Trans, useTranslation } from 'react-i18next';
+
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_MESSAGE_TYPE,
   ODS_TEXT_COLOR_INTENT,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { Trans, useTranslation } from 'react-i18next';
+import { OsdsLink, OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
+
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { Await } from 'react-router-dom';
+
 import { USER_CERTIFICATES } from './dashboard.constants';
 
 export const NotificationsEmailUnreachable: FunctionComponent = () => {

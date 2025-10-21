@@ -199,9 +199,7 @@ export class BillingService implements BillingServiceData {
   }
 
   isResiliated(): boolean {
-    return (
-      this.isExpired() || ['TERMINATED'].includes(this.status.toUpperCase())
-    );
+    return this.isExpired() || ['TERMINATED'].includes(this.status.toUpperCase());
   }
 
   isExpired(): boolean {
@@ -231,9 +229,7 @@ export class BillingService implements BillingServiceData {
   }
 
   hasForcedRenew(): boolean {
-    return (
-      this.renew.forced && !this.shouldDeleteAtExpiration() && !this.isExpired()
-    );
+    return this.renew.forced && !this.shouldDeleteAtExpiration() && !this.isExpired();
   }
 
   hasDebt(): boolean {
@@ -245,11 +241,7 @@ export class BillingService implements BillingServiceData {
   }
 
   hasPendingResiliation(): boolean {
-    return (
-      this.shouldDeleteAtExpiration() &&
-      !this.hasManualRenew() &&
-      !this.isResiliated()
-    );
+    return this.shouldDeleteAtExpiration() && !this.hasManualRenew() && !this.isResiliated();
   }
 
   hasResiliationRights(nichandle: string) {
@@ -292,13 +284,9 @@ export class BillingService implements BillingServiceData {
   }
 
   hasParticularRenew() {
-    return [
-      'EXCHANGE',
-      'EMAIL_EXCHANGE',
-      'SMS',
-      'EMAIL_DOMAIN',
-      'VEEAM_ENTERPRISE',
-    ].includes(this.serviceType);
+    return ['EXCHANGE', 'EMAIL_EXCHANGE', 'SMS', 'EMAIL_DOMAIN', 'VEEAM_ENTERPRISE'].includes(
+      this.serviceType,
+    );
   }
 
   hasEngagement() {
@@ -314,9 +302,7 @@ export class BillingService implements BillingServiceData {
   }
 
   canCancelResiliationByEndRule() {
-    return this.engagementDetails?.endRule?.possibleStrategies.includes(
-      'REACTIVATE_ENGAGEMENT',
-    );
+    return this.engagementDetails?.endRule?.possibleStrategies.includes('REACTIVATE_ENGAGEMENT');
   }
 
   canResiliateByEndRule() {
