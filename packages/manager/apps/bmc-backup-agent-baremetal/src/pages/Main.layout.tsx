@@ -6,7 +6,7 @@ import { ShellContext, useOvhTracking, useRouteSynchro } from '@ovh-ux/manager-r
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 
 import { appName } from '@/App.constants';
-import { BackupAgentContext } from "@ovh-ux/backup-agent/src/BackupAgent.context";
+import { BackupAgentContext } from "@ovh-ux/backup-agent";
 
 export default function MainLayout() {
   const location = useLocation();
