@@ -16,5 +16,8 @@
   "pci_projects_project_activate_message_fail": "Wystąpił błąd podczas włączania Twojego projektu: {{message}}.",
   "pci_projects_project_activate_credit_payment_title": "Wymagany kredyt",
   "pci_projects_project_activate_credit_payment_description": "Aby aktywować projekt, musisz dodać {{amount}} kredytu do swojego konta.",
-  "pci_projects_project_activate_credit_payment_info": "Zostaniesz przekierowany na stronę płatności, aby sfinalizować tę transakcję."
+  "pci_projects_project_activate_credit_payment_info": "Zostaniesz przekierowany na stronę płatności, aby sfinalizować tę transakcję.",
+
+  "pci_projects_project_activateDiscovery_heading": "Aktywuj projekt",
+  "pci_projects_project_activateDiscovery_info": "Przed utworzeniem nowego projektu aktywuj ten projekt. Nie jesteś jeszcze gotowy? Możesz nadal korzystać z usług Public Cloud w trybie Discovery."
 }

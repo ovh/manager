@@ -74,4 +74,8 @@ export const PROJECTS_TRACKING = {
       },
     },
   },
+  ACTIVATE_PROJECT_MODAL: {
+    CTA_CANCEL: ['page', 'button', 'activate-project-modal', 'cancel'],
+    CTA_CONFIRM: ['page', 'button', 'activate-project-modal', 'confirm'],
+  },
 };
