@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import {
   useGetCartConfiguration,
-  useGetOrderProjectId,
+  useGetProjectItem,
   useIsHdsChecked,
 } from '@/data/hooks/useCart';
 
@@ -25,14 +25,15 @@ export const useConfigForm = (
     isHdsChecked: false,
   });
 
-  const {
-    data: projectItem,
-    isLoading: isLoadingProject,
-  } = useGetOrderProjectId(cartId);
+  const { data: projectItem, isLoading: isLoadingProject } = useGetProjectItem(
+    cartId,
+  );
+  console.log('projectItem', projectItem);
   const {
     data: cartConfiguration,
     isLoading: isLoadingCartConfig,
   } = useGetCartConfiguration('description', cartId, projectItem?.itemId);
+
   const { data: hdsItem, isLoading: isLoadingHds } = useIsHdsChecked(cartId);
 
   useEffect(() => {
