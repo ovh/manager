@@ -3,8 +3,8 @@ import { useTranslation } from "react-i18next";
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 import {useBackupVaultDetails} from "@/data/hooks/vaults/getVaultDetails";
 import {OdsSkeleton} from "@ovhcloud/ods-components/react";
-import {VaultStatusBadge} from "../../../../../../components/VaultStatusBadge/VaultStatusBadge.components";
-import {useLocationDetails} from "../../../../../../data/hooks/location/getLocationDetails";
+import {VaultStatusBadge} from "@/components/VaultStatusBadge/VaultStatusBadge.components";
+import {useLocationDetails} from "@/data/hooks/location/getLocationDetails";
 
 type GeneralInformationTileProps = {
   vaultId: string;
