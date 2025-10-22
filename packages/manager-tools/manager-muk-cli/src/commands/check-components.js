@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
+
 import { EMOJIS, MUK_COMPONENTS_SRC } from '../config/muk-config.js';
+import { toKebabCase } from '../core/file-utils.js';
 import {
   extractOdsComponentsTarball,
   getOdsComponentsPackageMetadata,
 } from '../core/ods-components-tarball-utils.js';
 import { logger } from '../utils/log-manager.js';
-import { toKebabCase } from '../core/file-utils.js';
 
 /**
  * Recursively retrieve all local Manager UI Kit (MUK) components,
@@ -50,7 +51,9 @@ async function getLocalComponents(baseDir = MUK_COMPONENTS_SRC, parent = '') {
   }
 
   if (!parent) {
-    logger.info(`${EMOJIS.folder} Found ${components.length} local components (recursive, normalized)`);
+    logger.info(
+      `${EMOJIS.folder} Found ${components.length} local components (recursive, normalized)`,
+    );
   }
 
   return components;
@@ -143,9 +146,7 @@ export async function checkComponents({ returnOnly = false } = {}) {
     return !normalizedLocal.includes(parent);
   });
 
-  const extraLocalComponents = normalizedLocal.filter(
-    (local) => !normalizedRemote.includes(local),
-  );
+  const extraLocalComponents = normalizedLocal.filter((local) => !normalizedRemote.includes(local));
 
   if (returnOnly) return { missingComponents, extraLocalComponents };
 
