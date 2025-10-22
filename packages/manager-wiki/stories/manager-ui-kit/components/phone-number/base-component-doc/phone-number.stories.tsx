@@ -17,8 +17,14 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<PhoneNumberProp>;
+
+(PhoneNumber as any).__docgenInfo = docgenMap.phoneNumber;
+(PhoneNumberControl as any).__docgenInfo = docgenMap.phoneNumberControl;
+(PhoneNumberCountryList as any).__docgenInfo = docgenMap.phoneNumberCountryList;
+
 type DemoArg = Partial<PhoneNumberProp> & Partial<PhoneNumberControlProp> & {
   withCountries?: boolean,
 };
@@ -129,7 +135,7 @@ export const Clearable: Story = {
   globals: {
     imports: `import { PhoneNumber, PhoneNumberControl, PhoneNumberCountryList } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -155,7 +161,7 @@ export const CountryList: Story = {
   globals: {
     imports: `import { PhoneNumber, PhoneNumberControl, PhoneNumberCountryList } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -186,7 +192,7 @@ export const Default: Story = {
   globals: {
     imports: `import { PhoneNumber, PhoneNumberControl } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -204,7 +210,7 @@ export const Disabled: Story = {
   globals: {
     imports: `import { PhoneNumber, PhoneNumberControl, PhoneNumberCountryList } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -229,7 +235,7 @@ export const InFormField: Story = {
   globals: {
     imports: `import { FormField, FormFieldLabel, PhoneNumber, PhoneNumberControl } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -253,7 +259,7 @@ export const Loading: Story = {
   globals: {
     imports: `import { PhoneNumber, PhoneNumberControl, PhoneNumberCountryList } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -279,7 +285,7 @@ export const Locale: Story = {
   globals: {
     imports: `import { PhoneNumber, PhoneNumberControl, PhoneNumberCountryList } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -326,7 +332,7 @@ export const Readonly: Story = {
   globals: {
     imports: `import { PhoneNumber, PhoneNumberControl, PhoneNumberCountryList } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -351,7 +357,7 @@ export const AccessibilityFormField: Story = {
   globals: {
     imports: `import { FormField, FormFieldLabel, PhoneNumber, PhoneNumberControl, PhoneNumberCountryList } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

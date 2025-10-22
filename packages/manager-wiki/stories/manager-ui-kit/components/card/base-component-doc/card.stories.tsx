@@ -9,8 +9,11 @@ import {
 import { CONTROL_CATEGORY } from '../../../base-documents/constants/controls';
 import { orderControls } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<CardProp>;
+
+(Card as any).__docgenInfo = docgenMap.card;
 
 const meta: Meta<CardProp> = {
   component: Card,
@@ -99,7 +102,7 @@ export const Default: Story = {
 };
 
 export const Overview: Story = {
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     layout: 'centered',
     docs: {

@@ -16,8 +16,15 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<RadioGroupProp>;
+
+(RadioGroup as any).__docgenInfo = docgenMap.radioGroup;
+(Radio as any).__docgenInfo = docgenMap.radio;
+(RadioControl as any).__docgenInfo = docgenMap.radioControl;
+(RadioLabel as any).__docgenInfo = docgenMap.radioLabel;
+
 type DemoArg = Partial<RadioGroupProp> & Partial<RadioProp>;
 
 const meta: Meta<RadioGroupProp> = {
@@ -154,7 +161,7 @@ export const DisabledItem: Story = {
   globals: {
     imports: `import { Radio, RadioControl, RadioGroup, RadioLabel } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -189,7 +196,7 @@ export const InFormField: Story = {
   globals: {
     imports: `import { FormField, FormFieldLabel, Radio, RadioControl, RadioGroup, RadioLabel } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -228,7 +235,7 @@ export const Invalid: Story = {
   globals: {
     imports: `import { Radio, RadioControl, RadioGroup, RadioLabel } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -265,7 +272,7 @@ export const Orientation: Story = {
   globals: {
     imports: `import { Radio, RadioControl, RadioGroup, RadioLabel } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

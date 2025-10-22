@@ -13,8 +13,11 @@ import {
 import { CONTROL_CATEGORY } from '../../../base-documents/constants/controls';
 import { orderControls } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<TableProp>;
+
+(Table as any).__docgenInfo = docgenMap.table;
 
 const meta: Meta<TableProp> = {
   component: Table,
@@ -237,7 +240,7 @@ export const Size: Story = {
   globals: {
     imports: `import { TABLE_SIZE, Table } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -366,7 +369,7 @@ export const Variant: Story = {
   globals: {
     imports: `import { TABLE_VARIANT, Table } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

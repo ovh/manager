@@ -18,8 +18,14 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<SelectProp>;
+
+(Select as any).__docgenInfo = docgenMap.select;
+(SelectContent as any).__docgenInfo = docgenMap.selectContent;
+(SelectControl as any).__docgenInfo = docgenMap.selectControl;
+
 type DemoArg = Partial<SelectProp> & Partial<SelectControlProp> & {};
 
 const meta: Meta<SelectProp> = {
@@ -280,7 +286,7 @@ export const Disabled: Story = {
   globals: {
     imports: `import { TEXT_PRESET, Select, SelectContent, SelectControl, Text } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -379,7 +385,7 @@ export const Group: Story = {
   globals: {
     imports: `import { Select, SelectContent, SelectControl } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -424,7 +430,7 @@ export const InFormField: Story = {
   globals: {
     imports: `import { FormField, FormFieldLabel, Select, SelectContent, SelectControl } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -455,7 +461,7 @@ export const Multiple: Story = {
   globals: {
     imports: `import { TEXT_PRESET, Select, SelectContent, SelectControl, Text } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -540,7 +546,7 @@ export const Readonly: Story = {
   globals: {
     imports: `import { Select, SelectContent, SelectControl } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

@@ -15,8 +15,12 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<SwitchProp>;
+
+(Switch as any).__docgenInfo = docgenMap.switch;
+(SwitchItem as any).__docgenInfo = docgenMap.switchItem;
 
 const meta: Meta<SwitchProp> = {
   argTypes: excludeFromDemoControls(['defaultValue', 'onValueChange', 'value']),
@@ -104,7 +108,7 @@ export const Checked: Story = {
   globals: {
     imports: `import { Switch, SwitchItem } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -123,7 +127,7 @@ export const Default: Story = {
   globals: {
     imports: `import { Switch, SwitchItem } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -142,7 +146,7 @@ export const Disabled: Story = {
   globals: {
     imports: `import { Switch, SwitchItem } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -179,7 +183,7 @@ export const Sizes: Story = {
   globals: {
     imports: `import { SWITCH_SIZE, Switch, SwitchItem } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

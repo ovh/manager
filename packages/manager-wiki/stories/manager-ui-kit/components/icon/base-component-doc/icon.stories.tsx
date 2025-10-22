@@ -9,8 +9,12 @@ import {
 import { CONTROL_CATEGORY } from '../../../base-documents/constants/controls';
 import { orderControls } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<IconProp>;
+
+(Icon as any).__docgenInfo = docgenMap.icon;
+
 type AllArg = Partial<IconProp> & {
   search: string
 };
@@ -240,7 +244,7 @@ export const AccessibilityInformative: Story = {
   globals: {
     imports: `import { ICON_NAME, Icon } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -331,7 +335,7 @@ export const Default: Story = {
   globals: {
     imports: `import { ICON_NAME, Icon } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -346,7 +350,7 @@ export const Informative: Story = {
   globals: {
     imports: `import { ICON_NAME, Icon } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

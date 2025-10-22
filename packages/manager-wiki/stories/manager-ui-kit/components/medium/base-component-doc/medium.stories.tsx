@@ -9,8 +9,11 @@ import {
 import { CONTROL_CATEGORY } from '../../../base-documents/constants/controls';
 import { orderControls } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<MediumProp>;
+
+(Medium as any).__docgenInfo = docgenMap.medium;
 
 const meta: Meta<MediumProp> = {
   component: Medium,
@@ -77,7 +80,7 @@ export const Default: Story = {
   globals: {
     imports: `import { Medium } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -91,7 +94,7 @@ tags: ['!dev'],
 };
 
 export const Overview: Story = {
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     layout: 'centered',
     docs: {
@@ -109,7 +112,7 @@ export const Height: Story = {
   globals: {
     imports: `import { Medium } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -127,7 +130,7 @@ export const Width: Story = {
   globals: {
     imports: `import { Medium } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

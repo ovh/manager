@@ -17,8 +17,15 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<FormFieldProp>;
+
+(FormField as any).__docgenInfo = docgenMap.formField;
+(FormFieldError as any).__docgenInfo = docgenMap.formFieldError;
+(FormFieldHelper as any).__docgenInfo = docgenMap.formFieldHelper;
+(FormFieldLabel as any).__docgenInfo = docgenMap.formFieldLabel;
+
 type DemoArg = Partial<FormFieldProp> & {
   errorText?: string,
   helperText?: string,
@@ -87,7 +94,7 @@ export const Default: Story = {
   globals: {
     imports: `import { FormField, Textarea } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -104,7 +111,7 @@ export const Error: Story = {
   globals: {
     imports: `import { FormField, FormFieldError, Textarea } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -125,7 +132,7 @@ export const Helper: Story = {
   globals: {
     imports: `import { TEXT_PRESET, FormField, FormFieldHelper, Text, Textarea } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -148,7 +155,7 @@ export const Label: Story = {
   globals: {
     imports: `import { FormField, FormFieldLabel, Textarea } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -213,7 +220,7 @@ export const AccessibilityLabel: Story = {
   globals: {
     imports: `import { FormField, FormFieldHelper, FormFieldLabel, Input } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

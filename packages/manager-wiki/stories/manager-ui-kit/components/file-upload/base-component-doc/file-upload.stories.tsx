@@ -17,8 +17,13 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<FileUploadProp>;
+
+(FileUpload as any).__docgenInfo = docgenMap.fileUpload;
+(FileUploadItem as any).__docgenInfo = docgenMap.fileUploadItem;
+(FileUploadList as any).__docgenInfo = docgenMap.fileUploadList;
 
 const meta: Meta<FileUploadProp> = {
   argTypes: excludeFromDemoControls(['accept', 'locale', 'name', 'onFileAccept', 'onFileReject', 'required']),
@@ -175,7 +180,7 @@ export const AccessibilityFileButton: Story = {
     imports: `import { FILE_UPLOAD_I18N, FileUpload, FileUploadItem, FileUploadList } from '@ovhcloud/ods-react';
 import { useState } from 'react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -250,7 +255,7 @@ export const Default: Story = {
     imports: `import { FileUpload, FileUploadItem, FileUploadList } from '@ovhcloud/ods-react';
 import { useState } from 'react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -279,7 +284,7 @@ export const Disabled: Story = {
   globals: {
     imports: `import { FileUpload, FileUploadList } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -297,7 +302,7 @@ export const MaxFile: Story = {
     imports: `import { FileUpload, FileUploadItem, FileUploadList } from '@ovhcloud/ods-react';
 import { useState } from 'react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -342,7 +347,7 @@ export const MaxSize: Story = {
     imports: `import { FileUpload, FileUploadItem, FileUploadList } from '@ovhcloud/ods-react';
 import { useState } from 'react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -414,7 +419,7 @@ export const Upload: Story = {
     imports: `import { FileUpload, FileUploadItem, FileUploadList } from '@ovhcloud/ods-react';
 import { useEffect, useState } from 'react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -474,7 +479,7 @@ export const InFormField: Story = {
     imports: `import { FileUpload, FileUploadItem, FileUploadList, FormField, FormFieldLabel } from '@ovhcloud/ods-react';
 import { useState } from 'react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -510,7 +515,7 @@ export const AccessibilityFormField: Story = {
     imports: `import { FileUpload, FileUploadItem, FileUploadList, FormField, FormFieldLabel } from '@ovhcloud/ods-react';
 import { useState } from 'react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

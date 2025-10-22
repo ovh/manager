@@ -7,8 +7,11 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<LinkProp>;
+
+(Link as any).__docgenInfo = docgenMap.link;
 
 const meta: Meta<LinkProp> = {
   argTypes: excludeFromDemoControls(['as']),
@@ -122,7 +125,7 @@ export const AccessibilityIconOnlyLink: Story = {
   globals: {
     imports: `import { ICON_NAME, Icon, Link } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -141,7 +144,7 @@ export const AccessibilityInANewTab: Story = {
   globals: {
     imports: `import { ICON_NAME, Icon, Link } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

@@ -14,8 +14,13 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<BreadcrumbProp>;
+
+(Breadcrumb as any).__docgenInfo = docgenMap.breadcrumb;
+(BreadcrumbItem as any).__docgenInfo = docgenMap.breadcrumbItem;
+(BreadcrumbLink as any).__docgenInfo = docgenMap.breadcrumbLink;
 
 const meta: Meta<BreadcrumbProp> = {
   argTypes: excludeFromDemoControls(['i18n', 'id', 'locale', 'noCollapse', 'onExpand']),

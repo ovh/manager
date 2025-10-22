@@ -13,8 +13,11 @@ import {
 import { CONTROL_CATEGORY } from '../../../base-documents/constants/controls';
 import { orderControls } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<TextareaProp>;
+
+(Textarea as any).__docgenInfo = docgenMap.textarea;
 
 const meta: Meta<TextareaProp> = {
   component: Textarea,
