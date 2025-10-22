@@ -9,13 +9,14 @@ import { PageType } from '@ovh-ux/manager-react-shell-client';
 
 import NotFound from '@/pages/404';
 
-import OrderDomainPage from '../pages/dashboard/OrderDomain.page';
-import OnboardingPage from '../pages/onboarding/Onboarding.page';
-import WebsitesPage from '../pages/websites/Websites.page';
 import {
   ADD_DOMAIN,
+  CREATE,
   DASHBOARD,
+  DELETE,
   DISABLE_SSL,
+  GENERAL_INFORMATION,
+  IMPORT,
   IMPORT_SSL,
   ONBOARDING,
   ORDER_DOMAIN,
@@ -23,10 +24,22 @@ import {
   SAN_SSL,
   SSL,
   TASK,
+  TASKS,
   WEBSITE,
+  WORDPRESS_MANAGED,
+  WORDPRESS_MANAGED_SERVICE,
 } from '../utils/tracking.constants';
-import { DashboardLayout, RootPage } from './pages/default';
-import { AddDomainPage } from './pages/domain';
+import { DashboardLayout, OnboardingPage, RootPage, WebsitesPage } from './pages/default';
+import { AddDomainPage, OrderDomainPage } from './pages/domain';
+import {
+  ManagedWordpressPage,
+  ManagedWordpressResourcePage,
+  ManagedWordpressServiceCreatePage,
+  ManagedWordpressServiceDelete,
+  ManagedWordpressServiceGeneralInformationPage,
+  ManagedWordpressServiceImportPage,
+  ManagedWordpressServiceTasksPage,
+} from './pages/managedWordpress';
 import { DisableSslPage, ImportSslPage, OrderSectigoPage, SanSslPage, SslPage } from './pages/ssl';
 import { OngoingTaskPage } from './pages/task';
 import { urls } from './routes.constants';
@@ -57,6 +70,98 @@ export default (
       />
     }
   >
+    <Route
+      id={WORDPRESS_MANAGED}
+      path={urls.managedWordpress}
+      Component={ManagedWordpressPage}
+      handle={{
+        tracking: {
+          pageType: PageType.listing,
+        },
+        breadcrumb: {
+          label: 'managed_wordpress',
+        },
+      }}
+    />
+
+    <Route
+      id={WORDPRESS_MANAGED_SERVICE}
+      path={urls.managedWordpressResource}
+      Component={ManagedWordpressResourcePage}
+      handle={{
+        tracking: {
+          pageType: PageType.listing,
+        },
+        breadcrumb: {
+          label: ':serviceName',
+        },
+      }}
+    >
+      <Route
+        id={GENERAL_INFORMATION}
+        path={urls.managedWordpressResource}
+        Component={ManagedWordpressServiceGeneralInformationPage}
+        handle={{
+          tracking: {
+            pageType: PageType.listing,
+          },
+        }}
+      >
+        <Route
+          id={DELETE}
+          path={urls.managedWordpressResourceDeleteModal}
+          Component={ManagedWordpressServiceDelete}
+          handle={{
+            tracking: {
+              pageName: DELETE,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+      </Route>
+
+      <Route
+        id={TASKS}
+        path={urls.managedWordpressResourceTasks}
+        Component={ManagedWordpressServiceTasksPage}
+        handle={{
+          tracking: {
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: 'common:web_hosting_header_tasks',
+          },
+        }}
+      />
+      <Route
+        id={CREATE}
+        path={urls.managedWordpressResourceCreate}
+        Component={ManagedWordpressServiceCreatePage}
+        handle={{
+          tracking: {
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: 'common:create_website',
+          },
+          isOverridePage: true,
+        }}
+      />
+      <Route
+        id={IMPORT}
+        path={urls.managedWordpressResourceImport}
+        Component={ManagedWordpressServiceImportPage}
+        handle={{
+          tracking: {
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: 'common:import_website',
+          },
+          isOverridePage: true,
+        }}
+      />
+    </Route>
     <Route
       id={WEBSITE}
       path={urls.websites}

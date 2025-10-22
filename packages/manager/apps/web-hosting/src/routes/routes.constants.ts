@@ -6,6 +6,7 @@ export const subRoutes = {
 export const urls = {
   // ROOT
   root: '',
+  managedWordpress: '/managed-hosting-for-wordpress',
   hosting: '/web/hosting',
 
   // COMMON
@@ -26,4 +27,12 @@ export const urls = {
 
   // TASK
   task: `/${subRoutes.serviceName}/task`,
+
+  // MANAGED CMS
+  managedWordpressResource: `/managed-hosting-for-wordpress/${subRoutes.serviceName}`,
+  managedWordpressResourceGeneralInformation: `/managed-hosting-for-wordpress/${subRoutes.serviceName}`,
+  managedWordpressResourceCreate: `/managed-hosting-for-wordpress/${subRoutes.serviceName}/create`,
+  managedWordpressResourceImport: `/managed-hosting-for-wordpress/${subRoutes.serviceName}/import`,
+  managedWordpressResourceTasks: `/managed-hosting-for-wordpress/${subRoutes.serviceName}/tasks`,
+  managedWordpressResourceDeleteModal: `/managed-hosting-for-wordpress/${subRoutes.serviceName}/delete-modal`,
 };

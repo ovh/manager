@@ -85,5 +85,7 @@
   "hosting_add_step3_insert_token_field": "Ein Feld {{t0}} für die Domain {{t1}} mit dem Wert {{t2}} einfügen.",
   "hosting_tab_DOMAINS_configuration_add_success_finish": "Die Domain(s) wurde(n) Ihrem Shared Hosting erfolgreich hinzugefügt.",
   "hosting_tab_DOMAINS_configuration_add_failure": "Beim Hinzufügen der Domain(s) zu Ihrem Shared Hosting ist ein Fehler aufgetreten.",
-  "domain_tab_emails": "E-Mails und Mailinglisten"
+  "domain_tab_emails": "E-Mails und Mailinglisten",
+  "hosting_managed_wordpress_websites_description": "Erstellen Sie eine neue Website oder importieren Sie in wenigen Klicks eine vorhandene Website in dieses Konto.",
+  "hosting_managed_wordpress_websites_description_without_import": "Erstellen Sie in wenigen Klicks eine neue Website in diesem Konto."
 }

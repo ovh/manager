@@ -85,5 +85,7 @@
   "hosting_add_step3_insert_token_field": "Wprowadź rekord {{t0}} dla domeny {{t1}}, ustawiając jego wartość na {{t2}}.",
   "hosting_tab_DOMAINS_configuration_add_success_finish": "Domena lub domeny zostały poprawnie dodane do hostingu.",
   "hosting_tab_DOMAINS_configuration_add_failure": "Wystąpił błąd podczas dodawania domeny lub domen do hostingu.",
-  "domain_tab_emails": "E-maile i listy mailingowe"
+  "domain_tab_emails": "E-maile i listy mailingowe",
+  "hosting_managed_wordpress_websites_description": "Utwórz nową stronę lub zaimportuj istniejącą stronę do tego konta w kilka kliknięć.",
+  "hosting_managed_wordpress_websites_description_without_import": "Utwórz nową stronę w kilka kliknięć na tym koncie."
 }
