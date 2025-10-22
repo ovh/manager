@@ -1,4 +1,4 @@
-import React, {Suspense, startTransition, useMemo, useContext} from 'react';
+import React, { Suspense, startTransition, useContext, useMemo } from 'react';
 
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 
@@ -6,14 +6,15 @@ import { useTranslation } from 'react-i18next';
 
 import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { BaseLayout, Breadcrumb } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
-import { LABELS } from "@/module.constants"
-import { NAMESPACES } from "@ovh-ux/manager-common-translations";
+import { BackupAgentContext } from '@/BackupAgent.context';
+import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
+import { LABELS } from '@/module.constants';
+
 import { useDashboardTabs } from './_hooks/useDashboardTabs';
-import {BackupAgentContext} from "@/BackupAgent.context";
-import {BACKUP_AGENT_NAMESPACES} from "@/BackupAgent.translations";
 
 export default function MainLayout() {
   const { appName } = useContext(BackupAgentContext);
@@ -26,9 +27,7 @@ export default function MainLayout() {
   const tabs = useDashboardTabs();
 
   const activeTab = useMemo(
-    () =>
-      tabs.find((tab) => tab.to && location.pathname.startsWith(`/${tab.to}`)) ??
-      tabs[0],
+    () => tabs.find((tab) => tab.to && location.pathname.startsWith(`/${tab.to}`)) ?? tabs[0],
     [tabs, location.pathname],
   );
 
@@ -39,7 +38,7 @@ export default function MainLayout() {
   return (
     <BaseLayout
       header={{ title: LABELS.BACKUP_AGENT }}
-      backLinkLabel={t(`NAMESPACES.ACTIONS:back`)}
+      backLinkLabel={t(`${NAMESPACES.ACTIONS}:back`)}
       onClickReturn={onNavigateBackClicked}
       breadcrumb={<Breadcrumb appName={appName} rootLabel={appName} />}
       tabs={
@@ -61,11 +60,10 @@ export default function MainLayout() {
         </OdsTabs>
       }
     >
-      <BackupAgentContext.Provider value={{appName: "Backup Agent", scope: "Enterprise"}}>
+      <BackupAgentContext.Provider value={{ appName: 'Backup Agent', scope: 'Enterprise' }}>
         <Suspense fallback={null}>
           <Outlet />
         </Suspense>
-
       </BackupAgentContext.Provider>
     </BaseLayout>
   );
