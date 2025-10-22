@@ -138,7 +138,12 @@ export const CustomTrigger: Story = {
   globals: {
     imports: `import { Button, Popover, PopoverContent, PopoverTrigger } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Popover>
       <PopoverTrigger asChild>
@@ -158,7 +163,12 @@ export const Default: Story = {
   globals: {
     imports: `import { Popover, PopoverContent, PopoverTrigger } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Popover>
       <PopoverTrigger>
@@ -187,7 +197,12 @@ export const Grid: StoryObj = {
   globals: {
     imports: `import { Popover, PopoverContent, PopoverTrigger } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Popover position="top-start">
@@ -271,6 +286,9 @@ export const Overview: Story = {
   tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <Popover>
@@ -291,7 +309,12 @@ export const AccessibilityWithMenu: Story = {
   globals: {
     imports: `import { BUTTON_COLOR, BUTTON_VARIANT, ICON_NAME, Button, Divider, Icon, Popover, PopoverContent, PopoverTrigger } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Popover>
       <PopoverTrigger
@@ -338,7 +361,12 @@ export const SameWidth: Story = {
   globals: {
     imports: `import { Popover, PopoverContent, PopoverTrigger } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Popover sameWidth>
       <PopoverTrigger>

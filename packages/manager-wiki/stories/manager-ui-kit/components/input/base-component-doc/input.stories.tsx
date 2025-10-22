@@ -101,7 +101,12 @@ export const Clearable: Story = {
   globals: {
     imports: `import { Input } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Input
       clearable
@@ -113,7 +118,12 @@ export const Datalist: Story = {
   globals: {
     imports: `import { Input } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Input list="ice-cream-flavors" />
@@ -133,7 +143,12 @@ export const Default: Story = {
   globals: {
     imports: `import { Input } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Input />
   ),
@@ -143,7 +158,12 @@ export const Disabled: Story = {
   globals: {
     imports: `import { Input } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Input disabled />
   ),
@@ -153,7 +173,12 @@ export const FloatingNumber: Story = {
   globals: {
     imports: `import { INPUT_TYPE, Input } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Input
       defaultValue="9.99"
@@ -166,7 +191,12 @@ export const InFormField: Story = {
   globals: {
     imports: `import { FormField, FormFieldLabel, Input } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <FormField>
       <FormFieldLabel>
@@ -182,7 +212,12 @@ export const Loading: Story = {
   globals: {
     imports: `import { Input } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Input loading />
   ),
@@ -192,7 +227,12 @@ export const Masked: Story = {
   globals: {
     imports: `import { Input } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Input maskOption={{ enable: true }} />
   ),
@@ -202,6 +242,9 @@ export const Overview: Story = {
   tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <Input placeholder="Input" />
@@ -212,7 +255,12 @@ export const ReadOnly: Story = {
   globals: {
     imports: `import { Input } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Input
       defaultValue="Readonly"
@@ -225,7 +273,12 @@ export const Types: Story = {
   globals: {
     imports: `import { INPUT_TYPE, Input } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Input type={ INPUT_TYPE.email } placeholder="email" /><br />
@@ -243,7 +296,12 @@ export const AccessibilityFormField: Story = {
   globals: {
     imports: `import { FormField, FormFieldLabel, Input } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <FormField>
       <FormFieldLabel>

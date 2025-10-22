@@ -80,6 +80,9 @@ export const Overview: Story = {
   tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <Tabs defaultValue="tab1">
@@ -128,7 +131,12 @@ export const Default: Story = {
   globals: {
     imports: `import { Tabs, TabList, Tab } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Tabs defaultValue='tab1'>
       <TabList>
@@ -144,7 +152,12 @@ export const Disabled: Story = {
   globals: {
     imports: `import { Tabs, TabList, Tab } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Tabs defaultValue="tab1">
       <TabList>
@@ -160,7 +173,12 @@ export const Overflow: Story = {
   globals: {
     imports: `import { Tabs, TabList, Tab } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <div style={{ width: '300px' }}>
       <Tabs defaultValue="tab1">
@@ -181,7 +199,12 @@ export const WithArrows: Story = {
   globals: {
     imports: `import { Tabs, TabList, Tab } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Tabs
       defaultValue="tab1"
@@ -211,7 +234,12 @@ export const WithContent: Story = {
   globals: {
     imports: `import { Tabs, TabContent, TabList, Tab } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Tabs defaultValue="tab1">
       <TabList>

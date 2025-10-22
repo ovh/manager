@@ -3,6 +3,7 @@ import React from 'react';
 import { ProgressBar, type ProgressBarProp } from '@ovhcloud/ods-react';
 import { CONTROL_CATEGORY } from '../../../base-documents/constants/controls';
 import { orderControls } from '../../../base-documents/helpers/controls';
+import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
 
 type Story = StoryObj<ProgressBarProp>;
 
@@ -37,6 +38,11 @@ export const Default: Story = {
     imports: `import { ProgressBar } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <ProgressBar />
   ),
@@ -47,6 +53,11 @@ export const Max: StoryObj = {
     imports: `import { ProgressBar } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <ProgressBar
       max="500"
@@ -56,6 +67,11 @@ export const Max: StoryObj = {
 
 export const Overview: Story = {
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <ProgressBar value="50" />
   ),
@@ -66,6 +82,11 @@ export const Value: StoryObj = {
     imports: `import { ProgressBar } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <ProgressBar value="50" />
   ),
@@ -76,6 +97,11 @@ export const AccessibilityLabel: Story = {
     imports: `import { ProgressBar } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <ProgressBar aria-label="Converting" />
   ),

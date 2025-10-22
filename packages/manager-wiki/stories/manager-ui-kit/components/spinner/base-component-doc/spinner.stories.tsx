@@ -10,6 +10,7 @@ import {
 } from '@ovhcloud/ods-react';
 import { CONTROL_CATEGORY } from '../../../base-documents/constants/controls';
 import { orderControls } from '../../../base-documents/helpers/controls';
+import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
 
 type Story = StoryObj<SpinnerProp>;
 
@@ -46,6 +47,11 @@ export const Color: Story = {
     imports: `import { SPINNER_COLOR, Spinner } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Spinner color={ SPINNER_COLOR.neutral } />
@@ -58,7 +64,12 @@ export const Default: Story = {
   globals: {
     imports: `import { Spinner } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Spinner />
   ),
@@ -68,6 +79,9 @@ export const Overview: Story = {
   tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <Spinner />
@@ -78,7 +92,12 @@ export const Size: Story = {
   globals: {
     imports: `import { SPINNER_SIZE, Spinner } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Spinner size={ SPINNER_SIZE.xs } />
@@ -93,7 +112,12 @@ export const AccessibilityAriaBusyAriaLive: Story = {
   globals: {
     imports: `import { Spinner } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <div
       aria-busy="true"
@@ -107,7 +131,12 @@ export const AccessibilityAriaLabel: Story = {
   globals: {
     imports: `import { Spinner } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Spinner aria-label="Loading user profile" />
   ),
@@ -117,7 +146,12 @@ export const AccessibilityAriaLabelledBy: Story = {
   globals: {
     imports: `import { Spinner } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <div>
       <span id="loading-text">

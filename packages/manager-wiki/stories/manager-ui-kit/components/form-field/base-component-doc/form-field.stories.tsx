@@ -16,6 +16,7 @@ import {
   excludeFromDemoControls,
   orderControls,
 } from '../../../base-documents/helpers/controls';
+import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
 
 type Story = StoryObj<FormFieldProp>;
 type DemoArg = Partial<FormFieldProp> & {
@@ -86,7 +87,12 @@ export const Default: Story = {
   globals: {
     imports: `import { FormField, Textarea } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <FormField>
       <Textarea name="textarea" />
@@ -98,7 +104,12 @@ export const Error: Story = {
   globals: {
     imports: `import { FormField, FormFieldError, Textarea } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <FormField invalid>
       <Textarea name="textarea" />
@@ -114,7 +125,12 @@ export const Helper: Story = {
   globals: {
     imports: `import { TEXT_PRESET, FormField, FormFieldHelper, Text, Textarea } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <FormField>
       <Textarea name="textarea" />
@@ -132,7 +148,12 @@ export const Label: Story = {
   globals: {
     imports: `import { FormField, FormFieldLabel, Textarea } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <FormField>
       <FormFieldLabel>
@@ -145,10 +166,13 @@ export const Label: Story = {
 };
 
 export const Overview: Story = {
+  tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
-  tags: ['!dev'],
   render: ({}) => {
     const MAX_COUNT = 200;
     const [count, setCount] = useState(0);
@@ -189,7 +213,12 @@ export const AccessibilityLabel: Story = {
   globals: {
     imports: `import { FormField, FormFieldHelper, FormFieldLabel, Input } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <FormField>
       <FormFieldLabel>

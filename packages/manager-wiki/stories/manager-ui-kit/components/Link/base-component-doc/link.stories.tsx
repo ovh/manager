@@ -6,6 +6,7 @@ import {
   excludeFromDemoControls,
   orderControls,
 } from '../../../base-documents/helpers/controls';
+import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
 
 type Story = StoryObj<LinkProp>;
 
@@ -43,6 +44,11 @@ export const Default: Story = {
     imports: `import { Link } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Link href="https://www.ovhcloud.com">
       Default Link
@@ -55,6 +61,11 @@ export const Disabled: Story = {
     imports: `import { Link } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Link
       disabled
@@ -68,6 +79,9 @@ export const Overview: Story = {
   tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <Link
@@ -84,6 +98,11 @@ export const WithIcon: Story = {
     imports: `import { ICON_NAME, Icon, Link } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Link href="https://www.ovhcloud.com">
@@ -103,7 +122,12 @@ export const AccessibilityIconOnlyLink: Story = {
   globals: {
     imports: `import { ICON_NAME, Icon, Link } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Link
       aria-label="Go to homepage"
@@ -117,7 +141,12 @@ export const AccessibilityInANewTab: Story = {
   globals: {
     imports: `import { ICON_NAME, Icon, Link } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Link
       aria-label="Visit Example (opens in a new tab)"
@@ -134,6 +163,11 @@ export const AccessibilityFileDownload: Story = {
     imports: `import { ICON_NAME, Icon, Link } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Link

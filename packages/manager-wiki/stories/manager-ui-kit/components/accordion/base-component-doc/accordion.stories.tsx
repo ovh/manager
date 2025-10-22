@@ -27,7 +27,12 @@ const meta: Meta<AccordionProp> = {
 export default meta;
 
 export const Overview: Story = {
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Accordion>
       <AccordionItem value="0">
@@ -101,7 +106,12 @@ export const Default: Story = {
   globals: {
     imports: `import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Accordion>
       <AccordionItem value="0">
@@ -120,7 +130,12 @@ export const Multiple: Story = {
   globals: {
     imports: `import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, Text } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Accordion>
@@ -176,7 +191,12 @@ export const Disabled: Story = {
   globals: {
     imports: `import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Accordion disabled>
       <AccordionItem value="0">
@@ -196,6 +216,11 @@ export const ItemDisabled: Story = {
     imports: `import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Accordion>
       <AccordionItem value="0" disabled>

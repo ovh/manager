@@ -10,6 +10,7 @@ import {
 } from '@ovhcloud/ods-react';
 import { CONTROL_CATEGORY } from '../../../base-documents/constants/controls';
 import { orderControls } from '../../../base-documents/helpers/controls';
+import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
 
 type Story = StoryObj<DividerProp>;
 
@@ -45,16 +46,24 @@ export const Default: Story = {
   globals: {
     imports: `import { Divider } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Divider />
   ),
 };
 
 export const Overview: Story = {
-  tags: ['!dev'],
+tags: ['!dev'],
   parameters: {
-    layout: 'centered',
+  layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <>
@@ -69,7 +78,12 @@ export const Color: Story = {
   globals: {
     imports: `import { DIVIDER_COLOR, Divider } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Divider color={ DIVIDER_COLOR.neutral } />
@@ -82,7 +96,12 @@ export const Spacing: Story = {
   globals: {
     imports: `import { DIVIDER_SPACING, Divider } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Divider spacing={ DIVIDER_SPACING._0 } />

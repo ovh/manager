@@ -6,6 +6,7 @@ import {
   excludeFromDemoControls,
   orderControls,
 } from '../../../base-documents/helpers/controls';
+import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
 
 type Story = StoryObj<CodeProp>;
 
@@ -55,7 +56,12 @@ export const Default: Story = {
   globals: {
     imports: `import { Code } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Code>
       console.log('Hello world');
@@ -64,7 +70,12 @@ export const Default: Story = {
 };
 
 export const Overview: Story = {
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   parameters: {
     layout: 'centered',
   },
@@ -79,7 +90,12 @@ export const CanCopy: Story = {
   globals: {
     imports: `import { Code } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Code canCopy>
       { `import { Text } from '@ovhcloud/ods-react';` }
@@ -91,7 +107,12 @@ export const CustomLabels: Story = {
   globals: {
     imports: `import { Code } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Code
       canCopy
@@ -106,7 +127,12 @@ export const Multiline: Story = {
   globals: {
     imports: `import { Code } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Code>
       { `function isTargetInElement(event, element) {

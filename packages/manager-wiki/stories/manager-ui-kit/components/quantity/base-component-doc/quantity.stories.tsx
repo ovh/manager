@@ -14,6 +14,7 @@ import {
   excludeFromDemoControls,
   orderControls,
 } from '../../../base-documents/helpers/controls';
+import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
 
 type Story = StoryObj<QuantityProp>;
 type DemoArg = Partial<QuantityProp> & Partial<QuantityInputProp> & {};
@@ -93,6 +94,11 @@ export const AccessibilityLabel: Story = {
     imports: `import { FormField, FormFieldLabel, Quantity, QuantityControl, QuantityInput } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <FormField>
       <FormFieldLabel>
@@ -115,6 +121,11 @@ export const Default: Story = {
     imports: `import { Quantity, QuantityControl, QuantityInput } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Quantity>
       <QuantityControl>
@@ -129,6 +140,11 @@ export const Disabled: Story = {
     imports: `import { Quantity, QuantityControl, QuantityInput } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Quantity disabled>
       <QuantityControl>
@@ -142,7 +158,12 @@ export const InFormField: Story = {
   globals: {
     imports: `import { FormField, FormFieldLabel, Quantity, QuantityControl, QuantityInput } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <FormField>
       <FormFieldLabel>
@@ -162,7 +183,12 @@ export const Max: Story = {
   globals: {
     imports: `import { Quantity, QuantityControl, QuantityInput } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Quantity max={ 10 }>
       <QuantityControl>
@@ -176,7 +202,12 @@ export const Min: Story = {
   globals: {
     imports: `import { Quantity, QuantityControl, QuantityInput } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Quantity min={ 0 }>
       <QuantityControl>
@@ -190,6 +221,9 @@ export const Overview: Story = {
   tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <Quantity
@@ -206,7 +240,12 @@ export const Readonly: Story = {
   globals: {
     imports: `import { Quantity, QuantityControl, QuantityInput } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Quantity readOnly>
       <QuantityControl>
@@ -220,7 +259,12 @@ export const Step: Story = {
   globals: {
     imports: `import { Quantity, QuantityControl, QuantityInput } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Quantity step={ 10 }>
       <QuantityControl>
