@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.7.7...@ovh-ux/manager-pci-instances-app@0.7.8) (2025-10-22)
+
+
+### Bug Fixes
+
+* **pci-instances:** disable vnc and add tooltip explaining reason ([65e2135](https://github.com/ovh/manager/commit/65e2135ed169d6d5944e5201e4962280b6d28931)), closes [#TAPC-5134](https://github.com/ovh/manager/issues/TAPC-5134)
+* **pci-instances:** hide label when public network does not have a name ([8fcb2a0](https://github.com/ovh/manager/commit/8fcb2a0f7fc48e19c0eb91f1a1c1bde9f08bc969)), closes [#TAPC-5235](https://github.com/ovh/manager/issues/TAPC-5235)
+
+
+
+
+
 ## [0.7.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.7.6...@ovh-ux/manager-pci-instances-app@0.7.7) (2025-10-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
