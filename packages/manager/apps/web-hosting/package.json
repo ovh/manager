@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web-hosting-app",
-  "version": "0.7.2",
+  "version": "0.8.0",
   "private": true,
   "description": "Manage web hostings in the OVH Control Panel",
   "repository": {
@@ -15,7 +15,7 @@
     "build:strict": "tsc --project tsconfig.strict.json && vite build",
     "lint:modern": "manager-lint --config eslint.config.mjs ./src",
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
-    "start": "tsc && vite",    
+    "start": "tsc && vite",
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"
   },
