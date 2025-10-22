@@ -1,0 +1,7 @@
+{
+  "ip_reverse_update_failure_title": "La mise à jour du Reverse DNS à échouée",
+  "ip_reverse_update_failure_hint": "Veuillez vous assurer que l'enregistrement A est correctement configuré pour un nom d'hôte donné. Pour plus d'informations, veuillez consulter ",
+  "ip_reverse_update_failure_hint_link": "notre guide",
+  "ip_reverse_update_failure_api_error": "API error:",
+  "ip_reverse_update_failure_request_id": "Request ID:"
+}
