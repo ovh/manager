@@ -1,6 +1,6 @@
 import { TServiceInfo } from '@/alldoms/types';
 import {
-  LifecycleActionsEnum,
+  LifecycleCapacitiesEnum,
   ServiceInfoContactEnum,
 } from '@/alldoms/enum/service.enum';
 
@@ -13,5 +13,5 @@ export const findContact = (
 };
 
 export const hasTerminateAtExpirationDateAction = (
-  actions: LifecycleActionsEnum[],
-) => actions.includes(LifecycleActionsEnum.TerminateAtExpirationDate);
+  actions: LifecycleCapacitiesEnum[],
+) => actions.includes(LifecycleCapacitiesEnum.TerminateAtExpirationDate);
