@@ -46,10 +46,17 @@ export default defineConfig({
   },
   build: {
     outDir: '../dist',
+    cssCodeSplit: false,
     lib: {
-      entry: path.resolve(__dirname, 'src/lib.ts'),
+      entry: {
+        'manager-ui-kit-lib': path.resolve(
+          __dirname,
+          'src/index-with-styles.ts',
+        ),
+      },
       name: 'ManagerUiKitLib',
-      fileName: (format) => `manager-ui-kit-lib.${format}.ts`,
+      fileName: (format, entryName) => `${entryName}.${format}.js`,
+      formats: ['es', 'cjs'],
     },
     rollupOptions: {
       external: [

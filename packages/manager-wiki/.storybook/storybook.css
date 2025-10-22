@@ -10,22 +10,6 @@
     * TYPOGRAPHY
 ***************************************/
 
-html {
-  font-family: var(--ods-font-family-default);
-}
-
-html body *:not(pre):not(code),
-html body .sbdocs-content *:not(pre):not(code) {
-  font-family: var(--ods-font-family-default);
-}
-
-pre,
-code {
-  font-family: var(--ods-font-family-code) !important;
-  padding: 20px;
-  background: inherit;
-}
-
 .sbdocs-content > h1,
 .sbdocs-content > div:not(.sb-unstyled) > h1,
 .sbdocs-content > h2,

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Meta } from '@storybook/react';
-import { Button } from '@ovh-ux/muk';
-import { DrawerBase } from '@ovh-ux/muk/src/components/drawer/drawer-base/DrawerBase.component';
+import { Button, Drawer } from '@ovh-ux/muk';
 import { DrawerContent } from './DrawerContent.component';
 import { Content } from './mocks/Content.component';
 import {
@@ -12,7 +11,7 @@ import {
 
 const meta = {
   title: 'Manager UI Kit/Components/Drawer',
-  component: DrawerBase,
+  component: Drawer,
   tags: ['autodocs'],
   args: {
     isOpen: false,

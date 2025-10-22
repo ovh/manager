@@ -4,8 +4,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { initialize, mswLoader } from 'msw-storybook-addon';
 import { Preview } from '@storybook/react';
 import './storybook.css';
-import '../../manager-ui-kit/src/lib.scss';
-import '@ovhcloud/ods-themes/default';
 
 import i18n from './i18n';
 import TechnicalInformation from './technical-information.mdx';
