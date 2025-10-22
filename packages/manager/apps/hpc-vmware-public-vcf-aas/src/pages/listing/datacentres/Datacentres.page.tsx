@@ -14,6 +14,7 @@ import {
   useOvhTracking,
   useNavigationGetUrl,
 } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import DatagridContainer, {
@@ -116,6 +117,7 @@ const DatagridVrackCell = (vcdDatacentre: VCDDatacentre) => {
 export default function DatacentresListing() {
   const { t } = useTranslation('listing');
   const { t: tVdc } = useTranslation('datacentres');
+  const { t: tDashboard } = useTranslation(NAMESPACES.DASHBOARD);
   const { id } = useParams();
   const { data: featuresAvailable } = useFeatureAvailability([
     FEATURE_FLAGS.VRACK,
@@ -131,7 +133,7 @@ export default function DatacentresListing() {
     {
       id: 'description',
       cell: DatagridDescriptionCell,
-      label: t('managed_vcd_listing_description'),
+      label: tDashboard('description'),
     },
     {
       id: 'commercialRange',

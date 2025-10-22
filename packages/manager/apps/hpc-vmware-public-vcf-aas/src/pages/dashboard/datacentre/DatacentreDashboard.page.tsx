@@ -5,12 +5,15 @@ import {
   useVcdDatacentre,
   getVcdDatacentreListQueryKey,
 } from '@ovh-ux/manager-module-vcd-api';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { ChangelogButton } from '@ovh-ux/manager-react-components';
 import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import VcdDashboardLayout, {
   DashboardTab,
 } from '@/components/dashboard/layout/VcdDashboardLayout.component';
+
 import { COMPUTE_LABEL, STORAGE_LABEL } from './datacentreDashboard.constants';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
@@ -25,6 +28,8 @@ import MessageSuspendedService from '@/components/message/MessageSuspendedServic
 function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();
   const { t } = useTranslation('dashboard');
+  const { t: tDashboard } = useTranslation(NAMESPACES.DASHBOARD);
+  const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
   const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
   const { data: vcdOrganization } = useVcdOrganization({ id });
   const { data: featuresAvailable } = useFeatureAvailability([
@@ -42,7 +47,7 @@ function DatacentreDashboardPage() {
   const tabsList: DashboardTab[] = [
     {
       name: 'general_information',
-      title: t('dashboard:managed_vcd_dashboard_general_information'),
+      title: tDashboard('general_information'),
       to: useResolvedPath('').pathname,
       trackingActions: TRACKING_TABS_ACTIONS.datacentres,
     },
@@ -157,7 +162,7 @@ function DatacentreDashboardPage() {
       message={
         <MessageSuspendedService status={vcdDatacentre?.data?.resourceStatus} />
       }
-      backLinkLabel={t('dashboard:managed_vcd_dashboard_back_link')}
+      backLinkLabel={tActions('back_to_list')}
       onClickReturn={() =>
         navigate(urls.datacentres.replace(subRoutes.dashboard, id))
       }
