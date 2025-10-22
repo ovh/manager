@@ -27,17 +27,8 @@ This structure applies to:
 µ-application-name/
 ├── public/
 │   ├── assets/                    # Static assets (images, icons, etc.)
-│   │   └── feature-name/         # Feature-specific assets
 │   └── translations/             # i18n translation files
 │       └── namespace-name/        # Feature-specific translations
-│           ├── Messages_de_DE.json
-│           ├── Messages_en_GB.json
-│           ├── Messages_es_ES.json
-│           ├── Messages_fr_CA.json
-│           ├── Messages_fr_FR.json
-│           ├── Messages_it_IT.json
-│           ├── Messages_pl_PL.json
-│           └── Messages_pt_PT.json
 ├── src/
 │   ├── components/               # Reusable UI components
 │   │   └── componentName/        # Component-specific folder
@@ -45,321 +36,324 @@ This structure applies to:
 │   │       ├── componentName.constants.ts
 │   │       └── ComponentName.spec.tsx
 │   ├── constants/                # Application constants
-│   │   └── constants.ts          # Global constants
 │   ├── data/                     # Data layer
 │   │   ├── api/                  # API service functions
-│   │   │   └── apiGroup.ts       # API group functions
-│   │   ├── hooks/                # Data-related hooks
-│   │   │   └── apiGroup/         # API-specific hooks
-│   │   │       ├── useApiGroup.tsx
-│   │   │       └── useApiGroup.spec.tsx
-│   │   └── types/                # Data layer types
-│   │       └── api.types.ts      # API-related types
+│   │   ├── hooks/                # Data fetching hooks
+│   │   └── types/                # Data type definitions
 │   ├── hooks/                    # Custom React hooks
-│   │   └── hookName/             # Hook-specific folder
-│   │       ├── useHookName.tsx
-│   │       └── useHookName.spec.tsx
-│   ├── pages/                    # Page components (route handlers)
-│   │   ├── onboarding/           # Onboarding page
-│   │   ├── listing/              # Resource listing page
-│   │   │   ├── add/              # Add resource page
-│   │   │   ├── delete/           # Delete resource page
-│   │   │   └── update/           # Update resource page
-│   │   └── dashboard/             # Resource dashboard
-│   │       ├── general-information/
-│   │       │   ├── delete/       # Delete from dashboard
-│   │       │   └── update/       # Update from dashboard
-│   │       └── items/            # Sub-resources
-│   │           ├── item/         # Individual item
-│   │           │   └── dashboard/
-│   │           │       └── general-information/
-│   │           │           ├── deleteItem/
-│   │           │           └── updateItem/
-│   │           ├── addItem/      # Add sub-resource
-│   │           ├── deleteItem/   # Delete sub-resource
-│   │           └── updateItem/   # Update sub-resource
-│   ├── routes/                   # Routing configuration
-│   │   ├── routes.tsx            # Route definitions
-│   │   ├── routes.constants.ts   # Route constants
-│   │   └── routes.utils.ts       # Route utilities
-│   ├── types/                    # Global TypeScript types
-│   │   ├── interface-name.interface.ts
-│   │   └── type-name.type.ts
+│   ├── pages/                    # Page components
+│   │   └── pageName/             # Page-specific folder
+│   │       ├── PageName.page.tsx
+│   │       ├── pageName.constants.ts
+│   │       └── PageName.spec.tsx
+│   ├── services/                 # Business logic services
+│   ├── types/                    # TypeScript type definitions
 │   ├── utils/                    # Utility functions
-│   │   └── utility-name.ts       # Utility functions
-│   ├── assets/                   # Source assets (SVG, etc.)
-│   │   └── feature-name/         # Feature-specific assets
 │   ├── App.tsx                   # Main application component
-│   ├── index.tsx                 # Application entry point
-│   ├── index.scss                # Global styles
-│   ├── i18n.ts                   # Internationalization setup
-│   ├── queryClient.ts            # TanStack Query configuration
-│   └── tracking.constant.ts      # Analytics tracking constants
-├── index.html                    # HTML entry point
-├── package.json                  # Dependencies and scripts
-├── tsconfig.json                 # TypeScript configuration
-├── vite.config.mjs               # Vite build configuration
-├── tailwind.config.mjs           # Tailwind CSS configuration
-├── vitest.config.js              # Testing configuration
-├── .eslintrc.cjs                 # ESLint configuration
-└── .gitignore                    # Git ignore rules
+│   ├── main.tsx                  # Application entry point
+│   └── Routes.tsx                # Route configuration
+├── tests/                        # Test files
+│   ├── __mocks__/               # Mock files
+│   ├── __tests__/               # Test files
+│   └── setup.ts                 # Test setup
+├── .env                         # Environment variables
+├── .env.local                   # Local environment variables
+├── .gitignore                   # Git ignore rules
+├── package.json                 # Dependencies and scripts
+├── tsconfig.json                # TypeScript configuration
+├── vite.config.ts               # Vite configuration
+└── README.md                    # Project documentation
 ```
 
-## 📁 Directory Guidelines
+## 📁 Folder Details
 
-### `/public/` Directory
+### `/public/` - Static Assets
 
-#### `assets/`
-- **Purpose**: Static assets served directly by the web server
-- **Content**: Images, icons, fonts, and other static files
-- **Organization**: Group by feature or type
-- **Naming**: Use kebab-case for file names
+```
+public/
+├── assets/                      # Static assets
+│   └── feature-name/           # Feature-specific assets
+└── translations/               # i18n translation files
+    └── namespace-name/         # Feature-specific translations
+        ├── Messages_de_DE.json
+        ├── Messages_en_GB.json
+        ├── Messages_es_ES.json
+        ├── Messages_fr_CA.json
+        ├── Messages_fr_FR.json
+        ├── Messages_it_IT.json
+        ├── Messages_pl_PL.json
+        └── Messages_pt_PT.json
+```
 
-#### `translations/`
-- **Purpose**: Internationalization files for the application
-- **Structure**: Organized by namespace (feature)
-- **Files**: Language-specific JSON files following OVH locale format
-- **Languages**: Support for DE, EN, ES, FR, IT, PL, PT
-
-### `/src/` Directory
-
-#### `components/`
-- **Purpose**: Reusable UI components specific to the application
-- **Organization**: Each component in its own folder
-- **Files**: Component, constants, and test files
-- **Naming**: PascalCase for components, camelCase for utilities
-
-#### `data/`
-- **Purpose**: Data layer for backend interactions
-- **Structure**:
-  - `api/`: HTTP client functions using axios
-  - `hooks/`: TanStack Query hooks for data fetching
-  - `types/`: TypeScript definitions for data models
-
-#### `hooks/`
-- **Purpose**: Custom React hooks for business logic
-- **Organization**: Each hook in its own folder
-- **Files**: Hook implementation and test files
-- **Naming**: camelCase starting with "use"
-
-#### `pages/`
-- **Purpose**: Route components that render full pages
-- **Organization**: Mirror the application's routing structure
-- **Structure**:
-  - `onboarding/`: Product introduction page
-  - `listing/`: Resource listing with CRUD operations
-  - `dashboard/`: Resource details with tabs and sub-resources
-
-#### `routes/`
-- **Purpose**: Routing configuration and route definitions
-- **Files**:
-  - `routes.tsx`: Route object definitions
-  - `routes.constants.ts`: URL builders and constants
-  - `routes.utils.ts`: Route utilities and helpers
-
-#### `types/`
-- **Purpose**: Global TypeScript type definitions
-- **Organization**: Group by domain or feature
-- **Naming**: Descriptive names with appropriate suffixes
-
-#### `utils/`
-- **Purpose**: Pure utility functions and helpers
-- **Organization**: Group by functionality
-- **Naming**: Descriptive names indicating purpose
-
-## 🏗️ Component Organization
-
-### Component Folder Structure
-
-Each component must be defined in its own sub-folder:
+### `/src/components/` - Reusable Components
 
 ```
 components/
-└── componentName/
-    ├── ComponentName.component.tsx    # Main component
+└── componentName/              # Component-specific folder
+    ├── ComponentName.component.tsx    # Main component file
     ├── componentName.constants.ts     # Component constants
     └── ComponentName.spec.tsx         # Component tests
 ```
 
-### Hook Folder Structure
-
-Each hook must be defined in its own sub-folder:
-
-```
-hooks/
-└── hookName/
-    ├── useHookName.tsx                # Hook implementation
-    └── useHookName.spec.tsx           # Hook tests
-```
-
-### Page Folder Structure
-
-Pages follow the routing structure:
+### `/src/pages/` - Page Components
 
 ```
 pages/
-├── pageName/
-│   ├── PageName.page.tsx              # Main page component
-│   ├── pageName.constants.ts          # Page constants
-│   └── children/                      # Child routes
-│       ├── Children.page.tsx
-│       └── children.constants.ts
+└── pageName/                   # Page-specific folder
+    ├── PageName.page.tsx       # Main page component
+    ├── pageName.constants.ts   # Page constants
+    └── PageName.spec.tsx       # Page tests
 ```
 
-## 🛣️ Routing Structure
+### `/src/data/` - Data Layer
 
-### Route Configuration
+```
+data/
+├── api/                        # API service functions
+│   └── serviceName.api.ts      # API service file
+├── hooks/                      # Data fetching hooks
+│   └── useServiceName.ts       # Data hook file
+└── types/                      # Data type definitions
+    └── serviceName.types.ts    # Data types file
+```
 
-Routes are defined in `routes/routes.tsx` with tracking configuration:
+### `/src/hooks/` - Custom Hooks
+
+```
+hooks/
+└── useHookName.ts              # Custom hook file
+```
+
+### `/src/services/` - Business Logic
+
+```
+services/
+└── serviceName.service.ts      # Service file
+```
+
+### `/src/types/` - Type Definitions
+
+```
+types/
+└── typeName.types.ts           # Type definition file
+```
+
+### `/src/utils/` - Utility Functions
+
+```
+utils/
+└── utilName.utils.ts           # Utility function file
+```
+
+## 📋 Naming Conventions
+
+### Files and Folders
+
+- **Folders**: `camelCase` (e.g., `userManagement`)
+- **Components**: `PascalCase` (e.g., `UserManagement.component.tsx`)
+- **Pages**: `PascalCase` (e.g., `UserManagement.page.tsx`)
+- **Hooks**: `camelCase` with `use` prefix (e.g., `useUserManagement.ts`)
+- **Services**: `camelCase` with `.service.ts` suffix (e.g., `userManagement.service.ts`)
+- **Types**: `camelCase` with `.types.ts` suffix (e.g., `userManagement.types.ts`)
+- **Utils**: `camelCase` with `.utils.ts` suffix (e.g., `userManagement.utils.ts`)
+- **Constants**: `camelCase` with `.constants.ts` suffix (e.g., `userManagement.constants.ts`)
+- **Tests**: `PascalCase` with `.spec.tsx` suffix (e.g., `UserManagement.spec.tsx`)
+
+### Import/Export Patterns
 
 ```typescript
-const routes = [
-  {
-    id: 'onboarding',
-    path: 'onboarding',
-    ...lazyRouteConfig(() => import('@/pages/onboarding')),
-    handle: {
-      tracking: {
-        pageName: 'onboarding',
-        pageType: PageType.onboarding,
-      }
-    }
-  },
-  {
-    id: 'listing',
-    path: 'listing',
-    ...lazyRouteConfig(() => import('@/pages/listing')),
-    handle: {
-      tracking: {
-        pageName: 'listing',
-        pageType: PageType.listing,
-      }
-    }
-  }
-];
+// Component exports
+export { ComponentName } from './ComponentName.component';
+
+// Hook exports
+export { useHookName } from './useHookName';
+
+// Service exports
+export { serviceName } from './serviceName.service';
+
+// Type exports
+export type { TypeName } from './typeName.types';
+
+// Utility exports
+export { utilName } from './utilName.utils';
+
+// Constant exports
+export { CONSTANT_NAME } from './constantName.constants';
 ```
-
-### Route Constants
-
-URL builders and route constants in `routes/routes.constants.ts`:
-
-```typescript
-export const ROUTE_PATHS = {
-  root: '/µ-application-name',
-  onboarding: '/onboarding',
-  listing: '/µ-application-name',
-  listingAdd: '/add',
-  listingDelete: '/delete/:resource-id',
-  listingUpdate: '/update/:resource-id',
-  dashboard: '/:resource-id',
-  dashboardDelete: '/delete',
-  dashboardUpdate: '/update',
-};
-```
-
-## 📄 File Naming Conventions
-
-### Component Files
-- **Components**: `ComponentName.component.tsx`
-- **Constants**: `componentName.constants.ts`
-- **Tests**: `ComponentName.spec.tsx`
-
-### Hook Files
-- **Hooks**: `useHookName.tsx`
-- **Tests**: `useHookName.spec.tsx`
-
-### Page Files
-- **Pages**: `PageName.page.tsx`
-- **Constants**: `pageName.constants.ts`
-
-### Type Files
-- **Interfaces**: `interface-name.interface.ts`
-- **Types**: `type-name.type.ts`
-
-### Utility Files
-- **Utilities**: `utility-name.ts`
 
 ## 🔧 Configuration Files
 
-### Required Configuration Files
+### `package.json`
+
+```json
+{
+  "name": "µ-application-name",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@ovh-ux/manager-react-components": "^1.0.0",
+    "@ovhcloud/ods-components": "^1.0.0",
+    "@ovhcloud/ods-themes": "^1.0.0",
+    "@tanstack/react-query": "^5.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^5.0.0",
+    "vitest": "^1.0.0"
+  }
+}
+```
+
+### `tsconfig.json`
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
+```
+
+### `vite.config.ts`
+
+```typescript
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
+
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src'),
+    },
+  },
+  server: {
+    port: 3000,
+    open: true,
+  },
+  build: {
+    outDir: 'dist',
+    sourcemap: true,
+  },
+});
+```
+
+## 🧪 Testing Structure
+
+### Test Organization
 
 ```
-µ-application-name/
-├── package.json                   # Dependencies and scripts
-├── tsconfig.json                  # TypeScript configuration
-├── vite.config.mjs               # Vite build configuration
-├── tailwind.config.mjs           # Tailwind CSS configuration
-├── vitest.config.js              # Testing configuration
-├── .eslintrc.cjs                 # ESLint configuration
-├── .gitignore                    # Git ignore rules
-└── index.html                    # HTML entry point
+tests/
+├── __mocks__/                  # Mock files
+│   └── mockName.ts            # Mock file
+├── __tests__/                 # Test files
+│   ├── components/            # Component tests
+│   ├── pages/                 # Page tests
+│   ├── hooks/                 # Hook tests
+│   ├── services/              # Service tests
+│   └── utils/                 # Utility tests
+└── setup.ts                   # Test setup
 ```
 
-### Optional Configuration Files
+### Test File Naming
 
-```
-µ-application-name/
-├── postcss.config.js             # PostCSS configuration
-├── jest.config.js                # Jest configuration (if used)
-├── playwright.config.ts          # Playwright configuration
-└── .env                          # Environment variables
-```
+- **Component tests**: `ComponentName.spec.tsx`
+- **Page tests**: `PageName.spec.tsx`
+- **Hook tests**: `useHookName.spec.ts`
+- **Service tests**: `serviceName.spec.ts`
+- **Utility tests**: `utilName.spec.ts`
 
-## 🎯 Best Practices
+## 📚 Best Practices
 
-### 1. Feature-Based Organization
-- Group related files by feature/domain
-- Keep components, hooks, and types together
-- Use consistent naming across features
+### 1. Folder Organization
 
-### 2. File Naming
-- **PascalCase**: Components, pages, and major files
-- **camelCase**: Hooks, utilities, and helper functions
-- **kebab-case**: Translation files and assets
-- **snake_case**: Configuration files
+- **Group by feature**: Organize folders by feature rather than by file type
+- **Consistent naming**: Use consistent naming conventions across all folders
+- **Clear separation**: Keep different types of files in their respective folders
+- **Avoid deep nesting**: Don't create too many nested folders
 
-### 3. Import Organization
-- Group imports by type (external, internal, relative)
-- Use absolute imports for internal modules
-- Maintain consistent import order
+### 2. File Organization
 
-### 4. Testing Structure
-- Co-locate test files with source files
-- Use descriptive test file names
-- Follow the same folder structure for tests
+- **Single responsibility**: Each file should have a single responsibility
+- **Clear exports**: Use clear and consistent export patterns
+- **Proper imports**: Use proper import statements and avoid circular dependencies
+- **Type safety**: Use TypeScript for all files
+
+### 3. Component Organization
+
+- **Component-specific folders**: Each component should have its own folder
+- **Related files together**: Keep related files (component, tests, constants) together
+- **Clear naming**: Use clear and descriptive names for components
+- **Proper structure**: Follow the established component structure
+
+### 4. Service Organization
+
+- **Business logic separation**: Keep business logic in services
+- **API separation**: Keep API calls in separate files
+- **Hook integration**: Use hooks to integrate services with components
+- **Type safety**: Use TypeScript for all service files
+
+### 5. Testing Organization
+
+- **Test co-location**: Keep tests close to the code they test
+- **Clear test structure**: Use clear and consistent test structure
+- **Proper mocking**: Use proper mocking for external dependencies
+- **Comprehensive coverage**: Ensure comprehensive test coverage
 
 ## 🔄 Migration Guidelines
 
 ### From AngularJS to React
-- Maintain existing URL structure
-- Preserve user workflows
-- Follow strangler pattern for gradual migration
 
-### From Legacy Structure
-- Gradually reorganize existing files
-- Maintain backward compatibility during transition
-- Update import paths systematically
+1. **Folder structure**: Migrate from AngularJS folder structure to React structure
+2. **Component organization**: Convert AngularJS components to React components
+3. **Service migration**: Convert AngularJS services to React hooks
+4. **Testing migration**: Convert AngularJS tests to React tests
 
-## 📋 Checklist
+### From Other React Projects
 
-### New Project Setup
-- [ ] Create folder structure following standard
-- [ ] Set up configuration files
-- [ ] Configure routing with tracking
-- [ ] Set up internationalization
-- [ ] Configure build and test tools
+1. **Structure alignment**: Align with OVHcloud Manager structure
+2. **Naming conventions**: Follow OVHcloud Manager naming conventions
+3. **File organization**: Organize files according to OVHcloud Manager standards
+4. **Testing structure**: Align testing structure with OVHcloud Manager standards
 
-### Existing Project Migration
-- [ ] Audit current structure
-- [ ] Plan migration strategy
-- [ ] Update import paths
-- [ ] Test functionality after changes
-- [ ] Update documentation
-
-## 🔗 References
+## 📖 References
 
 - [Development Standards](../30-best-practices/development-standards.md)
-- [React µApp Blueprint](./react-uapp-blueprint.md)
-- [Data Fetching Patterns](./data-fetching.md)
-- [React Tracking](./react-tracking.md)
-- [Common Translations](./common-translations.md)
+- [React Best Practices](../30-best-practices/react-best-practices.md)
+- [Testing Guidelines](../30-best-practices/testing-guidelines.md)
+- [TypeScript Guidelines](../30-best-practices/typescript-guidelines.md)

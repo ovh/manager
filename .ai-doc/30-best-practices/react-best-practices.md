@@ -11,8 +11,6 @@ ai: true
 
 This document provides comprehensive guidelines for writing maintainable, performant, and bug-free React code in the OVHcloud Manager ecosystem. It covers essential patterns for Hooks usage, component design, performance optimization, and common pitfalls to avoid.
 
-The guide emphasizes defensive programming strategies and proper React patterns to prevent runtime errors, improve code quality, and ensure consistent development practices across all Manager applications.
-
 ## ⚙️ Context
 
 React best practices are essential for:
@@ -22,12 +20,6 @@ React best practices are essential for:
 - **Team collaboration** with shared understanding
 - **Consistent development** across all Manager µApps
 
-This guide is designed for developers working with:
-- **React 18+** applications in the Manager ecosystem
-- **TypeScript** with strict type checking
-- **Modern React patterns** with Hooks and functional components
-- **Performance-critical** applications with complex state management
-
 ## 🔗 References
 
 - [Development Standards](./development-standards.md)
@@ -36,7 +28,6 @@ This guide is designed for developers working with:
 - [MRC Components](../20-dependencies/mrc-components.md)
 - [ODS Components](../20-dependencies/ods-components.md)
 - [React Official Documentation](https://react.dev/)
-- [React Hooks Documentation](https://react.dev/reference/react)
 
 ## 📘 Guidelines / Implementation
 
@@ -48,55 +39,10 @@ This guide is designed for developers working with:
 - ✅ **Reuse stateful UI logic** with custom Hooks (useX)
 - ✅ **Keep components pure** (no side-effects during render)
 - ✅ **Prefer props + composition**; memoize references when passing objects/functions deeply
-- ✅ **Use useMemo/useCallback** only for performance stability, not by default
+- ✅ **Use TypeScript** for type safety and better developer experience
+- ✅ **Test components** with React Testing Library
 
-### 🔧 Hooks vs Utility Functions
-
-| Topic | Custom Hook | Utility Function |
-|-------|-------------|------------------|
-| **Purpose** | Reuse stateful UI logic across components | Reuse stateless or non-React logic |
-| **Naming** | Must start with `use` (e.g., `useGenerateUrl`) | Any name (e.g., `formatPrice`) |
-| **Where it can be called** | Only in function components or other Hooks | Anywhere |
-| **May call other Hooks?** | ✅ Yes | ❌ No |
-| **Tied to React render cycle?** | ✅ Yes | ❌ No |
-
-#### Custom Hook Example
-```typescript
-// ✅ CORRECT: Custom Hook for stateful UI logic
-export function useGenerateUrl() {
-  const router = useRouter();
-  return useCallback((id: string) => router.link(`/licenses/${id}`), [router]);
-}
-
-// Usage in component
-function LicensePage() {
-  const generateUrl = useGenerateUrl();
-  return <Link to={generateUrl('123')}>View License</Link>;
-}
-```
-
-#### Utility Function Example
-```typescript
-// ✅ CORRECT: Utility function for pure calculations
-export function formatPrice(cents: number, locale = 'fr-FR'): string {
-  return new Intl.NumberFormat(locale, { 
-    style: 'currency', 
-    currency: 'EUR' 
-  }).format(cents / 100);
-}
-
-// Usage anywhere
-const price = formatPrice(1999); // "19,99 €"
-```
-
-### 📋 Rules of Hooks (What & Why)
-
-#### The Two Rules
-1. **Only call Hooks at the top level** of a React function (no loops, conditions, nested functions, or try/catch)
-2. **Only call Hooks from React functions** (function components or custom Hooks)
-
-#### Why These Rules Exist
-React needs a **predictable call order per render** to map Hooks to their internal state slots. Violating the rules breaks that mapping.
+### 🎣 Rules of Hooks
 
 #### Valid Hook Calls
 ```typescript
@@ -139,12 +85,6 @@ function Page({ items }: { items: Item[] }) {
     useMemo(() => 42, []);                   // ❌ nested function
   }
 }
-
-// ❌ WRONG: Hook inside useMemo/useCallback callback
-const columns = useMemo(() => {
-  const x = useSomething();                  // ❌ nested Hook
-  return [];
-}, []);
 ```
 
 ### 🧹 Keep Components Pure
@@ -187,6 +127,7 @@ function UserProfile({ userId }: { userId: string }) {
 
 #### React Strict Mode Detection
 React Strict Mode runs components **twice in development** to detect impurity:
+
 ```typescript
 // ❌ WRONG: Impure component (side effect during render)
 function ImpureComponent() {
@@ -204,103 +145,211 @@ function PureComponent() {
 }
 ```
 
-### ⚡ Effects, Events, and Escape Hatches
+### 🔄 Custom Hooks Best Practices
 
-#### Prefer Event Handlers Over Effects
+#### Naming Convention
+- **Custom Hooks**: Start with `use` (e.g., `useUserData`, `useApiCall`)
+- **Utility functions**: Don't start with `use` (e.g., `formatDate`, `validateEmail`)
+
+#### Hook for Stateful UI Logic
 ```typescript
-// ❌ WRONG: Using Effect for user interaction
-function SearchForm() {
-  const [query, setQuery] = useState('');
+// ✅ CORRECT: Hook for stateful UI logic
+export function useModal() {
+  const [isOpen, setIsOpen] = useState(false);
   
-  useEffect(() => {
-    // Don't do this - use event handler instead
-    if (query) {
-      search(query);
-    }
-  }, [query]);
+  const openModal = useCallback(() => setIsOpen(true), []);
+  const closeModal = useCallback(() => setIsOpen(false), []);
   
-  return <input value={query} onChange={(e) => setQuery(e.target.value)} />;
+  return { isOpen, openModal, closeModal };
 }
 
-// ✅ CORRECT: Using event handler
-function SearchForm() {
-  const [query, setQuery] = useState('');
+// Usage
+function MyComponent() {
+  const { isOpen, openModal, closeModal } = useModal();
   
-  const handleSearch = (newQuery: string) => {
-    setQuery(newQuery);
-    if (newQuery) {
-      search(newQuery);
-    }
-  };
-  
-  return <input value={query} onChange={(e) => handleSearch(e.target.value)} />;
+  return (
+    <div>
+      <button onClick={openModal}>Open Modal</button>
+      {isOpen && <Modal onClose={closeModal} />}
+    </div>
+  );
 }
 ```
 
-#### Use Effects for External System Synchronization
+#### Utility Function for Pure Logic
 ```typescript
-// ✅ CORRECT: Syncing with external system
-function useWindowSize() {
-  const [size, setSize] = useState({ width: 0, height: 0 });
+// ✅ CORRECT: Utility function for pure logic
+export function formatDate(date: Date): string {
+  return date.toLocaleDateString();
+}
+
+// Usage
+function MyComponent() {
+  const formattedDate = formatDate(new Date());
+  return <div>{formattedDate}</div>;
+}
+```
+
+### 🚀 Performance Optimization
+
+#### Memoization with useMemo and useCallback
+```typescript
+// ✅ CORRECT: Memoize expensive calculations
+function ExpensiveComponent({ items }: { items: Item[] }) {
+  const expensiveValue = useMemo(() => {
+    return items.reduce((sum, item) => sum + item.value, 0);
+  }, [items]);
   
-  useEffect(() => {
-    function handleResize() {
-      setSize({ width: window.innerWidth, height: window.innerHeight });
-    }
-    
-    window.addEventListener('resize', handleResize);
-    handleResize(); // Set initial size
-    
-    return () => window.removeEventListener('resize', handleResize);
+  return <div>{expensiveValue}</div>;
+}
+
+// ✅ CORRECT: Memoize function references
+function ParentComponent() {
+  const [count, setCount] = useState(0);
+  
+  const handleClick = useCallback(() => {
+    setCount(prev => prev + 1);
   }, []);
   
-  return size;
+  return <ChildComponent onClick={handleClick} />;
 }
 ```
 
-### 🔄 Props, Identity, and Re-renders
-
-#### React's Shallow Comparison
-React compares props **shallowly**. Passing new objects/functions each render causes unnecessary re-renders.
-
+#### React.memo for Component Memoization
 ```typescript
-// ❌ WRONG: New objects/functions on every render
-function Parent({ items }: { items: Item[] }) {
+// ✅ CORRECT: Memoize component to prevent unnecessary re-renders
+const ExpensiveChild = React.memo(({ data }: { data: ComplexData }) => {
+  return <div>{/* Expensive rendering */}</div>;
+});
+
+// Usage
+function ParentComponent() {
+  const [count, setCount] = useState(0);
+  const [data] = useState(complexData);
+  
   return (
-    <Child 
-      data={[...items]}           // New array every render
-      onClick={() => {}}          // New function every render
-    />
+    <div>
+      <button onClick={() => setCount(prev => prev + 1)}>
+        Count: {count}
+      </button>
+      <ExpensiveChild data={data} />
+    </div>
+  );
+}
+```
+
+### 🎯 Component Design Patterns
+
+#### Composition over Inheritance
+```typescript
+// ✅ CORRECT: Composition pattern
+function Card({ children, title }: { children: React.ReactNode; title: string }) {
+  return (
+    <div className="card">
+      <h3>{title}</h3>
+      {children}
+    </div>
   );
 }
 
-// ✅ CORRECT: Stable references
-function Parent({ items }: { items: Item[] }) {
-  const data = useMemo(() => [...items], [items]);
-  const handleClick = useCallback(() => {}, []);
-  
-  return <Child data={data} onClick={handleClick} />;
-}
-
-// ✅ CORRECT: Prefer primitives
-function Parent({ items }: { items: Item[] }) {
-  return <Child itemCount={items.length} />; // Primitive value
+// Usage
+function UserCard({ user }: { user: User }) {
+  return (
+    <Card title={user.name}>
+      <p>{user.email}</p>
+      <button>Edit</button>
+    </Card>
+  );
 }
 ```
 
-#### Rule of Thumb
-- **Prefer primitives** in props
-- **If you must pass objects/arrays/functions** → stabilize them with `useMemo`/`useCallback`
-
-### 🧠 Custom Hook vs Utility
-
-#### Custom Hook - Uses React APIs
+#### Render Props Pattern
 ```typescript
-// ✅ CORRECT: Custom Hook with React state/effects
-export function useApiData<T>(url: string) {
+// ✅ CORRECT: Render props for flexible component composition
+function DataFetcher({ 
+  url, 
+  children 
+}: { 
+  url: string; 
+  children: (data: any, loading: boolean, error: Error | null) => React.ReactNode;
+}) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+  
+  useEffect(() => {
+    fetch(url)
+      .then(response => response.json())
+      .then(setData)
+      .catch(setError)
+      .finally(() => setLoading(false));
+  }, [url]);
+  
+  return <>{children(data, loading, error)}</>;
+}
+
+// Usage
+function UserList() {
+  return (
+    <DataFetcher url="/api/users">
+      {(data, loading, error) => {
+        if (loading) return <div>Loading...</div>;
+        if (error) return <div>Error: {error.message}</div>;
+        return <div>{data.map(user => <div key={user.id}>{user.name}</div>)}</div>;
+      }}
+    </DataFetcher>
+  );
+}
+```
+
+### 🛡️ Error Handling
+
+#### Error Boundaries
+```typescript
+// ✅ CORRECT: Error boundary for catching component errors
+class ErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { hasError: boolean; error?: Error }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
+  }
+  
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error('Error caught by boundary:', error, errorInfo);
+  }
+  
+  render() {
+    if (this.state.hasError) {
+      return <div>Something went wrong: {this.state.error?.message}</div>;
+    }
+    
+    return this.props.children;
+  }
+}
+
+// Usage
+function App() {
+  return (
+    <ErrorBoundary>
+      <MyComponent />
+    </ErrorBoundary>
+  );
+}
+```
+
+#### Async Error Handling
+```typescript
+// ✅ CORRECT: Proper async error handling
+function useAsyncData<T>(url: string) {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<Error | null>(null);
   
   useEffect(() => {
     let cancelled = false;
@@ -322,7 +371,7 @@ export function useApiData<T>(url: string) {
         }
       } catch (err) {
         if (!cancelled) {
-          setError(err instanceof Error ? err.message : 'An error occurred');
+          setError(err instanceof Error ? err : new Error('Unknown error'));
         }
       } finally {
         if (!cancelled) {
@@ -342,703 +391,223 @@ export function useApiData<T>(url: string) {
 }
 ```
 
-#### Utility Function - Pure Calculation
+### 🧪 Testing Best Practices
+
+#### Component Testing
 ```typescript
-// ✅ CORRECT: Utility function for pure calculations
-export function formatPrice(cents: number, locale = 'fr-FR'): string {
-  return new Intl.NumberFormat(locale, { 
-    style: 'currency', 
-    currency: 'EUR' 
-  }).format(cents / 100);
-}
+// ✅ CORRECT: Test component behavior, not implementation
+import { render, screen, fireEvent } from '@testing-library/react';
+import { UserProfile } from './UserProfile';
 
-export function calculateTotal(items: CartItem[]): number {
-  return items.reduce((total, item) => total + (item.price * item.quantity), 0);
-}
-
-export function debounce<T extends (...args: any[]) => any>(
-  func: T,
-  wait: number
-): (...args: Parameters<T>) => void {
-  let timeout: NodeJS.Timeout;
+describe('UserProfile', () => {
+  it('should display user information', () => {
+    const user = { name: 'John Doe', email: 'john@example.com' };
+    
+    render(<UserProfile user={user} />);
+    
+    expect(screen.getByText('John Doe')).toBeInTheDocument();
+    expect(screen.getByText('john@example.com')).toBeInTheDocument();
+  });
   
-  return (...args: Parameters<T>) => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func(...args), wait);
-  };
-}
-```
-
-### 🔧 Linting & Static Analysis
-
-#### OVHcloud Static Analysis Kit
-Always use the **@ovh-ux/manager-static-analysis-kit** for standardized linting:
-
-```bash
-# Migrate your app to use the static analysis kit
-yarn manager-cli static-analysis-migrate --app <app-name>
-
-# Preview changes safely
-yarn manager-cli static-analysis-migrate --app <app-name> --dry-run
-```
-
-**⚠️ Do not hand-roll ESLint or TS configs** — migrate your app with the CLI instead.
-
-The kit provides:
-- **ESLint** with React Hooks rules
-- **TypeScript** strict configuration
-- **Prettier** code formatting
-- **Complexity** analysis rules
-
-### 🔨 Refactor Cookbook
-
-#### A. Hook Inside a Loop
-```typescript
-// ❌ WRONG: Hook in loop
-function ItemList({ items }: { items: Item[] }) {
-  return (
-    <div>
-      {items.map((item) => {
-        const ref = useRef(null); // ❌ Hook in loop
-        return <div key={item.id} ref={ref}>{item.name}</div>;
-      })}
-    </div>
-  );
-}
-
-// ✅ CORRECT: Extract to component
-function ItemRow({ item }: { item: Item }) {
-  const ref = useRef(null); // ✅ Hook at top level
-  return <div ref={ref}>{item.name}</div>;
-}
-
-function ItemList({ items }: { items: Item[] }) {
-  return (
-    <div>
-      {items.map((item) => (
-        <ItemRow key={item.id} item={item} />
-      ))}
-    </div>
-  );
-}
-```
-
-#### B. Hook After Conditional Return
-```typescript
-// ❌ WRONG: Hook after early return
-function Panel({ ready }: { ready: boolean }) {
-  if (!ready) return null;
-  const [open, setOpen] = useState(false); // ❌ Hook after return
-  return <div>Panel content</div>;
-}
-
-// ✅ CORRECT: All Hooks before any returns
-function Panel({ ready }: { ready: boolean }) {
-  const [open, setOpen] = useState(false); // ✅ Hook at top level
-  if (!ready) return null;
-  return <div>Panel content</div>;
-}
-```
-
-#### C. Hook Inside useMemo/useCallback
-```typescript
-// ❌ WRONG: Hook inside useMemo
-function DataTable() {
-  const columns = useMemo(() => {
-    const t = useTranslation(); // ❌ Hook inside useMemo
-    return [
-      { key: 'name', title: t('name') },
-      { key: 'email', title: t('email') }
-    ];
-  }, []);
-  
-  return <Table columns={columns} />;
-}
-
-// ✅ CORRECT: Hook outside useMemo
-function DataTable() {
-  const t = useTranslation(); // ✅ Hook at top level
-  const columns = useMemo(() => [
-    { key: 'name', title: t('name') },
-    { key: 'email', title: t('email') }
-  ], [t]);
-  
-  return <Table columns={columns} />;
-}
-```
-
-### 🎯 useCallback vs useMemo
-
-Both are memoization hooks but solve different problems:
-
-#### 🔹 useMemo - Cache Computation Results
-```typescript
-// ✅ CORRECT: useMemo for expensive computations
-const sortedItems = useMemo(() => {
-  return heavySort(items);
-}, [items]);
-
-// ✅ CORRECT: useMemo for stable object references
-const style = useMemo(() => ({
-  color: theme.primary,
-  fontSize: '16px'
-}), [theme.primary]);
-
-// ✅ CORRECT: useMemo for filtered data
-const filteredUsers = useMemo(() => {
-  return users.filter(user => user.isActive);
-}, [users]);
-```
-
-#### 🔹 useCallback - Cache Function References
-```typescript
-// ✅ CORRECT: useCallback for stable function references
-const handleSave = useCallback(() => {
-  save(data);
-}, [data]);
-
-// ✅ CORRECT: useCallback for event handlers
-const handleClick = useCallback((id: string) => {
-  onItemClick(id);
-}, [onItemClick]);
-
-// ✅ CORRECT: useCallback for React.memo children
-const MemoizedChild = React.memo(Child);
-
-function Parent() {
-  const handleClick = useCallback(() => {
-    // Handle click
-  }, []);
-  
-  return <MemoizedChild onClick={handleClick} />;
-}
-```
-
-#### 🔹 How to Decide
-- **If you're memoizing a function** → use `useCallback`
-- **If you're memoizing a value** → use `useMemo`
-
-They are equivalent under the hood:
-```typescript
-useCallback(fn, deps) === useMemo(() => fn, deps)
-```
-
-But for readability, always use the semantically correct one.
-
-#### 🔹 Common Pitfalls
-```typescript
-// ❌ WRONG: Overuse of memoization
-const simpleValue = useMemo(() => a + b, [a, b]); // Unnecessary for simple math
-
-// ❌ WRONG: Missing dependencies and using console.log
-const handleClick = useCallback(() => {
-  console.log(data); // data not in deps, and should use notifications
-}, []); // Missing data dependency
-
-// ❌ WRONG: Memoizing everything
-const Component = React.memo(({ onClick }) => {
-  const handleClick = useCallback(() => onClick(), [onClick]);
-  const style = useMemo(() => ({ color: 'blue' }), []);
-  // ... rest of component
+  it('should handle edit button click', () => {
+    const user = { name: 'John Doe', email: 'john@example.com' };
+    const onEdit = jest.fn();
+    
+    render(<UserProfile user={user} onEdit={onEdit} />);
+    
+    fireEvent.click(screen.getByText('Edit'));
+    
+    expect(onEdit).toHaveBeenCalledWith(user);
+  });
 });
 ```
 
-### 🚀 Memoization & Performance Guidelines
-
-#### When to Use Memoization
-- **After profiling** or when reference stability is required
-- **Heavy computations** (filtering, sorting, transformations)
-- **Stable context values** for context consumers
-- **Stable props** for React.memo children
-
-#### When NOT to Use Memoization
-- **Cheap calculations** (memoization has overhead)
-- **By default** (premature optimization)
-- **Simple primitives** (strings, numbers, booleans)
-
-#### Performance Example
+#### Hook Testing
 ```typescript
-// ✅ CORRECT: Memoize expensive computation
-function ExpensiveComponent({ items }: { items: Item[] }) {
-  const processedItems = useMemo(() => {
-    return items
-      .filter(item => item.isActive)
-      .sort((a, b) => a.name.localeCompare(b.name))
-      .map(item => ({
-        ...item,
-        displayName: `${item.name} (${item.category})`
-      }));
-  }, [items]);
+// ✅ CORRECT: Test custom hooks
+import { renderHook, act } from '@testing-library/react';
+import { useCounter } from './useCounter';
+
+describe('useCounter', () => {
+  it('should increment counter', () => {
+    const { result } = renderHook(() => useCounter(0));
+    
+    act(() => {
+      result.current.increment();
+    });
+    
+    expect(result.current.count).toBe(1);
+  });
+});
+```
+
+### 🚨 Common Pitfalls to Avoid
+
+#### 1. Stale Closures
+```typescript
+// ❌ WRONG: Stale closure
+function Counter() {
+  const [count, setCount] = useState(0);
   
+  const handleClick = () => {
+    setTimeout(() => {
+      setCount(count + 1); // ❌ Stale closure
+    }, 1000);
+  };
+  
+  return <button onClick={handleClick}>Count: {count}</button>;
+}
+
+// ✅ CORRECT: Functional update
+function Counter() {
+  const [count, setCount] = useState(0);
+  
+  const handleClick = () => {
+    setTimeout(() => {
+      setCount(prev => prev + 1); // ✅ Functional update
+    }, 1000);
+  };
+  
+  return <button onClick={handleClick}>Count: {count}</button>;
+}
+```
+
+#### 2. Missing Dependencies
+```typescript
+// ❌ WRONG: Missing dependencies
+function UserProfile({ userId }: { userId: string }) {
+  const [user, setUser] = useState<User | null>(null);
+  
+  useEffect(() => {
+    fetchUser(userId).then(setUser);
+  }, []); // ❌ Missing userId dependency
+  
+  return <div>{user?.name}</div>;
+}
+
+// ✅ CORRECT: Complete dependencies
+function UserProfile({ userId }: { userId: string }) {
+  const [user, setUser] = useState<User | null>(null);
+  
+  useEffect(() => {
+    fetchUser(userId).then(setUser);
+  }, [userId]); // ✅ Complete dependencies
+  
+  return <div>{user?.name}</div>;
+}
+```
+
+#### 3. Unnecessary Re-renders
+```typescript
+// ❌ WRONG: Object/function created on every render
+function ParentComponent() {
+  const [count, setCount] = useState(0);
+  
+  const handleClick = () => setCount(prev => prev + 1); // ❌ New function every render
+  
+  return <ChildComponent onClick={handleClick} />;
+}
+
+// ✅ CORRECT: Memoized function
+function ParentComponent() {
+  const [count, setCount] = useState(0);
+  
+  const handleClick = useCallback(() => setCount(prev => prev + 1), []); // ✅ Memoized
+  
+  return <ChildComponent onClick={handleClick} />;
+}
+```
+
+### 📚 TypeScript Integration
+
+#### Proper Type Definitions
+```typescript
+// ✅ CORRECT: Proper TypeScript types
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
+interface UserProfileProps {
+  user: User;
+  onEdit?: (user: User) => void;
+  onDelete?: (userId: string) => void;
+}
+
+function UserProfile({ user, onEdit, onDelete }: UserProfileProps) {
+  return (
+    <div>
+      <h2>{user.name}</h2>
+      <p>{user.email}</p>
+      {onEdit && <button onClick={() => onEdit(user)}>Edit</button>}
+      {onDelete && <button onClick={() => onDelete(user.id)}>Delete</button>}
+    </div>
+  );
+}
+```
+
+#### Generic Components
+```typescript
+// ✅ CORRECT: Generic components for reusability
+interface ListProps<T> {
+  items: T[];
+  renderItem: (item: T) => React.ReactNode;
+  keyExtractor: (item: T) => string;
+}
+
+function List<T>({ items, renderItem, keyExtractor }: ListProps<T>) {
   return (
     <ul>
-      {processedItems.map(item => (
-        <li key={item.id}>{item.displayName}</li>
+      {items.map(item => (
+        <li key={keyExtractor(item)}>
+          {renderItem(item)}
+        </li>
       ))}
     </ul>
   );
 }
 
-// ✅ CORRECT: Memoize for React.memo
-const MemoizedItem = React.memo(function Item({ item, onSelect }: ItemProps) {
+// Usage
+function UserList({ users }: { users: User[] }) {
   return (
-    <div onClick={() => onSelect(item.id)}>
-      {item.name}
-    </div>
-  );
-});
-
-function ItemList({ items, onSelect }: ItemListProps) {
-  const handleSelect = useCallback((id: string) => {
-    onSelect(id);
-  }, [onSelect]);
-  
-  return (
-    <div>
-      {items.map(item => (
-        <MemoizedItem 
-          key={item.id} 
-          item={item} 
-          onSelect={handleSelect} 
-        />
-      ))}
-    </div>
-  );
-}
-```
-
-### 🧹 Cleaning Up Effects & Timers
-
-Always clean up subscriptions, timers, and event listeners to prevent memory leaks.
-
-#### Event Listeners
-```typescript
-// ✅ CORRECT: Clean up event listeners
-function useWindowSize() {
-  const [size, setSize] = useState({ width: 0, height: 0 });
-  
-  useEffect(() => {
-    function handleResize() {
-      setSize({ width: window.innerWidth, height: window.innerHeight });
-    }
-    
-    window.addEventListener('resize', handleResize);
-    handleResize(); // Set initial size
-    
-    return () => {
-      window.removeEventListener('resize', handleResize); // ✅ cleanup
-    };
-  }, []);
-  
-  return size;
-}
-```
-
-#### Timers
-```typescript
-// ✅ CORRECT: Clean up timers
-function useInterval(callback: () => void, delay: number) {
-  useEffect(() => {
-    const id = setInterval(callback, delay);
-    
-    return () => clearInterval(id); // ✅ cleanup
-  }, [callback, delay]);
-}
-
-// ✅ CORRECT: Clean up timeouts
-function useDebounce<T>(value: T, delay: number): T {
-  const [debouncedValue, setDebouncedValue] = useState<T>(value);
-  
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(value);
-    }, delay);
-    
-    return () => clearTimeout(handler); // ✅ cleanup
-  }, [value, delay]);
-  
-  return debouncedValue;
-}
-```
-
-#### Subscriptions
-```typescript
-// ✅ CORRECT: Clean up subscriptions
-function useWebSocket(url: string) {
-  const [socket, setSocket] = useState<WebSocket | null>(null);
-  const [message, setMessage] = useState<string | null>(null);
-  
-  useEffect(() => {
-    const ws = new WebSocket(url);
-    
-    ws.onopen = () => setSocket(ws);
-    ws.onmessage = (event) => setMessage(event.data);
-    ws.onclose = () => setSocket(null);
-    
-    return () => {
-      ws.close(); // ✅ cleanup
-    };
-  }, [url]);
-  
-  return { socket, message };
-}
-```
-
-**💡 Rule**: Always return a cleanup function from `useEffect` whenever you subscribe to something external.
-
-### 🔍 Shallow Prop Comparison & React.memo
-
-React compares props with **shallow equality** when deciding whether to re-render a `React.memo` component.
-
-#### The Problem
-```typescript
-// ❌ WRONG: New references on every render
-function Parent({ items }: { items: Item[] }) {
-  return (
-    <Child 
-      data={[...items]}           // New array every render
-      onClick={() => {}}          // New function every render
+    <List
+      items={users}
+      renderItem={(user) => <UserProfile user={user} />}
+      keyExtractor={(user) => user.id}
     />
   );
 }
-
-const Child = React.memo(({ data, onClick }: ChildProps) => {
-  return <div onClick={onClick}>{data.length} items</div>;
-});
 ```
 
-Even if `items` doesn't change, `Child` will re-render because the `data` array and `onClick` function are new references every time.
+### 🔧 Development Tools
 
-#### The Solution
-```typescript
-// ✅ CORRECT: Stable references
-function Parent({ items }: { items: Item[] }) {
-  const data = useMemo(() => [...items], [items]);
-  const handleClick = useCallback(() => {}, []);
-  
-  return <Child data={data} onClick={handleClick} />;
-}
-
-// ✅ CORRECT: Prefer primitives
-function Parent({ items }: { items: Item[] }) {
-  return <Child itemCount={items.length} />; // Primitive value
-}
-```
-
-### 🐛 Common React Issues
-
-#### Hook Placement & Order
-```typescript
-// ❌ WRONG: "Invalid hook call. Hooks can only be called inside of the body of a function component."
-function buildCell(...) {
-  const { generateUrl } = useGenerateUrl(); // ❌ Not a component or Hook
-}
-
-// ✅ CORRECT: Call Hooks only in components or custom Hooks
-function CellComponent(...) {
-  const { generateUrl } = useGenerateUrl(); // ✅ In component
-  return <div>{generateUrl('123')}</div>;
-}
-```
-
-#### Infinite Updates & Render Loops
-```typescript
-// ❌ WRONG: "Too many re-renders. React limits the number of renders to prevent an infinite loop."
-function BadComponent() {
-  const [count, setCount] = useState(0);
-  
-  // This will cause infinite re-renders
-  setCount(count + 1); // ❌ Setting state during render
-  
-  return <div>{count}</div>;
-}
-
-// ✅ CORRECT: Set state in effects or event handlers
-function GoodComponent() {
-  const [count, setCount] = useState(0);
-  
-  const handleClick = () => {
-    setCount(count + 1); // ✅ In event handler
-  };
-  
-  return <button onClick={handleClick}>{count}</button>;
-}
-```
-
-#### Lifecycle / Cleanup Mistakes
-```typescript
-// ❌ WRONG: "Warning: Can't perform a React state update on an unmounted component."
-function BadComponent() {
-  const [data, setData] = useState(null);
-  
-  useEffect(() => {
-    fetchData().then(setData); // ❌ No cleanup, might set state after unmount
-  }, []);
-  
-  return <div>{data}</div>;
-}
-
-// ✅ CORRECT: Clean up async operations
-function GoodComponent() {
-  const [data, setData] = useState(null);
-  
-  useEffect(() => {
-    let cancelled = false;
-    
-    fetchData().then(result => {
-      if (!cancelled) {
-        setData(result); // ✅ Only set state if component is still mounted
-      }
-    });
-    
-    return () => {
-      cancelled = true; // ✅ Cleanup
-    };
-  }, []);
-  
-  return <div>{data}</div>;
-}
-```
-
-#### Dependency Array Issues
-```typescript
-// ❌ WRONG: Missing dependencies
-function BadComponent({ userId }: { userId: string }) {
-  const [user, setUser] = useState(null);
-  
-  useEffect(() => {
-    fetchUser(userId).then(setUser); // ❌ userId not in deps
-  }, []); // Missing userId dependency
-  
-  return <div>{user?.name}</div>;
-}
-
-// ✅ CORRECT: Complete dependencies
-function GoodComponent({ userId }: { userId: string }) {
-  const [user, setUser] = useState(null);
-  
-  useEffect(() => {
-    fetchUser(userId).then(setUser);
-  }, [userId]); // ✅ Include all dependencies
-  
-  return <div>{user?.name}</div>;
-}
-```
-
-#### Cross-Component Updates During Render
-```typescript
-// ❌ WRONG: "Cannot update a component ('A') while rendering a different component ('B')."
-function Parent() {
-  const [count, setCount] = useState(0);
-  
-  return (
-    <div>
-      <Child onRender={() => setCount(count + 1)} /> {/* ❌ State update during render */}
-      <div>Count: {count}</div>
-    </div>
-  );
-}
-
-// ✅ CORRECT: Move updates to effects or event handlers
-function Parent() {
-  const [count, setCount] = useState(0);
-  
-  const handleChildRender = useCallback(() => {
-    setCount(prev => prev + 1); // ✅ In callback
-  }, []);
-  
-  return (
-    <div>
-      <Child onRender={handleChildRender} />
-      <div>Count: {count}</div>
-    </div>
-  );
-}
-```
-
-#### Import/Version Pitfalls
-```typescript
-// ❌ WRONG: "useState is not a function" / "Cannot read properties of undefined (reading 'useState')"
-import React from 'react'; // ❌ Wrong import
-const [state, setState] = React.useState(0);
-
-// ✅ CORRECT: Proper import
-import React, { useState } from 'react';
-const [state, setState] = useState(0);
-
-// ✅ CORRECT: Or import from react only
-import { useState } from 'react';
-const [state, setState] = useState(0);
-```
-
-### 🧪 Testing React Components
-
-#### Testing Hooks
-```typescript
-// ✅ CORRECT: Testing custom hooks
-import { renderHook, act } from '@testing-library/react';
-import { useCounter } from './useCounter';
-
-test('useCounter', () => {
-  const { result } = renderHook(() => useCounter());
-  
-  expect(result.current.count).toBe(0);
-  
-  act(() => {
-    result.current.increment();
-  });
-  
-  expect(result.current.count).toBe(1);
-});
-```
-
-#### Testing Components
-```typescript
-// ✅ CORRECT: Testing components with hooks
-import { render, screen, fireEvent } from '@testing-library/react';
-import { Counter } from './Counter';
-
-test('Counter component', () => {
-  render(<Counter />);
-  
-  expect(screen.getByText('Count: 0')).toBeInTheDocument();
-  
-  fireEvent.click(screen.getByText('Increment'));
-  
-  expect(screen.getByText('Count: 1')).toBeInTheDocument();
-});
-```
-
----
-
-## 🤖 AI Development Guidelines
-
-### Essential React Rules for AI Code Generation
-
-1. **Always call Hooks at the top level**: Never in loops, conditions, or nested functions
-2. **Keep components pure**: No side effects during render
-3. **Use proper dependency arrays**: Include all referenced variables in useEffect/useCallback/useMemo
-4. **Clean up effects**: Always return cleanup functions for subscriptions and timers
-5. **Prefer event handlers over effects**: Use effects only for external system synchronization
-6. **Use memoization judiciously**: Only when needed for performance or reference stability
-7. **Follow naming conventions**: Custom hooks must start with 'use'
-8. **Handle async operations properly**: Use cleanup to prevent state updates after unmount
-9. **Use proper imports**: Import hooks from 'react' correctly
-10. **Test components thoroughly**: Include tests for custom hooks and components
-
-### React Development Checklist
-
-- [ ] All Hooks called at top level of components/custom hooks
-- [ ] Components are pure (no side effects during render)
-- [ ] All useEffect dependencies are included
-- [ ] Cleanup functions returned from effects
-- [ ] Custom hooks follow 'use' naming convention
-- [ ] Memoization used only when necessary
-- [ ] Event handlers preferred over effects for user interactions
-- [ ] Async operations properly cleaned up
-- [ ] Components tested with React Testing Library
-- [ ] Static analysis kit configured and passing
-
-### Common Anti-Patterns to Avoid
-
-```typescript
-// ❌ WRONG: Hook in loop
-{items.map(item => {
-  const ref = useRef(null); // ❌ Hook in loop
-  return <div ref={ref}>{item.name}</div>;
-})}
-
-// ❌ WRONG: Side effect during render
-function Component() {
-  document.title = 'New Title'; // ❌ Side effect during render
-  return <div>Content</div>;
-}
-
-// ❌ WRONG: Missing dependencies
-useEffect(() => {
-  fetchData(userId); // ❌ userId not in deps
-}, []); // Missing userId
-
-// ❌ WRONG: No cleanup
-useEffect(() => {
-  const timer = setInterval(() => {}, 1000);
-  // ❌ No cleanup function
-}, []);
-```
-
-### Recommended Patterns
-
-```typescript
-// ✅ CORRECT: Hook at top level
-function Component() {
-  const ref = useRef(null); // ✅ Top level
-  return <div ref={ref}>Content</div>;
-}
-
-// ✅ CORRECT: Side effect in useEffect
-function Component() {
-  useEffect(() => {
-    document.title = 'New Title'; // ✅ In useEffect
-  }, []);
-  return <div>Content</div>;
-}
-
-// ✅ CORRECT: Complete dependencies
-useEffect(() => {
-  fetchData(userId);
-}, [userId]); // ✅ Include all dependencies
-
-// ✅ CORRECT: Cleanup function
-useEffect(() => {
-  const timer = setInterval(() => {}, 1000);
-  return () => clearInterval(timer); // ✅ Cleanup
-}, []);
-```
-
----
-
-### Error Handling and User Feedback
-
-#### Use Notifications Instead of Console Logs
-
-**❌ WRONG: Using console.log/console.error**
-```typescript
-const handleSubmit = async () => {
-  try {
-    await submitData();
-    console.log('Success!');
-  } catch (error) {
-    console.error('Error:', error);
+#### ESLint Configuration
+```json
+{
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/prop-types": "off",
+    "@typescript-eslint/no-unused-vars": "error"
   }
-};
+}
 ```
 
-**✅ CORRECT: Using useNotifications**
-```typescript
-import { useNotifications } from '@ovh-ux/manager-react-components';
+#### React DevTools
+- **Components tab**: Inspect component tree and props
+- **Profiler tab**: Identify performance bottlenecks
+- **Hooks tab**: Debug Hook state and effects
 
-const MyComponent = () => {
-  const { addSuccess, addError } = useNotifications();
+### 📖 References
 
-  const handleSubmit = async () => {
-    try {
-      await submitData();
-      addSuccess('Data submitted successfully');
-    } catch (error) {
-      addError('Failed to submit data. Please try again.');
-    }
-  };
-};
-```
-
-## ⚖️ The React Developer's Moral
-
-- **Hooks are the foundation** of modern React development
-- **Pure components** are predictable and testable
-- **Proper cleanup** prevents memory leaks and bugs
-- **Performance optimization** should be measured, not assumed
-- **User feedback** should use notifications, not console logs
-
-**👉 Good React code is readable, maintainable, follows the rules of Hooks, and provides proper user feedback.**
-
-React best practices ensure that your components are predictable, performant, and free from common pitfalls. By following these guidelines, you'll write code that's easier to debug, test, and maintain in the long run.
+- [React Official Documentation](https://react.dev/)
+- [React Hooks Documentation](https://react.dev/reference/react)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- [TypeScript with React](https://www.typescriptlang.org/docs/handbook/react.html)
+- [React DevTools](https://react.dev/learn/react-developer-tools)

@@ -13,23 +13,28 @@ ai: true
 2. [Migration Patterns](#-migration-patterns)
    - [AngularJS → React Mapping](#-angularjs--react-mapping)
    - [Strangler Pattern Strategy](#-strangler-pattern-strategy)
-   - [Architecture Cible](#️-architecture-cible)
-   - [Contraintes de Qualité](#-contraintes-de-qualité)
-3. [Detailed Migration Patterns (Spécificités OVH)](#-patterns-de-migration)
-   - [Formulaires et Validation](#1-formulaires-et-validation)
-   - [State Management et Services](#2-state-management-et-services)
-   - [Directives vers Composants/Hooks](#3-directives-vers-composantshooks)
-   - [Data Grid et Tables](#4-data-grid-et-tables)
-   - [Tracking AT Internet](#5-tracking-at-internet)
-   - [Gestion d'Erreurs](#6-gestion-derreurs)
+   - [Target Architecture](#️-target-architecture)
+   - [Quality Constraints](#-quality-constraints)
+3. [Detailed Migration Patterns (OVH Specifics)](#-migration-patterns)
+   - [Forms and Validation](#1-forms-and-validation)
+   - [State Management and Services](#2-state-management-and-services)
+   - [Directives to Components/Hooks](#3-directives-to-componentshooks)
+   - [Data Grid and Tables](#4-data-grid-and-tables)
+   - [AT Internet Tracking](#5-at-internet-tracking)
+   - [Error Handling](#6-error-handling)
    - [Lifecycle Hooks](#7-lifecycle-hooks)
    - [Performance](#8-performance)
-   - [Accessibilité (A11Y)](#9-accessibilité-a11y)
-   - [Debugging et DevTools](#10-debugging-et-devtools)
-   - [Routing et Deep Linking](#11-routing-et-deep-linking)
-   - [Patterns de Migration Complexes](#12-patterns-de-migration-complexes)
-4. [Templates de Migration](#-templates-de-migration)
-5. [Guidelines for AI Development](#-guidelines-for-ai-development)
+   - [Accessibility (A11Y)](#9-accessibility-a11y)
+   - [Debugging and DevTools](#10-debugging-and-devtools)
+   - [Routing and Deep Linking](#11-routing-and-deep-linking)
+   - [Complex Migration Patterns](#12-complex-migration-patterns)
+4. [Pre-Migration Audit](#-pre-migration-audit)
+5. [AI Migration Prompts](#-ai-migration-prompts)
+6. [Migration Testing Strategy](#-migration-testing-strategy)
+7. [Incremental Migration](#-incremental-migration)
+8. [Feedback Loop](#-feedback-loop)
+9. [Migration Templates](#-migration-templates)
+10. [Guidelines for AI Development](#-guidelines-for-ai-development)
 
 ## 🧭 Purpose
 
@@ -62,14 +67,102 @@ See @.ai-doc/30-best-practices/ for development standards, React patterns, and q
 ### Output Mode
 Provide readable Git diff + installation commands + clear plan before code.
 
+## 🎯 Cursor-Specific Instructions
+
+### Execution Workflow
+1. **Always start with audit**: Use `codebase_search` to analyze AngularJS code
+2. **Create plan first**: Generate `/docs/PLAN.md` before any code
+3. **Incremental migration**: One component/service at a time
+4. **Test at each step**: Validate immediately after each migration
+5. **Continuous documentation**: Update MIGRATION_NOTES.md at each step
+
+### Recommended Cursor Commands
+```bash
+# 1. Initial audit
+@codebase_search "AngularJS controllers in target module"
+
+# 2. Create plan
+@create_file "docs/PLAN.md" with provided template
+
+# 3. Step-by-step migration
+@create_file "src/hooks/useUserService.ts" 
+@create_file "src/components/UserList.tsx"
+@create_file "src/components/UserList.test.tsx"
+
+# 4. Validation
+@run_tests "npm test"
+@run_lint "npm run lint"
+```
+
+### Optimal Cursor Workflow
+1. **Explore** → `codebase_search` to understand AngularJS code
+2. **Plan** → Create PLAN.md with detailed mapping
+3. **Code** → Incremental migration with tests
+4. **Test** → Parity validation at each step
+5. **Document** → Update migration notes
+
+### Validation Automation
+```typescript
+// Execute after each migration
+describe('Parity Validation', () => {
+  it('should maintain identical functionality', () => {
+    expect(reactComponent).toHaveSameBehavior(angularJSComponent);
+  });
+  
+  it('should maintain identical UI', () => {
+    expect(reactComponent).toMatchVisualSnapshot(angularJSComponent);
+  });
+  
+  it('should maintain identical performance', () => {
+    expect(reactComponent).toHaveSamePerformance(angularJSComponent);
+  });
+});
+```
+
+### Error Management
+```typescript
+// Common errors and solutions
+const commonErrors = {
+  incompleteMigration: {
+    error: "Missing functionality after migration",
+    solution: "Check AngularJS → React mapping in PLAN.md",
+    validation: "Run all parity tests"
+  },
+  
+  performanceRegression: {
+    error: "Performance degradation",
+    solution: "Optimize with useMemo, useCallback, lazy loading",
+    validation: "Measure LCP, INP, CLS"
+  },
+  
+  visualRegression: {
+    error: "Different interface",
+    solution: "Check ODS components usage",
+    validation: "Compare visually side by side"
+  }
+};
+```
+
+### Success Metrics
+```typescript
+const migrationKPIs = {
+  functionalParity: "100% of functionalities reproduced",
+  visualParity: "Interface identical pixel by pixel", 
+  performanceParity: "Equivalent or better performance",
+  testCoverage: "90%+ test coverage",
+  lintingScore: "0 ESLint/TypeScript errors",
+  accessibilityScore: "100% accessibility tests pass"
+};
+```
+
 ## ⚙️ Context
 
 AngularJS → React migration follows these principles:
-- **Strangler Pattern** : progressive cohabitation of both technologies
-- **Incremental migration** : route by route or screen by screen, no Big Bang
-- **Complete functional parity** : identical UX and functionality
-- **Continuous delivery** : each increment is tested and documented
-- **OVHcloud standards** : respect for Manager conventions and ODS
+- **Strangler Pattern**: progressive cohabitation of both technologies
+- **Incremental migration**: route by route or screen by screen, no Big Bang
+- **Complete functional parity**: identical UX and functionality
+- **Continuous delivery**: each increment is tested and documented
+- **OVHcloud standards**: respect for Manager conventions and ODS
 
 The templates provided in this document are used to:
 - **Plan** module migration
@@ -102,7 +195,7 @@ The templates provided in this document are used to:
 | Routing                  | React Router v6                 | Declarative routes |
 | $q                       | async/await                     | Native promises |
 | $rootScope               | Event bus / context             | React Context, Zustand |
-| Forms                    | React Hook Form + Yup           | Typed validation |
+| Forms                    | React Hook Form + Zod           | Typed validation |
 | i18n (angular-translate) | react-i18next                   | @ovh-ux/manager-common-translations |
 
 ## 🔄 Strangler Pattern Strategy
@@ -118,36 +211,24 @@ import { createRoot } from 'react-dom/client';
 const root = createRoot(document.getElementById('react-root'));
 ```
 
-### 2. Route-by-Route Breakdown
+### 2. Route-by-Route Migration
 ```typescript
-// Route-by-route migration
+// Route-by-route migration with URL conservation
 const routes = [
-  {
-    path: '/legacy-route',
-    component: LegacyAngularJSComponent // To migrate
-  },
-  {
-    path: '/new-route',
-    component: NewReactComponent // Migrated
-  }
+  { path: '/legacy-route', component: LegacyAngularJSComponent },
+  { path: '/new-route', component: NewReactComponent }
 ];
 ```
 
 ### 3. URL Conservation Strategy
-**CRITICAL**: During migration, **URLs must remain identical** between AngularJS and React versions to ensure:
-- **Zero breaking changes** for users and bookmarks
-- **Seamless transition** without redirects
-- **SEO preservation** and link integrity
-- **API compatibility** maintained
+**CRITICAL**: URLs must remain identical between AngularJS and React versions.
 
 ```typescript
 // ✅ CORRECT: Same URL paths
-// AngularJS: /nasha/listing
-// React: /bmc-nasha/listing (same path structure)
+// AngularJS: /nasha/listing → React: /bmc-nasha/listing
 
 // ❌ WRONG: Different URL paths
-// AngularJS: /nasha/listing
-// React: /new-nasha/list (breaks user experience)
+// AngularJS: /nasha/listing → React: /new-nasha/list
 ```
 
 **Implementation Rules**:
@@ -316,70 +397,55 @@ export function capitalize(input: string): string {
 }
 ```
 
-## 1. Formulaires et Validation
+## 1. Forms and Validation
 
-### Pattern OVH Standard : React Hook Form + Zod
-
-**Pourquoi RHF + Zod ?** C'est le standard OVH utilisé dans toutes les applications React récentes.
+### OVH Standard Pattern: React Hook Form + Zod
 
 ```typescript
-// Pattern standard OVH
+// OVH standard pattern
 import { useForm, Controller } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { OsdsFormField, OsdsInput } from '@ovhcloud/ods-components/react';
 
 const schema = z.object({
-  email: z.string().email('Email invalide'),
-  name: z.string().min(1, 'Nom requis'),
+  email: z.string().email('Invalid email'),
+  name: z.string().min(1, 'Name required'),
 });
 
-type FormData = z.infer<typeof schema>;
-
 export function UserForm() {
-  const { control, handleSubmit, formState: { errors } } = useForm<FormData>({
+  const { control, handleSubmit, formState: { errors } } = useForm({
     resolver: zodResolver(schema),
   });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <OsdsFormField error={errors.email?.message}>
-        <Controller
-          name="email"
-          control={control}
-          render={({ field }) => <OsdsInput {...field} />}
-        />
+        <Controller name="email" control={control} render={({ field }) => <OsdsInput {...field} />} />
       </OsdsFormField>
     </form>
   );
 }
 ```
 
-### Migration AngularJS → React
+### AngularJS → React Mapping
 
 | AngularJS | React Hook Form + Zod |
 |-----------|----------------------|
 | `ng-model` | `Controller` |
 | `ng-required` | `z.string().min(1)` |
-| `ng-pattern` | `z.string().regex()` |
 | `$error` | `formState.errors` |
 | `ng-submit` | `handleSubmit` |
 
-### Références
-
-- [React Hook Form Documentation](https://react-hook-form.com/)
-- [Zod Documentation](https://zod.dev/)
+### References
 - [ODS Form Components](../20-dependencies/ods-components.md)
-- [MRC Notifications](../20-dependencies/mrc-components.md)
 
-## 2. State Management et Services
+## 2. State Management and Services
 
-### Pattern OVH Standard : React Query + Hooks
-
-**Services AngularJS → Hooks React** avec React Query pour le cache et la synchronisation.
+### OVH Standard Pattern: React Query + Hooks
 
 ```typescript
-// Pattern standard OVH
+// OVH standard pattern
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { apiClient } from '@ovh-ux/manager-core-api';
 
@@ -392,646 +458,276 @@ export function useUsers() {
 
 export function useCreateUser() {
   const queryClient = useQueryClient();
-  
   return useMutation({
-    mutationFn: (userData: CreateUserData) => 
-      apiClient.v6.post('/api/users', userData),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['users'] });
-    },
+    mutationFn: (userData: CreateUserData) => apiClient.v6.post('/api/users', userData),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['users'] }),
   });
 }
 ```
 
-### Migration AngularJS → React
+### AngularJS → React Mapping
 
 | AngularJS | React Equivalent |
 |-----------|------------------|
 | Services stateless | Hooks + React Query |
 | `$scope` | useState/useReducer |
 | `$rootScope.$broadcast` | Context + useReducer |
-| Factories | Hooks custom |
+| Factories | Custom hooks |
 
-### Services avec État
+### Stateful Services
 
 ```typescript
-// Pattern OVH : Hook avec useReducer pour état complexe
+// OVH pattern: Hook with useReducer for complex state
 import { useReducer, useCallback } from 'react';
-
-type CartState = { items: CartItem[]; total: number };
-type CartAction = 
-  | { type: 'ADD_ITEM'; payload: CartItem }
-  | { type: 'REMOVE_ITEM'; payload: string };
-
-function cartReducer(state: CartState, action: CartAction): CartState {
-  switch (action.type) {
-    case 'ADD_ITEM':
-      const newItems = [...state.items, action.payload];
-      return { items: newItems, total: newItems.reduce((sum, item) => sum + item.price, 0) };
-    case 'REMOVE_ITEM':
-      const filteredItems = state.items.filter(item => item.id !== action.payload);
-      return { items: filteredItems, total: filteredItems.reduce((sum, item) => sum + item.price, 0) };
-    default:
-      return state;
-  }
-}
 
 export function useCart() {
   const [state, dispatch] = useReducer(cartReducer, { items: [], total: 0 });
-  
-  const addItem = useCallback((item: CartItem) => {
-    dispatch({ type: 'ADD_ITEM', payload: item });
-  }, []);
-  
+  const addItem = useCallback((item: CartItem) => dispatch({ type: 'ADD_ITEM', payload: item }), []);
   return { items: state.items, total: state.total, addItem };
 }
 ```
 
-### Services avec Injection
+### Global Communication
 
 ```typescript
-// Pattern OVH : Context + MRC Notifications
-import { createContext, useContext } from 'react';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-
-const NotificationContext = createContext<NotificationService | null>(null);
-
-export function NotificationProvider({ children }: { children: ReactNode }) {
-  const { addSuccess, addError } = useNotifications();
-  
-  return (
-    <NotificationContext.Provider value={{ addSuccess, addError }}>
-      {children}
-    </NotificationContext.Provider>
-  );
-}
-
-export function useNotificationService() {
-  const context = useContext(NotificationContext);
-  if (!context) throw new Error('useNotificationService must be used within NotificationProvider');
-  return context;
-}
-```
-
-### Communication Globale
-
-```typescript
-// Pattern OVH : Context + useReducer pour communication globale
-import { createContext, useContext, useReducer } from 'react';
-
-type UserEvent = 
-  | { type: 'USER_CREATED'; payload: User }
-  | { type: 'USER_DELETED'; payload: string };
-
-const UserContext = createContext<UserContextType | null>(null);
-
-function userReducer(state: User[], action: UserEvent): User[] {
-  switch (action.type) {
-    case 'USER_CREATED': return [...state, action.payload];
-    case 'USER_DELETED': return state.filter(user => user.id !== action.payload);
-    default: return state;
-  }
-}
-
+// OVH pattern: Context + useReducer
 export function UserProvider({ children }: { children: ReactNode }) {
   const [users, dispatch] = useReducer(userReducer, []);
-  return (
-    <UserContext.Provider value={{ users, dispatch }}>
-      {children}
-    </UserContext.Provider>
-  );
+  return <UserContext.Provider value={{ users, dispatch }}>{children}</UserContext.Provider>;
 }
 ```
 
-### Migration `$scope` → useState
+### Migration Patterns
 
 ```typescript
-// Pattern OVH : Hook avec React Query
-export function useProductController() {
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [searchTerm, setSearchTerm] = useState('');
-  
-  const { data: products = [], isLoading: loading, refetch } = useQuery({
-    queryKey: ['products', selectedCategory, searchTerm],
-    queryFn: () => ProductService.getProducts(selectedCategory, searchTerm),
-  });
-  
-  return {
-    products,
-    loading,
-    selectedCategory,
-    searchTerm,
-    setCategory: setSelectedCategory,
-    setSearchTerm: setSearchTerm
-  };
-}
-```
-
-### Migration Factories
-
-```typescript
-// Pattern OVH : Hook pour logique réutilisable
-import { useFormatDate } from '@ovh-ux/manager-react-components';
-
-export function useDateFormatter() {
-  const { formatDate } = useFormatDate();
-  
-  return {
-    formatDate,
-    formatRelative: (date: Date) => formatDate(date, 'relative'),
-    isValidDate: (date: Date) => !isNaN(date.getTime())
-  };
-}
-```
-
-### Migration Providers
-
-```typescript
-// Pattern OVH : Context pour configuration globale
-import { createContext, useContext } from 'react';
-
-const ConfigContext = createContext<ConfigType | null>(null);
-
-export function ConfigProvider({ children }: { children: ReactNode }) {
-  const [config, setConfig] = useState(defaultConfig);
-  
-  return (
-    <ConfigContext.Provider value={{ config, setConfig }}>
-      {children}
-    </ConfigContext.Provider>
-  );
-}
-
-export function useConfig() {
-  const context = useContext(ConfigContext);
-  if (!context) throw new Error('useConfig must be used within ConfigProvider');
-  return context;
-}
-```
-
-### Patterns de Migration
-
-#### 1. Décision : Hook vs Fonction Utilitaire
-```typescript
-// ✅ CORRECT: Fonction utilitaire pour logique pure
+// ✅ CORRECT: Utility function for pure logic
 export function formatPrice(cents: number): string {
-  return new Intl.NumberFormat('fr-FR', { 
-    style: 'currency', 
-    currency: 'EUR' 
-  }).format(cents / 100);
+  return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(cents / 100);
 }
 
-// ✅ CORRECT: Hook pour logique avec état React
+// ✅ CORRECT: Hook for React state logic
 export function useUserPreferences() {
   const [preferences, setPreferences] = useState<UserPreferences>({});
   return { preferences, setPreferences };
 }
 ```
 
-#### 2. Migration Progressive
-```typescript
-// Étape 1: Identifier le type de service
-// - Stateless → Fonction utilitaire
-// - Avec état → Hook custom
-// - Avec injection → Context
-
-// Étape 2: Migrer les dépendances
-// - $http → apiClient
-// - $q → Promises natives
-// - $rootScope → Context
-```
-
-### Anti-Patterns à Éviter
+### Anti-Patterns to Avoid
 
 ```typescript
-// ❌ WRONG: Hook pour logique pure
+// ❌ WRONG: Hook for pure logic
 export function useFormatPrice() {
   return (cents: number) => formatPrice(cents);
 }
 
-// ✅ CORRECT: Fonction utilitaire
+// ✅ CORRECT: Utility function
 export function formatPrice(cents: number): string {
-  return new Intl.NumberFormat('fr-FR', { 
-    style: 'currency', 
-    currency: 'EUR' 
-  }).format(cents / 100);
-}
-
-// ❌ WRONG: Props drilling au lieu de Context
-function App() {
-  const [user, setUser] = useState(null);
-  return <Header user={user} />; // Props drilling
-}
-
-// ✅ CORRECT: Context pour état global
-function App() {
-  return (
-    <UserProvider>
-      <Header />
-    </UserProvider>
-  );
+  return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(cents / 100);
 }
 ```
 
-## 3. Directives vers Composants/Hooks
+## 3. Directives to Components/Hooks
 
-### Migration AngularJS → React
+### AngularJS → React Mapping
 
 | AngularJS | React Equivalent |
 |-----------|------------------|
-| Directives d'attribut | Hooks custom |
-| Directives de composant | Composants React |
+| Attribute directives | Custom hooks |
+| Component directives | React components |
 | `ng-transclude` | Props `children` |
 | `ng-if` | `{condition && <Component />}` |
-| `ng-show/ng-hide` | CSS classes ou conditionnels |
 | `ng-click` | `onClick` |
 | `ng-model` | `value` + `onChange` |
 
-### Migration Directives d'Attribut
+### Attribute Directives Migration
 
 ```typescript
-// Pattern OVH : Hook pour logique réutilisable
+// OVH pattern: Custom hook for reusable logic
 export function useFocus() {
   const ref = useRef<HTMLElement>(null);
-  
-  const focus = useCallback(() => {
-    ref.current?.focus();
-  }, []);
-  
-  const onFocus = useCallback((callback: () => void) => {
-    const element = ref.current;
-    if (element) {
-      element.addEventListener('focus', callback);
-      return () => element.removeEventListener('focus', callback);
-    }
-  }, []);
-  
-  return { ref, focus, onFocus };
-}
-
-// Utilisation
-export function InputWithFocus() {
-  const { ref, onFocus } = useFocus();
-  
-  useEffect(() => {
-    const cleanup = onFocus(() => console.log('focused'));
-    return cleanup;
-  }, [onFocus]);
-  
-  return <input ref={ref} />;
+  const focus = useCallback(() => ref.current?.focus(), []);
+  return { ref, focus };
 }
 ```
 
-### Migration Directives de Composant
+### Component Directives Migration
 
 ```typescript
-// Pattern OVH : Composant React avec ODS
+// OVH pattern: React component with ODS
 import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
-
-type UserCardProps = {
-  user: User;
-  onEdit: (user: User) => void;
-  onDelete: (user: User) => void;
-};
 
 export function UserCard({ user, onEdit, onDelete }: UserCardProps) {
   return (
     <div className="user-card">
       <OsdsText size="l" weight="bold">{user.name}</OsdsText>
-      <OsdsText>{user.email}</OsdsText>
       <OsdsButton onClick={() => onEdit(user)}>Edit</OsdsButton>
-      <OsdsButton onClick={() => onDelete(user)}>Delete</OsdsButton>
     </div>
   );
 }
 ```
 
-### Migration Transclusion
+### Transclusion Migration
 
 ```typescript
-// Pattern OVH : Composant avec children
-import { ReactNode } from 'react';
-import { OsdsModal } from '@ovhcloud/ods-components/react';
-
-type ModalProps = {
-  children: ReactNode;
-  isOpen: boolean;
-  onClose: () => void;
-};
-
+// OVH pattern: Component with children
 export function Modal({ children, isOpen, onClose }: ModalProps) {
   if (!isOpen) return null;
-  
-  return (
-    <OsdsModal onClose={onClose}>
-      {children}
-    </OsdsModal>
-  );
+  return <OsdsModal onClose={onClose}>{children}</OsdsModal>;
 }
 ```
 
-### Migration Scope Isolé
+### Control Directives Migration
 
 ```typescript
-// Pattern OVH : Composant avec props typées
-import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
-
-type ProductCardProps = {
-  product: Product;
-  quantity: string;
-  onAddToCart: (product: Product, quantity: string) => void;
-};
-
-export function ProductCard({ product, quantity, onAddToCart }: ProductCardProps) {
-  return (
-    <div className="product-card">
-      <OsdsText size="l" weight="bold">{product.name}</OsdsText>
-      <OsdsText>Price: {formatPrice(product.price)}</OsdsText>
-      <OsdsText>Quantity: {quantity}</OsdsText>
-      <OsdsButton onClick={() => onAddToCart(product, quantity)}>
-        Add to Cart
-      </OsdsButton>
-    </div>
-  );
-}
-```
-
-### Migration Directives de Contrôle
-
-```typescript
-// Pattern OVH : JSX avec ODS Components
-import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
-
+// OVH pattern: JSX with ODS Components
 export function App({ user, loading, error, isActive, isDisabled }: AppProps) {
   return (
     <div>
-      {/* ng-if equivalent */}
-      {user.isActive && (
-        <OsdsText size="l" weight="bold">Welcome, {user.name}!</OsdsText>
-      )}
-      
-      {/* ng-show equivalent */}
+      {user.isActive && <OsdsText size="l" weight="bold">Welcome, {user.name}!</OsdsText>}
       {loading && <OsdsText>Loading...</OsdsText>}
-      
-      {/* ng-hide equivalent */}
       {!error && <OsdsText>No errors</OsdsText>}
-      
-      {/* ng-class equivalent */}
       <div className={`${isActive ? 'active' : ''} ${isDisabled ? 'disabled' : ''}`}>
-        <OsdsButton onClick={handleClick} disabled={isDisabled}>
-          Click me
-        </OsdsButton>
+        <OsdsButton onClick={handleClick} disabled={isDisabled}>Click me</OsdsButton>
       </div>
     </div>
   );
 }
 ```
 
-### Migration Directives d'Événements
+### Event Directives Migration
 
 ```typescript
-// Pattern OVH : Event handlers avec ODS
-import { OsdsInput } from '@ovhcloud/ods-components/react';
-
+// OVH pattern: Event handlers with ODS
 export function SearchInput() {
   const [searchTerm, setSearchTerm] = useState('');
-  
   const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   }, []);
   
-  return (
-    <OsdsInput
-      value={searchTerm}
-      onChange={handleChange}
-      onKeyUp={(e) => console.log('Key up:', e.key)}
-      onFocus={() => console.log('focused')}
-      placeholder="Search..."
-    />
-  );
+  return <OsdsInput value={searchTerm} onChange={handleChange} placeholder="Search..." />;
 }
 ```
 
-### Migration Directives de Validation
+### Migration Patterns
 
 ```typescript
-// Pattern OVH : React Hook Form + Zod + ODS
-import { useForm, Controller } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { OsdsInput, OsdsButton, OsdsFormField } from '@ovhcloud/ods-components/react';
-
-const userSchema = z.object({
-  email: z.string().min(1, 'Email is required').email('Invalid email format')
-});
-
-export function UserForm() {
-  const { control, handleSubmit, formState: { errors, isValid } } = useForm({
-    resolver: zodResolver(userSchema),
-  });
-  
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <OsdsFormField error={errors.email?.message}>
-        <Controller
-          name="email"
-          control={control}
-          render={({ field }) => <OsdsInput {...field} type="email" />}
-        />
-      </OsdsFormField>
-      
-      <OsdsButton type="submit" disabled={!isValid}>Submit</OsdsButton>
-    </form>
-  );
-}
-```
-
-### Patterns de Migration
-
-#### 1. Décision : Hook vs Composant
-```typescript
-// ✅ CORRECT: Hook pour logique réutilisable
+// ✅ CORRECT: Hook for reusable logic
 export function useClickOutside(callback: () => void) {
   const ref = useRef<HTMLElement>(null);
-  
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        callback();
-      }
+      if (ref.current && !ref.current.contains(event.target as Node)) callback();
     };
-    
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [callback]);
-  
   return ref;
 }
-
-// ✅ CORRECT: Composant pour UI réutilisable
-export function ClickOutsideWrapper({ children, onClickOutside }: { children: ReactNode; onClickOutside: () => void; }) {
-  const ref = useClickOutside(onClickOutside);
-  return <div ref={ref}>{children}</div>;
-}
 ```
 
-#### 2. Migration Progressive
-```typescript
-// Étape 1: Identifier le type de directive
-// - Attribut → Hook custom
-// - Composant → Composant React
-// - Transclusion → Props children
-
-// Étape 2: Migrer la logique
-// - Scope → Props typées
-// - Link function → useEffect
-// - Event handlers → Event handlers React
-```
-
-### Anti-Patterns à Éviter
+### Anti-Patterns to Avoid
 
 ```typescript
-// ❌ WRONG: Hook pour logique pure
+// ❌ WRONG: Hook for pure logic
 export function useFormatDate() {
   return (date: Date) => date.toLocaleDateString();
 }
 
-// ✅ CORRECT: Fonction utilitaire
+// ✅ CORRECT: Utility function
 export function formatDate(date: Date): string {
   return date.toLocaleDateString();
 }
-
-// ❌ WRONG: Props drilling au lieu de Context
-function App() {
-  const [theme, setTheme] = useState('light');
-  return <Header theme={theme} />; // Props drilling
-}
-
-// ✅ CORRECT: Context pour état global
-function App() {
-  return (
-    <ThemeProvider>
-      <Header />
-    </ThemeProvider>
-  );
-}
 ```
 
 
-## 📋 Plan d'Exécution
+## 📋 Execution Plan
 
-### Étape 0 – Diagnostic & Plan
-1. **Analyser le code AngularJS source**
-2. **Lister les User Stories** avec mapping vers React
-3. **Produire `/docs/PLAN.md`** avec mapping US → React
+### Phase 0: Analysis & Planning
+1. **Analyze AngularJS source code**
+2. **List User Stories** with React mapping
+3. **Produce `/docs/PLAN.md`** with US → React mapping
 
-### Étape 1 – Setup Technique
-1. **Configurer l'environnement** : TypeScript, ESLint, Vite, React Router, React Query
-2. **Migrer les traductions** (clés identiques)
-3. **Configurer i18next** avec les namespaces
+### Phase 1: Technical Setup
+1. **Configure environment**: TypeScript, ESLint, Vite, React Router, React Query
+2. **Migrate translations** (identical keys)
+3. **Configure i18next** with namespaces
 
-### Étape 2 – Migration Progressive
-1. **Implémenter les User Stories** une par une
-2. **Migrer route par route** : Services → Hooks, Templates → JSX, Filtres → Helpers
-3. **Tests unitaires** au fil de l'eau
+### Phase 2: Progressive Migration
+1. **Implement User Stories** one by one
+2. **Migrate route by route**: Services → Hooks, Templates → JSX, Filters → Helpers
+3. **Unit tests** during development
 
-### Étape 3 – Validation
-1. **Parité fonctionnelle** : User journeys identiques
-2. **Tests E2E** : Validation complète
-3. **Performance** : Pas de dégradation
-4. **Livraison** : Documentation + PR + Déploiement
+### Phase 3: Validation
+1. **Functional parity**: Identical user journeys
+2. **E2E tests**: Complete validation
+3. **Performance**: No degradation
+4. **Delivery**: Documentation + PR + Deployment
 
-## 📝 Migration des Traductions
+## 📝 Translation Migration
 
-### Principe
-**Reprendre les clés AngularJS telles quelles** pour maintenir la cohérence OVHcloud.
+### Principle
+**Keep AngularJS keys as-is** to maintain OVHcloud consistency.
 
-### Structure
-```
-# AngularJS (Source)
-/modules/<module>/src/translations/Messages_fr_FR.json
+### Rules
+- ✅ **Keep keys as-is**
+- ✅ **Preserve values** (validated by CMT)
+- ❌ **Don't rename** `nasha_*` to `bmc-nasha_*`
+- ❌ **Don't retranslate** existing content
 
-# React (Cible)  
-/apps/<app>/public/translations/
-├── listing/Messages_fr_FR.json
-├── dashboard/Messages_fr_FR.json
-└── onboarding/Messages_fr_FR.json
-```
+## 🎨 UI and Behavior Parity
 
-### Règles
-- ✅ **Reprendre les clés telles quelles**
-- ✅ **Conserver les valeurs** (validées par CMT)
-- ❌ **Ne pas renommer** `nasha_*` en `bmc-nasha_*`
-- ❌ **Ne pas retraduire** le contenu existant
-
-## 🎨 Parité UI et Comportement
-
-### Principe
-**Parité UI non négociable** : chaque pixel, colonne, état doit être identique.
+### Principle
+**Non-negotiable UI parity**: every pixel, column, state must be identical.
 
 ### Checklist
-- [ ] **Colonnes** : Nombre, ordre, labels, visibilité identiques
-- [ ] **Formatage** : Dates, tailles, énumérations identiques
-- [ ] **Navigation** : Liens et boutons identiques
-- [ ] **États** : Loading, empty, error identiques
-- [ ] **Traductions** : Clés et valeurs identiques
+- [ ] **Columns**: Number, order, labels, visibility identical
+- [ ] **Formatting**: Dates, sizes, enumerations identical
+- [ ] **Navigation**: Links and buttons identical
+- [ ] **States**: Loading, empty, error identical
+- [ ] **Translations**: Keys and values identical
 
-### Règles
-- ✅ **Reproduire chaque `format:` AngularJS** dans React
-- ✅ **Tester visuellement** côte à côte
-- ❌ **Ne pas simplifier** en se disant "c'est équivalent"
-- ❌ **Ne pas sauter** des colonnes cachées
+## 🎯 Quality & Performance Standards
 
-## ⚙️ Règles d'Itération
-
-1. **Commencer par `/docs/PLAN.md`** : Analyser avant de coder
-2. **Proposer l'arborescence avant le code** : Validation de l'approche
-3. **Documenter les hypothèses** : Assumptions clairement énoncées
-4. **Livrer code + tests + DoD** : Code fonctionnel, tests passants, parité validée
-
-## 🎯 Qualité & Performance
-
-### Standards
-- **React Query** : Server state
-- **React Hook Form + Zod** : Formulaires
-- **ODS Components** : UI de base
-- **MRC Components** : Logique métier + IAM
-- **useMemo/useCallback** : Optimisations ciblées
-- **ARIA attributes** : Accessibilité
+- **React Query**: Server state
+- **React Hook Form + Zod**: Forms
+- **ODS Components**: Base UI
+- **MRC Components**: Business logic + IAM
+- **useMemo/useCallback**: Targeted optimizations
+- **ARIA attributes**: Accessibility
 
 ---
 
-# Part 2: Templates de Migration
+# Part 2: Migration Templates
 
 ## 📄 Template: PLAN.md
 
 ```markdown
-# PLAN – <MODULE_CIBLE>
+# PLAN – <TARGET_MODULE>
 
-## 1. Contexte
-- **Module source** : AngularJS 1.x - `<nom-du-module>`
-- **Module cible** : React 18 + TypeScript
-- **Objectif** : Migration sans perte fonctionnelle
-- **Stratégie** : Strangler pattern, migration incrémentale
+## 1. Context
+- **Source module**: AngularJS 1.x - `<module-name>`
+- **Target module**: React 18 + TypeScript
+- **Objective**: Migration without functional loss
+- **Strategy**: Strangler pattern, incremental migration
 
-## 2. User Stories Identifiées
-### User Stories par Route
+## 2. User Stories Identified
+### User Stories by Route
 - [ ] **US1** - [Description] - Route: `/path1`
 - [ ] **US2** - [Description] - Route: `/path2`
 
-### Mapping User Stories → React
-| User Story | AngularJS Implémentation | React Hook | React Component | Status |
+### User Stories → React Mapping
+| User Story | AngularJS Implementation | React Hook | React Component | Status |
 |------------|-------------------------|------------|-----------------|--------|
 | US1 | Controller A + Template A | useFeatureA | FeatureAPage | ⏳ |
 | US2 | Controller B + Template B | useFeatureB | FeatureBPage | ⏳ |
 
-## 3. Routes/Écrans à Migrer
-- [ ] `/path1` - Page de liste
-- [ ] `/path2` - Page de détail
+## 3. Routes/Screens to Migrate
+- [ ] `/path1` - List page
+- [ ] `/path2` - Detail page
 
 **⚠️ URL Conservation**: All routes must maintain **identical paths** between AngularJS and React versions.
 
-## 4. Architecture Cible
+## 4. Target Architecture
 ```
 /src
   /app
@@ -1041,201 +737,201 @@ function App() {
     /types
 ```
 
-## 5. Dépendances/Configuration
-### Packages à Installer
+## 5. Dependencies/Configuration
+### Packages to Install
 - [ ] @ovh-ux/manager-react-components
 - [ ] @ovhcloud/ods-components
 - [ ] @tanstack/react-query
 - [ ] react-hook-form
 - [ ] zod
 
-## 6. Critères d'Acceptation
-- [ ] **Parité UX** : Interface identique à l'original
-- [ ] **Parité fonctionnelle** : Toutes les fonctionnalités reproduites
-- [ ] **Tests E2E** : User journeys validés
-- [ ] **Coverage** : 90%+ tests unitaires
-- [ ] **Performance** : Pas de dégradation LCP/INP/CLS
-- [ ] **Accessibilité** : Validation axe/pa11y
-- [ ] **TypeScript** : Strict mode, pas d'any
+## 6. Acceptance Criteria
+- [ ] **UX Parity**: Interface identical to original
+- [ ] **Functional parity**: All functionalities reproduced
+- [ ] **E2E tests**: User journeys validated
+- [ ] **Coverage**: 90%+ unit tests
+- [ ] **Performance**: No LCP/INP/CLS degradation
+- [ ] **Accessibility**: axe/pa11y validation
+- [ ] **TypeScript**: Strict mode, no any
 ```
 
 ## 📄 Template: MIGRATION_NOTES.md
 
 ```markdown
-# MIGRATION NOTES – <MODULE_CIBLE>
+# MIGRATION NOTES – <TARGET_MODULE>
 
-## 1. Vue d'ensemble
-- **Module migré** : `<nom-du-module>`
-- **Date de migration** : <date>
-- **Version AngularJS** : 1.x
-- **Version React** : 18.x
+## 1. Overview
+- **Migrated module**: `<module-name>`
+- **Migration date**: <date>
+- **AngularJS version**: 1.x
+- **React version**: 18.x
 
-## 2. Mapping Détaillé
+## 2. Detailed Mapping
 ### Controllers → Hooks
-| Controller AngularJS | Hook React | Status |
+| AngularJS Controller | React Hook | Status |
 |---------------------|------------|--------|
 | ListController | useListController | ✅ |
 | DetailController | useDetailController | ✅ |
 
 ### Services → Hooks
-| Service AngularJS | Hook React | Status |
+| AngularJS Service | React Hook | Status |
 |------------------|------------|--------|
 | UserService | useUserService | ✅ |
 | ProductService | useProductService | ✅ |
 
 ### Templates → Components
-| Template AngularJS | Component React | Status |
+| AngularJS Template | React Component | Status |
 |-------------------|-----------------|--------|
 | list.html | ListPage | ✅ |
 | detail.html | DetailPage | ✅ |
 
-## 3. Changements de Comportement
+## 3. Behavior Changes
 ### URL Conservation
-- **Avant** : `/module/list`
-- **Après** : `/module/list` (identique)
+- **Before**: `/module/list`
+- **After**: `/module/list` (identical)
 
 ### State Management
-- **Avant** : `$scope.items = data`
-- **Après** : `const { data: items } = useQuery(['items'], fetchItems)`
+- **Before**: `$scope.items = data`
+- **After**: `const { data: items } = useQuery(['items'], fetchItems)`
 
 ## 4. Performance
-### Métriques Avant/Après
-| Métrique | AngularJS | React | Amélioration |
+### Before/After Metrics
+| Metric | AngularJS | React | Improvement |
 |----------|-----------|-------|--------------|
 | LCP | 3.2s | 2.1s | +34% |
 | INP | 280ms | 180ms | +36% |
 | CLS | 0.15 | 0.05 | +67% |
 
-## 5. Problèmes Rencontrés
-### Problèmes Techniques
-- **Problème 1** : Description
-  - **Solution** : Description
+## 5. Issues Encountered
+### Technical Issues
+- **Issue 1**: Description
+  - **Solution**: Description
 
-### Problèmes UX
-- **Problème 1** : Description
-  - **Solution** : Description
+### UX Issues
+- **Issue 1**: Description
+  - **Solution**: Description
 
 ## 6. Lessons Learned
-### Ce qui a bien fonctionné
-- **Stratégie** : Description
-- **Outils** : Description
+### What Worked Well
+- **Strategy**: Description
+- **Tools**: Description
 
-### Ce qui pourrait être amélioré
-- **Stratégie** : Description
-- **Outils** : Description
+### What Could Be Improved
+- **Strategy**: Description
+- **Tools**: Description
 ```
 
 ## 📄 Template: Definition of Done
 
 ```markdown
-# Definition of Done - Migration <MODULE_CIBLE>
+# Definition of Done - Migration <TARGET_MODULE>
 
-## ✅ Parité Fonctionnelle
-- [ ] **UX identique** : Interface utilisateur identique à l'original
-- [ ] **Fonctionnalités complètes** : Toutes les features AngularJS reproduites
-- [ ] **URLs identiques** : Mêmes chemins de routing conservés
-- [ ] **User journeys** : Navigation et interactions identiques
+## ✅ Functional Parity
+- [ ] **Identical UX**: User interface identical to original
+- [ ] **Complete features**: All AngularJS features reproduced
+- [ ] **Identical URLs**: Same routing paths preserved
+- [ ] **User journeys**: Navigation and interactions identical
 
-## ✅ Tests & Qualité
-- [ ] **Tests unitaires** : Coverage 90%+ avec tests passants
-- [ ] **Tests E2E** : User journeys critiques validés
-- [ ] **Tests d'accessibilité** : Validation axe/pa11y
-- [ ] **Tests de performance** : LCP/INP/CLS dans les seuils
-- [ ] **Tests de régression** : Aucune régression identifiée
+## ✅ Tests & Quality
+- [ ] **Unit tests**: 90%+ coverage with passing tests
+- [ ] **E2E tests**: Critical user journeys validated
+- [ ] **Accessibility tests**: axe/pa11y validation
+- [ ] **Performance tests**: LCP/INP/CLS within thresholds
+- [ ] **Regression tests**: No regression identified
 
 ## ✅ Code & Standards
-- [ ] **TypeScript strict** : Aucune erreur TypeScript, pas d'any
-- [ ] **ESLint/Prettier** : Code formaté et sans erreurs
-- [ ] **Conventions** : Respect des conventions OVHcloud
-- [ ] **Architecture** : Structure respectant les patterns React
+- [ ] **TypeScript strict**: No TypeScript errors, no any
+- [ ] **ESLint/Prettier**: Code formatted and error-free
+- [ ] **Conventions**: OVHcloud conventions respected
+- [ ] **Architecture**: Structure following React patterns
 
 ## ✅ Performance
-- [ ] **LCP** : < 2.5s (Largest Contentful Paint)
-- [ ] **INP** : < 200ms (Interaction to Next Paint)
-- [ ] **CLS** : < 0.1 (Cumulative Layout Shift)
-- [ ] **Bundle size** : Pas d'augmentation significative
+- [ ] **LCP**: < 2.5s (Largest Contentful Paint)
+- [ ] **INP**: < 200ms (Interaction to Next Paint)
+- [ ] **CLS**: < 0.1 (Cumulative Layout Shift)
+- [ ] **Bundle size**: No significant increase
 
-## ✅ Accessibilité
-- [ ] **Navigation clavier** : Tous les éléments accessibles au clavier
-- [ ] **Screen readers** : Compatible avec les lecteurs d'écran
-- [ ] **Contrastes** : Ratios de contraste respectés
-- [ ] **ARIA** : Attributs ARIA corrects
+## ✅ Accessibility
+- [ ] **Keyboard navigation**: All elements keyboard accessible
+- [ ] **Screen readers**: Compatible with screen readers
+- [ ] **Contrasts**: Contrast ratios respected
+- [ ] **ARIA**: Correct ARIA attributes
 
 ## ✅ Documentation
-- [ ] **PLAN.md** : Plan de migration complet
-- [ ] **MIGRATION_NOTES.md** : Notes de migration détaillées
-- [ ] **README.md** : Documentation d'utilisation
+- [ ] **PLAN.md**: Complete migration plan
+- [ ] **MIGRATION_NOTES.md**: Detailed migration notes
+- [ ] **README.md**: Usage documentation
 
-## ✅ Déploiement
-- [ ] **Build production** : Build réussi sans erreurs
-- [ ] **Environment config** : Configuration des environnements
-- [ ] **Feature flags** : Flags de fonctionnalités configurés
-- [ ] **Monitoring** : Monitoring et alertes configurés
-- [ ] **Rollback plan** : Plan de retour arrière testé
+## ✅ Deployment
+- [ ] **Production build**: Build successful without errors
+- [ ] **Environment config**: Environment configuration
+- [ ] **Feature flags**: Feature flags configured
+- [ ] **Monitoring**: Monitoring and alerts configured
+- [ ] **Rollback plan**: Tested rollback plan
 
-## ✅ Équipe
-- [ ] **Code review** : Review approuvée par l'équipe
-- [ ] **Knowledge transfer** : Transfert de connaissances effectué
-- [ ] **Training** : Équipe formée sur les nouveaux patterns
-- [ ] **Support** : Plan de support post-déploiement
-- [ ] **Feedback** : Retour utilisateurs collecté
+## ✅ Team
+- [ ] **Code review**: Review approved by team
+- [ ] **Knowledge transfer**: Knowledge transfer completed
+- [ ] **Training**: Team trained on new patterns
+- [ ] **Support**: Post-deployment support plan
+- [ ] **Feedback**: User feedback collected
 
 ---
 
-**Validation finale** : ✅ Tous les critères sont remplis
-**Date de validation** : <date>
-**Validé par** : <nom>
+**Final validation**: ✅ All criteria met
+**Validation date**: <date>
+**Validated by**: <name>
 ```
 
 ---
 
 # Part 3: Guidelines for AI Development
 
-## 🤖 Règles de Migration AI
+## 🤖 AI Migration Rules
 
-1. **User Stories d'abord** : Lister toutes les US AngularJS avant de coder
-2. **PLAN.md obligatoire** : Analyser avant de coder
-3. **Migration incrémentale** : Route par route, pas de Big Bang
-4. **Parité fonctionnelle** : UX et features identiques
-5. **Standards OVHcloud** : MRC + ODS + Manager conventions
-6. **Tests complets** : Unit (90%+) + E2E
-7. **TypeScript strict** : Pas d'any, interfaces propres
-8. **Accessibilité** : ARIA, navigation clavier, contrastes
-9. **Performance** : Pas de dégradation LCP/INP/CLS
+1. **User Stories first**: List all AngularJS US before coding
+2. **PLAN.md mandatory**: Analyze before coding
+3. **Incremental migration**: Route by route, no Big Bang
+4. **Functional parity**: Identical UX and features
+5. **OVHcloud standards**: MRC + ODS + Manager conventions
+6. **Complete tests**: Unit (90%+) + E2E
+7. **TypeScript strict**: No any, clean interfaces
+8. **Accessibility**: ARIA, keyboard navigation, contrasts
+9. **Performance**: No LCP/INP/CLS degradation
 
-## 🤖 Règles de Validation Parité
+## 🤖 Parity Validation Rules
 
-### Avant d'écrire React
-1. **Lister toutes les User Stories** AngularJS
-2. **Lire le code AngularJS** ligne par ligne
-3. **Créer la checklist parité** : colonne, transformation, interaction
-4. **Migrer les utilitaires d'abord** : `format.utils.ts` avant composants
+### Before Writing React
+1. **List all AngularJS User Stories**
+2. **Read AngularJS code** line by line
+3. **Create parity checklist**: column, transformation, interaction
+4. **Migrate utilities first**: `format.utils.ts` before components
 
-### Pendant l'écriture React
-1. **Colonnes identiques** : même id, label, hidden, format, sortable
-2. **Transformations identiques** : même nom, types, étapes, traductions
+### During React Writing
+1. **Identical columns**: same id, label, hidden, format, sortable
+2. **Identical transformations**: same name, types, steps, translations
 
-### Après l'écriture React
-1. **Validation visuelle** : comparer côte à côte
-2. **Validation données** : colonnes, formatage, calculs identiques
+### After React Writing
+1. **Visual validation**: compare side by side
+2. **Data validation**: columns, formatting, calculations identical
 
-### Anti-patterns à éviter
+### Anti-patterns to Avoid
 ```typescript
-// ❌ WRONG: Simplifier les colonnes
-const columns = [{ id: 'serviceName' }]; // Manque 7 colonnes
+// ❌ WRONG: Simplify columns
+const columns = [{ id: 'serviceName' }]; // Missing 7 columns
 
-// ✅ CORRECT: Toutes les colonnes
+// ✅ CORRECT: All columns
 const columns = [
   { id: 'serviceName', ... },
   { id: 'canCreatePartition', ... },
   { id: 'monitored', isHidden: true, ... }
-]; // Toutes les 8 colonnes
+]; // All 8 columns
 
-// ❌ WRONG: Changer les clés de traduction
-t('listing:service_name') // Clé différente
+// ❌ WRONG: Change translation keys
+t('listing:service_name') // Different key
 
-// ✅ CORRECT: Même clé
-t('listing:nasha_directory_columns_header_serviceName') // Identique
+// ✅ CORRECT: Same key
+t('listing:nasha_directory_columns_header_serviceName') // Identical
 ```
 
 ## ✅ Migration Checklist
@@ -1246,11 +942,11 @@ t('listing:nasha_directory_columns_header_serviceName') // Identique
 - [ ] Services migrated to custom hooks
 - [ ] Templates converted to JSX
 - [ ] Filters converted to TypeScript helpers
-- [ ] **Utilitaires de transformation créés** (`format.utils.ts`, `constants.ts`)
-- [ ] **Toutes les colonnes AngularJS reproduites** (y compris celles cachées)
-- [ ] **Formatages de données identiques** (dates, tailles, énumérations)
-- [ ] **Calculs métier reproduits ligne par ligne**
-- [ ] **Validation visuelle côte à côte** AngularJS vs React
+- [ ] **Transformation utilities created** (`format.utils.ts`, `constants.ts`)
+- [ ] **All AngularJS columns reproduced** (including hidden ones)
+- [ ] **Identical data formatting** (dates, sizes, enumerations)
+- [ ] **Business calculations reproduced line by line**
+- [ ] **Visual validation side by side** AngularJS vs React
 - [ ] Unit tests written and passing
 - [ ] E2E tests validating user journeys
 - [ ] Functional parity validated
@@ -1322,12 +1018,12 @@ export function UserForm() {
 }
 ```
 
-## 4. Data Grid et Tables
+## 4. Data Grid and Tables
 
-### Pattern OVH Standard : MRC Datagrid
+### OVH Standard Pattern: MRC Datagrid
 
 ```typescript
-// Pattern standard OVH
+// OVH standard pattern
 import { Datagrid, useDatagrid } from '@ovh-ux/manager-react-components';
 
 export function UsersListing() {
@@ -1351,7 +1047,7 @@ export function UsersListing() {
 }
 ```
 
-### Migration AngularJS → React
+### AngularJS → React Mapping
 
 | AngularJS | React Equivalent |
 |-----------|------------------|
@@ -1359,16 +1055,15 @@ export function UsersListing() {
 | `ng-table` | `useDatagrid` hook |
 | Custom filters | `useDatagridSearchParams` |
 
-### Références
-
+### References
 - [MRC Datagrid](../20-dependencies/mrc-components.md)
 
-## 5. Tracking AT Internet
+## 5. AT Internet Tracking
 
-### Pattern OVH Standard : useOvhTracking
+### OVH Standard Pattern: useOvhTracking
 
 ```typescript
-// Pattern standard OVH
+// OVH standard pattern
 import { useOvhTracking } from '@ovh-ux/manager-react-components';
 
 export function UserPage() {
@@ -1385,7 +1080,7 @@ export function UserPage() {
 }
 ```
 
-### Migration AngularJS → React
+### AngularJS → React Mapping
 
 | AngularJS | React Equivalent |
 |-----------|------------------|
@@ -1393,16 +1088,15 @@ export function UserPage() {
 | `trackPage()` | `trackPage()` |
 | `trackClick()` | `trackClick()` |
 
-### Références
-
+### References
 - [React Tracking](../10-architecture/react-tracking.md)
 
-## 6. Gestion d'Erreurs
+## 6. Error Handling
 
-### Pattern OVH Standard : ErrorBoundary + Notifications
+### OVH Standard Pattern: ErrorBoundary + Notifications
 
 ```typescript
-// Pattern standard OVH
+// OVH standard pattern
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 
@@ -1427,7 +1121,7 @@ export function useUsers() {
 }
 ```
 
-### Migration AngularJS → React
+### AngularJS → React Mapping
 
 | AngularJS | React Equivalent |
 |-----------|------------------|
@@ -1435,14 +1129,13 @@ export function useUsers() {
 | `$exceptionHandler` | `ErrorBoundary` |
 | `$rootScope.$broadcast` | `useNotifications` |
 
-### Références
-
+### References
 - [Manager Core API](../20-dependencies/manager-core-api.md)
 - [React Best Practices](./react-best-practices.md)
 
 ## 7. Lifecycle Hooks
 
-### Migration AngularJS → React
+### AngularJS → React Mapping
 
 | AngularJS | React Equivalent |
 |-----------|------------------|
@@ -1451,16 +1144,15 @@ export function useUsers() {
 | `$onDestroy` | `useEffect(() => () => cleanup, [])` |
 | `$doCheck` | `useEffect(() => {}, [deps])` |
 
-### Références
-
+### References
 - [React Best Practices](./react-best-practices.md)
 
 ## 8. Performance
 
-### Pattern OVH Standard : Lazy Loading
+### OVH Standard Pattern: Lazy Loading
 
 ```typescript
-// Pattern standard OVH
+// OVH standard pattern
 import { lazyRouteConfig } from '@ovh-ux/manager-vite-config';
 
 const UserPage = lazy(() => import('./UserPage'));
@@ -1473,17 +1165,16 @@ export const routes = [
 ];
 ```
 
-### Références
-
+### References
 - [Manager Vite Config](../20-dependencies/manager-vite-config.md)
 - [React Best Practices](./react-best-practices.md)
 
-## 9. Accessibilité (A11Y)
+## 9. Accessibility (A11Y)
 
-### Pattern OVH Standard : ODS Components + Tests
+### OVH Standard Pattern: ODS Components + Tests
 
 ```typescript
-// Pattern standard OVH
+// OVH standard pattern
 import { OsdsButton, OsdsInput, OsdsFormField } from '@ovhcloud/ods-components/react';
 import { toBeAccessible } from '@testing-library/jest-dom/matchers';
 
@@ -1513,7 +1204,7 @@ export function AccessibleForm() {
   );
 }
 
-// Tests d'accessibilité
+// Accessibility tests
 describe('AccessibleForm', () => {
   it('should be accessible', async () => {
     render(<AccessibleForm />);
@@ -1522,7 +1213,7 @@ describe('AccessibleForm', () => {
 });
 ```
 
-### Migration AngularJS → React
+### AngularJS → React Mapping
 
 | AngularJS | React Equivalent |
 |-----------|------------------|
@@ -1532,17 +1223,16 @@ describe('AccessibleForm', () => {
 | `ng-role` | `role` |
 | `ng-tabindex` | `tabIndex` |
 
-### Références
-
+### References
 - [HTML Accessibility Testing](./html-accessibility-testing.md)
 - [ODS Components](../20-dependencies/ods-components.md)
 
-## 10. Debugging et DevTools
+## 10. Debugging and DevTools
 
-### Pattern OVH Standard : useLogger + DevTools
+### OVH Standard Pattern: useLogger + DevTools
 
 ```typescript
-// Pattern standard OVH
+// OVH standard pattern
 import { useLogger } from '@ovh-ux/manager-react-components';
 
 export function useDebugging() {
@@ -1560,7 +1250,7 @@ export function useDebugging() {
 }
 ```
 
-### Migration AngularJS → React
+### AngularJS → React Mapping
 
 | AngularJS | React Equivalent |
 |-----------|------------------|
@@ -1569,16 +1259,15 @@ export function useDebugging() {
 | `$log.warn()` | `useLogger().warn()` |
 | `$log.info()` | `useLogger().info()` |
 
-### Références
-
+### References
 - [React Best Practices](./react-best-practices.md)
 
-## 11. Routing et Deep Linking
+## 11. Routing and Deep Linking
 
-### Pattern OVH Standard : React Router + URL Conservation
+### OVH Standard Pattern: React Router + URL Conservation
 
 ```typescript
-// Pattern standard OVH
+// OVH standard pattern
 import { createBrowserRouter } from 'react-router-dom';
 import { lazyRouteConfig } from '@ovh-ux/manager-vite-config';
 
@@ -1593,7 +1282,7 @@ export const router = createBrowserRouter([
   }
 ]);
 
-// Navigation avec préservation des paramètres
+// Navigation with parameter preservation
 const navigateToUser = (userId: string, tab?: string) => {
   const searchParams = new URLSearchParams();
   if (tab) searchParams.set('tab', tab);
@@ -1602,7 +1291,7 @@ const navigateToUser = (userId: string, tab?: string) => {
 };
 ```
 
-### Migration AngularJS → React
+### AngularJS → React Mapping
 
 | AngularJS | React Equivalent |
 |-----------|------------------|
@@ -1611,14 +1300,13 @@ const navigateToUser = (userId: string, tab?: string) => {
 | `$location.hash()` | `useLocation().hash` |
 | `$routeParams` | `useParams()` |
 
-### Références
-
+### References
 - [React Router DOM](../20-dependencies/react-router-dom.md)
 - [Manager Vite Config](../20-dependencies/manager-vite-config.md)
 
-## 12. Patterns de Migration Complexes
+## 12. Complex Migration Patterns
 
-### Modales AngularJS → React
+### AngularJS Modals → React
 
 ```typescript
 // AngularJS
@@ -1667,35 +1355,306 @@ export function useWizard(steps: string[]) {
 }
 ```
 
-### Références
-
+### References
 - [ODS Components](../20-dependencies/ods-components.md)
 - [React Best Practices](./react-best-practices.md)
 
-## 📋 Templates de Migration
+## 🔍 Pre-Migration Audit
 
-Les templates détaillés sont disponibles dans le fichier séparé :
+### Legacy Audit Checklist
 
-- **[Migration Templates](./migration-templates.md)** : Templates complets pour PLAN.md, MIGRATION_NOTES.md, et Definition of Done
+**CRITICAL**: Before any migration, perform a complete audit of AngularJS code.
 
-### Utilisation des Templates
+#### 1. Dependency Analysis
+- [ ] **Map all AngularJS modules**: List controllers, services, directives, filters
+- [ ] **Identify strong/weak couplings**: Dependencies between modules
+- [ ] **List shared services**: Services used by multiple modules
+- [ ] **Document custom directives**: Non-standard AngularJS directives
 
-1. **Toujours utiliser les templates** : Commencer par PLAN.md, documenter avec MIGRATION_NOTES.md
-2. **Compléter toutes les sections** : Ne pas ignorer les parties des templates
-3. **Être spécifique** : Utiliser des exemples concrets et des mesures
-4. **Mettre à jour régulièrement** : Garder la documentation à jour pendant la migration
-5. **Valider contre DoD** : Vérifier tous les critères avant de considérer la migration terminée
+#### 2. Identified AngularJS Patterns
+- [ ] **Controllers with business logic**: Business logic in controllers
+- [ ] **Services with global state**: Services that maintain state
+- [ ] **Custom directives**: Custom directives with complex logic
+- [ ] **Complex filters**: Filters with business logic
+- [ ] **Templates with logic**: Templates containing JavaScript logic
+
+#### 3. Migration Risks
+- [ ] **Critical modules** (high priority): Modules with high business impact
+- [ ] **Low-risk modules** (pilot migration): Simple modules for testing
+- [ ] **External dependencies**: APIs, third-party services, integrations
+- [ ] **Complex API integrations**: API calls with business logic
+
+#### 4. Complexity Assessment
+```typescript
+// Complexity audit example
+const moduleComplexity = {
+  controllers: 5,        // Number of controllers
+  services: 3,          // Number of services
+  directives: 2,       // Number of custom directives
+  templates: 8,        // Number of templates
+  apiCalls: 12,        // Number of API calls
+  riskLevel: 'HIGH'    // LOW, MEDIUM, HIGH
+};
+```
+
+## 🤖 AI Migration Prompts
+
+### Controller Migration Template
+
+```
+You are an AngularJS → React migration expert. 
+Migrate this AngularJS controller to React TypeScript component:
+
+CONTROLLER_ANGULARJS:
+{code}
+
+OVH RULES:
+- Use React Hook Form + Zod for forms
+- Use ODS Components (@ovhcloud/ods-components/react)
+- Use TanStack Query for data
+- Use MRC Components (@ovh-ux/manager-react-components)
+- Follow OVH patterns (useQuery, useMutation, ErrorBoundary)
+- Add unit tests with RTL
+- Keep identical URLs
+- Maintain functional parity
+
+GENERATE:
+1. React TypeScript component
+2. Custom hook for logic
+3. Unit tests with RTL
+4. TypeScript types
+5. Zod validation if needed
+```
+
+### Service Migration Template
+
+```
+Migrate this AngularJS service to React hook:
+
+SERVICE_ANGULARJS:
+{code}
+
+OVH RULES:
+- Use TanStack Query for cache and synchronization
+- Use OVH apiClient (@ovh-ux/manager-core-api)
+- Handle errors with ErrorBoundary
+- Use useNotifications for notifications
+- Add tests with mocks
+
+GENERATE:
+1. Custom React hook
+2. TypeScript types
+3. Tests with mocks
+4. Error handling
+5. JSDoc documentation
+```
+
+### Directive Migration Template
+
+```
+Migrate this AngularJS directive to React component:
+
+DIRECTIVE_ANGULARJS:
+{code}
+
+OVH RULES:
+- Use ODS Components for UI
+- Use MRC Components for business logic
+- Follow React patterns (hooks, props, children)
+- Add accessibility tests
+- Maintain visual parity
+
+GENERATE:
+1. React TypeScript component
+2. Typed props
+3. Accessibility tests
+4. Usage documentation
+```
+
+### Template Migration Template
+
+```
+Migrate this AngularJS template to React JSX:
+
+TEMPLATE_ANGULARJS:
+{code}
+
+OVH RULES:
+- Use ODS Components for UI
+- Use MRC Components for business logic
+- Follow React patterns (JSX, props, events)
+- Maintain pixel-perfect visual parity
+- Add rendering tests
+
+GENERATE:
+1. React JSX component
+2. Typed props
+3. Rendering tests
+4. Visual parity validation
+```
+
+## 🧪 Migration Testing Strategy
+
+### Migration Validation Tests
+
+#### 1. Baseline Tests (AngularJS)
+```typescript
+// Capture existing AngularJS behavior
+describe('AngularJS Baseline', () => {
+  it('should render user list correctly', () => {
+    // Existing AngularJS test
+    expect(element.find('.user-list').length).toBe(5);
+    expect(element.find('.user-name').first().text()).toBe('John Doe');
+  });
+  
+  it('should handle user interactions', () => {
+    element.find('.edit-button').click();
+    expect(element.find('.edit-form').length).toBe(1);
+  });
+});
+```
+
+#### 2. Parity Tests (React)
+```typescript
+// Verify React produces the same result
+describe('React Parity', () => {
+  it('should render user list identically', () => {
+    render(<UserList />);
+    expect(screen.getByTestId('user-list')).toBeInTheDocument();
+    expect(screen.getAllByRole('listitem')).toHaveLength(5);
+    expect(screen.getByText('John Doe')).toBeInTheDocument();
+  });
+  
+  it('should handle user interactions identically', () => {
+    render(<UserList />);
+    fireEvent.click(screen.getByRole('button', { name: /edit/i }));
+    expect(screen.getByTestId('edit-form')).toBeInTheDocument();
+  });
+});
+```
+
+#### 3. Performance Tests
+```typescript
+// Verify performance is equivalent
+describe('Performance Parity', () => {
+  it('should have similar LCP', async () => {
+    const { container } = render(<UserList />);
+    const lcp = await getLCP(container);
+    expect(lcp).toBeLessThan(2.5); // Same threshold as AngularJS
+  });
+  
+  it('should have similar INP', async () => {
+    const { container } = render(<UserList />);
+    const inp = await getINP(container);
+    expect(inp).toBeLessThan(200); // Same threshold as AngularJS
+  });
+});
+```
+
+#### 4. Visual Tests
+```typescript
+// Compare visual renders
+describe('Visual Parity', () => {
+  it('should match AngularJS visual', () => {
+    render(<UserList />);
+    expect(screen.getByTestId('user-list')).toMatchSnapshot();
+  });
+  
+  it('should have identical styling', () => {
+    render(<UserList />);
+    const userCard = screen.getByTestId('user-card');
+    expect(userCard).toHaveStyle({
+      display: 'flex',
+      flexDirection: 'column'
+    });
+  });
+});
+```
+
+#### 5. Regression Tests
+```typescript
+// Regression tests to avoid regressions
+describe('Regression Tests', () => {
+  it('should not break existing functionality', () => {
+    // Test that must pass before and after migration
+    render(<UserList />);
+    expect(screen.getByTestId('user-list')).toBeInTheDocument();
+  });
+});
+```
+
+### References
+- [Migration Testing Strategy](./migration-testing-strategy.md)
+
+## 🔄 Incremental Migration
+
+### Strategy
+1. **Pilot**: 2-3 low-risk modules with complete validation
+2. **Progressive**: Module-by-module with AngularJS/React coexistence
+3. **Finalization**: AngularJS cleanup after complete validation
+
+### References
+- [Incremental Migration Guide](./incremental-migration-guide.md)
+
+## 🔄 Feedback Loop
+
+### Success Metrics
+- **Technical**: Post-migration bugs, test coverage (90%+), performance (LCP, INP, CLS)
+- **Quality**: Functional parity (100%), visual parity, accessibility parity
+- **Process**: Development time, success rate, team satisfaction
+
+### AI Learning
+- **Effective prompts**: Document templates that work well
+- **Common errors**: Track and avoid frequent mistakes
+- **Continuous improvement**: Update prompts and validation rules
+
+### References
+- [Migration Feedback Loop](./migration-feedback-loop.md)
+
+## 📋 Migration Templates
+
+Detailed templates are available in the separate file:
+
+- **[Migration Templates](./migration-templates.md)**: Complete templates for PLAN.md, MIGRATION_NOTES.md, and Definition of Done
+
+### Template Usage
+1. **Always use templates**: Start with PLAN.md, document with MIGRATION_NOTES.md
+2. **Complete all sections**: Don't ignore template parts
+3. **Validate against DoD**: Check all criteria before considering migration complete
 
 ---
 
-## ⚖️ La Morale de la Migration
+## 🏆 Golden Rules for ISO Migration
 
-- **Migration incrémentale** réduit les risques et permet la livraison continue
-- **Parité fonctionnelle** assure la cohérence de l'expérience utilisateur
-- **Tests complets** préviennent les régressions et valident la qualité
-- **Documentation appropriée** permet la collaboration d'équipe et le transfert de connaissances
-- **Planification structurée** prévient l'expansion de portée et assure l'exhaustivité
-- **Critères clairs** assurent une qualité cohérente à travers toutes les migrations
+### 🎯 Guarantee ISO Migration Every Time
 
-**👉 Une bonne migration est invisible aux utilisateurs mais transformative pour les développeurs.**
-**👉 Les bons templates sont des documents vivants qui évoluent avec le projet.**
+1. **MANDATORY Pre-Migration Audit**: Map all modules, dependencies, risks
+2. **Standardized AI Prompts**: Use consistent templates for all migrations
+3. **Multi-Level Validation Tests**: Baseline, parity, performance, visual, regression
+4. **Incremental Migration with Rollback**: Module by module with rollback plan
+5. **Continuous Feedback Loop**: Metrics, learning, documentation
+
+### 🚨 Anti-Patterns to Avoid ABSOLUTELY
+- ❌ NEVER do Big Bang migration
+- ❌ NEVER ignore pre-migration audit
+- ❌ NEVER skip parity tests
+- ❌ NEVER migrate without rollback plan
+
+### ✅ ISO Success Criteria
+- **Functional parity**: 100% of functionalities reproduced
+- **Visual parity**: Interface identical pixel by pixel
+- **Performance parity**: Equivalent or better performance
+- **Accessibility parity**: Same accessibility level
+- **Test coverage**: 90%+ test coverage
+- **Complete documentation**: PLAN.md, MIGRATION_NOTES.md, DoD
+
+## ⚖️ The Migration's Moral
+
+- **Incremental migration** reduces risks and enables continuous delivery
+- **Functional parity** ensures consistent user experience
+- **Comprehensive tests** prevent regressions and validate quality
+- **Pre-migration audit** guarantees complete understanding of legacy code
+- **Standardized AI prompts** ensure consistent and predictable migration
+
+**👉 A good migration is invisible to users but transformative for developers.**
+**👉 An ISO migration guarantees 100% functional, visual and performance parity.**
