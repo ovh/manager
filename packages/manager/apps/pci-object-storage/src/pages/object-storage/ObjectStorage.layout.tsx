@@ -11,6 +11,7 @@ import TabsMenu from '@/components/tabs-menu/TabsMenu.component';
 import { useGetRegions } from '@/data/hooks/region/useGetRegions.hook';
 import queryClient from '@/query.client';
 import { getStorages } from '@/data/api/storage/storages.api';
+import Guides from '@/components/guides/Guides.component';
 
 interface ObjectStorageProps {
   params: {
@@ -70,6 +71,7 @@ export default function DashboardLayout() {
       >
         <h2>{t('title')}</h2>
         <div className="flex flex-wrap justify-end gap-1">
+          <Guides selectors={['allGuides', 'gettingStarted']} />
           <RoadmapChangelog />
         </div>
       </div>

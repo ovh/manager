@@ -125,6 +125,7 @@ const OrderFunnel = ({
       });
     }
   });
+
   return (
     <div>
       <DiscoveryBanner>{t('discoveryModeActivate')}</DiscoveryBanner>

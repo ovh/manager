@@ -4,13 +4,17 @@ import { Settings2 } from 'lucide-react';
 import { Outlet } from 'react-router-dom';
 import BillingSupport from '@/components/biling-support/BillingSupport.component';
 import Configuration from './_components/Configuration.component';
+import Guides from '@/components/guides/Guides.component';
 
 const Dashboard = () => {
   const { t } = useTranslation('pci-object-storage/storages/swift');
 
   return (
     <>
-      <h2>{t('settingsTitle')}</h2>
+      <div className="flex justify-between w-full items-center">
+        <h2>{t('settingsTitle')}</h2>
+        <Guides selectors={['swift']} />
+      </div>
       <div className="flex flex-col lg:grid lg:grid-flow-col lg:auto-cols-fr gap-2">
         <Card>
           <BillingSupport />

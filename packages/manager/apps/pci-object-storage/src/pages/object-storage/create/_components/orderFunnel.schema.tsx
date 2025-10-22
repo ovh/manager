@@ -15,10 +15,22 @@ export const createOrderFunnelFormSchema = (t: typeof i18next.t) => {
     user: z.number().optional(),
   });
 
-  const replicationSchema = z.object({
-    enabled: z.boolean(),
-    region: z.string().min(1, t('replicationRegionRequired')),
-  });
+  const replicationSchema = z
+    .object({
+      enabled: z.boolean(),
+      region: z
+        .string({ required_error: t('replicationRegionRequired') })
+        .min(1, t('replicationRegionRequired'))
+        .optional(),
+    })
+    .superRefine((val, ctx) => {
+      if (val.enabled && (!val.region || val.region.length < 1)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: t('replicationRegionRequired'),
+        });
+      }
+    });
 
   const s3Schema = baseSchema.extend({
     offer: z.literal(ObjectContainerOffers['s3-standard']),

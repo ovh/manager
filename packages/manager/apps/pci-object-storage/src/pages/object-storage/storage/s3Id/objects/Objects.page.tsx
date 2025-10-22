@@ -5,6 +5,8 @@ import { useS3Data } from '../S3.context';
 import S3ObjectsList from './_components/S3ObjectListTable.component';
 import { useGetS3Objects } from '@/data/hooks/s3-storage/useGetS3Objects.hook';
 import DataTable from '@/components/data-table';
+import Guides from '@/components/guides/Guides.component';
+import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
 
 const Objects = () => {
   const { projectId } = useParams();
@@ -21,7 +23,16 @@ const Objects = () => {
 
   return (
     <>
-      <h2>{t('objectTitle')}</h2>
+      <div
+        data-testid="containers-guides-container"
+        className="flex justify-between w-full items-center"
+      >
+        <h2>{t('objectTitle')}</h2>
+        <div className="flex flex-wrap justify-end gap-1">
+          <Guides selectors={['allGuides', 'gettingStarted']} />
+          <RoadmapChangelog />
+        </div>
+      </div>
       <S3ObjectsList
         objects={objectQuery.data?.filter((obj) => obj.isLatest === true)}
       />
