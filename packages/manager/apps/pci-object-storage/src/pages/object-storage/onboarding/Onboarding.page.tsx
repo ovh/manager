@@ -6,6 +6,7 @@ import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.co
 import { GUIDES, getGuideUrl } from '@/configuration/guide';
 import { useLocale } from '@/hooks/useLocale';
 import Link from '@/components/links/Link.component';
+import Guides from '@/components/guides/Guides.component';
 
 const Onboarding = () => {
   const { t } = useTranslation('pci-object-storage/onboarding');
@@ -16,6 +17,7 @@ const Onboarding = () => {
       className="flex flex-col items-center gap-4"
     >
       <div className="w-full flex flex-row justify-end">
+        <Guides selectors={['allGuides', 'gettingStarted']} />
         <RoadmapChangelog />
       </div>
       <img

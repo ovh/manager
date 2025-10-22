@@ -5,10 +5,10 @@ import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import OrderFunnel from './_components/OrderFunnel.component';
 import { useGetRegions } from '@/data/hooks/region/useGetRegions.hook';
 import { useGetUsers } from '@/data/hooks/user/useGetUsers.hook';
-import { useGetUsersWithS3Credentials } from '@/data/hooks/user/useGetUsersWithS3Credentials.hook';
 import { useGetCatalog } from '@/data/hooks/catalog/useGetCatalog.hook';
 import { useGetProductAvailability } from '@/data/hooks/availability/useGetProductAvailability.hook';
 import OrderSkeleton from './_components/OrderSkeleton.component';
+import Guides from '@/components/guides/Guides.component';
 
 export function breadcrumb() {
   return (
@@ -40,6 +40,7 @@ const Service = () => {
     <>
       <div className="flex justify-between w-full items-center">
         <h2>{t('title')}</h2>
+        <Guides selectors={['allGuides', 'gettingStarted']} />
       </div>
       <OrderFunnel
         regions={regionsQuery.data}
