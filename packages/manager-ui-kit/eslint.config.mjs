@@ -107,6 +107,6 @@ export default [
   },
   prettierEslintConfig,
   {
-    ignores: ['**/*.json', '**/*.md'],
+    ignores: ['**/*.json', '**/*.md', '**/*.*css'],
   },
 ];
