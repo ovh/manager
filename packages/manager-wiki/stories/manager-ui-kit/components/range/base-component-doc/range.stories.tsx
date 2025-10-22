@@ -15,8 +15,12 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<RangeProp>;
+
+(Range as any).__docgenInfo = docgenMap.range;
+
 type DemoArg = Partial<RangeProp> & {
   dualRange?: boolean,
 };
@@ -139,7 +143,7 @@ export const Default: Story = {
   globals: {
     imports: `import { Range } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -159,7 +163,7 @@ export const Disabled: Story = {
   globals: {
     imports: `import { Range } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -183,7 +187,7 @@ export const InFormField: Story = {
   globals: {
     imports: `import { FormField, FormFieldLabel, Range } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -369,7 +373,7 @@ import { useState } from 'react';`,
       source: { ...staticSourceRenderConfig() },
     },
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

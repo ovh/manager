@@ -15,8 +15,14 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<QuantityProp>;
+
+(Quantity as any).__docgenInfo = docgenMap.quantity;
+(QuantityControl as any).__docgenInfo = docgenMap.quantityControl;
+(QuantityInput as any).__docgenInfo = docgenMap.quantityInput;
+
 type DemoArg = Partial<QuantityProp> & Partial<QuantityInputProp> & {};
 
 const meta: Meta<QuantityProp> = {
@@ -158,7 +164,7 @@ export const InFormField: Story = {
   globals: {
     imports: `import { FormField, FormFieldLabel, Quantity, QuantityControl, QuantityInput } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -183,7 +189,7 @@ export const Max: Story = {
   globals: {
     imports: `import { Quantity, QuantityControl, QuantityInput } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -202,7 +208,7 @@ export const Min: Story = {
   globals: {
     imports: `import { Quantity, QuantityControl, QuantityInput } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -240,7 +246,7 @@ export const Readonly: Story = {
   globals: {
     imports: `import { Quantity, QuantityControl, QuantityInput } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -259,7 +265,7 @@ export const Step: Story = {
   globals: {
     imports: `import { Quantity, QuantityControl, QuantityInput } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

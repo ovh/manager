@@ -30,8 +30,15 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<ModalProp>;
+
+(Modal as any).__docgenInfo = docgenMap.modal;
+(ModalBody as any).__docgenInfo = docgenMap.modalBody;
+(ModalContent as any).__docgenInfo = docgenMap.modalContent;
+(ModalTrigger as any).__docgenInfo = docgenMap.modalTrigger;
+
 type DemoArg = Partial<ModalProp> & Partial<ModalContentProp> & {
   content?: string,
 };
@@ -189,7 +196,7 @@ export const AccessibilityAriaLabel: Story = {
   globals: {
     imports: `import { Button, Modal, ModalBody, ModalContent, ModalTrigger } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -218,7 +225,7 @@ export const AccessibilityBadPracticesAria: Story = {
   globals: {
     imports: `import { Button, Modal, ModalBody, ModalContent, ModalTrigger } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -251,7 +258,7 @@ export const Actions: Story = {
   globals: {
     imports: `import { BUTTON_VARIANT, TEXT_PRESET, Button, Modal, ModalBody, ModalContent, ModalTrigger, Text } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -295,7 +302,7 @@ export const Colors: Story = {
   globals: {
     imports: `import { BUTTON_COLOR, MODAL_COLOR, Button, Modal, ModalBody, ModalContent, ModalTrigger } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -461,7 +468,7 @@ export const NonDismissible: Story = {
   globals: {
     imports: `import { Button, Modal, ModalBody, ModalContent, ModalTrigger } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

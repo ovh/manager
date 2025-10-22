@@ -21,8 +21,14 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<MessageProp>;
+
+(Message as any).__docgenInfo = docgenMap.message;
+(MessageBody as any).__docgenInfo = docgenMap.messageBody;
+(MessageIcon as any).__docgenInfo = docgenMap.messageIcon;
+
 type DemoArg = Partial<MessageProp> & Partial<MessageIconProp>;
 
 const meta: Meta<MessageProp> = {
@@ -129,7 +135,7 @@ export const AccessibilityAlternativeGrouping: Story = {
   globals: {
     imports: `import { ICON_NAME, MESSAGE_COLOR, Message, MessageBody, MessageIcon } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -229,7 +235,7 @@ export const Color: Story = {
   globals: {
     imports: `import { ICON_NAME, MESSAGE_COLOR, Message, MessageBody, MessageIcon } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -280,7 +286,7 @@ export const Default: Story = {
   globals: {
     imports: `import { ICON_NAME, Message, MessageBody, MessageIcon } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -301,7 +307,7 @@ export const Multiline: Story = {
   globals: {
     imports: `import { ICON_NAME, Message, MessageBody, MessageIcon } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -322,7 +328,7 @@ export const NonDismissible: Story = {
   globals: {
     imports: `import { ICON_NAME, Message, MessageBody, MessageIcon } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

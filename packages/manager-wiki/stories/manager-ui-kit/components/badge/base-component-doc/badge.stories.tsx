@@ -16,8 +16,11 @@ import {
 import { CONTROL_CATEGORY } from '../../../base-documents/constants/controls';
 import { orderControls } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<BadgeProp>;
+
+(Badge as any).__docgenInfo = docgenMap.badge;
 
 const meta: Meta<BadgeProp> = {
   component: Badge,
@@ -61,7 +64,7 @@ export const Color: Story = {
   globals: {
     imports: `import { BADGE_COLOR, Badge } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -87,7 +90,7 @@ export const Default: Story = {
   globals: {
     imports: `import { Badge } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -101,7 +104,7 @@ tags: ['!dev'],
 };
 
 export const Overview: Story = {
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     layout: 'centered',
     docs: {

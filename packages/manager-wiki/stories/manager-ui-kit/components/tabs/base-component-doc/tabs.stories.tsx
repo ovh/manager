@@ -14,9 +14,14 @@ import {
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
 import { CONTROL_CATEGORY } from '../../../base-documents/constants/controls';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<TabsProp>;
-// type DemoArg = Partial<TabListProp>;
+
+(Tabs as any).__docgenInfo = docgenMap.tabs;
+(Tab as any).__docgenInfo = docgenMap.tab;
+(TabList as any).__docgenInfo = docgenMap.tabList;
+(TabContent as any).__docgenInfo = docgenMap.tabContent;
 
 const meta: Meta<TabsProp> = {
   component: Tabs,
@@ -131,7 +136,7 @@ export const Default: Story = {
   globals: {
     imports: `import { Tabs, TabList, Tab } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -152,7 +157,7 @@ export const Disabled: Story = {
   globals: {
     imports: `import { Tabs, TabList, Tab } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -173,7 +178,7 @@ export const Overflow: Story = {
   globals: {
     imports: `import { Tabs, TabList, Tab } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -199,7 +204,7 @@ export const WithArrows: Story = {
   globals: {
     imports: `import { Tabs, TabList, Tab } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -234,7 +239,7 @@ export const WithContent: Story = {
   globals: {
     imports: `import { Tabs, TabContent, TabList, Tab } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

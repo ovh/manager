@@ -4,8 +4,11 @@ import { ProgressBar, type ProgressBarProp } from '@ovhcloud/ods-react';
 import { CONTROL_CATEGORY } from '../../../base-documents/constants/controls';
 import { orderControls } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<ProgressBarProp>;
+
+(ProgressBar as any).__docgenInfo = docgenMap.progressBar;
 
 const meta: Meta<ProgressBarProp> = {
   component: ProgressBar,

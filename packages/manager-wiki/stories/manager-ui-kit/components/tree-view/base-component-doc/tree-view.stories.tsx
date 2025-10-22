@@ -21,8 +21,12 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<TreeViewProp>;
+
+(TreeView as any).__docgenInfo = docgenMap.treeView;
+(TreeViewNode as any).__docgenInfo = docgenMap.treeViewNode;
 
 const meta: Meta<TreeViewProp> = {
   argTypes: excludeFromDemoControls(['defaultExpandedValue', 'defaultValue', 'items', 'onExpandedChange', 'onValueChange', 'expandedValue', 'value']),

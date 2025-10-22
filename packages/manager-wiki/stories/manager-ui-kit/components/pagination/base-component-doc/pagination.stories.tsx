@@ -11,8 +11,11 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<PaginationProp>;
+
+(Pagination as any).__docgenInfo = docgenMap.pagination;
 
 const meta: Meta<PaginationProp> = {
   argTypes: excludeFromDemoControls(['defaultPage', 'onPageChange', 'onPageSizeChange', 'page', 'pageSize', 'renderTotalItemsLabel']),
@@ -118,7 +121,7 @@ export const Default: Story = {
   globals: {
     imports: `import { Pagination } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -133,7 +136,7 @@ export const Disabled: Story = {
   globals: {
     imports: `import { Pagination } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -150,7 +153,7 @@ export const ItemsPerPage: Story = {
   globals: {
     imports: `import { Pagination } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -198,7 +201,7 @@ export const WithLabels: Story = {
   globals: {
     imports: `import { Pagination } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
