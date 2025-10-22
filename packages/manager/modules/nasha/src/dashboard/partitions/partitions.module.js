@@ -13,6 +13,8 @@ import deleteModule from './delete';
 import editSizeModule from './edit-size';
 import zfsOptionsModule from './zfs-options';
 
+import './styles.less';
+
 const moduleName = 'ovhManagerNashaDashboardPartitions';
 
 angular

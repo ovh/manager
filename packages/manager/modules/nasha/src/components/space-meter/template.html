@@ -19,13 +19,7 @@
 </div>
 
 <div class="row">
-    <div
-        class="top-space-m4"
-        data-ng-class="{
-        'col-sm-12': $ctrl.large,
-        'col-sm-12 col-md-8': !$ctrl.large
-    }"
-    >
+    <div class="top-space-m4 col-sm-12">
         <oui-progress data-max-value="{{ $ctrl.getMaxSize() }}">
             <oui-progress-bar
                 data-ng-repeat="(type, part) in $ctrl.usage track by type"
