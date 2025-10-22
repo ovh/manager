@@ -13,6 +13,7 @@
   "common_criteria_adder_operator_is_higher": "est supérieur à",
   "common_criteria_adder_operator_is_before": "est avant",
   "common_criteria_adder_operator_is_after": "est après",
+  "common_criteria_adder_operator_is_in": "contient",
   "common_criteria_adder_operator_EXISTS": "existe",
   "common_criteria_adder_operator_NEXISTS": "n'existe pas",
   "common_criteria_adder_true_label": "Oui",
