@@ -7,11 +7,13 @@ const pkgDir = (name) => path.dirname(require.resolve(`${name}/package.json`));
 const toGlob = (dir) => `${dir.replace(/\\/g, '/')}/**/*.{js,jsx,ts,tsx}`;
 
 const reactComponentsDir = pkgDir('@ovh-ux/manager-react-components');
+const backupAgentModuleDir = pkgDir('@ovh-ux/backup-agent');
 
 const baseTailwindConfig = [
   ...(baseConfig.content ?? []),
   './src/**/*.{js,jsx,ts,tsx}',
   toGlob(reactComponentsDir),
+  toGlob(backupAgentModuleDir)
 ];
 
 /** @type {import('tailwindcss').Config} */
