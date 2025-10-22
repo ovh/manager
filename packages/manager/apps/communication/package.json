@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-communication-app",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "private": true,
   "description": "An app for customer communication",
   "repository": {
@@ -22,7 +22,7 @@
     "@ovh-ux/manager-config": "^8.6.6",
     "@ovh-ux/manager-core-api": "^0.18.7",
     "@ovh-ux/manager-core-utils": "^0.4.5",
-    "@ovh-ux/manager-react-components": "^2.43.0",
+    "@ovh-ux/manager-react-components": "^2.43.1",
     "@ovh-ux/manager-react-core-application": "^0.12.9",
     "@ovh-ux/manager-react-shell-client": "^0.9.3",
     "@ovh-ux/request-tagger": "^0.4.1",

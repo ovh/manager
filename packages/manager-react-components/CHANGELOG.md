@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.43.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.43.0...@ovh-ux/manager-react-components@2.43.1) (2025-10-22)
+
+### Bug Fixes
+
+- **mrc:** fix datagrid break with undefined size ([073ecf8](https://github.com/ovh/manager/commit/073ecf84f06e71a4d652988608f4a699c1d7e5c8)), closes [#ISSUE-19898](https://github.com/ovh/manager/issues/ISSUE-19898)
+
 # [2.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.42.4...@ovh-ux/manager-react-components@2.43.0) (2025-10-21)
 
 ### Bug Fixes
