@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.7.2...@ovh-ux/manager-web-hosting-app@0.8.0) (2025-10-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 741] ([5171211](https://github.com/ovh/manager/commit/5171211494a02ebc9f2c3f5635d19a90b6714ae1))
+* **web-hosting:** fix some conditions for import form ([ead2599](https://github.com/ovh/manager/commit/ead259912b5aa2a41610ad601fd86c2e0efcbfdb)), closes [#MANAGER-18901](https://github.com/ovh/manager/issues/MANAGER-18901)
+* **web-hosting:** fix title wp translations ([d240108](https://github.com/ovh/manager/commit/d240108d706f571f20eb25284ce3cf0a5cbf8a05)), closes [#MANAGER-18901](https://github.com/ovh/manager/issues/MANAGER-18901)
+
+
+### Features
+
+* **web-hosting:** add create page ([893331e](https://github.com/ovh/manager/commit/893331ecef9322a864243efea408159321513fc7)), closes [#MANAGER-18907](https://github.com/ovh/manager/issues/MANAGER-18907)
+* **web-hosting:** add deletion modal for wordpress ([a29c6dc](https://github.com/ovh/manager/commit/a29c6dc963ff3a67c5d3b1aa1f36738f31bc2640)), closes [#MANAGER-19032](https://github.com/ovh/manager/issues/MANAGER-19032)
+* **web-hosting:** add features after peer testing ([e5c3694](https://github.com/ovh/manager/commit/e5c3694e0c57fe96e64b3469667353b532d53080)), closes [#PUWEBPT-87](https://github.com/ovh/manager/issues/PUWEBPT-87)
+* **web-hosting:** add listing pages resource and websites ([32b2662](https://github.com/ovh/manager/commit/32b266278f4163388bb77ac9ae6490d24776de9d)), closes [#MANAGER-18906](https://github.com/ovh/manager/issues/MANAGER-18906)
+* **web-hosting:** add managed for hosting wordpress import step 2 ([1329b7e](https://github.com/ovh/manager/commit/1329b7ee2a98a31bee2fff7c31db0ea2cee330e3)), closes [#MANAGER-19174](https://github.com/ovh/manager/issues/MANAGER-19174)
+* **web-hosting:** add menu entry wordpress managed ([43105fb](https://github.com/ovh/manager/commit/43105fbb4bed5af36c9f2c9ebfea5113b92c4ac5)), closes [#MANAGER-18901](https://github.com/ovh/manager/issues/MANAGER-18901)
+* **web-hosting:** add quotas for websites on wordpress ([8782409](https://github.com/ovh/manager/commit/8782409216374366aeffb60f9bb312a808efa2cf)), closes [#MANAGER-19223](https://github.com/ovh/manager/issues/MANAGER-19223)
+* **web-hosting:** add refresh for task pages and status translations ([0d3c475](https://github.com/ovh/manager/commit/0d3c475b0a229809b9c52a171e485a555e254f74))
+* **web-hosting:** add static analysis on wp managed ([93287d2](https://github.com/ovh/manager/commit/93287d296441b69ad7effee556f5250ec2433f70)), closes [#PUWEBPT-33](https://github.com/ovh/manager/issues/PUWEBPT-33)
+* **web-hosting:** add step 1 for import website ([aa3ba0f](https://github.com/ovh/manager/commit/aa3ba0f2e9cf1570ea21e04331fe9b152aeedbd6)), closes [#MANAGER-18908](https://github.com/ovh/manager/issues/MANAGER-18908)
+* **web-hosting:** add task pages for wordpress managed ([a5e6e9b](https://github.com/ovh/manager/commit/a5e6e9bd256a21531fa2adfa682a4173335b4c63)), closes [#MANAGER-19223](https://github.com/ovh/manager/issues/MANAGER-19223)
+* **web-hosting:** add url managed website button wordpress ([80a2899](https://github.com/ovh/manager/commit/80a28999bf7f2afd1fff7736720a7039d0a086ed)), closes [#MANAGER-18909](https://github.com/ovh/manager/issues/MANAGER-18909)
+* **web-hosting:** change redirect for wp managed ([1102531](https://github.com/ovh/manager/commit/1102531c92eabb4c1eff71fc80775d19651aadc6)), closes [#MANAGER-18901](https://github.com/ovh/manager/issues/MANAGER-18901)
+* **web-hosting:** fixes and changes for tasks pages and texts for managed wordrpess ([ef8fc7e](https://github.com/ovh/manager/commit/ef8fc7ec1c694abc77bf4db2635be4c6c8c98338)), closes [#MANAGER-19223](https://github.com/ovh/manager/issues/MANAGER-19223)
+* **web-hosting:** reduce line for static analysis ([4391209](https://github.com/ovh/manager/commit/4391209e03f3a4ada1cfcaa5b9dd9ee8716d54a7)), closes [#PUWEBPT-33](https://github.com/ovh/manager/issues/PUWEBPT-33)
+
+
+
+
+
 ## [0.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.7.1...@ovh-ux/manager-web-hosting-app@0.7.2) (2025-10-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
