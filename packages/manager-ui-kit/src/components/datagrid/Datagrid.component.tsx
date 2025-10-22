@@ -56,28 +56,20 @@ export const Datagrid = <T extends Record<string, unknown>>({
     rowSelection,
     expandable,
   });
-  const {
-    hasSortingFeature,
-    hasSearchFeature,
-    hasColumnVisibilityFeature,
-    hasFilterFeature,
-  } = features;
+  const { hasSortingFeature, hasSearchFeature, hasColumnVisibilityFeature, hasFilterFeature } =
+    features;
   const rowModel = getRowModel();
   const { rows } = rowModel;
   const headerGroups = getHeaderGroups();
   const tableContainerRef = useRef<HTMLDivElement>(null);
   const visibleColumns = getAllLeafColumns();
-  const containerSize =
-    data?.length < 10 ? '100%' : `${DEFAULT_CONTAINER_HEIGHT}px`;
+  const containerSize = data?.length < 10 ? '100%' : `${DEFAULT_CONTAINER_HEIGHT}px`;
   const containerStyle = {
     maxHeight: containerHeight ? `${containerHeight}px` : containerSize,
     height: containerHeight ? `${containerHeight}px` : containerSize,
   };
   const shouldRenderTopbar =
-    topbar ||
-    hasSearchFeature ||
-    hasFilterFeature ||
-    hasColumnVisibilityFeature;
+    topbar || hasSearchFeature || hasFilterFeature || hasColumnVisibilityFeature;
   return (
     <>
       {shouldRenderTopbar && (
@@ -97,11 +89,7 @@ export const Datagrid = <T extends Record<string, unknown>>({
           setColumnVisibility={columnVisibility?.setColumnVisibility}
         />
       )}
-      <div
-        className="overflow-auto relative w-full"
-        ref={tableContainerRef}
-        style={containerStyle}
-      >
+      <div className="overflow-auto relative w-full" ref={tableContainerRef} style={containerStyle}>
         <Table className="w-full">
           <TableHeaderContent<T>
             headerGroups={headerGroups}
