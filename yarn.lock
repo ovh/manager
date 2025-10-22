@@ -7557,10 +7557,10 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-components@^2.42.3", "@ovh-ux/manager-react-components@^2.42.4":
-  version "2.42.4"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-2.42.4.tgz#60a0fa2575c7940942b24487f60d3aac978f0286"
-  integrity sha512-x23ULkeZiqtTphvD3R4YM2+8T/J2C1N1bMc2rImqNqzMSnl5rKCnCK2sDWd9lE9o8NJJguv8KMhfoGCJdsS49g==
+"@ovh-ux/manager-react-components@^2.43.1":
+  version "2.43.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-2.43.1.tgz#1dc97f93ae0f0e5643f498079a2310e01a7ef301"
+  integrity sha512-Z6OJ3aNzf4qNLGLJPBy8FeNb0RnDPUTYzaFjc0QK7QU1bxCfrLzXAaxKZ060asTiZ0qOm7EQ3Qt+JoToM/cKEA==
   dependencies:
     "@babel/plugin-proposal-private-property-in-object" "^7.21.11"
     "@tanstack/react-query" "^5.51.21"
@@ -11028,13 +11028,6 @@
   version "16.0.1"
   resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-16.0.1.tgz#29c0ee878d672703f5e7579f239005e4e0faa875"
   integrity sha512-dSmwJVtJXmku+iocRhWOUFbrERC76TX2Mnf0ATODz8brzAZrMBbzLwQixlBSanZxR6LddK3eiwpSFZgDET1URg==
-  dependencies:
-    "@babel/runtime" "^7.12.5"
-
-"@testing-library/react@^16.3.0":
-  version "16.3.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-16.3.0.tgz#3a85bb9bdebf180cd76dba16454e242564d598a6"
-  integrity sha512-kFSyxiEDwv1WLl2fgsq6pPBbw5aWKrsY2/noi1Id0TK0UParSF62oFQFGHXIyaG4pp2tEub/Zlel+fjjZILDsw==
   dependencies:
     "@babel/runtime" "^7.12.5"
 
@@ -34203,7 +34196,7 @@ vitest-axe@^0.1.0:
     lodash-es "^4.17.21"
     redent "^3.0.0"
 
-vitest@3.2.4, vitest@^3.1.3:
+vitest@3.2.4:
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/vitest/-/vitest-3.2.4.tgz#0637b903ad79d1539a25bc34c0ed54b5c67702ea"
   integrity sha512-LUCP5ev3GURDysTWiP47wRRUpLKMOfPh+yKTx3kVIEiu5KOMeqzpnYNsKyOoVrULivR8tLcks4+lga33Whn90A==
