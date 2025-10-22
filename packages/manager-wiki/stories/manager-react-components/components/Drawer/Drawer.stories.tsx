@@ -1,14 +1,17 @@
 import React from 'react';
-import { Drawer, DrawerProps } from '@ovh-ux/manager-react-components';
 import { Meta } from '@storybook/react';
 import { useArgs } from '@storybook/preview-api';
-import { DrawerContent } from './DrawerContent.component';
+import { Content } from './mocks/Content.component';
+import {
+  DrawerComposed,
+  DrawerComposedProps,
+} from './mocks/DrawerComposed.component';
 
-const meta: Meta<typeof Drawer> = {
+const meta: Meta<typeof DrawerComposed> = {
   title: 'Manager React Components/Components/Drawer',
-  component: Drawer,
+  component: DrawerComposed,
   args: {
-    heading: 'Drawer Title',
+    title: 'Drawer Title',
     isOpen: true,
     isLoading: false,
     primaryButtonLabel: 'Confirm',
@@ -20,16 +23,16 @@ const meta: Meta<typeof Drawer> = {
     isPrimaryButtonDisabled: false,
     isSecondaryButtonLoading: false,
     isSecondaryButtonDisabled: false,
-    children: <DrawerContent size="short" />,
+    content: <Content size="short" />,
   },
   argTypes: {
-    heading: {
+    title: {
       description: 'Header title of the drawer',
     },
   },
   parameters: {
     controls: {
-      exclude: ['children'],
+      exclude: ['content'],
     },
   },
   render: function Render(args) {
@@ -38,7 +41,7 @@ const meta: Meta<typeof Drawer> = {
     const onDismiss = () => updateArgs({ isOpen: !isOpen });
 
     return (
-      <Drawer
+      <DrawerComposed
         {...args}
         isOpen={isOpen}
         onDismiss={onDismiss}
@@ -51,17 +54,17 @@ const meta: Meta<typeof Drawer> = {
 
 export default meta;
 
-export const Default: Meta<DrawerProps> = {
+export const Default: Meta<DrawerComposedProps> = {
   args: {
-    heading: 'Classic Drawer',
+    title: 'Classic Drawer',
     isOpen: true,
   },
 };
 
-export const ScrollableContent: Meta<DrawerProps> = {
+export const ScrollableContent: Meta<DrawerComposedProps> = {
   args: {
-    heading: 'Scrollable Content',
+    title: 'Scrollable Content',
     isOpen: true,
-    children: <DrawerContent size="long" />,
+    content: <Content size="long" />,
   },
 };
