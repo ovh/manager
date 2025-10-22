@@ -139,7 +139,7 @@ export default (): TRedirectStatus => {
           ...redirectParams,
           projectId,
         })
-        .then((url) => url as string);
+        .then((url: unknown) => url as string);
     },
     [
       isRedirectExternal,
@@ -155,7 +155,7 @@ export default (): TRedirectStatus => {
     if (
       isReady &&
       redirectTarget.isRedirectRequired &&
-      activeProjects.length === 1 &&
+      activeProjects?.length === 1 &&
       redirectPath !== ''
     ) {
       redirect(activeProjects[0].project_id);
@@ -170,7 +170,9 @@ export default (): TRedirectStatus => {
 
   return {
     isRedirectRequired:
-      isReady && redirectTarget.isRedirectRequired && activeProjects.length > 1,
+      isReady &&
+      redirectTarget.isRedirectRequired &&
+      activeProjects?.length > 1,
     redirectUrl,
     redirect,
   };
