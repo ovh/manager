@@ -66,7 +66,7 @@ export const DeploymentModeSelection = () => {
               field.onChange(value);
             }}
           >
-            {deploymentModes.map(({ mode, title, description, url }) => (
+            {deploymentModes.map(({ mode, title, description, Image }) => (
               <PciCard
                 selectable
                 selected={field.value.includes(mode)}
@@ -89,11 +89,9 @@ export const DeploymentModeSelection = () => {
 
                 <PciCard.Content className="justify-between">
                   <Text>{description}</Text>
-                  <img
-                    src={url}
-                    className="w-full h-[100px] mt-6"
-                    alt={title}
-                  />
+                  <div className="flex">
+                    <Image />
+                  </div>
                 </PciCard.Content>
               </PciCard>
             ))}
