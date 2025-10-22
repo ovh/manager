@@ -58,8 +58,7 @@ const ignorePatterns =
 const legacyPattern = appName
   ? [`packages/manager/apps/${appName}/**/*.{tsx,ts}`]
   : [
-      'packages/manager/apps/**/*.{tsx,ts}',
-      'packages/manager-ui-kit/**/*.{tsx,ts}',
+      'packages/manager/apps/**/*.{tsx,ts}'
     ];
 
 if (verbose) {
