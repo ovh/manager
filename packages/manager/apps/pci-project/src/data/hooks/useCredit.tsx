@@ -26,9 +26,6 @@ export const useCreditDetails = (projectId: string) => {
       return formattedData;
     },
     enabled: !!projectId,
-    refetchOnWindowFocus: false,
-    throwOnError: true,
-    retry: false,
   });
 };
 

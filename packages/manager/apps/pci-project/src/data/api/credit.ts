@@ -8,11 +8,23 @@ import {
 export const getCreditDetails = async (
   projectId: string,
 ): Promise<FetchResultV6<CreditDetailsResponse>> => {
-  const headers: Record<string, string> = {
-    'x-pagination-mode': 'CachedObjectList-Pages',
-  };
+  try {
+    const headers: Record<string, string> = {
+      'x-pagination-mode': 'CachedObjectList-Pages',
+    };
 
-  return v6.get(`/cloud/project/${projectId}/credit`, { headers });
+    const response = await v6.get(`/cloud/project/${projectId}/credit`, {
+      headers,
+    });
+
+    return {
+      data: response.data,
+    };
+  } catch (error) {
+    return {
+      data: [],
+    };
+  }
 };
 
 export const getCreditBalance = async (): Promise<string[]> => {
