@@ -27,7 +27,8 @@ ai: true
    - [Accessibility (A11Y)](#9-accessibility-a11y)
    - [Debugging and DevTools](#10-debugging-and-devtools)
    - [Routing and Deep Linking](#11-routing-and-deep-linking)
-   - [Complex Migration Patterns](#12-complex-migration-patterns)
+   - [Route Configuration Best Practices](#12-route-configuration-best-practices)
+   - [Complex Migration Patterns](#13-complex-migration-patterns)
 4. [Pre-Migration Audit](#-pre-migration-audit)
 5. [AI Migration Prompts](#-ai-migration-prompts)
 6. [Migration Testing Strategy](#-migration-testing-strategy)
@@ -1397,6 +1398,113 @@ const moduleComplexity = {
 };
 ```
 
+## 12. Route Configuration Best Practices
+
+### Problèmes Courants de Routing
+
+#### ❌ Double Slug dans l'URL
+**Symptôme** : URL devient `/app-name/app-name/listing` au lieu de `/app-name/listing`
+
+**Cause** : Configuration incorrecte de `appSlug` dans `APP_FEATURES`
+
+**Solution** :
+```typescript
+// App.constants.ts
+export const APP_FEATURES = {
+  appSlug: '', // ⚠️ Laisser vide, pas appName
+  // ...
+} as const;
+```
+
+#### ❌ Navigation Absolue vs Relative
+**Symptôme** : `navigate('/listing')` ne fonctionne pas dans un contexte imbriqué
+
+**Cause** : Utilisation de navigation absolue dans un contexte relatif
+
+**Solution** :
+```typescript
+// ✅ Bon : Navigation relative
+navigate('listing', { replace: true });
+
+// ❌ Éviter : Navigation absolue
+navigate('/listing', { replace: true });
+```
+
+#### ❌ SmartRedirect Complexe
+**Symptôme** : Redirection conditionnelle complexe qui cause des problèmes
+
+**Cause** : Logique de redirection trop complexe
+
+**Solution** : Utiliser la page listing comme page d'accueil avec gestion d'état vide
+
+```typescript
+// ✅ Bon : Page listing comme home
+<Route index Component={ListingPage} />
+
+// ❌ Éviter : SmartRedirect complexe
+<Route index element={<SmartRedirectPage />} />
+```
+
+### Configuration de Routing Recommandée
+
+#### Structure des Routes
+```typescript
+// routes/Routes.tsx
+export default (
+  <>
+    {/* Redirect container "/" → flavor-specific root */}
+    <Route path="/" element={<Navigate to={urls.root} replace />} />
+
+    {/* Rooted application layout */}
+    <Route
+      id="root"
+      path={urls.root}
+      Component={MainLayoutPage}
+      errorElement={<ErrorBoundary />}
+    >
+      {/* Default landing → main listing page */}
+      <Route
+        index
+        Component={ListingPage}
+        handle={{ tracking: { pageName: 'listing', pageType: PageType.listing } }}
+      />
+
+      {/* Alternative listing route */}
+      <Route
+        path={urls.listing}
+        Component={ListingPage}
+        handle={{ tracking: { pageName: 'listing', pageType: PageType.listing } }}
+      />
+    </Route>
+  </>
+);
+```
+
+#### Configuration des Constantes
+```typescript
+// App.constants.ts
+export const APP_FEATURES = {
+  appSlug: '', // ⚠️ IMPORTANT: Laisser vide
+  // ... autres configs
+} as const;
+
+// Routes.constants.ts
+export const urls = {
+  root: getRoot(), // Retourne /app-name
+  listing: 'listing', // Route relative
+} as const;
+```
+
+### Checklist de Migration Routing
+
+- [ ] `appSlug` configuré à `''` dans `APP_FEATURES`
+- [ ] Routes utilisent la navigation relative
+- [ ] Page listing comme page d'accueil (index route)
+- [ ] Pas de SmartRedirect complexe
+- [ ] Tracking configuré sur toutes les routes
+- [ ] ErrorBoundary sur la route racine
+- [ ] Navigation cohérente dans l'application
+
 ## 🤖 AI Migration Prompts
 
 ### Controller Migration Template
@@ -1417,6 +1525,9 @@ OVH RULES:
 - Add unit tests with RTL
 - Keep identical URLs
 - Maintain functional parity
+- Configure appSlug: '' in APP_FEATURES to avoid double slug
+- Use relative navigation (navigate('route')) instead of absolute
+- Use listing page as home page (index route) instead of SmartRedirect
 
 GENERATE:
 1. React TypeScript component
@@ -1446,7 +1557,30 @@ GENERATE:
 2. TypeScript types
 3. Tests with mocks
 4. Error handling
-5. JSDoc documentation
+```
+
+### Routing Migration Template
+
+```
+Migrate AngularJS routing to React Router:
+
+ANGULARJS_ROUTING:
+{code}
+
+OVH RULES:
+- Configure appSlug: '' in APP_FEATURES to avoid double slug
+- Use relative navigation (navigate('route')) instead of absolute
+- Use listing page as home page (index route) instead of SmartRedirect
+- Add ErrorBoundary on root route
+- Configure tracking on all routes
+- Use lazy loading for components
+
+GENERATE:
+1. Routes.tsx with proper structure
+2. App.constants.ts with appSlug: ''
+3. Routes.constants.ts with relative paths
+4. Navigation hooks with relative paths
+5. Error handling configuration
 ```
 
 ### Directive Migration Template

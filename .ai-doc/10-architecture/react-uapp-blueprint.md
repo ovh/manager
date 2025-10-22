@@ -69,40 +69,122 @@ export const queryClient = new QueryClient({
 ```
 
 ## Routing + Tracking
+
+### Configuration des Routes
+
 ```typescript
 // routes/Routes.tsx
-import { createBrowserRouter } from 'react-router-dom';
-import { lazyRouteConfig } from '@ovh-ux/manager-core';
+import React from 'react';
+import { Navigate, Route } from 'react-router-dom';
+import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
-import { urls } from './Routes.constants';
+import { redirectionApp, urls } from './Routes.constants';
 
-export const router = createBrowserRouter([
-  {
-    id: 'root',
-    path: urls.root,
-    ...lazyRouteConfig(() => import('@/pages/Main.layout')),
-    children: [
-      {
-        id: 'onboarding',
-        path: urls.onboarding,
-        ...lazyRouteConfig(() => import('@/pages/onboarding/Onboarding.page')),
-        handle: { tracking: { pageName: 'onboarding', pageType: PageType.onboarding } },
-      },
-      {
-        id: 'listing',
-        path: urls.listing,
-        ...lazyRouteConfig(() => import('@/pages/listing/Listing.page')),
-        handle: { tracking: { pageName: 'listing', pageType: PageType.listing } },
-      },
-      {
-        id: 'dashboard',
-        path: urls.dashboard,
-        ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.page')),
-        handle: { tracking: { pageName: 'details', pageType: PageType.details } },
-      },
-    ],
-  },
-]);
+const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
+const ListingPage = React.lazy(() => import('@/pages/listing/Listing.page'));
+
+export default (
+  <>
+    {/* Redirect container "/" → flavor-specific root */}
+    <Route path="/" element={<Navigate to={urls.root} replace />} />
+
+    {/* Rooted application layout */}
+    <Route
+      id="root"
+      path={urls.root}
+      Component={MainLayoutPage}
+      errorElement={
+        <ErrorBoundary
+          isPreloaderHide={true}
+          isRouteShellSync={true}
+          redirectionApp={redirectionApp}
+        />
+      }
+    >
+      {/* Default landing → main listing page */}
+      <Route
+        index
+        Component={ListingPage}
+        handle={{
+          tracking: {
+            pageName: 'listing',
+            pageType: PageType.listing,
+          },
+        }}
+      />
+
+      {/* Alternative listing route */}
+      <Route
+        path={urls.listing}
+        Component={ListingPage}
+        handle={{
+          tracking: {
+            pageName: 'listing',
+            pageType: PageType.listing,
+          },
+        }}
+      />
+
+      {/* Other routes... */}
+    </Route>
+  </>
+);
+```
+
+### Configuration des Constantes
+
+```typescript
+// App.constants.ts
+export const APP_FEATURES = {
+  // ... autres configs
+  appSlug: '', // ⚠️ IMPORTANT: Laisser vide pour éviter le double slug
+  // ... autres configs
+} as const;
+
+// Routes.constants.ts
+export const urls = {
+  root: getRoot(), // Retourne /app-name
+  listing: 'listing', // Route relative
+} as const;
+```
+
+### Problèmes de Routing Courants
+
+#### ❌ Double Slug dans l'URL
+**Problème** : URL devient `/app-name/app-name/listing` au lieu de `/app-name/listing`
+
+**Solution** :
+```typescript
+// App.constants.ts
+export const APP_FEATURES = {
+  appSlug: '', // ⚠️ Laisser vide, pas appName
+  // ...
+} as const;
+```
+
+#### ❌ Navigation Absolue vs Relative
+**Problème** : `navigate('/listing')` ne fonctionne pas dans un contexte imbriqué
+
+**Solution** :
+```typescript
+// ✅ Bon : Navigation relative
+navigate('listing', { replace: true });
+
+// ❌ Éviter : Navigation absolue
+navigate('/listing', { replace: true });
+```
+
+#### ❌ SmartRedirect Complexe
+**Problème** : Redirection conditionnelle complexe
+
+**Solution** : Utiliser la page listing comme page d'accueil avec gestion d'état vide
+
+```typescript
+// ✅ Bon : Page listing comme home
+<Route index Component={ListingPage} />
+
+// ❌ Éviter : SmartRedirect complexe
+<Route index element={<SmartRedirectPage />} />
 ```
 
 ### Tracking Context
