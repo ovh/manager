@@ -89,6 +89,8 @@ const DatagridWebInterfaceCell = (vdcOrg: VCDOrganization['currentState']) => {
 /* ======= listing page ======= */
 export default function Listing() {
   const { t } = useTranslation(['listing', NAMESPACES.ACTIONS]);
+  const { t: tRegion } = useTranslation(NAMESPACES.REGION);
+  const { t: tDashboard } = useTranslation(NAMESPACES.DASHBOARD);
   const { trackClick } = useOvhTracking();
 
   const { ovhSubsidiary } =
@@ -107,7 +109,7 @@ export default function Listing() {
     {
       id: 'location',
       cell: DatagridLocationCell,
-      label: t('managed_vcd_listing_location'),
+      label: tRegion('localisation'),
       isSortable: false,
       isFilterable: false,
       type: FilterTypeCategories.String,
@@ -115,7 +117,7 @@ export default function Listing() {
     {
       id: 'region',
       cell: DatagridRegionCell,
-      label: t('managed_vcd_listing_region'),
+      label: tRegion('region'),
       isSortable: true,
       isFilterable: true,
       type: FilterTypeCategories.String,
@@ -123,7 +125,7 @@ export default function Listing() {
     {
       id: 'description',
       cell: DatagridDescriptionCell,
-      label: t('managed_vcd_listing_description'),
+      label: tDashboard('description'),
       isSortable: true,
       isFilterable: true,
       type: FilterTypeCategories.String,

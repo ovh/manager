@@ -17,6 +17,7 @@ import { VMWARE_CLOUD_DIRECTOR_LABEL } from '@/utils/label.constants';
 
 export default function Onboarding() {
   const { t } = useTranslation(['onboarding', NAMESPACES.ACTIONS]);
+  const { t: tOnBoarding } = useTranslation(NAMESPACES.ONBOARDING);
 
   const link = useGuideUtils();
   const { trackClick } = useOvhTracking();
@@ -36,7 +37,7 @@ export default function Onboarding() {
         category: t('managed_vcd_onboarding_guide1_category').toUpperCase(),
       },
       href: link?.discover,
-      hrefLabel: t('managed_vcd_onboarding_guide1_link'),
+      hrefLabel: tOnBoarding('find_out_more'),
       tracking: 'guide_discover',
     },
     {
@@ -55,12 +56,12 @@ export default function Onboarding() {
     {
       id: 3,
       texts: {
-        title: t('managed_vcd_onboarding_guide3_title'),
-        description: t('managed_vcd_onboarding_guide3_description'),
+        title: tOnBoarding('faq'),
+        description: tOnBoarding('find_out_more_faq'),
         category: t('managed_vcd_onboarding_guide3_category').toUpperCase(),
       },
       href: link?.faq,
-      hrefLabel: t('managed_vcd_onboarding_guide3_link'),
+      hrefLabel: tOnBoarding('browse_faq'),
       tracking: 'guide_FAQ',
     },
   ];

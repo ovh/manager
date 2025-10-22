@@ -34,7 +34,7 @@ describe('Datacentre Dashboard Page', () => {
     const layoutElements = [
       datacentreList[0].id,
       datacentreList[0].currentState.description,
-      labels.dashboard.managed_vcd_dashboard_general_information,
+      labels.commun.dashboard.general_information,
       COMPUTE_LABEL,
       STORAGE_LABEL,
     ];
@@ -111,8 +111,8 @@ describe('Datacentre Dashboard Page', () => {
     await assertOdsModalVisibility({ container, isVisible: true });
     await assertOdsModalText({
       container,
-      text: labels.dashboard.managed_vcd_dashboard_edit_modal_error.replace(
-        '{{error}}',
+      text: labels.commun.error.error_message.replace(
+        '{{message}}',
         'Datacentre update error',
       ),
     });
