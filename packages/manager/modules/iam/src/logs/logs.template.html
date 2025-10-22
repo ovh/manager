@@ -1,4 +1,31 @@
-<oui-header data-heading="{{:: 'iam_logs_label' | translate }}">
+<oui-header>
+    <!-- <Heading> -->
+    <oui-header-heading>
+        <div class="d-flex justify-content-between">
+            <h1 class="oui-header__title" data-translate="iam_logs_label"></h1>
+            <div
+                class="d-flex justify-content-end align-items-center flex-wrap gap-1"
+            >
+                <changelog-button
+                    links="$ctrl.changelogLinks.links"
+                    chapters="$ctrl.changelogLinks.chapters"
+                ></changelog-button>
+                <oui-guide-menu
+                    data-text="{{:: 'iam_guide_header_label' | translate }}"
+                >
+                    <oui-guide-menu-item
+                        data-ng-repeat="guide in $ctrl.onboardingGuides track by $index"
+                        data-href="{{:: guide.link }}"
+                        data-on-click="$ctrl.onGuideClick(guide.key)"
+                        data-external
+                    >
+                        <span data-ng-bind=":: guide.title"></span>
+                    </oui-guide-menu-item>
+                </oui-guide-menu>
+            </div>
+        </div>
+    </oui-header-heading>
+    <!-- </Heading> -->
     <oui-header-tabs>
         <oui-header-tabs-item
             data-state="iam.logs.access-policy"
@@ -18,17 +45,6 @@
             ><span data-translate="iam_audit_logs_label"></span
         ></oui-header-tabs-item>
     </oui-header-tabs>
-
-    <oui-guide-menu data-text="{{:: 'iam_guide_header_label' | translate }}">
-        <oui-guide-menu-item
-            data-ng-repeat="guide in $ctrl.onboardingGuides track by $index"
-            data-href="{{:: guide.link }}"
-            data-on-click="$ctrl.onGuideClick(guide.key)"
-            data-external
-        >
-            <span data-ng-bind=":: guide.title"></span>
-        </oui-guide-menu-item>
-    </oui-guide-menu>
 </oui-header>
 
 <div class="container-fluid mt-4" data-ui-view="logsView"></div>

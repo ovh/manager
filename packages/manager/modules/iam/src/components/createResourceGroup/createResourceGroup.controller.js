@@ -1,6 +1,11 @@
 import { cloneDeep, isEqual } from 'lodash-es';
 
-import { ENTITY, ENTITY_NAME_PATTERN, TAG } from '../../iam.constants';
+import {
+  ENTITY,
+  ENTITY_NAME_PATTERN,
+  TAG,
+  CHANGELOG,
+} from '../../iam.constants';
 import {
   CREATE_RESOURCE_GROUP_TAG,
   CREATE_RESOURCE_GROUP_MAX_SIZE,
@@ -17,6 +22,7 @@ export default class CreateResourceGroupController {
     this.ENTITY_NAME_PATTERN = ENTITY_NAME_PATTERN;
     this.ENTITY_RESOURCE_TYPE = ENTITY.RESOURCE_TYPE;
     this.CREATE_RESOURCE_GROUP_MAX_SIZE = CREATE_RESOURCE_GROUP_MAX_SIZE;
+    this.CHANGELOG = CHANGELOG;
 
     /**
      * The oui-select confirm-remove property works with promises

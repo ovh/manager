@@ -22,23 +22,38 @@
     </iam-delete-entity>
 
     <oui-header
-        data-heading="{{ $ctrl.translations.header | translate }}"
         data-description="{{ 'iam_create_policy_header_description' | translate }}"
     >
-        <!-- <Guide> -->
-        <oui-guide-menu
-            data-text="{{:: 'iam_create_policy_header_guide_text' | translate }}"
-        >
-            <oui-guide-menu-item
-                data-ng-repeat="guide in $ctrl.policiesGuides track by $index"
-                data-href="{{:: guide.link }}"
-                data-on-click="$ctrl.onGuideClick(guide.key)"
-                data-external
-            >
-                <span data-ng-bind=":: guide.title"></span>
-            </oui-guide-menu-item>
-        </oui-guide-menu>
-        <!-- </Guide> -->
+        <!-- <Heading> -->
+        <oui-header-heading>
+            <div class="d-flex justify-content-between">
+                <h1
+                    class="oui-header__title"
+                    data-translate="{{ $ctrl.translations.header }}"
+                ></h1>
+                <div
+                    class="d-flex justify-content-end align-items-center flex-wrap gap-1"
+                >
+                    <changelog-button
+                        links="$ctrl.CHANGELOG.default.links"
+                        chapters="$ctrl.CHANGELOG.default.chapters"
+                    ></changelog-button>
+                    <oui-guide-menu
+                        data-text="{{:: 'iam_create_policy_header_guide_text' | translate }}"
+                    >
+                        <oui-guide-menu-item
+                            data-ng-repeat="guide in $ctrl.policiesGuides track by $index"
+                            data-href="{{:: guide.link }}"
+                            data-on-click="$ctrl.onGuideClick(guide.key)"
+                            data-external
+                        >
+                            <span data-ng-bind=":: guide.title"></span>
+                        </oui-guide-menu-item>
+                    </oui-guide-menu>
+                </div>
+            </div>
+        </oui-header-heading>
+        <!-- </Heading> -->
     </oui-header>
 
     <!-- <Error> -->

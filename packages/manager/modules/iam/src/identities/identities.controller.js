@@ -1,6 +1,10 @@
-import { TAG } from '../iam.constants';
+import { TAG, CHANGELOG } from '../iam.constants';
 
 export default class IdentitiesController {
+  constructor() {
+    this.CHANGELOG = CHANGELOG;
+  }
+
   /**
    * Called back when a guide menu item is clicked
    * @param {string} guideKey
