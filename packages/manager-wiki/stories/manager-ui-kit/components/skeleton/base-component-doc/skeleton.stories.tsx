@@ -1,6 +1,7 @@
 import { type Meta, type StoryObj } from '@storybook/react';
 import React from 'react';
 import { Skeleton, type SkeletonProp } from '@ovhcloud/ods-react';
+import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
 
 type Story = StoryObj<SkeletonProp>;
 
@@ -18,6 +19,11 @@ export const Default: Story = {
     imports: `import { Skeleton } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Skeleton />
   ),
@@ -25,6 +31,11 @@ export const Default: Story = {
 
 export const Overview: Story = {
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Skeleton />
   ),
@@ -35,6 +46,11 @@ export const AccessibilityLoading: Story = {
     imports: `import { Skeleton } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <div aria-busy="true">
       <Skeleton />
@@ -47,6 +63,11 @@ export const AccessibilityBadPracticeLoading: Story = {
     imports: `import { Skeleton } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <div>
       <Skeleton />

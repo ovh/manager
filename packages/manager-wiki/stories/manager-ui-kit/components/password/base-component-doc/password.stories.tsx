@@ -73,6 +73,11 @@ export const AccessibilityLabel: Story = {
     imports: `import { FormField, FormFieldLabel, Password } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <FormField>
       <FormFieldLabel>
@@ -88,7 +93,12 @@ export const Clearable: Story = {
   globals: {
     imports: `import { Password } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Password
       clearable
@@ -100,7 +110,12 @@ export const Default: Story = {
   globals: {
     imports: `import { Password } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Password />
   ),
@@ -110,7 +125,12 @@ export const Disabled: Story = {
   globals: {
     imports: `import { Password } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Password disabled />
   ),
@@ -120,7 +140,12 @@ export const InFormField: Story = {
   globals: {
     imports: `import { FormField, FormFieldLabel, Password } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <FormField>
       <FormFieldLabel>
@@ -136,16 +161,24 @@ export const Loading: Story = {
   globals: {
     imports: `import { Password } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Password loading />
   ),
 };
 
 export const Overview: Story = {
-  tags: ['!dev'],
+tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <Password />
@@ -156,7 +189,12 @@ export const ReadOnly: Story = {
   globals: {
     imports: `import { Password } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Password
       defaultValue="Readonly"
@@ -168,7 +206,12 @@ export const AccessibilityFormField: Story = {
   globals: {
     imports: `import { FormField, FormFieldLabel, Password } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <FormField>
       <FormFieldLabel>

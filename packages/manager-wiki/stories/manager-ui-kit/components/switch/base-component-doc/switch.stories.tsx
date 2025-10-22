@@ -14,6 +14,7 @@ import {
   excludeFromDemoControls,
   orderControls,
 } from '../../../base-documents/helpers/controls';
+import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
 
 type Story = StoryObj<SwitchProp>;
 
@@ -57,6 +58,11 @@ export const AccessibilityAriaLabel: Story = {
     imports: `import { Switch, SwitchItem } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Switch aria-label="Select an item">
       <SwitchItem value="item-1">Item 1</SwitchItem>
@@ -72,6 +78,11 @@ export const AccessibilityAriaLabelledby: Story = {
     imports: `import { TEXT_PRESET, Switch, SwitchItem, Text } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Text
@@ -93,7 +104,12 @@ export const Checked: Story = {
   globals: {
     imports: `import { Switch, SwitchItem } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Switch defaultValue="item-1">
       <SwitchItem value="item-1">Item 1</SwitchItem>
@@ -107,7 +123,12 @@ export const Default: Story = {
   globals: {
     imports: `import { Switch, SwitchItem } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Switch>
       <SwitchItem value="item-1">Item 1</SwitchItem>
@@ -121,7 +142,12 @@ export const Disabled: Story = {
   globals: {
     imports: `import { Switch, SwitchItem } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Switch disabled>
       <SwitchItem value="item-1">Item 1</SwitchItem>
@@ -135,6 +161,9 @@ export const Overview: Story = {
   tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <Switch defaultValue="item-1">
@@ -150,7 +179,12 @@ export const Sizes: Story = {
   globals: {
     imports: `import { SWITCH_SIZE, Switch, SwitchItem } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Switch size={ SWITCH_SIZE.sm }>

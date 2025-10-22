@@ -8,6 +8,7 @@ import {
 } from '@ovhcloud/ods-react';
 import { CONTROL_CATEGORY } from '../../../base-documents/constants/controls';
 import { orderControls } from '../../../base-documents/helpers/controls';
+import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
 
 type Story = StoryObj<CardProp>;
 
@@ -46,6 +47,11 @@ export const Color: Story = {
     imports: `import { CARD_COLOR, Card } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Card color={ CARD_COLOR.critical }>
@@ -80,6 +86,11 @@ export const Default: Story = {
     imports: `import { Card } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Card>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br />Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
@@ -88,9 +99,12 @@ export const Default: Story = {
 };
 
 export const Overview: Story = {
-  tags: ['!dev'],
+tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <Card style={{ padding: '8px' }}>
@@ -107,6 +121,9 @@ export const AccessibilityGrouping: Story = {
   tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <ul style={{ display: 'flex', gap: '16px', padding: 0, margin: 0, listStyleType: 'none' }}>
@@ -133,6 +150,9 @@ export const AccessibilityAlternativeGrouping: Story = {
   tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <div role="list" style={{ display: 'flex', gap: '16px' }}>

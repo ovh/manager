@@ -13,6 +13,7 @@ import {
   excludeFromDemoControls,
   orderControls,
 } from '../../../base-documents/helpers/controls';
+import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
 
 type Story = StoryObj<TagProp>;
 
@@ -69,6 +70,9 @@ export const Color: Story = {
   tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <>
@@ -86,9 +90,12 @@ export const Default: Story = {
   globals: {
     imports: `import { Tag } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <Tag>
@@ -104,6 +111,9 @@ export const Disabled: Story = {
   tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <Tag disabled>
@@ -116,6 +126,9 @@ export const Overview: Story = {
   tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <Tag>
@@ -132,6 +145,9 @@ export const Size: Story = {
   tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <>
@@ -146,6 +162,11 @@ export const AccessibilityList: Story = {
     imports: `import { Tag } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <ul>
       <li>
@@ -168,6 +189,11 @@ export const AccessibilityAriaRoles: Story = {
     imports: `import { Tag } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <div role="list">
       <div role="listitem">
@@ -190,6 +216,11 @@ export const AccessibilityAriaLabel: Story = {
     imports: `import { Tag } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Tag aria-label="Remove my tag">
       My tag

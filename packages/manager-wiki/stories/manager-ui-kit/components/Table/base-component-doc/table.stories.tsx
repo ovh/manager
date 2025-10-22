@@ -12,6 +12,7 @@ import {
 } from '@ovhcloud/ods-react';
 import { CONTROL_CATEGORY } from '../../../base-documents/constants/controls';
 import { orderControls } from '../../../base-documents/helpers/controls';
+import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
 
 type Story = StoryObj<TableProp>;
 
@@ -84,6 +85,11 @@ export const CustomCaption: Story = {
     imports: `import { TEXT_PRESET, Table, Text } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Table>
       <caption>
@@ -129,6 +135,11 @@ export const Default: Story = {
     imports: `import { Table } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Table>
       <caption>
@@ -168,10 +179,13 @@ export const Default: Story = {
 };
 
 export const Overview: Story = {
+  tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
-  tags: ['!dev'],
   render: ({}) => (
     <Table>
       <caption>
@@ -223,7 +237,12 @@ export const Size: Story = {
   globals: {
     imports: `import { TABLE_SIZE, Table } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Table size={ TABLE_SIZE.sm }>
@@ -347,7 +366,12 @@ export const Variant: Story = {
   globals: {
     imports: `import { TABLE_VARIANT, Table } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Table variant={ TABLE_VARIANT.default }>

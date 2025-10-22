@@ -3,6 +3,7 @@ import React from 'react';
 import { Meter, type MeterProp, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { CONTROL_CATEGORY } from '../../../base-documents/constants/controls';
 import { orderControls } from '../../../base-documents/helpers/controls';
+import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
 
 type Story = StoryObj<MeterProp>;
 
@@ -54,6 +55,11 @@ export const AccessibilityAriaLabel: Story = {
     imports: `import { Meter } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Meter
       aria-label="Gauge"
@@ -67,6 +73,11 @@ export const AccessibilityAriaLabelledby: Story = {
     imports: `import { TEXT_PRESET, Meter, Text } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Text
@@ -88,6 +99,11 @@ export const AccessibilityAriaValuetext: Story = {
     imports: `import { Meter } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Meter
       aria-label="Gauge"
@@ -102,6 +118,11 @@ export const Default: Story = {
     imports: `import { Meter } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Meter />
   ),
@@ -112,6 +133,11 @@ export const Optimum: Story = {
     imports: `import { Meter } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <p>Low optimum and low value:</p>
@@ -140,6 +166,11 @@ export const Optimum: Story = {
 
 export const Overview: Story = {
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Meter
       low={ 40 }
@@ -152,6 +183,11 @@ export const Thresholds: Story = {
     imports: `import { Meter } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <p>Value under low threshold:</p>

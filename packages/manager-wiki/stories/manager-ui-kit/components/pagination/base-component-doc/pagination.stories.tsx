@@ -75,6 +75,11 @@ export const AccessibilityLabel: Story = {
     imports: `import { Pagination } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Pagination
       aria-label="Pagination"
@@ -113,7 +118,12 @@ export const Default: Story = {
   globals: {
     imports: `import { Pagination } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Pagination totalItems={ 5000 } />
   ),
@@ -123,7 +133,12 @@ export const Disabled: Story = {
   globals: {
     imports: `import { Pagination } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Pagination
       disabled
@@ -135,7 +150,12 @@ export const ItemsPerPage: Story = {
   globals: {
     imports: `import { Pagination } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Pagination
       pageSize={ 25 }
@@ -147,6 +167,9 @@ export const Overview: Story = {
   tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <Pagination totalItems={ 100 } withPageSizeSelector />
@@ -158,6 +181,11 @@ export const SiblingCount: Story = {
     imports: `import { Pagination } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Pagination
       defaultPage={ 5 }
@@ -170,7 +198,12 @@ export const WithLabels: Story = {
   globals: {
     imports: `import { Pagination } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Pagination
       labelTooltipPrev={ 'Go to previous page' }

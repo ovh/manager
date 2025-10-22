@@ -139,7 +139,12 @@ export const Default: Story = {
   globals: {
     imports: `import { Range } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Range />
@@ -154,7 +159,12 @@ export const Disabled: Story = {
   globals: {
     imports: `import { Range } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Range
@@ -173,7 +183,12 @@ export const InFormField: Story = {
   globals: {
     imports: `import { FormField, FormFieldLabel, Range } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <FormField>
       <FormFieldLabel>
@@ -190,6 +205,11 @@ export const MaxMin: Story = {
     imports: `import { Range } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <p>Max 500</p>
@@ -226,6 +246,9 @@ export const Overview: Story = {
   tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <Range defaultValue={ [50] } />
@@ -238,6 +261,11 @@ export const Step: Story = {
     imports: `import { Range } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Range
@@ -257,6 +285,11 @@ export const Ticks: Story = {
     imports: `import { Range } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Range
@@ -310,6 +343,11 @@ export const AccessibilityFormField: Story = {
     imports: `import { FormField, FormFieldLabel, Range } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <FormField>
       <FormFieldLabel>
@@ -331,7 +369,12 @@ import { useState } from 'react';`,
       source: { ...staticSourceRenderConfig() },
     },
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => {
     const [values, setValues] = useState([30, 70]);
 

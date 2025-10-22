@@ -82,6 +82,11 @@ export const Color: StoryObj = {
     imports: `import { BUTTON_COLOR, Button } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Button color={ BUTTON_COLOR.critical }>Critical</Button>
@@ -99,6 +104,11 @@ export const Default: Story = {
     imports: `import { Button } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Button>
       My button
@@ -111,6 +121,11 @@ export const Loading: StoryObj = {
     imports: `import { Button } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Button loading={ true }>
       Loading button
@@ -122,6 +137,9 @@ export const Overview: Story = {
   tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <Button>
@@ -136,6 +154,11 @@ export const Size: StoryObj = {
     imports: `import { BUTTON_SIZE, Button } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Button size={ BUTTON_SIZE.md }>MD button</Button>
@@ -151,6 +174,11 @@ export const Variant: StoryObj = {
     imports: `import { BUTTON_VARIANT, Button } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Button variant={ BUTTON_VARIANT.default }>Default button</Button>
@@ -165,6 +193,11 @@ export const AccessibilityExplicitTextContent: StoryObj = {
     imports: `import { Button } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Button>
       Clear
@@ -177,6 +210,11 @@ export const AccessibilityIconOnly: StoryObj = {
     imports: `import { ICON_NAME, Button, Icon } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Button aria-label='Clear'>
         <Icon name={ ICON_NAME.xmark } />
@@ -189,6 +227,11 @@ export const AccessibilityBadPracticeIconOnly: StoryObj = {
     imports: `import { ICON_NAME, Button, Icon } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Button>
       <Icon name={ ICON_NAME.xmark } />
@@ -202,6 +245,11 @@ export const AccessibilityLabelledBy: StoryObj = {
     imports: `import { ICON_NAME, Button, Icon } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Button aria-labelledby="filter-btn">
@@ -218,6 +266,11 @@ export const AccessibilityBadPracticeLabelledBy: StoryObj = {
     imports: `import { ICON_NAME, Button, Icon } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Button>

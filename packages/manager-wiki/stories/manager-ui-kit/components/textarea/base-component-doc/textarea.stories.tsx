@@ -74,6 +74,11 @@ export const AccessibilityDescribedBy: Story = {
     imports: `import { FormField, FormFieldHelper, FormFieldLabel, Textarea } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <FormField>
       <FormFieldLabel>
@@ -94,6 +99,11 @@ export const AccessibilityFormField: Story = {
     imports: `import { FormField, FormFieldLabel, Textarea } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <FormField>
       <FormFieldLabel>
@@ -110,6 +120,11 @@ export const Default: Story = {
     imports: `import { Textarea } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Textarea />
   ),
@@ -120,6 +135,11 @@ export const Disabled: Story = {
     imports: `import { Textarea } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Textarea disabled />
   ),
@@ -176,6 +196,9 @@ export const Overview: Story = {
   tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <Textarea placeholder="Textarea" />
@@ -187,6 +210,11 @@ export const ReadOnly: Story = {
     imports: `import { Textarea } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Textarea
       defaultValue="Readonly"
@@ -199,6 +227,11 @@ export const Resizable: Story = {
     imports: `import { Textarea } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Textarea style={{ resize: 'both' }} />
   ),

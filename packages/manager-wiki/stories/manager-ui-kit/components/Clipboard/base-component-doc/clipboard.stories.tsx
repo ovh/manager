@@ -15,6 +15,7 @@ import {
   excludeFromDemoControls,
   orderControls,
 } from '../../../base-documents/helpers/controls';
+import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
 
 type Story = StoryObj<ClipboardProp>;
 type DemoArg = Partial<ClipboardProp> & Partial<ClipboardControlProp> & Partial<ClipboardTriggerProp> & {
@@ -96,6 +97,11 @@ export const Default: Story = {
     imports: `import { Clipboard, ClipboardControl, ClipboardTrigger } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Clipboard value="Clipboard">
       <ClipboardControl />
@@ -106,10 +112,13 @@ export const Default: Story = {
 };
 
 export const Overview: Story = {
+  tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
-  tags: ['!dev'],
   render: ({}) => (
     <Clipboard value="Clipboard">
       <ClipboardControl />
@@ -124,6 +133,11 @@ export const Masked: Story = {
     imports: `import { Clipboard, ClipboardControl, ClipboardTrigger } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Clipboard value="Masked" >
       <ClipboardControl maskOption={{ enable: true }} />
@@ -138,6 +152,11 @@ export const CustomLabels: Story = {
     imports: `import { Clipboard, ClipboardControl, ClipboardTrigger } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Clipboard value="Custom labels">
       <ClipboardControl />
@@ -154,6 +173,11 @@ export const Loading: Story = {
     imports: `import { Clipboard, ClipboardControl, ClipboardTrigger } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Clipboard value="Loading" >
       <ClipboardControl loading />
@@ -168,6 +192,11 @@ export const Disabled: Story = {
     imports: `import { Clipboard, ClipboardControl, ClipboardTrigger } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Clipboard value="Disabled" disabled>
       <ClipboardControl />
@@ -182,6 +211,11 @@ export const AccessibilityFormField: Story = {
     imports: `import { Clipboard, ClipboardControl, ClipboardTrigger, FormField, FormFieldLabel } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <FormField>
       <FormFieldLabel>
