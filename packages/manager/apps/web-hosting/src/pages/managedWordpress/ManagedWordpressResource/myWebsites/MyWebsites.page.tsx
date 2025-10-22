@@ -42,12 +42,8 @@ export default function MyWebsitesPage() {
     'managedWordpress',
   ]);
   const { serviceName } = useParams();
-  const [
-    searchInput,
-    setSearchInput,
-    debouncedSearchInput,
-    setDebouncedSearchInput,
-  ] = useDebouncedValue('');
+  const [searchInput, setSearchInput, debouncedSearchInput, setDebouncedSearchInput] =
+    useDebouncedValue('');
   const {
     data,
     fetchNextPage,
@@ -58,10 +54,8 @@ export default function MyWebsitesPage() {
     refetch,
     isFetching,
   } = useManagedWordpressWebsites({ defaultFQDN: debouncedSearchInput });
-  const {
-    data: dataResourceDetails,
-    refetch: isRetchDataDetails,
-  } = useManagedWordpressResourceDetails(serviceName);
+  const { data: dataResourceDetails, refetch: isRetchDataDetails } =
+    useManagedWordpressResourceDetails(serviceName);
   const navigate = useNavigate();
   const [rowSelection, setRowSelection] = useState({});
   const importPage = useGenerateUrl(`./import`, 'href');
@@ -90,9 +84,7 @@ export default function MyWebsitesPage() {
   };
   const isRowSelectable = useCallback(
     (item: ManagedWordpressWebsites) =>
-      [ResourceStatus.READY, ResourceStatus.ERROR].includes(
-        item.resourceStatus as ResourceStatus,
-      ),
+      [ResourceStatus.READY, ResourceStatus.ERROR].includes(item.resourceStatus as ResourceStatus),
     [],
   );
   const handleDeleteItemClick = useCallback(
@@ -128,9 +120,7 @@ export default function MyWebsitesPage() {
           return (
             <OdsBadge
               color={statusColor}
-              label={t(
-                `common:web_hosting_status_${item?.resourceStatus.toLocaleLowerCase()}`,
-              )}
+              label={t(`common:web_hosting_status_${item?.resourceStatus.toLocaleLowerCase()}`)}
             />
           );
         },
@@ -188,9 +178,7 @@ export default function MyWebsitesPage() {
         topbar={
           <>
             <OdsText preset={ODS_TEXT_PRESET.span} className="mb-4 block">
-              {t(
-                'dashboard:hosting_managed_wordpress_websites_description_without_import',
-              )}
+              {t('dashboard:hosting_managed_wordpress_websites_description')}
             </OdsText>
             <div className="flex flex-wrap items-center gap-4 m-4">
               <ManagerButton
@@ -231,17 +219,10 @@ export default function MyWebsitesPage() {
                 />
               )}
               <OdsText preset={ODS_TEXT_PRESET.span} className="self-center">
-                {t(
-                  'managedWordpress:web_hosting_managed_wordpress_quota_used',
-                  {
-                    used:
-                      dataResourceDetails?.currentState.quotas.websites
-                        .totalUsage,
-                    total:
-                      dataResourceDetails?.currentState.quotas.websites
-                        .totalQuota,
-                  },
-                )}
+                {t('managedWordpress:web_hosting_managed_wordpress_quota_used', {
+                  used: dataResourceDetails?.currentState.quotas.websites.totalUsage,
+                  total: dataResourceDetails?.currentState.quotas.websites.totalQuota,
+                })}
               </OdsText>
               <ManagerButton
                 id="refresh"
