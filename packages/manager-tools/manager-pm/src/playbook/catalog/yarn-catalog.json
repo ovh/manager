@@ -89,6 +89,5 @@
   "packages/manager-tools/*",
   "packages/manager-tools/manager-legacy-tools/*",
   "packages/manager-react-components",
-  "packages/manager-wiki",
-  "packages/manager/apps/bmc-nasha"
+  "packages/manager-wiki"
 ]
