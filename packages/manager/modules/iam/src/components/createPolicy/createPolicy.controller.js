@@ -6,6 +6,7 @@ import {
   ENTITY_DESCRIPTION_PATTERN,
   ENTITY_NAME_PATTERN,
   TAG,
+  CHANGELOG,
 } from '../../iam.constants';
 import { URL } from '../../iam.service';
 import { CREATE_POLICY_TAG } from './createPolicy.constants';
@@ -26,6 +27,7 @@ export default class CreatePolicyController {
     this.ENTITY_RESOURCE_TYPE = ENTITY.RESOURCE_TYPE;
     this.URL_RESOURCE_GROUP = URL.RESOURCE_GROUP;
     this.TAG = TAG;
+    this.CHANGELOG = CHANGELOG;
 
     /**
      * The oui-select confirm-remove property works with promises
