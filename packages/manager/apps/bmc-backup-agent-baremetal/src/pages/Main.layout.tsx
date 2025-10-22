@@ -2,11 +2,11 @@ import { Suspense, useContext, useEffect } from 'react';
 
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
 
+import { BackupAgentContext } from '@ovh-ux/backup-agent';
 import { ShellContext, useOvhTracking, useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 
 import { appName } from '@/App.constants';
-import { BackupAgentContext } from "@ovh-ux/backup-agent";
 
 export default function MainLayout() {
   const location = useLocation();
@@ -36,7 +36,7 @@ export default function MainLayout() {
   }, [shell]);
 
   return (
-    <BackupAgentContext.Provider value={{ appName, scope: "Baremetal" }}>
+    <BackupAgentContext.Provider value={{ appName, scope: 'Baremetal' }}>
       <Suspense fallback={null /* Replace with loader if desired */}>
         <Outlet />
       </Suspense>
