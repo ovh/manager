@@ -1,5 +1,6 @@
 import React from 'react';
 import { ActionMenu, DashboardTile } from '@ovh-ux/manager-react-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { useVcdOrder } from '@ovh-ux/manager-module-vcd-api';
@@ -18,6 +19,7 @@ export default function OrganizationOptionsTile({
   isDisabled: boolean;
 }>) {
   const { t } = useTranslation('dashboard');
+  const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
   const { id } = useParams();
   const { trackClick } = useOvhTracking();
   const { redirectToOrder } = useVcdOrder({
@@ -51,9 +53,7 @@ export default function OrganizationOptionsTile({
                   items={[
                     {
                       id: 1,
-                      label: t(
-                        'managed_vcd_dashboard_windows_license_activate',
-                      ),
+                      label: tActions('activate'),
                       onClick: () => {
                         trackClick(TRACKING.dashboard.activateWindowsLicence);
                         redirectToOrder();
