@@ -24,7 +24,7 @@ const OnboardingTile = ({
   href,
   linkName,
 }: OnboardingTileProps) => {
-  const { t } = useTranslation('dataplatform');
+  const { t } = useTranslation('pci-object-storage/onboarding');
 
   return (
     <Card

@@ -52,8 +52,8 @@ export function useOrderFunnel({
       offer: ObjectContainerOffers['s3-standard'],
       region: regions.find((r) => r.name === 'EU-WEST-PAR')?.name || '',
       replication: {
-        enabled: true,
-        region: defaultReplicationRegion,
+        enabled: false,
+        region: undefined,
       },
       versioning: storages.VersioningStatusEnum.disabled,
       user: users[0]?.id ?? null,
@@ -117,19 +117,9 @@ export function useOrderFunnel({
         },
         { shouldValidate: true },
       );
-    } else {
-      form.setValue(
-        'replication',
-        {
-          enabled: true,
-          region: defaultReplicationRegion,
-        },
-        { shouldValidate: true },
-      );
     }
   }, [currentRegion, form]);
 
-  // force versioning if recplication is on
   useEffect(() => {
     if (replication?.enabled) {
       form.setValue('versioning', storages.VersioningStatusEnum.enabled, {

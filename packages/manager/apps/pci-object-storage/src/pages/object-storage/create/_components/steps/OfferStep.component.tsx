@@ -31,7 +31,11 @@ const OfferStep = React.forwardRef<HTMLInputElement, OfferStepProps>(
         onValueChange={onChange}
       >
         {OFFERS_TYPES.map((offer) => (
-          <RadioTile data-testid="offer-radio-tile-s3-api" value={offer}>
+          <RadioTile
+            data-testid="offer-radio-tile-s3-api"
+            value={offer}
+            key={offer}
+          >
             <div className="flex h-full flex-col">
               <div className="flex justify-between w-full">
                 <div className="flex items-center gap-2">

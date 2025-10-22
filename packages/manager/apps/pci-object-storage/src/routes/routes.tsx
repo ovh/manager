@@ -28,14 +28,14 @@ export default [
     children: [
       {
         path: '',
-        id: 'objects-storage',
+        id: 'object-storage',
         ...lazyLoadRoute(() =>
           import('@/pages/object-storage/ObjectStorage.layout'),
         ),
         children: [
           {
             path: '',
-            id: 'objects-storage.storages',
+            id: 'storages',
             ...lazyLoadRoute(() =>
               import('@/pages/object-storage/storage/Storages.page'),
             ),
@@ -69,7 +69,7 @@ export default [
           },
           {
             path: 'users',
-            id: 'objects-storage.users',
+            id: 'users',
             ...lazyLoadRoute(() =>
               import('@/pages/object-storage/users/Users.page'),
             ),

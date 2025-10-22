@@ -14,7 +14,9 @@ export type GuideId =
   | 'staticWebsite'
   | 'asyncReplication'
   | 'lifecycle'
-  | 'defaultEncryption';
+  | 'defaultEncryption'
+  | 'allGuides'
+  | 'gettingStarted';
 
 export type SectionId = 'localZone' | 's3Standard' | 'swift' | 'all';
 
@@ -31,6 +33,14 @@ export type Guide = {
  * Translation namespace: pci-object-storage/guides
  */
 export const getAllGuides = (): Record<GuideId, Omit<Guide, 'id'>> => ({
+  allGuides: {
+    titleKey: 'guideAll',
+    linksByLocale: GUIDES.ALL_GUIDES,
+  },
+  gettingStarted: {
+    titleKey: 'guideGettingStarted',
+    linksByLocale: GUIDES.GETTING_STARTED,
+  },
   localisation: {
     titleKey: 'guideLocalisation',
     descriptionKey: 'guideLocalisationDescription',
