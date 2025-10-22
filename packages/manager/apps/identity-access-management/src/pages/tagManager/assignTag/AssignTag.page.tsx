@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   BaseLayout,
+  ChangelogButton,
   Notifications,
   RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
@@ -19,6 +20,7 @@ import ResourcesListDatagrid from '@/components/resourcesDatagrid/ResourcesDatag
 import { ResourcesDatagridContextProvider } from '@/components/resourcesDatagrid/ResourcesDatagridContext';
 import AssignTagTopbar from './components/AssignTagTopbar.component';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
+import { CHANGELOG_LINKS, CHANGELOG_CHAPTERS } from '@/constants';
 
 export default function AssignTag() {
   const { t } = useTranslation('tag-manager');
@@ -27,6 +29,9 @@ export default function AssignTag() {
 
   const header = {
     title: t('assignMultipleToResources'),
+    changelogButton: (
+      <ChangelogButton links={CHANGELOG_LINKS} chapters={CHANGELOG_CHAPTERS} />
+    ),
   };
 
   return (
