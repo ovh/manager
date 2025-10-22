@@ -1,7 +1,6 @@
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useMutation } from '@tanstack/react-query';
-import { TFunction } from 'i18next';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Translation } from 'react-i18next';
@@ -56,7 +55,7 @@ export const useProjectCreation = ({
     const antiFraudError = error as AntiFraudError;
     if (antiFraudError === AntiFraudError.CASE_FRAUD_REFUSED) {
       addError(
-        <Translation ns="new/payment">
+        <Translation ns="payment">
           {(_t) =>
             _t('pci_project_new_payment_check_anti_fraud_case_fraud_refused')
           }
@@ -72,13 +71,13 @@ export const useProjectCreation = ({
           .then((url) => setBillingHref(String(url)));
       }
       addWarning(
-        <Translation ns="new/payment">
+        <Translation ns="payment">
           {(_t) => _t('pci_project_new_payment_create_error_fraud_suspect')}
         </Translation>,
       );
     } else {
       addError(
-        <Translation ns="new/payment">
+        <Translation ns="payment">
           {(_t) => _t('pci_project_new_payment_checkout_error')}
         </Translation>,
       );
