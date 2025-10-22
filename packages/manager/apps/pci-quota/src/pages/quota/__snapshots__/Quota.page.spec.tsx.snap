@@ -108,6 +108,8 @@ exports[`QuotaPage > should render 1`] = `
       >
         <ods-table
           class="overflow-x-visible"
+          size="md"
+          variant="default"
         >
           <!---->
           <table
