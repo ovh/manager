@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render basic modal with required props 1`] = `
+exports[`UpdateNameModal > Basic Modal States > should render basic modal with required props 1`] = `
 <body>
   <div />
   <div
@@ -129,11 +129,8 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render bas
 </body>
 `;
 
-exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render modal when closed 1`] = `
-<body
-  data-inert=""
-  style="pointer-events: none;"
->
+exports[`UpdateNameModal > Basic Modal States > should render modal when closed 1`] = `
+<body>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -264,7 +261,7 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render mod
 </body>
 `;
 
-exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render modal with all optional props 1`] = `
+exports[`UpdateNameModal > Basic Modal States > should render modal with all optional props 1`] = `
 <body>
   <div />
   <div
@@ -408,11 +405,8 @@ exports[`UpdateNameModal Snapshot Tests > Basic Modal States > should render mod
 </body>
 `;
 
-exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal with all features enabled 1`] = `
-<body
-  data-inert=""
-  style="pointer-events: none;"
->
+exports[`UpdateNameModal > Combined States > should render modal with all features enabled 1`] = `
+<body>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -555,11 +549,8 @@ exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal 
 </body>
 `;
 
-exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal with loading, error, and pattern validation 1`] = `
-<body
-  data-inert=""
-  style="pointer-events: none;"
->
+exports[`UpdateNameModal > Combined States > should render modal with loading, error, and pattern validation 1`] = `
+<body>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -732,11 +723,8 @@ exports[`UpdateNameModal Snapshot Tests > Combined States > should render modal 
 </body>
 `;
 
-exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render modal with custom button labels 1`] = `
-<body
-  data-inert=""
-  style="pointer-events: none;"
->
+exports[`UpdateNameModal > Custom Button Labels > should render modal with custom button labels 1`] = `
+<body>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -864,11 +852,8 @@ exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render m
 </body>
 `;
 
-exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render modal with custom cancel button only 1`] = `
-<body
-  data-inert=""
-  style="pointer-events: none;"
->
+exports[`UpdateNameModal > Custom Button Labels > should render modal with custom cancel button only 1`] = `
+<body>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -996,11 +981,8 @@ exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render m
 </body>
 `;
 
-exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render modal with custom confirm button only 1`] = `
-<body
-  data-inert=""
-  style="pointer-events: none;"
->
+exports[`UpdateNameModal > Custom Button Labels > should render modal with custom confirm button only 1`] = `
+<body>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -1128,11 +1110,8 @@ exports[`UpdateNameModal Snapshot Tests > Custom Button Labels > should render m
 </body>
 `;
 
-exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with empty default value 1`] = `
-<body
-  data-inert=""
-  style="pointer-events: none;"
->
+exports[`UpdateNameModal > Edge Cases > should render modal with empty default value 1`] = `
+<body>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -1257,11 +1236,8 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
 </body>
 `;
 
-exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with long text content 1`] = `
-<body
-  data-inert=""
-  style="pointer-events: none;"
->
+exports[`UpdateNameModal > Edge Cases > should render modal with long text content 1`] = `
+<body>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -1429,11 +1405,8 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
 </body>
 `;
 
-exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with null default value 1`] = `
-<body
-  data-inert=""
-  style="pointer-events: none;"
->
+exports[`UpdateNameModal > Edge Cases > should render modal with null default value 1`] = `
+<body>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -1561,11 +1534,8 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
 </body>
 `;
 
-exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with special characters in text 1`] = `
-<body
-  data-inert=""
-  style="pointer-events: none;"
->
+exports[`UpdateNameModal > Edge Cases > should render modal with special characters in text 1`] = `
+<body>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -1733,11 +1703,8 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal with 
 </body>
 `;
 
-exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal without onClose handler 1`] = `
-<body
-  data-inert=""
-  style="pointer-events: none;"
->
+exports[`UpdateNameModal > Edge Cases > should render modal without onClose handler 1`] = `
+<body>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -1865,11 +1832,8 @@ exports[`UpdateNameModal Snapshot Tests > Edge Cases > should render modal witho
 </body>
 `;
 
-exports[`UpdateNameModal Snapshot Tests > Error States > should render modal with error and description 1`] = `
-<body
-  data-inert=""
-  style="pointer-events: none;"
->
+exports[`UpdateNameModal > Error States > should render modal with error and description 1`] = `
+<body>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -2031,11 +1995,8 @@ exports[`UpdateNameModal Snapshot Tests > Error States > should render modal wit
 </body>
 `;
 
-exports[`UpdateNameModal Snapshot Tests > Error States > should render modal with error message 1`] = `
-<body
-  data-inert=""
-  style="pointer-events: none;"
->
+exports[`UpdateNameModal > Error States > should render modal with error message 1`] = `
+<body>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -2191,11 +2152,8 @@ exports[`UpdateNameModal Snapshot Tests > Error States > should render modal wit
 </body>
 `;
 
-exports[`UpdateNameModal Snapshot Tests > Loading States > should render modal in loading state 1`] = `
-<body
-  data-inert=""
-  style="pointer-events: none;"
->
+exports[`UpdateNameModal > Loading States > should render modal in loading state 1`] = `
+<body>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -2325,11 +2283,8 @@ exports[`UpdateNameModal Snapshot Tests > Loading States > should render modal i
 </body>
 `;
 
-exports[`UpdateNameModal Snapshot Tests > Loading States > should render modal with loading state and default value 1`] = `
-<body
-  data-inert=""
-  style="pointer-events: none;"
->
+exports[`UpdateNameModal > Loading States > should render modal with loading state and default value 1`] = `
+<body>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -2456,11 +2411,8 @@ exports[`UpdateNameModal Snapshot Tests > Loading States > should render modal w
 </body>
 `;
 
-exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should render modal with complex pattern validation 1`] = `
-<body
-  data-inert=""
-  style="pointer-events: none;"
->
+exports[`UpdateNameModal > Pattern Validation States > should render modal with complex pattern validation 1`] = `
+<body>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -2597,11 +2549,8 @@ exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should ren
 </body>
 `;
 
-exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should render modal with pattern validation 1`] = `
-<body
-  data-inert=""
-  style="pointer-events: none;"
->
+exports[`UpdateNameModal > Pattern Validation States > should render modal with pattern validation 1`] = `
+<body>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
@@ -2738,11 +2687,8 @@ exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should ren
 </body>
 `;
 
-exports[`UpdateNameModal Snapshot Tests > Pattern Validation States > should render modal with pattern validation and default value 1`] = `
-<body
-  data-inert=""
-  style="pointer-events: none;"
->
+exports[`UpdateNameModal > Pattern Validation States > should render modal with pattern validation and default value 1`] = `
+<body>
   <div />
   <div
     class="_modal-backdrop_inusz_22"
