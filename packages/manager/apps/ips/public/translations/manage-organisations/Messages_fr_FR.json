@@ -22,5 +22,12 @@
   "manageOrganisationsOrgModelPhoneLabel": "Téléphone",
   "manageOrganisationsErrorMessage": "Une erreur est survenue {{error}}.",
   "manageOrganisationsSuccessMessage": "Vos informations ont bien été prises en comptes",
-  "manageOrganisationsOrgModelPhoneInvalid": "Format internationnal requis {{countryCode}}"
+  "manageOrganisationsOrgModelPhoneInvalid": "Format internationnal requis {{countryCode}}",
+  "manageOrganisationsTabDeleteOrgAction": "Supprimer",
+  "manageOrganisationsDelete_confirm_input": "Entrez le nom de l'organisation dans le champ ci-dessous pour confirmer",
+  "manageOrganisationsDelete_confirm_headline": "Voulez-vous supprimer cette organisation IP ?",
+  "manageOrganisationsDelete_confirm_description": "Cette action va supprimer l'organisation de manière permanente",
+  "manageOrganisationsDelete_success": "L'organisation {{organisationId}} a été supprimée.",
+  "manageOrganisationsDelete_unknown_error": "Une erreur a eu lieu pendant la suppression de l'organisation: {{error}}",
+  "manageOrganisationsDelete_includedInIpBlock_error": "Cette organisation IP est toujours utilisée avec certains blocs IP. Veuillez d'abord la dissocier."
 }
