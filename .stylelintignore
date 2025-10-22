@@ -5,3 +5,5 @@ packages/manager/apps/dedicated/client/app/css/less/common/buttonIcons.less
 **/node_modules/
 **/coverage/
 **/.type-coverage/
+packages/manager-ui-kit
+packages/manager-wiki
