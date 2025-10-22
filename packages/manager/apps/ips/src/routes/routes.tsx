@@ -238,6 +238,21 @@ export const Routes: RouteObject[] = [
                   },
                 },
               },
+              {
+                id: subRoutes.deleteOrganisation,
+                path: urls.deleteOrganisation,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/actions/organisation/deleteOrganisation.page'
+                  ),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: subRoutes.deleteOrganisation,
+                    pageType: PageType.popup,
+                  },
+                },
+              },
             ],
             handle: {
               tracking: {

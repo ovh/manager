@@ -1,4 +1,9 @@
-import { useQuery, useQueries, UseQueryOptions } from '@tanstack/react-query';
+import {
+  useQuery,
+  useQueries,
+  UseQueryOptions,
+  UseQueryResult,
+} from '@tanstack/react-query';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   OrgDetails,
@@ -20,7 +25,7 @@ export type UseGetOrganisationDetailsParams = {
 export const useGetOrganisationsDetails = ({
   enabled = true,
 }: UseGetOrganisationsDetailsParams) => {
-  const { data: organisationList, isLoading, isError } = useQuery({
+  const { data: organisationList } = useQuery({
     queryKey: getOrganisationListQueryKey(),
     queryFn: getOrganisationList,
     enabled,
@@ -28,7 +33,9 @@ export const useGetOrganisationsDetails = ({
 
   const results = useQueries({
     queries: (organisationList?.data || []).map(
-      (organisationId): UseQueryOptions<ApiResponse<OrgDetails>, ApiError> => ({
+      (
+        organisationId: string,
+      ): UseQueryOptions<ApiResponse<OrgDetails>, ApiError> => ({
         queryKey: getOrganisationsDetailsQueryKey({
           organisationId,
         }),
@@ -36,21 +43,24 @@ export const useGetOrganisationsDetails = ({
         enabled: !!organisationList?.data?.length,
       }),
     ),
+    combine: (
+      queriesResults: UseQueryResult<ApiResponse<OrgDetails>, ApiError>[],
+    ) => ({
+      isPending: queriesResults.some((result) => result.isPending),
+      isLoading: queriesResults.some((result) => result.isLoading),
+      error: queriesResults.find((result) => result.error)?.error,
+      data: queriesResults
+        .map(({ data }) => data?.data)
+        .sort((a, b) => {
+          // Sort in reverse order based on organization ID
+          // Assuming newer organizations have higher IDs
+          return (b?.organisationId || '').localeCompare(
+            a?.organisationId || '',
+          );
+        }),
+    }),
   });
-
-  const formattedResult = {
-    isLoading: isLoading || !!results.find((result) => !!result.isLoading),
-    isError: isError || !!results.find((result) => !!result.isError),
-    orgDetails: results
-      .map(({ data }) => data?.data)
-      .sort((a, b) => {
-        // Sort in reverse order based on organization ID
-        // Assuming newer organizations have higher IDs
-        return (b?.organisationId || '').localeCompare(a?.organisationId || '');
-      }),
-  };
-
-  return formattedResult;
+  return results;
 };
 
 export const useGetSingleOrganisationDetail = ({
