@@ -38,9 +38,7 @@ describe('Datacentre General Information Page Updates', () => {
       initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}`,
     });
 
-    await assertTextVisibility(
-      labels.dashboard.managed_vcd_dashboard_general_information,
-    );
+    await assertTextVisibility(labels.commun.dashboard.general_information);
   });
 });
 

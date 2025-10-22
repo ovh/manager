@@ -1,5 +1,5 @@
 {
   "terminate_managed_vcd_success": "Die Anfrage zum Kündigen Ihres Dienstes {{service}} wurde erfolgreich registriert. Sie werden eine E-Mail erhalten, um diese zu bestätigen.",
   "terminate_managed_vcd_ftc_success": "Die Anfrage zum Kündigen Ihres Dienstes {{service}} wurde erfolgreich registriert. Ihnen wurde eine Bestätigungs-E-Mail gesendet.",
-  "terminate_confirm_deletion_service": "Geben Sie &lt;1>{{confirmationKeyword}}&lt;/1> ein, um Ihre Wahl zu bestätigen."
+  "terminate_confirm_deletion_service": "Geben Sie <1>{{confirmationKeyword}}</1> ein, um Ihre Wahl zu bestätigen."
 }

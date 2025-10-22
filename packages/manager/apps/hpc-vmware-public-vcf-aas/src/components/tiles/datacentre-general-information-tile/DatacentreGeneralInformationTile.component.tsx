@@ -4,6 +4,8 @@ import {
   Clipboard,
   DashboardTile,
 } from '@ovh-ux/manager-react-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -43,6 +45,7 @@ export default function DatacentreGenerationInformationTile({
 }: TTileProps) {
   const { t } = useTranslation('dashboard');
   const { t: tVdc } = useTranslation('datacentres');
+  const { t: tDashboard } = useTranslation(NAMESPACES.DASHBOARD);
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
   const { data: featuresAvailable } = useFeatureAvailability([
@@ -63,11 +66,11 @@ export default function DatacentreGenerationInformationTile({
 
   return (
     <DashboardTile
-      title={t('managed_vcd_dashboard_general_information')}
+      title={tDashboard('general_information')}
       items={[
         {
           id: 'description',
-          label: t('managed_vcd_dashboard_description'),
+          label: tDashboard('description'),
           value: (
             <EditableTileItem
               value={vcdDatacentre?.currentState?.description}
