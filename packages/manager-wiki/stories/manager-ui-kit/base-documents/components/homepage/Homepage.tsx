@@ -4,7 +4,7 @@ import { HOME_TITLE } from '../../constants/meta';
 import { ExternalLink } from '../externalLink/ExternalLink';
 import { StorybookLink } from '../storybookLink/StorybookLink';
 import styles from './homepage.module.css';
-import imageFile from '/assets/base-assets/ods_bg.png';
+import imageFile from './base-assets/ods_bg.png';
 
 const Homepage = () => {
   return (
