@@ -184,7 +184,7 @@ export const PCI_FEATURES_STATES: TFeatureState = {
   },
   DATABASES: {
     LIST: {
-      url: `${BASE_PROJECT_PATH}/databases-analytics/operational/services/new`,
+      url: `${BASE_PROJECT_PATH}/databases-analytics/operational/services`,
       targetParamKeys: ['steps'],
       featureAvailability: FEATURE_AVAILABILITY.DATABASES_ANALYTICS,
     },
