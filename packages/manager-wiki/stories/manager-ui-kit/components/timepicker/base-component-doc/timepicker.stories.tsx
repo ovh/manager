@@ -14,8 +14,14 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<TimepickerProp>;
+
+(Timepicker as any).__docgenInfo = docgenMap.timepicker;
+(TimepickerControl as any).__docgenInfo = docgenMap.timepickerControl;
+(TimepickerTimezoneList as any).__docgenInfo = docgenMap.timepickerTimezoneList;
+
 type DemoArg = Partial<TimepickerProp> & {
   withTimezones?: boolean,
 }
@@ -193,7 +199,7 @@ export const Readonly: Story = {
   globals: {
     imports: `import { Timepicker, TimepickerControl, TimepickerTimezoneList } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -219,7 +225,7 @@ export const TimezoneList: Story = {
   globals: {
     imports: `import { Timepicker, TimepickerControl, TimepickerTimezoneList } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -251,7 +257,7 @@ export const WithSeconds: Story = {
   globals: {
     imports: `import { Timepicker, TimepickerControl, TimepickerTimezoneList } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

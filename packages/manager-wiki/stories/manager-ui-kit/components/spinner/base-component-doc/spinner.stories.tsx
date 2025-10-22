@@ -11,8 +11,11 @@ import {
 import { CONTROL_CATEGORY } from '../../../base-documents/constants/controls';
 import { orderControls } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<SpinnerProp>;
+
+(Spinner as any).__docgenInfo = docgenMap.spinner;
 
 const meta: Meta<SpinnerProp> = {
   component: Spinner,
@@ -64,7 +67,7 @@ export const Default: Story = {
   globals: {
     imports: `import { Spinner } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -92,7 +95,7 @@ export const Size: Story = {
   globals: {
     imports: `import { SPINNER_SIZE, Spinner } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -112,7 +115,7 @@ export const AccessibilityAriaBusyAriaLive: Story = {
   globals: {
     imports: `import { Spinner } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -131,7 +134,7 @@ export const AccessibilityAriaLabel: Story = {
   globals: {
     imports: `import { Spinner } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -146,7 +149,7 @@ export const AccessibilityAriaLabelledBy: Story = {
   globals: {
     imports: `import { Spinner } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

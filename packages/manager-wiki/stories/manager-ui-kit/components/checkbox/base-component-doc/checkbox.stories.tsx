@@ -16,8 +16,15 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<CheckboxProp>;
+
+(Checkbox as any).__docgenInfo = docgenMap.checkbox;
+(CheckboxControl as any).__docgenInfo = docgenMap.checkboxControl;
+(CheckboxGroup as any).__docgenInfo = docgenMap.checkboxGroup;
+(CheckboxLabel as any).__docgenInfo = docgenMap.checkboxLabel;
+
 type DemoArg = Partial<CheckboxProp> & {
   label?: string,
 };
@@ -89,7 +96,7 @@ export const Disabled: Story = {
   globals: {
     imports: `import { Checkbox, CheckboxControl, CheckboxLabel } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -111,7 +118,7 @@ export const InFormField: Story = {
   globals: {
     imports: `import { TEXT_PRESET, Checkbox, CheckboxControl, CheckboxLabel, FormField, Text } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -150,7 +157,7 @@ export const Group: Story = {
   globals: {
     imports: `import { Checkbox, CheckboxControl, CheckboxGroup, CheckboxLabel } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -183,7 +190,7 @@ export const Invalid: Story = {
   globals: {
     imports: `import { Checkbox, CheckboxControl, CheckboxLabel } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -201,7 +208,7 @@ tags: ['!dev'],
 };
 
 export const Overview: Story = {
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     layout: 'centered',
     docs: {
@@ -224,7 +231,7 @@ export const States: Story = {
   globals: {
     imports: `import { Checkbox, CheckboxControl, CheckboxLabel } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

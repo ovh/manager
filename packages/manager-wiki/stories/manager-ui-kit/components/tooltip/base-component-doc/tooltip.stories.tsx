@@ -17,8 +17,14 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<TooltipProp>;
+
+(Tooltip as any).__docgenInfo = docgenMap.tooltip;
+(TooltipContent as any).__docgenInfo = docgenMap.tooltipContent;
+(TooltipTrigger as any).__docgenInfo = docgenMap.tooltipTrigger;
+
 type DemoArg = Partial<TooltipProp> & Partial<TooltipContentProp> & {
   content?: string,
 };
@@ -138,7 +144,7 @@ export const CustomTrigger: Story = {
   globals: {
     imports: `import { ICON_NAME, Icon, Tooltip, TooltipContent, TooltipTrigger } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -163,7 +169,7 @@ export const Default: Story = {
   globals: {
     imports: `import { Tooltip, TooltipContent, TooltipTrigger } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -197,7 +203,7 @@ export const Grid: StoryObj = {
   globals: {
     imports: `import { Tooltip, TooltipContent, TooltipTrigger } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -309,7 +315,7 @@ export const AccessibilityTooltip: Story = {
   globals: {
     imports: `import { ICON_NAME, Icon, Tooltip, TooltipContent, TooltipTrigger } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

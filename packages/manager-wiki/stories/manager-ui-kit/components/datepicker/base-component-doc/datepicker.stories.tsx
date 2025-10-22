@@ -19,8 +19,14 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<DatepickerProp>;
+
+(Datepicker as any).__docgenInfo = docgenMap.datepicker;
+(DatepickerContent as any).__docgenInfo = docgenMap.datepickerContent;
+(DatepickerControl as any).__docgenInfo = docgenMap.datepickerControl;
+
 type DemoArg = Partial<DatepickerProp> & Partial<DatepickerControlProp>;
 
 const meta: Meta<DatepickerProp> = {
@@ -122,7 +128,7 @@ export const Default: Story = {
   globals: {
     imports: `import { Datepicker, DatepickerContent, DatepickerControl } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -142,7 +148,7 @@ export const Disabled: Story = {
   globals: {
     imports: `import { Datepicker, DatepickerContent, DatepickerControl } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -181,7 +187,7 @@ export const InFormField: Story = {
   globals: {
     imports: `import { Datepicker, DatepickerContent, DatepickerControl, FormField, FormFieldLabel } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -206,7 +212,7 @@ export const MaxView: Story = {
   globals: {
     imports: `import { Datepicker, DatepickerContent, DatepickerControl } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -225,7 +231,7 @@ export const MinMax: Story = {
   globals: {
     imports: `import { Datepicker, DatepickerContent, DatepickerControl } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -246,7 +252,7 @@ export const MinView: Story = {
   globals: {
     imports: `import { Datepicker, DatepickerContent, DatepickerControl } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -262,7 +268,7 @@ tags: ['!dev'],
 };
 
 export const Overview: Story = {
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     layout: 'centered',
     docs: {
@@ -282,7 +288,7 @@ export const Readonly: Story = {
   globals: {
     imports: `import { Datepicker, DatepickerContent, DatepickerControl } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -301,7 +307,7 @@ export const AccessibilityFormField: Story = {
   globals: {
     imports: `import { Datepicker, DatepickerContent, DatepickerControl, FormField, FormFieldLabel } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -326,7 +332,7 @@ export const AccessibilityDateFormat: Story = {
   globals: {
     imports: `import { TEXT_PRESET, Datepicker, DatepickerContent, DatepickerControl, FormField, FormFieldHelper, FormFieldLabel, Text } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

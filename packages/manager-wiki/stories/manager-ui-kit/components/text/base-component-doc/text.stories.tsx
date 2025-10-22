@@ -9,8 +9,11 @@ import {
 import { CONTROL_CATEGORY } from '../../../base-documents/constants/controls';
 import { orderControls } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<TextProp>;
+
+(Text as any).__docgenInfo = docgenMap.text;
 
 const meta: Meta<TextProp> = {
   component: Text,
@@ -62,7 +65,7 @@ export const FigCaption: Story = {
   globals: {
     imports: `import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -127,7 +130,7 @@ export const TableCaption: Story = {
   globals: {
     imports: `import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

@@ -14,8 +14,13 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<AccordionProp>;
+
+(Accordion as any).__docgenInfo = docgenMap.accordion;
+(AccordionItem as any).__docgenInfo = docgenMap.accordionItem;
+(AccordionTrigger as any).__docgenInfo = docgenMap.accordionTrigger;
 
 const meta: Meta<AccordionProp> = {
   component: Accordion,
@@ -27,7 +32,7 @@ const meta: Meta<AccordionProp> = {
 export default meta;
 
 export const Overview: Story = {
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -106,7 +111,7 @@ export const Default: Story = {
   globals: {
     imports: `import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -130,7 +135,7 @@ export const Multiple: Story = {
   globals: {
     imports: `import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, Text } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -191,7 +196,7 @@ export const Disabled: Story = {
   globals: {
     imports: `import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

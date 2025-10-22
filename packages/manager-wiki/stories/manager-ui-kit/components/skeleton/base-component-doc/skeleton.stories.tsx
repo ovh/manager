@@ -2,8 +2,11 @@ import { type Meta, type StoryObj } from '@storybook/react';
 import React from 'react';
 import { Skeleton, type SkeletonProp } from '@ovhcloud/ods-react';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<SkeletonProp>;
+
+(Skeleton as any).__docgenInfo = docgenMap.skeleton;
 
 const meta: Meta<SkeletonProp> = {
   component: Skeleton,

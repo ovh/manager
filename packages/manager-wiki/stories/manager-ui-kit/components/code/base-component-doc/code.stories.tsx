@@ -7,8 +7,11 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<CodeProp>;
+
+(Code as any).__docgenInfo = docgenMap.code;
 
 const meta: Meta<CodeProp> = {
   argTypes: excludeFromDemoControls(['onCopy']),
@@ -56,7 +59,7 @@ export const Default: Story = {
   globals: {
     imports: `import { Code } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -70,7 +73,7 @@ tags: ['!dev'],
 };
 
 export const Overview: Story = {
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -90,7 +93,7 @@ export const CanCopy: Story = {
   globals: {
     imports: `import { Code } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -107,7 +110,7 @@ export const CustomLabels: Story = {
   globals: {
     imports: `import { Code } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -127,7 +130,7 @@ export const Multiline: Story = {
   globals: {
     imports: `import { Code } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

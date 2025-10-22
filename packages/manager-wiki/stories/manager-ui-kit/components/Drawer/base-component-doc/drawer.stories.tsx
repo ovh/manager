@@ -18,8 +18,15 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<DrawerProp>;
+
+(Drawer as any).__docgenInfo = docgenMap.drawer;
+(DrawerBody as any).__docgenInfo = docgenMap.drawerBody;
+(DrawerContent as any).__docgenInfo = docgenMap.drawerContent;
+(DrawerTrigger as any).__docgenInfo = docgenMap.drawerTrigger;
+
 type DemoArg = Partial<DrawerProp> & Partial<DrawerContentProp> & {
   content?: string;
 }
@@ -128,7 +135,7 @@ export const Default: Story = {
   globals: {
     imports: `import { Button, Drawer, DrawerBody, DrawerContent, DrawerTrigger } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -182,7 +189,7 @@ export const Position: Story = {
   globals: {
     imports: `import { DRAWER_POSITION, Button, Drawer, DrawerBody, DrawerContent, DrawerTrigger } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -254,7 +261,7 @@ export const AccessibilityAriaLabelledBy: Story = {
   globals: {
     imports: `import { Button, Drawer, DrawerBody, DrawerContent, DrawerTrigger } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -289,7 +296,7 @@ export const AccessibilityAriaLabel: Story = {
   globals: {
     imports: `import { Button, Drawer, DrawerBody, DrawerContent, DrawerTrigger } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

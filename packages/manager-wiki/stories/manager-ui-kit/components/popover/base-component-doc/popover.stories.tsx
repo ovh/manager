@@ -20,8 +20,14 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<PopoverProp>;
+
+(Popover as any).__docgenInfo = docgenMap.popover;
+(PopoverContent as any).__docgenInfo = docgenMap.popoverContent;
+(PopoverTrigger as any).__docgenInfo = docgenMap.popoverTrigger;
+
 type DemoArg = Partial<PopoverProp> & Partial<PopoverContentProp> & {
   content?: string,
 };
@@ -138,7 +144,7 @@ export const CustomTrigger: Story = {
   globals: {
     imports: `import { Button, Popover, PopoverContent, PopoverTrigger } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -163,7 +169,7 @@ export const Default: Story = {
   globals: {
     imports: `import { Popover, PopoverContent, PopoverTrigger } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -197,7 +203,7 @@ export const Grid: StoryObj = {
   globals: {
     imports: `import { Popover, PopoverContent, PopoverTrigger } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -309,7 +315,7 @@ export const AccessibilityWithMenu: Story = {
   globals: {
     imports: `import { BUTTON_COLOR, BUTTON_VARIANT, ICON_NAME, Button, Divider, Icon, Popover, PopoverContent, PopoverTrigger } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -361,7 +367,7 @@ export const SameWidth: Story = {
   globals: {
     imports: `import { Popover, PopoverContent, PopoverTrigger } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

@@ -16,8 +16,14 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<ClipboardProp>;
+
+(Clipboard as any).__docgenInfo = docgenMap.clipboard;
+(ClipboardControl as any).__docgenInfo = docgenMap.clipboardControl;
+(ClipboardTrigger as any).__docgenInfo = docgenMap.clipboardTrigger;
+
 type DemoArg = Partial<ClipboardProp> & Partial<ClipboardControlProp> & Partial<ClipboardTriggerProp> & {
   masked?: boolean,
 };

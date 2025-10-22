@@ -15,8 +15,13 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<ToggleProp>;
+
+(Toggle as any).__docgenInfo = docgenMap.toggle;
+(ToggleControl as any).__docgenInfo = docgenMap.toggleControl;
+(ToggleLabel as any).__docgenInfo = docgenMap.toggleLabel;
 
 const meta: Meta<ToggleProp> = {
   argTypes: excludeFromDemoControls(['checked', 'defaultChecked', 'name', 'onCheckedChange', 'required', 'value']),
@@ -54,7 +59,7 @@ export const Default: Story = {
   globals: {
     imports: `import { Toggle, ToggleControl } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -68,7 +73,7 @@ tags: ['!dev'],
 };
 
 export const Overview: Story = {
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     layout: 'centered',
     docs: {
@@ -143,7 +148,7 @@ export const Invalid: Story = {
   globals: {
     imports: `import { Toggle, ToggleControl } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -160,7 +165,7 @@ export const WithLabel: Story = {
   globals: {
     imports: `import { Toggle, ToggleControl, ToggleLabel } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -181,7 +186,7 @@ export const WithLabels: Story = {
   globals: {
     imports: `import { Toggle, ToggleControl } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -198,7 +203,7 @@ export const AccessibilityLabel: Story = {
   globals: {
     imports: `import { Toggle, ToggleControl, ToggleLabel } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },
@@ -219,7 +224,7 @@ export const AccessibilityAriaLabel: Story = {
   globals: {
     imports: `import { Toggle, ToggleControl, ToggleLabel } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     docs: {
       source: { ...staticSourceRenderConfig() },

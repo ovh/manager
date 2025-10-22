@@ -14,8 +14,11 @@ import {
   orderControls,
 } from '../../../base-documents/helpers/controls';
 import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
+import docgenMap from '../../../base-documents/constants/ods-docgen-map.json';
 
 type Story = StoryObj<TagProp>;
+
+(Tag as any).__docgenInfo = docgenMap.tag;
 
 const meta: Meta<TagProp> = {
   argTypes: excludeFromDemoControls(['onRemove']),
@@ -90,7 +93,7 @@ export const Default: Story = {
   globals: {
     imports: `import { Tag } from '@ovhcloud/ods-react';`,
   },
-tags: ['!dev'],
+  tags: ['!dev'],
   parameters: {
     layout: 'centered',
     docs: {
