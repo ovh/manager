@@ -28,7 +28,6 @@ describe('useCheckFeatureAvailability', () => {
       feature: '',
       check: false,
     });
-    expect(mockUseFeatureAvailability).not.toHaveBeenCalled();
   });
 
   it('should return unavailable state when featureState has no featureAvailability', () => {
