@@ -56,7 +56,7 @@ function getComponentProp(name: string, prop: PropDescriptor): ComponentProp | u
   return {
     description: prop.description || '',
     defaultValue: prop.defaultValue?.value?.toString() || tagsMap.get(TAG.defaultValue) || 'undefined',
-    isOptional: !prop.required,
+    isOptional: prop?.required,
     name,
     type: tagsMap.get(TAG.type) || (prop.tsType ? typeToString(prop.tsType) : ''),
   }
@@ -92,7 +92,7 @@ function typeToString(type: TypeDescriptor): string {
   if (type.name === 'literal') {
     // Small tweak to display enum type instead of the actual string literal
     // ex: BUTTON_TYPE instead of `${BUTTON_TYPE}`
-    return (type as LiteralType).value.replace(/^`\${(.*)}`/, '$1');
+    return (type as LiteralType).value?.replace(/^`\${(.*)}`/, '$1');
   }
 
   if (type.name.length === 1) {
