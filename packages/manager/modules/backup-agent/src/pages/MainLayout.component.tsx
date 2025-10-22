@@ -9,14 +9,15 @@ import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
 import { BaseLayout, Breadcrumb } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
-import { urls } from '@/routes/Routes.constants';
-
+import { LABELS } from "@/module.constants"
+import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 import { useDashboardTabs } from './_hooks/useDashboardTabs';
 import {BackupAgentContext} from "@/BackupAgent.context";
+import {BACKUP_AGENT_NAMESPACES} from "@/BackupAgent.translations";
 
 export default function MainLayout() {
   const { appName } = useContext(BackupAgentContext);
-  const { t } = useTranslation(['common', 'dashboard']);
+  const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.COMMON, NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
 
   const location = useLocation();
@@ -37,8 +38,8 @@ export default function MainLayout() {
 
   return (
     <BaseLayout
-      header={{ title: t('dashboard:title') }}
-      backLinkLabel={t('dashboard:back')}
+      header={{ title: LABELS.BACKUP_AGENT }}
+      backLinkLabel={t(`NAMESPACES.ACTIONS:back`)}
       onClickReturn={onNavigateBackClicked}
       breadcrumb={<Breadcrumb appName={appName} rootLabel={appName} />}
       tabs={
