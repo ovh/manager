@@ -30,13 +30,16 @@ export default (
   const feature: string | undefined = featureState?.featureAvailability;
   const check = !!feature;
 
+  const { data: availability } = useFeatureAvailability(
+    (feature ? [feature] : []) as [string],
+    {
+      enabled: check,
+    },
+  );
+
   if (!feature) {
     return { available: false, feature: '', check: false };
   }
-
-  const { data: availability } = useFeatureAvailability([feature], {
-    enabled: check,
-  });
 
   return { available: availability?.[feature] || false, feature, check };
 };
