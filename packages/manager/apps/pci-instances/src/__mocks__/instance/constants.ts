@@ -3,12 +3,15 @@ import { TInstancesCatalogDTO } from '@/adapters/tanstack/instancesCatalog/right
 import { TDeploymentModeDataForCard } from '@/pages/instances/create/view-models/deploymentModeViewModel';
 import { TAggregatedInstance } from '@/types/instance/entity.type';
 import { TInstancesCatalog } from '@/domain/entities/instancesCatalog';
-import InstanceImage from '../../../public/assets/instance.png';
+import Region1azImage from '../../../public/assets/1AZ.svg';
+import Region3azImage from '../../../public/assets/3AZ.svg';
+import LZImage from '../../../public/assets/LZ.svg';
 import { TDeploymentMode } from '@/types/instance/common.type';
 import { TRegionData } from '@/pages/instances/create/view-models/localizationsViewModel';
 import { TContinentData } from '@/pages/instances/create/view-models/continentsViewModel';
 import { TOptionsData } from '@/pages/instances/create/view-models/categoriesTypesViewModel';
 import { TFlavorDataForTable } from '@/pages/instances/create/view-models/flavorsViewModel';
+import { ComponentType, SVGProps } from 'react';
 
 export const mockedInstance: TAggregatedInstance = {
   id: '12345',
@@ -575,21 +578,25 @@ export const mockedDeploymentModesSelectorData: TDeploymentModeDataForCard[] = [
     title: 'common:pci_instances_common_instance_region_deployment_mode',
     description:
       'common:pci_instances_common_instance_region_deployment_mode_description',
-    url: InstanceImage,
+    Image: (Region1azImage as unknown) as ComponentType<
+      SVGProps<SVGSVGElement>
+    >,
   },
   {
     mode: 'region-3-az',
     title: 'common:pci_instances_common_instance_region-3-az_deployment_mode',
     description:
       'common:pci_instances_common_instance_region-3-az_deployment_mode_description',
-    url: InstanceImage,
+    Image: (Region3azImage as unknown) as ComponentType<
+      SVGProps<SVGSVGElement>
+    >,
   },
   {
     mode: 'localzone',
     title: 'common:pci_instances_common_instance_localzone_deployment_mode',
     description:
       'common:pci_instances_common_instance_localzone_deployment_mode_description',
-    url: InstanceImage,
+    Image: (LZImage as unknown) as ComponentType<SVGProps<SVGSVGElement>>,
   },
 ];
 
