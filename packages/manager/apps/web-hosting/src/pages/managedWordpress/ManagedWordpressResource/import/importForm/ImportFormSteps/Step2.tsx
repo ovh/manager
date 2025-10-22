@@ -52,17 +52,20 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
   const wholeDatabase = watch('wholeDatabase');
   const watchedPlugins = step2Form.watch('plugins');
   const themes = watch('themes');
-  const hasActivePlugin = watchedPlugins?.some((plugin) => plugin.enabled);
-  const hasActiveTheme = themes?.some((t) => t.active);
+  const hasActivePlugin =
+    watchedPlugins?.length > 0 ? watchedPlugins.some((plugin) => plugin.enabled) : true;
+  const hasActiveTheme = themes?.length > 0 ? themes.some((t) => t.active) : true;
 
   return (
     <form onSubmit={onSubmit}>
-      <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
-        {t('managedWordpress:web_hosting_managed_wordpress_import_select_element')}
-      </OdsText>
-      <OdsText preset={ODS_TEXT_PRESET.span}>
-        {t('managedWordpress:web_hosting_managed_wordpress_import_select_element_description')}
-      </OdsText>
+      <div className="flex flex-col">
+        <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
+          {t('managedWordpress:web_hosting_managed_wordpress_import_select_element')}
+        </OdsText>
+        <OdsText preset={ODS_TEXT_PRESET.span}>
+          {t('managedWordpress:web_hosting_managed_wordpress_import_select_element_description')}
+        </OdsText>
+      </div>
       <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
         <ManagerTile color={ODS_CARD_COLOR.neutral}>
           <ManagerTile.Title>{t('common:web_hosting_common_plugins')}</ManagerTile.Title>
@@ -408,7 +411,12 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
         <ManagerButton
           type="submit"
           label={t('common:web_hosting_common_action_launch_import')}
-          isDisabled={!isValid || isSubmitting || !hasActiveTheme || !hasActivePlugin}
+          isDisabled={
+            !isValid ||
+            isSubmitting ||
+            (watchedPlugins?.length > 0 && !hasActivePlugin) ||
+            (themes?.length > 0 && !hasActiveTheme)
+          }
           isLoading={isSubmitting}
           color={ODS_BUTTON_COLOR.primary}
           id="import-step2"
