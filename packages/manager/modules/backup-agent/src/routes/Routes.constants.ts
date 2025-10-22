@@ -1,10 +1,10 @@
-import {BACKUP_AGENT_NAMESPACES} from "@/BackupAgent.translations";
+import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 
 export const subRoutes = {
-  'services': 'services' as const,
-  'vaults': 'vaults' as const,
-  'billing': 'billing' as const,
-  'dashboard': 'dashboard' as const,
+  services: 'services' as const,
+  vaults: 'vaults' as const,
+  billing: 'billing' as const,
+  dashboard: 'dashboard' as const,
 } as const;
 
 export const urlParams = {
@@ -38,5 +38,5 @@ export const MAIN_LAYOUT_NAV_TABS = Object.freeze([
     to: subRoutes.billing,
     pathMatchers: [/^\/billing\/[^/]+$/],
     trackingActions: ['click::billing-tile-tab'],
-  }
+  },
 ]);

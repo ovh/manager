@@ -1,9 +1,11 @@
 import i18next, { InitOptions, i18n } from 'i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import status from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/status/Messages_fr_FR.json';
-import commonDashboard from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/dashboard/Messages_fr_FR.json';
 import billing from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/billing/Messages_fr_FR.json';
+import commonDashboard from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/dashboard/Messages_fr_FR.json';
+import status from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/status/Messages_fr_FR.json';
+
+import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -11,8 +13,6 @@ import vaultDashboard from '../../public/translations/vaults/dashboard/Messages_
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import vaultListing from '../../public/translations/vaults/listing/Messages_fr_FR.json';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-import {BACKUP_AGENT_NAMESPACES} from "@/BackupAgent.translations";
 
 export const defaultLocale = 'fr_FR';
 export const defaultAvailableLocales = [defaultLocale];
@@ -41,6 +41,7 @@ export const getTesti18nParams = (): InitOptions<unknown> => ({
 });
 export const initTestI18n = () =>
   new Promise<i18n>((resolve) => {
+    // eslint-disable-next-line import/no-named-as-default-member
     void i18next.init(getTesti18nParams());
     if (i18next.isInitialized) {
       addTranslations();
