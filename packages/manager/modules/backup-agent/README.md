@@ -32,7 +32,7 @@ Add the backup-agent package to your dependencies:
 
 Add the backup-agent translation files to your Vite configuration using `vite-plugin-static-copy`:
 
-```mjs
+```js
 import { defineConfig } from 'vite';
 import { resolve, dirname } from 'path';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
@@ -60,6 +60,37 @@ export default defineConfig({
 ```
 
 Don't forget to install the required dev dependency: `vite-plugin-static-copy`
+
+### add css config for tailwind
+
+```js
+import baseConfig from '@ovh-ux/manager-tailwind-config';
+import path from 'node:path';
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+const pkgDir = (name) => path.dirname(require.resolve(`${name}/package.json`));
+const toGlob = (dir) => `${dir.replace(/\\/g, '/')}/**/*.{js,jsx,ts,tsx}`;
+
+const reactComponentsDir = pkgDir('@ovh-ux/manager-react-components');
+const backupAgentModuleDir = pkgDir('@ovh-ux/backup-agent');   // Add backup agent dir resolution
+
+const baseTailwindConfig = [
+  ...(baseConfig.content ?? []),
+  './src/**/*.{js,jsx,ts,tsx}',
+  toGlob(reactComponentsDir),
+  toGlob(backupAgentModuleDir)    // Add it on base tailwind config
+];
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  ...baseConfig,
+  content: baseTailwindConfig,
+  corePlugins: {
+    preflight: false,
+  },
+};
+```
 
 ### add the context provider in your main layout
 
