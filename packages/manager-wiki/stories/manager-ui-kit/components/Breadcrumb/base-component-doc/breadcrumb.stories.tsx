@@ -13,6 +13,7 @@ import {
   excludeFromDemoControls,
   orderControls,
 } from '../../../base-documents/helpers/controls';
+import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
 
 type Story = StoryObj<BreadcrumbProp>;
 
@@ -26,6 +27,11 @@ const meta: Meta<BreadcrumbProp> = {
 export default meta;
 
 export const Demo: Story = {
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: (arg) => (
     <Breadcrumb
       collapseThreshold={ arg.collapseThreshold }
@@ -86,6 +92,11 @@ export const Collapsed: Story = {
     imports: `import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Breadcrumb>
       <BreadcrumbItem>
@@ -138,6 +149,11 @@ export const CustomAfterBeforeCollapse: Story = {
     imports: `import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Breadcrumb
       nbItemsBeforeEllipsis={ 1 }
@@ -192,6 +208,11 @@ export const CustomCollapseThreshold: Story = {
     imports: `import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Breadcrumb collapseThreshold={ 7 }>
       <BreadcrumbItem>
@@ -244,6 +265,11 @@ export const Default: Story = {
     imports: `import { ICON_NAME, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Icon } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Breadcrumb>
       <BreadcrumbItem>
@@ -272,6 +298,11 @@ export const NoCollapse: Story = {
     imports: `import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Breadcrumb noCollapse>
       <BreadcrumbItem>
@@ -323,6 +354,9 @@ export const Overview: Story = {
   tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <Breadcrumb>
@@ -355,6 +389,9 @@ export const AccessibilityWithAriaLabel: Story = {
   tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <Breadcrumb aria-label="Breadcrumb">

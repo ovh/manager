@@ -8,6 +8,7 @@ import {
 } from '@ovhcloud/ods-react';
 import { CONTROL_CATEGORY } from '../../../base-documents/constants/controls';
 import { orderControls } from '../../../base-documents/helpers/controls';
+import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
 
 type Story = StoryObj<TextProp>;
 
@@ -45,6 +46,11 @@ export const Default: Story = {
     imports: `import { Text } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Text>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -56,7 +62,12 @@ export const FigCaption: Story = {
   globals: {
     imports: `import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <figure>
       <img alt="OVHcloud logo"
@@ -76,6 +87,9 @@ export const Overview: Story = {
   tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
@@ -87,6 +101,11 @@ export const Preset: Story = {
     imports: `import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <Text preset={ TEXT_PRESET.caption }>Caption</Text><br />
@@ -108,7 +127,12 @@ export const TableCaption: Story = {
   globals: {
     imports: `import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <table style={{
       border: '2px solid rgb(140 140 140)',

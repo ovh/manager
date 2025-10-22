@@ -8,6 +8,7 @@ import {
 } from '@ovhcloud/ods-react';
 import { CONTROL_CATEGORY } from '../../../base-documents/constants/controls';
 import { orderControls } from '../../../base-documents/helpers/controls';
+import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
 
 type Story = StoryObj<IconProp>;
 type AllArg = Partial<IconProp> & {
@@ -239,7 +240,12 @@ export const AccessibilityInformative: Story = {
   globals: {
     imports: `import { ICON_NAME, Icon } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Icon
       aria-label="home"
@@ -295,6 +301,9 @@ export const Overview: Story = {
   tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <Icon
@@ -308,6 +317,11 @@ export const Decorative: Story = {
     imports: `import { ICON_NAME, Icon } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Icon name={ ICON_NAME.home } />
   ),
@@ -317,7 +331,12 @@ export const Default: Story = {
   globals: {
     imports: `import { ICON_NAME, Icon } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Icon name={ ICON_NAME.home } />
   ),
@@ -327,7 +346,12 @@ export const Informative: Story = {
   globals: {
     imports: `import { ICON_NAME, Icon } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Icon
       aria-label="Help"
@@ -341,6 +365,11 @@ export const AccessibilityBadPracticeDecorative: Story = {
     imports: `import { ICON_NAME, Icon } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Icon name={ ICON_NAME.home } />
   ),
@@ -351,6 +380,11 @@ export const AccessibilityBadPracticeRating: Story = {
     imports: `import { ICON_NAME, Icon } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <label htmlFor="rating">
@@ -373,6 +407,11 @@ export const AccessibilityRating: Story = {
     imports: `import { ICON_NAME, Icon } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <>
       <label

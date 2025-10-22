@@ -8,6 +8,7 @@ import {
 } from '@ovhcloud/ods-react';
 import { CONTROL_CATEGORY } from '../../../base-documents/constants/controls';
 import { orderControls } from '../../../base-documents/helpers/controls';
+import { staticSourceRenderConfig } from '../../../base-documents/helpers/source';
 
 type Story = StoryObj<MediumProp>;
 
@@ -52,6 +53,11 @@ export const Caption: Story = {
     imports: `import { TEXT_PRESET, Medium, Text } from '@ovhcloud/ods-react';`,
   },
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <figure>
       <Medium
@@ -71,7 +77,12 @@ export const Default: Story = {
   globals: {
     imports: `import { Medium } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Medium
       alt="OVHcloud logo"
@@ -80,9 +91,12 @@ export const Default: Story = {
 };
 
 export const Overview: Story = {
-  tags: ['!dev'],
+tags: ['!dev'],
   parameters: {
     layout: 'centered',
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
   },
   render: ({}) => (
     <Medium
@@ -95,7 +109,12 @@ export const Height: Story = {
   globals: {
     imports: `import { Medium } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Medium
       alt="OVHcloud logo"
@@ -108,7 +127,12 @@ export const Width: Story = {
   globals: {
     imports: `import { Medium } from '@ovhcloud/ods-react';`,
   },
-  tags: ['!dev'],
+tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: { ...staticSourceRenderConfig() },
+    },
+  },
   render: ({}) => (
     <Medium
       alt="OVHcloud logo"
