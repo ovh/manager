@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "*",
+    "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/manager-tests-setup": "*",
     "@ovh-ux/manager-vite-config": "*",
     "@tanstack/react-query-devtools": "5.51.21",
