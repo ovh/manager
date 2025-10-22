@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   BaseLayout,
+  ChangelogButton,
   Notifications,
   RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
@@ -18,6 +19,7 @@ import TagDetailTopbar from './components/TagDetailTopbar.component';
 import { tagTofilter } from '@/utils/formatFiltersForApi';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import TagDetailActions from './components/TagDetailActions.component';
+import { CHANGELOG_LINKS, CHANGELOG_CHAPTERS } from '@/constants';
 
 export default function TagDetail() {
   const { tag } = useParams();
@@ -25,9 +27,10 @@ export default function TagDetail() {
   const { t } = useTranslation('tag-manager');
 
   const header = {
-    title: t('tagDetailTitle', {
-      tag,
-    }),
+    title: t('tagDetailTitle', { tag }),
+    changelogButton: (
+      <ChangelogButton links={CHANGELOG_LINKS} chapters={CHANGELOG_CHAPTERS} />
+    ),
   };
 
   return (
