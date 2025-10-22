@@ -1,0 +1,12 @@
+{
+  "pci_projects_updating_main_title": "Presto potrai avviare le tue risorse",
+  "pci_projects_updating_secondary_title": "Attivazione del progetto in corso...",
+  "pci_projects_updating_explain1": "Per completare la creazione del tuo progetto, effettua il pagamento del buono d'ordine <a href=\"{{ href }}\">{{ orderId }}</a>.",
+  "pci_projects_updating_explain2": "Se continui a visualizzare questa pagina anche diversi minuti dopo aver effettuato il pagamento, contatta il <a href=\"{{ href }}\">nostro supporto</a>.",
+  "pci_projects_updating_long_time": "L’operazione potrebbe richiedere qualche minuto.",
+  "pci_projects_updating_long_time_wait": "Nel frattempo, consulta le nostre guide :)",
+  "pci_projects_updating_guides": "Guide Public Cloud",
+  "pci_projects_updating_delivery_error": "Si è verificato un errore durante la creazione del tuo progetto Public Cloud. Stiamo lavorando per risolvere il problema il prima possibile. Riceverai un messaggio di conferma della corretta creazione. Ti ringraziamo per la pazienza e ci scusiamo sin d’ora per l’eventuale disagio causato.",
+  "pci_projects_project_activate_message_with_promotion_success": "Il tuo progetto è stato attivato correttamente. Hai a disposizione {{ amount }} di credito gratis, valido nell'universo Public Cloud.",
+  "pci_projects_project_activate_message_without_promotion_success": "Il tuo progetto è stato attivato correttamente. Da questo momento puoi avviare il deploy delle tue risorse Cloud."
+}
