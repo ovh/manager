@@ -15,7 +15,7 @@ export const getTopics = async ({
 }: ServiceData) =>
   apiClient.v6.get<database.kafka.Topic[]>(
     `/cloud/project/${projectId}/database/${engine}/${serviceId}/topic`,
-    createHeaders(NoCacheHeaders, IcebergPaginationHeaders),
+    { headers: createHeaders(NoCacheHeaders, IcebergPaginationHeaders) },
   );
 
 export interface AddTopic extends ServiceData {

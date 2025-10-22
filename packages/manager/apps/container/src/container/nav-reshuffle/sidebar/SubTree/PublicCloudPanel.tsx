@@ -71,7 +71,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
       });
     },
     select: (response) => {
-      return response.data as PciProject[];
+      return response.data;
     },
   });
 

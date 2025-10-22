@@ -1,14 +1,14 @@
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
+import React, { FunctionComponent } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_LEVEL } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { OsdsText } from '@ovhcloud/ods-components/react';
-import React, { FunctionComponent } from 'react';
-import { useTranslation } from 'react-i18next';
-import { CanadianPolicyLinks } from '@/types/links.type';
-import useUser from '@/context/User/useUser';
+
 import { LegalPolicyLinkByLanguage } from '@/constants';
+import useUser from '@/context/User/useUser';
+import { CanadianPolicyLinks } from '@/types/links.type';
 import { Subsidiary } from '@/types/user.type';
 
 type Props = {
@@ -41,8 +41,7 @@ export const LegalInformations: FunctionComponent<Props> = ({
     formattedSubsidiary === 'CA'
       ? LegalPolicyLinkByLanguage.CA[baseLocale as keyof CanadianPolicyLinks] ||
         LegalPolicyLinkByLanguage.CA.en
-      : LegalPolicyLinkByLanguage[formattedSubsidiary] ||
-        LegalPolicyLinkByLanguage.DEFAULT;
+      : LegalPolicyLinkByLanguage[formattedSubsidiary] || LegalPolicyLinkByLanguage.DEFAULT;
 
   return (
     <div className="pt-6">

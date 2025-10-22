@@ -1,0 +1,10 @@
+{
+  "billing_autorenew_service_pending_actions": "Ações em curso",
+  "billing_autorenew_service_pending_actions_autorenewInProgress": "Renovação em curso",
+  "billing_autorenew_service_pending_actions_deleteAtExpiration": "Rescisão solicitada",
+  "billing_autorenew_service_pending_actions_earlyRenewal": "Renovação",
+  "billing_autorenew_service_pending_actions_pendingCreate": "Entrega em curso",
+  "billing_autorenew_service_pending_actions_terminate": "Rescindido",
+  "billing_autorenew_service_pending_actions_terminateAtEngagementDate": "Rescisão solicitada",
+  "billing_autorenew_service_pending_actions_terminateAtExpirationDate": "Rescisão solicitada"
+}

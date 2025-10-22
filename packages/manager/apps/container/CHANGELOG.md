@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.158.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.158.0...@ovh-ux/manager-container-app@0.158.1) (2025-10-15)
+
+
+### Bug Fixes
+
+* **container:** fix static analysis kit version on container ([3249ee0](https://github.com/ovh/manager/commit/3249ee0d4debd165adb57ce9fe81c00ae6582f6a)), closes [#MANAGER-19276](https://github.com/ovh/manager/issues/MANAGER-19276)
+
+
+
+
+
 # [0.158.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.157.0...@ovh-ux/manager-container-app@0.158.0) (2025-10-14)
 
 
