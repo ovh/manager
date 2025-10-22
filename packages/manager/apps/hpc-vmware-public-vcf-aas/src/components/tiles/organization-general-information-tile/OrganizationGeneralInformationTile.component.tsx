@@ -12,6 +12,8 @@ import {
   isStatusTerminated,
   VCDOrganization,
 } from '@ovh-ux/manager-module-vcd-api';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { subRoutes } from '@/routes/routes.constant';
 import { iamActions } from '@/utils/iam.constants';
@@ -28,6 +30,8 @@ export default function OrganizationGenerationInformationTile({
   vcdOrganization,
 }: TTileProps) {
   const { t } = useTranslation('dashboard');
+  const { t: tDashboard } = useTranslation(NAMESPACES.DASHBOARD);
+  const { t: tRegion } = useTranslation(NAMESPACES.REGION);
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
 
@@ -35,11 +39,11 @@ export default function OrganizationGenerationInformationTile({
 
   return (
     <DashboardTile
-      title={t('managed_vcd_dashboard_general_information')}
+      title={tDashboard('general_information')}
       items={[
         {
           id: 'name',
-          label: t('managed_vcd_dashboard_name'),
+          label: tDashboard('name'),
           value: (
             <EditableTileItem
               value={vcdOrganization.currentState?.fullName}
@@ -55,7 +59,7 @@ export default function OrganizationGenerationInformationTile({
         },
         {
           id: 'description',
-          label: t('managed_vcd_dashboard_description'),
+          label: tDashboard('description'),
           value: (
             <EditableTileItem
               value={vcdOrganization.currentState?.description}
@@ -71,7 +75,7 @@ export default function OrganizationGenerationInformationTile({
         },
         {
           id: 'location',
-          label: t('managed_vcd_dashboard_location'),
+          label: tRegion('localisation'),
           value: (
             <OdsText>
               <Region
@@ -83,7 +87,7 @@ export default function OrganizationGenerationInformationTile({
         },
         {
           id: 'region',
-          label: t('managed_vcd_dashboard_region'),
+          label: tRegion('region'),
           value: (
             <OdsText>
               {vcdOrganization?.currentState?.region?.toLowerCase()}

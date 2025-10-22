@@ -72,9 +72,9 @@ describe('ServiceManagementTile component unit test suite', () => {
     const elements = [
       labels.dashboard.managed_vcd_dashboard_service_management,
       labels.dashboard.managed_vcd_dashboard_service_renew,
-      labels.dashboard.managed_vcd_dashboard_service_cancellation,
-      labels.dashboard.managed_vcd_dashboard_password,
-      labels.dashboard.managed_vcd_dashboard_contact_list,
+      labels.commun.billing.cancel_service,
+      labels.commun.system.password,
+      labels.commun.contact.contacts,
     ];
 
     elements.forEach(async (element) => assertTextVisibility(element));
@@ -85,7 +85,7 @@ describe('ServiceManagementTile component unit test suite', () => {
 
     expect(useVcdOrganization).toHaveBeenCalledWith({ id: 'id' });
     const cancelButton = container.querySelector(
-      'ods-button[label="managed_vcd_dashboard_service_cancellation"]',
+      'ods-button[label="cancel_service"]',
     );
     expect(cancelButton?.getAttribute('is-disabled')).toBe('true');
     const renewPwdLink = container.querySelector(
