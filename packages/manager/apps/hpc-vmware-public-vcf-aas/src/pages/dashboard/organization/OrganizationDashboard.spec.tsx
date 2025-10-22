@@ -20,7 +20,7 @@ describe('Organization Dashboard Page', () => {
     const layoutElements = [
       organizationList[0].currentState.fullName,
       organizationList[0].currentState.description,
-      labels.dashboard.managed_vcd_dashboard_general_information,
+      labels.commun.dashboard.general_information,
       VIRTUAL_DATACENTERS_LABEL,
     ];
 

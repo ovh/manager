@@ -7,7 +7,8 @@ import {
 } from '@ovh-ux/manager-module-vcd-api';
 import { waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import { renderTest } from '../../../../../test-utils';
+import { renderTest, labels } from '../../../../../test-utils';
+
 import fr_FR from '../../../../../../public/translations/datacentres/vrack-segment/Messages_fr_FR.json';
 
 const queryModalTitle = () => {
@@ -23,8 +24,12 @@ const checkFormInputAndCta = (container: HTMLElement) => {
   expect(
     screen.getByText(fr_FR.managed_vcd_dashboard_vrack_edit_vlan),
   ).toBeVisible();
-  expect(container.querySelector('[label="modify"]')).toBeVisible();
-  expect(container.querySelector('[label="cancel"]')).toBeVisible();
+  expect(
+    container.querySelector(`[label="${labels.commun.actions.modify}"]`),
+  ).toBeVisible();
+  expect(
+    container.querySelector(`[label="${labels.commun.actions.cancel}"]`),
+  ).toBeVisible();
 
   const input = container.querySelector('input[name="vlanId"]');
 
@@ -40,12 +45,18 @@ const checkVlanValue = (container: HTMLElement, vlanId: string) => {
 };
 
 const expectSubmitButton = (container) =>
-  expect(container.querySelector('ods-button[label="modify"]'));
+  expect(
+    container.querySelector(
+      `ods-button[label="${labels.commun.actions.modify}"]`,
+    ),
+  );
 
 const submitForm = (container: HTMLElement) => {
   return act(() =>
     userEvent.click(
-      container.querySelector('ods-button[label="modify"]') as Element,
+      container.querySelector(
+        `ods-button[label="${labels.commun.actions.modify}"]`,
+      ) as Element,
     ),
   );
 };
