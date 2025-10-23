@@ -221,7 +221,6 @@ export const redirectionSchema = z.object({
   account,
   domain,
   to: email,
-  keepCopy: z.boolean(),
 });
 
 export type RedirectionSchema = z.infer<typeof redirectionSchema>;

@@ -11,8 +11,6 @@ export * from './object';
 export const DATAGRID_REFRESH_INTERVAL = 5_000;
 export const DATAGRID_REFRESH_ON_MOUNT = 'always';
 export const FEATURE_FLAGS = {
-  REDIRECTIONS: false,
-  REDIRECTIONS_EDIT: false,
   AUTOREPLIES: false,
   MAILINGLISTS: false,
 };

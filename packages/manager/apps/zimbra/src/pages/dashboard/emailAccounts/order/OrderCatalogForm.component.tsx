@@ -106,7 +106,7 @@ const OrderCatalogForm = ({
   }
 
   return (
-    <div className="flex flex-col gap-4 mt-4">
+    <div className="mt-4 flex flex-col gap-4">
       <Order>
         {orderURL ? (
           <Order.Summary
@@ -128,7 +128,7 @@ const OrderCatalogForm = ({
                 <OdsCard
                   key={plan.planCode}
                   color="neutral"
-                  className="flex justify-between items-center p-6 max-w-3xl"
+                  className="flex max-w-3xl items-center justify-between p-6"
                 >
                   <OdsText className="font-bold" preset={ODS_TEXT_PRESET.heading6}>
                     {plan?.invoiceName}
@@ -179,7 +179,7 @@ const OrderCatalogForm = ({
                     </OdsText>
                   </label>
                   <div className="flex flex-col gap-4">
-                    <div className="flex leading-none gap-4">
+                    <div className="flex gap-4 leading-none">
                       <OdsRadio
                         id="1-month"
                         name="1-month"
@@ -194,7 +194,7 @@ const OrderCatalogForm = ({
                         </OdsText>
                       </label>
                     </div>
-                    <div className="flex leading-none gap-4">
+                    <div className="flex gap-4 leading-none">
                       <OdsRadio
                         id="12-month"
                         name="12-month"
@@ -204,7 +204,7 @@ const OrderCatalogForm = ({
                         isChecked={value === '12'}
                         onClick={() => onChange('12')}
                       ></OdsRadio>
-                      <label htmlFor="12-month" className="flex flex-col cursor-pointer">
+                      <label htmlFor="12-month" className="flex cursor-pointer flex-col">
                         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
                           {`12 ${t('zimbra_account_order_commitment_months')}`}
                         </OdsText>
@@ -222,7 +222,7 @@ const OrderCatalogForm = ({
               name="consent"
               render={({ field: { name, value, onChange } }) => (
                 <OdsFormField error={errors?.[name]?.message}>
-                  <div className="flex leading-none gap-4 cursor-pointer">
+                  <div className="flex cursor-pointer gap-4 leading-none">
                     <OdsCheckbox
                       data-testid={name}
                       inputId={name}
