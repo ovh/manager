@@ -49,6 +49,7 @@
     "@ovh-ux/manager-vite-config": "*",
     "@tanstack/react-query-devtools": "5.51.21",
     "msw": "^2.11.5",
+    "vite": "6.3.4",
     "vite-plugin-static-copy": "^3.1.4"
   },
   "regions": [
