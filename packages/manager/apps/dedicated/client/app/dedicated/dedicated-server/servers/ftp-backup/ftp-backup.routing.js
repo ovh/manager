@@ -24,6 +24,10 @@ export default /* @ngInject */ ($stateProvider) => {
       );
     },
     resolve: {
+      serverRegion: /* @ngInject */ (server) => {
+        const zone = server.region.split('-')[0];
+        return ['eu', 'labeu'].includes(zone) ? 'Roubaix' : 'BHS';
+      },
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('dedicated_server_ftp_backup'),
       goToFtpBackUpStorage: ($state, Alerter) => (

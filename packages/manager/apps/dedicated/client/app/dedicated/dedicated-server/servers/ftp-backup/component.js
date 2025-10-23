@@ -5,6 +5,7 @@ export default {
     goBack: '<',
     handleError: '<',
     handleSuccess: '<',
+    serverRegion: '<',
   },
   template,
 };
