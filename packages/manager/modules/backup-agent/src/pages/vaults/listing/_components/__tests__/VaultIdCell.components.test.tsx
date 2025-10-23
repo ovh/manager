@@ -5,7 +5,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { mockVaults } from '@/mocks/vaults/vaults';
 import { VaultIdCell } from '../VaultIdCell.components';
-import {urlParams, urls} from "@/routes/Routes.constants";
+import { urlParams, urls } from "@/routes/Routes.constants";
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
@@ -39,7 +39,7 @@ describe('VaultIdCell', () => {
 
     const link = screen.getByTestId('link');
     expect(link).toHaveTextContent(vault.currentState.name);
-    expect(link.getAttribute('href')).toBe(urls.dashboard.replace(urlParams.vaultId, vault.id));
+    expect(link.getAttribute('href')).toBe(urls.dashboardVaults.replace(urlParams.vaultId, vault.id));
     expect(link.getAttribute('href')?.endsWith(`/${vault.id}`)).toBe(true);
   });
 });
