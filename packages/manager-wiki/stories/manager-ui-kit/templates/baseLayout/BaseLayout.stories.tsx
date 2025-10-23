@@ -241,7 +241,7 @@ export const DashboardTemplate = () => (
 
 const meta: Meta<typeof BaseLayout> = {
   decorators: [withRouter],
-  title: 'Manager React Components/Templates/Base Layout',
+  title: 'Manager UI Kit/Components/Base Layout',
   component: BaseLayout,
   tags: ['autodocs'],
   argTypes: {},
