@@ -9,21 +9,43 @@ import {
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useTranslation } from 'react-i18next';
 import DnssecForm from './DnssecForm';
+import { DrawerActionEnum } from '@/domain/enum/drawerAction.enum';
 
 interface DnssecDrawerProps {
-  readonly drawer: { isOpen?: boolean };
-  readonly setDrawer: Dispatch<SetStateAction<{ isOpen?: boolean }>>;
+  readonly drawer: { isOpen?: boolean; action: DrawerActionEnum };
+  readonly setDrawer: Dispatch<
+    SetStateAction<{ isOpen?: boolean; action: DrawerActionEnum }>
+  >;
+  readonly formData: {
+    keyTag: string;
+    flag: string;
+    algorithm: string;
+    publicKey: string;
+  };
+  readonly setFormData: Dispatch<
+    SetStateAction<{
+      keyTag: string;
+      flag: string;
+      algorithm: string;
+      publicKey: string;
+    }>
+  >;
 }
 
 export default function DnssecDrawer({ drawer, setDrawer }: DnssecDrawerProps) {
   const { t } = useTranslation('domain');
   return (
     <Drawer
-      heading={'Ajouter une nouvelle entrée'}
+      heading={
+        drawer.action === DrawerActionEnum.ADD
+          ? 'Ajouter une nouvelle entrée'
+          : t(`domain_DNSSEC_drawer_heading_modify`)
+      }
       isOpen={drawer.isOpen}
       onDismiss={() =>
         setDrawer({
           isOpen: false,
+          action: null,
         })
       }
       primaryButtonLabel={t(`${NAMESPACES.ACTIONS}:validate`)}
@@ -31,6 +53,7 @@ export default function DnssecDrawer({ drawer, setDrawer }: DnssecDrawerProps) {
       onSecondaryButtonClick={() => {
         setDrawer({
           isOpen: false,
+          action: null,
         });
       }}
     >

@@ -127,5 +127,6 @@
   "domain_DNSSEC_table_header_keyTag": "Key tag",
   "domain_DNSSEC_table_header_flag": "Flag",
   "domain_DNSSEC_table_header_algo": "Algorithme",
-  "domain_DNSSEC_table_header_publicKey": "Clé publique (encodée base64)"
+  "domain_DNSSEC_table_header_publicKey": "Clé publique (encodée base64)",
+  "domain_DNSSEC_drawer_heading_modify": "Modifier l’entrée"
 }

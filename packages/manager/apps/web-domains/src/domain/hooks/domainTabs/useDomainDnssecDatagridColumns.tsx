@@ -1,9 +1,29 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ActionMenu, DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
+import { DrawerActionEnum } from '@/domain/enum/drawerAction.enum';
 
-export const useDomainDnssecDatagridColumns = () => {
+interface UseDomainDnssecDatagridColumnsProps {
+  readonly setDrawer: Dispatch<
+    SetStateAction<{ isOpen: boolean; action?: DrawerActionEnum }>
+  >;
+
+  readonly setFormData: Dispatch<
+    SetStateAction<{
+      keyTag: string;
+      flag: string;
+      algorithm: string;
+      publicKey: string;
+    }>
+  >;
+}
+
+export const useDomainDnssecDatagridColumns = ({
+  setDrawer,
+  setFormData,
+}: UseDomainDnssecDatagridColumnsProps) => {
   const { t } = useTranslation('domain');
   const columns = [
     {
@@ -40,6 +60,9 @@ export const useDomainDnssecDatagridColumns = () => {
             {
               id: 1,
               label: t(`${NAMESPACES.ACTIONS}:modify`),
+              onClick: () => {
+                setDrawer({ isOpen: true, action: DrawerActionEnum.MODIFY });
+              },
             },
 
             {
