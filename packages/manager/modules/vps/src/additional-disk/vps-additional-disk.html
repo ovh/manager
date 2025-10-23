@@ -54,8 +54,19 @@
                         data-ng-bind="'vps_tab_additional_disk_state_' + $row.state | translate"
                     ></span>
                 </span>
+                <span
+                    data-ng-if="$row.pendingTerminate"
+                    class="oui-badge oui-badge_info"
+                    data-translate="vps_additional_disk_resiliation_date"
+                    data-translate-values="{ date: $row.expirationDate }"
+                >
+                </span>
             </oui-datagrid-column>
-            <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu
+                data-compact
+                data-placement="end"
+                data-disabled="$row.pendingTerminate"
+            >
                 <!--Upgrade disk: increase capacity-->
                 <oui-action-menu-item
                     data-disabled="!$ctrl.isVpsNewRange || !$ctrl.upgradableDisks.length"
