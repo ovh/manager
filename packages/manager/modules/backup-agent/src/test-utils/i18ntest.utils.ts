@@ -1,6 +1,7 @@
 import i18next, { InitOptions, i18n } from 'i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import actions from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/actions/Messages_fr_FR.json';
 import billing from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/billing/Messages_fr_FR.json';
 import commonDashboard from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/dashboard/Messages_fr_FR.json';
 import region from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/region/Messages_fr_FR.json';
@@ -13,6 +14,9 @@ import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import vaultDashboard from '../../public/translations/vaults/dashboard/Messages_fr_FR.json';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
+import vaultDelete from '../../public/translations/vaults/delete/Messages_fr_FR.json';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import vaultListing from '../../public/translations/vaults/listing/Messages_fr_FR.json';
 
 export const defaultLocale = 'fr_FR';
@@ -21,6 +25,8 @@ function addTranslations() {
   i18next
     .addResources(defaultLocale, BACKUP_AGENT_NAMESPACES.VAULT_LISTING, vaultListing)
     .addResources(defaultLocale, BACKUP_AGENT_NAMESPACES.VAULT_DASHBOARD, vaultDashboard)
+    .addResources(defaultLocale, BACKUP_AGENT_NAMESPACES.VAULT_DELETE, vaultDelete)
+    .addResources(defaultLocale, NAMESPACES.ACTIONS, actions)
     .addResources(defaultLocale, NAMESPACES.STATUS, status)
     .addResources(defaultLocale, NAMESPACES.DASHBOARD, commonDashboard)
     .addResources(defaultLocale, NAMESPACES.BILLING, billing)
@@ -58,6 +64,8 @@ export const initTestI18n = () =>
 export const labels = {
   vaultListing,
   vaultDashboard,
+  vaultDelete,
+  actions,
   status,
   commonDashboard,
   billing,
