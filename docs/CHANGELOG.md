@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-documentation@0.6.3...@ovh-ux/manager-documentation@0.7.0) (2025-10-23)
+
+
+### Features
+
+* **muk:** import typescript in muk ([c05ab18](https://github.com/ovh/manager/commit/c05ab180eaac2d15f41566d017f4d5f1f334ccb8)), closes [#MANAGER-20067](https://github.com/ovh/manager/issues/MANAGER-20067)
+* **muk:** update generator with muk ([6ec82f5](https://github.com/ovh/manager/commit/6ec82f5aea95f04edcd8001d297102cb5e89e00b)), closes [#MANAGER-19474](https://github.com/ovh/manager/issues/MANAGER-19474)
+
+
+
+
+
 ## [0.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-documentation@0.6.2...@ovh-ux/manager-documentation@0.6.3) (2025-06-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-documentation

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.18.7...@ovh-ux/manager-core-api@0.19.0) (2025-10-23)
+
+
+### Features
+
+* **manager-react-components:** useDataApi hook ([02b5568](https://github.com/ovh/manager/commit/02b556889210e15fb9aceee8f6bc421ebba80646)), closes [#MANAGER-19377](https://github.com/ovh/manager/issues/MANAGER-19377)
+
+
+### BREAKING CHANGES
+
+* **manager-react-components:** Removal of useResourcesV6, useIceberg and useResourcesV2 hook
+
+
+
+
+
 ## [0.18.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-api@0.18.6...@ovh-ux/manager-core-api@0.18.7) (2025-10-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-core-api

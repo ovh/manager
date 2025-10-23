@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.0.1...@ovh-ux/muk@0.1.0) (2025-10-23)
+
+### Bug Fixes
+
+- fix installation and lint error on MUK ([226fa5e](https://github.com/ovh/manager/commit/226fa5e0e7eafd3c62523e603f1bb1c8e18b358d))
+- **i18n:** add missing translations [CDS 735] ([6d88eca](https://github.com/ovh/manager/commit/6d88ecaf48735b6d42e29f1b819073f7fb9c91f6))
+- lint tasks issues ([4ea4f13](https://github.com/ovh/manager/commit/4ea4f13e70b1d71b71f15d61f944cada31b342d8)), closes [#MANAGER-19982](https://github.com/ovh/manager/issues/MANAGER-19982)
+- **muk,zimbra:** lint error correction ([ae594f6](https://github.com/ovh/manager/commit/ae594f6b8b937ebbb3c592cfb44583cb673ec066))
+- **muk:** detelte test provider file ([3a44137](https://github.com/ovh/manager/commit/3a44137323854648e104279a9a06265e37440ce3)), closes [#MANAGER-19196](https://github.com/ovh/manager/issues/MANAGER-19196)
+- **muk:** migrate tags tile components ([8aeba3d](https://github.com/ovh/manager/commit/8aeba3df1377cf6658dfeec19547bdaa9fc59bed)), closes [#MANAGER-19572](https://github.com/ovh/manager/issues/MANAGER-19572)
+- update snapshot & remove muk from legacy lint ([1a5e8a7](https://github.com/ovh/manager/commit/1a5e8a7f60e7564e556533c2e132fd4aa9b717cb))
+
+### Features
+
+- add new ods components and documentations ([648f83d](https://github.com/ovh/manager/commit/648f83d631003433ef463aa9d42b208cfb1c6c31)), closes [#MANAGER-19982](https://github.com/ovh/manager/issues/MANAGER-19982)
+- bump ods 19.0.2 in muk and manager wiki ([4e00d61](https://github.com/ovh/manager/commit/4e00d61ddd31db36cab1c8989254367f5d8a4966)), closes [#MANAGER-19982](https://github.com/ovh/manager/issues/MANAGER-19982)
+- **github:** update action for muk ([a9cba7d](https://github.com/ovh/manager/commit/a9cba7d1a2fb81d7498ba1bca46ce5ce7a3b50f4)), closes [#MANAGER-19474](https://github.com/ovh/manager/issues/MANAGER-19474)
+- **manager-react-components:** add datagrid new component ([5c59ff4](https://github.com/ovh/manager/commit/5c59ff4efb59519a03f708ea8ce2fbf953fd2b10)), closes [#MANAGER-19368](https://github.com/ovh/manager/issues/MANAGER-19368)
+- **manager-react-components:** add drawer component ([e39c920](https://github.com/ovh/manager/commit/e39c9204b1bc573b11745a982b4973352daddc3c)), closes [#MANAGER-19916](https://github.com/ovh/manager/issues/MANAGER-19916)
+- **manager-react-components:** refactor hook catalog and price ([918621d](https://github.com/ovh/manager/commit/918621d73adc3b50b602a17b77e41f107cfaaf44)), closes [#MANAGER-19195](https://github.com/ovh/manager/issues/MANAGER-19195)
+- **manager-react-components:** refactor setup test for vitest ([17cf779](https://github.com/ovh/manager/commit/17cf779ac8c27981b37a8b42befc8b4c0d4b4670)), closes [#MANAGER-19196](https://github.com/ovh/manager/issues/MANAGER-19196)
+- **manager-react-components:** update tags tile component ([e48bec8](https://github.com/ovh/manager/commit/e48bec84dda9535a6a7b0b533dfc14c1ac0cda29)), closes [#MANAGER-19572](https://github.com/ovh/manager/issues/MANAGER-19572)
+- **manager-wiki:** delete ods 18 from wiki ([dc9c826](https://github.com/ovh/manager/commit/dc9c8269a46bf83155c38f9aa56656c047a2482a)), closes [#MANAGER-19982](https://github.com/ovh/manager/issues/MANAGER-19982)
+- **manager-wiki:** update folder to muk ([cb68723](https://github.com/ovh/manager/commit/cb68723fef81d73452a126a9b1be8dbe116bc9d2)), closes [#MANAGER-19474](https://github.com/ovh/manager/issues/MANAGER-19474)
+- **muk:** add step in modal component ([8e1bff6](https://github.com/ovh/manager/commit/8e1bff6a25946a6c3e5a37b35684079e82e1d976)), closes [#MANAGER-19595](https://github.com/ovh/manager/issues/MANAGER-19595)
+- **muk:** delete import of ods 18 ([ad7fe49](https://github.com/ovh/manager/commit/ad7fe497a380997ed954c37d0524bfe55d3fabbb)), closes [#MANAGER-20065](https://github.com/ovh/manager/issues/MANAGER-20065)
+- **muk:** import typescript in muk ([c05ab18](https://github.com/ovh/manager/commit/c05ab180eaac2d15f41566d017f4d5f1f334ccb8)), closes [#MANAGER-20067](https://github.com/ovh/manager/issues/MANAGER-20067)
+- **muk:** migrate filters component ([460bfc0](https://github.com/ovh/manager/commit/460bfc0840dead70c5d0f0c3836470c59ba2cdf9)), closes [#MANAGER-19369](https://github.com/ovh/manager/issues/MANAGER-19369)
+- **muk:** move and delete hooks to data api folders ([3d01a0b](https://github.com/ovh/manager/commit/3d01a0bd16cc33cb470ba0a83fa6805c42c3c607)), closes [#MANAGER-19376](https://github.com/ovh/manager/issues/MANAGER-19376)
+- **muk:** refactor use translated micro region hook ([191ad0e](https://github.com/ovh/manager/commit/191ad0e807791245d4301c66b2d7e5ea99e182ca)), closes [#MANAGER-19192](https://github.com/ovh/manager/issues/MANAGER-19192)
+- **muk:** rename mrc to muk ([57fe08d](https://github.com/ovh/manager/commit/57fe08d2d5e7de2c861cb9db269cd6a2d86d9e89)), closes [#MANAGER-19474](https://github.com/ovh/manager/issues/MANAGER-19474)
+- **muk:** update datagrid sub component ([430433c](https://github.com/ovh/manager/commit/430433c83d38c76c7ef3feedd79b048bed522c26)), closes [#MANAGER-19371](https://github.com/ovh/manager/issues/MANAGER-19371)
+- **muk:** update generator with muk ([6ec82f5](https://github.com/ovh/manager/commit/6ec82f5aea95f04edcd8001d297102cb5e89e00b)), closes [#MANAGER-19474](https://github.com/ovh/manager/issues/MANAGER-19474)
+
 ## [2.43.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-components@2.43.0...@ovh-ux/manager-react-components@2.43.1) (2025-10-22)
 
 ### Bug Fixes

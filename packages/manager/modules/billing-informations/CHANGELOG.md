@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.3.14...@ovh-ux/billing-informations@1.4.0) (2025-10-23)
+
+
+### Features
+
+* **billing-informations:** update manager react component peer deps ([a6118e3](https://github.com/ovh/manager/commit/a6118e3cc3e41e785b9ee55289c50b6c498186ad)), closes [#MANAGER-18712](https://github.com/ovh/manager/issues/MANAGER-18712)
+
+
+
+
+
 ## [1.3.14](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.3.13...@ovh-ux/billing-informations@1.3.14) (2025-10-22)
 
 **Note:** Version bump only for package @ovh-ux/billing-informations

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.19.3...@ovh-ux/manager-common-translations@0.20.0) (2025-10-23)
+
+
+### Features
+
+* **common-translations:** update common translations for micro region ([5ecb507](https://github.com/ovh/manager/commit/5ecb5076a5d645d66298be0d9c6585416b8ea464)), closes [#MANAGER-19192](https://github.com/ovh/manager/issues/MANAGER-19192)
+
+
+
+
+
 ## [0.19.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.19.2...@ovh-ux/manager-common-translations@0.19.3) (2025-10-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-common-translations

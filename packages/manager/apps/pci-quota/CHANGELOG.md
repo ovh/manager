@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.50](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.49...@ovh-ux/manager-pci-quota-app@0.1.50) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
 ## [0.1.49](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.48...@ovh-ux/manager-pci-quota-app@0.1.49) (2025-10-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-quota-app

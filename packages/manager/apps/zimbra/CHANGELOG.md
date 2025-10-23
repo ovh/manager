@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.36.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.36.3...@ovh-ux/manager-zimbra-app@0.36.4) (2025-10-23)
+
+
+### Bug Fixes
+
+* change enum to const for fixing lint error ([4ea2153](https://github.com/ovh/manager/commit/4ea21537aa80b04d0f003bda7eaf4cbe56431fd2))
+* **muk,zimbra:** lint error correction ([ae594f6](https://github.com/ovh/manager/commit/ae594f6b8b937ebbb3c592cfb44583cb673ec066))
+
+
+
+
+
 ## [0.36.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.36.2...@ovh-ux/manager-zimbra-app@0.36.3) (2025-10-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app

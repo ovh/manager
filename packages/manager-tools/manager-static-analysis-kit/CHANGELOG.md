@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-static-analysis-kit@0.11.1...@ovh-ux/manager-static-analysis-kit@0.11.2) (2025-10-23)
+
+
+### Bug Fixes
+
+* static lint issue ([465deb1](https://github.com/ovh/manager/commit/465deb11d7203fd5b0252c1a73474e4b24476359)), closes [#MANAGER-19481](https://github.com/ovh/manager/issues/MANAGER-19481)
+
+
+
+
+
 ## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-static-analysis-kit@0.11.0...@ovh-ux/manager-static-analysis-kit@0.11.1) (2025-10-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-static-analysis-kit
