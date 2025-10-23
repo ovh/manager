@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-key-management-service-app",
-  "version": "0.33.24",
+  "version": "0.33.25",
   "private": true,
   "description": "ovh key-management-service",
   "repository": {
@@ -18,7 +18,7 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@ovh-ux/billing-informations": "^1.4.0",
+    "@ovh-ux/billing-informations": "^1.4.1",
     "@ovh-ux/logs-to-customer": "^1.7.16",
     "@ovh-ux/manager-config": "^8.6.7",
     "@ovh-ux/manager-core-api": "^0.19.0",
