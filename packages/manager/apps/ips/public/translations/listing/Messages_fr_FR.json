@@ -79,6 +79,7 @@
   "listingActionSlice": "Segmenter",
   "listingActionAggregate": "Agréger",
   "listingActionUnblockHackedIP": "Déblocage anti-hack",
+  "listingActionUnblockSpammedIP": "Déblocage anti-spam",
   "listingUpsertDescription": "Description",
   "listingUpsertDescriptionSuccessMessage": "La description de l'IP {{value}} a été modifiée.",
   "listingTerminateIp_confirm_Headline": "Résilier mon IP",

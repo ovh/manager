@@ -9,6 +9,8 @@ export * from './useGetIpEdgeFirewall';
 export * from './useGetIpGameFirewall';
 export * from './useIpHasAlerts';
 export * from './useGetIpAntihack';
+export * from './useGetIpSpam';
+export * from './useGetIpSpamStats';
 export * from './useUpdateIpReverse';
 export * from './useDeleteIpReverse';
 export * from './useUpdateIpGameFirewall';

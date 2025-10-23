@@ -6,3 +6,4 @@ export * from './addVirtualMacToIp';
 export * from './addIpToVirtualMac';
 export * from './postMoveIp';
 export * from './unblockAntiHackIp';
+export * from './unblockAntiSpamIp';
