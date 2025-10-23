@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.6.3...@ovh-ux/manager-public-cloud@7.6.4) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
 ## [7.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.6.2...@ovh-ux/manager-public-cloud@7.6.3) (2025-10-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud

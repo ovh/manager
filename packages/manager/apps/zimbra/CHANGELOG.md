@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.36.4...@ovh-ux/manager-zimbra-app@0.37.0) (2025-10-23)
+
+
+### Features
+
+* **zimbra:** add SRV tab to diagnostics page ([f8e88b0](https://github.com/ovh/manager/commit/f8e88b0944dd05d80743d36f39adbe561516d53f)), closes [#PRDCOL-190](https://github.com/ovh/manager/issues/PRDCOL-190)
+* **zimbra:** migration pnpm ([13d54ef](https://github.com/ovh/manager/commit/13d54ef2f531fd7c1ed018722ddc25d9c40fa637)), closes [#PRDCOL-240](https://github.com/ovh/manager/issues/PRDCOL-240)
+
+
+
+
+
 ## [0.36.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.36.3...@ovh-ux/manager-zimbra-app@0.36.4) (2025-10-23)
 
 

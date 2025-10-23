@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.29.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.29.1...@ovh-ux/ng-ovh-telecom-universe-components@7.29.2) (2025-10-23)
+
+
+### Bug Fixes
+
+* **telecom.telephony:** add picture link for accessories ([7b29895](https://github.com/ovh/manager/commit/7b298953042221e028a4aefecc1c268261003be8)), closes [#PRDCOL-50](https://github.com/ovh/manager/issues/PRDCOL-50)
+
+
+
+
+
 ## [7.29.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.29.0...@ovh-ux/ng-ovh-telecom-universe-components@7.29.1) (2025-09-01)
 
 

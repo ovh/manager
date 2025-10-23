@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.29](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.28...@ovh-ux/manager-web-office-app@0.4.29) (2025-10-23)
+
+
+### Bug Fixes
+
+* **web-office:** implement w3c setup test ([9dcba82](https://github.com/ovh/manager/commit/9dcba8255428e21fcc054902fd2b00099cf36e06)), closes [#PRDCOL-235](https://github.com/ovh/manager/issues/PRDCOL-235)
+* **web-office:** pnpm adpotion for web-office ([fbb66fa](https://github.com/ovh/manager/commit/fbb66fa89e435d44b6dddb3dd1fe42de6c7b54d7)), closes [#PRDCOL-234](https://github.com/ovh/manager/issues/PRDCOL-234)
+
+
+
+
+
 ## [0.4.28](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.27...@ovh-ux/manager-web-office-app@0.4.28) (2025-10-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-office-app

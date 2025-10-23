@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.50.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.9...@ovh-ux/manager-vps@2.50.10) (2025-10-23)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** fix issue with disk order and upgrade ([7a7cc7c](https://github.com/ovh/manager/commit/7a7cc7ce4a4d6593100dea1e5838338db6c74227)), closes [#PRDCOL-231](https://github.com/ovh/manager/issues/PRDCOL-231) [#PRDCOL-229](https://github.com/ovh/manager/issues/PRDCOL-229)
+
+
+
+
+
 ## [2.50.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.8...@ovh-ux/manager-vps@2.50.9) (2025-09-30)
 
 
