@@ -193,6 +193,12 @@ describe('useStorage', () => {
           name: 'storage1',
           containerCount: 0,
           offer: 'pci_projects_project_storages_containers_offer_s3',
+          region: 'region1',
+          usedSpace: 0,
+          s3StorageType: 'storage',
+          mode:
+            'pci_projects_project_storages_containers_deployment_mode_region-3-az',
+          deploymentMode: 'region-3-az',
         },
       ],
     } as TStoragesAapiResult;
