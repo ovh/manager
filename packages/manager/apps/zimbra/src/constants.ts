@@ -50,3 +50,5 @@ export const businessFeatures = [
   { label: 'zimbra_account_plan_feature_shared_storage' },
   { label: 'zimbra_account_plan_feature_video_conferences' },
 ];
+
+export const MAX_REDIRECTIONS_QUOTA = 1000;
