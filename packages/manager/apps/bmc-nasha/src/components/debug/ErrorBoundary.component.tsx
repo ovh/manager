@@ -1,8 +1,10 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react';
-import { OdsCard, OdsText } from '@ovhcloud/ods-components/react';
 
 interface Props {
-  children: ReactNode;
+  children?: ReactNode;
+  isPreloaderHide?: boolean;
+  isRouteShellSync?: boolean;
+  redirectionApp?: string;
 }
 
 interface State {
@@ -11,7 +13,7 @@ interface State {
   errorInfo?: ErrorInfo;
 }
 
-export class ErrorBoundary extends Component<Props, State> {
+class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = { hasError: false };
@@ -21,42 +23,42 @@ export class ErrorBoundary extends Component<Props, State> {
     return { hasError: true, error };
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+  override componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('ErrorBoundary caught an error:', error, errorInfo);
     this.setState({ error, errorInfo });
   }
 
-  render() {
+  override render() {
     if (this.state.hasError) {
       return (
-        <OdsCard color="neutral">
-          <div className="p-6">
-            <h2 className="text-lg font-semibold mb-4 text-red-600">
-              Une erreur est survenue
-            </h2>
-            <div className="space-y-2">
-              <OdsText preset="paragraph" color="neutral">
-                <strong>Erreur:</strong> {this.state.error?.message}
-              </OdsText>
-              <details className="mt-4">
-                <summary className="cursor-pointer font-semibold">
-                  Détails techniques
-                </summary>
+        <div className="border border-gray-300 rounded-lg p-6 bg-white shadow-sm">
+          <h2 className="text-lg font-semibold mb-4 text-red-600">
+            Une erreur est survenue
+          </h2>
+          <div className="space-y-2">
+            <p className="text-gray-700">
+              <strong>Erreur:</strong> {this.state.error?.message}
+            </p>
+            <details className="mt-4">
+              <summary className="cursor-pointer font-semibold">
+                Détails techniques
+              </summary>
+              <pre className="mt-2 p-4 bg-gray-100 rounded text-sm overflow-auto">
+                {this.state.error?.stack}
+              </pre>
+              {this.state.errorInfo && (
                 <pre className="mt-2 p-4 bg-gray-100 rounded text-sm overflow-auto">
-                  {this.state.error?.stack}
+                  {this.state.errorInfo.componentStack}
                 </pre>
-                {this.state.errorInfo && (
-                  <pre className="mt-2 p-4 bg-gray-100 rounded text-sm overflow-auto">
-                    {this.state.errorInfo.componentStack}
-                  </pre>
-                )}
-              </details>
-            </div>
+              )}
+            </details>
           </div>
-        </OdsCard>
+        </div>
       );
     }
 
-    return this.props.children;
+    return this.props.children || null;
   }
 }
+
+export default ErrorBoundary;

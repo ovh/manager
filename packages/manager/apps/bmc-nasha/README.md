@@ -25,7 +25,7 @@ export const APP_FEATURES = {
   dashboardApi: 'v6' as DashboardApi, // 'v6' | 'v2'
 
   // Flavor + routing
-  isPci: 'false',
+  isPci: false,
   routeFlavor: 'generic' as const,         // 'pci' | 'generic' | 'platformParam'
   basePrefix: '',                                  // optional shell prefix
   serviceParam: 'id',                    // service route param (no ':' in final URL)
