@@ -15,7 +15,7 @@ import {
 import { DeepReadonly } from '@/types/utils.type';
 import { instancesQueryKey } from '@/utils';
 import queryClient from '@/queryClient';
-import { updateAllInstancesFromCache } from '@/adapters/tanstack-query/store/instances/updaters';
+import { updateAllInstancesFromCache } from '@/adapters/tanstack/instances/updaters';
 
 export type TUseInstanceActionCallbacks<
   TData = unknown,

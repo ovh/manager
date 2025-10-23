@@ -3,6 +3,7 @@ import { describe, expect, test } from 'vitest';
 import { ErrorBannerProps } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
+  getLocalZoneTranslationKey,
   instancesQueryKey,
   isCustomUrlSection,
   mapUnknownErrorToBannerError,
@@ -166,6 +167,36 @@ describe('Utility functions', () => {
       test(`Then, expect the output to be '${expectedOutput}'`, () => {
         expect(isCustomUrlSection(input)).toStrictEqual(expectedOutput);
       });
+    });
+  });
+
+  describe('Considering the getLocalZoneTranslationKey function', () => {
+    test('Should return the expected translation key', () => {
+      const localZones = {
+        'EU-WEST-LZ-VIE': 'VIE',
+        'AF-NORTH-LZ-RBA': 'RBA',
+        'EU-WEST-LZ-BRU': 'BRU',
+        'EU-CENTRAL-LZ-SOF': 'SOF',
+        'EU-WEST-LZ-MRS': 'MRS',
+        'EU-NORTH-LZ-STO': 'STO',
+        'EU-NORTH-LZ-HEL': 'HEL',
+        'EU-WEST-LZ-DLN': 'DLN',
+        'EU-CENTRAL-LZ-BUH': 'BUH',
+        'EU-WEST-LZ-AMS': 'AMS',
+        'EU-WEST-LZ-MNC': 'MNC',
+        'EU-WEST-LZ-ZRH': 'ZRH',
+        'EU-SOUTH-LZ-MAD': 'MAD',
+        'EU-NORTH-LZ-OSL': 'OSL',
+        'EU-SOUTH-LZ-LIS': 'LIS',
+        'EU-CENTRAL-LZ-PRG': 'PRG',
+        'EU-WEST-LZ-LUX': 'LUX',
+        'EU-SOUTH-LZ-MIL': 'MIL',
+        'EU-NORTH-LZ-CPH': 'CPH',
+      };
+
+      Object.entries(localZones).map(([localZone, translationKey]) =>
+        expect(getLocalZoneTranslationKey(localZone)).toMatch(translationKey),
+      );
     });
   });
 });
