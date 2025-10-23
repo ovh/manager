@@ -26,8 +26,8 @@ export default function DashboardPage() {
 
   const activeTab = useMemo(
     () =>
-      tabs.find((tab) => location.pathname === `${urls.dashboard}/${tab.to}`) ??
-      tabs.find((tab) => tab.to && location.pathname.startsWith(`${urls.dashboard}/${tab.to}`)) ??
+      tabs.find((tab) => location.pathname === `${urls.dashboardVaults}/${tab.to}`) ??
+      tabs.find((tab) => tab.to && location.pathname.startsWith(`${urls.dashboardVaults}/${tab.to}`)) ??
       tabs[0],
     [tabs, location.pathname],
   );

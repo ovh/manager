@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import { Suspense } from 'react';
 
 import { Link } from 'react-router-dom';
@@ -7,16 +7,14 @@ import { useTranslation } from 'react-i18next';
 
 import { OdsButton } from '@ovhcloud/ods-components/react';
 
-import { BaseLayout, Breadcrumb, Datagrid } from '@ovh-ux/manager-react-components';
+import { Datagrid } from '@ovh-ux/manager-react-components';
 
 import { BACKUP_VAULTS_LIST_QUERY_KEY, useBackupVaultsList } from '@/data/hooks/vaults/getVault';
 
 import { useColumns } from './_hooks/useColumns.hooks';
-import {BackupAgentContext} from "@/BackupAgent.context";
-import {BACKUP_AGENT_NAMESPACES, VAULTS_NAMESPACE_PREFIX} from "@/BackupAgent.translations";
+import {BACKUP_AGENT_NAMESPACES } from "@/BackupAgent.translations";
 
 export default function ListingPage() {
-  const { appName } = useContext(BackupAgentContext);
   const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.VAULT_LISTING]);
   const queryClient = useQueryClient();
   const { flattenData, isLoading } = useBackupVaultsList();

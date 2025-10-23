@@ -3,6 +3,7 @@ import i18next, { InitOptions, i18n } from 'i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import billing from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/billing/Messages_fr_FR.json';
 import commonDashboard from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/dashboard/Messages_fr_FR.json';
+import region from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/region/Messages_fr_FR.json';
 import status from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/status/Messages_fr_FR.json';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
@@ -23,6 +24,7 @@ function addTranslations() {
     .addResources(defaultLocale, NAMESPACES.STATUS, status)
     .addResources(defaultLocale, NAMESPACES.DASHBOARD, commonDashboard)
     .addResources(defaultLocale, NAMESPACES.BILLING, billing)
+    .addResources(defaultLocale, NAMESPACES.REGION, region)
     .use({
       type: 'postProcessor',
       name: 'normalize',
@@ -59,4 +61,5 @@ export const labels = {
   status,
   commonDashboard,
   billing,
+  region,
 };

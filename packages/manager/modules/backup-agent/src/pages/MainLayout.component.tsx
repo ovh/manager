@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { BaseLayout, Breadcrumb } from '@ovh-ux/manager-react-components';
+import { BaseLayout, Breadcrumb, Notifications } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { BackupAgentContext } from '@/BackupAgent.context';
@@ -27,7 +27,7 @@ export default function MainLayout() {
   const tabs = useDashboardTabs();
 
   const activeTab = useMemo(
-    () => tabs.find((tab) => tab.to && location.pathname.startsWith(`/${tab.to}`)) ?? tabs[0],
+    () => tabs.find((tab) => tab.to && location.pathname.startsWith(tab.to)) ?? tabs[0],
     [tabs, location.pathname],
   );
 
@@ -38,6 +38,7 @@ export default function MainLayout() {
   return (
     <BaseLayout
       header={{ title: LABELS.BACKUP_AGENT }}
+      message={<Notifications />}
       backLinkLabel={t(`${NAMESPACES.ACTIONS}:back`)}
       onClickReturn={onNavigateBackClicked}
       breadcrumb={<Breadcrumb appName={appName} rootLabel={appName} />}
@@ -60,11 +61,9 @@ export default function MainLayout() {
         </OdsTabs>
       }
     >
-      <BackupAgentContext.Provider value={{ appName: 'Backup Agent', scope: 'Enterprise' }}>
-        <Suspense fallback={null}>
-          <Outlet />
-        </Suspense>
-      </BackupAgentContext.Provider>
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
     </BaseLayout>
   );
 }
