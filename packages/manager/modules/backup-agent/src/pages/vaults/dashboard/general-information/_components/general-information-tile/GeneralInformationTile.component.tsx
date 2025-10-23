@@ -3,8 +3,8 @@ import { useTranslation } from "react-i18next";
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 import {useBackupVaultDetails} from "@/data/hooks/vaults/getVaultDetails";
 import {OdsSkeleton} from "@ovhcloud/ods-components/react";
-import {VaultStatusBadge} from "@/components/VaultStatusBadge/VaultStatusBadge.components";
 import {useLocationDetails} from "@/data/hooks/location/getLocationDetails";
+import {ResourceStatusBadge} from "@/components/ResourceStatusBadge/ResourceStatusBadge.components";
 
 type GeneralInformationTileProps = {
   vaultId: string;
@@ -29,7 +29,7 @@ export function GeneralInformationTile({ vaultId }: GeneralInformationTileProps)
         <ManagerTile.Item>
           <ManagerTile.Item.Label>{t(`${NAMESPACES.STATUS}:status`)}</ManagerTile.Item.Label>
           <ManagerTile.Item.Description>
-            { isLoading ? <OdsSkeleton /> : <VaultStatusBadge vaultStatus={data!.resourceStatus!} /> }
+            { isLoading ? <OdsSkeleton /> : <ResourceStatusBadge vaultStatus={data!.resourceStatus!} /> }
           </ManagerTile.Item.Description>
         </ManagerTile.Item>
         <ManagerTile.Divider />
