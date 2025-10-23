@@ -179,5 +179,54 @@
         </div>
     </div>
 
+    <div class="form-group">
+        <label
+            class="control-label col-md-5"
+            data-translate="domain_configuration_dns_entry_add_dmarc_adkim"
+        ></label>
+        <div class="col-md-7">
+            <div class="oui-radio">
+                <input
+                    type="radio"
+                    class="oui-radio__input"
+                    id="adkim-r"
+                    name="adkim"
+                    value="r"
+                    data-ng-change="ctrl.setTargetValue('DMARC')"
+                    data-ng-model="ctrl.model.target.adkim"
+                />
+                <label class="oui-radio__label-container" for="adkim-r">
+                    <span class="oui-radio__label">
+                        <span class="oui-radio__icon"></span>
+                        <span
+                            class="oui-radio__text"
+                            data-translate="domain_configuration_dns_entry_add_dmarc_adkim_r"
+                        ></span>
+                    </span>
+                </label>
+            </div>
+            <div class="oui-radio">
+                <input
+                    type="radio"
+                    class="oui-radio__input"
+                    id="adkim-s"
+                    name="adkim"
+                    value="s"
+                    data-ng-change="ctrl.setTargetValue('DMARC')"
+                    data-ng-model="ctrl.model.target.adkim"
+                />
+                <label class="oui-radio__label-container" for="adkim-s">
+                    <span class="oui-radio__label">
+                        <span class="oui-radio__icon"></span>
+                        <span
+                            class="oui-radio__text"
+                            data-translate="domain_configuration_dns_entry_add_dmarc_adkim_s"
+                        ></span>
+                    </span>
+                </label>
+            </div>
+        </div>
+    </div>
+
     <div data-ng-include="'domain/zone/record/bottom.html'"></div>
 </form>
