@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import { resolve, dirname } from 'path';
+import { resolve, dirname } from 'node:path';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import { getBaseConfig } from '@ovh-ux/manager-vite-config';
 import { createRequire } from 'node:module';
@@ -7,7 +7,6 @@ import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 const baseConfig = getBaseConfig()
 const BACKUP_AGENT_PACKAGE = '@ovh-ux/backup-agent';
-
 
 export default defineConfig({
   ...getBaseConfig(),
@@ -19,6 +18,8 @@ export default defineConfig({
         src: `${dirname(require.resolve(BACKUP_AGENT_PACKAGE))}/../public/**/*`,
         dest: `translations/@ovh-ux/backup-agent`,
       }],
+      structured: true,
+      overwrite: true,
     }),
   ]
 });
