@@ -34,7 +34,6 @@ export function filterAllowedRegions(
     offer = OBJECT_CONTAINER_OFFER_STORAGE_STANDARD,
     deploymentMode = 'region',
     excludeRegion,
-    onlyEnabled = true,
     removeMacroIfMicroAvailable = true,
   } = criteria;
 
@@ -50,24 +49,23 @@ export function filterAllowedRegions(
       uniqueRegionsMap.set(region.name, region);
     }
   });
+
   const uniqueRegions = Array.from(uniqueRegionsMap.values());
   let filteredRegions = uniqueRegions.filter((region) => {
-    if (onlyEnabled && !region.enabled) return false;
+    const isSwiftOffer = offer !== OBJECT_CONTAINER_OFFER_STORAGE_STANDARD;
+
+    if (isSwiftOffer && !region.enabled) return false;
     if (region.type !== deploymentMode) return false;
 
-    if (offer !== OBJECT_CONTAINER_OFFER_STORAGE_STANDARD) {
-      const projectRegion = projectRegions?.find(
-        (pr) => pr.name === region.name,
-      );
-      if (
-        projectRegion &&
-        !projectRegion.services.some(({ name }) => name === offer)
-      ) {
-        return false;
-      }
-    }
+    if (offer === OBJECT_CONTAINER_OFFER_STORAGE_STANDARD) return true;
 
-    return true;
+    const projectRegion = projectRegions?.find((pr) => pr.name === region.name);
+    return (
+      !projectRegion ||
+      projectRegion.services.some(
+        ({ name: serviceName }) => serviceName === offer,
+      )
+    );
   });
 
   if (removeMacroIfMicroAvailable) {
