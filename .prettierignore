@@ -14,3 +14,4 @@ packages/manager/apps/hpc-backup-agent-iaas
 packages/manager/apps/bmc-backup-agent-baremetal
 packages/manager/modules/backup-agent
 packages/manager-tools/manager-pm
+turbo.json
