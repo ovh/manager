@@ -78,9 +78,9 @@ export const DownloadKmsPublicCaLink = ({
       });
 
       trackClick({
-        location: PageLocation.page,
-        buttonType: ButtonType.button,
-        actionType: 'navigation',
+        location: PageLocation.tile,
+        buttonType: ButtonType.link,
+        actionType: 'action',
         actions: [resources[type].tracking],
       });
     } catch {
