@@ -54,11 +54,19 @@ export default /* @ngInject */ ($stateProvider) => {
           terminationPolicy: 'terminateAtExpirationDate',
         });
       },
-      questions: /* @ngInject */ (BillingTerminate, service) =>
-        BillingTerminate.getTerminationForm(service.id).then(
-          ({ questions }) => questions,
-        ),
+      questions: /* @ngInject */ (
+        BillingTerminate,
+        service,
+        shouldHideQuestions,
+      ) =>
+        shouldHideQuestions
+          ? []
+          : BillingTerminate.getTerminationForm(service.id).then(
+              ({ questions }) => questions,
+            ),
       user: /* @ngInject */ (currentUser) => currentUser,
+      shouldHideQuestions: /* @ngInject */ (service) =>
+        service.hasManualRenew(),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('autorenew_service_delete_title'),
     },
