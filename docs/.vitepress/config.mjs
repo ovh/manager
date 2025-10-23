@@ -104,8 +104,8 @@ export default defineConfig({
             link: 'testing',
           },
           {
-            text: 'Manager React Components',
-            link: 'manager-react-components',
+            text: 'Manager UI Kit',
+            link: 'manager-ui-kit',
           },
         ],
       },

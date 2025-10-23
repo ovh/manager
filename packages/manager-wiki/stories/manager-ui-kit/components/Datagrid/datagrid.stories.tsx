@@ -1,0 +1,465 @@
+import React, { useMemo, useState } from 'react';
+import {
+  Button,
+  BUTTON_SIZE,
+  FormField,
+  FormFieldLabel,
+  Icon,
+  ICON_NAME,
+  Input,
+} from '@ovhcloud/ods-react';
+import { Datagrid, DatagridProps, useColumnFilters } from '@ovh-ux/muk';
+import {
+  applyFilters,
+  FilterCategories,
+  FilterComparator,
+} from '@ovh-ux/manager-core-api';
+import {
+  ExpandedState,
+  RowSelectionState,
+  SortingState,
+  VisibilityState,
+} from '@tanstack/react-table';
+import { withRouter } from 'storybook-addon-react-router-v6';
+
+const columns = [
+  {
+    id: 'person',
+    label: 'Person',
+    accessorKey: 'person',
+    header: 'Person',
+    enableHiding: true,
+    comparator: FilterCategories.String,
+    cell: ({ getValue }) => <div>{getValue()}</div>,
+  },
+  {
+    id: 'mostInterestIn',
+    label: 'Most interest in',
+    accessorKey: 'mostInterestIn',
+    header: 'Most interest in',
+    enableHiding: true,
+    type: FilterCategories.String,
+    cell: ({ getValue }) => <div>{getValue()}</div>,
+  },
+  {
+    id: 'age',
+    label: 'Age',
+    accessorKey: 'age',
+    header: 'Age',
+    enableHiding: false,
+    type: FilterCategories.Numeric,
+    cell: ({ getValue }) => <div>{getValue()}</div>,
+  },
+];
+
+const data = [
+  {
+    person: 'John Doe',
+    mostInterestIn: '	HTML tables',
+    age: 25,
+  },
+  {
+    person: 'Jane Doe',
+    mostInterestIn: 'Web accessibility',
+    age: 26,
+  },
+  {
+    person: 'Sarah',
+    mostInterestIn: 'JavaScript frameworks',
+    age: 25,
+  },
+  {
+    person: 'Karen',
+    mostInterestIn: '	Web performance',
+    age: 26,
+  },
+];
+
+const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [searchInput, setSearchInput] = useState('');
+  const sortAttrs = {
+    sorting,
+    setSorting,
+    manualSorting: false,
+  };
+  const [isFetchAll, setIsFetchAll] = useState(false);
+  const [items, setItems] = useState(args.data);
+  const cols = args.columns;
+  const fetchAllPages = () => {
+    const newData = Array.from({ length: 10000 }, (_, index) => ({
+      ...items[index],
+      person: `Most interest in ${items.length + index}`,
+      mostInterestIn: `Most interest in ${items.length + index}`,
+      age: index + 1,
+    }));
+    setItems([...items, ...newData]);
+  };
+
+  const [containerHeightState, setContainerHeightState] = useState(
+    args.containerHeight,
+  );
+  const [containerHeightStyle, setContainerHeightStyle] = useState(
+    args.containerHeight,
+  );
+  const {
+    autoScroll,
+    renderSubComponent,
+    subComponentHeight,
+    maxRowHeight,
+    isLoading,
+    totalCount,
+    topbar,
+  } = args;
+  const { filters, addFilter, removeFilter } = useColumnFilters();
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+  const onSearch = (search: string) => {
+    const tmp = applyFilters(
+      args.data,
+      !search || search.length === 0
+        ? filters
+        : [
+            {
+              key: 'person',
+              value: searchInput,
+              comparator: FilterComparator.Includes,
+            },
+            ...filters,
+          ],
+    );
+    setItems(tmp);
+  };
+  const [expanded, setExpanded] = useState<ExpandedState>({});
+  const colsArgs = useMemo(
+    () =>
+      cols.map((col) => ({
+        ...col,
+        ...('sorting' in args && { isSortable: true }),
+        ...('search' in args && { isSearchable: true }),
+        ...('filters' in args && { isFilterable: true }),
+      })),
+    [cols, args],
+  );
+
+  const itemsArgs = useMemo(
+    () =>
+      items?.map((col, indexItems) => ({
+        ...col,
+        ...('subRows' in args && {
+          subRows: Array.from({ length: 5 }, (_, index) => ({
+            person: `Most interest in ${index + (indexItems * 2 + 888888)}`,
+            mostInterestIn: `Most interest in ${index +
+              (indexItems * 2 + 888888)}`,
+            age: index + (indexItems * 2 + 888888),
+          })),
+        }),
+      })),
+    [items, args],
+  );
+  return (
+    <>
+      {'containerHeight' in args && (
+        <div className="py-4">
+          <div className="max-w-[200px]">
+            <FormField>
+              <FormFieldLabel>Container Height</FormFieldLabel>
+              <Input
+                value={containerHeightState}
+                onChange={(e) =>
+                  setContainerHeightState(Number(e.target.value))
+                }
+              />
+              <Button
+                onClick={() => setContainerHeightStyle(containerHeightState)}
+              >
+                Update
+              </Button>
+            </FormField>
+          </div>
+        </div>
+      )}
+      <Datagrid
+        columns={colsArgs}
+        data={applyFilters(itemsArgs, filters)}
+        {...('containerHeight' in args && {
+          containerHeight: containerHeightStyle,
+        })}
+        {...('manualSorting' in args && { sorting: { ...sortAttrs } })}
+        {...('onFetchAllPages' in args &&
+          !isFetchAll && {
+            hasNextPage: true,
+            onFetchAllPages: () => {
+              setIsFetchAll(true);
+              fetchAllPages();
+            },
+          })}
+        {...('onFetchNextPage' in args &&
+          !isFetchAll && {
+            hasNextPage: true,
+            onFetchNextPage: () =>
+              setItems([
+                ...items,
+                {
+                  person: `Person ${items.length + 1}`,
+                  mostInterestIn: `Most interest in ${items.length + 1}`,
+                  age: items.length + 1,
+                },
+              ]),
+          })}
+        {...('renderSubComponent' in args && { renderSubComponent })}
+        {...('subComponentHeight' in args && { subComponentHeight })}
+        {...('maxRowHeight' in args && { maxRowHeight })}
+        {...('isLoading' in args && { isLoading })}
+        {...('totalCount' in args && { totalCount })}
+        {...('expandable' in args && {
+          expandable: {
+            expanded,
+            setExpanded,
+          },
+        })}
+        {...('autoScroll' in args && { autoScroll })}
+        {...('columnVisibility' in args && {
+          columnVisibility: {
+            columnVisibility,
+            setColumnVisibility,
+          },
+        })}
+        {...('topbar' in args && { topbar })}
+        {...('filters' in args && {
+          filters: {
+            filters,
+            add: addFilter,
+            remove: removeFilter,
+          },
+        })}
+        {...('search' in args && {
+          search: { searchInput, setSearchInput, onSearch },
+        })}
+        {...('rowSelection' in args && {
+          rowSelection: {
+            rowSelection,
+            setRowSelection,
+          },
+        })}
+      />
+    </>
+  );
+};
+
+export const Default = DatagridStory.bind({});
+
+Default.args = {
+  columns,
+  data,
+};
+
+export const Sorting = DatagridStory.bind({});
+
+Sorting.args = {
+  columns,
+  data,
+  manualSorting: false,
+  sorting: {
+    sorting: [],
+    setSorting: () => {},
+    manualSorting: false,
+  },
+};
+
+export const Loading = DatagridStory.bind({});
+
+Loading.args = {
+  columns,
+  data: [],
+  isLoading: true,
+};
+
+export const LoadMore = DatagridStory.bind({});
+
+LoadMore.args = {
+  columns,
+  data: [...data],
+  hasNextPage: true,
+  onFetchNextPage: () => {},
+};
+
+export const LoadAllAndLoading = DatagridStory.bind({});
+
+LoadAllAndLoading.args = {
+  columns,
+  data: [...data],
+  manualSorting: false,
+  hasNextPage: true,
+  onFetchAllPages: () => {},
+  onFetchNextPage: () => {},
+};
+
+export const ContainerHeight = DatagridStory.bind({});
+
+ContainerHeight.args = {
+  columns,
+  data: [...data],
+  manualSorting: false,
+  containerHeight: '260px',
+};
+
+export const SubComponent = DatagridStory.bind({});
+
+SubComponent.args = {
+  columns,
+  data: [...data],
+  autoScroll: false,
+  renderSubComponent: (row: any) => (
+    <>
+      <div>{row.original.person}</div>
+      <div>{row.original.mostInterestIn}</div>
+      <div>{row.original.age}</div>
+    </>
+  ),
+  subComponentHeight: 80,
+};
+
+export const Expandable = DatagridStory.bind({});
+
+Expandable.args = {
+  columns,
+  data: [...data],
+  expandable: {
+    expanded: {},
+    setExpanded: () => {},
+  },
+  autoScroll: false,
+  subComponentHeight: 80,
+  subRows: true,
+};
+
+export const VisibilityColumns = DatagridStory.bind({});
+
+VisibilityColumns.args = {
+  columns,
+  data: [...data],
+  manualSorting: false,
+  columnVisibility: {
+    columnVisibility: { person: true, mostInterestIn: true, age: true },
+    setColumnVisibility: () => {},
+  },
+};
+
+export const Filtering = DatagridStory.bind({});
+
+Filtering.args = {
+  columns,
+  data: [...data],
+  filters: {
+    filters: [],
+    add: () => {},
+    remove: () => {},
+  },
+};
+
+export const Search = DatagridStory.bind({});
+
+Search.args = {
+  columns,
+  data: [...data],
+  search: {
+    searchInput: '',
+    setSearchInput: () => {},
+    onSearch: () => {},
+  },
+};
+
+export const RowSelection = DatagridStory.bind({});
+
+RowSelection.args = {
+  columns,
+  data: [...data],
+  rowSelection: {
+    rowSelection: [],
+    setRowSelection: () => {},
+    onRowSelectionChange: () => {},
+  },
+};
+
+export const Topbar = DatagridStory.bind({});
+
+Topbar.args = {
+  columns,
+  data: [...data],
+  topbar: (
+    <div>
+      <Button size={BUTTON_SIZE.sm}>
+        <Icon name={ICON_NAME.plus} />
+        Add New
+      </Button>
+    </div>
+  ),
+  filters: {
+    filters: [],
+    add: () => {},
+    remove: () => {},
+  },
+  search: {
+    searchInput: '',
+    setSearchInput: () => {},
+    onSearch: () => {},
+  },
+  rowSelection: {
+    rowSelection: [],
+    setRowSelection: () => {},
+    onRowSelectionChange: () => {},
+  },
+  columnVisibility: {
+    columnVisibility: { person: true, mostInterestIn: true, age: true },
+    setColumnVisibility: () => {},
+  },
+};
+
+export const TotalCount = DatagridStory.bind({});
+
+TotalCount.args = {
+  columns,
+  data: [...data],
+  totalCount: 4,
+};
+
+export const FullFooter = DatagridStory.bind({});
+
+FullFooter.args = {
+  columns,
+  data: [...data],
+  hasNextPage: true,
+  onFetchAllPages: () => {},
+  onFetchNextPage: () => {},
+  totalCount: 4,
+};
+
+const meta = {
+  title: 'Manager UI Kit/Components/Datagrid New',
+  component: Datagrid,
+  tags: ['autodocs'],
+  decorators: [withRouter],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'The `Datagrid` component provides a powerful data table with built-in pagination controls. The footer actions section includes "Load More" and "Load All" buttons for progressive data loading.',
+      },
+    },
+    preserveArgs: false,
+  },
+  args: {},
+  argTypes: {
+    hasNextPage: {
+      description: 'Controls whether pagination buttons are shown',
+      control: 'boolean',
+    },
+    isLoading: {
+      description: 'Shows loading state on pagination buttons',
+      control: 'boolean',
+    },
+  },
+};
+
+export default meta;

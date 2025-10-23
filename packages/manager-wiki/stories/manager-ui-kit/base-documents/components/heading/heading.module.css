@@ -1,0 +1,12 @@
+.heading {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  column-gap: .5rem;
+  margin-bottom: 0;
+  color: var(--ods-color-primary-800);
+}
+
+.heading__child {
+  font-size: 12px;
+}

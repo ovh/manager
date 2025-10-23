@@ -88,6 +88,6 @@
   "packages/manager/modules/*",
   "packages/manager-tools/*",
   "packages/manager-tools/manager-legacy-tools/*",
-  "packages/manager-react-components",
+  "packages/manager-ui-kit",
   "packages/manager-wiki"
 ]

@@ -18,7 +18,9 @@ const getBaseConfig = (config) => {
   if (envConfig.isLABEU || process.env.LABEU) {
     const labeuHost = process.env.LABEU_HOST;
     if (!labeuHost) {
-      throw new Error('Please define the environment variable "LABEU_HOST=host" to use LABEU env');
+      throw new Error(
+        `'Please define the environment variable "LABEU_HOST=host" to use LABEU env'`,
+      );
     }
     envConfig.host = labeuHost;
   }
@@ -52,7 +54,7 @@ const getBaseConfig = (config) => {
         '@vitest',
         'typescript',
         'date-fns',
-        '@ovh-ux/manager-react-components',
+        '@ovh-ux/muk',
       ],
     },
     define: {
@@ -73,7 +75,7 @@ const getBaseConfig = (config) => {
       preprocessorOptions: {
         scss: {
           includePaths: [
-            resolve(dirname(fileURLToPath(import.meta.url)), '../../../../../node_modules'),
+            resolve(`${dirname(fileURLToPath(import.meta.url))}`, '../../../../../node_modules'),
           ],
         },
       },

@@ -1,0 +1,23 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Badge Snapshot Tests > Displays Badge 1`] = `
+<div>
+  <span
+    class="_badge_vpjtq_2 _badge--information_vpjtq_23 _badge--sm_vpjtq_51"
+    data-ods="badge"
+  >
+    Active
+  </span>
+</div>
+`;
+
+exports[`Badge Snapshot Tests > Displays Loader 1`] = `
+<div>
+  <div
+    aria-hidden="true"
+    class="_skeleton_kauw8_2"
+    data-ods="skeleton"
+    data-testid="undefined"
+  />
+</div>
+`;

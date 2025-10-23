@@ -1,16 +1,15 @@
 import { Meta } from '@storybook/blocks';
-import { Links, LinkType } from '@ovh-ux/manager-react-components';
 import {
   version,
   devDependencies,
-} from '../../../manager-react-components/package.json';
+} from '../../../manager-ui-kit/package.json';
 import mrcAddComponentImg from './images/mrc-adding-component.png'
 
-<Meta title="Manager React Components/Guidelines/New component ?" />
+<Meta title="Manager UI Kit/Guidelines/New component ?" />
 
 # How to add a new component
 
-This guide will walk you through the process of creating and integrating a new component into the Manager React Components library.
+This guide will walk you through the process of creating and integrating a new component into the Manager UI Kit library.
 
 Correcting, adding new features on an existing component.
 
@@ -43,8 +42,13 @@ src/
     your-component/
       __tests__
           your-component.test.tsx
+          your-component.snapshot.test.tsx
+          __snapshots__
       your-component.component.tsx
+      your-component.constants.ts
+      your-component.props.ts
       your-component.types.ts
+      your-component.scss
       index.ts
 ```
 
@@ -60,6 +64,11 @@ src/
       your-custom-hook.types.ts
       index.ts
 ```
+
+### name convention:
+- Package should be `kebab-case`
+- React component, hooks `UpperCamelCase`
+- Test name, file name `UpperCamelCase`
 
 Adding story to manager-wiki
 
@@ -81,7 +90,7 @@ First, create the necessary files in the correct directory:
 
 ```tsx
 // your-component.component.tsx
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovh-ux/muk';
 import { YourComponentProps } from './your-component.types';
 import { useYourComponent } from './your-component.utils';
 
@@ -153,7 +162,74 @@ describe('YourComponent', () => {
 });
 ```
 
-### 6. 📤 Export Component
+Create snaphot
+
+> Info : Components in MRC must have a minimum of 90% coverage. More to follow with respect to Accessibility, visual regression testings.
+
+### 7. 📸 Create Snapshot Tests
+
+Create snapshot tests in `your-component.snapshot.test.tsx`:
+
+```tsx
+import { render } from '@testing-library/react';
+import { YourComponent } from './your-component.component';
+
+describe('YourComponent Snapshot Tests', () => {
+  it('should match snapshot with default props', () => {
+    const { container } = render(<YourComponent prop1="default" prop2={0} />);
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('should match snapshot with all props', () => {
+    const { container } = render(
+      <YourComponent 
+        prop1="test value" 
+        prop2={42} 
+        optionalProp={true} 
+      />
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('should match snapshot with different prop combinations', () => {
+    const { container: container1 } = render(
+      <YourComponent prop1="value1" prop2={10} />
+    );
+    expect(container1.firstChild).toMatchSnapshot('with value1 and 10');
+
+    const { container: container2 } = render(
+      <YourComponent prop1="value2" prop2={20} optionalProp={false} />
+    );
+    expect(container2.firstChild).toMatchSnapshot('with value2, 20, and optionalProp false');
+  });
+});
+```
+
+**Snapshot Testing Best Practices:**
+
+- 📸 **Multiple scenarios**: Test different prop combinations to catch visual regressions
+- 🏷️ **Descriptive names**: Use descriptive snapshot names to identify what each snapshot represents
+- 🔄 **Regular updates**: Review and update snapshots when making intentional changes
+- 🎯 **Focused testing**: Test the component's visual output, not implementation details
+- 📁 **Organized structure**: Keep snapshot files in `__tests__/_snapshots_/` directory
+
+**When to update snapshots:**
+- After intentional UI changes
+- When fixing bugs that affect rendering
+- When adding new features that change the component's appearance
+
+**Running snapshot tests:**
+```bash
+# Run all snapshot tests
+npm test -- --testNamePattern="snapshot"
+
+# Update snapshots after intentional changes
+npm test -- --testNamePattern="snapshot" --updateSnapshot
+```
+
+> ⚠️ **Important**: Always review snapshot diffs before accepting changes. Snapshots should reflect intentional UI updates, not accidental regressions.
+
+### 8. Export Component
 
 Add exports in `index.ts`:
 
@@ -163,6 +239,10 @@ export type { nameExportType } from './your-component.types';
 ```
 
 > ❌ Do not export with `*`, it can cause issues during the library build
+
+### 8. Storybook Update
+
+Add a documentation for the component in Manager WIKI
 
 ## 🎨 Best Practices
 
@@ -230,7 +310,7 @@ When committing your changes:
 ```bash
 git checkout -b feat/MANAGER-#
 git add .
-git commit -m "feat(manager-react-components): add new YourComponent"
+git commit -m "feat(manager-ui-kit): add new YourComponent"
 git push origin feature/MANAGER-#
 ```
 

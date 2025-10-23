@@ -49,8 +49,8 @@ const ignorePatterns =
   appName || isPackageName
     ? []
     : modernApps.map(
-      (app) => `--ignore-pattern='packages/manager/apps/${app}/**'`,
-    );
+        (app) => `--ignore-pattern='packages/manager/apps/${app}/**'`,
+      );
 
 /**
  * Determines legacy lint targets.
@@ -58,9 +58,8 @@ const ignorePatterns =
 const legacyPattern = appName
   ? [`packages/manager/apps/${appName}/**/*.{tsx,ts}`]
   : [
-    'packages/manager/apps/**/*.{tsx,ts}',
-    'packages/manager-react-components/**/*.{tsx,ts}',
-  ];
+      'packages/manager/apps/**/*.{tsx,ts}'
+    ];
 
 if (verbose) {
   console.log(`🗂️ Legacy lint patterns:\n${legacyPattern.join('\n')}`);

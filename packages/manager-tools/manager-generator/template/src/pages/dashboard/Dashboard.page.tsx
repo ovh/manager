@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
 
-import { BaseLayout } from '@ovh-ux/manager-react-components';
+import { BaseLayout } from '@ovh-ux/muk';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { appName } from '@/App.constants';
@@ -61,11 +61,15 @@ export default function DashboardPage() {
                     }
                   }}
                 >
-                  <OdsTab isSelected={tab.name === activeTab?.name}>{t(tab.title)}</OdsTab>
+                  <OdsTab isSelected={tab.name === activeTab?.name}>
+                    {t(tab.title)}
+                  </OdsTab>
                 </NavLink>
               ))}
             </OdsTabs>
-          ) : undefined
+          ) : (
+            undefined
+          )
         }
       />
       <Suspense fallback={null}>
