@@ -90,6 +90,11 @@ export default class ActionSelectController {
      * Whether to show or not an error message below search input
      */
     this.showSearchNotFoundError = false;
+
+    /**
+     * Default label to show for manged permission
+     */
+    this.managedPermissionsLabel = 'iam_managed_permissions_heading';
   }
 
   /**
@@ -380,7 +385,9 @@ export default class ActionSelectController {
    * @param {string} tag
    */
   trackActionSelectClick(tag) {
-    this.trackClick([this.tagPrefix, tag].filter(Boolean).join(''));
+    if (typeof this.trackClick === 'function') {
+      this.trackClick([this.tagPrefix, tag].filter(Boolean).join(''));
+    }
   }
 
   /**
@@ -388,7 +395,9 @@ export default class ActionSelectController {
    * @param {string} tag
    */
   trackActionSelectPage(tag) {
-    this.trackPage([this.tagPrefix, tag].filter(Boolean).join(''));
+    if (typeof this.trackPage === 'function') {
+      this.trackPage([this.tagPrefix, tag].filter(Boolean).join(''));
+    }
   }
 
   /*

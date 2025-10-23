@@ -13,8 +13,11 @@ export default {
     required: '@?',
     resourceTypes: '<',
     tagPrefix: '<',
-    trackClick: '<',
-    trackPage: '<',
+    trackClick: '<?',
+    trackPage: '<?',
+    showActionWildcard: '<?',
+    expandByDefault: '<?',
+    managedPermissionsLabel: '<?',
     permissionsGroups: '<',
   },
   require: {
