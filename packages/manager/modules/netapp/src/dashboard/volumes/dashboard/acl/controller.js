@@ -39,7 +39,7 @@ export default class NetAppVolumesDashboardAclController {
 
     this.initAclModel();
     this.acls.push({});
-    this.selectRow(this.acls.length - 1);
+    this.selectRow(this.acls.at(-1));
   }
 
   deleteAclRule({ id }, index) {
@@ -49,6 +49,7 @@ export default class NetAppVolumesDashboardAclController {
     return this.deleteAcl(id)
       .then(() => {
         this.acls.splice(index, 1);
+        this.selectRow(this.acls.length);
         return this.Alerter.success(
           this.$translate.instant('netapp_volumes_acl_add_success'),
         );
