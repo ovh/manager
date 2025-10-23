@@ -18,6 +18,7 @@ import {
   slotServicesMock,
   slotsMock,
   taskMocks,
+  zimbraUpgradeOrderMock,
 } from '@/data/api';
 
 const mocksAxios = vi.hoisted(() => ({
@@ -168,6 +169,9 @@ vi.mock('@/data/api', async (importActual) => {
     // ORDER
     getOrderCatalog: vi.fn(() => {
       return Promise.resolve(orderCatalogMock);
+    }),
+    getZimbraUpgradeOrder: vi.fn(() => {
+      return Promise.resolve(zimbraUpgradeOrderMock);
     }),
   };
 });

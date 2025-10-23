@@ -1,3 +1,5 @@
+import { MAX_PRO_STORAGE_QUOTA, MAX_STARTER_STORAGE_QUOTA } from '@/constants';
+
 import { ZimbraOffer } from '../type';
 
 // necessary for now because slot API doesn't send the information
@@ -6,9 +8,9 @@ export const getOfferDefaultQuota = (offer: keyof typeof ZimbraOffer) => {
   switch (offer) {
     case ZimbraOffer.STARTER:
       // 15Gb
-      return 16106127360;
+      return MAX_STARTER_STORAGE_QUOTA;
     default:
       // 50Gb
-      return 53687091200;
+      return MAX_PRO_STORAGE_QUOTA;
   }
 };
