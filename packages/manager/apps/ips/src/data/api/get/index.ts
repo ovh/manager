@@ -5,6 +5,7 @@ export * from './dedicatedServerVmac';
 export * from './dedicatedServerVmacVirtualAddress';
 export * from './ipMitigation';
 export * from './ipSpam';
+export * from './ipSpamStats';
 export * from './ipAntihack';
 export * from './ipEdgeFirewall';
 export * from './ipExport';

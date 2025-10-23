@@ -40,24 +40,26 @@ export const IpAlerts = ({ ip, subIp, isByoipSlice }: IpAlertsProps) => {
 
   return (
     <SkeletonCell isLoading={isLoading}>
-      {!!hasAlerts?.antihack?.length && (
-        <OdsBadge
-          label={t('listingColumnsIpAlertsAntihack')}
-          color={ODS_BADGE_COLOR.critical}
-        />
-      )}
-      {!!hasAlerts?.spam?.length && (
-        <OdsBadge
-          label={t('listingColumnsIpAlertsSpam')}
-          color={ODS_BADGE_COLOR.critical}
-        />
-      )}
-      {!!hasAlerts?.mitigation?.length && (
-        <OdsBadge
-          label={t('listingColumnsIpAlertsMitigation')}
-          color={ODS_BADGE_COLOR.critical}
-        />
-      )}
+      <div className="flex flex-col gap-1">
+        {!!hasAlerts?.antihack?.length && (
+          <OdsBadge
+            label={t('listingColumnsIpAlertsAntihack')}
+            color={ODS_BADGE_COLOR.critical}
+          />
+        )}
+        {!!hasAlerts?.spam?.length && (
+          <OdsBadge
+            label={t('listingColumnsIpAlertsSpam')}
+            color={ODS_BADGE_COLOR.critical}
+          />
+        )}
+        {!!hasAlerts?.mitigation?.length && (
+          <OdsBadge
+            label={t('listingColumnsIpAlertsMitigation')}
+            color={ODS_BADGE_COLOR.critical}
+          />
+        )}
+      </div>
     </SkeletonCell>
   );
 };
