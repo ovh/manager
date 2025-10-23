@@ -16,6 +16,7 @@ const Restricted = (): JSX.Element => (
     <div className="restricted-main d-flex flex-column px-5">
       <ErrorJumbotron />
       <div className="restricted-guides mb-4 d-flex flex-column flex-md-row">
+        This is a small changes to test pnpm release dont merge!
         {GUIDES.map((guide) => (
           <GuideCard {...guide} key={guide.id} />
         ))}
