@@ -146,16 +146,15 @@ export const DashboardLayout: React.FC = () => {
       hidden: !FEATURE_FLAGS.MAILINGLISTS,
     },
     {
-      name: 'redirection',
+      name: 'redirections',
       trackingName: REDIRECTION,
-      title: t('common:redirection'),
+      title: t('common:redirections'),
       to: useGenerateUrl(`${basePath}/redirections`, 'path'),
       pathMatchers: useComputePathMatchers([
         urls.redirections,
         urls.redirections_delete,
         urls.redirections_edit,
       ]),
-      hidden: !FEATURE_FLAGS.REDIRECTIONS,
     },
     {
       name: 'auto_reply',

@@ -86,7 +86,6 @@ export const EmailAccountSettingsLayout = () => {
       title: t('common:redirection'),
       to: hrefRedirections,
       pathMatchers: pathMatcherRedirectionsTabs,
-      hidden: !FEATURE_FLAGS.REDIRECTIONS,
     },
     {
       name: 'auto_reply',

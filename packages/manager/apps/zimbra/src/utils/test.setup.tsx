@@ -12,6 +12,7 @@ import {
   orderCatalogMock,
   organizationsMock,
   platformMock,
+  redirectionsMock,
   serviceMock,
   servicesMock,
   slotMock,
@@ -76,6 +77,21 @@ vi.mock('@/data/api', async (importActual) => {
       });
     }),
     deleteZimbraPlatformAccount: vi.fn(() => {
+      return Promise.resolve();
+    }),
+    // REDIRECTION
+    getZimbraPlatformRedirections: vi.fn(() => {
+      return Promise.resolve({
+        data: redirectionsMock,
+      });
+    }),
+    getZimbraPlatformRedirection: vi.fn(() => {
+      return Promise.resolve(redirectionsMock[0]);
+    }),
+    postZimbraPlatformRedirection: vi.fn(() => {
+      return Promise.resolve();
+    }),
+    deleteZimbraPlatformRedirection: vi.fn(() => {
       return Promise.resolve();
     }),
     // DOMAIN
