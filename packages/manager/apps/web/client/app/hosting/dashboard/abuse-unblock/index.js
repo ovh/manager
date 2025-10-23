@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'ovhManagerHostingMultisiteGitRemovalLazyLoading';
+const moduleName = 'ovhManagerHostingAbuseUnblockLazyLoading';
 
 angular
   .module(moduleName, ['ui.router', 'oc.lazyLoad'])
