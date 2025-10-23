@@ -9,6 +9,7 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
+const ACTION_COLUMN_LABEL = '';
 const COLUMNS_EXPECTED = [
   ID_LABEL,
   'resource_name_label',
@@ -16,6 +17,7 @@ const COLUMNS_EXPECTED = [
   'region_label',
   'buckets_label',
   'status_label',
+  ACTION_COLUMN_LABEL,
 ];
 
 describe('useColumns on Listing Page', () => {
