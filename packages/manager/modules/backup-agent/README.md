@@ -139,3 +139,14 @@ The `BackupAgentContext` accepts the following properties:
 
 - `appName`: The name of your application
 - `scope`: The scope of the backup agent (e.g., 'Enterprise', 'Baremetal')
+
+
+## Hot reload
+
+To enable the hot reloading during the development, please execute the following command:
+
+```bash
+yarn dev:watch --filter="@ovh-ux/backup-agent"
+```
+
+> Note: This can't works if package is not on the workspace. Think to execute : `pm:prepare:legacy:workspace` before
