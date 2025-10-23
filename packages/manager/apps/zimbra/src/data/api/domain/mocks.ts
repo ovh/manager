@@ -24,6 +24,7 @@ export const domainMock: DomainType = {
     ],
     expectedDNSConfig: {
       spf: 'string',
+      autodiscover: '_autodiscover._tcp IN SRV 0 0 443 zimbra1.mail.ovh.net.',
       dkim: {
         cnames: [
           {
@@ -95,6 +96,7 @@ export const domainsMock: DomainType[] = [
           cname: 'string',
         },
         spf: 'string',
+        autodiscover: '_autodiscover._tcp IN SRV 0 0 443 zimbra1.mail.ovh.net.',
       },
     },
     currentTasks: [
@@ -146,6 +148,7 @@ export const domainsMock: DomainType[] = [
           cname: 'string',
         },
         spf: 'string',
+        autodiscover: '_autodiscover._tcp IN SRV 0 0 443 zimbra1.mail.ovh.net.',
       },
     },
     currentTasks: [
@@ -187,6 +190,7 @@ export const domainDiagnosticMock = {
         cname: 'string',
       },
       spf: 'string',
+      autodiscover: '_autodiscover._tcp IN SRV 0 0 443 zimbra1.mail.ovh.net.',
     },
   },
   result: {
@@ -219,6 +223,16 @@ export const domainDiagnosticMock = {
       errors: [
         {
           code: 'DANGEROUS_SPF_POLICY',
+          message: 'string',
+        },
+      ],
+      recordsFound: ['string'],
+      status: 'ERROR',
+    },
+    autodiscover: {
+      errors: [
+        {
+          code: 'INCORRECT_SRV_RECORD',
           message: 'string',
         },
       ],

@@ -39,5 +39,10 @@
   "zimbra_domain_diagnostic_banner_enable_success_message": "La tua richiesta di attivazione è stata presa in carico. Sarà eseguita entro pochi minuti.",
   "zimbra_domain_diagnostic_banner_disable_success_message": "La tua richiesta di disattivazione è stata presa in carico. Sarà eseguita entro pochi minuti.",
   "zimbra_domain_diagnostic_dkim_enable": "Attivare la firma DKIM",
-  "zimbra_domain_diagnostic_dkim_disable": "Disattivare la firma DKIM"
+  "zimbra_domain_diagnostic_dkim_disable": "Disattivare la firma DKIM",
+  "zimbra_domain_diagnostic_information_message_srv_ok": "L’autodiscover è configurato correttamente sul dominio.<br/><br/>L'autodiscover è un meccanismo che semplifica la configurazione delle caselle email sui client di posta. Grazie all'autodiscover, non è più necessario inserire il nome o le porte di connessione del server.",
+  "zimbra_domain_diagnostic_information_message_srv_error": "Abbiamo rilevato una configurazione SRV che non corrisponde a quella attesa dal tuo servizio email. L'autodiscover non può funzionare correttamente.<br/><br/>L'autodiscover è un meccanismo che semplifica la configurazione delle caselle email sui client di posta. Grazie all'autodiscover, non è più necessario inserire il nome o le porte di connessione del server.<br/><br/>Completa la zona DNS del tuo dominio con le informazioni qui sotto.",
+  "zimbra_domain_diagnostic_information_message_srv_warning": "Abbiamo rilevato una configurazione SRV che non corrisponde a quella attesa dal tuo servizio email. L'autodiscover potrebbe non funzionare correttamente.<br/><br/>L'autodiscover è un meccanismo che semplifica la configurazione delle caselle email sui client di posta. Grazie all'autodiscover, non è più necessario inserire il nome o le porte di connessione del server.",
+  "zimbra_domain_diagnostic_information_banner_srv_error": "Errore di configurazione SRV, i tuoi utenti potrebbero avere difficoltà a configurare il loro account nei client di posta.",
+  "zimbra_domain_diagnostic_information_banner_srv_warning": "Configurazione SRV anomala"
 }

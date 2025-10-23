@@ -40,3 +40,13 @@ describe('Consumption Component', () => {
     expect(chartContainer).toBeInTheDocument();
   });
 });
+
+describe('Consumption W3C Validation', () => {
+  // issue with ods on ods-select and option child element
+  it.skip('should have a valid html', async () => {
+    const { container } = render(<Consumption />);
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+});

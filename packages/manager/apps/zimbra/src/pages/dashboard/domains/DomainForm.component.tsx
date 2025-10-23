@@ -74,7 +74,7 @@ export const DomainForm = ({
   submitButtonLabel?: string;
   subtitle?: React.ReactNode;
 }) => {
-  const { t } = useTranslation(['domains/form', 'common', NAMESPACES.ACTIONS]);
+  const { t } = useTranslation(['domains/form', 'common', NAMESPACES.ACTIONS, NAMESPACES.FORM]);
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
   const { platformId } = useParams();

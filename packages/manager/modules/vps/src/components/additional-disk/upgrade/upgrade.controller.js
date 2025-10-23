@@ -50,28 +50,26 @@ export default class VpsDiskUpgradeCtrl {
       this.selectedDiskModel.planCode,
     )
       .then(({ order }) =>
-        this.CucCloudMessage.success({
-          textHtml: `
+        this.goBack(`
           ${this.$translate.instant(
             'vps_additional_disk_upgrade_action_upgrade_success_info',
           )}
           <a href="${order.url}" target="_blank">${this.$translate.instant(
-            'vps_additional_disk_upgrade_action_upgrade_payment_info',
-          )}</a>
-        `,
-        }),
+          'vps_additional_disk_upgrade_action_upgrade_payment_info',
+        )}</a>
+        `),
       )
       .catch((err) =>
-        this.CucCloudMessage.error(
+        this.goBack(
           err.message ||
             this.$translate.instant(
               'vps_additional_disk_upgrade_action_upgrade_error',
             ),
+          'error',
         ),
       )
       .finally(() => {
         this.isUpgrading = false;
-        return this.goBack();
       });
   }
 }
