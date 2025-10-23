@@ -3,12 +3,12 @@ import { useTranslation } from 'react-i18next';
 import {
   VaultBucketsCell,
   VaultIdCell,
-  VaultLocationCell,
   VaultReferenceCell,
-  VaultRegionCell,
-  VaultStatusCell,
 } from '../_components';
-import {BACKUP_AGENT_NAMESPACES, NAMESPACE_PREFIX, VAULTS_NAMESPACE_PREFIX} from "@/BackupAgent.translations";
+import {BACKUP_AGENT_NAMESPACES} from "@/BackupAgent.translations";
+import {ResourceLocationCell} from "@/components/CommonCells/ResourceLocationCell/ResourceLocationCell.components";
+import {ResourceRegionCell} from "@/components/CommonCells/ResourceRegionCell/ResourceRegionCell.components";
+import {ResourceStatusCell} from "@/components/CommonCells/ResourceStatusCell/ResourceStatusCell.components";
 
 export const ID_LABEL = 'ID';
 
@@ -28,12 +28,12 @@ export const useColumns = () => {
     },
     {
       id: 'currentState.azName',
-      cell: VaultLocationCell,
+      cell: ResourceLocationCell,
       label: t('location_label'),
     },
     {
       id: 'region',
-      cell: VaultRegionCell,
+      cell: ResourceRegionCell,
       label: t('region_label'),
     },
     {
@@ -43,7 +43,7 @@ export const useColumns = () => {
     },
     {
       id: 'resourceStatus',
-      cell: VaultStatusCell,
+      cell: ResourceStatusCell,
       label: t('status_label'),
     },
   ];

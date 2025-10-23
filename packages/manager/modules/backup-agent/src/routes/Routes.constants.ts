@@ -5,6 +5,7 @@ export const subRoutes = {
   vaults: 'vaults' as const,
   billing: 'billing' as const,
   dashboard: 'dashboard' as const,
+  delete: 'delete' as const,
 } as const;
 
 export const urlParams = {
@@ -12,9 +13,12 @@ export const urlParams = {
 } as const;
 
 export const urls = {
-  root: ``,
-  dashboard: `${subRoutes.dashboard}/${urlParams.vaultId}`,
-  onboarding: `onboarding`,
+  root: `/`,
+  dashboard: `/${subRoutes.dashboard}/${urlParams.vaultId}`,
+  onboarding: `/onboarding`,
+  listingTenants: `/${subRoutes.services}`,
+  listingTenantDelete: `/${subRoutes.services}/${subRoutes.delete}`,
+  dashboardTenantDelete: `/${subRoutes.services}/${subRoutes.dashboard}/${subRoutes.delete}`,
 } as const;
 
 export const MAIN_LAYOUT_NAV_TABS = Object.freeze([
