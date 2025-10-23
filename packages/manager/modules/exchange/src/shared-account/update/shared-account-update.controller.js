@@ -171,6 +171,26 @@ export default class ExchangeUpdateSharedAccountCtrl {
                 toDisplay: { value, unit },
               },
             ),
+            reservedQuota: Object.assign(
+              angular.copy(this.optionsToUpdateAccount.reservedQuota),
+              {
+                toDisplay: {
+                  ...this.services.ExchangeSharedAccounts.formatQuota(
+                    this.optionsToUpdateAccount.reservedQuota,
+                  ),
+                },
+              },
+            ),
+            totalQuota: Object.assign(
+              angular.copy(this.optionsToUpdateAccount.totalQuota),
+              {
+                toDisplay: {
+                  ...this.services.ExchangeSharedAccounts.formatQuota(
+                    this.optionsToUpdateAccount.totalQuota,
+                  ),
+                },
+              },
+            ),
           });
 
           this.accountBeingUpdated.quota = this.optionsToUpdateAccount.quota.value;
@@ -222,10 +242,12 @@ export default class ExchangeUpdateSharedAccountCtrl {
 
   selectQuota() {
     if (this.optionsToUpdateAccount.quota.value) {
-      this.accountBeingUpdated.quota = this.services.ExchangeSharedAccounts.convertQuota(
-        this.optionsToUpdateAccount.quota.value,
-        this.optionsToUpdateAccount.quota.unit,
-        this.optionsToUpdateAccount.minQuota.unit,
+      this.accountBeingUpdated.quota = Math.trunc(
+        this.services.ExchangeSharedAccounts.convertQuota(
+          this.optionsToUpdateAccount.quota.value,
+          this.optionsToUpdateAccount.quota.unit,
+          this.optionsToUpdateAccount.minQuota.unit,
+        ),
       );
 
       this.formattedQuota = this.services.ExchangeSharedAccounts.getFormattedQuota(
@@ -260,8 +282,8 @@ export default class ExchangeUpdateSharedAccountCtrl {
         this.services.messaging.writeError(
           this.services.$translate.instant(
             'exchange_ACTION_add_account_error_message',
+            { message: failure.message },
           ),
-          failure,
         );
       })
       .finally(() => {
