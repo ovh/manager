@@ -1,0 +1,17 @@
+{
+  "hosting_tab_LOCAL_SEO": "Visibility Pro",
+  "hosting_tab_LOCAL_SEO_description": "Seien Sie dort präsent, wo Ihre Kund:innen Sie suchen, aber auch dort, wo sie über Sie sprechen. Mit dieser Lösung für lokale Referenzierung verwalten Sie die Informationen zu Ihrem Unternehmen und Kontaktdaten auf Referenzierungsplattformen und Kundenbewertungsportalen über ein einziges intuitives Interface.",
+  "hosting_dashboard_local_seo_visibility_check": "Überprüfen Sie Ihre lokale Referenzierung.",
+  "hosting_tab_LOCAL_SEO_table_header_name": "Name des Unternehmens",
+  "hosting_tab_LOCAL_SEO_table_header_email": "E-Mail-Account",
+  "hosting_tab_LOCAL_SEO_table_header_address": "Adresse",
+  "hosting_tab_LOCAL_SEO_table_value_undefined": "Zu definieren",
+  "hosting_tab_LOCAL_SEO_state_created": "OK",
+  "hosting_tab_LOCAL_SEO_state_creating": "Wird erstellt",
+  "hosting_tab_LOCAL_SEO_state_deleting": "Wird gelöscht",
+  "hosting_tab_LOCAL_SEO_access_interface": "Zum Interface",
+  "hosting_tab_LOCAL_SEO_delete": "Abonnement löschen",
+  "hosting_tab_LOCAL_SEO_delete_confirm": "Sind Sie sicher, dass Sie Ihr „Visibility Pro“ Abonnement für den folgenden Account kündigen möchten?",
+  "hosting_tab_LOCAL_SEO_delete_success": "Die Löschung des „Visibility Pro“ Abonnements wurde registriert.",
+  "hosting_tab_LOCAL_SEO_delete_error": "Beim Löschen Ihres „Visibility Pro“ Abonnements ist ein Fehler aufgetreten. {{error}}"
+}
