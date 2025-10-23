@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { getLocationDetails } from '@/data/api/location/location.requests';
+import { getLocationDetails } from '@/data/api/locations/location.requests';
 
 export const LOCATION_QUERY_KEYS = {
   location: ['location'],
