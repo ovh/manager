@@ -230,7 +230,7 @@ export const EmailAccountForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(handleSaveClick)} className="w-full md:w-3/4 space-y-4">
+    <form onSubmit={handleSubmit(handleSaveClick)} className="w-full space-y-4 md:w-3/4">
       <OdsText preset={ODS_TEXT_PRESET.caption} className="block">
         {t(`${NAMESPACES.FORM}:mandatory_fields`)}
       </OdsText>
@@ -322,7 +322,7 @@ export const EmailAccountForm = () => {
           control={control}
           name="lastName"
           render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField className="w-full md:w-1/2 pr-6" error={errors?.[name]?.message}>
+            <OdsFormField className="w-full pr-6 md:w-1/2" error={errors?.[name]?.message}>
               <label htmlFor={name} slot="label">
                 {t('zimbra_account_add_input_lastName_label')}
               </label>
@@ -344,7 +344,7 @@ export const EmailAccountForm = () => {
           control={control}
           name="firstName"
           render={({ field: { name, value, onChange, onBlur } }) => (
-            <OdsFormField className="w-full md:w-1/2 pl-6" error={errors?.[name]?.message}>
+            <OdsFormField className="w-full pl-6 md:w-1/2" error={errors?.[name]?.message}>
               <label htmlFor={name} slot="label">
                 {t('zimbra_account_add_input_firstName_label')}
               </label>
@@ -389,10 +389,10 @@ export const EmailAccountForm = () => {
           name="hideInGal"
           render={({ field: { name, value, onChange } }) => (
             <OdsFormField
-              className="flex justify-center w-full mt-7 md:w-1/2 md:pl-6"
+              className="mt-7 flex w-full justify-center md:w-1/2 md:pl-6"
               error={errors?.[name]?.message}
             >
-              <div className="flex leading-none gap-4">
+              <div className="flex gap-4 leading-none">
                 <OdsCheckbox
                   inputId={name}
                   id={name}
@@ -462,10 +462,10 @@ export const EmailAccountForm = () => {
           name="forceChangePasswordAfterLogin"
           render={({ field: { name, value, onChange } }) => (
             <OdsFormField
-              className="flex justify-center w-full mt-7 md:w-1/2 md:pl-6"
+              className="mt-7 flex w-full justify-center md:w-1/2 md:pl-6"
               error={errors?.[name]?.message}
             >
-              <div className="flex leading-none gap-4">
+              <div className="flex gap-4 leading-none">
                 <OdsCheckbox
                   inputId={name}
                   id={name}
