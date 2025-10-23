@@ -1,0 +1,1 @@
+const o="You do not have the necessary permissions to view data for this resource. Please contact your administrator.",s="You do not have the necessary permissions to perform this action, please contact your administrator",e={common_iam_get_message:o,common_iam_actions_message:s};export{s as common_iam_actions_message,o as common_iam_get_message,e as default};

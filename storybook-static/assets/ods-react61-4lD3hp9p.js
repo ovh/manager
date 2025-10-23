@@ -1,0 +1,1 @@
+var n=(e=>(e.caption="caption",e.code="code",e.heading1="heading-1",e.heading2="heading-2",e.heading3="heading-3",e.heading4="heading-4",e.heading5="heading-5",e.heading6="heading-6",e.label="label",e.paragraph="paragraph",e.span="span",e))(n||{});const a=Object.freeze(Object.values(n));export{n as e,a as n};

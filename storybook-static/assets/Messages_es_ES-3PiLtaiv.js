@@ -1,0 +1,1 @@
+const o="Copiado",c="Se ha producido un error al copiar.",p="Copiar al portapapeles",r={clipboard_copy_success:o,clipboard_copy_error:c,clipboard_copy:p};export{p as clipboard_copy,c as clipboard_copy_error,o as clipboard_copy_success,r as default};

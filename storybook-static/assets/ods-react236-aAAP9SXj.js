@@ -1,0 +1,1 @@
+var e=(a=>(a.critical="critical",a.information="information",a.neutral="neutral",a.primary="primary",a.success="success",a.warning="warning",a))(e||{});const i=Object.freeze(Object.values(e));export{e as a,i as e};

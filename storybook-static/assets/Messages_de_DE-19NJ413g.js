@@ -1,0 +1,1 @@
+const o="Kopiert",c="Fehler beim Kopieren",e="In die Zwischenablage kopieren",r={clipboard_copy_success:o,clipboard_copy_error:c,clipboard_copy:e};export{e as clipboard_copy,c as clipboard_copy_error,o as clipboard_copy_success,r as default};

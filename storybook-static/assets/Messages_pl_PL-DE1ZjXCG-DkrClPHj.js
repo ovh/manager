@@ -1,0 +1,1 @@
+const a="Roadmap &amp; changelog",e="Roadmap",g="Changelog",o={mrc_changelog_header:a,mrc_changelog_roadmap:e,mrc_changelog_changelog:g,"mrc_changelog_feature-request":"Propozycja wdrożenia nowej funkcji"};export{o as default,g as mrc_changelog_changelog,a as mrc_changelog_header,e as mrc_changelog_roadmap};
