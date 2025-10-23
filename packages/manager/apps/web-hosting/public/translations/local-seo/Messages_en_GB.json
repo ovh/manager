@@ -1,0 +1,17 @@
+{
+  "hosting_tab_LOCAL_SEO": "Visibility Pro",
+  "hosting_tab_LOCAL_SEO_description": "Ensure that your company appears when your customers search for you, and where you do business. With this local SEO ranking solution, you can manage your company information and contact details on SEO platforms and customer review platforms - and you can do this all via a unique, intuitive interface.",
+  "hosting_dashboard_local_seo_visibility_check": "Check your local online presence",
+  "hosting_tab_LOCAL_SEO_table_header_name": "Company name",
+  "hosting_tab_LOCAL_SEO_table_header_email": "Email account",
+  "hosting_tab_LOCAL_SEO_table_header_address": "Address",
+  "hosting_tab_LOCAL_SEO_table_value_undefined": "To be defined",
+  "hosting_tab_LOCAL_SEO_state_created": "OK",
+  "hosting_tab_LOCAL_SEO_state_creating": "Creating...",
+  "hosting_tab_LOCAL_SEO_state_deleting": "Deleting...",
+  "hosting_tab_LOCAL_SEO_access_interface": "Access the interface",
+  "hosting_tab_LOCAL_SEO_delete": "Remove the subscription",
+  "hosting_tab_LOCAL_SEO_delete_confirm": "Are you sure you want to cancel your Visibility Pro account?",
+  "hosting_tab_LOCAL_SEO_delete_success": "Your cancellation request for this Visibility Pro account has been successfully submitted.",
+  "hosting_tab_LOCAL_SEO_delete_error": "An error has occurred cancelling your Pro Visibility subscription: {{error}}"
+}
