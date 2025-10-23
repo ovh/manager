@@ -11,6 +11,7 @@ import { ActiveConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.
 import { domain_dsrecords_key_signing_ksk } from '@/domain/constants/dsRecords';
 import { isDsRecordActionDisabled } from '@/domain/utils/utils';
 import { StatusEnum } from '@/domain/enum/Status.enum';
+import { useNavigate } from 'react-router-dom';
 
 interface useDomainDsRecordsDatagridColumnsProps {
   readonly setDrawer: Dispatch<SetStateAction<DrawerBehavior>>;
@@ -26,6 +27,7 @@ export const useDomainDsRecordsDatagridColumns = ({
   const { t } = useTranslation(['domain', NAMESPACES.STATUS]);
   const [isPublicKeyExpanded, setisPublicKeyExpanded] = useState<boolean>(true);
   const isActionsDisplayed = isDsRecordActionDisabled(activeConfiguration);
+  const navigate = useNavigate();
   const columns = [
     {
       id: 'keyTag',
@@ -93,6 +95,7 @@ export const useDomainDsRecordsDatagridColumns = ({
               id: 2,
               label: t(`${NAMESPACES.ACTIONS}:delete`),
               color: ODS_BUTTON_COLOR.critical,
+              onClick: () => navigate(`${props.keyTag}/delete`),
             },
           ]}
           id={`${props.publicKey}`}
