@@ -37,7 +37,6 @@ import {
   EDIT_EMAIL_ACCOUNT,
   EDIT_MAILING_LIST,
   EDIT_ORGANIZATION,
-  EDIT_REDIRECTION,
   EMAIL_ACCOUNT,
   EMAIL_ACCOUNT_ADD_ALIAS,
   EMAIL_ACCOUNT_ADD_AUTO_REPLY,
@@ -47,7 +46,6 @@ import {
   EMAIL_ACCOUNT_DELETE_ALIAS,
   EMAIL_ACCOUNT_DELETE_AUTO_REPLY,
   EMAIL_ACCOUNT_DELETE_REDIRECTION,
-  EMAIL_ACCOUNT_EDIT_REDIRECTION,
   EMAIL_ACCOUNT_REDIRECTION,
   GENERAL_INFORMATIONS,
   MAILING_LIST,
@@ -535,40 +533,31 @@ export default (
             }}
           >
             <Route
-              path={':redirectionId'}
+              path={'redirectionId/delete'}
+              Component={DeleteRedirectionPage}
               handle={{
+                tracking: {
+                  pageName: EMAIL_ACCOUNT_DELETE_REDIRECTION,
+                  pageType: PageType.popup,
+                },
                 breadcrumb: {
-                  label: ':redirectionId',
+                  label: 'common:delete_redirection',
                 },
               }}
-            >
-              <Route
-                path={'edit'}
-                Component={EditRedirectionPage}
-                handle={{
-                  tracking: {
-                    pageName: EMAIL_ACCOUNT_EDIT_REDIRECTION,
-                    pageType: PageType.popup,
-                  },
-                  breadcrumb: {
-                    label: 'common:edit_redirection',
-                  },
-                }}
-              />
-              <Route
-                path={'delete'}
-                Component={DeleteRedirectionPage}
-                handle={{
-                  tracking: {
-                    pageName: EMAIL_ACCOUNT_DELETE_REDIRECTION,
-                    pageType: PageType.popup,
-                  },
-                  breadcrumb: {
-                    label: 'common:delete_redirection',
-                  },
-                }}
-              />
-            </Route>
+            />
+            <Route
+              path={'delete_all'}
+              Component={DeleteRedirectionPage}
+              handle={{
+                tracking: {
+                  pageName: EMAIL_ACCOUNT_DELETE_REDIRECTION,
+                  pageType: PageType.popup,
+                },
+                breadcrumb: {
+                  label: 'common:delete_redirections',
+                },
+              }}
+            />
             <Route
               path={'add'}
               Component={EditRedirectionPage}
@@ -728,40 +717,31 @@ export default (
         }}
       >
         <Route
-          path={':redirectionId'}
+          path={':redirectionId/delete'}
+          Component={DeleteRedirectionPage}
           handle={{
+            tracking: {
+              pageName: DELETE_REDIRECTION,
+              pageType: PageType.popup,
+            },
             breadcrumb: {
-              label: ':redirectionId',
+              label: 'common:delete_redirection',
             },
           }}
-        >
-          <Route
-            path={'edit'}
-            Component={EditRedirectionPage}
-            handle={{
-              tracking: {
-                pageName: EDIT_REDIRECTION,
-                pageType: PageType.popup,
-              },
-              breadcrumb: {
-                label: 'common:edit_redirection',
-              },
-            }}
-          />
-          <Route
-            path={'delete'}
-            Component={DeleteRedirectionPage}
-            handle={{
-              tracking: {
-                pageName: DELETE_REDIRECTION,
-                pageType: PageType.popup,
-              },
-              breadcrumb: {
-                label: 'common:delete_redirection',
-              },
-            }}
-          />
-        </Route>
+        />
+        <Route
+          path={'delete_all'}
+          Component={DeleteRedirectionPage}
+          handle={{
+            tracking: {
+              pageName: EMAIL_ACCOUNT_DELETE_REDIRECTION,
+              pageType: PageType.popup,
+            },
+            breadcrumb: {
+              label: 'common:delete_redirections',
+            },
+          }}
+        />
         <Route
           path={'add'}
           Component={EditRedirectionPage}
