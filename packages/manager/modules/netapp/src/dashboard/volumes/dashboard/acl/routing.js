@@ -51,6 +51,8 @@ export default /* @ngInject */ ($stateProvider) => {
             value: type,
           }),
         ),
+      isNetworkAvailable: /* @ngInject */ (features, networkInformations) =>
+        features.isFeatureAvailable('vrack-services') && networkInformations,
     },
   });
 };
