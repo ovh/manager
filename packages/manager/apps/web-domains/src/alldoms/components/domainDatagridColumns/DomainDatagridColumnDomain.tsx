@@ -1,5 +1,4 @@
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
-import React from 'react';
 import { toUnicode } from 'punycode';
 import { Link } from '@ovhcloud/ods-react';
 
