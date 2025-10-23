@@ -174,6 +174,18 @@ export const Routes: RouteObject[] = [
                 },
               },
               {
+                id: subRoutes.unblockAntiSpam,
+                path: urls.unblockAntiSpam,
+                ...lazyRouteConfig(() =>
+                  import('@/pages/actions/antiSpam/unblockAntiSpam.page'),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'listing-unblock-anti-spam',
+                  },
+                },
+              },
+              {
                 id: subRoutes.exportIpToCsv,
                 path: urls.listingExportIpToCsv,
                 ...lazyRouteConfig(() =>
