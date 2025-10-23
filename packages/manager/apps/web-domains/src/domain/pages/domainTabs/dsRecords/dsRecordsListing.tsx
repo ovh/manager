@@ -10,7 +10,7 @@ import {
   MessageBody,
   MessageIcon,
 } from '@ovhcloud/ods-react';
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDomainDsRecordsDatagridColumns } from '@/domain/hooks/domainTabs/useDomainDsRecordsDatagridColumns';
 import {
@@ -44,8 +44,7 @@ export default function DsRecordsListing() {
   const [dsRecordsData, setDsRecordsData] = useState<TDsDataInterface>({
     keyTag: null,
     flags: 257,
-    algorithm:
-      domainResource?.currentState.dnssecConfiguration.dsData[0].algorithm,
+    algorithm: 0,
     publicKey: '',
   });
   const activeConfiguration = computeActiveConfiguration(
@@ -173,6 +172,7 @@ export default function DsRecordsListing() {
         }
         dsRecordsData={dsRecordsData}
       />
+      <Outlet />
     </div>
   );
 }
