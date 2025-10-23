@@ -43,3 +43,26 @@ export type ResourcesFacadeResult<T> = {
   filters?: unknown;
   search?: unknown;
 };
+
+export type ListingApiResponse<T> = {
+  data: T[];
+  totalCount: number;
+  hasNextPage: boolean;
+  cursor?: string;
+};
+
+export type OnboardingConfig = {
+  productName: string;
+  productCategory: string;
+  brand: string;
+  tiles: Array<{
+    id: number;
+    key: string;
+    linkKey: string;
+  }>;
+  links: {
+    discover: string;
+    tutorial: string;
+    faq: string;
+  };
+};
