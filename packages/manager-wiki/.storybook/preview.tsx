@@ -55,16 +55,16 @@ const preview: Preview = {
     },
     options: {
       storySort: {
+        method: 'alphabetical',
         order: [
           'Introduction',
           'Manager UI Kit',
           [
             'Introduction',
+            'Changelog',
             "What's new",
             'Guidelines',
-            'Changelog',
-            'components',
-            'Content',
+            'Components',
             'Content',
             'Navigation',
             'Templates',
