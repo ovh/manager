@@ -63,8 +63,28 @@ export default (
         }}
       />
     </Route>
-    <Route id="track" path={urls.track} Component={TrackPage} />
-    <Route id="update" path={urls.update} Component={ActionPage} />
+    <Route
+      id="track"
+      path={urls.track}
+      Component={TrackPage}
+      handle={{
+        tracking: {
+          pageName: 'tracking_transfert',
+          pageType: PageType.dashboard,
+        },
+      }}
+    />
+    <Route
+      id="update"
+      path={urls.update}
+      Component={ActionPage}
+      handle={{
+        tracking: {
+          pageName: 'update_operation',
+          pageType: PageType.dashboard,
+        },
+      }}
+    />
     <Route path="*" element={<NotFound />} />
   </Route>
 );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TArgument, UploadedArgumentFiles } from '@/types';
+import { TArgument } from '@/types';
 import UpdateMeContactComponent from '@/components/Update/Content/Update.Me.Contact.component';
 import UpdateMeDocumentComponent from '@/components/Update/Content/Update.Me.Document';
 import UpdateMeComponent from '@/components/Update/Content/Update.Me.component';
@@ -7,7 +7,6 @@ import UpdateStringComponent from '@/components/Update/Content/Update.String.com
 
 interface UpdateContentComponentProps {
   readonly domainName: string;
-  readonly operationId: number;
   readonly argument: TArgument;
   readonly operationName: string;
   readonly onChange: (key: string, value: string) => void;

@@ -23,7 +23,7 @@ import { getLanguageKey } from '@/utils/utils';
 import { urls } from '@/routes/routes.constant';
 import { useGetIAMResourceAllDom } from '@/hooks/iam/iam';
 import { allDomFeatureAvailibility, iamGetAllDomAction } from '@/constants';
-import { ParentEnum } from '@/enum/parent.enum';
+import { useTrackNavigation } from '@/hooks/tracking/useTrackDatagridNavivationLink';
 
 export const DNS_OPERATIONS_TABLE_HEADER_DOMAIN = 'DNS';
 
@@ -39,7 +39,13 @@ export type DashboardLayoutProps = {
 };
 
 export default function DashboardPage() {
-  const [, setActivePanel] = useState<string>('');
+  const {
+    trackPageNavivationTile,
+    trackPageNavivationTab,
+    trackTileNavivationLink,
+  } = useTrackNavigation();
+
+  const [activePanel, setActivePanel] = useState<string>('');
   const [displayAllDom, setDisplayAllDom] = useState<boolean>(true);
   const location = useLocation();
   const navigate = useNavigate();
@@ -53,6 +59,9 @@ export default function DashboardPage() {
       href: GUIDES_LIST.domains.url[langCode],
       target: '_blank',
       label: t(`${NAMESPACES.DASHBOARD}:general_information`),
+      onClick: () => {
+        trackTileNavivationLink(GUIDES_LIST.domains.url[langCode]);
+      },
     },
   ];
   const { data: allDomIAMRessources } = useGetIAMResourceAllDom();
@@ -101,7 +110,9 @@ export default function DashboardPage() {
       return;
     }
     setActivePanel(tabsList[0].name);
-    navigate(`${tabsList[0].to}`);
+    const url = tabsList[0].to;
+    trackPageNavivationTile(url);
+    navigate(url);
   }, [location.pathname]);
 
   return (
@@ -112,22 +123,24 @@ export default function DashboardPage() {
       }}
       description={t('domain_operations_dashboard_info')}
       tabs={
-        <Tabs defaultValue={ParentEnum.DOMAIN}>
+        <Tabs defaultValue={activePanel}>
           <TabList>
-            {tabsList.map((tab: DashboardTabItemProps) => {
-              if (tab.hide) return <></>;
-              return (
+            {tabsList
+              .filter((tab: DashboardTabItemProps) => !tab.hide)
+              .map((tab: DashboardTabItemProps) => (
                 <NavLink
                   key={`osds-tab-bar-item-${tab.name}`}
                   to={tab.to}
                   className="no-underline"
+                  onClick={() => {
+                    trackPageNavivationTab(tab.to);
+                  }}
                 >
                   <Tab id={tab.name} role="tab" value={tab.name}>
                     {tab.title}
                   </Tab>
                 </NavLink>
-              );
-            })}
+              ))}
           </TabList>
         </Tabs>
       }
