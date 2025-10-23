@@ -11,6 +11,7 @@
   "scripts": {
     "build": "tsc && tsc-alias",
     "dev": "tsc && tsc-alias",
+    "dev:watch": "concurrently \"tsc --watch\" \"tsc-alias --watch\"",
     "lint:modern": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts src/**/**.tsx",
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts src/**/**.tsx",
     "prepare": "tsc && tsc-alias",

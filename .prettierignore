@@ -18,3 +18,4 @@ packages/manager-tools/manager-pm
 packages/manager-ui-kit
 packages/manager-wiki
 packages/manager/modules/backup-agent
+turbo.json
