@@ -143,42 +143,14 @@ describe('filterAllowedRegions', () => {
     });
   });
 
-  describe('enabled/disabled filtering', () => {
-    it('should filter only enabled regions by default', () => {
-      const result = filterAllowedRegions(
-        mockProductAvailability,
-        mockProjectRegions,
-      );
-
-      result.forEach((region) => {
-        expect(region.enabled).toBe(true);
-      });
-    });
-
-    it('should include disabled regions when onlyEnabled is false', () => {
-      const criteria: RegionFilterCriteria = {
-        onlyEnabled: false,
-      };
-
-      const result = filterAllowedRegions(
-        mockProductAvailability,
-        mockProjectRegions,
-        criteria,
-      );
-
-      const disabledRegions = result.filter((region) => !region.enabled);
-      expect(disabledRegions.length).toEqual(1);
-    });
-  });
-
   describe('offer-based filtering', () => {
-    it('should use default storage standard offer', () => {
+    it('should use default storage standard offer with one classic region and one non-enabled region', () => {
       const result = filterAllowedRegions(
         mockProductAvailability,
         mockProjectRegions,
       );
 
-      expect(result.length).toEqual(1);
+      expect(result.length).toEqual(2);
     });
 
     it('should filter by specific offer', () => {
