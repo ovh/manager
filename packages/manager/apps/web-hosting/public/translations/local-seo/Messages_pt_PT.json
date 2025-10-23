@@ -1,0 +1,17 @@
+{
+  "hosting_tab_LOCAL_SEO": "Visibilidade Pro",
+  "hosting_tab_LOCAL_SEO_description": "Esteja presente onde os seus clientes o procuram, mas também onde falam de si. Esta solução de SEO local permite-lhe gerir, através de uma interface única e intuitiva, as suas informações e os dados da sua empresa nas plataformas de SEO e de opiniões de clientes.",
+  "hosting_dashboard_local_seo_visibility_check": "Verifique o seu SEO local",
+  "hosting_tab_LOCAL_SEO_table_header_name": "Nome da empresa",
+  "hosting_tab_LOCAL_SEO_table_header_email": "Conta de e-mail",
+  "hosting_tab_LOCAL_SEO_table_header_address": "Morada",
+  "hosting_tab_LOCAL_SEO_table_value_undefined": "Por definir",
+  "hosting_tab_LOCAL_SEO_state_created": "OK",
+  "hosting_tab_LOCAL_SEO_state_creating": "Criação em curso",
+  "hosting_tab_LOCAL_SEO_state_deleting": "Eliminação em curso",
+  "hosting_tab_LOCAL_SEO_access_interface": "Aceder à interface",
+  "hosting_tab_LOCAL_SEO_delete": "Eliminar a subscrição",
+  "hosting_tab_LOCAL_SEO_delete_confirm": "Tem a certeza de que pretende cancelar a sua subscrição de \"Visibilidade Pro\" para a seguinte conta?",
+  "hosting_tab_LOCAL_SEO_delete_success": "A eliminação da subscrição de \"Visibilidade Pro\" foi bem-sucedida.",
+  "hosting_tab_LOCAL_SEO_delete_error": "Ocorreu um erro ao eliminar a subscrição de \"Visibilidade Pro\". {{error}}"
+}
