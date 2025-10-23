@@ -47,6 +47,7 @@
   "add_email_account": "Créer un compte email",
   "email_account_settings": "Paramètres du compte",
   "delete_email_account": "Supprimer le compte",
+  "delete_email_accounts": "Supprimer les comptes",
   "order_zimbra_accounts": "Commander des comptes Zimbra",
   "select_slot": "Sélectionner une offre",
   "form_at_least_one_digit": "Doit contenir au minimum un chiffre",
