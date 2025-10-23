@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/muk",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "description": "MUK:Manager UI Kit",
@@ -51,7 +51,7 @@
   "devDependencies": {
     "@babel/core": "7.22.10",
     "@mdx-js/react": "^3.0.1",
-    "@ovh-ux/manager-common-translations": "^0.20.0",
+    "@ovh-ux/manager-common-translations": "^0.21.0",
     "@ovh-ux/manager-core-api": "^0.19.0",
     "@ovh-ux/manager-core-utils": "^0.4.6",
     "@ovh-ux/manager-react-shell-client": "^0.9.3",

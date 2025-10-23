@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.15.0...@ovh-ux/manager-wiki@0.15.1) (2025-10-23)
+
+
+### Bug Fixes
+
+* **muk:** correct base layout component stories ([4f11114](https://github.com/ovh/manager/commit/4f11114dc662eb96a7b712dee297063abb655cb0)), closes [#MANAGER-20108](https://github.com/ovh/manager/issues/MANAGER-20108)
+* **muk:** correct i18next issue ([933a071](https://github.com/ovh/manager/commit/933a0715dad49d673fb7c1b7ac1f846f6c37213f)), closes [#MANAGER-20108](https://github.com/ovh/manager/issues/MANAGER-20108)
+* **wiki:** sort story by order alphabetical ([d376c62](https://github.com/ovh/manager/commit/d376c623c76abe7c0356d2d32a3542517d3787ca)), closes [#MANAGER-20108](https://github.com/ovh/manager/issues/MANAGER-20108)
+
+
+
+
+
 # [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.14.10...@ovh-ux/manager-wiki@0.15.0) (2025-10-23)
 
 
