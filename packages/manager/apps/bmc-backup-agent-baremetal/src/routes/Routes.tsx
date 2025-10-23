@@ -5,7 +5,6 @@ import { Navigate, Route } from 'react-router-dom';
 import { BackupAgentRoutes } from '@ovh-ux/backup-agent';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
-import { BackupAgentRoutes } from "@ovh-ux/backup-agent"
 
 import NotFound from '@/pages/not-found/404.page';
 

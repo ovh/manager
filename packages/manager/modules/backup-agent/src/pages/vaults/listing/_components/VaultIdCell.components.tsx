@@ -7,7 +7,7 @@ import { useHref } from "react-router-dom";
 import {urlParams, urls} from "@/routes/Routes.constants";
 
 export const VaultIdCell = (vaultResource: VaultResource) => {
-  const dashboardLink = useHref(urls.dashboard.replace(urlParams.vaultId, vaultResource.id))
+  const dashboardLink = useHref(urls.dashboardVaults.replace(urlParams.vaultId, vaultResource.id))
 
   return (
     <DataGridTextCell>
