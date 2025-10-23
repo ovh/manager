@@ -130,7 +130,6 @@ export default class {
     this.HostingCdnSharedService = HostingCdnSharedService;
     this.HostingCdnOrderService = HostingCdnOrderService;
     this.indyLink = indyLink;
-    this.localSEOLink = localSEOLink;
     this.moduleLink = moduleLink;
     this.multisiteLink = multisiteLink;
     this.pendingTasks = pendingTasks;
@@ -151,6 +150,11 @@ export default class {
     this.taskLink = coreURLBuilder.buildURL(
       'web-hosting',
       '#/:serviceName/task',
+      { serviceName },
+    );
+    this.localSEOLink = coreURLBuilder.buildURL(
+      'web-hosting',
+      '#/:serviceName/localSeo',
       { serviceName },
     );
   }
