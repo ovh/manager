@@ -333,7 +333,7 @@ export const AddAutoReply = () => {
                   id={value}
                   name={value}
                   value={value}
-                  isChecked={field.value === value}
+                  isChecked={(field.value as AutoReplyDurations) === value}
                   onOdsChange={field.onChange}
                   data-testid={value}
                   className="cursor-pointer"
@@ -344,7 +344,7 @@ export const AddAutoReply = () => {
           </OdsFormField>
         )}
       />
-      {formValues.duration === AutoReplyDurations.TEMPORARY && (
+      {(formValues.duration as AutoReplyDurations) === AutoReplyDurations.TEMPORARY && (
         <div className="flex gap-4">
           <Controller
             control={control}

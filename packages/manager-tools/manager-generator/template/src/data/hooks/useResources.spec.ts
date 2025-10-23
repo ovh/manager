@@ -15,7 +15,7 @@ async function loadSubject(listingApi: 'v6Iceberg' | 'v2' | 'v6' | undefined) {
   const useResourcesIcebergV6 = vi.fn();
   const useResourcesV6 = vi.fn();
 
-  vi.doMock('@ovh-ux/manager-react-components', () => ({
+  vi.doMock('@ovh-ux/muk', () => ({
     useResourcesIcebergV2,
     useResourcesIcebergV6,
     useResourcesV6,
@@ -24,12 +24,12 @@ async function loadSubject(listingApi: 'v6Iceberg' | 'v2' | 'v6' | undefined) {
   // Import the subject AFTER mocks are set
   const mod = await import('./useResources'); // <-- ← adjust to your real path
 
-  return {
+  return ({
     ...mod,
     mocks: { useResourcesIcebergV2, useResourcesIcebergV6, useResourcesV6 },
-  } as unknown as {
-    useResources: (typeof import('./useResources'))['useResources'];
-    useListingData: (typeof import('./useResources'))['useListingData'];
+  } as unknown) as {
+    useResources: typeof import('./useResources')['useResources'];
+    useListingData: typeof import('./useResources')['useListingData'];
     mocks: {
       useResourcesIcebergV2: ReturnType<typeof vi.fn>;
       useResourcesIcebergV6: ReturnType<typeof vi.fn>;
@@ -53,7 +53,10 @@ describe('useResources', () => {
     mocks.useResourcesIcebergV6.mockReturnValue(sample);
 
     const { result } = renderHook(() =>
-      useResources<{ id: number }>({ route: '/things', queryKey: ['listing', '/things'] }),
+      useResources<{ id: number }>({
+        route: '/things',
+        queryKey: ['listing', '/things'],
+      }),
     );
 
     expect(mocks.useResourcesIcebergV6).toHaveBeenCalledWith({
@@ -78,7 +81,10 @@ describe('useResources', () => {
     mocks.useResourcesIcebergV2.mockReturnValue(sample);
 
     const { result } = renderHook(() =>
-      useResources<{ id: string }>({ route: '/legacy', queryKey: ['listing', '/legacy'] }),
+      useResources<{ id: string }>({
+        route: '/legacy',
+        queryKey: ['listing', '/legacy'],
+      }),
     );
 
     expect(mocks.useResourcesIcebergV2).toHaveBeenCalled();
@@ -102,7 +108,11 @@ describe('useResources', () => {
     mocks.useResourcesV6.mockReturnValue(sample);
 
     const { result } = renderHook(() =>
-      useResources<{ id: number }>({ route: '/new', queryKey: ['listing', '/new'], columns: [] }),
+      useResources<{ id: number }>({
+        route: '/new',
+        queryKey: ['listing', '/new'],
+        columns: [],
+      }),
     );
 
     expect(mocks.useResourcesV6).toHaveBeenCalledWith({
@@ -130,7 +140,9 @@ describe('useListingData', () => {
       status: 'success' as const,
     });
 
-    const { result } = renderHook(() => useListingData<{ id: number }>('/things'));
+    const { result } = renderHook(() =>
+      useListingData<{ id: number }>('/things'),
+    );
 
     expect(result.current.items).toEqual([{ id: 1 }, { id: 2 }]);
     expect(result.current.total).toBe(999); // uses totalCount when present
@@ -154,7 +166,9 @@ describe('useListingData', () => {
       status: 'pending' as const,
     });
 
-    const { result } = renderHook(() => useListingData<{ id: string }>('/legacy'));
+    const { result } = renderHook(() =>
+      useListingData<{ id: string }>('/legacy'),
+    );
 
     expect(result.current.items).toHaveLength(3);
     expect(result.current.total).toBe(3); // fallback to items.length
@@ -174,7 +188,9 @@ describe('useListingData', () => {
       status: 'success' as const,
     });
 
-    const { result } = renderHook(() => useListingData<Record<string, never>>('/empty'));
+    const { result } = renderHook(() =>
+      useListingData<Record<string, never>>('/empty'),
+    );
 
     expect(result.current.items).toEqual([]);
     expect(result.current.total).toBe(0);

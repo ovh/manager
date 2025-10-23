@@ -1,0 +1,156 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TagsList Component - Snapshot Tests > displays all tags 1`] = `
+<div>
+  <div
+    class="w-full h-full flex flex-wrap min-w-[85px]"
+  >
+    <span
+      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+      data-ods="badge"
+      style="max-width: -32px;"
+    >
+      key1:Lorem ipsum dolor
+    </span>
+    <span
+      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+      data-ods="badge"
+      style="max-width: -32px;"
+    >
+      key2:Lorem ipsum consectetur sit amet consectetur
+    </span>
+    <span
+      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+      data-ods="badge"
+      style="max-width: -32px;"
+    >
+      key3:Lorem ipsum
+    </span>
+    <span
+      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+      data-ods="badge"
+      style="max-width: -32px;"
+    >
+      key4:Lorem ipsum dolor
+    </span>
+    <span
+      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+      data-ods="badge"
+      style="max-width: -32px;"
+    >
+      key5:Lorem ipsum dolor sit consectetur
+    </span>
+    <span
+      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+      data-ods="badge"
+      style="max-width: -32px;"
+    >
+      key6:Lorem ipsumsit amet consectetur adipiscing elit quisque
+    </span>
+    <span
+      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+      data-ods="badge"
+      style="max-width: -32px;"
+    >
+      key7:Lorem ipsum
+    </span>
+    <span
+      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+      data-ods="badge"
+      style="max-width: -32px;"
+    >
+      key8:Lorem ipsum
+    </span>
+    <span
+      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+      data-ods="badge"
+      style="max-width: -32px;"
+    >
+      key9:Lorem ipsum
+    </span>
+  </div>
+</div>
+`;
+
+exports[`TagsList Component - Snapshot Tests > displays fewer tags along with Link 1`] = `
+<div>
+  <div
+    class="w-full h-full flex flex-wrap min-w-[85px]"
+  >
+    <span
+      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+      data-ods="badge"
+      style="max-width: -32px;"
+    >
+      key1:Lorem ipsum dolor
+    </span>
+    <span
+      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+      data-ods="badge"
+      style="max-width: -32px;"
+    >
+      key2:Lorem ipsum consectetur sit amet consectetur
+    </span>
+    <span
+      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+      data-ods="badge"
+      style="max-width: -32px;"
+    >
+      key3:Lorem ipsum
+    </span>
+    <a
+      class="_link_1y3p4_2 _link--no-text_1y3p4_40 text-xs"
+      data-ods="link"
+      href="#"
+    >
+      <span>
+        ​
+      </span>
+      <span
+        class="_icon_10c23_2 _icon--chevron-double-right_10c23_82"
+        data-ods="icon"
+        role="presentation"
+      />
+    </a>
+  </div>
+</div>
+`;
+
+exports[`TagsList Component - Snapshot Tests > displays modal on click of "More tags" link 1`] = `
+<body>
+  <div>
+    <div
+      class="w-full h-full flex flex-wrap min-w-[85px]"
+    >
+      <span
+        class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+        data-ods="badge"
+        style="max-width: -32px;"
+      >
+        key1:Lorem ipsum dolor
+      </span>
+      <span
+        class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
+        data-ods="badge"
+        style="max-width: -32px;"
+      >
+        key2:Lorem ipsum consectetur sit amet consectetur
+      </span>
+      <a
+        class="_link_1y3p4_2 _link--no-text_1y3p4_40 text-xs"
+        data-ods="link"
+        href="#"
+      >
+        <span>
+          ​
+        </span>
+        <span
+          class="_icon_10c23_2 _icon--chevron-double-right_10c23_82"
+          data-ods="icon"
+          role="presentation"
+        />
+      </a>
+    </div>
+  </div>
+</body>
+`;

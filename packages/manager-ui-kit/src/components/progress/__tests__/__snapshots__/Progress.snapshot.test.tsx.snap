@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Progress Snapshot tests > renders the component with default props 1`] = `
+<div>
+  <progress
+    class="_progress-bar_s83xx_2"
+    data-ods="progress-bar"
+    max="100"
+    value="0"
+  />
+</div>
+`;

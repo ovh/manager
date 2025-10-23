@@ -24,7 +24,7 @@ jobs:
           yarn build --filter="./packages/components/ovh-at-internet"
           yarn build --filter="./packages/manager/modules/config"
           yarn build --filter="./packages/manager/modules/common-translations"
-          yarn build --filter="./packages/manager-react-components"
+          yarn build --filter="./packages/manager-ui-kit"
           yarn manager-pm --type pnpm --action docs
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

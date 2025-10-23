@@ -1,0 +1,2174 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Datagrid Snapshot Tests > should match snapshot with all features enabled 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 500px; height: 500px;"
+>
+  <table
+    class="_table--md_1xkmm_54 w-full"
+    data-ods="table"
+  >
+    <thead
+      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+    >
+      <tr
+        class="h-[50px]"
+      >
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 20px; min-width: 20px; max-width: 20px;"
+        >
+          <div
+            class=" h-[20px]"
+            data-testid="header-expander"
+          >
+            <span />
+            <span
+              class="align-middle inline-block pl-1 -mt-1"
+            >
+              <span
+                class="_icon_10c23_2 _icon--arrow-down_10c23_19 invisible"
+                data-ods="icon"
+                role="presentation"
+              />
+            </span>
+          </div>
+        </th>
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 20px; min-width: 20px; max-width: 20px;"
+        >
+          <div
+            class=" h-[20px]"
+            data-testid="header-select"
+          >
+            <span>
+              <label
+                class="_checkbox_18i6t_2"
+                data-ods="checkbox"
+                data-part="root"
+                data-scope="checkbox"
+                data-state="unchecked"
+                dir="ltr"
+                for="checkbox:select-all:input"
+                id="checkbox:select-all"
+              >
+                <div
+                  aria-hidden="true"
+                  class="_checkbox-control_gr69e_2"
+                  data-ods="checkbox-control"
+                  data-part="control"
+                  data-scope="checkbox"
+                  data-state="unchecked"
+                  dir="ltr"
+                  id="checkbox:select-all:control"
+                >
+                  <div
+                    data-part="indicator"
+                    data-scope="checkbox"
+                    data-state="unchecked"
+                    dir="ltr"
+                    hidden=""
+                  >
+                    <span
+                      class="_icon_10c23_2 _icon--check_10c23_76 _checkbox-control__icon_gr69e_49"
+                      data-ods="icon"
+                      role="presentation"
+                    />
+                  </div>
+                  <div
+                    data-part="indicator"
+                    data-scope="checkbox"
+                    data-state="unchecked"
+                    dir="ltr"
+                    hidden=""
+                  >
+                    <span
+                      class="_icon_10c23_2 _icon--minus_10c23_376 _checkbox-control__icon_gr69e_49"
+                      data-ods="icon"
+                      role="presentation"
+                    />
+                  </div>
+                </div>
+                <input
+                  aria-invalid="false"
+                  aria-labelledby="checkbox:select-all:label"
+                  id="checkbox:select-all:input"
+                  name="select-all"
+                  style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+                  type="checkbox"
+                  value="on"
+                />
+              </label>
+            </span>
+            <span
+              class="align-middle inline-block pl-1 -mt-1"
+            >
+              <span
+                class="_icon_10c23_2 _icon--arrow-down_10c23_19 invisible"
+                data-ods="icon"
+                role="presentation"
+              />
+            </span>
+          </div>
+        </th>
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="cursor-pointer select-none h-[20px]"
+            data-testid="header-name"
+          >
+            <span>
+              name
+            </span>
+            <span
+              class="align-middle inline-block pl-1 -mt-1"
+            >
+              <span
+                class="_icon_10c23_2 _icon--arrow-up_10c23_37"
+                data-ods="icon"
+                role="presentation"
+              />
+            </span>
+          </div>
+        </th>
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="cursor-pointer select-none h-[20px]"
+            data-testid="header-age"
+          >
+            <span>
+              age
+            </span>
+            <span
+              class="align-middle inline-block pl-1 -mt-1"
+            >
+              <span
+                class="_icon_10c23_2 _icon--arrow-down_10c23_19 invisible"
+                data-ods="icon"
+                role="presentation"
+              />
+            </span>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="w-full relative p-0 overflow-hidden"
+      style="height: 102px;"
+    >
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="0"
+        style="left: -1px; height: 50px; transform: translateY(0px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 20px; min-width: 20px; max-width: 20px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div
+              class="text-center"
+              style="padding-left: 0rem;"
+            >
+              <button
+                class="_button_1koyw_2 _button--primary_1koyw_100 _button--xs_1koyw_25 _button--ghost_1koyw_151"
+                data-ods="button"
+                data-testid="manager-button"
+                type="button"
+              >
+                <span
+                  class="_icon_10c23_2 _icon--chevron-right_10c23_97"
+                  data-ods="icon"
+                  role="presentation"
+                />
+              </button>
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 20px; min-width: 20px; max-width: 20px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <label
+              class="_checkbox_18i6t_2"
+              data-ods="checkbox"
+              data-part="root"
+              data-scope="checkbox"
+              data-state="unchecked"
+              dir="ltr"
+              for="checkbox:0:input"
+              id="checkbox:0"
+            >
+              <div
+                aria-hidden="true"
+                class="_checkbox-control_gr69e_2"
+                data-ods="checkbox-control"
+                data-part="control"
+                data-scope="checkbox"
+                data-state="unchecked"
+                dir="ltr"
+                id="checkbox:0:control"
+              >
+                <div
+                  data-part="indicator"
+                  data-scope="checkbox"
+                  data-state="unchecked"
+                  dir="ltr"
+                  hidden=""
+                >
+                  <span
+                    class="_icon_10c23_2 _icon--check_10c23_76 _checkbox-control__icon_gr69e_49"
+                    data-ods="icon"
+                    role="presentation"
+                  />
+                </div>
+                <div
+                  data-part="indicator"
+                  data-scope="checkbox"
+                  data-state="unchecked"
+                  dir="ltr"
+                  hidden=""
+                >
+                  <span
+                    class="_icon_10c23_2 _icon--minus_10c23_376 _checkbox-control__icon_gr69e_49"
+                    data-ods="icon"
+                    role="presentation"
+                  />
+                </div>
+              </div>
+              <input
+                aria-invalid="false"
+                aria-labelledby="checkbox:0:label"
+                id="checkbox:0:input"
+                name="select-0"
+                style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+                type="checkbox"
+                value="on"
+              />
+            </label>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              30
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="1"
+        style="left: -1px; height: 50px; transform: translateY(50px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 20px; min-width: 20px; max-width: 20px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div
+              class="text-center"
+              style="padding-left: 0rem;"
+            >
+              <button
+                class="_button_1koyw_2 _button--primary_1koyw_100 _button--xs_1koyw_25 _button--ghost_1koyw_151"
+                data-ods="button"
+                data-testid="manager-button"
+                type="button"
+              >
+                <span
+                  class="_icon_10c23_2 _icon--chevron-right_10c23_97"
+                  data-ods="icon"
+                  role="presentation"
+                />
+              </button>
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 20px; min-width: 20px; max-width: 20px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <label
+              class="_checkbox_18i6t_2"
+              data-ods="checkbox"
+              data-part="root"
+              data-scope="checkbox"
+              data-state="unchecked"
+              dir="ltr"
+              for="checkbox:1:input"
+              id="checkbox:1"
+            >
+              <div
+                aria-hidden="true"
+                class="_checkbox-control_gr69e_2"
+                data-ods="checkbox-control"
+                data-part="control"
+                data-scope="checkbox"
+                data-state="unchecked"
+                dir="ltr"
+                id="checkbox:1:control"
+              >
+                <div
+                  data-part="indicator"
+                  data-scope="checkbox"
+                  data-state="unchecked"
+                  dir="ltr"
+                  hidden=""
+                >
+                  <span
+                    class="_icon_10c23_2 _icon--check_10c23_76 _checkbox-control__icon_gr69e_49"
+                    data-ods="icon"
+                    role="presentation"
+                  />
+                </div>
+                <div
+                  data-part="indicator"
+                  data-scope="checkbox"
+                  data-state="unchecked"
+                  dir="ltr"
+                  hidden=""
+                >
+                  <span
+                    class="_icon_10c23_2 _icon--minus_10c23_376 _checkbox-control__icon_gr69e_49"
+                    data-ods="icon"
+                    role="presentation"
+                  />
+                </div>
+              </div>
+              <input
+                aria-invalid="false"
+                aria-labelledby="checkbox:1:label"
+                id="checkbox:1:input"
+                name="select-1"
+                style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+                type="checkbox"
+                value="on"
+              />
+            </label>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              Jane Smith
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              25
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with basic props 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 100%; height: 100%;"
+>
+  <table
+    class="_table--md_1xkmm_54 w-full"
+    data-ods="table"
+  >
+    <thead
+      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+    >
+      <tr
+        class="h-[50px]"
+      >
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          name
+        </th>
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          age
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="w-full relative p-0 overflow-hidden"
+      style="height: 102px;"
+    >
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="0"
+        style="left: -1px; height: 50px; transform: translateY(0px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              30
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="1"
+        style="left: -1px; height: 50px; transform: translateY(50px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              Jane Smith
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              25
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with column visibility enabled 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 100%; height: 100%;"
+>
+  <table
+    class="_table--md_1xkmm_54 w-full"
+    data-ods="table"
+  >
+    <thead
+      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+    >
+      <tr
+        class="h-[50px]"
+      >
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          name
+        </th>
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          age
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="w-full relative p-0 overflow-hidden"
+      style="height: 102px;"
+    >
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="0"
+        style="left: -1px; height: 50px; transform: translateY(0px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              30
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="1"
+        style="left: -1px; height: 50px; transform: translateY(50px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              Jane Smith
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              25
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with custom container height 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 400px; height: 400px;"
+>
+  <table
+    class="_table--md_1xkmm_54 w-full"
+    data-ods="table"
+  >
+    <thead
+      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+    >
+      <tr
+        class="h-[50px]"
+      >
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          name
+        </th>
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          age
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="w-full relative p-0 overflow-hidden"
+      style="height: 102px;"
+    >
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="0"
+        style="left: -1px; height: 50px; transform: translateY(0px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              30
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="1"
+        style="left: -1px; height: 50px; transform: translateY(50px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              Jane Smith
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              25
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with empty data 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 100%; height: 100%;"
+>
+  <table
+    class="_table--md_1xkmm_54 w-full"
+    data-ods="table"
+  >
+    <thead
+      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+    >
+      <tr
+        class="h-[50px]"
+      >
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          name
+        </th>
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          age
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="h-[3.25rem] w-full"
+      >
+        <td
+          class="absolute text-center w-full py-[15px]"
+          style="border-right: 1px solid var(--ods-color-neutral-100); left: 0px;"
+        >
+          <p
+            class="_text--paragraph_1aw48_54"
+            data-ods="text"
+          >
+            Aucun résultat
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 100%; height: 100%;"
+>
+  <table
+    class="_table--md_1xkmm_54 w-full"
+    data-ods="table"
+  >
+    <thead
+      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+    >
+      <tr
+        class="h-[50px]"
+      >
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 20px; min-width: 20px; max-width: 20px;"
+        />
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          name
+        </th>
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          age
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="w-full relative p-0 overflow-hidden"
+      style="height: 415px;"
+    >
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="0"
+        style="left: -1px; height: 50px; transform: translateY(0px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 20px; min-width: 20px; max-width: 20px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div
+              class="text-center"
+              style="padding-left: 0rem;"
+            >
+              <button
+                class="_button_1koyw_2 _button--primary_1koyw_100 _button--xs_1koyw_25 _button--ghost_1koyw_151"
+                data-ods="button"
+                data-testid="manager-button"
+                type="button"
+              >
+                <span
+                  class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+                  data-ods="icon"
+                  role="presentation"
+                />
+              </button>
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              30
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="1"
+        style="left: -1px; height: 50px; transform: translateY(50px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 20px; min-width: 20px; max-width: 20px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div
+              class="text-center"
+              style="padding-left: 2rem;"
+            />
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe Jr.
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              10
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="2"
+        style="left: -1px; height: 50px; transform: translateY(100px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 20px; min-width: 20px; max-width: 20px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div
+              class="text-center"
+              style="padding-left: 2rem;"
+            />
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe Jr. 2
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              11
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="3"
+        style="left: -1px; height: 50px; transform: translateY(150px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 20px; min-width: 20px; max-width: 20px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div
+              class="text-center"
+              style="padding-left: 2rem;"
+            />
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe Jr. 3
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              12
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="4"
+        style="left: -1px; height: 50px; transform: translateY(200px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 20px; min-width: 20px; max-width: 20px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div
+              class="text-center"
+              style="padding-left: 0rem;"
+            >
+              <button
+                class="_button_1koyw_2 _button--primary_1koyw_100 _button--xs_1koyw_25 _button--ghost_1koyw_151"
+                data-ods="button"
+                data-testid="manager-button"
+                type="button"
+              >
+                <span
+                  class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+                  data-ods="icon"
+                  role="presentation"
+                />
+              </button>
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              Jane Smith
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              25
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with filters enabled 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 100%; height: 100%;"
+>
+  <table
+    class="_table--md_1xkmm_54 w-full"
+    data-ods="table"
+  >
+    <thead
+      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+    >
+      <tr
+        class="h-[50px]"
+      >
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          name
+        </th>
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          age
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="w-full relative p-0 overflow-hidden"
+      style="height: 102px;"
+    >
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="0"
+        style="left: -1px; height: 50px; transform: translateY(0px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              30
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="1"
+        style="left: -1px; height: 50px; transform: translateY(50px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              Jane Smith
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              25
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with loading state 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 100%; height: 100%;"
+>
+  <table
+    class="_table--md_1xkmm_54 w-full"
+    data-ods="table"
+  >
+    <thead
+      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+    >
+      <tr
+        class="h-[50px]"
+      >
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          name
+        </th>
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          age
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="w-full relative p-0 overflow-hidden"
+      style="height: 550px;"
+    >
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="0"
+        style="left: -1px; height: 50px; transform: translateY(0px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              30
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="1"
+        style="left: -1px; height: 50px; transform: translateY(50px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              Jane Smith
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              25
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="h-[50px]"
+      >
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="h-[50px]"
+      >
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="h-[50px]"
+      >
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="h-[50px]"
+      >
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="h-[50px]"
+      >
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="h-[50px]"
+      >
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="h-[50px]"
+      >
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="h-[50px]"
+      >
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="h-[50px]"
+      >
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="h-[50px]"
+      >
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+        <td
+          class="overflow-hidden py-[8px]"
+        >
+          <div
+            aria-busy="true"
+            class="w-full"
+          >
+            <div
+              aria-hidden="true"
+              class="_skeleton_kauw8_2"
+              data-ods="skeleton"
+            />
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with pagination 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 100%; height: 100%;"
+>
+  <table
+    class="_table--md_1xkmm_54 w-full"
+    data-ods="table"
+  >
+    <thead
+      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+    >
+      <tr
+        class="h-[50px]"
+      >
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          name
+        </th>
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          age
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="w-full relative p-0 overflow-hidden"
+      style="height: 102px;"
+    >
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="0"
+        style="left: -1px; height: 50px; transform: translateY(0px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              30
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="1"
+        style="left: -1px; height: 50px; transform: translateY(50px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              Jane Smith
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              25
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 100%; height: 100%;"
+>
+  <table
+    class="_table--md_1xkmm_54 w-full"
+    data-ods="table"
+  >
+    <thead
+      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+    >
+      <tr
+        class="h-[50px]"
+      >
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 20px; min-width: 20px; max-width: 20px;"
+        >
+          <label
+            class="_checkbox_18i6t_2"
+            data-ods="checkbox"
+            data-part="root"
+            data-scope="checkbox"
+            data-state="unchecked"
+            dir="ltr"
+            for="checkbox:select-all:input"
+            id="checkbox:select-all"
+          >
+            <div
+              aria-hidden="true"
+              class="_checkbox-control_gr69e_2"
+              data-ods="checkbox-control"
+              data-part="control"
+              data-scope="checkbox"
+              data-state="unchecked"
+              dir="ltr"
+              id="checkbox:select-all:control"
+            >
+              <div
+                data-part="indicator"
+                data-scope="checkbox"
+                data-state="unchecked"
+                dir="ltr"
+                hidden=""
+              >
+                <span
+                  class="_icon_10c23_2 _icon--check_10c23_76 _checkbox-control__icon_gr69e_49"
+                  data-ods="icon"
+                  role="presentation"
+                />
+              </div>
+              <div
+                data-part="indicator"
+                data-scope="checkbox"
+                data-state="unchecked"
+                dir="ltr"
+                hidden=""
+              >
+                <span
+                  class="_icon_10c23_2 _icon--minus_10c23_376 _checkbox-control__icon_gr69e_49"
+                  data-ods="icon"
+                  role="presentation"
+                />
+              </div>
+            </div>
+            <input
+              aria-invalid="false"
+              aria-labelledby="checkbox:select-all:label"
+              id="checkbox:select-all:input"
+              name="select-all"
+              style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+              type="checkbox"
+              value="on"
+            />
+          </label>
+        </th>
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          name
+        </th>
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          age
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="w-full relative p-0 overflow-hidden"
+      style="height: 102px;"
+    >
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="0"
+        style="left: -1px; height: 50px; transform: translateY(0px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 20px; min-width: 20px; max-width: 20px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <label
+              class="_checkbox_18i6t_2"
+              data-ods="checkbox"
+              data-part="root"
+              data-scope="checkbox"
+              data-state="unchecked"
+              dir="ltr"
+              for="checkbox:0:input"
+              id="checkbox:0"
+            >
+              <div
+                aria-hidden="true"
+                class="_checkbox-control_gr69e_2"
+                data-ods="checkbox-control"
+                data-part="control"
+                data-scope="checkbox"
+                data-state="unchecked"
+                dir="ltr"
+                id="checkbox:0:control"
+              >
+                <div
+                  data-part="indicator"
+                  data-scope="checkbox"
+                  data-state="unchecked"
+                  dir="ltr"
+                  hidden=""
+                >
+                  <span
+                    class="_icon_10c23_2 _icon--check_10c23_76 _checkbox-control__icon_gr69e_49"
+                    data-ods="icon"
+                    role="presentation"
+                  />
+                </div>
+                <div
+                  data-part="indicator"
+                  data-scope="checkbox"
+                  data-state="unchecked"
+                  dir="ltr"
+                  hidden=""
+                >
+                  <span
+                    class="_icon_10c23_2 _icon--minus_10c23_376 _checkbox-control__icon_gr69e_49"
+                    data-ods="icon"
+                    role="presentation"
+                  />
+                </div>
+              </div>
+              <input
+                aria-invalid="false"
+                aria-labelledby="checkbox:0:label"
+                id="checkbox:0:input"
+                name="select-0"
+                style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+                type="checkbox"
+                value="on"
+              />
+            </label>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              30
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="1"
+        style="left: -1px; height: 50px; transform: translateY(50px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 20px; min-width: 20px; max-width: 20px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <label
+              class="_checkbox_18i6t_2"
+              data-ods="checkbox"
+              data-part="root"
+              data-scope="checkbox"
+              data-state="unchecked"
+              dir="ltr"
+              for="checkbox:1:input"
+              id="checkbox:1"
+            >
+              <div
+                aria-hidden="true"
+                class="_checkbox-control_gr69e_2"
+                data-ods="checkbox-control"
+                data-part="control"
+                data-scope="checkbox"
+                data-state="unchecked"
+                dir="ltr"
+                id="checkbox:1:control"
+              >
+                <div
+                  data-part="indicator"
+                  data-scope="checkbox"
+                  data-state="unchecked"
+                  dir="ltr"
+                  hidden=""
+                >
+                  <span
+                    class="_icon_10c23_2 _icon--check_10c23_76 _checkbox-control__icon_gr69e_49"
+                    data-ods="icon"
+                    role="presentation"
+                  />
+                </div>
+                <div
+                  data-part="indicator"
+                  data-scope="checkbox"
+                  data-state="unchecked"
+                  dir="ltr"
+                  hidden=""
+                >
+                  <span
+                    class="_icon_10c23_2 _icon--minus_10c23_376 _checkbox-control__icon_gr69e_49"
+                    data-ods="icon"
+                    role="presentation"
+                  />
+                </div>
+              </div>
+              <input
+                aria-invalid="false"
+                aria-labelledby="checkbox:1:label"
+                id="checkbox:1:input"
+                name="select-1"
+                style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; word-wrap: normal;"
+                type="checkbox"
+                value="on"
+              />
+            </label>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              Jane Smith
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              25
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with search enabled 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 100%; height: 100%;"
+>
+  <table
+    class="_table--md_1xkmm_54 w-full"
+    data-ods="table"
+  >
+    <thead
+      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+    >
+      <tr
+        class="h-[50px]"
+      >
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          name
+        </th>
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          age
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="w-full relative p-0 overflow-hidden"
+      style="height: 102px;"
+    >
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="0"
+        style="left: -1px; height: 50px; transform: translateY(0px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              30
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="1"
+        style="left: -1px; height: 50px; transform: translateY(50px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              Jane Smith
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              25
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with sorting enabled 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 100%; height: 100%;"
+>
+  <table
+    class="_table--md_1xkmm_54 w-full"
+    data-ods="table"
+  >
+    <thead
+      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+    >
+      <tr
+        class="h-[50px]"
+      >
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="cursor-pointer select-none h-[20px]"
+            data-testid="header-name"
+          >
+            <span>
+              name
+            </span>
+            <span
+              class="align-middle inline-block pl-1 -mt-1"
+            >
+              <span
+                class="_icon_10c23_2 _icon--arrow-up_10c23_37"
+                data-ods="icon"
+                role="presentation"
+              />
+            </span>
+          </div>
+        </th>
+        <th
+          class="text-left pl-4 h-11 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="cursor-pointer select-none h-[20px]"
+            data-testid="header-age"
+          >
+            <span>
+              age
+            </span>
+            <span
+              class="align-middle inline-block pl-1 -mt-1"
+            >
+              <span
+                class="_icon_10c23_2 _icon--arrow-down_10c23_19 invisible"
+                data-ods="icon"
+                role="presentation"
+              />
+            </span>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="w-full relative p-0 overflow-hidden"
+      style="height: 102px;"
+    >
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="0"
+        style="left: -1px; height: 50px; transform: translateY(0px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              Jane Smith
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              25
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="1"
+        style="left: -1px; height: 50px; transform: translateY(50px);"
+      >
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              John Doe
+            </div>
+          </div>
+        </td>
+        <td
+          class="py-[8px] pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis block w-full"
+          >
+            <div>
+              30
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
