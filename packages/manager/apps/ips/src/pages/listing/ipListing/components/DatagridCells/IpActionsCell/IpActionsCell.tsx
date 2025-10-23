@@ -315,11 +315,27 @@ export const IpActionsCell = ({
               )}?${search.toString()}`,
           ),
       },
+    !isGroup &&
+      ipaddr.IPv4.isIPv4(ipAddress) &&
+      !!hasAlerts?.spam?.length && {
+        id: 10,
+        label: t('listingActionUnblockSpammedIP'),
+        onClick: () =>
+          navigate(
+            `${urls.unblockAntiSpam
+              .replace(urlDynamicParts.id, id)
+              .replace(urlDynamicParts.parentId, parentId)
+              .replace(
+                urlDynamicParts.service,
+                serviceName,
+              )}?${search.toString()}`,
+          ),
+      },
     ipDetails?.bringYourOwnIp &&
       !isByoipSlice &&
       isGroup &&
       parseInt(range, 10) < 32 && {
-        id: 10,
+        id: 11,
         label: t('listingActionSlice'),
         isDisabled:
           onGoingSlicedIps?.includes(ip) || onGoingAggregatedIps?.includes(ip),
@@ -335,7 +351,7 @@ export const IpActionsCell = ({
       (isByoipSlice
         ? parseInt(parentIpRange, 10) > 24 && parseInt(parentIpRange, 10) < 31
         : parseInt(range, 10) > 24 && parseInt(range, 10) < 31) && {
-        id: 11,
+        id: 12,
         label: t('listingActionAggregate'),
         isDisabled:
           onGoingSlicedIps?.includes(ip) || onGoingAggregatedIps?.includes(ip),
@@ -353,7 +369,7 @@ export const IpActionsCell = ({
       [IpTypeEnum.ADDITIONAL, IpTypeEnum.PCC, IpTypeEnum.VRACK].includes(
         ipDetails?.type,
       ) && {
-        id: 12,
+        id: 13,
         label: `${t('terminate', {
           ns: NAMESPACES.ACTIONS,
         })} Additional IP`,
@@ -373,7 +389,7 @@ export const IpActionsCell = ({
         ipDetails?.type,
       ) &&
       !isByoipSlice && {
-        id: 13,
+        id: 14,
         label: t('listingActionByoipTerminate'),
         isLoading,
         onClick: () =>
