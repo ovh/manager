@@ -1,6 +1,6 @@
 import { TRACKING_MULTISITE_PREFIX } from '../git-integration.constants';
 
-export default class HostingMultisiteGitDeploymentController {
+export default class HostingMultisiteGitRemovalController {
   /* @ngInject */
   constructor(
     $translate,
