@@ -15,12 +15,11 @@ export function useDashboardTabs(): DashboardTabType[] {
   return useMemo(
     () =>
       MAIN_LAYOUT_NAV_TABS.map((tab) => {
-        const resolvedTo = tab.to.replace(':id', id ?? '');
         return {
           ...tab,
           title: t(tab.title),
-          to: resolvedTo,
-          isActive: pathname === resolvedTo || tab.pathMatchers?.some((rx) => rx.test(pathname)),
+          to: tab.to,
+          isActive: pathname === tab.to || tab.pathMatchers?.some((rx) => rx.test(pathname)),
         };
       }),
     [pathname, id],

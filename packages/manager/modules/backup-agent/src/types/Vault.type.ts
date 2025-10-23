@@ -1,7 +1,7 @@
 // Enums
-export type Performance = 'HIGHPERF' | 'STANDARD';
+import { ResourceStatus } from '@/types/Resource.type';
 
-export type ResourceStatus = 'CREATING' | 'DELETING' | 'ERROR' | 'READY' | 'SUSPENDED' | 'UPDATING';
+export type Performance = 'HIGHPERF' | 'STANDARD';
 
 export type VaultBillingType = 'BUNDLE' | 'PAYGO';
 
