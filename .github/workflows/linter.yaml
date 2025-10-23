@@ -5,27 +5,42 @@ on:
     branches-ignore: [master, develop]
   pull_request:
     branches: [master, develop]
+
 jobs:
   build:
     name: Lint Code Base
     runs-on: ubuntu-latest
+
     steps:
+      # Checkout the code and include all commit history
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
+      # Setup Node.js 22.x environment
       - name: Use Node.js 22.x
         uses: actions/setup-node@v3
         with:
           node-version: 22
-      - name: Restore/create node_modules cache
+
+      # Restore and cache node_modules and yarn.lock related cache
+      - name: Restore node_modules cache
         uses: actions/cache@v3
         with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
-      - name: Install repository
+          path: |
+            ~/.cache/yarn
+            node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      # Install dependencies only if necessary (cache hit will skip)
+      - name: Install dependencies
         run: |
           yarn install --frozen-lockfile
+
+      # Lint the code base
       - name: Lint Code Base
         run: |
           yarn lint
