@@ -79,10 +79,6 @@ export const productListingPages: Record<string, { application: string; hash: st
     application: 'dedicated',
     hash: '#/ip',
   },
-  KEY_MANAGEMENT_SERVICE: {
-    application: 'key-management-service',
-    hash: '#',
-  },
   LICENSE_CPANEL: {
     application: 'dedicated',
     hash: '#/license',
