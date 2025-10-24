@@ -28,6 +28,7 @@ export enum HostingdOffer {
   POWER_BETA_1 = 'POWER_BETA_1',
   PRO = 'PRO',
   START = 'START',
+  STARTER_OVH = 'HOSTING_STARTER_OVH',
 }
 
 export enum HostingCountries {
