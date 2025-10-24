@@ -32,6 +32,17 @@ export default class {
     this.GUIDES = GUIDES;
     this.loadMessages();
     this.criteria = getCriteria('id', this.loadBalancerId);
+    this.ovhFeatureFlipping
+      .checkFeatureAvailability('public-cloud:project:eos-load-balancer-test')
+      .then((featureAvailability) =>
+        featureAvailability.isFeatureAvailable(
+          'public-cloud:project:eos-load-balancer-test',
+        ),
+      )
+      .then((isEosMessageActive) => {
+        this.getEndOFServiceMessage = isEosMessageActive;
+        this.initializeTranslationKeys();
+      });
   }
 
   loadMessages() {

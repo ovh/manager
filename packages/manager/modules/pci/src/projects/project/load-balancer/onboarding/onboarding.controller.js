@@ -45,10 +45,10 @@ export default class {
       [],
     );
     this.ovhFeatureFlipping
-      .checkFeatureAvailability('public-cloud:project:eos-load-balancer')
+      .checkFeatureAvailability('public-cloud:project:eos-load-balancer-test')
       .then((featureAvailability) =>
         featureAvailability.isFeatureAvailable(
-          'public-cloud:project:eos-load-balancer',
+          'public-cloud:project:eos-load-balancer-test',
         ),
       )
       .then((isEosMessageActive) => {
