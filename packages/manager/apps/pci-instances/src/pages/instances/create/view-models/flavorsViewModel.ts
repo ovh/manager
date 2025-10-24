@@ -12,8 +12,16 @@ export type TFlavorDataForTable = {
   monthlyPrice: number;
 };
 
-export type TFlavorDataForCart = {
+export type TGpuFlavorDataForTable = {
+  unavailable: boolean;
+  unavailableQuota: boolean;
   name: string;
+  gpu: string;
+  numberOfGpu: number;
+  vRamTotal: number;
   memory: number;
   vCore: number;
+  storage: string;
+  hourlyPrice: number;
+  monthlyPrice: number;
 };

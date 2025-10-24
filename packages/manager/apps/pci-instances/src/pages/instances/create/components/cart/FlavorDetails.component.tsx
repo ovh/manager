@@ -1,10 +1,13 @@
 import { FC } from 'react';
 import { Text } from '@ovhcloud/ods-react';
-import { TFlavorDataForTable } from '../../view-models/flavorsViewModel';
+import {
+  TFlavorDataForTable,
+  TGpuFlavorDataForTable,
+} from '../../view-models/flavorsViewModel';
 
 type TFlavorDetails = {
   quantity: number;
-  flavor: TFlavorDataForTable; // TODO : map with TFlavorDataForCart when using GPU
+  flavor: TFlavorDataForTable | TGpuFlavorDataForTable;
 };
 
 export const FlavorDetails: FC<TFlavorDetails> = ({ quantity, flavor }) => {
