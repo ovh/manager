@@ -67,4 +67,4 @@ For the complete list of external documentation, see [`_references.md`](./_refer
 
 || Folder | Description |
 ||--------|--------------|
-|| `90-quickstart/` | Quick reference guides, checklists, and templates for common tasks like migrations. Includes [`migration-checklist.md`](./90-quickstart/migration-checklist.md), [`prompt-template.md`](./90-quickstart/prompt-template.md). |
+|| `90-quickstart/` | Quick reference guides, checklists, and templates for common tasks like migrations. Includes [`migration-checklist.md`](./90-quickstart/migration-checklist.md), [`prompt-template.md`](./90-quickstart/prompt-template.md), [`pre-migration-analysis.md`](./90-quickstart/pre-migration-analysis.md) (NEW: 5-minute source code analysis checklist). |
