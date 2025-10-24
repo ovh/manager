@@ -11,7 +11,7 @@
 import process from 'node:process';
 
 import { yarnPostInstall } from './kernel/pnpm/pnpm-deps-manager.js';
-import { logger } from './kernel/utils/log-manager.js';
+import { logger, logError } from './kernel/utils/log-manager.js';
 
 /**
  * Main entrypoint for the post-installation routine.
@@ -35,7 +35,7 @@ async function main() {
     logger.success(`✅ manager-pm postinstall completed successfully in ${elapsed}s`);
   } catch (err) {
     logger.error('❌ manager-pm postinstall failed:');
-    logger.error(err.stack || err.message || err);
+    logError(err);
     process.exit(1);
   }
 }

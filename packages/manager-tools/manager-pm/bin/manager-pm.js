@@ -34,7 +34,7 @@ import {
   clearRootWorkspaces,
   updateRootWorkspacesFromCatalogs,
 } from '../src/kernel/utils/catalog-utils.js';
-import { logger, setLoggerMode } from '../src/kernel/utils/log-manager.js';
+import { logger, logError, setLoggerMode } from '../src/kernel/utils/log-manager.js';
 
 const VERSION = '0.2.0';
 
@@ -128,7 +128,8 @@ ACTIONS
     full-build                           Build ALL apps
     full-test                            Test ALL apps
     full-lint [--fix ...]                Lint ALL apps (supports --fix and other ESLint flags)
-    start                                Launch interactive app starter
+    start [--app <name>] [--region <code>] [--container|--no-container]
+          Launch app starter (interactive if no params)
     docs                                 Build documentation workspace
     cli                                  Run manager-cli (everything after "cli" is forwarded)
     workspace --mode <prepare|remove>    Prepare or clear root workspaces
@@ -253,8 +254,17 @@ function exitError(msg) {
  * @returns {string[]} Array of CLI flags.
  */
 function collectToolsArgs(opts, includeApp = false) {
-  const alwaysExcluded = ['action', 'type', 'filter', 'region', 'mode', 'container'];
-  const excluded = includeApp ? alwaysExcluded : [...alwaysExcluded, 'app', 'packages'];
+  const alwaysExcluded = [
+    'action',
+    'type',
+    'filter',
+    'region',
+    'mode',
+    'container',
+  ];
+  const excluded = includeApp
+    ? alwaysExcluded
+    : [...alwaysExcluded, 'app', 'packages'];
 
   return Object.entries(opts)
     .filter(([k]) => !excluded.includes(k))
@@ -278,11 +288,17 @@ const actions = {
   },
   async lint({ app, passthrough, opts }) {
     if (!app) exitError(`Action "lint" requires --app`);
-    const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
+    const forwarded = collectToolsArgs(opts).filter(
+      (arg) => arg !== '--silent',
+    );
     return lintApp(app, [...forwarded, ...passthrough]);
   },
-  async start() {
-    return startApp();
+  async start({ opts }) {
+    return startApp({
+      app: opts.app,
+      region: opts.region,
+      container: opts.container,
+    });
   },
   async 'full-build'() {
     return buildAll();
@@ -291,7 +307,9 @@ const actions = {
     return testAll();
   },
   async 'full-lint'({ passthrough, opts }) {
-    const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
+    const forwarded = collectToolsArgs(opts).filter(
+      (arg) => arg !== '--silent',
+    );
     return lintAll([...forwarded, ...passthrough]);
   },
   async docs() {
@@ -314,7 +332,9 @@ const actions = {
       await clearRootWorkspaces();
       logger.info('✅ Root workspaces cleared.');
     } else {
-      exitError(`❌ Unknown workspace mode: "${mode}" (expected prepare|remove)`);
+      exitError(
+        `❌ Unknown workspace mode: "${mode}" (expected prepare|remove)`,
+      );
     }
   },
   async preinstall() {
@@ -324,21 +344,37 @@ const actions = {
     return runLifecycleTask('postinstall');
   },
   async buildCI({ passthrough, filter, opts }) {
-    const base = passthrough.length ? passthrough : filter ? ['--filter', filter] : [];
-    const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
+    const base = passthrough.length
+      ? passthrough
+      : filter
+      ? ['--filter', filter]
+      : [];
+    const forwarded = collectToolsArgs(opts).filter(
+      (arg) => arg !== '--silent',
+    );
     return buildCI([...base, ...forwarded]);
   },
   async testCI({ passthrough, filter, opts }) {
-    const base = passthrough.length ? passthrough : filter ? ['--filter', filter] : [];
-    const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
+    const base = passthrough.length
+      ? passthrough
+      : filter
+      ? ['--filter', filter]
+      : [];
+    const forwarded = collectToolsArgs(opts).filter(
+      (arg) => arg !== '--silent',
+    );
     return testCI([...base, ...forwarded]);
   },
   async perfBudgets({ passthrough, opts }) {
-    const forwarded = collectToolsArgs(opts, true).filter((arg) => arg !== '--silent');
+    const forwarded = collectToolsArgs(opts, true).filter(
+      (arg) => arg !== '--silent',
+    );
     return runPerfBudgets([...forwarded, ...passthrough]);
   },
   async publish({ opts }) {
-    const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
+    const forwarded = collectToolsArgs(opts).filter(
+      (arg) => arg !== '--silent',
+    );
     return publishPackage(forwarded);
   },
   async release({ opts }) {
@@ -397,7 +433,14 @@ async function main() {
     setLoggerMode('stderr'); // safe default for jq pipes
   }
 
-  const { action, type = 'pnpm', app = null, filter = null, region = 'EU', mode = null } = opts;
+  const {
+    action,
+    type = 'pnpm',
+    app = null,
+    filter = null,
+    region = 'EU',
+    mode = null,
+  } = opts;
   const container = Boolean(opts.container);
 
   if (!action) {
@@ -410,7 +453,10 @@ async function main() {
     process.exit(0);
   }
 
-  if (action === 'cli' && (passthrough.includes('--help') || passthrough.includes('-h'))) {
+  if (
+    action === 'cli' &&
+    (passthrough.includes('--help') || passthrough.includes('-h'))
+  ) {
     await runManagerCli(['--help']);
     process.exit(0);
   }
@@ -435,7 +481,7 @@ mode: ${mode || '(none)'}`);
     await handler({ app, passthrough, filter, mode, opts });
     process.exit(0);
   } catch (err) {
-    logger.error(err.stack || err.message || err);
+    logError(err);
     process.exit(1);
   }
 }
