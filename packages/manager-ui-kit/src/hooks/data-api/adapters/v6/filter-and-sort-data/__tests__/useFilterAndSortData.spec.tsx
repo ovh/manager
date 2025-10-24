@@ -46,7 +46,7 @@ describe('useFilterAndSortData hook', () => {
       });
     });
     expect(result.current.filteredAndSortedData.length).toBe(1);
-    expect((result.current.filteredAndSortedData[0] as ResultObj).name).toContain(searchTerm);
+    expect(result.current.filteredAndSortedData[0].name).toContain(searchTerm);
   });
 
   it('tests for filter', () => {

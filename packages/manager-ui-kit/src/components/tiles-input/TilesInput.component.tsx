@@ -90,7 +90,7 @@ export const TilesInputComponent = <T, S>({
     if (stack && state.selectedStack !== undefined && value) {
       const stackItem = state.stacks.get(state.selectedStack);
       if (stackItem?.length && !isEqual(state.selectedStack, stack.by(value))) {
-        set.value(stackItem[0] as T);
+        set.value(stackItem[0]);
       }
     }
   }, [state.selectedStack, state.stacks, stack, value]);
@@ -108,7 +108,7 @@ export const TilesInputComponent = <T, S>({
                   <Card
                     onClick={() =>
                       is.stack.singleton(key)
-                        ? set.value(stackItem[0] as T)
+                        ? set.value(stackItem[0])
                         : key !== undefined && set.selectedStack(key)
                     }
                     className={`${clsx(
@@ -116,7 +116,7 @@ export const TilesInputComponent = <T, S>({
                     )} w-full px-[24px] py-[16px]`}
                   >
                     {is.stack.singleton(key)
-                      ? label(stackItem[0] as T)
+                      ? label(stackItem[0])
                       : key !== undefined && stack?.label(key, stackItem)}
                   </Card>
                 </li>

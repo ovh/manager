@@ -21,8 +21,8 @@ export const TagsStack: FC<TagsStackProps> = ({ tags, maxLines, onClick }) => {
       const resizeObserver = new ResizeObserver(() => {
         const visibleTags = getVisibleTagCount(
           tags,
-          tagRef.current as HTMLBadgeElement,
-          containerRef.current as HTMLDivElement,
+          tagRef.current,
+          containerRef.current,
           maxLines,
         );
 

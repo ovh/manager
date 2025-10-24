@@ -69,7 +69,7 @@ export function FilterAdd({ columns, onAddFilter, resourceType }: Readonly<Filte
         type: selectedColumn?.type,
         tagKey,
       },
-      selectedColumn!,
+      selectedColumn,
     );
     setValue('');
     setTagKey('');

@@ -1,29 +1,19 @@
-import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
-import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/prettier';
-
-// Full adoption
-/* import { eslintSharedConfig } from '@ovh-ux/manager-static-analysis-kit';
-
-export default eslintSharedConfig;
-*/
-// Progressive adoption
-/* import { javascriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/javascript';
-import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
-import { reactEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/react';
-import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/prettier';
+/* eslint-disable import/no-unresolved */
 import { a11yEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/a11y';
 import {
   complexityJsxTsxConfig,
   complexityTsJsConfig,
 } from '@ovh-ux/manager-static-analysis-kit/eslint/complexity';
-import { htmlEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/html';
 import { cssEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/css';
+import { htmlEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/html';
+import { importEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/imports';
+import { javascriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/javascript';
+import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/prettier';
+import { reactEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/react';
 import { tailwindJsxConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tailwind-jsx';
 import { tanStackQueryEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tanstack';
-import { importEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/imports';
-import { checkFileEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/naming-conventions';
 import { vitestEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tests';
-import { storybookEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/storybook';
+import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
 
 export default [
   javascriptEslintConfig,
@@ -34,79 +24,31 @@ export default [
   tailwindJsxConfig,
   tanStackQueryEslintConfig,
   ...importEslintConfig,
-  ...checkFileEslintConfig,
   vitestEslintConfig,
   prettierEslintConfig,
   complexityJsxTsxConfig,
   complexityTsJsConfig,
   {
     ...cssEslintConfig,
-    files: ['**\/*.css', '**\/*.scss'],
+    files: ['**/*.css', '**/*.scss'],
   },
-  ...storybookEslintConfig,
-]; */
-// Progressive and disable some rules
-/* import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
-
-export default [
   {
-    ...typescriptEslintConfig,
+    files: ['**/__tests__/**', '**/__mocks__/**'],
     rules: {
-      ...typescriptEslintConfig.rules,
-      '@typescript-eslint/no-unsafe-return': 'off',
-      '@typescript-eslint/no-unsafe-assignment': 'off',
-      '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/await-thenable': 'off'
+      'max-lines': 'off',
+      'max-lines-per-function': 'off',
+      'max-nested-callbacks': 'off',
+      'no-undef': 'off',
     },
   },
-]; */
-
-/* import { javascriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/javascript';
-
-import { reactEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/react';
-
-import { a11yEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/a11y';
-import {
-  complexityJsxTsxConfig,
-  complexityTsJsConfig,
-} from '@ovh-ux/manager-static-analysis-kit/eslint/complexity';
-import { htmlEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/html';
-import { cssEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/css';
-import { tailwindJsxConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tailwind-jsx';
-import { tanStackQueryEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tanstack';
-import { importEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/imports';
-import { checkFileEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/naming-conventions';
-import { vitestEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tests';
-import { storybookEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/storybook';
-
-export default [
-  javascriptEslintConfig,
-  typescriptEslintConfig,
-  reactEslintConfig,
-  a11yEslintConfig,
-  htmlEslintConfig,
-  tailwindJsxConfig,
-  tanStackQueryEslintConfig,
-  ...importEslintConfig,
-  ...checkFileEslintConfig,
-  vitestEslintConfig,
-  prettierEslintConfig,
-  complexityJsxTsxConfig,
-  complexityTsJsConfig,
   {
-    ...cssEslintConfig,
-    files: ['**\/*.css', '**\/*.scss'],
+    files: ['**/Test.utils.tsx', '**/react-virtual.ts'],
+    rules: {
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+    },
   },
-  ...storybookEslintConfig,
-]; */
-
-export default [
   {
-    ...typescriptEslintConfig,
-    rules: {},
-  },
-  prettierEslintConfig,
-  {
-    ignores: ['**/*.json', '**/*.md', '**/*.*css'],
+    ignores: ['**/*.json', '**/*.md'],
   },
 ];

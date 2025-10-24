@@ -61,7 +61,7 @@ export const FilterSectionValue = ({
         value={[value]}
         name={`filter-add_value-select-${selectedId}`}
         data-testid="filter-add_value-select"
-        onValueChange={(detail) => setValue(detail.value[0] as string)}
+        onValueChange={(detail) => setValue(detail.value[0])}
         items={selectedColumn?.options?.map((option) => ({
           label: option.label,
           value: option.value,

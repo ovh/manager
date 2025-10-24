@@ -33,7 +33,7 @@ export const StepHeader = () => {
             disabled={edit.disabled || undefined}
             onClick={() => {
               if (!edit.disabled) {
-                edit.action(id as string);
+                edit.action(id);
               }
             }}
           >
