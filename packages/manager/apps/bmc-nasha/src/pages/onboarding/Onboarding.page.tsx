@@ -1,18 +1,20 @@
-import { BaseLayout, Button } from '@ovh-ux/muk';
+import { OnboardingLayout } from '@ovh-ux/muk';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { ONBOARDING_CONFIG } from '@/App.constants';
+import nashaIcon from '@/assets/images/nasha-icon.png';
 
 export default function OnboardingPage() {
   const { t } = useTranslation('onboarding');
-  const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
 
   const handleOrderClick = () => {
     trackClick({ actions: ['onboarding::add'] });
     // Navigate to order page (to be implemented)
-    window.open('https://www.ovhcloud.com/en/bare-metal-cloud/nas-ha/', '_blank');
+    window.open(
+      'https://www.ovhcloud.com/en/bare-metal-cloud/nas-ha/',
+      '_blank',
+    );
   };
 
   const handleGuideClick = (guide: string) => {
@@ -20,59 +22,58 @@ export default function OnboardingPage() {
   };
 
   return (
-    <BaseLayout
-      header={{
-        title: ONBOARDING_CONFIG.productName,
+    <OnboardingLayout
+      title={ONBOARDING_CONFIG.productName}
+      description={
+        <p className="text-xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed">
+          {t('nasha_onboarding_content')}
+        </p>
+      }
+      orderButtonLabel={t('nasha_onboarding_order')}
+      onOrderButtonClick={handleOrderClick}
+      img={{
+        src: nashaIcon,
+        alt: 'NAS-HA Service',
+        className: 'w-40 h-40 object-contain',
       }}
     >
-      <div className="max-w-4xl mx-auto py-8">
-        <div className="text-center mb-12">
-          <h1 className="text-3xl font-bold mb-4">
-            {t('nasha_onboarding_title', {
-              defaultValue: `Welcome to ${ONBOARDING_CONFIG.productName}`
-            })}
-          </h1>
-
-          <p className="text-lg text-gray-600 mb-6">
-            {t('nasha_onboarding_content')}
-          </p>
-
-          <Button
-            variant="primary"
-            onClick={handleOrderClick}
-          >
-            {t('nasha_onboarding_order')}
-          </Button>
-        </div>
-
-        <div className="mt-12">
-          <h2 className="text-2xl font-semibold mb-6">
-            {t('nasha_onboarding_guides_title', { defaultValue: 'Guides' })}
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {ONBOARDING_CONFIG.tiles.map((tile) => (
-              <div key={tile.id} className="border rounded-lg p-6 hover:shadow-md transition-shadow">
-                <h3 className="text-lg font-semibold mb-2">
+      {/* Tutorials Section */}
+      <div className="row pt-5">
+        {ONBOARDING_CONFIG.tiles.map((tile) => (
+          <div key={tile.id} className="col-md-6 col-lg-4 mb-4">
+            <a
+              className="py-2 oui-tile d-flex align-items-start p-3"
+              target="_blank"
+              rel="noopener"
+              href={
+                ONBOARDING_CONFIG.links[
+                  tile.linkKey as keyof typeof ONBOARDING_CONFIG.links
+                ]
+              }
+              onClick={() => handleGuideClick(tile.key)}
+            >
+              <div className="ml-2">
+                <h5 className="guide-title">Tutoriel</h5>
+                <h3 className="font-weight-bold">
                   {t(`nasha_onboarding_${tile.key}_title`)}
                 </h3>
-                <p className="text-gray-600 mb-4">
-                  {t(`nasha_onboarding_${tile.key}_content`)}
-                </p>
-                <a
-                  href={ONBOARDING_CONFIG.links[tile.linkKey as keyof typeof ONBOARDING_CONFIG.links]}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => handleGuideClick(tile.key)}
-                  className="text-blue-600 hover:underline"
-                >
-                  Learn more →
-                </a>
+                <div className="oui-tile__body mt-3">
+                  <p className="oui-tile__description font-weight-normal">
+                    {t(`nasha_onboarding_${tile.key}_content`)}
+                  </p>
+                  <span className="oui-link oui-link_icon">
+                    <span>En savoir plus</span>
+                    <span
+                      className="oui-icon oui-icon-external-link oui-color-p-600"
+                      aria-hidden="true"
+                    ></span>
+                  </span>
+                </div>
               </div>
-            ))}
+            </a>
           </div>
-        </div>
+        ))}
       </div>
-    </BaseLayout>
+    </OnboardingLayout>
   );
 }
