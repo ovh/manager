@@ -1,19 +1,35 @@
-import React, { Suspense } from 'react';
+import {
+  BaseLayout,
+  Button,
+  Message,
+  MessageBody,
+  MESSAGE_COLOR,
+} from '@ovh-ux/muk';
 
 export default function ListingPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-2xl font-bold text-gray-900 mb-6">Nasha Services</h1>
+    <BaseLayout header={{ title: 'Nasha Services' }}>
+      <div className="space-y-6">
+        <Message color={MESSAGE_COLOR.information}>
+          <MessageBody>
+            Welcome to Nasha Services. This application is ready for
+            development.
+          </MessageBody>
+        </Message>
+
         <div className="bg-white rounded-lg shadow p-6">
-          <Suspense fallback={<div className="text-center py-8">Loading...</div>}>
-            <div className="text-center py-8">
-              <h2 className="text-lg font-semibold text-gray-700 mb-4">Listing Page</h2>
-              <p className="text-gray-600">This is the main listing page for Nasha services.</p>
-            </div>
-          </Suspense>
+          <div className="text-center py-8">
+            <h2 className="text-lg font-semibold text-gray-700 mb-4">
+              Nasha Services
+            </h2>
+            <p className="text-gray-600 mb-6">
+              This is the main listing page for Nasha services. Ready to add
+              features.
+            </p>
+            <Button variant="default">Get Started</Button>
+          </div>
         </div>
       </div>
-    </div>
+    </BaseLayout>
   );
 }
