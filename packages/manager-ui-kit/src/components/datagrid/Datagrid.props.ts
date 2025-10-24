@@ -1,5 +1,5 @@
 import { Dispatch, MutableRefObject, ReactNode, SetStateAction } from 'react';
-
+import { TABLE_SIZE, TABLE_VARIANT } from '@ovhcloud/ods-react';
 import {
   ColumnDef,
   ExpandedState,
@@ -78,9 +78,11 @@ export type DatagridProps<T extends Record<string, unknown>> = {
   rowSelection?: RowSelectionProps<T>;
   search?: SearchProps;
   sorting?: SortingProps;
+  size?: TABLE_SIZE;
   subComponentHeight?: number;
   topbar?: ReactNode;
   totalCount?: number;
+  variant?: TABLE_VARIANT;
   onFetchAllPages?: () => void;
   onFetchNextPage?: () => void;
   renderSubComponent?: (

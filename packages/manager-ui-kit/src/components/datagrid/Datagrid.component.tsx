@@ -1,7 +1,5 @@
 import { useRef } from 'react';
-
-import { Table } from '@ovhcloud/ods-react';
-
+import { Table, TABLE_SIZE, TABLE_VARIANT } from '@ovhcloud/ods-react';
 import { DatagridProps } from './Datagrid.props';
 import { TableBody } from './table/table-body/TableBody.component';
 import { TableFooter } from './table/table-footer/TableFooter.component';
@@ -29,9 +27,11 @@ export const Datagrid = <T extends Record<string, unknown>>({
   rowSelection,
   search,
   sorting,
+  size = TABLE_SIZE.md,
   subComponentHeight,
   topbar,
   totalCount,
+  variant = TABLE_VARIANT.default,
   onFetchAllPages,
   onFetchNextPage,
   renderSubComponent,
@@ -56,20 +56,28 @@ export const Datagrid = <T extends Record<string, unknown>>({
     rowSelection,
     expandable,
   });
-  const { hasSortingFeature, hasSearchFeature, hasColumnVisibilityFeature, hasFilterFeature } =
-    features;
+  const {
+    hasSortingFeature,
+    hasSearchFeature,
+    hasColumnVisibilityFeature,
+    hasFilterFeature,
+  } = features;
   const rowModel = getRowModel();
   const { rows } = rowModel;
   const headerGroups = getHeaderGroups();
   const tableContainerRef = useRef<HTMLDivElement>(null);
   const visibleColumns = getAllLeafColumns();
-  const containerSize = data?.length < 10 ? '100%' : `${DEFAULT_CONTAINER_HEIGHT}px`;
+  const containerSize =
+    data?.length < 10 ? '100%' : `${DEFAULT_CONTAINER_HEIGHT}px`;
   const containerStyle = {
     maxHeight: containerHeight ? `${containerHeight}px` : containerSize,
     height: containerHeight ? `${containerHeight}px` : containerSize,
   };
   const shouldRenderTopbar =
-    topbar || hasSearchFeature || hasFilterFeature || hasColumnVisibilityFeature;
+    topbar ||
+    hasSearchFeature ||
+    hasFilterFeature ||
+    hasColumnVisibilityFeature;
   return (
     <>
       {shouldRenderTopbar && (
@@ -89,8 +97,12 @@ export const Datagrid = <T extends Record<string, unknown>>({
           setColumnVisibility={columnVisibility?.setColumnVisibility}
         />
       )}
-      <div className="overflow-auto relative w-full" ref={tableContainerRef} style={containerStyle}>
-        <Table className="w-full">
+      <div
+        className="overflow-auto relative w-full"
+        ref={tableContainerRef}
+        style={containerStyle}
+      >
+        <Table className="w-full" size={size} variant={variant}>
           <TableHeaderContent<T>
             headerGroups={headerGroups}
             onSortChange={sorting?.setSorting}
