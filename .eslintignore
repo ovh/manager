@@ -45,9 +45,6 @@ packages/manager-tools/manager-cli-core
 packages/manager/apps/cloud-shell/src/wasm_exec.js
 packages/manager/modules/backup-agent
 packages/manager/apps/okms
-packages/manager/apps/backup-vaults
-packages/manager/apps/backup-services
-packages/manager/apps/backup-billing
 packages/manager/apps/hpc-backup-agent-iaas
 packages/manager/apps/bmc-backup-agent-baremetal
 packages/manager/apps/pci-instances
