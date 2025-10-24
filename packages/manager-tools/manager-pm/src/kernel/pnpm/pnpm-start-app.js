@@ -3,14 +3,23 @@ import inquirer from 'inquirer';
 import inquirerSearchList from 'inquirer-search-list';
 import process from 'node:process';
 
-import { containerPackageName, managerRootPath } from '../../playbook/playbook-config.js';
-import { clearRootWorkspaces, updateRootWorkspacesFromCatalogs } from '../utils/catalog-utils.js';
-import { logger } from '../utils/log-manager.js';
+import {
+  containerPackageName,
+  managerRootPath,
+} from '../../playbook/playbook-config.js';
+import {
+  clearRootWorkspaces,
+  updateRootWorkspacesFromCatalogs,
+} from '../utils/catalog-utils.js';
+import { logger, logError } from '../utils/log-manager.js';
 import { resolveBuildFilter } from '../utils/tasks-utils.js';
 import { getApplicationId, getApplications } from '../utils/workspace-utils.js';
 
 /**
  * @typedef {Object} StartAppOptions
+ * @property {string}  [app]                     - CLI-provided app name (package name, short name, or folder name).
+ * @property {string}  [region]                  - CLI-provided region code.
+ * @property {boolean} [container]              - CLI-provided container flag (true/false).
  * @property {string}  [defaultRegion="EU"]       - Default region preselected in the prompt.
  * @property {boolean} [defaultContainer=true]    - Default choice for running inside the container.
  * @property {boolean} [raw=true]                 - Pass raw output to the parent process (concurrently option).
@@ -22,6 +31,45 @@ import { getApplicationId, getApplications } from '../utils/workspace-utils.js';
  */
 function registerPrompts() {
   inquirer.registerPrompt('search-list', inquirerSearchList);
+}
+
+/**
+ * Resolve app name to package name.
+ * Supports multiple formats: package name, short name, or folder name.
+ *
+ * @param {string} appName - App name to resolve.
+ * @param {Array<{ value: string, regions?: string[] }>} apps - Available applications.
+ * @returns {string|null} Resolved package name or null if not found.
+ */
+function resolveAppName(appName, apps) {
+  if (!appName) return null;
+
+  // Direct package name match
+  const directMatch = apps.find((app) => app.value === appName);
+  if (directMatch) return directMatch.value;
+
+  // Short name match (remove @ovh-ux/ prefix)
+  const shortName = appName.replace(/^@ovh-ux\//, '');
+  const shortMatch = apps.find((app) => app.value === `@ovh-ux/${shortName}`);
+  if (shortMatch) return shortMatch.value;
+
+  // Folder name match (extract from package name)
+  const folderMatch = apps.find((app) => {
+    const folderName = app.value.split('/').pop();
+    return folderName === appName || folderName === shortName;
+  });
+  if (folderMatch) return folderMatch.value;
+
+  // Partial name match (for cases like "bmc-nasha" -> "@ovh-ux/manager-bmc-nasha")
+  const partialMatch = apps.find((app) => {
+    const packageName = app.value;
+    const lastPart = packageName.split('/').pop();
+    // Check if appName is contained in the package name
+    return lastPart.includes(appName) || packageName.includes(appName);
+  });
+  if (partialMatch) return partialMatch.value;
+
+  return null;
 }
 
 /**
@@ -49,7 +97,9 @@ function buildQuestions(apps, defaultRegion, defaultContainer) {
       choices: (answers) => {
         const app = apps.find(({ value }) => value === answers.packageName);
         if (!app?.regions) {
-          throw new Error(`No regions found in ${answers.packageName} package.json`);
+          throw new Error(
+            `No regions found in ${answers.packageName} package.json`,
+          );
         }
         return app.regions;
       },
@@ -125,6 +175,10 @@ async function runWithCleanup(commands, raw, killOthers) {
     });
     await result;
     logger.info('✅ Start completed');
+  } catch (error) {
+    // Handle concurrently errors - avoid serialization of complex objects
+    logError(error);
+    throw error;
   } finally {
     await clearRootWorkspaces();
     logger.info('🧹 Root workspaces restored');
@@ -152,6 +206,9 @@ async function runWithCleanup(commands, raw, killOthers) {
  */
 export async function startApp(options = {}) {
   const {
+    app,
+    region,
+    container,
     defaultRegion = 'EU',
     defaultContainer = true,
     raw = true,
@@ -162,26 +219,88 @@ export async function startApp(options = {}) {
 
   const apps = getApplications();
   if (!apps.length) {
-    throw new Error('No applications found under configured applicationsBasePath.');
+    throw new Error(
+      'No applications found under configured applicationsBasePath.',
+    );
   }
 
-  const questions = buildQuestions(apps, defaultRegion, defaultContainer);
-  const {
-    packageName,
-    region = defaultRegion,
-    container = false,
-  } = await inquirer.prompt(questions);
+  let packageName, selectedRegion, selectedContainer;
+
+  // Handle CLI-provided app name
+  if (app) {
+    packageName = resolveAppName(app, apps);
+    if (!packageName) {
+      const availableApps = apps.map((a) => a.value).join(', ');
+      throw new Error(
+        `App "${app}" not found. Available apps: ${availableApps}`,
+      );
+    }
+  }
+
+  // Handle CLI-provided region
+  if (region && packageName) {
+    const selectedApp = apps.find((a) => a.value === packageName);
+    if (!selectedApp?.regions?.includes(region)) {
+      const availableRegions = selectedApp?.regions?.join(', ') || 'none';
+      throw new Error(
+        `Region "${region}" not available for app "${packageName}". Available regions: ${availableRegions}`,
+      );
+    }
+    selectedRegion = region;
+  }
+
+  // Handle CLI-provided container flag
+  if (typeof container === 'boolean') {
+    selectedContainer = container;
+  }
+
+  // Use interactive prompts for missing parameters
+  if (
+    !packageName ||
+    !selectedRegion ||
+    typeof selectedContainer !== 'boolean'
+  ) {
+    const questions = buildQuestions(apps, defaultRegion, defaultContainer);
+
+    // Pre-fill answers for CLI-provided values
+    const preAnswers = {};
+    if (packageName) preAnswers.packageName = packageName;
+    if (selectedRegion) preAnswers.region = selectedRegion;
+    if (typeof selectedContainer === 'boolean')
+      preAnswers.container = selectedContainer;
+
+    const answers = await inquirer.prompt(
+      questions.map((q) => ({
+        ...q,
+        default: preAnswers[q.name] ?? q.default,
+        when: preAnswers[q.name] !== undefined ? false : q.when,
+      })),
+    );
+
+    packageName = packageName || answers.packageName;
+    selectedRegion = selectedRegion || answers.region || defaultRegion;
+    selectedContainer =
+      typeof selectedContainer === 'boolean'
+        ? selectedContainer
+        : answers.container ?? defaultContainer;
+  }
 
   if (!packageName) throw new Error('No application selected.');
 
-  process.env.REGION = region;
-  logger.info(`🌍 REGION=${region}`);
-  logger.info(`📦 Package: ${packageName}${container ? ' (container mode)' : ''}`);
+  process.env.REGION = selectedRegion;
+  logger.info(`🌍 REGION=${selectedRegion}`);
+  logger.info(
+    `📦 Package: ${packageName}${selectedContainer ? ' (container mode)' : ''}`,
+  );
 
   await updateRootWorkspacesFromCatalogs();
 
   const appFilter = resolveBuildFilter(packageName) ?? packageName;
-  const commands = await buildCommands(packageName, appFilter, container);
+  const commands = await buildCommands(
+    packageName,
+    appFilter,
+    selectedContainer,
+  );
 
   await runWithCleanup(commands, raw, killOthers);
 }

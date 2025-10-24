@@ -1,8 +1,11 @@
 import { spawn } from 'node:child_process';
 
 import { managerRootPath } from '../../playbook/playbook-config.js';
-import { clearRootWorkspaces, updateRootWorkspacesFromCatalogs } from '../utils/catalog-utils.js';
-import { logger } from '../utils/log-manager.js';
+import {
+  clearRootWorkspaces,
+  updateRootWorkspacesFromCatalogs,
+} from '../utils/catalog-utils.js';
+import { logger, logError } from '../utils/log-manager.js';
 import { resolveBuildFilter } from '../utils/tasks-utils.js';
 
 /**
@@ -25,7 +28,9 @@ function runCommand(cmd, args, cwd) {
       if (code === 0) {
         resolve();
       } else {
-        reject(new Error(`${cmd} ${args.join(' ')} failed with exit code ${code}`));
+        reject(
+          new Error(`${cmd} ${args.join(' ')} failed with exit code ${code}`),
+        );
       }
     });
   });
@@ -46,7 +51,7 @@ async function runTask(label, cmd, args) {
     logger.info(`✅ ${label} completed successfully`);
   } catch (error) {
     logger.error(`❌ ${label} failed:`);
-    logger.error(error.stack || error.message || error);
+    logError(error);
     throw error;
   }
 }
@@ -136,10 +141,19 @@ export async function testCI(options = []) {
  */
 async function runTurboTask(task, appRef, concurrency = 1) {
   return withWorkspaces(async () => {
-    const args = ['run', task, `--concurrency=${concurrency}`, '--continue=always'];
+    const args = [
+      'run',
+      task,
+      `--concurrency=${concurrency}`,
+      '--continue=always',
+    ];
     const filter = resolveBuildFilter(appRef);
     if (filter) args.push('--filter', filter);
-    await runTask(`${task}${appRef ? ` (${appRef})` : ' (all apps)'}`, 'turbo', args);
+    await runTask(
+      `${task}${appRef ? ` (${appRef})` : ' (all apps)'}`,
+      'turbo',
+      args,
+    );
   });
 }
 
@@ -202,8 +216,14 @@ export async function lintApp(appRef, options = []) {
   if (!appRef) throw new Error('lintApp: appRef is required');
   return withWorkspaces(async () => {
     const pkgName = resolveBuildFilter(appRef);
-    if (!pkgName) throw new Error(`Unable to resolve package name for "${appRef}"`);
-    await runTask(`lint (${appRef})`, 'yarn', ['pm:lint:base', '--app', pkgName, ...options]);
+    if (!pkgName)
+      throw new Error(`Unable to resolve package name for "${appRef}"`);
+    await runTask(`lint (${appRef})`, 'yarn', [
+      'pm:lint:base',
+      '--app',
+      pkgName,
+      ...options,
+    ]);
   });
 }
 
@@ -225,7 +245,9 @@ export async function lintApp(appRef, options = []) {
  * @returns {Promise<void>} Resolves when linting completes successfully.
  */
 export async function lintAll(options = []) {
-  return withWorkspaces(() => runTask('lint (all apps)', 'yarn', ['pm:lint:base', ...options]));
+  return withWorkspaces(() =>
+    runTask('lint (all apps)', 'yarn', ['pm:lint:base', ...options]),
+  );
 }
 
 /**
@@ -306,8 +328,10 @@ export async function createRelease(options = []) {
  */
 export async function runLifecycleTask(lifecycle) {
   const scripts = {
-    preinstall: './packages/manager-tools/manager-pm/src/manager-pm-preinstall.js',
-    postinstall: './packages/manager-tools/manager-pm/src/manager-pm-postinstall.js',
+    preinstall:
+      './packages/manager-tools/manager-pm/src/manager-pm-preinstall.js',
+    postinstall:
+      './packages/manager-tools/manager-pm/src/manager-pm-postinstall.js',
   };
 
   const script = scripts[lifecycle];
@@ -354,7 +378,9 @@ export async function runStaticDynamicReports() {
  */
 export async function runStaticDynamicTests() {
   return withWorkspaces(() =>
-    runTask('static-dynamic-tests', 'manager-static-dynamic-quality-checks', ['--tests']),
+    runTask('static-dynamic-tests', 'manager-static-dynamic-quality-checks', [
+      '--tests',
+    ]),
   );
 }
 
@@ -374,7 +400,9 @@ export async function runStaticDynamicTests() {
  * @returns {Promise<void>} Resolves when performance budgets complete successfully.
  */
 export async function runPerfBudgets(options = []) {
-  return withWorkspaces(() => runTask('perf-budgets', 'manager-perf-budgets', options));
+  return withWorkspaces(() =>
+    runTask('perf-budgets', 'manager-perf-budgets', options),
+  );
 }
 
 /**

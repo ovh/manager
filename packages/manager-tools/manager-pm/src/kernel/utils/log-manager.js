@@ -71,7 +71,16 @@ export function getLoggerMode() {
  * @returns {string} A formatted string with colors and symbol.
  */
 function formatMessage(color, symbol, msg, args) {
-  const extra = args.length ? ' ' + args.map(String).join(' ') : '';
+  const extra = args.length ? ` ${args.map(arg => {
+    if (typeof arg === 'object' && arg !== null) {
+      try {
+        return JSON.stringify(arg, null, 2);
+      } catch (e) {
+        return String(arg);
+      }
+    }
+    return String(arg);
+  }).join(' ')}` : '';
   return `${color}${symbol} ${msg}${extra}${COLORS.reset}`;
 }
 
@@ -92,6 +101,49 @@ function output(stream, color, symbol, msg, args) {
     console.error(formatted);
   } else {
     stream(formatted);
+  }
+}
+
+/**
+ * Centralized error logging function that handles all error types safely.
+ * Avoids circular references and provides consistent error formatting.
+ *
+ * @param {any} error - The error to log.
+ * @param {string} [context=""] - Optional context message to prefix the error.
+ */
+export function logError(error, context = '') {
+  const prefix = context ? `${context}: ` : '';
+
+  if (error.stack) {
+    logger.error(`${prefix}${error.stack}`);
+  } else if (error.message) {
+    logger.error(`${prefix}${error.message}`);
+  } else if (Array.isArray(error)) {
+    // Handle array errors without serialization
+    logger.error(`${prefix}Array error with ${error.length} items`);
+    if (error.length > 0) {
+      logger.error(
+        `First item: ${typeof error[0]} ${error[0]?.constructor?.name || ''}`,
+      );
+    }
+  } else if (typeof error === 'object' && error !== null) {
+    // Handle object errors without serialization
+    logger.error(`${prefix}Object error: ${error.constructor?.name || 'Object'}`);
+    if (error.message) logger.error(`Message: ${error.message}`);
+    if (error.code) logger.error(`Code: ${error.code}`);
+    if (error.name) logger.error(`Name: ${error.name}`);
+    if (error.length !== undefined) logger.error(`Length: ${error.length}`);
+    // Log object keys without values to avoid circular references
+    const keys = Object.keys(error).slice(0, 10);
+    if (keys.length > 0) {
+      logger.error(
+        `Keys: ${keys.join(', ')}${
+          Object.keys(error).length > 10 ? '...' : ''
+        }`,
+      );
+    }
+  } else {
+    logger.error(`${prefix}${String(error)}`);
   }
 }
 

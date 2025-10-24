@@ -60,11 +60,12 @@ The approach is inspired by a simple migration principle:
 
 ## PNPM Dependency Layout in Isolated Mode
 
-PNPM uses a **global content-addressable store** to manage dependencies efficiently. 
+PNPM uses a **global content-addressable store** to manage dependencies efficiently.
 
 This design avoids duplication on disk while preserving isolated dependency trees per application.
 
 ### How PNPM Stores Dependencies
+
 - All packages are placed in a global `.pnpm/` store directory.
 - In each project's `node_modules/`, PNPM does **not copy files**. Instead:
   - A **hard link** (or symlink on Windows) is created from the store to `node_modules/.pnpm/...`.
@@ -74,6 +75,7 @@ This design avoids duplication on disk while preserving isolated dependency tree
 ### Isolated Mode
 
 When using isolated mode (no hoisting):
+
 - Each app (`appA/node_modules`, `appB/node_modules`) gets its own independent dependency tree.
 - If both **App A** and **App B** depend on `react@18.3.0`:
   - PNPM stores React once globally.
@@ -89,7 +91,7 @@ When using isolated mode (no hoisting):
 - **Runtime Behavior**  
   Each app may resolve its own React instance at runtime.
   - If apps are deployed independently, this is fine.
-  - If apps are composed together (e.g., microfrontends), multiple React instances can cause *Invalid Hook Call* errors.
+  - If apps are composed together (e.g., microfrontends), multiple React instances can cause _Invalid Hook Call_ errors.
 
 ✅ With this setup, PNPM maintains efficient disk usage, guarantees isolation, and still allows you to control deduplication of critical libraries like React.
 
@@ -113,6 +115,7 @@ To avoid multiple React instances at runtime:
 ## How it works — concepts that match the codebase
 
 ### 1) Catalogs (sources of truth)
+
 - **Yarn catalog**: `src/playbook/catalog/yarn-catalog.json`
 - **PNPM catalog**: `src/playbook/catalog/pnpm-catalog.json`
 
@@ -131,9 +134,9 @@ An app lives in **one** catalog at a time. Migrating an app = moving its workspa
 ### 3) Private package linking
 
 - `dependencies-utils.getPrivatePackages()` scans these workspace roots (configurable in `playbook-config`):
-- `packages/manager/core`, `packages/manager/modules`, `packages/manager-tools`, `packages/components` (excluding this tool and the generator).  
+- `packages/manager/core`, `packages/manager/modules`, `packages/manager-tools`, `packages/components` (excluding this tool and the generator).
 
-Private packages are **built via Turbo** then **linked** (`link:` overrides) into each PNPM app’s *temporary* workspace file.
+Private packages are **built via Turbo** then **linked** (`link:` overrides) into each PNPM app’s _temporary_ workspace file.
 
 ### 4) Per-app temporary `pnpm-workspace.yaml`
 
@@ -144,9 +147,9 @@ During PNPM install for a PNPM-app, a **temporary** `pnpm-workspace.yaml` is cre
   - **Private packages** → `link:` to local paths.
   - **Normalized versions** → from `src/playbook/catalog/pnpm-normalized-versions.json`.
 
-Install runs with:  
+Install runs with:
 
-- `pnpm install --ignore-scripts --no-lockfile --store-dir=target/.pnpm-store` (at the repo root).  
+- `pnpm install --ignore-scripts --no-lockfile --store-dir=target/.pnpm-store` (at the repo root).
 
 The file is **removed afterwards**.
 
@@ -175,6 +178,7 @@ manager-pm --type pnpm --action <action> [options] [-- <passthrough>]
 ```
 
 **Common flags**
+
 - `--type <pnpm>`: package manager type (future-proof, default: `pnpm`).
 - `--action <name>`: command to run.
 - `--app <name|workspace|path>`: single-app operations (build/test/lint).
@@ -206,13 +210,33 @@ yarn manager-pm --action buildCI -- --filter=@ovh-ux/manager-web --graph
 yarn manager-pm --action testCI  -- --filter=tag:unit --parallel
 ```
 
+### Start Application
+
+```bash
+# Interactive mode (existing behavior)
+yarn manager-pm --action start
+
+# Non-interactive with CLI parameters
+yarn manager-pm --action start --app bmc-nasha --region EU --container
+yarn manager-pm --action start --app @ovh-ux/manager-bmc-nasha --region US --no-container
+
+# App name formats supported:
+# - Package name: @ovh-ux/manager-bmc-nasha
+# - Short name: manager-bmc-nasha
+# - Folder name: bmc-nasha
+
+# Container flags:
+# --container     → run inside container
+# --no-container  → run standalone
+# (omit both)     → interactive prompt or default
+```
+
 ### Global
 
 ```bash
 yarn manager-pm --action full-build     # Build ALL apps (uses merged workspaces)
 yarn manager-pm --action full-test      # Test ALL apps
 yarn manager-pm --action full-lint      # Lint ALL apps
-yarn manager-pm --action start          # Interactive app starter (region/container prompt)
 yarn manager-pm --action docs           # Build @ovh-ux/manager-documentation docs
 yarn manager-pm --action cli -- …       # Passthrough to @ovh-ux/manager-cli (with merged workspaces)
 yarn manager-pm --action workspace --mode prepare|remove   # Prepare/Clear merged root workspaces
@@ -244,16 +268,17 @@ yarn manager-pm --action postinstall
 
 ## Silent & Machine-Readable Mode
 
-By default, `manager-pm` logs version, context, and execution details (useful for humans).  
+By default, `manager-pm` logs version, context, and execution details (useful for humans).
 
 When automating tasks (e.g., in CI/CD pipelines or JSON parsers), you can suppress these logs with `--silent`.
 
 ### Behavior
-| Mode | Output | Use Case |
-|------|---------|----------|
-| Default (verbose) | Context summary, logs, task info | Local debugging, interactive runs |
-| `--silent` | Only raw tool output (Turbo, Lerna, etc.) | Parsing JSON or feeding results to `jq`, `grep`, etc. |
-| `yarn -s` + `--silent` | Fully quiet Yarn + CLI output | Machine-readable pipelines |
+
+| Mode                   | Output                                    | Use Case                                              |
+| ---------------------- | ----------------------------------------- | ----------------------------------------------------- |
+| Default (verbose)      | Context summary, logs, task info          | Local debugging, interactive runs                     |
+| `--silent`             | Only raw tool output (Turbo, Lerna, etc.) | Parsing JSON or feeding results to `jq`, `grep`, etc. |
+| `yarn -s` + `--silent` | Fully quiet Yarn + CLI output             | Machine-readable pipelines                            |
 
 ### Examples
 
@@ -269,6 +294,7 @@ yarn -s manager-pm --silent --action lerna list --all --json --toposort | jq -r 
 ```
 
 ### Notes
+
 - Works with **all actions** (e.g., `lerna`, `cli`, `release`, `buildCI`, etc.).
 - Internally switches logger to `silent` mode (`stderr` and `stdout` suppressed except raw tool output).
 - Recommended for pipelines where you parse output, e.g.:
@@ -287,7 +313,7 @@ In our previous workflow, Continuous Delivery jobs relied on **direct Lerna invo
 node_modules/.bin/lerna list   --all   --json   --toposort   | jq -r '.[].location | select(. | test("/packages/manager/apps"))'
 ```
 
-This worked but bypassed the hybrid logic of `manager-pm`.  
+This worked but bypassed the hybrid logic of `manager-pm`.
 
 Now, all Lerna calls should go **through `manager-pm`**, ensuring that catalogs and hybrid workspaces are prepared/cleaned consistently.
 
@@ -304,6 +330,7 @@ node node_modules/.bin/manager-pm --silent --action lerna list --all --json --to
 ```
 
 Both commands guarantee:
+
 - Correct workspace preparation/cleanup before and after the run.
 - Silent Yarn headers/footers suppressed (so JSON remains parseable).
 - Full passthrough of flags and options to **Lerna**.
@@ -317,7 +344,7 @@ Both commands guarantee:
 yarn -s manager-pm --silent --action lerna --help
 
 # Info
-yarn -s manager-pm --silent --action lerna info  
+yarn -s manager-pm --silent --action lerna info
 
 # Version
 yarn -s manager-pm --silent --action lerna -version
@@ -340,7 +367,7 @@ Example:
 yarn -s manager-pm --silent --action lerna -version
 5.6.2
 
-yarn -s manager-pm --silent --action lerna info    
+yarn -s manager-pm --silent --action lerna info
 lerna notice cli v5.6.2
 lerna info versioning independent
 
@@ -348,8 +375,8 @@ lerna info versioning independent
 
   System:
   ...
-  
-yarn -s manager-pm --silent --action lerna list    
+
+yarn -s manager-pm --silent --action lerna list
 lerna notice cli v5.6.2
 lerna info versioning independent
 @ovh-ux/ng-at-internet-ui-router-plugin
@@ -533,11 +560,14 @@ package_path=$(yarn -s manager-pm --silent --action lerna list -ap --scope="XXX"
 ## Typical workflows
 
 ### Migrate an app to PNPM
+
 ```bash
 yarn pm:add:app --app <name|package|path>
 yarn install
 ```
+
 What happens:
+
 - App is moved from **Yarn catalog** → **PNPM catalog**
 - React/test deps normalized; Vitest config patched if needed
 - App is cleaned (`node_modules`, `dist`, `.turbo`)
@@ -546,10 +576,12 @@ What happens:
 - Root workspaces restored
 
 ### Roll back to Yarn
+
 ```bash
 yarn pm:remove:app --app <name|package|path>
 yarn install
 ```
+
 - App is moved back to **Yarn catalog**
 - PNPM leftovers cleaned; root restored
 
@@ -588,22 +620,24 @@ Because the monorepo runs **Yarn at the root** and **PNPM per-app**, you must fo
 
 2. **Run `yarn install` from the root**  
    This updates the root lockfile and triggers `manager-pm` hooks to:
-  - normalize versions
-  - rebuild PNPM overrides
-  - re-install PNPM apps if necessary
+
+- normalize versions
+- rebuild PNPM overrides
+- re-install PNPM apps if necessary
 
 3. **Verify**
-  - For Yarn apps: `yarn workspace <app> why <dep>`
-  - For PNPM apps: `manager-pm --type pnpm --action build --app <app>`
+
+- For Yarn apps: `yarn workspace <app> why <dep>`
+- For PNPM apps: `manager-pm --type pnpm --action build --app <app>`
 
 ---
 
 ⚠️ **Warning about `yarn add`**
 
 - Running `yarn add` **does trigger** the same `preinstall`/`postinstall` hooks as a full `yarn install`.
-- This means it *can* keep Yarn and PNPM in sync — but with caveats:
+- This means it _can_ keep Yarn and PNPM in sync — but with caveats:
   - Yarn still defaults to adding dependencies at the **root workspace**, not the target app.
-  - Hooks cannot distinguish between *install* and *add*, so catalogs/overrides may not update correctly in all cases.
+  - Hooks cannot distinguish between _install_ and _add_, so catalogs/overrides may not update correctly in all cases.
 - To avoid inconsistencies, prefer the **manual edit + `yarn install`** workflow described above.
 - If you do use `yarn add`, always double-check that:
   - the dependency was added to the **right `package.json`**, and

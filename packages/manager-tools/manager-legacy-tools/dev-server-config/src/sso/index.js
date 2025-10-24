@@ -11,6 +11,8 @@ const REGION_CONFIG = {
   },
 };
 
+const AUTH_CHECK_PATH = '/auth/check';
+
 const buildConfig = (host) => ({
   host,
   devLoginUrl: `https://${host}/auth/requestDevLogin/`,
@@ -100,15 +102,23 @@ module.exports = class Sso {
           followRedirect: false,
           gzip: true,
           json: {
-            callbackUrl: `${protocol}://${origin}/auth/check`,
+            callbackUrl: `${protocol}://${origin}${AUTH_CHECK_PATH}`,
           },
         },
         (err, resp, data) => {
           if (err) {
-            return resp.status(500);
+            return resolve(AUTH_CHECK_PATH);
           }
 
-          return resolve(data.data.url);
+          // Handle case where data structure is different or missing
+          if (data && data.data && data.data.url) {
+            return resolve(data.data.url);
+          }
+          if (data && data.url) {
+            return resolve(data.url);
+          }
+          // Fallback to default auth check
+          return resolve(AUTH_CHECK_PATH);
         },
       );
     });
