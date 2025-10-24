@@ -199,9 +199,7 @@ export { CONSTANT_NAME } from './constantName.constants';
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@ovh-ux/manager-react-components": "^1.0.0",
-    "@ovhcloud/ods-components": "^1.0.0",
-    "@ovhcloud/ods-themes": "^1.0.0",
+    "@ovh-ux/muk": "^1.0.0",
     "@tanstack/react-query": "^5.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",

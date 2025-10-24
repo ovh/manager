@@ -104,7 +104,7 @@ git checkout -b feat/MANAGER-xxxxx develop
 | Build | `build/` | `build/vite-build` |
 | CI/CD | `ci/` | `ci/ad-github-workflow` |
 | Documentation | `docs/` | `docs/update-maintainers` |
-| Refactor | `refactor/` | `refactor/replace-chakraui-with-ods` |
+| Refactor | `refactor/` | `refactor/replace-chakraui-with-muk` |
 | Tests | `test/` | `test/add-unit-tests-catalog-app` |
 
 ---

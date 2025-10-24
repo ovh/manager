@@ -25,8 +25,7 @@ React best practices are essential for:
 - [Development Standards](./development-standards.md)
 - [TypeScript Cheat Sheet](./typescript-cheatsheet.md)
 - [Frontend Design Patterns](./frontend-design-patterns.md)
-- [MRC Components](../20-dependencies/mrc-components.md)
-- [ODS Components](../20-dependencies/ods-components.md)
+- [MUK Components](../20-dependencies/muk.md)
 - [React Official Documentation](https://react.dev/)
 
 ## 📘 Guidelines / Implementation
