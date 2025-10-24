@@ -1,6 +1,11 @@
 {
-  "home": "Strona główna",
-  "order": "Zamów",
-  "open": "Otwórz dashboard",
-  "title": "Lista"
+  "nasha_listing_title": "Usługi NAS-HA",
+  "nasha_listing_order": "Zamów HA-NAS",
+  "nasha_listing_serviceName": "ID usługi",
+  "nasha_listing_customName": "Nazwa",
+  "nasha_listing_datacenter": "Lokalizacja centrum danych",
+  "nasha_listing_diskType": "Typ dysku",
+  "nasha_listing_canCreatePartition": "Tworzenie partycji",
+  "nasha_listing_canCreatePartition_true": "Dozwolone",
+  "nasha_listing_canCreatePartition_false": "Niedozwolone"
 }

@@ -14,18 +14,18 @@ export const AppConfig = {
 const docUrl = 'https://docs.ovh.com';
 
 export const ONBOARDING_CONFIG: OnboardingConfigType = {
-  productName: 'bmc-nasha',
-  productCategory: 'Public Cloud',
+  productName: 'NAS-HA',
+  productCategory: 'Storage',
   brand: 'OVHcloud',
   tiles: [
-    { id: 1, key: 'guide1', linkKey: 'discover' },
-    { id: 2, key: 'guide2', linkKey: 'tutorial' },
-    { id: 3, key: 'guide3', linkKey: 'faq' },
+    { id: 1, key: 'getting-started', linkKey: 'gettingStarted' },
+    { id: 2, key: 'nfs', linkKey: 'nfs' },
+    { id: 3, key: 'cifs', linkKey: 'cifs' },
   ],
   links: {
-    discover: docUrl,
-    tutorial: docUrl,
-    faq: docUrl,
+    gettingStarted: 'https://docs.ovh.com/gb/en/storage/nas/get-started/',
+    nfs: 'https://docs.ovh.com/gb/en/storage/nas-nfs/',
+    cifs: 'https://docs.ovh.com/gb/en/storage/nas/nas-cifs/',
   },
 };
 
@@ -33,7 +33,7 @@ export type ListingApi = 'v6Iceberg' | 'v6' | 'v2';
 export type DashboardApi = 'v6' | 'v2';
 
 export const APP_FEATURES = {
-  listingApi: 'v6' as ListingApi,
+  listingApi: 'v6Iceberg' as ListingApi,
   dashboardApi: 'v6' as DashboardApi,
   listingEndpoint: '/dedicated/nasha',
   dashboardEndpoint: '/dedicated/nasha/{serviceName}',

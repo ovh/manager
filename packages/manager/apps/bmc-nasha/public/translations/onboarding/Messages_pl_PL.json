@@ -1,25 +1,10 @@
 {
-  "title_fallback": "Witamy w app-gen-test",
-  "description_part1": "Dowiedz się, jak najlepiej wykorzystać app-gen-test, ddd.",
-  "description_part2": "Zapoznaj się z naszymi przewodnikami, aby szybko wystartować.",
-  "guides": {
-    "guide1": {
-      "category": "Pierwsze kroki",
-      "title": "Rozpocznij pracę z app-gen-test",
-      "description": "Poznaj podstawy i przejdź do działania.",
-      "cta": "Sprawdź"
-    },
-    "guide2": {
-      "category": "Tutoriale",
-      "title": "Konfiguracja środowiska",
-      "description": "Postępuj zgodnie z instrukcjami z naszego przewodnika",
-      "cta": "Sprawdź tutorial"
-    },
-    "guide3": {
-      "category": "FAQ",
-      "title": "Najczęściej zadawane pytania",
-      "description": "Znajdź odpowiedzi na często zadawane pytania.",
-      "cta": "Przeczytaj FAQ"
-    }
-  }
+  "nasha_onboarding_content": "Odkryj zarządzane usługi magazynowe oparte na systemie plików OpenZFS. Używaj scentralizowanych przestrzeni magazynowych za pomocą kilku kliknięć, aby przechowywać lub tworzyć kopie zapasowe swoich danych i plików.",
+  "nasha_onboarding_getting-started_title": "Rozpocznij pracę z rozwiązaniem HA-NAS",
+  "nasha_onboarding_getting-started_content": "Dowiedz się, jak zarządzać HA-NAS za pośrednictwem Panelu sterowania OVHcloud",
+  "nasha_onboarding_nfs_title": "Zamontuj swój NAS za pośrednictwem udostępnienia NFS",
+  "nasha_onboarding_nfs_content": "Dowiedz się, jak zamontować NAS za pośrednictwem udostępnienia NFS",
+  "nasha_onboarding_cifs_title": "Montowanie rozwiązania NAS na Windows Server za pośrednictwem CIFS",
+  "nasha_onboarding_cifs_content": "Dowiedz się, jak zamontować NAS na Windows Server za pośrednictwem protokołu CIFS",
+  "nasha_onboarding_order": "Zamów HA-NAS"
 }
