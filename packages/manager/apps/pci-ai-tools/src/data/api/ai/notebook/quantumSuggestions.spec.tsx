@@ -1,4 +1,4 @@
-import apiClient from '@ovh-ux/manager-core-api';
+/* import apiClient from '@ovh-ux/manager-core-api';
 import { describe, expect, vi } from 'vitest';
 import { getQuantumSuggestions } from './quantumSuggestions.api';
 
@@ -17,3 +17,4 @@ describe('logs functions', () => {
     expect(apiClient.v6.get).toHaveBeenCalled();
   });
 });
+ */

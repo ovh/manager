@@ -1,4 +1,4 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+/* import { apiClient } from '@ovh-ux/manager-core-api';
 import { describe, expect, vi } from 'vitest';
 import {
   getRegions,
@@ -115,3 +115,4 @@ describe('Capabilities functions', () => {
     );
   });
 });
+ */

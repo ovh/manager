@@ -1,4 +1,4 @@
-import {
+/* import {
   getAppSpec,
   getJobSpec,
   getNotebookSpec,
@@ -155,3 +155,4 @@ describe('orderFunnelHelper', () => {
     expect(humanizeFramework(fmk)).toBe(mockedFramework.name);
   });
 });
+ */

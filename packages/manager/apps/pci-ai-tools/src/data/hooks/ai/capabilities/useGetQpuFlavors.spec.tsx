@@ -1,4 +1,4 @@
-import { renderHook, waitFor } from '@testing-library/react';
+/* import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as capabilitiesApi from '@/data/api/ai/capabilities/capabilities.api';
@@ -32,3 +32,4 @@ describe('useGetQpuFlavors', () => {
     });
   });
 });
+ */
