@@ -4,13 +4,8 @@ export default /* @ngInject */ ($stateProvider) => {
     {
       url: '/ovh',
       abstract: true,
-      views: {
-        'progressTrackerView@app.dedicatedCloud.details.datacenter.details.drp': {
-          component: 'dedicatedCloudDatacenterDrpOvh',
-        },
-      },
       redirectTo:
-        'app.dedicatedCloud.details.datacenter.details.drp.ovh.mainPccStep',
+        'app.dedicatedCloud.details.datacenter.details.zerto.ovh.mainPccStep',
     },
   );
 };

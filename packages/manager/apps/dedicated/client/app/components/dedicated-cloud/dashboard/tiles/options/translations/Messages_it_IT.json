@@ -23,7 +23,10 @@
   "ovhManagerPccDashboardOptions_security_drp_status_vpn_notConfigured": "In attesa degli IP della VPN",
   "ovhManagerPccDashboardOptions_security_drp_status_vpn_configuring": "Configurazione della VPN in corso...",
   "ovhManagerPccDashboardOptions_security_drp_status_vpn_error": "Configurazione della VPN in errore",
-  "ovhManagerPccDashboardOptions_security_drp_action_add_configuration": "Aggiungi IP",
+  "ovhManagerPccDashboardOptions_security_drp_action_add_configuration": "Configura",
   "ovhManagerPccDashboardOptions_security_drp_action_install": "Installa un DRP",
-  "ovhManagerPccDashboardOptions_security_drp_action_delete": "Elimina DRP Zerto "
+  "ovhManagerPccDashboardOptions_security_drp_action_delete": "Eliminare",
+  "ovhManagerPccDashboardOptions_heading_options": "Opzioni",
+  "ovhManagerPccDashboardOptions_security_drp_action_add_site": "Aggiungere un sito",
+  "ovhManagerPccDashboardOptions_security_drp_action_activate": "Attiva"
 }

@@ -1,7 +1,7 @@
 {
   "dedicatedCloud_options_title": "Opcje dla Private Cloud",
   "dedicatedCloud_options_zerto": "Zerto DRP",
-  "dedicatedCloud_options_zerto_status_vpn_notConfigured": "Oczekiwanie na adresy IP VPN",
+  "dedicatedCloud_options_zerto_status_vpn_notConfigured": "VPN do skonfigurowania",
   "dedicatedCloud_options_zerto_status_vpn_configuring": "Trwa konfiguracja VPN",
   "dedicatedCloud_options_zerto_status_vpn_error": "Wystąpił błąd podczas konfiguracji VPN.",
   "dedicatedCloud_options_zerto_status_delivered": "Aktywny",
@@ -10,8 +10,8 @@
   "dedicatedCloud_options_zerto_status_disabled": "Brak",
   "dedicatedCloud_options_zerto_status_error": "Błąd",
   "dedicatedCloud_options_zerto_action_install": "Zainstaluj DRP",
-  "dedicatedCloud_options_zerto_action_add_configuration": "Dodaj adresy IP",
-  "dedicatedCloud_options_zerto_action_delete": "Usuń DRP Zerto",
+  "dedicatedCloud_options_zerto_action_add_configuration": "Skonfiguruj",
+  "dedicatedCloud_options_zerto_action_delete": "Usuń",
   "dedicatedCloud_options_nsx": "VMware Network Virtualization (NSX)",
   "dedicatedCloud_options_state_enabled": "Aktywny",
   "dedicatedCloud_options_state_enabling": "Trwa aktywacja",
@@ -24,5 +24,6 @@
   "dedicatedCloud_vmware_option_not_compatible": "Ta opcja jest niekompatybilna z tym centrum danych",
   "dedicatedCloud_vmware_option_not_enabled": "Ta opcja nie może zostać wyłączona w tej chwili, ponieważ nie jest aktywna",
   "dedicatedCloud_vmware_option_not_disabled": "Ta opcja nie może zostać aktywowana w tej chwili, ponieważ nie jest wyłączona",
-  "dedicatedCloud_dashboard_loading_error": "Wystąpił błąd podczas pobierania informacji o usłudze."
+  "dedicatedCloud_dashboard_loading_error": "Wystąpił błąd podczas pobierania informacji o usłudze.",
+  "dedicatedCloud_options_zerto_action_activate": "Włącz"
 }
