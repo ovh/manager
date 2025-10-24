@@ -1,3 +1,5 @@
+import { CmsType } from '../types/product/managedWordpress/cms';
+import { WebHostingWebsiteDomainType, WebHostingWebsiteType } from '../types/product/webHosting';
 import { TaskType, WebsiteType } from '../types/product/website';
 import { GitStatus, ResourceStatus, ServiceStatus, TaskStatus } from '../types/status';
 
@@ -135,5 +137,66 @@ export const websitesMocks: WebsiteType[] = [
       ownLog: 'false',
     },
     currentTasks: [],
+  },
+];
+
+export const WebHostingWebsiteMocks: WebHostingWebsiteType[] = [
+  {
+    id: 1,
+    checksum: '',
+    currentState: {
+      path: 'www',
+      name: 'nom de test1',
+      linkedDomains: 2,
+      git: {
+        status: GitStatus.CREATED,
+        vcsBranch: 'STARTER',
+        vcsUrl: 'https://github.com/cocony21/TESTGIT.git',
+      },
+      module: {
+        name: CmsType.JOOMLA,
+      },
+    },
+    currentTasks: [],
+    resourceStatus: ResourceStatus.READY,
+    targetSpec: { name: 'toto' },
+  },
+];
+export const WebHostingWebsiteDomainMocks: WebHostingWebsiteDomainType[] = [
+  {
+    id: 1,
+    checksum: '',
+    currentState: {
+      fqdn: 'test.site',
+      firewall: { status: ServiceStatus.NONE },
+      cdn: { status: ServiceStatus.ACTIVE },
+      name: 'deuxieme site',
+      path: 'testsuppression',
+      websiteId: 1,
+    },
+    currentTasks: [],
+    resourceStatus: ResourceStatus.READY,
+    targetSpec: {
+      firewall: ServiceStatus.NONE,
+      cdn: ServiceStatus.ACTIVE,
+    },
+  },
+  {
+    id: 2,
+    checksum: '',
+    currentState: {
+      fqdn: 'www.test.site',
+      firewall: { status: ServiceStatus.NONE },
+      cdn: { status: ServiceStatus.ACTIVE },
+      name: 'premier site',
+      path: '.',
+      websiteId: 1,
+    },
+    currentTasks: [],
+    resourceStatus: ResourceStatus.READY,
+    targetSpec: {
+      firewall: ServiceStatus.NONE,
+      cdn: ServiceStatus.NONE,
+    },
   },
 ];

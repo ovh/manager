@@ -1,0 +1,7 @@
+{
+  "multisite_git_state_tooltip_lastdeploy": "Consulter les informations du dernier déploiement",
+  "multisite_git_state_tooltip_disabled": "Cliquez sur le bouton action pour associer Git",
+  "multisite_tooltip_diagnostic_good_configuration": "Votre domaine {{ domainName }} est configuré sur l'adresse IP {{ ip }} de votre hébergement",
+  "multisite_tooltip_diagnostic_not_good_configuration": "Votre domaine {{ domainName }} est configuré vers l'adresse IP {{ ip }} d'un autre service",
+  "multisite_tooltip_diagnostic_unconfigured": "Cette entrée dans votre zone DNS ne fonctionne pas. Aucune configuration n'a été trouvée dans votre zone DNS"
+}

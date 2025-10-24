@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, vi } from 'vitest';
 import { attachedDomainDigStatusMock } from '@/data/__mocks__';
 import { wrapper } from '@/utils/test.provider';
 
-import { useWebHostingAttachedDomaindigStatus } from './useWebHostingAttachedDomaindigStatus';
+import { useWebHostingAttachedDomaindigStatus } from '../useWebHostingAttachedDomaindigStatus';
 
 vi.mock('@ovh-ux/manager-core-api', () => ({
   v6: {

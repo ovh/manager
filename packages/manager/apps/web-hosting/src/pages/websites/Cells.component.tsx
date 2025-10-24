@@ -1,16 +1,21 @@
-import React from 'react';
-
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
+import {
+  ODS_BUTTON_COLOR,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_TEXT_PRESET,
+  ODS_TOOLTIP_POSITION,
+} from '@ovhcloud/ods-components';
+import { OdsBadge, OdsButton, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
 
 import { Links } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
-import { BadgeStatus } from '@/components/badgeStatus/BadgeStatus.component';
+import { BadgeStatus, getStatusColor } from '@/components/badgeStatus/BadgeStatus.component';
 import { useWebHostingAttachedDomaindigStatus } from '@/data/hooks/webHostingAttachedDomaindigStatus/useWebHostingAttachedDomaindigStatus';
-import { WebsiteType } from '@/data/types/product/website';
+import { WebHostingWebsiteDomainType } from '@/data/types/product/webHosting';
+import { WebSiteAttachedDomainDigStatusType, WebsiteType } from '@/data/types/product/website';
 import { DnsStatus, GitStatus, ServiceStatus } from '@/data/types/status';
 import { useGenerateUrl } from '@/hooks/generateUrl/useGenerateUrl';
 import { useHostingUrl } from '@/hooks/useHostingUrl';
@@ -33,17 +38,68 @@ const useHostingUrlWithOptions = (
   return hostingUrl;
 };
 
-export const DiagnosticCell = ({ webSiteItem }: { webSiteItem: WebsiteType }) => {
+const getDnsStatusAndTooltip = (type: 'A' | 'AAAA', data: WebSiteAttachedDomainDigStatusType) => {
+  const records = Object.values(data.records).filter((r) => r.type === type);
+  const recommendedIps =
+    type === 'A' ? data.recommendedIps.recommendedIpV4 : data.recommendedIps.recommendedIpV6;
+
+  if (!records.length) {
+    return {
+      status: DnsStatus.NOT_CONFIGURED,
+      tooltipKey: 'multisite:multisite_tooltip_diagnostic_unconfigured',
+      ip: '',
+    };
+  }
+
+  let hasValidRecord = false;
+  let ipFound = '';
+
+  hasValidRecord = records.some((record) => {
+    if (record.dnsConfigured && record.isOvhIp) {
+      const recordIp = Object.keys(data.records).find((ip) => data.records[ip] === record);
+      if (recordIp && recommendedIps.includes(recordIp)) {
+        ipFound = recordIp;
+        return true;
+      }
+    }
+    return false;
+  });
+
+  let status: DnsStatus;
+  let tooltipKey: string;
+
+  if (hasValidRecord) {
+    status = DnsStatus.CONFIGURED;
+    tooltipKey = 'multisite:multisite_tooltip_diagnostic_good_configuration';
+  } else {
+    const hasExternalRecord = records.some((r) => !r.isOvhIp);
+    if (hasExternalRecord) {
+      status = DnsStatus.EXTERNAL;
+      const externalIp = Object.keys(data.records).find((ip) => data.records[ip].type === type);
+      ipFound = externalIp || '';
+      tooltipKey = 'multisite:multisite_tooltip_diagnostic_not_good_configuration';
+    } else {
+      status = DnsStatus.NOT_CONFIGURED;
+      tooltipKey = 'multisite:multisite_tooltip_diagnostic_unconfigured';
+    }
+  }
+
+  return { status, tooltipKey, ip: ipFound };
+};
+
+interface DiagnosticCellProps {
+  serviceName: string;
+  fqdn: string;
+  isWebsiteView?: boolean;
+}
+
+export const DiagnosticCell = ({ serviceName, fqdn, isWebsiteView }: DiagnosticCellProps) => {
   const { t } = useTranslation('common');
-  const hostingUrl = useHostingUrlWithOptions(
-    webSiteItem?.currentState.hosting.serviceName || '',
-    true,
-    false,
-  );
+  const hostingUrl = useHostingUrlWithOptions(serviceName, true, false);
 
   const { data, isLoading, isError, refetch } = useWebHostingAttachedDomaindigStatus(
-    webSiteItem?.currentState.hosting.serviceName,
-    webSiteItem?.currentState.fqdn,
+    serviceName,
+    fqdn,
   );
 
   if (isError) {
@@ -59,63 +115,62 @@ export const DiagnosticCell = ({ webSiteItem }: { webSiteItem: WebsiteType }) =>
       />
     );
   }
+
   return ['A', 'AAAA'].map((type) => {
-    let status = DnsStatus.NOT_CONFIGURED;
-    let recommendedIps: string[];
-    let records: {
-      type: string;
-      dnsConfigured: boolean;
-      isOvhIp: boolean;
-    }[];
+    const { status, tooltipKey, ip } =
+      !isLoading && data
+        ? getDnsStatusAndTooltip(type as 'A' | 'AAAA', data)
+        : { status: DnsStatus.NOT_CONFIGURED, tooltipKey: '', ip: '' };
 
-    if (!isLoading && data) {
-      records = Object.values(data.records).filter((r) => r.type === type);
-      recommendedIps =
-        type === 'A'
-          ? data.recommendedIps?.recommendedIpV4 || []
-          : data.recommendedIps?.recommendedIpV6 || [];
-
-      if (records.length > 0) {
-        const hasValidRecord = records.some((record) => {
-          if (record.dnsConfigured && record?.isOvhIp) {
-            const recordIp = Object.keys(data.records).find(
-              (ip) => data.records[ip].type === type && data.records[ip] === record,
-            );
-            return recordIp && recommendedIps.includes(recordIp);
-          }
-          return false;
-        });
-
-        if (hasValidRecord) {
-          status = DnsStatus.CONFIGURED;
-        } else {
-          const hasExternalRecord = records.some((record) => record?.isOvhIp === false);
-          status = hasExternalRecord ? DnsStatus.EXTERNAL : DnsStatus.NOT_CONFIGURED;
-        }
-      }
+    if (isWebsiteView) {
+      return (
+        <BadgeStatus
+          key={type}
+          itemStatus={status}
+          label={type}
+          tracking={`${DATAGRID_LINK}${DIAGNOSTIC}`}
+          isLoading={isLoading}
+          href={hostingUrl}
+        />
+      );
     }
 
     return (
-      <BadgeStatus
-        key={type}
-        itemStatus={status}
-        label={type}
-        tracking={`${DATAGRID_LINK}${DIAGNOSTIC}`}
-        isLoading={isLoading}
-        href={hostingUrl}
-      />
+      <>
+        <OdsBadge
+          className="mr-4"
+          id={`diagnostic-status-${type}-${fqdn}`}
+          label={type}
+          color={getStatusColor(status)}
+        />
+        <OdsTooltip
+          triggerId={`diagnostic-status-${type}-${fqdn}`}
+          position={ODS_TOOLTIP_POSITION.topStart}
+        >
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            {t(tooltipKey, { domainName: fqdn, ip })}
+          </OdsText>
+        </OdsTooltip>
+      </>
     );
   });
 };
 
 interface BadgeStatusCellProps {
-  webSiteItem: WebsiteType;
+  webSiteItem: WebsiteType | WebHostingWebsiteDomainType;
   status: ServiceStatus | GitStatus;
   tracking?: string;
   withMultisite?: boolean;
   withBoost?: boolean;
 }
-
+const getHostingServiceName = (
+  item: WebsiteType | WebHostingWebsiteDomainType,
+): string | undefined => {
+  if ('hosting' in item.currentState && item.currentState.hosting) {
+    return item.currentState.hosting.serviceName;
+  }
+  return undefined;
+};
 export const BadgeStatusCell = ({
   webSiteItem,
   status,
@@ -123,11 +178,8 @@ export const BadgeStatusCell = ({
   withMultisite = false,
   withBoost = false,
 }: BadgeStatusCellProps) => {
-  const hostingUrl = useHostingUrlWithOptions(
-    webSiteItem?.currentState.hosting.serviceName,
-    withMultisite,
-    withBoost,
-  );
+  const serviceName = getHostingServiceName(webSiteItem);
+  const hostingUrl = useHostingUrlWithOptions(serviceName || '', withMultisite, withBoost);
 
   return <BadgeStatus itemStatus={status} tracking={tracking} href={hostingUrl} />;
 };
