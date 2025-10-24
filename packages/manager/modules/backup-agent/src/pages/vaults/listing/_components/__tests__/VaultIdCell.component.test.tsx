@@ -4,14 +4,15 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { mockVaults } from '@/mocks/vaults/vaults';
-import { VaultIdCell } from '../VaultIdCell.components';
-import {urlParams, urls} from "@/routes/Routes.constants";
+import { urlParams, urls } from '@/routes/Routes.constants';
+
+import { VaultIdCell } from '../VaultIdCell.component';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
     <div data-testid="cell">{children}</div>
   ),
-  // eslint-disable-next-line react/no-multi-comp
+
   Links: ({ label, href }: { label: string; href: string }) => (
     <a data-testid="link" href={href}>
       {label}
@@ -21,12 +22,12 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
 
 const { useHref } = vi.hoisted(() => {
   return {
-    useHref: vi.fn().mockImplementation((link) => link),
+    useHref: vi.fn().mockImplementation((link: string) => link),
   };
 });
 
 vi.mock('react-router-dom', () => ({
-  useHref
+  useHref,
 }));
 
 describe('VaultIdCell', () => {

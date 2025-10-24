@@ -1,10 +1,7 @@
-import React from 'react';
-
-import { ResourceWithStatus } from "@/types/Resource.type";
-
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 
-import {ResourceStatusBadge} from "@/components/ResourceStatusBadge/ResourceStatusBadge.components";
+import { ResourceStatusBadge } from '@/components/ResourceStatusBadge/ResourceStatusBadge.component';
+import { ResourceWithStatus } from '@/types/Resource.type';
 
 export const ResourceStatusCell = (resourceWithStatus: ResourceWithStatus) => {
   return (

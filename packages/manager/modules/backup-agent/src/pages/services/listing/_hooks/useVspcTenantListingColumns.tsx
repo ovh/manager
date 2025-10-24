@@ -5,17 +5,12 @@ import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { DatagridColumn } from '@ovh-ux/manager-react-components';
 
+import { ResourceLocationCell } from '@/components/CommonCells/ResourceLocationCell/ResourceLocationCell.component';
+import { ResourceRegionCell } from '@/components/CommonCells/ResourceRegionCell/ResourceRegionCell.component';
+import { ResourceStatusCell } from '@/components/CommonCells/ResourceStatusCell/ResourceStatusCell.component';
 import { VSPCTenant } from '@/types/VspcTenant.type';
 
-import {
-  TenantActionCell,
-  TenantReferenceCell,
-  VSPCTenantNameCell,
-} from '../_components';
-
-import {ResourceLocationCell} from "@/components/CommonCells/ResourceLocationCell/ResourceLocationCell.components";
-import {ResourceRegionCell} from "@/components/CommonCells/ResourceRegionCell/ResourceRegionCell.components";
-import {ResourceStatusCell} from "@/components/CommonCells/ResourceStatusCell/ResourceStatusCell.components";
+import { TenantActionCell, TenantReferenceCell, VSPCTenantNameCell } from '../_components';
 
 export function useVspcListingColumns(): DatagridColumn<VSPCTenant>[] {
   const { t } = useTranslation([NAMESPACES.DASHBOARD, NAMESPACES.REGION, NAMESPACES.STATUS]);

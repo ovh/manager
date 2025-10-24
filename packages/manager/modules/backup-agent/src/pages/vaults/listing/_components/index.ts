@@ -1,9 +1,5 @@
-import { VaultBucketsCell } from './VaultBucketsCell.components';
-import { VaultIdCell } from './VaultIdCell.components';
-import { VaultReferenceCell } from './VaultReferenceCell.components';
+import { VaultBucketsCell } from './VaultBucketsCell.component';
+import { VaultIdCell } from './VaultIdCell.component';
+import { VaultReferenceCell } from './VaultReferenceCell.component';
 
-export {
-  VaultBucketsCell,
-  VaultIdCell,
-  VaultReferenceCell,
-};
+export { VaultBucketsCell, VaultIdCell, VaultReferenceCell };
