@@ -86,10 +86,12 @@ describe('useRedirectAfterProjectSelection', () => {
       error: null,
     } as ReturnType<typeof useFeatureAvailability>);
 
-    // Mock window.top
+    // Mock window.top with assign function
     Object.defineProperty(window, 'top', {
       value: {
-        location: '',
+        location: {
+          assign: vi.fn(),
+        },
       },
       writable: true,
     });
@@ -195,6 +197,7 @@ describe('useRedirectAfterProjectSelection', () => {
 
     const { result } = renderHookWithWrapper();
 
+    expect(result.current.isRedirectExternal).toBe(false);
     result.current.redirect('test-project-id');
 
     expect(shellContext.shell?.navigation.navigateTo).toHaveBeenCalledWith(
@@ -214,9 +217,12 @@ describe('useRedirectAfterProjectSelection', () => {
 
     const { result } = renderHookWithWrapper();
 
+    expect(result.current.isRedirectExternal).toBe(true);
     result.current.redirect('test-project-id');
 
-    expect(window.top?.location).toBe('https://external.com/test-project-id');
+    expect(window.top?.location.assign).toHaveBeenCalledWith(
+      'https://external.com/test-project-id',
+    );
   });
 
   it('should handle redirect parameters correctly', () => {

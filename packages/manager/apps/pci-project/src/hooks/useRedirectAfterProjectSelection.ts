@@ -8,6 +8,7 @@ import useCheckFeatureAvailability, {
 
 export type TRedirectStatus = {
   isRedirectRequired: boolean;
+  isRedirectExternal: boolean;
   redirectUrl: (projectId: string) => Promise<string>;
   redirect: (projectId: string) => void;
 };
@@ -109,9 +110,8 @@ export default (): TRedirectStatus => {
   const redirect = useCallback(
     (projectId: string) => {
       if (isRedirectExternal) {
-        (window.top || window).location = redirectExternalUrl.replace(
-          /:projectId/g,
-          projectId,
+        (window.top || window).location.assign(
+          redirectExternalUrl.replace(/:projectId/g, projectId),
         );
       } else {
         navigation.navigateTo('public-cloud', redirectPath, {
@@ -173,6 +173,7 @@ export default (): TRedirectStatus => {
       isReady &&
       redirectTarget.isRedirectRequired &&
       activeProjects?.length > 1,
+    isRedirectExternal,
     redirectUrl,
     redirect,
   };
