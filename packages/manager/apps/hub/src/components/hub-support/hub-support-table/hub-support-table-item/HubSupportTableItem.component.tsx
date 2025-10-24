@@ -78,16 +78,16 @@ export const HubSupportTableItem: FunctionComponent<Props> = ({ ticket }) => {
 
   return (
     <tr key={ticket.ticketId}>
-      <th scope="row" className="!font-bold">
+      <th scope="row" className="!font-bold break-all">
         {ticket.serviceName}
       </th>
       <th scope="row">{ticket.subject}</th>
-      <th scope="row">
+      <th scope="row" className="!min-w-min">
         <OsdsChip size={ODS_CHIP_SIZE.sm} color={stateColor} inline>
           {t(`hub_support_state_${ticket.state}`)}
         </OsdsChip>
       </th>
-      <th scope="row" className="text-right">
+      <th scope="row" className="text-right !min-w-min">
         <OsdsLink
           href={url}
           onClick={handleClick}

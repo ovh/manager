@@ -5,3 +5,7 @@
 html {
   font-family: var(--ods-font-family-default);
 }
+
+.text-error::part(text) {
+  color: var(--ods-color-critical-500);
+}

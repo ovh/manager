@@ -1,10 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { OdsSwitch, OdsSwitchItem } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { Notification } from '@/data/types';
 import HtmlViewer from './htmlViewer/HtmlViewer.component';
 import TextViewer from './textViewer/TextViewer.component';
 import { PADDING_OFFSET, EmailFormat } from './emailDisplay.constants';
+import { useTracking } from '@/hooks/useTracking/useTracking';
+import { TrackingSubApps } from '@/tracking.constant';
 
 type Props = {
   notification: Notification;
@@ -14,9 +17,14 @@ type Props = {
 export default function EmailDisplay({ notification, header }: Props) {
   const { t } = useTranslation('detail');
   const [format, setFormat] = useState<EmailFormat>('SHORT');
+  const { trackClick } = useTracking();
 
   const ref = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number | undefined>(undefined);
+
+  const hasText = useMemo(() => {
+    return notification.shortText || notification.text || notification.html;
+  }, [notification]);
 
   // If the notification has a short text, we display it as a short text
   useEffect(() => {
@@ -29,6 +37,7 @@ export default function EmailDisplay({ notification, header }: Props) {
 
   const updateHeight = () => {
     if (!ref.current) return;
+    if (!hasText) return;
     const { top } = ref.current.getBoundingClientRect();
     const viewportHeight = window.innerHeight;
     const remainingHeight = viewportHeight - top - PADDING_OFFSET;
@@ -48,6 +57,10 @@ export default function EmailDisplay({ notification, header }: Props) {
     };
   }, []);
 
+  if (!hasText) {
+    return null;
+  }
+
   return (
     <div
       ref={ref}
@@ -59,7 +72,18 @@ export default function EmailDisplay({ notification, header }: Props) {
     >
       <div className="flex flex-row gap-6 items-center justify-between">
         <div className="flex-grow">{header}</div>
-        <OdsSwitch name="format">
+        <OdsSwitch
+          name="format"
+          onOdsChange={() => {
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: [`format-email:${format.toLowerCase()}`],
+              subApp: TrackingSubApps.Communications,
+            });
+          }}
+        >
           {notification.shortText && (
             <OdsSwitchItem
               isChecked={format === 'SHORT'}

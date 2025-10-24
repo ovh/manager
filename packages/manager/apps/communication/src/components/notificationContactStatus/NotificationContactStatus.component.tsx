@@ -21,7 +21,6 @@ export default function NotificationContactStatus({
   notificationId: string;
 }) {
   const { t } = useTranslation('communications');
-
   const highestPriorityContact = useMemo(
     () =>
       contacts.reduce((highest, current) => {
