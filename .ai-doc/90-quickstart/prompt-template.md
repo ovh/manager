@@ -36,7 +36,31 @@ This format helps AI understand:
 
 ## Example Usage
 
-### Simple Migration
+### Complete Migration (Recommended)
+```
+Migrate @nasha/ to @bmc-nasha/ following @.ai-doc/
+
+CRITICAL: Analyze AngularJS source code following @.ai-doc/90-quickstart/pre-migration-analysis.md to detect ALL UI features before implementing.
+
+Source: packages/manager/modules/nasha/
+Target: packages/manager/apps/bmc-nasha/
+
+Routes: 
+- / (redirect to onboarding if empty, listing if services exist)
+- /onboarding (empty state page)
+- /listing (services list with full features)
+
+API: /dedicated/nasha (Iceberg v6)
+Product: NAS-HA storage service
+
+Requirements:
+- Analyze templates to detect ALL features (search, filter, column customization, etc.)
+- Reproduce ALL detected UI elements including topbar buttons
+- Use @.ai-doc/20-dependencies/muk-components-reference.md for OUI→MUK mapping
+- Maintain 100% UI/UX parity with AngularJS version
+```
+
+### Simple Migration (Less Recommended)
 ```
 Migrate @nasha/ to @bmc-nasha/ following @.ai-doc/
 
@@ -44,6 +68,8 @@ Source: packages/manager/modules/nasha/
 Routes: / (redirect to onboarding if empty, listing if services exist), /onboarding, /listing
 API: /dedicated/nasha (Iceberg v6)
 Product: NAS-HA storage service
+
+⚠️ Note: This minimal prompt may miss features. Use Complete Migration format above for better results.
 ```
 
 ### Complex Migration

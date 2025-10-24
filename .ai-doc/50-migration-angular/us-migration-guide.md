@@ -35,8 +35,57 @@ This document provides a **concise, US-centric strategy** for migrating AngularJ
 ### 🚀 3-Phase Workflow
 
 #### Phase 1: Discovery
+
+**Step 1: Analyze AngularJS Source Code**
+
+Before identifying User Stories, systematically analyze the source:
+
+```bash
+# 1. Locate source module
+cd packages/manager/modules/{module-name}/
+
+# 2. Identify key files
+ls -la src/*.routing.js    # Routes and states
+ls -la src/*.template.html  # UI structure
+ls -la src/*.controller.js  # Logic and data
+ls -la src/*.constants.js   # Configuration
+ls -la src/translations/    # i18n keys
+```
+
+**Step 2: Extract UI/UX Patterns from Templates**
+
+Scan template files for OUI components to understand UI requirements:
+
 ```typescript
-// 1. Identify AngularJS User Stories
+// Common patterns to detect:
+const uiPatterns = {
+  // Full page layouts
+  managerListLayout: false,  // Check in routing resolve
+  
+  // Components in templates
+  ouiDatagrid: false,        // <oui-datagrid>
+  ouiHeader: false,          // <header class="oui-header">
+  ouiHeaderTabs: false,      // <oui-header-tabs>
+  ouiTile: false,            // <oui-tile>
+  ouiModal: false,           // <oui-modal>
+  ouiButton: false,          // <oui-button>
+  
+  // Features to detect
+  hasSearch: false,          // Search input in template
+  hasFilter: false,          // Filter button
+  hasColumnCustomization: false,  // Gear icon
+  hasPagination: false,      // Pagination controls
+  hasTopbarCTA: false,       // CTA in topbar resolve
+  hasChangelogButton: false, // <changelog-button>
+  hasGuidesMenu: false,      // <oui-guide-menu>
+  hasEditButton: false,      // Edit icon in header
+};
+```
+
+**Step 3: Identify User Stories from Routes**
+
+```typescript
+// Extract from routing file
 const userStories = [
   {
     id: 'US-001',
@@ -45,18 +94,53 @@ const userStories = [
     angularJS: {
       controller: 'UserListController',
       template: 'user-list.html',
-      service: 'UserService'
+      service: 'UserService',
+      // UI components detected:
+      uiComponents: [
+        'manager-list-layout',
+        'oui-datagrid',
+        'topbar CTA button',
+        'filter button',
+        'search input'
+      ]
     },
     react: {
       hook: 'useUserList',
       component: 'UserListPage',
-      status: 'pending'
+      status: 'pending',
+      // MUK components needed:
+      mukComponents: [
+        'BaseLayout',
+        'Datagrid',
+        'Button (CTA)',
+        'Button (Filter)',
+        'Input (Search)'
+      ]
     }
   }
 ];
 
-// 2. Create PLAN.md using migration-templates.md
-// 3. Map each US to React components
+// 4. Create PLAN.md using migration-templates.md
+// 5. Map each US to React components with UI requirements
+```
+
+**Step 4: Document Missing Features**
+
+Create checklist of features found in AngularJS that must be implemented:
+
+```markdown
+## Features Detected in AngularJS (must reproduce in React)
+
+### Listing Page (US-001)
+- [x] Title in header
+- [x] Order button in top-right
+- [ ] **Roadmap & Changelog button** (MISSING in initial implementation)
+- [ ] **Filter button** next to search (MISSING in initial implementation)
+- [ ] **Column customization gear icon** (MISSING in initial implementation)
+- [x] Search input
+- [x] Data grid with sortable columns
+- [x] Pagination controls
+- [ ] **Page size selector** (MISSING in initial implementation)
 ```
 
 #### Phase 2: Migration
@@ -241,9 +325,35 @@ const userStories = [
 
 ## ⚖️ The US Migration's Moral
 
+- **Source code analysis first** prevents missing UI features
 - **US-first approach** ensures complete functionality migration
-- **100% parity** guarantees identical user experience
+- **100% parity** guarantees identical user experience (including ALL buttons, filters, customizations)
 - **Incremental validation** prevents regressions
 - **Complete documentation** enables team knowledge sharing
 
 **👉 Good US migration is invisible to users but transformative for developers.**
+
+---
+
+## 🎯 Quick Win: Perfect Migration from First Prompt
+
+To achieve a perfect migration from the first prompt:
+
+1. **Always start with source code analysis** (5 minutes)
+   - Use [90-quickstart/pre-migration-analysis.md](../90-quickstart/pre-migration-analysis.md)
+   - Scan routing, templates, controllers
+   - Document ALL detected features
+
+2. **Use Phase 1: Discovery systematically**
+   - Extract UI components from templates
+   - Identify ALL buttons and actions (Order, Roadmap, Filter, etc.)
+   - Map OUI→MUK components
+   - Create features checklist
+
+3. **Implement with complete context**
+   - Use detected features list
+   - Map all OUI components to MUK
+   - Reproduce ALL UI elements
+   - No assumptions, only facts from source
+
+**Result**: Complete, pixel-perfect implementation from day one, no missing features.

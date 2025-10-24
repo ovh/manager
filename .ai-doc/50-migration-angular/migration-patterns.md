@@ -25,6 +25,130 @@ This document provides **essential patterns and examples** for migrating Angular
 
 ## 📘 Migration Patterns
 
+### 🔍 Source Code Analysis Patterns
+
+Before mapping AngularJS to React, analyze the source to detect UI/UX patterns:
+
+#### Pattern Detection in Templates
+
+```typescript
+// 1. Full Page Layout Detection
+// Look for in routing.js resolve:
+{
+  component: 'managerListLayout',
+  resolve: {
+    columnConfig: /* ... */,
+    topbarOptions: { /* CTA buttons, actions */ }
+  }
+}
+// → React: BaseLayout + Datagrid with header actions
+
+// 2. Header Pattern Detection
+// Look for in template.html:
+<header class="oui-header">
+  <h1 data-ng-bind="$ctrl.title"></h1>
+  <button class="btn btn-icon" data-ng-click="$ctrl.edit()">
+    <span class="oui-icon oui-icon-pen_concept"></span>
+  </button>
+</header>
+// → React: BaseLayout with title + edit button in header
+
+// 3. Topbar Actions Detection
+// Look for in routing resolve:
+topbarOptions: {
+  cta: { type: 'button', label: 'Order' },
+  actions: [
+    { text: 'Roadmap', click: () => {} },
+    { text: 'Guides', click: () => {} }
+  ]
+}
+// → React: BaseLayout header.actions with multiple buttons
+
+// 4. Features Detection Checklist
+const detectedFeatures = {
+  // Search in template:
+  hasSearch: /<input.*ng-model=".*search"/i.test(template),
+  
+  // Filter button:
+  hasFilter: /filter|filtrer/i.test(template),
+  
+  // Column customization:
+  hasColumnCustomization: /customize-columns|column-visibility/i.test(template),
+  
+  // Pagination:
+  hasPagination: /<oui-pagination|pagination-control/i.test(template),
+  
+  // Page size selector:
+  hasPageSize: /items-per-page|page-size-selector/i.test(template),
+  
+  // Topbar CTA:
+  hasTopbarCTA: /topbarOptions.*cta/i.test(routingFile),
+  
+  // Changelog button:
+  hasChangelog: /<changelog-button/i.test(template),
+  
+  // Guides menu:
+  hasGuides: /<oui-guide-menu/i.test(template),
+};
+```
+
+#### OUI Component Detection Patterns
+
+```typescript
+// Scan template for these patterns:
+const ouiComponents = {
+  // Data display
+  '<oui-datagrid>': 'MUK Datagrid',
+  '<oui-tile>': 'Custom div with Tailwind',
+  '<oui-tile-definition>': 'Definition list (dl/dt/dd)',
+  
+  // Navigation
+  '<oui-header>': 'BaseLayout header prop',
+  '<oui-header-tabs>': 'Custom tabs or MUK Tabs',
+  '<oui-breadcrumb>': 'Custom breadcrumb',
+  
+  // Actions
+  '<oui-button>': 'MUK Button',
+  '<oui-action-menu>': 'MUK ActionMenu or DropdownMenu',
+  '<changelog-button>': 'Custom Button with changelog link',
+  '<oui-guide-menu>': 'Custom DropdownMenu with guides',
+  
+  // Forms
+  '<oui-field>': 'MUK FormField',
+  '<oui-input>': 'MUK Input',
+  '<oui-select>': 'MUK Select',
+  '<oui-checkbox>': 'MUK Checkbox',
+  
+  // Feedback
+  '<oui-modal>': 'MUK Modal',
+  '<oui-message>': 'MUK Message',
+  '<oui-spinner>': 'CSS spinner (MUK has no Spinner)',
+};
+```
+
+#### Translation Keys Pattern Analysis
+
+```typescript
+// From Messages_*.json files:
+// 1. Identify key prefixes to understand structure
+const translationKeyPatterns = {
+  // Pattern: module_page_element_detail
+  listing: 'nasha_listing_*',        // Listing page keys
+  onboarding: 'nasha_onboarding_*',  // Onboarding keys
+  dashboard: 'nasha_dashboard_*',    // Dashboard keys
+  common: 'nasha_common_*',          // Shared keys
+  
+  // Column headers pattern:
+  columns: 'nasha_listing_serviceName',  // Use same keys in React
+  
+  // Action buttons pattern:
+  actions: 'nasha_listing_order',        // Button labels
+  
+  // Enumerations pattern:
+  enums: 'nasha_listing_canCreatePartition_true',  // Boolean/enum values
+};
+```
+
 ### 🎯 Core AngularJS → React Mappings
 
 #### 1. **Controller → Hook**

@@ -18,8 +18,9 @@ This directory contains **specialized guides** for migrating AngularJS modules t
 ## 🚀 Quick Start
 
 ### For US Migration (Recommended)
-1. **Read**: [us-migration-guide.md](./us-migration-guide.md) - **Strategy US par US**
-2. **Implement**: [migration-patterns.md](./migration-patterns.md) - **AngularJS→React patterns**
+0. **Analyze**: [90-quickstart/pre-migration-analysis.md](../90-quickstart/pre-migration-analysis.md) - **5-min source code analysis**
+1. **Read**: [us-migration-guide.md](./us-migration-guide.md) - **Strategy US par US** (includes Phase 1: Discovery with source analysis)
+2. **Implement**: [migration-patterns.md](./migration-patterns.md) - **AngularJS→React patterns** (includes source code detection patterns)
 3. **Code**: [30-best-practices/](../30-best-practices/) - **React patterns génériques**
 4. **Validate**: [parity-validation-guide.md](./parity-validation-guide.md) - **Validation 100%**
 5. **Document**: [migration-templates.md](./migration-templates.md) - **Templates PLAN.md, DoD**
@@ -87,18 +88,26 @@ This directory contains **specialized guides** for migrating AngularJS modules t
 
 ## 🚀 Migration Workflow
 
+### Step 0: **Pre-Analysis** (5 minutes)
+- Use [90-quickstart/pre-migration-analysis.md](../90-quickstart/pre-migration-analysis.md) for quick source code analysis
+- Detect all UI components, features, and API endpoints
+- Document missing features that must be implemented
+
 ### Step 1: **Planning**
-- Use [us-migration-guide.md](./us-migration-guide.md) for US analysis
+- Use [us-migration-guide.md](./us-migration-guide.md) Phase 1: Discovery for detailed US analysis
 - Use [migration-templates.md](./migration-templates.md) for PLAN.md
+- Include detected features checklist in planning
 
 ### Step 2: **Implementation**
-- Use [migration-patterns.md](./migration-patterns.md) for AngularJS→React patterns
+- Use [migration-patterns.md](./migration-patterns.md) for AngularJS→React patterns and component detection
+- Use [20-dependencies/muk-components-reference.md](../20-dependencies/muk-components-reference.md) for OUI→MUK mapping
 - Use [30-best-practices/](../30-best-practices/) for React patterns
 - Use [Development Standards](../30-best-practices/development-standards.md) for quality
 
 ### Step 3: **Validation**
 - Use [parity-validation-guide.md](./parity-validation-guide.md) for validation
 - Use [us-migration-guide.md](./us-migration-guide.md) for US validation
+- Verify all detected features are implemented
 
 ## 📚 Additional Resources
 
@@ -164,17 +173,23 @@ This directory contains **specialized guides** for migrating AngularJS modules t
 
 ### Essential Guide Selection Rules for AI Code Generation
 
-1. **Start with us-migration-guide.md** for complete migration strategy
-2. **Use migration-patterns.md** for AngularJS→React specific patterns
-3. **Use 30-best-practices/** for React patterns génériques
-4. **Always validate** with parity-validation-guide.md
-5. **Document everything** with migration-templates.md
-6. **Follow US-first approach** for user story migrations
-7. **Ensure 100% parity** for all migrations
-8. **Use incremental validation** throughout migration
+1. **Always start with pre-migration-analysis** (90-quickstart/pre-migration-analysis.md) - 5-minute source code scan
+2. **Analyze AngularJS source systematically** using us-migration-guide.md Phase 1: Discovery
+3. **Detect UI patterns** using migration-patterns.md source code analysis patterns
+4. **Map OUI→MUK components** using muk-components-reference.md detection guide
+5. **Use migration-patterns.md** for AngularJS→React specific patterns
+6. **Use 30-best-practices/** for React patterns génériques
+7. **Always validate** with parity-validation-guide.md
+8. **Document everything** with migration-templates.md
+9. **Follow US-first approach** for user story migrations
+10. **Ensure 100% parity** for all migrations including ALL detected features
 
 ### Guide Selection Checklist
 
+- [ ] **Pre-analysis completed** (90-quickstart/pre-migration-analysis.md)
+- [ ] **All UI features detected** from AngularJS templates
+- [ ] **OUI components mapped** to MUK equivalents
+- [ ] **Missing features documented** (Roadmap, Filter, etc.)
 - [ ] Right guide selected for specific need
 - [ ] Supporting guides identified
 - [ ] Workflow followed correctly
