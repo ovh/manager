@@ -20,10 +20,11 @@ export const AsTypeSelectionSection: React.FC = () => {
       title={t('ip_byoip_as_system_title')}
       description={t('ip_byoip_as_system_description')}
     >
-      <div className="grid grid-rows-2 gap-3">
+      <div className="grid grid-cols-2 gap-3">
         {AS_OPTIONS.map((value) => (
           <OptionCard
             key={value}
+            hasRadioButton={true}
             title={t(`ip_byoip_as_type_${value}`)}
             isSelected={asType === value}
             onClick={() => handleAsTypeChange(value)}
