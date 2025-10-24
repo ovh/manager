@@ -7,60 +7,71 @@ import {
   TableRow,
 } from '@/components/flavorsTable/FlavorsTable.component';
 
+type FlavorsTableBodyProps = {
+  rows: TableRow[];
+  columns: TableColumn[];
+  selectable: boolean;
+  selectedRowId?: string | null;
+  onClick?: (flavorName: string) => void;
+};
+
 export const FlavorsTableBody = memo(
   ({
     rows,
     columns,
     selectable,
     onClick,
-  }: {
-    rows: TableRow[];
-    columns: TableColumn[];
-    selectable: boolean;
-    onClick?: (flavorName: string) => void;
-  }) => {
-    const rowClasses = clsx({
-      'group cursor-pointer': selectable,
-    });
-    const cellClasses = clsx({
-      'bg-white group-hover:border-[--ods-color-primary-600] text-left': selectable,
-    });
-
+    selectedRowId,
+  }: FlavorsTableBodyProps) => {
     return (
       <tbody>
-        {rows.map((row) => (
-          <FlavorsTableTr
-            key={row.id}
-            className={rowClasses}
-            {...(onClick &&
-              !row.disabled && { onClick: () => onClick(row.id) })}
-            disabled={row.disabled}
-          >
-            {columns.map((col, colIndex) => {
-              const cellContent =
-                typeof row[col.key] === 'string' ? (
-                  <Text>{row[col.key]}</Text>
-                ) : (
-                  row[col.key]
-                );
+        {rows.map((row) => {
+          const isSelected = selectedRowId === row.id;
 
-              if (colIndex === 1) {
-                // TODO : if selectable /!\
+          const rowClasses = clsx('group', {
+            'group cursor-pointer': selectable,
+          });
+
+          const cellClasses = clsx(
+            'text-left transition-colors',
+            selectable &&
+              'bg-white group-hover:border-[--ods-color-primary-600]',
+            isSelected && 'border-[--ods-color-primary-600]',
+          );
+
+          return (
+            <FlavorsTableTr
+              key={row.id}
+              className={rowClasses}
+              {...(onClick &&
+                !row.disabled && { onClick: () => onClick(row.id) })}
+              disabled={row.disabled}
+            >
+              {columns.map((col, colIndex) => {
+                const cellContent =
+                  typeof row[col.key] === 'string' ? (
+                    <Text>{row[col.key]}</Text>
+                  ) : (
+                    row[col.key]
+                  );
+
+                if (colIndex === 1) {
+                  return (
+                    <th key={col.key} scope="row" className={cellClasses}>
+                      {cellContent}
+                    </th>
+                  );
+                }
+
                 return (
-                  <th key={col.key} scope="row" className={cellClasses}>
+                  <td key={col.key} className={cellClasses}>
                     {cellContent}
-                  </th>
+                  </td>
                 );
-              }
-
-              return (
-                <td key={col.key} className={cellClasses}>
-                  {cellContent}
-                </td>
-              );
-            })}
-          </FlavorsTableTr>
-        ))}
+              })}
+            </FlavorsTableTr>
+          );
+        })}
       </tbody>
     );
   },

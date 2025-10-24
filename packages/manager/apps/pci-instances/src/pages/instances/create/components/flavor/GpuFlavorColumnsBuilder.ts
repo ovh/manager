@@ -1,10 +1,25 @@
 import { TableColumn } from '@/components/flavorsTable/FlavorsTable.component';
 
-export const FlavorColumnsBuilder = (
+export const GpuFlavorColumnsBuilder = (
   t: (key: string) => string,
 ): TableColumn[] => [
   { key: 'action', title: null, subtitle: null },
-  { key: 'name', title: t('pci_instance_creation_table_header_name') },
+  {
+    key: 'name',
+    title: t('pci_instance_creation_table_header_name'),
+  },
+  {
+    key: 'gpu',
+    title: t('pci_instance_creation_table_header_gpu'),
+  },
+  {
+    key: 'numberOfGpu',
+    title: t('pci_instance_creation_table_header_number_of_gpu'),
+  },
+  {
+    key: 'vRamTotal',
+    title: t('pci_instance_creation_table_header_vram_total'),
+  },
   {
     key: 'memory',
     title: t('pci_instance_creation_table_header_memory'),
@@ -20,17 +35,8 @@ export const FlavorColumnsBuilder = (
     subtitle: t('pci_instance_creation_table_header_storage_unit'),
   },
   {
-    key: 'mode',
-    title: t('pci_instance_creation_table_header_mode'),
-  },
-  {
-    key: 'hourlyPrice',
-    title: t('pci_instance_creation_table_header_price'),
-    subtitle: t('pci_instance_creation_table_header_price_hourly_unit'),
-  },
-  {
-    key: 'monthlyPrice',
-    title: t('pci_instance_creation_table_header_price'),
-    subtitle: t('pci_instance_creation_table_header_price_monthly_unit'),
+    key: 'prices',
+    title: t('pci_instance_creation_table_header_price_ht_by_hour'),
+    subtitle: t('pci_instance_creation_table_header_price_ht_by_month'),
   },
 ];
