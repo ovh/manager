@@ -30,13 +30,21 @@ export const OrderMenu: React.FC = () => {
 
   return (
     <div className="w-min">
-      <OdsButton
-        icon={ODS_ICON_NAME.plus}
-        size={ODS_BUTTON_SIZE.sm}
-        id={`server-orders-action`}
-        variant="outline"
-        label={tCommon('order')}
-      />
+      <div>
+        <OdsButton
+          icon={ODS_ICON_NAME.plus}
+          size={ODS_BUTTON_SIZE.sm}
+          id={`server-orders-action`}
+          variant="outline"
+          label={tCommon('order')}
+        />
+        <OdsButton
+          size={ODS_BUTTON_SIZE.sm}
+          id={`server-csv-export`}
+          variant="outline"
+          label={t('server_csv_export')}
+        />
+      </div>
       <OdsPopover
         triggerId="server-orders-action"
         position={ODS_POPOVER_POSITION.bottomStart}
