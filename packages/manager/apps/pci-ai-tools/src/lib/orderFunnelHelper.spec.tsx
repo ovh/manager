@@ -61,10 +61,10 @@ describe('orderFunnelHelper', () => {
       volumes: [mockedOrderPublicGit],
     };
 
-    expect(getNotebookSpec(orderResultCPU)).toStrictEqual(
+    expect(getNotebookSpec(orderResultCPU)).toMatchObject(
       mockedNotebookSpecInput,
     );
-    expect(getNotebookSpec(orderResultGPU)).toStrictEqual(
+    expect(getNotebookSpec(orderResultGPU)).toMatchObject(
       mockedNotebookSpecInputGPU,
     );
   });

@@ -13,6 +13,7 @@ import ai from '@/types/AI';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
 import RouteModal from '@/components/route-modal/RouteModal';
 import { useStopNotebook } from '@/data/hooks/ai/notebook/useStopNotebook.hook';
+import { useQuantum } from '@/hooks/useQuantum.hook';
 
 interface StopNotebookProps {
   notebook: ai.notebook.Notebook;
@@ -31,6 +32,7 @@ const StopNotebook = ({
 
   const { t } = useTranslation('ai-tools/notebooks/notebook');
   const toast = useToast();
+  const { mode } = useQuantum();
 
   const { stopNotebook, isPending } = useStopNotebook({
     onError: (err) => {
@@ -62,6 +64,18 @@ const StopNotebook = ({
       notebookId: notebook.id,
     });
   };
+
+  const getNotebookType = () => {
+    switch (mode) {
+      case 'emulators':
+        return t('notebookTypeEmulators', { defaultValue: 'Emulator' });
+      case 'qpu':
+        return t('notebookTypeQPU', { defaultValue: 'QPU' });
+      default:
+        return t('notebookTypeAI', { defaultValue: 'AI' });
+    }
+  };
+
   return (
     <RouteModal backUrl="../" isLoading={!notebook?.id} onClose={onClose}>
       <DialogContent>
@@ -70,18 +84,27 @@ const StopNotebook = ({
             {t('stopNotebookTitle')}
           </DialogTitle>
         </DialogHeader>
-        <p className="mt-2">{t('stopNotebookDescription1')}</p>
+        {/* Inject the computed type into the translation */}
+        <p className="mt-2">
+          {mode === 'qpu'
+            ? t('stopQpuNotebookDescription1', { type: getNotebookType() })
+            : t('stopNotebookDescription1', { type: getNotebookType() })}
+        </p>
         <ul className="list-disc pl-5">
           <li className="ml-3">{t('stopNotebookDescriptionList1')}</li>
           <li className="ml-3">{t('stopNotebookDescriptionList2')}</li>
           <li className="ml-3">{t('stopNotebookDescriptionList3')}</li>
         </ul>
         <div className="inline">
-          <span>{t('stopNotebookDescription2')}</span>
+          <span>
+            {t('stopNotebookDescription2', { type: getNotebookType() })}
+          </span>
           <span> </span>
           <span className="font-bold">{t('stopNotebookDescription2Bis')}</span>
           <span> </span>
-          <span>{t('stopNotebookDescription2Ter')}</span>
+          <span>
+            {t('stopNotebookDescription2Ter', { type: getNotebookType() })}
+          </span>
           <span> </span>
           <span className="font-bold">
             {t('stopNotebookDescription2Quater')}
