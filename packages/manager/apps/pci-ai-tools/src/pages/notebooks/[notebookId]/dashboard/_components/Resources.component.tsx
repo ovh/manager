@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react';
 import { HelpCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
 import {
   Popover,
   PopoverContent,
@@ -7,17 +9,35 @@ import {
   Progress,
 } from '@datatr-ux/uxlib';
 import { useNotebookData } from '../../Notebook.context';
+import { getQpuFlavor } from '@/data/api/ai/capabilities/capabilities.api';
 import { bytesConverter } from '@/lib/bytesHelper';
 import ResourcesSpec from '@/components/resources-spec/ResourcesSpec.component';
 import { isStoppedNotebook } from '@/lib/statusHelper';
+import quantum from '@/types/Quantum';
 
 const Resources = () => {
   const { notebook } = useNotebookData();
+  const { projectId } = useParams();
   const { t } = useTranslation('ai-tools/notebooks/notebook/dashboard');
+  const [qpuDetail, setQpuDetail] = useState<
+    quantum.capabilities.QPUFlavor | undefined
+  >();
+
+  useEffect(() => {
+    const qpuFlavorId = notebook.spec.quantumResources?.qpuFlavorId;
+    const { region } = notebook.spec;
+    if (qpuFlavorId && region && projectId) {
+      getQpuFlavor({ projectId, region, qpuFlavorId })
+        .then(setQpuDetail)
+        .catch(() => setQpuDetail(undefined));
+    }
+  }, [notebook, projectId]);
+
   return (
     <div data-testid="resources-container">
       <ResourcesSpec
         resources={notebook.spec.resources}
+        qpuDetail={qpuDetail}
         allowUpdate={true}
         disabled={!isStoppedNotebook(notebook.status.state)}
       />
