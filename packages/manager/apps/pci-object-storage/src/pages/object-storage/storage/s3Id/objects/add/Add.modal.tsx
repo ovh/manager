@@ -16,6 +16,9 @@ const AddObjectModal = () => {
   const navigate = useNavigate();
   const toast = useToast();
 
+  // TODO: Api should return list of available service for a container
+  const is3AZ = s3.region === 'EU-WEST-PAR';
+
   const { addS3Object, isPending: pendingAddS3Object } = useAddS3Object({
     onError: (err) => {
       toast.toast({
@@ -79,6 +82,7 @@ const AddObjectModal = () => {
       title={t('addOjectModalTitle')}
       pending={pendingGetPresignUrl || pendingAddS3Object}
       isS3={true}
+      is3AZ={is3AZ}
     />
   );
 };
