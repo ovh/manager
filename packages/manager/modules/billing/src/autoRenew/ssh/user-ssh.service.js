@@ -61,35 +61,48 @@ export default /* @ngInject */ function UserAccountSshService(
   };
 
   self.getCloudSshList = async function getCloudSshList() {
-    const { data } = await iceberg('/cloud/project')
+    const projects = await self.getCloudProjects();
+
+    const sshKeysByProject = await Promise.all(
+      projects.map(async (project) => {
+        const serviceName = project.project_id;
+
+        const { data } = await iceberg(`/cloud/project/${serviceName}/sshkey`)
+          .query()
+          .expand('CachedObjectList-Pages')
+          .execute().$promise;
+
+        const url = self.getSshCloudUrl(serviceName);
+
+        return data.map((key) => ({
+          serviceName,
+          serviceDescription: project.description,
+          category: 'cloud',
+          url,
+          id: key.id,
+          keyName: key.name,
+          key: key.publicKey,
+        }));
+      }),
+    );
+
+    return sshKeysByProject.flat();
+  };
+
+  self.getCloudProjects = function getCloudProjects() {
+    return iceberg('/cloud/project')
       .query()
       .expand('CachedObjectList-Pages')
-      .execute().$promise;
-
-    const validProjects = data.filter((f) => f.status === 'ok');
-    const promises = validProjects.map(async (project) => {
-      const serviceName = project.project_id;
-
-      const keys = await OvhHttp.get('/cloud/project/{serviceName}/sshkey', {
-        rootPath: 'apiv6',
-        urlParams: { serviceName },
-      });
-
-      const url = self.getSshCloudUrl(serviceName);
-
-      return keys.map((key) => ({
-        serviceName,
-        serviceDescription: project.description,
-        category: 'cloud',
-        url,
-        id: key.id,
-        keyName: key.name,
-        key: key.publicKey,
-      }));
-    });
-
-    const results = await $q.all(promises);
-    return results.flat();
+      .execute()
+      .$promise.then(({ data }) =>
+        data
+          .filter((project) => project.status === 'ok')
+          .map((project) => ({
+            ...project,
+            id: project.project_id,
+            description: project.description,
+          })),
+      );
   };
 
   self.addDedicatedSshKey = function addDedicatedSshKey(sshkeyObj) {
