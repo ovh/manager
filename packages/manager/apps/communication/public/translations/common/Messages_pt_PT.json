@@ -16,5 +16,14 @@
   "category_account_lifecycle": "Vida da conta",
   "category_security": "Segurança",
   "category_legal": "Legal",
-  "iam_display_content_message": "Não tem as permissões necessárias para apresentar os dados deste recurso. Contacte o seu administrador."
+  "iam_display_content_message": "Não tem as permissões necessárias para apresentar os dados deste recurso. Contacte o seu administrador.",
+  "category_support": "Apoio ao Cliente",
+  "category_alert": "Alertas",
+  "category_incident": "Incidente",
+  "category_maintenance": "Manutenção",
+  "status_error": "Erro",
+  "status_disabled": "Desativado",
+  "status_valid": "Ativo",
+  "status_to_validate": "Em espera",
+  "error_rate_limit_message": "Você atingiu o limite de solicitações. Por favor, tente novamente mais tarde."
 }
