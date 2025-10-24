@@ -311,7 +311,7 @@ export function useUsers() {
 
 ```typescript
 // ✅ CORRECT: Use OVH patterns
-// MRC + ODS + Manager conventions
+// MUK + Manager conventions
 
 // ✅ CORRECT: TypeScript strict
 // No any, clean interfaces
@@ -366,8 +366,7 @@ export function useUsers() {
 - [ ] React hook created
 - [ ] React component created
 - [ ] Tests written
-- [ ] ODS components used
-- [ ] MRC components used
+- [ ] MUK components used
 
 #### Post-Migration
 - [ ] Visual parity validated
@@ -384,7 +383,7 @@ export function useUsers() {
 
 1. **Incremental migration**: One component at a time
 2. **100% parity**: Visual, functional, technical
-3. **OVHcloud standards**: MRC + ODS + Manager conventions
+3. **OVHcloud standards**: MUK + Manager conventions
 4. **TypeScript strict**: No any, clean interfaces
 5. **Complete tests**: Unit tests + E2E tests
 6. **Accessibility**: Maintain accessibility level

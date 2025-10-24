@@ -88,8 +88,7 @@ const userStories = [
 - [ ] **React hook created**: Using migration-patterns.md
 - [ ] **React component created**: Using 30-best-practices/
 - [ ] **Tests written**: Unit + E2E tests
-- [ ] **ODS components used**: UI consistency
-- [ ] **MRC components used**: Business logic
+- [ ] **MUK components used**: UI consistency and business logic
 
 ### Post-Migration (Per US)
 - [ ] **Visual parity validated**: Side-by-side comparison

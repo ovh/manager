@@ -105,8 +105,7 @@ This directory contains **specialized guides** for migrating AngularJS modules t
 ### **Architecture & Dependencies**
 - [Manager Architecture Overview](../10-architecture/api-overview.md)
 - [React uApp Blueprint](../10-architecture/react-uapp-blueprint.md)
-- [MRC Components](../20-dependencies/mrc-components.md)
-- [ODS Components](../20-dependencies/ods-components.md)
+- [MUK Components](../20-dependencies/muk.md)
 
 ### **Patterns & Standards**
 - [Development Standards](../30-best-practices/development-standards.md)

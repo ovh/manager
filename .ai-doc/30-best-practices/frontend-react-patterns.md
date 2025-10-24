@@ -34,8 +34,7 @@ This guide covers patterns specifically relevant to:
 - [Development Standards](./development-standards.md)
 - [TypeScript Cheat Sheet](./typescript-cheatsheet.md)
 - [Frontend Design Patterns](./frontend-design-patterns.md)
-- [MRC Components](../20-dependencies/mrc-components.md)
-- [ODS Components](../20-dependencies/ods-components.md)
+- [MUK Components](../20-dependencies/muk.md)
 
 ## 📘 Guidelines / Implementation
 
@@ -686,7 +685,7 @@ describe('useCounter', () => {
 4. **Handle edge cases**: Always consider loading, error, and empty states
 5. **Optimize performance**: Use memoization and lazy loading when appropriate
 6. **Test thoroughly**: Include unit tests for components and hooks
-7. **Follow Manager conventions**: Use MRC components and ODS design system
+7. **Follow Manager conventions**: Use MUK components and design system
 8. **Implement proper error handling**: Use error boundaries and proper error states
 9. **Use proper state management**: Choose between useState, useReducer, or context
 10. **Follow accessibility guidelines**: Ensure components are accessible

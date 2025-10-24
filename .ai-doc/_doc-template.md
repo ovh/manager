@@ -22,7 +22,7 @@ Reference items from `_references.md` to maintain consistency.
 Examples:
 - [Manager API Overview](../10-architecture/api-overview.md)
 - [Frontend React Patterns](../30-best-practices/frontend-react-patterns.md)
-- [ODS Components](../20-dependencies/ods-components.md)
+- [MUK Components](../20-dependencies/muk.md)
 - [US Migration Guide](../50-migration-angular/us-migration-guide.md)
 
 ## 📘 Guidelines / Implementation
