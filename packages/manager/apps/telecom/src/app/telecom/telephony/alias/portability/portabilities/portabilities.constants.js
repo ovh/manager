@@ -21,9 +21,14 @@ export const PORTABILITY_STEPS_STATUS = {
   error: 'error',
 };
 
+export const REGEX = {
+  siret: /^\d{14}$/,
+};
+
 export default {
   PORTABILITY_STATUS,
   PORTABILITY_STEPS_GUIDE,
   PORTABILITY_COUNTRY,
   PORTABILITY_STEPS_STATUS,
+  REGEX,
 };

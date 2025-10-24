@@ -27,6 +27,7 @@ import { FEATURE_TYPES } from './voip-service.constants';
 export default class {
   /* @ngInject */
   constructor(
+    $http,
     $q,
     iceberg,
     OvhApiTelephony,
@@ -34,12 +35,31 @@ export default class {
     TucVoipServiceAlias,
     TucVoipServiceLine,
   ) {
+    this.$http = $http;
     this.$q = $q;
     this.iceberg = iceberg;
     this.OvhApiTelephony = OvhApiTelephony;
     this.TucVoipService = TucVoipService;
     this.TucVoipServiceAlias = TucVoipServiceAlias;
     this.TucVoipServiceLine = TucVoipServiceLine;
+  }
+
+  /**
+   *  @ngdoc method
+   *  @name managerApp.service:tucVoipService#fetchAllId
+   *  @methodOf managerApp.service:tucVoipService
+   *
+   *  @description
+   *  Get all the service ids of one billingAccount.
+   *
+   *  @param {String} billingAccount The billingAccount to which is attached the services.
+   *
+   *  @return {Promise} That return an Array of TucVoipService instances.
+   */
+  fetchAllIds(billingAccount) {
+    return this.$http
+      .get(`/telephony/${billingAccount}/service`)
+      .then(({ data }) => data);
   }
 
   /**
