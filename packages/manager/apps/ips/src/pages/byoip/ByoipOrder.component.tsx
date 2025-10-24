@@ -22,11 +22,9 @@ export const ByoipOrder: React.FC = () => {
     asOwnNumberType,
   } = React.useContext(ByoipContext);
 
-  const { token } = selectedRegion
-    ? useGetTokens({
-        campus: selectedRegion,
-      })
-    : { token: null };
+  const { token } = useGetTokens({
+    campus: selectedRegion,
+  });
 
   const visibleSections = {
     regionSelection: ipRir,
