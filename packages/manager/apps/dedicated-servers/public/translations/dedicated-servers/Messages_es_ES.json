@@ -35,5 +35,14 @@
   "server_display_vrack": "vRack",
   "guide_first_step_label": "Primeros pasos con un servidor dedicado",
   "guide_secure_label": "Proteger un servidor dedicado",
-  "guide_ssh_connections_label": "Primeros pasos para utilizar las conexiones SSH"
+  "guide_ssh_connections_label": "Primeros pasos para utilizar las conexiones SSH",
+  "server_export_csv_title": "Descarga del CSV",
+  "server_export_csv_button_import": "Exportar CSV",
+  "server_export_csv_button_cancel": "Cancelar",
+  "server_export_csv_button_export": "Descargar",
+  "server_export_csv_button_close": "Cerrar",
+  "server_export_csv_on_load_disclaimer": "Generando el archivo CSV...",
+  "server_export_csv_consent_disclaimer": "Exporte la lista completa de sus servidores y sus metadatos en formato CSV.",
+  "server_export_csv_export_completed_title": "Descarga completada",
+  "server_export_csv_export_completed_content": "No olvide guardar el archivo en un espacio seguro, ya que contiene información técnica sobre sus servidores."
 }
