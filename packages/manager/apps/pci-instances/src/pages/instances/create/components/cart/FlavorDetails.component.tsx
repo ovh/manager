@@ -1,13 +1,16 @@
 import { FC } from 'react';
 import { Text } from '@ovhcloud/ods-react';
-import { TFlavorDataForTable } from '../../view-models/flavorsViewModel';
+import { TFlavorDataForCart } from '../../view-models/flavorsViewModel';
+import { useTranslation } from 'react-i18next';
 
 type TFlavorDetails = {
   quantity: number;
-  flavor: TFlavorDataForTable; // TODO : map with TFlavorDataForCart when using GPU
+  flavor: TFlavorDataForCart;
 };
 
 export const FlavorDetails: FC<TFlavorDetails> = ({ quantity, flavor }) => {
+  const { t } = useTranslation('creation');
+
   return (
     <div className="flex flex-row gap-2">
       <div>
@@ -19,11 +22,31 @@ export const FlavorDetails: FC<TFlavorDetails> = ({ quantity, flavor }) => {
         <Text className="font-semibold text-[--ods-color-heading]">
           {flavor.name}
         </Text>
+        {flavor.numberOfGpu && flavor.gpu && (
+          <Text className="font-semibold text-[--ods-color-heading]">
+            {flavor.numberOfGpu}{' '}
+            {t('pci_instance_creation_cart_flavor_numberOfGpu')} {flavor.gpu}
+          </Text>
+        )}
+        {flavor.vRamTotal && (
+          <Text className="font-semibold text-[--ods-color-heading]">
+            {flavor.vRamTotal}{' '}
+            {t('pci_instance_creation_cart_flavor_vRamTotal')}
+          </Text>
+        )}
         <Text className="font-semibold text-[--ods-color-heading]">
-          {flavor.memory} Go RAM
+          {flavor.memory} {t('pci_instance_creation_cart_flavor_memory')}
         </Text>
         <Text className="font-semibold text-[--ods-color-heading]">
-          {flavor.vCore} vCore
+          {flavor.vCore} {t('pci_instance_creation_cart_flavor_vCore')}
+        </Text>
+        <Text className="font-semibold text-[--ods-color-heading]">
+          {flavor.bandwidthPrivate}{' '}
+          {t('pci_instance_creation_cart_flavor_bandwidthPrivate')}
+        </Text>
+        <Text className="font-semibold text-[--ods-color-heading]">
+          {flavor.bandwidthPublic}{' '}
+          {t('pci_instance_creation_cart_flavor_bandwidthPublic')}
         </Text>
       </div>
     </div>
