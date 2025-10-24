@@ -9,7 +9,7 @@ import {
   TableRow,
 } from '@datatr-ux/uxlib';
 import { useTranslation } from 'react-i18next';
-import { ArrowLeft, ArrowRight, FileStack } from 'lucide-react';
+import { Archive, ArrowLeft, ArrowRight, FileStack } from 'lucide-react';
 import { Outlet, useParams, useSearchParams } from 'react-router-dom';
 import { useGetS3ObjectVersions } from '@/data/hooks/s3-storage/useGetS3ObjectVersions.hook';
 import { useS3Data } from '../../S3.context';
@@ -89,16 +89,6 @@ const Object = () => {
                     {octetConverter(objectQuery.data.size, true, 2)}
                   </TableCell>
                 </TableRow>
-                {objectQuery.data.storageClass && (
-                  <TableRow>
-                    <TableCell className="text-semibold">
-                      {t('tableHeaderStorageClass')}
-                    </TableCell>
-                    <TableCell>
-                      {tObj(`objectClass_${objectQuery.data.storageClass}`)}
-                    </TableCell>
-                  </TableRow>
-                )}
                 <TableRow>
                   <TableCell className="text-semibold">
                     {t('tableHeaderUpdateDate')}
@@ -157,9 +147,31 @@ const Object = () => {
               </Table>
               <Link
                 to={`./versions?objectKey=${encodeURIComponent(objectKey)}`}
-                className="flex flex-row gap-1 mt-2"
+                className="flex flex-row gap-1 mt-2 px-2"
               >
                 {t('versionLink')}
+                <ArrowRight className="w-4 h-4 mt-1 text-primary" />
+              </Link>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <h5>
+                <Archive className="size-4 inline mr-2" />
+                <span>{t('tableHeaderStorageClass')}</span>
+              </h5>
+            </CardHeader>
+            <CardContent>
+              <p className="mb-2">
+                {tObj(`objectClass_${objectQuery.data.storageClass}`)}
+              </p>
+              <Link
+                to={`./change-storage-class?objectKey=${encodeURIComponent(
+                  objectKey,
+                )}`}
+                className="flex flex-row gap-1 mt-2"
+              >
+                {t('changeStorageClassLink')}
                 <ArrowRight className="w-4 h-4 mt-1 text-primary" />
               </Link>
             </CardContent>

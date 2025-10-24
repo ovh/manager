@@ -69,11 +69,18 @@ export function getColumns({
           {t('columnStorageClass')}
         </DataTable.SortableHeader>
       ),
-      cell: ({ row }) => (
-        <span>
-          {tObj(`objectClass_${row.original.destination.storageClass}`)}
-        </span>
-      ),
+      cell: ({ row }) => {
+        const { storageClass } = row.original.destination;
+        return (
+          <span>
+            {tObj(
+              storageClass
+                ? `objectClass_${row.original.destination.storageClass}`
+                : 'objectClassDefault',
+            )}
+          </span>
+        );
+      },
     },
     {
       accessorKey: 'status',
