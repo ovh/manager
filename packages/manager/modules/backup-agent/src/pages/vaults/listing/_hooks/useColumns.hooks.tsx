@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
-import { ResourceLocationCell } from '@/components/CommonCells/ResourceLocationCell/ResourceLocationCell.components';
-import { ResourceRegionCell } from '@/components/CommonCells/ResourceRegionCell/ResourceRegionCell.components';
-import { ResourceStatusCell } from '@/components/CommonCells/ResourceStatusCell/ResourceStatusCell.components';
+import { ResourceLocationCell } from '@/components/CommonCells/ResourceLocationCell/ResourceLocationCell.component';
+import { ResourceRegionCell } from '@/components/CommonCells/ResourceRegionCell/ResourceRegionCell.component';
+import { ResourceStatusCell } from '@/components/CommonCells/ResourceStatusCell/ResourceStatusCell.component';
 
 import { VaultBucketsCell, VaultIdCell, VaultReferenceCell } from '../_components';
 import { VaultActionCell } from '../_components/VaultActionCell.component';
