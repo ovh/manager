@@ -7,6 +7,7 @@ import { RegionCard } from '@/components/RegionCard/RegionCard.component';
 import { useGetCatalog, CONFIG_NAME } from '@/data/hooks/catalog/useGetCatalog';
 import { getConfigValues } from '../Byoip.utils';
 import { ByoipContext } from '../Byoip.context';
+import { OptionCard } from '@/components/OptionCard/OptionCard.component';
 
 type CampusType = {
   name: string;
@@ -14,7 +15,7 @@ type CampusType = {
 };
 
 export const RegionSelectionSection: React.FC = () => {
-  const { t } = useTranslation('byoip');
+  const { t } = useTranslation(['byoip']);
   const { data: catalog, isLoading } = useGetCatalog();
   const { selectedRegion, setSelectedRegion } = React.useContext(ByoipContext);
 
@@ -38,6 +39,14 @@ export const RegionSelectionSection: React.FC = () => {
     >
       <div className="grid grid-cols-3 gap-2">
         {campusValues.map((value) => (
+          <OptionCard
+            key={value.name}
+            title={t(`region_${value.name}`)}
+            hasRadioButton={true}
+            isSelected={selectedRegion === value.name}
+            onClick={() => setSelectedRegion(value.name)}
+          />
+          /*
           <RegionCard
             key={value.name}
             title={value.name}
@@ -48,6 +57,7 @@ export const RegionSelectionSection: React.FC = () => {
           >
             <OdsText preset={ODS_TEXT_PRESET.paragraph}>{value.name}</OdsText>
           </RegionCard>
+          */
         ))}
       </div>
     </OrderSection>
