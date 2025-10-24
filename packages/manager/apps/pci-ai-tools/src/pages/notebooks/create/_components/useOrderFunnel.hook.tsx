@@ -107,7 +107,11 @@ export function useOrderFunnel(
   const sshKey = form.watch('sshKey');
   const volumes = form.watch('volumes');
 
-  const frameworkQuery = useGetFramework(projectId, region);
+  const frameworkQuery = useGetFramework(
+    projectId,
+    region,
+    isQuantum ? 'quantum' : 'ai',
+  );
   const editorQuery = useGetEditor(projectId, region);
   const flavorQuery = useGetFlavor(projectId, region);
   const datastoreQuery = useGetDatastores(projectId, region);
@@ -129,9 +133,7 @@ export function useOrderFunnel(
 
   const listFramework: ai.capabilities.notebook.Framework[] = useMemo(() => {
     if (frameworkQuery.isLoading) return [];
-    return frameworkQuery.data.filter((fmk) =>
-      isQuantum ? fmk.type === 'Quantum' : fmk.type === 'AI',
-    );
+    return frameworkQuery.data;
   }, [region, frameworkQuery.isSuccess]);
 
   const listEditor: ai.capabilities.notebook.Editor[] = useMemo(() => {
@@ -193,8 +195,8 @@ export function useOrderFunnel(
   // Select default Flavor Id / Flavor number when region change
   useEffect(() => {
     const suggestedFlavor =
-      suggestions.suggestions.find((sug) => sug.region === regionObject.id)
-        .resources.flavorId ?? listFlavor[0].id;
+      suggestions.suggestions.find((sug) => sug.region === regionObject?.id)
+        ?.resources?.flavorId ?? listFlavor[0]?.id;
     const suggestedQuantity =
       suggestions.suggestions.find((sug) => sug.region === regionObject.id)
         .resources.quantity ?? 1;

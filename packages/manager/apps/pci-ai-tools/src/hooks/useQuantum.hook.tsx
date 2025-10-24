@@ -1,20 +1,35 @@
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export function useQuantum(namespace?: string) {
-  const { quantum } = useParams();
   const { t: tOrig } = useTranslation(namespace);
-  const isQuantum = quantum === 'quantum';
+  const location = useLocation();
+
+  const pathWithHash = `${location.pathname ?? ''}${location.hash ??
+    ''}`.toLowerCase();
+
+  const mode: 'emulators' | 'qpu' | 'ai' = (() => {
+    if (pathWithHash.includes('/quantum/qpu/')) return 'qpu';
+    if (pathWithHash.includes('/quantum/')) return 'emulators';
+    return 'ai';
+  })();
+
   const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
   const t = (key: string) => {
-    if (isQuantum) {
-      const quantumKey = `quantum${capitalize(key)}`;
-      return tOrig([quantumKey, key]);
+    if (mode === 'emulators') {
+      return tOrig([`quantum${capitalize(key)}`, key]);
+    }
+    if (mode === 'qpu') {
+      return tOrig([`qpu${capitalize(key)}`, key]);
     }
     return tOrig(key);
   };
+
   return {
-    isQuantum,
+    mode,
+    isQuantum: mode === 'emulators',
+    isQpu: mode === 'qpu',
     t,
   };
 }

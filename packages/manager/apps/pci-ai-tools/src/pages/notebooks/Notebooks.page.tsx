@@ -30,34 +30,49 @@ interface NotebooksProps {
 
 export const Loader = async ({ params }: NotebooksProps) => {
   const { projectId, quantum } = params;
-  const regions = await queryClient.fetchQuery({
-    queryKey: [projectId],
-    queryFn: () => getRegions({ projectId }),
-  });
-  const notebooks = await queryClient.fetchQuery({
-    queryKey: [projectId, 'ai', 'notebook'],
-    queryFn: () => getNotebooks({ projectId }),
-  });
-  const fmks = await queryClient.fetchQuery({
-    queryKey: [projectId, 'ai', 'capabilities', regions[0].id, 'framework'],
-    queryFn: () => getFramework({ projectId, region: regions[0].id }),
-  });
-  const filterFmkIds = fmks
-    .filter((fmk) =>
-      quantum === 'quantum' ? fmk.type === 'Quantum' : fmk.type === 'AI',
-    )
-    .map((fwk) => fwk.id);
 
-  if (
-    notebooks.filter((nb) => filterFmkIds.includes(nb.spec.env.frameworkId))
-      .length === 0
-  ) {
+  const [regions, notebooks] = await Promise.all([
+    queryClient.fetchQuery({
+      queryKey: [projectId],
+      queryFn: () => getRegions({ projectId }),
+    }),
+    queryClient.fetchQuery({
+      queryKey: [projectId, 'ai', 'notebook'],
+      queryFn: () => getNotebooks({ projectId }),
+    }),
+  ]);
+
+  const frameworks = await queryClient.fetchQuery({
+    queryKey: [
+      projectId,
+      'ai',
+      'capabilities',
+      regions[0].id,
+      'framework',
+      quantum === 'quantum' ? 'Quantum' : 'AI',
+    ],
+    queryFn: () =>
+      getFramework({
+        projectId,
+        region: regions[0].id,
+        type: quantum === 'quantum' ? 'Quantum' : 'AI',
+      }),
+  });
+
+  const frameworkIds = frameworks.map((f) => f.id);
+
+  const hasNotebook = notebooks.some((nb) =>
+    frameworkIds.includes(nb.spec.env.frameworkId),
+  );
+
+  if (!hasNotebook) {
     return quantum === 'quantum'
       ? redirect(
           `/pci/projects/${projectId}/ai-ml/quantum/notebooks/onboarding`,
         )
       : redirect(`/pci/projects/${projectId}/ai-ml/notebooks/onboarding`);
   }
+
   return null;
 };
 
@@ -65,22 +80,25 @@ const Notebooks = () => {
   const { projectId } = useParams();
   const { isQuantum, t } = useQuantum('ai-tools/notebooks');
   const { isUserActive } = useUserActivityContext();
+
   const regionQuery = useGetRegions(projectId);
+  const regionId = regionQuery?.data?.[0]?.id;
   const notebooksQuery = useGetNotebooks(projectId, {
     refetchInterval: isUserActive && POLLING.NOTEBOOKS,
   });
-  const regionId = regionQuery?.data?.length > 0 && regionQuery?.data[0]?.id;
-  const fmkQuery = useGetFramework(projectId, regionId, {
-    enabled: !!regionId,
-  });
+
+  const fmkQuery = useGetFramework(
+    projectId,
+    regionId,
+    isQuantum ? 'quantum' : 'ai',
+    {
+      enabled: !!regionId,
+    },
+  );
 
   if (notebooksQuery.isLoading || regionQuery.isLoading || fmkQuery.isLoading)
     return <NotebooksList.Skeleton />;
-
-  const filterFmkIds = fmkQuery.data
-    .filter((fmk) => (isQuantum ? fmk.type === 'Quantum' : fmk.type === 'AI'))
-    .map((fwk) => fwk.id);
-
+  const filterFmkIds = fmkQuery.data.map((fwk) => fwk.id);
   return (
     <>
       <div

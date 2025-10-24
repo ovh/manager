@@ -6,6 +6,7 @@ import { getFramework } from '@/data/api/ai/capabilities/capabilities.api';
 export function useGetFramework(
   projectId: string,
   region: string,
+  type?: string,
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
   const queryKey = [
@@ -14,11 +15,12 @@ export function useGetFramework(
     'capabilities',
     'region',
     region,
+    type,
     'framework',
   ];
   return useQueryImmediateRefetch({
     queryKey,
-    queryFn: () => getFramework({ projectId, region }),
+    queryFn: () => getFramework({ projectId, region, type }),
     ...options,
   }) as UseQueryResult<ai.capabilities.notebook.Framework[], Error>;
 }
