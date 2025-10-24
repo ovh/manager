@@ -1,6 +1,11 @@
 {
-  "home": "Inicio",
-  "order": "Contratar",
-  "open": "Abrir el panel de control",
-  "title": "Lista"
+  "nasha_listing_title": "Servicios NAS-HA",
+  "nasha_listing_order": "Pedir un HA-NAS",
+  "nasha_listing_serviceName": "ID del servicio",
+  "nasha_listing_customName": "Nombre",
+  "nasha_listing_datacenter": "Ubicación del centro de datos",
+  "nasha_listing_diskType": "Tipo de disco",
+  "nasha_listing_canCreatePartition": "Creación de partición",
+  "nasha_listing_canCreatePartition_true": "Permitida",
+  "nasha_listing_canCreatePartition_false": "No permitida"
 }

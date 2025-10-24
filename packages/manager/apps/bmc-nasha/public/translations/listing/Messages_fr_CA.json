@@ -1,6 +1,11 @@
 {
-  "home": "Accueil",
-  "order": "Commander",
-  "open": "Ouvrir le tableau de bord",
-  "title": "Liste"
+  "nasha_listing_title": "Services NAS-HA",
+  "nasha_listing_order": "Commander un HA-NAS",
+  "nasha_listing_serviceName": "ID du service",
+  "nasha_listing_customName": "Nom",
+  "nasha_listing_datacenter": "Localisation du datacenter",
+  "nasha_listing_diskType": "Type de disque",
+  "nasha_listing_canCreatePartition": "Création de partition",
+  "nasha_listing_canCreatePartition_true": "Autorisée",
+  "nasha_listing_canCreatePartition_false": "Non autorisée"
 }

@@ -1,6 +1,11 @@
 {
-  "home": "Página inicial",
-  "order": "Encomendar",
-  "open": "Abrir painel",
-  "title": "Lista"
+  "nasha_listing_title": "Serviços NAS-HA",
+  "nasha_listing_order": "Encomendar HA-NAS",
+  "nasha_listing_serviceName": "ID do serviço",
+  "nasha_listing_customName": "Nome",
+  "nasha_listing_datacenter": "Localização do datacenter",
+  "nasha_listing_diskType": "Tipo de disco",
+  "nasha_listing_canCreatePartition": "Criação de partição",
+  "nasha_listing_canCreatePartition_true": "Permitida",
+  "nasha_listing_canCreatePartition_false": "Não permitida"
 }
