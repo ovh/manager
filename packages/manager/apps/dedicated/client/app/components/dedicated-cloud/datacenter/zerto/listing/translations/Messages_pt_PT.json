@@ -1,0 +1,8 @@
+{
+  "dedicatedCloud_datacenter_drp_listing_add_site": "Adicionar um site",
+  "dedicatedCloud_datacenter_drp_listing_column_label": "Etiqueta",
+  "dedicatedCloud_datacenter_drp_listing_column_ip_public": "IP público",
+  "dedicatedCloud_datacenter_drp_listing_column_vra_datacenter": "Rede VRA datacenter",
+  "dedicatedCloud_datacenter_drp_listing_column_ip_zvm": "IP Zvm",
+  "dedicatedCloud_datacenter_drp_listing_column_status": "Estado"
+}

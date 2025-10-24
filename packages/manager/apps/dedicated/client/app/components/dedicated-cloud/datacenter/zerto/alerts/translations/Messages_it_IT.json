@@ -1,0 +1,14 @@
+{
+  "dedicatedCloud_options_zerto_delivered_message_part_one_EPCC": "Il tuo Piano di Ripristino Attività Zerto tra questo Private Cloud e ",
+  "dedicatedCloud_options_zerto_delivered_message_part_two_ovh_EPCC": "il Private Cloud {{pccId}} è stato installato con successo!",
+  "dedicatedCloud_options_zerto_delivered_message_part_two_onPremise": "la tua infrastruttura remota è stata installata con successo!",
+  "dedicatedCloud_options_zerto_delivered_message_part_three": "Hai ricevuto la tua password ZSSP all'indirizzo email {{email}}.",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending": "Il tuo PRA Zerto è in fase di attivazione. L'operazione può richiedere fino a 4 ore di attesa.",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_EPCC": "Non esitare a controllare il compito enableDisasterRecovery del PCC principale per seguire il suo avanzamento.",
+  "dedicatedCloud_options_zerto_waiting_vpn_message_part_one": "Per completare l'attivazione dell’opzione Zerto, configura i parametri del tuo sito nella pagina di ",
+  "dedicatedCloud_options_zerto_waiting_vpn_message_part_two": "configurazione",
+  "dedicatedCloud_datacenter_drp_required_vpn_configuration": "Per finalizzare l'attivazione del tuo PRA Zerto, ti invitiamo ad aggiungere gli IP del VPN qui sotto",
+  "dedicatedCloud_options_zerto_delivered_message_part_one_MBM": "Il tuo Piano di Ripristino Attività Zerto tra questo Essentials e ",
+  "dedicatedCloud_options_zerto_delivered_message_part_two_ovh_MBM": "il Essentials {{pccId}} è stato installato con successo!",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_MBM": "Non esitare a controllare il compito enableDisasterRecovery del Essentials principale per seguire il suo avanzamento."
+}

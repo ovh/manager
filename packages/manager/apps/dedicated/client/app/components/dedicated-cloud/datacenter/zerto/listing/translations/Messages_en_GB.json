@@ -1,0 +1,8 @@
+{
+  "dedicatedCloud_datacenter_drp_listing_add_site": "Add a website",
+  "dedicatedCloud_datacenter_drp_listing_column_label": "Label",
+  "dedicatedCloud_datacenter_drp_listing_column_ip_public": "Public IP",
+  "dedicatedCloud_datacenter_drp_listing_column_vra_datacenter": "VRA datacentre network",
+  "dedicatedCloud_datacenter_drp_listing_column_ip_zvm": "Zvm IP",
+  "dedicatedCloud_datacenter_drp_listing_column_status": "Status"
+}
