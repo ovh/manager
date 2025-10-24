@@ -586,6 +586,18 @@ const { data } = useV6('/service');
 - [ ] Include proper CSS imports
 - [ ] Use MUK data hooks for API calls
 
+### ⚠️ CRITICAL: Check Component Availability First
+
+**Before using any MUK component, check [muk-components-reference.md](./muk-components-reference.md)**
+
+Common mistakes:
+- ❌ `Spinner` - Not available, use CSS spinner
+- ❌ `Links` - Not available, use HTML + Tailwind
+- ❌ `Title`/`Subtitle` - Not available, use HTML headings
+- ❌ `variant="primary"` - Not available, use `variant="default"`
+- ❌ `totalItems` - Wrong prop, use `totalCount`
+- ❌ `trackClick('action')` - Wrong format, use `trackClick({ actions: ['action'] })`
+
 ### MUK vs Alternatives
 
 | Component | MUK | Legacy ODS | Legacy MRC |

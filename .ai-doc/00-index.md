@@ -62,3 +62,9 @@ This documentation supports **AI-assisted automation** and contextual ingestion:
 ## 🔗 References
 
 For the complete list of external documentation, see [`_references.md`](./_references.md).
+
+## 📚 Quick Reference
+
+|| Folder | Description |
+||--------|--------------|
+|| `90-quickstart/` | Quick reference guides, checklists, and templates for common tasks like migrations. Includes [`migration-checklist.md`](./90-quickstart/migration-checklist.md), [`prompt-template.md`](./90-quickstart/prompt-template.md). |

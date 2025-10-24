@@ -287,6 +287,32 @@ const { data, isLoading } = useServices({
 ## Parity & Migration Notes
 - Follow [us-migration-guide.md](../50-migration-angular/us-migration-guide.md): parité fonctionnelle, URLs conservées, strangler pattern, and DoD.
 
+## ❌ Common Routing Mistakes
+
+### Mistake 1: Complex SmartRedirect
+**Don't**: Create a separate SmartRedirect component that checks API and redirects
+**Do**: Use listing page as index with empty state handling OR simple redirect based on service check
+
+### Mistake 2: Absolute navigation paths
+**Don't**: `navigate('/bmc-nasha/listing')`
+**Do**: `navigate('listing', { replace: true })`
+
+### Mistake 3: Using non-existent MUK components
+**Don't**: Import Spinner, Links, Title from MUK
+**Do**: Check muk-components-reference.md first
+
+### Mistake 4: Incorrect Datagrid props
+**Don't**: Use `totalItems`, `pagination` object
+**Do**: Use `totalCount`, `pageIndex`, `pageSize` separately
+
+### Mistake 5: Wrong Button variants
+**Don't**: Use `variant="primary"` (not available in MUK)
+**Do**: Use `variant="default"`, `variant="ghost"`, or `variant="outline"`
+
+### Mistake 6: Incorrect tracking calls
+**Don't**: `trackClick('action-name')`
+**Do**: `trackClick({ actions: ['action-name'] })`
+
 ## Copy-Paste Starters
 - Use code snippets above as templates; adjust endpoints, columns, and namespaces per product.
 
