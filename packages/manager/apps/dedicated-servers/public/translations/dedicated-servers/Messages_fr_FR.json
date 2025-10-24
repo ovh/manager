@@ -35,5 +35,14 @@
   "server_display_renew-manual": "manuel",
   "guide_first_step_label": "Premiers pas avec un serveur dédié",
   "guide_secure_label": "Sécuriser un serveur dédié",
-  "guide_ssh_connections_label": "Comment bien débuter avec les connexions SSH"
+  "guide_ssh_connections_label": "Comment bien débuter avec les connexions SSH",
+  "server_export_csv_title": "Téléchargement du CSV",
+  "server_export_csv_button_import": "Exporter CSV",
+  "server_export_csv_button_cancel": "Annuler",
+  "server_export_csv_button_export": "Télécharger",
+  "server_export_csv_button_close": "Fermer",
+  "server_export_csv_on_load_disclaimer": "Génération du fichier CSV en cours",
+  "server_export_csv_consent_disclaimer": "Exportez la liste complète de vos serveurs et leurs métadonnées au format CSV.",
+  "server_export_csv_export_completed_title": "Téléchargement terminé",
+  "server_export_csv_export_completed_content": "Pensez à conserver ce fichier dans un espace sécurisé, il contient des informations techniques sur vos serveurs."
 }
