@@ -2,6 +2,8 @@ import { JSX, MutableRefObject } from 'react';
 
 import type { ColumnSort, Row, VisibilityState } from '@tanstack/react-table';
 
+import { TABLE_SIZE } from '@ovhcloud/ods-react';
+
 import {
   DatagridColumn,
   ExpandableRow,
@@ -23,4 +25,5 @@ export type UseDatagridTableProps<T extends ExpandableRow<T>> = {
   rowSelection?: RowSelectionProps<T> | null;
   setColumnVisibility?: (columnVisibility: VisibilityState) => void;
   sorting?: ColumnSort[];
+  sizeRow?: TABLE_SIZE;
 };
