@@ -24,14 +24,14 @@ export function SubscriptionTile({ vaultId }: SubscriptionTileProps) {
       <ManagerTile.Divider />
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t(`${NAMESPACES.DASHBOARD}:consumption`)}</ManagerTile.Item.Label>
-        <ManagerTile.Item.Description className="flex flex-col gap-5">
+        <ManagerTile.Item.Description>
           { isLoading ? <OdsSkeleton /> : <><ConsumptionRegionsList /><ConsumptionDetails /></> }
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
       <ManagerTile.Divider />
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t(`${BACKUP_AGENT_NAMESPACES.VAULT_DASHBOARD}:type_billing`)}</ManagerTile.Item.Label>
-        <ManagerTile.Item.Description className="flex flex-col gap-2">
+        <ManagerTile.Item.Description>
           { isLoading ? <OdsSkeleton /> : <BillingType /> }
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
