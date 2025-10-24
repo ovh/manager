@@ -1,4 +1,4 @@
-/* import { renderHook, waitFor } from '@testing-library/react';
+import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as capabilitiesApi from '@/data/api/ai/capabilities/capabilities.api';
@@ -6,10 +6,14 @@ import { mockedCapabilitiesQpuFlavor } from '@/__tests__/helpers/mocks/capabilit
 import { useGetQpuFlavor } from './useGetQpuFlavor.hook';
 
 vi.mock('@/data/api/ai/capabilities/capabilities.api', () => ({
-  getFlavor: vi.fn(),
+  getQpuFlavor: vi.fn(),
 }));
 
 describe('useGetQpuFlavor', () => {
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
   it('should return QpuFlavor capabilities by region', async () => {
     const projectId = 'projectId';
     const region = 'region';
@@ -28,12 +32,14 @@ describe('useGetQpuFlavor', () => {
 
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true);
-      expect(result.current.data).toEqual([mockedCapabilitiesQpuFlavor]);
+
+      expect(result.current.data).toEqual(mockedCapabilitiesQpuFlavor);
+
       expect(capabilitiesApi.getQpuFlavor).toHaveBeenCalledWith({
         projectId,
         region,
+        qpuFlavorId,
       });
     });
   });
 });
- */

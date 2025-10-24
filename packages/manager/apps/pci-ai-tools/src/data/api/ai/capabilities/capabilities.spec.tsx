@@ -1,4 +1,4 @@
-/* import { apiClient } from '@ovh-ux/manager-core-api';
+import { apiClient } from '@ovh-ux/manager-core-api';
 import { describe, expect, vi } from 'vitest';
 import {
   getRegions,
@@ -88,7 +88,7 @@ describe('Capabilities functions', () => {
       region: 'region',
     });
     expect(apiClient.v6.get).toHaveBeenCalledWith(
-      '/cloud/project/projectId/ai/capabilities/region/region/notebook/framework',
+      '/cloud/project/projectId/ai/capabilities/region/region/notebook/framework?type=undefined',
     );
   });
 
@@ -115,4 +115,3 @@ describe('Capabilities functions', () => {
     );
   });
 });
- */

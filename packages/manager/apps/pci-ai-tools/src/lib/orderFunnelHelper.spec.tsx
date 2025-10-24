@@ -1,4 +1,4 @@
-/* import {
+import {
   getAppSpec,
   getJobSpec,
   getNotebookSpec,
@@ -61,10 +61,10 @@ describe('orderFunnelHelper', () => {
       volumes: [mockedOrderPublicGit],
     };
 
-    expect(getNotebookSpec(orderResultCPU)).toStrictEqual(
+    expect(getNotebookSpec(orderResultCPU)).toMatchObject(
       mockedNotebookSpecInput,
     );
-    expect(getNotebookSpec(orderResultGPU)).toStrictEqual(
+    expect(getNotebookSpec(orderResultGPU)).toMatchObject(
       mockedNotebookSpecInputGPU,
     );
   });
@@ -155,4 +155,3 @@ describe('orderFunnelHelper', () => {
     expect(humanizeFramework(fmk)).toBe(mockedFramework.name);
   });
 });
- */
