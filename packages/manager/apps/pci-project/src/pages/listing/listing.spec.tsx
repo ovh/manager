@@ -51,6 +51,7 @@ describe('listing page', () => {
       redirect: vi.fn(),
       redirectUrl: vi.fn().mockResolvedValue('/redirect-url'),
       isRedirectRequired: false,
+      isRedirectExternal: false,
     });
   });
 
@@ -187,6 +188,7 @@ describe('listing page', () => {
       redirect: vi.fn(),
       redirectUrl: vi.fn().mockResolvedValue('/redirect-url'),
       isRedirectRequired: true,
+      isRedirectExternal: false,
     });
 
     vi.mocked(useResourcesV6).mockReturnValue(({

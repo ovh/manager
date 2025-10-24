@@ -29,7 +29,8 @@ const ProjectLink: React.FC<{
   projectId: string;
   label: string;
   getProjectUrl: (projectId: string) => Promise<string>;
-}> = ({ projectId, label, getProjectUrl }) => {
+  isRedirectExternal: boolean;
+}> = ({ projectId, label, getProjectUrl, isRedirectExternal }) => {
   const url = useProjectUrl(getProjectUrl, projectId);
   const { trackClick } = useOvhTracking();
   const handleTracking = () => {
@@ -39,12 +40,22 @@ const ProjectLink: React.FC<{
     });
   };
 
-  return <OdsLink href={url || '#'} onClick={handleTracking} label={label} />;
+  return isRedirectExternal ? (
+    <OdsLink
+      href={url || '#'}
+      onClick={handleTracking}
+      label={label}
+      target="_top"
+    />
+  ) : (
+    <OdsLink href={url || '#'} onClick={handleTracking} label={label} />
+  );
 };
 
 export const getDatagridColumns = (
   t: (key: string) => string,
   getProjectUrl: (projectId: string) => Promise<string>,
+  isRedirectExternal: boolean,
 ): DatagridColumn<TProjectWithService>[] => [
   {
     id: 'description',
@@ -55,6 +66,7 @@ export const getDatagridColumns = (
           projectId={props.project_id}
           label={props.description || ''}
           getProjectUrl={getProjectUrl}
+          isRedirectExternal={isRedirectExternal}
         />
         {props.isDefault && (
           <OdsBadge
