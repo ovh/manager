@@ -7,6 +7,7 @@ export const subroutes = {
   metrics: 'metrics' as const,
   onboarding: 'onboarding' as const,
   dashboards: 'dashboards' as const,
+  creation: 'creation' as const,
 } as const;
 
 export const urls = {
@@ -17,6 +18,7 @@ export const urls = {
   tenantsOnboarding: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${
     subroutes.onboarding
   }`,
+  tenantsCreation: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${subroutes.creation}`,
   onboarding: `${getRoot()}/${subroutes.metrics}/${subroutes.onboarding}`,
 } as const;
 
