@@ -16,6 +16,24 @@ export const NotebookRoadmapLinks = [
   },
 ];
 
+export const QpuRoadmapLinks = [
+  {
+    label: 'Changelog',
+    url:
+      'https://github.com/orgs/ovh/projects/16/views/6?sliceBy%5Bvalue%5D=Quantum+QPU',
+  },
+  {
+    label: 'Roadmap',
+    url:
+      'https://github.com/orgs/ovh/projects/16/views/1?sliceBy%5Bvalue%5D=Quantum+QPU',
+  },
+  {
+    label: 'Feature Request',
+    url:
+      'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+  },
+];
+
 export const EmulatorRoadmapLinks = [
   {
     label: 'Changelog',

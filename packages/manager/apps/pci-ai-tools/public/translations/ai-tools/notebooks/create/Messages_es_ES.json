@@ -52,5 +52,6 @@
   "fieldFrameworkVersionDescription": "Seleccionar versión",
   "fieldConfigurationPrivacyLabel": "Confidencialidad",
   "sshKeyConfigurationHelperBis": "Utilice la siguiente lista desplegable para asociar llaves SSH a su notebook",
-  "summaryFieldFlavorVMemory": "{{memory}} VRAM"
+  "summaryFieldFlavorVMemory": "{{memory}} VRAM",
+  "qpuQubits": "Cúbits"
 }

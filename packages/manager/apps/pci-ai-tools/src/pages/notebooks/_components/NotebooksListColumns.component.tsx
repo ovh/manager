@@ -152,17 +152,33 @@ export const getColumns = ({
       ),
       cell: ({ row }) => {
         const { cpu, gpu, gpuModel } = row.original.spec.resources;
+        const qpu = row.original.spec.quantumResources?.qpuFlavorId;
         return (
           <div>
             {gpu > 0 ? (
-              <div className="flex gap-2 items-center">
-                <Zap className="size-4 shrink-0" />
-                <span>{`${gpu} GPU ${gpuModel}`}</span>
-              </div>
+              <>
+                <div className="flex gap-2 items-center">
+                  <Zap className="size-4 shrink-0" />
+                  <span>{`${gpu} GPU ${gpuModel}`}</span>
+                </div>
+              </>
             ) : (
-              <div className="flex gap-2 items-center">
-                <Cpu className="size-4 shrink-0" />
-                <span>{`${cpu} CPU`}</span>
+              <>
+                <div className="flex gap-2 items-center">
+                  <Cpu className="size-4 shrink-0" />
+                  <span>{`${cpu} CPU`}</span>
+                </div>
+              </>
+            )}
+            {qpu && (
+              <div className="flex items-start gap-2">
+                <Cpu className="w-4 h-4 shrink-0 mt-[2px]" />
+                <span className="leading-tight">
+                  {`QPU ${qpu
+                    .replace(/-/g, ' ')
+                    .toLowerCase()
+                    .replace(/^./, (c) => c.toUpperCase())}`}
+                </span>
               </div>
             )}
           </div>
