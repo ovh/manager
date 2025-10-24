@@ -2,7 +2,11 @@ import { Suspense, useContext, useEffect } from 'react';
 
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
 
-import { ShellContext, useOvhTracking, useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+  useRouteSynchro,
+} from '@ovh-ux/manager-react-shell-client';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 
 import { appName } from '@/App.constants';
@@ -31,7 +35,7 @@ export default function MainLayout() {
 
   // Hide shell preloader on mount
   useEffect(() => {
-    void shell?.ux.hidePreloader();
+    shell?.ux.hidePreloader();
   }, [shell]);
 
   return (
