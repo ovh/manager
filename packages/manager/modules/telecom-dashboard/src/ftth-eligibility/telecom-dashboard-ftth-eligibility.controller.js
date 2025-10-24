@@ -93,7 +93,13 @@ export default class FtthEligibilityCtrl {
   createServiceList(services) {
     // Retrieve service info for each service
     const list = services.map((service) => {
-      if (service.accessType !== this.ACCESS_TYPE.ftth) {
+      if (
+        ![
+          this.ACCESS_TYPE.ftth,
+          this.ACCESS_TYPE.ftte,
+          this.ACCESS_TYPE.ftto,
+        ].includes(service.accessType)
+      ) {
         return this.FtthEligibilityService.getFiberEligibilities(
           service.accessName,
         ).then((data) =>

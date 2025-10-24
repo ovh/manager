@@ -43,7 +43,7 @@
             data-sortable
         >
             <span
-                data-translate="{{$row.accessType === FtthEligibilityCtrl.ACCESS_TYPE.ftth ? 'telecom_dashboard_ftth_eligibility_fiber' : 'telecom_dashboard_ftth_eligibility_copper'}}"
+                data-translate="{{[FtthEligibilityCtrl.ACCESS_TYPE.ftth, FtthEligibilityCtrl.ACCESS_TYPE.ftte, FtthEligibilityCtrl.ACCESS_TYPE.ftto].includes($row.accessType) ? 'telecom_dashboard_ftth_eligibility_fiber' : 'telecom_dashboard_ftth_eligibility_copper'}}"
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column

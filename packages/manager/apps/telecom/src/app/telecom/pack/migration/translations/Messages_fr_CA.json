@@ -159,7 +159,7 @@
   "telecom_pack_migration_promotion_description": "Promotion disponible jusqu'au {{ endDate }}",
   "telecom_pack_migration_promotion_subscription_months_offered": "{{ duration }} mois offerts",
   "telecom_pack_migration_promotion_installation_fees_offered": "Frais de mise en service offerts",
-  "telecom_pack_migration_confirm_promotion": "Les frais d'installation et les {{ duration }} premiers mois de votre nouvel abonnement sont offerts (hors location de modem, options supplémentaires ou frais de transport).",
+  "telecom_pack_migration_confirm_promotion": "Les frais d'installation de votre nouvel abonnement sont offerts (hors location de modem, options supplémentaires ou frais de transport).",
   "telecom_pack_migration_confirm_first_year_promo": "Réduction sur la première année",
   "telecom_pack_migration_confirm_modem_rental": "Location modem",
   "telecom_pack_migration_confirm_provider_infra": "Frais supplémentaires",
@@ -213,5 +213,9 @@
   "telecom_pack_migration_confirm_temporary_pack_creation_line_1": "Durant la transition vers votre nouvelle offre, un pack temporaire sera créé pour assurer la continuité du service",
   "telecom_pack_migration_confirm_temporary_pack_creation_line_2": "Ce pack sera automatiquement supprimé une fois votre commande Fibre finalisée.",
   "telecom_pack_migration_confirm_temporary_pack_creation_line_3": "Aucune action de modification ou de suppression de votre part n'est nécessaire : le passage vers votre accès Fibre se fera de manière entièrement automatisée.",
-  "telecom_pack_migration_phone_call_for_new_meeting": "La prise de rendez-vous en ligne n'est pas disponible. Vous serez contacté par téléphone pour vous proposer une date et un créneau horaire qui vous conviennent."
+  "telecom_pack_migration_phone_call_for_new_meeting": "La prise de rendez-vous en ligne n'est pas disponible. Vous serez contacté par téléphone pour vous proposer une date et un créneau horaire qui vous conviennent.",
+  "telecom_pack_migration_promotion_subscription_months_reduces": "-50 % pendant {{ duration }} mois",
+  "telecom_pack_migration_confirm_promotion_table": "Promotion ({{ duration }} mois)",
+  "telecom_pack_migration_confirm_discount_displayed": " pendant {{ duration }} mois, puis",
+  "telecom_pack_migration_confirm_new_offer_price_discount": "Votre nouvel abonnement mensuel s'élève à : <span class=\"text-price\">{{ priceDiscount }}</span> <span class=\"text-infos\">HT/mois pendant {{duration}} mois puis</span> <span class=\"text-price\">{{ price }}</span> <span class=\"text-infos\">HT/mois</span>, applicable dès livraison de votre nouvel accès. Vous en serez informé par e-mail."
 }

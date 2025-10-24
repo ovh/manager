@@ -1,9 +1,8 @@
 export const IG_MAP_URL = {
-  FR: 'https://www.ovhtelecom.fr/xdsl/incident/#/',
+  FR: 'https://status.isp.ovh.net/',
 };
 
-export const TRAVAUX_URL =
-  'http://travaux.ovh.net/?project=20&status=all&perpage=50';
+export const TRAVAUX_URL = 'https://web-cloud.status-ovhcloud.com/';
 
 export const GUIDES_URL = {
   FR: 'https://docs.ovh.com/fr/xdsl/',
