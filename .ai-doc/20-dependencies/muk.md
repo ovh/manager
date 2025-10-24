@@ -13,12 +13,12 @@ ai: true
 
 The **Manager UI Kit (MUK)** is the unified component library for OVHcloud Manager applications. It serves as the **SINGLE SOURCE OF TRUTH** for all UI components and styles, replacing both `@ovhcloud/ods-components` and `@ovh-ux/manager-react-components`.
 
-⚠️ **CRITICAL**: MUK is the SSOT - do not import from ODS or MRC when MUK components are available.
+⚠️ **CRITICAL**: MUK is the SSOT - do not import from legacy ODS or MRC when MUK components are available.
 
 ## ⚙️ Context
 
 MUK is designed for:
-- **Unified UI components** replacing ODS + MRC
+- **Unified UI components** replacing legacy ODS + MRC
 - **Data fetching hooks** with TanStack Query integration
 - **Advanced data grids** with TanStack Table
 - **Form components** with validation
@@ -34,7 +34,7 @@ This package is essential for:
 ## 🔗 References
 
 - [Manager React Components](./manager-react-components.md) (being replaced)
-- [ODS Components](./ods-components.md) (being replaced)
+- [Legacy ODS Components](./ods-components.md) (being replaced)
 - [TanStack React Query](./tanstack-react-query.md)
 - [TanStack Table](https://tanstack.com/table)
 
@@ -458,10 +458,10 @@ function InfiniteServicesList() {
 
 ## Migration Guide
 
-### From ODS Components
+### From Legacy ODS Components
 
 ```typescript
-// ❌ OLD (ODS)
+// ❌ OLD (Legacy ODS)
 import { OsdsButton, OsdsInput, OsdsModal } from '@ovhcloud/ods-components/react';
 
 // ✅ NEW (MUK)
@@ -482,7 +482,7 @@ import { Datagrid, BaseLayout, Filters } from '@ovh-ux/muk';
 
 ```typescript
 // ❌ OLD
-import '@ovhcloud/ods-components/dist/style.css';
+import '@ovhcloud/ods-components/dist/style.css'; // Legacy ODS
 import '@ovh-ux/manager-react-components/dist/style.css';
 
 // ✅ NEW
@@ -497,7 +497,7 @@ import '@ovh-ux/muk/dist/style.css';
 // ✅ CORRECT: Use MUK components
 import { Button, Modal, Datagrid } from '@ovh-ux/muk';
 
-// ❌ WRONG: Don't use ODS/MRC when MUK is available
+// ❌ WRONG: Don't use legacy ODS/MRC when MUK is available
 import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { Datagrid } from '@ovh-ux/manager-react-components';
 ```
@@ -524,7 +524,7 @@ interface ButtonProps { ... }
 
 ## Common Pitfalls
 
-### ❌ Wrong: Using ODS/MRC When MUK Exists
+### ❌ Wrong: Using Legacy ODS/MRC When MUK Exists
 
 ```typescript
 // Don't do this
@@ -569,8 +569,8 @@ const { data } = useV6('/service');
 
 ### Essential Rules for AI Code Generation
 
-1. **ALWAYS use MUK first**: Import from `@ovh-ux/muk` before considering ODS/MRC
-2. **NEVER import from ODS/MRC**: When MUK components are available
+1. **ALWAYS use MUK first**: Import from `@ovh-ux/muk` before considering legacy ODS/MRC
+2. **NEVER import from legacy ODS/MRC**: When MUK components are available
 3. **ALWAYS include CSS**: Import `@ovh-ux/muk/dist/style.css`
 4. **Use MUK data hooks**: Prefer `useV6`, `useIceberg` over raw API calls
 5. **Follow TypeScript patterns**: Use MUK's built-in types
@@ -581,14 +581,14 @@ const { data } = useV6('/service');
 
 - [ ] Check if MUK component exists
 - [ ] Use MUK component if available
-- [ ] Only use ODS/MRC if MUK component missing
+- [ ] Only use legacy ODS/MRC if MUK component missing
 - [ ] Document why non-MUK component is used
 - [ ] Include proper CSS imports
 - [ ] Use MUK data hooks for API calls
 
 ### MUK vs Alternatives
 
-| Component | MUK | ODS | MRC |
+| Component | MUK | Legacy ODS | Legacy MRC |
 |-----------|-----|-----|-----|
 | Button | ✅ `Button` | ❌ `OsdsButton` | ❌ N/A |
 | Datagrid | ✅ `Datagrid` | ❌ N/A | ❌ `Datagrid` |

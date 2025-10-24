@@ -26,8 +26,7 @@ Design patterns are essential for:
 
 - [Development Standards](./development-standards.md)
 - [TypeScript Cheat Sheet](./typescript-cheatsheet.md)
-- [MRC Components](../20-dependencies/mrc-components.md)
-- [ODS Components](../20-dependencies/ods-components.md)
+- [MUK Components](../20-dependencies/muk.md)
 - [Manager API Overview](../10-architecture/api-overview.md)
 
 ## 📘 Guidelines / Implementation

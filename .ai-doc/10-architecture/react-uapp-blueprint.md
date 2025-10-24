@@ -6,12 +6,12 @@ ai: true
 ---
 
 ## Goal
-End-to-end blueprint to build a production-grade Manager React µApp matching the quality level of pci-project: routing + tracking, data layer (V6 + Iceberg), i18n, Query Client, ODS/MRC usage, testing, linting, and structure.
+End-to-end blueprint to build a production-grade Manager React µApp matching the quality level of pci-project: routing + tracking, data layer (V6 + Iceberg), i18n, Query Client, MUK usage, testing, linting, and structure.
 
 ## Folder Structure (Enforced)
 ```
 src/
-  App.tsx               # ODS theme import + providers wiring
+  App.tsx               # MUK theme import + providers wiring
   main.tsx              # Shell init + RouterProvider
   i18n.ts               # i18next setup (namespaces)
   queryClient.ts        # React Query client factory
@@ -38,7 +38,7 @@ public/translations/     # Namespaces
 ## Providers Wiring
 ```typescript
 // App.tsx
-import '@ovhcloud/ods-themes/default';
+import '@ovh-ux/muk/dist/style.css';
 import React from 'react';
 import { RouterProvider } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
@@ -76,7 +76,7 @@ export const queryClient = new QueryClient({
 // routes/Routes.tsx
 import React from 'react';
 import { Navigate, Route } from 'react-router-dom';
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+import { ErrorBoundary } from '@ovh-ux/muk';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { redirectionApp, urls } from './Routes.constants';
 
@@ -227,14 +227,14 @@ export function useServices(params: { page: number; pageSize: number; sortBy?: s
 }
 ```
 
-## Datagrid Pattern (MRC + Iceberg)
+## Datagrid Pattern (MUK + Iceberg)
 - Source of truth: `useDatagrid` for pagination/sorting state.
 - On manual mode, pass `items`, `totalItems`, `pagination`, `sorting`, `onPaginationChange`, `onSortChange`.
 - Use `useResourcesIcebergV6` for infinite mode when suitable.
 
 Minimal example:
 ```typescript
-import { Datagrid, useDataGrid, ColumnSort } from '@ovh-ux/manager-react-components';
+import { Datagrid, useDataGrid, ColumnSort } from '@ovh-ux/muk';
 
 const { pagination, sorting, onPaginationChange, onSortChange } = useDataGrid();
 const { data, isLoading } = useServices({
@@ -261,10 +261,10 @@ const { data, isLoading } = useServices({
 - Load namespaces from `public/translations/<ns>/Messages_<locale>.json`.
 - Use common translations where possible (see common-translations.md).
 
-## ODS + MRC Usage Rules
-- Import ODS theme first.
-- Prefer ODS for base UI, MRC for IAM-aware or Manager patterns.
-- Use valid ODS props/events (see ods-components.md). Avoid unsupported props like `size` on icons if not defined.
+## MUK Usage Rules
+- Import MUK styles first.
+- Use MUK components for all UI needs - base UI, IAM-aware, and Manager patterns.
+- Use valid MUK props/events (see muk.md). MUK provides wrappers for all design system components with Manager-specific enhancements.
 
 ## Forms & Validation
 - Use React Hook Form + Yup.
@@ -273,7 +273,7 @@ const { data, isLoading } = useServices({
 ## Testing & Tooling
 - Vitest + Testing Library, jsdom env, `setupTests.ts` including a11y matcher (see html-accessibility-testing.md).
 - Add `createTestWrapper(queryClient)` helper to provide QueryClient + Router in tests.
-- Mock `@ovh-ux/manager-react-components` selectively; prefer integration through TestProvider when available.
+- Mock `@ovh-ux/muk` selectively; prefer integration through TestProvider when available.
 
 ## ESLint & TypeScript
 - Local ESLint flat config per app allowed when root constraints block TS features. Keep rules aligned with standards; avoid disabling safety rules broadly.

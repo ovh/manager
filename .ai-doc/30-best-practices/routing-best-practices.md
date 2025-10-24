@@ -113,7 +113,7 @@ export default function ListingPage() {
 // routes/Routes.tsx
 import React from 'react';
 import { Navigate, Route } from 'react-router-dom';
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+import { ErrorBoundary } from '@ovh-ux/muk';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { redirectionApp, urls } from './Routes.constants';
 

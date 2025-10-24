@@ -1,7 +1,7 @@
 ---
 title: Tailwind CSS
 last_update: 2025-01-27
-tags: [tailwind, css, styling, ovhcloud, manager, ods, responsive, utilities]
+tags: [tailwind, css, styling, ovhcloud, manager, muk, responsive, utilities]
 ai: true
 ---
 
@@ -11,30 +11,28 @@ ai: true
 
 ## 🧭 Purpose
 
-**Tailwind CSS** is a utility-first CSS framework used in the OVHcloud Manager ecosystem for styling React applications. It's configured with `@ovh-ux/manager-tailwind-config` to provide standardized spacing, breakpoints, and design tokens that integrate with the ODS (OVHcloud Design System).
+**Tailwind CSS** is a utility-first CSS framework used in the OVHcloud Manager ecosystem for styling React applications. It's configured with `@ovh-ux/manager-tailwind-config` to provide standardized spacing, breakpoints, and design tokens that integrate with the MUK (Manager UI Kit).
 
-This package is essential for consistent styling across all Manager applications, providing utility classes that work seamlessly with ODS components and design tokens.
+This package is essential for consistent styling across all Manager applications, providing utility classes that work seamlessly with MUK components and design tokens.
 
 ## ⚙️ Context
 
 Tailwind CSS is designed for:
 - **Utility-first styling** with consistent design tokens
-- **ODS integration** with design system variables
+- **MUK integration** with design system variables
 - **Responsive design** with standardized breakpoints
 - **Component styling** for React applications
 - **Design consistency** across all Manager applications
 
 This package is essential for:
 - **React µApps** in the Manager ecosystem
-- **Consistent styling** with ODS design tokens
+- **Consistent styling** with MUK design tokens
 - **Responsive layouts** with standardized breakpoints
 - **Component development** with utility classes
 
 ## 🔗 References
 
-- [ODS Components](./ods-components.md)
-- [ODS Themes](./ods-themes.md)
-- [Manager React Components](./mrc-components.md)
+- [MUK Components](./muk.md)
 - [Tailwind CSS Documentation](https://tailwindcss.com/)
 
 ## 📘 Guidelines / Implementation
@@ -64,12 +62,12 @@ const require = createRequire(import.meta.url);
 const pkgDir = (name) => path.dirname(require.resolve(`${name}/package.json`));
 const toGlob = (dir) => `${dir.replace(/\\/g, '/')}/**/*.{js,jsx,ts,tsx}`;
 
-const reactComponentsDir = pkgDir('@ovh-ux/manager-react-components');
+const mukComponentsDir = pkgDir('@ovh-ux/muk');
 
 const baseTailwindConfig = [
   ...(baseConfig.content ?? []),
   './src/**/*.{js,jsx,ts,tsx}',
-  toGlob(reactComponentsDir),
+  toGlob(mukComponentsDir),
 ];
 
 /** @type {import('tailwindcss').Config} */
@@ -77,7 +75,7 @@ export default {
   ...baseConfig,
   content: baseTailwindConfig,
   corePlugins: {
-    preflight: false, // Disable Tailwind's base styles to avoid conflicts with ODS
+    preflight: false, // Disable Tailwind's base styles to avoid conflicts with MUK
   },
 };
 ```
@@ -229,12 +227,12 @@ function BreakpointExamples() {
 }
 ```
 
-### Border Radius with ODS
+### Border Radius with MUK
 
-#### ODS Border Radius
+#### MUK Border Radius
 
 ```tsx
-// Using ODS border radius variables
+// Using MUK border radius variables
 function BorderRadiusExample() {
   return (
     <div>
@@ -260,41 +258,41 @@ function BorderRadiusExample() {
 #### Custom Border Radius
 
 ```tsx
-// Custom border radius with ODS variables
+// Custom border radius with MUK variables
 function CustomBorderRadius() {
   return (
     <div className="rounded-lg border-2 border-blue-500">
-      {/* Uses ODS border radius variables */}
-      <p>This div uses the ODS border radius system</p>
+      {/* Uses MUK border radius variables */}
+      <p>This div uses the MUK border radius system</p>
     </div>
   );
 }
 ```
 
-### Integration with ODS
+### Integration with MUK
 
-#### ODS Component Styling
+#### MUK Component Styling
 
 ```tsx
-import { OdsButton, OdsCard, OdsText } from '@ovhcloud/ods-components';
+import { Button, Card, Text } from '@ovh-ux/muk';
 
-function ODSIntegration() {
+function MUKIntegration() {
   return (
     <div className="p-6 space-y-4">
-      {/* ODS Card with Tailwind spacing */}
-      <OdsCard className="p-4">
-        <OdsText className="mb-4">
+      {/* MUK Card with Tailwind spacing */}
+      <Card className="p-4">
+        <Text className="mb-4">
           Card content with Tailwind spacing
-        </OdsText>
+        </Text>
         
-        {/* ODS Button with Tailwind classes */}
-        <OdsButton 
+        {/* MUK Button with Tailwind classes */}
+        <Button 
           className="w-full sm:w-auto"
           variant="primary"
         >
           Responsive Button
-        </OdsButton>
-      </OdsCard>
+        </Button>
+      </Card>
     </div>
   );
 }
@@ -609,53 +607,53 @@ function DesktopFirstComponent() {
 }
 ```
 
-#### 3. ODS Integration
+#### 3. MUK Integration
 
 ```tsx
-// ✅ CORRECT: Proper ODS integration
-import { OdsCard, OdsButton } from '@ovhcloud/ods-components';
+// ✅ CORRECT: Proper MUK integration
+import { Card, Button } from '@ovh-ux/muk';
 
-function ODSIntegration() {
+function MUKIntegration() {
   return (
-    <OdsCard className="p-4">
-      <OdsButton 
+    <Card className="p-4">
+      <Button 
         className="w-full sm:w-auto"
         variant="primary"
       >
-        ODS Button with Tailwind
-      </OdsButton>
-    </OdsCard>
+        MUK Button with Tailwind
+      </Button>
+    </Card>
   );
 }
 
-// ❌ WRONG: Overriding ODS styles
-function PoorODSIntegration() {
+// ❌ WRONG: Overriding MUK styles
+function PoorMUKIntegration() {
   return (
-    <OdsCard className="p-4 bg-red-500 border-2 border-blue-500">
-      {/* Don't override ODS component styles */}
-    </OdsCard>
+    <Card className="p-4 bg-red-500 border-2 border-blue-500">
+      {/* Don't override MUK component styles */}
+    </Card>
   );
 }
 ```
 
 ### Common Pitfalls
 
-#### ❌ Wrong: Using Tailwind with ODS Conflicts
+#### ❌ Wrong: Using Tailwind with MUK Conflicts
 
 ```tsx
-// Don't override ODS component styles
-<OdsButton className="bg-red-500 text-white">
-  {/* This overrides ODS button styles */}
-</OdsButton>
+// Don't override MUK component styles
+<Button className="bg-red-500 text-white">
+  {/* This overrides MUK button styles */}
+</Button>
 ```
 
 #### ✅ Correct: Complementary Styling
 
 ```tsx
 // Use Tailwind for layout and spacing
-<OdsButton className="w-full sm:w-auto mb-4">
+<Button className="w-full sm:w-auto mb-4">
   {/* Only use Tailwind for layout, not colors */}
-</OdsButton>
+</Button>
 ```
 
 #### ❌ Wrong: Inconsistent Spacing
@@ -683,7 +681,7 @@ function PoorODSIntegration() {
 ### Essential Rules for AI Code Generation
 
 1. **Use manager-tailwind-config**: Always extend the base configuration
-2. **Follow ODS integration**: Don't override ODS component styles
+2. **Follow MUK integration**: Don't override MUK component styles
 3. **Use standardized spacing**: Use the provided spacing scale
 4. **Implement responsive design**: Use mobile-first approach
 5. **Organize utility classes**: Group related classes together
@@ -695,9 +693,9 @@ function PoorODSIntegration() {
 
 - [ ] Tailwind configuration extends manager-tailwind-config
 - [ ] Content paths include all source files
-- [ ] Preflight disabled to avoid ODS conflicts
+- [ ] Preflight disabled to avoid MUK conflicts
 - [ ] Responsive design implemented
-- [ ] ODS integration maintained
+- [ ] MUK integration maintained
 - [ ] Spacing system used consistently
 - [ ] Accessibility considerations included
 
@@ -706,7 +704,7 @@ function PoorODSIntegration() {
 - [ ] Utility classes organized logically
 - [ ] Responsive breakpoints implemented
 - [ ] Hover and focus states included
-- [ ] ODS components not overridden
+- [ ] MUK components not overridden
 - [ ] Consistent spacing used
 - [ ] Color system followed
 - [ ] Typography hierarchy maintained
@@ -726,7 +724,7 @@ function PoorODSIntegration() {
 
 - **Consistent design** ensures professional appearance across all applications
 - **Responsive layouts** provide optimal experience on all devices
-- **ODS integration** maintains brand consistency and accessibility
+- **MUK integration** maintains brand consistency and accessibility
 - **Utility-first approach** enables rapid development and maintenance
 
 **👉 Good styling is invisible to users but essential for professional applications.**

@@ -7,11 +7,14 @@ ai: true
 
 # Manager React Components (MRC) Library
 
+> **⚠️ DEPRECATED**: This library is being replaced by [MUK Components](./muk.md). Use MUK as the single source of truth for all UI components.
 > **📦 Version:** `@ovh-ux/manager-react-components@^2.39.0`
 
 ## 🧭 Purpose
 
 The **Manager React Components (MRC)** library is the centralized React component system for the OVHcloud Manager ecosystem. It provides a collection of reusable components, custom hooks, and utilities that standardize the user interface and interactions across all Manager applications.
+
+**🚨 MIGRATION REQUIRED**: All MRC usage should be migrated to MUK components. See [MUK Components](./muk.md) for the new unified approach.
 
 ## ⚙️ Context
 

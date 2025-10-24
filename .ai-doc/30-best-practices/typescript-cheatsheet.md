@@ -29,7 +29,7 @@ This cheat sheet is designed for developers working with:
 
 - [Development Standards](../30-best-practices/development-standards.md)
 - [Frontend React Patterns](../30-best-practices/frontend-react-patterns.md)
-- [MRC Components](../20-dependencies/mrc-components.md)
+- [MUK Components](../20-dependencies/muk.md)
 - [TypeScript Official Documentation](https://www.typescriptlang.org/docs/)
 - [React TypeScript Cheatsheet](https://react-typescript-cheatsheet.netlify.app/)
 
