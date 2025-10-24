@@ -47,6 +47,7 @@ export default function Listing() {
   const {
     redirectUrl,
     isRedirectRequired,
+    isRedirectExternal,
   } = useRedirectAfterProjectSelection();
   const { addInfo } = useNotifications();
 
@@ -58,7 +59,7 @@ export default function Listing() {
     return Promise.resolve(projectPath.replace(':projectId', projectId));
   };
 
-  const columns = getDatagridColumns(t, getProjectUrl);
+  const columns = getDatagridColumns(t, getProjectUrl, isRedirectExternal);
 
   const {
     flattenData,
