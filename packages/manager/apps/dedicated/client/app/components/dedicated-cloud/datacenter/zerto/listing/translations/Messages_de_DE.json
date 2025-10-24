@@ -1,0 +1,8 @@
+{
+  "dedicatedCloud_datacenter_drp_listing_add_site": "Einen Standort hinzufügen",
+  "dedicatedCloud_datacenter_drp_listing_column_label": "Label",
+  "dedicatedCloud_datacenter_drp_listing_column_ip_public": "Öffentliche IP",
+  "dedicatedCloud_datacenter_drp_listing_column_vra_datacenter": "VRA-Rechenzentrumsnetzwerk",
+  "dedicatedCloud_datacenter_drp_listing_column_ip_zvm": "Zvm-IP",
+  "dedicatedCloud_datacenter_drp_listing_column_status": "Status"
+}
