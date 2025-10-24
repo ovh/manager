@@ -10,7 +10,10 @@ import { TDeploymentMode } from '@/types/instance/common.type';
 import { TRegionData } from '@/pages/instances/create/view-models/localizationsViewModel';
 import { TContinentData } from '@/pages/instances/create/view-models/continentsViewModel';
 import { TOptionsData } from '@/pages/instances/create/view-models/categoriesTypesViewModel';
-import { TFlavorDataForTable } from '@/pages/instances/create/view-models/flavorsViewModel';
+import {
+  TFlavorDataForTable,
+  TGpuFlavorDataForTable,
+} from '@/pages/instances/create/view-models/flavorsViewModel';
 import { ComponentType, SVGProps } from 'react';
 
 export const mockedInstance: TAggregatedInstance = {
@@ -848,5 +851,47 @@ export const mockedFlavors: TFlavorDataForTable[] = [
     mode: 'region-3-az',
     hourlyPrice: 3.7195,
     monthlyPrice: 1632.0,
+  },
+];
+
+export const mockedGpuFlavors: TGpuFlavorDataForTable[] = [
+  {
+    unavailable: false,
+    unavailableQuota: false,
+    name: 'A10-45',
+    gpu: 'A-10',
+    numberOfGpu: 1,
+    vRamTotal: 24,
+    memory: 45,
+    vCore: 30,
+    storage: '400 SSD',
+    hourlyPrice: 0.76,
+    monthlyPrice: 554.8,
+  },
+  {
+    unavailable: false,
+    unavailableQuota: false,
+    name: 'A10-90',
+    gpu: 'A-10',
+    numberOfGpu: 2,
+    vRamTotal: 48,
+    memory: 90,
+    vCore: 60,
+    storage: '400 SSD',
+    hourlyPrice: 1.52,
+    monthlyPrice: 1109.6,
+  },
+  {
+    unavailable: false,
+    unavailableQuota: false,
+    name: 'A10-180',
+    gpu: 'A-10',
+    numberOfGpu: 4,
+    vRamTotal: 180,
+    memory: 180,
+    vCore: 120,
+    storage: '400 SSD',
+    hourlyPrice: 3.04,
+    monthlyPrice: 2219.2,
   },
 ];
