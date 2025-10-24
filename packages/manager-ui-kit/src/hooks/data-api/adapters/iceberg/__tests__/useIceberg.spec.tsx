@@ -43,21 +43,21 @@ describe('useIceberg hook', () => {
   it('tests the default params', () => {
     renderUseIcebergHook();
     const callArg = vi.mocked(fetchWithIceberg).mock.calls[0]?.[0];
-    expect((callArg as IcebergFetchParams).version).toBe('v6');
-    expect((callArg as IcebergFetchParams).route).toBe('/dedicated/nasha');
-    expect((callArg as IcebergFetchParams).pageSize).toBe(10);
+    expect(callArg.version).toBe('v6');
+    expect(callArg.route).toBe('/dedicated/nasha');
+    expect(callArg.pageSize).toBe(10);
   });
 
   it('makes a call to fetchIceberg with version=v6', () => {
     renderUseIcebergHook({ version: 'v6' });
     const callArg = vi.mocked(fetchWithIceberg).mock.calls[0]?.[0];
-    expect((callArg as IcebergFetchParams).version).toBe('v6');
+    expect(callArg.version).toBe('v6');
   });
 
   it('makes a call to fetchIceberg with version=v2', () => {
     renderUseIcebergHook({ version: 'v2' });
     const callArg = vi.mocked(fetchWithIceberg).mock.calls[0]?.[0];
-    expect((callArg as IcebergFetchParams).version).toBe('v2');
+    expect(callArg.version).toBe('v2');
   });
 
   it('does not make API call when enabled=false', () => {
@@ -68,7 +68,7 @@ describe('useIceberg hook', () => {
   it('tests default sorting', () => {
     renderUseIcebergHook({ defaultSorting: [getSorting('number', false)] });
     const callArg = vi.mocked(fetchWithIceberg).mock.calls[0]?.[0];
-    expect((callArg as IcebergFetchParams).sortBy).toEqual('number');
-    expect((callArg as IcebergFetchParams).sortOrder).toEqual('ASC');
+    expect(callArg.sortBy).toEqual('number');
+    expect(callArg.sortOrder).toEqual('ASC');
   });
 });

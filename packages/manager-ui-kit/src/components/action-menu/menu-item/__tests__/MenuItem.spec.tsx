@@ -2,8 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ActionMenuItem } from '@/components';
-import { useAuthorizationIam } from '@/hooks';
-import { IamAuthorizationResponse } from '@/hooks';
+import { IamAuthorizationResponse, useAuthorizationIam } from '@/hooks';
 
 import { MenuItem } from '../MenuItem.component';
 

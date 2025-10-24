@@ -74,8 +74,8 @@ export const useIceberg = <TData = Record<string, unknown>>({
       return null;
     },
     transformFn: (pages, pageParams): UseIcebergData<TData> => {
-      const pageIndex = pageParams[pageParams.length - 1] as number;
-      const { totalCount } = pages[0] as IcebergFetchResult<TData>;
+      const pageIndex = pageParams[pageParams.length - 1];
+      const { totalCount } = pages[0];
       return {
         pageIndex,
         totalCount,

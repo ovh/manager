@@ -15,7 +15,7 @@ export const StepFooter = () => {
           data-testid="next-cta"
           size={BUTTON_SIZE.md}
           onClick={() => {
-            next.action(id as string);
+            next.action(id);
           }}
           className="w-fit"
           disabled={next.disabled || undefined}
@@ -28,7 +28,7 @@ export const StepFooter = () => {
           variant={BUTTON_VARIANT.ghost}
           size={BUTTON_SIZE.md}
           onClick={() => {
-            skip.action(id as string);
+            skip.action(id);
           }}
           className="w-fit"
           disabled={skip.disabled || undefined}

@@ -19,8 +19,8 @@ const getRenderedBadgeWidth = ({
   fontSize: number;
   fontFamily: string;
 }) => {
-  const canvas = document.createElement('canvas') as HTMLCanvasElement;
-  const context = canvas.getContext('2d') as CanvasRenderingContext2D;
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
   context.font = `${fontSize} ${fontFamily}`;
   return context.measureText(tag).width;
 };
@@ -54,7 +54,7 @@ export const getVisibleTagCount = (
   while (currentLine <= maxLines && index < tags.length) {
     const textWidth =
       getRenderedBadgeWidth({
-        tag: tags[index] as string,
+        tag: tags[index],
         fontSize: BADGE_FONT_SIZE,
         fontFamily: BADGE_FONT_FAMILY,
       }) + BADGE_SPACINGS;

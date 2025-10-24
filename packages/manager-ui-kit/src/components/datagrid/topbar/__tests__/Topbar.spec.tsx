@@ -332,7 +332,7 @@ describe('Topbar', () => {
     );
 
     const form = screen.getByRole('searchbox').closest('form');
-    fireEvent.submit(form!);
+    fireEvent.submit(form);
 
     expect(mockSearch.onSearch).toHaveBeenCalledWith('test');
   });

@@ -73,7 +73,7 @@ export const TableBody = <T,>({
       }}
     >
       {rowVirtualizer.getVirtualItems().map((virtualRow) => {
-        const row = rows[virtualRow?.index] as Row<T>;
+        const row = rows[virtualRow?.index];
         const offset = renderSubComponent ? getOffset(virtualRow?.index) : 0;
         return (
           <Fragment key={`table-body-tr-${row.id}`}>

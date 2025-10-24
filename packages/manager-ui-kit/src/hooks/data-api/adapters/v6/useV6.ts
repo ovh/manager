@@ -56,7 +56,7 @@ export const useV6 = <TData = Record<string, unknown>>({
     if (!isLoading) {
       setTotalCount(filteredAndSortedData.length);
       setPageIndex(0);
-      setFlattenData(filteredAndSortedData as TData[]);
+      setFlattenData(filteredAndSortedData);
     }
   }, [filteredAndSortedData]);
 
