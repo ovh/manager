@@ -26,5 +26,12 @@
   "versionsNumber": "Nombre de version",
   "versionTotalSize": "Taille des versions",
   "versionLink": "Gérer les versions",
-  "objectBackLink": "Retour à l'objet"
+  "objectBackLink": "Retour à l'objet",
+  "changeStorageClassTitle": "Modifier la classe de stockage",
+  "changeStorageClassDescription": "Choisissez la nouvelle classe de stockage pour cet objet.",
+  "changeStorageClassLink": "Modifier la classe de stockage",
+  "changeStorageClassCancel": "Annuler",
+  "changeStorageClassConfirm": "Modifier",
+  "changeStorageClassSuccessTitle": "Succès",
+  "changeStorageClassSuccessDescription": "La classe de stockage a été modifiée"
 }

@@ -18,29 +18,14 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  RadioGroup,
-  RadioGroupItem,
-  Label,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
 } from '@datatr-ux/uxlib';
-import {
-  ExternalLink,
-  File,
-  FilePlus,
-  HelpCircle,
-  Upload,
-  X,
-} from 'lucide-react';
+import { File, FilePlus, Upload, X } from 'lucide-react';
 import clsx from 'clsx';
 import RouteModal from '@/components/route-modal/RouteModal';
 import { useFileUploarderForm } from './file-uploader-form/useFileUploaderForm.hook';
 import { octetConverter } from '@/lib/bytesHelper';
 import storages from '@/types/Storages';
-import A from '../links/A.component';
-import { GUIDES, getGuideUrl } from '@/configuration/guide';
-import { useLocale } from '@/hooks/useLocale';
+import StorageClassSelector from '../storage-class-selector/StorageClassSelector.component';
 
 interface FileUploaderProps {
   title: string;
@@ -54,6 +39,7 @@ interface FileUploaderProps {
   jsonFile?: boolean;
   description?: string;
   isS3?: boolean;
+  is3AZ?: boolean;
 }
 
 const FileUploaderForm = React.forwardRef<HTMLInputElement, FileUploaderProps>(
@@ -66,6 +52,7 @@ const FileUploaderForm = React.forwardRef<HTMLInputElement, FileUploaderProps>(
       jsonFile,
       description,
       isS3 = false,
+      is3AZ = false,
     },
     ref,
   ) => {
@@ -74,10 +61,6 @@ const FileUploaderForm = React.forwardRef<HTMLInputElement, FileUploaderProps>(
       jsonFile,
     });
     const { t } = useTranslation('components/file-uploader');
-    const locale = useLocale();
-    const { t: tObj } = useTranslation(
-      'pci-object-storage/storages/s3/object-class',
-    );
     const [isDragging, setIsDragging] = useState(false);
     const [storageClass, setStorageClass] = useState<storages.StorageClassEnum>(
       storages.StorageClassEnum.STANDARD,
@@ -146,77 +129,11 @@ const FileUploaderForm = React.forwardRef<HTMLInputElement, FileUploaderProps>(
                   />
                 )}
                 {isS3 && (
-                  <div className="my-4 space-y-2">
-                    <div className="flex flex-row items-center gap-2">
-                      <FormLabel>{t('storageClassLabel')}</FormLabel>
-                      <Popover>
-                        <PopoverTrigger>
-                          <HelpCircle className="size-4" />
-                        </PopoverTrigger>
-                        <PopoverContent>
-                          <div className="text-sm">
-                            <p>{t('popOverDesc1')}</p>
-                            <div className="flex flex-col px-2">
-                              <A
-                                href={getGuideUrl(
-                                  GUIDES.OBJ_STO_CLASSES,
-                                  locale,
-                                )}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                <div className="inline-flex items-center gap-2">
-                                  <span className="text-primary-500">
-                                    {t('popOverDesc2')}
-                                  </span>
-                                  <ExternalLink className="size-3" />
-                                </div>
-                              </A>
-                              <A
-                                href={getGuideUrl(
-                                  GUIDES.OBJ_STO_PRICES,
-                                  locale,
-                                )}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                <div className="inline-flex items-center gap-2">
-                                  <span className="text-primary-500">
-                                    {t('popOverDesc3')}
-                                  </span>
-                                  <ExternalLink className="size-3" />
-                                </div>
-                              </A>
-                            </div>
-                          </div>
-                        </PopoverContent>
-                      </Popover>
-                    </div>
-                    <RadioGroup
-                      className="px-2"
-                      aria-labelledby="storage-class-radio"
-                      value={storageClass}
-                      onValueChange={(newValue: storages.StorageClassEnum) => {
-                        setStorageClass(newValue);
-                      }}
-                    >
-                      {Object.values(storages.StorageClassEnum)
-                        .filter(
-                          (st) => st !== storages.StorageClassEnum.DEEP_ARCHIVE,
-                        )
-                        .map((storeClass: storages.StorageClassEnum) => (
-                          <div className="flex items-center gap-3">
-                            <RadioGroupItem
-                              value={storeClass}
-                              id={storeClass}
-                            />
-                            <Label htmlFor={storeClass}>
-                              {tObj(`objectClass_${storeClass}`)}
-                            </Label>
-                          </div>
-                        ))}
-                    </RadioGroup>
-                  </div>
+                  <StorageClassSelector
+                    storageClass={storageClass}
+                    onStorageClassChange={setStorageClass}
+                    is3AZ={is3AZ}
+                  />
                 )}
                 <FormField
                   control={form.control}

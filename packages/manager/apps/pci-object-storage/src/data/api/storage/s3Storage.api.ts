@@ -236,3 +236,27 @@ export const deleteS3ObjectVersion = async ({
       key,
     )}/version/${versionId}`,
   );
+
+export interface UpdateS3ObjectStorageClassParams extends S3ObjectParams {
+  storageClass: storages.StorageClassEnum;
+  versionId?: string;
+}
+
+export const updateS3ObjectStorageClass = async ({
+  projectId,
+  region,
+  name,
+  key,
+  storageClass,
+  versionId = '',
+}: UpdateS3ObjectStorageClassParams) =>
+  apiClient.v6.post<StorageObject>(
+    `/cloud/project/${projectId}/region/${region}/storage/${name}/object/${encodeURIComponent(
+      key,
+    )}/version/${versionId}/copy`,
+    {
+      storageClass,
+      targetBucket: name,
+      targetKey: key,
+    },
+  );
