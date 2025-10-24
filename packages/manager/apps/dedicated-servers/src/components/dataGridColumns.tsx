@@ -18,16 +18,12 @@ import EngagementCell from './cells/engagementCell';
 import PriceCell from './cells/priceCell';
 import TagsCell from './cells/tagsCell';
 
+import { textByProductStatus } from './commonCellsWording';
+
 const colorByProductStatus: Record<string, ODS_BADGE_COLOR> = {
   ok: ODS_BADGE_COLOR.success,
   hacked: ODS_BADGE_COLOR.warning,
   hackedBlocked: ODS_BADGE_COLOR.information,
-};
-
-const textByProductStatus: Record<string, string> = {
-  ok: 'server_configuration_state_OK',
-  hacked: 'server_configuration_state_HACKED',
-  hackedBlocked: 'server_configuration_state_HACKED_BLOCKED',
 };
 
 export function useColumns(): DatagridColumn<DedicatedServer>[] {
