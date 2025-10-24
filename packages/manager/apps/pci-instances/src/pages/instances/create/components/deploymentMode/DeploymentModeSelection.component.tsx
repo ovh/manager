@@ -89,7 +89,7 @@ export const DeploymentModeSelection = () => {
 
                 <PciCard.Content className="justify-between">
                   <Text>{description}</Text>
-                  <div className="flex">
+                  <div className="flex justify-center mt-4">
                     <Image />
                   </div>
                 </PciCard.Content>
