@@ -269,6 +269,17 @@ export default [
                         '@/pages/object-storage/storage/s3Id/objects/object/Object.page'
                       ),
                     ),
+                    children: [
+                      {
+                        path: 'change-storage-class',
+                        id: 's3.object.change-storage-class',
+                        ...lazyLoadRoute(() =>
+                          import(
+                            '@/pages/object-storage/storage/s3Id/objects/object/change-storage-class/ChangeStorageClass.modal'
+                          ),
+                        ),
+                      },
+                    ],
                   },
                   {
                     path: 'versions',

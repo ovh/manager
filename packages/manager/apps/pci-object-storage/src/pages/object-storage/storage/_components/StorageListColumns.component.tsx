@@ -237,17 +237,6 @@ export const getColumns = ({
               >
                 {t('tableActionManage')}
               </DropdownMenuItem>
-              <DropdownMenuItem
-                variant="primary"
-                onClick={() => {
-                  navigator.clipboard.writeText(storage.id);
-                  toast.toast({
-                    description: 'storage id saved in clipboard',
-                  });
-                }}
-              >
-                {t('tableActionCopy')}
-              </DropdownMenuItem>
               {storage.storageType === ObjectStorageTypeEnum.swift && (
                 <DropdownMenuItem
                   data-testid="storage-action-switch-button"
