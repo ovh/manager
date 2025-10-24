@@ -35,13 +35,17 @@ describe('getDatagridColumns', () => {
   });
 
   it('should return an array of 3 columns', () => {
-    const columns = getDatagridColumns(mockTranslate, mockGetProjectUrl);
+    const columns = getDatagridColumns(mockTranslate, mockGetProjectUrl, false);
     expect(columns).toHaveLength(3);
   });
 
   describe('description column', () => {
     it('should have correct configuration', () => {
-      const columns = getDatagridColumns(mockTranslate, mockGetProjectUrl);
+      const columns = getDatagridColumns(
+        mockTranslate,
+        mockGetProjectUrl,
+        false,
+      );
       const descriptionColumn = columns[0];
 
       expect(descriptionColumn.id).toBe('description');
@@ -54,7 +58,11 @@ describe('getDatagridColumns', () => {
     });
 
     it('should render description text in cell', async () => {
-      const columns = getDatagridColumns(mockTranslate, mockGetProjectUrl);
+      const columns = getDatagridColumns(
+        mockTranslate,
+        mockGetProjectUrl,
+        false,
+      );
       const descriptionColumn = columns[0];
 
       render(descriptionColumn.cell(mockProject));
@@ -66,7 +74,11 @@ describe('getDatagridColumns', () => {
     });
 
     it('should render link with correct href', async () => {
-      const columns = getDatagridColumns(mockTranslate, mockGetProjectUrl);
+      const columns = getDatagridColumns(
+        mockTranslate,
+        mockGetProjectUrl,
+        false,
+      );
       const descriptionColumn = columns[0];
 
       render(descriptionColumn.cell(mockProject));
@@ -82,7 +94,11 @@ describe('getDatagridColumns', () => {
     });
 
     it('should render default project badge when isDefault is true', async () => {
-      const columns = getDatagridColumns(mockTranslate, mockGetProjectUrl);
+      const columns = getDatagridColumns(
+        mockTranslate,
+        mockGetProjectUrl,
+        false,
+      );
       const descriptionColumn = columns[0];
 
       render(descriptionColumn.cell(mockDefaultProject));
@@ -98,7 +114,11 @@ describe('getDatagridColumns', () => {
     });
 
     it('should not render default project badge when isDefault is false', async () => {
-      const columns = getDatagridColumns(mockTranslate, mockGetProjectUrl);
+      const columns = getDatagridColumns(
+        mockTranslate,
+        mockGetProjectUrl,
+        false,
+      );
       const descriptionColumn = columns[0];
 
       render(descriptionColumn.cell(mockProject));
@@ -113,7 +133,11 @@ describe('getDatagridColumns', () => {
 
   describe('aggregatedStatus column', () => {
     it('should have correct configuration', () => {
-      const columns = getDatagridColumns(mockTranslate, mockGetProjectUrl);
+      const columns = getDatagridColumns(
+        mockTranslate,
+        mockGetProjectUrl,
+        false,
+      );
       const statusColumn = columns[1];
 
       expect(statusColumn.id).toBe('aggregatedStatus');
@@ -126,7 +150,11 @@ describe('getDatagridColumns', () => {
     });
 
     it('should render StatusComponent in cell', async () => {
-      const columns = getDatagridColumns(mockTranslate, mockGetProjectUrl);
+      const columns = getDatagridColumns(
+        mockTranslate,
+        mockGetProjectUrl,
+        false,
+      );
       const statusColumn = columns[1];
 
       render(statusColumn.cell(mockProject));
@@ -141,7 +169,11 @@ describe('getDatagridColumns', () => {
 
   describe('actions column', () => {
     it('should have correct configuration', () => {
-      const columns = getDatagridColumns(mockTranslate, mockGetProjectUrl);
+      const columns = getDatagridColumns(
+        mockTranslate,
+        mockGetProjectUrl,
+        false,
+      );
       const actionsColumn = columns[2];
 
       expect(actionsColumn.id).toBe('actions');
