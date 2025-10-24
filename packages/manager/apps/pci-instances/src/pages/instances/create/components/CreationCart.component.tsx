@@ -12,7 +12,31 @@ import { deps } from '@/deps/deps';
 import { selectLocalisationDetails } from '../view-models/cartViewModel';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { FlavorDetails } from '@/pages/instances/create/components/cart/FlavorDetails.component';
-import { mockedFlavors } from '@/__mocks__/instance/constants';
+import {
+  mockedFlavors,
+  mockedGpuFlavors,
+} from '@/__mocks__/instance/constants';
+import {
+  mapFlavorToCart,
+  TFlavorDataForCart,
+} from '@/pages/instances/create/view-models/flavorsViewModel';
+
+export const useSelectedFlavor = (
+  selectedFlavor: string | null,
+  selectedCategory: string | null,
+): TFlavorDataForCart | null => {
+  return useMemo(() => {
+    if (!selectedFlavor || !selectedCategory) return null;
+
+    const list =
+      selectedCategory === 'Cloud GPU' ? mockedGpuFlavors : mockedFlavors;
+
+    const flavor = list.find((f) => f.name === selectedFlavor);
+    if (!flavor) return null;
+
+    return mapFlavorToCart(flavor);
+  }, [selectedFlavor, selectedCategory]);
+};
 
 export const CreationCart = () => {
   const { t } = useTranslation(['common', 'creation']);
@@ -25,6 +49,7 @@ export const CreationCart = () => {
     availabilityZone,
     quantity,
     flavor,
+    flavorCategory,
   ] = useWatch({
     control,
     name: [
@@ -34,6 +59,7 @@ export const CreationCart = () => {
       'availabilityZone',
       'quantity',
       'flavor',
+      'flavorCategory',
     ],
   });
 
@@ -44,10 +70,7 @@ export const CreationCart = () => {
     availabilityZone,
   );
 
-  const selectedFlavor = useMemo(
-    () => mockedFlavors.find((item) => item.name === flavor),
-    [flavor],
-  );
+  const selectedFlavor = useSelectedFlavor(flavor, flavorCategory);
 
   const itemDetails: TCartItemDetail[] = useMemo(() => {
     const regionDetails = localizationDetails

@@ -1,4 +1,3 @@
-/* eslint-disable max-lines */
 import { TInstancesCatalogDTO } from '@/adapters/tanstack/instancesCatalog/right/dto.type';
 import { TDeploymentModeDataForCard } from '@/pages/instances/create/view-models/deploymentModeViewModel';
 import { TAggregatedInstance } from '@/types/instance/entity.type';
@@ -10,7 +9,10 @@ import { TDeploymentMode } from '@/types/instance/common.type';
 import { TRegionData } from '@/pages/instances/create/view-models/localizationsViewModel';
 import { TContinentData } from '@/pages/instances/create/view-models/continentsViewModel';
 import { TOptionsData } from '@/pages/instances/create/view-models/categoriesTypesViewModel';
-import { TFlavorDataForTable } from '@/pages/instances/create/view-models/flavorsViewModel';
+import {
+  TFlavorData,
+  TGpuFlavorData,
+} from '@/pages/instances/create/view-models/flavorsViewModel';
 import { ComponentType, SVGProps } from 'react';
 
 export const mockedInstance: TAggregatedInstance = {
@@ -793,7 +795,7 @@ export const mockedFlavorCategories = [
   },
 ];
 
-export const mockedFlavors: TFlavorDataForTable[] = [
+export const mockedFlavors: TFlavorData[] = [
   {
     unavailable: false,
     unavailableQuota: false,
@@ -801,6 +803,8 @@ export const mockedFlavors: TFlavorDataForTable[] = [
     memory: 8,
     vCore: 2,
     storage: '50NVMe',
+    bandwidthPublic: '500 Mbit/s',
+    bandwidthPrivate: '4 Gbit/s max',
     mode: 'region-3-az',
     hourlyPrice: 0.0465,
     monthlyPrice: 25.5,
@@ -812,6 +816,8 @@ export const mockedFlavors: TFlavorDataForTable[] = [
     memory: 16,
     vCore: 4,
     storage: '100NVMe',
+    bandwidthPublic: '500 Mbit/s',
+    bandwidthPrivate: '4 Gbit/s max',
     mode: 'region-3-az',
     hourlyPrice: 0.186,
     monthlyPrice: 51.0,
@@ -823,6 +829,8 @@ export const mockedFlavors: TFlavorDataForTable[] = [
     memory: 32,
     vCore: 8,
     storage: '200NVMe',
+    bandwidthPublic: '500 Mbit/s',
+    bandwidthPrivate: '4 Gbit/s max',
     mode: 'region-3-az',
     hourlyPrice: 0.372,
     monthlyPrice: 102.0,
@@ -834,6 +842,8 @@ export const mockedFlavors: TFlavorDataForTable[] = [
     memory: 256,
     vCore: 128,
     storage: '400NVMe',
+    bandwidthPublic: '500 Mbit/s',
+    bandwidthPrivate: '4 Gbit/s max',
     mode: 'region-3-az',
     hourlyPrice: 2.9756,
     monthlyPrice: 816.0,
@@ -845,9 +855,59 @@ export const mockedFlavors: TFlavorDataForTable[] = [
     memory: 512,
     vCore: 160,
     storage: '400NVMe',
+    bandwidthPublic: '500 Mbit/s',
+    bandwidthPrivate: '4 Gbit/s max',
     mode: 'region-3-az',
     hourlyPrice: 3.7195,
     monthlyPrice: 1632.0,
+  },
+];
+
+export const mockedGpuFlavors: TGpuFlavorData[] = [
+  {
+    unavailable: false,
+    unavailableQuota: false,
+    name: 'A10-45',
+    gpu: 'A-10',
+    numberOfGpu: 1,
+    vRamTotal: 24,
+    memory: 45,
+    vCore: 30,
+    storage: '400 SSD',
+    bandwidthPublic: '500 Mbit/s',
+    bandwidthPrivate: '4 Gbit/s max',
+    hourlyPrice: 0.76,
+    monthlyPrice: 554.8,
+  },
+  {
+    unavailable: false,
+    unavailableQuota: true,
+    name: 'A10-90',
+    gpu: 'A-10',
+    numberOfGpu: 2,
+    vRamTotal: 48,
+    memory: 90,
+    vCore: 60,
+    storage: '400 SSD',
+    bandwidthPublic: '1 Gbit/s',
+    bandwidthPrivate: '6 Gbit/s max',
+    hourlyPrice: 1.52,
+    monthlyPrice: 1109.6,
+  },
+  {
+    unavailable: true,
+    unavailableQuota: false,
+    name: 'A10-180',
+    gpu: 'A-10',
+    numberOfGpu: 4,
+    vRamTotal: 180,
+    memory: 180,
+    vCore: 120,
+    storage: '400 SSD',
+    bandwidthPublic: '2 Gbit/s',
+    bandwidthPrivate: '8 Gbit/s max',
+    hourlyPrice: 3.04,
+    monthlyPrice: 2219.2,
   },
 ];
 
