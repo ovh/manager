@@ -1,6 +1,8 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { type Mock, beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { TABLE_SIZE, TABLE_VARIANT } from '@ovhcloud/ods-react';
+
 import { FilterComparator } from '@ovh-ux/manager-core-api';
 
 import { assertNotNull } from '@/commons/tests-utils/Assertions.utils';
@@ -307,6 +309,41 @@ describe('Datagrid', () => {
   });
 
   /* ------------------------- All Features Combined ------------------------- */
+  describe('Table Styles', () => {
+    it('should render with small size', () => {
+      const { container } = renderDataGrid({
+        columns: mockBasicColumns,
+        data: mockData,
+        size: TABLE_SIZE.sm,
+      });
+      const table = container.querySelector('table');
+      expect(table).toBeInTheDocument();
+      expect(table?.className).toContain('table--sm');
+    });
+
+    it('should render with large size', () => {
+      const { container } = renderDataGrid({
+        columns: mockBasicColumns,
+        data: mockData,
+        size: TABLE_SIZE.lg,
+      });
+      const table = container.querySelector('table');
+      expect(table).toBeInTheDocument();
+      expect(table?.className).toContain('table--lg');
+    });
+
+    it('should render with striped variant', () => {
+      const { container } = renderDataGrid({
+        columns: mockBasicColumns,
+        data: mockData,
+        variant: TABLE_VARIANT.striped,
+      });
+      const table = container.querySelector('table');
+      expect(table).toBeInTheDocument();
+      expect(table?.className).toContain('table--striped');
+    });
+  });
+
   describe('All Features Combined', () => {
     it('should render with all features enabled', () => {
       const customTopbar = <div data-testid="custom-topbar">Custom Topbar</div>;
