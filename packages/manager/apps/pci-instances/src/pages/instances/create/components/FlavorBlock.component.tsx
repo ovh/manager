@@ -2,10 +2,9 @@ import {
   Checkbox,
   CheckboxControl,
   CheckboxLabel,
-  Divider,
   Text,
 } from '@ovhcloud/ods-react';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import FlavorCategoryTypeSelect from './flavor/select/FlavorSelect.component';
 import { useProjectId } from '@/hooks/project/useProjectId';
@@ -22,15 +21,21 @@ import { FlavorSelection } from '@/pages/instances/create/components/flavor/Flav
 const FlavorBlock: FC = () => {
   const { t } = useTranslation('creation');
   const projectId = useProjectId();
+  const [withUnavailable, setWithUnavailable] = useState(true);
   const { control } = useFormContext<TInstanceCreationForm>();
-  const flavorCategory = useWatch({ control, name: 'flavorCategory' });
+  const flavorCategory = useWatch({
+    control,
+    name: 'flavorCategory',
+  });
 
   const categories = selectCategories(deps)(projectId);
   const types = selectTypes(deps)(projectId, flavorCategory);
 
+  const handleDisplayUnavailable = () =>
+    setWithUnavailable((isChecked) => !isChecked);
+
   return (
     <section>
-      <Divider spacing="64" />
       <div className="flex items-center space-x-4">
         <Text preset="heading-3">
           {t('pci_instance_creation_select_flavor_title')}
@@ -51,7 +56,11 @@ const FlavorBlock: FC = () => {
             <FlavorCategoryTypeSelect items={types} option="type" />
           )}
         </div>
-        <Checkbox className="self-end">
+        <Checkbox
+          className="self-end"
+          checked={withUnavailable}
+          onCheckedChange={handleDisplayUnavailable}
+        >
           <CheckboxControl />
           <CheckboxLabel className="text-[var(--ods-color-text)]">
             {t(
@@ -60,7 +69,7 @@ const FlavorBlock: FC = () => {
           </CheckboxLabel>
         </Checkbox>
       </div>
-      <FlavorSelection />
+      <FlavorSelection withUnavailable={withUnavailable} />
     </section>
   );
 };

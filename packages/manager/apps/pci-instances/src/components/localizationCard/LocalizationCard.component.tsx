@@ -1,9 +1,9 @@
-import { Radio, RadioControl, RadioLabel, Text } from '@ovhcloud/ods-react';
+import { Radio, RadioControl, RadioLabel } from '@ovhcloud/ods-react';
 import { Flag } from '../flag/Flag';
 import { TCountryIsoCode } from '../flag/country-iso-code';
-import { DeploymentModeBadge } from '../deploymentModeBadge/DeploymentModeBadge.component';
 import { TDeploymentMode } from '@/types/instance/common.type';
 import { PciCard } from '@/components/pciCard/PciCard.component';
+import Localization from './Localization.component';
 
 type TLocalizationCardProps = {
   city: string;
@@ -41,10 +41,7 @@ export const LocalizationCard = ({
           {city}
         </RadioLabel>
       </Radio>
-      <div className="flex items-center justify-between gap-4 w-full">
-        <Text>{datacenterDetails}</Text>
-        <DeploymentModeBadge mode={deploymentMode} />
-      </div>
+      <Localization name={datacenterDetails} deploymentMode={deploymentMode} />
     </PciCard.Header>
   </PciCard>
 );
