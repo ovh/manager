@@ -95,23 +95,22 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
           </RadioGroup>
         )}
       />
-      {unavailableFlavor && (
-        <RegionSelectionModal
-          unavailableRegion={macroRegion}
-          regions={items}
-          onClose={handleCloseSelectRegion}
-          onValidateSelect={handleSelectFlavorNewRegion}
-        >
-          <Text preset="paragraph">
-            <Trans
-              t={t}
-              i18nKey="pci_instance_creation_select_new_region_for_flavor"
-              values={{ flavor: unavailableFlavor }}
-              tOptions={{ interpolation: { escapeValue: true } }}
-            />
-          </Text>
-        </RegionSelectionModal>
-      )}
+      <RegionSelectionModal
+        open={!!unavailableFlavor}
+        unavailableRegion={macroRegion}
+        regions={items}
+        onClose={handleCloseSelectRegion}
+        onValidateSelect={handleSelectFlavorNewRegion}
+      >
+        <Text preset="paragraph">
+          <Trans
+            t={t}
+            i18nKey="pci_instance_creation_select_new_region_for_flavor"
+            values={{ flavor: unavailableFlavor }}
+            tOptions={{ interpolation: { escapeValue: true } }}
+          />
+        </Text>
+      </RegionSelectionModal>
     </section>
   );
 };

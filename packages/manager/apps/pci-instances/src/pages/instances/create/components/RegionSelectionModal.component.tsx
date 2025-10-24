@@ -28,6 +28,7 @@ export type TCustomRegionSelected = {
 };
 
 type RegionSelectionModalProps = PropsWithChildren<{
+  open: boolean;
   unavailableRegion: string | null;
   regions: SelectGroupItem<TCustomRegionItemData>[];
   onClose: () => void;
@@ -35,6 +36,7 @@ type RegionSelectionModalProps = PropsWithChildren<{
 }>;
 
 const RegionSelectionModal: FC<RegionSelectionModalProps> = ({
+  open,
   unavailableRegion,
   regions,
   children,
@@ -66,6 +68,7 @@ const RegionSelectionModal: FC<RegionSelectionModalProps> = ({
 
   return (
     <Modal
+      open={open}
       title={t('pci_instance_creation_select_new_region_title')}
       isPending={false}
       disabled={!region}
