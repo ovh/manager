@@ -31,7 +31,7 @@ export default function ConfigStep({
   form,
   setForm,
 }: ConfigStepProps) {
-  const { t } = useTranslation(['new/config', 'NAMESPACES.FORM']);
+  const { t } = useTranslation(['new/config', NAMESPACES.FORM]);
 
   const { cartId } = cart;
 
