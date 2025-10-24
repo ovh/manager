@@ -7405,6 +7405,15 @@
     "@ovh-ux/request-tagger" "^0.4.1"
     axios "^1.1.2"
 
+"@ovh-ux/manager-core-api@^0.18.7":
+  version "0.18.7"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.18.7.tgz#212dad59f15252436bee7ca14c4ae37cbda695e1"
+  integrity sha512-jrbVfdRzc4KbVFcjoVYzAs1Pl+0kN20ZQ3u3YzMm7J9lYFEN7QaLNlFKnBoxLlOpvprtiarmpzm05odpJIFSaw==
+  dependencies:
+    "@ovh-ux/manager-core-sso" "^0.4.5"
+    "@ovh-ux/request-tagger" "^0.5.5"
+    axios "^1.1.2"
+
 "@ovh-ux/manager-core-sso@^0.3.1", "@ovh-ux/manager-core-sso@^0.3.2":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-sso/-/manager-core-sso-0.3.3.tgz#138b5c1592c437c689ec4c523ddf0cc7aa26812e"
@@ -7506,7 +7515,7 @@
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 
-"@ovh-ux/manager-react-components@^2.43.1":
+"@ovh-ux/manager-react-components@^2.42.4", "@ovh-ux/manager-react-components@^2.43.1":
   version "2.43.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-2.43.1.tgz#1dc97f93ae0f0e5643f498079a2310e01a7ef301"
   integrity sha512-Z6OJ3aNzf4qNLGLJPBy8FeNb0RnDPUTYzaFjc0QK7QU1bxCfrLzXAaxKZ060asTiZ0qOm7EQ3Qt+JoToM/cKEA==
