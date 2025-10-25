@@ -129,8 +129,42 @@ hostedPrivateCloudUniverse.children = [
         },
         features: ['veeam-backup'],
       },
+      {
+        id: 'hpc-backup-agent-iaas',
+        idAttr: 'hpc-backup-agent-iaas-link',
+        universe: hostedPrivateCloudUniverse.id,
+        translation: 'sidebar_backup_agent_iaas',
+        serviceType: 'BACKUP_AGENT_IAAS',
+        routing: {
+          application: 'hpc-backup-agent-iaas',
+          hash: '#/',
+        },
+        features: ['hpc-backup-agent-iaas'],
+      },
+    ],
+  },
+  {
+    id: 'hpc-ovhcloud-backup',
+    idAttr: 'hpc-ovhcloud-backup-link',
+    universe: hostedPrivateCloudUniverse.id,
+    translation: 'sidebar_ovhcloud_backup',
+    features: ['backup-services'],
+    children: [
+      {
+        id: 'backup-services',
+        idAttr: 'backup-services-link',
+        universe: hostedPrivateCloudUniverse.id,
+        translation: 'sidebar_backup_services',
+        serviceType: 'BACKUP_SERVICES',
+        routing: {
+          application: 'backup-services',
+          hash: '#/',
+        },
+        features: ['backup-services'],
+      },
     ],
   },
 ];
 
 export default hostedPrivateCloudUniverse;
+ 

@@ -1,0 +1,83 @@
+import React from 'react';
+
+import { Route } from 'react-router-dom';
+
+import { PageType } from '@ovh-ux/manager-react-shell-client';
+
+import { subRoutes, urlParams } from './Routes.constants';
+
+const MainLayout = React.lazy(() => import('../pages/MainLayout.component'));
+
+const ListingPage = React.lazy(() => import('../pages/listing/Listing.page'));
+
+const VaultListingPage = React.lazy(() => import('../pages/vaults/listing/Listing.page'));
+
+const ServiceListingPage = React.lazy(() => import('../pages/services/listing/Listing.page'));
+
+const DeleteTenantPage = React.lazy(
+  () => import('../pages/services/listing/delete/DeleteTenant.page'),
+);
+const VaultDeletePage = React.lazy(() => import('@/pages/vaults/delete/DeleteVault.page'));
+
+const VaultDashboardPage = React.lazy(() => import('@/pages/vaults/dashboard/Dashboard.page'));
+
+const VaultGeneralInformationPage = React.lazy(
+  () => import('../pages/vaults/dashboard/general-information/GeneralInformation.page'),
+);
+
+export default (
+  <>
+    <Route path="" Component={MainLayout}>
+      <Route
+        path={subRoutes.services}
+        Component={ServiceListingPage}
+        handle={{
+          tracking: {
+            pageName: 'services',
+            pageType: PageType.listing,
+          },
+        }}
+      >
+        <Route
+          path={subRoutes.delete}
+          Component={DeleteTenantPage}
+          handle={{
+            tracking: { pageName: 'deleteVSPC', pageType: PageType.popup },
+          }}
+        />
+      </Route>
+      <Route path={subRoutes.vaults}>
+        <Route
+          path=""
+          Component={VaultListingPage}
+          handle={{
+            tracking: {
+              pageName: 'vaults',
+              pageType: PageType.listing,
+            },
+          }}
+        />
+      </Route>
+      <Route
+        path={subRoutes.billing}
+        Component={ListingPage}
+        handle={{
+          tracking: {
+            pageName: 'billing',
+            pageType: PageType.listing,
+          },
+        }}
+      />
+    </Route>
+    <Route path={subRoutes.vaults}>
+      <Route path={subRoutes.dashboard} Component={VaultDashboardPage}>
+        <Route path={urlParams.vaultId} Component={VaultGeneralInformationPage} />
+      </Route>
+      <Route
+        path={subRoutes.delete}
+        Component={VaultDeletePage}
+        handle={{ tracking: { pageName: 'delete-vault', pageType: PageType.popup } }}
+      />
+    </Route>
+  </>
+);

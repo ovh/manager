@@ -20,6 +20,10 @@
       "dependsOn": ["^dev"],
       "outputs": ["dist/**", "types/**"]
     },
+    "dev:watch": {
+      "dependsOn": ["^dev:watch"],
+      "outputs": ["dist/**", "types/**"]
+    },
     "start": {
       "persistent": true,
       "cache": false,
