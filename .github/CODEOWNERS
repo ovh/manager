@@ -91,6 +91,7 @@
 /packages/manager/modules/account @ovh/dev-manager-gcj-all
 /packages/manager/modules/billing @ovh/dev-manager-gcj-all
 /packages/manager/modules/billing-components @ovh/dev-manager-gcj-all
+/packages/manager/modules/billing-informations @ovh/dev-manager-enablers-all
 /packages/manager/modules/bm-server-components @ovh/dev-manager-infrastructure-baremetalstorage @ovh/dev-manager-enterprise-nutanixBackup
 /packages/manager/modules/carbon-calculator @ovh/dev-manager-gcj-all
 /packages/manager/modules/carrier-sip @ovh/dev-manager-web-collaboration

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, useNavigate, useOutletContext } from 'react-router-dom';
-import { BillingInformationsTileStandard } from '@ovh-ux/billing-informations';
+import { BillingInformationsTileStandard } from '@ovh-ux/manager-billing-informations';
 import { DashboardGridLayout } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
