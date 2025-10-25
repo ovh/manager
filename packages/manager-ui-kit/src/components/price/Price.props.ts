@@ -13,4 +13,10 @@ export type PriceProps = {
   isConvertIntervalUnit?: boolean;
   /** The locale for price formatting */
   locale: string;
+  /** The suffix for price formatting */
+  suffix?: string;
+  /** states if the price should be displayed as a starting price */
+  isStartingPrice?: boolean;
+  /** the label to display when the price is free */
+  freePriceLabel?: string;
 };
