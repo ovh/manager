@@ -1,6 +1,6 @@
 <div>
     <!-- <Wildcard> -->
-    <div class="d-flex mt-4">
+    <div class="d-flex mt-4" ng-if="$ctrl.showActionWildcard">
         <p
             class="mr-3 mb-1"
             data-translate="iam_action_select_all_actions_label"
@@ -13,6 +13,7 @@
         ></oui-switch>
     </div>
     <small
+        ng-if="$ctrl.showActionWildcard"
         class="d-block mb-4"
         data-translate="iam_action_select_all_actions_description"
     ></small>
@@ -30,8 +31,8 @@
 
     <!-- <MANAGED PERMISSIONS> -->
     <oui-collapsible
-        data-heading="{{ :: 'iam_managed_permissions_heading' | translate }}"
-        data-expanded="true"
+        data-heading="{{ :: $ctrl.managedPermissionsLabel | translate }}"
+        data-expanded="$ctrl.expandByDefault"
     >
         <div
             class="oui-checkbox ml-4"
@@ -62,7 +63,7 @@
     <oui-collapsible
         data-ng-repeat="actionTree in $ctrl.actionTrees track by actionTree.value"
         data-heading="{{ actionTree.value  | iamResourceType }}"
-        data-expanded="actionTree.expanded"
+        data-expanded="actionTree.expanded && $ctrl.expandByDefault"
     >
         <!-- <CustomAction> -->
         <ng-form

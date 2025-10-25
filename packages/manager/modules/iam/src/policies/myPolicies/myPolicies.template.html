@@ -33,6 +33,11 @@
             <span data-ng-bind="$row.identities.length"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
+            data-title="'iam_policies_datagrid_column_resources' | translate"
+        >
+            <span data-ng-bind="$row.resources.length"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'iam_policies_datagrid_column_actions' | translate"
         >
             <span data-ng-bind="$row.permissions.allow.length"></span>
@@ -66,6 +71,15 @@
             >
                 <span
                     data-translate="iam_policies_datagrid_topbar_create_policy"
+                ></span>
+            </oui-button>
+            <oui-button
+                data-on-click="$ctrl.openAdvancedSearchModal()"
+                data-variant="primary"
+                class="mb-3 d-inline-block align-middle"
+            >
+                <span
+                    data-translate="iam_policies_datagrid_topbar_advanced_search"
                 ></span>
             </oui-button>
         </oui-datagrid-topbar>
