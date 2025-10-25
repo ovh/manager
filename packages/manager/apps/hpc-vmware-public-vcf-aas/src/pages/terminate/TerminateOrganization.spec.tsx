@@ -45,9 +45,7 @@ describe('Organization Terminate Page', () => {
       cancelButton.click();
     });
 
-    const nameLabel = await screen.findByText(
-      labels.listing.managed_vcd_listing_name,
-    );
+    const nameLabel = await screen.findByText(labels.commun.dashboard.name);
     expect(nameLabel).toBeVisible();
   });
 
@@ -75,9 +73,7 @@ describe('Organization Terminate Page', () => {
     );
     expect(successBanner).toBeVisible();
 
-    const nameLabel = await screen.findByText(
-      labels.listing.managed_vcd_listing_name,
-    );
+    const nameLabel = await screen.findByText(labels.commun.dashboard.name);
     expect(nameLabel).toBeVisible();
   });
 });
