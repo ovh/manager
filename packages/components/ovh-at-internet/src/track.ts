@@ -54,6 +54,7 @@ export interface GenericTrackingData {
   complete_page_name?: string;
   page_theme?: string;
   pci_project_mode?: string;
+  support_language?: string;
 }
 
 export interface PageTrackingData extends GenericTrackingData {
