@@ -1,6 +1,7 @@
 import { TabsPanel, useProject } from '@ovh-ux/manager-pci-common';
 import {
   BaseLayout,
+  ChangelogButton,
   RedirectionGuard,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
@@ -15,7 +16,7 @@ import { Suspense, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useHref } from 'react-router-dom';
 import { ROUTE_PATHS } from '@/routes';
-import { CHECK_PRICES_DOC_LINK } from '@/constants';
+import { CHANGELOG_LINKS, CHECK_PRICES_DOC_LINK } from '@/constants';
 import GuideMenu from '@/components/GuideMenu.component';
 import { useArchives } from '@/api/hooks/useArchive';
 import { useTabs } from '@/hooks/useTabs';
@@ -59,7 +60,12 @@ export default function ColdArchivePage() {
         }
         header={{
           title: t('pci_projects_project_storages_cold_archive_label'),
-          headerButton: <GuideMenu />,
+          headerButton: (
+            <div className="flex items-center gap-x-3">
+              <ChangelogButton links={CHANGELOG_LINKS} />
+              <GuideMenu />
+            </div>
+          ),
         }}
         description={
           ((
