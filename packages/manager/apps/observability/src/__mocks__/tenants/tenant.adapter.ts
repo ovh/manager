@@ -1,6 +1,6 @@
 import { apiConfig } from '@/__mocks__/mock.config';
 import { getTenants as getTenantsFromMock } from '@/__mocks__/tenants/tenant.mock';
-import { getTenants as getTenantsFromApi } from '@/data/api/tenant';
+import { getTenants as getTenantsFromApi } from '@/data/api/tenants.api';
 import { ObservabilityServiceParams } from '@/types/ClientApi.type';
 import { Tenant } from '@/types/observability.type';
 

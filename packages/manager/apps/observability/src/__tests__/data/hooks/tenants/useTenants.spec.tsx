@@ -5,7 +5,7 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { getTenants } from '../../../../data/api/tenant';
-import { useTenants } from '../../../../data/hooks/tenants/useTenants';
+import { useTenants } from '../../../../data/hooks/tenants/useTenants.hook';
 import { Tenant } from '../../../../types/observability.type';
 
 // Mock the tenant
