@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
-import { useTenants } from '@/data/hooks/tenants/useTenants';
+import { useTenants } from '@/data/hooks/tenants/useTenants.hook';
 import { urls } from '@/routes/Routes.constants';
 
 export const useTenantsRedirect = () => {
