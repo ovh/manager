@@ -1,18 +1,18 @@
 import { UseQueryOptions, useQuery } from '@tanstack/react-query';
 
 import { getTenants } from '@/__mocks__/tenants/tenant.adapter';
-import { Tenant } from '@/types/observability.type';
+import { Tenant } from '@/types/tenants.type';
 
-export const getTenantsQueryKey = (serviceName: string) => ['tenants', serviceName];
+export const getTenantsQueryKey = (resourceName: string) => ['tenants', resourceName];
 
 export const useTenants = (
-  serviceName: string,
+  resourceName: string,
   queryOptions?: Omit<UseQueryOptions<Tenant[], Error>, 'queryKey' | 'queryFn'>,
 ) => {
   return useQuery({
-    queryKey: getTenantsQueryKey(serviceName),
-    queryFn: ({ signal }) => getTenants({ serviceName, signal }),
-    enabled: !!serviceName,
+    queryKey: getTenantsQueryKey(resourceName),
+    queryFn: ({ signal }) => getTenants({ resourceName, signal }),
+    enabled: !!resourceName,
     ...queryOptions,
   });
 };
