@@ -4,8 +4,8 @@ import { useObservabilityServices } from '@/data/hooks/services/useObservability
 import { ObservabilityService } from '@/types/observability.type';
 
 interface ObservabilityServiceContextType {
-  selectedService: string | undefined;
-  setSelectedService: (serviceId: string | undefined) => void;
+  selectedService: ObservabilityService | undefined;
+  setSelectedService: (service: ObservabilityService | undefined) => void;
   services: ObservabilityService[] | undefined;
   isLoading: boolean;
   isSuccess: boolean;
@@ -23,7 +23,9 @@ interface ObservabilityServiceProviderProps {
 export const ObservabilityServiceProvider: React.FC<ObservabilityServiceProviderProps> = ({
   children,
 }) => {
-  const [selectedService, setSelectedService] = useState<string | undefined>(undefined);
+  const [selectedService, setSelectedService] = useState<ObservabilityService | undefined>(
+    undefined,
+  );
   const { data: services, isLoading, error, isSuccess } = useObservabilityServices();
 
   const value = useMemo(
