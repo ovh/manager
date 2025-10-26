@@ -7,8 +7,8 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { useObservabilityServiceContext } from '../../contexts/ObservabilityService.context';
-import { useTenants } from '../../data/hooks/tenants/useTenants';
-import { useTenantsRedirect } from '../../hooks/useTenantsRedirect';
+import { useTenants } from '../../data/hooks/tenants/useTenants.hook';
+import { useTenantsRedirect } from '../../hooks/useTenantsRedirect.hook';
 import { urls } from '../../routes/Routes.constants';
 import { ObservabilityService, Tenant } from '../../types/observability.type';
 
@@ -17,7 +17,7 @@ vi.mock('react-router-dom', () => ({
   useNavigate: vi.fn(),
 }));
 
-vi.mock('@/data/hooks/tenants/useTenants', () => ({
+vi.mock('@/data/hooks/tenants/useTenants.hook', () => ({
   useTenants: vi.fn(),
 }));
 
