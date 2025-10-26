@@ -4,9 +4,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import ServicesDropDown from '../../components/ServicesDropDown.component';
-import { useObservabilityServiceContext } from '../../contexts/ObservabilityService.context';
-import { ObservabilityService } from '../../types/observability.type';
+import ServicesDropDown from '@/components/services/ServicesDropDown.component';
+import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
+import { ObservabilityService } from '@/types/observability.type';
 
 // Mock the context
 vi.mock('@/contexts/ObservabilityService.context', () => ({
@@ -243,7 +243,7 @@ describe('ServicesDropDown', () => {
       // Arrange
       mockUseObservabilityServiceContext.mockReturnValue({
         setSelectedService: mockSetSelectedService,
-        selectedService: 'service-1',
+        selectedService: mockServices[0],
         services: mockServices,
         isLoading: false,
         isSuccess: true,
@@ -277,7 +277,7 @@ describe('ServicesDropDown', () => {
 
       if (select) fireEvent(select, odsChangeEvent);
 
-      expect(mockSetSelectedService).toHaveBeenCalledWith('service-2');
+      expect(mockSetSelectedService).toHaveBeenCalledWith(mockServices[1]);
     });
 
     it('should handle undefined value in onOdsChange', () => {
@@ -295,27 +295,7 @@ describe('ServicesDropDown', () => {
       });
 
       if (select) fireEvent(select, odsChangeEvent);
-
       expect(mockSetSelectedService).toHaveBeenCalledWith(undefined);
-    });
-
-    it('should convert value to string when calling setSelectedService', () => {
-      // Act
-      const { container } = render(<ServicesDropDown />, {
-        wrapper: createWrapper(),
-      });
-
-      // Assert
-      const select = getOdsElement(container, 'ods-select');
-
-      // Simulate change event with number value (should be converted to string)
-      const odsChangeEvent = new CustomEvent('odsChange', {
-        detail: { value: 123 },
-      });
-
-      if (select) fireEvent(select, odsChangeEvent);
-
-      expect(mockSetSelectedService).toHaveBeenCalledWith('123');
     });
   });
 
@@ -350,7 +330,7 @@ describe('ServicesDropDown', () => {
 
       // Assert
       const select = getOdsElement(container, 'ods-select');
-      expect(select).toHaveClass('max-w-[15rem]');
+      expect(select).toHaveClass('max-w-[20rem]');
     });
 
     it('should apply correct CSS classes to skeleton when loading', () => {
@@ -371,7 +351,7 @@ describe('ServicesDropDown', () => {
 
       // Assert
       const skeleton = getOdsElement(container, 'ods-skeleton');
-      expect(skeleton).toHaveClass('max-w-[15rem]');
+      expect(skeleton).toHaveClass('max-w-[20rem]');
     });
   });
 
