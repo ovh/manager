@@ -8,7 +8,7 @@ import {
   ObservabilityServiceProvider,
   useObservabilityServiceContext,
 } from '../../contexts/ObservabilityService.context';
-import { useObservabilityServices } from '../../data/hooks/services/useObservabilityServices';
+import { useObservabilityServices } from '../../data/hooks/services/useObservabilityServices.hook.ts';
 import { ObservabilityService } from '../../types/observability.type';
 
 // Mock the useObservabilityServices hook
