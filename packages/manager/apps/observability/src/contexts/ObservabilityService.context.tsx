@@ -1,6 +1,6 @@
 import React, { ReactNode, createContext, useContext, useMemo, useState } from 'react';
 
-import { useObservabilityServices } from '@/data/hooks/services/useObservabilityServices';
+import { useObservabilityServices } from '@/data/hooks/services/useObservabilityServices.hook';
 import { ObservabilityService } from '@/types/observability.type';
 
 interface ObservabilityServiceContextType {
