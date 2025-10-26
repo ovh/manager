@@ -1,8 +1,8 @@
 import { apiConfig } from '@/__mocks__/mock.config';
 import { getTenants as getTenantsFromMock } from '@/__mocks__/tenants/tenant.mock';
+import { ObservabilityServiceParams } from '@/data/api/observability.props';
 import { getTenants as getTenantsFromApi } from '@/data/api/tenants.api';
-import { ObservabilityServiceParams } from '@/types/ClientApi.type';
-import { Tenant } from '@/types/observability.type';
+import { Tenant } from '@/types/tenants.type';
 
 export const getTenants = async (params: ObservabilityServiceParams): Promise<Tenant[]> => {
   const isMockEnabled = apiConfig.mode === 'mock';
