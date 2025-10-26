@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { OdsText } from '@ovhcloud/ods-components/react';
 
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
-import { useTenants } from '@/data/hooks/tenants/useTenants';
+import { useTenants } from '@/data/hooks/tenants/useTenants.hook';
 import { Tenant } from '@/types/observability.type';
 
 export default function TenantsListingPage() {
