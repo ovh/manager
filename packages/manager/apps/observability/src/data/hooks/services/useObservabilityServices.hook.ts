@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { getObservabilityServices } from '@/data/api/observability';
+import { getObservabilityServices } from '@/data/api/observability.api';
 
 export const getObservabilityServicesQueryKey = () => ['observabilityServices'];
 
