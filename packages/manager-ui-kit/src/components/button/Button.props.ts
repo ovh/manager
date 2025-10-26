@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { JSX, PropsWithChildren } from 'react';
 
 import { ButtonProp, TOOLTIP_POSITION } from '@ovhcloud/ods-react';
 

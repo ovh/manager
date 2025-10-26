@@ -9,7 +9,8 @@ import {
   Skeleton,
 } from '@ovhcloud/ods-react';
 
-import { useGetResourceTags } from '../../../../hooks/iam/useOvhIam';
+import { useGetResourceTags } from '@/hooks/iam/useOvhIam';
+
 import { FilterTagsFormProps } from './FilterTagsForm.props';
 
 export function FilterTagsForm({ resourceType, tagKey, setTagKey, setValue }: FilterTagsFormProps) {

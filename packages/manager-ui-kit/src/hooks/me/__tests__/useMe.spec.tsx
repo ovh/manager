@@ -5,8 +5,8 @@ import { vi } from 'vitest';
 
 import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
 
-import { useMe } from '../useMe';
-import { IMe } from '../useMe.props';
+import { IMe } from '@/hooks/me/IMe.type';
+import { useMe } from '@/hooks/me/useMe';
 
 const createShellContext = (me: IMe | null = null) => ({
   environment: {

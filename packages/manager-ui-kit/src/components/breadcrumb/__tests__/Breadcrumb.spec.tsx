@@ -1,10 +1,9 @@
 import { vitest } from 'vitest';
 
+import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { render } from '@/setupTest';
 
-import { Breadcrumb } from '../Breadcrumb.component';
-
-vitest.mock('../../../hooks/breadcrumb/useBreadcrumb', () => ({
+vitest.mock('@/hooks/breadcrumb/useBreadcrumb', () => ({
   useBreadcrumb: vitest.fn(({ hideRootLabel }) => [
     { label: 'vRack services', href: '/', hideLabel: hideRootLabel },
     { label: 'vRack service', href: '/:id', hideLabel: false },

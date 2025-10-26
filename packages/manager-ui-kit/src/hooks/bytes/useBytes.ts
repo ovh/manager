@@ -2,10 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
-const UNITS = {
-  1000: ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
-  1024: ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'],
-};
+import { UNITS } from '@/commons';
 
 export function useBytes() {
   const { t } = useTranslation(NAMESPACES.BYTES);
@@ -16,5 +13,6 @@ export function useBytes() {
       `unit_size_${UNITS[format][i]}`,
     )}`;
   };
+
   return { formatBytes };
 }

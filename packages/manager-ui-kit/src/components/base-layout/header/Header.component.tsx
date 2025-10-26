@@ -2,7 +2,7 @@ import React from 'react';
 
 import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
-import { HeaderProps } from './Header.props';
+import { HeaderProps } from '@/components/base-layout/header/Header.props';
 
 export const Header: React.FC<HeaderProps> = ({ title, guideMenu, changelogButton }) => {
   return (

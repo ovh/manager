@@ -8,7 +8,7 @@ import { render } from '@/setupTest';
 import { Topbar } from '../Topbar.component';
 
 // Mock the IAM hook
-vi.mock('../../../../../hooks/iam', () => ({
+vi.mock('@/hooks/iam/useOvhIam', () => ({
   useAuthorizationIam: vi.fn(() => ({
     isAuthorized: true,
     isLoading: false,

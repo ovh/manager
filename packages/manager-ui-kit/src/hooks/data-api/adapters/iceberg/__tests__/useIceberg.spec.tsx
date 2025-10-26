@@ -1,11 +1,11 @@
 import { RenderHookResult, renderHook } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 
-import { IcebergFetchParams, fetchWithIceberg } from '@ovh-ux/manager-core-api';
+import { fetchWithIceberg } from '@ovh-ux/manager-core-api';
 
 import { ResultObj, columns } from '../../../__mocks__/mock';
 import { getSorting, getWrapper } from '../../../__tests__/Test.utils';
-import type { UseDataApiResult } from '../../../ports/use-data-api/useDataApi.types';
+import type { UseDataApiResult } from '../../../ports/useDataApi.types';
 import { useIceberg } from '../useIceberg';
 import { UseIcebergParams } from '../useIceberg.type';
 

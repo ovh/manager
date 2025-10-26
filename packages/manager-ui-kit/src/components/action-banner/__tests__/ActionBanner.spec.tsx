@@ -3,8 +3,8 @@ import React from 'react';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { vitest } from 'vitest';
 
-import { ActionBanner } from '../ActionBanner.component';
-import { ActionBannerProps } from '../ActionBanner.props';
+import { ActionBanner } from '@/components/action-banner/ActionBanner.component';
+import { ActionBannerProps } from '@/components/action-banner/ActionBanner.props';
 
 const renderComponent = (props: ActionBannerProps) => render(<ActionBanner {...props} />);
 

@@ -1,12 +1,12 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 
 import { apiClient } from '@ovh-ux/manager-core-api';
 
-import { useDataApi } from '..';
-import { formatIamTagsFromResources } from '../../utils/format-tags';
-import { IamCheckResponse, IamInterface, IamObject } from './iam.interface';
+import { formatIamTagsFromResources } from '@/commons/utils/TagsHelper';
+import { useDataApi } from '@/hooks/data-api/ports/useDataApi';
+import { IAMType, IamCheckResponse, IamObject } from '@/hooks/iam/IAM.type';
 
 export const fetchAuthorizationsCheck = async ({
   actions,
@@ -22,7 +22,7 @@ export const fetchAuthorizationsCheck = async ({
   return response?.data;
 };
 
-export function useAuthorizationsIam({ actions, urns }: IamInterface) {
+export function useAuthorizationsIam({ actions, urns }: IAMType) {
   const { data } = useQuery({
     queryKey: ['iam-authorization', urns, actions],
     queryFn: () => fetchAuthorizationsCheck({ actions: actions || [], urns: urns || [] }),
@@ -46,6 +46,7 @@ export const fetchAuthorizationCheck = async (
   });
   return response?.data;
 };
+
 export function useAuthorizationIam(
   actions: string[],
   urn: string,

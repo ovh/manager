@@ -1,14 +1,14 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { vitest } from 'vitest';
 
+import { Button } from '@/components';
+import { ButtonProps } from '@/components/button/Button.props';
+import { IamAuthorizationResponse, useAuthorizationIam } from '@/hooks';
 import { render } from '@/setupTest';
 
-import { useAuthorizationIam } from '../../../hooks/iam';
-import { IamAuthorizationResponse } from '../../../hooks/iam/iam.interface';
-import { Button, ButtonProps } from '../index';
 import fr_FR from '../translations/Messages_fr_FR.json';
 
-vitest.mock('../../../hooks/iam', () => ({
+vitest.mock('@/hooks/iam/useOvhIam', () => ({
   useAuthorizationIam: vitest.fn().mockReturnValue({
     isAuthorized: true,
     isLoading: false,

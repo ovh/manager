@@ -3,7 +3,12 @@ import { vitest } from 'vitest';
 
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
-import { mockGetEnvironment, mockTrackPage, renderWithContext } from '../../../utils/Test.utils';
+import {
+  mockGetEnvironment,
+  mockTrackPage,
+  renderWithContext,
+} from '@/commons/tests-utils/Test.utils';
+
 import { Error } from '../Error.component';
 import { ErrorObject, ErrorProps } from '../Error.props';
 import tradFr from '../translations/Messages_fr_FR.json';

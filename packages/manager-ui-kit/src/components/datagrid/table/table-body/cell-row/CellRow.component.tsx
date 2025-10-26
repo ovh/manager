@@ -2,10 +2,10 @@ import React from 'react';
 
 import { BADGE_COLOR } from '@ovhcloud/ods-react';
 
-import { Link } from '../../../../Link';
-import { Badge } from '../../../../badge';
-import { Text } from '../../../../text';
-import { ColumnMetaType } from '../../../Datagrid.props';
+import { Badge } from '@/components/badge/Badge.component';
+import { ColumnMetaType } from '@/components/datagrid/Datagrid.props';
+import { Link } from '@/components/link/Link.component';
+import { Text } from '@/components/text/Text.component';
 
 export const CellRow = ({
   badgeColor,

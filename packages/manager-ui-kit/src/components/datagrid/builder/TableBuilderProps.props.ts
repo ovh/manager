@@ -1,8 +1,9 @@
-import { MutableRefObject } from 'react';
+import { JSX, MutableRefObject } from 'react';
 
-import { ColumnDef, ColumnSort, Row, VisibilityState } from '@tanstack/react-table';
+import type { ColumnDef, ColumnSort, Row, VisibilityState } from '@tanstack/react-table';
 
-import { ExpandedProps, RowSelectionProps } from '../Datagrid.props';
+import { ExpandedProps, RowSelectionProps } from '@/components/datagrid/Datagrid.props';
+
 import { ExpandableRow } from '../useDatagrid.props';
 
 export type TableBuilderProps<T extends ExpandableRow<T>> = {

@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { FetchV2Params, fetchV2 } from '@ovh-ux/manager-core-api';
+import { fetchV2 } from '@ovh-ux/manager-core-api';
 
 import { items } from '../../../__mocks__/mock';
 import { getWrapper } from '../../../__tests__/Test.utils';

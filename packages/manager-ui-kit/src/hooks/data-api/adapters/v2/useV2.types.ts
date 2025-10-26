@@ -1,4 +1,4 @@
-import { FetchV2Params } from '@ovh-ux/manager-core-api';
+import type { FetchV2Params } from '@ovh-ux/manager-core-api';
 
 export type UseV2Params = FetchV2Params & {
   fetchAll?: boolean;

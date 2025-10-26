@@ -14,8 +14,10 @@ import {
   PopoverTrigger,
 } from '@ovhcloud/ods-react';
 
-import { Link, LinkType } from '../Link';
-import { GuideMenuProps } from './GuideMenu.props';
+import { GuideMenuProps } from '@/components/guide-menu/GuideMenu.props';
+import { Link } from '@/components/link/Link.component';
+import { LinkType } from '@/components/link/Link.props';
+
 import './translations/translation';
 
 export const GuideMenu: React.FC<GuideMenuProps> = ({ isLoading, items }) => {

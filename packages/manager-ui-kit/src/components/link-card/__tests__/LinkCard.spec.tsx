@@ -3,7 +3,7 @@ import { describe, it, vitest } from 'vitest';
 
 import { badges, description, href, img, renderLinkCard, texts } from './LinkCard.spec.utils';
 
-vitest.mock('../../../hooks/iam', () => ({
+vitest.mock('@/hooks/iam/useOvhIam', () => ({
   useAuthorizationIam: vi.fn(() => ({ isAuthorized: true })),
 }));
 

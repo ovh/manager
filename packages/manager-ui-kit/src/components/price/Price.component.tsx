@@ -4,8 +4,9 @@ import { useTranslation } from 'react-i18next';
 
 import { Text } from '@ovhcloud/ods-react';
 
-import { IntervalUnitType } from '../../enumTypes';
-import { PriceProps } from './Price.props';
+import { DateIntervalOptions } from '@/commons';
+import { PriceProps } from '@/components/price/Price.props';
+
 import {
   checkAsianFormat,
   checkFranceFormat,
@@ -48,7 +49,7 @@ export function Price({
   );
 
   const intervalUnitText =
-    intervalUnit && intervalUnit !== IntervalUnitType.none ? t(`price_per_${intervalUnit}`) : '';
+    intervalUnit && intervalUnit !== DateIntervalOptions.none ? t(`price_per_${intervalUnit}`) : '';
 
   const components = [
     {

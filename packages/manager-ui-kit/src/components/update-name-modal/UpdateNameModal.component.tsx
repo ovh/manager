@@ -15,9 +15,10 @@ import {
   TEXT_PRESET,
 } from '@ovhcloud/ods-react';
 
-import { Modal } from '../modal';
-import { Text } from '../text';
-import { UpdateNameModalProps } from './UpdateNameModal.props';
+import { Modal } from '@/components/modal/Modal.component';
+import { Text } from '@/components/text/Text.component';
+import { UpdateNameModalProps } from '@/components/update-name-modal/UpdateNameModal.props';
+
 import './translations/translations';
 
 export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({

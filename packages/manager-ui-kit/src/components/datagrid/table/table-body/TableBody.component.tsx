@@ -1,6 +1,6 @@
 import { Fragment, useCallback, useEffect, useMemo } from 'react';
 
-import { Row, flexRender } from '@tanstack/react-table';
+import { flexRender } from '@tanstack/react-table';
 import { useVirtualizer } from '@tanstack/react-virtual';
 
 import { TableBodyProps } from './TableBody.props';

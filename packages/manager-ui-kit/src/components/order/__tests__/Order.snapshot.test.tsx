@@ -3,12 +3,11 @@ import React from 'react';
 import type { MockInstance } from 'vitest';
 import { vitest } from 'vitest';
 
+import { Order } from '@/components';
+import { useAuthorizationIam } from '@/hooks';
 import { render } from '@/setupTest';
 
-import { useAuthorizationIam } from '../../../hooks/iam';
-import { Order } from '../Order.component';
-
-vitest.mock('../../../hooks/iam', () => ({
+vitest.mock('@/hooks/iam/useOvhIam', () => ({
   useAuthorizationIam: vitest.fn().mockReturnValue({
     isAuthorized: true,
     isLoading: false,

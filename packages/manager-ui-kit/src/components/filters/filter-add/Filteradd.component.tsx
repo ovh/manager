@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -13,9 +13,10 @@ import {
 
 import { FilterComparator, FilterTypeCategories } from '@ovh-ux/manager-core-api';
 
-import { Button } from '../../button/Button.component';
+import { Button } from '@/components/button/Button.component';
+import { FilterAddProps } from '@/components/filters/filter-add/FilterAdd.props';
+
 import '../translations';
-import { FilterAddProps } from './FilterAdd.props';
 import { FilterSectionValue } from './filter-section-value/FilterSectionValue.component';
 import { FilterTagsForm } from './filter-tags-form/FilterTagsForm.component';
 

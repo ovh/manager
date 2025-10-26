@@ -4,23 +4,9 @@ import { useLocation } from 'react-router-dom';
 
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
-export type BreadcrumbItem = {
-  label: string | undefined;
-  href?: string;
-  hideLabel?: boolean;
-};
+import { BreadcrumbItem, BreadcrumbType } from './Breadcrumb.type';
 
-export interface UseBreadcrumbProps {
-  rootLabel?: string;
-  appName?: string;
-  projectId?: string;
-  hideRootLabel?: boolean;
-}
-export const useBreadcrumb = ({
-  rootLabel,
-  appName,
-  hideRootLabel = false,
-}: UseBreadcrumbProps) => {
+export const useBreadcrumb = ({ rootLabel, appName, hideRootLabel = false }: BreadcrumbType) => {
   const { shell } = useContext(ShellContext);
   const [root, setRoot] = useState<BreadcrumbItem[]>([]);
   const [paths, setPaths] = useState<BreadcrumbItem[]>([]);

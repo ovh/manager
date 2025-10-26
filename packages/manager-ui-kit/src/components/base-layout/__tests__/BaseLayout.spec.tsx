@@ -3,11 +3,11 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { vitest } from 'vitest';
 
-import { BaseLayout } from '..';
-import { IamAuthorizationResponse } from '../../../hooks/iam/iam.interface';
-import { GuideMenu, GuideMenuItem } from '../../guide-menu';
+import { BaseLayout, GuideMenu } from '@/components';
+import { GuideMenuItem } from '@/components/guide-menu/GuideMenu.props';
+import { IamAuthorizationResponse } from '@/hooks/iam/IAM.type';
 
-vitest.mock('../../../hooks/iam', () => ({
+vitest.mock('@/hooks/iam/useOvhIam', () => ({
   useAuthorizationIam: vitest.fn().mockReturnValue({
     isAuthorized: true,
     isLoading: false,

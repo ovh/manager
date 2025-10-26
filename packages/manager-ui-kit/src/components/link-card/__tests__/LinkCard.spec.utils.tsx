@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react';
 
-import { LinkCard, LinkCardProps } from '..';
+import { LinkCard } from '@/components';
+import { LinkCardProps } from '@/components/link-card/LinkCard.props';
 
 export const texts = {
   title: 'Titre du produit',

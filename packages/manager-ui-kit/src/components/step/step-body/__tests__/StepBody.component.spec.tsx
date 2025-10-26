@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import { expect, it, vitest } from 'vitest';
 
 import { StepContext } from '../../StepContext';
-import StepBody from '../StepBody.component';
+import { StepBody } from '../StepBody.component';
 
 // Mocking Suspense fallback to avoid rendering real spinner
 vitest.mock('@ovhcloud/ods-react', () => ({

@@ -1,6 +1,6 @@
 import { ComponentProps } from 'react';
 
-import { Badge } from '../badge';
+import { Badge } from '@/components';
 
 export type ResourceStatus =
   | 'active'

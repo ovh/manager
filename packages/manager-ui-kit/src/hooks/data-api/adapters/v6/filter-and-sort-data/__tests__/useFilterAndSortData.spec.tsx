@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import * as managerCoreApi from '@ovh-ux/manager-core-api';
 
-import { ResultObj, columns, items } from '../../../../__mocks__/mock';
+import { columns, items } from '../../../../__mocks__/mock';
 import { getFilter, getSorting } from '../../../../__tests__/Test.utils';
 import { useFilterAndSortData } from '../useFilterAndSortData';
 

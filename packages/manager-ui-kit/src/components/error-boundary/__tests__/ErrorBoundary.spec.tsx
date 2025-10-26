@@ -3,7 +3,8 @@ import { useRouteError } from 'react-router-dom';
 import { fireEvent, screen } from '@testing-library/react';
 import { vitest } from 'vitest';
 
-import { renderWithContext, shellContext } from '../../../utils/Test.utils';
+import { renderWithContext, shellContext } from '@/commons/tests-utils/Test.utils';
+
 import { ErrorProps } from '../../error/Error.props';
 import tradFr from '../../error/translations/Messages_fr_FR.json';
 import { ErrorBoundary } from '../ErrorBoundary.component';

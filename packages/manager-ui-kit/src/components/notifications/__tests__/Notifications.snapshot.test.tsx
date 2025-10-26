@@ -3,8 +3,9 @@ import React from 'react';
 import { act, render, renderHook } from '@testing-library/react';
 import { vitest } from 'vitest';
 
+import { NotificationType } from '@/components/notifications/Notifications.props';
+
 import { Notifications } from '../Notifications.component';
-import { NotificationType } from '../Notifications.type';
 import { useNotifications } from '../useNotifications';
 
 vitest.useFakeTimers();

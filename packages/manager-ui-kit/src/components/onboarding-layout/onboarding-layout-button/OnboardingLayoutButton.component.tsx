@@ -2,10 +2,10 @@ import { FC } from 'react';
 
 import { BUTTON_SIZE, BUTTON_VARIANT, ICON_NAME, Icon } from '@ovhcloud/ods-react';
 
-import { Button } from '../../button';
-import { OnboardingLayoutButtonProps } from './OnboardingLayoutButton.type';
+import { Button } from '@/components/button/Button.component';
+import { OnboardingLayoutButtonProps } from '@/components/onboarding-layout/onboarding-layout-button/OnboardingLayoutButton.props';
 
-const OnboardingLayoutButton: FC<OnboardingLayoutButtonProps> = ({
+export const OnboardingLayoutButton: FC<OnboardingLayoutButtonProps> = ({
   orderButtonLabel,
   orderHref,
   onOrderButtonClick,
@@ -61,5 +61,3 @@ const OnboardingLayoutButton: FC<OnboardingLayoutButtonProps> = ({
     </div>
   );
 };
-
-export default OnboardingLayoutButton;

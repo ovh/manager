@@ -4,7 +4,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
 import { vitest } from 'vitest';
 
-import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import type { ShellContextType } from '@ovh-ux/manager-react-shell-client';
 
 import { useBreadcrumb } from './useBreadcrumb';
 

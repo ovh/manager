@@ -1,12 +1,13 @@
-import { useCallback, useEffect, useState } from 'react';
+import { JSX, useCallback, useEffect, useState } from 'react';
 
 import { clsx } from 'clsx';
 import isEqual from 'lodash.isequal';
 
 import { Card } from '@ovhcloud/ods-react';
 
-import { hashCode } from '../../utils';
-import { TilesInputProps, TilesInputState } from './TilesInput.props';
+import { hashCode } from '@/commons/utils/MukHelper';
+import { TilesInputProps, TilesInputState } from '@/components/tiles-input/TilesInput.props';
+
 import { stackItems } from './TilesInput.utils';
 
 export const TilesInputComponent = <T, S>({

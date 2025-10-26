@@ -7,20 +7,17 @@ import { ServiceStateBadge } from '../ServiceStateBadge.component';
 import { ResourceStatus } from '../ServiceStateBadge.props';
 import { SERVICE_STATES } from './ServiceStateBadge.spec.util';
 
-vitest.mock('../../hooks/iam');
+vitest.mock('@/hooks/iam/useOvhIam');
 
 const renderComponent = (props: React.ComponentProps<typeof ServiceStateBadge>) => {
   return render(<ServiceStateBadge {...props} data-testid="badge" />);
 };
 
 describe('should display manager state with the good color', () => {
-  it.each(SERVICE_STATES)(
-    `should display manager $state badge for $color`,
-    ({ state, label, color }) => {
-      const { container } = renderComponent({ state });
-      expect(container).toMatchSnapshot();
-    },
-  );
+  it.each(SERVICE_STATES)(`should display manager $state badge for $color`, ({ state }) => {
+    const { container } = renderComponent({ state });
+    expect(container).toMatchSnapshot();
+  });
 
   it(`should display loading Badge`, () => {
     const { container } = renderComponent({

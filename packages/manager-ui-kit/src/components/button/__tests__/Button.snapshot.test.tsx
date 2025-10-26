@@ -3,12 +3,11 @@ import { vitest } from 'vitest';
 
 import { TOOLTIP_POSITION } from '@ovhcloud/ods-react';
 
+import { Button } from '@/components';
+import { useAuthorizationIam } from '@/hooks';
 import { render } from '@/setupTest';
 
-import { useAuthorizationIam } from '../../../hooks/iam';
-import { Button } from '../index';
-
-vitest.mock('../../../hooks/iam', () => ({
+vitest.mock('@/hooks/iam/useOvhIam', () => ({
   useAuthorizationIam: vitest.fn().mockReturnValue({
     isAuthorized: true,
     isLoading: false,

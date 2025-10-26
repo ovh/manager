@@ -12,7 +12,7 @@ const mocks = vi.hoisted(() => ({
   useGetResourceTags: vi.fn(),
 }));
 
-vi.mock('../../../../hooks/iam/useOvhIam', () => ({
+vi.mock('@/hooks/iam/useOvhIam', () => ({
   useGetResourceTags: mocks.useGetResourceTags,
 }));
 

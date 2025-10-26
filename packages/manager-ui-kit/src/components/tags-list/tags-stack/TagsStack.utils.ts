@@ -1,5 +1,5 @@
 import { MORE_TAGS_ICON_WIDTH } from './TagsStack.constants';
-import { HTMLBadgeElement } from './TagsStack.type';
+import { HTMLBadgeElement } from './TagsStack.props';
 
 const getBadgeSpacings = (badgeStyles: CSSStyleDeclaration) => {
   return (

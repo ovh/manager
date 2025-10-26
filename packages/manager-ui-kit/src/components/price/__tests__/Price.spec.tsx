@@ -3,8 +3,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { vitest } from 'vitest';
 
-import { IntervalUnitType, OvhSubsidiary } from '../../../enumTypes';
-import Price from '../Price.component';
+import { DateIntervalOptions, OvhSubsidiary } from '@/commons';
+import { Price } from '@/components';
 
 vitest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -33,7 +33,7 @@ describe('Price component', () => {
   const baseProps = {
     value: 3948000000,
     ovhSubsidiary: OvhSubsidiary.FR,
-    intervalUnit: IntervalUnitType.month,
+    intervalUnit: DateIntervalOptions.month,
   };
   const priceDefault = '39,48 €';
   const priceHtMonth = '39,48 € price_ht_label price_per_month';
@@ -44,7 +44,7 @@ describe('Price component', () => {
     const props = {
       ...baseProps,
       value: 0,
-      intervalUnit: IntervalUnitType.none,
+      intervalUnit: DateIntervalOptions.none,
       locale: localeFr,
     };
     renderPriceComponent(props);

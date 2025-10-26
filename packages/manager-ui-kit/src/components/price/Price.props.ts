@@ -1,4 +1,4 @@
-import { IntervalUnitType, OvhSubsidiary } from '../../enumTypes';
+import { DateIntervalOptions, OvhSubsidiary } from '@/commons';
 
 export type PriceProps = {
   /** The price value to display */
@@ -6,7 +6,7 @@ export type PriceProps = {
   /** The tax value to display */
   tax?: number;
   /** The interval unit for the price (day, month, year) */
-  intervalUnit?: IntervalUnitType;
+  intervalUnit?: DateIntervalOptions;
   /** The OVH subsidiary to determine price format */
   ovhSubsidiary: OvhSubsidiary;
   /** Whether to convert the price based on interval unit */

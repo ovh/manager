@@ -1,15 +1,14 @@
 import { act, fireEvent, waitFor } from '@testing-library/react';
 import { vi, vitest } from 'vitest';
 
+import { TagsFilterFormProps } from '@/components/filters/Filter.props';
+import { FilterAddProps } from '@/components/filters/filter-add/FilterAdd.props';
+import { FilterAdd } from '@/components/filters/filter-add/Filteradd.component';
+import { IamAuthorizationResponse } from '@/hooks/iam/IAM.type';
+import { useAuthorizationIam, useGetResourceTags } from '@/hooks/iam/useOvhIam';
 import { render } from '@/setupTest';
 
-import { useAuthorizationIam } from '../../../../hooks/iam';
-import { IamAuthorizationResponse } from '../../../../hooks/iam/iam.interface';
-import { TagsFilterFormProps } from '../../Filter.props';
-import { FilterAddProps } from '../FilterAdd.props';
-import { FilterAdd } from '../Filteradd.component';
-
-vi.mock('../../../../hooks/iam');
+vi.mock('@/hooks/iam/useOvhIam');
 
 vi.mock('./tags-filter-form.component', () => {
   return {
@@ -41,7 +40,8 @@ vi.mock('@ovhcloud/ods-react', async () => {
   };
 });
 
-const mockedHook = useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
+const mockedAuthHook = useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
+const mockedResourcesTagsHook = useGetResourceTags as unknown as jest.Mock;
 
 const renderComponent = (props: FilterAddProps) => {
   return render(<FilterAdd {...props} />);
@@ -49,10 +49,14 @@ const renderComponent = (props: FilterAddProps) => {
 
 describe('FilterAdd tests', () => {
   beforeEach(() => {
-    mockedHook.mockReturnValue({
+    mockedAuthHook.mockReturnValue({
       isAuthorized: true,
       isLoading: false,
       isFetched: true,
+    });
+    mockedResourcesTagsHook.mockReturnValue({
+      isError: false,
+      isLoading: false,
     });
   });
 

@@ -4,10 +4,11 @@ import { vi } from 'vitest';
 
 import { FilterComparator, FilterTypeCategories } from '@ovh-ux/manager-core-api';
 
+import { UseDataApiResult } from '@/hooks';
+
 import { ResultObj, columns, items } from '../../../__mocks__/mock';
-import { getFilter, getSorting, getWrapper } from '../../../__tests__/Test.utils';
-import { UseQueryOptions } from '../../../infra/tanstack/use-query';
-import { UseDataApiResult } from '../../../ports/use-data-api/useDataApi.types';
+import { getFilter, getWrapper } from '../../../__tests__/Test.utils';
+import { UseQueryOptions } from '../../../infra/tanstack';
 import { useV6 } from '../useV6';
 import { ResourcesV6Params } from '../v6.type';
 

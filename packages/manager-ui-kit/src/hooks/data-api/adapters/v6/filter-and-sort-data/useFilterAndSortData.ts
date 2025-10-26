@@ -1,10 +1,12 @@
 import { useMemo } from 'react';
 
-import { SortingState } from '@tanstack/react-table';
+import type { SortingState } from '@tanstack/react-table';
 
-import { Filter, FilterTypeCategories, applyFilters } from '@ovh-ux/manager-core-api';
+import { FilterTypeCategories, applyFilters } from '@ovh-ux/manager-core-api';
+import type { Filter } from '@ovh-ux/manager-core-api';
 
-import { DatagridColumn } from '../../../../../components';
+import { DatagridColumn } from '@/components/datagrid/Datagrid.props';
+
 import { compare } from './filterAndSort.utils';
 
 export const useFilterAndSortData = <TData = Record<string, unknown>>({

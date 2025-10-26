@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { NotificationType } from '../Notifications.type';
-import useNotifications, { NOTIFICATION_MINIMAL_DISPLAY_TIME } from '../useNotifications';
+import { NotificationType } from '../Notifications.props';
+import { NOTIFICATION_MINIMAL_DISPLAY_TIME, useNotifications } from '../useNotifications';
 
 describe('useNotifications Hook', () => {
   beforeEach(() => {

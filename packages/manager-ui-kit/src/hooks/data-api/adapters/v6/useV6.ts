@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { v6 } from '@ovh-ux/manager-core-api';
 
-import { useQuery } from '../../infra/tanstack/use-query';
-import { UseDataApiResult } from '../../ports/use-data-api/useDataApi.types';
-import { useDataRetrievalOperations } from '../../utils/data-retrieval-operations/useDataRetrievalOperations';
+import { useQuery } from '../../infra/tanstack';
+import { UseDataApiResult } from '../../ports/useDataApi.types';
+import { useDataRetrievalOperations } from '../../useDataRetrievalOperations';
 import { useFilterAndSortData } from './filter-and-sort-data/useFilterAndSortData';
 import { FetchV6Result, ResourcesV6Params } from './v6.type';
 

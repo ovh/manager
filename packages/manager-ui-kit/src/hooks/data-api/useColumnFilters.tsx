@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
-import { Filter, FilterComparator, FilterTypeCategories } from '@ovh-ux/manager-core-api';
+import { FilterComparator, FilterTypeCategories } from '@ovh-ux/manager-core-api';
+import type { Filter } from '@ovh-ux/manager-core-api';
 
-import { FilterWithLabel } from '../../components/filters/Filter.props';
+import { FilterWithLabel } from '@/components/filters/Filter.props';
+import { filterEquals } from '@/hooks/data-api/utils/DataApi.utils';
+
 import '../../components/filters/translations';
-
-const filterEquals = (a: Filter, b: Filter) =>
-  a.key === b.key && a.value === b.value && a.comparator === b.comparator;
 
 export function useColumnFilters() {
   const [filters, setFilters] = useState<FilterWithLabel[]>([]);

@@ -1,15 +1,14 @@
 import { act } from '@testing-library/react';
 import { beforeEach, vi } from 'vitest';
 
+import { FilterAddProps } from '@/components/filters/filter-add/FilterAdd.props';
+import { FilterAdd } from '@/components/filters/filter-add/Filteradd.component';
 import { cleanup, render } from '@/setupTest';
-
-import { FilterAddProps } from '../FilterAdd.props';
-import { FilterAdd } from '../Filteradd.component';
 
 const mockUseGetResourceTags = vi.fn();
 const mockUseAuthorizationIam = vi.fn();
 
-vi.mock('../../../../hooks/iam/useOvhIam', () => ({
+vi.mock('@/hooks/iam/useOvhIam', () => ({
   useGetResourceTags: () => mockUseGetResourceTags(),
   useAuthorizationIam: () => mockUseAuthorizationIam(),
 }));

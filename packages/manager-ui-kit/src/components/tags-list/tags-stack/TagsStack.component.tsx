@@ -3,8 +3,7 @@ import { FC, MouseEvent, useEffect, useRef, useState } from 'react';
 import { BADGE_COLOR, Badge, ICON_NAME, Icon, Link } from '@ovhcloud/ods-react';
 
 import { BADGE_SPACINGS, MORE_TAGS_ICON_WIDTH } from './TagsStack.constants';
-import { TagsStackProps } from './TagsStack.props';
-import { HTMLBadgeElement } from './TagsStack.type';
+import { HTMLBadgeElement, TagsStackProps } from './TagsStack.props';
 import { getVisibleTagCount } from './TagsStack.utils';
 
 export const TagsStack: FC<TagsStackProps> = ({ tags, maxLines, onClick }) => {

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { JSX, useState } from 'react';
 
 import { Tab, TabList, Tabs, TabsValueChangeEvent } from '@ovhcloud/ods-react';
 

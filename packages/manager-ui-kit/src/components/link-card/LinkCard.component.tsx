@@ -4,9 +4,11 @@ import { useTranslation } from 'react-i18next';
 
 import { CARD_COLOR, Card, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
-import { Link, LinkType } from '../Link';
-import { Badge } from '../badge';
-import { LinkCardBadge, LinkCardProps } from './LinkCard.props';
+import { Badge } from '@/components/badge/Badge.component';
+import { LinkCardBadge, LinkCardProps } from '@/components/link-card/LinkCard.props';
+import { Link } from '@/components/link/Link.component';
+import { LinkType } from '@/components/link/Link.props';
+
 import './translations/translations';
 
 export const LinkCard: React.FC<LinkCardProps> = ({
@@ -16,7 +18,6 @@ export const LinkCard: React.FC<LinkCardProps> = ({
   img,
   badges,
   texts,
-  hoverable,
   onClick,
   trackingLabel,
   ...props

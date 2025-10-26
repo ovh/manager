@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import { expect, it, vitest } from 'vitest';
 
 import { StepContext } from '../../StepContext';
-import StepIndicator from '../StepIndicator.component';
+import { StepIndicator } from '../StepIndicator.component';
 
 // Mocking Icon component to avoid rendering real icon
 vitest.mock('@ovhcloud/ods-react', () => ({

@@ -4,12 +4,12 @@ import { vitest } from 'vitest';
 
 import { ICON_NAME, POPOVER_POSITION } from '@ovhcloud/ods-react';
 
-import { useAuthorizationIam } from '@/hooks';
+import { ActionMenu } from '@/components/action-menu/ActionMenu.component';
+import { ActionMenuProps } from '@/components/action-menu/ActionMenu.props';
+import { useAuthorizationIam } from '@/hooks/iam/useOvhIam';
 import { render } from '@/setupTest';
 
-import { ActionMenu, ActionMenuProps } from '../index';
-
-vitest.mock('../../../hooks/iam');
+vitest.mock('@/hooks/iam/useOvhIam');
 
 const actionItems: ActionMenuProps = {
   id: 'action-menu-test-id',

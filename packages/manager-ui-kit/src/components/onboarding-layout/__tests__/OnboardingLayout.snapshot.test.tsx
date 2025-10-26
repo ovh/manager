@@ -1,13 +1,13 @@
 import type { MockInstance } from 'vitest';
 import { vitest } from 'vitest';
 
+import { LinkCard } from '@/components';
+import { useAuthorizationIam } from '@/hooks';
 import { render } from '@/setupTest';
 
-import { useAuthorizationIam } from '../../../hooks/iam';
-import { LinkCard } from '../../link-card/LinkCard.component';
 import { OnboardingLayout } from '../OnboardingLayout.component';
 
-vitest.mock('../../../hooks/iam', () => ({
+vitest.mock('@/hooks/iam/useOvhIam', () => ({
   useAuthorizationIam: vitest.fn().mockReturnValue({
     isAuthorized: true,
     isLoading: false,

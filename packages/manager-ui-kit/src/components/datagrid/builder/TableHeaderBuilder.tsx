@@ -1,4 +1,4 @@
-import { Row } from '@tanstack/react-table';
+import type { Row } from '@tanstack/react-table';
 
 import {
   BUTTON_SIZE,
@@ -9,8 +9,8 @@ import {
   Icon,
 } from '@ovhcloud/ods-react';
 
-import { Button } from '../../button';
-import { ExpandedProps } from '../Datagrid.props';
+import { Button } from '@/components/button/Button.component';
+import { ExpandedProps } from '@/components/datagrid/Datagrid.props';
 
 export const getExpandable = <T,>(expandable: ExpandedProps) => ({
   cell: ({ row }: { row: Row<T> }) => {

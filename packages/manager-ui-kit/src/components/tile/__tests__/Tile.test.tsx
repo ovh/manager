@@ -4,10 +4,9 @@ import { describe, expect, it, vitest } from 'vitest';
 
 import { Link } from '@ovhcloud/ods-react';
 
-import { ActionMenu } from '../../action-menu';
-import { Tile } from '../index';
+import { ActionMenu, Tile } from '@/components';
 
-vitest.mock('../../../hooks/iam', () => ({
+vitest.mock('@/hooks/iam/useOvhIam', () => ({
   useAuthorizationIam: vitest.fn().mockReturnValue({
     isAuthorized: true,
     isLoading: false,

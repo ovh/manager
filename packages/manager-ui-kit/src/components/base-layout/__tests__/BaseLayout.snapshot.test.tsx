@@ -1,12 +1,16 @@
 import { render } from '@testing-library/react';
 import { describe, it, vitest } from 'vitest';
 
-import { BaseLayout } from '..';
-import { Breadcrumb } from '../../breadcrumb';
-import { ChangelogMenu, ChangelogMenuLinks } from '../../changelog-menu';
-import { GuideMenu, GuideMenuItem } from '../../guide-menu';
-import { Notifications } from '../../notifications';
-import { TabsComponent } from '../../tabs';
+import {
+  BaseLayout,
+  Breadcrumb,
+  ChangelogMenu,
+  GuideMenu,
+  Notifications,
+  TabsComponent,
+} from '@/components';
+import { ChangelogMenuLinks } from '@/components/changelog-menu/ChangelogMenu.props';
+import { GuideMenuItem } from '@/components/guide-menu/GuideMenu.props';
 
 vitest.mock('react-router-dom', async () => ({
   ...(await vitest.importActual('react-router-dom')),
@@ -15,7 +19,7 @@ vitest.mock('react-router-dom', async () => ({
   }),
 }));
 
-vitest.mock('../../../hooks/iam', () => ({
+vitest.mock('@/hooks/iam/useOvhIam', () => ({
   useAuthorizationIam: vitest.fn().mockReturnValue({
     isAuthorized: true,
     isLoading: false,

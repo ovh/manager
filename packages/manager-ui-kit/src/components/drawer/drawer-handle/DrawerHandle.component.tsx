@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import { useTranslation } from 'react-i18next';
 
 import { BUTTON_COLOR, BUTTON_VARIANT, ICON_NAME, Icon } from '@ovhcloud/ods-react';
 
-import { Button } from '../../button/Button.component';
+import { Button } from '@/components/button/Button.component';
+import { DrawerHandleProps } from '@/components/drawer/drawer-handle/DrawerHandle.props';
+
 import '../translations';
-import { DrawerHandleProps } from './DrawerHandle.props';
 
 const DrawerHandle = ({ onClick, collapseState }: DrawerHandleProps) => {
   const { t } = useTranslation('drawer');

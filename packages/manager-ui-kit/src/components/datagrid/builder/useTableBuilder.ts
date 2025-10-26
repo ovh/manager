@@ -1,9 +1,5 @@
-import {
-  TableOptions,
-  getCoreRowModel,
-  getExpandedRowModel,
-  getSortedRowModel,
-} from '@tanstack/react-table';
+import { getCoreRowModel, getExpandedRowModel, getSortedRowModel } from '@tanstack/react-table';
+import type { TableOptions } from '@tanstack/react-table';
 
 import { ExpandableRow } from '../useDatagrid.props';
 import { TableBuilderProps } from './TableBuilderProps.props';

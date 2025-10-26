@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import { useReactTable } from '@tanstack/react-table';
 
-import { useTableBuilder } from './builder';
+import { useTableBuilder } from './builder/useTableBuilder';
 import { ExpandableRow, UseDatagridTableProps } from './useDatagrid.props';
 
 export const useDatagrid = <T extends ExpandableRow<T>>({

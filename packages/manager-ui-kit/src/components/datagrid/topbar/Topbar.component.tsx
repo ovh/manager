@@ -1,6 +1,7 @@
-import { memo } from 'react';
+import { JSX, memo } from 'react';
 
-import { FilterList } from '../../filters';
+import { FilterList } from '@/components/filters/filter-list/FilterList.component';
+
 import { ColumnsFilteringComponent } from './columns-filtering/ColumnsFiltering.component';
 import { ColumnsSearch } from './columns-search/ColumnsSearch.component';
 import { ColumnVisibility } from './columns-visibility/ColumnsVisibility.component';

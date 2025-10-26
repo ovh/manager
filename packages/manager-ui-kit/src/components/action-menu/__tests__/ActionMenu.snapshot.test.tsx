@@ -3,13 +3,12 @@ import { type MockInstance, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { BUTTON_VARIANT, ICON_NAME, POPOVER_POSITION } from '@ovhcloud/ods-react';
 
-import { useAuthorizationIam } from '@/hooks';
+import { ActionMenu } from '@/components/action-menu/ActionMenu.component';
+import { useAuthorizationIam } from '@/hooks/iam/useOvhIam';
 import { render } from '@/setupTest';
 
-import { ActionMenu } from '../index';
-
 // Mock the IAM hook
-vi.mock('../../../hooks/iam');
+vi.mock('@/hooks/iam/useOvhIam');
 
 const mockUseAuthorizationIam = useAuthorizationIam as unknown as MockInstance;
 

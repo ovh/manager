@@ -2,8 +2,8 @@ import React from 'react';
 
 import { BreadcrumbItem, BreadcrumbLink, Breadcrumb as OdsBreadcrumb } from '@ovhcloud/ods-react';
 
-import { useBreadcrumb } from '../../hooks/breadcrumb/useBreadcrumb';
-import { BreadcrumbProps } from './Breadcrumb.props';
+import { BreadcrumbProps } from '@/components/breadcrumb/Breadcrumb.props';
+import { useBreadcrumb } from '@/hooks/breadcrumb/useBreadcrumb';
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   appName,

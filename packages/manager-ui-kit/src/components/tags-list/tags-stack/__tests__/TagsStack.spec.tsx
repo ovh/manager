@@ -22,7 +22,7 @@ describe('TagsStack', () => {
   });
 
   it('renders nothing if tags are empty', () => {
-    const { container, rerender } = render(<TagsStack tags={[]} />);
+    const { container } = render(<TagsStack tags={[]} />);
     expect(container.firstChild).toBeNull();
   });
 

@@ -1,13 +1,13 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
+import { IamAuthorizationResponse } from '@/hooks/iam/IAM.type';
+import { useAuthorizationIam } from '@/hooks/iam/useOvhIam';
 import { render } from '@/setupTest';
 
-import { useAuthorizationIam } from '../../../../../hooks/iam';
-import { IamAuthorizationResponse } from '../../../../../hooks/iam/iam.interface';
 import { TableFooter } from '../TableFooter.component';
 
-vi.mock('../../../../../hooks/iam');
+vi.mock('@/hooks/iam/useOvhIam');
 
 const mockedHook = useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
 

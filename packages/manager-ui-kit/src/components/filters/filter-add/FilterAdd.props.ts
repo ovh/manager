@@ -1,16 +1,13 @@
-import { Filter, FilterComparator, FilterTypeCategories } from '@ovh-ux/manager-core-api';
+import type { Filter, FilterComparator, FilterTypeCategories } from '@ovh-ux/manager-core-api';
 
-export type Option = {
-  label: string;
-  value: string;
-};
+import { FilterOption } from '@/components/filters/Filter.props';
 
 export type ColumnFilter = {
   id: string;
   label: string;
   comparators: FilterComparator[];
   type?: FilterTypeCategories;
-  options?: Option[];
+  options?: FilterOption[];
 };
 
 export type FilterAddProps = {

@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
 
-import { IcebergFetchResult, fetchWithIceberg } from '@ovh-ux/manager-core-api';
+import { fetchWithIceberg } from '@ovh-ux/manager-core-api';
+import type { IcebergFetchResult } from '@ovh-ux/manager-core-api';
 
-import { UseInifiniteQueryResult, useInfiniteQuery } from '../../infra/tanstack/use-infinite-query';
-import { DEFAULT_PAGE_SIZE } from '../../ports/use-data-api/useDataApi.constants';
-import { UseDataApiResult } from '../../ports/use-data-api/useDataApi.types';
-import { useDataRetrievalOperations } from '../../utils/data-retrieval-operations/useDataRetrievalOperations';
+import { UseDataApiResult } from '@/hooks/data-api/ports/useDataApi.types';
+import { useDataRetrievalOperations } from '@/hooks/data-api/useDataRetrievalOperations';
+
+import { UseInifiniteQueryResult, useInfiniteQuery } from '../../infra/tanstack';
+import { DEFAULT_PAGE_SIZE } from '../../ports/useDataApi.constants';
 import { API_V6_MAX_PAGE_SIZE } from './useIceberg.constants';
 import { UseIcebergData, UseIcebergParams } from './useIceberg.type';
 

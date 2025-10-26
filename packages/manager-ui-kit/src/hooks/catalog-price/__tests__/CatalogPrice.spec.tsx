@@ -1,8 +1,8 @@
 import { renderHook } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import { convertHourlyPriceToMonthly, priceToUcent } from '../useCatalog.utils';
-import { useCatalogPrice } from '../useCatalogPrice';
+import { convertHourlyPriceToMonthly, priceToUcent } from '@/hooks/catalog-price/Catalog.utils';
+import { useCatalogPrice } from '@/hooks/catalog-price/useCatalogPrice';
 
 const mocks = vi.hoisted(() => ({
   useMe: vi.fn(() => ({
@@ -21,7 +21,7 @@ const mocks = vi.hoisted(() => ({
   }),
 }));
 
-vi.mock('../../me', () => ({
+vi.mock('@/hooks/me/useMe', () => ({
   useMe: mocks.useMe,
 }));
 

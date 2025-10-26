@@ -1,6 +1,6 @@
 import React from 'react';
 
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { CARD_COLOR, Card, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 

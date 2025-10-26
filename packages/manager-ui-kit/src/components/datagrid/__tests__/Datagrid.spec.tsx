@@ -1,11 +1,10 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { Datagrid } from '@/components';
+import { IamAuthorizationResponse, useAuthorizationIam } from '@/hooks';
 import { render } from '@/setupTest';
 
-import { useAuthorizationIam } from '../../../hooks/iam';
-import { IamAuthorizationResponse } from '../../../hooks/iam/iam.interface';
-import { Datagrid } from '../Datagrid.component';
 import {
   mockBasicColumns,
   mockColumnVisibility,
@@ -22,7 +21,7 @@ import {
   mockSetColumnVisibility,
 } from '../__mocks__';
 
-vi.mock('../../../hooks/iam');
+vi.mock('@/hooks/iam/useOvhIam');
 
 const mockedHook = useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
 

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { QueryClient, useInfiniteQuery as tanstackUseInfiniteQuery } from '@tanstack/react-query';
 import { renderHook } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';

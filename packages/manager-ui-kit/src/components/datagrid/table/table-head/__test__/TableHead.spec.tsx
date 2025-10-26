@@ -1,8 +1,9 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
+import { TableHeaderContent } from '@/components/datagrid/table/table-head/table-header-content/TableHeaderContent.component';
+
 import { mockHeaderGroups, mockOnSortChange } from '../../../__mocks__';
-import { TableHeaderContent } from '../table-header-content/TableHeaderContent.component';
 
 describe('TableHead', () => {
   it('should render all headers correctly', () => {
