@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { useTenants } from '@/data/hooks/tenants/useTenants.hook';
@@ -13,13 +13,14 @@ export const useTenantsRedirect = () => {
     services,
   } = useObservabilityServiceContext();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const {
     data: tenants,
     isLoading,
     isSuccess: isSuccessTenants,
     isPending,
-  } = useTenants(selectedService || '');
+  } = useTenants(selectedService?.id || '');
 
   const isSuccess = isSuccessService && isSuccessTenants;
 
@@ -41,10 +42,14 @@ export const useTenantsRedirect = () => {
         navigate(urls.tenants, { replace: true });
       }
     };
-    if (isSuccess) {
+
+    // Only redirect when on the tenants route
+    const shouldRedirect = location.pathname === urls.tenants;
+
+    if (isSuccess && shouldRedirect) {
       redirect();
     }
-  }, [hasNoTenants, hasNoServices, isSuccess, navigate]);
+  }, [hasNoTenants, hasNoServices, isSuccess, navigate, location.pathname]);
 
   return {
     hasNoTenants,
