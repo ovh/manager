@@ -9,7 +9,7 @@ import '../../manager-ui-kit/src';
 
 import i18n from './i18n';
 import TechnicalInformation from './technical-information.mdx';
-import { normalizeLanguageCode } from '../../manager-ui-kit/src/commons/utils/translation-helper';
+import { normalizeLanguageCode } from '../../manager-ui-kit/src/commons';
 import { handlers } from './msw-handlers';
 
 const mockQueryClient = new QueryClient({
@@ -55,16 +55,16 @@ const preview: Preview = {
     },
     options: {
       storySort: {
+        method: 'alphabetical',
         order: [
           'Introduction',
           'Manager UI Kit',
           [
             'Introduction',
+            'Changelog',
             "What's new",
             'Guidelines',
-            'Changelog',
-            'components',
-            'Content',
+            'Components',
             'Content',
             'Navigation',
             'Templates',

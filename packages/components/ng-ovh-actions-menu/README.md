@@ -92,7 +92,7 @@ This directive is included by its parent directive: actionsMenu, and should not 
 
 | Param | Type | Details |
 | ---- | ---- | ---- |
-| ng-ovh-actions-menu-item | ActionMenuItemProps | An instance of ActionMenuItemProps. |
+| ng-ovh-actions-menu-item | ActionMenuItem | An instance of ActionMenuItem. |
 | ng-ovh-actions-menu-item-on-click | Function | A callback function called when the action menu item has been clicked. |
 
 ### <a name="actionsMenu_object_ActionsMenu"></a>`ActionsMenu` - object
