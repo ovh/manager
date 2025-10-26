@@ -1,11 +1,13 @@
 import { IamObject } from '@ovh-ux/manager-react-components';
 
-type TObservability = {
+export type TIdentifier = {
   id: string;
-  iam?: IamObject;
 };
 
-export type Tenant = { currentState: { title: string } } & TObservability;
+export type TObservabilityResource = {
+  iam?: IamObject;
+} & TIdentifier;
+
 export type ObservabilityService = {
   currentState: { displayName: string | null };
-} & TObservability;
+} & TObservabilityResource;

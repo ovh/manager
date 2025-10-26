@@ -1,6 +1,16 @@
 {
   "listing": {
-    "title": "Liste des tenants"
+    "title": "Liste des tenants",
+    "endpoint_cell": "Endpoint",
+    "retention_cell": "Rétention",
+    "active_metrics_cell": "Métriques actifs",
+    "tags_cell": "Tags",
+    "clipboard_error_label": "Erreur",
+    "create_tenant_button": "Ajouter un nouveau tenant",
+    "details_action": "Details",
+    "access_grafana_action": "Accéder à Grafana",
+    "copy_uid_action": "Copier l'UID du tenant",
+    "generate_access_token_action": "Générer un jeton d'accès"
   },
   "onboarding": {
     "description": "Créez votre nouveau tenant pour continuer à explorer tout le potentiel des métriques d'observabilité. Vous pourrez envoyer des données, créer des tableaux de bord et configurer des alertes adaptées à vos besoins spécifiques.",
