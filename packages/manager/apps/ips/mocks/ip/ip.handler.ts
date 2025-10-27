@@ -30,7 +30,7 @@ import { GetByoipMocksParams, getByoipMocks } from './byoip';
 export type GetIpsMocksParams = {
   nbIp?: number;
   edgeFirewallDisable?: boolean;
-  edgeFirewallSate?: IpEdgeFirewallStateEnum;
+  edgeFirewallState?: IpEdgeFirewallStateEnum;
   isIpv6LimitReached?: boolean;
   getReverseApiKo?: boolean;
   postReverseApiKo?: boolean;
@@ -47,7 +47,7 @@ export type GetIpsMocksParams = {
 export const getIpsMocks = ({
   nbIp = 0,
   edgeFirewallDisable,
-  edgeFirewallSate = IpEdgeFirewallStateEnum.OK,
+  edgeFirewallState = IpEdgeFirewallStateEnum.OK,
   isIpv6LimitReached = false,
   getReverseApiKo = false,
   postReverseApiKo = false,
@@ -206,7 +206,7 @@ export const getIpsMocks = ({
       {
         enabled: !edgeFirewallDisable,
         ipOnFirewall: '10.0.0.1',
-        state: edgeFirewallSate,
+        state: edgeFirewallState,
       },
     ],
     api: 'v6',

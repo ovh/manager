@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   BaseLayout,
   ErrorBanner,
@@ -33,6 +33,7 @@ export default function GameFirewallPage() {
     TRANSLATION_NAMESPACES.error,
   ]);
   const header = useHeader(t('title'));
+  const [search] = useSearchParams();
   const navigate = useNavigate();
 
   const breadcrumbMapper = (_: BreadcrumbItem, index: number) =>
@@ -61,7 +62,7 @@ export default function GameFirewallPage() {
           ns: NAMESPACES.ACTIONS,
           value: `“${t('title', { ns: TRANSLATION_NAMESPACES.listing })}”`,
         })}
-        onClickReturn={() => navigate(urls.listing)}
+        onClickReturn={() => navigate(`${urls.listing}?${search.toString()}`)}
         breadcrumb={<Breadcrumb mapper={breadcrumbMapper} />}
         header={{ ...header, changelogButton: null }}
         message={<Notifications />}
