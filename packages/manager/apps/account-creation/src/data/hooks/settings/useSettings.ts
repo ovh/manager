@@ -71,3 +71,20 @@ export const useLanguageSettings = (country?: string, currency?: string) =>
       );
     },
   });
+
+export const useSubsidiarySettings = (country?: string, currency?: string, language?: string) => {
+  return useQuery({
+    queryKey: ['settings'],
+    queryFn: () => getSettings(getRegion()),
+    select: (settings: Map<string, BillingCountry[]>) => {
+      if (!(country && currency && language)) {
+        return null;
+      }
+      const foundCountry = settings.get(country)?.find((billingCountry) => billingCountry.currency.code === currency && billingCountry.ietfLanguageTag === language);
+      if (!foundCountry) {
+        return null;
+      }
+      return foundCountry.ovhSubsidiary;
+    }
+  });
+};

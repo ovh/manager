@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Country, LegalForm, Subsidiary, User } from '@ovh-ux/manager-config';
+import { Country, LegalForm, Subsidiary, User, UserLocales } from '@ovh-ux/manager-config';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import userContext from '@/context/user/user.context';
 import { useTrackingContext } from '@/context/tracking/useTracking';
@@ -40,6 +40,7 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   ] = useState<string | undefined>(undefined);
   const [address, setAddress] = useState<string | undefined>(undefined);
   const [city, setCity] = useState<string | undefined>(undefined);
+  const [language, setLanguage] = useState<UserLocales | undefined>(undefined);
 
   useEffect(() => {
     if (isFetched) {
@@ -50,6 +51,7 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
       setLegalForm(me?.legalform);
       setOvhSubsidiary(me?.ovhSubsidiary);
       setCountry(me?.country as Country);
+      setLanguage(me?.language || undefined);
     }
   }, [isFetched]);
 
@@ -102,6 +104,7 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
     address,
     city,
     setCompany,
+    language,
     isSMSConsentAvailable: availability?.[SMS_CONSENT_FEATURE] ?? false,
   };
 
