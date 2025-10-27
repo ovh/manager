@@ -3,7 +3,7 @@ import { useCatalogPrice } from '@ovh-ux/manager-react-components';
 import { useQueries } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { getVolumeCatalogQuery } from '@/api/hooks/useCatalog';
+import { getVolumeCatalogQuery, TVolumeModel } from '@/api/hooks/useCatalog';
 import { getVolumeQuery } from '@/api/hooks/useVolume';
 import {
   is3az,
@@ -14,13 +14,18 @@ import {
   TModelPreselection,
   TModelPrice,
 } from '@/api/select/catalog';
-import { getEncryption, isClassicMultiAttach } from '@/api/select/volume';
+import { isClassicMultiAttach } from '@/api/select/volume';
 
 export type TVolumeRetypeModel = TModelPrice &
   TModelAvailabilityZones &
   TModelName &
   TModelAttach &
   TModelPreselection;
+
+export const isRetypeModel = (
+  model: TVolumeModel | TVolumeRetypeModel,
+): model is TVolumeRetypeModel =>
+  'isPreselected' in (model as Record<string, unknown>);
 
 export const useCatalogWithPreselection = (
   projectId: string,
@@ -40,30 +45,26 @@ export const useCatalogWithPreselection = (
     hideTaxLabel: true,
   });
 
-  const [data, preselectedEncryptionType] = useMemo(() => {
-    if (!catalogData || !volumeData) return [null, null];
+  const data = useMemo(() => {
+    if (!catalogData || !volumeData) return null;
 
     if (
       is3az(catalogData.regions, volumeData.region) &&
       isClassicMultiAttach(volumeData)
     ) {
-      return [[], null];
+      return [];
     }
 
-    return [
-      mapRetypingVolumeCatalog(
-        volumeData.region,
-        getFormattedCatalogPrice,
-        t,
-        volumeData?.type,
-      )(catalogData),
-      getEncryption(catalogData)(volumeData).encryptionType,
-    ];
+    return mapRetypingVolumeCatalog(
+      volumeData.region,
+      getFormattedCatalogPrice,
+      t,
+      volumeData?.type,
+    )(catalogData);
   }, [volumeData, catalogData, getFormattedCatalogPrice, t]);
 
   return {
     data,
-    preselectedEncryptionType,
     isPending: restVolumeQuery.isPending || restCatalogQuery.isPending,
   };
 };

@@ -9,6 +9,7 @@ describe('RetypeConfirmActionForm', () => {
   it('should display warning message if not pending or error', () => {
     const { getByText, queryByText, queryByTestId } = render(
       <RetypeConfirmActionForm
+        label="label"
         warningMessage="warning message"
         confirmWord="DETACH"
         errorElement={<div>error message</div>}
@@ -27,6 +28,7 @@ describe('RetypeConfirmActionForm', () => {
   it('should display confirmation input if not pending or error', () => {
     const { getByText, getByRole, queryByText, queryByTestId } = render(
       <RetypeConfirmActionForm
+        label="label"
         warningMessage="warning message"
         confirmWord="DETACH"
         errorElement={<div>error message</div>}
@@ -50,6 +52,7 @@ describe('RetypeConfirmActionForm', () => {
   it('should display error message if on error', () => {
     const { getByText, queryByTestId, queryByText } = render(
       <RetypeConfirmActionForm
+        label="label"
         warningMessage="warning message"
         confirmWord="DETACH"
         errorElement={<div>error message</div>}
@@ -68,6 +71,7 @@ describe('RetypeConfirmActionForm', () => {
   it('should display skeleton if on pending', () => {
     const { getByTestId, queryByText } = render(
       <RetypeConfirmActionForm
+        label="label"
         warningMessage="warning message"
         confirmWord="DETACH"
         errorElement={<div>error message</div>}
@@ -87,6 +91,7 @@ describe('RetypeConfirmActionForm', () => {
     it('should not be displayed if input nothing has been done', () => {
       const { queryByText } = render(
         <RetypeConfirmActionForm
+          label="label"
           warningMessage="warning message"
           confirmWord="DETACH"
           errorElement={<div>error message</div>}
@@ -103,6 +108,7 @@ describe('RetypeConfirmActionForm', () => {
     it('should not be displayed if input is different the confirm word not blured', async () => {
       const { queryByText, getByRole } = render(
         <RetypeConfirmActionForm
+          label="label"
           warningMessage="warning message"
           confirmWord="DETACH"
           errorElement={<div>error message</div>}
@@ -121,6 +127,7 @@ describe('RetypeConfirmActionForm', () => {
     it('should be displayed if input is different the confirm word and blurred', async () => {
       const { getByText, getByRole } = render(
         <RetypeConfirmActionForm
+          label="label"
           warningMessage="warning message"
           confirmWord="DETACH"
           errorElement={<div>error message</div>}
@@ -144,6 +151,7 @@ describe('RetypeConfirmActionForm', () => {
     it('should not be displayed if input is equal to the confirm word', async () => {
       const { getByText, queryByText, getByRole } = render(
         <RetypeConfirmActionForm
+          label="label"
           warningMessage="warning message"
           confirmWord="DETACH"
           errorElement={<div>error message</div>}
@@ -169,6 +177,7 @@ describe('RetypeConfirmActionForm', () => {
     it('should be disabled if pending', () => {
       const { getByText } = render(
         <RetypeConfirmActionForm
+          label="label"
           warningMessage="warning message"
           confirmWord="DETACH"
           errorElement={<div>error message</div>}
@@ -189,6 +198,7 @@ describe('RetypeConfirmActionForm', () => {
     it('should be disabled if error', () => {
       const { getByText } = render(
         <RetypeConfirmActionForm
+          label="label"
           warningMessage="warning message"
           confirmWord="DETACH"
           errorElement={<div>error message</div>}
@@ -209,6 +219,7 @@ describe('RetypeConfirmActionForm', () => {
     it('should be disabled if input is empty', () => {
       const { getByText } = render(
         <RetypeConfirmActionForm
+          label="label"
           warningMessage="warning message"
           confirmWord="DETACH"
           errorElement={<div>error message</div>}
@@ -229,6 +240,7 @@ describe('RetypeConfirmActionForm', () => {
     it('should be disabled if input is different from the conform word', async () => {
       const { getByText, getByRole } = render(
         <RetypeConfirmActionForm
+          label="label"
           warningMessage="warning message"
           confirmWord="DETACH"
           errorElement={<div>error message</div>}
@@ -251,6 +263,7 @@ describe('RetypeConfirmActionForm', () => {
     it('should be enabled if input is equal to the confirm word', async () => {
       const { getByText, getByRole } = render(
         <RetypeConfirmActionForm
+          label="label"
           warningMessage="warning message"
           confirmWord="DETACH"
           errorElement={<div>error message</div>}

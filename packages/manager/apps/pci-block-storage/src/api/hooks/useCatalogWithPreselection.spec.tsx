@@ -83,7 +83,6 @@ describe('useCatalogWithPreselection', () => {
       );
 
       expect(result.current.data).toEqual(mockMappedCatalog);
-      expect(result.current.preselectedEncryptionType).toBe(EncryptionType.OMK);
       expect(result.current.isPending).toBe(false);
     },
   );
@@ -121,7 +120,6 @@ describe('useCatalogWithPreselection', () => {
       );
 
       expect(result.current.data).toEqual(mockMappedCatalog);
-      expect(result.current.preselectedEncryptionType).toBe(EncryptionType.OMK);
       expect(result.current.isPending).toBe(false);
     },
   );
@@ -148,7 +146,6 @@ describe('useCatalogWithPreselection', () => {
     );
 
     expect(result.current.data).toEqual([]);
-    expect(result.current.preselectedEncryptionType).toBe(null);
     expect(result.current.isPending).toBe(false);
   });
 
@@ -165,7 +162,6 @@ describe('useCatalogWithPreselection', () => {
     );
 
     expect(result.current.data).toBeNull();
-    expect(result.current.preselectedEncryptionType).toBeNull();
     expect(result.current.isPending).toBe(true);
   });
 
@@ -182,7 +178,6 @@ describe('useCatalogWithPreselection', () => {
     );
 
     expect(result.current.data).toBeNull();
-    expect(result.current.preselectedEncryptionType).toBeNull();
     expect(result.current.isPending).toBe(true);
   });
 });
