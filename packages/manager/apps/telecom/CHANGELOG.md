@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.16.12...@ovh-ux/manager-telecom@16.17.0) (2025-10-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 737] ([70065df](https://github.com/ovh/manager/commit/70065df45f87371f656910009145e52a2d6ed12c))
+* **telecom:** update links and eligibilities displays ([41e6f72](https://github.com/ovh/manager/commit/41e6f72511f3fd6fd2846d3319a6bcfc23e18a5b)), closes [#MANAGER-20083](https://github.com/ovh/manager/issues/MANAGER-20083)
+
+
+### Features
+
+* **pack:** update promotion display for move and migrate offers ([c8af37e](https://github.com/ovh/manager/commit/c8af37eeee778568c134ba5d4aa631e8211516b6)), closes [#MANAGER-19911](https://github.com/ovh/manager/issues/MANAGER-19911)
+
+
+
+
+
 ## [16.16.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.16.11...@ovh-ux/manager-telecom@16.16.12) (2025-10-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom
