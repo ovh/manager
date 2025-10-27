@@ -15,7 +15,7 @@ import { selectLocalizations } from '../../view-models/localizationsViewModel';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { TInstanceCreationForm } from '../../CreateInstance.page';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   isMicroRegionAvailable,
   selectMicroRegions,
@@ -43,9 +43,18 @@ export const LocalizationSelection = () => {
         deploymentModes,
         selectedContinent,
         seeAll ? 'total' : 'partial',
+        selectedMacroRegion,
       ),
-    [deploymentModes, projectId, seeAll, selectedContinent],
+    [
+      deploymentModes,
+      projectId,
+      seeAll,
+      selectedContinent,
+      selectedMacroRegion,
+    ],
   );
+
+  const macroRegionRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   const isRegionAvailable = useCallback(
     (region: string) => isMicroRegionAvailable(deps)(projectId, region),
@@ -90,20 +99,35 @@ export const LocalizationSelection = () => {
     }
   }, [localizations, selectedMacroRegion, setValue]);
 
+  const assignMacroRegionRef = (macroRegion: string) => (
+    el: HTMLDivElement | null,
+  ) => {
+    macroRegionRefs.current[macroRegion] = el;
+  };
+
+  useEffect(() => {
+    if (!selectedMacroRegion || !seeAll) return;
+
+    const selectedElt = macroRegionRefs.current[selectedMacroRegion];
+
+    if (!selectedElt) return;
+
+    selectedElt.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [seeAll]);
+
   return (
     <section>
       <div className="flex justify-between pt-5 pb-5">
         <ContinentSelection />
-        <Checkbox
-          className="self-end"
-          disabled={!hasMoreLocalizations}
-          onCheckedChange={handleDisplayChange}
-        >
-          <CheckboxControl />
-          <CheckboxLabel className="text-[--ods-color-text]">
-            {t('creation:pci_instance_creation_show_all_localizations')}
-          </CheckboxLabel>
-        </Checkbox>
+        {hasMoreLocalizations && (
+          <Checkbox className="self-end" onCheckedChange={handleDisplayChange}>
+            <CheckboxControl />
+            <CheckboxLabel className="text-[--ods-color-text]">
+              {t('creation:pci_instance_creation_show_all_localizations')}
+            </CheckboxLabel>
+          </Checkbox>
+        )}
       </div>
       {selectedMacroRegion && (
         <Controller
@@ -130,19 +154,21 @@ export const LocalizationSelection = () => {
                           macroRegion && microRegion && datacenterDetails;
 
                         return displayCard ? (
-                          <LocalizationCard
-                            key={microRegion}
-                            city={city}
-                            datacenterDetails={datacenterDetails}
-                            macroRegion={macroRegion}
-                            countryCode={countryCode}
-                            deploymentMode={deploymentMode}
-                            onSelect={() =>
-                              updateSelection(macroRegion, microRegion)
-                            }
-                            isSelected={selectedMacroRegion === macroRegion}
-                            disabled={!isRegionAvailable(macroRegion)}
-                          />
+                          <div ref={assignMacroRegionRef(macroRegion)}>
+                            <LocalizationCard
+                              key={microRegion}
+                              city={city}
+                              datacenterDetails={datacenterDetails}
+                              macroRegion={macroRegion}
+                              countryCode={countryCode}
+                              deploymentMode={deploymentMode}
+                              onSelect={() =>
+                                updateSelection(macroRegion, microRegion)
+                              }
+                              isSelected={selectedMacroRegion === macroRegion}
+                              disabled={!isRegionAvailable(macroRegion)}
+                            />
+                          </div>
                         ) : null;
                       },
                     )}

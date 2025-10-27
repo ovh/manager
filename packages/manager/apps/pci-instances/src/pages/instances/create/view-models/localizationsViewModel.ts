@@ -78,11 +78,38 @@ export type TRegionDataForCard = {
   hasMoreLocalizations: boolean;
 };
 
+const getLocalizationsPart = (
+  localizations: TRegionData[],
+  selectedMacroRegionId: string | null,
+) => {
+  const localizationsPartToDisplay = localizations.slice(
+    0,
+    MAX_DISPLAYED_LOCALIZATIONS,
+  );
+
+  const selectedLocalization = localizations.find(
+    (localization) => localization.macroRegion === selectedMacroRegionId,
+  );
+
+  const isSelectedLocalizationInHiddenResults =
+    !!selectedLocalization &&
+    !localizationsPartToDisplay.includes(selectedLocalization);
+
+  return isSelectedLocalizationInHiddenResults
+    ? [
+        selectedLocalization,
+        ...localizations.slice(0, MAX_DISPLAYED_LOCALIZATIONS - 1),
+      ]
+    : localizationsPartToDisplay;
+};
+
+// eslint-disable-next-line max-params
 type TSelectLocalizationsData = (
   projectId: string,
   deploymentMode: TDeploymentMode[],
   continentId: string,
   display: 'partial' | 'total',
+  selectedMacroRegionId: string | null,
 ) => TRegionDataForCard;
 
 const emptyLocalizations = {
@@ -92,7 +119,14 @@ const emptyLocalizations = {
 
 export const selectLocalizations: Reader<Deps, TSelectLocalizationsData> = (
   deps,
-) => (projectId, deploymentModes, continentId, display) => {
+) => (
+  projectId,
+  deploymentModes,
+  continentId,
+  display,
+  selectedMacroRegionId,
+  // eslint-disable-next-line max-params
+) => {
   const { messageProviderPort, instancesCatalogPort } = deps;
   const data = instancesCatalogPort.selectInstancesCatalog(projectId);
 
@@ -132,7 +166,7 @@ export const selectLocalizations: Reader<Deps, TSelectLocalizationsData> = (
     localizations:
       display === 'total'
         ? localizations
-        : localizations.slice(0, MAX_DISPLAYED_LOCALIZATIONS),
+        : getLocalizationsPart(localizations, selectedMacroRegionId),
     hasMoreLocalizations: localizations.length > MAX_DISPLAYED_LOCALIZATIONS,
   };
 };

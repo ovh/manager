@@ -28,6 +28,7 @@ describe('SelectLocalizations ViewModel', () => {
         ['region', 'region-3-az'],
         'western_europe',
         'total',
+        null,
       ),
     ).toStrictEqual({
       localizations: mockedLocalizationsData,
@@ -42,6 +43,7 @@ describe('SelectLocalizations ViewModel', () => {
         ['region', 'region-3-az'],
         'all',
         'total',
+        null,
       ),
     ).toStrictEqual({
       localizations: mockedLocalizationsDataForSelectedDeploymentZoneAndAllContinents,
@@ -51,7 +53,7 @@ describe('SelectLocalizations ViewModel', () => {
 
   it('should return all available regions for "all" continent selected and none deployment zone selected', () => {
     expect(
-      selectLocalizations(fakeDeps)(mockedProjectId, [], 'all', 'total'),
+      selectLocalizations(fakeDeps)(mockedProjectId, [], 'all', 'total', null),
     ).toStrictEqual({
       localizations: mockedLocalizationsDataForNoneDeploymentZoneAndAllContinents,
       hasMoreLocalizations: false,
