@@ -9,16 +9,18 @@ import DisableSslModal from './disableSsl.page';
 const { mockDelete } = vi.hoisted(() => ({
   mockDelete: vi.fn(),
 }));
-
-vi.mock('@ovh-ux/manager-core-api', async (importOriginal) => {
-  const actual = await importOriginal();
-  return {
-    ...actual,
-    v6: {
-      delete: mockDelete,
-    },
-  };
-});
+vi.mock(
+  '@ovh-ux/manager-core-api',
+  async (importOriginal: () => Promise<typeof import('@ovh-ux/manager-core-api')>) => {
+    const actual = await importOriginal();
+    return {
+      ...actual,
+      v6: {
+        delete: mockDelete,
+      },
+    };
+  },
+);
 
 const queryClient = new QueryClient();
 
