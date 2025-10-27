@@ -7,12 +7,12 @@ import { vi } from 'vitest';
 import {
   ObservabilityServiceProvider,
   useObservabilityServiceContext,
-} from '../../contexts/ObservabilityService.context';
-import { useObservabilityServices } from '../../data/hooks/services/useObservabilityServices.hook.ts';
-import { ObservabilityService } from '../../types/observability.type';
+} from '@/contexts/ObservabilityService.context';
+import { useObservabilityServices } from '@/data/hooks/services/useObservabilityServices.hook';
+import { ObservabilityService } from '@/types/observability.type';
 
 // Mock the useObservabilityServices hook
-vi.mock('@/data/hooks/services/useObservabilityServices', () => ({
+vi.mock('@/data/hooks/services/useObservabilityServices.hook', () => ({
   useObservabilityServices: vi.fn(),
 }));
 
@@ -70,19 +70,23 @@ const createWrapper = () => {
 };
 
 // Test component to test the context
-// eslint-disable-next-line react/no-multi-comp
 const TestComponent = () => {
   const context = useObservabilityServiceContext();
   return (
     <div>
-      <span data-testid="selected-service">{context.selectedService || 'none'}</span>
+      <span data-testid="selected-service">{context.selectedService?.id || 'none'}</span>
       <span data-testid="services-count">{context.services?.length || 0}</span>
       <span data-testid="is-loading">{context.isLoading.toString()}</span>
       <span data-testid="is-success">{context.isSuccess.toString()}</span>
       <span data-testid="error">{context.error?.message || 'none'}</span>
       <button
         data-testid="set-service"
-        onClick={() => context.setSelectedService('test-service-id')}
+        onClick={() =>
+          context.setSelectedService({
+            id: 'test-service-id',
+            currentState: { displayName: 'Test Service' },
+          })
+        }
       >
         Set Service
       </button>
@@ -231,7 +235,6 @@ describe('ObservabilityServiceContext', () => {
       let contextValue1: unknown;
       let contextValue2: unknown;
 
-      // eslint-disable-next-line react/no-multi-comp
       const TestMemoComponent = () => {
         const context = useObservabilityServiceContext();
         if (!contextValue1) {
@@ -319,11 +322,14 @@ describe('ObservabilityServiceContext', () => {
 
       // Act
       act(() => {
-        result.current.setSelectedService('new-service-id');
+        result.current.setSelectedService({
+          id: 'new-service-id',
+          currentState: { displayName: 'New Service' },
+        });
       });
 
       // Assert
-      expect(result.current.selectedService).toBe('new-service-id');
+      expect(result.current.selectedService?.id).toBe('new-service-id');
     });
 
     it('should allow clearing selected service', () => {
@@ -343,10 +349,13 @@ describe('ObservabilityServiceContext', () => {
 
       // Act - Set a service first
       act(() => {
-        result.current.setSelectedService('some-service-id');
+        result.current.setSelectedService({
+          id: 'some-service-id',
+          currentState: { displayName: 'Some Service' },
+        });
       });
 
-      expect(result.current.selectedService).toBe('some-service-id');
+      expect(result.current.selectedService?.id).toBe('some-service-id');
 
       // Act - Clear the service
       act(() => {
