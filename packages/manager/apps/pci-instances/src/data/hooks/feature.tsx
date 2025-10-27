@@ -5,5 +5,5 @@ export const DISTANT_BACKUP = 'public-cloud:distant-backup';
 export const useIsDistantBackupAvailable = () => {
   const { data } = usePCIFeatureAvailability([DISTANT_BACKUP]);
 
-  return data?.get(DISTANT_BACKUP) ?? false;
+  return data?.get(DISTANT_BACKUP);
 };
