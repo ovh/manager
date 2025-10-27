@@ -38,9 +38,9 @@ export const isPaymentMethodSaved = (
  * Determines if submission should be enabled
  */
 export const isSubmittingEnabled = (
-  hasDefaultPaymentMethod: boolean,
+  noUserActionNeeded: boolean,
   isChallengeRequired: boolean,
   saveRequired: boolean,
 ): boolean => {
-  return (hasDefaultPaymentMethod && !isChallengeRequired) || saveRequired;
+  return (noUserActionNeeded && !isChallengeRequired) || saveRequired;
 };
