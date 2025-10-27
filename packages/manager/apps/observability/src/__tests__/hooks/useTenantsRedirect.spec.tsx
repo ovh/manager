@@ -6,15 +6,23 @@ import { QueryClient, QueryClientProvider, UseQueryResult } from '@tanstack/reac
 import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import { useObservabilityServiceContext } from '../../contexts/ObservabilityService.context';
-import { useTenants } from '../../data/hooks/tenants/useTenants.hook';
-import { useTenantsRedirect } from '../../hooks/useTenantsRedirect.hook';
-import { urls } from '../../routes/Routes.constants';
-import { ObservabilityService, Tenant } from '../../types/observability.type';
+import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
+import { useTenants } from '@/data/hooks/tenants/useTenants.hook';
+import { useTenantsRedirect } from '@/hooks/useTenantsRedirect.hook';
+import { urls } from '@/routes/Routes.constants';
+import { ObservabilityService } from '@/types/observability.type';
+import { Tenant } from '@/types/tenants.type';
 
 // Mock dependencies
 vi.mock('react-router-dom', () => ({
   useNavigate: vi.fn(),
+  useLocation: vi.fn(() => ({
+    pathname: '/metrics/tenants',
+    search: '',
+    hash: '',
+    state: null,
+    key: 'default',
+  })),
 }));
 
 vi.mock('@/data/hooks/tenants/useTenants.hook', () => ({
@@ -98,7 +106,7 @@ describe('useTenantsRedirect', () => {
     it('should not redirect while services are loading', () => {
       // Arrange
       mockUseObservabilityServiceContext.mockReturnValue({
-        selectedService: 'service-1',
+        selectedService: mockService,
         isSuccess: false,
         services: undefined,
         setSelectedService: vi.fn(),
@@ -204,7 +212,7 @@ describe('useTenantsRedirect', () => {
     it('should redirect to tenants onboarding when no tenants exist', async () => {
       // Arrange
       mockUseObservabilityServiceContext.mockReturnValue({
-        selectedService: 'service-1',
+        selectedService: mockService,
         isSuccess: true,
         services: [mockService],
         setSelectedService: vi.fn(),
@@ -241,7 +249,7 @@ describe('useTenantsRedirect', () => {
     it('should redirect to tenants onboarding when tenants is undefined', async () => {
       // Arrange
       mockUseObservabilityServiceContext.mockReturnValue({
-        selectedService: 'service-1',
+        selectedService: mockService,
         isSuccess: true,
         services: [mockService],
         setSelectedService: vi.fn(),
@@ -277,7 +285,7 @@ describe('useTenantsRedirect', () => {
     it('should redirect to tenants listing when both services and tenants exist', async () => {
       // Arrange
       mockUseObservabilityServiceContext.mockReturnValue({
-        selectedService: 'service-1',
+        selectedService: mockService,
         isSuccess: true,
         services: [mockService],
         setSelectedService: vi.fn(),
@@ -316,7 +324,7 @@ describe('useTenantsRedirect', () => {
     it('should handle when tenants query is not successful but services are', () => {
       // Arrange
       mockUseObservabilityServiceContext.mockReturnValue({
-        selectedService: 'service-1',
+        selectedService: mockService,
         isSuccess: true,
         services: [mockService],
         setSelectedService: vi.fn(),
@@ -350,7 +358,7 @@ describe('useTenantsRedirect', () => {
     it('should handle when services query is not successful but tenants are', () => {
       // Arrange
       mockUseObservabilityServiceContext.mockReturnValue({
-        selectedService: 'service-1',
+        selectedService: mockService,
         isSuccess: false,
         services: undefined,
         setSelectedService: vi.fn(),
@@ -381,7 +389,7 @@ describe('useTenantsRedirect', () => {
 
     it('should call useTenants with selectedService', () => {
       // Arrange
-      const selectedService = 'test-service-123';
+      const selectedService = mockService;
       mockUseObservabilityServiceContext.mockReturnValue({
         selectedService,
         isSuccess: true,
@@ -407,7 +415,7 @@ describe('useTenantsRedirect', () => {
       });
 
       // Assert
-      expect(mockUseTenants).toHaveBeenCalledWith(selectedService);
+      expect(mockUseTenants).toHaveBeenCalledWith(selectedService.id);
     });
 
     it('should call useTenants with empty string when selectedService is undefined', () => {
