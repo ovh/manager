@@ -18,6 +18,7 @@
                 name="name"
                 data-ng-model="$ctrl.model.name"
                 placeholder="{{ 'sms_order_time2chat_label_name' | translate }}"
+                data-maxlength="100"
                 required
             />
         </oui-field>
@@ -39,7 +40,7 @@
             <input
                 class="oui-input"
                 name="website"
-                type="website"
+                type="url"
                 data-ng-model="$ctrl.model.website"
                 placeholder="{{ 'sms_order_time2chat_label_website' | translate }}"
                 required
@@ -53,6 +54,7 @@
                 name="company_name"
                 data-ng-model="$ctrl.model.company_name"
                 placeholder="{{ 'sms_order_time2chat_label_company_name' | translate }}"
+                data-maxlength="50"
                 required
             />
         </oui-field>
@@ -64,6 +66,7 @@
                 name="brand_name"
                 data-ng-model="$ctrl.model.brand_name"
                 placeholder="{{ 'sms_order_time2chat_label_brand_name' | translate }}"
+                data-maxlength="50"
                 required
             />
         </oui-field>
@@ -75,6 +78,7 @@
                 name="primary_use_case"
                 data-ng-model="$ctrl.model.primary_use_case"
                 placeholder="{{ 'sms_order_time2chat_label_primary_use_case' | translate }}"
+                data-maxlength="50"
                 required
             />
         </oui-field>
@@ -86,6 +90,7 @@
                 name="operational_contact_name"
                 data-ng-model="$ctrl.model.operational_contact_name"
                 placeholder="{{ 'sms_order_time2chat_label_operational_contact_name' | translate }}"
+                data-maxlength="50"
                 required
             />
         </oui-field>
@@ -95,8 +100,10 @@
             <input
                 class="oui-input"
                 name="operational_contact_email"
+                type="email"
                 data-ng-model="$ctrl.model.operational_contact_email"
                 placeholder="{{ 'sms_order_time2chat_label_operational_contact_email' | translate }}"
+                data-maxlength="50"
                 required
             />
         </oui-field>
