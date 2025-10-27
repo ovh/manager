@@ -18,7 +18,7 @@ export type PaymentStepProps = {
   cart: Cart;
   cartProjectItem: OrderedProduct;
   onPaymentStatusChange?: (willPaymentStatus: GlobalStateStatus) => void;
-  onRegisteredPaymentMethodSelected: (event: CustomEvent) => void;
+  onNoUserActionNeeded: (event: CustomEvent) => void;
   onRequiredChallengeEvent: (event: CustomEvent) => void;
   onVoucherChange?: (voucher: string | null) => void;
 };
@@ -27,7 +27,7 @@ export default function PaymentStep({
   cart,
   cartProjectItem,
   onPaymentStatusChange,
-  onRegisteredPaymentMethodSelected,
+  onNoUserActionNeeded,
   onRequiredChallengeEvent,
   onVoucherChange,
 }: Readonly<PaymentStepProps>) {
@@ -68,7 +68,7 @@ export default function PaymentStep({
 
       <WillPaymentComponent
         onPaymentStatusChange={onPaymentStatusChange}
-        onRegisteredPaymentMethodSelected={onRegisteredPaymentMethodSelected}
+        onNoUserActionNeeded={onNoUserActionNeeded}
         onRequiredChallengeEvent={onRequiredChallengeEvent}
       />
 
