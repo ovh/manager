@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.12.3...@ovh-ux/manager-pci-ai-tools-app@1.13.0) (2025-10-27)
+
+
+### Features
+
+* **pci-ai-tools:** add qpu app in Manager ([#19967](https://github.com/ovh/manager/issues/19967)) ([7abe33b](https://github.com/ovh/manager/commit/7abe33b79845af4792fe20415b8685addbd89921)), closes [#AIS-1352](https://github.com/ovh/manager/issues/AIS-1352)
+
+
+
+
+
 ## [1.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.12.2...@ovh-ux/manager-pci-ai-tools-app@1.12.3) (2025-10-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
