@@ -70,4 +70,6 @@ export const TagsModal = forwardRef(
   },
 );
 
+TagsModal.displayName = 'TagsModal';
+
 export default TagsModal;

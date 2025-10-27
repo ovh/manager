@@ -18,36 +18,40 @@ export const useDataApi = <TData = Record<string, unknown>>({
   disableCache,
   enabled,
 }: UseDataApiOptions<TData>): UseDataApiResult<TData> => {
-  if (iceberg) {
-    return useIceberg<TData>({
-      version,
-      route,
-      pageSize,
-      cacheKey,
-      enabled,
-      defaultSorting: defaultSorting ?? [],
-      fetchAll,
-      columns,
-      disableCache,
-    });
-  }
-  if (version === 'v2') {
-    return useV2<TData>({
-      route,
-      pageSize,
-      enabled,
-      cacheKey,
-      fetchAll,
-    });
-  }
-  return useV6<TData>({
+  const isIceberg = !!iceberg;
+  const isV2 = !isIceberg && version === 'v2';
+  const isV6 = !isIceberg && !isV2; // default
+
+  const icebergResult = useIceberg<TData>({
+    version,
+    route,
+    pageSize,
+    cacheKey,
+    enabled: Boolean(enabled && isIceberg),
+    defaultSorting: defaultSorting ?? [],
+    fetchAll,
+    columns,
+    disableCache,
+  });
+
+  const v2Result = useV2<TData>({
+    route,
+    pageSize,
+    enabled: Boolean(enabled && isV2),
+    cacheKey,
+    fetchAll,
+  });
+
+  const v6Result = useV6<TData>({
     route,
     cacheKey,
     fetchDataFn,
     refetchInterval,
-    enabled,
+    enabled: Boolean(enabled && isV6),
     pageSize,
     columns,
     defaultSorting,
   });
+
+  return isIceberg ? icebergResult : isV2 ? v2Result : v6Result;
 };

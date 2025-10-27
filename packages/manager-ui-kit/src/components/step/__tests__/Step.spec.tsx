@@ -1,22 +1,28 @@
 import React from 'react';
 
 import { render, screen } from '@testing-library/react';
+import PropTypes from 'prop-types';
 import { expect, it, vitest } from 'vitest';
 
 import { Step } from '../Step.component';
 import { StepContext } from '../StepContext';
 
-// Step component only handles the visibility of child components depending on conditions
-// And to test different conditions, mocks provide an easy way of identification with testid
 vitest.mock('../step-indicator/StepIndicator.component', () => ({
   StepIndicator: () => <div data-testid="step-indicator" />,
 }));
+
 vitest.mock('../step-header/StepHeader.component', () => ({
   StepHeader: () => <div data-testid="step-header" />,
 }));
-vitest.mock('../step-body/StepBody.component', () => ({
-  StepBody: ({ children }) => <div data-testid="step-body">{children}</div>,
-}));
+
+vitest.mock('../step-body/StepBody.component', () => {
+  const StepBody = ({ children }) => <div data-testid="step-body">{children}</div>;
+  StepBody.propTypes = {
+    children: PropTypes.node,
+  };
+  return { StepBody };
+});
+
 vitest.mock('../step-footer/StepFooter.component', () => ({
   StepFooter: () => <div data-testid="step-footer" />,
 }));

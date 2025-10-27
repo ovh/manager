@@ -28,7 +28,7 @@ describe('GridLayout Snapshot Tests', () => {
     const { container } = render(
       <GridLayout>
         {DashboardTiles.map((element) => (
-          <Tile.Root title={element.title}>
+          <Tile.Root key={element.title} title={element.title}>
             <Tile.Item.Root>
               <Tile.Item.Term label={element.label}></Tile.Item.Term>
               <Tile.Item.Description>

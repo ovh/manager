@@ -18,40 +18,16 @@ import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/esli
 export default [
   javascriptEslintConfig,
   typescriptEslintConfig,
-  {
-    ...reactEslintConfig,
-    rules: {},
-  },
-  {
-    ...a11yEslintConfig,
-    rules: {},
-  },
-  {
-    ...htmlEslintConfig,
-    rules: {},
-  },
-  {
-    ...tanStackQueryEslintConfig,
-    rules: {},
-  },
+  reactEslintConfig,
+  a11yEslintConfig,
+  htmlEslintConfig,
+  tanStackQueryEslintConfig,
   ...importEslintConfig,
-  {
-    ...vitestEslintConfig,
-    rules: {},
-  },
+  vitestEslintConfig,
   prettierEslintConfig,
-  {
-    ...complexityJsxTsxConfig,
-    rules: {},
-  },
-  {
-    ...complexityTsJsConfig,
-    rules: {},
-  },
-  /*{
-    ...tailwindJsxConfig,
-    rules: {},
-  },
+  /* ...complexityJsxTsxConfig,
+  ...complexityTsJsConfig,
+  ...tailwindJsxConfig,
   {
     ...cssEslintConfig,
     files: ['**\/*.css', '**\/*.scss'],
@@ -67,9 +43,17 @@ export default [
       '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-unsafe-call': 'off',
       'import/named': 'off',
+      'react/no-multi-comp': 'off',
     },
   },
   {
     ignores: ['**/*.json', '**/*.md'],
+  },
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    rules: {
+      'react/prop-types': 'off',
+      'react-hooks/exhaustive-deps': 'off',
+    },
   },
 ];

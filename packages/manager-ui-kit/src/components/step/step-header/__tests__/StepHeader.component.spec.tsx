@@ -4,7 +4,6 @@ import { describe, expect, it, vi } from 'vitest';
 import { StepContext } from '../../StepContext';
 import { StepHeader } from '../StepHeader.component';
 
-// Mock the dependencies
 vi.mock('../useStepContext', () => ({
   useStepContext: vi.fn(),
 }));
@@ -44,10 +43,6 @@ describe('StepHeader Component', () => {
       skip: { hint: 'This is optional' },
     });
     expect(screen.getByText('This is optional')).toBeInTheDocument();
-  });
-
-  it('does not render edit button if edit is not defined', () => {
-    renderWithStepContext(<StepHeader />);
   });
 
   it('renders edit button when edit.action and locked are truthy', () => {

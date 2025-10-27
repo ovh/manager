@@ -3,10 +3,8 @@ import { describe, expect, it, vitest } from 'vitest';
 
 import { TileItemDescription } from '../TileItemDescription.component';
 
-// Since HR element does not specific text or role, it's hard to get this element.
-// So mocking the ODS divider with custom testid to easily get the element
 vitest.mock('../../../tile-divider/TileDivider.component', () => ({
-  TileDivider: () => <hr data-testid="tile-divider" role="separator" />,
+  TileDivider: () => <hr data-testid="tile-divider" />,
 }));
 
 describe('TileItemDescription', () => {

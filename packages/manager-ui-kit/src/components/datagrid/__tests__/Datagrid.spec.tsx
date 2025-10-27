@@ -155,7 +155,9 @@ describe('Datagrid', () => {
           manualSorting: true,
         },
       });
-      fireEvent.click(screen.getByText('name'));
+      const NameHeaderButton = screen.getByText('name');
+      expect(NameHeaderButton).toBeInTheDocument();
+      fireEvent.click(NameHeaderButton);
     });
   });
 

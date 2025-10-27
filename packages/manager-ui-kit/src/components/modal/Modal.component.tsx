@@ -17,7 +17,7 @@ import {
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
-import { ModalProps } from './Modal.props';
+import { ModalProps } from '@/components/modal/Modal.props';
 
 export const Modal = forwardRef(
   (
@@ -116,3 +116,5 @@ export const Modal = forwardRef(
     );
   },
 );
+
+Modal.displayName = 'Modal';

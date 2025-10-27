@@ -26,7 +26,14 @@ export const LinkCard: React.FC<LinkCardProps> = ({
   const { t } = useTranslation('card');
 
   return (
-    <a target="_blank" href={href} className="no-underline" onClick={onClick} {...props}>
+    <a
+      target="_blank"
+      rel="noreferrer"
+      href={href}
+      className="no-underline"
+      onClick={onClick}
+      {...props}
+    >
       <Card
         className="w-full h-full p-[1rem]"
         color={CARD_COLOR.neutral}
