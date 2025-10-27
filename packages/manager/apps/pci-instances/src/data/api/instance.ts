@@ -24,32 +24,12 @@ type TInstanceAction =
 const instanceUrl = (projectId: string, instanceId: string) =>
   `/cloud/project/${projectId}/instance/${instanceId}`;
 
-const regionalizedInstanceUrl = (
-  projectId: string,
-  instanceId: string,
-  regionName: string,
-) => `/cloud/project/${projectId}/region/${regionName}/instance/${instanceId}`;
-
 const instanceActionUrl = (
   projectId: string,
   instanceId: string,
   action: TInstanceAction,
 ): string => {
   const basePathname = instanceUrl(projectId, instanceId);
-  return action === 'delete' ? basePathname : `${basePathname}/${action}`;
-};
-
-const regionalizedInstanceActionUrl = (
-  projectId: string,
-  instanceId: string,
-  regionName: string,
-  action: TInstanceAction,
-): string => {
-  const basePathname = regionalizedInstanceUrl(
-    projectId,
-    instanceId,
-    regionName,
-  );
   return action === 'delete' ? basePathname : `${basePathname}/${action}`;
 };
 
@@ -137,36 +117,18 @@ export const rescueMode = ({
     rescue: isRescue,
   });
 
-type BackupInstanceProps = {
-  projectId: string;
-  instanceId: string;
-  regionName: string;
-  snapshotName: string;
-  distantSnapshotName?: string;
-  distantRegionName?: string;
-};
-
 export const backupInstance = ({
   projectId,
   instanceId,
-  regionName,
   snapshotName,
-  distantSnapshotName,
-  distantRegionName,
-}: BackupInstanceProps): Promise<null> =>
-  v6.post(
-    regionalizedInstanceActionUrl(
-      projectId,
-      instanceId,
-      regionName,
-      'snapshot',
-    ),
-    {
-      snapshotName,
-      distantSnapshotName,
-      distantRegionName,
-    },
-  );
+}: {
+  projectId: string;
+  instanceId: string;
+  snapshotName: string;
+}): Promise<null> =>
+  v6.post(instanceActionUrl(projectId, instanceId, 'snapshot'), {
+    snapshotName,
+  });
 
 export const reinstallInstance = (
   projectId: string,
