@@ -24,7 +24,6 @@ const RetypePage = () => {
   const { projectId, volumeId } = useParams();
   const {
     data: volumeModelData,
-    preselectedEncryptionType,
     isPending: isCatalogPending,
   } = useCatalogWithPreselection(projectId, volumeId);
 
@@ -83,13 +82,8 @@ const RetypePage = () => {
       );
     }
 
-    return (
-      <Retype
-        volumeModelData={volumeModelData}
-        preselectedEncryptionType={preselectedEncryptionType}
-      />
-    );
-  }, [volumeModelData, preselectedEncryptionType, isPending, instances]);
+    return <Retype volumeModelData={volumeModelData} />;
+  }, [volumeModelData, isPending, instances]);
 
   return (
     <div className="bg-[var(--ods-color-primary-500)] opacity-75 w-full h-full absolute top-0 left-0">

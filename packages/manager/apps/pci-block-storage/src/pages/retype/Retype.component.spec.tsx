@@ -52,7 +52,6 @@ describe('Retype', () => {
     const { getByRole } = render(
       <Retype
         volumeModelData={[getSelectedCatalogOption(), getOtherCatalogOption()]}
-        preselectedEncryptionType={null}
       />,
     );
 
@@ -70,57 +69,6 @@ describe('Retype', () => {
     ).not.toBeChecked();
   });
 
-  describe('encryption', () => {
-    it('should render option with preselection given volume is encrypted', async () => {
-      const { getAllByRole, queryByText } = render(
-        <Retype
-          volumeModelData={[getSelectedCatalogOption(true)]}
-          preselectedEncryptionType={EncryptionType.OMK}
-        />,
-      );
-
-      const encryptionRadios = getAllByRole('radio', {
-        name: 'encryption',
-      });
-
-      encryptionRadios.forEach((radio) => {
-        expect(radio).toBeVisible();
-      });
-      expect(
-        encryptionRadios.map((radio: HTMLInputElement) => radio.value),
-      ).toEqual(['none', 'OMK', 'CMK']);
-      expect(
-        encryptionRadios.map((radio: HTMLInputElement) => radio.checked),
-      ).toEqual([false, true, false]);
-      expect(
-        queryByText(
-          'retype:pci_projects_project_storages_blocks_retype_encryption_not_available',
-        ),
-      ).toBeNull();
-    });
-
-    it('should not render option given and render information message given volume is not encrypted', () => {
-      const { queryByRole, getByText } = render(
-        <Retype
-          volumeModelData={[getSelectedCatalogOption(false)]}
-          preselectedEncryptionType={null}
-        />,
-      );
-
-      expect(
-        queryByRole('radiogroup', {
-          name:
-            'retype:pci_projects_project_storages_blocks_retype_change_encryption_title',
-        }),
-      ).toBeNull();
-      expect(
-        getByText(
-          'retype:pci_projects_project_storages_blocks_retype_encryption_not_available',
-        ),
-      ).toBeVisible();
-    });
-  });
-
   describe('modify button', () => {
     it('should be disabled if nothing has changed', () => {
       const { getByText } = render(
@@ -129,7 +77,6 @@ describe('Retype', () => {
             getSelectedCatalogOption(true),
             getOtherCatalogOption(true),
           ]}
-          preselectedEncryptionType={EncryptionType.OMK}
         />,
       );
 
@@ -143,7 +90,6 @@ describe('Retype', () => {
             getSelectedCatalogOption(true),
             getOtherCatalogOption(true),
           ]}
-          preselectedEncryptionType={EncryptionType.OMK}
         />,
       );
 
@@ -161,7 +107,6 @@ describe('Retype', () => {
             getSelectedCatalogOption(true),
             getOtherCatalogOption(true),
           ]}
-          preselectedEncryptionType={EncryptionType.OMK}
         />,
       );
 
@@ -170,57 +115,6 @@ describe('Retype', () => {
       );
       await userEvent.click(
         getByRole('radio', { name: getSelectedCatalogOption().displayName }),
-      );
-
-      expect(getByText(`${NAMESPACES.ACTIONS}:modify`)).toBeDisabled();
-    });
-
-    it('should be enabled if encryption has changed', async () => {
-      const { getByRole, getByText } = render(
-        <Retype
-          volumeModelData={[
-            getSelectedCatalogOption(true),
-            getOtherCatalogOption(true),
-          ]}
-          preselectedEncryptionType={null}
-        />,
-      );
-
-      await userEvent.click(
-        within(
-          getByRole('radiogroup', {
-            name:
-              'retype:pci_projects_project_storages_blocks_retype_change_encryption_title',
-          }),
-        ).getByText('OVHcloud Managed Key'),
-      );
-
-      expect(getByText(`${NAMESPACES.ACTIONS}:modify`)).not.toBeDisabled();
-    });
-
-    it('should be disabled if encryption has changed and back to original value', async () => {
-      const { getByRole, getByText } = render(
-        <Retype
-          volumeModelData={[getSelectedCatalogOption(true)]}
-          preselectedEncryptionType={null}
-        />,
-      );
-
-      await userEvent.click(
-        within(
-          getByRole('radiogroup', {
-            name:
-              'retype:pci_projects_project_storages_blocks_retype_change_encryption_title',
-          }),
-        ).getByText('OVHcloud Managed Key'),
-      );
-      await userEvent.click(
-        within(
-          getByRole('radiogroup', {
-            name:
-              'retype:pci_projects_project_storages_blocks_retype_change_encryption_title',
-          }),
-        ).getByText('common:pci_projects_project_storages_blocks_status_NONE'),
       );
 
       expect(getByText(`${NAMESPACES.ACTIONS}:modify`)).toBeDisabled();
