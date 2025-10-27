@@ -10,6 +10,7 @@ import {
   MODEM_LIST,
   DICTIONNARY,
   ONT_SHIPPING_CONTACT,
+  QUANTITY,
 } from '../pack-move.constant';
 
 export default class MoveResumeCtrl {
@@ -29,6 +30,7 @@ export default class MoveResumeCtrl {
     };
     this.PROMO_DISPLAY = PROMO_DISPLAY;
     this.MODEM_LIST = MODEM_LIST;
+    this.QUANTITY = QUANTITY;
 
     this.modemTransportPrice = 9.99;
     this.choosedAdditionalOptions = filter(
@@ -93,6 +95,15 @@ export default class MoveResumeCtrl {
       );
     }
 
+    let priceDiscount = 0;
+    this.discountPrice = null;
+    if (this.offer.selected.offer.prices.promotion) {
+      priceDiscount =
+        totalOfferPrice +
+        this.offer.selected.offer.prices.promotion.subscription.discount.value;
+      this.discountPrice = this.getDisplayedPrice(priceDiscount);
+    }
+
     if (this.offer.selected.contactOwner) {
       this.contactPhone = this.offer.selected.contactOwner.phone;
     }
@@ -112,6 +123,11 @@ export default class MoveResumeCtrl {
     );
     let firstMensuality =
       totalOfferPrice + gtrComfortFees + installFees + creationLineFees;
+
+    if (this.offer.selected.offer.prices.promotion) {
+      firstMensuality += this.offer.selected.offer.prices.promotion.subscription
+        .discount.value;
+    }
 
     if (
       this.offer.selected.offer.needNewModem &&

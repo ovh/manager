@@ -12,6 +12,8 @@ export const ACCESS_TYPE = {
   sdsl: 'sdsl',
   vdsl: 'vdsl',
   ftth: 'ftth',
+  ftto: 'ftto',
+  ftte: 'ftte',
 };
 
 export const URL_CLOSURE_INFO =
