@@ -34,7 +34,7 @@ const getIpListParamToQueryString = (params: GetIpListParams) =>
   Object.entries(params).reduce((query, [key, value]) => {
     if (key === 'type' && value === IpTypeEnum.ADDITIONAL) {
       query.append('isAdditionalIp', 'true');
-    } else if (key !== 'ip' && value !== undefined) {
+    } else if (value !== undefined) {
       query.append(key, String(value));
     }
     return query;
