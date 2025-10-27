@@ -141,7 +141,7 @@ const BackupActionPage = () => {
       section="backup"
       isLoading={isLoading}
       variant="primary"
-      className="max-h-[unset] mt-[25vh]"
+      className="max-h-[90vh] mt-[10vh] overflow-y-auto"
       wrapper={({ children }: PropsWithChildren) => (
         <FormProvider
           formState={formState}
