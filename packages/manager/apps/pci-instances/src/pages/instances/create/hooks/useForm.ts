@@ -5,15 +5,14 @@ import { nameDefaultValue } from '../components/Name.component';
 import { quantityDefaultValue } from '../components/QuantitySelector.component';
 import { instanceCreationSchema } from '../CreateInstance.page';
 import { selectContinent } from '../view-models/continentsViewModel';
-import { selectDeploymentModes } from '../view-models/deploymentModeViewModel';
 import { selectLocalizations } from '../view-models/localizationsViewModel';
 import { TDeploymentMode } from '@/types/instance/common.type';
 import { mockedFlavorCategories } from '@/__mocks__/instance/constants';
 
 export const useForm = (projectId: string) => {
-  const deploymentModes = selectDeploymentModes(deps)(projectId);
   const deploymentModesDefaultValue: TDeploymentMode[] = [
-    deploymentModes[0]!.mode,
+    'region',
+    'region-3-az',
   ];
 
   const continents = selectContinent(deps)(
@@ -28,6 +27,7 @@ export const useForm = (projectId: string) => {
     deploymentModesDefaultValue,
     continentDefaultValue,
     'total',
+    null,
   );
 
   const macroRegionDefaultValue = localizations[0]!.macroRegion;
