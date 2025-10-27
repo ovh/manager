@@ -39,15 +39,16 @@ vitest.mock('@tanstack/react-query', async () => {
 });
 
 describe('useBreadcrumb basic cases', () => {
+  beforeEach(() => {
+    vitest.mock('react-router-dom', async () => ({
+      ...(await vitest.importActual('react-router-dom')),
+      useLocation: () => ({
+        pathname: 'vrackServices',
+      }),
+    }));
+  });
+
   it('should return an array of breadcrumb item', async () => {
-    beforeEach(() => {
-      vitest.mock('react-router-dom', async () => ({
-        ...(await vitest.importActual('react-router-dom')),
-        useLocation: () => ({
-          pathname: 'vrackServices',
-        }),
-      }));
-    });
     const { result } = renderHook(
       () =>
         useBreadcrumb({
