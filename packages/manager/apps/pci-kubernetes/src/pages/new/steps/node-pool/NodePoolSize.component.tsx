@@ -13,7 +13,7 @@ export interface NodeSizeStepProps {
   isAutoscale: boolean;
   initialScaling: TScalingState['quantity'];
   onScaleChange: (scaling: TScalingState) => void;
-  selectedAvailabilityZones?: TSelectedAvailabilityZones;
+  selectedAvailabilityZones?: TSelectedAvailabilityZones | null;
 }
 
 export default function NodePoolSize({

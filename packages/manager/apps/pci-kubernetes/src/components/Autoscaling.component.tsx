@@ -7,6 +7,7 @@ import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import { OsdsMessage } from '@ovhcloud/ods-components/react';
 import {
   FormField,
+  FormFieldHelper,
   FormFieldLabel,
   Icon,
   Link,
@@ -82,12 +83,14 @@ export function Autoscaling({
             <QuantityInput />
           </QuantityControl>
         </Quantity>
+
+        {totalNodes && (
+          <FormFieldHelper className="text-[--ods-color-text-500] text-sm">
+            {t('kubernetes_node_pool_autoscaling_total_nodes', { totalNodes })}
+          </FormFieldHelper>
+        )}
       </FormField>
-      {totalNodes && (
-        <Text color="text">
-          {t('kubernetes_node_pool_autoscaling_total_nodes', { totalNodes })}
-        </Text>
-      )}
+
       <FormField className="mt-8">
         <Toggle
           disabled={isAntiAffinity}
