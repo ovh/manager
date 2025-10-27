@@ -100,10 +100,10 @@ export default function ActivatePage() {
     needsSave,
     isSaved,
     canSubmit,
-    hasDefaultPaymentMethod,
+    hasNoUserActionNeeded,
     savePaymentMethod,
     handlePaymentStatusChange,
-    handleRegisteredPaymentMethodSelected,
+    handleNoUserActionNeeded,
     handleChallengeRequired,
   } = useWillPayment();
 
@@ -114,7 +114,7 @@ export default function ActivatePage() {
   const handleSubmit = () => {
     if (needsSave && !isCreditPayment) {
       savePaymentMethod();
-    } else if (hasDefaultPaymentMethod || isCreditPayment) {
+    } else if (hasNoUserActionNeeded || isCreditPayment) {
       handleActivateProject();
     } else if (isCreditPayment && creditPaymentAmount) {
       handleCreditPayment();
@@ -175,9 +175,7 @@ export default function ActivatePage() {
           />
 
           <WillPaymentComponent
-            onRegisteredPaymentMethodSelected={
-              handleRegisteredPaymentMethodSelected
-            }
+            onNoUserActionNeeded={handleNoUserActionNeeded}
             onRequiredChallengeEvent={handleChallengeRequired}
           />
 

@@ -2,18 +2,18 @@ import { Suspense, useEffect, useRef } from 'react';
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { GlobalStateStatus } from '@/types/WillPayment.type';
 import { useWillPaymentConfig } from '../../hooks/useWillPaymentConfig';
-import { setupRegisteredPaymentMethodListener } from '../../utils/paymentEvents';
+import { setupRequiredActionsMethodListener } from '../../utils/paymentEvents';
 import { WillPaymentModule } from './WillPaymentModule';
 
 type WillPaymentComponentProps = {
   onPaymentStatusChange?: (status: GlobalStateStatus) => void;
-  onRegisteredPaymentMethodSelected: (event: CustomEvent) => void;
+  onNoUserActionNeeded: (event: CustomEvent) => void;
   onRequiredChallengeEvent: (event: CustomEvent) => void;
 };
 
 function WillPaymentComponent({
   onPaymentStatusChange,
-  onRegisteredPaymentMethodSelected,
+  onNoUserActionNeeded,
   onRequiredChallengeEvent,
 }: Readonly<WillPaymentComponentProps>) {
   const slotRef = useRef<HTMLDivElement>(null);
@@ -21,12 +21,12 @@ function WillPaymentComponent({
   const config = useWillPaymentConfig({ onPaymentStatusChange });
 
   useEffect(() => {
-    const cleanup = setupRegisteredPaymentMethodListener(
-      onRegisteredPaymentMethodSelected,
+    const cleanup = setupRequiredActionsMethodListener(
+      onNoUserActionNeeded,
       onRequiredChallengeEvent,
     );
     return cleanup || undefined;
-  }, [onRegisteredPaymentMethodSelected, onRequiredChallengeEvent]);
+  }, [onNoUserActionNeeded, onRequiredChallengeEvent]);
 
   return (
     <div id="will-payment-event-bus" ref={slotRef}>

@@ -269,7 +269,7 @@ describe('Creation Page', () => {
       needsSave: false,
       isSaved: false,
       canSubmit: true,
-      hasDefaultPaymentMethod: false,
+      hasNoUserActionNeeded: false,
       savePaymentMethod: vi.fn(),
       handlePaymentStatusChange: vi.fn(),
       handleRegisteredPaymentMethodSelected: vi.fn(),
@@ -422,7 +422,7 @@ describe('Creation Page', () => {
       needsSave: false,
       isSaved: false,
       canSubmit: true,
-      hasDefaultPaymentMethod: true, // Has default payment method
+      hasNoUserActionNeeded: true, // Has default payment method
       savePaymentMethod: vi.fn(),
       handlePaymentStatusChange: vi.fn(),
       handleRegisteredPaymentMethodSelected: vi.fn(),
@@ -441,7 +441,7 @@ describe('Creation Page', () => {
       needsSave: false,
       isSaved: false,
       canSubmit: true,
-      hasDefaultPaymentMethod: false,
+      hasNoUserActionNeeded: false,
       savePaymentMethod: vi.fn(),
       handlePaymentStatusChange: vi.fn(),
       handleRegisteredPaymentMethodSelected: vi.fn(),
@@ -544,7 +544,7 @@ describe('Creation Page', () => {
       needsSave: false,
       isSaved: true, // This should trigger handleProjectCreation
       canSubmit: true,
-      hasDefaultPaymentMethod: false,
+      hasNoUserActionNeeded: false,
       savePaymentMethod: vi.fn(),
       handlePaymentStatusChange: vi.fn(),
       handleRegisteredPaymentMethodSelected: vi.fn(),
