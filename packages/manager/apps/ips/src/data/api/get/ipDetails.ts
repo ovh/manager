@@ -1,24 +1,25 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
+import { IamObject } from '@ovh-ux/manager-react-components';
 import { IpTypeEnum } from '@/data/constants';
 
 export type GetIpDetailsParams = {
   ip: string;
 };
 
-export type IpRoutedToType = {
-  serviceName: string;
-};
-
 export type IpDetails = {
   type: IpTypeEnum;
   regions: string[];
   campus: string;
-  routedTo?: IpRoutedToType;
+  routedTo?: { serviceName: string };
   version: number;
-  description: string;
+  description: string | null;
   country: string;
   canBeTerminated: boolean;
   bringYourOwnIp?: boolean;
+  iam: IamObject;
+  organisationId?: string;
+  rir?: string;
+  isAdditionalIp?: boolean;
 };
 
 export const getIpDetailsQueryKey = (params: GetIpDetailsParams) => [

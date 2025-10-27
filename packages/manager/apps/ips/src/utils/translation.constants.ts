@@ -4,6 +4,7 @@ export const TRANSLATION_NAMESPACES = {
   configureReverseDns: 'configure-reverse-dns',
   error: 'error',
   gameFirewall: 'game-firewall',
+  edgeNetworkFirewall: 'edge-network-firewall',
   ips: 'ips',
   listing: 'listing',
   managerOrganisations: 'manage-organisations',

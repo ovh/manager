@@ -38,7 +38,7 @@
   "listingColumnsIpAlertsSpam": "Ip bloquée (anti-spam)",
   "listingColumnsIpAlertsMitigation": "Ip attaquée (Anti-DDOS Mitigation)",
   "listingColumnsIpAlertsAntihack": "Ip bloquée (anti-hack)",
-  "listingFilterIp": "Cherchez une ip",
+  "listingFilterIp": "Entrez l'adresse IP...",
   "listingFilterTypeAllTypes": "Tous les types de service",
   "listingQuickFilterLabel": "Quick Filters",
   "listingQuickFilterShowIPv4": "Afficher IPv4",
