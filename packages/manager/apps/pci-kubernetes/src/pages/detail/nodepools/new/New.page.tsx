@@ -29,6 +29,7 @@ import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import BillingStep, { TBillingStepProps } from '@/components/create/BillingStep.component';
 import { FlavorSelector } from '@/components/flavor-selector/FlavorSelector.component';
+import { isMultiDeploymentZones } from '@/helpers';
 import { hasInvalidScalingOrAntiAffinityConfig } from '@/helpers/node-pool';
 import { useTrack } from '@/hooks/track';
 import useMergedFlavorById, { getPriceByDesiredScale } from '@/hooks/useMergedFlavorById';
@@ -137,7 +138,7 @@ export default function NewPage(): ReactElement {
         },
       }));
     }
-  }, [store.flavor, store.isMonthlyBilling, store.scaling, isCatalogPending, catalog?.addons]);
+  }, [store.flavor, store.isMonthlyBilling, store.scaling, isCatalogPending]);
 
   const create = () => {
     trackClick(`details::nodepools::add::confirm`);
@@ -149,10 +150,8 @@ export default function NewPage(): ReactElement {
 
     const param: TCreateNodePoolParam = {
       flavorName: store.flavor?.name || '',
-      ...(store.selectedAvailabilityZones && {
-        availabilityZones: store.selectedAvailabilityZones
-          .filter(({ checked }) => checked)
-          .map(({ zone }) => zone),
+      ...(store.selectedAvailabilityZone && {
+        availabilityZones: [store.selectedAvailabilityZone],
       }),
       name: store.name.value,
       antiAffinity: store.antiAffinity,
@@ -206,17 +205,6 @@ export default function NewPage(): ReactElement {
   const handleValueChange = (e: OdsInputValueChangeEvent) => {
     if (e.detail.value) store.set.name(e.detail.value);
   };
-
-  useEffect(() => {
-    if (regionInformations?.availabilityZones.length) {
-      store.set.selectedAvailabilityZones(
-        regionInformations?.availabilityZones.map((zone) => ({
-          zone,
-          checked: false,
-        })),
-      );
-    }
-  }, [regionInformations?.availabilityZones, store.set]);
 
   return (
     <>
@@ -361,12 +349,12 @@ export default function NewPage(): ReactElement {
           label: t('common_stepper_next_button_label'),
           isDisabled: !!(
             regionInformations &&
-            hasInvalidScalingOrAntiAffinityConfig(regionInformations.type, {
+            hasInvalidScalingOrAntiAffinityConfig(regionInformations, {
               name: store.name.value,
               isTouched: store.name.isTouched,
               scaling: store.scaling,
               antiAffinity: store.antiAffinity,
-              selectedAvailabilityZones: store.selectedAvailabilityZones,
+              selectedAvailabilityZone: store.selectedAvailabilityZone,
             })
           ),
         }}
@@ -377,12 +365,12 @@ export default function NewPage(): ReactElement {
           label: t('common_stepper_modify_this_step'),
         }}
       >
-        {store.selectedAvailabilityZones ? (
+        {regionInformations?.type && isMultiDeploymentZones(regionInformations.type) ? (
           <div className="mb-8 flex gap-4">
             <DeploymentZone
-              multiple={false}
-              onSelect={store.set.selectedAvailabilityZones}
-              availabilityZones={store.selectedAvailabilityZones}
+              onSelect={store.set.selectedAvailabilityZone}
+              availabilityZones={regionInformations?.availabilityZones}
+              selectedAvailabilityZone={store.selectedAvailabilityZone}
             />
           </div>
         ) : (

@@ -22,7 +22,7 @@ export type TFormStore = {
     hasError: boolean;
   };
   flavor?: TComputedKubeFlavor;
-  selectedAvailabilityZones: { zone: string; checked: boolean }[] | null;
+  selectedAvailabilityZone: string | null;
   scaling: TScalingState;
   antiAffinity: boolean;
   isMonthlyBilling: boolean;
@@ -30,7 +30,7 @@ export type TFormStore = {
   set: {
     name: (val: string) => void;
     flavor: (val?: TComputedKubeFlavor) => void;
-    selectedAvailabilityZones: (val: { zone: string; checked: boolean }[]) => void;
+    selectedAvailabilityZone: (selectedZone: string) => void;
     scaling: (val: TScalingState) => void;
     antiAffinity: (val: boolean) => void;
     isMonthlyBilling: (val: boolean) => void;
@@ -106,12 +106,12 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
   scaling: initScale,
   antiAffinity: false,
   isMonthlyBilling: false,
-  selectedAvailabilityZones: null,
+  selectedAvailabilityZone: null,
   steps: initialSteps(),
   set: {
-    selectedAvailabilityZones: (val: { zone: string; checked: boolean }[]) => {
+    selectedAvailabilityZone: (val: string) => {
       set({
-        selectedAvailabilityZones: val,
+        selectedAvailabilityZone: val,
       });
     },
     name: (val: string) => {
@@ -255,7 +255,7 @@ export const useNewPoolStore = create<TFormStore>()((set, get) => ({
       flavor: undefined,
       scaling: initScale,
       antiAffinity: false,
-      selectedAvailabilityZones: null,
+      selectedAvailabilityZone: null,
       isMonthlyBilling: false,
       steps: initialSteps(),
     }));

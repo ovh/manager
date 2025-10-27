@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -12,13 +12,20 @@ import {
 import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
 
 import { useParam as useSafeParams } from '@ovh-ux/manager-pci-common';
-import { Datagrid } from '@ovh-ux/manager-react-components';
+import { Datagrid, convertHourlyPriceToMonthly } from '@ovh-ux/manager-react-components';
 
+import { NodePoolPrice } from '@/api/data/kubernetes';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import BillingStep from '@/components/create/BillingStep.component';
+import { TComputedKubeFlavor } from '@/components/flavor-selector/FlavorSelector.component';
+import { NODE_RANGE, TAGS_BLOB } from '@/constants';
+import { generateUniqueName, isMultiDeploymentZones } from '@/helpers';
+import { isNodePoolNameValid } from '@/helpers/matchers/matchers';
+import { hasInvalidScalingOrAntiAffinityConfig } from '@/helpers/node-pool';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
-import { TScalingState } from '@/types';
+import useMergedFlavorById, { getPriceByDesiredScale } from '@/hooks/useMergedFlavorById';
+import { NodePoolState, TScalingState } from '@/types';
 
-import useCreateNodePools from '../hooks/useCreateNodePool';
 import { useClusterCreationStepper } from '../hooks/useCusterCreationStepper';
 import DeploymentZone from './node-pool/DeploymentZone.component';
 import NodePoolAntiAffinity from './node-pool/NodePoolAntiAffinity.component';
@@ -29,37 +36,147 @@ import NodePoolType from './node-pool/NodePoolType.component';
 import { getDatagridColumns } from './node-pool/getDataGridColumns';
 
 const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreationStepper> }) => {
-  const { t } = useTranslation(['stepper', 'node-pool']);
+  const { t } = useTranslation([
+    'stepper',
+    'node-pool',
+    'add',
+    'kube-nodes',
+    'autoscaling',
+    'flavor-billing',
+    'billing-anti-affinity',
+  ]);
 
-  const { state, actions, view } = useCreateNodePools({
-    isLocked: stepper.node.step.isLocked,
-    name: stepper.form.region?.name,
+  const [nodePoolState, setNodePoolState] = useState<NodePoolState>({
+    antiAffinity: false,
+    name: '',
+    isTouched: false,
+    scaling: {
+      quantity: { desired: NODE_RANGE.MIN, min: 0, max: NODE_RANGE.MAX },
+      isAutoscale: false,
+    },
   });
 
-  const featureFlipping3az = use3AZPlanAvailable();
+  const isValidName = isNodePoolNameValid(nodePoolState.name);
 
-  const columns = useMemo(
-    () => getDatagridColumns({ onDelete: actions.onDelete, t }),
-    [actions.onDelete, t],
+  const hasError = nodePoolState.isTouched && !isValidName;
+  const [isMonthlyBilled, setIsMonthlyBilled] = useState(false);
+  const [selectedFlavor, setSelectedFlavor] = useState<TComputedKubeFlavor | null>(null);
+
+  const featureFlipping3az = use3AZPlanAvailable();
+  const [nodePoolEnabled, setNodePoolEnabled] = useState(true);
+  const [nodes, setNodes] = useState<NodePoolPrice[] | null>(null);
+  const onDelete = useCallback(
+    (nameToDelete: string) => nodes && setNodes(nodes.filter((node) => node.name !== nameToDelete)),
+    [nodes],
   );
+  const columns = useMemo(() => getDatagridColumns({ onDelete, t }), [onDelete, t]);
+
+  const isNodePoolValid = !nodePoolEnabled || (Boolean(selectedFlavor) && isValidName);
 
   const { projectId } = useSafeParams('projectId');
 
+  const price = useMergedFlavorById<{ hour: number; month?: number } | null>(
+    projectId,
+    stepper.form.region?.name ?? null,
+    selectedFlavor?.id ?? null,
+    {
+      select: (flavor) =>
+        getPriceByDesiredScale(
+          flavor.pricingsHourly?.price,
+          flavor.pricingsMonthly?.price,
+          nodePoolState.scaling?.quantity.desired,
+        ),
+    },
+  );
+
+  const { data: regionInformations } = useRegionInformations(
+    projectId,
+    stepper.form.region?.name ?? null,
+  );
+
+  const isButtonDisabled =
+    !isNodePoolValid ||
+    (regionInformations &&
+      hasInvalidScalingOrAntiAffinityConfig(regionInformations, nodePoolState));
+
+  const isPricingComingSoon = selectedFlavor?.blobs?.tags?.includes(TAGS_BLOB.COMING_SOON);
+
+  const isStepUnlocked = !stepper.node.step.isLocked;
+
+  const canSubmit =
+    (isStepUnlocked && !nodePoolEnabled) ||
+    (isStepUnlocked && nodePoolEnabled && Array.isArray(nodes) && nodes.length > 0);
+
+  useEffect(() => setIsMonthlyBilled(false), [selectedFlavor]);
+
+  useEffect(() => {
+    setNodes(!nodePoolEnabled ? null : []);
+    if (!nodePoolEnabled) {
+      setNodePoolState((state) => ({
+        ...state,
+
+        name: '',
+        isTouched: false,
+      }));
+    }
+  }, [nodePoolEnabled]);
+
+  const setNewNodePool = useCallback(() => {
+    if (nodes && nodePoolState.scaling && selectedFlavor) {
+      const newNodePool: NodePoolPrice = {
+        name: generateUniqueName(nodePoolState.name, nodes),
+        antiAffinity: nodePoolState.antiAffinity,
+        autoscale: nodePoolState.scaling.isAutoscale,
+        ...(regionInformations?.type &&
+          isMultiDeploymentZones(regionInformations.type) &&
+          nodePoolState.selectedAvailabilityZone && {
+            availabilityZones: [nodePoolState.selectedAvailabilityZone],
+          }),
+        localisation: nodePoolState.selectedAvailabilityZone ?? stepper.form.region?.name ?? null,
+        desiredNodes: nodePoolState.scaling.quantity.desired,
+        ...(nodePoolState.scaling.isAutoscale && {
+          minNodes: nodePoolState.scaling.quantity.min,
+          maxNodes: nodePoolState.scaling.quantity.max,
+        }),
+        flavorName: selectedFlavor.name ?? '',
+
+        monthlyPrice: isMonthlyBilled
+          ? (price?.month ?? 0)
+          : convertHourlyPriceToMonthly(price?.hour ?? 0),
+        monthlyBilled: isMonthlyBilled,
+      };
+      setNodePoolState((state) => ({
+        ...state,
+        name: '',
+        isTouched: false,
+      }));
+      setNodes([...nodes, newNodePool]);
+    }
+  }, [
+    nodePoolState,
+    nodes,
+    stepper.form.region?.name,
+    selectedFlavor,
+    isMonthlyBilled,
+    setNodePoolState,
+    setNodes,
+  ]);
+
   return (
     <>
-      {((!stepper.node.step.isLocked && state.nodePoolEnabled) || !state.nodePoolEnabled) && (
+      {((!stepper.node.step.isLocked && nodePoolEnabled) || !nodePoolEnabled) && (
         <NodePoolToggle
-          nodePoolEnabled={state.nodePoolEnabled}
+          nodePoolEnabled={nodePoolEnabled}
           step={stepper.node.step}
-          onNodePoolEnabledChange={actions.setNodePoolEnabled}
+          onNodePoolEnabledChange={setNodePoolEnabled}
         />
       )}
       <div className="bo border-">
         <div
           className={
-            !stepper.node.step.isLocked && state.nodePoolEnabled
-              ? 'block'
-              : 'hidden overflow-hidden'
+            !stepper.node.step.isLocked && nodePoolEnabled
+              ? 'visible'
+              : 'invisible w-0 h-0 overflow-hidden'
           }
         >
           <div className="mb-8 mt-4">
@@ -67,83 +184,83 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
               <NodePoolType
                 projectId={projectId}
                 region={stepper.form.region.name}
-                onSelect={actions.setSelectedFlavor}
+                onSelect={setSelectedFlavor}
               />
             )}
           </div>
-          {featureFlipping3az && state.nodePoolState.selectedAvailabilityZones && (
-            <div className="mb-8 gap-4">
-              <DeploymentZone
-                multiple
-                onSelect={(zones) =>
-                  actions.setNodePoolState((prevState) => ({
-                    ...prevState,
-                    selectedAvailabilityZones: zones,
-                  }))
-                }
-                availabilityZones={state.nodePoolState.selectedAvailabilityZones}
-              />
-            </div>
-          )}
+          {featureFlipping3az &&
+            regionInformations?.type &&
+            isMultiDeploymentZones(regionInformations.type) && (
+              <div className="mb-8 flex gap-4">
+                <DeploymentZone
+                  onSelect={(zone) =>
+                    setNodePoolState((state) => ({
+                      ...state,
+                      selectedAvailabilityZone: zone,
+                    }))
+                  }
+                  availabilityZones={regionInformations?.availabilityZones}
+                  selectedAvailabilityZone={nodePoolState.selectedAvailabilityZone ?? ''}
+                />
+              </div>
+            )}
           <div className="mb-8">
             <NodePoolSize
-              isMonthlyBilled={state.isMonthlyBilled}
+              isMonthlyBilled={isMonthlyBilled}
               onScaleChange={(scaling: TScalingState) =>
-                actions.setNodePoolState((prevState) => ({ ...prevState, scaling }))
+                setNodePoolState((state) => ({ ...state, scaling }))
               }
-              antiAffinity={state.nodePoolState.antiAffinity}
+              antiAffinity={nodePoolState.antiAffinity}
             />
           </div>
           <div className="mb-8">
             <NodePoolAntiAffinity
-              isChecked={state.nodePoolState.antiAffinity}
-              isEnabled={!state.nodePoolState.scaling?.isAutoscale}
+              isChecked={nodePoolState.antiAffinity}
+              isEnabled={!nodePoolState.scaling?.isAutoscale}
               onChange={(antiAffinity: boolean) =>
-                actions.setNodePoolState((prevState) => ({ ...prevState, antiAffinity }))
+                setNodePoolState((state) => ({ ...state, antiAffinity }))
               }
             />
           </div>
           <div className="mb-8">
             <BillingStep
-              price={state.price?.hour ?? null}
-              monthlyPrice={state.price?.month}
+              price={price?.hour ?? null}
+              monthlyPrice={price?.month}
               monthlyBilling={{
-                isComingSoon: view.isPricingComingSoon ?? false,
-                isChecked: state.isMonthlyBilled,
-                check: actions.setIsMonthlyBilled,
+                isComingSoon: isPricingComingSoon ?? false,
+                isChecked: isMonthlyBilled,
+                check: setIsMonthlyBilled,
               }}
-              warn={(state.nodePoolState.scaling?.isAutoscale && state.isMonthlyBilled) ?? false}
+              warn={(nodePoolState.scaling?.isAutoscale && isMonthlyBilled) ?? false}
             />
           </div>
           <div className="mb-8">
             <NodePoolName
               onTouched={(isTouched: boolean) =>
-                actions.setNodePoolState((prevState) => ({ ...prevState, isTouched }))
+                setNodePoolState((state) => ({ ...state, isTouched }))
               }
-              error={view.error}
-              onNameChange={(name: string) =>
-                actions.setNodePoolState((prevState) => ({ ...prevState, name }))
-              }
-              name={state.nodePoolState.name}
+              hasError={hasError}
+              onNameChange={(name: string) => setNodePoolState((state) => ({ ...state, name }))}
+              name={nodePoolState.name}
             />
           </div>
         </div>
 
-        {!stepper.node.step.isLocked && state.nodePoolEnabled && (
+        {!stepper.node.step.isLocked && nodePoolEnabled && (
           <OsdsButton
             data-testid="button-add-node"
             variant={ODS_BUTTON_VARIANT.stroked}
             className="my-6 w-fit"
-            disabled={view.isButtonDisabled || !state.nodes || undefined}
+            disabled={isButtonDisabled || !nodes || undefined}
             size={ODS_BUTTON_SIZE.sm}
             color={ODS_TEXT_COLOR_INTENT.primary}
-            onClick={actions.createNodePool}
+            onClick={setNewNodePool}
           >
             {t('node-pool:kube_common_add_node_pool')}
           </OsdsButton>
         )}
 
-        {state.nodes && (
+        {nodes && (
           <>
             <OsdsText
               className="mb-4 font-bold"
@@ -156,23 +273,23 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
             </OsdsText>
             <Datagrid
               columns={columns}
-              items={state.nodes}
-              totalItems={state.nodes.length}
+              items={nodes}
+              totalItems={nodes.length}
               className="overflow-x-visible"
             />
           </>
         )}
-        {view.canSubmit && (
+        {canSubmit && (
           <OsdsButton
             data-testid="submit-button-node"
             onClick={() => {
-              stepper.node.submit(state.nodes);
+              stepper.node.submit(nodes);
             }}
             className="mt-4 w-fit"
             size={ODS_BUTTON_SIZE.md}
             color={ODS_TEXT_COLOR_INTENT.primary}
           >
-            {t('stepper:common_stepper_next_button_label')}
+            {t('common_stepper_next_button_label')}
           </OsdsButton>
         )}
       </div>
