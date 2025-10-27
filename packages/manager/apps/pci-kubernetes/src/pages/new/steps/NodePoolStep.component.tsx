@@ -45,10 +45,6 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
 
   const { projectId } = useSafeParams('projectId');
 
-  const numberOfZoneSelected = state.nodePoolState.selectedAvailabilityZones?.filter(
-    ({ checked }) => checked,
-  ).length;
-
   return (
     <>
       {((!stepper.node.step.isLocked && state.nodePoolEnabled) || !state.nodePoolEnabled) && (
@@ -66,7 +62,7 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
               : 'hidden overflow-hidden'
           }
         >
-          <div className="mb-6 mt-4">
+          <div className="mb-8 mt-4">
             {stepper.form.region?.name && (
               <NodePoolType
                 projectId={projectId}
@@ -76,7 +72,7 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
             )}
           </div>
           {featureFlipping3az && state.nodePoolState.selectedAvailabilityZones && (
-            <div className="mb-6 gap-4">
+            <div className="mb-8 gap-4">
               <DeploymentZone
                 multiple
                 onSelect={(zones) =>
@@ -89,16 +85,13 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
               />
             </div>
           )}
-          <div className="mb-6">
+          <div className="mb-8">
             <NodePoolSize
               isMonthlyBilled={state.isMonthlyBilled}
               onScaleChange={(scaling: TScalingState) =>
                 actions.setNodePoolState((prevState) => ({ ...prevState, scaling }))
               }
-              initialScaling={state.nodePoolState.scaling?.quantity}
               antiAffinity={state.nodePoolState.antiAffinity}
-              isAutoscale={state.nodePoolState.scaling?.isAutoscale}
-              selectedAvailabilityZones={state.nodePoolState.selectedAvailabilityZones}
             />
           </div>
           <div className="mb-8">
@@ -122,7 +115,7 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
               warn={(state.nodePoolState.scaling?.isAutoscale && state.isMonthlyBilled) ?? false}
             />
           </div>
-          <div className="mb-6">
+          <div className="mb-8">
             <NodePoolName
               onTouched={(isTouched: boolean) =>
                 actions.setNodePoolState((prevState) => ({ ...prevState, isTouched }))
@@ -146,9 +139,7 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
             color={ODS_TEXT_COLOR_INTENT.primary}
             onClick={actions.createNodePool}
           >
-            {numberOfZoneSelected && numberOfZoneSelected > 1
-              ? t('node-pool:kube_common_add_node_pool_plural', { count: numberOfZoneSelected })
-              : t('node-pool:kube_common_add_node_pool')}
+            {t('node-pool:kube_common_add_node_pool')}
           </OsdsButton>
         )}
 

@@ -16,8 +16,7 @@ describe('NodePoolAntiAffinity Component', () => {
   test('disables the toggle when isEnabled is false', () => {
     render(<NodePoolAntiAffinity isChecked={false} isEnabled={false} onChange={() => {}} />);
 
-    const toggle = screen.getByRole('checkbox');
-
+    const toggle = screen.getByTestId('toggle-anti-affinity');
     expect(toggle).toBeDisabled();
   });
 

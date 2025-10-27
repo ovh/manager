@@ -21,7 +21,7 @@ describe('Autoscaling', () => {
   const mockOnChange = vi.fn();
   const defaultProps = {
     initialScaling: { min: 1, max: 5, desired: 3 },
-    isAutoscale: false,
+    autoscale: false,
     isAntiAffinity: false,
     onChange: mockOnChange,
   };
@@ -35,8 +35,7 @@ describe('Autoscaling', () => {
     expect(screen.getByText('kubernetes_node_pool_autoscaling_description')).toBeInTheDocument();
   });
 
-  // TODO Regression ODS 17 to ODS 19
-  it.skip('should toggle autoscale on click', () => {
+  it('should toggle autoscale on click', () => {
     render(<Autoscaling {...defaultProps} />, { wrapper });
     const toggleButton = screen.getByText(
       'kubernetes_node_pool_autoscaling_autoscale_toggle_false',
@@ -47,8 +46,7 @@ describe('Autoscaling', () => {
     ).toBeInTheDocument();
   });
 
-  // TODO Regression ODS 17 to ODS 19
-  it.skip('should update the desired quantity', () => {
+  it('should update the desired quantity', () => {
     render(<Autoscaling {...defaultProps} />, { wrapper });
     const input = screen.getByDisplayValue('3');
     fireEvent.change(input, { target: { value: '4' } });

@@ -212,7 +212,7 @@ export type NodePoolState = {
   isTouched: boolean;
   scaling: TScalingState;
   antiAffinity: boolean;
-  selectedAvailabilityZones?: TSelectedAvailabilityZones | null;
+  selectedAvailabilityZones?: TSelectedAvailabilityZones;
 };
 
 export type TCreateNodePoolParam = {

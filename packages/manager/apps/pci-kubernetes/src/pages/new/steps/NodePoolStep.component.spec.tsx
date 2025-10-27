@@ -1,4 +1,4 @@
-import { QueryObserver, QueryObserverSuccessResult, UseQueryResult } from '@tanstack/react-query';
+import { QueryObserverSuccessResult } from '@tanstack/react-query';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
@@ -49,9 +49,9 @@ describe('NodePoolStep Component', () => {
     vi.mocked(useRegionInformations).mockReturnValue({
       data: {
         type: DeploymentMode.MONO_ZONE,
-        availabilityZones: [''],
+        availabilityZones: ['zone-a', 'zone-b'],
       },
-    } as QueryObserverSuccessResult<TRegionInformations>);
+    } as QueryObserverSuccessResult<TRegionInformations, Error>);
   });
 
   it('should render without error', () => {
@@ -65,18 +65,6 @@ describe('NodePoolStep Component', () => {
       'node-pool:kube_common_add_node_pool',
     ];
     toTest.forEach((test) => expect(screen.getByText(test)).toBeInTheDocument());
-  });
-
-  it('should render singular button', async () => {
-    vi.mocked(useRegionInformations).mockReturnValue({
-      data: {
-        type: DeploymentMode.MULTI_ZONES,
-        availabilityZones: ['zone-1', 'zone-2'],
-      },
-    } as QueryObserverSuccessResult<TRegionInformations, Error>);
-    render(<NodePoolStep stepper={mockStepper} />, { wrapper });
-
-    expect(screen.getByText('node-pool:kube_common_add_node_pool_plural')).toBeInTheDocument();
   });
 
   it('should render zones', () => {
