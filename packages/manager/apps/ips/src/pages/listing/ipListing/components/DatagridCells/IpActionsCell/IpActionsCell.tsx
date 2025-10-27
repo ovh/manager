@@ -8,14 +8,13 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import ipaddr from 'ipaddr.js';
 import { urlDynamicParts, urls } from '@/routes/routes.constant';
 import { fromIpToId, ipFormatter } from '@/utils';
-import { IpTypeEnum, PRODUCT_PATHS_AND_CATEGORIES } from '@/data/constants';
+import { IpTypeEnum } from '@/data/constants';
 import { ListingContext } from '@/pages/listing/listingContext';
 import { isGameFirewallEnabled } from '../enableCellsUtils';
 import {
   useGetIpdetails,
   useGetIpGameFirewall,
   useIpHasForcedMitigation,
-  useIpHasServicesAttached,
   useGetAttachedServices,
   useIpHasVmac,
   useIpHasAlerts,
@@ -101,28 +100,14 @@ export const IpActionsCell = ({
   const { t } = useTranslation(['listing', NAMESPACES?.ACTIONS]);
 
   const serviceName = ipDetails?.routedTo?.serviceName;
-  const {
-    hasServiceAttached: hasCloudServiceAttachedToIP,
-  } = useIpHasServicesAttached({
-    ...PRODUCT_PATHS_AND_CATEGORIES.cloud,
-    serviceName,
-  });
 
   const {
-    hasServiceAttached: hasDedicatedServiceAttachedToIp,
-  } = useIpHasServicesAttached({
-    ...PRODUCT_PATHS_AND_CATEGORIES.dedicated,
+    hasCloudServiceAttachedToIP,
+    hasDedicatedServiceAttachedToIp,
+    hasHousingServiceAttachedToIp,
+  } = useGetAttachedServices({
     serviceName,
   });
-
-  // Case only for housing if the service doesnt exist in the product list then its housing service attched to Ip
-  const { servicesAttached } = useGetAttachedServices({
-    serviceName,
-  });
-
-  // Check if Ip as routTo service(serviceName) and if that serviceName is not within attached services(servicesAttached) then its housing
-  const hasHousingServiceAttachedToIp =
-    Boolean(serviceName) && servicesAttached.length === 0;
 
   const { isVmacAlreadyExist, isLoading: isVmacLoading } = useIpHasVmac({
     serviceName,
@@ -221,7 +206,10 @@ export const IpActionsCell = ({
         label: t('listingActionConfigureEdgeNetworkFirewall'),
         onClick: () =>
           navigate(
-            urls.configureEdgeNetworkFirewall.replace(urlDynamicParts.id, id),
+            `${urls.configureEdgeNetworkFirewall.replace(
+              urlDynamicParts.id,
+              id,
+            )}?${search.toString()}`,
           ),
       },
     ipaddr.IPv6.isIPv6(ipAddress) &&
@@ -286,7 +274,7 @@ export const IpActionsCell = ({
           ),
       },
     ipaddr.IPv4.isIPv4(ipAddress) &&
-      ipDetails?.type === IpTypeEnum.ADDITIONAL &&
+      ipDetails?.isAdditionalIp &&
       !parentIpGroup &&
       !isByoipSlice && {
         id: 8,
