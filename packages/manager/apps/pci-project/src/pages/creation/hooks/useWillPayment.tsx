@@ -20,12 +20,12 @@ export const useWillPayment = () => {
     setGlobalStateStatus,
   ] = useState<GlobalStateStatus | null>(null);
 
-  const [hasDefaultPaymentMethod, setHasDefaultPaymentMethod] = useState(false);
+  const [hasNoUserActionNeeded, setHasNoUserActionNeeded] = useState(false);
   const [isChallengeRequired, setIsChallengeRequired] = useState(false);
 
-  const handleRegisteredPaymentMethodSelected = (event: CustomEvent) => {
-    if (event && event.detail) {
-      setHasDefaultPaymentMethod(true);
+  const handleNoUserActionNeeded = (event: CustomEvent) => {
+    if (event) {
+      setHasNoUserActionNeeded(true);
     }
   };
 
@@ -60,7 +60,7 @@ export const useWillPayment = () => {
   const needsSave = checkIsPaymentMethodSaveRequired(globalStateStatus);
   const isSaved = checkIsPaymentMethodSaved(globalStateStatus);
   const canSubmit = checkIsSubmittingEnabled(
-    hasDefaultPaymentMethod,
+    hasNoUserActionNeeded,
     isChallengeRequired,
     needsSave,
   );
@@ -68,14 +68,14 @@ export const useWillPayment = () => {
   return {
     isCreditPayment: creditData?.isCredit,
     creditAmount: creditData?.creditAmount,
-    hasDefaultPaymentMethod,
+    hasNoUserActionNeeded,
     isChallengeRequired,
     needsSave,
     isSaved,
     canSubmit,
     savePaymentMethod,
     handlePaymentStatusChange,
-    handleRegisteredPaymentMethodSelected,
+    handleNoUserActionNeeded,
     handleChallengeRequired,
   };
 };

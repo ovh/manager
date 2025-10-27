@@ -6,10 +6,6 @@ export default defineConfig(() => {
   return {
     ...getBaseConfig(),
     root: resolve(process.cwd()),
-    plugins: [
-      ...getBaseConfig().plugins,
-    ],
+    plugins: [...getBaseConfig().plugins],
   };
 });
-
-
