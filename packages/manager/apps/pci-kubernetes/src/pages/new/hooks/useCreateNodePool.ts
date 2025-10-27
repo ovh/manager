@@ -24,7 +24,7 @@ function generateUniqueNameWithZone(
   const nameExists = checkIfNameExists(nameWithSuffix, existingNodePools);
 
   if (nameExists) {
-    throw new Error('Le nom de nodepool est déjà utilisé. Veuillez en choisir un autre.');
+    throw new Error('kube_add_node_pool_name_already_exist_validation_error');
   }
   return generateUniqueName(nameWithSuffix, existingNodePools);
 }
@@ -106,7 +106,7 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
         name: '',
         isTouched: false,
       }));
-    } catch (err: unknown) {
+    } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
       }
@@ -131,6 +131,13 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
     (isStepUnlocked && nodePoolEnabled && Array.isArray(nodes) && nodes.length > 0);
 
   useEffect(() => setIsMonthlyBilled(false), [selectedFlavor]);
+
+  useEffect(() => {
+    if (nodePoolState.selectedAvailabilityZones) {
+      const checkExist = nodes && checkIfNameExists(nodePoolState.name, nodes);
+      setError(checkExist ? 'kube_add_node_pool_name_already_exist_validation_error' : null);
+    }
+  }, [nodePoolState.selectedAvailabilityZones, nodePoolState.name, nodes]);
 
   useEffect(
     () =>
