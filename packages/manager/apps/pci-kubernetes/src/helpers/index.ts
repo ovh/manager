@@ -196,23 +196,6 @@ export function generateUniqueName(baseName: string, existingNodePools: NodePool
   return newName;
 }
 
-/**
- * If the name already exists in the node pools array, we throw an error.
- *
- * @param {string} baseName - The desired base name for the node pool.
- * @param {Array<{name: string}>} existingNodePools - Array of existing node pools.
- */
-export function checkIfNameExists(baseName: string, existingNodePools: NodePoolPrice[]) {
-  const isNameTaken = (pool: NodePool) => pool.name === baseName;
-
-  for (let pool of existingNodePools) {
-    if (isNameTaken(pool)) {
-      return true;
-    }
-  }
-  return false;
-}
-
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }

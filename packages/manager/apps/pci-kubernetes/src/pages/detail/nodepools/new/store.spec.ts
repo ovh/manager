@@ -67,13 +67,13 @@ describe('NewPoolStore', () => {
     it('should check the right step', () => {
       const { result } = renderHook(() => useNewPoolStore());
       act(() => result.current.check(StepsEnum.BILLING));
-      expect(result.current.steps.get(StepsEnum.BILLING)?.isChecked).toBe(true);
+      expect(result.current.steps.get(StepsEnum.BILLING).isChecked).toBe(true);
     });
 
     it('should uncheck the right step', () => {
       const { result } = renderHook(() => useNewPoolStore());
       act(() => result.current.uncheck(StepsEnum.BILLING));
-      expect(result.current.steps.get(StepsEnum.BILLING)?.isChecked).toBe(false);
+      expect(result.current.steps.get(StepsEnum.BILLING).isChecked).toBe(false);
     });
   });
 
@@ -87,7 +87,7 @@ describe('NewPoolStore', () => {
     it('should unlock the right step', () => {
       const { result } = renderHook(() => useNewPoolStore());
       act(() => result.current.unlock(StepsEnum.BILLING));
-      expect(result.current.steps.get(StepsEnum.BILLING)?.isLocked).toBe(false);
+      expect(result.current.steps.get(StepsEnum.BILLING).isLocked).toBe(false);
     });
   });
 
@@ -117,7 +117,7 @@ describe('NewPoolStore', () => {
       name: state.name,
       flavor: state.flavor,
       scaling: state.scaling,
-      selectedAvailabilityZones: state.selectedAvailabilityZones,
+      selectedAvailabilityZone: state.selectedAvailabilityZone,
       antiAffinity: state.antiAffinity,
       isMonthlyBilling: state.isMonthlyBilling,
       steps: state.steps,
@@ -141,7 +141,7 @@ describe('NewPoolStore', () => {
         flavor: undefined,
         isMonthlyBilling: false,
         name: { value: '', hasError: false, isTouched: false },
-        selectedAvailabilityZones: null,
+        selectedAvailabilityZone: null,
         steps: new Map([
           [
             'NAME',
@@ -201,7 +201,7 @@ describe('NewPoolStore', () => {
         flavor: undefined,
         isMonthlyBilling: false,
         name: { hasError: false, isTouched: false, value: '' },
-        selectedAvailabilityZones: null,
+        selectedAvailabilityZone: null,
         steps: new Map([
           [
             'NAME',
@@ -265,7 +265,7 @@ describe('NewPoolStore', () => {
           isTouched: false,
           value: '',
         },
-        selectedAvailabilityZones: null,
+        selectedAvailabilityZone: null,
         steps: new Map([
           [
             'NAME',

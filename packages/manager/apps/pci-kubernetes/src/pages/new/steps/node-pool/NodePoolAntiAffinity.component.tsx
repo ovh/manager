@@ -1,13 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
-import {
-  FormField,
-  TEXT_PRESET,
-  Text,
-  Toggle,
-  ToggleControl,
-  ToggleLabel,
-} from '@ovhcloud/ods-react';
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_COLOR_INTENT, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsFormField, OsdsText, OsdsToggle } from '@ovhcloud/ods-components/react';
 
 import { ANTI_AFFINITY_MAX_NODES } from '@/constants';
 
@@ -20,31 +15,43 @@ const NodePoolAntiAffinity = ({ isChecked, onChange, isEnabled }: NodePoolAntiAf
   const { t } = useTranslation('billing-anti-affinity');
 
   return (
-    <div className="mb-6 max-w-3xl">
-      <Text className="text-[--ods-color-text-500]" preset={TEXT_PRESET.heading4}>
+    <div className="mb-6">
+      <OsdsText
+        className="mb-4 font-bold block"
+        color={ODS_TEXT_COLOR_INTENT.text}
+        level={ODS_TEXT_LEVEL.heading}
+        size={ODS_TEXT_SIZE._400}
+      >
         {t('kubernetes_node_pool_anti_affinity')}
-      </Text>
-      <Text>
+      </OsdsText>
+      <OsdsText
+        level={ODS_TEXT_LEVEL.body}
+        size={ODS_TEXT_SIZE._400}
+        color={ODS_THEME_COLOR_INTENT.text}
+      >
         {t('kubernetes_node_pool_anti_affinity_description', {
           maxNodes: ANTI_AFFINITY_MAX_NODES,
         })}
-      </Text>
-      <FormField className="mt-8">
-        <Toggle
+      </OsdsText>
+      <OsdsFormField className="mt-8" inline>
+        <OsdsToggle
           data-testid="toggle-anti-affinity"
-          disabled={!isEnabled}
-          color="primary"
-          checked={isChecked}
-          onChange={() => isEnabled && onChange(!isChecked)}
+          disabled={!isEnabled || undefined}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          checked={isChecked || undefined}
+          onClick={() => isEnabled && onChange(!isChecked)}
         >
-          <ToggleControl />
-          <ToggleLabel>
-            <Text className="ml-4 font-bold">
-              {t(`kubernetes_node_pool_anti_affinity_${isChecked}`)}
-            </Text>
-          </ToggleLabel>
-        </Toggle>
-      </FormField>
+          <OsdsText
+            className="ml-4 font-bold"
+            color={ODS_TEXT_COLOR_INTENT.text}
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+            slot="end"
+          >
+            {t(`kubernetes_node_pool_anti_affinity_${isChecked}`)}
+          </OsdsText>
+        </OsdsToggle>
+      </OsdsFormField>
     </div>
   );
 };

@@ -1,13 +1,15 @@
 import { ANTI_AFFINITY_MAX_NODES, NODE_RANGE } from '@/constants';
-import { DeploymentMode, NodePoolState } from '@/types';
+import { NodePoolState } from '@/types';
+import { TRegionInformations } from '@/types/region';
 
 import { isMonoDeploymentZone } from '.';
 
 export const exceedsMaxNodes = (quantity: number) => quantity > NODE_RANGE.MAX;
 
-export const isZoneAzChecked = (type: DeploymentMode, nodePoolState: NodePoolState) =>
-  !!isMonoDeploymentZone(type) ||
-  !!nodePoolState.selectedAvailabilityZones?.some((zone) => zone.checked);
+export const zoneAZisChecked = (
+  regionInformations: TRegionInformations,
+  nodePoolState: NodePoolState,
+) => isMonoDeploymentZone(regionInformations?.type) || !!nodePoolState.selectedAvailabilityZone;
 
 export const isScalingValid = (nodePoolState: Pick<NodePoolState, 'scaling'>) => {
   if (!nodePoolState.scaling) return true;
@@ -34,9 +36,9 @@ export const hasMax5NodesAntiAffinity = (nodePoolState: NodePoolState) =>
   false;
 
 export const hasInvalidScalingOrAntiAffinityConfig = (
-  type: DeploymentMode,
+  regionInformations: TRegionInformations,
   nodePoolState: NodePoolState,
 ) =>
   !isScalingValid(nodePoolState) ||
   !hasMax5NodesAntiAffinity(nodePoolState) ||
-  !isZoneAzChecked(type, nodePoolState);
+  !zoneAZisChecked(regionInformations, nodePoolState);

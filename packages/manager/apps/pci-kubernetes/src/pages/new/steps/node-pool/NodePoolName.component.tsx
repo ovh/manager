@@ -5,13 +5,13 @@ import { ODS_INPUT_TYPE, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-com
 import { OsdsFormField, OsdsInput, OsdsText } from '@ovhcloud/ods-components/react';
 
 type NodeNameProps = {
-  error: string | null;
+  hasError: boolean;
   onTouched: (val: boolean) => void;
   name: string;
   onNameChange: (val: string) => void;
 };
 
-const NodePoolName = ({ error, onTouched, name, onNameChange }: NodeNameProps) => {
+const NodePoolName = ({ hasError, onTouched, name, onNameChange }: NodeNameProps) => {
   const { t } = useTranslation('add');
 
   return (
@@ -25,11 +25,15 @@ const NodePoolName = ({ error, onTouched, name, onNameChange }: NodeNameProps) =
       >
         {t('kubernetes_add_nodepool_name_placeholder')}
       </OsdsText>
-      <OsdsFormField class="mt-6" error={error ? t(error) : ''} inline>
+      <OsdsFormField
+        class="mt-6"
+        error={hasError ? t('kube_add_node_pool_name_input_pattern_validation_error') : ''}
+        inline
+      >
         <OsdsText
           slot="label"
           level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          color={error ? ODS_THEME_COLOR_INTENT.error : ODS_THEME_COLOR_INTENT.text}
+          color={hasError ? ODS_THEME_COLOR_INTENT.error : ODS_THEME_COLOR_INTENT.text}
           size={ODS_TEXT_SIZE._200}
         >
           {t('kubernetes_add_name')}
@@ -38,13 +42,13 @@ const NodePoolName = ({ error, onTouched, name, onNameChange }: NodeNameProps) =
           <OsdsInput
             placeholder={t('kube_add_node_pool_name_label')}
             value={name}
-            color={error ? ODS_THEME_COLOR_INTENT.error : ODS_THEME_COLOR_INTENT.primary}
+            color={hasError ? ODS_THEME_COLOR_INTENT.error : ODS_THEME_COLOR_INTENT.primary}
             type={ODS_INPUT_TYPE.text}
             onOdsValueChange={(e) => {
               onNameChange(e.detail.value ?? '');
             }}
             onOdsInputBlur={() => onTouched(true)}
-            error={!!error}
+            error={hasError}
           />
         </div>
       </OsdsFormField>
