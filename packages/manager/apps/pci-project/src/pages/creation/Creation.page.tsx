@@ -102,10 +102,10 @@ export default function ProjectCreation() {
     needsSave,
     isSaved,
     canSubmit,
-    hasDefaultPaymentMethod,
+    hasNoUserActionNeeded,
     savePaymentMethod,
     handlePaymentStatusChange,
-    handleRegisteredPaymentMethodSelected,
+    handleNoUserActionNeeded,
     handleChallengeRequired,
   } = useWillPayment();
 
@@ -168,7 +168,7 @@ export default function ProjectCreation() {
     if (needsSave && !isCreditPayment) {
       // Need to save the payment method first
       savePaymentMethod();
-    } else if (hasDefaultPaymentMethod || isCreditPayment) {
+    } else if (hasNoUserActionNeeded || isCreditPayment) {
       handleProjectCreation({
         isCreditPayment,
         creditAmount: creditAmount?.value ?? 0,
@@ -176,7 +176,7 @@ export default function ProjectCreation() {
     }
   }, [
     needsSave,
-    hasDefaultPaymentMethod,
+    hasNoUserActionNeeded,
     savePaymentMethod,
     handleProjectCreation,
     isCreditPayment,
@@ -291,9 +291,7 @@ export default function ProjectCreation() {
             cart={cart}
             cartProjectItem={projectItem}
             onPaymentStatusChange={handlePaymentStatusChange}
-            onRegisteredPaymentMethodSelected={
-              handleRegisteredPaymentMethodSelected
-            }
+            onNoUserActionNeeded={handleNoUserActionNeeded}
             onRequiredChallengeEvent={handleChallengeRequired}
             onVoucherChange={setVoucherCode}
           />
