@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.26.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.4...@ovh-ux/manager-web@19.26.5) (2025-10-27)
+
+
+### Bug Fixes
+
+* **web-hosting:** display git removal modal ([38c3e94](https://github.com/ovh/manager/commit/38c3e9411fd15ed6d1026785c265f5d9463b9b69)), closes [#PUWEBPT-93](https://github.com/ovh/manager/issues/PUWEBPT-93)
+
+
+
+
+
 ## [19.26.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.3...@ovh-ux/manager-web@19.26.4) (2025-10-23)
 
 
