@@ -6,6 +6,7 @@ import error from '../../public/translations/error/Messages_fr_FR.json';
 import regionSelector from '../../public/translations/region-selector/Messages_fr_FR.json';
 import configureReverseDns from '../../public/translations/configure-reverse-dns/Messages_fr_FR.json';
 import gameFirewall from '../../public/translations/game-firewall/Messages_fr_FR.json';
+import edgeNetworkFirewall from '../../public/translations/edge-network-firewall/Messages_fr_FR.json';
 import common from '../../public/translations/common/Messages_fr_FR.json';
 import importIpFromSys from '../../public/translations/import-ip-from-sys/Messages_fr_FR.json';
 import moveIp from '../../public/translations/move-ip/Messages_fr_FR.json';
@@ -21,6 +22,7 @@ export const translations = {
   [TRANSLATION_NAMESPACES.regionSelector]: regionSelector,
   [TRANSLATION_NAMESPACES.configureReverseDns]: configureReverseDns,
   [TRANSLATION_NAMESPACES.gameFirewall]: gameFirewall,
+  [TRANSLATION_NAMESPACES.edgeNetworkFirewall]: edgeNetworkFirewall,
   [TRANSLATION_NAMESPACES.importIpFromSys]: importIpFromSys,
   [TRANSLATION_NAMESPACES.moveIp]: moveIp,
   [TRANSLATION_NAMESPACES.common]: common,
@@ -36,6 +38,7 @@ export const labels = {
   regionSelector,
   configureReverseDns,
   gameFirewall,
+  edgeNetworkFirewall,
   importIpFromSys,
   moveIp,
   common,

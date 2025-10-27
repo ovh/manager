@@ -8,7 +8,7 @@ export const useGetIpList = (params: GetIpListParams) => {
     queryFn: async () => {
       let result: ApiResponse<string[]>;
       try {
-        result = await getIpList(params);
+        result = await getIpList({ ...params, ip: undefined });
       } catch (err) {
         const error = err as ApiError;
         if (error.response.data.message.includes('invalid filter')) {
