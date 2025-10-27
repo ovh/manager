@@ -80,7 +80,7 @@ describe('PaymentStep', () => {
       },
     },
     onPaymentStatusChange: vi.fn(),
-    onRegisteredPaymentMethodSelected: vi.fn(),
+    onNoUserActionNeeded: vi.fn(),
     onRequiredChallengeEvent: vi.fn(),
   };
 
