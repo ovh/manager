@@ -47,6 +47,7 @@
   "errorGetCommandCli": "Une erreur est survenue lors de la génération de code équivalent pour la CLI",
   "cliEquivalentModalTitle": "Création d’un notebook équivalent",
   "cliEquivalentModalDescription": "Commande CLI",
+  "qpuQubits": "Qubits",
   "cliEquivalentModalToastMessage": "Le code a été copié",
   "errorCreatingNotebook": "Erreur",
   "successCreatingNotebookTitle": "Succès",
