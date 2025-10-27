@@ -46,10 +46,6 @@ describe('ActionsComponent', () => {
 
     expect(queryByTestId('actionComponent-detach-button')).toBeNull();
 
-    expect(
-      getByTestId('actionComponent-change-encryption-button'),
-    ).toHaveAttribute('href', './retype/1');
-
     expect(getByTestId('actionComponent-retype-button')).toHaveAttribute(
       'href',
       './retype/1',
@@ -78,10 +74,6 @@ describe('ActionsComponent', () => {
       './detach/1',
     );
 
-    expect(
-      getByTestId('actionComponent-change-encryption-button'),
-    ).toHaveAttribute('href', './retype/1');
-
     expect(getByTestId('actionComponent-retype-button')).toHaveAttribute(
       'href',
       './retype/1',
@@ -103,13 +95,7 @@ describe('ActionsComponent', () => {
           />,
         );
 
-        const changeEncryptionButton = getByTestId(
-          'actionComponent-change-encryption-button',
-        );
         const changeTypeButton = getByTestId('actionComponent-retype-button');
-
-        expect(changeEncryptionButton).toBeEnabled();
-        expect(changeEncryptionButton).not.toHaveAttribute('title');
 
         expect(changeTypeButton).toBeEnabled();
         expect(changeTypeButton).not.toHaveAttribute('title');
@@ -127,13 +113,7 @@ describe('ActionsComponent', () => {
         />,
       );
 
-      const changeEncryptionButton = getByTestId(
-        'actionComponent-change-encryption-button',
-      );
       const changeTypeButton = getByTestId('actionComponent-retype-button');
-
-      expect(changeEncryptionButton).toBeDisabled();
-      expect(changeEncryptionButton).toHaveAttribute('title');
 
       expect(changeTypeButton).toBeDisabled();
       expect(changeTypeButton).toHaveAttribute(
