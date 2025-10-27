@@ -112,6 +112,10 @@ const NodePoolStep = ({ stepper }: { stepper: ReturnType<typeof useClusterCreati
           </div>
           <div className="mb-8">
             <BillingStep
+              selectedAvailabilityZonesNumber={
+                state.nodePoolState.selectedAvailabilityZones?.filter((e) => e.checked).length ??
+                null
+              }
               price={state.price?.hour ?? null}
               monthlyPrice={state.price?.month}
               monthlyBilling={{

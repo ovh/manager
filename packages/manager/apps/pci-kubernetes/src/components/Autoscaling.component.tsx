@@ -7,13 +7,8 @@ import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import { OsdsMessage } from '@ovhcloud/ods-components/react';
 import {
   FormField,
-  FormFieldHelper,
-  FormFieldLabel,
   Icon,
   Link,
-  Quantity,
-  QuantityControl,
-  QuantityInput,
   Text,
   Toggle,
   ToggleControl,
@@ -22,6 +17,7 @@ import {
 
 import { useMe } from '@ovh-ux/manager-react-components';
 
+import { QuantitySelector } from '@/components/quantity-selector/QuantitySelector.component';
 import { ANTI_AFFINITY_MAX_NODES, AUTOSCALING_LINK, NODE_RANGE } from '@/constants';
 import { TScalingState } from '@/types';
 
@@ -62,34 +58,24 @@ export function Autoscaling({
 
   return (
     <div className="max-w-3xl">
-      <FormField className="mt-4">
-        <FormFieldLabel>
-          {t('kubernetes_node_pool_autoscaling_desired_nodes_size')}{' '}
-          {totalNodes && `(${t('kubernetes_node_pool_autoscaling_by_zone')})`}
-        </FormFieldLabel>
-        <Quantity
-          className="mt-4"
-          value={quantity.desired.toString()}
-          onValueChange={({ valueAsNumber }) => {
-            onChange?.({
-              isAutoscale,
-              quantity: { ...quantity, desired: isNaN(valueAsNumber) ? 0 : valueAsNumber },
-            });
-          }}
-          min={0}
-          max={maxValue}
-        >
-          <QuantityControl>
-            <QuantityInput />
-          </QuantityControl>
-        </Quantity>
-
-        {totalNodes && (
-          <FormFieldHelper className="text-[--ods-color-text-500] text-sm">
-            {t('kubernetes_node_pool_autoscaling_total_nodes', { totalNodes })}
-          </FormFieldHelper>
-        )}
-      </FormField>
+      <QuantitySelector
+        className="mt-4"
+        label={`${t('kubernetes_node_pool_autoscaling_desired_nodes_size')} ${
+          totalNodes ? `(${t('kubernetes_node_pool_autoscaling_by_zone')})` : ''
+        }`}
+        description={
+          totalNodes ? t('kubernetes_node_pool_autoscaling_total_nodes', { totalNodes }) : undefined
+        }
+        value={quantity.desired}
+        onValueChange={(valueAsNumber) => {
+          onChange?.({
+            isAutoscale,
+            quantity: { ...quantity, desired: valueAsNumber },
+          });
+        }}
+        min={0}
+        max={maxValue}
+      />
 
       <FormField className="mt-8">
         <Toggle
@@ -126,48 +112,34 @@ export function Autoscaling({
       {isAutoscale && (
         <div className="mt-8">
           <div className={clsx('gap-4 flex')}>
-            <FormField id="min-nodes">
-              <FormFieldLabel>
-                {t('kubernetes_node_pool_autoscaling_lowest_nodes_size')}
-              </FormFieldLabel>
-              <Quantity
-                className="mt-2 max-w-32"
-                value={quantity.min.toString()}
-                onValueChange={({ valueAsNumber }) => {
-                  onChange?.({
-                    isAutoscale,
-                    quantity: { ...quantity, min: isNaN(valueAsNumber) ? 0 : valueAsNumber },
-                  });
-                }}
-                min={0}
-                max={quantity.max <= maxValue ? quantity.desired : maxValue}
-              >
-                <QuantityControl>
-                  <QuantityInput />
-                </QuantityControl>
-              </Quantity>
-            </FormField>
-            <FormField id="max-nodes">
-              <FormFieldLabel>
-                {t('kubernetes_node_pool_autoscaling_highest_nodes_size')}
-              </FormFieldLabel>
-              <Quantity
-                className="mt-2 max-w-32"
-                value={quantity.max.toString()}
-                onValueChange={({ valueAsNumber }) => {
-                  onChange?.({
-                    isAutoscale,
-                    quantity: { ...quantity, max: isNaN(valueAsNumber) ? 0 : valueAsNumber },
-                  });
-                }}
-                min={getDesiredQuantity(quantity, maxValue)}
-                max={maxValue}
-              >
-                <QuantityControl>
-                  <QuantityInput />
-                </QuantityControl>
-              </Quantity>
-            </FormField>
+            <QuantitySelector
+              id="min-nodes"
+              className="max-w-32"
+              label={t('kubernetes_node_pool_autoscaling_lowest_nodes_size')}
+              value={quantity.min}
+              onValueChange={(valueAsNumber) => {
+                onChange?.({
+                  isAutoscale,
+                  quantity: { ...quantity, min: valueAsNumber },
+                });
+              }}
+              min={0}
+              max={quantity.max <= maxValue ? quantity.desired : maxValue}
+            />
+            <QuantitySelector
+              id="max-nodes"
+              className="max-w-32"
+              label={t('kubernetes_node_pool_autoscaling_highest_nodes_size')}
+              value={quantity.max}
+              onValueChange={(valueAsNumber) => {
+                onChange?.({
+                  isAutoscale,
+                  quantity: { ...quantity, max: valueAsNumber },
+                });
+              }}
+              min={getDesiredQuantity(quantity, maxValue)}
+              max={maxValue}
+            />
           </div>
         </div>
       )}
