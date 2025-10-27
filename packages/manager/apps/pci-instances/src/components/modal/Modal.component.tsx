@@ -54,10 +54,12 @@ const Modal = ({
         className={className}
       >
         <Wrapper>
-          <section id={id} className="px-8 pt-6 pb-10">
-            <Text preset={TEXT_PRESET.heading4}>{title}</Text>
-            {children}
-          </section>
+          <div id={id} className="px-8 pt-6 pb-10">
+            <div id={id}>
+              <Text preset={TEXT_PRESET.heading4}>{title}</Text>
+              {children}
+            </div>
+          </div>
           <div className="flex justify-end p-8 pt-0 gap-4">
             <Button
               disabled={isPending}
