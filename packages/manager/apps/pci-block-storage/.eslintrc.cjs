@@ -28,4 +28,15 @@ module.exports = {
     ],
     'react/display-name': 'off',
   },
+  parser: require.resolve('@typescript-eslint/parser'),
+  parserOptions: {
+    project: ['./tsconfig.json', './tsconfig.build.json'],
+    tsconfigRootDir: __dirname,
+  },
+  overrides: [
+    {
+      files: ['*.config.*js', '*.config.ts'],
+      parserOptions: { project: null },
+    },
+  ],
 };

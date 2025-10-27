@@ -24,7 +24,6 @@ const RetypePage = () => {
   const { projectId, volumeId } = useParams();
   const {
     data: volumeModelData,
-    preselectedEncryptionType,
     isPending: isCatalogPending,
   } = useCatalogWithPreselection(projectId, volumeId);
 
@@ -83,23 +82,18 @@ const RetypePage = () => {
       );
     }
 
-    return (
-      <Retype
-        volumeModelData={volumeModelData}
-        preselectedEncryptionType={preselectedEncryptionType}
-      />
-    );
-  }, [volumeModelData, preselectedEncryptionType, isPending, instances]);
+    return <Retype volumeModelData={volumeModelData} />;
+  }, [volumeModelData, isPending, instances]);
 
   return (
     <div className="bg-[var(--ods-color-primary-500)] opacity-75 w-full h-full absolute top-0 left-0">
       <Drawer open>
         <DrawerContent
           position={DRAWER_POSITION.right}
-          className="w-fit flex flex-col h-[unset] gap-4"
+          className="w-[420px] flex flex-col h-[unset] gap-4"
         >
           <legend>
-            <Text preset={TEXT_PRESET.heading2}>
+            <Text preset={TEXT_PRESET.heading3}>
               {t('retype:pci_projects_project_storages_blocks_retype_title')}
             </Text>
           </legend>
