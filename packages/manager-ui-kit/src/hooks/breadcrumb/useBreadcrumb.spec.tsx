@@ -38,16 +38,7 @@ vitest.mock('@tanstack/react-query', async () => {
   };
 });
 
-describe('useBreadcrumb', () => {
-  beforeEach(() => {
-    vitest.mock('react-router-dom', async () => ({
-      ...(await vitest.importActual('react-router-dom')),
-      useLocation: () => ({
-        pathname: 'vrackServices/789789789/listing',
-      }),
-    }));
-  });
-
+describe('useBreadcrumb basic cases', () => {
   it('should return an array of breadcrumb item', async () => {
     beforeEach(() => {
       vitest.mock('react-router-dom', async () => ({
@@ -72,6 +63,17 @@ describe('useBreadcrumb', () => {
       expect(current?.[0]?.label).toBe('vrackServices');
       expect(current?.[0]?.href).toBe('#/vrackServices');
     });
+  });
+});
+
+describe('useBreadcrumb items cases', () => {
+  beforeEach(() => {
+    vitest.mock('react-router-dom', async () => ({
+      ...(await vitest.importActual('react-router-dom')),
+      useLocation: () => ({
+        pathname: 'vrackServices/789789789/listing',
+      }),
+    }));
   });
   it('should return an array with 3 breadcrumb items', async () => {
     const { result } = renderHook(

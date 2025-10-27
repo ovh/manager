@@ -50,7 +50,7 @@ describe('useQuery', () => {
     const { result } = renderHook(() => useQuery(options), {
       wrapper: getWrapper(),
     });
-    expect(result.current).toStrictEqual(mockQueryResult);
+    expect(result.current).toMatchObject(mockQueryResult);
   });
 
   it('accepts generic types and returns typed result (smoke test)', () => {

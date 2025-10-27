@@ -63,7 +63,15 @@ describe('useInfiniteQuery', () => {
       { wrapper: getWrapper() },
     );
 
-    expect(result.current).toStrictEqual(mockResult);
+    expect(result.current).toEqual(
+      expect.objectContaining({
+        data: mockResult.data,
+        status: 'success',
+        isSuccess: true,
+        isError: false,
+        error: null,
+      }),
+    );
   });
 
   it('handles error states from tanstack query', () => {

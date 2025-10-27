@@ -275,11 +275,13 @@ exports[`Tile Snapshot tests > renders tile term with Tooltip 1`] = `
                   Sample Term
                 </span>
                 <span
+                  aria-describedby="tooltip::r0::content"
                   class="_icon_10c23_2 _icon--circle-question_10c23_115 _tooltip-trigger_wxukn_2"
+                  data-expanded=""
                   data-ods="tooltip-trigger"
                   data-part="trigger"
                   data-scope="tooltip"
-                  data-state="closed"
+                  data-state="open"
                   dir="ltr"
                   id="tooltip::r0::trigger"
                   role="button"
@@ -307,16 +309,16 @@ exports[`Tile Snapshot tests > renders tile term with Tooltip 1`] = `
     data-scope="tooltip"
     dir="ltr"
     id="tooltip::r0::popper"
-    style="position: absolute; isolation: isolate; min-width: max-content; pointer-events: none; top: 0px; left: 0px; transform: translate3d(0, -100vh, 0); z-index: var(--z-index);"
+    style="position: absolute; isolation: isolate; min-width: max-content; top: 0px; left: 0px; transform: translate3d(var(--x), var(--y), 0); z-index: var(--z-index);"
   >
     <div
       class="_tooltip-content_zk0pd_2"
       data-ods="tooltip-content"
       data-part="content"
+      data-placement="top"
       data-scope="tooltip"
-      data-state="closed"
+      data-state="open"
       dir="ltr"
-      hidden=""
       id="tooltip::r0::content"
       role="tooltip"
       style="pointer-events: auto;"

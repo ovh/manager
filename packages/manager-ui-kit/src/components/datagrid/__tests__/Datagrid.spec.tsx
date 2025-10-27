@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { type Mock, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { FilterComparator } from '@ovh-ux/manager-core-api/dist/types/types/filters.type';
+import { FilterComparator } from '@ovh-ux/manager-core-api';
 
 import { renderDataGrid } from '@/commons/tests-utils/Render.utils';
 import { IamAuthorizationResponse } from '@/hooks/iam/IAM.type';

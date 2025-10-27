@@ -1,7 +1,7 @@
 import { vitest } from 'vitest';
 
-import { render } from '../../../../setupTest';
-import { TagsTile } from '../TagsTile.component';
+import { render } from '@/commons/tests-utils/Render.utils';
+import { TagsTile } from '@/components/tags-tile/TagsTile.component';
 
 describe('TagsTile Snapshot Tests', () => {
   const mockOnEditTags = vitest.fn();

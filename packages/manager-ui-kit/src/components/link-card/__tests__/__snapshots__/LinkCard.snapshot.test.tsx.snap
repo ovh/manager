@@ -5,6 +5,7 @@ exports[`LinkCard Component Snapshot Tests > renders the complete component 1`] 
   <a
     class="no-underline"
     href="https://ovh.com"
+    rel="noreferrer"
     target="_blank"
   >
     <div
@@ -84,6 +85,7 @@ exports[`LinkCard Component Snapshot Tests > renders the component with badges 1
   <a
     class="no-underline"
     href="https://ovh.com"
+    rel="noreferrer"
     target="_blank"
   >
     <div
@@ -158,6 +160,7 @@ exports[`LinkCard Component Snapshot Tests > renders the component with image 1`
   <a
     class="no-underline"
     href="https://ovh.com"
+    rel="noreferrer"
     target="_blank"
   >
     <div
@@ -221,6 +224,7 @@ exports[`LinkCard Component Snapshot Tests > renders the component with texts 1`
   <a
     class="no-underline"
     href="https://ovh.com"
+    rel="noreferrer"
     target="_blank"
   >
     <div

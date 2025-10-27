@@ -44,18 +44,7 @@ export const buildIamMock = (
   } as unknown as ReturnType<typeof useAuthorizationIam>;
 };
 
-export const mockUseAuthorizationIam = useAuthorizationIam as unknown as Mock<
-  () => ReturnType<typeof useAuthorizationIam>
->;
-
-export const mockUseBreadcrumb = () =>
-  vi.mock('@/hooks/breadcrumb/useBreadcrumb', () => ({
-    useBreadcrumb: vi.fn(({ hideRootLabel }: { hideRootLabel?: boolean }) => [
-      { label: 'vRack services', href: '/', hideLabel: hideRootLabel },
-      { label: 'vRack service', href: '/:id', hideLabel: false },
-      { label: 'vRack service listing', href: '/:id/listing', hideLabel: false },
-    ]),
-  }));
+export const mockUseAuthorizationIam = vi.fn();
 
 export async function fetchNextPage(
   fn: (() => Promise<unknown>) | (() => void),
@@ -90,35 +79,6 @@ export const mockResult: UseInfiniteQueryResult<InfiniteData<MockPage>, Error> =
   error: null,
   refetch: vi.fn(),
   // optional flags present in TanStack v5
-  isPending: false,
-  isLoadingError: false,
-  isRefetchError: false,
-  isFetchNextPageError: false,
-} as Partial<UseInfiniteQueryResult<InfiniteData<MockPage>, Error>> as UseInfiniteQueryResult<
-  InfiniteData<MockPage>,
-  Error
->;
-
-const mockInfiniteData: InfiniteData<MockPage> = {
-  pages: [],
-  pageParams: [],
-};
-
-export const mockInfiniteResult: UseInfiniteQueryResult<InfiniteData<MockPage>, Error> = {
-  data: mockInfiniteData,
-  fetchNextPage: vi.fn(),
-  fetchPreviousPage: vi.fn(),
-  hasNextPage: false,
-  hasPreviousPage: false,
-  isFetching: false,
-  isFetchingNextPage: false,
-  isFetchingPreviousPage: false,
-  isError: false,
-  isLoading: false,
-  isSuccess: true,
-  status: 'success',
-  error: null,
-  refetch: vi.fn(),
   isPending: false,
   isLoadingError: false,
   isRefetchError: false,

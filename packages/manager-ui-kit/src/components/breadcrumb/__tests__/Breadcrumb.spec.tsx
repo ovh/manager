@@ -1,9 +1,14 @@
 import { describe, expect, it } from 'vitest';
 
-import { mockUseBreadcrumb } from '@/commons/tests-utils/Mock.utils';
 import { renderBreadcrumb } from '@/commons/tests-utils/Render.utils';
 
-mockUseBreadcrumb();
+vi.mock('@/hooks/breadcrumb/useBreadcrumb', () => ({
+  useBreadcrumb: vi.fn(({ hideRootLabel }: { hideRootLabel?: boolean }) => [
+    { label: 'vRack services', href: '/', hideLabel: hideRootLabel },
+    { label: 'vRack service', href: '/:id', hideLabel: false },
+    { label: 'vRack service listing', href: '/:id/listing', hideLabel: false },
+  ]),
+}));
 
 describe('Breadcrumb component - behavior', () => {
   it('renders 3 breadcrumb items when hideRootLabel is false', () => {

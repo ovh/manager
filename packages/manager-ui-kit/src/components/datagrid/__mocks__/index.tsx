@@ -1,4 +1,4 @@
-import type { Column, HeaderGroup } from '@tanstack/react-table';
+import type { Column, HeaderContext, HeaderGroup } from '@tanstack/react-table';
 import { vi } from 'vitest';
 
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
@@ -6,6 +6,25 @@ import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
 import { Person } from '@/commons/tests-utils/Type.utils';
 import { DatagridColumn } from '@/components/datagrid/Datagrid.props';
 import { IamAuthorizationResponse } from '@/hooks/iam/IAM.type';
+
+const createHeader = (
+  id: string,
+  header: string,
+  toggleSorting: () => void = vi.fn(),
+  isSorted: boolean | 'asc' | 'desc' = false,
+) => ({
+  id,
+  column: {
+    id,
+    getSize: () => 150,
+    columnDef: { minSize: 20, maxSize: 'auto', header },
+    getCanSort: () => true,
+    getToggleSortingHandler: () => toggleSorting,
+    getIsSorted: () => isSorted,
+  },
+  isPlaceholder: false,
+  getContext: () => ({}) as HeaderContext<Person, unknown>,
+});
 
 const createMockHeaderGroup = (
   headers: {
@@ -138,22 +157,137 @@ export const mockHeaderGroups = createMockHeaderGroup([
   { id: 'age', header: 'Age' },
 ]);
 
-export const mockHeaderGroupsWithSorting = createMockHeaderGroup([
-  { id: 'name', header: 'Name' },
-  { id: 'age', header: 'Age' },
-]);
+export const mockHeaderGroupsWithSorting = (toggleFn: () => void): HeaderGroup<Person>[] => [
+  {
+    id: 'header-group-0',
+    depth: 0,
+    headers: [
+      {
+        id: 'name',
+        column: {
+          id: 'name',
+          getSize: () => 150,
+          columnDef: { header: 'Name', minSize: 20, maxSize: 'auto' },
+          getCanSort: () => true,
+          getToggleSortingHandler: () => toggleFn,
+          getIsSorted: () => false,
+        },
+        isPlaceholder: false,
+        getContext: () => ({}) as HeaderContext<Person, unknown>,
+      },
+      {
+        id: 'age',
+        column: {
+          id: 'age',
+          getSize: () => 150,
+          columnDef: { header: 'Age', minSize: 20, maxSize: 'auto' },
+          getCanSort: () => true,
+          getToggleSortingHandler: () => vi.fn(),
+          getIsSorted: () => false,
+        },
+        isPlaceholder: false,
+        getContext: () => ({}) as HeaderContext<Person, unknown>,
+      },
+    ],
+    getSize: () => 300,
+  } as unknown as HeaderGroup<Person>,
+];
 
-export const mockHeaderGroupsWithAscSort = createMockHeaderGroup([
-  { id: 'name', header: 'Name', isSorted: 'asc' },
-  { id: 'age', header: 'Age' },
-]);
+export const mockHeaderGroupsWithAscSort = (toggleFn: () => void): HeaderGroup<Person>[] => [
+  {
+    id: 'header-group-0',
+    depth: 0,
+    headers: [
+      {
+        id: 'name',
+        isPlaceholder: false,
+        column: {
+          id: 'name',
+          getSize: () => 150,
+          columnDef: { header: 'Name', minSize: 20, maxSize: 'auto' },
+          getCanSort: () => true,
+          getToggleSortingHandler: () => toggleFn,
+          getIsSorted: () => 'asc',
+        },
+        getContext: () => ({}) as HeaderContext<Person, unknown>,
+      },
+      {
+        id: 'age',
+        isPlaceholder: false,
+        column: {
+          id: 'age',
+          getSize: () => 150,
+          columnDef: { header: 'Age', minSize: 20, maxSize: 'auto' },
+          getCanSort: () => true,
+          getToggleSortingHandler: () => vi.fn(),
+          getIsSorted: () => false,
+        },
+        getContext: () => ({}) as HeaderContext<Person, unknown>,
+      },
+    ],
+    getSize: () => 300,
+  } as unknown as HeaderGroup<Person>,
+];
 
-export const mockHeaderGroupsMultiSort = createMockHeaderGroup([
-  { id: 'name', header: 'Name', isSorted: 'asc' },
-  { id: 'age', header: 'Age' },
-]);
+export const mockHeaderGroupsMultiSort = (toggleSorting: () => void): HeaderGroup<Person>[] => [
+  {
+    id: 'header-group-0',
+    depth: 0,
+    headers: [
+      createHeader('name', 'Name', vi.fn(), 'asc'),
+      createHeader('age', 'Age', toggleSorting, false),
+    ],
+    getSize: () => 300,
+  } as unknown as HeaderGroup<Person>,
+];
 
-export const mockHeaderGroupsManualSort = createMockHeaderGroup([{ id: 'name', header: 'Name' }]);
+export const mockHeaderGroupsWithDescSort: HeaderGroup<Person>[] = [
+  {
+    id: 'header-group-0',
+    depth: 0,
+    headers: [
+      createHeader('name', 'Name', vi.fn(), false),
+      createHeader('age', 'Age', vi.fn(), 'desc'),
+    ],
+    getSize: () => 300,
+  } as unknown as HeaderGroup<Person>,
+];
+
+export const mockHeaderGroupsEmptySort = (toggleSorting: () => void): HeaderGroup<Person>[] => [
+  {
+    id: 'header-group-0',
+    depth: 0,
+    headers: [
+      createHeader('name', 'Name', toggleSorting, false),
+      createHeader('age', 'Age', vi.fn(), false),
+    ],
+    getSize: () => 300,
+  } as unknown as HeaderGroup<Person>,
+];
+
+export const mockHeaderGroupsNoSort = (toggleSorting: () => void): HeaderGroup<Person>[] => [
+  {
+    id: 'header-group-0',
+    depth: 0,
+    headers: [
+      createHeader('name', 'Name', toggleSorting, false),
+      createHeader('age', 'Age', vi.fn(), false),
+    ],
+    getSize: () => 300,
+  } as unknown as HeaderGroup<Person>,
+];
+
+export const mockHeaderGroupsManualSort = (toggleSorting: () => void): HeaderGroup<Person>[] => [
+  {
+    id: 'header-group-0',
+    depth: 0,
+    headers: [
+      createHeader('name', 'Name', toggleSorting, false),
+      createHeader('age', 'Age', vi.fn(), false),
+    ],
+    getSize: () => 300,
+  } as unknown as HeaderGroup<Person>,
+];
 
 export const mockColumnsWithoutVisibility: readonly DatagridColumn<Person>[] = [
   {

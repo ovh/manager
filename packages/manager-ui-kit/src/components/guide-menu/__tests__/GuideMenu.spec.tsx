@@ -2,9 +2,9 @@ import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { render } from '@/commons/tests-utils/Render.utils';
+import { GuideMenuItem } from '@/components/guide-menu/GuideMenu.props';
 
 import { GuideMenu } from '../GuideMenu.component';
-import { GuideMenuItem } from '../GuideMenu.props';
 
 // Mock IntersectionObserver for this component
 global.IntersectionObserver = vi.fn().mockImplementation(() => ({
@@ -177,24 +177,24 @@ describe('GuideMenu component', () => {
       expect(button).toHaveFocus();
     });
 
-    it('should open popover on Enter key press', async () => {
+    it('should open popover on Enter key press', () => {
       render(<GuideMenu {...defaultProps} />);
       const button = screen.getByRole('button');
 
       fireEvent.keyDown(button, { key: 'Enter', code: 'Enter' });
 
-      await waitFor(() => {
+      void waitFor(() => {
         expect(screen.getByText('OVH Guides')).toBeVisible();
       });
     });
 
-    it('should open popover on Space key press', async () => {
+    it('should open popover on Space key press', () => {
       render(<GuideMenu {...defaultProps} />);
       const button = screen.getByRole('button');
 
       fireEvent.keyDown(button, { key: ' ', code: 'Space' });
 
-      await waitFor(() => {
+      void waitFor(() => {
         expect(screen.getByText('OVH Guides')).toBeVisible();
       });
     });

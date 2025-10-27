@@ -1,25 +1,27 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { TableHeaderContent } from '@/components/datagrid/table/table-head/table-header-content/TableHeaderContent.component';
+import { TableHeaderContent } from '@/components/datagrid/table/table-head';
 
 import {
   mockHeaderGroups,
+  mockHeaderGroupsEmptySort,
   mockHeaderGroupsManualSort,
   mockHeaderGroupsMultiSort,
+  mockHeaderGroupsNoSort,
   mockHeaderGroupsWithAscSort,
+  mockHeaderGroupsWithDescSort,
   mockHeaderGroupsWithSorting,
   mockOnSortChange,
 } from '../../../__mocks__';
 
-describe('TableHeaderContent', () => {
+describe('TableHead', () => {
   it('should render all headers correctly', () => {
     render(
       <table>
         <TableHeaderContent headerGroups={mockHeaderGroups} />
       </table>,
     );
-
     expect(screen.getByText('Name')).toBeInTheDocument();
     expect(screen.getByText('Age')).toBeInTheDocument();
   });
@@ -29,7 +31,7 @@ describe('TableHeaderContent', () => {
       <table>
         <TableHeaderContent
           headerGroups={mockHeaderGroups}
-          enableSorting
+          enableSorting={true}
           onSortChange={mockOnSortChange}
         />
       </table>,
@@ -45,8 +47,8 @@ describe('TableHeaderContent', () => {
     render(
       <table>
         <TableHeaderContent
-          headerGroups={mockHeaderGroupsWithSorting}
-          enableSorting
+          headerGroups={mockHeaderGroupsWithSorting(mockToggleSorting)}
+          enableSorting={true}
           onSortChange={mockOnSortChange}
         />
       </table>,
@@ -63,8 +65,8 @@ describe('TableHeaderContent', () => {
     render(
       <table>
         <TableHeaderContent
-          headerGroups={mockHeaderGroupsWithAscSort}
-          enableSorting
+          headerGroups={mockHeaderGroupsWithAscSort(mockToggleSorting)}
+          enableSorting={true}
           onSortChange={mockOnSortChange}
         />
       </table>,
@@ -81,8 +83,8 @@ describe('TableHeaderContent', () => {
     render(
       <table>
         <TableHeaderContent
-          headerGroups={mockHeaderGroupsMultiSort}
-          enableSorting
+          headerGroups={mockHeaderGroupsMultiSort(mockToggleSortingAge)}
+          enableSorting={true}
           onSortChange={mockOnSortChange}
         />
       </table>,
@@ -97,8 +99,8 @@ describe('TableHeaderContent', () => {
     render(
       <table>
         <TableHeaderContent
-          headerGroups={mockHeaderGroups}
-          enableSorting
+          headerGroups={mockHeaderGroupsWithDescSort}
+          enableSorting={true}
           onSortChange={mockOnSortChange}
         />
       </table>,
@@ -108,14 +110,50 @@ describe('TableHeaderContent', () => {
     expect(screen.getByText('Age')).toBeInTheDocument();
   });
 
+  it('should handle empty sorting array', () => {
+    const mockToggleSorting = vi.fn();
+
+    render(
+      <table>
+        <TableHeaderContent
+          headerGroups={mockHeaderGroupsEmptySort(mockToggleSorting)}
+          enableSorting={true}
+          onSortChange={mockOnSortChange}
+        />
+      </table>,
+    );
+
+    const nameHeader = screen.getByTestId('header-name');
+    fireEvent.click(nameHeader);
+    expect(mockToggleSorting).toHaveBeenCalled();
+  });
+
+  it('should handle undefined sorting prop', () => {
+    const mockToggleSorting = vi.fn();
+
+    render(
+      <table>
+        <TableHeaderContent
+          headerGroups={mockHeaderGroupsNoSort(mockToggleSorting)}
+          enableSorting={true}
+          onSortChange={mockOnSortChange}
+        />
+      </table>,
+    );
+
+    const nameHeader = screen.getByTestId('header-name');
+    fireEvent.click(nameHeader);
+    expect(mockToggleSorting).toHaveBeenCalled();
+  });
+
   it('should handle manual sorting mode', () => {
     const mockToggleSorting = vi.fn();
 
     render(
       <table>
         <TableHeaderContent
-          headerGroups={mockHeaderGroupsManualSort}
-          enableSorting
+          headerGroups={mockHeaderGroupsManualSort(mockToggleSorting)}
+          enableSorting={true}
           onSortChange={mockOnSortChange}
         />
       </table>,

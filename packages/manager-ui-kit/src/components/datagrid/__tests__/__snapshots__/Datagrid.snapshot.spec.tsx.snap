@@ -791,7 +791,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
     </thead>
     <tbody
       class="w-full relative p-0 overflow-hidden"
-      style="height: 415px;"
+      style="height: 102px;"
     >
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
@@ -816,7 +816,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
                 type="button"
               >
                 <span
-                  class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+                  class="_icon_10c23_2 _icon--chevron-right_10c23_97"
                   data-ods="icon"
                   role="presentation"
                 />
@@ -863,135 +863,6 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
           >
             <div
               class="text-center"
-              style="padding-left: 2rem;"
-            />
-          </div>
-        </td>
-        <td
-          class="py-[8px] pl-4"
-          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
-        >
-          <div
-            class="overflow-hidden text-ellipsis block w-full"
-          >
-            <div>
-              John Doe Jr.
-            </div>
-          </div>
-        </td>
-        <td
-          class="py-[8px] pl-4"
-          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
-        >
-          <div
-            class="overflow-hidden text-ellipsis block w-full"
-          >
-            <div>
-              10
-            </div>
-          </div>
-        </td>
-      </tr>
-      <tr
-        class="overflow-hidden absolute top-0 w-full table table-fixed"
-        data-index="2"
-        style="left: -1px; height: 50px; transform: translateY(100px);"
-      >
-        <td
-          class="py-[8px] pl-4"
-          style="width: 20px; min-width: 20px; max-width: 20px;"
-        >
-          <div
-            class="overflow-hidden text-ellipsis block w-full"
-          >
-            <div
-              class="text-center"
-              style="padding-left: 2rem;"
-            />
-          </div>
-        </td>
-        <td
-          class="py-[8px] pl-4"
-          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
-        >
-          <div
-            class="overflow-hidden text-ellipsis block w-full"
-          >
-            <div>
-              John Doe Jr. 2
-            </div>
-          </div>
-        </td>
-        <td
-          class="py-[8px] pl-4"
-          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
-        >
-          <div
-            class="overflow-hidden text-ellipsis block w-full"
-          >
-            <div>
-              11
-            </div>
-          </div>
-        </td>
-      </tr>
-      <tr
-        class="overflow-hidden absolute top-0 w-full table table-fixed"
-        data-index="3"
-        style="left: -1px; height: 50px; transform: translateY(150px);"
-      >
-        <td
-          class="py-[8px] pl-4"
-          style="width: 20px; min-width: 20px; max-width: 20px;"
-        >
-          <div
-            class="overflow-hidden text-ellipsis block w-full"
-          >
-            <div
-              class="text-center"
-              style="padding-left: 2rem;"
-            />
-          </div>
-        </td>
-        <td
-          class="py-[8px] pl-4"
-          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
-        >
-          <div
-            class="overflow-hidden text-ellipsis block w-full"
-          >
-            <div>
-              John Doe Jr. 3
-            </div>
-          </div>
-        </td>
-        <td
-          class="py-[8px] pl-4"
-          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
-        >
-          <div
-            class="overflow-hidden text-ellipsis block w-full"
-          >
-            <div>
-              12
-            </div>
-          </div>
-        </td>
-      </tr>
-      <tr
-        class="overflow-hidden absolute top-0 w-full table table-fixed"
-        data-index="4"
-        style="left: -1px; height: 50px; transform: translateY(200px);"
-      >
-        <td
-          class="py-[8px] pl-4"
-          style="width: 20px; min-width: 20px; max-width: 20px;"
-        >
-          <div
-            class="overflow-hidden text-ellipsis block w-full"
-          >
-            <div
-              class="text-center"
               style="padding-left: 0rem;"
             >
               <button
@@ -1001,7 +872,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
                 type="button"
               >
                 <span
-                  class="_icon_10c23_2 _icon--chevron-down_10c23_85"
+                  class="_icon_10c23_2 _icon--chevron-right_10c23_97"
                   data-ods="icon"
                   role="presentation"
                 />

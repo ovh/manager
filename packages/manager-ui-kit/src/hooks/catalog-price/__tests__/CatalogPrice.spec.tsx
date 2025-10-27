@@ -161,12 +161,16 @@ describe('useCatalogPrice Hook', () => {
         },
       });
 
+      const { result } = renderHook(() => useCatalogPrice(undefined, { exclVat: true }));
+      const formatted = result.current.getFormattedCatalogPrice(priceToUcent(10));
+
       expect(mocks.t).toHaveBeenCalledWith(
         'order_catalog_price_tax_excl_label',
         expect.objectContaining({
           price: expect.stringContaining('10,00'),
         }),
       );
+      expect(formatted).toContain('order_catalog_price_tax_excl_label');
     });
   });
 

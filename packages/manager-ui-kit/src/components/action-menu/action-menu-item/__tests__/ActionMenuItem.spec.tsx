@@ -1,12 +1,18 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { fireEvent, screen } from '@testing-library/react';
+import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { buildIamMock, mockUseAuthorizationIam } from '@/commons/tests-utils/Mock.utils';
+import { buildIamMock } from '@/commons/tests-utils/Mock.utils';
+import { render } from '@/commons/tests-utils/Render.utils';
 import type { ActionMenuItemProps } from '@/components/action-menu/ActionMenu.props';
+import { useAuthorizationIam } from '@/hooks';
 
 import { ActionMenuItem } from '../ActionMenuItem.component';
 
-vi.mock('@/hooks/iam/useOvhIam');
+vi.mock('@/hooks/iam/useOvhIam', () => ({
+  useAuthorizationIam: vi.fn(),
+}));
+
+const mockUseAuthorizationIam = useAuthorizationIam as Mock;
 
 describe('ActionMenuItem', () => {
   const mockItem: Omit<ActionMenuItemProps, 'id'> = {
@@ -53,10 +59,11 @@ describe('ActionMenuItem', () => {
 
       render(<ActionMenuItem item={itemWithIam} isTrigger={false} id={1} />);
 
-      const link = screen.getByRole('link');
+      const link = screen.getByText('Action 1');
       expect(link).toBeInTheDocument();
+      expect(link.tagName).toBe('A');
+      expect(link).not.toHaveAttribute('aria-disabled', 'true');
       expect(link).toHaveAttribute('href', 'https://example.com');
-      expect(screen.getByText('Action 1')).not.toBeDisabled();
     });
 
     it('renders a link when IAM denies authorization', () => {

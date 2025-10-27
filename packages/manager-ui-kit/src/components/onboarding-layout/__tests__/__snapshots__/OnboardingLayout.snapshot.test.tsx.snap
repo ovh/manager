@@ -184,6 +184,7 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
       <a
         class="no-underline"
         href="https://ovhcloud.com/instances"
+        rel="noreferrer"
         target="_blank"
       >
         <div
@@ -301,6 +302,7 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
       <a
         class="no-underline"
         href="https://ovhcloud.com/instances"
+        rel="noreferrer"
         target="_blank"
       >
         <div
@@ -357,6 +359,7 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
       <a
         class="no-underline"
         href="https://ovhcloud.com/storage"
+        rel="noreferrer"
         target="_blank"
       >
         <div
@@ -444,6 +447,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
       <a
         class="no-underline"
         href="https://ovhcloud.com/instances"
+        rel="noreferrer"
         target="_blank"
       >
         <div
@@ -497,6 +501,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
       <a
         class="no-underline"
         href="https://ovhcloud.com/storage"
+        rel="noreferrer"
         target="_blank"
       >
         <div
@@ -584,6 +589,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
       <a
         class="no-underline"
         href="https://ovhcloud.com/instances"
+        rel="noreferrer"
         target="_blank"
       >
         <div
@@ -659,6 +665,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
       <a
         class="no-underline"
         href="https://ovhcloud.com/kubernetes"
+        rel="noreferrer"
         target="_blank"
       >
         <div
@@ -790,6 +797,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
       <a
         class="no-underline"
         href="https://ovhcloud.com/instances"
+        rel="noreferrer"
         target="_blank"
       >
         <div
@@ -843,6 +851,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
       <a
         class="no-underline"
         href="https://ovhcloud.com/storage"
+        rel="noreferrer"
         target="_blank"
       >
         <div
@@ -932,6 +941,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
       <a
         class="no-underline"
         href="https://ovhcloud.com/instances"
+        rel="noreferrer"
         target="_blank"
       >
         <div
@@ -995,6 +1005,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
       <a
         class="no-underline"
         href="https://ovhcloud.com/storage"
+        rel="noreferrer"
         target="_blank"
       >
         <div
@@ -1053,6 +1064,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
       <a
         class="no-underline"
         href="https://ovhcloud.com/network"
+        rel="noreferrer"
         target="_blank"
       >
         <div
@@ -1156,6 +1168,7 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
       <a
         class="no-underline"
         href="https://ovhcloud.com/instances"
+        rel="noreferrer"
         target="_blank"
       >
         <div
@@ -1243,6 +1256,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
       <a
         class="no-underline"
         href="https://ovhcloud.com/service-0"
+        rel="noreferrer"
         target="_blank"
       >
         <div
@@ -1306,6 +1320,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
       <a
         class="no-underline"
         href="https://ovhcloud.com/service-1"
+        rel="noreferrer"
         target="_blank"
       >
         <div
@@ -1359,6 +1374,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
       <a
         class="no-underline"
         href="https://ovhcloud.com/service-2"
+        rel="noreferrer"
         target="_blank"
       >
         <div
@@ -1422,6 +1438,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
       <a
         class="no-underline"
         href="https://ovhcloud.com/service-3"
+        rel="noreferrer"
         target="_blank"
       >
         <div
@@ -1475,6 +1492,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
       <a
         class="no-underline"
         href="https://ovhcloud.com/service-4"
+        rel="noreferrer"
         target="_blank"
       >
         <div
@@ -1538,6 +1556,7 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
       <a
         class="no-underline"
         href="https://ovhcloud.com/service-5"
+        rel="noreferrer"
         target="_blank"
       >
         <div

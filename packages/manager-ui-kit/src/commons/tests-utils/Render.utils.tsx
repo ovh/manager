@@ -56,16 +56,17 @@ const customRender = (
 export { customRender as render, cleanup };
 
 export const renderWithContext = ({ children }: { children: ReactNode }) =>
-  render(
+  customRender(
     <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
       {children}
     </ShellContext.Provider>,
   );
 
-export const renderActionBanner = (props: ActionBannerProps) => render(<ActionBanner {...props} />);
+export const renderActionBanner = (props: ActionBannerProps) =>
+  customRender(<ActionBanner {...props} />);
 
-export const renderActionMenu = (props?: Partial<ActionMenuProps>) =>
-  render(
+export const renderActionMenu = (props: Partial<ActionMenuProps> = {}) =>
+  customRender(
     <div data-testid="navigation-action-trigger-action">
       <ActionMenu
         id={props.id ?? 'action-menu-test-id'}
@@ -84,7 +85,7 @@ export const renderBadge = (props: Partial<BadgeProps> = {}) => {
     ...props,
   };
 
-  return render(<Badge {...defaultProps} />);
+  return customRender(<Badge {...defaultProps} />);
 };
 
 export const renderBaseLayout = ({
@@ -93,16 +94,16 @@ export const renderBaseLayout = ({
 }: {
   children?: ReactNode;
   [x: string]: unknown;
-}) => render(<BaseLayout {...rest}>{children}</BaseLayout>);
+}) => customRender(<BaseLayout {...rest}>{children}</BaseLayout>);
 
 export const renderBreadcrumb = (props?: Partial<React.ComponentProps<typeof Breadcrumb>>) =>
-  render(<Breadcrumb {...BREADCRUMB_DEFAULT_PROPS} {...props} />);
+  customRender(<Breadcrumb {...BREADCRUMB_DEFAULT_PROPS} {...props} />);
 
 export const renderDataGrid = (
   props: Omit<DatagridProps<Person>, 'columns' | 'data'> & {
     columns: readonly DatagridColumn<Person>[];
     data: Person[];
   },
-) => render(<Datagrid<Person> {...props} />);
+) => customRender(<Datagrid<Person> {...props} />);
 
-export const renderFilterAdd = (props: FilterAddProps) => render(<FilterAdd {...props} />);
+export const renderFilterAdd = (props: FilterAddProps) => customRender(<FilterAdd {...props} />);

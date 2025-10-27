@@ -114,7 +114,7 @@ describe('Notifications Component', () => {
     fireEvent.click(dismissButton);
 
     await waitFor(() => {
-      expect(mockClearNotification).toHaveBeenCalledWith('1');
+      expect(mockClearNotification).toHaveBeenCalledWith(1);
     });
   });
 
