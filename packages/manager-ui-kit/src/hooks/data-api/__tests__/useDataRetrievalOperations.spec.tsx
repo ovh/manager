@@ -3,6 +3,8 @@ import React from 'react';
 import { act, renderHook } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { FilterComparator } from '@ovh-ux/manager-core-api';
+
 import { useColumnFilters } from '@/hooks/data-api/useColumnFilters';
 
 import { useDataRetrievalOperations } from '../useDataRetrievalOperations';
@@ -131,7 +133,7 @@ describe('useDataRetrievalOperations', () => {
       }),
     );
 
-    const customFilters = [{ key: 'custom', value: 'test', comparator: 'eq' }];
+    const customFilters = [{ key: 'custom', value: 'test', comparator: FilterComparator.Includes }];
 
     act(() => {
       result.current.setSearchFilters(customFilters);

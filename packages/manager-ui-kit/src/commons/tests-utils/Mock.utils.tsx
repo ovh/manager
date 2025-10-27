@@ -1,5 +1,5 @@
 import { InfiniteData, UseInfiniteQueryResult } from '@tanstack/react-query';
-import { type Mock, vi, vitest } from 'vitest';
+import { vi, vitest } from 'vitest';
 
 import { MockPage } from '@/commons/tests-utils/Type.utils';
 import { UseQueryResult } from '@/hooks/data-api/infra/tanstack';
