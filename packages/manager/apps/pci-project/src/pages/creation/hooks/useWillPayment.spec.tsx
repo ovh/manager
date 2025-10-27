@@ -19,7 +19,7 @@ describe('useWillPayment', () => {
   it('should initialize with correct default state', () => {
     const { result } = renderHook(() => useWillPayment());
 
-    expect(result.current.hasDefaultPaymentMethod).toBe(false);
+    expect(result.current.hasNoUserActionNeeded).toBe(false);
     expect(result.current.needsSave).toBe(false);
     expect(result.current.isSaved).toBe(false);
     expect(result.current.canSubmit).toBe(false);
@@ -27,9 +27,7 @@ describe('useWillPayment', () => {
     expect(result.current.creditAmount).toBeUndefined();
     expect(typeof result.current.savePaymentMethod).toBe('function');
     expect(typeof result.current.handlePaymentStatusChange).toBe('function');
-    expect(typeof result.current.handleRegisteredPaymentMethodSelected).toBe(
-      'function',
-    );
+    expect(typeof result.current.handleNoUserActionNeeded).toBe('function');
   });
 
   it('should handle ERROR state correctly', () => {
@@ -44,7 +42,7 @@ describe('useWillPayment', () => {
       result.current.handlePaymentStatusChange(errorStatus);
     });
 
-    expect(result.current.hasDefaultPaymentMethod).toBe(false);
+    expect(result.current.hasNoUserActionNeeded).toBe(false);
     expect(result.current.needsSave).toBe(false);
     expect(result.current.isSaved).toBe(false);
     expect(result.current.canSubmit).toBe(false);
@@ -164,7 +162,7 @@ describe('useWillPayment', () => {
     });
 
     act(() => {
-      result.current.handleRegisteredPaymentMethodSelected(mockEvent);
+      result.current.handleNoUserActionNeeded(mockEvent);
     });
 
     expect(result.current.canSubmit).toBe(true);
