@@ -8,7 +8,7 @@ vitest.mock('@/hooks/iam/useOvhIam', () => ({
 }));
 
 describe('LinkCard tests', () => {
-  it('renders with mandatory props', async () => {
+  it('renders with mandatory props', () => {
     renderLinkCard({ texts, href });
     const titleElement = screen.getByText(texts.title);
     expect(titleElement).toBeInTheDocument();

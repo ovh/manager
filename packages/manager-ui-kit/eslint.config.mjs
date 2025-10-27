@@ -16,14 +16,8 @@ import { vitestEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/t
 import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
 
 export default [
-  {
-    ...javascriptEslintConfig,
-    rules: {},
-  },
-  {
-    ...typescriptEslintConfig,
-    rules: {},
-  },
+  javascriptEslintConfig,
+  typescriptEslintConfig,
   {
     ...reactEslintConfig,
     rules: {},

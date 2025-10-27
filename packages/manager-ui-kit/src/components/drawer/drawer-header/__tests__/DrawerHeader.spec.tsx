@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 
+import { render } from '@/commons/tests-utils/Render.utils';
 import { IamAuthorizationResponse, useAuthorizationIam } from '@/hooks';
-import { render } from '@/setupTest';
 
 import { DrawerHeader } from '../DrawerHeader.component';
 

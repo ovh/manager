@@ -13,8 +13,8 @@ vitest.mock('react-i18next', () => ({
 }));
 
 // Mock sub-components
-vitest.mock('../price-text', async () => {
-  const PriceText = ({ price = '', label = '', intervalUnitText = '' }: any) => (
+vitest.mock('../price-text', () => {
+  const PriceText = ({ price = '', label = '', intervalUnitText = '' }) => (
     <span>{`${price} ${label} ${intervalUnitText} `}</span>
   );
   return {

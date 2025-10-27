@@ -22,17 +22,17 @@ export const CellRow = ({
   onClick?: () => void;
   type: ColumnMetaType;
 }) => {
-  if (type === 'text') {
+  if (type === ColumnMetaType.TEXT) {
     return <Text className={className}>{children}</Text>;
   }
-  if (type === 'link') {
+  if (type === ColumnMetaType.LINK) {
     return (
       <Link onClick={onClick} className={className} href={href}>
         {children as string}
       </Link>
     );
   }
-  if (type === 'badge') {
+  if (type === ColumnMetaType.BADGE) {
     return (
       <Badge className={className} {...(badgeColor && { color: badgeColor })}>
         {children}

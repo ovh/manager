@@ -35,8 +35,8 @@ describe('useIceberg hook', () => {
     vi.mocked(fetchV2).mockResolvedValueOnce({
       data: items,
       totalCount: 50,
-      status: '200',
-    } as any);
+      status: 200,
+    });
     vi.clearAllMocks();
   });
 

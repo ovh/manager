@@ -18,7 +18,7 @@ vitest.mock('react-router-dom', async () => ({
 }));
 
 describe('Notifications component - Snapshot Testing', () => {
-  it('should list notifications', async () => {
+  it('should list notifications', () => {
     let { container } = render(<Notifications />);
     const { result } = renderHook(() => useNotifications());
     act(() => {

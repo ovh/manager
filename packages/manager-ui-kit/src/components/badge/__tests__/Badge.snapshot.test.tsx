@@ -1,26 +1,24 @@
-import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { BADGE_COLOR, BADGE_SIZE } from '@ovhcloud/ods-react';
-
-import { Badge } from '@/components/badge/Badge.component';
+import { renderBadge } from '@/commons/tests-utils/Render.utils';
 
 describe('Badge Snapshot Tests', () => {
-  it('Displays Badge', () => {
-    const { container } = render(
-      <Badge color={BADGE_COLOR.information} size={BADGE_SIZE.sm}>
-        Active
-      </Badge>,
-    );
-    expect(container).toMatchSnapshot();
+  it('matches snapshot for default badge', () => {
+    const { container } = renderBadge();
+    expect(container).toMatchSnapshot('default-badge');
   });
 
-  it('Displays Loader', () => {
-    const { container } = render(
-      <Badge isLoading color={BADGE_COLOR.information} size={BADGE_SIZE.sm}>
-        Active
-      </Badge>,
-    );
-    expect(container).toMatchSnapshot();
+  it('matches snapshot for loading badge', () => {
+    const { container } = renderBadge({ isLoading: true });
+    expect(container).toMatchSnapshot('loading-badge');
+  });
+
+  it('matches snapshot for success color and large size', () => {
+    const { container } = renderBadge({
+      color: 'success',
+      size: 'lg',
+      children: 'Success',
+    });
+    expect(container).toMatchSnapshot('success-lg-badge');
   });
 });

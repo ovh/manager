@@ -34,7 +34,7 @@ describe('DrawerBase', () => {
       isFetched: true,
     });
   });
-  it('should display the drawer', async () => {
+  it('should display the drawer', () => {
     render(<DrawerBase {...mockedDrawerBaseProps} />);
     expect(screen.getByTestId('drawer')).not.toBeNull();
 

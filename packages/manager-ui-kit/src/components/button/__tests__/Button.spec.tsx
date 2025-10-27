@@ -1,10 +1,10 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { vitest } from 'vitest';
 
+import { render } from '@/commons/tests-utils/Render.utils';
 import { Button } from '@/components';
 import { ButtonProps } from '@/components/button/Button.props';
 import { IamAuthorizationResponse, useAuthorizationIam } from '@/hooks';
-import { render } from '@/setupTest';
 
 import fr_FR from '../translations/Messages_fr_FR.json';
 

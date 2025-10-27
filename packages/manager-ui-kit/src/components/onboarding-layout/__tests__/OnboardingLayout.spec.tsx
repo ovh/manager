@@ -1,9 +1,9 @@
 import { act, fireEvent, screen } from '@testing-library/react';
 import { vi, vitest } from 'vitest';
 
+import { render } from '@/commons/tests-utils/Render.utils';
 import { OnboardingLayout, Text } from '@/components';
 import { IamAuthorizationResponse, useAuthorizationIam } from '@/hooks';
-import { render } from '@/setupTest';
 
 import placeholderSrc from '../../../../public/assets/placeholder.png';
 
@@ -73,12 +73,13 @@ describe('specs:onboarding', () => {
       expect(orderButton).toBeVisible();
       expect(orderButton).toHaveAttribute('disabled');
     });
-    it('displays order button correctly', () => {
+    it('displays order button correctly', async () => {
       mockedHook.mockReturnValue({
         isAuthorized: true,
         isLoading: false,
         isFetched: true,
       });
+
       const onOrderButtonClick = vi.fn();
 
       render(
@@ -89,9 +90,13 @@ describe('specs:onboarding', () => {
           onOrderButtonClick={onOrderButtonClick}
         />,
       );
+
       const orderButton = screen.getByText(orderBtnLabel);
+
       expect(orderButton).toBeVisible();
-      act(() => fireEvent.click(orderButton));
+
+      await act(() => fireEvent.click(orderButton));
+
       expect(onOrderButtonClick).toHaveBeenCalledTimes(1);
     });
     it('disable buttons', () => {

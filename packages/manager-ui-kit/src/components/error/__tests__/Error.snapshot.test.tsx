@@ -1,9 +1,9 @@
 import { vitest } from 'vitest';
 
-import { mockGetEnvironment, renderWithContext } from '@/commons/tests-utils/Test.utils';
-
-import { Error } from '../Error.component';
-import { ErrorObject } from '../Error.props';
+import { mockGetEnvironment } from '@/commons/tests-utils/Mock.utils';
+import { renderWithContext } from '@/commons/tests-utils/Render.utils';
+import { Error } from '@/components/error/Error.component';
+import { ErrorObject } from '@/components/error/Error.props';
 
 mockGetEnvironment.mockResolvedValue({
   applicationName: 'test-application',

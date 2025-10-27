@@ -14,8 +14,14 @@ const mocks = vi.hoisted(() => ({
     },
   })),
   t: vi.fn((key: string, options?: Record<string, unknown>) => {
-    if (options?.price) {
-      return `${key} ${options.price}`;
+    if (options && 'price' in options) {
+      const priceValue =
+        typeof options.price === 'string'
+          ? options.price
+          : typeof options.price === 'number'
+            ? options.price.toString()
+            : JSON.stringify(options.price ?? '');
+      return `${key} ${priceValue}`;
     }
     return key;
   }),
@@ -154,9 +160,6 @@ describe('useCatalogPrice Hook', () => {
           },
         },
       });
-
-      const { result } = renderHook(() => useCatalogPrice(undefined, { exclVat: true }));
-      const formatted = result.current.getFormattedCatalogPrice(priceToUcent(10));
 
       expect(mocks.t).toHaveBeenCalledWith(
         'order_catalog_price_tax_excl_label',

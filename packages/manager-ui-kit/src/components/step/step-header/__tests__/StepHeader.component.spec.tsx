@@ -77,7 +77,7 @@ describe('StepHeader Component', () => {
     expect(screen.getByTestId('edit-cta')).toBeDisabled();
   });
 
-  it('calls edit.action when edit button is clicked and not disabled', async () => {
+  it('calls edit.action when edit button is clicked and not disabled', () => {
     renderWithStepContext({
       ...defaultContext,
       edit: {
@@ -87,7 +87,7 @@ describe('StepHeader Component', () => {
       },
       locked: true,
     });
-    await fireEvent.click(screen.getByTestId('edit-cta'));
+    fireEvent.click(screen.getByTestId('edit-cta'));
     expect(mockEditAction).toHaveBeenCalledWith('step-1');
   });
 

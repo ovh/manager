@@ -6,12 +6,12 @@ import { TabsProps } from './Tabs.props';
 
 export function TabsComponent<Item>({
   items = [],
-  titleElement = ({ item }) => <>{`${item}`}</>,
-  contentElement = ({ item }) => <>{`${item}`}</>,
+  titleElement = ({ item }) => <>{String(item)}</>,
+  contentElement = ({ item }) => <>{String(item)}</>,
   className,
   onChange,
 }: TabsProps<Item>): JSX.Element {
-  const [selectedTabItem, setselectedTabItem] = useState<string>(items?.[0] as string);
+  const [selectedTabItem, setSelectedTabItem] = useState<string>(String(items?.[0] ?? ''));
 
   const TitleComponent = titleElement;
   const ContentComponent = contentElement;
@@ -20,17 +20,20 @@ export function TabsComponent<Item>({
     <div className={className}>
       <Tabs
         onValueChange={(value: TabsValueChangeEvent) => {
-          setselectedTabItem(value?.value);
+          setSelectedTabItem(value?.value);
           onChange?.(value as Item);
         }}
         value={selectedTabItem}
       >
         <TabList>
-          {items.map((item) => (
-            <Tab key={item as string} value={item as string}>
-              <TitleComponent item={item} isSelected={item === selectedTabItem} />
-            </Tab>
-          ))}
+          {items.map((item) => {
+            const itemValue = String(item);
+            return (
+              <Tab key={itemValue} value={itemValue}>
+                <TitleComponent item={item} isSelected={itemValue === selectedTabItem} />
+              </Tab>
+            );
+          })}
         </TabList>
       </Tabs>
       <div className="bg-[--ods-color-primary-050] border border-solid border-[--ods-color-primary-100] border-t-0">

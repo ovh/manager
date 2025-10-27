@@ -14,7 +14,7 @@ const createShellContext = (me: IMe | null = null) => ({
   },
 });
 
-const createWrapper = (shellContext: any) => {
+const createWrapper = (shellContext) => {
   return ({ children }: { children: ReactNode }) => (
     <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
       {children}

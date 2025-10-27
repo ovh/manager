@@ -16,17 +16,29 @@ export const useBreadcrumb = ({ rootLabel, appName, hideRootLabel = false }: Bre
     const fetchRoot = async () => {
       try {
         const response = await shell?.navigation.getURL(appName, '#/', {});
+
+        let href = '';
+
+        if (typeof response === 'string') {
+          href = response;
+        } else if (response instanceof URL) {
+          href = response.href;
+        } else if (response && typeof (response as { href?: unknown }).href === 'string') {
+          href = (response as { href: string }).href;
+        }
+
         const rootItem = {
           label: rootLabel,
-          href: String(response),
+          href,
           hideLabel: hideRootLabel,
         };
+
         setRoot([rootItem]);
       } catch {
         // Fetch navigation error
       }
     };
-    fetchRoot();
+    void fetchRoot();
   }, [rootLabel, appName, shell?.navigation]);
 
   useEffect(() => {

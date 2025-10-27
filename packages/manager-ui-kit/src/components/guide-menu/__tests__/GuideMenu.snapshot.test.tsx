@@ -1,6 +1,6 @@
 import { vi } from 'vitest';
 
-import { render } from '@/setupTest';
+import { render } from '@/commons/tests-utils/Render.utils';
 
 import { GuideMenu } from '../GuideMenu.component';
 import { GuideMenuItem } from '../GuideMenu.props';

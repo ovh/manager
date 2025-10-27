@@ -1,115 +1,91 @@
-import React from 'react';
+import { fireEvent, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 
-import { fireEvent, render, screen } from '@testing-library/react';
-import { vitest } from 'vitest';
-
-import { BaseLayout, GuideMenu } from '@/components';
-import { GuideMenuItem } from '@/components/guide-menu/GuideMenu.props';
-import { IamAuthorizationResponse } from '@/hooks/iam/IAM.type';
-
-vitest.mock('@/hooks/iam/useOvhIam', () => ({
-  useAuthorizationIam: vitest.fn().mockReturnValue({
-    isAuthorized: true,
-    isLoading: false,
-    isFetched: true,
-  } as IamAuthorizationResponse),
-}));
+import { renderBaseLayout } from '@/commons/tests-utils/Render.utils';
+import { guideMenuItems } from '@/commons/tests-utils/StaticData.constants';
+import { GuideMenu } from '@/components';
 
 describe('BaseLayout component', () => {
-  it('renders with header', () => {
+  it('renders with header and GuideMenu', () => {
     const header = {
       title: 'Test Header',
-      guideMenu: (
-        <GuideMenu
-          items={
-            [
-              {
-                id: 1,
-                href: 'https://www.ovh.com',
-                target: '_blank',
-                label: 'ovh.com',
-              },
-            ] as GuideMenuItem[]
-          }
-        />
-      ),
+      guideMenu: <GuideMenu items={guideMenuItems} />,
     };
-    render(<BaseLayout header={header} />);
-    const titleElement = screen.getByText('Test Header');
-    expect(titleElement).toBeInTheDocument();
-    expect(titleElement.tagName).toBe('H1');
+
+    renderBaseLayout({ header });
+
+    const title = screen.getByText('Test Header');
+    expect(title).toBeInTheDocument();
+    expect(title.tagName).toBe('H1');
+    expect(screen.getByText('Guide Menu Item Label')).toBeInTheDocument();
   });
 
   it('renders with breadcrumb', () => {
-    const breadcrumb = <div data-testid="breadcrumb"></div>;
-    render(<BaseLayout breadcrumb={breadcrumb} />);
+    renderBaseLayout({ breadcrumb: <div data-testid="breadcrumb" /> });
     expect(screen.getByTestId('breadcrumb')).toBeInTheDocument();
   });
 
   it('renders with description', () => {
     const description = 'Test Description';
-    render(<BaseLayout description={description} />);
-    const descriptionElement = screen.getByText(description);
-    expect(descriptionElement).toBeInTheDocument();
-    expect(descriptionElement.tagName).toBe('SPAN');
+    renderBaseLayout({ description });
+    const element = screen.getByText(description);
+    expect(element).toBeInTheDocument();
+    expect(element.tagName).toBe('SPAN');
   });
 
   it('renders with message', () => {
-    const message = <div data-testid="messages"></div>;
-    render(<BaseLayout message={message} />);
+    renderBaseLayout({ message: <div data-testid="messages" /> });
     expect(screen.getByTestId('messages')).toBeInTheDocument();
   });
 
-  it('renders with sub-title', () => {
-    const subtitle = 'Test Sub-title';
-    render(<BaseLayout subtitle={subtitle} />);
-    const subtitleElement = screen.getByText(subtitle);
-    expect(subtitleElement).toBeInTheDocument();
-    expect(subtitleElement.tagName).toBe('H3');
+  it('renders with subtitle', () => {
+    const subtitle = 'Test Subtitle';
+    renderBaseLayout({ subtitle });
+    const element = screen.getByText(subtitle);
+    expect(element).toBeInTheDocument();
+    expect(element.tagName).toBe('H3');
   });
 
   it('renders with tabs', () => {
-    const tabs = <div data-testid="tabs"></div>;
-    render(<BaseLayout tabs={tabs} />);
+    renderBaseLayout({ tabs: <div data-testid="tabs" /> });
     expect(screen.getByTestId('tabs')).toBeInTheDocument();
   });
 
-  it('renders children', () => {
-    render(
-      <BaseLayout>
-        <div data-testid="children"></div>
-      </BaseLayout>,
-    );
+  it('renders children content', () => {
+    renderBaseLayout({ children: <div data-testid="children" /> });
     expect(screen.getByTestId('children')).toBeInTheDocument();
   });
 
-  it('renders back link', () => {
-    const backLink = {
-      label: 'Back Link Label',
-      onClick: vitest.fn(),
-    };
-    render(<BaseLayout backLink={backLink} />);
-    const linkElement = screen.getByTestId('manager-back-link');
-    expect(linkElement).toBeInTheDocument();
-    expect(linkElement.textContent).toBe(backLink.label);
+  it('renders clickable back link', () => {
+    const onClick = vi.fn();
+    const backLink = { label: 'Back Link Label', onClick };
 
-    fireEvent.click(linkElement);
-    expect(backLink.onClick).toHaveBeenCalled();
+    renderBaseLayout({ backLink });
+
+    const link = screen.getByTestId('manager-back-link');
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveTextContent(backLink.label);
+
+    fireEvent.click(link);
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  it('renders back link with previous page href', () => {
+  it('renders back link with previousPageLink', () => {
     const backLink = {
       label: 'Back Link Label',
       previousPageLink: 'https://ovhcloud.com/',
     };
-    render(<BaseLayout backLink={backLink} />);
-    const linkElement = screen.getByTestId('manager-back-link');
-    expect(linkElement).toBeInTheDocument();
-    expect(linkElement.textContent).toBe(backLink.label);
+
+    renderBaseLayout({ backLink });
+
+    const link = screen.getByTestId('manager-back-link');
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveTextContent(backLink.label);
+    expect(link).toHaveAttribute('href', backLink.previousPageLink);
   });
 
-  it('does not render backLink when "onClick" or previousPageLink is not provided', () => {
-    render(<BaseLayout backLink={{ label: 'Back Link Label' }} />);
+  it('does not render backLink when missing onClick or previousPageLink', () => {
+    renderBaseLayout({ backLink: { label: 'Back Link Label' } });
     expect(screen.queryByText(/Back Link Label/i)).not.toBeInTheDocument();
   });
 });

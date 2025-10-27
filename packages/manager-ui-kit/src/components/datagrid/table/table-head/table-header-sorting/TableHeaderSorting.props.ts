@@ -1,6 +1,6 @@
-import type { Header } from '@tanstack/react-table';
+import type { Header, SortingState } from '@tanstack/react-table';
 
-export type TableHeaderSortingProps<T> = {
+export interface TableHeaderSortingProps<T> {
   header: Header<T, unknown>;
-  onSortChange: any;
-};
+  onSortChange: (sorting: SortingState) => void;
+}

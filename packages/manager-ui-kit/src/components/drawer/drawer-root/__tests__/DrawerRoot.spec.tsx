@@ -1,8 +1,8 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
+import { render } from '@/commons/tests-utils/Render.utils';
 import { IamAuthorizationResponse, useAuthorizationIam } from '@/hooks';
-import { render } from '@/setupTest';
 
 import '../../__tests__/drawer.mocks';
 import { DrawerRoot } from '../DrawerRoot.component';

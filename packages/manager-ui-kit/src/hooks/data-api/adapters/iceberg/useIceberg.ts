@@ -22,6 +22,8 @@ export const useIceberg = <TData = Record<string, unknown>>({
   disableCache,
   enabled = true,
 }: UseIcebergParams<TData>): UseDataApiResult<TData> => {
+  const retrievalOps = useDataRetrievalOperations<TData>({ defaultSorting, columns });
+
   const {
     searchInput,
     setSearchInput,
@@ -32,7 +34,7 @@ export const useIceberg = <TData = Record<string, unknown>>({
     addFilter,
     removeFilter,
     onSearch,
-  } = useDataRetrievalOperations<TData>({ defaultSorting, columns });
+  } = retrievalOps;
 
   const {
     data: dataSelected,
@@ -48,11 +50,11 @@ export const useIceberg = <TData = Record<string, unknown>>({
   >({
     initialPageParam: 1,
     cacheKey: [
-      ...(typeof cacheKey === 'string' ? [cacheKey] : cacheKey),
-      fetchAll ? 'all' : pageSize,
-      sorting,
-      filters,
-      searchFilters,
+      ...(typeof cacheKey === 'string' ? [cacheKey] : (cacheKey ?? [])),
+      fetchAll ? 'all' : String(pageSize),
+      JSON.stringify(sorting ?? []),
+      JSON.stringify(filters ?? []),
+      JSON.stringify(searchFilters ?? []),
     ],
     enabled,
     fetchDataFn: ({ pageParam: pageIndex }): Promise<IcebergFetchResult<TData>> =>
@@ -88,7 +90,7 @@ export const useIceberg = <TData = Record<string, unknown>>({
 
   useEffect(() => {
     if (fetchAll && hasNextPage) {
-      fetchNextPage();
+      void fetchNextPage();
     }
   }, [dataSelected]);
 

@@ -1,9 +1,10 @@
-import { useQuery } from '@tanstack/react-query';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import { RenderHookResult, act, renderHook } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { FilterComparator, FilterTypeCategories } from '@ovh-ux/manager-core-api';
 
+import { fetchNextPage } from '@/commons/tests-utils/Mock.utils';
 import { UseDataApiResult } from '@/hooks';
 
 import { ResultObj, columns, items } from '../../../__mocks__/mock';
@@ -19,12 +20,6 @@ vi.mock('@tanstack/react-query', async () => {
     useQuery: vi.fn(),
   };
 });
-
-function fetchNextPage(fn: () => void, numberOfTimes: number) {
-  for (let i = 0; i < numberOfTimes; i += 1) {
-    fn();
-  }
-}
 
 const renderUseV6Hook = (
   hookParams: Partial<ResourcesV6Params<ResultObj>> = {},
@@ -51,21 +46,22 @@ const mockData = {
 
 describe('useV6', () => {
   beforeEach(() => {
-    vi.mocked(useQuery).mockImplementation(() => {
-      return {
-        data: mockData,
-        error: null,
-        isLoading: false,
-        hasNextPage: true,
-        staleTime: 3000,
-        retry: false,
-      } as any;
-    });
+    vi.mocked(useQuery).mockImplementation(
+      () =>
+        ({
+          data: mockData,
+          error: null,
+          isLoading: false,
+          isFetching: false,
+          isSuccess: true,
+          refetch: vi.fn(),
+        }) as unknown as UseQueryResult<typeof mockData, Error>,
+    );
 
     vi.clearAllMocks();
   });
 
-  it('should return flattenData with 10 items', async () => {
+  it('should return flattenData with 10 items', () => {
     const { result } = renderUseV6Hook();
     const { flattenData, totalCount, hasNextPage, pageIndex } = result.current;
     expect(flattenData?.length).toEqual(10);
@@ -74,10 +70,10 @@ describe('useV6', () => {
     expect(hasNextPage).toBeTruthy();
   });
 
-  it('fetches next page', () => {
+  it('fetches next page', async () => {
     const { result } = renderUseV6Hook();
-    act(() => {
-      result.current.fetchNextPage();
+    await act(async () => {
+      await result.current.fetchNextPage();
     });
     expect(result.current.flattenData.length).toEqual(20);
   });
@@ -94,28 +90,24 @@ describe('useV6', () => {
     expect((callArg as unknown as UseQueryOptions).refetchInterval).toBe(1000);
   });
 
-  it('applies default sorting', () => {
+  it('applies default sorting', async () => {
     const { result } = renderUseV6Hook({
       defaultSorting: [{ id: 'number', desc: false }],
     });
-    act(() => {
-      fetchNextPage(result.current.fetchNextPage, 4);
-    });
+    await act(() => fetchNextPage(result.current.fetchNextPage, 4));
     result.current.flattenData.forEach((item: ResultObj, index) => {
       expect(parseInt(item.number, 10)).toEqual(index + 1);
     });
   });
 
-  it('applies sorting', () => {
+  it('applies sorting', async () => {
     const { result } = renderUseV6Hook({
       defaultSorting: [{ id: 'number', desc: false }],
     });
     act(() => {
       result.current.sorting.setSorting([{ id: 'number', desc: true }]);
     });
-    act(() => {
-      fetchNextPage(result.current.fetchNextPage, 4);
-    });
+    await act(() => fetchNextPage(result.current.fetchNextPage, 4));
     result.current.flattenData.forEach((item: ResultObj, index) => {
       expect(parseInt(item.number, 10)).toEqual(items.length - index);
     });
@@ -132,7 +124,7 @@ describe('useV6', () => {
     });
   });
 
-  it('applies filtering and then removes it', () => {
+  it('applies filtering and then removes it', async () => {
     const filterTerm1 = 15;
     const filterTerm2 = 36;
     const { result } = renderUseV6Hook();
@@ -148,9 +140,7 @@ describe('useV6', () => {
         ),
       );
     });
-    act(() => {
-      fetchNextPage(result.current.fetchNextPage, 4);
-    });
+    await act(() => fetchNextPage(result.current.fetchNextPage, 4));
     expect(result.current.flattenData.length).toBe(35);
     result.current.flattenData.forEach((item: ResultObj) => {
       expect(parseInt(item.number, 10)).toBeGreaterThan(filterTerm1);
@@ -167,9 +157,7 @@ describe('useV6', () => {
         ),
       );
     });
-    act(() => {
-      fetchNextPage(result.current.fetchNextPage, 4);
-    });
+    await act(() => fetchNextPage(result.current.fetchNextPage, 4));
     expect(result.current.flattenData.length).toBe(20);
     result.current.flattenData.forEach((item: ResultObj) => {
       expect(
@@ -181,16 +169,14 @@ describe('useV6', () => {
     act(() => {
       result.current.filters.remove(result.current.filters.filters[0]);
     });
-    act(() => {
-      fetchNextPage(result.current.fetchNextPage, 4);
-    });
+    await act(() => fetchNextPage(result.current.fetchNextPage, 4));
     expect(result.current.flattenData.length).toBe(35);
     result.current.flattenData.forEach((item: ResultObj) => {
       expect(parseInt(item.number, 10)).toBeLessThan(filterTerm2);
     });
   });
 
-  it('performs all data operations of search/sort/filter', () => {
+  it('performs all data operations of search/sort/filter', async () => {
     // first tests the default sorting
     const { result } = renderUseV6Hook({
       defaultSorting: [{ id: 'number', desc: false }],
@@ -205,9 +191,7 @@ describe('useV6', () => {
         getFilter('number', String(15), FilterComparator.IsHigher, FilterTypeCategories.Numeric),
       );
     });
-    act(() => {
-      fetchNextPage(result.current.fetchNextPage, 4);
-    });
+    await act(() => fetchNextPage(result.current.fetchNextPage, 4));
     expect(result.current.flattenData.length).toBe(35);
     result.current.flattenData.forEach((item: ResultObj) => {
       expect(parseInt(item.number, 10)).toBeGreaterThan(15);
@@ -217,9 +201,7 @@ describe('useV6', () => {
     act(() => {
       (result.current as UseDataApiResult).sorting.setSorting([{ id: 'number', desc: true }]);
     });
-    act(() => {
-      fetchNextPage(result.current.fetchNextPage, 4);
-    });
+    await act(() => fetchNextPage(result.current.fetchNextPage, 4));
     expect(result.current.flattenData.length).toBe(35);
     result.current.flattenData.forEach((item: ResultObj, index: number) => {
       expect(parseInt(item.number, 10)).toEqual(items.length - index);
@@ -229,9 +211,7 @@ describe('useV6', () => {
     act(() => {
       result.current.search.onSearch('3');
     });
-    act(() => {
-      fetchNextPage(result.current.fetchNextPage, 4);
-    });
+    await act(() => fetchNextPage(result.current.fetchNextPage, 4));
     expect(result.current.flattenData.length).toBe(12);
     result.current.flattenData.forEach((item: ResultObj) => {
       expect(item.number).toContain('3');

@@ -14,7 +14,7 @@ import {
 import { FilterComparator, FilterTypeCategories } from '@ovh-ux/manager-core-api';
 
 import { Button } from '@/components/button/Button.component';
-import { FilterAddProps } from '@/components/filters/filter-add/FilterAdd.props';
+import type { FilterAddProps } from '@/components/filters/filter-add/FilterAdd.props';
 
 import '../translations';
 import { FilterSectionValue } from './filter-section-value/FilterSectionValue.component';
@@ -23,9 +23,9 @@ import { FilterTagsForm } from './filter-tags-form/FilterTagsForm.component';
 export function FilterAdd({ columns, onAddFilter, resourceType }: Readonly<FilterAddProps>) {
   const { t } = useTranslation('filters');
 
-  const [selectedId, setSelectedId] = useState(columns?.[0]?.id || '');
-  const [selectedComparator, setSelectedComparator] = useState(
-    columns?.[0]?.comparators?.[0] || FilterComparator.IsEqual,
+  const [selectedId, setSelectedId] = useState(columns?.[0]?.id ?? '');
+  const [selectedComparator, setSelectedComparator] = useState<FilterComparator>(
+    columns?.[0]?.comparators?.[0] ?? FilterComparator.IsEqual,
   );
   const [value, setValue] = useState('');
   const [dateValue, setDateValue] = useState<Date | null>(null);
@@ -37,48 +37,42 @@ export function FilterAdd({ columns, onAddFilter, resourceType }: Readonly<Filte
   );
 
   const isInputValid = useMemo(() => {
-    if (selectedColumn?.type === FilterTypeCategories.Date) {
-      return dateValue !== null;
-    }
-    if (selectedColumn?.type === FilterTypeCategories.Numeric) {
-      return !Number.isNaN(Number(value)) && value !== '';
-    }
-
-    if (selectedColumn?.type === FilterTypeCategories.Tags) {
+    if (selectedColumn?.type === FilterTypeCategories.Date) return dateValue !== null;
+    if (selectedColumn?.type === FilterTypeCategories.Numeric)
+      return !Number.isNaN(Number(value)) && value.trim() !== '';
+    if (selectedColumn?.type === FilterTypeCategories.Tags)
       return (
         (!!tagKey && !!value) ||
         (!!tagKey &&
           [FilterComparator.TagExists, FilterComparator.TagNotExists].includes(selectedComparator))
       );
-    }
-
-    return value !== '';
+    return value.trim() !== '';
   }, [selectedColumn, dateValue, value, tagKey, selectedComparator]);
 
-  const submitAddFilter = () => {
-    if (!isInputValid) {
-      return;
-    }
+  const submitAddFilter = (): void => {
+    if (!isInputValid || !selectedColumn) return;
+
     onAddFilter(
       {
         key: selectedId,
         comparator: selectedComparator,
         value:
-          selectedColumn?.type === FilterTypeCategories.Date
-            ? dateValue?.toISOString() || ''
+          selectedColumn.type === FilterTypeCategories.Date
+            ? (dateValue?.toISOString() ?? '')
             : value,
-        type: selectedColumn?.type,
+        type: selectedColumn.type,
         tagKey,
       },
       selectedColumn,
     );
+
     setValue('');
     setTagKey('');
     setDateValue(null);
   };
 
   useEffect(() => {
-    setSelectedComparator(selectedColumn?.comparators?.[0] || FilterComparator.IsEqual);
+    setSelectedComparator(selectedColumn?.comparators?.[0] ?? FilterComparator.IsEqual);
     setValue('');
     setTagKey('');
     setDateValue(null);
@@ -114,9 +108,9 @@ export function FilterAdd({ columns, onAddFilter, resourceType }: Readonly<Filte
                 key={`add-operator-${selectedColumn.id}`}
                 name={`add-operator-${selectedColumn.id}`}
                 value={[selectedComparator]}
-                onValueChange={(detail) => {
-                  setSelectedComparator(detail.value[0] as FilterComparator);
-                }}
+                onValueChange={(detail) =>
+                  setSelectedComparator(detail.value[0] as FilterComparator)
+                }
                 items={selectedColumn.comparators?.map((comp) => ({
                   label: t(`common_criteria_adder_operator_${comp}`),
                   value: comp,
@@ -129,7 +123,7 @@ export function FilterAdd({ columns, onAddFilter, resourceType }: Readonly<Filte
           )}
         </FormField>
       </div>
-      {selectedColumn?.type !== FilterTypeCategories.Tags && (
+      {selectedColumn?.type !== FilterTypeCategories.Tags ? (
         <div className="mt-4 w-full">
           <FormField>
             <FormFieldLabel>{t('common_criteria_adder_value_label')}</FormFieldLabel>
@@ -144,11 +138,10 @@ export function FilterAdd({ columns, onAddFilter, resourceType }: Readonly<Filte
             />
           </FormField>
         </div>
-      )}
-      {selectedColumn?.type === FilterTypeCategories.Tags && (
+      ) : (
         <div className="mt-4 w-full" data-testid="filter-tag-inputs">
           <FilterTagsForm
-            resourceType={resourceType || ''}
+            resourceType={resourceType ?? ''}
             tagKey={tagKey}
             setTagKey={setTagKey}
             value={value}

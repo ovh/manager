@@ -2,8 +2,8 @@ import { fireEvent, waitFor } from '@testing-library/react';
 import type { MockInstance } from 'vitest';
 import { vi, vitest } from 'vitest';
 
+import { render } from '@/commons/tests-utils/Render.utils';
 import { useAuthorizationIam } from '@/hooks';
-import { render } from '@/setupTest';
 
 import { Order } from '../Order.component';
 import fr_FR from '../translations/Messages_fr_FR.json';
@@ -95,14 +95,14 @@ describe('<Order> tests suite', () => {
     expect(window.open).toHaveBeenCalledWith(orderLink, '_blank', 'noopener,noreferrer');
   });
 
-  it('should open order link when order link is clicked', () => {
+  it('should open order link when order link is clicked', async () => {
     vi.spyOn(window, 'open');
     const { getByTestId } = renderComponent(true, orderLink, '');
 
     fireEvent.click(getByTestId('cta-order-configuration-order'));
     fireEvent.click(getByTestId('order-summary-link'));
 
-    waitFor(() => expect(onClickLinkSpy).toHaveBeenCalled());
+    await waitFor(() => expect(onClickLinkSpy).toHaveBeenCalled());
   });
 
   it('should close order summary when finish button is clicked', () => {

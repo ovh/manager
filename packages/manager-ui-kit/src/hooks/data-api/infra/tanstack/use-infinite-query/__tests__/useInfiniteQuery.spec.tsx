@@ -1,48 +1,26 @@
-import { QueryClient, useInfiniteQuery as tanstackUseInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery as tanstackUseInfiniteQuery } from '@tanstack/react-query';
 import { renderHook } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { mockResult } from '@/commons/tests-utils/Mock.utils';
+import { MockPage } from '@/commons/tests-utils/Type.utils';
+
 import { getWrapper } from '../../../../__tests__/Test.utils';
-// Import your hook
 import { useInfiniteQuery } from '../useInfiniteQuery';
 
-// Mock TanStack's useInfiniteQuery
 vi.mock('@tanstack/react-query', async () => {
-  const actual = await vi.importActual('@tanstack/react-query');
+  const actual =
+    await vi.importActual<typeof import('@tanstack/react-query')>('@tanstack/react-query');
   return {
     ...actual,
     useInfiniteQuery: vi.fn(),
   };
 });
 
-// Define a simple mock result
-const mockResult = {
-  data: { pages: [], pageParams: [] },
-  fetchNextPage: vi.fn(),
-  hasNextPage: false,
-  isFetching: false,
-  isError: false,
-  isLoading: false,
-  isSuccess: true,
-  isFetchingNextPage: false,
-  status: 'success',
-  error: null,
-} as any;
-
 describe('useInfiniteQuery', () => {
-  let queryClient: QueryClient;
-
   beforeEach(() => {
-    queryClient = new QueryClient({
-      defaultOptions: {
-        queries: {
-          retry: false,
-        },
-      },
-    });
-
     vi.clearAllMocks();
-    (tanstackUseInfiniteQuery as any).mockReturnValue(mockResult);
+    vi.mocked(tanstackUseInfiniteQuery).mockReturnValue(mockResult);
   });
 
   it('forwards options to tanstack useInfiniteQuery', () => {
@@ -56,7 +34,7 @@ describe('useInfiniteQuery', () => {
       transformFn: vi.fn(),
       initialPageParam,
       enabled,
-      getNextPageParam: (lastPage: any) => lastPage.nextCursor,
+      getNextPageParam: (lastPage: MockPage) => lastPage?.nextCursor ?? null,
     };
 
     renderHook(() => useInfiniteQuery(options), { wrapper: getWrapper() });
@@ -90,11 +68,18 @@ describe('useInfiniteQuery', () => {
 
   it('handles error states from tanstack query', () => {
     const error = new Error('Network Error');
-    (tanstackUseInfiniteQuery as any).mockReturnValue({
+
+    vi.mocked(tanstackUseInfiniteQuery).mockReturnValue({
       ...mockResult,
       status: 'error',
       error,
-    });
+      isError: true,
+      isSuccess: false,
+      isPending: false,
+      isLoading: false,
+      isRefetchError: true,
+      data: undefined,
+    } as unknown as ReturnType<typeof tanstackUseInfiniteQuery>);
 
     const { result } = renderHook(
       () =>

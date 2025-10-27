@@ -1,4 +1,4 @@
-import type { Filter, FilterComparator, FilterTypeCategories } from '@ovh-ux/manager-core-api';
+import type { FilterComparator, FilterTypeCategories } from '@ovh-ux/manager-core-api';
 
 import { FilterOption } from '@/components/filters/Filter.props';
 
@@ -10,8 +10,16 @@ export type ColumnFilter = {
   options?: FilterOption[];
 };
 
-export type FilterAddProps = {
+export interface FilterPayload {
+  key: string;
+  comparator: FilterComparator;
+  value: string;
+  type?: FilterTypeCategories;
+  tagKey?: string;
+}
+
+export interface FilterAddProps {
   columns: ColumnFilter[];
   resourceType?: string;
-  onAddFilter: (filter: Filter, column: ColumnFilter) => void;
-};
+  onAddFilter: (filter: FilterPayload, column: ColumnFilter) => void;
+}

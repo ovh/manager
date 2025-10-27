@@ -1,21 +1,18 @@
 import { act } from '@testing-library/react';
-import { beforeEach, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { FilterAddProps } from '@/components/filters/filter-add/FilterAdd.props';
-import { FilterAdd } from '@/components/filters/filter-add/Filteradd.component';
-import { cleanup, render } from '@/setupTest';
+import { cleanup, renderFilterAdd } from '@/commons/tests-utils/Render.utils';
+import { ResourceTagsHookResult } from '@/commons/tests-utils/Type.utils';
+import type { FilterAddProps } from '@/components/filters/filter-add/FilterAdd.props';
+import type { IamAuthorizationResponse } from '@/hooks/iam/IAM.type';
 
-const mockUseGetResourceTags = vi.fn();
-const mockUseAuthorizationIam = vi.fn();
+const mockUseGetResourceTags = vi.fn<() => ResourceTagsHookResult>();
+const mockUseAuthorizationIam = vi.fn<() => IamAuthorizationResponse>();
 
 vi.mock('@/hooks/iam/useOvhIam', () => ({
-  useGetResourceTags: () => mockUseGetResourceTags(),
-  useAuthorizationIam: () => mockUseAuthorizationIam(),
+  useGetResourceTags: (): ResourceTagsHookResult => mockUseGetResourceTags(),
+  useAuthorizationIam: (): IamAuthorizationResponse => mockUseAuthorizationIam(),
 }));
-
-const renderComponent = (props: FilterAddProps) => {
-  return render(<FilterAdd {...props} />);
-};
 
 describe('FilterAdd Snapshot Tests', () => {
   beforeEach(() => {
@@ -63,7 +60,7 @@ describe('FilterAdd Snapshot Tests', () => {
       onAddFilter: vi.fn(),
     } as FilterAddProps;
 
-    const { container } = renderComponent(props);
+    const { container } = renderFilterAdd(props);
     expect(container).toMatchSnapshot();
   });
 
@@ -80,7 +77,7 @@ describe('FilterAdd Snapshot Tests', () => {
       onAddFilter: vi.fn(),
     } as FilterAddProps;
 
-    const { container } = renderComponent(props);
+    const { container } = renderFilterAdd(props);
     expect(container).toMatchSnapshot();
   });
 
@@ -97,7 +94,7 @@ describe('FilterAdd Snapshot Tests', () => {
       onAddFilter: vi.fn(),
     } as FilterAddProps;
 
-    const { container } = renderComponent(props);
+    const { container } = renderFilterAdd(props);
     expect(container).toMatchSnapshot();
   });
 
@@ -117,7 +114,7 @@ describe('FilterAdd Snapshot Tests', () => {
       onAddFilter: vi.fn(),
     } as FilterAddProps;
 
-    const { container } = renderComponent(props);
+    const { container } = renderFilterAdd(props);
     expect(container).toMatchSnapshot();
   });
 
@@ -135,7 +132,7 @@ describe('FilterAdd Snapshot Tests', () => {
       resourceType: 'dedicatedServer',
     } as FilterAddProps;
 
-    const { container } = renderComponent(props);
+    const { container } = renderFilterAdd(props);
     expect(container).toMatchSnapshot();
   });
 
@@ -164,7 +161,7 @@ describe('FilterAdd Snapshot Tests', () => {
       onAddFilter: vi.fn(),
     } as FilterAddProps;
 
-    const { container } = renderComponent(props);
+    const { container } = renderFilterAdd(props);
     expect(container).toMatchSnapshot();
   });
 });

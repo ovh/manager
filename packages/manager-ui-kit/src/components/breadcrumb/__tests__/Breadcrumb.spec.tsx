@@ -1,36 +1,21 @@
-import { vitest } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
-import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
-import { render } from '@/setupTest';
+import { mockUseBreadcrumb } from '@/commons/tests-utils/Mock.utils';
+import { renderBreadcrumb } from '@/commons/tests-utils/Render.utils';
 
-vitest.mock('@/hooks/breadcrumb/useBreadcrumb', () => ({
-  useBreadcrumb: vitest.fn(({ hideRootLabel }) => [
-    { label: 'vRack services', href: '/', hideLabel: hideRootLabel },
-    { label: 'vRack service', href: '/:id', hideLabel: false },
-    {
-      label: 'vRack service listing',
-      href: '/:id/listing',
-      hideLabel: false,
-    },
-  ]),
-}));
+mockUseBreadcrumb();
 
-describe('breadcrumb component', () => {
-  it('should render 3 breadcrumb items when hideRootLabel is false', () => {
-    const { container } = render(
-      <Breadcrumb rootLabel="vRack services" appName="vrack-services" hideRootLabel={false} />,
-    );
+describe('Breadcrumb component - behavior', () => {
+  it('renders 3 breadcrumb items when hideRootLabel is false', () => {
+    const { container } = renderBreadcrumb({ hideRootLabel: false });
     const items = container.querySelectorAll('li');
+
     expect(items.length).toBe(3);
-    expect(items[0]).toBeVisible();
-    expect(items[1]).toBeVisible();
-    expect(items[2]).toBeVisible();
+    items.forEach((item) => expect(item).toBeVisible());
   });
 
-  it('should hide root label when hideRootLabel is true', () => {
-    const { container } = render(
-      <Breadcrumb rootLabel="vRack services" appName="vrack-services" hideRootLabel={true} />,
-    );
+  it('hides root label when hideRootLabel is true', () => {
+    const { container } = renderBreadcrumb({ hideRootLabel: true });
     const items = container.querySelectorAll('li');
     expect(items.length).toBe(2);
   });

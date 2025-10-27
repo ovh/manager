@@ -3,7 +3,7 @@ import React from 'react';
 import { waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import { render } from '@/setupTest';
+import { render } from '@/commons/tests-utils/Render.utils';
 
 import { FilterTagsForm } from '../FilterTagsForm.component';
 import { FilterTagsFormProps } from '../FilterTagsForm.props';
@@ -36,7 +36,7 @@ describe('FilterTagValue', () => {
     vi.clearAllMocks();
   });
 
-  it('shows loading skeletons when loading', async () => {
+  it('shows loading skeletons when loading', () => {
     mocks.useGetResourceTags.mockReturnValue({
       tags: [],
       isError: false,

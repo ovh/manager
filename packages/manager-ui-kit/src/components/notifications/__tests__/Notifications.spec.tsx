@@ -1,27 +1,38 @@
+import React from 'react';
+
 import { useLocation } from 'react-router-dom';
 
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { MockedFunction, beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { notifications } from '@/commons/tests-utils/StaticData.constants';
 
 import { Notifications } from '../Notifications.component';
 import { useNotifications } from '../useNotifications';
 
 vi.mock('@ovhcloud/ods-react', () => ({
-  Message: vi.fn(({ color, dismissible, children, onRemove }) => (
-    <div data-testid={`message-${color}`} className={color}>
-      {children}
-      {dismissible && (
-        <button
-          data-testid={`dismissible-${dismissible}`}
-          onClick={() => {
-            onRemove();
-          }}
-        >
-          x
-        </button>
-      )}
-    </div>
-  )),
+  Message: vi.fn(
+    ({
+      color,
+      dismissible,
+      children,
+      onRemove,
+    }: {
+      color: string;
+      dismissible?: boolean;
+      children: React.ReactNode;
+      onRemove?: () => void;
+    }) => (
+      <div data-testid={`message-${color}`} className={color}>
+        {children}
+        {dismissible && (
+          <button data-testid={`dismissible-${dismissible}`} onClick={() => onRemove?.()}>
+            x
+          </button>
+        )}
+      </div>
+    ),
+  ),
   MESSAGE_COLOR: {
     success: 'success',
     critical: 'critical',
@@ -30,60 +41,36 @@ vi.mock('@ovhcloud/ods-react', () => ({
   },
 }));
 
-// Mock react-router-dom's useLocation
 vi.mock('react-router-dom', () => ({
   useLocation: vi.fn(),
 }));
 
-// Mock custom hook
+vi.mock('../useNotifications', () => ({
+  useNotifications: vi.fn(),
+}));
+
+const mockUseLocation = useLocation as MockedFunction<typeof useLocation>;
+const mockUseNotifications = useNotifications as unknown as MockedFunction<typeof useNotifications>;
+
 const mockClearNotifications = vi.fn();
 const mockClearNotification = vi.fn();
 
-vi.mock('../useNotifications', () => ({
-  useNotifications: vi.fn(() => ({
-    notifications: [],
-    clearNotifications: mockClearNotifications,
-    clearNotification: mockClearNotification,
-  })),
-}));
-
-// Reset mocks before each test
 beforeEach(() => {
   vi.clearAllMocks();
-  (useLocation as any).mockReturnValue({ pathname: '/home' });
+  mockUseLocation.mockReturnValue({
+    pathname: '/home',
+    state: undefined,
+    key: '',
+    search: '',
+    hash: '',
+  });
 });
 
 describe('Notifications Component', () => {
-  const mockNotifications = [
-    {
-      uid: '1',
-      content: 'This is a success message.',
-      type: 'success',
-      dismissible: true,
-    },
-    {
-      uid: '2',
-      content: 'This is an error message.',
-      type: 'error',
-      dismissible: false,
-    },
-    {
-      uid: '3',
-      content: 'This is an alert message.',
-      type: 'warning',
-      dismissible: false,
-    },
-    {
-      uid: '4',
-      content: 'This is an information message.',
-      type: 'info',
-    },
-  ];
-
   it('should render all notifications', () => {
-    (useLocation as any).mockReturnValue({ pathname: '/home' });
-    (useNotifications as any).mockReturnValue({
-      notifications: mockNotifications,
+    mockUseLocation.mockReturnValue({ pathname: '/home' } as ReturnType<typeof useLocation>);
+    mockUseNotifications.mockReturnValue({
+      notifications: notifications,
       clearNotifications: mockClearNotifications,
       clearNotification: mockClearNotification,
     });
@@ -97,9 +84,9 @@ describe('Notifications Component', () => {
   });
 
   it('should map notification types to correct ODS Message colors', () => {
-    (useLocation as any).mockReturnValue({ pathname: '/home' });
-    (useNotifications as any).mockReturnValue({
-      notifications: mockNotifications,
+    mockUseLocation.mockReturnValue({ pathname: '/home' } as ReturnType<typeof useLocation>);
+    mockUseNotifications.mockReturnValue({
+      notifications: notifications,
       clearNotifications: mockClearNotifications,
       clearNotification: mockClearNotification,
     });
@@ -114,9 +101,9 @@ describe('Notifications Component', () => {
   });
 
   it('should call clearNotification when a dismissible notification is dismissed', async () => {
-    (useLocation as any).mockReturnValue({ pathname: '/home' });
-    (useNotifications as any).mockReturnValue({
-      notifications: [mockNotifications[0]],
+    mockUseLocation.mockReturnValue({ pathname: '/home' } as ReturnType<typeof useLocation>);
+    mockUseNotifications.mockReturnValue({
+      notifications: [notifications[0]],
       clearNotifications: mockClearNotifications,
       clearNotification: mockClearNotification,
     });
@@ -132,9 +119,9 @@ describe('Notifications Component', () => {
   });
 
   it('should not render dismiss button if dismissible is false', () => {
-    (useLocation as any).mockReturnValue({ pathname: '/home' });
-    (useNotifications as any).mockReturnValue({
-      notifications: mockNotifications,
+    mockUseLocation.mockReturnValue({ pathname: '/home' } as ReturnType<typeof useLocation>);
+    mockUseNotifications.mockReturnValue({
+      notifications: notifications,
       clearNotifications: mockClearNotifications,
       clearNotification: mockClearNotification,
     });
@@ -142,13 +129,13 @@ describe('Notifications Component', () => {
     render(<Notifications />);
     const buttons = screen.getAllByTestId(/dismissible-/i);
 
-    expect(buttons.length).toBe(2);
+    expect(buttons.length).toBe(2); // only dismissible ones
   });
 
   it('should clear notifications when location changes and clearAfterRead is true', () => {
-    (useLocation as any).mockReturnValue({ pathname: '/old-path' });
-    (useNotifications as any).mockReturnValue({
-      notifications: mockNotifications,
+    mockUseLocation.mockReturnValue({ pathname: '/old-path' } as ReturnType<typeof useLocation>);
+    mockUseNotifications.mockReturnValue({
+      notifications: notifications,
       clearNotifications: mockClearNotifications,
       clearNotification: mockClearNotification,
     });
@@ -156,40 +143,39 @@ describe('Notifications Component', () => {
     const { rerender } = render(<Notifications clearAfterRead={true} />);
 
     // Simulate route change
-    (useLocation as any).mockReturnValue({ pathname: '/new-path' });
+    mockUseLocation.mockReturnValue({ pathname: '/new-path' } as ReturnType<typeof useLocation>);
     rerender(<Notifications clearAfterRead={true} />);
 
     expect(mockClearNotifications).toHaveBeenCalled();
   });
 
-  it('should NOT clear notifications when location changes and clearAfterRead is false', () => {
-    (useLocation as any).mockReturnValue({ pathname: '/old-path' });
-    (useNotifications as any).mockReturnValue({
-      notifications: mockNotifications,
+  it('should NOT clear notifications when clearAfterRead is false', () => {
+    mockUseLocation.mockReturnValue({ pathname: '/old-path' } as ReturnType<typeof useLocation>);
+    mockUseNotifications.mockReturnValue({
+      notifications: notifications,
       clearNotifications: mockClearNotifications,
       clearNotification: mockClearNotification,
     });
 
     const { rerender } = render(<Notifications clearAfterRead={false} />);
 
-    // Simulate route change
-    (useLocation as any).mockReturnValue({ pathname: '/new-path' });
+    mockUseLocation.mockReturnValue({ pathname: '/new-path' } as ReturnType<typeof useLocation>);
     rerender(<Notifications clearAfterRead={false} />);
 
     expect(mockClearNotifications).not.toHaveBeenCalled();
   });
 
   it('should not clear notifications if same path', () => {
-    (useLocation as any).mockReturnValue({ pathname: '/same-path' });
-    (useNotifications as any).mockReturnValue({
-      notifications: mockNotifications,
+    mockUseLocation.mockReturnValue({ pathname: '/same-path' } as ReturnType<typeof useLocation>);
+    mockUseNotifications.mockReturnValue({
+      notifications: notifications,
       clearNotifications: mockClearNotifications,
       clearNotification: mockClearNotification,
     });
 
     const { rerender } = render(<Notifications clearAfterRead={true} />);
 
-    rerender(<Notifications clearAfterRead={true} />); // re-render with same path
+    rerender(<Notifications clearAfterRead={true} />); // same path
 
     expect(mockClearNotifications).not.toHaveBeenCalled();
   });

@@ -3,9 +3,9 @@ import React from 'react';
 import type { MockInstance } from 'vitest';
 import { vitest } from 'vitest';
 
+import { render } from '@/commons/tests-utils/Render.utils';
 import { Order } from '@/components';
 import { useAuthorizationIam } from '@/hooks';
-import { render } from '@/setupTest';
 
 vitest.mock('@/hooks/iam/useOvhIam', () => ({
   useAuthorizationIam: vitest.fn().mockReturnValue({

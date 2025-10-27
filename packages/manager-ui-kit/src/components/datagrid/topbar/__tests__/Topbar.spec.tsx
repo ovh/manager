@@ -1,13 +1,22 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
+import { type FilterComparator } from '@ovh-ux/manager-core-api';
 
-import { render } from '@/setupTest';
+import { render } from '@/commons/tests-utils/Render.utils';
 
+import {
+  mockColumnVisibility,
+  mockColumns,
+  mockColumnsWithoutVisibility,
+  mockFilters,
+  mockSearch,
+  mockSetColumnVisibility,
+  mockVisibleColumns,
+  mockVisibleColumnsWithoutHiding,
+} from '../../__mocks__';
 import { Topbar } from '../Topbar.component';
 
-// Mock the IAM hook
 vi.mock('@/hooks/iam/useOvhIam', () => ({
   useAuthorizationIam: vi.fn(() => ({
     isAuthorized: true,
@@ -15,60 +24,6 @@ vi.mock('@/hooks/iam/useOvhIam', () => ({
     isFetched: true,
   })),
 }));
-
-const mockColumns = [
-  {
-    id: 'name',
-    header: 'Name',
-    accessorKey: 'name',
-    isSearchable: true,
-    isFilterable: true,
-    enableHiding: true,
-    type: FilterTypeCategories.String,
-  },
-  {
-    id: 'age',
-    header: 'Age',
-    accessorKey: 'age',
-    isSearchable: true,
-    isFilterable: true,
-    enableHiding: true,
-    type: FilterTypeCategories.Numeric,
-  },
-];
-
-const mockVisibleColumns = [
-  {
-    id: 'name',
-    columnDef: { header: 'Name', enableHiding: true },
-    getIsVisible: vi.fn(() => true),
-    getCanHide: vi.fn(() => true),
-    getToggleVisibilityHandler: vi.fn(() => vi.fn()),
-  } as any,
-  {
-    id: 'age',
-    columnDef: { header: 'Age', enableHiding: true },
-    getIsVisible: vi.fn(() => true),
-    getCanHide: vi.fn(() => true),
-    getToggleVisibilityHandler: vi.fn(() => vi.fn()),
-  } as any,
-];
-
-const mockSearch = {
-  onSearch: vi.fn(),
-  searchInput: 'test',
-  setSearchInput: vi.fn(),
-  placeholder: 'Search...',
-};
-
-const mockFilters = {
-  add: vi.fn(),
-  remove: vi.fn(),
-  filters: [],
-};
-
-const mockColumnVisibility = { name: true, age: true };
-const mockSetColumnVisibility = vi.fn();
 
 describe('Topbar', () => {
   it('should render the topbar with basic props', () => {
@@ -82,7 +37,6 @@ describe('Topbar', () => {
       />,
     );
 
-    // Should render the container
     expect(screen.getByTestId('topbar-container')).toBeInTheDocument();
   });
 
@@ -98,7 +52,6 @@ describe('Topbar', () => {
         toggleAllColumnsVisible={vi.fn()}
       />,
     );
-
     expect(screen.getByText('Custom topbar content')).toBeInTheDocument();
   });
 
@@ -108,14 +61,12 @@ describe('Topbar', () => {
         columns={mockColumns}
         visibleColumns={mockVisibleColumns}
         search={mockSearch}
-        enableSearch={true}
+        enableSearch
         getIsAllColumnsVisible={vi.fn(() => true)}
         getIsSomeColumnsVisible={vi.fn(() => false)}
         toggleAllColumnsVisible={vi.fn()}
       />,
     );
-
-    // Should render search input
     expect(screen.getByRole('searchbox')).toBeInTheDocument();
   });
 
@@ -125,6 +76,7 @@ describe('Topbar', () => {
         columns={mockColumns}
         visibleColumns={mockVisibleColumns}
         search={mockSearch}
+        enableSearch={false}
         getIsAllColumnsVisible={vi.fn(() => true)}
         getIsSomeColumnsVisible={vi.fn(() => false)}
         toggleAllColumnsVisible={vi.fn()}
@@ -139,7 +91,7 @@ describe('Topbar', () => {
         columns={mockColumns}
         visibleColumns={mockVisibleColumns}
         filters={mockFilters}
-        enableFilter={true}
+        enableFilter
         getIsAllColumnsVisible={vi.fn(() => true)}
         getIsSomeColumnsVisible={vi.fn(() => false)}
         toggleAllColumnsVisible={vi.fn()}
@@ -168,7 +120,7 @@ describe('Topbar', () => {
       <Topbar
         columns={mockColumns}
         visibleColumns={mockVisibleColumns}
-        enableColumnvisibility={true}
+        enableColumnvisibility
         columnVisibility={mockColumnVisibility}
         setColumnVisibility={mockSetColumnVisibility}
         getIsAllColumnsVisible={vi.fn(() => true)}
@@ -176,8 +128,6 @@ describe('Topbar', () => {
         toggleAllColumnsVisible={vi.fn()}
       />,
     );
-
-    // Should render columns button
     expect(screen.getByText('Colonnes')).toBeInTheDocument();
   });
 
@@ -194,8 +144,7 @@ describe('Topbar', () => {
         toggleAllColumnsVisible={vi.fn()}
       />,
     );
-
-    expect(screen.queryByText('Columns')).not.toBeInTheDocument();
+    expect(screen.queryByText('Colonnes')).not.toBeInTheDocument();
   });
 
   it('should render filter list when filters are active', () => {
@@ -207,7 +156,7 @@ describe('Topbar', () => {
           key: 'name',
           label: 'Name',
           value: 'John',
-          comparator: 'contains' as any,
+          comparator: 'contains' as FilterComparator,
         },
       ],
     };
@@ -217,7 +166,7 @@ describe('Topbar', () => {
         columns={mockColumns}
         visibleColumns={mockVisibleColumns}
         filters={filtersWithData}
-        enableFilter={true}
+        enableFilter
         getIsAllColumnsVisible={vi.fn(() => true)}
         getIsSomeColumnsVisible={vi.fn(() => false)}
         toggleAllColumnsVisible={vi.fn()}
@@ -232,6 +181,7 @@ describe('Topbar', () => {
         columns={mockColumns}
         visibleColumns={mockVisibleColumns}
         filters={mockFilters}
+        enableFilter
         getIsAllColumnsVisible={vi.fn(() => true)}
         getIsSomeColumnsVisible={vi.fn(() => false)}
         toggleAllColumnsVisible={vi.fn()}
@@ -249,9 +199,9 @@ describe('Topbar', () => {
         topbar={customTopbar}
         search={mockSearch}
         filters={mockFilters}
-        enableFilter={true}
-        enableSearch={true}
-        enableColumnvisibility={true}
+        enableFilter
+        enableSearch
+        enableColumnvisibility
         columnVisibility={mockColumnVisibility}
         setColumnVisibility={mockSetColumnVisibility}
         getIsAllColumnsVisible={vi.fn(() => true)}
@@ -272,7 +222,7 @@ describe('Topbar', () => {
         visibleColumns={mockVisibleColumns}
         filters={mockFilters}
         resourceType="users"
-        enableFilter={true}
+        enableFilter
         getIsAllColumnsVisible={vi.fn(() => true)}
         getIsSomeColumnsVisible={vi.fn(() => false)}
         toggleAllColumnsVisible={vi.fn()}
@@ -286,7 +236,7 @@ describe('Topbar', () => {
       <Topbar
         columns={mockColumns}
         visibleColumns={[]}
-        enableColumnvisibility={true}
+        enableColumnvisibility
         columnVisibility={mockColumnVisibility}
         setColumnVisibility={mockSetColumnVisibility}
         getIsAllColumnsVisible={vi.fn(() => true)}
@@ -294,9 +244,7 @@ describe('Topbar', () => {
         toggleAllColumnsVisible={vi.fn()}
       />,
     );
-
-    // Should not render columns button when no visible columns
-    expect(screen.queryByText('Columns')).not.toBeInTheDocument();
+    expect(screen.queryByText('Colonnes')).not.toBeInTheDocument();
   });
 
   it('should handle search input changes', () => {
@@ -305,16 +253,14 @@ describe('Topbar', () => {
         columns={mockColumns}
         visibleColumns={mockVisibleColumns}
         search={mockSearch}
-        enableSearch={true}
+        enableSearch
         getIsAllColumnsVisible={vi.fn(() => true)}
         getIsSomeColumnsVisible={vi.fn(() => false)}
         toggleAllColumnsVisible={vi.fn()}
       />,
     );
-
     const searchInput = screen.getByRole('searchbox');
     fireEvent.change(searchInput, { target: { value: 'new search' } });
-
     expect(mockSearch.setSearchInput).toHaveBeenCalledWith('new search');
   });
 
@@ -324,16 +270,14 @@ describe('Topbar', () => {
         columns={mockColumns}
         visibleColumns={mockVisibleColumns}
         search={mockSearch}
-        enableSearch={true}
+        enableSearch
         getIsAllColumnsVisible={vi.fn(() => true)}
         getIsSomeColumnsVisible={vi.fn(() => false)}
         toggleAllColumnsVisible={vi.fn()}
       />,
     );
-
     const form = screen.getByRole('searchbox').closest('form');
     fireEvent.submit(form);
-
     expect(mockSearch.onSearch).toHaveBeenCalledWith('test');
   });
 
@@ -348,49 +292,26 @@ describe('Topbar', () => {
         enableHiding: true,
       },
     ];
-
     render(
       <Topbar
         columns={columnsWithoutSearch}
         visibleColumns={mockVisibleColumns}
         search={mockSearch}
+        enableSearch
         getIsAllColumnsVisible={vi.fn(() => true)}
         getIsSomeColumnsVisible={vi.fn(() => false)}
         toggleAllColumnsVisible={vi.fn()}
       />,
     );
-
-    // Should not render search when no columns are searchable
     expect(screen.queryByRole('searchbox')).not.toBeInTheDocument();
   });
 
   it('should render with columns that have no visibility feature', () => {
-    const columnsWithoutVisibility = [
-      {
-        id: 'name',
-        header: 'Name',
-        accessorKey: 'name',
-        isSearchable: true,
-        isFilterable: true,
-        enableHiding: false,
-      },
-    ];
-
-    const visibleColumnsWithoutHiding = [
-      {
-        id: 'name',
-        columnDef: { header: 'Name', enableHiding: false },
-        getIsVisible: vi.fn(() => true),
-        getCanHide: vi.fn(() => false),
-        getToggleVisibilityHandler: vi.fn(() => vi.fn()),
-      } as any,
-    ];
-
     render(
       <Topbar
-        columns={columnsWithoutVisibility}
-        visibleColumns={visibleColumnsWithoutHiding}
-        enableColumnvisibility={true}
+        columns={mockColumnsWithoutVisibility}
+        visibleColumns={mockVisibleColumnsWithoutHiding}
+        enableColumnvisibility
         columnVisibility={mockColumnVisibility}
         setColumnVisibility={mockSetColumnVisibility}
         getIsAllColumnsVisible={vi.fn(() => true)}
@@ -399,7 +320,6 @@ describe('Topbar', () => {
       />,
     );
 
-    // Should not render column visibility when no columns can be hidden
-    expect(screen.queryByText('Columns')).not.toBeInTheDocument();
+    expect(screen.queryByText('Colonnes')).not.toBeInTheDocument();
   });
 });

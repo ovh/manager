@@ -1,12 +1,14 @@
+import React from 'react';
+
 import { act, fireEvent, waitFor } from '@testing-library/react';
 import { vi, vitest } from 'vitest';
 
+import { render } from '@/commons/tests-utils/Render.utils';
 import { TagsFilterFormProps } from '@/components/filters/Filter.props';
 import { FilterAddProps } from '@/components/filters/filter-add/FilterAdd.props';
 import { FilterAdd } from '@/components/filters/filter-add/Filteradd.component';
 import { IamAuthorizationResponse } from '@/hooks/iam/IAM.type';
 import { useAuthorizationIam, useGetResourceTags } from '@/hooks/iam/useOvhIam';
-import { render } from '@/setupTest';
 
 vi.mock('@/hooks/iam/useOvhIam');
 
@@ -20,14 +22,26 @@ vi.mock('./tags-filter-form.component', () => {
 });
 
 vi.mock('@ovhcloud/ods-react', async () => {
-  const actual = await vi.importActual('@ovhcloud/ods-react');
+  const actual = await vi.importActual<typeof import('@ovhcloud/ods-react')>('@ovhcloud/ods-react');
+
+  type DatepickerChangeDetail = { value: Date | null };
+  interface DatepickerProps extends React.HTMLAttributes<HTMLDivElement> {
+    value?: Date | null;
+    onValueChange: (detail: DatepickerChangeDetail) => void;
+    children?: React.ReactNode;
+  }
+
+  interface SimpleWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
+    children?: React.ReactNode;
+  }
+
   return {
     ...actual,
-    Datepicker: ({ onValueChange, value, children, ...props }: any) => (
+    Datepicker: ({ onValueChange, value, children, ...props }: DatepickerProps) => (
       <div {...props}>
         <input
           value={value ? value.toISOString().split('T')[0] : ''}
-          onChange={(e) => {
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             const dateValue = e.target.value ? new Date(e.target.value) : null;
             onValueChange({ value: dateValue });
           }}
@@ -35,8 +49,12 @@ vi.mock('@ovhcloud/ods-react', async () => {
         {children}
       </div>
     ),
-    DatepickerControl: ({ children, ...props }: any) => <div {...props}>{children}</div>,
-    DatepickerContent: ({ children, ...props }: any) => <div {...props}>{children}</div>,
+    DatepickerControl: ({ children, ...props }: SimpleWrapperProps) => (
+      <div {...props}>{children}</div>
+    ),
+    DatepickerContent: ({ children, ...props }: SimpleWrapperProps) => (
+      <div {...props}>{children}</div>
+    ),
   };
 });
 

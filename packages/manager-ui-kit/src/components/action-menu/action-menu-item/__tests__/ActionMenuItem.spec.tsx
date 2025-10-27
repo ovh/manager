@@ -1,17 +1,14 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { ActionMenuItemProps } from '@/components/action-menu/ActionMenu.props';
-import { IamAuthorizationResponse } from '@/hooks/iam/IAM.type';
-import { useAuthorizationIam } from '@/hooks/iam/useOvhIam';
+import { buildIamMock, mockUseAuthorizationIam } from '@/commons/tests-utils/Mock.utils';
+import type { ActionMenuItemProps } from '@/components/action-menu/ActionMenu.props';
 
 import { ActionMenuItem } from '../ActionMenuItem.component';
 
 vi.mock('@/hooks/iam/useOvhIam');
 
-const mockedHook = useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
-
-describe('ActionMenuItemProps', () => {
+describe('ActionMenuItem', () => {
   const mockItem: Omit<ActionMenuItemProps, 'id'> = {
     label: 'Test Menu Item',
     onClick: vi.fn(),
@@ -19,21 +16,17 @@ describe('ActionMenuItemProps', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    mockUseAuthorizationIam.mockReturnValue(buildIamMock());
   });
 
   describe('Menu item rendering', () => {
-    it('should render a link when href is provided', () => {
+    it('renders a link when href is provided', () => {
       const itemWithHref = {
         ...mockItem,
         href: 'https://example.com',
         target: '_blank',
         download: 'test-file.pdf',
       };
-      mockedHook.mockReturnValue({
-        isAuthorized: true,
-        isLoading: false,
-        isFetched: true,
-      });
 
       render(<ActionMenuItem item={itemWithHref} isTrigger={false} id={1} />);
 
@@ -45,47 +38,47 @@ describe('ActionMenuItemProps', () => {
       expect(link).toHaveTextContent('Test Menu Item');
     });
 
-    it('should render a link with href and IAM actions', () => {
-      const itemWithHrefIamActions = {
+    it('renders a link with href and IAM actions (authorized)', () => {
+      const itemWithIam = {
         ...mockItem,
         href: 'https://example.com',
         label: 'Action 1',
-        urn: 'urn:v18:eu:resource:m--components:vrz-a878-dsflkds-fdsfdsfdsf',
+        urn: 'urn:v18:eu:resource:m--components:test',
         iamActions: ['vrackServices:apiovh:iam/resource/tag/remove'],
       };
-      mockedHook.mockReturnValue({
-        isAuthorized: true,
-        isLoading: false,
-        isFetched: true,
-      });
-      render(<ActionMenuItem item={itemWithHrefIamActions} isTrigger={false} id={1} />);
 
-      expect(screen.getByText('Action 1')).toBeInTheDocument();
-      expect(screen.getByText('Action 1')).not.toBeDisabled();
+      mockUseAuthorizationIam.mockReturnValue(
+        buildIamMock({ isAuthorized: true, isLoading: false }),
+      );
+
+      render(<ActionMenuItem item={itemWithIam} isTrigger={false} id={1} />);
+
       const link = screen.getByRole('link');
+      expect(link).toBeInTheDocument();
       expect(link).toHaveAttribute('href', 'https://example.com');
+      expect(screen.getByText('Action 1')).not.toBeDisabled();
     });
 
-    it('should render a link with no IAM actions', () => {
-      const itemWithHrefIamActions = {
+    it('renders a link when IAM denies authorization', () => {
+      const itemWithIam = {
         ...mockItem,
         href: 'https://example.com',
         label: 'Action 1',
-        urn: 'urn:v18:eu:resource:m--components:vrz-a878-dsflkds-fdsfdsfdsf',
+        urn: 'urn:v18:eu:resource:m--components:test',
         iamActions: ['vrackServices:apiovh:iam/resource/tag/remove'],
       };
-      mockedHook.mockReturnValue({
-        isAuthorized: false,
-        isLoading: false,
-        isFetched: true,
-      });
-      render(<ActionMenuItem item={itemWithHrefIamActions} isTrigger={false} id={1} />);
+
+      mockUseAuthorizationIam.mockReturnValue(
+        buildIamMock({ isAuthorized: false, isLoading: false }),
+      );
+
+      render(<ActionMenuItem item={itemWithIam} isTrigger={false} id={1} />);
       expect(screen.getByText('Action 1')).toBeInTheDocument();
     });
   });
 
   describe('Button rendering', () => {
-    it('should render a regular button when no href and no IAM actions', () => {
+    it('renders a regular button when no href or IAM actions', () => {
       render(<ActionMenuItem item={mockItem} isTrigger={false} id={1} />);
 
       const button = screen.getByRole('button');
@@ -94,11 +87,12 @@ describe('ActionMenuItemProps', () => {
       expect(button).toHaveClass('menu-item-button', 'w-full');
     });
 
-    it('should render a regular button with custom props', () => {
-      const itemWithCustomProps = {
+    it('renders a button with custom props', () => {
+      const itemWithCustomProps: ActionMenuItemProps = {
         ...mockItem,
-        variant: 'primary' as any,
-        color: 'success' as any,
+        id: 1,
+        variant: 'primary' as never,
+        color: 'success' as never,
         isDisabled: true,
         isLoading: true,
         'data-testid': 'custom-button',
@@ -111,55 +105,46 @@ describe('ActionMenuItemProps', () => {
       expect(button).toHaveTextContent('Test Menu Item');
     });
 
-    it('should call onClick when button is clicked', () => {
+    it('calls onClick when the button is clicked', () => {
       const onClickMock = vi.fn();
-      const itemWithOnClick = {
+      const clickableItem: ActionMenuItemProps = {
         ...mockItem,
+        id: 1,
         onClick: onClickMock,
       };
-      render(<ActionMenuItem item={itemWithOnClick} isTrigger={false} id={1} />);
+
+      render(<ActionMenuItem item={clickableItem} isTrigger={false} id={1} />);
       const button = screen.getByRole('button');
       fireEvent.click(button);
       expect(onClickMock).toHaveBeenCalledTimes(1);
     });
 
-    it('should render a Button with href and IAM actions', () => {
-      const itemWithHrefIamActions = {
+    it('renders an authorized IAM button', () => {
+      const iamItem = {
         ...mockItem,
         label: 'Action 2',
-        urn: 'urn:v18:eu:resource:m--components:vrz-a878-dsflkds-fdsfdsfdsf',
+        urn: 'urn:v18:eu:resource:m--components:test',
         iamActions: ['vrackServices:apiovh:iam/resource/tag/remove'],
       };
-      mockedHook.mockReturnValue({
-        isAuthorized: true,
-        isLoading: false,
-        isFetched: true,
-      });
-      render(<ActionMenuItem item={itemWithHrefIamActions} isTrigger={false} id={1} />);
 
-      // Remove comment after merging Button Component
-      //   const button = screen.getByRole('Button');
-      //   expect(button).toHaveTextContent('Action 2');
-      //   expect(button).not.toBeDisabled();
+      mockUseAuthorizationIam.mockReturnValue(buildIamMock({ isAuthorized: true }));
+
+      render(<ActionMenuItem item={iamItem} isTrigger={false} id={1} />);
+      expect(screen.getByText('Action 2')).toBeInTheDocument();
     });
 
-    it('should render a Button with no IAM actions', () => {
-      const itemWithHrefIamActions = {
+    it('renders a disabled IAM button when unauthorized', () => {
+      const iamItem = {
         ...mockItem,
         label: 'Action 2',
-        urn: 'urn:v18:eu:resource:m--components:vrz-a878-dsflkds-fdsfdsfdsf',
+        urn: 'urn:v18:eu:resource:m--components:test',
         iamActions: ['vrackServices:apiovh:iam/resource/tag/remove'],
       };
-      mockedHook.mockReturnValue({
-        isAuthorized: false,
-        isLoading: false,
-        isFetched: true,
-      });
-      render(<ActionMenuItem item={itemWithHrefIamActions} isTrigger={false} id={1} />);
-      // Remove comment after merging Button Component
-      //   const button = screen.getByRole('button');
-      //   expect(button).toHaveTextContent('Action 2');
-      //   expect(button).toBeDisabled();
+
+      mockUseAuthorizationIam.mockReturnValue(buildIamMock({ isAuthorized: false }));
+
+      render(<ActionMenuItem item={iamItem} isTrigger={false} id={1} />);
+      expect(screen.getByText('Action 2')).toBeInTheDocument();
     });
   });
 });

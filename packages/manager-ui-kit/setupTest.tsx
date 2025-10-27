@@ -1,13 +1,7 @@
-import * as React from 'react';
-import { ComponentType } from 'react';
-
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import '@testing-library/jest-dom';
-import { cleanup, render } from '@testing-library/react';
-import type { RenderOptions, RenderResult } from '@testing-library/react';
 import 'element-internals-polyfill';
 import i18n from 'i18next';
-import { I18nextProvider, initReactI18next } from 'react-i18next';
+import { initReactI18next } from 'react-i18next';
 import { vi } from 'vitest';
 
 import ActionMenuTransFR from './src/components/action-menu/translations/Messages_fr_FR.json';
@@ -33,32 +27,6 @@ i18n.use(initReactI18next).init({
     },
   },
 });
-
-export const queryClient = new QueryClient({
-  defaultOptions: {
-    mutations: {
-      retry: false,
-    },
-    queries: {
-      retry: false,
-    },
-  },
-});
-
-const Wrappers = ({ children }: { children: React.ReactElement }) => {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
-    </QueryClientProvider>
-  );
-};
-
-const customRender = (
-  ui: React.JSX.Element,
-  options?: Omit<RenderOptions, 'queries'>,
-): RenderResult => render(ui, { wrapper: Wrappers as ComponentType, ...options });
-
-export { customRender as render, cleanup };
 
 // This polyfill exists because of an issue with jsdom and the EventTarget class
 // when testing a component with an OdsDatepicker (addEventListener crashes at component initialization).

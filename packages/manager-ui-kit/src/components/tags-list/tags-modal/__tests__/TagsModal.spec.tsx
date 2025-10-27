@@ -61,7 +61,7 @@ describe('TagsModal', () => {
     expect(onEditTags).toHaveBeenCalledOnce();
   });
 
-  it('filters tags correctly when searching', async () => {
+  it('filters tags correctly when searching', () => {
     render(
       <TagsModal
         open={true}

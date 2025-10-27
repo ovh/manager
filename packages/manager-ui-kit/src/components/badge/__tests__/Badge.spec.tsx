@@ -1,29 +1,26 @@
-import { screen, waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { BADGE_COLOR, BADGE_SIZE } from '@ovhcloud/ods-react';
+import { renderBadge } from '@/commons/tests-utils/Render.utils';
 
-import { Badge } from '@/components/badge/Badge.component';
-import { render } from '@/setupTest';
-
-describe('Badge component', () => {
-  it('should render badge with correct props', async () => {
-    render(
-      <Badge color={BADGE_COLOR.information} size={BADGE_SIZE.md} data-testid="test">
-        Active
-      </Badge>,
-    );
-    await waitFor(() => {
-      const component = screen.getByTestId('test');
-      expect(component.hasAttribute(BADGE_COLOR.information));
-      expect(component.hasAttribute('active'));
-    });
+describe('Badge', () => {
+  it('renders badge with default props', () => {
+    renderBadge();
+    const badge = screen.getByTestId('badge');
+    expect(badge).toBeInTheDocument();
+    expect(badge).toHaveTextContent('Active');
   });
-  it('should render OdsSkeleton when isLoading is true', async () => {
-    render(<Badge isLoading data-testid="skeleton" />);
-    await waitFor(() => {
-      const skeleton = screen.getByTestId('skeleton');
-      expect(skeleton).toBeInTheDocument();
-    });
+
+  it('renders custom badge with success color', () => {
+    renderBadge({ color: 'success', children: 'OK' });
+    const badge = screen.getByTestId('badge');
+    expect(badge).toHaveTextContent('OK');
+  });
+
+  it('renders loading state', () => {
+    renderBadge({ isLoading: true, 'data-testid': 'skeleton' });
+    const skeleton = screen.getByTestId('skeleton');
+    expect(skeleton).toBeInTheDocument();
+    expect(skeleton).toBeEmptyDOMElement();
   });
 });

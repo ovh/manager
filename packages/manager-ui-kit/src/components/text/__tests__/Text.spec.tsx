@@ -2,9 +2,9 @@ import { screen } from '@testing-library/react';
 import type { MockInstance } from 'vitest';
 import { vitest } from 'vitest';
 
+import { render } from '@/commons/tests-utils/Render.utils';
 import { Text } from '@/components';
 import { useAuthorizationIam } from '@/hooks';
-import { render } from '@/setupTest';
 
 import fr_FR from '../translations/Messages_fr_FR.json';
 

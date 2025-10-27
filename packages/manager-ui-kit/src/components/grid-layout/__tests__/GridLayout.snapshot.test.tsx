@@ -1,5 +1,5 @@
+import { render } from '@/commons/tests-utils/Render.utils';
 import { GridLayout, Text, Tile } from '@/components';
-import { render } from '@/setupTest';
 
 describe('GridLayout Snapshot Tests', () => {
   it('should render empty grid layout', () => {

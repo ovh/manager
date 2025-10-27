@@ -1,7 +1,7 @@
 import { vi } from 'vitest';
 
+import { render } from '@/commons/tests-utils/Render.utils';
 import { FilterList } from '@/components/filters/filter-list/FilterList.component';
-import { render } from '@/setupTest';
 
 import { FilterListProps } from '../FilterList.props';
 

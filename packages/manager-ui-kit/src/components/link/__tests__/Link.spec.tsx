@@ -3,9 +3,9 @@ import AxiosMockAdapter from 'axios-mock-adapter';
 
 import { v2 } from '@ovh-ux/manager-core-api';
 
+import { render } from '@/commons/tests-utils/Render.utils';
 import { Link } from '@/components/link/Link.component';
 import { LinkType } from '@/components/link/Link.props';
-import { render } from '@/setupTest';
 
 const PROPS_LINK = {
   children: 'Link',

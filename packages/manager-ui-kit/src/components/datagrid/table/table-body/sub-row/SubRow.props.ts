@@ -1,10 +1,15 @@
-import type { VirtualItem } from '@tanstack/react-virtual';
+import React from 'react';
 
-export type SubRowProps = {
+import type { Row } from '@tanstack/react-table';
+
+export interface SubRowProps<T = unknown> {
   maxRowHeight: number;
   offset: number;
-  renderSubComponent?: any;
-  row: any;
+  renderSubComponent: (row: Row<T>) => React.ReactNode;
+  row: Row<T>;
   subComponentHeight: number;
-  virtualRow: VirtualItem;
-};
+  virtualRow: {
+    index: number;
+    start: number;
+  };
+}

@@ -43,7 +43,7 @@ export const useV2 = <TData = Record<string, unknown>>({
 
   useEffect(() => {
     if (fetchAll && hasNextPage) {
-      fetchNextPage();
+      void fetchNextPage();
     }
   }, [data]);
 

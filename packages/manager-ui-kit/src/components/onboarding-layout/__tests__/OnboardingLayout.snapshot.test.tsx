@@ -1,9 +1,9 @@
 import type { MockInstance } from 'vitest';
 import { vitest } from 'vitest';
 
+import { render } from '@/commons/tests-utils/Render.utils';
 import { LinkCard } from '@/components';
 import { useAuthorizationIam } from '@/hooks';
-import { render } from '@/setupTest';
 
 import { OnboardingLayout } from '../OnboardingLayout.component';
 

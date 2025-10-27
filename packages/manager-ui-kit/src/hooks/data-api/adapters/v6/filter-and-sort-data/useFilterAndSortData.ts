@@ -7,7 +7,7 @@ import type { Filter } from '@ovh-ux/manager-core-api';
 
 import { DatagridColumn } from '@/components/datagrid/Datagrid.props';
 
-import { compare } from './filterAndSort.utils';
+import { compare, toComparableString } from './filterAndSort.utils';
 
 export const useFilterAndSortData = <TData = Record<string, unknown>>({
   items = [],
@@ -34,8 +34,8 @@ export const useFilterAndSortData = <TData = Record<string, unknown>>({
       return [...filteredData].sort((a: TData, b: TData) =>
         compare(
           columnType,
-          `${(a as Record<string, unknown>)?.[sorting[0]?.id]}`,
-          `${(b as Record<string, unknown>)?.[sorting[0]?.id]}`,
+          toComparableString((a as Record<string, unknown>)?.[sorting[0]?.id]),
+          toComparableString((b as Record<string, unknown>)?.[sorting[0]?.id]),
           sorting[0]?.desc,
         ),
       );

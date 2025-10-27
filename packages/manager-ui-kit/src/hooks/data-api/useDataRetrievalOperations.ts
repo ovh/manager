@@ -7,6 +7,12 @@ import { FilterComparator } from '@ovh-ux/manager-core-api';
 import { DatagridColumn } from '@/components/datagrid/Datagrid.props';
 import { useColumnFilters } from '@/hooks/data-api/useColumnFilters';
 
+export interface SearchFilter {
+  key: string;
+  value: string;
+  comparator: FilterComparator;
+}
+
 export const useDataRetrievalOperations = <TData = Record<string, unknown>>({
   defaultSorting,
   columns = [],
@@ -15,12 +21,12 @@ export const useDataRetrievalOperations = <TData = Record<string, unknown>>({
   columns: DatagridColumn<TData>[];
 }) => {
   const [searchInput, setSearchInput] = useState<string>('');
-  const [searchFilters, setSearchFilters] = useState<any>([]);
+  const [searchFilters, setSearchFilters] = useState<SearchFilter[]>([]);
   const [sorting, setSorting] = useState<SortingState | undefined>(defaultSorting);
   const { filters, addFilter, removeFilter } = useColumnFilters();
 
   const searchableColumns = useMemo(
-    () => columns.filter((column: DatagridColumn<TData>) => column.isSearchable),
+    () => columns.filter((column) => column.isSearchable),
     [columns],
   );
 

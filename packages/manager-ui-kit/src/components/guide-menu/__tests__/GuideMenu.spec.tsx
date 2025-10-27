@@ -1,7 +1,7 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import { render } from '@/setupTest';
+import { render } from '@/commons/tests-utils/Render.utils';
 
 import { GuideMenu } from '../GuideMenu.component';
 import { GuideMenuItem } from '../GuideMenu.props';
@@ -177,24 +177,24 @@ describe('GuideMenu component', () => {
       expect(button).toHaveFocus();
     });
 
-    it('should open popover on Enter key press', () => {
+    it('should open popover on Enter key press', async () => {
       render(<GuideMenu {...defaultProps} />);
       const button = screen.getByRole('button');
 
       fireEvent.keyDown(button, { key: 'Enter', code: 'Enter' });
 
-      waitFor(() => {
+      await waitFor(() => {
         expect(screen.getByText('OVH Guides')).toBeVisible();
       });
     });
 
-    it('should open popover on Space key press', () => {
+    it('should open popover on Space key press', async () => {
       render(<GuideMenu {...defaultProps} />);
       const button = screen.getByRole('button');
 
       fireEvent.keyDown(button, { key: ' ', code: 'Space' });
 
-      waitFor(() => {
+      await waitFor(() => {
         expect(screen.getByText('OVH Guides')).toBeVisible();
       });
     });

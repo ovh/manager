@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 
-import { render } from '@/setupTest';
+import { render } from '@/commons/tests-utils/Render.utils';
 
 import { TabsComponent } from '../Tabs.component';
 
@@ -87,8 +87,8 @@ describe('TabsComponent', () => {
       const secondTab = screen.getByText('tab2');
 
       // The component should not throw even if onChange is not defined
-      expect(() => {
-        userEvent.click(secondTab);
+      expect(async () => {
+        await userEvent.click(secondTab);
       }).not.toThrow();
     });
   });

@@ -1,8 +1,8 @@
 import { screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
+import { render } from '@/commons/tests-utils/Render.utils';
 import { IamAuthorizationResponse, useAuthorizationIam } from '@/hooks';
-import { render } from '@/setupTest';
 
 import { DrawerFooter } from '../DrawerFooter.component';
 import { DrawerFooterProps } from '../DrawerFooter.props';

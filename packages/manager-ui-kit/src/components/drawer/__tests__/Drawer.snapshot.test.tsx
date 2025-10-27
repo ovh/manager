@@ -2,8 +2,8 @@ import { vitest } from 'vitest';
 
 import { TEXT_PRESET } from '@ovhcloud/ods-react';
 
+import { render } from '@/commons/tests-utils/Render.utils';
 import { Drawer, Text } from '@/components';
-import { render } from '@/setupTest';
 
 import './drawer.mocks';
 

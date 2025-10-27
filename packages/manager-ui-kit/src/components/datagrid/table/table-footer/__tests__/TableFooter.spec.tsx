@@ -1,9 +1,9 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
+import { render } from '@/commons/tests-utils/Render.utils';
 import { IamAuthorizationResponse } from '@/hooks/iam/IAM.type';
 import { useAuthorizationIam } from '@/hooks/iam/useOvhIam';
-import { render } from '@/setupTest';
 
 import { TableFooter } from '../TableFooter.component';
 
