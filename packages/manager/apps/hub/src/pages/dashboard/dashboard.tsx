@@ -114,18 +114,18 @@ export default function Dashboard() {
                   <KycFraudBanner />
                   <HubDashboardSubtitle />
                   <div className={`flex flex-wrap`}>
-                    <div className="md:w-8/12 mb-6 md:mb-8 box-border">
+                    <div className="w-full md:w-8/12 mb-6 md:mb-8 box-border">
                       <PaymentStatus />
                     </div>
-                    <div className="md:w-4/12 mb-6 md:mb-8 order-3 md:order-2 px-6 box-border">
+                    <div className="w-full md:w-4/12 mb-6 md:mb-8 order-3 md:order-2 md:px-6 box-border">
                       <Suspense>
                         {user.enterprise ? <EnterpriseBillingSummary /> : <BillingSummary />}
                       </Suspense>
                     </div>
-                    <div className="md:w-8/12 mb-6 md:mb-8 order-2 md:order-3 box-border">
+                    <div className="w-full md:w-8/12 mb-6 md:mb-8 order-2 md:order-3 box-border">
                       <HubSupport />
                     </div>
-                    <div className="md:w-4/12 order-4 px-6 box-border">
+                    <div className="w-full md:w-4/12 order-4 md:px-6 box-border">
                       <Suspense>
                         <OrderTracking />
                       </Suspense>

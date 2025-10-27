@@ -16,5 +16,14 @@
   "category_account_lifecycle": "Account lifespan",
   "category_security": "Security",
   "category_legal": "Legal",
-  "iam_display_content_message": "You do not have the necessary permissions to view data for this resource. Please contact your administrator."
+  "iam_display_content_message": "You do not have the necessary permissions to view data for this resource. Please contact your administrator.",
+  "category_support": "Support",
+  "category_alert": "Alerts",
+  "category_incident": "Incident",
+  "category_maintenance": "Maintenance",
+  "status_error": "Error",
+  "status_disabled": "Disabled",
+  "status_valid": "Active",
+  "status_to_validate": "Pending",
+  "error_rate_limit_message": "You have reached the request limit. Please try again later."
 }
