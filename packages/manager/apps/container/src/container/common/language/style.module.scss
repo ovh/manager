@@ -8,3 +8,20 @@
 .navbarFontSize {
   font-size: 1rem !important;
 }
+
+.contrastedButton {
+  :global(.oui-navbar-link__text),
+  :global(.oui-icon) {
+    color: var(--ods-color-primary-100);
+  }
+  :global(.oui-navbar-link__wrapper) {
+    padding-right: 0;
+  }
+  &:hover, &:focus {
+    background-color: transparent !important;
+
+    :global(.oui-navbar-link__text) {
+      text-decoration: underline !important;
+    }
+  }
+}

@@ -1,6 +1,11 @@
 .navbar {
   box-shadow: none !important;
+  background-color: var(--ods-color-primary-700) !important;
   width: 100%;
+
+  :global(.oui-navbar-toggler__hamburger span) {
+    background-color: var(--ods-color-primary-100) !important;
+  }
 
   &List {
     display: flex;
@@ -18,13 +23,20 @@
     svg {
       display: flex;
       height: 1.5rem;
-      fill: var(--ods-color-primary-700)
+      fill: white;
     }
+  }
+
+  &Separator {
+    height: 2rem;
+    width: 1px;
+    margin: 0 0.25rem;
+    background-color: var(--ods-color-primary-100);
   }
 }
 
 .small-device-pnr-switch {
   display: flex;
   justify-content: flex-end;
-  padding: 0 1.25rem 0 0;
+  padding: 0 1.25rem;
 }
