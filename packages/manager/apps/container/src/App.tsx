@@ -21,6 +21,7 @@ import { setupDevApplication } from '@/core/dev';
 import { ApplicationProvider } from '@/context';
 import Container from '@/container';
 import { ApiError } from './types/error.type';
+import PreloaderProvider from '@/context/preloader/PreloaderProvider';
 
 function reloadPage() {
   window.location.reload();
@@ -108,48 +109,48 @@ const App = () => {
     }
   }, [responseError, isLoading]);
 
-  if (!shell) {
-    return <></>;
-  }
-
   return (
-    <>
-      {!error ? (
+    <PreloaderProvider shell={shell}>
+      {shell && (
         <>
-          <ApplicationProvider environment={environment} shell={shell}>
-            <ContainerProvider>
-              <HashRouter>
-                <Container />
-              </HashRouter>
-            </ContainerProvider>
-          </ApplicationProvider>
-        </>
-      ) : (
-        <div className="error d-flex flex-col">
-          <ErrorBanner error={error} onReloadPage={reloadPage} />
-          {// classes to match MRC component's class
-          statusPageURL && (
-            <div className="max-w-[600px] mx-auto px-5 flex items-center gap-4">
-              <OsdsIcon name={ODS_ICON_NAME.INFO_CIRCLE}></OsdsIcon>
-              <OsdsText
-                color={ODS_THEME_COLOR_INTENT.text}
-                level={ODS_TEXT_LEVEL.subheading}
-              >
-                Check{' '}
-                <OsdsLink
-                  href={statusPageURL}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  target={OdsHTMLAnchorElementTarget._blank}
-                >
-                  Status page
-                </OsdsLink>{' '}
-                for more information
-              </OsdsText>
+          {!error ? (
+            <>
+              <ApplicationProvider environment={environment} shell={shell}>
+                <ContainerProvider>
+                  <HashRouter>
+                    <Container />
+                  </HashRouter>
+                </ContainerProvider>
+              </ApplicationProvider>
+            </>
+          ) : (
+            <div className="error d-flex flex-col">
+              <ErrorBanner error={error} onReloadPage={reloadPage} />
+              {// classes to match MRC component's class
+              statusPageURL && (
+                <div className="max-w-[600px] mx-auto px-5 flex items-center gap-4">
+                  <OsdsIcon name={ODS_ICON_NAME.INFO_CIRCLE}></OsdsIcon>
+                  <OsdsText
+                    color={ODS_THEME_COLOR_INTENT.text}
+                    level={ODS_TEXT_LEVEL.subheading}
+                  >
+                    Check{' '}
+                    <OsdsLink
+                      href={statusPageURL}
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                      target={OdsHTMLAnchorElementTarget._blank}
+                    >
+                      Status page
+                    </OsdsLink>{' '}
+                    for more information
+                  </OsdsText>
+                </div>
+              )}
             </div>
           )}
-        </div>
+        </>
       )}
-    </>
+    </PreloaderProvider>
   );
 };
 
