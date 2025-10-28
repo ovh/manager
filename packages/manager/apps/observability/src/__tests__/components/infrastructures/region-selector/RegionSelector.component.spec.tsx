@@ -140,8 +140,8 @@ vi.mock('@/components/form/radio-card/RadioCard.component', () => ({
 }));
 
 vi.mock('@/components/infrastructures/region-badge-type/RegionBadgeType.component', () => ({
-  RegionBadgeType: ({ type, id }: { type: string; id: string }) => (
-    <span data-testid={`badge-${id}`} data-type={type}>
+  RegionBadgeType: ({ type }: { type: string }) => (
+    <span data-testid={`badge-${type}`} data-type={type}>
       {type}
     </span>
   ),
@@ -390,7 +390,7 @@ describe('RegionSelector', () => {
       },
       {
         description: 'should render radio card with badges',
-        testId: 'badge-infra-1',
+        testId: 'badge-LOCAL-ZONE',
         expectedContent: null,
         type: 'LOCAL-ZONE' as const,
       },

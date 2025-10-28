@@ -37,7 +37,7 @@ export const TenantConfigurationForm = () => {
   return (
     <>
       <OdsText preset={ODS_TEXT_PRESET.heading4}>{t('configuration.title')}</OdsText>
-      <div className="grid grid-cols-1 gap-4">
+      <div className="space-y-4">
         <Controller
           name="retentionId"
           control={control}
@@ -46,7 +46,6 @@ export const TenantConfigurationForm = () => {
               <SelectField
                 key={infrastructureId || 'no-infrastructure'}
                 isDisabled={!infrastructureId || isPending}
-                className="w-1/2"
                 value={field.value}
                 name="select-retention"
                 label={toRequiredLabel(t('configuration.retention'))}

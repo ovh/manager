@@ -102,17 +102,16 @@ describe('RegionBadgeType', () => {
       { type: 'REGION-1-AZ', label: '1-AZ' },
       { type: 'REGION-3-AZ', label: '3-AZ' },
     ])('should render badge and tooltip for $type type', ({ type, label }) => {
-      const id = `test-${type}`;
-      render(<RegionBadgeType type={type} id={id} />);
+      render(<RegionBadgeType type={type} />);
 
       const badge = screen.getByTestId('badge');
       expect(badge).toBeInTheDocument();
-      expect(badge).toHaveAttribute('id', id);
+      expect(badge).toHaveAttribute('id');
       expect(badge).toHaveAttribute('data-label', label);
 
       const tooltip = screen.getByTestId('tooltip');
       expect(tooltip).toBeInTheDocument();
-      expect(tooltip).toHaveAttribute('data-trigger-id', id);
+      expect(tooltip).toHaveAttribute('data-trigger-id', badge.id);
     });
   });
 
@@ -122,7 +121,7 @@ describe('RegionBadgeType', () => {
       { type: 'REGION-1-AZ', color: 'promotion' },
       { type: 'REGION-3-AZ', color: 'promotion' },
     ])('should apply correct color for $type', ({ type, color }) => {
-      render(<RegionBadgeType type={type} id={`${type}-color`} />);
+      render(<RegionBadgeType type={type} />);
 
       const badge = screen.getByTestId('badge');
       expect(badge).toHaveAttribute('data-color', color);
@@ -133,14 +132,14 @@ describe('RegionBadgeType', () => {
       { type: 'REGION-1-AZ', bgClass: '[&::part(badge)]:bg-[--ods-color-primary-400]' },
       { type: 'REGION-3-AZ', bgClass: '[&::part(badge)]:bg-[--ods-color-primary-700]' },
     ])('should apply correct background color class for $type', ({ type, bgClass }) => {
-      render(<RegionBadgeType type={type} id={`${type}-bg`} />);
+      render(<RegionBadgeType type={type} />);
 
       const badge = screen.getByTestId('badge');
       expect(badge).toHaveClass(bgClass);
     });
 
     it('should have correct icon properties', () => {
-      render(<RegionBadgeType type="LOCAL-ZONE" id="icon-test" />);
+      render(<RegionBadgeType type="LOCAL-ZONE" />);
 
       const badge = screen.getByTestId('badge');
       expect(badge).toHaveAttribute('data-icon', 'circle-info');
@@ -148,7 +147,7 @@ describe('RegionBadgeType', () => {
     });
 
     it('should have correct size property', () => {
-      render(<RegionBadgeType type="LOCAL-ZONE" id="size-test" />);
+      render(<RegionBadgeType type="LOCAL-ZONE" />);
 
       const badge = screen.getByTestId('badge');
       expect(badge).toHaveAttribute('data-size', 'sm');
@@ -157,11 +156,12 @@ describe('RegionBadgeType', () => {
 
   describe('Tooltip Properties', () => {
     it('should configure tooltip correctly', () => {
-      const id = 'tooltip-config-test';
-      render(<RegionBadgeType type="LOCAL-ZONE" id={id} />);
+      render(<RegionBadgeType type="LOCAL-ZONE" />);
 
+      const badge = screen.getByTestId('badge');
       const tooltip = screen.getByTestId('tooltip');
-      expect(tooltip).toHaveAttribute('data-trigger-id', id);
+      expect(badge).toHaveAttribute('id');
+      expect(tooltip).toHaveAttribute('data-trigger-id', badge.id);
       expect(tooltip).toHaveAttribute('data-position', 'right');
       expect(tooltip).toHaveAttribute('data-with-arrow', 'true');
     });
@@ -171,21 +171,21 @@ describe('RegionBadgeType', () => {
       { type: 'REGION-1-AZ', tooltipText: 'infrastructure.region.zone.1_az' },
       { type: 'REGION-3-AZ', tooltipText: 'infrastructure.region.zone.3_az' },
     ])('should display correct tooltip text for $type', ({ type, tooltipText }) => {
-      render(<RegionBadgeType type={type} id={`${type}-tooltip`} />);
+      render(<RegionBadgeType type={type} />);
 
       const text = screen.getByTestId('text');
       expect(text).toHaveTextContent(tooltipText);
     });
 
     it('should apply correct text preset to tooltip content', () => {
-      render(<RegionBadgeType type="LOCAL-ZONE" id="text-preset-test" />);
+      render(<RegionBadgeType type="LOCAL-ZONE" />);
 
       const text = screen.getByTestId('text');
       expect(text).toHaveAttribute('data-preset', 'caption');
     });
 
     it('should apply correct className to tooltip text', () => {
-      render(<RegionBadgeType type="LOCAL-ZONE" id="text-class-test" />);
+      render(<RegionBadgeType type="LOCAL-ZONE" />);
 
       const text = screen.getByTestId('text');
       expect(text).toHaveClass('w-56');
@@ -194,7 +194,7 @@ describe('RegionBadgeType', () => {
 
   describe('Component Structure', () => {
     it('should render badge and tooltip together', () => {
-      const { container } = render(<RegionBadgeType type="LOCAL-ZONE" id="structure-test" />);
+      const { container } = render(<RegionBadgeType type="LOCAL-ZONE" />);
 
       const badge = screen.getByTestId('badge');
       const tooltip = screen.getByTestId('tooltip');
@@ -205,14 +205,13 @@ describe('RegionBadgeType', () => {
     });
 
     it('should use same id for badge and tooltip triggerId', () => {
-      const id = 'same-id-test';
-      render(<RegionBadgeType type="LOCAL-ZONE" id={id} />);
+      render(<RegionBadgeType type="LOCAL-ZONE" />);
 
       const badge = screen.getByTestId('badge');
       const tooltip = screen.getByTestId('tooltip');
 
-      expect(badge.id).toBe(id);
-      expect(tooltip).toHaveAttribute('data-trigger-id', id);
+      expect(badge.id).toBeTruthy();
+      expect(tooltip).toHaveAttribute('data-trigger-id', badge.id);
     });
   });
 
@@ -250,8 +249,7 @@ describe('RegionBadgeType', () => {
     it.each(testCases)(
       'should render correct properties for $type',
       ({ type, expectedLabel, expectedColor, expectedBgClass, expectedTooltip }) => {
-        const id = `test-${type}`;
-        render(<RegionBadgeType type={type} id={id} />);
+        render(<RegionBadgeType type={type} />);
 
         const badge = screen.getByTestId('badge');
         expect(badge).toHaveAttribute('data-label', expectedLabel);
@@ -266,35 +264,35 @@ describe('RegionBadgeType', () => {
 
   describe('Edge Cases', () => {
     it('should handle unique ids for multiple instances', () => {
-      const { rerender } = render(<RegionBadgeType type="LOCAL-ZONE" id="first-instance" />);
+      const { rerender } = render(<RegionBadgeType type="LOCAL-ZONE" />);
 
       let badge = screen.getByTestId('badge');
-      expect(badge).toHaveAttribute('id', 'first-instance');
+      const firstId = badge.id;
+      expect(firstId).toBeTruthy();
 
-      rerender(<RegionBadgeType type="REGION-1-AZ" id="second-instance" />);
+      rerender(<RegionBadgeType type="REGION-1-AZ" />);
 
       badge = screen.getByTestId('badge');
-      expect(badge).toHaveAttribute('id', 'second-instance');
+      expect(badge.id).toBeTruthy();
     });
 
-    it('should render with special characters in id', () => {
-      const specialId = 'test-id-123_special-chars';
-      render(<RegionBadgeType type="LOCAL-ZONE" id={specialId} />);
+    it('should render with auto-generated id', () => {
+      render(<RegionBadgeType type="LOCAL-ZONE" />);
 
       const badge = screen.getByTestId('badge');
-      expect(badge).toHaveAttribute('id', specialId);
+      expect(badge.id).toBeTruthy();
 
       const tooltip = screen.getByTestId('tooltip');
-      expect(tooltip).toHaveAttribute('data-trigger-id', specialId);
+      expect(tooltip).toHaveAttribute('data-trigger-id', badge.id);
     });
 
     it('should maintain component structure when type changes', () => {
-      const { rerender } = render(<RegionBadgeType type="LOCAL-ZONE" id="type-change-test" />);
+      const { rerender } = render(<RegionBadgeType type="LOCAL-ZONE" />);
 
       let badge = screen.getByTestId('badge');
       expect(badge).toHaveAttribute('data-label', 'Local Zone');
 
-      rerender(<RegionBadgeType type="REGION-3-AZ" id="type-change-test" />);
+      rerender(<RegionBadgeType type="REGION-3-AZ" />);
 
       badge = screen.getByTestId('badge');
       expect(badge).toHaveAttribute('data-label', '3-AZ');
@@ -304,25 +302,24 @@ describe('RegionBadgeType', () => {
 
   describe('Accessibility', () => {
     it('should have informative icon for accessibility', () => {
-      render(<RegionBadgeType type="LOCAL-ZONE" id="a11y-test" />);
+      render(<RegionBadgeType type="LOCAL-ZONE" />);
 
       const badge = screen.getByTestId('badge');
       expect(badge).toHaveAttribute('data-icon', 'circle-info');
     });
 
     it('should associate tooltip with badge via triggerId', () => {
-      const id = 'a11y-association-test';
-      render(<RegionBadgeType type="LOCAL-ZONE" id={id} />);
+      render(<RegionBadgeType type="LOCAL-ZONE" />);
 
       const badge = screen.getByTestId('badge');
       const tooltip = screen.getByTestId('tooltip');
 
-      expect(badge.id).toBe(id);
-      expect(tooltip).toHaveAttribute('data-trigger-id', id);
+      expect(badge.id).toBeTruthy();
+      expect(tooltip).toHaveAttribute('data-trigger-id', badge.id);
     });
 
     it('should provide descriptive tooltip text', () => {
-      render(<RegionBadgeType type="LOCAL-ZONE" id="a11y-tooltip-test" />);
+      render(<RegionBadgeType type="LOCAL-ZONE" />);
 
       const text = screen.getByTestId('text');
       const content = text.textContent;

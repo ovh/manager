@@ -270,14 +270,11 @@ describe('InformationForm', () => {
 
   describe('Component Structure', () => {
     it('should render with correct field types and layout', () => {
-      const { container } = render(
+      render(
         <TestWrapper>
           <InformationForm {...defaultProps} />
         </TestWrapper>,
       );
-
-      const gridContainer = container.querySelector('.grid.grid-cols-1.gap-4.mt-6');
-      expect(gridContainer).toBeInTheDocument();
 
       const titleInput = screen.getByTestId('title-input');
       const descriptionInput = screen.getByTestId('description-input');
