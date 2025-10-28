@@ -13,7 +13,7 @@ import { useS3Data } from '../../S3.context';
 
 const Encryption = () => {
   const { s3 } = useS3Data();
-  const { t } = useTranslation('pci-object-storage/storages/s3/settings');
+  const { t } = useTranslation('pci-object-storage/storages/s3/dashboard');
   const navigate = useNavigate();
   const prefix =
     s3.encryption.sseAlgorithm === EncryptionAlgorithmEnum.plaintext
@@ -24,6 +24,7 @@ const Encryption = () => {
     <div className="space-y-2">
       <div className="flex flex-row justify-between">
         <Badge
+          className="h-6"
           variant={
             s3.encryption.sseAlgorithm === EncryptionAlgorithmEnum.plaintext
               ? 'warning'
@@ -34,6 +35,7 @@ const Encryption = () => {
         </Badge>
         {s3.encryption.sseAlgorithm === EncryptionAlgorithmEnum.plaintext && (
           <Button
+            className="h-6"
             mode="outline"
             size="sm"
             onClick={() => navigate('./active-encryption')}
