@@ -13,7 +13,6 @@ import { GlobalStateStatus } from '@/types/WillPayment.type';
 import WillPaymentComponent from '../components/payment/WillPayment.component';
 import StartupProgram from '../components/startup-program/StartupProgram';
 import Voucher from '../components/voucher/Voucher';
-import { useWillPaymentConfig } from '../hooks/useWillPaymentConfig';
 
 export type PaymentStepProps = {
   cart: Cart;
@@ -39,16 +38,11 @@ export default function PaymentStep({
 
   const initialVoucher = searchParams.get('voucher') ?? null;
 
-  const willPaymentConfig = useWillPaymentConfig({
-    onPaymentStatusChange,
-  });
-
   const handleVoucherConfigurationChange = (
     voucherConfig: CartConfiguration | undefined,
   ) => {
     setVoucherConfiguration(voucherConfig);
     if (voucherConfiguration) {
-      // Needed because the voucher configuration might be empty but attached
       if (voucherConfiguration?.value !== '') {
         onVoucherChange?.(voucherConfiguration?.value);
       }
@@ -73,7 +67,7 @@ export default function PaymentStep({
       />
 
       <WillPaymentComponent
-        config={willPaymentConfig}
+        onPaymentStatusChange={onPaymentStatusChange}
         onRegisteredPaymentMethodSelected={onRegisteredPaymentMethodSelected}
         onRequiredChallengeEvent={onRequiredChallengeEvent}
       />
