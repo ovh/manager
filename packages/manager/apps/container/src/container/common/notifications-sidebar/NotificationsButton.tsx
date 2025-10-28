@@ -8,12 +8,15 @@ import style from './notifications-sidebar.module.scss';
 import useNotifications from '@/core/notifications';
 import { useHeader } from '@/context/header';
 import { useShell } from '@/context';
+import useContainer from '@/core/container';
 
 function NavbarNotifications(): JSX.Element {
   const { t } = useTranslation('navbar');
   const shell = useShell();
   const trackingPlugin = shell.getPlugin('tracking');
   const { notifications, readAllNotifications } = useNotifications();
+  const { betaVersion, useBeta } = useContainer();
+  const isNavReshuffle = betaVersion && useBeta;
 
   const {
     isNotificationsSidebarVisible,
@@ -40,7 +43,7 @@ function NavbarNotifications(): JSX.Element {
     <button
       role="button"
       type="button"
-      className={`oui-navbar-link oui-navbar-link_icon oui-navbar-link_tertiary ${style.navbarLink}`}
+      className={`oui-navbar-link oui-navbar-link_icon oui-navbar-link_tertiary ${isNavReshuffle ? style.notificationIconContrasted : style.notificationIcon}`}
       title={t('navbar_notifications')}
       aria-label={t('navbar_notifications')}
       onClick={onClick}

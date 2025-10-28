@@ -10,12 +10,14 @@ export type Props = {
   children?: JSX.Element;
   onClick(show: boolean): void;
   show?: boolean;
+  contrast: boolean;
 };
 
 function LanguageButton({
   children = null,
   onClick,
   show = false,
+  contrast,
 }: Props): JSX.Element {
   const { t } = useTranslation('language');
   const isSmallDevice = useMediaQuery({
@@ -30,7 +32,7 @@ function LanguageButton({
       type="button"
       className={`oui-navbar-link oui-navbar-link_dropdown ${
         style.navbarFontSize
-      } ${isSmallDevice ? 'p-0' : ''}`}
+      } ${isSmallDevice ? 'p-0' : ''} ${contrast ? style.contrastedButton : ''}`}
       onClick={(e) => {
         e.preventDefault();
         onClick(!show);
