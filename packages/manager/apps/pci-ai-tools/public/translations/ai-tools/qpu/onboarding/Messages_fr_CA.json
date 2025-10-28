@@ -1,0 +1,7 @@
+{
+  "Title": "QPUs",
+  "createNotebookButton": "Créer un Notebook",
+  "Description1": "Explorez l'informatique quantique en toute liberté grâce à nos notebooks prêts à l'emploi dans le cloud",
+  "Description2": "Simulez jusqu'à 20 qubits en quelques secondes, sans contrainte d'installation ni de configuration.",
+  "Description3": "Accédez à un environnement préconfiguré, compatible avec les principaux frameworks (Pulser, Mimiq, Perceval, Callisto, Qleo, Qiskit, MyQLM, …) et collaborez facilement avec vos équipes via une interface partagée et sécurisée"
+}

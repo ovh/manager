@@ -14,11 +14,15 @@ import {
   OdsInputValueChangeEventDetail,
   OsdsSearchBarCustomEvent,
 } from '@ovhcloud/ods-components';
-import { OsdsButton, OsdsIcon, OsdsSearchBar } from '@ovhcloud/ods-components/react';
+import {
+  OsdsButton,
+  OsdsIcon,
+  OsdsSearchBar,
+} from '@ovhcloud/ods-components/react';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Product } from '@/api';
 import Filters from '@/components/Filters/Filters';
-
 import FilterChip from '../Filters/FilterChip';
 
 interface SearchbarProps {
@@ -41,6 +45,7 @@ const SearchBar: React.FC<SearchbarProps> = ({
   setIsRouterInitialized,
 }) => {
   const { t } = useTranslation('catalog/search');
+  const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
 
   const [showFilters, setShowFilters] = useState(false);
   const [localSearchValue, setLocalSearchValue] = useState('');
@@ -56,11 +61,15 @@ const SearchBar: React.FC<SearchbarProps> = ({
     }
   }, [location.search]);
 
-  const onSearchSubmit = (event: CustomEvent<{ optionValue: string; inputValue: string }>) => {
+  const onSearchSubmit = (
+    event: CustomEvent<{ optionValue: string; inputValue: string }>,
+  ) => {
     setSearchValue(event.detail.inputValue.trim());
   };
 
-  const onSearchChanged = (event: OsdsSearchBarCustomEvent<OdsInputValueChangeEventDetail>) => {
+  const onSearchChanged = (
+    event: OsdsSearchBarCustomEvent<OdsInputValueChangeEventDetail>,
+  ) => {
     setLocalSearchValue(event.detail.value);
     setSearchValue(event.detail.value);
   };
@@ -96,10 +105,13 @@ const SearchBar: React.FC<SearchbarProps> = ({
             variant={ODS_BUTTON_VARIANT.stroked}
             color={ODS_THEME_COLOR_INTENT.primary}
             onKeyDown={(event: KeyboardEvent) =>
-              event.key === 'Enter' && setShowFilters((filterState) => !filterState)
+              event.key === 'Enter' &&
+              setShowFilters((filterState) => !filterState)
             }
             onClick={() => setShowFilters((filterState) => !filterState)}
-            data-tracking={`filter::${showFilters ? 'show-filter' : 'hide-filter'}`}
+            data-tracking={`filter::${
+              showFilters ? 'show-filter' : 'hide-filter'
+            }`}
           >
             <OsdsIcon
               name={ODS_ICON_NAME.FILTER}
@@ -107,7 +119,7 @@ const SearchBar: React.FC<SearchbarProps> = ({
               color={ODS_THEME_COLOR_INTENT.primary}
               className="mr-2"
             />
-            {t('manager_catalog_search_filter_button')}
+            {tActions('show_hide_filters')}
           </OsdsButton>
         </span>
       </div>

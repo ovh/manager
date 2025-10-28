@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "20.62.3",
+  "version": "20.62.4",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -24,7 +24,7 @@
     "@ovh-ux/manager-at-internet-configuration": "^1.5.0",
     "@ovh-ux/manager-banner": "^1.3.5",
     "@ovh-ux/manager-beta-preference": "^1.0.0",
-    "@ovh-ux/manager-billing": "^0.52.1",
+    "@ovh-ux/manager-billing": "^0.52.2",
     "@ovh-ux/manager-billing-components": "^4.27.4",
     "@ovh-ux/manager-bm-server-components": "^2.17.4",
     "@ovh-ux/manager-catalog-price": "^1.8.0",

@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.7.0...@ovh-ux/manager-public-cloud@7.8.0) (2025-10-28)
+
+
+### Features
+
+* **pci-ai-tools:** revert QPU deeplinks ([a6d2598](https://github.com/ovh/manager/commit/a6d2598aa172175cf0c954aaba696ccacf680825))
+
+
+
+
+
+# [7.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.6.5...@ovh-ux/manager-public-cloud@7.7.0) (2025-10-27)
+
+
+### Features
+
+* **pci-ai-tools:** add qpu app in Manager ([#19967](https://github.com/ovh/manager/issues/19967)) ([7abe33b](https://github.com/ovh/manager/commit/7abe33b79845af4792fe20415b8685addbd89921)), closes [#AIS-1352](https://github.com/ovh/manager/issues/AIS-1352)
+
+
+
+
+
+## [7.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.6.4...@ovh-ux/manager-public-cloud@7.6.5) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
 ## [7.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.6.3...@ovh-ux/manager-public-cloud@7.6.4) (2025-10-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud

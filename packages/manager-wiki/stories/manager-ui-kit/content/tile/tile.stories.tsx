@@ -218,7 +218,7 @@ export const CompleteExample = () => {
 };
 
 const meta: Meta = {
-  title: 'Manager UI Kit/Content/Tile',
+  title: 'Manager UI Kit/Components/Tile',
   component: Tile,
   tags: ['autodocs'],
   argTypes: {},

@@ -32,7 +32,7 @@ export default function DashboardLayout() {
   });
   const regionId = regionQuery?.data?.length > 0 && regionQuery?.data[0]?.id;
 
-  const frameworkQuery = useGetFramework(projectId, regionId, {
+  const frameworkQuery = useGetFramework(projectId, regionId, '', {
     enabled: !!regionId,
   });
 
