@@ -1,78 +1,40 @@
-import React, { lazy, Suspense, useEffect, useRef } from 'react';
-import { TWillPaymentConfig } from '@/types/WillPayment.type';
+import { Suspense, useEffect, useRef } from 'react';
+import { OdsSpinner } from '@ovhcloud/ods-components/react';
+import { GlobalStateStatus } from '@/types/WillPayment.type';
+import { useWillPaymentConfig } from '../../hooks/useWillPaymentConfig';
 import { setupRegisteredPaymentMethodListener } from '../../utils/paymentEvents';
-
-type WillPaymentModuleProps = {
-  slotRef: React.RefObject<HTMLDivElement>;
-  config: TWillPaymentConfig;
-};
+import { WillPaymentModule } from './WillPaymentModule';
 
 type WillPaymentComponentProps = {
-  config: TWillPaymentConfig;
+  onPaymentStatusChange?: (status: GlobalStateStatus) => void;
   onRegisteredPaymentMethodSelected: (event: CustomEvent) => void;
   onRequiredChallengeEvent: (event: CustomEvent) => void;
 };
 
-/**
- * Lazy-loads and mounts the Will Payment federated module.
- * Cleans up on unmount.
- */
-const WillPaymentModule = lazy(() =>
-  import('willPayment/WillPayment').then((module) => ({
-    default: (props: WillPaymentModuleProps) => {
-      const setUpWillPayment = module.default;
-
-      useEffect(() => {
-        const { slotRef, config } = props;
-
-        if (!slotRef.current) {
-          return undefined;
-        }
-
-        setUpWillPayment((slotRef.current as unknown) as HTMLSlotElement, {
-          configuration: config,
-        });
-
-        // Cleanup function to prevent memory leaks
-        return () => {
-          if (slotRef.current) {
-            slotRef.current.innerHTML = '';
-          }
-        };
-      }, [props.slotRef]);
-
-      return null;
-    },
-  })),
-);
-
-/**
- * WillPaymentComponent
- * @param config - Configuration for the Will Payment module
- */
 function WillPaymentComponent({
-  config,
+  onPaymentStatusChange,
   onRegisteredPaymentMethodSelected,
   onRequiredChallengeEvent,
 }: Readonly<WillPaymentComponentProps>) {
   const slotRef = useRef<HTMLDivElement>(null);
+
+  const config = useWillPaymentConfig({ onPaymentStatusChange });
 
   useEffect(() => {
     const cleanup = setupRegisteredPaymentMethodListener(
       onRegisteredPaymentMethodSelected,
       onRequiredChallengeEvent,
     );
-
     return cleanup || undefined;
-  }, [slotRef, onRegisteredPaymentMethodSelected, onRequiredChallengeEvent]);
+  }, [onRegisteredPaymentMethodSelected, onRequiredChallengeEvent]);
 
   return (
     <div id="will-payment-event-bus" ref={slotRef}>
-      <Suspense>
+      <Suspense fallback={<OdsSpinner />}>
         <WillPaymentModule slotRef={slotRef} config={config} />
       </Suspense>
     </div>
   );
 }
 
-export default React.memo(WillPaymentComponent);
+export default WillPaymentComponent;

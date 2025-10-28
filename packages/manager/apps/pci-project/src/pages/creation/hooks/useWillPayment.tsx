@@ -38,9 +38,12 @@ export const useWillPayment = () => {
   /**
    * Handles payment status changes from the WillPayment module
    */
-  const handlePaymentStatusChange = (willPaymentStatus: GlobalStateStatus) => {
-    setGlobalStateStatus(willPaymentStatus);
-  };
+  const handlePaymentStatusChange = useCallback(
+    (willPaymentStatus: GlobalStateStatus) => {
+      setGlobalStateStatus(willPaymentStatus);
+    },
+    [],
+  );
 
   /**
    * Triggers payment method saving via DOM event
