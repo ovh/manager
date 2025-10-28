@@ -443,16 +443,6 @@
   {
     "public": {
       "application": "public-cloud",
-      "path": "/create-quantum-emulators"
-    },
-    "redirect": {
-      "application": "public-cloud",
-      "path": "/pci/projects/{project}/ai-ml/quantum/notebooks"
-    }
-  },
-  {
-    "public": {
-      "application": "public-cloud",
       "path": "/create-quantum-qpu"
     },
     "redirect": {
