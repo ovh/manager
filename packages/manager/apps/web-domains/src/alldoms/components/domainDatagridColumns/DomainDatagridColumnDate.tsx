@@ -2,7 +2,6 @@ import {
   DataGridTextCell,
   useFormatDate,
 } from '@ovh-ux/manager-react-components';
-import React from 'react';
 
 interface DomainDatagridColumnDateProps {
   readonly date: string;
