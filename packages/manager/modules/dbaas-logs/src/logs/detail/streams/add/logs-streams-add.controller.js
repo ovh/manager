@@ -59,7 +59,7 @@ export default class LogsStreamsAddCtrl {
                 this.LogsConstants.CONSUMPTION_CAPACITY,
               ) &&
               capabilities.maximumQuantity ===
-                this.LogsConstants.INDEXING_TIERING,
+                this.LogsConstants.INDEXING_TIERING.MEDIUM,
           );
           const indexingSecondStepPrice = add.plan.details.pricings.default.find(
             (capabilities) =>
@@ -67,7 +67,7 @@ export default class LogsStreamsAddCtrl {
                 this.LogsConstants.CONSUMPTION_CAPACITY,
               ) &&
               capabilities.minimumQuantity ===
-                this.LogsConstants.INDEXING_TIERING + 1,
+                this.LogsConstants.INDEXING_TIERING.MEDIUM + 1,
           );
           this.indexingStoragePrice.FirstStep.price =
             indexingFirstStepPrice.price.text;
@@ -187,17 +187,13 @@ export default class LogsStreamsAddCtrl {
     return `${desc} ${price}`;
   }
 
-  getIndexingPrices() {
+  getIndexingPrices(size, values) {
     return this.$translate.instant(
-      'logs_streams_enable_indexing_description',
-      {
-        t0: this.indexingStoragePrice.FirstStep.price,
-        t1: this.LogsConstants.INDEXING_TIERING,
-        t2: this.indexingStoragePrice.SecondStep.price,
-      },
+      `logs_streams_enable_indexing_description_detail_${size}`,
+      values,
       undefined,
       false,
-      'sceParameters', // Expose devise symbol from API without sanitization
+      'sceParameters',
     );
   }
 

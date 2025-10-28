@@ -276,7 +276,10 @@ export default {
     STREAM: 'logs-indexed-in-gb',
   },
   COLDSTORAGE_INCREMENT: 1,
-  INDEXING_TIERING: 100,
+  INDEXING_TIERING: {
+    SMALL: 1,
+    MEDIUM: 100,
+  },
   productName: 'logs',
   logstash: 'LOGSTASH',
   flowgger: 'FLOWGGER',
