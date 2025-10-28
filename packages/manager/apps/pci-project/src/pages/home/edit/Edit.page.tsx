@@ -1,6 +1,7 @@
 import { isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
 import { Notifications } from '@ovh-ux/manager-react-components';
 import { Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
 
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import GeneralInformationSection from './general-information-section/GeneralInformationSection';
@@ -37,7 +38,9 @@ export default function EditPage() {
 
       <RemoveSection isDiscovery={isDiscovery} />
 
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </div>
   );
 }
