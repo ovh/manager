@@ -1,6 +1,6 @@
 import React from 'react';
 import { TServiceInfo } from '@/alldoms/types';
-import DomainsCheckboxItem from '@/alldoms/components/terminate/DomainsCheckboxes/DomainCheckboxItem';
+import DomainsCheckboxItem from '@/alldoms/components/terminate/domainsCheckboxes/DomainCheckboxItem';
 import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
 
 interface DomainsCheckboxesProps {
