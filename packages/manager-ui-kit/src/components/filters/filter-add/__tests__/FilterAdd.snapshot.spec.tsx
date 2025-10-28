@@ -1,5 +1,5 @@
 import { act } from '@testing-library/react';
-import { beforeEach, vi } from 'vitest';
+import { afterEach, beforeEach, vi } from 'vitest';
 
 import { cleanup, render } from '@/setupTest';
 
@@ -20,6 +20,9 @@ const renderComponent = (props: FilterAddProps) => {
 
 describe('FilterAdd Snapshot Tests', () => {
   beforeEach(() => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date('2025-10-15T12:00:00.000Z'));
+
     mockUseGetResourceTags.mockReturnValue({
       tags: [],
       isError: false,
@@ -33,6 +36,9 @@ describe('FilterAdd Snapshot Tests', () => {
   });
 
   afterEach(async () => {
+    vi.runAllTimers();
+    vi.useRealTimers();
+
     // Wait for all pending async operations and state updates
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 100));
