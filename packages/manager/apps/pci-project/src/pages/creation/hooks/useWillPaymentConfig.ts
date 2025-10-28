@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   TWillPaymentConfig,
@@ -19,11 +19,14 @@ export const useWillPaymentConfig = ({
   const { environment } = useContext(ShellContext);
   const user = environment.getUser();
 
-  return {
-    baseUrl: window.location.origin,
-    onChange: (state: GlobalStateStatus) => onPaymentStatusChange?.(state),
-    subsidiary: user.ovhSubsidiary,
-    language: `${user.language}`,
-    hostApp: 'pci',
-  };
+  return useMemo(
+    () => ({
+      baseUrl: window.location.origin,
+      onChange: (state: GlobalStateStatus) => onPaymentStatusChange?.(state),
+      subsidiary: user.ovhSubsidiary,
+      language: `${user.language}`,
+      hostApp: 'pci',
+    }),
+    [onPaymentStatusChange, user.ovhSubsidiary, user.language],
+  );
 };
