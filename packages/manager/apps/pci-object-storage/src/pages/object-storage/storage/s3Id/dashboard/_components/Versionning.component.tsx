@@ -7,7 +7,7 @@ import { useS3Data } from '../../S3.context';
 
 const Versionning = () => {
   const { s3 } = useS3Data();
-  const { t } = useTranslation('pci-object-storage/storages/s3/settings');
+  const { t } = useTranslation('pci-object-storage/storages/s3/dashboard');
   const navigate = useNavigate();
   const prefix =
     s3.versioning.status === VersioningStatusEnum.enabled
@@ -18,6 +18,7 @@ const Versionning = () => {
     <div className="space-y-2">
       <div className="flex flex-row justify-between">
         <Badge
+          className="h-6"
           variant={
             s3.versioning.status === VersioningStatusEnum.enabled
               ? 'success'
@@ -29,6 +30,7 @@ const Versionning = () => {
         {s3.versioning.status !== VersioningStatusEnum.enabled && (
           <Button
             mode="outline"
+            className="h-6"
             size="sm"
             onClick={() => navigate('./active-versionning')}
           >

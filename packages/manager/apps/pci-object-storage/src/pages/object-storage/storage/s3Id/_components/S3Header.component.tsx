@@ -11,6 +11,7 @@ import {
   getMacroRegion,
   useTranslatedMicroRegions,
 } from '@/hooks/useTranslatedMicroRegions';
+import { octetConverter } from '@/lib/bytesHelper';
 
 export const S3Header = ({ s3 }: { s3: StorageContainer }) => {
   const { translateMacroRegion } = useTranslatedMicroRegions();
@@ -48,6 +49,7 @@ export const S3Header = ({ s3 }: { s3: StorageContainer }) => {
               <span className="text-white">1-AZ</span>
             </Badge>
           )}
+          <Badge variant={'outline'}>{octetConverter(s3.objectsSize)}</Badge>
         </div>
       </div>
     </div>
