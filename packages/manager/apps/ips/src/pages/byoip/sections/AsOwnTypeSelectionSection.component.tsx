@@ -37,11 +37,13 @@ export const AsOwnTypeSelectionSection: React.FC = () => {
   }
   return (
     <OrderSection title={t('ip_byoip_as_rir_title')}>
-      <div className="grid grid-rows-2 gap-3">
+      <div className="grid grid-cols-3 gap-3">
         {campusValues.map((value) => (
           <OptionCard
             key={value}
             title={value}
+            hasRadioButton={true}
+            subtitle={t(`rir_selection_${value}_description`)}
             isSelected={asOwnRirType === value}
             onClick={() => setAsOwnRirType(value)}
           />

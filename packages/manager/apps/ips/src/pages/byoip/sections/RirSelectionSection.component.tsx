@@ -31,11 +31,13 @@ export const RirSelectionSection: React.FC = () => {
       title={t('rir_selection_title')}
       description={t('rir_selection_description')}
     >
-      <div className="grid grid-rows-2 gap-3">
+      <div className="grid grid-cols-3 gap-3">
         {ipRirValues.map((value) => (
           <OptionCard
             key={value}
             title={value}
+            subtitle={t(`rir_selection_${value}_description`)}
+            hasRadioButton={true}
             isSelected={ipRir === value}
             onClick={() => setIpRir(value)}
           />

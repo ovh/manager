@@ -1,59 +1,72 @@
 import React from 'react';
 import { ODS_CARD_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsCard, OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
-import './option-card.scss';
-import { Region } from '@ovh-ux/manager-react-components';
+import {
+  OdsCard,
+  OdsPopover,
+  OdsRadio,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
+import { useTranslation } from 'react-i18next';
+import './region-card.scss';
+import {
+  getCityNameKey,
+  getCountryKey,
+  shadowColor,
+} from './region-card.utils';
+import { getCountryCode } from '@/utils';
 
 export type RegionCardProps = React.PropsWithChildren<{
-  className?: string;
-  isDisabled?: boolean;
+  region: string;
+  disabledMessage?: string;
   isSelected?: boolean;
   onClick?: () => void;
-  title: string;
-  subtitle?: string;
-  description?: string;
 }>;
 
 export const RegionCard: React.FC<RegionCardProps> = ({
-  className,
-  isDisabled,
+  region,
+  disabledMessage,
   isSelected,
   onClick,
-  title,
-  description,
-  subtitle,
-  children,
 }) => {
-  const stateStyle = isDisabled
+  const stateStyle = disabledMessage
     ? 'cursor-not-allowed bg-neutral-100'
     : 'cursor-pointer hover:shadow-md';
-  const borderStyle = isSelected ? 'option_card_selected' : 'm-[1px]';
-  return (
-    <OdsCard
-      className={`flex flex-col p-3 transition-shadow ${stateStyle} ${borderStyle} ${className}`}
-      onClick={() => !isDisabled && onClick?.()}
-      color={ODS_CARD_COLOR.neutral}
-    >
-      <OdsText
-        className="flex justify-center mb-2"
-        preset={ODS_TEXT_PRESET.heading6}
-      >
-        <Region mode="datacenter" name={title} />
-      </OdsText>
+  const cardStyle = isSelected ? 'region_card_selected' : 'region_card m-[1px]';
+  const { t } = useTranslation('region-selector');
 
-      {subtitle && (
-        <OdsText
-          preset={ODS_TEXT_PRESET.paragraph}
-          className="flex justify-center mb-4"
-        >
-          {subtitle}
-        </OdsText>
+  return (
+    <div>
+      {disabledMessage && (
+        <OdsPopover triggerId={region} withArrow className="max-w-sm">
+          {disabledMessage}
+        </OdsPopover>
       )}
-      {description && (
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{description}</OdsText>
-      )}
-      {children && <OdsDivider className="block -ml-3 -mr-3 mt-auto mb-2" />}
-      {children}
-    </OdsCard>
+      <OdsCard
+        id={region}
+        tabIndex={0}
+        className={`flex p-3 transition-shadow cursor-pointer ${cardStyle} ${stateStyle} w-full sm:w-[311px] ${
+          disabledMessage ? 'opacity-40' : ''
+        }`}
+        onClick={() => !disabledMessage && onClick?.()}
+        color={ODS_CARD_COLOR.neutral}
+      >
+        <span className="flex h-full mr-3">
+          <OdsRadio name="" is-checked={isSelected}></OdsRadio>
+        </span>
+        <span
+          style={{
+            backgroundImage: `url('flags/${getCountryCode(region)}.svg')`,
+          }}
+          className={`w-[24px] h-[17px] shadow-md shadow-[${shadowColor}] mr-3 bg-cover`}
+        />
+        <div className="flex flex-col">
+          <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
+            {t(getCountryKey(region))} - {t(getCityNameKey(region))}
+          </OdsText>
+
+          <OdsText preset={ODS_TEXT_PRESET.span}>{region}</OdsText>
+        </div>
+      </OdsCard>
+    </div>
   );
 };
