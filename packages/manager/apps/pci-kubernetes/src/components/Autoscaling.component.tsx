@@ -5,15 +5,7 @@ import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import { OsdsMessage } from '@ovhcloud/ods-components/react';
-import {
-  FormField,
-  Icon,
-  Link,
-  Text,
-  Toggle,
-  ToggleControl,
-  ToggleLabel,
-} from '@ovhcloud/ods-react';
+import { Icon, Link, Text, Toggle, ToggleControl, ToggleLabel } from '@ovhcloud/ods-react';
 
 import { useMe } from '@ovh-ux/manager-react-components';
 
@@ -77,7 +69,7 @@ export function Autoscaling({
         max={maxValue}
       />
 
-      <FormField className="mt-8">
+      <div className="mt-8">
         <Toggle
           disabled={isAntiAffinity}
           checked={isAutoscale}
@@ -94,7 +86,7 @@ export function Autoscaling({
             </Text>
           </ToggleLabel>
         </Toggle>
-      </FormField>
+      </div>
       <Text className="mt-6" color={'text'}>
         {t('kubernetes_node_pool_autoscaling_description')}
         {ovhSubsidiary && (

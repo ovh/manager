@@ -93,21 +93,21 @@ export function QuantitySelector({
       )}
       {error.min && (
         <FormFieldError>
-          <Text preset="caption" className="text-red-500">
+          <Text preset="caption" className="text-[--ods-color-error-500]">
             {t('common_field_error_min', { min })}
           </Text>
         </FormFieldError>
       )}
       {error.max && (
         <FormFieldError>
-          <Text preset="caption" className="text-red-500">
+          <Text preset="caption" className="text-[--ods-color-error-500]">
             {t('common_field_error_max', { max })}
           </Text>
         </FormFieldError>
       )}
       {error.nan && (
         <FormFieldError>
-          <Text preset="caption" className="text-red-500">
+          <Text preset="caption" className="text-[--ods-color-error-500]">
             {t('common_field_error_number')}
           </Text>
         </FormFieldError>

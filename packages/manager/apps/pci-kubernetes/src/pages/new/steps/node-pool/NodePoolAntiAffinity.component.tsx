@@ -29,7 +29,7 @@ const NodePoolAntiAffinity = ({ isChecked, onChange, isEnabled }: NodePoolAntiAf
           maxNodes: ANTI_AFFINITY_MAX_NODES,
         })}
       </Text>
-      <FormField className="mt-8">
+      <div className="mt-8">
         <Toggle
           data-testid="toggle-anti-affinity"
           disabled={!isEnabled}
@@ -44,7 +44,7 @@ const NodePoolAntiAffinity = ({ isChecked, onChange, isEnabled }: NodePoolAntiAf
             </Text>
           </ToggleLabel>
         </Toggle>
-      </FormField>
+      </div>
     </div>
   );
 };
