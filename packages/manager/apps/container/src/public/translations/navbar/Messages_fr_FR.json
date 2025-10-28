@@ -14,5 +14,6 @@
   "navbar_account": "Mon compte",
   "navbar_search": "Rechercher",
   "navbar_menu_name": "Menu principal",
-  "navbar_cloud_shell": "OVHcloud Shell"
+  "navbar_cloud_shell": "OVHcloud Shell",
+  "navbar_support": "Support"
 }
