@@ -9,7 +9,8 @@ import { getRegionFlag } from '@/lib/flagHelper';
 import Flag from '@/components/flag/Flag.component';
 
 export const ServiceHeader = ({ service }: { service: database.Service }) => {
-  const { t } = useTranslation('regions');
+  const { t } = useTranslation('pci-databases-analytics/services/service');
+  const { t: tRegion } = useTranslation('regions');
   return (
     <div
       data-testid="service-header-container"
@@ -40,9 +41,14 @@ export const ServiceHeader = ({ service }: { service: database.Service }) => {
                 flagName={getRegionFlag(service.nodes[0].region)}
                 className="w-3 h-2"
               />
-              {t(`region_${service.nodes[0].region}`)}
+              {tRegion(`region_${service.nodes[0].region}`)}
             </div>
           </Badge>
+          {service?.deletionProtection && (
+            <Badge variant={'outline'}>
+              {t('deletionProtectionBadgeLabel')}
+            </Badge>
+          )}
         </div>
       </div>
     </div>

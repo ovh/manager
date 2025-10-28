@@ -1,3 +1,6 @@
+import { TRACKING_DISPLAY_ADD_NSX_EDGES_PREFIX } from './constants';
+import { TRACKING_PREFIX_DATACENTER } from '../../dedicatedCloud-datacenter.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'app.dedicatedCloud.details.datacenter.details.dashboard.add-nsx',
@@ -6,6 +9,9 @@ export default /* @ngInject */ ($stateProvider) => {
       views: {
         'pccDatacenterView@app.dedicatedCloud.details.datacenter.details':
           'ovhManagerDedicatedCloudDatacenterAddNsx',
+      },
+      atInternet: {
+        rename: `${TRACKING_PREFIX_DATACENTER}${TRACKING_DISPLAY_ADD_NSX_EDGES_PREFIX}`,
       },
       resolve: {
         goBack: /* @ngInject */ (goBackToDashboard) => () => {

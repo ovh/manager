@@ -1,25 +1,21 @@
-import { OsdsChip, OsdsLink } from '@ovhcloud/ods-components/react';
-import React, {
-  FunctionComponent,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, { FunctionComponent, useContext, useEffect, useMemo, useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
+import { OdsHTMLAnchorElementRel, OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
+import { OsdsChip, OsdsLink } from '@ovhcloud/ods-components/react';
+
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import {
-  OdsHTMLAnchorElementRel,
-  OdsHTMLAnchorElementTarget,
-} from '@ovhcloud/ods-common-core';
+
 import { Ticket } from '@/types/support.type';
+
 import { SUPPORT_URLS } from '../../HubSupport.constants';
 
 type Props = {
@@ -60,8 +56,7 @@ export const HubSupportTableItem: FunctionComponent<Props> = ({ ticket }) => {
   useEffect(() => {
     (async () => {
       const linkResult: string = isEUOrCA
-        ? SUPPORT_URLS.viewTicket.replace('{ticketId}', ticket.ticketId) +
-          ovhSubsidiary
+        ? SUPPORT_URLS.viewTicket.replace('{ticketId}', ticket.ticketId) + ovhSubsidiary
         : ((await navigation.getURL(
             'dedicated',
             `#/support/tickets/${ticket.ticketId}`,
@@ -83,24 +78,20 @@ export const HubSupportTableItem: FunctionComponent<Props> = ({ ticket }) => {
 
   return (
     <tr key={ticket.ticketId}>
-      <th scope="row" className="!font-bold">
+      <th scope="row" className="!font-bold break-all">
         {ticket.serviceName}
       </th>
       <th scope="row">{ticket.subject}</th>
-      <th scope="row">
+      <th scope="row" className="!min-w-min">
         <OsdsChip size={ODS_CHIP_SIZE.sm} color={stateColor} inline>
           {t(`hub_support_state_${ticket.state}`)}
         </OsdsChip>
       </th>
-      <th scope="row" className="text-right">
+      <th scope="row" className="text-right !min-w-min">
         <OsdsLink
           href={url}
           onClick={handleClick}
-          target={
-            isEUOrCA
-              ? OdsHTMLAnchorElementTarget._blank
-              : OdsHTMLAnchorElementTarget._self
-          }
+          target={isEUOrCA ? OdsHTMLAnchorElementTarget._blank : OdsHTMLAnchorElementTarget._self}
           rel={isEUOrCA ? OdsHTMLAnchorElementRel.noreferrer : undefined}
           color={ODS_THEME_COLOR_INTENT.primary}
           className="font-bold text-right"

@@ -198,11 +198,11 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
           className="mb-2"
           name="network-type"
           value={value.type}
-          onValueChange={(newNetworkValue) =>
+          onValueChange={(newNetworkValue: NetworkTypeEnum) =>
             onChange({
               ...value,
               networkId: networks.length > 0 ? networks[0].id : undefined,
-              type: newNetworkValue as NetworkTypeEnum,
+              type: newNetworkValue,
             })
           }
         >

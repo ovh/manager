@@ -100,9 +100,12 @@ export default class XdslAccessListCtrl {
     // Retrieve service info for each service
     const serviceList = sortedServices.map((service) => {
       if (
-        ![this.ACCESS_TYPE.ftth, this.ACCESS_TYPE.sdsl].includes(
-          service.accessType,
-        )
+        ![
+          this.ACCESS_TYPE.ftth,
+          this.ACCESS_TYPE.ftte,
+          this.ACCESS_TYPE.ftto,
+          this.ACCESS_TYPE.sdsl,
+        ].includes(service.accessType)
       ) {
         return this.XdslAccessListService.getFiberEligibilityList(
           service.accessName,
@@ -111,7 +114,7 @@ export default class XdslAccessListCtrl {
             this.createService(
               service,
               data[0].status,
-              data[0].copperGridClosureTrajectory,
+              data[0].firstCopperClosure,
             ),
           )
           .catch(() =>
@@ -124,7 +127,7 @@ export default class XdslAccessListCtrl {
     return this.$q.all(serviceList);
   }
 
-  createService(service, migrationAvailable, copperGridClosureTrajectory) {
+  createService(service, migrationAvailable, firstCopperClosure) {
     const { accessName, accessType, description, packName } = service;
     const newService = {
       accessName,
@@ -145,12 +148,12 @@ export default class XdslAccessListCtrl {
     newService.closureDate = this.$translate.instant(
       'xdsl_access_list_not_concerned',
     );
-    if (copperGridClosureTrajectory) {
-      newService.copperGridClosureTrajectory = copperGridClosureTrajectory;
+    if (firstCopperClosure) {
+      newService.firstCopperClosure = firstCopperClosure;
       if (migrationAvailable) {
-        if (copperGridClosureTrajectory.technicalClosureDate) {
+        if (firstCopperClosure.date) {
           newService.closureDate = this.$filter('date')(
-            copperGridClosureTrajectory.technicalClosureDate,
+            firstCopperClosure.date,
             'shortDate',
           );
         } else {

@@ -1,9 +1,8 @@
-import { describe, it, expect, vi } from 'vitest';
-import {
-  OdsInputValueChangeEventDetail,
-  OsdsInput,
-} from '@ovhcloud/ods-components';
-import { render, fireEvent, waitFor, act } from '@testing-library/react';
+import { act, fireEvent, render, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
+import { OdsInputValueChangeEventDetail, OsdsInput } from '@ovhcloud/ods-components';
+
 import RestrictionLine from './RestrictionLine.component';
 
 const mockProps = {
@@ -22,10 +21,8 @@ describe('RestrictionLine', () => {
   });
 
   it('calls onSave when check button is clicked', async () => {
-    const { getByTestId } = render(
-      <RestrictionLine {...mockProps} ip="" disabled={undefined} />,
-    );
-    const input = (getByTestId('input-ip') as unknown) as OsdsInput;
+    const { getByTestId } = render(<RestrictionLine {...mockProps} ip="" disabled={undefined} />);
+    const input = getByTestId('input-ip') as unknown as OsdsInput;
     act(() => {
       input.odsValueChange.emit({
         value: '10.0.0.1',
@@ -33,9 +30,7 @@ describe('RestrictionLine', () => {
     });
 
     fireEvent.click(getByTestId('pen-icon-save'));
-    await waitFor(() =>
-      expect(mockProps.onSave).toHaveBeenCalledWith('10.0.0.1', 0),
-    );
+    await waitFor(() => expect(mockProps.onSave).toHaveBeenCalledWith('10.0.0.1', 0));
   });
 
   it('calls onDelete when trash button is clicked', () => {

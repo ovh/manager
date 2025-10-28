@@ -1,4 +1,4 @@
-import { TCertificate } from '@/types/ssl';
+import { TCertificate } from '@/data/types/product/ssl';
 
 export const createSsLMocks: TCertificate[] = [
   {

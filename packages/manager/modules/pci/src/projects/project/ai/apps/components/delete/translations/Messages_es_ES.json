@@ -1,8 +1,0 @@
-{
-  "pci_ai_apps_delete_success": "La app se ha eliminado correctamente.",
-  "pci_ai_apps_delete_error": "Se ha producido un error al eliminar la app: {{ message }}.",
-  "pci_ai_apps_delete": "Eliminación de la app",
-  "pci_ai_apps_delete_warning": "¿Seguro que quiere eliminar la app {{ appId }}?",
-  "pci_ai_apps_delete_common_delete": "Confirmar",
-  "pci_ai_apps_delete_common_cancel": "Cancelar"
-}

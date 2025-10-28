@@ -1,7 +1,9 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
-import { Autoscaling } from './Autoscaling.component';
+
 import { wrapper } from '@/wrapperRenders';
+
+import { Autoscaling } from './Autoscaling.component';
 
 vi.mock('@ovh-ux/manager-pci-common', () => ({
   QuantitySelector: ({
@@ -11,11 +13,7 @@ vi.mock('@ovh-ux/manager-pci-common', () => ({
     value: number;
     onValueChange: (val: number) => void;
   }) => (
-    <input
-      type="number"
-      value={value}
-      onChange={(e) => onValueChange(Number(e.target.value))}
-    />
+    <input type="number" value={value} onChange={(e) => onValueChange(Number(e.target.value))} />
   ),
 }));
 
@@ -34,9 +32,7 @@ describe('Autoscaling', () => {
 
   it('should render the component with default values', () => {
     render(<Autoscaling {...defaultProps} />, { wrapper });
-    expect(
-      screen.getByText('kubernetes_node_pool_autoscaling_description'),
-    ).toBeInTheDocument();
+    expect(screen.getByText('kubernetes_node_pool_autoscaling_description')).toBeInTheDocument();
   });
 
   it('should toggle autoscale on click', () => {
@@ -46,9 +42,7 @@ describe('Autoscaling', () => {
     );
     fireEvent.click(toggleButton);
     expect(
-      screen.getByText(
-        'kubernetes_node_pool_autoscaling_autoscale_toggle_true',
-      ),
+      screen.getByText('kubernetes_node_pool_autoscaling_autoscale_toggle_true'),
     ).toBeInTheDocument();
   });
 
@@ -66,9 +60,7 @@ describe('Autoscaling', () => {
     render(<Autoscaling {...{ ...defaultProps, isAntiAffinity: true }} />, {
       wrapper,
     });
-    const off = screen.getByText(
-      'kubernetes_node_pool_autoscaling_autoscale_toggle_false',
-    );
+    const off = screen.getByText('kubernetes_node_pool_autoscaling_autoscale_toggle_false');
     fireEvent.click(off);
     expect(off).toBeInTheDocument();
   });

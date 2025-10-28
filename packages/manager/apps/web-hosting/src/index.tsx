@@ -1,14 +1,13 @@
 import React from 'react';
+
 import ReactDOM from 'react-dom/client';
-import {
-  ShellContext,
-  initShellContext,
-  initI18n,
-} from '@ovh-ux/manager-react-shell-client';
-import { trackingContext, LEVEL2 } from './utils/tracking.constants';
+
+import { ShellContext, initI18n, initShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import App from './App';
-import './vite-hmr';
 import './index.scss';
+import { LEVEL2, trackingContext } from './utils/tracking.constants';
+import './vite-hmr';
 
 const init = async (appName: string) => {
   const context = await initShellContext(appName, trackingContext);
@@ -24,7 +23,7 @@ const init = async (appName: string) => {
   context.shell.tracking.setConfig(region, LEVEL2);
   try {
     await import(`./config-${region}.js`);
-  } catch (error) {
+  } catch {
     // nothing to do
   }
 
@@ -37,4 +36,6 @@ const init = async (appName: string) => {
   );
 };
 
-init('web-hosting');
+init('web-hosting').catch((err) => {
+  console.error(err);
+});

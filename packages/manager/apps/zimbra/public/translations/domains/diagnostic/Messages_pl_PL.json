@@ -33,5 +33,16 @@
   "zimbra_domain_diagnostic_information_message_dkim_warning": "Wykryliśmy konfigurację DKIM, która nie jest zgodna z konfiguracją wymaganą przez Twoją usługę poczty e-mail.<br/><br/>Jeśli masz trudności z dostarczaniem e-maili do odbiorców, postępuj zgodnie z poniższymi instrukcjami, aby ponownie skonfigurować strefę DNS z poprawnymi danymi.",
   "zimbra_domain_diagnostic_information_banner_dkim_error": "Błąd konfiguracji DKIM - może wystąpić problem z dostarczaniem e-maili do odbiorców.",
   "zimbra_domain_diagnostic_information_banner_dkim_warning": "Nieprawidłowa konfiguracja DKIM",
-  "zimbra_domain_diagnostic_field_subdomain": "Subdomena:"
+  "zimbra_domain_diagnostic_field_subdomain": "Subdomena:",
+  "zimbra_domain_diagnostic_status_disabled": "Wyłącz",
+  "zimbra_domain_diagnostic_information_message_dkim_disabled": "Podpis DKIM nie jest włączony. Może to powodować problemy z dostarczaniem niektórych e-maili.",
+  "zimbra_domain_diagnostic_banner_enable_success_message": "Dyspozycja włączenia została przyjęta. Zostanie wykonana w ciągu kilku minut.",
+  "zimbra_domain_diagnostic_banner_disable_success_message": "Dyspozycja wyłączenia została przyjęta. Zostanie wykonana w ciągu kilku minut.",
+  "zimbra_domain_diagnostic_dkim_enable": "Włącz podpis DKIM",
+  "zimbra_domain_diagnostic_dkim_disable": "Wyłącz podpis DKIM",
+  "zimbra_domain_diagnostic_information_message_srv_ok": "Autodiscover został poprawnie skonfigurowany w domenie.<br/><br/>Autodiscover to mechanizm, który ułatwia konfigurację skrzynek e-mail w programach pocztowych. Dzięki autodiscover nie trzeba podawać nazwy serwera ani portów połączenia.",
+  "zimbra_domain_diagnostic_information_message_srv_error": "Wykryliśmy, że konfiguracja SRV nie jest zgodna z wymaganiami Twojej usługi e-mail. Autodiscover nie działa prawidłowo.<br/><br/>Autodiscover to mechanizm, który ułatwia konfigurację skrzynek e-mail w programach pocztowych. Dzięki autodiscover nie trzeba podawać nazwy serwera ani portów połączenia.<br/><br/>Uzupełnij strefę DNS domeny, wykorzystując poniższe informacje.",
+  "zimbra_domain_diagnostic_information_message_srv_warning": "Wykryliśmy, że konfiguracja SRV nie jest zgodna z wymaganiami Twojej usługi e-mail. Autodiscover może nie działać prawidłowo.<br/><br/>Autodiscover to mechanizm, który ułatwia konfigurację skrzynek e-mail w programach pocztowych. Dzięki autodiscover nie trzeba podawać nazwy serwera ani portów połączenia.",
+  "zimbra_domain_diagnostic_information_banner_srv_error": "Błąd konfiguracji SRV - użytkownicy mogą mieć trudności z konfiguracją kont w programach pocztowych.",
+  "zimbra_domain_diagnostic_information_banner_srv_warning": "Nieprawidłowa konfiguracja SRV"
 }

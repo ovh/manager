@@ -1,13 +1,15 @@
-import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
 import * as database from '@/types/cloud/project/database';
 import { getServiceCapabilitiesIntegrations } from '@/data/api/database/integration.api';
-import { useQueryImmediateRefetch } from '../../useImmediateRefetch';
+import {
+  OptionsFor,
+  useQueryImmediateRefetch,
+} from '../../useImmediateRefetch';
 
 export function useGetCapabilitiesIntegrations(
   projectId: string,
   engine: database.EngineEnum,
   serviceId: string,
-  options: Omit<QueryObserverOptions, 'queryKey'> = {},
+  options?: OptionsFor<typeof getServiceCapabilitiesIntegrations>,
 ) {
   const queryKey = [
     projectId,
@@ -21,5 +23,5 @@ export function useGetCapabilitiesIntegrations(
     queryFn: () =>
       getServiceCapabilitiesIntegrations({ projectId, engine, serviceId }),
     ...options,
-  }) as UseQueryResult<database.capabilities.Integration[], Error>;
+  });
 }

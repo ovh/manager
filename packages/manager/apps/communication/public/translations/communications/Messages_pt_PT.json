@@ -1,0 +1,8 @@
+{
+  "table_column_subject": "Assunto",
+  "table_column_status": "Estado",
+  "table_column_priority": "Prioridade",
+  "table_column_date": "Data",
+  "table_column_categories": "Categorias",
+  "contact_status_warning": "Parece haver um problema com o método de receção {{ contactType }}. Pode <anchor>gerir as definições de receção</anchor> para resolver este problema."
+}

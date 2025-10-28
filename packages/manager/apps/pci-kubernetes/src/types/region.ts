@@ -1,7 +1,5 @@
-import {
-  TContinent,
-  TLocalisation as TLocPCI,
-} from '@ovh-ux/manager-pci-common';
+import { TContinent, TLocalisation as TLocPCI } from '@ovh-ux/manager-pci-common';
+
 import { DeploymentMode } from '.';
 
 export type TAvailabilityZone = string;
@@ -306,6 +304,7 @@ export type TRegionBase = {
   name: string;
   type: TRegionType;
   availabilityZones: string[];
+  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
   continentCode: 'ASIA' | 'EU' | 'NA' | 'US' | string;
 };
 

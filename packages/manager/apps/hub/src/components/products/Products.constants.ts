@@ -1,7 +1,4 @@
-export const productListingPages: Record<
-  string,
-  { application: string; hash: string }
-> = {
+export const productListingPages: Record<string, { application: string; hash: string }> = {
   CDN_DEDICATED: {
     application: 'dedicated',
     hash: '#/configuration/cdn',
@@ -82,10 +79,6 @@ export const productListingPages: Record<
     application: 'dedicated',
     hash: '#/ip',
   },
-  KEY_MANAGEMENT_SERVICE: {
-    application: 'key-management-service',
-    hash: '#',
-  },
   LICENSE_CPANEL: {
     application: 'dedicated',
     hash: '#/license',
@@ -138,6 +131,10 @@ export const productListingPages: Record<
     application: 'dedicated',
     hash: '#/nutanix',
   },
+  OKMS: {
+    application: 'okms',
+    hash: '#/key-management-service',
+  },
   OVH_CLOUD_CONNECT: {
     application: 'dedicated',
     hash: '#/cloud-connect',
@@ -166,8 +163,8 @@ export const productListingPages: Record<
     application: 'dedicated',
     hash: '#/veeam-enterprise',
   },
-  VMWARE_CLOUD_DIRECTOR: {
-    application: 'hpc-vmware-managed-vcd',
+  VMWARE_PUBLIC_VCF_AS_A_SERVICE: {
+    application: 'hpc-vmware-public-vcf-aas',
     hash: '#',
   },
   VMWARE_CLOUD_DIRECTOR_BACKUP: {

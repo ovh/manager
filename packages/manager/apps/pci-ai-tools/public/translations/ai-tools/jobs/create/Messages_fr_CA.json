@@ -15,6 +15,7 @@
   "summaryFieldFlavorCores_one": "{{count}} vCore",
   "summaryFieldFlavorCores_other": "{{count}} vCores",
   "summaryFieldFlavorMemory": "{{memory}} RAM",
+  "summaryFieldFlavorVMemory": "{{memory}} VRAM",
   "summaryFieldStorage": "{{disk}} SSD",
   "summaryFieldNetwork": "{{network}}/s",
   "fieldCaracteristicLabel": "Choisissez les caractéristiques de votre job",

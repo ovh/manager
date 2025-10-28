@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { OdsText } from '@ovhcloud/ods-components/react';
 
-import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
+import { Card, OnboardingLayout } from '@ovh-ux/muk';
 
 import { useGuideLinks, useOnboardingContent } from '@/hooks/onboarding/useOnboardingData';
 import type { OnboardingLinksType } from '@/types/Onboarding.type';

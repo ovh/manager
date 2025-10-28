@@ -3,6 +3,109 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.16.11...@ovh-ux/manager-procedures-app@0.16.12) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
+## [0.16.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.16.10...@ovh-ux/manager-procedures-app@0.16.11) (2025-10-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
+## [0.16.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.16.9...@ovh-ux/manager-procedures-app@0.16.10) (2025-10-15)
+
+
+### Bug Fixes
+
+* fix bad rebase and static kit version ([55bdff1](https://github.com/ovh/manager/commit/55bdff1139f28288646b46f0a9499ac0fcb46ee2)), closes [#MANAGER-19540](https://github.com/ovh/manager/issues/MANAGER-19540) [#MANAGER-19277](https://github.com/ovh/manager/issues/MANAGER-19277) [#MANAGER-19276](https://github.com/ovh/manager/issues/MANAGER-19276) [#MANAGER-19277](https://github.com/ovh/manager/issues/MANAGER-19277)
+* **procedures:** fix static kit dependency on procedure app ([c90a8e6](https://github.com/ovh/manager/commit/c90a8e665a2e5b48dc3cd273fc12b9d53a5c0324)), closes [#MANAGER-19277](https://github.com/ovh/manager/issues/MANAGER-19277)
+
+
+
+
+
+## [0.16.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.16.8...@ovh-ux/manager-procedures-app@0.16.9) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
+## [0.16.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.16.7...@ovh-ux/manager-procedures-app@0.16.8) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
+## [0.16.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.16.6...@ovh-ux/manager-procedures-app@0.16.7) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
+## [0.16.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.16.5...@ovh-ux/manager-procedures-app@0.16.6) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
+## [0.16.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.16.4...@ovh-ux/manager-procedures-app@0.16.5) (2025-09-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4298] ([85ea0d7](https://github.com/ovh/manager/commit/85ea0d77ce785df8c04a70b6afef7bfd4356a0f4))
+
+
+
+
+
+## [0.16.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.16.3...@ovh-ux/manager-procedures-app@0.16.4) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
+## [0.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.16.2...@ovh-ux/manager-procedures-app@0.16.3) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
+## [0.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.16.1...@ovh-ux/manager-procedures-app@0.16.2) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
+## [0.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.16.0...@ovh-ux/manager-procedures-app@0.16.1) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-procedures-app
+
+
+
+
+
 # [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-procedures-app@0.15.3...@ovh-ux/manager-procedures-app@0.16.0) (2025-09-06)
 
 

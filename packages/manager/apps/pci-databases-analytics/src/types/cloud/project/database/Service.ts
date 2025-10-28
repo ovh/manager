@@ -27,6 +27,8 @@ export interface Service {
   description: string;
   /** @deprecated Disk attributes of the cluster. DEPRECATED: use storage */
   disk: Disk;
+  /** Deletion Protection */
+  deletionProtection?: boolean;
   /** Enable Prometheus */
   enablePrometheus?: boolean;
   /** List of all endpoints of the service */

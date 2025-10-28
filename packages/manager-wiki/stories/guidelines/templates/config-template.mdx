@@ -22,10 +22,10 @@ It can be `pages/config/config.page.tsx`
 
 #### BaseLayout
 
-The config page uses the `BaseLayout` component from `manager-react-components` as its main container. This provides consistent styling and structure across the application.
+The config page uses the `BaseLayout` component from `manager-ui-kit` as its main container. This provides consistent styling and structure across the application.
 
 ```tsx
-import { BaseLayout } from '@ovh-ux/manager-react-components';
+import { BaseLayout } from '@ovh-ux/muk';
 
 const ConfigPage = () => {
   return (
@@ -44,8 +44,8 @@ const ConfigPage = () => {
 ### Implementation Example
 
 ```tsx
-import { BaseLayout } from '@ovh-ux/manager-react-components';
-import { OdsFormField, OdsSelect, OdsCheckbox } from '@ovhcloud/ods-components/react';
+import { BaseLayout } from '@ovh-ux/muk';
+import { FormField, Select, Checkbox } from '@ovhcloud/ods-react';
 
 const ConfigPage = () => {
   const [settings, setSettings] = useState({
@@ -72,15 +72,15 @@ const ConfigPage = () => {
       }}
     >
       <form onSubmit={handleSubmit}>
-        <OdsFormField label={t('config.setting1.label')}>
-          <OdsCheckbox
+        <FormField label={t('config.setting1.label')}>
+          <Checkbox
             checked={settings.setting1}
             onChange={(value) => setSettings({ ...settings, setting1: value })}
           />
-        </OdsFormField>
+        </FormField>
 
-        <OdsFormField label={t('config.setting2.label')}>
-          <OdsSelect
+        <FormField label={t('config.setting2.label')}>
+          <Select
             value={settings.setting2}
             onChange={(value) => setSettings({ ...settings, setting2: value })}
             items={[
@@ -88,7 +88,7 @@ const ConfigPage = () => {
               { value: 'option2', label: t('config.setting2.option2') },
             ]}
           />
-        </OdsFormField>
+        </FormField>
 
         <button type="submit">{t('config.save')}</button>
       </form>
@@ -235,7 +235,7 @@ const ConfigPage = () => {
 
 ### Code Review Checklist
 
-- [ ] Use `BaseLayout` component from `manager-react-components`
+- [ ] Use `BaseLayout` component from `manager-ui-kit`
 - [ ] Implement proper form validation
 - [ ] Handle loading and error states
 - [ ] Use ODS components for form elements

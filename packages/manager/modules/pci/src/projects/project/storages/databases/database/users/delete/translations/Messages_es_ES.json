@@ -1,3 +1,0 @@
-{
-  "pci_databases_users_delete_error_forbidden": "No es posible eliminar el usuario de servicio «{{username}}»."
-}

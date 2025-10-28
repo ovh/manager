@@ -3,6 +3,170 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.27.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.27.3...@ovh-ux/manager-billing-components@4.27.4) (2025-10-23)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** fix issue with commitment if plesk licence ([f03c08c](https://github.com/ovh/manager/commit/f03c08c399759ba116412c14f49d0b5d54359d15)), closes [#PRDCOL-239](https://github.com/ovh/manager/issues/PRDCOL-239)
+
+
+
+
+
+## [4.27.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.27.2...@ovh-ux/manager-billing-components@4.27.3) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
+## [4.27.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.27.1...@ovh-ux/manager-billing-components@4.27.2) (2025-10-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4415] ([224b837](https://github.com/ovh/manager/commit/224b8376271874131463fb6e120b28e6e0b9a6f3))
+* remove unused translations [CDS] ([4d781b8](https://github.com/ovh/manager/commit/4d781b8429a5fd700e75d6e2da15204bc4139c62))
+
+
+
+
+
+## [4.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.27.0...@ovh-ux/manager-billing-components@4.27.1) (2025-10-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
+# [4.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.26.2...@ovh-ux/manager-billing-components@4.27.0) (2025-10-15)
+
+
+### Bug Fixes
+
+* **billing:** fix behavior on commitment page without discount ([36da208](https://github.com/ovh/manager/commit/36da208036466abcdfc146d4e47208773ff15652)), closes [#MANAGER-19948](https://github.com/ovh/manager/issues/MANAGER-19948)
+
+
+### Features
+
+* **billing:** replace renew mode by status ([03520f2](https://github.com/ovh/manager/commit/03520f2f741b23f1327b2d4e5a284f7def520e7d)), closes [#MANAGER-19540](https://github.com/ovh/manager/issues/MANAGER-19540)
+
+
+
+
+
+## [4.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.26.1...@ovh-ux/manager-billing-components@4.26.2) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
+## [4.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.26.0...@ovh-ux/manager-billing-components@4.26.1) (2025-10-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4381] ([4945007](https://github.com/ovh/manager/commit/494500772213000e029a07753e43cd5515fe3df3))
+* **i18n:** add missing translations [CDS 4383] ([05a1ea9](https://github.com/ovh/manager/commit/05a1ea9330111c74151177ea18570a7eda24a5c3))
+
+
+
+
+
+# [4.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.25.1...@ovh-ux/manager-billing-components@4.26.0) (2025-10-06)
+
+
+### Bug Fixes
+
+* **billing:** fix terminate payload ([d16fc81](https://github.com/ovh/manager/commit/d16fc81596567f7aa445ca835ccd36dde257c59f)), closes [#MANAGER-16806](https://github.com/ovh/manager/issues/MANAGER-16806)
+
+
+### Features
+
+* **billing:** show resiliation modal for domain services ([f265aec](https://github.com/ovh/manager/commit/f265aec45ffd3906365b51dc0a6d22b082ecac9c)), closes [#MANAGER-16806](https://github.com/ovh/manager/issues/MANAGER-16806)
+
+
+
+
+
+## [4.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.25.0...@ovh-ux/manager-billing-components@4.25.1) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
+# [4.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.24.2...@ovh-ux/manager-billing-components@4.25.0) (2025-09-23)
+
+
+### Features
+
+* **billing:** rework commitment page ([82ec628](https://github.com/ovh/manager/commit/82ec628fc54d1935d8c672e2001bdcb13a328b0c)), closes [#MANAGER-17576](https://github.com/ovh/manager/issues/MANAGER-17576)
+
+
+
+
+
+## [4.24.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.24.1...@ovh-ux/manager-billing-components@4.24.2) (2025-09-22)
+
+
+### Bug Fixes
+
+* **billing:** hide renew configuration for shared cdn ([8d82a01](https://github.com/ovh/manager/commit/8d82a013bd8ecfc9c7e68b74a8c4877916732296)), closes [#MANAGER-19044](https://github.com/ovh/manager/issues/MANAGER-19044)
+
+
+
+
+
+## [4.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.24.0...@ovh-ux/manager-billing-components@4.24.1) (2025-09-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4339] ([eac81a8](https://github.com/ovh/manager/commit/eac81a87009357e682ec5d14a2a3f613391e3be9))
+
+
+
+
+
+# [4.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.23.5...@ovh-ux/manager-billing-components@4.24.0) (2025-09-16)
+
+
+### Features
+
+* **billing-components:** add resiliate modal with strategy choice ([60d08a5](https://github.com/ovh/manager/commit/60d08a5a6a931e7a6830ba834f45959faa602dc1)), closes [#MANAGER-19171](https://github.com/ovh/manager/issues/MANAGER-19171)
+* **billing:** add resiliate modal with choice for byiop ([bdbb232](https://github.com/ovh/manager/commit/bdbb2323575086e2469c745bc863b42a6743cd7f)), closes [#MANAGER-19171](https://github.com/ovh/manager/issues/MANAGER-19171)
+* **billing:** update actions menu in my services page for us manager ([#18403](https://github.com/ovh/manager/issues/18403)) ([e7e26e9](https://github.com/ovh/manager/commit/e7e26e9362b4ddfe51c2d5ca0e3c775242a4afa6)), closes [#MANAGER-18779](https://github.com/ovh/manager/issues/MANAGER-18779)
+
+
+
+
+
+## [4.23.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.23.4...@ovh-ux/manager-billing-components@4.23.5) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
+## [4.23.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.23.3...@ovh-ux/manager-billing-components@4.23.4) (2025-09-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4304] ([c3ebc2c](https://github.com/ovh/manager/commit/c3ebc2cd1396bd84ac35284df96a52160e5623e8)), closes [#MANAGER-19428](https://github.com/ovh/manager/issues/MANAGER-19428)
+
+
+
+
+
 ## [4.23.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.23.2...@ovh-ux/manager-billing-components@4.23.3) (2025-09-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components

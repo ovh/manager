@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-log-live-tail@2.6.2...@ovh-ux/ng-log-live-tail@2.7.0) (2025-10-16)
+
+
+### Features
+
+* disable default logs sorting in live tail ([6284637](https://github.com/ovh/manager/commit/62846370f21f683b83d430a1e8edf4a4f762654b)), closes [#MAOBS-116](https://github.com/ovh/manager/issues/MAOBS-116)
+
+
+
+
+
 ## [2.6.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-log-live-tail@2.6.1...@ovh-ux/ng-log-live-tail@2.6.2) (2025-08-07)
 
 **Note:** Version bump only for package @ovh-ux/ng-log-live-tail

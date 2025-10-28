@@ -1,12 +1,15 @@
-import { render, screen } from '@testing-library/react';
-
 import { useHref, useNavigate, useParams } from 'react-router-dom';
+
+import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
+
 import { useProject } from '@ovh-ux/manager-pci-common';
-import { useClusterCreationStepper } from './useCusterCreationStepper';
+
 import { useCreateKubernetesCluster } from '@/api/hooks/useKubernetes';
-import NewPage from './New.page';
 import { wrapper } from '@/wrapperRenders';
+
+import NewPage from './New.page';
+import { useClusterCreationStepper } from './hooks/useCusterCreationStepper';
 
 vi.mock('react-router-dom', () => ({
   useHref: vi.fn(),
@@ -15,12 +18,12 @@ vi.mock('react-router-dom', () => ({
 }));
 
 vi.mock('@ovh-ux/manager-pci-common', async (actual) => ({
-  ...((await actual()) as Record<string, unknown>),
+  ...(await actual()),
   isDiscoveryProject: vi.fn(),
   useProject: vi.fn(),
 }));
 
-vi.mock('./useCusterCreationStepper', () => ({
+vi.mock('./hooks/useCusterCreationStepper', () => ({
   useClusterCreationStepper: vi.fn(),
 }));
 
@@ -32,7 +35,7 @@ describe('NewPage', () => {
   const mockNavigate = vi.fn();
   const mockUseHref = vi.fn();
   const mockUseParams = vi.fn();
-  const mockUseTranslation = vi.fn();
+
   const mockUseProject = vi.fn();
   const mockUseClusterCreationStepper = vi.fn();
   const mockUseCreateKubernetesCluster = vi.fn();
@@ -40,9 +43,7 @@ describe('NewPage', () => {
   beforeEach(() => {
     mockUseHref.mockReturnValue('..');
     mockUseParams.mockReturnValue({ projectId: '123' });
-    mockUseTranslation.mockReturnValue({
-      t: (key) => key,
-    });
+
     mockUseProject.mockReturnValue({
       data: { project_id: '123', description: 'Test Project' },
     });
@@ -112,12 +113,8 @@ describe('NewPage', () => {
     vi.mocked(useParams).mockImplementation(mockUseParams);
 
     vi.mocked(useProject).mockImplementation(mockUseProject);
-    vi.mocked(useClusterCreationStepper).mockImplementation(
-      mockUseClusterCreationStepper,
-    );
-    vi.mocked(useCreateKubernetesCluster).mockImplementation(
-      mockUseCreateKubernetesCluster,
-    );
+    vi.mocked(useClusterCreationStepper).mockImplementation(mockUseClusterCreationStepper);
+    vi.mocked(useCreateKubernetesCluster).mockImplementation(mockUseCreateKubernetesCluster);
   });
 
   it('renders the component correctly', async () => {
@@ -125,11 +122,7 @@ describe('NewPage', () => {
     expect(screen.getByText('kubernetes_add')).toBeInTheDocument();
     expect(screen.getByText('kubernetes_add_name_title')).toBeInTheDocument();
     expect(screen.getByText('kubernetes_add_region_title')).toBeInTheDocument();
-    expect(
-      screen.getByText('kubernetes_add_version_and_upgrade_policy_title'),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText('listing:kubernetes_add_private_network'),
-    ).toBeInTheDocument();
+    expect(screen.getByText('kubernetes_add_version_and_upgrade_policy_title')).toBeInTheDocument();
+    expect(screen.getByText('listing:kubernetes_add_private_network')).toBeInTheDocument();
   });
 });

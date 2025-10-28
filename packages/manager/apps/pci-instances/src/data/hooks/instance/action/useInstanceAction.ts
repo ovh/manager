@@ -14,20 +14,14 @@ import {
 } from '@/data/api/instance';
 import { DeepReadonly } from '@/types/utils.type';
 import { instancesQueryKey } from '@/utils';
+import queryClient from '@/queryClient';
+import { updateAllInstancesFromCache } from '@/adapters/tanstack-query/store/instances/updaters';
 
-export type TMutationFnType =
-  | 'delete'
-  | 'start'
-  | 'stop'
-  | 'shelve'
-  | 'unshelve'
-  | 'soft-reboot'
-  | 'hard-reboot'
-  | 'reinstall'
-  | 'billing/monthly/activate';
-
-export type TUseInstanceActionCallbacks = DeepReadonly<{
-  onSuccess?: (data?: null) => void;
+export type TUseInstanceActionCallbacks<
+  TData = unknown,
+  TVariables = unknown
+> = DeepReadonly<{
+  onSuccess?: (data: TData, variables: TVariables) => void;
   onError?: (error: unknown) => void;
 }>;
 
@@ -36,13 +30,18 @@ const unknownError = new Error('Unknwon Error');
 type TUseInstanceActionParams<V, R> = {
   projectId: string;
   mutationKeySuffix: string | null;
+  region: string;
   mutationFn: (variables: V) => Promise<R>;
-  callbacks?: TUseInstanceActionCallbacks;
+  callbacks?: TUseInstanceActionCallbacks<R, V>;
 };
 
-const useInstanceAction = <V, R extends null>({
+const useInstanceAction = <
+  V extends { instance: { id: string } },
+  R extends null
+>({
   projectId,
   mutationKeySuffix,
+  region,
   mutationFn,
   callbacks = {},
 }: TUseInstanceActionParams<V, R>) => {
@@ -56,7 +55,22 @@ const useInstanceAction = <V, R extends null>({
     mutationKey,
     mutationFn,
     onError,
-    onSuccess,
+    onSuccess: (data, variables) => {
+      const newInstance = {
+        id: variables.instance.id,
+        task: { isPending: true, status: null },
+        actions: [],
+      };
+
+      // TODO: refactor or move it to separate concern
+      updateAllInstancesFromCache(queryClient, {
+        projectId,
+        instance: newInstance,
+        region,
+      });
+
+      return onSuccess?.(data, variables);
+    },
   });
 
   return {
@@ -72,10 +86,15 @@ type TBackupMutationFnVariables = {
 
 export const useInstanceBackupAction = (
   projectId: string,
-  callbacks: TUseInstanceActionCallbacks = {},
+  region: string,
+  callbacks: TUseInstanceActionCallbacks<
+    unknown,
+    TBackupMutationFnVariables
+  > = {},
 ) =>
   useInstanceAction<TBackupMutationFnVariables, null>({
     projectId,
+    region,
     mutationKeySuffix: 'backup',
     mutationFn: useCallback(
       ({ instance, snapshotName }) => {
@@ -99,10 +118,12 @@ type TRescueMutationFnVariables = {
 
 export const useInstanceRescueAction = (
   projectId: string,
+  region: string,
   callbacks: TUseInstanceActionCallbacks = {},
 ) =>
   useInstanceAction<TRescueMutationFnVariables, null>({
     projectId,
+    region,
     mutationKeySuffix: 'rescue',
     mutationFn: useCallback(
       ({ instance, imageId, isRescue }) => {
@@ -121,10 +142,12 @@ type TReinstallMutationFnVariables = {
 
 export const useInstanceReinstallAction = (
   projectId: string,
+  region: string,
   callbacks: TUseInstanceActionCallbacks = {},
 ) =>
   useInstanceAction<TReinstallMutationFnVariables, null>({
     projectId,
+    region,
     mutationKeySuffix: 'reinstall',
     mutationFn: useCallback(
       ({ instance, imageId }) =>
@@ -135,17 +158,17 @@ export const useInstanceReinstallAction = (
   });
 
 export const useBaseInstanceAction = (
-  type: TMutationFnType | null,
+  type: string | null,
   projectId: string,
+  region: string,
   callbacks: TUseInstanceActionCallbacks = {},
 ) =>
-  useInstanceAction<{ id: string; imageId: string }, null>({
+  useInstanceAction<{ instance: { id: string; imageId: string } }, null>({
     projectId,
+    region,
     mutationKeySuffix: type,
     mutationFn: useCallback(
-      (instance?: { id: string; imageId: string }) => {
-        if (!instance) return Promise.reject(unknownError);
-        const { id, imageId } = instance;
+      ({ instance: { id, imageId } }) => {
         switch (type) {
           case 'delete':
             return deleteInstance(projectId, id);

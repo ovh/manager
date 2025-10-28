@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import {
-  OdsCheckbox,
-  OdsFormField,
-  OdsSelect,
-  OdsBadge,
-} from '@ovhcloud/ods-components/react';
+
+import { useParams } from 'react-router-dom';
+
+import { useQuery } from '@tanstack/react-query';
+import { format, getDate, isValid, parseISO } from 'date-fns';
+import { useTranslation } from 'react-i18next';
 import {
   Area,
   AreaChart,
@@ -15,21 +15,25 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { format, parseISO, isValid, getDate } from 'date-fns';
-import { useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
+import type { LegendType } from 'recharts';
 
-import { useTranslation } from 'react-i18next';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import type { OdsCheckboxChangeEvent } from '@ovhcloud/ods-components';
+import { OdsBadge, OdsCheckbox, OdsFormField, OdsSelect } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { LicenseEnum } from '@/data/api/ApiType';
+import { getOfficeUsageStatistics } from '@/data/api/usage-statistics/api';
 import {
   getOfficeTenantUsageStatisticsQueryKey,
-  getOfficeUsageStatistics,
   getOfficeUsageStatisticsQueryKey,
-  UsageStatisticsData,
-} from '@/data/api/usageStatistics';
-import { useDateFnsLocale } from '@/hooks';
-import { useServiceType, useServiceInfos } from '@/data/hooks';
+} from '@/data/api/usage-statistics/key';
+import { UsageStatisticsData } from '@/data/api/usage-statistics/type';
+import { useServiceInfos } from '@/data/hooks/service-infos/useServiceInfos';
+import { useDateFnsLocale } from '@/hooks/date-fns-locale/useDateFnsLocale';
+import { ServiceType } from '@/utils/ServiceType.utils';
+
 import CustomTooltip from './CustomTooltip.component';
 
 enum Period {
@@ -39,12 +43,7 @@ enum Period {
   LAST_12 = 'last12',
 }
 
-const periodOptions = [
-  Period.CURRENT,
-  Period.LAST,
-  Period.LAST_3,
-  Period.LAST_12,
-];
+const periodOptions = [Period.CURRENT, Period.LAST, Period.LAST_3, Period.LAST_12];
 export default function Consumption() {
   const { t } = useTranslation(['dashboard/consumption', NAMESPACES.DASHBOARD]);
 
@@ -60,9 +59,7 @@ export default function Consumption() {
   const { data: serviceInfos } = useServiceInfos();
   function getDateRange(period: string): { from: string; to: string } {
     const now = new Date();
-    const creationDate = serviceInfos?.creation
-      ? parseISO(serviceInfos.creation)
-      : null;
+    const creationDate = serviceInfos?.creation ? parseISO(serviceInfos.creation) : null;
     const baseDate = isValid(creationDate) ? creationDate : now;
     const creationDay = getDate(baseDate);
     const isBeforeDate = now.getDate() < creationDay;
@@ -81,15 +78,13 @@ export default function Consumption() {
       [Period.CURRENT]: [isBeforeDate ? -1 : 0, isBeforeDate ? 0 : 1],
     };
 
-    return calculateDateRange(
-      ...(periodOffsets[period] || periodOffsets[Period.CURRENT]),
-    );
+    return calculateDateRange(...(periodOffsets[period] || periodOffsets[Period.CURRENT]));
   }
 
   const { from, to } = getDateRange(selectedPeriod);
 
-  const serviceType = useServiceType(serviceName);
-  const { data } = useQuery<UsageStatisticsData>({
+  const serviceType = ServiceType(serviceName);
+  const { data } = useQuery<UsageStatisticsData[]>({
     queryKey: [
       serviceType === 'payAsYouGo'
         ? getOfficeUsageStatisticsQueryKey(serviceName)
@@ -100,44 +95,57 @@ export default function Consumption() {
     ],
     queryFn: () => getOfficeUsageStatistics(serviceName, { from, to }),
   });
-  const chartData =
-    data?.map(
-      (item: {
+
+  const chartData: {
+    date: string;
+    rawDate: Date;
+    officeBusiness?: number;
+    officeProPlus?: number;
+  }[] =
+    data?.map((item: UsageStatisticsData) => {
+      const rawDate = parseISO(item.date);
+      const chartItem: {
         date: string;
-        lines: { licenceType: string; endOfDayCount: number }[];
-      }) => {
-        const rawDate = parseISO(item.date);
-        const chartItem: {
-          date: string;
-          rawDate: Date;
-          officeBusiness?: number;
-          officeProPlus?: number;
-        } = {
-          date: format(rawDate, 'PPP', { locale }),
-          rawDate,
-        };
+        rawDate: Date;
+        officeBusiness?: number;
+        officeProPlus?: number;
+      } = {
+        date: format(rawDate, 'PPP', { locale }),
+        rawDate,
+      };
 
-        item.lines.forEach(
-          (line: { licenceType: string; endOfDayCount: number }) => {
-            if (line.licenceType === 'officeBusiness') {
-              chartItem.officeBusiness = line.endOfDayCount;
-            } else if (line.licenceType === 'officeProPlus') {
-              chartItem.officeProPlus = line.endOfDayCount;
-            }
-          },
-        );
+      item.lines.forEach((line: { licenceType: LicenseEnum; endOfDayCount: number }) => {
+        if (line.licenceType === LicenseEnum.OFFICE_BUSINESS) {
+          chartItem.officeBusiness = line.endOfDayCount;
+        } else if (line.licenceType === LicenseEnum.OFFICE_PRO_PLUS) {
+          chartItem.officeProPlus = line.endOfDayCount;
+        }
+      });
 
-        return chartItem;
-      },
-    ) || [];
-  const handleCheckboxChange = (entry: any, e: any) => {
+      return chartItem;
+    }) || [];
+
+  const handleCheckboxChange = (
+    entry: { color: string; dataKey: string; inactive: boolean; type: LegendType; value: string },
+    e: OdsCheckboxChangeEvent,
+  ) => {
     setLineChartShow((old) => ({
       ...old,
       [entry.dataKey]: e.detail.checked,
     }));
   };
 
-  const renderLegend = ({ payload }: { payload: any[] }) => {
+  const renderLegend = ({
+    payload,
+  }: {
+    payload: {
+      color: string;
+      dataKey: string;
+      inactive: boolean;
+      type: LegendType;
+      value: string;
+    }[];
+  }) => {
     return (
       <div className="flex justify-center flex-wrap mt-12">
         {payload.map((entry) => (
@@ -145,9 +153,7 @@ export default function Consumption() {
             <OdsCheckbox
               name={entry.value}
               inputId={entry.value}
-              isChecked={
-                lineChartShow[entry.dataKey as keyof typeof lineChartShow]
-              }
+              isChecked={lineChartShow[entry.dataKey as keyof typeof lineChartShow]}
               onOdsChange={(e) => handleCheckboxChange(entry, e)}
             />
             <label htmlFor={entry.value} className="ml-2 flex items-center">
@@ -207,31 +213,15 @@ export default function Consumption() {
           <AreaChart data={chartData} accessibilityLayer>
             <defs>
               <linearGradient id="colorBusiness" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="5%"
-                  stopColor="var(--ods-color-success-300)"
-                  stopOpacity={0.8}
-                />
-                <stop
-                  offset="95%"
-                  stopColor="var(--ods-color-success-300)"
-                  stopOpacity={0}
-                />
+                <stop offset="5%" stopColor="var(--ods-color-success-300)" stopOpacity={0.8} />
+                <stop offset="95%" stopColor="var(--ods-color-success-300)" stopOpacity={0} />
               </linearGradient>
               <linearGradient id="colorProPlus" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="5%"
-                  stopColor="var(--ods-color-primary-300)"
-                  stopOpacity={0.8}
-                />
-                <stop
-                  offset="95%"
-                  stopColor="var(--ods-color-primary-300)"
-                  stopOpacity={0}
-                />
+                <stop offset="5%" stopColor="var(--ods-color-primary-300)" stopOpacity={0.8} />
+                <stop offset="95%" stopColor="var(--ods-color-primary-300)" stopOpacity={0} />
               </linearGradient>
             </defs>
-            <XAxis dataKey="date" tickFormatter={(tick) => tick} />
+            <XAxis dataKey="date" tickFormatter={(tick: string) => tick} />
             <YAxis
               label={{
                 value: t(`${NAMESPACES.DASHBOARD}:period`),
@@ -244,24 +234,33 @@ export default function Consumption() {
             <Legend
               aria-labelledby="legend-title"
               content={renderLegend}
-              payload={[
-                {
-                  id: 'officeBusiness',
-                  value: t('officeBusiness_serie_name'),
-                  type: 'square',
-                  color: 'var(--ods-color-success-300)',
-                  dataKey: 'officeBusiness',
-                  inactive: !lineChartShow.officeBusiness,
-                },
-                {
-                  id: 'officeProPlus',
-                  value: t('officeProPlus_serie_name'),
-                  type: 'square',
-                  color: 'var(--ods-color-primary-300)',
-                  dataKey: 'officeProPlus',
-                  inactive: !lineChartShow.officeProPlus,
-                },
-              ]}
+              payload={
+                [
+                  {
+                    id: 'officeBusiness',
+                    value: t('officeBusiness_serie_name'),
+                    type: 'square',
+                    color: 'var(--ods-color-success-300)',
+                    dataKey: 'officeBusiness',
+                    inactive: !lineChartShow.officeBusiness,
+                  },
+                  {
+                    id: 'officeProPlus',
+                    value: t('officeProPlus_serie_name'),
+                    type: 'square',
+                    color: 'var(--ods-color-primary-300)',
+                    dataKey: 'officeProPlus',
+                    inactive: !lineChartShow.officeProPlus,
+                  },
+                ] as {
+                  id: string;
+                  color: string;
+                  dataKey: string;
+                  inactive: boolean;
+                  type: LegendType;
+                  value: string;
+                }[]
+              }
             />
 
             {lineChartShow.officeBusiness && (

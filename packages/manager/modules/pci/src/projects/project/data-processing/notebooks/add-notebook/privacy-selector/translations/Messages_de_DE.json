@@ -1,7 +1,0 @@
-{
-  "data_processing_add_notebook_settings_item_restricted": "Eingeschränkter Zugang",
-  "data_processing_add_notebook_settings_item_restricted_description": "Zugang zu Ihrem Notebook haben nur Nutzer der Public Cloud von OVHcloud, die in Ihrem Projekt angelegt sind.",
-  "data_processing_add_notebook_settings_item_public": "Öffentlicher Zugang",
-  "data_processing_add_notebook_settings_item_public_description": "Ihr Notebook ist über Ihre URL für alle verfügbar. Jeder kann auf Ihren Code und die damit verbundenen Daten zugreifen.",
-  "data_processing_add_notebook_settings_item_public_warning": "Bitte seien Sie vorsichtig beim Umgang mit sensiblen Daten."
-}

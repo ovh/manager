@@ -18,7 +18,7 @@ describe('Considering the GoBack component', () => {
   test('Should be rendered with correct class and href attribute', () => {
     const goBackElement = getGoBackElement();
     expect(goBackElement).toBeInTheDocument();
-    expect(goBackElement).toHaveClass('mt-12 mb-3');
+    expect(goBackElement).toHaveClass('my-3');
     expect(goBackElement).toHaveAttribute('href', backHref);
   });
 

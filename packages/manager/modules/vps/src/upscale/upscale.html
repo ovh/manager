@@ -111,7 +111,7 @@
                                     data-translate="vps_upscale_choice_configuration_bandwidth"
                                 ></dt>
                                 <dd
-                                    data-ng-bind="range.formattedTechnical.bandwidth | bandwidth:'M':'bit'"
+                                    data-ng-bind="range.formattedTechnical.bandwidth | bandwidth:'M':'bit':false:3"
                                 ></dd>
                             </dl>
                         </oui-select-picker-description>
@@ -214,7 +214,7 @@
                                 data-ng-repeat="bandwidth in $ctrl.getAvailableValuesForParameter($ctrl.range.technicals, 'bandwidth.level') track by bandwidth"
                                 model="$ctrl.rangeConfiguration.bandwidth"
                                 name="{{:: bandwidth }}"
-                                label="{{:: bandwidth | bandwidth:'M':'bit' }}"
+                                label="{{:: bandwidth | bandwidth:'M':'bit':false:3 }}"
                                 data-values="[bandwidth]"
                                 on-change="$ctrl.getRangeConfigurationPricing()"
                                 variant="light"

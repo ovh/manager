@@ -3,6 +3,231 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.26.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.4...@ovh-ux/manager-web@19.26.5) (2025-10-27)
+
+
+### Bug Fixes
+
+* **web-hosting:** display git removal modal ([38c3e94](https://github.com/ovh/manager/commit/38c3e9411fd15ed6d1026785c265f5d9463b9b69)), closes [#PUWEBPT-93](https://github.com/ovh/manager/issues/PUWEBPT-93)
+
+
+
+
+
+## [19.26.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.3...@ovh-ux/manager-web@19.26.4) (2025-10-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4422] ([57b521e](https://github.com/ovh/manager/commit/57b521eb7a0b7f49cf08ae23939bcbc07f94ac17))
+
+
+
+
+
+## [19.26.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.2...@ovh-ux/manager-web@19.26.3) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.1...@ovh-ux/manager-web@19.26.2) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.0...@ovh-ux/manager-web@19.26.1) (2025-10-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4412] ([0061a13](https://github.com/ovh/manager/commit/0061a13d6714f2c9cafc6447d8674d73e65a889b))
+* **i18n:** add missing translations [CDS 4415] ([224b837](https://github.com/ovh/manager/commit/224b8376271874131463fb6e120b28e6e0b9a6f3))
+
+
+
+
+
+# [19.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.25.7...@ovh-ux/manager-web@19.26.0) (2025-10-21)
+
+
+### Features
+
+* **web-hosting:** migrate ongoing task tab in react ([593d5b2](https://github.com/ovh/manager/commit/593d5b293334e9100214094a328791df2cbe71b9)), closes [#WEB-21008](https://github.com/ovh/manager/issues/WEB-21008)
+
+
+
+
+
+## [19.25.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.25.6...@ovh-ux/manager-web@19.25.7) (2025-10-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.25.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.25.5...@ovh-ux/manager-web@19.25.6) (2025-10-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.25.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.25.4...@ovh-ux/manager-web@19.25.5) (2025-10-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.25.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.25.3...@ovh-ux/manager-web@19.25.4) (2025-10-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.25.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.25.2...@ovh-ux/manager-web@19.25.3) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.25.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.25.1...@ovh-ux/manager-web@19.25.2) (2025-10-09)
+
+
+### Bug Fixes
+
+* **web:** fix placeholder and default value ([#19449](https://github.com/ovh/manager/issues/19449)) ([8d0f752](https://github.com/ovh/manager/commit/8d0f7523af6b19c66177c8c64692741bc813e0f2)), closes [#DCE-61](https://github.com/ovh/manager/issues/DCE-61)
+
+
+
+
+
+## [19.25.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.25.0...@ovh-ux/manager-web@19.25.1) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [19.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.24.6...@ovh-ux/manager-web@19.25.0) (2025-10-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4380] ([856dcbc](https://github.com/ovh/manager/commit/856dcbc92b7a0def1c249d8802738212dddfc174))
+* **i18n:** add missing translations [CDS 4382] ([b4ccc3e](https://github.com/ovh/manager/commit/b4ccc3e5ce1bdc023ffcc828d799bd1e8b570d71))
+
+
+### Features
+
+* **web-hosting:** create modal and banner for abuse state ([21b6f9f](https://github.com/ovh/manager/commit/21b6f9fd3226553c9207445214d12c4e30a00636)), closes [#PUWEBPT-15](https://github.com/ovh/manager/issues/PUWEBPT-15)
+* **web-hosting:** update default selecton on web cloud database service list ([50b12a0](https://github.com/ovh/manager/commit/50b12a0ef2f0132ee1a94a36e52b77c541d73a5e)), closes [#MANAGER-19524](https://github.com/ovh/manager/issues/MANAGER-19524)
+
+
+
+
+
+## [19.24.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.24.5...@ovh-ux/manager-web@19.24.6) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.24.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.24.4...@ovh-ux/manager-web@19.24.5) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.24.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.24.3...@ovh-ux/manager-web@19.24.4) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.24.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.24.2...@ovh-ux/manager-web@19.24.3) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.24.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.24.1...@ovh-ux/manager-web@19.24.2) (2025-09-23)
+
+
+### Bug Fixes
+
+* **dns-3325:** remove button to delete DNS zone in DNS zone panel ([0a81de6](https://github.com/ovh/manager/commit/0a81de64c435830ce164de27ddbfab9b8a807111))
+* **dns-44:** allow null (dot) target on MX DNS record (rfc7505) ([67bd348](https://github.com/ovh/manager/commit/67bd34830e844aff7d682b6c4cabd74a1d45b153)), closes [#DNS-44](https://github.com/ovh/manager/issues/DNS-44)
+
+
+
+
+
+## [19.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.24.0...@ovh-ux/manager-web@19.24.1) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [19.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.23.10...@ovh-ux/manager-web@19.24.0) (2025-09-15)
+
+
+### Features
+
+* **web-hosting:** update phpmyadmin url ([776bbee](https://github.com/ovh/manager/commit/776bbeee1474c7d2e117a5e89df5766a73db658e)), closes [#MANAGER-19414](https://github.com/ovh/manager/issues/MANAGER-19414)
+
+
+
+
+
+## [19.23.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.23.9...@ovh-ux/manager-web@19.23.10) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.23.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.23.8...@ovh-ux/manager-web@19.23.9) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.23.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.23.7...@ovh-ux/manager-web@19.23.8) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
 ## [19.23.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.23.6...@ovh-ux/manager-web@19.23.7) (2025-09-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

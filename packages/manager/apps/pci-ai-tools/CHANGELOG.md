@@ -3,6 +3,122 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.12.3...@ovh-ux/manager-pci-ai-tools-app@1.13.0) (2025-10-27)
+
+
+### Features
+
+* **pci-ai-tools:** add qpu app in Manager ([#19967](https://github.com/ovh/manager/issues/19967)) ([7abe33b](https://github.com/ovh/manager/commit/7abe33b79845af4792fe20415b8685addbd89921)), closes [#AIS-1352](https://github.com/ovh/manager/issues/AIS-1352)
+
+
+
+
+
+## [1.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.12.2...@ovh-ux/manager-pci-ai-tools-app@1.12.3) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+## [1.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.12.1...@ovh-ux/manager-pci-ai-tools-app@1.12.2) (2025-10-16)
+
+
+### Bug Fixes
+
+* **config:** add missing complementaryAddress field to the user type ([7412865](https://github.com/ovh/manager/commit/74128656ce66647ce3c98d82334a53d120e2e620)), closes [#DCE-32](https://github.com/ovh/manager/issues/DCE-32)
+
+
+
+
+
+## [1.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.12.0...@ovh-ux/manager-pci-ai-tools-app@1.12.1) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+# [1.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.11.3...@ovh-ux/manager-pci-ai-tools-app@1.12.0) (2025-10-09)
+
+
+### Features
+
+* **pci-ai-tools:** add error boundary into pci ai tools ([61f2788](https://github.com/ovh/manager/commit/61f2788d47a26af636a661d3234547476c6f0795)), closes [#DATATR-2544](https://github.com/ovh/manager/issues/DATATR-2544)
+
+
+
+
+
+## [1.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.11.2...@ovh-ux/manager-pci-ai-tools-app@1.11.3) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+## [1.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.11.1...@ovh-ux/manager-pci-ai-tools-app@1.11.2) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+## [1.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.11.0...@ovh-ux/manager-pci-ai-tools-app@1.11.1) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+# [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.10.6...@ovh-ux/manager-pci-ai-tools-app@1.11.0) (2025-09-23)
+
+
+### Features
+
+* **pci-ai-tools:** add VRAM to Flavorble ([f1fed0b](https://github.com/ovh/manager/commit/f1fed0bb53abccfc5b42e7e7a80d430872302030)), closes [#AIS-1557](https://github.com/ovh/manager/issues/AIS-1557)
+
+
+
+
+
+## [1.10.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.10.5...@ovh-ux/manager-pci-ai-tools-app@1.10.6) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+## [1.10.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.10.4...@ovh-ux/manager-pci-ai-tools-app@1.10.5) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+## [1.10.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.10.3...@ovh-ux/manager-pci-ai-tools-app@1.10.4) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+## [1.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.10.2...@ovh-ux/manager-pci-ai-tools-app@1.10.3) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
 ## [1.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.10.1...@ovh-ux/manager-pci-ai-tools-app@1.10.2) (2025-09-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app

@@ -1,6 +1,0 @@
-{
-  "pci_app_command_title": "Creazione automatica di un'app equivalente",
-  "pci_app_command_description": "È possibile creare la stessa app utilizzando queste righe di comando nella CLI ovhai.",
-  "pci_app_command_help": "Scopri di più",
-  "pci_app_command_error": "Si è verificato un errore durante il tentativo di recupero del comando equivalente: {{message}}"
-}

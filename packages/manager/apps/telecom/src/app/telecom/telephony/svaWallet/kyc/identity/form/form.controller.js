@@ -12,8 +12,17 @@ import lemonWayLogo from '../../../lemonway_logo.png';
 
 export default class KycIdentityFormController {
   /* @ngInject */
-  constructor($translate, ovhPaymentMethodHelper) {
+  constructor(
+    $stateParams,
+    $translate,
+    $window,
+    coreURLBuilder,
+    ovhPaymentMethodHelper,
+  ) {
+    this.billingAccount = $stateParams.billingAccount;
     this.$translate = $translate;
+    this.$window = $window;
+    this.coreURLBuilder = coreURLBuilder;
     this.isValidIban = ovhPaymentMethodHelper.isValidIban;
   }
 
@@ -103,7 +112,10 @@ export default class KycIdentityFormController {
       this.wallet.company.websiteUrl = '';
     }
 
-    this.bankAccount = {};
+    this.bankAccount = {
+      holder: null,
+      iban: '',
+    };
 
     this.displayBeneficiaries = !!this.svaWallet;
 
@@ -205,7 +217,16 @@ export default class KycIdentityFormController {
           this.isOpenModal = false;
         });
     }
-    return this.saveWallet(wallet, this.bankAccount)
+
+    const redirectUrl = this.coreURLBuilder.buildURL(
+      'telecom',
+      `#/telephony/${this.billingAccount}`,
+    );
+
+    return this.saveWallet({ ...wallet, redirectUrl }, this.bankAccount)
+      .then(({ url }) => {
+        this.$window.top.location.href = url;
+      })
       .catch((error) => {
         this.errorMessage = error.data.message;
       })

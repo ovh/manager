@@ -3,7 +3,6 @@ import { describe, expect, test } from 'vitest';
 import { ErrorBannerProps } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
-  getPathMatch,
   instancesQueryKey,
   isCustomUrlSection,
   mapUnknownErrorToBannerError,
@@ -168,27 +167,5 @@ describe('Utility functions', () => {
         expect(isCustomUrlSection(input)).toStrictEqual(expectedOutput);
       });
     });
-  });
-
-  describe('Considering the getPathMatch function', () => {
-    type Data = {
-      pathname: string;
-      regex: RegExp;
-      expectedResult: string | null;
-    };
-
-    test.each`
-      pathname          | regex         | expectedResult
-      ${'/foo/bar'}     | ${/foo/}      | ${'foo'}
-      ${'/foo/bar'}     | ${/bar/}      | ${'bar'}
-      ${'/foo/bar'}     | ${/baz/}      | ${null}
-      ${'/foo/bar/baz'} | ${/foo\/bar/} | ${'foo/bar'}
-      ${'/foo/bar/baz'} | ${/bar\/baz/} | ${'bar/baz'}
-    `(
-      `Given a pathname '$pathname' and a regex '$regex', then expect result to be '$expectedResult'`,
-      ({ pathname, regex, expectedResult }: Data) => {
-        expect(getPathMatch(pathname, regex)).toBe(expectedResult);
-      },
-    );
   });
 });

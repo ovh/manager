@@ -1,6 +1,8 @@
-import { describe, vi } from 'vitest';
 import { render } from '@testing-library/react';
+import { describe, vi } from 'vitest';
+
 import { wrapper } from '@/wrapperRenders';
+
 import DetailPage from './Detail.page';
 
 describe('Detail', () => {

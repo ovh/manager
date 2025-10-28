@@ -1,8 +1,0 @@
-{
-  "pci_databases_service_integration_delete_confirm": "Bestätigen",
-  "pci_databases_service_integration_delete_cancel": "Abbrechen",
-  "pci_databases_service_integration_delete": "Integration löschen",
-  "pci_databases_service_integration_delete_description": "Sie sind im Begriff, Ihre Integration {{integrationType}} zu löschen. Möchten Sie fortfahren?",
-  "pci_databases_service_integration_delete_success_message": "Ihre Integration {{integrationType}} wurde gelöscht.",
-  "pci_databases_service_integration_delete_error_message": "Beim Löschen Ihrer Integration ist ein Fehler aufgetreten: {{message}}."
-}

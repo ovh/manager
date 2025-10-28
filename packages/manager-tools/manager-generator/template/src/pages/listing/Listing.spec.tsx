@@ -23,7 +23,12 @@ interface BaseLayoutProps {
 
 interface DataGridProps<T> {
   topbar?: ReactNode;
-  columns: { id: string; label: string; isSortable?: boolean; cell?: (row: T) => ReactNode }[];
+  columns: {
+    id: string;
+    label: string;
+    isSortable?: boolean;
+    cell?: (row: T) => ReactNode;
+  }[];
   items: T[];
   totalItems: number;
   hasNextPage: boolean;
@@ -31,7 +36,7 @@ interface DataGridProps<T> {
   isLoading: boolean;
 }
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
+vi.mock('@ovh-ux/muk', () => ({
   BaseLayout: ({ header, children, breadcrumb }: BaseLayoutProps) => (
     <div>
       <h1>{header.title}</h1>
@@ -63,7 +68,9 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
     </div>
   ),
   // eslint-disable-next-line react/no-multi-comp
-  DataGridTextCell: ({ children }: { children: ReactNode }) => <span>{children}</span>,
+  DataGridTextCell: ({ children }: { children: ReactNode }) => (
+    <span>{children}</span>
+  ),
   useDataGrid: () => ({ sorting: [] as string[], setSorting: vi.fn() }),
 }));
 
@@ -85,7 +92,12 @@ vi.mock('@/hooks/layout/useBreadcrumb', () => ({
 }));
 vi.mock('@/hooks/listing/useListingColumns', () => ({
   useListingColumns: () => [
-    { id: 'id', label: 'listing:id', isSortable: true, cell: (row: { id: string }) => row.id },
+    {
+      id: 'id',
+      label: 'listing:id',
+      isSortable: true,
+      cell: (row: { id: string }) => row.id,
+    },
   ],
 }));
 vi.mock('@/data/hooks/useResources', () => ({
@@ -158,6 +170,8 @@ describe('ListingPage', () => {
 
     const { default: Page } = await import('./Listing.page');
     render(<Page />);
-    expect(screen.getByTestId('columns')).toHaveTextContent('listing:auto_column');
+    expect(screen.getByTestId('columns')).toHaveTextContent(
+      'listing:auto_column',
+    );
   });
 });

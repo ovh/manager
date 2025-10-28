@@ -34,5 +34,6 @@
   "TopicsTab": "Topic",
   "TopicAclsTab": "ACL",
   "ConnectorsTab": "Connector",
-  "ReplicationsTab": "Fattore di replica"
+  "ReplicationsTab": "Fattore di replica",
+  "deletionProtectionBadgeLabel": "Protezione da eliminazione"
 }

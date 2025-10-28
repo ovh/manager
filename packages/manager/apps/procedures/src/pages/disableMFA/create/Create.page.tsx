@@ -1,14 +1,15 @@
 import React from 'react';
+
 import { Outlet } from 'react-router-dom';
-import { OsdsText } from '@ovhcloud/ods-components/react';
+
 import { useTranslation } from 'react-i18next';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-} from '@ovhcloud/ods-common-theming';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_LEVEL } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import useUser from '@/context/User/useUser';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+
 import { LegalInformations } from '@/components/legalInformations/LegalInformations.component';
+import useUser from '@/context/User/useUser';
 
 export default function CreateRequest() {
   const { t } = useTranslation('account-disable-2fa');
@@ -54,16 +55,10 @@ export default function CreateRequest() {
         size={ODS_TEXT_SIZE._400}
       >
         <p>{t('account-disable-2fa-create-attention-readable-doc')}</p>
-        <p className="mb-4">
-          {t('account-disable-2fa-create-attention-no-valid-doc')}
-        </p>
+        <p className="mb-4">{t('account-disable-2fa-create-attention-no-valid-doc')}</p>
         <p>{t('account-disable-2fa-create-delay', { mail: user.email })}</p>
-        <p className="mb-4">
-          {t('account-disable-2fa-create-reactivate-info')}
-        </p>
-        <p className="font-bold">
-          {t('account-disable-2fa-create-file-format')}
-        </p>
+        <p className="mb-4">{t('account-disable-2fa-create-reactivate-info')}</p>
+        <p className="font-bold">{t('account-disable-2fa-create-file-format')}</p>
       </OsdsText>
 
       <Outlet />

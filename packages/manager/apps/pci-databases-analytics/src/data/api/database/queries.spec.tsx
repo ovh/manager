@@ -1,5 +1,5 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
 import { describe, expect, vi } from 'vitest';
+import { apiClient } from '@/data/api/api.client';
 import {
   getCurrentQueries,
   cancelCurrentQuery,
@@ -8,7 +8,7 @@ import {
 } from '@/data/api/database/queries.api';
 import * as database from '@/types/cloud/project/database';
 
-vi.mock('@ovh-ux/manager-core-api', () => {
+vi.mock('@/data/api/api.client', () => {
   const get = vi.fn(() => {
     return Promise.resolve({ data: { queries: [] } });
   });

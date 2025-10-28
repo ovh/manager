@@ -57,6 +57,8 @@ baremetalUniverse.children = [
         routing: {
           application: 'dedicated-servers',
           hash: '#/',
+          pathMatcher: /(\/dedicated\/(configuration|server))|\/dedicated-servers/,
+          
         },
         features: ['dedicated-servers:container'],
       },

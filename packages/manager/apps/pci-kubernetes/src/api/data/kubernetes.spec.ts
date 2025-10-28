@@ -1,9 +1,7 @@
-import {
-  fetchIcebergV6,
-  IcebergFetchResultV6,
-  v6,
-} from '@ovh-ux/manager-core-api';
 import { describe, it, vi } from 'vitest';
+
+import { IcebergFetchResultV6, fetchIcebergV6, v6 } from '@ovh-ux/manager-core-api';
+
 import * as ApiKubernetesModule from '@/api/data/kubernetes';
 import {
   addOidcProvider,
@@ -21,8 +19,8 @@ import {
   resetKubeConfig,
   terminateCluster,
   updateKubePolicy,
-  updateKubernetesCluster,
   updateKubeVersion,
+  updateKubernetesCluster,
   updateOidcProvider,
 } from '@/api/data/kubernetes';
 import { TKube, TOidcProvider } from '@/types';
@@ -37,9 +35,7 @@ describe('getKubernetesCluster', () => {
 
   it('handles error when fetching kubernetes cluster', async () => {
     vi.mocked(v6.get).mockRejectedValue(new Error('Network Error'));
-    await expect(getKubernetesCluster('project1', 'kube1')).rejects.toThrow(
-      'Network Error',
-    );
+    await expect(getKubernetesCluster('project1', 'kube1')).rejects.toThrow('Network Error');
   });
 });
 
@@ -101,9 +97,7 @@ describe('resetKubeConfig', () => {
 
   it('handles error when resetting kube config', async () => {
     vi.mocked(v6.post).mockRejectedValue(new Error('Network Error'));
-    await expect(resetKubeConfig('project1', 'kube1')).rejects.toThrow(
-      'Network Error',
-    );
+    await expect(resetKubeConfig('project1', 'kube1')).rejects.toThrow('Network Error');
   });
 });
 
@@ -117,9 +111,7 @@ describe('getClusterRestrictions', () => {
 
   it('handles error when fetching cluster restrictions', async () => {
     vi.mocked(v6.get).mockRejectedValue(new Error('Network Error'));
-    await expect(getClusterRestrictions('project1', 'kube1')).rejects.toThrow(
-      'Network Error',
-    );
+    await expect(getClusterRestrictions('project1', 'kube1')).rejects.toThrow('Network Error');
   });
 });
 
@@ -143,9 +135,7 @@ describe('getOidcProvider', () => {
 
   it('handles error when fetching OIDC provider', async () => {
     vi.mocked(v6.get).mockRejectedValue(new Error('Network Error'));
-    await expect(getOidcProvider('project1', 'kube1')).rejects.toThrow(
-      'Network Error',
-    );
+    await expect(getOidcProvider('project1', 'kube1')).rejects.toThrow('Network Error');
   });
 });
 
@@ -159,9 +149,7 @@ describe('terminateCluster', () => {
 
   it('handles error when terminating cluster', async () => {
     vi.mocked(v6.delete).mockRejectedValue(new Error('Network Error'));
-    await expect(terminateCluster('project1', 'kube1')).rejects.toThrow(
-      'Network Error',
-    );
+    await expect(terminateCluster('project1', 'kube1')).rejects.toThrow('Network Error');
   });
 });
 
@@ -175,9 +163,9 @@ describe('updateKubeVersion', () => {
 
   it('handles error when updating kube version', async () => {
     vi.mocked(v6.post).mockRejectedValue(new Error('Network Error'));
-    await expect(
-      updateKubeVersion('project1', 'kube1', 'rolling'),
-    ).rejects.toThrow('Network Error');
+    await expect(updateKubeVersion('project1', 'kube1', 'rolling')).rejects.toThrow(
+      'Network Error',
+    );
   });
 });
 
@@ -191,9 +179,7 @@ describe('updateKubePolicy', () => {
 
   it('handles error when updating kube policy', async () => {
     vi.mocked(v6.put).mockRejectedValue(new Error('Network Error'));
-    await expect(
-      updateKubePolicy('project1', 'kube1', 'rolling'),
-    ).rejects.toThrow('Network Error');
+    await expect(updateKubePolicy('project1', 'kube1', 'rolling')).rejects.toThrow('Network Error');
   });
 });
 
@@ -207,9 +193,7 @@ describe('postKubeConfig', () => {
 
   it('handles error when posting kube config', async () => {
     vi.mocked(v6.post).mockRejectedValue(new Error('Network Error'));
-    await expect(postKubeConfig('project1', 'kube1')).rejects.toThrow(
-      'Network Error',
-    );
+    await expect(postKubeConfig('project1', 'kube1')).rejects.toThrow('Network Error');
   });
 });
 
@@ -233,9 +217,9 @@ describe('addOidcProvider', () => {
 
   it('handles error when adding OIDC provider', async () => {
     vi.mocked(v6.post).mockRejectedValue(new Error('Network Error'));
-    await expect(
-      addOidcProvider('project1', 'kube1', {} as TOidcProvider),
-    ).rejects.toThrow('Network Error');
+    await expect(addOidcProvider('project1', 'kube1', {} as TOidcProvider)).rejects.toThrow(
+      'Network Error',
+    );
   });
 });
 
@@ -259,9 +243,9 @@ describe('updateOidcProvider', () => {
 
   it('handles error when updating OIDC provider', async () => {
     vi.mocked(v6.put).mockRejectedValue(new Error('Network Error'));
-    await expect(
-      updateOidcProvider('project1', 'kube1', {} as TOidcProvider),
-    ).rejects.toThrow('Network Error');
+    await expect(updateOidcProvider('project1', 'kube1', {} as TOidcProvider)).rejects.toThrow(
+      'Network Error',
+    );
   });
 });
 
@@ -275,9 +259,7 @@ describe('removeOidcProvider', () => {
 
   it('handles error when removing OIDC provider', async () => {
     vi.mocked(v6.delete).mockRejectedValue(new Error('Network Error'));
-    await expect(removeOidcProvider('project1', 'kube1')).rejects.toThrow(
-      'Network Error',
-    );
+    await expect(removeOidcProvider('project1', 'kube1')).rejects.toThrow('Network Error');
   });
 });
 
@@ -312,9 +294,7 @@ describe('getSubscribedLogs', () => {
 
   it('handles error when fetching subscribed logs', async () => {
     vi.mocked(fetchIcebergV6).mockRejectedValue(new Error('Network Error'));
-    await expect(
-      getSubscribedLogs('project1', 'kube1', 'audit'),
-    ).rejects.toThrow('Network Error');
+    await expect(getSubscribedLogs('project1', 'kube1', 'audit')).rejects.toThrow('Network Error');
   });
 });
 
@@ -331,9 +311,7 @@ describe('postLogURL', () => {
 
   it('handles error when posting log URL', async () => {
     vi.mocked(v6.post).mockRejectedValue(new Error('Network Error'));
-    await expect(postLogURL('project1', 'kube1', 'audit')).rejects.toThrow(
-      'Network Error',
-    );
+    await expect(postLogURL('project1', 'kube1', 'audit')).rejects.toThrow('Network Error');
   });
 });
 
@@ -342,23 +320,16 @@ describe('createSubscription', () => {
   it.skip('creates subscription successfully', async () => {
     const mockOperation = { operationId: 'op1', serviceName: 'service1' };
     vi.mocked(v6.post).mockResolvedValue({ data: mockOperation });
-    vi.spyOn(ApiKubernetesModule, 'pollOperation').mockResolvedValue(
-      mockOperation,
-    );
-    const result = await createSubscription(
-      'project1',
-      'kube1',
-      'stream1',
-      'audit',
-    );
+    vi.spyOn(ApiKubernetesModule, 'pollOperation').mockResolvedValue(mockOperation);
+    const result = await createSubscription('project1', 'kube1', 'stream1', 'audit');
     expect(result).toEqual(mockOperation);
   });
 
   it('handles error when creating subscription', async () => {
     vi.mocked(v6.post).mockRejectedValue(new Error('Network Error'));
-    await expect(
-      createSubscription('project1', 'kube1', 'stream1', 'audit'),
-    ).rejects.toThrow('Network Error');
+    await expect(createSubscription('project1', 'kube1', 'stream1', 'audit')).rejects.toThrow(
+      'Network Error',
+    );
   });
 });
 
@@ -374,9 +345,7 @@ describe('pollOperation', () => {
   it.skip('throws error when state is ERROR', async () => {
     const mockOperation = 'ERROR';
     vi.mocked(v6.get).mockResolvedValue({ data: mockOperation });
-    await expect(pollOperation('service1', 'op1')).rejects.toThrow(
-      'Error: Network Error',
-    );
+    await expect(pollOperation('service1', 'op1')).rejects.toThrow('Error: Network Error');
   });
 
   it('polls until state is SUCCESS', async () => {
@@ -392,9 +361,7 @@ describe('pollOperation', () => {
   // TODO fix this test
   it.skip('throws error when polling fails', async () => {
     vi.mocked(v6.get).mockRejectedValue(new Error('Network Error'));
-    await expect(pollOperation('service1', 'op1')).rejects.toThrow(
-      'Network Error',
-    );
+    await expect(pollOperation('service1', 'op1')).rejects.toThrow('Network Error');
   });
 });
 
@@ -410,8 +377,6 @@ describe('deleteSubscription', () => {
 
   it('handles error when deleting subscription', async () => {
     vi.mocked(v6.delete).mockRejectedValue(new Error('Network Error'));
-    await expect(
-      deleteSubscription('project1', 'kube1', 'sub1'),
-    ).rejects.toThrow('Network Error');
+    await expect(deleteSubscription('project1', 'kube1', 'sub1')).rejects.toThrow('Network Error');
   });
 });

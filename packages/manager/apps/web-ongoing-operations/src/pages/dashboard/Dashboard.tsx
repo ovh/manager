@@ -7,7 +7,6 @@ import {
   useNavigate,
   useResolvedPath,
 } from 'react-router-dom';
-import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
 import {
   BaseLayout,
   GuideButton,
@@ -17,11 +16,14 @@ import {
   useFeatureAvailability,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
+import { Tab, TabList, Tabs } from '@ovhcloud/ods-react';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { GUIDES_LIST } from '@/guides.constants';
 import { getLanguageKey } from '@/utils/utils';
 import { urls } from '@/routes/routes.constant';
 import { useGetIAMResourceAllDom } from '@/hooks/iam/iam';
 import { allDomFeatureAvailibility, iamGetAllDomAction } from '@/constants';
+import { ParentEnum } from '@/enum/parent.enum';
 
 export const DNS_OPERATIONS_TABLE_HEADER_DOMAIN = 'DNS';
 
@@ -37,11 +39,11 @@ export type DashboardLayoutProps = {
 };
 
 export default function DashboardPage() {
-  const [activePanel, setActivePanel] = useState<string>('');
+  const [, setActivePanel] = useState<string>('');
   const [displayAllDom, setDisplayAllDom] = useState<boolean>(true);
   const location = useLocation();
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation('dashboard');
+  const { t, i18n } = useTranslation(['dashboard', NAMESPACES.DASHBOARD]);
   const { notifications } = useNotifications();
   const langCode = getLanguageKey(i18n.language);
 
@@ -50,7 +52,7 @@ export default function DashboardPage() {
       id: 1,
       href: GUIDES_LIST.domains.url[langCode],
       target: '_blank',
-      label: t('domain_operations_guides'),
+      label: t(`${NAMESPACES.DASHBOARD}:general_information`),
     },
   ];
   const { data: allDomIAMRessources } = useGetIAMResourceAllDom();
@@ -110,26 +112,24 @@ export default function DashboardPage() {
       }}
       description={t('domain_operations_dashboard_info')}
       tabs={
-        <OdsTabs>
-          {tabsList.map((tab: DashboardTabItemProps) => {
-            if (tab.hide) return <></>;
-            return (
-              <NavLink
-                key={`osds-tab-bar-item-${tab.name}`}
-                to={tab.to}
-                className="no-underline"
-              >
-                <OdsTab
-                  id={tab.name}
-                  role="tab"
-                  isSelected={activePanel === tab.name}
+        <Tabs defaultValue={ParentEnum.DOMAIN}>
+          <TabList>
+            {tabsList.map((tab: DashboardTabItemProps) => {
+              if (tab.hide) return <></>;
+              return (
+                <NavLink
+                  key={`osds-tab-bar-item-${tab.name}`}
+                  to={tab.to}
+                  className="no-underline"
                 >
-                  {tab.title}
-                </OdsTab>
-              </NavLink>
-            );
-          })}
-        </OdsTabs>
+                  <Tab id={tab.name} role="tab" value={tab.name}>
+                    {tab.title}
+                  </Tab>
+                </NavLink>
+              );
+            })}
+          </TabList>
+        </Tabs>
       }
       message={notifications.length ? <Notifications /> : null}
     >

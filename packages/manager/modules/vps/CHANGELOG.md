@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.50.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.9...@ovh-ux/manager-vps@2.50.10) (2025-10-23)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** fix issue with disk order and upgrade ([7a7cc7c](https://github.com/ovh/manager/commit/7a7cc7ce4a4d6593100dea1e5838338db6c74227)), closes [#PRDCOL-231](https://github.com/ovh/manager/issues/PRDCOL-231) [#PRDCOL-229](https://github.com/ovh/manager/issues/PRDCOL-229)
+
+
+
+
+
+## [2.50.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.8...@ovh-ux/manager-vps@2.50.9) (2025-09-30)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** fix issue bandwidth on upgrade ([ffb893b](https://github.com/ovh/manager/commit/ffb893b92ff3959bb62744c7295c95c81bf41e85)), closes [#PRDCOL-209](https://github.com/ovh/manager/issues/PRDCOL-209)
+
+
+
+
+
+## [2.50.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.7...@ovh-ux/manager-vps@2.50.8) (2025-09-16)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** fix issue for upgrade backup if no contract ([f857bc9](https://github.com/ovh/manager/commit/f857bc940a74fe7d5ea0d95a1d14d3107db39be9)), closes [#INC0153633](https://github.com/ovh/manager/issues/INC0153633)
+
+
+
+
+
+## [2.50.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.6...@ovh-ux/manager-vps@2.50.7) (2025-09-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4304] ([c3ebc2c](https://github.com/ovh/manager/commit/c3ebc2cd1396bd84ac35284df96a52160e5623e8)), closes [#MANAGER-19428](https://github.com/ovh/manager/issues/MANAGER-19428)
+
+
+
+
+
 ## [2.50.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.5...@ovh-ux/manager-vps@2.50.6) (2025-08-29)
 
 

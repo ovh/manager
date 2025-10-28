@@ -3,6 +3,96 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.17.3...@ovh-ux/manager-bm-server-components@2.17.4) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
+## [2.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.17.2...@ovh-ux/manager-bm-server-components@2.17.3) (2025-10-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
+## [2.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.17.1...@ovh-ux/manager-bm-server-components@2.17.2) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
+## [2.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.17.0...@ovh-ux/manager-bm-server-components@2.17.1) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
+# [2.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.16.1...@ovh-ux/manager-bm-server-components@2.17.0) (2025-10-07)
+
+
+### Features
+
+* **dedicated:** clean 7th of october 2025 eol personal templates banner ([49402b7](https://github.com/ovh/manager/commit/49402b7ffd821bffc2f17e51365169fae77cb432)), closes [#MANAGER-19856](https://github.com/ovh/manager/issues/MANAGER-19856)
+
+
+
+
+
+## [2.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.16.0...@ovh-ux/manager-bm-server-components@2.16.1) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
+# [2.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.15.0...@ovh-ux/manager-bm-server-components@2.16.0) (2025-10-01)
+
+
+### Features
+
+* **dedicated:** removes deprecated  /sws/dedicated/server/ api call ([b1822aa](https://github.com/ovh/manager/commit/b1822aaf02e38cf5def8a9b6768743d37e53a6d3)), closes [#MANAGER-17541](https://github.com/ovh/manager/issues/MANAGER-17541)
+* **dedicated:** updates getAuthorizableBlocks call ([53d0654](https://github.com/ovh/manager/commit/53d065413a4ae8fcb47e6763a157a1fbb73938b5)), closes [#MANAGER-17542](https://github.com/ovh/manager/issues/MANAGER-17542)
+
+
+
+
+
+# [2.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.14.3...@ovh-ux/manager-bm-server-components@2.15.0) (2025-09-22)
+
+
+### Features
+
+* **nutanix:** fetch server tasks with iceberg and adding filter status in datagrid ([bc4456c](https://github.com/ovh/manager/commit/bc4456c816fd9d0c29bf5e9cbd67e213a82c2f60)), closes [#MANAGER-17410](https://github.com/ovh/manager/issues/MANAGER-17410)
+
+
+
+
+
+## [2.14.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.14.2...@ovh-ux/manager-bm-server-components@2.14.3) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
+## [2.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.14.1...@ovh-ux/manager-bm-server-components@2.14.2) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
 ## [2.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.14.0...@ovh-ux/manager-bm-server-components@2.14.1) (2025-09-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-bm-server-components

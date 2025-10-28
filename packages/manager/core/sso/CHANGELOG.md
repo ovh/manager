@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-sso@0.4.5...@ovh-ux/manager-core-sso@0.4.6) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-sso
+
+
+
+
+
+## [0.4.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-sso@0.4.4...@ovh-ux/manager-core-sso@0.4.5) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-sso
+
+
+
+
+
+## [0.4.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-sso@0.4.3...@ovh-ux/manager-core-sso@0.4.4) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-sso
+
+
+
+
+
+## [0.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-sso@0.4.2...@ovh-ux/manager-core-sso@0.4.3) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-sso
+
+
+
+
+
+## [0.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-sso@0.4.1...@ovh-ux/manager-core-sso@0.4.2) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-sso
+
+
+
+
+
+## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-sso@0.4.0...@ovh-ux/manager-core-sso@0.4.1) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-sso
+
+
+
+
+
 # [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-sso@0.3.3...@ovh-ux/manager-core-sso@0.4.0) (2025-09-06)
 
 

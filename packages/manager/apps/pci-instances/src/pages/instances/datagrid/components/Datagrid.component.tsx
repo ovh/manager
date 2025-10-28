@@ -6,6 +6,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { Dispatch, SetStateAction, useEffect, useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 import { Filter } from '@ovh-ux/manager-core-api';
 import { usePciUrl } from '@ovh-ux/manager-pci-common';
@@ -16,14 +17,13 @@ import {
 import { NameIdCell } from '@/pages/instances/datagrid/components/cell/NameIdCell.component';
 import { useInstances } from '@/data/hooks/instance/useInstances';
 import { ActionsCell } from '@/pages/instances/datagrid/components/cell/ActionsCell.component';
-
-import { StatusCell } from '@/pages/instances/datagrid/components/cell/StatusCell.component';
 import { ListCell } from '@/pages/instances/datagrid/components/cell/ListCell.component';
 import { mapAddressesToListItems } from '@/pages/instances/mapper';
 import { DeepReadonly } from '@/types/utils.type';
 import { TAggregatedInstance } from '@/types/instance/entity.type';
 import { useDatagridPolling } from '../hooks/useDatagridPolling';
 import { TextCell } from '@/pages/instances/datagrid/components/cell/TextCell.component';
+import { TaskStatus } from '../../task/TaskStatus.component';
 
 type TFilterWithLabel = Filter & { label: string };
 type TSorting = {
@@ -68,7 +68,13 @@ const DatagridComponent = ({
   onSortChange,
 }: TDatagridComponentProps) => {
   const pciUrl = usePciUrl();
-  const { t } = useTranslation(['list', 'common', 'actions']);
+  const { t } = useTranslation([
+    'list',
+    'common',
+    'actions',
+    NAMESPACES.STATUS,
+    NAMESPACES.REGION,
+  ]);
   const { translateMicroRegion } = useTranslatedMicroRegions();
   const {
     addWarning,
@@ -122,7 +128,7 @@ const DatagridComponent = ({
             />
           );
         },
-        label: t('pci_instances_list_column_region'),
+        label: t(`${NAMESPACES.REGION}:localisation`),
         isSortable: false,
       },
       {
@@ -192,14 +198,15 @@ const DatagridComponent = ({
           const isPolling = !!pollingInstance && pollingInstance.isPolling;
 
           return (
-            <StatusCell
+            <TaskStatus
               isLoading={instancesQueryLoading}
-              instance={instance}
+              status={instance.status}
+              taskState={instance.taskState}
               isPolling={isPolling}
             />
           );
         },
-        label: t('pci_instances_list_column_status'),
+        label: t(`${NAMESPACES.STATUS}:status`),
         isSortable: false,
       },
       {

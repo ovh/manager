@@ -7,7 +7,11 @@ import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import ActionsComponent from './ActionsComponent';
 import { TObject } from '@/api/data/container';
-import { STATUS_DISABLED, STATUS_ENABLED } from '@/constants';
+import {
+  ReplicationStorageClass,
+  STATUS_DISABLED,
+  STATUS_ENABLED,
+} from '@/constants';
 import DestinationNameCell from './DestinationNameCell';
 
 export type TIndexedObject = TObject & { index: string };
@@ -19,7 +23,7 @@ export type TIndexedBackupConfiguration = {
   destination: {
     name: string;
     region: string;
-    storageClass: 'STANDARD' | 'STANDARD_IA' | 'HIGH_PERF';
+    storageClass: ReplicationStorageClass;
   };
   deleteMarkerReplication: 'enabled' | 'disabled';
   filter?: { prefix: string; tags: { [key: string]: string } };

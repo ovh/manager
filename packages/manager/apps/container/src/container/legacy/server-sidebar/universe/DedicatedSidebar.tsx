@@ -48,7 +48,9 @@ export const features = [
   'dedicated-server:nutanixOrder',
   'carbon-calculator',
   'network-security',
-  'key-management-service',
+  'okms',
+  'okms:key-management-service',
+  'okms:secret-manager',
 ];
 
 export default function DedicatedSidebar() {
@@ -61,7 +63,7 @@ export default function DedicatedSidebar() {
   const environment = shell.getPlugin('environment').getEnvironment();
   const { ovhSubsidiary, isTrusted } = environment.getUser();
   const region = environment.getRegion();
-  const {data: availability} = useFeatureAvailability(features);
+  const { data: availability } = useFeatureAvailability(features);
 
   const getDedicatedMenu = (feature: Record<string, boolean>) => {
     const menu = [];
@@ -371,7 +373,7 @@ export default function DedicatedSidebar() {
       });
     }
 
-    if (feature['key-management-service']) {
+    if (feature['okms']) {
       const keyIcon = (
         <OsdsIcon
           name={ODS_ICON_NAME.KEY_CONCEPT}
@@ -379,6 +381,9 @@ export default function DedicatedSidebar() {
           color={ODS_THEME_COLOR_INTENT.text}
         />
       );
+
+      const app = 'okms';
+
       menu.push({
         id: 'identity-security-operations',
         label: t('sidebar_security_identity_operations'),
@@ -389,16 +394,15 @@ export default function DedicatedSidebar() {
             color={ODS_THEME_COLOR_INTENT.text}
           />
         ),
-        pathMatcher: new RegExp('^/key-management-service'),
+        pathMatcher: new RegExp('^/okms/*'),
         subItems: [
-          {
+          feature['okms:key-management-service'] && {
             id: 'key-management-service',
             label: t('sidebar_key-management-service'),
-            href: navigation.getURL('key-management-service', '/'),
-            pathMatcher: new RegExp('^/key-management-service'),
+            href: navigation.getURL(app, '#/key-management-service'),
+            pathMatcher: new RegExp('^/okms/key-management-service'),
             icon: keyIcon,
             async loader() {
-              const app = 'key-management-service';
               const services = await loadServices(
                 '/okms/resource',
                 undefined,
@@ -409,18 +413,30 @@ export default function DedicatedSidebar() {
                 {
                   id: 'key-management-service-all',
                   label: t('sidebar_service_all'),
-                  href: navigation.getURL(app, '/'),
+                  href: navigation.getURL(app, '#/key-management-service'),
                   ignoreSearch: true,
                   icon: keyIcon,
                 },
                 ...services.map((service) => ({
                   ...service,
                   pathMatcher: new RegExp(
-                    `^/key-management-service/${service.serviceName}`,
+                    `^/okms/key-management-service/${service.serviceName}`,
                   ),
                 })),
               ];
             },
+          },
+          feature['okms:secret-manager'] && {
+            id: 'secret-manager',
+            label: 'Secret Manager',
+            badge: 'beta',
+            icon: <OsdsIcon
+              name={ODS_ICON_NAME.SHIELD_CONCEPT}
+              size={ODS_ICON_SIZE.xxs}
+              color={ODS_THEME_COLOR_INTENT.text}
+            />,
+            href: navigation.getURL(app, '#/secret-manager'),
+            pathMatcher: new RegExp('^/okms/secret-manager/*'),
           },
         ],
       });

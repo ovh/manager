@@ -93,14 +93,20 @@ export default class FtthEligibilityCtrl {
   createServiceList(services) {
     // Retrieve service info for each service
     const list = services.map((service) => {
-      if (service.accessType !== this.ACCESS_TYPE.ftth) {
+      if (
+        ![
+          this.ACCESS_TYPE.ftth,
+          this.ACCESS_TYPE.ftte,
+          this.ACCESS_TYPE.ftto,
+        ].includes(service.accessType)
+      ) {
         return this.FtthEligibilityService.getFiberEligibilities(
           service.accessName,
         ).then((data) =>
           this.createService(
             service,
             data[0].status,
-            data[0].copperGridClosureTrajectory,
+            data[0].firstCopperClosure,
           ),
         );
       }
@@ -109,7 +115,7 @@ export default class FtthEligibilityCtrl {
     return this.$q.all(list);
   }
 
-  createService(service, migrationAvailable, copperGridClosureTrajectory) {
+  createService(service, migrationAvailable, firstCopperClosure) {
     const { accessName, accessType, description, packName } = service;
     const createService = {
       accessName,
@@ -126,8 +132,8 @@ export default class FtthEligibilityCtrl {
         `#/pack/${packName}/migration`,
       ),
     };
-    if (copperGridClosureTrajectory) {
-      createService.copperGridClosureTrajectory = copperGridClosureTrajectory;
+    if (firstCopperClosure) {
+      createService.firstCopperClosure = firstCopperClosure;
     }
     return createService;
   }

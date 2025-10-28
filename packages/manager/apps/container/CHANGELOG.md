@@ -3,6 +3,396 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.161.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.161.2...@ovh-ux/manager-container-app@0.161.3) (2025-10-28)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.161.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.161.1...@ovh-ux/manager-container-app@0.161.2) (2025-10-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.161.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.161.0...@ovh-ux/manager-container-app@0.161.1) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.161.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.160.1...@ovh-ux/manager-container-app@0.161.0) (2025-10-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 741] ([5171211](https://github.com/ovh/manager/commit/5171211494a02ebc9f2c3f5635d19a90b6714ae1))
+* **web-hosting:** fix title wp translations ([d240108](https://github.com/ovh/manager/commit/d240108d706f571f20eb25284ce3cf0a5cbf8a05)), closes [#MANAGER-18901](https://github.com/ovh/manager/issues/MANAGER-18901)
+
+
+### Features
+
+* **web-hosting:** add listing pages resource and websites ([32b2662](https://github.com/ovh/manager/commit/32b266278f4163388bb77ac9ae6490d24776de9d)), closes [#MANAGER-18906](https://github.com/ovh/manager/issues/MANAGER-18906)
+* **web-hosting:** add managed for hosting wordpress import step 2 ([1329b7e](https://github.com/ovh/manager/commit/1329b7ee2a98a31bee2fff7c31db0ea2cee330e3)), closes [#MANAGER-19174](https://github.com/ovh/manager/issues/MANAGER-19174)
+* **web-hosting:** add menu entry wordpress managed ([43105fb](https://github.com/ovh/manager/commit/43105fbb4bed5af36c9f2c9ebfea5113b92c4ac5)), closes [#MANAGER-18901](https://github.com/ovh/manager/issues/MANAGER-18901)
+* **web-hosting:** add static analysis on wp managed ([93287d2](https://github.com/ovh/manager/commit/93287d296441b69ad7effee556f5250ec2433f70)), closes [#PUWEBPT-33](https://github.com/ovh/manager/issues/PUWEBPT-33)
+
+
+
+
+
+## [0.160.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.160.0...@ovh-ux/manager-container-app@0.160.1) (2025-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.160.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.159.0...@ovh-ux/manager-container-app@0.160.0) (2025-10-21)
+
+
+### Bug Fixes
+
+* **cookie-policy:** update cookie policy urls ([881a38c](https://github.com/ovh/manager/commit/881a38c65f6c464080f315011df3bd83f2d58c5e)), closes [#MANAGER-20036](https://github.com/ovh/manager/issues/MANAGER-20036)
+
+
+### Features
+
+* **container:** einvoicing modify the content of the pop up to update ([f1d572d](https://github.com/ovh/manager/commit/f1d572df53281dae8bd766baaf70e8290283b326)), closes [#MANAGER-19880](https://github.com/ovh/manager/issues/MANAGER-19880)
+
+
+
+
+
+# [0.159.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.158.3...@ovh-ux/manager-container-app@0.159.0) (2025-10-20)
+
+
+### Features
+
+* **pci-db-analytics:** change pci menu and clean streaming and fix advanced config ([559f0e7](https://github.com/ovh/manager/commit/559f0e73978e82ec10a2d43e45b178615d2a4365)), closes [#DATATR-2583](https://github.com/ovh/manager/issues/DATATR-2583) [#DATATR-2580](https://github.com/ovh/manager/issues/DATATR-2580)
+
+
+
+
+
+## [0.158.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.158.2...@ovh-ux/manager-container-app@0.158.3) (2025-10-20)
+
+
+### Bug Fixes
+
+* **container:** fix legacy menu display for vmware log tab ([d0d5937](https://github.com/ovh/manager/commit/d0d5937692ffbb33205ca5506f01e323f32edf88)), closes [#MAOBS-23](https://github.com/ovh/manager/issues/MAOBS-23)
+* **container:** fix node selection in pnr menu for custom path ([fb45a25](https://github.com/ovh/manager/commit/fb45a252393f0ee1a4f6d0e23c4c44b85e578f4b)), closes [#MAOBS-23](https://github.com/ovh/manager/issues/MAOBS-23)
+
+
+
+
+
+## [0.158.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.158.1...@ovh-ux/manager-container-app@0.158.2) (2025-10-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.158.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.158.0...@ovh-ux/manager-container-app@0.158.1) (2025-10-15)
+
+
+### Bug Fixes
+
+* **container:** fix static analysis kit version on container ([3249ee0](https://github.com/ovh/manager/commit/3249ee0d4debd165adb57ce9fe81c00ae6582f6a)), closes [#MANAGER-19276](https://github.com/ovh/manager/issues/MANAGER-19276)
+
+
+
+
+
+# [0.158.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.157.0...@ovh-ux/manager-container-app@0.158.0) (2025-10-14)
+
+
+### Bug Fixes
+
+* fix okms container menus ([bed2171](https://github.com/ovh/manager/commit/bed21712ca4348d549745158eeed866970a26c9c)), closes [#MANAGER-18172](https://github.com/ovh/manager/issues/MANAGER-18172)
+* **i18n:** add missing translations [CDS 672] ([652bfc6](https://github.com/ovh/manager/commit/652bfc61d53c0636ddc5ba10b85f6936f7689135))
+* **kms:** rename sms to secret-manager ([9de7689](https://github.com/ovh/manager/commit/9de76895c9f4ab43a0b4243a6ad63084b9dd32ab)), closes [#MANAGER-18508](https://github.com/ovh/manager/issues/MANAGER-18508)
+
+
+### Features
+
+* add secret-manager beta badge on main navigation ([5f3a226](https://github.com/ovh/manager/commit/5f3a2265def57e7e83cedbd34e015e85f2625e8d)), closes [#MANAGER-19502](https://github.com/ovh/manager/issues/MANAGER-19502)
+* **kms:** add secret-manager to legacy menu ([c92af9e](https://github.com/ovh/manager/commit/c92af9eb4787d9e3c437ba2143f197cab849c670)), closes [#MANAGER-18508](https://github.com/ovh/manager/issues/MANAGER-18508)
+* **okms:** add secret-management-service menu entry ([d46326c](https://github.com/ovh/manager/commit/d46326cf5ea66d217f89b35728cc46972af3cbdd)), closes [#MANAGER-17869](https://github.com/ovh/manager/issues/MANAGER-17869)
+
+
+
+
+
+# [0.157.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.156.0...@ovh-ux/manager-container-app@0.157.0) (2025-10-14)
+
+
+### Bug Fixes
+
+* fix okms container menus ([bed2171](https://github.com/ovh/manager/commit/bed21712ca4348d549745158eeed866970a26c9c)), closes [#MANAGER-18172](https://github.com/ovh/manager/issues/MANAGER-18172)
+* **i18n:** add missing translations [CDS 672] ([652bfc6](https://github.com/ovh/manager/commit/652bfc61d53c0636ddc5ba10b85f6936f7689135))
+* **kms:** rename sms to secret-manager ([9de7689](https://github.com/ovh/manager/commit/9de76895c9f4ab43a0b4243a6ad63084b9dd32ab)), closes [#MANAGER-18508](https://github.com/ovh/manager/issues/MANAGER-18508)
+
+
+### Features
+
+* add secret-manager beta badge on main navigation ([5f3a226](https://github.com/ovh/manager/commit/5f3a2265def57e7e83cedbd34e015e85f2625e8d)), closes [#MANAGER-19502](https://github.com/ovh/manager/issues/MANAGER-19502)
+* **kms:** add secret-manager to legacy menu ([c92af9e](https://github.com/ovh/manager/commit/c92af9eb4787d9e3c437ba2143f197cab849c670)), closes [#MANAGER-18508](https://github.com/ovh/manager/issues/MANAGER-18508)
+* **okms:** add secret-management-service menu entry ([d46326c](https://github.com/ovh/manager/commit/d46326cf5ea66d217f89b35728cc46972af3cbdd)), closes [#MANAGER-17869](https://github.com/ovh/manager/issues/MANAGER-17869)
+
+
+
+
+
+# [0.156.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.155.2...@ovh-ux/manager-container-app@0.156.0) (2025-10-14)
+
+
+### Bug Fixes
+
+* fix okms container menus ([bed2171](https://github.com/ovh/manager/commit/bed21712ca4348d549745158eeed866970a26c9c)), closes [#MANAGER-18172](https://github.com/ovh/manager/issues/MANAGER-18172)
+* **i18n:** add missing translations [CDS 672] ([652bfc6](https://github.com/ovh/manager/commit/652bfc61d53c0636ddc5ba10b85f6936f7689135))
+* **kms:** rename sms to secret-manager ([9de7689](https://github.com/ovh/manager/commit/9de76895c9f4ab43a0b4243a6ad63084b9dd32ab)), closes [#MANAGER-18508](https://github.com/ovh/manager/issues/MANAGER-18508)
+
+
+### Features
+
+* add secret-manager beta badge on main navigation ([5f3a226](https://github.com/ovh/manager/commit/5f3a2265def57e7e83cedbd34e015e85f2625e8d)), closes [#MANAGER-19502](https://github.com/ovh/manager/issues/MANAGER-19502)
+* **kms:** add secret-manager to legacy menu ([c92af9e](https://github.com/ovh/manager/commit/c92af9eb4787d9e3c437ba2143f197cab849c670)), closes [#MANAGER-18508](https://github.com/ovh/manager/issues/MANAGER-18508)
+* **okms:** add secret-management-service menu entry ([d46326c](https://github.com/ovh/manager/commit/d46326cf5ea66d217f89b35728cc46972af3cbdd)), closes [#MANAGER-17869](https://github.com/ovh/manager/issues/MANAGER-17869)
+
+
+
+
+
+## [0.155.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.155.1...@ovh-ux/manager-container-app@0.155.2) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.155.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.155.0...@ovh-ux/manager-container-app@0.155.1) (2025-10-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4393] ([7d75150](https://github.com/ovh/manager/commit/7d7515069dbad4ce06aa42d375510fc604684e0d))
+
+
+
+
+
+# [0.155.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.154.2...@ovh-ux/manager-container-app@0.155.0) (2025-10-09)
+
+
+### Features
+
+* **db:** remove db angular app and unused code ([caf83ff](https://github.com/ovh/manager/commit/caf83ff22815731161db0812ccffee36d43ceb6e)), closes [#DATATR-2480](https://github.com/ovh/manager/issues/DATATR-2480)
+
+
+
+
+
+## [0.154.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.154.1...@ovh-ux/manager-container-app@0.154.2) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.154.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.154.0...@ovh-ux/manager-container-app@0.154.1) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.154.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.153.0...@ovh-ux/manager-container-app@0.154.0) (2025-09-30)
+
+
+### Features
+
+* **container:** wrap modal handlers with usecallback ([7864882](https://github.com/ovh/manager/commit/78648826f66a7d82fd7b9578271c4a0ab561c8da)), closes [#MANAGER-18812](https://github.com/ovh/manager/issues/MANAGER-18812)
+
+
+
+
+
+# [0.153.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.152.1...@ovh-ux/manager-container-app@0.153.0) (2025-09-29)
+
+
+### Features
+
+* **pci-ai-tools:** add menu Qpu ([e148767](https://github.com/ovh/manager/commit/e148767a220b125c5de4180a02e9657dde0920a8)), closes [#AIS-1207](https://github.com/ovh/manager/issues/AIS-1207)
+
+
+
+
+
+## [0.152.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.152.0...@ovh-ux/manager-container-app@0.152.1) (2025-09-24)
+
+
+### Bug Fixes
+
+* **container:** issue with usecallback in suggestion modal ([f99fe64](https://github.com/ovh/manager/commit/f99fe646e25800910efaeb6b86135f99dd847e71)), closes [#MANAGER-19872](https://github.com/ovh/manager/issues/MANAGER-19872)
+* **container:** suggestion modal error management ([d5d67e7](https://github.com/ovh/manager/commit/d5d67e7e9db62fb5970afc3d7ba664303c37212a)), closes [#MANAGER-14721](https://github.com/ovh/manager/issues/MANAGER-14721)
+
+
+
+
+
+# [0.152.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.151.1...@ovh-ux/manager-container-app@0.152.0) (2025-09-23)
+
+
+### Features
+
+* **ai-tools:** delete ai tools angular code as it have been migrated to react ([08892c0](https://github.com/ovh/manager/commit/08892c0c38849e66a8d408e3f6cb200be7f29a72)), closes [#DATATR-2347](https://github.com/ovh/manager/issues/DATATR-2347)
+* **data-processing:** remove angular unused code and remove billing section ([7e49b07](https://github.com/ovh/manager/commit/7e49b07bf01f84d3f6e53c741cfa762f5a6c5866)), closes [#DATATR-2346](https://github.com/ovh/manager/issues/DATATR-2346)
+
+
+
+
+
+## [0.151.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.151.0...@ovh-ux/manager-container-app@0.151.1) (2025-09-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.151.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.150.1...@ovh-ux/manager-container-app@0.151.0) (2025-09-22)
+
+
+### Features
+
+* **kms:** redirect from "key-management-service" to "okms" ([a0b58da](https://github.com/ovh/manager/commit/a0b58da4784ccb99c3bc09943dc2014f7c5a1b6f)), closes [#MANAGER-19701](https://github.com/ovh/manager/issues/MANAGER-19701)
+
+
+
+
+
+## [0.150.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.150.0...@ovh-ux/manager-container-app@0.150.1) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.150.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.149.1...@ovh-ux/manager-container-app@0.150.0) (2025-09-17)
+
+
+### Bug Fixes
+
+* **okms:** kms legacy menu with services ([bfa90e7](https://github.com/ovh/manager/commit/bfa90e7c42c5ed8ca78c92b66b6620d79f6fa714)), closes [#MANAGER-19183](https://github.com/ovh/manager/issues/MANAGER-19183)
+
+
+### Features
+
+* **okms:** adapt menus for okms app ([6f35133](https://github.com/ovh/manager/commit/6f35133b3a1f90bbd5329ca8d643b32653a3d0c4)), closes [#MANAGER-19183](https://github.com/ovh/manager/issues/MANAGER-19183)
+
+
+
+
+
+## [0.149.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.149.0...@ovh-ux/manager-container-app@0.149.1) (2025-09-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4332] ([0a9c1bd](https://github.com/ovh/manager/commit/0a9c1bd9c0fd2e7d62bf199e2ac24c34876c0ed3))
+* **i18n:** add missing translations [CDS 4334] ([72fdc48](https://github.com/ovh/manager/commit/72fdc488c20ae4f6e13d1eeddaba54c0753e6040))
+* **i18n:** add missing translations [CDS 4337] ([9958cd9](https://github.com/ovh/manager/commit/9958cd95bb1e99068f2a59d5f621b4e9dbab1096))
+
+
+
+
+
+# [0.149.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.148.0...@ovh-ux/manager-container-app@0.149.0) (2025-09-16)
+
+
+### Features
+
+* **vcf:** rename vcd by public vcf ([c53d86a](https://github.com/ovh/manager/commit/c53d86aa368c5fd802cfd4e3285fac713ab373b7)), closes [#MANAGER-19106](https://github.com/ovh/manager/issues/MANAGER-19106)
+
+
+
+
+
+# [0.148.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.147.4...@ovh-ux/manager-container-app@0.148.0) (2025-09-16)
+
+
+### Bug Fixes
+
+* **container:** fix hideIfEmpty props ([d11cc6d](https://github.com/ovh/manager/commit/d11cc6d3f921c9f671c4961fa8a0ab7c4c5b10de)), closes [#MANAGER-19760](https://github.com/ovh/manager/issues/MANAGER-19760)
+
+
+### Features
+
+* **billing:** add my services shortcuts in account sidebar for us ([#18181](https://github.com/ovh/manager/issues/18181)) ([161b42b](https://github.com/ovh/manager/commit/161b42bc265fc844e0db5a52ecaf67eeed85908c)), closes [#MANAGER-18897](https://github.com/ovh/manager/issues/MANAGER-18897)
+* **container:** add tracking to changelog in pnr ([776c895](https://github.com/ovh/manager/commit/776c895364182b5faf8897ec8bc3da0b5c4be3ce)), closes [#MANAGER-18953](https://github.com/ovh/manager/issues/MANAGER-18953)
+
+
+
+
+
+## [0.147.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.147.3...@ovh-ux/manager-container-app@0.147.4) (2025-09-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4322] ([58414eb](https://github.com/ovh/manager/commit/58414eb3f25845b473e4cf23c23c33f2f0d2e423))
+
+
+
+
+
+## [0.147.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.147.2...@ovh-ux/manager-container-app@0.147.3) (2025-09-10)
+
+
+### Bug Fixes
+
+* **container:** add error management for modal display check ([76c02af](https://github.com/ovh/manager/commit/76c02af709d95dd16b4502f6fa459a4347763c89)), closes [#MANAGER-19604](https://github.com/ovh/manager/issues/MANAGER-19604)
+* **container:** remove payment modal style overriding pnr font ([6262ed5](https://github.com/ovh/manager/commit/6262ed59ffeb1d44822ecb392b7dfaa20b0d2a66)), closes [#MANAGER-19597](https://github.com/ovh/manager/issues/MANAGER-19597)
+
+
+
+
+
+## [0.147.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.147.1...@ovh-ux/manager-container-app@0.147.2) (2025-09-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4310] ([faec10f](https://github.com/ovh/manager/commit/faec10f8b8817f6a19ffa8d626554911d4d63b2e))
+* **i18n:** add missing translations [CDS 4314] ([9a4c8b3](https://github.com/ovh/manager/commit/9a4c8b332f86e7d8922432b9a8749ea620cc6624))
+* **i18n:** add missing translations [CDS 4318] ([c7acf66](https://github.com/ovh/manager/commit/c7acf669341b3a1545b548d3f4a6cb5f5206ca43))
+
+
+
+
+
+## [0.147.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.147.0...@ovh-ux/manager-container-app@0.147.1) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
 # [0.147.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.146.1...@ovh-ux/manager-container-app@0.147.0) (2025-09-06)
 
 

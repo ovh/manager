@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.18](https://github.com/ovh/manager/compare/@ovh-ux/ovh-reket@2.1.17...@ovh-ux/ovh-reket@2.1.18) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/ovh-reket
+
+
+
+
+
+## [2.1.17](https://github.com/ovh/manager/compare/@ovh-ux/ovh-reket@2.1.16...@ovh-ux/ovh-reket@2.1.17) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/ovh-reket
+
+
+
+
+
+## [2.1.16](https://github.com/ovh/manager/compare/@ovh-ux/ovh-reket@2.1.15...@ovh-ux/ovh-reket@2.1.16) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/ovh-reket
+
+
+
+
+
+## [2.1.15](https://github.com/ovh/manager/compare/@ovh-ux/ovh-reket@2.1.14...@ovh-ux/ovh-reket@2.1.15) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/ovh-reket
+
+
+
+
+
+## [2.1.14](https://github.com/ovh/manager/compare/@ovh-ux/ovh-reket@2.1.13...@ovh-ux/ovh-reket@2.1.14) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/ovh-reket
+
+
+
+
+
+## [2.1.13](https://github.com/ovh/manager/compare/@ovh-ux/ovh-reket@2.1.12...@ovh-ux/ovh-reket@2.1.13) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/ovh-reket
+
+
+
+
+
 ## [2.1.12](https://github.com/ovh/manager/compare/@ovh-ux/ovh-reket@2.1.11...@ovh-ux/ovh-reket@2.1.12) (2025-09-06)
 
 **Note:** Version bump only for package @ovh-ux/ovh-reket

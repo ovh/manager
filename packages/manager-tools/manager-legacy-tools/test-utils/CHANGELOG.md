@@ -3,6 +3,91 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.8.0...@ovh-ux/manager-core-test-utils@0.9.0) (2025-10-23)
+
+
+### Bug Fixes
+
+* **core:** test util fix ods version ([e30c767](https://github.com/ovh/manager/commit/e30c76715e25fb9423c626084f158de7bb4d6d98)), closes [#MANAGER-17986](https://github.com/ovh/manager/issues/MANAGER-17986)
+* **manager-react-components:** correct cds build ([d1c2874](https://github.com/ovh/manager/commit/d1c287429efdac508ffba611ddb55d3c30fa4c72)), closes [#MANAGER-19193](https://github.com/ovh/manager/issues/MANAGER-19193)
+
+
+### Features
+
+* **manager-react-components:** correct hooks folder typescript issue ([bb42a02](https://github.com/ovh/manager/commit/bb42a0212a72591567d37fe823f87cbcf28d5d1e)), closes [#MANAGER-19197](https://github.com/ovh/manager/issues/MANAGER-19197)
+* **manager-tools:** ignore ui test helpers ods18 ([c2b3feb](https://github.com/ovh/manager/commit/c2b3feb199827cc069351533f53e594fb6dc3ef3)), closes [#MANAGER-18874](https://github.com/ovh/manager/issues/MANAGER-18874)
+
+
+
+
+
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.7.7...@ovh-ux/manager-core-test-utils@0.8.0) (2025-10-21)
+
+
+### Features
+
+* **legacy-tools:** adding iceberg response handler ([9360206](https://github.com/ovh/manager/commit/9360206e8819dc290443bbdaed7b67a24386cb7b)), closes [#MANAGER-15320](https://github.com/ovh/manager/issues/MANAGER-15320)
+
+
+
+
+
+## [0.7.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.7.6...@ovh-ux/manager-core-test-utils@0.7.7) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-test-utils
+
+
+
+
+
+## [0.7.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.7.5...@ovh-ux/manager-core-test-utils@0.7.6) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-test-utils
+
+
+
+
+
+## [0.7.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.7.4...@ovh-ux/manager-core-test-utils@0.7.5) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-test-utils
+
+
+
+
+
+## [0.7.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.7.3...@ovh-ux/manager-core-test-utils@0.7.4) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-test-utils
+
+
+
+
+
+## [0.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.7.2...@ovh-ux/manager-core-test-utils@0.7.3) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-test-utils
+
+
+
+
+
+## [0.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.7.1...@ovh-ux/manager-core-test-utils@0.7.2) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-test-utils
+
+
+
+
+
+## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.7.0...@ovh-ux/manager-core-test-utils@0.7.1) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-core-test-utils
+
+
+
+
+
 # [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core-test-utils@0.6.0...@ovh-ux/manager-core-test-utils@0.7.0) (2025-09-06)
 
 

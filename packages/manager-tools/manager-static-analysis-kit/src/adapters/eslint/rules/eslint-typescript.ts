@@ -1,6 +1,6 @@
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
-import { Linter } from 'eslint';
+import { ESLint, Linter } from 'eslint';
 
 import { tsFiles } from '../../../configs/file-globs-config';
 
@@ -24,7 +24,7 @@ export const typescriptEslintConfig: Linter.FlatConfig = {
     },
   },
   plugins: {
-    '@typescript-eslint': tsPlugin,
+    '@typescript-eslint': tsPlugin as unknown as ESLint.Plugin,
   },
   rules: {
     ...tsPlugin.configs['recommended-type-checked'].rules,

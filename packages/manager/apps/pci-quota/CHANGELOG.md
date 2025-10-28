@@ -3,6 +3,145 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.50](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.49...@ovh-ux/manager-pci-quota-app@0.1.50) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
+## [0.1.49](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.48...@ovh-ux/manager-pci-quota-app@0.1.49) (2025-10-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
+## [0.1.48](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.47...@ovh-ux/manager-pci-quota-app@0.1.48) (2025-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
+## [0.1.47](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.46...@ovh-ux/manager-pci-quota-app@0.1.47) (2025-10-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
+## [0.1.46](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.45...@ovh-ux/manager-pci-quota-app@0.1.46) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
+## [0.1.45](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.44...@ovh-ux/manager-pci-quota-app@0.1.45) (2025-10-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
+## [0.1.44](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.43...@ovh-ux/manager-pci-quota-app@0.1.44) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
+## [0.1.43](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.42...@ovh-ux/manager-pci-quota-app@0.1.43) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
+## [0.1.42](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.41...@ovh-ux/manager-pci-quota-app@0.1.42) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
+## [0.1.41](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.40...@ovh-ux/manager-pci-quota-app@0.1.41) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
+## [0.1.40](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.39...@ovh-ux/manager-pci-quota-app@0.1.40) (2025-09-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
+## [0.1.39](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.38...@ovh-ux/manager-pci-quota-app@0.1.39) (2025-09-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
+## [0.1.38](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.37...@ovh-ux/manager-pci-quota-app@0.1.38) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
+## [0.1.37](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.36...@ovh-ux/manager-pci-quota-app@0.1.37) (2025-09-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
+## [0.1.36](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.35...@ovh-ux/manager-pci-quota-app@0.1.36) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
+## [0.1.35](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.34...@ovh-ux/manager-pci-quota-app@0.1.35) (2025-09-09)
+
+
+### Bug Fixes
+
+* **mrc:** mrc datagrid column visibility and filter ([fa92068](https://github.com/ovh/manager/commit/fa92068a67823c60d17c9ab134e1e70d7a05c432)), closes [#ISSUE-19038](https://github.com/ovh/manager/issues/ISSUE-19038)
+
+
+
+
+
+## [0.1.34](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.33...@ovh-ux/manager-pci-quota-app@0.1.34) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
+
+
+
+
+
 ## [0.1.33](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.1.32...@ovh-ux/manager-pci-quota-app@0.1.33) (2025-09-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-quota-app

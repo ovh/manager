@@ -1,11 +1,11 @@
+import { ComponentType } from 'react';
+
 import { Controller, useFormContext } from 'react-hook-form';
-import { OsdsFormField, OsdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import {
-  ODS_TEXT_COLOR_INTENT,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
+
+import { ODS_TEXT_COLOR_INTENT, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsFormField, OsdsText } from '@ovhcloud/ods-components/react';
+
 import { getErrorMessage } from '@/helpers';
 
 type TOptionalFormFieldProps = {
@@ -15,7 +15,7 @@ type TOptionalFormFieldProps = {
   dataTestId?: string;
   placeholder: string;
   caption?: string;
-  component: React.ComponentType<{
+  component: ComponentType<{
     name: string;
     value: string;
     onChange: (value: string | string[]) => void;

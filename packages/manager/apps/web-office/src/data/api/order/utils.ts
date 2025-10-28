@@ -1,4 +1,5 @@
 import JSURL from 'jsurl';
+
 import { OfficePrepaidPlanCodes } from './type';
 
 export type OrderProduct = {
@@ -18,9 +19,7 @@ export const formatOrderProduct = ({
     quantity,
     pricingMode: 'default',
     option: [],
-    configuration: [
-      { label: 'existing_tenant_service_name', value: serviceName },
-    ],
+    configuration: [{ label: 'existing_tenant_service_name', value: serviceName }],
   };
 };
 
@@ -31,9 +30,7 @@ export const generateOrderURL = ({
   baseURL: string;
   products: OrderProduct[];
 }) => {
-  return `${baseURL}?products=${JSURL.stringify(
-    products.map(formatOrderProduct),
-  )}`;
+  return `${baseURL}?products=${JSURL.stringify(products.map(formatOrderProduct))}`;
 };
 
 export const whitelistedPlanCodes = [

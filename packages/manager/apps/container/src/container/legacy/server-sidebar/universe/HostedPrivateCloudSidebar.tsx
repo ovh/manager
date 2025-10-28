@@ -18,7 +18,7 @@ import veeamBackupLogo from '@/assets/images/sidebar/veeam-backup-logo.png';
 
 const features = [
   'dedicated-cloud',
-  'hpc-vmware-managed-vcd',
+  'hpc-vmware-public-vcf-aas',
   'dedicated-cloud:sapHanaOrder',
   'nutanix',
   'veeam-enterprise',
@@ -46,7 +46,9 @@ const features = [
   'dedicated-server:ecoRangeOrder',
   'dedicated-server:nutanixOrder',
   'network-security',
-  'key-management-service',
+  'okms',
+  'okms:key-management-service',
+  'okms:secret-manager',
 ];
 
 export default function HostedPrivateCloudSidebar() {
@@ -69,6 +71,7 @@ export default function HostedPrivateCloudSidebar() {
         label: t('sidebar_vmware_vsphere'),
         icon: getIcon('ovh-font ovh-font-dedicatedCloud'),
         routeMatcher: new RegExp(`^(/configuration)?/dedicated_cloud`),
+        pathMatcher: new RegExp('^/vmware/vsphere/'),
         async loader() {
           const mbm = await loadServices('/dedicatedCloud', 'EPCC');
           return [
@@ -85,6 +88,7 @@ export default function HostedPrivateCloudSidebar() {
               routeMatcher: new RegExp(
                 `^(/configuration)?/dedicated_cloud/${service.serviceName}`,
               ),
+              pathMatcher: new RegExp(`^/vmware/vsphere/${service.serviceName}`),
               async loader() {
                 const datacenters = await loadServices(
                   `/dedicatedCloud/${service.serviceName}/datacenter`,
@@ -101,14 +105,14 @@ export default function HostedPrivateCloudSidebar() {
       });
     }
 
-    if (feature['hpc-vmware-managed-vcd']) {
+    if (feature['hpc-vmware-public-vcf-aas']) {
       menu.push({
         id: 'hpc-managed-vcd',
         label: t('sidebar_vmware_vcd'),
         icon: getIcon('ovh-font ovh-font-dedicatedCloud'),
-        pathMatcher: new RegExp(`^/hpc-vmware-managed-vcd`),
+        pathMatcher: new RegExp(`^/vmware/public-vcf-aas`),
         async loader() {
-          const app = 'hpc-vmware-managed-vcd';
+          const app = 'hpc-vmware-public-vcf-aas';
           const services = await loadServices(
             '/vmwareCloudDirector/organization',
             null,
@@ -127,7 +131,7 @@ export default function HostedPrivateCloudSidebar() {
               ...service,
               icon,
               pathMatcher: new RegExp(
-                `^/hpc-vmware-managed-vcd/${service.serviceName}`,
+                `^/vmware/public-vcf-aas/${service.serviceName}`,
               ),
             })),
           ];
@@ -352,7 +356,7 @@ export default function HostedPrivateCloudSidebar() {
       });
     }
 
-    if (feature['key-management-service']) {
+    if (feature['okms']) {
       const keyIcon = (
         <OsdsIcon
           name={ODS_ICON_NAME.KEY_CONCEPT}
@@ -360,6 +364,8 @@ export default function HostedPrivateCloudSidebar() {
           color={ODS_THEME_COLOR_INTENT.text}
         />
       );
+      const app = 'okms';
+
       menu.push({
         id: 'identity-security-operations',
         label: t('sidebar_security_identity_operations'),
@@ -370,16 +376,15 @@ export default function HostedPrivateCloudSidebar() {
             color={ODS_THEME_COLOR_INTENT.text}
           />
         ),
-        pathMatcher: new RegExp('^/key-management-service'),
+        pathMatcher: new RegExp('^/okms/*'),
         subItems: [
-          {
+          feature['okms:key-management-service'] && {
             id: 'key-management-service',
             label: t('sidebar_key-management-service'),
-            href: navigation.getURL('key-management-service', '/'),
-            pathMatcher: new RegExp('^/key-management-service'),
+            href: navigation.getURL(app, '#/key-management-service'),
+            pathMatcher: new RegExp('^/okms/key-management-service'),
             icon: keyIcon,
             async loader() {
-              const app = 'key-management-service';
               const services = await loadServices(
                 '/okms/resource',
                 undefined,
@@ -390,22 +395,35 @@ export default function HostedPrivateCloudSidebar() {
                 {
                   id: 'key-management-service-all',
                   label: t('sidebar_service_all'),
-                  href: navigation.getURL(app, '/'),
+                  href: navigation.getURL(app, '#/key-management-service'),
                   ignoreSearch: true,
                   icon: keyIcon,
                 },
                 ...services.map((service) => ({
                   ...service,
                   pathMatcher: new RegExp(
-                    `^/key-management-service/${service.serviceName}`,
+                    `^/okms/key-management-service/${service.serviceName}`,
                   ),
                 })),
               ];
             },
           },
+          feature['okms:secret-manager'] && {
+            id: 'okms-secret-manager',
+            label: 'Secret Manager',
+            badge: 'beta',
+            icon: <OsdsIcon
+              name={ODS_ICON_NAME.SHIELD_CONCEPT}
+              size={ODS_ICON_SIZE.xxs}
+              color={ODS_THEME_COLOR_INTENT.text}
+            />,
+            href: navigation.getURL(app, '#/secret-manager'),
+            pathMatcher: new RegExp('^/okms/secret-manager/*'),
+          },
         ],
       });
     }
+
     return menu;
   };
 

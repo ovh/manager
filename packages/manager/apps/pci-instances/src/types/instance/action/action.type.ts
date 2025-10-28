@@ -10,4 +10,17 @@ export type TSectionType =
   | 'rescue/start'
   | 'rescue/end'
   | 'backup'
-  | 'billing/monthly/activate';
+  | 'billing/monthly/activate'
+  | 'network/private/attach'
+  | 'attach';
+
+export type TActionLink = {
+  path: string;
+  isExternal: boolean;
+  isTargetBlank?: boolean;
+};
+
+export type TAction = {
+  label: string;
+  link: TActionLink;
+};

@@ -4,13 +4,15 @@ import {
   Datagrid,
   DatagridColumn,
   HeadersProps,
+  Notifications,
   RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { OdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { LABELS } from '@/utils/label.constants';
 import { urls } from '@/routes/routes.constant';
@@ -32,7 +34,7 @@ import Loading from '@/components/Loading/Loading';
 import { TRACKING } from '@/tracking.constants';
 
 export default function HistoryPage() {
-  const { t } = useTranslation('listing');
+  const { t } = useTranslation(['listing', NAMESPACES.STATUS]);
   const { t: tInstallation } = useTranslation('installation');
   const { t: tDashboard } = useTranslation('dashboard');
   const navigate = useNavigate();
@@ -91,7 +93,7 @@ export default function HistoryPage() {
     },
     {
       id: 'status',
-      label: t('sap_hub_history_installation_status'),
+      label: t(`${NAMESPACES.STATUS}:status`),
       cell: StatusCell,
       isSortable: false,
     },
@@ -124,6 +126,7 @@ export default function HistoryPage() {
           backLinkLabel={tInstallation('backlink_label')}
           onClickReturn={() => navigate(urls.dashboard)}
           description={t('sap_hub_history_title')}
+          message={<Notifications />}
         >
           <OdsButton
             variant={ODS_BUTTON_VARIANT.outline}
@@ -132,7 +135,7 @@ export default function HistoryPage() {
               navigate(urls.installationWizard);
             }}
             label={tDashboard('blocks_start_wizard')}
-            className="block mb-8"
+            className="block mb-8 w-fit"
           />
           {installations && (
             <Datagrid
@@ -142,6 +145,7 @@ export default function HistoryPage() {
               hasNextPage={false}
             />
           )}
+          <Outlet />
         </BaseLayout>
       </RedirectionGuard>
     </Suspense>

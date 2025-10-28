@@ -1,11 +1,15 @@
 import React from 'react';
-import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { useTranslation } from 'react-i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
+
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 function Breadcrumb() {
   const { shell } = React.useContext(ShellContext);
-  const { t } = useTranslation('catalog');
+  const { t } = useTranslation(NAMESPACES.NAVIGATION);
   const [href, setHref] = React.useState('');
 
   React.useEffect(() => {
@@ -25,7 +29,10 @@ function Breadcrumb() {
     href: String(href),
   };
 
-  const items = [rootItem, { label: t('title'), href: '#' }];
+  const items = [
+    rootItem,
+    { label: t('manager_navigation_catalog'), href: '#' },
+  ];
   return <OsdsBreadcrumb items={items} />;
 }
 

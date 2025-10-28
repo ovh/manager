@@ -32,5 +32,7 @@
   "iam_create_policy_form_description_error_pattern": "O nome da política só pode conter caracteres alfanuméricos, espaços e \"-\", \"/\", \"_\", \"+\"",
   "iam_create_policy_form_description_heading": "Descrição da política",
   "iam_create_policy_form_resource_groups_description": "Adicione grupos de recursos",
-  "iam_create_policy_form_resources_action": "Defina um tipo de produto para selecionar recursos"
+  "iam_create_policy_form_resources_action": "Defina um tipo de produto para selecionar recursos",
+  "iam_create_policy_form_conditions_description": "As ações sobre os recursos são permitidas quando se cumprem todas as condições.",
+  "iam_create_policy_form_conditions_heading": "Condições"
 }

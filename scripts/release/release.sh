@@ -43,18 +43,41 @@ get_changed_packages() {
 get_release_name() {
   seed="$1"
   release_name=$(node scripts/release/index.js "$seed")
-  latest_release="$(git tag -l "${release_name}*" --sort=taggerdate | tail -1)"
-  if [ -z "$latest_release" ]; then
+
+  # If the base tag doesn't exist, return it directly
+  if ! git rev-parse "$release_name" >/dev/null 2>&1; then
     printf "%s\n" "$release_name"
-  else
-    id="${latest_release/$release_name-/}"
-    if [ -z "$id" ]; then
-      printf "%s\n" "$release_name-1"
-    else
-      next_id="$((id + 1))"
-      printf "%s\n" "$release_name-$next_id"
-    fi
+    return
   fi
+
+  # Extract trailing numeric ID if present
+  if [[ "$release_name" =~ ^(.+)-([0-9]+)$ ]]; then
+    prefix="${BASH_REMATCH[1]}"
+    id="${BASH_REMATCH[2]}"
+    next_id=$((id + 1))
+  else
+    prefix="$release_name"
+    next_id=1
+  fi
+
+  candidate="${prefix}-${next_id}"
+  max_attempts=50
+  counter=0
+
+  # Try until we find a free tag name
+  while [ $counter -lt $max_attempts ]; do
+    if ! git rev-parse "$candidate" >/dev/null 2>&1; then
+      printf "%s\n" "$candidate"
+      return
+    fi
+
+    next_id=$((next_id + 1))
+    candidate="${prefix}-${next_id}"
+    counter=$((counter + 1))
+  done
+
+  echo "❌ Error: Could not find a free tag name after ${max_attempts} attempts." >&2
+  exit 1
 }
 
 create_release_note() (
@@ -63,6 +86,7 @@ create_release_note() (
 
 push_and_release() {
   printf "%s\n" "Commit and tag"
+  git restore package.json
   git add .
   git commit -s -m "release(*): $1"
   git tag -a -m "release: $1" "$1"
@@ -75,7 +99,15 @@ push_and_release() {
 
 update_sonar_version() {
   printf "%s\n" "Updating sonar"
-  sed -i "s/sonar\.projectVersion=.*/sonar\.projectVersion=$1/" ".sonarcloud.properties"
+
+  # Works on both macOS (BSD) and Linux (GNU)
+  if sed --version >/dev/null 2>&1; then
+    # GNU sed
+    sed -i "s/sonar\.projectVersion=.*/sonar\.projectVersion=$1/" ".sonarcloud.properties"
+  else
+    # BSD/macOS sed
+    sed -i '' "s/sonar\.projectVersion=.*/sonar\.projectVersion=$1/" ".sonarcloud.properties"
+  fi
 }
 
 help()

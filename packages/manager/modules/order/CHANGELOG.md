@@ -3,6 +3,70 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.11.7...@ovh-ux/manager-module-order@0.11.8) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-order
+
+
+
+
+
+## [0.11.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.11.6...@ovh-ux/manager-module-order@0.11.7) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-order
+
+
+
+
+
+## [0.11.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.11.5...@ovh-ux/manager-module-order@0.11.6) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-order
+
+
+
+
+
+## [0.11.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.11.4...@ovh-ux/manager-module-order@0.11.5) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-order
+
+
+
+
+
+## [0.11.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.11.3...@ovh-ux/manager-module-order@0.11.4) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-order
+
+
+
+
+
+## [0.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.11.2...@ovh-ux/manager-module-order@0.11.3) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-order
+
+
+
+
+
+## [0.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.11.1...@ovh-ux/manager-module-order@0.11.2) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-order
+
+
+
+
+
+## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.11.0...@ovh-ux/manager-module-order@0.11.1) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-order
+
+
+
+
+
 # [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-order@0.10.10...@ovh-ux/manager-module-order@0.11.0) (2025-09-06)
 
 

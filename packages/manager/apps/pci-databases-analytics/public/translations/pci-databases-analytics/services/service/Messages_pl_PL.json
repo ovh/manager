@@ -34,5 +34,6 @@
   "TopicsTab": "Topiki",
   "TopicAclsTab": "ACL",
   "ConnectorsTab": "Konektory",
-  "ReplicationsTab": "Strumień replikacji"
+  "ReplicationsTab": "Strumień replikacji",
+  "deletionProtectionBadgeLabel": "Ochrona przed usunięciem"
 }

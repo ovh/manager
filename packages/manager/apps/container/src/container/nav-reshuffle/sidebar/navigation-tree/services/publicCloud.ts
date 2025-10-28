@@ -352,32 +352,12 @@ pciNode.children = [
     universe: PUBLICCLOUD_UNIVERSE_ID,
     translation: 'sidebar_pci_analytics',
     features: [
-      'data-processing',
       'logs-data-platform',
-      'databases-analysis',
-      'databases-operational',
-      'databases-streaming',
       'pci-databases-analytics-analysis',
       'pci-databases-analytics-operational',
-      'pci-databases-analytics-streaming',
     ],
     forceVisibility: true,
     children: [
-      // Entry menu for PCI Databases for Angular
-      {
-        id: 'pci-databases-operational',
-        idAttr: 'pci-databases-operational',
-        universe: PUBLICCLOUD_UNIVERSE_ID,
-        translation: 'sidebar_pci_analytics_databases',
-        serviceType: 'CLOUD_PROJECT_DATABASE',
-        routing: {
-          application: 'public-cloud',
-          hash:
-            '#/pci/projects/{projectId}/storages/databases-analytics/databases',
-        },
-        features: ['databases-operational'],
-        forceVisibility: true,
-      },
       // Entry menu for PCI Databases for React
       {
         id: 'pci-databases-analytics-operational',
@@ -391,62 +371,6 @@ pciNode.children = [
             '#/pci/projects/{projectId}/databases-analytics/operational/services',
         },
         features: ['pci-databases-analytics-operational'],
-        forceVisibility: true,
-      },
-      // Entry menu for PCI Data Streaming for Angular
-      {
-        id: 'pci-databases-streaming',
-        idAttr: 'pci-databases-streaming',
-        universe: PUBLICCLOUD_UNIVERSE_ID,
-        translation: 'sidebar_pci_analytics_data_streaming',
-        serviceType: 'CLOUD_PROJECT_DATABASE',
-        routing: {
-          application: 'public-cloud',
-          hash:
-            '#/pci/projects/{projectId}/storages/databases-analytics/data-streaming',
-        },
-        features: ['databases-streaming'],
-        forceVisibility: true,
-      },
-      // Entry menu for PCI Data Streaming for React
-      {
-        id: 'pci-databases-analytics-streaming',
-        translation: 'sidebar_pci_analytics_data_streaming',
-        serviceType: 'CLOUD_PROJECT_DATABASE',
-        routing: {
-          application: 'public-cloud',
-          hash:
-            '#/pci/projects/{projectId}/databases-analytics/streaming/services',
-        },
-        features: ['pci-databases-analytics-streaming'],
-        forceVisibility: true,
-      },
-      {
-        id: 'pci-data-processing',
-        idAttr: 'pci-data-processing-link',
-        universe: PUBLICCLOUD_UNIVERSE_ID,
-        translation: 'sidebar_pci_data_processing',
-        serviceType: 'CLOUD_PROJECT_DATAPROCESSING_JOBS',
-        routing: {
-          application: 'public-cloud',
-          hash: '#/pci/projects/{projectId}/data-processing',
-        },
-        features: ['data-processing'],
-        forceVisibility: true,
-      },
-      // Entry menu for PCI Data Analysis for Angular
-      {
-        id: 'pci-databases-analysis',
-        idAttr: 'pci-databases-analysis-link',
-        universe: PUBLICCLOUD_UNIVERSE_ID,
-        translation: 'sidebar_pci_analytics_data_analysis',
-        serviceType: 'CLOUD_PROJECT_DATABASE',
-        routing: {
-          application: 'public-cloud',
-          hash:
-            '#/pci/projects/{projectId}/storages/databases-analytics/data-analysis',
-        },
-        features: ['databases-analysis'],
         forceVisibility: true,
       },
       // Entry menu for PCI Data Analysis for React
@@ -484,8 +408,7 @@ pciNode.children = [
         hasService: false,
         routing: {
           application: 'public-cloud',
-          hash:
-            '#/pci/projects/{projectId}/dataplatform',
+          hash: '#/pci/projects/{projectId}/dataplatform',
         },
         features: ['pci-dataplatform'],
         tag: NodeTag.NEW,
@@ -498,10 +421,6 @@ pciNode.children = [
     universe: PUBLICCLOUD_UNIVERSE_ID,
     translation: 'sidebar_pci_ai',
     features: [
-      'notebooks',
-      'ai-apps',
-      'training',
-      'ai-dashboard',
       'pci-ai-endpoints',
       'pci-ai-dashboard',
       'pci-ai-notebooks',
@@ -564,58 +483,6 @@ pciNode.children = [
         forceVisibility: true,
       },
       {
-        id: 'pci-ai-dashboard',
-        idAttr: 'pci-ai-dashboard-link',
-        universe: pciNode.id,
-        translation: 'sidebar_pci_ai_dashboard',
-        serviceType: 'CLOUD_PROJECT_AI_DASHBOARD',
-        routing: {
-          application: 'public-cloud',
-          hash: '#/pci/projects/{projectId}/ai-dashboard',
-        },
-        features: ['ai-dashboard'],
-        forceVisibility: true,
-      },
-      {
-        id: 'pci-ai-notebooks',
-        idAttr: 'pci-ai-notebooks-link',
-        universe: PUBLICCLOUD_UNIVERSE_ID,
-        translation: 'sidebar_pci_ai_notebooks',
-        serviceType: 'CLOUD_PROJECT_AI_NOTEBOOK',
-        routing: {
-          application: 'public-cloud',
-          hash: '#/pci/projects/{projectId}/notebooks',
-        },
-        features: ['notebooks'],
-        forceVisibility: true,
-      },
-      {
-        id: 'pci-ai-training',
-        idAttr: 'pci-ai-training-link',
-        universe: PUBLICCLOUD_UNIVERSE_ID,
-        translation: 'sidebar_pci_ai_training',
-        serviceType: 'CLOUD_PROJECT_AI_JOB',
-        routing: {
-          application: 'public-cloud',
-          hash: '#/pci/projects/{projectId}/training',
-        },
-        features: ['training'],
-        forceVisibility: true,
-      },
-      {
-        id: 'pci-ai-app',
-        idAttr: 'pci-ai-app-link',
-        universe: PUBLICCLOUD_UNIVERSE_ID,
-        translation: 'sidebar_pci_ai_app',
-        serviceType: 'CLOUD_PROJECT_AI_APP',
-        routing: {
-          application: 'public-cloud',
-          hash: '#/pci/projects/{projectId}/ai',
-        },
-        features: ['ai-apps'],
-        forceVisibility: true,
-      },
-      {
         id: 'pci-ai-endpoints-app',
         idAttr: 'pci-ai-endpoints-app-link',
         universe: PUBLICCLOUD_UNIVERSE_ID,
@@ -635,9 +502,7 @@ pciNode.children = [
     idAttr: 'pci-quantum-link',
     universe: PUBLICCLOUD_UNIVERSE_ID,
     translation: 'sidebar_pci_quantum',
-    features: [
-      'pci-quantum-emulators',
-    ],
+    features: ['pci-quantum-emulators', 'pci-quantum-qpu'],
     forceVisibility: true,
     children: [
       {
@@ -651,7 +516,21 @@ pciNode.children = [
           hash: '#/pci/projects/{projectId}/ai-ml/quantum/notebooks',
         },
         forceVisibility: true,
-        tag: NodeTag.NEW
+        features: ['pci-quantum-emulators'],
+      },
+      {
+        id: 'pci-quantum-qpu',
+        idAttr: 'pci-quantum-qpu-link',
+        universe: PUBLICCLOUD_UNIVERSE_ID,
+        translation: 'sidebar_pci_quantum_qpu',
+        serviceType: 'CLOUD_PROJECT_QUANTUM_QPU',
+        routing: {
+          application: 'public-cloud',
+          hash: '#/pci/projects/{projectId}/ai-ml/quantum/qpu',
+        },
+        forceVisibility: true,
+        features: ['pci-quantum-qpu'],
+        tag: NodeTag.NEW,
       },
     ],
   },

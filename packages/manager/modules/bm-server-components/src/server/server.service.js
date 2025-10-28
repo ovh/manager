@@ -23,6 +23,7 @@ export default class Server {
     OvhHttp,
     Polling,
     WucApi,
+    icebergUtils,
   ) {
     this.$cacheFactory = $cacheFactory;
     this.$http = $http;
@@ -36,6 +37,7 @@ export default class Server {
     this.OvhHttp = OvhHttp;
     this.Polling = Polling;
     this.WucApi = WucApi;
+    this.icebergUtils = icebergUtils;
 
     this.serverCaches = {
       ipmi: $cacheFactory('UNIVERS_DEDICATED_SERVER_IPMI'),
@@ -147,6 +149,14 @@ export default class Server {
       URI.expand(this.constants.renew, {
         serviceName: productId,
       }).toString(),
+    );
+  }
+
+  getTasks(serviceName, paginationParams = {}, urlParams = {}) {
+    return this.icebergUtils.icebergQuery(
+      `/dedicated/server/${serviceName}/task`,
+      paginationParams,
+      urlParams,
     );
   }
 
@@ -495,16 +505,37 @@ export default class Server {
     );
   }
 
-  getAuthorizableBlocks(serviceName) {
+  getFtpBackupAccess(serviceName) {
     return this.OvhHttp.get(
-      '/sws/dedicated/server/{serviceName}/backupFtp/access/authorizableBlocks',
+      '/dedicated/server/{serviceName}/features/backupFTP/access',
       {
-        rootPath: '2api',
+        rootPath: 'apiv6',
         urlParams: {
           serviceName,
         },
       },
     );
+  }
+
+  getFtpBackupAuthorizableBlocks(serviceName) {
+    return this.OvhHttp.get(
+      '/dedicated/server/{serviceName}/features/backupFTP/authorizableBlocks',
+      {
+        rootPath: 'apiv6',
+        urlParams: {
+          serviceName,
+        },
+      },
+    );
+  }
+
+  getAuthorizableBlocks(serviceName) {
+    return this.$q
+      .all([
+        this.getFtpBackupAccess(serviceName),
+        this.getFtpBackupAuthorizableBlocks(serviceName),
+      ])
+      .then((data) => data.flat().sort());
   }
 
   postFtpBackupIp(serviceName, ipBlocksList, ftp, nfs, cifs) {
@@ -571,16 +602,36 @@ export default class Server {
   }
 
   getFtpBackupOrderDetail(serviceName, capacity) {
-    return this.OvhHttp.get(
-      '/sws/dedicated/server/{serviceName}/backupFtp/order/{capacity}/details',
-      {
-        rootPath: '2api',
-        urlParams: {
-          serviceName,
-          capacity,
-        },
+    const options = {
+      rootPath: 'apiv6',
+      urlParams: {
+        serviceName,
       },
-    );
+      params: {
+        capacity,
+      },
+    };
+
+    return this.OvhHttp.get(
+      '/order/dedicated/server/{serviceName}/backupStorage',
+      options,
+    ).then((durations) => {
+      if (durations[0]) {
+        return this.OvhHttp.get(
+          '/order/dedicated/server/{serviceName}/backupStorage/{duration}',
+          {
+            ...options,
+            urlParams: {
+              ...options.urlParams,
+              duration: durations[0],
+            },
+          },
+        ).then((data) => {
+          return { ...data, duration: durations[0] };
+        });
+      }
+      throw new Error('durations not found');
+    });
   }
 
   postFtpBackupOrderDetail(serviceName, duration, capacity) {
@@ -828,13 +879,6 @@ export default class Server {
         },
       },
     );
-  }
-
-  getPersonalTemplatesList() {
-    // temporary, to be removed with all its dependencies starting from 7th of October 2025
-    return this.OvhHttp.get('/me/installationTemplate', {
-      rootPath: 'apiv6',
-    });
   }
 
   getPartitionSchemes(productId, templateName) {
@@ -1256,6 +1300,16 @@ export default class Server {
 
   getModels() {
     return this.$http.get('apiv6/dedicated/server.json', { cache: true });
+  }
+
+  getModel(key) {
+    return this.getModels().then(({ data }) => {
+      const { models } = data;
+      if (!models[key]) {
+        throw new Error(`Model '${key}' not found`);
+      }
+      return models[key];
+    });
   }
 
   terminate(serviceName) {

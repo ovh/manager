@@ -24,7 +24,7 @@
 
     /* Custom Types */
     "types": ["node"],
-    "typeRoots": ["./src/adapters/eslint/types", "./node_modules/@types"],
+    "typeRoots": ["./src/adapters/eslint/types", "./src/adapters/html-w3c-validation/types", "./node_modules/@types"],
   },
   /* Custom Config To Keep Extension */
   "tsc-alias": {

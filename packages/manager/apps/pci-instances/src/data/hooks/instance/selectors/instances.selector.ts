@@ -1,70 +1,19 @@
 import { InfiniteData } from '@tanstack/react-query';
-import {
-  TAggregatedInstanceDto,
-  TInstanceStatusDto,
-} from '@/types/instance/api.type';
+import { TAggregatedInstanceDto } from '@/types/instance/api.type';
 import {
   TAggregatedInstanceAddress,
   TAggregatedInstance,
   TAggregatedInstanceAction,
   TAggregatedInstanceActions,
   TInstanceAddressType,
-  TAggregatedInstanceStatus,
-  TInstanceStatusSeverity,
 } from '@/types/instance/entity.type';
 import { TActionName } from '@/types/instance/common.type';
-
-const getInstanceStatusSeverity = (
-  status: TInstanceStatusDto,
-): TInstanceStatusSeverity => {
-  switch (status) {
-    case 'BUILDING':
-    case 'REBOOT':
-    case 'REBUILD':
-    case 'REVERT_RESIZE':
-    case 'SOFT_DELETED':
-    case 'VERIFY_RESIZE':
-    case 'MIGRATING':
-    case 'RESIZE':
-    case 'BUILD':
-    case 'SHUTOFF':
-    case 'RESCUE':
-    case 'SHELVED':
-    case 'SHELVED_OFFLOADED':
-    case 'RESCUING':
-    case 'UNRESCUING':
-    case 'SNAPSHOTTING':
-    case 'RESUMING':
-    case 'HARD_REBOOT':
-    case 'PASSWORD':
-    case 'PAUSED':
-      return 'warning';
-    case 'DELETED':
-    case 'ERROR':
-    case 'STOPPED':
-    case 'SUSPENDED':
-    case 'UNKNOWN':
-      return 'error';
-    case 'ACTIVE':
-    case 'RESCUED':
-    case 'RESIZED':
-      return 'success';
-    default:
-      return 'info';
-  }
-};
+import { getInstanceStatus } from '@/pages/instances/mapper/status.mapper';
 
 const getInstanceTaskState = (
   taskState: string,
 ): TAggregatedInstance['taskState'] =>
   taskState.length > 0 ? taskState : null;
-
-const getInstanceStatus = (
-  status: TInstanceStatusDto,
-): TAggregatedInstanceStatus => ({
-  label: status,
-  severity: getInstanceStatusSeverity(status),
-});
 
 const getActionHrefByName = (
   projectUrl: string,
@@ -72,7 +21,7 @@ const getActionHrefByName = (
   { region, id }: Pick<TAggregatedInstance, 'id' | 'region'>,
 ): TAggregatedInstanceAction['link'] => {
   if (name === 'details') {
-    return { path: id, isExternal: false };
+    return { path: `${id}?region=${region}`, isExternal: false };
   }
 
   if (name === 'edit') {
@@ -171,21 +120,27 @@ const mapInstanceAddresses = (instance: TAggregatedInstanceDto) =>
     return acc.set(type, [rest]);
   }, new Map<TInstanceAddressType, TAggregatedInstanceAddress[]>());
 
+const isActionToDisplay = (name: TActionName) => name !== 'vnc';
+
 const mapInstanceActions = (
   instance: TAggregatedInstanceDto,
   projectUrl: string,
 ): TAggregatedInstanceActions =>
   instance.actions.reduce<TAggregatedInstanceActions>((acc, action) => {
     const { group, name } = action;
-    const newAction = {
-      label: `pci_instances_list_action_${name}`,
-      link: getActionHrefByName(projectUrl, name, instance),
-    };
-    const foundAction = acc.get(group);
-    if (!foundAction) return acc.set(group, [newAction]);
-    foundAction.push(newAction);
+
+    if (isActionToDisplay(name)) {
+      const newAction = {
+        label: `pci_instances_list_action_${name}`,
+        link: getActionHrefByName(projectUrl, name, instance),
+      };
+      const foundAction = acc.get(group);
+      if (!foundAction) return acc.set(group, [newAction]);
+      foundAction.push(newAction);
+    }
+
     return acc;
-  }, new Map() as TAggregatedInstanceActions);
+  }, new Map());
 
 export const instancesSelector = (
   { pages }: InfiniteData<TAggregatedInstanceDto[], number>,

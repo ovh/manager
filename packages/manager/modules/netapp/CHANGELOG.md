@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.14.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.14.11...@ovh-ux/manager-netapp@2.14.12) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp
+
+
+
+
+
+## [2.14.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.14.10...@ovh-ux/manager-netapp@2.14.11) (2025-10-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp
+
+
+
+
+
+## [2.14.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.14.9...@ovh-ux/manager-netapp@2.14.10) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp
+
+
+
+
+
+## [2.14.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.14.8...@ovh-ux/manager-netapp@2.14.9) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp
+
+
+
+
+
+## [2.14.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.14.7...@ovh-ux/manager-netapp@2.14.8) (2025-10-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4372] ([f4e1c27](https://github.com/ovh/manager/commit/f4e1c27b214ae45d447cd1ef1b2bc8e44f27e53f)), closes [#MANAGER-19841](https://github.com/ovh/manager/issues/MANAGER-19841)
+
+
+
+
+
+## [2.14.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.14.6...@ovh-ux/manager-netapp@2.14.7) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp
+
+
+
+
+
+## [2.14.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.14.5...@ovh-ux/manager-netapp@2.14.6) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp
+
+
+
+
+
+## [2.14.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.14.4...@ovh-ux/manager-netapp@2.14.5) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp
+
+
+
+
+
 ## [2.14.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.14.3...@ovh-ux/manager-netapp@2.14.4) (2025-09-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-netapp

@@ -28,5 +28,11 @@
   "dashboard_graph_y_axis_label_vcpu": "Liczba vCPU",
   "dashboard_graph_x_axis_label": "Dzień",
   "dashboard_graph_included": "Objęte Savings Plans",
-  "dashboard_graph_excluded": "Wyłączone z Savings Plans"
+  "dashboard_graph_excluded": "Wyłączone z Savings Plans",
+  "dashboard_resource_list_title": "Wykorzystane zasoby",
+  "dashboard_resource_list_search": "Wyszukaj ID",
+  "dashboard_resource_list_no_results": "Brak wyników dla „{{searchQuery}}”",
+  "dashboard_resource_list_no_resources": "Brak aktywnych zasobów dla tej konfiguracji",
+  "dashboard_resource_list_details": "Szczegóły",
+  "dashboard_resource_list_view_resources": "Wyświetl zasoby"
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -8,7 +8,7 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Datagrid, DatagridColumn, useBytes } from '@ovh-ux/manager-react-components';
 
-import { BadgeStatus, BillingStateBadge, LabelChip } from '@/components';
+import { AccountStatusBadge, BillingStateBadge, LabelChip } from '@/components';
 import { AccountType, ResourceStatus, getZimbraPlatformListQueryKey } from '@/data/api';
 import { useAccounts, useSlotServices } from '@/data/hooks';
 import { useDebouncedValue, useOverridePage } from '@/hooks';
@@ -64,7 +64,7 @@ export const EmailAccountsDatagrid = () => {
       }
       setHasADeletingAccount(current);
     }
-  }, [accounts]);
+  }, [accounts, hasADeletingAccount]);
 
   const items: EmailAccountItem[] = useMemo(() => {
     return (
@@ -77,6 +77,7 @@ export const EmailAccountsDatagrid = () => {
         used: item.currentState.quota.used,
         available: item.currentState.quota.available,
         status: item.resourceStatus,
+        detailedStatus: item.currentState.detailedStatus,
         slotId: item.currentState.slotId,
         service: services?.[item.currentState.slotId],
       })) ?? []
@@ -112,12 +113,12 @@ export const EmailAccountsDatagrid = () => {
       },
       {
         id: 'status',
-        cell: (item) => <BadgeStatus status={item.status}></BadgeStatus>,
+        cell: (item) => <AccountStatusBadge {...item} />,
         label: `${NAMESPACES.STATUS}:status`,
       },
       {
         id: 'renewal_type',
-        cell: (item) => <BillingStateBadge state={item.service?.state} />,
+        cell: (item) => <BillingStateBadge service={item.service} />,
         label: 'zimbra_account_datagrid_renewal_type',
       },
       {
@@ -126,7 +127,7 @@ export const EmailAccountsDatagrid = () => {
         label: '',
       },
     ],
-    [],
+    [formatBytes],
   );
 
   return (

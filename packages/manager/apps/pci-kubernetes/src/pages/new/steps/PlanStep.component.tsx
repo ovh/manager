@@ -1,70 +1,27 @@
-import {
-  OsdsMessage,
-  OsdsText,
-  OsdsChip,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_CHIP_SIZE,
-  ODS_MESSAGE_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { Check, Clock12 } from 'lucide-react';
-import { Button } from '@datatr-ux/uxlib';
-import { useMemo, useState } from 'react';
+import { FormEvent, useCallback, useMemo, useState } from 'react';
+
+import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
+
+import {
+  Badge,
+  Button,
+  Icon,
+  Message,
+  MessageBody,
+  MessageIcon,
+  Spinner,
+  Text,
+} from '@ovhcloud/ods-react';
+
+import { convertHourlyPriceToMonthly, useCatalogPrice } from '@ovh-ux/manager-react-components';
+
 import RadioTile from '@/components/radio-tile/RadioTile.component';
-
-import { StepState } from '../useStep';
 import { cn, isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
+import { DeploymentMode, TClusterPlan, TClusterPlanEnum } from '@/types';
 
-import { DeploymentMode, TClusterPlan } from '@/types';
-
-type Plan = {
-  title: string;
-  type: DeploymentMode;
-  description: string;
-  content: string[];
-  footer?: string;
-  value: TClusterPlan;
-};
-
-const plans: Plan[] = [
-  {
-    title: 'kube_add_plan_title_free',
-    description: 'kube_add_plan_description_free',
-    content: [
-      'kube_add_plan_content_free_control',
-      'kube_add_plan_content_free_high_availability',
-      'kube_add_plan_content_free_SLO',
-      'kube_add_plan_content_free_auto_scaling',
-      'kube_add_plan_content_free_ETCD',
-      'kube_add_plan_content_free_version',
-      'kube_add_plan_content_free_100',
-    ],
-    value: 'free',
-    type: DeploymentMode.MONO_ZONE,
-  },
-  {
-    title: 'kube_add_plan_title_standard',
-    description: 'kube_add_plan_description_standard',
-    content: [
-      'kube_add_plan_content_standard_3AZ_control_plane',
-      'kube_add_plan_content_standard_disponibility',
-      'kube_add_plan_content_standard_SLA',
-      'kube_add_plan_content_free_auto_scaling',
-      'kube_add_plan_content_standard_ETCD',
-      'kube_add_plan_content_standard_version',
-      'kube_add_plan_content_standard_500',
-    ],
-    type: DeploymentMode.MULTI_ZONES,
-    value: 'standard',
-  },
-];
+import usePlanData from '../hooks/usePlanData';
+import { StepState } from '../hooks/useStep';
 
 const PlanTile = ({
   onSubmit,
@@ -75,102 +32,115 @@ const PlanTile = ({
   step: StepState;
   type: DeploymentMode;
 }) => {
-  // TODO:  When both free & standard plans will be available for both deployment zones, update default value with "free"
   const [selected, setSelected] = useState<TClusterPlan>(
-    isMonoDeploymentZone(type) ? 'free' : 'standard',
+    isMonoDeploymentZone(type) ? TClusterPlanEnum.FREE : TClusterPlanEnum.STANDARD,
   );
   const { t } = useTranslation(['add', 'stepper']);
 
-  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSubmit(selected);
   };
+  const { plans, isPending: isPendingPlans } = usePlanData();
 
   const planIsDisabled = (plan: TClusterPlan) =>
-    (isMonoDeploymentZone(type) && plan === 'standard') ||
-    (isMultiDeploymentZones(type) && plan === 'free');
+    (isMonoDeploymentZone(type) && plan === TClusterPlanEnum.STANDARD) ||
+    (isMultiDeploymentZones(type) && plan === TClusterPlanEnum.FREE);
 
-  const getSortOrder = (typeRegion: string) => {
-    const priority = {
-      [DeploymentMode.MULTI_ZONES]: 'standard',
-      [DeploymentMode.MONO_ZONE]: 'free',
-    };
-    return priority[type]
-      ? (a) => (a.value === priority[typeRegion] ? -1 : 1)
-      : () => 0;
-  };
+  const getSortOrder = useCallback(
+    (typeRegion: string) => {
+      const priority = {
+        [DeploymentMode.MULTI_ZONES]: TClusterPlanEnum.STANDARD,
+        [DeploymentMode.MONO_ZONE]: TClusterPlanEnum.FREE,
+      };
+      return priority[type as keyof typeof priority]
+        ? (a: { value: string }) =>
+            a.value === priority[typeRegion as keyof typeof priority] ? -1 : 1
+        : () => 0;
+    },
+    [type],
+  );
 
-  const sortedPlans = useMemo(() => [...plans].sort(getSortOrder(type)), [
-    type,
-    plans,
-  ]);
+  const sortedPlans = useMemo(
+    () => [...plans].sort(getSortOrder(type)),
+    [plans, getSortOrder, type],
+  );
 
   return (
     <form data-testid="form" onSubmit={onSubmitHandler}>
       {!step.isLocked && <PlanTile.Banner type={type} />}
-      <OsdsText
-        className="my-4  block"
-        size={ODS_TEXT_SIZE._400}
-        level={ODS_TEXT_LEVEL.body}
-        color={ODS_THEME_COLOR_INTENT.text}
-      >
-        {t('kube_add_plan_subtitle')}
-      </OsdsText>
+      {!step.isLocked && (
+        <Text className="my-4  block" color="text">
+          {t('kube_add_plan_subtitle')}
+        </Text>
+      )}
 
-      <div className=" mt-6 grid grid-cols-1  lg:grid-cols-2  xl:grid-cols-3  gap-4">
-        {!step.isLocked && (
-          <>
-            {sortedPlans.map((plan) => (
-              <RadioTile
-                disabled={planIsDisabled(plan.value)}
-                key={plan.value}
-                data-testid={`plan-tile-radio-tile-${plan.value}`}
-                name="plan-select"
-                tileClassName="h-full "
-                onChange={() =>
-                  !planIsDisabled(plan.value) && setSelected(plan.value)
-                }
-                value={plan.value}
-                checked={selected === plan.value}
-              >
-                {PlanTile.Header && plan.title && (
-                  <PlanTile.Header
-                    type={type}
-                    value={plan.value}
-                    selected={
-                      !planIsDisabled(plan.value) && selected === plan.value
-                    }
-                    title={plan.title}
-                    description={plan.description}
-                    disabled={planIsDisabled(plan.value)}
-                  />
-                )}
-                <RadioTile.Separator />
-                <div className="text-sm flex flex-col p-4">
-                  <PlanTile.Content
-                    disabled={planIsDisabled(plan.value)}
-                    contents={plan.content}
-                  />
-                </div>
+      <div>
+        {!step.isLocked &&
+          (isPendingPlans ? (
+            <Spinner size="md" />
+          ) : (
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 my-6">
+              {sortedPlans.map((plan) => (
+                <RadioTile
+                  disabled={planIsDisabled(plan.value)}
+                  key={plan.value}
+                  data-testid={`plan-tile-radio-tile-${plan.value}`}
+                  name="plan-select"
+                  tileClassName="h-full"
+                  onChange={() => !planIsDisabled(plan.value) && setSelected(plan.value)}
+                  value={plan.value}
+                  checked={selected === plan.value}
+                >
+                  {PlanTile.Header && plan.title && (
+                    <PlanTile.Header
+                      type={type}
+                      value={plan.value}
+                      selected={!planIsDisabled(plan.value) && selected === plan.value}
+                      title={plan.title}
+                      description={plan.description}
+                      disabled={planIsDisabled(plan.value)}
+                    />
+                  )}
+                  <div className="px-6 py-2">
+                    <hr
+                      className={clsx(
+                        'w-full border-solid border-0 border-b border-[--ods-color-neutral-100]',
+                      )}
+                      aria-hidden="true"
+                    />
+                  </div>
 
-                {!planIsDisabled(plan.value) && (
+                  <div className="text-sm flex flex-col px-6 py-4 gap-3">
+                    <PlanTile.Content
+                      disabled={planIsDisabled(plan.value)}
+                      contents={plan.content}
+                    />
+                  </div>
+
                   <PlanTile.Footer
+                    isFreePlan={plan.value === TClusterPlanEnum.FREE}
+                    isDisabled={planIsDisabled(plan.value)}
+                    price={plan.price}
                     content={`kube_add_plan_footer_${plan.value}`}
                   />
-                )}
-              </RadioTile>
-            ))}
-          </>
+                </RadioTile>
+              ))}
+            </div>
+          ))}
+        {step.isLocked && (
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <PlanTile.LockedView value={selected} />
+          </div>
         )}
-        {step.isLocked && <PlanTile.LockedView value={selected} />}
       </div>
-      {!step.isLocked && (
+      {!step.isLocked && !isPendingPlans && (
         <Button
-          type="submit"
-          variant="primary"
-          disabled={!selected}
-          className=" mt-6 py-8 px-6"
+          className="mt-2 w-fit p-6"
           size="md"
+          type="submit"
+          color="primary"
+          disabled={!selected}
         >
           {t('stepper:common_stepper_next_button_label')}
         </Button>
@@ -184,18 +154,15 @@ PlanTile.Banner = function PlanTileBanner({ type }: { type: DeploymentMode }) {
   const [open, setOpen] = useState(true);
   return (
     open && (
-      <OsdsMessage
-        removable
-        onOdsRemoveClick={() => setOpen(false)}
-        className="mt-4"
-        type={ODS_MESSAGE_TYPE.info}
-        color={ODS_THEME_COLOR_INTENT.info}
+      <Message
+        variant="default"
+        dismissible
+        onRemove={() => setOpen(false)}
+        className="mt-4 flex"
+        color="information"
       >
-        <OsdsText
-          size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-          color={ODS_THEME_COLOR_INTENT.text}
-          className="block"
-        >
+        <MessageIcon name="circle-info" />
+        <MessageBody>
           {isMultiDeploymentZones(type)
             ? t('kube_add_plan_content_unavailable_3AZ_banner', {
                 plan: 'Free',
@@ -203,29 +170,26 @@ PlanTile.Banner = function PlanTileBanner({ type }: { type: DeploymentMode }) {
             : t('kube_add_plan_content_unavailable_1AZ_banner', {
                 plan: 'Standard',
               })}
-        </OsdsText>
-      </OsdsMessage>
+        </MessageBody>
+      </Message>
     )
   );
 };
 
-PlanTile.LockedView = function PlanTileLockedView({
-  value,
-}: {
-  value: TClusterPlan;
-}) {
+PlanTile.LockedView = function PlanTileLockedView({ value }: { value: TClusterPlan }) {
   const { t } = useTranslation(['add']);
-  const plan = useMemo(() => plans.find((p) => p.value === value), [
-    plans,
-    value,
-  ]);
+  const { plans } = usePlanData();
+  const plan = useMemo(() => plans.find((p) => p.value === value), [plans, value]);
 
   if (!plan) return null;
 
   return (
-    <RadioTile labelClassName="border-primary-100">
-      <div className="  px-4 py-2 flex-col w-full ">
-        <h5 data-testid="plan-header-locked" className="capitalize font-bold">
+    <RadioTile labelClassName="border-[--ods-color-primary-200] border">
+      <div className="p-6 flex-col w-full ">
+        <h5
+          data-testid="plan-header-locked"
+          className="capitalize m-0 font-bold text-[--ods-color-text-500] text-base"
+        >
           {t(plan.title)}
         </h5>
       </div>
@@ -250,36 +214,29 @@ PlanTile.Header = function PlanTileHeader({
   const { t } = useTranslation(['add']);
   const displayWarningMessage =
     disabled &&
-    ((value === 'free' && isMultiDeploymentZones(type)) ||
-      (value === 'standard' && isMonoDeploymentZone(type)));
+    ((value === TClusterPlanEnum.FREE && isMultiDeploymentZones(type)) ||
+      (value === TClusterPlanEnum.STANDARD && isMonoDeploymentZone(type)));
 
   return (
-    <div className=" px-6 py-4 flex-col w-full ">
-      <div className="flex gap-4">
-        <h5 data-testid="plan-header" className="capitalize font-bold">
+    <div className=" px-6 py-4">
+      <div className="flex flex-wrap gap-4">
+        <h5
+          data-testid="plan-header"
+          className={clsx(
+            'capitalize font-bold  text-lg text-[--ods-color-element-background-selected] mb-0 mt-0',
+          )}
+        >
           {t(title)}
         </h5>
-        {value === 'standard' && (
-          <div className="flex items-baseline gap-3">
-            <OsdsChip
-              color={ODS_THEME_COLOR_INTENT.success}
-              size={ODS_CHIP_SIZE.sm}
-              inline
-            >
-              {t('add:kubernetes_add_deployment_mode_card_beta')}
-            </OsdsChip>
-          </div>
+        {displayWarningMessage && (
+          <Badge className="rounded-[1rem]" color="information">
+            {t('kube_add_plan_content_coming_very_soon')}
+          </Badge>
         )}
       </div>
 
-      <div className="mt-2 flex flex-col">
-        {displayWarningMessage && (
-          <span className="text-warning-500 inline-flex gap-1">
-            <Clock12 />
-            <span>{t('kube_add_plan_content_coming_very_soon')}</span>
-          </span>
-        )}
-        <span>{t(description)}</span>
+      <div className="mt-2 flex flex-wrap">
+        <span className="text-[--ods-color-text-500]">{t(description)}</span>
       </div>
     </div>
   );
@@ -294,25 +251,63 @@ PlanTile.Content = function PlanTileContent({
 }) {
   const { t } = useTranslation(['add']);
   return contents.map((text) => (
-    <span className="flex items-start gap-1" key={text}>
-      <Check
+    <span className="flex items-baseline gap-4 text-sm text-[--ods-color-text-500]" key={text}>
+      <Icon
+        name="check"
         className={cn('shrink-0', {
-          'text-neutral-600': disabled,
+          'text-[--ods-color-text-500]': disabled,
           'text-teal-500': !disabled,
         })}
       />
+
       {t(text)}
     </span>
   ));
 };
 
-PlanTile.Footer = function PlanTileFooter({ content }: { content: string }) {
-  const { t } = useTranslation(['add', 'stepper']);
+PlanTile.Footer = function PlanTileFooter({
+  content,
+  price,
+  isFreePlan,
+  isDisabled,
+}: {
+  content: string;
+  price: number | null;
+  isFreePlan: boolean;
+  isDisabled: boolean;
+}) {
+  const { t } = useTranslation(['add', 'stepper', 'flavor-billing']);
+  const { getFormattedHourlyCatalogPrice, getFormattedMonthlyCatalogPrice } = useCatalogPrice(5);
+  const hasValidPrice = typeof price === 'number';
+  const hourlyPrice = hasValidPrice ? getFormattedHourlyCatalogPrice(price) : null;
+
+  const monthlyPrice = hasValidPrice
+    ? getFormattedMonthlyCatalogPrice(convertHourlyPriceToMonthly(price))
+    : null;
+
+  if (isDisabled)
+    return <div className=" mt-auto w-full rounded-b-md border-none bg-neutral-100 min-h-10" />;
+
   return (
     <div className=" mt-auto w-full rounded-b-md border-none bg-neutral-100">
-      <p className=" p-4 text-xl text-primary-600">
-        <strong>{t(content)}</strong>
-      </p>
+      {isFreePlan ? (
+        <p className="m-0 p-4 text-xl text-[--ods-color-primary-600]">
+          <strong>{t(content)}</strong>
+        </p>
+      ) : (
+        <div className="px-4 pb-4">
+          {hourlyPrice && (
+            <Text color="text" className="block pt-4">
+              <strong>{hourlyPrice}</strong>
+            </Text>
+          )}
+          {monthlyPrice && (
+            <Text color="text" className="block">
+              ~ {monthlyPrice}
+            </Text>
+          )}
+        </div>
+      )}
     </div>
   );
 };

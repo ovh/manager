@@ -1,10 +1,12 @@
 import { useMemo } from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { oidcSchema, PlaceHolder } from '@/types';
-import { camelToSnake, filterSchemaKeys } from '@/helpers';
+
 import { CheckBoxFormField } from '@/components/oidc/CheckBoxFormField.component';
 import { InputFormField } from '@/components/oidc/InputFormField.component';
 import { TextAreaFormField } from '@/components/oidc/TextAreaFormField.component';
+import { camelToSnake, filterSchemaKeys } from '@/helpers';
+import { PlaceHolder, oidcSchema } from '@/types';
 
 const useFormFields = () => {
   const { t } = useTranslation('oidc-provider');

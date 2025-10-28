@@ -1,10 +1,8 @@
-import { describe } from 'vitest';
 import { act, renderHook } from '@testing-library/react';
-import {
-  TFormStore,
-  useNewPoolStore,
-} from '@/pages/detail/nodepools/new/store';
+import { describe } from 'vitest';
+
 import { StepsEnum } from '@/pages/detail/nodepools/new/steps.enum';
+import { TFormStore, useNewPoolStore } from '@/pages/detail/nodepools/new/store';
 
 describe('NewPoolStore', () => {
   describe('set', () => {
@@ -143,7 +141,7 @@ describe('NewPoolStore', () => {
         flavor: undefined,
         isMonthlyBilling: false,
         name: { value: '', hasError: false, isTouched: false },
-        selectedAvailabilityZone: '',
+        selectedAvailabilityZone: null,
         steps: new Map([
           [
             'NAME',
@@ -203,7 +201,7 @@ describe('NewPoolStore', () => {
         flavor: undefined,
         isMonthlyBilling: false,
         name: { hasError: false, isTouched: false, value: '' },
-        selectedAvailabilityZone: '',
+        selectedAvailabilityZone: null,
         steps: new Map([
           [
             'NAME',
@@ -267,7 +265,7 @@ describe('NewPoolStore', () => {
           isTouched: false,
           value: '',
         },
-        selectedAvailabilityZone: '',
+        selectedAvailabilityZone: null,
         steps: new Map([
           [
             'NAME',

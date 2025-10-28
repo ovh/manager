@@ -1,5 +1,7 @@
 import { describe, it, vi } from 'vitest';
+
 import { v6 } from '@ovh-ux/manager-core-api';
+
 import { getRegionInformations } from './informations-region';
 
 describe('region-informations', () => {
@@ -23,8 +25,6 @@ describe('region-informations', () => {
 
   it('handles error when fetching region information', async () => {
     vi.mocked(v6.get).mockRejectedValue(new Error('Network Error'));
-    await expect(getRegionInformations('project1', 'region1')).rejects.toThrow(
-      'Network Error',
-    );
+    await expect(getRegionInformations('project1', 'region1')).rejects.toThrow('Network Error');
   });
 });

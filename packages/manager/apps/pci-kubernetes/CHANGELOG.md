@@ -3,6 +3,206 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.34.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.34.1...@ovh-ux/manager-pci-kubernetes-app@0.34.2) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
+
+
+
+
+
+## [0.34.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.34.0...@ovh-ux/manager-pci-kubernetes-app@0.34.1) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
+
+
+
+
+
+# [0.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.33.1...@ovh-ux/manager-pci-kubernetes-app@0.34.0) (2025-10-20)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** add FF on US banner storage ([4352d73](https://github.com/ovh/manager/commit/4352d734bb9ecd22e317953c576c65b395751d56)), closes [#TAPC-5191](https://github.com/ovh/manager/issues/TAPC-5191)
+
+
+### Features
+
+* **pci-kubernetes:** add translation file storage banner ([bba2500](https://github.com/ovh/manager/commit/bba2500b9be531aa321dc8eb10a2756dec0388db)), closes [#TAPC-5191](https://github.com/ovh/manager/issues/TAPC-5191)
+
+
+
+
+
+## [0.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.33.0...@ovh-ux/manager-pci-kubernetes-app@0.33.1) (2025-10-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
+
+
+
+
+
+# [0.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.32.3...@ovh-ux/manager-pci-kubernetes-app@0.33.0) (2025-10-15)
+
+
+### Features
+
+* **pci-kubernetes:** add estimated monthly price ([b71d229](https://github.com/ovh/manager/commit/b71d22978868e6d935031fbadbae9a0a4749a120)), closes [#TAPC-4727](https://github.com/ovh/manager/issues/TAPC-4727)
+* **pci-kubernetes:** delete shadcn and update to ods 19 ([45c0597](https://github.com/ovh/manager/commit/45c05979645085aceb14005c959dd3bff113bf62)), closes [#TAPC-5164](https://github.com/ovh/manager/issues/TAPC-5164)
+
+
+
+
+
+## [0.32.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.32.2...@ovh-ux/manager-pci-kubernetes-app@0.32.3) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
+
+
+
+
+
+## [0.32.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.32.1...@ovh-ux/manager-pci-kubernetes-app@0.32.2) (2025-10-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4391] ([d81075a](https://github.com/ovh/manager/commit/d81075a6695478d7dc99506b5dd13e2c465aa464))
+
+
+
+
+
+## [0.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.32.0...@ovh-ux/manager-pci-kubernetes-app@0.32.1) (2025-10-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4383] ([05a1ea9](https://github.com/ovh/manager/commit/05a1ea9330111c74151177ea18570a7eda24a5c3))
+
+
+
+
+
+# [0.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.31.3...@ovh-ux/manager-pci-kubernetes-app@0.32.0) (2025-10-06)
+
+
+### Features
+
+* **pci-kubernetes:** add reset kubeconfig for 3az ([de1dc68](https://github.com/ovh/manager/commit/de1dc68dbf5e15e112336c68fc01e16244fcc032)), closes [#TAPC-4368](https://github.com/ovh/manager/issues/TAPC-4368)
+
+
+
+
+
+## [0.31.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.31.2...@ovh-ux/manager-pci-kubernetes-app@0.31.3) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
+
+
+
+
+
+## [0.31.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.31.1...@ovh-ux/manager-pci-kubernetes-app@0.31.2) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
+
+
+
+
+
+## [0.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.31.0...@ovh-ux/manager-pci-kubernetes-app@0.31.1) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
+
+
+
+
+
+# [0.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.30.3...@ovh-ux/manager-pci-kubernetes-app@0.31.0) (2025-09-29)
+
+
+### Features
+
+* **pci-kubernetes:** display total price on billing ([b48700b](https://github.com/ovh/manager/commit/b48700b112d5f71ab42b7c1a52b234478af2eeeb)), closes [#TAPC-5004](https://github.com/ovh/manager/issues/TAPC-5004)
+* **pci-kubernetes:** enable antiaffinity on 3az ([c0e21b8](https://github.com/ovh/manager/commit/c0e21b8bcaefb7c5acbcbf6ddc625d2a19aae644)), closes [#TAPC-4959](https://github.com/ovh/manager/issues/TAPC-4959)
+* **pci-kubernetes:** enable etcd ([3bf58f0](https://github.com/ovh/manager/commit/3bf58f0428244f30da6fa6c148e96ce63d6b01a0)), closes [#TAPC-4958](https://github.com/ovh/manager/issues/TAPC-4958)
+
+
+
+
+
+## [0.30.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.30.2...@ovh-ux/manager-pci-kubernetes-app@0.30.3) (2025-09-23)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** change translation in english ([67c89be](https://github.com/ovh/manager/commit/67c89be57a408e838fde505516bf8312e96ead90)), closes [#TAPC-5024](https://github.com/ovh/manager/issues/TAPC-5024)
+* **pci-kubernetes:** resolve issue switching 3az to 1az ([097079c](https://github.com/ovh/manager/commit/097079ce42258b60af5380a703eef6bf8ad02a2b)), closes [#TAPC-5069](https://github.com/ovh/manager/issues/TAPC-5069)
+
+
+
+
+
+## [0.30.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.30.1...@ovh-ux/manager-pci-kubernetes-app@0.30.2) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
+
+
+
+
+
+## [0.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.30.0...@ovh-ux/manager-pci-kubernetes-app@0.30.1) (2025-09-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4337] ([9958cd9](https://github.com/ovh/manager/commit/9958cd95bb1e99068f2a59d5f621b4e9dbab1096))
+
+
+
+
+
+# [0.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.29.8...@ovh-ux/manager-pci-kubernetes-app@0.30.0) (2025-09-15)
+
+
+### Features
+
+* **pci-kubernetees:** enable oidc ([cd9fc77](https://github.com/ovh/manager/commit/cd9fc777befa04d255b5fa550876666b2d576424)), closes [#TAPC-4367](https://github.com/ovh/manager/issues/TAPC-4367)
+* **pci-kubernetes:** enable 3az default ([98fbac7](https://github.com/ovh/manager/commit/98fbac706bd8aa3bd5f3b67fed588f4b9a3b5728)), closes [#TAPC-4979](https://github.com/ovh/manager/issues/TAPC-4979)
+* **pci-kubernetes:** enable upgrade cluster for 3az ([d57fa87](https://github.com/ovh/manager/commit/d57fa87514c52250651fcbc93d3100de1cf66853)), closes [#TAPC-4369](https://github.com/ovh/manager/issues/TAPC-4369)
+* **pci-kubernetes:** manage pricing based on plan ([f71cf7d](https://github.com/ovh/manager/commit/f71cf7d5a3badfd4fd777dda2d5449c925d4b2fe)), closes [#TAPC-4538](https://github.com/ovh/manager/issues/TAPC-4538)
+* **pci-kubernetes:** remove beta 3az ([79e775b](https://github.com/ovh/manager/commit/79e775b0d149c8a782ba9b81427afff5ace7aa8c)), closes [#TAPC-4370](https://github.com/ovh/manager/issues/TAPC-4370)
+
+
+
+
+
+## [0.29.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.29.7...@ovh-ux/manager-pci-kubernetes-app@0.29.8) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
+
+
+
+
+
+## [0.29.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.29.6...@ovh-ux/manager-pci-kubernetes-app@0.29.7) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
+
+
+
+
+
+## [0.29.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.29.5...@ovh-ux/manager-pci-kubernetes-app@0.29.6) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
+
+
+
+
+
 ## [0.29.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.29.4...@ovh-ux/manager-pci-kubernetes-app@0.29.5) (2025-09-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app

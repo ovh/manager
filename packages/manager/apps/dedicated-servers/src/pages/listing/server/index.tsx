@@ -3,12 +3,9 @@ import './index.scss';
 import {
   Datagrid,
   useResourcesIcebergV6,
-  useDataGrid,
-  ColumnSort,
   RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { DedicatedServer } from '@/data/types/server.type';
 import OrderMenu from '@/components/orderMenu';
 import { useColumns } from '@/components/dataGridColumns';
 import { useDedicatedServer } from '@/hooks/useDedicatedServer';
@@ -17,19 +14,16 @@ import { ErrorComponent } from '@/components/errorComponent';
 
 export default function ServerListing() {
   const columns = useColumns();
-  const [visibleColumns] = useState([
-    'name',
+  const [columnVisibility, setColumnVisibility] = useState([
+    'iam.displayName',
     'ip',
-    'model',
+    'commercialRange',
     'region',
-    'status',
-    'actions',
+    'state',
     'tags',
+    'actions',
   ]);
-  const { sorting, setSorting } = useDataGrid({
-    id: 'displayName',
-    desc: false,
-  });
+
   const {
     flattenData,
     isError,
@@ -39,6 +33,8 @@ export default function ServerListing() {
     fetchNextPage,
     isLoading,
     search,
+    sorting,
+    setSorting,
     filters,
   } = useResourcesIcebergV6({
     columns,
@@ -46,25 +42,6 @@ export default function ServerListing() {
     queryKey: ['dedicated-servers', `/dedicated/server`],
   });
   const { error: errorListing, data: dedicatedServer } = useDedicatedServer();
-
-  const sortServersListing = (
-    colSorting: ColumnSort,
-    originalList: DedicatedServer[] = [],
-  ) => {
-    const serverList = [...originalList];
-    serverList.sort((s1, s2) => {
-      const key = colSorting.id as keyof DedicatedServer;
-      if (key.toString() === 'displayName') {
-        return (s1.iam?.displayName).localeCompare(s2.iam?.displayName);
-      }
-      if (key && Object.keys(s1).includes(key as string)) {
-        return (s1[key].toString() || '').localeCompare(s2[key].toString());
-      }
-      return 0;
-    });
-
-    return colSorting?.desc ? serverList.reverse() : serverList;
-  };
 
   return (
     <>
@@ -82,10 +59,7 @@ export default function ServerListing() {
               <div>
                 <Datagrid
                   columns={columns}
-                  items={sortServersListing(
-                    sorting,
-                    (flattenData as unknown) as DedicatedServer[],
-                  )}
+                  items={flattenData}
                   totalItems={totalCount || 0}
                   hasNextPage={hasNextPage && !isLoading}
                   onFetchNextPage={fetchNextPage}
@@ -93,7 +67,8 @@ export default function ServerListing() {
                   onSortChange={setSorting}
                   isLoading={isLoading}
                   filters={filters}
-                  columnVisibility={visibleColumns}
+                  columnVisibility={columnVisibility}
+                  setColumnVisibility={setColumnVisibility}
                   search={search}
                   className="server-data-grid"
                   topbar={<OrderMenu />}

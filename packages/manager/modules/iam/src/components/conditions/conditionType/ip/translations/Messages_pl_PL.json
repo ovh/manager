@@ -1,0 +1,6 @@
+{
+  "iam_create_condition_ip_label": "Adres IP",
+  "iam_create_condition_ip_placeholder": "Wprowadź adres IP",
+  "iam_create_condition_ip_criteria_in_helper": "Oddziel każdy adres IP przecinkiem bez spacji (127.0.0.1,10.23.0.0)",
+  "iam_create_condition_ip_criteria_in_range_helper": "Oddziel każdy adres IP i jego podsieć przecinkiem bez spacji (127.0.0.1/32,10.23.0.0/16)"
+}

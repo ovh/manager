@@ -21,7 +21,7 @@
   "billing_commitment_summit": "Zatwierdź",
   "billing_commitment_service_vps": "Prywatne serwery wirtualne",
   "billing_commitment_savings": "Zaoszczędź łącznie {{ price }}",
-  "billing_commitment_payment_upfront_pay_now": "Zapłać teraz {{ price }}",
+  "billing_commitment_payment_upfront_pay_now": "Zapłać teraz {{price}}",
   "billing_commitment_summary_description_periodic_end": "Po {{engagementEndDate}} usługa {{serviceName}} zostanie automatycznie odnowiona na kolejny okres, odpowiadający okresowi wskazanemu w ostatnim zamówieniu.",
   "billing_commitment_summary_description_upfront_end": "Po {{engagementEndDate}} usługa {{serviceName}} zostanie automatycznie odnowiona na kolejny okres, odpowiadający okresowi wskazanemu w ostatnim zamówieniu, z uwzględnieniem tego samego sposobu płatności.",
   "billing_commitment_service_storage_netapp": "Przestrzeń dyskowa Enterprise File Storage",
@@ -29,5 +29,8 @@
   "billing_commitment_commit_with_discount": "Wybierz opcję umowy terminowej i skorzystaj z rabatu",
   "billing_commitment_commit_again_with_discount": "Przedłuż umowę terminową i skorzystaj z rabatu",
   "billing_commitment_none_with_discount": "Twoja usługa {{serviceName}} nie jest aktualnie objęta umową terminową. Już dzisiaj możesz skorzystać z rabatu, wybierając opcję umowy terminowej dla usługi {{serviceType}}.",
-  "billing_commitment_commit_again_description_with_discount": "Umowa terminowa dla usługi {{serviceName}} obowiązuje do dnia {{endDate}}. Możesz nadal korzystać ze stawki preferencyjnej, wybierając ponownie opcję umowy terminowej dla usługi {{serviceType}}."
+  "billing_commitment_commit_again_description_with_discount": "Umowa terminowa dla usługi {{serviceName}} obowiązuje do dnia {{endDate}}. Możesz nadal korzystać ze stawki preferencyjnej, wybierając ponownie opcję umowy terminowej dla usługi {{serviceType}}.",
+  "billing_commitment_payment_pay_now_description": "Skorzystaj z dodatkowej zniżki, płacąc pełną kwotę z góry",
+  "billing_commitment_info_message": "Wybierając ofertę z umową terminową, zobowiązujesz się do korzystania z usługi przez cały wybrany okres. W zamian zyskujesz np. niższą cenę lub brak opłaty instalacyjnej. Możesz zakończyć korzystanie z usługi w dowolnym momencie, jednak wcześniejsze rozwiązanie umowy może wiązać się z opłatami lub koniecznością uregulowania płatności za pozostałe miesiące.",
+  "billing_commitment_payment_method_error": "Wystąpił problem z Twoim sposobem płatności. Nastąpi przekierowanie do strony \"Sposób płatności\", abyś mógł rozwiązać problem."
 }

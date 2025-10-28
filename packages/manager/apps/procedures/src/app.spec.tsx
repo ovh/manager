@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 const mocks = vi.hoisted(() => ({
   user: {
@@ -54,16 +54,11 @@ describe('App', () => {
   ])(
     'should call init18n with %s locale and %s subsidiary',
     async (locale, subsidiary, firstParam) => {
-      vi.spyOn(global.window.navigator, 'language', 'get').mockImplementation(
-        () => locale,
-      );
+      vi.spyOn(global.window.navigator, 'language', 'get').mockImplementation(() => locale);
       mocks.user.subsidiary = subsidiary;
 
       await import('@/App');
-      expect(mocks.initI18n.default).toHaveBeenCalledWith(
-        firstParam,
-        subsidiary,
-      );
+      expect(mocks.initI18n.default).toHaveBeenCalledWith(firstParam, subsidiary);
     },
   );
 });

@@ -63,8 +63,6 @@ export default /* @ngInject */ ($stateProvider, $urlServiceProvider) => {
       },
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('user_agreements_list_title'),
-      hideBreadcrumb: /* @ngInject */ (isAutorenewManagementAvailable) =>
-        !isAutorenewManagementAvailable,
       queryParams: /* @ngInject */ ($transition$) => $transition$.params(),
       onQueryParamsChange: /* @ngInject */ ($state) => (params) => {
         $state.go('.', { ...$state.params, ...params }, { notify: false });

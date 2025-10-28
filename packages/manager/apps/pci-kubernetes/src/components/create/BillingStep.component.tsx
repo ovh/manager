@@ -1,10 +1,14 @@
+import { ReactElement } from 'react';
+
+import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
+
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
-  OsdsIcon,
-  OsdsLink,
-  OsdsMessage,
-  OsdsText,
-  OsdsTile,
-} from '@ovhcloud/ods-components/react';
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
@@ -13,18 +17,20 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import clsx from 'clsx';
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
+  OsdsIcon,
+  OsdsLink,
+  OsdsMessage,
+  OsdsText,
+  OsdsTile,
+} from '@ovhcloud/ods-components/react';
+
 import {
+  convertHourlyPriceToMonthly,
   useCatalogPrice,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+
 import useSavingsPlanAvailable from '@/hooks/useSavingPlanAvailable';
 
 const checkedClass =
@@ -44,13 +50,16 @@ export type TBillingStepProps = {
   warn: boolean;
 };
 
-export default function BillingStep(props: TBillingStepProps): JSX.Element {
-  const { t } = useTranslation(['billing-anti-affinity', 'add']);
-  const { t: tFlavourBilling } = useTranslation('flavor-billing');
-  const {
-    getFormattedMonthlyCatalogPrice,
-    getFormattedHourlyCatalogPrice,
-  } = useCatalogPrice(4, { exclVat: true });
+export default function BillingStep(props: TBillingStepProps): ReactElement {
+  const { t } = useTranslation(['billing-anti-affinity', 'add', 'node-pool', 'flavor-billing']);
+
+  const { getFormattedHourlyCatalogPrice } = useCatalogPrice(4, {
+    exclVat: true,
+  });
+
+  const { getFormattedMonthlyCatalogPrice } = useCatalogPrice(2, {
+    exclVat: true,
+  });
 
   const projectURL = useProjectUrl('public-cloud');
   const savingsPlanUrl = `${projectURL}/savings-plan`;
@@ -65,9 +74,7 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
           level={ODS_TEXT_LEVEL.heading}
           size={ODS_TEXT_SIZE._400}
         >
-          {tFlavourBilling(
-            'pci_projects_project_instances_configure_billing_type',
-          )}
+          {t('flavor-billing:pci_projects_project_instances_configure_billing_type')}
         </OsdsText>
         {props.monthlyBilling.isComingSoon && showSavingPlan ? (
           <OsdsMessage
@@ -118,10 +125,7 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
       <div className="flex gap-10 my-8">
         <OsdsTile
           data-testid="hourly_tile"
-          className={clsx(
-            !props.monthlyBilling.isChecked ? checkedClass : uncheckedClass,
-            'w-1/2',
-          )}
+          className={clsx(!props.monthlyBilling.isChecked ? checkedClass : uncheckedClass, 'w-1/2')}
           onClick={() => {
             props.monthlyBilling.check(false);
           }}
@@ -132,7 +136,7 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
               size={ODS_THEME_TYPOGRAPHY_SIZE._400}
               color={ODS_THEME_COLOR_INTENT.text}
             >
-              {tFlavourBilling('pci_project_flavors_billing_hourly')}
+              {t('flavor-billing:pci_project_flavors_billing_hourly')}
             </OsdsText>
             <hr className={separatorClass} />
             <OsdsText
@@ -142,11 +146,17 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
               className="block"
             >
               <strong>
-                {tFlavourBilling(
-                  'pci_project_flavors_billing_price_hourly_price_label',
-                )}
+                {t('flavor-billing:pci_project_flavors_billing_price_hourly_price_label')}
               </strong>
               {` ${getFormattedHourlyCatalogPrice(Number(props.price))}`}
+            </OsdsText>
+            <OsdsText
+              level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+              color={ODS_THEME_COLOR_INTENT.text}
+            >
+              <strong>{t('node-pool:kube_common_node_pool_estimation_cost_tile')}:</strong>
+              {` ${getFormattedMonthlyCatalogPrice(convertHourlyPriceToMonthly(Number(props.price)))}`}
             </OsdsText>
           </div>
         </OsdsTile>
@@ -169,7 +179,7 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
                 size={ODS_THEME_TYPOGRAPHY_SIZE._400}
                 color={ODS_THEME_COLOR_INTENT.text}
               >
-                {tFlavourBilling('pci_project_flavors_billing_monthly')}
+                {t('flavor-billing:pci_project_flavors_billing_monthly')}
               </OsdsText>
               <hr className={separatorClass} />
               <OsdsText
@@ -179,8 +189,8 @@ export default function BillingStep(props: TBillingStepProps): JSX.Element {
                 className="block"
               >
                 <strong>
-                  {tFlavourBilling(
-                    'pci_project_flavors_billing_price_monthly_instance_price_label',
+                  {t(
+                    'flavor-billing:pci_project_flavors_billing_price_monthly_instance_price_label',
                   )}
                 </strong>
                 {` ${getFormattedMonthlyCatalogPrice(props.monthlyPrice ?? 0)}`}

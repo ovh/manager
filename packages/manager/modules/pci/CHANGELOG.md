@@ -3,6 +3,86 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.98.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.98.2...@ovh-ux/manager-pci@6.98.3) (2025-10-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4419] ([8c289fa](https://github.com/ovh/manager/commit/8c289fa78555a3e35b33bd4276e985e652a768c2))
+
+
+
+
+
+## [6.98.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.98.1...@ovh-ux/manager-pci@6.98.2) (2025-10-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4412] ([0061a13](https://github.com/ovh/manager/commit/0061a13d6714f2c9cafc6447d8674d73e65a889b))
+* **i18n:** add missing translations [CDS 4414] ([93db853](https://github.com/ovh/manager/commit/93db85376d262141eccb15d3b93e31f09d446bd0))
+
+
+
+
+
+## [6.98.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.98.0...@ovh-ux/manager-pci@6.98.1) (2025-10-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4407] ([a7202a1](https://github.com/ovh/manager/commit/a7202a162c87654b01b1b31f7e46b652d28b785c))
+
+
+
+
+
+# [6.98.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.97.0...@ovh-ux/manager-pci@6.98.0) (2025-10-09)
+
+
+### Features
+
+* **db:** remove db angular app and unused code ([caf83ff](https://github.com/ovh/manager/commit/caf83ff22815731161db0812ccffee36d43ceb6e)), closes [#DATATR-2480](https://github.com/ovh/manager/issues/DATATR-2480)
+
+
+
+
+
+# [6.97.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.96.1...@ovh-ux/manager-pci@6.97.0) (2025-10-06)
+
+
+### Features
+
+* **pci-kubernetes:** update eos load balancer ([144f1fd](https://github.com/ovh/manager/commit/144f1fd3b65911a1f4e4780caac2e44484c5ac30)), closes [#TAPC-5168](https://github.com/ovh/manager/issues/TAPC-5168)
+
+
+
+
+
+## [6.96.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.96.0...@ovh-ux/manager-pci@6.96.1) (2025-09-25)
+
+
+### Bug Fixes
+
+* **pci-instances:** prevent planCode to be null ([6ec5b69](https://github.com/ovh/manager/commit/6ec5b69bb8fe15d21a04e2eac0745b33062fd2a4)), closes [#TAPC-5119](https://github.com/ovh/manager/issues/TAPC-5119)
+
+
+
+
+
+# [6.96.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.95.2...@ovh-ux/manager-pci@6.96.0) (2025-09-23)
+
+
+### Features
+
+* **ai-tools:** delete ai tools angular code as it have been migrated to react ([08892c0](https://github.com/ovh/manager/commit/08892c0c38849e66a8d408e3f6cb200be7f29a72)), closes [#DATATR-2347](https://github.com/ovh/manager/issues/DATATR-2347)
+* **data-processing:** remove angular unused code and remove billing section ([7e49b07](https://github.com/ovh/manager/commit/7e49b07bf01f84d3f6e53c741cfa762f5a6c5866)), closes [#DATATR-2346](https://github.com/ovh/manager/issues/DATATR-2346)
+* **pci-instances:** redirect to regionalized dashboard ([d5f5a20](https://github.com/ovh/manager/commit/d5f5a203d72e14af571b834e80670eea018ec6ab)), closes [#TAPC-5002](https://github.com/ovh/manager/issues/TAPC-5002)
+
+
+
+
+
 ## [6.95.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.95.1...@ovh-ux/manager-pci@6.95.2) (2025-07-10)
 
 

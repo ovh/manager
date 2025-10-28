@@ -1,5 +1,9 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
 import QueryString from 'qs';
+import {
+  apiClient,
+  createHeaders,
+  IcebergPaginationHeaders,
+} from '@/data/api/api.client';
 import * as database from '@/types/cloud/project/database';
 import { PCIData } from '.';
 
@@ -19,10 +23,7 @@ export const getAvailabilities = async ({
   action,
   target,
 }: GetAvailabilities) => {
-  const headers: Record<string, string> = {
-    'X-Pagination-Mode': 'CachedObjectList-Pages',
-    'X-Pagination-Size': '50000',
-  };
+  const headers = createHeaders(IcebergPaginationHeaders);
   if (status.length > 0) {
     headers['X-Pagination-Filter'] =
       status.length === 1
@@ -39,14 +40,15 @@ export const getAvailabilities = async ({
   const queryString = QueryString.stringify(queryParams, {
     addQueryPrefix: true,
   });
-  return apiClient.v6
-    .get(`/cloud/project/${projectId}/database/availability${queryString}`, {
+  return apiClient.v6.get<database.Availability[]>(
+    `/cloud/project/${projectId}/database/availability${queryString}`,
+    {
       headers,
-    })
-    .then((res) => res.data as database.Availability[]);
+    },
+  );
 };
 
 export const getSuggestions = async (projectId: string) =>
-  apiClient.v6
-    .get(`/cloud/project/${projectId}/database/availability/suggestion`)
-    .then((res) => res.data as database.availability.Suggestion[]);
+  apiClient.v6.get<database.availability.Suggestion[]>(
+    `/cloud/project/${projectId}/database/availability/suggestion`,
+  );

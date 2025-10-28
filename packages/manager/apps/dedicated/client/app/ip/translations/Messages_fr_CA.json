@@ -307,7 +307,6 @@
   "ip_antihack_unblock_failure": "Une erreur est survenue lors du déblocage du spam Anti-hack.",
   "ip_mitigation_DEFAULT": "Automatique",
   "ip_block_mitigation_DEFAULT": "Ouvrir pour plus de détails",
-  "ip_permanent_mitigation_EOL": "AVERTISSEMENT: la fonctionnalité 'Centre de Scrubbing: mode permanent' atteint sa fin de vie (EOL) et sera désactivée définitivement le 8 septembre 2025.",
   "ip_mitigation_PERMANENT": "Permanente",
   "ip_mitigation_FORCED": "Forcé",
   "ip_mitigation_CREATION_PENDING": "En cours",
@@ -521,7 +520,6 @@
   "ip_servicetype_ipLoadbalancing": "IP Load Balancing",
   "ip_servicetype_cloudProject": "Projet Cloud",
   "ip_servicetype_vRack": "VRACK",
-
   "ip_order_quota_full": "Le quota maximal d'IPs a été atteint pour ce serveur.",
   "ip_order_noservices": "Vous n'avez aucun service disponible à la commande.",
   "ip_order_step1_question": "Sélectionnez le service pour lequel vous désirez acheter des ",

@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.18.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.18.6...@ovh-ux/manager-sms@8.18.7) (2025-10-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4422] ([57b521e](https://github.com/ovh/manager/commit/57b521eb7a0b7f49cf08ae23939bcbc07f94ac17))
+
+
+
+
+
+## [8.18.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.18.5...@ovh-ux/manager-sms@8.18.6) (2025-10-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4412] ([0061a13](https://github.com/ovh/manager/commit/0061a13d6714f2c9cafc6447d8674d73e65a889b))
+* **i18n:** add missing translations [CDS 4415] ([224b837](https://github.com/ovh/manager/commit/224b8376271874131463fb6e120b28e6e0b9a6f3))
+
+
+
+
+
+## [8.18.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.18.4...@ovh-ux/manager-sms@8.18.5) (2025-10-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4407] ([a7202a1](https://github.com/ovh/manager/commit/a7202a162c87654b01b1b31f7e46b652d28b785c))
+
+
+
+
+
+## [8.18.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.18.3...@ovh-ux/manager-sms@8.18.4) (2025-10-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 705] ([c7bae54](https://github.com/ovh/manager/commit/c7bae549fc51bd2ff44b5681a3c15e5ab82c45b0))
+* **telecom.sms:** allow multiple file on create sender ([af5f2ac](https://github.com/ovh/manager/commit/af5f2ac101e28bfee5ec9ec7bb5fcd65983acadc)), closes [#PRDCOL-198](https://github.com/ovh/manager/issues/PRDCOL-198)
+
+
+
+
+
 ## [8.18.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.18.2...@ovh-ux/manager-sms@8.18.3) (2025-08-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-sms

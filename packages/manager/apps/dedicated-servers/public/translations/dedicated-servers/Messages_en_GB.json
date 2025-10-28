@@ -15,7 +15,7 @@
   "server_display_name": "Name",
   "server_display_ip": "IP address",
   "server_display_reverse": "Reverse DNS",
-  "server_display_model": "Template",
+  "server_display_model": "Server model",
   "server_display_rack": "Rack",
   "server_display_region": "Region",
   "server_display_state": "Status",

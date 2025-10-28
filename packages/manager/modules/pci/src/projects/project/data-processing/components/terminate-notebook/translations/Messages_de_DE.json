@@ -1,9 +1,0 @@
-{
-  "data_processing_terminate_notebook_title": "Notebook herunterfahren",
-  "data_processing_terminate_notebook_description_1": "Wenn Sie ein Spark Notebook anhalten: ",
-  "data_processing_terminate_notebook_description_list_1": "Die Rechenressourcen werden freigegeben.",
-  "data_processing_terminate_notebook_description_list_2": "Jobs, die mithilfe des Notebook gestartet wurden, werden nicht angehalten.",
-  "data_processing_terminate_notebook_description_2": "Wenn Sie Ihr Spark Notebook angehalten haben, können Sie es entweder <b>löschen</b> oder <b>neu starten</b>. ",
-  "data_processing_terminate_notebook_delete_button": "Notebook anhalten",
-  "data_processing_terminate_notebook_cancel_button": "Abbrechen"
-}

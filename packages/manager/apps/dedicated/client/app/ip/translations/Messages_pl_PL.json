@@ -779,6 +779,5 @@
   "ip_guide_link_additional_ip": "Skonfiguruj Additional IP",
   "ip_guide_link_ip_alias": "Skonfiguruj adres IP jako alias",
   "ip_guide_link_ip_proxmox": "Skonfiguruj Additional IP na Proxmox VE",
-  "ip_guide_link_floating_ip": "Jak to działa - Additional IP lub Floating IP on Public Cloud",
-  "ip_permanent_mitigation_EOL": "UWAGA: funkcjonalność „Permanent Scrubbing Centre” zostanie wyłączona 8 września 2025 r.  "
+  "ip_guide_link_floating_ip": "Jak to działa - Additional IP lub Floating IP on Public Cloud"
 }

@@ -1,36 +1,26 @@
 import { Outlet, useNavigate } from 'react-router-dom';
+
 import { Trans, useTranslation } from 'react-i18next';
-import {
-  Datagrid,
-  DatagridColumn,
-  ManagerButton,
-} from '@ovh-ux/manager-react-components';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import {
-  OdsButton,
-  OdsIcon,
-  OdsLink,
-  OdsMessage,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { ODS_BUTTON_VARIANT, ODS_ICON_NAME, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsButton, OdsIcon, OdsLink, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Datagrid, ManagerButton } from '@ovh-ux/manager-react-components';
+import type { DatagridColumn } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { ORDER_OFFICE } from '@/Tracking.constants';
+import { BadgeStatus } from '@/components/badge-status/BadgeStatus.component';
+import { UserStateEnum } from '@/data/api/ApiType';
+import { LicensePrepaidType } from '@/data/api/license/type';
 import { UserNativeType } from '@/data/api/users/type';
-import { useGenerateUrl } from '@/hooks';
-import { useLicenseDetail, useUsers } from '@/data/hooks';
-import { BadgeStatus } from '@/components/badgeStatus/BadgeStatus.component';
-import { UserStateEnum } from '@/data/api/api.type';
+import { useLicenseDetail } from '@/data/hooks/license-details/useLicenseDetails';
+import { useUsers } from '@/data/hooks/users/useUsers';
+import { useGenerateUrl } from '@/hooks/generate-url/useGenerateUrl';
+import { IAM_ACTIONS } from '@/utils/IamAction.constants';
+
 import ActionButtonUsers from './ActionButtonUsers.component';
-import { IAM_ACTIONS } from '@/utils/iamAction.constants';
-import { ORDER_OFFICE } from '@/tracking.constants';
 
 export default function Users() {
   const { t } = useTranslation([
@@ -43,30 +33,19 @@ export default function Users() {
   const { trackClick } = useOvhTracking();
   const { data: dataUsers, isLoading: isLoadingUsers } = useUsers();
 
-  const {
-    data: dataLicenceDetail,
-    isLoading: isLoadingLicenceDetail,
-  } = useLicenseDetail();
+  const { data: dataLicenceDetail, isLoading: isLoadingLicenceDetail } = useLicenseDetail();
 
   const dataServiceName = dataLicenceDetail?.serviceName;
   const dataTenantServiceName = dataLicenceDetail?.tenantServiceName;
 
-  const hrefOrderLicenses = useGenerateUrl(
-    '/license/:serviceName/users/order-licenses',
-    'path',
-    {
-      serviceName: dataServiceName,
-      tenantServiceName: dataTenantServiceName,
-    },
-  );
+  const hrefOrderLicenses = useGenerateUrl('/license/:serviceName/users/order-licenses', 'path', {
+    serviceName: dataServiceName,
+    tenantServiceName: dataTenantServiceName,
+  });
 
-  const hrefOrderUsers = useGenerateUrl(
-    '/license/:serviceName/users/order-users',
-    'path',
-    {
-      serviceName: dataServiceName,
-    },
-  );
+  const hrefOrderUsers = useGenerateUrl('/license/:serviceName/users/order-users', 'path', {
+    serviceName: dataServiceName,
+  });
   const navigate = useNavigate();
   const tracking = () =>
     trackClick({
@@ -84,7 +63,7 @@ export default function Users() {
     navigate(hrefOrderUsers);
   };
 
-  const columns: DatagridColumn<UserNativeType>[] = [
+  const columns: DatagridColumn<UserNativeType | LicensePrepaidType>[] = [
     {
       id: 'firstName',
       cell: (item: UserNativeType) => (
@@ -103,9 +82,7 @@ export default function Users() {
     {
       id: 'activationEmail',
       cell: (item: UserNativeType) => (
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {item.activationEmail}
-        </OdsText>
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.activationEmail}</OdsText>
       ),
       label: 'dashboard_users_table_activationEmail',
       enableHiding: true,
@@ -123,11 +100,7 @@ export default function Users() {
       cell: (item: UserNativeType) =>
         item.isVirtual ? (
           <BadgeStatus
-            itemStatus={
-              item.taskPendingId
-                ? UserStateEnum.CREATING
-                : UserStateEnum.UNCONFIGURED
-            }
+            itemStatus={item.taskPendingId ? UserStateEnum.CREATING : UserStateEnum.UNCONFIGURED}
           ></BadgeStatus>
         ) : (
           <BadgeStatus itemStatus={item.status}></BadgeStatus>
@@ -138,10 +111,7 @@ export default function Users() {
     {
       id: 'action',
       cell: (item: UserNativeType) => (
-        <ActionButtonUsers
-          usersItem={item}
-          licenceDetail={dataLicenceDetail}
-        ></ActionButtonUsers>
+        <ActionButtonUsers usersItem={item} licenceDetail={dataLicenceDetail}></ActionButtonUsers>
       ),
       enableHiding: false,
       label: '',
@@ -169,9 +139,7 @@ export default function Users() {
           }}
         />
         <p>{t('dashboard_users_download_info')}</p>
-        <OdsMessage isDismissible={false}>
-          {t('dashboard_users_download_id')}
-        </OdsMessage>
+        <OdsMessage isDismissible={false}>{t('dashboard_users_download_id')}</OdsMessage>
       </OdsText>
       <Datagrid
         columns={columns.map((column) => ({
@@ -190,7 +158,7 @@ export default function Users() {
             />
           ) : (
             <ManagerButton
-              id={dataLicenceDetail.id}
+              id={dataLicenceDetail.id as string}
               data-testid="users-order-button"
               label={t(`${NAMESPACES.ACTIONS}:order_users`)}
               urn={dataLicenceDetail?.iam.urn}

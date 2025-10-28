@@ -1,3 +1,5 @@
-const NotificationsSidebar = () => <div>Notifs</div>;
+import React from "react";
+
+const NotificationsSidebar = () => React.createElement('div', null, 'Notifs');
 
 export default NotificationsSidebar;

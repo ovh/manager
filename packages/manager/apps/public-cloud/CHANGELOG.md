@@ -3,6 +3,167 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.6.5...@ovh-ux/manager-public-cloud@7.7.0) (2025-10-27)
+
+
+### Features
+
+* **pci-ai-tools:** add qpu app in Manager ([#19967](https://github.com/ovh/manager/issues/19967)) ([7abe33b](https://github.com/ovh/manager/commit/7abe33b79845af4792fe20415b8685addbd89921)), closes [#AIS-1352](https://github.com/ovh/manager/issues/AIS-1352)
+
+
+
+
+
+## [7.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.6.4...@ovh-ux/manager-public-cloud@7.6.5) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.6.3...@ovh-ux/manager-public-cloud@7.6.4) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.6.2...@ovh-ux/manager-public-cloud@7.6.3) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.6.1...@ovh-ux/manager-public-cloud@7.6.2) (2025-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.6.0...@ovh-ux/manager-public-cloud@7.6.1) (2025-10-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+# [7.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.5.7...@ovh-ux/manager-public-cloud@7.6.0) (2025-10-15)
+
+
+### Features
+
+* **pci.db:** update streaming deep links ([#19625](https://github.com/ovh/manager/issues/19625)) ([bf84207](https://github.com/ovh/manager/commit/bf842076ff9e3c19b7203054f258a2285d1d0af3)), closes [#DATATR-2558](https://github.com/ovh/manager/issues/DATATR-2558)
+
+
+
+
+
+## [7.5.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.5.6...@ovh-ux/manager-public-cloud@7.5.7) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.5.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.5.5...@ovh-ux/manager-public-cloud@7.5.6) (2025-10-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.5.4...@ovh-ux/manager-public-cloud@7.5.5) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.5.3...@ovh-ux/manager-public-cloud@7.5.4) (2025-10-06)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.5.2...@ovh-ux/manager-public-cloud@7.5.3) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.5.1...@ovh-ux/manager-public-cloud@7.5.2) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.5.0...@ovh-ux/manager-public-cloud@7.5.1) (2025-09-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+# [7.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.4.10...@ovh-ux/manager-public-cloud@7.5.0) (2025-09-23)
+
+
+### Features
+
+* **data-processing:** remove angular unused code and remove billing section ([7e49b07](https://github.com/ovh/manager/commit/7e49b07bf01f84d3f6e53c741cfa762f5a6c5866)), closes [#DATATR-2346](https://github.com/ovh/manager/issues/DATATR-2346)
+
+
+
+
+
+## [7.4.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.4.9...@ovh-ux/manager-public-cloud@7.4.10) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.4.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.4.8...@ovh-ux/manager-public-cloud@7.4.9) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.4.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.4.7...@ovh-ux/manager-public-cloud@7.4.8) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [7.4.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.4.6...@ovh-ux/manager-public-cloud@7.4.7) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
 ## [7.4.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.4.5...@ovh-ux/manager-public-cloud@7.4.6) (2025-09-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud

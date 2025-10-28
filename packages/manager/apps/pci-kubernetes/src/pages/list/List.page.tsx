@@ -1,19 +1,9 @@
-import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
-import { useProject } from '@ovh-ux/manager-pci-common';
-import {
-  ChangelogButton,
-  Datagrid,
-  FilterAdd,
-  FilterList,
-  Headers,
-  Notifications,
-  PciGuidesHeader,
-  RedirectionGuard,
-  useColumnFilters,
-  useDataGrid,
-  useNotifications,
-  useProjectUrl,
-} from '@ovh-ux/manager-react-components';
+import { useRef, useState } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -31,19 +21,36 @@ import {
   OsdsSearchBar,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import { useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+
+import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
+import { useParam, useProject } from '@ovh-ux/manager-pci-common';
+import {
+  ChangelogButton,
+  Datagrid,
+  FilterAdd,
+  FilterList,
+  Headers,
+  Notifications,
+  PciGuidesHeader,
+  RedirectionGuard,
+  useColumnFilters,
+  useDataGrid,
+  useNotifications,
+  useProjectUrl,
+} from '@ovh-ux/manager-react-components';
+
 import { useKubes } from '@/api/hooks/useKubernetes';
-import { useDatagridColumn } from './useDatagridColumn';
-import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
 import { CHANGELOG_LINKS } from '@/constants';
+import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
+
+import FileStorageAlert from './components/FileStorageAlert.component';
+import { useDatagridColumn } from './hooks/useDatagridColumn';
 
 export default function ListPage() {
-  const { t } = useTranslation('listing');
-  const { t: tFilter } = useTranslation('filter');
+  const { t } = useTranslation(['listing', 'filter']);
 
-  const { projectId } = useParams();
+  const { projectId } = useParam('projectId');
   const { data: project } = useProject();
   const hrefProject = useProjectUrl('public-cloud');
   const { pagination, setPagination } = useDataGrid();
@@ -53,6 +60,7 @@ export default function ListPage() {
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchField, setSearchField] = useState('');
   const filterPopoverRef = useRef(undefined);
+  const featureFlipping3az = use3AZPlanAvailable();
 
   const { data: allKube, isPending } = useKubes(projectId, pagination, filters);
 
@@ -87,15 +95,13 @@ export default function ListPage() {
             </>
           }
           changelogButton={
-            <ChangelogButton
-              links={CHANGELOG_LINKS}
-              chapters={CHANGELOG_CHAPTERS}
-            />
+            <ChangelogButton links={CHANGELOG_LINKS} chapters={CHANGELOG_CHAPTERS} />
           }
         />
       </div>
 
       <Notifications />
+      {featureFlipping3az && <FileStorageAlert />}
 
       <div className="sm:flex items-center justify-between mt-4">
         <OsdsButton
@@ -148,7 +154,7 @@ export default function ListPage() {
                 className="mr-2"
                 color={ODS_THEME_COLOR_INTENT.primary}
               />
-              {tFilter('common_criteria_adder_filter_label')}
+              {t('filter:common_criteria_adder_filter_label')}
             </OsdsButton>
             <OsdsPopoverContent>
               <FilterAdd
@@ -187,11 +193,7 @@ export default function ListPage() {
 
       {isPending ? (
         <div className="text-center">
-          <OsdsSpinner
-            inline
-            size={ODS_SPINNER_SIZE.md}
-            data-testid="List-spinner"
-          />
+          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} data-testid="List-spinner" />
         </div>
       ) : (
         <div>

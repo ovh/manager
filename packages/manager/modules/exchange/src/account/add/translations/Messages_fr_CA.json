@@ -4,7 +4,7 @@
   "exchange_account_add_emailAddress_hint_part_1": "elle doit débuter et se terminer par une lettre ou un chiffre ;",
   "exchange_account_add_emailAddress_hint_part_2": "les caractères spéciaux autorisés sont « . », « + », « - » et « _ » ;",
   "exchange_account_add_emailAddress_hint_part_3": "il est impossible de mettre côte à côte des caractères spéciaux.",
-  "exchange_account_add_phone_help_text": "Veuillez rentrer un numéro au format international (00xx ...).",
+  "exchange_account_add_phone_error_text": "Espace interdit",
   "exchange_account_country_AD": "Andorre",
   "exchange_account_country_AE": "Émirats Arabes Unis",
   "exchange_account_country_AF": "Afghanistan",

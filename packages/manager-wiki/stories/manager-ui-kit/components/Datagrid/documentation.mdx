@@ -1,0 +1,333 @@
+import {
+  StoryBookBanner,
+  StorybookHeading,
+  StorybookBestPractices,
+  StorybookIdentityCard,
+  StorybookTable,
+} from '../../../../components/';
+import { Meta, Canvas, Source } from '@storybook/blocks';
+import meta, { Default} from './datagrid.stories';
+import Datagrid from '../../../../components/external-links';
+
+<Meta title="Manager UI Kit/Components/Datagrid New/Documentation" />
+
+<StoryBookBanner of={meta} />
+
+<Canvas layout="centered" of={Default} sourceState="none" />
+
+<StorybookHeading label="Overview" level={2} />
+
+<StorybookIdentityCard
+  name="Datagrid"
+  relatedComponents={[
+    { name: 'Table', href: Datagrid.ods.table },
+  ]}
+>
+The Datagrid component is a powerful data table built on top of TanStack Table, providing advanced features for displaying and interacting with tabular data. It supports sorting, filtering, pagination, and customizable column definitions.
+</StorybookIdentityCard>
+
+<StorybookHeading label="Features" level={3} />
+
+<StorybookTable
+  data={{
+    columns: ['feature', 'description', 'status'],
+    rows: [
+      {
+        feature: 'Column Sorting',
+        description: 'Client-side and server-side sorting with TanStack Table integration',
+        status: '✅',
+      },
+      {
+        feature: 'Manual Sorting',
+        description: 'Server-side sorting control with manualSorting prop',
+        status: '✅',
+      },
+      {
+        feature: 'Custom Columns',
+        description: 'Flexible column definitions with custom cell renderers',
+        status: '✅',
+      },
+      {
+        feature: 'Pagination',
+        description: 'Progressive data loading with Load more and Load all actions',
+        status: '✅',
+      },
+      {
+        feature: 'Search',
+        description: 'Global search input to filter rows across searchable columns',
+        status: '✅',
+      },
+      {
+        feature: 'Filters',
+        description: 'Column-level filters with comparators, options and removable chips',
+        status: '✅',
+      },
+      {
+        feature: 'Columns visiblity',
+        description: 'Toggle column visibility via a columns picker with Select all',
+        status: '✅',
+      },
+      {
+        feature: 'Row selection',
+        description: 'Single or multi-row selection with a header master checkbox',
+        status: '✅',
+      },
+      {
+        feature: 'Column Expandable',
+        description: 'Expandable rows to display hierarchical or nested data',
+        status: '✅',
+      },
+      {
+        feature: 'Subcomponent',
+        description: 'Custom sub-rows to render additional content below a row',
+        status: '✅',
+      },
+    ],
+  }}
+/>
+
+<StorybookHeading label="Virtualization" level={3} />
+
+The Datagrid uses row virtualization (TanStack Virtual) to render only the visible rows, ensuring smooth scrolling and performance with large datasets. The container height is auto-calculated, and you can override it with the `containerHeight` prop if needed.
+
+
+<StorybookHeading label="Sorting Configuration" level={3} />
+
+The Datagrid supports two sorting modes:
+
+**Client-side Sorting (Default)**
+```tsx
+<Datagrid
+  columns={columns}
+  data={data}
+  sorting={sorting}
+  onSortChange={setSorting}
+  manualSorting={false} // Default
+/>
+```
+
+**Server-side Sorting (Manual)**
+```tsx
+<Datagrid
+  columns={columns}
+  data={data}
+  sorting={sorting}
+  onSortChange={setSorting}
+  manualSorting={true} // Server handles sorting
+/>
+```
+
+<StorybookHeading label="Footer Actions" level={3} />
+
+The Datagrid includes built-in pagination controls in the footer for progressive data loading.
+
+**Load More Button**
+Incrementally loads additional data when clicked.
+
+```tsx
+<Datagrid
+  columns={columns}
+  data={data}
+  hasNextPage={true}
+  onFetchNextPage={() => {
+    // Fetch next page of data
+  }}
+/>
+```
+
+**Load All Button**
+Loads all remaining data at once.
+
+```tsx
+<Datagrid
+  columns={columns}
+  data={data}
+  hasNextPage={true}
+  onFetchAllPages={() => {
+    // Fetch all remaining data
+  }}
+/>
+```
+
+**Loading State**
+Both buttons can show loading indicators when data is being fetched.
+
+```tsx
+<Datagrid
+  columns={columns}
+  data={data}
+  hasNextPage={true}
+  onFetchNextPage={handleFetchNext}
+  onFetchAllPages={handleFetchAll}
+  isLoading={true} // Shows loading state
+/>
+```
+
+
+<StorybookHeading label="Custom Columns" level={3} />
+
+Define columns with custom cell renderers.
+
+```tsx
+const columns = [
+  {
+    id: 'name',
+    header: 'Name',
+    accessorKey: 'name',
+    cell: ({ getValue }) => <strong>{getValue<string>()}</strong>,
+  },
+  {
+    id: 'age',
+    header: 'Age',
+    accessorKey: 'age',
+  },
+];
+
+<Datagrid columns={columns} data={data} />
+```
+
+<StorybookHeading label="Search" level={3} />
+
+Enable a global search input.
+
+```tsx
+const [searchInput, setSearchInput] = useState('');
+
+<Datagrid
+  columns={columns}
+  data={data}
+  enableSearch
+  search={{
+    searchInput,
+    setSearchInput,
+    onSearch: (value) => {
+      // Trigger server or client-side search
+      console.log('search', value);
+    },
+    placeholder: 'Search...',
+  }}
+  enableSearch={true}
+/>;
+```
+
+<StorybookHeading label="Filters" level={3} />
+
+Add column-level filters with a filter popover and removable chips.
+
+```tsx
+const [filters, setFilters] = useState([]);
+
+<Datagrid
+  columns={columns}
+  data={data}
+  enableFilter
+  filters={{
+    filters,
+    add: (f) => setFilters((prev) => [...prev, f]),
+    remove: (f) => setFilters((prev) => prev.filter((x) => x.key !== f.key)),
+  }}
+  resourceType="example"
+  enableSorting={true}
+/>;
+```
+
+<StorybookHeading label="Columns visibility" level={3} />
+
+Toggle columns on and off via the visibility menu.
+
+```tsx
+const [columnVisibility, setColumnVisibility] = useState({});
+
+const columns = [
+  { id: 'name', header: 'Name', accessorKey: 'name', enableHiding: true },
+  { id: 'age', header: 'Age', accessorKey: 'age', enableHiding: true },
+];
+
+<Datagrid
+  columns={columns}
+  data={data}
+  enableColumnvisibility
+  columnVisibility={columnVisibility}
+  setColumnVisibility={setColumnVisibility}
+  enableColumnvisibility={true}
+/>;
+```
+
+<StorybookHeading label="Row selection" level={3} />
+
+Allow selecting one or multiple rows.
+
+```tsx
+const [rowSelection, setRowSelection] = useState({});
+
+<Datagrid
+  columns={columns}
+  data={data}
+  rowSelection={{
+    rowSelection,
+    setRowSelection,
+    onRowSelectionChange: (rows) => console.log('selected rows', rows),
+    // Optionally restrict selection
+    // enableRowSelection: (row) => row.original.locked !== true,
+  }}
+/>;
+```
+
+<StorybookHeading label="Expandable rows" level={3} />
+
+Display hierarchical data with expandable rows, use `subRow` in your data items.
+
+```tsx
+const items = [
+  {
+    id: '1,
+    person: 'John Doe',
+    subRows: [
+      {
+        id: '99,
+        person: 'Joahn Cruyff',
+      },
+      {
+        id: '100,
+        person: 'Michel Platini',
+      },
+      {
+        id: '101',
+        person: 'Lionel Messi',
+      }
+    ]
+  }
+];
+const [expanded, setExpanded] = useState<ExpandedState>({});
+
+<Datagrid<Item>
+  columns={columns}
+  data={items}
+  expandable={{
+    expanded,
+    setExpanded,
+    enableExpanded
+  }}
+/>;
+```
+
+<StorybookHeading label="Subcomponent" level={3} />
+
+Render a custom sub-row below a row.
+
+```tsx
+<Datagrid
+  columns={columns}
+  data={data}
+  renderSubComponent={(row) => (
+    <div>Details for {row.original.name}</div>
+  )}
+  subComponentHeight={80}
+/>;
+```
+
+<StorybookHeading label="External Resources" level={3} />
+
+- **TanStack Table**: [Official Documentation](https://tanstack.com/table/latest)
+- **ODS Table Component**: [Design System Table]({Datagrid.ods.table})
+- **React Table Examples**: [GitHub Examples](https://github.com/TanStack/table/tree/main/examples/react/sorting)

@@ -1,5 +1,14 @@
 import { useEffect, useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_INPUT_TYPE,
+  ODS_RADIO_BUTTON_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   OsdsFormField,
   OsdsInput,
@@ -8,13 +17,6 @@ import {
   OsdsRadioGroup,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_INPUT_TYPE,
-  ODS_RADIO_BUTTON_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 export const GATEWAY_IP_REGEX = /^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)(\.(?!$)|$)){4}$/;
 
@@ -32,15 +34,10 @@ export interface GatewaySelectorProps {
   onSelect?: (mode: ModeEnum, ip: string) => void;
 }
 
-export const GatewayModeSelector = ({
-  initialValue,
-  onSelect,
-}: Readonly<GatewaySelectorProps>) => {
+export const GatewayModeSelector = ({ initialValue, onSelect }: Readonly<GatewaySelectorProps>) => {
   const { t: tAdd } = useTranslation('network-add');
 
-  const [gatewayMode, setGatewayMode] = useState(
-    initialValue?.mode || ModeEnum.AUTO,
-  );
+  const [gatewayMode, setGatewayMode] = useState(initialValue?.mode || ModeEnum.AUTO);
 
   const [gatewayIp, setGatewayIp] = useState({
     isTouched: false,
@@ -72,29 +69,15 @@ export const GatewayModeSelector = ({
         }}
       >
         <OsdsRadio name="mode" value={ModeEnum.AUTO}>
-          <OsdsRadioButton
-            color={ODS_THEME_COLOR_INTENT.primary}
-            size={ODS_RADIO_BUTTON_SIZE.xs}
-          >
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_TEXT_SIZE._400}
-              slot="end"
-            >
+          <OsdsRadioButton color={ODS_THEME_COLOR_INTENT.primary} size={ODS_RADIO_BUTTON_SIZE.xs}>
+            <OsdsText color={ODS_THEME_COLOR_INTENT.text} size={ODS_TEXT_SIZE._400} slot="end">
               {tAdd('kubernetes_network_form_gateway_mode_auto')}
             </OsdsText>
           </OsdsRadioButton>
         </OsdsRadio>
         <OsdsRadio className="mt-4" name="mode" value={ModeEnum.CUSTOM}>
-          <OsdsRadioButton
-            color={ODS_THEME_COLOR_INTENT.primary}
-            size={ODS_RADIO_BUTTON_SIZE.xs}
-          >
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              size={ODS_TEXT_SIZE._400}
-              slot="end"
-            >
+          <OsdsRadioButton color={ODS_THEME_COLOR_INTENT.primary} size={ODS_RADIO_BUTTON_SIZE.xs}>
+            <OsdsText color={ODS_THEME_COLOR_INTENT.text} size={ODS_TEXT_SIZE._400} slot="end">
               {tAdd('kubernetes_network_form_gateway_mode_custom')}
             </OsdsText>
           </OsdsRadioButton>
@@ -105,9 +88,7 @@ export const GatewayModeSelector = ({
           className="mt-4 ml-[3rem]"
           error={
             gatewayIp.hasError
-              ? tAdd(
-                  'kubernetes_network_form_gateway_vrack_field_ip_error_pattern',
-                )
+              ? tAdd('kubernetes_network_form_gateway_vrack_field_ip_error_pattern')
               : undefined
           }
         >
@@ -123,9 +104,7 @@ export const GatewayModeSelector = ({
             type={ODS_INPUT_TYPE.text}
             color={ODS_THEME_COLOR_INTENT.primary}
             className={gatewayIp.hasError ? 'bg-red-100' : 'bg-white'}
-            placeholder={tAdd(
-              'kubernetes_network_form_gateway_mode_custom_placeholder',
-            )}
+            placeholder={tAdd('kubernetes_network_form_gateway_mode_custom_placeholder')}
             onOdsInputBlur={() => {
               setGatewayIp((ip) => ({
                 ...ip,

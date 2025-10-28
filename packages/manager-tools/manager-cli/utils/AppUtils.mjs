@@ -1,6 +1,6 @@
-import { existsSync, readdirSync, readFileSync, statSync } from 'fs';
+import { existsSync, readFileSync, readdirSync, statSync } from 'fs';
+import { dirname, join, resolve } from 'path';
 import { fileURLToPath } from 'url';
-import { dirname, resolve, join } from 'path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -23,10 +23,7 @@ const isReactApp = (appName) => {
       ...pkg.devDependencies,
     };
 
-    return (
-      deps['react'] !== undefined &&
-      deps['react-dom'] !== undefined
-    );
+    return deps['react'] !== undefined && deps['react-dom'] !== undefined;
   } catch (err) {
     console.error(`❌ Failed to read package.json for ${appName}`, err);
     return false;
@@ -75,7 +72,7 @@ export const getAvailableApps = () => {
   }
 
   try {
-    return readdirSync(applicationsBasePath).filter(name => {
+    return readdirSync(applicationsBasePath).filter((name) => {
       const fullPath = resolve(applicationsBasePath, name);
       return statSync(fullPath).isDirectory();
     });
@@ -85,7 +82,6 @@ export const getAvailableApps = () => {
     return [];
   }
 };
-
 
 /**
  * Get all React applications

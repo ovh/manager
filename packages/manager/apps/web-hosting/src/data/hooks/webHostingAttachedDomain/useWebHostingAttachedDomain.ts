@@ -1,14 +1,16 @@
+import { useCallback, useEffect, useState } from 'react';
+
 import {
   UseInfiniteQueryOptions,
-  useInfiniteQuery,
   UseInfiniteQueryResult,
+  useInfiniteQuery,
 } from '@tanstack/react-query';
-import { useCallback, useEffect, useState } from 'react';
+
 import {
   getWebHostingAttachedDomain,
   getWebHostingAttachedDomainQueryKey,
 } from '@/data/api/AttachedDomain';
-import { WebsiteType } from '@/data/type';
+import { WebsiteType } from '@/data/types/product/website';
 import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
 
 type UseWebsitesListParams = Omit<
@@ -19,9 +21,7 @@ type UseWebsitesListParams = Omit<
   shouldFetchAll?: boolean;
 };
 
-export const useWebHostingAttachedDomain = (
-  props: UseWebsitesListParams = {},
-) => {
+export const useWebHostingAttachedDomain = (props: UseWebsitesListParams = {}) => {
   const { domain, shouldFetchAll, ...options } = props;
   const searchParams = buildURLSearchParams({
     domain,
@@ -43,12 +43,9 @@ export const useWebHostingAttachedDomain = (
       typeof props.enabled === 'function'
         ? props.enabled(q)
         : typeof props.enabled !== 'boolean' || props.enabled,
-    getNextPageParam: (lastPage: { cursorNext?: string }) =>
-      lastPage.cursorNext,
+    getNextPageParam: (lastPage: { cursorNext?: string }) => lastPage.cursorNext,
     select: (data) =>
-      data?.pages.flatMap(
-        (page: UseInfiniteQueryResult<WebsiteType[]>) => page.data,
-      ),
+      data?.pages.flatMap((page: UseInfiniteQueryResult<WebsiteType[]>) => page.data),
   });
 
   const fetchAllPages = useCallback(() => {
@@ -57,18 +54,20 @@ export const useWebHostingAttachedDomain = (
     }
   }, [allPages, setAllPages]);
 
+  const { hasNextPage, isFetchingNextPage, fetchNextPage } = query;
+
   useEffect(() => {
-    if (allPages && query.hasNextPage && !query.isFetchingNextPage) {
-      query.fetchNextPage();
+    if (allPages && hasNextPage && !isFetchingNextPage) {
+      fetchNextPage().catch(console.error);
     }
-  }, [query.data, allPages]);
+  }, [allPages, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   // reset when searchParams changes
   useEffect(() => {
     if (!shouldFetchAll) {
       setAllPages(false);
     }
-  }, [searchParams]);
+  }, [searchParams, shouldFetchAll]);
 
   // use object assign instead of spread
   // to avoid unecessary rerenders

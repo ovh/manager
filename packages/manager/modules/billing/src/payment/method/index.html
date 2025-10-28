@@ -23,27 +23,44 @@
         <span data-translate="billing_payment_method_load_error"></span>
     </oui-message>
 
-    <oui-message class="mb-5" data-type="info" data-ng-if="$ctrl.guide">
-        <span
-            data-translate="billing_payment_method_autorenew_guide_help"
-        ></span>
-        <a
-            class="oui-link_icon"
-            target="_blank"
-            rel="noopener"
-            data-ng-href="{{ $ctrl.guide }}"
-            data-track-on="click"
-            data-track-type="action"
-            data-track-name="payment_types::autoRenew::link::guides_how_to_use_automatic_renewal"
+    <div class="mb-5">
+        <oui-message class="mb-1" data-type="info" data-ng-if="$ctrl.guide">
+            <span
+                data-translate="billing_payment_method_autorenew_guide_help"
+            ></span>
+            <a
+                class="oui-link_icon"
+                target="_blank"
+                rel="noopener"
+                data-ng-href="{{ $ctrl.guide }}"
+                data-track-on="click"
+                data-track-type="action"
+                data-track-name="payment_types::autoRenew::link::guides_how_to_use_automatic_renewal"
+            >
+                <span
+                    data-translate="billing_payment_method_autorenew_guide_help_link"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                >
+                </span>
+                <span class="sr-only" data-translate="common_new_tab"></span>
+            </a>
+        </oui-message>
+        <oui-message
+            type="info"
+            data-ng-if="$ctrl.isPaymentByChequeInfoBannerAvailable"
         >
             <span
-                data-translate="billing_payment_method_autorenew_guide_help_link"
+                data-translate="billing_payment_method_payment_by_cheque_information"
             ></span>
-            <span class="oui-icon oui-icon-external-link" aria-hidden="true">
-            </span>
-            <span class="sr-only" data-translate="common_new_tab"></span>
-        </a>
-    </oui-message>
+            <strong
+                data-translate="billing_payment_method_payment_by_cheque_information_button"
+            >
+            </strong>
+        </oui-message>
+    </div>
 
     <div class="mb-3">
         <ovh-manager-billing-split-payment

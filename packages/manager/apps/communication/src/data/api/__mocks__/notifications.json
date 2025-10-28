@@ -1,0 +1,61 @@
+[
+  {
+    "attachments": [
+      {
+        "contentType": "text/plain",
+        "name": "attachment1",
+        "sizeBytes": 100
+      },
+      {
+        "contentType": "application/json",
+        "name": "attachment2",
+        "sizeBytes": 200
+      }
+    ],
+    "categories": ["MAINTENANCE", "BILLING"],
+    "contacts": [
+      {
+        "error": null,
+        "id": "610660a7-3a5d-4725-9c20-8a106a383394",
+        "sentAt": "2025-01-01T13:00:00+00:00",
+        "status": "SENT",
+        "to": "test@example.com",
+        "type": "EMAIL"
+      },
+      {
+        "error": "Email bounced",
+        "id": "01978dd8-0a35-70c0-bf90-b90a6d94e881",
+        "sentAt": "2025-01-01T14:00:00+00:00",
+        "status": "DROPPED",
+        "to": "test2@example.com",
+        "type": "EMAIL"
+      }
+    ],
+    "createdAt": "2025-01-01T12:00:00+00:00",
+    "html": null,
+    "id": "01975e44-9b60-77b4-8af3-58efdcd12e90",
+    "priority": "HIGH",
+    "text": null,
+    "title": "Title notif1"
+  },
+  {
+    "attachments": [],
+    "categories": ["BILLING"],
+    "contacts": [
+      {
+        "error": null,
+        "id": "c3c79123-ed07-4c1b-a4ed-0a420fe05f80",
+        "sentAt": "2025-01-02T13:00:00+00:00",
+        "status": "SENT",
+        "to": "test@example.com",
+        "type": "EMAIL"
+      }
+    ],
+    "createdAt": "2025-03-02T12:00:00+00:00",
+    "html": null,
+    "id": "01975e45-1e53-7b16-b0c3-a82c5cadcbac",
+    "priority": "MEDIUM",
+    "text": null,
+    "title": "Title notif2"
+  }
+]

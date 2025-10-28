@@ -49,6 +49,7 @@ export interface User {
   corporationType: string;
   ovhCompany: string;
   companyNationalIdentificationNumber: string;
+  complementaryAddress: string | null;
   zip: string;
   birthCity: string;
   address: string;

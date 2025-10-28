@@ -216,6 +216,10 @@ export const TELEPHONY_LINE_PHONE_ACCESSORIES = {
     url: URL_ACCESSORIES,
     img: `${PATH_URL_IMG}yealink/accessory-yealink-wh62-90-90.png`,
   },
+  'yealink.ehs60': {
+    url: URL_ACCESSORIES,
+    img: `${PATH_URL_IMG}yealink/accessory-yealink-ehs60-90-90.png`,
+  },
   'orosound.tildeproplus': {
     url: URL_ACCESSORIES,
     img: `${PATH_URL_IMG}orosound/accessory-orosound-tildepro-plus-90-90.png`,
@@ -237,6 +241,14 @@ export const TELEPHONY_LINE_PHONE_ACCESSORIES = {
   'epos.sennheiser.adapt.560': {
     url: URL_ACCESSORIES,
     img: `${PATH_URL_IMG}epos/accessory-epos-adapt560-90-90.png`,
+  },
+  'epos.impact.1060T.anc': {
+    url: URL_ACCESSORIES,
+    img: `${PATH_URL_IMG}epos/accessory-epos-impact-1060T-anc-90-90.png`,
+  },
+  'epos.impact.1061T.anc': {
+    url: URL_ACCESSORIES,
+    img: `${PATH_URL_IMG}epos/accessory-epos-impact-1061T-anc-90-90.png`,
   },
 };
 

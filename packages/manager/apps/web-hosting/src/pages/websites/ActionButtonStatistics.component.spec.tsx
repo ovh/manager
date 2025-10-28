@@ -1,15 +1,16 @@
 import React from 'react';
+
 import { describe, expect } from 'vitest';
-import { render } from '@/utils/test.provider';
-import ActionButtonStatistics from './ActionButtonStatistics.component';
+
 import { websitesMocks } from '@/data/__mocks__';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
+import { render } from '@/utils/test.provider';
+
+import ActionButtonStatistics from './ActionButtonStatistics.component';
 
 describe('ActionButtonStatistics component', () => {
   it('should render', () => {
-    const { container } = render(
-      <ActionButtonStatistics webSiteItem={websitesMocks[0]} />,
-    );
+    const { container } = render(<ActionButtonStatistics webSiteItem={websitesMocks[0]} />);
     expect(container).toBeInTheDocument();
     const menuItems = container.querySelectorAll('ods-popover ods-button');
 

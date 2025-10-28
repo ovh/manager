@@ -14,11 +14,14 @@ import {
   TRACKING_PAGE_CATEGORY,
   TRACKING_PAGE,
   TRACKING_ACTIONS_PREFIX,
+  SERVICE_RENEW_MODES,
 } from '../autorenew.constants';
+import { ACTION_BADGE_CLASSES_MAP } from './services.constants';
 
 export default class ServicesCtrl {
   /* @ngInject */
   constructor(
+    $state,
     $filter,
     $q,
     $translate,
@@ -27,7 +30,9 @@ export default class ServicesCtrl {
     billingRenewHelper,
     coreConfig,
     ouiDatagridService,
+    billingPeriodTranslatorHelper,
   ) {
+    this.$state = $state;
     this.$filter = $filter;
     this.$q = $q;
     this.$translate = $translate;
@@ -36,12 +41,15 @@ export default class ServicesCtrl {
     this.renewHelper = billingRenewHelper;
     this.coreConfig = coreConfig;
     this.ouiDatagridService = ouiDatagridService;
+    this.billingPeriodTranslatorHelper = billingPeriodTranslatorHelper;
+    this.ACTION_BADGE_CLASSES_MAP = ACTION_BADGE_CLASSES_MAP;
   }
 
   $onInit() {
     this.trackingPage = TRACKING_PAGE;
     this.trackingCategory = TRACKING_PAGE_CATEGORY;
     this.trackingActionsPrefix = TRACKING_ACTIONS_PREFIX;
+    this.isUSRegion = this.coreConfig.isRegion('US');
 
     this.ALIGNMENT_URL = this.coreConfig.isRegion('EU')
       ? ALIGNMENT_URLS[this.currentUser.ovhSubsidiary] || ALIGNMENT_URLS.FR
@@ -90,12 +98,10 @@ export default class ServicesCtrl {
     }
 
     this.currentCriteria = JSON.parse(JSON.stringify(this.criteria));
-  }
-
-  descriptionOfHeading() {
-    return this.coreConfig.getRegion() !== 'US'
-      ? this.$translate.instant('billing_description')
-      : '';
+    if (this.$state.params.refresh === 'true') {
+      // Clear the route refresh parameter to avoid always requesting API without cache
+      this.$state.go('.', { refresh: 'false' });
+    }
   }
 
   getCriterionTitle(type, value) {
@@ -288,7 +294,10 @@ export default class ServicesCtrl {
   }
 
   getAutomaticExpirationDate(service) {
-    return new Intl.DateTimeFormat(this.$translate.use().replace('_', '-'), {
+    const locale = this.isUSRegion
+      ? 'en-US'
+      : this.$translate.use().replace('_', '-');
+    return new Intl.DateTimeFormat(locale, {
       year: 'numeric',
       month: 'numeric',
       day: 'numeric',
@@ -323,6 +332,22 @@ export default class ServicesCtrl {
       this.BillingAutoRenew.isAutomaticRenewV2Available() &&
       (!this.defaultPaymentMean || !this.nicRenew.active) &&
       !this.currentUser.hasAutorenew2016()
+    );
+  }
+
+  getRenewPeriodTranslation($row) {
+    return this.billingPeriodTranslatorHelper.translatePeriod(
+      $row.hasAutomaticRenew() && !$row.isResiliated() && $row.renewPeriod
+        ? $row.renew.period
+        : SERVICE_RENEW_MODES.MANUAL,
+      {
+        manual: 'billing_autorenew_service_none',
+        everyMonth: 'billing_autorenew_service_every_month',
+        everyXMonths: 'billing_autorenew_service_every_x_months',
+        everyYear: 'billing_autorenew_service_every_year',
+        everyXYears: 'billing_autorenew_service_every_x_years',
+      },
+      true,
     );
   }
 }

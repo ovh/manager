@@ -353,21 +353,11 @@
   {
     "public": {
       "application": "public-cloud",
-      "path": "/create-data-processing"
-    },
-    "redirect": {
-      "application": "public-cloud",
-      "path": "/pci/projects/{project}/data-processing/onboarding"
-    }
-  },
-  {
-    "public": {
-      "application": "public-cloud",
       "path": "/create-kafka-data-streaming"
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/databases-analytics/streaming/services/new?STEP_1=kafka"
+      "path": "/pci/projects/{project}/databases-analytics/all/services/new?STEP_1=kafka"
     }
   },
   {
@@ -377,7 +367,7 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/databases-analytics/streaming/services/new?STEP_1=kafkaConnect"
+      "path": "/pci/projects/{project}/databases-analytics/all/services/new?STEP_1=kafkaConnect"
     }
   },
   {
@@ -387,7 +377,7 @@
     },
     "redirect": {
       "application": "public-cloud",
-      "path": "/pci/projects/{project}/databases-analytics/streaming/services/new?STEP_1=kafkaMirrorMaker"
+      "path": "/pci/projects/{project}/databases-analytics/all/services/new?STEP_1=kafkaMirrorMaker"
     }
   },
   {
@@ -448,6 +438,26 @@
     "redirect": {
       "application": "public-cloud",
       "path": "/pci/projects/{project}/ai/endpoints"
+    }
+  },
+  {
+    "public": {
+      "application": "public-cloud",
+      "path": "/create-quantum-emulators"
+    },
+    "redirect": {
+      "application": "public-cloud",
+      "path": "/pci/projects/{project}/ai-ml/quantum/notebooks"
+    }
+  },
+  {
+    "public": {
+      "application": "public-cloud",
+      "path": "/create-quantum-qpu"
+    },
+    "redirect": {
+      "application": "public-cloud",
+      "path": "/pci/projects/{project}/ai-ml/quantum/qpu"
     }
   },
   {

@@ -1,23 +1,28 @@
-import React, { useEffect, useState, KeyboardEvent } from 'react';
+import React, { KeyboardEvent, useEffect, useState } from 'react';
+
 import { useLocation } from 'react-router-dom';
-import {
-  OsdsSearchBar,
-  OsdsButton,
-  OsdsIcon,
-} from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+
 import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_BUTTON_VARIANT,
   ODS_BUTTON_SIZE,
   ODS_BUTTON_TYPE,
-  OsdsSearchBarCustomEvent,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
   OdsInputValueChangeEventDetail,
+  OsdsSearchBarCustomEvent,
 } from '@ovhcloud/ods-components';
-import Filters from '@/components/Filters/Filters';
+import {
+  OsdsButton,
+  OsdsIcon,
+  OsdsSearchBar,
+} from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Product } from '@/api';
+import Filters from '@/components/Filters/Filters';
 import FilterChip from '../Filters/FilterChip';
 
 interface SearchbarProps {
@@ -40,6 +45,7 @@ const SearchBar: React.FC<SearchbarProps> = ({
   setIsRouterInitialized,
 }) => {
   const { t } = useTranslation('catalog/search');
+  const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
 
   const [showFilters, setShowFilters] = useState(false);
   const [localSearchValue, setLocalSearchValue] = useState('');
@@ -113,7 +119,7 @@ const SearchBar: React.FC<SearchbarProps> = ({
               color={ODS_THEME_COLOR_INTENT.primary}
               className="mr-2"
             />
-            {t('manager_catalog_search_filter_button')}
+            {tActions('show_hide_filters')}
           </OsdsButton>
         </span>
       </div>

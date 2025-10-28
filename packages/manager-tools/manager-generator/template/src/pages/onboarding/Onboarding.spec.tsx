@@ -14,7 +14,7 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-// --- Mock manager-react-components ---
+// --- Mock manager-ui-kit ---
 interface OnboardingLayoutProps {
   title: string;
   img?: { src: string; alt: string };
@@ -29,7 +29,7 @@ interface CardProps {
   hrefLabel: string;
 }
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
+vi.mock('@ovh-ux/muk', () => ({
   OnboardingLayout: ({
     title,
     img,

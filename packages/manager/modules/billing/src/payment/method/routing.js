@@ -12,6 +12,9 @@ export default /* @ngInject */ ($stateProvider) => {
   const name = 'billing.payment.method';
   const allowDefaultChoiceForFirstPaymentMethodFeatureName =
     'billing:allowDefaultChoiceForFirstPaymentMethod';
+  const paymenyByChequeInfoBannerFeatureName =
+    'billing:paymentByChequeInfoBanner';
+  const allowedLegalform = ['administration', 'association'];
 
   $stateProvider.state(name, {
     url: '/method',
@@ -85,40 +88,42 @@ export default /* @ngInject */ ($stateProvider) => {
           });
         }
       },
+      featureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping.checkFeatureAvailability([
+          allowDefaultChoiceForFirstPaymentMethodFeatureName,
+          SPLIT_PAYMENT_FEATURE_NAME,
+          paymenyByChequeInfoBannerFeatureName,
+        ]),
       hasAllowDefaultChoiceForFirstPaymentMethod: /* @ngInject */ (
-        ovhFeatureFlipping,
+        featureAvailability,
       ) =>
-        ovhFeatureFlipping
-          .checkFeatureAvailability(
-            allowDefaultChoiceForFirstPaymentMethodFeatureName,
-          )
-          .then((feature) =>
-            feature.isFeatureAvailable(
-              allowDefaultChoiceForFirstPaymentMethodFeatureName,
-            ),
-          ),
+        featureAvailability.isFeatureAvailable(
+          allowDefaultChoiceForFirstPaymentMethodFeatureName,
+        ),
       isSplitPaymentAvailable: /* @ngInject */ (
         $http,
-        currentUser,
-        ovhFeatureFlipping,
+        featureAvailability,
         splitPaymentTag,
-      ) =>
-        ovhFeatureFlipping
-          .checkFeatureAvailability(SPLIT_PAYMENT_FEATURE_NAME)
-          .then((feature) =>
-            feature.isFeatureAvailable(SPLIT_PAYMENT_FEATURE_NAME),
-          )
-          .then((isFeatureAvailable) =>
-            isFeatureAvailable
-              ? $http
-                  .get('/me/tag/available')
-                  .then(({ data: tags }) =>
-                    tags.some(
-                      ({ name: tagName }) => tagName === splitPaymentTag,
-                    ),
-                  )
-              : false,
-          ),
+      ) => {
+        if (featureAvailability.isFeatureAvailable(SPLIT_PAYMENT_FEATURE_NAME))
+          return $http
+            .get('/me/tag/available')
+            .then(({ data: tags }) =>
+              tags.some(({ name: tagName }) => tagName === splitPaymentTag),
+            );
+        return false;
+      },
+      isPaymentByChequeInfoBannerAvailable: /* @ngInject */ (
+        featureAvailability,
+        coreConfig,
+      ) => {
+        const user = coreConfig.getUser();
+        return (
+          featureAvailability.isFeatureAvailable(
+            paymenyByChequeInfoBannerFeatureName,
+          ) && allowedLegalform.includes(user?.legalform)
+        );
+      },
       splitPayment: /* @ngInject */ (
         $http,
         isSplitPaymentAvailable,

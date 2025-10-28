@@ -1,5 +1,15 @@
 import { useEffect, useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_MESSAGE_TYPE,
+  ODS_SELECT_SIZE,
+  ODS_SPINNER_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   OsdsFormField,
   OsdsMessage,
@@ -8,14 +18,7 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_MESSAGE_TYPE,
-  ODS_SELECT_SIZE,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+
 import { TPrivateNetworkSubnet } from '@/api/data/subnets';
 import { useRegionSubnets } from '@/api/hooks/useSubnets';
 import { SelectComponent } from '@/components/input/Select.component';
@@ -50,17 +53,15 @@ export const SubnetSelector = ({
   );
   const { t: tAdd } = useTranslation('network-add');
   const { t: tCommon } = useTranslation('common');
-  const { data: availableSubnets, isPending, error } = useRegionSubnets(
-    projectId,
-    region,
-    networkId,
-  );
+  const {
+    data: availableSubnets,
+    isPending,
+    error,
+  } = useRegionSubnets(projectId, region, networkId);
 
   useEffect(() => {
     if (preselectedId) {
-      const selected = availableSubnets?.find(
-        (net) => net.id === preselectedId,
-      );
+      const selected = availableSubnets?.find((net) => net.id === preselectedId);
       setSubnet(selected);
       onSelect?.(selected);
     } else if (availableSubnets?.length && !allowsEmpty) {
@@ -105,9 +106,7 @@ export const SubnetSelector = ({
           size={ODS_SELECT_SIZE.md}
           value={subnet?.id}
           onOdsValueChange={({ detail }) => {
-            const sub = availableSubnets?.find(
-              (net) => net.id === detail.value,
-            );
+            const sub = availableSubnets?.find((net) => net.id === detail.value);
             setSubnet(sub || ({ id: 'none' } as TPrivateNetworkSubnet));
             onSelect?.(sub);
           }}

@@ -1,30 +1,28 @@
-import {
-  OsdsButton,
-  OsdsModal,
-  OsdsSpinner,
-} from '@ovhcloud/ods-components/react';
+import { ReactElement, useEffect, useMemo, useState } from 'react';
+
+import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useEffect, useMemo, useState } from 'react';
+import { OsdsButton, OsdsModal, OsdsSpinner } from '@ovhcloud/ods-components/react';
+
 import { useParam as useSafeParams } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import {
-  useClusterNodePools,
-  useUpdateNodePoolSize,
-} from '@/api/hooks/node-pools';
-import queryClient from '@/queryClient';
-import { Autoscaling } from '@/components/Autoscaling.component';
-import { useTrack } from '@/hooks/track';
-import { NODE_RANGE } from '@/constants';
-import { TScalingState } from '@/types';
-import { isScalingValid } from '@/helpers/node-pool';
 
-export default function ScalePage(): JSX.Element {
+import { useClusterNodePools, useUpdateNodePoolSize } from '@/api/hooks/node-pools';
+import { Autoscaling } from '@/components/Autoscaling.component';
+import { NODE_RANGE } from '@/constants';
+import { isScalingValid } from '@/helpers/node-pool';
+import { useTrack } from '@/hooks/track';
+import queryClient from '@/queryClient';
+import { TScalingState } from '@/types';
+
+export default function ScalePage(): ReactElement {
   const { projectId, kubeId: clusterId } = useSafeParams('projectId', 'kubeId');
   const [searchParams] = useSearchParams();
-  const poolId = searchParams.get('nodePoolId') as string;
+  const poolId = searchParams.get('nodePoolId');
 
   const navigate = useNavigate();
   const goBack = () => navigate('..');
@@ -38,15 +36,9 @@ export default function ScalePage(): JSX.Element {
 
   const [state, setState] = useState<TScalingState | null>(null);
 
-  const { data: pools, isPending: isPoolsPending } = useClusterNodePools(
-    projectId,
-    clusterId,
-  );
+  const { data: pools, isPending: isPoolsPending } = useClusterNodePools(projectId, clusterId);
 
-  const pool = useMemo(() => pools?.find((p) => p.id === poolId), [
-    pools,
-    poolId,
-  ]);
+  const pool = useMemo(() => pools?.find((p) => p.id === poolId), [pools, poolId]);
 
   useEffect(() => {
     if (pool) {
@@ -84,8 +76,7 @@ export default function ScalePage(): JSX.Element {
     poolId,
   });
 
-  const isDisabled =
-    isPendingScaling || (state && !isScalingValid({ scaling: state }));
+  const isDisabled = isPendingScaling || (state && !isScalingValid({ scaling: state }));
 
   const scaleObject = useMemo(() => {
     const desired = Number(state?.quantity.desired);
@@ -134,11 +125,7 @@ export default function ScalePage(): JSX.Element {
             onChange={(s) => setState(s)}
           />
         ) : (
-          <OsdsSpinner
-            inline
-            size={ODS_SPINNER_SIZE.md}
-            className="block text-center"
-          />
+          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} className="block text-center" />
         )}
       </slot>
       <OsdsButton

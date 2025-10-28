@@ -1,8 +1,9 @@
-import { useId } from 'react';
+import { InputHTMLAttributes, KeyboardEvent, ReactNode, useId } from 'react';
+
 import { cn } from '@/helpers';
 
-interface RadioTileProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  children: React.ReactNode | React.ReactNode[];
+interface RadioTileProps extends InputHTMLAttributes<HTMLInputElement> {
+  children: ReactNode | ReactNode[];
   className?: string;
   tileClassName?: string;
   labelClassName?: string;
@@ -17,11 +18,9 @@ const RadioTile = ({
 }: RadioTileProps) => {
   const id = useId();
   const labelId = `${id}-label`;
-  const handleLabelKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleLabelKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      const inputElement = document.getElementById(
-        id,
-      ) as HTMLInputElement | null;
+      const inputElement = document.getElementById(id) as HTMLInputElement | null;
       if (inputElement) {
         inputElement.click();
       }
@@ -34,8 +33,9 @@ const RadioTile = ({
       {...(!disabled && { tabIndex: 0 })}
       onKeyDown={handleLabelKeyDown}
       data-testid="radio-tile-container"
+      className={cn(tileClassName, 'h-full')}
     >
-      <div className={cn(tileClassName)}>
+      <div className="h-full">
         <input
           onChange={(e) => (props.onChange ? props.onChange(e) : null)}
           className="hidden"
@@ -49,12 +49,14 @@ const RadioTile = ({
         <label
           id={labelId}
           className={cn(
-            'flex flex-col h-full w-full group border-2 border-primary-100 rounded-md',
+            'flex flex-col h-full w-full group border-2 border-solid  rounded-md',
             {
-              'border-primary-600  selected': !disabled && props.checked,
-              'border-primary-100 bg-white': !disabled && !props.checked,
-              'hover:shadow-sm hover:border-primary-600 hover:bg-primary-100 cursor-pointer': !disabled,
-              'bg-neutral-100 border-neutral-100 text-neutral-800': disabled,
+              'border-[--ods-color-blue-600]  selected': !disabled && props.checked,
+              'border-[--ods-color-blue-100] bg-white': !disabled && !props.checked,
+              'hover:shadow-sm  hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] cursor-pointer':
+                !disabled,
+              'bg-neutral-100  text-neutral-800 border-[--ods-color-border-readonly-default]':
+                disabled,
             },
 
             labelClassName,
@@ -66,15 +68,6 @@ const RadioTile = ({
         </label>
       </div>
     </div>
-  );
-};
-
-RadioTile.Separator = function RadioTileSeparator() {
-  return (
-    <div
-      className="w-full border-neutral-100 border-t mt-2 pt-2 "
-      aria-hidden="true"
-    ></div>
   );
 };
 

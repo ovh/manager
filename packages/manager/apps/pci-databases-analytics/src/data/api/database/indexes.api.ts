@@ -1,4 +1,9 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+import {
+  apiClient,
+  createHeaders,
+  IcebergPaginationHeaders,
+  NoCacheHeaders,
+} from '@/data/api/api.client';
 import { ServiceData } from '.';
 import * as database from '@/types/cloud/project/database';
 
@@ -7,18 +12,10 @@ export const getIndexes = async ({
   engine,
   serviceId,
 }: ServiceData) =>
-  apiClient.v6
-    .get<database.opensearch.Index[]>(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/index`,
-      {
-        headers: {
-          'X-Pagination-Mode': 'CachedObjectList-Pages',
-          'X-Pagination-Size': '50000',
-          Pragma: 'no-cache',
-        },
-      },
-    )
-    .then((res) => res.data);
+  apiClient.v6.get<database.opensearch.Index[]>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/index`,
+    { headers: createHeaders(NoCacheHeaders, IcebergPaginationHeaders) },
+  );
 
 export interface DeleteIndex extends ServiceData {
   indexId: string;

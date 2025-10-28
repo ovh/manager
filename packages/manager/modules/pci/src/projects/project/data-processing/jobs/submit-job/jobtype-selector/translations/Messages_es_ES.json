@@ -1,5 +1,0 @@
-{
-  "data_processing_submit_job_spark_description": "Inicie un job Apache Stark utilizando un JAR Java/Scala o código Python con dependencias Conda.",
-  "data_processing_submit_job_soon_deprecated": "Obsoleto próximamente",
-  "data_processing_submit_job_deprecated": "Obsoleto"
-}

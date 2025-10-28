@@ -3,6 +3,86 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.7.12](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.7.11...@ovh-ux/shell@4.7.12) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/shell
+
+
+
+
+
+## [4.7.11](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.7.10...@ovh-ux/shell@4.7.11) (2025-10-16)
+
+**Note:** Version bump only for package @ovh-ux/shell
+
+
+
+
+
+## [4.7.10](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.7.9...@ovh-ux/shell@4.7.10) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/shell
+
+
+
+
+
+## [4.7.9](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.7.8...@ovh-ux/shell@4.7.9) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/shell
+
+
+
+
+
+## [4.7.8](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.7.7...@ovh-ux/shell@4.7.8) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/shell
+
+
+
+
+
+## [4.7.7](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.7.6...@ovh-ux/shell@4.7.7) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/shell
+
+
+
+
+
+## [4.7.6](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.7.5...@ovh-ux/shell@4.7.6) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/shell
+
+
+
+
+
+## [4.7.5](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.7.4...@ovh-ux/shell@4.7.5) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/shell
+
+
+
+
+
+## [4.7.4](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.7.3...@ovh-ux/shell@4.7.4) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/shell
+
+
+
+
+
+## [4.7.3](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.7.2...@ovh-ux/shell@4.7.3) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/shell
+
+
+
+
+
 ## [4.7.2](https://github.com/ovh/manager/compare/@ovh-ux/shell@4.7.1...@ovh-ux/shell@4.7.2) (2025-09-06)
 
 **Note:** Version bump only for package @ovh-ux/shell

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-resource-tagging",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "private": true,
   "description": "OVHcloud Resource Tagging module",
   "repository": {
@@ -12,8 +12,8 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "@ovhcloud/ods-components": "18.6.2",
-    "@ovhcloud/ods-themes": "18.6.2",
+    "@ovhcloud/ods-components": "18.6.4",
+    "@ovhcloud/ods-themes": "18.6.4",
     "bootstrap4": "twbs/bootstrap#v4.6.2"
   },
   "peerDependencies": {

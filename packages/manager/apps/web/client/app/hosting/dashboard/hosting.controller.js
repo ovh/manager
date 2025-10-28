@@ -77,6 +77,7 @@ export default class {
     HOSTING_ORDER_URL,
     HOSTING_OPERATION_STATUS,
     HOSTING_FLUSH_STATE,
+    HOSTING_ABUSE_STATE,
   ) {
     this.$http = $http;
     this.$scope = $scope;
@@ -87,6 +88,7 @@ export default class {
     this.$scope.HOSTING_STATUS = HOSTING_STATUS;
     this.$scope.HOSTING_OPERATION_STATUS = HOSTING_OPERATION_STATUS;
     this.$scope.HOSTING_FLUSH_STATE = HOSTING_FLUSH_STATE;
+    this.$scope.HOSTING_ABUSE_STATE = HOSTING_ABUSE_STATE;
     this.$scope.logs = logs;
     this.$rootScope = $rootScope;
     this.$location = $location;
@@ -136,7 +138,6 @@ export default class {
     this.privateDatabasesDetachable = privateDatabasesDetachable;
     this.privateDatabasesIds = privateDatabasesIds;
     this.runtimesLink = runtimesLink;
-    this.taskLink = taskLink;
     this.user = user;
     this.userLogsLink = userLogsLink;
     this.DOMAIN_ORDER_URL = DOMAIN_ORDER_URL;
@@ -145,6 +146,11 @@ export default class {
     this.sslCertificateLink = coreURLBuilder.buildURL(
       'web-hosting',
       '#/:serviceName/ssl',
+      { serviceName },
+    );
+    this.taskLink = coreURLBuilder.buildURL(
+      'web-hosting',
+      '#/:serviceName/task',
       { serviceName },
     );
   }
@@ -180,6 +186,7 @@ export default class {
     this.$scope.ovhSubsidiary = this.user.ovhSubsidiary;
 
     this.$scope.alerts = {
+      layout: 'app.alerts.layout',
       page: 'app.alerts.page',
       tabs: 'app.alerts.tabs',
       main: 'app.alerts.main',
@@ -850,6 +857,20 @@ export default class {
       })
       .then(() => this.handlePrivateDatabases())
       .then(() => this.simulateUpgradeAvailability())
+      .then(() => {
+        this.Hosting.getAbuseState(this.$stateParams.productId).then(
+          (abuseState) => {
+            const { BLOCKED } = this.$scope.HOSTING_ABUSE_STATE;
+            if (
+              [abuseState?.mailsoutState, abuseState?.outState].includes(
+                BLOCKED,
+              )
+            ) {
+              this.$scope.$resolve.goToAbuseUnblock(this.serviceName);
+            }
+          },
+        );
+      })
       .finally(() => {
         this.$scope.loadingHostingInformations = false;
       });

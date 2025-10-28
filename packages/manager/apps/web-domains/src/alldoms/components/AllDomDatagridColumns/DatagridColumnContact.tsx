@@ -1,5 +1,5 @@
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
-import { OdsLink } from '@ovhcloud/ods-components/react';
+import { Link } from '@ovhcloud/ods-react';
 import React from 'react';
 
 interface DatagridColumnContactProps {
@@ -17,11 +17,7 @@ export default function DatagridColumnContact({
 
   return (
     <DataGridTextCell>
-      {!url ? (
-        contact
-      ) : (
-        <OdsLink href={url} label={contact} class="link-banner" />
-      )}
+      {!url ? contact : <Link href={url}>{contact}</Link>}
     </DataGridTextCell>
   );
 }

@@ -4,28 +4,10 @@ import SubTreeSection, { SubTreeSectionProps } from './SubTreeSection';
 import { Node } from '../navigation-tree/node';
 import { mockShell } from '../mocks/sidebarMocks';
 
-const node: Node = {
-  id: 'pci-rancher',
-  idAttr: 'pci-rancher-link',
-  universe: 'pci',
-  translation: 'sidebar_pci_rancher',
-  serviceType: 'CLOUD_PROJECT_KUBE',
-  routing: {
-    application: 'public-cloud',
-    hash: '#/pci/projects/{projectId}/rancher',
-  },
-  features: ['pci-rancher'],
-  forceVisibility: true,
-};
 
 const handleOnSubMenuClick = vi.fn();
 
-const props: SubTreeSectionProps = {
-  node,
-  selectedPciProject: '12345',
-  selectedNode: node,
-  handleOnSubMenuClick,
-};
+
 
 const renderSubTreeSectionComponent = (props: SubTreeSectionProps) => {
   return render(
@@ -49,6 +31,27 @@ vi.mock('@/container/nav-reshuffle/sidebar/SidebarLink', () => ({
 }));
 
 describe('SubtreeSection.component', () => {
+  const node: Node = {
+    id: 'pci-rancher',
+    idAttr: 'pci-rancher-link',
+    universe: 'pci',
+    translation: 'sidebar_pci_rancher',
+    serviceType: 'CLOUD_PROJECT_KUBE',
+    routing: {
+      application: 'public-cloud',
+      hash: '#/pci/projects/{projectId}/rancher',
+    },
+    features: ['pci-rancher'],
+    forceVisibility: true,
+  };
+
+  const props: SubTreeSectionProps = {
+    node,
+    selectedPciProject: '12345',
+    selectedNode: node,
+    handleOnSubMenuClick,
+  };
+
   it('should render', () => {
     const { queryByTestId } = renderSubTreeSectionComponent(props);
     expect(
@@ -63,5 +66,47 @@ describe('SubtreeSection.component', () => {
     );
     expect(queryByTestId(`subtree-section-ul-${props.node.id}`)).not.toBeNull();
     expect(queryAllByTestId('subtree-section-sidebar-link').length).toBe(2);
+  });
+});
+
+
+describe('SubtreeSection.component should be hidden', () => {
+  const node: Node = {
+    id: 'pci-rancher',
+    idAttr: 'pci-rancher-link',
+    universe: 'pci',
+    translation: 'sidebar_pci_rancher',
+    serviceType: 'CLOUD_PROJECT_KUBE',
+    routing: {
+      application: 'public-cloud',
+      hash: '#/pci/projects/{projectId}/rancher',
+    },
+    features: ['pci-rancher'],
+    forceVisibility: true,
+    hasService:false,
+    hideIfEmpty: true
+  };
+
+  const props: SubTreeSectionProps = {
+    node,
+    selectedPciProject: '12345',
+    selectedNode: node,
+    handleOnSubMenuClick,
+  };
+
+  it('should render', () => {
+    const { queryByTestId } = renderSubTreeSectionComponent(props);
+    expect(
+      queryByTestId(`subtree-section-link-${props.node.id}`),
+    ).not.toBeNull();
+  });
+
+  it('should render list', () => {
+    props.node.children = [node, node];
+    const { queryByTestId, queryAllByTestId } = renderSubTreeSectionComponent(
+      props,
+    );
+    expect(queryByTestId(`subtree-section-ul-${props.node.id}`)).not.toBeNull();
+    expect(queryAllByTestId('subtree-section-sidebar-link').length).toBe(0);
   });
 });

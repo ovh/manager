@@ -33,5 +33,16 @@
   "zimbra_domain_diagnostic_information_message_dkim_warning": "Detetámos uma configuração DKIM que não corresponde à configuração esperada para o seu serviço de mensagens.<br/><br/>Se tiver dificuldades em entregar e-mails aos seus destinatários, siga as instruções abaixo para reconfigurar a sua Zona DNS com as informações corretas.",
   "zimbra_domain_diagnostic_information_banner_dkim_error": "Erro de configuração DKIM: pode ter dificuldades em entregar os seus e-mails aos destinatários.",
   "zimbra_domain_diagnostic_information_banner_dkim_warning": "Configuração DKIM anormal",
-  "zimbra_domain_diagnostic_field_subdomain": "Subdomínio:"
+  "zimbra_domain_diagnostic_field_subdomain": "Subdomínio:",
+  "zimbra_domain_diagnostic_status_disabled": "Desativar",
+  "zimbra_domain_diagnostic_information_message_dkim_disabled": "A assinatura DKIM não está ativada, o que poderá causar problemas de entrega para alguns dos seus e-mails.",
+  "zimbra_domain_diagnostic_banner_enable_success_message": "O seu pedido de ativação foi corretamente registado. Será executado dentro de alguns instantes.",
+  "zimbra_domain_diagnostic_banner_disable_success_message": "O seu pedido de desativação foi corretamente registado. Será executado dentro de alguns instantes.",
+  "zimbra_domain_diagnostic_dkim_enable": "Ativar a assinatura DKIM",
+  "zimbra_domain_diagnostic_dkim_disable": "Desativar a assinatura DKIM",
+  "zimbra_domain_diagnostic_information_message_srv_ok": "O autodiscover está corretamente configurado no seu domínio.<br/><br/>O autodiscover é um mecanismo que simplifica a configuração das caixas de e-mail nos clientes de e-mail. Graças ao autodiscover, já não é necessário introduzir o nome do servidor ou as portas de ligação a este.",
+  "zimbra_domain_diagnostic_information_message_srv_error": "Verificamos que existe uma configuração SRV que não corresponde à esperada pelo seu serviço de e-mail. O autodiscover não pode funcionar corretamente.<br/><br/>O autodiscover é um mecanismo que simplifica a configuração das caixas de e-mail nos clientes de e-mail. Graças ao autodiscover, já não é necessário introduzir o nome do servidor ou as portas de ligação a este.<br/><br/>Preencha a Zona DNS do seu domínio com as informações abaixo.",
+  "zimbra_domain_diagnostic_information_message_srv_warning": "Verificamos que existe uma configuração SRV que não corresponde à esperada pelo seu serviço de e-mail. O autodiscover pode não funcionar corretamente.<br/><br/>O autodiscover é um mecanismo que simplifica a configuração das caixas de e-mail nos clientes de e-mail. Graças ao autodiscover, já não é necessário introduzir o nome do servidor ou as portas de ligação a este.",
+  "zimbra_domain_diagnostic_information_banner_srv_error": "Erro de configuração SRV, os seus utilizadores podem ter dificuldades em configurar a sua conta nos clientes de e-mail.",
+  "zimbra_domain_diagnostic_information_banner_srv_warning": "Configuração SRV anormal"
 }

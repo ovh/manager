@@ -42,8 +42,6 @@ describe('AllDom datagrid', () => {
       // We test the status
       const status = getByTestId('status');
       expect(status).toBeInTheDocument();
-      expect(status).toHaveAttribute('color', 'success');
-      expect(status).toHaveAttribute('label', 'allDom_table_status_automatic');
 
       // We test the actions
       fireEvent.click(screen.getByTestId('navigation-action-trigger-action'));

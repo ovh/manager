@@ -1,5 +1,4 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { OdsFile } from '@ovhcloud/ods-components';
 import axios from 'axios';
 
 export type MeDocument = {
@@ -44,10 +43,7 @@ const postMeDocumentCors = async (origin: string): Promise<void> => {
 
 const customAxiosInstance = axios.create({});
 
-const saveDocumentFile = async (
-  putUrl: string,
-  file: OdsFile,
-): Promise<void> => {
+const saveDocumentFile = async (putUrl: string, file: File): Promise<void> => {
   return customAxiosInstance.put(putUrl, file, {
     headers: {
       'Content-type': 'multipart/form-data',
@@ -55,7 +51,7 @@ const saveDocumentFile = async (
   });
 };
 
-export const saveFile = async (file: OdsFile) => {
+export const saveFile = async (file: File) => {
   const response = await postMeDocument(file.name);
   await postMeDocumentCors(window.location.origin);
   await saveDocumentFile(response.putUrl, file);

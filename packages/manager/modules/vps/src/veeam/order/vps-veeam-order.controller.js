@@ -218,6 +218,7 @@ export default class VpsVeeamOrderCtrl {
   $onInit() {
     this.loading.init = true;
     this.hasInitError = false;
+    this.model = { agree: false };
 
     this.VpsService.getVeeamInfo(this.stateVps.name)
       .then(() => this.upgradeOption())

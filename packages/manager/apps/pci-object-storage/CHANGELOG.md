@@ -3,6 +3,217 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.18.6...@ovh-ux/manager-pci-object-storage-app@0.18.7) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.18.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.18.5...@ovh-ux/manager-pci-object-storage-app@0.18.6) (2025-10-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.18.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.18.4...@ovh-ux/manager-pci-object-storage-app@0.18.5) (2025-10-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4414] ([93db853](https://github.com/ovh/manager/commit/93db85376d262141eccb15d3b93e31f09d446bd0))
+
+
+
+
+
+## [0.18.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.18.3...@ovh-ux/manager-pci-object-storage-app@0.18.4) (2025-10-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.18.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.18.2...@ovh-ux/manager-pci-object-storage-app@0.18.3) (2025-10-15)
+
+
+### Bug Fixes
+
+* **object-storage:** error message not handle ([177d5fc](https://github.com/ovh/manager/commit/177d5fc673a22d5afe92f8a4f67b388e9a3f399f)), closes [#TAPC-4693](https://github.com/ovh/manager/issues/TAPC-4693)
+
+
+
+
+
+## [0.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.18.1...@ovh-ux/manager-pci-object-storage-app@0.18.2) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.18.0...@ovh-ux/manager-pci-object-storage-app@0.18.1) (2025-10-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4391] ([d81075a](https://github.com/ovh/manager/commit/d81075a6695478d7dc99506b5dd13e2c465aa464))
+
+
+
+
+
+# [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.17.7...@ovh-ux/manager-pci-object-storage-app@0.18.0) (2025-10-09)
+
+
+### Features
+
+* **object-storage:** drawer helper ([d8ede63](https://github.com/ovh/manager/commit/d8ede63a3c7ee6164a1b966b48debdb76ac6f531)), closes [#TAPC-4643](https://github.com/ovh/manager/issues/TAPC-4643)
+
+
+
+
+
+## [0.17.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.17.6...@ovh-ux/manager-pci-object-storage-app@0.17.7) (2025-10-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4381] ([4945007](https://github.com/ovh/manager/commit/494500772213000e029a07753e43cd5515fe3df3))
+* **i18n:** add missing translations [CDS 4383] ([05a1ea9](https://github.com/ovh/manager/commit/05a1ea9330111c74151177ea18570a7eda24a5c3))
+
+
+
+
+
+## [0.17.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.17.5...@ovh-ux/manager-pci-object-storage-app@0.17.6) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.17.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.17.4...@ovh-ux/manager-pci-object-storage-app@0.17.5) (2025-09-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4368] ([e5ca652](https://github.com/ovh/manager/commit/e5ca6521bb4fdcfb050e578e103023b92064517a))
+
+
+
+
+
+## [0.17.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.17.3...@ovh-ux/manager-pci-object-storage-app@0.17.4) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.17.2...@ovh-ux/manager-pci-object-storage-app@0.17.3) (2025-09-29)
+
+
+### Bug Fixes
+
+* **object-storage:** hide banner on object detail page ([5ade30d](https://github.com/ovh/manager/commit/5ade30d2d915b5130d4be014f76df6b451a8e425)), closes [#TAPC-4842](https://github.com/ovh/manager/issues/TAPC-4842)
+
+
+
+
+
+## [0.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.17.1...@ovh-ux/manager-pci-object-storage-app@0.17.2) (2025-09-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.17.0...@ovh-ux/manager-pci-object-storage-app@0.17.1) (2025-09-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.16.6...@ovh-ux/manager-pci-object-storage-app@0.17.0) (2025-09-23)
+
+
+### Features
+
+* **object-storage:** add offiste replication destination ([d733535](https://github.com/ovh/manager/commit/d733535e9147b6386e0253380417bc5b4aaecc1b)), closes [#TAPC-4148](https://github.com/ovh/manager/issues/TAPC-4148)
+
+
+
+
+
+## [0.16.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.16.5...@ovh-ux/manager-pci-object-storage-app@0.16.6) (2025-09-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4339] ([eac81a8](https://github.com/ovh/manager/commit/eac81a87009357e682ec5d14a2a3f613391e3be9))
+* **i18n:** add missing translations [CDS 4344] ([9a27729](https://github.com/ovh/manager/commit/9a277290d8896ef6c44c0abe880051cb76525849))
+
+
+
+
+
+## [0.16.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.16.4...@ovh-ux/manager-pci-object-storage-app@0.16.5) (2025-09-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4337] ([9958cd9](https://github.com/ovh/manager/commit/9958cd95bb1e99068f2a59d5f621b4e9dbab1096))
+
+
+
+
+
+## [0.16.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.16.3...@ovh-ux/manager-pci-object-storage-app@0.16.4) (2025-09-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.16.2...@ovh-ux/manager-pci-object-storage-app@0.16.3) (2025-09-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4322] ([58414eb](https://github.com/ovh/manager/commit/58414eb3f25845b473e4cf23c23c33f2f0d2e423))
+
+
+
+
+
+## [0.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.16.1...@ovh-ux/manager-pci-object-storage-app@0.16.2) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+## [0.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.16.0...@ovh-ux/manager-pci-object-storage-app@0.16.1) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
 # [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.15.12...@ovh-ux/manager-pci-object-storage-app@0.16.0) (2025-09-08)
 
 

@@ -1,15 +1,18 @@
 import { useMemo } from 'react';
+
 import { useQuery } from '@tanstack/react-query';
+
 import {
-  useCatalog,
-  useProductAvailability,
   TFlavor,
   TQuota,
   getFlavors,
+  useCatalog,
+  useProductAvailability,
 } from '@ovh-ux/manager-pci-common';
 
 import { getKubeFlavors } from '@/api/data/flavors';
 import { DeploymentMode } from '@/types';
+
 import { useProjectQuotaByRegion } from './useProjectQuota';
 
 export const FLAVOR_CATEGORIES = [
@@ -86,33 +89,18 @@ export const hasEnoughQuota = (flavor: TFlavor, quota: TQuota) => {
   const { instance } = quota;
   if (instance.usedInstances + 1 > (instance.maxInstances || 0)) return false;
   if (instance.usedRAM + flavor.ram > (instance.maxRam || 0)) return false;
-  if (instance.usedCores + flavor.vcpus > (instance.maxCores || 0))
-    return false;
+  if (instance.usedCores + flavor.vcpus > (instance.maxCores || 0)) return false;
   return true;
 };
 
-export const useMergedKubeFlavors = (
-  projectId: string,
-  region: string | null,
-) => {
-  const { data: flavors, isPending: isFlavorsPending } = useFlavors(
-    projectId,
-    region,
-  );
-  const { data: kubeFlavors, isPending: isKubeFlavorsPending } = useKubeFlavors(
-    projectId,
-    region,
-  );
+export const useMergedKubeFlavors = (projectId: string, region: string | null) => {
+  const { data: flavors, isPending: isFlavorsPending } = useFlavors(projectId, region);
+  const { data: kubeFlavors, isPending: isKubeFlavorsPending } = useKubeFlavors(projectId, region);
   const { data: catalog, isPending: isCatalogPending } = useCatalog();
-  const {
-    data: availability,
-    isPending: isAvailabilityPending,
-  } = useProductAvailability(projectId);
+  const { data: availability, isPending: isAvailabilityPending } =
+    useProductAvailability(projectId);
 
-  const { data: quota, isPending: isQuotaPending } = useProjectQuotaByRegion(
-    projectId,
-    region,
-  );
+  const { data: quota, isPending: isQuotaPending } = useProjectQuotaByRegion(projectId, region);
 
   const isPending =
     isFlavorsPending ||
@@ -122,26 +110,19 @@ export const useMergedKubeFlavors = (
     isQuotaPending;
 
   const mergedFlavors = useMemo(() => {
-    if (!flavors || !kubeFlavors || !catalog || !availability || !quota)
-      return [];
-    const kubeFlavorNames = new Set(
-      kubeFlavors.map(({ name }) => name.replace('-flex', '')),
-    );
+    if (!flavors || !kubeFlavors || !catalog || !availability || !quota) return [];
+    const kubeFlavorNames = new Set(kubeFlavors.map(({ name }) => name.replace('-flex', '')));
     const result = [...kubeFlavorNames].map((name) => ({
       ...flavors.find((_flavor) => _flavor.name === name),
       ...kubeFlavors.find((_flavor) => _flavor.name === name),
     }));
     return result
       .map((flavor) => {
-        const addon = catalog.addons.find(
-          (_addon) => _addon.planCode === flavor.planCodes.hourly,
-        );
+        const addon = catalog.addons.find((_addon) => _addon.planCode === flavor.planCodes.hourly);
         const addonMonthly = catalog.addons.find(
           (_addon) => _addon.planCode === flavor.planCodes.monthly,
         );
-        const plan = availability.plans?.find(
-          (_plan) => _plan.code === flavor.planCodes.hourly,
-        );
+        const plan = availability.plans?.find((_plan) => _plan.code === flavor.planCodes.hourly);
 
         // Bugfix: Issue with selecting the correct monthly price in the US
         // -----------------------------------------------------------
@@ -173,9 +154,7 @@ export const useMergedKubeFlavors = (
           pricingsHourly: addon?.pricings?.[0],
           pricingsMonthly: priceMonthly,
           isNew: addon?.blobs.tags.includes('is_new'),
-          flavorCategory: FLAVOR_CATEGORIES.find((cat) =>
-            cat.pattern.test(flavor.type),
-          )?.category,
+          flavorCategory: FLAVOR_CATEGORIES.find((cat) => cat.pattern.test(flavor.type))?.category,
           isFlex: /flex$/.test(flavor.name),
           isLegacy: /eg|sp|hg|vps-ssd/.test(flavor.name),
           hasEnoughQuota: hasEnoughQuota(flavor, quota),

@@ -29,5 +29,8 @@
   "billing_commitment_commit_with_discount": "Abonnement mit fester Laufzeit bestellen und Vorzugspreis sichern",
   "billing_commitment_commit_again_with_discount": "Abonnement mit fester Laufzeit verlängern und Vorzugspreis sichern",
   "billing_commitment_none_with_discount": "Derzeit besteht keine feste Vertragslaufzeit für Ihren Dienst {{ serviceName }}. Ab jetzt können Sie von einem Rabatt profitieren, indem Sie Ihren Dienst {{ serviceType }} für eine bestimmte Vertragslaufzeit abonnieren.",
-  "billing_commitment_commit_again_description_with_discount": "Sie haben Ihren Dienst {{ serviceName }} derzeit bis zum {{ endDate }} abonniert. Sie können den Vorzugspreis weiterhin erhalten, indem Sie das Abonnement für Ihren {{ serviceType }} Dienst verlängern."
+  "billing_commitment_commit_again_description_with_discount": "Sie haben Ihren Dienst {{ serviceName }} derzeit bis zum {{ endDate }} abonniert. Sie können den Vorzugspreis weiterhin erhalten, indem Sie das Abonnement für Ihren {{ serviceType }} Dienst verlängern.",
+  "billing_commitment_payment_pay_now_description": "Einen zusätzlichen Rabatt erhalten, indem Sie den Gesamtbetrag im Voraus zahlen",
+  "billing_commitment_info_message": "Wenn Sie sich für ein Angebot mit Vertragsbindung entscheiden, verpflichten Sie sich, den Dienst für die gesamte gewählte Dauer zu nutzen. Im Gegenzug profitieren Sie von einem Vorteil (z. B.: Rabatt auf den Preis, Einrichtungsgebühr geschenkt). Es steht Ihnen frei, den Dienst jederzeit zu stoppen, eine vorzeitige Kündigung kann allerdings Gebühren oder die Zahlung der verbleibenden Monate nach sich ziehen.",
+  "billing_commitment_payment_method_error": "Es gibt ein Problem mit Ihrem Zahlungsmittel. Wir werden Sie auf die Seite „Zahlungsmittel“ weiterleiten, damit Sie das Problem beheben können."
 }

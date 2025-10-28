@@ -27,5 +27,10 @@
   "change_password_helper1": "Atención: La contraseña debe cumplir los siguientes criterios:",
   "change_password_helper2": "Al menos una letra minúscula, una letra mayúscula, un número o un carácter especial",
   "price": "Precio",
-  "stepPlaceholder": "Paso {{current}} de {{total}}"
+  "stepPlaceholder": "Paso {{current}} de {{total}}",
+  "yes": "Sí",
+  "no": "No",
+  "ok": "OK",
+  "optional": "opcional",
+  "step_number": "Paso {{step}}"
 }

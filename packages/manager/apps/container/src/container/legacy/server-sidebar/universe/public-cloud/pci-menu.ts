@@ -12,15 +12,11 @@ export const features = [
   'pci-baremetal',
   'block-storage',
   'object-storage',
-  'databases-operational',
-  'databases-streaming',
-  'databases-analysis',
   'pci-ai-dashboard',
   'pci-ai-notebooks',
   'pci-ai-training',
   'pci-ai-deploy',
   'pci-databases-analytics-operational',
-  'pci-databases-analytics-streaming',
   'pci-databases-analytics-analysis',
   'pci-dataplatform',
   'archive',
@@ -36,10 +32,6 @@ export const features = [
   'kubernetes',
   'private-registry',
   'workflow-management',
-  'notebooks',
-  'training',
-  'ai-apps',
-  'data-processing',
   'logs-data-platform',
   'horizon',
   'pci-rancher',
@@ -50,12 +42,14 @@ export const features = [
   'public-cloud:vouchers',
   'public-cloud:contacts',
   'public-cloud:project-settings',
-  'ai-dashboard',
   'data-platform',
-  'key-management-service',
+  'okms',
+  'okms:key-management-service',
+  'okms:secret-manager',
   'pci-savings-plan',
   'pci-ai-endpoints',
   'pci-quantum-emulators',
+  'pci-quantum-qpu',
 ];
 
 export function getPciProjectMenu(
@@ -260,13 +254,8 @@ export function getPciProjectMenu(
 
   if (
     isFeaturesAvailable(
-      'databases-operational',
       'pci-databases-analytics-operational',
-      'databases-streaming',
       'pci-databases-analytics-streaming',
-      'data-processing',
-      'databases-analysis',
-      'pci-databases-analytics-analysis',
       'pci-dataplatform',
       'data-platform',
       'logs-data-platform',
@@ -276,15 +265,6 @@ export function getPciProjectMenu(
       id: 'analytics',
       title: 'Databases & Analytics',
       subItems: [
-        // Entry menu for PCI Databases for Angular
-        isFeaturesAvailable('databases-operational') && {
-          id: 'databases-operational',
-          title: 'Databases',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/storages/databases-analytics/databases`,
-          ),
-        },
         // Entry menu for PCI Databases for React
         isFeaturesAvailable('pci-databases-analytics-operational') && {
           id: 'pci-databases-analytics-operational',
@@ -294,45 +274,10 @@ export function getPciProjectMenu(
             `#/pci/projects/${projectId}/databases-analytics/operational/services`,
           ),
         },
-        // Entry menu for PCI Data Streaming for Angular
-        isFeaturesAvailable('databases-streaming') && {
-          id: 'databases-streaming',
-          title: 'Data Streaming',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/storages/databases-analytics/data-streaming`,
-          ),
-        },
-        // Entry menu for PCI Data Streaming for React
-        isFeaturesAvailable('pci-databases-analytics-streaming') && {
-          id: 'pci-databases-analytics-streaming',
-          title: 'Data Streaming',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/databases-analytics/streaming/services`,
-          ),
-        },
-        isFeaturesAvailable('data-processing') && {
-          id: 'data-processing',
-          title: 'Data Processing',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/data-processing`,
-          ),
-        },
-        // Entry menu for PCI Data Analysis for Angular
-        isFeaturesAvailable('databases-analysis') && {
-          id: 'databases-analysis',
-          title: 'Data Analysis',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/storages/databases-analytics/data-analysis`,
-          ),
-        },
         // Entry menu for PCI Data Analysis for React
         isFeaturesAvailable('pci-databases-analytics-analysis') && {
           id: 'pci-databases-analytics-analysis',
-          title: 'Data Analysis',
+          title: 'Analytics',
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/databases-analytics/analysis/services`,
@@ -365,10 +310,6 @@ export function getPciProjectMenu(
 
   if (
     isFeaturesAvailable(
-      'ai-dashboard',
-      'notebooks',
-      'training',
-      'ai-apps',
       'pci-ai-endpoints',
       'pci-ai-dashboard',
       'pci-ai-notebooks',
@@ -412,29 +353,6 @@ export function getPciProjectMenu(
             `#/pci/projects/${projectId}/ai-ml/deploy`,
           ),
         },
-        isFeaturesAvailable('ai-dashboard') && {
-          id: 'dashboard',
-          title: 'AI Dashboard',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/ai-dashboard`,
-          ),
-        },
-        isFeaturesAvailable('notebooks') && {
-          id: 'notebooks',
-          title: 'AI Notebooks',
-          href: getURL('public-cloud', `#/pci/projects/${projectId}/notebooks`),
-        },
-        isFeaturesAvailable('training') && {
-          id: 'training',
-          title: 'AI Training',
-          href: getURL('public-cloud', `#/pci/projects/${projectId}/training`),
-        },
-        isFeaturesAvailable('ai-apps') && {
-          id: 'apps',
-          title: 'AI Deploy',
-          href: getURL('public-cloud', `#/pci/projects/${projectId}/ai/apps`),
-        },
         isFeaturesAvailable('pci-ai-endpoints') && {
           id: 'pci-ai-endpoints',
           title: 'AI Endpoints',
@@ -451,21 +369,30 @@ export function getPciProjectMenu(
   if (
     isFeaturesAvailable(
       'pci-quantum-emulators',
+      'pci-quantum-qpu',
     )
   ) {
     pciMenu.push({
       id: 'quantum',
       title: 'Quantum',
       subItems: [
-        {
+        isFeaturesAvailable('pci-quantum-emulators') &&  {
           id: 'pci-quantum-emulators',
           title: 'Emulators',
-          badge: 'new',
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/ai-ml/quantum/notebooks`,
           ),
         },
+        isFeaturesAvailable('pci-quantum-qpu') &&  {
+           id: 'pci-quantum-qpu',
+           title: 'QPUs',
+           badge: 'new',
+           href: getURL(
+             'public-cloud',
+             `#/pci/projects/${projectId}/ai-ml/quantum/qpu`,
+           ),
+         },
       ],
     });
   }
@@ -492,15 +419,21 @@ export function getPciProjectMenu(
     });
   }
 
-  if (isFeaturesAvailable('key-management-service')) {
+  if (isFeaturesAvailable('okms')) {
     pciMenu.push({
       id: 'identity-security',
       title: 'Identity, Security & Operations',
       subItems: [
-        {
+        isFeaturesAvailable('okms:key-management-service') && {
           id: 'key-management-service',
           title: 'Key Management Service',
-          href: getURL('key-management-service', `/`),
+          href: getURL('okms', `#/key-management-service`),
+        },
+        isFeaturesAvailable('okms:secret-manager') && {
+          id: 'okms-secret-manager',
+          title: 'Secret Manager',
+          badge: 'beta',
+          href: getURL('okms', `#/secret-manager`),
         },
       ],
     });

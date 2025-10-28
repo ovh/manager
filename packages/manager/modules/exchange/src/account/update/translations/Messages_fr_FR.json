@@ -37,7 +37,7 @@
   "exchange_account_update_contact_phone_label": "Numéro de téléphone fixe",
   "exchange_account_update_contact_mobile_label": "Numéro de téléphone mobile",
   "exchange_account_update_contact_fax_label": "Numéro du fax",
-  "exchange_account_update_contact_phone_help_text": "Veuillez rentrer un numéro au format international (00xx ...).",
+  "exchange_account_update_contact_phone_error_text": "Espace interdit",
   "exchange_account_update_company_label": "Entreprise",
   "exchange_account_update_exchange_guid": "Exchange GUID",
   "exchange_account_update_password_button_show": "Montrer le mot de passe",

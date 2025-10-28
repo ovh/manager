@@ -1,9 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
-import queryClient from '@/queryClient';
-import { getAllKubeQueryKey } from '../useKubernetes';
 
 import { updateAdmissionPlugin } from '@/api/data/plugins';
+import queryClient from '@/queryClient';
 import { TKube } from '@/types';
+
+import { getAllKubeQueryKey } from '../useKubernetes';
 
 type TUseUpdateAdmissionPluginProps = {
   onError: (cause: Error) => void;

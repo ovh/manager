@@ -3,6 +3,86 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.15.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.5...@ovh-ux/manager-exchange@4.15.6) (2025-10-16)
+
+
+### Bug Fixes
+
+* remove unused translations [CDS] ([329af5d](https://github.com/ovh/manager/commit/329af5d2897d50daab145b3947b8129cdf8058bf))
+
+
+
+
+
+## [4.15.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.4...@ovh-ux/manager-exchange@4.15.5) (2025-10-14)
+
+
+### Bug Fixes
+
+* **web.exchange:** add ovh mail migrator link ([1ae5142](https://github.com/ovh/manager/commit/1ae5142d2c3a8e12ad8e3b730e522291360cf1e0)), closes [#PRDCOL-202](https://github.com/ovh/manager/issues/PRDCOL-202)
+* **web.exchange:** change rule for phone mobile and fax field ([e54ea60](https://github.com/ovh/manager/commit/e54ea60b1eabbb63d6a92db337434dcc1cbca046)), closes [#PRDCOL-178](https://github.com/ovh/manager/issues/PRDCOL-178)
+
+
+
+
+
+## [4.15.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.3...@ovh-ux/manager-exchange@4.15.4) (2025-10-14)
+
+
+### Bug Fixes
+
+* **web.exchange:** add ovh mail migrator link ([1ae5142](https://github.com/ovh/manager/commit/1ae5142d2c3a8e12ad8e3b730e522291360cf1e0)), closes [#PRDCOL-202](https://github.com/ovh/manager/issues/PRDCOL-202)
+* **web.exchange:** change rule for phone mobile and fax field ([e54ea60](https://github.com/ovh/manager/commit/e54ea60b1eabbb63d6a92db337434dcc1cbca046)), closes [#PRDCOL-178](https://github.com/ovh/manager/issues/PRDCOL-178)
+
+
+
+
+
+## [4.15.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.2...@ovh-ux/manager-exchange@4.15.3) (2025-10-14)
+
+
+### Bug Fixes
+
+* **web.exchange:** add ovh mail migrator link ([1ae5142](https://github.com/ovh/manager/commit/1ae5142d2c3a8e12ad8e3b730e522291360cf1e0)), closes [#PRDCOL-202](https://github.com/ovh/manager/issues/PRDCOL-202)
+* **web.exchange:** change rule for phone mobile and fax field ([e54ea60](https://github.com/ovh/manager/commit/e54ea60b1eabbb63d6a92db337434dcc1cbca046)), closes [#PRDCOL-178](https://github.com/ovh/manager/issues/PRDCOL-178)
+
+
+
+
+
+## [4.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.1...@ovh-ux/manager-exchange@4.15.2) (2025-10-07)
+
+
+### Bug Fixes
+
+* **web.exchange:** fix build standalone app mode ([da9d1a8](https://github.com/ovh/manager/commit/da9d1a831939bf2cebd3a5e8c6afc52320cf32fa)), closes [#PRDCOL-223](https://github.com/ovh/manager/issues/PRDCOL-223)
+
+
+
+
+
+## [4.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.0...@ovh-ux/manager-exchange@4.15.1) (2025-10-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4376] ([cdecdbb](https://github.com/ovh/manager/commit/cdecdbbd5421484ae62d9fba225c1ac8db844e9c))
+
+
+
+
+
+# [4.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.14.2...@ovh-ux/manager-exchange@4.15.0) (2025-09-30)
+
+
+### Features
+
+* **web.exchange:** enable logs for web exchange ([b20a840](https://github.com/ovh/manager/commit/b20a84095fb1e32e3a2c7eddd454ef635a4f45a2)), closes [#MANAGER-18870](https://github.com/ovh/manager/issues/MANAGER-18870) [#MANAGER-19529](https://github.com/ovh/manager/issues/MANAGER-19529)
+
+
+
+
+
 ## [4.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.14.1...@ovh-ux/manager-exchange@4.14.2) (2025-05-23)
 
 

@@ -50,7 +50,7 @@ export function applyFilters<T>(items: T[] = [], filters: Filter[] = []) {
   return items.filter((item) => {
     let keep = true;
     filters.forEach((filter) => {
-      const value = getNestedValue(item, filter.key as string);
+      const value = getNestedValue(item, filter.key);
       const comp = filter.value as string;
       switch (filter.comparator) {
         case FilterComparator.Includes:

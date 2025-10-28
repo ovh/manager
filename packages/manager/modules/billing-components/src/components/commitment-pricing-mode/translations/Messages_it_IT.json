@@ -3,6 +3,7 @@
   "billing_commitment_payment_periodic": "Pagamento mensile",
   "billing_commitment_payment_upfront": "Pagamento totale",
   "billing_commitment_payment_upfront_savings": "Risparmia ulteriori {{ price }}",
-  "billing_commitment_payment_monthly": "{{ price }}/mese per {{ duration }} mese",
-  "billing_commitment_pricing_price_month": "{{price}}/mese"
+  "billing_commitment_payment_monthly": "+IVA/mese per {{ duration }} mesi",
+  "billing_commitment_pricing_price_month": "{{price}}/mese",
+  "billing_commitment_payment_total": "+IVA/{{ duration }} mesi"
 }

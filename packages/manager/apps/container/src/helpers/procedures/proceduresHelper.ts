@@ -1,6 +1,6 @@
 import { User } from "@ovh-ux/manager-config";
-import { requiredStatusKey } from "@/identity-documents-modal/IdentityDocumentsModal.constants";
+import { requiredStatusKey } from "@/components/identity-documents-modal/identityDocumentsModal.constants";
 
 export const isUserConcernedWithIndiaProcedure = (user: User) => !user.kycValidated;
 
-export const isIndiaProcedureToBeDone = (data: { status: string }) => data?.status === requiredStatusKey;
+export const isIndiaProcedureToBeDone = (data: { status: string }, error?: Error) => !error && data?.status === requiredStatusKey;

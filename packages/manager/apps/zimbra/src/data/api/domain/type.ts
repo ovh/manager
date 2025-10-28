@@ -6,6 +6,8 @@ export type DomainBodyParamsType = {
   autoConfigureMX: boolean;
   autoConfigureSPF: boolean;
   autoConfigureDKIM: boolean;
+  autoConfigureAutodiscover: boolean;
+  dkimEnabled?: boolean;
 };
 
 export type DomainType = {
@@ -65,6 +67,7 @@ export interface ZoneWithIAM {
 export type DomainDiagnosisTestResult =
   | DomainDiagnosisTestMXResult
   | DomainDiagnosisTestDKIMResult
+  | DomainDiagnosisTestSRVResult
   | DomainDiagnosisTestSPFResult;
 
 /** Object representing domain diagnostic */
@@ -98,6 +101,8 @@ export interface DomainDiagnosisResult {
   mx: DomainDiagnosisTestMXResult;
   /** The result of the SPF diagnosis */
   spf: DomainDiagnosisTestSPFResult;
+  /** The result of the SRV diagnosis */
+  autodiscover: DomainDiagnosisTestSRVResult;
 }
 
 /** Details on the DKIM error diagnosis error */
@@ -115,6 +120,8 @@ export enum DomainDiagnosisTestDKIMErrorCodeEnum {
   'MISSING_ONE_SELECTOR' = 'MISSING_ONE_SELECTOR',
   'OVH_NOT_INCLUDED' = 'OVH_NOT_INCLUDED',
   'TASK_FAILED' = 'TASK_FAILED',
+  'TASK_RUNNING' = 'TASK_RUNNING',
+  'DKIM_DISABLED' = 'DKIM_DISABLED',
 }
 
 /** DKIM Diagnosis test result */
@@ -159,6 +166,7 @@ export enum DomainDiagnosisTestStatusEnum {
   'ERROR' = 'ERROR',
   'OK' = 'OK',
   'WARNING' = 'WARNING',
+  'DISABLED' = 'DISABLED',
 }
 
 /** Details on the SPF error diagnosis error */
@@ -186,6 +194,34 @@ export interface DomainDiagnosisTestSPFResult {
   /** List of errors during SPF diagnosis */
   errors: DomainDiagnosisTestSPFError[];
   /** Found SPF record */
+  recordsFound: string[];
+  /**  */
+  status: DomainDiagnosisTestStatusEnum;
+}
+
+/** Error code of the SPF diagnosis */
+export enum DomainDiagnosisTestSRVErrorCodeEnum {
+  'INCORRECT_SRV_RECORD' = 'INCORRECT_SRV_RECORD',
+  'INTERNAL_ERROR' = 'INTERNAL_ERROR',
+  'MULTIPLE_SRV_RECORDS' = 'MULTIPLE_SRV_RECORDS',
+  'NO_SRV_RECORD' = 'NO_SRV_RECORD',
+  'TASK_FAILED' = 'TASK_FAILED',
+  'TASK_RUNNING' = 'TASK_RUNNING',
+}
+
+/** Details on the SRV error diagnosis error */
+export interface DomainDiagnosisTestSRVError {
+  /** The error code for the SRV error */
+  code: DomainDiagnosisTestSRVErrorCodeEnum;
+  /** The error message for the SRV error */
+  message: string;
+}
+
+/** SRV Diagnosis test result */
+export interface DomainDiagnosisTestSRVResult {
+  /** List of errors during SRV diagnosis */
+  errors: DomainDiagnosisTestSRVError[];
+  /** Found SRV record */
   recordsFound: string[];
   /**  */
   status: DomainDiagnosisTestStatusEnum;
@@ -224,6 +260,8 @@ export interface ExpectedDNSConfig {
   ownership: DNSOwnership;
   /** Recommended SPF value */
   spf: string;
+  /** Recommended SRV value */
+  autodiscover: string;
 }
 
 /** Object representing an MX record */

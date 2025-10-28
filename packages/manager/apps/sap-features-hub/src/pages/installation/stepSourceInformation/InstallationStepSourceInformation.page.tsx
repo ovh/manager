@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import { useInstallationFormContext } from '@/context/InstallationForm.context';
 import { TextField } from '@/components/Form/TextField.component';
@@ -22,7 +23,7 @@ import { useStepValidation } from '@/hooks/apiValidation/useApiValidation';
 import { useStateMessage } from '@/hooks/stateMessage/stateMessage';
 
 export default function InstallationStepSourceInformation() {
-  const { t } = useTranslation('installation');
+  const { t } = useTranslation(['installation', NAMESPACES.SYSTEM]);
   const { previousStep, nextStep } = useFormSteps();
   const {
     values: { serviceName, ...formValues },
@@ -126,7 +127,7 @@ export default function InstallationStepSourceInformation() {
       <TextField
         key="accessKey"
         name="accessKey"
-        label={t('common_input_access_key')}
+        label={t(`${NAMESPACES.SYSTEM}:key_access`)}
         onOdsChange={(e) => {
           handleChange({
             e,
@@ -147,7 +148,7 @@ export default function InstallationStepSourceInformation() {
         key="secretKey"
         name="secretKey"
         type="password"
-        label={t('common_input_secret_key')}
+        label={t(`${NAMESPACES.SYSTEM}:key_secret`)}
         onOdsChange={(e) => {
           handleChange({
             e,

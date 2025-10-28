@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.21.1...@ovh-ux/manager-iam@1.22.0) (2025-10-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4400] ([d132158](https://github.com/ovh/manager/commit/d132158bdf4dc3025413fd0d366685b1940f51e1))
+* **iam:** fix condition modal allowing incomplete conditions ([46e4dec](https://github.com/ovh/manager/commit/46e4decaa41c0df0d23741b9224d51605074ec91)), closes [#MAIAM-39](https://github.com/ovh/manager/issues/MAIAM-39)
+* **iam:** fix pagination issue on condition deletion ([8bc5f06](https://github.com/ovh/manager/commit/8bc5f067962e2433b8195f32a935e15c68f15740)), closes [#MAIAM-38](https://github.com/ovh/manager/issues/MAIAM-38)
+* **iam:** update scroll when opening dropdown in modals ([2fa7997](https://github.com/ovh/manager/commit/2fa79975ed72fc81407ab6315a012faf345db93a)), closes [#MAIAM-40](https://github.com/ovh/manager/issues/MAIAM-40)
+* **iam:** update the "IP range" operators in policy conditions ([887c527](https://github.com/ovh/manager/commit/887c527ff7f37960fc30cc2ff08bbdf341c1b7f4)), closes [#MAIAM-41](https://github.com/ovh/manager/issues/MAIAM-41)
+
+
+### Features
+
+* **iam:** add date & time conditions for custom policy ([0576646](https://github.com/ovh/manager/commit/0576646226c41a4b82320332fd7a494714c5d58f)), closes [#MANAGER-19326](https://github.com/ovh/manager/issues/MANAGER-19326)
+* **iam:** add name & ip conditions for custom policy ([d678ae8](https://github.com/ovh/manager/commit/d678ae8252be2db80e413e5bb9f8fc10a63d79e4)), closes [#MANAGER-19326](https://github.com/ovh/manager/issues/MANAGER-19326)
+* **iam:** add product type condition for custom policy ([925e8fc](https://github.com/ovh/manager/commit/925e8fcb2021ea7608c6fdb937555114e7d6c2d2)), closes [#MANAGER-19326](https://github.com/ovh/manager/issues/MANAGER-19326)
+* **iam:** add tag condition for custom policy ([3fac5a3](https://github.com/ovh/manager/commit/3fac5a34f8a5a9c09d838d323e381b6d1dbc93b2)), closes [#MANAGER-19326](https://github.com/ovh/manager/issues/MANAGER-19326)
+* **iam:** manage display & modification for conditions of custom policy ([f4d0271](https://github.com/ovh/manager/commit/f4d0271804750cf064c897eca5b17c8d9199cb9b)), closes [#MANAGER-19326](https://github.com/ovh/manager/issues/MANAGER-19326)
+
+
+
+
+
+## [1.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.21.0...@ovh-ux/manager-iam@1.21.1) (2025-10-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4376] ([cdecdbb](https://github.com/ovh/manager/commit/cdecdbbd5421484ae62d9fba225c1ac8db844e9c))
+
+
+
+
+
+# [1.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.20.0...@ovh-ux/manager-iam@1.21.0) (2025-09-29)
+
+
+### Features
+
+* **iam:** add helper message for external nic modal ([99e91d9](https://github.com/ovh/manager/commit/99e91d9dbfd9996f300fd306d108fa252c993ccb)), closes [#MANAGER-18443](https://github.com/ovh/manager/issues/MANAGER-18443)
+* **iam:** close modal on click outside ([e06af3a](https://github.com/ovh/manager/commit/e06af3a2911b1aabdbf807b9498d279c94896b96)), closes [#MANAGER-18441](https://github.com/ovh/manager/issues/MANAGER-18441)
+
+
+
+
+
+# [1.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.19.0...@ovh-ux/manager-iam@1.20.0) (2025-09-22)
+
+
+### Features
+
+* **iam:** add missing translation for product type Rancher ([cc4ee92](https://github.com/ovh/manager/commit/cc4ee92f90c93e96eb4408828a7bc28609b81fa7)), closes [#MANAGER-18557](https://github.com/ovh/manager/issues/MANAGER-18557)
+* **iam:** add nic in identities information banner ([b7daf3c](https://github.com/ovh/manager/commit/b7daf3cb73780ca9e5c9b09b12516fc019096bcc)), closes [#MANAGER-17322](https://github.com/ovh/manager/issues/MANAGER-17322)
+
+
+
+
+
 # [1.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.18.0...@ovh-ux/manager-iam@1.19.0) (2025-08-25)
 
 

@@ -4,12 +4,13 @@ import React from 'react';
 import { render, waitFor, screen, act } from '@testing-library/react';
 import { describe, expect, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import InstallationStepEnablement from './InstallationStepEnablement.page';
 import { installationInitialValues } from '@/context/installationInitialValues.constants';
 import { FORM_LABELS } from '@/constants/form.constants';
 import { testIds } from '@/utils/testIds.constants';
 import { TRACKING } from '@/tracking.constants';
+import { labels } from '@/test-utils';
+import { testWrapperBuilder } from '@/test-utils/testWrapperBuilder';
 
 const trackClickMock = vi.fn();
 const navigateSpy = vi.fn();
@@ -62,12 +63,13 @@ vi.mock('@/context/InstallationForm.context', () => ({
   }),
 }));
 
-const renderEnablementStep = () =>
-  render(
-    <QueryClientProvider client={new QueryClient()}>
-      <InstallationStepEnablement />
-    </QueryClientProvider>,
-  );
+const renderEnablementStep = async () => {
+  const wrapper = await testWrapperBuilder()
+    .withI18next()
+    .build();
+  return render(<InstallationStepEnablement />, { wrapper });
+};
+const { installation: l, system: lSystem } = labels;
 
 describe('InstallationStepEnablement page unit test suite', () => {
   it('should render field with correct titles and inputs', async () => {
@@ -78,15 +80,15 @@ describe('InstallationStepEnablement page unit test suite', () => {
       }),
     }));
 
-    const { getByText } = renderEnablementStep();
+    await renderEnablementStep();
 
     const elementsPreVisible = [
-      'enablement_input_has_backup',
-      'enablement_input_has_logs_ldp_ovh_helper',
+      l.enablement_input_has_backup,
+      l.enablement_input_has_logs_ldp_ovh_helper,
     ];
 
     elementsPreVisible.forEach((element) =>
-      expect(getByText(element, { exact: true })).toBeVisible(),
+      expect(screen.getByText(element, { exact: true })).toBeVisible(),
     );
   });
 
@@ -110,30 +112,30 @@ describe('InstallationStepEnablement page unit test suite', () => {
       }),
     }));
 
-    const { getByText } = renderEnablementStep();
+    await renderEnablementStep();
 
     const elements = [
-      'enablement_input_has_backup',
-      'common_input_container',
-      'enablement_input_id_container_tooltip',
-      'common_helper_container',
+      l.enablement_input_has_backup,
+      l.common_input_container,
+      l.enablement_input_id_container_tooltip,
+      l.common_helper_container,
       FORM_LABELS.endpoint,
-      'common_helper_endpoint',
-      'common_input_access_key',
-      'common_helper_access_key',
-      'common_input_secret_key',
-      'common_helper_secret_key',
-      'enablement_input_has_logs_ldp_ovh',
-      'enablement_input_has_logs_ldp_ovh_helper',
-      'enablement_input_logstash_entrypoint',
-      'enablement_input_logstash_entrypoint_helper',
-      'enablement_input_logstash_certificat',
+      l.common_helper_endpoint,
+      lSystem.key_access,
+      l.common_helper_access_key,
+      lSystem.key_secret,
+      l.common_helper_secret_key,
+      l.enablement_input_has_logs_ldp_ovh,
+      l.enablement_input_has_logs_ldp_ovh_helper,
+      l.enablement_input_logstash_entrypoint,
+      l.enablement_input_logstash_entrypoint_helper,
+      l.enablement_input_logstash_certificat,
     ];
 
     await waitFor(
       () => {
         elements.forEach((element) =>
-          expect(getByText(element, { exact: true })).toBeVisible(),
+          expect(screen.getByText(element, { exact: true })).toBeVisible(),
         );
       },
       { timeout: 5_000 },
@@ -141,7 +143,7 @@ describe('InstallationStepEnablement page unit test suite', () => {
   });
 
   it('should validate server side form on submit before go next page', async () => {
-    renderEnablementStep();
+    await renderEnablementStep();
 
     const user = userEvent.setup();
     const submitCta = screen.getByTestId(testIds.formSubmitCta);
@@ -158,7 +160,7 @@ describe('InstallationStepEnablement page unit test suite', () => {
 
 describe('Tracking test suite', () => {
   it('should track form submit', async () => {
-    renderEnablementStep();
+    await renderEnablementStep();
 
     const user = userEvent.setup();
     const submitCta = screen.getByTestId(testIds.formSubmitCta);

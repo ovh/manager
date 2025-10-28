@@ -9,8 +9,10 @@ interface UseAddService {
   onSuccess: (service: database.Service) => void;
 }
 export interface ServiceCreationWithEngine
-  extends Partial<database.ServiceCreation> {
+  extends Omit<Partial<database.ServiceCreation>, 'ipRestrictions' | 'disk'> {
   engine: database.EngineEnum;
+  ipRestrictions: Omit<database.service.IpRestriction, 'status'>[];
+  disk?: Partial<database.service.Disk>;
 }
 export function useAddService({ onError, onSuccess }: UseAddService) {
   const queryClient = useQueryClient();

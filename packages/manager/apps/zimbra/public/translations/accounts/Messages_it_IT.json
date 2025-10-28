@@ -37,5 +37,6 @@
   "zimbra_account_upgrade_offer_details": "Ti offriamo la possibilità di aggiornare gratuitamente il tuo account per l’intera durata della fase beta.",
   "zimbra_account_upgrade_lab_page": "Per maggiori dettagli, leggi <Link href=\"{{ zimbra_beta_link }}\">le condizioni della versione beta nella pagina Labs</Link>.",
   "zimbra_account_upgrade_success_message": "La tua richiesta di aggiornamento è stata presa in carico. Sarà elaborata entro pochi minuti.",
-  "zimbra_account_upgrade_error_message": "La tua richiesta di aggiornamento non è andata a buon fine: {{ error }}"
+  "zimbra_account_upgrade_error_message": "La tua richiesta di aggiornamento non è andata a buon fine: {{ error }}",
+  "zimbra_account_account_migrate": "Migrare un account"
 }

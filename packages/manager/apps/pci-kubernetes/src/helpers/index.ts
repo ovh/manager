@@ -1,26 +1,26 @@
-import { PaginationState } from '@ovh-ux/manager-react-components';
-import { FieldError, FieldErrors } from 'react-hook-form';
-import { ZodObject, ZodRawShape } from 'zod';
 import { ClassValue, clsx } from 'clsx';
+import { FieldError, FieldErrors } from 'react-hook-form';
 import { twMerge } from 'tailwind-merge';
-import { DeploymentMode, SigningAlgorithms, TOidcProvider } from '@/types';
+import { ZodObject, ZodRawShape } from 'zod';
+
+import { PaginationState } from '@ovh-ux/manager-react-components';
+
 import { NodePool, NodePoolPrice } from '@/api/data/kubernetes';
+import { DeploymentMode, SigningAlgorithms, TOidcProvider } from '@/types';
 
 export const REFETCH_INTERVAL_DURATION = 15_000;
-export const QUOTA_ERROR_URL =
-  'https://docs.ovh.com/gb/en/kubernetes/etcd-quota-error/';
+export const QUOTA_ERROR_URL = 'https://docs.ovh.com/gb/en/kubernetes/etcd-quota-error/';
 
-export const compareFunction = <T>(key: keyof T) => (a: T, b: T) => {
-  const aValue = a[key] || '';
-  const bValue = b[key] || '';
+export const compareFunction =
+  <T>(key: keyof T) =>
+  (a: T, b: T) => {
+    const aValue = a[key] || '';
+    const bValue = b[key] || '';
 
-  return aValue.toString().localeCompare(bValue.toString());
-};
+    return aValue.toString().localeCompare(bValue.toString());
+  };
 
-export const paginateResults = <T>(
-  items: T[],
-  pagination: PaginationState,
-) => ({
+export const paginateResults = <T>(items: T[], pagination: PaginationState) => ({
   rows: items.slice(
     pagination.pageIndex * pagination.pageSize,
     (pagination.pageIndex + 1) * pagination.pageSize,
@@ -81,9 +81,7 @@ export const isIPValid = (ip: string) => {
       splittedCidr.push(mask);
     }
 
-    return splittedCidr.every(
-      (value) => parseInt(value, 10) >= 0 && parseInt(value, 10) < 256,
-    );
+    return splittedCidr.every((value) => parseInt(value, 10) >= 0 && parseInt(value, 10) < 256);
   } catch (error) {
     return false;
   }
@@ -130,22 +128,18 @@ export function getColorByPercentage(percentage: number): string {
 export const getErrorMessage = (error: FieldError | FieldErrors): string => {
   if (!error) return '';
   if (typeof error === 'string') return error;
-  if ('message' in error && typeof error.message === 'string')
-    return error.message;
+  if ('message' in error && typeof error.message === 'string') return error.message;
   return '';
 };
 
 export const camelToSnake = (camelCase: string): string =>
   camelCase.replace(/([A-Z])/g, '_$1').toLowerCase();
 
-export const filterSchemaKeys = (
-  schema: ZodObject<ZodRawShape>,
-  excludeKeys: string[],
-): string[] =>
+export const filterSchemaKeys = (schema: ZodObject<ZodRawShape>, excludeKeys: string[]): string[] =>
   Object.keys(schema.shape).filter((key) => !excludeKeys.includes(key));
 
 const normalizeToArray = (value: string | string[] | undefined): string[] =>
-  Array.isArray(value) ? value : value?.split(',') ?? [];
+  Array.isArray(value) ? value : (value?.split(',') ?? []);
 
 export const parseCommaSeparated = (value: string | string[]): string[] =>
   normalizeToArray(value)
@@ -160,8 +154,7 @@ export const isBase64 = (str: string) => {
   }
 };
 
-export const transformKey = (key: string): string =>
-  key.replace(/([A-Z])/g, '_$1').toLowerCase();
+export const transformKey = (key: string): string => key.replace(/([A-Z])/g, '_$1').toLowerCase();
 
 const isNotEmptyString = (str: string): boolean => str.trim() !== '';
 const isNotEmptyArray = (arr: unknown[]): boolean => arr.length > 0;
@@ -189,10 +182,7 @@ export const getValidOptionalKeys = (oidcProvider: TOidcProvider) =>
  * @param {string} baseName - The desired base name for the node pool.
  * @param {Array<{name: string}>} existingNodePools - Array of existing node pools.
  */
-export function generateUniqueName(
-  baseName: string,
-  existingNodePools: NodePoolPrice[],
-) {
+export function generateUniqueName(baseName: string, existingNodePools: NodePoolPrice[]) {
   let newName = baseName;
   let copyNumber = 1;
 
@@ -210,9 +200,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const isMonoDeploymentZone = (type: DeploymentMode) =>
-  type === DeploymentMode.MONO_ZONE;
-export const isMultiDeploymentZones = (type: DeploymentMode) =>
-  type === DeploymentMode.MULTI_ZONES;
-export const isLocalDeploymentZone = (type: DeploymentMode) =>
-  type === DeploymentMode.LOCAL_ZONE;
+export const isMonoDeploymentZone = (type: DeploymentMode) => type === DeploymentMode.MONO_ZONE;
+export const isMultiDeploymentZones = (type: DeploymentMode) => type === DeploymentMode.MULTI_ZONES;
+export const isLocalDeploymentZone = (type: DeploymentMode) => type === DeploymentMode.LOCAL_ZONE;

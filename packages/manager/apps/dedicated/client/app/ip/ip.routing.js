@@ -12,7 +12,6 @@ import {
 
 const allowByoipFeatureName = 'ip:byoip';
 const allowDeleteByoipService = 'ip:deleteByoipService';
-const allowPermanentMitigation = 'ip:permanentMitigation';
 
 export const listRouting = {
   reloadOnSearch: false,
@@ -80,7 +79,6 @@ export default /* @ngInject */ ($stateProvider) => {
         ovhFeatureFlipping.checkFeatureAvailability([
           allowDeleteByoipService,
           allowByoipFeatureName,
-          allowPermanentMitigation,
         ]),
       fetchFirstIp: /* @ngInject */ ($http) => (params = '') =>
         $http
@@ -151,8 +149,6 @@ export default /* @ngInject */ ($stateProvider) => {
         features.isFeatureAvailable(allowByoipFeatureName),
       isDeleteByoipServiceAvailable: /* @ngInject */ (features) =>
         features.isFeatureAvailable(allowDeleteByoipService),
-      isPermanentMitigationAvailable: /* @ngInject */ (features) =>
-        features.isFeatureAvailable(allowPermanentMitigation),
       goToByoipConfiguration: /* @ngInject */ ($state) => () => {
         return $state.go('app.ip.byoip');
       },

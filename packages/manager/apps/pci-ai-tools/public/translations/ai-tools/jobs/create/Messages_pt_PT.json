@@ -45,5 +45,6 @@
   "successCreatingJobTitle": "Êxito",
   "successCreatingJobDescription": "O seu job foi criado com sucesso",
   "fieldDockerCommandLabel": "Comandos Docker:",
-  "summaryFieldVolumesLabel": "Volumes:"
+  "summaryFieldVolumesLabel": "Volumes:",
+  "summaryFieldFlavorVMemory": "{{memory}} VRAM"
 }

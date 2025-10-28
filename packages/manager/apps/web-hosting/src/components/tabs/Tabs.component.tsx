@@ -1,12 +1,10 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+
 import clsx from 'clsx';
 
+import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { OdsButton } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-} from '@ovhcloud/ods-components';
+
 import styles from './Tabs.module.css';
 
 interface TabsProps {
@@ -58,8 +56,7 @@ export const Tabs: React.FC<TabsProps> = ({ children }) => {
       container.addEventListener('scroll', updateScrollButtonsState);
     }
 
-    return () =>
-      container.removeEventListener('scroll', updateScrollButtonsState);
+    return () => container.removeEventListener('scroll', updateScrollButtonsState);
   }, [children]);
 
   return (

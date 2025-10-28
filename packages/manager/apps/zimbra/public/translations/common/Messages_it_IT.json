@@ -117,5 +117,10 @@
   "service_state_suspended": "Sospeso",
   "service_state_error": "Errore",
   "service_state_ready": "Attivo",
-  "service_state_updating": "Aggiornamento"
+  "service_state_updating": "Aggiornamento",
+  "service_billing_state_cancelation_planned_tooltip": "Disattivazione prevista il",
+  "service_billing_state_automatic_renewal_tooltip": "Prossima scadenza il",
+  "account_state_blockedforspam": "Bloccato",
+  "account_state_tooltip_billinglocked": "Problema di fatturazione, verifica la sezione dedicata del tuo Spazio Cliente",
+  "account_state_tooltip_blockedforspam": "Sospeso per attività sospetta, contatta il supporto clienti."
 }

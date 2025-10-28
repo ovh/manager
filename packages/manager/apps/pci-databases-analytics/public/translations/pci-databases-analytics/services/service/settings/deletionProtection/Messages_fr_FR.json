@@ -1,0 +1,12 @@
+{
+  "deletionProtectionTitle": "Protection contre la suppression",
+  "deletionProtectionDescription": "Cette option vous permet de protéger votre instance d'une suppression accidentelle.",
+  "activateProtection": "Voulez-vous activer la protection contre la suppression?",
+  "deactivateProtection": "Etes-vous sûr de vouloir désactiver la protection contre la suppression pour ce service?",
+  "deletionProtectionButtonCancel": "Annuler",
+  "activateDeletionProtection": "Activer",
+  "deactivateDeletionProtection": "Désactiver",
+  "updateServiceToastErrorTitle": "Erreur",
+  "updateServiceToastSuccessTitle": "Succès",
+  "updateServiceToastSuccessDescription": "Votre service a été correctement mis à jour"
+}

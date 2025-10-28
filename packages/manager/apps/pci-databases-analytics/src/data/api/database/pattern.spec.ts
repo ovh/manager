@@ -1,5 +1,5 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
 import { describe, expect, vi } from 'vitest';
+import { apiClient } from '@/data/api/api.client';
 import {
   getPatterns,
   addPattern,
@@ -7,7 +7,8 @@ import {
 } from '@/data/api/database/pattern.api';
 import * as database from '@/types/cloud/project/database';
 
-vi.mock('@ovh-ux/manager-core-api', () => {
+vi.mock('@/data/api/api.client', async (importOriginal) => {
+  const mod = await importOriginal<typeof import('@/data/api/api.client')>();
   const get = vi.fn(() => {
     return Promise.resolve({ data: null });
   });
@@ -21,6 +22,7 @@ vi.mock('@ovh-ux/manager-core-api', () => {
     return Promise.resolve({ data: null });
   });
   return {
+    ...mod,
     apiClient: {
       v6: {
         get,

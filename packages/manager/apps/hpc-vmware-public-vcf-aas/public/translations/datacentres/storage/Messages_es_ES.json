@@ -1,0 +1,7 @@
+{
+  "managed_vcd_vdc_storage_name": "Nombre",
+  "managed_vcd_vdc_storage_profile": "Perfil",
+  "managed_vcd_vdc_storage_type": "Tipo",
+  "managed_vcd_vdc_storage_capacity": "Tamaño",
+  "managed_vcd_vdc_storage_order_cta": "Contratar un Storage"
+}

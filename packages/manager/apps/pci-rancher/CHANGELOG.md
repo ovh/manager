@@ -3,6 +3,112 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.29.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.29.6...@ovh-ux/manager-pci-rancher-app@1.29.7) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
+
+
+
+
+
+## [1.29.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.29.5...@ovh-ux/manager-pci-rancher-app@1.29.6) (2025-10-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
+
+
+
+
+
+## [1.29.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.29.4...@ovh-ux/manager-pci-rancher-app@1.29.5) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
+
+
+
+
+
+## [1.29.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.29.3...@ovh-ux/manager-pci-rancher-app@1.29.4) (2025-10-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4391] ([d81075a](https://github.com/ovh/manager/commit/d81075a6695478d7dc99506b5dd13e2c465aa464))
+
+
+
+
+
+## [1.29.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.29.2...@ovh-ux/manager-pci-rancher-app@1.29.3) (2025-10-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4381] ([4945007](https://github.com/ovh/manager/commit/494500772213000e029a07753e43cd5515fe3df3))
+* **i18n:** add missing translations [CDS 4383] ([05a1ea9](https://github.com/ovh/manager/commit/05a1ea9330111c74151177ea18570a7eda24a5c3))
+
+
+
+
+
+## [1.29.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.29.1...@ovh-ux/manager-pci-rancher-app@1.29.2) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
+
+
+
+
+
+## [1.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.29.0...@ovh-ux/manager-pci-rancher-app@1.29.1) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
+
+
+
+
+
+# [1.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.28.17...@ovh-ux/manager-pci-rancher-app@1.29.0) (2025-09-23)
+
+
+### Features
+
+* **pci-rancher:** remove access when iamauth is enabled ([d5d82b3](https://github.com/ovh/manager/commit/d5d82b3e7258d80152c8774f7cff531960dd30b2)), closes [#TAPC-4778](https://github.com/ovh/manager/issues/TAPC-4778)
+
+
+
+
+
+## [1.28.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.28.16...@ovh-ux/manager-pci-rancher-app@1.28.17) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
+
+
+
+
+
+## [1.28.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.28.15...@ovh-ux/manager-pci-rancher-app@1.28.16) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
+
+
+
+
+
+## [1.28.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.28.14...@ovh-ux/manager-pci-rancher-app@1.28.15) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
+
+
+
+
+
+## [1.28.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.28.13...@ovh-ux/manager-pci-rancher-app@1.28.14) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
+
+
+
+
+
 ## [1.28.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.28.12...@ovh-ux/manager-pci-rancher-app@1.28.13) (2025-09-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app

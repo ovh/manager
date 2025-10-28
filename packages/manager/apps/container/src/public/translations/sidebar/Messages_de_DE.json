@@ -165,7 +165,7 @@
   "sidebar_pci_data_integration": "Datenintegration",
   "sidebar_pci_analytics_databases": "Datenbanken",
   "sidebar_pci_analytics_data_streaming": "Datenstreaming",
-  "sidebar_pci_analytics_data_analysis": "Datenanalysen",
+  "sidebar_pci_analytics_data_analysis": "Analytics",
   "sidebar_network_security": "Network Security Dashboard",
   "sidebar_nasha_cdn": "HA-NAS und CDN",
   "sidebar_vrack_services": "vRack Services",
@@ -224,5 +224,9 @@
   "sidebar_network_services": "Netzwerkdienste",
   "sidebar_sap_features_hub": "SAP Features Hub",
   "sidebar_alldom": "Alldoms",
-  "sidebar_alldom_list": "Meine Alldoms"
+  "sidebar_alldom_list": "Meine Alldoms",
+  "sidebar_security_identity_operations_iam_tag-management": "Tag-Management",
+  "sidebar_pci_quantum_qpu": "QPUs",
+  "sidebar_security_identity_operations_secret_manager": "Secret Manager",
+  "sidebar_web_hosting_managed_wordpress": "Managed hosting for WordPress"
 }

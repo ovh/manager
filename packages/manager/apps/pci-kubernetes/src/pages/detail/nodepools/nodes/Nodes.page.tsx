@@ -1,5 +1,10 @@
+import { ReactElement, useMemo, useRef, useState } from 'react';
+
 import { Outlet, useHref, useParams } from 'react-router-dom';
-import { useMemo, useRef, useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -9,10 +14,6 @@ import {
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
 import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
   OsdsButton,
   OsdsIcon,
   OsdsLink,
@@ -21,7 +22,8 @@ import {
   OsdsSearchBar,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+
+import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import {
   Datagrid,
@@ -32,17 +34,18 @@ import {
   useColumnFilters,
   useDataGrid,
 } from '@ovh-ux/manager-react-components';
-import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
+
 import { useClusterNodePools } from '@/api/hooks/node-pools';
-import { useDatagridColumns } from './useDatagridColumns';
 import { getNodesQueryKey, usePaginatedNodes } from '@/api/hooks/nodes';
-import queryClient from '@/queryClient';
+import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
+import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import LoadingSkeleton from '@/components/LoadingSkeleton.component';
 import { isMultiDeploymentZones } from '@/helpers';
-import { useRegionInformations } from '@/api/hooks/useRegionInformations';
-import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
+import queryClient from '@/queryClient';
 
-export default function NodesPage(): JSX.Element {
+import { useDatagridColumns } from './useDatagridColumns';
+
+export default function NodesPage(): ReactElement {
   const { projectId, kubeId, poolId } = useParams();
   const { data: project } = useProject(projectId);
   const { data: pools } = useClusterNodePools(projectId, kubeId);
@@ -51,9 +54,7 @@ export default function NodesPage(): JSX.Element {
   const { t: tListing } = useTranslation('listing');
   const { t: tCommon } = useTranslation('common');
 
-  const backLink = useHref(
-    `/pci/projects/${projectId}/kubernetes/${kubeId}/nodepools`,
-  );
+  const backLink = useHref(`/pci/projects/${projectId}/kubernetes/${kubeId}/nodepools`);
 
   const [searchField, setSearchField] = useState('');
   const filterPopoverRef = useRef(undefined);
@@ -61,9 +62,7 @@ export default function NodesPage(): JSX.Element {
   const columns = useDatagridColumns();
   const { filters, addFilter, removeFilter } = useColumnFilters();
 
-  const pool = useMemo(() => (pools || []).find((p) => p.id === poolId), [
-    pools,
-  ]);
+  const pool = useMemo(() => (pools || []).find((p) => p.id === poolId), [pools]);
 
   const { data: nodes, isPending: isNodesPending } = usePaginatedNodes(
     projectId,
@@ -80,10 +79,10 @@ export default function NodesPage(): JSX.Element {
   };
   const { data: cluster } = useKubernetesCluster(projectId, kubeId);
 
-  const {
-    data: regionInformations,
-    isPending: isPendingRegionInfo,
-  } = useRegionInformations(projectId, cluster?.region);
+  const { data: regionInformations, isPending: isPendingRegionInfo } = useRegionInformations(
+    projectId,
+    cluster?.region,
+  );
 
   return (
     <>
@@ -91,20 +90,14 @@ export default function NodesPage(): JSX.Element {
 
       <Notifications />
       <div>
-        <OsdsLink
-          color={ODS_THEME_COLOR_INTENT.primary}
-          className="mt-6"
-          href={backLink}
-        >
+        <OsdsLink color={ODS_THEME_COLOR_INTENT.primary} className="mt-6" href={backLink}>
           <OsdsIcon
             slot="start"
             name={ODS_ICON_NAME.ARROW_LEFT}
             size={ODS_ICON_SIZE.xs}
             color={ODS_THEME_COLOR_INTENT.primary}
           ></OsdsIcon>
-          <span className="ml-4">
-            {tCommon('common_back_button_back_to_previous_page')}
-          </span>
+          <span className="ml-4">{tCommon('common_back_button_back_to_previous_page')}</span>
         </OsdsLink>
       </div>
       <p>
@@ -215,10 +208,7 @@ export default function NodesPage(): JSX.Element {
         <FilterList filters={filters} onRemoveFilter={removeFilter} />
       </div>
 
-      <LoadingSkeleton
-        when={!isNodesPending || !isPendingRegionInfo}
-        spinner={{ centered: true }}
-      >
+      <LoadingSkeleton when={!isNodesPending || !isPendingRegionInfo} spinner={{ centered: true }}>
         <div>
           <Datagrid
             columns={

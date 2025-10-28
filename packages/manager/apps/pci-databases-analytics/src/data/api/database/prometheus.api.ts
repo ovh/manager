@@ -1,4 +1,4 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+import { apiClient } from '@/data/api/api.client';
 import { ServiceData } from '.';
 import * as database from '@/types/cloud/project/database';
 
@@ -11,19 +11,15 @@ export const getPrometheus = async ({
   engine,
   serviceId,
 }: ServiceData) =>
-  apiClient.v6
-    .get(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/prometheus`,
-    )
-    .then((res) => res.data as PrometheusData);
+  apiClient.v6.get<PrometheusData>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/prometheus`,
+  );
 
 export const resetPrometheusUserPassword = async ({
   projectId,
   engine,
   serviceId,
 }: ServiceData) =>
-  apiClient.v6
-    .post(
-      `/cloud/project/${projectId}/database/${engine}/${serviceId}/prometheus/credentials/reset`,
-    )
-    .then((res) => res.data as database.service.PrometheusAccess);
+  apiClient.v6.post<database.service.PrometheusAccess>(
+    `/cloud/project/${projectId}/database/${engine}/${serviceId}/prometheus/credentials/reset`,
+  );

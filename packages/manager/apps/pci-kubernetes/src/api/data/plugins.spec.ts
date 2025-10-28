@@ -1,6 +1,8 @@
-import { v6 } from '@ovh-ux/manager-core-api';
 import { vi } from 'vitest';
-import { updateAdmissionPlugin, mapPluginsFromArrayToObject } from './plugins';
+
+import { v6 } from '@ovh-ux/manager-core-api';
+
+import { mapPluginsFromArrayToObject, updateAdmissionPlugin } from './plugins';
 
 describe('updateAdmissionPlugin', () => {
   it('calls v6.put with the correct parameters', async () => {
@@ -43,8 +45,7 @@ describe('mapAdmissionPlugins', () => {
         name: 'AlwaysPullImages',
         label: 'Plugin Always Pull Images',
         state: 'disabled',
-        tip:
-          'kube_service_cluster_admission_plugins_always_pull_image_explanation',
+        tip: 'kube_service_cluster_admission_plugins_always_pull_image_explanation',
         value: 'pull',
         disabled: false,
       },
@@ -52,8 +53,7 @@ describe('mapAdmissionPlugins', () => {
         name: 'NodeRestriction',
         label: 'Plugin Node Restriction',
         state: 'enabled',
-        tip:
-          'kube_service_cluster_admission_plugins_node_restriction_explanation',
+        tip: 'kube_service_cluster_admission_plugins_node_restriction_explanation',
         value: 'node',
         disabled: true,
       },

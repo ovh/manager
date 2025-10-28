@@ -1,32 +1,35 @@
 import React, { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useSearchParams } from 'react-router-dom';
 
-import { Card } from '@ovh-ux/manager-react-components';
-import { OsdsText, OsdsDivider } from '@ovhcloud/ods-components/react';
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
+import { OsdsDivider, OsdsText } from '@ovhcloud/ods-components/react';
+import { Card } from '@ovh-ux/manager-react-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { Product } from '@/api';
-import { getSearchUrlFromFilterParams } from '@/utils/utils';
-import { useCatalog } from '@/hooks/useCatalog';
-import SearchBar from '@/components/SearchBar/SearchBar';
-import Loading from '../components/Loading/Loading';
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import Errors from '@/components/Error/Errors';
+import SearchBar from '@/components/SearchBar/SearchBar';
+import { useCatalog } from '@/hooks/useCatalog';
+import { getSearchUrlFromFilterParams } from '@/utils/utils';
+
+import Loading from '../components/Loading/Loading';
 
 export default function Catalog() {
-  const { t } = useTranslation('catalog');
+  const { t: tNavigation } = useTranslation(NAMESPACES.NAVIGATION);
+  const { t: tDashboard } = useTranslation(NAMESPACES.DASHBOARD);
   const [, setSearchParams] = useSearchParams();
   const [searchText, setSearchText] = React.useState('');
   const [categories, setCategories] = React.useState<string[]>([]);
   const [universes, setUniverses] = React.useState<string[]>([]);
-  const [isRouterInitialized, setIsRouterInitialized] = React.useState<boolean>(
-    false,
-  );
+  const [isRouterInitialized, setIsRouterInitialized] = React.useState<boolean>(false);
   const { results, products, isLoading, error } = useCatalog({
     categories,
     universes,
@@ -35,11 +38,7 @@ export default function Catalog() {
 
   useEffect(() => {
     if (products.length > 0) {
-      const customSearchParams = getSearchUrlFromFilterParams(
-        searchText,
-        categories,
-        universes,
-      );
+      const customSearchParams = getSearchUrlFromFilterParams(searchText, categories, universes);
       if (isRouterInitialized) {
         setSearchParams(customSearchParams);
       }
@@ -58,7 +57,7 @@ export default function Catalog() {
         color={ODS_THEME_COLOR_INTENT.text}
         className="mb-3"
       >
-        {t('title')}
+        {tNavigation('manager_navigation_catalog')}
         {isLoading ? '' : ` (${results.length})`}
       </OsdsText>
       <SearchBar
@@ -95,7 +94,7 @@ export default function Catalog() {
       </div>
       {!isLoading && results.length === 0 && (
         <OsdsText className="text-center grid w-full">
-          {t('no_result')}
+          {tDashboard('no_result_found')}
         </OsdsText>
       )}
     </div>

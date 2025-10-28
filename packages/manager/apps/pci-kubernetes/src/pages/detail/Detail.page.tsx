@@ -1,32 +1,30 @@
-import { useProject, useParam } from '@ovh-ux/manager-pci-common';
+import { useEffect, useState } from 'react';
+
+import { Outlet, useHref, useLocation, useResolvedPath } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
+import { OsdsBreadcrumb, OsdsChip } from '@ovhcloud/ods-components/react';
+
+import { useParam, useProject } from '@ovh-ux/manager-pci-common';
 import {
   ChangelogButton,
   Headers,
   PciGuidesHeader,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
-import { OsdsBreadcrumb, OsdsChip } from '@ovhcloud/ods-components/react';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import {
-  Outlet,
-  useHref,
-  useLocation,
-  useResolvedPath,
-} from 'react-router-dom';
-import TabsPanel from '@/components/detail/TabsPanel.component';
+
 import { useKubeDetail } from '@/api/hooks/useKubernetes';
-import { TRACKING_TABS, CHANGELOG_CHAPTERS } from '@/tracking.constants';
+import TabsPanel from '@/components/detail/TabsPanel.component';
 import { CHANGELOG_LINKS } from '@/constants';
+import { CHANGELOG_CHAPTERS, TRACKING_TABS } from '@/tracking.constants';
 
 export default function DetailPage() {
   const { t } = useTranslation('listing');
   const { t: tDetail } = useTranslation('detail');
-  const [activePanelTranslation, setActivePanelTranslation] = useState<
-    string | null
-  >(null);
+  const [activePanelTranslation, setActivePanelTranslation] = useState<string | null>(null);
 
   const { data: project } = useProject();
   const { projectId, kubeId } = useParam('projectId', 'kubeId');
@@ -118,10 +116,7 @@ export default function DetailPage() {
             </>
           }
           changelogButton={
-            <ChangelogButton
-              links={CHANGELOG_LINKS}
-              chapters={CHANGELOG_CHAPTERS}
-            />
+            <ChangelogButton links={CHANGELOG_LINKS} chapters={CHANGELOG_CHAPTERS} />
           }
         />
       </div>

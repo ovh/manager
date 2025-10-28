@@ -1,11 +1,5 @@
-import {
-  GitStatus,
-  ResourceStatus,
-  ServiceStatus,
-  TaskStatus,
-  TaskType,
-  WebsiteType,
-} from '../type';
+import { TaskType, WebsiteType } from '../types/product/website';
+import { GitStatus, ResourceStatus, ServiceStatus, TaskStatus } from '../types/status';
 
 export const websitesMocks: WebsiteType[] = [
   {

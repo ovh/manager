@@ -8,6 +8,14 @@ export const TRAFFIC_PERIODS = [
     key: 'last14d',
     value: 'network_security_dashboard_filter_14_days',
   },
+  {
+    key: 'last1M',
+    value: 'network_security_dashboard_filter_1_month',
+  },
+  {
+    key: 'last2M',
+    value: 'network_security_dashboard_filter_2_months',
+  },
 ];
 
 export const TRAFFIC_PERIOD_LIST = {
@@ -15,6 +23,8 @@ export const TRAFFIC_PERIOD_LIST = {
   last24h: 'last24h',
   last7d: 'last7d',
   last14d: 'last14d',
+  last1M: 'last1M',
+  last2M: 'last2M',
 };
 
 export const CHART = {
@@ -139,4 +149,9 @@ export const CHART = {
   units: ['b', 'Kb', 'Mb', 'Gb', 'Tb', 'Pb'],
 };
 
-export default { PAGE_SIZE, TRAFFIC_PERIODS, TRAFFIC_PERIOD_LIST, CHART };
+export default {
+  PAGE_SIZE,
+  TRAFFIC_PERIODS,
+  TRAFFIC_PERIOD_LIST,
+  CHART,
+};

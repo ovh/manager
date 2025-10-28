@@ -10,6 +10,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { TOngoingOperations } from 'src/types';
 import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ParentEnum } from '@/enum/parent.enum';
 import { removeQuotes } from '@/utils/utils';
 import OngoingOperationDatagridDomain from '@/components/OngoingOperationDatagrid/OngoingOperationDatagridDomain';
@@ -27,7 +28,11 @@ export const useOngoingOperationDatagridColumns = (
   searchableColumnID: string,
   parent: ParentEnum,
 ) => {
-  const { t } = useTranslation('dashboard');
+  const { t } = useTranslation([
+    'dashboard',
+    NAMESPACES.FORM,
+    NAMESPACES.DASHBOARD,
+  ]);
   const { clearNotifications } = useNotifications();
   const navigate = useNavigate();
   const location = useLocation();
@@ -56,8 +61,7 @@ export const useOngoingOperationDatagridColumns = (
         (parent === ParentEnum.DOMAIN &&
           t('domain_operations_table_header_domain')) ||
         (parent === ParentEnum.ZONE && DNS_OPERATIONS_TABLE_HEADER_DOMAIN) ||
-        (parent === ParentEnum.ALLDOM &&
-          t('domain_operations_table_header_name')),
+        (parent === ParentEnum.ALLDOM && t(`${NAMESPACES.FORM}:lastname`)),
       comparator: FilterCategories.String,
       isFilterable: true,
       isSearchable: true,
@@ -96,7 +100,7 @@ export const useOngoingOperationDatagridColumns = (
           {formatDate({ date: props.creationDate, format: 'P p' })}
         </DataGridTextCell>
       ),
-      label: t('domain_operations_table_header_creationDate'),
+      label: t(`${NAMESPACES.DASHBOARD}:creation_date`),
       enableHiding: true,
     },
     {

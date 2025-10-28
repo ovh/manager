@@ -1,9 +1,0 @@
-{
-  "data_processing_terminate_notebook_title": "Detención del notebook",
-  "data_processing_terminate_notebook_description_1": "Cuando se detiene un Spark Notebook: ",
-  "data_processing_terminate_notebook_description_list_1": "Los recursos de cálculo se liberan.",
-  "data_processing_terminate_notebook_description_list_2": "Los jobs que se hayan lanzado utilizando el notebook no se detendrán.",
-  "data_processing_terminate_notebook_description_2": "Una vez detenido, podrá <b>eliminar</b> su Spark Notebook o <b>relanzarlo</b>. ",
-  "data_processing_terminate_notebook_delete_button": "Detener el notebook",
-  "data_processing_terminate_notebook_cancel_button": "Cancelar"
-}

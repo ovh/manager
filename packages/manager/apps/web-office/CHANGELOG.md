@@ -3,6 +3,203 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.30](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.29...@ovh-ux/manager-web-office-app@0.4.30) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.4.29](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.28...@ovh-ux/manager-web-office-app@0.4.29) (2025-10-23)
+
+
+### Bug Fixes
+
+* **web-office:** implement w3c setup test ([9dcba82](https://github.com/ovh/manager/commit/9dcba8255428e21fcc054902fd2b00099cf36e06)), closes [#PRDCOL-235](https://github.com/ovh/manager/issues/PRDCOL-235)
+* **web-office:** pnpm adpotion for web-office ([fbb66fa](https://github.com/ovh/manager/commit/fbb66fa89e435d44b6dddb3dd1fe42de6c7b54d7)), closes [#PRDCOL-234](https://github.com/ovh/manager/issues/PRDCOL-234)
+
+
+
+
+
+## [0.4.28](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.27...@ovh-ux/manager-web-office-app@0.4.28) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.4.27](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.26...@ovh-ux/manager-web-office-app@0.4.27) (2025-10-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.4.26](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.25...@ovh-ux/manager-web-office-app@0.4.26) (2025-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.4.25](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.24...@ovh-ux/manager-web-office-app@0.4.25) (2025-10-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.4.24](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.23...@ovh-ux/manager-web-office-app@0.4.24) (2025-10-14)
+
+
+### Bug Fixes
+
+* **web-office:** fix tsconfig json format ([6ddb99b](https://github.com/ovh/manager/commit/6ddb99ba0560ec8446f6fa2c42dbf007bea83736)), closes [#PRDCOL-225](https://github.com/ovh/manager/issues/PRDCOL-225)
+
+
+
+
+
+## [0.4.23](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.22...@ovh-ux/manager-web-office-app@0.4.23) (2025-10-14)
+
+
+### Bug Fixes
+
+* **web-office:** fix tsconfig json format ([6ddb99b](https://github.com/ovh/manager/commit/6ddb99ba0560ec8446f6fa2c42dbf007bea83736)), closes [#PRDCOL-225](https://github.com/ovh/manager/issues/PRDCOL-225)
+
+
+
+
+
+## [0.4.22](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.21...@ovh-ux/manager-web-office-app@0.4.22) (2025-10-14)
+
+
+### Bug Fixes
+
+* **web-office:** fix tsconfig json format ([6ddb99b](https://github.com/ovh/manager/commit/6ddb99ba0560ec8446f6fa2c42dbf007bea83736)), closes [#PRDCOL-225](https://github.com/ovh/manager/issues/PRDCOL-225)
+
+
+
+
+
+## [0.4.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.20...@ovh-ux/manager-web-office-app@0.4.21) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.4.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.19...@ovh-ux/manager-web-office-app@0.4.20) (2025-10-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.4.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.18...@ovh-ux/manager-web-office-app@0.4.19) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.4.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.17...@ovh-ux/manager-web-office-app@0.4.18) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.4.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.16...@ovh-ux/manager-web-office-app@0.4.17) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.4.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.15...@ovh-ux/manager-web-office-app@0.4.16) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.4.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.14...@ovh-ux/manager-web-office-app@0.4.15) (2025-09-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.4.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.13...@ovh-ux/manager-web-office-app@0.4.14) (2025-09-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.4.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.12...@ovh-ux/manager-web-office-app@0.4.13) (2025-09-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.4.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.11...@ovh-ux/manager-web-office-app@0.4.12) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.4.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.10...@ovh-ux/manager-web-office-app@0.4.11) (2025-09-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.4.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.9...@ovh-ux/manager-web-office-app@0.4.10) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.4.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.8...@ovh-ux/manager-web-office-app@0.4.9) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.4.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.7...@ovh-ux/manager-web-office-app@0.4.8) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
 ## [0.4.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.4.6...@ovh-ux/manager-web-office-app@0.4.7) (2025-09-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-office-app

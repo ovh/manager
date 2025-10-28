@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
-import {
-  OdsFormField,
-  OdsText,
-  OdsTextarea,
-} from '@ovhcloud/ods-components/react';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
+
+import { OdsFormField, OdsText, OdsTextarea } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+
 import { useCreateCertificate } from '@/data/hooks/ssl/useSsl';
 import { subRoutes, urls } from '@/routes/routes.constants';
 
@@ -18,8 +17,7 @@ export default function ImportModal() {
 
   const { addSuccess, addWarning } = useNotifications();
   const navigate = useNavigate();
-  const closeModal = () =>
-    navigate(urls.ssl.replace(subRoutes.serviceName, serviceName));
+  const closeModal = () => navigate(urls.ssl.replace(subRoutes.serviceName, serviceName));
   const [certificate, setCertificate] = useState('');
   const [key, setKey] = useState('');
   const [chain, setChain] = useState('');
@@ -59,11 +57,10 @@ export default function ImportModal() {
       <div className="flex flex-col space-y-4 mb-4">
         <OdsFormField className="w-full">
           <div slot="label">
-            <OdsText className="block">
-              {t('ssl_order_manual_mode_certif')}
-            </OdsText>
+            <OdsText className="block">{t('ssl_order_manual_mode_certif')}</OdsText>
           </div>
           <OdsTextarea
+            data-testid="ssl-manual-certif"
             name="manualCertif"
             isResizable
             rows={3}
@@ -73,11 +70,10 @@ export default function ImportModal() {
         </OdsFormField>
         <OdsFormField className="w-full">
           <div slot="label">
-            <OdsText className="block">
-              {t('ssl_order_manual_mode_key')}
-            </OdsText>
+            <OdsText className="block">{t('ssl_order_manual_mode_key')}</OdsText>
           </div>
           <OdsTextarea
+            data-testid="ssl-mode-key"
             name="modeKey"
             isResizable
             rows={3}
@@ -87,11 +83,10 @@ export default function ImportModal() {
         </OdsFormField>
         <OdsFormField className="w-full">
           <div slot="label">
-            <OdsText className="block">
-              {t('ssl_order_manual_mode_chain')}
-            </OdsText>
+            <OdsText className="block">{t('ssl_order_manual_mode_chain')}</OdsText>
           </div>
           <OdsTextarea
+            data-testid="ssl-mode-chain"
             name="modeChain"
             isResizable
             rows={3}

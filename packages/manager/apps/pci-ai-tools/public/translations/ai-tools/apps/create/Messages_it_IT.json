@@ -64,5 +64,6 @@
   "cliEquivalentModalToastMessage": "Il codice è stato copiato",
   "errorCreatingApp": "Errore",
   "successCreatingAppTitle": "Completato",
-  "successCreatingAppDescription": "La tua applicazione è stata creata correttamente."
+  "successCreatingAppDescription": "La tua applicazione è stata creata correttamente.",
+  "summaryFieldFlavorVMemory": "{{memory}} VRAM"
 }

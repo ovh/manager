@@ -1,12 +1,9 @@
-import { useTranslation } from 'react-i18next';
+import { useContext } from 'react';
+
 import { useNavigate, useParams } from 'react-router-dom';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import {
-  OsdsButton,
-  OsdsModal,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_VARIANT,
@@ -14,13 +11,13 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
+import { OsdsButton, OsdsModal, OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useContext } from 'react';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import {
-  useOidcProvider,
-  useRemoveOidcProvider,
-} from '@/api/hooks/useKubernetes';
+
+import { useOidcProvider, useRemoveOidcProvider } from '@/api/hooks/useKubernetes';
 import { KUBE_TRACK_PREFIX } from '@/tracking.constants';
 
 export default function RemoveOIDCProvider() {
@@ -32,32 +29,26 @@ export default function RemoveOIDCProvider() {
 
   const { addError, addSuccess } = useNotifications();
 
-  const {
-    data: oidcProvider,
-    isPending: isPendingOidsProvider,
-  } = useOidcProvider(projectId, kubeId);
+  const { data: oidcProvider, isPending: isPendingOidsProvider } = useOidcProvider(
+    projectId,
+    kubeId,
+  );
 
-  const {
-    removeOidcProvider,
-    isPending: isPendingRemoveOidcProvider,
-  } = useRemoveOidcProvider({
+  const { removeOidcProvider, isPending: isPendingRemoveOidcProvider } = useRemoveOidcProvider({
     projectId,
     kubeId,
     onError(error: ApiError) {
       addError(
-        t(
-          `pci_projects_project_kubernetes_details_service_remove_oidc_provider_request_error`,
-          { message: error?.response?.data?.message || error?.message || null },
-        ),
+        t(`pci_projects_project_kubernetes_details_service_remove_oidc_provider_request_error`, {
+          message: error?.response?.data?.message || error?.message || null,
+        }),
         true,
       );
       onClose();
     },
     onSuccess() {
       addSuccess(
-        t(
-          `pci_projects_project_kubernetes_details_service_remove_oidc_provider_request_success`,
-        ),
+        t(`pci_projects_project_kubernetes_details_service_remove_oidc_provider_request_success`),
         true,
       );
       onClose();
@@ -68,9 +59,7 @@ export default function RemoveOIDCProvider() {
 
   return (
     <OsdsModal
-      headline={t(
-        'pci_projects_project_kubernetes_details_service_remove_oidc_provider_title',
-      )}
+      headline={t('pci_projects_project_kubernetes_details_service_remove_oidc_provider_title')}
       onOdsModalClose={() => {
         tracking?.trackClick({
           name: `${KUBE_TRACK_PREFIX}::details::service::remove-oidc-provider::cancel`,
@@ -116,9 +105,7 @@ export default function RemoveOIDCProvider() {
         }}
         data-testid="removeOIDCProvider-button_cancel"
       >
-        {t(
-          'pci_projects_project_kubernetes_details_service_remove_oidc_provider_action_cancel',
-        )}
+        {t('pci_projects_project_kubernetes_details_service_remove_oidc_provider_action_cancel')}
       </OsdsButton>
       <OsdsButton
         slot="actions"
@@ -132,9 +119,7 @@ export default function RemoveOIDCProvider() {
           removeOidcProvider();
         }}
       >
-        {t(
-          'pci_projects_project_kubernetes_details_service_remove_oidc_provider_action_remove',
-        )}
+        {t('pci_projects_project_kubernetes_details_service_remove_oidc_provider_action_remove')}
       </OsdsButton>
     </OsdsModal>
   );

@@ -34,8 +34,8 @@
   "changelog_infra_product_list": "(serwery dedykowane, przekrojowe funkcje sieciowe i NAS-HA lub EFS)",
   "changelog_private_cloud_product_list_us": "(VMware, Nutanix, Zerto Veeam lub HYCU)",
   "changelog_infra_product_list_us": "(serwery dedykowane i przekrojowe funkcje sieciowe)",
-  "datagrid_tab_title_hosting": "Liczba najnowszych elementów w changelogu „Hosting, Telco & Collaboration”: {{items}}",
-  "datagrid_tab_title_cloud": "Liczba ostatnich elementów w changelogu „Cloud”: {{items}}",
+  "datagrid_tab_title_hosting": "Najnowsze elementy w changelogu Hosting, Telco & Collaboration",
+  "datagrid_tab_title_cloud": "Najnowsze elementy w changelogu Cloud",
   "datagrid_table_head_product": "Produkt",
   "datagrid_table_head_changelog": "Changelog",
   "datagrid_table_head_description": "Opis",
@@ -44,5 +44,6 @@
   "changelog_roadmap_hosting_collab_tab": "Plan rozwoju produktów „Hosting , telekomunikacja i rozwiązania do pracy zespołowej”",
   "changelog_roadmap_cloud_tab": "Roadmapa „Cloud”",
   "changelog_roadmap_roadmap": "Roadmapa",
-  "changelog_roadmap_feature_request": "Propozycja wdrożenia nowej funkcji"
+  "changelog_roadmap_feature_request": "Propozycja wdrożenia nowej funkcji",
+  "datagrid_table_head_link": "Link"
 }

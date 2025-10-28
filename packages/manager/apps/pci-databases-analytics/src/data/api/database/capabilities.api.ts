@@ -1,17 +1,17 @@
-import { apiClient } from '@ovh-ux/manager-core-api';
+import { apiClient } from '@/data/api/api.client';
 import * as database from '@/types/cloud/project/database';
 
 export const getCapabilities = async (projectId: string) =>
-  apiClient.v6
-    .get(`/cloud/project/${projectId}/database/capabilities`)
-    .then((res) => res.data as database.Capabilities);
+  apiClient.v6.get<database.Capabilities>(
+    `/cloud/project/${projectId}/database/capabilities`,
+  );
 
 export const getEnginesCapabilities = async (projectId: string) =>
-  apiClient.v6
-    .get(`/cloud/project/${projectId}/database/capabilities/engines`)
-    .then((res) => res.data as database.capabilities.EngineCapabilities[]);
+  apiClient.v6.get<database.capabilities.EngineCapabilities[]>(
+    `/cloud/project/${projectId}/database/capabilities/engines`,
+  );
 
 export const getRegionsCapabilities = async (projectId: string) =>
-  apiClient.v6
-    .get(`/cloud/project/${projectId}/database/capabilities/regions`)
-    .then((res) => res.data as database.capabilities.RegionCapabilities[]);
+  apiClient.v6.get<database.capabilities.RegionCapabilities[]>(
+    `/cloud/project/${projectId}/database/capabilities/regions`,
+  );

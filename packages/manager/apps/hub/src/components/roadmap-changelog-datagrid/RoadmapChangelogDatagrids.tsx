@@ -1,143 +1,53 @@
 import { useContext } from 'react';
-import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
+
+import { useTranslation } from 'react-i18next';
+
+import { OdsHTMLAnchorElementRel, OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_ICON_NAME, ODS_ICON_SIZE, ODS_TABS_SIZE } from '@ovhcloud/ods-components';
 import {
+  OsdsIcon,
+  OsdsLink,
+  OsdsTabBar,
   OsdsTabBarItem,
   OsdsTabPanel,
   OsdsTabs,
-  OsdsLink,
-  OsdsIcon,
-  OsdsTabBar,
-  OsdsSkeleton,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_TABS_SIZE,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  OdsHTMLAnchorElementRel,
-  OdsHTMLAnchorElementTarget,
-} from '@ovhcloud/ods-common-core';
-import {
-  useOvhTracking,
-  ShellContext,
-} from '@ovh-ux/manager-react-shell-client';
-import { useTranslation } from 'react-i18next';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+
+import { Datagrid } from '@ovh-ux/manager-react-components';
+import { ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { EXTERNAL_LINKS, ROADMAP_CHANGELOG_PAGES } from '@/changelog.constants';
-import {
-  RoadmapChangelogItemProductCell,
-  RoadmapChangelogItemTitleCell,
-  RoadmapChangelogItemDescriptionCell,
-  RoadmapChangelogItemReleaseDateCell,
-  RoadmapChangelogItemStatusCell,
-} from './cells';
 import { useRoadmapChangelog } from '@/data/hooks/roadmapChangelog/useRoadmapChangelog';
+import useRoadmapChangelogData from '@/hooks/roadmapChangelog/useRoadmapChangelogData';
+
 import styles from './style.module.scss';
-import { RoadmapChangelogItem } from '@/types/roadmapchangelog.type';
 
 const RoadmapChangelogDatagrids = () => {
-  const {
-    data: roadmapChangelogItems,
-    isLoading: isLoadingItems,
-  } = useRoadmapChangelog();
+  const { data: roadmapChangelogItems, isLoading: isLoadingItems } = useRoadmapChangelog();
   const { trackClick } = useOvhTracking();
   const { t } = useTranslation('changelog');
   const { environment } = useContext(ShellContext);
   const isRegionUS = environment.getRegion() === 'US';
 
-  const emptyRoadmapChangelogItem: RoadmapChangelogItem = {
-    title: '',
-    description: '',
-    product: '',
-    releaseDate: '',
-    status: '',
-    changelog: '',
-  };
-  const emptyRoadmapChangelogItems: RoadmapChangelogItem[] = [
-    emptyRoadmapChangelogItem,
-    emptyRoadmapChangelogItem,
-    emptyRoadmapChangelogItem,
-  ];
-
-  const columns: DatagridColumn<RoadmapChangelogItem>[] = [
-    {
-      id: 'product',
-      label: t('datagrid_table_head_product'),
-      cell: (item: RoadmapChangelogItem) =>
-        isLoadingItems ? (
-          <OsdsSkeleton />
-        ) : (
-          <RoadmapChangelogItemProductCell item={item} />
-        ),
-    },
-    {
-      id: 'changelog',
-      label: t('datagrid_table_head_changelog'),
-      cell: (item: RoadmapChangelogItem) =>
-        isLoadingItems ? (
-          <OsdsSkeleton />
-        ) : (
-          <RoadmapChangelogItemTitleCell item={item} />
-        ),
-    },
-    {
-      id: 'description',
-      label: t('datagrid_table_head_description'),
-      cell: (item: RoadmapChangelogItem) =>
-        isLoadingItems ? (
-          <OsdsSkeleton />
-        ) : (
-          <RoadmapChangelogItemDescriptionCell item={item} />
-        ),
-    },
-    {
-      id: 'realease_date',
-      label: t('datagrid_table_head_release_date'),
-      cell: (item: RoadmapChangelogItem) =>
-        isLoadingItems ? (
-          <OsdsSkeleton />
-        ) : (
-          <RoadmapChangelogItemReleaseDateCell item={item} />
-        ),
-    },
-    {
-      id: 'status',
-      label: t('datagrid_table_head_status'),
-      cell: (item: RoadmapChangelogItem) =>
-        isLoadingItems ? (
-          <OsdsSkeleton />
-        ) : (
-          <RoadmapChangelogItemStatusCell item={item} />
-        ),
-    },
-  ];
+  const { emptyRoadmapChangelogItems, columns } = useRoadmapChangelogData(isLoadingItems);
 
   return (
     <div className="max-w-[100%] overflow-auto">
-      <OsdsTabs
-        panel="roadmap-changelog-datagrid-tab-cloud"
-        size={ODS_TABS_SIZE.md}
-      >
+      <OsdsTabs panel="roadmap-changelog-datagrid-tab-cloud" size={ODS_TABS_SIZE.md}>
         <OsdsTabBar>
           <OsdsTabBarItem panel="roadmap-changelog-datagrid-tab-cloud">
-            {t('datagrid_tab_title_cloud', { items: ROADMAP_CHANGELOG_PAGES })}
+            {t('datagrid_tab_title_cloud')}
           </OsdsTabBarItem>
           {!isRegionUS && (
             <OsdsTabBarItem panel="roadmap-changelog-datagrid-tab-hosting-collab">
-              {t('datagrid_tab_title_hosting', {
-                items: ROADMAP_CHANGELOG_PAGES,
-              })}
+              {t('datagrid_tab_title_hosting')}
             </OsdsTabBarItem>
           )}
         </OsdsTabBar>
         <OsdsTabPanel name="roadmap-changelog-datagrid-tab-cloud">
           <Datagrid
-            items={
-              isLoadingItems
-                ? emptyRoadmapChangelogItems
-                : roadmapChangelogItems?.cloud || []
-            }
+            items={isLoadingItems ? emptyRoadmapChangelogItems : roadmapChangelogItems?.cloud || []}
             columns={columns}
             hasNextPage={false}
             totalItems={ROADMAP_CHANGELOG_PAGES}

@@ -1,5 +1,9 @@
 import React, { useContext, useMemo } from 'react';
+
 import { useTranslation } from 'react-i18next';
+
+import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
@@ -7,11 +11,12 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { OdsText } from '@ovhcloud/ods-components/react';
+
 import useGuides from '@/hooks/useGuides';
-import onboardingImgSrc from './onboarding.svg?url';
 import { GO_TO, ORDER_CTA } from '@/utils/tracking.constants';
+
 import { ORDER_LINK } from './onboarding.constants';
+import onboardingImgSrc from './onboarding.svg?url';
 
 export default function Onboarding() {
   const { t } = useTranslation('onboarding');
@@ -53,21 +58,16 @@ export default function Onboarding() {
         tracking: guides?.guideLink3?.tracking,
       },
     ],
-    [guides],
+    [guides, t],
   );
 
-  const orderLink = useMemo(
-    () => ORDER_LINK[ovhSubsidiary] || ORDER_LINK.DEFAULT,
-    [ovhSubsidiary],
-  );
+  const orderLink = useMemo(() => ORDER_LINK[ovhSubsidiary] || ORDER_LINK.DEFAULT, [ovhSubsidiary]);
 
   return (
     <OnboardingLayout
       title={t('title')}
       img={{ src: onboardingImgSrc, alt: '' }}
-      description={
-        <OdsText className="text-center">{t('description')}</OdsText>
-      }
+      description={<OdsText className="text-center">{t('description')}</OdsText>}
       orderButtonLabel={t('order_btn')}
       onOrderButtonClick={() => {
         trackClick({

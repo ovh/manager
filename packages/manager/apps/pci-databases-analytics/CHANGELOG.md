@@ -3,6 +3,175 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.31.0...@ovh-ux/manager-pci-databases-analytics-app@1.31.1) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
+
+
+
+
+
+# [1.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.30.2...@ovh-ux/manager-pci-databases-analytics-app@1.31.0) (2025-10-20)
+
+
+### Bug Fixes
+
+* **pci-databases-analytics:** fix translation issue in topics and acls ([0d876a8](https://github.com/ovh/manager/commit/0d876a8472dba0077bc0afd7381843a692d699cc)), closes [#DATATR-2581](https://github.com/ovh/manager/issues/DATATR-2581)
+
+
+### Features
+
+* **pci-db-analytics:** change pci menu and clean streaming and fix advanced config ([559f0e7](https://github.com/ovh/manager/commit/559f0e73978e82ec10a2d43e45b178615d2a4365)), closes [#DATATR-2583](https://github.com/ovh/manager/issues/DATATR-2583) [#DATATR-2580](https://github.com/ovh/manager/issues/DATATR-2580)
+
+
+
+
+
+## [1.30.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.30.1...@ovh-ux/manager-pci-databases-analytics-app@1.30.2) (2025-10-16)
+
+
+### Bug Fixes
+
+* **config:** add missing complementaryAddress field to the user type ([7412865](https://github.com/ovh/manager/commit/74128656ce66647ce3c98d82334a53d120e2e620)), closes [#DCE-32](https://github.com/ovh/manager/issues/DCE-32)
+
+
+
+
+
+## [1.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.30.0...@ovh-ux/manager-pci-databases-analytics-app@1.30.1) (2025-10-15)
+
+
+### Bug Fixes
+
+* **pci-databases-analytics:** update api call to add Iceberg headers and get data ([f956c52](https://github.com/ovh/manager/commit/f956c526b260ba1fdd3209050fb6ac67005cfa3b)), closes [#DATATR-2578](https://github.com/ovh/manager/issues/DATATR-2578)
+
+
+
+
+
+# [1.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.29.1...@ovh-ux/manager-pci-databases-analytics-app@1.30.0) (2025-10-15)
+
+
+### Features
+
+* **pci.db:** update streaming deep links ([#19625](https://github.com/ovh/manager/issues/19625)) ([bf84207](https://github.com/ovh/manager/commit/bf842076ff9e3c19b7203054f258a2285d1d0af3)), closes [#DATATR-2558](https://github.com/ovh/manager/issues/DATATR-2558)
+
+
+
+
+
+## [1.29.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.29.0...@ovh-ux/manager-pci-databases-analytics-app@1.29.1) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
+
+
+
+
+
+# [1.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.28.6...@ovh-ux/manager-pci-databases-analytics-app@1.29.0) (2025-10-09)
+
+
+### Features
+
+* **pci.databases:** migrate to static kit ([#19054](https://github.com/ovh/manager/issues/19054)) ([5917504](https://github.com/ovh/manager/commit/5917504fc48d08a5eed9f92ee8e5d8499d9d9c71)), closes [#DATATR-2467](https://github.com/ovh/manager/issues/DATATR-2467)
+
+
+
+
+
+## [1.28.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.28.5...@ovh-ux/manager-pci-databases-analytics-app@1.28.6) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
+
+
+
+
+
+## [1.28.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.28.4...@ovh-ux/manager-pci-databases-analytics-app@1.28.5) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
+
+
+
+
+
+## [1.28.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.28.3...@ovh-ux/manager-pci-databases-analytics-app@1.28.4) (2025-09-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
+
+
+
+
+
+## [1.28.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.28.2...@ovh-ux/manager-pci-databases-analytics-app@1.28.3) (2025-09-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4362] ([49e92f4](https://github.com/ovh/manager/commit/49e92f4de01643ef30fb62050c9a42b944a2fde1))
+
+
+
+
+
+## [1.28.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.28.1...@ovh-ux/manager-pci-databases-analytics-app@1.28.2) (2025-09-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4361] ([564b617](https://github.com/ovh/manager/commit/564b61744c0d2cb923d08df4a68c8722b63ad682))
+
+
+
+
+
+## [1.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.28.0...@ovh-ux/manager-pci-databases-analytics-app@1.28.1) (2025-09-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4339] ([eac81a8](https://github.com/ovh/manager/commit/eac81a87009357e682ec5d14a2a3f613391e3be9))
+* **i18n:** add missing translations [CDS 4344] ([9a27729](https://github.com/ovh/manager/commit/9a277290d8896ef6c44c0abe880051cb76525849))
+
+
+
+
+
+# [1.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.27.5...@ovh-ux/manager-pci-databases-analytics-app@1.28.0) (2025-09-15)
+
+
+### Features
+
+* **pci-databases-analyticts:** add deletion protection feature ([ee5a558](https://github.com/ovh/manager/commit/ee5a558a545bd15dd0c93d99f2339dd61a325b3a)), closes [#DATATR-2340](https://github.com/ovh/manager/issues/DATATR-2340)
+
+
+
+
+
+## [1.27.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.27.4...@ovh-ux/manager-pci-databases-analytics-app@1.27.5) (2025-09-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
+
+
+
+
+
+## [1.27.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.27.3...@ovh-ux/manager-pci-databases-analytics-app@1.27.4) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
+
+
+
+
+
+## [1.27.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.27.2...@ovh-ux/manager-pci-databases-analytics-app@1.27.3) (2025-09-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
+
+
+
+
+
 ## [1.27.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.27.1...@ovh-ux/manager-pci-databases-analytics-app@1.27.2) (2025-09-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app

@@ -1,4 +1,5 @@
 import find from 'lodash/find';
+import startCase from 'lodash/startCase';
 
 import { SANITIZATION, FEATURES } from './constants';
 
@@ -196,12 +197,17 @@ export const state = {
         state: 'sign-up.activity',
       },
     ],
-    trackError: /* @ngInject */ (atInternet) => (step, field) => {
+    trackError: /* @ngInject */ (atInternet) => (field) => {
       const errorTrackingHits = [ERROR_TRACKING_PREFIX, `error_${field}`];
       atInternet.trackPage({
         name: errorTrackingHits.join('::'),
         page_category: 'banner',
       });
+    },
+    onFieldBlur: /* @ngInject */ (trackError) => (field) => {
+      if (field.$invalid) {
+        trackError(startCase(field.$name).replaceAll(' ', ''));
+      }
     },
 
     subsidiary: /* @ngInject */ ($location, coreConfig) =>

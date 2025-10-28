@@ -1,5 +1,4 @@
 import get from 'lodash/get';
-import startCase from 'lodash/startCase';
 import startsWith from 'lodash/startsWith';
 
 import { ALLOWED_COUNTRY_EXTRA_INFO, PHONE_PREFIX } from './details.constants';
@@ -257,12 +256,6 @@ export default class SignUpDetailsCtrl {
     document.getElementsByName(elementName)[0].focus();
   }
   /* -----  End of Hooks  ------ */
-
-  onFieldBlur(field) {
-    if (field.$invalid) {
-      this.onFieldError(startCase(field.$name).replaceAll(' ', ''));
-    }
-  }
 
   onPhoneTypeChange() {
     if (

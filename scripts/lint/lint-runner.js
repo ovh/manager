@@ -2,7 +2,7 @@
 
 /* eslint-disable */
 
-const { spawn } = require('child_process');
+const { spawn, spawnSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
@@ -49,8 +49,8 @@ const ignorePatterns =
   appName || isPackageName
     ? []
     : modernApps.map(
-      (app) => `--ignore-pattern='packages/manager/apps/${app}/**'`,
-    );
+        (app) => `--ignore-pattern='packages/manager/apps/${app}/**'`,
+      );
 
 /**
  * Determines legacy lint targets.
@@ -58,9 +58,8 @@ const ignorePatterns =
 const legacyPattern = appName
   ? [`packages/manager/apps/${appName}/**/*.{tsx,ts}`]
   : [
-    'packages/manager/apps/**/*.{tsx,ts}',
-    'packages/manager-react-components/**/*.{tsx,ts}',
-  ];
+      'packages/manager/apps/**/*.{tsx,ts}'
+    ];
 
 if (verbose) {
   console.log(`🗂️ Legacy lint patterns:\n${legacyPattern.join('\n')}`);
@@ -84,13 +83,15 @@ if (!isPackageName) {
   });
 }
 
+const turboTask = fix ? 'lint:modern:fix' : 'lint:modern';
+
 tasks.push({
-  name: 'modern lint:modern (Turbo)',
+  name: `modern ${turboTask} (Turbo)`,
   cmd: isPackageName
-    ? ['turbo', 'run', 'lint:modern', '--filter', packageName]
+    ? ['turbo', 'run', turboTask, '--filter', packageName]
     : appName
-      ? ['turbo', 'run', 'lint:modern', '--filter', appName]
-      : ['turbo', 'run', 'lint:modern'],
+      ? ['turbo', 'run', turboTask, '--filter', appName]
+      : ['turbo', 'run', turboTask],
 });
 
 const errors = [];
@@ -206,7 +207,20 @@ Thanks for your patience ✨
     console.log('⏳ Waiting for output...\n');
 
     try {
+      // Run the prepare step synchronously
+      spawnSync('yarn', ['pm:prepare:legacy:workspace'], {
+        shell: true,
+        stdio: 'inherit',
+      });
+
+      // Run task
       await run(task.cmd[0], task.cmd.slice(1));
+
+      // Clean up after process ends
+      spawnSync('yarn', ['pm:remove:legacy:workspace'], {
+        shell: true,
+        stdio: 'inherit',
+      });
     } catch (err) {
       handleLintError(task, err);
     }

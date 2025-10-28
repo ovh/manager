@@ -1,5 +1,4 @@
 import kebabCase from 'lodash/kebabCase';
-import get from 'lodash/get';
 import { EngagementConfiguration } from '@ovh-ux/manager-models';
 import { SERVICE_TYPES_USING_V6_SERVICES } from '../autorenew.constants';
 
@@ -46,12 +45,7 @@ export default /* @ngInject */ ($stateProvider) => {
           }
 
           service.cancelResiliation();
-          return BillingAutoRenew.updateService({
-            serviceId: service.serviceId,
-            serviceType: service.serviceType,
-            renew: service.renew,
-            route: get(service, 'route.url'),
-          });
+          return BillingAutoRenew.updateService(service);
         });
       },
       engagement: /* @ngInject */ ($http, service) =>

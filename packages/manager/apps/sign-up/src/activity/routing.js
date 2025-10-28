@@ -6,10 +6,6 @@ export const state = {
       component: 'ovhSignUpActivity',
     },
   },
-  resolve: {
-    onFieldError: /* @ngInject */ (trackError) => (field) =>
-      trackError('step3', field),
-  },
   atInternet: {
     ignore: true,
   },

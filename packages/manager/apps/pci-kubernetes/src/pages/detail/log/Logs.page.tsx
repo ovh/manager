@@ -1,4 +1,8 @@
-import { OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
+import { useNavigate } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,
@@ -6,20 +10,20 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { LogsView, useParam } from '@ovh-ux/manager-pci-common';
 import { Notifications, useMe } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
-import { LogsView } from '@ovh-ux/manager-pci-common';
-import { LOGS_INFO } from './constants';
+
 import { KubeLogsProvider } from './KubeLogsProvider';
+import { LOGS_INFO } from './constants';
 
 export default function LogsPage() {
   const { t } = useTranslation('logs');
-  const { kubeId, projectId } = useParams();
+  const { kubeId, projectId } = useParam('kubeId', 'projectId');
   const navigate = useNavigate();
   const ovhSubsidiary = useMe()?.me?.ovhSubsidiary;
-  const infoLink = LOGS_INFO[ovhSubsidiary] || LOGS_INFO.DEFAULT;
+  const infoLink = LOGS_INFO[ovhSubsidiary as keyof typeof LOGS_INFO] || LOGS_INFO.DEFAULT;
 
   return (
     <KubeLogsProvider kubeId={kubeId} projectId={projectId}>
@@ -48,7 +52,9 @@ export default function LogsPage() {
           />
         </span>
       </OsdsLink>
-      <LogsView onGotoStreams={() => navigate('./streams')} />
+      <div className="log-container">
+        <LogsView onGotoStreams={() => navigate('./streams')} />
+      </div>
     </KubeLogsProvider>
   );
 }

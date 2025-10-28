@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.13.4...@ovh-ux/manager-vite-config@0.14.0) (2025-10-23)
+
+
+### Bug Fixes
+
+* **manager-react-components:** correct unit tests ([d2587ec](https://github.com/ovh/manager/commit/d2587ec39fdd8bcd7caaffae6a1e66382bacda6c)), closes [#MANAGER-19109](https://github.com/ovh/manager/issues/MANAGER-19109)
+
+
+### Features
+
+* **manager-tools:** correct config vite prettier ([d28ea07](https://github.com/ovh/manager/commit/d28ea078ec20696c08fd3596a8c543743185129d)), closes [#MANAGER-19109](https://github.com/ovh/manager/issues/MANAGER-19109)
+* **muk:** update generator with muk ([6ec82f5](https://github.com/ovh/manager/commit/6ec82f5aea95f04edcd8001d297102cb5e89e00b)), closes [#MANAGER-19474](https://github.com/ovh/manager/issues/MANAGER-19474)
+
+
+
+
+
+## [0.13.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.13.3...@ovh-ux/manager-vite-config@0.13.4) (2025-10-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-vite-config
+
+
+
+
+
+## [0.13.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.13.2...@ovh-ux/manager-vite-config@0.13.3) (2025-10-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-vite-config
+
+
+
+
+
+## [0.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.13.1...@ovh-ux/manager-vite-config@0.13.2) (2025-10-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-vite-config
+
+
+
+
+
+## [0.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.13.0...@ovh-ux/manager-vite-config@0.13.1) (2025-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-vite-config
+
+
+
+
+
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.12.0...@ovh-ux/manager-vite-config@0.13.0) (2025-09-11)
+
+
+### Features
+
+* integrate and configure bundle analysis ([514d424](https://github.com/ovh/manager/commit/514d4247b6b6e4b37379e64e5260636b5d1c7c4d)), closes [#MANAGER-19352](https://github.com/ovh/manager/issues/MANAGER-19352)
+
+
+
+
+
 # [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.11.0...@ovh-ux/manager-vite-config@0.12.0) (2025-09-06)
 
 

@@ -53,7 +53,7 @@ export type TAggregatedInstanceDto = {
   isImageDeprecated: boolean;
 };
 
-export type TPartialInstanceDto = Pick<TAggregatedInstanceDto, 'id'> &
+export type TPartialAggregatedInstanceDto = Pick<TAggregatedInstanceDto, 'id'> &
   Partial<TAggregatedInstanceDto>;
 
 export type TRetrieveInstancesQueryParams = DeepReadonly<{
@@ -104,7 +104,7 @@ export type TInstancePriceDto = {
   includeVat: boolean;
   price: {
     currencyCode: string;
-    priceInUCents: number;
+    priceInUcents: number;
     text: string;
     value: number;
   };

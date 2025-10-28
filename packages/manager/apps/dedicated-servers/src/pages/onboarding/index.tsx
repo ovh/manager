@@ -4,13 +4,14 @@ import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import useGuideUtils, { UrlLinks } from '@/hooks/useLinkUtils';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
-import { onboardingLinks, CTAS } from '@/data/constants/onboardingLinks';
+import { onboardingLinks } from '@/data/constants/onboardingLinks';
+import { orderLinks } from '@/data/constants/orderLinks';
 
 export default function Onboarding() {
   const { t } = useTranslation('onboarding');
   const { t: tCommon } = useTranslation(NAMESPACES.ACTIONS);
   const links = useGuideUtils(onboardingLinks) as UrlLinks;
-  const cmdLink = useGuideUtils(CTAS) as string;
+  const { dedicatedOrder } = useGuideUtils<UrlLinks>(orderLinks);
 
   const tileList = [
     {
@@ -58,7 +59,7 @@ export default function Onboarding() {
       img={imgSrc}
       description={t('dedicated_servers_onboarding_description')}
       orderButtonLabel={tCommon('order')}
-      orderHref={cmdLink}
+      orderHref={dedicatedOrder as string}
     >
       {tileList.map((tile) => (
         <Card key={tile.id} href={tile.href as string} texts={tile.texts} />
