@@ -10,10 +10,11 @@ export const useGetTokens = ({ campus }: TokenParam) => {
       campus,
     }),
     queryFn: () => getTokens({ campus }),
+    enabled: !!campus,
   });
 
   return {
-    token: data?.data,
+    token: data?.data ?? null,
     ...query,
   };
 };
