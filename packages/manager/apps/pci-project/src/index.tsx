@@ -9,6 +9,7 @@ import '@ovh-ux/manager-react-components/dist/style.css';
 import App from './App';
 import './vite-hmr';
 import './index.scss';
+import { initModuleFederation } from './utils/module-federation-runtime';
 
 import { UNIVERSE, SUB_UNIVERSE, APP_NAME, LEVEL2 } from './tracking.constant';
 
@@ -22,6 +23,8 @@ const trackingContext = {
 };
 
 const init = async (appName: string) => {
+  initModuleFederation();
+
   const context = await initShellContext(appName, trackingContext);
 
   await initI18n({
