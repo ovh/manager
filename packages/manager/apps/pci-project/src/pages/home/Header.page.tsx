@@ -1,6 +1,7 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useTranslation } from 'react-i18next';
 import { Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
 
 import {
   isDiscoveryProject,
@@ -23,7 +24,14 @@ import { useProjectTabs } from '@/hooks/useProjectTabs';
 import QuotaAlert from './components/QuotaAlert.component';
 
 export default function ProjectHeader() {
-  const { t } = useTranslation(['home', NAMESPACES.FORM]);
+  const { t } = useTranslation([
+    'home',
+    'edit',
+    'hds',
+    'activate',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.FORM,
+  ]);
 
   const hrefProject = usePciUrl();
   const { data: project, isLoading } = useProject();
@@ -65,7 +73,9 @@ export default function ProjectHeader() {
       >
         <QuotaAlert />
         <PciAnnouncementBanner projectId={project?.project_id} />
-        <Outlet />
+        <Suspense>
+          <Outlet />
+        </Suspense>
       </BaseLayout>
     </ProjectValidationGuard>
   );
