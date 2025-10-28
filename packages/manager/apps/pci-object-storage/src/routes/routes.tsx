@@ -154,6 +154,17 @@ export default [
                 '@/pages/object-storage/storage/swiftId/dashboard/Dashboard.page'
               ),
             ),
+            children: [
+              {
+                path: 'delete',
+                id: 'swift.dashboard.delete',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/storage/swiftId/dashboard/delete/Delete.modal'
+                  ),
+                ),
+              },
+            ],
           },
           {
             path: 'objects',
@@ -179,26 +190,6 @@ export default [
                 ...lazyLoadRoute(() =>
                   import(
                     '@/pages/object-storage/storage/swiftId/objects/add/Add.modal'
-                  ),
-                ),
-              },
-            ],
-          },
-          {
-            path: 'settings',
-            id: 'swift.dashboard.settings',
-            ...lazyLoadRoute(() =>
-              import(
-                '@/pages/object-storage/storage/swiftId/settings/Settings.page'
-              ),
-            ),
-            children: [
-              {
-                path: 'delete',
-                id: 'swift.dashboard.delete',
-                ...lazyLoadRoute(() =>
-                  import(
-                    '@/pages/object-storage/storage/swiftId/settings/delete/Delete.modal'
                   ),
                 ),
               },
@@ -313,6 +304,26 @@ export default [
                 '@/pages/object-storage/storage/s3Id/dashboard/Dashboard.page'
               ),
             ),
+            children: [
+              {
+                path: 'active-encryption',
+                id: 'settings.encryption',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/storage/s3Id/dashboard/_components/activate-encryption/ActivateEncryption.modal'
+                  ),
+                ),
+              },
+              {
+                path: 'active-versionning',
+                id: 'settings.versionning',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/storage/s3Id/dashboard/_components/activate-versionning/ActivateVersionning.modal'
+                  ),
+                ),
+              },
+            ],
           },
           {
             path: 'replication',
@@ -351,42 +362,6 @@ export default [
                 '@/pages/object-storage/storage/s3Id/replication/edit/Edit.page'
               ),
             ),
-          },
-          {
-            path: 'access-logs',
-            id: 's3.dashboard.logs',
-            ...lazyLoadRoute(() =>
-              import('@/pages/object-storage/storage/s3Id/logs/Logs.page'),
-            ),
-          },
-          {
-            path: 'settings',
-            id: 's3.dashboard.settings',
-            ...lazyLoadRoute(() =>
-              import(
-                '@/pages/object-storage/storage/s3Id/settings/Settings.page'
-              ),
-            ),
-            children: [
-              {
-                path: 'active-encryption',
-                id: 'settings.encryption',
-                ...lazyLoadRoute(() =>
-                  import(
-                    '@/pages/object-storage/storage/s3Id/settings/_components/activate-encryption/ActivateEncryption.modal'
-                  ),
-                ),
-              },
-              {
-                path: 'active-versionning',
-                id: 'settings.versionning',
-                ...lazyLoadRoute(() =>
-                  import(
-                    '@/pages/object-storage/storage/s3Id/settings/_components/activate-versionning/ActivateVersionning.modal'
-                  ),
-                ),
-              },
-            ],
           },
         ],
       },
