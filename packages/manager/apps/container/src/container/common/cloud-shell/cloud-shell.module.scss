@@ -1,0 +1,15 @@
+.cloudShellIcon:disabled {
+  opacity: 0.5;
+}
+
+.cloudShellIconContrasted {
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: transparent !important;
+  }
+
+  svg {
+    color: var(--ods-color-primary-100);
+  }
+}
