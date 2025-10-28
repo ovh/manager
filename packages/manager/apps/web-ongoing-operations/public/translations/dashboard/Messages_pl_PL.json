@@ -70,7 +70,7 @@
   "domain_operations_update_nicowner_click_whoisContactBilling": "Zmień dane kontaktu księgowego, klikając tutaj",
   "domain_operations_update_nicowner_click_whoisContactTech": "Zmień dane kontaktu technicznego, klikając tutaj",
   "domain_operations_update_nicowner_click_identityEvidence": "Dostarcz kopię dowodu osobistego, prawa jazdy lub paszportu zarejestrowanej osoby.",
-  "tracking_transfert_domain_title": "Śledzenie transferu dla domeny \"{{t0}}\"",
+  "tracking_transfert_domain_title": "Śledzenie transferu dla domeny „{{t0}}”",
   "tracking_transfert_last_update": "Ostatnia aktualizacja z dnia: {{t0}}",
   "tracking_transfert_finalized": "Transfer został zakończony!",
   "tracking_transfert_sub_finalized": "Dziękujemy, że wybrałeś OVHcloud!",
