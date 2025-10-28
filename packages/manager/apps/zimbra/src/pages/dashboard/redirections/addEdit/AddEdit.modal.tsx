@@ -13,13 +13,7 @@ import {
   ODS_SPINNER_SIZE,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import {
-  OdsCheckbox,
-  OdsFormField,
-  OdsInput,
-  OdsSelect,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+import { OdsFormField, OdsInput, OdsSelect, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -32,8 +26,14 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 
 import { Loading } from '@/components';
+import {
+  RedirectionBodyParamsType,
+  getZimbraPlatformRedirectionsQueryKey,
+  postZimbraPlatformRedirection,
+} from '@/data/api';
 import { useAccount, useDomains } from '@/data/hooks';
 import { useGenerateUrl, useOdsModalOverflowHack } from '@/hooks';
+import queryClient from '@/queryClient';
 import {
   ADD_REDIRECTION,
   CANCEL,
@@ -48,7 +48,7 @@ export const AddEditOrganizationModal = () => {
   const { trackClick, trackPage } = useOvhTracking();
   const { t } = useTranslation(['redirections', NAMESPACES.ACTIONS, NAMESPACES.FORM]);
   const navigate = useNavigate();
-  const { accountId, redirectionId } = useParams();
+  const { platformId, accountId, redirectionId } = useParams();
 
   const trackingName = useMemo(() => {
     if (accountId) {
@@ -86,7 +86,6 @@ export const AddEditOrganizationModal = () => {
       account: '',
       domain: '',
       to: '',
-      keepCopy: false,
     },
     mode: 'onTouched',
     resolver: zodResolver(redirectionSchema),
@@ -99,14 +98,13 @@ export const AddEditOrganizationModal = () => {
         account,
         domain,
         to: '',
-        keepCopy: false,
       });
     }
   }, [accountDetail]);
 
   const { mutate: addRedirection, isPending: isSending } = useMutation({
-    mutationFn: (payload: RedirectionSchema) => {
-      return Promise.resolve(payload);
+    mutationFn: (payload: RedirectionBodyParamsType) => {
+      return postZimbraPlatformRedirection(platformId, payload);
     },
     onSuccess: () => {
       trackPage({
@@ -135,9 +133,9 @@ export const AddEditOrganizationModal = () => {
       );
     },
     onSettled: () => {
-      /* queryClient.invalidateQueries({
+      queryClient.invalidateQueries({
         queryKey: getZimbraPlatformRedirectionsQueryKey(platformId),
-      }); */
+      });
 
       onClose();
     },
@@ -151,7 +149,10 @@ export const AddEditOrganizationModal = () => {
       actions: [trackingName, CONFIRM],
     });
 
-    addRedirection(data);
+    addRedirection({
+      source: `${data.account}@${data.domain}`,
+      destination: data.to,
+    });
   };
 
   const handleCancelClick = () => {
@@ -283,29 +284,6 @@ export const AddEditOrganizationModal = () => {
                 onOdsBlur={onBlur}
                 onOdsChange={onChange}
               ></OdsInput>
-            </OdsFormField>
-          )}
-        />
-        <Controller
-          control={control}
-          name="keepCopy"
-          render={({ field: { name, value, onChange } }) => (
-            <OdsFormField data-testid="field-checkbox" error={errors?.[name]?.message}>
-              <div className="flex leading-none gap-4 cursor-pointer">
-                <OdsCheckbox
-                  inputId={name}
-                  id={name}
-                  name={name}
-                  value={value as unknown as string}
-                  isChecked={value}
-                  onClick={() => onChange(!value)}
-                ></OdsCheckbox>
-                <label htmlFor={name}>
-                  <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                    {t('zimbra_redirections_add_form_input_checkbox')}
-                  </OdsText>
-                </label>
-              </div>
             </OdsFormField>
           )}
         />
