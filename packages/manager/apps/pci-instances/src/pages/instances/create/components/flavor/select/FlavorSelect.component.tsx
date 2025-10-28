@@ -4,9 +4,8 @@ import {
   Select,
   SelectContent,
   SelectControl,
-  SelectCustomItemRendererArg,
-  SelectCustomOptionRendererArg,
   SelectItem,
+  SelectOptionItem,
 } from '@ovhcloud/ods-react';
 import { TFlavorTag } from '@/types/instance/common.type';
 import {
