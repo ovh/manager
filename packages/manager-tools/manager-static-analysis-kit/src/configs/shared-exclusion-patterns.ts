@@ -31,6 +31,7 @@ export const sharedExclusionPatterns = [
   '**/**spec*.*',
   '**/mock*/**',
   '**/mocks/**',
+  '**/__mocks__/**',
   '**/_mock_/**',
   '**/**Mock**/**',
   '**/*.types.*',

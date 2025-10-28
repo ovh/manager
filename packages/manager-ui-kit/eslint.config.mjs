@@ -179,7 +179,7 @@ export default [
   /*  Node JS Configuration Adjustment                                        */
   /* ------------------------------------------------------------------------ */
   {
-    files: ['setupTests.ts', 'vite.config.mts', 'vitest.config.js'],
+    files: ['setupTests.ts', 'vite.config.mts', 'vitest.config.js', './scripts/**.mjs'],
     languageOptions: {
       globals: {
         global: 'readonly',
