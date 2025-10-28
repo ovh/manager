@@ -44,6 +44,7 @@ export const TenantConfigurationForm = () => {
           render={({ field }) => (
             <OdsFormField className="block">
               <SelectField
+                key={infrastructureId || 'no-infrastructure'}
                 isDisabled={!infrastructureId || isPending}
                 className="w-1/2"
                 value={field.value}
