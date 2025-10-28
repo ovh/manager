@@ -71,6 +71,7 @@ export const OfferSelectionSection: React.FC = () => {
         {hasAdditionalIpOffer(selectedServiceType) && (
           <OptionCard
             title={t('additional_ip_card_title')}
+            className="pt-4"
             subtitle={<PriceDescription price={ipv4LowestPrice} />}
             description={t(
               `additional_ip_card_${
@@ -90,22 +91,25 @@ export const OfferSelectionSection: React.FC = () => {
               setSelectedPlanCode(additionalIpPlanCode);
             }}
           >
-            <OdsQuantity
-              name="additional_ip_quantity"
-              min={MIN_IP_QUANTITY}
-              max={MAX_IP_QUANTITY}
-              onOdsChange={(event) => setIpQuantity(event.target.value)}
-              value={ipQuantity}
-            />
-            <OdsText preset={ODS_TEXT_PRESET.heading4}>
-              <PriceDescription price={ipv4LowestPrice * ipQuantity} />
-            </OdsText>
+            <div className="flex flex-col justify-center min-h-14">
+              <OdsQuantity
+                name="additional_ip_quantity"
+                min={MIN_IP_QUANTITY}
+                max={MAX_IP_QUANTITY}
+                onOdsChange={(event) => setIpQuantity(event.target.value)}
+                value={ipQuantity}
+              />
+              <OdsText preset={ODS_TEXT_PRESET.heading4}>
+                <PriceDescription price={ipv4LowestPrice * ipQuantity} />
+              </OdsText>
+            </div>
           </OptionCard>
         )}
         {hasAdditionalIpBlockOffer(selectedServiceType) && (
           <OptionCard
             isDisabled={isLoading}
             title={t('additional_ip_block_card_title')}
+            className="pt-4"
             description={t('additional_ip_block_card_description')}
             subtitle={
               <PriceDescription
@@ -128,35 +132,37 @@ export const OfferSelectionSection: React.FC = () => {
             }}
             isLoading={isLoading}
           >
-            <OdsSelect
-              key={ipBlockPricingList.reduce(
-                (result, { value }) => result + value,
-                '',
-              )}
-              name="ip_block_plancode_select"
-              value={selectedPlanCode}
-              onOdsChange={(event) => {
-                if (
-                  ipBlockPricingList.some(
-                    (pricing) => pricing.value === event.target.value,
-                  )
-                ) {
-                  setSelectedOffer(IpOffer.blockAdditionalIp);
-                  setSelectedPlanCode(event.target.value as string);
-                  setPricingMode(
-                    ipBlockPricingList.find(
-                      (p) => p.value === event.target.value,
-                    )?.pricingMode || DEFAULT_PRICING_MODE,
-                  );
-                }
-              }}
-            >
-              {ipBlockPricingList.map(({ label, value }) => (
-                <option key={value} value={value}>
-                  {label}
-                </option>
-              ))}
-            </OdsSelect>
+            <div className="flex flex-col justify-center min-h-14">
+              <OdsSelect
+                key={ipBlockPricingList.reduce(
+                  (result, { value }) => result + value,
+                  '',
+                )}
+                name="ip_block_plancode_select"
+                value={selectedPlanCode}
+                onOdsChange={(event) => {
+                  if (
+                    ipBlockPricingList.some(
+                      (pricing) => pricing.value === event.target.value,
+                    )
+                  ) {
+                    setSelectedOffer(IpOffer.blockAdditionalIp);
+                    setSelectedPlanCode(event.target.value as string);
+                    setPricingMode(
+                      ipBlockPricingList.find(
+                        (p) => p.value === event.target.value,
+                      )?.pricingMode || DEFAULT_PRICING_MODE,
+                    );
+                  }
+                }}
+              >
+                {ipBlockPricingList.map(({ label, value }) => (
+                  <option key={value} value={value}>
+                    {label}
+                  </option>
+                ))}
+              </OdsSelect>
+            </div>
           </OptionCard>
         )}
       </div>
