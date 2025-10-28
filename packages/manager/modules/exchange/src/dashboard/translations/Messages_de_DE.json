@@ -1669,5 +1669,6 @@
   "exchange_delete_mfa_success": "Die Zwei-Faktor-Authentifizierung wurde gelöscht.",
   "exchange_delete_mfa_error": "Bei der Löschung der Zwei-Faktor-Authentifizierung ist ein Fehler aufgetreten: {{error}}",
   "exchange_tab_LOGS": "Logs",
-  "exchange_tab_ACCOUNTS_menu_migrate": "Accounts migrieren"
+  "exchange_tab_ACCOUNTS_menu_migrate": "Accounts migrieren",
+  "exchange_server_commercial_version_SE": "SE"
 }
