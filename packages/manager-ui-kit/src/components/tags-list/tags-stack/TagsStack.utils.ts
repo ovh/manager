@@ -1,7 +1,7 @@
 import { MORE_TAGS_ICON_WIDTH } from './TagsStack.constants';
 import { HTMLBadgeElement } from './TagsStack.props';
 
-const getBadgeSpacings = (badgeStyles: CSSStyleDeclaration) => {
+const getBadgeSpacings = (badgeStyles: CSSStyleDeclaration): number => {
   return (
     parseFloat(badgeStyles.marginRight) +
     parseFloat(badgeStyles.marginLeft) +
@@ -18,10 +18,16 @@ const getRenderedBadgeWidth = ({
   tag: string;
   fontSize: number;
   fontFamily: string;
-}) => {
+}): number => {
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d');
-  context.font = `${fontSize} ${fontFamily}`;
+
+  if (!context) {
+    console.warn('2D rendering context not available, returning 0 width');
+    return 0;
+  }
+
+  context.font = `${fontSize}px ${fontFamily}`;
   return context.measureText(tag).width;
 };
 
@@ -54,7 +60,7 @@ export const getVisibleTagCount = (
   while (currentLine <= maxLines && index < tags.length) {
     const textWidth =
       getRenderedBadgeWidth({
-        tag: tags[index],
+        tag: tags[index] ?? '',
         fontSize: BADGE_FONT_SIZE,
         fontFamily: BADGE_FONT_FAMILY,
       }) + BADGE_SPACINGS;

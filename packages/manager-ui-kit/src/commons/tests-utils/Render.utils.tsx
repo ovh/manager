@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { ComponentType, ReactNode } from 'react';
+import { ComponentType, JSX, MutableRefObject, ReactNode } from 'react';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import type { Row } from '@tanstack/react-table';
 import '@testing-library/jest-dom';
 import { cleanup, render } from '@testing-library/react';
 import type { RenderOptions, RenderResult } from '@testing-library/react';
@@ -103,7 +104,24 @@ export const renderDataGrid = (
   props: Omit<DatagridProps<Person>, 'columns' | 'data'> & {
     columns: readonly DatagridColumn<Person>[];
     data: Person[];
+    renderSubComponent?: (
+      row: Row<Person>,
+      headerRefs?: MutableRefObject<Record<string, HTMLTableCellElement>>,
+    ) => JSX.Element;
   },
 ) => customRender(<Datagrid<Person> {...props} />);
 
 export const renderFilterAdd = (props: FilterAddProps) => customRender(<FilterAdd {...props} />);
+
+export const createMeWrapper = (
+  mockShell: Partial<ShellContextType> = {},
+): React.FC<React.PropsWithChildren> => {
+  // eslint-disable-next-line react/no-multi-comp
+  const MeWrapper: React.FC<React.PropsWithChildren> = ({ children }) => (
+    <ShellContext.Provider value={mockShell as ShellContextType}>{children}</ShellContext.Provider>
+  );
+
+  MeWrapper.displayName = 'MeWrapper';
+
+  return MeWrapper;
+};

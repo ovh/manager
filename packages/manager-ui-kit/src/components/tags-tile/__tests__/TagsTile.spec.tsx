@@ -82,14 +82,8 @@ describe('TagsTile component', () => {
       expect(addTagLink).toBeInTheDocument();
     });
 
-    it('should handle null tags', () => {
-      render(<TagsTile tags={null} onEditTags={mockOnEditTags} />);
-
-      expect(screen.getByText(fr_FR.tags_tile_empty)).toBeInTheDocument();
-    });
-
-    it('should handle undefined tags', () => {
-      render(<TagsTile tags={undefined} onEditTags={mockOnEditTags} />);
+    it('should handle empty tags', () => {
+      render(<TagsTile tags={{}} onEditTags={mockOnEditTags} />);
 
       expect(screen.getByText(fr_FR.tags_tile_empty)).toBeInTheDocument();
     });

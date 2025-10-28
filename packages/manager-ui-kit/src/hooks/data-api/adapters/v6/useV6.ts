@@ -1,10 +1,13 @@
-import { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+
+import type { SortingState } from '@tanstack/react-table';
 
 import { v6 } from '@ovh-ux/manager-core-api';
 
-import { useQuery } from '../../infra/tanstack';
-import { UseDataApiResult } from '../../ports/useDataApi.types';
-import { useDataRetrievalOperations } from '../../useDataRetrievalOperations';
+import { useQuery } from '@/hooks/data-api/infra/tanstack';
+import { UseDataApiResult } from '@/hooks/data-api/ports/useDataApi.types';
+import { useDataRetrievalOperations } from '@/hooks/data-api/useDataRetrievalOperations';
+
 import { useFilterAndSortData } from './filter-and-sort-data/useFilterAndSortData';
 import { FetchV6Result, ResourcesV6Params } from './v6.type';
 
@@ -78,8 +81,11 @@ export const useV6 = <TData = Record<string, unknown>>({
     hasNextPage: pageIndex * pageSize + pageSize < flattenData?.length,
     fetchNextPage,
     sorting: {
-      sorting,
-      setSorting,
+      sorting: sorting ?? [],
+      setSorting: ((value) =>
+        setSorting(
+          typeof value === 'function' ? (prev) => value(prev ?? []) : (value ?? []),
+        )) as React.Dispatch<React.SetStateAction<SortingState>>,
       manualSorting: true,
     },
     filters: {

@@ -4,6 +4,7 @@ import { vi } from 'vitest';
 
 import { FilterComparator, FilterTypeCategories } from '@ovh-ux/manager-core-api';
 
+import { assertNotNull } from '@/commons/tests-utils/Assertions.utils';
 import { fetchNextPage } from '@/commons/tests-utils/Mock.utils';
 import { UseDataApiResult } from '@/hooks';
 
@@ -105,7 +106,7 @@ describe('useV6', () => {
       defaultSorting: [{ id: 'number', desc: false }],
     });
     act(() => {
-      result.current.sorting.setSorting([{ id: 'number', desc: true }]);
+      result?.current?.sorting?.setSorting?.([{ id: 'number', desc: true }]);
     });
     await act(() => fetchNextPage(result.current.fetchNextPage, 4));
     result.current.flattenData.forEach((item: ResultObj, index) => {
@@ -117,7 +118,7 @@ describe('useV6', () => {
     const searchTerm = '1';
     const { result } = renderUseV6Hook();
     act(() => {
-      result.current.search.onSearch(searchTerm);
+      result?.current?.search?.onSearch?.(searchTerm);
     });
     result.current.flattenData.forEach((item: ResultObj) => {
       expect(item.name).toContain(searchTerm);
@@ -131,7 +132,7 @@ describe('useV6', () => {
 
     // first applies the filter num > 15
     act(() => {
-      result.current.filters.add(
+      result?.current?.filters?.add?.(
         getFilter(
           'number',
           String(filterTerm1),
@@ -148,7 +149,7 @@ describe('useV6', () => {
 
     // then applies the filter num < 36 (current filter: 15 < num < 36)
     act(() => {
-      result.current.filters.add(
+      result?.current?.filters?.add?.(
         getFilter(
           'number',
           String(filterTerm2),
@@ -167,7 +168,8 @@ describe('useV6', () => {
 
     // then removes the first filter (current filter: num < 36)
     act(() => {
-      result.current.filters.remove(result.current.filters.filters[0]);
+      assertNotNull(result?.current?.filters?.filters?.[0]);
+      result?.current?.filters?.remove?.(result.current.filters.filters[0]);
     });
     await act(() => fetchNextPage(result.current.fetchNextPage, 4));
     expect(result.current.flattenData.length).toBe(35);
@@ -187,7 +189,7 @@ describe('useV6', () => {
 
     // then apply filter num > 15
     act(() => {
-      result.current.filters.add(
+      result?.current?.filters?.add?.(
         getFilter('number', String(15), FilterComparator.IsHigher, FilterTypeCategories.Numeric),
       );
     });
@@ -199,7 +201,7 @@ describe('useV6', () => {
 
     // apply sorting descending order
     act(() => {
-      (result.current as UseDataApiResult).sorting.setSorting([{ id: 'number', desc: true }]);
+      result.current?.sorting?.setSorting([{ id: 'number', desc: true }]);
     });
     await act(() => fetchNextPage(result.current.fetchNextPage, 4));
     expect(result.current.flattenData.length).toBe(35);
@@ -209,7 +211,7 @@ describe('useV6', () => {
 
     // apply searching with search term = 3
     act(() => {
-      result.current.search.onSearch('3');
+      result?.current?.search?.onSearch?.('3');
     });
     await act(() => fetchNextPage(result.current.fetchNextPage, 4));
     expect(result.current.flattenData.length).toBe(12);

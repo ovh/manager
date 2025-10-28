@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import type { SortingState } from '@tanstack/react-table';
+import type { ColumnSort, SortingState } from '@tanstack/react-table';
 
 import { FilterTypeCategories, applyFilters } from '@ovh-ux/manager-core-api';
 import type { Filter } from '@ovh-ux/manager-core-api';
@@ -23,27 +23,31 @@ export const useFilterAndSortData = <TData = Record<string, unknown>>({
   columns: DatagridColumn<TData>[];
 }) => {
   const filteredData: TData[] = useMemo(() => {
-    if (!filters.length && !searchFilters.length) return items;
-    return applyFilters(items, [...filters, ...searchFilters]);
+    if (!filters.length && !searchFilters.length) return items ?? [];
+    return applyFilters(items ?? [], [...filters, ...searchFilters]);
   }, [items, filters, searchFilters]);
 
   const filteredAndSortedData: TData[] = useMemo(() => {
-    if (sorting) {
-      const columnType =
-        columns.find((col) => col.id === sorting[0]?.id)?.type || FilterTypeCategories.String;
-      return [...filteredData].sort((a: TData, b: TData) =>
-        compare(
-          columnType,
-          toComparableString((a as Record<string, unknown>)?.[sorting[0]?.id]),
-          toComparableString((b as Record<string, unknown>)?.[sorting[0]?.id]),
-          sorting[0]?.desc,
-        ),
-      );
-    }
-    return filteredData;
-  }, [filteredData, sorting]);
+    if (!sorting?.length) return filteredData;
 
-  return {
-    filteredAndSortedData,
-  };
+    const sort: ColumnSort = sorting[0] ?? ({} as ColumnSort);
+    const sortId = sort.id;
+    const desc = sort.desc ?? false;
+
+    if (!sortId) return filteredData;
+
+    const columnType =
+      columns.find((col) => col.id === sortId)?.type ?? FilterTypeCategories.String;
+
+    return [...filteredData].sort((a: TData, b: TData) =>
+      compare(
+        columnType,
+        toComparableString((a as Record<string, unknown>)[sortId]),
+        toComparableString((b as Record<string, unknown>)[sortId]),
+        desc,
+      ),
+    );
+  }, [filteredData, sorting, columns]);
+
+  return { filteredAndSortedData };
 };

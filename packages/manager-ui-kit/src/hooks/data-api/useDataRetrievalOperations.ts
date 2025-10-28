@@ -32,15 +32,20 @@ export const useDataRetrievalOperations = <TData = Record<string, unknown>>({
 
   const onSearch = useCallback(
     (search: string | undefined) => {
-      setSearchFilters(
-        !search
-          ? []
-          : searchableColumns.map(({ id }) => ({
-              key: id,
-              value: search,
-              comparator: FilterComparator.Includes,
-            })),
-      );
+      if (!search) {
+        setSearchFilters([]);
+        return;
+      }
+
+      const filters = searchableColumns
+        .filter((col): col is DatagridColumn<TData> & { id: string } => !!col.id)
+        .map(({ id }) => ({
+          key: id,
+          value: search,
+          comparator: FilterComparator.Includes,
+        }));
+
+      setSearchFilters(filters);
     },
     [searchableColumns],
   );

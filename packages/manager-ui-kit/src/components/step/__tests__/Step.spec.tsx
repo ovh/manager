@@ -16,10 +16,10 @@ vitest.mock('../step-header/StepHeader.component', () => ({
 }));
 
 vitest.mock('../step-body/StepBody.component', () => {
-  const StepBody = ({ children }) => <div data-testid="step-body">{children}</div>;
-  StepBody.propTypes = {
-    children: PropTypes.node,
-  };
+  const StepBody = ({ children }: { children?: React.ReactNode }) => (
+    <div data-testid="step-body">{children}</div>
+  );
+  StepBody.propTypes = { children: PropTypes.node };
   return { StepBody };
 });
 
@@ -37,9 +37,9 @@ describe('Step Component', () => {
     locked: false,
     order: 1,
     children: <p>Step Content</p>,
-    next: null,
-    edit: null,
-    skip: null,
+    next: undefined,
+    edit: undefined,
+    skip: undefined,
   };
 
   it('renders the step indicator', () => {
@@ -78,7 +78,7 @@ describe('Step Component', () => {
               {context.id === defaultProps.id &&
               context.title === defaultProps.title &&
               context.subtitle === defaultProps.subtitle &&
-              context.open === true &&
+              context.open &&
               context.checked === defaultProps.checked &&
               context.locked === defaultProps.locked &&
               context.order === defaultProps.order &&

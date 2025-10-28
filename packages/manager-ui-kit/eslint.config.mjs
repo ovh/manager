@@ -174,4 +174,17 @@ export default [
       'react-hooks/exhaustive-deps': 'off', // temporarily relaxed
     },
   },
+
+  /* ------------------------------------------------------------------------ */
+  /*  Node JS Configuration Adjustment                                        */
+  /* ------------------------------------------------------------------------ */
+  {
+    files: ['setupTests.ts', 'vite.config.mts', 'vitest.config.js'],
+    languageOptions: {
+      globals: {
+        global: 'readonly',
+      },
+      env: { node: true },
+    },
+  },
 ];

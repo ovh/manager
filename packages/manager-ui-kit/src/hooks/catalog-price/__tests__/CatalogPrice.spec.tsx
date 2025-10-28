@@ -4,13 +4,13 @@ import { vi } from 'vitest';
 import { convertHourlyPriceToMonthly, priceToUcent } from '@/hooks/catalog-price/Catalog.utils';
 import { useCatalogPrice } from '@/hooks/catalog-price/useCatalogPrice';
 
+type UseMeFn = () => { me: { ovhSubsidiary: string; currency: { code: string } } | null };
+
 const mocks = vi.hoisted(() => ({
-  useMe: vi.fn(() => ({
+  useMe: vi.fn<UseMeFn>(() => ({
     me: {
       ovhSubsidiary: 'FR',
-      currency: {
-        code: 'EUR',
-      },
+      currency: { code: 'EUR' },
     },
   })),
   t: vi.fn((key: string, options?: Record<string, unknown>) => {

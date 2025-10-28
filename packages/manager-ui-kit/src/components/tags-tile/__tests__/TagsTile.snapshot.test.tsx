@@ -17,8 +17,8 @@ describe('TagsTile Snapshot Tests', () => {
       expect(container).toMatchSnapshot();
     });
 
-    it('should render with null tags', () => {
-      const { container } = render(<TagsTile tags={null} onEditTags={mockOnEditTags} />);
+    it('should render with empty tags', () => {
+      const { container } = render(<TagsTile tags={{}} onEditTags={mockOnEditTags} />);
 
       expect(container).toMatchSnapshot();
     });

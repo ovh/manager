@@ -8,53 +8,42 @@ import ActionMenuTransFR from './src/components/action-menu/translations/Message
 import DatagridTransFR from './src/components/datagrid/translations/Messages_fr_FR.json';
 import FiltersTransFR from './src/components/filters/translations/Messages_fr_FR.json';
 
-i18n.use(initReactI18next).init({
+void i18n.use(initReactI18next).init({
   fallbackLng: 'fr_FR',
-  interpolation: {
-    escapeValue: false,
-  },
+  interpolation: { escapeValue: false },
   resources: {
     fr: {
-      'action-menu': {
-        ...ActionMenuTransFR,
-      },
-      datagrid: {
-        ...DatagridTransFR,
-      },
-      filterAdd: {
-        ...FiltersTransFR,
-      },
+      'action-menu': ActionMenuTransFR,
+      datagrid: DatagridTransFR,
+      filterAdd: FiltersTransFR,
     },
   },
 });
 
-// This polyfill exists because of an issue with jsdom and the EventTarget class
-// when testing a component with an OdsDatepicker (addEventListener crashes at component initialization).
-// Fix from issue: https://github.com/jsdom/jsdom/issues/2156
-// eslint-disable-next-line no-undef
-global.EventTarget = class {
-  listeners = {};
+global.EventTarget = class EventTargetPolyfill {
+  private listeners: Record<string, Set<(event: Event) => void>> = {};
 
-  addEventListener(type, listener) {
-    this.listeners = this.listeners || {};
-    (this.listeners[type] || (this.listeners[type] = new Set())).add(listener);
+  addEventListener(type: string, listener: (event: Event) => void): void {
+    (this.listeners[type] ||= new Set()).add(listener);
   }
 
-  removeEventListener(type, listener) {
-    if (this.listeners && this.listeners[type]) {
-      this.listeners[type].delete(listener);
+  removeEventListener(type: string, listener: (event: Event) => void): void {
+    this.listeners[type]?.delete(listener);
+  }
+
+  dispatchEvent(event: Event): boolean {
+    const handlers = this.listeners[event.type];
+    if (handlers) {
+      handlers.forEach((listener) => listener(event));
     }
-  }
-
-  dispatchEvent(event) {
-    this.listeners[event.type].forEach((listener) => listener(event));
     return !event.defaultPrevented;
   }
 };
 
-const ResizeObserverMock = vi.fn((callback) => {
-  // Create a mock ResizeObserverEntry with the expected structure
-  const mockEntry = {
+type ResizeObserverCallback = (entries: ResizeObserverEntry[], observer: ResizeObserver) => void;
+
+const ResizeObserverMock = vi.fn((callback: ResizeObserverCallback): ResizeObserver => {
+  const mockEntry: ResizeObserverEntry = {
     target: document.createElement('div'),
     contentRect: {
       width: 100,
@@ -65,25 +54,25 @@ const ResizeObserverMock = vi.fn((callback) => {
       right: 100,
       x: 0,
       y: 0,
+      toJSON: () => ({}),
     },
-    borderBoxSize: [{ width: 100, height: 100 }],
-    contentBoxSize: [{ width: 100, height: 100 }],
-    devicePixelContentBoxSize: [{ width: 100, height: 100 }],
+    borderBoxSize: [{ inlineSize: 100, blockSize: 100 }],
+    contentBoxSize: [{ inlineSize: 100, blockSize: 100 }],
+    devicePixelContentBoxSize: [{ inlineSize: 100, blockSize: 100 }],
   };
 
-  // Call the callback with an array of entries as the real ResizeObserver does
-  callback([mockEntry]);
+  // Call immediately, simulating a resize notification
+  callback([mockEntry], {} as ResizeObserver);
 
   return {
     observe: vi.fn(),
     unobserve: vi.fn(),
     disconnect: vi.fn(),
-  };
+  } as unknown as ResizeObserver;
 });
 
 vi.stubGlobal('ResizeObserver', ResizeObserverMock);
 
-// Mock getBoundingClientRect for virtualization and components
 Element.prototype.getBoundingClientRect = vi.fn(() => ({
   width: 1000,
   height: 600,
@@ -94,13 +83,11 @@ Element.prototype.getBoundingClientRect = vi.fn(() => ({
   x: 0,
   y: 0,
   toJSON: () => {},
-}));
+})) as unknown as () => DOMRect;
 
-// Mock HTMLElement methods for components
 HTMLElement.prototype.scrollTo = vi.fn();
 HTMLElement.prototype.scrollIntoView = vi.fn();
 
-// Mock scroll properties needed by ODS Modal
 Object.defineProperty(Element.prototype, 'scrollLeft', {
   configurable: true,
   writable: true,
@@ -123,27 +110,24 @@ Object.defineProperty(Element.prototype, 'scrollHeight', {
   value: 0,
 });
 
-// Suppress unhandled async errors from ODS Modal cleanup
-const originalConsoleError = console.error;
-console.error = (...args: any[]) => {
-  const errorMessage = args[0]?.toString() || '';
-  // Suppress specific ODS Modal/Zag.js cleanup errors
+const originalConsoleError = console.error.bind(console);
+
+console.error = (...args: unknown[]): void => {
+  const errorMessage = args[0]?.toString?.() ?? '';
   if (
     errorMessage.includes("reading 'left'") ||
     errorMessage.includes('[@zag-js/dismissable]') ||
     errorMessage.includes('preventScroll') ||
     errorMessage.includes('Uncaught Exception')
   ) {
-    return;
+    return; // suppress noisy jsdom/Zag async cleanup errors
   }
   originalConsoleError(...args);
 };
 
-// Catch unhandled errors from ODS Modal async cleanup
 if (typeof window !== 'undefined') {
-  window.addEventListener('error', (event) => {
+  window.addEventListener('error', (event: ErrorEvent) => {
     const errorMessage = event.message || event.error?.message || '';
-    // Suppress ODS Modal cleanup errors
     if (errorMessage.includes("reading 'left'") || errorMessage.includes('[@zag-js/dismissable]')) {
       event.preventDefault();
       event.stopPropagation();
@@ -152,9 +136,8 @@ if (typeof window !== 'undefined') {
     return true;
   });
 
-  window.addEventListener('unhandledrejection', (event) => {
+  window.addEventListener('unhandledrejection', (event: PromiseRejectionEvent) => {
     const errorMessage = event.reason?.message || '';
-    // Suppress ODS Modal cleanup errors
     if (errorMessage.includes("reading 'left'") || errorMessage.includes('[@zag-js/dismissable]')) {
       event.preventDefault();
       event.stopPropagation();

@@ -1,5 +1,3 @@
-import { JSX } from 'react';
-
 import {
   Datepicker,
   DatepickerContent,
@@ -24,14 +22,13 @@ export const FilterSectionValue = ({
   dateValue,
   setDateValue,
 }: FilterSectionValueProps) => {
-  let inputComponent: JSX.Element = null;
   if (selectedColumn?.type === FilterTypeCategories.Date) {
-    inputComponent = (
+    return (
       <div data-testid="filter-add_value-date" className="z-[2]">
         <Datepicker
           className="border"
           name="filter-add_value-date"
-          value={dateValue}
+          value={dateValue ?? ''}
           onValueChange={(detail) => setDateValue(detail.value || null)}
         >
           <DatepickerControl clearable />
@@ -39,8 +36,10 @@ export const FilterSectionValue = ({
         </Datepicker>
       </div>
     );
-  } else if (selectedColumn?.type === FilterTypeCategories.Numeric) {
-    inputComponent = (
+  }
+
+  if (selectedColumn?.type === FilterTypeCategories.Numeric) {
+    return (
       <Input
         name="filter-add_value-input"
         className="border"
@@ -56,14 +55,16 @@ export const FilterSectionValue = ({
         }}
       />
     );
-  } else if (selectedColumn?.options && selectedColumn.options.length > 0) {
-    inputComponent = (
+  }
+
+  if (selectedColumn?.options && selectedColumn.options.length > 0) {
+    return (
       <Select
         key={`filter-add_value-select-${selectedId}`}
         value={[value]}
         name={`filter-add_value-select-${selectedId}`}
         data-testid="filter-add_value-select"
-        onValueChange={(detail) => setValue(detail.value[0])}
+        onValueChange={(detail) => setValue(detail?.value?.[0] ?? '')}
         items={selectedColumn?.options?.map((option) => ({
           label: option.label,
           value: option.value,
@@ -73,23 +74,21 @@ export const FilterSectionValue = ({
         <SelectContent createPortal={false} />
       </Select>
     );
-  } else {
-    inputComponent = (
-      <Input
-        name="filter-add_value-input"
-        className="border"
-        type={INPUT_TYPE.text}
-        value={value}
-        data-testid="filter-add_value-input"
-        onChange={(e) => setValue(`${e.target.value}`)}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') {
-            submitAddFilter();
-          }
-        }}
-      />
-    );
   }
 
-  return inputComponent;
+  return (
+    <Input
+      name="filter-add_value-input"
+      className="border"
+      type={INPUT_TYPE.text}
+      value={value}
+      data-testid="filter-add_value-input"
+      onChange={(e) => setValue(`${e.target.value}`)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          submitAddFilter();
+        }
+      }}
+    />
+  );
 };

@@ -13,11 +13,15 @@ export const TagsStack: FC<TagsStackProps> = ({ tags, maxLines, onClick }) => {
   const tagRef = useRef<HTMLBadgeElement>(null);
 
   useEffect(() => {
-    // Display all tags if maxLines is not set
     if (!maxLines) {
       setVisibleTagCount(tags.length - 1);
-    } else if (tags.length > 1 && tagRef.current && containerRef.current) {
+      return;
+    }
+
+    if (tags.length > 1 && tagRef.current && containerRef.current) {
       const resizeObserver = new ResizeObserver(() => {
+        if (!tagRef.current || !containerRef.current) return;
+
         const visibleTags = getVisibleTagCount(
           tags,
           tagRef.current,
@@ -27,12 +31,11 @@ export const TagsStack: FC<TagsStackProps> = ({ tags, maxLines, onClick }) => {
 
         setVisibleTagCount(visibleTags);
       });
-      if (containerRef.current) {
-        resizeObserver.observe(containerRef.current);
-      }
 
+      resizeObserver.observe(containerRef.current);
       return () => resizeObserver.disconnect();
     }
+
     return () => {};
   }, [tags, maxLines]);
 

@@ -3,6 +3,7 @@ import { type Mock, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { FilterComparator } from '@ovh-ux/manager-core-api';
 
+import { assertNotNull } from '@/commons/tests-utils/Assertions.utils';
 import { renderDataGrid } from '@/commons/tests-utils/Render.utils';
 import { IamAuthorizationResponse } from '@/hooks/iam/IAM.type';
 import { useAuthorizationIam } from '@/hooks/iam/useOvhIam';
@@ -172,7 +173,10 @@ describe('Datagrid', () => {
 
     it('should handle search form submission', () => {
       renderDataGrid({ columns: mockColumns, data: mockData, search: mockSearch });
+
       const form = screen.getByRole('searchbox').closest('form');
+      assertNotNull(form);
+
       fireEvent.submit(form);
       expect(mockSearch.onSearch).toHaveBeenCalledWith('test');
     });

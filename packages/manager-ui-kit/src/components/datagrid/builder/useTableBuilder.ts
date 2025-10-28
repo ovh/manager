@@ -27,7 +27,7 @@ export const useTableBuilder = <T extends ExpandableRow<T>>({
       if (rowSelection) {
         cols = [getRowSelection(), ...cols];
       }
-      if ((hasExpandableFeature && expandable) || renderSubComponent) {
+      if ((hasExpandableFeature && expandable) || !!renderSubComponent) {
         cols = [getExpandable(expandable), ...cols];
       }
       params.columns = cols;
@@ -60,7 +60,7 @@ export const useTableBuilder = <T extends ExpandableRow<T>>({
       return builder;
     },
     setExpandedRowModel: () => {
-      if (hasExpandableFeature || renderSubComponent) {
+      if (hasExpandableFeature || !!renderSubComponent) {
         params.getRowCanExpand = () => true;
         params.getExpandedRowModel = getExpandedRowModel();
       }
@@ -89,8 +89,8 @@ export const useTableBuilder = <T extends ExpandableRow<T>>({
     },
     setState: () => {
       params.state = {
-        ...(hasSortingFeature && onSortChange && { sorting }),
-        ...(columnVisibility && setColumnVisibility && { columnVisibility }),
+        ...(hasSortingFeature && !!onSortChange && { sorting }),
+        ...(columnVisibility && !!setColumnVisibility && { columnVisibility }),
         ...(rowSelection && { rowSelection: rowSelection.rowSelection }),
         ...(hasExpandableFeature && { expanded: expandable?.expanded ?? {} }),
       };

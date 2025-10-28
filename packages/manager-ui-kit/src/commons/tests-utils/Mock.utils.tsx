@@ -1,7 +1,12 @@
 import { InfiniteData, UseInfiniteQueryResult } from '@tanstack/react-query';
 import { vi, vitest } from 'vitest';
 
+import type { User } from '@ovh-ux/manager-config';
+import { Environment } from '@ovh-ux/manager-config';
+import type { ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
 import { MockPage } from '@/commons/tests-utils/Type.utils';
+import type { IMe } from '@/hooks';
 import { UseQueryResult } from '@/hooks/data-api/infra/tanstack';
 import { IamCheckResponse } from '@/hooks/iam/IAM.type';
 import { useAuthorizationIam } from '@/hooks/iam/useOvhIam';
@@ -19,6 +24,28 @@ export const shellContext = {
     },
     ux: { hidePreloader: vitest.fn() },
   },
+};
+
+export const buildShellContextMock = (me: IMe | null | undefined): Partial<ShellContextType> => {
+  const env = new Environment();
+  env.getUser = vi.fn(() => me as unknown as User);
+  env.setUser = vi.fn();
+  env.setRegion = vi.fn();
+  env.setVersion = vi.fn();
+
+  return {
+    environment: env,
+    shell: {
+      navigation: { navigateTo: vi.fn(), reload: vi.fn() },
+      tracking: { trackPage: vi.fn() },
+      ux: { displaySuccessMessage: vi.fn(), displayErrorMessage: vi.fn() },
+      i18n: { getLocale: vi.fn(() => 'en_GB') },
+      routing: { getRoute: vi.fn() },
+      auth: { login: vi.fn(), logout: vi.fn() },
+      location: { getURL: vi.fn() },
+      logger: { log: vi.fn(), error: vi.fn() },
+    } as unknown as ShellContextType['shell'],
+  };
 };
 
 export const buildIamMock = (

@@ -57,8 +57,8 @@ export const Modal = forwardRef(
                     data-testid="step-placeholder"
                   >
                     {t('stepPlaceholder', {
-                      current: step.current,
-                      total: step.total,
+                      current: step?.current,
+                      total: step?.total,
                     })}
                   </Text>
                 )}

@@ -87,7 +87,7 @@ export function FilterAdd({ columns, onAddFilter, resourceType }: Readonly<Filte
             key={`add-filter_select_idColumn-${selectedId}`}
             name={`add-filter_select_idColumn-${selectedId}`}
             value={[selectedId]}
-            onValueChange={(detail) => setSelectedId(detail.value[0])}
+            onValueChange={(detail) => setSelectedId(detail?.value?.[0] ?? '')}
             data-testid="add-filter_select_idColumn"
             items={columns.map(({ id, label }) => ({
               label,

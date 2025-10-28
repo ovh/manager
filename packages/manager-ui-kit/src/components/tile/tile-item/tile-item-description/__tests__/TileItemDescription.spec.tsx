@@ -27,10 +27,10 @@ describe('TileItemDescription', () => {
 
   it('should not render description when not provided and renders divider by default', () => {
     render(<TileItemDescription />);
-    const dd = screen.getByRole('definition');
-    expect(dd.getElementsByTagName('span').length).toBe(0);
-    expect(dd.children.length).toBeLessThanOrEqual(1);
-    expect(dd.children[0].tagName).toBe('HR');
+    const tileDefinition = screen.getByRole('definition');
+    expect(tileDefinition.getElementsByTagName('span').length).toBe(0);
+    expect(tileDefinition.children?.length).toBeLessThanOrEqual(1);
+    expect(tileDefinition.children?.[0]?.tagName).toBe('HR');
   });
 
   it('should render children if provided', () => {

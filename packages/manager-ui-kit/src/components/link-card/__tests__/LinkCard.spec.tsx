@@ -1,6 +1,8 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { describe, it, vitest } from 'vitest';
 
+import { assertNotNull } from '@/commons/tests-utils/Assertions.utils';
+
 import { badges, description, href, img, renderLinkCard, texts } from './LinkCard.spec.utils';
 
 vitest.mock('@/hooks/iam/useOvhIam', () => ({
@@ -55,7 +57,9 @@ describe('LinkCard tests', () => {
   it('renders with external href', () => {
     const { container } = renderLinkCard({ texts, href, externalHref: true });
     const linkElement = container.querySelector('[tab-index="-1"]');
+    assertNotNull(linkElement);
     const [iconElement] = linkElement.getElementsByTagName('span');
+    assertNotNull(iconElement);
     expect(iconElement.className).toContain('external-link');
   });
 

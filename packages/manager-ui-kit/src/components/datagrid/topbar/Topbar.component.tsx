@@ -40,7 +40,7 @@ const TopbarComponent = <T,>({
         </div>
         <div id="right-side" className="w-full mt-[10px] md:mt-[0px] md:w-auto md:order-3">
           <div className="flex justify-end items-center">
-            {enableSearch && <ColumnsSearch search={search} />}
+            {enableSearch && search && <ColumnsSearch search={search} />}
             {enableFilter && filtersColumns?.length > 0 && (
               <div className="ml-[10px]" data-testid="datagrid-topbar-filters">
                 <ColumnsFilteringComponent

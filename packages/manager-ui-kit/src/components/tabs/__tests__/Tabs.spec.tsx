@@ -27,7 +27,7 @@ describe('TabsComponent', () => {
       render(<TabsComponent items={mockItems} />);
 
       // The first tab should be selected by default
-      const firstTab = screen.getAllByText('tab1')[0].closest('button');
+      const firstTab = screen.getAllByText('tab1')?.[0]?.closest?.('button');
       expect(firstTab).toHaveAttribute('aria-selected', 'true');
     });
 

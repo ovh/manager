@@ -42,7 +42,8 @@ export const Error = ({
     const env = shell?.environment?.getEnvironment();
     env?.then((response) => {
       const { applicationName } = response;
-      const name = `errors::${getTrackingTypology(error)}::${applicationName}`;
+      const safeError = error ?? { status: 0 };
+      const name = `errors::${getTrackingTypology(safeError)}::${applicationName}`;
       shell?.tracking?.trackPage({
         name,
         level2: '81',

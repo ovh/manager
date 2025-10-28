@@ -21,7 +21,6 @@
   ],
   "scripts": {
     "build": "tsc && vite build",
-    "build:strict": "tsc --project tsconfig.strict.json && vite build",
     "lint:modern": "manager-lint --config eslint.config.mjs ./src",
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "prepare": "tsc && vite build",

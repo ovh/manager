@@ -43,8 +43,8 @@ describe('useIceberg hook', () => {
   it('tests the default params', () => {
     renderUseV2Hook();
     const callArg = vi.mocked(fetchV2).mock.calls[0]?.[0];
-    expect(callArg.route).toBe('/dedicated/nasha');
-    expect(callArg.pageSize).toBe(10);
+    expect(callArg?.route).toBe('/dedicated/nasha');
+    expect(callArg?.pageSize).toBe(10);
   });
 
   it('does not make API call when enabled=false', () => {

@@ -19,7 +19,9 @@ export const useDatagrid = <T extends ExpandableRow<T>>({
 }: UseDatagridTableProps<T>) => {
   const { hasSortingFeature, hasSearchFeature, hasColumnVisibilityFeature, hasFilterFeature } =
     useMemo(() => {
-      const has = (key: string) => columns?.some((col) => col?.[key]);
+      const has = <K extends 'isSortable' | 'isSearchable' | 'enableHiding' | 'isFilterable'>(
+        key: K,
+      ): boolean => columns?.some((col) => Boolean(col[key])) ?? false;
       return {
         hasSortingFeature: has('isSortable'),
         hasSearchFeature: has('isSearchable'),
@@ -30,17 +32,20 @@ export const useDatagrid = <T extends ExpandableRow<T>>({
   const hasExpandableFeature = useMemo(() => data?.some((row) => row?.subRows) ?? false, [data]);
   const builder = useTableBuilder({
     columns,
-    columnVisibility,
     data,
-    expandable,
+    columnVisibility: columnVisibility ?? {},
+    expandable: expandable ?? { expanded: {}, setExpanded: () => {} },
     hasExpandableFeature,
     hasSortingFeature,
-    manualSorting,
-    onSortChange,
-    renderSubComponent,
-    rowSelection,
-    setColumnVisibility,
-    sorting,
+    manualSorting: manualSorting ?? false,
+    onSortChange: onSortChange ?? (() => {}),
+    renderSubComponent: renderSubComponent ?? (() => <></>),
+    rowSelection: rowSelection ?? {
+      rowSelection: {},
+      setRowSelection: () => {},
+    },
+    setColumnVisibility: setColumnVisibility ?? (() => {}),
+    sorting: sorting ?? [],
   })
     .setColumns()
     .setColumnsVisibility()

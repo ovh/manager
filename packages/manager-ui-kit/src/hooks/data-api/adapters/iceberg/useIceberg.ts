@@ -1,4 +1,6 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
+
+import type { SortingState } from '@tanstack/react-table';
 
 import { fetchWithIceberg } from '@ovh-ux/manager-core-api';
 import type { IcebergFetchResult } from '@ovh-ux/manager-core-api';
@@ -78,8 +80,9 @@ export const useIceberg = <TData = Record<string, unknown>>({
       return null;
     },
     transformFn: (pages, pageParams): UseIcebergData<TData> => {
-      const pageIndex = pageParams[pageParams.length - 1];
-      const { totalCount } = pages[0];
+      const pageIndex = pageParams[pageParams.length - 1] ?? 1;
+      const totalCount = pages[0]?.totalCount ?? 0;
+
       return {
         pageIndex,
         totalCount,
@@ -99,8 +102,11 @@ export const useIceberg = <TData = Record<string, unknown>>({
     hasNextPage,
     fetchNextPage,
     sorting: {
-      sorting,
-      setSorting,
+      sorting: sorting ?? [],
+      setSorting: ((value) =>
+        setSorting(
+          typeof value === 'function' ? (prev) => value(prev ?? []) : (value ?? []),
+        )) as React.Dispatch<React.SetStateAction<SortingState>>,
       manualSorting: true,
     },
     filters: {

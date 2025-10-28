@@ -3,6 +3,7 @@ import React from 'react';
 import { act, fireEvent, waitFor } from '@testing-library/react';
 import { vi, vitest } from 'vitest';
 
+import { assertNotNull } from '@/commons/tests-utils/Assertions.utils';
 import { render } from '@/commons/tests-utils/Render.utils';
 import { TagsFilterFormProps } from '@/components/filters/Filter.props';
 import { FilterAddProps } from '@/components/filters/filter-add/FilterAdd.props';
@@ -164,6 +165,7 @@ describe('FilterAdd tests', () => {
     expect(addFilterButton).toBeDisabled();
 
     // Set a date value
+    assertNotNull(dateInput);
     act(() => {
       fireEvent.change(dateInput, {
         target: { value: '2023-10-01' },
@@ -312,11 +314,14 @@ describe('FilterAdd tests', () => {
     const { getByTestId } = renderComponent(props);
 
     const columnSelect = getByTestId('add-filter_select_idColumn');
-    fireEvent.change(columnSelect.querySelector('select'), {
+    const selectElement = columnSelect.querySelector('select');
+    assertNotNull(selectElement);
+    fireEvent.change(selectElement, {
       target: { value: 'tags' },
     });
 
     const operatorSelect = getByTestId('add-operator-tags')?.querySelector('select');
+    assertNotNull(operatorSelect);
     fireEvent.change(operatorSelect, {
       target: { value: 'EQ' },
     });

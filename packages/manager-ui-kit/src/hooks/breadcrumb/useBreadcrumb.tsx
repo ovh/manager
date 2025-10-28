@@ -15,10 +15,11 @@ export const useBreadcrumb = ({ rootLabel, appName, hideRootLabel = false }: Bre
   useEffect(() => {
     const fetchRoot = async () => {
       try {
+        if (!appName) return;
+
         const response = await shell?.navigation.getURL(appName, '#/', {});
 
         let href = '';
-
         if (typeof response === 'string') {
           href = response;
         } else if (response instanceof URL) {

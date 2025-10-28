@@ -1,4 +1,6 @@
-import type { Column, HeaderContext, HeaderGroup } from '@tanstack/react-table';
+import { Dispatch, SetStateAction } from 'react';
+
+import type { Column, HeaderContext, HeaderGroup, VisibilityState } from '@tanstack/react-table';
 import { vi } from 'vitest';
 
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
@@ -124,23 +126,33 @@ export const mockVisibleColumns: Column<Person, unknown>[] = [
   } as unknown as Column<Person, unknown>,
 ];
 
-export const mockSetColumnVisibility = vi.fn<(state: Record<string, boolean>) => void>();
+export const mockSetColumnVisibility = vi.fn() as unknown as Dispatch<
+  SetStateAction<VisibilityState>
+>;
+
 export const mockOnSortChange = vi.fn<(s: { id: string; desc: boolean }[]) => void>();
+
 export const mockRenderSubComponent = vi.fn(() => <div>Sub content</div>);
+
 export const mockRowSelection = {
   rowSelection: {},
   setRowSelection: vi.fn(),
   onRowSelectionChange: vi.fn(),
 };
+
 export const mockOnFetchNextPage = vi.fn();
+
 export const mockOnFetchAllPages = vi.fn();
+
 export const mockColumnVisibility = { name: true, age: true };
+
 export const mockSearch = {
   onSearch: vi.fn(),
   searchInput: 'test',
   setSearchInput: vi.fn(),
   placeholder: 'Search...',
 };
+
 export const mockFilters = {
   add: vi.fn(),
   remove: vi.fn(),

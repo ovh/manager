@@ -34,7 +34,7 @@ describe('useNotifications Hook', () => {
       dismissible,
       uid: 0, // First UID starts at 0
     });
-    expect(typeof state.notifications[0].creationTimestamp).toBe('number');
+    expect(typeof state?.notifications?.[0]?.creationTimestamp).toBe('number');
   });
 
   it('should increment UID for each new notification', () => {
@@ -44,9 +44,9 @@ describe('useNotifications Hook', () => {
 
     const state = useNotifications.getState();
 
-    expect(state.notifications[0].uid).toBe(0);
-    expect(state.notifications[1].uid).toBe(1);
-    expect(state.notifications[2].uid).toBe(2);
+    expect(state?.notifications?.[0]?.uid).toBe(0);
+    expect(state?.notifications?.[1]?.uid).toBe(1);
+    expect(state?.notifications?.[2]?.uid).toBe(2);
   });
 
   it('should correctly add notification using helper methods', () => {
@@ -124,8 +124,8 @@ describe('useNotifications Hook', () => {
     const state = useNotifications.getState();
 
     // Old notification should be removed, recent should stay
-    expect(state.notifications).toHaveLength(1);
-    expect(state.notifications[0].content).toBe('Recent');
+    expect(state?.notifications).toHaveLength(1);
+    expect(state?.notifications?.[0]?.content).toBe('Recent');
   });
 
   it('should clear all notifications if they are older than minimal display time', () => {

@@ -27,4 +27,4 @@ export const badges = [
   },
 ];
 
-export const renderLinkCard = (props?: LinkCardProps) => render(<LinkCard {...props} />);
+export const renderLinkCard = (props: LinkCardProps) => render(<LinkCard {...props} />);

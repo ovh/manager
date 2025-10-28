@@ -4,6 +4,7 @@ import { describe, expect, it, vitest } from 'vitest';
 
 import { Link } from '@ovhcloud/ods-react';
 
+import { assertNotNull } from '@/commons/tests-utils/Assertions.utils';
 import { ActionMenu, Tile } from '@/components';
 
 vitest.mock('@/hooks/iam/useOvhIam', () => ({
@@ -42,6 +43,8 @@ describe('Tile Snapshot tests', () => {
     );
 
     const tooltipElement = container.querySelector('span[data-scope="tooltip"]');
+    assertNotNull(tooltipElement);
+
     await userEvent.hover(tooltipElement);
     expect(baseElement).toMatchSnapshot();
   });

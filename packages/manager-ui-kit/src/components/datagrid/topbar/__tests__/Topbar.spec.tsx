@@ -3,6 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { FilterComparator } from '@ovh-ux/manager-core-api';
 
+import { assertNotNull } from '@/commons/tests-utils/Assertions.utils';
 import { render } from '@/commons/tests-utils/Render.utils';
 import {
   mockColumnVisibility,
@@ -289,8 +290,8 @@ describe('Topbar', () => {
     );
 
     const form = screen.getByRole('searchbox').closest('form');
+    assertNotNull(form);
     fireEvent.submit(form);
-
     expect(mockSearch.onSearch).toHaveBeenCalledWith('test');
   });
 

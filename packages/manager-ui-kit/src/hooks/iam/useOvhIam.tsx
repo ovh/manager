@@ -50,19 +50,27 @@ export const fetchAuthorizationCheck = async (
 };
 
 export function useAuthorizationIam(actions: string[], urn: string, isTrigger = true) {
-  const { data, ...query } = useQuery<IamCheckResponse>({
-    queryKey: ['iam-authorization', urn, actions],
-    queryFn: () => fetchAuthorizationCheck(actions, urn),
-    enabled: Boolean(urn && urn.length > 0 && actions && actions.length > 0 && isTrigger),
-    placeholderData: keepPreviousData,
-  });
+  const { data, isLoading, isError, isFetching, refetch, status, error } =
+    useQuery<IamCheckResponse>({
+      queryKey: ['iam-authorization', urn, actions],
+      queryFn: () => fetchAuthorizationCheck(actions, urn),
+      enabled: Boolean(urn && urn.length > 0 && actions && actions.length > 0 && isTrigger),
+      placeholderData: keepPreviousData,
+    });
+
+  const isAuthorized =
+    !!data?.authorizedActions &&
+    actions.every((action) => data?.authorizedActions?.includes(action));
 
   return {
-    isAuthorized:
-      !!data?.authorizedActions &&
-      actions.every((action) => data?.authorizedActions?.includes(action)),
+    isAuthorized,
     data,
-    ...query,
+    isLoading,
+    isError,
+    isFetching,
+    refetch,
+    status,
+    error,
   };
 }
 

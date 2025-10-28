@@ -2,6 +2,8 @@ import { render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 
+import { assertNotNull } from '@/commons/tests-utils/Assertions.utils';
+
 import { TileItemTerm } from '../TileItemTerm.component';
 
 describe('TileItemTerm', () => {
@@ -59,6 +61,7 @@ describe('TileItemTerm', () => {
     );
     const tooltipElement = container.querySelector('span[data-scope="tooltip"]');
     expect(tooltipElement).toBeInTheDocument();
+    assertNotNull(tooltipElement);
 
     await userEvent.hover(tooltipElement);
     expect(screen.getByText(tooltipMessage)).toBeInTheDocument();
