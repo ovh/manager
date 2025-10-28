@@ -1,4 +1,4 @@
-import React, { useId, useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -22,9 +22,8 @@ const textColors: Record<RegionType, ODS_BADGE_COLOR> = {
   'REGION-3-AZ': ODS_BADGE_COLOR.promotion,
 };
 
-export const RegionBadgeType = ({ type }: RegionBadgeTypeProps) => {
+export const RegionBadgeType = ({ type, id }: RegionBadgeTypeProps) => {
   const { t } = useTranslation('infrastructure');
-  const id = useId();
 
   const tooltipLabels: Record<RegionType, string> = useMemo(
     () => ({

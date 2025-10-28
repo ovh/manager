@@ -73,7 +73,7 @@ export default function RegionSelector() {
                     name="infrastructureId"
                     title={locationDetails.location}
                     subTitle={toParenthesesLabel(locationDetails.name)}
-                    badges={<RegionBadgeType type={locationDetails.type} />}
+                    badges={<RegionBadgeType type={locationDetails.type} id={id} />}
                   />
                 ))}
               </div>
