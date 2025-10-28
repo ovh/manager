@@ -14,6 +14,7 @@
     "clean:dist": "rimraf \"packages/**/dist\"",
     "commit": "node scripts/commit.js",
     "dev": "turbo run dev",
+    "dev:watch": "turbo run dev:watch",
     "format": "run-p format:*",
     "format:css": "yarn run lint:css --fix",
     "format:html": "yarn run lint:html && prettier --parser=html --write \"packages/**/*.html\"",

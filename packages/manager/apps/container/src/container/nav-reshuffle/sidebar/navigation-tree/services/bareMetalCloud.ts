@@ -147,6 +147,18 @@ baremetalUniverse.children = [
         },
         features: ['cloud-disk-array'],
       },
+      {
+        id: 'bmc-backup-agent-baremetal',
+        universe: baremetalUniverse.id,
+        idAttr: 'bmc-backup-agent-baremetal-link',
+        translation: 'sidebar_backup_agent_baremetal',
+        serviceType: 'BACKUP_AGENT_BAREMETAL',
+        routing: {
+          application: 'bmc-backup-agent-baremetal',
+          hash: '#/',
+        },
+        features: ['bmc-backup-agent-baremetal'],
+      },
     ],
   },
 ];
