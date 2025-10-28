@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Badge, BADGE_COLOR, Spinner, SPINNER_SIZE } from '@ovhcloud/ods-react';
 import {
@@ -10,6 +9,7 @@ import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
 
 interface DomainDatagridColumnRenewModeProps {
   readonly alldomTerminated: boolean;
+
   readonly serviceName: string;
 }
 
