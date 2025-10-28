@@ -48,7 +48,7 @@ export default /* @ngInject */ ($stateProvider) => {
                   LogsConstants.CONSUMPTION_CAPACITY,
                 ) &&
                 capabilities.minimumQuantity ===
-                  LogsConstants.INDEXING_TIERING + 1,
+                  LogsConstants.INDEXING_TIERING.MEDIUM + 1,
             );
 
             const standardPlanPrice = {

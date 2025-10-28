@@ -60,9 +60,28 @@
             <oui-checkbox
                 id="stream_enable_indexing"
                 name="stream_enable_indexing"
-                data-description="{{ ctrl.getIndexingPrices() }}"
                 data-model="ctrl.stream.data.indexingEnabled"
-                ><span data-translate="logs_streams_enable_indexing"></span>
+            >
+                <oui-checkbox-label
+                    data-translate="logs_streams_enable_indexing"
+                ></oui-checkbox-label>
+                <oui-checkbox-description>
+                    <p
+                        data-translate="logs_streams_enable_indexing_description"
+                    ></p>
+                    <ul>
+                        <li
+                            data-translate="logs_streams_enable_indexing_description_detail_small"
+                            data-translate-values="{t0: ctrl.LogsConstants.INDEXING_TIERING.SMALL}"
+                        ></li>
+                        <li
+                            data-ng-bind="ctrl.getIndexingPrices('medium', {t0: ctrl.LogsConstants.INDEXING_TIERING.SMALL + 1, t1: ctrl.LogsConstants.INDEXING_TIERING.MEDIUM, t2: ctrl.indexingStoragePrice.FirstStep.price})"
+                        ></li>
+                        <li
+                            data-ng-bind="ctrl.getIndexingPrices('large', {t0: ctrl.LogsConstants.INDEXING_TIERING.MEDIUM + 1, t1: ctrl.indexingStoragePrice.SecondStep.price})"
+                        ></li>
+                    </ul>
+                </oui-checkbox-description>
             </oui-checkbox>
         </oui-field>
         <div data-ng-if="ctrl.stream.data.indexingEnabled">
