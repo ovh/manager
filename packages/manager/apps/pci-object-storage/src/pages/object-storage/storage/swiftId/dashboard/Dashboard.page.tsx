@@ -1,11 +1,13 @@
 import { Card, CardContent, CardHeader, Skeleton } from '@datatr-ux/uxlib';
 import { useTranslation } from 'react-i18next';
-import { Globe2 } from 'lucide-react';
+import { Globe2, Settings2 } from 'lucide-react';
 import { Outlet, useParams } from 'react-router-dom';
 import { useSwiftData } from '../Swift.context';
 import { useObjectStorageData } from '@/pages/object-storage/ObjectStorage.context';
 import InformationsDetails from './_components/InformationsDetails.component';
 import Guides from '@/components/guides/Guides.component';
+import BillingSupport from '@/components/biling-support/BillingSupport.component';
+import Configuration from './_components/Configuration.component';
 
 const Dashboard = () => {
   const { swift } = useSwiftData();
@@ -35,6 +37,22 @@ const Dashboard = () => {
           />
         </CardContent>
       </Card>
+      <div className="flex flex-col lg:grid lg:grid-flow-col lg:auto-cols-fr gap-2">
+        <Card>
+          <BillingSupport />
+        </Card>
+        <Card>
+          <CardHeader>
+            <h4>
+              <Settings2 className="inline size-4 mr-2 mb-1" />
+              {t('configurationTitle')}
+            </h4>
+          </CardHeader>
+          <CardContent>
+            <Configuration />
+          </CardContent>
+        </Card>
+      </div>
       <Outlet />
     </>
   );

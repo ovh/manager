@@ -1,10 +1,13 @@
-import { Card, CardContent, CardHeader } from '@datatr-ux/uxlib';
-import { Archive, Tag } from 'lucide-react';
+import { Badge, Card, CardContent, CardHeader } from '@datatr-ux/uxlib';
+import { Archive, FileKey, FileStack, FolderLock, Tag } from 'lucide-react';
 import { Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import BucketOverview from './_components/BucketOverview.components';
 import Tags from './_components/Tags.component';
 import Guides from '@/components/guides/Guides.component';
+import Encryption from './_components/Encryption.component';
+import Versionning from './_components/Versionning.component';
+import ObjectLock from './_components/ObjectLock.component';
 
 const Dashboard = () => {
   const { t } = useTranslation('pci-object-storage/storages/s3/dashboard');
@@ -26,6 +29,43 @@ const Dashboard = () => {
             <BucketOverview />
           </CardContent>
         </Card>
+        <div className="space-y-2">
+          <Card>
+            <CardHeader>
+              <h4>
+                <FolderLock className="size-4 inline mr-2" />
+                <span>{t('objectLockTitle')}</span>
+              </h4>
+            </CardHeader>
+            <CardContent>
+              <ObjectLock />
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <h4>
+                <FileStack className="size-4 inline mr-2" />
+                <span>{t('versionningTitle')}</span>
+              </h4>
+            </CardHeader>
+            <CardContent>
+              <Versionning />
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <h4>
+                <FileKey className="size-4 inline mr-2" />
+                <span>{t('encryptionTitle')}</span>
+              </h4>
+            </CardHeader>
+            <CardContent>
+              <Encryption />
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card>
           <CardHeader>
             <h4>
@@ -35,6 +75,32 @@ const Dashboard = () => {
           </CardHeader>
           <CardContent>
             <Tags />
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <h4>{t('accessLogsTitle')}</h4>
+          </CardHeader>
+          <CardContent>
+            <Badge variant={'neutral'}>{t('comingSoonLabel')}</Badge>
+          </CardContent>
+        </Card>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <Card>
+          <CardHeader>
+            <h4>{t('lifecycleTitle')}</h4>
+          </CardHeader>
+          <CardContent>
+            <Badge variant={'neutral'}>{t('comingSoonLabel')}</Badge>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <h4>{t('staticWebsiteHostingTitle')}</h4>
+          </CardHeader>
+          <CardContent>
+            <Badge variant={'neutral'}>{t('comingSoonLabel')}</Badge>
           </CardContent>
         </Card>
       </div>
