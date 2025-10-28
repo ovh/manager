@@ -1669,5 +1669,6 @@
   "exchange_delete_mfa_success": "L’autenticazione a due fattori è stata eliminata correttamente.",
   "exchange_delete_mfa_error": "Si è verificato un errore durante l’eliminazione della doppia autenticazione: {{error}}",
   "exchange_tab_LOGS": "Log",
-  "exchange_tab_ACCOUNTS_menu_migrate": "Migrare account"
+  "exchange_tab_ACCOUNTS_menu_migrate": "Migrare account",
+  "exchange_server_commercial_version_SE": "SE"
 }

@@ -1669,5 +1669,6 @@
   "exchange_delete_mfa_success": "A dupla autenticação foi eliminada com êxito.",
   "exchange_delete_mfa_error": "Ocorreu um erro aquando da eliminação da dupla autenticação: {{error}}",
   "exchange_tab_LOGS": "Logs",
-  "exchange_tab_ACCOUNTS_menu_migrate": "Migrar contas"
+  "exchange_tab_ACCOUNTS_menu_migrate": "Migrar contas",
+  "exchange_server_commercial_version_SE": "SE"
 }
