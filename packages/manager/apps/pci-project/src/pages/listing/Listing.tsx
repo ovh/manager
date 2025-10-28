@@ -144,25 +144,25 @@ export default function Listing() {
         <PciTrustedZoneBanner />
       </div>
 
-      <Suspense>
-        {columns && (
-          <Datagrid
-            columns={columns}
-            items={flattenData || []}
-            totalItems={totalCount || 0}
-            hasNextPage={hasNextPage && !isLoading}
-            onFetchNextPage={fetchNextPage}
-            sorting={sorting}
-            onSortChange={setSorting}
-            isLoading={isLoading}
-            filters={filters}
-            search={search}
-            topbar={TopBarCTA}
-          />
-        )}
-      </Suspense>
+      {columns && (
+        <Datagrid
+          columns={columns}
+          items={flattenData || []}
+          totalItems={totalCount || 0}
+          hasNextPage={hasNextPage && !isLoading}
+          onFetchNextPage={fetchNextPage}
+          sorting={sorting}
+          onSortChange={setSorting}
+          isLoading={isLoading}
+          filters={filters}
+          search={search}
+          topbar={TopBarCTA}
+        />
+      )}
 
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </BaseLayout>
   );
 }
