@@ -84,7 +84,7 @@ export const useInstanceSnapshotPricing = (projectId: string, instanceId: TInsta
             ...r,
             label: translateMicroRegion(r.name) || r.name,
           })),
-        (r) => translateContinent(r.name),
+        (r) => translateContinent(r.name) || 'Internal',
       );
     }, [
       snapshotAvailabilities,

@@ -9,6 +9,7 @@ import {
   ComboboxControl,
   ComboboxGroupItem,
   ComboboxProp,
+  ComboboxValueChangeDetails,
   FormField,
   FormFieldLabel,
   Message,
@@ -115,7 +116,7 @@ export function WorkflowScheduling({ step, onSubmit, instanceId }: Readonly<Sche
           <span>{item.label}</span>
           {regionsById.has(item.value) && (
             <span>
-              <RegionChipByType type={regionsById.get(item.value).type} />
+              <RegionChipByType type={regionsById.get(item.value).type} showTooltip={false} />
             </span>
           )}
         </div>
@@ -130,6 +131,9 @@ export function WorkflowScheduling({ step, onSubmit, instanceId }: Readonly<Sche
         .find((regions) => regions.find((r) => r.name === distantRegion)?.enabled === false),
     [distantRegion, distantContinents],
   );
+
+  const handleDistantRegionChange = (changeDetails: ComboboxValueChangeDetails) =>
+    setDistantRegion(changeDetails.value[0] ?? null);
 
   return (
     <>
@@ -201,10 +205,12 @@ export function WorkflowScheduling({ step, onSubmit, instanceId }: Readonly<Sche
                   customOptionRenderer={comboboxRegionRender}
                   items={distantContinentsComboboxItems}
                   value={distantRegion ? [distantRegion] : []}
-                  onValueChange={(e) => setDistantRegion(e.value[0] ?? null)}
+                  onValueChange={handleDistantRegionChange}
+                  className="max-w-[360px]"
+                  allowCustomValue={false}
                 >
-                  <ComboboxControl />
-                  <ComboboxContent />
+                  <ComboboxControl clearable />
+                  <ComboboxContent className="max-h-52 overflow-y-scroll" />
                 </Combobox>
               </FormField>
 
