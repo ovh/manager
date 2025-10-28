@@ -5,26 +5,12 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import useMfaEnrollment from '@/container/mfa-enrollment';
 import LegacyContainer from '.';
+import { getComponentWrapper } from '@/utils/tests/component-wrapper';
 
-vi.mock('@/context', () => ({
-  useApplication: () => ({
-    shell: {
-      getPlugin: vi.fn((name: string) => {
-        if (name === 'environment') {
-          return { getEnvironment: () => ({ getApplications: () => [] as any, getRegion: () => 'EU' }) };
-        }
-        if (name === 'tracking') {
-          return {
-            waitForConfig: () => Promise.resolve(),
-            trackMVTest: vi.fn(),
-          };
-        }
-        return {};
-      }),
-      setMessageBus: vi.fn(),
-    },
-  }),
-}));
+const wrapper = getComponentWrapper({
+  withPreloaderProvider: true,
+  configuration: {}
+});
 
 vi.mock('@/context/progress', () => ({
   useProgress: vi.fn(() => ({ isStarted: false })),
@@ -80,13 +66,8 @@ vi.mock('@/container/common/pnr-beta-modal', () => ({
   default: () => <div data-testid="beta-modal">Beta Modal</div>,
 }));
 
-function renderWithProviders(ui: React.ReactNode) {
-  const queryClient = new QueryClient();
-  return render(
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>{ui}</QueryClientProvider>
-    </BrowserRouter>,
-  );
+function renderWithProviders(ui: JSX.Element) {
+  return render(wrapper(ui));
 }
 
 describe('LegacyContainer', () => {

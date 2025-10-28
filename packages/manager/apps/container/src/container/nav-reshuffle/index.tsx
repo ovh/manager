@@ -11,17 +11,15 @@ import NavReshuffleOnboardingWidget from './onboarding';
 import style from './template.module.scss';
 import Progress from '../common/Progress';
 import { useProgress } from '@/context/progress';
-import Preloader from '../common/Preloader';
-import usePreloader from '../common/Preloader/usePreloader';
 import useMfaEnrollment from '@/container/mfa-enrollment';
 import MfaEnrollment from '@/container/mfa-enrollment/MfaEnrollment';
 import { ContainerProps } from '@/types/container';
+import usePreloader from '@/context/preloader/usePreloader';
 
 const ModalContainer = lazy(() => import('@/components/modal-container/ModalContainer.component'));
 
 function NavReshuffleContainer({ isCookiePolicyModalClosed }: ContainerProps): JSX.Element {
   const iframeRef = useRef(null);
-  const [iframe, setIframe] = useState(null);
   const shell = useShell();
   const { isStarted: isProgressAnimating } = useProgress();
   // TODO: handle environment unavailability in MANAGER-19971
@@ -30,7 +28,7 @@ function NavReshuffleContainer({ isCookiePolicyModalClosed }: ContainerProps): J
     ?.getEnvironment()
     .getApplications();
 
-  const preloaderVisible = usePreloader(shell, iframe);
+  const { show: preloaderVisible, setIframe } = usePreloader();
 
   const {
     isMfaEnrollmentForced,
@@ -90,14 +88,12 @@ function NavReshuffleContainer({ isCookiePolicyModalClosed }: ContainerProps): J
               />
             </Suspense>
           )}
-          <Preloader visible={preloaderVisible}>
+          {applications && (
             <>
-              {applications && (
-                <IFrameAppRouter
-                  iframeRef={iframeRef}
-                  configuration={applications}
-                />
-              )}
+              <IFrameAppRouter
+                iframeRef={iframeRef}
+                configuration={applications}
+              />
               <iframe
                 title="app"
                 role="document"
@@ -105,7 +101,7 @@ function NavReshuffleContainer({ isCookiePolicyModalClosed }: ContainerProps): J
                 ref={iframeRef}
               ></iframe>
             </>
-          </Preloader>
+          )}
         </div>
         <Suspense fallback="">
           <NavReshuffleOnboardingWidget />

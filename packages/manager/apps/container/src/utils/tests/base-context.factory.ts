@@ -6,6 +6,7 @@ export abstract class BaseContextFactory {
   hasClientProvider: boolean = false;
   hasApplicationProvider: boolean = false;
   configuration: Configuration | null = null;
+  hasPreloaderProvider: boolean = false;
 
   withQueryClientProvider() {
     this.hasClientProvider = true;
@@ -36,4 +37,10 @@ export abstract class BaseContextFactory {
     }
     return this;
   };
+
+  withPreloaderProvider() {
+    this.hasPreloaderProvider = true;
+
+    return this;
+  }
 }

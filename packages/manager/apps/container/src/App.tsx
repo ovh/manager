@@ -21,6 +21,7 @@ import { setupDevApplication } from '@/core/dev';
 import { ApplicationProvider } from '@/context';
 import Container from '@/container';
 import { ApiError } from './types/error.type';
+import PreloaderProvider from '@/context/preloader/PreloaderProvider';
 
 function reloadPage() {
   window.location.reload();
@@ -118,7 +119,7 @@ const App = () => {
   }, [responseError, isLoading]);
 
   return (
-    <>
+    <PreloaderProvider shell={shell}>
       {!error ? (
         <>
           <ApplicationProvider environment={environment} shell={shell}>
@@ -154,7 +155,7 @@ const App = () => {
           )}
         </div>
       )}
-    </>
+    </PreloaderProvider>
   );
 };
 
