@@ -9,6 +9,7 @@ import {
   OdsDivider,
   OdsText,
   OdsSpinner,
+  OdsRadio,
 } from '@ovhcloud/ods-components/react';
 import { handleClick } from '@ovh-ux/manager-react-components';
 import './option-card.scss';
@@ -18,6 +19,7 @@ export type OptionCardProps = React.PropsWithChildren<{
   isDisabled?: boolean;
   isSelected?: boolean;
   isLoading?: boolean;
+  hasRadioButton?: boolean;
   onClick?: () => void;
   title: React.ReactNode;
   subtitle?: React.ReactNode;
@@ -29,6 +31,7 @@ export const OptionCard: React.FC<OptionCardProps> = ({
   isDisabled,
   isSelected,
   isLoading,
+  hasRadioButton,
   onClick,
   title,
   description,
@@ -38,43 +41,59 @@ export const OptionCard: React.FC<OptionCardProps> = ({
   const stateStyle = isDisabled
     ? 'cursor-not-allowed bg-neutral-100'
     : 'cursor-pointer hover:shadow-md';
-  const borderStyle = isSelected ? 'option_card_selected' : 'm-[1px]';
+  const borderStyle = isSelected
+    ? 'option_card_selected'
+    : 'option_card m-[1px]';
+  const justifyStyle = hasRadioButton ? 'justify-left' : 'justify-center';
   return (
     <OdsCard
       tabIndex={0}
-      className={`flex flex-col p-3 transition-shadow ${stateStyle} ${borderStyle} ${className}`}
+      className={`flex flex-col justify-between transition-shadow ${stateStyle} ${borderStyle} ${className}`}
       {...handleClick(() => !isDisabled && onClick?.())}
       color={ODS_CARD_COLOR.neutral}
     >
-      <OdsText
-        className="flex justify-center mb-2"
-        preset={ODS_TEXT_PRESET.heading4}
-      >
-        {title}
-      </OdsText>
+      {hasRadioButton ? (
+        <OdsText
+          className="flex justify-left m-4"
+          preset={ODS_TEXT_PRESET.heading4}
+        >
+          <span className="h-full align-middle mr-3">
+            <OdsRadio name="" is-checked={isSelected}></OdsRadio>
+          </span>
+          <span>{title}</span>
+        </OdsText>
+      ) : (
+        <OdsText
+          className="flex justify-center mb-2"
+          preset={ODS_TEXT_PRESET.heading4}
+        >
+          {title}
+        </OdsText>
+      )}
       {subtitle && (
         <OdsText
           preset={ODS_TEXT_PRESET.paragraph}
-          className="flex justify-center mb-4"
+          className={`flex ${justifyStyle} m-4`}
         >
           {subtitle}
         </OdsText>
       )}
       {description && (
         <OdsText
-          className="flex justify-center text-center"
+          className={`flex ${justifyStyle} m-4 text-center`}
           preset={ODS_TEXT_PRESET.paragraph}
         >
           {description}
         </OdsText>
       )}
-      {children && <OdsDivider className="block -ml-3 -mr-3 mt-auto mb-2" />}
       {isLoading ? (
         <div className="text-center">
           <OdsSpinner size={ODS_SPINNER_SIZE.xs} />
         </div>
       ) : (
-        children
+        children && (
+          <span className="card-children p-4 rounded-b-md">{children}</span>
+        )
       )}
     </OdsCard>
   );
