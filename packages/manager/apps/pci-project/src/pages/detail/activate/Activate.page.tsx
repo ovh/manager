@@ -175,7 +175,6 @@ export default function ActivatePage() {
           />
 
           <WillPaymentComponent
-            config={willPaymentConfig}
             onRegisteredPaymentMethodSelected={
               handleRegisteredPaymentMethodSelected
             }
