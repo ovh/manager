@@ -37,7 +37,6 @@
 /packages/manager/apps/iam @ovh/dev-manager-enablers-all
 /packages/manager/apps/identity-access-management @ovh/dev-manager-infrastructure-baremetalstorage @ovh/dev-manager-infrastructure-network @ovh/dev-manager-enablers-all
 /packages/manager/apps/iplb @ovh/dev-manager-infrastructure-network
-/packages/manager/apps/key-management-service @ovh/dev-manager-enterprise-kms
 /packages/manager/apps/ips @ovh/dev-manager-infrastructure-network
 /packages/manager/apps/dedicated-servers @ovh/dev-manager-infrastructure-baremetalstorage
 /packages/manager/apps/metrics @ovh/dev-manager-infrastructure-baremetalstorage
