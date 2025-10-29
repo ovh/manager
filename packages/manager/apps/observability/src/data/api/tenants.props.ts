@@ -3,7 +3,7 @@ import { TenantState } from '@/types/tenants.type';
 
 import { ObservabilityServiceParams } from './observability.props';
 
-type TTargetSpecPayload = Omit<TenantState, 'limits'> & {
+export type TTargetSpecPayload = Omit<TenantState, 'limits'> & {
   limits: {
     numberOfSeries: {
       maximum: number;
@@ -14,4 +14,8 @@ type TTargetSpecPayload = Omit<TenantState, 'limits'> & {
 
 export type CreateTenantsPayload = {
   targetSpec: TTargetSpecPayload;
+} & ObservabilityServiceParams;
+
+export type GetTenantPayload = {
+  tenantId: string;
 } & ObservabilityServiceParams;
