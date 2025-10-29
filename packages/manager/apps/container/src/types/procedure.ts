@@ -3,7 +3,13 @@ export enum Procedures {
   FRAUD,
 }
 
+export enum ProcedureStatus {
+  Ok = 'ok',
+  Open = 'open',
+  Required = 'required',
+}
+
 export type Procedure = {
-  status: 'ok' | 'open' | 'required';
+  status: ProcedureStatus;
   ticketId: string;
 };
