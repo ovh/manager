@@ -8,7 +8,7 @@
   "netapp_dashboard_information_quota_formatted": "{{quota}}",
   "netapp_dashboard_network_configuration": "Konfiguracja sieci",
   "netapp_dashboard_network_configuration_status": "Status",
-  "netapp_dashboard_network_configuration_status_to_configure": "Gotowe do konfiguracji",
+  "netapp_dashboard_network_configuration_status_to_configure": "Wymagana konfiguracja użytkownika",
   "netapp_dashboard_network_configuration_status_associating": "W trakcie wdrażania",
   "netapp_dashboard_network_configuration_status_dissociating": "Odłączanie w toku",
   "netapp_dashboard_network_configuration_status_associated": "Wdrożone",
