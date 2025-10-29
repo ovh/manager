@@ -12,5 +12,6 @@
   "pci_projects_project_storages_instance-backups_instance_create_label": "Crea un'istanza",
   "pci_projects_project_storages_instance-backups_delete_label": "Elimina",
   "pci_projects_project_storages_instance-backups_add_label": "Crea il backup di un’istanza",
-  "pci_projects_project_storages_instance-backups_id_label": "ID"
+  "pci_projects_project_storages_instance-backups_id_label": "ID",
+  "pci_projects_project_storages_instance-backups_status_importing": "Copia in corso"
 }
