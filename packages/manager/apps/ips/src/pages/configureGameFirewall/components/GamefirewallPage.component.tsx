@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   BaseLayout,
   ErrorBanner,
+  GuideButton,
   Notifications,
 } from '@ovh-ux/manager-react-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -11,7 +12,7 @@ import { useTranslation } from 'react-i18next';
 import { Breadcrumb, BreadcrumbItem } from '@/components/Breadcrumb/Breadcrumb';
 import { useHeader } from '@/components/Header/Header';
 import { urls } from '@/routes/routes.constant';
-import { TRANSLATION_NAMESPACES } from '@/utils';
+import { TRANSLATION_NAMESPACES, useGuideUtils } from '@/utils';
 import { RuleDatagrid } from './RuleDatagrid.component';
 import { StrategyModal } from './StrategyModal.component';
 import { GameFirewallContext } from '../gamefirewall.context';
@@ -35,6 +36,7 @@ export default function GameFirewallPage() {
   const header = useHeader(t('title'));
   const [search] = useSearchParams();
   const navigate = useNavigate();
+  const { links } = useGuideUtils();
 
   const breadcrumbMapper = (_: BreadcrumbItem, index: number) =>
     index === 0
@@ -64,7 +66,21 @@ export default function GameFirewallPage() {
         })}
         onClickReturn={() => navigate(`${urls.listing}?${search.toString()}`)}
         breadcrumb={<Breadcrumb mapper={breadcrumbMapper} />}
-        header={{ ...header, changelogButton: null }}
+        header={{
+          ...header,
+          headerButton: (
+            <GuideButton
+              items={[
+                {
+                  id: 0,
+                  href: links.configureGameFirewall,
+                  target: '_blank',
+                  label: t('title'),
+                },
+              ]}
+            />
+          ),
+        }}
         message={<Notifications />}
       >
         <OdsText className="block mb-3">{t('description')}</OdsText>
