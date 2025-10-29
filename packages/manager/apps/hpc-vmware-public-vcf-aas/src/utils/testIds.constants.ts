@@ -20,6 +20,7 @@ const TEST_IDS = {
   networkAclCta: 'network-acl-cta',
   networkAclAddCurrentIpAction: 'add-current-ip-button',
   networkAclfromAnywhereIpAction: 'from-anywhere-ip-button',
+  edgeGatewayOrderCta: 'edge-gateway-order-cta',
 } as const;
 
 export default TEST_IDS;
