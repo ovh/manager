@@ -443,6 +443,16 @@
   {
     "public": {
       "application": "public-cloud",
+      "path": "/create-quantum-qpu"
+    },
+    "redirect": {
+      "application": "public-cloud",
+      "path": "/pci/projects/{project}/ai-ml/quantum/qpu"
+    }
+  },
+  {
+    "public": {
+      "application": "public-cloud",
       "path": "/create-ai-app"
     },
     "redirect": {
