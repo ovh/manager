@@ -10,9 +10,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import pLimit from 'p-limit';
 import { toUnicode } from 'punycode';
 import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
-import { updateTask } from '@/data/api/web-ongoing-operations';
 import SubHeader from '@/components/SubHeader/SubHeader';
-import { saveFile } from '@/data/api/document';
 import Loading from '@/components/Loading/Loading';
 import { updateOperationStatus } from '@/data/api/ongoing-operations-actions';
 import { ActionNameEnum } from '@/enum/actionName.enum';
@@ -22,8 +20,10 @@ import { useDomain } from '@/hooks/data/query';
 import UpdateContentComponent from '@/components/Update/UpdateContent.component';
 import UpdateActions from '@/components/Update/Content/UpdateActions.component';
 import { urls } from '@/routes/routes.constant';
-import { DomainOperationsEnum } from '@/constants';
+import { ContactControlProperties, DomainOperationsEnum } from '@/constants';
 import ActionMeDnsComponent from '@/components/Update/Content/Update.Me.Dns.component';
+import { processUploadedFiles } from '@/utils/update.utils';
+import { updateTask } from '@/data/api/web-ongoing-operations';
 
 export default function Update() {
   const { t } = useTranslation('dashboard');
@@ -39,7 +39,6 @@ export default function Update() {
   const [isActionLoading, setIsActionLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const paramId = Number(id);
-  const limit = pLimit(1);
   const updateTaskLimit = pLimit(1);
   const queryClient = useQueryClient();
 
@@ -75,34 +74,12 @@ export default function Update() {
     },
   });
 
-  const saveFileAndUpdateOperation = async (
-    operationID: number,
-    key: string,
-    file: File,
-  ) => {
-    const documentId = await saveFile(file);
-    const body = { value: documentId };
-    updateTask(operationID, key, body);
-  };
-
-  const processFile = async (file: File, key: string, operationID: number) => {
-    return limit(() => saveFileAndUpdateOperation(operationID, key, file));
-  };
-
-  const processUploadedFiles = async (operationID: number) => {
-    const tasks = Object.entries(uploadedFiles).flatMap(([key, files]) =>
-      files.map((file) => processFile(file, key, operationID)),
-    );
-
-    await Promise.all(tasks);
-  };
-
   const { mutate: onValidate } = useMutation({
     mutationFn: async () => {
       setIsActionLoading(true);
 
       if (uploadedFiles && Object.keys(uploadedFiles).length > 0) {
-        await processUploadedFiles(paramId);
+        await processUploadedFiles(paramId, uploadedFiles);
       }
 
       if (operationArgumentsUpdated) {
@@ -169,11 +146,7 @@ export default function Update() {
   ]);
 
   if (domainLoading || argumentLoading) {
-    return (
-      <div data-testid="listing-page-spinner">
-        <Loading />
-      </div>
-    );
+    return <Loading />;
   }
 
   return (
