@@ -10,6 +10,7 @@ import HeaderComponent from './index';
 import UserAccountMenu from './user-account-menu/Content';
 import { UserLink } from './user-account-menu/UserLink';
 import { fetchProcedureStatus } from '@/data/api/procedure/procedure';
+import { ProcedureStatus } from '@/types/procedure';
 
 /**
  * Mocked Data
@@ -187,7 +188,10 @@ describe('Header.component', () => {
         vi.mocked(fetchFeatureAvailabilityData).mockResolvedValue({
           [feature]: isEnabled,
         });
-        vi.mocked(fetchProcedureStatus).mockResolvedValue({ status: 'open', ticketId: 'XXXXXX' });
+        vi.mocked(fetchProcedureStatus).mockResolvedValue({
+          status: ProcedureStatus.Open,
+          ticketId: 'XXXXXX',
+        });
 
         await act(async () => {
           render(
