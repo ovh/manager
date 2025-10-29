@@ -24,5 +24,6 @@
   "pci_instances_common_instance_continent_oceania": "Oceanía",
   "pci_instances_common_instance_continent_europe": "Europa",
   "pci_instances_common_instance_category": "Modelo de la instancia",
-  "pci_instances_common_instance_type": "Tipo"
+  "pci_instances_common_instance_type": "Tipo",
+  "pci_instances_common_more_info": "Más información"
 }
