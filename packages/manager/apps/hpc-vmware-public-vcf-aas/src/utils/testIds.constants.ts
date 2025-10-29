@@ -20,6 +20,7 @@ const TEST_IDS = {
   networkAclCta: 'network-acl-cta',
   networkAclAddCurrentIpAction: 'add-current-ip-button',
   networkAclfromAnywhereIpAction: 'from-anywhere-ip-button',
+  edgeGatewayOrderCta: 'edge-gateway-order-cta',
   migrationAddCta: 'migration-add-cta',
   migrationCopyCta: 'migration-copy-cta',
   migrationDeleteCta: 'migration-delete-cta',
