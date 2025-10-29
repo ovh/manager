@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.7.11...@ovh-ux/manager-pci-instances-app@0.8.0) (2025-10-29)
+
+
+### Features
+
+* **pci-instances:** distant-backup - allow distant backup creation form instances ([7a185b0](https://github.com/ovh/manager/commit/7a185b00ea1bf3c93ef086da505f5c3e9aa757ff)), closes [#TAPC-3053](https://github.com/ovh/manager/issues/TAPC-3053)
+
+
+
+
+
+## [0.7.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.7.10...@ovh-ux/manager-pci-instances-app@0.7.11) (2025-10-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
 ## [0.7.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.7.9...@ovh-ux/manager-pci-instances-app@0.7.10) (2025-10-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-instances-app

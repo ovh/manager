@@ -60,7 +60,7 @@
                         data-ng-if="!$ctrl.networkInformations.vrackServices || $ctrl.networkInformations.vrackServices.currentState.productStatus !== $ctrl.VRACK_SERVICES_STATUS.DISABLED"
                         data-ng-class="{
                     'oui-badge_success': $ctrl.networkInformations.status === $ctrl.NETWORK_STATUS.ASSOCIATED,
-                    'oui-badge_info': $ctrl.networkInformations.status === $ctrl.NETWORK_STATUS.TO_CONFIGURE,
+                    'oui-badge_error': $ctrl.networkInformations.status === $ctrl.NETWORK_STATUS.TO_CONFIGURE,
                     'oui-badge_warning': [$ctrl.NETWORK_STATUS.DISSOCIATING, $ctrl.NETWORK_STATUS.ASSOCIATING].includes($ctrl.networkInformations.status)
                 }"
                         data-translate="{{ 'netapp_dashboard_network_configuration_status_' + $ctrl.networkInformations.status }}"

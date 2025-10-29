@@ -1336,7 +1336,6 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                         </button>
                       </td>
                       <td
-                        aria-current="date"
                         aria-selected="false"
                         data-part="table-cell"
                         data-scope="date-picker"
@@ -1346,23 +1345,22 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                         <button
                           aria-label="Choose Tuesday, October 28, 2025"
                           class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
-                          data-focus=""
                           data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
-                          data-today=""
                           data-value="2025-10-28"
                           data-view="day"
                           dir="ltr"
                           id="datepicker::rf::cell-trigger:2025-10-28"
                           role="button"
-                          tabindex="0"
+                          tabindex="-1"
                           type="button"
                         >
                           28
                         </button>
                       </td>
                       <td
+                        aria-current="date"
                         aria-selected="false"
                         data-part="table-cell"
                         data-scope="date-picker"
@@ -1372,15 +1370,17 @@ exports[`FilterAdd Snapshot Tests > should match snapshot with date filter type 
                         <button
                           aria-label="Choose Wednesday, October 29, 2025"
                           class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 _datepicker-content__table__day_1i4ys_26"
+                          data-focus=""
                           data-ods="button"
                           data-part="table-cell-trigger"
                           data-scope="date-picker"
+                          data-today=""
                           data-value="2025-10-29"
                           data-view="day"
                           dir="ltr"
                           id="datepicker::rf::cell-trigger:2025-10-29"
                           role="button"
-                          tabindex="-1"
+                          tabindex="0"
                           type="button"
                         >
                           29
