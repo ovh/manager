@@ -7,10 +7,10 @@ import 'angular-translate';
 import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
 
-import component from './setup.component';
-import routing from './setup.routing';
+import component from './account-setup.component';
+import routing from './account-setup.routing';
 
-const moduleName = 'ovhManagerDbaasLogsDetailAccountSetup';
+const moduleName = 'ovhManagerDbaasLogsAccountSetup';
 
 angular
   .module(moduleName, [
@@ -22,7 +22,7 @@ angular
     'ui.router',
   ])
   .config(routing)
-  .component('dbaasLogsDetailAccountSetup', component)
+  .component('dbaasLogsAccountSetup', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

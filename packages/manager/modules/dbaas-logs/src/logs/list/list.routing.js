@@ -9,6 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
       goToResiliate: /* @ngInject */ ($state) => (serviceName) =>
         $state.go('dbaas-logs.list.resiliate', { serviceName }),
       hideBreadcrumb: () => true,
+      breadcrumb: () => null,
     },
   });
 };
