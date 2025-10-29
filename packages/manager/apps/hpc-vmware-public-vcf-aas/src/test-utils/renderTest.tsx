@@ -27,6 +27,8 @@ import {
   GetVrackSegmentsMocksParams,
   GetIpBlockMocksParams,
   getIpBlockMocks,
+  getEdgeGatewayMocks,
+  GetEdgeGatewayMocksParams,
 } from '@ovh-ux/manager-module-vcd-api';
 import {
   initTestI18n,
@@ -61,6 +63,7 @@ export const renderTest = async ({
   TFeatureAvailabilityMockParams &
   GetVrackSegmentsMocksParams &
   GetIpBlockMocksParams &
+  GetEdgeGatewayMocksParams &
   GetServicesMocksParams = {}) => {
   ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers([
@@ -73,6 +76,7 @@ export const renderTest = async ({
       ...getServicesMocks(mockParams),
       ...getVrackSegmentsMocks(mockParams),
       ...getIpBlockMocks(mockParams),
+      ...getEdgeGatewayMocks(mockParams),
       ...getFeatureAvailabilityMocks(mockParams),
     ]),
   );

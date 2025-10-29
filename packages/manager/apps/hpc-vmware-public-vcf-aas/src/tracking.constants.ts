@@ -301,7 +301,7 @@ export const TRACKING_TABS_ACTIONS = {
   compute: ['compute'],
   storage: ['storage'],
   vrack: ['vrack'],
-  edgeGateways: ['edge-gateways'],
+  edgeGateway: ['edge-gateway'],
 };
 
 export const getTabTrackingParams = (

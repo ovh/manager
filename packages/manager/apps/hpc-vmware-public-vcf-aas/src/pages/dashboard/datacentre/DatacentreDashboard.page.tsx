@@ -9,7 +9,11 @@ import { ChangelogButton } from '@ovh-ux/manager-react-components';
 import VcdDashboardLayout, {
   DashboardTab,
 } from '@/components/dashboard/layout/VcdDashboardLayout.component';
-import { COMPUTE_LABEL, STORAGE_LABEL } from './datacentreDashboard.constants';
+import {
+  COMPUTE_LABEL,
+  EDGE_GATEWAY_LABEL,
+  STORAGE_LABEL,
+} from './datacentreDashboard.constants';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
 import { isUpdatingTargetSpec } from '@/utils/refetchConditions';
@@ -18,6 +22,7 @@ import { TRACKING_TABS_ACTIONS } from '@/tracking.constants';
 import { VRACK_LABEL } from '../dashboard.constants';
 import { FEATURE_FLAGS } from '@/app.constants';
 import MessageSuspendedService from '@/components/message/MessageSuspendedService.component';
+import { isEdgeCompatibleVDC } from '@/utils/edgeGatewayCompatibility';
 
 function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();
@@ -61,6 +66,13 @@ function DatacentreDashboardPage() {
       trackingActions: TRACKING_TABS_ACTIONS.vrack,
       disabled:
         !isVrackFeatureAvailable || !vcdDatacentre?.data?.currentState?.vrack,
+    },
+    {
+      name: 'edge-gateway',
+      title: EDGE_GATEWAY_LABEL,
+      to: useResolvedPath(subRoutes.edgeGateway).pathname,
+      trackingActions: TRACKING_TABS_ACTIONS.edgeGateway,
+      disabled: isEdgeCompatibleVDC(vcdDatacentre?.data), // TODO: [EDGE] inverse condition when unmocking (testing only)
     },
   ].filter(({ disabled }) => !disabled);
 

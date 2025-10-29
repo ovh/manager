@@ -19,6 +19,7 @@ export const subRoutes = {
   addNetwork: 'add-network',
   deleteSegment: 'delete-segment',
   deleteNetwork: 'delete-network',
+  edgeGateway: 'edge-gateway',
   terminate: 'terminate',
 } as const;
 
@@ -43,6 +44,7 @@ export const urls = {
   vrackSegmentEditVlanId: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackSegments}/${subRoutes.vrackSegmentId}/${subRoutes.vrackEditVlanId}`,
   vrackSegmentAddNetwork: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackSegments}/${subRoutes.vrackSegmentId}/${subRoutes.addNetwork}`,
   vrackSegmentDeleteNetwork: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackSegments}/${subRoutes.vrackSegmentId}/${subRoutes.vrackNetwork}/${subRoutes.vrackNetworkId}/${subRoutes.deleteNetwork}`,
+  edgeGateway: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.edgeGateway}`,
 } as const;
 
 export const veeamBackupAppName = 'veeam-backup';
