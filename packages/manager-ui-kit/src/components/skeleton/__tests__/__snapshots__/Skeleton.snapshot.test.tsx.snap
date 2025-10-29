@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Skeleton Snapshot tests > renders the component with default props 1`] = `
+<div>
+  <div
+    aria-hidden="true"
+    class="_skeleton_kauw8_2"
+    data-ods="skeleton"
+  />
+</div>
+`;

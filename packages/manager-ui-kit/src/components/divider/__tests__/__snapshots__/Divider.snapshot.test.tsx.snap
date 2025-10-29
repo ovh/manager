@@ -1,0 +1,62 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Divider Snapshot tests > renders the component with default props 1`] = `
+<div>
+  <hr
+    class="_divider_10itd_2 _divider--neutral_10itd_7 _divider--2_10itd_17"
+    data-ods="divider"
+  />
+  <hr
+    class="_divider_10itd_2 _divider--primary_10itd_10 _divider--2_10itd_17"
+    data-ods="divider"
+  />
+  <hr
+    class="_divider_10itd_2 _divider--primary_10itd_10 _divider--0_10itd_13"
+    data-ods="divider"
+  />
+  <hr
+    class="_divider_10itd_2 _divider--primary_10itd_10 _divider--2_10itd_17"
+    data-ods="divider"
+  />
+  <hr
+    class="_divider_10itd_2 _divider--primary_10itd_10 _divider--4_10itd_21"
+    data-ods="divider"
+  />
+  <hr
+    class="_divider_10itd_2 _divider--primary_10itd_10"
+    data-ods="divider"
+  />
+  <hr
+    class="_divider_10itd_2 _divider--primary_10itd_10 _divider--8_10itd_25"
+    data-ods="divider"
+  />
+  <hr
+    class="_divider_10itd_2 _divider--primary_10itd_10 _divider--12_10itd_29"
+    data-ods="divider"
+  />
+  <hr
+    class="_divider_10itd_2 _divider--primary_10itd_10 _divider--16_10itd_33"
+    data-ods="divider"
+  />
+  <hr
+    class="_divider_10itd_2 _divider--primary_10itd_10 _divider--24_10itd_37"
+    data-ods="divider"
+  />
+  <hr
+    class="_divider_10itd_2 _divider--primary_10itd_10 _divider--32_10itd_41"
+    data-ods="divider"
+  />
+  <hr
+    class="_divider_10itd_2 _divider--primary_10itd_10 _divider--40_10itd_45"
+    data-ods="divider"
+  />
+  <hr
+    class="_divider_10itd_2 _divider--primary_10itd_10 _divider--48_10itd_49"
+    data-ods="divider"
+  />
+  <hr
+    class="_divider_10itd_2 _divider--primary_10itd_10 _divider--64_10itd_53"
+    data-ods="divider"
+  />
+</div>
+`;
