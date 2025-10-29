@@ -6,3 +6,5 @@ export * from './vdc-orderable-resource.mock';
 export * from './vdc-storage.mock';
 export * from './vcd-datacentre-vrack-segment.handler';
 export * from './vcd-datacentre-vrack-segment.mock';
+export * from './vdc-edge-gateway.mock';
+export * from './vdc-edge-gateway.handler';

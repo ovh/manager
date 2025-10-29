@@ -36,7 +36,7 @@ export const getVdcOrderableResourceRoute = (id: string, vdcId: string) => {
 };
 
 export const getVdcVrackSegmentListRoute = (id: string, vdcId: string) => {
-  return `${getVcdDatacentresRoute(id)}/${vdcId}/vrackSegment`;
+  return `${getVcdDatacentreRoute(id, vdcId)}/vrackSegment`;
 };
 
 export const getVdcVrackSegmentRoute = ({
@@ -54,4 +54,9 @@ export const getVdcVrackSegmentRoute = ({
 // IP Block
 export const getVcdIpBlockListRoute = (id: string) => {
   return `${getVcdOrganizationRoute(id)}/ipblock`;
+};
+
+// Edge Gateway
+export const getVcdEdgeGatewayListRoute = (id: string, vdcId: string) => {
+  return `${getVcdDatacentreRoute(id, vdcId)}/edgeGateway`;
 };

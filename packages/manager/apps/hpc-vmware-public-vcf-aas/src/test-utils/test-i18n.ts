@@ -1,3 +1,5 @@
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import commonDashboard from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/dashboard/Messages_fr_FR.json';
 import listing from '../../public/translations/listing/Messages_fr_FR.json';
 import dashboard from '../../public/translations/dashboard/Messages_fr_FR.json';
 import onboarding from '../../public/translations/onboarding/Messages_fr_FR.json';
@@ -6,6 +8,7 @@ import datacentresCompute from '../../public/translations/datacentres/compute/Me
 import datacentresOrder from '../../public/translations/datacentres/order/Messages_fr_FR.json';
 import datacentresStorage from '../../public/translations/datacentres/storage/Messages_fr_FR.json';
 import datacentresVrackSegment from '../../public/translations/datacentres/vrack-segment/Messages_fr_FR.json';
+import datacentresEdgeGateway from '../../public/translations/datacentres/edge-gateway/Messages_fr_FR.json';
 import terminate from '../../public/translations/terminate/Messages_fr_FR.json';
 import networkAcl from '../../public/translations/networkAcl/Messages_fr_FR.json';
 import zodError from '../../public/translations/zodError/Messages_fr_FR.json';
@@ -62,6 +65,7 @@ export const translations = {
   'datacentres/order': datacentresOrder,
   'datacentres/storage': datacentresStorage,
   'datacentres/vrack-segment': datacentresVrackSegment,
+  'datacentres/edge-gateway': datacentresEdgeGateway,
   error,
   terminate,
   networkAcl,
@@ -73,6 +77,7 @@ export const translations = {
   '@ovh-ux/manager-common-translations/system': commun.system,
   '@ovh-ux/manager-common-translations/error': commun.error,
   '@ovh-ux/manager-common-translations/region': commun.region,
+  [NAMESPACES.DASHBOARD]: commonDashboard,
 };
 
 export const labels = {
@@ -85,8 +90,10 @@ export const labels = {
   datacentresOrder,
   datacentresStorage,
   datacentresVrackSegment,
+  datacentresEdgeGateway,
   terminate,
   networkAcl,
   commun,
   zodError,
+  commonDashboard,
 };

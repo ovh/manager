@@ -1,0 +1,7 @@
+{
+  "edge_add": "Ajouter une Edge Gateway",
+  "edge_add_tooltip": "Vous pouvez créer 5 Edge Gateways maximum.",
+  "edge_connectivity_type": "Type de connectivité",
+  "edge_ip_block": "Bloc IP",
+  "edge_edit_config": "Modifier la configuration"
+}

@@ -6,6 +6,7 @@ export * from './useUpdateVcdOrganization';
 export * from './useUpdateVcdVrackSegment';
 export * from './useVcdCatalog';
 export * from './useVcdDatacentre';
+export * from './useVcdEdgeGateway';
 export * from './useVcdIpBlocks';
 export * from './useVcdOrder';
 export * from './useVcdOrganization';
