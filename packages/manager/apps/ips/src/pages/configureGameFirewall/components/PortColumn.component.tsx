@@ -3,13 +3,17 @@ import { OdsText, OdsInput } from '@ovhcloud/ods-components/react';
 import { IpGameFirewallRule } from '@/data/api';
 import { PORT_MAX } from '../gamefirewall.utils';
 import { GameFirewallContext } from '../gamefirewall.context';
+import { handleEnterAndEscapeKeyDown } from '@/utils';
 
 export const StartPortColumn = (
   rule: IpGameFirewallRule & { isNew?: boolean },
 ) => {
-  const { newStartPort, setNewStartPort } = React.useContext(
-    GameFirewallContext,
-  );
+  const {
+    newStartPort,
+    setNewStartPort,
+    addRule,
+    hideNewRuleRow,
+  } = React.useContext(GameFirewallContext);
 
   return rule?.isNew ? (
     <OdsInput
@@ -18,6 +22,10 @@ export const StartPortColumn = (
       value={newStartPort}
       onOdsChange={(e) => setNewStartPort(e.detail.value as string)}
       maxlength={PORT_MAX.toString().length}
+      onKeyDown={handleEnterAndEscapeKeyDown({
+        onEnter: addRule,
+        onEscape: hideNewRuleRow,
+      })}
     />
   ) : (
     <OdsText>{rule?.ports?.from}</OdsText>
@@ -27,7 +35,12 @@ export const StartPortColumn = (
 export const EndPortColumn = (
   rule: IpGameFirewallRule & { isNew?: boolean },
 ) => {
-  const { newEndPort, setNewEndPort } = React.useContext(GameFirewallContext);
+  const {
+    newEndPort,
+    setNewEndPort,
+    addRule,
+    hideNewRuleRow,
+  } = React.useContext(GameFirewallContext);
 
   return rule?.isNew ? (
     <OdsInput
@@ -36,6 +49,10 @@ export const EndPortColumn = (
       value={newEndPort}
       onOdsChange={(e) => setNewEndPort(e.detail.value as string)}
       maxlength={PORT_MAX.toString().length}
+      onKeyDown={handleEnterAndEscapeKeyDown({
+        onEnter: addRule,
+        onEscape: hideNewRuleRow,
+      })}
     />
   ) : (
     <OdsText>{rule?.ports?.to}</OdsText>
