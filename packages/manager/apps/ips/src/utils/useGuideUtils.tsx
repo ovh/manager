@@ -70,6 +70,12 @@ const URL_LIST: { [guideName: string]: GuideLinks } = {
     usFullLink:
       'https://support.us.ovhcloud.com/hc/en-us/articles/360002181530-How-to-Configure-Reverse-DNS',
   }),
+  configureGameFirewall: getGuideLinks({
+    link:
+      'dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060685',
+    usFullLink:
+      'https://support.us.ovhcloud.com/hc/en-us/articles/24578879059347-Protecting-a-Game-Server-with-the-Application-Firewall',
+  }),
   presentationLink: {
     DE: 'https://www.ovhcloud.com/de/network/additional-ip/',
     NL: 'https://www.ovhcloud.com/nl/network/additional-ip/',
