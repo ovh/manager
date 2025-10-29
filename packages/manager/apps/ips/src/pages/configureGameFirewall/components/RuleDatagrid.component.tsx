@@ -7,7 +7,11 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { OdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import {
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_TABLE_SIZE,
+} from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import {
@@ -178,6 +182,7 @@ export const RuleDatagrid: React.FC = () => {
     return (
       <Datagrid
         columns={columns}
+        size={ODS_TABLE_SIZE.sm}
         items={
           (isNewRuleRowDisplayed ? [{ isNew: true }, ...rules] : rules) || []
         }
