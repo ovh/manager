@@ -1,10 +1,15 @@
 import React from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import { describe, expect, it } from 'vitest';
 
-import { render, screen } from '@/utils/test.provider';
+import { fireEvent, render, screen } from '@/utils/test.provider';
 
 import DeleteRedirectionModal from './Delete.modal';
+
+const mockNavigate = vi.fn();
+vi.mocked(useNavigate).mockReturnValue(mockNavigate);
 
 describe('DeleteRedirection modal', () => {
   it('should render correctly', () => {
@@ -17,5 +22,15 @@ describe('DeleteRedirection modal', () => {
 
     expect(cancelButton).not.toBeDisabled();
     expect(deleteButton).not.toBeDisabled();
+  });
+
+  it('navigates back when cancel button is clicked', () => {
+    render(<DeleteRedirectionModal />);
+
+    fireEvent.click(screen.getByTestId('cancel-btn'));
+
+    expect(mockNavigate).toHaveBeenCalledWith('..', {
+      state: { clearSelectedRedirections: false },
+    });
   });
 });

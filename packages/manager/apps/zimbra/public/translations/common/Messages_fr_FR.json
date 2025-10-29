@@ -31,6 +31,7 @@
   "delete_domain": "Supprimer le domaine",
   "redirections": "Redirections",
   "delete_redirection": "Supprimer la redirection",
+  "delete_redirections": "Supprimer les redirections",
   "add_redirection": "Créer une redirection",
   "edit_redirection": "Modifier la redirection",
   "auto_reply": "Répondeur",
