@@ -152,7 +152,7 @@ const OrderFunnel = ({
 
   return (
     <>
-      <DiscoveryBanner>{t('discoveryModeActivate')}</DiscoveryBanner>
+      <DiscoveryBanner>{t('discoveryMode')}</DiscoveryBanner>
       <Form {...model.form}>
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
           <div
