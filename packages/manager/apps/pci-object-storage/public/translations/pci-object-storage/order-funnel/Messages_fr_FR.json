@@ -20,8 +20,10 @@
   "labelEncryption": "Chiffrement vos données",
   "descriptionEncryption": "Les données déversées dans ce conteneur sont chiffrées à la volée par OVHcloud.",
   "summaryTitle": "Résumé",
-  "pricingDisclaimer": "** Le prix affiché est une estimation pour 1 To d'Object Storage Standard pour 730 heures. Pour plus d'informations, <0>voir la page des prix</0>.",
-  "orderButton": "Commander",
+  "pricingDisclaimer": " Pour plus d'informations sur les tarifs, <0>voir la page des prix</0>.",
+  "regionActivationInfo": "Si une région n'est pas encore disponible sur votre projet. Vous pouvez l'activer en suivant ce lien : <0>activer la région</0>.",
+  "regionsNoMatch": "Aucune région ne correspond à vos filtres. Ajustez vos critères ou <0>activez une région</0>.",
+  "orderButton": "Créer",
   "discoveryModeActivate": "Vous êtes actuellement en mode « Découverte ». Pour finaliser la création de votre conteneur, vous devez activer votre projet.",
   "discoveryModeActivateButton": "Activer votre projet",
   "summaryContainerSection": "Conteneur",
@@ -74,5 +76,13 @@
   "offsiteReplicationRegionPlaceholder": "Sélectionnez une localisation",
   "offsiteReplicationRegionSearchPlaceholder": "Chercher une localisation",
   "offsiteReplicationRegionhSearchNoResult": "Aucune localisation trouvée",
-  "offsiteReplicationVersioningAlert": "En activant l’Offsite Replication, le versioning s’active également."
+  "offsiteReplicationVersioningAlert": "En activant l'Offsite Replication, le versioning s'active également.",
+  "pci_instances_common_instance_region_deployment_mode": "Région 1-AZ",
+  "pci_instances_common_instance_region-3-az_deployment_mode": "Région 3-AZ",
+  "pci_instances_common_instance_localzone_deployment_mode": "Local Zone",
+  "pci_instances_common_instance_region_deployment_mode_description": "Déploiement résilient et économique sur 1 zone de disponibilité.",
+  "pci_instances_common_instance_region-3-az_deployment_mode_description": "Déploiement haute résilience/haute disponibilité pour vos applications critiques sur 3 zones de disponibilité.",
+  "pci_instances_common_instance_localzone_deployment_mode_description": "Déploiement de vos applications au plus près de vos utilisateurs pour une faible latence et la résidence des données.",
+  "selectGeographicalZone": "Selectionnez une zone géographique",
+  "showAllRegions": "Affichez toutes les régions"
 }
