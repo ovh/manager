@@ -12,6 +12,8 @@ import {
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
 
+import { getDeleteTenantUrl } from '@/routes/Routes.utils';
+
 import { TenantsListActionsProps } from './TenantsListActions.props';
 
 export default function TenantsListActions({ tenantId }: TenantsListActionsProps) {
@@ -46,6 +48,9 @@ export default function TenantsListActions({ tenantId }: TenantsListActionsProps
       id: 6,
       label: t(`${NAMESPACES.ACTIONS}:delete`),
       color: ODS_BUTTON_COLOR.critical,
+      onClick: () => {
+        navigate(getDeleteTenantUrl(tenantId));
+      },
     },
   ];
 
