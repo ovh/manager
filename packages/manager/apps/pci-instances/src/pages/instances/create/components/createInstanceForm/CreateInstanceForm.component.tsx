@@ -17,6 +17,7 @@ import { useTranslation } from 'react-i18next';
 import { selectAvailabilityZones } from '../../view-models/availabilityZonesViewModel';
 import { AvailabilityZoneSelection } from '../availabilityZoneSelection/AvailabilityZoneSelection.component';
 import { LocalizationSelection } from '../localisationSelection/LocalizationSelection.component';
+import DistributionImage from '../DistributionImage.component';
 
 const quantityHintParams = {
   quota: 1,
@@ -70,6 +71,7 @@ export const CreateInstanceForm = () => {
           )}
           <Divider spacing="64" />
           <FlavorBlock />
+          <DistributionImage />
           <AdvancedParameters />
           <PciCardShowcaseComponent />
         </section>
