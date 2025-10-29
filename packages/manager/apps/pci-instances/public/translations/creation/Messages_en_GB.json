@@ -35,5 +35,9 @@
   "pci_instance_creation_select_new_region_title": "Choose a new region",
   "pci_instance_creation_select_new_region_label": "Select a region",
   "pci_instance_creation_select_new_region_for_flavor": "This model <strong>({{ flavor }})</strong> is not available in your <strong>selected region</strong>. However, you can select it, but you will need to choose another available region for this model.",
-  "pci_instance_creation_select_new_region": "Choose a region"
+  "pci_instance_creation_select_new_region": "Choose a region",
+  "pci_instance_creation_select_image_title": "Select an image",
+  "pci_instance_creation_select_image_help_title": "Images",
+  "pci_instance_creation_select_image_help_text": "The images available at this stage depend on the choices made in the previous steps, that is to say, on compatibility with the instance model and regional availability. For example, if you want to select a Windows operating system and there are no Windows distributions available, you need to change your choices from the previous steps.",
+  "pci_instance_creation_select_image_life_cycle_help_label": "Lifecycle of a distribution at OVH"
 }
