@@ -19,6 +19,7 @@ export default {
     vcdTrackingPrefix: '<',
     customerSurveyBannerAvailability: '<',
     goBackToList: '<',
+    customerVcfaasMigrationBannerAvailability: '<',
     isLogsDisabled: '<?',
   },
   controller,

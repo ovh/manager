@@ -1,0 +1,20 @@
+<oui-message
+    data-ng-if="$ctrl.displayMigrationBanner && !$ctrl.pending"
+    class="mb-2"
+    data-type="info"
+    dismissable
+>
+    <div class="flex items-center gap-2">
+        <p
+            class="mb-0 inline"
+            ng-bind-html="'dedicated_cloud_dashboard_customer_vcfaas_migration_banner' | translate:{ url: $ctrl.offerLink }"
+        ></p>
+
+        <a
+            href=""
+            class="oui-link"
+            ng-click="$ctrl.requestContactForVmwareCloudDirectorMigration()"
+            data-translate="dedicated_cloud_dashboard_customer_vcfaas_migration_banner_action"
+        ></a>
+    </div>
+</oui-message>

@@ -1756,6 +1756,12 @@ class DedicatedCloudService {
       .get(`/services/${serviceId}/options`)
       .then(({ data }) => data);
   }
+
+  requestContactForVmwareCloudDirectorMigration(serviceName) {
+    return this.$http.post(
+      `/dedicatedCloud/${serviceName}/requestContactForVmwareCloudDirectorMigration`,
+    );
+  }
 }
 
 angular
