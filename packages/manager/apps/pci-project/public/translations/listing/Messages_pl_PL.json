@@ -14,5 +14,6 @@
   "pci_projects_project_view": "Wyświetl projekt",
   "pci_projects_create_project": "Utwórz nowy projekt",
   "pci_projects_redirect_to_dedicated_page": "Aby kontynuować, wybierz istniejący projekt lub utwórz nowy.",
-  "pci_projects_status_deleted": "Usunięto"
+  "pci_projects_status_deleted": "Usunięto",
+  "pci_projects_project_default_project": "Projekt domyślny"
 }
