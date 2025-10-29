@@ -77,6 +77,7 @@ export const updateVdcDetailsMutationKey = (vdcId: string) => [
   ...getVdcQueryKey(vdcId),
 ];
 
+// Vrack
 export const getVrackSegmentListQueryKey = (id: string, vdcId: string) => [
   ...getVcdDatacentreQueryKey(id, vdcId),
   'vrackSegment',
@@ -96,4 +97,10 @@ export const getVrackSegmentQueryKey = ({
 export const getVcdIpBlockListQueryKey = (id: string) => [
   ...getVcdOrganizationQueryKey(id),
   'ipBlock',
+];
+
+// Edge Gateway
+export const getVcdEdgeGatewayListQueryKey = (id: string, vdcId: string) => [
+  ...getVcdDatacentreQueryKey(id, vdcId),
+  'edgeGateway',
 ];

@@ -136,6 +136,12 @@ const DeleteVrackSegmentPage = React.lazy(() =>
   ),
 );
 
+const EdgeGatewayListingPage = React.lazy(() =>
+  import(
+    '@/pages/dashboard/datacentre/edge-gateway/DatacentreEdgeGateway.page'
+  ),
+);
+
 const TerminateOrganizationPage = React.lazy(() =>
   import('@/pages/terminate/TerminateOrganization.page'),
 );
@@ -455,6 +461,11 @@ export default (
               pageType: PageType.popup,
             },
           }}
+        />
+        <Route
+          id={'edge-gateway'}
+          path={urls.edgeGateway}
+          Component={EdgeGatewayListingPage}
         />
       </Route>
       <Route
