@@ -11,7 +11,11 @@ import { BreadcrumbItem } from '@/hooks/breadcrumb/useBreadcrumb';
 import VcdDashboardLayout, {
   DashboardTab,
 } from '@/components/dashboard/layout/VcdDashboardLayout.component';
-import { COMPUTE_LABEL, STORAGE_LABEL } from './datacentreDashboard.constants';
+import {
+  COMPUTE_LABEL,
+  EDGE_GATEWAY_LABEL,
+  STORAGE_LABEL,
+} from './datacentreDashboard.constants';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
 import { isUpdatingTargetSpec } from '@/utils/refetchConditions';
@@ -21,6 +25,7 @@ import { VIRTUAL_DATACENTERS_LABEL } from '../organization/organizationDashboard
 import { VRACK_LABEL } from '../dashboard.constants';
 import { FEATURE_FLAGS } from '@/app.constants';
 import MessageSuspendedService from '@/components/message/MessageSuspendedService.component';
+import { isEdgeCompatibleVDC } from '@/utils/edgeGatewayCompatibility';
 
 function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();
@@ -66,6 +71,13 @@ function DatacentreDashboardPage() {
       disabled:
         !isVrackFeatureAvailable || !vcdDatacentre?.data?.currentState?.vrack,
     },
+    {
+      name: 'edge-gateway',
+      title: EDGE_GATEWAY_LABEL,
+      to: useResolvedPath(subRoutes.edgeGateway).pathname,
+      trackingActions: TRACKING_TABS_ACTIONS.edgeGateway,
+      disabled: isEdgeCompatibleVDC(vcdDatacentre?.data), // TODO: [EDGE] inverse condition when unmocking (testing only)
+    },
   ].filter(({ disabled }) => !disabled);
 
   const serviceName = vcdDatacentre?.data?.currentState?.description ?? vdcId;
@@ -96,6 +108,10 @@ function DatacentreDashboardPage() {
       label: serviceName,
     },
     {
+      id: subRoutes.edgeGateway,
+      label: EDGE_GATEWAY_LABEL,
+    },
+    {
       id: subRoutes.vrackSegments,
       label: VRACK_LABEL,
     },
@@ -121,12 +137,6 @@ function DatacentreDashboardPage() {
       id: subRoutes.addNetwork,
       label: t(
         'datacentres/vrack-segment:managed_vcd_dashboard_vrack_segment_add_title',
-      ),
-    },
-    {
-      id: subRoutes.edit,
-      label: t(
-        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_edit_vlan',
       ),
     },
     {

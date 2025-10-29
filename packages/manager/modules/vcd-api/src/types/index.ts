@@ -3,6 +3,7 @@ export * from './veeam-backup-catalog.type';
 export * from './vcd-catalog.type';
 export * from './vcd-compute.type';
 export * from './vcd-datacentre.type';
+export * from './vcd-edge-gateway.type';
 export * from './vcd-order.type';
 export * from './vcd-orderable-resource.type';
 export * from './vcd-organization.type';
