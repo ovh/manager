@@ -1,26 +1,27 @@
-import { MouseEvent } from 'react';
+import type { AnchorHTMLAttributes, MouseEvent } from 'react';
 
-export type LinkCardBadge = {
+export type LinkCardBadge = Readonly<{
   text: string;
-};
+}>;
 
-type LinkCardImageDetails = {
-  src?: string;
-  alt?: string;
-};
+export type LinkCardImageDetails = Readonly<{
+  src?: string | null;
+  alt?: string | null;
+}>;
 
-export type LinkCardProps = {
+export type LinkCardProps = Readonly<{
   href: string;
   externalHref?: boolean;
   hrefLabel?: string;
-  img?: LinkCardImageDetails;
+  img?: LinkCardImageDetails | null;
   texts: {
     title: string;
-    description?: string;
+    description?: string | null;
     category: string;
   };
-  badges?: LinkCardBadge[];
+  badges?: LinkCardBadge[] | null;
   hoverable?: boolean;
-  onClick?: (event: MouseEvent) => void;
+  onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
   trackingLabel?: string;
-};
+}> &
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'onClick'>;

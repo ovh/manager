@@ -184,8 +184,6 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
       <a
         class="no-underline"
         href="https://ovhcloud.com/instances"
-        rel="noreferrer"
-        target="_blank"
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
@@ -302,8 +300,6 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
       <a
         class="no-underline"
         href="https://ovhcloud.com/instances"
-        rel="noreferrer"
-        target="_blank"
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
@@ -359,8 +355,6 @@ exports[`OnboardingLayout Snapshot Tests > Edge Cases > should render onboarding
       <a
         class="no-underline"
         href="https://ovhcloud.com/storage"
-        rel="noreferrer"
-        target="_blank"
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
@@ -447,8 +441,6 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
       <a
         class="no-underline"
         href="https://ovhcloud.com/instances"
-        rel="noreferrer"
-        target="_blank"
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
@@ -501,8 +493,6 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
       <a
         class="no-underline"
         href="https://ovhcloud.com/storage"
-        rel="noreferrer"
-        target="_blank"
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
@@ -589,8 +579,6 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with Complex LinkCar
       <a
         class="no-underline"
         href="https://ovhcloud.com/instances"
-        rel="noreferrer"
-        target="_blank"
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
@@ -797,8 +785,6 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
       <a
         class="no-underline"
         href="https://ovhcloud.com/instances"
-        rel="noreferrer"
-        target="_blank"
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
@@ -941,8 +927,6 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
       <a
         class="no-underline"
         href="https://ovhcloud.com/instances"
-        rel="noreferrer"
-        target="_blank"
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
@@ -1064,8 +1048,6 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
       <a
         class="no-underline"
         href="https://ovhcloud.com/network"
-        rel="noreferrer"
-        target="_blank"
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
@@ -1168,8 +1150,6 @@ exports[`OnboardingLayout Snapshot Tests > OnboardingLayout with LinkCard Childr
       <a
         class="no-underline"
         href="https://ovhcloud.com/instances"
-        rel="noreferrer"
-        target="_blank"
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
@@ -1256,8 +1236,6 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
       <a
         class="no-underline"
         href="https://ovhcloud.com/service-0"
-        rel="noreferrer"
-        target="_blank"
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
@@ -1320,8 +1298,6 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
       <a
         class="no-underline"
         href="https://ovhcloud.com/service-1"
-        rel="noreferrer"
-        target="_blank"
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
@@ -1374,8 +1350,6 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
       <a
         class="no-underline"
         href="https://ovhcloud.com/service-2"
-        rel="noreferrer"
-        target="_blank"
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
@@ -1438,8 +1412,6 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
       <a
         class="no-underline"
         href="https://ovhcloud.com/service-3"
-        rel="noreferrer"
-        target="_blank"
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
@@ -1492,8 +1464,6 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
       <a
         class="no-underline"
         href="https://ovhcloud.com/service-4"
-        rel="noreferrer"
-        target="_blank"
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"
@@ -1556,8 +1526,6 @@ exports[`OnboardingLayout Snapshot Tests > Responsive Layout Tests > should rend
       <a
         class="no-underline"
         href="https://ovhcloud.com/service-5"
-        rel="noreferrer"
-        target="_blank"
       >
         <div
           class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full h-full p-[1rem]"

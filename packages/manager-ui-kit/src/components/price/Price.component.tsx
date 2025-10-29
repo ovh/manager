@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Text } from '@ovhcloud/ods-react';
 
-import { DateIntervalOptions } from '@/commons';
+import { IntervalUnit } from '@/commons';
 import { PriceProps } from '@/components/price/Price.props';
 
 import {
@@ -49,7 +49,7 @@ export function Price({
   );
 
   const intervalUnitText =
-    intervalUnit && intervalUnit !== DateIntervalOptions.none ? t(`price_per_${intervalUnit}`) : '';
+    intervalUnit && intervalUnit !== IntervalUnit.none ? t(`price_per_${intervalUnit}`) : '';
 
   const components = [
     {

@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import PropTypes from 'prop-types';
 import { vitest } from 'vitest';
 
-import { DateIntervalOptions, OvhSubsidiary } from '@/commons';
+import { IntervalUnit, OvhSubsidiary } from '@/commons';
 import { Price } from '@/components';
 
 vitest.mock('react-i18next', () => ({
@@ -41,7 +41,7 @@ describe('Price component', () => {
   const baseProps = {
     value: 3948000000,
     ovhSubsidiary: OvhSubsidiary.FR,
-    intervalUnit: DateIntervalOptions.month,
+    intervalUnit: IntervalUnit.month,
   };
   const priceDefault = '39,48 €';
   const priceHtMonth = '39,48 € price_ht_label price_per_month';
@@ -53,7 +53,7 @@ describe('Price component', () => {
     const props = {
       ...baseProps,
       value: 0,
-      intervalUnit: DateIntervalOptions.none,
+      intervalUnit: IntervalUnit.none,
       locale: localeFr,
     };
     renderPriceComponent(props);

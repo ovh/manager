@@ -67,6 +67,5 @@ export const staticDiscoveredLibraries = [
 export const typesSpecificIgnorePatterns = [
   /(^|\/)(__tests__|tests?|spec|fixtures|stubs|mocks)\//i,
   /\.(test|spec|stories?)\.(ts|tsx)$/i,
-  /(^|\/)translations?(\.ts|\.tsx)?$/i,
   /(^|\/)i18n(\.ts|\.tsx)?$/i,
 ];

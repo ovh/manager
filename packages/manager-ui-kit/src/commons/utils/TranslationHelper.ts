@@ -1,5 +1,7 @@
 import i18next from 'i18next';
-import type { Resource } from 'i18next';
+import type { Resource, ResourceLanguage } from 'i18next';
+
+import { locales } from '@/commons/settings/Locales.constants';
 
 /**
  * Manager Fallback Language
@@ -118,3 +120,34 @@ export const buildTranslationManager = (
     void handleLanguageChange(lang);
   });
 };
+
+/**
+ * Union type of supported locale identifiers.
+ */
+export type LocaleType = (typeof locales)[number];
+
+/**
+ * Asynchronous loader that returns an i18next-compatible language resource.
+ */
+export type TranslationLoaderType = () => Promise<ResourceLanguage>;
+
+/**
+ * Creates a resolver function that unwraps a dynamically imported module’s default export.
+ *
+ * @template T - Type of the resolved module content
+ * @returns A function that converts `import('./file.json')` to a typed Promise<T>.
+ *
+ * @example
+ * const resolveTranslationModule = createImportResolver<ResourceLanguage>();
+ * const resource = await resolveTranslationModule(import('./Messages_fr_FR.json'));
+ */
+const createImportResolver =
+  <T>() =>
+  (p: Promise<{ default: unknown }>) =>
+    p.then((m) => m.default as T);
+
+/**
+ * A specialized resolver for translation JSON modules,
+ * producing i18next {@link ResourceLanguage} objects.
+ */
+export const resolveTranslationModule = createImportResolver<ResourceLanguage>();

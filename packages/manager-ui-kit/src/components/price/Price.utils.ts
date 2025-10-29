@@ -1,4 +1,4 @@
-import { DateIntervalOptions, OVH_CURRENCY_BY_SUBSIDIARY, OvhSubsidiary } from '@/commons';
+import { IntervalUnit, OVH_CURRENCY_BY_SUBSIDIARY, OvhSubsidiary } from '@/commons';
 
 import {
   ASIAN_FORMAT_SUBSIDIARIES,
@@ -12,12 +12,12 @@ export const getPrice = (value: number, tax?: number): number => {
   return valueWithTax / 100000000;
 };
 
-export const convertIntervalPrice = (price: number, intervalUnit: DateIntervalOptions): number => {
+export const convertIntervalPrice = (price: number, intervalUnit: IntervalUnit): number => {
   const conversionRates = {
-    [DateIntervalOptions.day]: price / 365,
-    [DateIntervalOptions.month]: price / 12,
-    [DateIntervalOptions.year]: price,
-    [DateIntervalOptions.none]: price,
+    [IntervalUnit.day]: price / 365,
+    [IntervalUnit.month]: price / 12,
+    [IntervalUnit.year]: price,
+    [IntervalUnit.none]: price,
   };
 
   return conversionRates[intervalUnit] || price;

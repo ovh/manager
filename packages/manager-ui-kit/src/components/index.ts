@@ -107,7 +107,6 @@ export { TreeViewNode } from './tree-view/tree-view-node/TreeViewNode.component'
 export { TreeViewNodes } from './tree-view/tree-view-nodes/TreeViewNodes.component';
 export { TreeView } from './tree-view/TreeView.component';
 export { UpdateNameModal } from './update-name-modal/UpdateNameModal.component';
-
 export * from './card/constants/CardConstants';
 export * from './datepicker/constants/DatepickerConstants';
 export * from './divider/constants/DividerConstants';
@@ -127,7 +126,6 @@ export * from './tag/constants/TagConstants';
 export * as Tile from './tile/namespace';
 export * from './timepicker/constants/TimepickerConstants';
 export * from './tooltip/constants/TooltipConstants';
-
 export type { AccordionProps } from './accordion/Accordion.props';
 export type { ActionBannerProps } from './action-banner/ActionBanner.props';
 export type { ActionMenuItemProps, ActionMenuProps } from './action-menu/ActionMenu.props';
@@ -198,7 +196,6 @@ export type { ToggleProps } from './toggle/Toggle.props';
 export type { TooltipProps } from './tooltip/Tooltip.props';
 export type { TreeViewProps } from './tree-view/TreeView.props';
 export type { UpdateNameModalProps } from './update-name-modal/UpdateNameModal.props';
-
 export type {
   TilesInputGroupProps,
   TilesInputGroupState,

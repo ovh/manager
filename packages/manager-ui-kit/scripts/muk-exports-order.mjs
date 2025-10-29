@@ -24,6 +24,13 @@ const TARGET_PATHS = [
   './src/commons/index.ts',
 ];
 
+/** @constant {string[]} IGNORE_PATHS - Files to skip if they’re always considered changed. */
+const IGNORE_PATHS = [
+  './src/hooks/index.ts',
+  './src/components/index.ts',
+  './src/commons/index.ts',
+];
+
 /**
  * Recursively collects all valid source files (.ts, .tsx, .js, .jsx)
  * from a given path (file or directory).
@@ -62,6 +69,21 @@ function extractPath(line) {
 }
 
 /**
+ * Normalizes content by trimming trailing spaces and enforcing LF endings.
+ *
+ * @param {string} text - File content to normalize.
+ * @returns {string} Normalized text.
+ */
+function normalizeContent(text) {
+  return (
+    text
+      .replace(/\r\n/g, '\n')
+      .replace(/[ \t]+$/gm, '')
+      .trimEnd() + '\n'
+  );
+}
+
+/**
  * Sorts all export statements in a given file alphabetically by their module path.
  * Groups by kind: `normal`, `export *`, and `export type`.
  *
@@ -70,7 +92,8 @@ function extractPath(line) {
  */
 function sortExportsInFile(filePath) {
   const original = readFileSync(filePath, 'utf8');
-  const lines = original.split('\n');
+  const normalizedOriginal = normalizeContent(original);
+  const lines = normalizedOriginal.split('\n');
 
   // Matches all forms of export statements
   const exportRegex =
@@ -110,22 +133,14 @@ function sortExportsInFile(filePath) {
     groups[key].sort((a, b) => extractPath(a).localeCompare(extractPath(b)));
   }
 
-  // Reconstruct file (header + sorted exports + footer)
-  const newContent =
-    [
-      ...header,
-      ...groups.normal,
-      groups.normal.length ? '' : '',
-      ...groups.star,
-      groups.star.length ? '' : '',
-      ...groups.type,
-      groups.type.length ? '' : '',
-      ...footer,
-    ]
-      .join('\n')
-      .trimEnd() + '\n';
+  // Build clean content — no leading blank line
+  const sections = [...header, ...groups.normal, ...groups.star, ...groups.type, ...footer].filter(
+    (line, index, arr) => !(index === 0 && line.trim() === ''),
+  ); // prevent blank top line
 
-  if (newContent !== original) {
+  const newContent = normalizeContent(sections.join('\n'));
+
+  if (newContent !== normalizedOriginal) {
     writeFileSync(filePath, newContent, 'utf8');
     console.log(`✅ Sorted exports in ${filePath}`);
     return true;
@@ -151,6 +166,10 @@ function main() {
 
   let changed = 0;
   for (const file of allFiles) {
+    if (IGNORE_PATHS.some((ignored) => file.endsWith(ignored))) {
+      console.log(`⏭️  Skipped ${file}`);
+      continue;
+    }
     if (sortExportsInFile(file)) changed++;
   }
 

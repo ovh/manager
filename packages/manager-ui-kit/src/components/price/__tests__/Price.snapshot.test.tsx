@@ -1,14 +1,14 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { DateIntervalOptions, OvhSubsidiary } from '@/commons';
+import { IntervalUnit, OvhSubsidiary } from '@/commons';
 import { Price } from '@/components';
 
 describe('Price Component', () => {
   const defaultProps = {
     value: 1000000000,
     tax: 200000000,
-    intervalUnit: DateIntervalOptions.month,
+    intervalUnit: IntervalUnit.month,
     ovhSubsidiary: OvhSubsidiary.FR,
     locale: 'fr-FR',
     isConvertIntervalUnit: false,
@@ -60,16 +60,12 @@ describe('Price Component', () => {
   });
 
   it('handles different interval units correctly', () => {
-    const { container } = render(
-      <Price {...defaultProps} intervalUnit={DateIntervalOptions.year} />,
-    );
+    const { container } = render(<Price {...defaultProps} intervalUnit={IntervalUnit.year} />);
     expect(container).toMatchSnapshot();
   });
 
   it('does not show intervalUnitText if intervalUnit is "none"', () => {
-    const { container } = render(
-      <Price {...defaultProps} intervalUnit={DateIntervalOptions.none} />,
-    );
+    const { container } = render(<Price {...defaultProps} intervalUnit={IntervalUnit.none} />);
     expect(container).toMatchSnapshot();
   });
 });

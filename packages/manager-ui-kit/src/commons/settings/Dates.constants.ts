@@ -1,4 +1,4 @@
-export enum DateIntervalOptions {
+export enum IntervalUnit {
   day = 'day',
   month = 'month',
   year = 'year',

@@ -30,7 +30,7 @@
     "lint:modern:imports:fix": "node scripts/muk-exports-order.mjs",
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src ; yarn lint:modern:imports:fix",
     "prepare": "tsc && vite build",
-    "test": "TZ=UTC manager-test run -u",
+    "test": "TZ=UTC manager-test run",
     "test:update": "TZ=UTC manager-test run -u",
     "test:ci": "TZ=UTC manager-test run --coverage"
   },

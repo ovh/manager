@@ -1,7 +1,7 @@
-import React from 'react';
+import { ReactElement, ReactNode } from 'react';
 
-export type HeaderProps = {
-  title?: string;
-  guideMenu?: React.ReactElement;
-  changelogButton?: React.ReactElement;
-};
+export type HeaderProps = Readonly<{
+  title?: ReactNode | null;
+  guideMenu?: ReactElement | null;
+  changelogButton?: ReactElement | null;
+}>;

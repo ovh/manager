@@ -1,4 +1,4 @@
-import React, { DOMAttributes, JSX } from 'react';
+import { DOMAttributes, JSX, ReactNode } from 'react';
 
 import { LinkProp } from '@ovhcloud/ods-react';
 
@@ -25,7 +25,8 @@ export interface LinkProps extends LinkProp, DOMAttributes<HTMLAnchorElement> {
   disableIamCheck?: boolean;
 }
 
-export interface LinkIconsProps {
-  type?: LinkType;
-  children: React.ReactNode;
-}
+type BackLinkProps = { type?: LinkType.back; children: ReactNode };
+type ExternalLinkProps = { type?: LinkType.external; children: ReactNode };
+type NextLinkProps = { type?: LinkType.next; children: ReactNode };
+
+export type LinkIconsProps = BackLinkProps | ExternalLinkProps | NextLinkProps;

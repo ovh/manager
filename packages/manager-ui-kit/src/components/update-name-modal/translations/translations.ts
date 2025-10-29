@@ -1,16 +1,19 @@
-import type { Resource } from 'i18next';
+import {
+  LocaleType,
+  TranslationLoaderType,
+  buildTranslationManager,
+  resolveTranslationModule,
+} from '@/commons/utils/TranslationHelper';
 
-import { buildTranslationManager } from '@/commons/utils/TranslationHelper';
+const translationLoaders = {
+  de_DE: () => resolveTranslationModule(import('./Messages_de_DE.json')),
+  en_GB: () => resolveTranslationModule(import('./Messages_en_GB.json')),
+  es_ES: () => resolveTranslationModule(import('./Messages_es_ES.json')),
+  fr_CA: () => resolveTranslationModule(import('./Messages_fr_CA.json')),
+  fr_FR: () => resolveTranslationModule(import('./Messages_fr_FR.json')),
+  it_IT: () => resolveTranslationModule(import('./Messages_it_IT.json')),
+  pl_PL: () => resolveTranslationModule(import('./Messages_pl_PL.json')),
+  pt_PT: () => resolveTranslationModule(import('./Messages_pt_PT.json')),
+} satisfies Record<LocaleType, TranslationLoaderType>;
 
-const translationLoaders: Record<string, () => Promise<{ default: Resource }>> = {
-  de_DE: () => import('./Messages_de_DE.json') as unknown as Promise<{ default: Resource }>,
-  en_GB: () => import('./Messages_en_GB.json') as unknown as Promise<{ default: Resource }>,
-  es_ES: () => import('./Messages_es_ES.json') as unknown as Promise<{ default: Resource }>,
-  fr_CA: () => import('./Messages_fr_CA.json') as unknown as Promise<{ default: Resource }>,
-  fr_FR: () => import('./Messages_fr_FR.json') as unknown as Promise<{ default: Resource }>,
-  it_IT: () => import('./Messages_it_IT.json') as unknown as Promise<{ default: Resource }>,
-  pl_PL: () => import('./Messages_pl_PL.json') as unknown as Promise<{ default: Resource }>,
-  pt_PT: () => import('./Messages_pt_PT.json') as unknown as Promise<{ default: Resource }>,
-};
-
-buildTranslationManager(translationLoaders, 'update-name-modal');
+buildTranslationManager(translationLoaders, 'update-name-modal' as const);
