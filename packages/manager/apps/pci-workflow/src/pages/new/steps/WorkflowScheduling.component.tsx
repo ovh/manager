@@ -22,9 +22,10 @@ import {
 } from '@ovhcloud/ods-react';
 
 import { Badge, RegionChipByType } from '@ovh-ux/manager-pci-common';
+import { convertHourlyPriceToMonthly, useCatalogPrice } from '@ovh-ux/manager-react-components';
 
 import { TInstance } from '@/api/hooks/instance/selector/instances.selector';
-import { useInstanceSnapshotPricing } from '@/api/hooks/order';
+import { useInstanceSnapshotPricing } from '@/api/hooks/order/order';
 import { ButtonLink } from '@/components/button-link/ButtonLink.component';
 import { useSafeParam } from '@/hooks/useSafeParam';
 import { CronInput } from '@/pages/new/components/CronInput.component';
@@ -80,6 +81,10 @@ export function WorkflowScheduling({ step, onSubmit, instanceId }: Readonly<Sche
   const projectId = useSafeParam('projectId');
   const { distantContinents } = useInstanceSnapshotPricing(projectId, instanceId);
 
+  const { getFormattedCatalogPrice } = useCatalogPrice(3, {
+    hideTaxLabel: true,
+  });
+
   const [schedule, setSchedule] = useState<TWorkflowScheduling>(ROTATE_7);
   const [distantBackup, setDistantBackup] = useState<boolean>(false);
   const [distantRegion, setDistantRegion] = useState<string | null>(null);
@@ -88,22 +93,19 @@ export function WorkflowScheduling({ step, onSubmit, instanceId }: Readonly<Sche
 
   const distantContinentsComboboxItems = useMemo<ComboboxGroupItem[]>(
     () =>
-      distantContinents
-        .entries()
-        .map(([continent, regions]) => ({
-          label: continent,
-          options: regions.map((region) => ({
-            label: region.label,
-            value: region.name,
-          })),
-        }))
-        .toArray(),
+      Array.from(distantContinents.entries()).map(([continent, regions]) => ({
+        label: continent,
+        options: regions.map((region) => ({
+          label: region.label,
+          value: region.name,
+        })),
+      })),
     [distantContinents],
   );
 
   const comboboxRegionRender = useMemo<ComboboxProp['customOptionRenderer']>(() => {
     const regionsById = new Map(
-      distantContinents.values().flatMap((regions) => regions.map((r) => [r.name, r])),
+      Array.from(distantContinents.values()).flatMap((regions) => regions.map((r) => [r.name, r])),
     );
 
     // Not a React component
@@ -126,11 +128,21 @@ export function WorkflowScheduling({ step, onSubmit, instanceId }: Readonly<Sche
   const showActivateRegionWarning = useMemo(
     () =>
       !!distantRegion &&
-      !!distantContinents
-        .values()
-        .find((regions) => regions.find((r) => r.name === distantRegion)?.enabled === false),
+      !!Array.from(distantContinents.values()).find(
+        (regions) => regions.find((r) => r.name === distantRegion)?.enabled === false,
+      ),
     [distantRegion, distantContinents],
   );
+
+  const distantRegionPrice = useMemo(() => {
+    const region = new Map(
+      Array.from(distantContinents.values()).flatMap((regions) => regions.map((r) => [r.name, r])),
+    ).get(distantRegion);
+
+    return region?.price
+      ? getFormattedCatalogPrice(convertHourlyPriceToMonthly(region.price))
+      : null;
+  }, [distantRegion, distantContinents, getFormattedCatalogPrice]);
 
   const handleDistantRegionChange = (changeDetails: ComboboxValueChangeDetails) =>
     setDistantRegion(changeDetails.value[0] ?? null);
@@ -213,6 +225,21 @@ export function WorkflowScheduling({ step, onSubmit, instanceId }: Readonly<Sche
                   <ComboboxContent className="max-h-52 overflow-y-scroll" />
                 </Combobox>
               </FormField>
+
+              {distantRegion && (
+                <div className="mt-5">
+                  <Text>
+                    {t('pci_workflow_create_price_title')}
+                    <span className="font-bold">
+                      {distantRegionPrice
+                        ? t('pci_workflow_create_price_monthly', {
+                            price: distantRegionPrice,
+                          })
+                        : t('pci_workflow_create_price_not_available')}
+                    </span>
+                  </Text>
+                </div>
+              )}
 
               {showActivateRegionWarning && (
                 <Message className={'mt-6'} color={'warning'} dismissible={false}>

@@ -4,12 +4,18 @@ import { describe, it, vi } from 'vitest';
 
 import { renderWithMockedWrappers } from '@/__tests__/renderWithMockedWrappers';
 import { buildInstanceId } from '@/api/hooks/instance/selector/instances.selector';
-import { ContinentRegion, useInstanceSnapshotPricing } from '@/api/hooks/order';
+import { ContinentRegion, useInstanceSnapshotPricing } from '@/api/hooks/order/order';
 import { StepState } from '@/pages/new/hooks/useStep';
 
 import { WorkflowScheduling } from './WorkflowScheduling.component';
 
-vi.mock('@/api/hooks/order');
+vi.mock('@/api/hooks/order/order');
+vi.mock('@ovh-ux/manager-react-components', () => ({
+  convertHourlyPriceToMonthly: vi.fn(),
+  useCatalogPrice: vi.fn().mockReturnValue({
+    getFormattedCatalogPrice: (input: number) => `${input}`,
+  }),
+}));
 
 describe('WorkflowScheduling Component', () => {
   const mockOnSubmit = vi.fn();
@@ -90,14 +96,24 @@ describe('WorkflowScheduling Component', () => {
   it('can select distant region when distantContinents is provided', async () => {
     vi.mocked(useInstanceSnapshotPricing).mockReturnValue({
       distantContinents: new Map<string, ContinentRegion[]>([
-        ['Europe', [{ label: 'Region 1', name: 'region1', enabled: true } as ContinentRegion]],
+        [
+          'Europe',
+          [
+            {
+              label: 'Region 1',
+              name: 'region1',
+              enabled: true,
+              price: 1500,
+            } as ContinentRegion,
+          ],
+        ],
       ]),
       pricing: null,
       isPending: false,
     });
 
     const user = userEvent.setup();
-    const { getByLabelText, getByRole } = renderWithMockedWrappers(
+    const { getByLabelText, getByRole, findByText } = renderWithMockedWrappers(
       <WorkflowScheduling
         step={stepUnlocked as StepState}
         onSubmit={mockOnSubmit}
@@ -106,7 +122,7 @@ describe('WorkflowScheduling Component', () => {
     );
 
     const distantToggle = getByLabelText(/pci_workflow_create_distant_label/);
-    expect(distantToggle).toBeInTheDocument();
+    expect(distantToggle).toBeVisible();
 
     await act(async () => {
       await user.click(distantToggle);
@@ -114,14 +130,19 @@ describe('WorkflowScheduling Component', () => {
 
     // ODS 19 combobox labels are broken so we get by role hidden instead
     const distantRegion = getByRole('combobox');
-    expect(distantRegion).toBeInTheDocument();
+    expect(distantRegion).toBeVisible();
 
     await act(async () => {
       await user.click(distantRegion);
     });
 
     // We only test if the option is here because ODS a11y doesn't work and doesn't trigger a value change
-    const region1Option = getByRole('option', { name: 'Region 1', hidden: true });
-    expect(region1Option).toBeInTheDocument();
+    const region1Option = getByRole('option', { name: 'Region 1' });
+    expect(region1Option).toBeVisible();
+
+    // It would have been better to use user.click on the element but it doesn't work
+    act(() => region1Option.click());
+
+    expect(await findByText('pci_workflow_create_price_monthly')).toBeVisible();
   });
 });
