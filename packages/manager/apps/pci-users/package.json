@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-users-app",
-  "version": "0.17.21",
+  "version": "0.17.22",
   "private": true,
   "description": "PCI Users react app",
   "type": "module",

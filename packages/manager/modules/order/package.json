@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-module-order",
-  "version": "0.11.8",
+  "version": "0.11.9",
   "private": true,
   "description": "OVHcloud manager module order.",
   "repository": {
