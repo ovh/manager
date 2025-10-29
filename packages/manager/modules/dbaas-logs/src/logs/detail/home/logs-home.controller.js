@@ -44,22 +44,19 @@ export default class LogsHomeCtrl {
 
   $onInit() {
     this.lastUpdatedDate = moment(this.service.updatedAt).format('LL');
-    if (this.service.state === this.LogsConstants.SERVICE_STATE_TO_CONFIG) {
-      this.goToAccountSetupPage();
-    } else {
-      this.streamUsageGraphData = new this.ChartFactory(
-        this.newChart('stream-axis'),
-      );
-      this.archiveUsageGraphData = new this.ChartFactory(
-        this.newChart('archive-axis'),
-      );
-      this.indiceUsageGraphData = new this.ChartFactory(
-        this.newChart('indice-axis'),
-      );
-      this.prepareDataUsageGraphData();
-      this.canAccessToElasticsearch =
-        this.indexIds.length + this.aliasIds.length > 0;
-    }
+
+    this.streamUsageGraphData = new this.ChartFactory(
+      this.newChart('stream-axis'),
+    );
+    this.archiveUsageGraphData = new this.ChartFactory(
+      this.newChart('archive-axis'),
+    );
+    this.indiceUsageGraphData = new this.ChartFactory(
+      this.newChart('indice-axis'),
+    );
+    this.prepareDataUsageGraphData();
+    this.canAccessToElasticsearch =
+      this.indexIds.length + this.aliasIds.length > 0;
   }
 
   getPlanName() {
@@ -100,10 +97,6 @@ export default class LogsHomeCtrl {
         },
       },
     };
-  }
-
-  goToAccountSetupPage() {
-    return this.gotoState('dbaas-logs.detail.setup');
   }
 
   /**
@@ -193,15 +186,15 @@ export default class LogsHomeCtrl {
   }
 
   changeName() {
-    return this.gotoState('dbaas-logs.detail.home.account');
+    return this.goToState('dbaas-logs.detail.home.account');
   }
 
   goToAllStreams() {
-    return this.gotoState('dbaas-logs.detail.streams');
+    return this.goToState('dbaas-logs.detail.streams');
   }
 
   goToAllDashboards() {
-    return this.gotoState('dbaas-logs.detail.dashboards');
+    return this.goToState('dbaas-logs.detail.dashboards');
   }
 
   /**
@@ -210,7 +203,7 @@ export default class LogsHomeCtrl {
    * @memberof LogsHomeCtrl
    */
   editTokens() {
-    return this.gotoState('dbaas-logs.detail.tokens');
+    return this.goToState('dbaas-logs.detail.tokens');
   }
 
   /**
@@ -219,7 +212,7 @@ export default class LogsHomeCtrl {
    * @memberof LogsHomeCtrl
    */
   editEncryptionKeys() {
-    return this.gotoState('dbaas-logs.detail.encryption-keys.home');
+    return this.goToState('dbaas-logs.detail.encryption-keys.home');
   }
 
   /**
@@ -231,7 +224,7 @@ export default class LogsHomeCtrl {
     this.openChangePasswordModal();
   }
 
-  gotoState(state) {
+  goToState(state) {
     return this.$state.go(state, {
       serviceName: this.serviceName,
     });
