@@ -80,16 +80,19 @@ export const RuleDatagrid: React.FC = () => {
     },
   ];
 
-  return (
-    <Datagrid
-      size={ODS_TABLE_SIZE.sm}
-      columns={columns}
-      items={
-        (isNewRuleRowDisplayed ? [{ isNew: true }, ...rules] : rules) || []
-      }
-      totalItems={rules?.length + (showNewRuleRow ? 1 : 0)}
-      isLoading={isLoading || isRulesLoading}
-      numberOfLoadingRows={5}
-    />
-  );
+  const datagrid = React.useMemo(() => {
+    return (
+      <Datagrid
+        size={ODS_TABLE_SIZE.sm}
+        columns={columns}
+        items={
+          (isNewRuleRowDisplayed ? [{ isNew: true }, ...rules] : rules) || []
+        }
+        totalItems={rules?.length + (showNewRuleRow ? 1 : 0)}
+        isLoading={isLoading || isRulesLoading}
+        numberOfLoadingRows={5}
+      />
+    );
+  }, [isNewRuleRowDisplayed, isLoading, isRulesLoading, JSON.stringify(rules)]);
+  return datagrid;
 };
