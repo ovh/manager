@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { usePrefetchQuery, useQueries } from '@tanstack/react-query';
 
@@ -10,12 +10,15 @@ import {
 
 import { useIsDistantBackupAvailable } from '@/api/hooks/feature';
 import { TInstance } from '@/api/hooks/instance/selector/instances.selector';
+import { getRegionPricing } from '@/api/hooks/order/selector/order.selector';
 import { useRegionTranslation } from '@/api/hooks/region';
 import { useMe } from '@/api/hooks/user';
 import { isSnapshotConsumption } from '@/pages/new/utils/is-snapshot-consumption';
+import { groupBy } from '@/utils';
 
 export type ContinentRegion = Pick<TProductAvailabilityRegion, 'enabled' | 'name' | 'type'> & {
   label: string;
+  price: number | null;
 };
 
 export const useInstanceSnapshotPricing = (projectId: string, instanceId: TInstance['id']) => {
@@ -32,33 +35,25 @@ export const useInstanceSnapshotPricing = (projectId: string, instanceId: TInsta
     ],
   });
 
-  const snapshotPlan = useMemo(
-    () =>
-      snapshotAvailabilities?.plans.find(
-        ({ code, regions }) =>
-          isSnapshotConsumption(code) && regions.find((r) => r.name === instanceId.region),
-      ),
-    [snapshotAvailabilities, instanceId.region],
-  );
+  const currentRegion = useMemo(() => {
+    const currentPlan = snapshotAvailabilities?.plans.find(
+      ({ code, regions }) =>
+        isSnapshotConsumption(code) && regions.find((r) => r.name === instanceId.region),
+    );
 
-  const catalogAddon = useMemo(
-    () => catalog?.addons.find(({ planCode }) => planCode === snapshotPlan.code),
-    [catalog, snapshotPlan],
-  );
+    return currentPlan?.regions.find((r) => r.name === instanceId.region);
+  }, [snapshotAvailabilities, instanceId]);
 
-  const currentRegion = useMemo(
-    () => snapshotPlan?.regions.find((r) => r.name === instanceId.region),
-    [snapshotPlan, instanceId],
-  );
+  const regionPriceCalculator = useCallback(getRegionPricing(snapshotAvailabilities, catalog), [
+    snapshotAvailabilities,
+    catalog,
+  ]);
 
   return {
     isPending: !snapshotAvailabilities || !catalog,
     pricing: useMemo(
-      () =>
-        catalogAddon?.pricings.find(
-          ({ intervalUnit }) => intervalUnit === 'none' || intervalUnit === 'hour',
-        ) ?? null,
-      [catalogAddon],
+      () => regionPriceCalculator(instanceId.region),
+      [instanceId, regionPriceCalculator],
     ),
     distantContinents: useMemo(() => {
       if (
@@ -70,7 +65,7 @@ export const useInstanceSnapshotPricing = (projectId: string, instanceId: TInsta
       )
         return new Map<string, ContinentRegion[]>();
 
-      return Map.groupBy(
+      return groupBy(
         snapshotAvailabilities.plans
           .filter(({ code }) => isSnapshotConsumption(code))
           .flatMap((p) => p.regions)
@@ -83,6 +78,7 @@ export const useInstanceSnapshotPricing = (projectId: string, instanceId: TInsta
           .map((r) => ({
             ...r,
             label: translateMicroRegion(r.name) || r.name,
+            price: regionPriceCalculator(r.name)?.price,
           })),
         (r) => translateContinent(r.name) || 'Internal',
       );
@@ -93,6 +89,7 @@ export const useInstanceSnapshotPricing = (projectId: string, instanceId: TInsta
       translateMicroRegion,
       translateContinent,
       isDistantBackupAvailable,
+      regionPriceCalculator,
     ]),
   };
 };

@@ -21,7 +21,7 @@ import {
 import { convertHourlyPriceToMonthly, useCatalogPrice } from '@ovh-ux/manager-react-components';
 
 import { TInstance } from '@/api/hooks/instance/selector/instances.selector';
-import { useInstanceSnapshotPricing } from '@/api/hooks/order';
+import { useInstanceSnapshotPricing } from '@/api/hooks/order/order';
 import { StepState } from '@/pages/new/hooks/useStep';
 
 interface WorkflowNameProps {
