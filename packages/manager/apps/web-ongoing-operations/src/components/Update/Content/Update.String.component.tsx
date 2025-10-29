@@ -1,7 +1,12 @@
 import React, { useRef, useState } from 'react';
-import { OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
+import {
+  FormField,
+  FormFieldError,
+  FormFieldLabel,
+  Input,
+  INPUT_TYPE,
+} from '@ovhcloud/ods-react';
 import { editableArgument } from '@/constants';
 
 interface UpdateStringComponentProps {
@@ -44,22 +49,21 @@ export default function UpdateStringComponent({
   };
 
   return (
-    <OdsFormField data-testid="field-name" error={error}>
-      <label slot="label">
-        {t(`domain_operations_update_key_${argumentKey}`)}
-      </label>
-
-      <OdsInput
-        type={ODS_INPUT_TYPE.text}
-        id={argumentKey}
-        value={inputValue}
-        name={argumentKey}
-        onOdsChange={({ detail }) => {
-          handleChange(detail.value as string);
-        }}
-        data-testid={`input-${argumentKey}`}
-        hasError={!!error}
-      ></OdsInput>
-    </OdsFormField>
+    <div>
+      <FormField className="w-1/4" invalid={error?.length > 0}>
+        <FormFieldLabel>
+          {t(`domain_operations_update_key_${argumentKey}`)}
+        </FormFieldLabel>
+        <Input
+          id={argumentKey}
+          name={argumentKey}
+          type={INPUT_TYPE.text}
+          value={inputValue}
+          data-testid={`input-${argumentKey}`}
+          onChange={(detail) => handleChange(detail.target.value)}
+        />
+        <FormFieldError className="text-sm">{error}</FormFieldError>
+      </FormField>
+    </div>
   );
 }
