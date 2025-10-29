@@ -90,6 +90,10 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
   ActionMenuItem: {},
 }));
 
+vi.mock('@/routes/Routes.utils', () => ({
+  getDeleteTenantUrl: (tenantId: string) => `/metrics/tenants/delete/${tenantId}`,
+}));
+
 describe('TenantsListActions', () => {
   const testTenantId: string = 'test-tenant-123';
 
