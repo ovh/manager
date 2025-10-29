@@ -35,5 +35,9 @@
   "pci_instance_creation_select_new_region_title": "Scegli una nuova regione",
   "pci_instance_creation_select_new_region_label": "Selezionare una regione",
   "pci_instance_creation_select_new_region_for_flavor": "Questo modello <strong>({{ flavor }})</strong> non è disponibile nella tua <strong>regione selezionata</strong>. Tuttavia, puoi selezionarlo, ma dovrai scegliere un'altra regione disponibile per questo modello.",
-  "pci_instance_creation_select_new_region": "Seleziona una regione"
+  "pci_instance_creation_select_new_region": "Seleziona una regione",
+  "pci_instance_creation_select_image_title": "Seleziona un'immagine",
+  "pci_instance_creation_select_image_help_title": "ISO",
+  "pci_instance_creation_select_image_help_text": "Le immagini disponibili in questo passaggio dipendono dalle scelte effettuate nei passaggi precedenti, ovvero dalla compatibilità con il modello di istanza e dalla disponibilità regionale. Ad esempio, se desideri selezionare un sistema operativo Windows e non ci sono distribuzioni Windows disponibili, devi modificare le tue scelte nei passaggi precedenti.",
+  "pci_instance_creation_select_image_life_cycle_help_label": "Ciclo di vita di una distribuzione presso OVH"
 }
