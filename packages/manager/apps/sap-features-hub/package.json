@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sap-features-hub-app",
-  "version": "0.5.14",
+  "version": "0.5.15",
   "private": true,
   "description": "Manage SAP workloads in HostedPrivateCloud",
   "repository": {
