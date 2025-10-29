@@ -37,8 +37,16 @@
                     data-filterable
                 >
                     <a
+                        data-ng-if=":: $row.state !== ctrl.LogsConstants.SERVICE_STATE_TO_CONFIG"
                         class="oui-button oui-button_ghost"
                         data-ui-sref="dbaas-logs.detail({serviceName: $row.serviceName})"
+                    >
+                        <span>{{$row.name}}</span>
+                    </a>
+                    <a
+                        data-ng-if=":: $row.state === ctrl.LogsConstants.SERVICE_STATE_TO_CONFIG"
+                        class="oui-button oui-button_ghost"
+                        data-ui-sref="dbaas-logs.list.account-setup({serviceName: $row.serviceName})"
                     >
                         <span>{{$row.name}}</span>
                     </a>
@@ -83,7 +91,13 @@
                 </oui-datagrid-column>
                 <oui-action-menu compact data-placement="end">
                     <oui-action-menu-item
+                        data-ng-if=":: $row.state !== ctrl.LogsConstants.SERVICE_STATE_TO_CONFIG"
                         data-ui-sref="dbaas-logs.detail({serviceName: $row.serviceName})"
+                        ><span data-translate="logs_accounts_details"></span
+                    ></oui-action-menu-item>
+                    <oui-action-menu-item
+                        data-ng-if=":: $row.state === ctrl.LogsConstants.SERVICE_STATE_TO_CONFIG"
+                        data-ui-sref="dbaas-logs.list.account-setup({serviceName: $row.serviceName})"
                         ><span data-translate="logs_accounts_details"></span
                     ></oui-action-menu-item>
                     <oui-action-menu-item
