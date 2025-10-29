@@ -5,6 +5,7 @@ import order from '@/types/Order';
 
 const HOUR_IN_MONTH = 730;
 const MEGA_BYTES = 1024;
+
 const OrderPricing = ({
   pricings,
 }: {
@@ -42,36 +43,6 @@ const OrderPricing = ({
               </TableCell>
             </TableRow>
           )}
-          {pricings.replication && (
-            <TableRow className="text-xs">
-              <TableCell className="px-0 align-top">
-                {t('pricing_option_replication_label')}
-              </TableCell>
-              <TableCell className="text-right px-0">
-                <Price
-                  className="flex flex-row justify-end items-center flex-wrap gap-2"
-                  decimals={2}
-                  priceInUcents={toHourlyTo(
-                    pricings.replication.pricings[0].price,
-                  )}
-                  taxInUcents={toHourlyTo(pricings.replication.pricings[0].tax)}
-                />
-              </TableCell>
-            </TableRow>
-          )}
-          <TableRow>
-            <TableCell className="font-semibold text-text px-0 align-top">
-              {t('total_monthly_label')}
-            </TableCell>
-            <TableCell className="text-right px-0">
-              <Price
-                className="flex flex-row justify-end items-center flex-wrap gap-2"
-                decimals={2}
-                priceInUcents={toHourlyTo(total.price)}
-                taxInUcents={toHourlyTo(total.tax)}
-              />
-            </TableCell>
-          </TableRow>
         </TableBody>
       </Table>
     </div>
