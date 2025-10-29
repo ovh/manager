@@ -4,12 +4,12 @@ import { vi } from 'vitest';
 import { useCatalogPrice, useMe } from '@ovh-ux/manager-react-components';
 
 import { buildInstanceId } from '@/api/hooks/instance/selector/instances.selector';
-import { useInstanceSnapshotPricing } from '@/api/hooks/order';
+import { useInstanceSnapshotPricing } from '@/api/hooks/order/order';
 
 import { WorkflowName } from './WorkflowName.component';
 
 vi.mock('@ovh-ux/manager-react-components');
-vi.mock('@/api/hooks/order');
+vi.mock('@/api/hooks/order/order');
 
 describe('WorkflowName', () => {
   beforeEach(() => {

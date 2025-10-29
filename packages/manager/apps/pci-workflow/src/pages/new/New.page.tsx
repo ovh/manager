@@ -21,7 +21,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 
 import { usePrefetchInstances } from '@/api/hooks/instance/useInstances';
-import { usePrefetchSnapshotPricing } from '@/api/hooks/order';
+import { usePrefetchSnapshotPricing } from '@/api/hooks/order/order';
 import { useAddWorkflow } from '@/api/hooks/workflows';
 import { useSafeParam } from '@/hooks/useSafeParam';
 
