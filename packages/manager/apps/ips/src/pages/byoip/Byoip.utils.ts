@@ -4,6 +4,9 @@ import {
   BYOIP_FAILOVER_V4,
   BYOIP_PRODUCT_ID,
 } from '@/data/hooks/catalog';
+import { ipFormatter } from '@/utils';
+import { IpDetails } from '@/data/api';
+import { IpTypeEnum } from '@/data/constants';
 
 export const getConfigValues = (
   configs: ProductConfiguration[] = [],
@@ -52,3 +55,64 @@ export const getByoipProductSettings = (config: ConfigItem[]) =>
     quantity: 1,
     productId: BYOIP_PRODUCT_ID,
   });
+
+export function canAggregateByoipIp({
+  parentIpGroup = '',
+  ip,
+  isByoipSlice,
+  ipDetails,
+}: {
+  parentIpGroup?: string;
+  ip: string;
+  isByoipSlice: boolean;
+  ipDetails: IpDetails;
+}) {
+  const { range: parentIpRangeStr } = ipFormatter(parentIpGroup);
+  const { range: rangeStr, isGroup } = ipFormatter(ip);
+  const parentIpRange = parseInt(parentIpRangeStr, 10);
+  const range = parseInt(rangeStr, 10);
+
+  if (!ipDetails?.bringYourOwnIp) {
+    return false;
+  }
+
+  if (isByoipSlice) {
+    return parentIpRange > 24 && parentIpRange < 31;
+  }
+
+  return !isGroup || (range > 24 && range < 31);
+}
+
+export function canSliceByoipIp({
+  ip,
+  isByoipSlice,
+  ipDetails,
+}: {
+  ip: string;
+  isByoipSlice: boolean;
+  ipDetails: IpDetails;
+}) {
+  const { range: rangeStr, isGroup } = ipFormatter(ip);
+  const range = parseInt(rangeStr, 10);
+  return ipDetails?.bringYourOwnIp && !isByoipSlice && isGroup && range < 32;
+}
+
+export function canTerminateByoipIp({
+  parentIpGroup,
+  isByoipSlice,
+  ipDetails,
+}: {
+  parentIpGroup?: string;
+  isByoipSlice: boolean;
+  ipDetails: IpDetails;
+}) {
+  return (
+    !!ipDetails?.canBeTerminated &&
+    ipDetails.bringYourOwnIp &&
+    !parentIpGroup &&
+    [IpTypeEnum.ADDITIONAL, IpTypeEnum.PCC, IpTypeEnum.VRACK].includes(
+      ipDetails?.type,
+    ) &&
+    !isByoipSlice
+  );
+}

@@ -19,6 +19,11 @@ import {
   useIpHasVmac,
   useIpHasAlerts,
 } from '@/data/hooks';
+import {
+  canAggregateByoipIp,
+  canSliceByoipIp,
+  canTerminateByoipIp,
+} from '@/pages/byoip/Byoip.utils';
 
 export type IpActionsCellParams = {
   ip: string;
@@ -88,8 +93,7 @@ export const IpActionsCell = ({
   } = useContext(ListingContext);
   const { shell } = useContext(ShellContext);
   const [vrackPage, setVrackPage] = useState('');
-  const { ipAddress, ipGroup, isGroup, range } = ipFormatter(ip);
-  const { range: parentIpRange } = ipFormatter(parentIpGroup || '');
+  const { ipAddress, ipGroup, isGroup } = ipFormatter(ip);
   const parentId = fromIpToId(parentIpGroup || ipGroup);
   const id = fromIpToId(ipAddress);
   const { ipDetails, isLoading } = useGetIpdetails({
@@ -319,38 +323,37 @@ export const IpActionsCell = ({
               )}?${search.toString()}`,
           ),
       },
-    ipDetails?.bringYourOwnIp &&
-      !isByoipSlice &&
-      isGroup &&
-      parseInt(range, 10) < 32 && {
-        id: 11,
-        label: t('listingActionSlice'),
-        isDisabled:
-          onGoingSlicedIps?.includes(ip) || onGoingAggregatedIps?.includes(ip),
-        onClick: () =>
-          navigate(
-            `${urls.slice.replace(
-              urlDynamicParts.parentId,
-              parentId,
-            )}?${search.toString()}`,
-          ),
-      },
-    ipDetails?.bringYourOwnIp &&
-      (isByoipSlice
-        ? parseInt(parentIpRange, 10) > 24 && parseInt(parentIpRange, 10) < 31
-        : parseInt(range, 10) > 24 && parseInt(range, 10) < 31) && {
-        id: 12,
-        label: t('listingActionAggregate'),
-        isDisabled:
-          onGoingSlicedIps?.includes(ip) || onGoingAggregatedIps?.includes(ip),
-        onClick: () =>
-          navigate(
-            `${urls.aggregate.replace(
-              urlDynamicParts.parentId,
-              parentId,
-            )}?${search.toString()}`,
-          ),
-      },
+    canSliceByoipIp({ isByoipSlice, ip, ipDetails }) && {
+      id: 11,
+      label: t('listingActionSlice'),
+      isDisabled:
+        onGoingSlicedIps?.includes(ip) || onGoingAggregatedIps?.includes(ip),
+      onClick: () =>
+        navigate(
+          `${urls.slice.replace(
+            urlDynamicParts.parentId,
+            parentId,
+          )}?${search.toString()}`,
+        ),
+    },
+    canAggregateByoipIp({
+      isByoipSlice,
+      ip,
+      parentIpGroup,
+      ipDetails,
+    }) && {
+      id: 12,
+      label: t('listingActionAggregate'),
+      isDisabled:
+        onGoingSlicedIps?.includes(ip) || onGoingAggregatedIps?.includes(ip),
+      onClick: () =>
+        navigate(
+          `${urls.aggregate.replace(
+            urlDynamicParts.parentId,
+            parentId,
+          )}?${search.toString()}`,
+        ),
+    },
     !!ipDetails?.canBeTerminated &&
       !ipDetails.bringYourOwnIp &&
       !parentIpGroup &&
@@ -370,24 +373,22 @@ export const IpActionsCell = ({
             )}?${search.toString()}`,
           ),
       },
-    !!ipDetails?.canBeTerminated &&
-      ipDetails.bringYourOwnIp &&
-      !parentIpGroup &&
-      [IpTypeEnum.ADDITIONAL, IpTypeEnum.PCC, IpTypeEnum.VRACK].includes(
-        ipDetails?.type,
-      ) &&
-      !isByoipSlice && {
-        id: 14,
-        label: t('listingActionByoipTerminate'),
-        isLoading,
-        onClick: () =>
-          navigate(
-            `${urls.listingByoipTerminate.replace(
-              urlDynamicParts.id,
-              id,
-            )}?${search.toString()}`,
-          ),
-      },
+    canTerminateByoipIp({
+      ipDetails,
+      parentIpGroup,
+      isByoipSlice,
+    }) && {
+      id: 14,
+      label: t('listingActionByoipTerminate'),
+      isLoading,
+      onClick: () =>
+        navigate(
+          `${urls.listingByoipTerminate.replace(
+            urlDynamicParts.id,
+            id,
+          )}?${search.toString()}`,
+        ),
+    },
   ].filter(Boolean);
 
   return (
