@@ -11,6 +11,18 @@ vi.mock('@/hooks/breadcrumb/useBreadcrumb', () => ({
 }));
 
 describe('Breadcrumb component - behavior', () => {
+  it.skip('should not have any accessibility violations', async () => {
+    const { container } = renderBreadcrumb({ hideRootLabel: false });
+    await expect(container).toBeAccessible();
+  });
+
+  it.skip('should have a valid html', async () => {
+    const { container } = renderBreadcrumb({ hideRootLabel: false });
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+
   it('renders 3 breadcrumb items when hideRootLabel is false', () => {
     const { container } = renderBreadcrumb({ hideRootLabel: false });
     const items = container.querySelectorAll('li');

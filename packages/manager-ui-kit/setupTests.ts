@@ -4,6 +4,9 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { vi } from 'vitest';
 
+import '@ovh-ux/manager-static-analysis-kit/tests/html-a11y-tests-setup';
+import '@ovh-ux/manager-static-analysis-kit/tests/html-w3c-tests-setup';
+
 import ActionMenuTransFR from './src/components/action-menu/translations/Messages_fr_FR.json';
 import DatagridTransFR from './src/components/datagrid/translations/Messages_fr_FR.json';
 import FiltersTransFR from './src/components/filters/translations/Messages_fr_FR.json';
