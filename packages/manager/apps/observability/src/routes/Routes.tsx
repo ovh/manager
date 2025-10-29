@@ -3,17 +3,19 @@ import React from 'react';
 import { Navigate, Route } from 'react-router-dom';
 
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 
 import NotFound from '@/pages/not-found/404.page';
 
 import { redirectionApp, subroutes, urls } from './Routes.constants';
+import { DeleteTenantModal, TenantsPage } from './lazy-parallel/tenants/listing.lazy';
 
 const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 
 const DashboardsPage = React.lazy(() => import('@/pages/dashboards/Dashboards.page'));
 
 const TenantsLayoutPage = React.lazy(() => import('@/pages/tenants/Tenants.layout'));
-const TenantsPage = React.lazy(() => import('@/pages/tenants/TenantsListing.page'));
+
 const OnboardingTenantPage = React.lazy(() => import('@/pages/tenants/TenantsOnboarding.page'));
 const OnboardingServicePage = React.lazy(() => import('@/pages/metrics/OnboardingService.page'));
 
@@ -65,14 +67,25 @@ export default (
         {/* Tenants routes */}
         <Route path={subroutes.tenants}>
           <Route
-            index
+            path=""
             Component={TenantsPage}
             handle={{
               tracking: {
                 pageName: 'tenants',
               },
             }}
-          />
+          >
+            <Route
+              path={`${subroutes.delete}`}
+              Component={DeleteTenantModal}
+              handle={{
+                tracking: {
+                  pageName: 'tenant-delete',
+                  pageType: PageType.popup,
+                },
+              }}
+            />
+          </Route>
           <Route
             path={subroutes.onboarding}
             Component={OnboardingTenantPage}
