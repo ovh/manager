@@ -2,11 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
-import {
-  ODS_SPINNER_SIZE,
-  ODS_TABLE_SIZE,
-  ODS_TABLE_VARIANT,
-} from '@ovhcloud/ods-components';
+import { ODS_SPINNER_SIZE, ODS_TABLE_SIZE } from '@ovhcloud/ods-components';
 import {
   DataGridTextCell,
   Datagrid,
@@ -116,7 +112,6 @@ export const ManageOrganisationsDatagrid: React.FC = () => {
           <Datagrid
             className="pb-[200px] -mx-6"
             size={ODS_TABLE_SIZE.sm}
-            variant={ODS_TABLE_VARIANT.striped}
             columns={columns}
             items={paginatedOrgList}
             totalItems={orgDetails?.length}
