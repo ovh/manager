@@ -174,6 +174,18 @@ export default /* @ngInject */ ($stateProvider) => {
               'dedicated-cloud:customerSurveyBanner',
             ),
           ),
+      customerVcfaasMigrationBannerAvailability: /* @ngInject */ (
+        ovhFeatureFlipping,
+      ) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability(
+            'dedicated-cloud:customerVcfaasMigrationBanner',
+          )
+          .then((featureAvailability) =>
+            featureAvailability.isFeatureAvailable(
+              'dedicated-cloud:customerVcfaasMigrationBanner',
+            ),
+          ),
 
       zertoGlobalStatus: /* @ngInject */ (
         currentZerto,
