@@ -6,7 +6,8 @@ export type VCDDatacentreTargetSpec = {
 };
 
 export type VCDDatacentreState = VCDDatacentreTargetSpec & {
-  commercialRange: string;
+  commercialRange: 'STANDARD' | 'NSX' | 'VSAN-NSX';
+  offerProfile?: 'STANDARD' | 'NSX';
   ipQuota: number;
   storageQuota: number;
   vCPUCount: number;
