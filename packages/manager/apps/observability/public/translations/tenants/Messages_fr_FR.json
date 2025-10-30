@@ -1,0 +1,39 @@
+{
+  "listing": {
+    "title": "Liste des tenants",
+    "endpoint_cell": "Endpoint",
+    "retention_cell": "Rétention",
+    "active_metrics_cell": "Métriques actifs",
+    "tags_cell": "Tags",
+    "clipboard_error_label": "Erreur",
+    "create_tenant_button": "Ajouter un nouveau tenant",
+    "details_action": "Details",
+    "access_grafana_action": "Accéder à Grafana",
+    "copy_uid_action": "Copier l'UID du tenant",
+    "generate_access_token_action": "Générer un jeton d'accès"
+  },
+  "delete": {
+    "delete_tenant_title": "Supprimer le Tenant",
+    "delete_tenant_description": "Êtes-vous sûr de vouloir supprimer le tenant {{tenantName}}"
+  },
+  "onboarding": {
+    "description": "Créez votre nouveau tenant pour continuer à explorer tout le potentiel des métriques d'observabilité. Vous pourrez envoyer des données, créer des tableaux de bord et configurer des alertes adaptées à vos besoins spécifiques.",
+    "orderButtonLabel": "Créez votre tenant"
+  },
+  "creation": {
+    "title": "Créer un tenant",
+    "tenantInformation": "Saisir les informations du tenant",
+    "namePlaceholder": "Nom du tenant", 
+    "description":"Description (optionnelle)",
+    "descriptionPlaceholder": "Ajoutez une description des metrics que vous allez écrire dans ce tenant"
+  },
+  "configuration": {
+    "title": "Configurez votre tenant",
+    "retention": "Rétention",
+    "retentionPlaceholder": "Sélectionnez la rétention des données",
+    "limit": {
+      "title": "Limite d'ingestion (métriques actives)",
+      "description": "Définissez la limite maximale du nombre de métriques actives pour ce tenant."
+    }
+  }
+}
