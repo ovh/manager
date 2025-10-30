@@ -4,6 +4,7 @@ import template from './ftp-backup-storage.html';
 export default {
   bindings: {
     onError: '&?',
+    serverRegion: '<',
   },
   controller,
   template,
