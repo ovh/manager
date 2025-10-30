@@ -3,13 +3,17 @@ import { useTranslation } from 'react-i18next';
 import { useGeneralBannerContext } from '@/contexts/GeneralBanner.context';
 import { Banner } from '@/components/banner/Banner.component';
 import { ButtonLink } from '@/components/button-link/ButtonLink';
+import { useIsFileStorageAlphaBannerAvailable } from '@/api/feature';
 
 export const FileStorageAlphaBanner = () => {
   const { t } = useTranslation(['general-banners']);
 
   const { addBanner, getBanner } = useGeneralBannerContext();
+  const isFileStorageAlphaBannerAvailable = useIsFileStorageAlphaBannerAvailable();
 
   useEffect(() => {
+    if (!isFileStorageAlphaBannerAvailable) return;
+
     addBanner('alpha_file_storage', ({ onRemove }) => (
       <Banner
         iconName="circle-info"
@@ -34,7 +38,7 @@ export const FileStorageAlphaBanner = () => {
         </div>
       </Banner>
     ));
-  }, []);
+  }, [isFileStorageAlphaBannerAvailable]);
 
   return getBanner('alpha_file_storage');
 };
