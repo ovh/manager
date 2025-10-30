@@ -55,5 +55,13 @@
   "version_state_delete": "Löschen",
   "version_state_deleted": "Gelöscht",
   "version_state_reactivate": "Reaktivieren",
-  "versions": "Versionen"
+  "versions": "Versionen",
+  "edit_metadata": "Einstellungen ändern",
+  "error_invalid_duration": "Die Ablaufzeit muss eine Dauer sein (z.B.: 30s, 5m, 2h, 7d, 7d1h30m10s)",
+  "error_update_settings": "Ein Fehler ist bei der Aktualisierung der Einstellungen aufgetreten",
+  "form_helper_cas_required_okms": "CAS ist für die Domain OKMS aktiviert, die Deaktivierung im Geheimnis wird nicht berücksichtigt.",
+  "form_helper_deactivate_version_after": "Geben Sie \"0s\" ein, um die Ablaufzeit zu deaktivieren.",
+  "form_helper_max_versions": "Geben Sie \"0\" ein, um den Standardwert ({{default}}) zu verwenden.",
+  "form_tooltip_deactivate_version_after": "Format: 30s, 5m, 2h, 7d, 7d1h30m10s",
+  "current_version": "Aktuelle Version"
 }
