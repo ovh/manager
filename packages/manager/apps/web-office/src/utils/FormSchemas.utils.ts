@@ -13,7 +13,7 @@ const looseOptional = <T extends z.ZodTypeAny>(schema: T) =>
   );
 
 // eslint-disable-next-line max-lines-per-function
-export const zForm = (t: typeof i18next.t) => {
+export const zForm = (t: typeof i18next.t, login?: string, automatiqueMode?: boolean) => {
   const formFieldError = t(`${NAMESPACES.FORM}:error_required_field`);
   const formFieldErrorMin = `${NAMESPACES.FORM}:error_min_chars`;
   const formFieldErrorMax = `${NAMESPACES.FORM}:error_max_chars`;
@@ -54,36 +54,26 @@ export const zForm = (t: typeof i18next.t) => {
     usageLocation: z.string(),
     domain: z.string(),
   });
-  const CHANGE_PASSWORD_USERS_FORM_SCHEMA = z
-    .object({
-      password: looseOptional(
-        z
-          .string()
-          .regex(PASSWORD_REGEX, t(`${NAMESPACES.FORM}:error_password`))
-          .min(8, t(formFieldErrorMin, { value: 8 }))
-          .max(16, t(formFieldErrorMax, { value: 16 })),
-      ),
-      confirmPassword: looseOptional(
-        z
-          .string()
-          .min(8, t(formFieldErrorMin, { value: 8 }))
-          .max(16, t(formFieldErrorMax, { value: 16 })),
-      ),
-      email: looseOptional(
-        z
-          .string()
-          .email(t(`${NAMESPACES.FORM}:error_email`))
-          .max(255)
-          .nullable(),
-      ),
+
+  const passwordSchema = z
+    .string()
+    .regex(PASSWORD_REGEX, t(`${NAMESPACES.FORM}:error_password`))
+    .regex(new RegExp(`^((?!${login}).)*$`), {
+      message: t('dashboard_users_change_password_helper3'),
     })
-    .refine(
-      (data) => data.confirmPassword === undefined || data.confirmPassword === data.password,
-      {
-        message: t(`${NAMESPACES.FORM}:error_confirm_password`),
-        path: ['confirmPassword'],
-      },
-    );
+    .min(8, t(formFieldErrorMin, { value: 8 }))
+    .max(16, t(formFieldErrorMax, { value: 16 }));
+
+  const emailSchema = z
+    .string()
+    .email(t(`${NAMESPACES.FORM}:error_email`))
+    .max(255)
+    .nullable();
+
+  const CHANGE_PASSWORD_USERS_FORM_SCHEMA = z.object({
+    password: automatiqueMode ? looseOptional(passwordSchema) : passwordSchema,
+    email: automatiqueMode ? emailSchema : looseOptional(emailSchema),
+  });
   return {
     EDIT_USERS_FORM_SCHEMA,
     POST_USERS_FORM_SCHEMA,

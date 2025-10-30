@@ -28,6 +28,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 
 import { CANCEL, CONFIRM, EDIT_PASSWORD } from '@/Tracking.constants';
+import { GeneratePasswordButton } from '@/components/generate-password-button/GeneratePasswordButton.component';
 import { UserChangePasswordType } from '@/data/api/ApiType';
 import { postUsersPassword } from '@/data/api/users/api';
 import { useGenerateUrl } from '@/hooks/generate-url/useGenerateUrl';
@@ -61,11 +62,12 @@ export default function ModalChangePasswordUsers() {
   } = useForm({
     defaultValues: {
       password: '',
-      confirmPassword: '',
       email: isAutomatic ? emailUser : '',
     },
     mode: 'onChange',
-    resolver: zodResolver(zForm(t).CHANGE_PASSWORD_USERS_FORM_SCHEMA),
+    resolver: zodResolver(
+      zForm(t, activationEmail.split('@')[0], isAutomatic).CHANGE_PASSWORD_USERS_FORM_SCHEMA,
+    ),
   });
 
   const { mutate: editPassword, isPending: isSending } = useMutation({
@@ -184,36 +186,23 @@ export default function ModalChangePasswordUsers() {
               render={({ field: { name, value, onBlur, onChange } }) => (
                 <OdsFormField className="mt-4" error={errors?.password?.message}>
                   <label slot="label">{t('dashboard_users_change_password_label_password')}*</label>
-                  <OdsPassword
-                    name={name}
-                    value={value}
-                    hasError={!!errors.password}
-                    onOdsBlur={onBlur}
-                    onOdsChange={onChange}
-                    data-testid="input-password"
-                    className="w-full"
-                  />
-                </OdsFormField>
-              )}
-            />
-
-            <Controller
-              control={control}
-              name="confirmPassword"
-              render={({ field: { name, value, onBlur, onChange } }) => (
-                <OdsFormField className="mt-4" error={errors?.confirmPassword?.message}>
-                  <label slot="label">
-                    {t('dashboard_users_change_password_label_confirm_password')}*
-                  </label>
-                  <OdsPassword
-                    name={name}
-                    value={value}
-                    hasError={!!errors.confirmPassword}
-                    onOdsBlur={onBlur}
-                    onOdsChange={onChange}
-                    data-testid="input-confirm-password"
-                    className="w-full"
-                  />
+                  <div className="flex flex-1 gap-4">
+                    <OdsPassword
+                      name={name}
+                      value={value}
+                      hasError={!!errors.password}
+                      onOdsBlur={onBlur}
+                      onOdsChange={onChange}
+                      data-testid="input-password"
+                      className="w-full"
+                    />
+                    <GeneratePasswordButton
+                      id="generate-password-btn"
+                      onGenerate={(password: string) => {
+                        setValue('password', password);
+                      }}
+                    />
+                  </div>
                 </OdsFormField>
               )}
             />
@@ -222,7 +211,10 @@ export default function ModalChangePasswordUsers() {
               <ul className="mt-0">
                 <li>{t(`${NAMESPACES.FORM}:min_chars`, { value: 8 })}</li>
                 <li>{t(`${NAMESPACES.FORM}:max_chars`, { value: 16 })}</li>
-                <li>{t(`${NAMESPACES.FORM}:change_password_helper2`)}</li>
+                <li>
+                  {t(`${NAMESPACES.FORM}:change_password_helper2`)} {'(~!$%^&*_-+=|():;"\'<>,.?)'}
+                </li>
+                <li>{t(`dashboard_users_change_password_helper3`)}</li>
               </ul>
             </OdsText>
           </>

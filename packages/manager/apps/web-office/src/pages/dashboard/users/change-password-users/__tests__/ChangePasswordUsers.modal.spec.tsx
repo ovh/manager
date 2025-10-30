@@ -46,15 +46,10 @@ describe('ModalChangePasswordUsers Component', () => {
       });
     });
     const inputPassword = getByTestId('input-password');
-    const inputConfirmPassword = getByTestId('input-confirm-password');
     expect(inputPassword).toBeVisible();
-    expect(inputConfirmPassword).toBeVisible();
 
     await act(() => {
       fireEvent.change(inputPassword, { target: { value: 'newPas$word123' } });
-      fireEvent.change(inputConfirmPassword, {
-        target: { value: 'newPas$word123' },
-      });
     });
     expect(saveButton).toHaveAttribute('is-disabled', 'false');
 
