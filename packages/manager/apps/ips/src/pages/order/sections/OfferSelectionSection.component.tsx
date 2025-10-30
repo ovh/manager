@@ -1,10 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  OvhSubsidiary,
-  getPrice,
-  getPriceTextFormatted,
-} from '@ovh-ux/manager-react-components';
+import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { getPrice, getPriceTextFormatted } from '@/components/price';
 import {
   OdsSelect,
   OdsText,

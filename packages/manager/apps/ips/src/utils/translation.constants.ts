@@ -15,4 +15,5 @@ export const TRANSLATION_NAMESPACES = {
   moveIp: 'move-ip',
   exportIpToCsv: 'export-ip-to-csv',
   aggregateSlice: 'aggregate-slice',
+  price: 'price',
 };

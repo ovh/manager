@@ -1,15 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsText } from '@ovhcloud/ods-components/react';
-
-import { IntervalUnitType } from '../../../enumTypes';
+import { IntervalUnitType } from '@ovh-ux/manager-react-components';
 import {
   getPrice,
   convertIntervalPrice,
   getPriceTextFormatted,
   PriceProps,
 } from './price.utils';
-import './translations/translations';
+import { TRANSLATION_NAMESPACES } from '@/utils';
 
 const TextPriceContent: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -22,8 +21,11 @@ export function Price({
   ovhSubsidiary,
   locale,
   isConvertIntervalUnit,
+  isStartingPrice,
+  suffix = '',
+  freePriceLabel,
 }: Readonly<PriceProps>) {
-  const { t } = useTranslation('price');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.price);
   const isAsiaFormat = ['ASIA', 'AU', 'IN', 'SG'].includes(ovhSubsidiary);
   const isGermanFormat = ['DE', 'FI', 'SN'].includes(ovhSubsidiary);
   const isFrenchFormat = [
@@ -66,7 +68,7 @@ export function Price({
   const components = [
     {
       condition: value === 0,
-      component: <span>{t('price_free')}</span>,
+      component: <span>{freePriceLabel ?? t('price_free')}</span>,
     },
     {
       condition: isFrenchFormat && tax > 0,
@@ -81,6 +83,11 @@ export function Price({
           <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
             {intervalUnitText}
           </span>
+          {suffix && (
+            <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+              {suffix}
+            </span>
+          )}
           <TextPriceContent>
             <span className="text-[--ods-color-neutral-500] text-[14px] leading-[18px] font-semibold">
               ({priceWithTax}
@@ -105,6 +112,11 @@ export function Price({
           <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
             {intervalUnitText}
           </span>
+          {suffix && (
+            <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+              {suffix}
+            </span>
+          )}
         </>
       ),
     },
@@ -118,6 +130,11 @@ export function Price({
           <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
             {intervalUnitText}
           </span>
+          {suffix && (
+            <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+              {suffix}
+            </span>
+          )}
         </>
       ),
     },
@@ -134,6 +151,11 @@ export function Price({
           <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
             {intervalUnitText}
           </span>
+          {suffix && (
+            <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+              {suffix}
+            </span>
+          )}
         </>
       ),
     },
@@ -150,6 +172,11 @@ export function Price({
           <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
             {intervalUnitText}
           </span>
+          {suffix && (
+            <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+              {suffix}
+            </span>
+          )}
           <TextPriceContent>
             <span className="text-[--ods-color-neutral-500] text-[14px] leading-[18px] font-semibold">
               ({priceWithTax}
@@ -171,6 +198,11 @@ export function Price({
           <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
             {intervalUnitText}
           </span>
+          {suffix && (
+            <span className="ml-1 text-[--ods-color-text] text-[16px] leading-[20px] font-semibold">
+              {suffix}
+            </span>
+          )}
         </>
       ),
     },
@@ -181,7 +213,12 @@ export function Price({
     return <></>;
   }
 
-  return <OdsText>{matchingComponent.component}</OdsText>;
+  return (
+    <OdsText>
+      {isStartingPrice && value > 0 ? t('price_from_label') : ''}
+      {matchingComponent.component}
+    </OdsText>
+  );
 }
 
 export default Price;
