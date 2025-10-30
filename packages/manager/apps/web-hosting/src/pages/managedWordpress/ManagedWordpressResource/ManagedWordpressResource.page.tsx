@@ -2,12 +2,7 @@ import { Outlet, useParams, useResolvedPath } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import {
-  BaseLayout,
-  ChangelogButton,
-  GuideButton,
-  Notifications,
-} from '@ovh-ux/manager-react-components';
+import { BaseLayout, ChangelogMenu, GuideMenu, Notifications } from '@ovh-ux/muk';
 
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import TabsPanel, {
@@ -52,8 +47,8 @@ export default function ManagedWordpressResourcePage() {
       header={
         !isOverridedPage && {
           title: serviceName,
-          headerButton: <GuideButton items={guideItems} />,
-          changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+          guideMenu: <GuideMenu items={guideItems} />,
+          changelogButton: <ChangelogMenu links={CHANGELOG_LINKS} />,
         }
       }
       message={<Notifications />}

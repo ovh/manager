@@ -22,7 +22,7 @@ export type ManagedWordpressResourceTask = {
     message: string;
   }>;
   finishedAt?: string;
-  id: string;
+  id: string | number;
   link: string;
   message: string;
   progress: Array<{

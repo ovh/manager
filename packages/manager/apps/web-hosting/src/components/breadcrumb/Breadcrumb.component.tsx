@@ -4,24 +4,28 @@ import { useMatches } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_ICON_NAME, ODS_LINK_COLOR } from '@ovhcloud/ods-components';
-import { OdsBreadcrumb, OdsBreadcrumbItem } from '@ovhcloud/ods-components/react';
+import {
+  BreadcrumbItem as BreadcrumbItemMuk,
+  BreadcrumbLink,
+  Breadcrumb as BreadcrumbMuk,
+  ICON_NAME,
+} from '@ovhcloud/ods-react';
 
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 export type BreadcrumbItem = {
   label?: string;
-  icon?: ODS_ICON_NAME;
+  icon?: ICON_NAME;
   href: string;
 };
 
-export const Breadcrumb: React.FC<{ namespace?: string | string[] }> = (
-  { namespace } = { namespace: 'common' },
-) => {
+export const Breadcrumb: React.FC<{ namespace?: string | string[] }> = ({
+  namespace = 'common',
+}) => {
   const { t } = useTranslation(namespace);
   const matches = useMatches();
   const { shell } = useContext(ShellContext);
-  const [href, setHref] = React.useState('#');
+  const [, setHref] = React.useState('#');
 
   useEffect(() => {
     const fetchUrl = async () => {
@@ -34,11 +38,6 @@ export const Breadcrumb: React.FC<{ namespace?: string | string[] }> = (
     };
     void fetchUrl();
   }, [shell.navigation]);
-
-  const rootItem = {
-    label: t('hosting'),
-    href,
-  };
 
   const items = useMemo(() => {
     let crumbs = matches.reduce((acc, match) => {
@@ -69,20 +68,18 @@ export const Breadcrumb: React.FC<{ namespace?: string | string[] }> = (
         ...crumbs,
       ];
     }
+
     return crumbs;
   }, [matches, t]);
 
   return (
-    <OdsBreadcrumb data-testid="breadcrumb">
-      {[rootItem, ...items].map((item, index) => (
-        <OdsBreadcrumbItem
-          {...item}
-          color={ODS_LINK_COLOR.primary}
-          target="_self"
-          key={`${item.label}-${index}`}
-        />
+    <BreadcrumbMuk data-testid="breadcrumb">
+      {items.map((item, index) => (
+        <BreadcrumbItemMuk key={`${item.label}-${index}`}>
+          <BreadcrumbLink href={item.href}>{item.label}</BreadcrumbLink>
+        </BreadcrumbItemMuk>
       ))}
-    </OdsBreadcrumb>
+    </BreadcrumbMuk>
   );
 };
 
