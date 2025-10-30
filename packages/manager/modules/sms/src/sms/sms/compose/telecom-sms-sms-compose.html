@@ -592,33 +592,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <label
-                                        for="class"
-                                        class="control-label"
-                                        data-translate="sms_sms_compose_class_label"
-                                    >
-                                    </label>
-                                    <select
-                                        name="class"
-                                        id="class"
-                                        class="form-control"
-                                        required
-                                        data-ng-model="$ctrl.sms.class"
-                                        data-ng-options="class as ('sms_sms_compose_class_' + class | translate) for class in $ctrl.enums.smsClass"
-                                    >
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div
-                                class="alert alert-info mt-4"
-                                role="alert"
-                                data-ng-if="$ctrl.sms.class"
-                                data-ng-bind="'sms_sms_compose_class_info_' + $ctrl.sms.class | translate"
-                            ></div>
                         </div>
                     </div>
 

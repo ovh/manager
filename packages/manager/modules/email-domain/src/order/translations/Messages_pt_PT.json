@@ -14,5 +14,6 @@
   "mxPlan_price_with_tax": "Preço c/ IVA: ",
   "mxPlan_order_action": "Encomendar",
   "mxPlan_order_error_payment": "Ocorreu um erro ao carregar os métodos de pagamento disponíveis",
-  "mxPlan_order_activate": "Ativar"
+  "mxPlan_order_activate": "Ativar",
+  "mxPlan_order_idn_domain_warning": "A utilização de um endereço de e-mail com um domínio IDN num programa de mensagens (Outlook, Mail do macOS, etc.) não é recomendada e pode causar incompatibilidades."
 }
