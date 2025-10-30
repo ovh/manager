@@ -1,32 +1,3 @@
-@use '@ovh-ux/muk/dist/style.css';
+@import '@ovh-ux/muk/dist/style.css';
 
 @tailwind utilities;
-
-html {
-  font-family: var(--ods-font-family-default);
-}
-
-/* ODS Tile styles for onboarding */
-.oui-tile {
-  @apply bg-white border border-gray-200 rounded-lg hover:shadow-lg transition-all duration-300 hover:border-gray-300;
-}
-
-.oui-tile__body {
-  @apply mt-3;
-}
-
-.oui-tile__description {
-  @apply text-gray-600 leading-relaxed mb-4;
-}
-
-.oui-link {
-  @apply text-blue-600 hover:text-blue-800 font-medium transition-colors;
-}
-
-.oui-link_icon {
-  @apply inline-flex items-center;
-}
-
-.guide-title {
-  @apply text-sm font-medium text-gray-500 uppercase tracking-wide mb-2;
-}

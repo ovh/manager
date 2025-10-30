@@ -27,7 +27,7 @@
     "@ovh-ux/manager-react-shell-client": "*",
     "@ovh-ux/request-tagger": "*",
     "@ovh-ux/shell": "^4.5.7",
-    "@ovh-ux/muk": "latest",
+    "@ovh-ux/muk": "^0.2.0",
     "@tanstack/react-query": "5.51.21",
     "axios": "^1.1.2",
     "clsx": "^1.2.1",

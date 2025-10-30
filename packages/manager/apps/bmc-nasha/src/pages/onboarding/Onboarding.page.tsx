@@ -1,4 +1,4 @@
-import { OnboardingLayout } from '@ovh-ux/muk';
+import { OnboardingLayout, LinkCard } from '@ovh-ux/muk';
 import { useTranslation } from 'react-i18next';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { ONBOARDING_CONFIG } from '@/App.constants';
@@ -25,55 +25,41 @@ export default function OnboardingPage() {
     <OnboardingLayout
       title={ONBOARDING_CONFIG.productName}
       description={
-        <p className="text-xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-lg text-gray-700 mb-8 max-w-4xl mx-auto leading-relaxed">
           {t('nasha_onboarding_content')}
         </p>
       }
       orderButtonLabel={t('nasha_onboarding_order')}
       onOrderButtonClick={handleOrderClick}
+      orderIam={{
+        urn: 'urn:v1:eu:product:nasha',
+        iamActions: ['product:create'],
+        displayTooltip: true,
+      }}
       img={{
         src: nashaIcon,
         alt: 'NAS-HA Service',
-        className: 'w-40 h-40 object-contain',
+        className: 'w-32 h-32 object-contain mx-auto',
       }}
     >
       {/* Tutorials Section */}
-      <div className="row pt-5">
-        {ONBOARDING_CONFIG.tiles.map((tile) => (
-          <div key={tile.id} className="col-md-6 col-lg-4 mb-4">
-            <a
-              className="py-2 oui-tile d-flex align-items-start p-3"
-              target="_blank"
-              rel="noopener"
-              href={
-                ONBOARDING_CONFIG.links[
-                  tile.linkKey as keyof typeof ONBOARDING_CONFIG.links
-                ]
-              }
-              onClick={() => handleGuideClick(tile.key)}
-            >
-              <div className="ml-2">
-                <h5 className="guide-title">Tutoriel</h5>
-                <h3 className="font-weight-bold">
-                  {t(`nasha_onboarding_${tile.key}_title`)}
-                </h3>
-                <div className="oui-tile__body mt-3">
-                  <p className="oui-tile__description font-weight-normal">
-                    {t(`nasha_onboarding_${tile.key}_content`)}
-                  </p>
-                  <span className="oui-link oui-link_icon">
-                    <span>En savoir plus</span>
-                    <span
-                      className="oui-icon oui-icon-external-link oui-color-p-600"
-                      aria-hidden="true"
-                    ></span>
-                  </span>
-                </div>
-              </div>
-            </a>
-          </div>
-        ))}
-      </div>
+      {ONBOARDING_CONFIG.tiles.map((tile) => (
+        <LinkCard
+          key={tile.id}
+          href={
+            ONBOARDING_CONFIG.links[
+              tile.linkKey as keyof typeof ONBOARDING_CONFIG.links
+            ]
+          }
+          externalHref={true}
+          texts={{
+            title: t(`nasha_onboarding_${tile.key}_title`),
+            description: t(`nasha_onboarding_${tile.key}_content`),
+            category: 'Tutoriel',
+          }}
+          onClick={() => handleGuideClick(tile.key)}
+        />
+      ))}
     </OnboardingLayout>
   );
 }
