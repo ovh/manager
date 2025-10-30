@@ -20,9 +20,9 @@ export const TableFooter = ({
     return null;
   }
   return (
-    <div className="flex justify-center items-center  pt-3">
+    <div className="flex justify-center items-center pt-3">
       <div className="flex-1" />
-      <div className="flex-[2] flex justify-center">
+      <div className="flex-[2] flex justify-center pt-3">
         {(onFetchAllPages || onFetchNextPage) && (
           <FooterActions
             hasNextPage={hasNextPage}

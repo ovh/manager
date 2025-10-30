@@ -84,7 +84,7 @@ export const TableBody = <T,>({
               key={row.id}
               data-index={virtualRow.index}
               ref={rowVirtualizer.measureElement}
-              className={`overflow-hidden absolute top-0 w-full table table-fixed`}
+              className={`table overflow-hidden absolute top-0 w-full table table-fixed`}
               style={{
                 left: -1,
                 height: `${maxRowHeight}px`,

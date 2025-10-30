@@ -100,6 +100,10 @@ export const useTableBuilder = <T extends ExpandableRow<T>>({
       params.getSubRows = (row: T) => row?.subRows;
       return builder;
     },
+    setRowId: () => {
+      params.getRowId = (row: T) => row?.id;
+      return builder;
+    },
   };
   return builder;
 };
