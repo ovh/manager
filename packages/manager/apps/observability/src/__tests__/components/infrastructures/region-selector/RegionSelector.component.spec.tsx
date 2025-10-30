@@ -197,7 +197,7 @@ const createMockInfrastructure = (
   type: 'LOCAL-ZONE' | 'REGION-1-AZ' | 'REGION-3-AZ' = 'LOCAL-ZONE',
 ): Infrastructure => ({
   id,
-  currentState: { location, type: 'SHARED', usage: 'METRICS' },
+  currentState: { location, type: 'SHARED', usage: 'METRICS', entryPoint: `xxx.metrics.ovh.com` },
   locationDetails: {
     location,
     geographyCode,
