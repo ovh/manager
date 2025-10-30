@@ -7,7 +7,7 @@ ai: true
 
 # Manager UI Kit (MUK)
 
-> **📦 Version:** `@ovh-ux/muk@^0.1.1`
+> **📦 Version:** `@ovh-ux/muk@^0.2.0`
 
 ## 🧭 Purpose
 
@@ -45,7 +45,7 @@ This package is essential for:
 ```json
 {
   "dependencies": {
-    "@ovh-ux/muk": "^0.1.1"
+    "@ovh-ux/muk": "^0.2.0"
   }
 }
 ```
@@ -95,6 +95,7 @@ export const Button = ({ iamActions, urn, ...props }) => {
 - **BaseLayout**: Main application layout with header, breadcrumb, tabs
 - **OnboardingLayout**: Onboarding pages with CTA buttons
 - **GridLayout**: Grid-based layouts
+ - **RedirectionGuard**: Navigation guard to redirect based on conditions
 
 #### Data Components
 - **Datagrid**: Advanced data table (TanStack Table v8)
@@ -117,6 +118,8 @@ export const Button = ({ iamActions, urn, ...props }) => {
 - **Textarea**: Multi-line text input
 - **Timepicker**: Time selection
 - **Toggle**: Toggle component
+ - **TilesInput**: Tile-based single choice input
+ - **TilesInputGroup**: Tile-based multi-field choices layout
 
 #### UI Components
 - **Accordion**: Collapsible content
@@ -129,6 +132,10 @@ export const Button = ({ iamActions, urn, ...props }) => {
 - **Message**: User messages
 - **Modal**: Modal dialogs
 - **Notifications**: Toast notifications
+ - **Price**: Price display with currency/subsidiary support
+ - **Step**: Step indicator for multi-step flows
+ - **GuideMenu**: In-app guide and links menu
+ - **ChangelogMenu**: In-app changelog entries menu
 - **Popover**: Floating content
 - **Progress**: Progress indicators
 - **Tabs**: Tab navigation
@@ -143,6 +150,8 @@ export const Button = ({ iamActions, urn, ...props }) => {
 - **ServiceStateBadge**: Service status
 - **TagsList**: Tag management
 - **TagsTile**: Tag display
+ - **UpdateNameModal**: Standard modal to update a resource name
+ - **DeleteModal**: Standard deletion confirmation modal
 
 ## 🎯 Key Components
 
@@ -169,6 +178,140 @@ import { OnboardingLayout } from '@ovh-ux/muk';
   {/* Tutorial tiles */}
   <div>Tutorial content</div>
 </OnboardingLayout>
+```
+
+### Price
+
+Display a price with currency, interval and subsidiary support.
+
+```typescript
+import { Price, OvhSubsidiary, IntervalUnitType } from '@ovh-ux/muk';
+
+<Price
+  value={29.99}
+  currency="EUR"
+  subsidiary={OvhSubsidiary.FR}
+  intervalUnit={IntervalUnitType.month}
+/>;
+```
+
+### Step
+
+Show a step indicator for multi-step flows.
+
+```typescript
+import { Step } from '@ovh-ux/muk';
+
+<Step current={2} total={4} label="Configuration"/>;
+```
+
+### TilesInput
+
+Tile-based single choice input.
+
+```typescript
+import { TilesInput } from '@ovh-ux/muk';
+
+<TilesInput
+  name="flavor"
+  value={selected}
+  onChange={setSelected}
+  options=[
+    { label: 'Small', value: 's' },
+    { label: 'Medium', value: 'm' },
+    { label: 'Large', value: 'l', disabled: true }
+  ]
+/>;
+```
+
+### TilesInputGroup
+
+Layout to group multiple `TilesInput` blocks.
+
+```typescript
+import { TilesInputGroup, TilesInput } from '@ovh-ux/muk';
+
+<TilesInputGroup>
+  <TilesInput name="cpu" options={[{ label: '2 vCPU', value: '2' }]} />
+  <TilesInput name="ram" options={[{ label: '8 GB', value: '8' }]} />
+  <TilesInput name="disk" options={[{ label: '100 GB', value: '100' }]} />
+</TilesInputGroup>;
+```
+
+### GuideMenu
+
+Display a contextual guide menu with useful links.
+
+```typescript
+import { GuideMenu } from '@ovh-ux/muk';
+
+<GuideMenu
+  items=[
+    { label: 'Documentation', href: '/docs' },
+    { label: 'Tutorials', href: '/tutorials' }
+  ]
+/>;
+```
+
+### ChangelogMenu
+
+Display changelog entries.
+
+```typescript
+import { ChangelogMenu } from '@ovh-ux/muk';
+
+<ChangelogMenu
+  entries=[
+    { date: '2025-10-29', title: 'New feature', description: '...' }
+  ]
+/>;
+```
+
+### UpdateNameModal
+
+Standard modal to update a resource name.
+
+```typescript
+import { UpdateNameModal } from '@ovh-ux/muk';
+
+<UpdateNameModal
+  open={isOpen}
+  onOpenChange={setIsOpen}
+  defaultValue={name}
+  onSubmit={(newName) => updateName(newName)}
+/>;
+```
+
+### DeleteModal
+
+Deletion confirmation modal with IAM support.
+
+```typescript
+import { DeleteModal } from '@ovh-ux/muk';
+
+<DeleteModal
+  open={isOpen}
+  onOpenChange={setIsOpen}
+  title="Delete resource"
+  description="This action cannot be undone"
+  onConfirm={onDelete}
+/>;
+```
+
+### RedirectionGuard
+
+Guard component that redirects when a condition is met.
+
+```typescript
+import { RedirectionGuard } from '@ovh-ux/muk';
+
+<RedirectionGuard
+  when={!hasAccess}
+  to="/forbidden"
+  fallback={<div>Checking access...</div>}
+>
+  <ProtectedContent />
+</RedirectionGuard>;
 ```
 
 **Props:**

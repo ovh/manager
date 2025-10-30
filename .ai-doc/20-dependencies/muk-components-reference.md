@@ -7,7 +7,7 @@ ai: true
 
 # MUK Components Reference
 
-> **📦 Version:** `@ovh-ux/muk@^0.1.1`
+> **📦 Version:** `@ovh-ux/muk@^0.2.0`
 
 ## 🧭 Purpose
 
@@ -144,6 +144,22 @@ import { GridLayout } from '@ovh-ux/muk';
   <div>Item 2</div>
   <div>Item 3</div>
 </GridLayout>
+```
+
+#### RedirectionGuard
+
+Guard that redirects when a condition is met.
+
+```typescript
+import { RedirectionGuard } from '@ovh-ux/muk';
+
+<RedirectionGuard
+  when={!hasAccess}
+  to="/forbidden"
+  fallback={<div>Checking access...</div>}
+>
+  <ProtectedContent />
+</RedirectionGuard>;
 ```
 
 ### Data Components
@@ -342,6 +358,39 @@ import { Datepicker } from '@ovh-ux/muk';
   minDate={new Date()}
   maxDate={new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)}
 />
+```
+
+#### TilesInput
+
+Tile-based single choice input.
+
+```typescript
+import { TilesInput } from '@ovh-ux/muk';
+
+<TilesInput
+  name="flavor"
+  value={selected}
+  onChange={setSelected}
+  options=[
+    { label: 'Small', value: 's' },
+    { label: 'Medium', value: 'm' },
+    { label: 'Large', value: 'l', disabled: true }
+  ]
+/>;
+```
+
+#### TilesInputGroup
+
+Layout to group multiple tiles inputs.
+
+```typescript
+import { TilesInputGroup, TilesInput } from '@ovh-ux/muk';
+
+<TilesInputGroup>
+  <TilesInput name="cpu" options={[{ label: '2 vCPU', value: '2' }]} />
+  <TilesInput name="ram" options={[{ label: '8 GB', value: '8' }]} />
+  <TilesInput name="disk" options={[{ label: '100 GB', value: '100' }]} />
+</TilesInputGroup>;
 ```
 
 #### FileUpload
@@ -605,6 +654,21 @@ import { Clipboard } from '@ovh-ux/muk';
 </Clipboard>
 ```
 
+#### GuideMenu
+
+Contextual guide menu with external/internal links.
+
+```typescript
+import { GuideMenu } from '@ovh-ux/muk';
+
+<GuideMenu
+  items=[
+    { label: 'Documentation', href: '/docs' },
+    { label: 'Tutorials', href: '/tutorials' }
+  ]
+/>;
+```
+
 #### Drawer
 
 Slide-out panel component.
@@ -628,6 +692,21 @@ import { Drawer } from '@ovh-ux/muk';
     <Button onClick={() => setIsOpen(false)}>Close</Button>
   </DrawerFooter>
 </Drawer>
+```
+
+#### Price
+
+Price display component with currency and interval support.
+
+```typescript
+import { Price, OvhSubsidiary, IntervalUnitType } from '@ovh-ux/muk';
+
+<Price
+  value={29.99}
+  currency="EUR"
+  subsidiary={OvhSubsidiary.FR}
+  intervalUnit={IntervalUnitType.month}
+/>;
 ```
 
 #### Link
@@ -748,6 +827,16 @@ import { Progress } from '@ovh-ux/muk';
 />
 ```
 
+#### Step
+
+Step indicator for multi-step flows.
+
+```typescript
+import { Step } from '@ovh-ux/muk';
+
+<Step current={2} total={4} label="Configuration"/>;
+```
+
 #### Tabs
 
 Tab navigation component.
@@ -865,6 +954,37 @@ import { ErrorBoundary } from '@ovh-ux/muk';
 </ErrorBoundary>
 ```
 
+#### UpdateNameModal
+
+Modal to update a resource name.
+
+```typescript
+import { UpdateNameModal } from '@ovh-ux/muk';
+
+<UpdateNameModal
+  open={isOpen}
+  onOpenChange={setIsOpen}
+  defaultValue={name}
+  onSubmit={(newName) => updateName(newName)}
+/>;
+```
+
+#### DeleteModal
+
+Deletion confirmation modal.
+
+```typescript
+import { DeleteModal } from '@ovh-ux/muk';
+
+<DeleteModal
+  open={isOpen}
+  onOpenChange={setIsOpen}
+  title="Delete resource"
+  description="This action cannot be undone"
+  onConfirm={onDelete}
+/>;
+```
+
 #### ServiceStateBadge
 
 Service status badge.
@@ -909,6 +1029,20 @@ import { TagsTile } from '@ovh-ux/muk';
   onTagClick={handleTagClick}
   showCount={true}
 />
+```
+
+#### ChangelogMenu
+
+Display changelog entries within the UI.
+
+```typescript
+import { ChangelogMenu } from '@ovh-ux/muk';
+
+<ChangelogMenu
+  entries=[
+    { date: '2025-10-29', title: 'New feature', description: '...' }
+  ]
+/>;
 ```
 
 ### Text Components
@@ -1153,60 +1287,3 @@ import type {
   UseDataApiResult
 } from '@ovh-ux/muk';
 ```
-
-### Hook Types
-
-```typescript
-import type {
-  UseDataApiOptions,
-  UseDataApiResult,
-  DatagridColumn,
-  FilterWithLabel
-} from '@ovh-ux/muk';
-```
-
----
-
-## 🤖 AI Development Guidelines
-
-### Essential Rules for AI Code Generation
-
-1. **Always import CSS**: `import '@ovh-ux/muk/dist/style.css'`
-2. **Use real component names**: Button, Datagrid, OnboardingLayout (not Title, Subtitle)
-3. **Include IAM props**: Always add `iamActions` and `urn` for security
-4. **Use correct Datagrid props**: `totalCount` not `totalItems`
-5. **Import specific components**: Don't use `import *`
-6. **Use useDataApi for data**: Primary hook for data fetching
-7. **Follow ODS patterns**: MUK wraps ODS components
-8. **Handle loading states**: Always check `isLoading`
-
-### Component Usage Checklist
-
-- [ ] CSS import added
-- [ ] Correct component names used
-- [ ] IAM props included where needed
-- [ ] Props match TypeScript definitions
-- [ ] Loading states handled
-- [ ] Error handling implemented
-- [ ] Performance optimized
-
-### Data Fetching Checklist
-
-- [ ] useDataApi hook used
-- [ ] Cache keys properly configured
-- [ ] Version specified (v2/v6)
-- [ ] Loading states handled
-- [ ] Error states handled
-- [ ] Pagination configured
-- [ ] Sorting/filtering enabled
-
----
-
-## ⚖️ The Components' Moral
-
-- **Consistent components** ensure unified user experience across all applications
-- **IAM integration** provides security by default
-- **TypeScript support** catches errors at compile time
-- **Performance optimization** ensures fast, scalable applications
-
-**👉 Good component usage is invisible to users but essential for application success.**
