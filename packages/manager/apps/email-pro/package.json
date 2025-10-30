@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-emailpro-app",
-  "version": "0.11.57",
+  "version": "0.11.58",
   "private": true,
   "repository": {
     "type": "git",
@@ -28,7 +28,7 @@
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.5",
     "@ovh-ux/ng-ovh-user-pref": "^2.1.5",
     "@ovh-ux/ng-ovh-utils": "^14.5.3",
-    "@ovh-ux/ng-ovh-web-universe-components": "^9.21.0",
+    "@ovh-ux/ng-ovh-web-universe-components": "^9.21.1",
     "@ovh-ux/ng-pagination-front": "^10.3.5",
     "@ovh-ux/ng-translate-async-loader": "^2.2.5",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.4.1",
