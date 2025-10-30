@@ -71,7 +71,7 @@ export default function ServerListing() {
                   setColumnVisibility={setColumnVisibility}
                   search={search}
                   className="server-data-grid"
-                  topbar={<OrderMenu />}
+                  topbar={<OrderMenu flattenData={flattenData} />}
                   resourceType="dedicatedServer"
                 />
               </div>

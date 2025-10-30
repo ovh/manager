@@ -10,8 +10,9 @@ import {
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import useLinkUtils, { UrlLinks } from '@/hooks/useLinkUtils';
 import { orderLinks } from '@/data/constants/orderLinks';
+import ExportCsv from './exportCsv';
 
-export const OrderMenu: React.FC = () => {
+export const OrderMenu: React.FC<{ flattenData: any }> = ({ flattenData }) => {
   const { t } = useTranslation('dedicated-servers');
   const { t: tCommon } = useTranslation(NAMESPACES.ACTIONS);
   const { trackClick } = useOvhTracking();
@@ -30,13 +31,17 @@ export const OrderMenu: React.FC = () => {
 
   return (
     <div className="w-min">
-      <OdsButton
-        icon={ODS_ICON_NAME.plus}
-        size={ODS_BUTTON_SIZE.sm}
-        id={`server-orders-action`}
-        variant="outline"
-        label={tCommon('order')}
-      />
+      <div className="flex">
+        <OdsButton
+          icon={ODS_ICON_NAME.plus}
+          size={ODS_BUTTON_SIZE.sm}
+          className="mr-3"
+          id={`server-orders-action`}
+          variant="outline"
+          label={tCommon('order')}
+        />
+        <ExportCsv flattenData={flattenData} />
+      </div>
       <OdsPopover
         triggerId="server-orders-action"
         position={ODS_POPOVER_POSITION.bottomStart}
