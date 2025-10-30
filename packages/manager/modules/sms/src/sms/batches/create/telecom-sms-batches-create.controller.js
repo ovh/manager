@@ -18,11 +18,6 @@ export default class SmsBatchesCreateController {
       immediate: true,
       noStopClause: false,
     };
-
-    this.classes = this.smsClasses.map((smsClass) => ({
-      label: this.$translate.instant(`sms_options_type_${smsClass}`),
-      value: smsClass,
-    }));
   }
 
   static canDisplayEstimation(sms) {
@@ -38,7 +33,6 @@ export default class SmsBatchesCreateController {
     const buildParams = {};
     return Object.assign(
       buildParams,
-      model.class ? { class: model.class.value } : null,
       model.sender.sender === SMS_COMPOSE.shortNumber
         ? { senderForResponse: true }
         : { from: model.sender.sender },
