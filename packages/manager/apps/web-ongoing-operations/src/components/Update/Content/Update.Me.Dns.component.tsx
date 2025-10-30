@@ -20,7 +20,7 @@ export default function ActionMeDnsComponent({
       color="primary"
       className="block"
       icon="external-link"
-      isDisabled={!url}
+      disabled={!url}
     >
       {t('domain_operations_update_dns_click')}
     </Link>
