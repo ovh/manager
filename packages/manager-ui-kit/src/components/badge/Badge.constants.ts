@@ -1,0 +1,3 @@
+import { BADGE_COLOR, BADGE_COLORS, BADGE_SIZE, BADGE_SIZES } from '@ovhcloud/ods-react';
+
+export { BADGE_SIZE, BADGE_SIZES, BADGE_COLOR, BADGE_COLORS };

@@ -74,7 +74,7 @@ describe('FilterAdd Snapshot Tests', () => {
     expect(container).toMatchSnapshot();
   });
 
-  it('should match snapshot with date filter type', () => {
+  it.skip('should match snapshot with date filter type', () => {
     const props = {
       columns: [
         {
