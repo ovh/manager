@@ -1,8 +1,3 @@
-import {
-  TABLE_SIZE,
-  TABLE_SIZES,
-  TABLE_VARIANT,
-  TABLE_VARIANTS,
-} from '@ovhcloud/ods-react';
+import { TABLE_SIZE, TABLE_SIZES, TABLE_VARIANT, TABLE_VARIANTS } from '@ovhcloud/ods-react';
 
 export { TABLE_SIZE, TABLE_SIZES, TABLE_VARIANT, TABLE_VARIANTS };

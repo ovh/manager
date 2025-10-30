@@ -6,10 +6,4 @@ import {
   INPUT_TYPES,
 } from '@ovhcloud/ods-react';
 
-export {
-  INPUT_I18N,
-  INPUT_MASK_STATE,
-  INPUT_MASK_STATES,
-  INPUT_TYPE,
-  INPUT_TYPES,
-};
+export { INPUT_I18N, INPUT_MASK_STATE, INPUT_MASK_STATES, INPUT_TYPE, INPUT_TYPES };

@@ -1,8 +1,3 @@
-import {
-  SPINNER_COLOR,
-  SPINNER_COLORS,
-  SPINNER_SIZE,
-  SPINNER_SIZES,
-} from '@ovhcloud/ods-react';
+import { SPINNER_COLOR, SPINNER_COLORS, SPINNER_SIZE, SPINNER_SIZES } from '@ovhcloud/ods-react';
 
 export { SPINNER_COLOR, SPINNER_COLORS, SPINNER_SIZE, SPINNER_SIZES };
