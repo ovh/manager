@@ -8,7 +8,7 @@ import {
   RedirectionGuard,
 } from '@ovh-ux/manager-react-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { Suspense } from 'react';
 import { urls } from '@/routes/routes.constant';
 import { EDGE_GATEWAY_LABEL } from '../datacentreDashboard.constants';
@@ -55,6 +55,7 @@ export default function EdgeGatewayListingPage() {
           />
         </section>
       </Suspense>
+      <Outlet />
     </RedirectionGuard>
   );
 }

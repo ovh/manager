@@ -102,6 +102,12 @@ const EdgeGatewayListingPage = React.lazy(() =>
   ),
 );
 
+const EdgeGatewayDeletePage = React.lazy(() =>
+  import(
+    '@/pages/dashboard/datacentre/edge-gateway/delete/DeleteEdgeGateway.page'
+  ),
+);
+
 const TerminateOrganizationPage = React.lazy(() =>
   import('@/pages/terminate/TerminateOrganization.page'),
 );
@@ -320,7 +326,13 @@ export default (
           id={'edge-gateway'}
           path={urls.edgeGateway}
           Component={EdgeGatewayListingPage}
-        />
+        >
+          <Route
+            id={'delete-edge-gateway'}
+            path={urls.edgeGatewayDelete}
+            Component={EdgeGatewayDeletePage}
+          />
+        </Route>
       </Route>
       <Route
         id={'onboarding'}

@@ -3,5 +3,10 @@
   "edge_add_tooltip": "Vous pouvez créer 5 Edge Gateways maximum.",
   "edge_connectivity_type": "Type de connectivité",
   "edge_ip_block": "Bloc IP",
-  "edge_edit_config": "Modifier la configuration"
+  "edge_edit_config": "Modifier la configuration",
+  "edge_delete_title": "Supprimer la Edge Gateway",
+  "edge_delete_description": "Voulez-vous vraiment supprimer votre Edge Gateway {{edgeName}} ?",
+  "edge_delete_warning": "Attention : supprimer votre Edge Gateway entraînera la suppression définitive de tous les services réseau et des configurations. Cette action est irréversible.",
+  "edge_delete_banner_success": "La demande de suppression de votre {{edgeName}} a été prise en compte.",
+  "edge_delete_banner_error": "Une erreur est survenue. Veuillez attendre quelques minutes avant de réessayer."
 }
