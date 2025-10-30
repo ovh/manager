@@ -21,3 +21,5 @@ export const ZimbraEmailsLink: Record<string, string> = {
   TN: `${OVH_WEBSITE_ROOT_URL}/fr-tn/emails/zimbra-emails/`,
   SN: `${OVH_WEBSITE_ROOT_URL}/fr-sn/emails/zimbra-emails/`,
 };
+
+export const MAX_REDIRECTIONS_QUOTA = 1000;

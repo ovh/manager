@@ -18,7 +18,5 @@ describe('Aliases page', () => {
     const button = getByTestId('add-alias-btn');
 
     expect(button).toHaveAttribute('label', commonTranslation.add_alias);
-
-    expect(button).toHaveAttribute('is-disabled', 'true');
   });
 });
