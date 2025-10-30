@@ -2,6 +2,7 @@ import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 import React from 'react';
 import { UseQueryResult } from '@tanstack/react-query';
+import { nichandle } from './__mocks__/nichandle';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -23,6 +24,7 @@ vi.mock(import('@ovh-ux/manager-react-components'), async (importOriginal) => {
     ...actual,
     useResourcesIcebergV6: vi.fn(),
     useResourcesIcebergV2: vi.fn(),
+    useAuthorizationIam: vi.fn(),
   };
 });
 
@@ -35,22 +37,25 @@ vi.mock(import('@/domain/utils/dnsUtils'), async (importOriginal) => {
   };
 });
 
-vi.mock('react-router-dom', () => ({
-  useNavigate: () => vi.fn(() => null),
-  Navigate: vi.fn(() => null),
-  useLocation: vi.fn(() => ({
-    pathname: '',
-    search: '',
-  })),
-  useParams: () => {
-    return {
+vi.mock('react-router-dom', () => {
+  return {
+    useNavigate: vi.fn(() => vi.fn()),
+    Navigate: vi.fn(() => null),
+    Outlet: vi.fn(),
+    useHref: vi.fn(),
+    useLocation: vi.fn(() => ({
+      pathname: '',
+      search: '',
+      hash: '',
+      state: null,
+      key: 'default',
+    })),
+    useParams: vi.fn(() => ({
       serviceName: 'foobar',
       id: '1',
-    };
-  },
-  Outlet: vi.fn(),
-  useHref: vi.fn(),
-}));
+    })),
+  };
+});
 
 const mocks = vi.hoisted(() => ({
   shell: {
@@ -85,10 +90,10 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => ({
   },
 }));
 
-vi.mock('@/alldoms/hooks/nichandle/useNichandle', () => ({
-  useNichandle: vi.fn(() => {
+vi.mock('@/common/hooks/nichandle/useNichandleInformation', () => ({
+  useNichandleInformation: vi.fn(() => {
     return {
-      nichandle: 'aa00001-ovh',
+      nichandleInformation: nichandle,
     };
   }),
 }));

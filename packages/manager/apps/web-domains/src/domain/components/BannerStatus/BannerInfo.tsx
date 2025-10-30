@@ -9,10 +9,12 @@ import {
 } from '@ovhcloud/ods-react';
 import { Trans, useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useGetServiceInformation } from '@/domain/hooks/data/query';
+import { useGetServiceInformation } from '@/common/hooks/data/query';
 import { GUIDES_LIST } from '@/domain/constants/guideLinks';
-import { ServiceRoutes } from '@/alldoms/enum/service.enum';
-import { ServiceInfoRenewModeEnum } from '@/common/enum/common.enum';
+import {
+  ServiceRoutes,
+  ServiceInfoRenewModeEnum,
+} from '@/common/enum/common.enum';
 import { getLanguageKey } from '@/domain/utils/utils';
 
 interface BannerInfoProps {
@@ -22,6 +24,7 @@ interface BannerInfoProps {
 export default function BannerInfo({ serviceName }: BannerInfoProps) {
   const { t, i18n } = useTranslation(['domain', NAMESPACES.ONBOARDING]);
   const { serviceInfo, isServiceInfoLoading } = useGetServiceInformation(
+    'domain',
     serviceName,
     ServiceRoutes.Domain,
   );

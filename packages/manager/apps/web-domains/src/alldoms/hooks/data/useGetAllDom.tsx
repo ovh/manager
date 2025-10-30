@@ -1,12 +1,12 @@
 import { useQueries } from '@tanstack/react-query';
 import { getAllDomResource } from '@/alldoms/data/api/web-domains';
-import { findContact } from '@/alldoms/utils/utils';
-import {
-  ServiceInfoContactEnum,
-  ServiceRoutes,
-} from '@/alldoms/enum/service.enum';
+import { findContact } from '@/common/utils/utils';
 import { AlldomService } from '@/alldoms/types';
 import { getServiceInformation } from '@/common/data/api/common.api';
+import {
+  ServiceRoutes,
+  ServiceInfoContactEnum,
+} from '@/common/enum/common.enum';
 
 interface UseGetDatagridServiceInfoProps {
   readonly serviceName: string;
