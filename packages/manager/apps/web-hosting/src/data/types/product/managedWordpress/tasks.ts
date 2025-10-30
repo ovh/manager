@@ -3,8 +3,8 @@ import { Status } from '../ssl';
 export type PostImportTaskPayload = {
   inputs: {
     'import.cmsSpecific.wordpress.selection': {
-      plugins: { name: string; version: string; enabled: boolean }[];
-      themes: { name: string; version: string; active: boolean }[];
+      plugins: { name: string; version: string; enabled?: boolean }[];
+      themes: { name: string; version: string; active?: boolean }[];
       wholeDatabase: boolean;
       media: boolean;
       posts: boolean;

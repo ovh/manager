@@ -50,15 +50,12 @@ type Step2Props = {
 export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSubmit }: Step2Props) {
   const { control, watch } = step2Form;
   const wholeDatabase = watch('wholeDatabase');
-  const watchedPlugins = step2Form.watch('plugins');
   const themes = watch('themes');
-  const hasActivePlugin =
-    watchedPlugins?.length > 0 ? watchedPlugins.some((plugin) => plugin.enabled) : true;
   const hasActiveTheme = themes?.length > 0 ? themes.some((t) => t.active) : true;
 
   return (
-    <form onSubmit={onSubmit}>
-      <div className="flex flex-col">
+    <form onSubmit={onSubmit} className="flex flex-col h-full">
+      <div className="flex-grow">
         <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
           {t('managedWordpress:web_hosting_managed_wordpress_import_select_element')}
         </OdsText>
@@ -411,12 +408,7 @@ export default function Step2({ t, step2Form, data, isValid, isSubmitting, onSub
         <ManagerButton
           type="submit"
           label={t('common:web_hosting_common_action_launch_import')}
-          isDisabled={
-            !isValid ||
-            isSubmitting ||
-            (watchedPlugins?.length > 0 && !hasActivePlugin) ||
-            (themes?.length > 0 && !hasActiveTheme)
-          }
+          isDisabled={!isValid || isSubmitting || (themes?.length > 0 && !hasActiveTheme)}
           isLoading={isSubmitting}
           color={ODS_BUTTON_COLOR.primary}
           id="import-step2"
