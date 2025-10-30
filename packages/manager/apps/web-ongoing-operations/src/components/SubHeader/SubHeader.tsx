@@ -4,12 +4,14 @@ import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { Link, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import config from '@/web-ongoing-operations.config';
+import { useTrackNavigation } from '@/hooks/tracking/useTrackDatagridNavivationLink';
 
 interface SubHeaderProps {
   readonly title: string;
 }
 
 export default function SubHeader({ title }: SubHeaderProps) {
+  const { trackPageNavivationLink } = useTrackNavigation();
   const { t: tAction } = useTranslation(NAMESPACES.ACTIONS);
   const { data: customUrl } = useNavigationGetUrl([config.rootLabel, '', {}]);
   const url = `${customUrl as string}/domain`;
@@ -22,6 +24,9 @@ export default function SubHeader({ title }: SubHeaderProps) {
         iconAlignment="left"
         label={tAction('back_to_list')}
         isDisabled={!url}
+        onClick={() => {
+          trackPageNavivationLink(url);
+        }}
       />
       <Text preset={TEXT_PRESET.heading3}>{title}</Text>
     </section>

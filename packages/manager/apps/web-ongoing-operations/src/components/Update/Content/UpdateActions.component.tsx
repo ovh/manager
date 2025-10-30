@@ -19,6 +19,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { TOngoingOperations } from '@/types';
 import { ActionNameEnum } from '@/enum/actionName.enum';
 import { urls } from '@/routes/routes.constant';
+import { useTrackNavigation } from '@/hooks/tracking/useTrackDatagridNavivationLink';
 
 interface UpdateActionsProps {
   readonly data: TOngoingOperations;
@@ -37,6 +38,7 @@ export default function UpdateActions({
   onValidate,
   setActionName,
 }: UpdateActionsProps) {
+  const { trackPageNavivationButton } = useTrackNavigation();
   const { t } = useTranslation(['dashboard', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
 
@@ -99,7 +101,9 @@ export default function UpdateActions({
         <Button
           slot="actions"
           onClick={() => {
-            navigate(urls.root);
+            const url = urls.root;
+            trackPageNavivationButton(url);
+            navigate(url);
           }}
           variant={BUTTON_VARIANT.ghost}
         >
@@ -107,7 +111,9 @@ export default function UpdateActions({
         </Button>
         <Button
           slot="actions"
-          onClick={() => onValidate()}
+          onClick={() => {
+            onValidate();
+          }}
           disabled={disabled}
           loading={isActionLoading}
         >
