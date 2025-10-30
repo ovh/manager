@@ -1,7 +1,7 @@
 {
-  "Title": "QPUs",
+  "Title": "Computadores Quânticos (QPU)",
   "createNotebookButton": "Criar um Notebook",
-  "Description1": "Explore a informática quântica com toda a liberdade, graças aos nossos notebooks prontos a usar na cloud",
-  "Description2": "Simule até 20 qubits em alguns segundos, sem problemas de instalação ou de configuração.",
-  "Description3": "Aceda a um ambiente pré-configurado, compatível com os principais frameworks (Pulser, Mimiq, Perceval, Calisto, Qleo, Qiskit, MySQL, ...) e colabore facilmente com as suas equipas através de uma interface partilhada e segura"
+  "Description1": "Aceda ao verdadeiro poder do quântico em QaaS a partir da OVHcloud.",
+  "Description2": "Execute os seus algoritmos em processadores quânticos físicos (QPUs), de forma segura e sem infraestrutura para gerir.",
+  "Description3": "Desfrute de uma integração perfeita com os nossos emuladores e de uma faturação por segundo para melhor gerir os seus custos."
 }
