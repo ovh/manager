@@ -1,1 +1,0 @@
-const a="Guides",e="Roadmap &amp; Changelog",g="Roadmap",c="Changelog",o={user_account_guides_header:a,mrc_changelog_header:e,mrc_changelog_roadmap:g,mrc_changelog_changelog:c,"mrc_changelog_feature-request":"Feature request"};export{o as default,c as mrc_changelog_changelog,e as mrc_changelog_header,g as mrc_changelog_roadmap,a as user_account_guides_header};
