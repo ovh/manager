@@ -1,3 +1,5 @@
+import { TWorkflowBackup } from '@/api/hooks/workflows';
+
 export const DEFAULT_DATA = {
   emptyPaginatedWorkflows: {
     data: {
@@ -19,6 +21,7 @@ export const DEFAULT_DATA = {
           cron: 'workflow1Cron',
           lastExecution: '2021-09-01T00:00:00Z',
           lastExecutionStatus: 'SUCCESS',
+          backupName: '',
           executions: [
             {
               id: 'workflow1Execution1Id',
@@ -36,6 +39,9 @@ export const DEFAULT_DATA = {
               executedAt: '2021-09-01T00:00:00Z',
             },
           ],
+          backup: TWorkflowBackup.LOCAL_AND_DISTANT,
+          region: '',
+          regions: ['region1', 'region2'],
         },
         {
           name: 'workflow2Name',
@@ -45,7 +51,11 @@ export const DEFAULT_DATA = {
           cron: 'workflow2Cron',
           lastExecution: '2021-09-01T00:00:00Z',
           lastExecutionStatus: 'SUCCESS',
+          backupName: '',
           executions: null,
+          backup: TWorkflowBackup.LOCAL,
+          region: 'region',
+          regions: ['region'],
         },
       ],
       pageCount: 2,
