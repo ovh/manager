@@ -17,12 +17,14 @@ interface StorageClassSelectorProps {
   storageClass: storages.StorageClassEnum;
   onStorageClassChange: (storageClass: storages.StorageClassEnum) => void;
   is3AZ?: boolean;
+  disabled?: boolean;
 }
 
 const StorageClassSelector = ({
   storageClass,
   onStorageClassChange,
   is3AZ = false,
+  disabled = false,
 }: StorageClassSelectorProps) => {
   const { t } = useTranslation('components/file-uploader');
   const locale = useLocale();
@@ -78,6 +80,7 @@ const StorageClassSelector = ({
         aria-labelledby="storage-class-radio"
         value={storageClass}
         onValueChange={onStorageClassChange}
+        disabled={disabled}
       >
         {Object.values(storages.StorageClassEnum)
           .filter((st) => {

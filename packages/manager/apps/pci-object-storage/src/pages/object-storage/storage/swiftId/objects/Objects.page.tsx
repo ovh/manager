@@ -1,13 +1,19 @@
 import { useTranslation } from 'react-i18next';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { Button, Skeleton } from '@datatr-ux/uxlib';
+import { Plus } from 'lucide-react';
 import { useSwiftData } from '../Swift.context';
-import SwiftObjectsList from './_components/SwiftObjectListTable.component';
 import Guides from '@/components/guides/Guides.component';
 import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
+import SwiftObjectBrowser from './_components/SwiftObjectBrowser.component';
 
-const Objects = () => {
-  const { swift } = useSwiftData();
+const SwiftObjectsPage = () => {
   const { t } = useTranslation('pci-object-storage/storages/swift/objects');
+  const { swiftQuery } = useSwiftData();
+  const navigate = useNavigate();
+
+  if (swiftQuery.isLoading) return <Skeleton className="h-96 w-full" />;
+  const objects = swiftQuery.data.objects || [];
   return (
     <>
       <div className="flex justify-between w-full items-center">
@@ -17,10 +23,16 @@ const Objects = () => {
           <RoadmapChangelog />
         </div>
       </div>
-      <SwiftObjectsList objects={swift.objects || []} />
+
+      <Button onClick={() => navigate('./add-object')}>
+        <Plus className="size-6 mr-2 text-primary-foreground" />
+        {t('addNewObject')}
+      </Button>
+
+      <SwiftObjectBrowser objects={objects} />
       <Outlet />
     </>
   );
 };
 
-export default Objects;
+export default SwiftObjectsPage;
