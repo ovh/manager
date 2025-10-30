@@ -8,7 +8,7 @@ export type TInstancesServerResponse = DeepReadonly<{
 
 const rootUri = '*/cloud/project/:projectId';
 
-const getResponsePayload = (payload: JsonBodyType): HttpResponse =>
+const getResponsePayload = (payload: JsonBodyType) =>
   payload === undefined
     ? new HttpResponse(null, { status: 500 })
     : HttpResponse.json(payload);

@@ -86,6 +86,6 @@
   "hosting_tab_DOMAINS_configuration_add_success_finish": "Dominio aggiunto correttamente al tuo hosting condiviso.",
   "hosting_tab_DOMAINS_configuration_add_failure": "Si è verificato un errore nell'aggiunta del o dei domini al tuo hosting condiviso.",
   "domain_tab_emails": "Email e mailing list",
-  "hosting_managed_wordpress_websites_description": "Crea un nuovo sito o importa in pochi clic un sito esistente in questo account.",
-  "hosting_managed_wordpress_websites_description_without_import": "Crea un nuovo sito in pochi clic su questo account."
+  "hosting_managed_wordpress_websites_description": "Crea un nuovo sito o importa in pochi clic un sito esistente verso questo account.",
+  "hosting_managed_wordpress_websites_description_without_import": "Crea un nuovo sito in pochi click su questo account."
 }

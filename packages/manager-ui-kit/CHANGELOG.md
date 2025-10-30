@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.1.2...@ovh-ux/muk@0.2.0) (2025-10-29)
+
+### Features
+
+- add missing components ([694d3f4](https://github.com/ovh/manager/commit/694d3f47c8c7fe94bc8f03948bebc719962b29ab)), closes [#MANAGER-19484](https://github.com/ovh/manager/issues/MANAGER-19484)
+- **muk:** export ODS enums from MUK ([20000ab](https://github.com/ovh/manager/commit/20000ab43846d97d7d3dba09ad681fc6ea684d8d))
+
 ## [0.1.2](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.1.1...@ovh-ux/muk@0.1.2) (2025-10-29)
 
 **Note:** Version bump only for package @ovh-ux/muk
