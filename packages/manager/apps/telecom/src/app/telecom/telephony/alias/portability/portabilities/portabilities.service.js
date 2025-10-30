@@ -88,4 +88,16 @@ export default class TelecomTelephonyAliasPortabilitiesService {
       .then(({ data }) => data)
       .catch(() => null);
   }
+
+  fetchEntrepriseInformations(billingAccount, serviceName, entrepriseNumber) {
+    return this.$http
+      .post(
+        `/telephony/${billingAccount}/service/${serviceName}/directory/fetchEntrepriseInformations`,
+        {
+          entrepriseNumber,
+        },
+      )
+      .then(({ data }) => data)
+      .catch(() => null);
+  }
 }
