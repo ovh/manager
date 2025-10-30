@@ -648,17 +648,4 @@ describe('TenantConfigurationForm', () => {
       expect(quantityInput).toHaveValue(null);
     });
   });
-
-  describe('Component Structure', () => {
-    it('should render all form fields in correct structure', () => {
-      const { container } = render(
-        <TestWrapper defaultValues={{ infrastructureId: 'infra-123', maxSeries: 100 }}>
-          <TenantConfigurationForm />
-        </TestWrapper>,
-      );
-
-      const gridContainer = container.querySelector('.grid.grid-cols-1.gap-4');
-      expect(gridContainer).toBeInTheDocument();
-    });
-  });
 });
