@@ -1,15 +1,30 @@
-import path from 'path';
+import { createRequire } from 'node:module';
+import path from 'node:path';
 
-import config from '@ovh-ux/manager-tailwind-config';
+import baseConfig from '@ovh-ux/manager-tailwind-config';
+
+const require = createRequire(import.meta.url);
+const pkgDir = (name) => path.dirname(require.resolve(`${name}/package.json`));
+const toGlob = (dir) => `${dir.replace(/\\/g, '/')}/**/*.{js,jsx,ts,tsx}`;
+
+const reactComponentsDir = pkgDir('@ovh-ux/muk');
+const pciCommonDir = pkgDir('@ovh-ux/manager-pci-common');
+
+const isPciConfig = '{{isPci}}';
+
+const baseTailwindConfig = [
+  ...(baseConfig.content ?? []),
+  './src/**/*.{js,jsx,ts,tsx}',
+  toGlob(reactComponentsDir),
+];
+
+export const pciTailwindConfig = [...baseTailwindConfig, toGlob(pciCommonDir)];
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  ...config,
-  content: [
-    './src/**/*.{js,jsx,ts,tsx}',
-    path.join(
-      path.dirname(require.resolve('@ovh-ux/manager-react-components')),
-      '**/*.{js,jsx,ts,tsx}',
-    ),
-  ],
+export default {
+  ...baseConfig,
+  content: isPciConfig === 'true' ? pciTailwindConfig : baseTailwindConfig,
+  corePlugins: {
+    preflight: false,
+  },
 };
