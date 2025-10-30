@@ -1,14 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { add } from 'date-fns';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { Pen } from 'lucide-react';
-import {
-  Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-} from '@datatr-ux/uxlib';
+import { CopyPlus, Pen } from 'lucide-react';
+import { Button } from '@datatr-ux/uxlib';
 import Link from '@/components/links/Link.component';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../Service.context';
@@ -49,42 +43,35 @@ const Backups = () => {
         <Guides section={GuideSections.backups} engine={service.engine} />
       </div>
       <p>{t('description')}</p>
-      <div className="inline-block">
-        <Table>
-          <TableBody data-testid="backups-table">
-            <TableRow>
-              <TableCell className="font-semibold">
-                {t('detailsRetentionDays')}
-              </TableCell>
-              <TableCell>
-                {t('detailsRetentionDaysUnit', {
-                  number: service.backups?.retentionDays,
-                })}
-              </TableCell>
-              <TableCell />
-            </TableRow>
-            <TableRow>
-              <TableCell className="font-semibold">
-                {t('detailsBackupTime')}
-              </TableCell>
-              <TableCell>{service.backups?.time}</TableCell>
-              <TableCell>
-                <Button
-                  type="button"
-                  mode="ghost"
-                  className="rounded-full aspect-square h-auto p-1"
-                >
-                  <Link to="./../settings">
-                    <Pen className="w-4 h-4" />
-                  </Link>
-                </Button>
-              </TableCell>
-            </TableRow>
-            <TableRow />
-          </TableBody>
-        </Table>
+
+      <div className="inline-block py-4">
+        {/* Ligne RetentionDays */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center border-b border-gray-200">
+          <p className="font-semibold">{t('detailsRetentionDays')}</p>
+          <p>
+            {t('detailsRetentionDaysUnit', {
+              number: service.backups?.retentionDays,
+            })}
+          </p>
+        </div>
+        {/* Ligne BackupTime */}
+        <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-4 items-center border-b border-gray-200">
+          <p className="font-semibold">{t('detailsBackupTime')}</p>
+          <div className="flex flex-row gap-4">
+            <p>{service.backups?.time}</p>
+            <Button
+              type="button"
+              mode="ghost"
+              className="rounded-full aspect-square h-6 w-6"
+            >
+              <Link to="./../settings">
+                <Pen className="w-4 h-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-2 pb-4">
         {service.capabilities.fork?.create && (
           <Button
             data-testid="fork-button"
@@ -93,11 +80,12 @@ const Backups = () => {
               database.service.capability.StateEnum.disabled
             }
             mode="outline"
-            size="sm"
-            className="text-base"
-            asChild
           >
-            <Link to="./fork" className="hover:no-underline">
+            <Link
+              to="./fork"
+              className="hover:no-underline flex flex-row gap-2 items-center"
+            >
+              <CopyPlus className="w-4 h-4" />
               {t('actionFork')}
             </Link>
           </Button>
@@ -110,8 +98,6 @@ const Backups = () => {
               database.service.capability.StateEnum.disabled
             }
             mode="outline"
-            size="sm"
-            className="text-base"
             onClick={() => navigate('./restore')}
           >
             {t('actionRestore')}

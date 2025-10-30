@@ -62,84 +62,65 @@ const ConnectionDetails = ({ endpoints }: ConnectionDetailsProps) => {
           </SelectContent>
         </Select>
       )}
-      <dl
-        data-testid="connection-details-container"
-        className="
-            grid gap-x-2 gap-y-1 items-center text-sm
-            grid-cols-1
-            sm:grid-cols-[max-content_1fr]
-          "
-      >
-        {selectedEndpoint?.domain && (
-          <>
-            <dt className="font-semibold whitespace-nowrap">
-              {t('connectionDetailsTableHeaderHost')}
-            </dt>
-            <dd className="min-w-0">
-              <Clipboard value={selectedEndpoint.domain} />
-            </dd>
-          </>
-        )}
+      {selectedEndpoint?.domain && (
+        <div>
+          <p className="font-semibold">
+            {t('connectionDetailsTableHeaderHost')}
+          </p>
+          <Clipboard value={`${selectedEndpoint.domain}`} />
+        </div>
+      )}
+      {selectedEndpoint?.port > 0 && (
+        <div className="my-2">
+          <p className="font-semibold">
+            {t('connectionDetailsTableHeaderPort')}
+          </p>
+          <Clipboard value={`${selectedEndpoint.port}`} />
+        </div>
+      )}
 
-        {selectedEndpoint?.port > 0 && (
-          <>
-            <dt className="font-semibold whitespace-nowrap">
-              {t('connectionDetailsTableHeaderPort')}
-            </dt>
-            <dd>
-              <Clipboard value={`${selectedEndpoint.port}`} />
-            </dd>
-          </>
-        )}
+      {selectedEndpoint?.scheme && (
+        <div className="my-2">
+          <p className="font-semibold">
+            {t('connectionDetailsTableHeaderScheme')}
+          </p>
+          <Clipboard value={`${selectedEndpoint.scheme}`} />
+        </div>
+      )}
 
-        {selectedEndpoint?.scheme && (
-          <>
-            <dt className="font-semibold whitespace-nowrap">
-              {t('connectionDetailsTableHeaderScheme')}
-            </dt>
-            <dd>
-              <Clipboard value={selectedEndpoint.scheme} />
-            </dd>
-          </>
-        )}
+      {selectedEndpoint?.sslMode && (
+        <div className="my-2">
+          <p className="font-semibold">
+            {t('connectionDetailsTableHeaderSSLMode')}
+          </p>
+          <Clipboard
+            value={`${selectedEndpoint.sslMode}`}
+            showCopiedIcon={false}
+          />
+        </div>
+      )}
 
-        {selectedEndpoint?.sslMode && (
-          <>
-            <dt className="font-semibold whitespace-nowrap">
-              {t('connectionDetailsTableHeaderSSLMode')}
-            </dt>
-            <dd>
-              <Clipboard value={selectedEndpoint.sslMode} />
-            </dd>
-          </>
-        )}
+      {selectedEndpoint?.uri && (
+        <div>
+          <p className="font-semibold">
+            {t('connectionDetailsTableHeaderURI')}
+          </p>
+          <Clipboard value={`${selectedEndpoint.uri}`} />
+        </div>
+      )}
 
-        {selectedEndpoint?.uri && (
-          <>
-            <dt className="font-semibold whitespace-nowrap">
-              {t('connectionDetailsTableHeaderURI')}
-            </dt>
-            <dd className="min-w-0">
-              <Clipboard value={selectedEndpoint.uri} />
-            </dd>
-          </>
-        )}
-
-        {certificateQuery.isSuccess && certificateQuery?.data?.ca && (
-          <>
-            <dt className="font-semibold whitespace-nowrap">
-              {t('connectionDetailsCertificateLabel')}
-            </dt>
-            <dd className="min-w-0">
-              <Clipboard
-                value={certificateQuery.data.ca}
-                secret
-                showDownloadButton
-              />
-            </dd>
-          </>
-        )}
-      </dl>
+      {certificateQuery.isSuccess && certificateQuery?.data?.ca && (
+        <div>
+          <p className="font-semibold">
+            {t('connectionDetailsCertificateLabel')}
+          </p>
+          <Clipboard
+            value={`${certificateQuery.data.ca}`}
+            secret
+            showDownloadButton
+          />
+        </div>
+      )}
     </div>
   );
 };

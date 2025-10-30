@@ -92,45 +92,60 @@ const CurrentQueries = () => {
     <>
       <h3>{t('currentQueriesTitle')}</h3>
       <p>{t('currentQueriesDescription')}</p>
-      <div data-testid="current-queries-container" className="flex gap-4">
-        <div className="flex items-center space-x-2 ">
-          <Switch
-            className="rounded-xl"
-            id="poll-current-queries"
-            checked={showIdle}
-            onCheckedChange={(checked: boolean) => setShowIdle(checked)}
-          />
-          <Label htmlFor="poll-logs">
-            {t('currentQueriesShowIdleConnections')}
-          </Label>
-        </div>
-        <div className="flex items-center space-x-2 ">
-          <Switch
-            className="rounded-xl"
-            id="poll-current-queries"
-            checked={showActive}
-            onCheckedChange={(checked: boolean) => setShowActive(checked)}
-          />
-          <Label htmlFor="poll-logs">
-            {t('currentQueriesShowActiveConnections')}
-          </Label>
-        </div>
-        <div className="flex items-center space-x-2 ">
-          <Switch
-            className="rounded-xl"
-            id="poll-current-queries"
-            checked={poll}
-            onCheckedChange={(checked: boolean) => setPoll(checked)}
-          />
-          <Label htmlFor="poll-logs">{t('currentQueriesAutoRefresh')}</Label>
-        </div>
-      </div>
       {currentQueriesQuery.isSuccess ? (
         <DataTable.Provider
           columns={columns}
           data={filteredQueries}
           pageSize={25}
-        />
+        >
+          <DataTable.Header>
+            <DataTable.Action>
+              <div
+                data-testid="current-queries-container"
+                className="flex gap-4"
+              >
+                <div className="flex items-center space-x-2 ">
+                  <Switch
+                    className="rounded-xl"
+                    id="poll-current-queries"
+                    checked={showIdle}
+                    onCheckedChange={(checked: boolean) => setShowIdle(checked)}
+                  />
+                  <Label htmlFor="poll-logs">
+                    {t('currentQueriesShowIdleConnections')}
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2 ">
+                  <Switch
+                    className="rounded-xl"
+                    id="poll-current-queries"
+                    checked={showActive}
+                    onCheckedChange={(checked: boolean) =>
+                      setShowActive(checked)
+                    }
+                  />
+                  <Label htmlFor="poll-logs">
+                    {t('currentQueriesShowActiveConnections')}
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2 ">
+                  <Switch
+                    className="rounded-xl"
+                    id="poll-current-queries"
+                    checked={poll}
+                    onCheckedChange={(checked: boolean) => setPoll(checked)}
+                  />
+                  <Label htmlFor="poll-logs">
+                    {t('currentQueriesAutoRefresh')}
+                  </Label>
+                </div>
+              </div>
+            </DataTable.Action>
+          </DataTable.Header>
+          <DataTable.Table />
+          <DataTable.FiltersList />
+          <DataTable.Pagination />
+        </DataTable.Provider>
       ) : (
         <div data-testid="current-queries-skeleton">
           <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />

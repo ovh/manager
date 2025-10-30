@@ -55,28 +55,35 @@ const QueryStatistics = () => {
       <p data-testid="query-statistics-description">
         {t('queryStatisticsDescription')}
       </p>
-      {service.capabilities.queryStatisticsReset && (
-        <Button
-          data-testid="query-statistics-reset-button"
-          mode="outline"
-          size="sm"
-          onClick={() => handleResetButtonClicked()}
-          disabled={
-            isPending ||
-            service.capabilities.queryStatisticsReset.create ===
-              database.service.capability.StateEnum.disabled
-          }
-        >
-          <RotateCcw className="size-4 mr-2" />
-          {t('queryStatisticsResetButton')}
-        </Button>
-      )}
       {queryStatisticsQuery.isSuccess ? (
         <DataTable.Provider
           columns={columns}
           data={queryStatisticsQuery.data as QueryStatisticsType[]}
           pageSize={25}
-        />
+        >
+          <DataTable.Header>
+            {service.capabilities.queryStatisticsReset && (
+              <DataTable.Action>
+                <Button
+                  data-testid="query-statistics-reset-button"
+                  mode="outline"
+                  onClick={() => handleResetButtonClicked()}
+                  disabled={
+                    isPending ||
+                    service.capabilities.queryStatisticsReset.create ===
+                      database.service.capability.StateEnum.disabled
+                  }
+                >
+                  <RotateCcw className="size-4" />
+                  {t('queryStatisticsResetButton')}
+                </Button>
+              </DataTable.Action>
+            )}
+          </DataTable.Header>
+          <DataTable.Table />
+          <DataTable.FiltersList />
+          <DataTable.Pagination />
+        </DataTable.Provider>
       ) : (
         <div data-testid="query-statistics-skeleton">
           <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />
