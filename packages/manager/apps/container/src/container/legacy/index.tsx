@@ -12,23 +12,21 @@ import ServerSidebar from './server-sidebar';
 import SidebarOverlay from './server-sidebar/SidebarOverlay';
 import style from './template.module.scss';
 import Progress from '../common/Progress';
-import Preloader from '../common/Preloader';
-import usePreloader from '../common/Preloader/usePreloader';
 import useContainer from '@/core/container';
 import useMfaEnrollment from '@/container/mfa-enrollment';
 import MfaEnrollment from '@/container/mfa-enrollment/MfaEnrollment';
 import { ContainerProps } from '@/types/container';
+import usePreloader from '@/context/preloader/usePreloader';
 
 const ModalContainer = lazy(() => import('@/components/modal-container/ModalContainer.component'));
 
 function LegacyContainer({ isCookiePolicyModalClosed }: ContainerProps): JSX.Element {
   const iframeRef = useRef(null);
-  const [iframe, setIframe] = useState<HTMLIFrameElement>(null);
   const { betaVersion } = useContainer();
 
   const { shell } = useApplication();
   const { isStarted: isProgressAnimating } = useProgress();
-  const preloaderVisible = usePreloader(shell, iframe);
+  const { setIframe, show: preloaderVisible } = usePreloader();
   const applications = shell
     .getPlugin('environment')
     .getEnvironment()
@@ -77,28 +75,24 @@ function LegacyContainer({ isCookiePolicyModalClosed }: ContainerProps): JSX.Ele
             </Suspense>
             <div className={style.managerShell_content}>
               <SidebarOverlay />
-              <Preloader visible={preloaderVisible}>
-                <>
-                  <IFrameAppRouter
-                    iframeRef={iframeRef}
-                    configuration={applications}
-                  />
-                  {isMfaEnrollmentVisible && (
-                    <Suspense fallback="">
-                      <MfaEnrollment
-                        forced={isMfaEnrollmentForced}
-                        onHide={hideMfaEnrollment}
-                      />
-                    </Suspense>
-                  )}
-                  <iframe
-                    title="app"
-                    role="document"
-                    src="about:blank"
-                    ref={iframeRef}
-                  ></iframe>
-                </>
-              </Preloader>
+                <IFrameAppRouter
+                  iframeRef={iframeRef}
+                  configuration={applications}
+                />
+                {isMfaEnrollmentVisible && (
+                  <Suspense fallback="">
+                    <MfaEnrollment
+                      forced={isMfaEnrollmentForced}
+                      onHide={hideMfaEnrollment}
+                    />
+                  </Suspense>
+                )}
+                <iframe
+                  title="app"
+                  role="document"
+                  src="about:blank"
+                  ref={iframeRef}
+                ></iframe>
             </div>
           </div>
         </div>
