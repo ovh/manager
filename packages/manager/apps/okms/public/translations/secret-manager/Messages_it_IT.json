@@ -55,5 +55,13 @@
   "version_state_delete": "Eliminare",
   "version_state_deleted": "Eliminato",
   "version_state_reactivate": "Riattivare",
-  "versions": "Versioni"
+  "versions": "Versioni",
+  "edit_metadata": "Modifica le impostazioni",
+  "error_invalid_duration": "La durata di scadenza deve essere una durata (es: 30s, 5m, 2h, 7d, 7d1h30m10s)",
+  "error_update_settings": "Si è verificato un errore durante l'aggiornamento delle impostazioni",
+  "form_helper_cas_required_okms": "CAS è attivato sul dominio OKMS, la disattivazione sul segreto non sarà presa in considerazione.",
+  "form_helper_deactivate_version_after": "Indica \"0s\" per disattivare la scadenza.",
+  "form_helper_max_versions": "Indica \"0\" per utilizzare il valore predefinito ({{default}}).",
+  "form_tooltip_deactivate_version_after": "Formato: 30s, 5m, 2h, 7d, 7d1h30m10s",
+  "current_version": "Versione attuale"
 }

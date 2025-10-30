@@ -55,5 +55,13 @@
   "version_state_delete": "Usuń",
   "version_state_deleted": "Usunięta",
   "version_state_reactivate": "Przywróć",
-  "versions": "Wersje"
+  "versions": "Wersje",
+  "edit_metadata": "Zmień ustawienia",
+  "error_invalid_duration": "Czas wygaśnięcia musi być określony jako czas (np: 30s, 5m, 2h, 7d, 7d1h30m10s)",
+  "error_update_settings": "Wystąpił błąd podczas aktualizacji ustawień",
+  "form_helper_cas_required_okms": "CAS jest włączony w domenie OKMS, wyłączenie na sekrecie nie będzie brane pod uwagę.",
+  "form_helper_deactivate_version_after": "Podaj \"0s\", aby wyłączyć wygaśnięcie.",
+  "form_helper_max_versions": "Podaj \"0\", aby użyć wartości domyślnej ({{default}}).",
+  "form_tooltip_deactivate_version_after": "Format: 30s, 5m, 2h, 7d, 7d1h30m10s",
+  "current_version": "Bieżąca wersja"
 }
