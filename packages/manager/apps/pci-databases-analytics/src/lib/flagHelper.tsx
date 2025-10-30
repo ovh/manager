@@ -17,6 +17,8 @@ export const getRegionFlag = (region: string): string | undefined => {
     case 'US-EAST-VA':
     case 'US-WEST-OR':
       return 'us';
+    case 'EU-SOUTH-MIL':
+      return 'it';
     default:
       return undefined;
   }
