@@ -16,9 +16,7 @@ import {
   detachVolume,
   getAllVolumes,
   getVolume,
-  getVolumeSnapshot,
   TAPIVolume,
-  TVolumeSnapshot,
   updateVolume,
 } from '@/api/data/volume';
 import { UCENTS_FACTOR } from '@/hooks/currency-constants';
@@ -35,6 +33,7 @@ import {
   mapVolumeStatus,
   mapVolumeToAdd,
   mapVolumeToEdit,
+  mapVolumeType,
   paginateResults,
   sortResults,
   TVolumeAttach,
@@ -43,12 +42,14 @@ import {
   TVolumeRegion,
   TVolumeStatus,
   TVolumeToAdd,
+  TVolumeType,
 } from '@/api/select/volume';
 
 export type TVolume = TAPIVolume &
   TVolumeAttach &
   TVolumeEncryption &
-  TVolumeStatus & {
+  TVolumeStatus &
+  TVolumeType & {
     regionName: string;
   };
 
@@ -79,6 +80,7 @@ export const useAllVolumes = (projectId: string | null) => {
         mapVolumeRegion(t),
         mapVolumeAttach(catalogData),
         mapVolumeEncryption(t, catalogData),
+        mapVolumeType(catalogData),
       ),
     [t, catalogData],
   );
@@ -171,17 +173,6 @@ export const useVolume = (
     ...restQuery,
   };
 };
-
-export const getVolumeSnapshotQueryKey = (projectId: string) => [
-  'volume-snapshot',
-  projectId,
-];
-
-export const useVolumeSnapshot = (projectId: string) =>
-  useQuery({
-    queryKey: ['volume-snapshot', projectId],
-    queryFn: (): Promise<TVolumeSnapshot[]> => getVolumeSnapshot(projectId),
-  });
 
 interface DeleteVolumeProps {
   projectId: string;
@@ -305,7 +296,7 @@ export const convertUcentsToCurrency = (value: number, interval = 1) =>
 interface UpdateVolumeProps {
   projectId: string;
   volumeToEdit: Pick<TVolume, 'name' | 'size' | 'bootable'>;
-  originalVolume: TVolume;
+  originalVolume: UseVolumeResult;
   onError: (cause: Error) => void;
   onSuccess: () => void;
 }
