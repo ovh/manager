@@ -14,7 +14,12 @@ import {
   ADD_DOMAIN,
   ADD_MODULE,
   ADD_WEBSITE,
+  ADVANCED_FLUSH_CDN,
   ASSOCIATE_GIT,
+  CDN_CACHE_RULE,
+  CDN_CONFIRMATION,
+  CDN_CORS_RESOURCE_SHARING,
+  CDN_EDIT_URLS,
   CONFIGURE_GIT,
   CREATE,
   DASHBOARD,
@@ -46,7 +51,15 @@ import {
   WORDPRESS_MANAGED,
   WORDPRESS_MANAGED_SERVICE,
 } from '../utils/tracking.constants';
-import { ModifyCdnPage, PurgeCdnModal } from './pages/cdn';
+import {
+  AdvancedFlushCdnModal,
+  CdnCacheRuleModal,
+  CdnConfirmationModal,
+  CdnCorsResourceSharingModal,
+  CdnEditUrlsModal,
+  ModifyCdnPage,
+  PurgeCdnModal,
+} from './pages/cdn';
 import {
   DashboardLayout,
   MultisitePage,
@@ -496,6 +509,61 @@ export default (
           handle={{
             tracking: {
               pageName: PURGE_CDN,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id={ADVANCED_FLUSH_CDN}
+          path={urls.advancedFlushCdn}
+          Component={AdvancedFlushCdnModal}
+          handle={{
+            tracking: {
+              pageName: ADVANCED_FLUSH_CDN,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id={CDN_CACHE_RULE}
+          path={urls.cdnCacheRule}
+          Component={CdnCacheRuleModal}
+          handle={{
+            tracking: {
+              pageName: CDN_CACHE_RULE,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id={CDN_EDIT_URLS}
+          path={urls.cdnEditUrls}
+          Component={CdnEditUrlsModal}
+          handle={{
+            tracking: {
+              pageName: CDN_EDIT_URLS,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id={CDN_CORS_RESOURCE_SHARING}
+          path={urls.cdnCorsResourceSharing}
+          Component={CdnCorsResourceSharingModal}
+          handle={{
+            tracking: {
+              pageName: CDN_CORS_RESOURCE_SHARING,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          id={CDN_CONFIRMATION}
+          path={urls.cdnConfirmation}
+          Component={CdnConfirmationModal}
+          handle={{
+            tracking: {
+              pageName: CDN_CONFIRMATION,
               pageType: PageType.popup,
             },
           }}
