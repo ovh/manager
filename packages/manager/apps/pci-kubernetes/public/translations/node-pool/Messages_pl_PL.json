@@ -39,5 +39,5 @@
   "kube_node_pool": "Konfiguracja puli węzłów",
   "kube_common_estimation_price_free": "Gratis",
   "kube_common_estimation_total_price": "Szacowana cena całkowita:",
-  "kube_common_node_pool_estimation_cost_tile": "Miesięczna wycena"
+  "kube_common_node_pool_estimation_cost_tile": "Szacunkowy koszt miesięczny"
 }
