@@ -57,6 +57,7 @@ const mockInfrastructures: Infrastructure[] = [
       location: 'eu-west-sbg',
       type: 'SHARED',
       usage: 'METRICS',
+      entryPoint: 'eee.metrics.ovh.com',
     },
   },
   {
@@ -65,6 +66,7 @@ const mockInfrastructures: Infrastructure[] = [
       location: 'eu-west-gra',
       type: 'DEDICATED',
       usage: 'LOGS',
+      entryPoint: 'aaa.metrics.ovh.com',
     },
   },
 ];
