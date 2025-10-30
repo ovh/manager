@@ -42,6 +42,7 @@ const Object = () => {
     region: s3.region,
     name: s3.name,
     key: objectKey,
+    options: { retry: false },
   });
 
   if (objectQuery.isLoading || objectVersionQuery.isLoading) {
