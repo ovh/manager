@@ -1,12 +1,13 @@
 import React from 'react';
-import { Region } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { OdsSpinner, OdsMessage } from '@ovhcloud/ods-components/react';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ODS_MESSAGE_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OrderContext } from '@/pages/order/order.context';
 import { ServiceType } from '@/types';
 import { useServiceRegion } from '@/data/hooks/useServiceRegion';
 import { useCheckServiceAvailability } from '@/data/hooks/useCheckServiceAvailability';
+import { TRANSLATION_NAMESPACES } from '@/utils';
 
 export const ServiceRegion = () => {
   const {
@@ -14,7 +15,10 @@ export const ServiceRegion = () => {
     selectedService,
     addDisabledService,
   } = React.useContext(OrderContext);
-  const { t } = useTranslation('order');
+  const { t } = useTranslation([
+    TRANSLATION_NAMESPACES.order,
+    NAMESPACES.REGION,
+  ]);
   const { serviceStatus, isServiceInfoLoading } = useCheckServiceAvailability({
     serviceName: selectedService,
     serviceType: selectedServiceType,
@@ -56,7 +60,7 @@ export const ServiceRegion = () => {
   return (
     <>
       {t('service_selection_region_helper')}
-      <Region name={region} mode="region" />
+      {t(`region_${region}`, { ns: NAMESPACES.REGION })}
     </>
   );
 };

@@ -2,12 +2,12 @@ import React from 'react';
 import {
   IntervalUnitType,
   OvhSubsidiary,
-  Price,
 } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
+import { Price } from '@/components/price';
 
 export type PriceFooterProps = {
   price: number | null;

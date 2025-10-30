@@ -11,6 +11,7 @@ import common from '../../public/translations/common/Messages_fr_FR.json';
 import importIpFromSys from '../../public/translations/import-ip-from-sys/Messages_fr_FR.json';
 import moveIp from '../../public/translations/move-ip/Messages_fr_FR.json';
 import aggregateSlice from '../../public/translations/aggregate-slice/Messages_fr_FR.json';
+import price from '../../public/translations/price/Messages_fr_FR.json';
 import { TRANSLATION_NAMESPACES } from '@/utils';
 
 export const translations = {
@@ -27,6 +28,7 @@ export const translations = {
   [TRANSLATION_NAMESPACES.moveIp]: moveIp,
   [TRANSLATION_NAMESPACES.common]: common,
   [TRANSLATION_NAMESPACES.aggregateSlice]: aggregateSlice,
+  [TRANSLATION_NAMESPACES.price]: price,
 };
 
 export const labels = {
@@ -43,4 +45,5 @@ export const labels = {
   moveIp,
   common,
   aggregateSlice,
+  price,
 };
