@@ -21,6 +21,7 @@ export const useApplicationBreadcrumbItems = () => {
     'datacentres/compute',
     'datacentres/storage',
     'datacentres/vrack-segment',
+    'datacentres/edge-gateway',
     NAMESPACES.ACTIONS,
   ]);
   const { id, vdcId } = useParams();
@@ -62,6 +63,9 @@ export const useApplicationBreadcrumbItems = () => {
       'datacentres/vrack-segment:managed_vcd_dashboard_vrack_add_network',
     ),
     [subRoutes.edgeGateway]: EDGE_GATEWAY_LABEL,
+    [subRoutes.deleteEdgeGateway]: t(
+      'datacentres/edge-gateway:edge_delete_title',
+    ),
   } as const;
 
   const breadcrumbItems: BreadcrumbItem[] = Object.entries(

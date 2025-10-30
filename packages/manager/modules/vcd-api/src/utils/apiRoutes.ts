@@ -1,3 +1,5 @@
+import { GetEdgeGatewayParams } from '../types';
+
 export const VCD_ORGANIZATION_ROUTE = '/vmwareCloudDirector/organization';
 
 export const getVcdOrganizationRoute = (id: string) => {
@@ -59,4 +61,12 @@ export const getVcdIpBlockListRoute = (id: string) => {
 // Edge Gateway
 export const getVcdEdgeGatewayListRoute = (id: string, vdcId: string) => {
   return `${getVcdDatacentreRoute(id, vdcId)}/edgeGateway`;
+};
+
+export const getVcdEdgeGatewayRoute = ({
+  id,
+  vdcId,
+  edgeGatewayId,
+}: GetEdgeGatewayParams) => {
+  return `${getVcdEdgeGatewayListRoute(id, vdcId)}/${edgeGatewayId}`;
 };
