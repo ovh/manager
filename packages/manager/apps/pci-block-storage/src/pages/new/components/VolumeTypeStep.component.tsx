@@ -130,9 +130,7 @@ export function VolumeTypeStep({
               t={t}
               i18nKey="add:pci_projects_project_storages_blocks_add_type_multi_attach_banner"
               components={{
-                Link: (
-                  <ExternalLink href={attachGuideLink} isTargetBlank={false} />
-                ),
+                Link: <ExternalLink href={attachGuideLink} isTargetBlank />,
               }}
             />
           </OsdsText>
