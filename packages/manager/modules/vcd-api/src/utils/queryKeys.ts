@@ -1,3 +1,5 @@
+import { GetEdgeGatewayParams } from '../types';
+
 const vcdBaseKey = 'vmwareCloudDirector';
 const vdcBaseKey = 'virtualDataCenter';
 const veeamBackupBaseKey = 'backup';
@@ -103,4 +105,9 @@ export const getVcdIpBlockListQueryKey = (id: string) => [
 export const getVcdEdgeGatewayListQueryKey = (id: string, vdcId: string) => [
   ...getVcdDatacentreQueryKey(id, vdcId),
   'edgeGateway',
+];
+
+export const getVcdEdgeGatewayQueryKey = (params: GetEdgeGatewayParams) => [
+  ...getVcdEdgeGatewayListQueryKey(params.id, params.vdcId),
+  params.edgeGatewayId,
 ];
