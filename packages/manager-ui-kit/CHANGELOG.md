@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.2.0...@ovh-ux/muk@0.3.0) (2025-10-30)
+
+### Bug Fixes
+
+- **muk:** update filter add snapshot spec ([bc28205](https://github.com/ovh/manager/commit/bc28205cbf536c889c71fd67809e4a2a57b5c3c0)), closes [#MANAGER-20131](https://github.com/ovh/manager/issues/MANAGER-20131)
+- remove unused translations [CDS] ([7e256a8](https://github.com/ovh/manager/commit/7e256a8741b52e9c7ad28b92cf6b8770f8372a23))
+
+### Features
+
+- **muk:** correct lint error and comment flaky test ([ec6b03d](https://github.com/ovh/manager/commit/ec6b03d31f808c496349983ad85a7b74faf3c393))
+
 # [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.1.2...@ovh-ux/muk@0.2.0) (2025-10-29)
 
 ### Features

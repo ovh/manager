@@ -10,12 +10,14 @@ export default {
     getReloadCreditLink: '<',
 
     goToCreditTransfer: '<',
+    goToOrderTime2Chat: '<',
     goToCreditOrder: '<',
 
     trackClick: '<',
     serviceName: '<',
 
     isSmppAccount: '<',
+    smsFeatureAvailability: '<',
   },
   controller,
   name: 'ovhManagerSmsDashboard',

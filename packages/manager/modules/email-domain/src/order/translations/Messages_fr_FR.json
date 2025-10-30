@@ -14,5 +14,6 @@
   "mxPlan_price_with_tax": "Prix TTC : ",
   "mxPlan_order_action": "Commander",
   "mxPlan_order_activate": "Activer",
-  "mxPlan_order_error_payment": "Une erreur est survenue lors du chargement des moyens de paiement disponibles"
+  "mxPlan_order_error_payment": "Une erreur est survenue lors du chargement des moyens de paiement disponibles",
+  "mxPlan_order_idn_domain_warning": "L'utilisation d'une adresse e-mail avec un domaine IDN dans un logiciel de messagerie (Outlook, Mail de macOS, etc.) n'est pas recommandée et peut provoquer des incompatibilités."
 }
