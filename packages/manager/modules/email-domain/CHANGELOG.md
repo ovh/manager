@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.11.9...@ovh-ux/manager-email-domain@1.11.10) (2025-10-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4424] ([1c3c2c8](https://github.com/ovh/manager/commit/1c3c2c8a49b9402b59829ec64f0c7b3592c027c1))
+
+
+
+
+
 ## [1.11.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.11.8...@ovh-ux/manager-email-domain@1.11.9) (2025-10-14)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.34.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.34.3...@ovh-ux/manager-pci-kubernetes-app@0.34.4) (2025-10-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4431] ([c4944c2](https://github.com/ovh/manager/commit/c4944c2b3d88193ef3f046d6940fd8b553486234))
+* **i18n:** add missing translations [CDS 4434] ([7043df7](https://github.com/ovh/manager/commit/7043df74d7339a8b7cb94d0b06fbad17fea3a1fe))
+
+
+
+
+
 ## [0.34.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.34.2...@ovh-ux/manager-pci-kubernetes-app@0.34.3) (2025-10-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
