@@ -129,11 +129,12 @@ describe('Technical Parity Validation', () => {
     expect(mockApiClient.v6.get).toHaveBeenCalledWith('/api/users');
   });
   
-  it('should use identical translation keys', () => {
+  it('should render identical translation values (keys may differ)', () => {
     render(<UserListPage />);
     
-    expect(screen.getByText('nasha_directory_columns_header_serviceName')).toBeInTheDocument();
-    expect(screen.getByText('nasha_directory_columns_header_canCreatePartition')).toBeInTheDocument();
+    // Assert on rendered texts (values), not on key names
+    expect(screen.getByText('Service Name')).toBeInTheDocument();
+    expect(screen.getByText('Can Create Partition')).toBeInTheDocument();
   });
   
   it('should have identical accessibility features', () => {
@@ -416,7 +417,7 @@ function measureTime(fn: () => void): number {
 
 #### Technical Parity
 - [ ] **URLs**: Paths, parameters identical
-- [ ] **Translations**: Keys, values identical
+- [ ] **Translations**: Values identical; keys may differ if mapping documented
 - [ ] **Accessibility**: ARIA, keyboard navigation identical
 - [ ] **Performance**: LCP, INP, CLS identical or better
 - [ ] **Security**: XSS protection, CSRF handling identical

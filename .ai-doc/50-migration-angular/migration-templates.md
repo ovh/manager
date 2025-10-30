@@ -90,6 +90,15 @@ This document provides **ready-to-use templates** for migration documentation. U
 4. **Phase 4**: Tests and validation
 
 ### AngularJS/React Coexistence
+### i18n/Translations Strategy
+- **Principle**: Preserve legacy translation values verbatim; only keys/namespaces may change.
+- **Actions**:
+  - [ ] Extract legacy `Messages_*.json` and build key→value map
+  - [ ] Define new key schema/namespaces for React µapp
+  - [ ] Produce legacy→new key mapping (values unchanged)
+  - [ ] Import same values under new keys
+  - [ ] Document mapping in `MIGRATION_NOTES.md`
+
 - [ ] Route-by-route migration
 - [ ] Shared services via hooks
 - [ ] Gradual AngularJS removal
@@ -100,6 +109,7 @@ This document provides **ready-to-use templates** for migration documentation. U
 - [ ] **Visual parity**: Identical interface pixel by pixel
 - [ ] **Performance parity**: No LCP/INP/CLS degradation
 - [ ] **Accessibility parity**: Same accessibility level
+- [ ] **i18n values parity**: All rendered texts identical to legacy; keys may differ
 
 ### E2E Tests
 - [ ] **Navigation**: All user journeys
@@ -173,6 +183,7 @@ This document provides **ready-to-use templates** for migration documentation. U
 - [ ] **Accessibility**: axe/pa11y validation
 - [ ] **TypeScript**: Strict mode, no any
 - [ ] **Documentation**: MIGRATION_NOTES.md up to date
+- [ ] **i18n**: Translation values preserved; legacy→new key mapping documented
 
 ## 11. Deployment Plan
 ### Environments
@@ -206,6 +217,12 @@ This document provides **ready-to-use templates** for migration documentation. U
 
 ## 2. Migration Decisions
 ### Key Decisions
+### Translation Keys Mapping (Legacy → New)
+| Legacy Key | New Key | Value (must be identical) |
+|------------|---------|----------------------------|
+| <legacy.key.1> | <new.key.1> | <copied legacy value> |
+| <legacy.key.2> | <new.key.2> | <copied legacy value> |
+
 - **Decision 1**: <description>
   - *Rationale*: <rationale>
   - *Impact*: <impact>
@@ -276,6 +293,10 @@ This document provides **ready-to-use templates** for migration documentation. U
 - [ ] All interactions working
 
 ### Accessibility Parity
+### i18n Parity
+- [ ] All rendered texts match legacy values exactly
+- [ ] Key renames are documented and mapped
+
 - [ ] Same accessibility level
 - [ ] All ARIA attributes present
 - [ ] Keyboard navigation working
@@ -366,6 +387,7 @@ This document provides **ready-to-use templates** for migration documentation. U
 - [ ] **Integration test coverage**: 90%+ integration test coverage
 - [ ] **E2E test coverage**: All user journeys covered
 - [ ] **All tests passing**: All tests passing in CI/CD
+ - [ ] **i18n parity tests**: Rendered texts match legacy values
 
 ## 4. Performance Requirements
 - [ ] **LCP < 2.5s**: Largest Contentful Paint under 2.5 seconds
@@ -390,6 +412,7 @@ This document provides **ready-to-use templates** for migration documentation. U
 - [ ] **API documentation**: All APIs documented
 - [ ] **User documentation**: User-facing features documented
 - [ ] **Migration documentation**: Migration process documented
+ - [ ] **i18n mapping**: Legacy→new key mapping documented in MIGRATION_NOTES.md
 
 ## 8. Deployment Requirements
 - [ ] **Deployment tested**: Deployment process tested

@@ -131,6 +131,12 @@ This directory contains **specialized guides** for migrating AngularJS modules t
 - **Always validate** with parity-validation-guide.md
 - **Document everything** with migration-templates.md
 
+### **i18n/Translations Policy (AngularJS → React)**
+- **Carry over translation values verbatim**: All translation strings (values) from the legacy AngularJS module must be reused as-is in the new µapp.
+- **Keys may be renamed**: You can rationalize and rename translation keys/namespaces to match the new nomenclature, but this must not alter the displayed strings.
+- **Document key mapping**: When keys are renamed, document the legacy→new mapping and keep it in `MIGRATION_NOTES.md`.
+- **Parity validation**: Validation must assert that all rendered texts match legacy values exactly; key names are not tested, only the resulting texts.
+
 ### **Migration Strategy**
 - **US-first approach**: One user story at a time
 - **100% parity**: Visual, functional, and technical

@@ -149,6 +149,57 @@ const translationKeyPatterns = {
 };
 ```
 
+### 🈺 i18n Migration Rules and Patterns
+
+#### Core Rule
+- **Translation values must be preserved verbatim** from AngularJS to React. Only the keys/namespaces may be changed to rationalize the nomenclature.
+
+#### Allowed
+- Renaming keys to align with new module structure/namespaces.
+- Grouping/scoping keys under clearer namespaces.
+
+#### Not Allowed
+- Changing translation values (texts) during migration.
+- “Improving” wording, punctuation, or casing.
+
+#### Recommended Process
+1. Extract legacy `Messages_*.json` and build a key→value map.
+2. Define the new key schema/namespaces for the React µapp.
+3. Generate a legacy→new key mapping that keeps values identical.
+4. Implement translations in React using the new keys and the same values.
+5. Document the mapping in `MIGRATION_NOTES.md`.
+
+#### Example: Key Rationalization (Values Unchanged)
+```json
+// Legacy (AngularJS)
+{
+  "nasha_listing_serviceName": "Service name",
+  "nasha_listing_order": "Order"
+}
+
+// New (React) — keys renamed, values identical
+{
+  "nasha.listing.columns.serviceName": "Service name",
+  "nasha.listing.actions.order": "Order"
+}
+```
+
+#### React Usage Example
+```typescript
+// Old: t('nasha_listing_order')
+// New: keys changed, values preserved
+const { t } = useTranslation('nasha');
+<Button>{t('listing.actions.order')}</Button>
+```
+
+#### Validation Pattern
+```typescript
+// Validate rendered texts match legacy values exactly
+expect(screen.getByText('Service name')).toBeInTheDocument();
+expect(screen.getByText('Order')).toBeInTheDocument();
+// Do not assert on key names; only assert on visible text
+```
+
 ### 🎯 Core AngularJS → React Mappings
 
 #### 1. **Controller → Hook**

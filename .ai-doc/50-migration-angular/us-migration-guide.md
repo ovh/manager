@@ -124,6 +124,17 @@ const userStories = [
 // 5. Map each US to React components with UI requirements
 ```
 
+**Step 4: Plan i18n Strategy (Values Preserved, Keys May Change)**
+
+```markdown
+## i18n Migration Plan
+- Extract legacy `Messages_*.json` to build key→value map
+- Define new key schema/namespaces for the React µapp
+- Produce a legacy→new key mapping (values unchanged)
+- Import same values under the new keys
+- Document mapping in `MIGRATION_NOTES.md`
+```
+
 **Step 4: Document Missing Features**
 
 Create checklist of features found in AngularJS that must be implemented:
@@ -197,7 +208,7 @@ Create checklist of features found in AngularJS that must be implemented:
 
 ### Technical Parity (100% Identical)
 - [ ] **URLs**: Same paths, query parameters, hash routing
-- [ ] **Translations**: Same keys, values, namespaces
+- [ ] **Translations**: Values identical; keys may differ if mapping documented
 - [ ] **Accessibility**: Same ARIA, keyboard navigation
 - [ ] **Performance**: Same or better LCP, INP, CLS
 
