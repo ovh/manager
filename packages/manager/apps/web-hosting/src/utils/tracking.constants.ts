@@ -65,6 +65,11 @@ export const LAST_DEPLOYEMENT_GIT = 'last-deployment-git';
 // cdn
 export const MODIFY_CDN = 'modify-cdn';
 export const PURGE_CDN = 'purge-cdn';
+export const ADVANCED_FLUSH_CDN = 'advanced-flush-cdn';
+export const CDN_CACHE_RULE = 'cdn-cache-rule';
+export const CDN_EDIT_URLS = 'cdn-edit-urls';
+export const CDN_CORS_RESOURCE_SHARING = 'cdn-cors-resource-sharing';
+export const CDN_CONFIRMATION = 'cdn-confirmation';
 
 // module
 export const ADD_MODULE = 'add-module';
