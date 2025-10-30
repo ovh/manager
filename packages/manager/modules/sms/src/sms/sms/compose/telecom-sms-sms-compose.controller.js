@@ -7,7 +7,6 @@ import get from 'lodash/get';
 import head from 'lodash/head';
 import map from 'lodash/map';
 import omit from 'lodash/omit';
-import pull from 'lodash/pull';
 import set from 'lodash/set';
 import size from 'lodash/size';
 import sortBy from 'lodash/sortBy';
@@ -76,7 +75,6 @@ export default class {
       init: false,
       send: false,
     };
-    this.enums = {};
     this.user = {};
     this.senders = {
       raw: [],
@@ -131,14 +129,12 @@ export default class {
       .then(() =>
         this.$q
           .all({
-            enums: this.fetchEnums(),
             user: this.fetchUser(),
             senders: this.fetchSenders(),
             receivers: this.fetchReceivers(),
             phonebooks: this.fetchPhonebooks(),
           })
           .then((result) => {
-            this.enums = result.enums;
             this.user = result.user;
             this.senders.raw = result.senders;
             this.receivers.raw = result.receivers;
@@ -168,19 +164,6 @@ export default class {
       .finally(() => {
         this.loading.init = false;
       });
-  }
-
-  /**
-   * Fetch enums.
-   * @return {Promise}
-   */
-  fetchEnums() {
-    return this.TucSmsMediator.getApiScheme().then((schema) => {
-      const smsClass = {
-        smsClass: pull(schema.models['sms.ClassEnum'].enum, 'toolkit'),
-      };
-      return smsClass;
-    });
   }
 
   /**

@@ -73,7 +73,7 @@ export const ContainerInfoCard = ({
       title={t(
         'dashboard:pci_projects_project_storages_dashboard_informations',
       )}
-      className="w-1/3"
+      className="w-full md:w-1/3"
     >
       <CardSection
         title={

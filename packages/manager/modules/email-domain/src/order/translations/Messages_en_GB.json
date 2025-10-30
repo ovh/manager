@@ -14,5 +14,6 @@
   "mxPlan_price_with_tax": "Price incl. VAT: ",
   "mxPlan_order_action": "Order",
   "mxPlan_order_error_payment": "An error occurred while loading available payment methods",
-  "mxPlan_order_activate": "Enable"
+  "mxPlan_order_activate": "Enable",
+  "mxPlan_order_idn_domain_warning": "Using an email address with an IDN domain in an email client (Outlook, macOS Mail, etc.) is not recommended, and may cause compatibility issues."
 }

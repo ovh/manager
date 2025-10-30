@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.19.0...@ovh-ux/manager-pci-object-storage-app@0.19.1) (2025-10-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app
+
+
+
+
+
+# [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.18.7...@ovh-ux/manager-pci-object-storage-app@0.19.0) (2025-10-28)
+
+
+### Bug Fixes
+
+* **object-storage:** tiles stacked in mobile ([1e1292c](https://github.com/ovh/manager/commit/1e1292cf7f43982207c7fc5a6846a40f89c0ec6d)), closes [#TAPC-5109](https://github.com/ovh/manager/issues/TAPC-5109)
+
+
+### Features
+
+* **object-storage:** choose selection on region ([7622bc9](https://github.com/ovh/manager/commit/7622bc98b5a5625f58049c7c2ecc76d3c445ebcc)), closes [#TAPC-5209](https://github.com/ovh/manager/issues/TAPC-5209)
+
+
+
+
+
 ## [0.18.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.18.6...@ovh-ux/manager-pci-object-storage-app@0.18.7) (2025-10-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app

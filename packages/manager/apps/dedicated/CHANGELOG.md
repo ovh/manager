@@ -3,6 +3,77 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.63.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.62.7...@ovh-ux/manager-dedicated@20.63.0) (2025-10-30)
+
+
+### Bug Fixes
+
+* **dedicated:** fix add site button on baremetal cloud pages ([467fcc8](https://github.com/ovh/manager/commit/467fcc8fc7de27757786cc494f6c7766b0ca1388)), closes [#BKP-590](https://github.com/ovh/manager/issues/BKP-590)
+* **dedicated:** fix error on deleting modal in baremetalcloud ([e7b3b3d](https://github.com/ovh/manager/commit/e7b3b3d9018da36e085b9f66e43c6c72917360d7)), closes [#BKP-589](https://github.com/ovh/manager/issues/BKP-589)
+* **i18n:** add missing translations [CDS 754] ([6c1fdfa](https://github.com/ovh/manager/commit/6c1fdfad212172290417c4c761719104983057e2)), closes [#BKP-553](https://github.com/ovh/manager/issues/BKP-553)
+
+
+### Features
+
+* **dedicated.pcc:** update option and compliance dashboard tiles ([5eb527e](https://github.com/ovh/manager/commit/5eb527e2d2f7df12eefd27ff49f0df0670cfab25)), closes [#MANAGER-16554](https://github.com/ovh/manager/issues/MANAGER-16554)
+* **dedicated:** add behavior during zerto delivering status ([031ec63](https://github.com/ovh/manager/commit/031ec6363fb115d269c42072c9e060237af6f761)), closes [#MANAGER-19089](https://github.com/ovh/manager/issues/MANAGER-19089)
+* **dedicated:** add delete zerto site modal ([6829542](https://github.com/ovh/manager/commit/6829542647121a5216242e4c4c09f244a5bcbf62)), closes [#MANAGER-17043](https://github.com/ovh/manager/issues/MANAGER-17043)
+* **dedicated:** add label when no zerto site delivered ([daf2409](https://github.com/ovh/manager/commit/daf2409f3597c152db8ff3d8cd46d90abfd3896b)), closes [#BKP-585](https://github.com/ovh/manager/issues/BKP-585)
+* **dedicated:** add listing page ([3ee4246](https://github.com/ovh/manager/commit/3ee424642e0d98153905a6dfe8d3bca5a715a7fe)), closes [#MANAGER-16590](https://github.com/ovh/manager/issues/MANAGER-16590)
+* **dedicated:** add redirection on add site zerto on configure dashboard ([4a0e61d](https://github.com/ovh/manager/commit/4a0e61d131218db7d83c2c0d2ac092428e150c93)), closes [#MANAGER-19397](https://github.com/ovh/manager/issues/MANAGER-19397)
+* **dedicated:** add site button and route ([5595ca8](https://github.com/ovh/manager/commit/5595ca812fb5d0851a8b1bd4c581184ff41cb129)), closes [#MANAGER-15720](https://github.com/ovh/manager/issues/MANAGER-15720)
+* **dedicated:** add sites status on pcc dashboard ([ed24f6d](https://github.com/ovh/manager/commit/ed24f6d0e0c12b1695675f76236343d5e8e5723b)), closes [#BKP-555](https://github.com/ovh/manager/issues/BKP-555)
+* **dedicated:** add zerto site page ([09272d4](https://github.com/ovh/manager/commit/09272d428dda0fbf5769f22319b4e765779529cd)), closes [#MANAGER-16205](https://github.com/ovh/manager/issues/MANAGER-16205)
+* **dedicated:** add zerto summary redirection ([5e28564](https://github.com/ovh/manager/commit/5e28564a72490777327c0fd47075a3144ef05bc1)), closes [#MANAGER-19423](https://github.com/ovh/manager/issues/MANAGER-19423)
+* **dedicated:** change drp by zerto route ([447c531](https://github.com/ovh/manager/commit/447c531c99635dc97e29dae2cacfd36b42dd3859)), closes [#MANAGER-17045](https://github.com/ovh/manager/issues/MANAGER-17045)
+* **dedicated:** change zerto wording ([65b3c56](https://github.com/ovh/manager/commit/65b3c56031e655ed93ce7396e1e658884cff05fd)), closes [#MANAGER-17089](https://github.com/ovh/manager/issues/MANAGER-17089)
+* **dedicated:** fix delete zerto modale trigger ([a51ac4a](https://github.com/ovh/manager/commit/a51ac4aa226d0e84ff3fb51af3bdc727d6dbe696)), closes [#MANAGER-19602](https://github.com/ovh/manager/issues/MANAGER-19602)
+* **dedicated:** hide banner to configure vpn for onpremise zerto ([e77f1d6](https://github.com/ovh/manager/commit/e77f1d64eb5ed94368c1b686115f5e643fb71d7d)), closes [#BKP-585](https://github.com/ovh/manager/issues/BKP-585)
+* **dedicated:** replace label to add site on zerto quick action ([c6e5438](https://github.com/ovh/manager/commit/c6e54389d450da84aa9ebf9d48f24198a2b96829)), closes [#BKP-586](https://github.com/ovh/manager/issues/BKP-586)
+* **dedicated:** replace label to add site on zerto quick action ([4f4c6e6](https://github.com/ovh/manager/commit/4f4c6e6ce64d5a997397ef66207e6152d55c05a7)), closes [#BKP-586](https://github.com/ovh/manager/issues/BKP-586)
+* **dedicated:** update pcc dashboard for zerto multi site ([18e9563](https://github.com/ovh/manager/commit/18e956341767d599a9eecc7b56ef6865428a4cc3)), closes [#MANAGER-16578](https://github.com/ovh/manager/issues/MANAGER-16578)
+* **dedicated:** update vdc dashboard zerto wording ([c42c7eb](https://github.com/ovh/manager/commit/c42c7ebc9ad3342b6300813eac2ab1ce93843088)), closes [#MANAGER-16578](https://github.com/ovh/manager/issues/MANAGER-16578)
+* **dedicated:** update zerto configuration alert message ([26bf208](https://github.com/ovh/manager/commit/26bf208bf4d0579d6f74bc3a94bdb0a3db2d55b2)), closes [#MANAGER-17090](https://github.com/ovh/manager/issues/MANAGER-17090)
+* **zerto:** change zerto status label ([5aa28fb](https://github.com/ovh/manager/commit/5aa28fbb2dc814a3ffe0f51b3aca49d3698a703a)), closes [#MANAGER-19495](https://github.com/ovh/manager/issues/MANAGER-19495)
+* **zerto:** improve zerto site state management ([f4e9360](https://github.com/ovh/manager/commit/f4e9360d56fb8e84d057a4463d2a4cee8d490f5e)), closes [#BKP-554](https://github.com/ovh/manager/issues/BKP-554) [#BKP-555](https://github.com/ovh/manager/issues/BKP-555)
+* **zerto:** remove redirection on summary for the first site configuration ([038e177](https://github.com/ovh/manager/commit/038e177fdea59034d9196042f4ffacb03d2afaa2)), closes [#MANAGER-16590](https://github.com/ovh/manager/issues/MANAGER-16590)
+
+
+
+
+
+## [20.62.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.62.6...@ovh-ux/manager-dedicated@20.62.7) (2025-10-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.62.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.62.5...@ovh-ux/manager-dedicated@20.62.6) (2025-10-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.62.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.62.4...@ovh-ux/manager-dedicated@20.62.5) (2025-10-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.62.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.62.3...@ovh-ux/manager-dedicated@20.62.4) (2025-10-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
 ## [20.62.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.62.2...@ovh-ux/manager-dedicated@20.62.3) (2025-10-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

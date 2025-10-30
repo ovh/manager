@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.2.0...@ovh-ux/manager-communication-app@0.2.1) (2025-10-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-communication-app
+
+
+
+
+
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.1.16...@ovh-ux/manager-communication-app@0.2.0) (2025-10-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 753] ([dc0c5eb](https://github.com/ovh/manager/commit/dc0c5ebc443253c846f277874f23f25b75c2e91b))
+
+
+### Features
+
+* **communication:** add contacts creation and edit modal ([1f9974c](https://github.com/ovh/manager/commit/1f9974c98d8afbc5061f01e552aa112fcd7ec768)), closes [#MANAGER-18682](https://github.com/ovh/manager/issues/MANAGER-18682)
+* **communication:** add contacts delete modal ([558c7a3](https://github.com/ovh/manager/commit/558c7a3ccbbe3bbbd0cd2e5fcb16e85a8b6b8128)), closes [#MANAGER-18681](https://github.com/ovh/manager/issues/MANAGER-18681)
+* **communication:** add contacts listing page ([782cd8a](https://github.com/ovh/manager/commit/782cd8a2bb33baf82253e1e8651458903ac266fa)), closes [#MANAGER-18679](https://github.com/ovh/manager/issues/MANAGER-18679)
+* **communication:** add tracking to communications listing and detail ([860b696](https://github.com/ovh/manager/commit/860b6961c1f361e4cd59a881370d0561c1e7b310)), closes [#MANAGER-18662](https://github.com/ovh/manager/issues/MANAGER-18662)
+* **communication:** add user feedback and minor improvements ([879df0e](https://github.com/ovh/manager/commit/879df0e6747816fd2afc80748fe95e724ec039a6)), closes [#MANAGER-19857](https://github.com/ovh/manager/issues/MANAGER-19857)
+
+
+
+
+
 ## [0.1.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.1.15...@ovh-ux/manager-communication-app@0.1.16) (2025-10-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-communication-app

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import {
   useAuthorizationIam,
   useFeatureAvailability,
-  useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { useNavigate } from 'react-router-dom';
 import { ParentEnum } from '@/enum/parent.enum';
@@ -17,8 +16,6 @@ import { useGetIAMResourceAllDom } from '@/hooks/iam/iam';
 import { urls } from '@/routes/routes.constant';
 
 export default function AllDom() {
-  const { notifications } = useNotifications();
-
   // Get IAM authorization for the IAM resource
   // Redirect to domain tab if the user don't have access to the page
   const { data: allDomIAMRessources } = useGetIAMResourceAllDom();
@@ -43,7 +40,6 @@ export default function AllDom() {
       <DashboardPage
         searchableColumnID={ParentEnum.DOMAIN}
         parent={ParentEnum.ALLDOM}
-        notifications={notifications}
         route={`${taskMeDomain.join('/')}?type=alldom`}
         queryKey={taskMeAllDom}
       />

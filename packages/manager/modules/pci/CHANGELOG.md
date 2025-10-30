@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.99.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.98.3...@ovh-ux/manager-pci@6.99.0) (2025-10-29)
+
+
+### Features
+
+* **public-cloud:** distant-backup - translate copying status ([1411307](https://github.com/ovh/manager/commit/14113072853883d7812adb4795c89219119dd1fa)), closes [#TAPC-3055](https://github.com/ovh/manager/issues/TAPC-3055)
+
+
+
+
+
 ## [6.98.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.98.2...@ovh-ux/manager-pci@6.98.3) (2025-10-23)
 
 

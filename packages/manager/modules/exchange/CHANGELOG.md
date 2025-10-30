@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.15.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.7...@ovh-ux/manager-exchange@4.15.8) (2025-10-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 759] ([3a9b1bb](https://github.com/ovh/manager/commit/3a9b1bb68cc1964cff92e99e8b41979395b900ee))
+* **web.exchange:** add translation key exchange version SE ([557c59a](https://github.com/ovh/manager/commit/557c59ad19a23f9a59e25e9830862e7a6c482589)), closes [#PRDCOL-245](https://github.com/ovh/manager/issues/PRDCOL-245)
+* **web.exchange:** fix wrong quota definition on shared account ([c5d1fe0](https://github.com/ovh/manager/commit/c5d1fe0ccf95448958d6cb2045fa2f702579717d)), closes [#PRDCOL-130](https://github.com/ovh/manager/issues/PRDCOL-130)
+
+
+
+
+
+## [4.15.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.6...@ovh-ux/manager-exchange@4.15.7) (2025-10-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4424] ([1c3c2c8](https://github.com/ovh/manager/commit/1c3c2c8a49b9402b59829ec64f0c7b3592c027c1))
+* **i18n:** add missing translations [CDS 4427] ([96e6148](https://github.com/ovh/manager/commit/96e6148849d384499635a96358b3584e0938f1ea))
+
+
+
+
+
 ## [4.15.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.15.5...@ovh-ux/manager-exchange@4.15.6) (2025-10-16)
 
 

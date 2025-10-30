@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.25.9...@ovh-ux/manager-hub-app@0.25.10) (2025-10-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [0.25.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.25.8...@ovh-ux/manager-hub-app@0.25.9) (2025-10-28)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [0.25.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.25.7...@ovh-ux/manager-hub-app@0.25.8) (2025-10-27)
+
+
+### Bug Fixes
+
+* **hub:** fix responsive table width and overflow ([dfaac12](https://github.com/ovh/manager/commit/dfaac1282116330b2505c182465d04b68b1b92a5)), closes [#MANAGER-17605](https://github.com/ovh/manager/issues/MANAGER-17605)
+
+
+
+
+
 ## [0.25.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.25.6...@ovh-ux/manager-hub-app@0.25.7) (2025-10-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app

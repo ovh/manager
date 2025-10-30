@@ -8,12 +8,18 @@ import {
   ServiceInfoUpdateEnum,
   ServiceRoutes,
 } from '@/alldoms/enum/service.enum';
+import { useCloseModal } from '@/common/hooks/closeModal/useCloseModal';
+import { urls } from '@/alldoms/routes/routes.constant';
 
 export const useTerminateService = (serviceName: string, domains: string[]) => {
   const { addError, addSuccess } = useNotifications();
   const { t } = useTranslation(['allDom', NAMESPACES.ACTIONS]);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const closeUrl = useCloseModal(
+    serviceName,
+    `${urls.alldomsRoot}/${urls.alldomsListingTerminate}`,
+  );
 
   return useMutation({
     mutationFn: async () => {
@@ -45,8 +51,6 @@ export const useTerminateService = (serviceName: string, domains: string[]) => {
         }),
       );
     },
-    onSettled: () => {
-      navigate(-1);
-    },
+    onSettled: () => navigate(closeUrl),
   });
 };

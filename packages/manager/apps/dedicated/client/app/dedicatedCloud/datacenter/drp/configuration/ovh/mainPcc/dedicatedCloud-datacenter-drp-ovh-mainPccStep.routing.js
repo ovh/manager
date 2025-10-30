@@ -1,7 +1,4 @@
-import { DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS } from '../../../../../../components/dedicated-cloud/datacenter/drp/dedicatedCloud-datacenter-drp.constants';
-
-import legacyTemplate from '../../../../../../components/ip/legacyOrder/ip-ip-legacyOrder.html';
-import template from '../../../../../../components/ip/agoraOrder/ip-ip-agoraOrder.html';
+import { DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS } from '../../../../../../components/dedicated-cloud/datacenter/zerto/dedicatedCloud-datacenter-zerto.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
@@ -9,70 +6,30 @@ export default /* @ngInject */ ($stateProvider) => {
       'app.dedicatedCloud.details.datacenter.details.drp.ovh.mainPccStep',
       {
         url: '/mainPcc',
-        views: {
-          'innerView@app.dedicatedCloud.details.datacenter.details.drp': {
-            component: 'ovhManagerDedicatedCloudDatacenterDrpMainPcc',
-          },
-        },
         params: {
           currentStep: 1,
           drpInformations: {
             drpType: DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.ovh,
           },
         },
-        resolve: {
-          datacenterId: /* @ngInject */ ($transition$) =>
-            $transition$.params().datacenterId,
-          drpInformations: /* @ngInject */ ($transition$) =>
-            $transition$.params().drpInformations,
-          goBackToChoice: /* @ngInject */ ($state) => (selectedDrpType) =>
-            $state.go('app.dedicatedCloud.details.datacenter.details.drp', {
-              selectedDrpType,
-            }),
-          goToNextStep: /* @ngInject */ ($state) => (drpInformations) =>
-            $state.go(
-              'app.dedicatedCloud.details.datacenter.details.drp.ovh.secondPccStep',
-              {
-                drpInformations,
-              },
-            ),
-          ipAddressDetails: /* @ngInject */ (
-            currentService,
-            dedicatedCloudDrp,
-          ) =>
-            dedicatedCloudDrp.getPccIpAddressesDetails(
-              currentService.serviceName,
-            ),
-          breadcrumb: () => null,
-        },
+        redirectTo:
+          'app.dedicatedCloud.details.datacenter.details.zerto.ovh.mainPccStep',
       },
     )
     .state(
       'app.dedicatedCloud.details.datacenter.details.drp.ovh.mainPccStep.legacyOrderIp',
       {
         url: '/legacyOrderIp',
-        controller: 'IpLegacyOrderCtrl',
-        controllerAs: 'ctrl',
-        template: legacyTemplate,
-        layout: 'modal',
-        translations: { value: ['.'], format: 'json' },
-        resolve: {
-          breadcrumb: () => null,
-        },
+        redirectTo:
+          'app.dedicatedCloud.details.datacenter.details.zerto.ovh.mainPccStep.legacyOrderIp',
       },
     )
     .state(
       'app.dedicatedCloud.details.datacenter.details.drp.ovh.mainPccStep.orderIp',
       {
         url: '/orderIp',
-        controller: 'agoraIpOrderCtrl',
-        controllerAs: 'ctrl',
-        template,
-        layout: 'modal',
-        translations: { value: ['.'], format: 'json' },
-        resolve: {
-          breadcrumb: () => null,
-        },
+        redirectTo:
+          'app.dedicatedCloud.details.datacenter.details.zerto.ovh.mainPccStep.orderIp',
       },
     );
 };

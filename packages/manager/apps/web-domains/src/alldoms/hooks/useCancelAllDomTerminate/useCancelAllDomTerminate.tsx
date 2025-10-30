@@ -11,6 +11,8 @@ import {
 } from '@/alldoms/enum/service.enum';
 import { TDomainsInfo } from '@/alldoms/types';
 import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
+import { useCloseModal } from '@/common/hooks/closeModal/useCloseModal';
+import { urls } from '@/alldoms/routes/routes.constant';
 
 export const useCancelAllDomTerminate = (
   serviceName: string,
@@ -20,6 +22,10 @@ export const useCancelAllDomTerminate = (
   const { t } = useTranslation(['allDom', NAMESPACES.ACTIONS]);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const closeUrl = useCloseModal(
+    serviceName,
+    `${urls.alldomsRoot}/${urls.alldomsListingCancelTerminate}`,
+  );
 
   const { data: services } = useGetServices({
     names: domains.map((domain) => domain.name),
@@ -60,16 +66,15 @@ export const useCancelAllDomTerminate = (
           serviceName,
         }),
       );
-      navigate(-1);
     },
 
     onError: () => {
-      navigate(-1);
       addError(
         t('allDom_cancel_terminate_error', {
           serviceName,
         }),
       );
     },
+    onSettled: () => navigate(closeUrl),
   });
 };

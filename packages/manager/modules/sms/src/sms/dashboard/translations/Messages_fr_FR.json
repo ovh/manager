@@ -21,5 +21,6 @@
   "sms_statictics_credit_reload": "Recharger crédits",
   "sms_statistics_sent_number": "Nombre de SMS envoyés",
   "sms_statistics_delivered_number": "Nombre de SMS délivrés",
-  "sms_statistics_stop_subscribe_number": "Nombre de désabonnements"
+  "sms_statistics_stop_subscribe_number": "Nombre de désabonnements",
+  "sms_actions_order_time2chat": "Commander un numéro Time2Chat"
 }
