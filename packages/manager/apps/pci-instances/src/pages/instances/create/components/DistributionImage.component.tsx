@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { Divider, Text } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { ImageHelper } from './distributionImage/ImageHelper.component';
+import DistributionImageType from './distributionImage/DistributionImageType.component';
 
 const DistributionImage: FC = () => {
   const { t } = useTranslation('creation');
@@ -15,6 +16,7 @@ const DistributionImage: FC = () => {
         </Text>
         <ImageHelper />
       </div>
+      <DistributionImageType />
     </section>
   );
 };

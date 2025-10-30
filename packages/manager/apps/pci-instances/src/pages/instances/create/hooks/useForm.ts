@@ -11,7 +11,10 @@ import {
   selectCategories,
   selectTypes,
 } from '../view-models/categoriesTypesViewModel';
-import { mockedFlavors } from '@/__mocks__/instance/constants';
+import {
+  mockedDistributionImageType,
+  mockedFlavors,
+} from '@/__mocks__/instance/constants';
 
 export const useForm = (projectId: string) => {
   const deploymentModesDefaultValue: TDeploymentMode[] = [
@@ -50,6 +53,9 @@ export const useForm = (projectId: string) => {
 
   const availabilityZoneDefaultValue = null;
 
+  const distributionImageTypeDefaultValue =
+    mockedDistributionImageType[0]?.value ?? null;
+
   const formMethods = useReactHookForm({
     resolver: zodResolver(instanceCreationSchema),
     values: {
@@ -63,6 +69,7 @@ export const useForm = (projectId: string) => {
       macroRegion: macroRegionDefaultValue,
       microRegion: microRegionDefaultValue,
       availabilityZone: availabilityZoneDefaultValue,
+      distributionImageType: distributionImageTypeDefaultValue,
     },
     mode: 'onChange',
   });
