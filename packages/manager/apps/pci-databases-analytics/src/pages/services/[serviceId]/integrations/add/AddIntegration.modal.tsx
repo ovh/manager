@@ -107,7 +107,7 @@ const AddIntegration = () => {
         {model.result.capability &&
           (model.lists.sources.length === 0 ||
             model.lists.destinations.length === 0) && (
-            <Alert variant="warning">
+            <Alert variant="warning" className="rounded-md flex flex-col gap-2">
               <AlertTitle>{t('addIntegrationNoServiceAlertTitle')}</AlertTitle>
               <div className="text-xs">
                 <p>{t('addIntegrationNoServiceAlertDescription')}</p>

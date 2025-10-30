@@ -112,8 +112,8 @@ const IpsRestrictionsForm = React.forwardRef<
             {!value.find((v) => v.ip === formatIpMask(dataplatformIp)) && (
               <Button
                 className="px-2"
-                mode={'outline'}
-                size={'sm'}
+                mode="outline"
+                size="sm"
                 onClick={() =>
                   addIp({
                     ip: dataplatformIp,
@@ -121,7 +121,7 @@ const IpsRestrictionsForm = React.forwardRef<
                   })
                 }
               >
-                <Plus className="size-4 mr-2" />
+                <Plus className="size-4" />
                 {t('commonlyUsedIpsDatatplatform')}
               </Button>
             )}
@@ -129,13 +129,13 @@ const IpsRestrictionsForm = React.forwardRef<
             {!value.find((v) => v.ip === formatIpMask(ipQuery.data?.ip)) && (
               <Button
                 className="px-2"
-                mode={'outline'}
-                size={'sm'}
+                mode="outline"
+                size="sm"
                 onClick={() =>
                   addIp({ ip: ipQuery.data?.ip, description: 'current ip' })
                 }
               >
-                <Plus className="size-4 mr-2" />
+                <Plus className="size-4" />
                 {t('commonlyUsedIpsCurrentIp')}
               </Button>
             )}
@@ -198,12 +198,12 @@ const IpsRestrictionsForm = React.forwardRef<
             <Button
               data-testid="ip-add-button"
               className="w-full md:w-auto md:ml-2"
+              mode="outline"
               size="sm"
-              mode={'outline'}
               disabled={disabled}
               onClick={onSubmit}
             >
-              <Plus className="mr-2 size-4" />
+              <Plus className="size-4" />
               {t('ipAddButtonLabel')}
             </Button>
           </div>
@@ -213,21 +213,21 @@ const IpsRestrictionsForm = React.forwardRef<
         <Table className="table-fixed mt-2">
           <TableHeader className="border bg-[#f7f8f8]">
             <TableRow>
-              <TableHead className="h-10 px-2 border font-semibold text-primary-800">
+              <TableHead className="h-10 !p-2 border font-semibold text-primary-800">
                 {t('ipTableHeaderIp')}
               </TableHead>
-              <TableHead className="h-10 px-2 border font-semibold text-primary-800 border-r-0">
+              <TableHead className="h-10 !p-2 border font-semibold text-primary-800 border-r-0">
                 {t('ipTableHeaderDescription')}
               </TableHead>
-              <TableHead className="h-10 px-2 border font-semibold text-primary-800 border-l-0" />
+              <TableHead className="h-10 !p-2 border font-semibold text-primary-800 border-l-0" />
             </TableRow>
           </TableHeader>
           <TableBody>
             {value.map(({ ip, description }, idx) => (
               <TableRow key={`${ip}-${idx}`} className="!border">
-                <TableCell>{ip}</TableCell>
-                <TableCell>{description}</TableCell>
-                <TableCell className="text-right">
+                <TableCell className="!p-2">{ip}</TableCell>
+                <TableCell className="!p-2">{description}</TableCell>
+                <TableCell className="text-right !p-2">
                   <Button
                     data-testid={`ip-remove-button-${idx}`}
                     className="text-red-500 rounded-full p-2 hover:text-red-500 size-8"

@@ -2,7 +2,6 @@ import {
   AlertCircle,
   ArrowRight,
   Cpu,
-  Files,
   Globe2,
   HardDrive,
   MemoryStick,
@@ -18,13 +17,11 @@ import {
   CardContent,
   CardHeader,
   Button,
-  useToast,
   Alert,
   AlertDescription,
   Skeleton,
   Clipboard,
 } from '@datatr-ux/uxlib';
-import { Button as OdsButton } from '@ovhcloud/ods-react';
 import { useServiceData } from '../Service.context';
 import MetricChart from '../metrics/_components/MetricChart.component';
 import * as database from '@/types/cloud/project/database';
@@ -51,7 +48,6 @@ const Dashboard = () => {
   const vrackQuery = useGetVrack(projectId);
   const subnet = useGetServiceSubnet(projectId, service);
   const metricsQuery = useGetMetrics(projectId, service.engine, service.id);
-  const toast = useToast();
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/dashboard',
   );
@@ -110,12 +106,18 @@ const Dashboard = () => {
           <Guides section={GuideSections.dashboard} engine={service.engine} />
         </div>
       </div>
-      <Alert variant="information">
-        <AlertCircle className="h-6 w-6" />
-
-        <AlertDescription className="flex flex-col md:flex-row justify-between w-full">
-          <p>{t('upgradeAlertDescription')}</p>
-          <Button data-testid="dashboard-upgrade-button" type="button" asChild>
+      <Alert variant="information" className="rounded-md">
+        <AlertDescription className="flex flex-col md:flex-row items-center justify-between w-full">
+          <div className="flex flex-row items-center gap-2">
+            <AlertCircle className="size-6" />
+            <p>{t('upgradeAlertDescription')}</p>
+          </div>
+          <Button
+            data-testid="dashboard-upgrade-button"
+            className="whitespace-nowrap"
+            type="button"
+            asChild
+          >
             <Link
               className="flex items-center hover:no-underline hover:text-primary-foreground"
               to={'settings#update'}

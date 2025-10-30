@@ -16,7 +16,7 @@ const OrderPrice = ({ availability, prices }: OrderPriceProps) => {
 
   return (
     <div data-testid="order-price-container">
-      <p className="font-bold">{t('pricing_label')}</p>
+      <p className="font-bold mb-2">{t('pricing_label')}</p>
       {isFreeBeta ? (
         <FreeBetaPricing popoverSide="left" />
       ) : (

@@ -23,7 +23,7 @@ export function DatatableSortableHeader<TData>({
     <Button
       mode="ghost"
       className={cn(
-        'px-0 py-0 h-auto font-semibold hover:bg-transparent active:bg-transparent active:text-primary-500 leading-[1rem]',
+        'px-0 py-0 h-auto font-semibold !bg-transparent hover:bg-transparent active:bg-transparent active:text-primary-500 leading-[1rem]',
         sort
           ? 'text-primary-500 hover:text-primary-500'
           : 'text-primary-800 hover:text-primary-800',

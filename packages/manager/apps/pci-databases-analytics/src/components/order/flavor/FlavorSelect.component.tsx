@@ -42,12 +42,12 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
         max: formatStorage(storage.maximum),
       });
     };
-    const clickInput = (flavorName: string) => {
-      const inputElement = document.getElementById(`flavor-${flavorName}`);
-      if (inputElement) {
-        // inputElement.click();
-      }
-    };
+    // const clickInput = (flavorName: string) => {
+    //   const inputElement = document.getElementById(`flavor-${flavorName}`);
+    //   if (inputElement) {
+    //     // inputElement.click();
+    //   }
+    // };
     const handleKeyDown = (
       e: React.KeyboardEvent<HTMLTableRowElement>,
       flavorName: string,
@@ -57,8 +57,8 @@ const FlavorsSelect = React.forwardRef<HTMLTableElement, FlavorsSelectProps>(
       }
     };
     const classNameTableHead =
-      'h-10 px-2 border font-semibold text-primary-800';
-    const classNameTableCell = 'text-[#4d5592] border';
+      '!p-3 h-10 border font-semibold text-primary-800';
+    const classNameTableCell = '!p-3 text-[#4d5592] border';
     return (
       <Table
         data-testid="flavor-select-table"
