@@ -44,7 +44,6 @@ export default function CreatePage() {
   const { refetch } = useManagedWordpressResourceDetails(serviceName);
   const { data: phpVersion } = useManagedCmsLatestPhpVersion();
   const { addError, addSuccess } = useNotifications();
-
   const {
     control,
     handleSubmit,
@@ -55,7 +54,7 @@ export default function CreatePage() {
       adminPassword: '',
       cmsSpecific: {
         wordpress: {
-          language: '',
+          language: 'en_GB',
         },
       },
       phpVersion: '',
@@ -135,7 +134,7 @@ export default function CreatePage() {
       adminLogin,
       adminPassword,
       cmsSpecific: {
-        wordpress: { language },
+        wordpress: { language: language || 'en_GB' },
       },
       phpVersion,
     });
@@ -165,12 +164,13 @@ export default function CreatePage() {
           render={({ field }) => (
             <OdsFormField className="w-full mb-4">
               <label slot="label">
-                {t('managedWordpress:web_hosting_managed_wordpress_create_webiste_language_admin')}*
+                {t('managedWordpress:web_hosting_managed_wordpress_create_webiste_language_admin')}
               </label>
               <OdsSelect
                 name={field.name}
                 data-testid="input-language"
                 value={field.value}
+                defaultValue={'en_gb'}
                 placeholder={t(
                   'managedWordpress:web_hosting_managed_wordpress_create_webiste_select_language',
                 )}

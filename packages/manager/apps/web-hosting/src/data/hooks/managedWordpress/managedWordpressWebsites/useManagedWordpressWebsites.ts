@@ -27,10 +27,11 @@ type UseManagedWordpressWebsitesParams = Omit<
 > & {
   defaultFQDN?: string;
   shouldFetchAll?: boolean;
+  disableRefetchInterval?: boolean;
 };
 
 export const useManagedWordpressWebsites = (props: UseManagedWordpressWebsitesParams = {}) => {
-  const { defaultFQDN, shouldFetchAll, ...options } = props;
+  const { defaultFQDN, shouldFetchAll, disableRefetchInterval, ...options } = props;
   const [allPages, setAllPages] = useState(!!shouldFetchAll);
   const { serviceName } = useParams();
   const searchParams = buildURLSearchParams({
@@ -54,7 +55,7 @@ export const useManagedWordpressWebsites = (props: UseManagedWordpressWebsitesPa
         : typeof props.enabled !== 'boolean' || props.enabled,
     getNextPageParam: (lastPage) => lastPage.cursorNext,
     select: (data) => data?.pages.flatMap((page: WebsitesResponse) => page.data) ?? [],
-    refetchInterval: DATAGRID_REFRESH_INTERVAL,
+    refetchInterval: disableRefetchInterval ? false : DATAGRID_REFRESH_INTERVAL,
     refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
   });
   const fetchAllPages = useCallback(() => {
