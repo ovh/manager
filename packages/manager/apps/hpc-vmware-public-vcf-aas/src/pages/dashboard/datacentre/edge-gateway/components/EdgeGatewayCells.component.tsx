@@ -8,6 +8,8 @@ import {
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useId } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useHref } from 'react-router-dom';
+import { subRoutes } from '@/routes/routes.constant';
 
 export const EdgeGatewayNameCell = (edge: VCDEdgeGateway) => (
   <DataGridTextCell>{edge.currentState.edgeGatewayName}</DataGridTextCell>
@@ -22,12 +24,13 @@ export const EdgeGatewayIPBlockCell = (edge: VCDEdgeGateway) => (
   <DataGridTextCell>{edge.currentState.ipBlock}</DataGridTextCell>
 );
 
-export const EdgeGatewayActionCell = () => {
+export const EdgeGatewayActionCell = (edge: VCDEdgeGateway) => {
   const { t } = useTranslation([
     'datacentres/edge-gateway',
     NAMESPACES.ACTIONS,
   ]);
   const id = useId();
+  const deleteHref = useHref(`${edge.id}/${subRoutes.deleteEdgeGateway}`);
 
   const actionMenuItems: ActionMenuItem[] = [
     {
@@ -41,6 +44,7 @@ export const EdgeGatewayActionCell = () => {
       label: t(`${NAMESPACES.ACTIONS}:delete`),
       isDisabled: false,
       onClick: () => {},
+      href: deleteHref,
     },
   ];
 

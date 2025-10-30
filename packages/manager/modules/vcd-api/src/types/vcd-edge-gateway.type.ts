@@ -1,5 +1,11 @@
 import { Task, VCDResourceStatus } from './vcd-utility.type';
 
+export type GetEdgeGatewayParams = {
+  id: string;
+  vdcId: string;
+  edgeGatewayId: string;
+};
+
 export type VCDEdgeGatewayState = {
   edgeGatewayName: string;
   ipBlock: string;
