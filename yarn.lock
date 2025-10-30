@@ -7345,7 +7345,7 @@
 
 "@ovh-ux/manager-core-api@^0.10.1":
   version "0.10.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.10.1.tgz#139b02351d8bd72479fbc5a6861dae17a875108e"
+  resolved "https://registry.npmjs.org/@ovh-ux/manager-core-api/-/manager-core-api-0.10.1.tgz#139b02351d8bd72479fbc5a6861dae17a875108e"
   integrity sha512-rDoN7OHsqeRoW4iepD1FrFApOkN/RBkIwxT7dqZmPQfnq0J+a1szoXPRzDiN2g/SXRSsTqUEhSPdoGvhooapvg==
   dependencies:
     "@ovh-ux/manager-core-sso" "^0.3.0"

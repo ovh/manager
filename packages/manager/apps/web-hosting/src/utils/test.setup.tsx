@@ -100,9 +100,9 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importActual) => {
   };
 });
 
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+vi.mock('@ovh-ux/muk', async (importOriginal) => {
   return {
-    ...(await importOriginal<typeof import('@ovh-ux/manager-react-components')>()),
+    ...(await importOriginal<typeof import('@ovh-ux/muk')>()),
     useNotifications: () => ({
       addSuccess: vi.fn(),
       addWarning: vi.fn(),

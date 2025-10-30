@@ -2,11 +2,9 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
-
-import { Links } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { BUTTON_COLOR, BUTTON_VARIANT, Button, ICON_NAME, Icon } from '@ovh-ux/muk';
+import { Link } from '@ovh-ux/muk';
 
 import { BadgeStatus } from '@/components/badgeStatus/BadgeStatus.component';
 import { useWebHostingAttachedDomaindigStatus } from '@/data/hooks/webHostingAttachedDomaindigStatus/useWebHostingAttachedDomaindigStatus';
@@ -44,15 +42,18 @@ export const DiagnosticCell = ({ webSiteItem }: { webSiteItem: WebsiteType }) =>
 
   if (isError) {
     return (
-      <OdsButton
-        label={t('web_hosting_status_diagnostic_error')}
-        icon={ODS_ICON_NAME.refresh}
-        variant={ODS_BUTTON_VARIANT.ghost}
-        color={ODS_BUTTON_COLOR.critical}
+      <Button
+        variant={BUTTON_VARIANT.ghost}
+        color={BUTTON_COLOR.critical}
         onClick={() => {
           refetch().catch(console.error);
         }}
-      />
+      >
+        <>
+          {t('web_hosting_status_diagnostic_error')}
+          <Icon className="ml-2" name={ICON_NAME.refresh}></Icon>
+        </>
+      </Button>
     );
   }
   return ['A', 'AAAA'].map((type) => {
@@ -149,10 +150,9 @@ export const LinkCell = ({
   );
 
   return (
-    <Links
-      label={label}
+    <Link
       href={hostingUrl}
-      onClickReturn={() =>
+      onClick={() =>
         trackClick({
           location: PageLocation.datagrid,
           buttonType: ButtonType.link,
@@ -161,6 +161,8 @@ export const LinkCell = ({
         })
       }
       target="_blank"
-    />
+    >
+      {label}
+    </Link>
   );
 };
