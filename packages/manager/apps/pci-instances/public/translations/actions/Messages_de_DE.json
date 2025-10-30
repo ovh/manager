@@ -79,5 +79,6 @@
   "pci_instances_actions_instance_volume_attach_select": "Vorhandenes Volume auswählen",
   "pci_instances_actions_instance_volume_attach_information": "Sie können ein vorhandenes Volume anhängen oder ein neues Volume erstellen, das an Ihre Instanz angehängt werden soll. ",
   "pci_instances_actions_instance_volume_attach_create_link": "Volume erstellen",
-  "pci_instances_actions_instance_volume_attach_success_message": "Das Volume {{ volume }} wurde mit der Instanz {{ instance }} verbunden."
+  "pci_instances_actions_instance_volume_attach_success_message": "Das Volume {{ volume }} wurde mit der Instanz {{ instance }} verbunden.",
+  "pci_instances_actions_instance_volume_attach_detach_warning_message": "Dieses Volume ist bereits an eine oder mehrere Instanzen angehängt. Es wird von der Instanz getrennt, an die es derzeit angehängt ist."
 }

@@ -79,5 +79,6 @@
   "pci_instances_actions_instance_volume_attach_select": "Selectionner un volume existant",
   "pci_instances_actions_instance_volume_attach_information": "Vous pouvez attacher un volume existant ou créer un nouveau volume à attacher à votre instance. ",
   "pci_instances_actions_instance_volume_attach_create_link": "Créer un volume",
-  "pci_instances_actions_instance_volume_attach_success_message": "Le volume {{ volume }} a été attaché à l'instance {{ instance }}."
+  "pci_instances_actions_instance_volume_attach_success_message": "Le volume {{ volume }} a été attaché à l'instance {{ instance }}.",
+  "pci_instances_actions_instance_volume_attach_detach_warning_message": "Ce volume est déjà attaché à une ou plusieurs instances. Il sera détaché de l'instance sur laquelle il est actuellement attaché."
 }
