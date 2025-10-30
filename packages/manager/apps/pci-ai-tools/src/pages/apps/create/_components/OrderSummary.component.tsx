@@ -298,13 +298,13 @@ const PrivacyDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
         </Button>
         {order.unsecureHttp ? (
           <div className="flex flex-row gap-2 items-center">
-            <span>{t('summaryFieldPublicLabel')}</span>
-            <Globe className="size-4" />
+            <span>{t('summaryFieldPrivateLabel')}</span>
+            <LockKeyhole className="size-4" />
           </div>
         ) : (
           <div className="flex flex-row gap-2 items-center">
-            <span>{t('summaryFieldPrivateLabel')}</span>
-            <LockKeyhole className="size-4" />
+            <span>{t('summaryFieldPublicLabel')}</span>
+            <Globe className="size-4" />
           </div>
         )}
       </div>
