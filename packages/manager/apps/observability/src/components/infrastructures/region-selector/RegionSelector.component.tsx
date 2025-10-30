@@ -63,7 +63,7 @@ export default function RegionSelector() {
                   </OdsTab>
                 ))}
               </OdsTabs>
-              <div className="grid grid-cols-1 gap-4 mt-4 w-1/2">
+              <div className="space-y-4 mt-4">
                 {groupedInfrastructures[activeZone]?.map(({ id, locationDetails }) => (
                   <RadioCard
                     id={id}
