@@ -29,3 +29,5 @@ export const quantitySchema = z
   .number()
   .min(quantityRules.min)
   .max(quantityRules.max);
+
+export const distributionImageTypeSchema = z.string().nullable();

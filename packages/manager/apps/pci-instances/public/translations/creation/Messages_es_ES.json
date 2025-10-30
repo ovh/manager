@@ -39,5 +39,7 @@
   "pci_instance_creation_select_image_title": "Seleccione una imagen",
   "pci_instance_creation_select_image_help_title": "Imágenes",
   "pci_instance_creation_select_image_help_text": "Las imágenes disponibles en esta etapa dependen de las elecciones realizadas en las etapas anteriores, es decir, de la compatibilidad con el modelo de instancia y de la disponibilidad regional. Por ejemplo, si desea seleccionar un sistema operativo Windows y no hay distribuciones de Windows disponibles, debe modificar sus elecciones de las etapas anteriores.",
-  "pci_instance_creation_select_image_life_cycle_help_label": "Ciclo de vida de una distribución en OVH"
+  "pci_instance_creation_select_image_life_cycle_help_label": "Ciclo de vida de una distribución en OVH",
+  "pci_instance_creation_select_image_distribution_type_label": "Tipo de distribución",
+  "pci_instance_creation_select_image_distribution_type_license_information": "El uso de una imagen está sujeto a la aceptación previa del Contrato de licencia de usuario del proveedor."
 }

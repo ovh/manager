@@ -899,3 +899,22 @@ export const mockedFlavorAvailableRegions = [
     ],
   },
 ];
+
+export const mockedDistributionImageType = [
+  {
+    label: 'Distributions Unix',
+    value: 'linux',
+  },
+  {
+    label: 'Distributions Windows',
+    value: 'windows',
+  },
+  {
+    label: 'Distributions + apps',
+    value: 'apps',
+  },
+  {
+    label: 'Backups',
+    value: 'backups',
+  },
+];
