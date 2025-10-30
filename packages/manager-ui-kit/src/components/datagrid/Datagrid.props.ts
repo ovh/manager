@@ -16,6 +16,7 @@ import {
 } from '@ovh-ux/manager-core-api';
 
 import type { FilterOption, FilterProps } from '@/components/filters/Filter.props';
+import { ExpandableRow } from './useDatagrid.props';
 
 export interface RowSelectionProps<T> {
   onRowSelectionChange?: (selectedRows: T[]) => void;
@@ -48,7 +49,7 @@ export interface ExpandedProps {
   setExpanded: Dispatch<SetStateAction<ExpandedState>>;
 }
 
-export type DatagridProps<T extends Record<string, unknown>> = {
+export type DatagridProps<T extends ExpandableRow<T>> = {
   autoScroll?: boolean;
   columns: readonly DatagridColumn<T>[];
   columnVisibility?: ColumnVisibilityProps;

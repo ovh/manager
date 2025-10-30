@@ -10,11 +10,12 @@ import { TableFooter } from './table/table-footer/TableFooter.component';
 import { Topbar } from './topbar/Topbar.component';
 import './translations';
 import { useDatagrid } from './useDatagrid';
+import { ExpandableRow } from './useDatagrid.props';
 
 const DEFAULT_ROW_HEIGHT = 50;
 const DEFAULT_CONTAINER_HEIGHT = 570;
 
-export const Datagrid = <T extends Record<string, unknown>>({
+export const Datagrid = <T extends ExpandableRow<T>>({
   autoScroll = true,
   columns,
   columnVisibility,
@@ -91,7 +92,7 @@ export const Datagrid = <T extends Record<string, unknown>>({
         />
       )}
       <div className="overflow-auto relative w-full" ref={tableContainerRef} style={containerStyle}>
-        <Table className="w-full">
+        <Table className="table table-fixed w-full">
           <TableHeaderContent<T>
             headerGroups={headerGroups}
             onSortChange={sorting?.setSorting}
