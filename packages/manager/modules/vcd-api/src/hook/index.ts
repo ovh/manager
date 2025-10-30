@@ -1,4 +1,5 @@
 export * from './useDeleteVcdDatacentreCompute';
+export * from './useDeleteEdgeGateway';
 export * from './useDeleteVcdVrackSegment';
 export * from './useOrderableResource';
 export * from './useResetVcdPassword';

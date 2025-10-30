@@ -24,6 +24,8 @@ export const subRoutes = {
   deleteSegment: 'delete-segment',
   deleteNetwork: 'delete-network',
   edgeGateway: 'edge-gateway',
+  edgeGatewayId: ':edgeGatewayId',
+  deleteEdgeGateway: 'delete-edge',
   terminate: 'terminate',
   addNetworkAcl: 'add-network-acl',
   deleteNetworkAcl: 'delete-network-acl',
@@ -58,6 +60,7 @@ export const urls = {
   networkAclEdit: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.networkAcl}/${subRoutes.editNetworkAcl}`,
   networkAclDelete: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.networkAcl}/${subRoutes.deleteNetworkAcl}`,
   edgeGateway: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.edgeGateway}`,
+  edgeGatewayDelete: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.edgeGateway}/${subRoutes.edgeGatewayId}/${subRoutes.deleteEdgeGateway}`,
 } as const;
 
 export const veeamBackupAppName = 'veeam-backup';
