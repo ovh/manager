@@ -29,7 +29,7 @@ import { isEdgeCompatibleVDC } from '@/utils/edgeGatewayCompatibility';
 
 function DatacentreDashboardPage() {
   const { id, vdcId } = useParams();
-  const { t } = useTranslation('dashboard');
+  const { t } = useTranslation(['dashboard', 'datacentres/edge-gateway']);
   const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
   const { data: vcdOrganization } = useVcdOrganization({ id });
   const { data: featuresAvailable } = useFeatureAvailability([
@@ -108,10 +108,6 @@ function DatacentreDashboardPage() {
       label: serviceName,
     },
     {
-      id: subRoutes.edgeGateway,
-      label: EDGE_GATEWAY_LABEL,
-    },
-    {
       id: subRoutes.vrackSegments,
       label: VRACK_LABEL,
     },
@@ -156,6 +152,14 @@ function DatacentreDashboardPage() {
       label: t(
         'datacentres/vrack-segment:managed_vcd_dashboard_vrack_segment_add_title',
       ),
+    },
+    {
+      id: subRoutes.edgeGateway,
+      label: EDGE_GATEWAY_LABEL,
+    },
+    {
+      id: subRoutes.deleteEdgeGateway,
+      label: t('datacentres/edge-gateway:edge_delete_title'),
     },
   ];
 

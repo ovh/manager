@@ -1,5 +1,6 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import commonDashboard from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/dashboard/Messages_fr_FR.json';
+import actions from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/actions/Messages_fr_FR.json';
 import listing from '../../public/translations/listing/Messages_fr_FR.json';
 import dashboard from '../../public/translations/dashboard/Messages_fr_FR.json';
 import onboarding from '../../public/translations/onboarding/Messages_fr_FR.json';
@@ -33,6 +34,7 @@ export const translations = {
   'datacentres/edge-gateway': datacentresEdgeGateway,
   error,
   terminate,
+  [NAMESPACES.ACTIONS]: actions,
   [NAMESPACES.DASHBOARD]: commonDashboard,
 };
 
@@ -48,5 +50,6 @@ export const labels = {
   datacentresVrackSegment,
   datacentresEdgeGateway,
   terminate,
+  actions,
   commonDashboard,
 };
