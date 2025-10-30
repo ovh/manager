@@ -6,7 +6,7 @@ import {
   ShellContext,
   useNavigationGetUrl,
 } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ActionEnum, LifecycleActionsEnum } from '@/alldoms/enum/service.enum';
 import { allDomManagerService, RENEW_URL } from '@/alldoms/constants';
 import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
@@ -30,6 +30,7 @@ export default function ServiceActionMenu({
 }: DatagridColumnActionMenuProps) {
   const { t } = useTranslation('allDom');
   const navigate = useNavigate();
+  const location = useLocation();
 
   const {
     environment: { user },
@@ -87,7 +88,8 @@ export default function ServiceActionMenu({
   const terminateAction = {
     id: 4,
     label: t('allDom_table_action_terminate'),
-    onClick: () => navigate(terminateUrl),
+    onClick: () =>
+      navigate(terminateUrl, { state: { backgroundLocation: location } }),
     color: ODS_BUTTON_COLOR.critical,
     isDisabled: disableAction,
   };
@@ -95,7 +97,8 @@ export default function ServiceActionMenu({
   const cancelTerminate = {
     id: 5,
     label: t('allDom_table_action_cancel_terminate'),
-    onClick: () => navigate(cancelTerminateUrl),
+    onClick: () =>
+      navigate(cancelTerminateUrl, { state: { backgroundLocation: location } }),
   };
 
   let items = [];
