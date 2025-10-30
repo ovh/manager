@@ -135,7 +135,9 @@ This document provides **ready-to-use templates** for migration documentation. U
 
 ## 7. Dependencies/Configuration
 ### Packages to Install
-- [ ] @ovh-ux/muk
+- [ ] @muk/ui
+- [ ] @muk/notifications
+- [ ] @muk/theme
 - [ ] @tanstack/react-query
 - [ ] react-hook-form
 - [ ] zod

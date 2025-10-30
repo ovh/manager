@@ -41,7 +41,7 @@ Before mapping AngularJS to React, analyze the source to detect UI/UX patterns:
     topbarOptions: { /* CTA buttons, actions */ }
   }
 }
-// → React: BaseLayout + Datagrid with header actions
+// → React: MUK Layout + Table with header actions
 
 // 2. Header Pattern Detection
 // Look for in template.html:
@@ -51,7 +51,7 @@ Before mapping AngularJS to React, analyze the source to detect UI/UX patterns:
     <span class="oui-icon oui-icon-pen_concept"></span>
   </button>
 </header>
-// → React: BaseLayout with title + edit button in header
+// → React: MUK Layout with title + edit button in header
 
 // 3. Topbar Actions Detection
 // Look for in routing resolve:
@@ -62,7 +62,7 @@ topbarOptions: {
     { text: 'Guides', click: () => {} }
   ]
 }
-// → React: BaseLayout header.actions with multiple buttons
+// → React: MUK Layout header actions with multiple buttons
 
 // 4. Features Detection Checklist
 const detectedFeatures = {
@@ -98,18 +98,18 @@ const detectedFeatures = {
 // Scan template for these patterns:
 const ouiComponents = {
   // Data display
-  '<oui-datagrid>': 'MUK Datagrid',
+  '<oui-datagrid>': 'MUK Table',
   '<oui-tile>': 'Custom div with Tailwind',
   '<oui-tile-definition>': 'Definition list (dl/dt/dd)',
   
   // Navigation
-  '<oui-header>': 'BaseLayout header prop',
-  '<oui-header-tabs>': 'Custom tabs or MUK Tabs',
-  '<oui-breadcrumb>': 'Custom breadcrumb',
+  '<oui-header>': 'MUK Layout header prop',
+  '<oui-header-tabs>': 'MUK Tabs (or custom tabs if missing)',
+  '<oui-breadcrumb>': 'MUK Breadcrumb (or custom if missing)',
   
   // Actions
   '<oui-button>': 'MUK Button',
-  '<oui-action-menu>': 'MUK ActionMenu or DropdownMenu',
+  '<oui-action-menu>': 'MUK ActionMenu / DropdownMenu',
   '<changelog-button>': 'Custom Button with changelog link',
   '<oui-guide-menu>': 'Custom DropdownMenu with guides',
   
@@ -122,7 +122,7 @@ const ouiComponents = {
   // Feedback
   '<oui-modal>': 'MUK Modal',
   '<oui-message>': 'MUK Message',
-  '<oui-spinner>': 'CSS spinner (MUK has no Spinner)',
+  '<oui-spinner>': 'MUK Loader/Spinner',
 };
 ```
 
@@ -304,14 +304,14 @@ export function useUserService() {
 
 // React Component
 export function UserList({ users, loading }: { users: User[], loading: boolean }) {
-  if (loading) return <OsdsSpinner />;
+  if (loading) return <Loader />;
   
   return (
     <div>
       {users.map(user => (
         <div key={user.id}>
-          <OsdsText size="l" weight="bold">{user.name}</OsdsText>
-          <OsdsText>{user.email}</OsdsText>
+          <Text size="l" weight="bold">{user.name}</Text>
+          <Text>{user.email}</Text>
         </div>
       ))}
     </div>
@@ -336,13 +336,13 @@ export function UserForm() {
   
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <OsdsFormField error={errors.name?.message}>
-        <OsdsInput {...register('name')} />
-      </OsdsFormField>
-      <OsdsFormField error={errors.email?.message}>
-        <OsdsInput {...register('email')} type="email" />
-      </OsdsFormField>
-      <OsdsButton type="submit">Submit</OsdsButton>
+      <FormField error={errors.name?.message}>
+        <Input {...register('name')} />
+      </FormField>
+      <FormField error={errors.email?.message}>
+        <Input {...register('email')} type="email" />
+      </FormField>
+      <Button type="submit">Submit</Button>
     </form>
   );
 }
@@ -374,10 +374,10 @@ export function UserListPage() {
   });
   
   return (
-    <Datagrid
+    <Table
       columns={userColumns}
-      items={users || []}
-      isLoading={isLoading}
+      data={users || []}
+      loading={isLoading}
     />
   );
 }
@@ -407,8 +407,8 @@ export function UserDetailPage() {
     queryFn: () => apiClient.v6.get(`/api/users/${id}`).then(res => res.data)
   });
   
-  if (isLoading) return <OsdsSpinner />;
-  if (!user) return <OsdsMessage>User not found</OsdsMessage>;
+  if (isLoading) return <Loader />;
+  if (!user) return <Message>User not found</Message>;
   
   return <UserDetail user={user} />;
 }
@@ -440,13 +440,13 @@ export function UserFormPage() {
   
   return (
     <form onSubmit={handleSubmit(createUser)}>
-      <OsdsFormField error={errors.name?.message}>
-        <OsdsInput {...register('name')} />
-      </OsdsFormField>
-      <OsdsFormField error={errors.email?.message}>
-        <OsdsInput {...register('email')} type="email" />
-      </OsdsFormField>
-      <OsdsButton type="submit">Create User</OsdsButton>
+      <FormField error={errors.name?.message}>
+        <Input {...register('name')} />
+      </FormField>
+      <FormField error={errors.email?.message}>
+        <Input {...register('email')} type="email" />
+      </FormField>
+      <Button type="submit">Create User</Button>
     </form>
   );
 }

@@ -30,6 +30,11 @@ This directory contains **specialized guides** for migrating AngularJS modules t
 2. **Code**: [30-best-practices/](../30-best-practices/) - **Patterns React**
 3. **Validate**: [parity-validation-guide.md](./parity-validation-guide.md) - **Validation**
 
+### UI Policy (Mandatory)
+- UI must be implemented with MUK exclusively (design tokens, components, themes).
+- ODS/MRC usage is forbidden when a MUK equivalent exists.
+- Exceptional fallback: if MUK does not provide the required component/feature, document the justification and create a follow‑up ticket “Replace fallback with MUK when available”.
+
 ## 📘 Migration Guides
 
 ### 🎯 **Primary Guide**
@@ -99,8 +104,8 @@ This directory contains **specialized guides** for migrating AngularJS modules t
 - Include detected features checklist in planning
 
 ### Step 2: **Implementation**
-- Use [migration-patterns.md](./migration-patterns.md) for AngularJS→React patterns and component detection
-- Use [20-dependencies/muk-components-reference.md](../20-dependencies/muk-components-reference.md) for OUI→MUK mapping
+- Use [migration-patterns.md](./migration-patterns.md) for AngularJS→React patterns with MUK components
+- Use [20-dependencies/muk-components-reference.md](../20-dependencies/muk-components-reference.md) for OUI→MUK mapping (MUK‑first)
 - Use [30-best-practices/](../30-best-practices/) for React patterns
 - Use [Development Standards](../30-best-practices/development-standards.md) for quality
 
@@ -114,7 +119,7 @@ This directory contains **specialized guides** for migrating AngularJS modules t
 ### **Architecture & Dependencies**
 - [Manager Architecture Overview](../10-architecture/api-overview.md)
 - [React uApp Blueprint](../10-architecture/react-uapp-blueprint.md)
-- [MUK Components](../20-dependencies/muk.md)
+- [MUK Components](../20-dependencies/muk.md) — primary UI stack
 
 ### **Patterns & Standards**
 - [Development Standards](../30-best-practices/development-standards.md)

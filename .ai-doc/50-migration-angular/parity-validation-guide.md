@@ -23,6 +23,10 @@ This document provides a **comprehensive validation framework** for ensuring **1
 
 ## 📘 Guidelines / Implementation
 
+### UI Policy for Validation
+- React implementation must use MUK components exclusively.
+- If a temporary fallback (non‑MUK) is required due to a missing feature, the parity tests must reference the behavior, not the fallback API, and the fallback must be documented with a follow‑up ticket to replace it with MUK.
+
 ### 🎯 Parity Validation Framework
 
 #### 1. **Visual Parity Validation**

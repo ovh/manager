@@ -9,7 +9,7 @@ ai: true
 
 ## 🧭 Purpose
 
-This document provides a **concise, US-centric strategy** for migrating AngularJS modules to React in the OVHcloud Manager ecosystem. It focuses on **100% functional parity** through user story mapping and incremental migration.
+This document provides a **concise, User Story centric strategy** for migrating AngularJS modules to React in the OVHcloud Manager ecosystem. It focuses on **100% functional parity** through user story mapping and incremental migration.
 
 ## ⚙️ Context
 
@@ -31,6 +31,14 @@ This document provides a **concise, US-centric strategy** for migrating AngularJ
 2. **100% Parity**: Visual + Functional + Technical
 3. **Incremental Migration**: Validate each US before next
 4. **Zero Regression**: Each US must be identical to AngularJS
+5. **UI Policy**: UI must use MUK components exclusively; fallback (non‑MUK) only if no MUK equivalent exists, with justification and follow‑up ticket.
+
+### 🔒 Strategy Enforcement (Mandatory)
+- US-first only: never migrate multiple US at once; one complete route/page per PR.
+- MUK-first UI: do not introduce ODS/MRC if a MUK equivalent exists.
+- Parity gates per US: visual, functional, and technical parity must be validated before merge.
+- Documentation gates: PLAN.md created, MIGRATION_NOTES.md updated for every US.
+- Fallback policy: if MUK lacks a feature, implement a minimal wrapper, document the justification, and link a follow-up ticket to replace with MUK.
 
 ### 🚀 3-Phase Workflow
 
@@ -110,8 +118,8 @@ const userStories = [
       status: 'pending',
       // MUK components needed:
       mukComponents: [
-        'BaseLayout',
-        'Datagrid',
+        'Layout',
+        'Table',
         'Button (CTA)',
         'Button (Filter)',
         'Input (Search)'
@@ -264,6 +272,23 @@ Create checklist of features found in AngularJS that must be implemented:
 // - MIGRATION_NOTES.md for decisions
 // - DoD for validation criteria
 ```
+
+## ✅ Migration Gates (Do not merge unless all pass)
+
+### PR Checklist (Per US)
+- [ ] US-first respected: one route/page fully migrated
+- [ ] UI built with MUK components only (fallback justified + ticket if any)
+- [ ] Visual parity validated (columns, formatting, states)
+- [ ] Functional parity validated (APIs, interactions, errors)
+- [ ] Technical parity validated (URLs, translations values, accessibility)
+- [ ] Performance parity validated (no regression)
+- [ ] PLAN.md created for the US
+- [ ] MIGRATION_NOTES.md updated (i18n keys mapping, assets mapping, decisions)
+
+### Reviewer Gate
+- Reject if ODS/MRC is used where a MUK equivalent exists.
+- Reject if parity checks are missing or incomplete.
+- Require a follow-up ticket link for any temporary fallback.
 
 ## 🚀 Quick Start Workflow
 
