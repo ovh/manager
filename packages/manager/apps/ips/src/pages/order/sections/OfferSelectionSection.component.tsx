@@ -1,10 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  OvhSubsidiary,
-  getPrice,
-  getPriceTextFormatted,
-} from '@ovh-ux/manager-react-components';
+import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import {
   OdsSelect,
   OdsText,
@@ -12,6 +8,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { getPrice, getPriceTextFormatted } from '@/components/price';
 import {
   DEFAULT_PRICING_MODE,
   IpOffer,

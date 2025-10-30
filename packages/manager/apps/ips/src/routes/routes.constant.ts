@@ -24,6 +24,7 @@ export const subRoutes = {
   exportIpToCsv: 'export-ip-to-csv',
   slice: 'slice',
   aggregate: 'aggregate',
+  ipBlockInformation: 'update-ip-information',
 };
 
 export const urlDynamicParts = {
@@ -59,5 +60,6 @@ export const urls = {
   listingConfigureReverseDns: `${subRoutes.root}/${subRoutes.configureReverseDns}/${urlDynamicParts.parentId}/${urlDynamicParts.optionalId}`,
   byoipOrderModal: `${subRoutes.root}/${subRoutes.byoip}/${subRoutes.byoipOrder}`,
   slice: `${subRoutes.root}/${subRoutes.slice}/${urlDynamicParts.parentId}`,
+  ipBlockInformation: `${subRoutes.root}/${subRoutes.ipBlockInformation}/${urlDynamicParts.id}`,
   aggregate: `${subRoutes.root}/${subRoutes.aggregate}/${urlDynamicParts.parentId}`,
 };
