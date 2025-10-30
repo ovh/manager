@@ -1,5 +1,6 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import commonDashboard from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/dashboard/Messages_fr_FR.json';
+import actions from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/actions/Messages_fr_FR.json';
 import listing from '../../public/translations/listing/Messages_fr_FR.json';
 import dashboard from '../../public/translations/dashboard/Messages_fr_FR.json';
 import onboarding from '../../public/translations/onboarding/Messages_fr_FR.json';
@@ -82,6 +83,7 @@ export const translations = {
   '@ovh-ux/manager-common-translations/system': commun.system,
   '@ovh-ux/manager-common-translations/error': commun.error,
   '@ovh-ux/manager-common-translations/region': commun.region,
+  [NAMESPACES.ACTIONS]: actions,
   [NAMESPACES.DASHBOARD]: commonDashboard,
 };
 
@@ -103,5 +105,6 @@ export const labels = {
   commun,
   zodError,
   vcda,
+  actions,
   commonDashboard,
 };
