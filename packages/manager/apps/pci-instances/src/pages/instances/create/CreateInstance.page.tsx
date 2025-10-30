@@ -16,6 +16,7 @@ import {
   microRegionSelectionSchema,
   nameSchema,
   quantitySchema,
+  distributionImageTypeSchema,
 } from '@/pages/instances/create/CreateInstance.schema';
 
 import { useInstancesCatalog } from '@/data/hooks/catalog/useInstancesCatalog';
@@ -33,6 +34,7 @@ export const instanceCreationSchema = z.object({
   macroRegion: macroRegionSelectionSchema,
   microRegion: microRegionSelectionSchema,
   availabilityZone: availabilityZoneSelectionSchema,
+  distributionImageType: distributionImageTypeSchema,
 });
 
 const CreateInstance: FC = () => {

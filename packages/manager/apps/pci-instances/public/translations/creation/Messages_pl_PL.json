@@ -39,5 +39,7 @@
   "pci_instance_creation_select_image_title": "Wybierz obraz",
   "pci_instance_creation_select_image_help_title": "Systemy",
   "pci_instance_creation_select_image_help_text": "Dostępne obrazy na tym etapie zależą od wyborów dokonanych w poprzednich etapach, to znaczy od zgodności z modelem instancji i dostępności regionalnej. Na przykład, jeśli chcesz wybrać system operacyjny Windows, a nie ma dostępnych dystrybucji Windows, musisz zmienić swoje wybory z poprzednich etapów.",
-  "pci_instance_creation_select_image_life_cycle_help_label": "Cykl życia dystrybucji w OVH"
+  "pci_instance_creation_select_image_life_cycle_help_label": "Cykl życia dystrybucji w OVH",
+  "pci_instance_creation_select_image_distribution_type_label": "Rodzaj dystrybucji",
+  "pci_instance_creation_select_image_distribution_type_license_information": "Użycie obrazu podlega wcześniejszemu zatwierdzeniu umowy licencyjnej dostawcy."
 }
