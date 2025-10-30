@@ -1,8 +1,8 @@
 import {
+  OVH_CURRENCY_BY_SUBSIDIARY,
   OvhSubsidiary,
   IntervalUnitType,
-  OVH_CURRENCY_BY_SUBSIDIARY,
-} from '../../../enumTypes';
+} from '@ovh-ux/manager-react-components';
 
 export interface PriceProps {
   /** The price value to display */
@@ -17,6 +17,9 @@ export interface PriceProps {
   isConvertIntervalUnit?: boolean;
   /** The locale for price formatting */
   locale: string;
+  suffix?: string;
+  isStartingPrice?: boolean;
+  freePriceLabel?: string;
 }
 
 export const getPrice = (value: number, tax?: number): number => {
