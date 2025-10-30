@@ -25,13 +25,12 @@ export const InformationForm = ({
   return (
     <>
       <OdsText preset={ODS_TEXT_PRESET.heading4}>{title}</OdsText>
-      <div className="grid grid-cols-1 gap-4 mt-6">
+      <div className="space-y-4 mt-6">
         <Controller
           name="title"
           control={control}
           render={({ field }) => (
             <TextField
-              className="w-1/2"
               id="title"
               label={toRequiredLabel(t(`${NAMESPACES.DASHBOARD}:name`))}
               placeholder={namePlaceholder}
@@ -49,7 +48,6 @@ export const InformationForm = ({
           control={control}
           render={({ field }) => (
             <TextField
-              className="w-1/2"
               id="description"
               label={t('shared:description')}
               placeholder={descriptionPlaceholder}
