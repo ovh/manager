@@ -25,13 +25,23 @@ const createMockInfrastructure = (
   type: RegionType,
 ): Infrastructure => ({
   id,
-  currentState: { location, type: 'SHARED', usage: 'METRICS' },
+  currentState: {
+    location,
+    type: 'SHARED',
+    usage: 'METRICS',
+    entryPoint: `xxx.metrics.ovh.com`,
+  },
   locationDetails: createMockLocationDetails(geographyCode, location, name, type),
 });
 
 const createMockInfrastructureWithoutLocation = (id: string, location: string): Infrastructure => ({
   id,
-  currentState: { location, type: 'SHARED', usage: 'METRICS' },
+  currentState: {
+    location,
+    type: 'SHARED',
+    usage: 'METRICS',
+    entryPoint: `yyy.metrics.ovh.com`,
+  },
 });
 
 describe('groupByGeographicZone', () => {
