@@ -200,6 +200,49 @@ expect(screen.getByText('Order')).toBeInTheDocument();
 // Do not assert on key names; only assert on visible text
 ```
 
+### 🖼️ Image/Asset Migration Rules and Patterns
+
+#### Core Rule
+- **Image assets must be preserved verbatim**: reuse the exact same image files (pixels/content) from AngularJS in React when those images are used.
+
+#### Allowed
+- Reorganizing images in a new folder structure and renaming files.
+- Converting import paths (e.g., relative paths to bundler imports) without changing the image itself.
+
+#### Not Allowed
+- Changing the image content, dimensions, or visual appearance during migration.
+- Replacing with different assets unless explicitly required by design and documented.
+
+#### Recommended Process
+1. Inventory legacy images (usage-based): scan templates for `<img>`, background images, icons.
+2. Copy only used images into the React project (same files/bytes).
+3. Define the new assets structure (e.g., `src/assets/images/...`).
+4. Create a legacy→new path mapping table and store it in `MIGRATION_NOTES.md`.
+5. Update components to load images via the bundler/import while preserving the asset file unchanged.
+
+#### Examples
+```html
+<!-- Legacy (AngularJS template) -->
+<img src="assets/images/nasha/logo.png" alt="NAS-HA" />
+```
+
+```typescript
+// New (React component)
+import nashaLogo from '@/assets/images/nasha/logo.png';
+
+export function NashaHeaderLogo() {
+  return <img src={nashaLogo} alt="NAS-HA" />;
+}
+```
+
+#### Validation Pattern (Visual)
+```typescript
+// Validate that the expected image is rendered
+const img = screen.getByAltText('NAS-HA');
+expect(img).toBeInTheDocument();
+// Optionally, ensure the src ends with expected filename (path may differ by bundler)
+expect(img.getAttribute('src')).toContain('logo');
+```
 ### 🎯 Core AngularJS → React Mappings
 
 #### 1. **Controller → Hook**

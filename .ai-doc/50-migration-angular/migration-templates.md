@@ -99,6 +99,15 @@ This document provides **ready-to-use templates** for migration documentation. U
   - [ ] Import same values under new keys
   - [ ] Document mapping in `MIGRATION_NOTES.md`
 
+### Assets/Images Strategy
+- **Principle**: Preserve legacy image files verbatim; only paths/folder structure may change.
+- **Actions**:
+  - [ ] Inventory used images (templates, CSS backgrounds, icons)
+  - [ ] Copy used images as-is into React assets folder
+  - [ ] Define new assets structure and import pattern
+  - [ ] Produce legacy→new path mapping
+  - [ ] Document mapping in `MIGRATION_NOTES.md`
+
 - [ ] Route-by-route migration
 - [ ] Shared services via hooks
 - [ ] Gradual AngularJS removal
@@ -110,6 +119,7 @@ This document provides **ready-to-use templates** for migration documentation. U
 - [ ] **Performance parity**: No LCP/INP/CLS degradation
 - [ ] **Accessibility parity**: Same accessibility level
 - [ ] **i18n values parity**: All rendered texts identical to legacy; keys may differ
+- [ ] **Assets parity**: Rendered images are visually identical; paths may differ
 
 ### E2E Tests
 - [ ] **Navigation**: All user journeys
@@ -184,6 +194,7 @@ This document provides **ready-to-use templates** for migration documentation. U
 - [ ] **TypeScript**: Strict mode, no any
 - [ ] **Documentation**: MIGRATION_NOTES.md up to date
 - [ ] **i18n**: Translation values preserved; legacy→new key mapping documented
+- [ ] **Assets**: Images preserved; legacy→new path mapping documented
 
 ## 11. Deployment Plan
 ### Environments
@@ -218,6 +229,11 @@ This document provides **ready-to-use templates** for migration documentation. U
 ## 2. Migration Decisions
 ### Key Decisions
 ### Translation Keys Mapping (Legacy → New)
+### Image/Asset Paths Mapping (Legacy → New)
+| Legacy Path | New Path | Note |
+|-------------|----------|------|
+| assets/images/nasha/logo.png | src/assets/images/nasha/logo.png | Same file content |
+
 | Legacy Key | New Key | Value (must be identical) |
 |------------|---------|----------------------------|
 | <legacy.key.1> | <new.key.1> | <copied legacy value> |
@@ -296,6 +312,10 @@ This document provides **ready-to-use templates** for migration documentation. U
 ### i18n Parity
 - [ ] All rendered texts match legacy values exactly
 - [ ] Key renames are documented and mapped
+
+### Assets Parity
+- [ ] All rendered images match legacy visuals
+- [ ] Path/filename changes are documented and mapped
 
 - [ ] Same accessibility level
 - [ ] All ARIA attributes present
@@ -388,6 +408,7 @@ This document provides **ready-to-use templates** for migration documentation. U
 - [ ] **E2E test coverage**: All user journeys covered
 - [ ] **All tests passing**: All tests passing in CI/CD
  - [ ] **i18n parity tests**: Rendered texts match legacy values
+ - [ ] **Assets parity tests**: Expected images are rendered identically
 
 ## 4. Performance Requirements
 - [ ] **LCP < 2.5s**: Largest Contentful Paint under 2.5 seconds
@@ -413,6 +434,7 @@ This document provides **ready-to-use templates** for migration documentation. U
 - [ ] **User documentation**: User-facing features documented
 - [ ] **Migration documentation**: Migration process documented
  - [ ] **i18n mapping**: Legacy→new key mapping documented in MIGRATION_NOTES.md
+ - [ ] **Assets mapping**: Legacy→new image path mapping documented in MIGRATION_NOTES.md
 
 ## 8. Deployment Requirements
 - [ ] **Deployment tested**: Deployment process tested

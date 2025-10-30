@@ -55,6 +55,10 @@ describe('Visual Parity Validation', () => {
     
     // Check currency formatting
     expect(screen.getByText('€12.50')).toBeInTheDocument();
+    
+    // Check images presence (paths may differ, visuals must match)
+    const logo = screen.getByAltText('NAS-HA');
+    expect(logo).toBeInTheDocument();
   });
   
   it('should have identical states', () => {
@@ -421,6 +425,7 @@ function measureTime(fn: () => void): number {
 - [ ] **Accessibility**: ARIA, keyboard navigation identical
 - [ ] **Performance**: LCP, INP, CLS identical or better
 - [ ] **Security**: XSS protection, CSRF handling identical
+ - [ ] **Assets**: Rendered images identical; file paths may differ if mapping documented
 
 ### 🚫 Anti-Patterns to Avoid
 

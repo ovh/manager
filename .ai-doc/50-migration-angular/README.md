@@ -137,6 +137,12 @@ This directory contains **specialized guides** for migrating AngularJS modules t
 - **Document key mapping**: When keys are renamed, document the legacy→new mapping and keep it in `MIGRATION_NOTES.md`.
 - **Parity validation**: Validation must assert that all rendered texts match legacy values exactly; key names are not tested, only the resulting texts.
 
+### **Assets/Images Policy (AngularJS → React)**
+- **Carry over image assets verbatim**: All used images from the legacy AngularJS module must be reused as-is (same pixels/content) in the new µapp.
+- **Paths/names may change**: You may reorganize folders or rename files to fit the new structure, but image content must remain identical.
+- **Document asset mapping**: When paths or filenames change, document the legacy→new mapping in `MIGRATION_NOTES.md`.
+- **Parity validation**: Validation must assert that rendered images are visually identical (same asset) and appear in the same contexts; file paths are not tested, only the rendered result.
+
 ### **Migration Strategy**
 - **US-first approach**: One user story at a time
 - **100% parity**: Visual, functional, and technical

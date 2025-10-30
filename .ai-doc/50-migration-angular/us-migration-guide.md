@@ -135,6 +135,17 @@ const userStories = [
 - Document mapping in `MIGRATION_NOTES.md`
 ```
 
+**Step 5: Plan Assets/Images Strategy (Content Preserved, Paths May Change)**
+
+```markdown
+## Assets/Images Migration Plan
+- Inventory used images from templates and styles (usage-based)
+- Copy used images as-is into the React assets folder
+- Define the new assets structure and import pattern
+- Produce a legacy→new path mapping (content unchanged)
+- Document mapping in `MIGRATION_NOTES.md`
+```
+
 **Step 4: Document Missing Features**
 
 Create checklist of features found in AngularJS that must be implemented:
