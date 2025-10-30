@@ -1,25 +1,31 @@
 import { useTranslation } from 'react-i18next';
-import { Outlet, useParams } from 'react-router-dom';
-import { Skeleton } from '@datatr-ux/uxlib';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Button, Label, Skeleton, Switch } from '@datatr-ux/uxlib';
+import { useState } from 'react';
+import { Plus } from 'lucide-react';
 import { useS3Data } from '../S3.context';
-import S3ObjectsList from './_components/S3ObjectListTable.component';
 import { useGetS3Objects } from '@/data/hooks/s3-storage/useGetS3Objects.hook';
-import DataTable from '@/components/data-table';
 import Guides from '@/components/guides/Guides.component';
 import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
+import S3ObjectBrowser from './_components/S3ObjectBrowser.component';
 
 const Objects = () => {
   const { projectId } = useParams();
   const { s3 } = useS3Data();
   const { t } = useTranslation('pci-object-storage/storages/s3/objects');
+  const [withVersion, setWithVersion] = useState(false);
   const objectQuery = useGetS3Objects({
     projectId,
     region: s3.region,
     name: s3.name,
-    withVersions: true,
+    withVersions: withVersion,
+    // options: { refetchInterval: 15000 }
   });
+  const navigate = useNavigate();
 
   if (objectQuery.isLoading) return <Objects.Skeleton />;
+
+  const objects = objectQuery.data || [];
 
   return (
     <>
@@ -33,9 +39,23 @@ const Objects = () => {
           <RoadmapChangelog />
         </div>
       </div>
-      <S3ObjectsList
-        objects={objectQuery.data?.filter((obj) => obj.isLatest === true)}
-      />
+
+      <div className="flex justify-between">
+        <Button onClick={() => navigate('./add-object')}>
+          <Plus className="size-6 mr-2 text-primary-foreground" />
+          {t('addNewObject')}
+        </Button>
+        <div className="flex items-center space-x-2">
+          <Switch
+            id="versions"
+            checked={withVersion}
+            onCheckedChange={setWithVersion}
+          />
+          <Label htmlFor="versions">Voir les versions</Label>
+        </div>
+      </div>
+
+      <S3ObjectBrowser objects={objects} />
       <Outlet />
     </>
   );
@@ -54,7 +74,7 @@ Objects.Skeleton = function ObjectsListSkeleton() {
           <Skeleton className="h-10 w-12 ml-2" />
         </div>
       </div>
-      <DataTable.Skeleton columns={4} rows={10} width={100} height={16} />
+      <Skeleton className="w-full h-[60vh]" />
     </>
   );
 };

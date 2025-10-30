@@ -1,80 +1,42 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useToast } from '@datatr-ux/uxlib';
-import { useSwiftData } from '../../Swift.context';
-import FileUploader from '@/components/file-uploader/FileUploader.component';
-import { useGetStorageAccess } from '@/data/hooks/storage/useGetStorageAccess.hook';
-import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
-import { useAddSwiftObject } from '@/data/hooks/swift-storage/useAddSwiftObject.hook';
+import { DialogContent, DialogHeader, DialogTitle } from '@datatr-ux/uxlib';
+import { useAddSwiftObjectForm } from './useAddSwiftObjectForm.component';
+import RouteModal from '@/components/route-modal/RouteModal';
+import FileUploadPending from '@/components/file-input/FileUploadPending.component';
+import AddSwiftObjectForm from './AddSwiftObjectForm.component';
 
 const AddObjectModal = () => {
   const { t } = useTranslation('pci-object-storage/storages/swift/objects');
-  const { projectId } = useParams();
-  const [newfiles, setNewFiles] = useState<File[]>([]);
-  const [prefix, setPrefix] = useState<string>('');
-  const { swift } = useSwiftData();
   const navigate = useNavigate();
-  const toast = useToast();
-
-  const { addSwiftObject, isPending: pendingAddSwift } = useAddSwiftObject({
-    onError: (err) => {
-      toast.toast({
-        title: t('objectToastErrorTitle'),
-        variant: 'destructive',
-        description: getObjectStoreApiErrorMessage(err),
-      });
-    },
-    onAddSuccess: () => {
-      toast.toast({
-        title: t('objectToastSuccessTitle'),
-        description: t('addObjectToastSuccessDescription'),
-      });
-    },
-  });
 
   const {
-    getStorageAccess,
-    isPending: pendingGetStorage,
-  } = useGetStorageAccess({
-    onError: (err) => {
-      toast.toast({
-        title: t('objectToastErrorTitle'),
-        variant: 'destructive',
-        description: getObjectStoreApiErrorMessage(err),
-      });
-    },
-    onSuccess: (access) => {
-      const swiftUrl = access.endpoints.find(
-        (endpoint) => endpoint.region === swift.region,
-      ).url;
-      if (!swiftUrl) return;
-
-      newfiles.map((file: File) =>
-        addSwiftObject({
-          url: `${swiftUrl}/${swift.name}${encodeURIComponent(
-            prefix ? `${prefix}/${file.name}` : `/${file.name}`,
-          )}`,
-          file,
-          token: access.token,
-        }),
-      );
-      navigate('../');
-    },
+    onSubmit,
+    isUploading,
+    totalFilesToUploadCount,
+    uploadedFilesCount,
+  } = useAddSwiftObjectForm({
+    onUploadEnd: () => navigate('..'),
   });
 
   return (
-    <FileUploader
-      multipleFileImport={true}
-      onFileSelect={(files, pref) => {
-        setNewFiles(files);
-        setPrefix(pref);
-        getStorageAccess({ projectId });
-      }}
-      isS3={false}
-      title={t('addOjectModalTitle')}
-      pending={pendingGetStorage || pendingAddSwift}
-    />
+    <RouteModal>
+      <DialogContent className="sm:max-w-xl px-0">
+        <DialogHeader className="px-6">
+          <DialogTitle>{t('title')}</DialogTitle>
+        </DialogHeader>
+        <div className="w-full max-h-[80vh] overflow-y-auto overflow-x-hidden">
+          {isUploading ? (
+            <FileUploadPending
+              value={uploadedFilesCount}
+              total={totalFilesToUploadCount}
+            />
+          ) : (
+            <AddSwiftObjectForm onSubmit={onSubmit} onError={() => {}} />
+          )}
+        </div>
+      </DialogContent>
+    </RouteModal>
   );
 };
 

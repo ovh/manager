@@ -60,7 +60,7 @@ const DeleteSwiftObject = () => {
           <DialogTitle>{t('deleteObjectTitle')}</DialogTitle>
         </DialogHeader>
         <div className="p-6 pt-0">
-          <p className="mt-2">
+          <p className="mt-2 break-all">
             {t('deleteObjectDescription', {
               name: objectKey,
             })}
