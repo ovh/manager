@@ -64,7 +64,7 @@ export const MULTI_ATTACH_INFO_URL: UrlRecord = {
   ASIA:
     'https://help.ovhcloud.com/csm/asia-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067595',
   IN:
-    'https://help.ovhcloud.com/csm/asia-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067595',
+    'https://help.ovhcloud.com/csm/en-in-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0069213',
   SG:
     'https://help.ovhcloud.com/csm/en-sg-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067598',
   AU:
@@ -93,7 +93,6 @@ export const MULTI_ATTACH_INFO_URL: UrlRecord = {
     'https://help.ovhcloud.com/csm/it-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067594',
   FR:
     'https://help.ovhcloud.com/csm/fr-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067602',
-
   TN:
     'https://help.ovhcloud.com/csm/fr-public-cloud-storage-classic-multi-attach-3az?id=kb_article_view&sysparm_article=KB0067602',
   SN:
