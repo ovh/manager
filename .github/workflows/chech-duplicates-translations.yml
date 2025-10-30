@@ -32,9 +32,12 @@ jobs:
           NUMBER_PULL=$(echo "$PR_JSON" | jq -r '.[0].number')
           labels=$(gh pr view $NUMBER_PULL --repo ovh/manager --json labels --jq '.labels[].name')
 
-          if echo "$labels" | grep -wq "translation required "; then
+          if echo "$labels" | grep -wq "translation required"; then
             echo "✅ Translation required: Check the duplicate translation pls!..."
-  
+            SHOULD_CONTINUE=true
+            echo "should_continue<<EOF" >> $GITHUB_OUTPUT
+            echo "$SHOULD_CONTINUE" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT  
           else
             echo "❌ Translation label does not exist, exit..."
             SHOULD_CONTINUE=false
@@ -56,8 +59,12 @@ jobs:
         if: steps.gate.outputs.should_continue == 'true'
         uses: actions/cache@v3
         with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          path: |
+            ~/.cache/yarn
+            node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
       - name: Install dependencies
         if: steps.gate.outputs.should_continue == 'true'
