@@ -27,7 +27,15 @@ import {
 } from '@/tracking.constants';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 
-export const DatagridTopbar = () => {
+import { EmailAccountItem } from './EmailAccounts.types';
+
+export type DatagridTopbarProps = {
+  selectedRows?: EmailAccountItem[];
+};
+
+export const DatagridTopbar: React.FC<DatagridTopbarProps> = ({
+  selectedRows,
+}: DatagridTopbarProps) => {
   const { t } = useTranslation(['accounts', 'common']);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
@@ -36,6 +44,7 @@ export const DatagridTopbar = () => {
 
   const hrefAddEmailAccount = useGenerateUrl('./add', 'path');
   const hrefOrderEmailAccount = useGenerateUrl('./order', 'path');
+  const hrefDeleteSelectedEmailAccounts = useGenerateUrl('./delete_all', 'path');
 
   const { data: domains, isLoading: isLoadingDomains } = useDomains();
 
@@ -75,6 +84,16 @@ export const DatagridTopbar = () => {
       actions: [GUIDE_OVH_MAIL_MIGRATOR],
     });
     window.open(GUIDES_LIST.ovh_mail_migrator.url.DEFAULT, '_blank');
+  };
+  const handleSelectEmailAccounts = () => {
+    navigate(hrefDeleteSelectedEmailAccounts, {
+      state: {
+        selectedEmailAccounts: selectedRows.map((row) => ({
+          id: row?.id,
+          email: row?.email,
+        })),
+      },
+    });
   };
 
   return (
@@ -125,6 +144,17 @@ export const DatagridTopbar = () => {
         iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.right}
         icon={ODS_ICON_NAME.externalLink}
       />
+      {!!selectedRows?.length && (
+        <ManagerButton
+          id="ovh-mail-delete-selected-btn"
+          color={ODS_BUTTON_COLOR.critical}
+          size={ODS_BUTTON_SIZE.sm}
+          onClick={handleSelectEmailAccounts}
+          label={t('zimbra_account_delete_all', { count: selectedRows.length })}
+          iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.right}
+          icon={ODS_ICON_NAME.trash}
+        />
+      )}
     </div>
   );
 };
