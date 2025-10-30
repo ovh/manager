@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate, Outlet, useSearchParams } from 'react-router-dom';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import {
@@ -24,10 +25,12 @@ export type DashboardTabItemProps = {
 };
 
 export default function IpListingPage() {
+  const queryClient = useQueryClient();
   const { environment } = React.useContext(ShellContext);
   const navigate = useNavigate();
   const [search] = useSearchParams();
   const { t } = useTranslation(TRANSLATION_NAMESPACES.listing);
+
   return (
     <ListingContextProvider>
       <div className="flex flex-col">
@@ -56,6 +59,13 @@ export default function IpListingPage() {
         <div className="flex flex-col flex-1 mr-2 md:mr-8 md:flex-row gap-2">
           <IpFilter className="min-w-[200px] max-w-[400px] flex-1" />
           <FilterService className="min-w-[200px] max-w-[400px] flex-1" />
+          <OdsButton
+            variant={ODS_BUTTON_VARIANT.outline}
+            icon={ODS_ICON_NAME.refresh}
+            size={ODS_BUTTON_SIZE.sm}
+            onClick={() => queryClient.invalidateQueries()}
+            label=""
+          />
         </div>
 
         <div className="flex flex-col items-end ml-auto gap-2">
