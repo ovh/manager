@@ -11,10 +11,10 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   IntervalUnitType,
   OvhSubsidiary,
-  Price,
   useFormatDate,
 } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { Price } from '@/components/price';
 import { TRANSLATION_NAMESPACES } from '@/utils';
 import ModalButtonGroup from './ModalButtonGroup.component';
 import {
