@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -22,6 +22,7 @@ import {
 
 import { BadgeStatus } from '@/components';
 import { MAX_REDIRECTIONS_QUOTA } from '@/constants';
+import { ResourceStatus } from '@/data/api';
 import { useOrganizations, usePlatform, useRedirections } from '@/data/hooks';
 import { useDebouncedValue, useGenerateUrl } from '@/hooks';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
@@ -63,12 +64,17 @@ const columns: DatagridColumn<RedirectionItem>[] = [
 export const Redirections = () => {
   const { t } = useTranslation(['redirections', 'common', NAMESPACES.STATUS]);
   const navigate = useNavigate();
+  const location = useLocation();
   const { platformUrn } = usePlatform();
   const { accountId } = useParams();
   const [searchInput, setSearchInput, debouncedSearchInput, setDebouncedSearchInput] =
     useDebouncedValue('');
+  const [rowSelection, setRowSelection] = useState({});
+  const [selectedRows, setSelectedRows] = useState<RedirectionItem[]>([]);
   const hrefAddRedirection = useGenerateUrl('./add', 'path');
+  const hrefDeleteSelectedRedirection = useGenerateUrl('./delete_all', 'path');
   const { data: organizations } = useOrganizations();
+  const { clearSelectedRedirections } = location.state || {};
   const {
     data: redirections,
     isLoading,
@@ -81,9 +87,33 @@ export const Redirections = () => {
     refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
   });
 
+  useEffect(() => {
+    if (clearSelectedRedirections) {
+      setRowSelection({});
+      setSelectedRows([]);
+    }
+  }, [clearSelectedRedirections]);
+
   const handleAddEmailRedirectionClick = () => {
     navigate(hrefAddRedirection);
   };
+
+  const handleDeleteSelectedRedirectionClick = () => {
+    navigate(hrefDeleteSelectedRedirection, {
+      state: {
+        selectedRedirections: selectedRows.map((row) => ({
+          id: row?.id,
+          from: row?.from,
+          to: row?.to,
+        })),
+      },
+    });
+  };
+
+  const isRowSelectable = useCallback(
+    (item: RedirectionItem) => item.status === ResourceStatus.READY,
+    [],
+  );
 
   const items = useMemo(() => {
     return (
@@ -97,6 +127,40 @@ export const Redirections = () => {
       })) ?? []
     );
   }, [redirections, organizations]);
+
+  const topbar = useMemo(
+    () => (
+      <div className="flex gap-6">
+        <ManagerButton
+          color={ODS_BUTTON_COLOR.primary}
+          inline-block
+          size={ODS_BUTTON_SIZE.sm}
+          onClick={handleAddEmailRedirectionClick}
+          urn={platformUrn}
+          iamActions={[IAM_ACTIONS.redirection.create]}
+          data-testid="add-redirection-btn"
+          id="add-redirection-btn"
+          icon={ODS_ICON_NAME.plus}
+          label={t('common:add_redirection')}
+        />
+        {!!selectedRows?.length && (
+          <ManagerButton
+            color={ODS_BUTTON_COLOR.critical}
+            inline-block
+            size={ODS_BUTTON_SIZE.sm}
+            onClick={handleDeleteSelectedRedirectionClick}
+            urn={platformUrn}
+            iamActions={[IAM_ACTIONS.redirection.delete]}
+            data-testid="delete-all-redirection-btn"
+            id="delete-all-redirection-btn"
+            icon={ODS_ICON_NAME.trash}
+            label={`${t('common:delete_redirections')} (${selectedRows.length})`}
+          />
+        )}
+      </div>
+    ),
+    [platformUrn, selectedRows],
+  );
 
   return (
     <div>
@@ -127,20 +191,13 @@ export const Redirections = () => {
           setSearchInput,
           onSearch: (search) => setDebouncedSearchInput(search),
         }}
-        topbar={
-          <ManagerButton
-            color={ODS_BUTTON_COLOR.primary}
-            inline-block
-            size={ODS_BUTTON_SIZE.sm}
-            onClick={handleAddEmailRedirectionClick}
-            urn={platformUrn}
-            iamActions={[IAM_ACTIONS.redirection.create]}
-            data-testid="add-redirection-btn"
-            id="add-redirection-btn"
-            icon={ODS_ICON_NAME.plus}
-            label={t('common:add_redirection')}
-          />
-        }
+        rowSelection={{
+          rowSelection,
+          setRowSelection,
+          enableRowSelection: ({ original: item }) => isRowSelectable(item),
+          onRowSelectionChange: setSelectedRows,
+        }}
+        topbar={topbar}
         columns={columns.map((column) => ({
           ...column,
           label: t(column.label),

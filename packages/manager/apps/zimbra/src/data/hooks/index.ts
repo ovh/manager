@@ -18,5 +18,4 @@ export * from './slot/useSlot';
 export * from './services/useSlotServices';
 export * from './services/useSlotService';
 export * from './task/useTasks';
-export * from './redirection/useRedirection';
 export * from './redirection/useRedirections';
