@@ -860,7 +860,7 @@ function App() {
 #### Composants OSDS Supportés
 
 ```typescript
-// Composants ODS automatiquement trackés
+// Composants MUK automatiquement trackés
 const OSDS_COMPONENTS = [
   'OSDS-ACCORDION',
   'OSDS-BUTTON',
@@ -875,9 +875,9 @@ const OSDS_COMPONENTS = [
 ];
 
 // Utilisation avec data-tracking
-<ods-button data-tracking="action-name">
+<Button data-tracking="action-name">
   Button
-</ods-button>
+</Button>
 ```
 
 ### HMR Support

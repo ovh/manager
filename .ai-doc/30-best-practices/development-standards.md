@@ -28,8 +28,7 @@ The standards are designed to be flexible enough to adapt to different language 
 
 - [Frontend React Patterns](../30-best-practices/frontend-react-patterns.md)
 - [Manager API Overview](../10-architecture/api-overview.md)
-- [MRC Components](../20-dependencies/mrc-components.md)
-- [ODS Components](../20-dependencies/ods-components.md)
+- [MUK Components](../20-dependencies/muk.md)
 - [TypeDoc Documentation](https://typedoc.org/guides/doccomments/)
 - [TSLint Configuration](STASH_OVH/NETAUTO/repos/coding-style/browse)
 
@@ -216,7 +215,7 @@ export (
 ```
 
 **App.tsx**
-App component is used to create and register the application level providers like QueryClientProvider, RouterProvider. Also, set-up the ODS at this component.
+App component is used to create and register the application level providers like QueryClientProvider, RouterProvider. Also, set-up the MUK at this component.
 
 **i18n.ts**
 To initialise the i18n for localising the application.
@@ -763,7 +762,7 @@ try {
 
 **✅ CORRECT: Using useNotifications hook**
 ```typescript
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/muk';
 
 function MyComponent() {
   const { addSuccess, addError } = useNotifications();

@@ -6,12 +6,12 @@ ai: true
 ---
 
 ## Goal
-End-to-end blueprint to build a production-grade Manager React µApp matching the quality level of pci-project: routing + tracking, data layer (V6 + Iceberg), i18n, Query Client, ODS/MRC usage, testing, linting, and structure.
+End-to-end blueprint to build a production-grade Manager React µApp matching the quality level of pci-project: routing + tracking, data layer (V6 + Iceberg), i18n, Query Client, MUK usage, testing, linting, and structure.
 
 ## Folder Structure (Enforced)
 ```
 src/
-  App.tsx               # ODS theme import + providers wiring
+  App.tsx               # MUK theme import + providers wiring
   main.tsx              # Shell init + RouterProvider
   i18n.ts               # i18next setup (namespaces)
   queryClient.ts        # React Query client factory
@@ -38,7 +38,7 @@ public/translations/     # Namespaces
 ## Providers Wiring
 ```typescript
 // App.tsx
-import '@ovhcloud/ods-themes/default';
+import '@ovh-ux/muk/dist/style.css';
 import React from 'react';
 import { RouterProvider } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
@@ -69,40 +69,122 @@ export const queryClient = new QueryClient({
 ```
 
 ## Routing + Tracking
+
+### Configuration des Routes
+
 ```typescript
 // routes/Routes.tsx
-import { createBrowserRouter } from 'react-router-dom';
-import { lazyRouteConfig } from '@ovh-ux/manager-core';
+import React from 'react';
+import { Navigate, Route } from 'react-router-dom';
+import { ErrorBoundary } from '@ovh-ux/muk';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
-import { urls } from './Routes.constants';
+import { redirectionApp, urls } from './Routes.constants';
 
-export const router = createBrowserRouter([
-  {
-    id: 'root',
-    path: urls.root,
-    ...lazyRouteConfig(() => import('@/pages/Main.layout')),
-    children: [
-      {
-        id: 'onboarding',
-        path: urls.onboarding,
-        ...lazyRouteConfig(() => import('@/pages/onboarding/Onboarding.page')),
-        handle: { tracking: { pageName: 'onboarding', pageType: PageType.onboarding } },
-      },
-      {
-        id: 'listing',
-        path: urls.listing,
-        ...lazyRouteConfig(() => import('@/pages/listing/Listing.page')),
-        handle: { tracking: { pageName: 'listing', pageType: PageType.listing } },
-      },
-      {
-        id: 'dashboard',
-        path: urls.dashboard,
-        ...lazyRouteConfig(() => import('@/pages/dashboard/Dashboard.page')),
-        handle: { tracking: { pageName: 'details', pageType: PageType.details } },
-      },
-    ],
-  },
-]);
+const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
+const ListingPage = React.lazy(() => import('@/pages/listing/Listing.page'));
+
+export default (
+  <>
+    {/* Redirect container "/" → flavor-specific root */}
+    <Route path="/" element={<Navigate to={urls.root} replace />} />
+
+    {/* Rooted application layout */}
+    <Route
+      id="root"
+      path={urls.root}
+      Component={MainLayoutPage}
+      errorElement={
+        <ErrorBoundary
+          isPreloaderHide={true}
+          isRouteShellSync={true}
+          redirectionApp={redirectionApp}
+        />
+      }
+    >
+      {/* Default landing → main listing page */}
+      <Route
+        index
+        Component={ListingPage}
+        handle={{
+          tracking: {
+            pageName: 'listing',
+            pageType: PageType.listing,
+          },
+        }}
+      />
+
+      {/* Alternative listing route */}
+      <Route
+        path={urls.listing}
+        Component={ListingPage}
+        handle={{
+          tracking: {
+            pageName: 'listing',
+            pageType: PageType.listing,
+          },
+        }}
+      />
+
+      {/* Other routes... */}
+    </Route>
+  </>
+);
+```
+
+### Configuration des Constantes
+
+```typescript
+// App.constants.ts
+export const APP_FEATURES = {
+  // ... autres configs
+  appSlug: '', // ⚠️ IMPORTANT: Laisser vide pour éviter le double slug
+  // ... autres configs
+} as const;
+
+// Routes.constants.ts
+export const urls = {
+  root: getRoot(), // Retourne /app-name
+  listing: 'listing', // Route relative
+} as const;
+```
+
+### Problèmes de Routing Courants
+
+#### ❌ Double Slug dans l'URL
+**Problème** : URL devient `/app-name/app-name/listing` au lieu de `/app-name/listing`
+
+**Solution** :
+```typescript
+// App.constants.ts
+export const APP_FEATURES = {
+  appSlug: '', // ⚠️ Laisser vide, pas appName
+  // ...
+} as const;
+```
+
+#### ❌ Navigation Absolue vs Relative
+**Problème** : `navigate('/listing')` ne fonctionne pas dans un contexte imbriqué
+
+**Solution** :
+```typescript
+// ✅ Bon : Navigation relative
+navigate('listing', { replace: true });
+
+// ❌ Éviter : Navigation absolue
+navigate('/listing', { replace: true });
+```
+
+#### ❌ SmartRedirect Complexe
+**Problème** : Redirection conditionnelle complexe
+
+**Solution** : Utiliser la page listing comme page d'accueil avec gestion d'état vide
+
+```typescript
+// ✅ Bon : Page listing comme home
+<Route index Component={ListingPage} />
+
+// ❌ Éviter : SmartRedirect complexe
+<Route index element={<SmartRedirectPage />} />
 ```
 
 ### Tracking Context
@@ -145,14 +227,14 @@ export function useServices(params: { page: number; pageSize: number; sortBy?: s
 }
 ```
 
-## Datagrid Pattern (MRC + Iceberg)
+## Datagrid Pattern (MUK + Iceberg)
 - Source of truth: `useDatagrid` for pagination/sorting state.
 - On manual mode, pass `items`, `totalItems`, `pagination`, `sorting`, `onPaginationChange`, `onSortChange`.
 - Use `useResourcesIcebergV6` for infinite mode when suitable.
 
 Minimal example:
 ```typescript
-import { Datagrid, useDataGrid, ColumnSort } from '@ovh-ux/manager-react-components';
+import { Datagrid, useDataGrid, ColumnSort } from '@ovh-ux/muk';
 
 const { pagination, sorting, onPaginationChange, onSortChange } = useDataGrid();
 const { data, isLoading } = useServices({
@@ -179,10 +261,10 @@ const { data, isLoading } = useServices({
 - Load namespaces from `public/translations/<ns>/Messages_<locale>.json`.
 - Use common translations where possible (see common-translations.md).
 
-## ODS + MRC Usage Rules
-- Import ODS theme first.
-- Prefer ODS for base UI, MRC for IAM-aware or Manager patterns.
-- Use valid ODS props/events (see ods-components.md). Avoid unsupported props like `size` on icons if not defined.
+## MUK Usage Rules
+- Import MUK styles first.
+- Use MUK components for all UI needs - base UI, IAM-aware, and Manager patterns.
+- Use valid MUK props/events (see muk.md). MUK provides wrappers for all design system components with Manager-specific enhancements.
 
 ## Forms & Validation
 - Use React Hook Form + Yup.
@@ -191,7 +273,7 @@ const { data, isLoading } = useServices({
 ## Testing & Tooling
 - Vitest + Testing Library, jsdom env, `setupTests.ts` including a11y matcher (see html-accessibility-testing.md).
 - Add `createTestWrapper(queryClient)` helper to provide QueryClient + Router in tests.
-- Mock `@ovh-ux/manager-react-components` selectively; prefer integration through TestProvider when available.
+- Mock `@ovh-ux/muk` selectively; prefer integration through TestProvider when available.
 
 ## ESLint & TypeScript
 - Local ESLint flat config per app allowed when root constraints block TS features. Keep rules aligned with standards; avoid disabling safety rules broadly.
@@ -203,7 +285,33 @@ const { data, isLoading } = useServices({
 - Click tracking on primary actions with enums (see react-tracking.md).
 
 ## Parity & Migration Notes
-- Follow migration-guide.md: parité fonctionnelle, URLs conservées, strangler pattern, and DoD.
+- Follow [us-migration-guide.md](../50-migration-angular/us-migration-guide.md): parité fonctionnelle, URLs conservées, strangler pattern, and DoD.
+
+## ❌ Common Routing Mistakes
+
+### Mistake 1: Complex SmartRedirect
+**Don't**: Create a separate SmartRedirect component that checks API and redirects
+**Do**: Use listing page as index with empty state handling OR simple redirect based on service check
+
+### Mistake 2: Absolute navigation paths
+**Don't**: `navigate('/bmc-nasha/listing')`
+**Do**: `navigate('listing', { replace: true })`
+
+### Mistake 3: Using non-existent MUK components
+**Don't**: Import Spinner, Links, Title from MUK
+**Do**: Check muk-components-reference.md first
+
+### Mistake 4: Incorrect Datagrid props
+**Don't**: Use `totalItems`, `pagination` object
+**Do**: Use `totalCount`, `pageIndex`, `pageSize` separately
+
+### Mistake 5: Wrong Button variants
+**Don't**: Use `variant="primary"` (not available in MUK)
+**Do**: Use `variant="default"`, `variant="ghost"`, or `variant="outline"`
+
+### Mistake 6: Incorrect tracking calls
+**Don't**: `trackClick('action-name')`
+**Do**: `trackClick({ actions: ['action-name'] })`
 
 ## Copy-Paste Starters
 - Use code snippets above as templates; adjust endpoints, columns, and namespaces per product.

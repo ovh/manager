@@ -11,8 +11,6 @@ ai: true
 
 This document explains how to implement and use tracking in React applications within the OVHcloud Manager ecosystem. It covers the tracking setup, configuration, and usage patterns for both page display tracking and click tracking using the OvhAtInternet class and custom React hooks.
 
-The tracking system ensures consistent analytics across all Manager applications while maintaining the new nomenclature standards for React applications.
-
 ## ⚙️ Context
 
 The tracking system in React applications:
@@ -21,12 +19,6 @@ The tracking system in React applications:
 - **Follows new nomenclature** standards for React applications
 - **Integrates with the shell client** for shared tracking context
 - **Supports both page and click tracking** with predefined enums
-
-This system is designed for:
-- **New µApp projects** with tracking already implemented
-- **React applications** in the Manager ecosystem
-- **Consistent analytics** across all OVHcloud products
-- **Easy configuration** through the generator
 
 ## 🔗 References
 
@@ -48,60 +40,36 @@ The new nomenclature for React applications follows this pattern:
 
 **Example**: VRack services listing page
 ```
-bare_metal_cloud::network::vrack-services::vrack-services::listing
+BareMetalCloud::NETWORK::VRACK::VRACK::listing
 ```
 
-#### Structure Breakdown
-- **Universe**: High-level product category (e.g., `BareMetalCloud`)
-- **Range Product**: Product range (e.g., `Network`)
-- **Line Product**: Specific product line (e.g., `vrack-services`)
-- **Page Name**: Specific page identifier (e.g., `listing`)
+#### Click Tracking Format
+Click tracking follows this pattern:
 
-### Application Setup
-
-#### 1. Generator Configuration
-
-When creating a new µApp, the generator will ask for tracking configuration:
-
-```bash
-$ yarn workspace @ovh-ux/manager-generator run start
-$ plop
-
-? What is the level2 of the app ? 85 - ManagerServer
-? What is the universe of the app ? BareMetalCloud
-? What is the subuniverse of the app ? NetWork
-? What is the name of the new app? vrack services
+```
+{{universe}}::{{range_product}}::{{line_product}}::{{line_product}}::{{page_name}}::{{action}}
 ```
 
-#### 2. Tracking Constants
+**Example**: Create button click on VRack listing page
+```
+BareMetalCloud::NETWORK::VRACK::VRACK::listing::create-button
+```
 
-After generation, you'll find `tracking.constant.ts` at the root of your application:
+### Setup and Configuration
+
+#### 1. Tracking Constants
+
+Create `tracking.constant.ts`:
 
 ```typescript
 // tracking.constant.ts
-export const LEVEL2 = {
-  EU: {
-    config: {
-      level2: "86",
-    },
-  },
-  CA: {
-    config: {
-      level2: "86",
-    },
-  },
-  US: {
-    config: {
-      level2: "52",
-    },
-  },
-};
-
+export const APP_NAME = "vrack";
 export const UNIVERSE = "BareMetalCloud";
 export const SUB_UNIVERSE = "NETWORK";
+export const LEVEL2 = "VRACK";
 ```
 
-#### 3. Shell Context Integration
+#### 2. Shell Context Integration
 
 Initialize tracking context in `main.tsx`:
 
@@ -175,17 +143,6 @@ const routes = [
         pageType: PageType.listing,
       }
     }
-  },
-  {
-    id: 'details',
-    path: 'details/:id',
-    ...lazyRouteConfig(() => import('@/pages/details')),
-    handle: {
-      tracking: {
-        pageName: 'details',
-        pageType: PageType.details,
-      }
-    }
   }
 ];
 ```
@@ -203,503 +160,284 @@ enum PageType {
   edition = 'edition',
   deletion = 'deletion',
   configuration = 'configuration',
-  billing = 'billing',
-  support = 'support',
-  documentation = 'documentation'
+  help = 'help',
+  error = 'error'
 }
 ```
 
 ### Click Tracking
 
-#### Basic Usage
+#### Using the Hook
 
-Import and use the `trackClick` method:
+Use the `useOvhTracking` hook for click tracking:
 
 ```typescript
-// Component.tsx
-import {
-  useOvhTracking,
-  PageLocation,
-  ButtonType,
-  ActionType
-} from "@ovh-ux/manager-react-shell-client";
+// components/UserActions.tsx
+import { useOvhTracking } from "@ovh-ux/manager-react-shell-client";
 
-function MyComponent() {
+export function UserActions() {
   const { trackClick } = useOvhTracking();
 
-  const handleDelete = () => {
-    // Your delete logic
-    trackClick({
-      location: PageLocation.datagrid,
-      buttonType: ButtonType.button,
-      actionType: ActionType.navigation,
-      actions: ["delete-endpoints"],
-    });
+  const handleCreate = () => {
+    trackClick('create-button');
+    // Your create logic
   };
 
-  const handleCreate = () => {
-    // Your create logic
-    trackClick({
-      location: PageLocation.header,
-      buttonType: ButtonType.button,
-      actionType: ActionType.navigation,
-      actions: ["create-endpoint"],
-    });
+  const handleEdit = (id: string) => {
+    trackClick('edit-button', { id });
+    // Your edit logic
+  };
+
+  const handleDelete = (id: string) => {
+    trackClick('delete-button', { id });
+    // Your delete logic
   };
 
   return (
     <div>
-      <button onClick={handleDelete}>Delete</button>
       <button onClick={handleCreate}>Create</button>
+      <button onClick={() => handleEdit('123')}>Edit</button>
+      <button onClick={() => handleDelete('123')}>Delete</button>
     </div>
   );
 }
 ```
 
-#### Tracking Enums
+#### Click Tracking with Data
 
-**PageLocation** - Where the click occurred:
-```typescript
-enum PageLocation {
-  header = 'header',
-  sidebar = 'sidebar',
-  datagrid = 'datagrid',
-  modal = 'modal',
-  form = 'form',
-  breadcrumb = 'breadcrumb',
-  tab = 'tab',
-  filter = 'filter',
-  pagination = 'pagination'
-}
-```
-
-**ButtonType** - Type of interactive element:
-```typescript
-enum ButtonType {
-  button = 'button',
-  link = 'link',
-  dropdown = 'dropdown',
-  checkbox = 'checkbox',
-  radio = 'radio',
-  select = 'select',
-  input = 'input',
-  icon = 'icon'
-}
-```
-
-**ActionType** - Nature of the action:
-```typescript
-enum ActionType {
-  navigation = 'navigation',
-  action = 'action',
-  filter = 'filter',
-  sort = 'sort',
-  export = 'export',
-  import = 'import',
-  download = 'download',
-  upload = 'upload'
-}
-```
-
-#### Advanced Click Tracking
+For more detailed tracking, include additional data:
 
 ```typescript
-// Advanced tracking with custom actions
-const handleComplexAction = () => {
-  trackClick({
-    location: PageLocation.datagrid,
-    buttonType: ButtonType.button,
-    actionType: ActionType.action,
-    actions: ["bulk-delete", "confirm", "success"],
-    customData: {
-      itemCount: selectedItems.length,
-      itemType: 'endpoints'
-    }
-  });
-};
+// components/UserActions.tsx
+import { useOvhTracking } from "@ovh-ux/manager-react-shell-client";
 
-// Tracking with context
-const handleContextualAction = (itemId: string, itemType: string) => {
-  trackClick({
-    location: PageLocation.datagrid,
-    buttonType: ButtonType.button,
-    actionType: ActionType.navigation,
-    actions: [`edit-${itemType}`],
-    customData: {
-      itemId,
-      itemType
-    }
-  });
-};
-```
+export function UserActions() {
+  const { trackClick } = useOvhTracking();
 
-### Custom Hook Implementation
-
-#### useOvhTracking Hook
-
-The custom hook provides a clean interface to the tracking system:
-
-```typescript
-// useOvhTracking.ts (in shell-client)
-interface UseOvhTrackingReturn {
-  trackCurrentPage: () => void;
-  trackClick: (params: TrackClickParams) => void;
-  trackEvent: (event: string, data?: any) => void;
-}
-
-interface TrackClickParams {
-  location: PageLocation;
-  buttonType: ButtonType;
-  actionType: ActionType;
-  actions: string[];
-  customData?: Record<string, any>;
-}
-
-export function useOvhTracking(): UseOvhTrackingReturn {
-  const shell = useShell();
-  const { tracking, pageTracking } = useTrackingContext();
-
-  const trackCurrentPage = useCallback(() => {
-    if (tracking && pageTracking) {
-      shell.tracking.trackPage({
-        name: pageTracking.pageName,
-        level2: pageTracking.level2,
-        chapter1: tracking.chapter1,
-        chapter2: tracking.chapter2,
-        chapter3: tracking.chapter3,
-        pageTheme: tracking.pageTheme,
-      });
-    }
-  }, [shell.tracking, tracking, pageTracking]);
-
-  const trackClick = useCallback((params: TrackClickParams) => {
-    if (tracking) {
-      shell.tracking.trackClick({
-        name: params.actions.join('::'),
-        type: params.buttonType,
-        chapter1: tracking.chapter1,
-        chapter2: tracking.chapter2,
-        chapter3: tracking.chapter3,
-        level2: tracking.level2Config,
-        ...params.customData
-      });
-    }
-  }, [shell.tracking, tracking]);
-
-  return {
-    trackCurrentPage,
-    trackClick,
-    trackEvent: shell.tracking.trackEvent
-  };
-}
-```
-
-### Testing and Debugging
-
-#### Local Development Testing
-
-1. **Enable Debug Mode**:
-   - Open browser DevTools
-   - Go to Local Storage panel
-   - Add new variable:
-     - **Key**: `MANAGER_TRACKING_DEBUG`
-     - **Value**: `1`
-   - Restart local server or refresh browser
-
-2. **View Tracking Events**:
-   - Go to Network panel in DevTools
-   - Search for `xiti` in the filter
-   - View all tracking requests
-
-#### Staging Environment Testing
-
-```typescript
-// Debug tracking in staging
-const { trackClick } = useOvhTracking();
-
-const handleDebugClick = () => {
-  if (process.env.NODE_ENV === 'development') {
-    console.log('Tracking click:', {
-      location: PageLocation.datagrid,
-      buttonType: ButtonType.button,
-      actionType: ActionType.navigation,
-      actions: ["test-action"]
+  const handleAction = (action: string, data: any) => {
+    trackClick(action, {
+      ...data,
+      timestamp: Date.now(),
+      userId: 'user123'
     });
-  }
-  
-  trackClick({
-    location: PageLocation.datagrid,
-    buttonType: ButtonType.button,
-    actionType: ActionType.navigation,
-    actions: ["test-action"]
+  };
+
+  return (
+    <div>
+      <button onClick={() => handleAction('create-button', { type: 'user' })}>
+        Create User
+      </button>
+      <button onClick={() => handleAction('create-button', { type: 'group' })}>
+        Create Group
+      </button>
+    </div>
+  );
+}
+```
+
+### Advanced Tracking Patterns
+
+#### Custom Tracking Hook
+
+Create a custom hook for specific tracking needs:
+
+```typescript
+// hooks/useCustomTracking.ts
+import { useOvhTracking } from "@ovh-ux/manager-react-shell-client";
+
+export function useCustomTracking() {
+  const { trackClick } = useOvhTracking();
+
+  const trackUserAction = (action: string, userId: string) => {
+    trackClick(action, { userId, timestamp: Date.now() });
+  };
+
+  const trackPageView = (pageName: string) => {
+    trackClick('page-view', { pageName, timestamp: Date.now() });
+  };
+
+  return { trackUserAction, trackPageView };
+}
+```
+
+#### Tracking with Error Handling
+
+Implement error handling for tracking:
+
+```typescript
+// components/TrackedComponent.tsx
+import { useOvhTracking } from "@ovh-ux/manager-react-shell-client";
+
+export function TrackedComponent() {
+  const { trackClick } = useOvhTracking();
+
+  const handleAction = async (action: string) => {
+    try {
+      trackClick(action, { status: 'start' });
+      
+      // Your action logic
+      await performAction();
+      
+      trackClick(action, { status: 'success' });
+    } catch (error) {
+      trackClick(action, { status: 'error', error: error.message });
+    }
+  };
+
+  return (
+    <button onClick={() => handleAction('custom-action')}>
+      Perform Action
+    </button>
+  );
+}
+```
+
+### Testing Tracking
+
+#### Unit Tests
+
+Test tracking functionality in your components:
+
+```typescript
+// components/__tests__/UserActions.test.tsx
+import { render, screen, fireEvent } from '@testing-library/react';
+import { useOvhTracking } from "@ovh-ux/manager-react-shell-client";
+import { UserActions } from '../UserActions';
+
+jest.mock("@ovh-ux/manager-react-shell-client");
+
+describe('UserActions', () => {
+  const mockTrackClick = jest.fn();
+
+  beforeEach(() => {
+    (useOvhTracking as jest.Mock).mockReturnValue({
+      trackClick: mockTrackClick
+    });
   });
-};
+
+  it('should track create button click', () => {
+    render(<UserActions />);
+    
+    fireEvent.click(screen.getByText('Create'));
+    
+    expect(mockTrackClick).toHaveBeenCalledWith('create-button');
+  });
+
+  it('should track edit button click with id', () => {
+    render(<UserActions />);
+    
+    fireEvent.click(screen.getByText('Edit'));
+    
+    expect(mockTrackClick).toHaveBeenCalledWith('edit-button', { id: '123' });
+  });
+});
+```
+
+#### Integration Tests
+
+Test tracking in the context of the application:
+
+```typescript
+// __tests__/tracking.integration.test.tsx
+import { render, screen, fireEvent } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
+import { App } from '../App';
+
+describe('Tracking Integration', () => {
+  it('should track page navigation', () => {
+    render(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    );
+
+    // Navigate to a page
+    fireEvent.click(screen.getByText('Users'));
+    
+    // Verify tracking was called
+    // This would depend on your specific tracking implementation
+  });
+});
 ```
 
 ### Best Practices
 
 #### 1. Consistent Naming
+- Use consistent naming conventions for tracking events
+- Follow the established nomenclature patterns
+- Use descriptive names for actions
+
+#### 2. Minimal Data
+- Only track necessary data
+- Avoid tracking sensitive information
+- Keep tracking payloads small
+
+#### 3. Error Handling
+- Always handle tracking errors gracefully
+- Don't let tracking errors break your application
+- Log tracking errors for debugging
+
+#### 4. Performance
+- Use tracking asynchronously when possible
+- Avoid blocking the main thread
+- Consider batching tracking events
+
+#### 5. Testing
+- Test tracking functionality thoroughly
+- Mock tracking in unit tests
+- Verify tracking in integration tests
+
+### Troubleshooting
+
+#### Common Issues
+
+1. **Tracking not working**
+   - Check if the shell context is properly initialized
+   - Verify tracking constants are correct
+   - Ensure the tracking hook is properly imported
+
+2. **Incorrect nomenclature**
+   - Verify the tracking format follows the established pattern
+   - Check if all required parts are included
+   - Ensure consistent naming across the application
+
+3. **Performance issues**
+   - Check if tracking is blocking the main thread
+   - Consider using async tracking
+   - Verify tracking payload size
+
+#### Debug Mode
+
+Enable debug mode for tracking:
 
 ```typescript
-// ✅ CORRECT: Consistent action naming
-trackClick({
-  actions: ["create-endpoint", "form-submit", "success"]
-});
+// tracking.constant.ts
+export const TRACKING_DEBUG = process.env.NODE_ENV === 'development';
 
-// ❌ WRONG: Inconsistent naming
-trackClick({
-  actions: ["createEndpoint", "form_submit", "Success"]
-});
+// In your tracking hook
+if (TRACKING_DEBUG) {
+  console.log('Tracking event:', event, data);
+}
 ```
 
-#### 2. Meaningful Actions
+### Migration from Angular
 
-```typescript
-// ✅ CORRECT: Descriptive actions
-trackClick({
-  actions: ["bulk-delete-endpoints", "confirm-dialog", "success"]
-});
+#### Key Differences
 
-// ❌ WRONG: Generic actions
-trackClick({
-  actions: ["click", "ok", "done"]
-});
-```
+1. **Hook-based approach**: React uses hooks instead of services
+2. **Automatic page tracking**: Page tracking is handled automatically
+3. **Simplified configuration**: Less configuration required
+4. **Better TypeScript support**: Improved type safety
 
-#### 3. Proper Location Context
+#### Migration Steps
 
-```typescript
-// ✅ CORRECT: Accurate location
-trackClick({
-  location: PageLocation.datagrid, // User clicked in datagrid
-  actions: ["select-all"]
-});
+1. **Update tracking constants**: Use the new nomenclature format
+2. **Replace service calls**: Use the `useOvhTracking` hook
+3. **Update route configuration**: Use the new route tracking format
+4. **Test tracking**: Verify all tracking events work correctly
 
-// ❌ WRONG: Wrong location
-trackClick({
-  location: PageLocation.header, // But action was in datagrid
-  actions: ["select-all"]
-});
-```
+### References
 
-#### 4. Complete Route Configuration
-
-```typescript
-// ✅ CORRECT: All routes have tracking
-const routes = [
-  {
-    id: 'listing',
-    path: 'listing',
-    handle: {
-      tracking: {
-        pageName: 'listing',
-        pageType: PageType.listing,
-      }
-    }
-  },
-  {
-    id: 'details',
-    path: 'details/:id',
-    handle: {
-      tracking: {
-        pageName: 'details',
-        pageType: PageType.details,
-      }
-    }
-  }
-];
-```
-
-### Common Patterns
-
-#### 1. CRUD Operations Tracking
-
-```typescript
-// Create operation
-const handleCreate = () => {
-  trackClick({
-    location: PageLocation.header,
-    buttonType: ButtonType.button,
-    actionType: ActionType.navigation,
-    actions: ["create-resource"]
-  });
-  // Navigate to create page
-};
-
-// Read operation (page view is automatic)
-// No additional tracking needed
-
-// Update operation
-const handleEdit = (id: string) => {
-  trackClick({
-    location: PageLocation.datagrid,
-    buttonType: ButtonType.button,
-    actionType: ActionType.navigation,
-    actions: ["edit-resource"],
-    customData: { resourceId: id }
-  });
-  // Navigate to edit page
-};
-
-// Delete operation
-const handleDelete = (id: string) => {
-  trackClick({
-    location: PageLocation.datagrid,
-    buttonType: ButtonType.button,
-    actionType: ActionType.action,
-    actions: ["delete-resource", "confirm"],
-    customData: { resourceId: id }
-  });
-  // Show confirmation dialog
-};
-```
-
-#### 2. Form Tracking
-
-```typescript
-const handleFormSubmit = (formData: FormData) => {
-  trackClick({
-    location: PageLocation.form,
-    buttonType: ButtonType.button,
-    actionType: ActionType.action,
-    actions: ["form-submit", "create-resource"],
-    customData: {
-      formFields: Object.keys(formData).length,
-      hasValidation: true
-    }
-  });
-};
-
-const handleFormCancel = () => {
-  trackClick({
-    location: PageLocation.form,
-    buttonType: ButtonType.button,
-    actionType: ActionType.navigation,
-    actions: ["form-cancel", "back-to-listing"]
-  });
-};
-```
-
-#### 3. Filter and Search Tracking
-
-```typescript
-const handleFilter = (filterType: string, value: string) => {
-  trackClick({
-    location: PageLocation.filter,
-    buttonType: ButtonType.select,
-    actionType: ActionType.filter,
-    actions: ["apply-filter", filterType],
-    customData: { filterValue: value }
-  });
-};
-
-const handleSearch = (query: string) => {
-  trackClick({
-    location: PageLocation.header,
-    buttonType: ButtonType.input,
-    actionType: ActionType.filter,
-    actions: ["search", "submit"],
-    customData: { queryLength: query.length }
-  });
-};
-```
-
----
-
-## 🤖 AI Development Guidelines
-
-### Essential Tracking Rules for AI Code Generation
-
-1. **Always configure route tracking**: Every route must have tracking configuration in the handle
-2. **Use consistent naming**: Follow kebab-case for actions and use descriptive names
-3. **Include proper enums**: Use PageLocation, ButtonType, and ActionType enums
-4. **Track meaningful interactions**: Focus on user actions that provide business value
-5. **Add custom data when relevant**: Include contextual information for better analytics
-6. **Test tracking in development**: Always verify tracking works in local environment
-7. **Follow nomenclature standards**: Use the universe::range::line::page format
-8. **Implement both page and click tracking**: Cover all user interactions
-9. **Use the custom hook**: Always use useOvhTracking instead of direct shell access
-10. **Document tracking decisions**: Explain why specific tracking points were chosen
-
-### Tracking Implementation Checklist
-
-- [ ] Route tracking configured for all pages
-- [ ] PageType enum used correctly
-- [ ] Click tracking implemented for key interactions
-- [ ] Proper enums used (PageLocation, ButtonType, ActionType)
-- [ ] Consistent action naming (kebab-case)
-- [ ] Custom data included when relevant
-- [ ] Debug mode tested in development
-- [ ] Tracking constants properly configured
-- [ ] Shell context initialized correctly
-- [ ] useOvhTracking hook used consistently
-
-### Common Anti-Patterns to Avoid
-
-```typescript
-// ❌ WRONG: Missing route tracking
-const routes = [
-  {
-    id: 'listing',
-    path: 'listing',
-    // Missing handle.tracking
-  }
-];
-
-// ❌ WRONG: Direct shell access
-const shell = useShell();
-shell.tracking.trackClick({...}); // Should use useOvhTracking
-
-// ❌ WRONG: Inconsistent naming
-trackClick({
-  actions: ["createEndpoint", "form_submit", "Success"] // Mixed cases
-});
-
-// ❌ WRONG: Missing enums
-trackClick({
-  location: "datagrid", // Should use PageLocation.datagrid
-  buttonType: "button", // Should use ButtonType.button
-  actionType: "action"  // Should use ActionType.action
-});
-```
-
-### Recommended Patterns
-
-```typescript
-// ✅ CORRECT: Complete route configuration
-const routes = [
-  {
-    id: 'listing',
-    path: 'listing',
-    handle: {
-      tracking: {
-        pageName: 'listing',
-        pageType: PageType.listing,
-      }
-    }
-  }
-];
-
-// ✅ CORRECT: Using custom hook
-const { trackClick } = useOvhTracking();
-
-// ✅ CORRECT: Consistent naming and enums
-trackClick({
-  location: PageLocation.datagrid,
-  buttonType: ButtonType.button,
-  actionType: ActionType.navigation,
-  actions: ["create-endpoint"],
-  customData: { source: "datagrid" }
-});
-```
-
----
-
-## ⚖️ The Tracker's Moral
-
-- **Consistent tracking** provides valuable insights into user behavior
-- **Proper configuration** ensures accurate analytics across all applications
-- **Meaningful events** help improve user experience and business decisions
-- **Testing and debugging** prevent tracking issues in production
-
-**👉 Good tracking is invisible to users but invaluable to the business.**
+- [OVH At Internet Documentation](https://developers.atinternet-solutions.com/)
+- [React Hooks Documentation](https://reactjs.org/docs/hooks-intro.html)
+- [Manager Shell Client Documentation](../20-dependencies/manager-react-shell-client.md)
