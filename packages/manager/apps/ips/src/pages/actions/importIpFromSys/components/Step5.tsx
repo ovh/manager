@@ -7,8 +7,9 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { OvhSubsidiary, Price } from '@ovh-ux/manager-react-components';
+import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { Price } from '@/components/price';
 import { TRANSLATION_NAMESPACES } from '@/utils';
 import ModalButtonGroup from './ModalButtonGroup.component';
 import { PRICE_MULTIPLIER } from '../importIpFromSys.constant';
