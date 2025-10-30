@@ -25,7 +25,7 @@
   "delete_secret_modal_description": "¿Seguro que quiere eliminar el secreto: {{secretPath}}? Esta acción es irreversible.",
   "delete_secret_modal_title": "Eliminar un secreto",
   "delete_secret_success": "Su secreto se ha eliminado correctamente",
-  "delete_version_modal_description": "¿Seguro/a que quiere eliminar esta versión? Esta acción es irreversible.",
+  "delete_version_modal_description": "¿Seguro que quiere eliminar esta versión? Esta acción es irreversible.",
   "delete_version_modal_title": "Eliminar la versión {{versionId}}",
   "okms_activation_in_progress": "Por favor, espere, creando...",
   "okms_list": "Lista de dominios OKMS",
