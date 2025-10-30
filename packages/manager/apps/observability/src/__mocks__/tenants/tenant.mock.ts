@@ -110,24 +110,5 @@ export const createTenant = async function ({
 }: CreateTenantsPayload): Promise<Tenant> {
   console.info(`[MOCK-ADAPTER][createTenant] mock creation of tenant for ${resourceName}`);
   console.info(`[MOCK-ADAPTER][createTenant] targetSpec -> `, targetSpec);
-  return Promise.resolve({
-    id: '1',
-    currentState: {
-      title: 'Tenant 1',
-    },
-    targetSpec: {
-      ...targetSpec,
-      limits: {
-        ...targetSpec.limits,
-        numberOfSeries: {
-          ...targetSpec.limits.numberOfSeries,
-          current: targetSpec.limits.numberOfSeries.maximum,
-        },
-        retention: {
-          ...targetSpec.limits.retention,
-          duration: '30d', // Add required duration property
-        },
-      },
-    },
-  });
+  return Promise.resolve(tenantsDataset[0]!);
 };
