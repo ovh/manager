@@ -59,6 +59,11 @@ export const urls = {
   // CDN
   modifyCdn: `/${subRoutes.serviceName}/multisite/${subRoutes.domain}/modify-cdn`,
   purgeCdn: `/${subRoutes.serviceName}/multisite/${subRoutes.domain}/purge-cdn`,
+  advancedFlushCdn: `/${subRoutes.serviceName}/multisite/${subRoutes.domain}/advanced-flush-cdn`,
+  cdnCacheRule: `/${subRoutes.serviceName}/multisite/${subRoutes.domain}/cdn-cache-rule`,
+  cdnEditUrls: `/${subRoutes.serviceName}/multisite/${subRoutes.domain}/cdn-edit-urls`,
+  cdnCorsResourceSharing: `/${subRoutes.serviceName}/multisite/${subRoutes.domain}/cdn-cors-resource-sharing`,
+  cdnConfirmation: `/${subRoutes.serviceName}/multisite/${subRoutes.domain}/cdn-confirmation`,
 
   // MODULE
   addModule: `/${subRoutes.serviceName}/multisite/add-module`,
