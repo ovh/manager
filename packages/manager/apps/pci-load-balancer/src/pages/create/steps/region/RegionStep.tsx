@@ -6,6 +6,10 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {
+  OdsHTMLAnchorElementTarget,
+  OdsHTMLAnchorElementRel,
+} from '@ovhcloud/ods-common-core';
+import {
   ODS_ICON_NAME,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
@@ -195,6 +199,8 @@ export const RegionStep = ({
               REGION_AVAILABILITY_LINK.DEFAULT
             }
             color={ODS_THEME_COLOR_INTENT.primary}
+            rel={OdsHTMLAnchorElementRel.noreferrer}
+            target={OdsHTMLAnchorElementTarget._blank}
           >
             {t('octavia_load_balancer_create_region_link')}
           </OsdsLink>

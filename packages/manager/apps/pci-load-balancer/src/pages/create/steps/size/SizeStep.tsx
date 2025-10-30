@@ -3,6 +3,10 @@ import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { StepComponent } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
+import {
+  OdsHTMLAnchorElementTarget,
+  OdsHTMLAnchorElementRel,
+} from '@ovhcloud/ods-common-core';
 import { PRODUCT_LINK } from '@/constants';
 import SizeInputComponent from './input/SizeInput.component';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
@@ -82,6 +86,8 @@ export const SizeStep = ({
         <OsdsLink
           href={PRODUCT_LINK[ovhSubsidiary] || PRODUCT_LINK.DEFAULT}
           color={ODS_THEME_COLOR_INTENT.primary}
+          rel={OdsHTMLAnchorElementRel.noreferrer}
+          target={OdsHTMLAnchorElementTarget._blank}
         >
           {t('octavia_load_balancer_create_size_intro_link')}
         </OsdsLink>
