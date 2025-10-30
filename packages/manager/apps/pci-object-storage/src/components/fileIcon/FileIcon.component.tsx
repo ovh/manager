@@ -1,5 +1,6 @@
 import { File } from 'lucide-react';
 import { FILE_TYPE_MAP } from './FileIcon.const';
+import { cn } from '@/lib/utils';
 
 const FileIcon = ({
   fileName,
@@ -10,15 +11,16 @@ const FileIcon = ({
 }) => {
   if (!fileName) return null;
 
-  const ext = fileName.includes('.')
-    ? fileName
+  const cleanName = fileName.split('/').pop() ?? fileName;
+  const ext = cleanName.includes('.')
+    ? cleanName
         .split('.')
         .pop()
         ?.toLowerCase() ?? ''
     : '';
   const Icon = FILE_TYPE_MAP[ext] || File;
 
-  return <Icon className={className} />;
+  return <Icon className={cn('shrink-0', className)} />;
 };
 
 export default FileIcon;
