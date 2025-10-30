@@ -14,6 +14,7 @@ import {
   webHostingMock,
   websitesMocks,
 } from '@/data/__mocks__';
+import { cdnOptionMock, serviceNameCdnMock } from '@/data/__mocks__/cdn';
 import { managedWordpressRerefenceAvailableLanguageMock } from '@/data/__mocks__/managedWordpress/language';
 import {
   managedWordpressResourceDetailsMock,
@@ -169,6 +170,21 @@ vi.mock('@/data/api/dashboard', async (importActual) => {
     getDomainZone: vi.fn(() => Promise.resolve(domainZoneMock)),
     getServiceInfos: vi.fn(() => Promise.resolve(serviceInfosMock)),
     getDomainService: vi.fn(() => Promise.resolve(domainInformationMock)),
+  };
+});
+
+vi.mock('@/data/hooks/cdn/useCdn', async (importActual) => {
+  const actual = await importActual<typeof import('@/data/hooks/cdn/useCdn')>();
+  return {
+    ...actual,
+    useGetServiceNameCdn: vi.fn(() => ({
+      data: serviceNameCdnMock,
+      isSuccess: true,
+    })),
+    useGetCdnOption: vi.fn(() => ({
+      data: cdnOptionMock,
+      isSuccess: true,
+    })),
   };
 });
 
