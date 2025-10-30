@@ -27,7 +27,7 @@
   "delete_secret_success": "Twój „sekret” został pomyślnie usunięty",
   "delete_version_modal_description": "Czy na pewno chcesz usunąć tę wersję ? Operacja ta jest nieodwracalna.",
   "delete_version_modal_title": "Usuń wersję {{versionId}}",
-  "okms_activation_in_progress": "Proszę czekać, trwa aktywacja.",
+  "okms_activation_in_progress": "Proszę czekać, trwa tworzenie wersji.",
   "okms_list": "Lista domen OKMS",
   "editor": "Edytor JSON",
   "error_invalid_json": "JSON jest nieprawidłowy",

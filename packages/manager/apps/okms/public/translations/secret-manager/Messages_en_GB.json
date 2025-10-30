@@ -1,5 +1,5 @@
 {
-  "access_versions": "Access versions",
+  "access_versions": "Access the versions",
   "actions": "Actions",
   "activated": "Enabled",
   "add_new_version": "Add a new version",
@@ -38,7 +38,7 @@
   "maximum_number_of_versions": "Maximum number of versions",
   "never_expire": "No expiration",
   "not_provided": "Not stated",
-  "onboarding_description_1": "Keep your secrets secure",
+  "onboarding_description_1": "Secure your secrets",
   "onboarding_description_2": "Secret Manager, based on OKMS, is the fully managed centralised secret management service for your OVHcloud applications and services.",
   "path_field_helper": "To create a hierarchy, use '/' Example: prod/database/MySQL",
   "reveal_secret": "Show value",
