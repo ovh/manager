@@ -78,9 +78,6 @@ describe('useCreateTenants', () => {
           duration: '30d',
         },
       },
-      infrastructure: {
-        id: 'infra-1',
-      },
     },
   };
 

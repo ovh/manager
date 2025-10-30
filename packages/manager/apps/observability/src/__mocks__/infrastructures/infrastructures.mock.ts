@@ -8,6 +8,7 @@ const infrastructures: Infrastructure[] = [
       location: 'eu-west-sbg',
       type: 'SHARED',
       usage: 'METRICS',
+      entryPoint: 'eee.metrics.ovh.com',
     },
   },
   {
@@ -16,6 +17,7 @@ const infrastructures: Infrastructure[] = [
       location: 'eu-west-gra',
       type: 'SHARED',
       usage: 'METRICS',
+      entryPoint: 'aaa.metrics.ovh.com',
     },
   },
   {
@@ -24,6 +26,7 @@ const infrastructures: Infrastructure[] = [
       location: 'ca-east-bhs',
       type: 'SHARED',
       usage: 'METRICS',
+      entryPoint: 'bbb.metrics.ovh.com',
     },
   },
   {
@@ -32,6 +35,7 @@ const infrastructures: Infrastructure[] = [
       location: 'us-east-vin',
       type: 'SHARED',
       usage: 'METRICS',
+      entryPoint: 'ccc.metrics.ovh.com',
     },
   },
   {
@@ -40,6 +44,7 @@ const infrastructures: Infrastructure[] = [
       location: 'ap-southeast-sgp',
       type: 'SHARED',
       usage: 'METRICS',
+      entryPoint: 'ddd.metrics.ovh.com',
     },
   },
 ];
