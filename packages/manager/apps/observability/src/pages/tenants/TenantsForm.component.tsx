@@ -20,6 +20,7 @@ import { IAM_ACTIONS } from '@/utils/iam.constants';
 import { INGESTION_BOUNDS } from '@/utils/tenants.constants';
 
 import { useTenantsFormSchema } from '../../hooks/form/useTenantsFormSchema.hook';
+import { TenantsFormLayout } from './TenantsForm.layout';
 
 export const TenantsForm = () => {
   const { t } = useTranslation(['tenants', NAMESPACES.ACTIONS]);
@@ -70,54 +71,56 @@ export const TenantsForm = () => {
   };
 
   return (
-    <FormProvider {...form}>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          void form.handleSubmit(handleSubmit)(e);
-        }}
-      >
-        <OdsText className="block mt-6" preset="heading-2">
-          {t('tenants:creation.title')}
-        </OdsText>
-        <section className="mt-6">
-          <RegionSelector />
-        </section>
-        <OdsDivider spacing="24" />
-        <section className="mt-6">
-          <InformationForm
-            title={t('tenants:creation.tenantInformation')}
-            namePlaceholder={t('tenants:creation.namePlaceholder')}
-            descriptionPlaceholder={t('tenants:creation.descriptionPlaceholder')}
-          />
-        </section>
-        <OdsDivider spacing="24" />
-        <section className="mt-6">
-          <TenantConfigurationForm />
-        </section>
-        <section className="flex flex-row gap-6 mt-10 mx-auto">
-          <ManagerButton
-            id="cancel-tenant"
-            variant={ODS_BUTTON_VARIANT.ghost}
-            label={t(`${NAMESPACES.ACTIONS}:cancel`)}
-            onClick={goBack}
-            size={ODS_BUTTON_SIZE.sm}
-            color={ODS_BUTTON_COLOR.neutral}
-            isDisabled={isPending}
-          />
-          <ManagerButton
-            id="create-tenant"
-            label={t(`${NAMESPACES.ACTIONS}:create`)}
-            type="submit"
-            size={ODS_BUTTON_SIZE.sm}
-            color={ODS_BUTTON_COLOR.primary}
-            isDisabled={!selectedService || isPending || !form.formState.isValid}
-            isLoading={isPending}
-            iamActions={IAM_ACTIONS.CREATE_TENANT}
-            urn={selectedService?.iam?.urn}
-          />
-        </section>
-      </form>
-    </FormProvider>
+    <TenantsFormLayout>
+      <FormProvider {...form}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            void form.handleSubmit(handleSubmit)(e);
+          }}
+        >
+          <OdsText className="block mt-6" preset="heading-2">
+            {t('tenants:creation.title')}
+          </OdsText>
+          <section className="mt-6">
+            <RegionSelector />
+          </section>
+          <OdsDivider spacing="24" />
+          <section className="mt-6">
+            <InformationForm
+              title={t('tenants:creation.tenantInformation')}
+              namePlaceholder={t('tenants:creation.namePlaceholder')}
+              descriptionPlaceholder={t('tenants:creation.descriptionPlaceholder')}
+            />
+          </section>
+          <OdsDivider spacing="24" />
+          <section className="mt-6">
+            <TenantConfigurationForm />
+          </section>
+          <section className="flex flex-row gap-6 mt-10 mx-auto justify-between">
+            <ManagerButton
+              id="cancel-tenant"
+              variant={ODS_BUTTON_VARIANT.ghost}
+              label={t(`${NAMESPACES.ACTIONS}:cancel`)}
+              onClick={goBack}
+              size={ODS_BUTTON_SIZE.sm}
+              color={ODS_BUTTON_COLOR.neutral}
+              isDisabled={isPending}
+            />
+            <ManagerButton
+              id="create-tenant"
+              label={t(`${NAMESPACES.ACTIONS}:create`)}
+              type="submit"
+              size={ODS_BUTTON_SIZE.sm}
+              color={ODS_BUTTON_COLOR.primary}
+              isDisabled={!selectedService || isPending || !form.formState.isValid}
+              isLoading={isPending}
+              iamActions={IAM_ACTIONS.CREATE_TENANT}
+              urn={selectedService?.iam?.urn}
+            />
+          </section>
+        </form>
+      </FormProvider>
+    </TenantsFormLayout>
   );
 };
