@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-block-storage-app",
-  "version": "0.20.18",
+  "version": "0.20.19",
   "private": true,
   "description": "PCI Block storage react app",
   "type": "module",

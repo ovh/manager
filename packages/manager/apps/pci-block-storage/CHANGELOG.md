@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.20.18...@ovh-ux/manager-pci-block-storage-app@0.20.19) (2025-10-30)
+
+
+### Bug Fixes
+
+* **pci-block-storage:** fix tests after bump to react-shell-client ([aeb1f0d](https://github.com/ovh/manager/commit/aeb1f0d666280152c377678cfc248b8795ceaadb))
+
+
+
+
+
 ## [0.20.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.20.17...@ovh-ux/manager-pci-block-storage-app@0.20.18) (2025-10-29)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
