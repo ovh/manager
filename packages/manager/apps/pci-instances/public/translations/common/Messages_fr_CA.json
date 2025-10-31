@@ -23,8 +23,7 @@
   "pci_instances_common_instance_continent_north_america": "Amérique du Nord",
   "pci_instances_common_instance_continent_europe": "Europe",
   "pci_instances_common_instance_continent_north_africa": "Afrique du Nord",
-  "pci_instances_common_instance_continent_south_east_asia": "Asie du Sud Est",
-  "pci_instances_common_instance_continent_oceania": "Océanie",
+  "pci_instances_common_instance_continent_asia_oceania": "Asie - Océanie",
   "pci_instances_common_instance_continent_all": "Tous",
   "pci_instances_common_more_info": "Plus d'informations"
 }
