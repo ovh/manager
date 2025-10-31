@@ -18,6 +18,9 @@ export type RulesParam = {
   legalform?: LegalForm;
 };
 
+// fields not accepted by PUT /me
+const EXCLUDED_FIELDS = ['ovhSubsidiary', 'ovhCompany', 'email'];
+
 /**
  *  Get account creation rules
  */
@@ -30,6 +33,7 @@ export const getRules = async (params: RulesParam) => {
     throw new Error('Failed to get account creation rules');
   }
   return data.reduce((acc, rule) => {
+    if (rule.fieldName && EXCLUDED_FIELDS.includes(rule.fieldName)) return acc;
     if (rule.fieldName) {
       acc[rule.fieldName] = rule;
     }

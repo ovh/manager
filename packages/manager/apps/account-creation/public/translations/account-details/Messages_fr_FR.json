@@ -25,6 +25,7 @@
   "account_details_field_address": "Adresse",
   "account_details_field_zip": "Code postal",
   "account_details_field_city": "Ville",
+  "account_details_field_area": "Province",
   "account_details_field_phone": "Téléphone",
   "account_details_phone_type_option_mobile": "Téléphone portable",
   "account_details_phone_type_option_landline": "Téléphone fixe",
