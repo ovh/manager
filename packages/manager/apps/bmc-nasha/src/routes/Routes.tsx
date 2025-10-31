@@ -19,10 +19,8 @@ const AccessesPage = React.lazy(() => import('@/pages/dashboard/partitions/parti
 
 export default (
   <>
-    {/* Redirect container "/" → flavor-specific root (e.g. /pci/projects/:projectId/appSlug) */}
-    <Route path="/" element={<Navigate to={urls.root} replace />} />
-
-    {/* Rooted application layout */}
+    {/* Rooted application layout - React Router in iframe sees relative paths */}
+    {/* Container handles /bmc-nasha prefix, React Router only sees paths after that */}
     <Route
       id="root"
       path={urls.root}

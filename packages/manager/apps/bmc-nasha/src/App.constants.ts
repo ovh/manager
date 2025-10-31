@@ -42,7 +42,7 @@ export const APP_FEATURES = {
   basePrefix: '',
   serviceParam: 'id',
   platformParam: 'id',
-  appSlug: 'bmc-nasha',
+  appSlug: '', // Leave empty to avoid double slug - shell already provides appName prefix in hash
   tracking: {
     level2ByRegion: {
       EU: { level2: '57' },
