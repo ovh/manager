@@ -1,9 +1,9 @@
 import React from 'react';
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
-import { RegionTypeBadge } from '@key-management-service/components/regionTypeBadge/RegionTypeBadge.component';
 import { useOrderCatalogOkms } from '@key-management-service/data/hooks/useOrderCatalogOkms';
 import { useRegionName } from '@key-management-service/hooks/useRegionName';
 import { useNotificationAddErrorOnce } from '@key-management-service/hooks/useNotificationAddErrorOnce';
+import { RegionTypeBadge } from '@/common/components/regionTypeBadge/RegionTypeBadge.component';
 import { useLocations } from '@/common/data/hooks/useLocation';
 import { RadioCard } from '../RadioCard/RadioCard.component';
 import { REGION_PICKER_TEST_IDS } from './regionPicker.constants';

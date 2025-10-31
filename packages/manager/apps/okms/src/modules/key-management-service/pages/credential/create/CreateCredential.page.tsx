@@ -12,7 +12,6 @@ import CreateAddIdentities from '@key-management-service/pages/credential/create
 import CreateCredentialConfirmation from '@key-management-service/pages/credential/create/confirmation/CreateCredentialConfirmation.component';
 import Breadcrumb from '@key-management-service/components/Breadcrumb/Breadcrumb';
 import KmsGuidesHeader from '@key-management-service/components/Guide/KmsGuidesHeader';
-import Loading from '@key-management-service/components/Loading/Loading';
 import { KmsChangelogButton } from '@key-management-service/components/kmsChangelogButton/KmsChangelogButton.component';
 import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { useCreateOkmsCredential } from '@key-management-service/data/hooks/useCreateOkmsCredential';
@@ -26,6 +25,7 @@ import {
   KMS_ROUTES_URIS,
   KMS_ROUTES_URLS,
 } from '@key-management-service/routes/routes.constants';
+import Loading from '@/common/components/loading/Loading';
 
 const CreateCredential = () => {
   const navigate = useNavigate();
