@@ -1,4 +1,4 @@
-import { ColumnSort, HeaderGroup } from '@tanstack/react-table';
+import type { ColumnSort, HeaderGroup } from '@tanstack/react-table';
 
 export type TableHeaderContentProps<T = unknown> = {
   contentAlignLeft?: boolean;

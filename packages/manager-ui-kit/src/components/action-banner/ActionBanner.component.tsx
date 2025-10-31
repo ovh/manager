@@ -4,7 +4,7 @@ import DOMPurify from 'dompurify';
 
 import { BUTTON_SIZE, Button, Link, Message, Text } from '@ovhcloud/ods-react';
 
-import { ActionBannerProps } from './ActionBanner.props';
+import { ActionBannerProps } from '@/components/action-banner/ActionBanner.props';
 
 export function ActionBanner({
   message,

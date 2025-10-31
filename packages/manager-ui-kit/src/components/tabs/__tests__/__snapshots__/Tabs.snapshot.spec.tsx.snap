@@ -235,19 +235,22 @@ exports[`TabsComponent > Snapshot tests > should match snapshot with custom item
             class="_tab-list__container__tabs_wv0v9_60"
           >
             <button
-              aria-selected="false"
+              aria-controls="tabs::r6::content-[object Object]"
+              aria-selected="true"
               class="_tab_bhw12_2"
+              data-focus=""
               data-ods="tab"
               data-orientation="horizontal"
               data-ownedby="tabs::r6::list"
               data-part="trigger"
               data-scope="tabs"
+              data-selected=""
               data-ssr=""
               data-value="[object Object]"
               dir="ltr"
               id="tabs::r6::trigger-[object Object]"
               role="tab"
-              tabindex="-1"
+              tabindex="0"
               type="button"
             >
               <span
@@ -258,23 +261,26 @@ exports[`TabsComponent > Snapshot tests > should match snapshot with custom item
               </span>
             </button>
             <button
-              aria-selected="false"
+              aria-controls="tabs::r6::content-[object Object]"
+              aria-selected="true"
               class="_tab_bhw12_2"
+              data-focus=""
               data-ods="tab"
               data-orientation="horizontal"
               data-ownedby="tabs::r6::list"
               data-part="trigger"
               data-scope="tabs"
+              data-selected=""
               data-ssr=""
               data-value="[object Object]"
               dir="ltr"
               id="tabs::r6::trigger-[object Object]"
               role="tab"
-              tabindex="-1"
+              tabindex="0"
               type="button"
             >
               <span
-                data-selected="false"
+                data-selected="true"
                 data-testid="title-2"
               >
                 Second
@@ -288,10 +294,8 @@ exports[`TabsComponent > Snapshot tests > should match snapshot with custom item
       class="bg-[--ods-color-primary-050] border border-solid border-[--ods-color-primary-100] border-t-0"
     >
       <div
-        data-testid="content-1"
-      >
-        Content 1
-      </div>
+        data-testid="content-undefined"
+      />
     </div>
   </div>
 </div>
@@ -547,9 +551,7 @@ exports[`TabsComponent > Snapshot tests > should match snapshot with empty items
     </div>
     <div
       class="bg-[--ods-color-primary-050] border border-solid border-[--ods-color-primary-100] border-t-0"
-    >
-      undefined
-    </div>
+    />
   </div>
 </div>
 `;

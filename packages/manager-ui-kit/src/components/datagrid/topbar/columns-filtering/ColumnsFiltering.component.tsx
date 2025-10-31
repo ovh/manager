@@ -11,9 +11,10 @@ import {
   PopoverTrigger,
 } from '@ovhcloud/ods-react';
 
-import { Button } from '../../../button/Button.component';
-import { ColumnFilter, FilterAdd } from '../../../filters';
-import { FilterProps } from '../../Datagrid.props';
+import { Button } from '@/components/button/Button.component';
+import { FilterProps } from '@/components/filters/Filter.props';
+import { ColumnFilter } from '@/components/filters/filter-add/FilterAdd.props';
+import { FilterAdd } from '@/components/filters/filter-add/Filteradd.component';
 
 interface ColumnsFilteringComponentProps {
   columns: ColumnFilter[];

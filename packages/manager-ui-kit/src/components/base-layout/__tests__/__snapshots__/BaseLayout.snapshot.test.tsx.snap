@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`BaseLayout component - Snapshot tests > renders the complete Base Layout 1`] = `
+exports[`BaseLayout - Snapshot Tests > renders complete layout with all props > base-layout-full 1`] = `
 <div>
   <div
     class="py-8 px-4 md:py-9 md:px-10 md:mt-2"
@@ -87,7 +87,7 @@ exports[`BaseLayout component - Snapshot tests > renders the complete Base Layou
           data-ods="icon"
           role="presentation"
         />
-        back Link Label
+        Back Link Label
       </a>
     </div>
     <span

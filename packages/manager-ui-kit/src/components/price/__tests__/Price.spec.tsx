@@ -1,10 +1,11 @@
 import React from 'react';
 
 import { render, screen } from '@testing-library/react';
+import PropTypes from 'prop-types';
 import { vitest } from 'vitest';
 
-import { IntervalUnitType, OvhSubsidiary } from '../../../enumTypes';
-import Price from '../Price.component';
+import { IntervalUnit, OvhSubsidiary } from '@/commons';
+import { Price } from '@/components';
 
 vitest.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -12,11 +13,18 @@ vitest.mock('react-i18next', () => ({
   }),
 }));
 
-// Mock sub-components
-vitest.mock('../price-text', async () => {
-  const PriceText = ({ price = '', label = '', intervalUnitText = '' }: any) => (
+vitest.mock('../price-text', () => {
+  const PriceText = ({ price = '', label = '', intervalUnitText = '' }) => (
     <span>{`${price} ${label} ${intervalUnitText} `}</span>
   );
+
+  // Add prop-types to satisfy eslint react/prop-types in this TS test
+  PriceText.propTypes = {
+    price: PropTypes.string,
+    label: PropTypes.string,
+    intervalUnitText: PropTypes.string,
+  };
+
   return {
     PriceTextPreset: {
       WITH_TAX: 'with-tax',
@@ -33,18 +41,19 @@ describe('Price component', () => {
   const baseProps = {
     value: 3948000000,
     ovhSubsidiary: OvhSubsidiary.FR,
-    intervalUnit: IntervalUnitType.month,
+    intervalUnit: IntervalUnit.month,
   };
   const priceDefault = '39,48 €';
   const priceHtMonth = '39,48 € price_ht_label price_per_month';
   const priceTTC = '47,38 €';
   const taxNumber = 789600000;
   const localeFr = 'fr-FR';
+
   it('renders "Inclus" when value is 0', () => {
     const props = {
       ...baseProps,
       value: 0,
-      intervalUnit: IntervalUnitType.none,
+      intervalUnit: IntervalUnit.none,
       locale: localeFr,
     };
     renderPriceComponent(props);
@@ -107,6 +116,7 @@ describe('Price component', () => {
       '$3.29 price_gst_excl_label price_per_month $3.95 price_gst_incl_label',
     );
   });
+
   it('renders a price ASIA correctly with convert unit month excl gst', () => {
     const props = {
       ...baseProps,

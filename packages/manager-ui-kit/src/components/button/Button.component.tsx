@@ -9,8 +9,9 @@ import {
   TooltipTrigger,
 } from '@ovhcloud/ods-react';
 
-import { useAuthorizationIam } from '../../hooks/iam';
-import { ButtonProps } from './Button.props';
+import { ButtonProps } from '@/components/button/Button.props';
+import { useAuthorizationIam } from '@/hooks';
+
 import './translations';
 
 export const Button = ({
@@ -19,7 +20,6 @@ export const Button = ({
   urn,
   displayTooltip = true,
   tooltipPosition = TOOLTIP_POSITION.bottom,
-  isIamTrigger = true,
   ...restProps
 }: ButtonProps & ButtonProp) => {
   const { t } = useTranslation('iam');

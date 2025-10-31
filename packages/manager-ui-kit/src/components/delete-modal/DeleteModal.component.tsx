@@ -11,9 +11,10 @@ import {
   MessageIcon,
 } from '@ovhcloud/ods-react';
 
-import { Modal } from '../modal';
-import { Text } from '../text';
-import { DeleteModalProps } from './DeleteModal.props';
+import { DeleteModalProps } from '@/components/delete-modal/DeleteModal.props';
+import { Modal } from '@/components/modal/Modal.component';
+import { Text } from '@/components/text/Text.component';
+
 import './translations/translations';
 
 export const DeleteModal: React.FC<DeleteModalProps> = ({

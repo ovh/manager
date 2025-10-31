@@ -1,15 +1,20 @@
 {
-  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react",
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "dist",
     "jsx": "react-jsx",
     "paths": {
       "@/*": ["./src/*"],
-      "@/setupTest": ["./setupTest.tsx"]
-    }
+      "@/setupTest": ["./setupTest.ts"]
+    },
+    "resolveJsonModule": true
   },
-  "files": ["global.d.ts", "setupTest.tsx"],
-  "include": ["src/**/*", "*.spec.tsx", ".storybook/i18n.ts", "**/*.json"],
-  "exclude": ["./src/**/*.stories.*"]
+  "include": [
+    "src",
+    "**/*.json",
+    "setupTests.ts",
+    "global.d.ts"
+  ],
+  "exclude": ["node_modules", "dist", "types"]
 }

@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { Text } from '../../../../text';
+import { Text } from '@/components/text/Text.component';
 
 export const EmptyRow = () => {
   const { t } = useTranslation(['datagrid']);

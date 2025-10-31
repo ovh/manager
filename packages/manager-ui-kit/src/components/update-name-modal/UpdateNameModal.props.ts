@@ -1,15 +1,15 @@
-export type UpdateNameModalProps = {
+export type UpdateNameModalProps = Readonly<{
   headline: string;
-  description?: string;
+  description?: string | null;
   inputLabel: string;
-  defaultValue?: string;
-  onClose?: () => void;
-  updateDisplayName: (newDisplayName: string) => void;
+  defaultValue?: string | null;
   isLoading?: boolean;
-  error?: string;
-  cancelButtonLabel?: string;
-  confirmButtonLabel?: string;
   pattern?: string;
   patternMessage?: string;
+  error?: string | null;
   isOpen?: boolean;
-};
+  cancelButtonLabel?: string;
+  confirmButtonLabel?: string;
+  onClose?: () => void;
+  updateDisplayName: (newDisplayName: string) => void;
+}>;

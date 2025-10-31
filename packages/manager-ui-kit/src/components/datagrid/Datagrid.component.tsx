@@ -2,10 +2,11 @@ import { useRef } from 'react';
 
 import { Table } from '@ovhcloud/ods-react';
 
-import { DatagridProps } from './Datagrid.props';
+import { DatagridProps } from '@/components/datagrid/Datagrid.props';
+import { TableHeaderContent } from '@/components/datagrid/table/table-head';
+
 import { TableBody } from './table/table-body/TableBody.component';
 import { TableFooter } from './table/table-footer/TableFooter.component';
-import { TableHeaderContent } from './table/table-head/table-header-content/TableHeaderContent.component';
 import { Topbar } from './topbar/Topbar.component';
 import './translations';
 import { useDatagrid } from './useDatagrid';

@@ -29,3 +29,26 @@ export const compare = (
       return -1;
   }
 };
+
+export function toComparableString(value: unknown): string {
+  if (value == null) return '';
+
+  const type = typeof value;
+
+  switch (type) {
+    case 'string':
+      return value as string;
+    case 'number':
+    case 'boolean':
+    case 'bigint':
+    case 'symbol':
+    case 'object':
+      try {
+        return JSON.stringify(value);
+      } catch {
+        return '';
+      }
+    default:
+      return '';
+  }
+}

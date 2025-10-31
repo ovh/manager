@@ -6,7 +6,7 @@ import { vitest } from 'vitest';
 import { ServiceStateBadge } from '../ServiceStateBadge.component';
 import { SERVICE_STATES } from './ServiceStateBadge.spec.util';
 
-vitest.mock('../../hooks/iam');
+vitest.mock('@/hooks/iam/useOvhIam');
 
 const renderComponent = (props: React.ComponentProps<typeof ServiceStateBadge>) => {
   return render(<ServiceStateBadge {...props} data-testid="badge" />);

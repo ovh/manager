@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
-import { Badge } from '../badge';
+import { Badge } from '@/components';
+
 import { ServiceStateBadgeProps } from './ServiceStateBadge.props';
 
 const STATES = {

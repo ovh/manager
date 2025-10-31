@@ -1,12 +1,13 @@
-import { useCallback, useEffect, useState } from 'react';
+import { JSX, useCallback, useEffect, useState } from 'react';
 
 import { clsx } from 'clsx';
 import isEqual from 'lodash.isequal';
 
 import { Card } from '@ovhcloud/ods-react';
 
-import { hashCode } from '../../utils';
-import { TilesInputProps, TilesInputState } from './TilesInput.props';
+import { hashCode } from '@/commons/utils/MukHelper';
+import { TilesInputProps, TilesInputState } from '@/components/tiles-input/TilesInput.props';
+
 import { stackItems } from './TilesInput.utils';
 
 export const TilesInputComponent = <T, S>({
@@ -89,8 +90,8 @@ export const TilesInputComponent = <T, S>({
   useEffect(() => {
     if (stack && state.selectedStack !== undefined && value) {
       const stackItem = state.stacks.get(state.selectedStack);
-      if (stackItem?.length && !isEqual(state.selectedStack, stack.by(value))) {
-        set.value(stackItem[0] as T);
+      if (stackItem?.length && stackItem[0] && !isEqual(state.selectedStack, stack.by(value))) {
+        set.value(stackItem[0]);
       }
     }
   }, [state.selectedStack, state.stacks, stack, value]);
@@ -106,17 +107,19 @@ export const TilesInputComponent = <T, S>({
               return (
                 <li className="w-full px-1" key={hashCode(key)}>
                   <Card
-                    onClick={() =>
-                      is.stack.singleton(key)
-                        ? set.value(stackItem[0] as T)
-                        : key !== undefined && set.selectedStack(key)
-                    }
+                    onClick={() => {
+                      if (is.stack.singleton(key) && stackItem[0] !== undefined) {
+                        set.value(stackItem[0]);
+                      } else if (key !== undefined) {
+                        set.selectedStack(key);
+                      }
+                    }}
                     className={`${clsx(
                       is.stack.checked(key) ? state.activeClass : state.inactiveClass,
                     )} w-full px-[24px] py-[16px]`}
                   >
-                    {is.stack.singleton(key)
-                      ? label(stackItem[0] as T)
+                    {is.stack.singleton(key) && stackItem[0] !== undefined
+                      ? label(stackItem[0])
                       : key !== undefined && stack?.label(key, stackItem)}
                   </Card>
                 </li>

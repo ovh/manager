@@ -1,19 +1,33 @@
 import { vi } from 'vitest';
 
-export const useVirtualizer = vi.fn((options) => {
-  const { count, estimateSize } = options;
-  const virtualItems = Array.from({ length: count }, (_, index) => ({
-    index,
-    start: index * (estimateSize?.() || 50),
-    size: estimateSize?.() || 50,
-    end: (index + 1) * (estimateSize?.() || 50),
-    key: index,
-  }));
+/**
+ * Mock implementation of @tanstack/react-virtual `useVirtualizer`.
+ * Simulates virtualization logic for predictable test behavior.
+ */
+export const useVirtualizer = vi.fn((options?: { count?: number; estimateSize?: () => number }) => {
+  const count = options?.count ?? 0;
+  const estimateSize = options?.estimateSize ?? (() => 50);
+
+  // Build a fake list of virtual items
+  const virtualItems = Array.from({ length: count }, (_, index) => {
+    const size = estimateSize();
+    const start = index * size;
+    const end = start + size;
+    return { index, start, size, end, key: index };
+  });
+
+  /** Mock API methods — keep them individually callable for assertions */
+  const scrollToIndex = vi.fn();
+  const measure = vi.fn();
+  const getScrollElement = vi.fn(() => ({ scrollTop: 0 }));
+  const getVirtualItems = vi.fn(() => virtualItems);
+  const getTotalSize = vi.fn(() => virtualItems.reduce((acc, v) => acc + v.size, 0));
 
   return {
-    getVirtualItems: () => virtualItems,
-    getTotalSize: () => count * (estimateSize?.() || 50),
-    scrollToIndex: vi.fn(),
-    measure: vi.fn(),
+    getVirtualItems,
+    getTotalSize,
+    scrollToIndex,
+    measure,
+    getScrollElement,
   };
 });

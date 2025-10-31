@@ -1,6 +1,6 @@
-import { MutableRefObject, RefObject } from 'react';
+import { JSX, MutableRefObject, RefObject } from 'react';
 
-import { Column, ExpandedState, Row, RowModel } from '@tanstack/react-table';
+import type { Column, ExpandedState, Row, RowModel } from '@tanstack/react-table';
 
 export type TableBodyProps<T> = {
   autoScroll?: boolean;

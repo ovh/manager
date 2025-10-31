@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import Header from '../Header.component';
+import { Header } from '../Header.component';
 
 describe('Header Component', () => {
   const defaultProps = {

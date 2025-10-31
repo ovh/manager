@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { HTMLBadgeElement } from '../TagsStack.type';
+import { HTMLBadgeElement } from '../TagsStack.props';
 import { getVisibleTagCount } from '../TagsStack.utils';
 
 // mock canvas element context for determining the width of the Badge

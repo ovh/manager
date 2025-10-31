@@ -1,8 +1,8 @@
-import { SortingState } from '@tanstack/react-table';
+import type { SortingState } from '@tanstack/react-table';
 
-import { IcebergFetchParams } from '@ovh-ux/manager-core-api';
+import type { IcebergFetchParams } from '@ovh-ux/manager-core-api';
 
-import { DatagridColumn } from '../../../../components';
+import { DatagridColumn } from '@/components/datagrid/Datagrid.props';
 
 export type UseIcebergParams<TData = Record<string, unknown>> = IcebergFetchParams & {
   cacheKey: string | string[];

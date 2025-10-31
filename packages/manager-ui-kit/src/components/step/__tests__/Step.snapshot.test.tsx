@@ -13,9 +13,9 @@ describe('Step Component - Snapshot Tests', () => {
     locked: false,
     order: 1,
     children: <p>Step Content</p>,
-    next: null,
-    edit: null,
-    skip: null,
+    next: undefined,
+    edit: undefined,
+    skip: undefined,
   };
 
   it('renders the Step with Title and Subtitle', () => {

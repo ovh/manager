@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { JSX, memo } from 'react';
 
 import { SubRowProps } from './SubRow.props';
 
@@ -30,4 +30,4 @@ export const SubRow = ({
   </tr>
 );
 
-export const SubRowMemo = memo(SubRow);
+export const SubRowMemo = memo(SubRow) as <T>(props: SubRowProps<T>) => JSX.Element;

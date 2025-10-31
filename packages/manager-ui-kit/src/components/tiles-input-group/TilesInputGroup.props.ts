@@ -1,3 +1,5 @@
+import { JSX } from 'react';
+
 import { TilesInputProps } from '../tiles-input/TilesInput.props';
 
 export type TilesInputGroupProps<T, S = void, G = void> = TilesInputProps<T, S> & {

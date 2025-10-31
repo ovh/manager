@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { BUTTON_SIZE, BUTTON_VARIANT } from '@ovhcloud/ods-react';
 
-import { Button } from '../../../../button';
+import { Button } from '@/components/button/Button.component';
 
 const FooterActionsComponent = ({
   hasNextPage,

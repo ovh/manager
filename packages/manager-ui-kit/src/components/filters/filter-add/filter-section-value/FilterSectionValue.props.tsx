@@ -1,7 +1,7 @@
-import { ColumnFilter } from '../FilterAdd.props';
+import { ColumnFilter } from '@/components/filters/filter-add/FilterAdd.props';
 
 export type FilterSectionValueProps = {
-  selectedColumn: ColumnFilter;
+  selectedColumn?: ColumnFilter;
   value: string;
   setValue: (value: string) => void;
   submitAddFilter: () => void;

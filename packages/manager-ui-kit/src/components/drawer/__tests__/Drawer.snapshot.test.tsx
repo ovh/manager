@@ -2,10 +2,9 @@ import { vitest } from 'vitest';
 
 import { TEXT_PRESET } from '@ovhcloud/ods-react';
 
-import { render } from '@/setupTest';
+import { render } from '@/commons/tests-utils/Render.utils';
+import { Drawer, Text } from '@/components';
 
-import { Text } from '../../text/Text.component';
-import { Drawer } from '../index';
 import './drawer.mocks';
 
 describe('Drawer Snapshot Tests', () => {

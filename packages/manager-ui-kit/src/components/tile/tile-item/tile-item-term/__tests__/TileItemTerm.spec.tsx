@@ -2,6 +2,8 @@ import { render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 
+import { assertNotNull } from '@/commons/tests-utils/Assertions.utils';
+
 import { TileItemTerm } from '../TileItemTerm.component';
 
 describe('TileItemTerm', () => {
@@ -47,7 +49,7 @@ describe('TileItemTerm', () => {
     expect(dt).toContainElement(actionButton);
   });
 
-  it('should render tooltip when provided', () => {
+  it('should render tooltip when provided', async () => {
     const tooltipMessage = 'Tooltip for IP address';
     const { container } = render(
       <TileItemTerm
@@ -59,8 +61,9 @@ describe('TileItemTerm', () => {
     );
     const tooltipElement = container.querySelector('span[data-scope="tooltip"]');
     expect(tooltipElement).toBeInTheDocument();
+    assertNotNull(tooltipElement);
 
-    userEvent.hover(tooltipElement);
+    await userEvent.hover(tooltipElement);
     expect(screen.getByText(tooltipMessage)).toBeInTheDocument();
   });
 

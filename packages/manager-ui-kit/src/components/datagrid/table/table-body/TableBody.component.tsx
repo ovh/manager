@@ -1,6 +1,6 @@
 import { Fragment, useCallback, useEffect, useMemo } from 'react';
 
-import { Row, flexRender } from '@tanstack/react-table';
+import { flexRender } from '@tanstack/react-table';
 import { useVirtualizer } from '@tanstack/react-virtual';
 
 import { TableBodyProps } from './TableBody.props';
@@ -73,8 +73,11 @@ export const TableBody = <T,>({
       }}
     >
       {rowVirtualizer.getVirtualItems().map((virtualRow) => {
-        const row = rows[virtualRow?.index] as Row<T>;
-        const offset = renderSubComponent ? getOffset(virtualRow?.index) : 0;
+        const row = rows[virtualRow?.index];
+        if (!row) return null;
+
+        const offset = renderSubComponent ? getOffset(virtualRow.index) : 0;
+
         return (
           <Fragment key={`table-body-tr-${row.id}`}>
             <tr

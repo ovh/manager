@@ -1,8 +1,12 @@
-import { MutableRefObject } from 'react';
+import { JSX, MutableRefObject } from 'react';
 
-import { ColumnSort, Row, VisibilityState } from '@tanstack/react-table';
+import type { ColumnSort, Row, VisibilityState } from '@tanstack/react-table';
 
-import { DatagridColumn, ExpandedProps, RowSelectionProps } from './Datagrid.props';
+import {
+  DatagridColumn,
+  ExpandedProps,
+  RowSelectionProps,
+} from '@/components/datagrid/Datagrid.props';
 
 export type UseDatagridTableProps<T> = {
   columns: readonly DatagridColumn<T>[];

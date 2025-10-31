@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { Clipboard } from '@/components';
+import { Clipboard } from '@/components/clipboard/Clipboard.component';
 
 describe('Clipboard Snapshot Tests', () => {
   it('Displays Clipboard', () => {

@@ -23,7 +23,7 @@ export default mergeConfig(
           '**/QueryClient.ts',
           '**/*.type.ts',
           '**/404.page.tsx',
-          '**/Test.utils.tsx',
+          '**/Mock.utils.tsx',
         ],
       },
     },

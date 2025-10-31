@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { JSX, memo } from 'react';
 
 import { flexRender } from '@tanstack/react-table';
 

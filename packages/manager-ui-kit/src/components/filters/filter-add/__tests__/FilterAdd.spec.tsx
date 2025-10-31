@@ -1,15 +1,17 @@
+import React from 'react';
+
 import { act, fireEvent, waitFor } from '@testing-library/react';
 import { vi, vitest } from 'vitest';
 
-import { render } from '@/setupTest';
+import { assertNotNull } from '@/commons/tests-utils/Assertions.utils';
+import { render } from '@/commons/tests-utils/Render.utils';
+import { TagsFilterFormProps } from '@/components/filters/Filter.props';
+import { FilterAddProps } from '@/components/filters/filter-add/FilterAdd.props';
+import { FilterAdd } from '@/components/filters/filter-add/Filteradd.component';
+import { IamAuthorizationResponse } from '@/hooks/iam/IAM.type';
+import { useAuthorizationIam, useGetResourceTags } from '@/hooks/iam/useOvhIam';
 
-import { useAuthorizationIam } from '../../../../hooks/iam';
-import { IamAuthorizationResponse } from '../../../../hooks/iam/iam.interface';
-import { TagsFilterFormProps } from '../../Filter.props';
-import { FilterAddProps } from '../FilterAdd.props';
-import { FilterAdd } from '../Filteradd.component';
-
-vi.mock('../../../../hooks/iam');
+vi.mock('@/hooks/iam/useOvhIam');
 
 vi.mock('./tags-filter-form.component', () => {
   return {
@@ -21,14 +23,26 @@ vi.mock('./tags-filter-form.component', () => {
 });
 
 vi.mock('@ovhcloud/ods-react', async () => {
-  const actual = await vi.importActual('@ovhcloud/ods-react');
+  const actual = await vi.importActual<typeof import('@ovhcloud/ods-react')>('@ovhcloud/ods-react');
+
+  type DatepickerChangeDetail = { value: Date | null };
+  interface DatepickerProps extends React.HTMLAttributes<HTMLDivElement> {
+    value?: Date | null;
+    onValueChange: (detail: DatepickerChangeDetail) => void;
+    children?: React.ReactNode;
+  }
+
+  interface SimpleWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
+    children?: React.ReactNode;
+  }
+
   return {
     ...actual,
-    Datepicker: ({ onValueChange, value, children, ...props }: any) => (
+    Datepicker: ({ onValueChange, value, children, ...props }: DatepickerProps) => (
       <div {...props}>
         <input
           value={value ? value.toISOString().split('T')[0] : ''}
-          onChange={(e) => {
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             const dateValue = e.target.value ? new Date(e.target.value) : null;
             onValueChange({ value: dateValue });
           }}
@@ -36,12 +50,17 @@ vi.mock('@ovhcloud/ods-react', async () => {
         {children}
       </div>
     ),
-    DatepickerControl: ({ children, ...props }: any) => <div {...props}>{children}</div>,
-    DatepickerContent: ({ children, ...props }: any) => <div {...props}>{children}</div>,
+    DatepickerControl: ({ children, ...props }: SimpleWrapperProps) => (
+      <div {...props}>{children}</div>
+    ),
+    DatepickerContent: ({ children, ...props }: SimpleWrapperProps) => (
+      <div {...props}>{children}</div>
+    ),
   };
 });
 
-const mockedHook = useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
+const mockedAuthHook = useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
+const mockedResourcesTagsHook = useGetResourceTags as unknown as jest.Mock;
 
 const renderComponent = (props: FilterAddProps) => {
   return render(<FilterAdd {...props} />);
@@ -49,10 +68,14 @@ const renderComponent = (props: FilterAddProps) => {
 
 describe('FilterAdd tests', () => {
   beforeEach(() => {
-    mockedHook.mockReturnValue({
+    mockedAuthHook.mockReturnValue({
       isAuthorized: true,
       isLoading: false,
       isFetched: true,
+    });
+    mockedResourcesTagsHook.mockReturnValue({
+      isError: false,
+      isLoading: false,
     });
   });
 
@@ -142,6 +165,7 @@ describe('FilterAdd tests', () => {
     expect(addFilterButton).toBeDisabled();
 
     // Set a date value
+    assertNotNull(dateInput);
     act(() => {
       fireEvent.change(dateInput, {
         target: { value: '2023-10-01' },
@@ -290,11 +314,14 @@ describe('FilterAdd tests', () => {
     const { getByTestId } = renderComponent(props);
 
     const columnSelect = getByTestId('add-filter_select_idColumn');
-    fireEvent.change(columnSelect.querySelector('select'), {
+    const selectElement = columnSelect.querySelector('select');
+    assertNotNull(selectElement);
+    fireEvent.change(selectElement, {
       target: { value: 'tags' },
     });
 
     const operatorSelect = getByTestId('add-operator-tags')?.querySelector('select');
+    assertNotNull(operatorSelect);
     fireEvent.change(operatorSelect, {
       target: { value: 'EQ' },
     });

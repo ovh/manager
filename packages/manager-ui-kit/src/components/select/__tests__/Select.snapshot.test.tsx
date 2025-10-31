@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { Select, SelectContent, SelectControl } from '..';
+import { Select, SelectContent, SelectControl } from '@/components';
 
 describe('Select Snapshot tests', () => {
   it('renders the component with default props and children', () => {

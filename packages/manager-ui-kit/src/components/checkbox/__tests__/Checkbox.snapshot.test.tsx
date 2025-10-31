@@ -1,7 +1,9 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { Checkbox, CheckboxControl, CheckboxLabel } from '..';
+import { Checkbox } from '@/components/checkbox/Checkbox.component';
+import { CheckboxControl } from '@/components/checkbox/checkbox-control/CheckboxControl.component';
+import { CheckboxLabel } from '@/components/checkbox/checkbox-label/CheckboxLabel.component';
 
 describe('Checkbox Snapshot tests', () => {
   it('renders the component with default props and children', () => {

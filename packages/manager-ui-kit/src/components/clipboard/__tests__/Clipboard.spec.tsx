@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import { Clipboard } from '@/components';
+import { Clipboard } from '@/components/clipboard/Clipboard.component';
 
 const renderClipboardComponent = (props = {}) =>
   render(<Clipboard value={'Value to copy to clipboard'} {...props} />);

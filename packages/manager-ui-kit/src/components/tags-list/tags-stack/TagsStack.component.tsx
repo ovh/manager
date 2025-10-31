@@ -3,8 +3,7 @@ import { FC, MouseEvent, useEffect, useRef, useState } from 'react';
 import { BADGE_COLOR, Badge, ICON_NAME, Icon, Link } from '@ovhcloud/ods-react';
 
 import { BADGE_SPACINGS, MORE_TAGS_ICON_WIDTH } from './TagsStack.constants';
-import { TagsStackProps } from './TagsStack.props';
-import { HTMLBadgeElement } from './TagsStack.type';
+import { HTMLBadgeElement, TagsStackProps } from './TagsStack.props';
 import { getVisibleTagCount } from './TagsStack.utils';
 
 export const TagsStack: FC<TagsStackProps> = ({ tags, maxLines, onClick }) => {
@@ -14,26 +13,29 @@ export const TagsStack: FC<TagsStackProps> = ({ tags, maxLines, onClick }) => {
   const tagRef = useRef<HTMLBadgeElement>(null);
 
   useEffect(() => {
-    // Display all tags if maxLines is not set
     if (!maxLines) {
       setVisibleTagCount(tags.length - 1);
-    } else if (tags.length > 1 && tagRef.current && containerRef.current) {
+      return;
+    }
+
+    if (tags.length > 1 && tagRef.current && containerRef.current) {
       const resizeObserver = new ResizeObserver(() => {
+        if (!tagRef.current || !containerRef.current) return;
+
         const visibleTags = getVisibleTagCount(
           tags,
-          tagRef.current as HTMLBadgeElement,
-          containerRef.current as HTMLDivElement,
+          tagRef.current,
+          containerRef.current,
           maxLines,
         );
 
         setVisibleTagCount(visibleTags);
       });
-      if (containerRef.current) {
-        resizeObserver.observe(containerRef.current);
-      }
 
+      resizeObserver.observe(containerRef.current);
       return () => resizeObserver.disconnect();
     }
+
     return () => {};
   }, [tags, maxLines]);
 

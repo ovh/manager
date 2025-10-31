@@ -1,6 +1,6 @@
-import { Dispatch, MutableRefObject, ReactNode, SetStateAction } from 'react';
+import { Dispatch, JSX, MutableRefObject, ReactNode, SetStateAction } from 'react';
 
-import {
+import type {
   ColumnDef,
   ExpandedState,
   Row,
@@ -15,8 +15,7 @@ import {
   FilterComparator,
 } from '@ovh-ux/manager-core-api';
 
-import { Option } from '../filters';
-import { FilterWithLabel } from '../filters/Filter.props';
+import type { FilterOption, FilterProps } from '@/components/filters/Filter.props';
 
 export interface RowSelectionProps<T> {
   onRowSelectionChange?: (selectedRows: T[]) => void;
@@ -40,19 +39,6 @@ export interface SearchProps {
   placeholder?: string;
   searchInput: string;
   setSearchInput: Dispatch<SetStateAction<string>>;
-}
-
-export type ColumnFilterProps = {
-  comparator: FilterComparator;
-  key: string;
-  label: string;
-  value: string | string[];
-};
-
-export interface FilterProps {
-  add: (filters: ColumnFilterProps) => void;
-  filters: FilterWithLabel[];
-  remove: (filter: FilterWithLabel) => void;
 }
 
 export type ColumnSort = TanstackColumnSort;
@@ -102,7 +88,7 @@ export type DatagridColumn<T> = ColumnDef<T> & {
   /** Allows the column to be hidden or shown dynamically */
   enableHiding?: boolean;
   /** filterOptions can be passed to have selector instead of input to choose value */
-  filterOptions?: Option[];
+  filterOptions?: FilterOption[];
   /** Trigger the column filter */
   isFilterable?: boolean;
   /** Trigger the column search */

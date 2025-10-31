@@ -1,8 +1,8 @@
 import { renderHook } from '@testing-library/react';
 import { vitest } from 'vitest';
 
+import { getMacroRegion, isLocalZone } from '../Regions.utils';
 import { useTranslatedMicroRegions } from '../useTranslatedMicroRegions';
-import { getMacroRegion, isLocalZone } from '../useTranslatedMicroRegions.utils';
 
 vitest.mock('react-i18next', () => ({
   useTranslation: () => ({

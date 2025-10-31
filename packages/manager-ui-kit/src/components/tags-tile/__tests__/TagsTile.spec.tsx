@@ -1,8 +1,9 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { vitest } from 'vitest';
 
-import { render } from '../../../../setupTest';
-import { TagsTile } from '../TagsTile.component';
+import { render } from '@/commons/tests-utils/Render.utils';
+import { TagsTile } from '@/components/tags-tile/TagsTile.component';
+
 import fr_FR from '../translations/Messages_fr_FR.json';
 
 describe('TagsTile component', () => {
@@ -81,14 +82,8 @@ describe('TagsTile component', () => {
       expect(addTagLink).toBeInTheDocument();
     });
 
-    it('should handle null tags', () => {
-      render(<TagsTile tags={null} onEditTags={mockOnEditTags} />);
-
-      expect(screen.getByText(fr_FR.tags_tile_empty)).toBeInTheDocument();
-    });
-
-    it('should handle undefined tags', () => {
-      render(<TagsTile tags={undefined} onEditTags={mockOnEditTags} />);
+    it('should handle empty tags', () => {
+      render(<TagsTile tags={{}} onEditTags={mockOnEditTags} />);
 
       expect(screen.getByText(fr_FR.tags_tile_empty)).toBeInTheDocument();
     });

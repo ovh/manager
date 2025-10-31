@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { Tooltip, TooltipContent, TooltipTrigger } from '..';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components';
 
 describe('Tooltip Snapshot tests', () => {
   it('renders the component with default props and children', () => {

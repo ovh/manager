@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ActionMenu Snapshot Tests > Button variants > should match snapshot with default variant > default-variant 1`] = `
+exports[`ActionMenu Snapshot Tests > Button variants > matches snapshot with default variant > default-variant 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >
@@ -29,7 +29,7 @@ exports[`ActionMenu Snapshot Tests > Button variants > should match snapshot wit
 </div>
 `;
 
-exports[`ActionMenu Snapshot Tests > Button variants > should match snapshot with ghost variant > ghost-variant 1`] = `
+exports[`ActionMenu Snapshot Tests > Button variants > matches snapshot with ghost variant > ghost-variant 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >
@@ -58,7 +58,7 @@ exports[`ActionMenu Snapshot Tests > Button variants > should match snapshot wit
 </div>
 `;
 
-exports[`ActionMenu Snapshot Tests > Button variants > should match snapshot with outline variant > outline-variant 1`] = `
+exports[`ActionMenu Snapshot Tests > Button variants > matches snapshot with outline variant > outline-variant 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >
@@ -87,7 +87,7 @@ exports[`ActionMenu Snapshot Tests > Button variants > should match snapshot wit
 </div>
 `;
 
-exports[`ActionMenu Snapshot Tests > Compact mode > should match snapshot in compact mode > compact-mode 1`] = `
+exports[`ActionMenu Snapshot Tests > Compact mode > matches snapshot in compact mode > compact-mode 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >
@@ -115,7 +115,7 @@ exports[`ActionMenu Snapshot Tests > Compact mode > should match snapshot in com
 </div>
 `;
 
-exports[`ActionMenu Snapshot Tests > Compact mode > should match snapshot in compact mode with custom icon > compact-mode-custom-icon 1`] = `
+exports[`ActionMenu Snapshot Tests > Compact mode > matches snapshot in compact mode with custom icon > compact-mode-custom-icon 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >
@@ -143,7 +143,7 @@ exports[`ActionMenu Snapshot Tests > Compact mode > should match snapshot in com
 </div>
 `;
 
-exports[`ActionMenu Snapshot Tests > Custom labels and icons > should match snapshot with custom icon > custom-icon 1`] = `
+exports[`ActionMenu Snapshot Tests > Custom labels and icons > matches snapshot with custom icon > custom-icon 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >
@@ -172,7 +172,7 @@ exports[`ActionMenu Snapshot Tests > Custom labels and icons > should match snap
 </div>
 `;
 
-exports[`ActionMenu Snapshot Tests > Custom labels and icons > should match snapshot with custom label > custom-label 1`] = `
+exports[`ActionMenu Snapshot Tests > Custom labels and icons > matches snapshot with custom label > custom-label 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >
@@ -201,7 +201,7 @@ exports[`ActionMenu Snapshot Tests > Custom labels and icons > should match snap
 </div>
 `;
 
-exports[`ActionMenu Snapshot Tests > Custom labels and icons > should match snapshot with custom label and icon > custom-label-and-icon 1`] = `
+exports[`ActionMenu Snapshot Tests > Custom labels and icons > matches snapshot with custom label and icon > custom-label-and-icon 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >
@@ -230,7 +230,7 @@ exports[`ActionMenu Snapshot Tests > Custom labels and icons > should match snap
 </div>
 `;
 
-exports[`ActionMenu Snapshot Tests > Default rendering > should match snapshot with default props > default-props 1`] = `
+exports[`ActionMenu Snapshot Tests > Default rendering > matches snapshot with default props > default-props 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >
@@ -259,7 +259,7 @@ exports[`ActionMenu Snapshot Tests > Default rendering > should match snapshot w
 </div>
 `;
 
-exports[`ActionMenu Snapshot Tests > Default rendering > should match snapshot with minimal props > minimal-props 1`] = `
+exports[`ActionMenu Snapshot Tests > Default rendering > matches snapshot with minimal props > minimal-props 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >
@@ -288,7 +288,7 @@ exports[`ActionMenu Snapshot Tests > Default rendering > should match snapshot w
 </div>
 `;
 
-exports[`ActionMenu Snapshot Tests > Edge cases > should match snapshot with empty items array > empty-items 1`] = `
+exports[`ActionMenu Snapshot Tests > Edge cases > matches snapshot with empty items array > empty-items 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >
@@ -317,7 +317,7 @@ exports[`ActionMenu Snapshot Tests > Edge cases > should match snapshot with emp
 </div>
 `;
 
-exports[`ActionMenu Snapshot Tests > Edge cases > should match snapshot with many items > many-items 1`] = `
+exports[`ActionMenu Snapshot Tests > Edge cases > matches snapshot with many items > many-items 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >
@@ -346,7 +346,7 @@ exports[`ActionMenu Snapshot Tests > Edge cases > should match snapshot with man
 </div>
 `;
 
-exports[`ActionMenu Snapshot Tests > Edge cases > should match snapshot with single item > single-item 1`] = `
+exports[`ActionMenu Snapshot Tests > Edge cases > matches snapshot with single item > single-item 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >
@@ -375,7 +375,7 @@ exports[`ActionMenu Snapshot Tests > Edge cases > should match snapshot with sin
 </div>
 `;
 
-exports[`ActionMenu Snapshot Tests > IAM authorization states > should match snapshot when IAM is loading > iam-loading-state 1`] = `
+exports[`ActionMenu Snapshot Tests > IAM authorization states > matches snapshot when IAM is loading > iam-loading-state 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >
@@ -404,7 +404,7 @@ exports[`ActionMenu Snapshot Tests > IAM authorization states > should match sna
 </div>
 `;
 
-exports[`ActionMenu Snapshot Tests > IAM authorization states > should match snapshot when IAM is not authorized > iam-unauthorized-state 1`] = `
+exports[`ActionMenu Snapshot Tests > IAM authorization states > matches snapshot when IAM is not authorized > iam-unauthorized-state 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >
@@ -433,7 +433,7 @@ exports[`ActionMenu Snapshot Tests > IAM authorization states > should match sna
 </div>
 `;
 
-exports[`ActionMenu Snapshot Tests > Item variations > should match snapshot with IAM protected items > iam-protected-items 1`] = `
+exports[`ActionMenu Snapshot Tests > Item variations > matches snapshot with IAM-protected items > iam-protected-items 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >
@@ -462,7 +462,7 @@ exports[`ActionMenu Snapshot Tests > Item variations > should match snapshot wit
 </div>
 `;
 
-exports[`ActionMenu Snapshot Tests > Item variations > should match snapshot with mixed item types > mixed-item-types 1`] = `
+exports[`ActionMenu Snapshot Tests > Item variations > matches snapshot with mixed item types > mixed-item-types 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >
@@ -491,7 +491,7 @@ exports[`ActionMenu Snapshot Tests > Item variations > should match snapshot wit
 </div>
 `;
 
-exports[`ActionMenu Snapshot Tests > Item variations > should match snapshot with only button items > button-only-items 1`] = `
+exports[`ActionMenu Snapshot Tests > Item variations > matches snapshot with only button items > button-only-items 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >
@@ -520,7 +520,7 @@ exports[`ActionMenu Snapshot Tests > Item variations > should match snapshot wit
 </div>
 `;
 
-exports[`ActionMenu Snapshot Tests > Item variations > should match snapshot with only link items > link-only-items 1`] = `
+exports[`ActionMenu Snapshot Tests > Item variations > matches snapshot with only link items > link-only-items 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >
@@ -549,7 +549,7 @@ exports[`ActionMenu Snapshot Tests > Item variations > should match snapshot wit
 </div>
 `;
 
-exports[`ActionMenu Snapshot Tests > Popover positions > should match snapshot with left position > left-position 1`] = `
+exports[`ActionMenu Snapshot Tests > Popover positions > matches snapshot with left position > left-position 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >
@@ -578,7 +578,7 @@ exports[`ActionMenu Snapshot Tests > Popover positions > should match snapshot w
 </div>
 `;
 
-exports[`ActionMenu Snapshot Tests > Popover positions > should match snapshot with right position > right-position 1`] = `
+exports[`ActionMenu Snapshot Tests > Popover positions > matches snapshot with right position > right-position 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >
@@ -607,7 +607,7 @@ exports[`ActionMenu Snapshot Tests > Popover positions > should match snapshot w
 </div>
 `;
 
-exports[`ActionMenu Snapshot Tests > Popover positions > should match snapshot with top position > top-position 1`] = `
+exports[`ActionMenu Snapshot Tests > Popover positions > matches snapshot with top position > top-position 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >
@@ -636,7 +636,7 @@ exports[`ActionMenu Snapshot Tests > Popover positions > should match snapshot w
 </div>
 `;
 
-exports[`ActionMenu Snapshot Tests > States > should match snapshot when disabled > disabled-state 1`] = `
+exports[`ActionMenu Snapshot Tests > States > matches snapshot when disabled > disabled-state 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >
@@ -666,7 +666,7 @@ exports[`ActionMenu Snapshot Tests > States > should match snapshot when disable
 </div>
 `;
 
-exports[`ActionMenu Snapshot Tests > States > should match snapshot when disabled and loading > disabled-loading-state 1`] = `
+exports[`ActionMenu Snapshot Tests > States > matches snapshot when disabled-loading > disabled-loading-state 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >
@@ -738,7 +738,7 @@ exports[`ActionMenu Snapshot Tests > States > should match snapshot when disable
 </div>
 `;
 
-exports[`ActionMenu Snapshot Tests > States > should match snapshot when loading > loading-state 1`] = `
+exports[`ActionMenu Snapshot Tests > States > matches snapshot when loading > loading-state 1`] = `
 <div
   data-testid="navigation-action-trigger-action"
 >

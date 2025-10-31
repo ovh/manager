@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 
-import { render } from '@/setupTest';
+import { render } from '@/commons/tests-utils/Render.utils';
 
 import { TabsComponent } from '../Tabs.component';
 
@@ -27,7 +27,7 @@ describe('TabsComponent', () => {
       render(<TabsComponent items={mockItems} />);
 
       // The first tab should be selected by default
-      const firstTab = screen.getAllByText('tab1')[0].closest('button');
+      const firstTab = screen.getAllByText('tab1')?.[0]?.closest?.('button');
       expect(firstTab).toHaveAttribute('aria-selected', 'true');
     });
 
@@ -87,8 +87,8 @@ describe('TabsComponent', () => {
       const secondTab = screen.getByText('tab2');
 
       // The component should not throw even if onChange is not defined
-      expect(() => {
-        userEvent.click(secondTab);
+      expect(async () => {
+        await userEvent.click(secondTab);
       }).not.toThrow();
     });
   });
