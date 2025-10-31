@@ -221,16 +221,8 @@ export default function ImportForm() {
       const inputs: PostImportTaskPayload = {
         inputs: {
           'import.cmsSpecific.wordpress.selection': {
-            plugins: values.plugins
-              .filter((plugin) => plugin.enabled)
-              .map(({ name, version, enabled }) => ({
-                name,
-                version,
-                enabled,
-              })),
-            themes: values.themes
-              .filter((theme) => theme.active)
-              .map(({ name, version, active }) => ({ name, version, active })),
+            plugins: values.plugins,
+            themes: values.themes,
             wholeDatabase: values.wholeDatabase,
             media: values.media,
             posts: values.posts,
@@ -241,7 +233,6 @@ export default function ImportForm() {
           },
         },
       };
-
       return putManagedCmsResourceWebsiteTasks(serviceName, inputs, taskId);
     },
     onSuccess: () => {
