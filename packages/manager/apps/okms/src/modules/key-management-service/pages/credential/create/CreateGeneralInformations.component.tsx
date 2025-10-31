@@ -20,10 +20,10 @@ import { validateCredentialDescription } from '@key-management-service/utils/cre
 
 import { validateValidityDate } from '@key-management-service/utils/credential/validateValidityDate';
 import { validateCredentialCreationMethod } from '@key-management-service/utils/credential/validateCredentialCreationMethod';
-import CreateGeneralInformationsName from './generalInformations/CreateGeneralInformationsName.component';
-import CreateGeneralInformationsDescription from './generalInformations/CreateGeneralInformationsDescription';
-import CreateGeneralInformationsValidity from './generalInformations/CreateGeneralInformationsValidity';
-import CreateGeneralInformationsCreationMethod from './generalInformations/CreateGeneralInformationsCreationMethod.component';
+import CreateGeneralInformationsName from './general-informations/CreateGeneralInformationsName.component';
+import CreateGeneralInformationsDescription from './general-informations/CreateGeneralInformationsDescription';
+import CreateGeneralInformationsValidity from './general-informations/CreateGeneralInformationsValidity';
+import CreateGeneralInformationsCreationMethod from './general-informations/CreateGeneralInformationsCreationMethod.component';
 
 type CreateGeneralInformationsProps = {
   name: string | null;

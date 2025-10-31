@@ -32,11 +32,11 @@ import {
 import {
   getSecretConfigOkmsMock,
   GetSecretConfigOkmsMockParams,
-} from '@secret-manager/mocks/secretConfigOkms/secretConfigOkms.handler';
+} from '@secret-manager/mocks/secret-config-okms/secretConfigOkms.handler';
 import {
   getSecretConfigReferenceMock,
   GetSecretConfigReferenceMockParams,
-} from '@secret-manager/mocks/secretReference/secretReference.handler';
+} from '@secret-manager/mocks/secret-reference/secretReference.handler';
 import { getLocationsMock } from '@secret-manager/mocks/locations/locations.handler';
 import {
   getVersionMock,
@@ -55,7 +55,7 @@ import {
 import {
   getServiceKeysMock,
   GetServiceKeysMockParams,
-} from '@key-management-service/mocks/serviceKeys/serviceKeys.handler';
+} from '@key-management-service/mocks/service-keys/serviceKeys.handler';
 import {
   getIamMocks,
   GetIamAuthorizationMockParams,
