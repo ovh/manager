@@ -61,6 +61,7 @@ export default function ListPage() {
   const [searchField, setSearchField] = useState('');
   const filterPopoverRef = useRef(undefined);
   const featureFlipping3az = use3AZPlanAvailable();
+  const [showStorageModal, setShowStorageModal] = useState(true);
 
   const { data: allKube, isPending } = useKubes(projectId, pagination, filters);
 
@@ -101,7 +102,9 @@ export default function ListPage() {
       </div>
 
       <Notifications />
-      {featureFlipping3az && <FileStorageAlert />}
+      {featureFlipping3az && showStorageModal && (
+        <FileStorageAlert onRemove={() => setShowStorageModal(false)} />
+      )}
 
       <div className="sm:flex items-center justify-between mt-4">
         <OsdsButton

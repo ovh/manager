@@ -255,7 +255,7 @@ export function getPciProjectMenu(
   if (
     isFeaturesAvailable(
       'pci-databases-analytics-operational',
-      'pci-databases-analytics-streaming',
+      'pci-databases-analytics-analysis',
       'pci-dataplatform',
       'data-platform',
       'logs-data-platform',
