@@ -11,6 +11,7 @@ import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { POLLING } from '@/configuration/polling.constants';
 import { getColumns } from './_components/TopicAclsTableColumns.component';
 import { useGetTopicAcls } from '@/hooks/api/database/topicAcl/useGetTopicAcls.hook';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 export function breadcrumb() {
   return (
@@ -56,10 +57,7 @@ const TopicAcls = () => {
                   mode="outline"
                   className="text-base"
                   data-testid="add-button"
-                  disabled={
-                    service.capabilities.topicAcl?.create ===
-                    database.service.capability.StateEnum.disabled
-                  }
+                  disabled={isCapabilityDisabled(service, 'topicAcl', 'create')}
                   onClick={() => navigate('./add')}
                 >
                   <Plus className="w-4 h-4" />

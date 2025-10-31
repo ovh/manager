@@ -59,6 +59,15 @@ const mockedService = {
       delete: database.service.capability.StateEnum.enabled,
       read: database.service.capability.StateEnum.enabled,
     },
+    serviceIpRestriction: {
+      update: database.service.capability.StateEnum.enabled,
+    },
+    serviceFlavor: {
+      update: database.service.capability.StateEnum.enabled,
+    },
+    serviceDisk: {
+      update: database.service.capability.StateEnum.enabled,
+    },
   },
 };
 
@@ -227,6 +236,12 @@ describe('Service configuration page', () => {
           },
           deletionProtection: {
             read: database.service.capability.StateEnum.enabled,
+            update: database.service.capability.StateEnum.disabled,
+          },
+          serviceFlavor: {
+            update: database.service.capability.StateEnum.disabled,
+          },
+          serviceDisk: {
             update: database.service.capability.StateEnum.disabled,
           },
         },

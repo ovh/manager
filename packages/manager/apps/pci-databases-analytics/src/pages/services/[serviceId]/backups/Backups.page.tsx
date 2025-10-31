@@ -13,6 +13,7 @@ import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { GuideSections } from '@/types/guide';
 import { useGetBackups } from '@/hooks/api/database/backup/useGetBackups.hook';
 import DataTable from '@/components/data-table';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 export interface BackupWithExpiricyDate extends database.Backup {
   expiricyDate: Date;
@@ -101,28 +102,22 @@ const Backups = () => {
                   {service.capabilities.fork?.create && (
                     <Button
                       data-testid="fork-button"
-                      disabled={
-                        service.capabilities.fork.create ===
-                        database.service.capability.StateEnum.disabled
-                      }
+                      disabled={isCapabilityDisabled(service, 'fork', 'create')}
                       mode="outline"
+                      onClick={() => navigate('./fork')}
                     >
-                      <Link
-                        to="./fork"
-                        className="hover:no-underline flex flex-row gap-2 items-center"
-                      >
-                        <CopyPlus className="w-4 h-4" />
-                        {t('actionFork')}
-                      </Link>
+                      <CopyPlus className="w-4 h-4" />
+                      {t('actionFork')}
                     </Button>
                   )}
                   {service.capabilities.backupRestore?.create && (
                     <Button
                       data-testid="restore-backup-button"
-                      disabled={
-                        service.capabilities.backupRestore.create ===
-                        database.service.capability.StateEnum.disabled
-                      }
+                      disabled={isCapabilityDisabled(
+                        service,
+                        'backupRestore',
+                        'create',
+                      )}
                       mode="outline"
                       onClick={() => navigate('./restore')}
                     >
