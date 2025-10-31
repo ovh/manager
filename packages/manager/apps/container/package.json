@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-container-app",
-  "version": "0.161.4",
+  "version": "0.161.5",
   "private": true,
   "description": "OVHcloud Manager Container.",
   "repository": {
@@ -28,7 +28,7 @@
     "@ovh-ux/manager-react-components": "^1.47.1",
     "@ovh-ux/manager-react-shell-client": "^0.11.1",
     "@ovh-ux/manager-vite-config": "^0.14.0",
-    "@ovh-ux/ovh-payment-method": "^0.6.2",
+    "@ovh-ux/ovh-payment-method": "^0.6.3",
     "@ovh-ux/ovh-product-icons": "^0.13.6",
     "@ovh-ux/ovh-reket": "^2.1.18",
     "@ovh-ux/request-tagger": "^0.5.6",

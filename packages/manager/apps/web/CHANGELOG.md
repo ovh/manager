@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.26.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.8...@ovh-ux/manager-web@19.26.9) (2025-10-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.26.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.7...@ovh-ux/manager-web@19.26.8) (2025-10-30)
+
+
+### Bug Fixes
+
+* **web:** add "ASIA" subsidiary to language overrides ([#19872](https://github.com/ovh/manager/issues/19872)) ([59dfaf0](https://github.com/ovh/manager/commit/59dfaf01ad4059ecad637d311746319e403d28c1)), closes [#DCE-78](https://github.com/ovh/manager/issues/DCE-78)
+
+
+
+
+
 ## [19.26.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.6...@ovh-ux/manager-web@19.26.7) (2025-10-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
