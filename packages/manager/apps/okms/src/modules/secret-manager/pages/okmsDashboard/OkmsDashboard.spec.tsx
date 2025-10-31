@@ -4,9 +4,9 @@ import { screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import React from 'react';
 import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
-import { okmsMock } from '@/mocks/kms/okms.mock';
-import { renderTestApp } from '@/utils/tests/renderTestApp';
-import { labels } from '@/utils/tests/init.i18n';
+import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { labels } from '@/common/utils/tests/init.i18n';
 import { PAGE_SPINNER_TEST_ID } from '@/common/components/pageSpinner/PageSpinner.constants';
 import { OKMS_DASHBOARD_TEST_IDS } from './OkmsDashboard.constants';
 

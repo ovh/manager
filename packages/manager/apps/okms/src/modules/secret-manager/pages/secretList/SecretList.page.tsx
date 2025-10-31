@@ -31,7 +31,7 @@ import {
   DatagridCellVersion,
   DatagridCreationDate,
 } from './ListingCells.component';
-import { isErrorResponse } from '@/utils/api/api';
+import { isErrorResponse } from '@/common/utils/api/api';
 import { PATH_LABEL } from '@/constants';
 
 export default function SecretListPage() {

@@ -5,8 +5,8 @@ import {
   WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { renderTestApp } from '@/utils/tests/renderTestApp';
-import { labels } from '@/utils/tests/init.i18n';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { labels } from '@/common/utils/tests/init.i18n';
 
 describe('Secret Manager onboarding test suite', () => {
   it('should display the onboarding page', async () => {

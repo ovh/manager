@@ -1,12 +1,12 @@
 import { renderHook } from '@testing-library/react';
 import { useParams } from 'react-router-dom';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { useCurrentRegion } from './useCurrentRegion';
 import {
   okmsMock,
   okmsRoubaix1Mock,
   okmsStrasbourg1Mock,
-} from '@/mocks/kms/okms.mock';
+} from '@key-management-service/mocks/kms/okms.mock';
+import { useCurrentRegion } from './useCurrentRegion';
 
 // Mock react-router-dom
 vi.mock('react-router-dom', () => ({
