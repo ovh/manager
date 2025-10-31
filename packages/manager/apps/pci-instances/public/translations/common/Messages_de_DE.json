@@ -25,5 +25,6 @@
   "pci_instances_common_instance_continent_europe": "Europa",
   "pci_instances_common_instance_category": "Instanzmodell",
   "pci_instances_common_instance_type": "Typ",
-  "pci_instances_common_more_info": "Mehr Informationen"
+  "pci_instances_common_more_info": "Mehr Informationen",
+  "pci_instances_common_instance_continent_asia_oceania": "Asien - Ozeanien"
 }
