@@ -8,8 +8,14 @@ import Guides from '@/components/guides/Guides.component';
 import Encryption from './_components/Encryption.component';
 import Versionning from './_components/Versionning.component';
 import ObjectLock from './_components/ObjectLock.component';
+import { useS3Data } from '../S3.context';
+import { useIsLocaleZone } from '@/hooks/useIsLocalZone.hook';
+import { useObjectStorageData } from '@/pages/object-storage/ObjectStorage.context';
 
 const Dashboard = () => {
+  const { s3 } = useS3Data();
+  const { regions } = useObjectStorageData();
+  const isLocaleZone = useIsLocaleZone(s3, regions);
   const { t } = useTranslation('pci-object-storage/storages/s3/dashboard');
   return (
     <>
@@ -41,17 +47,19 @@ const Dashboard = () => {
               <ObjectLock />
             </CardContent>
           </Card>
-          <Card>
-            <CardHeader>
-              <h4>
-                <FileStack className="size-4 inline mr-2" />
-                <span>{t('versionningTitle')}</span>
-              </h4>
-            </CardHeader>
-            <CardContent>
-              <Versionning />
-            </CardContent>
-          </Card>
+          {!isLocaleZone && (
+            <Card>
+              <CardHeader>
+                <h4>
+                  <FileStack className="size-4 inline mr-2" />
+                  <span>{t('versionningTitle')}</span>
+                </h4>
+              </CardHeader>
+              <CardContent>
+                <Versionning />
+              </CardContent>
+            </Card>
+          )}
           <Card>
             <CardHeader>
               <h4>
@@ -65,27 +73,29 @@ const Dashboard = () => {
           </Card>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card>
-          <CardHeader>
-            <h4>
-              <Tag className="size-4 inline mr-2" />
-              <span>{t('tagsTitle')}</span>
-            </h4>
-          </CardHeader>
-          <CardContent>
-            <Tags />
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <h4>{t('accessLogsTitle')}</h4>
-          </CardHeader>
-          <CardContent>
-            <Badge variant={'neutral'}>{t('comingSoonLabel')}</Badge>
-          </CardContent>
-        </Card>
-      </div>
+      {!isLocaleZone && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Card>
+            <CardHeader>
+              <h4>
+                <Tag className="size-4 inline mr-2" />
+                <span>{t('tagsTitle')}</span>
+              </h4>
+            </CardHeader>
+            <CardContent>
+              <Tags />
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <h4>{t('accessLogsTitle')}</h4>
+            </CardHeader>
+            <CardContent>
+              <Badge variant={'neutral'}>{t('comingSoonLabel')}</Badge>
+            </CardContent>
+          </Card>
+        </div>
+      )}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card>
           <CardHeader>
@@ -95,14 +105,16 @@ const Dashboard = () => {
             <Badge variant={'neutral'}>{t('comingSoonLabel')}</Badge>
           </CardContent>
         </Card>
-        <Card>
-          <CardHeader>
-            <h4>{t('staticWebsiteHostingTitle')}</h4>
-          </CardHeader>
-          <CardContent>
-            <Badge variant={'neutral'}>{t('comingSoonLabel')}</Badge>
-          </CardContent>
-        </Card>
+        {!isLocaleZone && (
+          <Card>
+            <CardHeader>
+              <h4>{t('staticWebsiteHostingTitle')}</h4>
+            </CardHeader>
+            <CardContent>
+              <Badge variant={'neutral'}>{t('comingSoonLabel')}</Badge>
+            </CardContent>
+          </Card>
+        )}
       </div>
       <Outlet />
     </>

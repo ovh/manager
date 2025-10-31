@@ -7,7 +7,6 @@ import { getS3Storage } from '@/data/api/storage/s3Storage.api';
 import { useGetS3 } from '@/data/hooks/s3-storage/useGetS3.hook';
 import { S3Header } from './_components/S3Header.component';
 import S3Tabs from './_components/S3Tabs.component';
-import { S3LayoutContext } from './S3.context';
 
 interface S3LayoutProps {
   params: {
@@ -74,7 +73,7 @@ export default function S3Layout() {
       </>
     );
   }
-  const s3LayoutContext: S3LayoutContext = {
+  const s3LayoutContext = {
     s3,
     s3Query,
   };

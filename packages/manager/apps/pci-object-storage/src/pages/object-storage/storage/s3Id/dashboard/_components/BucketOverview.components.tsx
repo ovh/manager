@@ -9,13 +9,15 @@ import {
 } from '@datatr-ux/uxlib';
 import { HelpCircle } from 'lucide-react';
 import { useS3Data } from '../../S3.context';
-import { useObjectStorageData } from '@/pages/object-storage/ObjectStorage.context';
 import { S3RegionServicesTypeEnum } from '@/types/Region';
 import { octetConverter } from '@/lib/bytesHelper';
+import { useIsLocaleZone } from '@/hooks/useIsLocalZone.hook';
+import { useObjectStorageData } from '@/pages/object-storage/ObjectStorage.context';
 
 const BucketOverview = () => {
   const { s3 } = useS3Data();
   const { regions } = useObjectStorageData();
+  const isLocaleZone = useIsLocaleZone(s3, regions);
   const { t } = useTranslation('pci-object-storage/storages/s3/dashboard');
   const toast = useToast();
   const onCopy = () => toast.toast({ title: t('copyLabel') });
@@ -44,24 +46,28 @@ const BucketOverview = () => {
         <h5>{t('hostLabel')}</h5>
         <Clipboard value={s3.virtualHost} onCopy={onCopy} />
       </div>
-      <div className="mt-4">
-        <h5>{t('spaceUsed')}</h5>
-        <p>{octetConverter(s3.objectsSize)}</p>
-      </div>
-      <div className="mt-4">
-        <div className="flex flex-row items-center gap-2">
-          <h5>{t('objectNumber')}</h5>
-          <Popover>
-            <PopoverTrigger>
-              <HelpCircle className="size-4" />
-            </PopoverTrigger>
-            <PopoverContent>
-              <p className="text-sm">{t('objectNumberTooltip')}</p>
-            </PopoverContent>
-          </Popover>
-        </div>
-        <p>{s3.objectsCount}</p>
-      </div>
+      {!isLocaleZone && (
+        <>
+          <div className="mt-4">
+            <h5>{t('spaceUsed')}</h5>
+            <p>{octetConverter(s3.objectsSize)}</p>
+          </div>
+          <div className="mt-4">
+            <div className="flex flex-row items-center gap-2">
+              <h5>{t('objectNumber')}</h5>
+              <Popover>
+                <PopoverTrigger>
+                  <HelpCircle className="size-4" />
+                </PopoverTrigger>
+                <PopoverContent>
+                  <p className="text-sm">{t('objectNumberTooltip')}</p>
+                </PopoverContent>
+              </Popover>
+            </div>
+            <p>{s3.objectsCount}</p>
+          </div>
+        </>
+      )}
     </div>
   );
 };

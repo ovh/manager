@@ -5,12 +5,10 @@ export function createRegionWithAllInfo(
   containers: FormattedStorage[],
   regions: Region[],
 ) {
-  const regionMap = new Map(regions.map((r) => [r.name, r.type]));
-
   const containersWithRegionInfo: FormattedStorage[] = containers.map(
     (container) => ({
       ...container,
-      regionType: regionMap.get(container.region),
+      regionObj: regions.find((reg) => reg.name === container.region),
       storageType: container?.s3StorageType
         ? ObjectStorageTypeEnum.s3
         : ObjectStorageTypeEnum.swift,

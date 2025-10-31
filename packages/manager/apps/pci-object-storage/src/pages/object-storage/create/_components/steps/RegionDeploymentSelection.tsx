@@ -1,8 +1,8 @@
-import { Card, CardHeader, Checkbox } from '@datatr-ux/uxlib';
+import { Checkbox } from '@datatr-ux/uxlib';
 import { useTranslation } from 'react-i18next';
 import cloud from '@/types/Cloud';
 import { cn } from '@/lib/utils';
-import { RegionTypeBadge } from './RegionTypeBadge.component';
+import { RegionTypeBadge } from '@/components/region-type-badge/RegionTypeBadge.component';
 
 type TDeploymentMode = {
   mode: cloud.RegionTypeEnum;
