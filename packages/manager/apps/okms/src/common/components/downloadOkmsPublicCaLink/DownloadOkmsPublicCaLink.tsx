@@ -8,13 +8,13 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { getOkmsPublicCa } from '@/data/api/okms';
-import { initiateTextFileDownload } from '@/utils/dom/download';
+import { getOkmsPublicCa } from '@key-management-service/data/api/okms';
+import { OKMS, OkmsPublicCa } from '@key-management-service/types/okms.type';
+import { initiateTextFileDownload } from '@/common/utils/dom/download';
 import {
   PUBLIC_CA_FILENAME,
   PUBLIC_RSA_CA_FILENAME,
 } from './downloadOkmsPublicCaLink.constants';
-import { OKMS, OkmsPublicCa } from '@/types/okms.type';
 
 export type CertificateType =
   | 'publicCaRest'

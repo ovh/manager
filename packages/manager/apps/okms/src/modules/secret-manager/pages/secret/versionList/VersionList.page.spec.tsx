@@ -7,8 +7,8 @@ import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.consta
 import { versionActiveMock } from '@secret-manager/mocks/versions/versions.mock';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/versionList';
-import { labels } from '@/utils/tests/init.i18n';
-import { renderTestApp } from '@/utils/tests/renderTestApp';
+import { labels } from '@/common/utils/tests/init.i18n';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 
 const mockOkmsId = '123123';
 

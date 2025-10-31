@@ -1,4 +1,4 @@
-import { OKMS } from '@/types/okms.type';
+import { OKMS } from '@key-management-service/types/okms.type';
 
 export const filterOkmsListByRegion = (okmsList: OKMS[], region: string) => {
   return okmsList.filter((okms) => okms.region === region);

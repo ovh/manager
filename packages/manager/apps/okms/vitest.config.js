@@ -30,6 +30,10 @@ export default mergeConfig(
           __dirname,
           'src/modules/secret-manager',
         ),
+        '@key-management-service': path.resolve(
+          __dirname,
+          'src/modules/key-management-service',
+        ),
       },
     },
   }),

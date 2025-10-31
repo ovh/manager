@@ -4,10 +4,10 @@ import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.consta
 import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
-import { okmsRoubaix1Mock } from '@/mocks/kms/okms.mock';
-import { renderTestApp } from '@/utils/tests/renderTestApp';
-import { labels } from '@/utils/tests/init.i18n';
-import { changeOdsInputValueByTestId } from '@/utils/tests/uiTestHelpers';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { labels } from '@/common/utils/tests/init.i18n';
+import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
 
 const mockOkmsId = okmsRoubaix1Mock.id;
 const mockSecret = mockSecret1;

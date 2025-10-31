@@ -1,10 +1,10 @@
 import { screen } from '@testing-library/react';
 import React from 'react';
 import { mockSecretConfigOkms } from '@secret-manager/mocks/secretConfigOkms/secretConfigOkms.mock';
-import { labels } from '@/utils/tests/init.i18n';
+import { labels } from '@/common/utils/tests/init.i18n';
 import { MaxVersionTileItem } from './MaxVersionTileItem.component';
 import { SECRET_CONFIG_TILE_TEST_IDS } from '../SecretConfigTile.constants';
-import { renderWithI18n } from '@/utils/tests/testUtils';
+import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
 const renderTileItem = async ({
   isPending = false,

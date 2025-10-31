@@ -19,10 +19,10 @@ import {
   SECRET_MANAGER_ROUTES_URLS,
 } from '@secret-manager/routes/routes.constants';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
+import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
+import { okmsQueryKeys } from '@key-management-service/data/api/okms';
 import { PageSpinner } from '@/common/components/pageSpinner/PageSpinner.component';
 import { OkmsDomainDashboardTiles } from '@/common/components/okmsDashboard/OkmsDomainDashboardTiles.component';
-import { useOkmsById } from '@/data/hooks/useOkms';
-import { okmsQueryKeys } from '@/data/api/okms';
 import { OkmsDashboardOutletContext } from './OkmsDashboard.type';
 import { OKMS_DASHBOARD_TEST_IDS } from './OkmsDashboard.constants';
 

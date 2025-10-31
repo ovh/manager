@@ -6,8 +6,8 @@ import {
 } from '@secret-manager/routes/routes.constants';
 import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
 import userEvent from '@testing-library/user-event';
-import { labels } from '@/utils/tests/init.i18n';
-import { renderTestApp } from '@/utils/tests/renderTestApp';
+import { labels } from '@/common/utils/tests/init.i18n';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 
 const mockOkmsId = '12345';
 

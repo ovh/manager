@@ -2,10 +2,10 @@ import { screen } from '@testing-library/react';
 import React from 'react';
 import { vi } from 'vitest';
 import { LinksProps, LinkType } from '@ovh-ux/manager-react-components';
-import { okmsMock } from '@/mocks/kms/okms.mock';
+import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
 import { SWAGGER_UI_LABEL } from '@/constants';
 import { SwaggerTileItem } from './SwaggerTileItem.component';
-import { renderWithI18n } from '@/utils/tests/testUtils';
+import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
 const okmsMocked = okmsMock[0];
 

@@ -3,13 +3,13 @@ import { describe, vi, expect, test, beforeEach, afterEach } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
+import * as api from '@key-management-service/data/api/okms';
+import { OKMS } from '@key-management-service/types/okms.type';
 import {
   CertificateType,
   DownloadOkmsPublicCaLink,
 } from './DownloadOkmsPublicCaLink';
-import * as api from '@/data/api/okms';
-import { initiateTextFileDownload } from '@/utils/dom/download';
-import { OKMS } from '@/types/okms.type';
+import { initiateTextFileDownload } from '@/common/utils/dom/download';
 
 const addErrorMock = vi.fn();
 vi.mock('@ovh-ux/manager-react-components', () => ({
@@ -24,7 +24,7 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-vi.mock('@/utils/dom/download', () => ({
+vi.mock('@/common/utils/dom/download', () => ({
   initiateTextFileDownload: vi.fn(),
 }));
 
