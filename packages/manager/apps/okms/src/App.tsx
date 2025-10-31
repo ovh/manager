@@ -6,9 +6,9 @@ import {
   createHashRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
-import Loading from '@key-management-service/components/Loading/Loading';
 import kmsRoutes from '@key-management-service/routes/routes';
 import secretManagerRoutes from '@secret-manager/routes/routes';
+import Loading from '@/common/components/loading/Loading';
 import rootRoutes from '@/common/routes/routes';
 import { useShellContext } from '@/common/hooks/useShellContext';
 
