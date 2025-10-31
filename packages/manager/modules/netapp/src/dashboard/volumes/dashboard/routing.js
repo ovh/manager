@@ -58,6 +58,11 @@ export default /* @ngInject */ ($stateProvider) => {
           'netapp.dashboard.volumes.dashboard.snapshots',
           $transition$.params(),
         ),
+      volumeDashboardActivesNFSLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href(
+          'netapp.dashboard.volumes.dashboard.actives-nfs',
+          $transition$.params(),
+        ),
       accessPath: /* @ngInject */ ($http, serviceName, volumeId) =>
         $http
           .get(`/storage/netapp/${serviceName}/share/${volumeId}/accessPath`)
@@ -66,7 +71,7 @@ export default /* @ngInject */ ($stateProvider) => {
             accessPaths?.find(({ preferred }) => !!preferred),
           )
           .catch(() => null),
-      updateVolume: /* @ngInject */ ($http, $translate, serviceName) => ({
+      updateVolume: /* @ngInject */ ($http, serviceName) => ({
         name,
         id,
         description,

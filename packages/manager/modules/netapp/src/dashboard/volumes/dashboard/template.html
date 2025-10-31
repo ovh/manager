@@ -26,6 +26,14 @@
             >
                 <span data-translate="netapp_volumes_dashboard_acl"></span>
             </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.volumeDashboardActivesNFSLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.volumeDashboardActivesNFSLink"
+            >
+                <span
+                    data-translate="netapp_volumes_dashboard_actives_nfs_title"
+                ></span>
+            </oui-header-tabs-item>
         </oui-header-tabs>
     </oui-header>
     <div data-ovh-alert></div>
@@ -253,18 +261,18 @@
                     <oui-tile-description>
                         <ul class="list-none p-0">
                             <li
-                                data-ng-repeat="nfs in $ctrl.volumeUsages.activesNFS"
+                                data-ng-repeat="nfs in $ctrl.volumeUsages.activesNFS | limitTo: $ctrl.volumeUsages.activesNFSLimite"
                             >
                                 {{nfs.clientIp}}
                             </li>
                         </ul>
                         <span
-                            data-ng-if="!$ctrl.volumeUsages.activesNFS"
+                            data-ng-if="!$ctrl.volumeUsages.activesNFS.length"
                             data-translate="netapp_volumes_dashboard_usage_no_nfs_client"
                         ></span>
                         <a
-                            data-ng-if="$ctrl.volumeUsages.isActiveNFSLimitTouched"
-                            data-ng-href="#"
+                            data-ng-if="$ctrl.volumeUsages.activesNFS.length >= $ctrl.volumeUsages.activesNFSLimite"
+                            href="{{$ctrl.volumeDashboardActivesNFSLink}}"
                         >
                             <span
                                 data-translate="netapp_volumes_dashboard_usage_view_all"
