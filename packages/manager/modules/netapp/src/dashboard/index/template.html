@@ -65,6 +65,17 @@
                 }"
                         data-translate="{{ 'netapp_dashboard_network_configuration_status_' + $ctrl.networkInformations.status }}"
                     ></span>
+
+                    <a
+                        class="fa fa-info-circle small"
+                        ng-if="$ctrl.networkInformations.status !== $ctrl.NETWORK_STATUS.ASSOCIATED"
+                        data-oui-tooltip="{{::$ctrl.CONFIGURATION_GUIDE_LINK.text | translate}}"
+                        data-oui-tooltip-placement="bottom"
+                        data-ng-href="{{ $ctrl.CONFIGURATION_GUIDE_LINK.href }}"
+                        rel="noopener"
+                        target="_blank"
+                    >
+                    </a>
                     <span
                         class="oui-badge oui-badge_error"
                         data-ng-if="$ctrl.networkInformations.vrackServices.currentState.productStatus === $ctrl.VRACK_SERVICES_STATUS.DISABLED"

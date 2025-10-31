@@ -23,6 +23,8 @@ export default class OvhManagerNetAppDashboardIndexCtrl {
     this.SERVICE_TYPE = SERVICE_TYPE;
     this.NETAPP_NAME_PATTERN = NETAPP_NAME_PATTERN;
     this.LABELS = LABELS;
+    // eslint-disable-next-line prefer-destructuring
+    this.CONFIGURATION_GUIDE_LINK = NetAppDashboardService.GUIDES_LINKS[0];
   }
 
   $onInit() {
