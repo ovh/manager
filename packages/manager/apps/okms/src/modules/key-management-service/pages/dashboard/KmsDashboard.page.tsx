@@ -10,12 +10,12 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
-import KmsGuidesHeader from '@key-management-service/components/Guide/KmsGuidesHeader';
-import Breadcrumb from '@key-management-service/components/Breadcrumb/Breadcrumb';
+import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
+import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
 import KmsTabs, {
   KmsTabProps,
-} from '@key-management-service/components/layout-helpers/Dashboard/KmsTabs';
-import { KmsChangelogButton } from '@key-management-service/components/kmsChangelogButton/KmsChangelogButton.component';
+} from '@key-management-service/components/layout-helpers/dashboard/KmsTabs';
+import { KmsChangelogButton } from '@key-management-service/components/kms-changelog-button/KmsChangelogButton.component';
 import { okmsQueryKeys } from '@key-management-service/data/api/okms';
 import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { BreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
@@ -26,7 +26,7 @@ import {
 import { SERVICE_KEYS_LABEL } from '@/constants';
 import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
 import { KmsDashboardOutletContext } from './KmsDashboard.type';
-import { PageSpinner } from '@/common/components/pageSpinner/PageSpinner.component';
+import { PageSpinner } from '@/common/components/page-spinner/PageSpinner.component';
 
 export default function DashboardPage() {
   const { t } = useTranslation([
