@@ -19,14 +19,14 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import KmsGuidesHeader from '@key-management-service/components/Guide/KmsGuidesHeader';
-import { KmsChangelogButton } from '@key-management-service/components/kmsChangelogButton/KmsChangelogButton.component';
+import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
+import { KmsChangelogButton } from '@key-management-service/components/kms-changelog-button/KmsChangelogButton.component';
 import { useOkmsDatagridList } from '@key-management-service/data/hooks/useOkms';
 import { useAutoRefetch } from '@key-management-service/data/hooks/useAutoRefetch';
 import { okmsQueryKeys } from '@key-management-service/data/api/okms';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import kmsListingTestIds from './KmsListing.constants';
-import { OkmsDatagrid } from '@/common/components/okmsDatagrid/OkmsDatagrid.component';
+import { OkmsDatagrid } from '@/common/components/okms-datagrid/OkmsDatagrid.component';
 
 export default function Listing() {
   const { t } = useTranslation('key-management-service/listing');
