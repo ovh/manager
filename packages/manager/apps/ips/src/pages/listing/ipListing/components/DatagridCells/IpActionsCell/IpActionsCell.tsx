@@ -389,6 +389,25 @@ export const IpActionsCell = ({
           )}?${search.toString()}`,
         ),
     },
+    isGroup &&
+      ipaddr.IPv4.isIPv4(ipAddress) &&
+      [
+        IpTypeEnum.ADDITIONAL,
+        IpTypeEnum.PCC,
+        IpTypeEnum.VRACK,
+        IpTypeEnum.CLOUD,
+        IpTypeEnum.DEDICATED,
+      ].includes(ipDetails?.type) && {
+        id: 15,
+        label: t('listingActionUpdateIpBlockInformation'),
+        onClick: () =>
+          navigate(
+            `${urls.ipBlockInformation.replace(
+              urlDynamicParts.id,
+              parentId,
+            )}?${search.toString()}`,
+          ),
+      },
   ].filter(Boolean);
 
   return (

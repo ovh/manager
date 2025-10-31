@@ -7,3 +7,5 @@ export * from './addIpToVirtualMac';
 export * from './postMoveIp';
 export * from './unblockAntiHackIp';
 export * from './unblockAntiSpamIp';
+export * from './upsertIpRipeInformation';
+export * from './changeIpOrganisation';
