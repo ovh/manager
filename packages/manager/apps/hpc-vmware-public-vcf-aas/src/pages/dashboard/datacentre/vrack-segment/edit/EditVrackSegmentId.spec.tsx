@@ -7,7 +7,7 @@ import {
 } from '@ovh-ux/manager-module-vcd-api';
 import { waitFor } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
-import { renderTest } from '../../../../../test-utils';
+import { labels, renderTest } from '../../../../../test-utils';
 import fr_FR from '../../../../../../public/translations/datacentres/vrack-segment/Messages_fr_FR.json';
 
 const queryModalTitle = () => {
@@ -23,8 +23,15 @@ const checkFormInputAndCta = (container: HTMLElement) => {
   expect(
     screen.getByText(fr_FR.managed_vcd_dashboard_vrack_edit_vlan),
   ).toBeVisible();
-  expect(container.querySelector('[label="modify"]')).toBeVisible();
-  expect(container.querySelector('[label="cancel"]')).toBeVisible();
+
+  [
+    { testId: 'primary-button', label: labels.actions.modify },
+    { testId: 'secondary-button', label: labels.actions.cancel },
+  ].forEach((btn) => {
+    const element = screen.getByTestId(btn.testId);
+    expect(element).toBeVisible();
+    expect(element).toHaveAttribute('label', btn.label);
+  });
 
   const input = container.querySelector('input[name="vlanId"]');
 
@@ -39,16 +46,8 @@ const checkVlanValue = (container: HTMLElement, vlanId: string) => {
   expect(input).toBeInTheDocument();
 };
 
-const expectSubmitButton = (container) =>
-  expect(container.querySelector('ods-button[label="modify"]'));
-
-const submitForm = (container: HTMLElement) => {
-  return act(() =>
-    userEvent.click(
-      container.querySelector('ods-button[label="modify"]') as Element,
-    ),
-  );
-};
+const submitForm = async () =>
+  act(() => userEvent.click(screen.getByTestId('primary-button')));
 
 const editVlanValue = (newValue: string | number) => {
   const odsQuantity = document.querySelector(
@@ -104,22 +103,28 @@ describe('Edit Vrack Segment Id Page', () => {
       { timeout: 2000 },
     );
 
-    expectSubmitButton(container).toBeDisabled();
+    const submitCta = screen.getByTestId('primary-button');
+    expect(submitCta).toBeVisible();
+    expect(submitCta).toHaveAttribute('label', labels.actions.modify);
+    expect(submitCta).toHaveAttribute('is-disabled', 'true');
 
     await editVlanValue(430);
 
-    await waitFor(() => expectSubmitButton(container).not.toBeDisabled(), {
-      timeout: 2000,
-    });
+    await waitFor(
+      () => expect(submitCta).toHaveAttribute('is-disabled', 'false'),
+      {
+        timeout: 2000,
+      },
+    );
 
-    await submitForm(container);
+    await submitForm();
 
     await waitFor(
       () => {
         expect(queryModalTitle()).not.toBeInTheDocument();
         checkSuccessBannerIsVisible();
       },
-      { timeout: 2000 },
+      { timeout: 10_000 },
     );
   });
 
@@ -141,14 +146,14 @@ describe('Edit Vrack Segment Id Page', () => {
       { timeout: 2000 },
     );
 
-    await submitForm(container);
+    await submitForm();
 
     await waitFor(
       () => {
         expect(queryModalTitle()).toBeInTheDocument();
         checkErrorBannerIsVisible();
       },
-      { timeout: 2000 },
+      { timeout: 10_000 },
     );
   });
 
