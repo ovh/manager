@@ -5,18 +5,21 @@ import { useSearchParams } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { vi } from 'vitest';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-import { waitFor } from '@testing-library/dom';
 import {
   MOCK_DATA_VALID_JSON,
   MOCK_PATH_VALID,
 } from '@secret-manager/utils/tests/secret.constants';
 import { SECRET_FORM_TEST_IDS } from '@secret-manager/pages/create-secret/SecretForm.constants';
 import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
-import { render, screen } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { labels, initTestI18n } from '@/common/utils/tests/init.i18n';
 import { SecretForm } from './SecretForm.component';
 import { SECRET_DATA_TEMPLATE } from './SecretForm.constants';
-import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
+import {
+  changeOdsInputValueByTestId,
+  clickJsonEditorToggle,
+} from '@/common/utils/tests/uiTestHelpers';
 
 let i18nValue: i18n;
 
@@ -32,38 +35,27 @@ vi.mock('react-router-dom', async (importOriginal) => {
 
 // Mocking ODS Input component
 vi.mock('@ovhcloud/ods-components/react', async () => {
+  const {
+    odsInputMock,
+    odsTextareaMock,
+    odsSwitchMock,
+    odsSwitchItemMock,
+  } = await import('@/common/utils/tests/odsMocks');
   const original = await vi.importActual('@ovhcloud/ods-components/react');
   return {
     ...original,
-    OdsInput: vi.fn(
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      ({ className, onOdsChange, onOdsBlur, ...rest }) => (
-        <input
-          data-testid={rest['data-testid']}
-          className={className}
-          onChange={(e) => onOdsChange && onOdsChange(e.target.value)}
-          onBlur={(e) => onOdsBlur && onOdsBlur(e.target.value)}
-          {...rest}
-        />
-      ),
-    ),
-    OdsTextarea: vi.fn(
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      ({ className, onOdsChange, onOdsBlur, isResizable, ...rest }) => (
-        <textarea
-          data-testid={rest['data-testid']}
-          className={className}
-          onChange={(e) => onOdsChange && onOdsChange(e.target.value)}
-          onBlur={() => onOdsBlur && onOdsBlur()}
-          {...rest}
-        />
-      ),
-    ),
+    OdsInput: vi.fn(odsInputMock),
+    OdsTextarea: vi.fn(odsTextareaMock),
+    OdsSwitch: vi.fn(odsSwitchMock),
+    OdsSwitchItem: vi.fn(odsSwitchItemMock),
   };
 });
 
 vi.mocked(useSearchParams).mockReturnValue([new URLSearchParams(), vi.fn()]);
 
+/**
+ * Renders the secret form
+ */
 const renderSecretForm = async (okmsId?: string) => {
   const queryClient = new QueryClient();
   if (!i18nValue) {
@@ -111,10 +103,14 @@ describe('Secrets creation form test suite', () => {
     'should check the form validity for data: $data, path: $path and a selectedOkms: $selectedOkmsId ',
     async ({ data, path, selectedOkmsId, shouldButtonBeDisabled }) => {
       // GIVEN
+      const user = userEvent.setup();
       await renderSecretForm(selectedOkmsId);
       await assertTextVisibility(
         labels.secretManager.create_secret_form_secret_section_title,
       );
+
+      // WHEN
+      await clickJsonEditorToggle(user);
 
       if (path) {
         await changeOdsInputValueByTestId(
@@ -123,10 +119,15 @@ describe('Secrets creation form test suite', () => {
         );
       }
       if (data) {
-        await changeOdsInputValueByTestId(
+        const input = await screen.findByTestId(
           SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA,
-          data,
         );
+
+        // clean first the input
+        await act(() => user.clear(input));
+        // then type the new value
+        const escaped = data.replace(/{/g, '{{');
+        await act(() => user.type(input, escaped));
       }
 
       // THEN
@@ -145,7 +146,11 @@ describe('Secrets creation form test suite', () => {
 
   it('should display the template in the data input', async () => {
     // GIVEN
+    const user = userEvent.setup();
     await renderSecretForm(MOCK_OKMS_ID);
+
+    // WHEN
+    await clickJsonEditorToggle(user);
     const inputData = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA);
     expect(inputData).toBeInTheDocument();
 
