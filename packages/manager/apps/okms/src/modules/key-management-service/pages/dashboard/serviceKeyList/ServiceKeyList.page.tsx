@@ -34,11 +34,11 @@ import {
   DatagridServiceKeyCellName,
   DatagridStatus,
 } from '@key-management-service/components/Listing/ListingCells';
-import Loading from '@key-management-service/components/Loading/Loading';
 import { useOkmsServiceKeys } from '@key-management-service/data/hooks/useOkmsServiceKeys';
 import { getOkmsServiceKeyResourceListQueryKey } from '@key-management-service/data/api/okmsServiceKey';
 import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.type';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+import Loading from '@/common/components/loading/Loading';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 import { SERVICE_KEY_LIST_TEST_IDS } from './ServiceKeyList.constants';
 
