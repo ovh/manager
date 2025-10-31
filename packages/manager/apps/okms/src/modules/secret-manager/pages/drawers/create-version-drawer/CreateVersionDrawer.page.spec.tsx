@@ -1,10 +1,8 @@
-import React from 'react';
 import { vi } from 'vitest';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { screen, act, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { MOCK_DATA_VALID_JSON } from '@secret-manager/utils/tests/secret.constants';
 import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
 import {
   assertTextVisibility,
@@ -16,7 +14,7 @@ import { getSecretMockWithData } from '@secret-manager/mocks/secrets/secretsMock
 import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import { labels } from '@/common/utils/tests/init.i18n';
-import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
+import { clickJsonEditorToggle } from '@/common/utils/tests/uiTestHelpers';
 import { CREATE_VERSION_DRAWER_TEST_IDS } from './CreateVersionDrawer.constants';
 
 const mockOkmsId = okmsRoubaix1Mock.id;
@@ -26,26 +24,27 @@ const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.versionListCreateVersionDrawer(
   mockedSecret.path,
 );
 
-// Mocking ODS Input component
+// Mocking ODS components
 vi.mock('@ovhcloud/ods-components/react', async () => {
+  const {
+    odsInputMock,
+    odsTextareaMock,
+    odsSwitchMock,
+    odsSwitchItemMock,
+  } = await import('@/common/utils/tests/odsMocks');
   const original = await vi.importActual('@ovhcloud/ods-components/react');
   return {
     ...original,
-    OdsTextarea: vi.fn(
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      ({ className, onOdsChange, onOdsBlur, isResizable, ...rest }) => (
-        <textarea
-          data-testid={rest['data-testid']}
-          className={className}
-          onChange={(e) => onOdsChange && onOdsChange(e.target.value)}
-          onBlur={() => onOdsBlur && onOdsBlur()}
-          {...rest}
-        />
-      ),
-    ),
+    OdsInput: vi.fn(odsInputMock),
+    OdsTextarea: vi.fn(odsTextareaMock),
+    OdsSwitch: vi.fn(odsSwitchMock),
+    OdsSwitchItem: vi.fn(odsSwitchItemMock),
   };
 });
 
+/**
+ * Renders the create version drawer page
+ */
 const renderPage = async ({ url = mockPageUrl }: { url?: string } = {}) => {
   const user = userEvent.setup();
   const { container } = await renderTestApp(url);
@@ -61,7 +60,7 @@ const renderPage = async ({ url = mockPageUrl }: { url?: string } = {}) => {
 
   // wait for the content to be displayed
   await assertTextVisibility(labels.secretManager.add_new_version);
-  await assertTextVisibility(labels.secretManager.editor);
+  await assertTextVisibility(labels.secretManager.key_value);
 
   return { user, container };
 };
@@ -79,11 +78,13 @@ describe('Secret create version drawer page test suite', () => {
   });
 
   it('should display the current secret value', async () => {
-    await renderPage();
+    const { user } = await renderPage();
 
-    const dataInput = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA);
+    // Click on the JSON toggle to switch to the JSON editor
+    await clickJsonEditorToggle(user);
 
     // Check if the data input contains the secret value
+    const dataInput = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA);
     expect(dataInput).toBeInTheDocument();
     expect(dataInput).toHaveValue(
       JSON.stringify(getSecretMockWithData(mockedSecret).version.data),
@@ -96,11 +97,20 @@ describe('Secret create version drawer page test suite', () => {
       getSecretMockWithData(mockedSecret).version,
     );
 
+    // Click on the JSON toggle to switch to the JSON editor
+    await clickJsonEditorToggle(user);
+
+    const MOCK_NEW_DATA = '{"key1":"value1","key2":"value2"}';
     // Change the data input value
-    await changeOdsInputValueByTestId(
+    const input = await screen.findByTestId(
       SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA,
-      MOCK_DATA_VALID_JSON,
     );
+
+    // clean first the input
+    await act(() => user.clear(input));
+    // then type the new value
+    const escaped = MOCK_NEW_DATA.replace(/{/g, '{{');
+    await act(() => user.type(input, escaped));
 
     // Submit the form
     // Button should be enabled after input change
@@ -117,7 +127,7 @@ describe('Secret create version drawer page test suite', () => {
       expect(secretVersionsApi.createSecretVersion).toHaveBeenCalledWith({
         okmsId: mockOkmsId,
         path: mockedSecret.path,
-        data: JSON.parse(MOCK_DATA_VALID_JSON),
+        data: JSON.parse(MOCK_NEW_DATA),
         cas: mockedSecret.metadata.currentVersion,
       });
     });
