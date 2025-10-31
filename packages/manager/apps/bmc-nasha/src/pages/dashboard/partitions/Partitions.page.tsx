@@ -119,26 +119,43 @@ export default function PartitionsPage() {
       id: 'actions',
       header: '',
       cell: ({ row }) => (
-        <ActionMenu compact placement="end">
-          <ActionMenu.Item onClick={() => handlePartitionClick(row.original.partitionName)}>
-            {t('nasha_dashboard_partitions_action_show', { defaultValue: 'Show' })}
-          </ActionMenu.Item>
-          <ActionMenu.Item onClick={() => handleSnapshotsClick(row.original.partitionName)}>
-            {t('nasha_dashboard_partitions_action_snapshots', { defaultValue: 'Snapshots' })}
-          </ActionMenu.Item>
-          <ActionMenu.Item onClick={() => handleAccessesClick(row.original.partitionName)}>
-            {t('nasha_dashboard_partitions_action_access', { defaultValue: 'Access' })}
-          </ActionMenu.Item>
-          <ActionMenu.Item onClick={() => handleEditSizeClick(row.original)}>
-            {t('nasha_dashboard_partitions_action_edit_size', { defaultValue: 'Edit size' })}
-          </ActionMenu.Item>
-          <ActionMenu.Item onClick={() => handleZfsOptionsClick(row.original)}>
-            {t('nasha_dashboard_partitions_action_zfs_options', { defaultValue: 'ZFS Options' })}
-          </ActionMenu.Item>
-          <ActionMenu.Item onClick={() => handleDeleteClick(row.original)}>
-            {t('nasha_dashboard_partitions_action_delete', { defaultValue: 'Delete' })}
-          </ActionMenu.Item>
-        </ActionMenu>
+        <ActionMenu
+          id={`partition-actions-${row.original.partitionName}`}
+          isCompact
+          popoverPosition="end"
+          items={[
+            {
+              id: 1,
+              label: t('nasha_dashboard_partitions_action_show', { defaultValue: 'Show' }),
+              onClick: () => handlePartitionClick(row.original.partitionName),
+            },
+            {
+              id: 2,
+              label: t('nasha_dashboard_partitions_action_snapshots', { defaultValue: 'Snapshots' }),
+              onClick: () => handleSnapshotsClick(row.original.partitionName),
+            },
+            {
+              id: 3,
+              label: t('nasha_dashboard_partitions_action_access', { defaultValue: 'Access' }),
+              onClick: () => handleAccessesClick(row.original.partitionName),
+            },
+            {
+              id: 4,
+              label: t('nasha_dashboard_partitions_action_edit_size', { defaultValue: 'Edit size' }),
+              onClick: () => handleEditSizeClick(row.original),
+            },
+            {
+              id: 5,
+              label: t('nasha_dashboard_partitions_action_zfs_options', { defaultValue: 'ZFS Options' }),
+              onClick: () => handleZfsOptionsClick(row.original),
+            },
+            {
+              id: 6,
+              label: t('nasha_dashboard_partitions_action_delete', { defaultValue: 'Delete' }),
+              onClick: () => handleDeleteClick(row.original),
+            },
+          ]}
+        />
       ),
       enableHiding: false,
     },

@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Progress } from '@ovhcloud/ods-react';
+import { ProgressBar } from '@ovh-ux/muk';
 import type { NashaPrepared } from '@/types/Dashboard.type';
 
 type SpaceMeterProps = {
@@ -51,13 +51,16 @@ export function SpaceMeter({ usage, large = false, legend = false }: SpaceMeterP
             </div>
           </div>
           <div className={large ? 'w-full' : 'w-full md:w-2/3'}>
-            <Progress value={maxSize} max={maxSize}>
+            <div className="relative w-full" style={{ height: large ? '18px' : '12px' }}>
               {usageParts.length > 0 && (
-                <Progress.Bar
+                <ProgressBar
                   value={usedValue}
                   max={maxSize}
                   className="progress-bar--used"
                   style={{
+                    position: 'absolute',
+                    width: `${(usedValue / maxSize) * 100}%`,
+                    height: '100%',
                     backgroundColor: '#64afa0',
                     backgroundImage: `repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2) 40%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%)`,
                     backgroundSize: '8px 8px',
@@ -67,21 +70,26 @@ export function SpaceMeter({ usage, large = false, legend = false }: SpaceMeterP
               {usageParts
                 .filter((part) => part.type === 'usedbysnapshots')
                 .map((part) => {
+                  const leftPercent = ((cumulativeValue - part.value) / maxSize) * 100;
                   cumulativeValue += part.value;
+                  const widthPercent = (part.value / maxSize) * 100;
                   return (
-                    <Progress.Bar
+                    <ProgressBar
                       key={part.type}
                       value={part.value}
                       max={maxSize}
                       className="progress-bar--usedbysnapshots"
                       style={{
+                        position: 'absolute',
+                        left: `${leftPercent}%`,
+                        width: `${widthPercent}%`,
+                        height: '100%',
                         backgroundColor: '#ffcd00',
-                        marginLeft: `${((cumulativeValue - part.value) / maxSize) * 100}%`,
                       }}
                     />
                   );
                 })}
-            </Progress>
+            </div>
           </div>
         </div>
         {legend && usageParts.length > 0 && (

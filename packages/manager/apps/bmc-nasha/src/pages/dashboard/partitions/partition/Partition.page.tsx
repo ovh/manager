@@ -3,13 +3,11 @@ import {
   BaseLayout,
   Button,
   Tile,
-  Tabs,
-  TabList,
-  Tab,
   ActionMenu,
   ICON_NAME,
   Icon,
 } from '@ovh-ux/muk';
+import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { usePartitionDetail } from '@/data/api/hooks/usePartitionDetail';
@@ -30,14 +28,19 @@ export default function PartitionPage() {
     partitionName || '',
   );
 
+  // Determine route prefix based on current URL - supports both /partition/:name and /partitions/:name
+  const routePrefix = location.pathname.includes('/partition/') && !location.pathname.includes('/partitions/')
+    ? `/${serviceName}/partition/${partitionName}`
+    : `/${serviceName}/partitions/${partitionName}`;
+
   const handleEditDescription = () => {
     trackClick({ actions: [PREFIX_TRACKING_DASHBOARD_PARTITIONS, 'edit-description'] });
-    navigate(`/${serviceName}/partitions/${partitionName}/edit-description`);
+    navigate(`${routePrefix}/edit-description`);
   };
 
   const handleEditSize = () => {
     trackClick({ actions: [PREFIX_TRACKING_DASHBOARD_PARTITIONS, 'edit-size'] });
-    navigate(`/${serviceName}/partitions/${partitionName}/edit-size`);
+    navigate(`${routePrefix}/edit-size`);
   };
 
   if (isPartitionLoading || !partition || !nasha) {
@@ -54,34 +57,49 @@ export default function PartitionPage() {
         title: partition.partitionName,
         subtitle: nasha.serviceName,
         tabs: (
-          <Tabs>
-            <TabList>
-              <Tab
-                to={`/${serviceName}/partitions/${partitionName}`}
-                isActive={
-                  location.pathname.endsWith(`/partitions/${partitionName}`) &&
-                  !location.pathname.includes('/snapshots') &&
-                  !location.pathname.includes('/accesses')
+          <div className="border-b border-gray-200">
+            <nav className="flex space-x-8" aria-label="Tabs">
+              <NavLink
+                to={routePrefix}
+                end
+                className={({ isActive }) =>
+                  `py-4 px-1 border-b-2 font-medium text-sm ${
+                    isActive
+                      ? 'border-blue-500 text-blue-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`
                 }
               >
                 {t('nasha_dashboard_partition_tab_general_information', {
                   defaultValue: 'General Information',
                 })}
-              </Tab>
-              <Tab
-                to={`/${serviceName}/partitions/${partitionName}/snapshots`}
-                isActive={location.pathname.includes('/snapshots')}
+              </NavLink>
+              <NavLink
+                to={`${routePrefix}/snapshots`}
+                className={({ isActive }) =>
+                  `py-4 px-1 border-b-2 font-medium text-sm ${
+                    isActive
+                      ? 'border-blue-500 text-blue-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`
+                }
               >
                 {t('nasha_dashboard_partition_tab_snapshots', { defaultValue: 'Snapshots' })}
-              </Tab>
-              <Tab
-                to={`/${serviceName}/partitions/${partitionName}/accesses`}
-                isActive={location.pathname.includes('/accesses')}
+              </NavLink>
+              <NavLink
+                to={`${routePrefix}/accesses`}
+                className={({ isActive }) =>
+                  `py-4 px-1 border-b-2 font-medium text-sm ${
+                    isActive
+                      ? 'border-blue-500 text-blue-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`
+                }
               >
                 {t('nasha_dashboard_partition_tab_accesses', { defaultValue: 'Accesses' })}
-              </Tab>
-            </TabList>
-          </Tabs>
+              </NavLink>
+            </nav>
+          </div>
         ),
       }}
     >
@@ -91,7 +109,8 @@ export default function PartitionPage() {
         !location.pathname.includes('/accesses') &&
         !location.pathname.includes('/edit-description') &&
         !location.pathname.includes('/edit-size') &&
-        location.pathname.endsWith(`/partitions/${partitionName}`) && (
+        (location.pathname.endsWith(`/partition/${partitionName}`) ||
+          location.pathname.endsWith(`/partitions/${partitionName}`)) && (
           <div className="nasha-dashboard-partition-general-information">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
               {/* Information Tile */}
@@ -110,18 +129,25 @@ export default function PartitionPage() {
                     <Tile.Item.Description>{partition.partitionName}</Tile.Item.Description>
                   </Tile.Item.Root>
                   <Tile.Item.Root>
-                    <Tile.Item.Term
-                      label={t('nasha_dashboard_partition_information_description', {
-                        defaultValue: 'Description',
-                      })}
-                      actions={
-                        <ActionMenu compact placement="end">
-                          <ActionMenu.Item onClick={handleEditDescription}>
-                            {t('nasha_dashboard_partition_edit', { defaultValue: 'Edit' })}
-                          </ActionMenu.Item>
-                        </ActionMenu>
-                      }
-                    />
+                        <Tile.Item.Term
+                          label={t('nasha_dashboard_partition_information_description', {
+                            defaultValue: 'Description',
+                          })}
+                          actions={
+                            <ActionMenu
+                              id="edit-description-menu"
+                              isCompact
+                              popoverPosition="end"
+                              items={[
+                                {
+                                  id: 1,
+                                  label: t('nasha_dashboard_partition_edit', { defaultValue: 'Edit' }),
+                                  onClick: handleEditDescription,
+                                },
+                              ]}
+                            />
+                          }
+                        />
                     <Tile.Item.Description>
                       {partition.partitionDescription || (
                         <em className="text-gray-500">
@@ -141,18 +167,25 @@ export default function PartitionPage() {
                     <Tile.Item.Description>{partition.protocol}</Tile.Item.Description>
                   </Tile.Item.Root>
                   <Tile.Item.Root>
-                    <Tile.Item.Term
-                      label={t('nasha_dashboard_partition_information_size', {
-                        defaultValue: 'Size',
-                      })}
-                      actions={
-                        <ActionMenu compact placement="end">
-                          <ActionMenu.Item onClick={handleEditSize}>
-                            {t('nasha_dashboard_partition_edit', { defaultValue: 'Edit' })}
-                          </ActionMenu.Item>
-                        </ActionMenu>
-                      }
-                    />
+                        <Tile.Item.Term
+                          label={t('nasha_dashboard_partition_information_size', {
+                            defaultValue: 'Size',
+                          })}
+                          actions={
+                            <ActionMenu
+                              id="edit-size-menu"
+                              isCompact
+                              popoverPosition="end"
+                              items={[
+                                {
+                                  id: 2,
+                                  label: t('nasha_dashboard_partition_edit', { defaultValue: 'Edit' }),
+                                  onClick: handleEditSize,
+                                },
+                              ]}
+                            />
+                          }
+                        />
                     <Tile.Item.Description>
                       {partition.use?.size && (
                         <>

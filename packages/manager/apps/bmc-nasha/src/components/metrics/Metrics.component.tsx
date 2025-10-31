@@ -115,12 +115,13 @@ export function Metrics({
                   <Button
                     variant="link"
                     size="m"
-                    iconRight={ICON_NAME.arrowRight}
                     onClick={handleRenewClick}
                     href={urlRenew}
                     target="_top"
+                    className="flex items-center gap-2"
                   >
                     {t('nasha_components_metrics_renew', { defaultValue: 'Renew' })}
+                    <Icon name={ICON_NAME.arrowRight} aria-hidden={true} />
                   </Button>
                 </div>
               </dd>
@@ -132,7 +133,7 @@ export function Metrics({
               <dd className="flex items-center gap-2">
                 <Switch
                   checked={monitored}
-                  onCheckedChange={handleMonitoredChange}
+                  onChange={handleMonitoredChange}
                   disabled={monitoredDisabled || isMonitoredUpdating}
                   aria-label={t('nasha_components_metrics_space_usage', {
                     defaultValue: 'Space usage notification',

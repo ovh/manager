@@ -82,6 +82,41 @@ export default (
           },
         }}
       >
+        {/* Direct partition route - matches AngularJS /partition/:partitionName */}
+        <Route
+          path="partition/:partitionName/*"
+          Component={PartitionPage}
+          handle={{
+            tracking: {
+              pageName: 'partition-detail',
+              pageType: PageType.listing,
+            },
+          }}
+        >
+          {/* Snapshots sub-route */}
+          <Route
+            path="snapshots"
+            Component={SnapshotsPage}
+            handle={{
+              tracking: {
+                pageName: 'snapshots',
+                pageType: PageType.listing,
+              },
+            }}
+          />
+          {/* Accesses sub-route */}
+          <Route
+            path="accesses"
+            Component={AccessesPage}
+            handle={{
+              tracking: {
+                pageName: 'accesses',
+                pageType: PageType.listing,
+              },
+            }}
+          />
+        </Route>
+
         {/* Partitions sub-route */}
         <Route
           path="partitions"
@@ -93,7 +128,7 @@ export default (
             },
           }}
         >
-          {/* Partition detail sub-route */}
+          {/* Partition detail sub-route - matches AngularJS /partitions/:partitionName */}
           <Route
             path=":partitionName/*"
             Component={PartitionPage}

@@ -65,11 +65,18 @@ export default function AccessesPage() {
       id: 'actions',
       header: '',
       cell: ({ row }) => (
-        <ActionMenu compact placement="end">
-          <ActionMenu.Item onClick={() => handleDeleteClick(row.original.ip)}>
-            {t('nasha_dashboard_partition_accesses_delete', { defaultValue: 'Delete' })}
-          </ActionMenu.Item>
-        </ActionMenu>
+        <ActionMenu
+          id={`delete-access-${row.original.ip}`}
+          isCompact
+          popoverPosition="end"
+          items={[
+            {
+              id: 1,
+              label: t('nasha_dashboard_partition_accesses_delete', { defaultValue: 'Delete' }),
+              onClick: () => handleDeleteClick(row.original.ip),
+            },
+          ]}
+        />
       ),
       enableHiding: false,
     },

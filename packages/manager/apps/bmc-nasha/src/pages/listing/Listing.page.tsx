@@ -44,7 +44,7 @@ export default function ListingPage() {
 
   const handleServiceClick = (serviceName: string) => {
     trackClick({ actions: ['listing::service-link'] });
-    navigate(`/${serviceName}`);
+    navigate(`../${serviceName}`);
   };
 
   const handleSearch = (value: string) => {

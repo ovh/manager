@@ -10,6 +10,7 @@ export const NASHA_DEFAULT_ZFS_OPTIONS = {
 
 export const PREFIX_TRACKING_NASHA = 'nasha';
 export const PREFIX_TRACKING_DASHBOARD = 'dashboard';
+export const PREFIX_TRACKING_DASHBOARD_PARTITIONS = `${PREFIX_TRACKING_DASHBOARD}::nasha-partitions`;
 export const SERVICE_TYPE = 'DEDICATED_NASHA';
 
 export const SIZE_MIN = 10; // Minimum partition size in GB

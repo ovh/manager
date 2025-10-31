@@ -6,13 +6,11 @@ import {
   ChangelogMenu,
   GuideMenu,
   Tile,
-  Tabs,
-  TabList,
-  Tab,
   ActionMenu,
   ICON_NAME,
   Icon,
 } from '@ovh-ux/muk';
+import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useNashaDetail, useServiceInfo, useCanCreatePartitions } from '@/data/api/hooks/useNashaDetail';
@@ -92,27 +90,35 @@ export default function DashboardPage() {
         ),
         subtitle: serviceName,
         tabs: (
-          <Tabs>
-            <TabList>
-              <Tab
-                to={serviceName || ''}
-                isActive={
-                  location.pathname.endsWith(`/${serviceName}`) ||
-                  (location.pathname.includes(`/${serviceName}`) &&
-                    !location.pathname.includes('/partitions') &&
-                    !location.pathname.includes('/edit-name'))
+          <div className="border-b border-gray-200">
+            <nav className="flex space-x-8" aria-label="Tabs">
+              <NavLink
+                to={`/${serviceName}`}
+                end
+                className={({ isActive }) =>
+                  `py-4 px-1 border-b-2 font-medium text-sm ${
+                    isActive
+                      ? 'border-blue-500 text-blue-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`
                 }
               >
                 {t('nasha_dashboard_tab_general_information', { defaultValue: 'General Information' })}
-              </Tab>
-              <Tab
-                to={`${serviceName}/partitions`}
-                isActive={location.pathname.includes('/partitions')}
+              </NavLink>
+              <NavLink
+                to={`/${serviceName}/partitions`}
+                className={({ isActive }) =>
+                  `py-4 px-1 border-b-2 font-medium text-sm ${
+                    isActive
+                      ? 'border-blue-500 text-blue-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`
+                }
               >
                 {t('nasha_dashboard_tab_partitions', { defaultValue: 'Partitions' })}
-              </Tab>
-            </TabList>
-          </Tabs>
+              </NavLink>
+            </nav>
+          </div>
         ),
       }}
     >
@@ -130,11 +136,18 @@ export default function DashboardPage() {
                   <Tile.Item.Term
                     label={t('nasha_dashboard_information_name', { defaultValue: 'Name' })}
                     actions={
-                      <ActionMenu compact placement="end">
-                        <ActionMenu.Item onClick={handleEditName}>
-                          {t('nasha_dashboard_edit', { defaultValue: 'Edit' })}
-                        </ActionMenu.Item>
-                      </ActionMenu>
+                      <ActionMenu
+                        id="edit-name-menu"
+                        isCompact
+                        popoverPosition="end"
+                        items={[
+                          {
+                            id: 1,
+                            label: t('nasha_dashboard_edit', { defaultValue: 'Edit' }),
+                            onClick: handleEditName,
+                          },
+                        ]}
+                      />
                     }
                   />
                   <Tile.Item.Description>{name}</Tile.Item.Description>
@@ -174,12 +187,12 @@ export default function DashboardPage() {
                     <Button
                       variant="link"
                       size="m"
-                      iconRight={ICON_NAME.arrowRight}
                       disabled={!canCreatePartitions}
                       onClick={handleGoToPartitionsCreate}
-                      className="mt-2"
+                      className="mt-2 flex items-center gap-2"
                     >
                       {t('nasha_dashboard_configuration_link', { defaultValue: 'Manage partitions' })}
+                      <Icon name={ICON_NAME.arrowRight} aria-hidden={true} />
                     </Button>
                   </Tile.Item.Description>
                 </Tile.Item.Root>
