@@ -6,8 +6,8 @@ import {
   createRoutesFromElements,
 } from 'react-router-dom';
 import secretManagerRoutes from '@secret-manager/routes/routes';
-import Loading from '@key-management-service/components/Loading/Loading';
 import kmsRoutes from '@key-management-service/routes/routes';
+import Loading from '@/common/components/loading/Loading';
 
 export function TestApp({ initialRoute = '/' }: { initialRoute: string }) {
   const router = createMemoryRouter(
