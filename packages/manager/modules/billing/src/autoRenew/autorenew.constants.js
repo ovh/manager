@@ -108,7 +108,6 @@ export const SERVICE_INFOS_URLS_BY_TYPE = {
   CDN_DEDICATED: `/cdn/dedicated/${SERVICE_NAME_PLACEHOLDER}/serviceInfos`,
   CDN_WEBSITE: `/cdn/website/${SERVICE_NAME_PLACEHOLDER}/serviceInfos`,
   CDN_WEBSTORAGE: `/cdn/webstorage/${SERVICE_NAME_PLACEHOLDER}/serviceInfos`,
-  DEDICATED_ANTHOS: `/dedicated/anthos/tenants/${SERVICE_NAME_PLACEHOLDER}/serviceInfos`,
   DEDICATED_NAS: `/dedicated/nas/${SERVICE_NAME_PLACEHOLDER}/serviceInfos`,
   DEDICATED_NASHA: `/dedicated/nasha/${SERVICE_NAME_PLACEHOLDER}/serviceInfos`,
   DEDICATED_SERVER: `/dedicated/server/${SERVICE_NAME_PLACEHOLDER}/serviceInfos`,

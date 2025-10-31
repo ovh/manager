@@ -13,8 +13,6 @@
   "server_sidebar_item_dedicatedServers_title": "Server dedicati",
   "server_sidebar_item_managedBaremetal_title": "Managed Bare Metal",
   "server_sidebar_item_dedicatedClouds_title": "VMware",
-  "server_sidebar_item_anthos_title": "Anthos",
-  "server_sidebar_item_anthos_all_title": "Tutte le tue installazioni",
   "server_sidebar_item_networks_title": "NAS e CDN",
   "server_sidebar_item_licences_title": "Licenze",
   "server_sidebar_item_ip_title": "IP",

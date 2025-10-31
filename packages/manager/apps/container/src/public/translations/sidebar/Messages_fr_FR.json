@@ -35,7 +35,6 @@
   "sidebar_vmware_vsphere": "Managed VMware vSphere",
   "sidebar_vmware_vcd": "Public VCF as-a-Service",
   "sidebar_vmware_all": "Tous mes services",
-  "sidebar_anthos_all": "Tous mes déploiements",
   "sidebar_nutanix": "Nutanix",
   "sidebar_cluster_all": "Tous mes clusters",
   "sidebar_platforms": "Plateformes",

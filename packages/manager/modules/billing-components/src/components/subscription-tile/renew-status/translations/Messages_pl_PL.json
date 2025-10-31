@@ -1,0 +1,13 @@
+{
+  "manager_billing_service_status": "Status",
+  "manager_billing_service_status_auto": "Automatyczne odnowienie",
+  "manager_billing_service_status_automatic": "Automatyczne odnowienie",
+  "manager_billing_service_status_manual": "Ręczne odnawianie",
+  "manager_billing_service_status_manualPayment": "Ręczne odnawianie",
+  "manager_billing_service_status_pending_debt": "Problem z płatnością",
+  "manager_billing_service_status_delete_at_expiration": "Zaplanowane rozwiązanie",
+  "manager_billing_service_status_expired": "Rozwiązany",
+  "manager_billing_service_status_billing_suspended": "Fakturowanie opóźnione",
+  "manager_billing_service_status_forced_manual": "Wymuszone ręczne odnawianie",
+  "manager_billing_service_status_restorable": "Możliwe do przywrócenia"
+}
