@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { useSearchParams } from 'react-router-dom';
-
+import { UseQueryResult } from '@tanstack/react-query';
 import { describe, expect, vi } from 'vitest';
 
-import { organizationMock } from '@/data/api';
+import { OrganizationType, organizationMock } from '@/data/api';
+import * as hooks from '@/data/hooks';
 import { render, waitFor } from '@/utils/test.provider';
 
 import GeneralInformations from './GeneralInformations.page';
@@ -25,12 +25,10 @@ describe('General Informations page', () => {
   });
 
   it('should display organization status', async () => {
-    vi.mocked(useSearchParams).mockReturnValue([
-      new URLSearchParams({
-        organizationId: organizationMock.id,
-      }),
-      vi.fn(),
-    ]);
+    vi.spyOn(hooks, 'useOrganization').mockReturnValue({
+      data: organizationMock,
+      isLoading: false,
+    } as UseQueryResult<OrganizationType>);
 
     const { getByTestId } = render(<GeneralInformations />);
     const title = getByTestId('status');

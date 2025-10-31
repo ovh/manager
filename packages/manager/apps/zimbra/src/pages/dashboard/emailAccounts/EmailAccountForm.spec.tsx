@@ -7,6 +7,8 @@ import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 import { describe, expect, vi } from 'vitest';
 
+import actionsCommonTranslation from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/actions/Messages_fr_FR.json';
+
 import { accountMock, platformMock } from '@/data/api';
 import { act, render, waitFor } from '@/utils/test.provider';
 import { OdsHTMLElement } from '@/utils/test.utils';
@@ -21,7 +23,7 @@ describe('email account add and edit form', () => {
       expect(queryByTestId('spinner')).toBeNull();
     });
 
-    expect(getByTestId('confirm-btn')).toHaveAttribute('label', 'confirm');
+    expect(getByTestId('confirm-btn')).toHaveAttribute('label', actionsCommonTranslation.confirm);
   });
 
   it('should be in edit mode if accountId', async () => {
@@ -35,7 +37,7 @@ describe('email account add and edit form', () => {
     await waitFor(() => {
       expect(queryByTestId('spinner')).toBeNull();
     });
-    expect(getByTestId('confirm-btn')).toHaveAttribute('label', 'save');
+    expect(getByTestId('confirm-btn')).toHaveAttribute('label', actionsCommonTranslation.save);
   });
 
   // @TODO: find why this test is inconsistent

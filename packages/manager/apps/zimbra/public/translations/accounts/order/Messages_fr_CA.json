@@ -1,7 +1,7 @@
 {
   "zimbra_account_order_cta_back": "Retour vers mes comptes email",
   "zimbra_account_order_title": "Commander vos comptes Zimbra",
-  "zimbra_account_order_subtitle": "Choisissez vos comptes Zimbra",
+  "zimbra_account_order_subtitle": "Veuillez choisir le nombre de comptes puis le type de paiement à commander.",
   "zimbra_account_order_subtitle_commitment": "Durée de l'engagement",
   "zimbra_account_order_legal_checkbox": "J’accepte qu’OVH mette en place le service immédiatement après validation de ma commande, et je renonce donc expressément à mon droit d’annulation au titre des dispositions de l’article L.121-21-8 du code de la consommation.",
   "zimbra_account_order_no_product_error_message": "Il y a eu un problème lors du chargement du produit lié à votre commande, veuillez nous excuser et réessayer ultérieurement.",
