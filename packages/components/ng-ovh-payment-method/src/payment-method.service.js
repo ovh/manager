@@ -3,7 +3,7 @@ import { useOvhPaymentMethod } from '@ovh-ux/ovh-payment-method';
 
 export default class OvhPaymentMethodService {
   /* @ngInject */
-  constructor($q, coreConfig, paymentMethodPageUrl, userLocale) {
+  constructor($q, coreConfig, paymentMethodPageUrl) {
     const ovhPaymentMethodReketInstance = useReket(false);
     const responseSuccessHook = (response) => $q.when(response);
 
@@ -25,7 +25,7 @@ export default class OvhPaymentMethodService {
 
     this.$q = $q;
     this.paymentMethodPageUrl = paymentMethodPageUrl;
-    this.userLocale = userLocale;
+    this.userLocale = coreConfig.getUserLocale();
   }
 
   getUserLocale() {
