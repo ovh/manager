@@ -14,13 +14,13 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
 import { useGetOkmsOrderLink } from '@key-management-service/pages/create/useGetOkmsOrderLink';
-import KmsGuidesHeader from '@key-management-service/components/Guide/KmsGuidesHeader';
-import Breadcrumb from '@key-management-service/components/Breadcrumb/Breadcrumb';
+import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
+import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
 import {
   KMS_ROUTES_URIS,
   KMS_ROUTES_URLS,
 } from '@key-management-service/routes/routes.constants';
-import { RegionPicker } from '@/common/components/regionPicker/RegionPicker.component';
+import { RegionPicker } from '@/common/components/region-picker/RegionPicker.component';
 import { KMS_LABEL } from '@/constants';
 
 export default function CreateKmsPage() {

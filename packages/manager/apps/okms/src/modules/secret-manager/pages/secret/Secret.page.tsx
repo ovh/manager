@@ -20,14 +20,14 @@ import {
   RootBreadcrumbItem,
   SecretBreadcrumbItem,
 } from '@secret-manager/components/breadcrumb';
-import { SecretManagerChangelogButton } from '@secret-manager/components/secretManagerChangelogButton/SecretManagerChangelogButton.component';
+import { SecretManagerChangelogButton } from '@secret-manager/components/secret-manager-changelog-button/SecretManagerChangelogButton.component';
 import Loading from '@/common/components/loading/Loading';
 import { SecretPageOutletContext } from './Secret.type';
 import { decodeSecretPath } from '@/modules/secret-manager/utils/secretPath';
 import {
   TabNavigation,
   TabNavigationItem,
-} from '@/common/components/tabNavigation/TabNavigation.component';
+} from '@/common/components/tab-navigation/TabNavigation.component';
 
 export default function SecretPage() {
   const { okmsId, secretPath } = useParams<LocationPathParams>();

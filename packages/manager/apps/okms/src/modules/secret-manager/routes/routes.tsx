@@ -17,31 +17,31 @@ const Onboarding = React.lazy(() =>
   import('@/modules/secret-manager/pages/onboarding/Onboarding.page'),
 );
 const OkmsList = React.lazy(() =>
-  import('@/modules/secret-manager/pages/okmsList/OkmsList.page'),
+  import('@/modules/secret-manager/pages/okms-list/OkmsList.page'),
 );
 
 const OkmsDashboard = React.lazy(() =>
-  import('@secret-manager/pages/okmsDashboard/OkmsDashboard.page'),
+  import('@secret-manager/pages/okms-dashboard/OkmsDashboard.page'),
 );
 
 const OkmsUpdateNameModal = React.lazy(() =>
   import(
-    '@secret-manager/pages/okmsDashboard/okmsUpdateNameModal/OkmsUpdateNameModal.page'
+    '@secret-manager/pages/okms-dashboard/okms-update-name-modal/OkmsUpdateNameModal.page'
   ),
 );
 
 const OkmsTerminateModal = React.lazy(() =>
   import(
-    '@secret-manager/pages/okmsDashboard/okmsTerminateModal/OkmsTerminateModal.page'
+    '@secret-manager/pages/okms-dashboard/okms-terminate-modal/OkmsTerminateModal.page'
   ),
 );
 
 const SecretList = React.lazy(() =>
-  import('@/modules/secret-manager/pages/secretList/SecretList.page'),
+  import('@/modules/secret-manager/pages/secret-list/SecretList.page'),
 );
 const DeleteSecretModal = React.lazy(() =>
   import(
-    '@/modules/secret-manager/pages/modals/deleteSecretModal/DeleteSecretModal.page'
+    '@/modules/secret-manager/pages/modals/delete-secret-modal/DeleteSecretModal.page'
   ),
 );
 const Secret = React.lazy(() =>
@@ -49,37 +49,37 @@ const Secret = React.lazy(() =>
 );
 const SecretGeneralInformation = React.lazy(() =>
   import(
-    '@/modules/secret-manager/pages/secret/generalInformation/GeneralInformation.page'
+    '@/modules/secret-manager/pages/secret/general-information/GeneralInformation.page'
   ),
 );
 const SecretVersionList = React.lazy(() =>
-  import('@/modules/secret-manager/pages/secret/versionList/VersionList.page'),
+  import('@/modules/secret-manager/pages/secret/version-list/VersionList.page'),
 );
 const SecretValueDrawer = React.lazy(() =>
   import(
-    '@secret-manager/pages/drawers/secretValueDrawer/SecretValueDrawer.page'
+    '@secret-manager/pages/drawers/secret-value-drawer/SecretValueDrawer.page'
   ),
 );
 const CreateVersionDrawer = React.lazy(() =>
   import(
-    '@secret-manager/pages/drawers/createVersionDrawer/CreateVersionDrawer.page'
+    '@secret-manager/pages/drawers/create-version-drawer/CreateVersionDrawer.page'
   ),
 );
 const EditMetadataDrawer = React.lazy(() =>
   import(
-    '@secret-manager/pages/drawers/editMetadataDrawer/EditMetadataDrawer.page'
+    '@secret-manager/pages/drawers/edit-metadata-drawer/EditMetadataDrawer.page'
   ),
 );
 const DeleteVersionModal = React.lazy(() =>
   import(
-    '@secret-manager/pages/secret/versionList/delete/DeleteSecretVersionModal.page'
+    '@secret-manager/pages/secret/version-list/delete/DeleteSecretVersionModal.page'
   ),
 );
 const CreateSecret = React.lazy(() =>
-  import('@/modules/secret-manager/pages/createSecret/CreateSecret.page'),
+  import('@/modules/secret-manager/pages/create-secret/CreateSecret.page'),
 );
 const OrderOkmsModal = React.lazy(() =>
-  import('@/common/pages/OrderOkmsModal/OrderOkmsModal.page'),
+  import('@/common/pages/order-okms-modal/OrderOkmsModal.page'),
 );
 
 export default (
