@@ -1,4 +1,4 @@
-import odsPlugin from '@datatr-ux/ods-tailwind-config';
+import odsPreset from '@datatr-ux/uxlib/tailwind.preset';
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -6,21 +6,12 @@ module.exports = {
     './src/**/*.{js,jsx,ts,tsx}',
     '../../../../node_modules/@datatr-ux/uxlib/**/*.{js,jsx,ts,tsx}',
   ],
+  presets: [odsPreset],
   theme: {
-    extend: {
-      colors: {
-        // Override colors for ODS17 theme
-        'primary-50': '#f5feff',
-        heading: '#4d5693',
-      },
-      borderRadius: {
-        // Override radiuses for ODS17 theme
-        sm: '0.25rem',
-        DEFAULT: '0.25rem',
-        md: '0.5rem',
-        lg: '0.5rem',
-      },
-    },
+    extend: {},
   },
-  plugins: [odsPlugin],
+  plugins: [],
+  corePlugins: {
+    preflight: false,
+  },
 };

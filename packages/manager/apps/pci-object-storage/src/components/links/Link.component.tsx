@@ -11,7 +11,7 @@ function Link({
 }: LinkProps & { disabled?: boolean }) {
   const { setLoading } = useLoadingIndicatorContext();
   const baseClassName =
-    'text-primary-500 font-semibold outiline-none cursor-pointer no-underline hover:text-primary-700 hover:underline';
+    'text-primary-500 font-semibold outiline-none cursor-pointer no-underline hover:text-primary-700 hover:underline no-underline';
   const disabledClass = 'opacity-50 cursor-not-allowed hover:text-primary-500';
   const combinedClassName = cn(
     baseClassName,
