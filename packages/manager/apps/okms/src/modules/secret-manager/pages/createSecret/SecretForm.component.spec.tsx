@@ -13,10 +13,10 @@ import {
 import { SECRET_FORM_TEST_IDS } from '@secret-manager/pages/createSecret/SecretForm.constants';
 import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
 import { render, screen } from '@testing-library/react';
-import { labels, initTestI18n } from '@/utils/tests/init.i18n';
+import { labels, initTestI18n } from '@/common/utils/tests/init.i18n';
 import { SecretForm } from './SecretForm.component';
 import { SECRET_DATA_TEMPLATE } from './SecretForm.constants';
-import { changeOdsInputValueByTestId } from '@/utils/tests/uiTestHelpers';
+import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
 
 let i18nValue: i18n;
 

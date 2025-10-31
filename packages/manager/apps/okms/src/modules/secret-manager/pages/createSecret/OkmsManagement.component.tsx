@@ -10,7 +10,7 @@ import {
   OdsSpinner,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { useOkmsList } from '@/data/hooks/useOkms';
+import { useOkmsList } from '@key-management-service/data/hooks/useOkms';
 import { OkmsSelector } from './OkmsSelector.component';
 import { RegionPicker } from '@/common/components/regionPicker/RegionPicker.component';
 import { useOrderOkmsModalContext } from '@/common/pages/OrderOkmsModal/OrderOkmsModalContext';

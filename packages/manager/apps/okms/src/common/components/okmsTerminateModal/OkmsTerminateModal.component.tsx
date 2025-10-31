@@ -15,7 +15,7 @@ import {
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { okmsQueryKeys } from '@/data/api/okms';
+import { okmsQueryKeys } from '@key-management-service/data/api/okms';
 import { useShellContext } from '@/common/hooks/useShellContext';
 
 type OkmsTerminateModalProps = {

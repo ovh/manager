@@ -25,9 +25,9 @@ import { SECRET_VALUE_DRAWER_TEST_ID } from './SecretValueDrawer.constants';
 import {
   renderTestApp,
   RenderTestMockParams,
-} from '@/utils/tests/renderTestApp';
-import { labels } from '@/utils/tests/init.i18n';
-import { changeOdsInputValueByTestId } from '@/utils/tests/uiTestHelpers';
+} from '@/common/utils/tests/renderTestApp';
+import { labels } from '@/common/utils/tests/init.i18n';
+import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
 
 const mockOkmsId = '12345';
 const mockSecret = secretListMock[0];

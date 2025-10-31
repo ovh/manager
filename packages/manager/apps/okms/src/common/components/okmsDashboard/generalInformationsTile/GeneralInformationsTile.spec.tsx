@@ -1,11 +1,11 @@
 import { screen } from '@testing-library/react';
 import React from 'react';
 import { vi } from 'vitest';
+import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
 import { GeneralInformationsTile } from './GeneralInformationsTile.component';
-import { okmsMock } from '@/mocks/kms/okms.mock';
 import { GENERAL_INFORMATIONS_TILE_TEST_IDS } from './GeneralInformationsTile.constants';
-import { labels } from '@/utils/tests/init.i18n';
-import { renderWithI18n } from '@/utils/tests/testUtils';
+import { labels } from '@/common/utils/tests/init.i18n';
+import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
 vi.mock('./items/NameTileItem.component', async (original) => ({
   ...(await original()),

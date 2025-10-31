@@ -6,10 +6,10 @@ import {
   createHashRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
+import kmsRoutes from '@key-management-service/routes/routes';
 import secretManagerRoutes from '@secret-manager/routes/routes';
-import rootRoutes from '@/routes/rootRoutes';
-import kmsRoutes from '@/routes/routes';
-import Loading from '@/components/Loading/Loading';
+import Loading from '@/common/components/loading/Loading';
+import rootRoutes from '@/common/routes/routes';
 import { useShellContext } from '@/common/hooks/useShellContext';
 
 const queryClient = new QueryClient({

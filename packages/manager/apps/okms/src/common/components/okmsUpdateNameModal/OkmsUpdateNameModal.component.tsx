@@ -3,8 +3,8 @@ import { UpdateNameModal } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useUpdateOkmsName } from '@/data/hooks/useUpdateOkmsName';
-import { OKMS } from '@/types/okms.type';
+import { useUpdateOkmsName } from '@key-management-service/data/hooks/useUpdateOkmsName';
+import { OKMS } from '@key-management-service/types/okms.type';
 
 type OkmsUpdateNameModalProps = {
   okms: OKMS;

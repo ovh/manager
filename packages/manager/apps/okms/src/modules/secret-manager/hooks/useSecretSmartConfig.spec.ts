@@ -8,13 +8,13 @@ import {
   SecretSmartConfig,
   buildSecretSmartConfig,
 } from '@secret-manager/utils/secretSmartConfig';
-import { okmsRoubaix1Mock } from '@/mocks/kms/okms.mock';
-import { REGION_EU_WEST_RBX } from '@/mocks/catalog/catalog.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
+import { REGION_EU_WEST_RBX } from '@key-management-service/mocks/catalog/catalog.mock';
 import { useSecretSmartConfig } from './useSecretSmartConfig';
 import {
   createErrorResponseMock,
   renderHookWithClient,
-} from '@/utils/tests/testUtils';
+} from '@/common/utils/tests/testUtils';
 
 // Mock react-router-dom
 vi.mock('react-router-dom', () => ({
@@ -29,7 +29,7 @@ vi.mock('@secret-manager/hooks/useCurrentRegion', () => ({
 
 // Mock the useOkmsById hook
 const mockUseOkmsById = vi.fn();
-vi.mock('@/data/hooks/useOkms', () => ({
+vi.mock('@key-management-service/data/hooks/useOkms', () => ({
   useOkmsById: (domainId: string) => mockUseOkmsById(domainId),
 }));
 

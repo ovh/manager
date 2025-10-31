@@ -13,10 +13,10 @@ import {
 } from '@ovh-ux/manager-core-test-utils';
 import * as secretVersionsApi from '@secret-manager/data/api/secretVersions';
 import { getSecretMockWithData } from '@secret-manager/mocks/secrets/secretsMock.utils';
-import { okmsRoubaix1Mock } from '@/mocks/kms/okms.mock';
-import { renderTestApp } from '@/utils/tests/renderTestApp';
-import { labels } from '@/utils/tests/init.i18n';
-import { changeOdsInputValueByTestId } from '@/utils/tests/uiTestHelpers';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { labels } from '@/common/utils/tests/init.i18n';
+import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
 import { CREATE_VERSION_DRAWER_TEST_IDS } from './CreateVersionDrawer.constants';
 
 const mockOkmsId = okmsRoubaix1Mock.id;

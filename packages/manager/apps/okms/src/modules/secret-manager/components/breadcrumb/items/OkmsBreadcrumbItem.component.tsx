@@ -6,8 +6,8 @@ import {
   SECRET_MANAGER_ROUTES_URLS,
 } from '@secret-manager/routes/routes.constants';
 import { isLocationParamsDefined } from '@secret-manager/utils/locationParams';
+import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { BREADCRUMB_ITEM_TEST_IDS } from './BreadcrumbItem.constants';
-import { useOkmsById } from '@/data/hooks/useOkms';
 
 const Item = ({ okmsId }: { okmsId: string }) => {
   const navigate = useNavigate();

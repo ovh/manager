@@ -14,7 +14,7 @@ import {
 } from '@secret-manager/routes/routes.constants';
 import { Link } from '@/common/components/Link/Link.component';
 import { useFormatDate } from '@/common/hooks/useFormatDate';
-import { kmsIamActions } from '@/utils/iam/iam.constants';
+import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 import { SECRET_LIST_CELL_TEST_IDS } from './ListingCells.constant';
 
 export const DatagridCellPath = (secret: Secret) => {

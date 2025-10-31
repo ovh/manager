@@ -1,20 +1,20 @@
 import { waitFor } from '@testing-library/react';
 import { describe, it, vi, beforeEach } from 'vitest';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { getOkmsList } from '@/data/api/okms';
-import {
-  promiseWithDelayMock,
-  renderHookWithClient,
-} from '@/utils/tests/testUtils';
-import { OKMS } from '@/types/okms.type';
-import { REGION_EU_WEST_RBX } from '@/mocks/catalog/catalog.mock';
-import { ErrorResponse } from '@/types/api.type';
-import { useBackToOkmsListUrl } from './useBackToOkmsListUrl';
+import { getOkmsList } from '@key-management-service/data/api/okms';
+import { REGION_EU_WEST_RBX } from '@key-management-service/mocks/catalog/catalog.mock';
 import {
   okmsRoubaix1Mock,
   okmsRoubaix2Mock,
   okmsStrasbourg1Mock,
-} from '@/mocks/kms/okms.mock';
+} from '@key-management-service/mocks/kms/okms.mock';
+import { OKMS } from '@key-management-service/types/okms.type';
+import {
+  promiseWithDelayMock,
+  renderHookWithClient,
+} from '@/common/utils/tests/testUtils';
+import { ErrorResponse } from '@/common/types/api.type';
+import { useBackToOkmsListUrl } from './useBackToOkmsListUrl';
 
 // mocks
 vi.mock('react-router-dom', () => ({
@@ -23,8 +23,8 @@ vi.mock('react-router-dom', () => ({
   })),
 }));
 
-vi.mock('@/data/api/okms', async () => {
-  const actual = await vi.importActual('@/data/api/okms');
+vi.mock('@key-management-service/data/api/okms', async () => {
+  const actual = await vi.importActual('@key-management-service/data/api/okms');
   return {
     ...actual,
     getOkmsList: vi.fn(),

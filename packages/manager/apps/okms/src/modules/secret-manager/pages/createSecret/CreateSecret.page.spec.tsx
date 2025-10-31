@@ -14,9 +14,9 @@ import userEvent, { UserEvent } from '@testing-library/user-event';
 import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import { createSecretErrorMessage } from '@secret-manager/mocks/secrets/secrets.handler';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { renderTestApp } from '@/utils/tests/renderTestApp';
-import { labels } from '@/utils/tests/init.i18n';
-import { catalogMock } from '@/mocks/catalog/catalog.mock';
+import { catalogMock } from '@key-management-service/mocks/catalog/catalog.mock';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { labels } from '@/common/utils/tests/init.i18n';
 
 /* TEST UTILS */
 const firstRegion = catalogMock.plans[0].configurations[0].values[0];

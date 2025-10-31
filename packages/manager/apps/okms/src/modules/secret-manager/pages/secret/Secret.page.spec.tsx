@@ -9,10 +9,10 @@ import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import userEvent from '@testing-library/user-event';
 import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/versionList';
-import { renderTestApp } from '@/utils/tests/renderTestApp';
-import { labels } from '@/utils/tests/init.i18n';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { labels } from '@/common/utils/tests/init.i18n';
 import { PATH_LABEL, URN_LABEL } from '@/constants';
-import { okmsRoubaix1Mock } from '@/mocks/kms/okms.mock';
 
 const mockOkmsId = okmsRoubaix1Mock.id;
 const mockSecret = mockSecret1;

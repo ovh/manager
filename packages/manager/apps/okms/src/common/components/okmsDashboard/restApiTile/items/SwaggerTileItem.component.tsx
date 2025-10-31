@@ -5,7 +5,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { ManagerTile, Links, LinkType } from '@ovh-ux/manager-react-components';
-import { OKMS } from '@/types/okms.type';
+import { OKMS } from '@key-management-service/types/okms.type';
 import { SWAGGER_UI_LABEL } from '@/constants';
 
 type SwaggerTileItemProps = {

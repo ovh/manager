@@ -1,15 +1,15 @@
 import { screen } from '@testing-library/react';
 import React from 'react';
 import { vi } from 'vitest';
-import { okmsMock } from '@/mocks/kms/okms.mock';
+import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
 import { KmipEndpointTileItem } from './KmipEndpointTileItem.component';
 import { ENPOINT_LABEL } from '@/constants';
-import { getOdsClipboardByValue } from '@/utils/tests/uiTestHelpers';
+import { getOdsClipboardByValue } from '@/common/utils/tests/uiTestHelpers';
 import {
   DownloadOkmsPublicCaLink,
   DownloadOkmsPublicCaLinkProps,
 } from '@/common/components/downloadOkmsPublicCaLink/DownloadOkmsPublicCaLink';
-import { renderWithI18n } from '@/utils/tests/testUtils';
+import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
 const okmsMocked = okmsMock[0];
 

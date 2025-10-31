@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { ErrorResponse } from '@/types/api.type';
+import { ErrorResponse } from '@/common/types/api.type';
 import {
   deleteSecret,
   DeleteSecretParams,

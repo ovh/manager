@@ -1,6 +1,6 @@
 import { Handler } from '@ovh-ux/manager-core-test-utils';
 import { mockSecretConfigReference } from './secretReference.mock';
-import { buildMswResponseMock } from '@/utils/tests/msw';
+import { buildMswResponseMock } from '@/common/utils/tests/msw';
 
 export type GetSecretConfigReferenceMockParams = {
   isSecretConfigReferenceKO?: boolean;

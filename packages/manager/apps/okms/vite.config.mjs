@@ -10,6 +10,9 @@ export default defineConfig({
       '@secret-manager': resolve(
         join(process.cwd(), 'src/modules/secret-manager'),
       ),
+      '@key-management-service': resolve(
+        join(process.cwd(), 'src/modules/key-management-service'),
+      ),
     },
   },
   root: resolve(process.cwd()),

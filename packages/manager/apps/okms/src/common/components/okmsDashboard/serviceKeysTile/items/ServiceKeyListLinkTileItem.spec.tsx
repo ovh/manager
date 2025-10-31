@@ -3,11 +3,11 @@ import React from 'react';
 import { vi } from 'vitest';
 import { LinksProps, LinkType } from '@ovh-ux/manager-react-components';
 import userEvent from '@testing-library/user-event';
-import { okmsMock } from '@/mocks/kms/okms.mock';
-import { labels } from '@/utils/tests/init.i18n';
+import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+import { labels } from '@/common/utils/tests/init.i18n';
 import { ServiceKeyListLinkTileItem } from './ServiceKeyListLinkTileItem.component';
-import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
-import { renderWithI18n } from '@/utils/tests/testUtils';
+import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
 const okmsMocked = okmsMock[0];
 
