@@ -20,9 +20,9 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
-import { KmsChangelogButton } from '@key-management-service/components/kmsChangelogButton/KmsChangelogButton.component';
-import Breadcrumb from '@key-management-service/components/Breadcrumb/Breadcrumb';
-import KmsGuidesHeader from '@key-management-service/components/Guide/KmsGuidesHeader';
+import { KmsChangelogButton } from '@key-management-service/components/kms-changelog-button/KmsChangelogButton.component';
+import Breadcrumb from '@key-management-service/components/breadcrumb/Breadcrumb';
+import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesHeader';
 import {
   getOkmsCredentialQueryKey,
   useOkmsCredentialById,
