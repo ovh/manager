@@ -1,6 +1,7 @@
 import {
   Card,
   CardContent,
+  CardFooter,
   CardHeader,
   Skeleton,
   Table,
@@ -15,7 +16,6 @@ import { useGetS3ObjectVersions } from '@/data/hooks/s3-storage/useGetS3ObjectVe
 import { useS3Data } from '../../S3.context';
 import { useGetS3Object } from '@/data/hooks/s3-storage/useGetS3Object.hook';
 import { octetConverter } from '@/lib/bytesHelper';
-import { getTotalVersionsSize } from '@/lib/s3ObjectHelper';
 import Link from '@/components/links/Link.component';
 import FileIcon from '@/components/fileIcon/FileIcon.component';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
@@ -114,71 +114,32 @@ const Object = () => {
           </CardContent>
         </Card>
 
-        <div className="space-y-2">
-          <Card>
-            <CardHeader>
-              <h5>
-                <FileStack className="size-4 inline mr-2" />
-                <span>{t('versionsTitle')}</span>
-              </h5>
-            </CardHeader>
-            <CardContent>
-              <Table>
-                <TableBody>
-                  <TableRow>
-                    <TableCell className="text-semibold">
-                      {t('versionsNumber')}
-                    </TableCell>
-                    <TableCell>{objectVersionQuery.data?.length}</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell className="text-semibold">
-                      {t('versionTotalSize')}
-                    </TableCell>
-                    <TableCell>
-                      {objectVersionQuery?.data?.length > 0 &&
-                        octetConverter(
-                          getTotalVersionsSize(objectVersionQuery?.data),
-                          true,
-                          2,
-                        )}
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-              <Link
-                to={`./versions?objectKey=${encodeURIComponent(objectKey)}`}
-                className="flex flex-row gap-1 mt-2 px-2"
-              >
-                {t('versionLink')}
-                <ArrowRight className="w-4 h-4 mt-1 text-primary" />
-              </Link>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <h5>
-                <Archive className="size-4 inline mr-2" />
-                <span>{t('tableHeaderStorageClass')}</span>
-              </h5>
-            </CardHeader>
-            <CardContent>
-              <p className="mb-2">
-                {tObj(`objectClass_${objectQuery.data.storageClass}`)}
-              </p>
-              <Link
-                to={`./change-storage-class?objectKey=${encodeURIComponent(
-                  objectKey,
-                )}`}
-                className="flex flex-row gap-1 mt-2"
-              >
-                {t('changeStorageClassLink')}
-                <ArrowRight className="w-4 h-4 mt-1 text-primary" />
-              </Link>
-            </CardContent>
-          </Card>
-        </div>
+        <Card>
+          <CardHeader>
+            <h5>
+              <Archive className="size-4 inline mr-2" />
+              <span>{t('tableHeaderStorageClass')}</span>
+            </h5>
+          </CardHeader>
+          <CardContent>
+            <p className="mb-2">
+              {tObj(`objectClass_${objectQuery.data.storageClass}`)}
+            </p>
+          </CardContent>
+          <CardFooter>
+            <Link
+              to={`./change-storage-class?objectKey=${encodeURIComponent(
+                objectKey,
+              )}`}
+              className="flex flex-row gap-1 mt-2"
+            >
+              {t('changeStorageClassLink')}
+              <ArrowRight className="w-4 h-4 mt-1 text-primary" />
+            </Link>
+          </CardFooter>
+        </Card>
       </div>
+
       <Outlet />
     </>
   );

@@ -1,4 +1,4 @@
-import { Outlet, redirect, useParams } from 'react-router-dom';
+import { Outlet, redirect, useParams, useMatches } from 'react-router-dom';
 import TabsMenu from '@/components/tabs-menu/TabsMenu.component';
 import { POLLING } from '@/configuration/polling.constants';
 import queryClient from '@/query.client';
@@ -41,9 +41,18 @@ export function breadcrumb() {
   return <S3Name />;
 }
 
+const HIDE_TABS_ROUTE_PATTERNS = ['s3.object.'];
+
+const shouldHideS3Tabs = (matches: ReturnType<typeof useMatches>): boolean => {
+  return matches.some((match) =>
+    HIDE_TABS_ROUTE_PATTERNS.some((pattern) => match.id?.startsWith(pattern)),
+  );
+};
+
 export default function S3Layout() {
   const { isUserActive } = useUserActivityContext();
   const { projectId, region, s3Name } = useParams();
+  const matches = useMatches();
   const s3Query = useGetS3({
     projectId,
     region,
@@ -52,6 +61,8 @@ export default function S3Layout() {
       refetchInterval: isUserActive && POLLING.S3,
     },
   });
+
+  const shouldHideTabs = shouldHideS3Tabs(matches);
 
   const s3 = s3Query.data;
   if (!s3) {
@@ -71,7 +82,7 @@ export default function S3Layout() {
   return (
     <>
       <S3Header s3={s3} />
-      <S3Tabs s3={s3} />
+      {!shouldHideTabs && <S3Tabs s3={s3} />}
       <div className="space-y-2">
         <Outlet context={s3LayoutContext} />
       </div>
