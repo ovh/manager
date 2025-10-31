@@ -17,7 +17,7 @@ import {
   VERSION_SELECTOR_STATUS_SKELETON_TEST_ID,
   VERSION_SELECTOR_TEST_ID,
 } from './VersionSelector.constants';
-import { isErrorResponse } from '@/utils/api/api';
+import { isErrorResponse } from '@/common/utils/api/api';
 
 type VersionSelectorParams = {
   okmsId: string;

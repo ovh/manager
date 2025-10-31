@@ -11,7 +11,7 @@ import {
   SECRET_MANAGER_ROUTES_URLS,
   SECRET_MANAGER_SEARCH_PARAMS,
 } from '@secret-manager/routes/routes.constants';
-import { initTestI18n, labels } from '@/utils/tests/init.i18n';
+import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
 import { SecretFormBackLink } from './BackLink.component';
 
 let i18nValue: i18n;

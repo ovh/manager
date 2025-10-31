@@ -3,13 +3,13 @@ import React from 'react';
 import { vi } from 'vitest';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import userEvent from '@testing-library/user-event';
+import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { NameTileItem } from './NameTileItem.component';
-import { okmsMock } from '@/mocks/kms/okms.mock';
 import useProductType, { ProductType } from '@/common/hooks/useProductType';
-import { getOdsButtonByIcon } from '@/utils/tests/uiTestHelpers';
-import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
-import { labels } from '@/utils/tests/init.i18n';
-import { renderWithI18n } from '@/utils/tests/testUtils';
+import { getOdsButtonByIcon } from '@/common/utils/tests/uiTestHelpers';
+import { labels } from '@/common/utils/tests/init.i18n';
+import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
 const okmsMocked = okmsMock[0];
 

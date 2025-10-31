@@ -9,8 +9,8 @@ import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.consta
 import {
   getOdsButtonByLabel,
   getOdsButtonByIcon,
-} from '@/utils/tests/uiTestHelpers';
-import { initTestI18n, labels } from '@/utils/tests/init.i18n';
+} from '@/common/utils/tests/uiTestHelpers';
+import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
 import {
   GeographyGroup,
   RegionOption,

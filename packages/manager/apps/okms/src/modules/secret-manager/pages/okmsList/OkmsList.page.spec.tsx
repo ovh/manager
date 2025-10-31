@@ -6,13 +6,13 @@ import {
 import userEvent from '@testing-library/user-event';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
-import { renderTestApp } from '@/utils/tests/renderTestApp';
-import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/tests/regionSelector';
-import { labels } from '@/utils/tests/init.i18n';
 import {
   regionWithMultipleOkms,
   regionWithoutOkms,
-} from '@/mocks/kms/okms.mock';
+} from '@key-management-service/mocks/kms/okms.mock';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/tests/regionSelector';
+import { labels } from '@/common/utils/tests/init.i18n';
 import { OKMS_LIST_CELL_TEST_IDS } from '@/common/components/okmsDatagrid/ListingCells.constants';
 
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.okmsList(

@@ -10,9 +10,9 @@ import * as router from 'react-router-dom';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { deleteSecretErrorMessage } from '@secret-manager/mocks/secrets/secrets.handler';
-import { renderTestApp } from '@/utils/tests/renderTestApp';
-import { labels } from '@/utils/tests/init.i18n';
-import { okmsRoubaix1Mock } from '@/mocks/kms/okms.mock';
+import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { labels } from '@/common/utils/tests/init.i18n';
 
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretDeleteSecret(
   okmsRoubaix1Mock.id,

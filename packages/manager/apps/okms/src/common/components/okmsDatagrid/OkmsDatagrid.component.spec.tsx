@@ -11,7 +11,7 @@ import {
   useServiceDetails,
 } from '@ovh-ux/manager-react-components';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { okmsMock } from '@/mocks/kms/okms.mock';
+import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
 import { OkmsDatagrid } from './OkmsDatagrid.component';
 import { SERVICE_KEYS_LABEL } from '@/constants';
 import { OkmsDatagridType } from './okmsDatagrid.type';

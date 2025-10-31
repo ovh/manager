@@ -1,13 +1,15 @@
 import React from 'react';
 import { Navigate, Route } from 'react-router-dom';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+import NotFound from '@key-management-service/pages/404';
 import {
   SECRET_MANAGER_ROUTES_URIS,
   SECRET_MANAGER_URL_PARAMS,
 } from './routes.constants';
-import NotFound from '@/pages/404';
 
-const KmsLayout = React.lazy(() => import('@/pages/layout'));
+const KmsLayout = React.lazy(() =>
+  import('@key-management-service/pages/layout'),
+);
 const Root = React.lazy(() =>
   import('@/modules/secret-manager/pages/root/Root.page'),
 );

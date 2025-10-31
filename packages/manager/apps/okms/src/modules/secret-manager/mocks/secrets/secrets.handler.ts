@@ -1,7 +1,7 @@
 import { Handler } from '@ovh-ux/manager-core-test-utils';
 import { createSecretResponseMock, secretListMock } from './secrets.mock';
 import { findSecretMockByPath } from './secretsMock.utils';
-import { buildMswResponseMock } from '@/utils/tests/msw';
+import { buildMswResponseMock } from '@/common/utils/tests/msw';
 
 // LIST
 export const getSecretsErrorMessage = 'get-secrets-error-message';

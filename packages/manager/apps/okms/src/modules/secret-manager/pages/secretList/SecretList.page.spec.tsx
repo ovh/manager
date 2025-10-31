@@ -10,12 +10,12 @@ import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
 import userEvent from '@testing-library/user-event';
 import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/versionList';
+import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
 import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/tests/regionSelector';
-import { renderTestApp } from '@/utils/tests/renderTestApp';
-import { labels } from '@/utils/tests/init.i18n';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { labels } from '@/common/utils/tests/init.i18n';
 import { PATH_LABEL } from '@/constants';
 import { CREATE_VERSION_DRAWER_TEST_IDS } from '../drawers/createVersionDrawer/CreateVersionDrawer.constants';
-import { okmsMock } from '@/mocks/kms/okms.mock';
 
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretList(okmsMock[0].id);
 

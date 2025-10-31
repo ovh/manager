@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsText } from '@ovhcloud/ods-components/react';
+import { OKMS } from '@key-management-service/types/okms.type';
 import { GeneralInformationsTile } from './generalInformationsTile/GeneralInformationsTile.component';
-import { OKMS } from '@/types/okms.type';
 import { KmipTile } from './kmipTile/KmipTile.component';
 import { RestApiTile } from './restApiTile/RestApiTile.component';
 import { BillingTile } from './billingTile/BillingTile.component';

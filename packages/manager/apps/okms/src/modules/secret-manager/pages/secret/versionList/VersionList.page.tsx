@@ -23,7 +23,7 @@ import {
   VersionIdCell,
   VersionStateCell,
 } from './VersionCells.component';
-import { isErrorResponse } from '@/utils/api/api';
+import { isErrorResponse } from '@/common/utils/api/api';
 import { VersionCellAction } from './VersionCellAction.component';
 
 const VersionListPage = () => {

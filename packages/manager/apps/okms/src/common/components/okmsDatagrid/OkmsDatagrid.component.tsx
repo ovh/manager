@@ -5,6 +5,7 @@ import {
   DatagridProps,
   DatagridColumn,
 } from '@ovh-ux/manager-react-components';
+import { OKMS } from '@key-management-service/types/okms.type';
 import {
   DatagridCellId,
   DatagridCellName,
@@ -14,7 +15,6 @@ import {
   DatagridCellSecretCount,
   DatagridCellServiceKeyCount,
 } from './ListingCells.component';
-import { OKMS } from '@/types/okms.type';
 import { SERVICE_KEYS_LABEL } from '@/constants';
 import { OkmsDatagridType } from './okmsDatagrid.type';
 

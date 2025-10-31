@@ -1,7 +1,7 @@
 import { useCurrentRegion } from '@secret-manager/hooks/useCurrentRegion';
 import { filterOkmsListByRegion } from '@secret-manager/utils/okms';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { useOkmsList } from '@/data/hooks/useOkms';
+import { useOkmsList } from '@key-management-service/data/hooks/useOkms';
 
 export const useBackToOkmsListUrl = () => {
   let okmsListUrl = null;

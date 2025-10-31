@@ -1,4 +1,4 @@
-import { IAM } from '@/types/okms.type';
+import { IAM } from '@key-management-service/types/okms.type';
 
 /**
  * SECRET

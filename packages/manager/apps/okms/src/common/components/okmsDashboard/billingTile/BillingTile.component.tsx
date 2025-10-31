@@ -7,8 +7,8 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { OKMS } from '@/types/okms.type';
-import { KMS_ROUTES_URIS } from '@/routes/routes.constants';
+import { OKMS } from '@key-management-service/types/okms.type';
+import { KMS_ROUTES_URIS } from '@key-management-service/routes/routes.constants';
 import useProductType, { ProductType } from '@/common/hooks/useProductType';
 
 const useResiliateLink = (okms: OKMS) => {

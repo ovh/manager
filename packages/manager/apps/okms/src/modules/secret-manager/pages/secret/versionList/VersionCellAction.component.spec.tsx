@@ -17,12 +17,12 @@ import {
 import {
   getOdsButtonByLabel,
   getOdsButtonByIcon,
-} from '@/utils/tests/uiTestHelpers';
+} from '@/common/utils/tests/uiTestHelpers';
 import {
   createErrorResponseMock,
   renderWithClient,
-} from '@/utils/tests/testUtils';
-import { initTestI18n, labels } from '@/utils/tests/init.i18n';
+} from '@/common/utils/tests/testUtils';
+import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
 import { VersionCellAction } from './VersionCellAction.component';
 
 let i18nValue: i18n;

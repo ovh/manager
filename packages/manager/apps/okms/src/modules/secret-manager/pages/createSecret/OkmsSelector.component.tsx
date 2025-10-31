@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { TagsList, useServiceDetails } from '@ovh-ux/manager-react-components';
 import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
-import { OKMS } from '@/types/okms.type';
-import { OkmsServiceState } from '@/components/layout-helpers/Dashboard/okmsServiceState/OkmsServiceState.component';
+import { OkmsServiceState } from '@key-management-service/components/layout-helpers/Dashboard/okmsServiceState/OkmsServiceState.component';
+import { OKMS } from '@key-management-service/types/okms.type';
 import { RadioCard } from '@/common/components/RadioCard/RadioCard.component';
 import { ActivateRegion } from './ActivateRegion.component';
 

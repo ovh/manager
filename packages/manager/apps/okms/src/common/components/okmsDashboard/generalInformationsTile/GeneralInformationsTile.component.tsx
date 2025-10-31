@@ -2,7 +2,7 @@ import React from 'react';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { OKMS } from '@/types/okms.type';
+import { OKMS } from '@key-management-service/types/okms.type';
 import { NameTileItem } from './items/NameTileItem.component';
 import { RegionTileItem } from './items/RegionTileItem.component';
 import { IdTileItem } from './items/IdTileItem.component';

@@ -1,11 +1,11 @@
 import { screen } from '@testing-library/react';
 import React from 'react';
 import { vi } from 'vitest';
-import { okmsMock } from '@/mocks/kms/okms.mock';
+import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
 import { REST_API_LABEL } from '@/constants';
 import { REST_API_TILE_TEST_IDS } from './RestApiTile.constants';
 import { RestApiTile } from './RestApiTile.component';
-import { renderWithI18n } from '@/utils/tests/testUtils';
+import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
 vi.mock('./items/RestApiEndpointTileItem.component', async (original) => ({
   ...(await original()),
