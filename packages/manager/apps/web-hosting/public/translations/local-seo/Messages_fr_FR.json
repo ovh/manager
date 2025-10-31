@@ -1,0 +1,17 @@
+{
+  "hosting_tab_LOCAL_SEO": "Visibilité Pro",
+  "hosting_tab_LOCAL_SEO_description": "Soyez présents là où vos clients vous cherchent, mais aussi là où ils parlent de vous. Cette solution de référencement local vous permet de gérer, via une interface unique et intuitive, vos informations et coordonnées d'entreprise sur les plateformes de référencement et d'avis client.",
+  "hosting_dashboard_local_seo_visibility_check": "Vérifiez votre référencement local",
+  "hosting_tab_LOCAL_SEO_table_header_name": "Nom de l'entreprise",
+  "hosting_tab_LOCAL_SEO_table_header_email": "Compte Email",
+  "hosting_tab_LOCAL_SEO_table_header_address": "Adresse",
+  "hosting_tab_LOCAL_SEO_table_value_undefined": "À définir",
+  "hosting_tab_LOCAL_SEO_state_created": "OK",
+  "hosting_tab_LOCAL_SEO_state_creating": "Création en cours",
+  "hosting_tab_LOCAL_SEO_state_deleting": "Suppression en cours",
+  "hosting_tab_LOCAL_SEO_access_interface": "Accéder à l'interface",
+  "hosting_tab_LOCAL_SEO_delete": "Supprimer l'abonnement",
+  "hosting_tab_LOCAL_SEO_delete_confirm": "Êtes-vous sûr de vouloir résilier votre abonnement «Visibilité Pro» pour le compte suivant ?",
+  "hosting_tab_LOCAL_SEO_delete_success": "La suppression de l'abonnement «Visibilité Pro» a bien été prise en compte.",
+  "hosting_tab_LOCAL_SEO_delete_error": "Une erreur est survenue lors de la suppression de votre abonnement «Visibilité Pro».  {{error}}"
+}

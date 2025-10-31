@@ -1,0 +1,17 @@
+{
+  "hosting_tab_LOCAL_SEO": "Visibility Pro",
+  "hosting_tab_LOCAL_SEO_description": "Assicurati che la tua azienda sia visibile nel momento in cui i tuoi clienti la cercano o ne parlano. Questa soluzione di referenziamento locale ti consente di gestire, attraverso un'interfaccia unica e intuitiva, le informazioni e le coordinate della tua azienda sulle piattaforme di SEO e recensioni dei clienti.",
+  "hosting_dashboard_local_seo_visibility_check": "Verifica il tuo posizionamento locale",
+  "hosting_tab_LOCAL_SEO_table_header_name": "Nome dell'azienda",
+  "hosting_tab_LOCAL_SEO_table_header_email": "Account email",
+  "hosting_tab_LOCAL_SEO_table_header_address": "Indirizzo",
+  "hosting_tab_LOCAL_SEO_table_value_undefined": "Da definire",
+  "hosting_tab_LOCAL_SEO_state_created": "OK",
+  "hosting_tab_LOCAL_SEO_state_creating": "Creazione in corso...",
+  "hosting_tab_LOCAL_SEO_state_deleting": "Eliminazione in corso...",
+  "hosting_tab_LOCAL_SEO_access_interface": "Accedi all'interfaccia",
+  "hosting_tab_LOCAL_SEO_delete": "Elimina l'abbonamento",
+  "hosting_tab_LOCAL_SEO_delete_confirm": "Vuoi davvero cancellare l'abbonamento \"Visibility Pro\" per il seguente account?",
+  "hosting_tab_LOCAL_SEO_delete_success": "La cancellazione dell'abbonamento \"Visibility Pro\" è in fase di elaborazione.",
+  "hosting_tab_LOCAL_SEO_delete_error": "Si è verificato un errore durante la cancellazione del tuo abbonamento \"Visibility Pro\": {{error}}"
+}

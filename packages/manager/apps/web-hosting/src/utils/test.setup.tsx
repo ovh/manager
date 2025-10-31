@@ -144,6 +144,15 @@ vi.mock('react-router-dom', async (importActual) => {
   };
 });
 
+vi.mock('@/data/api/local-seo', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/data/api/local-seo')>();
+  return {
+    ...actual,
+    hostingLocalSeoLogin: vi.fn().mockResolvedValue('tokenValue'),
+    hostingDeleteLocation: vi.fn().mockResolvedValue('OK'),
+  };
+});
+
 vi.mock('@/data/api/index', () => ({
   getWebHostingAttachedDomain: vi.fn().mockResolvedValue({
     data: websitesMocks,
