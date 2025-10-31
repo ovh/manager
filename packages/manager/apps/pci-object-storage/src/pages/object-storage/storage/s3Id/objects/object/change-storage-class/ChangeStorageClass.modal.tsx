@@ -56,7 +56,7 @@ const ChangeStorageClassModal = () => {
           title: t('changeStorageClassSuccessTitle'),
           description: t('changeStorageClassSuccessDescription'),
         });
-        navigate('../');
+        navigate(`../../object?objectKey=${encodeURIComponent(objectKey)}`);
       },
     },
   );
@@ -75,7 +75,10 @@ const ChangeStorageClassModal = () => {
   };
 
   return (
-    <RouteModal isLoading={objectQuery.isLoading || !objectQuery.data}>
+    <RouteModal
+      isLoading={objectQuery.isLoading || !objectQuery.data}
+      backUrl={`../../object?objectKey=${encodeURIComponent(objectKey)}`}
+    >
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
           <DialogTitle>{t('changeStorageClassTitle')}</DialogTitle>
