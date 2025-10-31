@@ -4,7 +4,7 @@ import {
   getSecretConfigOkms,
   secretConfigOkmsQueryKey,
 } from '@secret-manager/data/api/secretConfigOkms';
-import { ErrorResponse } from '@/types/api.type';
+import { ErrorResponse } from '@/common/types/api.type';
 
 export const useSecretConfigOkms = (okmsId: string) => {
   return useQuery<SecretConfig, ErrorResponse>({

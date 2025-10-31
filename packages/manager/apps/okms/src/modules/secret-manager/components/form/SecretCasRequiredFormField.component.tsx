@@ -7,8 +7,8 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { HelpIconWithTooltip } from '@key-management-service/components/helpIconWithTooltip/HelpIconWithTooltip.component';
 import { SECRET_FORM_FIELD_TEST_IDS } from './form.constants';
-import { HelpIconWithTooltip } from '@/components/helpIconWithTooltip/HelpIconWithTooltip.component';
 
 type CasRequiredFormValue = 'active' | 'inactive';
 

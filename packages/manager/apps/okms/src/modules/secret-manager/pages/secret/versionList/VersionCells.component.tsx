@@ -17,7 +17,7 @@ import { VersionState } from '@secret-manager/components/VersionState/VersionSta
 import { useTranslation } from 'react-i18next';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
 import { useFormatDate } from '@/common/hooks/useFormatDate';
-import { kmsIamActions } from '@/utils/iam/iam.constants';
+import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 import { VERSION_LIST_CELL_TEST_IDS } from './VersionCells.constants';
 
 const isVersionIdCellDisabled: Record<SecretVersionState, boolean> = {

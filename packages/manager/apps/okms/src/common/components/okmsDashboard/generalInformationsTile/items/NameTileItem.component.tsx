@@ -5,8 +5,8 @@ import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { useNavigate } from 'react-router-dom';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { OKMS } from '@/types/okms.type';
-import { KMS_ROUTES_URLS } from '@/routes/routes.constants';
+import { OKMS } from '@key-management-service/types/okms.type';
+import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import useProductType, { ProductType } from '@/common/hooks/useProductType';
 
 const useRenameLink = (okms: OKMS) => {

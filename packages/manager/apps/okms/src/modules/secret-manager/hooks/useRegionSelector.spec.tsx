@@ -3,21 +3,22 @@ import { waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { locationsMock } from '@secret-manager/mocks/locations/locations.mock';
+import { getOkmsList } from '@key-management-service/data/api/okms';
 import {
   okmsStrasbourg1Mock,
   okmsRoubaix1Mock,
   okmsRoubaix2Mock,
-} from '@/mocks/kms/okms.mock';
+} from '@key-management-service/mocks/kms/okms.mock';
 import {
   REGION_EU_WEST_RBX,
   REGION_EU_WEST_SBG,
-} from '@/mocks/catalog/catalog.mock';
+} from '@key-management-service/mocks/catalog/catalog.mock';
+import { OKMS } from '@key-management-service/types/okms.type';
 import { RegionOption, useRegionSelector } from './useRegionSelector';
-import { OKMS } from '@/types/okms.type';
 import {
   renderHookWithClient,
   createErrorResponseMock,
-} from '@/utils/tests/testUtils';
+} from '@/common/utils/tests/testUtils';
 
 // Mock react-router-dom
 vi.mock('react-router-dom', () => ({
@@ -34,8 +35,8 @@ vi.mock('@/common/data/api/location', async () => {
 });
 
 // Mock the useOkmsList fetch function
-vi.mock('@/data/api/okms', async () => {
-  const actual = await vi.importActual('@/data/api/okms');
+vi.mock('@key-management-service/data/api/okms', async () => {
+  const actual = await vi.importActual('@key-management-service/data/api/okms');
   return {
     ...actual,
     getOkmsList: vi.fn(),
@@ -48,7 +49,6 @@ const mockUseParams = vi.mocked(useParams);
 const okmsMock = [okmsRoubaix1Mock, okmsRoubaix2Mock, okmsStrasbourg1Mock];
 
 // eslint-disable-next-line import/first, import/newline-after-import
-import { getOkmsList } from '@/data/api/okms';
 const mockGetOkmsList = vi.mocked(getOkmsList);
 
 // eslint-disable-next-line import/first, import/newline-after-import
