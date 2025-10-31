@@ -17,6 +17,7 @@ import { GuideSections } from '@/types/guide';
 import { useGetDatabases } from '@/hooks/api/database/database/useGetDatabases.hook';
 import { useGetUsers } from '@/hooks/api/database/user/useGetUsers.hook';
 import { useGetConnectionPools } from '@/hooks/api/database/connectionPool/useGetConnectionPools.hook';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 export function breadcrumb() {
   return (
@@ -116,10 +117,11 @@ const Pools = () => {
                   data-testid="pools-add-button"
                   mode="outline"
                   onClick={() => navigate('./add')}
-                  disabled={
-                    service.capabilities.connectionPools.create ===
-                    database.service.capability.StateEnum.disabled
-                  }
+                  disabled={isCapabilityDisabled(
+                    service,
+                    'connectionPools',
+                    'create',
+                  )}
                 >
                   <Plus className="size-4" />
                   {t('addButtonLabel')}

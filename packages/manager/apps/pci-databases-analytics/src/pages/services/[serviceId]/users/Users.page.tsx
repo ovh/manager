@@ -16,6 +16,7 @@ import { FilterCategories } from '@/lib/filters';
 import UserStatusBadge from './_components/UserStatusBadge.component';
 import ToggleAcl from './_components/ToggleAcl.component';
 import PatternSubRow from './_components/PatternsSubRow.component';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 export function breadcrumb() {
   return (
@@ -122,10 +123,7 @@ const Users = () => {
                 <Button
                   data-testid="users-add-button"
                   mode="outline"
-                  disabled={
-                    service.capabilities.users?.create ===
-                    database.service.capability.StateEnum.disabled
-                  }
+                  disabled={isCapabilityDisabled(service, 'users', 'create')}
                   onClick={() => navigate('./add')}
                 >
                   <Plus className="size-4" />
