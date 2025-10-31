@@ -80,11 +80,8 @@ export default function S3ObjectVersionList({ objects }: ObjectsListProps) {
     >
       <DataTable.Header>
         <DataTable.Action>
-          <Link
-            to={`../?objectKey=${objectKey}`}
-            className="flex items-center w-full"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" /> {t('objectBackLink')}
+          <Link to={'../'} className="flex items-center w-full">
+            <ArrowLeft className="w-4 h-4 mr-2" /> {t('objectsBackLink')}
           </Link>
         </DataTable.Action>
         <DataTable.SearchBar />

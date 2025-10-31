@@ -173,7 +173,7 @@ const RegionsStep = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
         </div>
 
         {mappedRegionsFiltered.length ? (
-          <ScrollArea className="max-h-[450px] w-full">
+          <ScrollArea className="max-h-[450px] w-full overflow-y-auto">
             <div className="pr-4">
               <RadioGroup
                 className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 mt-2"
