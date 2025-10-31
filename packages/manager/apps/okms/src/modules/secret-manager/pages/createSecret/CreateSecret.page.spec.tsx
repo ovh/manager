@@ -17,16 +17,23 @@ import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.consta
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
 import { catalogMock } from '@/mocks/catalog/catalog.mock';
+import { clickJsonEditorToggle } from '@/utils/tests/uiTestHelpers';
 
 /* TEST UTILS */
 const firstRegion = catalogMock.plans[0].configurations[0].values[0];
 
+/**
+ * Selects the first region
+ */
 const selectRegion = async (user: UserEvent) => {
   const firstRegionRadioCard = screen.getByTestId(firstRegion);
 
   await act(() => user.click(firstRegionRadioCard));
 };
 
+/**
+ * Fills the required fields
+ */
 const fillRequiredFields = () => {
   const inputPath = screen.getByTestId(SECRET_FORM_TEST_IDS.INPUT_PATH);
   const inputData = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA);
@@ -66,6 +73,7 @@ describe('Create secret page test suite', () => {
     await assertTextVisibility(firstRegion);
 
     await selectRegion(user);
+    await clickJsonEditorToggle(user);
     fillRequiredFields();
 
     const submitButton = screen.getByTestId(SECRET_FORM_TEST_IDS.SUBMIT_BUTTON);
@@ -97,6 +105,7 @@ describe('Create secret page test suite', () => {
     await assertTextVisibility(firstRegion);
 
     await selectRegion(user);
+    await clickJsonEditorToggle(user);
     fillRequiredFields();
 
     const submitButton = screen.getByTestId(SECRET_FORM_TEST_IDS.SUBMIT_BUTTON);

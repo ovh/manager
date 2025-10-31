@@ -155,7 +155,7 @@ describe('Secret page test suite', () => {
     },
     {
       actionLabel: labels.secretManager.add_new_version,
-      assertion: () => assertTextVisibility(labels.secretManager.editor),
+      assertion: () => assertTextVisibility(labels.secretManager.key_value),
     },
     {
       actionLabel: labels.secretManager.delete_secret,
