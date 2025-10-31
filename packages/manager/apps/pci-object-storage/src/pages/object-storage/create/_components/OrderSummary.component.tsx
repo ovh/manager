@@ -162,44 +162,48 @@ const OrderSummary = ({
             </SummarySection>
           )}
 
-          <SummarySection
-            label={t('summaryVersionningSection')}
-            onAnchorClicked={() => scrollToDiv('replication')}
-          >
-            <SummaryItem>
-              <History className="size-4" />
-              <span>
-                {order.versioning.status ===
-                storages.VersioningStatusEnum.enabled
-                  ? t('summaryVersionningEnabled')
-                  : t('summaryVersionningDisabled')}
-              </span>
-            </SummaryItem>
-          </SummarySection>
+          {regionInfo.type !== cloud.RegionTypeEnum.localzone && (
+            <>
+              <SummarySection
+                label={t('summaryVersionningSection')}
+                onAnchorClicked={() => scrollToDiv('replication')}
+              >
+                <SummaryItem>
+                  <History className="size-4" />
+                  <span>
+                    {order.versioning.status ===
+                    storages.VersioningStatusEnum.enabled
+                      ? t('summaryVersionningEnabled')
+                      : t('summaryVersionningDisabled')}
+                  </span>
+                </SummaryItem>
+              </SummarySection>
 
-          <SummarySection
-            label={t('summaryUserSection')}
-            onAnchorClicked={() => scrollToDiv('user')}
-          >
-            <SummaryItem>
-              <User className="size-4" />
-              <span>
-                <UserInfo userId={order.ownerId} />
-              </span>
-            </SummaryItem>
-          </SummarySection>
+              <SummarySection
+                label={t('summaryUserSection')}
+                onAnchorClicked={() => scrollToDiv('user')}
+              >
+                <SummaryItem>
+                  <User className="size-4" />
+                  <span>
+                    <UserInfo userId={order.ownerId} />
+                  </span>
+                </SummaryItem>
+              </SummarySection>
 
-          <SummarySection
-            label={t('summaryEncryptionSection')}
-            onAnchorClicked={() => scrollToDiv('encryption')}
-          >
-            <SummaryItem>
-              <KeyRound className="size-4" />
-              <span className="capitalize">
-                {order.encryption.sseAlgorithm}
-              </span>
-            </SummaryItem>
-          </SummarySection>
+              <SummarySection
+                label={t('summaryEncryptionSection')}
+                onAnchorClicked={() => scrollToDiv('encryption')}
+              >
+                <SummaryItem>
+                  <KeyRound className="size-4" />
+                  <span className="capitalize">
+                    {order.encryption.sseAlgorithm}
+                  </span>
+                </SummaryItem>
+              </SummarySection>
+            </>
+          )}
         </>
       )}
 

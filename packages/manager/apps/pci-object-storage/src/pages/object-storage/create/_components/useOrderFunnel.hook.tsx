@@ -132,15 +132,20 @@ export function useOrderFunnel({
   const result = useMemo(() => {
     const s3: cloud.StorageContainerCreation & { region: string } = {
       name,
-      ownerId: user,
-      encryption: {
-        sseAlgorithm: encryption,
-      },
-      versioning: {
-        status: versioning,
-      },
       region,
     };
+    // If we are not using localzone, more steps are available
+    if (
+      regions.find((r) => r.name === region).type !== RegionTypeEnum.localzone
+    ) {
+      s3.ownerId = user;
+      s3.encryption = {
+        sseAlgorithm: encryption,
+      };
+      s3.versioning = {
+        status: versioning,
+      };
+    }
     if (replication?.enabled) {
       s3.replication = {
         rules: [
