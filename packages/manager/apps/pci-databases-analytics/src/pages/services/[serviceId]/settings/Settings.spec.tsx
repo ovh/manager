@@ -40,6 +40,15 @@ const mockedService = {
     maintenanceApply: {
       create: database.service.capability.StateEnum.enabled,
     },
+    serviceIpRestriction: {
+      update: database.service.capability.StateEnum.enabled,
+    },
+    serviceFlavor: {
+      update: database.service.capability.StateEnum.enabled,
+    },
+    serviceDisk: {
+      update: database.service.capability.StateEnum.enabled,
+    },
   },
 };
 
