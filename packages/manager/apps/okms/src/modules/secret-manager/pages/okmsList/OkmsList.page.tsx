@@ -16,9 +16,9 @@ import { filterOkmsListByRegion } from '@secret-manager/utils/okms';
 import { RegionSelector } from '@secret-manager/components/regionSelector/RegionSelector.component';
 import { RootBreadcrumbItem } from '@secret-manager/components/breadcrumb';
 import { SecretManagerChangelogButton } from '@secret-manager/components/secretManagerChangelogButton/SecretManagerChangelogButton.component';
+import { useOkmsDatagridList } from '@key-management-service/data/hooks/useOkms';
 import { OkmsDatagrid } from '@/common/components/okmsDatagrid/OkmsDatagrid.component';
-import { useOkmsDatagridList } from '@/data/hooks/useOkms';
-import { isErrorResponse } from '@/utils/api/api';
+import { isErrorResponse } from '@/common/utils/api/api';
 
 export default function OkmsListPage() {
   const { t } = useTranslation('secret-manager');

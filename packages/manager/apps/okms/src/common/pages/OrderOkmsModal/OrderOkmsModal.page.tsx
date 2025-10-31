@@ -12,9 +12,9 @@ import {
 import { Links, LinkType } from '@ovh-ux/manager-react-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { CreateCartResult } from '@ovh-ux/manager-module-order';
+import { useCreateCart } from '@key-management-service/data/hooks/useCreateCart';
+import { useCheckoutOrder } from '@key-management-service/data/hooks/useCheckoutOrder';
 import { useShellContext } from '@/common/hooks/useShellContext';
-import { useCreateCart } from '@/data/hooks/useCreateCart';
-import { useCheckoutOrder } from '@/data/hooks/useCheckoutOrder';
 import {
   ORDER_OKMS_CREATE_CANCEL_BUTTON_TEST_ID,
   ORDER_OKMS_CREATE_CART_SPINNER_TEST_ID,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
-import { OKMS } from '@/types/okms.type';
+import { OKMS } from '@key-management-service/types/okms.type';
 import { KMIP_LABEL } from '@/constants';
 import { KmipEndpointTileItem } from './items/KmipEndpointTileItem.component';
 import { KmipEndpointRsaTileItem } from './items/KmipEndpointRsaTileItem.component';

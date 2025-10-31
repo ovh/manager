@@ -4,11 +4,11 @@ import { vi } from 'vitest';
 import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
 import { getSecretConfigOkms } from '@secret-manager/data/api/secretConfigOkms';
-import { okmsMock } from '@/mocks/kms/okms.mock';
-import { initTestI18n, labels } from '@/utils/tests/init.i18n';
+import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
 import { SecretConfigTile } from './SecretConfigTile.component';
 import { SECRET_CONFIG_TILE_TEST_IDS } from './SecretConfigTile.constants';
-import { renderWithClient } from '@/utils/tests/testUtils';
+import { renderWithClient } from '@/common/utils/tests/testUtils';
 
 let i18nValue: i18n;
 

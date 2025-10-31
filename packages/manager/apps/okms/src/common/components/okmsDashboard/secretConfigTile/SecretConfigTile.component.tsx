@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useSecretConfigOkms } from '@secret-manager/data/hooks/useSecretConfigOkms';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { secretConfigOkmsQueryKey } from '@secret-manager/data/api/secretConfigOkms';
-import { OKMS } from '@/types/okms.type';
+import { OKMS } from '@key-management-service/types/okms.type';
 import { MaxVersionTileItem } from './items/MaxVersionTileItem.component';
 import { DeactivateVersionAfterTileItem } from './items/DeactivateVersionAfterTileItem.component';
 import { CasTileItem } from './items/CasTileItem.component';

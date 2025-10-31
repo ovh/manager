@@ -3,12 +3,12 @@ import React from 'react';
 import { vi } from 'vitest';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import userEvent from '@testing-library/user-event';
-import { okmsMock } from '@/mocks/kms/okms.mock';
+import { okmsMock } from '@key-management-service/mocks/kms/okms.mock';
+import { KMS_ROUTES_URIS } from '@key-management-service/routes/routes.constants';
 import { BillingTile } from './BillingTile.component';
 import { BILLING_TILE_TEST_IDS } from './BillingTile.constants';
 import useProductType, { ProductType } from '@/common/hooks/useProductType';
-import { KMS_ROUTES_URIS } from '@/routes/routes.constants';
-import { renderWithI18n } from '@/utils/tests/testUtils';
+import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
 const okmsMocked = okmsMock[0];
 

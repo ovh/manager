@@ -5,7 +5,7 @@ import React from 'react';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import { SecretVersionState } from '@secret-manager/types/secret.type';
 import { VERSION_BADGE_TEST_ID } from '@secret-manager/utils/tests/version.constants';
-import { initTestI18n, labels } from '@/utils/tests/init.i18n';
+import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
 import { VersionState } from './VersionState.component';
 
 let i18nValue: i18n;

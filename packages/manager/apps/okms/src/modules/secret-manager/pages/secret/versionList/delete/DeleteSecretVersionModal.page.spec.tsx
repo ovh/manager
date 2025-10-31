@@ -10,8 +10,8 @@ import * as router from 'react-router-dom';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { updateVersionErrorMessage } from '@secret-manager/mocks/versions/versions.handler';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
-import { renderTestApp } from '@/utils/tests/renderTestApp';
-import { labels } from '@/utils/tests/init.i18n';
+import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { labels } from '@/common/utils/tests/init.i18n';
 
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.versionListDeleteVersionModal(
   'okmsId',
