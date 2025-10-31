@@ -13,25 +13,25 @@ const KmsLayout = React.lazy(() =>
   import('@key-management-service/pages/layout'),
 );
 const KmsListing = React.lazy(() =>
-  import('@key-management-service/pages/listing'),
+  import('@key-management-service/pages/listing/KmsListing.page'),
 );
 const KmsTerminateModal = React.lazy(() =>
   import(
-    '@key-management-service/pages/dashboard/generalInformations/terminate/TerminateKms'
+    '@key-management-service/pages/dashboard/generalInformations/terminate/TerminateKms/page'
   ),
 );
 const KmsCreate = React.lazy(() =>
   import('@key-management-service/pages/create/CreateKms.page'),
 );
 const KmsOnboarding = React.lazy(() =>
-  import('@key-management-service/pages/onboarding'),
+  import('@key-management-service/pages/onboarding/Onboarding'),
 );
 const KmsDashboard = React.lazy(() =>
-  import('@key-management-service/pages/dashboard'),
+  import('@key-management-service/pages/dashboard/KmsDashboard.page'),
 );
 const KmsGeneralInformations = React.lazy(() =>
   import(
-    '@key-management-service/pages/dashboard/generalInformations/GeneralInformations'
+    '@key-management-service/pages/dashboard/generalInformations/GeneralInformations.page'
   ),
 );
 const KmsLogs = React.lazy(() =>
@@ -39,7 +39,7 @@ const KmsLogs = React.lazy(() =>
 );
 const KmsRenameModal = React.lazy(() =>
   import(
-    '@key-management-service/pages/dashboard/generalInformations/updateName/OkmsNameUpdateModal'
+    '@key-management-service/pages/dashboard/generalInformations/updateName/OkmsNameUpdateModal.page'
   ),
 );
 
