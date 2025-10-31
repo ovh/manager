@@ -3644,10 +3644,10 @@
     tailwindcss-animate "^1.0.7"
     vaul "^1.1.2"
 
-"@datatr-ux/uxlib@1.0.0-alpha-12":
-  version "1.0.0-alpha-12"
-  resolved "https://registry.yarnpkg.com/@datatr-ux/uxlib/-/uxlib-1.0.0-alpha-12.tgz#abe5be701beba2607f79822efa77db0759af5bae"
-  integrity sha512-Ei0kIVlklOIC4ju1poaRSUiUZ4UYs3TbdGYjAFNOktPGFJ0fJkWxCXSNHzVKinJT/gO08rzQipFn/0EcJPydlA==
+"@datatr-ux/uxlib@1.0.0-alpha-21":
+  version "1.0.0-alpha-21"
+  resolved "https://registry.yarnpkg.com/@datatr-ux/uxlib/-/uxlib-1.0.0-alpha-21.tgz#de7a6950d2b13ea3ae9faf4f98809864c742d0aa"
+  integrity sha512-TXNqhf3BNcJ8CsZRs5rlA/s3PZK2LXg/t7p7TCXrl8H6llcAoMo2te3d+aU4eujArmi35wjUNZ7D1mIbp4t9jQ==
   dependencies:
     "@radix-ui/react-accordion" "^1.2.2"
     "@radix-ui/react-alert-dialog" "^1.1.4"
