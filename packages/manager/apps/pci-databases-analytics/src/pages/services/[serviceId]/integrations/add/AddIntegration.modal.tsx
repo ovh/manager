@@ -61,6 +61,15 @@ const AddIntegration = () => {
   });
 
   const onSubmit = model.form.handleSubmit((formValues) => {
+    const normalizedParameters =
+      'parameters' in formValues && formValues.parameters
+        ? Object.fromEntries(
+            Object.entries(formValues.parameters).map(([key, value]) => [
+              key,
+              String(value),
+            ]),
+          )
+        : {};
     addIntegration({
       serviceId: service.id,
       projectId,
@@ -69,10 +78,7 @@ const AddIntegration = () => {
         type: formValues.type,
         destinationServiceId: formValues.destinationServiceId,
         sourceServiceId: formValues.sourceServiceId,
-        parameters:
-          'parameters' in formValues
-            ? (formValues.parameters as Record<string, string>)
-            : {},
+        parameters: normalizedParameters,
       },
     });
   });
