@@ -17,7 +17,7 @@ const KmsListing = React.lazy(() =>
 );
 const KmsTerminateModal = React.lazy(() =>
   import(
-    '@key-management-service/pages/dashboard/generalInformations/terminate/TerminateKms/page'
+    '@key-management-service/pages/dashboard/general-informations/terminate/terminate-kms/page'
   ),
 );
 const KmsCreate = React.lazy(() =>
@@ -31,7 +31,7 @@ const KmsDashboard = React.lazy(() =>
 );
 const KmsGeneralInformations = React.lazy(() =>
   import(
-    '@key-management-service/pages/dashboard/generalInformations/GeneralInformations.page'
+    '@key-management-service/pages/dashboard/general-informations/GeneralInformations.page'
   ),
 );
 const KmsLogs = React.lazy(() =>
@@ -39,44 +39,44 @@ const KmsLogs = React.lazy(() =>
 );
 const KmsRenameModal = React.lazy(() =>
   import(
-    '@key-management-service/pages/dashboard/generalInformations/updateName/OkmsNameUpdateModal.page'
+    '@key-management-service/pages/dashboard/general-informations/update-name/OkmsNameUpdateModal.page'
   ),
 );
 
 // Service Key
 const ServiceKeyDashboard = React.lazy(() =>
   import(
-    '@key-management-service/pages/serviceKey/dashboard/ServiceKeyDashboard.page'
+    '@key-management-service/pages/service-key/dashboard/ServiceKeyDashboard.page'
   ),
 );
 const ServiceKeyRenameModal = React.lazy(() =>
   import(
-    '@key-management-service/pages/serviceKey/editServiceKeyNameModal/EditServiceKeyNameModal.page'
+    '@key-management-service/pages/service-key/edit-service-key-name-modal/EditServiceKeyNameModal.page'
   ),
 );
 const ServiceKeyList = React.lazy(() =>
   import(
-    '@key-management-service/pages/dashboard/serviceKeyList/ServiceKeyList.page'
+    '@key-management-service/pages/dashboard/service-key-list/ServiceKeyList.page'
   ),
 );
 const ServiceKeyDeactivateModal = React.lazy(() =>
   import(
-    '@key-management-service/pages/serviceKey/deactivateServiceKeyModal/DeactivateServiceKeyModal.page'
+    '@key-management-service/pages/service-key/deactivate-service-key-modal/DeactivateServiceKeyModal.page'
   ),
 );
 const ServiceKeyCreate = React.lazy(() =>
-  import('@key-management-service/pages/serviceKey/create/CreateKey.page'),
+  import('@key-management-service/pages/service-key/create/CreateKey.page'),
 );
 
 // Credentials
 const CredentialsList = React.lazy(() =>
   import(
-    '@key-management-service/pages/dashboard/credentialList/CredentialList.page'
+    '@key-management-service/pages/dashboard/credential-list/CredentialList.page'
   ),
 );
 const CredentialsListDeleteModal = React.lazy(() =>
   import(
-    '@key-management-service/pages/dashboard/credentialList/delete/DeleteCredentialModal.page'
+    '@key-management-service/pages/dashboard/credential-list/delete/DeleteCredentialModal.page'
   ),
 );
 const CredentialsDashboard = React.lazy(() =>
@@ -84,12 +84,12 @@ const CredentialsDashboard = React.lazy(() =>
 );
 const CredentialsGeneralInformations = React.lazy(() =>
   import(
-    '@key-management-service/pages/credential/generalInformations/generalInformations.page'
+    '@key-management-service/pages/credential/general-informations/generalInformations.page'
   ),
 );
 const CredentialsDashboardDeleteModal = React.lazy(() =>
   import(
-    '@key-management-service/pages/credential/generalInformations/delete/DeleteCredentialModal.page'
+    '@key-management-service/pages/credential/general-informations/delete/DeleteCredentialModal.page'
   ),
 );
 const CredentialsIdentities = React.lazy(() =>
@@ -102,17 +102,17 @@ const CredentialsCreate = React.lazy(() =>
 );
 const CredentialsCreateUserListModal = React.lazy(() =>
   import(
-    '@key-management-service/pages/credential/create/addUsers/CreateCredentialIdentityUserList.page'
+    '@key-management-service/pages/credential/create/add-users/CreateCredentialIdentityUserList.page'
   ),
 );
 const CredentialsCreateGroupListModal = React.lazy(() =>
   import(
-    '@key-management-service/pages/credential/create/addGroups/CreateCredentialIdentityGroupList.page'
+    '@key-management-service/pages/credential/create/add-groups/CreateCredentialIdentityGroupList.page'
   ),
 );
 const CredentialsCreateServiceAccountListModal = React.lazy(() =>
   import(
-    '@key-management-service/pages/credential/create/addServiceAccount/CreateCredentialIdentityServiceAccountList.page'
+    '@key-management-service/pages/credential/create/add-service-account/CreateCredentialIdentityServiceAccountList.page'
   ),
 );
 
