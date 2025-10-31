@@ -3,5 +3,6 @@
   "manager_components_delete_modal_delete_button": "Ja, kündigen",
   "manager_components_delete_modal_description": "Bei der Kündigung Ihres Dienstes werden alle zugehörigen Daten unwiderruflich gelöscht. Möchten Sie Ihren Dienst kündigen?",
   "manager_components_delete_modal_headline": "{{serviceType}} kündigen?",
-  "manager_components_delete_modal_headline_service": "Dienst"
+  "manager_components_delete_modal_headline_service": "Dienst",
+  "manager_components_delete_modal_description_us": "Die Kündigung Ihres Dienstes führt zur endgültigen Löschung aller zugehörigen Daten. Die Kündigung Ihren Dienstes bedeutet nicht zwangsläufig, dass Sie eine Rückerstattung erhalten. Bei Fragen zur Rückerstattung kontaktieren Sie bitte den Support."
 }

@@ -3,5 +3,6 @@
   "manager_components_delete_modal_delete_button": "Sí, dar de baja",
   "manager_components_delete_modal_description": "Al dar de baja el servicio, se borrarán definitivamente todos los datos correspondientes. ¿Quiere dar de baja el servicio?",
   "manager_components_delete_modal_headline": "¿Dar de baja {{serviceType}}?",
-  "manager_components_delete_modal_headline_service": "Servicio"
+  "manager_components_delete_modal_headline_service": "Servicio",
+  "manager_components_delete_modal_description_us": "La baja del servicio provocará el borrado definitivo de todos los datos correspondientes. La baja del servicio no garantiza la concesión de un reembolso. Si tiene cualquier duda relativa al reembolso, contacte con el equipo de soporte."
 }
