@@ -8,10 +8,14 @@ import { useGetS3Objects } from '@/data/hooks/s3-storage/useGetS3Objects.hook';
 import Guides from '@/components/guides/Guides.component';
 import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
 import S3ObjectBrowser from './_components/S3ObjectBrowser.component';
+import { useObjectStorageData } from '@/pages/object-storage/ObjectStorage.context';
+import { useIsLocaleZone } from '@/hooks/useIsLocalZone.hook';
 
 const Objects = () => {
   const { projectId } = useParams();
   const { s3 } = useS3Data();
+  const { regions } = useObjectStorageData();
+  const isLocaleZone = useIsLocaleZone(s3, regions);
   const { t } = useTranslation('pci-object-storage/storages/s3/objects');
   const [withVersion, setWithVersion] = useState(false);
   const objectQuery = useGetS3Objects({
@@ -45,14 +49,16 @@ const Objects = () => {
           <Plus className="size-6 mr-2 text-primary-foreground" />
           {t('addNewObject')}
         </Button>
-        <div className="flex items-center space-x-2">
-          <Switch
-            id="versions"
-            checked={withVersion}
-            onCheckedChange={setWithVersion}
-          />
-          <Label htmlFor="versions">Voir les versions</Label>
-        </div>
+        {!isLocaleZone && (
+          <div className="flex items-center space-x-2">
+            <Switch
+              id="versions"
+              checked={withVersion}
+              onCheckedChange={setWithVersion}
+            />
+            <Label htmlFor="versions">Voir les versions</Label>
+          </div>
+        )}
       </div>
 
       <S3ObjectBrowser objects={objects} />

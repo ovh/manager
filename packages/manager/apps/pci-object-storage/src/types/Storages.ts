@@ -19,7 +19,7 @@ export interface FormattedStorage extends storages.Container {
   public?: boolean;
   s3StorageType: string;
   virtualHost: string;
-  regionType: cloud.RegionTypeEnum;
+  regionObj: cloud.Region;
   storageType: ObjectStorageTypeEnum;
 }
 
