@@ -21,7 +21,7 @@ import {
   SecretBreadcrumbItem,
 } from '@secret-manager/components/breadcrumb';
 import { SecretManagerChangelogButton } from '@secret-manager/components/secretManagerChangelogButton/SecretManagerChangelogButton.component';
-import Loading from '@key-management-service/components/Loading/Loading';
+import Loading from '@/common/components/loading/Loading';
 import { SecretPageOutletContext } from './Secret.type';
 import { decodeSecretPath } from '@/modules/secret-manager/utils/secretPath';
 import {

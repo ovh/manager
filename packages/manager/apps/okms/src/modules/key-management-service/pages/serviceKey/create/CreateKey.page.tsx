@@ -20,7 +20,6 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import KmsGuidesHeader from '@key-management-service/components/Guide/KmsGuidesHeader';
 import Breadcrumb from '@key-management-service/components/Breadcrumb/Breadcrumb';
-import Loading from '@key-management-service/components/Loading/Loading';
 import { KmsChangelogButton } from '@key-management-service/components/kmsChangelogButton/KmsChangelogButton.component';
 import { useOkmsServiceKeyReference } from '@key-management-service/data/hooks/useOkmsReferenceServiceKey';
 import { useCreateOkmsServiceKey } from '@key-management-service/data/hooks/useCreateOkmsServiceKey';
@@ -38,6 +37,7 @@ import {
   KMS_ROUTES_URLS,
 } from '@key-management-service/routes/routes.constants';
 import { ServiceKeyNameErrors } from '@key-management-service/utils/serviceKey/validateServiceKeyName';
+import Loading from '@/common/components/loading/Loading';
 import { ProtectionLevelSection } from './ProtectionLevelSection.component';
 import { GeneralInformationSection } from './GeneralInformationSection.component';
 import { KeyTypeSection } from './KeyTypeSection.component';

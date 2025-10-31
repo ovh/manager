@@ -16,7 +16,6 @@ import {
   DatagridCredentialCellName,
   DatagridCredentialCellStatus,
 } from '@key-management-service/components/credential/credentialDatagrid/CredentialDatagridCells';
-import Loading from '@key-management-service/components/Loading/Loading';
 import {
   getOkmsCredentialsQueryKey,
   useOkmsCredentials,
@@ -24,6 +23,7 @@ import {
 import { OkmsCredential } from '@key-management-service/types/okmsCredential.type';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+import Loading from '@/common/components/loading/Loading';
 
 type CredentialDatagridProps = {
   okms: OKMS;
