@@ -16,5 +16,6 @@ export const useDiscoveryVoucher = (enabled = true) => {
     queryFn: () => checkVoucherEligibility(DISCOVERY_PROMOTION_VOUCHER),
     select: (data) => data?.credit?.text,
     enabled,
+    retry: false,
   });
 };
