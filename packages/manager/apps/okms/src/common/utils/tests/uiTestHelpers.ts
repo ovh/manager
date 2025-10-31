@@ -1,4 +1,5 @@
 import { OdsIcon } from '@ovhcloud/ods-components/react';
+import { SECRET_VALUE_TOGGLE_TEST_IDS } from '@secret-manager/components/secret-value-toggle/secretValueToggle.constants';
 import {
   waitFor,
   waitForOptions,
@@ -6,6 +7,7 @@ import {
   fireEvent,
   act,
 } from '@testing-library/react';
+import { UserEvent } from '@testing-library/user-event';
 
 const WAIT_FOR_DEFAULT_OPTIONS = { timeout: 3000 };
 
@@ -172,4 +174,14 @@ export const getOdsClipboardByValue = ({
   value,
 }: GetOdsClipboardByValueParams) => {
   return container.querySelector(`ods-clipboard[value="${value}"]`);
+};
+
+/**
+ * Clicks on the JSON toggle
+ */
+export const clickJsonEditorToggle = async (user: UserEvent) => {
+  const jsonToggle = screen.getByTestId(
+    SECRET_VALUE_TOGGLE_TEST_IDS.jsonToggle,
+  );
+  await act(() => user.click(jsonToggle));
 };
