@@ -25,7 +25,7 @@ export const getConnector = async ({
 }: ServiceData & { connectorId: string }) =>
   apiClient.v6.get<database.kafkaConnect.Connector>(
     `/cloud/project/${projectId}/database/${engine}/${serviceId}/connector/${connectorId}`,
-    { headers: createHeaders(NoCacheHeaders, IcebergPaginationHeaders) },
+    { headers: createHeaders(NoCacheHeaders) },
   );
 
 export const getConnectorsCapabilities = async ({
