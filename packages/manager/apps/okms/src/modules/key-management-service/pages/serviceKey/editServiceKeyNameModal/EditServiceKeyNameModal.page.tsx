@@ -18,13 +18,13 @@ import {
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import Loading from '@key-management-service/components/Loading/Loading';
 import { useUpdateOkmsServiceKey } from '@key-management-service/data/hooks/useUpdateOkmsServiceKey';
 import { useOkmsServiceKeyById } from '@key-management-service/data/hooks/useOkmsServiceKeys';
 import {
   ServiceKeyNameErrors,
   validateServiceKeyName,
 } from '@key-management-service/utils/serviceKey/validateServiceKeyName';
+import Loading from '@/common/components/loading/Loading';
 import { SERVICE_KEY_TEST_IDS } from '../dashboard/ServiceKeyDashboard.constants';
 
 export const EditServiceKeyNameModal = () => {

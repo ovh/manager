@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { groupOkmsListByRegion } from '@secret-manager/utils/okms';
-import Loading from '@key-management-service/components/Loading/Loading';
 import { useOkmsList } from '@key-management-service/data/hooks/useOkms';
+import Loading from '@/common/components/loading/Loading';
 
 export default function SecretManagerRootPage() {
   const navigate = useNavigate();
