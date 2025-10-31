@@ -19,6 +19,7 @@ import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 import DataTable from '@/components/data-table';
 import { ConnectorWithCapability } from '../Connectors.page';
 import A from '@/components/links/A.component';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 interface ConnectorsTableColumnsProps {
   onDeleteClick: (topic: ConnectorWithCapability) => void;
@@ -194,10 +195,11 @@ export const getColumns = ({
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   data-testid="connector-action-edit-button"
-                  disabled={
-                    service.capabilities.connector?.update ===
-                    database.service.capability.StateEnum.disabled
-                  }
+                  disabled={isCapabilityDisabled(
+                    service,
+                    'connector',
+                    'update',
+                  )}
                   onClick={() => {
                     onEditClick(row.original);
                   }}
@@ -208,10 +210,11 @@ export const getColumns = ({
                 <DropdownMenuItem
                   data-testid="connector-action-delete-button"
                   variant="critical"
-                  disabled={
-                    service.capabilities.connector?.delete ===
-                    database.service.capability.StateEnum.disabled
-                  }
+                  disabled={isCapabilityDisabled(
+                    service,
+                    'connector',
+                    'delete',
+                  )}
                   onClick={() => {
                     onDeleteClick(row.original);
                   }}

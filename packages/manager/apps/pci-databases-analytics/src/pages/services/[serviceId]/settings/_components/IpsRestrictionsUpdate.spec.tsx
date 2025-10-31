@@ -45,7 +45,13 @@ const mockedService = {
       delete: database.service.capability.StateEnum.enabled,
       create: database.service.capability.StateEnum.enabled,
     },
-    ipRestrictions: {
+    serviceIpRestriction: {
+      update: database.service.capability.StateEnum.enabled,
+    },
+    serviceFlavor: {
+      update: database.service.capability.StateEnum.enabled,
+    },
+    serviceDisk: {
       update: database.service.capability.StateEnum.enabled,
     },
   },

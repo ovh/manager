@@ -4,12 +4,12 @@ import { RotateCcw } from 'lucide-react';
 import { Button, useToast } from '@datatr-ux/uxlib';
 import { useServiceData } from '../../Service.context';
 import DataTable from '@/components/data-table';
-import * as database from '@/types/cloud/project/database';
 import { useGetQueryStatistics } from '@/hooks/api/database/query/useGetQueryStatistics.hook';
 import { useResetQueryStatistics } from '@/hooks/api/database/query/useResetQueryStatistics.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { getColumns } from './QueryStatisticsTableColumns.component';
 import { QueryStatistics as QueryStatisticsType } from '@/data/api/database/queries.api';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 const QueryStatistics = () => {
   const { t } = useTranslation(
@@ -70,8 +70,11 @@ const QueryStatistics = () => {
                   onClick={() => handleResetButtonClicked()}
                   disabled={
                     isPending ||
-                    service.capabilities.queryStatisticsReset.create ===
-                      database.service.capability.StateEnum.disabled
+                    isCapabilityDisabled(
+                      service,
+                      'queryStatisticsReset',
+                      'create',
+                    )
                   }
                 >
                   <RotateCcw className="size-4" />

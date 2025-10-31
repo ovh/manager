@@ -13,6 +13,7 @@ import { useGetPatterns } from '@/hooks/api/database/pattern/useGetPatterns.hook
 import { getPatternsColumns } from './_components/PatternsTableColumns.component';
 import { getIndexesColumns } from './_components/IndexesTableColumns.component';
 import DataTable from '@/components/data-table';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 export function breadcrumb() {
   return (
@@ -69,10 +70,7 @@ const IndexPatterns = () => {
               <DataTable.Action>
                 <Button
                   data-testid="pattern-add-button"
-                  disabled={
-                    service.capabilities.patterns?.create ===
-                    database.service.capability.StateEnum.disabled
-                  }
+                  disabled={isCapabilityDisabled(service, 'patterns', 'create')}
                   mode="outline"
                   onClick={() => navigate('./add-pattern')}
                 >

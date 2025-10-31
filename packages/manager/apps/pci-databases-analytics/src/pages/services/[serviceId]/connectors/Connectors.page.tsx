@@ -23,6 +23,7 @@ import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { CdbError } from '@/data/api/database';
 import { useGetIntegrations } from '@/hooks/api/database/integration/useGetIntegrations.hook';
 import Link from '@/components/links/Link.component';
+import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 export interface ConnectorWithCapability
   extends database.kafkaConnect.Connector {
@@ -162,10 +163,11 @@ const Connectors = () => {
                 <Button
                   mode="outline"
                   data-testid="add-button"
-                  disabled={
-                    service.capabilities.connector?.create ===
-                    database.service.capability.StateEnum.disabled
-                  }
+                  disabled={isCapabilityDisabled(
+                    service,
+                    'connector',
+                    'create',
+                  )}
                   onClick={() => navigate('./add')}
                 >
                   <Plus className="w-4 h-4" />
