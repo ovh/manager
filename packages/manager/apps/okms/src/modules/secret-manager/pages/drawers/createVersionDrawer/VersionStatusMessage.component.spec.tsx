@@ -4,7 +4,7 @@ import { SecretVersionState } from '@secret-manager/types/secret.type';
 import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
 import { VersionStatusMessage } from './VersionStatusMessage.component';
-import { initTestI18n, labels } from '@/utils/tests/init.i18n';
+import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
 
 let i18nValue: i18n;
 

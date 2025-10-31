@@ -2,11 +2,11 @@ import { useMemo } from 'react';
 import { Location } from '@secret-manager/types/location.type';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useCurrentRegion } from '@secret-manager/hooks/useCurrentRegion';
+import { useOkmsList } from '@key-management-service/data/hooks/useOkms';
+import { useNotificationAddErrorOnce } from '@key-management-service/hooks/useNotificationAddErrorOnce';
+import { OKMS } from '@key-management-service/types/okms.type';
 import { useLocations } from '@/common/data/hooks/useLocation';
-import { useOkmsList } from '@/data/hooks/useOkms';
 import { findLocationByRegion } from '@/modules/secret-manager/utils/location';
-import { OKMS } from '@/types/okms.type';
-import { useNotificationAddErrorOnce } from '@/hooks/useNotificationAddErrorOnce';
 
 export type RegionOption = {
   label: string;

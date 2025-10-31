@@ -24,35 +24,35 @@ import { waitFor } from '@testing-library/dom';
 import { act, render, screen } from '@testing-library/react';
 import { SECRET_ACTIVATE_OKMS_TEST_IDS } from '@secret-manager/pages/createSecret/ActivateRegion.contants';
 import { locationsMock } from '@secret-manager/mocks/locations/locations.mock';
-import { labels, initTestI18n } from '@/utils/tests/init.i18n';
-import { OkmsManagement } from './OkmsManagement.component';
-import { catalogMock } from '@/mocks/catalog/catalog.mock';
+import { useOkmsList } from '@key-management-service/data/hooks/useOkms';
+import { getOrderCatalogOKMS } from '@key-management-service/data/api/orderCatalogOKMS';
+import { catalogMock } from '@key-management-service/mocks/catalog/catalog.mock';
 import {
   okmsMock,
   regionWithOneOkms,
   regionWithMultipleOkms,
   regionWithoutOkms,
-} from '@/mocks/kms/okms.mock';
-import { useOkmsList } from '@/data/hooks/useOkms';
-import { OKMS } from '@/types/okms.type';
-import { getOrderCatalogOKMS } from '@/data/api/orderCatalogOKMS';
+} from '@key-management-service/mocks/kms/okms.mock';
+import { useNotificationAddErrorOnce } from '@key-management-service/hooks/useNotificationAddErrorOnce';
+import { OKMS } from '@key-management-service/types/okms.type';
+import { labels, initTestI18n } from '@/common/utils/tests/init.i18n';
+import { OkmsManagement } from './OkmsManagement.component';
 import * as locationApi from '@/common/data/api/location';
-import { ErrorResponse } from '@/types/api.type';
+import { ErrorResponse } from '@/common/types/api.type';
 import { OrderOkmsModalProvider } from '@/common/pages/OrderOkmsModal/OrderOkmsModalContext';
 import { REGION_PICKER_TEST_IDS } from '@/common/components/regionPicker/regionPicker.constants';
-import { createErrorResponseMock } from '@/utils/tests/testUtils';
-import { useNotificationAddErrorOnce } from '@/hooks/useNotificationAddErrorOnce';
+import { createErrorResponseMock } from '@/common/utils/tests/testUtils';
 
 let i18nValue: i18n;
 
 const mockedGetOrderCatalogOKMS = vi.mocked(getOrderCatalogOKMS);
-vi.mock('@/data/api/orderCatalogOKMS', () => ({
+vi.mock('@key-management-service/data/api/orderCatalogOKMS', () => ({
   getOrderCatalogOKMS: vi.fn(),
 }));
 
 vi.spyOn(locationApi, 'getLocations').mockResolvedValue(locationsMock);
 
-vi.mock('@/hooks/useNotificationAddErrorOnce', () => ({
+vi.mock('@key-management-service/hooks/useNotificationAddErrorOnce', () => ({
   useNotificationAddErrorOnce: vi.fn(),
 }));
 
@@ -90,7 +90,7 @@ const shellContext = {
   },
 };
 
-vi.mock('@/data/hooks/useOkms', () => ({
+vi.mock('@key-management-service/data/hooks/useOkms', () => ({
   useOkmsList: vi.fn(),
 }));
 

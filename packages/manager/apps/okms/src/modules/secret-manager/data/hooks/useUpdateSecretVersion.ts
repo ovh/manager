@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ErrorResponse } from '@/types/api.type';
+import { ErrorResponse } from '@/common/types/api.type';
 import {
   secretVersionsQueryKeys,
   updateSecretVersion,

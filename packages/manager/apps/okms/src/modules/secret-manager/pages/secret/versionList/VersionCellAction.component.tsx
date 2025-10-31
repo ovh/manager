@@ -18,7 +18,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useUpdateSecretVersion } from '@secret-manager/data/hooks/useUpdateSecretVersion';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { kmsIamActions } from '@/utils/iam/iam.constants';
+import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 
 type ButtonState = 'hidden' | 'enabled' | 'disabled';
 type ButtonAction = 'show_value' | 'activate' | 'deactivate' | 'delete';
