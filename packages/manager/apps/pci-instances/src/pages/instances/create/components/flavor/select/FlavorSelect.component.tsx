@@ -4,9 +4,8 @@ import {
   Select,
   SelectContent,
   SelectControl,
-  SelectCustomItemRendererArg,
-  SelectCustomOptionRendererArg,
   SelectItem,
+  SelectOptionItem,
 } from '@ovhcloud/ods-react';
 import { TFlavorTag } from '@/types/instance/common.type';
 import {
@@ -96,27 +95,26 @@ const FlavorSelect = ({ option, items }: TFlavorSelectOption) => {
           >
             <SelectControl
               className="h-[2.5em]"
-              customItemRenderer={({
-                selectedItems,
-              }: SelectCustomItemRendererArg<{ tag: TFlavorTag }>) => (
-                <>
-                  {selectedItems[0] && (
-                    <FlavorOption
-                      label={selectedItems[0].label}
-                      tag={selectedItems[0].customRendererData?.tag}
-                    />
-                  )}
-                </>
-              )}
+              customItemRenderer={({ selectedItems }) => {
+                const item = selectedItems[0] as SelectOptionItem<{
+                  tag: TFlavorTag;
+                }>;
+
+                return (
+                  <FlavorOption
+                    label={item.label}
+                    tag={item.customRendererData?.tag}
+                  />
+                );
+              }}
             />
             <SelectContent
               className="[&>div>span:first-child]:w-full"
-              customOptionRenderer={({
-                customData,
-                label,
-              }: SelectCustomOptionRendererArg<{ tag: TFlavorTag }>) => (
-                <FlavorOption label={label} tag={customData?.tag} />
-              )}
+              customOptionRenderer={({ customData, label }) => {
+                const tag = (customData as { tag: TFlavorTag }).tag;
+
+                return <FlavorOption label={label} tag={tag} />;
+              }}
             />
           </Select>
         </FormField>
