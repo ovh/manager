@@ -101,3 +101,30 @@ export const getWebHostingService = async (serviceName: string) => {
   const { data } = await v6.get<void>(`/hosting/web/${serviceName}`);
   return data;
 };
+
+export const deleteAttachedDomain = async (
+  serviceName: string,
+  domain: string,
+  bypassDNSConfiguration: boolean,
+): Promise<void> => {
+  await v6.delete(
+    `/hosting/web/${serviceName}/attachedDomain/${domain}?bypassDNSConfiguration=${bypassDNSConfiguration}`,
+  );
+};
+
+export const deleteAttachedDomains = async (
+  serviceName: string,
+  domains: string[],
+  bypassDNSConfiguration: boolean,
+): Promise<PromiseSettledResult<void>[]> => {
+  const results = await Promise.allSettled(
+    domains?.map((domain) => deleteAttachedDomain(serviceName, domain, bypassDNSConfiguration)),
+  );
+  const failed = results.find((r): r is PromiseRejectedResult => r.status === 'rejected');
+
+  if (failed) {
+    throw failed.reason ?? new Error('Domain deletion failed');
+  }
+
+  return results;
+};
