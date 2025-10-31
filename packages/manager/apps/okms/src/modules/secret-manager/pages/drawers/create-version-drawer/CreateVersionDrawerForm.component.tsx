@@ -1,7 +1,7 @@
 import React from 'react';
 import z from 'zod';
 import { useTranslation } from 'react-i18next';
-import { useForm } from 'react-hook-form';
+import { useForm, FormProvider } from 'react-hook-form';
 import { OdsMessage } from '@ovhcloud/ods-components/react';
 import { useSecretDataSchema } from '@secret-manager/validation';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -9,7 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod/dist/zod';
 import { SecretWithData } from '@secret-manager/types/secret.type';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { useCreateSecretVersion } from '@secret-manager/data/hooks/useCreateSecretVersion';
-import { SecretDataFormField } from '@secret-manager/components/form/SecretDataFormField.component';
+import { SecretDataFormField } from '@secret-manager/components/form/secret-data-form-field/SecretDataFormField.component';
 import { SecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
 import { addCurrentVersionToCas } from '@secret-manager/utils/cas';
 import {
@@ -41,20 +41,24 @@ export const CreateVersionDrawerForm = ({
     error: createError,
   } = useCreateSecretVersion();
 
+  const dataAsString = JSON.stringify(secret?.version?.data);
+
   const dataSchema = useSecretDataSchema();
   const formSchema = z.object({ data: dataSchema });
   type FormSchema = z.infer<typeof formSchema>;
+  const form = useForm({
+    mode: 'onChange', // Validation on all changes to show errors immediately
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      data: dataAsString,
+    },
+  });
+
   const {
     control,
     handleSubmit,
     formState: { isDirty, isValid },
-  } = useForm({
-    mode: 'onChange', // Validation on all changes to show errors immediately
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      data: JSON.stringify(secret?.version?.data),
-    },
-  });
+  } = form;
 
   const handleSubmitForm = async (data: FormSchema) => {
     try {
@@ -76,16 +80,20 @@ export const CreateVersionDrawerForm = ({
   return (
     <div className="flex flex-col h-full">
       <DrawerContent>
-        <form>
-          {createError && (
-            <OdsMessage color="danger" className="mb-4">
-              {createError?.response?.data?.message ||
-                t('add_new_version_error')}
-            </OdsMessage>
-          )}
-          <VersionStatusMessage state={secret.version.state} />
-          <SecretDataFormField name="data" control={control} />
-        </form>
+        <FormProvider {...form}>
+          <form
+            className="m-1" // give room to display the outline of all inputs
+          >
+            {createError && (
+              <OdsMessage color="danger" className="mb-4">
+                {createError?.response?.data?.message ||
+                  t('add_new_version_error')}
+              </OdsMessage>
+            )}
+            <VersionStatusMessage state={secret.version.state} />
+            <SecretDataFormField name="data" control={control} />
+          </form>
+        </FormProvider>
       </DrawerContent>
       <DrawerFooter
         primaryButtonLabel={t(`${NAMESPACES.ACTIONS}:add`)}

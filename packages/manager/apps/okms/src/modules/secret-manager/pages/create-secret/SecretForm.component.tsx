@@ -1,5 +1,10 @@
 import React from 'react';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import {
+  Controller,
+  SubmitHandler,
+  useForm,
+  FormProvider,
+} from 'react-hook-form';
 import { z } from 'zod';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -12,7 +17,7 @@ import {
   OdsInput,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { SecretDataFormField } from '@secret-manager/components/form/SecretDataFormField.component';
+import { SecretDataFormField } from '@secret-manager/components/form/secret-data-form-field/SecretDataFormField.component';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { secretQueryKeys } from '@secret-manager/data/api/secrets';
 import { useQueryClient } from '@tanstack/react-query';
@@ -46,11 +51,7 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
   const secretSchema = z.object({ path: pathSchema, data: dataSchema });
   type SecretSchema = z.infer<typeof secretSchema>;
 
-  const {
-    control,
-    handleSubmit,
-    formState: { isDirty, isValid, errors },
-  } = useForm({
+  const form = useForm({
     mode: 'onTouched',
     resolver: zodResolver(secretSchema),
     defaultValues: {
@@ -59,6 +60,12 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
       data: SECRET_DATA_TEMPLATE,
     },
   });
+
+  const {
+    control,
+    handleSubmit,
+    formState: { isDirty, isValid, errors },
+  } = form;
 
   /* Submit */
   const { mutate: createSecret, isPending } = useCreateSecret({
@@ -89,62 +96,64 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
   };
 
   return (
-    <form
-      className="flex flex-col gap-8"
-      onSubmit={handleSubmit(handleConfirmClick)}
-    >
-      <div className="flex flex-col gap-5">
-        <OdsText preset="heading-2">
-          {t('create_secret_form_secret_section_title')}
-        </OdsText>
-        <div className="flex flex-col gap-3">
-          <OdsText preset="heading-4">{PATH_LABEL}</OdsText>
-          <Controller
-            name="path"
-            control={control}
-            render={({ field: { name, value, onChange, onBlur } }) => (
-              <OdsFormField error={errors?.[name]?.message}>
-                <OdsInput
-                  id={name}
-                  name={name}
-                  value={value}
-                  onOdsBlur={onBlur}
-                  onOdsChange={onChange}
-                  data-testid={SECRET_FORM_TEST_IDS.INPUT_PATH}
-                />
-                <OdsText slot="helper" preset="caption">
-                  {t('path_field_helper')}
-                </OdsText>
-              </OdsFormField>
-            )}
-          />
-        </div>
-        <div className="flex flex-col gap-3">
-          <OdsText preset="heading-4">{t('values')}</OdsText>
-          <SecretDataFormField name={'data'} control={control} />
-        </div>
-        {/* TEMP: waiting for metadata management */}
-        {/* <div className="flex flex-col gap-3">
+    <FormProvider {...form}>
+      <form
+        className="flex flex-col gap-8"
+        onSubmit={handleSubmit(handleConfirmClick)}
+      >
+        <div className="flex flex-col gap-5">
+          <OdsText preset="heading-2">
+            {t('create_secret_form_secret_section_title')}
+          </OdsText>
+          <div className="flex flex-col gap-3">
+            <OdsText preset="heading-4">{PATH_LABEL}</OdsText>
+            <Controller
+              name="path"
+              control={control}
+              render={({ field: { name, value, onChange, onBlur } }) => (
+                <OdsFormField error={errors?.[name]?.message}>
+                  <OdsInput
+                    id={name}
+                    name={name}
+                    value={value}
+                    onOdsBlur={onBlur}
+                    onOdsChange={onChange}
+                    data-testid={SECRET_FORM_TEST_IDS.INPUT_PATH}
+                  />
+                  <OdsText slot="helper" preset="caption">
+                    {t('path_field_helper')}
+                  </OdsText>
+                </OdsFormField>
+              )}
+            />
+          </div>
+          <div className="flex flex-col gap-3">
+            <OdsText preset="heading-4">{t('values')}</OdsText>
+            <SecretDataFormField name={'data'} control={control} />
+          </div>
+          {/* TEMP: waiting for metadata management */}
+          {/* <div className="flex flex-col gap-3">
           <OdsText preset="heading-4">{t('custom_metadata_title')}</OdsText>
         </div>
         <div className="flex flex-col gap-3">
           <OdsText preset="heading-4">{t('settings_default')}</OdsText>
         </div> */}
-      </div>
-      {/* TEMP: waiting for payment informations */}
-      {/* <div className="flex flex-col gap-5">
+        </div>
+        {/* TEMP: waiting for payment informations */}
+        {/* <div className="flex flex-col gap-5">
         <OdsText preset="heading-2">{t('create_secret_form_payment_section_title')}</OdsText>
       </div> */}
-      <div className="flex justify-between items-center py-3">
-        <SecretFormBackLink />
-        <OdsButton
-          type="submit"
-          isDisabled={!isDirty || !isValid || !okmsId}
-          isLoading={isPending}
-          label={t('create', { ns: NAMESPACES.ACTIONS })}
-          data-testid={SECRET_FORM_TEST_IDS.SUBMIT_BUTTON}
-        />
-      </div>
-    </form>
+        <div className="flex justify-between items-center py-3">
+          <SecretFormBackLink />
+          <OdsButton
+            type="submit"
+            isDisabled={!isDirty || !isValid || !okmsId}
+            isLoading={isPending}
+            label={t('create', { ns: NAMESPACES.ACTIONS })}
+            data-testid={SECRET_FORM_TEST_IDS.SUBMIT_BUTTON}
+          />
+        </div>
+      </form>
+    </FormProvider>
   );
 };
