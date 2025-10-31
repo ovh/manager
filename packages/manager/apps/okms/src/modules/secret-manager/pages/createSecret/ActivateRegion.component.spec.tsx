@@ -8,8 +8,8 @@ import { vi } from 'vitest';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { render, screen } from '@testing-library/react';
 import { SECRET_ACTIVATE_OKMS_TEST_IDS } from '@secret-manager/pages/createSecret/ActivateRegion.contants';
-import { labels, initTestI18n } from '@/utils/tests/init.i18n';
-import { REGION_EU_WEST_RBX } from '@/mocks/catalog/catalog.mock';
+import { REGION_EU_WEST_RBX } from '@key-management-service/mocks/catalog/catalog.mock';
+import { labels, initTestI18n } from '@/common/utils/tests/init.i18n';
 import {
   ActivateRegion,
   ActivateRegionParams,
