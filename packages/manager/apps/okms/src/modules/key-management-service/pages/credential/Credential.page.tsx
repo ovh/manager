@@ -21,7 +21,6 @@ import {
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
 import { KmsChangelogButton } from '@key-management-service/components/kmsChangelogButton/KmsChangelogButton.component';
-import Loading from '@key-management-service/components/Loading/Loading';
 import Breadcrumb from '@key-management-service/components/Breadcrumb/Breadcrumb';
 import KmsGuidesHeader from '@key-management-service/components/Guide/KmsGuidesHeader';
 import {
@@ -36,6 +35,7 @@ import {
   KMS_ROUTES_URIS,
   KMS_ROUTES_URLS,
 } from '@key-management-service/routes/routes.constants';
+import Loading from '@/common/components/loading/Loading';
 
 export type CredentialContextType = {
   okms: OKMS;
