@@ -8,8 +8,8 @@ import { useSecretVersionWithData } from '@secret-manager/data/hooks/useSecretVe
 import { SecretVersion } from '@secret-manager/types/secret.type';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useTranslation } from 'react-i18next';
-import { RAW_VALUE_TEST_ID } from '@secret-manager/utils/tests/secretValue.constants';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
+import { SECRET_RAW_VALUE_TEST_ID } from './SecretRawValue.contants';
 
 type SecretValueParams = {
   okmsId: string;
@@ -46,7 +46,7 @@ export const SecretRawValue = ({
     );
 
   return (
-    <OdsCode className="block break-all" data-testid={RAW_VALUE_TEST_ID}>
+    <OdsCode className="block break-all" data-testid={SECRET_RAW_VALUE_TEST_ID}>
       {JSON.stringify(secretVersion.data, null, 2)}
     </OdsCode>
   );

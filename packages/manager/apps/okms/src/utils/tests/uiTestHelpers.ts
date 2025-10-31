@@ -1,7 +1,15 @@
 import { OdsIcon } from '@ovhcloud/ods-components/react';
-import { waitFor, waitForOptions } from '@testing-library/react';
+import {
+  waitFor,
+  waitForOptions,
+  screen,
+  fireEvent,
+  act,
+} from '@testing-library/react';
 
 const WAIT_FOR_DEFAULT_OPTIONS = { timeout: 3000 };
+
+/* GET BY LABEL */
 
 type GetOdsButtonParams = {
   container: HTMLElement;
@@ -101,5 +109,55 @@ export const getOdsButtonByIcon = async ({
     isLink,
     nth,
     ...options,
+  });
+};
+
+/* GET BY TEST ID */
+
+type GetOdsLinkByTestIdParams = {
+  testId: string;
+  disabled?: boolean;
+};
+
+export const getOdsLinkByTestId = async ({
+  testId,
+  disabled,
+}: GetOdsLinkByTestIdParams) => {
+  let link: HTMLElement;
+  await waitFor(() => {
+    link = screen.getByTestId(testId);
+    expect(link).toBeInTheDocument();
+
+    return disabled
+      ? expect(link).toHaveAttribute('is-disabled', 'true')
+      : expect(link).not.toHaveAttribute('is-disabled', 'true');
+  });
+
+  return link;
+};
+
+export const changeOdsInputValueByTestId = async (
+  inputTestId: string,
+  value: string,
+) => {
+  // First try to get the input directly
+  let input = screen.queryByTestId(inputTestId);
+
+  // If the input is not found, try to find it with a findByTestId
+  // This can look silly, but the ODS input renders in a mysterious way
+  // and if you use a findByTestId when you need a getByTestId (and reverse), it won't work
+  if (!input) {
+    input = await screen.findByTestId(inputTestId);
+  }
+
+  await act(() => {
+    fireEvent.change(input, {
+      target: { value },
+    });
+  });
+
+  // Wait for the data input to be updated
+  await waitFor(() => {
+    expect(input).toHaveValue(value);
   });
 };

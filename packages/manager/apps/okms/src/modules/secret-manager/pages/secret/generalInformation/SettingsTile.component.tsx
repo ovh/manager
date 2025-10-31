@@ -9,6 +9,13 @@ import {
   SecretSmartConfigOrigin,
   NOT_SET_VALUE_DEACTIVATE_VERSION_AFTER,
 } from '@secret-manager/utils/secretSmartConfig';
+import { SECRET_TEST_IDS } from '@secret-manager/pages/secret/generalInformation/GeneralInformation.constants';
+import {
+  LocationPathParams,
+  SECRET_MANAGER_ROUTES_URLS,
+} from '@secret-manager/routes/routes.constants';
+import { useParams } from 'react-router-dom';
+import { Link } from '@/common/components/Link/Link.component';
 
 type SettingsTileProps = {
   secret: Secret;
@@ -17,6 +24,7 @@ type SettingsTileProps = {
 export const SettingsTile = ({ secret }: SettingsTileProps) => {
   const { t } = useTranslation(['secret-manager', NAMESPACES.STATUS]);
   const { secretConfig, isPending, isError } = useSecretSmartConfig(secret);
+  const { okmsId } = useParams<LocationPathParams>();
 
   const labels: Record<SecretSmartConfigOrigin, string | null> = {
     SECRET: null,
@@ -40,7 +48,7 @@ export const SettingsTile = ({ secret }: SettingsTileProps) => {
           {isPending ? (
             <OdsSkeleton />
           ) : (
-            <OdsText preset="span">
+            <OdsText preset="span" data-testid={SECRET_TEST_IDS.MAX_VERSIONS}>
               {secretConfig.maxVersions.value}{' '}
               {labels[secretConfig.maxVersions.origin]}
             </OdsText>
@@ -56,7 +64,10 @@ export const SettingsTile = ({ secret }: SettingsTileProps) => {
           {isPending ? (
             <OdsSkeleton />
           ) : (
-            <OdsText preset="span">
+            <OdsText
+              preset="span"
+              data-testid={SECRET_TEST_IDS.DEACTIVATE_VERSION_AFTER}
+            >
               {secretConfig.deactivateVersionAfter.value ===
               NOT_SET_VALUE_DEACTIVATE_VERSION_AFTER
                 ? t('never_expire')
@@ -75,13 +86,26 @@ export const SettingsTile = ({ secret }: SettingsTileProps) => {
           {isPending ? (
             <OdsSkeleton />
           ) : (
-            <OdsText preset="span">
+            <OdsText preset="span" data-testid={SECRET_TEST_IDS.CAS_REQUIRED}>
               {secretConfig.casRequired.value
                 ? t('activated')
                 : t('disabled', { ns: NAMESPACES.STATUS })}{' '}
               {labels[secretConfig.casRequired.origin]}
             </OdsText>
           )}
+        </ManagerTile.Item.Description>
+      </ManagerTile.Item>
+      <ManagerTile.Divider />
+      <ManagerTile.Item>
+        <ManagerTile.Item.Description>
+          <Link
+            href={SECRET_MANAGER_ROUTES_URLS.secretEditMetadataDrawer(
+              okmsId,
+              secret.path,
+            )}
+            label={t('edit_metadata')}
+            isRouterLink
+          />
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
     </ManagerTile>
