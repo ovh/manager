@@ -13,7 +13,7 @@
         <div data-ng-if="$ctrl.capabilities.length > 0">
             <form class="mt-4" name="$ctrl.resiliateForm" novalidate>
                 <oui-field
-                    data-label="{{:: 'billing_resiliate_mode_label' | translate }}"
+                    data-label="{{:: 'billing_resiliate_mode_label' + ($ctrl.isUSRegion ? '_us' : '') | translate }}"
                 >
                     <oui-select
                         name="resiliateOption"
@@ -26,6 +26,11 @@
                     </oui-select>
                 </oui-field>
             </form>
+            <span
+                data-ng-if="$ctrl.isUSRegion && $ctrl.resiliateOption === 'terminate'"
+                data-translate="billing_resiliate_confirmation_mail_to_be_sent"
+                class="help-block"
+            ></span>
         </div>
 
         <div

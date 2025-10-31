@@ -3,5 +3,6 @@
   "manager_components_delete_modal_delete_button": "Yes, cancel",
   "manager_components_delete_modal_description": "Cancelling your service will irretrievably erase all related data. Do you wish to cancel your service?",
   "manager_components_delete_modal_headline": "Cancel {{serviceType}}?",
-  "manager_components_delete_modal_headline_service": "Service"
+  "manager_components_delete_modal_headline_service": "Service",
+  "manager_components_delete_modal_description_us": "The cancellation of your service will permanently erase all corresponding data. Cancelling your service does not guarantee that any refunds will be granted. Please contact the support team if you have any questions regarding refunds."
 }
