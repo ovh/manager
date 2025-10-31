@@ -18,7 +18,10 @@ function DiscoveryBanner({ className }: { className?: string }) {
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
 
-  const { data: voucherAmount } = useDiscoveryVoucher();
+  const {
+    data: voucherAmount,
+    isPending: isVoucherPending,
+  } = useDiscoveryVoucher();
 
   const handleActivationClick = () => {
     trackClick({
@@ -28,6 +31,10 @@ function DiscoveryBanner({ className }: { className?: string }) {
 
     navigate(urls.activate);
   };
+
+  if (isVoucherPending) {
+    return null;
+  }
 
   return (
     <>
