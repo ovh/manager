@@ -33,5 +33,7 @@
   "changeStorageClassCancel": "Annuler",
   "changeStorageClassConfirm": "Modifier",
   "changeStorageClassSuccessTitle": "Succès",
-  "changeStorageClassSuccessDescription": "La classe de stockage a été modifiée"
+  "changeStorageClassSuccessDescription": "La classe de stockage a été modifiée",
+  "propertiesTab": "Propriétés",
+  "versionsTab": "Versions"
 }

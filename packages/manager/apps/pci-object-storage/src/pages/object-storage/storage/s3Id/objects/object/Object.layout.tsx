@@ -8,6 +8,9 @@ import { useEffect } from 'react';
 import { Skeleton } from '@datatr-ux/uxlib';
 import { useS3Data } from '../../S3.context';
 import { useGetS3Object } from '@/data/hooks/s3-storage/useGetS3Object.hook';
+import ObjectTabs from '../_components/ObjectTabs.component';
+import TabsMenu from '@/components/tabs-menu/TabsMenu.component';
+import { useGetS3ObjectVersions } from '@/data/hooks/s3-storage/useGetS3ObjectVersions.hook';
 
 function ObjectKey() {
   const [searchParams] = useSearchParams();
@@ -36,6 +39,13 @@ export default function ObjectLayout() {
     options: { retry: false },
   });
 
+  const objectVersionQuery = useGetS3ObjectVersions({
+    projectId,
+    region: s3.region,
+    name: s3.name,
+    key: objectKey,
+  });
+
   // redirect if object is not found
   useEffect(() => {
     if (objectQuery.isError) {
@@ -52,6 +62,7 @@ export default function ObjectLayout() {
   if (!objectQuery.data) {
     return (
       <>
+        <TabsMenu.Skeleton />
         <div className="flex space-x-4">
           <Skeleton className="w-1/2 h-[200px]" />
           <Skeleton className="w-1/2 h-[200px]" />
@@ -59,5 +70,12 @@ export default function ObjectLayout() {
       </>
     );
   }
-  return <Outlet context={parentOutletData} />;
+  return (
+    <>
+      <ObjectTabs versionsCount={objectVersionQuery.data?.length} />
+      <div className="space-y-2">
+        <Outlet context={parentOutletData} />
+      </div>
+    </>
+  );
 }
