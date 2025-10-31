@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.2.0...@ovh-ux/muk@0.3.0) (2025-10-30)
+
+### Bug Fixes
+
+- **muk:** update filter add snapshot spec ([bc28205](https://github.com/ovh/manager/commit/bc28205cbf536c889c71fd67809e4a2a57b5c3c0)), closes [#MANAGER-20131](https://github.com/ovh/manager/issues/MANAGER-20131)
+- remove unused translations [CDS] ([7e256a8](https://github.com/ovh/manager/commit/7e256a8741b52e9c7ad28b92cf6b8770f8372a23))
+
+### Features
+
+- **muk:** correct lint error and comment flaky test ([ec6b03d](https://github.com/ovh/manager/commit/ec6b03d31f808c496349983ad85a7b74faf3c393))
+
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.1.2...@ovh-ux/muk@0.2.0) (2025-10-29)
+
+### Features
+
+- add missing components ([694d3f4](https://github.com/ovh/manager/commit/694d3f47c8c7fe94bc8f03948bebc719962b29ab)), closes [#MANAGER-19484](https://github.com/ovh/manager/issues/MANAGER-19484)
+- **muk:** export ODS enums from MUK ([20000ab](https://github.com/ovh/manager/commit/20000ab43846d97d7d3dba09ad681fc6ea684d8d))
+
+## [0.1.2](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.1.1...@ovh-ux/muk@0.1.2) (2025-10-29)
+
+**Note:** Version bump only for package @ovh-ux/muk
+
 ## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.1.0...@ovh-ux/muk@0.1.1) (2025-10-23)
 
 **Note:** Version bump only for package @ovh-ux/muk

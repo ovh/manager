@@ -127,6 +127,20 @@
 
 .userInfos {
   font-size: 1rem;
+  color: var(--ods-color-primary-100) !important;
+}
+
+.userIcon {
+  height: 1rem;
+  &:global(.ods-icon) {
+    background-color: var(--ods-color-primary-100) !important;
+  }
+}
+
+.userMenuLink {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;  
 }
 
 @media (max-width: $device-breakpoint-tablet-max-width) {

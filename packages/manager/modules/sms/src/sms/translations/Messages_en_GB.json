@@ -41,5 +41,6 @@
   "sms_header_guide": "Guides",
   "sms_header_guide_start_with_sms": "Getting started with OVHcloud SMS",
   "sms_smpp_channel_qualification_marketing": "Marketing",
-  "sms_smpp_channel_qualification_transactional": "Transactional"
+  "sms_smpp_channel_qualification_transactional": "Transactional",
+  "sms_configure": "Configure"
 }

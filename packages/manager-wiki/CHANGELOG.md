@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.15.3...@ovh-ux/manager-wiki@0.15.4) (2025-10-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-wiki
+
+
+
+
+
+## [0.15.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.15.2...@ovh-ux/manager-wiki@0.15.3) (2025-10-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-wiki
+
+
+
+
+
+## [0.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.15.1...@ovh-ux/manager-wiki@0.15.2) (2025-10-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-wiki
+
+
+
+
+
 ## [0.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.15.0...@ovh-ux/manager-wiki@0.15.1) (2025-10-23)
 
 

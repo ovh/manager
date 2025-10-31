@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.6.0...@ovh-ux/manager-dedicated-servers-app@0.6.1) (2025-10-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.5.1...@ovh-ux/manager-dedicated-servers-app@0.6.0) (2025-10-29)
+
+
+### Features
+
+* **dedicated:** add vrack link in DataGrid ([e26d3bd](https://github.com/ovh/manager/commit/e26d3bd4ab0d0a6eaefa146561ed57955c0e668f)), closes [#MANAGER-18418](https://github.com/ovh/manager/issues/MANAGER-18418)
+
+
+
+
+
 ## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.5.0...@ovh-ux/manager-dedicated-servers-app@0.5.1) (2025-10-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app

@@ -4,6 +4,8 @@ import { useHref } from 'react-router-dom';
 import ActionsComponent from '@/components/list/Actions.component';
 import { TVolume } from '@/api/hooks/useVolume';
 
+vi.mock('@/hooks/useTrackAction', () => ({ useTrackAction: vi.fn() }));
+
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key: string) => key }),
 }));

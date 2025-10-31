@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.21.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.21.0...@ovh-ux/ng-ovh-web-universe-components@9.21.1) (2025-10-30)
+
+
+### Bug Fixes
+
+* **web.exchange:** fix wrong quota definition on shared account ([c5d1fe0](https://github.com/ovh/manager/commit/c5d1fe0ccf95448958d6cb2045fa2f702579717d)), closes [#PRDCOL-130](https://github.com/ovh/manager/issues/PRDCOL-130)
+
+
+
+
+
 # [9.21.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.20.0...@ovh-ux/ng-ovh-web-universe-components@9.21.0) (2025-02-10)
 
 

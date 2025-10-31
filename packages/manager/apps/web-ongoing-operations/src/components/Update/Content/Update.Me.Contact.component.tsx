@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { Link, Text } from '@ovhcloud/ods-react';
 import { getNicParams } from '@/utils/utils';
-import { DomainOperationsEnum } from '@/constants';
+import { ContactControlProperties, DomainOperationsEnum } from '@/constants';
 import { useNichandle } from '@/hooks/nichandle/useNichandle';
 import { useGetDomainInformation } from '@/hooks/data/query';
 import Loading from '@/components/Loading/Loading';
@@ -50,19 +50,33 @@ export default function ActionMeContactComponent({
   }
 
   return (
-    <Link
-      href={url}
-      color="primary"
-      className="block"
-      icon="external-link"
-      data-testid="contactupdate"
-      isDisabled={!url}
-    >
-      {t(
-        `domain_operations_update_nicowner_click_${
-          argumentKey === 'corporationProof' ? 'nicowner' : argumentKey ?? ''
-        }`,
+    <div>
+      {ContactControlProperties.some((ccp) => fields.includes(ccp)) && (
+        <div className="mb-8">
+          <Text>{t('domain_operations_update_properties')}</Text>
+          <ul className="m-0 p-0 pl-4">
+            {fields.map((item) => (
+              <li key={item} className="font-bold text-[var(--ods-color-text)]">
+                {t(`domain_operations_update_${item}`)}
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
-    </Link>
+      <Link
+        href={url}
+        color="primary"
+        className="block"
+        icon="external-link"
+        data-testid="contactupdate"
+        disabled={!url}
+      >
+        {t(
+          `domain_operations_update_nicowner_click_${
+            argumentKey === 'corporationProof' ? 'nicowner' : argumentKey ?? ''
+          }`,
+        )}
+      </Link>
+    </div>
   );
 }

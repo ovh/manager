@@ -94,9 +94,9 @@
   "dedicatedCloud_options_zerto_status_vpn_notConfigured": "In attesa degli IP della VPN",
   "dedicatedCloud_options_zerto_status_vpn_configuring": "Configurazione della VPN in corso...",
   "dedicatedCloud_options_zerto_status_vpn_error": "Configurazione della VPN in errore",
-  "dedicatedCloud_options_zerto_action_install": "Installa un DRP",
-  "dedicatedCloud_options_zerto_action_add_configuration": "Aggiungi IP",
-  "dedicatedCloud_options_zerto_action_delete": "Elimina DRP Zerto ",
+  "dedicatedCloud_options_zerto_action_install": "Attivare",
+  "dedicatedCloud_options_zerto_action_add_configuration": "Configura",
+  "dedicatedCloud_options_zerto_action_delete": "Eliminare",
   "dedicatedCloud_subscription_links": "Link",
   "dedicatedCloud_datacenter_go_vscope": "Accedi a vScope",
   "dedicatedCloud_datacenter_go_web_interface": "Interfaccia Web",
@@ -127,5 +127,6 @@
   "dedicatedCloud_datacenter_nsx_resize_error": "Si è verificato un errore",
   "dedicatedCloud_tab_datacenter_global_information": "Di default, tutti i datacenter virtuali (VDC) NSX dispongono di un cluster NSX Edge composto da 2 NSX Edge. In seguito hai la possibilità di modificare la dimensione degli Edge. Per modificare le dimensioni o il numero degli Edge, dovrai disporre delle risorse necessarie.",
   "dedicatedCloud_manage_nsx_vcpu_price": "a partire da {{ price }} +IVA/vCPU/mese*",
-  "dedicatedCloud_manage_nsx_additionnal_price_informations": "*2x4 vCPU incluse nell’offerta Standard"
+  "dedicatedCloud_manage_nsx_additionnal_price_informations": "*2x4 vCPU incluse nell’offerta Standard",
+  "dedicatedCloud_go_back_to_list": "Torna alla lista"
 }

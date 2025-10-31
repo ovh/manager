@@ -47,7 +47,7 @@ describe('Dns datagrid', () => {
       expect.objectContaining({
         pageSize: 10,
         route: `${taskMeDns.join('/')}`,
-        disableCache: false,
+        disableCache: true,
         queryKey: taskMeDns,
       }),
     );

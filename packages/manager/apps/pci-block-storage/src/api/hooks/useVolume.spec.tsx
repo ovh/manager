@@ -2,6 +2,10 @@ import { act, renderHook, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { describe, it, vi } from 'vitest';
 import {
+  ShellContext,
+  ShellContextType,
+} from '@ovh-ux/manager-react-shell-client';
+import {
   useAttachVolume,
   useDeleteVolume,
   useDetachVolume,
@@ -9,11 +13,11 @@ import {
   useVolumes,
 } from '@/api/hooks/useVolume';
 import {
-  getVolume,
-  getAllVolumes,
-  deleteVolume,
   attachVolume,
+  deleteVolume,
   detachVolume,
+  getAllVolumes,
+  getVolume,
   TAPIVolume,
 } from '@/api/data/volume';
 
@@ -33,8 +37,17 @@ vi.mock('@/api/data/catalog');
 
 const queryClient = new QueryClient();
 
+const shellContextValue: RecursivePartial<ShellContextType> = {
+  environment: {
+    getUser: () => ({ ovhSubsidiary: 'mocked_ovhSubsidiary' }),
+    getRegion: () => 'EU',
+  },
+};
+
 const wrapper = ({ children }) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  <ShellContext.Provider value={shellContextValue as ShellContextType}>
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  </ShellContext.Provider>
 );
 
 afterAll(() => {

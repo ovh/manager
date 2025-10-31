@@ -40,6 +40,7 @@ vi.mock('react-router-dom', () => ({
   },
   Outlet: vi.fn(),
   useHref: vi.fn(),
+  useMatch: vi.fn(),
 }));
 
 const mocks = vi.hoisted(() => ({

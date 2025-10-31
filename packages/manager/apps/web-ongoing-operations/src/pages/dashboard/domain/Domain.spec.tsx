@@ -34,7 +34,7 @@ describe('Domain datagrid', () => {
       expect.objectContaining({
         pageSize: 10,
         route: `${taskMeDomain.join('/')}?type=domain`,
-        disableCache: false,
+        disableCache: true,
         queryKey: taskMeDomain,
       }),
     );

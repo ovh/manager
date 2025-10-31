@@ -8,10 +8,17 @@ const handleClick = vi.fn();
 const props: Props = {
   show: false,
   onClick: handleClick,
+  contrast: false,
 };
 
 const renderLanguageButton = (props: Props) => {
-  return render(<LanguageButton show={props.show} onClick={props.onClick} />);
+  return render(
+    <LanguageButton
+      show={props.show}
+      onClick={props.onClick}
+      contrast={props.contrast}
+    />,
+  );
 };
 
 describe('LanguageButton.component', () => {

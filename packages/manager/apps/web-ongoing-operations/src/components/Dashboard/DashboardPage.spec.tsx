@@ -40,7 +40,6 @@ describe('Datagrid template', () => {
     const { getByTestId } = render(
       <DashboardPage
         searchableColumnID={ParentEnum.DOMAIN}
-        notifications={[]}
         parent={ParentEnum.DOMAIN}
         route={`${taskMeDomain.join('/')}?type=domain`}
         queryKey={taskMeDomain}
