@@ -3,6 +3,7 @@ import path from 'path';
 import {
   createConfig,
   defaultExcludedFiles,
+  defaultDedupedDependencies,
   mergeConfig,
   sharedConfig,
 } from '@ovh-ux/manager-tests-setup';
@@ -10,8 +11,18 @@ import {
 export default mergeConfig(
   sharedConfig,
   createConfig({
+    plugins: [
+      ...sharedConfig.plugins,
+      {
+        name: 'ignore-css-plugin',
+        transform(_, id) {
+          if (id.endsWith('.css')) return { code: '', map: null };
+        },
+      },
+    ],
     test: {
       setupFiles: ['src/utils/test.setup.tsx'],
+      css: true,
       coverage: {
         exclude: [
           ...defaultExcludedFiles,
@@ -33,10 +44,12 @@ export default mergeConfig(
     mergeConfig,
     sharedConfig,
     resolve: {
+      dedupe: [...defaultDedupedDependencies, '@ovhcloud/ods-react', '@ovhcloud/ods-themes'],
       alias: {
         '@/public': path.resolve(__dirname, 'public'),
         '@': path.resolve(__dirname, 'src'),
       },
+      mainFields: ['browser', 'module', 'main'],
     },
   }),
 );

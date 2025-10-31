@@ -101,12 +101,16 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importActual) => {
 });
 
 vi.mock('@ovh-ux/muk', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovh-ux/muk')>();
   return {
-    ...(await importOriginal<typeof import('@ovh-ux/muk')>()),
+    ...actual,
+    // keep real MUK exports like Text, Button, etc.
     useNotifications: () => ({
       addSuccess: vi.fn(),
       addWarning: vi.fn(),
     }),
+    useFormatDate: () => (date: string) =>
+      date === '2026-02-18' ? '18 févr. 2026' : `formatted-${date}`,
   };
 });
 

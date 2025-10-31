@@ -29,12 +29,19 @@ vi.mock('react-i18next', async (importActual) => {
   };
 });
 
-vi.mock('@ovh-ux/muk', () => ({
-  useFormatDate: () => (date: string) => {
-    if (date === '2026-02-18') return '18 févr. 2026';
-    return `formatted-${date}`;
-  },
-}));
+vi.mock('@ovh-ux/muk', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovh-ux/muk')>();
+  return {
+    ...actual,
+    // keep real MUK exports like Text, Button, etc.
+    useNotifications: () => ({
+      addSuccess: vi.fn(),
+      addWarning: vi.fn(),
+    }),
+    useFormatDate: () => (date: string) =>
+      date === '2026-02-18' ? '18 févr. 2026' : `formatted-${date}`,
+  };
+});
 
 describe('ExpirationDate', () => {
   beforeEach(() => {

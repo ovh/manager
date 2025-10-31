@@ -7436,15 +7436,6 @@
   resolved "https://registry.npmjs.org/@ovh-ux/manager-common-translations/-/manager-common-translations-0.9.1.tgz#9e79e284f461fa5396d70cd7641f0e4c694bd115"
   integrity sha512-UJ/8hLplbB9qi+Nh4NoJO62PG0ZMBx9gZLJOsT83m1uL7trknY8ZOEuH5p3YWJwSbRc6G4mEHEwwsoG5w/zwiw==
 
-"@ovh-ux/manager-core-api@^0.11.1":
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.11.1.tgz#182cc03bd8532dcc08c09f1df7d34bb7ed349efe"
-  integrity sha512-RUXMD5Yp80ek7IjuKBTc3Qn/eJMVdbhsLJ/C4xOltHm2YcU5dy7FBDSUP6JCMrPV9J03w6aWIHPKsKs8fVRSuQ==
-  dependencies:
-    "@ovh-ux/manager-core-sso" "^0.3.1"
-    "@ovh-ux/request-tagger" "^0.4.1"
-    axios "^1.1.2"
-
 "@ovh-ux/manager-core-api@^0.16.0":
   version "0.16.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.16.0.tgz#a59f178b52b96af26b60c8a20f7c734c0b140160"
@@ -7454,7 +7445,7 @@
     "@ovh-ux/request-tagger" "^0.4.1"
     axios "^1.1.2"
 
-"@ovh-ux/manager-core-sso@^0.3.1", "@ovh-ux/manager-core-sso@^0.3.2":
+"@ovh-ux/manager-core-sso@^0.3.2":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-sso/-/manager-core-sso-0.3.3.tgz#138b5c1592c437c689ec4c523ddf0cc7aa26812e"
   integrity sha512-22M6BY5AkjzOFMATSg+EpoFXkxYKVbqI2hev7eD2EsfNRCnBINjXMWy9FDD0cXMuwkP7RwxbLuf8dAC4x+JZtA==
