@@ -18,3 +18,6 @@ export const getSirenFromSiret = (
 
   return new RegExp(pattern).test(siret) ? siret.substring(0, 9) : null;
 };
+
+export const isIndividualLegalForm = (legalForm?: LegalForm) =>
+  legalForm === 'individual';
