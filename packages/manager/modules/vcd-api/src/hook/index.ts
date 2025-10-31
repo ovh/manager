@@ -1,3 +1,4 @@
+export * from './useDeleteEdgeGateway';
 export * from './useDeleteVcdVrackSegment';
 export * from './useOrderableResource';
 export * from './useResetVcdPassword';
@@ -6,6 +7,7 @@ export * from './useUpdateVcdOrganization';
 export * from './useUpdateVcdVrackSegment';
 export * from './useVcdCatalog';
 export * from './useVcdDatacentre';
+export * from './useVcdEdgeGateway';
 export * from './useVcdOrder';
 export * from './useVcdOrganization';
 export * from './useVeeamBackup';
