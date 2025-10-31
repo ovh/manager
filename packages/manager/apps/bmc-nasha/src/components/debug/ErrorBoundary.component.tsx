@@ -1,64 +1,41 @@
-import React, { Component, ErrorInfo, ReactNode } from 'react';
+import { Suspense, useContext } from 'react';
+import { useRouteError } from 'react-router-dom';
+import { Error } from '@ovh-ux/muk';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useHidePreloader } from '@/hooks/useHidePreloader';
+import { useShellRoutingSync } from '@/hooks/useShellRoutingSync';
+import { mapUnknownErrorToBannerError } from '@/utils/error.utils';
+import { redirectionApp } from '@/routes/Routes.constants';
 
-interface Props {
-  children?: ReactNode;
-  isPreloaderHide?: boolean;
-  isRouteShellSync?: boolean;
-  redirectionApp?: string;
-}
+/**
+ * ErrorBoundary component for route errors
+ * Uses MUK Error component with PCI project patterns
+ * Handles route errors from React Router
+ */
+export const ErrorBoundary = () => {
+  useHidePreloader();
+  useShellRoutingSync();
+  const error = useRouteError();
+  const { navigation } = useContext(ShellContext).shell;
+  const errorBannerError = mapUnknownErrorToBannerError(error);
 
-interface State {
-  hasError: boolean;
-  error?: Error;
-  errorInfo?: ErrorInfo;
-}
+  const navigateToHomePage = () => {
+    navigation.navigateTo(redirectionApp, '', {});
+  };
 
-class ErrorBoundary extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = { hasError: false };
-  }
+  const reloadPage = () => {
+    navigation.reload();
+  };
 
-  static getDerivedStateFromError(error: Error): State {
-    return { hasError: true, error };
-  }
-
-  override componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('ErrorBoundary caught an error:', error, errorInfo);
-    this.setState({ error, errorInfo });
-  }
-
-  override render() {
-    if (this.state.hasError) {
-      return (
-        <div className="border border-gray-300 rounded-lg p-6 bg-white shadow-sm">
-          <h2 className="text-lg font-semibold mb-4 text-red-600">
-            Une erreur est survenue
-          </h2>
-          <div className="space-y-2">
-            <p className="text-gray-700">
-              <strong>Erreur:</strong> {this.state.error?.message}
-            </p>
-            <details className="mt-4">
-              <summary className="cursor-pointer font-semibold">
-                Détails techniques
-              </summary>
-              <pre className="mt-2 p-4 bg-gray-100 rounded text-sm overflow-auto">
-                {this.state.error?.stack}
-              </pre>
-              {this.state.errorInfo && (
-                <pre className="mt-2 p-4 bg-gray-100 rounded text-sm overflow-auto">
-                  {this.state.errorInfo.componentStack}
-                </pre>
-              )}
-            </details>
-          </div>
-        </div>
-      );
-    }
-
-    return this.props.children || null;
-  }
-}
+  return (
+    <Suspense>
+      <Error
+        onReloadPage={reloadPage}
+        onRedirectHome={navigateToHomePage}
+        error={errorBannerError}
+      />
+    </Suspense>
+  );
+};
 
 export default ErrorBoundary;

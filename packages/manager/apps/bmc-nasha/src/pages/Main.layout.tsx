@@ -1,24 +1,24 @@
-import { Suspense, useContext, useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
 
-import {
-  ShellContext,
-  useOvhTracking,
-  useRouteSynchro,
-} from '@ovh-ux/manager-react-shell-client';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 
 import { appName } from '@/App.constants';
+import { useHidePreloader } from '@/hooks/useHidePreloader';
+import { useShellRoutingSync } from '@/hooks/useShellRoutingSync';
 
 export default function MainLayout() {
   const location = useLocation();
   const matches = useMatches();
-  const { shell } = useContext(ShellContext);
   const { trackCurrentPage } = useOvhTracking();
 
+  // Hide shell preloader
+  useHidePreloader();
+
   // Keep shell route state in sync with React Router
-  useRouteSynchro();
+  useShellRoutingSync();
 
   // Tag the current page for request correlation
   useEffect(() => {
@@ -32,11 +32,6 @@ export default function MainLayout() {
   useEffect(() => {
     trackCurrentPage();
   }, [trackCurrentPage, location.pathname]);
-
-  // Hide shell preloader on mount
-  useEffect(() => {
-    shell?.ux.hidePreloader();
-  }, [shell]);
 
   return (
     <Suspense fallback={null /* Replace with loader if desired */}>

@@ -3,9 +3,9 @@ import React from 'react';
 import { Navigate, Route } from 'react-router-dom';
 
 import { PageType } from '@ovh-ux/manager-react-shell-client';
-import ErrorBoundary from '@/components/debug/ErrorBoundary.component';
+import { ErrorBoundary } from '@/components/debug/ErrorBoundary.component';
 
-import { redirectionApp, urls } from './Routes.constants';
+import { urls } from './Routes.constants';
 
 const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 const RootPage = React.lazy(() => import('@/pages/root/Root.page'));
@@ -25,13 +25,7 @@ export default (
       id="root"
       path={urls.root}
       Component={MainLayoutPage}
-      errorElement={
-        <ErrorBoundary
-          isPreloaderHide={true}
-          isRouteShellSync={true}
-          redirectionApp={redirectionApp}
-        />
-      }
+      errorElement={<ErrorBoundary />}
     >
       {/* Smart redirect root - checks for services */}
       <Route

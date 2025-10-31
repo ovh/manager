@@ -245,7 +245,9 @@ expect(img.getAttribute('src')).toContain('logo');
 ```
 ### 🎯 Core AngularJS → React Mappings
 
-#### 1. **Controller → Hook**
+#### 1. **Controller → Hook (Advanced React Query Patterns)**
+
+**Basic Pattern:**
 ```typescript
 // AngularJS Controller
 angular.controller('UserController', function($scope, UserService) {
@@ -261,7 +263,7 @@ angular.controller('UserController', function($scope, UserService) {
   };
 });
 
-// React Hook
+// React Hook (Basic)
 export function useUserController() {
   const { data: users, isLoading, refetch } = useQuery({
     queryKey: ['users'],
@@ -272,6 +274,76 @@ export function useUserController() {
     users: users || [],
     loading: isLoading,
     loadUsers: refetch
+  };
+}
+```
+
+**Advanced Pattern (with InfiniteQuery, Selectors, and Cache Management):**
+```typescript
+// React Hook (Advanced - following PCI project patterns)
+import { InfiniteData, keepPreviousData, QueryKey, useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
+import { useCallback, useMemo } from 'react';
+import { usersSelector } from './selectors/users.selector';
+import { usersQueryKey } from './utils/queryKeys';
+
+export function useUsers(params: {
+  limit: number;
+  sort: string;
+  sortOrder: 'asc' | 'desc';
+  filters: Filter[];
+}) {
+  const queryClient = useQueryClient();
+  
+  // Structured query keys
+  const queryKey = useMemo(
+    () => usersQueryKey(['list', 'sort', params.sort, params.sortOrder]),
+    [params.sort, params.sortOrder]
+  );
+
+  // Cache invalidation helper
+  const invalidateQuery = useCallback(
+    async (queryKeyToInvalidate: QueryKey) => {
+      await queryClient.invalidateQueries({
+        queryKey: queryKeyToInvalidate,
+        exact: true,
+      });
+    },
+    [queryClient],
+  );
+
+  // Refresh function
+  const refresh = useCallback(() => {
+    void invalidateQuery(queryKey);
+  }, [invalidateQuery, queryKey]);
+
+  // InfiniteQuery with selector for data transformation
+  const { data, ...rest } = useInfiniteQuery({
+    queryKey,
+    retry: false,
+    initialPageParam: 0,
+    refetchOnWindowFocus: 'always',
+    queryFn: ({ pageParam }) => fetchUsers({
+      limit: params.limit,
+      offset: pageParam * params.limit,
+      sort: params.sort,
+      sortOrder: params.sortOrder,
+      filters: params.filters,
+    }),
+    getNextPageParam: (lastPage, _allPages, lastPageParam) =>
+      lastPage.length > params.limit ? lastPageParam + 1 : null,
+    // Selector separates fetch logic from transformation
+    select: useCallback(
+      (rawData: InfiniteData<UserDto[], number>) =>
+        usersSelector(rawData, params.limit),
+      [params.limit],
+    ),
+    placeholderData: keepPreviousData,
+  });
+
+  return {
+    data,
+    refresh,
+    ...rest,
   };
 }
 ```
@@ -471,6 +543,8 @@ export function UserFormPage() {
 | `ng-model` | `value + onChange` | Controlled inputs |
 
 #### Essential OVH Patterns
+
+**Basic Data Fetching:**
 ```typescript
 // Data fetching
 export function useUsers() {
@@ -479,7 +553,70 @@ export function useUsers() {
     queryFn: () => apiClient.v6.get('/api/users').then(res => res.data)
   });
 }
+```
 
+**Advanced Data Fetching (PCI Project Patterns):**
+```typescript
+// QueryClient Configuration (src/QueryClient.ts)
+import { QueryClient } from '@tanstack/react-query';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      retry: false, // No automatic retry (handled by components)
+      refetchOnWindowFocus: false, // Avoid unnecessary refetch
+    },
+    mutations: {
+      retry: false,
+    },
+  },
+});
+
+// Query Keys Factory (src/data/api/hooks/utils/queryKeys.ts)
+export function usersQueryKey(parts: string[]): QueryKey {
+  return ['users', ...parts];
+}
+
+// Selector for Data Transformation (src/data/api/hooks/selectors/users.selector.ts)
+export function usersSelector(
+  { pages }: InfiniteData<UserDto[], number>,
+  limit: number,
+): User[] {
+  return pages
+    .flatMap((page) => (page.length > limit ? page.slice(0, limit) : page))
+    .map((userDto) => ({
+      ...userDto,
+      status: getUserStatus(userDto.status),
+      // Transform DTOs to application entities
+    }));
+}
+
+// Advanced Hook with Selectors
+export function useUsers(params: UseUsersParams) {
+  const queryClient = useQueryClient();
+  const queryKey = useMemo(() => usersQueryKey(['list']), []);
+
+  const { data, ...rest } = useInfiniteQuery({
+    queryKey,
+    queryFn: ({ pageParam }) => fetchUsers({ ...params, offset: pageParam }),
+    select: useCallback(
+      (rawData) => usersSelector(rawData, params.limit),
+      [params.limit],
+    ),
+    placeholderData: keepPreviousData,
+  });
+
+  const refresh = useCallback(() => {
+    void queryClient.invalidateQueries({ queryKey });
+  }, [queryClient, queryKey]);
+
+  return { data, refresh, ...rest };
+}
+```
+
+**Mutations:**
+```typescript
 // Mutations
 export function useCreateUser() {
   const queryClient = useQueryClient();
@@ -488,18 +625,72 @@ export function useCreateUser() {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['users'] })
   });
 }
+```
 
-// Error handling
-export function useUsers() {
-  const { addError } = useNotifications();
-  
-  return useQuery({
-    queryKey: ['users'],
-    queryFn: () => apiClient.v6.get('/api/users').then(res => res.data),
-    onError: (error) => {
-      addError('Failed to load users');
-    }
-  });
+**Error Handling with ErrorBoundary:**
+```typescript
+// Error Boundary (src/components/debug/ErrorBoundary.component.tsx)
+import { Error } from '@ovh-ux/muk';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useRouteError } from 'react-router-dom';
+import { useContext } from 'react';
+
+export const ErrorBoundary = () => {
+  const error = useRouteError();
+  const { navigation } = useContext(ShellContext).shell;
+  const errorBannerError = mapUnknownErrorToBannerError(error);
+
+  const navigateToHomePage = () => {
+    navigation.navigateTo('redirection-app', '', {});
+  };
+
+  const reloadPage = () => {
+    navigation.reload();
+  };
+
+  return (
+    <Error
+      onReloadPage={reloadPage}
+      onRedirectHome={navigateToHomePage}
+      error={errorBannerError}
+    />
+  );
+};
+
+// Error Utils (src/utils/error.utils.ts)
+export function mapUnknownErrorToBannerError(error: unknown): ErrorBannerError {
+  if (error instanceof ApiError) {
+    return {
+      data: { message: error.response?.data?.message || error.message },
+      headers: error.response?.headers || {},
+    };
+  }
+  return {
+    data: { message: error instanceof Error ? error.message : 'Unknown error' },
+    headers: {},
+  };
+}
+```
+
+**Hooks Extraction Pattern:**
+```typescript
+// useHidePreloader (src/hooks/useHidePreloader.ts)
+import { useContext, useEffect } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
+export function useHidePreloader() {
+  const { shell } = useContext(ShellContext);
+  useEffect(() => {
+    shell?.ux.hidePreloader();
+  }, [shell]);
+}
+
+// useShellRoutingSync (src/hooks/useShellRoutingSync.ts)
+import { useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
+
+export function useShellRoutingSync() {
+  useRouteSynchro();
+  return null;
 }
 ```
 

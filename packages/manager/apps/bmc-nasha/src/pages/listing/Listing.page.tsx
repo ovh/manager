@@ -1,14 +1,17 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
+import type { SortingState, VisibilityState } from '@tanstack/react-table';
 import {
   BaseLayout,
   Button,
   Datagrid,
-  DatagridColumn,
   ChangelogMenu,
   GuideMenu,
+  useColumnFilters,
 } from '@ovh-ux/muk';
+import type { DatagridColumn } from '@ovh-ux/muk';
+import type { Filter, FilterComparator } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useNashaServices } from '@/data/api/hooks/useNashaServices';
 import { useUser } from '@/hooks/useUser';
@@ -18,23 +21,73 @@ import type { NashaService } from '@/types/Nasha.type';
 
 export default function ListingPage() {
   const { t } = useTranslation('listing');
-  const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
   const user = useUser();
 
-  const [sorting, setSorting] = useState([]);
+  const [sorting, setSorting] = useState<SortingState>([]);
   const [searchInput, setSearchInput] = useState('');
-  const [columnVisibility, setColumnVisibility] = useState({
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
     monitored: false,
     zpoolCapacity: false,
     zpoolSize: false,
   });
 
-  const { data, isLoading, error } = useNashaServices({
-    page: 1,
-    pageSize: 1000, // Load all data for client-side filtering/pagination
-    sortBy: undefined,
-    sortDesc: false,
+  // Extract sort column and direction from sorting state
+  const sortBy = useMemo(() => {
+    if (sorting.length === 0 || !sorting[0]) return undefined;
+    return sorting[0].id as string;
+  }, [sorting]);
+
+  const sortDesc = useMemo(() => {
+    if (sorting.length === 0 || !sorting[0]) return false;
+    return sorting[0].desc ?? false;
+  }, [sorting]);
+
+  // Server-side pagination with reasonable page size (10 items per page for better UX)
+  const pageSize = 10;
+
+  // Column filters management
+  const { filters: columnFilters, addFilter, removeFilter } = useColumnFilters();
+
+  // Convert FilterWithLabel[] to Filter[] for API
+  const apiFilters = useMemo<Filter[] | undefined>(() => {
+    if (!columnFilters || columnFilters.length === 0) return undefined;
+    return columnFilters.map((filter) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { label, ...filterWithoutLabel } = filter;
+      return filterWithoutLabel;
+    });
+  }, [columnFilters]);
+
+  // Adapters for FilterProps interface (ColumnFilterProps -> FilterWithLabel)
+  const handleAddFilter = useCallback(
+    (filterProps: { comparator: FilterComparator; key: string; label: string; value: string | string[] }) => {
+      addFilter({
+        key: filterProps.key,
+        label: filterProps.label,
+        comparator: filterProps.comparator,
+        value: filterProps.value,
+      });
+    },
+    [addFilter],
+  );
+
+  const handleRemoveFilter = useCallback(
+    (filter: { key: string; comparator: FilterComparator; value?: string | string[] }) => {
+      removeFilter({
+        key: filter.key,
+        comparator: filter.comparator,
+        value: filter.value,
+      });
+    },
+    [removeFilter],
+  );
+
+  const { data, isLoading, totalCount, hasNextPage, fetchNextPage } = useNashaServices({
+    limit: pageSize,
+    sortBy,
+    sortDesc,
+    filters: apiFilters,
   });
 
   const handleOrderClick = () => {
@@ -42,10 +95,6 @@ export default function ListingPage() {
     window.open('https://www.ovhcloud.com/en/bare-metal-cloud/nas-ha/', '_blank');
   };
 
-  const handleServiceClick = (serviceName: string) => {
-    trackClick({ actions: ['listing::service-link'] });
-    navigate(`../${serviceName}`);
-  };
 
   const handleSearch = (value: string) => {
     setSearchInput(value);
@@ -70,20 +119,20 @@ export default function ListingPage() {
     [guideUrl, t],
   );
 
-  // Filter data based on search
+  // Client-side search filtering (can be moved to server-side later if needed)
   const filteredData = useMemo(() => {
-    if (!searchInput || !data?.data) {
-      return data?.data || [];
+    if (!searchInput || !data) {
+      return data || [];
     }
     const searchLower = searchInput.toLowerCase();
-    return data.data.filter(
+    return data.filter(
       (service) =>
         service.serviceName?.toLowerCase().includes(searchLower) ||
         service.customName?.toLowerCase().includes(searchLower) ||
         service.datacenter?.toLowerCase().includes(searchLower) ||
         service.diskType?.toLowerCase().includes(searchLower),
     );
-  }, [data?.data, searchInput]);
+  }, [data, searchInput]);
 
   const columns: DatagridColumn<NashaService>[] = [
     {
@@ -93,12 +142,13 @@ export default function ListingPage() {
         defaultValue: 'ID Service',
       }),
       cell: ({ row }) => (
-        <button
-          onClick={() => handleServiceClick(row.original.serviceName)}
+        <Link
+          to={`../${row.original.serviceName}`}
+          onClick={() => trackClick({ actions: ['listing::service-link'] })}
           className="text-blue-600 hover:underline"
         >
           {row.original.serviceName}
-        </button>
+        </Link>
       ),
       enableHiding: false,
       isSearchable: true,
@@ -175,28 +225,26 @@ export default function ListingPage() {
     <BaseLayout
       header={{
         title: t('nasha_listing_title', { defaultValue: 'NAS-HA Services' }),
-        headerButton: (
-          <div className="flex items-center gap-2">
-            <ChangelogMenu links={CHANGELOG_LINKS} chapters={CHANGELOG_CHAPTERS} />
-            <GuideMenu items={guideItems} />
-          </div>
-        ),
-        cta: (
-          <Button variant="default" onClick={handleOrderClick}>
-            {t('nasha_listing_order', { defaultValue: 'Order a HA-NAS' })}
-          </Button>
-        ),
+        changelogButton: <ChangelogMenu links={CHANGELOG_LINKS} chapters={[...CHANGELOG_CHAPTERS]} />,
+        guideMenu: <GuideMenu items={guideItems} />,
       }}
     >
+      <div className="mb-4 flex justify-end">
+        <Button variant="default" onClick={handleOrderClick}>
+          {t('nasha_listing_order', { defaultValue: 'Order a HA-NAS' })}
+        </Button>
+      </div>
       <Datagrid
-        columns={columns}
-        data={filteredData}
-        totalCount={filteredData.length}
+        columns={columns as DatagridColumn<Record<string, unknown>>[]}
+        data={filteredData as unknown as Record<string, unknown>[]}
+        totalCount={totalCount ?? filteredData.length}
         isLoading={isLoading}
+        hasNextPage={hasNextPage}
+        onFetchNextPage={fetchNextPage}
         sorting={{
           sorting,
           setSorting,
-          manualSorting: false,
+          manualSorting: false, // Server-side sorting is handled by useNashaServices
         }}
         search={{
           searchInput,
@@ -207,9 +255,9 @@ export default function ListingPage() {
           }),
         }}
         filters={{
-          filters: [],
-          add: () => {},
-          remove: () => {},
+          filters: columnFilters,
+          add: handleAddFilter,
+          remove: handleRemoveFilter,
         }}
         columnVisibility={{
           columnVisibility,
