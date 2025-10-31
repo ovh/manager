@@ -12,12 +12,12 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { useServiceKeyTypeTranslations } from '@key-management-service/hooks/serviceKey/useServiceKeyTypeTranslations';
-import useServiceKeyActionsList from '@key-management-service/hooks/serviceKey/useServiceKeyActionsList';
+import { useServiceKeyTypeTranslations } from '@key-management-service/hooks/service-key/useServiceKeyTypeTranslations';
+import useServiceKeyActionsList from '@key-management-service/hooks/service-key/useServiceKeyActionsList';
 import { useFormattedDate } from '@key-management-service/hooks/useFormattedDate';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.type';
-import { ServiceKeyStatus } from '../serviceKey/serviceKeyStatus/serviceKeyStatus.component';
+import { ServiceKeyStatus } from '../service-key/service-key-status/serviceKeyStatus.component';
 
 export const DatagridServiceKeyCellName = (props: OkmsServiceKey) => {
   const navigate = useNavigate();

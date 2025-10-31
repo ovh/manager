@@ -2,7 +2,7 @@ import { IamCheckResponse } from '@ovh-ux/manager-react-components';
 import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 import { okmsMock } from '../kms/okms.mock';
-import { serviceKeyMock } from '../serviceKeys/serviceKeys.mock';
+import { serviceKeyMock } from '../service-keys/serviceKeys.mock';
 
 export const kmsIamMock: IamCheckResponse[] = [
   {
