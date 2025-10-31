@@ -11,6 +11,11 @@ const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 const RootPage = React.lazy(() => import('@/pages/root/Root.page'));
 const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
 const ListingPage = React.lazy(() => import('@/pages/listing/Listing.page'));
+const DashboardPage = React.lazy(() => import('@/pages/dashboard/Dashboard.page'));
+const PartitionsPage = React.lazy(() => import('@/pages/dashboard/partitions/Partitions.page'));
+const PartitionPage = React.lazy(() => import('@/pages/dashboard/partitions/partition/Partition.page'));
+const SnapshotsPage = React.lazy(() => import('@/pages/dashboard/partitions/partition/snapshots/Snapshots.page'));
+const AccessesPage = React.lazy(() => import('@/pages/dashboard/partitions/partition/accesses/Accesses.page'));
 
 export default (
   <>
@@ -65,6 +70,65 @@ export default (
           },
         }}
       />
+
+      {/* Dashboard route - must be after listing to avoid conflicts */}
+      <Route
+        path=":serviceName/*"
+        Component={DashboardPage}
+        handle={{
+          tracking: {
+            pageName: 'dashboard',
+            pageType: PageType.listing,
+          },
+        }}
+      >
+        {/* Partitions sub-route */}
+        <Route
+          path="partitions"
+          Component={PartitionsPage}
+          handle={{
+            tracking: {
+              pageName: 'partitions',
+              pageType: PageType.listing,
+            },
+          }}
+        >
+          {/* Partition detail sub-route */}
+          <Route
+            path=":partitionName/*"
+            Component={PartitionPage}
+            handle={{
+              tracking: {
+                pageName: 'partition-detail',
+                pageType: PageType.listing,
+              },
+            }}
+          >
+            {/* Snapshots sub-route */}
+            <Route
+              path="snapshots"
+              Component={SnapshotsPage}
+              handle={{
+                tracking: {
+                  pageName: 'snapshots',
+                  pageType: PageType.listing,
+                },
+              }}
+            />
+            {/* Accesses sub-route */}
+            <Route
+              path="accesses"
+              Component={AccessesPage}
+              handle={{
+                tracking: {
+                  pageName: 'accesses',
+                  pageType: PageType.listing,
+                },
+              }}
+            />
+          </Route>
+        </Route>
+      </Route>
 
       {/* Catch-all redirect to listing */}
       <Route path="*" element={<Navigate to="." replace />} />

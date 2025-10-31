@@ -7,5 +7,19 @@
   "nasha_listing_diskType": "Type de disque",
   "nasha_listing_canCreatePartition": "Création de partition",
   "nasha_listing_canCreatePartition_true": "Autorisée",
-  "nasha_listing_canCreatePartition_false": "Non autorisée"
+  "nasha_listing_canCreatePartition_false": "Non autorisée",
+  "nasha_directory_columns_header_serviceName": "ID Service",
+  "nasha_directory_columns_header_canCreatePartition": "Création de partition",
+  "nasha_directory_columns_header_canCreatePartition_true": "Autorisée",
+  "nasha_directory_columns_header_canCreatePartition_false": "Non autorisée",
+  "nasha_directory_columns_header_customName": "Nom",
+  "nasha_directory_columns_header_datacenter": "Localisation du datacenter",
+  "nasha_directory_columns_header_diskType": "Type de disque",
+  "nasha_directory_columns_header_monitored": "Monitoré",
+  "nasha_directory_columns_header_monitored_true": "Oui",
+  "nasha_directory_columns_header_monitored_false": "Non",
+  "nasha_directory_columns_header_zpoolCapacity": "Capacité du Zpool",
+  "nasha_directory_columns_header_zpoolSize": "Taille du Zpool",
+  "nasha_directory_search_placeholder": "Rechercher...",
+  "nasha_dashboard_guides_title": "Guides NAS-HA"
 }
