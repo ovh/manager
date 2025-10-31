@@ -3,7 +3,7 @@ import { I18nextProvider } from 'react-i18next';
 import { i18n } from 'i18next';
 import { renderHook } from '@testing-library/react';
 import { MOCK_METADATA_VALID } from '@secret-manager/utils/tests/secret.constants';
-import { initTestI18n, labels } from '@/utils/tests/init.i18n';
+import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
 import {
   MAX_VERSIONS_MIN_VALUE,
   MAX_VERSIONS_MAX_VALUE,

@@ -10,7 +10,10 @@ import {
 } from '@secret-manager/utils/secretSmartConfig';
 import { I18nextProvider } from 'react-i18next';
 import { SettingsTile } from './SettingsTile.component';
-import { labels as allLabels, initTestI18n } from '@/utils/tests/init.i18n';
+import {
+  labels as allLabels,
+  initTestI18n,
+} from '@/common/utils/tests/init.i18n';
 
 const labels = allLabels.secretManager;
 

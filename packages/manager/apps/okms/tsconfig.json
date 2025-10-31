@@ -21,6 +21,7 @@
     "baseUrl": ".",
     "paths": {
       "@secret-manager/*": ["src/modules/secret-manager/*"],
+      "@key-management-service/*": ["src/modules/key-management-service/*"],
       "@/*": ["./src/*"]
     }
   },

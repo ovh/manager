@@ -3,7 +3,7 @@ import { Links, LinkType, ManagerTile } from '@ovh-ux/manager-react-components';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { OKMS } from '@/types/okms.type';
+import { OKMS } from '@key-management-service/types/okms.type';
 
 type SecretListLinkTileItemProps = {
   okms: OKMS;

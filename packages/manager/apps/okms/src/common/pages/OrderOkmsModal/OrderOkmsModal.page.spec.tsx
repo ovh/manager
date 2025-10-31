@@ -16,7 +16,7 @@ import {
   postOrderCartCartIdCheckout,
 } from '@ovh-ux/manager-module-order';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-import { initTestI18n, labels } from '@/utils/tests/init.i18n';
+import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
 import OrderOkmsModal from './OrderOkmsModal.page';
 import {
   ORDER_OKMS_CREATE_CANCEL_BUTTON_TEST_ID,
@@ -30,7 +30,7 @@ import {
   renderWithClient,
   promiseWithDelayMock,
   wait,
-} from '@/utils/tests/testUtils';
+} from '@/common/utils/tests/testUtils';
 
 let i18nValue: i18n;
 

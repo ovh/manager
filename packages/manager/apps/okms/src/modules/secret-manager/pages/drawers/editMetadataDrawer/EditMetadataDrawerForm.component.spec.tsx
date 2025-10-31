@@ -8,12 +8,12 @@ import { SecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
 import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
 import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
 import { EditMetadataDrawerForm } from './EditMetadataDrawerForm.component';
-import { labels as allLabels } from '@/utils/tests/init.i18n';
+import { labels as allLabels } from '@/common/utils/tests/init.i18n';
 import {
   createErrorResponseMock,
   renderWithI18n,
-} from '@/utils/tests/testUtils';
-import { changeOdsInputValueByTestId } from '@/utils/tests/uiTestHelpers';
+} from '@/common/utils/tests/testUtils';
+import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
 
 const labels = allLabels.secretManager;
 const commonLabels = allLabels.common;
