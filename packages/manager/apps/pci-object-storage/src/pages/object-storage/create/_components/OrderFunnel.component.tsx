@@ -239,67 +239,71 @@ const OrderFunnel = ({
                   </OrderSection>
                 )}
 
-                <OrderSection
-                  id="versions"
-                  title={t('labelVersioning')}
-                  description={t('descriptionVersioning')}
-                >
-                  <FormField
-                    control={form.control}
-                    name="versioning"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <VersionningStep
-                            {...field}
-                            isOffsiteReplicationActivated={
-                              model.replication?.enabled
-                            }
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </OrderSection>
+                {model.currentRegion?.type !== RegionTypeEnum.localzone && (
+                  <>
+                    <OrderSection
+                      id="versions"
+                      title={t('labelVersioning')}
+                      description={t('descriptionVersioning')}
+                    >
+                      <FormField
+                        control={form.control}
+                        name="versioning"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <VersionningStep
+                                {...field}
+                                isOffsiteReplicationActivated={
+                                  model.replication?.enabled
+                                }
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </OrderSection>
 
-                <OrderSection
-                  id="user"
-                  title={t('labelUser')}
-                  description={t('descriptionUser')}
-                >
-                  <FormField
-                    control={form.control}
-                    name="user"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <UserStep users={users} {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </OrderSection>
+                    <OrderSection
+                      id="user"
+                      title={t('labelUser')}
+                      description={t('descriptionUser')}
+                    >
+                      <FormField
+                        control={form.control}
+                        name="user"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <UserStep users={users} {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </OrderSection>
 
-                <OrderSection
-                  id="encryption"
-                  title={t('labelEncryption')}
-                  description={t('descriptionEncryption')}
-                >
-                  <FormField
-                    control={form.control}
-                    name="encryption"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <EncryptStep {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </OrderSection>
+                    <OrderSection
+                      id="encryption"
+                      title={t('labelEncryption')}
+                      description={t('descriptionEncryption')}
+                    >
+                      <FormField
+                        control={form.control}
+                        name="encryption"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormControl>
+                              <EncryptStep {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </OrderSection>
+                  </>
+                )}
               </>
             )}
           </div>
