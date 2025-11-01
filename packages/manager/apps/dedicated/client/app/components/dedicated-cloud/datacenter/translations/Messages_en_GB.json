@@ -14,5 +14,6 @@
   "dedicatedCloud_datacenter_activate": "Enable",
   "dedicatedCloud_datacenter_add_edge": "Add an NSX Edge",
   "dedicatedCloud_datacenter_relocate_datastore": "Relocate an NSX Edge",
-  "dedicatedCloud_tab_virtualmachine": "Virtual Machines"
+  "dedicatedCloud_tab_virtualmachine": "Virtual Machines",
+  "dedicatedCloud_order_success_message": "You started the order process for your {{productName}} service. If you haven’t completed it, you can do so by clicking <a href=\"{{url}}\" target=\"_blank\" rel=\"noreferrer\">this link</a> "
 }
