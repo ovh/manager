@@ -42,7 +42,7 @@ export const ActionCell = (vs: VrackServicesWithIAM) => {
       items={[
         {
           id: 0,
-          label: t('see_details', { ns: NAMESPACES.ACTIONS }),
+          label: t('go_to_details', { ns: NAMESPACES.ACTIONS }),
           onClick: () => {
             trackClick({
               location: PageLocation.datagrid,
