@@ -4,7 +4,7 @@ import { ColumnSort, Row, VisibilityState } from '@tanstack/react-table';
 
 import { DatagridColumn, ExpandedProps, RowSelectionProps } from './Datagrid.props';
 
-export type UseDatagridTableProps<T> = {
+export type UseDatagridTableProps<T extends ExpandableRow<T>> = {
   columns: readonly DatagridColumn<T>[];
   columnVisibility?: VisibilityState;
   data: T[];
@@ -21,5 +21,6 @@ export type UseDatagridTableProps<T> = {
 };
 
 export interface ExpandableRow<T> {
+  id: string;
   subRows?: T[];
 }

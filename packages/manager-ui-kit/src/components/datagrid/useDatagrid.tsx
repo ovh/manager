@@ -52,6 +52,7 @@ export const useDatagrid = <T extends ExpandableRow<T>>({
     .setSorting()
     .setState()
     .setSubRows()
+    .setRowId()
     .build();
   const table = useReactTable(builder);
 

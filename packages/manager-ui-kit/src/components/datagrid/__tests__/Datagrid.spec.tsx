@@ -281,7 +281,7 @@ describe('Datagrid', () => {
       expect(targetDiv).toHaveAttribute('id', 'checkbox:select-all');
       const targetDivBody = container.querySelector('tbody tr td label');
       expect(targetDivBody).toBeInTheDocument();
-      expect(targetDivBody).toHaveAttribute('id', 'checkbox:0');
+      expect(targetDivBody).toHaveAttribute('id', 'checkbox:1');
     });
 
     it('should handle expandable rows', () => {

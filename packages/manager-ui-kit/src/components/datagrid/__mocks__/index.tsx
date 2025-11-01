@@ -55,24 +55,29 @@ export const mockBasicColumns = [
 // Mock data
 export const mockData = [
   {
+    id: '1',
     name: 'John Doe',
     age: 30,
     subRows: [
       {
+        id: '1-1',
         name: 'John Doe Jr.',
         age: 10,
       },
       {
+        id: '1-2',
         name: 'John Doe Jr. 2',
         age: 11,
       },
       {
+        id: '1-3',
         name: 'John Doe Jr. 3',
         age: 12,
       },
     ],
   },
   {
+    id: '2',
     name: 'Jane Smith',
     age: 25,
   },
@@ -81,22 +86,27 @@ export const mockData = [
 // Extended mock data for testing pagination
 export const mockExtendedData = [
   {
+    id: '1',
     name: 'Person 1',
     age: 25,
   },
   {
+    id: '2',
     name: 'Person 2',
     age: 26,
   },
   {
+    id: '3',
     name: 'Person 3',
     age: 25,
   },
   {
+    id: '4',
     name: 'Person 4',
     age: 27,
   },
   {
+    id: '5',
     name: 'Person 5',
     age: 28,
   },
