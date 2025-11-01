@@ -2,10 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { OdsButton, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
-import {
-  ACTIVATE_OKMS_BTN_TEST_ID,
-  ACTIVATE_OKMS_SPINNER_TEST_ID,
-} from '@secret-manager/utils/tests/secret.constants';
+import { SECRET_ACTIVATE_OKMS_TEST_IDS } from '@secret-manager/pages/createSecret/ActivateRegion.contants';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
@@ -23,13 +20,16 @@ export const ActivateRegion = ({
 
   return isOkmsOrderProcessing ? (
     <div className="flex items-center gap-3">
-      <OdsSpinner size="sm" data-testid={ACTIVATE_OKMS_SPINNER_TEST_ID} />
+      <OdsSpinner
+        size="sm"
+        data-testid={SECRET_ACTIVATE_OKMS_TEST_IDS.SPINNER}
+      />
       <OdsText>{t('okms_activation_in_progress')}</OdsText>
     </div>
   ) : (
     <div>
       <OdsButton
-        data-testid={ACTIVATE_OKMS_BTN_TEST_ID}
+        data-testid={SECRET_ACTIVATE_OKMS_TEST_IDS.BUTTON}
         label={t('activate', { ns: NAMESPACES.ACTIONS })}
         onClick={() =>
           navigate(

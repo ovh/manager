@@ -17,6 +17,23 @@ const Onboarding = React.lazy(() =>
 const OkmsList = React.lazy(() =>
   import('@/modules/secret-manager/pages/okmsList/OkmsList.page'),
 );
+
+const OkmsDashboard = React.lazy(() =>
+  import('@secret-manager/pages/okmsDashboard/OkmsDashboard.page'),
+);
+
+const OkmsUpdateNameModal = React.lazy(() =>
+  import(
+    '@secret-manager/pages/okmsDashboard/okmsUpdateNameModal/OkmsUpdateNameModal.page'
+  ),
+);
+
+const OkmsTerminateModal = React.lazy(() =>
+  import(
+    '@secret-manager/pages/okmsDashboard/okmsTerminateModal/OkmsTerminateModal.page'
+  ),
+);
+
 const SecretList = React.lazy(() =>
   import('@/modules/secret-manager/pages/secretList/SecretList.page'),
 );
@@ -44,6 +61,11 @@ const SecretValueDrawer = React.lazy(() =>
 const CreateVersionDrawer = React.lazy(() =>
   import(
     '@secret-manager/pages/drawers/createVersionDrawer/CreateVersionDrawer.page'
+  ),
+);
+const EditMetadataDrawer = React.lazy(() =>
+  import(
+    '@secret-manager/pages/drawers/editMetadataDrawer/EditMetadataDrawer.page'
   ),
 );
 const DeleteVersionModal = React.lazy(() =>
@@ -101,6 +123,19 @@ export default (
           Component={DeleteSecretModal}
         />
       </Route>
+      <Route
+        path={`${SECRET_MANAGER_ROUTES_URIS.dashboard}`}
+        Component={OkmsDashboard}
+      >
+        <Route
+          path={`${SECRET_MANAGER_ROUTES_URIS.update}`}
+          Component={OkmsUpdateNameModal}
+        />
+        <Route
+          path={`${SECRET_MANAGER_ROUTES_URIS.terminate}`}
+          Component={OkmsTerminateModal}
+        />
+      </Route>
       <Route path={SECRET_MANAGER_URL_PARAMS.secretPath} Component={Secret}>
         <Route path={''} Component={SecretGeneralInformation}>
           <Route
@@ -110,6 +145,10 @@ export default (
           <Route
             path={SECRET_MANAGER_ROUTES_URIS.createVersion}
             Component={CreateVersionDrawer}
+          />
+          <Route
+            path={SECRET_MANAGER_ROUTES_URIS.editMetadata}
+            Component={EditMetadataDrawer}
           />
           <Route
             path={SECRET_MANAGER_ROUTES_URIS.delete}

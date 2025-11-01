@@ -9,14 +9,15 @@ import {
 import { secretListMock } from '@secret-manager/mocks/secrets/secrets.mock';
 import userEvent from '@testing-library/user-event';
 import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
+import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/versionList';
 import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/tests/regionSelector';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
 import { labels } from '@/utils/tests/init.i18n';
-import { assertVersionDatagridVisilibity } from '../secret/versionList/VersionList.page.spec';
 import { PATH_LABEL } from '@/constants';
+import { CREATE_VERSION_DRAWER_TEST_IDS } from '../drawers/createVersionDrawer/CreateVersionDrawer.constants';
+import { okmsMock } from '@/mocks/kms/okms.mock';
 
-const mockOkmsId = '12345';
-const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretList(mockOkmsId);
+const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretList(okmsMock[0].id);
 
 const renderPage = async () => {
   const results = await renderTestApp(mockPageUrl);
@@ -98,6 +99,24 @@ describe('Secret list page test suite', () => {
     expect(dashboardPageLabels.length).toBeGreaterThan(0);
   });
 
+  it('should navigate to OKMS dashboard on click on "manage okms" button ', async () => {
+    // GIVEN
+    const user = userEvent.setup();
+    const { container } = await renderPage();
+    await assertDatagridIsLoaded(container);
+
+    const manageOkmsButton = await getOdsButtonByLabel({
+      container,
+      label: labels.secretManager.okms_manage_label,
+    });
+
+    // WHEN
+    await act(() => user.click(manageOkmsButton));
+
+    // THEN
+    await assertTextVisibility(labels.secretManager.okms_dashboard_title);
+  });
+
   /* DATAGRID ACTIONS */
   it('should navigate to create a secret page on click on datagrid CTA', async () => {
     // GIVEN
@@ -133,7 +152,10 @@ describe('Secret list page test suite', () => {
     },
     {
       actionLabel: labels.secretManager.add_new_version,
-      assertion: () => assertTextVisibility(labels.secretManager.editor),
+      assertion: async () =>
+        expect(
+          await screen.findByTestId(CREATE_VERSION_DRAWER_TEST_IDS.drawer),
+        ).toBeInTheDocument(),
     },
     {
       actionLabel: labels.secretManager.access_versions,

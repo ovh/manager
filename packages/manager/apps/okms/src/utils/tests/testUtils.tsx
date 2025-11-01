@@ -1,23 +1,15 @@
 import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Handler } from '@ovh-ux/manager-core-test-utils';
 import {
   render,
   renderHook,
   RenderHookOptions,
   RenderHookResult,
 } from '@testing-library/react';
+import { i18n } from 'i18next';
+import { I18nextProvider } from 'react-i18next';
 import { ErrorResponse } from '@/types/api.type';
-
-/**
- * Set all handlers to 0ms delay
- * This avoids the global utils function to set a default delay of 1000ms
- */
-export const removeHandlersDelay = (handlers: Handler[]): Handler[] => {
-  return handlers.map((handler) => {
-    return { ...handler, delay: 0 };
-  });
-};
+import { initTestI18n } from './init.i18n';
 
 /**
  * Wait for x miliseconds
@@ -95,6 +87,20 @@ export const renderHookWithClient = <TProps, TResult>(
 };
 
 /**
+ * Render a component with I18n provider
+ */
+let i18nValue: i18n;
+export const renderWithI18n = async (ui: React.ReactElement) => {
+  if (!i18nValue) {
+    i18nValue = await initTestI18n();
+  }
+  const Wrappers = ({ children }: { children: React.ReactNode }) => (
+    <I18nextProvider i18n={i18nValue}>{children}</I18nextProvider>
+  );
+  return render(ui, { wrapper: Wrappers });
+};
+
+/**
  * Create API response mock for tests
  */
 export const createErrorResponseMock = (message: string): ErrorResponse => {
@@ -105,28 +111,5 @@ export const createErrorResponseMock = (message: string): ErrorResponse => {
         message,
       },
     },
-  };
-};
-
-type CreateHandlerResponseParams = {
-  data: unknown;
-  errorMessage: string;
-  isError: boolean;
-};
-
-/**
- * Format the data response mock and the error for a MSW handler
- */
-export const createHandlerResponseMock = ({
-  data,
-  errorMessage,
-  isError,
-}: CreateHandlerResponseParams) => {
-  if (isError) {
-    return { message: errorMessage };
-  }
-  return {
-    status: 200,
-    data,
   };
 };

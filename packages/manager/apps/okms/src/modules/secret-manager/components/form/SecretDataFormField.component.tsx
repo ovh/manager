@@ -2,9 +2,13 @@ import React from 'react';
 import { Controller, UseControllerProps } from 'react-hook-form';
 import { OdsFormField, OdsTextarea } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { DATA_INPUT_TEST_ID } from '@secret-manager/utils/tests/secret.constants';
+import { SECRET_FORM_FIELD_TEST_IDS } from './form.constants';
 
-export const SecretDataFormField = <T extends Record<string, string>>({
+type FormFieldInput = {
+  data: string;
+};
+
+export const SecretDataFormField = <T extends FormFieldInput>({
   name,
   control,
 }: UseControllerProps<T>) => {
@@ -26,7 +30,7 @@ export const SecretDataFormField = <T extends Record<string, string>>({
             onOdsChange={field.onChange}
             isResizable
             rows={12}
-            data-testid={DATA_INPUT_TEST_ID}
+            data-testid={SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA}
           />
         </OdsFormField>
       )}

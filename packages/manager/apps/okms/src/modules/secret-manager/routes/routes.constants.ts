@@ -7,9 +7,13 @@ const URIS = {
   versionList: 'versions',
   create: 'create',
   createVersion: 'create-version',
+  editMetadata: 'edit-metadata',
   order: 'order',
   value: 'value',
   delete: 'delete',
+  update: 'update',
+  terminate: 'terminate',
+  dashboard: 'dashboard',
 };
 
 const URLS = {
@@ -23,6 +27,15 @@ const URLS = {
     `/${URIS.root}/${URIS.create}/${URIS.order}/${regionId}`,
 
   okmsList: (regionId: string) => `/${URIS.root}/${URIS.region}/${regionId}`,
+
+  okmsDashboard: (okmsId: string) =>
+    `/${URIS.root}/${okmsId}/${URIS.dashboard}`,
+
+  okmsUpdateNameModal: (okmsId: string) =>
+    `/${URIS.root}/${okmsId}/${URIS.dashboard}/${URIS.update}`,
+
+  okmsTerminateModal: (okmsId: string) =>
+    `/${URIS.root}/${okmsId}/${URIS.dashboard}/${URIS.terminate}`,
 
   secretList: (okmsId: string) => `/${URIS.root}/${okmsId}`,
 
@@ -46,6 +59,11 @@ const URLS = {
   secretCreateVersionDrawer: (okmsId: string, secretPath: string) =>
     `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${
       URIS.createVersion
+    }`,
+
+  secretEditMetadataDrawer: (okmsId: string, secretPath: string) =>
+    `/${URIS.root}/${okmsId}/${encodeSecretPath(secretPath)}/${
+      URIS.editMetadata
     }`,
 
   secretDeleteSecret: (okmsId: string, secretPath: string) =>
