@@ -18,6 +18,7 @@ export const NAMESPACES = {
   CONTACT: `${NAMESPACE_PREFIX}/contact`,
   COUNTRIES: `${NAMESPACE_PREFIX}/countries`,
   COUNTRY: `${NAMESPACE_PREFIX}/country`,
+  AREA: `${NAMESPACE_PREFIX}/area`,
   LANGUAGE: `${NAMESPACE_PREFIX}/language`,
   UPLOAD: `${NAMESPACE_PREFIX}/upload`,
   RESOURCES: `${NAMESPACE_PREFIX}/resources`,
