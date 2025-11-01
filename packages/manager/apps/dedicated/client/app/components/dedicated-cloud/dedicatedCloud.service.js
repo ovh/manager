@@ -1756,6 +1756,18 @@ class DedicatedCloudService {
       .get(`/services/${serviceId}/options`)
       .then(({ data }) => data);
   }
+
+  requestContactForVmwareCloudDirectorMigration(serviceName) {
+    return this.OvhHttp.post(
+      `/dedicatedCloud/{serviceName}/requestContactForVmwareCloudDirectorMigration`,
+      {
+        rootPath: 'apiv6',
+        urlParams: {
+          serviceName,
+        },
+      },
+    );
+  }
 }
 
 angular
