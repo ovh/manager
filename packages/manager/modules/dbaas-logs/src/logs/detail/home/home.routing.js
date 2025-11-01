@@ -1,6 +1,21 @@
+const redirectTo = (transition) => {
+  const LogsConstants = transition.injector().get('LogsConstants');
+  return transition
+    .injector()
+    .getAsync('service')
+    .then(
+      ({ state: serviceState, serviceName }) =>
+        serviceState === LogsConstants.SERVICE_STATE_TO_CONFIG && {
+          state: 'dbaas-logs.list.account-setup',
+          params: { serviceName },
+        },
+    );
+};
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('dbaas-logs.detail.home', {
     url: '/home',
+    redirectTo,
     views: {
       logsContent: 'dbaasLogsDetailHome',
     },

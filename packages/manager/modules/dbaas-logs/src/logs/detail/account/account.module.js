@@ -9,7 +9,6 @@ import '@ovh-ux/ui-kit';
 
 import password from './password/password.module';
 import service from './logs-account.service';
-import setup from './setup/setup.module';
 
 const moduleName = 'ovhManagerDbaasLogsDetailAccount';
 
@@ -22,7 +21,6 @@ angular
     'pascalprecht.translate',
     'ui.router',
     password,
-    setup,
   ])
   .service('LogsAccountService', service);
 

@@ -1,0 +1,70 @@
+<oui-modal
+    data-heading="{{:: 'dbaas_logs_account_setup_title' | translate }}"
+    data-primary-action="$ctrl.setupAccount()"
+    data-primary-label="{{:: 'dbaas_logs_account_setup' | translate }}"
+    data-primary-disabled="!$ctrl.form.$valid"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'dbaas_logs_account_setup_close' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.loading"
+>
+    <form novalidate name="$ctrl.form">
+        <oui-field
+            data-label="{{:: 'dbaas_logs_account_setup_auth_mode' | translate }}"
+        >
+            <oui-select
+                name="accountMode"
+                data-match="label"
+                data-model="$ctrl.accountMode"
+                data-items=":: $ctrl.accountModes"
+                data-required
+            >
+                <span data-ng-bind="$item.label"></span>
+            </oui-select>
+        </oui-field>
+        <div
+            class="oui-field"
+            data-ng-class="{'oui-field_error': $ctrl.form.$submitted && $ctrl.form.new_password.$invalid}"
+            data-ng-if="$ctrl.accountMode.value === $ctrl.ACCOUNT_MODES.PASSWORD"
+        >
+            <label
+                for="new_password"
+                class="oui-label"
+                data-translate="logs_password_setup_label"
+            ></label>
+            <div class="oui-field__content">
+                <div class="oui-field-control oui-field-control_5">
+                    <oui-password
+                        id="new_password"
+                        name="new_password"
+                        model="$ctrl.newPassword"
+                        on-change="$ctrl.validatePassword()"
+                        required
+                    >
+                        <oui-password-rule
+                            data-ng-repeat="rule in $ctrl.passwordRules track by rule.message"
+                            validator="rule.validator(modelValue)"
+                        >
+                            <span
+                                data-translate="{{:: rule.message }}"
+                                data-translate-values="rule.translateParams"
+                            ></span>
+                        </oui-password-rule>
+                    </oui-password>
+                </div>
+            </div>
+        </div>
+        <oui-message
+            type="warning"
+            data-ng-if="$ctrl.accountMode.value === $ctrl.ACCOUNT_MODES.PASSWORD"
+        >
+            <p
+                class="font-weight-bold"
+                data-translate="dbaas_logs_account_setup_select_password_alert_title"
+            ></p>
+            <p
+                data-translate="dbaas_logs_account_setup_select_password_alert_detail"
+            ></p>
+        </oui-message>
+    </form>
+</oui-modal>
