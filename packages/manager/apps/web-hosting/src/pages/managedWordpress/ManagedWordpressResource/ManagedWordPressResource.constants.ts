@@ -1,6 +1,6 @@
-import { GuideItem } from '@ovh-ux/manager-react-components';
+import { GuideMenuItem } from '@ovh-ux/muk';
 
-export const useGuideItems = (t: (key: string) => string): GuideItem[] => [
+export const useGuideItems = (t: (key: string) => string): GuideMenuItem[] => [
   {
     id: 1,
     href: 'www.ovh.com',

@@ -4,10 +4,10 @@ import { Outlet, useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { OdsBadge } from '@ovhcloud/ods-components/react';
+import { Badge } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { BaseLayout, Datagrid, DatagridColumn, Links } from '@ovh-ux/manager-react-components';
+import { BaseLayout, Datagrid, DatagridColumn, Link } from '@ovh-ux/muk';
 
 import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import { useManagedWordpressResource } from '@/data/hooks/managedWordpress/managedWordpressResource/useManagedWordpressResource';
@@ -19,7 +19,6 @@ export default function ManagedWordpressPage() {
   const { data, isLoading } = useManagedWordpressResource();
   const { t } = useTranslation(['common', NAMESPACES.ACTIONS, NAMESPACES.STATUS]);
   const navigate = useNavigate();
-
   const firstItemUrl = useGenerateUrl(
     `/managed-hosting-for-wordpress/${data?.[0]?.id ?? ''}`,
     'path',
@@ -33,20 +32,28 @@ export default function ManagedWordpressPage() {
 
   function ResourceLink({ id }: { id: string }) {
     const href = useGenerateUrl(`./${id}`, 'href');
-    return <Links href={href} label={id} />;
+    return <Link href={href} label={id} />;
   }
-  const columns: DatagridColumn<ManagedWordpressResourceType>[] = useMemo(
+
+  const getResource = (row: Record<string, unknown>): ManagedWordpressResourceType => {
+    return row as ManagedWordpressResourceType;
+  };
+
+  const columns: DatagridColumn<Record<string, unknown>>[] = useMemo(
     () => [
       {
         id: 'id',
-        cell: (item) => <ResourceLink id={item?.id} />,
+        accessorFn: (row) => getResource(row).id,
+        cell: ({ row }) => <ResourceLink id={getResource(row.original).id} />,
         label: t('common:web_hosting_status_header_resource'),
       },
       {
         id: 'plan',
-        cell: (item) => {
-          // warning for beta and final version the naming change to /managed-cms-beta- and /managed-cms-
-          const match = item?.currentState?.plan.match(/managed-cms-alpha-(\d+)/);
+        accessorFn: (row) => getResource(row).currentState?.plan,
+        cell: ({ row }) => {
+          const resource = getResource(row.original);
+          const plan = resource.currentState?.plan ?? '';
+          const match = plan.match(/managed-cms-alpha-(\d+)/);
           const numberOfSites = match ? match[1] : '?';
           return <span>{`${numberOfSites} ${t('common:web_hosting_sites')}`}</span>;
         },
@@ -54,24 +61,28 @@ export default function ManagedWordpressPage() {
       },
       {
         id: 'resourceStatus',
-        cell: (item) => {
-          const statusColor = getStatusColor(item?.resourceStatus);
+        accessorFn: (row) => getResource(row).resourceStatus,
+        cell: ({ row }) => {
+          const resource = getResource(row.original);
+          const status = resource.resourceStatus ?? '';
+          const statusColor = getStatusColor(resource.resourceStatus);
           return (
-            <OdsBadge
-              color={statusColor}
-              label={t(`common:web_hosting_status_${item?.resourceStatus.toLocaleLowerCase()}`)}
-            />
+            <Badge color={statusColor}>
+              {t(`common:web_hosting_status_${status.toLocaleLowerCase()}`)}
+            </Badge>
           );
         },
         label: t(`${NAMESPACES.STATUS}:status`),
       },
       {
         id: 'quota',
-        cell: (item) => {
+        accessorFn: (row) => getResource(row).currentState?.quotas?.websites,
+        cell: ({ row }) => {
+          const resource = getResource(row.original);
           return (
             <span>
-              {item?.currentState?.quotas?.websites?.totalUsage}&nbsp;/&nbsp;
-              {item?.currentState?.quotas?.websites?.totalQuota}
+              {resource.currentState?.quotas?.websites?.totalUsage}&nbsp;/&nbsp;
+              {resource.currentState?.quotas?.websites?.totalQuota}
             </span>
           );
         },
@@ -92,8 +103,8 @@ export default function ManagedWordpressPage() {
         <Datagrid
           isLoading={isLoading}
           columns={columns}
-          items={data || []}
-          totalItems={data?.length || 0}
+          data={data || []}
+          totalCount={data?.length || 0}
         />
       </BaseLayout>
       <Outlet />

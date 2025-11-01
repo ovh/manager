@@ -1,5 +1,7 @@
-import { TaskStatus } from '../../status';
-import { ResourceStatus, Status } from '../ssl';
+import { UUID } from 'node:crypto';
+
+import { ResourceStatus, TaskStatus } from '../../status';
+import { Status } from '../ssl';
 import { CmsType } from './cms';
 
 export type ManagedWordpressWebsiteDetails = {
@@ -89,7 +91,7 @@ export type ManagedWordpressWebsiteDetails = {
   };
 };
 export type ManagedWordpressWebsites = {
-  id: string;
+  id: UUID;
   checksum: string;
   currentState: {
     cms?: CmsType;
