@@ -27,7 +27,7 @@
   "editTopicButtonConfirm": "Zmodyfikuj topic",
   "addTopicToastErrorTitle": "Wystąpił błąd podczas dodawania topicu",
   "addTopicToastSuccessTitle": "Operacja zakończona pomyślnie",
-  "addTopicToastSuccessDescription": "Twój topic „{{name}}” został dodany.",
+  "addTopicToastSuccessDescription": "Topic \"{{name}}\" został dodany.",
   "deleteTopicToastErrorTitle": "Wystąpił błąd podczas usuwania topicu",
   "deleteTopicToastSuccessTitle": "Operacja zakończona pomyślnie",
   "deleteTopicToastSuccessDescription": "Twój topic został poprawnie usunięty.",
@@ -47,7 +47,7 @@
   "tableActionEdit": "Zmodyfikuj",
   "breadcrumb": "Topiki",
   "formTopicErrorPattern": "Może zawierać wyłącznie od 1 do 249 znaków alfanumerycznych, myślniki (-), podkreślenia (_) lub kropki (.)",
-  "editTopicToastErrorTitle": "Wystąpił błąd podczas edytowania twojego tematu",
-  "topicToastSuccessTitle": "Sukces",
-  "editTopicToastSuccessDescription": "Twój temat \"{{name}}\" został pomyślnie zmodyfikowany."
+  "editTopicToastErrorTitle": "Wystąpił błąd podczas zmiany topicu",
+  "topicToastSuccessTitle": "Operacja zakończona pomyślnie",
+  "editTopicToastSuccessDescription": "Topic \"{{name}}\" został zmodyfikowany."
 }
