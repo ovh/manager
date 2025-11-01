@@ -1,6 +1,24 @@
 <div data-ui-view>
     <div>
-        <oui-header data-heading="{{:: 'iam_api_keys' | translate }}">
+        <oui-header>
+            <!-- <Heading> -->
+            <oui-header-heading>
+                <div class="d-flex justify-content-between">
+                    <h1
+                        class="oui-header__title"
+                        data-translate="iam_api_keys"
+                    ></h1>
+                    <div
+                        class="d-flex justify-content-end align-items-center flex-wrap gap-1"
+                    >
+                        <changelog-button
+                            links="$ctrl.CHANGELOG.default.links"
+                            chapters="$ctrl.CHANGELOG.default.chapters"
+                        ></changelog-button>
+                    </div>
+                </div>
+            </oui-header-heading>
+            <!-- </>Heading> -->
         </oui-header>
     </div>
     <div>
