@@ -45,6 +45,8 @@ export default defineConfig({
     environment: 'jsdom',
   },
   build: {
+    sourcemap: true,
+    minify: false,
     outDir: '../dist',
     lib: {
       entry: path.resolve(__dirname, 'src/lib.ts'),

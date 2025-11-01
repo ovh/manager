@@ -1,6 +1,8 @@
 import { screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
+import { TABLE_SIZE, TABLE_VARIANT } from '@ovhcloud/ods-react';
+
 import { render } from '@/setupTest';
 
 import { useAuthorizationIam } from '../../../hooks/iam';
@@ -164,6 +166,34 @@ describe('Datagrid Snapshot Tests', () => {
         totalCount={100}
         containerHeight={500}
       />,
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('should match snapshot with small size', () => {
+    const { container } = render(
+      <Datagrid columns={mockBasicColumns} data={mockData} size={TABLE_SIZE.sm} />,
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('should match snapshot with medium size', () => {
+    const { container } = render(
+      <Datagrid columns={mockBasicColumns} data={mockData} size={TABLE_SIZE.lg} />,
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('should match snapshot with large size', () => {
+    const { container } = render(
+      <Datagrid columns={mockBasicColumns} data={mockData} size={TABLE_SIZE.md} />,
+    );
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('should match snapshot with striped variant', () => {
+    const { container } = render(
+      <Datagrid columns={mockBasicColumns} data={mockData} variant={TABLE_VARIANT.striped} />,
     );
     expect(container.firstChild).toMatchSnapshot();
   });

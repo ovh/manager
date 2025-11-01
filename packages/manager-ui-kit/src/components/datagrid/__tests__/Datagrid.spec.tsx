@@ -1,6 +1,8 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { TABLE_SIZE, TABLE_VARIANT } from '@ovhcloud/ods-react';
+
 import { render } from '@/setupTest';
 
 import { useAuthorizationIam } from '../../../hooks/iam';
@@ -319,6 +321,35 @@ describe('Datagrid', () => {
     it('should handle content alignment center', () => {
       render(<Datagrid columns={mockBasicColumns} data={mockData} contentAlignLeft={false} />);
       expect(screen.getByText('name')).toHaveClass('text-center');
+    });
+  });
+
+  describe('Table Styles', () => {
+    it('should render with small size', () => {
+      const { container } = render(
+        <Datagrid columns={mockBasicColumns} data={mockData} size={TABLE_SIZE.sm} />,
+      );
+      const table = container.querySelector('table');
+      expect(table).toBeInTheDocument();
+      expect(table?.className).toContain('table--sm');
+    });
+
+    it('should render with large size', () => {
+      const { container } = render(
+        <Datagrid columns={mockBasicColumns} data={mockData} size={TABLE_SIZE.lg} />,
+      );
+      const table = container.querySelector('table');
+      expect(table).toBeInTheDocument();
+      expect(table?.className).toContain('table--lg');
+    });
+
+    it('should render with striped variant', () => {
+      const { container } = render(
+        <Datagrid columns={mockBasicColumns} data={mockData} variant={TABLE_VARIANT.striped} />,
+      );
+      const table = container.querySelector('table');
+      expect(table).toBeInTheDocument();
+      expect(table?.className).toContain('table--striped');
     });
   });
 

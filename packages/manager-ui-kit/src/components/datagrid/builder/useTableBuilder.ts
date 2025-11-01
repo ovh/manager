@@ -22,6 +22,7 @@ export const useTableBuilder = <T extends ExpandableRow<T>>({
   rowSelection,
   setColumnVisibility,
   sorting,
+  size,
 }: TableBuilderProps<T>) => {
   const params: Partial<TableOptions<T>> = {};
   const builder = {
@@ -32,7 +33,7 @@ export const useTableBuilder = <T extends ExpandableRow<T>>({
         cols = [getRowSelection(), ...cols];
       }
       if ((hasExpandableFeature && expandable) || renderSubComponent) {
-        cols = [getExpandable(expandable), ...cols];
+        cols = [getExpandable(expandable, size), ...cols];
       }
       params.columns = cols;
       return builder;

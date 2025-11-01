@@ -15,6 +15,7 @@ export const useDatagrid = <T extends ExpandableRow<T>>({
   renderSubComponent,
   rowSelection,
   setColumnVisibility,
+  sizeRow,
   sorting,
 }: UseDatagridTableProps<T>) => {
   const { hasSortingFeature, hasSearchFeature, hasColumnVisibilityFeature, hasFilterFeature } =
@@ -41,6 +42,7 @@ export const useDatagrid = <T extends ExpandableRow<T>>({
     rowSelection,
     setColumnVisibility,
     sorting,
+    size: sizeRow,
   })
     .setColumns()
     .setColumnsVisibility()

@@ -13,13 +13,15 @@ const TableHeaderContentComponent = <T,>({
 }: TableHeaderContentProps<T>) => (
   <thead className={`sticky top-[-1px] z-10 bg-white overflow-hidden`}>
     {headerGroups?.map((headerGroup) => (
-      <tr key={headerGroup.id} className="h-[50px]">
+      // <tr key={headerGroup.id} className="h-[50px]">
+      <tr key={headerGroup.id}>
         {headerGroup.headers.map((header) => (
           <th
             key={header.id}
             className={`${
               contentAlignLeft ? 'text-left pl-4' : 'text-center'
-            } h-11 whitespace-nowrap `}
+              // } h-11 whitespace-nowrap `}
+            } whitespace-nowrap `}
             style={{
               width: header.column.getSize(),
               minWidth: header.column.columnDef.minSize ?? 0,

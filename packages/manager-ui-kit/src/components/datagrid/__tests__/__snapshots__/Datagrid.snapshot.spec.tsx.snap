@@ -6,18 +6,16 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
   style="max-height: 500px; height: 500px;"
 >
   <table
-    class="_table--md_1xkmm_54 w-full"
+    class="_table--md_1xkmm_54"
     data-ods="table"
   >
     <thead
       class="sticky top-[-1px] z-10 bg-white overflow-hidden"
     >
-      <tr
-        class="h-[50px]"
-      >
+      <tr>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
-          style="width: 20px; min-width: 20px; max-width: 20px;"
+          class="text-left pl-4 whitespace-nowrap "
+          style="width: 30px; min-width: 30px; max-width: 30px;"
         >
           <div
             class=" h-[20px]"
@@ -36,8 +34,8 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
           </div>
         </th>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
-          style="width: 20px; min-width: 20px; max-width: 20px;"
+          class="text-left pl-4 whitespace-nowrap "
+          style="width: 30px; min-width: 30px; max-width: 30px;"
         >
           <div
             class=" h-[20px]"
@@ -114,7 +112,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
           </div>
         </th>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
+          class="text-left pl-4 whitespace-nowrap "
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
@@ -136,7 +134,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
           </div>
         </th>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
+          class="text-left pl-4 whitespace-nowrap "
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
@@ -160,27 +158,27 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
       </tr>
     </thead>
     <tbody
-      class="w-full relative p-0 overflow-hidden"
-      style="height: 102px;"
+      class="relative p-0 overflow-hidden"
+      style="height: 99px;"
     >
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="0"
-        style="left: -1px; height: 50px; transform: translateY(0px);"
+        style="left: -1px; height: 48.5px; transform: translateY(0px);"
       >
         <td
-          class="py-[8px] pl-4"
-          style="width: 20px; min-width: 20px; max-width: 20px;"
+          class="pl-4"
+          style="width: 30px; min-width: 30px; max-width: 30px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div
-              class="text-center"
               style="padding-left: 0rem;"
             >
               <button
-                class="_button_1koyw_2 _button--primary_1koyw_100 _button--xs_1koyw_25 _button--ghost_1koyw_151"
+                class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 m-0 p-0"
                 data-ods="button"
                 data-testid="manager-button"
                 type="button"
@@ -195,11 +193,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
-          style="width: 20px; min-width: 20px; max-width: 20px;"
+          class="pl-4"
+          style="width: 30px; min-width: 30px; max-width: 30px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <label
               class="_checkbox_18i6t_2"
@@ -261,11 +260,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               John Doe
@@ -273,11 +273,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               30
@@ -288,21 +289,21 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="1"
-        style="left: -1px; height: 50px; transform: translateY(50px);"
+        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
       >
         <td
-          class="py-[8px] pl-4"
-          style="width: 20px; min-width: 20px; max-width: 20px;"
+          class="pl-4"
+          style="width: 30px; min-width: 30px; max-width: 30px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div
-              class="text-center"
               style="padding-left: 0rem;"
             >
               <button
-                class="_button_1koyw_2 _button--primary_1koyw_100 _button--xs_1koyw_25 _button--ghost_1koyw_151"
+                class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 m-0 p-0"
                 data-ods="button"
                 data-testid="manager-button"
                 type="button"
@@ -317,11 +318,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
-          style="width: 20px; min-width: 20px; max-width: 20px;"
+          class="pl-4"
+          style="width: 30px; min-width: 30px; max-width: 30px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <label
               class="_checkbox_18i6t_2"
@@ -383,11 +385,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               Jane Smith
@@ -395,11 +398,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with all features enabl
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               25
@@ -418,23 +422,21 @@ exports[`Datagrid Snapshot Tests > should match snapshot with basic props 1`] = 
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--md_1xkmm_54 w-full"
+    class="_table--md_1xkmm_54"
     data-ods="table"
   >
     <thead
       class="sticky top-[-1px] z-10 bg-white overflow-hidden"
     >
-      <tr
-        class="h-[50px]"
-      >
+      <tr>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
+          class="text-left pl-4 whitespace-nowrap "
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           name
         </th>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
+          class="text-left pl-4 whitespace-nowrap "
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           age
@@ -442,20 +444,21 @@ exports[`Datagrid Snapshot Tests > should match snapshot with basic props 1`] = 
       </tr>
     </thead>
     <tbody
-      class="w-full relative p-0 overflow-hidden"
-      style="height: 102px;"
+      class="relative p-0 overflow-hidden"
+      style="height: 99px;"
     >
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="0"
-        style="left: -1px; height: 50px; transform: translateY(0px);"
+        style="left: -1px; height: 48.5px; transform: translateY(0px);"
       >
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               John Doe
@@ -463,11 +466,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with basic props 1`] = 
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               30
@@ -478,14 +482,15 @@ exports[`Datagrid Snapshot Tests > should match snapshot with basic props 1`] = 
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="1"
-        style="left: -1px; height: 50px; transform: translateY(50px);"
+        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
       >
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               Jane Smith
@@ -493,11 +498,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with basic props 1`] = 
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               25
@@ -516,23 +522,21 @@ exports[`Datagrid Snapshot Tests > should match snapshot with column visibility 
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--md_1xkmm_54 w-full"
+    class="_table--md_1xkmm_54"
     data-ods="table"
   >
     <thead
       class="sticky top-[-1px] z-10 bg-white overflow-hidden"
     >
-      <tr
-        class="h-[50px]"
-      >
+      <tr>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
+          class="text-left pl-4 whitespace-nowrap "
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           name
         </th>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
+          class="text-left pl-4 whitespace-nowrap "
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           age
@@ -540,20 +544,21 @@ exports[`Datagrid Snapshot Tests > should match snapshot with column visibility 
       </tr>
     </thead>
     <tbody
-      class="w-full relative p-0 overflow-hidden"
-      style="height: 102px;"
+      class="relative p-0 overflow-hidden"
+      style="height: 99px;"
     >
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="0"
-        style="left: -1px; height: 50px; transform: translateY(0px);"
+        style="left: -1px; height: 48.5px; transform: translateY(0px);"
       >
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               John Doe
@@ -561,11 +566,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with column visibility 
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               30
@@ -576,14 +582,15 @@ exports[`Datagrid Snapshot Tests > should match snapshot with column visibility 
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="1"
-        style="left: -1px; height: 50px; transform: translateY(50px);"
+        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
       >
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               Jane Smith
@@ -591,11 +598,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with column visibility 
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               25
@@ -614,23 +622,21 @@ exports[`Datagrid Snapshot Tests > should match snapshot with custom container h
   style="max-height: 400px; height: 400px;"
 >
   <table
-    class="_table--md_1xkmm_54 w-full"
+    class="_table--md_1xkmm_54"
     data-ods="table"
   >
     <thead
       class="sticky top-[-1px] z-10 bg-white overflow-hidden"
     >
-      <tr
-        class="h-[50px]"
-      >
+      <tr>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
+          class="text-left pl-4 whitespace-nowrap "
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           name
         </th>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
+          class="text-left pl-4 whitespace-nowrap "
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           age
@@ -638,20 +644,21 @@ exports[`Datagrid Snapshot Tests > should match snapshot with custom container h
       </tr>
     </thead>
     <tbody
-      class="w-full relative p-0 overflow-hidden"
-      style="height: 102px;"
+      class="relative p-0 overflow-hidden"
+      style="height: 99px;"
     >
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="0"
-        style="left: -1px; height: 50px; transform: translateY(0px);"
+        style="left: -1px; height: 48.5px; transform: translateY(0px);"
       >
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               John Doe
@@ -659,11 +666,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with custom container h
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               30
@@ -674,14 +682,15 @@ exports[`Datagrid Snapshot Tests > should match snapshot with custom container h
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="1"
-        style="left: -1px; height: 50px; transform: translateY(50px);"
+        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
       >
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               Jane Smith
@@ -689,11 +698,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with custom container h
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               25
@@ -712,23 +722,21 @@ exports[`Datagrid Snapshot Tests > should match snapshot with empty data 1`] = `
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--md_1xkmm_54 w-full"
+    class="_table--md_1xkmm_54"
     data-ods="table"
   >
     <thead
       class="sticky top-[-1px] z-10 bg-white overflow-hidden"
     >
-      <tr
-        class="h-[50px]"
-      >
+      <tr>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
+          class="text-left pl-4 whitespace-nowrap "
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           name
         </th>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
+          class="text-left pl-4 whitespace-nowrap "
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           age
@@ -762,27 +770,25 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--md_1xkmm_54 w-full"
+    class="_table--md_1xkmm_54"
     data-ods="table"
   >
     <thead
       class="sticky top-[-1px] z-10 bg-white overflow-hidden"
     >
-      <tr
-        class="h-[50px]"
-      >
+      <tr>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
-          style="width: 20px; min-width: 20px; max-width: 20px;"
+          class="text-left pl-4 whitespace-nowrap "
+          style="width: 30px; min-width: 30px; max-width: 30px;"
         />
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
+          class="text-left pl-4 whitespace-nowrap "
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           name
         </th>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
+          class="text-left pl-4 whitespace-nowrap "
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           age
@@ -790,27 +796,27 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
       </tr>
     </thead>
     <tbody
-      class="w-full relative p-0 overflow-hidden"
-      style="height: 415px;"
+      class="relative p-0 overflow-hidden"
+      style="height: 407.5px;"
     >
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="0"
-        style="left: -1px; height: 50px; transform: translateY(0px);"
+        style="left: -1px; height: 48.5px; transform: translateY(0px);"
       >
         <td
-          class="py-[8px] pl-4"
-          style="width: 20px; min-width: 20px; max-width: 20px;"
+          class="pl-4"
+          style="width: 30px; min-width: 30px; max-width: 30px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div
-              class="text-center"
               style="padding-left: 0rem;"
             >
               <button
-                class="_button_1koyw_2 _button--primary_1koyw_100 _button--xs_1koyw_25 _button--ghost_1koyw_151"
+                class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 m-0 p-0"
                 data-ods="button"
                 data-testid="manager-button"
                 type="button"
@@ -825,11 +831,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               John Doe
@@ -837,11 +844,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               30
@@ -852,27 +860,28 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="1"
-        style="left: -1px; height: 50px; transform: translateY(50px);"
+        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
       >
         <td
-          class="py-[8px] pl-4"
-          style="width: 20px; min-width: 20px; max-width: 20px;"
+          class="pl-4"
+          style="width: 30px; min-width: 30px; max-width: 30px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div
-              class="text-center"
               style="padding-left: 2rem;"
             />
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               John Doe Jr.
@@ -880,11 +889,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               10
@@ -895,27 +905,28 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="2"
-        style="left: -1px; height: 50px; transform: translateY(100px);"
+        style="left: -1px; height: 48.5px; transform: translateY(97px);"
       >
         <td
-          class="py-[8px] pl-4"
-          style="width: 20px; min-width: 20px; max-width: 20px;"
+          class="pl-4"
+          style="width: 30px; min-width: 30px; max-width: 30px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div
-              class="text-center"
               style="padding-left: 2rem;"
             />
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               John Doe Jr. 2
@@ -923,11 +934,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               11
@@ -938,27 +950,28 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="3"
-        style="left: -1px; height: 50px; transform: translateY(150px);"
+        style="left: -1px; height: 48.5px; transform: translateY(145.5px);"
       >
         <td
-          class="py-[8px] pl-4"
-          style="width: 20px; min-width: 20px; max-width: 20px;"
+          class="pl-4"
+          style="width: 30px; min-width: 30px; max-width: 30px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div
-              class="text-center"
               style="padding-left: 2rem;"
             />
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               John Doe Jr. 3
@@ -966,11 +979,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               12
@@ -981,21 +995,21 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="4"
-        style="left: -1px; height: 50px; transform: translateY(200px);"
+        style="left: -1px; height: 48.5px; transform: translateY(194px);"
       >
         <td
-          class="py-[8px] pl-4"
-          style="width: 20px; min-width: 20px; max-width: 20px;"
+          class="pl-4"
+          style="width: 30px; min-width: 30px; max-width: 30px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div
-              class="text-center"
               style="padding-left: 0rem;"
             >
               <button
-                class="_button_1koyw_2 _button--primary_1koyw_100 _button--xs_1koyw_25 _button--ghost_1koyw_151"
+                class="_button_1koyw_2 _button--primary_1koyw_100 _button--sm_1koyw_34 _button--ghost_1koyw_151 m-0 p-0"
                 data-ods="button"
                 data-testid="manager-button"
                 type="button"
@@ -1010,11 +1024,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               Jane Smith
@@ -1022,11 +1037,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with expandable rows 1`
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               25
@@ -1045,23 +1061,21 @@ exports[`Datagrid Snapshot Tests > should match snapshot with filters enabled 1`
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--md_1xkmm_54 w-full"
+    class="_table--md_1xkmm_54"
     data-ods="table"
   >
     <thead
       class="sticky top-[-1px] z-10 bg-white overflow-hidden"
     >
-      <tr
-        class="h-[50px]"
-      >
+      <tr>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
+          class="text-left pl-4 whitespace-nowrap "
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           name
         </th>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
+          class="text-left pl-4 whitespace-nowrap "
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           age
@@ -1069,20 +1083,21 @@ exports[`Datagrid Snapshot Tests > should match snapshot with filters enabled 1`
       </tr>
     </thead>
     <tbody
-      class="w-full relative p-0 overflow-hidden"
-      style="height: 102px;"
+      class="relative p-0 overflow-hidden"
+      style="height: 99px;"
     >
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="0"
-        style="left: -1px; height: 50px; transform: translateY(0px);"
+        style="left: -1px; height: 48.5px; transform: translateY(0px);"
       >
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               John Doe
@@ -1090,11 +1105,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with filters enabled 1`
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               30
@@ -1105,14 +1121,15 @@ exports[`Datagrid Snapshot Tests > should match snapshot with filters enabled 1`
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="1"
-        style="left: -1px; height: 50px; transform: translateY(50px);"
+        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
       >
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               Jane Smith
@@ -1120,11 +1137,112 @@ exports[`Datagrid Snapshot Tests > should match snapshot with filters enabled 1`
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
+          >
+            <div>
+              25
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with large size 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 100%; height: 100%;"
+>
+  <table
+    class="_table--md_1xkmm_54"
+    data-ods="table"
+  >
+    <thead
+      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+    >
+      <tr>
+        <th
+          class="text-left pl-4 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          name
+        </th>
+        <th
+          class="text-left pl-4 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          age
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="relative p-0 overflow-hidden"
+      style="height: 99px;"
+    >
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="0"
+        style="left: -1px; height: 48.5px; transform: translateY(0px);"
+      >
+        <td
+          class="pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
+          >
+            <div>
+              John Doe
+            </div>
+          </div>
+        </td>
+        <td
+          class="pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
+          >
+            <div>
+              30
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="1"
+        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
+      >
+        <td
+          class="pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
+          >
+            <div>
+              Jane Smith
+            </div>
+          </div>
+        </td>
+        <td
+          class="pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               25
@@ -1143,23 +1261,21 @@ exports[`Datagrid Snapshot Tests > should match snapshot with loading state 1`] 
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--md_1xkmm_54 w-full"
+    class="_table--md_1xkmm_54"
     data-ods="table"
   >
     <thead
       class="sticky top-[-1px] z-10 bg-white overflow-hidden"
     >
-      <tr
-        class="h-[50px]"
-      >
+      <tr>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
+          class="text-left pl-4 whitespace-nowrap "
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           name
         </th>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
+          class="text-left pl-4 whitespace-nowrap "
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           age
@@ -1167,20 +1283,21 @@ exports[`Datagrid Snapshot Tests > should match snapshot with loading state 1`] 
       </tr>
     </thead>
     <tbody
-      class="w-full relative p-0 overflow-hidden"
-      style="height: 550px;"
+      class="relative p-0 overflow-hidden"
+      style="height: 533.5px;"
     >
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="0"
-        style="left: -1px; height: 50px; transform: translateY(0px);"
+        style="left: -1px; height: 48.5px; transform: translateY(0px);"
       >
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               John Doe
@@ -1188,11 +1305,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with loading state 1`] 
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               30
@@ -1203,14 +1321,15 @@ exports[`Datagrid Snapshot Tests > should match snapshot with loading state 1`] 
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="1"
-        style="left: -1px; height: 50px; transform: translateY(50px);"
+        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
       >
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               Jane Smith
@@ -1218,11 +1337,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with loading state 1`] 
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               25
@@ -1555,29 +1675,27 @@ exports[`Datagrid Snapshot Tests > should match snapshot with loading state 1`] 
 </div>
 `;
 
-exports[`Datagrid Snapshot Tests > should match snapshot with pagination 1`] = `
+exports[`Datagrid Snapshot Tests > should match snapshot with medium size 1`] = `
 <div
   class="overflow-auto relative w-full"
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--md_1xkmm_54 w-full"
+    class="_table--lg_1xkmm_106"
     data-ods="table"
   >
     <thead
       class="sticky top-[-1px] z-10 bg-white overflow-hidden"
     >
-      <tr
-        class="h-[50px]"
-      >
+      <tr>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
+          class="text-left pl-4 whitespace-nowrap "
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           name
         </th>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
+          class="text-left pl-4 whitespace-nowrap "
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           age
@@ -1585,20 +1703,21 @@ exports[`Datagrid Snapshot Tests > should match snapshot with pagination 1`] = `
       </tr>
     </thead>
     <tbody
-      class="w-full relative p-0 overflow-hidden"
-      style="height: 102px;"
+      class="relative p-0 overflow-hidden"
+      style="height: 131px;"
     >
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="0"
-        style="left: -1px; height: 50px; transform: translateY(0px);"
+        style="left: -1px; height: 64.5px; transform: translateY(0px);"
       >
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               John Doe
@@ -1606,11 +1725,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with pagination 1`] = `
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               30
@@ -1621,14 +1741,15 @@ exports[`Datagrid Snapshot Tests > should match snapshot with pagination 1`] = `
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="1"
-        style="left: -1px; height: 50px; transform: translateY(50px);"
+        style="left: -1px; height: 64.5px; transform: translateY(64.5px);"
       >
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               Jane Smith
@@ -1636,11 +1757,112 @@ exports[`Datagrid Snapshot Tests > should match snapshot with pagination 1`] = `
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
+          >
+            <div>
+              25
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with pagination 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 100%; height: 100%;"
+>
+  <table
+    class="_table--md_1xkmm_54"
+    data-ods="table"
+  >
+    <thead
+      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+    >
+      <tr>
+        <th
+          class="text-left pl-4 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          name
+        </th>
+        <th
+          class="text-left pl-4 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          age
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="relative p-0 overflow-hidden"
+      style="height: 99px;"
+    >
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="0"
+        style="left: -1px; height: 48.5px; transform: translateY(0px);"
+      >
+        <td
+          class="pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
+          >
+            <div>
+              John Doe
+            </div>
+          </div>
+        </td>
+        <td
+          class="pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
+          >
+            <div>
+              30
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="1"
+        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
+      >
+        <td
+          class="pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
+          >
+            <div>
+              Jane Smith
+            </div>
+          </div>
+        </td>
+        <td
+          class="pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               25
@@ -1659,18 +1881,16 @@ exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] 
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--md_1xkmm_54 w-full"
+    class="_table--md_1xkmm_54"
     data-ods="table"
   >
     <thead
       class="sticky top-[-1px] z-10 bg-white overflow-hidden"
     >
-      <tr
-        class="h-[50px]"
-      >
+      <tr>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
-          style="width: 20px; min-width: 20px; max-width: 20px;"
+          class="text-left pl-4 whitespace-nowrap "
+          style="width: 30px; min-width: 30px; max-width: 30px;"
         >
           <label
             class="_checkbox_18i6t_2"
@@ -1731,13 +1951,13 @@ exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] 
           </label>
         </th>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
+          class="text-left pl-4 whitespace-nowrap "
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           name
         </th>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
+          class="text-left pl-4 whitespace-nowrap "
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           age
@@ -1745,20 +1965,21 @@ exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] 
       </tr>
     </thead>
     <tbody
-      class="w-full relative p-0 overflow-hidden"
-      style="height: 102px;"
+      class="relative p-0 overflow-hidden"
+      style="height: 99px;"
     >
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="0"
-        style="left: -1px; height: 50px; transform: translateY(0px);"
+        style="left: -1px; height: 48.5px; transform: translateY(0px);"
       >
         <td
-          class="py-[8px] pl-4"
-          style="width: 20px; min-width: 20px; max-width: 20px;"
+          class="pl-4"
+          style="width: 30px; min-width: 30px; max-width: 30px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <label
               class="_checkbox_18i6t_2"
@@ -1820,11 +2041,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] 
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               John Doe
@@ -1832,11 +2054,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] 
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               30
@@ -1847,14 +2070,15 @@ exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] 
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="1"
-        style="left: -1px; height: 50px; transform: translateY(50px);"
+        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
       >
         <td
-          class="py-[8px] pl-4"
-          style="width: 20px; min-width: 20px; max-width: 20px;"
+          class="pl-4"
+          style="width: 30px; min-width: 30px; max-width: 30px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <label
               class="_checkbox_18i6t_2"
@@ -1916,11 +2140,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] 
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               Jane Smith
@@ -1928,11 +2153,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with row selection 1`] 
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               25
@@ -1951,23 +2177,21 @@ exports[`Datagrid Snapshot Tests > should match snapshot with search enabled 1`]
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--md_1xkmm_54 w-full"
+    class="_table--md_1xkmm_54"
     data-ods="table"
   >
     <thead
       class="sticky top-[-1px] z-10 bg-white overflow-hidden"
     >
-      <tr
-        class="h-[50px]"
-      >
+      <tr>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
+          class="text-left pl-4 whitespace-nowrap "
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           name
         </th>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
+          class="text-left pl-4 whitespace-nowrap "
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           age
@@ -1975,20 +2199,21 @@ exports[`Datagrid Snapshot Tests > should match snapshot with search enabled 1`]
       </tr>
     </thead>
     <tbody
-      class="w-full relative p-0 overflow-hidden"
-      style="height: 102px;"
+      class="relative p-0 overflow-hidden"
+      style="height: 99px;"
     >
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="0"
-        style="left: -1px; height: 50px; transform: translateY(0px);"
+        style="left: -1px; height: 48.5px; transform: translateY(0px);"
       >
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               John Doe
@@ -1996,11 +2221,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with search enabled 1`]
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               30
@@ -2011,14 +2237,15 @@ exports[`Datagrid Snapshot Tests > should match snapshot with search enabled 1`]
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="1"
-        style="left: -1px; height: 50px; transform: translateY(50px);"
+        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
       >
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               Jane Smith
@@ -2026,11 +2253,112 @@ exports[`Datagrid Snapshot Tests > should match snapshot with search enabled 1`]
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
+          >
+            <div>
+              25
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with small size 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 100%; height: 100%;"
+>
+  <table
+    class="_table--sm_1xkmm_2"
+    data-ods="table"
+  >
+    <thead
+      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+    >
+      <tr>
+        <th
+          class="text-left pl-4 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          name
+        </th>
+        <th
+          class="text-left pl-4 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          age
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="relative p-0 overflow-hidden"
+      style="height: 67px;"
+    >
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="0"
+        style="left: -1px; height: 32.5px; transform: translateY(0px);"
+      >
+        <td
+          class="pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
+          >
+            <div>
+              John Doe
+            </div>
+          </div>
+        </td>
+        <td
+          class="pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
+          >
+            <div>
+              30
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="1"
+        style="left: -1px; height: 32.5px; transform: translateY(32.5px);"
+      >
+        <td
+          class="pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
+          >
+            <div>
+              Jane Smith
+            </div>
+          </div>
+        </td>
+        <td
+          class="pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               25
@@ -2049,17 +2377,15 @@ exports[`Datagrid Snapshot Tests > should match snapshot with sorting enabled 1`
   style="max-height: 100%; height: 100%;"
 >
   <table
-    class="_table--md_1xkmm_54 w-full"
+    class="_table--md_1xkmm_54"
     data-ods="table"
   >
     <thead
       class="sticky top-[-1px] z-10 bg-white overflow-hidden"
     >
-      <tr
-        class="h-[50px]"
-      >
+      <tr>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
+          class="text-left pl-4 whitespace-nowrap "
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
@@ -2081,7 +2407,7 @@ exports[`Datagrid Snapshot Tests > should match snapshot with sorting enabled 1`
           </div>
         </th>
         <th
-          class="text-left pl-4 h-11 whitespace-nowrap "
+          class="text-left pl-4 whitespace-nowrap "
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
@@ -2105,20 +2431,21 @@ exports[`Datagrid Snapshot Tests > should match snapshot with sorting enabled 1`
       </tr>
     </thead>
     <tbody
-      class="w-full relative p-0 overflow-hidden"
-      style="height: 102px;"
+      class="relative p-0 overflow-hidden"
+      style="height: 99px;"
     >
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="0"
-        style="left: -1px; height: 50px; transform: translateY(0px);"
+        style="left: -1px; height: 48.5px; transform: translateY(0px);"
       >
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               Jane Smith
@@ -2126,11 +2453,12 @@ exports[`Datagrid Snapshot Tests > should match snapshot with sorting enabled 1`
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               25
@@ -2141,14 +2469,15 @@ exports[`Datagrid Snapshot Tests > should match snapshot with sorting enabled 1`
       <tr
         class="overflow-hidden absolute top-0 w-full table table-fixed"
         data-index="1"
-        style="left: -1px; height: 50px; transform: translateY(50px);"
+        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
       >
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               John Doe
@@ -2156,14 +2485,115 @@ exports[`Datagrid Snapshot Tests > should match snapshot with sorting enabled 1`
           </div>
         </td>
         <td
-          class="py-[8px] pl-4"
+          class="pl-4"
           style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
         >
           <div
-            class="overflow-hidden text-ellipsis block w-full"
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
           >
             <div>
               30
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Datagrid Snapshot Tests > should match snapshot with striped variant 1`] = `
+<div
+  class="overflow-auto relative w-full"
+  style="max-height: 100%; height: 100%;"
+>
+  <table
+    class="_table--md_1xkmm_54 _table--striped_1xkmm_158"
+    data-ods="table"
+  >
+    <thead
+      class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+    >
+      <tr>
+        <th
+          class="text-left pl-4 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          name
+        </th>
+        <th
+          class="text-left pl-4 whitespace-nowrap "
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          age
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      class="relative p-0 overflow-hidden"
+      style="height: 99px;"
+    >
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="0"
+        style="left: -1px; height: 48.5px; transform: translateY(0px);"
+      >
+        <td
+          class="pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
+          >
+            <div>
+              John Doe
+            </div>
+          </div>
+        </td>
+        <td
+          class="pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
+          >
+            <div>
+              30
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr
+        class="overflow-hidden absolute top-0 w-full table table-fixed"
+        data-index="1"
+        style="left: -1px; height: 48.5px; transform: translateY(48.5px);"
+      >
+        <td
+          class="pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
+          >
+            <div>
+              Jane Smith
+            </div>
+          </div>
+        </td>
+        <td
+          class="pl-4"
+          style="width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+        >
+          <div
+            class="overflow-hidden text-ellipsis flex items-center w-full"
+            style="line-height: 1;"
+          >
+            <div>
+              25
             </div>
           </div>
         </td>

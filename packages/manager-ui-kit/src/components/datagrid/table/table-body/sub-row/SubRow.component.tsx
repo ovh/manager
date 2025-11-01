@@ -13,20 +13,17 @@ export const SubRow = ({
   <tr
     key={`${row.id}-expanded-tr`}
     data-index={`${virtualRow.index}-expanded-tr`}
-    className={`overflow-hidden absolute top-0 display-table table-layout-fixed`}
+    className={`overflow-hidden absolute top-0 display-table table-layout-fixed h-full`}
     style={{
       left: -1,
       height: `${subComponentHeight}px`,
       width: '-webkit-fill-available',
-      borderRight: '1px solid var(--ods-color-neutral-100)',
-      borderLeft: '1px solid var(--ods-color-neutral-100)',
-      borderBottom: '1px solid var(--ods-color-neutral-100)',
-      transform: `translateY(${virtualRow.start + offset + maxRowHeight}px)`,
+      transform: `translateY(${virtualRow.start + offset + maxRowHeight - 1}px)`,
     }}
   >
-    <div className="overflow-hidden p-[8px] text-ellipsis block w-full">
+    <td className="overflow-hidden p-[8px] text-ellipsis block w-full h-full">
       {renderSubComponent(row)}
-    </div>
+    </td>
   </tr>
 );
 

@@ -4,6 +4,7 @@
     "baseUrl": ".",
     "outDir": "dist",
     "jsx": "react-jsx",
+    "moduleResolution": "bundler",
     "paths": {
       "@/*": ["./src/*"],
       "@/setupTest": ["./setupTest.tsx"]

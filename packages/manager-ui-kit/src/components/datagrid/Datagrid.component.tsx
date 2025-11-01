@@ -1,17 +1,14 @@
 import { useRef } from 'react';
 
-import { Table } from '@ovhcloud/ods-react';
+import { TABLE_SIZE, TABLE_VARIANT, Table } from '@ovhcloud/ods-react';
 
-import { DatagridProps } from './Datagrid.props';
+import { ContainerHeight, DatagridProps, RowHeight } from './Datagrid.props';
 import { TableBody } from './table/table-body/TableBody.component';
 import { TableFooter } from './table/table-footer/TableFooter.component';
 import { TableHeaderContent } from './table/table-head/table-header-content/TableHeaderContent.component';
 import { Topbar } from './topbar/Topbar.component';
 import './translations';
 import { useDatagrid } from './useDatagrid';
-
-const DEFAULT_ROW_HEIGHT = 50;
-const DEFAULT_CONTAINER_HEIGHT = 570;
 
 export const Datagrid = <T extends Record<string, unknown>>({
   autoScroll = true,
@@ -24,18 +21,22 @@ export const Datagrid = <T extends Record<string, unknown>>({
   filters,
   hasNextPage,
   isLoading,
-  maxRowHeight = DEFAULT_ROW_HEIGHT,
+  maxRowHeight,
   resourceType,
   rowSelection,
   search,
   sorting,
+  size = TABLE_SIZE.md,
   subComponentHeight,
   topbar,
   totalCount,
+  variant = TABLE_VARIANT.default,
   onFetchAllPages,
   onFetchNextPage,
   renderSubComponent,
 }: DatagridProps<T>) => {
+  const rowHeight = RowHeight[size];
+  const DEFAULT_CONTAINER_HEIGHT = maxRowHeight || ContainerHeight[size];
   const {
     features,
     getHeaderGroups,
@@ -55,6 +56,7 @@ export const Datagrid = <T extends Record<string, unknown>>({
     setColumnVisibility: columnVisibility?.setColumnVisibility,
     rowSelection,
     expandable,
+    sizeRow: size,
   });
   const { hasSortingFeature, hasSearchFeature, hasColumnVisibilityFeature, hasFilterFeature } =
     features;
@@ -70,6 +72,7 @@ export const Datagrid = <T extends Record<string, unknown>>({
   };
   const shouldRenderTopbar =
     topbar || hasSearchFeature || hasFilterFeature || hasColumnVisibilityFeature;
+
   return (
     <>
       {shouldRenderTopbar && (
@@ -90,7 +93,7 @@ export const Datagrid = <T extends Record<string, unknown>>({
         />
       )}
       <div className="overflow-auto relative w-full" ref={tableContainerRef} style={containerStyle}>
-        <Table className="w-full">
+        <Table size={size} variant={variant}>
           <TableHeaderContent<T>
             headerGroups={headerGroups}
             onSortChange={sorting?.setSorting}
@@ -106,7 +109,7 @@ export const Datagrid = <T extends Record<string, unknown>>({
             isLoading={isLoading ?? false}
             renderSubComponent={renderSubComponent}
             subComponentHeight={subComponentHeight}
-            maxRowHeight={maxRowHeight}
+            maxRowHeight={rowHeight}
             contentAlignLeft={contentAlignLeft}
           />
         </Table>
