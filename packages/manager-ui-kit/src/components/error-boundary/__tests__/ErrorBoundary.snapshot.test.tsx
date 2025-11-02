@@ -1,15 +1,19 @@
 import { vitest } from 'vitest';
 
-import { mockGetEnvironment, renderWithContext } from '../../../utils/Test.utils';
-import { ErrorBoundary } from '../ErrorBoundary.component';
+import { mockGetEnvironment } from '@/commons/tests-utils/Mock.utils';
+import { renderWithContext } from '@/commons/tests-utils/Render.utils';
+import { ErrorBoundary } from '@/components/error-boundary/ErrorBoundary.component';
 
-vitest.mock('react-router-dom', (importOriginal) => ({
-  ...importOriginal(),
-  useRouteError: vitest.fn(),
-  useMatches: () => ({
-    pathname: 'vrackServices',
-  }),
-}));
+vitest.mock('react-router-dom', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react-router-dom')>();
+  return {
+    ...actual,
+    useRouteError: vitest.fn(),
+    useMatches: () => ({
+      pathname: 'vrackServices',
+    }),
+  };
+});
 
 mockGetEnvironment.mockResolvedValue({
   applicationName: 'test-application',

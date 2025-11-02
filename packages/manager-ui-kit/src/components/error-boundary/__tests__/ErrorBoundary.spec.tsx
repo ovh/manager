@@ -3,18 +3,23 @@ import { useRouteError } from 'react-router-dom';
 import { fireEvent, screen } from '@testing-library/react';
 import { vitest } from 'vitest';
 
-import { renderWithContext, shellContext } from '../../../utils/Test.utils';
-import { ErrorProps } from '../../error/Error.props';
-import tradFr from '../../error/translations/Messages_fr_FR.json';
-import { ErrorBoundary } from '../ErrorBoundary.component';
+import { shellContext } from '@/commons/tests-utils/Mock.utils';
+import { renderWithContext } from '@/commons/tests-utils/Render.utils';
+import { ErrorBoundary } from '@/components/error-boundary/ErrorBoundary.component';
+import { ErrorProps } from '@/components/error/Error.props';
 
-vitest.mock('react-router-dom', (importOriginal) => ({
-  ...importOriginal(),
-  useRouteError: vitest.fn(),
-  useMatches: () => ({
-    pathname: 'vrackServices',
-  }),
-}));
+import tradFr from '../../error/translations/Messages_fr_FR.json';
+
+vitest.mock('react-router-dom', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react-router-dom')>();
+  return {
+    ...actual,
+    useRouteError: vitest.fn(),
+    useMatches: () => ({
+      pathname: 'vrackServices',
+    }),
+  };
+});
 
 export const defaultProps: ErrorProps = {
   error: {},

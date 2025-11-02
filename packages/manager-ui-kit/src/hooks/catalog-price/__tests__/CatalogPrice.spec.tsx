@@ -1,27 +1,33 @@
 import { renderHook } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import { convertHourlyPriceToMonthly, priceToUcent } from '../useCatalog.utils';
-import { useCatalogPrice } from '../useCatalogPrice';
+import { convertHourlyPriceToMonthly, priceToUcent } from '@/hooks/catalog-price/Catalog.utils';
+import { useCatalogPrice } from '@/hooks/catalog-price/useCatalogPrice';
+
+type UseMeFn = () => { me: { ovhSubsidiary: string; currency: { code: string } } | null };
 
 const mocks = vi.hoisted(() => ({
-  useMe: vi.fn(() => ({
+  useMe: vi.fn<UseMeFn>(() => ({
     me: {
       ovhSubsidiary: 'FR',
-      currency: {
-        code: 'EUR',
-      },
+      currency: { code: 'EUR' },
     },
   })),
   t: vi.fn((key: string, options?: Record<string, unknown>) => {
-    if (options?.price) {
-      return `${key} ${options.price}`;
+    if (options && 'price' in options) {
+      const priceValue =
+        typeof options.price === 'string'
+          ? options.price
+          : typeof options.price === 'number'
+            ? options.price.toString()
+            : JSON.stringify(options.price ?? '');
+      return `${key} ${priceValue}`;
     }
     return key;
   }),
 }));
 
-vi.mock('../../me', () => ({
+vi.mock('@/hooks/me/useMe', () => ({
   useMe: mocks.useMe,
 }));
 
@@ -164,6 +170,7 @@ describe('useCatalogPrice Hook', () => {
           price: expect.stringContaining('10,00'),
         }),
       );
+      expect(formatted).toContain('order_catalog_price_tax_excl_label');
     });
   });
 

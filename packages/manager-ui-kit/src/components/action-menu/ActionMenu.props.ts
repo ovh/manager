@@ -6,9 +6,9 @@ import {
   POPOVER_POSITION,
 } from '@ovhcloud/ods-react';
 
-import { LinkType } from '../Link';
+import { LinkType } from '@/components/link/Link.props';
 
-export interface ActionMenuItem {
+export interface ActionMenuItemProps {
   id: number;
   rel?: string;
   href?: string;
@@ -28,7 +28,7 @@ export interface ActionMenuItem {
 }
 
 export interface ActionMenuProps {
-  items: ActionMenuItem[];
+  items: ActionMenuItemProps[];
   isCompact?: boolean;
   icon?: ICON_NAME;
   variant?: BUTTON_VARIANT;

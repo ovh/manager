@@ -1,4 +1,6 @@
-import { LinkProps } from '../Link';
+import { JSX } from 'react';
+
+import { LinkProps } from '@/components/link/Link.props';
 
 export interface GuideMenuItem extends Omit<LinkProps, 'id'> {
   id: number;

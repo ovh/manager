@@ -1,50 +1,55 @@
-import React from 'react';
+import { act, fireEvent, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 
-import { act, fireEvent, render, screen } from '@testing-library/react';
-import { vitest } from 'vitest';
+import { renderActionBanner } from '@/commons/tests-utils/Render.utils';
+import { MOCK_ACTION_BANNER, MOCK_URL } from '@/commons/tests-utils/StaticData.constants';
+import type { ActionBannerProps } from '@/components/action-banner/ActionBanner.props';
 
-import { ActionBanner } from '../ActionBanner.component';
-import { ActionBannerProps } from '../ActionBanner.props';
-
-const renderComponent = (props: ActionBannerProps) => render(<ActionBanner {...props} />);
-
-describe('ActionBanner tests', () => {
-  it('should display message', () => {
-    renderComponent({
-      message: 'hello world',
-      label: 'custom action',
-      onClick: () => {},
+describe('ActionBanner', () => {
+  it('should display the provided message', () => {
+    const props: ActionBannerProps = {
+      ...MOCK_ACTION_BANNER,
+      onClick: vi.fn(),
       dismissible: true,
-    });
+    };
 
-    expect(screen.getAllByText('hello world')).not.toBeNull();
+    renderActionBanner(props);
+
+    expect(screen.getByText(MOCK_ACTION_BANNER.message)).toBeInTheDocument();
   });
 
-  it('should have a working call to action button', () => {
-    const mockOnClick = vitest.fn();
-
-    renderComponent({
-      message: 'hello world',
-      label: 'custom action',
+  it('should call onClick when the action button is clicked', () => {
+    const mockOnClick = vi.fn();
+    const props: ActionBannerProps = {
+      ...MOCK_ACTION_BANNER,
       onClick: mockOnClick,
-    });
-    expect(screen.getByTestId('action-banner-button')).not.toBeNull();
-    const cta = screen.queryByTestId('action-banner-button');
+    };
+
+    renderActionBanner(props);
+
+    const ctaButton = screen.getByTestId('action-banner-button');
+    expect(ctaButton).toBeInTheDocument();
+
     expect(mockOnClick).not.toHaveBeenCalled();
-    act(() => fireEvent.click(cta));
-    expect(mockOnClick).toHaveBeenCalled();
+
+    act(() => {
+      fireEvent.click(ctaButton);
+    });
+
+    expect(mockOnClick).toHaveBeenCalledTimes(1);
   });
 
-  it('should have a link action', () => {
-    const href = 'www.ovhcloud.com';
-    renderComponent({
-      message: 'hello world',
-      label: 'custom action',
-      href,
-    });
-    const link = screen.queryByTestId('action-banner-link');
-    expect(link).toBeDefined();
-    expect(link.getAttribute('href')).toBe(href);
-    expect(link.getAttribute('target')).toBe('_blank');
+  it('should render a link action when href is provided', () => {
+    const props: ActionBannerProps = {
+      ...MOCK_ACTION_BANNER,
+      href: MOCK_URL,
+    };
+
+    renderActionBanner(props);
+
+    const link = screen.getByTestId('action-banner-link');
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveAttribute('href', MOCK_URL);
+    expect(link).toHaveAttribute('target', '_blank');
   });
 });

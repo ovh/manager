@@ -8,7 +8,8 @@ import {
   TooltipTrigger,
 } from '@ovhcloud/ods-react';
 
-import { useAuthorizationIam } from '../../hooks/iam';
+import { useAuthorizationIam } from '@/hooks';
+
 import { TextProps } from './Text.props';
 import './translations';
 

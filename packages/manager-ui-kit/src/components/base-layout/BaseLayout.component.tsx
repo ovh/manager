@@ -2,8 +2,10 @@ import React from 'react';
 
 import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
-import { Link, LinkType } from '../Link';
-import { BaseLayoutProps } from './BaseLayout.props';
+import { BaseLayoutProps } from '@/components/base-layout/BaseLayout.props';
+import { Link } from '@/components/link/Link.component';
+import { LinkType } from '@/components/link/Link.props';
+
 import { Header } from './header/Header.component';
 
 export const BaseLayout = ({

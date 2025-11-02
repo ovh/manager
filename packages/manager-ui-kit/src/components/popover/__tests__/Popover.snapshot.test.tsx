@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { Popover, PopoverContent, PopoverTrigger } from '..';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components';
 
 describe('Popover Snapshot tests', () => {
   it('renders the component with default props and children', () => {

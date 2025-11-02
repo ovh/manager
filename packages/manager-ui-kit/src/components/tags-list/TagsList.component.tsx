@@ -1,6 +1,7 @@
 import { FC, Suspense, lazy, useMemo, useState } from 'react';
 
-import { TagsListProps } from './TagsList.props';
+import { TagsListProps } from '@/components/tags-list/TagsList.props';
+
 import { filterTags } from './TagsList.utils';
 import { TagsStack } from './tags-stack/TagsStack.component';
 

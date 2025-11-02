@@ -1,9 +1,9 @@
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { TEXT_PRESET } from '@ovhcloud/ods-react';
 
-import { Text } from '../../text/Text.component';
-import { DrawerHeaderProps } from './DrawerHeader.props';
+import { DrawerHeaderProps } from '@/components/drawer/drawer-header/DrawerHeader.props';
+import { Text } from '@/components/text/Text.component';
 
 export const DrawerHeader = ({ title }: DrawerHeaderProps) => {
   return (

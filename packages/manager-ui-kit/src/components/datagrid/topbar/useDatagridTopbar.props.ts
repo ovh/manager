@@ -1,6 +1,6 @@
-import { Column } from '@tanstack/react-table';
+import type { Column } from '@tanstack/react-table';
 
-import { DatagridColumn } from '../Datagrid.props';
+import { DatagridColumn } from '@/components/datagrid/Datagrid.props';
 
 export type UseDatagridTopbarProps<T> = {
   columns?: readonly DatagridColumn<T>[];

@@ -65,9 +65,10 @@ describe('filterTags', () => {
   });
 
   it('should handle prototype pollution edge cases', () => {
-    const pollutedTags = Object.create({
+    const pollutedTags: Record<string, string> = Object.create({
       'ovh:polluted': 'should-not-appear',
     });
+
     pollutedTags['normal-tag'] = 'normal-value';
 
     const result = filterTags({

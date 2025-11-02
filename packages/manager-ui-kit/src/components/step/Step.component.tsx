@@ -1,6 +1,8 @@
+import { JSX } from 'react';
+
 import { v4 as uuidV4 } from 'uuid';
 
-import StepProps from './Step.props';
+import { StepProps } from './Step.props';
 import { StepContext } from './StepContext';
 import { StepBody } from './step-body/StepBody.component';
 import { StepFooter } from './step-footer/StepFooter.component';

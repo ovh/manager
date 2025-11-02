@@ -1,7 +1,7 @@
 import { vitest } from 'vitest';
 
-import { render } from '../../../../setupTest';
-import { TagsTile } from '../TagsTile.component';
+import { render } from '@/commons/tests-utils/Render.utils';
+import { TagsTile } from '@/components/tags-tile/TagsTile.component';
 
 describe('TagsTile Snapshot Tests', () => {
   const mockOnEditTags = vitest.fn();
@@ -17,8 +17,8 @@ describe('TagsTile Snapshot Tests', () => {
       expect(container).toMatchSnapshot();
     });
 
-    it('should render with null tags', () => {
-      const { container } = render(<TagsTile tags={null} onEditTags={mockOnEditTags} />);
+    it('should render with empty tags', () => {
+      const { container } = render(<TagsTile tags={{}} onEditTags={mockOnEditTags} />);
 
       expect(container).toMatchSnapshot();
     });

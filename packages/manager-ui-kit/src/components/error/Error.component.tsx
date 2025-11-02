@@ -15,8 +15,9 @@ import {
 
 import { PageType, ShellContext } from '@ovh-ux/manager-react-shell-client';
 
+import { ErrorProps } from '@/components/error/Error.props';
+
 import ErrorImg from '../../../public/assets/error-banner-oops.png';
-import { ErrorProps } from './Error.props';
 import { getTrackingTypology } from './Error.utils';
 import './translations/translations';
 
@@ -33,7 +34,7 @@ export const Error = ({
     typeof error === 'undefined' ||
     error === null ||
     (typeof error === 'object' &&
-      error !== null &&
+      true &&
       typeof error === 'object' &&
       Object.keys(error)?.length === 0);
 
@@ -41,7 +42,8 @@ export const Error = ({
     const env = shell?.environment?.getEnvironment();
     env?.then((response) => {
       const { applicationName } = response;
-      const name = `errors::${getTrackingTypology(error)}::${applicationName}`;
+      const safeError = error ?? { status: 0 };
+      const name = `errors::${getTrackingTypology(safeError)}::${applicationName}`;
       shell?.tracking?.trackPage({
         name,
         level2: '81',

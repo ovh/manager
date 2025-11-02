@@ -1,12 +1,13 @@
-import { FC } from 'react';
+import { FC, JSX } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
 import { BUTTON_VARIANT, ICON_NAME, Icon } from '@ovhcloud/ods-react';
 
-import { Button } from '../../button';
-import { Text } from '../../text';
-import { useOrderContext } from '../Order.context';
+import { Button } from '@/components/button/Button.component';
+import { useOrderContext } from '@/components/order/Order.context';
+import { Text } from '@/components/text/Text.component';
+
 import { OrderConfigurationProps } from './OrderConfiguration.props';
 
 export const OrderConfiguration: FC<OrderConfigurationProps> = ({

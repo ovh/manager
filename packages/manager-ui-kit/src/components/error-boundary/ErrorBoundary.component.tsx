@@ -1,11 +1,15 @@
+/* eslint-disable react/no-multi-comp */
 import { useContext, useEffect } from 'react';
 
 import { useRouteError } from 'react-router-dom';
 
 import { ShellContext, useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
 
-import { Error } from '../error/Error.component';
-import { ErrorBoundaryProps, ResponseAPIError } from './ErrorBoundary.props';
+import {
+  ErrorBoundaryProps,
+  ResponseAPIError,
+} from '@/components/error-boundary/ErrorBoundary.props';
+import { Error } from '@/components/error/Error.component';
 
 const ShellRoutingSync = () => {
   useRouteSynchro();

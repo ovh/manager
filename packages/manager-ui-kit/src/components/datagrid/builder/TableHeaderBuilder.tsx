@@ -1,4 +1,4 @@
-import { Row } from '@tanstack/react-table';
+import type { Row, Table } from '@tanstack/react-table';
 
 import {
   BUTTON_SIZE,
@@ -9,8 +9,8 @@ import {
   Icon,
 } from '@ovhcloud/ods-react';
 
-import { Button } from '../../button';
-import { ExpandedProps } from '../Datagrid.props';
+import { Button } from '@/components/button/Button.component';
+import type { ExpandedProps } from '@/components/datagrid/Datagrid.props';
 
 export const getExpandable = <T,>(expandable: ExpandedProps) => ({
   cell: ({ row }: { row: Row<T> }) => {
@@ -53,14 +53,12 @@ export const getRowSelection = <T,>() => ({
   ),
   enableHiding: true,
   enableResizing: true,
-  header: ({ table: tableHeader }) => (
+  header: ({ table }: { table: Table<T> }) => (
     <Checkbox
       id="select-all"
       name="select-all"
-      onChange={() => {
-        tableHeader.toggleAllRowsSelected();
-      }}
-      checked={tableHeader.getIsAllRowsSelected()}
+      onChange={() => table.toggleAllRowsSelected()}
+      checked={table.getIsAllRowsSelected()}
     >
       <CheckboxControl />
     </Checkbox>
