@@ -1,8 +1,8 @@
 import { vi } from 'vitest';
 
-import { render } from '@/setupTest';
-
-import { Modal } from '../Modal.component';
+import { render } from '@/commons/tests-utils/Render.utils';
+import { Modal } from '@/components/modal/Modal.component';
+import { ModalProps } from '@/components/modal/Modal.props';
 
 export const heading = 'Example Heading';
 
@@ -35,4 +35,5 @@ export const actions = {
   },
 };
 
-export const renderModal = ({ children, ...props }) => render(<Modal {...props}>{children}</Modal>);
+export const renderModal = ({ children, ...props }: ModalProps) =>
+  render(<Modal {...props}>{children}</Modal>);

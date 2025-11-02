@@ -1,6 +1,6 @@
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
 
-import { DatagridColumn } from '../../../components';
+import { DatagridColumn } from '@/components/datagrid/Datagrid.props';
 
 export type ResultObj = {
   name: string;

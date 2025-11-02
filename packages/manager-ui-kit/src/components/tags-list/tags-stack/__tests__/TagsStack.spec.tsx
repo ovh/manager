@@ -7,11 +7,12 @@ import { TagsStack } from '../TagsStack.component';
 import * as TagsStackUtils from '../TagsStack.utils';
 
 vi.mock('../TagsStack.utils', async (importOriginal) => {
-  const actual: any = await importOriginal();
-  return {
-    ...actual,
+  const actual = await importOriginal();
+  const mockedModule: typeof import('../TagsStack.utils') = {
+    ...(actual as object),
     getVisibleTagCount: vi.fn(),
   };
+  return mockedModule;
 });
 
 const mockTags = ['tag1:tag1', 'tag2:tag2', 'tag3:tage3', 'tag4:tag4'];
@@ -22,7 +23,7 @@ describe('TagsStack', () => {
   });
 
   it('renders nothing if tags are empty', () => {
-    const { container, rerender } = render(<TagsStack tags={[]} />);
+    const { container } = render(<TagsStack tags={[]} />);
     expect(container.firstChild).toBeNull();
   });
 

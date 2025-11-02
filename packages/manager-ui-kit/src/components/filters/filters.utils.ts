@@ -1,15 +1,22 @@
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
 
-import { FilterWithLabel } from './Filter.props';
+import { FilterWithLabel } from '@/components/filters/Filter.props';
 
 export function formatFilter(filter: FilterWithLabel, locale?: string): string {
   if (!filter) return '';
+
+  const value = Array.isArray(filter.value) ? filter.value.join(', ') : String(filter.value ?? '');
+
   switch (filter.type) {
-    case FilterTypeCategories.Date:
-      return new Date(`${filter.value}`).toLocaleDateString(locale);
+    case FilterTypeCategories.Date: {
+      const date = new Date(value);
+      return Number.isNaN(date.getTime()) ? value : date.toLocaleDateString(locale);
+    }
+
     case FilterTypeCategories.Tags:
-      return filter.value ? `${filter.tagKey}:${filter.value}` : filter.tagKey || '';
+      return value ? `${filter.tagKey ?? ''}:${value}` : (filter.tagKey ?? '');
+
     default:
-      return filter.value as string;
+      return value;
   }
 }

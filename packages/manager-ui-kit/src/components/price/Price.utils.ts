@@ -1,4 +1,5 @@
-import { IntervalUnitType, OVH_CURRENCY_BY_SUBSIDIARY, OvhSubsidiary } from '../../enumTypes';
+import { IntervalUnit, OVH_CURRENCY_BY_SUBSIDIARY, OvhSubsidiary } from '@/commons';
+
 import {
   ASIAN_FORMAT_SUBSIDIARIES,
   FRENCH_FORMAT_SUBSIDIARIES,
@@ -11,12 +12,12 @@ export const getPrice = (value: number, tax?: number): number => {
   return valueWithTax / 100000000;
 };
 
-export const convertIntervalPrice = (price: number, intervalUnit: IntervalUnitType): number => {
+export const convertIntervalPrice = (price: number, intervalUnit: IntervalUnit): number => {
   const conversionRates = {
-    [IntervalUnitType.day]: price / 365,
-    [IntervalUnitType.month]: price / 12,
-    [IntervalUnitType.year]: price,
-    [IntervalUnitType.none]: price,
+    [IntervalUnit.day]: price / 365,
+    [IntervalUnit.month]: price / 12,
+    [IntervalUnit.year]: price,
+    [IntervalUnit.none]: price,
   };
 
   return conversionRates[intervalUnit] || price;
@@ -34,7 +35,7 @@ export const getPriceTextFormatted = (
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     }).format(priceValue);
-  } catch (e) {
+  } catch {
     return new Intl.NumberFormat('fr-FR', {
       style: 'currency',
       currency: OVH_CURRENCY_BY_SUBSIDIARY[ovhSubsidiary],

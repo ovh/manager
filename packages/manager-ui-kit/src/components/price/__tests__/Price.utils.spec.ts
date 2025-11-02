@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { IntervalUnitType, OvhSubsidiary } from '../../../enumTypes';
+import { IntervalUnit, OvhSubsidiary } from '@/commons';
+
 import { convertIntervalPrice, getPrice, getPriceTextFormatted } from '../Price.utils';
 
 describe('getPrice', () => {
@@ -19,21 +20,21 @@ describe('getPrice', () => {
 
 describe('convertIntervalPrice', () => {
   it('should convert yearly price to daily rate', () => {
-    expect(convertIntervalPrice(365, IntervalUnitType.day)).toBe(1);
+    expect(convertIntervalPrice(365, IntervalUnit.day)).toBe(1);
   });
 
   it('should convert yearly price to monthly rate', () => {
-    expect(convertIntervalPrice(120, IntervalUnitType.month)).toBe(10);
+    expect(convertIntervalPrice(120, IntervalUnit.month)).toBe(10);
   });
 
   it('should return same price for yearly interval', () => {
     const price = 99.99;
-    expect(convertIntervalPrice(price, IntervalUnitType.year)).toBe(price);
+    expect(convertIntervalPrice(price, IntervalUnit.year)).toBe(price);
   });
 
   it('should return same price for none interval', () => {
     const price = 50;
-    expect(convertIntervalPrice(price, IntervalUnitType.none)).toBe(price);
+    expect(convertIntervalPrice(price, IntervalUnit.none)).toBe(price);
   });
 
   it('should return original price if intervalUnit is invalid', () => {

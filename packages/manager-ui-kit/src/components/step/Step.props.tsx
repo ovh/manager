@@ -1,3 +1,5 @@
+import { JSX } from 'react';
+
 export type Next = {
   action: (id: string) => void;
   label: string | JSX.Element;

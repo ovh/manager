@@ -1,9 +1,20 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
+import { FilterComparator } from '@ovh-ux/manager-core-api';
 
-import { render } from '@/setupTest';
+import { assertNotNull } from '@/commons/tests-utils/Assertions.utils';
+import { render } from '@/commons/tests-utils/Render.utils';
+import {
+  mockColumnVisibility,
+  mockColumns,
+  mockColumnsWithoutVisibility,
+  mockFilters,
+  mockSearch,
+  mockSetColumnVisibility,
+  mockVisibleColumns,
+  mockVisibleColumnsWithoutHiding,
+} from '@/components/datagrid/__mocks__';
 
 import { Topbar } from '../Topbar.component';
 
@@ -15,60 +26,6 @@ vi.mock('../../../../../hooks/iam', () => ({
     isFetched: true,
   })),
 }));
-
-const mockColumns = [
-  {
-    id: 'name',
-    header: 'Name',
-    accessorKey: 'name',
-    isSearchable: true,
-    isFilterable: true,
-    enableHiding: true,
-    type: FilterTypeCategories.String,
-  },
-  {
-    id: 'age',
-    header: 'Age',
-    accessorKey: 'age',
-    isSearchable: true,
-    isFilterable: true,
-    enableHiding: true,
-    type: FilterTypeCategories.Numeric,
-  },
-];
-
-const mockVisibleColumns = [
-  {
-    id: 'name',
-    columnDef: { header: 'Name', enableHiding: true },
-    getIsVisible: vi.fn(() => true),
-    getCanHide: vi.fn(() => true),
-    getToggleVisibilityHandler: vi.fn(() => vi.fn()),
-  } as any,
-  {
-    id: 'age',
-    columnDef: { header: 'Age', enableHiding: true },
-    getIsVisible: vi.fn(() => true),
-    getCanHide: vi.fn(() => true),
-    getToggleVisibilityHandler: vi.fn(() => vi.fn()),
-  } as any,
-];
-
-const mockSearch = {
-  onSearch: vi.fn(),
-  searchInput: 'test',
-  setSearchInput: vi.fn(),
-  placeholder: 'Search...',
-};
-
-const mockFilters = {
-  add: vi.fn(),
-  remove: vi.fn(),
-  filters: [],
-};
-
-const mockColumnVisibility = { name: true, age: true };
-const mockSetColumnVisibility = vi.fn();
 
 describe('Topbar', () => {
   it('should render the topbar with basic props', () => {
@@ -207,7 +164,7 @@ describe('Topbar', () => {
           key: 'name',
           label: 'Name',
           value: 'John',
-          comparator: 'contains' as any,
+          comparator: FilterComparator.Includes,
         },
       ],
     };
@@ -223,6 +180,7 @@ describe('Topbar', () => {
         toggleAllColumnsVisible={vi.fn()}
       />,
     );
+
     expect(screen.getByTestId('datagrid-filter-list')).toBeInTheDocument();
   });
 
@@ -332,8 +290,8 @@ describe('Topbar', () => {
     );
 
     const form = screen.getByRole('searchbox').closest('form');
-    fireEvent.submit(form!);
-
+    assertNotNull(form);
+    fireEvent.submit(form);
     expect(mockSearch.onSearch).toHaveBeenCalledWith('test');
   });
 
@@ -365,31 +323,10 @@ describe('Topbar', () => {
   });
 
   it('should render with columns that have no visibility feature', () => {
-    const columnsWithoutVisibility = [
-      {
-        id: 'name',
-        header: 'Name',
-        accessorKey: 'name',
-        isSearchable: true,
-        isFilterable: true,
-        enableHiding: false,
-      },
-    ];
-
-    const visibleColumnsWithoutHiding = [
-      {
-        id: 'name',
-        columnDef: { header: 'Name', enableHiding: false },
-        getIsVisible: vi.fn(() => true),
-        getCanHide: vi.fn(() => false),
-        getToggleVisibilityHandler: vi.fn(() => vi.fn()),
-      } as any,
-    ];
-
     render(
       <Topbar
-        columns={columnsWithoutVisibility}
-        visibleColumns={visibleColumnsWithoutHiding}
+        columns={mockColumnsWithoutVisibility}
+        visibleColumns={mockVisibleColumnsWithoutHiding}
         enableColumnvisibility={true}
         columnVisibility={mockColumnVisibility}
         setColumnVisibility={mockSetColumnVisibility}

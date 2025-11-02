@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { type ChangeEvent, JSX, useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -15,17 +15,18 @@ import {
   TEXT_PRESET,
 } from '@ovhcloud/ods-react';
 
-import { Modal } from '../modal';
-import { Text } from '../text';
-import { UpdateNameModalProps } from './UpdateNameModal.props';
+import { Modal } from '@/components/modal/Modal.component';
+import { Text } from '@/components/text/Text.component';
+import type { UpdateNameModalProps } from '@/components/update-name-modal/UpdateNameModal.props';
+
 import './translations/translations';
 
-export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
+export function UpdateNameModal({
   headline,
   description,
   inputLabel,
-  defaultValue,
-  isLoading,
+  defaultValue = '',
+  isLoading = false,
   onClose,
   updateDisplayName,
   error,
@@ -34,24 +35,37 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
   pattern,
   patternMessage,
   isOpen = true,
-}) => {
+}: UpdateNameModalProps): JSX.Element {
   const { t } = useTranslation('update-name-modal');
   const [displayName, setDisplayName] = useState(defaultValue);
   const [isPatternError, setIsPatternError] = useState(false);
 
   useEffect(() => {
-    setDisplayName(defaultValue);
+    setDisplayName(defaultValue ?? '');
   }, [defaultValue]);
 
   useEffect(() => {
-    const regex = new RegExp(pattern || '');
-    setIsPatternError(!displayName?.match(regex));
+    if (!pattern) {
+      setIsPatternError(false);
+      return;
+    }
+    try {
+      const regex = new RegExp(pattern);
+      setIsPatternError(!regex.test(displayName ?? ''));
+    } catch {
+      // If the regex is invalid, skip validation.
+      setIsPatternError(false);
+    }
   }, [displayName, pattern]);
 
-  const handleClose = () => {
-    if (onClose) {
-      onClose();
-    }
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setDisplayName(e.target.value);
+  };
+
+  const handleClose = () => onClose?.();
+
+  const handleConfirm = () => {
+    updateDisplayName(displayName?.trim() ?? '');
   };
 
   return (
@@ -59,39 +73,44 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
       open={isOpen}
       heading={headline}
       primaryButton={{
-        label: confirmButtonLabel || t('updateModalConfirmButton'),
-        onClick: () => updateDisplayName(displayName || ''),
+        label: confirmButtonLabel ?? t('updateModalConfirmButton'),
+        onClick: handleConfirm,
+        disabled: isPatternError || isLoading,
       }}
       secondaryButton={{
-        label: cancelButtonLabel || t('updateModalCancelButton'),
+        label: cancelButtonLabel ?? t('updateModalCancelButton'),
         onClick: handleClose,
       }}
     >
       <div>
-        {!!error && (
+        {error && (
           <Message color={MESSAGE_COLOR.critical}>
             <MessageIcon name={ICON_NAME.triangleExclamation} />
             <MessageBody>{t('updateModalError', { error })}</MessageBody>
           </Message>
         )}
+
         {description && (
           <Text className="pt-1 pb-3" preset={TEXT_PRESET.paragraph}>
             {description}
           </Text>
         )}
+
         <FormField>
           <FormFieldLabel htmlFor="update-name-modal-input">{inputLabel}</FormFieldLabel>
+
           <Input
             id="update-name-modal-input"
             aria-label="update-input"
             data-testid="update-name-modal-input"
             disabled={isLoading}
             type={INPUT_TYPE.text}
-            value={displayName}
+            value={displayName ?? ''}
             invalid={isPatternError || undefined}
-            onChange={(e) => setDisplayName(e.target.value)}
+            onChange={handleChange}
             aria-describedby={patternMessage ? 'update-name-modal-pattern-message' : undefined}
           />
+
           {patternMessage && (
             <Text
               id="update-name-modal-pattern-message"
@@ -111,4 +130,6 @@ export const UpdateNameModal: React.FC<UpdateNameModalProps> = ({
       </div>
     </Modal>
   );
-};
+}
+
+UpdateNameModal.displayName = 'UpdateNameModal';

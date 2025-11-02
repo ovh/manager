@@ -1,7 +1,9 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { Combobox, ComboboxContent, ComboboxControl } from '..';
+import { Combobox } from '@/components/combobox/Combobox.component';
+import { ComboboxContent } from '@/components/combobox/combobox-content/ComboboxContent.component';
+import { ComboboxControl } from '@/components/combobox/combobox-control/ComboboxControl.component';
 
 describe('Combobox Snapshot tests', () => {
   it('renders the component with default props and children', () => {

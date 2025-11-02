@@ -4,7 +4,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
 import { vitest } from 'vitest';
 
-import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import type { ShellContextType } from '@ovh-ux/manager-react-shell-client';
 
 import { useBreadcrumb } from './useBreadcrumb';
 
@@ -37,16 +38,17 @@ vitest.mock('@tanstack/react-query', async () => {
   };
 });
 
-describe('useBreadcrumb', () => {
+describe('useBreadcrumb basic cases', () => {
+  beforeEach(() => {
+    vitest.mock('react-router-dom', async () => ({
+      ...(await vitest.importActual('react-router-dom')),
+      useLocation: () => ({
+        pathname: 'vrackServices',
+      }),
+    }));
+  });
+
   it('should return an array of breadcrumb item', async () => {
-    beforeEach(() => {
-      vitest.mock('react-router-dom', async () => ({
-        ...(await vitest.importActual('react-router-dom')),
-        useLocation: () => ({
-          pathname: 'vrackServices',
-        }),
-      }));
-    });
     const { result } = renderHook(
       () =>
         useBreadcrumb({
@@ -64,7 +66,8 @@ describe('useBreadcrumb', () => {
     });
   });
 });
-describe('useBreadcrumb', () => {
+
+describe('useBreadcrumb items cases', () => {
   beforeEach(() => {
     vitest.mock('react-router-dom', async () => ({
       ...(await vitest.importActual('react-router-dom')),

@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import * as managerCoreApi from '@ovh-ux/manager-core-api';
 
-import { ResultObj, columns, items } from '../../../../__mocks__/mock';
+import { columns, items } from '../../../../__mocks__/mock';
 import { getFilter, getSorting } from '../../../../__tests__/Test.utils';
 import { useFilterAndSortData } from '../useFilterAndSortData';
 
@@ -45,8 +45,8 @@ describe('useFilterAndSortData hook', () => {
         columns: [],
       });
     });
-    expect(result.current.filteredAndSortedData.length).toBe(1);
-    expect((result.current.filteredAndSortedData[0] as ResultObj).name).toContain(searchTerm);
+    expect(result?.current?.filteredAndSortedData?.length).toBe(1);
+    expect(result?.current?.filteredAndSortedData?.[0]?.name).toContain(searchTerm);
   });
 
   it('tests for filter', () => {

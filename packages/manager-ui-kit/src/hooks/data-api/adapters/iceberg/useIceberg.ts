@@ -1,11 +1,15 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
-import { IcebergFetchResult, fetchWithIceberg } from '@ovh-ux/manager-core-api';
+import type { SortingState } from '@tanstack/react-table';
 
-import { UseInifiniteQueryResult, useInfiniteQuery } from '../../infra/tanstack/use-infinite-query';
-import { DEFAULT_PAGE_SIZE } from '../../ports/use-data-api/useDataApi.constants';
-import { UseDataApiResult } from '../../ports/use-data-api/useDataApi.types';
-import { useDataRetrievalOperations } from '../../utils/data-retrieval-operations/useDataRetrievalOperations';
+import { fetchWithIceberg } from '@ovh-ux/manager-core-api';
+import type { IcebergFetchResult } from '@ovh-ux/manager-core-api';
+
+import { UseDataApiResult } from '@/hooks/data-api/ports/useDataApi.types';
+import { useDataRetrievalOperations } from '@/hooks/data-api/useDataRetrievalOperations';
+
+import { UseInifiniteQueryResult, useInfiniteQuery } from '../../infra/tanstack';
+import { DEFAULT_PAGE_SIZE } from '../../ports/useDataApi.constants';
 import { API_V6_MAX_PAGE_SIZE } from './useIceberg.constants';
 import { UseIcebergData, UseIcebergParams } from './useIceberg.type';
 
@@ -20,6 +24,8 @@ export const useIceberg = <TData = Record<string, unknown>>({
   disableCache,
   enabled = true,
 }: UseIcebergParams<TData>): UseDataApiResult<TData> => {
+  const retrievalOps = useDataRetrievalOperations<TData>({ defaultSorting, columns });
+
   const {
     searchInput,
     setSearchInput,
@@ -30,7 +36,7 @@ export const useIceberg = <TData = Record<string, unknown>>({
     addFilter,
     removeFilter,
     onSearch,
-  } = useDataRetrievalOperations<TData>({ defaultSorting, columns });
+  } = retrievalOps;
 
   const {
     data: dataSelected,
@@ -46,11 +52,11 @@ export const useIceberg = <TData = Record<string, unknown>>({
   >({
     initialPageParam: 1,
     cacheKey: [
-      ...(typeof cacheKey === 'string' ? [cacheKey] : cacheKey),
-      fetchAll ? 'all' : pageSize,
-      sorting,
-      filters,
-      searchFilters,
+      ...(typeof cacheKey === 'string' ? [cacheKey] : (cacheKey ?? [])),
+      fetchAll ? 'all' : String(pageSize),
+      JSON.stringify(sorting ?? []),
+      JSON.stringify(filters ?? []),
+      JSON.stringify(searchFilters ?? []),
     ],
     enabled,
     fetchDataFn: ({ pageParam: pageIndex }): Promise<IcebergFetchResult<TData>> =>
@@ -74,8 +80,9 @@ export const useIceberg = <TData = Record<string, unknown>>({
       return null;
     },
     transformFn: (pages, pageParams): UseIcebergData<TData> => {
-      const pageIndex = pageParams[pageParams.length - 1] as number;
-      const { totalCount } = pages[0] as IcebergFetchResult<TData>;
+      const pageIndex = pageParams[pageParams.length - 1] ?? 1;
+      const totalCount = pages[0]?.totalCount ?? 0;
+
       return {
         pageIndex,
         totalCount,
@@ -86,7 +93,7 @@ export const useIceberg = <TData = Record<string, unknown>>({
 
   useEffect(() => {
     if (fetchAll && hasNextPage) {
-      fetchNextPage();
+      void fetchNextPage();
     }
   }, [dataSelected]);
 
@@ -95,8 +102,11 @@ export const useIceberg = <TData = Record<string, unknown>>({
     hasNextPage,
     fetchNextPage,
     sorting: {
-      sorting,
-      setSorting,
+      sorting: sorting ?? [],
+      setSorting: ((value) =>
+        setSorting(
+          typeof value === 'function' ? (prev) => value(prev ?? []) : (value ?? []),
+        )) as React.Dispatch<React.SetStateAction<SortingState>>,
       manualSorting: true,
     },
     filters: {

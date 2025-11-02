@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import { ClipboardControl, ClipboardTrigger, Clipboard as OdsClipboard } from '@ovhcloud/ods-react';
 
-import { ClipboardProps } from '@/components';
+import { ClipboardProps } from '@/components/clipboard/Clipboard.props';
 
 import './translations';
 

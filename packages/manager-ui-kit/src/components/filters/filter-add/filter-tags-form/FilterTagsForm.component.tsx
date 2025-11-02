@@ -6,10 +6,11 @@ import {
   ComboboxControl,
   FormField,
   FormFieldLabel,
-  Skeleton,
 } from '@ovhcloud/ods-react';
 
-import { useGetResourceTags } from '../../../../hooks/iam/useOvhIam';
+import { FilterTagsFormLoading } from '@/components/filters/filter-add/filter-tags-form/FilterTagsFormLoading';
+import { useGetResourceTags } from '@/hooks/iam/useOvhIam';
+
 import { FilterTagsFormProps } from './FilterTagsForm.props';
 
 export function FilterTagsForm({ resourceType, tagKey, setTagKey, setValue }: FilterTagsFormProps) {
@@ -21,12 +22,6 @@ export function FilterTagsForm({ resourceType, tagKey, setTagKey, setValue }: Fi
   } = useGetResourceTags({
     resourceType,
   });
-
-  const TagsLoading = () => (
-    <div className="w-full">
-      <Skeleton />
-    </div>
-  );
 
   const TagsMapped =
     !isTagsError && tags
@@ -51,7 +46,7 @@ export function FilterTagsForm({ resourceType, tagKey, setTagKey, setValue }: Fi
       <FormField className="mt-4 w-full w-[186px]">
         <FormField>{t('common_criteria_adder_key_label')}</FormField>
         {isTagsLoading ? (
-          <TagsLoading />
+          <FilterTagsFormLoading />
         ) : (
           <Combobox
             className="w-full"
@@ -68,7 +63,7 @@ export function FilterTagsForm({ resourceType, tagKey, setTagKey, setValue }: Fi
       <FormField className="mt-4 w-[186px]">
         <FormFieldLabel>{t('common_criteria_adder_value_label')}</FormFieldLabel>
         {isTagsLoading ? (
-          <TagsLoading />
+          <FilterTagsFormLoading />
         ) : (
           <Combobox
             className="w-full"

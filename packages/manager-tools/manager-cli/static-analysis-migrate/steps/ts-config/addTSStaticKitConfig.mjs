@@ -17,7 +17,7 @@ if (!appName || appName.startsWith('--')) {
 
 const appPath = path.resolve(applicationsBasePath, appName);
 const tsconfigPath = path.join(appPath, 'tsconfig.json');
-const tsconfigStrictPath = path.join(appPath, 'tsconfig.strict.json');
+const tsconfigStrictPath = path.join(appPath, 'tsconfig.json');
 
 const basePriorAttributes = new Set([
   'strict',
@@ -60,7 +60,7 @@ const backupTSConfigFiles = async (appPath) => {
       if (err.code !== 'ENOENT') throw err;
     }
   };
-  await Promise.all(['tsconfig.json', 'tsconfig.strict.json'].map(backup));
+  await Promise.all(['tsconfig.json', 'tsconfig.json'].map(backup));
 };
 
 /**
@@ -78,7 +78,7 @@ const removeTSConfigBackups = async (appPath) => {
       if (err.code !== 'ENOENT') throw err;
     }
   };
-  await Promise.all(['tsconfig.json', 'tsconfig.strict.json'].map(remove));
+  await Promise.all(['tsconfig.json', 'tsconfig.json'].map(remove));
 };
 
 /**
@@ -184,7 +184,7 @@ const addTSStaticKitConfig = async () => {
     logBlock('Static-kit merged base', staticKitBase);
     logBlock('Computed delta', looseDelta);
     logBlock('Final tsconfig.json', looseFinal);
-    logBlock('Final tsconfig.strict.json', strictFinal);
+    logBlock('Final tsconfig.json', strictFinal);
     logDiff('tsconfig.json diff', appLoose, looseFinal);
     console.log('\n🧪 [dry-run] No changes written.');
     return;
@@ -194,7 +194,7 @@ const addTSStaticKitConfig = async () => {
   pkg.devDependencies['@ovh-ux/manager-static-analysis-kit'] = '*';
   pkg.scripts ||= {};
   if (!pkg.scripts['build:strict']) {
-    pkg.scripts['build:strict'] = 'tsc --project tsconfig.strict.json && vite build';
+    pkg.scripts['build:strict'] = 'tsc --project tsconfig.json && vite build';
   }
 
   writePackageJson(appPath, pkg);

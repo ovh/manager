@@ -1,13 +1,10 @@
 import path from 'path';
-import {
-  createConfig,
-  mergeConfig,
-  defaultExcludedFiles,
-} from '@ovh-ux/manager-tests-setup';
+
+import { createConfig, defaultExcludedFiles, mergeConfig } from '@ovh-ux/manager-tests-setup';
 
 export default mergeConfig(createConfig(), {
   test: {
-    setupFiles: 'setupTest.tsx',
+    setupFiles: 'setupTests.ts',
     globals: true,
     environment: 'jsdom',
     coverage: {
@@ -35,7 +32,7 @@ export default mergeConfig(createConfig(), {
   },
   resolve: {
     alias: {
-      '@/setupTest': path.resolve(__dirname, 'setupTest.tsx'),
+      '@/setupTest': path.resolve(__dirname, 'setupTests.ts'),
       '@': path.resolve(__dirname, 'src'),
       '@tanstack/react-virtual': path.resolve(
         __dirname,

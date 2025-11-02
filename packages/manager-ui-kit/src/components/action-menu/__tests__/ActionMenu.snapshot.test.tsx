@@ -1,315 +1,129 @@
 import { act, fireEvent, screen } from '@testing-library/react';
-import { type MockInstance, beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { BUTTON_VARIANT, ICON_NAME, POPOVER_POSITION } from '@ovhcloud/ods-react';
 
-import { useAuthorizationIam } from '@/hooks';
-import { render } from '@/setupTest';
-
-import { ActionMenu } from '../index';
-
-// Mock the IAM hook
-vi.mock('../../../hooks/iam');
-
-const mockUseAuthorizationIam = useAuthorizationIam as unknown as MockInstance;
+import { buildIamMock, mockUseAuthorizationIam } from '@/commons/tests-utils/Mock.utils';
+import { renderActionMenu } from '@/commons/tests-utils/Render.utils';
+import type { IamCheckResponse } from '@/hooks/iam/IAM.type';
 
 describe('ActionMenu Snapshot Tests', () => {
-  const baseItems = [
-    {
-      id: 1,
-      onClick: vi.fn(),
-      label: 'Action 1',
-      urn: 'urn:v18:eu:resource:m--components:vrz-a878-dsflkds-fdsfdsfdsf',
-      iamActions: ['vrackServices:apiovh:iam/resource/tag/remove'],
-    },
-    {
-      id: 2,
-      onClick: vi.fn(),
-      label: 'Action 2',
-      urn: 'urn:v18:eu:resource:m--components:vrz-a878-dsflkds-fdsfdsfdsf',
-      iamActions: ['vrackServices:apiovh:iam/resource/tag/remove'],
-    },
-    {
-      id: 3,
-      href: 'https://www.ovhcloud.com',
-      target: '_blank',
-      label: 'External Link',
-    },
-    {
-      id: 4,
-      href: `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify({ name: 'john' }))}`,
-      download: 'test.json',
-      target: '_blank',
-      label: 'Download File',
-    },
-    {
-      id: 5,
-      href: 'https://ovhcloud.com',
-      target: '_blank',
-      label: 'Disabled Link',
-      isDisabled: true,
-    },
-  ];
-
   beforeEach(() => {
-    vi.clearAllMocks();
-    mockUseAuthorizationIam.mockReturnValue({
-      isAuthorized: true,
-      isLoading: false,
-      isFetched: true,
-    });
+    mockUseAuthorizationIam.mockReturnValue(buildIamMock());
   });
 
   describe('Default rendering', () => {
-    it('should match snapshot with default props', () => {
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu id="test-action-menu" items={baseItems} />
-        </div>,
-      );
+    it('matches snapshot with default props', () => {
+      const { container } = renderActionMenu({});
       expect(container.firstChild).toMatchSnapshot('default-props');
     });
 
-    it('should match snapshot with minimal props', () => {
-      const minimalItems = [
-        {
-          id: 1,
-          label: 'Simple Action',
-        },
-      ];
-
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu id="minimal-menu" items={minimalItems} />
-        </div>,
-      );
+    it('matches snapshot with minimal props', () => {
+      const minimalItems = [{ id: 1, label: 'Simple Action' }];
+      const { container } = renderActionMenu({ id: 'minimal-menu', items: minimalItems });
       expect(container.firstChild).toMatchSnapshot('minimal-props');
     });
   });
 
   describe('Compact mode', () => {
-    it('should match snapshot in compact mode', () => {
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu id="compact-menu" items={baseItems} isCompact={true} />
-        </div>,
-      );
+    it('matches snapshot in compact mode', () => {
+      const { container } = renderActionMenu({ id: 'compact-menu', isCompact: true });
       expect(container.firstChild).toMatchSnapshot('compact-mode');
     });
 
-    it('should match snapshot in compact mode with custom icon', () => {
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu
-            id="compact-custom-icon"
-            items={baseItems}
-            isCompact={true}
-            icon={ICON_NAME.ellipsisHorizontal}
-          />
-        </div>,
-      );
+    it('matches snapshot in compact mode with custom icon', () => {
+      const { container } = renderActionMenu({
+        id: 'compact-custom-icon',
+        isCompact: true,
+        icon: ICON_NAME.ellipsisHorizontal,
+      });
       expect(container.firstChild).toMatchSnapshot('compact-mode-custom-icon');
     });
   });
 
   describe('Button variants', () => {
-    it('should match snapshot with outline variant', () => {
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu id="outline-variant" items={baseItems} variant={BUTTON_VARIANT.outline} />
-        </div>,
-      );
-      expect(container.firstChild).toMatchSnapshot('outline-variant');
-    });
-
-    it('should match snapshot with ghost variant', () => {
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu id="ghost-variant" items={baseItems} variant={BUTTON_VARIANT.ghost} />
-        </div>,
-      );
-      expect(container.firstChild).toMatchSnapshot('ghost-variant');
-    });
-
-    it('should match snapshot with default variant', () => {
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu id="default-variant" items={baseItems} variant={BUTTON_VARIANT.default} />
-        </div>,
-      );
-      expect(container.firstChild).toMatchSnapshot('default-variant');
+    it.each([
+      ['outline', BUTTON_VARIANT.outline],
+      ['ghost', BUTTON_VARIANT.ghost],
+      ['default', BUTTON_VARIANT.default],
+    ])('matches snapshot with %s variant', (_, variant) => {
+      const { container } = renderActionMenu({ id: `${variant}-variant`, variant });
+      expect(container.firstChild).toMatchSnapshot(`${variant}-variant`);
     });
   });
 
   describe('States', () => {
-    it('should match snapshot when disabled', () => {
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu id="disabled-menu" items={baseItems} isDisabled={true} />
-        </div>,
-      );
-      expect(container.firstChild).toMatchSnapshot('disabled-state');
-    });
-
-    it('should match snapshot when loading', () => {
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu id="loading-menu" items={baseItems} isLoading={true} />
-        </div>,
-      );
-      expect(container.firstChild).toMatchSnapshot('loading-state');
-    });
-
-    it('should match snapshot when disabled and loading', () => {
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu
-            id="disabled-loading-menu"
-            items={baseItems}
-            isDisabled={true}
-            isLoading={true}
-          />
-        </div>,
-      );
-      expect(container.firstChild).toMatchSnapshot('disabled-loading-state');
+    it.each([
+      ['disabled', { isDisabled: true }],
+      ['loading', { isLoading: true }],
+      ['disabled-loading', { isDisabled: true, isLoading: true }],
+    ])('matches snapshot when %s', (label, state) => {
+      const { container } = renderActionMenu({ id: `${label}-menu`, ...state });
+      expect(container.firstChild).toMatchSnapshot(`${label}-state`);
     });
   });
 
   describe('Custom labels and icons', () => {
-    it('should match snapshot with custom label', () => {
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu id="custom-label-menu" items={baseItems} label="Custom Actions" />
-        </div>,
-      );
+    it('matches snapshot with custom label', () => {
+      const { container } = renderActionMenu({ id: 'custom-label-menu', label: 'Custom Actions' });
       expect(container.firstChild).toMatchSnapshot('custom-label');
     });
 
-    it('should match snapshot with custom icon', () => {
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu id="custom-icon-menu" items={baseItems} icon={ICON_NAME.plus} />
-        </div>,
-      );
+    it('matches snapshot with custom icon', () => {
+      const { container } = renderActionMenu({ id: 'custom-icon-menu', icon: ICON_NAME.plus });
       expect(container.firstChild).toMatchSnapshot('custom-icon');
     });
 
-    it('should match snapshot with custom label and icon', () => {
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu
-            id="custom-label-icon-menu"
-            items={baseItems}
-            label="Settings"
-            icon={ICON_NAME.plus}
-          />
-        </div>,
-      );
+    it('matches snapshot with custom label and icon', () => {
+      const { container } = renderActionMenu({
+        id: 'custom-label-icon-menu',
+        label: 'Settings',
+        icon: ICON_NAME.plus,
+      });
       expect(container.firstChild).toMatchSnapshot('custom-label-and-icon');
     });
   });
 
   describe('Popover positions', () => {
-    it('should match snapshot with top position', () => {
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu
-            id="top-position-menu"
-            items={baseItems}
-            popoverPosition={POPOVER_POSITION.top}
-          />
-        </div>,
-      );
-      act(() => {
-        const actionMenuIcon = screen.getByTestId('navigation-action-trigger-action');
-        fireEvent.click(actionMenuIcon);
+    it.each([
+      ['top', POPOVER_POSITION.top],
+      ['right', POPOVER_POSITION.right],
+      ['left', POPOVER_POSITION.left],
+    ])('matches snapshot with %s position', (label, position) => {
+      const { container } = renderActionMenu({
+        id: `${label}-position-menu`,
+        popoverPosition: position,
       });
-      expect(container.firstChild).toMatchSnapshot('top-position');
-    });
 
-    it('should match snapshot with right position', () => {
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu
-            id="right-position-menu"
-            items={baseItems}
-            popoverPosition={POPOVER_POSITION.right}
-          />
-        </div>,
-      );
       act(() => {
-        const actionMenuIcon = screen.getByTestId('navigation-action-trigger-action');
-        fireEvent.click(actionMenuIcon);
+        const trigger = screen.getByTestId('navigation-action-trigger-action');
+        fireEvent.click(trigger);
       });
-      expect(container.firstChild).toMatchSnapshot('right-position');
-    });
 
-    it('should match snapshot with left position', () => {
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu
-            id="left-position-menu"
-            items={baseItems}
-            popoverPosition={POPOVER_POSITION.left}
-          />
-        </div>,
-      );
-      act(() => {
-        const actionMenuIcon = screen.getByTestId('navigation-action-trigger-action');
-        fireEvent.click(actionMenuIcon);
-      });
-      expect(container.firstChild).toMatchSnapshot('left-position');
+      expect(container.firstChild).toMatchSnapshot(`${label}-position`);
     });
   });
 
   describe('Item variations', () => {
-    it('should match snapshot with only link items', () => {
-      const linkOnlyItems = [
-        {
-          id: 1,
-          href: 'https://example.com',
-          label: 'External Link',
-          target: '_blank',
-        },
-        {
-          id: 2,
-          href: '/internal-link',
-          label: 'Internal Link',
-        },
+    it('matches snapshot with only link items', () => {
+      const linkItems = [
+        { id: 1, href: 'https://example.com', label: 'External Link', target: '_blank' },
+        { id: 2, href: '/internal-link', label: 'Internal Link' },
       ];
-
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu id="link-only-menu" items={linkOnlyItems} />
-        </div>,
-      );
+      const { container } = renderActionMenu({ id: 'link-only-menu', items: linkItems });
       expect(container.firstChild).toMatchSnapshot('link-only-items');
     });
 
-    it('should match snapshot with only button items', () => {
-      const buttonOnlyItems = [
-        {
-          id: 1,
-          onClick: vi.fn(),
-          label: 'Button Action 1',
-        },
-        {
-          id: 2,
-          onClick: vi.fn(),
-          label: 'Button Action 2',
-          isDisabled: true,
-        },
+    it('matches snapshot with only button items', () => {
+      const buttonItems = [
+        { id: 1, onClick: vi.fn(), label: 'Button Action 1' },
+        { id: 2, onClick: vi.fn(), label: 'Button Action 2', isDisabled: true },
       ];
-
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu id="button-only-menu" items={buttonOnlyItems} />
-        </div>,
-      );
+      const { container } = renderActionMenu({ id: 'button-only-menu', items: buttonItems });
       expect(container.firstChild).toMatchSnapshot('button-only-items');
     });
 
-    it('should match snapshot with IAM protected items', () => {
+    it('matches snapshot with IAM-protected items', () => {
       const iamItems = [
         {
           id: 1,
@@ -318,36 +132,15 @@ describe('ActionMenu Snapshot Tests', () => {
           urn: 'urn:v18:eu:resource:m--components:test',
           iamActions: ['test:action:read'],
         },
-        {
-          id: 2,
-          onClick: vi.fn(),
-          label: 'Another IAM Action',
-          urn: 'urn:v18:eu:resource:m--components:test',
-          iamActions: ['test:action:write'],
-        },
       ];
-
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu id="iam-menu" items={iamItems} />
-        </div>,
-      );
+      const { container } = renderActionMenu({ id: 'iam-menu', items: iamItems });
       expect(container.firstChild).toMatchSnapshot('iam-protected-items');
     });
 
-    it('should match snapshot with mixed item types', () => {
+    it('matches snapshot with mixed item types', () => {
       const mixedItems = [
-        {
-          id: 1,
-          onClick: vi.fn(),
-          label: 'Button Action',
-        },
-        {
-          id: 2,
-          href: 'https://example.com',
-          label: 'External Link',
-          target: '_blank',
-        },
+        { id: 1, onClick: vi.fn(), label: 'Button Action' },
+        { id: 2, href: 'https://example.com', label: 'External Link', target: '_blank' },
         {
           id: 3,
           onClick: vi.fn(),
@@ -355,77 +148,50 @@ describe('ActionMenu Snapshot Tests', () => {
           urn: 'urn:v18:eu:resource:m--components:test',
           iamActions: ['test:action:read'],
         },
-        {
-          id: 4,
-          href: '/download',
-          download: 'file.pdf',
-          label: 'Download',
-        },
+        { id: 4, href: '/download', download: 'file.pdf', label: 'Download' },
       ];
+      const { container } = renderActionMenu({ id: 'mixed-menu', items: mixedItems });
 
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu id="mixed-menu" items={mixedItems} />
-        </div>,
-      );
       act(() => {
-        const actionMenuIcon = screen.getByTestId('navigation-action-trigger-action');
-        fireEvent.click(actionMenuIcon);
+        const trigger = screen.getByTestId('navigation-action-trigger-action');
+        fireEvent.click(trigger);
       });
+
       expect(container.firstChild).toMatchSnapshot('mixed-item-types');
     });
   });
 
   describe('Edge cases', () => {
-    it('should match snapshot with empty items array', () => {
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu id="empty-menu" items={[]} />
-        </div>,
-      );
+    it('matches snapshot with empty items array', () => {
+      const { container } = renderActionMenu({ id: 'empty-menu', items: [] });
       expect(container.firstChild).toMatchSnapshot('empty-items');
     });
 
-    it('should match snapshot with single item', () => {
-      const singleItem = [
-        {
-          id: 1,
-          label: 'Single Action',
-          onClick: vi.fn(),
-        },
-      ];
-
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu id="single-item-menu" items={singleItem} />
-        </div>,
-      );
+    it('matches snapshot with single item', () => {
+      const singleItem = [{ id: 1, label: 'Single Action', onClick: vi.fn() }];
+      const { container } = renderActionMenu({ id: 'single-item-menu', items: singleItem });
       expect(container.firstChild).toMatchSnapshot('single-item');
     });
 
-    it('should match snapshot with many items', () => {
-      const manyItems = Array.from({ length: 10 }, (_, index) => ({
-        id: index + 1,
-        label: `Action ${index + 1}`,
+    it('matches snapshot with many items', () => {
+      const manyItems = Array.from({ length: 10 }, (_, i) => ({
+        id: i + 1,
+        label: `Action ${i + 1}`,
         onClick: vi.fn(),
       }));
-
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu id="many-items-menu" items={manyItems} />
-        </div>,
-      );
+      const { container } = renderActionMenu({ id: 'many-items-menu', items: manyItems });
       expect(container.firstChild).toMatchSnapshot('many-items');
     });
   });
 
   describe('IAM authorization states', () => {
-    it('should match snapshot when IAM is loading', () => {
-      mockUseAuthorizationIam.mockReturnValue({
-        isAuthorized: false,
-        isLoading: true,
-        isFetched: false,
-      });
+    it('matches snapshot when IAM is loading', () => {
+      mockUseAuthorizationIam.mockReturnValue(
+        buildIamMock({
+          isAuthorized: false,
+          isLoading: true,
+        }),
+      );
 
       const iamItems = [
         {
@@ -437,36 +203,35 @@ describe('ActionMenu Snapshot Tests', () => {
         },
       ];
 
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu id="iam-loading-menu" items={iamItems} />
-        </div>,
-      );
+      const { container } = renderActionMenu({ id: 'iam-loading-menu', items: iamItems });
       expect(container.firstChild).toMatchSnapshot('iam-loading-state');
     });
 
-    it('should match snapshot when IAM is not authorized', () => {
-      mockUseAuthorizationIam.mockReturnValue({
-        isAuthorized: false,
-        isLoading: false,
-        isFetched: true,
-      });
+    it('matches snapshot when IAM is not authorized', () => {
+      const unauthorizedData: IamCheckResponse = {
+        urn: 'urn:v18:eu:resource:m--components:test',
+        authorizedActions: [],
+        unauthorizedActions: ['test:action:read'],
+      };
+
+      mockUseAuthorizationIam.mockReturnValue(
+        buildIamMock({
+          isAuthorized: false,
+          data: unauthorizedData,
+        }),
+      );
 
       const iamItems = [
         {
           id: 1,
           onClick: vi.fn(),
           label: 'Unauthorized Action',
-          urn: 'urn:v18:eu:resource:m--components:test',
-          iamActions: ['test:action:read'],
+          urn: unauthorizedData.urn,
+          iamActions: unauthorizedData.unauthorizedActions,
         },
       ];
 
-      const { container } = render(
-        <div data-testid="navigation-action-trigger-action">
-          <ActionMenu id="iam-unauthorized-menu" items={iamItems} />
-        </div>,
-      );
+      const { container } = renderActionMenu({ id: 'iam-unauthorized-menu', items: iamItems });
       expect(container.firstChild).toMatchSnapshot('iam-unauthorized-state');
     });
   });

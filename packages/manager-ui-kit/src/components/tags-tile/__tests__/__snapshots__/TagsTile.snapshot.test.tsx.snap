@@ -284,7 +284,7 @@ exports[`TagsTile Snapshot Tests > Empty State > should render empty tags tile 1
 </div>
 `;
 
-exports[`TagsTile Snapshot Tests > Empty State > should render with null tags 1`] = `
+exports[`TagsTile Snapshot Tests > Empty State > should render with empty tags 1`] = `
 <div>
   <div
     class="_card_dzuf6_2 _card--neutral_dzuf6_14 w-full flex-col p-[1rem]"

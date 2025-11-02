@@ -11,7 +11,8 @@ import {
   ModalContent,
 } from '@ovhcloud/ods-react';
 
-import { Modal } from '../../modal';
+import { Modal } from '@/components/modal/Modal.component';
+
 import { TagsStack } from '../tags-stack/TagsStack.component';
 import { TagsModalProps } from './TagsModal.props';
 import './translations';
@@ -68,5 +69,7 @@ export const TagsModal = forwardRef(
     );
   },
 );
+
+TagsModal.displayName = 'TagsModal';
 
 export default TagsModal;
