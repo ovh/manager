@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.3.0...@ovh-ux/muk@0.4.0) (2025-11-02)
+
+
+### Features
+
+* **muk:** static quality improvement ([2ca8694](https://github.com/ovh/manager/commit/2ca8694747cce2ea2901b6d04286ac07a65be03d))
+
+
+
+
+
 # [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.2.0...@ovh-ux/muk@0.3.0) (2025-10-30)
 
 ### Bug Fixes

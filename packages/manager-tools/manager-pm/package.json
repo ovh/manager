@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pm",
-  "version": "0.33.2",
+  "version": "0.33.3",
   "private": true,
   "description": "",
   "license": "BSD-3-Clause",
@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@inquirer/type": "^3.0.8",
-    "@ovh-ux/manager-static-analysis-kit": "^0.11.2",
+    "@ovh-ux/manager-static-analysis-kit": "^0.12.0",
     "@types/node": "^24.3.0",
     "typescript": "^5.9.2"
   }
