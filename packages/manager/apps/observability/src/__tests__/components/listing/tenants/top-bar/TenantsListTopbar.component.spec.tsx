@@ -140,7 +140,7 @@ describe('TenantsListTopbar', () => {
   });
 
   describe('Navigation Behavior', () => {
-    it('should navigate to addNew when button is clicked', () => {
+    it('should navigate to creation when button is clicked', () => {
       // Act
       const { container } = render(<TenantsListTopbar />);
       const button = getButton(container);
@@ -149,7 +149,7 @@ describe('TenantsListTopbar', () => {
 
       // Assert
       expect(mockNavigate).toHaveBeenCalledTimes(1);
-      expect(mockNavigate).toHaveBeenCalledWith('addNew');
+      expect(mockNavigate).toHaveBeenCalledWith('/metrics/tenants/creation');
     });
 
     it('should handle multiple clicks', () => {
@@ -165,7 +165,7 @@ describe('TenantsListTopbar', () => {
 
       // Assert
       expect(mockNavigate).toHaveBeenCalledTimes(3);
-      expect(mockNavigate).toHaveBeenCalledWith('addNew');
+      expect(mockNavigate).toHaveBeenCalledWith('/metrics/tenants/creation');
     });
   });
 
