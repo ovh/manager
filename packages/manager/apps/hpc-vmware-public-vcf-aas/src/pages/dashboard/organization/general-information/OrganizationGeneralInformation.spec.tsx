@@ -14,7 +14,7 @@ describe('Organization General Information Page', () => {
     await renderTest({ initialRoute: `/${organizationList[0].id}` });
 
     const dashboardElements = [
-      labels.dashboard.managed_vcd_dashboard_general_information,
+      labels.commun.dashboard.general_information,
       labels.dashboard.managed_vcd_dashboard_options,
       labels.dashboard.managed_vcd_dashboard_data_protection,
       labels.dashboard.managed_vcd_dashboard_service_management,
@@ -119,8 +119,8 @@ describe('Organization General Information Page Updates', () => {
 
       await assertOdsModalText({
         container,
-        text: labels.dashboard.managed_vcd_dashboard_edit_modal_error.replace(
-          '{{error}}',
+        text: labels.commun.error.error_message.replace(
+          '{{message}}',
           'Organization update error',
         ),
       });

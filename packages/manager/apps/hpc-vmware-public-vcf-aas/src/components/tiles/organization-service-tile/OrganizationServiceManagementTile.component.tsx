@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { DashboardTile } from '@ovh-ux/manager-react-components';
 import { useParams } from 'react-router-dom';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   isStatusTerminated,
   useVcdOrganization,
@@ -13,6 +14,8 @@ import CancellationTileItem from './cancellation-tile-item/CancellationTileItem'
 
 export default function OrganizationServiceManagementTile() {
   const { t } = useTranslation('dashboard');
+  const { t: tContact } = useTranslation(NAMESPACES.CONTACT);
+  const { t: tSystem } = useTranslation(NAMESPACES.SYSTEM);
   const { id } = useParams() as { id: string };
   const { data: vcdOrganisation } = useVcdOrganization({ id });
   const isDisabled = isStatusTerminated(vcdOrganisation?.data?.resourceStatus);
@@ -33,12 +36,12 @@ export default function OrganizationServiceManagementTile() {
           },
           {
             id: 'servicePassword',
-            label: t('managed_vcd_dashboard_password'),
+            label: tSystem('password'),
             value: <ServicePasswordTileItem isDisabled={isDisabled} />,
           },
           {
             id: 'serviceContacts',
-            label: t('managed_vcd_dashboard_contact_list'),
+            label: tContact('contacts'),
             value: <ServiceContactsTileItem />,
           },
         ]}

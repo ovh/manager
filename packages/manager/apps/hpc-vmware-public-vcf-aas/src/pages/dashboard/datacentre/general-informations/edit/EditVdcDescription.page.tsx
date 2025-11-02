@@ -7,6 +7,7 @@ import {
   useVcdDatacentre,
   VCDDatacentreTargetSpec,
 } from '@ovh-ux/manager-module-vcd-api';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { RedirectionGuard } from '@ovh-ux/manager-react-components';
 import { validateDescription } from '@/utils/formValidation';
 import { EditDetailModal } from '@/components/modal/EditDetailModal';
@@ -15,6 +16,7 @@ import { subRoutes } from '@/routes/routes.constant';
 
 export default function EditVdcDescription() {
   const { t } = useTranslation('dashboard');
+  const { t: tDashboard } = useTranslation(NAMESPACES.DASHBOARD);
   const navigate = useNavigate();
   const closeModal = () => navigate('..');
   const { addSuccess } = useMessageContext();
@@ -48,7 +50,7 @@ export default function EditVdcDescription() {
       <EditDetailModal
         detailValue={vcdDatacentre?.data?.currentState?.description}
         headline={t('managed_vcd_dashboard_edit_description_modal_title')}
-        inputLabel={t('managed_vcd_dashboard_edit_description_modal_label')}
+        inputLabel={tDashboard('description')}
         errorHelper={t(
           'managed_vcd_dashboard_edit_description_modal_helper_error',
         )}
