@@ -67,14 +67,7 @@ export default function TenantsListDatagrid({
       isSortable: true,
       isFilterable: true,
       enableHiding: false,
-      cell: (mappedTenant: MappedTenant) => {
-        const { id: tenantId, name } = mappedTenant;
-        return DatagridCellLink({
-          id: tenantId,
-          label: name,
-          path: tenantId,
-        });
-      },
+      cell: ({ id, name }: MappedTenant) => <DatagridCellLink id={id} label={name} path={id} />,
       label: t(`${NAMESPACES.DASHBOARD}:name`),
       type: FilterTypeCategories.String,
     },
@@ -84,8 +77,9 @@ export default function TenantsListDatagrid({
       isSortable: true,
       isFilterable: true,
       enableHiding: true,
-      cell: (mappedTenant: MappedTenant) =>
-        DatagridCellEnpoint({ infrastructure: mappedTenant.infrastructure }),
+      cell: ({ infrastructure }: MappedTenant) => (
+        <DatagridCellEnpoint infrastructure={infrastructure} />
+      ),
       label: t('tenants:listing.endpoint_cell'),
       type: FilterTypeCategories.String,
     },
@@ -96,9 +90,7 @@ export default function TenantsListDatagrid({
       isFilterable: true,
       enableHiding: true,
       label: t('tenants:listing.retention_cell'),
-      cell: (mappedTenant: MappedTenant) => (
-        <DataGridTextCell>{mappedTenant.retention}</DataGridTextCell>
-      ),
+      cell: ({ retention }: MappedTenant) => <DataGridTextCell>{retention}</DataGridTextCell>,
       type: FilterTypeCategories.String,
     },
     {
@@ -108,8 +100,8 @@ export default function TenantsListDatagrid({
       isFilterable: true,
       enableHiding: true,
       label: t('tenants:listing.active_metrics_cell'),
-      cell: (mappedTenant: MappedTenant) => (
-        <DataGridTextCell>{mappedTenant.numberOfSeries}</DataGridTextCell>
+      cell: ({ numberOfSeries }: MappedTenant) => (
+        <DataGridTextCell>{numberOfSeries}</DataGridTextCell>
       ),
       type: FilterTypeCategories.Numeric,
     },
@@ -121,8 +113,7 @@ export default function TenantsListDatagrid({
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('tenants:listing.tags_cell'),
-      cell: (mappedTenant: MappedTenant) =>
-        DatagridTenantCellTags({ tags: mappedTenant.tagsArray }),
+      cell: ({ tagsArray: tags }: MappedTenant) => <DatagridTenantCellTags tags={tags} />,
     },
     {
       id: 'actions',
@@ -147,7 +138,7 @@ export default function TenantsListDatagrid({
         }),
       );
     }
-  }, [isError, error]);
+  }, [addError, error, isError, t]);
 
   const { filters, addFilter, removeFilter } = useColumnFilters();
 
