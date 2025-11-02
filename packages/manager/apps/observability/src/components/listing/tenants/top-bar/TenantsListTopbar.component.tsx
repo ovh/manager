@@ -7,6 +7,7 @@ import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { ManagerButton } from '@ovh-ux/manager-react-components';
 
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
+import { urls } from '@/routes/Routes.constants';
 import { IAM_ACTIONS } from '@/utils/iam.constants';
 
 export default function TenantsListTopbar() {
@@ -16,7 +17,7 @@ export default function TenantsListTopbar() {
   const { selectedService, isLoading } = useObservabilityServiceContext();
 
   const addNewTenant = () => {
-    navigate('addNew');
+    navigate(urls.tenantsCreation);
   };
 
   return (
