@@ -19,15 +19,19 @@ describe('useGetQuantumSuggestions', () => {
 
     mockedGetQuantumSuggestions.mockResolvedValue(mockedSuggestionsForNotebook);
 
-    const { result } = renderHook(() => useGetQuantumSuggestions(projectId), {
-      wrapper: QueryClientWrapper,
-    });
+    const { result } = renderHook(
+      () => useGetQuantumSuggestions(projectId, 'qpu'),
+      {
+        wrapper: QueryClientWrapper,
+      },
+    );
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
     expect(result.current.data).toEqual(mockedSuggestionsForNotebook);
-    expect(suggestionApi.getQuantumSuggestions).toHaveBeenCalledWith({
-      projectId,
-    });
+    expect(suggestionApi.getQuantumSuggestions).toHaveBeenCalledWith(
+      { projectId },
+      'qpu',
+    );
   });
 });
