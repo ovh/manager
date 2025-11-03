@@ -9,3 +9,9 @@ export type ResourceWithAzName = {
     azName: string;
   };
 };
+
+export type ResourceWithName = {
+  currentState: {
+    name: string
+  };
+};
