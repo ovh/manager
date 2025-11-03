@@ -11,6 +11,7 @@ import { useColumns } from '@/components/dataGridColumns';
 import { useDedicatedServer } from '@/hooks/useDedicatedServer';
 import { urls } from '@/routes/routes.constant';
 import { ErrorComponent } from '@/components/errorComponent';
+import InfiniteScroll from '@/components/infiniteScoll';
 
 export default function ServerListing() {
   const columns = useColumns();
@@ -56,25 +57,28 @@ export default function ServerListing() {
         >
           <React.Suspense>
             {flattenData && (
-              <div>
-                <Datagrid
-                  columns={columns}
-                  items={flattenData}
-                  totalItems={totalCount || 0}
-                  hasNextPage={hasNextPage && !isLoading}
-                  onFetchNextPage={fetchNextPage}
-                  sorting={sorting}
-                  onSortChange={setSorting}
-                  isLoading={isLoading}
-                  filters={filters}
-                  columnVisibility={columnVisibility}
-                  setColumnVisibility={setColumnVisibility}
-                  search={search}
-                  className="server-data-grid"
-                  topbar={<OrderMenu exportCsvData={{ columns, totalCount }} />}
-                  resourceType="dedicatedServer"
-                />
-              </div>
+              <InfiniteScroll
+                fetchNextPage={fetchNextPage}
+                hasNextPage={hasNextPage}
+              >
+                <div>
+                  <Datagrid
+                    columns={columns}
+                    items={flattenData}
+                    totalItems={totalCount || 0}
+                    sorting={sorting}
+                    onSortChange={setSorting}
+                    isLoading={isLoading}
+                    filters={filters}
+                    columnVisibility={columnVisibility}
+                    setColumnVisibility={setColumnVisibility}
+                    search={search}
+                    className="server-data-grid"
+                    topbar={<OrderMenu exportCsvData={{ columns, totalCount }} />}
+                    resourceType="dedicatedServer"
+                  />
+                </div>
+              </InfiniteScroll>
             )}
           </React.Suspense>
         </RedirectionGuard>
