@@ -10,6 +10,7 @@ import {
 } from '@/domain/utils/dnsUtils';
 import { NameServerStatusEnum } from '@/domain/enum/nameServerStatus.enum';
 import { DNS_UPDATE_OPERATION } from '../constants/dns.const';
+import { FreeHostingOptions } from '../components/AssociatedServicesCards/Hosting';
 
 export function getLanguageKey(lang: string): LangCode {
   const code = lang.split(/[-_]/)[0].toUpperCase();
@@ -48,3 +49,18 @@ export function computeDnsDetails(
 
   return [...activated, ...activating, ...deleting];
 }
+
+export const formatConfigurationValue = (
+  options: FreeHostingOptions,
+): string => {
+  if (options.dnsA && options.dnsMx) {
+    return 'RESET_ALL';
+  }
+  if (options.dnsA) {
+    return 'RESET_ONLY_A';
+  }
+  if (options.dnsMx) {
+    return 'RESET_ONLY_MX';
+  }
+  return 'NO_CHANGE';
+};
