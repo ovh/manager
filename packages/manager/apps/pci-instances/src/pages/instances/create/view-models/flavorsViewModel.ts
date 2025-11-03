@@ -1,17 +1,20 @@
+import { Deps } from '@/deps/deps';
 import { TDeploymentMode } from '@/types/instance/common.type';
+import { Reader } from '@/types/utils.type';
 
 export type TFlavorData = {
+  id: string;
   unavailable: boolean;
   unavailableQuota: boolean;
   name: string;
   memory: number;
   vCore: number;
-  storage: string;
+  storage: number;
   bandwidthPublic: string;
   bandwidthPrivate: string;
   mode: TDeploymentMode;
-  hourlyPrice: number;
-  monthlyPrice: number;
+  hourlyPrice?: number;
+  monthlyPrice?: number;
 };
 
 export type TFlavorDataForTable = Omit<
@@ -20,6 +23,7 @@ export type TFlavorDataForTable = Omit<
 >;
 
 export type TGpuFlavorData = {
+  id: string;
   unavailable: boolean;
   unavailableQuota: boolean;
   name: string;
@@ -28,7 +32,7 @@ export type TGpuFlavorData = {
   vRamTotal: number;
   memory: number;
   vCore: number;
-  storage: string;
+  storage: number;
   bandwidthPublic: string;
   bandwidthPrivate: string;
   hourlyPrice: number;
@@ -40,19 +44,21 @@ export type TGpuFlavorDataForTable = Omit<
   'bandwidthPublic' | 'bandwidthPrivate'
 >;
 
-export type TFlavorDataForCart = {
-  name: string;
-  memory: number;
-  gpu?: string;
-  numberOfGpu?: number;
-  vCore: number;
-  vRamTotal?: number;
-  storage: string;
-  bandwidthPublic: string;
-  bandwidthPrivate: string;
-};
+// export type TFlavorDataForCart = {
+//   id: string;
+//   name: string;
+//   memory: number;
+//   gpu?: string;
+//   numberOfGpu?: number;
+//   vCore: number;
+//   vRamTotal?: number;
+//   storage: number;
+//   bandwidthPublic: string;
+//   bandwidthPrivate: string;
+// };
 
 export const mapFlavorToTable = (flavor: TFlavorData): TFlavorDataForTable => ({
+  id: flavor.id,
   unavailable: flavor.unavailable,
   unavailableQuota: flavor.unavailableQuota,
   name: flavor.name,
@@ -67,6 +73,7 @@ export const mapFlavorToTable = (flavor: TFlavorData): TFlavorDataForTable => ({
 export const mapGpuFlavorToTable = (
   gpuFlavor: TGpuFlavorData,
 ): TGpuFlavorDataForTable => ({
+  id: gpuFlavor.id,
   unavailable: gpuFlavor.unavailable,
   unavailableQuota: gpuFlavor.unavailableQuota,
   name: gpuFlavor.name,
@@ -80,16 +87,77 @@ export const mapGpuFlavorToTable = (
   monthlyPrice: gpuFlavor.monthlyPrice,
 });
 
-export const mapFlavorToCart = (
-  flavor: TFlavorData | TGpuFlavorData,
-): TFlavorDataForCart => ({
-  name: flavor.name,
-  memory: flavor.memory,
-  vCore: flavor.vCore,
-  storage: flavor.storage,
-  bandwidthPublic: flavor.bandwidthPublic,
-  bandwidthPrivate: flavor.bandwidthPrivate,
-  gpu: 'gpu' in flavor ? flavor.gpu : undefined,
-  numberOfGpu: 'numberOfGpu' in flavor ? flavor.numberOfGpu : undefined,
-  vRamTotal: 'vRamTotal' in flavor ? flavor.vRamTotal : undefined,
-});
+export type TSelectFlavors = (
+  projectId: string,
+  flavorType: string | null,
+  microRegionId: string | null,
+) => TFlavorDataForTable[];
+
+// TODO: will be optimized in next PR
+// eslint-disable-next-line max-lines-per-function
+export const selectFlavors: Reader<Deps, TSelectFlavors> = (deps) => (
+  projectId,
+  flavorType,
+  microRegionId,
+) => {
+  if (!flavorType || !microRegionId) return [];
+
+  const { instancesCatalogPort } = deps;
+  const data = instancesCatalogPort.selectInstancesCatalog(projectId);
+  if (!data) return [];
+
+  const flavorsNames = data.entities.flavorTypes.byId.get(flavorType)?.flavors;
+
+  if (!flavorsNames) return [];
+
+  return flavorsNames.reduce<TFlavorDataForTable[]>((acc, flavorName) => {
+    const flavor = data.entities.flavors.byId.get(flavorName);
+
+    if (!flavor) return acc;
+
+    const regionalizedFlavors = flavor.regionalizedFlavorIds.flatMap(
+      (regionalizedFlavorId) =>
+        data.entities.regionalizedFlavors.byId.get(regionalizedFlavorId) ?? [],
+    );
+
+    regionalizedFlavors.map((regionalizedFlavor) => {
+      const macroRegionId = data.entities.microRegions.byId.get(
+        regionalizedFlavor.regionID,
+      )?.macroRegionId;
+      if (!macroRegionId) return acc;
+
+      const deploymentMode = data.entities.macroRegions.byId.get(macroRegionId)
+        ?.deploymentMode;
+
+      if (!deploymentMode) return acc;
+
+      const pricing = data.entities.flavorPrices.byId.get(
+        regionalizedFlavor.priceId,
+      );
+
+      if (!pricing) return acc;
+
+      const hourlyPrice = pricing.prices.find((price) => price.type === 'hour')
+        ?.value;
+      const monthlyPrice = pricing.prices.find(
+        (price) => price.type === 'month',
+      )?.value;
+
+      if (regionalizedFlavor.regionID === microRegionId)
+        acc.push({
+          id: regionalizedFlavor.id,
+          unavailable: !regionalizedFlavor.availableStocks,
+          unavailableQuota: !regionalizedFlavor.quota,
+          name: flavor.name,
+          memory: flavor.specifications.ram.value,
+          vCore: flavor.specifications.cpu.value,
+          storage: flavor.specifications.storage.value,
+          mode: deploymentMode,
+          hourlyPrice: hourlyPrice,
+          monthlyPrice: monthlyPrice,
+        });
+    });
+
+    return acc;
+  }, []);
+};

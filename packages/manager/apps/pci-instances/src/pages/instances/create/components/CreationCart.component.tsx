@@ -9,34 +9,12 @@ import {
   TCartItemDetail,
 } from '@/components/cart/Cart.component';
 import { deps } from '@/deps/deps';
-import { selectLocalisationDetails } from '../view-models/cartViewModel';
+import {
+  selectFlavorDetails,
+  selectLocalisationDetails,
+} from '../view-models/cartViewModel';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { FlavorDetails } from '@/pages/instances/create/components/cart/FlavorDetails.component';
-import {
-  mockedFlavors,
-  mockedGpuFlavors,
-} from '@/__mocks__/instance/constants';
-import {
-  mapFlavorToCart,
-  TFlavorDataForCart,
-} from '@/pages/instances/create/view-models/flavorsViewModel';
-
-export const useSelectedFlavor = (
-  selectedFlavor: string | null,
-  selectedCategory: string | null,
-): TFlavorDataForCart | null => {
-  return useMemo(() => {
-    if (!selectedFlavor || !selectedCategory) return null;
-
-    const list =
-      selectedCategory === 'Cloud GPU' ? mockedGpuFlavors : mockedFlavors;
-
-    const flavor = list.find((f) => f.name === selectedFlavor);
-    if (!flavor) return null;
-
-    return mapFlavorToCart(flavor);
-  }, [selectedFlavor, selectedCategory]);
-};
 
 export const CreationCart = () => {
   const { t } = useTranslation(['common', 'creation']);
@@ -48,8 +26,7 @@ export const CreationCart = () => {
     microRegion,
     availabilityZone,
     quantity,
-    flavor,
-    flavorCategory,
+    flavorId,
   ] = useWatch({
     control,
     name: [
@@ -58,8 +35,7 @@ export const CreationCart = () => {
       'microRegion',
       'availabilityZone',
       'quantity',
-      'flavor',
-      'flavorCategory',
+      'flavorId',
     ],
   });
 
@@ -69,8 +45,9 @@ export const CreationCart = () => {
     microRegion,
     availabilityZone,
   );
+  console.log('🚀 ~ CreationCart ~ flavorId:', flavorId);
 
-  const selectedFlavor = useSelectedFlavor(flavor, flavorCategory);
+  const selectedFlavorDetails = selectFlavorDetails(deps)(projectId, flavorId);
 
   const itemDetails: TCartItemDetail[] = useMemo(() => {
     const regionDetails = localizationDetails
@@ -86,21 +63,24 @@ export const CreationCart = () => {
         ]
       : [];
 
-    const flavorDetails = selectedFlavor
+    const flavorDetails = selectedFlavorDetails
       ? [
           {
             name: t(
               'creation:pci_instance_creation_select_flavor_cart_section',
             ),
             description: (
-              <FlavorDetails quantity={quantity} flavor={selectedFlavor} />
+              <FlavorDetails
+                quantity={quantity}
+                flavor={selectedFlavorDetails}
+              />
             ),
           },
         ]
       : [];
 
     return [...regionDetails, ...flavorDetails];
-  }, [t, localizationDetails, quantity, selectedFlavor]);
+  }, [t, localizationDetails, quantity, selectedFlavorDetails]);
 
   const cartItems: TCartItem[] = useMemo(
     () => [
