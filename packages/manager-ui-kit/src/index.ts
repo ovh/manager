@@ -1,4 +1,3 @@
-import './enumTypes';
 import './lib.scss';
 import './tailwind/theme.css';
 
