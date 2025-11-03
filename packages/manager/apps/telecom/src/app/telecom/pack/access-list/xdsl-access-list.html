@@ -68,7 +68,7 @@
             data-property="closureDate"
             data-sortable
         >
-            <span data-ng-bind="$row.closureDate"></span>
+            <span data-ng-bind="$row.closureDate | date: 'shortDate'"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title="'xdsl_access_list_actions' | translate"
