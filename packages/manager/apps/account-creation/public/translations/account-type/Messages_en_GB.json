@@ -1,6 +1,6 @@
 {
   "title": "Select an account type",
-  "description": "Need help? <Tooltip>Learn more about account types</Tooltip>",
+  "description": "Need help? <strong>Learn more about account types</strong>",
   "legal_form_association": "Association",
   "legal_form_administration": "Public administration",
   "legal_form_corporation": "The company",

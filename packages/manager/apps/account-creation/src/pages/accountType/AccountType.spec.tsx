@@ -71,12 +71,12 @@ describe('AccountTypePage', () => {
   it('should display radio button for each legal form given by the rules API', async () => {
     render(<AccountTypePage />);
 
-    const corporationElement = screen.getByText('legal_form_corporation');
-    const individualElement = screen.getByText('legal_form_individual');
-    const associationElement = screen.getByText('legal_form_association');
-    expect(corporationElement).toBeInTheDocument();
-    expect(individualElement).toBeInTheDocument();
-    expect(associationElement).toBeInTheDocument();
+    const corporationElement = screen.getAllByText('legal_form_corporation');
+    const individualElement = screen.getAllByText('legal_form_individual');
+    const associationElement = screen.getAllByText('legal_form_association');
+    expect(corporationElement).toHaveLength(2);
+    expect(individualElement).toHaveLength(2);
+    expect(associationElement).toHaveLength(2);
   });
 
   it('should display an error message if user click on validate cta without making a choice', async () => {
