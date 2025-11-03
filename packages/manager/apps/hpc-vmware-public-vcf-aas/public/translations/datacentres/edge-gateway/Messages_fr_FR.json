@@ -4,9 +4,15 @@
   "edge_connectivity_type": "Type de connectivité",
   "edge_ip_block": "Bloc IP",
   "edge_edit_config": "Modifier la configuration",
+  "edge_add_title": "Nouvelle Edge Gateway",
+  "edge_add_input_name_label": "Nom de la Edge Gateway",
+  "edge_add_input_name_helper": "Le nom de la Edge Gateway doit contenir entre 1 et 128 caractères",
+  "edge_add_input_ip_block_helper": "Vous devez sélectionner un Bloc IP",
+  "edge_add_submit": "Créer la Edge Gateway",
+  "edge_add_banner_success": "La demande de création de votre Edge Gateway a bien été prise en compte.",
   "edge_delete_title": "Supprimer la Edge Gateway",
   "edge_delete_description": "Voulez-vous vraiment supprimer votre Edge Gateway {{edgeName}} ?",
   "edge_delete_warning": "Attention : supprimer votre Edge Gateway entraînera la suppression définitive de tous les services réseau et des configurations. Cette action est irréversible.",
   "edge_delete_banner_success": "La demande de suppression de votre {{edgeName}} a été prise en compte.",
-  "edge_delete_banner_error": "Une erreur est survenue. Veuillez attendre quelques minutes avant de réessayer."
+  "edge_operation_error": "Une erreur est survenue. Veuillez attendre quelques minutes avant de réessayer."
 }

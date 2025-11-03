@@ -158,6 +158,10 @@ function DatacentreDashboardPage() {
       label: EDGE_GATEWAY_LABEL,
     },
     {
+      id: subRoutes.addEdgeGateway,
+      label: t('datacentres/edge-gateway:edge_add_title'),
+    },
+    {
       id: subRoutes.deleteEdgeGateway,
       label: t('datacentres/edge-gateway:edge_delete_title'),
     },

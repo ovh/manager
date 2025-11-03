@@ -97,3 +97,9 @@ export const getVcdEdgeGatewayQueryKey = (params: GetEdgeGatewayParams) => [
   ...getVcdEdgeGatewayListQueryKey(params.id, params.vdcId),
   params.edgeGatewayId,
 ];
+
+// IP Block
+export const getVcdIpBlockListQueryKey = (id: string) => [
+  ...getVcdOrganizationQueryKey(id),
+  'ipBlock',
+];
