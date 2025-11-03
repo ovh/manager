@@ -1,24 +1,22 @@
 import { vi } from "vitest"
 import { render, screen } from "@testing-library/react"
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
-import {mockVaults} from "@/mocks/vaults/vaults";
+import { mockVaults } from "@/mocks/vaults/vaults";
 
-import { GeneralInformationTile } from "../general-information-tile/GeneralInformationTile.component"
-import {mockLocations} from "@/mocks/location/locations";
+import { GeneralInformationTile } from "../GeneralInformationTile.component"
+import { mockLocations } from "@/mocks/location/locations";
 
 const TILE_TITLE = `${NAMESPACES.DASHBOARD}:general_information`
 const LABELS_VISIBLES = [`${NAMESPACES.DASHBOARD}:name`,
 `${NAMESPACES.STATUS}:status`,
-`${NAMESPACES.REGION}:localisation`]
+`${NAMESPACES.REGION}:localisation`,
+`${NAMESPACES.REGION}:region`
+]
 
 
 const { useBackupVaultDetailsMock, useLocationDetailsMock } = vi.hoisted(() => ({
   useBackupVaultDetailsMock: vi.fn(),
   useLocationDetailsMock: vi.fn()
-}))
-
-vi.mock('@/data/hooks/vaults/getVaultDetails', () => ({
-  useBackupVaultDetails: useBackupVaultDetailsMock
 }))
 
 vi.mock('@/data/hooks/location/getLocationDetails', () => ({
@@ -34,9 +32,8 @@ vi.mock("react-i18next", () => ({
 
 describe('GeneralInformationTile', () => {
   it("Should render GeneralInformationTile component", async () => {
-    useBackupVaultDetailsMock.mockReturnValue({ data: mockVaults[0]!, isLoading: false })
     useLocationDetailsMock.mockReturnValue({ data: mockLocations[0]!, isLoading: false })
-    const { container } = render(<GeneralInformationTile vaultId={mockVaults[0]!.id} />)
+    const { container } = render(<GeneralInformationTile resourceDetails={mockVaults[0]!} isLoading={false} />)
 
     await expect(container).toBeAccessible();
 
@@ -49,7 +46,7 @@ describe('GeneralInformationTile', () => {
   it("Should render GeneralInformationTile component", async () => {
     useBackupVaultDetailsMock.mockReturnValue({ data: mockVaults[0]!, isLoading: true })
     useLocationDetailsMock.mockReturnValue({ data: mockLocations[0]!, isLoading: true })
-    const { container } = render(<GeneralInformationTile vaultId={mockVaults[0]!.id} />)
+    const { container } = render(<GeneralInformationTile resourceDetails={mockVaults[0]!} isLoading={true} />)
 
     await expect(container).toBeAccessible();
 
