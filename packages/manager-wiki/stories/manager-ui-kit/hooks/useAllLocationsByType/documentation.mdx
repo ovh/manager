@@ -1,0 +1,77 @@
+import { Meta } from '@storybook/blocks';
+import { StorybookHeading } from '../../../../components/';
+
+<Meta title="Manager React Components/Hooks/useAllLocationsByType" />
+
+<StorybookHeading label="Overview" level={2} />
+
+The `useAllLocationsByType` hook is a data filtering utility designed to get a list of locations coming from the API v2 endpoint `/location` with a matching type (`REGION-1-AZ`, `REGION-3-AZ` or `LOCAL-ZONE`).
+
+<StorybookHeading label="Api" level={2} />
+
+<StorybookHeading label="Parameters" level={3} />
+
+The hook accept a single `LocationType` parameter representing the type of location to search.
+
+```tsx
+enum LocationType {
+  '1AZ' = 'REGION-1-AZ',
+  '3AZ' = 'REGION-3-AZ',
+  'LZ' = 'LOCAL-ZONE',
+};
+```
+
+<StorybookHeading label="Return Value" level={3} />
+
+The hook returns a `UseQueryResult` object with:
+- `data`: an array of `Location` objects matching the type given in parameter
+
+```tsx
+type Location = {
+  availabilityZones: string[];
+  cardinalPoint: CardinalPoint;
+  cityCode: string;
+  cityLatitude: number;
+  cityLongitude: number;
+  cityName: string;
+  code: string;
+  countryCode: string;
+  countryName: string;
+  geographyCode: string;
+  geographyName: string;
+  location: string;
+  name: string;
+  openingYear: number;
+  specificType: SpecificType;
+  type: Type;
+};
+
+// The following types are not exposed by Manager React Components, but by @ovh-ux/shell
+type CardinalPoint =
+  | 'CENTRAL'
+  | 'EAST'
+  | 'NORTH'
+  | 'NORTHEAST'
+  | 'NORTHWEST'
+  | 'SOUTH'
+  | 'SOUTHEAST'
+  | 'SOUTHWEST'
+  | 'WEST';
+type SpecificType = 'BACKUP' | 'LZ' | 'SNC' | 'STANDARD';
+type Type = 'LOCAL-ZONE' | 'REGION-1-AZ' | 'REGION-3-AZ';
+```
+
+<StorybookHeading label="Example Usage" level={3} />
+
+```tsx
+import { useAllLocationsByType, LocationType } from '@ovh-ux/manager-react-components';
+
+function MyComponent() {
+  const { data: lzLocations } = useAllLocationsByType(LocationType.LZ);
+}
+```
+
+<StorybookHeading label="Notes" level={3} />
+
+- The hook uses React Query under the hood for efficient data caching and state management
+- The hook use the same `queryFn` and `queryKey` as `useAllCountries`, `useCityByCode` and `useLocationsByName` for efficiency
