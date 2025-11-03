@@ -152,10 +152,7 @@ export default class XdslAccessListCtrl {
       newService.firstCopperClosure = firstCopperClosure;
       if (migrationAvailable) {
         if (firstCopperClosure.date) {
-          newService.closureDate = this.$filter('date')(
-            firstCopperClosure.date,
-            'shortDate',
-          );
+          newService.closureDate = firstCopperClosure.date;
         } else {
           newService.closureDate = this.$translate.instant(
             'xdsl_access_list_not_available',
