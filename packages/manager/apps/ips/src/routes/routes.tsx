@@ -135,6 +135,21 @@ export const Routes: RouteObject[] = [
                 },
               },
               {
+                id: subRoutes.ipBlockInformation,
+                path: urls.ipBlockInformation,
+                ...lazyRouteConfig(() =>
+                  import(
+                    '@/pages/actions/upsertIpBlockInformation/upsertIpBlockInformation.page'
+                  ),
+                ),
+                handle: {
+                  tracking: {
+                    pageName: 'listing-view-ip-block-information',
+                    pageType: PageType.popup,
+                  },
+                },
+              },
+              {
                 id: subRoutes.deleteVirtualMac,
                 path: urls.deleteVirtualMac,
                 ...lazyRouteConfig(() =>
