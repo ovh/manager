@@ -20,6 +20,8 @@ export type TFlavorTypeID = TFlavorTypeName;
 
 type TFlavorName = string;
 export type TFlavorID = TFlavorName;
+export type TRegionalizedFlavorID = TFlavorID;
+export type TFlavorPricesID = TRegionalizedFlavorID;
 
 export type TFlavorType = {
   name: TFlavorTypeName;
@@ -44,6 +46,7 @@ export type TMicroRegion = {
   availabilityZones: string[];
   isActivable: boolean;
   isInMaintenance: boolean;
+  macroRegionId: string;
 };
 
 export type TMacroRegion = {
@@ -57,6 +60,52 @@ export type TMacroRegion = {
 export type TDeployment = {
   name: string;
   tags: TTags;
+};
+
+type TSpecDetails = {
+  unit: string;
+  value: number;
+};
+
+type TSpecifications = {
+  cpu: TSpecDetails;
+  ram: TSpecDetails;
+  storage: TSpecDetails;
+  bandwidth: {
+    public: TSpecDetails;
+    private: TSpecDetails;
+  };
+};
+
+export type TPrice = {
+  type: 'hour' | 'month' | 'licence';
+  currencyCode: string;
+  includeVat: boolean;
+  value: number;
+  priceInUcents: number;
+  text: string;
+};
+
+export type TFlavorPrices = {
+  id: TFlavorPricesID;
+  prices: TPrice[];
+};
+
+export type TRegionalizedFlavor = {
+  id: TRegionalizedFlavorID;
+  flavorId: TFlavorID;
+  regionID: string;
+  quota: number;
+  hasStock: boolean;
+  tags: string[] | null;
+  priceId: TFlavorPricesID;
+};
+
+export type TFlavor = {
+  name: TFlavorName;
+  specifications: TSpecifications;
+  osType: string;
+  regionalizedFlavorIds: TRegionalizedFlavorID[];
 };
 
 export type TInstancesCatalog = {
@@ -84,6 +133,18 @@ export type TInstancesCatalog = {
     flavorTypes: {
       byId: Map<TFlavorTypeID, TFlavorType>;
       allIds: TFlavorTypeID[];
+    };
+    flavors: {
+      byId: Map<TFlavorID, TFlavor>;
+      allIds: TFlavorID[];
+    };
+    regionalizedFlavors: {
+      byId: Map<TRegionalizedFlavorID, TRegionalizedFlavor>;
+      allIds: TRegionalizedFlavorID[];
+    };
+    flavorPrices: {
+      byId: Map<TFlavorPricesID, TFlavorPrices>;
+      allIds: TFlavorPricesID[];
     };
   };
   relations: {

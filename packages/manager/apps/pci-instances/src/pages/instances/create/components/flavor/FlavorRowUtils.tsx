@@ -62,8 +62,8 @@ export function useFlavorCommon() {
     );
   };
 
-  const renderRadio = (name: string, disabled?: boolean): ReactNode => (
-    <Radio value={name} className="w-full" disabled={disabled}>
+  const renderRadio = (id: string, disabled?: boolean): ReactNode => (
+    <Radio value={id} className="w-full" disabled={disabled}>
       <RadioControl />
     </Radio>
   );
