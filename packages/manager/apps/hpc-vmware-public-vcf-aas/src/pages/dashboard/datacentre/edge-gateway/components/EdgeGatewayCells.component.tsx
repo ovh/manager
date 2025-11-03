@@ -15,11 +15,6 @@ export const EdgeGatewayNameCell = (edge: VCDEdgeGateway) => (
   <DataGridTextCell>{edge.currentState.edgeGatewayName}</DataGridTextCell>
 );
 
-export const EdgeGatewayConnectivityCell = () => (
-  // TODO: [EDGE] see what content goes here
-  <DataGridTextCell>N/A</DataGridTextCell>
-);
-
 export const EdgeGatewayIPBlockCell = (edge: VCDEdgeGateway) => (
   <DataGridTextCell>{edge.currentState.ipBlock}</DataGridTextCell>
 );
