@@ -6,7 +6,6 @@ import {
   TokenSelectionSection,
   IpRangeSelectionSection,
   AsTypeSelectionSection,
-  AsOwnTypeSelectionSection,
   OrderButtonSection,
 } from './sections';
 import { useGetTokens } from '@/data/hooks/useGetTokens';
@@ -46,7 +45,6 @@ export const ByoipOrder: React.FC = () => {
       {visibleSections.tokenSelection && <TokenSelectionSection />}
       {visibleSections.ipRangeSelection && <IpRangeSelectionSection />}
       {visibleSections.asTypeSelection && <AsTypeSelectionSection />}
-      {visibleSections.asOwnTypeSelection && <AsOwnTypeSelectionSection />}
       {visibleSections.orderButtonSelection && <OrderButtonSection />}
     </>
   );
