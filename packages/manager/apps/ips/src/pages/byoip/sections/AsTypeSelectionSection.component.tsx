@@ -4,6 +4,7 @@ import { OrderSection } from '@/components/OrderSection/OrderSection.component';
 import { OptionCard } from '@/components/OptionCard/OptionCard.component';
 import { AS_OPTIONS } from '../Byoip.utils';
 import { ByoipContext } from '../Byoip.context';
+import { AsOwnTypeSelectionSubSection } from './AsOwnTypeSelectionSubSection.component';
 
 export const AsTypeSelectionSection: React.FC = () => {
   const { t } = useTranslation('byoip');
@@ -31,6 +32,7 @@ export const AsTypeSelectionSection: React.FC = () => {
           />
         ))}
       </div>
+      {asType && asType === 'own' && <AsOwnTypeSelectionSubSection />}
     </OrderSection>
   );
 };
