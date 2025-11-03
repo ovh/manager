@@ -3,6 +3,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuItemProps,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   useToast,
@@ -38,7 +39,7 @@ const SwiftObjectFileRenderer = ({ object }: SwiftObjectFileRendererProps) => {
     onError: (err) => {
       toast.toast({
         title: t('objectToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },
@@ -137,7 +138,7 @@ const SwiftObjectFileRenderer = ({ object }: SwiftObjectFileRendererProps) => {
                 mode={'ghost'}
                 size={'xs'}
                 className="p-1"
-                variant={a.variant}
+                variant={a.variant as DropdownMenuItemProps['variant']}
                 disabled={a.disabled}
               >
                 {a.icon}
@@ -168,7 +169,7 @@ const SwiftObjectFileRenderer = ({ object }: SwiftObjectFileRendererProps) => {
                   <DropdownMenuItem
                     key={a.id}
                     onClick={a.onClick}
-                    variant={a.variant}
+                    variant={a.variant as DropdownMenuItemProps['variant']}
                     disabled={a.disabled}
                   >
                     {a.label}

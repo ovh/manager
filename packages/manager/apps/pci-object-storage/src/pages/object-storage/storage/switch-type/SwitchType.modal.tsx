@@ -29,7 +29,7 @@ const SwithType = () => {
     onError: (err) => {
       toast.toast({
         title: t('updateContainerToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },

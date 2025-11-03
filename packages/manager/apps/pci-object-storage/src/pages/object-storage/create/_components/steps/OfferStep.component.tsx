@@ -46,7 +46,7 @@ const OfferStep = React.forwardRef<HTMLInputElement, OfferStepProps>(
                   <div>
                     <Badge
                       data-testid={`offer-tile-badge-recommended`}
-                      variant={'info'}
+                      variant="information"
                       className="text-xs h-4"
                     >
                       {t('offerTypeRecommended')}

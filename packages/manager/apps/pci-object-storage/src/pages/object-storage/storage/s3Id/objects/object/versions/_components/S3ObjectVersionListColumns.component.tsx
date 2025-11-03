@@ -84,7 +84,7 @@ export const getColumns = ({
         </DataTable.SortableHeader>
       ),
       cell: ({ row }) => (
-        <Badge variant={'outline'}>
+        <Badge variant="outline">
           {!row.original.isDeleteMarker &&
             tObj(`objectClass_${row.original.storageClass}`)}
         </Badge>

@@ -46,7 +46,7 @@ const DeleteObjectVersion = () => {
     onError: (err) => {
       toast.toast({
         title: t('objectToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },

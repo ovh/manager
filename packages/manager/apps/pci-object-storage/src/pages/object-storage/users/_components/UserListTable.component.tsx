@@ -29,7 +29,7 @@ export default function UsersList({ users }: UsersListProps) {
     } catch (err) {
       toast.toast({
         title: t('userPolicyDownloadFailed'),
-        variant: 'error',
+        variant: 'critical',
       });
     }
   };

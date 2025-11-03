@@ -25,8 +25,8 @@ export const S3Header = ({ s3 }: { s3: StorageContainer }) => {
           <h2>{s3.name ?? 'Dashboard'}</h2>
         </div>
         <div className="flex gap-2 flex-wrap mt-2">
-          <Badge variant={'outline'}>S3</Badge>
-          <Badge variant={'outline'} className="capitalize">
+          <Badge variant="outline">S3</Badge>
+          <Badge variant="outline" className="capitalize">
             <div className="flex items-center gap-1">
               <Flag
                 flagName={
@@ -41,7 +41,7 @@ export const S3Header = ({ s3 }: { s3: StorageContainer }) => {
             type={regions?.find((reg) => reg.name === s3.region).type}
           />
           {!isLocaleZone && (
-            <Badge variant={'outline'}>{octetConverter(s3.objectsSize)}</Badge>
+            <Badge variant="outline">{octetConverter(s3.objectsSize)}</Badge>
           )}
         </div>
       </div>

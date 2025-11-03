@@ -38,7 +38,7 @@ const EditReplication = () => {
     onError: (err) => {
       toast.toast({
         title: t('editReplicationToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },

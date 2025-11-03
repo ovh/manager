@@ -65,7 +65,7 @@ const Rclone = () => {
     } catch (err) {
       toast.toast({
         title: t('userRcloneDownloadFailed'),
-        variant: 'error',
+        variant: 'critical',
       });
     }
   });

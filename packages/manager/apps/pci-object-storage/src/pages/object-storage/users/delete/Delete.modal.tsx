@@ -35,7 +35,7 @@ const DeleteUser = () => {
     onError: (err) => {
       toast.toast({
         title: t('deleteUserToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },

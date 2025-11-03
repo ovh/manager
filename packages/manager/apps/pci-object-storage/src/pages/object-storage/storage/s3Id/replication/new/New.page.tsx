@@ -30,7 +30,7 @@ const CreateReplication = () => {
     onError: (err) => {
       toast.toast({
         title: t('addReplicationToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },

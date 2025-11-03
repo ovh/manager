@@ -60,7 +60,7 @@ const SwithType = () => {
     onError: (err) => {
       toast.toast({
         title: t('updateS3PolicyToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },

@@ -5,6 +5,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuItemProps,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   useToast,
@@ -42,7 +43,7 @@ const S3LZObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
     onError: (err) => {
       toast.toast({
         title: t('objectToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },
@@ -104,7 +105,7 @@ const S3LZObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
               .pop()}
           </span>
           {object.isDeleteMarker && (
-            <Badge className="ml-2" variant="info">
+            <Badge className="ml-2" variant="information">
               {t('tableSuppressionBadgeLabel')}
             </Badge>
           )}
@@ -130,7 +131,7 @@ const S3LZObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
         {/* STORAGE CLASS */}
         <div className="text-right">
           {object.storageClass && (
-            <Badge variant={'outline'}>
+            <Badge variant="outline">
               {tObj(`objectClass_${object.storageClass}`)}
             </Badge>
           )}
@@ -143,10 +144,10 @@ const S3LZObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
               aria-label={a.label}
               title={a.label}
               onClick={a.onClick}
-              mode={'ghost'}
+              mode="ghost"
               size={'xs'}
               className="p-1"
-              variant={a.variant}
+              variant={a.variant as DropdownMenuItemProps['variant']}
               disabled={a.disabled}
             >
               {a.icon}
@@ -177,7 +178,7 @@ const S3LZObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
                   <DropdownMenuItem
                     key={a.id}
                     onClick={a.onClick}
-                    variant={a.variant}
+                    variant={a.variant as DropdownMenuItemProps['variant']}
                     disabled={a.disabled}
                   >
                     {a.label}

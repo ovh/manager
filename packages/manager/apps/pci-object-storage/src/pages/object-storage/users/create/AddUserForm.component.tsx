@@ -48,7 +48,7 @@ const AddUserForm = ({ onClose }: AddUserFormProps) => {
     onError: (err) => {
       toast.toast({
         title: t('addUserToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },
@@ -66,7 +66,7 @@ const AddUserForm = ({ onClose }: AddUserFormProps) => {
     onError: (err) => {
       toast.toast({
         title: t('addUserToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },

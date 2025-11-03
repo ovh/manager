@@ -32,7 +32,7 @@ const EnableUser = () => {
     onError: (err) => {
       toast.toast({
         title: t('enableUserToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },

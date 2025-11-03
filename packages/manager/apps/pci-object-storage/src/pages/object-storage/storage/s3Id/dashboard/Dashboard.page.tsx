@@ -91,7 +91,7 @@ const Dashboard = () => {
               <h4>{t('accessLogsTitle')}</h4>
             </CardHeader>
             <CardContent>
-              <Badge variant={'neutral'}>{t('comingSoonLabel')}</Badge>
+              <Badge variant="neutral">{t('comingSoonLabel')}</Badge>
             </CardContent>
           </Card>
         </div>
@@ -102,7 +102,7 @@ const Dashboard = () => {
             <h4>{t('lifecycleTitle')}</h4>
           </CardHeader>
           <CardContent>
-            <Badge variant={'neutral'}>{t('comingSoonLabel')}</Badge>
+            <Badge variant="neutral">{t('comingSoonLabel')}</Badge>
           </CardContent>
         </Card>
         {!isLocaleZone && (
@@ -111,7 +111,7 @@ const Dashboard = () => {
               <h4>{t('staticWebsiteHostingTitle')}</h4>
             </CardHeader>
             <CardContent>
-              <Badge variant={'neutral'}>{t('comingSoonLabel')}</Badge>
+              <Badge variant="neutral">{t('comingSoonLabel')}</Badge>
             </CardContent>
           </Card>
         )}

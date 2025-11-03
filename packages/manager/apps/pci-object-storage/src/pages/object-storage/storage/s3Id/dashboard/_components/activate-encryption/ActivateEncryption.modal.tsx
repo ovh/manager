@@ -32,7 +32,7 @@ const ActivateEncryption = () => {
     onError: (err) => {
       toast.toast({
         title: t('toastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },

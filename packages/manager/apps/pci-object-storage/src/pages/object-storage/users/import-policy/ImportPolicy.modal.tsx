@@ -35,7 +35,7 @@ const ImportPolicyModal = () => {
     onError: (err) => {
       toast.toast({
         title: t('userPolicyToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },
@@ -74,7 +74,7 @@ const ImportPolicyModal = () => {
     } catch (err) {
       toast.toast({
         title: t('userPolicyToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: t('userPolicyJSONToastError'),
       });
     }

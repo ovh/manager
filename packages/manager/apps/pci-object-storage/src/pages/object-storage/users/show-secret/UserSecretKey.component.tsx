@@ -30,7 +30,7 @@ const UserSecretKey = ({ user }: SecretKeyProps) => {
     onError: (err) => {
       toast.toast({
         title: t('getUserSecretToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
     },

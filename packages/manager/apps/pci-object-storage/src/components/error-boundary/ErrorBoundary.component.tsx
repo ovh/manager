@@ -29,7 +29,7 @@ const ErrorBoundary = () => {
             <img src={errorImgSrc} alt="" className="mw-100 inline mb-4" />
           </div>
           <h2>{t('manager_error_page_title')}</h2>
-          <Alert variant="destructive">
+          <Alert variant="critical">
             <AlertDescription>
               <p className="text-red-500">{t('manager_error_page_default')}</p>
               <p className="text-red-500 font-semibold">{error.message}</p>
@@ -54,7 +54,7 @@ const ErrorBoundary = () => {
               {t('manager_error_page_action_home_label')}
             </Button>
             <Button
-              mode="outiline"
+              mode="outline"
               size="sm"
               className="inline"
               onClick={() => reloadPage()}

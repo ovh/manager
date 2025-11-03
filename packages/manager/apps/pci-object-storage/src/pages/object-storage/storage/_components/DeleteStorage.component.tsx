@@ -45,7 +45,7 @@ const DeleteStorage = ({
     onError: (err) => {
       toast.toast({
         title: t('deleteStorageToastErrorTitle'),
-        variant: 'destructive',
+        variant: 'critical',
         description: getObjectStoreApiErrorMessage(err),
       });
       if (onError) {

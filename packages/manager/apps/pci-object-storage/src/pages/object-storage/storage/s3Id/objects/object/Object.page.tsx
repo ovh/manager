@@ -113,7 +113,7 @@ const Object = () => {
           </CardHeader>
           <CardContent>
             <div className="flex flex-row justify-between">
-              <Badge variant={'outline'}>
+              <Badge variant="outline">
                 {tObj(`objectClass_${objectQuery.data.storageClass}`)}
               </Badge>
 

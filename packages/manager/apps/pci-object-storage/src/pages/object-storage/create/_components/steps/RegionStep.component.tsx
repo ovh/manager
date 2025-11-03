@@ -216,7 +216,7 @@ const RegionsStep = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
                         <RegionTypeBadgeWithPopover type={region.type} />
                         <div className="flex gap-1">
                           {region.name === RECOMENDED_REGION && (
-                            <Badge variant={'info'}>
+                            <Badge variant="information">
                               {tOrder('regionRecommended')}
                             </Badge>
                           )}
