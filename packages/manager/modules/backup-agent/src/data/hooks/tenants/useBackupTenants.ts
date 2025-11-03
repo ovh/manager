@@ -1,29 +1,30 @@
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
 
 import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
-import { Tenant } from '@/types/Tenant.type';
+import {Tenant, TenantWithAzName} from '@/types/Tenant.type';
 
 import { getBackupTenants } from '../../api/tenants/tenants.requests';
+import { Resource } from '@/types/Resource.type';
+import {mapTenantResourceToTenantResourceWithAzName} from "@/utils/mappers/mapTenantToTenantWithAzName";
 
-type TUseBackupTenantsResult = UseQueryResult<Tenant[], Error>;
+export const BACKUP_TENANTS_QUERY_KEY = ['backup', 'tenants'];
 
-export const GET_TENANTS_QUERY_KEY = ['backup', 'tenants'];
-
-export const useBackupTenants = (): TUseBackupTenantsResult =>
+export const useBackupTenants = () =>
   useQuery({
-    queryKey: GET_TENANTS_QUERY_KEY,
+    queryKey: BACKUP_TENANTS_QUERY_KEY,
     queryFn: () => getBackupTenants(),
-    select: (res) => res.data,
+    select: (res) => res.data.map((tenantResource) => mapTenantResourceToTenantResourceWithAzName(tenantResource)),
   });
 
-export const useBackupTenantsMocks = (): TUseBackupTenantsResult =>
+export const useBackupTenantsMocks = () =>
   useQuery({
-    queryKey: GET_TENANTS_QUERY_KEY,
+    queryKey: BACKUP_TENANTS_QUERY_KEY,
     queryFn: () =>
-      new Promise((resolve) => {
+      new Promise<{ data: Resource<Tenant>[] }>((resolve) => {
         console.log('🛜 mocking useBackupTenants api call...');
         setTimeout(() => {
-          resolve(TENANTS_MOCKS);
+          resolve({ data: TENANTS_MOCKS });
         });
       }),
+    select: (res): Resource<TenantWithAzName>[] => res.data.map((tenantResource) => mapTenantResourceToTenantResourceWithAzName(tenantResource)),
   });
