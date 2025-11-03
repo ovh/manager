@@ -11,3 +11,5 @@ export const ANYCAST_ORDER_CONSTANT = {
   ANYCAST_PLAN_CODE: 'anycast',
   DNSSEC_CONFIGURATION: { label: 'dnssec', value: 'true' },
 };
+
+export const FREE_HOSTING_PLAN_CODE = 'hosting-free-100m';
