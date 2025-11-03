@@ -48,8 +48,14 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
   const { trackClick } = useOvhTracking();
 
   const flavorsData = useMemo(
-    () => selectFlavors(deps)(projectId, flavorType, microRegion),
-    [flavorType, microRegion, projectId],
+    () =>
+      selectFlavors(deps)({
+        projectId,
+        flavorType,
+        microRegionId: microRegion,
+        withUnavailable,
+      }),
+    [flavorType, microRegion, projectId, withUnavailable],
   );
 
   const { columns, rows } = useMemo(() => {

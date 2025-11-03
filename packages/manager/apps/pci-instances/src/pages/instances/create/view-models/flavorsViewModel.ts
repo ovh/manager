@@ -1,4 +1,9 @@
 import { Deps } from '@/deps/deps';
+import {
+  TFlavor,
+  TInstancesCatalog,
+  TRegionalizedFlavor,
+} from '@/domain/entities/instancesCatalog';
 import { TDeploymentMode } from '@/types/instance/common.type';
 import { Reader } from '@/types/utils.type';
 
@@ -12,9 +17,9 @@ export type TFlavorData = {
   storage: number;
   bandwidthPublic: string;
   bandwidthPrivate: string;
-  mode: TDeploymentMode;
-  hourlyPrice?: number;
-  monthlyPrice?: number;
+  mode: TDeploymentMode | null;
+  hourlyPrice: number | null;
+  monthlyPrice: number | null;
 };
 
 export type TFlavorDataForTable = Omit<
@@ -35,27 +40,15 @@ export type TGpuFlavorData = {
   storage: number;
   bandwidthPublic: string;
   bandwidthPrivate: string;
-  hourlyPrice: number;
-  monthlyPrice: number;
+  mode: TDeploymentMode | null;
+  hourlyPrice: number | null;
+  monthlyPrice: number | null;
 };
 
 export type TGpuFlavorDataForTable = Omit<
   TGpuFlavorData,
   'bandwidthPublic' | 'bandwidthPrivate'
 >;
-
-// export type TFlavorDataForCart = {
-//   id: string;
-//   name: string;
-//   memory: number;
-//   gpu?: string;
-//   numberOfGpu?: number;
-//   vCore: number;
-//   vRamTotal?: number;
-//   storage: number;
-//   bandwidthPublic: string;
-//   bandwidthPrivate: string;
-// };
 
 export const mapFlavorToTable = (flavor: TFlavorData): TFlavorDataForTable => ({
   id: flavor.id,
@@ -80,6 +73,7 @@ export const mapGpuFlavorToTable = (
   gpu: gpuFlavor.gpu,
   numberOfGpu: gpuFlavor.numberOfGpu,
   vRamTotal: gpuFlavor.vRamTotal,
+  mode: gpuFlavor.mode,
   memory: gpuFlavor.memory,
   vCore: gpuFlavor.vCore,
   storage: gpuFlavor.storage,
@@ -87,77 +81,127 @@ export const mapGpuFlavorToTable = (
   monthlyPrice: gpuFlavor.monthlyPrice,
 });
 
+type TSelectFlavorsArgs = {
+  projectId: string;
+  flavorType: string | null;
+  microRegionId: string | null;
+  withUnavailable: boolean;
+};
+
 export type TSelectFlavors = (
-  projectId: string,
-  flavorType: string | null,
-  microRegionId: string | null,
+  args: TSelectFlavorsArgs,
 ) => TFlavorDataForTable[];
 
-// TODO: will be optimized in next PR
-// eslint-disable-next-line max-lines-per-function
-export const selectFlavors: Reader<Deps, TSelectFlavors> = (deps) => (
-  projectId,
-  flavorType,
-  microRegionId,
+const addMicroRegionAvailableFlavor = (
+  acc: TFlavorDataForTable[],
+  entities: TInstancesCatalog['entities'],
+  regionalizedFlavor: TRegionalizedFlavor,
+  flavor: TFlavor,
 ) => {
-  if (!flavorType || !microRegionId) return [];
+  const { microRegions, macroRegions, flavorPrices } = entities;
 
-  const { instancesCatalogPort } = deps;
-  const data = instancesCatalogPort.selectInstancesCatalog(projectId);
-  if (!data) return [];
+  const macroRegionId = microRegions.byId.get(regionalizedFlavor.regionID)
+    ?.macroRegionId;
+  if (!macroRegionId) return acc;
 
-  const flavorsNames = data.entities.flavorTypes.byId.get(flavorType)?.flavors;
+  const deploymentMode = macroRegions.byId.get(macroRegionId)?.deploymentMode;
+  if (!deploymentMode) return acc;
 
-  if (!flavorsNames) return [];
+  const pricing = flavorPrices.byId.get(regionalizedFlavor.priceId);
+  if (!pricing) return acc;
 
-  return flavorsNames.reduce<TFlavorDataForTable[]>((acc, flavorName) => {
-    const flavor = data.entities.flavors.byId.get(flavorName);
+  const hourlyPrice =
+    pricing.prices.find((price) => price.type === 'hour')?.value ?? null;
+  const monthlyPrice =
+    pricing.prices.find((price) => price.type === 'month')?.value ?? null;
 
-    if (!flavor) return acc;
+  acc.push({
+    id: regionalizedFlavor.id,
+    unavailable: !regionalizedFlavor.hasStock,
+    unavailableQuota: !regionalizedFlavor.quota,
+    name: flavor.name,
+    memory: flavor.specifications.ram.value,
+    vCore: flavor.specifications.cpu.value,
+    storage: flavor.specifications.storage.value,
+    mode: deploymentMode,
+    hourlyPrice: hourlyPrice,
+    monthlyPrice: monthlyPrice,
+  });
 
-    const regionalizedFlavors = flavor.regionalizedFlavorIds.flatMap(
-      (regionalizedFlavorId) =>
-        data.entities.regionalizedFlavors.byId.get(regionalizedFlavorId) ?? [],
-    );
+  return acc;
+};
 
-    regionalizedFlavors.map((regionalizedFlavor) => {
-      const macroRegionId = data.entities.microRegions.byId.get(
-        regionalizedFlavor.regionID,
-      )?.macroRegionId;
-      if (!macroRegionId) return acc;
+const addUnavailableMicroRegionFlavor = (
+  acc: TFlavorDataForTable[],
+  flavor: TFlavor,
+) => {
+  const isFlavorAlreadyPresent = acc.find((fl) => fl.name === flavor.name);
 
-      const deploymentMode = data.entities.macroRegions.byId.get(macroRegionId)
-        ?.deploymentMode;
+  if (isFlavorAlreadyPresent) return acc;
 
-      if (!deploymentMode) return acc;
+  acc.push({
+    id: flavor.name,
+    unavailable: true,
+    unavailableQuota: false,
+    name: flavor.name,
+    memory: flavor.specifications.ram.value,
+    vCore: flavor.specifications.cpu.value,
+    storage: flavor.specifications.storage.value,
+    mode: null,
+    hourlyPrice: null,
+    monthlyPrice: null,
+  });
 
-      const pricing = data.entities.flavorPrices.byId.get(
-        regionalizedFlavor.priceId,
+  return acc;
+};
+
+export const selectFlavors: Reader<Deps, TSelectFlavors> = (deps) => {
+  return ({ projectId, flavorType, microRegionId, withUnavailable }) => {
+    if (!flavorType || !microRegionId) return [];
+
+    const { instancesCatalogPort } = deps;
+    const data = instancesCatalogPort.selectInstancesCatalog(projectId);
+    if (!data) return [];
+
+    const flavorsNames = data.entities.flavorTypes.byId.get(flavorType)
+      ?.flavors;
+    if (!flavorsNames) return [];
+
+    return flavorsNames.reduce<TFlavorDataForTable[]>((acc, flavorName) => {
+      const flavor = data.entities.flavors.byId.get(flavorName);
+      if (!flavor) return acc;
+
+      const regionalizedFlavors = flavor.regionalizedFlavorIds.flatMap(
+        (regionalizedFlavorId) =>
+          data.entities.regionalizedFlavors.byId.get(regionalizedFlavorId) ??
+          [],
       );
 
-      if (!pricing) return acc;
+      regionalizedFlavors.map((regionalizedFlavor, index) => {
+        const isFlavorInSelectedMicroRegion =
+          regionalizedFlavor.regionID === microRegionId;
 
-      const hourlyPrice = pricing.prices.find((price) => price.type === 'hour')
-        ?.value;
-      const monthlyPrice = pricing.prices.find(
-        (price) => price.type === 'month',
-      )?.value;
+        const isLastRegionalizedFlavorFromList =
+          index === regionalizedFlavors.length - 1;
 
-      if (regionalizedFlavor.regionID === microRegionId)
-        acc.push({
-          id: regionalizedFlavor.id,
-          unavailable: !regionalizedFlavor.hasStock,
-          unavailableQuota: !regionalizedFlavor.quota,
-          name: flavor.name,
-          memory: flavor.specifications.ram.value,
-          vCore: flavor.specifications.cpu.value,
-          storage: flavor.specifications.storage.value,
-          mode: deploymentMode,
-          hourlyPrice: hourlyPrice,
-          monthlyPrice: monthlyPrice,
-        });
-    });
+        const shouldAddUnavailableMicroRegionFlavor =
+          withUnavailable &&
+          isLastRegionalizedFlavorFromList &&
+          !isFlavorInSelectedMicroRegion;
 
-    return acc;
-  }, []);
+        if (isFlavorInSelectedMicroRegion)
+          addMicroRegionAvailableFlavor(
+            acc,
+            data.entities,
+            regionalizedFlavor,
+            flavor,
+          );
+
+        if (shouldAddUnavailableMicroRegionFlavor)
+          addUnavailableMicroRegionFlavor(acc, flavor);
+      });
+
+      return acc;
+    }, []);
+  };
 };

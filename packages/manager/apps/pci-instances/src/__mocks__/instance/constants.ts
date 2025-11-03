@@ -1054,6 +1054,7 @@ export const mockedGpuFlavors: TGpuFlavorData[] = [
     bandwidthPrivate: '4 Gbit/s max',
     hourlyPrice: 0.76,
     monthlyPrice: 554.8,
+    mode: 'region',
   },
   {
     id: '2',
@@ -1070,6 +1071,7 @@ export const mockedGpuFlavors: TGpuFlavorData[] = [
     bandwidthPrivate: '6 Gbit/s max',
     hourlyPrice: 1.52,
     monthlyPrice: 1109.6,
+    mode: 'region',
   },
   {
     id: '3',
@@ -1086,6 +1088,7 @@ export const mockedGpuFlavors: TGpuFlavorData[] = [
     bandwidthPrivate: '8 Gbit/s max',
     hourlyPrice: 3.04,
     monthlyPrice: 2219.2,
+    mode: 'region',
   },
 ];
 
