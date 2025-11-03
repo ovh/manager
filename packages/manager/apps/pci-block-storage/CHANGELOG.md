@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.20.20...@ovh-ux/manager-pci-block-storage-app@0.20.21) (2025-11-03)
+
+
+### Bug Fixes
+
+* **pci-block-storage:** add file storage alpha information banner ([5289a8a](https://github.com/ovh/manager/commit/5289a8a94c5e914ca8169d0bb97e2707f5f7e9b0)), closes [#TAPC-5227](https://github.com/ovh/manager/issues/TAPC-5227)
+* **pci-block-storage:** bump pci-common version to fix region selector ([c33950e](https://github.com/ovh/manager/commit/c33950e4b6b3195e1007bc74a22649735ac26759)), closes [#TAPC-5219](https://github.com/ovh/manager/issues/TAPC-5219)
+
+
+
+
+
 ## [0.20.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.20.19...@ovh-ux/manager-pci-block-storage-app@0.20.20) (2025-11-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app

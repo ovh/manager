@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.26.1...@ovh-ux/manager-components@1.26.2) (2025-11-03)
+
+
+### Bug Fixes
+
+* **pci-instances:** fix 3AZ milan region for instance creation ([fe5d712](https://github.com/ovh/manager/commit/fe5d712dbe1634e78443181c232534271e38b84b)), closes [#TAPC-5210](https://github.com/ovh/manager/issues/TAPC-5210)
+
+
+
+
+
 ## [1.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.26.0...@ovh-ux/manager-components@1.26.1) (2025-10-02)
 
 

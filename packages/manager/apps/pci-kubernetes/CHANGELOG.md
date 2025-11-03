@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.34.5...@ovh-ux/manager-pci-kubernetes-app@0.35.0) (2025-11-03)
+
+
+### Features
+
+* **pci-kubernetes:** add total nodes ([c01ba26](https://github.com/ovh/manager/commit/c01ba265cf00a413728bd54c5d13d917c9ef33fc)), closes [#TAPC-4996](https://github.com/ovh/manager/issues/TAPC-4996)
+* **pci-kubernetes:** deploy multi node creation on cluster ([0bf9325](https://github.com/ovh/manager/commit/0bf9325460ceee24ed48f1d80fc787ec518db141)), closes [#TAPC-4718](https://github.com/ovh/manager/issues/TAPC-4718)
+
+
+
+
+
 ## [0.34.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.34.4...@ovh-ux/manager-pci-kubernetes-app@0.34.5) (2025-11-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
