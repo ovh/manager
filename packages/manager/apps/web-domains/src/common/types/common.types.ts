@@ -41,6 +41,10 @@ export interface TServiceInfo {
         pendingActions: LifecycleCapacitiesEnum[];
       };
     } | null;
+    plan?: {
+      code: string;
+      invoiceName: string;
+    } | null;
     pricing?: {
       capacities: BillingCapacitiesEnum;
       description: string;
