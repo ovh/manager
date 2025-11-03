@@ -37,7 +37,7 @@ describe('Datacentre Edge Gateway Delete Page', () => {
     .replace(':vdcId', config.vdc.id)
     .replace(':edgeGatewayId', config.edge.id);
 
-  it('access and display Edge Gateway delete page modal', async () => {
+  it('access and display DeleteEdgeGateway page modal', async () => {
     await renderTest({ initialRoute });
 
     // wait for data to be loaded

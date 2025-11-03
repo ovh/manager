@@ -4,24 +4,28 @@ import {
   useQueryClient,
 } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { createVcdEdgeGateway } from '../api';
+import { VCDEdgeGateway, VCDEdgeGatewayState } from '../types';
 import { getVcdEdgeGatewayListQueryKey } from '../utils';
-import { GetEdgeGatewayParams } from '../types';
-import { deleteVcdEdgeGateway } from '../api';
 
-type UseDeleteEdgeGatewayParams = GetEdgeGatewayParams &
-  Partial<UseMutationOptions<unknown, ApiError, void, unknown>>;
+type UseAddEdgeGatewayParams = Partial<
+  UseMutationOptions<VCDEdgeGateway, ApiError, VCDEdgeGatewayState, unknown>
+> & {
+  id: string;
+  vdcId: string;
+};
 
-export const useDeleteEdgeGateway = ({
+export const useAddEdgeGateway = ({
   id,
   vdcId,
-  edgeGatewayId,
   onSuccess,
   ...options
-}: UseDeleteEdgeGatewayParams) => {
+}: UseAddEdgeGatewayParams) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: () => deleteVcdEdgeGateway({ id, vdcId, edgeGatewayId }),
+    mutationFn: (payload: VCDEdgeGatewayState) =>
+      createVcdEdgeGateway({ id, vdcId, payload }),
     ...options,
     onSuccess: (...params) => {
       queryClient.invalidateQueries({
