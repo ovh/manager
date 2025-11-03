@@ -28,7 +28,6 @@ import {
 } from '@secret-manager/validation';
 import { SECRET_FORM_TEST_IDS } from '@secret-manager/pages/create-secret/SecretForm.constants';
 import { SecretFormBackLink } from './BackLink.component';
-import { SECRET_DATA_TEMPLATE } from './SecretForm.constants';
 import { PATH_LABEL } from '@/constants';
 
 type SecretFormProps = {
@@ -54,11 +53,6 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
   const form = useForm({
     mode: 'onTouched',
     resolver: zodResolver(secretSchema),
-    defaultValues: {
-      path: '',
-      // Prefill data with a template to help the user with the JSON format
-      data: SECRET_DATA_TEMPLATE,
-    },
   });
 
   const {
