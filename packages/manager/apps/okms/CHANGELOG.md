@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.36.9...@ovh-ux/manager-okms-app@0.37.0) (2025-11-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4438] ([e63af1a](https://github.com/ovh/manager/commit/e63af1ad1bfe03863cbd79e69959c7d17a823705))
+* **i18n:** add missing translations [CDS 766] ([6f2c226](https://github.com/ovh/manager/commit/6f2c22688cd8106754797425cf858b7970061e34))
+* **okms:** kmip public ca button downloads the wrong file ([5b9260b](https://github.com/ovh/manager/commit/5b9260b952e435c8ca8faac8001da098aabb9bf1)), closes [#MANAGER-18832](https://github.com/ovh/manager/issues/MANAGER-18832)
+* **okms:** request failling with broken cas param ([6edae6a](https://github.com/ovh/manager/commit/6edae6a0524e4f47e4ceaaebfa6c6f89c635cc0e)), closes [#MANAGER-17868](https://github.com/ovh/manager/issues/MANAGER-17868)
+* **okms:** swagger link on okms dashboard ([6075090](https://github.com/ovh/manager/commit/6075090d11e43de87be22db7569a147cefca3251)), closes [#MANAGER-19806](https://github.com/ovh/manager/issues/MANAGER-19806)
+
+
+### Features
+
+* **okms:** add current version information ([3a6377c](https://github.com/ovh/manager/commit/3a6377c438fe711d648be93918347cf48d7cfd09)), closes [#MANAGER-19657](https://github.com/ovh/manager/issues/MANAGER-19657)
+* **okms:** display default max versions in secret manager settings form ([addee4e](https://github.com/ovh/manager/commit/addee4ef48c3c802eb49acbe4de5258a6f2cc81a)), closes [#MANAGER-17868](https://github.com/ovh/manager/issues/MANAGER-17868)
+* **okms:** edit settings drawer ([7f890ef](https://github.com/ovh/manager/commit/7f890efda0f6935fa4fd68adcce45ca7f5b81a87)), closes [#MANAGER-17868](https://github.com/ovh/manager/issues/MANAGER-17868)
+
+
+
+
+
 ## [0.36.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.36.8...@ovh-ux/manager-okms-app@0.36.9) (2025-11-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-okms-app
