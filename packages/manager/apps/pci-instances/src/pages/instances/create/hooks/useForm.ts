@@ -49,11 +49,12 @@ export const useForm = (projectId: string) => {
     selectTypes(deps)(projectId, flavorCategoryDefaultValue)[0]?.value ?? null;
 
   const flavorIdDefaultValue =
-    selectFlavors(deps)(
+    selectFlavors(deps)({
       projectId,
-      flavorTypeDefaultValue,
-      microRegionDefaultValue,
-    )[0]?.id ?? null;
+      flavorType: flavorTypeDefaultValue,
+      microRegionId: microRegionDefaultValue,
+      withUnavailable: true,
+    })[0]?.id ?? null;
 
   const availabilityZoneDefaultValue = null;
 
