@@ -1,11 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import {
-  ActionMenu,
-  ManagerTile,
-  OvhSubsidiary,
-} from '@ovh-ux/manager-react-components';
+import { ActionMenu, ManagerTile } from '@ovh-ux/manager-react-components';
 import {
   ShellContext,
   useNavigationGetUrl,
