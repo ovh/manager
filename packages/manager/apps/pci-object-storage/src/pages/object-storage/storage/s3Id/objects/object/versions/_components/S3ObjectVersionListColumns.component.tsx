@@ -3,6 +3,7 @@ import { MoreHorizontal } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud/index';
 import {
+  Badge,
   Button,
   DropdownMenu,
   DropdownMenuContent,
@@ -83,10 +84,10 @@ export const getColumns = ({
         </DataTable.SortableHeader>
       ),
       cell: ({ row }) => (
-        <span>
+        <Badge variant={'outline'}>
           {!row.original.isDeleteMarker &&
             tObj(`objectClass_${row.original.storageClass}`)}
-        </span>
+        </Badge>
       ),
     },
     {

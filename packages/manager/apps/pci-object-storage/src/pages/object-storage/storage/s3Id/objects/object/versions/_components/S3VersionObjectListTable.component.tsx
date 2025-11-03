@@ -27,8 +27,6 @@ export default function S3ObjectVersionList({ objects }: ObjectsListProps) {
   const navigate = useNavigate();
   const toast = useToast();
   const { download } = useDownload();
-  const [searchParams] = useSearchParams();
-  const objectKey = searchParams.get('objectKey');
 
   const {
     getPresignUrlS3,
