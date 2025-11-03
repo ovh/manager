@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.11.1...@ovh-ux/manager-telecom-dashboard@6.11.2) (2025-11-03)
+
+
+### Bug Fixes
+
+* **telecom-dashboard:** create service in every case ([ab513ef](https://github.com/ovh/manager/commit/ab513ef8917e07c977d5fc34bdce3d82be81dce2)), closes [#MANAGER-20128](https://github.com/ovh/manager/issues/MANAGER-20128)
+
+
+
+
+
 ## [6.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.11.0...@ovh-ux/manager-telecom-dashboard@6.11.1) (2025-10-27)
 
 
