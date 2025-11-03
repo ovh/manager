@@ -25,7 +25,7 @@ export const buildDeleteTenantUrl = ({
 }: TBuildDeleteTenantUrlParams) => {
   const url =
     origin === 'dashboard'
-      ? { fallback: urls.dashboard, base: urls.dashboardTenantDelete }
+      ? { fallback: urls.dashboardTenants, base: urls.dashboardTenantDelete }
       : { fallback: urls.listingTenants, base: urls.listingTenantDelete };
 
   return tenantId ? `${url.base}${buildSearchQuery({ tenantId })}` : url.fallback;
