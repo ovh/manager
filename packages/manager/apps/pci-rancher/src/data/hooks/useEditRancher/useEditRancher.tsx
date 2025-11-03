@@ -13,7 +13,7 @@ export enum EditAction {
 
 export type EditMutationVariables = {
   rancher: Partial<RancherService>;
-  editAction: EditAction;
+  editAction?: EditAction;
 };
 
 const useEditRancher = ({

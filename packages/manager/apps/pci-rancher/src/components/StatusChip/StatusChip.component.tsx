@@ -11,11 +11,12 @@ const StatusChip = ({ label }: { label: string }) => {
     [key in ResourceStatus]: ODS_THEME_COLOR_INTENT;
   } = {
     [ResourceStatus.READY]: ODS_THEME_COLOR_INTENT.success,
-    [ResourceStatus.DISABLED]: ODS_THEME_COLOR_INTENT.error,
+    [ResourceStatus.DISABLED]: ODS_THEME_COLOR_INTENT.default,
     [ResourceStatus.UPDATING]: ODS_THEME_COLOR_INTENT.warning,
     [ResourceStatus.ERROR]: ODS_THEME_COLOR_INTENT.error,
     [ResourceStatus.CREATING]: ODS_THEME_COLOR_INTENT.info,
     [ResourceStatus.DELETING]: ODS_THEME_COLOR_INTENT.info,
+    [ResourceStatus.ENABLED]: ODS_THEME_COLOR_INTENT.success,
   };
 
   return label ? (
