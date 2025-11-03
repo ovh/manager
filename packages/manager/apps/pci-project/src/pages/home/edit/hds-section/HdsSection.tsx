@@ -84,7 +84,7 @@ export default function HdsSection({ project }: { project: TProject }) {
         <Translation ns="hds">
           {(_t) =>
             _t('pci_projects_project_edit_hds_btn_validate_status_error', {
-              error: error.message,
+              message: error.message,
             })
           }
         </Translation>,
