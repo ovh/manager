@@ -35,7 +35,7 @@ export default function DeleteEdgeGatewayPage() {
     },
     onError: () => {
       addError({
-        content: t('edge_delete_banner_error', { edgeName }),
+        content: t('edge_operation_error'),
         includedSubRoutes: [subRoutes.edgeGateway],
       });
     },

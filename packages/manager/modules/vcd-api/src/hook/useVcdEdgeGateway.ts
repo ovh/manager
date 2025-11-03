@@ -16,6 +16,7 @@ export const useVcdEdgeGateways = (
     queryFn: () => getVcdEdgeGateways(id, vdcId),
   });
 
+// TODO: [EDGE] remove when unmocking
 export const useVcdEdgeGatewaysMocks = (
   id: string,
   vdcId: string,
@@ -39,6 +40,7 @@ export const useVcdEdgeGateway = (
     queryFn: () => getVcdEdgeGateway(params),
   });
 
+// TODO: [EDGE] remove when unmocking
 export const useVcdEdgeGatewayMocks = (
   params: GetEdgeGatewayParams,
 ): UseQueryResult<VCDEdgeGateway, Error> =>
