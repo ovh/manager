@@ -26,6 +26,7 @@
   "READY": "Fertig",
   "UPDATING": "Wird aktualisiert",
   "ERROR": "Fehler",
+  "ENABLED": "Aktiviert",
   "DELETING": "Wird gelöscht",
   "CREATING": "Wird erstellt",
   "OVHCLOUD_EDITION": "OVHcloud Edition",

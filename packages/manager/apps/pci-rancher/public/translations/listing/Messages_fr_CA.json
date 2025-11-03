@@ -25,12 +25,13 @@
   "editNameModaleHelperInput": "Le nom du service doit comporter entre 3 et 63 caractères , doit commencer et se terminer par des caractères alphanumériques minuscules (de a à z et de 0 à 9) et peut comporter les signes de ponctuation suivants :  '_', '.' et '-'.",
   "editNameRancherCta": "Modifier",
 
-  "READY": "Ready",
-  "DISABLED": "Disabled",
-  "UPDATING": "Updating",
-  "ERROR": "Error",
-  "DELETING": "Deleting",
-  "CREATING": "Creating",
+  "READY": "Prêt",
+  "DISABLED": "Désactivé",
+  "ENABLED": "Activé",
+  "UPDATING": "Mise à jour en cours",
+  "ERROR": "Erreur",
+  "DELETING": "Suppression en cours",
+  "CREATING": "Création en cours",
 
   "OVHCLOUD_EDITION": "OVHcloud Edition",
   "STANDARD": "Standard"
