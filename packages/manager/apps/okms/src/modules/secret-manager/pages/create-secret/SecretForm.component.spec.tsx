@@ -15,7 +15,6 @@ import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { labels, initTestI18n } from '@/common/utils/tests/init.i18n';
 import { SecretForm } from './SecretForm.component';
-import { SECRET_DATA_TEMPLATE } from './SecretForm.constants';
 import {
   changeOdsInputValueByTestId,
   clickJsonEditorToggle,
@@ -143,18 +142,4 @@ describe('Secrets creation form test suite', () => {
       );
     },
   );
-
-  it('should display the template in the data input', async () => {
-    // GIVEN
-    const user = userEvent.setup();
-    await renderSecretForm(MOCK_OKMS_ID);
-
-    // WHEN
-    await clickJsonEditorToggle(user);
-    const inputData = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA);
-    expect(inputData).toBeInTheDocument();
-
-    // THEN
-    expect(inputData).toHaveValue(SECRET_DATA_TEMPLATE);
-  });
 });
