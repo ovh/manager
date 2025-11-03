@@ -76,6 +76,7 @@
   "listingActionEditDescription": "Editer la description",
   "listingActionDeleteVirtualMac": "Supprimer la MAC virtuelle",
   "listingActionByoipTerminate": "Résilier le service BYOIP",
+  "listingActionUpdateIpBlockInformation": "Voir / Modifier les informations sur le bloc IP",
   "listingActionSlice": "Segmenter",
   "listingActionAggregate": "Agréger",
   "listingActionUnblockHackedIP": "Déblocage anti-hack",

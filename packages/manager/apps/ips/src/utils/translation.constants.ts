@@ -7,6 +7,7 @@ export const TRANSLATION_NAMESPACES = {
   edgeNetworkFirewall: 'edge-network-firewall',
   ips: 'ips',
   listing: 'listing',
+  ipBlockInformation: 'ip-block-information',
   managerOrganisations: 'manage-organisations',
   onboarding: 'onboarding',
   order: 'order',

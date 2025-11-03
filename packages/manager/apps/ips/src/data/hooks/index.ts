@@ -1,4 +1,5 @@
 export * from './ip';
+export * from './organisation';
 export * from './useGetTokens';
 export * from './useIpv6Availability';
 export * from './useGetProductService';
