@@ -57,11 +57,7 @@ const customRender = (
 export { customRender as render, cleanup };
 
 export const renderWithContext = ({ children }: { children: ReactNode }) =>
-  customRender(
-    <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
-      {children}
-    </ShellContext.Provider>,
-  );
+  customRender(<ShellContext.Provider value={shellContext}>{children}</ShellContext.Provider>);
 
 export const renderActionBanner = (props: ActionBannerProps) =>
   customRender(<ActionBanner {...props} />);
