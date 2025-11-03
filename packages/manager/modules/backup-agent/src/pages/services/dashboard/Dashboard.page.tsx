@@ -13,10 +13,11 @@ import { urls } from '@/routes/Routes.constants';
 
 import { useDashboardTabs } from './_hooks/useDashboardTabs';
 import { BackupAgentContext } from "@/BackupAgent.context";
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 export default function DashboardPage() {
   const { appName } = useContext(BackupAgentContext)
-  const { t } = useTranslation(['common', 'dashboard']);
+  const { t } = useTranslation([NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
 
   const location = useLocation();
@@ -26,8 +27,8 @@ export default function DashboardPage() {
 
   const activeTab = useMemo(
     () =>
-      tabs.find((tab) => location.pathname === `${urls.dashboardVaults}/${tab.to}`) ??
-      tabs.find((tab) => tab.to && location.pathname.startsWith(`${urls.dashboardVaults}/${tab.to}`)) ??
+      tabs.find((tab) => location.pathname === `${urls.dashboardTenants}/${tab.to}`) ??
+      tabs.find((tab) => tab.to && location.pathname.startsWith(`${urls.dashboardTenants}/${tab.to}`)) ??
       tabs[0],
     [tabs, location.pathname],
   );
@@ -39,7 +40,7 @@ export default function DashboardPage() {
   return (
     <BaseLayout
       header={{ title: t('dashboard:title') }}
-      backLinkLabel={t('dashboard:back')}
+      backLinkLabel={t(`${NAMESPACES.ACTIONS}:back`)}
       onClickReturn={onNavigateBackClicked}
       breadcrumb={<Breadcrumb appName={appName} rootLabel={appName} />}
       tabs={
