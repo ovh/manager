@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   EdgeGatewayNameCell,
-  EdgeGatewayConnectivityCell,
   EdgeGatewayIPBlockCell,
   EdgeGatewayActionCell,
 } from '../components/EdgeGatewayCells.component';
@@ -18,12 +17,6 @@ export const useEdgeGatewayListingColumns = () => {
       id: 'name',
       cell: EdgeGatewayNameCell,
       label: tCommonDashboard('name'),
-      isSortable: false,
-    },
-    {
-      id: 'connectivity_type',
-      cell: EdgeGatewayConnectivityCell,
-      label: t('edge_connectivity_type'),
       isSortable: false,
     },
     {

@@ -63,6 +63,7 @@ export const useApplicationBreadcrumbItems = () => {
       'datacentres/vrack-segment:managed_vcd_dashboard_vrack_add_network',
     ),
     [subRoutes.edgeGateway]: EDGE_GATEWAY_LABEL,
+    [subRoutes.addEdgeGateway]: t('datacentres/edge-gateway:edge_add_title'),
     [subRoutes.deleteEdgeGateway]: t(
       'datacentres/edge-gateway:edge_delete_title',
     ),

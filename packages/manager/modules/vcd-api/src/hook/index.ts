@@ -1,3 +1,4 @@
+export * from './useAddEdgeGateway';
 export * from './useDeleteEdgeGateway';
 export * from './useDeleteVcdVrackSegment';
 export * from './useOrderableResource';
