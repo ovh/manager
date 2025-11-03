@@ -9,6 +9,7 @@ export const getVcdOrganizationRoute = (id: string) => {
 export const getVcdResetPasswordRoute = (id: string) =>
   `${VCD_ORGANIZATION_ROUTE}/${id}/password`;
 
+// VDC
 export const getVcdDatacentresRoute = (id: string) => {
   return `${VCD_ORGANIZATION_ROUTE}/${id}/virtualDataCenter`;
 };
@@ -29,6 +30,7 @@ export const getVdcOrderableResourceRoute = (id: string, vdcId: string) => {
   return `${getVcdDatacentreRoute(id, vdcId)}/orderableResource`;
 };
 
+// Vrack
 export const getVdcVrackSegmentListRoute = (id: string, vdcId: string) => {
   return `${getVcdDatacentreRoute(id, vdcId)}/vrackSegment`;
 };
