@@ -56,7 +56,7 @@ export const getColumns = ({
       accessorFn: (row) => row.description,
     },
     {
-      id: 'access key',
+      id: 'access_key',
       header: () => t('tableHeaderAccessKey'),
       cell: ({ row }) => {
         const accessQuery = useGetUserAccess(row.original.id);
@@ -65,7 +65,7 @@ export const getColumns = ({
       },
     },
     {
-      id: 's3 activated',
+      id: 's3_activated',
       header: () => (
         <div className="flex items-center">
           <Popover>

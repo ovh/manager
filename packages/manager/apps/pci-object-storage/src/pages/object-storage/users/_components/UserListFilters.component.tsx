@@ -5,7 +5,7 @@ export const getFilters = () => {
   const { t } = useTranslation('pci-object-storage/users');
   return [
     {
-      id: 'name',
+      id: 'username',
       label: t('tableHeaderName'),
       comparators: FilterCategories.String,
     },
