@@ -144,6 +144,14 @@ export default function Actions({
     return items;
   };
 
+  if (projectStatus.isSuspended) {
+    return null;
+  }
+
+  if (getMenuItems().length === 0) {
+    return null;
+  }
+
   return (
     <ActionMenu
       id={projectWithService.project_id}
