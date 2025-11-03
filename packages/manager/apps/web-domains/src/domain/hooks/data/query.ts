@@ -1,9 +1,15 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import {
+  useMutation,
+  useQuery,
+  useQueryClient,
+  useQueries,
+} from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import {
   OvhSubsidiary,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
+import { Subsidiary } from '@ovh-ux/manager-config';
 import {
   getDomainAnycastOption,
   getDomainResource,
@@ -28,6 +34,13 @@ import { ServiceInfoUpdateEnum } from '@/common/enum/common.enum';
 import { TDomainContact, TServiceInfo } from '@/common/types/common.types';
 import { AssociatedEmailsServicesEnum } from '@/domain/enum/associatedServices.enum';
 import { emailOfferRedirect } from '@/domain/constants/susbcriptions';
+import {
+  getAssociatedHosting,
+  getFreeHostingService,
+  initialOrderFreeHosting,
+  orderFreeHosting,
+} from '@/domain/data/api/hosting';
+import { FreeHostingOptions } from '@/domain/components/AssociatedServicesCards/Hosting';
 
 export const useGetDomainResource = (serviceName: string) => {
   const { data, isLoading, error } = useQuery<TDomainResource>({
@@ -220,5 +233,92 @@ export function useEmailService(serviceName: string) {
       };
     },
     staleTime: 60_000,
+  });
+}
+
+export function useGetAssociatedHosting(serviceName: string) {
+  return useQuery<string[]>({
+    queryKey: ['associated-hosting', serviceName],
+    queryFn: () => getAssociatedHosting(serviceName),
+  });
+}
+
+export function useOrderFreeHosting() {
+  const queryClient = useQueryClient();
+  const { t } = useTranslation(['domain', 'web-domains/error']);
+  const { addSuccess, addError } = useNotifications();
+
+  const { mutate, isPending, isSuccess } = useMutation({
+    mutationFn: ({
+      cartId,
+      itemId,
+      options,
+    }: {
+      cartId: string;
+      itemId: number;
+      options: FreeHostingOptions;
+    }) => orderFreeHosting(cartId, itemId, options),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['associated-hosting'],
+      });
+      addSuccess(
+        t(
+          'domain_tab_general_information_associated_services_hosting_free_order_success',
+        ),
+      );
+    },
+    onError: (error: Error) => {
+      addError(
+        t(
+          'domain_tab_general_information_associated_services_hosting_free_order_error',
+          { error },
+        ),
+      );
+    },
+  });
+
+  return {
+    orderFreeHosting: mutate,
+    isOrderFreeHostingPending: isPending,
+    orderCompleted: isSuccess,
+  };
+}
+
+export function useInitialOrderFreeHosting(
+  serviceName: string,
+  subsidiary: Subsidiary,
+) {
+  const { data, isLoading, error, refetch } = useQuery({
+    queryKey: ['initial-order-free-hosting', serviceName, subsidiary],
+    queryFn: () => initialOrderFreeHosting(serviceName, subsidiary),
+    enabled: false,
+  });
+
+  return {
+    getInitialOrder: refetch,
+    orderCartDetails: data,
+    isInitialOrderFreeHostingPending: isLoading,
+    orderCartError: error,
+  };
+}
+
+export function useGetFreeHostingService(serviceName: string) {
+  return useQuery<TServiceInfo>({
+    queryKey: ['free-hosting-service', serviceName],
+    queryFn: () => getFreeHostingService(serviceName),
+    enabled: false,
+  });
+}
+
+// Multi-hosting variant: fetch free hosting service info for each provided hosting name.
+// Returns an array of UseQueryResult<TServiceInfo> matching the input order.
+export function useGetFreeHostingServices(serviceNames: string[]) {
+  return useQueries({
+    queries: serviceNames.map((name) => ({
+      queryKey: ['free-hosting-service', name],
+      queryFn: () => getFreeHostingService(name),
+      enabled: !!name, // prevent empty string queries
+    })),
   });
 }
