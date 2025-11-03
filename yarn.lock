@@ -7437,10 +7437,19 @@
     date-fns "^3.6.0"
     lodash.isequal "^4.5.0"
 
-"@ovh-ux/manager-pci-common@^0.20.0":
-  version "0.20.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci-common/-/manager-pci-common-0.20.0.tgz#879e5313674e3324d285628449d489d54895c237"
-  integrity sha512-bPdjV2CHxkc+ZDd06zH3Ss3eCnmhztkMa+wwThXOok5Lb0X3TRANnaQW4KHhofWTxfoLbYPO40KnqK4ErqLczg==
+"@ovh-ux/manager-pci-common@^0.20.1":
+  version "0.20.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci-common/-/manager-pci-common-0.20.1.tgz#4fc6d8709c71106ad844cc4f88d5bf40d42ad528"
+  integrity sha512-RedqU+PjVVAkkvW0BVCEOCrGhzKxuolXjV6UW8JfsEbJ+Cx18YyEt5SRouQ88RYl/4A7bctscMgs6djtacancQ==
+  dependencies:
+    clsx "2.1.1"
+    date-fns "^3.6.0"
+    lodash.isequal "^4.5.0"
+
+"@ovh-ux/manager-pci-common@^0.20.1":
+  version "0.20.1"
+  resolved "https://registry.npmjs.org/@ovh-ux/manager-pci-common/-/manager-pci-common-0.20.1.tgz#4fc6d8709c71106ad844cc4f88d5bf40d42ad528"
+  integrity sha512-RedqU+PjVVAkkvW0BVCEOCrGhzKxuolXjV6UW8JfsEbJ+Cx18YyEt5SRouQ88RYl/4A7bctscMgs6djtacancQ==
   dependencies:
     clsx "2.1.1"
     date-fns "^3.6.0"
