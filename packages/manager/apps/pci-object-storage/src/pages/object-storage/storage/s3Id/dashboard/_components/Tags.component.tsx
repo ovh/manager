@@ -80,10 +80,10 @@ const Tags = () => {
         data-testid="label-add-button"
         mode="outline"
         size="sm"
-        className="shrink-0 h-6"
+        className="h-6"
         onClick={() => setIsAddTagOpen(true)}
       >
-        <Plus className="size-4 mr-1" />
+        <Plus className="size-4" />
         <span className="font-semibold">{t('addButtonLabel')}</span>
       </Button>
       <div className="flex flex-wrap gap-2 mt-4">

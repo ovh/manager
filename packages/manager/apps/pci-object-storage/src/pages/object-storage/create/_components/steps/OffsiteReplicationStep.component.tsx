@@ -181,7 +181,7 @@ const OffsiteReplicationStep = React.forwardRef<
       )}
 
       {value.enabled && (
-        <Alert>
+        <Alert variant="information" className="rounded-md">
           <AlertDescription>
             {t('offsiteReplicationVersioningAlert')}
           </AlertDescription>

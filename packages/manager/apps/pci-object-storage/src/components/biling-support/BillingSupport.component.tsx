@@ -11,7 +11,7 @@ const BillingSupport = () => {
     <>
       <CardHeader>
         <h4>
-          <UserCheck className="inline size-4 mr-2 mb-1" />
+          <UserCheck className="inline size-4 mr-2" />
           {t('billingSupportTitle')}
         </h4>
       </CardHeader>
@@ -21,6 +21,7 @@ const BillingSupport = () => {
           data-testid="billing-support-container"
         >
           <OvhLink
+            className="flex flex-row items-center gap-1"
             data-testid="dashboard-billing-link"
             application="public-cloud"
             path={`#/pci/projects/${projectId}/billing`}
@@ -28,9 +29,10 @@ const BillingSupport = () => {
             rel="noopener noreferrer"
           >
             {t('billingLink')}
-            <ArrowRight className="size-4 inline ml-1" />
+            <ArrowRight className="size-4" />
           </OvhLink>
           <OvhLink
+            className="flex flex-row items-center gap-1"
             data-testid="dashboard-support-link"
             application="dedicated"
             path={`#/support/tickets/new`}
@@ -38,7 +40,7 @@ const BillingSupport = () => {
             rel="noopener noreferrer"
           >
             {t('supportLink')}
-            <ArrowRight className="size-4 inline ml-1" />
+            <ArrowRight className="size-4" />
           </OvhLink>
         </div>
       </CardContent>

@@ -109,7 +109,7 @@ export const TagInput = ({
         onClick={addNewTag}
         disabled={isDisabled}
       >
-        <Plus className="h-4 w-4 mr-2" />
+        <Plus className="h-4 w-4" />
         {t('addTag')}
       </Button>
     </div>

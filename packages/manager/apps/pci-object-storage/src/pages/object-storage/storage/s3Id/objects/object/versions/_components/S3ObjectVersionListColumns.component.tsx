@@ -130,7 +130,7 @@ export const getColumns = ({
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
-                variant="destructive"
+                variant="critical"
                 onClick={() => {
                   onDeleteClicked(object);
                 }}

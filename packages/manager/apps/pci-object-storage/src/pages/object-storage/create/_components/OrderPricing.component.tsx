@@ -16,14 +16,14 @@ const OrderPricing = ({
 }) => {
   const { t } = useTranslation('pci-object-storage/order-funnel');
   const toHourlyTo = (price: number) => price * HOUR_IN_MONTH * MEGA_BYTES;
-  const total = {
-    price:
-      (pricings.offer?.pricings?.[0]?.price ?? 0) +
-      (pricings.replication?.pricings?.[0]?.price ?? 0),
-    tax:
-      (pricings.offer?.pricings?.[0]?.tax ?? 0) +
-      (pricings.replication?.pricings?.[0]?.tax ?? 0),
-  };
+  // const total = {
+  //   price:
+  //     (pricings.offer?.pricings?.[0]?.price ?? 0) +
+  //     (pricings.replication?.pricings?.[0]?.price ?? 0),
+  //   tax:
+  //     (pricings.offer?.pricings?.[0]?.tax ?? 0) +
+  //     (pricings.replication?.pricings?.[0]?.tax ?? 0),
+  // };
   return (
     <div data-testid="table-price-container">
       <Table>

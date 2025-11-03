@@ -44,7 +44,7 @@ const Dashboard = () => {
         <Card>
           <CardHeader>
             <h4>
-              <Settings2 className="inline size-4 mr-2 mb-1" />
+              <Settings2 className="inline size-4 mr-2" />
               {t('configurationTitle')}
             </h4>
           </CardHeader>

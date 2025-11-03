@@ -1,18 +1,19 @@
 import {
   Badge,
+  Button,
   Card,
   CardContent,
-  CardFooter,
   CardHeader,
   Skeleton,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
 } from '@datatr-ux/uxlib';
 import { useTranslation } from 'react-i18next';
-import { Archive, ArrowLeft, ArrowRight, FileStack } from 'lucide-react';
-import { Outlet, useParams, useSearchParams } from 'react-router-dom';
+import { Archive, ArrowLeft, Settings } from 'lucide-react';
+import {
+  Outlet,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 import { useGetS3ObjectVersions } from '@/data/hooks/s3-storage/useGetS3ObjectVersions.hook';
 import { useS3Data } from '../../S3.context';
 import { useGetS3Object } from '@/data/hooks/s3-storage/useGetS3Object.hook';
@@ -28,6 +29,7 @@ const Object = () => {
   );
   const { projectId } = useParams();
   const { s3 } = useS3Data();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const objectKey = searchParams.get('objectKey');
 
@@ -75,37 +77,30 @@ const Object = () => {
             </h5>
           </CardHeader>
           <CardContent>
-            <Table>
-              <TableBody>
-                <TableRow>
-                  <TableCell className="text-semibold">
-                    {t('tableHeaderSize')}
-                  </TableCell>
-                  <TableCell>
-                    {octetConverter(objectQuery.data.size, true, 2)}
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="text-semibold">
-                    {t('tableHeaderUpdateDate')}
-                  </TableCell>
-                  <TableCell>
-                    <FormattedDate
-                      options={{
-                        day: '2-digit',
-                        month: 'short',
-                        year: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        second: '2-digit',
-                        hour12: false,
-                      }}
-                      date={new Date(objectQuery.data.lastModified)}
-                    />
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
+            <div className="grid grid-cols-2 gap-4 items-center">
+              <p className="font-semibold">{t('tableHeaderSize')}</p>
+              <div className="flex flex-row items-center justify-end gap-4">
+                <p>{octetConverter(objectQuery.data.size, true, 2)}</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4 items-center mt-2">
+              <p className="font-semibold">{t('tableHeaderUpdateDate')}</p>
+              <div className="flex flex-row items-center justify-end gap-4">
+                <FormattedDate
+                  options={{
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false,
+                  }}
+                  date={new Date(objectQuery.data.lastModified)}
+                />
+              </div>
+            </div>
           </CardContent>
         </Card>
 
@@ -117,21 +112,30 @@ const Object = () => {
             </h5>
           </CardHeader>
           <CardContent>
-            <Badge variant={'outline'}>
-              {tObj(`objectClass_${objectQuery.data.storageClass}`)}
-            </Badge>
+            <div className="flex flex-row justify-between">
+              <Badge variant={'outline'}>
+                {tObj(`objectClass_${objectQuery.data.storageClass}`)}
+              </Badge>
+
+              <Button
+                className="h-6"
+                mode="outline"
+                size="sm"
+                onClick={() =>
+                  navigate(
+                    `./change-storage-class?objectKey=${encodeURIComponent(
+                      objectKey,
+                    )}`,
+                  )
+                }
+              >
+                <Settings className="size-4" />
+                <span className="font-semibold">
+                  {t('changeStorageClassLink')}
+                </span>
+              </Button>
+            </div>
           </CardContent>
-          <CardFooter>
-            <Link
-              to={`./change-storage-class?objectKey=${encodeURIComponent(
-                objectKey,
-              )}`}
-              className="flex flex-row gap-1 mt-2"
-            >
-              {t('changeStorageClassLink')}
-              <ArrowRight className="w-4 h-4 mt-1 text-primary" />
-            </Link>
-          </CardFooter>
         </Card>
       </div>
 

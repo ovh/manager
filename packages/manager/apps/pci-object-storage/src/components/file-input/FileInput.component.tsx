@@ -75,7 +75,7 @@ export const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
           <Upload className="w-10 h-10 text-gray-500 mb-2" />
           <p className="text-gray-600 mb-4">{t('importFileLabel')}</p>
           <Button type="button" mode="ghost" size="sm" className="font-bold">
-            <Upload className="size-4 mr-2" />
+            <Upload className="size-4" />
             {t('importFileButton')}
           </Button>
 
