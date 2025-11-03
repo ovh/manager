@@ -30,6 +30,7 @@
   "CREATING": "Creando",
   "OVHCLOUD_EDITION": "OVHcloud Edition",
   "STANDARD": "Standard",
-  "DISABLED": "Disabled",
+  "DISABLED": "Deshabilitado",
+  "ENABLED": "Habilitado",
   "rancherStatusCreating": "Creando su Managed Rancher Service... Por favor, espere. Esta operación puede tardar unos minutos."
 }
