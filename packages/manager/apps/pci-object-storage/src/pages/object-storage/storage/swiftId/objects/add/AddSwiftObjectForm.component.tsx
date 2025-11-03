@@ -56,7 +56,7 @@ const AddSwiftObjectForm = ({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit, onError)}
-        className="flex flex-col gap-2 px-6"
+        className="flex flex-col gap-2"
       >
         <FormField
           control={form.control}
@@ -81,7 +81,7 @@ const AddSwiftObjectForm = ({
         />
         <DialogFooter className="flex justify-end">
           <DialogClose asChild>
-            <Button type="button" mode="outline">
+            <Button type="button" mode="ghost">
               {t('fileUploaderButtonCancel')}
             </Button>
           </DialogClose>

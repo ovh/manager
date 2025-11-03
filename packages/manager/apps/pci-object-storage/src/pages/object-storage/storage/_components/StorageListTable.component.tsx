@@ -51,7 +51,7 @@ export default function StoragesList({ storages }: StoragesListProps) {
               navigate('./new');
             }}
           >
-            <Plus className="size-6 mr-2 text-primary-foreground" />
+            <Plus className="size-6" />
             {t('createNewStorage')}
           </Button>
         </DataTable.Action>

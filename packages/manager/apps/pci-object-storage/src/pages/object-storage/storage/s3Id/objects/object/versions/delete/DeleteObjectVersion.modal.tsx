@@ -11,6 +11,7 @@ import {
   DialogHeader,
   DialogTitle,
   Label,
+  DialogBody,
 } from '@datatr-ux/uxlib';
 import { PERMANENT_DELETE_CONFIRMATION } from '@/configuration/polling.constants';
 import RouteModal from '@/components/route-modal/RouteModal';
@@ -75,11 +76,11 @@ const DeleteObjectVersion = () => {
       backUrl={`../?objectKey=${encodeURIComponent(objectKey)}`}
       isLoading={!projectId && !objectKey && !versionObjectQuery.data.key}
     >
-      <DialogContent className="p-0">
-        <DialogHeader className="bg-warning-100 p-6 rounded-t-sm sm:rounded-t-lg ">
+      <DialogContent variant="warning">
+        <DialogHeader>
           <DialogTitle>{t('deleteObjectVersionTitle')}</DialogTitle>
         </DialogHeader>
-        <div className="p-6 pt-0">
+        <DialogBody>
           <p className="mt-2">
             {t('deleteObjectVersionDescription', {
               name: objectKey,
@@ -99,10 +100,10 @@ const DeleteObjectVersion = () => {
               }}
             />
           </div>
-        </div>
-        <DialogFooter className="flex justify-end p-6 pt-0">
+        </DialogBody>
+        <DialogFooter className="flex justify-end">
           <DialogClose asChild>
-            <Button type="button" mode="outline">
+            <Button type="button" mode="ghost">
               {t('deleteObjectVersionButtonCancel')}
             </Button>
           </DialogClose>

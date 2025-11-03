@@ -89,7 +89,9 @@ export const TagInput = ({
             <Button
               type="button"
               mode="outline"
-              size="icon"
+              variant="critical"
+              size="menu"
+              className="mt-1"
               onClick={() => removeTag(Number(id))}
               disabled={isDisabled}
             >
@@ -102,7 +104,7 @@ export const TagInput = ({
       <Button
         className="mt-2"
         type="button"
-        size="xs"
+        size="md"
         mode="outline"
         onClick={addNewTag}
         disabled={isDisabled}

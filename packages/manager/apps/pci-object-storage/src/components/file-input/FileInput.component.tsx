@@ -1,12 +1,6 @@
 import * as React from 'react';
 import { Upload, File as FileIcon, X } from 'lucide-react';
-import {
-  Button,
-  Table,
-  TableBody,
-  TableRow,
-  TableCell,
-} from '@datatr-ux/uxlib';
+import { Button } from '@datatr-ux/uxlib';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import { octetConverter } from '@/lib/bytesHelper';
@@ -87,34 +81,32 @@ export const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
 
           {/* File list */}
           {value?.length > 0 && (
-            <div className="mt-2 px-4">
-              <Table>
-                <TableBody>
-                  {value.map((file, index) => (
-                    <TableRow key={index} className="text-sm">
-                      <TableCell>
-                        <FileIcon className="size-4" />
-                      </TableCell>
-                      <TableCell className="w-[250px] truncate text-left">
-                        {file.name}
-                      </TableCell>
-                      <TableCell>{octetConverter(file.size)}</TableCell>
-                      <TableCell className="text-right">
-                        <Button
-                          type="button"
-                          className="text-text p-0 bg-transparent hover:bg-primary-100 hover:text-primary-700 hover:font-semibold h-4 w-4 mt-1"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            removeFile(file);
-                          }}
-                        >
-                          <X className="size-4" />
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+            <div className="mt-2 px-4 w-full">
+              {value.map((file, index) => (
+                <div
+                  key={index}
+                  className="grid grid-cols-2 gap-4 items-center border-b border-gray-200"
+                >
+                  <div className="flex flex-row items-center gap-4">
+                    <FileIcon className="size-4" />
+                    <p className="font-semibold">{file.name}</p>
+                  </div>
+                  <div className="flex flex-row items-center justify-end gap-4">
+                    <p>{octetConverter(file.size)}</p>
+                    <Button
+                      type="button"
+                      mode="ghost"
+                      className="h-4 w-4"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        removeFile(file);
+                      }}
+                    >
+                      <X className="size-4" />
+                    </Button>
+                  </div>
+                </div>
+              ))}
             </div>
           )}
         </div>

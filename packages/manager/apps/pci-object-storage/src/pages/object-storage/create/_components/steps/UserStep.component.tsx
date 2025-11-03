@@ -44,8 +44,9 @@ const UserStep = React.forwardRef<HTMLButtonElement, UserStepProps>(
             <Button
               ref={ref}
               role="combobox"
+              mode="outline"
               aria-expanded={open}
-              className="text-text border border-input bg-background h-10 w-full rounded-md px-3 py-2 text-sm justify-between hover:bg-background active:bg-background"
+              className="w-full justify-between"
             >
               {value ? (
                 <div className="flex gap-2 items-center">
@@ -90,7 +91,7 @@ const UserStep = React.forwardRef<HTMLButtonElement, UserStepProps>(
         <div className="mt-4 flex gap-2">
           <Dialog>
             <DialogTrigger asChild>
-              <Button size={'xs'} mode={'outline'}>
+              <Button size="xs" mode="outline" className="rounded-md">
                 {t('userCreateButton')}
               </Button>
             </DialogTrigger>
@@ -99,7 +100,7 @@ const UserStep = React.forwardRef<HTMLButtonElement, UserStepProps>(
           {query.data && query.data?.[0]?.access && (
             <Dialog>
               <DialogTrigger asChild>
-                <Button size={'xs'} mode={'outline'}>
+                <Button size="xs" mode="outline" className="rounded-md">
                   {t('userShowCredentialsButton')}
                 </Button>
               </DialogTrigger>

@@ -245,7 +245,7 @@ export const getColumns = ({
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 data-testid="storage-action-delete-button"
-                variant="destructive"
+                variant="critical"
                 onClick={() => {
                   onDeleteClicked(row.original);
                 }}

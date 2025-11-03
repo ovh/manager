@@ -36,12 +36,10 @@ export function DataTable<TData>({
   const headerGroups = table.getHeaderGroups();
   return (
     <Table>
-      <TableHeader className="border bg-[#f7f8f8]">
+      <TableHeader>
         {headerGroups.map((headerGroup) => (
           <TableRow key={headerGroup.id}>
-            {renderRowExpansion && (
-              <TableHead className="border-r-0 w-6"></TableHead>
-            )}
+            {renderRowExpansion && <TableHead />}
             {headerGroup.headers.map((header, index) => {
               const isEmptyHeader = header.id === MENU_COLUMN_ID;
               // Get a reference to the previous header
@@ -50,7 +48,7 @@ export function DataTable<TData>({
               return (
                 <TableHead
                   key={header.id}
-                  className={`h-10 px-2 border font-semibold text-primary-800 ${
+                  className={`${
                     isEmptyHeader || renderRowExpansion
                       ? 'border-l-0' // Remove left border for empty headers and row extend column
                       : ''
@@ -72,7 +70,7 @@ export function DataTable<TData>({
           </TableRow>
         ))}
       </TableHeader>
-      <TableBody className="border">
+      <TableBody>
         {rows?.length ? (
           rows.map((row) => (
             <React.Fragment key={row.id}>
@@ -93,7 +91,7 @@ export function DataTable<TData>({
                   </TableCell>
                 )}
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id} className="px-2 py-1">
+                  <TableCell key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
@@ -109,10 +107,7 @@ export function DataTable<TData>({
           ))
         ) : (
           <TableRow>
-            <TableCell
-              colSpan={headerGroups[0].headers.length}
-              className="h-24 text-center"
-            >
+            <TableCell colSpan={headerGroups[0].headers.length}>
               {t('noResult')}
             </TableCell>
           </TableRow>

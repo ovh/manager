@@ -24,7 +24,7 @@ const Dashboard = () => {
         <Guides />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card>
+        <Card className="w-full">
           <CardHeader>
             <h4>
               <Archive className="size-4 inline mr-2" />
@@ -36,7 +36,7 @@ const Dashboard = () => {
           </CardContent>
         </Card>
         <div className="space-y-2">
-          <Card>
+          <Card className="w-full">
             <CardHeader>
               <h4>
                 <FolderLock className="size-4 inline mr-2" />
@@ -48,7 +48,7 @@ const Dashboard = () => {
             </CardContent>
           </Card>
           {!isLocaleZone && (
-            <Card>
+            <Card className="w-full">
               <CardHeader>
                 <h4>
                   <FileStack className="size-4 inline mr-2" />
@@ -60,7 +60,7 @@ const Dashboard = () => {
               </CardContent>
             </Card>
           )}
-          <Card>
+          <Card className="w-full">
             <CardHeader>
               <h4>
                 <FileKey className="size-4 inline mr-2" />
@@ -75,7 +75,7 @@ const Dashboard = () => {
       </div>
       {!isLocaleZone && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Card>
+          <Card className="w-full">
             <CardHeader>
               <h4>
                 <Tag className="size-4 inline mr-2" />
@@ -86,7 +86,7 @@ const Dashboard = () => {
               <Tags />
             </CardContent>
           </Card>
-          <Card>
+          <Card className="w-full">
             <CardHeader>
               <h4>{t('accessLogsTitle')}</h4>
             </CardHeader>
@@ -97,7 +97,7 @@ const Dashboard = () => {
         </div>
       )}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card>
+        <Card className="w-full">
           <CardHeader>
             <h4>{t('lifecycleTitle')}</h4>
           </CardHeader>
@@ -106,7 +106,7 @@ const Dashboard = () => {
           </CardContent>
         </Card>
         {!isLocaleZone && (
-          <Card>
+          <Card className="w-full">
             <CardHeader>
               <h4>{t('staticWebsiteHostingTitle')}</h4>
             </CardHeader>

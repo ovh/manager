@@ -110,7 +110,7 @@ const OffsiteReplicationStep = React.forwardRef<
               >
                 {t(`offsiteReplicationLabel-${replicationMode}`)}
                 {RECOMMENEDED_REPLICATION_MODE === replicationMode && (
-                  <Badge variant={'info'}>
+                  <Badge variant="information">
                     {t('offsiteReplicationRecommended')}
                   </Badge>
                 )}

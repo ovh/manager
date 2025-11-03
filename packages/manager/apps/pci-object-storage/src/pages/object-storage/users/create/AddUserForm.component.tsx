@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
+  DialogBody,
   DialogClose,
   DialogContent,
   DialogFooter,
@@ -102,7 +103,7 @@ const AddUserForm = ({ onClose }: AddUserFormProps) => {
 
   return (
     <>
-      <DialogContent>
+      <DialogContent variant="information">
         <DialogHeader>
           <DialogTitle data-testid="add-user-modal">
             {t('addUserTitle')}
@@ -110,8 +111,10 @@ const AddUserForm = ({ onClose }: AddUserFormProps) => {
         </DialogHeader>
         {newUserPwd ? (
           <>
-            <UserInformation pwd={newUserPwd} newUser={newUserQuery.data} />
-            <DialogFooter className="flex justify-end mt-4">
+            <DialogBody>
+              <UserInformation pwd={newUserPwd} newUser={newUserQuery.data} />
+            </DialogBody>
+            <DialogFooter>
               <DialogClose asChild onClick={() => handleClose()}>
                 <Button
                   disabled={
@@ -120,7 +123,7 @@ const AddUserForm = ({ onClose }: AddUserFormProps) => {
                   }
                   data-testid="add-user-close-button"
                   type="button"
-                  mode="outline"
+                  mode="ghost"
                 >
                   {t('formAddUserButtonClose')}
                 </Button>
@@ -130,22 +133,24 @@ const AddUserForm = ({ onClose }: AddUserFormProps) => {
         ) : (
           <Form {...form}>
             <form onSubmit={onSubmit} className="flex flex-col gap-2">
-              <FormField
-                control={form.control}
-                name="userName"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t('userNameLabel')}</FormLabel>
-                    <FormControl>
-                      <Input disabled={isAddUserPending} {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <DialogFooter className="flex justify-end mt-4">
+              <DialogBody>
+                <FormField
+                  control={form.control}
+                  name="userName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t('userNameLabel')}</FormLabel>
+                      <FormControl>
+                        <Input disabled={isAddUserPending} {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </DialogBody>
+              <DialogFooter>
                 <DialogClose asChild>
-                  <Button type="button" mode="outline">
+                  <Button type="button" mode="ghost">
                     {t('addUserButtonCancel')}
                   </Button>
                 </DialogClose>

@@ -12,6 +12,7 @@ import {
   DialogHeader,
   DialogTitle,
   Label,
+  DialogBody,
 } from '@datatr-ux/uxlib';
 import { TERMINATE_CONFIRMATION } from '@/configuration/polling.constants';
 import RouteModal from '@/components/route-modal/RouteModal';
@@ -82,19 +83,18 @@ const DeleteStorage = ({
 
   return (
     <RouteModal isLoading={!storage}>
-      <DialogContent className="p-0">
-        <DialogHeader className="bg-warning-100 p-6 rounded-t-sm sm:rounded-t-lg ">
+      <DialogContent className="p-0" variant="warning">
+        <DialogHeader>
           <DialogTitle data-testid="delete-storage-modal">
             {t('deleteStorageTitle')}
           </DialogTitle>
         </DialogHeader>
-        <div className="p-6 pt-0">
+        <DialogBody>
           <p className="mt-2">
             {t('deleteStorageDescription', {
               name: storage?.name,
             })}
           </p>
-
           <div className="flex flex-col gap-2 mt-2">
             <Label htmlFor="terminateInput">
               {t('deleteStorageConfirmation')}
@@ -109,13 +109,13 @@ const DeleteStorage = ({
               }}
             />
           </div>
-        </div>
-        <DialogFooter className="flex justify-end p-6 pt-0">
+        </DialogBody>
+        <DialogFooter>
           <DialogClose asChild>
             <Button
               data-testid="delete-storage-cancel-button"
               type="button"
-              mode="outline"
+              mode="ghost"
             >
               {t('deleteStorageButtonCancel')}
             </Button>

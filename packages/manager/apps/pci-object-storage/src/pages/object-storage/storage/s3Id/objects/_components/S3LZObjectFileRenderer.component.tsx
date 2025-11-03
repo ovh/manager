@@ -9,21 +9,12 @@ import {
   DropdownMenuTrigger,
   useToast,
 } from '@datatr-ux/uxlib';
-import {
-  Download,
-  Files,
-  Loader2,
-  MoreHorizontal,
-  Pen,
-  Trash,
-} from 'lucide-react';
+import { Download, Loader2, MoreHorizontal, Trash } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { VersioningStatusEnum } from '@datatr-ux/ovhcloud-types/cloud/storage/VersioningStatusEnum';
 import { octetConverter } from '@/lib/bytesHelper';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import FileIcon from '@/components/fileIcon/FileIcon.component';
-import Link from '@/components/links/Link.component';
 import useDownload from '@/hooks/useDownload';
 import { useGetPresignUrlS3 } from '@/data/hooks/s3-storage/useGetPresignUrlS3.hook';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
@@ -34,7 +25,7 @@ import { cn } from '@/lib/utils';
 interface S3ObjectFileRendererProps {
   object: StorageObject;
 }
-const S3ObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
+const S3LZObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
   const { projectId } = useParams();
   const navigate = useNavigate();
   const { t } = useTranslation('pci-object-storage/storages/s3/objects');
@@ -59,11 +50,6 @@ const S3ObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
       download({ type: 'url', url: presignUrl.url }, object.key);
     },
   });
-
-  const onDetailsClicked = () =>
-    navigate(`./object?objectKey=${encodeURIComponent(object.key)}`);
-  const onVersionsClicked = () =>
-    navigate(`./object/versions?objectKey=${encodeURIComponent(object.key)}`);
   const onDownloadClicked = () => {
     return getPresignUrlS3({
       projectId,
@@ -83,13 +69,6 @@ const S3ObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
 
   const actions = [
     {
-      id: 'details',
-      icon: <Pen className="size-4" />,
-      mobileOnly: true,
-      onClick: () => onDetailsClicked(),
-      label: t('tableActionManage'),
-    },
-    {
       id: 'download',
       icon: pendingGetPresignUrl ? (
         <Loader2 className="size-4 animate-spin" />
@@ -99,13 +78,6 @@ const S3ObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
       onClick: () => onDownloadClicked(),
       disabled: object.isDeleteMarker || pendingGetPresignUrl,
       label: t('tableActionDownload'),
-    },
-    {
-      id: 'versions',
-      icon: <Files className="size-4" />,
-      onClick: () => onVersionsClicked(),
-      label: t('tableActionShowVersion'),
-      hidden: s3.versioning.status !== VersioningStatusEnum.enabled,
     },
     {
       id: 'delete',
@@ -121,14 +93,10 @@ const S3ObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
       <div
         className={cn(
           'py-2 px-3 grid grid-cols-[minmax(0,1fr)_auto_130px_auto] items-center gap-4 hover:bg-primary-50',
-          !object.isLatest && 'bg-neutral-50 pl-6',
         )}
       >
         {/* NAME */}
-        <Link
-          to={`./object?objectKey=${encodeURIComponent(object.key)}`}
-          className="flex items-center gap-2 min-w-0"
-        >
+        <div className="flex flex-row gap-2 items-center">
           <FileIcon fileName={object.key} className="w-4 h-4 flex-shrink-0" />
           <span className="truncate" title={object.key}>
             {String(object.key)
@@ -140,7 +108,7 @@ const S3ObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
               {t('tableSuppressionBadgeLabel')}
             </Badge>
           )}
-        </Link>
+        </div>
 
         {/* SIZE + DATE */}
         <div className="text-muted-foreground flex justify-end gap-2">
@@ -169,23 +137,21 @@ const S3ObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
         </div>
 
         <div className="text-right hidden md:flex">
-          {actions
-            .filter((a) => !a.mobileOnly)
-            .map((a) => (
-              <Button
-                key={a.id}
-                aria-label={a.label}
-                title={a.label}
-                onClick={a.onClick}
-                mode={'ghost'}
-                size={'xs'}
-                className="p-1"
-                variant={a.variant}
-                disabled={a.disabled}
-              >
-                {a.icon}
-              </Button>
-            ))}
+          {actions.map((a) => (
+            <Button
+              key={a.id}
+              aria-label={a.label}
+              title={a.label}
+              onClick={a.onClick}
+              mode={'ghost'}
+              size={'xs'}
+              className="p-1"
+              variant={a.variant}
+              disabled={a.disabled}
+            >
+              {a.icon}
+            </Button>
+          ))}
         </div>
 
         <div className="text-right block md:hidden">
@@ -226,4 +192,4 @@ const S3ObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
   );
 };
 
-export default S3ObjectFileRenderer;
+export default S3LZObjectFileRenderer;

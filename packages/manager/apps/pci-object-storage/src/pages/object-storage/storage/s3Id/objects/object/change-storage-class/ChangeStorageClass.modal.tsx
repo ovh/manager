@@ -9,6 +9,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  DialogBody,
 } from '@datatr-ux/uxlib';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import { useUpdateS3ObjectStorageClass } from '@/data/hooks/s3-storage/useUpdateS3ObjectStorageClass.hook';
@@ -79,21 +80,21 @@ const ChangeStorageClassModal = () => {
       isLoading={objectQuery.isLoading || !objectQuery.data}
       backUrl={`../../object?objectKey=${encodeURIComponent(objectKey)}`}
     >
-      <DialogContent className="sm:max-w-xl">
+      <DialogContent variant="information">
         <DialogHeader>
           <DialogTitle>{t('changeStorageClassTitle')}</DialogTitle>
         </DialogHeader>
-        <div className="py-4">
+        <DialogBody>
           <p className="mb-4">{t('changeStorageClassDescription')}</p>
           <StorageClassSelector
             storageClass={storageClass}
             onStorageClassChange={setStorageClass}
             is3AZ={is3AZ}
           />
-        </div>
+        </DialogBody>
         <DialogFooter className="flex justify-end">
           <DialogClose asChild>
-            <Button type="button" mode="outline">
+            <Button type="button" mode="ghost">
               {t('changeStorageClassCancel')}
             </Button>
           </DialogClose>

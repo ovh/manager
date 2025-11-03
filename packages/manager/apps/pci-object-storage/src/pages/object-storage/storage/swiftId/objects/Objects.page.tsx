@@ -25,7 +25,7 @@ const SwiftObjectsPage = () => {
       </div>
 
       <Button onClick={() => navigate('./add-object')}>
-        <Plus className="size-6 mr-2 text-primary-foreground" />
+        <Plus className="size-6" />
         {t('addNewObject')}
       </Button>
 

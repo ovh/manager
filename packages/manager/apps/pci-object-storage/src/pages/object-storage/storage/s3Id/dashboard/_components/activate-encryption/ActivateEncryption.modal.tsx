@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { EncryptionAlgorithmEnum } from '@datatr-ux/ovhcloud-types/cloud/storage/EncryptionAlgorithmEnum';
 import {
   Button,
+  DialogBody,
   DialogClose,
   DialogContent,
   DialogFooter,
@@ -59,32 +60,34 @@ const ActivateEncryption = () => {
 
   return (
     <RouteModal isLoading={!s3Query.data?.name}>
-      <DialogContent>
+      <DialogContent variant="information">
         <DialogHeader>
           <DialogTitle data-testid="s3-policy-modal">
             {t('activateEncryptionTitle')}
           </DialogTitle>
         </DialogHeader>
-        <p>{t('activateEncryptionDescription')}</p>
-        <p>
-          <AlertCircle className="size-4 inline shrink-0 mr-2" />
-          <span>{t('activateEncryptionWarning')}</span>
-          <A
-            href={getGuideUrl(GUIDES.OBJ_STO_ENCRYPTION, locale)}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div className="inline-flex items-center gap-2">
-              <span className="text-primary-500">
-                {t('activateEncryptionDocLink')}
-              </span>
-              <ExternalLink className="size-4 text-primary-500" />
-            </div>
-          </A>
-        </p>
+        <DialogBody>
+          <p>{t('activateEncryptionDescription')}</p>
+          <p>
+            <AlertCircle className="size-4 inline shrink-0 mr-2" />
+            <span>{t('activateEncryptionWarning')}</span>
+            <A
+              href={getGuideUrl(GUIDES.OBJ_STO_ENCRYPTION, locale)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className="inline-flex items-center gap-2">
+                <span className="text-primary-500">
+                  {t('activateEncryptionDocLink')}
+                </span>
+                <ExternalLink className="size-4 text-primary-500" />
+              </div>
+            </A>
+          </p>
+        </DialogBody>
         <DialogFooter className="flex justify-end">
           <DialogClose asChild>
-            <Button type="button" mode="outline">
+            <Button type="button" mode="ghost">
               {t('cancelButton')}
             </Button>
           </DialogClose>

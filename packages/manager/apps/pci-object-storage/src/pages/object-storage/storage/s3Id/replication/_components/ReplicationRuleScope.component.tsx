@@ -73,7 +73,7 @@ export const ReplicationRuleScope = ({
               </div>
             </RadioGroup>
             {field.value && (
-              <Alert>
+              <Alert variant="information" className="rounded-md my-2">
                 <AlertDescription>
                   {t('replicationApplicationLimitedHelper')}
                 </AlertDescription>

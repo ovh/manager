@@ -46,7 +46,7 @@ const Objects = () => {
 
       <div className="flex justify-between">
         <Button onClick={() => navigate('./add-object')}>
-          <Plus className="size-6 mr-2 text-primary-foreground" />
+          <Plus className="size-6" />
           {t('addNewObject')}
         </Button>
         {!isLocaleZone && (
@@ -60,8 +60,7 @@ const Objects = () => {
           </div>
         )}
       </div>
-
-      <S3ObjectBrowser objects={objects} />
+      <S3ObjectBrowser objects={objects} isLocaleZone={isLocaleZone} />
       <Outlet />
     </>
   );

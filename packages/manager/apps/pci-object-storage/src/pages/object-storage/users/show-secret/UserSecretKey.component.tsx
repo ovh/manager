@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import {
   Button,
   Clipboard,
+  DialogBody,
   DialogClose,
   DialogContent,
   DialogFooter,
@@ -47,40 +48,42 @@ const UserSecretKey = ({ user }: SecretKeyProps) => {
   }, []);
 
   return (
-    <DialogContent>
+    <DialogContent variant="information">
       <DialogHeader>
         <DialogTitle data-testid="get-user-secret-modal">
           {t('secretTitle')}
         </DialogTitle>
       </DialogHeader>
-      <div className="flex flex-col gap-2 p-2">
-        <span className="text-sm font-medium leading-none">
-          {t('accessKeyLabel')}
-        </span>
-        <Clipboard
-          value={user.access_key}
-          onCopy={() =>
-            toast.toast({
-              title: t('passwordCopy'),
-            })
-          }
-        />
-        <span className="text-sm font-medium leading-none">
-          {t('secretKeyLabel')}
-        </span>
-        <Clipboard
-          secret
-          value={secret}
-          onCopy={() =>
-            toast.toast({
-              title: t('passwordCopy'),
-            })
-          }
-        />
-      </div>
+      <DialogBody>
+        <div className="flex flex-col gap-2">
+          <span className="text-sm font-medium leading-none">
+            {t('accessKeyLabel')}
+          </span>
+          <Clipboard
+            value={user.access_key}
+            onCopy={() =>
+              toast.toast({
+                title: t('passwordCopy'),
+              })
+            }
+          />
+          <span className="text-sm font-medium leading-none">
+            {t('secretKeyLabel')}
+          </span>
+          <Clipboard
+            secret
+            value={secret}
+            onCopy={() =>
+              toast.toast({
+                title: t('passwordCopy'),
+              })
+            }
+          />
+        </div>
+      </DialogBody>
       <DialogFooter className="flex justify-end">
         <DialogClose asChild>
-          <Button type="button" mode="outline">
+          <Button type="button" mode="ghost">
             {t('useSecretButtonClose')}
           </Button>
         </DialogClose>

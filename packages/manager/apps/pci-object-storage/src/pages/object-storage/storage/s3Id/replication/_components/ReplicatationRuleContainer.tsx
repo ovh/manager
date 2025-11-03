@@ -8,7 +8,7 @@ export const ReplicationRuleContainer = ({
   children: React.ReactNode;
 }) => {
   return (
-    <Card>
+    <Card className="w-full">
       <CardHeader>
         <CardTitle>{title}</CardTitle>
       </CardHeader>

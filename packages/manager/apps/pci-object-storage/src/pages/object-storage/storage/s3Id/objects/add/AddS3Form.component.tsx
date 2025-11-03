@@ -17,6 +17,9 @@ import { FileInput } from '@/components/file-input/FileInput.component';
 import storages from '@/types/Storages';
 import { useS3Data } from '../../S3.context';
 import StorageClassSelector from '@/components/storage-class-selector/StorageClassSelector.component';
+import { useObjectStorageData } from '@/pages/object-storage/ObjectStorage.context';
+import { useIs3AZ } from '@/hooks/useIs3AZ.hook';
+import { useIsLocaleZone } from '@/hooks/useIsLocalZone.hook';
 
 interface AddS3FormProps {
   onSubmit: SubmitHandler<{
@@ -56,8 +59,9 @@ const AddS3Form = ({ onSubmit, onError, initialValue }: AddS3FormProps) => {
     },
   });
   const { s3 } = useS3Data();
-  // TODO: handle this better
-  const is3AZ = s3.region === 'EU-WEST-PAR';
+  const { regions } = useObjectStorageData();
+  const is3AZ = useIs3AZ(s3, regions);
+  const isLocalZone = useIsLocaleZone(s3, regions);
   return (
     <Form {...form}>
       <form
@@ -70,7 +74,7 @@ const AddS3Form = ({ onSubmit, onError, initialValue }: AddS3FormProps) => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t('prefixFieldLabel')}</FormLabel>
-              <Input placeholder="Enter a prefix" {...field} />
+              <Input placeholder={t('prefixFieldPlaceholder')} {...field} />
               <FormMessage />
             </FormItem>
           )}
@@ -84,6 +88,7 @@ const AddS3Form = ({ onSubmit, onError, initialValue }: AddS3FormProps) => {
                 storageClass={field.value}
                 onStorageClassChange={field.onChange}
                 is3AZ={is3AZ}
+                isLZ={isLocalZone}
               />
               <FormMessage />
             </FormItem>
@@ -101,7 +106,7 @@ const AddS3Form = ({ onSubmit, onError, initialValue }: AddS3FormProps) => {
         />
         <DialogFooter className="flex justify-end">
           <DialogClose asChild>
-            <Button type="button" mode="outline">
+            <Button type="button" mode="ghost">
               {t('fileUploaderButtonCancel')}
             </Button>
           </DialogClose>

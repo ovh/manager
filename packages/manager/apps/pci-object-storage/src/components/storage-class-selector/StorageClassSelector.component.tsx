@@ -17,6 +17,7 @@ interface StorageClassSelectorProps {
   storageClass: storages.StorageClassEnum;
   onStorageClassChange: (storageClass: storages.StorageClassEnum) => void;
   is3AZ?: boolean;
+  isLZ?: boolean;
   disabled?: boolean;
 }
 
@@ -24,6 +25,7 @@ const StorageClassSelector = ({
   storageClass,
   onStorageClassChange,
   is3AZ = false,
+  isLZ = false,
   disabled = false,
 }: StorageClassSelectorProps) => {
   const { t } = useTranslation('components/file-uploader');
@@ -85,7 +87,9 @@ const StorageClassSelector = ({
         {Object.values(storages.StorageClassEnum)
           .filter((st) => {
             if (st === storages.StorageClassEnum.DEEP_ARCHIVE) return false;
-            if (is3AZ && st === storages.StorageClassEnum.HIGH_PERF)
+            if ((is3AZ || isLZ) && st === storages.StorageClassEnum.HIGH_PERF)
+              return false;
+            if (isLZ && st === storages.StorageClassEnum.STANDARD_IA)
               return false;
             return true;
           })

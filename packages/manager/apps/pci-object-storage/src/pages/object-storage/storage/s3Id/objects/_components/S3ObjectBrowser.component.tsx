@@ -7,11 +7,13 @@ import S3ObjectDropFileModal, {
 import { BrowserRoot } from '@/components/browser/BrowserRoot.component';
 import { BrowserFileList } from '@/components/browser/BrowserFileList.component';
 import { BrowserFileListTopbar } from '@/components/browser/BrowserFileListTopbar.component';
+import S3LZObjectFileRenderer from './S3LZObjectFileRenderer.component';
 
 interface S3ObjectBrowserProps {
   objects: StorageObject[];
+  isLocaleZone?: boolean;
 }
-const S3ObjectBrowser = ({ objects }: S3ObjectBrowserProps) => {
+const S3ObjectBrowser = ({ objects, isLocaleZone }: S3ObjectBrowserProps) => {
   const [dropped, setDropped] = useState<DroppedFiles>(null);
   return (
     <>
@@ -26,7 +28,13 @@ const S3ObjectBrowser = ({ objects }: S3ObjectBrowserProps) => {
         <div className="flex flex-col min-h-0 border rounded-md relative max-h-[70vh]">
           <BrowserFileListTopbar />
           <BrowserFileList<StorageObject & { name: string }>
-            renderFileRow={(file) => <S3ObjectFileRenderer object={file} />}
+            renderFileRow={(file) =>
+              isLocaleZone ? (
+                <S3LZObjectFileRenderer object={file} />
+              ) : (
+                <S3ObjectFileRenderer object={file} />
+              )
+            }
           />
         </div>
       </BrowserRoot>

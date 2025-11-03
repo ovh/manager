@@ -30,8 +30,9 @@ const AnchorLabel = ({
   onClick: (id: string) => void;
 }) => (
   <Button
-    className="h-auto p-0 bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline text-sm"
+    className="h-auto p-0 !bg-transparent hover:bg-transparent font-bold text-primary underline-offset-4 hover:underline text-sm"
     type="button"
+    mode="ghost"
     onClick={() => onClick('options')}
   >
     {label}

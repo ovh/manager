@@ -15,7 +15,6 @@ import { add, formatRFC3339 } from 'date-fns';
 import { octetConverter } from '@/lib/bytesHelper';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import FileIcon from '@/components/fileIcon/FileIcon.component';
-import Link from '@/components/links/Link.component';
 import useDownload from '@/hooks/useDownload';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import storages from '@/types/Storages';
@@ -89,7 +88,7 @@ const SwiftObjectFileRenderer = ({ object }: SwiftObjectFileRendererProps) => {
       icon: <Trash className="size-4" />,
       onClick: () => onDeleteClicked(),
       label: t('tableActionDelete'),
-      variant: 'destructive',
+      variant: 'critical',
     },
   ];
   return (

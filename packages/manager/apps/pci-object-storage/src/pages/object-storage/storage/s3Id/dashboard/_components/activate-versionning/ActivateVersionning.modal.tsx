@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { VersioningStatusEnum } from '@datatr-ux/ovhcloud-types/cloud/storage/VersioningStatusEnum';
 import {
   Button,
+  DialogBody,
   DialogClose,
   DialogContent,
   DialogFooter,
@@ -54,16 +55,18 @@ const ActivateVersionning = () => {
 
   return (
     <RouteModal isLoading={!s3Query.data?.name}>
-      <DialogContent>
+      <DialogContent variant="information">
         <DialogHeader>
           <DialogTitle data-testid="s3-policy-modal">
             {t('activateVersionningTitle')}
           </DialogTitle>
         </DialogHeader>
-        <p>{t('activateVersionningDescription')}</p>
+        <DialogBody>
+          <p>{t('activateVersionningDescription')}</p>
+        </DialogBody>
         <DialogFooter className="flex justify-end">
           <DialogClose asChild>
-            <Button type="button" mode="outline">
+            <Button type="button" mode="ghost">
               {t('cancelButton')}
             </Button>
           </DialogClose>

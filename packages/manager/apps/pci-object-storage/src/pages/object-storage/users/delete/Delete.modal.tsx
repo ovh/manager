@@ -8,8 +8,9 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  DialogBody,
 } from '@datatr-ux/uxlib';
-import { ArrowRight } from 'lucide-react';
+import { ArrowUpRightFromSquare } from 'lucide-react';
 import RouteModal from '@/components/route-modal/RouteModal';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import { useDeleteUser } from '@/data/hooks/user/useDeleteUser.hook';
@@ -59,38 +60,38 @@ const DeleteUser = () => {
 
   return (
     <RouteModal isLoading={!user || !credsQuery.data}>
-      <DialogContent className="p-0">
-        <DialogHeader className="bg-warning-100 p-6 rounded-t-sm sm:rounded-t-lg ">
+      <DialogContent variant="warning">
+        <DialogHeader>
           <DialogTitle data-testid="delete-storage-modal">
             {t('deleteUserTitle')}
           </DialogTitle>
         </DialogHeader>
-        <div className="p-4">
-          <div className="in-line space-x-2">
+        <DialogBody>
+          <div className="inline">
             <span className="mt-2">{t('deleteUserDescription')}</span>
             <OvhLink
-              className="hover:no-underline"
+              className="hover:no-underline flex flex-row items-center"
               application="public-cloud"
               path={userPath}
               target="_blank"
               rel="noopener noreferrer"
             >
               {t('deleteUSerDescription1')}
-              <ArrowRight className="inline w-4 h-4" />
+              <ArrowUpRightFromSquare className="inline size-3 ml-2" />
             </OvhLink>
           </div>
-          <p>
+          <p className="mt-2">
             {t('deleteUSerDescription2', {
               name: user?.username,
             })}
           </p>
-        </div>
-        <DialogFooter className="flex justify-end p-6 pt-0">
+        </DialogBody>
+        <DialogFooter>
           <DialogClose asChild>
             <Button
               data-testid="delete-storage-cancel-button"
               type="button"
-              mode="outline"
+              mode="ghost"
             >
               {t('deleteUserButtonCancel')}
             </Button>

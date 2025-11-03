@@ -1,7 +1,6 @@
 import { Loader2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Progress } from '@datatr-ux/uxlib';
-import clsx from 'clsx';
 
 interface FileUploadPendingProps {
   value?: number; // current uploaded count or percentage

@@ -169,7 +169,7 @@ export const getColumns = ({
               ) : (
                 <DropdownMenuItem
                   data-testid="user-action-delete-button"
-                  variant="destructive"
+                  variant="critical"
                   onClick={() => {
                     onDeleteClicked(row.original);
                   }}

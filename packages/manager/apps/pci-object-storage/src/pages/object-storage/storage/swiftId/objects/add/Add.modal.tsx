@@ -1,6 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { DialogContent, DialogHeader, DialogTitle } from '@datatr-ux/uxlib';
+import {
+  DialogBody,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@datatr-ux/uxlib';
 import { useAddSwiftObjectForm } from './useAddSwiftObjectForm.component';
 import RouteModal from '@/components/route-modal/RouteModal';
 import FileUploadPending from '@/components/file-input/FileUploadPending.component';
@@ -21,20 +26,22 @@ const AddObjectModal = () => {
 
   return (
     <RouteModal>
-      <DialogContent className="sm:max-w-xl px-0">
-        <DialogHeader className="px-6">
-          <DialogTitle>{t('title')}</DialogTitle>
+      <DialogContent className="sm:max-w-xl" variant="information">
+        <DialogHeader>
+          <DialogTitle>{t('addNewObject')}</DialogTitle>
         </DialogHeader>
-        <div className="w-full max-h-[80vh] overflow-y-auto overflow-x-hidden">
-          {isUploading ? (
-            <FileUploadPending
-              value={uploadedFilesCount}
-              total={totalFilesToUploadCount}
-            />
-          ) : (
-            <AddSwiftObjectForm onSubmit={onSubmit} onError={() => {}} />
-          )}
-        </div>
+        <DialogBody>
+          <div className="w-full max-h-[80vh] overflow-y-auto overflow-x-hidden px-1">
+            {isUploading ? (
+              <FileUploadPending
+                value={uploadedFilesCount}
+                total={totalFilesToUploadCount}
+              />
+            ) : (
+              <AddSwiftObjectForm onSubmit={onSubmit} onError={() => {}} />
+            )}
+          </div>
+        </DialogBody>
       </DialogContent>
     </RouteModal>
   );

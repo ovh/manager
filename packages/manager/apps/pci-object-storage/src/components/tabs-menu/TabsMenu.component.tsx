@@ -37,7 +37,7 @@ const TabsMenu = ({ tabs }: TabsMenuProps) => {
                 {tab.count > 0 && (
                   <Badge
                     variant="primary"
-                    className="hidden md:block text-xs rounded-full aspect-square"
+                    className="hidden md:block text-xs rounded-full text-center aspect-square px-0"
                   >
                     {tab.count}
                   </Badge>

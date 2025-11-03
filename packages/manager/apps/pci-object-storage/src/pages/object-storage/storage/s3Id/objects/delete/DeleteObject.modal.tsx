@@ -8,6 +8,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  DialogBody,
 } from '@datatr-ux/uxlib';
 import RouteModal from '@/components/route-modal/RouteModal';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
@@ -55,20 +56,20 @@ const DeleteSwiftObject = () => {
 
   return (
     <RouteModal isLoading={!projectId && !objectKey}>
-      <DialogContent className="p-0">
-        <DialogHeader className="bg-warning-100 p-6 rounded-t-sm sm:rounded-t-lg ">
+      <DialogContent variant="warning">
+        <DialogHeader>
           <DialogTitle>{t('deleteObjectTitle')}</DialogTitle>
         </DialogHeader>
-        <div className="p-6 pt-0">
+        <DialogBody>
           <p className="mt-2 break-all">
             {t('deleteObjectDescription', {
               name: objectKey,
             })}
           </p>
-        </div>
-        <DialogFooter className="flex justify-end p-6 pt-0">
+        </DialogBody>
+        <DialogFooter className="flex justify-end">
           <DialogClose asChild>
-            <Button type="button" mode="outline">
+            <Button type="button" mode="ghost">
               {t('deleteObjectButtonCancel')}
             </Button>
           </DialogClose>

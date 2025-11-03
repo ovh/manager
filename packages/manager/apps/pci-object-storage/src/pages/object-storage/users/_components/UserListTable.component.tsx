@@ -71,7 +71,7 @@ export default function UsersList({ users }: UsersListProps) {
               navigate('./create');
             }}
           >
-            <Plus className="size-6 mr-2 text-primary-foreground" />
+            <Plus className="size-6" />
             {t('createNewUser')}
           </Button>
         </DataTable.Action>

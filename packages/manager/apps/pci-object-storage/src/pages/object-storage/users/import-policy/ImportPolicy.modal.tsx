@@ -2,6 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
+  DialogBody,
   DialogClose,
   DialogContent,
   DialogFooter,
@@ -81,42 +82,48 @@ const ImportPolicyModal = () => {
 
   return (
     <RouteModal>
-      <DialogContent className="sm:max-w-xl px-0">
-        <DialogHeader className="px-6">
+      <DialogContent className="sm:max-w-xl" variant="information">
+        <DialogHeader>
           <DialogTitle>{t('addUserPolicyTitle')}</DialogTitle>
         </DialogHeader>
-        <div className="w-full max-h-[80vh] overflow-y-auto overflow-x-hidden px-6">
-          <p>{t('addUserPolicyDescription')}</p>
-          {isPending ? (
-            <FileUploadPending value={0} total={1} />
-          ) : (
-            <Form {...form}>
-              <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-                <FormField
-                  control={form.control}
-                  name="policies"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Policy</FormLabel>
-                      <FileInput {...field} />
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <DialogFooter className="flex justify-end">
-                  <DialogClose asChild>
-                    <Button type="button" mode="outline">
-                      {t('fileUploaderButtonCancel')}
-                    </Button>
-                  </DialogClose>
-                  <Button type="submit">
-                    {t('fileUploaderButtonConfirm')}
-                  </Button>
-                </DialogFooter>
-              </form>
-            </Form>
-          )}
-        </div>
+        <DialogBody>
+          <div className="w-full max-h-[80vh] overflow-y-auto overflow-x-hidden">
+            <p>{t('addUserPolicyDescription')}</p>
+            {isPending ? (
+              <FileUploadPending value={0} total={1} />
+            ) : (
+              <Form {...form}>
+                <form
+                  onSubmit={handleSubmit}
+                  className="flex flex-col gap-2"
+                  id="import-policy"
+                >
+                  <FormField
+                    control={form.control}
+                    name="policies"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Policy</FormLabel>
+                        <FileInput {...field} />
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </form>
+              </Form>
+            )}
+          </div>
+        </DialogBody>
+        <DialogFooter className="flex justify-end">
+          <DialogClose asChild>
+            <Button type="button" mode="ghost">
+              {t('fileUploaderButtonCancel')}
+            </Button>
+          </DialogClose>
+          <Button type="submit" form="import-policy">
+            {t('fileUploaderButtonConfirm')}
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </RouteModal>
   );

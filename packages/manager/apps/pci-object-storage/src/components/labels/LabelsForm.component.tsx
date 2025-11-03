@@ -90,7 +90,7 @@ const LabelsForm = React.forwardRef<HTMLInputElement, LabelsFormProps>(
                 />
                 <SheetFooter>
                   <SheetClose asChild>
-                    <Button type="button" mode="outline">
+                    <Button type="button" mode="ghost">
                       {t('cancelButton')}
                     </Button>
                   </SheetClose>

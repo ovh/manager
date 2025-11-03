@@ -76,7 +76,7 @@ const OrderFunnel = ({
       toast.toast({
         title: t('createContainerErrorTitle'),
         variant: 'destructive',
-        description: err,
+        description: err.message,
       });
     },
     onSuccess: (container) => {
@@ -91,7 +91,7 @@ const OrderFunnel = ({
       toast.toast({
         title: t('createContainerErrorTitle'),
         variant: 'destructive',
-        description: err,
+        description: err.message,
       });
     },
     onSuccess: (container) => {

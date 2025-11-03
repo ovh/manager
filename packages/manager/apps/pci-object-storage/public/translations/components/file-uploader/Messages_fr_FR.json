@@ -4,6 +4,7 @@
   "errorJsonFile": "Le fichier doit être un JSON",
   "prefixRequiredError": "Ce champ est obligatoire",
   "prefixFieldLabel": "Préfixe",
+  "prefixFieldPlaceholder": "Entrer un préfixe",
   "importFileLabel": "Importer des fichiers",
   "importFileButton": "Sélectionner des fichiers...",
   "fileUploaderButtonCancel": "Annuler",

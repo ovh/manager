@@ -8,6 +8,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
+  DialogBody,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -86,123 +87,132 @@ const SwithType = () => {
 
   return (
     <RouteModal isLoading={!s3Query.data?.name}>
-      <DialogContent>
+      <DialogContent variant="information">
         <DialogHeader>
           <DialogTitle data-testid="s3-policy-modal">
             {t('updateS3PolicyTitle')}
           </DialogTitle>
         </DialogHeader>
-        <DialogDescription>{t('updateS3PolicyDescription')}</DialogDescription>
-        <Form {...form}>
-          <form onSubmit={onSubmit} className="flex flex-col gap-2">
-            <FormField
-              control={form.control}
-              name="userId"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('userIdFieldLabel')}</FormLabel>
-                  <Popover open={openUser} onOpenChange={setOpenUser}>
-                    <PopoverTrigger asChild>
-                      <FormControl>
-                        <Button
-                          data-testid="select-user-button"
-                          role="combobox"
-                          mode="ghost"
-                          className="w-full flex flex-row items-center justify-between text-sm border"
-                        >
-                          {field.value
-                            ? `${
-                                users.find((us) => us.id === field.value)
-                                  ?.username
-                              } - ${
-                                users.find((us) => us.id === field.value)
-                                  ?.description
-                              }`
-                            : t('userPlaceholder')}
-                          <ChevronsUpDown className="opacity-50 size-4" />
-                        </Button>
-                      </FormControl>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-full">
-                      <Command>
-                        <CommandInput
-                          placeholder={t('inputUserPlaceholder')}
-                          className="h-9"
-                        />
-                        <CommandList>
-                          <CommandEmpty>{t('noUserFound')}</CommandEmpty>
-                          <CommandGroup>
-                            {users.map((user) => (
-                              <CommandItem
-                                value={user.username}
-                                key={user.id}
-                                onSelect={() => {
-                                  form.setValue('userId', user.id);
-                                  setOpenUser(false);
-                                }}
-                              >
-                                {`${user.username} - ${user.description}`}
-                                <Check
-                                  className={cn(
-                                    'ml-auto',
-                                    user.id === field.value
-                                      ? 'opacity-100'
-                                      : 'opacity-0',
-                                  )}
-                                />
-                              </CommandItem>
-                            ))}
-                          </CommandGroup>
-                        </CommandList>
-                      </Command>
-                    </PopoverContent>
-                  </Popover>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
 
-            <FormField
-              control={form.control}
-              name="userRole"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('userRoleFieldLabel')}</FormLabel>
-                  <FormControl>
-                    <Select value={field.value} onValueChange={field.onChange}>
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {Object.values(storages.PolicyRoleEnum).map((role) => (
-                          <SelectItem key={role} value={role}>
-                            {t(`role_${role}`)}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+        <DialogBody>
+          <DialogDescription>
+            {t('updateS3PolicyDescription')}
+          </DialogDescription>
+          <Form {...form}>
+            <form onSubmit={onSubmit} className="flex flex-col gap-2 mt-2">
+              <FormField
+                control={form.control}
+                name="userId"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('userIdFieldLabel')}</FormLabel>
+                    <Popover open={openUser} onOpenChange={setOpenUser}>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            data-testid="select-user-button"
+                            role="combobox"
+                            mode="outline"
+                            className="w-full flex flex-row items-center justify-between text-sm"
+                          >
+                            {field.value
+                              ? `${
+                                  users.find((us) => us.id === field.value)
+                                    ?.username
+                                } - ${
+                                  users.find((us) => us.id === field.value)
+                                    ?.description
+                                }`
+                              : t('userPlaceholder')}
+                            <ChevronsUpDown className="opacity-50 size-4" />
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-full">
+                        <Command>
+                          <CommandInput
+                            placeholder={t('inputUserPlaceholder')}
+                            className="h-9"
+                          />
+                          <CommandList>
+                            <CommandEmpty>{t('noUserFound')}</CommandEmpty>
+                            <CommandGroup>
+                              {users.map((user) => (
+                                <CommandItem
+                                  value={user.username}
+                                  key={user.id}
+                                  onSelect={() => {
+                                    form.setValue('userId', user.id);
+                                    setOpenUser(false);
+                                  }}
+                                >
+                                  {`${user.username} - ${user.description}`}
+                                  <Check
+                                    className={cn(
+                                      'ml-auto',
+                                      user.id === field.value
+                                        ? 'opacity-100'
+                                        : 'opacity-0',
+                                    )}
+                                  />
+                                </CommandItem>
+                              ))}
+                            </CommandGroup>
+                          </CommandList>
+                        </Command>
+                      </PopoverContent>
+                    </Popover>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <DialogFooter className="flex justify-end">
-              <DialogClose asChild>
-                <Button type="button" mode="outline">
-                  {t('updateS3PolicyButtonCancel')}
-                </Button>
-              </DialogClose>
-              <Button
-                type="submit"
-                data-testid="s3-policy-submit-button"
-                disabled={isPending}
-              >
-                {t('updateS3PolicyButtonConfirm')}
-              </Button>
-            </DialogFooter>
-          </form>
-        </Form>
+              <FormField
+                control={form.control}
+                name="userRole"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('userRoleFieldLabel')}</FormLabel>
+                    <FormControl>
+                      <Select
+                        value={field.value}
+                        onValueChange={field.onChange}
+                      >
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {Object.values(storages.PolicyRoleEnum).map(
+                            (role) => (
+                              <SelectItem key={role} value={role}>
+                                {t(`role_${role}`)}
+                              </SelectItem>
+                            ),
+                          )}
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </form>
+          </Form>
+        </DialogBody>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button type="button" mode="ghost">
+              {t('updateS3PolicyButtonCancel')}
+            </Button>
+          </DialogClose>
+          <Button
+            type="submit"
+            data-testid="s3-policy-submit-button"
+            disabled={isPending}
+          >
+            {t('updateS3PolicyButtonConfirm')}
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </RouteModal>
   );

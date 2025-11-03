@@ -11,7 +11,7 @@ const CreateUser = () => {
 
   return (
     <RouteModal>
-      <AddUserForm onClose={handleClose} /> 
+      <AddUserForm onClose={handleClose} />
     </RouteModal>
   );
 };

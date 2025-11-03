@@ -14,7 +14,7 @@ const Configuration = () => {
   const toast = useToast();
   const { swiftId } = useParams();
   const navigate = useNavigate();
-  const onCopy = () => toast.toast({ title: t('successCopy') });
+  const onCopy = () => toast.toast({ title: t('copyLabel') });
 
   return (
     <div data-testid="configuration-container">
@@ -28,7 +28,7 @@ const Configuration = () => {
             <span className="inline-block w-full" tabIndex={0}>
               <Button
                 data-testid="swift-config-delete-button"
-                variant="destructive"
+                variant="critical"
                 mode="outline"
                 className="w-full mt-4"
                 onClick={() => navigate('./delete')}

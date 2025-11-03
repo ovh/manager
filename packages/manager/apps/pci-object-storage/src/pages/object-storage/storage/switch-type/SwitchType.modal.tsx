@@ -2,6 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
+  DialogBody,
   DialogClose,
   DialogContent,
   DialogDescription,
@@ -56,20 +57,22 @@ const SwithType = () => {
 
   return (
     <RouteModal isLoading={!storageQuery.data?.name}>
-      <DialogContent>
+      <DialogContent variant="information">
         <DialogHeader>
           <DialogTitle data-testid="switch-type-modal">
             {t('switchTypeTitle')}
           </DialogTitle>
+        </DialogHeader>
+        <DialogBody>
           <DialogDescription>
             {storageQuery.data?.containerType === storages.TypeEnum.public
               ? t('switchToPrivateDescription')
               : t('switchToPublicDescription')}
           </DialogDescription>
-        </DialogHeader>
+        </DialogBody>
         <DialogFooter className="flex justify-end">
           <DialogClose asChild>
-            <Button type="button" mode="outline">
+            <Button type="button" mode="ghost">
               {t('switchTypeButtonCancel')}
             </Button>
           </DialogClose>
