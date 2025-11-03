@@ -2,7 +2,7 @@ import { useRef } from 'react';
 
 import { Table } from '@ovhcloud/ods-react';
 
-import { DatagridProps } from '@/components/datagrid/Datagrid.props';
+import { DatagridProps, ExpandableRow } from '@/components/datagrid/Datagrid.props';
 import { TableHeaderContent } from '@/components/datagrid/table/table-head';
 
 import { TableBody } from './table/table-body/TableBody.component';
@@ -10,7 +10,6 @@ import { TableFooter } from './table/table-footer/TableFooter.component';
 import { Topbar } from './topbar/Topbar.component';
 import './translations';
 import { useDatagrid } from './useDatagrid';
-import { ExpandableRow } from './useDatagrid.props';
 
 const DEFAULT_ROW_HEIGHT = 50;
 const DEFAULT_CONTAINER_HEIGHT = 570;
