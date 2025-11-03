@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.161.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.161.7...@ovh-ux/manager-container-app@0.161.8) (2025-11-03)
+
+
+### Bug Fixes
+
+* **pci:** fix pci menu rules for analytics and db translation issue ([383c341](https://github.com/ovh/manager/commit/383c341c6c0c15f31cc24b85bca30ed12db1d436)), closes [#DATATR-2599](https://github.com/ovh/manager/issues/DATATR-2599)
+
+
+
+
+
 ## [0.161.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.161.6...@ovh-ux/manager-container-app@0.161.7) (2025-11-03)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.8.3...@ovh-ux/manager-public-cloud@7.9.0) (2025-11-03)
+
+
+### Features
+
+* **pci-ai-tools:**  QPU deeplinks and fix ([91c7a4b](https://github.com/ovh/manager/commit/91c7a4b8181c7804d38c229df395b0ddd16779f8)), closes [#AIS-1742](https://github.com/ovh/manager/issues/AIS-1742)
+
+
+
+
+
 ## [7.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.8.2...@ovh-ux/manager-public-cloud@7.8.3) (2025-11-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud
