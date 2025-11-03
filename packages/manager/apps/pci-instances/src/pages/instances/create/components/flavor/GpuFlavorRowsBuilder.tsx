@@ -35,10 +35,12 @@ export function GpuFlavorRowsBuilder(
         prices: (
           <div className="flex flex-col">
             <Text preset={TEXT_PRESET.span} className="font-semibold">
-              {flavor.hourlyPrice.toFixed(4)} €
+              {flavor.hourlyPrice ? `${flavor.hourlyPrice.toFixed(4)} €` : '-'}
             </Text>
             <Text preset={TEXT_PRESET.span}>
-              ~ {flavor.monthlyPrice.toFixed(2)} €
+              {flavor.monthlyPrice
+                ? `~ ${flavor.monthlyPrice.toFixed(2)} €`
+                : '-'}
             </Text>
           </div>
         ),

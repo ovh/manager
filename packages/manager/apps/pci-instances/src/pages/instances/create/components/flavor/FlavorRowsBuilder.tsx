@@ -28,15 +28,23 @@ export function FlavorRowsBuilder(
         memory: <Text preset={TEXT_PRESET.span}>{flavor.memory}</Text>,
         vCore: <Text preset={TEXT_PRESET.span}>{flavor.vCore}</Text>,
         storage: <Text preset={TEXT_PRESET.span}>{flavor.storage}</Text>,
-        mode: <DeploymentModeBadge mode={flavor.mode} size={BADGE_SIZE.sm} />,
+        mode: flavor.mode ? (
+          <DeploymentModeBadge mode={flavor.mode} size={BADGE_SIZE.sm} />
+        ) : (
+          <Text preset={TEXT_PRESET.span} className="font-semibold">
+            -
+          </Text>
+        ),
         hourlyPrice: (
           <Text preset={TEXT_PRESET.span} className="font-semibold">
-            {flavor.hourlyPrice?.toFixed(4)} €
+            {flavor.hourlyPrice ? `${flavor.hourlyPrice.toFixed(4)} €` : '-'}
           </Text>
         ),
         monthlyPrice: (
           <Text preset={TEXT_PRESET.span} className="font-semibold">
-            {flavor.monthlyPrice?.toFixed(2)} € *
+            {flavor.monthlyPrice
+              ? `~  ${flavor.monthlyPrice.toFixed(2)} €`
+              : '-'}
           </Text>
         ),
       };
