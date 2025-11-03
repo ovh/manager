@@ -16,6 +16,7 @@ import Loading from '@/components/loading/Loading.component';
 import { useEdgeGatewayListingColumns } from './hooks/useEdgeGatewayListingColumns';
 import { EdgeGatewayOrderButton } from './components/EdgeGatewayOrderButton.component';
 import { isEdgeCompatibleVDC } from '@/utils/edgeGatewayCompatibility';
+import { EDGE_GATEWAY_MAX_QUANTITY } from './datacentreEdgeGateway.constants';
 
 export default function EdgeGatewayListingPage() {
   const { id, vdcId } = useParams();
@@ -28,8 +29,9 @@ export default function EdgeGatewayListingPage() {
     isLoading: queryList.some((q) => q.isLoading),
     isError: queryList.some((q) => q.isError),
     error: queryList.find((q) => q.isError)?.error?.message ?? null,
-    data: { vdc: vdcQuery?.data?.data, edge: edgeQuery?.data },
+    data: { vdc: vdcQuery?.data?.data, edges: edgeQuery?.data },
   };
+  const hasMaxEdges = queries.data?.edges?.length >= EDGE_GATEWAY_MAX_QUANTITY;
 
   if (queries.isLoading) return <Loading />;
   if (queries.isError) {
@@ -47,11 +49,14 @@ export default function EdgeGatewayListingPage() {
       <Suspense fallback={<Loading />}>
         <section className="px-10 flex flex-col">
           <OdsText preset="heading-3">{EDGE_GATEWAY_LABEL}</OdsText>
-          <EdgeGatewayOrderButton className="mt-4 mb-8" />
+          <EdgeGatewayOrderButton
+            className="mt-4 mb-8"
+            isOrderDisabled={hasMaxEdges}
+          />
           <Datagrid
             columns={columns}
-            items={queries.data.edge}
-            totalItems={queries.data.edge?.length}
+            items={queries.data.edges}
+            totalItems={queries.data.edges?.length}
           />
         </section>
       </Suspense>
