@@ -4,11 +4,12 @@ import { VSPC_TENANTS_MOCKS } from '@/mocks/tenant/vspcTenants.mock';
 import { VSPCTenant } from '@/types/VspcTenant.type';
 
 import { getVSPCTenants } from '../../api/tenants/tenants.requests';
-import { GET_TENANTS_QUERY_KEY } from './useBackupTenants';
+import { BACKUP_TENANTS_QUERY_KEY } from './useBackupTenants';
+import {Resource} from "@/types/Resource.type";
 
-type TUseVSPCTenantsResult = UseQueryResult<VSPCTenant[], Error>;
+type TUseVSPCTenantsResult = UseQueryResult<Resource<VSPCTenant>[], Error>;
 
-export const GET_VSPC_TENANTS_QUERY_KEY = [...GET_TENANTS_QUERY_KEY, 'vspc'];
+export const GET_VSPC_TENANTS_QUERY_KEY = [...BACKUP_TENANTS_QUERY_KEY, 'vspc'];
 
 export const useVSPCTenants = (): TUseVSPCTenantsResult =>
   useQuery({

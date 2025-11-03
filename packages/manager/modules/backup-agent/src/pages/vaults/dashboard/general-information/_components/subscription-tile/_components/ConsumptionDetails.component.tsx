@@ -1,4 +1,4 @@
-import {OdsBadge} from "@ovhcloud/ods-components/react";
+import { OdsBadge } from "@ovhcloud/ods-components/react";
 
 export const ConsumptionDetails = () => {
   return (

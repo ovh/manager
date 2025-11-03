@@ -53,7 +53,7 @@ describe('buildDeleteTenantUrl test suite', () => {
       desc: 'dashboardUrl if tenantId is undefined & origin=dashboard',
       tenantId: undefined as unknown as string,
       origin: 'dashboard',
-      expectedUrl: urls.dashboard,
+      expectedUrl: urls.dashboardTenants,
     },
     {
       desc: 'listing deleteUrl if tenantId is valid & origin=listing',
