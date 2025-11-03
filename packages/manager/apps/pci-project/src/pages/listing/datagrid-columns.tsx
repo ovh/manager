@@ -30,7 +30,8 @@ const ProjectLink: React.FC<{
   label: string;
   getProjectUrl: (projectId: string) => Promise<string>;
   isRedirectExternal: boolean;
-}> = ({ projectId, label, getProjectUrl, isRedirectExternal }) => {
+  isSuspended: boolean;
+}> = ({ projectId, label, getProjectUrl, isRedirectExternal, isSuspended }) => {
   const url = useProjectUrl(getProjectUrl, projectId);
   const { trackClick } = useOvhTracking();
   const handleTracking = () => {
@@ -39,6 +40,16 @@ const ProjectLink: React.FC<{
       actions: PROJECTS_TRACKING.LISTING.SHOW_PROJECT,
     });
   };
+
+  if (isSuspended) {
+    return (
+      <OdsLink
+        href="#"
+        label={label}
+        className="opacity-50 cursor-not-allowed pointer-events-none"
+      />
+    );
+  }
 
   return isRedirectExternal ? (
     <OdsLink
@@ -67,6 +78,7 @@ export const getDatagridColumns = (
           label={props.description || ''}
           getProjectUrl={getProjectUrl}
           isRedirectExternal={isRedirectExternal}
+          isSuspended={props.status === 'suspended'}
         />
         {props.isDefault && (
           <OdsBadge
@@ -77,6 +89,7 @@ export const getDatagridColumns = (
         )}
       </DataGridTextCell>
     ),
+
     isSearchable: true,
     isSortable: true,
     isFilterable: true,
