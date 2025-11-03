@@ -35,7 +35,7 @@ type TRegionSelectionModalProps = PropsWithChildren<{
 }>;
 
 type TSelectRegionChageDetail = {
-  items: SelectItem<TCustomRegionItemData>[];
+  items: SelectItem[];
   value: string[];
 };
 
@@ -58,7 +58,8 @@ const RegionSelectionModal: FC<TRegionSelectionModalProps> = ({
 
     if (newRegion && newRegion.customRendererData && 'value' in newRegion)
       setRegion({
-        macroRegion: newRegion.customRendererData.macroRegion,
+        macroRegion: (newRegion.customRendererData as TCustomRegionSelected)
+          .macroRegion,
         microRegion: newRegion.value,
       });
 
@@ -102,16 +103,20 @@ const RegionSelectionModal: FC<TRegionSelectionModalProps> = ({
               placeholder={t('pci_instance_creation_select_new_region')}
               customItemRenderer={({
                 selectedItems,
-              }: SelectCustomItemRendererArg<TCustomRegionItemData>) => (
+              }: SelectCustomItemRendererArg) => (
                 <>
                   {selectedItems[0] && (
                     <Localization
                       name={selectedItems[0].label}
                       countryCode={
-                        selectedItems[0].customRendererData?.countryCode
+                        (selectedItems[0]
+                          .customRendererData as TCustomRegionItemData)
+                          .countryCode
                       }
                       deploymentMode={
-                        selectedItems[0].customRendererData?.deploymentMode
+                        (selectedItems[0]
+                          .customRendererData as TCustomRegionItemData)
+                          .deploymentMode
                       }
                     />
                   )}
@@ -123,11 +128,15 @@ const RegionSelectionModal: FC<TRegionSelectionModalProps> = ({
               customOptionRenderer={({
                 label,
                 customData,
-              }: SelectCustomOptionRendererArg<TCustomRegionItemData>) => (
+              }: SelectCustomOptionRendererArg) => (
                 <Localization
                   name={label}
-                  countryCode={customData?.countryCode}
-                  deploymentMode={customData?.deploymentMode}
+                  countryCode={
+                    (customData as TCustomRegionItemData).countryCode
+                  }
+                  deploymentMode={
+                    (customData as TCustomRegionItemData).deploymentMode
+                  }
                 />
               )}
             />
