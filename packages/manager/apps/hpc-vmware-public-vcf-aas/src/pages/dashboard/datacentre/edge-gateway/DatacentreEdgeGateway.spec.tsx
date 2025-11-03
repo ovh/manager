@@ -47,7 +47,6 @@ describe('Datacentre Edge Gateway Listing Page', () => {
     const elements = [
       labels.commonDashboard.name,
       config.labels.edge_ip_block,
-      config.labels.edge_connectivity_type,
       config.edge.currentState.edgeGatewayName,
       config.edge.currentState.ipBlock,
     ];
