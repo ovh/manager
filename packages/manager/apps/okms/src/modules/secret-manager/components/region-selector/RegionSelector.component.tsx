@@ -8,6 +8,7 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useRegionName } from '@key-management-service/hooks/useRegionName';
 import { Link } from '@/common/components/link/Link.component';
 import { useRegionSelector } from '@/modules/secret-manager/hooks/useRegionSelector';
 
@@ -19,6 +20,7 @@ export const RegionSelector = () => {
     isError,
   } = useRegionSelector();
   const { t } = useTranslation(NAMESPACES.REGION);
+  const { translateRegionName } = useRegionName();
   const popoverRef = useRef<HTMLOdsPopoverElement>(null);
 
   // Render nothing if there is an error
@@ -35,7 +37,7 @@ export const RegionSelector = () => {
           icon="chevron-down"
           iconAlignment="right"
           id="trigger-region-selector-popover"
-          label={currentRegion?.label || ''}
+          label={currentRegion ? translateRegionName(currentRegion.region) : ''}
           variant="ghost"
           isLoading={isLoading}
         />
@@ -66,7 +68,7 @@ export const RegionSelector = () => {
                       )}
                       key={link.region}
                       href={link.href}
-                      label={link.label}
+                      label={translateRegionName(link.region)}
                       isRouterLink
                       onClick={() => {
                         popoverRef.current?.hide();
