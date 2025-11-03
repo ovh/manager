@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { TInstancesCatalogDTO } from '@/adapters/tanstack/instancesCatalog/right/dto.type';
 import { TDeploymentModeDataForCard } from '@/pages/instances/create/view-models/deploymentModeViewModel';
 import { TAggregatedInstance } from '@/types/instance/entity.type';
@@ -167,6 +168,87 @@ export const mockedInstancesCatalogDTO: TInstancesCatalogDTO = {
       },
     },
   ],
+  flavors: [
+    {
+      name: 'd2-2',
+      specifications: {
+        cpu: {
+          value: 1,
+          unit: 'vCore',
+        },
+        ram: {
+          value: 2,
+          unit: 'GB',
+        },
+        storage: {
+          value: 25,
+          unit: 'GB',
+        },
+        bandwidth: {
+          public: {
+            value: 100,
+            unit: 'Mbit',
+          },
+          private: {
+            value: 100,
+            unit: 'Mbit',
+          },
+        },
+      },
+      regions: [
+        {
+          name: 'GRA-STAGING-A',
+          flavorId: 'ddec2f08-9ddb-4367-949f-f369674c6c4d',
+          quota: 800,
+          availableStocks: true,
+          tags: [],
+        },
+      ],
+      pricings: [
+        {
+          regions: [
+            'UK1',
+            'INTERNAL.GRA1',
+            'WAW1',
+            'SYD1',
+            'SGP1',
+            'GRA-STAGING-A',
+            'GRA9',
+            'GRA11',
+            'RBX-A',
+            'SBG5',
+            'GRA7',
+            'SBG7',
+            'BHS5',
+            'DE1',
+          ],
+          prices: [
+            {
+              type: 'hour',
+              price: {
+                currencyCode: 'EUR',
+                priceInUcents: 991000,
+                text: '0.01 €',
+                value: 0.00991,
+              },
+              includeVat: false,
+            },
+            {
+              type: 'month',
+              price: {
+                currencyCode: 'EUR',
+                priceInUcents: 549000000,
+                text: '5.49 €',
+                value: 5.49,
+              },
+              includeVat: false,
+            },
+          ],
+        },
+      ],
+      osType: 'linux',
+    },
+  ],
 };
 
 export const mockedInstancesCatalogEntity: TInstancesCatalog = {
@@ -225,6 +307,7 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
             availabilityZones: [],
             isInMaintenance: false,
             isActivable: true,
+            macroRegionId: 'GRA',
           },
         ],
         [
@@ -234,6 +317,7 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
             availabilityZones: [],
             isInMaintenance: false,
             isActivable: true,
+            macroRegionId: 'GRA',
           },
         ],
         [
@@ -243,6 +327,7 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
             availabilityZones: [],
             isInMaintenance: true,
             isActivable: true,
+            macroRegionId: 'BHS',
           },
         ],
         [
@@ -256,6 +341,7 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
             ],
             isInMaintenance: false,
             isActivable: false,
+            macroRegionId: 'EU-SOUTH-LZ-MIL',
           },
         ],
         [
@@ -269,6 +355,7 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
             ],
             isInMaintenance: false,
             isActivable: true,
+            macroRegionId: 'PAR',
           },
         ],
       ]),
@@ -354,6 +441,89 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
         ],
       ]),
       allIds: ['Novelties'],
+    },
+    flavors: {
+      byId: new Map([
+        [
+          'd2-2',
+          {
+            name: 'd2-2',
+            specifications: {
+              cpu: {
+                unit: 'vCore',
+                value: 1,
+              },
+              ram: {
+                unit: 'GB',
+                value: 2,
+              },
+              storage: {
+                unit: 'GB',
+                value: 25,
+              },
+              bandwidth: {
+                public: {
+                  unit: 'Mbit',
+                  value: 100,
+                },
+                private: {
+                  unit: 'Mbit',
+                  value: 100,
+                },
+              },
+            },
+            osType: 'linux',
+            regionalizedFlavorIds: ['ddec2f08-9ddb-4367-949f-f369674c6c4d'],
+          },
+        ],
+      ]),
+      allIds: ['d2-2'],
+    },
+    flavorPrices: {
+      byId: new Map([
+        [
+          'd2-2-0-price',
+          {
+            id: 'd2-2-0-price',
+            prices: [
+              {
+                type: 'hour',
+                currencyCode: 'EUR',
+                includeVat: false,
+                value: 0.00991,
+                priceInUcents: 991000,
+                text: '0.01 €',
+              },
+              {
+                type: 'month',
+                currencyCode: 'EUR',
+                includeVat: false,
+                value: 5.49,
+                priceInUcents: 549000000,
+                text: '5.49 €',
+              },
+            ],
+          },
+        ],
+      ]),
+      allIds: ['d2-2-0-price'],
+    },
+    regionalizedFlavors: {
+      byId: new Map([
+        [
+          'ddec2f08-9ddb-4367-949f-f369674c6c4d',
+          {
+            id: 'ddec2f08-9ddb-4367-949f-f369674c6c4d',
+            flavorId: 'd2-2',
+            hasStock: true,
+            priceId: 'd2-2-0-price',
+            quota: 800,
+            regionID: 'GRA-STAGING-A',
+            tags: [],
+          },
+        ],
+      ]),
+      allIds: ['ddec2f08-9ddb-4367-949f-f369674c6c4d'],
     },
   },
   relations: {
@@ -797,66 +967,71 @@ export const mockedFlavorCategories = [
 
 export const mockedFlavors: TFlavorData[] = [
   {
+    id: '1',
     unavailable: false,
     unavailableQuota: false,
     name: 'b3-8',
     memory: 8,
     vCore: 2,
-    storage: '50NVMe',
     bandwidthPublic: '500 Mbit/s',
     bandwidthPrivate: '4 Gbit/s max',
+    storage: 50,
     mode: 'region-3-az',
     hourlyPrice: 0.0465,
     monthlyPrice: 25.5,
   },
   {
+    id: '2',
     unavailable: false,
     unavailableQuota: false,
     name: 'b3-16',
     memory: 16,
     vCore: 4,
-    storage: '100NVMe',
     bandwidthPublic: '500 Mbit/s',
     bandwidthPrivate: '4 Gbit/s max',
+    storage: 100,
     mode: 'region-3-az',
     hourlyPrice: 0.186,
     monthlyPrice: 51.0,
   },
   {
+    id: '3',
     unavailable: false,
     unavailableQuota: false,
     name: 'b3-32',
     memory: 32,
     vCore: 8,
-    storage: '200NVMe',
     bandwidthPublic: '500 Mbit/s',
     bandwidthPrivate: '4 Gbit/s max',
+    storage: 200,
     mode: 'region-3-az',
     hourlyPrice: 0.372,
     monthlyPrice: 102.0,
   },
   {
+    id: '4',
     unavailable: false,
     unavailableQuota: true,
     name: 'b3-256',
     memory: 256,
     vCore: 128,
-    storage: '400NVMe',
     bandwidthPublic: '500 Mbit/s',
     bandwidthPrivate: '4 Gbit/s max',
+    storage: 400,
     mode: 'region-3-az',
     hourlyPrice: 2.9756,
     monthlyPrice: 816.0,
   },
   {
+    id: '5',
     unavailable: true,
     unavailableQuota: false,
     name: 'b3-512',
     memory: 512,
     vCore: 160,
-    storage: '400NVMe',
     bandwidthPublic: '500 Mbit/s',
     bandwidthPrivate: '4 Gbit/s max',
+    storage: 400,
     mode: 'region-3-az',
     hourlyPrice: 3.7195,
     monthlyPrice: 1632.0,
@@ -865,6 +1040,7 @@ export const mockedFlavors: TFlavorData[] = [
 
 export const mockedGpuFlavors: TGpuFlavorData[] = [
   {
+    id: '1',
     unavailable: false,
     unavailableQuota: false,
     name: 'A10-45',
@@ -873,13 +1049,14 @@ export const mockedGpuFlavors: TGpuFlavorData[] = [
     vRamTotal: 24,
     memory: 45,
     vCore: 30,
-    storage: '400 SSD',
+    storage: 400,
     bandwidthPublic: '500 Mbit/s',
     bandwidthPrivate: '4 Gbit/s max',
     hourlyPrice: 0.76,
     monthlyPrice: 554.8,
   },
   {
+    id: '2',
     unavailable: false,
     unavailableQuota: true,
     name: 'A10-90',
@@ -888,13 +1065,14 @@ export const mockedGpuFlavors: TGpuFlavorData[] = [
     vRamTotal: 48,
     memory: 90,
     vCore: 60,
-    storage: '400 SSD',
+    storage: 400,
     bandwidthPublic: '1 Gbit/s',
     bandwidthPrivate: '6 Gbit/s max',
     hourlyPrice: 1.52,
     monthlyPrice: 1109.6,
   },
   {
+    id: '3',
     unavailable: true,
     unavailableQuota: false,
     name: 'A10-180',
@@ -903,7 +1081,7 @@ export const mockedGpuFlavors: TGpuFlavorData[] = [
     vRamTotal: 180,
     memory: 180,
     vCore: 120,
-    storage: '400 SSD',
+    storage: 400,
     bandwidthPublic: '2 Gbit/s',
     bandwidthPrivate: '8 Gbit/s max',
     hourlyPrice: 3.04,

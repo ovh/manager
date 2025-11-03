@@ -1,30 +1,21 @@
+import { RadioGroup, SelectGroupItem, Text } from '@ovhcloud/ods-react';
+import { FC, useMemo, useState } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
 import {
   Controller,
   ControllerRenderProps,
   useFormContext,
+  useWatch,
 } from 'react-hook-form';
-import { RadioGroup, SelectGroupItem, Text } from '@ovhcloud/ods-react';
-import { FC, useState } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
 import { FlavorsTable } from '@/components/flavorsTable/FlavorsTable.component';
-import {
-  mockedFlavors,
-  mockedGpuFlavors,
-  mockedFlavorAvailableRegions,
-} from '@/__mocks__/instance/constants';
+import { mockedFlavorAvailableRegions } from '@/__mocks__/instance/constants';
 import { TInstanceCreationForm } from '../../CreateInstance.page';
 import { FlavorColumnsBuilder } from '@/pages/instances/create/components/flavor/FlavorColumnsBuilder';
 import { FlavorRowsBuilder } from '@/pages/instances/create/components/flavor/FlavorRowsBuilder';
 import { GpuFlavorColumnsBuilder } from '@/pages/instances/create/components/flavor/GpuFlavorColumnsBuilder';
 import { GpuFlavorRowsBuilder } from '@/pages/instances/create/components/flavor/GpuFlavorRowsBuilder';
-import { useMemo } from 'react';
 import { useFlavorCommon } from '@/pages/instances/create/components/flavor/FlavorRowUtils';
-import {
-  mapFlavorToTable,
-  mapGpuFlavorToTable,
-  TFlavorDataForTable,
-  TGpuFlavorDataForTable,
-} from '@/pages/instances/create/view-models/flavorsViewModel';
+import { TGpuFlavorDataForTable } from '@/pages/instances/create/view-models/flavorsViewModel';
 import {
   ButtonType,
   PageLocation,
@@ -34,31 +25,37 @@ import RegionSelectionModal, {
   TCustomRegionItemData,
   TCustomRegionSelected,
 } from '../RegionSelectionModal.component';
+import { deps } from '@/deps/deps';
+import { useProjectId } from '@/hooks/project/useProjectId';
+import { selectFlavors } from '../../view-models/flavorsViewModel';
+import { useEffect } from 'react';
 
 export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
   withUnavailable,
 }) => {
+  const projectId = useProjectId();
   const { t } = useTranslation('creation');
-  const { control, getValues, setValue } = useFormContext<
-    TInstanceCreationForm
-  >();
-  const flavorType = getValues('flavorCategory');
+  const { control, setValue } = useFormContext<TInstanceCreationForm>();
+  const [flavorCategory, flavorType, microRegion, flavorId] = useWatch({
+    control,
+    name: ['flavorCategory', 'flavorType', 'microRegion', 'flavorId'],
+  });
+
   const { renderName, renderRadio } = useFlavorCommon();
   const [unavailableFlavor, setUnavailableFlavor] = useState<string | null>(
     null,
   );
   const { trackClick } = useOvhTracking();
 
-  const flavorData = useMemo(() => {
-    if (flavorType === 'Cloud GPU') {
-      return mockedGpuFlavors.map(mapGpuFlavorToTable);
-    }
-    return mockedFlavors.map(mapFlavorToTable);
-  }, [flavorType]);
+  const flavorsData = useMemo(
+    () => selectFlavors(deps)(projectId, flavorType, microRegion),
+    [flavorType, microRegion, projectId],
+  );
 
   const { columns, rows } = useMemo(() => {
-    if (flavorType === 'Cloud GPU') {
-      const gpuFlavors = flavorData as TGpuFlavorDataForTable[];
+    if (flavorCategory === 'Cloud GPU') {
+      // TODO: will be changed in future PR
+      const gpuFlavors = (flavorsData as unknown) as TGpuFlavorDataForTable[];
       return {
         columns: GpuFlavorColumnsBuilder(t),
         rows: GpuFlavorRowsBuilder(
@@ -69,7 +66,7 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
       };
     }
 
-    const flavors = flavorData as TFlavorDataForTable[];
+    const flavors = flavorsData;
     return {
       columns: FlavorColumnsBuilder(t),
       rows: FlavorRowsBuilder(
@@ -78,7 +75,14 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
         withUnavailable,
       ),
     };
-  }, [flavorType, flavorData, renderName, renderRadio, t, withUnavailable]);
+  }, [
+    flavorCategory,
+    flavorsData,
+    renderName,
+    renderRadio,
+    t,
+    withUnavailable,
+  ]);
 
   // TODO: will be moved to a select view-model
   const items: SelectGroupItem<
@@ -90,17 +94,17 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
   const handleCloseSelectRegion = () => setUnavailableFlavor(null);
 
   const handleSelect = (
-    field: ControllerRenderProps<TInstanceCreationForm, 'flavor'>,
-    flavorName: string | null,
+    field: ControllerRenderProps<TInstanceCreationForm, 'flavorId'>,
+    flavorId: string | null,
   ) => {
-    if (!flavorName) return;
+    if (!flavorId) return;
 
-    const flavor = flavorData.find(({ name }) => name === flavorName);
+    const flavor = flavorsData.find(({ id }) => id === flavorId);
 
-    field.onChange(flavorName);
+    field.onChange(flavorId);
 
     if (flavor?.unavailable) {
-      setUnavailableFlavor(flavorName);
+      setUnavailableFlavor(flavor.name);
     } else {
       trackClick({
         location: PageLocation.funnel,
@@ -111,7 +115,7 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
           'flavor_type',
           flavorType ?? '',
           'model',
-          flavorName,
+          flavorId,
         ],
       });
     }
@@ -121,7 +125,7 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
     macroRegion,
     microRegion,
   }: TCustomRegionSelected) => {
-    setValue('flavor', unavailableFlavor);
+    setValue('flavorId', unavailableFlavor);
     setValue('macroRegion', macroRegion);
     setValue('microRegion', microRegion);
     setValue('deploymentModes', ['region', 'region-3-az', 'localzone']);
@@ -129,10 +133,20 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
     setValue('availabilityZone', null);
   };
 
+  useEffect(() => {
+    const availablePreviousSelectedFlavor = flavorsData.find(
+      (flavor) => flavor.id === flavorId,
+    );
+
+    if (!availablePreviousSelectedFlavor && flavorsData[0]?.id) {
+      setValue('flavorId', flavorsData[0].id);
+    }
+  }, [flavorId, flavorsData, setValue]);
+
   return (
     <section className="mt-8">
       <Controller
-        name="flavor"
+        name="flavorId"
         control={control}
         render={({ field }) => (
           <RadioGroup
@@ -147,7 +161,7 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
               caption={t('pci_instance_creation_select_flavor_title')}
               selectable
               selectedRowId={field.value}
-              onRowClick={(flavorName) => handleSelect(field, flavorName)}
+              onRowClick={(flavorId) => handleSelect(field, flavorId)}
             />
           </RadioGroup>
         )}
