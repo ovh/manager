@@ -5,7 +5,7 @@ import { ReactNode } from 'react';
 
 type FlavorRenderers = {
   renderName: (flavor: TGpuFlavorDataForTable) => ReactNode;
-  renderRadio: (name: string, disabled?: boolean) => ReactNode;
+  renderRadio: (id: string, disabled?: boolean) => ReactNode;
 };
 
 export function GpuFlavorRowsBuilder(
@@ -22,7 +22,7 @@ export function GpuFlavorRowsBuilder(
       return {
         id: flavor.name,
         disabled: flavor.unavailableQuota,
-        action: renderRadio(flavor.name, flavor.unavailableQuota),
+        action: renderRadio(flavor.id, flavor.unavailableQuota),
         name: renderName(flavor),
         gpu: <Text preset={TEXT_PRESET.span}>{flavor.gpu}</Text>,
         numberOfGpu: (

@@ -52,7 +52,16 @@ const getMicroRegions = (
 ) =>
   region.microRegions.flatMap((regionId) => {
     const microRegion = microRegionsById.get(regionId);
-    return microRegion ? [microRegion] : [];
+    return microRegion
+      ? [
+          {
+            name: microRegion.name,
+            availabilityZones: microRegion.availabilityZones,
+            isActivable: microRegion.isActivable,
+            isInMaintenance: microRegion.isInMaintenance,
+          },
+        ]
+      : [];
   });
 
 const mapRegionToLocalizationCard = (

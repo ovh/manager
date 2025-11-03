@@ -44,7 +44,57 @@ type TFiltersDTO = {
   categories: TFlavorCategoryDTO[];
 };
 
+export type TSpecDetailsDTO = {
+  unit: string;
+  value: number;
+};
+
+export type TSpecificationsDTO = {
+  cpu: TSpecDetailsDTO;
+  ram: TSpecDetailsDTO;
+  storage: TSpecDetailsDTO;
+  bandwidth: {
+    public: TSpecDetailsDTO;
+    private: TSpecDetailsDTO;
+  };
+};
+
+export type TFlavorRegionDTO = {
+  name: string;
+  flavorId: string;
+  quota: number;
+  availableStocks: boolean;
+  tags: string[] | null;
+};
+
+type TPriceDetailsDTO = {
+  currencyCode: string;
+  priceInUcents: number;
+  text: string;
+  value: number;
+};
+
+export type TPriceDTO = {
+  type: 'hour' | 'month';
+  price: TPriceDetailsDTO;
+  includeVat: boolean;
+};
+
+export type TPricingDTO = {
+  regions: string[];
+  prices: TPriceDTO[];
+};
+
+export type TFlavorDTO = {
+  name: string;
+  specifications: TSpecificationsDTO;
+  regions: TFlavorRegionDTO[];
+  pricings: TPricingDTO[];
+  osType: string;
+};
+
 export type TInstancesCatalogDTO = {
   filters: TFiltersDTO;
   regions: TRegionDTO[];
+  flavors: TFlavorDTO[];
 };

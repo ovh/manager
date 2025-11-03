@@ -6,7 +6,7 @@ import { ReactNode } from 'react';
 
 type FlavorRenderers = {
   renderName: (flavor: TFlavorDataForTable) => ReactNode;
-  renderRadio: (name: string, disabled?: boolean) => ReactNode;
+  renderRadio: (id: string, disabled?: boolean) => ReactNode;
 };
 
 export function FlavorRowsBuilder(
@@ -21,9 +21,9 @@ export function FlavorRowsBuilder(
     )
     .map((flavor) => {
       return {
-        id: flavor.name,
+        id: flavor.id,
         disabled: flavor.unavailableQuota,
-        action: renderRadio(flavor.name, flavor.unavailableQuota),
+        action: renderRadio(flavor.id, flavor.unavailableQuota),
         name: renderName(flavor),
         memory: <Text preset={TEXT_PRESET.span}>{flavor.memory}</Text>,
         vCore: <Text preset={TEXT_PRESET.span}>{flavor.vCore}</Text>,
@@ -31,12 +31,12 @@ export function FlavorRowsBuilder(
         mode: <DeploymentModeBadge mode={flavor.mode} size={BADGE_SIZE.sm} />,
         hourlyPrice: (
           <Text preset={TEXT_PRESET.span} className="font-semibold">
-            {flavor.hourlyPrice.toFixed(4)} €
+            {flavor.hourlyPrice?.toFixed(4)} €
           </Text>
         ),
         monthlyPrice: (
           <Text preset={TEXT_PRESET.span} className="font-semibold">
-            ~ {flavor.monthlyPrice.toFixed(2)} €
+            {flavor.monthlyPrice?.toFixed(2)} € *
           </Text>
         ),
       };

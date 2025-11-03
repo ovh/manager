@@ -11,11 +11,10 @@ import {
   selectCategories,
   selectTypes,
 } from '../view-models/categoriesTypesViewModel';
-import {
-  mockedDistributionImageType,
-  mockedFlavors,
-} from '@/__mocks__/instance/constants';
+import { mockedDistributionImageType } from '@/__mocks__/instance/constants';
+import { selectFlavors } from '../view-models/flavorsViewModel';
 
+// eslint-disable-next-line max-lines-per-function
 export const useForm = (projectId: string) => {
   const deploymentModesDefaultValue: TDeploymentMode[] = [
     'region',
@@ -49,7 +48,12 @@ export const useForm = (projectId: string) => {
   const flavorTypeDefaultValue =
     selectTypes(deps)(projectId, flavorCategoryDefaultValue)[0]?.value ?? null;
 
-  const flavorDefaultValue = mockedFlavors[0]?.name ?? null;
+  const flavorIdDefaultValue =
+    selectFlavors(deps)(
+      projectId,
+      flavorTypeDefaultValue,
+      microRegionDefaultValue,
+    )[0]?.id ?? null;
 
   const availabilityZoneDefaultValue = null;
 
@@ -65,7 +69,7 @@ export const useForm = (projectId: string) => {
       continent: continentDefaultValue,
       flavorCategory: flavorCategoryDefaultValue,
       flavorType: flavorTypeDefaultValue,
-      flavor: flavorDefaultValue,
+      flavorId: flavorIdDefaultValue,
       macroRegion: macroRegionDefaultValue,
       microRegion: microRegionDefaultValue,
       availabilityZone: availabilityZoneDefaultValue,

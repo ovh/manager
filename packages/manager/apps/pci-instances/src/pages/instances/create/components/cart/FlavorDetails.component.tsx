@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import { Text } from '@ovhcloud/ods-react';
-import { TFlavorDataForCart } from '../../view-models/flavorsViewModel';
 import { useTranslation } from 'react-i18next';
+import { TSelectFlavorDetails } from '../../view-models/cartViewModel';
 
 type TFlavorDetails = {
   quantity: number;
-  flavor: TFlavorDataForCart;
+  flavor: TSelectFlavorDetails;
 };
 
 export const FlavorDetails: FC<TFlavorDetails> = ({ quantity, flavor }) => {
