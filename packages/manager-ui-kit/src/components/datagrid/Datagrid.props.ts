@@ -16,7 +16,6 @@ import {
 } from '@ovh-ux/manager-core-api';
 
 import type { FilterOption, FilterProps } from '@/components/filters/Filter.props';
-import { ExpandableRow } from './useDatagrid.props';
 
 export interface RowSelectionProps<T> {
   onRowSelectionChange?: (selectedRows: T[]) => void;
@@ -47,6 +46,11 @@ export type ColumnSort = TanstackColumnSort;
 export interface ExpandedProps {
   expanded: ExpandedState;
   setExpanded: Dispatch<SetStateAction<ExpandedState>>;
+}
+
+export interface ExpandableRow<T> {
+  id?: string;
+  subRows?: T[];
 }
 
 export type DatagridProps<T extends ExpandableRow<T>> = {

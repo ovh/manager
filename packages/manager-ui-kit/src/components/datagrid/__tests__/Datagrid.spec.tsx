@@ -251,9 +251,11 @@ describe('Datagrid', () => {
   /* ---------------------------- Advanced Features -------------------------- */
   describe('Advanced Features', () => {
     it('should handle row selection', () => {
-      const { container } = render(
-        <Datagrid columns={mockBasicColumns} data={mockData} rowSelection={mockRowSelection} />,
-      );
+      const { container } = renderDataGrid({
+        columns: mockBasicColumns,
+        data: mockData,
+        rowSelection: mockRowSelection,
+      });
       const targetDiv = container.querySelector('thead tr th label');
       expect(targetDiv).toBeInTheDocument();
       expect(targetDiv).toHaveAttribute('id', 'checkbox:select-all');

@@ -62,8 +62,8 @@ export const mockIamResponse: IamAuthorizationResponse = {
 };
 
 export const mockData: Person[] = [
-  { name: 'John Doe', age: 30 },
-  { name: 'Jane Smith', age: 25 },
+  { id: '1', name: 'John Doe', age: 30 },
+  { id: '2', name: 'Jane Smith', age: 25 },
 ];
 
 export const mockBasicColumns: readonly DatagridColumn<Person>[] = [
@@ -160,6 +160,7 @@ export const mockFilters = {
 };
 
 export const mockExtendedData: Person[] = Array.from({ length: 5 }, (_, i) => ({
+  id: `person-${i + 1}`,
   name: `Person ${i + 1}`,
   age: i + 25,
 }));
