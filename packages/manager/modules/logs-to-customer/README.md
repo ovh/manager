@@ -64,7 +64,7 @@ export default function LogsPage() {
 }
 ```
 
-### configure your uapp routes
+### configure your µapp routes (deprecated - route objects)
 
 To allow the module to handle all logs-related routes, configure your routes as follows:
 
@@ -85,3 +85,54 @@ export default [
   // ...
 ];
 ```
+
+### configure your µapp routes (recommended - route components)
+
+To allow the module to handle all logs-related routes, configure your routes as follows:
+
+
+_**routes.tsx**_
+```tsx
+
+// ...
+<Route path="path/to/parent/component" Component={ParentComponent} id="parent-component">
+  <Route
+    path="path/to/logs/page/*"
+    id="logs"
+    Component={LogsPage}
+  />
+</Route>
+// ...
+```
+> **Important**
+> `'*'` is mandatory as routing is defined and managed inside the module
+
+### Troubleshooting
+
+You might face to the following issue
+
+```sh
+LogMessages.component.tsx:XX Warning: Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://reactjs.org/link/invalid-hook-call for tips about how to debug and fix this problem.
+```
+
+To fix it, add the following `dedupe` vite configuration inside your consumer application
+
+_**vite.config.mjs**_
+```js
+export default defineConfig({
+  ...getBaseConfig(),
+  resolve: {
+    alias: {
+      '@': resolve(join(process.cwd(), 'src')),
+      ),
+    },
+    dedupe: ['@tanstack/react-virtual'],
+  },
+  root: resolve(process.cwd()),
+});
+```
+
