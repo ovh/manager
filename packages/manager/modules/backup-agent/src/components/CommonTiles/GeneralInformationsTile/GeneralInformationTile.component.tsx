@@ -39,6 +39,7 @@ export function GeneralInformationTile({ resourceDetails, isLoading }: GeneralIn
           {isLoading || isLocationLoading ? <OdsSkeleton /> : (locationData?.location ?? resourceDetails!.currentState.azName)}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
+      <ManagerTile.Divider />
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t(`${NAMESPACES.REGION}:region`)}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
