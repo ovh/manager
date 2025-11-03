@@ -18,6 +18,10 @@ ods-text.disabled::part(text) {
   opacity: 0.6;
 }
 
+ods-text.font-54::part(text) {
+  font-size: 54px;
+}
+
 .contracts-agreements .contract-link:not(:last-child) {
   &::after {
     color: var(--ods-color-primary-500);

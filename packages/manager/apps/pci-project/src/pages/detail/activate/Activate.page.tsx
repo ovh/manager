@@ -35,6 +35,7 @@ import Voucher from '@/pages/creation/components/voucher/Voucher';
 import { useWillPayment } from '@/pages/creation/hooks/useWillPayment';
 import { useWillPaymentConfig } from '@/pages/creation/hooks/useWillPaymentConfig';
 import { useProjectActivation } from './hooks/useActivateProject';
+import DiscoveryVoucher from '@/pages/creation/components/voucher/DiscoveryVoucher';
 
 export default function ActivatePage() {
   const { t } = useTranslation(['activate', NAMESPACES.ACTIONS]);
@@ -150,7 +151,6 @@ export default function ActivatePage() {
           />
         </OdsBreadcrumb>
       }
-      header={{}}
     >
       <div className="mb-6">
         <Notifications />
@@ -167,13 +167,16 @@ export default function ActivatePage() {
 
           <OdsText>{t('pci_projects_project_activate_description_2')}</OdsText>
 
-          <Voucher
-            cartId={cart.cartId}
-            itemId={projectItem.itemId}
-            voucherConfiguration={voucherConfiguration}
-            setVoucherConfiguration={handleVoucherConfigurationChange}
-          />
-
+          {promotionVoucher ? (
+            <DiscoveryVoucher voucher={promotionVoucher} />
+          ) : (
+            <Voucher
+              cartId={cart.cartId}
+              itemId={projectItem.itemId}
+              voucherConfiguration={voucherConfiguration}
+              setVoucherConfiguration={handleVoucherConfigurationChange}
+            />
+          )}
           <WillPaymentComponent
             onNoUserActionNeeded={handleNoUserActionNeeded}
             onRequiredChallengeEvent={handleChallengeRequired}
@@ -220,18 +223,21 @@ export default function ActivatePage() {
                 </OdsText>
               </div>
             ) : (
-              <div>
-                <Trans t={t}>
-                  <OdsText preset="heading-1">
+              <div className="flex flex-col gap-6">
+                <OdsText preset="heading-1" className="font-54">
+                  <Trans t={t}>
                     {t('pci_projects_project_activate_banner_promotion_title', {
                       amount: promotionVoucher.text,
                     })}
-                  </OdsText>
-                </Trans>
+                  </Trans>
+                </OdsText>
+
                 <OdsText>
-                  {t(
-                    'pci_projects_project_activate_banner_promotion_description_1',
-                  )}
+                  <Trans t={t}>
+                    {t(
+                      'pci_projects_project_activate_banner_promotion_description_1',
+                    )}
+                  </Trans>
                 </OdsText>
                 <OdsText>
                   {t(

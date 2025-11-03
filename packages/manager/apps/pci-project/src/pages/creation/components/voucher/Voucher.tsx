@@ -68,6 +68,7 @@ export default function Voucher({
           variant={ODS_BUTTON_VARIANT.default}
           isDisabled={!voucher}
           isLoading={isPending}
+          size="sm"
           label={t('pci_projects_new_voucher_form_add')}
         />
       </div>
