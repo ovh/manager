@@ -15,20 +15,20 @@ export const useQuotas = (projectId: string): UseQueryResult<Quota[]> => {
     select: (quotas): Quota[] =>
       quotas.map((quota) => {
         const instanceUsage = getUsagePercentage(
-          quota.instance.maxInstances,
-          quota.instance.usedInstances,
+          quota.instance?.maxInstances,
+          quota.instance?.usedInstances,
         );
         const cpuUsage = getUsagePercentage(
-          quota.instance.maxCores,
-          quota.instance.usedCores,
+          quota.instance?.maxCores,
+          quota.instance?.usedCores,
         );
         const ramUsage = getUsagePercentage(
-          quota.instance.maxRam,
-          quota.instance.usedRAM,
+          quota.instance?.maxRam,
+          quota.instance?.usedRAM,
         );
         const memoryUsage = getUsagePercentage(
-          quota.volume.maxGigabytes,
-          quota.volume.usedGigabytes,
+          quota.volume?.maxGigabytes,
+          quota.volume?.usedGigabytes,
         );
 
         const quotaAboveThreshold =
