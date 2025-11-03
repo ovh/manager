@@ -10,7 +10,6 @@ import NotFound from '@/pages/not-found/404.page';
 
 import { redirectionApp, subRoutes, urls } from './Routes.constants';
 
-
 const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
 

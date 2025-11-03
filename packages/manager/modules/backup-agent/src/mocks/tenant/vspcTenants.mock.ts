@@ -1,6 +1,7 @@
-import { VSPCTenant } from '@/types/VspcTenant.type';
+import {VSPCTenant} from "@/types/VspcTenant.type";
+import {Resource} from "@/types/Resource.type";
 
-export const VSPC_TENANTS_MOCKS: VSPCTenant[] = [
+export const VSPC_TENANTS_MOCKS: Resource<VSPCTenant>[] = [
   {
     id: '1999f2f7-5140-4000-t1',
     resourceStatus: 'CREATING',
@@ -22,9 +23,30 @@ export const VSPC_TENANTS_MOCKS: VSPCTenant[] = [
       id: '1999f2f7-5140-4000-t1',
       name: 'name-par-vspc',
       status: 'CREATING',
-      vaults: ['vspc-t1-vaults'],
+      vaults: [
+        {
+          azName: 'eu-west-par',
+          id: '1999f2f7-5140-4000-t1v',
+          name: 'Vault1',
+          performance: 'HIGHPERF',
+          resourceName: 'vspc-tenant1-vault1',
+          status: 'CREATING',
+          type: 'BUNDLE',
+        },
+      ],
     },
     currentTasks: [],
+
+    iam: {
+      displayName: 'Production Backup Vspc Tenant',
+      id: 'a1b2c3d4-1234-4000-8aa0-9994438d3b80',
+      tags: {
+        environment: 'production',
+        team: 'infrastructure',
+        'ovh:region': 'eu-west-1',
+      },
+      urn: 'urn:ovh:vaults:eu-west-1:prod-vaults-001',
+    },
     createdAt: '2025-10-01T09:51:51.572Z',
     updatedAt: '2025-10-01T09:51:51.572Z',
   },
@@ -49,9 +71,30 @@ export const VSPC_TENANTS_MOCKS: VSPCTenant[] = [
       id: '1999f2f7-5140-4000-t2',
       name: 'name-rbx-vspc',
       status: 'DELETING',
-      vaults: ['vspc-t2-vaults'],
+      vaults: [
+        {
+          azName: 'eu-west-rbx',
+          id: '1999f2f7-5140-4000-t2v',
+          name: 'Vault2',
+          performance: 'HIGHPERF',
+          resourceName: 'vspc-tenant2-vault2',
+          status: 'DELETING',
+          type: 'BUNDLE',
+        },
+      ],
     },
     currentTasks: [],
+
+    iam: {
+      displayName: 'Production Backup Vspc Tenant',
+      id: 'a1b2c3d4-1234-4000-8aa0-9994438d3b80',
+      tags: {
+        environment: 'production',
+        team: 'infrastructure',
+        'ovh:region': 'eu-west-1',
+      },
+      urn: 'urn:ovh:vaults:eu-west-1:prod-vaults-001',
+    },
     createdAt: '2025-10-01T09:51:51.572Z',
     updatedAt: '2025-10-01T09:51:51.572Z',
   },
@@ -76,9 +119,30 @@ export const VSPC_TENANTS_MOCKS: VSPCTenant[] = [
       id: '1999f2f7-5140-4000-t3',
       name: 'name-sgp-vspc',
       status: 'ERROR',
-      vaults: ['vspc-t3-vaults'],
+      vaults: [
+        {
+          azName: 'ap-southeast-sgp',
+          id: '1999f2f7-5140-4000-t3v',
+          name: 'Vault3',
+          performance: 'HIGHPERF',
+          resourceName: 'vspc-tenant3-vault3',
+          status: 'ERROR',
+          type: 'BUNDLE',
+        },
+      ],
     },
     currentTasks: [],
+
+    iam: {
+      displayName: 'Production Backup Vspc Tenant',
+      id: 'a1b2c3d4-1234-4000-8aa0-9994438d3b80',
+      tags: {
+        environment: 'production',
+        team: 'infrastructure',
+        'ovh:region': 'eu-west-1',
+      },
+      urn: 'urn:ovh:vaults:eu-west-1:prod-vaults-001',
+    },
     createdAt: '2025-10-01T09:51:51.572Z',
     updatedAt: '2025-10-01T09:51:51.572Z',
   },
@@ -103,9 +167,30 @@ export const VSPC_TENANTS_MOCKS: VSPCTenant[] = [
       id: '1999f2f7-5140-4000-t4',
       name: 'name-waw-vspc',
       status: 'READY',
-      vaults: ['vspc-t4-vaults'],
+      vaults: [
+        {
+          azName: 'eu-central-waw',
+          id: '1999f2f7-5140-4000-t4v',
+          name: 'Vault4',
+          performance: 'HIGHPERF',
+          resourceName: 'vspc-tenant4-vault4',
+          status: 'READY',
+          type: 'BUNDLE',
+        },
+      ],
     },
     currentTasks: [],
+
+    iam: {
+      displayName: 'Production Backup Vspc Tenant',
+      id: 'a1b2c3d4-1234-4000-8aa0-9994438d3b80',
+      tags: {
+        environment: 'production',
+        team: 'infrastructure',
+        'ovh:region': 'eu-west-1',
+      },
+      urn: 'urn:ovh:vaults:eu-west-1:prod-vaults-001',
+    },
     createdAt: '2025-10-01T09:51:51.572Z',
     updatedAt: '2025-10-01T09:51:51.572Z',
   },
@@ -130,9 +215,30 @@ export const VSPC_TENANTS_MOCKS: VSPCTenant[] = [
       id: '1999f2f7-5140-4000-t5',
       name: 'name-tor-vspc',
       status: 'SUSPENDED',
-      vaults: ['vspc-t5-vaults'],
+      vaults: [
+        {
+          azName: 'ca-east-tor',
+          id: '1999f2f7-5140-4000-t5v',
+          name: 'Vault5',
+          performance: 'HIGHPERF',
+          resourceName: 'vspc-tenant5-vault5',
+          status: 'SUSPENDED',
+          type: 'BUNDLE',
+        },
+      ],
     },
     currentTasks: [],
+
+    iam: {
+      displayName: 'Production Backup Vspc Tenant',
+      id: 'a1b2c3d4-1234-4000-8aa0-9994438d3b80',
+      tags: {
+        environment: 'production',
+        team: 'infrastructure',
+        'ovh:region': 'eu-west-1',
+      },
+      urn: 'urn:ovh:vaults:eu-west-1:prod-vaults-001',
+    },
     createdAt: '2025-10-01T09:51:51.572Z',
     updatedAt: '2025-10-01T09:51:51.572Z',
   },
@@ -157,9 +263,29 @@ export const VSPC_TENANTS_MOCKS: VSPCTenant[] = [
       id: '1999f2f7-5140-4000-t6',
       name: 'name-pao-vspc',
       status: 'UPDATING',
-      vaults: ['vspc-t6-vaults'],
+      vaults: [
+        {
+          azName: 'us-west-lz-pao',
+          id: '1999f2f7-5140-4000-t6v',
+          name: 'Vault6',
+          performance: 'HIGHPERF',
+          resourceName: 'vspc-tenant6-vault6',
+          status: 'UPDATING',
+          type: 'BUNDLE',
+        },
+      ],
     },
     currentTasks: [],
+    iam: {
+      displayName: 'Production Backup Vspc Tenant',
+      id: 'a1b2c3d4-1234-4000-8aa0-9994438d3b80',
+      tags: {
+        environment: 'production',
+        team: 'infrastructure',
+        'ovh:region': 'eu-west-1',
+      },
+      urn: 'urn:ovh:vaults:eu-west-1:prod-vaults-001',
+    },
     createdAt: '2025-10-01T09:51:51.572Z',
     updatedAt: '2025-10-01T09:51:51.572Z',
   },
