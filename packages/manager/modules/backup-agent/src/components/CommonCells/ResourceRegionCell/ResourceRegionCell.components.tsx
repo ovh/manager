@@ -5,7 +5,7 @@ import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 
 import { useLocationDetails } from '@/data/hooks/location/getLocationDetails';
-import {ResourceWithAzName} from "@/types/Resource.type";
+import { ResourceWithAzName } from "@/types/Resource.type";
 
 export const ResourceRegionCell = (resource: ResourceWithAzName) => {
   const { data, isLoading, isError } = useLocationDetails(resource.currentState.azName);
