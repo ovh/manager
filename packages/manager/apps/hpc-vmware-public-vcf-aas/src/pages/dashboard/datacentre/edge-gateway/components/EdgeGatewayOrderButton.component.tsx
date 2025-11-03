@@ -8,13 +8,22 @@ import {
   OdsText,
   OdsTooltip,
 } from '@ovhcloud/ods-components/react';
+import { useNavigate } from 'react-router-dom';
 import TEST_IDS from '@/utils/testIds.constants';
+import { subRoutes } from '@/routes/routes.constant';
+import { EDGE_GATEWAY_MAX_QUANTITY } from '../datacentreEdgeGateway.constants';
 
-export const EdgeGatewayOrderButton = (
-  props: React.HTMLAttributes<HTMLDivElement>,
-) => {
+type EdgeGatewayOrderButtonProps = React.HTMLAttributes<HTMLDivElement> & {
+  isOrderDisabled?: boolean;
+};
+
+export const EdgeGatewayOrderButton = ({
+  isOrderDisabled = false,
+  ...props
+}: EdgeGatewayOrderButtonProps) => {
   const { t } = useTranslation('datacentres/edge-gateway');
   const tooltipId = useId();
+  const navigate = useNavigate();
 
   return (
     <div
@@ -24,8 +33,9 @@ export const EdgeGatewayOrderButton = (
       <OdsButton
         label={t('edge_add')}
         variant="outline"
-        onClick={() => {}}
+        onClick={() => navigate(subRoutes.addEdgeGateway)}
         data-testid={TEST_IDS.edgeGatewayOrderCta}
+        isDisabled={isOrderDisabled}
       />
       <OdsIcon
         id={tooltipId}
@@ -34,7 +44,9 @@ export const EdgeGatewayOrderButton = (
         color={ODS_BUTTON_COLOR.primary}
       />
       <OdsTooltip triggerId={tooltipId}>
-        <OdsText>{t('edge_add_tooltip')}</OdsText>
+        <OdsText>
+          {t('edge_add_tooltip', { maxEdge: EDGE_GATEWAY_MAX_QUANTITY })}
+        </OdsText>
       </OdsTooltip>
     </div>
   );
