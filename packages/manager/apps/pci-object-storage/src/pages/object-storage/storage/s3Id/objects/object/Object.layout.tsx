@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { Skeleton } from '@datatr-ux/uxlib';
 import { useS3Data } from '../../S3.context';
 import { useGetS3Object } from '@/data/hooks/s3-storage/useGetS3Object.hook';
-import ObjectTabs from '../_components/ObjectTabs.component';
+import ObjectTabs from './_components/ObjectTabs.component';
 import TabsMenu from '@/components/tabs-menu/TabsMenu.component';
 import { useGetS3ObjectVersions } from '@/data/hooks/s3-storage/useGetS3ObjectVersions.hook';
 

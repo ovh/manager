@@ -10,6 +10,9 @@ import {
   FormLabel,
   FormMessage,
   Input,
+  RadioGroup,
+  RadioGroupItem,
+  Label,
 } from '@datatr-ux/uxlib';
 import { AddReplicationFormValues } from '../new/useAddReplicationForm.hook';
 import { TagInput } from './TagInput.component';
@@ -42,42 +45,33 @@ export const ReplicationRuleScope = ({
                 {t('replicationApplicationDescription')}
               </FormDescription>
             </div>
-            <div className="flex flex-col gap-3">
+            <RadioGroup
+              value={field.value ? 'limited' : 'all'}
+              onValueChange={(value) => field.onChange(value === 'limited')}
+              disabled={isPending}
+            >
               <div className="flex items-center gap-3">
-                <input
-                  type="radio"
+                <RadioGroupItem
+                  value="limited"
                   id="replication-application-limited"
-                  name="replication-application"
-                  checked={field.value === true}
-                  onChange={() => field.onChange(true)}
-                  disabled={isPending}
-                  className="h-4 w-4"
                 />
-                <label
+                <Label
                   htmlFor="replication-application-limited"
                   className="text-sm font-normal cursor-pointer"
                 >
                   {t('replicationApplicationLimited')}
-                </label>
+                </Label>
               </div>
               <div className="flex items-center gap-3">
-                <input
-                  type="radio"
-                  id="replication-application-all"
-                  name="replication-application"
-                  checked={field.value === false}
-                  onChange={() => field.onChange(false)}
-                  disabled={isPending}
-                  className="h-4 w-4"
-                />
-                <label
+                <RadioGroupItem value="all" id="replication-application-all" />
+                <Label
                   htmlFor="replication-application-all"
                   className="text-sm font-normal cursor-pointer"
                 >
                   {t('replicationApplicationForAll')}
-                </label>
+                </Label>
               </div>
-            </div>
+            </RadioGroup>
             {field.value && (
               <Alert>
                 <AlertDescription>

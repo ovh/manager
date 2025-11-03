@@ -1,4 +1,5 @@
 import {
+  Badge,
   Card,
   CardContent,
   CardFooter,
@@ -58,7 +59,7 @@ const Object = () => {
 
   return (
     <>
-      <h2>{t('objTitle')}</h2>
+      <h2>{objectQuery.data.key}</h2>
       <Link to={'../'} className="flex items-center w-full">
         <ArrowLeft className="w-4 h-4 mr-2" /> {t('objectsBackLink')}
       </Link>
@@ -76,12 +77,6 @@ const Object = () => {
           <CardContent>
             <Table>
               <TableBody>
-                <TableRow>
-                  <TableCell className="text-semibold">
-                    {t('tableHeaderName')}
-                  </TableCell>
-                  <TableCell>{objectQuery.data.key}</TableCell>
-                </TableRow>
                 <TableRow>
                   <TableCell className="text-semibold">
                     {t('tableHeaderSize')}
@@ -122,9 +117,9 @@ const Object = () => {
             </h5>
           </CardHeader>
           <CardContent>
-            <p className="mb-2">
+            <Badge variant={'outline'}>
               {tObj(`objectClass_${objectQuery.data.storageClass}`)}
-            </p>
+            </Badge>
           </CardContent>
           <CardFooter>
             <Link
