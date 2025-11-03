@@ -5,6 +5,7 @@ import {
   SecretMetadata,
   SecretVersionDataField,
 } from '@secret-manager/types/secret.type';
+import { buildQueryString } from '@secret-manager/utils/queryStrings';
 
 export const secretQueryKeys = {
   list: (okmsId: string) => ['secret', okmsId],
@@ -74,9 +75,33 @@ export type UpdateSecretBody = {
     SecretMetadata,
     'casRequired' | 'customMetadata' | 'deactivateVersionAfter' | 'maxVersions'
   >;
-  version: SecretVersionDataField;
+  version?: SecretVersionDataField;
 };
 export type UpdateSecretResponse = Pick<Secret, 'path' | 'metadata'>;
+
+export type UpdateSecretParams = {
+  okmsId: string;
+  path: string;
+  cas: number;
+  data: UpdateSecretBody;
+};
+
+export const updateSecret = async ({
+  okmsId,
+  path,
+  cas,
+  data: updateData,
+}: UpdateSecretParams) => {
+  const url = `okms/resource/${okmsId}/secret/${encodeURIComponent(
+    path,
+  )}${buildQueryString({ cas })}`;
+
+  const { data } = await apiClient.v2.put<UpdateSecretResponse>(
+    url,
+    updateData,
+  );
+  return data;
+};
 
 // DELETE Secret
 export type DeleteSecretParams = {
