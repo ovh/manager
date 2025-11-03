@@ -1,5 +1,6 @@
-import { ApiTask } from '@/types/ApiGeneric.type';
-import { ResourceStatus } from '@/types/Resource.type';
+import { ResourceStatus, ResourceWithAzName } from '@/types/Resource.type';
+
+import { Vault } from './Vault.type';
 
 type AssociatedTenantVSPC = {
   azName: string;
@@ -8,33 +9,11 @@ type AssociatedTenantVSPC = {
   status: ResourceStatus;
 };
 
-type TenantVault = {
-  azName: string;
+export type Tenant = {
   id: string;
   name: string;
-  performance: 'HIGHPERF' | 'STANDARD';
-  resourceName: string;
-  status: ResourceStatus;
-  type: 'BUNDLE' | 'PAYGO';
-};
-
-type TenantState = {
-  id: string;
-  name: string;
-  vaults: TenantVault[];
+  vaults: Omit<Vault, 'vspc'>[];
   vspcTenants: AssociatedTenantVSPC[];
 };
 
-type TenantTargetSpec = {
-  name: string;
-};
-
-export type Tenant = {
-  currentState: TenantState;
-  currentTasks: ApiTask[];
-  id: string;
-  resourceStatus: ResourceStatus;
-  targetSpec: TenantTargetSpec;
-  createdAt: string;
-  updatedAt: string;
-};
+export type TenantWithAzName = Tenant & Pick<ResourceWithAzName['currentState'], 'azName'>;
