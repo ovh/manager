@@ -14,6 +14,11 @@ const VaultListingPage = React.lazy(() => import('../pages/vaults/listing/Listin
 
 const ServiceListingPage = React.lazy(() => import('../pages/services/listing/Listing.page'));
 
+const TenantDashboardPage = React.lazy(() => import('@/pages/services/dashboard/Dashboard.page'));
+
+const TenantGeneralInformationPage = React.lazy(
+  () => import('../pages/services/dashboard/general-information/GeneralInformation.page'),
+);
 const DeleteTenantPage = React.lazy(
   () => import('../pages/services/listing/delete/DeleteTenant.page'),
 );
@@ -69,6 +74,12 @@ export default (
         }}
       />
     </Route>
+    <Route path={subRoutes.services}>
+      <Route path={subRoutes.dashboard} Component={TenantDashboardPage}>
+        <Route path={urlParams.tenantId} Component={TenantGeneralInformationPage} />
+      </Route>
+    </Route>
+
     <Route path={subRoutes.vaults}>
       <Route path={subRoutes.dashboard} Component={VaultDashboardPage}>
         <Route path={urlParams.vaultId} Component={VaultGeneralInformationPage} />

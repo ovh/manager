@@ -1,7 +1,7 @@
-import { ApiTask } from '@/types/ApiGeneric.type';
-import { ResourceStatus } from '@/types/Resource.type';
+import { ResourceStatus, ResourceWithAzName } from '@/types/Resource.type';
+import { Vault } from '@/types/Vault.type';
 
-type VSPCBackupAgent = {
+export type VSPCBackupAgent = {
   id: string;
   ip: string[];
   name: string;
@@ -9,26 +9,14 @@ type VSPCBackupAgent = {
   vspcTenant: string;
 };
 
-type VSPCTenantState = {
+export type VSPCTenant = {
   azName: string;
   backupAgents: VSPCBackupAgent[];
   companyName: string;
   id: string;
   name: string;
   status: ResourceStatus;
-  vaults: string[];
+  vaults: Omit<Vault, 'vspc'>[];
 };
 
-type VSPCTenantTargetSpec = {
-  name: string;
-};
-
-export type VSPCTenant = {
-  currentState: VSPCTenantState;
-  currentTasks: ApiTask[];
-  id: string;
-  resourceStatus: ResourceStatus;
-  targetSpec: VSPCTenantTargetSpec;
-  createdAt: string;
-  updatedAt: string;
-};
+export type VSPCTenantWithAzName = VSPCTenant & Pick<ResourceWithAzName['currentState'], 'azName'>;

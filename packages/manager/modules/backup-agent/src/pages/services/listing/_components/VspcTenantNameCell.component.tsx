@@ -2,12 +2,14 @@ import { useHref } from 'react-router-dom';
 
 import { DataGridTextCell, Links } from '@ovh-ux/manager-react-components';
 
-import {subRoutes, urlParams, urls} from '@/routes/Routes.constants';
-import { VSPCTenant } from '@/types/VspcTenant.type';
+import {urlParams, urls} from '@/routes/Routes.constants';
+import {Resource} from "@/types/Resource.type";
+import {Tenant} from "@/types/Tenant.type";
+import {VSPCTenant} from "@/types/VspcTenant.type";
 
-export const VSPCTenantNameCell = (tenant: VSPCTenant) => {
+export const VSPCTenantNameCell = (tenant: Resource<Tenant | VSPCTenant>) => {
   const dashboardHref = useHref(
-    urls.dashboardTenants.replace(urlParams.tenantId, tenant.currentState.companyName),
+    urls.dashboardTenants.replace(urlParams.tenantId, tenant.id),
   );
 
   return (

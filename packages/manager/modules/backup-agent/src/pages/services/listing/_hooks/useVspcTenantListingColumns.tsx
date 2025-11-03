@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { DatagridColumn } from '@ovh-ux/manager-react-components';
 
-import { VSPCTenant } from '@/types/VspcTenant.type';
+import {VSPCTenantWithAzName} from '@/types/VspcTenant.type';
 
 import {
   TenantActionCell,
@@ -16,12 +16,13 @@ import {
 import {ResourceLocationCell} from "@/components/CommonCells/ResourceLocationCell/ResourceLocationCell.components";
 import {ResourceRegionCell} from "@/components/CommonCells/ResourceRegionCell/ResourceRegionCell.components";
 import {ResourceStatusCell} from "@/components/CommonCells/ResourceStatusCell/ResourceStatusCell.components";
+import {Resource} from "@/types/Resource.type";
+import {TenantWithAzName} from "@/types/Tenant.type";
 
-export function useVspcListingColumns(): DatagridColumn<VSPCTenant>[] {
+export function useVspcListingColumns(): DatagridColumn<Resource<TenantWithAzName | VSPCTenantWithAzName>>[] {
   const { t } = useTranslation([NAMESPACES.DASHBOARD, NAMESPACES.REGION, NAMESPACES.STATUS]);
 
-  return useMemo<DatagridColumn<VSPCTenant>[]>(() => {
-    return [
+  return useMemo<DatagridColumn<Resource<TenantWithAzName | VSPCTenantWithAzName>>[]>(() => [
       {
         id: 'name',
         label: t(`${NAMESPACES.DASHBOARD}:name`),
@@ -58,6 +59,5 @@ export function useVspcListingColumns(): DatagridColumn<VSPCTenant>[] {
         isSortable: false,
         cell: TenantActionCell,
       },
-    ];
-  }, [t]);
+    ], [t]);
 }

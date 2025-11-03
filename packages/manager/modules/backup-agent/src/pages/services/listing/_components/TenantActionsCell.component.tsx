@@ -7,8 +7,9 @@ import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { Tenant } from '@/types/Tenant.type';
 import { VSPCTenant } from '@/types/VspcTenant.type';
 import { buildDeleteTenantUrl } from '@/utils/buildSearchQuery.utils';
+import {Resource} from "@/types/Resource.type";
 
-export const TenantActionCell = (tenant: Tenant | VSPCTenant) => {
+export const TenantActionCell = (tenant: Resource<Tenant | VSPCTenant>) => {
   const navigate = useNavigate();
 
   return (
