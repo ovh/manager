@@ -16,5 +16,6 @@
   "tableActionStop": "Stop",
   "tableActionDelete": "Delete",
   "deleteTableTooltip": "Make sure the notebook is in ‘Stopped’ status",
-  "quantumTitle": "Emulators"
+  "quantumTitle": "Emulators",
+  "qpuTitle": "QPUs"
 }

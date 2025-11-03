@@ -49,7 +49,7 @@ export const Loader = async ({ params }: { params: { projectId: string } }) => {
 const Qpus = () => {
   const { projectId } = useParams();
   const { isUserActive } = useUserActivityContext();
-  const { t } = useTranslation('ai-tools/qpu/onboarding');
+  const { t } = useTranslation('ai-tools/notebooks');
   const regionQuery = useGetQpuRegions(projectId);
   const regionId = regionQuery?.data?.length > 0 && regionQuery?.data[0]?.id;
   const notebooksQuery = useGetNotebooks(projectId, {
@@ -78,7 +78,7 @@ const Qpus = () => {
         data-testid="notebooks-guides-container"
         className="flex justify-between w-full items-center"
       >
-        <h2>{t('Title')}</h2>
+        <h2>{t('qpuTitle')}</h2>
         <div className="flex flex-wrap justify-end gap-1">
           <RoadmapChangelog links={QpuRoadmapLinks} />
         </div>
