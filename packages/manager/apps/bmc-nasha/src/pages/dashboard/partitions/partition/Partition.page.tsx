@@ -1,19 +1,17 @@
-import { useParams, useNavigate, useLocation, Outlet } from 'react-router-dom';
+import { useParams, useNavigate, useLocation, Outlet, NavLink } from 'react-router-dom';
 import {
-  BaseLayout,
-  Button,
   Tile,
   ActionMenu,
-  ICON_NAME,
-  Icon,
 } from '@ovh-ux/muk';
-import { NavLink } from 'react-router-dom';
+import { POPOVER_POSITION } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { usePartitionDetail } from '@/data/api/hooks/usePartitionDetail';
 import { useNashaDetail } from '@/data/api/hooks/useNashaDetail';
 import { SpaceMeter } from '@/components/space-meter/SpaceMeter.component';
 import { PREFIX_TRACKING_DASHBOARD_PARTITIONS } from '@/constants/Nasha.constants';
+import { NashaHeader } from '@/components/header/NashaHeader.component';
+import type { NashaPrepared, PartitionPrepared } from '@/types/Dashboard.type';
 
 export default function PartitionPage() {
   const { serviceName, partitionName } = useParams<{ serviceName: string; partitionName: string }>();
@@ -51,57 +49,59 @@ export default function PartitionPage() {
     );
   }
 
+  // Type assertions after null checks
+  const typedPartition = partition as PartitionPrepared;
+  const typedNasha = nasha as NashaPrepared;
+
   return (
-    <BaseLayout
-      header={{
-        title: partition.partitionName,
-        subtitle: nasha.serviceName,
-        tabs: (
-          <div className="border-b border-gray-200">
-            <nav className="flex space-x-8" aria-label="Tabs">
-              <NavLink
-                to={routePrefix}
-                end
-                className={({ isActive }) =>
-                  `py-4 px-1 border-b-2 font-medium text-sm ${
-                    isActive
-                      ? 'border-blue-500 text-blue-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                  }`
-                }
-              >
-                {t('nasha_dashboard_partition_tab_general_information', {
-                  defaultValue: 'General Information',
-                })}
-              </NavLink>
-              <NavLink
-                to={`${routePrefix}/snapshots`}
-                className={({ isActive }) =>
-                  `py-4 px-1 border-b-2 font-medium text-sm ${
-                    isActive
-                      ? 'border-blue-500 text-blue-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                  }`
-                }
-              >
-                {t('nasha_dashboard_partition_tab_snapshots', { defaultValue: 'Snapshots' })}
-              </NavLink>
-              <NavLink
-                to={`${routePrefix}/accesses`}
-                className={({ isActive }) =>
-                  `py-4 px-1 border-b-2 font-medium text-sm ${
-                    isActive
-                      ? 'border-blue-500 text-blue-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                  }`
-                }
-              >
-                {t('nasha_dashboard_partition_tab_accesses', { defaultValue: 'Accesses' })}
-              </NavLink>
-            </nav>
-          </div>
-        ),
-      }}
+    <NashaHeader
+      title={String(typedPartition.partitionName)}
+      subtitle={String(typedNasha.serviceName)}
+      tabs={
+        <div className="border-b border-gray-200">
+          <nav className="flex space-x-8" aria-label="Tabs">
+            <NavLink
+              to={routePrefix}
+              end
+              className={({ isActive }) =>
+                `py-4 px-1 border-b-2 font-medium text-sm ${
+                  isActive
+                    ? 'border-blue-500 text-blue-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                }`
+              }
+            >
+              {t('nasha_dashboard_partition_tab_general_information', {
+                defaultValue: 'General Information',
+              })}
+            </NavLink>
+            <NavLink
+              to={`${routePrefix}/snapshots`}
+              className={({ isActive }) =>
+                `py-4 px-1 border-b-2 font-medium text-sm ${
+                  isActive
+                    ? 'border-blue-500 text-blue-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                }`
+              }
+            >
+              {t('nasha_dashboard_partition_tab_snapshots', { defaultValue: 'Snapshots' })}
+            </NavLink>
+            <NavLink
+              to={`${routePrefix}/accesses`}
+              className={({ isActive }) =>
+                `py-4 px-1 border-b-2 font-medium text-sm ${
+                  isActive
+                    ? 'border-blue-500 text-blue-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                }`
+              }
+            >
+              {t('nasha_dashboard_partition_tab_accesses', { defaultValue: 'Accesses' })}
+            </NavLink>
+          </nav>
+        </div>
+      }
     >
       <Outlet />
       {/* Default content when no outlet - show General Information */}
@@ -126,7 +126,7 @@ export default function PartitionPage() {
                         defaultValue: 'Name',
                       })}
                     />
-                    <Tile.Item.Description>{partition.partitionName}</Tile.Item.Description>
+                    <Tile.Item.Description>{String(typedPartition.partitionName)}</Tile.Item.Description>
                   </Tile.Item.Root>
                   <Tile.Item.Root>
                         <Tile.Item.Term
@@ -137,7 +137,7 @@ export default function PartitionPage() {
                             <ActionMenu
                               id="edit-description-menu"
                               isCompact
-                              popoverPosition="end"
+                              popoverPosition={POPOVER_POSITION.right}
                               items={[
                                 {
                                   id: 1,
@@ -149,7 +149,9 @@ export default function PartitionPage() {
                           }
                         />
                     <Tile.Item.Description>
-                      {partition.partitionDescription || (
+                      {typedPartition.partitionDescription ? (
+                        String(typedPartition.partitionDescription)
+                      ) : (
                         <em className="text-gray-500">
                           {t('nasha_dashboard_partition_information_description_none', {
                             defaultValue: 'No description',
@@ -164,7 +166,7 @@ export default function PartitionPage() {
                         defaultValue: 'Protocol',
                       })}
                     />
-                    <Tile.Item.Description>{partition.protocol}</Tile.Item.Description>
+                    <Tile.Item.Description>{typedPartition.protocol}</Tile.Item.Description>
                   </Tile.Item.Root>
                   <Tile.Item.Root>
                         <Tile.Item.Term
@@ -175,7 +177,7 @@ export default function PartitionPage() {
                             <ActionMenu
                               id="edit-size-menu"
                               isCompact
-                              popoverPosition="end"
+                              popoverPosition={POPOVER_POSITION.right}
                               items={[
                                 {
                                   id: 2,
@@ -187,10 +189,10 @@ export default function PartitionPage() {
                           }
                         />
                     <Tile.Item.Description>
-                      {partition.use?.size && (
+                      {typedPartition.use?.size && (
                         <>
-                          <span>{partition.use.size.value.toFixed(2)}</span>
-                          <span className="ml-1">{partition.use.size.unit}</span>
+                          <span>{typedPartition.use.size.value.toFixed(2)}</span>
+                          <span className="ml-1">{typedPartition.use.size.unit}</span>
                         </>
                       )}
                     </Tile.Item.Description>
@@ -202,7 +204,7 @@ export default function PartitionPage() {
                       })}
                     />
                     <Tile.Item.Description divider={false}>
-                      {partition.use && <SpaceMeter usage={partition.use} large />}
+                      {typedPartition.use && <SpaceMeter usage={typedPartition.use} large />}
                     </Tile.Item.Description>
                   </Tile.Item.Root>
                 </Tile.Root>
@@ -210,6 +212,6 @@ export default function PartitionPage() {
             </div>
           </div>
         )}
-    </BaseLayout>
+    </NashaHeader>
   );
 }

@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { BaseLayout, Button, Datagrid, DatagridColumn, ICON_NAME } from '@ovh-ux/muk';
+import { Button, Datagrid, DatagridColumn, ICON_NAME, Icon } from '@ovh-ux/muk';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 import { v6 } from '@ovh-ux/manager-core-api';
@@ -17,13 +17,19 @@ type Snapshot = {
 };
 
 export default function SnapshotsPage() {
-  const { serviceName, partitionName } = useParams<{ serviceName: string; partitionName: string }>();
+  const { serviceName, partitionName } = useParams<{
+    serviceName: string;
+    partitionName: string;
+  }>();
   const { t } = useTranslation('dashboard');
 
   const { data: snapshots, isLoading } = useQuery({
     queryKey: ['nasha-snapshots', serviceName, partitionName],
     queryFn: async () => {
-      const { data } = await v6.get<{ customs?: string[]; snapshotTypes?: SnapshotType[] }>(
+      const { data } = await v6.get<{
+        customs?: string[];
+        snapshotTypes?: SnapshotType[];
+      }>(
         `${NASHA_BASE_API_URL}/${serviceName}/partition/${partitionName}/snapshot`,
       );
       return data;
@@ -36,26 +42,36 @@ export default function SnapshotsPage() {
     {
       id: 'type',
       accessorKey: 'type',
-      header: t('nasha_dashboard_partition_snapshots_list_type', { defaultValue: 'Type' }),
+      header: t('nasha_dashboard_partition_snapshots_list_type', {
+        defaultValue: 'Type',
+      }),
       enableHiding: false,
     },
     {
       id: 'name',
       accessorKey: 'name',
-      header: t('nasha_dashboard_partition_snapshots_list_name', { defaultValue: 'Name' }),
+      header: t('nasha_dashboard_partition_snapshots_list_name', {
+        defaultValue: 'Name',
+      }),
       enableHiding: false,
     },
     {
       id: 'options',
       accessorKey: 'options',
-      header: t('nasha_dashboard_partition_snapshots_list_options', { defaultValue: 'Options' }),
+      header: t('nasha_dashboard_partition_snapshots_list_options', {
+        defaultValue: 'Options',
+      }),
       enableHiding: false,
     },
   ];
 
   // Transform data for display
   const snapshotRows: Snapshot[] = [
-    ...(snapshots?.customs || []).map((name) => ({ type: 'custom', name, options: '' })),
+    ...(snapshots?.customs || []).map((name) => ({
+      type: 'custom',
+      name,
+      options: '',
+    })),
   ];
 
   return (
@@ -91,15 +107,17 @@ export default function SnapshotsPage() {
 
       <Button
         variant="default"
-        iconLeft={ICON_NAME.plus}
         className="mb-4"
         onClick={() => {
           // TODO: Show create snapshot form
         }}
       >
-        {t('nasha_dashboard_partition_snapshots_create', {
-          defaultValue: 'Create snapshot',
-        })}
+        <>
+          <Icon name={ICON_NAME.plus} />
+          {t('nasha_dashboard_partition_snapshots_create', {
+            defaultValue: 'Create snapshot',
+          })}
+        </>
       </Button>
 
       <Datagrid
