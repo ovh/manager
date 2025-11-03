@@ -31,6 +31,10 @@ type TFlavorSelectOption = {
   items: TOptionsData[];
 };
 
+type TCustomSelectItemData = {
+  tag: TFlavorTag;
+};
+
 const FlavorSelect = ({ option, items }: TFlavorSelectOption) => {
   const { t } = useTranslation('common');
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
@@ -98,12 +102,15 @@ const FlavorSelect = ({ option, items }: TFlavorSelectOption) => {
               className="h-[2.5em]"
               customItemRenderer={({
                 selectedItems,
-              }: SelectCustomItemRendererArg<{ tag: TFlavorTag }>) => (
+              }: SelectCustomItemRendererArg) => (
                 <>
                   {selectedItems[0] && (
                     <FlavorOption
                       label={selectedItems[0].label}
-                      tag={selectedItems[0].customRendererData?.tag}
+                      tag={
+                        (selectedItems[0]
+                          .customRendererData as TCustomSelectItemData).tag
+                      }
                     />
                   )}
                 </>
@@ -114,8 +121,11 @@ const FlavorSelect = ({ option, items }: TFlavorSelectOption) => {
               customOptionRenderer={({
                 customData,
                 label,
-              }: SelectCustomOptionRendererArg<{ tag: TFlavorTag }>) => (
-                <FlavorOption label={label} tag={customData?.tag} />
+              }: SelectCustomOptionRendererArg) => (
+                <FlavorOption
+                  label={label}
+                  tag={(customData as TCustomSelectItemData).tag}
+                />
               )}
             />
           </Select>
