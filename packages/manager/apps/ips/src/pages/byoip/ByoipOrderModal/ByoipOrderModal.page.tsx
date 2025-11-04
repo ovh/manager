@@ -16,6 +16,11 @@ import {
   OdsCheckbox,
 } from '@ovhcloud/ods-components/react';
 import { useOrderURL } from '@ovh-ux/manager-module-order';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { urls } from '@/routes/routes.constant';
 import { ByoipContext } from '../Byoip.context';
 import {
@@ -35,7 +40,7 @@ export const ByoipOrderModal: React.FC<{ isOpen: boolean }> = ({
 }) => {
   const { t } = useTranslation(['byoip', NAMESPACES?.ACTIONS]);
   const navigate = useNavigate();
-
+  const { trackClick } = useOvhTracking();
   const {
     ipRir,
     selectedRegion,
@@ -180,6 +185,14 @@ export const ByoipOrderModal: React.FC<{ isOpen: boolean }> = ({
               '_blank',
               'noopener,noreferrer',
             );
+
+            trackClick({
+              actionType: 'action',
+              buttonType: ButtonType.button,
+              location: PageLocation.funnel,
+              actions: ['BYOIP-order-confirm'],
+            });
+
             startTransition(() => {
               navigate(urls.listing);
             });

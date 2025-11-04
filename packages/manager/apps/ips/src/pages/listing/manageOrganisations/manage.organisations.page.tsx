@@ -8,6 +8,11 @@ import {
   ODS_ICON_NAME,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import Loading from '@/components/Loading/Loading';
 import { ManageOrganisationsDatagrid } from '@/pages/listing/manageOrganisations/components/OrganisationsDatagrid/manageOrganisationsDataGrid.component';
 import { urls } from '@/routes/routes.constant';
@@ -15,6 +20,8 @@ import { urls } from '@/routes/routes.constant';
 export default function ManageOrganisationsPage() {
   const { t } = useTranslation('manage-organisations');
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
+
   return (
     <>
       <div className="flex flex-col">
@@ -27,7 +34,15 @@ export default function ManageOrganisationsPage() {
           className="mb-5 mr-2"
           variant={ODS_BUTTON_VARIANT.outline}
           icon={ODS_ICON_NAME.plus}
-          onClick={() => navigate(urls.openOrganisationsModal)}
+          onClick={() => {
+            navigate(urls.openOrganisationsModal);
+            trackClick({
+              actionType: 'action',
+              buttonType: ButtonType.button,
+              location: PageLocation.page,
+              actions: [t('manageOrganisationsAddButtonLabel')],
+            });
+          }}
           label={t('manageOrganisationsOrderButtonLabel')}
         />
       </div>

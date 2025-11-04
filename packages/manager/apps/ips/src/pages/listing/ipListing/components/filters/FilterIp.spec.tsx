@@ -2,6 +2,8 @@ import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { createMemoryRouter, RouterProvider } from 'react-router-dom';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ListingContext } from '@/pages/listing/listingContext';
 import { IpFilter } from './FilterIp';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
@@ -10,8 +12,17 @@ const queryClient = new QueryClient();
 
 const setApiFilter = vi.fn();
 
+const trackClickMock = vi.fn();
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+  return {
+    ...original,
+    useOvhTracking: () => ({ trackClick: trackClickMock }),
+  };
+});
+
 const renderComponent = () => {
-  return render(
+  const element = (
     <QueryClientProvider client={queryClient}>
       <ListingContext.Provider
         value={{
@@ -21,8 +32,26 @@ const renderComponent = () => {
       >
         <IpFilter />
       </ListingContext.Provider>
-    </QueryClientProvider>,
+    </QueryClientProvider>
   );
+
+  const router = createMemoryRouter(
+    [
+      {
+        path: '/',
+        element,
+        handle: {
+          tracking: {
+            pageName: 'ip',
+            pageType: PageType.listing,
+          },
+        },
+      },
+    ],
+    { initialEntries: ['/'] },
+  );
+
+  return render(<RouterProvider router={router} />);
 };
 
 describe('IpFilter Component', async () => {
