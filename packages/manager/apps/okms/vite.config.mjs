@@ -14,6 +14,7 @@ export default defineConfig({
         join(process.cwd(), 'src/modules/key-management-service'),
       ),
     },
+    dedupe: ['@tanstack/react-virtual'],
   },
   root: resolve(process.cwd()),
 });
