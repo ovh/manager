@@ -1,4 +1,4 @@
-import { v6 } from '@ovh-ux/manager-core-api';
+import { apiClient } from '@ovh-ux/manager-core-api';
 import { Service, Stream } from '../types/dbaas/logs';
 
 /**
@@ -7,7 +7,9 @@ import { Service, Stream } from '../types/dbaas/logs';
 export const getLogStream = async (
   serviceName: Service['serviceName'],
   streamId: string,
-) =>
-  v6.get<Stream>(
+): Promise<Stream> => {
+  const { data } = await apiClient.v6.get<Stream>(
     `/dbaas/logs/${serviceName}/output/graylog/stream/${streamId}`,
   );
+  return data;
+};
