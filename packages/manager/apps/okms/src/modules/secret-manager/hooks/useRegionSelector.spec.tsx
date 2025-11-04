@@ -2,7 +2,11 @@ import { useParams } from 'react-router-dom';
 import { waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { locationsMock } from '@secret-manager/mocks/locations/locations.mock';
+import {
+  locationsMock,
+  LOCATION_EU_WEST_RBX,
+  LOCATION_EU_WEST_SBG,
+} from '@secret-manager/mocks/locations/locations.mock';
 import { getOkmsList } from '@key-management-service/data/api/okms';
 import {
   okmsStrasbourg1Mock,
@@ -85,16 +89,16 @@ const renderCustomHook = async (state: 'success' | 'error') => {
 };
 
 const rbxRegionOptionMock: RegionOption = {
-  label: 'Europe (France - Roubaix)',
-  region: REGION_EU_WEST_RBX,
-  geographyLabel: 'Europe',
-  href: SECRET_MANAGER_ROUTES_URLS.okmsList(REGION_EU_WEST_RBX),
+  region: LOCATION_EU_WEST_RBX.name,
+  geographyCode: LOCATION_EU_WEST_RBX.geographyCode,
+  // 2 OKMS in Roubaix, so redirect to the OKMS list page
+  href: SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_EU_WEST_RBX.name),
 };
 
 const sbgRegionOptionMock: RegionOption = {
-  label: 'Europe (France - Strasbourg)',
-  region: REGION_EU_WEST_SBG,
-  geographyLabel: 'Europe',
+  region: LOCATION_EU_WEST_SBG.name,
+  geographyCode: LOCATION_EU_WEST_SBG.geographyCode,
+  // 1 OKMS in Strasbourg, so redirect to the secrets listing page
   href: SECRET_MANAGER_ROUTES_URLS.secretList(okmsStrasbourg1Mock.id),
 };
 
@@ -133,7 +137,9 @@ describe('useRegionSelector tests suite', () => {
       expect(result.current.geographyGroups).toHaveLength(1);
 
       const europeGroup = result.current.geographyGroups[0];
-      expect(europeGroup.geographyLabel).toBe('Europe');
+      expect(europeGroup.geographyCode).toBe(
+        LOCATION_EU_WEST_RBX.geographyCode,
+      );
       expect(europeGroup.regions).toHaveLength(2);
 
       // Check if regions are properly formatted
@@ -179,7 +185,7 @@ describe('useRegionSelector tests suite', () => {
       const { result } = await renderCustomHook('success');
 
       const europeGroup = result.current.geographyGroups.find(
-        (group) => group.geographyLabel === 'Europe',
+        (group) => group.geographyCode === LOCATION_EU_WEST_RBX.geographyCode,
       );
       expect(europeGroup.regions).toHaveLength(2); // Should still be 2, not 3
     });
