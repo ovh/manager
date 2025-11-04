@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/muk",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "MUK:Manager UI Kit",
   "homepage": "https://github.com/ovh/manager/blob/master/packages/manager-ui-kit/README.md",
   "bugs": {
@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@mdx-js/react": "^3.0.1",
-    "@ovh-ux/manager-common-translations": "^0.21.1",
+    "@ovh-ux/manager-common-translations": "^0.22.0",
     "@ovh-ux/manager-core-api": "^0.19.1",
     "@ovh-ux/manager-core-utils": "^0.4.7",
     "@ovh-ux/manager-react-shell-client": "^0.11.1",

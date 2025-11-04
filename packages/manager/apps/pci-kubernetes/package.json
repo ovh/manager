@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-kubernetes-app",
-  "version": "0.35.0",
+  "version": "0.35.1",
   "private": true,
   "description": "PCI Kubernetes react app",
   "type": "module",
@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
-    "@ovh-ux/manager-common-translations": "^0.21.1",
+    "@ovh-ux/manager-common-translations": "^0.22.0",
     "@ovh-ux/manager-config": "^8.6.8",
     "@ovh-ux/manager-core-api": "^0.19.1",
     "@ovh-ux/manager-core-utils": "^0.4.7",

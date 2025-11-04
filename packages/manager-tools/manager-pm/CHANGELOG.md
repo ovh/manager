@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.33.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.33.3...@ovh-ux/manager-pm@0.33.4) (2025-11-04)
+
+
+### Bug Fixes
+
+* update manager pm doc indentation ([805989c](https://github.com/ovh/manager/commit/805989cd671d3f0516d5485b53b202e2252002b6)), closes [#MANAGER-19933](https://github.com/ovh/manager/issues/MANAGER-19933)
+
+
+
+
+
 ## [0.33.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.33.2...@ovh-ux/manager-pm@0.33.3) (2025-11-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-pm

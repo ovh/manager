@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-instances-app",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "private": true,
   "type": "module",
   "scripts": {
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
-    "@ovh-ux/manager-common-translations": "^0.21.1",
+    "@ovh-ux/manager-common-translations": "^0.22.0",
     "@ovh-ux/manager-config": "^8.6.8",
     "@ovh-ux/manager-core-api": "^0.19.1",
     "@ovh-ux/manager-pci-common": "^0.18.3",
