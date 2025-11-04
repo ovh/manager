@@ -2,12 +2,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
+  Combobox,
+  ComboboxTrigger,
+  ComboboxValue,
+  ComboboxContent,
+  ComboboxInput,
+  ComboboxList,
+  ComboboxEmpty,
+  ComboboxGroup,
+  ComboboxItem,
   DialogBody,
   DialogClose,
   DialogContent,
@@ -21,9 +24,6 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
   Select,
   SelectContent,
   SelectItem,
@@ -31,8 +31,7 @@ import {
   SelectValue,
   useToast,
 } from '@datatr-ux/uxlib';
-import { useState } from 'react';
-import { Check, ChevronsUpDown } from 'lucide-react';
+import { Check } from 'lucide-react';
 import RouteModal from '@/components/route-modal/RouteModal';
 import storages from '@/types/Storages';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
@@ -48,7 +47,6 @@ const SwithType = () => {
   const toast = useToast();
   const { projectId, storageId, region } = useParams();
   const s3Query = useGetS3({ projectId, region, name: storageId });
-  const [openUser, setOpenUser] = useState(false);
 
   const { users } = useObjectStorageData();
 
@@ -99,52 +97,52 @@ const SwithType = () => {
             {t('updateS3PolicyDescription')}
           </DialogDescription>
           <Form {...form}>
-            <form onSubmit={onSubmit} className="flex flex-col gap-2 mt-2">
+            <form
+              onSubmit={onSubmit}
+              className="flex flex-col gap-2 mt-2"
+              id="addUserS3Form"
+            >
               <FormField
                 control={form.control}
                 name="userId"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{t('userIdFieldLabel')}</FormLabel>
-                    <Popover open={openUser} onOpenChange={setOpenUser}>
-                      <PopoverTrigger asChild>
-                        <FormControl>
-                          <Button
+
+                    <FormControl>
+                      <Combobox
+                        value={`${field.value}`}
+                        onValueChange={(val) => field.onChange(+val)}
+                        modal
+                      >
+                        <ComboboxTrigger
+                          ref={field.ref}
+                          disabled={field.disabled}
+                        >
+                          <ComboboxValue
                             data-testid="select-user-button"
-                            role="combobox"
-                            mode="outline"
-                            className="w-full flex flex-row items-center justify-between text-sm"
-                          >
-                            {field.value
-                              ? `${
-                                  users.find((us) => us.id === field.value)
-                                    ?.username
-                                } - ${
-                                  users.find((us) => us.id === field.value)
-                                    ?.description
-                                }`
-                              : t('userPlaceholder')}
-                            <ChevronsUpDown className="opacity-50 size-4" />
-                          </Button>
-                        </FormControl>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-full">
-                        <Command>
-                          <CommandInput
-                            placeholder={t('inputUserPlaceholder')}
-                            className="h-9"
+                            placeholder={t('userPlaceholder')}
+                            value={
+                              field.value &&
+                              `${users.find((u) => u.id === field.value)
+                                ?.username ?? ''} - ${users.find(
+                                (u) => u.id === field.value,
+                              )?.description ?? ''}`
+                            }
                           />
-                          <CommandList>
-                            <CommandEmpty>{t('noUserFound')}</CommandEmpty>
-                            <CommandGroup>
+                        </ComboboxTrigger>
+                        <ComboboxContent>
+                          <ComboboxInput
+                            placeholder={t('inputUserPlaceholder')}
+                          />
+                          <ComboboxList>
+                            <ComboboxEmpty>{t('noUserFound')}</ComboboxEmpty>
+                            <ComboboxGroup>
                               {users.map((user) => (
-                                <CommandItem
-                                  value={user.username}
+                                <ComboboxItem
                                   key={user.id}
-                                  onSelect={() => {
-                                    form.setValue('userId', user.id);
-                                    setOpenUser(false);
-                                  }}
+                                  value={`${user.id}`}
+                                  keywords={[user.username, user.description]}
                                 >
                                   {`${user.username} - ${user.description}`}
                                   <Check
@@ -155,13 +153,13 @@ const SwithType = () => {
                                         : 'opacity-0',
                                     )}
                                   />
-                                </CommandItem>
+                                </ComboboxItem>
                               ))}
-                            </CommandGroup>
-                          </CommandList>
-                        </Command>
-                      </PopoverContent>
-                    </Popover>
+                            </ComboboxGroup>
+                          </ComboboxList>
+                        </ComboboxContent>
+                      </Combobox>
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -206,6 +204,7 @@ const SwithType = () => {
             </Button>
           </DialogClose>
           <Button
+            form="addUserS3Form"
             type="submit"
             data-testid="s3-policy-submit-button"
             disabled={isPending}

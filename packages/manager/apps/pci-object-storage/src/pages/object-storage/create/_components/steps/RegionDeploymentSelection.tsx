@@ -1,4 +1,4 @@
-import { Checkbox } from '@datatr-ux/uxlib';
+import { CheckboxIndicator, CheckboxTile } from '@datatr-ux/uxlib';
 import { useTranslation } from 'react-i18next';
 import cloud from '@/types/Cloud';
 import { cn } from '@/lib/utils';
@@ -109,25 +109,22 @@ export const DeploymentModeSelection = ({
 
   return (
     <section>
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2">
         {deploymentModes.map((deploymentMode) => {
           const { mode, title, description, Image } = deploymentMode;
           const isSelected = value?.some((item) => item === mode);
 
           return (
-            <button
-              data-state={isSelected ? 'checked' : ''}
-              className={cn(
-                'text-left p-4 rounded-md bg-card text-card-foreground data-[state=checked]:border-primary data-[state=checked]:bg-primary-50 ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border border-border data-[state=checked]:shadow-[0_0_0_1px] flex flex-col gap-2',
-              )}
+            <CheckboxTile
+              checked={isSelected}
+              onCheckedChange={handleSelect(mode)}
               key={mode}
-              onClick={handleSelect(mode)}
             >
               <div className="flex flex-row items-center gap-4 ">
                 <div className="flex justify-between w-full">
                   <div>
                     <div className="flex items-center gap-2">
-                      <Checkbox checked={isSelected} />
+                      <CheckboxIndicator />
                       <p className="font-bold text-sm text-[--ods-color-heading]">
                         {title}
                       </p>
@@ -142,7 +139,7 @@ export const DeploymentModeSelection = ({
                   </div>
                 </div>
               </div>
-            </button>
+            </CheckboxTile>
           );
         })}
       </div>

@@ -67,6 +67,7 @@ const RegionsStep = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
     const { t: tOrder } = useTranslation('pci-object-storage/order-funnel');
     const RECOMENDED_REGION = 'EU-WEST-PAR';
     const { data: project } = usePciProject();
+    const MAX_DISPLAYED_REGIONS = 12;
 
     const {
       translateContinentRegion,
@@ -110,7 +111,7 @@ const RegionsStep = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
 
     const mappedRegionsFiltered = shouldFilterRegion
       ? filteredRegions
-      : filteredRegions.slice(0, 12);
+      : filteredRegions.slice(0, MAX_DISPLAYED_REGIONS);
 
     const handleDeploymentModeChange = (
       newDeploymentModes: cloud.RegionTypeEnum[],
@@ -164,68 +165,70 @@ const RegionsStep = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
           </div>
           <div className="flex items-center gap-2">
             <Checkbox
-              id="filter-regin"
-              checked={shouldFilterRegion}
-              onClick={() => setShouldFilterRegion(!shouldFilterRegion)}
+              id="filter-region"
+              disabled={filteredRegions.length <= MAX_DISPLAYED_REGIONS}
+              checked={
+                filteredRegions.length <= MAX_DISPLAYED_REGIONS ||
+                shouldFilterRegion
+              }
+              onClick={() => setShouldFilterRegion((val) => !val)}
             />
             <Label htmlFor="filter-regin">{tOrder('showAllRegions')}</Label>
           </div>
         </div>
 
         {mappedRegionsFiltered.length ? (
-          <ScrollArea className="max-h-[450px] w-full overflow-y-auto">
-            <div className="pr-4">
-              <RadioGroup
-                className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 mt-2"
-                value={value}
-                onValueChange={onChange}
-              >
-                {mappedRegionsFiltered
-                  .sort((a, b) => {
-                    const priority: Record<string, number> = {
-                      [RegionTypeEnum['region-3-az']]: 0,
-                      [RegionTypeEnum.region]: 1,
-                    };
+          <ScrollArea className="max-h-[480px] w-full overflow-y-auto">
+            <RadioGroup
+              className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 mt-2 p-[1px]"
+              value={value}
+              onValueChange={onChange}
+            >
+              {mappedRegionsFiltered
+                .sort((a, b) => {
+                  const priority: Record<string, number> = {
+                    [RegionTypeEnum['region-3-az']]: 0,
+                    [RegionTypeEnum.region]: 1,
+                  };
 
-                    const aPriority = priority[a.type] ?? 2;
-                    const bPriority = priority[b.type] ?? 2;
+                  const aPriority = priority[a.type] ?? 2;
+                  const bPriority = priority[b.type] ?? 2;
 
-                    if (aPriority !== bPriority) {
-                      return aPriority - bPriority;
-                    }
-                    return a.name.localeCompare(b.name);
-                  })
-                  .map((region) => (
-                    <RadioTile
-                      data-testid={`regions-radio-tile-${region.name}`}
-                      key={region.name}
-                      value={region.name}
-                    >
-                      <div className="flex w-full gap-2 justify-between items-center">
-                        <div className="flex items-center gap-2">
-                          <RadioIndicator />
-                          <h5 className="flex gap-2 items-center">
-                            {region.countryCode && (
-                              <Flag flagName={region.countryCode} />
-                            )}
-                            {region.label}
-                          </h5>
-                        </div>
-                      </div>
-                      <div className="flex w-full gap-2 justify-between mt-2">
-                        <RegionTypeBadgeWithPopover type={region.type} />
-                        <div className="flex gap-1">
-                          {region.name === RECOMENDED_REGION && (
-                            <Badge variant="information">
-                              {tOrder('regionRecommended')}
-                            </Badge>
+                  if (aPriority !== bPriority) {
+                    return aPriority - bPriority;
+                  }
+                  return a.name.localeCompare(b.name);
+                })
+                .map((region) => (
+                  <RadioTile
+                    data-testid={`regions-radio-tile-${region.name}`}
+                    key={region.name}
+                    value={region.name}
+                  >
+                    <div className="flex w-full gap-2 justify-between items-center">
+                      <div className="flex items-center gap-2">
+                        <RadioIndicator />
+                        <h5 className="flex gap-2 items-center">
+                          {region.countryCode && (
+                            <Flag flagName={region.countryCode} />
                           )}
-                        </div>
+                          {region.label}
+                        </h5>
                       </div>
-                    </RadioTile>
-                  ))}
-              </RadioGroup>
-            </div>
+                    </div>
+                    <div className="flex w-full gap-2 justify-between mt-2">
+                      <RegionTypeBadgeWithPopover type={region.type} />
+                      <div className="flex gap-1">
+                        {region.name === RECOMENDED_REGION && (
+                          <Badge variant="information">
+                            {tOrder('regionRecommended')}
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
+                  </RadioTile>
+                ))}
+            </RadioGroup>
           </ScrollArea>
         ) : (
           <Alert>

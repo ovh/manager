@@ -1,5 +1,6 @@
 import {
   Button,
+  ButtonProps,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -13,6 +14,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ContainerObject } from '@datatr-ux/ovhcloud-types/cloud/storage/index';
 import { add, formatRFC3339 } from 'date-fns';
+import { ReactElement } from 'react';
 import { octetConverter } from '@/lib/bytesHelper';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import FileIcon from '@/components/fileIcon/FileIcon.component';
@@ -64,7 +66,16 @@ const SwiftObjectFileRenderer = ({ object }: SwiftObjectFileRendererProps) => {
   const onDeleteClicked = () =>
     navigate(`./delete-object?objectName=${object.name}`);
 
-  const actions = [
+  const actions: {
+    id: string;
+    icon: ReactElement;
+    onClick: () => void;
+    disabled?: boolean;
+    label: string;
+    withSeparator?: boolean;
+    mobileOnly?: boolean;
+    variant?: ButtonProps['variant'] & DropdownMenuItemProps['variant'];
+  }[] = [
     {
       id: 'details',
       icon: <Pen className="size-4" />,
@@ -138,7 +149,7 @@ const SwiftObjectFileRenderer = ({ object }: SwiftObjectFileRendererProps) => {
                 mode={'ghost'}
                 size={'xs'}
                 className="p-1"
-                variant={a.variant as DropdownMenuItemProps['variant']}
+                variant={a.variant}
                 disabled={a.disabled}
               >
                 {a.icon}
@@ -169,7 +180,7 @@ const SwiftObjectFileRenderer = ({ object }: SwiftObjectFileRendererProps) => {
                   <DropdownMenuItem
                     key={a.id}
                     onClick={a.onClick}
-                    variant={a.variant as DropdownMenuItemProps['variant']}
+                    variant={a.variant}
                     disabled={a.disabled}
                   >
                     {a.label}

@@ -1,14 +1,16 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
+  Combobox,
+  ComboboxTrigger,
+  ComboboxValue,
+  ComboboxContent,
+  ComboboxInput,
+  ComboboxList,
+  ComboboxEmpty,
+  ComboboxGroup,
+  ComboboxItem,
   DialogBody,
   DialogClose,
   DialogContent,
@@ -22,14 +24,11 @@ import {
   FormLabel,
   FormMessage,
   Label,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
   RadioGroup,
   RadioGroupItem,
   useToast,
 } from '@datatr-ux/uxlib';
-import { Check, ChevronsUpDown, ExternalLink } from 'lucide-react';
+import { Check, ExternalLink } from 'lucide-react';
 import RouteModal from '@/components/route-modal/RouteModal';
 import { useObjectStorageData } from '../../ObjectStorage.context';
 import { useRcloneForm } from './formRclone/useRcloneForm.hook';
@@ -44,7 +43,6 @@ import useDownload from '@/hooks/useDownload';
 const Rclone = () => {
   const { t } = useTranslation('pci-object-storage/users/rclone');
   const { t: tRegions } = useTranslation('regions');
-  const [open, setOpen] = useState(false);
   const { regions } = useObjectStorageData();
   const toast = useToast();
   const { projectId, userId } = useParams();
@@ -142,69 +140,64 @@ const Rclone = () => {
                   <FormItem>
                     <FormLabel>{t('regionLabel')}</FormLabel>
                     <FormControl>
-                      <Popover open={open} onOpenChange={setOpen}>
-                        <PopoverTrigger asChild>
-                          <FormControl>
-                            <Button
-                              data-testid="select-region-button"
-                              role="combobox"
-                              mode="outline"
-                              className="w-full flex flex-row items-center justify-between text-sm border"
-                            >
-                              {field.value
-                                ? tRegions(`region_${field.value}`)
-                                : t('regionPlaceholder')}
-                              <ChevronsUpDown className="opacity-50 size-4" />
-                            </Button>
-                          </FormControl>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-full">
-                          <Command>
-                            <CommandInput
-                              placeholder={t('regionPlaceholder')}
-                              className="h-9"
-                            />
-                            <CommandList>
-                              <CommandEmpty>{t('noRegionFound')}</CommandEmpty>
-                              <CommandGroup>
-                                {regions
-                                  .filter((reg) =>
-                                    form.getValues('rcloneType') ===
-                                    ObjectStorageTypeEnum.s3
-                                      ? reg.services.find((ser) =>
-                                          ser.name.startsWith('storage-s3'),
-                                        )
-                                      : reg.services.find(
-                                          (ser) => ser.name === 'storage',
-                                        ),
-                                  )
-                                  .map((region) => (
-                                    <CommandItem
-                                      value={region.name}
-                                      key={region.name}
-                                      onSelect={() => {
-                                        form.setValue('region', region.name);
-                                        setOpen(false);
-                                      }}
-                                    >
-                                      {`${tRegions(
-                                        `region_${region.name}`,
-                                      )} - (${region.name})`}
-                                      <Check
-                                        className={cn(
-                                          'ml-auto',
-                                          region.name === field.value
-                                            ? 'opacity-100'
-                                            : 'opacity-0',
-                                        )}
-                                      />
-                                    </CommandItem>
-                                  ))}
-                              </CommandGroup>
-                            </CommandList>
-                          </Command>
-                        </PopoverContent>
-                      </Popover>
+                      <Combobox
+                        value={`${field.value}`}
+                        onValueChange={field.onChange}
+                        modal
+                      >
+                        <ComboboxTrigger
+                          ref={field.ref}
+                          disabled={field.disabled}
+                        >
+                          <ComboboxValue
+                            data-testid="select-region-button"
+                            placeholder={t('regionPlaceholder')}
+                            value={
+                              field.value && tRegions(`region_${field.value}`)
+                            }
+                          />
+                        </ComboboxTrigger>
+                        <ComboboxContent>
+                          <ComboboxInput placeholder={t('regionPlaceholder')} />
+                          <ComboboxList>
+                            <ComboboxEmpty>{t('noRegionFound')}</ComboboxEmpty>
+                            <ComboboxGroup>
+                              {regions
+                                .filter((reg) =>
+                                  form.getValues('rcloneType') ===
+                                  ObjectStorageTypeEnum.s3
+                                    ? reg.services.find((ser) =>
+                                        ser.name.startsWith('storage-s3'),
+                                      )
+                                    : reg.services.find(
+                                        (ser) => ser.name === 'storage',
+                                      ),
+                                )
+                                .map((region) => (
+                                  <ComboboxItem
+                                    value={region.name}
+                                    key={region.name}
+                                    keywords={[
+                                      tRegions(`region_${region.name}`),
+                                    ]}
+                                  >
+                                    {`${tRegions(`region_${region.name}`)} - (${
+                                      region.name
+                                    })`}
+                                    <Check
+                                      className={cn(
+                                        'ml-auto',
+                                        region.name === field.value
+                                          ? 'opacity-100'
+                                          : 'opacity-0',
+                                      )}
+                                    />
+                                  </ComboboxItem>
+                                ))}
+                            </ComboboxGroup>
+                          </ComboboxList>
+                        </ComboboxContent>
+                      </Combobox>
                     </FormControl>
                     <FormMessage />
                   </FormItem>

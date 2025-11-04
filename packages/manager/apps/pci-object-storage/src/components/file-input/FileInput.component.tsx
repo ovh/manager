@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { Upload, File as FileIcon, X } from 'lucide-react';
+import { Upload, X } from 'lucide-react';
 import { Button } from '@datatr-ux/uxlib';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 import { octetConverter } from '@/lib/bytesHelper';
+import FileIcon from '../fileIcon/FileIcon.component';
 
 interface FileInputProps
   extends Omit<
@@ -81,15 +82,20 @@ export const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
 
           {/* File list */}
           {value?.length > 0 && (
-            <div className="mt-2 px-4 w-full">
+            <div className="mt-2 px-4 w-full max-h-48 overflow-auto">
               {value.map((file, index) => (
                 <div
                   key={index}
                   className="grid grid-cols-2 gap-4 items-center border-b border-gray-200"
                 >
                   <div className="flex flex-row items-center gap-4">
-                    <FileIcon className="size-4" />
-                    <p className="font-semibold">{file.name}</p>
+                    <FileIcon className="size-4" fileName={file.name} />
+                    <p
+                      className="font-semibold max-w-60 truncate"
+                      title={file.name}
+                    >
+                      {file.name}
+                    </p>
                   </div>
                   <div className="flex flex-row items-center justify-end gap-4">
                     <p>{octetConverter(file.size)}</p>

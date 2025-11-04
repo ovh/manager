@@ -40,7 +40,6 @@ import {
 import usePciProject from '@/data/hooks/project/usePciProject.hook';
 import { PlanCode } from '@/configuration/project';
 import DiscoveryBanner from '@/components/discovery-banner/DiscoveryBanner';
-import OrderPricing from './OrderPricing.component';
 import A from '@/components/links/A.component';
 import user from '@/types/User';
 
@@ -319,7 +318,6 @@ const OrderFunnel = ({
               />
               <Separator className="my-2" />
 
-              <OrderPricing pricings={pricings} />
               <div className="text-xs mt-2 italic">
                 <Trans
                   i18nKey={`pricingDisclaimer`}
