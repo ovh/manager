@@ -7,6 +7,9 @@ import { getPreferencesMocks } from '@/__mocks__/preferences/preferences.handler
 import { ContainerProvider } from '@/core/container';
 import { getFeatureAvailabilityMocks } from '@/__mocks__/feature-availability/featureAvailability.handler';
 
+vi.mock('@ovhcloud/ods-react/dist/Link.css', () => ({}));
+vi.mock('@ovhcloud/ods-react/dist/Icon.css', () => ({}));
+
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => {

@@ -74,10 +74,6 @@ function Header({
               {!isMobile && (
                 <>
                   <div
-                    className={style.navbarSeparator}
-                    aria-hidden="true"
-                  ></div>
-                  <div
                     className={`oui-navbar-list__item ${style.navbarListItem}`}
                   >
                     <NavReshuffleSwitchBack />
