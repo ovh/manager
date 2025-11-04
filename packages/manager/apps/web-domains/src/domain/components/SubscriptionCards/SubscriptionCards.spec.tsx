@@ -20,18 +20,20 @@ vi.mock('@/domain/hooks/data/query', () => ({
 
 describe('SubscriptionCards component', () => {
   it('renders loading state when data is fetching', () => {
-    (useGetDomainResource as jest.Mock).mockReturnValue({
+    vi.mocked(useGetDomainResource).mockReturnValue({
       domainResource: null,
       isFetchingDomainResource: true,
-    });
-    (useGetServiceInformation as jest.Mock).mockReturnValue({
+      domainResourceError: null,
+    } as ReturnType<typeof useGetDomainResource>);
+    vi.mocked(useGetServiceInformation).mockReturnValue({
       isServiceInfoLoading: true,
       serviceInfo: null,
-    });
-    (useGetDomainContact as jest.Mock).mockReturnValue({
+    } as ReturnType<typeof useGetServiceInformation>);
+    vi.mocked(useGetDomainContact).mockReturnValue({
       isFetchingDomainContact: true,
-      domainContact: true,
-    });
+      domainContact: null,
+      domainContactError: null,
+    } as ReturnType<typeof useGetDomainContact>);
 
     render(<SubscriptionCards serviceName="example.com" />, { wrapper });
     const skeletons = document.querySelectorAll('[data-ods="skeleton"]');
@@ -45,18 +47,24 @@ describe('SubscriptionCards component', () => {
   });
 
   it('renders populated state with domain information', async () => {
-    (useGetDomainResource as jest.Mock).mockReturnValue({
+    vi.mocked(useGetDomainResource).mockReturnValue({
       domainResource: domainResourceOK,
       isFetchingDomainResource: false,
-    });
-    (useGetServiceInformation as jest.Mock).mockReturnValue({
+      domainResourceError: null,
+    } as ReturnType<typeof useGetDomainResource>);
+    vi.mocked(useGetServiceInformation).mockReturnValue({
       isServiceInfoLoading: false,
       serviceInfo: serviceInfoPremium,
-    });
-    (useGetDomainContact as jest.Mock).mockReturnValue({
-      isFetchingDomainContact: true,
-      domainContact: true,
-    });
+    } as ReturnType<typeof useGetServiceInformation>);
+    vi.mocked(useGetDomainContact).mockReturnValue({
+      isFetchingDomainContact: false,
+      domainContact: {
+        firstName: 'Example',
+        lastName: 'Contact',
+        organisationName: '',
+      },
+      domainContactError: null,
+    } as ReturnType<typeof useGetDomainContact>);
 
     render(<SubscriptionCards serviceName="example.com" />, { wrapper });
 
@@ -79,7 +87,7 @@ describe('SubscriptionCards component', () => {
       ).toBeInTheDocument();
       expect(
         screen.getByText(
-          /owner-id: domain_tab_general_information_subscription_contact_owner/i,
+          /Example Contact: domain_tab_general_information_subscription_contact_owner/i,
         ),
       ).toBeInTheDocument();
       expect(

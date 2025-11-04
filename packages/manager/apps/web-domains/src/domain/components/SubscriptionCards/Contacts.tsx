@@ -37,29 +37,31 @@ export default function Contacts({
   ]);
 
   const renderContactsList = () => {
-    return Object.entries(contacts).map(([contactType, contactDetail]) => {
-      if (!domainContact) {
-        return <></>;
-      }
+    return Object.entries(contacts)
+      .map(([contactType, contactDetail]) => {
+        if (contactType === 'contactOwner') {
+          if (isFetchingDomainContact || !domainContact) {
+            return null;
+          }
 
-      if (!isFetchingDomainContact && contactType === 'contactOwner') {
-        const { firstName, lastName, organisationName } = domainContact;
-        const displayName = [firstName, lastName, organisationName]
-          .filter(Boolean)
-          .join(' ');
+          const { firstName, lastName, organisationName } = domainContact;
+          const displayName = [firstName, lastName, organisationName]
+            .filter(Boolean)
+            .join(' ');
+          return (
+            <Text
+              key={`${contactDetail.id}-${contactType}`}
+            >{`${displayName}: ${t(contactsMapping[contactType])}`}</Text>
+          );
+        }
+
         return (
-          <Text
-            key={`${contactDetail.id}-${contactType}`}
-          >{`${displayName}: ${t(contactsMapping[contactType])}`}</Text>
+          <Text key={`${contactDetail.id}-${contactType}`}>{`${
+            contactDetail.id
+          }: ${t(contactsMapping[contactType])}`}</Text>
         );
-      }
-
-      return (
-        <Text key={`${contactDetail.id}-${contactType}`}>{`${
-          contactDetail.id
-        }: ${t(contactsMapping[contactType])}`}</Text>
-      );
-    });
+      })
+      .filter(Boolean);
   };
 
   return (
