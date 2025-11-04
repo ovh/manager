@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-metrics-app",
-  "version": "3.0.67",
+  "version": "3.0.68",
   "private": true,
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "@ovh-ux/manager-components": "^1.26.1",
+    "@ovh-ux/manager-components": "^1.26.2",
     "@ovh-ux/manager-config": "^8.6.8",
     "@ovh-ux/manager-core": "^13.2.16",
     "@ovh-ux/manager-metrics": "^1.6.1",

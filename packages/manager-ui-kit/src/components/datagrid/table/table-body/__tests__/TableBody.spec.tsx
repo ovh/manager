@@ -55,6 +55,7 @@ const Wrapper = () => {
     setItems([
       ...items,
       {
+        id: `person-${items.length + 1}`,
         name: `Person ${items.length + 1}`,
         age: items.length + 1,
       },
@@ -62,6 +63,7 @@ const Wrapper = () => {
   };
   const onFetchAllPages = () => {
     const newData = Array.from({ length: 200 }, (_, index) => ({
+      id: `person-${index}`,
       name: `Person ${index}`,
       age: index + 1,
     }));

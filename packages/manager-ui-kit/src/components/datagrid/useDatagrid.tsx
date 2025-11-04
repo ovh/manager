@@ -2,8 +2,10 @@ import { useMemo } from 'react';
 
 import { useReactTable } from '@tanstack/react-table';
 
+import { ExpandableRow } from '@/components/datagrid/Datagrid.props';
+
 import { useTableBuilder } from './builder/useTableBuilder';
-import { ExpandableRow, UseDatagridTableProps } from './useDatagrid.props';
+import { UseDatagridTableProps } from './useDatagrid.props';
 
 export const useDatagrid = <T extends ExpandableRow<T>>({
   columns,
@@ -39,11 +41,8 @@ export const useDatagrid = <T extends ExpandableRow<T>>({
     hasSortingFeature,
     manualSorting: manualSorting ?? false,
     onSortChange: onSortChange ?? (() => {}),
-    renderSubComponent: renderSubComponent ?? (() => <></>),
-    rowSelection: rowSelection ?? {
-      rowSelection: {},
-      setRowSelection: () => {},
-    },
+    renderSubComponent,
+    rowSelection,
     setColumnVisibility: setColumnVisibility ?? (() => {}),
     sorting: sorting ?? [],
   })
@@ -57,6 +56,7 @@ export const useDatagrid = <T extends ExpandableRow<T>>({
     .setSorting()
     .setState()
     .setSubRows()
+    .setRowId()
     .build();
   const table = useReactTable(builder);
 

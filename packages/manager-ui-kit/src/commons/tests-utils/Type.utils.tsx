@@ -1,4 +1,5 @@
 export interface Person extends Record<string, unknown> {
+  id: string;
   name: string;
   age: number;
   subRows?: Person[];

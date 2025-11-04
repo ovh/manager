@@ -90,6 +90,8 @@ const mockSecretSmartConfig: SecretSmartConfig = {
     value: 15,
     origin: 'DOMAIN',
   },
+  isCasRequiredSetOnOkms: true,
+  maxVersionsDefault: 10,
 };
 
 describe('useSecretSmartConfig', () => {

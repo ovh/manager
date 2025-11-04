@@ -256,12 +256,12 @@ describe('Datagrid', () => {
         data: mockData,
         rowSelection: mockRowSelection,
       });
-      const head = container.querySelector('thead tr th label');
-      const body = container.querySelector('tbody tr td label');
-      expect(head).toBeInTheDocument();
-      expect(body).toBeInTheDocument();
-      expect(head).toHaveAttribute('id', 'checkbox:select-all');
-      expect(body).toHaveAttribute('id', 'checkbox:0');
+      const targetDiv = container.querySelector('thead tr th label');
+      expect(targetDiv).toBeInTheDocument();
+      expect(targetDiv).toHaveAttribute('id', 'checkbox:select-all');
+      const targetDivBody = container.querySelector('tbody tr td label');
+      expect(targetDivBody).toBeInTheDocument();
+      expect(targetDivBody).toHaveAttribute('id', 'checkbox:1');
     });
 
     it('should handle expandable rows', () => {

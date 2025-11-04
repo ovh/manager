@@ -9,7 +9,7 @@
   "dedicatedCloud_options_zerto_status_disabling": "Wird gelöscht",
   "dedicatedCloud_options_zerto_status_disabled": "Keiner",
   "dedicatedCloud_options_zerto_status_error": "Fehler",
-  "dedicatedCloud_options_zerto_action_install": "DRP installieren",
+  "dedicatedCloud_options_zerto_action_activate": "Aktivieren",
   "dedicatedCloud_options_zerto_action_add_configuration": "Konfigurieren",
   "dedicatedCloud_options_zerto_action_delete": "Löschen",
   "dedicatedCloud_options_nsx": "VMware Network Virtualization (NSX)",
@@ -24,6 +24,5 @@
   "dedicatedCloud_vmware_option_not_compatible": "Diese Option ist mit diesem Datacenter nicht kompatibel",
   "dedicatedCloud_vmware_option_not_enabled": "Diese Option ist derzeit nicht aktiviert. Daher kann sie nicht deaktiviert werden.",
   "dedicatedCloud_vmware_option_not_disabled": "Diese Option ist derzeit nicht deaktiviert. Daher kann sie nicht aktiviert werden.",
-  "dedicatedCloud_dashboard_loading_error": "Beim Laden der Informationen Ihres Dienstes ist ein Fehler aufgetreten.",
-  "dedicatedCloud_options_zerto_action_activate": "Aktivieren"
+  "dedicatedCloud_dashboard_loading_error": "Beim Laden der Informationen Ihres Dienstes ist ein Fehler aufgetreten."
 }
