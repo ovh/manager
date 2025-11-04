@@ -2,6 +2,8 @@ import React from 'react';
 
 import { describe, expect } from 'vitest';
 
+import actionsCommonTranslation from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/actions/Messages_fr_FR.json';
+
 import { mailingListMock } from '@/data/api';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import { render } from '@/utils/test.provider';
@@ -28,6 +30,6 @@ describe('MailingLists datagrid action menu', () => {
       commonTranslation.configure_delegation_mailing_list,
     );
 
-    expect(menuItems[3]).toHaveAttribute('label', 'delete');
+    expect(menuItems[3]).toHaveAttribute('label', actionsCommonTranslation.delete);
   });
 });
