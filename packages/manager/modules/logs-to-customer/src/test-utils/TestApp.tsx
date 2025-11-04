@@ -1,19 +1,26 @@
 import React from 'react';
 
-import { RouteObject, RouterProvider, createMemoryRouter } from 'react-router-dom';
+import {
+  RouteObject,
+  RouterProvider,
+  createMemoryRouter,
+  createRoutesFromElements,
+} from 'react-router-dom';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { vi } from 'vitest';
 
-import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  ShellContextType,
+} from '@ovh-ux/manager-react-shell-client';
 
-import { lazyRouteConfig, logsRoutes } from '../routes/routes';
+import { lazyRouteConfig } from '../routes/routes';
 
 const appRoutes: RouteObject[] = [
   {
     path: '/*',
     ...lazyRouteConfig(() => import('./MockedAppPage')),
-    children: [...logsRoutes],
   },
 ];
 
@@ -54,7 +61,9 @@ export function TestApp({ initialRoute = '/' }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
+      <ShellContext.Provider
+        value={(shellContext as unknown) as ShellContextType}
+      >
         <RouterProvider router={router} />
       </ShellContext.Provider>
     </QueryClientProvider>

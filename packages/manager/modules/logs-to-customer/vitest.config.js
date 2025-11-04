@@ -1,5 +1,6 @@
 import {
   createConfig,
+  defaultDedupedDependencies,
   defaultExcludedFiles,
   mergeConfig,
   sharedConfig,
@@ -25,6 +26,9 @@ export default mergeConfig(
           'src/**/*.spec.tsx',
         ],
       },
+    },
+    resolve: {
+      dedupe: [...defaultDedupedDependencies],
     },
   }),
 );
