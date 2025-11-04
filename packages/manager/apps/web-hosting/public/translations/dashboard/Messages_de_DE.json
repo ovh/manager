@@ -1,6 +1,6 @@
 {
   "hosting_tab_GENERAL_INFORMATIONS": "Allgemeine Informationen",
-  "hosting_tab_MULTISITE": "Multisite",
+  "hosting_tab_MULTISITE": "Meine Seiten",
   "hosting_tab_SSL": "SSL-Zertifikate",
   "hosting_tab_MODULE": "1-Klick-Module",
   "hosting_tab_USER_LOGS": "Statistiken und Logs",
@@ -86,6 +86,10 @@
   "hosting_tab_DOMAINS_configuration_add_success_finish": "Die Domain(s) wurde(n) Ihrem Shared Hosting erfolgreich hinzugefügt.",
   "hosting_tab_DOMAINS_configuration_add_failure": "Beim Hinzufügen der Domain(s) zu Ihrem Shared Hosting ist ein Fehler aufgetreten.",
   "domain_tab_emails": "E-Mails und Mailinglisten",
-  "hosting_managed_wordpress_websites_description": "Erstellen Sie eine neue Website oder importieren Sie mit nur wenigen Klicks eine bestehende Website in diesen Account.",
-  "hosting_managed_wordpress_websites_description_without_import": "Erstellen Sie mit nur wenigen Klicks eine neue Website mit diesem Account."
+  "hosting_managed_wordpress_websites_description": "Erstellen Sie eine neue Website oder importieren Sie in wenigen Klicks eine vorhandene Website in dieses Konto.",
+  "hosting_managed_wordpress_websites_description_without_import": "Erstellen Sie in wenigen Klicks eine neue Website in diesem Konto.",
+  "hosting_dashboard_modal_update_headline": "Ändern Sie den Namen Ihrer Seite",
+  "hosting_dashboard_modal_update_description": "Bitte geben Sie den neuen Namen ein, den Sie Ihrer Seite geben möchten. Dies ist ein interner Name, der nur für Sie sichtbar ist.",
+  "hosting_dashboard_modal_update_input_label": "Neuer Name",
+  "hosting_dashboard_modal_update_success": "Der Name Ihrer Seite wurde erfolgreich aktualisiert."
 }
