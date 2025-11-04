@@ -1,5 +1,6 @@
 {
   "vaults": "Vaults",
   "services": "Services",
-  "billings": "Facturations"
+  "billing": "Facturation",
+  "agents": "Agents"
 }
