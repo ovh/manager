@@ -23,7 +23,6 @@ import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { waitFor } from '@testing-library/dom';
 import { act, render, screen } from '@testing-library/react';
 import { SECRET_ACTIVATE_OKMS_TEST_IDS } from '@secret-manager/pages/create-secret/ActivateRegion.contants';
-import { locationsMock } from '@secret-manager/mocks/locations/locations.mock';
 import { useOkmsList } from '@key-management-service/data/hooks/useOkms';
 import { getOrderCatalogOKMS } from '@key-management-service/data/api/orderCatalogOKMS';
 import { catalogMock } from '@key-management-service/mocks/catalog/catalog.mock';
@@ -35,6 +34,7 @@ import {
 } from '@key-management-service/mocks/kms/okms.mock';
 import { useNotificationAddErrorOnce } from '@key-management-service/hooks/useNotificationAddErrorOnce';
 import { OKMS } from '@key-management-service/types/okms.type';
+import { locationsMock } from '@/common/mocks/locations/locations.mock';
 import { labels, initTestI18n } from '@/common/utils/tests/init.i18n';
 import { OkmsManagement } from './OkmsManagement.component';
 import * as locationApi from '@/common/data/api/location';
