@@ -9,10 +9,12 @@ import { initSso } from '@/core/sso';
 
 import App from './App';
 
+import '@ovh-ux/muk/dist/style.css';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'react-tooltip/dist/react-tooltip.css';
 import './index.scss';
 import './global.scss';
+
 // avoid container inception
 if (window.top !== window.self) {
   window.top.location.href = window.self.location.href;

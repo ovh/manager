@@ -6,7 +6,7 @@ import { useShell } from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 import Header from './header';
-import Sidebar from './sidebar';
+import { Sidebar } from './components/sidebar/Sidebar/Sidebar.component';
 import NavReshuffleOnboardingWidget from './onboarding';
 import style from './template.module.scss';
 import Progress from '../common/Progress';
@@ -107,6 +107,7 @@ function NavReshuffleContainer({
                   role="document"
                   src="about:blank"
                   ref={iframeRef}
+                  className='bg-gray-100'
                 ></iframe>
               </>
             </Preloader>

@@ -1,16 +1,18 @@
-import path from "path";
+import path from 'path';
 import {
   sharedConfig,
   mergeConfig,
   createConfig,
   defaultExcludedFiles,
-} from "@ovh-ux/manager-tests-setup";
+  sharedCssConfig,
+} from '@ovh-ux/manager-tests-setup';
 
 export default mergeConfig(
   sharedConfig,
   createConfig({
     test: {
-      setupFiles: "./src/setupTests.ts",
+      setupFiles: ["./src/setupTests.ts"],
+      ...sharedCssConfig,
       coverage: {
         exclude: [...defaultExcludedFiles],
       },

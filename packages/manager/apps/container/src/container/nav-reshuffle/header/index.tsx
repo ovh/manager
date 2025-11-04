@@ -18,7 +18,6 @@ import { SupportLink } from '../support-link';
 
 import style from './style.module.scss';
 import Separator from './Separator.component';
-import clsx from 'clsx';
 
 type Props = {
   isSidebarExpanded?: boolean;
@@ -51,7 +50,9 @@ function Header({
       {() => (
         <Suspense fallback="">
           {isDropdownOpen && <div className={modalStyle.popoverClickAway} />}
-          <div className={`w-full bg-[var(--ods-color-primary-700)] flex flex-row items-center pr-3 md:px-4 ${style.navbar}`}>
+          <div
+            className={`w-full bg-[var(--ods-color-primary-700)] flex flex-row items-center pr-3 md:px-4 ${style.navbar}`}
+          >
             <HamburgerMenu
               isOpen={isSidebarExpanded}
               onClick={onHamburgerMenuClick}
@@ -72,9 +73,7 @@ function Header({
                   {/* <Separator /> for searchbar separation */}
                   <NavReshuffleSwitchBack />
                   <Separator />
-                  <div
-                    className="block relative"
-                  >
+                  <div className="block relative">
                     <LanguageMenu
                       setUserLocale={setUserLocale}
                       userLocale={userLocale}
