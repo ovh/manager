@@ -1,0 +1,13 @@
+{
+  "multisite_git_state_tooltip_lastdeploy": "View the information of the latest deployment",
+  "multisite_git_state_tooltip_disabled": "Click the action button to link Git",
+  "multisite_tooltip_diagnostic_good_configuration": "Your domain {{ domainName }} is configured to the IP address {{ ip }} of your hosting",
+  "multisite_tooltip_diagnostic_not_good_configuration": "Your domain {{ domainName }} is configured to the IP address {{ ip }} of another service",
+  "multisite_tooltip_diagnostic_unconfigured": "This entry in your DNS zone is not working. No configuration was found in your DNS zone",
+  "multisite_git_modal_delete_association_title": "Remove the Git association",
+  "multisite_git_modal_delete_association_description1": "You are about to remove the Git association.",
+  "multisite_git_modal_delete_association_description2": "<strong>The deletion will apply to all domains pointing to your directory.</strong>",
+  "multisite_git_modal_delete_association_description3": "Do you wish to empty the contents of the directory <strong>{{ path }}</strong>?",
+  "multisite_git_modal_delete_association_warning_delete_dir": "We will remove the association with Git and the contents of the directory.",
+  "multisite_git_modal_delete_association_success": "Your deletion has been successfully recorded."
+}
