@@ -1,6 +1,6 @@
 {
   "title": "Sélectionnez un type de compte",
-  "description": "Besoin d'aide ? <Tooltip>En savoir plus sur les types de comptes</Tooltip>",
+  "description": "Besoin d'aide ? <strong>En savoir plus sur les types de comptes</strong>",
   "legal_form_association": "Association",
   "legal_form_administration": "Administration publique",
   "legal_form_corporation": "Entreprise",
