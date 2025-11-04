@@ -7,6 +7,7 @@ import { vi } from 'vitest';
 import {
   WebHostingWebsiteDomainMocks,
   WebHostingWebsiteMocks,
+  WebHostingWebsiteV6Mock,
   attachedDomainDigStatusMock,
   domainInformationMock,
   domainZoneMock,
@@ -171,6 +172,7 @@ vi.mock('@/data/api/webHosting', () => ({
   useWebHostingWebsite: vi.fn(),
   useWebHostingWebsiteDomain: vi.fn(),
   deleteAttachedDomains: vi.fn(),
+  getWebHostingWebsiteV6: vi.fn(() => Promise.resolve(WebHostingWebsiteV6Mock)),
 }));
 
 vi.mock('@/data/api/dashboard', async (importActual) => {
@@ -182,12 +184,16 @@ vi.mock('@/data/api/dashboard', async (importActual) => {
     getDomainService: vi.fn(() => Promise.resolve(domainInformationMock)),
   };
 });
+vi.mock('@/data/api/git', () => ({
+  deleteGitAssociation: vi.fn(),
+}));
 
 vi.mock('@/data/hooks/webHostingDashboard/useWebHostingDashboard', () => ({
   useCreateAttachedDomainsService: vi.fn(),
   useGetAddDomainExisting: vi.fn(),
   useGetDomainZone: vi.fn(),
   useGetHostingService: vi.fn(),
+  useGetHostingServiceWebsite: vi.fn(),
 }));
 
 vi.mock('@/data/hooks/webHostingDashboard/useWebHostingDashboard', async (importActual) => {
