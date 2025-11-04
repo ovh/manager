@@ -128,3 +128,10 @@ export const deleteAttachedDomains = async (
 
   return results;
 };
+export const getWebHostingWebsiteV6 = async (serviceName: string, path?: string) => {
+  const url = path
+    ? `/hosting/web/${serviceName}/website?path=${path}`
+    : `/hosting/web/${serviceName}/website`;
+  const { data } = await v6.get<string[]>(url);
+  return data;
+};
