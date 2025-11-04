@@ -2,5 +2,6 @@
   "vaults": "Vaults",
   "services": "Services",
   "billing": "Facturation",
-  "agents": "Agents"
+  "agents": "Agents",
+  "buckets": "Buckets"
 }
