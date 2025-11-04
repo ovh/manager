@@ -1,6 +1,6 @@
 {
   "hosting_tab_GENERAL_INFORMATIONS": "Informações gerais",
-  "hosting_tab_MULTISITE": "Multisite",
+  "hosting_tab_MULTISITE": "Meus sites",
   "hosting_tab_SSL": "Certificados SSL",
   "hosting_tab_MODULE": "Módulos \"1 clique\"",
   "hosting_tab_USER_LOGS": "Estatísticas e logs",
@@ -86,6 +86,10 @@
   "hosting_tab_DOMAINS_configuration_add_success_finish": "A adição de um ou mais domínios no seu alojamento partilhado foram efetuados com sucesso.",
   "hosting_tab_DOMAINS_configuration_add_failure": "Ocorreu um erro durante a adição do(s) domínio(s) ao seu alojamento partilhado.",
   "domain_tab_emails": "Emails e listas de discussão",
-  "hosting_managed_wordpress_websites_description": "Em apenas alguns cliques, crie um novo site ou importe um site existente para esta conta.",
-  "hosting_managed_wordpress_websites_description_without_import": "Em apenas alguns cliques, crie um novo site nesta conta."
+  "hosting_managed_wordpress_websites_description": "Crie um novo site ou importe em poucos cliques um site existente para esta conta.",
+  "hosting_managed_wordpress_websites_description_without_import": "Crie um novo site em poucos cliques nesta conta.",
+  "hosting_dashboard_modal_update_headline": "Mudar o nome do seu site",
+  "hosting_dashboard_modal_update_description": "Por favor, insira o novo nome que deseja dar ao seu site. Este é um nome interno, visível apenas por você.",
+  "hosting_dashboard_modal_update_input_label": "Novo nome",
+  "hosting_dashboard_modal_update_success": "O nome do seu site foi atualizado com sucesso"
 }

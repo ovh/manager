@@ -1,6 +1,6 @@
 {
   "hosting_tab_GENERAL_INFORMATIONS": "Información general",
-  "hosting_tab_MULTISITE": "Multisitio",
+  "hosting_tab_MULTISITE": "Mis sitios",
   "hosting_tab_SSL": "Certificados SSL",
   "hosting_tab_MODULE": "Módulos en un clic",
   "hosting_tab_USER_LOGS": "Estadísticas y logs",
@@ -86,6 +86,10 @@
   "hosting_tab_DOMAINS_configuration_add_success_finish": "Se ha añadido el dominio o dominios al alojamiento compartido.",
   "hosting_tab_DOMAINS_configuration_add_failure": "Se ha producido un error al añadir el dominio o dominios al alojamiento compartido.",
   "domain_tab_emails": "Correo electrónico y listas de correo",
-  "hosting_managed_wordpress_websites_description": "Cree un nuevo sitio web o importe un sitio web existente a esta cuenta en solo unos clics.",
-  "hosting_managed_wordpress_websites_description_without_import": "Cree un nuevo sitio web en solo unos clics en esta cuenta."
+  "hosting_managed_wordpress_websites_description": "Crea un nuevo sitio o importa en unos pocos clics un sitio existente a esta cuenta.",
+  "hosting_managed_wordpress_websites_description_without_import": "Crea un nuevo sitio en unos pocos clics en esta cuenta.",
+  "hosting_dashboard_modal_update_headline": "Cambiar el nombre de su sitio",
+  "hosting_dashboard_modal_update_description": "Por favor, introduzca el nuevo nombre que desea dar a su sitio. Este es un nombre interno, visible solo por usted.",
+  "hosting_dashboard_modal_update_input_label": "Nuevo nombre",
+  "hosting_dashboard_modal_update_success": "El nombre de su sitio se ha actualizado con éxito"
 }
