@@ -264,7 +264,7 @@ const RancherDetail = ({
                   {t('rancher_button_acces')}
                 </OsdsButton>
                 <div>
-                  {!isReadyStatus || iamEnabled ? (
+                  {!isReadyStatus ? (
                     <OsdsTooltip>
                       <LinkIcon
                         iconName={ODS_ICON_NAME.ARROW_RIGHT}
