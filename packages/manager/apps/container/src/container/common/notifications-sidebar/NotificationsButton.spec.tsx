@@ -15,10 +15,11 @@ let notificationsVisible = false;
 const setIsNotificationsSidebarVisible = vi.fn((visibility) => {
   notificationsVisible = visibility;
 });
-const postNotificationsUpdate = vi.fn();
+const postNotificationsUpdate = vi.fn(() => Promise.resolve({}));
 
 const baseWrapper = getComponentWrapper({
   withQueryClientProvider: true,
+  withContainerProvider: true,
   configuration: {
     user: {
       ovhSubsidiary: 'FR',
@@ -27,13 +28,7 @@ const baseWrapper = getComponentWrapper({
 });
 
 const renderNotificationsButton = () => {
-  return render(
-    baseWrapper(
-      <ContainerProvider>
-        <NotificationsButton />
-      </ContainerProvider>,
-    ),
-  );
+  return render(baseWrapper(<NotificationsButton />));
 };
 
 vi.mock('@/context/header', async (importOriginal) => {

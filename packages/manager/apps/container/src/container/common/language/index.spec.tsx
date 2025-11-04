@@ -1,7 +1,17 @@
 import { it, vi, describe, expect } from 'vitest';
 import { render } from '@testing-library/react';
 import { KeyPairName } from '@ovh-ux/manager-config';
+import { getComponentWrapper } from '@/utils/tests/component-wrapper';
 import LanguageMenu, { Props } from './index';
+
+vi.mock('@ovh-ux/manager-react-components', () => ({
+  fetchFeatureAvailabilityData: vi.fn(() => Promise.resolve({ pnr: false, livechat: false })),
+}));
+
+const wrapper = getComponentWrapper({
+  withContainerProvider: true,
+  configuration: {},
+});
 
 const handleChange = vi.fn();
 const handleSetUserLanguge = vi.fn();
@@ -12,29 +22,17 @@ const props: Props = {
   userLocale: 'en_GB',
 };
 
-vi.mock('@/context', () => ({
-  useShell: () => ({
-    getPlugin: () => ({
-      setLocale: vi.fn(() => 'en_GB'),
-      getAvailableLocales: vi.fn(() =>
-        Array<KeyPairName>(
-          { name: 'English', key: 'en_GB' },
-          { name: 'Français', key: 'fr_FR' },
-        ),
-      ),
-    }),
-  }),
-}));
-
 vi.mock('react-responsive');
 
 const renderLanguageMenu = (props: Props) => {
   return render(
-    <LanguageMenu
-      onChange={props.onChange}
-      setUserLocale={props.setUserLocale}
-      userLocale={props.userLocale}
-    />,
+    wrapper(
+      <LanguageMenu
+        onChange={props.onChange}
+        setUserLocale={props.setUserLocale}
+        userLocale={props.userLocale}
+      />,
+    ),
   );
 };
 

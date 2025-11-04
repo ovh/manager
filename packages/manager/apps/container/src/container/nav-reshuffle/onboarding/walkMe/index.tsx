@@ -10,7 +10,7 @@ import { ONBOARDING_STATUS_ENUM } from '@/core/onboarding';
 import { useShell } from '@/context';
 
 import style from './style.module.scss';
-import { Node } from '../../sidebar/navigation-tree/node';
+import { Node } from '@/types/node';
 
 const ELEMENT_OFFSET = 10;
 
