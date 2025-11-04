@@ -75,8 +75,9 @@ export default (
       />
     </Route>
     <Route path={subRoutes.services}>
-      <Route path={subRoutes.dashboard} Component={TenantDashboardPage}>
-        <Route path={urlParams.tenantId} Component={TenantGeneralInformationPage} />
+      <Route path={`${subRoutes.dashboard}/${urlParams.tenantId}`} Component={TenantDashboardPage}>
+        <Route path="" Component={TenantGeneralInformationPage} />
+        <Route path={subRoutes.agents} Component={TenantGeneralInformationPage} />
       </Route>
     </Route>
 
