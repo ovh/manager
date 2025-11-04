@@ -20,7 +20,7 @@ import OvhLink from '@/components/links/OvhLink.component';
 import Onboarding from '../dashboard/home/_components/Onboarding.component';
 
 export default function Auth() {
-  const { t } = useTranslation('ai-tools/auth');
+  const { t } = useTranslation(['ai-tools/auth']);
   const { t: tNotebooks } = useTranslation('ai-tools/notebooks/onboarding');
   const toast = useToast();
   const navigate = useNavigate();
@@ -63,7 +63,7 @@ export default function Auth() {
             >
               <div className="flex flex-row gap-5 items-center">
                 <AlertCircle className="shrink-0 size-6" />
-                <p>{t('discoveryMode')}</p>
+                <p>{t('discoveryMode', { type: 'Quantum' })}</p>
               </div>
               <Button variant="primary" mode="default" type="button" asChild>
                 <OvhLink
@@ -109,7 +109,6 @@ export default function Auth() {
         <CardContent>
           <div className="ml-6">
             <p className="font-semibold">{tNotebooks('quantumDescription1')}</p>
-            <p>{tNotebooks('quantumDescription2')}</p>
           </div>
         </CardContent>
       </Card>
