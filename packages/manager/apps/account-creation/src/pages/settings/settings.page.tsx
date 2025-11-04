@@ -11,6 +11,7 @@ import {
   OdsLink,
   OdsSelect,
   OdsText,
+  OdsPopover,
 } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Currency } from '@ovh-ux/manager-config';
@@ -25,10 +26,8 @@ import {
   useRedirectToSignUpUrl,
 } from '@/hooks/redirection/useSettingsRedirecions';
 import { useSettingsSchema } from '@/hooks/settings/useSettings';
-import {
-  DEFAULT_REDIRECT_URL,
-  WEBSITE_LABEL_BY_LOCALE,
-} from './settings.constants';
+import { DEFAULT_REDIRECT_URL, WEBSITE_LABEL_BY_LOCALE } from './settings.constants';
+import AccountSettingsPopoverContent from './popover-content/PopoverContent';
 
 type SettingsFormData = {
   country: string;
@@ -75,6 +74,12 @@ export default function Settings() {
     selectedCurrency,
     selectedLanguage,
   );
+
+  const listSettingsDescription = [
+    t('setting_description_list_first'),
+    t('setting_description_list_second'),
+    t('setting_description_list_last'),
+  ];
 
   const comboboxRef = useRef<HTMLOdsComboboxElement | null>(null);
 
@@ -147,9 +152,24 @@ export default function Settings() {
           name="country"
           render={({ field: { name, value, onChange, onBlur } }) => (
             <OdsFormField className="flex flex-wrap w-full gap-3 mb-7">
-              <label className="block" slot={'label'}>
+              <label
+                className="block cursor-pointer"
+                slot={'label'}
+                id="country-setting-description"
+              >
                 {t('country_setting')} *
               </label>
+              <OdsPopover
+                className="md:w-1/2 p-5"
+                triggerId="country-setting-description"
+                position="top-start"
+                withArrow
+              >
+                <AccountSettingsPopoverContent
+                  description={t('setting_description')}
+                  list={listSettingsDescription}
+                />
+              </OdsPopover>
               <OdsCombobox
                 name={`country`}
                 className="w-full"
@@ -227,9 +247,23 @@ export default function Settings() {
           name="language"
           render={({ field: { name, value, onChange, onBlur } }) => (
             <OdsFormField className="flex flex-wrap w-full gap-3 mb-7">
-              <label className="block" slot={'label'}>
+              <label
+                className="block cursor-pointer"
+                slot={'label'}
+                id="site-setting-description"
+              >
                 {t('site_setting')} *
               </label>
+              <OdsPopover
+                className="md:w-1/2 p-5"
+                triggerId="site-setting-description"
+                position="top-start"
+                withArrow
+              >
+                <AccountSettingsPopoverContent
+                  description={t('setting_description')}
+                />
+              </OdsPopover>
               <OdsSelect
                 name={`site`}
                 className="w-full"
