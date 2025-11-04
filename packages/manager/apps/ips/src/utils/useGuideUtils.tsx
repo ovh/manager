@@ -76,6 +76,12 @@ const URL_LIST: { [guideName: string]: GuideLinks } = {
     usFullLink:
       'https://support.us.ovhcloud.com/hc/en-us/articles/24578879059347-Protecting-a-Game-Server-with-the-Application-Firewall',
   }),
+  configureEdgeNetworkFirewall: getGuideLinks({
+    link:
+      'dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043455',
+    usFullLink:
+      'https://support.us.ovhcloud.com/hc/en-us/articles/115001729044-Enabling-and-configuring-the-Edge-Network-Firewall',
+  }),
   presentationLink: {
     DE: 'https://www.ovhcloud.com/de/network/additional-ip/',
     NL: 'https://www.ovhcloud.com/nl/network/additional-ip/',

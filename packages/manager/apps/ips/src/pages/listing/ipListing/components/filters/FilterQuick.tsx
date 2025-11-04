@@ -11,12 +11,18 @@ import {
   OdsCheckbox,
   OdsDivider,
 } from '@ovhcloud/ods-components/react';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import { ListingContext } from '@/pages/listing/listingContext';
 
 export const QuickFilter = ({ className }: { className?: string }) => {
   const { t } = useTranslation('listing');
   const { apiFilter, setApiFilter } = useContext(ListingContext);
+  const { trackClick } = useOvhTracking();
 
   return (
     <>
@@ -42,6 +48,12 @@ export const QuickFilter = ({ className }: { className?: string }) => {
               inputId="show-ipv4"
               isChecked={[4, undefined].includes(apiFilter?.version)}
               onOdsChange={(e) => {
+                trackClick({
+                  actionType: 'action',
+                  buttonType: ButtonType.button,
+                  location: PageLocation.page,
+                  actions: ['Quick-filter', 'IPv4'],
+                });
                 setApiFilter((prev) => ({
                   ...prev,
                   version: !e.detail.checked ? 6 : undefined,
@@ -63,6 +75,12 @@ export const QuickFilter = ({ className }: { className?: string }) => {
               inputId="show-ipv6"
               isChecked={[6, undefined].includes(apiFilter?.version)}
               onOdsChange={(e) => {
+                trackClick({
+                  actionType: 'action',
+                  buttonType: ButtonType.button,
+                  location: PageLocation.page,
+                  actions: ['Quick-filter', 'IPv6'],
+                });
                 setApiFilter((prev) => ({
                   ...prev,
                   version: !e.detail.checked ? 4 : undefined,
@@ -85,6 +103,12 @@ export const QuickFilter = ({ className }: { className?: string }) => {
               inputId="show-parked-ips"
               isChecked={apiFilter?.['routedTo.serviceName'] === null}
               onOdsChange={(e) => {
+                trackClick({
+                  actionType: 'action',
+                  buttonType: ButtonType.button,
+                  location: PageLocation.page,
+                  actions: ['Quick-filter', 'Parked-IPs'],
+                });
                 setApiFilter((prev) => ({
                   ...prev,
                   // Set routedToserviceName to null if showing ONLY parked IPs

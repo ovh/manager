@@ -2,12 +2,12 @@ export const handleEnterAndEscapeKeyDown = ({
   onEnter,
   onEscape,
 }: {
-  onEnter: () => void;
-  onEscape: () => void;
+  onEnter?: () => void;
+  onEscape?: () => void;
 }) => (e: React.KeyboardEvent) => {
   if (e.key === 'Enter') {
-    onEnter();
+    onEnter?.();
   } else if (e.key === 'Escape') {
-    onEscape();
+    onEscape?.();
   }
 };
