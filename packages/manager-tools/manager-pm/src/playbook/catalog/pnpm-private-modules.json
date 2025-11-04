@@ -272,6 +272,10 @@
     "pnpm": "packages/manager-tools/manager-static-analysis-kit"
   },
   {
+    "turbo": "--filter @ovh-ux/manager-tests-setup",
+    "pnpm": "packages/manager-tools/manager-tests-setup"
+  },
+  {
     "turbo": "--filter @ovh-ux/manager-core-test-utils",
     "pnpm": "packages/manager-tools/manager-legacy-tools/test-utils"
   },
