@@ -1,5 +1,6 @@
 import { useContext, useMemo } from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import i18n from 'i18next';
 import {
   TWillPaymentConfig,
   GlobalStateStatus,
@@ -24,9 +25,9 @@ export const useWillPaymentConfig = ({
       baseUrl: window.location.origin,
       onChange: (state: GlobalStateStatus) => onPaymentStatusChange?.(state),
       subsidiary: user.ovhSubsidiary,
-      language: `${user.language}`,
+      language: i18n.language,
       hostApp: 'pci',
     }),
-    [onPaymentStatusChange, user.ovhSubsidiary, user.language],
+    [onPaymentStatusChange, user.ovhSubsidiary, i18n.language],
   );
 };
