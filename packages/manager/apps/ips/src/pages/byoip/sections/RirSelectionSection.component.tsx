@@ -2,6 +2,11 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { OrderSection } from '@/components/OrderSection/OrderSection.component';
 import { OptionCard } from '@/components/OptionCard/OptionCard.component';
 import { useGetCatalog, CONFIG_NAME } from '@/data/hooks/catalog/useGetCatalog';
@@ -12,6 +17,7 @@ export const RirSelectionSection: React.FC = () => {
   const { t } = useTranslation('byoip');
   const { data: catalog, isLoading } = useGetCatalog();
   const { ipRir, setIpRir } = React.useContext(ByoipContext);
+  const { trackClick } = useOvhTracking();
 
   const ipRirValues = getConfigValues(
     catalog?.details.product.configurations,
@@ -39,7 +45,15 @@ export const RirSelectionSection: React.FC = () => {
             subtitle={t(`rir_selection_${value}_description`)}
             hasRadioButton={true}
             isSelected={ipRir === value}
-            onClick={() => setIpRir(value)}
+            onClick={() => {
+              trackClick({
+                actionType: 'action',
+                buttonType: ButtonType.button,
+                location: PageLocation.funnel,
+                actions: [value],
+              });
+              setIpRir(value);
+            }}
           />
         ))}
       </div>

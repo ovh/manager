@@ -8,6 +8,11 @@ import {
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { getAdditionalIpsProductSettings } from '../order.utils';
 import { OrderContext } from '../order.context';
 import { MIN_IP_QUANTITY, MAX_IP_QUANTITY } from '../order.constant';
@@ -37,6 +42,7 @@ export const OrderButtonSection: React.FC = () => {
   });
   const ipv6PlanCode = useIpv6PlanCode({ region: selectedRegion, ipVersion });
   const orderBaseUrl = useOrderURL('express_review_base');
+  const { trackClick } = useOvhTracking();
 
   return (
     <div className="flex gap-3">
@@ -70,6 +76,12 @@ export const OrderButtonSection: React.FC = () => {
             '_blank',
             'noopener,noreferrer',
           );
+          trackClick({
+            actionType: 'action',
+            buttonType: ButtonType.button,
+            location: PageLocation.funnel,
+            actions: ['Order-additional-IPs'],
+          });
           navigate(urls.listing);
         }}
       />
