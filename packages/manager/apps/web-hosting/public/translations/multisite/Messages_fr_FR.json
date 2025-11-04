@@ -3,5 +3,10 @@
   "multisite_git_state_tooltip_disabled": "Cliquez sur le bouton action pour associer Git",
   "multisite_tooltip_diagnostic_good_configuration": "Votre domaine {{ domainName }} est configuré sur l'adresse IP {{ ip }} de votre hébergement",
   "multisite_tooltip_diagnostic_not_good_configuration": "Votre domaine {{ domainName }} est configuré vers l'adresse IP {{ ip }} d'un autre service",
-  "multisite_tooltip_diagnostic_unconfigured": "Cette entrée dans votre zone DNS ne fonctionne pas. Aucune configuration n'a été trouvée dans votre zone DNS"
-}
+  "multisite_tooltip_diagnostic_unconfigured": "Cette entrée dans votre zone DNS ne fonctionne pas. Aucune configuration n'a été trouvée dans votre zone DNS",
+  "multisite_git_modal_delete_association_title": "Supprimer l'association de Git",
+  "multisite_git_modal_delete_association_description1": "Vous êtes sur le point de supprimer l'association de Git.",
+  "multisite_git_modal_delete_association_description2": "<strong>La suppression s'appliquera sur l'ensemble des domaines pointant sur votre répertoire.</strong>",
+  "multisite_git_modal_delete_association_description3": "Souhaitez-vous vider le contenu du répertoire <strong>{{ path }}</strong> ?",
+  "multisite_git_modal_delete_association_warning_delete_dir": "Nous allons supprimer l'association avec Git et le contenu du répertoire.",
+  "multisite_git_modal_delete_association_success":"Votre suppression a bien été prise en compte."}

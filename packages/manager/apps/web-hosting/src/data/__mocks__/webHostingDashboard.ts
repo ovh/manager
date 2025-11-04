@@ -108,3 +108,5 @@ export const webHostingMock = {
   },
   updates: ['string'],
 };
+
+export const WebHostingWebsiteV6Mock = ['1'];
