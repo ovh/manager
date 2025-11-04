@@ -154,9 +154,11 @@ export const LocalizationSelection = () => {
                           macroRegion && microRegion && datacenterDetails;
 
                         return displayCard ? (
-                          <div ref={assignMacroRegionRef(macroRegion)}>
+                          <div
+                            ref={assignMacroRegionRef(macroRegion)}
+                            key={microRegion}
+                          >
                             <LocalizationCard
-                              key={microRegion}
                               city={city}
                               datacenterDetails={datacenterDetails}
                               macroRegion={macroRegion}
