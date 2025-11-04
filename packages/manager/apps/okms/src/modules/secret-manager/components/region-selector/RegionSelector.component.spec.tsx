@@ -7,6 +7,11 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen, waitFor } from '@testing-library/react';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import {
+  LOCATION_EU_WEST_GRA,
+  LOCATION_EU_WEST_LIM,
+  LOCATION_CA_EAST_BHS,
+} from '@secret-manager/mocks/locations/locations.mock';
+import {
   getOdsButtonByLabel,
   getOdsButtonByIcon,
 } from '@/common/utils/tests/uiTestHelpers';
@@ -60,44 +65,46 @@ const renderRegionSelector = async () => {
 };
 
 const mockRegionLabels = {
-  GRA: 'France (Gravelines)',
-  DE: 'Germany (Frankfurt)',
-  BHS: 'Canada (Beauharnois)',
+  GRA: labels.common.region['region_eu-west-gra'],
+  DE: labels.common.region['region_eu-west-lim'],
+  BHS: labels.common.region['region_ca-east-bhs'],
+};
+
+const mockGeographyNames = {
+  EU: labels.commonOkms.region_continent_eu,
+  CA: labels.commonOkms.region_continent_ca,
 };
 
 const mockGeographyGroups: GeographyGroup[] = [
   {
-    geographyLabel: 'Europe',
+    geographyCode: LOCATION_EU_WEST_GRA.geographyCode,
     regions: [
       {
-        label: mockRegionLabels.GRA,
-        region: 'GRA',
-        geographyLabel: 'Europe',
-        href: SECRET_MANAGER_ROUTES_URLS.okmsList('GRA'),
+        region: LOCATION_EU_WEST_GRA.name,
+        geographyCode: LOCATION_EU_WEST_GRA.geographyCode,
+        href: SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_EU_WEST_GRA.name),
       },
       {
-        label: mockRegionLabels.DE,
-        region: 'DE',
-        geographyLabel: 'Europe',
-        href: SECRET_MANAGER_ROUTES_URLS.okmsList('DE'),
+        region: LOCATION_EU_WEST_LIM.name,
+        geographyCode: LOCATION_EU_WEST_LIM.geographyCode,
+        href: SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_EU_WEST_LIM.name),
       },
     ],
   },
   {
-    geographyLabel: 'North America',
+    geographyCode: LOCATION_CA_EAST_BHS.geographyCode,
     regions: [
       {
-        label: mockRegionLabels.BHS,
-        region: 'BHS',
-        geographyLabel: 'North America',
-        href: SECRET_MANAGER_ROUTES_URLS.okmsList('BHS'),
+        region: LOCATION_CA_EAST_BHS.name,
+        geographyCode: LOCATION_CA_EAST_BHS.geographyCode,
+        href: SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_CA_EAST_BHS.name),
       },
     ],
   },
 ];
 
 const mockCurrentRegion = mockGeographyGroups[0].regions.find(
-  (region) => region.region === 'GRA',
+  (region) => region.region === LOCATION_EU_WEST_GRA.name,
 ) as RegionOption;
 
 describe('RegionSelector Component', () => {
@@ -162,7 +169,10 @@ describe('RegionSelector Component', () => {
 
       // Then
       expect(screen.getByText(labels.common.region.region)).toBeInTheDocument();
-      await getOdsButtonByLabel({ container, label: mockCurrentRegion.label });
+      await getOdsButtonByLabel({
+        container,
+        label: mockRegionLabels.GRA,
+      });
     });
 
     it('should display all geography groups in the popover', async () => {
@@ -170,8 +180,8 @@ describe('RegionSelector Component', () => {
       const { container } = await renderRegionSelector();
 
       // Then
-      expect(screen.getByText('Europe')).toBeInTheDocument();
-      expect(screen.getByText('North America')).toBeInTheDocument();
+      expect(screen.getByText(mockGeographyNames.EU)).toBeInTheDocument();
+      expect(screen.getByText(mockGeographyNames.CA)).toBeInTheDocument();
 
       // Check region links
       await getOdsButtonByLabel({
