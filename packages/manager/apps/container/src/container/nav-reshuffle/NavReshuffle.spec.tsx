@@ -62,6 +62,10 @@ vi.mock('./header', () => ({
   default: () => <div data-testid="header" />,
 }));
 
+vi.mock('./hooks/useSidebarAssistanceLinks', () => ({
+  useSidebarAssistanceLinks: vi.fn(() => []),
+}));
+
 vi.mock('./sidebar', () => ({
   default: () => <div data-testid="sidebar" />,
 }));

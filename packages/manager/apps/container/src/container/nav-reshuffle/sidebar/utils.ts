@@ -1,4 +1,4 @@
-import { Node } from './navigation-tree/node';
+import { Node } from '@/types/node';
 
 /**
  * Initialize an array of feature names required to call feature availability

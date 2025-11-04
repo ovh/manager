@@ -5,10 +5,16 @@ import { ApplicationProviderOptions } from "@/utils/tests/application-provider.t
 export abstract class BaseContextFactory {
   hasClientProvider: boolean = false;
   hasApplicationProvider: boolean = false;
+  hasContainerProvider: boolean = false;
   configuration: Configuration | null = null;
 
   withQueryClientProvider() {
     this.hasClientProvider = true;
+    return this;
+  };
+
+  withContainerProvider() {
+    this.hasContainerProvider = true;
     return this;
   };
 

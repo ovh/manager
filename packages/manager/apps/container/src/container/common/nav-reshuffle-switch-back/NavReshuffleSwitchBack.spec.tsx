@@ -7,6 +7,7 @@ import { getPreferencesMocks } from '@/__mocks__/preferences/preferences.handler
 import { ContainerProvider } from '@/core/container';
 import { getFeatureAvailabilityMocks } from '@/__mocks__/feature-availability/featureAvailability.handler';
 
+
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => {
@@ -57,17 +58,13 @@ describe('NavReshuffleSwitchBack.component', () => {
       ],
     });
 
-    const { container } = render(wrapper(<NavReshuffleSwitchBack />));
+    const { getByText } = render(wrapper(<NavReshuffleSwitchBack />));
 
     await waitFor(() => {
-      const legacyRadio = container.querySelector(
-        'osds-radio[name="version"][value="classic"]',
-      );
-      const betaRadio = container.querySelector(
-        'osds-radio[name="version"][value="beta"]',
-      );
-      expect(legacyRadio).toBeTruthy();
-      expect(betaRadio).toBeTruthy();
+      const legacyButton = getByText('Classic');
+      const betaButton = getByText('New');
+      expect(legacyButton).toBeTruthy();
+      expect(betaButton).toBeTruthy();
     });
   });
 
@@ -79,26 +76,18 @@ describe('NavReshuffleSwitchBack.component', () => {
       ],
     });
 
-    const { container } = render(wrapper(<NavReshuffleSwitchBack />));
+    const { getByText } = render(wrapper(<NavReshuffleSwitchBack />));
 
-    const legacyRadio = await waitFor(() => {
-      const radio = container.querySelector(
-        'osds-radio[name="version"][value="classic"]',
-      );
-      expect(radio).toBeTruthy();
-      return radio;
+    const legacyButton = await waitFor(() => {
+      const button = getByText('Classic');
+      expect(button).toBeTruthy();
+      return button;
     });
 
-    fireEvent(
-      legacyRadio,
-      new CustomEvent('odsCheckedChange', {
-        bubbles: true,
-        detail: { checked: true, value: 'classic' },
-      } as CustomEventInit),
-    );
+    fireEvent.click(legacyButton);
 
     // can't test the API call because of page reload
-    expect(legacyRadio).toBeTruthy();
+    expect(legacyButton).toBeTruthy();
   });
 
   it('should change preference to beta when new radio is clicked', async () => {
@@ -109,25 +98,17 @@ describe('NavReshuffleSwitchBack.component', () => {
       ],
     });
 
-    const { container } = render(wrapper(<NavReshuffleSwitchBack />));
+    const { getByText } = render(wrapper(<NavReshuffleSwitchBack />));
 
-    const newRadio = await waitFor(() => {
-      const radio = container.querySelector(
-        'osds-radio[name="version"][value="beta"]',
-      );
-      expect(radio).toBeTruthy();
-      return radio;
+    const newButton = await waitFor(() => {
+      const button = getByText('New');
+      expect(button).toBeTruthy();
+      return button;
     });
 
-    fireEvent(
-      newRadio,
-      new CustomEvent('odsCheckedChange', {
-        bubbles: true,
-        detail: { checked: true, value: 'beta' },
-      } as CustomEventInit),
-    );
+    fireEvent.click(newButton);
 
     // can't test the API call because of page reload
-    expect(newRadio).toBeTruthy();
+    expect(newButton).toBeTruthy();
   });
 });

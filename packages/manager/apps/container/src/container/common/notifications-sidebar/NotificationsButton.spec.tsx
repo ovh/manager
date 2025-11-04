@@ -8,7 +8,6 @@ import {
 } from '@testing-library/react';
 import { aapi } from '@ovh-ux/manager-core-api';
 import NotificationsButton from './NotificationsButton';
-import { ContainerProvider } from '@/core/container';
 import { getComponentWrapper } from '@/utils/tests/component-wrapper';
 
 let notificationsVisible = false;
@@ -18,6 +17,7 @@ const setIsNotificationsSidebarVisible = vi.fn((visibility) => {
 
 const baseWrapper = getComponentWrapper({
   withQueryClientProvider: true,
+  withContainerProvider: true,
   configuration: {
     user: {
       ovhSubsidiary: 'FR',
@@ -26,13 +26,7 @@ const baseWrapper = getComponentWrapper({
 });
 
 const renderNotificationsButton = () => {
-  return render(
-    baseWrapper(
-      <ContainerProvider>
-        <NotificationsButton />
-      </ContainerProvider>,
-    ),
-  );
+  return render(baseWrapper(<NotificationsButton />));
 };
 
 vi.mock('@/context/header', async (importOriginal) => {

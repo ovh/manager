@@ -1,9 +1,18 @@
 import { it, vi, describe, expect } from 'vitest';
 import { render } from '@testing-library/react';
 import { KeyPairName } from '@ovh-ux/manager-config';
+import { getComponentWrapper } from '@/utils/tests/component-wrapper';
 import LanguageMenu, { Props } from './index';
 import { ContainerProvider } from '@/core/container';
-import { getComponentWrapper } from '@/utils/tests/component-wrapper';
+
+vi.mock('@ovh-ux/manager-react-components', () => ({
+  fetchFeatureAvailabilityData: vi.fn(() => Promise.resolve({ pnr: false, livechat: false })),
+}));
+
+const wrapper = getComponentWrapper({
+  withContainerProvider: true,
+  configuration: {},
+});
 
 const handleChange = vi.fn();
 const handleSetUserLanguge = vi.fn();

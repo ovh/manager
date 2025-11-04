@@ -1,5 +1,6 @@
 {
   "sidebar_home": "Hub de services",
+  "sidebar_dashboard": "Dashboard",
   "sidebar_loading": "Chargement en cours",
   "sidebar_no_result": "Aucun résultat trouvé.",
   "sidebar_back": "Retour",
@@ -8,6 +9,7 @@
   "sidebar_search": "Rechercher",
   "sidebar_show_all": "Voir tout",
   "sidebar_account_all": "Tous les comptes",
+  "sidebar_service": "SERVICES",
   "sidebar_service_all": "Tous les services",
   "sidebar_project_all": "Tous les projets",
   "sidebar_service_add": "Ajouter un service",

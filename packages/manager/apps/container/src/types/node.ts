@@ -1,0 +1,41 @@
+import { ICON_NAME } from '@ovh-ux/muk';
+
+export type NodeRouting = {
+  application?: string;
+  hash?: string;
+  pathMatcher?: RegExp
+};
+
+export enum NodeTag {
+  ALPHA = 'alpha',
+  BETA = 'beta',
+  NEW = 'new',
+}
+
+export type Node = {
+  children?: Node[];
+  parent?: Node;
+  universe?: string;
+  hasService?: boolean;
+  id?: string;
+  path?: string;
+  serviceType?: string | string[];
+  hideIfFeatures?: string[];
+  translation?: string;
+  shortTranslation?: string;
+  features?: string[];
+  separator?: boolean;
+  idAttr?: string;
+  hideIfEmpty?: boolean;
+  badge?: string;
+  forceVisibility?: boolean;
+  forceNavigate?: boolean;
+  url?: string | Record<string, string>;
+  isExternal?: boolean;
+  hidden?: boolean;
+  routing?: NodeRouting;
+  region?: string[];
+  tag?: NodeTag;
+  icon?: ICON_NAME;
+  onClick?: () => void;
+};
