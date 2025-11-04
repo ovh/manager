@@ -1,6 +1,6 @@
 {
   "hosting_tab_GENERAL_INFORMATIONS": "General information",
-  "hosting_tab_MULTISITE": "Multisite",
+  "hosting_tab_MULTISITE": "My sites",
   "hosting_tab_SSL": "SSL certificates ",
   "hosting_tab_MODULE": "1-click modules",
   "hosting_tab_USER_LOGS": "Statistics and logs",
@@ -86,6 +86,10 @@
   "hosting_tab_DOMAINS_configuration_add_success_finish": "The domain(s) have been added to your hosting plan.",
   "hosting_tab_DOMAINS_configuration_add_failure": "An error has occurred adding the domain(s) to your hosting plan.",
   "domain_tab_emails": "Emails and mailing lists",
-  "hosting_managed_wordpress_websites_description": "Create a new website or import an existing website to this account in just a few clicks.",
-  "hosting_managed_wordpress_websites_description_without_import": "Create a new website in just a few clicks on this account."
+  "hosting_managed_wordpress_websites_description": "Create a new site or import an existing site to this account in just a few clicks.",
+  "hosting_managed_wordpress_websites_description_without_import": "Create a new site on this account in just a few clicks.",
+  "hosting_dashboard_modal_update_headline": "Change your site name",
+  "hosting_dashboard_modal_update_description": "Please enter the new name you wish to give your site. This is an internal name, visible only to you.",
+  "hosting_dashboard_modal_update_input_label": "New name",
+  "hosting_dashboard_modal_update_success": "Your site name has been successfully updated"
 }

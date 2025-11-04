@@ -1,0 +1,13 @@
+{
+  "multisite_git_state_tooltip_lastdeploy": "Konsultieren Sie die Informationen zum letzten Deployment",
+  "multisite_git_state_tooltip_disabled": "Klicken Sie auf die Schaltfläche Aktion, um Git zu verknüpfen",
+  "multisite_tooltip_diagnostic_good_configuration": "Ihre Domain {{ domainName }} ist auf die IP-Adresse {{ ip }} Ihres Hostings konfiguriert",
+  "multisite_tooltip_diagnostic_not_good_configuration": "Ihre Domain {{ domainName }} ist auf die IP-Adresse {{ ip }} eines anderen Dienstes konfiguriert",
+  "multisite_tooltip_diagnostic_unconfigured": "Dieser Eintrag in Ihrer DNS-Zone funktioniert nicht. Es wurde keine Konfiguration in Ihrer DNS-Zone gefunden",
+  "multisite_git_modal_delete_association_title": "Die Verknüpfung mit Git entfernen",
+  "multisite_git_modal_delete_association_description1": "Sie sind dabei, die Verknüpfung mit Git zu entfernen.",
+  "multisite_git_modal_delete_association_description2": "<strong>Die Löschung gilt für alle Domains, die auf Ihr Verzeichnis verweisen.</strong>",
+  "multisite_git_modal_delete_association_description3": "Möchten Sie den Inhalt des Verzeichnisses <strong>{{ path }}</strong> leeren?",
+  "multisite_git_modal_delete_association_warning_delete_dir": "Wir werden die Verknüpfung mit Git und den Inhalt des Verzeichnisses löschen.",
+  "multisite_git_modal_delete_association_success": "Ihre Löschung wurde erfolgreich berücksichtigt."
+}
