@@ -143,8 +143,7 @@ export const sharedConfig = createConfig({
 });
 
 // Shared test configuration applied across all frontend apps for launching test in muk
-export const sharedConfigTest = {
-  environment: 'jsdom',
+export const sharedCssConfig = {
   deps: {
     inline: ['@ovhcloud/ods-react'],
   },
