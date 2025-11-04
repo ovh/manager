@@ -2,7 +2,7 @@ import { vi, it, describe } from 'vitest';
 import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import { render } from '@testing-library/react';
 import { ShortAssistanceLinkItem, Props } from './ShortAssistanceLinkItem';
-import { Node } from '../navigation-tree/node';
+import { Node } from '../../data/config/navigation/types/node';
 import { mockShell } from '../mocks/sidebarMocks';
 
 const node: Node = {

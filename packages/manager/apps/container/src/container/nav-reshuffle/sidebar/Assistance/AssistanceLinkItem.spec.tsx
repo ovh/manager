@@ -2,7 +2,7 @@ import { it, vi, describe } from 'vitest';
 import { render } from '@testing-library/react';
 import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import { AssistanceLinkItem, Props } from './AssistanceLinkItem';
-import { Node } from '../navigation-tree/node';
+import { Node } from '../../data/config/navigation/types/node';
 
 const node: Node = {
   id: 'carbon_calculator',

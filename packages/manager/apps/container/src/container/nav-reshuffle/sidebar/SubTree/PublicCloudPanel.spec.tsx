@@ -1,11 +1,11 @@
 import { vi, it, describe, expect } from 'vitest';
 import { render, act, fireEvent } from '@testing-library/react';
-import { Node } from '../navigation-tree/node';
+import { Node } from '../../data/config/navigation/types/node';
 import { PublicCloudPanel, PublicCloudPanelProps } from './PublicCloudPanel';
 import { mockShell, mockPlugins, mockUser } from '../mocks/sidebarMocks';
 import { PciProject } from '../ProjectSelector/PciProject';
 import { Props as ProjectSelectorProps } from '../ProjectSelector/ProjectSelector';
-import { pciNode } from '../navigation-tree/services/publicCloud';
+import { pciNode } from '../../data/config/navigation/services/publicCloud';
 
 const node: Node = {
   id: 'pci-rancher',

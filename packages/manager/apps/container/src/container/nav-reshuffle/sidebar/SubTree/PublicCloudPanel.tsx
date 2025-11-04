@@ -12,12 +12,12 @@ import {
 } from '@ovhcloud/ods-components';
 import ProjectSelector from '../ProjectSelector/ProjectSelector';
 import { PciProject } from '../ProjectSelector/PciProject';
-import { Node } from '../navigation-tree/node';
+import { Node } from '../../data/config/navigation/types/node';
 import { useShell } from '@/context';
 import { shouldHideElement } from '@/container/nav-reshuffle/sidebar/utils';
 import style from '../style.module.scss';
 import SubTreeSection from '@/container/nav-reshuffle/sidebar/SubTree/SubTreeSection';
-import { PUBLICCLOUD_UNIVERSE_ID } from '../navigation-tree/services/publicCloud';
+import { PUBLICCLOUD_UNIVERSE_ID } from '../../data/config/navigation/services/publicCloud';
 import { useDefaultPublicCloudProject } from '@/container/nav-reshuffle/data/hooks/defaultPublicCloudProject/useDefaultPublicCloudProject';
 
 export interface PublicCloudPanelProps {

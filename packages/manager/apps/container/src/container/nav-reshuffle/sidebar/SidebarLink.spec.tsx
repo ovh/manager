@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { render } from '@testing-library/react';
 import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import SidebarLink, { SidebarLinkProps } from './SidebarLink';
-import { Node } from './navigation-tree/node';
+import { Node } from '../data/config/navigation/types/node';
 
 const handleOnClick = vi.fn();
 const handleOnEnter = vi.fn();

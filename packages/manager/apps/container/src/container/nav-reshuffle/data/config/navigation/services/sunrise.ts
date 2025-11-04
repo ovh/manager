@@ -1,5 +1,4 @@
-import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
-import { Node } from '../node';
+import { Node } from '../types/node';
 import illustration from '@/assets/images/sidebar/sunrise.png';
 
 const sunriseUniverse: Node = {
@@ -8,7 +7,7 @@ const sunriseUniverse: Node = {
   translation: 'sidebar_sunrise',
   shortTranslation: 'sidebar_sunrise_short',
   illustration,
-  svgIcon: OvhProductName.SUNRISE,
+  svgIcon: 'box',
   routing: {
     application: 'sunrise',
   },

@@ -1,6 +1,6 @@
 import { OsdsSkeleton } from '@ovhcloud/ods-components/react';
 import { FunctionComponent } from 'react';
-import { Node } from '../navigation-tree/node';
+import { Node } from '../../data/config/navigation/types/node';
 import style from '../style.module.scss';
 import SidebarLink from '../SidebarLink';
 

@@ -3,7 +3,7 @@ import { useURL, ContentURLS } from '@/container/common/urls-constants';
 import { useShell } from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import useContainer from '@/core/container';
-import { Node } from '../navigation-tree/node';
+import { Node } from '../../data/config/navigation/types/node';
 import { AssistanceLinkItem } from './AssistanceLinkItem';
 
 export interface AssistanceProps {

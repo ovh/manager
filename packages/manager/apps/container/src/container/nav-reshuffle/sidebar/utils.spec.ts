@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { Node } from './navigation-tree/node';
+import { Node } from '../data/config/navigation/types/node';
 import { isMatchingNode } from './utils';
 
 describe('isMatchingNode test suite', () => {
