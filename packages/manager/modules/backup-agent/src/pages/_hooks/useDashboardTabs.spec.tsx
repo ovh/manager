@@ -11,7 +11,7 @@ vi.mock('react-router-dom', () => ({
   useParams: () => ({ id: '123' }),
 }));
 
-describe('useTenantDashboardTabs', () => {
+describe('useVaultDashboardTabs', () => {
   it.skip('resolves the :id param in tab "to" field', () => {
     const { result } = renderHook(() => useDashboardTabs());
     const generalTab = result.current.find((t) => t.name === 'general-information');
