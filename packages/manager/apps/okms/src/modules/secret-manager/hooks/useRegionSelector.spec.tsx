@@ -2,11 +2,6 @@ import { useParams } from 'react-router-dom';
 import { waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import {
-  locationsMock,
-  LOCATION_EU_WEST_RBX,
-  LOCATION_EU_WEST_SBG,
-} from '@secret-manager/mocks/locations/locations.mock';
 import { getOkmsList } from '@key-management-service/data/api/okms';
 import {
   okmsStrasbourg1Mock,
@@ -18,6 +13,11 @@ import {
   REGION_EU_WEST_SBG,
 } from '@key-management-service/mocks/catalog/catalog.mock';
 import { OKMS } from '@key-management-service/types/okms.type';
+import {
+  locationsMock,
+  LOCATION_EU_WEST_RBX,
+  LOCATION_EU_WEST_SBG,
+} from '@/common/mocks/locations/locations.mock';
 import { RegionOption, useRegionSelector } from './useRegionSelector';
 import {
   renderHookWithClient,

@@ -10,7 +10,7 @@ import { getCatalogKmsErrorMessage } from '@key-management-service/mocks/catalog
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import { labels } from '@/common/utils/tests/init.i18n';
-import { locationsMock } from '@/modules/secret-manager/mocks/locations/locations.mock';
+import { locationsMock } from '@/common/mocks/locations/locations.mock';
 import kmsListingTestIds from '../listing/KmsListing.constants';
 import * as useGetOkmsOrderLink from './useGetOkmsOrderLink';
 
