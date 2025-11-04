@@ -18,15 +18,17 @@ import { useGetGuides } from '@/data/hooks/ai/guide/useGetGuides.hook';
 
 interface GuidesProps {
   section?: string[];
+  category?: string;
   onGuideClick?: (guide: Guide) => void;
 }
-const Guides = ({ section, onGuideClick }: GuidesProps) => {
+const Guides = ({ category, section, onGuideClick }: GuidesProps) => {
   const { projectId } = useParams();
   const { t } = useTranslation('ai-tools/components/guides');
   const locale = useLocale();
   const [open, setOpen] = useState(false);
   const guidesQuery = useGetGuides(
     projectId,
+    category,
     section,
     locale.toLocaleLowerCase().replace('_', '-'),
   );

@@ -12,10 +12,11 @@ vi.mock('@/data/api/ai/guides/guide.api', () => ({
 describe('useGetGuides', () => {
   it('should return Guides', async () => {
     const projectId = 'projectId';
+    const category = 'ai';
 
     vi.mocked(guideApi.getGuides).mockResolvedValue([mockedGuides]);
 
-    const { result } = renderHook(() => useGetGuides(projectId), {
+    const { result } = renderHook(() => useGetGuides(projectId, category), {
       wrapper: QueryClientWrapper,
     });
 
@@ -24,6 +25,7 @@ describe('useGetGuides', () => {
       expect(result.current.data).toEqual([mockedGuides]);
       expect(guideApi.getGuides).toHaveBeenCalledWith({
         projectId,
+        category,
       });
     });
   });

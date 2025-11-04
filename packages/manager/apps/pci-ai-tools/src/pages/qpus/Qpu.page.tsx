@@ -12,6 +12,7 @@ import {
   getRegions,
 } from '@/data/api/ai/capabilities/capabilities.api';
 import { getNotebooks } from '@/data/api/ai/notebook/notebook.api';
+import Guides from '@/components/guides/Guides.component';
 import { QpuRoadmapLinks } from '@/configuration/roadmap-changelog.constants';
 import { useGetQpuRegions } from '@/data/hooks/ai/capabilities/useGetQpuRegions.hook';
 
@@ -81,6 +82,7 @@ const Qpus = () => {
         <h2>{t('qpuTitle')}</h2>
         <div className="flex flex-wrap justify-end gap-1">
           <RoadmapChangelog links={QpuRoadmapLinks} />
+          <Guides category={'quantum'} />
         </div>
       </div>
       <QpusList qpus={filteredNotebooks} />
