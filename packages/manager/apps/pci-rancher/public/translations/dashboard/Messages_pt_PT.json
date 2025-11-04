@@ -60,7 +60,7 @@
   "savingsPlanUsage": "Se já tiver subscrito um ou vários Savings Plan para o plano escolhido, os vCPU dos seus downstream clusters serão automaticamente contabilizados nele(s).",
   "iamTemporaryAccessUnavailable": "A funcionalidade \"Gerar os seus acessos temporários\" fica indisponível quando a autenticação IAM está ativada. Para alterar a palavra-passe do utilizador Admin, utilize a interface Rancher.",
   "iam_section_title": "Autenticação OVHcloud IAM",
-  "iam_tooltip_content": "Permite que o Rancher utilize as identidades geridas pelo OVHcloud IAM (Gestão de Identidade e Acesso) para controlar o acesso ao Rancher, evitando assim a gestão manual dos utilizadores.",
+  "iam_tooltip_content": "Permite que o Rancher utilize as identidades geridas pelo OVHcloud IAM (Identity and Access Management) para controlar o acesso ao Rancher, evitando assim a gestão manual dos utilizadores.",
   "iam_section_content": "Gestão dos acessos",
   "iam_button_content": "Desativar IAM",
   "iam_status_enabled": "Ativado",
@@ -68,11 +68,11 @@
   "iam_modal_title": "Ativar a autenticação via OVHcloud IAM",
   "iam_modal_activation_content_1": "A funcionalidade de autenticação IAM OVHcloud permite que o Rancher utilize as identidades OVHcloud IAM para gerir o acesso. Assim, os utilizadores conectam-se ao Rancher através da sua conta SSO OVHcloud IAM, simplificando e centralizando a gestão de acessos.",
   "iam_modal_activation_more_info": "Documentação OVHcloud IAM",
-  "iam_modal_activation_section_title": "Ao ativar a autenticação IAM OVHcloud no Rancher:",
-  "iam_modal_activation_point_1": "Os utilizadores locais continuarão sempre funcionais.",
+  "iam_modal_activation_section_title": "Ao ativar a <strong>Autenticação IAM OVHcloud</strong> no Rancher:",
+  "iam_modal_activation_point_1": "Os utilizadores locais permanecerão sempre funcionais.",
   "iam_modal_activation_point_2": "Portanto, poderá continuar a conectar-se com as suas contas Rancher habituais.",
   "iam_modal_activation_warning_title": "Limitação conhecida",
-  "iam_modal_activation_warning_text": "Em caso de regeneração da palavra-passe « admin » enquanto a autenticação IAM está ativada, isso terá como efeito desativar temporariamente a possibilidade de se conectar com o utilizador root IAM. Para corrigir este problema, será necessário conectar-se uma primeira vez com o utilizador local « admin », a fim de restabelecer o acesso com o utilizador root IAM.",
+  "iam_modal_activation_warning_text": "Se ocorrer a <strong>regeneração da palavra-passe « admin »</strong> enquanto a autenticação IAM estiver ativada, isso terá o efeito de <strong>desativar temporariamente a possibilidade de se conectar com o utilizador root IAM</strong>. Para corrigir este problema, será necessário conectar-se uma primeira vez com o utilizador local <strong>« admin »</strong>, a fim de restabelecer o acesso com o utilizador root IAM.",
   "iam_modal_close_button": "Fechar",
   "iam_modal_activate_button": "Ativar",
   "iam_modal_deactivation_title": "Desativar a autenticação OVHcloud IAM",
@@ -81,5 +81,7 @@
   "iam_modal_deactivate_button": "Desativar",
   "iam_modal_more_info": "Mais informações aqui",
   "iam_authentication_enable_success_message": "A autenticação via OVHcloud IAM foi ativada no Rancher {{ rancherId }}.",
-  "iam_authentication_disable_success_message": "A autenticação via OVHcloud IAM foi desativada no Rancher {{ rancherId }}."
+  "iam_authentication_disable_success_message": "A autenticação via OVHcloud IAM foi desativada no Rancher {{ rancherId }}.",
+  "generateAccessModalIamWarning": "Se ocorrer a <strong>regeneração da palavra-passe \"admin\"</strong> enquanto a autenticação IAM estiver ativada, isso terá o efeito de <strong>desativar temporariamente a possibilidade de se conectar com o utilizador root IAM.</strong> Para corrigir este problema, será necessário conectar-se uma primeira vez com o utilizador local <strong>“admin”</strong>, a fim de restabelecer o acesso com o utilizador root IAM.",
+  "iam_authentication_warning": "Limitação conhecida"
 }

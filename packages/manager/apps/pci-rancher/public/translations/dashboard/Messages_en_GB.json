@@ -68,11 +68,11 @@
   "iam_modal_title": "Enable authentication via OVHcloud IAM",
   "iam_modal_activation_content_1": "The OVHcloud IAM authentication feature allows Rancher to use OVHcloud IAM identities to manage access. Thus, users log in to Rancher via their OVHcloud IAM SSO account, simplifying and centralizing access management.",
   "iam_modal_activation_more_info": "OVHcloud IAM Documentation",
-  "iam_modal_activation_section_title": "When enabling OVHcloud IAM authentication in Rancher:",
+  "iam_modal_activation_section_title": "When enabling <strong>OVHcloud IAM Authentication</strong> in Rancher:",
   "iam_modal_activation_point_1": "Local users will always remain functional.",
   "iam_modal_activation_point_2": "You will therefore be able to continue logging in with your usual Rancher accounts.",
   "iam_modal_activation_warning_title": "Known limitation",
-  "iam_modal_activation_warning_text": "If the 'admin' password is regenerated while IAM authentication is enabled, this will temporarily disable the ability to log in with the IAM root user. To fix this issue, you will need to log in once with the local 'admin' user to restore access with the IAM root user.",
+  "iam_modal_activation_warning_text": "If the <strong>password regeneration \"admin\"</strong> occurs while IAM authentication is enabled, this will result in <strong>temporarily disabling the ability to log in with the IAM root user</strong>. To fix this issue, you will need to log in for the first time with the local user <strong>\"admin\"</strong> to restore access with the IAM root user.",
   "iam_modal_close_button": "Close",
   "iam_modal_activate_button": "Enable",
   "iam_modal_deactivation_title": "Disable OVHcloud IAM authentication",
@@ -80,6 +80,8 @@
   "iam_modal_deactivation_warning": "Users will no longer be able to log in via their <strong>OVHcloud IAM</strong> accounts. Do you wish to continue?",
   "iam_modal_deactivate_button": "Disable",
   "iam_modal_more_info": "More information here",
-  "iam_authentication_enable_success_message": "Authentication via OVHcloud IAM has been enabled on the Rancher {{ rancherId }}.",
-  "iam_authentication_disable_success_message": "Authentication via OVHcloud IAM has been disabled on the Rancher {{ rancherId }}."
+  "iam_authentication_enable_success_message": "Authentication via OVHcloud IAM has been enabled on Rancher {{ rancherId }}.",
+  "iam_authentication_disable_success_message": "Authentication via OVHcloud IAM has been disabled on Rancher {{ rancherId }}.",
+  "generateAccessModalIamWarning": "If the <strong>password regeneration \"admin\"</strong> occurs while IAM authentication is enabled, this will result in <strong>temporarily disabling the ability to log in with the IAM root user.</strong> To fix this issue, you will need to log in for the first time with the local user <strong>\"admin\"</strong> to restore access with the IAM root user.",
+  "iam_authentication_warning": "Known limitation"
 }

@@ -23,6 +23,8 @@
   "generateAccesModalTitle": "Générer vos accès temporaires",
   "generateAccesModalDescription": "Un mot de passe temporaire sera généré pour votre Rancher. Pour l'afficher, veuillez cliquer sur «Confirmer»",
   "generateAccessModalPasswordDescription": "Copiez ce mot de passe temporaire pour vous connecter à votre Rancher. Après votre connexion, vous serez invité à créer un nouveau mot de passe pour des raisons de sécurité.",
+  "generateAccessModalIamWarning": "En cas de <strong>régénération du mot de passe \"admin\"</strong> alors que l’authentification IAM est activée, cela aura pour effet de <strong>désactiver temporairement la possibilité de se connecter avec l’utilisateur root IAM.</strong>",
+  "generateAccessModalIamWarning2": "Pour corriger ce problème, il sera nécessaire de vous connecter une première fois avec l’utilisateur local <strong>“admin”</strong>, afin de rétablir l’accès avec l’utilisateur root IAM.",
   "cancel": "Annuler",
   "close": "Fermer",
   "confirm": "Confirmer",
