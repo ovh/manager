@@ -4,11 +4,12 @@ import type { ColumnSort, Row, VisibilityState } from '@tanstack/react-table';
 
 import {
   DatagridColumn,
+  ExpandableRow,
   ExpandedProps,
   RowSelectionProps,
 } from '@/components/datagrid/Datagrid.props';
 
-export type UseDatagridTableProps<T> = {
+export type UseDatagridTableProps<T extends ExpandableRow<T>> = {
   columns: readonly DatagridColumn<T>[];
   columnVisibility?: VisibilityState;
   data: T[];
@@ -18,12 +19,8 @@ export type UseDatagridTableProps<T> = {
   renderSubComponent?: (
     row: Row<T>,
     headerRefs?: MutableRefObject<Record<string, HTMLTableCellElement>>,
-  ) => JSX.Element;
-  rowSelection?: RowSelectionProps<T>;
+  ) => JSX.Element | null;
+  rowSelection?: RowSelectionProps<T> | null;
   setColumnVisibility?: (columnVisibility: VisibilityState) => void;
   sorting?: ColumnSort[];
 };
-
-export interface ExpandableRow<T> {
-  subRows?: T[];
-}

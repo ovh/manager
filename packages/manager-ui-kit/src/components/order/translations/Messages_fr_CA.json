@@ -5,5 +5,6 @@
   "order_summary_product_default_label": "service",
   "order_summary_order_initiated_title": "Commande de votre {{product}} initiée",
   "order_summary_order_initiated_subtitle": "Si vous n'avez pas pu finaliser votre commande, merci de la compléter en cliquant sur le <ExternalLink>lien suivant</ExternalLink>",
-  "order_summary_order_initiated_info": "Nous vous informerons de la disponibilité de votre {{product}} par e-mail."
+  "order_summary_order_initiated_info": "Nous vous informerons de la disponibilité de votre {{product}} par e-mail.",
+  "order_error_loading": "Une erreur est survenue lors du chargement de la page."
 }

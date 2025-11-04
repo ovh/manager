@@ -48,7 +48,12 @@ export interface ExpandedProps {
   setExpanded: Dispatch<SetStateAction<ExpandedState>>;
 }
 
-export type DatagridProps<T extends Record<string, unknown>> = {
+export interface ExpandableRow<T> {
+  id?: string;
+  subRows?: T[];
+}
+
+export type DatagridProps<T extends ExpandableRow<T>> = {
   autoScroll?: boolean;
   columns: readonly DatagridColumn<T>[];
   columnVisibility?: ColumnVisibilityProps;

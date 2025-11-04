@@ -1,7 +1,8 @@
 import { getCoreRowModel, getExpandedRowModel, getSortedRowModel } from '@tanstack/react-table';
 import type { TableOptions } from '@tanstack/react-table';
 
-import { ExpandableRow } from '../useDatagrid.props';
+import { ExpandableRow } from '@/components/datagrid/Datagrid.props';
+
 import { TableBuilderProps } from './TableBuilderProps.props';
 import { getExpandable, getRowSelection } from './TableHeaderBuilder';
 
@@ -27,7 +28,7 @@ export const useTableBuilder = <T extends ExpandableRow<T>>({
       if (rowSelection) {
         cols = [getRowSelection(), ...cols];
       }
-      if ((hasExpandableFeature && expandable) || !!renderSubComponent) {
+      if ((hasExpandableFeature && expandable) || renderSubComponent) {
         cols = [getExpandable(expandable), ...cols];
       }
       params.columns = cols;
@@ -60,7 +61,7 @@ export const useTableBuilder = <T extends ExpandableRow<T>>({
       return builder;
     },
     setExpandedRowModel: () => {
-      if (hasExpandableFeature || !!renderSubComponent) {
+      if (hasExpandableFeature || renderSubComponent) {
         params.getRowCanExpand = () => true;
         params.getExpandedRowModel = getExpandedRowModel();
       }
@@ -98,6 +99,10 @@ export const useTableBuilder = <T extends ExpandableRow<T>>({
     },
     setSubRows: () => {
       params.getSubRows = (row: T) => row?.subRows;
+      return builder;
+    },
+    setRowId: () => {
+      params.getRowId = (row: T, index: number) => row?.id ?? String(index);
       return builder;
     },
   };
