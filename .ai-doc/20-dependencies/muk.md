@@ -7,7 +7,7 @@ ai: true
 
 # Manager UI Kit (MUK)
 
-> **📦 Version:** `@ovh-ux/muk@^0.2.0`
+> **📦 Version:** `@ovh-ux/muk@^0.4.0`
 
 ## 🧭 Purpose
 
@@ -25,12 +25,6 @@ MUK is designed for:
 - **Accessibility compliance** with WCAG standards
 - **Performance optimization** with tree-shaking support
 
-This package is essential for:
-- **React µApps** in the Manager ecosystem
-- **Consistent UI/UX** across all applications
-- **Rapid development** with pre-built components
-- **Data management** with specialized hooks
-
 ## 🔗 References
 
 - [Manager Core API](./manager-core-api.md)
@@ -38,14 +32,14 @@ This package is essential for:
 - [TanStack React Query](./tanstack-react-query.md)
 - [ODS Components](./ods-components.md)
 
-## 📘 Guidelines / Implementation
+## 📘 Quick Start
 
-### Package Installation
+### Installation
 
 ```json
 {
   "dependencies": {
-    "@ovh-ux/muk": "^0.2.0"
+    "@ovh-ux/muk": "^0.4.0"
   }
 }
 ```
@@ -62,7 +56,6 @@ import '@ovh-ux/muk/dist/style.css';
 ```typescript
 import { Button, Datagrid, OnboardingLayout } from '@ovh-ux/muk';
 
-// Use components with IAM integration
 <Button iamActions={['action:read']} urn="urn:resource">
   Click me
 </Button>
@@ -70,338 +63,86 @@ import { Button, Datagrid, OnboardingLayout } from '@ovh-ux/muk';
 
 ## 🏗️ Architecture
 
-### ODS Wrapper Pattern
+MUK components are wrappers around ODS React components with Manager-specific enhancements (IAM integration, Manager-specific logic).
 
-MUK components are wrappers around ODS React components with Manager-specific enhancements:
+**Pattern:** All components accept standard ODS props + IAM props (`iamActions`, `urn`, `displayTooltip?`, `tooltipPosition?`).
 
-```typescript
-// MUK Button wraps ODS Button with IAM integration
-import { Button as OdsButton } from '@ovhcloud/ods-react';
+## 📦 Component Reference
 
-export const Button = ({ iamActions, urn, ...props }) => {
-  const { isAuthorized } = useAuthorizationIam(iamActions, urn);
-  
-  if (isAuthorized) {
-    return <OdsButton {...props} />;
-  }
-  
-  return <OdsButton {...props} disabled />;
-};
-```
+### Layout Components (Priority)
 
-### Component Categories
-
-#### Layout Components
-- **BaseLayout**: Main application layout with header, breadcrumb, tabs
-- **OnboardingLayout**: Onboarding pages with CTA buttons
-- **GridLayout**: Grid-based layouts
- - **RedirectionGuard**: Navigation guard to redirect based on conditions
-
-#### Data Components
-- **Datagrid**: Advanced data table (TanStack Table v8)
-- **Filters**: Filtering system
-- **useDataApi**: Primary data fetching hook
-
-#### Form Components
-- **Button**: Enhanced button with IAM
-- **Checkbox**: Checkbox with IAM support
-- **Combobox**: Searchable dropdown
-- **Datepicker**: Date selection
-- **FileUpload**: File upload component
-- **FormField**: Form field wrapper
-- **Input**: Text input with validation
-- **PhoneNumber**: Phone number input
-- **Quantity**: Number input with controls
-- **RadioGroup**: Radio button group
-- **Select**: Dropdown selection
-- **Switch**: Toggle switch
-- **Textarea**: Multi-line text input
-- **Timepicker**: Time selection
-- **Toggle**: Toggle component
- - **TilesInput**: Tile-based single choice input
- - **TilesInputGroup**: Tile-based multi-field choices layout
-
-#### UI Components
-- **Accordion**: Collapsible content
-- **Badge**: Status badges
-- **Breadcrumb**: Navigation breadcrumbs
-- **Clipboard**: Copy to clipboard
-- **Drawer**: Slide-out panel
-- **Link**: Enhanced links
-- **LinkCard**: Card with link
-- **Message**: User messages
-- **Modal**: Modal dialogs
-- **Notifications**: Toast notifications
- - **Price**: Price display with currency/subsidiary support
- - **Step**: Step indicator for multi-step flows
- - **GuideMenu**: In-app guide and links menu
- - **ChangelogMenu**: In-app changelog entries menu
-- **Popover**: Floating content
-- **Progress**: Progress indicators
-- **Tabs**: Tab navigation
-- **Tile**: Content tiles
-- **Tooltip**: Hover tooltips
-- **TreeView**: Hierarchical data
-
-#### Feedback Components
-- **ActionBanner**: Action prompts
-- **Error**: Error displays
-- **ErrorBoundary**: Error catching
-- **ServiceStateBadge**: Service status
-- **TagsList**: Tag management
-- **TagsTile**: Tag display
- - **UpdateNameModal**: Standard modal to update a resource name
- - **DeleteModal**: Standard deletion confirmation modal
-
-## 🎯 Key Components
-
-### OnboardingLayout
-
-Complete onboarding page layout with image, title, description, and action buttons.
-
-```typescript
-import { OnboardingLayout } from '@ovh-ux/muk';
-
-<OnboardingLayout
-  title="Welcome to NAS-HA"
-  description="Get started with your NAS-HA service"
-  img={{ src: '/path/to/image.png', alt: 'NAS-HA' }}
-  orderButtonLabel="Order Now"
-  onOrderButtonClick={() => handleOrder()}
-  orderIam={{
-    urn: 'urn:resource',
-    iamActions: ['action:create']
-  }}
-  moreInfoHref="/docs"
-  moreInfoButtonLabel="Learn More"
->
-  {/* Tutorial tiles */}
-  <div>Tutorial content</div>
-</OnboardingLayout>
-```
-
-### Price
-
-Display a price with currency, interval and subsidiary support.
-
-```typescript
-import { Price, OvhSubsidiary, IntervalUnitType } from '@ovh-ux/muk';
-
-<Price
-  value={29.99}
-  currency="EUR"
-  subsidiary={OvhSubsidiary.FR}
-  intervalUnit={IntervalUnitType.month}
-/>;
-```
-
-### Step
-
-Show a step indicator for multi-step flows.
-
-```typescript
-import { Step } from '@ovh-ux/muk';
-
-<Step current={2} total={4} label="Configuration"/>;
-```
-
-### TilesInput
-
-Tile-based single choice input.
-
-```typescript
-import { TilesInput } from '@ovh-ux/muk';
-
-<TilesInput
-  name="flavor"
-  value={selected}
-  onChange={setSelected}
-  options=[
-    { label: 'Small', value: 's' },
-    { label: 'Medium', value: 'm' },
-    { label: 'Large', value: 'l', disabled: true }
-  ]
-/>;
-```
-
-### TilesInputGroup
-
-Layout to group multiple `TilesInput` blocks.
-
-```typescript
-import { TilesInputGroup, TilesInput } from '@ovh-ux/muk';
-
-<TilesInputGroup>
-  <TilesInput name="cpu" options={[{ label: '2 vCPU', value: '2' }]} />
-  <TilesInput name="ram" options={[{ label: '8 GB', value: '8' }]} />
-  <TilesInput name="disk" options={[{ label: '100 GB', value: '100' }]} />
-</TilesInputGroup>;
-```
-
-### GuideMenu
-
-Display a contextual guide menu with useful links.
-
-```typescript
-import { GuideMenu } from '@ovh-ux/muk';
-
-<GuideMenu
-  items=[
-    { label: 'Documentation', href: '/docs' },
-    { label: 'Tutorials', href: '/tutorials' }
-  ]
-/>;
-```
-
-### ChangelogMenu
-
-Display changelog entries.
-
-```typescript
-import { ChangelogMenu } from '@ovh-ux/muk';
-
-<ChangelogMenu
-  entries=[
-    { date: '2025-10-29', title: 'New feature', description: '...' }
-  ]
-/>;
-```
-
-### UpdateNameModal
-
-Standard modal to update a resource name.
-
-```typescript
-import { UpdateNameModal } from '@ovh-ux/muk';
-
-<UpdateNameModal
-  open={isOpen}
-  onOpenChange={setIsOpen}
-  defaultValue={name}
-  onSubmit={(newName) => updateName(newName)}
-/>;
-```
-
-### DeleteModal
-
-Deletion confirmation modal with IAM support.
-
-```typescript
-import { DeleteModal } from '@ovh-ux/muk';
-
-<DeleteModal
-  open={isOpen}
-  onOpenChange={setIsOpen}
-  title="Delete resource"
-  description="This action cannot be undone"
-  onConfirm={onDelete}
-/>;
-```
-
-### RedirectionGuard
-
-Guard component that redirects when a condition is met.
-
-```typescript
-import { RedirectionGuard } from '@ovh-ux/muk';
-
-<RedirectionGuard
-  when={!hasAccess}
-  to="/forbidden"
-  fallback={<div>Checking access...</div>}
->
-  <ProtectedContent />
-</RedirectionGuard>;
-```
-
-**Props:**
-```typescript
-interface OnboardingLayoutProps {
-  title: string;
-  description?: ReactNode;
-  img?: ComponentProps<'img'>;
-  orderButtonLabel?: string;
-  orderHref?: string;
-  onOrderButtonClick?: () => void;
-  isActionDisabled?: boolean;
-  orderIam?: {
-    urn: string;
-    iamActions: string[];
-    displayTooltip?: boolean;
-  };
-  moreInfoHref?: string;
-  moreInfoButtonLabel?: string;
-  moreInfoButtonIcon?: ICON_NAME;
-  isMoreInfoButtonDisabled?: boolean;
-  hideHeadingSection?: boolean;
-  children?: ReactNode;
-}
-```
-
-### BaseLayout
-
-Main application layout with header, breadcrumb, and content areas.
+#### BaseLayout
+Main application layout with header, breadcrumb, tabs.
 
 ```typescript
 import { BaseLayout } from '@ovh-ux/muk';
 
 <BaseLayout
-  header={{
-    title: 'My Application',
-    description: 'Application description'
-  }}
-  breadcrumb={<Breadcrumb items={breadcrumbItems} />}
-  tabs={<Tabs items={tabItems} />}
+  header={{ title: 'App', description: 'Description' }}
+  breadcrumb={<Breadcrumb items={items} />}
+  tabs={<Tabs items={tabs} />}
 >
-  <div>Main content</div>
+  <div>Content</div>
 </BaseLayout>
 ```
 
-**Props:**
+**Props:** `breadcrumb?`, `header?`, `message?`, `description?`, `subtitle?`, `backLink?`, `tabs?`, `children?`
+
+#### OnboardingLayout
+Complete onboarding page with image, title, description, action buttons.
+
 ```typescript
-interface BaseLayoutProps {
-  breadcrumb?: ReactElement;
-  header?: HeaderProps;
-  message?: ReactElement;
-  description?: string;
-  subtitle?: string;
-  backLink?: {
-    label: string;
-    onClick?: () => void;
-    previousPageLink?: string;
-  };
-  tabs?: ReactElement;
-  children?: ReactNode;
-}
+import { OnboardingLayout } from '@ovh-ux/muk';
+
+<OnboardingLayout
+  title="Welcome"
+  description="Get started"
+  img={{ src: '/image.png', alt: 'Alt' }}
+  orderButtonLabel="Order Now"
+  onOrderButtonClick={() => {}}
+  orderIam={{ urn: 'urn:resource', iamActions: ['action:create'] }}
+  moreInfoHref="/docs"
+  moreInfoButtonLabel="Learn More"
+>
+  <div>Content</div>
+</OnboardingLayout>
 ```
 
-### Datagrid
+**Props:** `title`, `description?`, `img?`, `orderButtonLabel?`, `orderHref?`, `onOrderButtonClick?`, `isActionDisabled?`, `orderIam?`, `moreInfoHref?`, `moreInfoButtonLabel?`, `moreInfoButtonIcon?`, `isMoreInfoButtonDisabled?`, `hideHeadingSection?`, `children?`
 
-Advanced data table with sorting, filtering, search, and pagination.
+#### RedirectionGuard
+Guard that redirects when condition is met.
+
+```typescript
+import { RedirectionGuard } from '@ovh-ux/muk';
+
+<RedirectionGuard when={!hasAccess} to="/forbidden" fallback={<div>Loading...</div>}>
+  <ProtectedContent />
+</RedirectionGuard>
+```
+
+#### GridLayout
+Grid-based layout system. Props: `columns?`, `gap?`, `className?`, `children`
+
+### Data Components (Priority)
+
+#### Datagrid
+Advanced data table with TanStack Table v8.
 
 ```typescript
 import { Datagrid, useDataApi } from '@ovh-ux/muk';
 
 const columns = [
-  {
-    accessorKey: 'name',
-    header: 'Name',
-    isSortable: true,
-    isSearchable: true,
-    isFilterable: true
-  },
-  {
-    accessorKey: 'status',
-    header: 'Status',
-    meta: { type: 'badge' }
-  }
+  { accessorKey: 'name', header: 'Name', isSortable: true, isSearchable: true, isFilterable: true },
+  { accessorKey: 'status', header: 'Status', meta: { type: 'badge' } }
 ];
 
 function DataTable() {
-  const { data, isLoading, totalCount } = useDataApi({
+  const { data, isLoading, totalCount, sorting, filters, search } = useDataApi({
     route: '/api/services',
     version: 'v2',
-    cacheKey: ['services']
+    cacheKey: ['services'],
+    columns
   });
 
   return (
@@ -410,169 +151,172 @@ function DataTable() {
       data={data}
       totalCount={totalCount}
       isLoading={isLoading}
+      sorting={sorting}
+      filters={filters}
+      search={search}
     />
   );
 }
 ```
 
-**Props:**
+**Key Props:**
+- `columns: DatagridColumn<T>[]` - Column definitions with `accessorKey`, `header`, `isSortable?`, `isSearchable?`, `isFilterable?`, `filterOptions?`, `meta?`
+- `data: T[]` - Data array
+- `totalCount?: number` - Total items (NOT `totalItems`)
+- `isLoading?: boolean`
+- `sorting?`, `filters?`, `search?` - From `useDataApi` hook
+- `expandable?`, `rowSelection?`, `columnVisibility?`, `topbar?`, `onFetchNextPage?`, `renderSubComponent?`
+
+**Column Definition:**
 ```typescript
-interface DatagridProps<T> {
-  columns: readonly DatagridColumn<T>[];
-  data: T[];
-  totalCount?: number;
-  isLoading?: boolean;
-  hasNextPage?: boolean;
-  autoScroll?: boolean;
-  containerHeight?: number;
-  contentAlignLeft?: boolean;
-  expandable?: ExpandedProps;
-  filters?: FilterProps;
-  rowSelection?: RowSelectionProps<T>;
-  search?: SearchProps;
-  sorting?: SortingProps;
-  columnVisibility?: ColumnVisibilityProps;
-  topbar?: ReactNode;
-  onFetchAllPages?: () => void;
-  onFetchNextPage?: () => void;
-  renderSubComponent?: (row: Row<T>) => JSX.Element;
+interface DatagridColumn<T> extends ColumnDef<T> {
+  accessorKey: string;
+  header: string;
+  isSortable?: boolean;
+  isSearchable?: boolean;
+  isFilterable?: boolean;
+  filterOptions?: Option[];
+  enableHiding?: boolean;
+  meta?: { type?: ColumnMetaType; className?: string };
 }
 ```
 
+### Form Components
+
+**All form components support IAM props:** `iamActions?`, `urn?`, `displayTooltip?`, `tooltipPosition?`
+
+| Component | Key Props | Usage Pattern |
+|-----------|-----------|---------------|
+| **Button** | `variant?`, `size?`, `disabled?`, `onClick?` + IAM | Standard button with IAM |
+| **Checkbox** | `checked`, `onChange`, `disabled?` + IAM | Checkbox with IAM |
+| **Combobox** | `options`, `value`, `onChange`, `placeholder?`, `searchable?`, `multiple?` | Searchable dropdown |
+| **Datepicker** | `value`, `onChange`, `format?`, `minDate?`, `maxDate?` | Date selection |
+| **FileUpload** | `onFileSelect`, `accept?`, `maxSize?`, `multiple?`, `disabled?` | File upload |
+| **FormField** | `label`, `required?`, `error?`, `help?` | Form field wrapper |
+| **Input** | `value`, `onChange`, `type?`, `placeholder?`, `disabled?`, `error?` | Text input |
+| **PhoneNumber** | `value`, `onChange`, `country?`, `placeholder?` | Phone input |
+| **Quantity** | `value`, `onChange`, `min?`, `max?`, `step?` | Number input with controls |
+| **RadioGroup** | `value`, `onChange`, `options`, `disabled?` | Radio buttons |
+| **Select** | `value`, `onChange`, `options`, `placeholder?`, `searchable?` | Dropdown |
+| **Switch** | `checked`, `onChange`, `size?` | Toggle switch |
+| **Textarea** | `value`, `onChange`, `rows?`, `maxLength?`, `disabled?` | Multi-line text |
+| **Timepicker** | `value`, `onChange`, `format?` | Time selection |
+| **Toggle** | `checked`, `onChange`, `size?` | Toggle component |
+| **TilesInput** | `name`, `value`, `onChange`, `options: Array<{label, value, disabled?}>` | Tile-based choice |
+| **TilesInputGroup** | `children` (TilesInput components) | Group multiple tiles |
+
+### UI Components
+
+| Component | Key Props | Usage Pattern |
+|-----------|-----------|---------------|
+| **Accordion** | `children` (AccordionItem) | Collapsible content |
+| **Badge** | `color?`, `size?`, `variant?` | Status badges |
+| **Breadcrumb** | `items: Array<{label, href?}>` | Navigation breadcrumbs |
+| **Clipboard** | `text`, `onCopy?`, `tooltip?` | Copy to clipboard |
+| **Drawer** | `open`, `onOpenChange`, `side?`, `size?` | Slide-out panel |
+| **Link** | `href`, `external?` + IAM | Enhanced links |
+| **LinkCard** | `href`, `title`, `description?`, `image?` + IAM | Card with link |
+| **Message** | `type`, `title?`, `description?`, `closable?`, `onClose?` | User messages |
+| **Modal** | `open`, `onOpenChange`, `title?`, `size?` | Modal dialogs |
+| **Notifications** | `notifications`, `onRemove`, `position?`, `duration?` | Toast notifications |
+| **Popover** | `children` (PopoverTrigger, PopoverContent) | Floating content |
+| **Progress** | `value`, `max?`, `size?`, `variant?`, `showValue?` | Progress indicators |
+| **Tabs** | `value`, `onValueChange`, `items: Array<{value, label, content}>` | Tab navigation |
+| **Tile** | `title`, `description?`, `image?`, `href?` + IAM | Content tiles |
+| **Tooltip** | `content`, `position?`, `delay?` | Hover tooltips |
+| **TreeView** | `data`, `onNodeSelect?`, `onNodeToggle?`, `expandable?`, `selectable?` | Hierarchical data |
+| **Text** | `preset?` (ODS preset) + IAM | Text with IAM support |
+| **Price** | `value`, `currency`, `subsidiary?` (OvhSubsidiary), `intervalUnit?` (IntervalUnitType) | Price display |
+| **Step** | `current`, `total`, `label?` | Step indicator |
+| **GuideMenu** | `items: Array<{label, href}>` | Contextual guide menu |
+| **ChangelogMenu** | `entries: Array<{date, title, description}>` | Changelog entries |
+
+### Feedback Components
+
+| Component | Key Props | Usage Pattern |
+|-----------|-----------|---------------|
+| **ActionBanner** | `type`, `title?`, `description?`, `actionLabel?`, `onAction?`, `dismissible?`, `onDismiss?` | Action prompts |
+| **Error** | `title?`, `message?`, `details?`, `onRetry?`, `onDismiss?` | Error displays |
+| **ErrorBoundary** | `fallback?`, `onError?`, `children` | Error catching |
+| **ServiceStateBadge** | `status`, `size?`, `showIcon?` | Service status |
+| **TagsList** | `tags`, `onAdd?`, `onRemove?`, `onEdit?`, `editable?`, `addLabel?` | Tag management |
+| **TagsTile** | `tags`, `maxDisplay?`, `onTagClick?`, `showCount?` | Tag display |
+| **UpdateNameModal** | `open`, `onOpenChange`, `defaultValue`, `onSubmit` | Update resource name |
+| **DeleteModal** | `open`, `onOpenChange`, `title`, `description?`, `onConfirm` | Deletion confirmation |
+
 ## 🔧 Hooks
 
-### useDataApi
-
-Primary data fetching hook with pagination, sorting, and filtering.
+### useDataApi (Priority)
+Primary data fetching hook with pagination, sorting, filtering.
 
 ```typescript
 import { useDataApi } from '@ovh-ux/muk';
 
 const {
-  data,
+  data,           // TData[]
   isLoading,
   error,
   hasNextPage,
   fetchNextPage,
   totalCount,
   flattenData,
-  sorting,
-  filters,
-  search
+  sorting,        // { sorting, setSorting, manualSorting }
+  filters,        // { filters, add, remove }
+  search          // { onSearch, searchInput, setSearchInput }
 } = useDataApi({
   route: '/api/services',
-  version: 'v2',
-  cacheKey: ['services'],
-  pageSize: 20,
-  defaultSorting: [{ id: 'name', desc: false }]
+  version: 'v2' | 'v6',  // REQUIRED
+  cacheKey: ['services'], // REQUIRED
+  pageSize?: number,
+  defaultSorting?: SortingState,
+  columns?: DatagridColumn<TData>[],
+  enabled?: boolean,
+  refetchInterval?: number,
+  fetchAll?: boolean,
+  disableCache?: boolean,
+  fetchDataFn?: (route: string) => Promise<{ data: TData[] }>
 });
 ```
 
-**Options:**
-```typescript
-interface UseDataApiOptions<TData> {
-  route?: string;
-  version: 'v2' | 'v6';
-  iceberg?: boolean;
-  cacheKey: string | string[];
-  enabled?: boolean;
-  refetchInterval?: number;
-  pageSize?: number;
-  defaultSorting?: SortingState;
-  fetchAll?: boolean;
-  disableCache?: boolean;
-  columns?: DatagridColumn<TData>[];
-  fetchDataFn?: (route: string) => Promise<{ data: TData[] }>;
-}
-```
+### Utility Hooks
 
-**Returns:**
-```typescript
-interface UseDataApiResult<TData> {
-  data: TData[];
-  isLoading: boolean;
-  error: Error | null;
-  hasNextPage: boolean;
-  fetchNextPage: () => void;
-  totalCount?: number;
-  flattenData: TData[];
-  pageIndex?: number;
-  sorting?: {
-    sorting: SortingState;
-    setSorting: Dispatch<SetStateAction<SortingState>>;
-    manualSorting: boolean;
-  };
-  filters?: {
-    filters: FilterWithLabel[];
-    add: (filter: FilterWithLabel) => void;
-    remove: (filter: Filter) => void;
-  };
-  search?: {
-    onSearch: (search: string | undefined) => void;
-    searchInput: string;
-    setSearchInput: Dispatch<SetStateAction<string>>;
-  };
-}
-```
-
-### Other Hooks
-
-```typescript
-// IAM & Permissions
-import { useAuthorizationIam } from '@ovh-ux/muk';
-
-// Data utilities
-import { useDatagridSearchParams, useColumnFilters } from '@ovh-ux/muk';
-
-// UI utilities
-import { useBreadcrumb, useBytes, useCatalogPrice } from '@ovh-ux/muk';
-
-// Date utilities
-import { useDateFormatter, useDateRange } from '@ovh-ux/muk';
-
-// User & Region
-import { useMe, useRegion } from '@ovh-ux/muk';
-```
+| Hook | Returns | Usage |
+|------|---------|-------|
+| **useAuthorizationIam** | `{ isAuthorized, isLoading }` | IAM authorization check |
+| **useDatagridSearchParams** | `{ searchParams, setSearchParams }` | Search params for datagrid |
+| **useColumnFilters** | `{ filters, add, remove }` | Column filtering |
+| **useBreadcrumb** | `breadcrumbItems` | Breadcrumb management |
+| **useBytes** | `{ formatBytes, parseBytes }` | Byte formatting |
+| **useCatalogPrice** | `{ formatPrice, getCurrency }` | Price formatting |
+| **useMe** | `{ user, isLoading }` | User information |
+| **useRegion** | `{ region, setRegion }` | Region information |
 
 ## 🎨 IAM Integration
 
-All MUK components support IAM (Identity and Access Management) integration:
+**All MUK components support IAM props:**
+- `iamActions?: string[]` - Required IAM actions
+- `urn?: string` - Resource URN
+- `displayTooltip?: boolean` - Show tooltip when unauthorized
+- `tooltipPosition?: TOOLTIP_POSITION` - Tooltip position
 
+**Pattern:**
 ```typescript
-// Button with IAM
-<Button
+<Component
   iamActions={['service:read', 'service:write']}
   urn="urn:v1:eu:service:123"
   displayTooltip={true}
->
-  Edit Service
-</Button>
-
-// Text with IAM
-<Text
-  iamActions={['service:read']}
-  urn="urn:v1:eu:service:123"
->
-  Sensitive Information
-</Text>
-
-// Any component with IAM
-<Component
-  iamActions={string[]}
-  urn={string}
-  displayTooltip?: boolean
-  tooltipPosition?: TOOLTIP_POSITION
 >
   Content
 </Component>
 ```
 
-## 📝 Advanced Usage
+Components automatically disable/hide when unauthorized.
+
+## 📝 Advanced Usage Examples
 
 ### Complete Application Setup
 
 ```typescript
-// App.tsx
 import '@ovh-ux/muk/dist/style.css';
 import { BaseLayout, Datagrid, useDataApi } from '@ovh-ux/muk';
 
@@ -584,48 +328,9 @@ function App() {
   });
 
   return (
-    <BaseLayout
-      header={{ title: 'Services' }}
-      breadcrumb={<Breadcrumb items={breadcrumbItems} />}
-    >
-      <Datagrid
-        columns={columns}
-        data={data}
-        isLoading={isLoading}
-      />
+    <BaseLayout header={{ title: 'Services' }} breadcrumb={<Breadcrumb items={items} />}>
+      <Datagrid columns={columns} data={data} totalCount={totalCount} isLoading={isLoading} />
     </BaseLayout>
-  );
-}
-```
-
-### Onboarding Page
-
-```typescript
-// OnboardingPage.tsx
-import { OnboardingLayout } from '@ovh-ux/muk';
-
-export default function OnboardingPage() {
-  return (
-    <OnboardingLayout
-      title="Welcome to NAS-HA"
-      description="Get started with your NAS-HA service"
-      img={{ src: '/nasha-icon.png', alt: 'NAS-HA' }}
-      orderButtonLabel="Order NAS-HA"
-      onOrderButtonClick={() => window.open('/order')}
-      orderIam={{
-        urn: 'urn:v1:eu:product:nasha',
-        iamActions: ['product:create']
-      }}
-      moreInfoHref="/docs"
-      moreInfoButtonLabel="Documentation"
-    >
-      {/* Tutorial tiles */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Tile>Getting Started</Tile>
-        <Tile>NFS Configuration</Tile>
-        <Tile>CIFS Configuration</Tile>
-      </div>
-    </OnboardingLayout>
   );
 }
 ```
@@ -633,34 +338,17 @@ export default function OnboardingPage() {
 ### Data Table with Filters
 
 ```typescript
-// ServicesTable.tsx
 import { Datagrid, useDataApi, useColumnFilters } from '@ovh-ux/muk';
 
-export default function ServicesTable() {
+function ServicesTable() {
   const { filters, add, remove } = useColumnFilters();
-  
-  const { data, isLoading, totalCount } = useDataApi({
+  const { data, isLoading, totalCount, sorting, filters: apiFilters, search } = useDataApi({
     route: '/api/services',
     version: 'v2',
     cacheKey: ['services'],
     columns: [
-      {
-        accessorKey: 'name',
-        header: 'Name',
-        isSortable: true,
-        isSearchable: true,
-        isFilterable: true
-      },
-      {
-        accessorKey: 'status',
-        header: 'Status',
-        meta: { type: 'badge' },
-        isFilterable: true,
-        filterOptions: [
-          { label: 'Active', value: 'active' },
-          { label: 'Inactive', value: 'inactive' }
-        ]
-      }
+      { accessorKey: 'name', header: 'Name', isSortable: true, isFilterable: true },
+      { accessorKey: 'status', header: 'Status', meta: { type: 'badge' }, filterOptions: [...] }
     ]
   });
 
@@ -670,7 +358,9 @@ export default function ServicesTable() {
       data={data}
       totalCount={totalCount}
       isLoading={isLoading}
-      filters={{ filters, add, remove }}
+      sorting={sorting}
+      filters={{ filters: apiFilters.filters, add: apiFilters.add, remove: apiFilters.remove }}
+      search={search}
     />
   );
 }
@@ -681,150 +371,85 @@ export default function ServicesTable() {
 ### ❌ Common Mistakes
 
 ```typescript
-// ❌ WRONG: Missing CSS import
+// ❌ Missing CSS import
 import { Button } from '@ovh-ux/muk';
-// Missing: import '@ovh-ux/muk/dist/style.css';
+// ✅ import '@ovh-ux/muk/dist/style.css';
 
-// ❌ WRONG: Using non-existent components
+// ❌ Non-existent components
 import { Title, Subtitle } from '@ovh-ux/muk';
-// Use: <Text preset={TEXT_PRESET.heading1}>Title</Text>
+// ✅ Use: <Text preset={TEXT_PRESET.heading1}>Title</Text>
 
-// ❌ WRONG: Incorrect Datagrid props
-<Datagrid totalItems={100} /> // totalItems doesn't exist
-<Datagrid totalCount={100} /> // ✅ CORRECT
+// ❌ Wrong Datagrid prop
+<Datagrid totalItems={100} /> // ❌
+<Datagrid totalCount={100} /> // ✅
 
-// ❌ WRONG: Missing IAM props
-<Button>Edit</Button> // No IAM protection
-<Button iamActions={['edit']} urn="urn:resource">Edit</Button> // ✅ CORRECT
+// ❌ Missing IAM
+<Button>Edit</Button> // ❌
+<Button iamActions={['edit']} urn="urn:resource">Edit</Button> // ✅
 ```
 
 ### ✅ Best Practices
 
 ```typescript
-// ✅ CORRECT: Complete setup
+// ✅ Complete setup
 import '@ovh-ux/muk/dist/style.css';
-import { Button, Datagrid, useDataApi } from '@ovh-ux/muk';
+import { Button, Datagrid } from '@ovh-ux/muk';
 
-// ✅ CORRECT: IAM integration
-<Button
-  iamActions={['service:edit']}
-  urn="urn:v1:eu:service:123"
-  displayTooltip={true}
->
-  Edit Service
+// ✅ IAM integration
+<Button iamActions={['service:edit']} urn="urn:v1:eu:service:123" displayTooltip={true}>
+  Edit
 </Button>
 
-// ✅ CORRECT: Data fetching
+// ✅ Data fetching
 const { data, isLoading } = useDataApi({
   route: '/api/services',
   version: 'v2',
   cacheKey: ['services']
 });
 
-// ✅ CORRECT: Datagrid usage
-<Datagrid
-  columns={columns}
-  data={data}
-  totalCount={totalCount}
-  isLoading={isLoading}
-/>
+// ✅ Tree-shaking
+import { Button, Datagrid } from '@ovh-ux/muk'; // ✅
+import * as MUK from '@ovh-ux/muk'; // ❌
 ```
 
-## 🚀 Performance Optimization
+## 🚀 Performance
 
-### Tree Shaking
-
-```typescript
-// ✅ CORRECT: Import only what you need
-import { Button, Datagrid } from '@ovh-ux/muk';
-
-// ❌ WRONG: Import everything
-import * as MUK from '@ovh-ux/muk';
-```
-
-### Data Fetching Optimization
-
-```typescript
-// ✅ CORRECT: Use appropriate cache keys
-const { data } = useDataApi({
-  cacheKey: ['services', filters, sorting], // Include dependencies
-  refetchInterval: 30000, // 30 seconds
-  staleTime: 5 * 60 * 1000 // 5 minutes
-});
-```
+- **Tree-shaking**: Import specific components
+- **Cache keys**: Include dependencies in `cacheKey` for `useDataApi`
+- **Loading states**: Always handle `isLoading` from hooks
 
 ## 🧪 Testing
-
-### Component Testing
 
 ```typescript
 import { render, screen } from '@testing-library/react';
 import { Button } from '@ovh-ux/muk';
 
 test('renders button with IAM', () => {
-  render(
-    <Button iamActions={['read']} urn="urn:test">
-      Test Button
-    </Button>
-  );
-  
-  expect(screen.getByText('Test Button')).toBeInTheDocument();
+  render(<Button iamActions={['read']} urn="urn:test">Test</Button>);
+  expect(screen.getByText('Test')).toBeInTheDocument();
 });
 ```
 
-### Hook Testing
+## 📚 TypeScript
+
+All components have full TypeScript support. Import types:
 
 ```typescript
-import { renderHook } from '@testing-library/react';
-import { useDataApi } from '@ovh-ux/muk';
-
-test('fetches data correctly', async () => {
-  const { result } = renderHook(() =>
-    useDataApi({
-      route: '/api/test',
-      version: 'v2',
-      cacheKey: ['test']
-    })
-  );
-
-  expect(result.current.isLoading).toBe(true);
-});
-```
-
-## 📚 TypeScript Support
-
-### Component Props
-
-```typescript
-import { ButtonProps, DatagridProps, OnboardingLayoutProps } from '@ovh-ux/muk';
-
-// All components have full TypeScript support
-const buttonProps: ButtonProps = {
-  iamActions: ['read'],
-  urn: 'urn:test',
-  children: 'Click me'
-};
-```
-
-### Hook Types
-
-```typescript
-import { UseDataApiOptions, UseDataApiResult } from '@ovh-ux/muk';
-
-const options: UseDataApiOptions<Service> = {
-  route: '/api/services',
-  version: 'v2',
-  cacheKey: ['services']
-};
-
-const result: UseDataApiResult<Service> = useDataApi(options);
+import type {
+  ButtonProps,
+  DatagridProps,
+  OnboardingLayoutProps,
+  BaseLayoutProps,
+  UseDataApiOptions,
+  UseDataApiResult
+} from '@ovh-ux/muk';
 ```
 
 ---
 
 ## 🤖 AI Development Guidelines
 
-### Essential Rules for AI Code Generation
+### Essential Rules
 
 1. **Always import CSS**: `import '@ovh-ux/muk/dist/style.css'`
 2. **Use real component names**: Button, Datagrid, OnboardingLayout (not Title, Subtitle)
@@ -832,28 +457,16 @@ const result: UseDataApiResult<Service> = useDataApi(options);
 4. **Use correct Datagrid props**: `totalCount` not `totalItems`
 5. **Import specific components**: Don't use `import *`
 6. **Use useDataApi for data**: Primary hook for data fetching
-7. **Follow ODS patterns**: MUK wraps ODS components
-8. **Handle loading states**: Always check `isLoading`
+7. **Handle loading states**: Always check `isLoading`
 
-### Component Usage Checklist
+### Quick Reference Checklist
 
 - [ ] CSS import added
 - [ ] Correct component names used
 - [ ] IAM props included where needed
-- [ ] Props match TypeScript definitions
 - [ ] Loading states handled
-- [ ] Error handling implemented
-- [ ] Performance optimized
-
-### Data Fetching Checklist
-
-- [ ] useDataApi hook used
-- [ ] Cache keys properly configured
-- [ ] Version specified (v2/v6)
-- [ ] Loading states handled
-- [ ] Error states handled
-- [ ] Pagination configured
-- [ ] Sorting/filtering enabled
+- [ ] Datagrid uses `totalCount` (not `totalItems`)
+- [ ] Tree-shaking (specific imports)
 
 ---
 

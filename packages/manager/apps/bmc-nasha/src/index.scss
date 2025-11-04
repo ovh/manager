@@ -1,5 +1,5 @@
-@import '@ovh-ux/muk/dist/style.css';
-// @import '@ovhcloud/ods-themes/dist/index.css';
-@import '@ovhcloud/ods-themes/default';
 
+
+@import '@ovhcloud/ods-themes/default'; // TODO: Remove this once MUK is updated
+@import '@ovh-ux/muk/dist/style.css';
 @tailwind utilities;

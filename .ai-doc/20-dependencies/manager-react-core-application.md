@@ -13,8 +13,6 @@ ai: true
 
 The **Manager React Core Application** package provides essential hooks, utilities, and components for building React applications in the OVHcloud Manager ecosystem. It includes authentication, environment management, logging, navigation, routing, and tracking capabilities.
 
-This package is the foundation for React µApps, providing standardized patterns for application setup, context management, and core functionality integration.
-
 ## ⚙️ Context
 
 Manager React Core Application is designed for:
@@ -26,12 +24,6 @@ Manager React Core Application is designed for:
 - **Tracking implementation** with AT Internet
 - **Query client configuration** for data fetching
 
-This package is essential for:
-- **React µApps** in the Manager ecosystem
-- **Application bootstrap** and initialization
-- **Core functionality** integration
-- **Standardized patterns** across applications
-
 ## 🔗 References
 
 - [Manager React Shell Client](./manager-react-shell-client.md)
@@ -39,7 +31,7 @@ This package is essential for:
 - [React Tracking](../10-architecture/react-tracking.md)
 - [µApp Containerization](../10-architecture/uapp-containerization.md)
 
-## 📘 Guidelines / Implementation
+## 📘 Quick Start
 
 ### Package Installation
 
@@ -53,17 +45,11 @@ This package is essential for:
 
 ### Application Initialization
 
-#### Basic Application Setup
-
 ```typescript
 // main.tsx
 import { startApplication } from '@ovh-ux/manager-react-core-application';
-
-// Start the application
 startApplication('bmc-nasha');
 ```
-
-#### OvhApplication Component
 
 ```typescript
 // App.tsx
@@ -78,322 +64,11 @@ export default function App() {
 }
 ```
 
-### Context Management
-
-#### OvhContext Setup
+### Complete Setup
 
 ```typescript
-import { OvhContext, initOvhContext } from '@ovh-ux/manager-react-core-application';
-
-// Initialize context
-const context = await initOvhContext('bmc-nasha');
-
-// Use context in components
-function MyComponent() {
-  const ovhContext = useContext(OvhContext);
-  
-  if (!ovhContext) {
-    return <div>Loading...</div>;
-  }
-  
-  const { shell, environment } = ovhContext;
-  
-  return <div>Application content</div>;
-}
-```
-
-#### Context Type
-
-```typescript
-type OvhContextType = {
-  shell: OvhContextShellType | null;
-  environment: Environment | null;
-};
-```
-
-### Authentication Management
-
-#### useAuthentication Hook
-
-```typescript
-import { useAuthentication } from '@ovh-ux/manager-react-core-application';
-
-function AuthenticationComponent() {
-  const auth = useAuthentication();
-  
-  // User information
-  const nichandle = auth.nichandle;
-  const subsidiary = auth.subsidiary;
-  const roles = auth.roles();
-  const isTrusted = auth.isTrusted();
-  
-  // Authentication actions
-  const handleLogin = () => {
-    auth.login();
-  };
-  
-  const handleLogout = () => {
-    auth.logout();
-  };
-  
-  return (
-    <div>
-      <p>User: {nichandle}</p>
-      <p>Subsidiary: {subsidiary}</p>
-      <p>Roles: {roles.join(', ')}</p>
-      <p>Trusted: {isTrusted ? 'Yes' : 'No'}</p>
-      
-      <button onClick={handleLogin}>Login</button>
-      <button onClick={handleLogout}>Logout</button>
-    </div>
-  );
-}
-```
-
-#### Authentication API
-
-```typescript
-interface AuthenticationAPI {
-  login(): void | undefined;
-  logout(): void | undefined;
-  readonly nichandle: string | undefined;
-  readonly subsidiary: string | undefined;
-  roles(): string[];
-  isTrusted(): boolean | undefined;
-}
-```
-
-### Environment Management
-
-#### useEnvironment Hook
-
-```typescript
-import { useEnvironment } from '@ovh-ux/manager-react-core-application';
-
-function EnvironmentComponent() {
-  const env = useEnvironment();
-  
-  // Environment properties
-  const application = env.application;
-  const region = env.region;
-  const universe = env.universe;
-  const locale = env.locale;
-  const container = env.container;
-  
-  return (
-    <div>
-      <p>Application: {application?.name}</p>
-      <p>Region: {region}</p>
-      <p>Universe: {universe}</p>
-      <p>Locale: {locale}</p>
-      <p>Container enabled: {container?.enabled ? 'Yes' : 'No'}</p>
-    </div>
-  );
-}
-```
-
-#### Environment Type
-
-```typescript
-interface Environment {
-  readonly application: Readonly<Application> | undefined;
-  readonly region: string | undefined;
-  readonly universe: string | undefined;
-  readonly locale: string | undefined;
-  readonly container: {
-    enabled?: boolean;
-    isDefault?: boolean;
-    path?: string;
-    hash?: string;
-    hashes?: string[];
-    containerURL?: string;
-  };
-}
-```
-
-### Logging Management
-
-#### useLogger Hook
-
-```typescript
-import { useLogger } from '@ovh-ux/manager-react-core-application';
-
-function LoggingComponent() {
-  const logger = useLogger();
-  
-  const handleLogMessage = () => {
-    if (logger) {
-      logger.log('General log message');
-      logger.info('Information message');
-      logger.warn('Warning message');
-      logger.error('Error message');
-      logger.debug('Debug message');
-    }
-  };
-  
-  return (
-    <button onClick={handleLogMessage}>
-      Log Messages
-    </button>
-  );
-}
-```
-
-#### Logger API
-
-```typescript
-interface LoggerAPI {
-  log: (...args: unknown[]) => Promise<unknown>;
-  info: (...args: unknown[]) => Promise<unknown>;
-  warn: (...args: unknown[]) => Promise<unknown>;
-  error: (...args: unknown[]) => Promise<unknown>;
-  debug: (...args: unknown[]) => Promise<unknown>;
-}
-```
-
-### Navigation Management
-
-#### useNavigation Hook
-
-```typescript
-import { useNavigation } from '@ovh-ux/manager-react-core-application';
-
-function NavigationComponent() {
-  const navigation = useNavigation();
-  
-  const handleNavigate = () => {
-    if (navigation) {
-      // Navigate to another application
-      navigation.navigateTo('billing', '/billing/history');
-      
-      // Get URL for navigation
-      navigation.getURL('billing', '/billing/history');
-      
-      // Reload current page
-      navigation.reload();
-      
-      // Go back/forward
-      navigation.goBack();
-      navigation.goForward();
-    }
-  };
-  
-  return (
-    <button onClick={handleNavigate}>
-      Navigate
-    </button>
-  );
-}
-```
-
-### Routing Integration
-
-#### createAppRouter
-
-```typescript
-import { createAppRouter } from '@ovh-ux/manager-react-core-application';
-
-// Create router for the application
-const router = createAppRouter();
-```
-
-#### OvhContainerRoutingSync
-
-```typescript
-import { OvhContainerRoutingSync } from '@ovh-ux/manager-react-core-application';
-
-function App() {
-  const routes = [
-    {
-      path: '/',
-      element: <HomePage />
-    },
-    {
-      path: '/dashboard',
-      element: <DashboardPage />
-    }
-  ];
-  
-  return (
-    <OvhContainerRoutingSync routes={routes} />
-  );
-}
-```
-
-### Tracking Integration
-
-#### OvhTracking Component
-
-```typescript
-import { OvhTracking } from '@ovh-ux/manager-react-core-application';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-
-function App() {
-  const { shell } = useContext(ShellContext);
-  
-  return (
-    <div>
-      <OvhTracking shell={shell} />
-      <RouterProvider router={router} />
-    </div>
-  );
-}
-```
-
-### Query Client Configuration
-
-#### Pre-configured QueryClient
-
-```typescript
-import { queryClient } from '@ovh-ux/manager-react-core-application';
-import { QueryClientProvider } from '@tanstack/react-query';
-
-function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
-  );
-}
-```
-
-#### QueryClient Configuration
-
-The package provides a pre-configured QueryClient with:
-- Default retry policies
-- Stale time configuration
-- Error handling
-- DevTools integration
-
-### Internationalization
-
-#### initI18n Function
-
-```typescript
-import { initI18n } from '@ovh-ux/manager-react-core-application';
-
-// Initialize i18n
-const t = await initI18n('fr_FR', ['fr_FR', 'en_GB']);
-
-// Use translation function
-const translatedText = t('common.welcome');
-```
-
-### Advanced Usage Patterns
-
-#### Complete Application Setup
-
-```typescript
-// main.tsx
-import { startApplication } from '@ovh-ux/manager-react-core-application';
-
-// Start the application
-startApplication('bmc-nasha');
-
-// App.tsx
 import { 
   OvhApplication, 
-  OvhContext, 
   queryClient 
 } from '@ovh-ux/manager-react-core-application';
 import { QueryClientProvider } from '@tanstack/react-query';
@@ -412,7 +87,47 @@ export default function App() {
 }
 ```
 
-#### Authentication Guard
+## 📦 Hooks & Components Reference
+
+| Hook/Component | Returns/Props | Usage |
+|----------------|---------------|-------|
+| **useAuthentication** | `{ nichandle, subsidiary, roles(), isTrusted(), login(), logout() }` | Authentication management |
+| **useEnvironment** | `Environment` | Environment properties (region, universe, user) |
+| **useLogger** | `{ info, warn, error, debug }` | Logging operations |
+| **useNavigation** | `Navigation` | Navigation methods |
+| **OvhContext** | `{ shell, environment }` | Application context |
+| **OvhApplication** | `{ name: string, children }` | Application wrapper |
+| **OvhTracking** | `{ shell }` | Automatic tracking component |
+| **OvhContainerRoutingSync** | `{ routes }` | Route synchronization with shell |
+| **queryClient** | `QueryClient` | Pre-configured React Query client |
+
+## 🔐 Authentication
+
+### useAuthentication Hook
+
+```typescript
+import { useAuthentication } from '@ovh-ux/manager-react-core-application';
+
+function AuthenticationComponent() {
+  const auth = useAuthentication();
+  
+  const nichandle = auth.nichandle;
+  const subsidiary = auth.subsidiary;
+  const roles = auth.roles();
+  const isTrusted = auth.isTrusted();
+  
+  return (
+    <div>
+      <p>User: {nichandle}</p>
+      <p>Subsidiary: {subsidiary}</p>
+      <p>Roles: {roles.join(', ')}</p>
+      <button onClick={() => auth.logout()}>Logout</button>
+    </div>
+  );
+}
+```
+
+### Protected Route
 
 ```typescript
 import { useAuthentication } from '@ovh-ux/manager-react-core-application';
@@ -429,47 +144,231 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 }
 ```
 
-#### Environment-based Configuration
+**Authentication API:**
+- `nichandle: string | null` - User identifier
+- `subsidiary: string` - User subsidiary
+- `roles(): string[]` - User roles
+- `isTrusted(): boolean` - Trust status
+- `login(): void` - Login action
+- `logout(): void` - Logout action
+
+## 🌍 Environment
+
+### useEnvironment Hook
 
 ```typescript
 import { useEnvironment } from '@ovh-ux/manager-react-core-application';
 
-function EnvironmentAwareComponent() {
+function EnvironmentComponent() {
   const env = useEnvironment();
   
-  // Configure based on environment
-  const apiUrl = env.region === 'EU' 
-    ? 'https://api.ovh.com' 
-    : 'https://api.us.ovhcloud.com';
-  
-  const features = env.universe === 'BareMetalCloud' 
-    ? ['instances', 'networks', 'storage']
-    : ['billing', 'support'];
+  if (!env) return <div>Loading...</div>;
   
   return (
     <div>
-      <p>API URL: {apiUrl}</p>
-      <p>Features: {features.join(', ')}</p>
+      <p>Application: {env.getApplicationName()}</p>
+      <p>Region: {env.getRegion()}</p>
+      <p>Universe: {env.getUniverse()}</p>
+      <p>User: {env.getUser().nichandle}</p>
     </div>
   );
 }
 ```
 
-#### Error Boundary with Logging
+**Environment API:**
+- `getApplicationName(): string`
+- `getRegion(): string`
+- `getUniverse(): string`
+- `getUser(): User`
+- `getUserLocale(): string`
+
+## 📝 Logging
+
+### useLogger Hook
+
+```typescript
+import { useLogger } from '@ovh-ux/manager-react-core-application';
+
+function LoggingComponent() {
+  const logger = useLogger();
+  
+  const handleAction = () => {
+    logger.info('Action performed', { action: 'create' });
+    logger.warn('Warning message', { context: 'validation' });
+    logger.error('Error occurred', new Error('Something went wrong'));
+    logger.debug('Debug information', { state: 'active' });
+  };
+  
+  return <button onClick={handleAction}>Perform Action</button>;
+}
+```
+
+**Logger API:**
+- `logger.info(message: string, ...args): void`
+- `logger.warn(message: string, ...args): void`
+- `logger.error(message: string, ...args): void`
+- `logger.debug(message: string, ...args): void`
+
+## 🧭 Navigation
+
+### useNavigation Hook
+
+```typescript
+import { useNavigation } from '@ovh-ux/manager-react-core-application';
+
+function NavigationComponent() {
+  const navigation = useNavigation();
+  
+  const handleNavigate = () => {
+    navigation.navigateTo('billing', '/billing/history');
+  };
+  
+  return <button onClick={handleNavigate}>Go to Billing</button>;
+}
+```
+
+## 🛣️ Routing
+
+### createAppRouter
+
+```typescript
+import { createAppRouter } from '@ovh-ux/manager-react-core-application';
+
+// Creates router with automatic route generation
+const router = createAppRouter();
+
+// Automatic configuration:
+// - File-based routes (/pages)
+// - Lazy loading
+// - Error handling
+// - Shell synchronization
+// - Breadcrumb support
+```
+
+### OvhContainerRoutingSync
+
+```typescript
+import { OvhContainerRoutingSync } from '@ovh-ux/manager-react-core-application';
+
+function App() {
+  return (
+    <div>
+      <OvhContainerRoutingSync routes={routes} />
+      <Outlet />
+    </div>
+  );
+}
+```
+
+## 🎯 Tracking
+
+### OvhTracking Component
+
+```typescript
+import { OvhTracking } from '@ovh-ux/manager-react-core-application';
+
+function App() {
+  const { shell } = useShell();
+  
+  return (
+    <div>
+      <OvhTracking shell={shell} />
+      {/* App content */}
+    </div>
+  );
+}
+```
+
+**Supported OSDS Components:** OSDS-ACCORDION, OSDS-BUTTON, OSDS-CHECKBOX, OSDS-INPUT, OSDS-LINK, OSDS-MODAL, OSDS-PAGINATION, OSDS-TABS, OSDS-TILE, etc.
+
+**Usage with data-tracking:**
+```typescript
+<Button data-tracking="action-name">Button</Button>
+```
+
+## 🔄 Query Client
+
+### Pre-configured QueryClient
+
+```typescript
+import { queryClient } from '@ovh-ux/manager-react-core-application';
+import { QueryClientProvider } from '@tanstack/react-query';
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      {/* App content */}
+    </QueryClientProvider>
+  );
+}
+```
+
+**Default Configuration:**
+- `staleTime: 5 * 60 * 1000` (5 minutes)
+- `retry: 1`
+- `refetchOnWindowFocus: false`
+
+### Custom Configuration
+
+```typescript
+import { QueryClient } from '@tanstack/react-query';
+
+const customQueryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 10 * 60 * 1000,
+      retry: 3,
+      refetchOnWindowFocus: false
+    }
+  }
+});
+```
+
+## 🌐 Internationalization
+
+### initI18n Function
+
+```typescript
+import { initI18n } from '@ovh-ux/manager-react-core-application';
+
+const i18n = await initI18n('fr_FR', ['fr_FR', 'en_GB']);
+
+// Automatic configuration:
+// - OVH locale to i18next conversion
+// - HTTP backend for translations
+// - Namespace support
+// - Locale change handling
+```
+
+## 📝 Advanced Usage
+
+### Context Management
+
+```typescript
+import { OvhContext, initOvhContext } from '@ovh-ux/manager-react-core-application';
+
+// Initialize context
+const context = await initOvhContext('bmc-nasha');
+
+// Use in components
+function MyComponent() {
+  const ovhContext = useContext(OvhContext);
+  
+  if (!ovhContext?.shell) {
+    return <div>Loading...</div>;
+  }
+  
+  const { shell, environment } = ovhContext;
+  return <div>Content</div>;
+}
+```
+
+### Error Boundary with Logging
 
 ```typescript
 import { useLogger } from '@ovh-ux/manager-react-core-application';
 
 class ErrorBoundary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
-  }
-  
-  static getDerivedStateFromError(error) {
-    return { hasError: true };
-  }
-  
   componentDidCatch(error, errorInfo) {
     const logger = useLogger();
     if (logger) {
@@ -481,69 +380,39 @@ class ErrorBoundary extends React.Component {
     if (this.state.hasError) {
       return <div>Something went wrong.</div>;
     }
-    
     return this.props.children;
   }
 }
 ```
 
-### Best Practices
+## ⚠️ Best Practices & Common Pitfalls
 
-#### 1. Application Initialization
+### ✅ Best Practices
 
 ```typescript
 // ✅ CORRECT: Proper application setup
-import { startApplication, OvhApplication } from '@ovh-ux/manager-react-core-application';
-
-// In main.tsx
 startApplication('bmc-nasha');
+<OvhApplication name="bmc-nasha"><AppContent /></OvhApplication>
 
-// In App.tsx
-<OvhApplication name="bmc-nasha">
-  <AppContent />
-</OvhApplication>
+// ✅ CORRECT: Check context availability
+const ovhContext = useContext(OvhContext);
+if (!ovhContext?.shell) return <div>Loading...</div>;
 
-// ❌ WRONG: Missing application wrapper
-function App() {
-  return <AppContent />; // Missing OvhApplication wrapper
-}
+// ✅ CORRECT: Proper authentication check
+const auth = useAuthentication();
+if (!auth.nichandle) return <div>Please log in</div>;
 ```
 
-#### 2. Context Usage
+### ❌ Common Mistakes
 
 ```typescript
-// ✅ CORRECT: Check context availability
-function MyComponent() {
-  const ovhContext = useContext(OvhContext);
-  
-  if (!ovhContext) {
-    return <div>Loading...</div>;
-  }
-  
-  const { shell, environment } = ovhContext;
-  // Use context
+// ❌ WRONG: Missing application wrapper
+function App() {
+  return <AppContent />; // Missing OvhApplication
 }
 
 // ❌ WRONG: No null check
-function MyComponent() {
-  const { shell } = useContext(OvhContext); // May be null
-  // Use shell without checking
-}
-```
-
-#### 3. Authentication Handling
-
-```typescript
-// ✅ CORRECT: Proper authentication check
-function ProtectedComponent() {
-  const auth = useAuthentication();
-  
-  if (!auth.nichandle) {
-    return <div>Please log in</div>;
-  }
-  
-  return <div>Protected content</div>;
-}
+const { shell } = useContext(OvhContext); // May be null
 
 // ❌ WRONG: No authentication check
 function ProtectedComponent() {
@@ -551,68 +420,9 @@ function ProtectedComponent() {
 }
 ```
 
-### Common Pitfalls
-
-#### ❌ Wrong: Missing Application Initialization
-
-```typescript
-// Don't forget to call startApplication
-function App() {
-  return <div>App content</div>; // Missing startApplication call
-}
-```
-
-#### ✅ Correct: Complete Initialization
-
-```typescript
-// main.tsx
-import { startApplication } from '@ovh-ux/manager-react-core-application';
-
-startApplication('bmc-nasha');
-
-// App.tsx
-import { OvhApplication } from '@ovh-ux/manager-react-core-application';
-
-function App() {
-  return (
-    <OvhApplication name="bmc-nasha">
-      <div>App content</div>
-    </OvhApplication>
-  );
-}
-```
-
-#### ❌ Wrong: Missing Context Check
-
-```typescript
-// Don't use context without checking
-function MyComponent() {
-  const { shell } = useContext(OvhContext); // May be null
-  shell.tracking.trackPage(); // Error if shell is null
-}
-```
-
-#### ✅ Correct: Safe Context Usage
-
-```typescript
-// Always check context availability
-function MyComponent() {
-  const ovhContext = useContext(OvhContext);
-  
-  if (!ovhContext?.shell) {
-    return <div>Loading...</div>;
-  }
-  
-  const { shell } = ovhContext;
-  shell.tracking.trackPage(); // Safe to use
-}
-```
-
----
-
 ## 🤖 AI Development Guidelines
 
-### Essential Rules for AI Code Generation
+### Essential Rules
 
 1. **Always initialize application**: Call `startApplication` in main.tsx
 2. **Wrap with OvhApplication**: Use OvhApplication component for proper context
@@ -623,7 +433,7 @@ function MyComponent() {
 7. **Implement error boundaries**: Use error boundaries with logging
 8. **Follow routing patterns**: Use createAppRouter and OvhContainerRoutingSync
 
-### Application Setup Checklist
+### Integration Checklist
 
 - [ ] `startApplication` called in main.tsx
 - [ ] App wrapped with `OvhApplication`
@@ -633,30 +443,6 @@ function MyComponent() {
 - [ ] Authentication guards in place
 - [ ] Environment-based configuration
 - [ ] Logging configured
-
-### Context Management Checklist
-
-- [ ] Context null checks implemented
-- [ ] Loading states handled
-- [ ] Error states managed
-- [ ] Context providers properly nested
-- [ ] Context cleanup on unmount
-
-### Authentication Checklist
-
-- [ ] Authentication state checked
-- [ ] Login/logout handlers implemented
-- [ ] User roles and permissions checked
-- [ ] Protected routes implemented
-- [ ] Authentication redirects handled
-
-### Performance Considerations
-
-- [ ] Context values memoized
-- [ ] Unnecessary re-renders avoided
-- [ ] Error boundaries prevent crashes
-- [ ] Logging doesn't impact performance
-- [ ] Environment checks optimized
 
 ---
 
@@ -668,281 +454,3 @@ function MyComponent() {
 - **Error management** prevents application crashes and improves reliability
 
 **👉 Good core application setup is the foundation for reliable and maintainable applications.**
-
-## 🔄 Exports en Cascade
-
-### Application Factory
-
-#### startApplication
-
-```typescript
-import { startApplication } from '@ovh-ux/manager-react-core-application';
-
-// Démarrage complet de l'application
-startApplication('bmc-nasha');
-
-// Équivalent à:
-// - Création du container DOM
-// - Configuration du router
-// - Initialisation du QueryClient
-// - Rendu avec React.StrictMode
-// - Intégration des DevTools
-```
-
-#### createContainerElement
-
-```typescript
-import { createContainerElement } from '@ovh-ux/manager-react-core-application';
-
-// Création manuelle du container DOM
-const container = createContainerElement();
-// Crée un div avec id="ovh-app" et l'ajoute au body
-```
-
-### Context et Hooks
-
-#### OvhContext
-
-```typescript
-import { OvhContext, initOvhContext } from '@ovh-ux/manager-react-core-application';
-
-// Initialisation manuelle du contexte
-const context = await initOvhContext('bmc-nasha');
-// Retourne: { shell, environment }
-
-// Utilisation du contexte
-const { shell, environment } = useContext(OvhContext);
-```
-
-#### useEnvironment (Core Application)
-
-```typescript
-import { useEnvironment } from '@ovh-ux/manager-react-core-application';
-
-// Hook pour accéder à l'environnement
-function EnvironmentComponent() {
-  const environment = useEnvironment();
-  
-  if (!environment) {
-    return <div>Loading environment...</div>;
-  }
-  
-  return (
-    <div>
-      <p>Application: {environment.getApplicationName()}</p>
-      <p>Region: {environment.getRegion()}</p>
-      <p>User: {environment.getUser().nichandle}</p>
-    </div>
-  );
-}
-```
-
-#### useShell (Core Application)
-
-```typescript
-import { useShell } from '@ovh-ux/manager-react-core-application';
-
-// Hook pour accéder au shell
-function ShellComponent() {
-  const shell = useShell();
-  
-  if (!shell) {
-    return <div>Loading shell...</div>;
-  }
-  
-  return (
-    <div>
-      <p>Shell available: {shell ? 'Yes' : 'No'}</p>
-    </div>
-  );
-}
-```
-
-### Query Client
-
-#### queryClient
-
-```typescript
-import { queryClient } from '@ovh-ux/manager-react-core-application';
-
-// Configuration par défaut du QueryClient
-const defaultConfig = {
-  defaultOptions: {
-    queries: {
-      staleTime: 5 * 60 * 1000 // 5 minutes
-    }
-  }
-};
-
-// Utilisation personnalisée
-const customQueryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 10 * 60 * 1000, // 10 minutes
-      retry: 3,
-      refetchOnWindowFocus: false
-    }
-  }
-});
-```
-
-### Routing
-
-#### createAppRouter
-
-```typescript
-import { createAppRouter } from '@ovh-ux/manager-react-core-application';
-
-// Création du router avec génération automatique des routes
-const router = createAppRouter();
-
-// Configuration automatique:
-// - Routes basées sur le système de fichiers (/pages)
-// - Lazy loading des composants
-// - Gestion des erreurs
-// - Synchronisation avec le shell
-// - Support des breadcrumbs
-```
-
-#### OvhContainerRoutingSync
-
-```typescript
-import { OvhContainerRoutingSync } from '@ovh-ux/manager-react-core-application';
-
-// Composant pour synchroniser le routing avec le shell
-function App() {
-  return (
-    <div>
-      <OvhContainerRoutingSync routes={routes} />
-      <Outlet />
-    </div>
-  );
-}
-```
-
-### i18n
-
-#### initI18n
-
-```typescript
-import { initI18n } from '@ovh-ux/manager-react-core-application';
-
-// Initialisation manuelle d'i18n
-const i18n = await initI18n('fr_FR', ['fr_FR', 'en_GB']);
-
-// Configuration automatique:
-// - Conversion des locales OVH vers i18next
-// - Backend HTTP pour les traductions
-// - Support des namespaces
-// - Gestion des changements de locale
-```
-
-### Tracking
-
-#### OvhTracking
-
-```typescript
-import { OvhTracking } from '@ovh-ux/manager-react-core-application';
-
-// Composant de tracking automatique
-function App() {
-  const { shell } = useShell();
-  
-  return (
-    <div>
-      <OvhTracking shell={shell} />
-      {/* Contenu de l'application */}
-    </div>
-  );
-}
-```
-
-#### Composants OSDS Supportés
-
-```typescript
-// Composants MUK automatiquement trackés
-const OSDS_COMPONENTS = [
-  'OSDS-ACCORDION',
-  'OSDS-BUTTON',
-  'OSDS-CHECKBOX',
-  'OSDS-INPUT',
-  'OSDS-LINK',
-  'OSDS-MODAL',
-  'OSDS-PAGINATION',
-  'OSDS-TABS',
-  'OSDS-TILE',
-  // ... autres composants
-];
-
-// Utilisation avec data-tracking
-<Button data-tracking="action-name">
-  Button
-</Button>
-```
-
-### HMR Support
-
-#### vite-hmr
-
-```typescript
-// Support automatique du Hot Module Replacement
-// Rechargement automatique en cas de changement
-if (import.meta.hot) {
-  import.meta.hot.on('iframe-reload', () => {
-    window.location.reload();
-  });
-}
-```
-
-### Application Component
-
-#### OvhApplication
-
-```typescript
-import { OvhApplication } from '@ovh-ux/manager-react-core-application';
-
-// Composant d'application avec contexte
-function App() {
-  return (
-    <OvhApplication name="bmc-nasha">
-      <RouterProvider router={router} />
-    </OvhApplication>
-  );
-}
-
-// Fonctionnalités automatiques:
-// - Initialisation du contexte
-// - Configuration i18n
-// - Gestion des changements de locale
-// - Suspense pour le chargement
-```
-
-### Intégration Complète
-
-#### Configuration Complète
-
-```typescript
-import { 
-  startApplication,
-  queryClient,
-  OvhContext,
-  initOvhContext 
-} from '@ovh-ux/manager-react-core-application';
-
-// Configuration personnalisée
-const customStartApplication = async (appName) => {
-  // Initialisation manuelle du contexte
-  const context = await initOvhContext(appName);
-  
-  // Configuration personnalisée du QueryClient
-  queryClient.setDefaultOptions({
-    queries: {
-      staleTime: 10 * 60 * 1000,
-      retry: 3
-    }
-  });
-  
-  // Démarrage de l'application
-  startApplication(appName);
-};
-```
