@@ -102,10 +102,11 @@ export default function OnBoardingPage() {
     },
   ];
 
-  const onTrackingOrderClick = useTrackAction({
+  const onCreateNewVolumeClick = useTrackAction({
     actionType: 'action',
     buttonType: 'button',
     actionName: 'create_volume_block_storage',
+    location: 'page',
   });
 
   const onTrackingCardClick = useTrackAction<(tileId: string) => void>(
@@ -175,7 +176,7 @@ export default function OnBoardingPage() {
           orderButtonLabel={tOnBoarding(
             'pci_projects_project_storages_blocks_onboarding_action_label',
           )}
-          onOrderButtonClick={onTrackingOrderClick}
+          onOrderButtonClick={onCreateNewVolumeClick}
           orderHref={newHref}
         >
           {tileItems.map((tile) => (
