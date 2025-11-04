@@ -16,5 +16,7 @@
   "managed_vcd_network_acl_status_ACTIVE": "Mis en place",
   "managed_vcd_network_acl_status_CREATING": "Création en cours",
   "managed_vcd_network_acl_status_DELETING": "Suppression en cours",
-  "managed_vcd_network_acl_normalized_info": "Votre plage IP va être automatiquement normalisée vers {{normalized}}."
+  "managed_vcd_network_acl_normalized_info": "Votre plage IP va être automatiquement normalisée vers {{normalized}}.",
+  "managed_vcd_network_acl_add_current_ip": "Ajoutez votre ip courante",
+  "managed_vcd_network_acl_allow_access_from_anywhere": "Autoriser l'accès depuis n'importe où"
 }
