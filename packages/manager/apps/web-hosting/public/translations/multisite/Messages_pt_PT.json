@@ -1,0 +1,13 @@
+{
+  "multisite_git_state_tooltip_lastdeploy": "Consulte as informações da última implementação",
+  "multisite_git_state_tooltip_disabled": "Clique no botão de ação para associar o Git",
+  "multisite_tooltip_diagnostic_good_configuration": "O seu domínio {{ domainName }} está configurado para o endereço IP {{ ip }} da sua hospedagem",
+  "multisite_tooltip_diagnostic_not_good_configuration": "O seu domínio {{ domainName }} está configurado para o endereço IP {{ ip }} de outro serviço",
+  "multisite_tooltip_diagnostic_unconfigured": "Esta entrada na sua zona DNS não funciona. Nenhuma configuração foi encontrada na sua zona DNS",
+  "multisite_git_modal_delete_association_title": "Remover a associação do Git",
+  "multisite_git_modal_delete_association_description1": "Você está prestes a remover a associação do Git.",
+  "multisite_git_modal_delete_association_description2": "<strong>A remoção será aplicada a todos os domínios que apontam para o seu diretório.</strong>",
+  "multisite_git_modal_delete_association_description3": "Deseja esvaziar o conteúdo do diretório <strong>{{ path }}</strong>?",
+  "multisite_git_modal_delete_association_warning_delete_dir": "Vamos remover a associação com o Git e o conteúdo do diretório.",
+  "multisite_git_modal_delete_association_success": "A sua remoção foi devidamente registada."
+}
