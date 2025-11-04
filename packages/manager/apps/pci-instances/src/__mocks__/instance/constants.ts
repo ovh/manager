@@ -1092,55 +1092,6 @@ export const mockedGpuFlavors: TGpuFlavorData[] = [
   },
 ];
 
-export const mockedFlavorAvailableRegions = [
-  {
-    label: 'Europe',
-    options: [
-      {
-        customRendererData: {
-          countryCode: 'be',
-          deploymentMode: 'localzone',
-          macroRegion: 'EU-WEST-LZ-BRU',
-        },
-        label: 'Bruxelles',
-        value: 'EU-WEST-LZ-BRU-A',
-      },
-      {
-        customRendererData: {
-          countryCode: 'fr',
-          deploymentMode: 'region',
-          macroRegion: 'GRA',
-        },
-        label: 'GRA11',
-        value: 'GRA11',
-      },
-      {
-        customRendererData: {
-          countryCode: 'fr',
-          deploymentMode: 'region',
-          macroRegion: 'GRA',
-        },
-        label: 'GRA7',
-        value: 'GRA7',
-      },
-    ],
-  },
-  {
-    label: 'Amerique du Nord',
-    options: [
-      {
-        customRendererData: {
-          countryCode: 'ca',
-          deploymentMode: 'region',
-          macroRegion: 'BHS',
-        },
-        label: 'Beauharnois',
-        value: 'BHS5',
-      },
-    ],
-  },
-];
-
 export const mockedDistributionImageType = [
   {
     label: 'Distributions Unix',

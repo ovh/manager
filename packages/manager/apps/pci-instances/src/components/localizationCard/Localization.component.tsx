@@ -8,7 +8,7 @@ import clsx from 'clsx';
 
 type TLocalizationProps = {
   name: string;
-  countryCode?: TCountryIsoCode;
+  countryCode?: TCountryIsoCode | null;
   deploymentMode?: TDeploymentMode;
 };
 

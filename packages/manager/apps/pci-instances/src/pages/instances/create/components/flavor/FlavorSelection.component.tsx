@@ -8,21 +8,23 @@ import {
   useWatch,
 } from 'react-hook-form';
 import { FlavorsTable } from '@/components/flavorsTable/FlavorsTable.component';
-import { mockedFlavorAvailableRegions } from '@/__mocks__/instance/constants';
 import { TInstanceCreationForm } from '../../CreateInstance.page';
 import { FlavorColumnsBuilder } from '@/pages/instances/create/components/flavor/FlavorColumnsBuilder';
 import { FlavorRowsBuilder } from '@/pages/instances/create/components/flavor/FlavorRowsBuilder';
 import { GpuFlavorColumnsBuilder } from '@/pages/instances/create/components/flavor/GpuFlavorColumnsBuilder';
 import { GpuFlavorRowsBuilder } from '@/pages/instances/create/components/flavor/GpuFlavorRowsBuilder';
 import { useFlavorCommon } from '@/pages/instances/create/components/flavor/FlavorRowUtils';
-import { TGpuFlavorDataForTable } from '@/pages/instances/create/view-models/flavorsViewModel';
+import {
+  selectAvailableFlavorMicroRegions,
+  TCustomRegionItemData,
+  TGpuFlavorDataForTable,
+} from '@/pages/instances/create/view-models/flavorsViewModel';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import RegionSelectionModal, {
-  TCustomRegionItemData,
   TCustomRegionSelected,
 } from '../RegionSelectionModal.component';
 import { deps } from '@/deps/deps';
@@ -90,12 +92,14 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
     withUnavailable,
   ]);
 
-  // TODO: will be moved to a select view-model
-  const items: SelectGroupItem<
-    TCustomRegionItemData
-  >[] = mockedFlavorAvailableRegions as SelectGroupItem<
-    TCustomRegionItemData
-  >[];
+  const availableRegions = useMemo(
+    () =>
+      selectAvailableFlavorMicroRegions(deps)({
+        projectId,
+        unavailableFlavor,
+      }),
+    [unavailableFlavor, projectId],
+  ) as SelectGroupItem<TCustomRegionItemData>[];
 
   const handleCloseSelectRegion = () => setUnavailableFlavor(null);
 
@@ -128,12 +132,13 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
   };
 
   const handleSelectFlavorNewRegion = ({
-    macroRegion,
-    microRegion,
+    macroRegionId,
+    microRegionId,
+    regionalizedFlavorId,
   }: TCustomRegionSelected) => {
-    setValue('flavorId', unavailableFlavor);
-    setValue('macroRegion', macroRegion);
-    setValue('microRegion', microRegion);
+    setValue('flavorId', regionalizedFlavorId);
+    setValue('macroRegion', macroRegionId);
+    setValue('microRegion', microRegionId);
     setValue('deploymentModes', ['region', 'region-3-az', 'localzone']);
     setValue('continent', 'all');
     setValue('availabilityZone', null);
@@ -174,7 +179,7 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
       />
       <RegionSelectionModal
         open={!!unavailableFlavor}
-        regions={items}
+        regions={availableRegions}
         onClose={handleCloseSelectRegion}
         onValidateSelect={handleSelectFlavorNewRegion}
       >

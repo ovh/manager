@@ -1,7 +1,5 @@
-import { TCountryIsoCode } from '@/components/flag/country-iso-code';
 import Localization from '@/components/localizationCard/Localization.component';
 import Modal from '@/components/modal/Modal.component';
-import { TDeploymentMode } from '@/types/instance/common.type';
 import {
   FormField,
   FormFieldLabel,
@@ -15,16 +13,12 @@ import {
 } from '@ovhcloud/ods-react';
 import { FC, PropsWithChildren, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
-export type TCustomRegionItemData = {
-  countryCode: TCountryIsoCode;
-  deploymentMode: TDeploymentMode;
-  macroRegion: string;
-};
+import { TCustomRegionItemData } from '../view-models/flavorsViewModel';
 
 export type TCustomRegionSelected = {
-  macroRegion: string;
-  microRegion: string;
+  macroRegionId: string;
+  microRegionId: string;
+  regionalizedFlavorId: string;
 };
 
 type TRegionSelectionModalProps = PropsWithChildren<{
@@ -49,7 +43,7 @@ const RegionSelectionModal: FC<TRegionSelectionModalProps> = ({
   onClose,
   onValidateSelect,
 }) => {
-  const { t } = useTranslation('creation');
+  const { t } = useTranslation(['creation', 'common']);
   const [region, setRegion] = useState<TCustomRegionSelected | null>(null);
   const [selectRegionValue, setSelectRegionValue] = useState<string[]>([]);
 
@@ -58,9 +52,11 @@ const RegionSelectionModal: FC<TRegionSelectionModalProps> = ({
 
     if (newRegion && newRegion.customRendererData && 'value' in newRegion)
       setRegion({
-        macroRegion: (newRegion.customRendererData as TCustomRegionSelected)
-          .macroRegion,
-        microRegion: newRegion.value,
+        macroRegionId: (newRegion.customRendererData as TCustomRegionSelected)
+          .macroRegionId,
+        microRegionId: newRegion.value,
+        regionalizedFlavorId: (newRegion.customRendererData as TCustomRegionSelected)
+          .regionalizedFlavorId,
       });
 
     setSelectRegionValue(value);
@@ -80,7 +76,7 @@ const RegionSelectionModal: FC<TRegionSelectionModalProps> = ({
   return (
     <Modal
       open={open}
-      title={t('pci_instance_creation_select_new_region_title')}
+      title={t('creation:pci_instance_creation_select_new_region_title')}
       isPending={false}
       disabled={!region}
       handleInstanceAction={handleValidate}
@@ -100,7 +96,9 @@ const RegionSelectionModal: FC<TRegionSelectionModalProps> = ({
           >
             <SelectControl
               className="h-[2.5em]"
-              placeholder={t('pci_instance_creation_select_new_region')}
+              placeholder={t(
+                'creation:pci_instance_creation_select_new_region',
+              )}
               customItemRenderer={({
                 selectedItems,
               }: SelectCustomItemRendererArg) => (
@@ -125,6 +123,11 @@ const RegionSelectionModal: FC<TRegionSelectionModalProps> = ({
             />
             <SelectContent
               className={continentDividerClassname}
+              customGroupRenderer={({ label }) => (
+                <span>
+                  {t(`common:pci_instances_common_instance_continent_${label}`)}
+                </span>
+              )}
               customOptionRenderer={({
                 label,
                 customData,

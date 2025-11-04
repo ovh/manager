@@ -2,10 +2,14 @@ import { Deps } from '@/deps/deps';
 import {
   TFlavor,
   TInstancesCatalog,
+  TMacroRegion,
   TRegionalizedFlavor,
 } from '@/domain/entities/instancesCatalog';
 import { TDeploymentMode } from '@/types/instance/common.type';
 import { Reader } from '@/types/utils.type';
+import { getRegionNameKey } from './localizationsViewModel';
+import { TCountryIsoCode } from '@/components/flag/country-iso-code';
+import { MessageProviderPort } from '@/domain/port/messageProvider/left/port';
 
 export type TFlavorData = {
   id: string;
@@ -203,5 +207,130 @@ export const selectFlavors: Reader<Deps, TSelectFlavors> = (deps) => {
 
       return acc;
     }, []);
+  };
+};
+
+type TSelectFlavorMicroRegionsArgs = {
+  projectId: string;
+  unavailableFlavor: string | null;
+};
+
+export type TCustomRegionItemData = {
+  countryCode: TCountryIsoCode | null;
+  deploymentMode: TDeploymentMode;
+  macroRegionId: string;
+  regionalizedFlavorId: string;
+};
+
+type TMicroRegionId = string;
+type TFlavorMicroRegionsData = {
+  label: string;
+  options: {
+    customRendererData: TCustomRegionItemData;
+    label: string;
+    value: TMicroRegionId;
+  }[];
+};
+
+const mapToAvailableRegionOption = (
+  macroRegion: TMacroRegion,
+  regionalizedFlavor: TRegionalizedFlavor,
+  messageProviderPort: MessageProviderPort,
+) => {
+  const regionName = getRegionNameKey(
+    macroRegion.deploymentMode,
+    macroRegion.name,
+  );
+
+  const city = messageProviderPort.getMessage(
+    `regions:manager_components_region_${regionName}`,
+  );
+  return {
+    customRendererData: {
+      countryCode: macroRegion.country,
+      deploymentMode: macroRegion.deploymentMode,
+      macroRegionId: macroRegion.name,
+      regionalizedFlavorId: regionalizedFlavor.id,
+    },
+    label:
+      macroRegion.microRegions.length > 1 ? regionalizedFlavor.regionID : city,
+    value: regionalizedFlavor.regionID,
+  };
+};
+
+export type TSelectFlavorMicroRegions = (
+  args: TSelectFlavorMicroRegionsArgs,
+) => TFlavorMicroRegionsData[];
+
+const mapAvailableRegions = (
+  regionalizedFlavorsWithStock: TRegionalizedFlavor[],
+  data: TInstancesCatalog,
+  messageProviderPort: MessageProviderPort,
+) => {
+  const optionsGroupedByContinent = new Map<string, TFlavorMicroRegionsData>();
+
+  regionalizedFlavorsWithStock.forEach((regionalizedFlavor) => {
+    const macroRegionId = data.entities.microRegions.byId.get(
+      regionalizedFlavor.regionID,
+    )?.macroRegionId;
+    if (!macroRegionId) return;
+
+    const macroRegion = data.entities.macroRegions.byId.get(macroRegionId);
+    if (!macroRegion) return;
+
+    const continentId = macroRegion.continentIds[0];
+    if (!continentId) return;
+
+    const option = mapToAvailableRegionOption(
+      macroRegion,
+      regionalizedFlavor,
+      messageProviderPort,
+    );
+
+    if (!optionsGroupedByContinent.has(continentId)) {
+      optionsGroupedByContinent.set(continentId, {
+        label: continentId,
+        options: [option],
+      });
+    } else {
+      optionsGroupedByContinent.get(continentId)!.options.push(option);
+    }
+  });
+
+  return Array.from(optionsGroupedByContinent.values());
+};
+
+export const selectAvailableFlavorMicroRegions: Reader<
+  Deps,
+  TSelectFlavorMicroRegions
+> = (deps) => {
+  return ({ projectId, unavailableFlavor }) => {
+    if (!unavailableFlavor) return [];
+    const { instancesCatalogPort, messageProviderPort } = deps;
+
+    const data = instancesCatalogPort.selectInstancesCatalog(projectId);
+    if (!data) return [];
+
+    const regionalizedFlavorIds =
+      data.entities.flavors.byId.get(unavailableFlavor)
+        ?.regionalizedFlavorIds ?? [];
+
+    const regionalizedFlavorsWithStock = regionalizedFlavorIds.flatMap(
+      (regionalizedFlavorId) => {
+        const regionalizedFlavor = data.entities.regionalizedFlavors.byId.get(
+          regionalizedFlavorId,
+        );
+
+        return regionalizedFlavor?.hasStock ? [regionalizedFlavor] : [];
+      },
+    );
+
+    const availableRegions = mapAvailableRegions(
+      regionalizedFlavorsWithStock,
+      data,
+      messageProviderPort,
+    );
+
+    return availableRegions;
   };
 };
