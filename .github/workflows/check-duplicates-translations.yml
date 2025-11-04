@@ -80,7 +80,7 @@ jobs:
           get_changed_packages() {
             BASE_BRANCH=${{ steps.gate.outputs.base_branch }}
             CURRENT_BRANCH=${{ steps.gate.outputs.current_branch }}
-            yarn turbo run build --dry-run=json --filter=...[origin/${BASE_BRANCH}...origin/${CURRENT_BRANCH}] > output.json
+            yarn pm:build:ci --dry-run=json --filter=...[origin/${BASE_BRANCH}...origin/${CURRENT_BRANCH}] > output.json
       
             # Clean JSON
             tail -n +3 output.json > tmpfile.json && mv tmpfile.json output.json
