@@ -80,9 +80,6 @@ const App = () => {
       const environmentObj = shellObj.getPlugin('environment').getEnvironment();
       setupI18n(environmentObj.getUserLocale());
 
-      if (environmentObj.getRegion() === 'US') {
-        setupZendeskConfig();
-      }
       const config = () => import(`./config-${environmentObj.getRegion()}.js`);
       setupDevApplication(shellObj);
       config()
@@ -91,6 +88,10 @@ const App = () => {
           setShell(shellObj);
           setEnvironment(environmentObj);
         });
+
+      if (environmentObj.getRegion() === 'US') {
+        setupZendeskConfig();
+      }
     }
     // reload the page when API services are back after maintenance
     // this hack is implemented to avoid reinitialising the shell
