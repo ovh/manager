@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.23](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.13.22...@ovh-ux/manager-pci-ssh-keys-app@0.13.23) (2025-11-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ssh-keys-app
+
+
+
+
+
+## [0.13.22](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.13.21...@ovh-ux/manager-pci-ssh-keys-app@0.13.22) (2025-10-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ssh-keys-app
+
+
+
+
+
+## [0.13.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.13.20...@ovh-ux/manager-pci-ssh-keys-app@0.13.21) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ssh-keys-app
+
+
+
+
+
 ## [0.13.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ssh-keys-app@0.13.19...@ovh-ux/manager-pci-ssh-keys-app@0.13.20) (2025-10-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ssh-keys-app

@@ -28,6 +28,10 @@ vi.mock('@/utils/dom/download', () => ({
   initiateTextFileDownload: vi.fn(),
 }));
 
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useOvhTracking: () => ({ trackClick: vi.fn() }),
+}));
+
 const mockOkms = {
   id: 'test-okms-id',
   region: 'test-region',
@@ -55,6 +59,7 @@ const renderComponentAndGetLink = async ({
     container,
     label,
     isLink: true,
+    timeout: 2000,
   });
 
   return { downloadLink };
@@ -69,46 +74,74 @@ describe('DownloadKmsPublicCaLink component tests suite', () => {
     vi.clearAllMocks();
   });
 
-  test('should render publicCa download link correctly', async () => {
-    const { downloadLink } = await renderComponentAndGetLink({
-      type: 'publicCa',
+  const buttons: {
+    type: CertificateType;
+    label: string;
+    expectedCa: 'publicCA' | 'publicRsaCA';
+    expectedFilename: string;
+    expectedCertificate: string;
+  }[] = [
+    {
+      type: 'publicCaRest',
       label: 'key_management_service_dashboard_button_label_download_ca',
-    });
-    expect(downloadLink).toBeInTheDocument();
-  });
-
-  test('should render publicRsaCa download link correctly', async () => {
-    const { downloadLink } = await renderComponentAndGetLink({
-      type: 'publicRsaCa',
+      expectedCa: 'publicCA',
+      expectedFilename: 'okms_test-region_public_ca.pem',
+      expectedCertificate: mockCertificates.publicCA,
+    },
+    {
+      type: 'publicCaKmip',
+      label: 'key_management_service_dashboard_button_label_download_ca',
+      expectedCa: 'publicCA',
+      expectedFilename: 'okms_test-region_public_ca.pem',
+      expectedCertificate: mockCertificates.publicCA,
+    },
+    {
+      type: 'publicCaRsaKmip',
       label: 'key_management_service_dashboard_button_label_download_rsa_ca',
-    });
-    expect(downloadLink).toBeInTheDocument();
-  });
+      expectedCa: 'publicRsaCA',
+      expectedFilename: 'okms_test-region_public_rsa_ca.pem',
+      expectedCertificate: mockCertificates.publicRsaCA,
+    },
+  ];
 
-  test('should download publicCa certificate when clicked', async () => {
-    const { downloadLink } = await renderComponentAndGetLink({
-      type: 'publicCa',
-      label: 'key_management_service_dashboard_button_label_download_ca',
-    });
-
-    const user = userEvent.setup();
-    await waitFor(() => user.click(downloadLink));
-
-    await waitFor(() => {
-      expect(api.getOkmsPublicCa).toHaveBeenCalledWith(mockOkms.id);
-    });
-
-    await waitFor(() => {
-      expect(initiateTextFileDownload).toHaveBeenCalledWith({
-        text: mockCertificates.publicCA,
-        filename: 'okms_test-region_public_ca.pem',
+  test.each(buttons)(
+    'should render $type download link correctly',
+    async ({ type, label }) => {
+      const { downloadLink } = await renderComponentAndGetLink({
+        type,
+        label,
       });
-    });
-  });
+      expect(downloadLink).toBeInTheDocument();
+    },
+  );
+
+  test.each(buttons)(
+    'should download $expectedCa certificate when clicked on $type button',
+    async ({ type, label, expectedFilename, expectedCertificate }) => {
+      const { downloadLink } = await renderComponentAndGetLink({
+        type,
+        label,
+      });
+
+      const user = userEvent.setup();
+      await waitFor(() => user.click(downloadLink));
+
+      await waitFor(() => {
+        expect(api.getOkmsPublicCa).toHaveBeenCalledWith(mockOkms.id);
+      });
+
+      await waitFor(() => {
+        expect(initiateTextFileDownload).toHaveBeenCalledWith({
+          text: expectedCertificate,
+          filename: expectedFilename,
+        });
+      });
+    },
+  );
 
   test('should download publicRsaCa certificate when clicked', async () => {
     const { downloadLink } = await renderComponentAndGetLink({
-      type: 'publicRsaCa',
+      type: 'publicCaRsaKmip',
       label: 'key_management_service_dashboard_button_label_download_rsa_ca',
     });
 
@@ -134,7 +167,7 @@ describe('DownloadKmsPublicCaLink component tests suite', () => {
     );
 
     const { downloadLink } = await renderComponentAndGetLink({
-      type: 'publicCa',
+      type: 'publicCaRest',
       label: 'key_management_service_dashboard_button_label_download_ca',
     });
 

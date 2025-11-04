@@ -52,7 +52,7 @@
                             required
                             data-ng-change="ctrl.emailOnChange()"
                             data-ng-model="ctrl.domain"
-                            data-ng-options="domain.displayName for domain in ctrl.optionsToCreateNewAccounts.availableDomains | orderBy:'formattedName'"
+                            data-ng-options="domain.displayName for domain in ctrl.optionsToCreateNewAccounts.availableDomains | orderBy:'displayName'"
                         >
                         </select>
                     </div>
@@ -80,10 +80,16 @@
                     data-ng-class="{ 'has-error': ctrl.hasQuotaFieldErrors() }"
                 >
                     <label
-                        class="control-label"
+                        class="control-label d-inline-block"
                         for="quota"
                         data-translate="exchange_action_SHARED_add_quota_label"
                     ></label>
+                    <button
+                        type="button"
+                        class="oui-popover-button"
+                        data-oui-popover="{{ 'exchange_tab_ALIAS_creation_quota_tooltip' | translate }}"
+                        data-oui-popover-placement="right"
+                    ></button>
                     <div class="d-flex">
                         <input
                             type="number"
@@ -109,11 +115,16 @@
                         class="help-block"
                         id="quotaDescription"
                         data-translate="exchange_tab_ALIAS_creation_quota_description"
-                        data-translate-values="{ t0: ctrl.optionsToCreateNewAccounts.minQuota.value,
+                        data-translate-values="{
+                                                    t0: ctrl.optionsToCreateNewAccounts.minQuota.value,
                                                     t1: (('unit_size_' + ctrl.optionsToCreateNewAccounts.minQuota.unit) | translate),
                                                     t2: ctrl.optionsToCreateNewAccounts.maxQuota.toDisplay.value,
                                                     t3: (('unit_size_' + ctrl.optionsToCreateNewAccounts.maxQuota.toDisplay.unit) | translate),
-                                                   }"
+                                                    t4: ctrl.optionsToCreateNewAccounts.reservedQuota.toDisplay.value,
+                                                    t5: (('unit_size_' + ctrl.optionsToCreateNewAccounts.reservedQuota.toDisplay.unit) | translate),
+                                                    t6: ctrl.optionsToCreateNewAccounts.totalQuota.toDisplay.value,
+                                                    t7: (('unit_size_' + ctrl.optionsToCreateNewAccounts.totalQuota.toDisplay.unit) | translate),
+                                                }"
                     >
                     </small>
                 </div>

@@ -11,6 +11,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { OdsIcon, OdsTooltip } from '@ovhcloud/ods-components/react';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import FormLayout from '@/components/Form/FormLayout.component';
 import { RhfField } from '@/components/Fields';
@@ -47,7 +48,11 @@ const triggerFilledInput = <T,>({
 };
 
 export default function InstallationStepEnablement() {
-  const { t } = useTranslation('installation');
+  const { t } = useTranslation([
+    'installation',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.SYSTEM,
+  ]);
   const { previousStep, nextStep } = useFormSteps();
   const {
     values: { serviceName, ...formValues },
@@ -162,7 +167,7 @@ export default function InstallationStepEnablement() {
       <FormLayout
         title={t('enablement_title')}
         subtitle={t('enablement_subtitle')}
-        submitLabel={t('enablement_cta')}
+        submitLabel={t(`${NAMESPACES.ACTIONS}:display_recap`)}
         isSubmitDisabled={!isStepValid || !!serverErrorMessage}
         isSubmitLoading={isValidationPending}
         serverErrorMessage={serverErrorMessage}
@@ -216,7 +221,9 @@ export default function InstallationStepEnablement() {
             controllerParams={register('bucketBackint.accessKey')}
             helperMessage={t('common_helper_access_key')}
           >
-            <RhfField.Label>{t('common_input_access_key')}</RhfField.Label>
+            <RhfField.Label>
+              {t(`${NAMESPACES.SYSTEM}:key_access`)}
+            </RhfField.Label>
             <RhfField.Input maxlength={BACKUP_KEY_LENGTH} />
             <RhfField.HelperAuto />
             <RhfField.VisualHintCounter max={BACKUP_KEY_LENGTH} />
@@ -225,7 +232,9 @@ export default function InstallationStepEnablement() {
             controllerParams={register('bucketBackint.secretKey')}
             helperMessage={t('common_helper_secret_key')}
           >
-            <RhfField.Label>{t('common_input_secret_key')}</RhfField.Label>
+            <RhfField.Label>
+              {t(`${NAMESPACES.SYSTEM}:key_secret`)}
+            </RhfField.Label>
             <RhfField.Password maxlength={BACKUP_KEY_LENGTH} />
             <RhfField.HelperAuto />
             <RhfField.VisualHintCounter max={BACKUP_KEY_LENGTH} />

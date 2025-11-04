@@ -58,13 +58,14 @@ export const combinedReportOutputRootDir = path.resolve(
 
 export const staticDiscoveredLibraries = [
   {
-    fullPath: 'packages/manager-react-components',
-    shortPath: 'manager-react-components',
-    packageName: '@ovh-ux/manager-react-components',
+    fullPath: 'packages/manager-ui-kit',
+    shortPath: 'manager-ui-kit',
+    packageName: '@ovh-ux/muk',
   },
-  {
-    fullPath: 'packages/manager-wiki',
-    shortPath: 'manager-wiki',
-    packageName: '@ovh-ux/manager-wiki',
-  },
+];
+
+export const typesSpecificIgnorePatterns = [
+  /(^|\/)(__tests__|tests?|spec|fixtures|stubs|mocks)\//i,
+  /\.(test|spec|stories?)\.(ts|tsx)$/i,
+  /(^|\/)i18n(\.ts|\.tsx)?$/i,
 ];

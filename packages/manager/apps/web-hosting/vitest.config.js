@@ -1,9 +1,10 @@
 import path from 'path';
+
 import {
-  sharedConfig,
-  mergeConfig,
   createConfig,
   defaultExcludedFiles,
+  mergeConfig,
+  sharedConfig,
 } from '@ovh-ux/manager-tests-setup';
 
 export default mergeConfig(
@@ -18,6 +19,7 @@ export default mergeConfig(
           'src/**/**.constant.*',
           'src/routes/*',
           'src/api',
+          'src/types/*',
           'src/web-hosting.config.ts',
           'src/hooks/index.ts',
           'src/hooks/types.ts',

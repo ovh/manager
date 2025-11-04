@@ -1,0 +1,33 @@
+import { JSX, memo } from 'react';
+
+import { SubRowProps } from './SubRow.props';
+
+export const SubRow = ({
+  maxRowHeight,
+  offset,
+  renderSubComponent,
+  row,
+  subComponentHeight,
+  virtualRow,
+}: SubRowProps) => (
+  <tr
+    key={`${row.id}-expanded-tr`}
+    data-index={`${virtualRow.index}-expanded-tr`}
+    className={`overflow-hidden absolute top-0 display-table table-layout-fixed`}
+    style={{
+      left: -1,
+      height: `${subComponentHeight}px`,
+      width: '-webkit-fill-available',
+      borderRight: '1px solid var(--ods-color-neutral-100)',
+      borderLeft: '1px solid var(--ods-color-neutral-100)',
+      borderBottom: '1px solid var(--ods-color-neutral-100)',
+      transform: `translateY(${virtualRow.start + offset + maxRowHeight}px)`,
+    }}
+  >
+    <div className="overflow-hidden p-[8px] text-ellipsis block w-full">
+      {renderSubComponent(row)}
+    </div>
+  </tr>
+);
+
+export const SubRowMemo = memo(SubRow) as <T>(props: SubRowProps<T>) => JSX.Element;

@@ -57,5 +57,8 @@
   "copy": "Kopieren",
   "select_imperative": "Auswahl",
   "go_to_details": "Zu den Details",
-  "display_recap": "Infobox anzeigen"
+  "display_recap": "Infobox anzeigen",
+  "reset": "Alles löschen",
+  "filters_apply": "Filter anwenden",
+  "show_hide_filters": "Filter ein-/ausblenden"
 }

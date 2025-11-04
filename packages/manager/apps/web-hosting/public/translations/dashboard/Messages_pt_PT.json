@@ -85,5 +85,7 @@
   "hosting_add_step3_insert_token_field": "Inserir um campo {{t0}} para o domínio {{t1}} com o valor {{t2}}",
   "hosting_tab_DOMAINS_configuration_add_success_finish": "A adição de um ou mais domínios no seu alojamento partilhado foram efetuados com sucesso.",
   "hosting_tab_DOMAINS_configuration_add_failure": "Ocorreu um erro durante a adição do(s) domínio(s) ao seu alojamento partilhado.",
-  "domain_tab_emails": "Emails e listas de discussão"
+  "domain_tab_emails": "Emails e listas de discussão",
+  "hosting_managed_wordpress_websites_description": "Em apenas alguns cliques, crie um novo site ou importe um site existente para esta conta.",
+  "hosting_managed_wordpress_websites_description_without_import": "Em apenas alguns cliques, crie um novo site nesta conta."
 }

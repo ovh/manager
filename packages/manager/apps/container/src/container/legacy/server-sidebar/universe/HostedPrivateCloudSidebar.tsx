@@ -46,7 +46,6 @@ const features = [
   'dedicated-server:ecoRangeOrder',
   'dedicated-server:nutanixOrder',
   'network-security',
-  'key-management-service',
   'okms',
   'okms:key-management-service',
   'okms:secret-manager',
@@ -72,6 +71,7 @@ export default function HostedPrivateCloudSidebar() {
         label: t('sidebar_vmware_vsphere'),
         icon: getIcon('ovh-font ovh-font-dedicatedCloud'),
         routeMatcher: new RegExp(`^(/configuration)?/dedicated_cloud`),
+        pathMatcher: new RegExp('^/vmware/vsphere/'),
         async loader() {
           const mbm = await loadServices('/dedicatedCloud', 'EPCC');
           return [
@@ -88,6 +88,7 @@ export default function HostedPrivateCloudSidebar() {
               routeMatcher: new RegExp(
                 `^(/configuration)?/dedicated_cloud/${service.serviceName}`,
               ),
+              pathMatcher: new RegExp(`^/vmware/vsphere/${service.serviceName}`),
               async loader() {
                 const datacenters = await loadServices(
                   `/dedicatedCloud/${service.serviceName}/datacenter`,
@@ -347,63 +348,6 @@ export default function HostedPrivateCloudSidebar() {
                 ...items.map((service) => ({
                   ...service,
                   href: navigation.getURL(appId, `#/${service.serviceName}`),
-                })),
-              ];
-            },
-          },
-        ],
-      });
-    }
-
-    if (feature['key-management-service']) {
-      const keyIcon = (
-        <OsdsIcon
-          name={ODS_ICON_NAME.KEY_CONCEPT}
-          size={ODS_ICON_SIZE.xxs}
-          color={ODS_THEME_COLOR_INTENT.text}
-        />
-      );
-      menu.push({
-        id: 'identity-security-operations-legacy',
-        label: t('sidebar_security_identity_operations'),
-        icon: (
-          <OsdsIcon
-            name={ODS_ICON_NAME.CLOUD_EYE_CONCEPT}
-            size={ODS_ICON_SIZE.xxs}
-            color={ODS_THEME_COLOR_INTENT.text}
-          />
-        ),
-        pathMatcher: new RegExp('^/key-management-service'),
-        subItems: [
-          {
-            id: 'key-management-service-legacy',
-            label: t('sidebar_key-management-service'),
-            href: navigation.getURL('key-management-service', '/'),
-            pathMatcher: new RegExp('^/key-management-service'),
-            icon: keyIcon,
-            async loader() {
-              const app = 'key-management-service';
-              const services = await loadServices(
-                '/okms/resource',
-                undefined,
-                app,
-              );
-
-              return [
-                {
-                  id: 'key-management-service-all',
-                  label: t('sidebar_service_all'),
-                  href: navigation.getURL(app, '/'),
-                  ignoreSearch: true,
-                  icon: keyIcon,
-                },
-                ...services.map((service) => ({
-                  ...service,
-                  // This is a temporary fix intended to exist only during the migration to the new /okms app.
-                  href: service.href.replace('key-management-service/key-management-service', 'key-management-service'),
-                  pathMatcher: new RegExp(
-                    `^/key-management-service/${service.serviceName}`,
-                  ),
                 })),
               ];
             },

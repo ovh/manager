@@ -2,9 +2,10 @@ import angular from 'angular';
 
 import associateIpBloc from './associate-ip-bloc';
 import dashboardComponent from '../../components/dedicated-cloud/dashboard';
-import deleteDrp from './deleteDrp';
-import drpDatacenterSelection from './drpDatacenterSelection';
+import deleteZerto from './deleteZerto';
+import zertoDatacenterSelection from './zertoDatacenterSelection';
 import mailingListSubscribe from './mailing-list/subscribe';
+import deactivateLogs from './deactivateLogs';
 import routing from './dedicatedCloud-dashboard.routing';
 import securityOptions from './security-options';
 import servicePackUpgrade from '../service-pack/upgrade';
@@ -14,6 +15,7 @@ import vmwareOptionDisable from './vmware-option/disable';
 import vmwareOptionOrder from './vmware-option/order';
 import vcdOrder from './vmware-cloud-director/order';
 import dedicatedCloudDashboardLightModule from '../dashboard-light';
+import dedicatedcloudDatacenterZertoSiteStateBadgeModule from '../../components/dedicated-cloud/datacenter/zerto/siteStateBadge';
 
 const moduleName = 'dedicatedCloudDashboardModule';
 
@@ -21,9 +23,10 @@ angular
   .module(moduleName, [
     associateIpBloc,
     dashboardComponent,
-    deleteDrp,
-    drpDatacenterSelection,
+    deleteZerto,
+    zertoDatacenterSelection,
     mailingListSubscribe,
+    deactivateLogs,
     securityOptions,
     servicePackUpgrade,
     terminate,
@@ -32,6 +35,7 @@ angular
     vmwareOptionOrder,
     vcdOrder,
     dedicatedCloudDashboardLightModule,
+    dedicatedcloudDatacenterZertoSiteStateBadgeModule,
   ])
   .config(routing);
 

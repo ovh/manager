@@ -1,5 +1,6 @@
 {
   "globals": {
+    "JSURL": true,
     "moment": true
   }
 }

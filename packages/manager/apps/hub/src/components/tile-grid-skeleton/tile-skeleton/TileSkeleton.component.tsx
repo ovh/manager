@@ -1,6 +1,7 @@
 import React from 'react';
-import { OsdsSkeleton, OsdsTile } from '@ovhcloud/ods-components/react';
+
 import { ODS_SKELETON_SIZE } from '@ovhcloud/ods-components';
+import { OsdsSkeleton, OsdsTile } from '@ovhcloud/ods-components/react';
 
 export default function TileSkeleton() {
   return (
@@ -11,11 +12,7 @@ export default function TileSkeleton() {
           data-testid="tile_skeleton_header"
         >
           <OsdsSkeleton className="mb-8" inline size={ODS_SKELETON_SIZE.sm} />
-          <OsdsSkeleton
-            className="mb-8 float-right"
-            inline
-            size={ODS_SKELETON_SIZE.xs}
-          />
+          <OsdsSkeleton className="mb-8 float-right" inline size={ODS_SKELETON_SIZE.xs} />
         </div>
         <div data-testid="tile_skeleton_content">
           <OsdsSkeleton inline randomized className="list-none list-item" />

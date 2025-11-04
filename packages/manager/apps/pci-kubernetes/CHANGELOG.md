@@ -3,6 +3,91 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.35.0...@ovh-ux/manager-pci-kubernetes-app@0.35.1) (2025-11-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4443] ([1595e82](https://github.com/ovh/manager/commit/1595e825c78be0aee4cacd96c999d3ba1f4d5b58))
+* **i18n:** add missing translations [CDS 4447] ([5409346](https://github.com/ovh/manager/commit/54093464471a9b8c8e2183be7489fbf459dc099a))
+* **i18n:** add missing translations [CDS 4449] ([19facba](https://github.com/ovh/manager/commit/19facba088a900bb28c9377a79351a518a862af7))
+
+
+
+
+
+# [0.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.34.5...@ovh-ux/manager-pci-kubernetes-app@0.35.0) (2025-11-03)
+
+
+### Features
+
+* **pci-kubernetes:** add total nodes ([c01ba26](https://github.com/ovh/manager/commit/c01ba265cf00a413728bd54c5d13d917c9ef33fc)), closes [#TAPC-4996](https://github.com/ovh/manager/issues/TAPC-4996)
+* **pci-kubernetes:** deploy multi node creation on cluster ([0bf9325](https://github.com/ovh/manager/commit/0bf9325460ceee24ed48f1d80fc787ec518db141)), closes [#TAPC-4718](https://github.com/ovh/manager/issues/TAPC-4718)
+
+
+
+
+
+## [0.34.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.34.4...@ovh-ux/manager-pci-kubernetes-app@0.34.5) (2025-11-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
+
+
+
+
+
+## [0.34.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.34.3...@ovh-ux/manager-pci-kubernetes-app@0.34.4) (2025-10-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4431] ([c4944c2](https://github.com/ovh/manager/commit/c4944c2b3d88193ef3f046d6940fd8b553486234))
+* **i18n:** add missing translations [CDS 4434] ([7043df7](https://github.com/ovh/manager/commit/7043df74d7339a8b7cb94d0b06fbad17fea3a1fe))
+
+
+
+
+
+## [0.34.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.34.2...@ovh-ux/manager-pci-kubernetes-app@0.34.3) (2025-10-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
+
+
+
+
+
+## [0.34.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.34.1...@ovh-ux/manager-pci-kubernetes-app@0.34.2) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
+
+
+
+
+
+## [0.34.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.34.0...@ovh-ux/manager-pci-kubernetes-app@0.34.1) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app
+
+
+
+
+
+# [0.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.33.1...@ovh-ux/manager-pci-kubernetes-app@0.34.0) (2025-10-20)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** add FF on US banner storage ([4352d73](https://github.com/ovh/manager/commit/4352d734bb9ecd22e317953c576c65b395751d56)), closes [#TAPC-5191](https://github.com/ovh/manager/issues/TAPC-5191)
+
+
+### Features
+
+* **pci-kubernetes:** add translation file storage banner ([bba2500](https://github.com/ovh/manager/commit/bba2500b9be531aa321dc8eb10a2756dec0388db)), closes [#TAPC-5191](https://github.com/ovh/manager/issues/TAPC-5191)
+
+
+
+
+
 ## [0.33.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.33.0...@ovh-ux/manager-pci-kubernetes-app@0.33.1) (2025-10-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app

@@ -8,7 +8,22 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      goBack: /* @ngInject */ ($state) => () => $state.go('^'),
+      goBack: /* @ngInject */ ($state, $timeout, CucCloudMessage) => (
+        message = false,
+        type = 'success',
+      ) => {
+        const promise = $state.go('^');
+        if (message) {
+          promise.then(() =>
+            $timeout(() =>
+              CucCloudMessage[type]({
+                textHtml: message,
+              }),
+            ),
+          );
+        }
+        return promise;
+      },
     },
   });
 };

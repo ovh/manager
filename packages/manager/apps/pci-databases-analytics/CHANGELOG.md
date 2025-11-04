@@ -3,6 +3,98 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.32.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.32.0...@ovh-ux/manager-pci-databases-analytics-app@1.32.1) (2025-11-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4443] ([1595e82](https://github.com/ovh/manager/commit/1595e825c78be0aee4cacd96c999d3ba1f4d5b58))
+* **i18n:** add missing translations [CDS 4447] ([5409346](https://github.com/ovh/manager/commit/54093464471a9b8c8e2183be7489fbf459dc099a))
+* **i18n:** add missing translations [CDS 4449] ([19facba](https://github.com/ovh/manager/commit/19facba088a900bb28c9377a79351a518a862af7))
+
+
+
+
+
+# [1.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.31.5...@ovh-ux/manager-pci-databases-analytics-app@1.32.0) (2025-11-04)
+
+
+### Bug Fixes
+
+* **pci.db:** remove iceberg header for kafka connector api ([aa0cb3a](https://github.com/ovh/manager/commit/aa0cb3a6f2f09ec5ad88f113b5e940b00839f658)), closes [#DATATR-2625](https://github.com/ovh/manager/issues/DATATR-2625)
+* **pci.db:** send integration params as string ([3a9bf9f](https://github.com/ovh/manager/commit/3a9bf9faf1ac8a718f72248d19b76080c7a99c28)), closes [#DATATR-2626](https://github.com/ovh/manager/issues/DATATR-2626)
+
+
+### Features
+
+* **pci.db:** add milan region ([b685e4f](https://github.com/ovh/manager/commit/b685e4f5dc87ca17b9e437d67e820fbaf7378eb0)), closes [#DATATR-2598](https://github.com/ovh/manager/issues/DATATR-2598)
+
+
+
+
+
+## [1.31.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.31.4...@ovh-ux/manager-pci-databases-analytics-app@1.31.5) (2025-11-03)
+
+
+### Bug Fixes
+
+* **pci:** fix pci menu rules for analytics and db translation issue ([383c341](https://github.com/ovh/manager/commit/383c341c6c0c15f31cc24b85bca30ed12db1d436)), closes [#DATATR-2599](https://github.com/ovh/manager/issues/DATATR-2599)
+
+
+
+
+
+## [1.31.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.31.3...@ovh-ux/manager-pci-databases-analytics-app@1.31.4) (2025-11-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
+
+
+
+
+
+## [1.31.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.31.2...@ovh-ux/manager-pci-databases-analytics-app@1.31.3) (2025-10-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4434] ([7043df7](https://github.com/ovh/manager/commit/7043df74d7339a8b7cb94d0b06fbad17fea3a1fe))
+
+
+
+
+
+## [1.31.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.31.1...@ovh-ux/manager-pci-databases-analytics-app@1.31.2) (2025-10-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
+
+
+
+
+
+## [1.31.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.31.0...@ovh-ux/manager-pci-databases-analytics-app@1.31.1) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
+
+
+
+
+
+# [1.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.30.2...@ovh-ux/manager-pci-databases-analytics-app@1.31.0) (2025-10-20)
+
+
+### Bug Fixes
+
+* **pci-databases-analytics:** fix translation issue in topics and acls ([0d876a8](https://github.com/ovh/manager/commit/0d876a8472dba0077bc0afd7381843a692d699cc)), closes [#DATATR-2581](https://github.com/ovh/manager/issues/DATATR-2581)
+
+
+### Features
+
+* **pci-db-analytics:** change pci menu and clean streaming and fix advanced config ([559f0e7](https://github.com/ovh/manager/commit/559f0e73978e82ec10a2d43e45b178615d2a4365)), closes [#DATATR-2583](https://github.com/ovh/manager/issues/DATATR-2583) [#DATATR-2580](https://github.com/ovh/manager/issues/DATATR-2580)
+
+
+
+
+
 ## [1.30.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.30.1...@ovh-ux/manager-pci-databases-analytics-app@1.30.2) (2025-10-16)
 
 

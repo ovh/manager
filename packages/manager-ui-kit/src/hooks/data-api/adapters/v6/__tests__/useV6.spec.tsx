@@ -1,0 +1,222 @@
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
+import { RenderHookResult, act, renderHook } from '@testing-library/react';
+import { vi } from 'vitest';
+
+import { FilterComparator, FilterTypeCategories } from '@ovh-ux/manager-core-api';
+
+import { assertNotNull } from '@/commons/tests-utils/Assertions.utils';
+import { fetchNextPage } from '@/commons/tests-utils/Mock.utils';
+import { UseDataApiResult } from '@/hooks';
+
+import { ResultObj, columns, items } from '../../../__mocks__/mock';
+import { getFilter, getWrapper } from '../../../__tests__/Test.utils';
+import { UseQueryOptions } from '../../../infra/tanstack';
+import { useV6 } from '../useV6';
+import { ResourcesV6Params } from '../v6.type';
+
+vi.mock('@tanstack/react-query', async () => {
+  const originalModule = await vi.importActual('@tanstack/react-query');
+  return {
+    ...originalModule,
+    useQuery: vi.fn(),
+  };
+});
+
+const renderUseV6Hook = (
+  hookParams: Partial<ResourcesV6Params<ResultObj>> = {},
+): RenderHookResult<UseDataApiResult<ResultObj>, ResourcesV6Params<ResultObj>> => {
+  return renderHook(
+    () =>
+      useV6({
+        columns,
+        route: '/dedicated/nasha',
+        cacheKey: '/dedicated/nasha',
+        ...hookParams,
+      }),
+    {
+      wrapper: getWrapper(),
+    },
+  );
+};
+
+const mockData = {
+  data: items,
+  status: 200,
+  totalCount: 50,
+};
+
+describe('useV6', () => {
+  beforeEach(() => {
+    vi.mocked(useQuery).mockImplementation(
+      () =>
+        ({
+          data: mockData,
+          error: null,
+          isLoading: false,
+          isFetching: false,
+          isSuccess: true,
+          refetch: vi.fn(),
+        }) as unknown as UseQueryResult<typeof mockData, Error>,
+    );
+
+    vi.clearAllMocks();
+  });
+
+  it('should return flattenData with 10 items', () => {
+    const { result } = renderUseV6Hook();
+    const { flattenData, totalCount, hasNextPage, pageIndex } = result.current;
+    expect(flattenData?.length).toEqual(10);
+    expect(totalCount).toEqual(50);
+    expect(pageIndex).toEqual(0);
+    expect(hasNextPage).toBeTruthy();
+  });
+
+  it('fetches next page', async () => {
+    const { result } = renderUseV6Hook();
+    await act(async () => {
+      await result.current.fetchNextPage();
+    });
+    expect(result.current.flattenData.length).toEqual(20);
+  });
+
+  it('forwards enabled', () => {
+    renderUseV6Hook({ enabled: false });
+    const callArg = vi.mocked(useQuery).mock.calls[0]?.[0];
+    expect((callArg as unknown as UseQueryOptions).enabled).toBeFalsy();
+  });
+
+  it('forwards the refreshInterval', () => {
+    renderUseV6Hook({ refetchInterval: 1000 });
+    const callArg = vi.mocked(useQuery).mock.calls[0]?.[0];
+    expect((callArg as unknown as UseQueryOptions).refetchInterval).toBe(1000);
+  });
+
+  it('applies default sorting', async () => {
+    const { result } = renderUseV6Hook({
+      defaultSorting: [{ id: 'number', desc: false }],
+    });
+    await act(() => fetchNextPage(result.current.fetchNextPage, 4));
+    result.current.flattenData.forEach((item: ResultObj, index) => {
+      expect(parseInt(item.number, 10)).toEqual(index + 1);
+    });
+  });
+
+  it('applies sorting', async () => {
+    const { result } = renderUseV6Hook({
+      defaultSorting: [{ id: 'number', desc: false }],
+    });
+    act(() => {
+      result?.current?.sorting?.setSorting?.([{ id: 'number', desc: true }]);
+    });
+    await act(() => fetchNextPage(result.current.fetchNextPage, 4));
+    result.current.flattenData.forEach((item: ResultObj, index) => {
+      expect(parseInt(item.number, 10)).toEqual(items.length - index);
+    });
+  });
+
+  it('applies searching with onSearch', () => {
+    const searchTerm = '1';
+    const { result } = renderUseV6Hook();
+    act(() => {
+      result?.current?.search?.onSearch?.(searchTerm);
+    });
+    result.current.flattenData.forEach((item: ResultObj) => {
+      expect(item.name).toContain(searchTerm);
+    });
+  });
+
+  it('applies filtering and then removes it', async () => {
+    const filterTerm1 = 15;
+    const filterTerm2 = 36;
+    const { result } = renderUseV6Hook();
+
+    // first applies the filter num > 15
+    act(() => {
+      result?.current?.filters?.add?.(
+        getFilter(
+          'number',
+          String(filterTerm1),
+          FilterComparator.IsHigher,
+          FilterTypeCategories.Numeric,
+        ),
+      );
+    });
+    await act(() => fetchNextPage(result.current.fetchNextPage, 4));
+    expect(result.current.flattenData.length).toBe(35);
+    result.current.flattenData.forEach((item: ResultObj) => {
+      expect(parseInt(item.number, 10)).toBeGreaterThan(filterTerm1);
+    });
+
+    // then applies the filter num < 36 (current filter: 15 < num < 36)
+    act(() => {
+      result?.current?.filters?.add?.(
+        getFilter(
+          'number',
+          String(filterTerm2),
+          FilterComparator.IsLower,
+          FilterTypeCategories.Numeric,
+        ),
+      );
+    });
+    await act(() => fetchNextPage(result.current.fetchNextPage, 4));
+    expect(result.current.flattenData.length).toBe(20);
+    result.current.flattenData.forEach((item: ResultObj) => {
+      expect(
+        parseInt(item.number, 10) > filterTerm1 && parseInt(item.number, 10) < filterTerm2,
+      ).toBeTruthy();
+    });
+
+    // then removes the first filter (current filter: num < 36)
+    act(() => {
+      assertNotNull(result?.current?.filters?.filters?.[0]);
+      result?.current?.filters?.remove?.(result.current.filters.filters[0]);
+    });
+    await act(() => fetchNextPage(result.current.fetchNextPage, 4));
+    expect(result.current.flattenData.length).toBe(35);
+    result.current.flattenData.forEach((item: ResultObj) => {
+      expect(parseInt(item.number, 10)).toBeLessThan(filterTerm2);
+    });
+  });
+
+  it('performs all data operations of search/sort/filter', async () => {
+    // first tests the default sorting
+    const { result } = renderUseV6Hook({
+      defaultSorting: [{ id: 'number', desc: false }],
+    });
+    result.current.flattenData.forEach((item: ResultObj, index) => {
+      expect(parseInt(item.number, 10)).toBe(index + 1);
+    });
+
+    // then apply filter num > 15
+    act(() => {
+      result?.current?.filters?.add?.(
+        getFilter('number', String(15), FilterComparator.IsHigher, FilterTypeCategories.Numeric),
+      );
+    });
+    await act(() => fetchNextPage(result.current.fetchNextPage, 4));
+    expect(result.current.flattenData.length).toBe(35);
+    result.current.flattenData.forEach((item: ResultObj) => {
+      expect(parseInt(item.number, 10)).toBeGreaterThan(15);
+    });
+
+    // apply sorting descending order
+    act(() => {
+      result.current?.sorting?.setSorting([{ id: 'number', desc: true }]);
+    });
+    await act(() => fetchNextPage(result.current.fetchNextPage, 4));
+    expect(result.current.flattenData.length).toBe(35);
+    result.current.flattenData.forEach((item: ResultObj, index: number) => {
+      expect(parseInt(item.number, 10)).toEqual(items.length - index);
+    });
+
+    // apply searching with search term = 3
+    act(() => {
+      result?.current?.search?.onSearch?.('3');
+    });
+    await act(() => fetchNextPage(result.current.fetchNextPage, 4));
+    expect(result.current.flattenData.length).toBe(12);
+    result.current.flattenData.forEach((item: ResultObj) => {
+      expect(item.number).toContain('3');
+    });
+  });
+});

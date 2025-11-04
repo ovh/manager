@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.21.1...@ovh-ux/manager-common-translations@0.22.0) (2025-11-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4447] ([5409346](https://github.com/ovh/manager/commit/54093464471a9b8c8e2183be7489fbf459dc099a))
+
+
+### Features
+
+* **common-translations:** update translation for fr in setting page ([796a196](https://github.com/ovh/manager/commit/796a1969e51d768f67c8ca46ccafc6fae2c14b0f)), closes [#MANAGER-20044](https://github.com/ovh/manager/issues/MANAGER-20044)
+
+
+
+
+
+## [0.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.21.0...@ovh-ux/manager-common-translations@0.21.1) (2025-11-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-common-translations
+
+
+
+
+
+# [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.20.0...@ovh-ux/manager-common-translations@0.21.0) (2025-10-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4403] ([5657de2](https://github.com/ovh/manager/commit/5657de26a1669223ec86c0b82b8077ef813b93dc))
+
+
+### Features
+
+* add translations in common package ([f400378](https://github.com/ovh/manager/commit/f40037875437c8ca5ad413dba20b8b9231629fa5)), closes [#MANAGER-19820](https://github.com/ovh/manager/issues/MANAGER-19820)
+
+
+
+
+
+# [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.19.3...@ovh-ux/manager-common-translations@0.20.0) (2025-10-23)
+
+
+### Features
+
+* **common-translations:** update common translations for micro region ([5ecb507](https://github.com/ovh/manager/commit/5ecb5076a5d645d66298be0d9c6585416b8ea464)), closes [#MANAGER-19192](https://github.com/ovh/manager/issues/MANAGER-19192)
+
+
+
+
+
 ## [0.19.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.19.2...@ovh-ux/manager-common-translations@0.19.3) (2025-10-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-common-translations

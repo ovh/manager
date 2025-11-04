@@ -1,3 +1,6 @@
+import { ClassValue, clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
 export * from './dnsconfig.constants';
 export * from './form';
 export * from './url';
@@ -12,7 +15,6 @@ export const FEATURE_FLAGS = {
   REDIRECTIONS_EDIT: false,
   AUTOREPLIES: false,
   MAILINGLISTS: false,
-  DOMAIN_DIAGNOSTICS_SRV: false,
 };
 
 export const APIV2_MAX_PAGESIZE = 9999;
@@ -27,3 +29,7 @@ export const isOnboarded = () => {
 export const setOnboarded = (state = 'true') => {
   return localStorage.setItem(ONBOARDED_KEY, state);
 };
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}

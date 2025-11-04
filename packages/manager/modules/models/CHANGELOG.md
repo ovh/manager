@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.5.15...@ovh-ux/manager-models@2.5.16) (2025-11-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-models
+
+
+
+
+
+## [2.5.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.5.14...@ovh-ux/manager-models@2.5.15) (2025-10-23)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** fix issue with commitment if plesk licence ([f03c08c](https://github.com/ovh/manager/commit/f03c08c399759ba116412c14f49d0b5d54359d15)), closes [#PRDCOL-239](https://github.com/ovh/manager/issues/PRDCOL-239)
+
+
+
+
+
+## [2.5.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.5.13...@ovh-ux/manager-models@2.5.14) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-models
+
+
+
+
+
 ## [2.5.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.5.12...@ovh-ux/manager-models@2.5.13) (2025-10-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-models

@@ -126,9 +126,9 @@ export default class {
       commitment.isPeriodic(),
     );
 
-    this.periodicTotalPrice = Number.parseFloat(
-      periodic.totalPrice.value.toFixed(2),
-    );
+    this.periodicTotalPrice = periodic
+      ? Number.parseFloat(periodic.totalPrice.value.toFixed(2))
+      : null;
 
     if (upfront && periodic) {
       // compute discount

@@ -1,4 +1,5 @@
 packages/manager/apps/container
+packages/manager/apps/web-office
 custom-elements-bundle
 **/dist/
 **/node_modules/
@@ -10,3 +11,5 @@ react
 vue
 packages/manager/apps/pci-databases-analytics/src/components/ui
 packages/manager/apps/pci-databases-analytics/src/lib/utils.ts
+packages/manager-ui-kit
+packages/manager-wiki

@@ -7,6 +7,7 @@ import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-at-internet';
 
 import utils from '../utils';
+import renewStatus from './renew-status';
 import component from './subscription-tile.component';
 
 const moduleName = 'ovhManagerBillingSubscriptionTile';
@@ -20,6 +21,7 @@ angular
     'oui',
     'ovhManagerCore',
     utils,
+    renewStatus,
   ])
   .component('billingSubscriptionTile', component)
   .run(/* @ngTranslationsInject:json ./translations */);

@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.60](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro-app@0.11.59...@ovh-ux/manager-emailpro-app@0.11.60) (2025-11-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-emailpro-app
+
+
+
+
+
+## [0.11.59](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro-app@0.11.58...@ovh-ux/manager-emailpro-app@0.11.59) (2025-10-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-emailpro-app
+
+
+
+
+
+## [0.11.58](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro-app@0.11.57...@ovh-ux/manager-emailpro-app@0.11.58) (2025-10-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-emailpro-app
+
+
+
+
+
+## [0.11.57](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro-app@0.11.56...@ovh-ux/manager-emailpro-app@0.11.57) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-emailpro-app
+
+
+
+
+
+## [0.11.56](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro-app@0.11.55...@ovh-ux/manager-emailpro-app@0.11.56) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-emailpro-app
+
+
+
+
+
 ## [0.11.55](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro-app@0.11.54...@ovh-ux/manager-emailpro-app@0.11.55) (2025-10-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-emailpro-app

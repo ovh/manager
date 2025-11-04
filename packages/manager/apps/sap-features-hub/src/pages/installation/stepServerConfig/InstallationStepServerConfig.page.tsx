@@ -12,6 +12,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useFormSteps } from '@/hooks/formStep/useFormSteps';
 import FormLayout from '@/components/Form/FormLayout.component';
 import { useInstallationFormContext } from '@/context/InstallationForm.context';
@@ -20,7 +21,6 @@ import { SERVER_CONFIG_SCHEMA } from '@/schema/serverConfig.schema';
 import { LABELS } from '@/utils/label.constants';
 import { FORM_LABELS } from '@/constants/form.constants';
 import { RhfSelectField } from '@/components/Fields/RhfSelectField.component';
-import { RhfToggleField } from '@/components/Fields/RhfToggleField.component';
 import {
   DeploymentForm,
   InitializationForm,
@@ -54,7 +54,11 @@ import { useStateMessage } from '@/hooks/stateMessage/stateMessage';
 type FormData = z.output<typeof SERVER_CONFIG_SCHEMA>;
 
 export default function InstallationStepServerConfig() {
-  const { t } = useTranslation('installation');
+  const { t } = useTranslation([
+    'installation',
+    NAMESPACES.ACTIONS,
+    NAMESPACES.SYSTEM,
+  ]);
   const { previousStep, nextStep, serviceName } = useFormSteps();
   const {
     values,
@@ -306,7 +310,7 @@ export default function InstallationStepServerConfig() {
             <RhfSelectField
               field={fieldWithHandler(field)}
               label={t('server_config_input_vmware_ports')}
-              placeholder={t('select_label')}
+              placeholder={t(`${NAMESPACES.ACTIONS}:select_imperative`)}
               options={portGroup}
               optionValueKey="name"
               isLoading={isLoadingQueries}
@@ -341,7 +345,7 @@ export default function InstallationStepServerConfig() {
             <RhfSelectField
               field={fieldWithHandler(field)}
               label={t('server_config_input_ova_model')}
-              placeholder={t('select_label')}
+              placeholder={t(`${NAMESPACES.ACTIONS}:select_imperative`)}
               options={ovaTemplates}
               isLoading={isLoadingQueries}
               isDisabled={isLoadingQueries || isSapCapabilitiesError}
@@ -356,7 +360,7 @@ export default function InstallationStepServerConfig() {
             <RhfSelectField
               field={fieldWithHandler(field)}
               label={FORM_LABELS.datastore}
-              placeholder={t('select_label')}
+              placeholder={t(`${NAMESPACES.ACTIONS}:select_imperative`)}
               options={datastoreNames}
               isLoading={isLoadingQueries}
               isDisabled={isLoadingQueries || isDatastoresError}
@@ -371,7 +375,7 @@ export default function InstallationStepServerConfig() {
             <RhfSelectField
               field={field}
               label={t('server_config_input_thick_storage')}
-              placeholder={t('select_label')}
+              placeholder={t(`${NAMESPACES.ACTIONS}:select_imperative`)}
               options={storagePolicies}
               optionValueKey="name"
               isLoading={isLoadingQueries}
@@ -381,7 +385,10 @@ export default function InstallationStepServerConfig() {
           )}
         />
         {hanaServers.map((server, index) => (
-          <FormAccordion key={server.id} label={`${t('vm')} ${index + 1}`}>
+          <FormAccordion
+            key={server.id}
+            label={`${t(`${NAMESPACES.SYSTEM}:vm`)} ${index + 1}`}
+          >
             <div className="flex flex-col gap-y-4">
               <RhfField
                 controllerParams={register(
@@ -421,7 +428,9 @@ export default function InstallationStepServerConfig() {
                 )}
                 helperMessage={t('server_config_helper_ram_hana_vm')}
               >
-                <RhfField.Label>{t('ram')}</RhfField.Label>
+                <RhfField.Label>
+                  {t(`${NAMESPACES.SYSTEM}:ram_gb`)}
+                </RhfField.Label>
                 <RhfField.Quantity
                   step={1}
                   min={SERVER_CONFIG_LIMITS.vmHanaMinRam}
@@ -436,7 +445,7 @@ export default function InstallationStepServerConfig() {
                 helperMessage={t('server_config_helper_root_password')}
               >
                 <RhfField.Label>
-                  {t('server_config_input_root_password')}
+                  {t(`${NAMESPACES.SYSTEM}:password_root`)}
                 </RhfField.Label>
                 <RhfField.Password
                   minlength={SERVER_CONFIG_LIMITS.rootPasswordMinLength}
@@ -454,7 +463,7 @@ export default function InstallationStepServerConfig() {
                 helperMessage={t('server_config_helper_ipv4_address')}
               >
                 <RhfField.Label>
-                  {t('server_config_input_ipv4_address')}
+                  {t(`${NAMESPACES.SYSTEM}:address_ipv4`)}
                 </RhfField.Label>
                 <RhfField.Input />
                 <RhfField.HelperAuto />
@@ -490,7 +499,7 @@ export default function InstallationStepServerConfig() {
             <RhfSelectField
               field={fieldWithHandler(field)}
               label={t('server_config_input_ova_model')}
-              placeholder={t('select_label')}
+              placeholder={t(`${NAMESPACES.ACTIONS}:select_imperative`)}
               options={ovaTemplates}
               isLoading={isLoadingQueries}
               isDisabled={isLoadingQueries || isSapCapabilitiesError}
@@ -505,7 +514,7 @@ export default function InstallationStepServerConfig() {
             <RhfSelectField
               field={fieldWithHandler(field)}
               label={FORM_LABELS.datastore}
-              placeholder={t('select_label')}
+              placeholder={t(`${NAMESPACES.ACTIONS}:select_imperative`)}
               options={datastoreNames}
               isLoading={isLoadingQueries}
               isDisabled={isLoadingQueries || isDatastoresError}
@@ -516,7 +525,7 @@ export default function InstallationStepServerConfig() {
         {applicationServers.map((server, index) => (
           <FormAccordion
             key={server.id}
-            label={`${t('vm')} ${index + 1}`}
+            label={`${t(`${NAMESPACES.SYSTEM}:vm`)} ${index + 1}`}
             className="flex flex-col gap-y-4 max-w-5xl"
           >
             <div className="flex flex-col gap-y-4 max-w-5xl">
@@ -544,8 +553,8 @@ export default function InstallationStepServerConfig() {
                 render={({ field }) => (
                   <RhfSelectField
                     field={fieldWithHandler(field)}
-                    label={t('role')}
-                    placeholder={t('select_label')}
+                    label={t(`${NAMESPACES.SYSTEM}:role`)}
+                    placeholder={t(`${NAMESPACES.ACTIONS}:select_imperative`)}
                     options={Array.from(APPLICATION_SERVER_ROLES)}
                     isDisabled={true}
                   />
@@ -571,7 +580,9 @@ export default function InstallationStepServerConfig() {
                 )}
                 helperMessage={t('server_config_helper_ram_applications_vm')}
               >
-                <RhfField.Label>{t('ram')}</RhfField.Label>
+                <RhfField.Label>
+                  {t(`${NAMESPACES.SYSTEM}:ram_gb`)}
+                </RhfField.Label>
                 <RhfField.Quantity
                   step={1}
                   min={SERVER_CONFIG_LIMITS.vmApplicationMinRam}
@@ -586,7 +597,7 @@ export default function InstallationStepServerConfig() {
                 helperMessage={t('server_config_helper_root_password')}
               >
                 <RhfField.Label>
-                  {t('server_config_input_root_password')}
+                  {t(`${NAMESPACES.SYSTEM}:password_root`)}
                 </RhfField.Label>
                 <RhfField.Password
                   minlength={SERVER_CONFIG_LIMITS.rootPasswordMinLength}
@@ -604,7 +615,7 @@ export default function InstallationStepServerConfig() {
                 helperMessage={t('server_config_helper_ipv4_address')}
               >
                 <RhfField.Label>
-                  {t('server_config_input_ipv4_address')}
+                  {t(`${NAMESPACES.SYSTEM}:address_ipv4`)}
                 </RhfField.Label>
                 <RhfField.Input />
                 <RhfField.HelperAuto />
@@ -629,13 +640,13 @@ export default function InstallationStepServerConfig() {
               </RhfField>
               <div className="flex gap-x-2">
                 <OdsButton
-                  label={t('copy_label')}
+                  label={t(`${NAMESPACES.ACTIONS}:copy`)}
                   variant="outline"
                   onClick={() => copyApplicationServer(index)}
                   isDisabled={hasReachMaximumVM}
                 />
                 <OdsButton
-                  label={t('delete_label')}
+                  label={t(`${NAMESPACES.ACTIONS}:delete`)}
                   variant="outline"
                   onClick={() => removeApplicationServer(index)}
                   isDisabled={

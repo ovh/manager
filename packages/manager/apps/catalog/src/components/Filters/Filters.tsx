@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { OsdsButton, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { Product } from '@/api';
 import {
@@ -82,7 +83,8 @@ const Filters: React.FC<FiltersProps> = ({
     setParentSelectedUniverses([]);
   };
 
-  const { t } = useTranslation('catalog/filters');
+  const { t: tNavigation } = useTranslation(NAMESPACES.NAVIGATION);
+  const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
 
   const handleCheckboxChange = (
     type: 'category' | 'universe',
@@ -105,14 +107,14 @@ const Filters: React.FC<FiltersProps> = ({
   return (
     <>
       <span className="filters-container filters-container grid grid-cols-1 md:flex text-left">
-        <span className="filters-universes flex-[2]">
+        <span className="filters-universes flex-2">
           <OsdsText
             level={ODS_TEXT_LEVEL.heading}
             size={ODS_TEXT_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.text}
             className="inline-block"
           >
-            {t('manager_catalog_filters_universes')}
+            {tNavigation('manager_navigation_universes')}
           </OsdsText>
           <span className="grid grid-cols-1">
             {universes.length ? (
@@ -124,7 +126,9 @@ const Filters: React.FC<FiltersProps> = ({
                     label={data.universe}
                     count={data.count}
                     type="universe"
-                    isChecked={selectedUniverses.includes(toFilterValue(data.universe))}
+                    isChecked={selectedUniverses.includes(
+                      toFilterValue(data.universe),
+                    )}
                     onCheckboxChange={handleCheckboxChange}
                   />
                 );
@@ -134,14 +138,14 @@ const Filters: React.FC<FiltersProps> = ({
             )}
           </span>
         </span>
-        <span className="filters-categories grid flex-[4]">
+        <span className="filters-categories grid flex-4">
           <OsdsText
             level={ODS_TEXT_LEVEL.heading}
             size={ODS_TEXT_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.text}
             className="title"
           >
-            {t('manager_catalog_filters_categories')}
+            {tNavigation('manager_navigation_categories')}
           </OsdsText>
           <span className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {categories.length ? (
@@ -152,7 +156,9 @@ const Filters: React.FC<FiltersProps> = ({
                     label={item.category}
                     count={item.count}
                     type="category"
-                    isChecked={selectedCategories.includes(toFilterValue(item.category))}
+                    isChecked={selectedCategories.includes(
+                      toFilterValue(item.category),
+                    )}
                     onCheckboxChange={handleCheckboxChange}
                   />
                 );
@@ -168,19 +174,23 @@ const Filters: React.FC<FiltersProps> = ({
           <OsdsLink
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={() => resetFilters()}
-            onKeyDown={(event: React.KeyboardEvent) => event.key === 'Enter' && resetFilters()}
+            onKeyDown={(event: React.KeyboardEvent) =>
+              event.key === 'Enter' && resetFilters()
+            }
             data-tracking="filter::reset"
           >
-            {t('manager_catalog_filters_reset')}
+            {tActions('reset')}
           </OsdsLink>
           <OsdsButton
             disabled={!hasInteracted || undefined}
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={() => setFilters()}
-            onKeyDown={(event: React.KeyboardEvent) => event.key === 'Enter' && setFilters()}
+            onKeyDown={(event: React.KeyboardEvent) =>
+              event.key === 'Enter' && setFilters()
+            }
             data-tracking="filter::apply"
           >
-            {t('manager_catalog_filters_button_apply')}
+            {tActions('filters_apply')}
           </OsdsButton>
         </span>
       </span>

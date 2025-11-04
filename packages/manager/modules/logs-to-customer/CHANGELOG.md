@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.18](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.7.17...@ovh-ux/logs-to-customer@1.7.18) (2025-11-02)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+## [1.7.17](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.7.16...@ovh-ux/logs-to-customer@1.7.17) (2025-10-29)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+## [1.7.16](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.7.15...@ovh-ux/logs-to-customer@1.7.16) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+## [1.7.15](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.7.14...@ovh-ux/logs-to-customer@1.7.15) (2025-10-22)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+## [1.7.14](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.7.13...@ovh-ux/logs-to-customer@1.7.14) (2025-10-21)
+
+**Note:** Version bump only for package @ovh-ux/logs-to-customer
+
+
+
+
+
+## [1.7.13](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.7.12...@ovh-ux/logs-to-customer@1.7.13) (2025-10-20)
+
+
+### Bug Fixes
+
+* **logs-to-customer:** fix api v1 log kinds query ([61726a2](https://github.com/ovh/manager/commit/61726a2ec2003a7164dc1271a75cf1ca52ed2d9d)), closes [#MANAGER-15338](https://github.com/ovh/manager/issues/MANAGER-15338)
+* **observability.logs:** fix wrong kind display after query refresh ([105f908](https://github.com/ovh/manager/commit/105f9081c76cf30818ccf88019be6476e082c9ef)), closes [#MAOBS-94](https://github.com/ovh/manager/issues/MAOBS-94)
+
+
+
+
+
 ## [1.7.12](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.7.11...@ovh-ux/logs-to-customer@1.7.12) (2025-10-12)
 
 **Note:** Version bump only for package @ovh-ux/logs-to-customer

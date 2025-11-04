@@ -3,6 +3,53 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.13.2...@ovh-ux/manager-pci-ai-tools-app@1.14.0) (2025-11-03)
+
+
+### Features
+
+* **pci-ai-tools:**  QPU Change the wording on the onboarding page ([1e686ff](https://github.com/ovh/manager/commit/1e686ffa0879dca1ec4dff73b245b6a4545d4d19)), closes [#AIS-1752](https://github.com/ovh/manager/issues/AIS-1752)
+* **pci-ai-tools:**  QPU deeplinks and fix ([91c7a4b](https://github.com/ovh/manager/commit/91c7a4b8181c7804d38c229df395b0ddd16779f8)), closes [#AIS-1742](https://github.com/ovh/manager/issues/AIS-1742)
+
+
+
+
+
+## [1.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.13.1...@ovh-ux/manager-pci-ai-tools-app@1.13.2) (2025-11-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+## [1.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.13.0...@ovh-ux/manager-pci-ai-tools-app@1.13.1) (2025-10-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
+# [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.12.3...@ovh-ux/manager-pci-ai-tools-app@1.13.0) (2025-10-27)
+
+
+### Features
+
+* **pci-ai-tools:** add qpu app in Manager ([#19967](https://github.com/ovh/manager/issues/19967)) ([7abe33b](https://github.com/ovh/manager/commit/7abe33b79845af4792fe20415b8685addbd89921)), closes [#AIS-1352](https://github.com/ovh/manager/issues/AIS-1352)
+
+
+
+
+
+## [1.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.12.2...@ovh-ux/manager-pci-ai-tools-app@1.12.3) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
+
+
+
+
+
 ## [1.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.12.1...@ovh-ux/manager-pci-ai-tools-app@1.12.2) (2025-10-16)
 
 

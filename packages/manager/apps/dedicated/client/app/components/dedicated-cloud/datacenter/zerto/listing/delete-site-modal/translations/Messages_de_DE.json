@@ -1,0 +1,8 @@
+{
+  "dedicatedCloud_datacenter_drp_delete_site_title": "Einen Zerto-Standort löschen",
+  "dedicatedCloud_datacenter_drp_delete_site_confirmation": "Sind Sie sicher, dass Sie den Zerto-Standort {{siteLabel}} löschen möchten?",
+  "dedicatedCloud_datacenter_drp_delete_site_confirm": "Bestätigen",
+  "dedicatedCloud_datacenter_drp_delete_site_cancel": "Abbrechen",
+  "dedicatedCloud_datacenter_drp_delete_site_success_banner": "Ihr Zerto-Standort wurde gelöscht.",
+  "dedicatedCloud_datacenter_drp_delete_site_error_banner": "Beim Löschen Ihres Zerto-Standorts ist ein Fehler aufgetreten."
+}

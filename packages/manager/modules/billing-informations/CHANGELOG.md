@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.4](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.4.3...@ovh-ux/billing-informations@1.4.4) (2025-11-04)
+
+**Note:** Version bump only for package @ovh-ux/billing-informations
+
+
+
+
+
+## [1.4.3](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.4.2...@ovh-ux/billing-informations@1.4.3) (2025-11-02)
+
+**Note:** Version bump only for package @ovh-ux/billing-informations
+
+
+
+
+
+## [1.4.2](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.4.1...@ovh-ux/billing-informations@1.4.2) (2025-10-29)
+
+**Note:** Version bump only for package @ovh-ux/billing-informations
+
+
+
+
+
+## [1.4.1](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.4.0...@ovh-ux/billing-informations@1.4.1) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/billing-informations
+
+
+
+
+
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.3.14...@ovh-ux/billing-informations@1.4.0) (2025-10-23)
+
+
+### Features
+
+* **billing-informations:** update manager react component peer deps ([a6118e3](https://github.com/ovh/manager/commit/a6118e3cc3e41e785b9ee55289c50b6c498186ad)), closes [#MANAGER-18712](https://github.com/ovh/manager/issues/MANAGER-18712)
+
+
+
+
+
+## [1.3.14](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.3.13...@ovh-ux/billing-informations@1.3.14) (2025-10-22)
+
+**Note:** Version bump only for package @ovh-ux/billing-informations
+
+
+
+
+
+## [1.3.13](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.3.12...@ovh-ux/billing-informations@1.3.13) (2025-10-21)
+
+**Note:** Version bump only for package @ovh-ux/billing-informations
+
+
+
+
+
 ## [1.3.12](https://github.com/ovh/manager/compare/@ovh-ux/billing-informations@1.3.11...@ovh-ux/billing-informations@1.3.12) (2025-10-12)
 
 **Note:** Version bump only for package @ovh-ux/billing-informations

@@ -1,9 +1,12 @@
-import { vi, describe, it, expect } from 'vitest';
-import { fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { fireEvent, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import * as reactShellClientModule from '@ovh-ux/manager-react-shell-client';
-import RoadmapChangelogDatagrids from './RoadmapChangelogDatagrids';
+
 import { renderWithShellContext } from '@/__mocks__/ShellContextWrapper';
+
+import RoadmapChangelogDatagrids from './RoadmapChangelogDatagrids';
 
 const trackClickMock = vi.fn();
 
@@ -62,8 +65,7 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-const renderComponent = () =>
-  renderWithShellContext(<RoadmapChangelogDatagrids />);
+const renderComponent = () => renderWithShellContext(<RoadmapChangelogDatagrids />);
 
 describe('Roadmap Changelog Datagrids', () => {
   it('should render', () => {

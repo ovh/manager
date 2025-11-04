@@ -17,5 +17,5 @@
   "hosting_dashboard_service_abuse_state_banner_alert_link": "Mehr erfahren",
   "hosting_dashboard_service_abuse_state_banner_reinsurance_title": "<strong>Ihr Hosting wird derzeit zwecks Aufhebung der Sicherheitsmaßnahmen überprüft.</strong><br/><a href=\"{{ href }}\">Aktuelle Tasks anzeigen</a>",
   "hosting_dashboard_service_abuse_state_banner_reinsurance_link": "Aktuelle Tasks anzeigen",
-  "hosting_dashboard_service_abuse_state_unblock_error_message": "Es ist ein Fehler aufgetreten: {{error}}."
+  "hosting_dashboard_service_abuse_state_unblock_error_message": "Es ist ein Fehler aufgetreten: {{ error }}."
 }

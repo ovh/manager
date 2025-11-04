@@ -1,0 +1,6 @@
+{
+  "iam_create_condition_ip_label": "Dirección IP",
+  "iam_create_condition_ip_placeholder": "Introduzca una dirección IP",
+  "iam_create_condition_ip_criteria_in_helper": "Separe cada dirección IP con una coma sin espacios (127.0.0.1,10.23.0.0)",
+  "iam_create_condition_ip_criteria_in_range_helper": "Separe cada dirección IP y su subred con una coma sin espacio (127.0.0.1/32,10.23.0.0/16)"
+}

@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.51](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@3.1.50...@ovh-ux/manager-iam-app@3.1.51) (2025-11-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-iam-app
+
+
+
+
+
+## [3.1.50](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@3.1.49...@ovh-ux/manager-iam-app@3.1.50) (2025-11-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-iam-app
+
+
+
+
+
+## [3.1.49](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@3.1.48...@ovh-ux/manager-iam-app@3.1.49) (2025-10-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-iam-app
+
+
+
+
+
+## [3.1.48](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@3.1.47...@ovh-ux/manager-iam-app@3.1.48) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-iam-app
+
+
+
+
+
+## [3.1.47](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@3.1.46...@ovh-ux/manager-iam-app@3.1.47) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-iam-app
+
+
+
+
+
+## [3.1.46](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@3.1.45...@ovh-ux/manager-iam-app@3.1.46) (2025-10-21)
+
+
+### Bug Fixes
+
+* **iam:** fix condition modal allowing incomplete conditions ([46e4dec](https://github.com/ovh/manager/commit/46e4decaa41c0df0d23741b9224d51605074ec91)), closes [#MAIAM-39](https://github.com/ovh/manager/issues/MAIAM-39)
+* **iam:** update scroll when opening dropdown in modals ([2fa7997](https://github.com/ovh/manager/commit/2fa79975ed72fc81407ab6315a012faf345db93a)), closes [#MAIAM-40](https://github.com/ovh/manager/issues/MAIAM-40)
+
+
+
+
+
 ## [3.1.45](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@3.1.44...@ovh-ux/manager-iam-app@3.1.45) (2025-10-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-iam-app

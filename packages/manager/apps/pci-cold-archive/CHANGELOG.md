@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-cold-archive-app@0.3.50...@ovh-ux/manager-pci-cold-archive-app@0.4.0) (2025-11-03)
+
+
+### Features
+
+* **pci-cold-archive:** add button with 3 links on cold archive ([e8e98bc](https://github.com/ovh/manager/commit/e8e98bc019a58f2c7d2525949e068d01d5c4231f)), closes [#MANAGER-17670](https://github.com/ovh/manager/issues/MANAGER-17670)
+
+
+
+
+
+## [0.3.50](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-cold-archive-app@0.3.49...@ovh-ux/manager-pci-cold-archive-app@0.3.50) (2025-11-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-cold-archive-app
+
+
+
+
+
+## [0.3.49](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-cold-archive-app@0.3.48...@ovh-ux/manager-pci-cold-archive-app@0.3.49) (2025-10-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-cold-archive-app
+
+
+
+
+
+## [0.3.48](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-cold-archive-app@0.3.47...@ovh-ux/manager-pci-cold-archive-app@0.3.48) (2025-10-23)
+
+
+### Bug Fixes
+
+* **pci-cold-archive:** update snapshots ([2967ea5](https://github.com/ovh/manager/commit/2967ea5b86fa06147334b5acb709aadeef948ad1)), closes [#MANAGER-17983](https://github.com/ovh/manager/issues/MANAGER-17983)
+
+
+
+
+
+## [0.3.47](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-cold-archive-app@0.3.46...@ovh-ux/manager-pci-cold-archive-app@0.3.47) (2025-10-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-cold-archive-app
+
+
+
+
+
+## [0.3.46](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-cold-archive-app@0.3.45...@ovh-ux/manager-pci-cold-archive-app@0.3.46) (2025-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-cold-archive-app
+
+
+
+
+
 ## [0.3.45](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-cold-archive-app@0.3.44...@ovh-ux/manager-pci-cold-archive-app@0.3.45) (2025-10-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-cold-archive-app

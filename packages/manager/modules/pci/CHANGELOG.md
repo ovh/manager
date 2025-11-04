@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.99.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.99.0...@ovh-ux/manager-pci@6.99.1) (2025-11-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4445] ([1c4396a](https://github.com/ovh/manager/commit/1c4396ae0854e33889a850a512a77701e3368625))
+
+
+
+
+
+# [6.99.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.98.3...@ovh-ux/manager-pci@6.99.0) (2025-10-29)
+
+
+### Features
+
+* **public-cloud:** distant-backup - translate copying status ([1411307](https://github.com/ovh/manager/commit/14113072853883d7812adb4795c89219119dd1fa)), closes [#TAPC-3055](https://github.com/ovh/manager/issues/TAPC-3055)
+
+
+
+
+
+## [6.98.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.98.2...@ovh-ux/manager-pci@6.98.3) (2025-10-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4419] ([8c289fa](https://github.com/ovh/manager/commit/8c289fa78555a3e35b33bd4276e985e652a768c2))
+
+
+
+
+
+## [6.98.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.98.1...@ovh-ux/manager-pci@6.98.2) (2025-10-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4412] ([0061a13](https://github.com/ovh/manager/commit/0061a13d6714f2c9cafc6447d8674d73e65a889b))
+* **i18n:** add missing translations [CDS 4414] ([93db853](https://github.com/ovh/manager/commit/93db85376d262141eccb15d3b93e31f09d446bd0))
+
+
+
+
+
 ## [6.98.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.98.0...@ovh-ux/manager-pci@6.98.1) (2025-10-16)
 
 

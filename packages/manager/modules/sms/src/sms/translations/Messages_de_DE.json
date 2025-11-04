@@ -41,5 +41,6 @@
   "sms_reset": "Zurücksetzen",
   "sms_submit": "Bestätigen",
   "sms_today": "Heute",
-  "sms_yes": "Ja"
+  "sms_yes": "Ja",
+  "sms_configure": "Konfigurieren"
 }

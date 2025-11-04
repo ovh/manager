@@ -3,6 +3,54 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.22.1...@ovh-ux/manager-iam@1.22.2) (2025-11-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4447] ([5409346](https://github.com/ovh/manager/commit/54093464471a9b8c8e2183be7489fbf459dc099a))
+* **i18n:** add missing translations [CDS 4449] ([19facba](https://github.com/ovh/manager/commit/19facba088a900bb28c9377a79351a518a862af7))
+
+
+
+
+
+## [1.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.22.0...@ovh-ux/manager-iam@1.22.1) (2025-10-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4424] ([1c3c2c8](https://github.com/ovh/manager/commit/1c3c2c8a49b9402b59829ec64f0c7b3592c027c1))
+* **i18n:** add missing translations [CDS 4431] ([c4944c2](https://github.com/ovh/manager/commit/c4944c2b3d88193ef3f046d6940fd8b553486234))
+
+
+
+
+
+# [1.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.21.1...@ovh-ux/manager-iam@1.22.0) (2025-10-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4400] ([d132158](https://github.com/ovh/manager/commit/d132158bdf4dc3025413fd0d366685b1940f51e1))
+* **iam:** fix condition modal allowing incomplete conditions ([46e4dec](https://github.com/ovh/manager/commit/46e4decaa41c0df0d23741b9224d51605074ec91)), closes [#MAIAM-39](https://github.com/ovh/manager/issues/MAIAM-39)
+* **iam:** fix pagination issue on condition deletion ([8bc5f06](https://github.com/ovh/manager/commit/8bc5f067962e2433b8195f32a935e15c68f15740)), closes [#MAIAM-38](https://github.com/ovh/manager/issues/MAIAM-38)
+* **iam:** update scroll when opening dropdown in modals ([2fa7997](https://github.com/ovh/manager/commit/2fa79975ed72fc81407ab6315a012faf345db93a)), closes [#MAIAM-40](https://github.com/ovh/manager/issues/MAIAM-40)
+* **iam:** update the "IP range" operators in policy conditions ([887c527](https://github.com/ovh/manager/commit/887c527ff7f37960fc30cc2ff08bbdf341c1b7f4)), closes [#MAIAM-41](https://github.com/ovh/manager/issues/MAIAM-41)
+
+
+### Features
+
+* **iam:** add date & time conditions for custom policy ([0576646](https://github.com/ovh/manager/commit/0576646226c41a4b82320332fd7a494714c5d58f)), closes [#MANAGER-19326](https://github.com/ovh/manager/issues/MANAGER-19326)
+* **iam:** add name & ip conditions for custom policy ([d678ae8](https://github.com/ovh/manager/commit/d678ae8252be2db80e413e5bb9f8fc10a63d79e4)), closes [#MANAGER-19326](https://github.com/ovh/manager/issues/MANAGER-19326)
+* **iam:** add product type condition for custom policy ([925e8fc](https://github.com/ovh/manager/commit/925e8fcb2021ea7608c6fdb937555114e7d6c2d2)), closes [#MANAGER-19326](https://github.com/ovh/manager/issues/MANAGER-19326)
+* **iam:** add tag condition for custom policy ([3fac5a3](https://github.com/ovh/manager/commit/3fac5a34f8a5a9c09d838d323e381b6d1dbc93b2)), closes [#MANAGER-19326](https://github.com/ovh/manager/issues/MANAGER-19326)
+* **iam:** manage display & modification for conditions of custom policy ([f4d0271](https://github.com/ovh/manager/commit/f4d0271804750cf064c897eca5b17c8d9199cb9b)), closes [#MANAGER-19326](https://github.com/ovh/manager/issues/MANAGER-19326)
+
+
+
+
+
 ## [1.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.21.0...@ovh-ux/manager-iam@1.21.1) (2025-10-02)
 
 

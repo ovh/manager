@@ -46,5 +46,8 @@
   "tableActionDelete": "Eliminare",
   "tableActionEdit": "Modificare",
   "breadcrumb": "Topic",
-  "formTopicErrorPattern": "Deve contenere solo da 1 a 249 caratteri alfanumerici, trattini (-), underscore (_) o punti (.)"
+  "formTopicErrorPattern": "Deve contenere solo da 1 a 249 caratteri alfanumerici, trattini (-), underscore (_) o punti (.)",
+  "editTopicToastErrorTitle": "Si è verificato un errore durante la modifica del tuo topic",
+  "topicToastSuccessTitle": "Completato",
+  "editTopicToastSuccessDescription": "Il topic \"{{name}}\" è stato modificato correttamente."
 }

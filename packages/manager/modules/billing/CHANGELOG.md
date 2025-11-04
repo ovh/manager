@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.52.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.52.3...@ovh-ux/manager-billing@0.52.4) (2025-11-03)
+
+
+### Bug Fixes
+
+* **billing:** expose endstrategyenum for us region ([42b3805](https://github.com/ovh/manager/commit/42b3805a2bd587f74d0f711ce88e0cf1e8616224)), closes [#MANAGER-20013](https://github.com/ovh/manager/issues/MANAGER-20013)
+
+
+
+
+
+## [0.52.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.52.2...@ovh-ux/manager-billing@0.52.3) (2025-10-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4439] ([13d97ef](https://github.com/ovh/manager/commit/13d97ef4d065ca32131364ab42294b9c4306c167))
+
+
+
+
+
+## [0.52.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.52.1...@ovh-ux/manager-billing@0.52.2) (2025-10-27)
+
+
+### Bug Fixes
+
+* **billing:** fix add new ssh key ([d0faabd](https://github.com/ovh/manager/commit/d0faabd0911bb189e7017f13a28652350a061b07)), closes [#MANAGER-20110](https://github.com/ovh/manager/issues/MANAGER-20110)
+
+
+
+
+
+## [0.52.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.52.0...@ovh-ux/manager-billing@0.52.1) (2025-10-23)
+
+
+### Bug Fixes
+
+* **billing.renew:** fix zimbra service name on services page ([5a2cfe2](https://github.com/ovh/manager/commit/5a2cfe2f94b4edcc3ed6f1daf8786be5dec0f81f)), closes [#PRDCOL-227](https://github.com/ovh/manager/issues/PRDCOL-227)
+* **i18n:** add missing translations [CDS 4417] ([b9cfc69](https://github.com/ovh/manager/commit/b9cfc69f9a7c787af90e523e2f09619c461f36a9))
+
+
+
+
+
 # [0.52.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.51.4...@ovh-ux/manager-billing@0.52.0) (2025-10-15)
 
 

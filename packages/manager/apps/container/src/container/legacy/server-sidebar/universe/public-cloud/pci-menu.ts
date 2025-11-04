@@ -17,7 +17,6 @@ export const features = [
   'pci-ai-training',
   'pci-ai-deploy',
   'pci-databases-analytics-operational',
-  'pci-databases-analytics-streaming',
   'pci-databases-analytics-analysis',
   'pci-dataplatform',
   'archive',
@@ -44,7 +43,6 @@ export const features = [
   'public-cloud:contacts',
   'public-cloud:project-settings',
   'data-platform',
-  'key-management-service',
   'okms',
   'okms:key-management-service',
   'okms:secret-manager',
@@ -257,7 +255,6 @@ export function getPciProjectMenu(
   if (
     isFeaturesAvailable(
       'pci-databases-analytics-operational',
-      'pci-databases-analytics-streaming',
       'pci-databases-analytics-analysis',
       'pci-dataplatform',
       'data-platform',
@@ -277,19 +274,10 @@ export function getPciProjectMenu(
             `#/pci/projects/${projectId}/databases-analytics/operational/services`,
           ),
         },
-        // Entry menu for PCI Data Streaming for React
-        isFeaturesAvailable('pci-databases-analytics-streaming') && {
-          id: 'pci-databases-analytics-streaming',
-          title: 'Data Streaming',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/databases-analytics/streaming/services`,
-          ),
-        },
         // Entry menu for PCI Data Analysis for React
         isFeaturesAvailable('pci-databases-analytics-analysis') && {
           id: 'pci-databases-analytics-analysis',
-          title: 'Data Analysis',
+          title: 'Analytics',
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/databases-analytics/analysis/services`,
@@ -426,20 +414,6 @@ export function getPciProjectMenu(
               'https://auth.cloud.ovh.us/v3/auth/OS-FEDERATION/identity_providers/ovhcloud-us/protocols/openid/websso?origin=https://horizon.cloud.ovh.us/auth/websso/',
           }[region],
           external: true,
-        },
-      ],
-    });
-  }
-
-  if (isFeaturesAvailable('key-management-service')) {
-    pciMenu.push({
-      id: 'identity-security-legacy',
-      title: 'Identity, Security & Operations',
-      subItems: [
-        {
-          id: 'key-management-service',
-          title: 'Key Management Service',
-          href: getURL('key-management-service', `/`),
         },
       ],
     });

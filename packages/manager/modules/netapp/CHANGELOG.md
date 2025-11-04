@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.15.0...@ovh-ux/manager-netapp@2.15.1) (2025-11-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp
+
+
+
+
+
+# [2.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.14.12...@ovh-ux/manager-netapp@2.15.0) (2025-10-29)
+
+
+### Bug Fixes
+
+* **dedicated:** add scroll bar in new snapshot policy table ([bd64f3b](https://github.com/ovh/manager/commit/bd64f3b4fcd3316c6014c11aaf9955f6196467d6)), closes [#MANAGER-19272](https://github.com/ovh/manager/issues/MANAGER-19272)
+* **dedicated:** updates oui-badge colors & to_configure wording ([30436e7](https://github.com/ovh/manager/commit/30436e74dd250de64a0bff0a48aa5b6ea5df7a64)), closes [#MANAGER-19771](https://github.com/ovh/manager/issues/MANAGER-19771)
+* **i18n:** add missing translations [CDS 4392] ([9346095](https://github.com/ovh/manager/commit/9346095825616bd70c84c8ab7765ac4a06e7ff28))
+* **i18n:** add missing translations [CDS 4416] ([1bf2443](https://github.com/ovh/manager/commit/1bf2443a6550529136270b055913b842c9938d95))
+
+
+### Features
+
+* **dedicated:** fixe null value in catch block ([b034a0f](https://github.com/ovh/manager/commit/b034a0f7e571359e13b51dcb66f535f6eb9b1f35)), closes [#MANAGER-18410](https://github.com/ovh/manager/issues/MANAGER-18410)
+* **dedicated:** get shnapshotSize ([fd3abeb](https://github.com/ovh/manager/commit/fd3abeb61d72bf4c4d5a3385ed69fd2e72fe9be6)), closes [#MANAGER-19271](https://github.com/ovh/manager/issues/MANAGER-19271)
+
+
+
+
+
+## [2.14.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.14.11...@ovh-ux/manager-netapp@2.14.12) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp
+
+
+
+
+
 ## [2.14.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.14.10...@ovh-ux/manager-netapp@2.14.11) (2025-10-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-netapp

@@ -4,6 +4,8 @@ export enum ResourceStatus {
   ERROR = 'ERROR',
   READY = 'READY',
   UPDATING = 'UPDATING',
+  SUSPENDED = 'SUSPENDED',
+  DONE = 'DONE',
 }
 
 export enum ServiceStatus {
@@ -39,4 +41,12 @@ export enum DnsStatus {
   CONFIGURED = 'DNS_CONFIGURED',
   EXTERNAL = 'DNS_EXTERNAL',
   NOT_CONFIGURED = 'DNS_NOT_CONFIGURED',
+}
+
+export enum OngoingTaskStatus {
+  CANCELLED = 'cancelled',
+  DOING = 'doing',
+  DONE = 'done',
+  INIT = 'init',
+  TODO = 'todo',
 }

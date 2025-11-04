@@ -3,6 +3,79 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.13.1...@ovh-ux/manager-web-ongoing-operations-app@1.13.2) (2025-11-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.13.0...@ovh-ux/manager-web-ongoing-operations-app@1.13.1) (2025-11-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+# [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.12.14...@ovh-ux/manager-web-ongoing-operations-app@1.13.0) (2025-10-30)
+
+
+### Bug Fixes
+
+* **web-ongoing-operations:** add information line for customer ([#19647](https://github.com/ovh/manager/issues/19647)) ([a500b02](https://github.com/ovh/manager/commit/a500b02067a95b6349bc22ccf260a55aab59f1a0)), closes [#DCE-59](https://github.com/ovh/manager/issues/DCE-59)
+
+
+### Features
+
+* **web-ongoing-operations:** always disable api cache ([#20013](https://github.com/ovh/manager/issues/20013)) ([beaa77c](https://github.com/ovh/manager/commit/beaa77cb68e3274195ba6f8b54a0209fb063d1d1)), closes [#DCE-83](https://github.com/ovh/manager/issues/DCE-83)
+* **web-ongoing-operations:** fix translations ([#19561](https://github.com/ovh/manager/issues/19561)) ([3e1aec3](https://github.com/ovh/manager/commit/3e1aec37a989b9bbeaeec7f844d440dcc4fa5017)), closes [#DCE-69](https://github.com/ovh/manager/issues/DCE-69)
+
+
+
+
+
+## [1.12.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.12.13...@ovh-ux/manager-web-ongoing-operations-app@1.12.14) (2025-10-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.12.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.12.12...@ovh-ux/manager-web-ongoing-operations-app@1.12.13) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.12.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.12.11...@ovh-ux/manager-web-ongoing-operations-app@1.12.12) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.12.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.12.10...@ovh-ux/manager-web-ongoing-operations-app@1.12.11) (2025-10-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
+## [1.12.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.12.9...@ovh-ux/manager-web-ongoing-operations-app@1.12.10) (2025-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app
+
+
+
+
+
 ## [1.12.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.12.8...@ovh-ux/manager-web-ongoing-operations-app@1.12.9) (2025-10-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app

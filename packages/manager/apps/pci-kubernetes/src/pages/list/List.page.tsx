@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -23,7 +23,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
-import { useProject } from '@ovh-ux/manager-pci-common';
+import { useParam, useProject } from '@ovh-ux/manager-pci-common';
 import {
   ChangelogButton,
   Datagrid,
@@ -41,15 +41,16 @@ import {
 
 import { useKubes } from '@/api/hooks/useKubernetes';
 import { CHANGELOG_LINKS } from '@/constants';
+import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
 
-import { useDatagridColumn } from './useDatagridColumn';
+import FileStorageAlert from './components/FileStorageAlert.component';
+import { useDatagridColumn } from './hooks/useDatagridColumn';
 
 export default function ListPage() {
-  const { t } = useTranslation('listing');
-  const { t: tFilter } = useTranslation('filter');
+  const { t } = useTranslation(['listing', 'filter']);
 
-  const { projectId } = useParams();
+  const { projectId } = useParam('projectId');
   const { data: project } = useProject();
   const hrefProject = useProjectUrl('public-cloud');
   const { pagination, setPagination } = useDataGrid();
@@ -59,6 +60,8 @@ export default function ListPage() {
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchField, setSearchField] = useState('');
   const filterPopoverRef = useRef(undefined);
+  const featureFlipping3az = use3AZPlanAvailable();
+  const [showStorageModal, setShowStorageModal] = useState(true);
 
   const { data: allKube, isPending } = useKubes(projectId, pagination, filters);
 
@@ -99,6 +102,9 @@ export default function ListPage() {
       </div>
 
       <Notifications />
+      {featureFlipping3az && showStorageModal && (
+        <FileStorageAlert onRemove={() => setShowStorageModal(false)} />
+      )}
 
       <div className="sm:flex items-center justify-between mt-4">
         <OsdsButton
@@ -151,7 +157,7 @@ export default function ListPage() {
                 className="mr-2"
                 color={ODS_THEME_COLOR_INTENT.primary}
               />
-              {tFilter('common_criteria_adder_filter_label')}
+              {t('filter:common_criteria_adder_filter_label')}
             </OsdsButton>
             <OsdsPopoverContent>
               <FilterAdd

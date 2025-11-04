@@ -3,6 +3,107 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.17.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.17.5...@ovh-ux/manager-telecom@16.17.6) (2025-11-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.17.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.17.4...@ovh-ux/manager-telecom@16.17.5) (2025-11-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.17.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.17.3...@ovh-ux/manager-telecom@16.17.4) (2025-11-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.17.2...@ovh-ux/manager-telecom@16.17.3) (2025-11-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.17.1...@ovh-ux/manager-telecom@16.17.2) (2025-10-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.17.0...@ovh-ux/manager-telecom@16.17.1) (2025-10-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 756] ([c7a486f](https://github.com/ovh/manager/commit/c7a486ff25c67a53c8b5685b7721de026ab5f141))
+* **telecom.telephony:** remove DE prefix on alias order and rename GB ([c8653e2](https://github.com/ovh/manager/commit/c8653e21c22299bc8c9eae6aac27516e849f98f9)), closes [#PRDCOL-243](https://github.com/ovh/manager/issues/PRDCOL-243)
+
+
+
+
+
+# [16.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.16.12...@ovh-ux/manager-telecom@16.17.0) (2025-10-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 737] ([70065df](https://github.com/ovh/manager/commit/70065df45f87371f656910009145e52a2d6ed12c))
+* **telecom:** update links and eligibilities displays ([41e6f72](https://github.com/ovh/manager/commit/41e6f72511f3fd6fd2846d3319a6bcfc23e18a5b)), closes [#MANAGER-20083](https://github.com/ovh/manager/issues/MANAGER-20083)
+
+
+### Features
+
+* **pack:** update promotion display for move and migrate offers ([c8af37e](https://github.com/ovh/manager/commit/c8af37eeee778568c134ba5d4aa631e8211516b6)), closes [#MANAGER-19911](https://github.com/ovh/manager/issues/MANAGER-19911)
+
+
+
+
+
+## [16.16.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.16.11...@ovh-ux/manager-telecom@16.16.12) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.16.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.16.10...@ovh-ux/manager-telecom@16.16.11) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.16.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.16.9...@ovh-ux/manager-telecom@16.16.10) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.16.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.16.8...@ovh-ux/manager-telecom@16.16.9) (2025-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
 ## [16.16.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.16.7...@ovh-ux/manager-telecom@16.16.8) (2025-10-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

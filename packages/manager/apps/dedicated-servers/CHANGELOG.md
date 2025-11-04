@@ -3,6 +3,88 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.6.2...@ovh-ux/manager-dedicated-servers-app@0.6.3) (2025-11-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
+## [0.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.6.1...@ovh-ux/manager-dedicated-servers-app@0.6.2) (2025-11-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
+## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.6.0...@ovh-ux/manager-dedicated-servers-app@0.6.1) (2025-10-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.5.1...@ovh-ux/manager-dedicated-servers-app@0.6.0) (2025-10-29)
+
+
+### Features
+
+* **dedicated:** add vrack link in DataGrid ([e26d3bd](https://github.com/ovh/manager/commit/e26d3bd4ab0d0a6eaefa146561ed57955c0e668f)), closes [#MANAGER-18418](https://github.com/ovh/manager/issues/MANAGER-18418)
+
+
+
+
+
+## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.5.0...@ovh-ux/manager-dedicated-servers-app@0.5.1) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.4.25...@ovh-ux/manager-dedicated-servers-app@0.5.0) (2025-10-23)
+
+
+### Features
+
+* **dedicated-servers:** correct error path ([684f01d](https://github.com/ovh/manager/commit/684f01d69100f42bcdfa8f75e89dbd24a96ff5cc)), closes [#MANAGER-19047](https://github.com/ovh/manager/issues/MANAGER-19047)
+* **muk:** update generator with muk ([6ec82f5](https://github.com/ovh/manager/commit/6ec82f5aea95f04edcd8001d297102cb5e89e00b)), closes [#MANAGER-19474](https://github.com/ovh/manager/issues/MANAGER-19474)
+
+
+
+
+
+## [0.4.25](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.4.24...@ovh-ux/manager-dedicated-servers-app@0.4.25) (2025-10-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
+## [0.4.24](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.4.23...@ovh-ux/manager-dedicated-servers-app@0.4.24) (2025-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
+## [0.4.23](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.4.22...@ovh-ux/manager-dedicated-servers-app@0.4.23) (2025-10-20)
+
+
+### Bug Fixes
+
+* **dedicated:** monitoring status in listing page ([a95c913](https://github.com/ovh/manager/commit/a95c913d410eccd8834eec086adc68a8f934ad74)), closes [#MANAGER-19387](https://github.com/ovh/manager/issues/MANAGER-19387)
+
+
+
+
+
 ## [0.4.22](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.4.21...@ovh-ux/manager-dedicated-servers-app@0.4.22) (2025-10-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app

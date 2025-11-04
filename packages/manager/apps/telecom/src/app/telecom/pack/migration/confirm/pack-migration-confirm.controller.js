@@ -81,6 +81,18 @@ export default class TelecomPackMigrationConfirmCtrl {
       totalOfferPrice,
     );
 
+    let priceDiscount = 0;
+    this.discountPrice = null;
+
+    if (this.process.selectedOffer.promotion) {
+      priceDiscount =
+        totalOfferPrice +
+        this.process.selectedOffer.promotion.subscription.discount.value;
+      this.discountPrice = this.TucPackMigrationProcess.getPriceStruct(
+        priceDiscount,
+      );
+    }
+
     this.process.selectedOffer.subServicesToDelete.forEach((service) => {
       set(
         service,
@@ -108,6 +120,11 @@ export default class TelecomPackMigrationConfirmCtrl {
       true,
     );
     let firstMensuality = totalOfferPrice + gtrComfortFees + installFees;
+
+    if (this.process.selectedOffer.promotion) {
+      firstMensuality += this.process.selectedOffer.promotion.subscription
+        .discount.value;
+    }
 
     if (
       this.process.selectedOffer.needNewModem &&

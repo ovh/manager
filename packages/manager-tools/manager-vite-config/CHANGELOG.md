@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.14.0...@ovh-ux/manager-vite-config@0.14.1) (2025-11-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-vite-config
+
+
+
+
+
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.13.4...@ovh-ux/manager-vite-config@0.14.0) (2025-10-23)
+
+
+### Bug Fixes
+
+* **manager-react-components:** correct unit tests ([d2587ec](https://github.com/ovh/manager/commit/d2587ec39fdd8bcd7caaffae6a1e66382bacda6c)), closes [#MANAGER-19109](https://github.com/ovh/manager/issues/MANAGER-19109)
+
+
+### Features
+
+* **manager-tools:** correct config vite prettier ([d28ea07](https://github.com/ovh/manager/commit/d28ea078ec20696c08fd3596a8c543743185129d)), closes [#MANAGER-19109](https://github.com/ovh/manager/issues/MANAGER-19109)
+* **muk:** update generator with muk ([6ec82f5](https://github.com/ovh/manager/commit/6ec82f5aea95f04edcd8001d297102cb5e89e00b)), closes [#MANAGER-19474](https://github.com/ovh/manager/issues/MANAGER-19474)
+
+
+
+
+
 ## [0.13.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.13.3...@ovh-ux/manager-vite-config@0.13.4) (2025-10-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-vite-config

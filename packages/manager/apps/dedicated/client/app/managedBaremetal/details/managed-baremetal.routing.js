@@ -7,9 +7,10 @@ import uniq from 'lodash/uniq';
 
 import { DedicatedCloud as DedicatedCloudInfo } from '@ovh-ux/manager-models';
 import {
+  DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS,
   DEDICATEDCLOUD_DATACENTER_DRP_STATUS,
   DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS,
-} from '../../components/dedicated-cloud/datacenter/drp/dedicatedCloud-datacenter-drp.constants';
+} from '../../components/dedicated-cloud/datacenter/zerto/dedicatedCloud-datacenter-zerto.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.managedBaremetal.details', {
@@ -36,47 +37,71 @@ export default /* @ngInject */ ($stateProvider) => {
         .catch(() => 'app.managedBaremetal.details.dashboard');
     },
     resolve: {
+      goBackToList: /* @ngInject */ ($state) => () =>
+        $state.go('app.managedBaremetal.index'),
       currentService: /* @ngInject */ (DedicatedCloud, productId) =>
         DedicatedCloud.getSelected(productId, true).then(
           (dedicatedCloudData) => new DedicatedCloudInfo(dedicatedCloudData),
         ),
-      currentDrp: /* @ngInject */ (dedicatedCloudDrp, productId) =>
-        dedicatedCloudDrp.getPccDrpPlan(productId).then((states) => {
+      currentZerto: /* @ngInject */ (dedicatedCloudZerto, productId) =>
+        dedicatedCloudZerto.getPccZertoPlan(productId).then((states) => {
           const existingPlan = states.find(
             ({ state }) =>
               state !== DEDICATEDCLOUD_DATACENTER_DRP_STATUS.disabled,
           );
 
           // If no plan with state other than disabled, let's return the first datacenter plan
-          const currentDrp = existingPlan || sortBy(states, 'datacenterId')[0];
+          const currentZerto =
+            existingPlan || sortBy(states, 'datacenterId')[0];
 
-          const drpVpnStatus = get(
-            currentDrp,
+          const zertoVpnStatus = get(
+            currentZerto,
             'remoteSiteInformation.vpnConfigState',
           );
-          currentDrp.vpnStatus = drpVpnStatus;
-          currentDrp.isWaitingVpnConfiguration =
-            drpVpnStatus != null &&
-            drpVpnStatus !==
+          currentZerto.vpnStatus = zertoVpnStatus;
+          currentZerto.isWaitingVpnConfiguration =
+            zertoVpnStatus != null &&
+            zertoVpnStatus !==
               DEDICATEDCLOUD_DATACENTER_DRP_VPN_CONFIGURATION_STATUS.configured;
 
-          currentDrp.state = dedicatedCloudDrp.constructor.formatStatus(
-            currentDrp.state,
+          currentZerto.state = dedicatedCloudZerto.constructor.formatStatus(
+            currentZerto.state,
           );
 
-          return dedicatedCloudDrp
+          return dedicatedCloudZerto
             .getDisableSuccessAlertPreference(productId)
             .then((alertPreferenceValue) => {
-              currentDrp.isSuccessAlertDisable = alertPreferenceValue;
+              currentZerto.isSuccessAlertDisable = alertPreferenceValue;
             })
             .catch(() => {
-              currentDrp.isSuccessAlertDisable = true;
+              currentZerto.isSuccessAlertDisable = true;
             })
-            .then(() => currentDrp);
+            .then(() => currentZerto);
         }),
+      isZertoTypeOnPremise: /* @ngInject */ (currentZerto) =>
+        currentZerto.drpType ===
+        DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS.onPremise,
+      zertoMultiSites: /* @ngInject */ (
+        serviceName,
+        isZertoTypeOnPremise,
+        dedicatedCloudZerto,
+        currentZerto,
+      ) =>
+        currentZerto.state ===
+          (DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivering ||
+            DEDICATEDCLOUD_DATACENTER_DRP_STATUS.disabled) &&
+        isZertoTypeOnPremise
+          ? []
+          : dedicatedCloudZerto
+              .getZertoMultiSite({
+                serviceName,
+                datacenterId: currentZerto.datacenterId,
+              })
+              .catch(() => []),
       datacenterList: /* @ngInject */ ($stateParams, DedicatedCloud) =>
         DedicatedCloud.getDatacenters($stateParams.productId),
-
+      datacenterOfZerto: /* @ngInject */ (currentZerto, datacenterList) =>
+        datacenterList.find(({ id }) => id === currentZerto.datacenterId),
       dedicatedCloud: /* @ngInject */ (
         $stateParams,
         currentUser,
@@ -115,25 +140,28 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceName: $stateParams.productId,
         }),
 
-      drpAvailability: /* @ngInject */ () => true,
+      zertoAvailability: /* @ngInject */ () => true,
 
-      drpGlobalStatus: /* @ngInject */ (currentDrp, dedicatedCloudDrp) => ({
+      zertoGlobalStatus: /* @ngInject */ (
+        currentZerto,
+        dedicatedCloudZerto,
+      ) => ({
         error:
-          dedicatedCloudDrp.constructor.isDrpNotInValidState(
-            currentDrp.state,
+          dedicatedCloudZerto.constructor.isZertoNotInValidState(
+            currentZerto.state,
           ) ||
-          dedicatedCloudDrp.constructor.isDrpNotInValidState(
-            currentDrp.vpnStatus,
+          dedicatedCloudZerto.constructor.isZertoNotInValidState(
+            currentZerto.vpnStatus,
           ),
         warning:
-          dedicatedCloudDrp.constructor.isDrpInChangingState(
-            currentDrp.state,
+          dedicatedCloudZerto.constructor.isZertoInChangingState(
+            currentZerto.state,
           ) ||
-          dedicatedCloudDrp.constructor.isDrpInChangingState(
-            currentDrp.vpnStatus,
+          dedicatedCloudZerto.constructor.isZertoInChangingState(
+            currentZerto.vpnStatus,
           ),
-        success: dedicatedCloudDrp.constructor.isDrpInValidState(
-          currentDrp.state,
+        success: dedicatedCloudZerto.constructor.isZertoInValidState(
+          currentZerto.state,
         ),
       }),
       editDetails: /* @ngInject */ ($uibModal, productId) => (data) =>
@@ -149,8 +177,10 @@ export default /* @ngInject */ ($stateProvider) => {
             }),
           },
         }),
-      isDrpActionPossible: /* @ngInject */ (currentDrp, dedicatedCloudDrp) =>
-        dedicatedCloudDrp.constructor.isDrpActionPossible(currentDrp),
+      isZertoActionPossible: /* @ngInject */ (
+        currentZerto,
+        dedicatedCloudZerto,
+      ) => dedicatedCloudZerto.constructor.isZertoActionPossible(currentZerto),
 
       datacentersState: () => 'app.managedBaremetal.details.datacenters',
       pccDashboardState: () => 'app.managedBaremetal.details.dashboard',
@@ -158,25 +188,38 @@ export default /* @ngInject */ ($stateProvider) => {
       operationState: () => 'app.managedBaremetal.details.operation',
       securityState: () => 'app.managedBaremetal.details.security',
       usersState: () => 'app.managedBaremetal.details.users',
-      goToDrp: /* @ngInject */ ($state, currentDrp) => (datacenterId) =>
-        $state.go('app.managedBaremetal.details.datacenters.datacenter.drp', {
+      goToZerto: /* @ngInject */ ($state, currentZerto) => (datacenterId) =>
+        $state.go('app.managedBaremetal.details.datacenters.datacenter.zerto', {
           datacenterId,
-          drpInformations: currentDrp,
+          zertoInformations: currentZerto,
         }),
-      goToDrpDatacenterSelection: /* @ngInject */ ($state) => () =>
+      goToZertoDatacenterSelection: /* @ngInject */ ($state) => () =>
         $state.go(
-          'app.managedBaremetal.details.dashboard.drpDatacenterSelection',
+          'app.managedBaremetal.details.dashboard.zertoDatacenterSelection',
         ),
       goToPccDashboard: /* @ngInject */ ($state) => (reload = false) =>
         $state.go('app.managedBaremetal.details', {}, { reload }),
-      goToVpnConfiguration: /* @ngInject */ ($state, currentDrp) => () =>
-        $state.go(
-          'app.managedBaremetal.details.datacenters.datacenter.drp.summary',
-          {
-            datacenterId: currentDrp.datacenterId,
-            drpInformations: currentDrp,
-          },
-        ),
+      goToVpnConfiguration: /* @ngInject */ ($state, currentZerto) => {
+        return () => {
+          if (currentZerto.drpType === 'onPremise') {
+            $state.go(
+              'app.managedBaremetal.details.datacenters.datacenter.zerto.listing.addSite',
+              {
+                datacenterId: currentZerto.datacenterId,
+                zertoInformations: currentZerto,
+              },
+            );
+          } else {
+            $state.go(
+              'app.managedBaremetal.details.datacenters.datacenter.zerto.summary',
+              {
+                datacenterId: currentZerto.datacenterId,
+                zertoInformations: currentZerto,
+              },
+            );
+          }
+        };
+      },
       goToDatacenter: /* @ngInject */ ($state, productId) => (datacenterId) =>
         $state.go('app.managedBaremetal.details.datacenters.datacenter', {
           productId,
@@ -314,6 +357,7 @@ export default /* @ngInject */ ($stateProvider) => {
           : null,
       hasVCDMigration: /* @ngInject */ (dedicatedCloudVCDMigrationState) =>
         dedicatedCloudVCDMigrationState?.hasMigration,
+      isLogsDisabled: () => true,
       breadcrumb: /* @ngInject */ (productId) => productId,
     },
     views: {

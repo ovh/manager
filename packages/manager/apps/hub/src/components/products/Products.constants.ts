@@ -1,7 +1,4 @@
-export const productListingPages: Record<
-  string,
-  { application: string; hash: string }
-> = {
+export const productListingPages: Record<string, { application: string; hash: string }> = {
   CDN_DEDICATED: {
     application: 'dedicated',
     hash: '#/configuration/cdn',
@@ -81,10 +78,6 @@ export const productListingPages: Record<
   IP_SERVICE: {
     application: 'dedicated',
     hash: '#/ip',
-  },
-  KEY_MANAGEMENT_SERVICE: {
-    application: 'key-management-service',
-    hash: '#',
   },
   LICENSE_CPANEL: {
     application: 'dedicated',

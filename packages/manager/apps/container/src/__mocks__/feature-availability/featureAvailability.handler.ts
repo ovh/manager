@@ -1,14 +1,20 @@
-import { Handler } from "@ovh-ux/manager-core-test-utils";
+import { Handler } from '@ovh-ux/manager-core-test-utils';
 
-export const getFeatureAvailabilityMocks = (params: {
-  identityDocuments?: boolean;
-  agreementsUpdate?: boolean;
-  suggestions?: boolean;
-} = {}): Handler[] => {
+export const getFeatureAvailabilityMocks = (
+  params: {
+    identityDocuments?: boolean;
+    agreementsUpdate?: boolean;
+    suggestions?: boolean;
+    pnr?: boolean;
+    livechat?: boolean;
+  } = {},
+): Handler[] => {
   const {
     identityDocuments = true,
     agreementsUpdate = true,
     suggestions = true,
+    pnr = true,
+    livechat = true,
   } = params;
 
   const mocks: Handler[] = [];
@@ -42,6 +48,42 @@ export const getFeatureAvailabilityMocks = (params: {
         'hub:popup-hub-invite-customer-siret': true,
       },
       api: 'aapi',
+      delay: 0,
+    });
+  }
+
+  // we currently request the pnr together with the livechat in ContainerProvider
+  if (pnr) {
+    mocks.push(
+      {
+        url: 'feature/pnr/availability',
+        response: {
+          pnr: true,
+        },
+        api: 'aapi',
+        method: 'get',
+        delay: 0,
+      },
+      {
+        url: 'feature/livechat,pnr/availability',
+        response: {
+          pnr: true,
+        },
+        api: 'aapi',
+        method: 'get',
+        delay: 0,
+      },
+    );
+  }
+
+  if (livechat) {
+    mocks.push({
+      url: 'feature/livechat/availability',
+      response: {
+        livechat: true,
+      },
+      api: 'aapi',
+      method: 'get',
       delay: 0,
     });
   }

@@ -3,6 +3,151 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.161.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.161.8...@ovh-ux/manager-container-app@0.161.9) (2025-11-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4449] ([19facba](https://github.com/ovh/manager/commit/19facba088a900bb28c9377a79351a518a862af7))
+
+
+
+
+
+## [0.161.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.161.7...@ovh-ux/manager-container-app@0.161.8) (2025-11-03)
+
+
+### Bug Fixes
+
+* **pci:** fix pci menu rules for analytics and db translation issue ([383c341](https://github.com/ovh/manager/commit/383c341c6c0c15f31cc24b85bca30ed12db1d436)), closes [#DATATR-2599](https://github.com/ovh/manager/issues/DATATR-2599)
+
+
+
+
+
+## [0.161.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.161.6...@ovh-ux/manager-container-app@0.161.7) (2025-11-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.161.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.161.5...@ovh-ux/manager-container-app@0.161.6) (2025-11-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.161.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.161.4...@ovh-ux/manager-container-app@0.161.5) (2025-10-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.161.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.161.3...@ovh-ux/manager-container-app@0.161.4) (2025-10-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.161.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.161.2...@ovh-ux/manager-container-app@0.161.3) (2025-10-28)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.161.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.161.1...@ovh-ux/manager-container-app@0.161.2) (2025-10-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.161.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.161.0...@ovh-ux/manager-container-app@0.161.1) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.161.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.160.1...@ovh-ux/manager-container-app@0.161.0) (2025-10-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 741] ([5171211](https://github.com/ovh/manager/commit/5171211494a02ebc9f2c3f5635d19a90b6714ae1))
+* **web-hosting:** fix title wp translations ([d240108](https://github.com/ovh/manager/commit/d240108d706f571f20eb25284ce3cf0a5cbf8a05)), closes [#MANAGER-18901](https://github.com/ovh/manager/issues/MANAGER-18901)
+
+
+### Features
+
+* **web-hosting:** add listing pages resource and websites ([32b2662](https://github.com/ovh/manager/commit/32b266278f4163388bb77ac9ae6490d24776de9d)), closes [#MANAGER-18906](https://github.com/ovh/manager/issues/MANAGER-18906)
+* **web-hosting:** add managed for hosting wordpress import step 2 ([1329b7e](https://github.com/ovh/manager/commit/1329b7ee2a98a31bee2fff7c31db0ea2cee330e3)), closes [#MANAGER-19174](https://github.com/ovh/manager/issues/MANAGER-19174)
+* **web-hosting:** add menu entry wordpress managed ([43105fb](https://github.com/ovh/manager/commit/43105fbb4bed5af36c9f2c9ebfea5113b92c4ac5)), closes [#MANAGER-18901](https://github.com/ovh/manager/issues/MANAGER-18901)
+* **web-hosting:** add static analysis on wp managed ([93287d2](https://github.com/ovh/manager/commit/93287d296441b69ad7effee556f5250ec2433f70)), closes [#PUWEBPT-33](https://github.com/ovh/manager/issues/PUWEBPT-33)
+
+
+
+
+
+## [0.160.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.160.0...@ovh-ux/manager-container-app@0.160.1) (2025-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.160.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.159.0...@ovh-ux/manager-container-app@0.160.0) (2025-10-21)
+
+
+### Bug Fixes
+
+* **cookie-policy:** update cookie policy urls ([881a38c](https://github.com/ovh/manager/commit/881a38c65f6c464080f315011df3bd83f2d58c5e)), closes [#MANAGER-20036](https://github.com/ovh/manager/issues/MANAGER-20036)
+
+
+### Features
+
+* **container:** einvoicing modify the content of the pop up to update ([f1d572d](https://github.com/ovh/manager/commit/f1d572df53281dae8bd766baaf70e8290283b326)), closes [#MANAGER-19880](https://github.com/ovh/manager/issues/MANAGER-19880)
+
+
+
+
+
+# [0.159.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.158.3...@ovh-ux/manager-container-app@0.159.0) (2025-10-20)
+
+
+### Features
+
+* **pci-db-analytics:** change pci menu and clean streaming and fix advanced config ([559f0e7](https://github.com/ovh/manager/commit/559f0e73978e82ec10a2d43e45b178615d2a4365)), closes [#DATATR-2583](https://github.com/ovh/manager/issues/DATATR-2583) [#DATATR-2580](https://github.com/ovh/manager/issues/DATATR-2580)
+
+
+
+
+
+## [0.158.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.158.2...@ovh-ux/manager-container-app@0.158.3) (2025-10-20)
+
+
+### Bug Fixes
+
+* **container:** fix legacy menu display for vmware log tab ([d0d5937](https://github.com/ovh/manager/commit/d0d5937692ffbb33205ca5506f01e323f32edf88)), closes [#MAOBS-23](https://github.com/ovh/manager/issues/MAOBS-23)
+* **container:** fix node selection in pnr menu for custom path ([fb45a25](https://github.com/ovh/manager/commit/fb45a252393f0ee1a4f6d0e23c4c44b85e578f4b)), closes [#MAOBS-23](https://github.com/ovh/manager/issues/MAOBS-23)
+
+
+
+
+
 ## [0.158.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.158.1...@ovh-ux/manager-container-app@0.158.2) (2025-10-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

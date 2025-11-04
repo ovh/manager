@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.36.0...@ovh-ux/manager-generator@0.37.0) (2025-11-02)
+
+
+### Features
+
+* **muk:** static quality improvement ([2ca8694](https://github.com/ovh/manager/commit/2ca8694747cce2ea2901b6d04286ac07a65be03d))
+
+
+
+
+
+# [0.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.35.3...@ovh-ux/manager-generator@0.36.0) (2025-10-23)
+
+
+### Features
+
+* **muk:** update generator with muk ([6ec82f5](https://github.com/ovh/manager/commit/6ec82f5aea95f04edcd8001d297102cb5e89e00b)), closes [#MANAGER-19474](https://github.com/ovh/manager/issues/MANAGER-19474)
+
+
+
+
+
 ## [0.35.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.35.2...@ovh-ux/manager-generator@0.35.3) (2025-10-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-generator

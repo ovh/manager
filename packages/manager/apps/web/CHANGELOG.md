@@ -3,6 +3,126 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.26.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.11...@ovh-ux/manager-web@19.26.12) (2025-11-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.26.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.10...@ovh-ux/manager-web@19.26.11) (2025-11-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.26.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.9...@ovh-ux/manager-web@19.26.10) (2025-11-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.26.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.8...@ovh-ux/manager-web@19.26.9) (2025-10-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.26.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.7...@ovh-ux/manager-web@19.26.8) (2025-10-30)
+
+
+### Bug Fixes
+
+* **web:** add "ASIA" subsidiary to language overrides ([#19872](https://github.com/ovh/manager/issues/19872)) ([59dfaf0](https://github.com/ovh/manager/commit/59dfaf01ad4059ecad637d311746319e403d28c1)), closes [#DCE-78](https://github.com/ovh/manager/issues/DCE-78)
+
+
+
+
+
+## [19.26.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.6...@ovh-ux/manager-web@19.26.7) (2025-10-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.26.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.5...@ovh-ux/manager-web@19.26.6) (2025-10-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.26.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.4...@ovh-ux/manager-web@19.26.5) (2025-10-27)
+
+
+### Bug Fixes
+
+* **web-hosting:** display git removal modal ([38c3e94](https://github.com/ovh/manager/commit/38c3e9411fd15ed6d1026785c265f5d9463b9b69)), closes [#PUWEBPT-93](https://github.com/ovh/manager/issues/PUWEBPT-93)
+
+
+
+
+
+## [19.26.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.3...@ovh-ux/manager-web@19.26.4) (2025-10-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4422] ([57b521e](https://github.com/ovh/manager/commit/57b521eb7a0b7f49cf08ae23939bcbc07f94ac17))
+
+
+
+
+
+## [19.26.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.2...@ovh-ux/manager-web@19.26.3) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.1...@ovh-ux/manager-web@19.26.2) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.0...@ovh-ux/manager-web@19.26.1) (2025-10-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4412] ([0061a13](https://github.com/ovh/manager/commit/0061a13d6714f2c9cafc6447d8674d73e65a889b))
+* **i18n:** add missing translations [CDS 4415] ([224b837](https://github.com/ovh/manager/commit/224b8376271874131463fb6e120b28e6e0b9a6f3))
+
+
+
+
+
+# [19.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.25.7...@ovh-ux/manager-web@19.26.0) (2025-10-21)
+
+
+### Features
+
+* **web-hosting:** migrate ongoing task tab in react ([593d5b2](https://github.com/ovh/manager/commit/593d5b293334e9100214094a328791df2cbe71b9)), closes [#WEB-21008](https://github.com/ovh/manager/issues/WEB-21008)
+
+
+
+
+
 ## [19.25.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.25.6...@ovh-ux/manager-web@19.25.7) (2025-10-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

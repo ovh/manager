@@ -1,36 +1,61 @@
 import React from 'react';
 
-import { Route } from 'react-router-dom';
+import { Route, UIMatch } from 'react-router-dom';
+
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
 import NotFound from '@/pages/404';
-import { urls } from '@/routes/routes.constants';
+
 import {
   ADD_DOMAIN,
+  CREATE,
   DASHBOARD,
+  DELETE,
   DISABLE_SSL,
+  GENERAL_INFORMATION,
+  IMPORT,
   IMPORT_SSL,
   ONBOARDING,
   ORDER_DOMAIN,
   ORDER_SECTIGO,
   SAN_SSL,
   SSL,
+  TASK,
+  TASKS,
   WEBSITE,
-} from '@/utils/tracking.constants';
+  WORDPRESS_MANAGED,
+  WORDPRESS_MANAGED_SERVICE,
+} from '../utils/tracking.constants';
+import { DashboardLayout, OnboardingPage, RootPage, WebsitesPage } from './pages/default';
+import { AddDomainPage, OrderDomainPage } from './pages/domain';
+import {
+  ManagedWordpressPage,
+  ManagedWordpressResourcePage,
+  ManagedWordpressServiceCreatePage,
+  ManagedWordpressServiceDelete,
+  ManagedWordpressServiceGeneralInformationPage,
+  ManagedWordpressServiceImportPage,
+  ManagedWordpressServiceTasksPage,
+} from './pages/managedWordpress';
+import { DisableSslPage, ImportSslPage, OrderSectigoPage, SanSslPage, SslPage } from './pages/ssl';
+import { OngoingTaskPage } from './pages/task';
+import { urls } from './routes.constants';
 
-const RootPage = React.lazy(() => import('@/pages/layout'));
-const WebsitesPage = React.lazy(() => import('@/pages/websites/Websites.page'));
-const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
-const DashboardLayout = React.lazy(() => import('@/pages/dashboard/layout'));
-const SslPage = React.lazy(() => import('@/pages/dashboard/ssl/Ssl.page'));
-const ImportSslPage = React.lazy(() => import('@/pages/dashboard/ssl/add/importSsl.page'));
-const OrderSectigoPage = React.lazy(() => import('@/pages/dashboard/ssl/add/orderSectigo.page'));
-const DisableSslPage = React.lazy(() => import('@/pages/dashboard/ssl/manage/disableSsl.page'));
-const SanSslPage = React.lazy(() => import('@/pages/dashboard/ssl/manage/sanSsl.page'));
-const AddDomainPage = React.lazy(() => import('@/pages/dashboard/AddDomain.page'));
-const OrderDomainPage = React.lazy(() => import('@/pages/dashboard/OrderDomain.page'));
+export type RouteHandle = {
+  isOverridePage?: boolean;
+  tracking?: {
+    pageName?: string;
+    pageType?: PageType;
+  };
+  breadcrumb?: {
+    label: string;
+    icon?: ODS_ICON_NAME;
+  };
+};
+export type RouteMatch = UIMatch<unknown, RouteHandle>;
 
 export default (
   <Route
@@ -45,6 +70,98 @@ export default (
       />
     }
   >
+    <Route
+      id={WORDPRESS_MANAGED}
+      path={urls.managedWordpress}
+      Component={ManagedWordpressPage}
+      handle={{
+        tracking: {
+          pageType: PageType.listing,
+        },
+        breadcrumb: {
+          label: 'managed_wordpress',
+        },
+      }}
+    />
+
+    <Route
+      id={WORDPRESS_MANAGED_SERVICE}
+      path={urls.managedWordpressResource}
+      Component={ManagedWordpressResourcePage}
+      handle={{
+        tracking: {
+          pageType: PageType.listing,
+        },
+        breadcrumb: {
+          label: ':serviceName',
+        },
+      }}
+    >
+      <Route
+        id={GENERAL_INFORMATION}
+        path={urls.managedWordpressResource}
+        Component={ManagedWordpressServiceGeneralInformationPage}
+        handle={{
+          tracking: {
+            pageType: PageType.listing,
+          },
+        }}
+      >
+        <Route
+          id={DELETE}
+          path={urls.managedWordpressResourceDeleteModal}
+          Component={ManagedWordpressServiceDelete}
+          handle={{
+            tracking: {
+              pageName: DELETE,
+              pageType: PageType.popup,
+            },
+          }}
+        />
+      </Route>
+
+      <Route
+        id={TASKS}
+        path={urls.managedWordpressResourceTasks}
+        Component={ManagedWordpressServiceTasksPage}
+        handle={{
+          tracking: {
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: 'common:web_hosting_header_tasks',
+          },
+        }}
+      />
+      <Route
+        id={CREATE}
+        path={urls.managedWordpressResourceCreate}
+        Component={ManagedWordpressServiceCreatePage}
+        handle={{
+          tracking: {
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: 'common:create_website',
+          },
+          isOverridePage: true,
+        }}
+      />
+      <Route
+        id={IMPORT}
+        path={urls.managedWordpressResourceImport}
+        Component={ManagedWordpressServiceImportPage}
+        handle={{
+          tracking: {
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: 'common:import_website',
+          },
+          isOverridePage: true,
+        }}
+      />
+    </Route>
     <Route
       id={WEBSITE}
       path={urls.websites}
@@ -76,6 +193,7 @@ export default (
         breadcrumb: { label: ':serviceName' },
       }}
     >
+      {/* Project ONE SSL */}
       <Route
         id={SSL}
         path={urls.ssl}
@@ -87,6 +205,20 @@ export default (
           },
           breadcrumb: {
             label: 'ssl',
+          },
+        }}
+      />
+      <Route
+        id={TASK}
+        path={urls.task}
+        Component={OngoingTaskPage}
+        handle={{
+          tracking: {
+            pageName: TASK,
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: 'task',
           },
         }}
       />
@@ -134,6 +266,7 @@ export default (
           },
         }}
       />
+
       <Route
         id={ADD_DOMAIN}
         path={urls.addDomain}

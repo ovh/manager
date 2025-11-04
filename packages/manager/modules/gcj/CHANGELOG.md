@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-gcj-module@0.2.15...@ovh-ux/manager-gcj-module@0.2.16) (2025-11-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-gcj-module
+
+
+
+
+
+## [0.2.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-gcj-module@0.2.14...@ovh-ux/manager-gcj-module@0.2.15) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-gcj-module
+
+
+
+
+
+## [0.2.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-gcj-module@0.2.13...@ovh-ux/manager-gcj-module@0.2.14) (2025-10-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-gcj-module
+
+
+
+
+
+## [0.2.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-gcj-module@0.2.12...@ovh-ux/manager-gcj-module@0.2.13) (2025-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-gcj-module
+
+
+
+
+
 ## [0.2.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-gcj-module@0.2.11...@ovh-ux/manager-gcj-module@0.2.12) (2025-10-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-gcj-module

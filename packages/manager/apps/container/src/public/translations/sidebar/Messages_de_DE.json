@@ -16,7 +16,6 @@
   "sidebar_licences": "Lizenzen",
   "sidebar_hpc": "Hosted Private Cloud",
   "sidebar_vmware": "VMware",
-  "sidebar_anthos": "Anthos",
   "sidebar_nutanix": "Nutanix",
   "sidebar_cluster_all": "Alle meine Cluster",
   "sidebar_platforms": "Plattformen",
@@ -143,7 +142,6 @@
   "sidebar_project_all": "Alle Projekte",
   "sidebar_ip_short": "IP",
   "sidebar_dedicated_all": "Alle meine Server",
-  "sidebar_anthos_all": "Meine Deployments",
   "sidebar_platforms_services": "Plattformen und Dienstleistungen",
   "sidebar_nas_cdn": "NAS und CDN",
   "sidebar_domain_batch": "Massenaktionen",
@@ -165,7 +163,7 @@
   "sidebar_pci_data_integration": "Datenintegration",
   "sidebar_pci_analytics_databases": "Datenbanken",
   "sidebar_pci_analytics_data_streaming": "Datenstreaming",
-  "sidebar_pci_analytics_data_analysis": "Datenanalysen",
+  "sidebar_pci_analytics_data_analysis": "Analytics",
   "sidebar_network_security": "Network Security Dashboard",
   "sidebar_nasha_cdn": "HA-NAS und CDN",
   "sidebar_vrack_services": "vRack Services",
@@ -227,5 +225,6 @@
   "sidebar_alldom_list": "Meine Alldoms",
   "sidebar_security_identity_operations_iam_tag-management": "Tag-Management",
   "sidebar_pci_quantum_qpu": "QPUs",
-  "sidebar_security_identity_operations_secret_manager": "Secret Manager"
+  "sidebar_security_identity_operations_secret_manager": "Secret Manager",
+  "sidebar_web_hosting_managed_wordpress": "Managed Hosting for WordPress"
 }

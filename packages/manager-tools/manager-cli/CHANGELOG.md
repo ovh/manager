@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.13.2...@ovh-ux/manager-cli@0.14.0) (2025-11-02)
+
+
+### Features
+
+* **muk:** static quality improvement ([2ca8694](https://github.com/ovh/manager/commit/2ca8694747cce2ea2901b6d04286ac07a65be03d))
+
+
+
+
+
+## [0.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.13.1...@ovh-ux/manager-cli@0.13.2) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-cli
+
+
+
+
+
 ## [0.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cli@0.13.0...@ovh-ux/manager-cli@0.13.1) (2025-10-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-cli

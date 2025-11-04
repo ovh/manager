@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.3.16...@ovh-ux/manager-web-domains-app@1.3.17) (2025-11-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-domains-app
+
+
+
+
+
+## [1.3.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.3.15...@ovh-ux/manager-web-domains-app@1.3.16) (2025-11-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-domains-app
+
+
+
+
+
+## [1.3.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.3.14...@ovh-ux/manager-web-domains-app@1.3.15) (2025-10-30)
+
+
+### Bug Fixes
+
+* **web-domains:** remove navigate (-1) ([#19724](https://github.com/ovh/manager/issues/19724)) ([7f68727](https://github.com/ovh/manager/commit/7f687279ceb5620adc43a30a3ffe4727f9ee0ddf)), closes [#DCE-2](https://github.com/ovh/manager/issues/DCE-2)
+
+
+
+
+
+## [1.3.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.3.13...@ovh-ux/manager-web-domains-app@1.3.14) (2025-10-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-domains-app
+
+
+
+
+
+## [1.3.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.3.12...@ovh-ux/manager-web-domains-app@1.3.13) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-domains-app
+
+
+
+
+
+## [1.3.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.3.11...@ovh-ux/manager-web-domains-app@1.3.12) (2025-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-domains-app
+
+
+
+
+
+## [1.3.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.3.10...@ovh-ux/manager-web-domains-app@1.3.11) (2025-10-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-domains-app
+
+
+
+
+
+## [1.3.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.3.9...@ovh-ux/manager-web-domains-app@1.3.10) (2025-10-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-domains-app
+
+
+
+
+
 ## [1.3.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.3.8...@ovh-ux/manager-web-domains-app@1.3.9) (2025-10-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-domains-app

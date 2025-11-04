@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.11.11...@ovh-ux/manager-email-domain@1.11.12) (2025-11-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4449] ([19facba](https://github.com/ovh/manager/commit/19facba088a900bb28c9377a79351a518a862af7))
+
+
+
+
+
+## [1.11.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.11.10...@ovh-ux/manager-email-domain@1.11.11) (2025-10-30)
+
+
+### Bug Fixes
+
+* **web.mxplan:** display a warning message in order if select idn domain ([639f617](https://github.com/ovh/manager/commit/639f61732f2b573aacbeaea259ebce811f0e33e9)), closes [#PRDCOL-97](https://github.com/ovh/manager/issues/PRDCOL-97)
+
+
+
+
+
+## [1.11.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.11.9...@ovh-ux/manager-email-domain@1.11.10) (2025-10-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4424] ([1c3c2c8](https://github.com/ovh/manager/commit/1c3c2c8a49b9402b59829ec64f0c7b3592c027c1))
+
+
+
+
+
 ## [1.11.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.11.8...@ovh-ux/manager-email-domain@1.11.9) (2025-10-14)
 
 
