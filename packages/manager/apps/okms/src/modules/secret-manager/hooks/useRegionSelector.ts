@@ -9,14 +9,13 @@ import { useLocations } from '@/common/data/hooks/useLocation';
 import { findLocationByRegion } from '@/modules/secret-manager/utils/location';
 
 export type RegionOption = {
-  label: string;
   region: string;
-  geographyLabel: string;
+  geographyCode: string;
   href: string;
 };
 
 export type GeographyGroup = {
-  geographyLabel: string;
+  geographyCode: string;
   regions: RegionOption[];
 };
 
@@ -46,9 +45,8 @@ const buildRegionOptions = (
       const regionOkmsList = okmsList.filter((okms) => okms.region === region);
 
       return {
-        label: location.location,
         region: location.name,
-        geographyLabel: location.geographyName,
+        geographyCode: location.geographyCode,
         href:
           // If only one okms is available, redirect to the secrets listing page
           regionOkmsList.length === 1
@@ -67,14 +65,14 @@ const groupRegionOptions = (
 ): GeographyGroup[] => {
   return regionOptions.reduce<GeographyGroup[]>((acc, regionOption) => {
     const existingRegion = acc.find(
-      (group) => group.geographyLabel === regionOption.geographyLabel,
+      (group) => group.geographyCode === regionOption.geographyCode,
     );
 
     if (existingRegion) {
       existingRegion.regions.push(regionOption);
     } else {
       acc.push({
-        geographyLabel: regionOption.geographyLabel,
+        geographyCode: regionOption.geographyCode,
         regions: [regionOption],
       });
     }
