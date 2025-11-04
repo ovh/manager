@@ -6,7 +6,7 @@ import {
   TBuildDeleteTenantUrlParams,
   buildDeleteTenantUrl,
   buildSearchQuery,
-} from './buildSearchQuery.utils';
+} from '../buildSearchQuery.utils';
 
 describe('buildSearchQuery test suite', () => {
   const id = 'testId';
