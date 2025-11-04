@@ -5,6 +5,11 @@ import {
   OdsComboboxItem,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { IpTypeEnum, PRODUCT_PATHS_AND_CATEGORIES } from '@/data/constants';
 import { ListingContext } from '@/pages/listing/listingContext';
 import { ComboboxServiceItem } from '@/components/ComboboxServiceItem/ComboboxServiceItem.component';
@@ -31,6 +36,7 @@ export const FilterService = ({ className }: { className?: string }) => {
   const { apiFilter, setApiFilter } = useContext(ListingContext);
   const [filterValueLabel, setFilterValueLabel] = React.useState('');
   const { serviceByCategory } = useGetProductServices(productParamList);
+  const { trackClick } = useOvhTracking();
 
   const categoryByTypeLabel = React.useMemo(
     () =>
@@ -49,12 +55,18 @@ export const FilterService = ({ className }: { className?: string }) => {
   );
 
   React.useEffect(() => {
-    if (apiFilter?.['routedTo.serviceName']) {
-      setFilterValueLabel(apiFilter['routedTo.serviceName']);
-    }
-    if (apiFilter?.type) {
-      setFilterValueLabel(t(getAllItemLabelKeyFromType(apiFilter.type)));
-    }
+    setFilterValueLabel(() => {
+      if (apiFilter?.['routedTo.serviceName'] === null && !apiFilter?.type) {
+        return '';
+      }
+      if (apiFilter?.['routedTo.serviceName']) {
+        return apiFilter['routedTo.serviceName'];
+      }
+      if (apiFilter?.type) {
+        return t(getAllItemLabelKeyFromType(apiFilter.type));
+      }
+      return '';
+    });
   }, [apiFilter]);
 
   return (
@@ -68,30 +80,39 @@ export const FilterService = ({ className }: { className?: string }) => {
       onOdsChange={(e) => {
         const { value } = e.detail;
 
+        trackClick({
+          actionType: 'action',
+          buttonType: ButtonType.button,
+          location: PageLocation.page,
+          actions: ['Service-search'],
+        });
+
         setFilterValueLabel(value);
 
         if (!value) {
-          return setApiFilter((prev) => ({
-            ...prev,
-            type: undefined,
-            'routedTo.serviceName': undefined,
-          }));
+          return setApiFilter((prev) => {
+            const newFilter = { ...prev };
+            delete newFilter.type;
+
+            if (newFilter['routedTo.serviceName'] !== null) {
+              delete newFilter['routedTo.serviceName'];
+            }
+
+            return newFilter;
+          });
         }
 
-        const newFilter = Object.keys(categoryByTypeLabel).includes(value)
-          ? {
-              type: categoryByTypeLabel[value],
-              'routedTo.serviceName': undefined as string,
-            }
-          : {
-              type: undefined,
-              'routedTo.serviceName': value,
-            };
         return setApiFilter((prev) => ({
           ...prev,
-          ...newFilter,
-          // Also reset IP filter when changing service filter
-          ip: undefined,
+          ...(Object.keys(categoryByTypeLabel).includes(value)
+            ? {
+                type: categoryByTypeLabel[value],
+                ip: undefined,
+              }
+            : {
+                'routedTo.serviceName': value,
+                ip: undefined,
+              }),
         }));
       }}
     >

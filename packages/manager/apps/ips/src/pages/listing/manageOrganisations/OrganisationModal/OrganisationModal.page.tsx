@@ -23,6 +23,11 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNotifications } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useGetMeModels } from '@/data/hooks/organisation/useGetMeModels';
 import { useGetSingleOrganisationDetail } from '@/data/hooks/organisation';
 import {
@@ -50,13 +55,11 @@ export default function OrganisationsModal() {
   const isEditMode =
     !!new URLSearchParams(location.search).get('mode') || false;
   const { addError, addSuccess, clearNotifications } = useNotifications();
-  let defaultValues = {};
-  if (isEditMode) {
-    const { orgDetail } = useGetSingleOrganisationDetail({
-      organisationId,
-    });
-    defaultValues = { ...orgDetail };
-  }
+  const { orgDetail } = useGetSingleOrganisationDetail({
+    organisationId,
+    enabled: isEditMode,
+  });
+  const { trackClick } = useOvhTracking();
 
   const {
     control,
@@ -66,7 +69,7 @@ export default function OrganisationsModal() {
     setError,
     clearErrors,
   } = useForm<OrgDetails>({
-    defaultValues,
+    defaultValues: { ...orgDetail },
   });
 
   const selectedCountry = watch('country');
@@ -81,6 +84,16 @@ export default function OrganisationsModal() {
 
   const cancel = () => {
     navigate('..');
+    trackClick({
+      actionType: 'exit',
+      buttonType: ButtonType.button,
+      location: PageLocation.popup,
+      actions: [
+        isEditMode
+          ? t('manageOrganisationsEditOrgTitle')
+          : t('manageOrganisationsAddOrgTitle'),
+      ],
+    });
   };
 
   const { mutate: postManageOrganisation, isPending: isSending } = useMutation({
@@ -113,10 +126,6 @@ export default function OrganisationsModal() {
     },
   });
 
-  const onSubmit = (data: OrgDetails) => {
-    postManageOrganisation(data);
-  };
-
   return (
     <OdsModal
       class="ods-manage-org-modal"
@@ -129,7 +138,22 @@ export default function OrganisationsModal() {
           ? t('manageOrganisationsEditOrgTitle')
           : t('manageOrganisationsAddOrgTitle')}
       </OdsText>
-      <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="flex flex-col gap-2"
+        onSubmit={handleSubmit((data) => {
+          trackClick({
+            actionType: 'action',
+            buttonType: ButtonType.button,
+            location: PageLocation.popup,
+            actions: [
+              isEditMode
+                ? 'manage-organisation-edit-confirm'
+                : 'manage-organisation-add-confirm',
+            ],
+          });
+          postManageOrganisation(data);
+        })}
+      >
         {/* ip organisation selection */}
         <div className="mt-8">
           <Controller

@@ -34,7 +34,7 @@ export const Routes: RouteObject[] = [
             ),
             handle: {
               tracking: {
-                pageName: 'ips',
+                pageName: 'network::ip',
                 pageType: PageType.listing,
               },
             },

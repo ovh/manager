@@ -8,6 +8,7 @@ import {
   screen,
 } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { ListingContext } from '@/pages/listing/listingContext';
 import { QuickFilter } from './FilterQuick';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
@@ -17,17 +18,38 @@ const queryClient = new QueryClient();
 /** MOCKS */
 const setApiFilter = vi.fn();
 
+const trackClickMock = vi.fn();
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+  return {
+    ...original,
+    useOvhTracking: () => ({ trackClick: trackClickMock }),
+  };
+});
+
 /** RENDER */
 const renderComponent = () => {
-  return render(
+  const element = (
     <QueryClientProvider client={queryClient}>
       <ListingContext.Provider
         value={{ ...listingContextDefaultParams, setApiFilter }}
       >
         <QuickFilter />
       </ListingContext.Provider>
-    </QueryClientProvider>,
+    </QueryClientProvider>
   );
+
+  const router = createMemoryRouter(
+    [
+      {
+        path: '/',
+        element,
+      },
+    ],
+    { initialEntries: ['/'] },
+  );
+
+  return render(<RouterProvider router={router} />);
 };
 
 describe('QuickFilter Component', () => {
