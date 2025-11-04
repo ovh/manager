@@ -2,25 +2,33 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { Suspense, useMemo, useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Drawer } from '@ovh-ux/manager-react-components';
+
 import {
   OdsInput,
   OdsFormField,
   OdsMessage,
+  OdsButton,
 } from '@ovhcloud/ods-components/react';
+import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import { useUpdateVcdNetworkAcl } from '@ovh-ux/manager-module-vcd-api';
 import {
   normalizeToCIDR,
   hasExistingIpOrCidrConflict,
 } from '@/utils/Ipv4CIDRUtilities';
+import { useCurrentIp } from '@/hooks/currentIp/useCurrentIp';
+
 import { useMessageContext } from '@/context/Message.context';
 import { NETWORK_ACL_SCHEMA } from '@/schemas/form.schema';
 import { NetworkAclFormData } from '@/types/form.type';
 import { useNetworkAclContext } from '../NetworkAcl.context';
 
 import { subRoutes } from '@/routes/routes.constant';
+import { CIDR_ANYWHERE } from './updateNetworkAcl.constants';
+import TEST_IDS from '@/utils/testIds.constants';
 
 export default function AddEditNetworkAcl() {
   const { t } = useTranslation('networkAcl');
@@ -43,6 +51,8 @@ export default function AddEditNetworkAcl() {
   const { addSuccess } = useMessageContext();
 
   const { pathname, search } = useLocation();
+
+  const { retrieveCurrentIp, isLoading: isLoadingCurrentIp } = useCurrentIp();
 
   const searchParams = new URLSearchParams(search);
   const currentSubRoute = pathname
@@ -92,6 +102,7 @@ export default function AddEditNetworkAcl() {
     handleSubmit,
     formState: { errors, isValid },
     watch,
+    setValue,
   } = useForm<NetworkAclFormData>({
     resolver: zodResolver(schema),
     mode: 'onTouched',
@@ -137,6 +148,17 @@ export default function AddEditNetworkAcl() {
     }
   };
 
+  const handleFillWithCurrentIp = async () => {
+    const ip = await retrieveCurrentIp();
+    if (ip) {
+      setValue('network', ip, { shouldValidate: true });
+    }
+  };
+
+  const handleFillWithFromAnywhere = () => {
+    setValue('network', CIDR_ANYWHERE, { shouldValidate: true });
+  };
+
   return (
     <Suspense>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -154,6 +176,7 @@ export default function AddEditNetworkAcl() {
           onSecondaryButtonClick={closeModal}
           isPrimaryButtonLoading={isUpdatePending}
           isPrimaryButtonDisabled={isUpdatePending || !isValid}
+          isLoading={isLoadingCurrentIp}
         >
           <div className="w-full max-w-md space-y-3">
             {updateError && (
@@ -167,6 +190,24 @@ export default function AddEditNetworkAcl() {
                     })}
               </OdsMessage>
             )}
+
+            <div className="flex justify-center gap-4 mt-4">
+              <OdsButton
+                size={ODS_BUTTON_SIZE.sm}
+                variant="outline"
+                label={t('managed_vcd_network_acl_add_current_ip')}
+                onClick={handleFillWithCurrentIp}
+                isDisabled={isLoadingCurrentIp}
+                data-testid={TEST_IDS.networkAclAddCurrentIpAction}
+              />
+
+              <OdsButton
+                size={ODS_BUTTON_SIZE.sm}
+                label={t('managed_vcd_network_acl_allow_access_from_anywhere')}
+                onClick={handleFillWithFromAnywhere}
+                data-testid={TEST_IDS.networkAclfromAnywhereIpAction}
+              />
+            </div>
             {/* Network */}
             <OdsFormField
               error={

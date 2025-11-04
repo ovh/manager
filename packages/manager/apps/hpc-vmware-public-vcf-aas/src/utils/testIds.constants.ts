@@ -18,6 +18,8 @@ const TEST_IDS = {
   backupBadgeNone: 'backup-badge-none',
   vcdOrderCta: 'vcd-order-cta',
   networkAclCta: 'network-acl-cta',
+  networkAclAddCurrentIpAction: 'add-current-ip-button',
+  networkAclfromAnywhereIpAction: 'from-anywhere-ip-button',
 } as const;
 
 export default TEST_IDS;
