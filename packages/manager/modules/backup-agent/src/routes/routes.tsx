@@ -24,7 +24,7 @@ const DeleteTenantPage = React.lazy(
 );
 const VaultDeletePage = React.lazy(() => import('@/pages/vaults/delete/DeleteVault.page'));
 
-const VaultDashboardPage = React.lazy(() => import('@/pages/vaults/dashboard/Dashboard.page'));
+const VaultDashboardPage = React.lazy(() => import('@/pages/vaults/dashboard/VaultDashboard.page'));
 
 const VaultGeneralInformationPage = React.lazy(
   () => import('../pages/vaults/dashboard/general-information/GeneralInformation.page'),
