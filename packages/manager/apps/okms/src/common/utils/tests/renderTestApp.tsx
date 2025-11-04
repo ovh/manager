@@ -37,7 +37,6 @@ import {
   getSecretConfigReferenceMock,
   GetSecretConfigReferenceMockParams,
 } from '@secret-manager/mocks/secret-reference/secretReference.handler';
-import { getLocationsMock } from '@secret-manager/mocks/locations/locations.handler';
 import {
   getVersionMock,
   GetVersionMockParams,
@@ -83,6 +82,7 @@ import {
 } from '@key-management-service/mocks/reference/reference.handler';
 import { getIdentityUserIds } from '@key-management-service/mocks/identity/identityUserIds.handler';
 import { getIdentityUsers } from '@key-management-service/mocks/identity/identityUsers.handler';
+import { getLocationsMock } from '@/common/mocks/locations/locations.handler';
 import { initTestI18n } from './init.i18n';
 import { removeHandlersDelay } from './msw';
 import { TestApp } from './TestApp';

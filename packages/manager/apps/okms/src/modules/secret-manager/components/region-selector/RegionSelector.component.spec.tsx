@@ -10,7 +10,7 @@ import {
   LOCATION_EU_WEST_GRA,
   LOCATION_EU_WEST_LIM,
   LOCATION_CA_EAST_BHS,
-} from '@secret-manager/mocks/locations/locations.mock';
+} from '@/common/mocks/locations/locations.mock';
 import {
   getOdsButtonByLabel,
   getOdsButtonByIcon,
