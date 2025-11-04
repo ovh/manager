@@ -3,7 +3,11 @@ import React, { useContext } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { OdsButton, OdsPopover, OdsSpinner } from '@ovhcloud/ods-components/react';
+import {
+  OdsButton,
+  OdsPopover,
+  OdsSpinner,
+} from '@ovhcloud/ods-components/react';
 
 import { FilterCategories } from '@ovh-ux/manager-core-api';
 import {
@@ -28,6 +32,7 @@ import DataStreamSubscriptionsLink from '../../components/data-streams/DataStrea
 import { Service, Stream } from '../../data/types/dbaas/logs';
 import useLogTrackingActions from '../../hooks/useLogTrackingActions';
 import { LogsActionEnum } from '../../types/logsTracking';
+import { getLogStreamsQueryKey } from '../../data/hooks/useLogStream';
 
 const STREAM_LIST_COLUMN_ID = {
   title: 'title',
@@ -38,6 +43,8 @@ const STREAM_LIST_COLUMN_ID = {
   actions: 'actions',
 };
 
+const logStreamsQueryKey = getLogStreamsQueryKey()[0] as string;
+
 const DataStreamsDatagrid = ({ service }: { service: Service }) => {
   const queryClient = useQueryClient();
   const { t } = useTranslation('logStreams');
@@ -45,7 +52,9 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
     shell: { navigation },
   } = useContext(ShellContext);
   const { trackClick } = useOvhTracking();
-  const addDatastreamLogsAccess = useLogTrackingActions(LogsActionEnum.add_datastream_logs_access);
+  const addDatastreamLogsAccess = useLogTrackingActions(
+    LogsActionEnum.add_datastream_logs_access,
+  );
 
   const {
     flattenData,
@@ -58,7 +67,7 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
     filters,
   } = useResourcesIcebergV6<Stream>({
     route: `/dbaas/logs/${service.serviceName}/output/graylog/stream`,
-    queryKey: ['getLogStreams', service.serviceName],
+    queryKey: [logStreamsQueryKey, service.serviceName],
     disableCache: true,
   });
 
@@ -76,7 +85,7 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
         error={error}
         onRetry={() =>
           void queryClient.refetchQueries({
-            queryKey: ['getLogStreams', service.serviceName],
+            queryKey: [logStreamsQueryKey, service.serviceName],
           })
         }
       />
@@ -97,7 +106,9 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
     },
     {
       id: STREAM_LIST_COLUMN_ID.indexation,
-      cell: (stream) => <DataStreamIndexingStatus indexingEnabled={stream.indexingEnabled} />,
+      cell: (stream) => (
+        <DataStreamIndexingStatus indexingEnabled={stream.indexingEnabled} />
+      ),
       label: t('log_streams_colomn_indexation'),
       isSortable: false,
     },
@@ -147,7 +158,11 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
               actions: [addDatastreamLogsAccess],
             });
             navigation
-              .getURL('dedicated', `#/dbaas/logs/${service.serviceName}/streams/add`, {})
+              .getURL(
+                'dedicated',
+                `#/dbaas/logs/${service.serviceName}/streams/add`,
+                {},
+              )
               .then((url) => window.open(url as string, '_blank'));
           }}
           label={t('log_streams_add_stream')}
