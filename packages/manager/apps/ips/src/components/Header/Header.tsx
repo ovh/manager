@@ -4,6 +4,11 @@ import {
   GuideButton,
   GuideItem,
 } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { CHANGELOG_LINKS, useGuideUtils } from '@/utils';
 
 export type Header = {
@@ -14,17 +19,28 @@ export type Header = {
 
 export const useHeader = (title: string): Header => {
   const { guides } = useGuideUtils();
+  const { trackClick } = useOvhTracking();
 
   const guideItems: GuideItem[] = guides.map((guide, index) => ({
     id: index,
     href: guide.href,
     target: '_blank',
     label: guide.texts.title,
+    onClick: () => {
+      trackClick({
+        buttonType: ButtonType.link,
+        actionType: 'navigation',
+        location: PageLocation.page,
+        actions: [guide.texts.title],
+      });
+    },
   }));
 
   return {
     title,
-    changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+    changelogButton: (
+      <ChangelogButton chapters={['network::ip']} links={CHANGELOG_LINKS} />
+    ),
     headerButton: <GuideButton items={guideItems} />,
   };
 };

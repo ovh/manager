@@ -8,7 +8,11 @@ import {
 } from 'react-router-dom';
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
 import { BaseLayout, Notifications } from '@ovh-ux/manager-react-components';
-
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { subRoutes } from '@/routes/routes.constant';
 import { useHeader } from '@/components/Header/Header';
 
@@ -24,6 +28,7 @@ export default function Listing() {
   const location = useLocation();
   const header = useHeader(t('title'));
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
 
   const tabsList = [
     {
@@ -34,7 +39,7 @@ export default function Listing() {
       title: t('listingTabManageIpOrganisationsTitle'),
       to: useResolvedPath(subRoutes.manageOrganisations).pathname,
     },
-  ] as const;
+  ];
 
   return (
     <BaseLayout
@@ -48,7 +53,15 @@ export default function Listing() {
               isSelected={location.pathname === tab.to}
               className="flex items-center justify-center"
               title={tab.title}
-              onClick={() => navigate(tab.to)}
+              onClick={() => {
+                trackClick({
+                  actionType: 'navigation',
+                  buttonType: ButtonType.tab,
+                  location: PageLocation.page,
+                  actions: [tab.to],
+                });
+                navigate(tab.to);
+              }}
             >
               {tab.title}
             </OdsTab>

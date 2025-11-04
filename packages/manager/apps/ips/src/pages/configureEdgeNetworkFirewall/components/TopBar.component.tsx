@@ -15,6 +15,11 @@ import {
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { TRANSLATION_NAMESPACES } from '@/utils';
 import { IpEdgeFirewallStateEnum } from '@/data/api';
 import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
@@ -61,6 +66,7 @@ export const TopBar: React.FC = () => {
     ipMitigation,
     isLoading: isIpMitigationLoading,
   } = useGetIpMitigation({ ip: ipOnFirewall });
+  const { trackClick } = useOvhTracking();
 
   return (
     <div className="flex w-full flex-col sm:flex-row justify-between mb-2 gap-2">
@@ -138,6 +144,15 @@ export const TopBar: React.FC = () => {
             event.preventDefault();
             setTmpToggleState(!event?.currentTarget?.value);
             showEnableFirewallModal();
+            trackClick({
+              actionType: 'action',
+              location: PageLocation.page,
+              buttonType: ButtonType.button,
+              actions: [
+                'Enabled/Disabled Edge Network Firewall',
+                !event?.currentTarget?.value ? 'enable' : 'disable',
+              ],
+            });
           }}
         />
       </div>

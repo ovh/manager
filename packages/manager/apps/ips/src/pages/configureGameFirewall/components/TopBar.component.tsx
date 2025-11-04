@@ -13,6 +13,11 @@ import {
   ODS_ICON_NAME,
 } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { TRANSLATION_NAMESPACES } from '@/utils';
 import { IpGameFirewallStateEnum } from '@/data/api';
 import { GameFirewallContext } from '../gamefirewall.context';
@@ -35,6 +40,8 @@ export const TopBar: React.FC = () => {
     TRANSLATION_NAMESPACES.listing,
     TRANSLATION_NAMESPACES.error,
   ]);
+  const { trackClick } = useOvhTracking();
+
   return (
     <div className="flex w-full flex-col sm:flex-row justify-between mb-2 gap-2">
       <div className="flex items-center gap-2">
@@ -83,6 +90,15 @@ export const TopBar: React.FC = () => {
             event.preventDefault();
             setTmpToggleState(!event?.currentTarget?.value);
             showStrategyConfirmationModal();
+            trackClick({
+              location: PageLocation.page,
+              actionType: 'action',
+              buttonType: ButtonType.button,
+              actions: [
+                'Default deny policy',
+                !event?.currentTarget?.value ? 'enable' : 'disable',
+              ],
+            });
           }}
         />
       </div>

@@ -9,6 +9,11 @@ import {
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { Breadcrumb, BreadcrumbItem } from '@/components/Breadcrumb/Breadcrumb';
 import { useHeader } from '@/components/Header/Header';
 import { urls } from '@/routes/routes.constant';
@@ -37,6 +42,7 @@ export default function GameFirewallPage() {
   const [search] = useSearchParams();
   const navigate = useNavigate();
   const { links } = useGuideUtils();
+  const { trackClick } = useOvhTracking();
 
   const breadcrumbMapper = (_: BreadcrumbItem, index: number) =>
     index === 0
@@ -76,6 +82,14 @@ export default function GameFirewallPage() {
                   href: links.configureGameFirewall,
                   target: '_blank',
                   label: t('title'),
+                  onClick: () => {
+                    trackClick({
+                      actionType: 'navigation',
+                      buttonType: ButtonType.link,
+                      location: PageLocation.page,
+                      actions: [t('title')],
+                    });
+                  },
                 },
               ]}
             />

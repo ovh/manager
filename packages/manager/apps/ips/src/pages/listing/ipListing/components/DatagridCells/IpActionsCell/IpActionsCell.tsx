@@ -3,7 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import ipaddr from 'ipaddr.js';
 import { urlDynamicParts, urls } from '@/routes/routes.constant';
@@ -102,6 +107,7 @@ export const IpActionsCell = ({
   const navigate = useNavigate();
   const [search] = useSearchParams();
   const { t } = useTranslation(['listing', NAMESPACES?.ACTIONS]);
+  const { trackClick } = useOvhTracking();
 
   const serviceName = ipDetails?.routedTo?.serviceName;
 
@@ -408,7 +414,20 @@ export const IpActionsCell = ({
             )}?${search.toString()}`,
           ),
       },
-  ].filter(Boolean);
+  ]
+    .filter(Boolean)
+    .map((item) => ({
+      ...item,
+      onClick: () => {
+        trackClick({
+          location: PageLocation.datagrid,
+          actionType: 'navigation',
+          buttonType: ButtonType.button,
+          actions: [item.label],
+        });
+        item.onClick?.();
+      },
+    }));
 
   return (
     <ActionMenu

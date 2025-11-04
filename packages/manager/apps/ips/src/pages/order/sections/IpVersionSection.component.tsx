@@ -1,5 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { IpVersion } from '@/types';
 import { OrderSection } from '../../../components/OrderSection/OrderSection.component';
 import { useCatalogLowestPrice } from '@/data/hooks/catalog';
@@ -14,6 +19,7 @@ export const IpVersionSection: React.FC = () => {
     ipv6LowestPrice,
     isLoading,
   } = useCatalogLowestPrice();
+  const { trackClick } = useOvhTracking();
 
   return (
     <OrderSection
@@ -25,7 +31,15 @@ export const IpVersionSection: React.FC = () => {
           title={t('ipv4_card_title')}
           description={t('ipv4_card_description')}
           isSelected={ipVersion === IpVersion.ipv4}
-          onClick={() => setIpVersion(IpVersion.ipv4)}
+          onClick={() => {
+            trackClick({
+              actionType: 'action',
+              buttonType: ButtonType.button,
+              location: PageLocation.funnel,
+              actions: ['IPv4'],
+            });
+            setIpVersion(IpVersion.ipv4);
+          }}
           isLoading={isLoading}
           isStartingPrice
           price={ipv4LowestPrice}
@@ -35,7 +49,15 @@ export const IpVersionSection: React.FC = () => {
           title={t('ipv6_card_title')}
           description={t('ipv6_card_description')}
           isSelected={ipVersion === IpVersion.ipv6}
-          onClick={() => setIpVersion(IpVersion.ipv6)}
+          onClick={() => {
+            trackClick({
+              actionType: 'action',
+              buttonType: ButtonType.button,
+              location: PageLocation.funnel,
+              actions: ['IPv6'],
+            });
+            setIpVersion(IpVersion.ipv6);
+          }}
           isLoading={isLoading}
           price={ipv6LowestPrice}
         />

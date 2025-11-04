@@ -3,16 +3,22 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   BaseLayout,
   ErrorBanner,
+  GuideButton,
   Notifications,
 } from '@ovh-ux/manager-react-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { OdsLink, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { Trans, useTranslation } from 'react-i18next';
 import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { Breadcrumb, BreadcrumbItem } from '@/components/Breadcrumb/Breadcrumb';
 import { useHeader } from '@/components/Header/Header';
 import { urls } from '@/routes/routes.constant';
-import { TRANSLATION_NAMESPACES } from '@/utils';
+import { TRANSLATION_NAMESPACES, useGuideUtils } from '@/utils';
 import { RuleDatagrid } from './RuleDatagrid.component';
 import { EnableEdgeNetworkFirewallModal } from './EnableEdgeNetworkFirewallModal.component';
 import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
@@ -42,8 +48,10 @@ export default function EdgeNetworkFirewallPage() {
     TRANSLATION_NAMESPACES.error,
   ]);
   const [search] = useSearchParams();
+  const { links } = useGuideUtils();
   const header = useHeader(t('title'));
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
 
   const breadcrumbMapper = (_: BreadcrumbItem, index: number) =>
     index === 0
@@ -73,7 +81,30 @@ export default function EdgeNetworkFirewallPage() {
         })}
         onClickReturn={() => navigate(`${urls.listing}?${search.toString()}`)}
         breadcrumb={<Breadcrumb mapper={breadcrumbMapper} />}
-        header={{ ...header, changelogButton: null }}
+        header={{
+          ...header,
+          changelogButton: null,
+          headerButton: (
+            <GuideButton
+              items={[
+                {
+                  id: 0,
+                  href: links.configureEdgeNetworkFirewall,
+                  target: '_blank',
+                  label: t('title'),
+                  onClick: () => {
+                    trackClick({
+                      actionType: 'navigation',
+                      buttonType: ButtonType.link,
+                      location: PageLocation.page,
+                      actions: [t('title')],
+                    });
+                  },
+                },
+              ]}
+            />
+          ),
+        }}
         message={<Notifications />}
       >
         <OdsText className="block mb-3">{t('description')}</OdsText>

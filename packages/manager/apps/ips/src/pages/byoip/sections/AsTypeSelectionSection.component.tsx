@@ -1,5 +1,10 @@
 import React, { startTransition } from 'react';
 import { useTranslation } from 'react-i18next';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { OrderSection } from '@/components/OrderSection/OrderSection.component';
 import { OptionCard } from '@/components/OptionCard/OptionCard.component';
 import { AS_OPTIONS } from '../Byoip.utils';
@@ -9,6 +14,7 @@ import { AsOwnTypeSelectionSubSection } from './AsOwnTypeSelectionSubSection.com
 export const AsTypeSelectionSection: React.FC = () => {
   const { t } = useTranslation('byoip');
   const { asType, setAsType } = React.useContext(ByoipContext);
+  const { trackClick } = useOvhTracking();
 
   const handleAsTypeChange = (value: string) => {
     startTransition(() => {
@@ -28,7 +34,15 @@ export const AsTypeSelectionSection: React.FC = () => {
             hasRadioButton={true}
             title={t(`ip_byoip_as_type_${value}`)}
             isSelected={asType === value}
-            onClick={() => handleAsTypeChange(value)}
+            onClick={() => {
+              trackClick({
+                actionType: 'action',
+                buttonType: ButtonType.button,
+                location: PageLocation.funnel,
+                actions: [value],
+              });
+              handleAsTypeChange(value);
+            }}
           />
         ))}
       </div>

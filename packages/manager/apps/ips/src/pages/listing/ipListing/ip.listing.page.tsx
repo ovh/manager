@@ -10,7 +10,12 @@ import {
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import Loading from '@/components/Loading/Loading';
 import { urls } from '@/routes/routes.constant';
 import { IpDatagrid } from './components';
@@ -30,6 +35,7 @@ export default function IpListingPage() {
   const navigate = useNavigate();
   const [search] = useSearchParams();
   const { t } = useTranslation(TRANSLATION_NAMESPACES.listing);
+  const { trackClick } = useOvhTracking();
 
   return (
     <ListingContextProvider>
@@ -43,14 +49,30 @@ export default function IpListingPage() {
           variant={ODS_BUTTON_VARIANT.outline}
           icon={ODS_ICON_NAME.plus}
           size={ODS_BUTTON_SIZE.sm}
-          onClick={() => navigate(urls.order)}
+          onClick={() => {
+            trackClick({
+              location: PageLocation.page,
+              actionType: 'action',
+              buttonType: ButtonType.button,
+              actions: ['IP-order'],
+            });
+            navigate(urls.order);
+          }}
           label={t('orderIpsButtonLabel')}
         />
         <OdsButton
           variant={ODS_BUTTON_VARIANT.outline}
           icon={ODS_ICON_NAME.plus}
           size={ODS_BUTTON_SIZE.sm}
-          onClick={() => navigate(urls.byoip)}
+          onClick={() => {
+            trackClick({
+              location: PageLocation.page,
+              actionType: 'action',
+              buttonType: ButtonType.button,
+              actions: ['BYOIP-order'],
+            });
+            navigate(urls.byoip);
+          }}
           label={t('orderByoipButtonLabel')}
         />
       </div>
@@ -80,6 +102,12 @@ export default function IpListingPage() {
                   label: t('listingSettingsImportIpFromSys'),
                   isDisabled: environment.user.ovhSubsidiary === 'US',
                   onClick: () => {
+                    trackClick({
+                      location: PageLocation.page,
+                      actionType: 'action',
+                      buttonType: ButtonType.button,
+                      actions: ['Import-SYS-IPs'],
+                    });
                     navigate(
                       `${urls.listingImportIpFromSys}?${search.toString()}`,
                     );
@@ -91,9 +119,15 @@ export default function IpListingPage() {
               variant={ODS_BUTTON_VARIANT.outline}
               icon={ODS_ICON_NAME.download}
               size={ODS_BUTTON_SIZE.sm}
-              onClick={() =>
-                navigate(`${urls.listingExportIpToCsv}?${search.toString()}`)
-              }
+              onClick={() => {
+                trackClick({
+                  location: PageLocation.page,
+                  actionType: 'action',
+                  buttonType: ButtonType.button,
+                  actions: ['Export-to-CSV'],
+                });
+                navigate(`${urls.listingExportIpToCsv}?${search.toString()}`);
+              }}
               label=""
             />
           </div>
