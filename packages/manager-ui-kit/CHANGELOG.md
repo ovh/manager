@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.4.0...@ovh-ux/muk@0.4.1) (2025-11-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4447] ([5409346](https://github.com/ovh/manager/commit/54093464471a9b8c8e2183be7489fbf459dc099a))
+* **muk:** correct datagrid issues in header and row selection ([4c88a77](https://github.com/ovh/manager/commit/4c88a770d8a76ede9cf45f365156099193b0df47)), closes [#MANAGER-20160](https://github.com/ovh/manager/issues/MANAGER-20160)
+* **muk:** correct import of ods style ([f74689e](https://github.com/ovh/manager/commit/f74689e19e0bf0a3891b2de042a3e19eed6b12e0)), closes [#MANAGER-20160](https://github.com/ovh/manager/issues/MANAGER-20160)
+* **muk:** update datagrid mock and snapshot ([33eb0f3](https://github.com/ovh/manager/commit/33eb0f3b3c9cbbfaa43c4cfe9b8aa86a96ab5a91)), closes [#MANAGER-20160](https://github.com/ovh/manager/issues/MANAGER-20160)
+
+
+
+
+
 # [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.3.0...@ovh-ux/muk@0.4.0) (2025-11-02)
 
 
