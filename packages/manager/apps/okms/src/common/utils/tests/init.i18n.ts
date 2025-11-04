@@ -17,6 +17,7 @@ import serviceKeys from '../../../../public/translations/key-management-service/
 import credentials from '../../../../public/translations/key-management-service/credential/Messages_fr_FR.json';
 import terminate from '../../../../public/translations/key-management-service/terminate/Messages_fr_FR.json';
 import secretManager from '../../../../public/translations/secret-manager/Messages_fr_FR.json';
+import commonOkms from '../../../../public/translations/common/Messages_fr_FR.json';
 
 export const defaultLocale = 'fr_FR';
 export const defaultAvailableLocales = [defaultLocale];
@@ -52,6 +53,7 @@ function addTranslations() {
     .addResources(defaultLocale, NAMESPACES.ERROR, commonError)
     .addResources(defaultLocale, NAMESPACES.REGION, commonRegion)
     .addResources(defaultLocale, 'secret-manager', secretManager)
+    .addResources(defaultLocale, 'common', commonOkms)
     .use({
       type: 'postProcessor',
       name: 'normalize',
@@ -103,6 +105,7 @@ export const labels = {
   serviceKeys,
   credentials,
   terminate,
-  common: commonLabels,
   secretManager,
+  commonOkms,
+  common: commonLabels,
 };
