@@ -4,4 +4,6 @@ export type DashboardTabType = {
   to: string;
   trackingActions?: string[];
   pathMatchers?: RegExp[];
+  isActive: boolean;
+  isDefault?: boolean;
 };

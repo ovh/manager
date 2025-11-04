@@ -11,28 +11,7 @@ vi.mock('react-router-dom', () => ({
   useParams: () => ({ id: '123' }),
 }));
 
-// --- Mock routes constants ---
-vi.mock('@/routes/Routes.constants', () => {
-  const tabs: DashboardTabType[] = [
-    {
-      name: 'general-information',
-      title: 'dashboard:general-information-tile',
-      to: '/general-information-tile/:id',
-      pathMatchers: [/^\/general-information\/[^/]+$/],
-      trackingActions: ['click::general-information-tile-tab'],
-    },
-    {
-      name: 'help',
-      title: 'dashboard:help',
-      to: '/help',
-      pathMatchers: [/\/help$/],
-      trackingActions: ['click::help-tab'],
-    },
-  ];
-  return { DASHBOARD_NAV_TABS: tabs };
-});
-
-describe.skip('useDashboardTabs', () => {
+describe.skip('useTenantDashboardTabs', () => {
   it.skip('resolves the :id param in tab "to" field', () => {
     const { result } = renderHook(() => useDashboardTabs());
     const generalTab = result.current.find((t) => t.name === 'general-information');
