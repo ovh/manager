@@ -71,7 +71,10 @@ export const useWorkflows = (projectId: string) => {
         results
           .flatMap((result, i) =>
             result.data
-              ? result.data.map((workflow) => ({ ...workflow, region: filteredRegionNames[i] }))
+              ? result.data.map((workflow) => ({
+                  ...workflow,
+                  region: filteredRegionNames[i],
+                }))
               : null,
           )
           .filter((w) => !!w)
@@ -292,10 +295,13 @@ export const useAddWorkflow = ({
         await enableRegion({ projectId, region: distantRegion });
       }
 
-      return addWorkflow(projectId, instanceId.region, {
-        ...type,
-        instanceId: instanceId.id,
-        distantRegion,
+      return addWorkflow(projectId, instanceId.region, instanceId.id, {
+        name: type.name,
+        cron: type.cron,
+        rotation: type.rotation,
+        imageName: '',
+        distRegionName: distantRegion,
+        distImageName: null,
       });
     },
     onError,
