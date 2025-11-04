@@ -20,7 +20,7 @@ export const RegionSelector = () => {
     isError,
   } = useRegionSelector();
   const { t } = useTranslation(NAMESPACES.REGION);
-  const { translateRegionName } = useRegionName();
+  const { translateRegionName, translateGeographyName } = useRegionName();
   const popoverRef = useRef<HTMLOdsPopoverElement>(null);
 
   // Render nothing if there is an error
@@ -50,13 +50,13 @@ export const RegionSelector = () => {
         >
           <div className="flex flex-col gap-2 p-4">
             {geographyGroups.map((geographyGroup, index) => (
-              <Fragment key={geographyGroup.geographyLabel}>
+              <Fragment key={geographyGroup.geographyCode}>
                 <div className="flex flex-col gap-4">
                   <OdsText
                     preset="caption"
                     className="[&::part(text)]:text-[var(--ods-color-heading)]"
                   >
-                    {geographyGroup.geographyLabel}
+                    {translateGeographyName(geographyGroup.geographyCode)}
                   </OdsText>
                   {geographyGroup.regions.map((link) => (
                     <Link
