@@ -11,6 +11,7 @@ export default defineConfig({
         join(process.cwd(), 'src/modules/secret-manager'),
       ),
     },
+    dedupe: ['@tanstack/react-virtual'],
   },
   root: resolve(process.cwd()),
 });
