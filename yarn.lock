@@ -7396,16 +7396,7 @@
     "@ovh-ux/request-tagger" "^0.4.1"
     axios "^1.1.2"
 
-"@ovh-ux/manager-core-api@^0.16.0":
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.16.0.tgz#a59f178b52b96af26b60c8a20f7c734c0b140160"
-  integrity sha512-NPc3IiEuzddzcddsaa7HDCXSeX9FmFz/pdjDRKtmTuTS9lGcjH2bn2rAF0/n0mtXnbs3fiXO24YDsH+b/E1HKQ==
-  dependencies:
-    "@ovh-ux/manager-core-sso" "^0.3.2"
-    "@ovh-ux/request-tagger" "^0.4.1"
-    axios "^1.1.2"
-
-"@ovh-ux/manager-core-sso@^0.3.1", "@ovh-ux/manager-core-sso@^0.3.2":
+"@ovh-ux/manager-core-sso@^0.3.1":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-sso/-/manager-core-sso-0.3.3.tgz#138b5c1592c437c689ec4c523ddf0cc7aa26812e"
   integrity sha512-22M6BY5AkjzOFMATSg+EpoFXkxYKVbqI2hev7eD2EsfNRCnBINjXMWy9FDD0cXMuwkP7RwxbLuf8dAC4x+JZtA==
@@ -7696,10 +7687,19 @@
     tslib "2.6.3"
     vanillajs-datepicker "1.3.4"
 
-"@ovhcloud/ods-react@^19.0.2", "@ovhcloud/ods-react@^19.2.0", "@ovhcloud/ods-react@^19.2.1":
-  version "19.2.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-react/-/ods-react-19.2.1.tgz#babc8f579f4109b091f7fb208b49858ca49563b8"
-  integrity sha512-xk7u7B/EsxyMrnW1n13PcNNj93SBxKcOzQH8/RNJ3gQYJO+TYcG7w858xlry+KUi+hO2q8aYDcBjS5iD/4x4Eg==
+"@ovhcloud/ods-react@^19.0.1":
+  version "19.0.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-react/-/ods-react-19.0.1.tgz#9e96bbda80645e5cb1a85518ee6c1ad90a3f0b39"
+  integrity sha512-QBLD5leCyB2wMtznwtT2prpH9WjDua9s1OwPIpil/T1MhXSHA7XmCDg+GErv81jbQG/7FD71iozj21j9eGC1xQ==
+  dependencies:
+    "@ark-ui/react" "5.12.0"
+    classnames "2.5.1"
+    libphonenumber-js "1.12.8"
+
+"@ovhcloud/ods-react@^19.0.2":
+  version "19.2.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-react/-/ods-react-19.2.0.tgz#8f843ca5b4d571433cdaed505ed0ca3bee187bc2"
+  integrity sha512-bBTzYqUwG+ZXy30hXv1Zrizeznu6800hHp9QC2Lk8uaK0kF08jFCV9xLROCRFJcH2kOvSLEp09LIred7M27G6A==
   dependencies:
     "@ark-ui/react" "5.25.1"
     classnames "2.5.1"
@@ -7711,6 +7711,15 @@
   integrity sha512-VuXFN0TbEqxcvHKzFSZ0UZ3edOkx8Ek158oxXl741re5difT2ecquS6k9jSXplY8hNukP7M1CHxukbiKbXTEHw==
   dependencies:
     "@ark-ui/react" "5.12.0"
+    classnames "2.5.1"
+    libphonenumber-js "1.12.8"
+
+"@ovhcloud/ods-react@^19.2.0", "@ovhcloud/ods-react@^19.2.1":
+  version "19.2.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-react/-/ods-react-19.2.1.tgz#babc8f579f4109b091f7fb208b49858ca49563b8"
+  integrity sha512-xk7u7B/EsxyMrnW1n13PcNNj93SBxKcOzQH8/RNJ3gQYJO+TYcG7w858xlry+KUi+hO2q8aYDcBjS5iD/4x4Eg==
+  dependencies:
+    "@ark-ui/react" "5.25.1"
     classnames "2.5.1"
     libphonenumber-js "1.12.8"
 
@@ -7743,15 +7752,25 @@
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.2.tgz#a30da060530c4e7c2e95610ce49a858fc03cfa15"
   integrity sha512-RSn1FGXc5szaGn/Jz/Pu2ww85KKboaX3VgCFDmYMyv1EC6QNBIYoTItOBMT2Xkvmv2xsnFnCCphI0D/sXSjVGQ==
 
-"@ovhcloud/ods-themes@^19.0.2", "@ovhcloud/ods-themes@^19.2.0", "@ovhcloud/ods-themes@^19.2.1":
-  version "19.2.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-19.2.1.tgz#c30976d911207f5309f2a3daaab04aed50d7a7ff"
-  integrity sha512-zjtSoX2gaVMtpBVIGmg3HBNfjWeHRAHzTyTOxjeR47L+qo4iAj2pghL4riZpNvn9/YlVaIJT8GpO+Lw/IVAAnQ==
+"@ovhcloud/ods-themes@^19.0.1":
+  version "19.0.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-19.0.1.tgz#2d31d9eb97fc7a4f3c220354ef4d4d17bacb2b1a"
+  integrity sha512-OeVEwshdex36zZqFhVFix/kbb/4+ggRQXeMbAJwe17RrOVWC+YvuuHlgutSCbGZqi5gujdWv4c7lJ9qWUvqRvA==
+
+"@ovhcloud/ods-themes@^19.0.2":
+  version "19.2.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-19.2.0.tgz#8e2851579245907a4d0506bfd8cf9f68b66d4d22"
+  integrity sha512-X4n1o+RzAN35FlJpeE+HtNcLOqCZf26SSl6pzNbGw2Ig+wkozoPcl1YiJrMZJ0T/pR+OSYZZdLI3wjjKzQaqew==
 
 "@ovhcloud/ods-themes@^19.1.0":
   version "19.1.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-19.1.0.tgz#1dd59df4983fe1e368ad7f5b950fc57bbeca955f"
   integrity sha512-Wbz1iMvWQ6vcaXko1+cE3KSlTYiSN6r2qYMxNCCrqBlrw33RkVjDtrIyZKSCqcDrKLtLNIGJa044OrvrpMSbJA==
+
+"@ovhcloud/ods-themes@^19.2.0", "@ovhcloud/ods-themes@^19.2.1":
+  version "19.2.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-19.2.1.tgz#c30976d911207f5309f2a3daaab04aed50d7a7ff"
+  integrity sha512-zjtSoX2gaVMtpBVIGmg3HBNfjWeHRAHzTyTOxjeR47L+qo4iAj2pghL4riZpNvn9/YlVaIJT8GpO+Lw/IVAAnQ==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
@@ -10697,11 +10716,6 @@
   resolved "https://registry.yarnpkg.com/@tanstack/query-devtools/-/query-devtools-5.65.0.tgz#37da5e911543b4f6d98b9a04369eab0de6044ba1"
   integrity sha512-g5y7zc07U9D3esMdqUfTEVu9kMHoIaVBsD0+M3LPdAdD710RpTcLiNvJY1JkYXqkq9+NV+CQoemVNpQPBXVsJg==
 
-"@tanstack/query-devtools@5.72.2":
-  version "5.72.2"
-  resolved "https://registry.npmjs.org/@tanstack/query-devtools/-/query-devtools-5.72.2.tgz#35a8bc7951d31cfdbbed1f7774909a61c60f35ef"
-  integrity sha512-mMKnGb+iOhVBcj6jaerCFRpg8pACStdG8hmUBHPtToeZzs4ctjBUL1FajqpVn2WaMxnq8Wya+P3Q5tPFNM9jQw==
-
 "@tanstack/query-devtools@5.84.0":
   version "5.84.0"
   resolved "https://registry.yarnpkg.com/@tanstack/query-devtools/-/query-devtools-5.84.0.tgz#dabed4f4abf405f0e320758ed7bc895a7687d9bb"
@@ -10727,13 +10741,6 @@
   integrity sha512-mi5ef8dvsS48GsG6/8M60O2EgrzPK1kNPngOcHBTlIUrB5dGkxP9fuHf05GQRxtSp5W5GlyeUpzOmtkKNpf9dQ==
   dependencies:
     "@tanstack/query-devtools" "5.51.16"
-
-"@tanstack/react-query-devtools@^5.69.0":
-  version "5.72.2"
-  resolved "https://registry.npmjs.org/@tanstack/react-query-devtools/-/react-query-devtools-5.72.2.tgz#e84bd3ccfd3e21cb9b86d83ace13469e612ffde3"
-  integrity sha512-n53qr9JdHCJTCUba6OvMhwiV2CcsckngOswKEE7nM5pQBa/fW9c43qw8omw1RPT2s+aC7MuwS8fHsWT8g+j6IQ==
-  dependencies:
-    "@tanstack/query-devtools" "5.72.2"
 
 "@tanstack/react-query-devtools@^5.81.2":
   version "5.85.5"

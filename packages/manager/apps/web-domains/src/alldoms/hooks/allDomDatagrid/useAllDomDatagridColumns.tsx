@@ -36,7 +36,7 @@ export const useAllDomDatagridColumns = () => {
         <DatagridColumnSkeleton serviceId={props.serviceId}>
           <DatagridColumnRenewMode
             renewMode={props.renewMode}
-            lifecyclePendingActions={props.lifecyclePendingActions}
+            pendingActions={props.pendingActions}
           />
         </DatagridColumnSkeleton>
       ),
@@ -128,7 +128,7 @@ export const useAllDomDatagridColumns = () => {
           id={`${props.currentState.name}-${ActionEnum.All}`}
           serviceName={props.currentState.name}
           terminateUrl={TERMINATE_URL(props.currentState.name)}
-          lifecyclePendingActions={props.lifecyclePendingActions}
+          pendingActions={props.pendingActions}
           whichAction={ActionEnum.All}
           cancelTerminateUrl={CANCEL_TERMINATE_URL(props.currentState.name)}
         />
