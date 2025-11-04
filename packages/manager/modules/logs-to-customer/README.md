@@ -64,29 +64,7 @@ export default function LogsPage() {
 }
 ```
 
-### configure your µapp routes (deprecated - route objects)
-
-To allow the module to handle all logs-related routes, configure your routes as follows:
-
-```tsx
-// Import the module routes
-import { logsRoutes } from '@ovh-ux/logs-to-customer';
-//...
-
-export default [
-  // ...
-  {
-    // Add the `*` to let React Router know that all sub-routes will be handled by the children config
-    path: `path/to/product/log/page/*`,
-    ...lazyRouteConfig(() => import('@/pages/dashboard/logs/Logs.page')),
-    // Use the module routes here
-    children: [...logsRoutes],
-  },
-  // ...
-];
-```
-
-### configure your µapp routes (recommended - route components)
+### configure your µapp routes
 
 To allow the module to handle all logs-related routes, configure your routes as follows:
 

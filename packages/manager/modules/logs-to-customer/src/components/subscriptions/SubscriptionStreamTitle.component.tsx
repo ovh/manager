@@ -18,7 +18,7 @@ const SubscriptionStreamTitle = ({
 }: SubscriptionStreamItemProps) => {
   const { t } = useTranslation('logStream');
   const queryClient = useQueryClient();
-  const { data, isLoading, isPending, error } = useLogStream(
+  const { data: stream, isLoading, isPending, error } = useLogStream(
     subscription.serviceName,
     subscription.streamId,
   );
@@ -49,7 +49,7 @@ const SubscriptionStreamTitle = ({
   return (
     <div className="flex flex-row justify-between ">
       <OdsText preset="heading-6">{t('log_stream_title_tile_label')}</OdsText>
-      <OdsText preset="paragraph">{data?.data.title}</OdsText>
+      <OdsText preset="paragraph">{stream?.title}</OdsText>
     </div>
   );
 };

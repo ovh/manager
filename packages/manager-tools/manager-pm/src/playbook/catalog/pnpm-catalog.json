@@ -1,5 +1,6 @@
 [
   "packages/manager/apps/web-office",
   "packages/manager/apps/zimbra",
-  "packages/manager/apps/pci-instances"
+  "packages/manager/apps/pci-instances",
+  "packages/manager/modules/logs-to-customer"
 ]

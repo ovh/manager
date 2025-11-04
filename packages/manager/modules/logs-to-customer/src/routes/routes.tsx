@@ -1,6 +1,6 @@
 import React, { ComponentType, lazy } from 'react';
 
-import { Route, RouteObject } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
@@ -33,96 +33,9 @@ export function lazyRouteConfig<
     },
   };
 }
-/**
- * Routes for the logs to customer module
- * @description This routes are used to display the logs to customer module in the dashboard
- * @returns {RouteObject[]} The routes for the logs to customer module
- * @deprecated Use the getLogsRoute function instead
- * @example
- * {
- *   path: '',
- *   ...lazyRouteConfig(importLogsPage),
- *   handle: {
- *     tracking: {
- *       pageName: 'logs_access',
- *       pageType: PageType.dashboard,
- *     },
- *   },
- *   children: [
- *     {
- *       path: `subscription/:subscriptionId/terminate`,
- *       ...lazyRouteConfig(importLogsTerminateSubscriptionPage),
- *     },
- *   ],
- * },
- */
-export const logsRoutes: RouteObject[] = [
-  {
-    path: '',
-    ...lazyRouteConfig(importLogsPage),
-    handle: {
-      tracking: {
-        pageName: 'logs_access',
-        pageType: PageType.dashboard,
-      },
-    },
-    children: [
-      {
-        path: `subscription/:subscriptionId/terminate`,
-        ...lazyRouteConfig(importLogsTerminateSubscriptionPage),
-      },
-    ],
-  },
-  {
-    path: 'streams',
-    ...lazyRouteConfig(importLogsDataStreamsPage),
-    handle: {
-      tracking: {
-        pageName: 'log_subscriptions',
-        pageType: PageType.dashboard,
-      },
-    },
-  },
-];
 
-/**
- * Route for the logs to customer module
- * @description This route is used to display the logs to customer module in the dashboard
- * @returns {JSX.Element} The logs route
- * @example
- * <Route
- *   path=""
- *   id="logs-tail"
- *   Component={logsPage}
- *   handle={{
- *     tracking: {
- *       pageName: 'logs_access',
- *       pageType: PageType.dashboard,
- *     },
- *   }}
- * >
- *   <Route
- *     path="subscription/:subscriptionId/terminate"
- *     id="logs-terminate-subscription"
- *     Component={logsTerminateSubscriptionPage}
- *   />
- *   <Route
- *     path="streams"
- *     id="data-streams"
- *     Component={logsDataStreamsPage}
- *     handle={{
- *       tracking: {
- *         pageName: 'log_subscriptions',
- *         pageType: PageType.dashboard,
- *       },
- *     }}
- *   />
- * </Route>
- * </>
- * );
- */
-export const getLogsRoute = () => (
-  <>
+export const LogsToCustomerRoutes = () => (
+  <Routes>
     <Route
       path=""
       id="logs-tail"
@@ -151,5 +64,5 @@ export const getLogsRoute = () => (
         },
       }}
     />
-  </>
+  </Routes>
 );

@@ -1,4 +1,3 @@
-import { getLogsRoute } from '@ovh-ux/logs-to-customer';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { lazy } from 'react';
@@ -28,7 +27,7 @@ export default (
     />
     <Route path={urls.dashboard} Component={DashboardPage} id="dashboard">
       <Route
-        path={urls.logs}
+        path={`${urls.logs}/*`}
         id="logs"
         Component={LogsPage}
         handle={{
@@ -37,9 +36,7 @@ export default (
             pageType: PageType.dashboard,
           },
         }}
-      >
-        {getLogsRoute()}
-      </Route>
+      />
     </Route>
   </Route>
 );
