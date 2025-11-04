@@ -1,6 +1,6 @@
-import React, { Suspense, startTransition, useMemo, useContext } from 'react';
+import React, { Suspense, startTransition, useContext } from 'react';
 
-import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -9,28 +9,20 @@ import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
 import { BaseLayout, Breadcrumb } from '@ovh-ux/manager-react-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
-import { urls } from '@/routes/Routes.constants';
-
-import { useDashboardTabs } from './_hooks/useDashboardTabs';
+import { useVaultDashboardTabs } from './_hooks/useVaultDashboardTabs';
+import { useBackupVaultDetails } from "@/data/hooks/vaults/getVaultDetails";
 import { BackupAgentContext } from "@/BackupAgent.context";
 
-export default function DashboardPage() {
+export default function VaultDashboardPage() {
   const { appName } = useContext(BackupAgentContext)
+  const { vaultId } = useParams<{ vaultId: string }>();
+  const { data: vaultResource } = useBackupVaultDetails({ vaultId: vaultId! })
   const { t } = useTranslation(['common', 'dashboard']);
   const navigate = useNavigate();
 
-  const location = useLocation();
   const { trackClick } = useOvhTracking();
 
-  const tabs = useDashboardTabs();
-
-  const activeTab = useMemo(
-    () =>
-      tabs.find((tab) => location.pathname === `${urls.dashboardVaults}/${tab.to}`) ??
-      tabs.find((tab) => tab.to && location.pathname.startsWith(`${urls.dashboardVaults}/${tab.to}`)) ??
-      tabs[0],
-    [tabs, location.pathname],
-  );
+  const tabs = useVaultDashboardTabs();
 
   const onNavigateBackClicked = () => {
     startTransition(() => navigate('..'));
@@ -38,7 +30,7 @@ export default function DashboardPage() {
 
   return (
     <BaseLayout
-      header={{ title: t('dashboard:title') }}
+      header={{ title: vaultResource?.currentState.name ?? vaultId }}
       backLinkLabel={t('dashboard:back')}
       onClickReturn={onNavigateBackClicked}
       breadcrumb={<Breadcrumb appName={appName} rootLabel={appName} />}
@@ -55,7 +47,7 @@ export default function DashboardPage() {
                 }
               }}
             >
-              <OdsTab isSelected={tab.name === activeTab?.name}>{t(tab.title)}</OdsTab>
+              <OdsTab isSelected={tab.isActive}>{t(tab.title)}</OdsTab>
             </NavLink>
           ))}
         </OdsTabs>
