@@ -54,17 +54,13 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
 
       const hasModule = !!website?.currentState?.module?.name;
 
-      const canAssociateGit = [GitStatus.DISABLED, GitStatus.INITIALERROR].includes(
-        vcsStatus ?? GitStatus.DISABLED,
-      );
+      const canAssociateGit = [GitStatus.DISABLED, GitStatus.INITIALERROR].includes(vcsStatus);
 
       const canConfigureGit = [GitStatus.CREATED, GitStatus.ERROR, GitStatus.DEPLOYING].includes(
-        vcsStatus ?? GitStatus.DISABLED,
+        vcsStatus,
       );
 
-      const canDeployGit = [GitStatus.CREATED, GitStatus.ERROR].includes(
-        vcsStatus ?? GitStatus.DISABLED,
-      );
+      const canDeployGit = [GitStatus.CREATED, GitStatus.ERROR].includes(vcsStatus);
 
       const canViewLastDeploymentGit = [
         GitStatus.CREATED,
@@ -72,7 +68,14 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
         GitStatus.INITIALERROR,
         GitStatus.DEPLOYING,
         GitStatus.DELETING,
-      ].includes(vcsStatus ?? GitStatus.DISABLED);
+      ].includes(vcsStatus);
+
+      const canDeleteGit = [
+        GitStatus.CREATED,
+        GitStatus.ERROR,
+        GitStatus.INITIALERROR,
+        GitStatus.DEPLOYING,
+      ].includes(vcsStatus);
 
       const siteActions: ActionMenuItem[] = [
         {
@@ -145,6 +148,17 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
             ),
           label: t('last_deployment_git'),
         }),
+        actionCondition(canDeleteGit, {
+          id: 10,
+          onClick: () =>
+            navigate(
+              urls.deleteGit
+                .replace(subRoutes.serviceName, serviceName)
+                .replace(subRoutes.path, path ?? ''),
+              { state: { serviceName, path } },
+            ),
+          label: t('delete_git'),
+        }),
       ].filter(Boolean);
 
       return siteActions;
@@ -154,7 +168,7 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
 
       const domainActions: ActionMenuItem[] = [
         {
-          id: 10,
+          id: 11,
           onClick: () =>
             navigate(
               urls.modifyDomain
@@ -164,7 +178,7 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
           label: t('modify_domain'),
         },
         {
-          id: 11,
+          id: 12,
           onClick: () =>
             navigate(
               urls.detacheDomain
@@ -174,7 +188,7 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
           label: t('detache_domain'),
         },
         actionCondition(canAccesscdn, {
-          id: 12,
+          id: 13,
           onClick: () =>
             navigate(
               urls.modifyCdn
@@ -184,7 +198,7 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
           label: t('modify_cdn'),
         }),
         actionCondition(canAccesscdn, {
-          id: 13,
+          id: 14,
           onClick: () =>
             navigate(
               urls.purgeCdn

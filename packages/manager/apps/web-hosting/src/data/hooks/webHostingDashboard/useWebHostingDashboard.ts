@@ -10,6 +10,7 @@ import {
   getServiceInfos,
   updateHostingService,
 } from '@/data/api/dashboard';
+import { getWebHostingWebsiteV6 } from '@/data/api/webHosting';
 import { TAttachedDomain, TCreateAttachedDomain } from '@/data/types/product/domain';
 import queryClient from '@/utils/queryClient';
 
@@ -18,6 +19,11 @@ export const useGetHostingService = (serviceName: string) =>
     queryKey: ['hosting', 'web', serviceName],
     queryFn: () => getHostingService(serviceName),
     enabled: Boolean(serviceName),
+  });
+export const useGetHostingServiceWebsite = (serviceName: string, path?: string) =>
+  useQuery<string[]>({
+    queryKey: ['hosting', 'web', serviceName, 'website', path],
+    queryFn: () => getWebHostingWebsiteV6(serviceName, path),
   });
 
 export const useGetDomainZone = () =>

@@ -3,6 +3,7 @@ import { act, renderHook, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
+  WebHostingWebsiteV6Mock,
   domainInformationMock,
   domainZoneMock,
   serviceInfosMock,
@@ -14,6 +15,7 @@ import {
   useGetDomainService,
   useGetDomainZone,
   useGetHostingService,
+  useGetHostingServiceWebsite,
   useGetServiceInfos,
   useUpdateHostingService,
 } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
@@ -100,6 +102,15 @@ describe('useWebHostingDashboard', () => {
       expect(result.current.isSuccess).toBe(true);
     });
     expect(result.current.data).toEqual(domainInformationMock);
+  });
+  it('useGetHostingServiceWebsite: should return webhosting website list ', async () => {
+    const { result } = renderHook(() => useGetHostingServiceWebsite('serviceName', 'path'), {
+      wrapper,
+    });
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBe(true);
+    });
+    expect(result.current.data).toEqual(WebHostingWebsiteV6Mock);
   });
 
   it('create attached domain', async () => {
