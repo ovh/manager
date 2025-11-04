@@ -1,6 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { getLogStream } from '../api/logStream';
-import { Service } from '../types/dbaas/logs';
+import { Service, Stream } from '../types/dbaas/logs';
+
+export const getLogStreamsQueryKey = (): string[] => ['getLogStreams'];
 
 /**
  * Use log Stream
@@ -9,15 +11,15 @@ export const getLogStreamQueryKey = (
   serviceName: Service['serviceName'],
   streamId: string,
 ) => [
-  'getLogStream',
+  getLogStreamsQueryKey()[0],
   `/dbaas/logs/${serviceName}/output/graylog/stream/${streamId}`,
 ];
 
 export const useLogStream = (
   serviceName: Service['serviceName'],
   streamId: string,
-) => {
-  return useQuery({
+): UseQueryResult<Stream> => {
+  return useQuery<Stream>({
     queryKey: getLogStreamQueryKey(serviceName, streamId),
     queryFn: () => getLogStream(serviceName, streamId),
   });

@@ -1,22 +1,26 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { getLogStreamUrl } from '../api/logStreamUrl';
-import { UrlTypeEnum } from '../types/dbaas/logs';
+import { Url, UrlTypeEnum } from '../types/dbaas/logs';
+import { getLogStreamsQueryKey } from './useLogStream';
 
 export const getLogStreamUrlQueryKey = (
   serviceName: string,
   streamId: string,
 ) => [
-  'getLogStreamUrl',
+  getLogStreamsQueryKey()[0],
   `/dbaas/logs/${serviceName}/output/graylog/stream/${streamId}/url`,
 ];
 
-export const useLogStreamUrl = (serviceName: string, streamId: string) => {
-  return useQuery({
+export const useLogStreamUrl = (
+  serviceName: string,
+  streamId: string,
+): UseQueryResult<{ streamURL: Url | undefined }> => {
+  return useQuery<{ streamURL: Url | undefined }>({
     queryKey: getLogStreamUrlQueryKey(serviceName, streamId),
     queryFn: async () => {
       const streamURL = await getLogStreamUrl(serviceName, streamId);
       return {
-        streamURL: streamURL.data.find(
+        streamURL: streamURL.find(
           ({ type }) => type === UrlTypeEnum.GRAYLOG_WEBUI,
         ),
       };
