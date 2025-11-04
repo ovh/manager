@@ -2,6 +2,7 @@ import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud/index';
 import {
   Badge,
   Button,
+  ButtonProps,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -13,6 +14,7 @@ import {
 import { Download, Loader2, MoreHorizontal, Trash } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { ReactElement } from 'react';
 import { octetConverter } from '@/lib/bytesHelper';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import FileIcon from '@/components/fileIcon/FileIcon.component';
@@ -68,7 +70,15 @@ const S3LZObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
   const onDeleteClicked = () =>
     navigate(`./delete-object?objectKey=${object.key}`);
 
-  const actions = [
+  const actions: {
+    id: string;
+    icon: ReactElement;
+    onClick: () => void;
+    disabled?: boolean;
+    label: string;
+    withSeparator?: boolean;
+    variant?: ButtonProps['variant'] & DropdownMenuItemProps['variant'];
+  }[] = [
     {
       id: 'download',
       icon: pendingGetPresignUrl ? (
@@ -147,7 +157,7 @@ const S3LZObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
               mode="ghost"
               size={'xs'}
               className="p-1"
-              variant={a.variant as DropdownMenuItemProps['variant']}
+              variant={a.variant}
               disabled={a.disabled}
             >
               {a.icon}
@@ -178,7 +188,7 @@ const S3LZObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
                   <DropdownMenuItem
                     key={a.id}
                     onClick={a.onClick}
-                    variant={a.variant as DropdownMenuItemProps['variant']}
+                    variant={a.variant}
                     disabled={a.disabled}
                   >
                     {a.label}

@@ -89,7 +89,7 @@ const Tags = () => {
       <div className="flex flex-wrap gap-2 mt-4">
         {configuredLabel.map((label) => (
           <Badge key={label.key} variant="primary">
-            <div className="flex flex-row gap-1 inline-flex items-center justify-center">
+            <div className="inline-flex flex-row gap-1 items-center justify-center">
               <span key={`span_${label.key}`}>
                 {`${label.key} = ${label.value}`}
               </span>

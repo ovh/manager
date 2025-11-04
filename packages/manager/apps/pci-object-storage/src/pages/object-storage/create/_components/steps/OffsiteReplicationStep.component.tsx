@@ -3,23 +3,22 @@ import {
   RadioGroup,
   RadioGroupItem,
   Label,
-  Popover,
-  PopoverTrigger,
-  Button,
-  PopoverContent,
-  CommandInput,
-  CommandList,
-  CommandEmpty,
-  CommandGroup,
-  CommandItem,
-  Command,
   Alert,
   AlertDescription,
+  Combobox,
+  ComboboxTrigger,
+  ComboboxValue,
+  ComboboxContent,
+  ComboboxInput,
+  ComboboxList,
+  ComboboxEmpty,
+  ComboboxGroup,
+  ComboboxItem,
 } from '@datatr-ux/uxlib';
 import React from 'react';
-import { ChevronsUpDownIcon } from 'lucide-react';
 import { Region } from '@datatr-ux/ovhcloud-types/cloud/index';
 import { useTranslation } from 'react-i18next';
+import { Info } from 'lucide-react';
 import { MappedRegions } from './RegionStep.component';
 import { useTranslatedMicroRegions } from '@/hooks/useTranslatedMicroRegions';
 import Flag from '@/components/flag/Flag.component';
@@ -42,7 +41,6 @@ const OffsiteReplicationStep = React.forwardRef<
   HTMLInputElement,
   OffsiteReplicationStepProps
 >(({ value, onChange, regions }, ref) => {
-  const [open, setOpen] = React.useState(false);
   const { t } = useTranslation('pci-object-storage/order-funnel');
   const {
     translateContinentRegion,
@@ -67,7 +65,6 @@ const OffsiteReplicationStep = React.forwardRef<
 
   const onSelectRegion = (newValue: string) => {
     const newRegion = mappedRegions.find((re) => re.label === newValue);
-    setOpen(false);
     if (newRegion.name !== value.region) {
       onChange({
         ...value,
@@ -91,7 +88,7 @@ const OffsiteReplicationStep = React.forwardRef<
           }
           onValueChange={(newValue: string) => {
             onChange({
-              ...value,
+              region: value.region ?? regions[0].name,
               enabled: newValue === ReplicationMode.Enabled,
             });
           }}
@@ -128,61 +125,54 @@ const OffsiteReplicationStep = React.forwardRef<
           >
             {t('offsiteReplicationRegionLabel')}
           </span>
-          <Popover open={open} onOpenChange={setOpen}>
-            <PopoverTrigger asChild>
-              <Button
+          <Combobox value={value.region} onValueChange={onSelectRegion}>
+            <ComboboxTrigger>
+              <ComboboxValue
                 aria-labelledby="offsite-replication-region-combobox"
-                role="combobox"
-                aria-expanded={open}
-                className="text-text border border-input bg-background h-10 w-full rounded-md px-3 py-2 text-sm justify-between hover:bg-background active:bg-background"
-              >
-                {value.region ? (
+                placeholder={t('offsiteReplicationRegionPlaceholder')}
+                value={
                   <div className="flex gap-2 items-center">
-                    <Flag flagName={selectedRegion.countryCode} />
-                    <span>{selectedRegion.label}</span>
+                    <Flag flagName={selectedRegion?.countryCode} />
+                    <span>{selectedRegion?.label}</span>
                   </div>
-                ) : (
-                  t('offsiteReplicationRegionPlaceholder')
-                )}
-                <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-[--radix-popover-trigger-width] max-h-[--radix-popover-content-available-height] p-0">
-              <Command>
-                <CommandInput
-                  placeholder={t('offsiteReplicationRegionSearchPlaceholder')}
-                />
-                <CommandList>
-                  <CommandEmpty>
-                    {t('offsiteReplicationRegionhSearchNoResult')}
-                  </CommandEmpty>
-                  {continents.map((continent) => (
-                    <CommandGroup key={continent} heading={continent}>
-                      {mappedRegions
-                        .filter((region) => region.continent === continent)
-                        .map((r) => (
-                          <CommandItem
-                            key={r.name}
-                            value={r.label}
-                            onSelect={onSelectRegion}
-                            className="flex gap-2"
-                          >
-                            <Flag flagName={r.countryCode} />
-                            {r.label}
-                          </CommandItem>
-                        ))}
-                    </CommandGroup>
-                  ))}
-                </CommandList>
-              </Command>
-            </PopoverContent>
-          </Popover>
+                }
+              />
+            </ComboboxTrigger>
+            <ComboboxContent>
+              <ComboboxInput
+                placeholder={t('offsiteReplicationRegionSearchPlaceholder')}
+              />
+              <ComboboxList>
+                <ComboboxEmpty>
+                  {t('offsiteReplicationRegionhSearchNoResult')}
+                </ComboboxEmpty>
+                {continents.map((continent) => (
+                  <ComboboxGroup key={continent} heading={continent}>
+                    {mappedRegions
+                      .filter((region) => region.continent === continent)
+                      .map((r) => (
+                        <ComboboxItem
+                          keywords={[r.label, r.name]}
+                          key={r.name}
+                          value={r.label}
+                          className="flex gap-2"
+                        >
+                          <Flag flagName={r.countryCode} />
+                          {r.label}
+                        </ComboboxItem>
+                      ))}
+                  </ComboboxGroup>
+                ))}
+              </ComboboxList>
+            </ComboboxContent>
+          </Combobox>
         </div>
       )}
 
       {value.enabled && (
         <Alert variant="information" className="rounded-md">
-          <AlertDescription>
+          <AlertDescription className="flex gap-2 items-center">
+            <Info className="size-4" />
             {t('offsiteReplicationVersioningAlert')}
           </AlertDescription>
         </Alert>

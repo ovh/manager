@@ -49,7 +49,7 @@ const Service = () => {
         catalog={pricingQuery.data}
       />
       <div className="pt-2">
-        <Card>
+        <Card className="w-full">
           <CardContent className="px-6 py-4 text-sm text-muted-foreground">
             {t('s3LegalMentions')}
           </CardContent>

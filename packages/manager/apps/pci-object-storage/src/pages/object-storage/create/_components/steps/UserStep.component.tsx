@@ -1,19 +1,18 @@
 import {
-  Popover,
-  PopoverTrigger,
   Button,
-  PopoverContent,
-  CommandInput,
-  CommandList,
-  CommandEmpty,
-  CommandGroup,
-  CommandItem,
-  Command,
   Dialog,
   DialogTrigger,
+  Combobox,
+  ComboboxTrigger,
+  ComboboxValue,
+  ComboboxContent,
+  ComboboxInput,
+  ComboboxList,
+  ComboboxEmpty,
+  ComboboxGroup,
+  ComboboxItem,
 } from '@datatr-ux/uxlib';
-import { ChevronsUpDownIcon } from 'lucide-react';
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import UserSecretKey from '@/pages/object-storage/users/show-secret/UserSecretKey.component';
@@ -30,7 +29,6 @@ interface UserStepProps {
 const UserStep = React.forwardRef<HTMLButtonElement, UserStepProps>(
   ({ value, onChange, users }, ref) => {
     const { t } = useTranslation('pci-object-storage/order-funnel');
-    const [open, setOpen] = useState(false);
     const currentUser = users.find((u) => u.id === value);
 
     const { projectId } = useParams();
@@ -39,55 +37,31 @@ const UserStep = React.forwardRef<HTMLButtonElement, UserStepProps>(
     });
     return (
       <div>
-        <Popover open={open} onOpenChange={setOpen}>
-          <PopoverTrigger asChild>
-            <Button
-              ref={ref}
-              role="combobox"
-              mode="outline"
-              aria-expanded={open}
-              className="w-full justify-between"
-            >
-              {value ? (
-                <div className="flex gap-2 items-center">
-                  <span>{currentUser.description}</span>
-                </div>
-              ) : (
-                t('userInputPlaceholder')
-              )}
-              <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-[--radix-popover-trigger-width] max-h-[--radix-popover-content-available-height] p-0">
-            <Command>
-              <CommandInput placeholder={t('userSearchPlaceholder')} />
-              <CommandList>
-                <CommandEmpty>{t('userSearchPlaceholder')}</CommandEmpty>
-                <CommandGroup>
-                  {users.map((u) => (
-                    <CommandItem
-                      key={u.username}
-                      value={`${u.username}-${u.description}`}
-                      onSelect={(newValue) => {
-                        const newUser = users.find(
-                          (us) =>
-                            `${us.username}-${us.description}` === newValue,
-                        );
-                        if (newUser.id !== value) {
-                          onChange?.(newUser.id);
-                        }
-                        setOpen(false);
-                      }}
-                      className="flex gap-2 justify-between"
-                    >
-                      <span>{u.description}</span>
-                    </CommandItem>
-                  ))}
-                </CommandGroup>
-              </CommandList>
-            </Command>
-          </PopoverContent>
-        </Popover>
+        <Combobox value={`${value}`} onValueChange={(val) => onChange?.(+val)}>
+          <ComboboxTrigger ref={ref}>
+            <ComboboxValue
+              placeholder={t('userInputPlaceholder')}
+              value={currentUser?.description}
+            />
+          </ComboboxTrigger>
+          <ComboboxContent>
+            <ComboboxInput placeholder={t('userSearchPlaceholder')} />
+            <ComboboxList>
+              <ComboboxEmpty>{t('userSearchPlaceholder')}</ComboboxEmpty>
+              <ComboboxGroup>
+                {users.map((u) => (
+                  <ComboboxItem
+                    key={u.id}
+                    value={`${u.id}`}
+                    keywords={[u.username, u.description]}
+                  >
+                    {u.description}
+                  </ComboboxItem>
+                ))}
+              </ComboboxGroup>
+            </ComboboxList>
+          </ComboboxContent>
+        </Combobox>
         <div className="mt-4 flex gap-2">
           <Dialog>
             <DialogTrigger asChild>

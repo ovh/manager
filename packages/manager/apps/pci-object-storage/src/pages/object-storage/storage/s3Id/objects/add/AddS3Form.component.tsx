@@ -104,7 +104,7 @@ const AddS3Form = ({ onSubmit, onError, initialValue }: AddS3FormProps) => {
             </FormItem>
           )}
         />
-        <DialogFooter className="flex justify-end">
+        <DialogFooter className="flex justify-end px-0">
           <DialogClose asChild>
             <Button type="button" mode="ghost">
               {t('fileUploaderButtonCancel')}
