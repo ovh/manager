@@ -15,6 +15,11 @@ import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useMemo } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+} from '@ovh-ux/manager-react-shell-client';
 import { useAuthorization } from '@/hooks';
 import { ContactMean } from '@/data/types/contact-mean.type';
 import ContactMeanStatusChip from '@/components/contact/contactMeanStatus/contactMeanStatus.component';
@@ -29,19 +34,40 @@ import {
   ContactMeanActions,
   displayActionMenuItem,
 } from './contacts.constants';
+import { useTracking } from '@/hooks/useTracking/useTracking';
+import { TrackingSubApps } from '@/tracking.constant';
 
 function ContactMeanActionMenu({ contactMean }: { contactMean: ContactMean }) {
   const { t } = useTranslation(['contacts', NAMESPACES.ACTIONS, 'common']);
   const { addSuccess, addError, clearNotifications } = useNotifications();
   const { data: accountUrn } = useAccountUrn();
+  const { trackPage, trackClick } = useTracking();
   const { mutate: disableContactMean } = useChangeContactMeanStatus({
     contactMeanId: contactMean.id,
-    onSuccess: () => {
+    onSuccess: ({ status }) => {
       clearNotifications();
-      addSuccess(t('deactivate_contact_success_message'));
+      const isActive = status === 'VALID';
+      const pageName = isActive
+        ? 'activate_contact_success'
+        : 'deactivate_contact_success';
+      const message = isActive
+        ? 'activate_contact_success_message'
+        : 'deactivate_contact_success_message';
+
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName,
+        subApp: TrackingSubApps.Contacts,
+      });
+      addSuccess(t(message));
     },
     onError: () => {
       clearNotifications();
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: 'deactivate_activate_contact_error',
+        subApp: TrackingSubApps.Contacts,
+      });
       addError(t('deactivate_contact_error_message'));
     },
   });
@@ -71,14 +97,32 @@ function ContactMeanActionMenu({ contactMean }: { contactMean: ContactMean }) {
         displayActionMenuItem(contactMean, ContactMeanActions.EDIT) && {
           id: 1,
           label: t('table_action_edit'),
-          onClick: () => navigate(urls.contact.editTo(contactMean.id)),
+          onClick: () => {
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: ['rename_contact'],
+              subApp: TrackingSubApps.Contacts,
+            });
+            navigate(urls.contact.editTo(contactMean.id));
+          },
           iamActions: ['account:apiovh:notification/contactMean/edit'],
           urn: accountUrn,
         },
         displayActionMenuItem(contactMean, ContactMeanActions.VALIDATE) && {
           id: 2,
           label: t('table_action_enter_verification_code'),
-          onClick: () => navigate(urls.contact.validateTo(contactMean.id)),
+          onClick: () => {
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: ['enter_validation_code'],
+              subApp: TrackingSubApps.Contacts,
+            });
+            navigate(urls.contact.validateTo(contactMean.id));
+          },
           iamActions: ['account:apiovh:notification/contactMean/validate'],
           urn: accountUrn,
         },
@@ -88,7 +132,16 @@ function ContactMeanActionMenu({ contactMean }: { contactMean: ContactMean }) {
         ) && {
           id: 3,
           label: t('table_action_resend_verification_code'),
-          onClick: () => restartValidationContactMean(),
+          onClick: () => {
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: ['resend_validation_code'],
+              subApp: TrackingSubApps.Contacts,
+            });
+            return restartValidationContactMean();
+          },
           iamActions: [
             'account:apiovh:notification/contactMean/restartValidation',
           ],
@@ -97,21 +150,48 @@ function ContactMeanActionMenu({ contactMean }: { contactMean: ContactMean }) {
         displayActionMenuItem(contactMean, ContactMeanActions.DEACTIVATE) && {
           id: 4,
           label: t('table_action_deactivate'),
-          onClick: () => disableContactMean('DISABLED'),
+          onClick: () => {
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: ['deactivate_contact'],
+              subApp: TrackingSubApps.Contacts,
+            });
+            disableContactMean('DISABLED');
+          },
           iamActions: ['account:apiovh:notification/contactMean/edit'],
           urn: accountUrn,
         },
         displayActionMenuItem(contactMean, ContactMeanActions.ACTIVATE) && {
           id: 5,
           label: t('activate', { ns: NAMESPACES.ACTIONS }),
-          onClick: () => disableContactMean('VALID'),
+          onClick: () => {
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: ['activate_contact'],
+              subApp: TrackingSubApps.Contacts,
+            });
+            disableContactMean('VALID');
+          },
           iamActions: ['account:apiovh:notification/contactMean/edit'],
           urn: accountUrn,
         },
         {
           id: 6,
           label: t('delete', { ns: NAMESPACES.ACTIONS }),
-          onClick: () => navigate(urls.contact.deleteTo(contactMean.id)),
+          onClick: () => {
+            trackClick({
+              location: PageLocation.page,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: ['delete_contact'],
+              subApp: TrackingSubApps.Contacts,
+            });
+            navigate(urls.contact.deleteTo(contactMean.id));
+          },
           iamActions: ['account:apiovh:notification/contactMean/delete'],
           urn: accountUrn,
         },
@@ -137,6 +217,7 @@ function ContactsPage() {
   const { isAuthorized, isLoading: isLoadingAuthorization } = useAuthorization([
     'account:apiovh:notification/contactMean/get',
   ]);
+  const { trackPage, trackClick } = useTracking();
 
   const columns: DatagridColumn<ContactMean>[] = [
     {
@@ -241,7 +322,16 @@ function ContactsPage() {
             label={t('add_contact_button')}
             aria-label={t('add_contact_button')}
             size="sm"
-            onClick={() => navigate(urls.contact.create)}
+            onClick={() => {
+              trackClick({
+                location: PageLocation.page,
+                buttonType: ButtonType.button,
+                actionType: 'action',
+                actions: ['add_contact'],
+                subApp: TrackingSubApps.Contacts,
+              });
+              navigate(urls.contact.create);
+            }}
           />
         }
         totalItems={flattenData?.length || 0}
