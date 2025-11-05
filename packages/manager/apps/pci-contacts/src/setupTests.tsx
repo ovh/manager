@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 
 import '@testing-library/jest-dom';
 import { fetch } from 'cross-fetch';
@@ -32,7 +32,9 @@ vi.mock('react-i18next', () => ({
       changeLanguage: () => new Promise(() => {}),
     },
   }),
-  Translation: vi.fn(({ children }) => children((key: string) => key)),
+  Translation: vi.fn(({ children }: PropsWithChildren) => (
+    <span>{children}</span>
+  )),
   Trans: ({ i18nKey }: { i18nKey: string }) => <span>{i18nKey}</span>,
 }));
 
@@ -144,12 +146,26 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
   const actual: typeof import('@ovhcloud/ods-components/react') = await importOriginal();
   return {
     ...actual,
-    OdsBadge: ({ color, label, ...props }: { color: string; label: string }) => (
+    OdsBadge: ({
+      color,
+      label,
+      ...props
+    }: {
+      color: string;
+      label: string;
+    }) => (
       <div data-testid="status_badge" data-color={color} {...props}>
         {label}
       </div>
     ),
-    OdsLink: ({ label, iconAlignment, ...props }: { label: string; iconAlignment?: string }) => (
+    OdsLink: ({
+      label,
+      iconAlignment,
+      ...props
+    }: {
+      label: string;
+      iconAlignment?: string;
+    }) => (
       <a data-testid="ods-link" {...props}>
         {label}
       </a>
@@ -192,7 +208,12 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
       color?: string;
       className?: string;
     }) => (
-      <div data-testid="ods-card" className={className} data-color={color} {...props}>
+      <div
+        data-testid="ods-card"
+        className={className}
+        data-color={color}
+        {...props}
+      >
         {children}
       </div>
     ),

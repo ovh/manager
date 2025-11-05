@@ -51,7 +51,6 @@ export default [
     },
   },
   vitestEslintConfig,
-  // TODO
   prettierEslintConfig,
   complexityJsxTsxConfig,
   complexityTsJsConfig,
@@ -71,6 +70,14 @@ export default [
 
       'max-lines-per-function': 'off',
       'max-lines': 'off',
+    },
+  },
+  {
+    files: ['src/setupTests.tsx'],
+    rules: {
+      'react/no-multi-comp': 'off',
+      'jsx-a11y/click-events-have-key-events': 'off',
+      'jsx-a11y/no-static-element-interactions': 'off',
     },
   },
 ];

@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { ApiError } from '@ovh-ux/manager-core-api';
 import * as mrc from '@ovh-ux/manager-react-components';
+import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
 
 import { useAddAccountAclToProject } from '@/data/hooks/useAcl';
 import { createWrapper, shellContext } from '@/wrapperRenders';
@@ -22,7 +24,7 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
       onSecondaryButtonClick,
       primaryLabel,
       secondaryLabel,
-    }: any) => (
+    }: mrc.ModalProps) => (
       <div data-testid="modal">
         <div>{children}</div>
         <button data-testid="primary" onClick={onPrimaryButtonClick}>
@@ -40,12 +42,19 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
   const actual: typeof import('@ovhcloud/ods-components/react') = await importOriginal();
   return {
     ...actual,
-    OdsFormField: ({ children, ...props }: any) => (
+    OdsFormField: ({ children, ...props }: PropsWithChildren) => (
       <div data-testid="ods-form-field" {...props}>
         {children}
       </div>
     ),
-    OdsInput: ({ value, onOdsChange, ...props }: any) => (
+    OdsInput: ({
+      value,
+      onOdsChange,
+      ...props
+    }: PropsWithChildren<{
+      value: string;
+      onOdsChange: (value: unknown) => unknown;
+    }>) => (
       <input
         data-testid="ods-input"
         value={value}
@@ -53,7 +62,15 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
         {...props}
       />
     ),
-    OdsSelect: ({ value, onOdsChange, children, ...props }: any) => (
+    OdsSelect: ({
+      value,
+      onOdsChange,
+      children,
+      ...props
+    }: PropsWithChildren<{
+      value: string;
+      onOdsChange: (value: unknown) => unknown;
+    }>) => (
       <select
         data-testid="ods-select"
         value={value}
@@ -93,20 +110,20 @@ const baseContextFR = {
     ...shellContext.environment,
     getUser: () => ({ ovhSubsidiary: 'FR', country: 'FR', nichandle: 'me' }),
   },
-} as any;
+} as ShellContextType;
 
 describe('AddPage', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mockUseParams.mockReturnValue({ projectId: 'p-1' } as any);
+    mockUseParams.mockReturnValue({ projectId: 'p-1' });
   });
 
   it('trims and normalize the NIC submitted to API call', () => {
     const addSpy = vi.fn();
-    mockUseAdd.mockReturnValue({
+    mockUseAdd.mockReturnValue(({
       addAccountAclToProject: addSpy,
       isPending: false,
-    } as any);
+    } as unknown) as ReturnType<typeof useAddAccountAclToProject>);
     const navigateSpy = vi.fn();
     mockUseNavigate.mockReturnValue(navigateSpy);
     const wrapper = createWrapper(baseContextFR);
@@ -125,10 +142,10 @@ describe('AddPage', () => {
 
   it('does not submit when pending', () => {
     const addSpy = vi.fn();
-    mockUseAdd.mockReturnValue({
+    mockUseAdd.mockReturnValue(({
       addAccountAclToProject: addSpy,
       isPending: true,
-    } as any);
+    } as unknown) as ReturnType<typeof useAddAccountAclToProject>);
     const wrapper = createWrapper(baseContextFR);
     render(<AddPage />, { wrapper });
 
@@ -146,13 +163,14 @@ describe('AddPage', () => {
       addSuccess: addSuccessSpy,
       addError: vi.fn(),
       addInfo: vi.fn(),
-    } as any);
+    });
     mockUseAdd.mockImplementation(
-      ({ onSuccess }: any) =>
-        ({
-          addAccountAclToProject: () => onSuccess(),
+      ({ onSuccess }) =>
+        (({
+          addAccountAclToProject: () =>
+            onSuccess({ accountId: 'fake-account', type: 'readOnly' }),
           isPending: false,
-        }) as any,
+        } as unknown) as ReturnType<typeof useAddAccountAclToProject>),
     );
     const navigateSpy = vi.fn();
     mockUseNavigate.mockReturnValue(navigateSpy);
@@ -174,13 +192,15 @@ describe('AddPage', () => {
       addSuccess: vi.fn(),
       addError: addErrorSpy,
       addInfo: vi.fn(),
-    } as any);
+    } as unknown);
+    const mockError = (null as unknown) as ApiError;
     mockUseAdd.mockImplementation(
-      ({ onError }: any) =>
-        ({
-          addAccountAclToProject: () => onError(),
+      ({ onError }) =>
+        (({
+          addAccountAclToProject: () =>
+            onError(mockError, { accountId: 'fake-account', type: 'readOnly' }),
           isPending: false,
-        }) as any,
+        } as unknown) as ReturnType<typeof useAddAccountAclToProject>),
     );
     const navigateSpy = vi.fn();
     mockUseNavigate.mockReturnValue(navigateSpy);
