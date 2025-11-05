@@ -111,6 +111,7 @@ describe('Actions Component', () => {
 
   const mockAddSuccess = vi.fn();
   const mockAddError = vi.fn();
+  const mockClearNotifications = vi.fn();
   const mockSetAsDefaultProject = vi.fn();
 
   beforeEach(() => {
@@ -118,6 +119,7 @@ describe('Actions Component', () => {
     vi.mocked(useNotifications).mockReturnValue({
       addSuccess: mockAddSuccess,
       addError: mockAddError,
+      clearNotifications: mockClearNotifications,
     });
     vi.mocked(useHref).mockImplementation((path) => path as string);
     vi.mocked(useSetAsDefaultProject).mockReturnValue({
