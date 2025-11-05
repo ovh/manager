@@ -19,7 +19,7 @@ export const VaultActionCell = (vaultResource: VaultResource) => {
   const buttonId = useId();
 
   const queryParams = buildSearchQuery({ vaultId: vaultResource.id });
-  const isDeleteDisable = !!vaultResource.currentState.vspc.length;
+  const isDeleteDisable = !!vaultResource.currentState.vspcTenants.length;
 
   return (
     <DataGridTextCell>
