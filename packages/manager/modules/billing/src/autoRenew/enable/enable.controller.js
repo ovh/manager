@@ -1,4 +1,4 @@
-import get from 'lodash/get';
+import { getBulkActionMessage } from '../helpers/bulk-action-message.helper';
 
 export default class {
   /* @ngInject */
@@ -33,13 +33,13 @@ export default class {
           this.$translate.instant('billing_autorenew_enable_success'),
         ),
       )
-      .catch((error) =>
-        this.goBack(
+      .catch((error) => {
+        return this.goBack(
           this.$translate.instant('billing_autorenew_enable_error', {
-            message: get(error, 'data.message'),
+            message: getBulkActionMessage(error?.messages),
           }),
           'danger',
-        ),
-      );
+        );
+      });
   }
 }
