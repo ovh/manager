@@ -1,4 +1,4 @@
-export const NAMESPACE_PREFIX = '@ovh-ux/backup-agent';
+export const NAMESPACE_PREFIX = 'module-backup-agent';
 export const VAULTS_NAMESPACE_PREFIX = `${NAMESPACE_PREFIX}/vaults`;
 export const SERVICES_NAMESPACE_PREFIX = `${NAMESPACE_PREFIX}/services`;
 
