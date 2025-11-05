@@ -8,7 +8,7 @@ import {
   TimepickerControl,
 } from '@ovhcloud/ods-react';
 
-import { formatTimeFromDate } from '../../utils/dateTimeUtils';
+import { formatTimeFromDate } from '@/utils/dateTimeUtils';
 
 interface DateTimePickerProps {
   id: string;

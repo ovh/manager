@@ -1,12 +1,13 @@
 import apiClient from '@ovh-ux/manager-core-api';
 
+import { fetchPrometheusData as requestMetricData } from '@/data/api/prometheusClient';
 import {
   ObservabilityMetricDataParams,
   ObservabilityMetricKindParams,
   ObservabilityMetricKindsParams,
-} from '../../types/ClientApi.type';
-import { Kind, MetricData } from '../../types/observability.type';
-import { PrometheusResult, fetchPrometheusData } from './prometheusClient';
+} from '@/types/ClientApi.type';
+import { Kind, MetricData } from '@/types/observability.type';
+import { buildChartData } from '@/utils/metrics.utils';
 
 export const getMetricKinds = async ({
   resourceName,
@@ -36,33 +37,13 @@ export async function fetchChartData<TData>(
 ): Promise<MetricData<TData>> {
   const { query, start, end, step } = payload;
 
-  const result: PrometheusResult = await fetchPrometheusData({
+  // TODO: replace with the real metric API call once available.
+  const metricResult = await requestMetricData({
     query,
     start,
     end,
     step,
   });
 
-  const series = result?.data?.result ?? [];
-
-  if (series.length === 0) return [];
-
-  const keys = ['value', 'value1', 'value2', 'value3'];
-  const seriesKeys = keys.slice(0, series.length);
-
-  const timestamps = series[0]?.values?.map(([ts]) => Number(ts) * 1000) ?? [];
-
-  const data: TData[] = timestamps.map((timestamp, index) => {
-    const entry: { [key: string]: number } = { timestamp };
-
-    series.forEach((serie, serieIndex) => {
-      const key = seriesKeys[serieIndex] as string;
-      const value = serie?.values?.[index]?.[1];
-      entry[key] = value !== undefined ? Number(value) : 0;
-    });
-
-    return entry as TData;
-  });
-
-  return Promise.resolve(data);
+  return buildChartData<TData>(metricResult);
 }
