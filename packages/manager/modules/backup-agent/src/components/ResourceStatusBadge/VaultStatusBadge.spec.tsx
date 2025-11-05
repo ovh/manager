@@ -33,7 +33,7 @@ vi.mock('@ovhcloud/ods-components/react', () => ({
 
 describe('ResourceStatusBadge', () => {
   it('renders translated status and maps READY to success color', () => {
-    render(<ResourceStatusBadge vaultStatus="READY" />);
+    render(<ResourceStatusBadge resourceStatus="READY" />);
 
     const badge = screen.getByTestId('badge');
     expect(badge).toHaveTextContent('ready');
@@ -41,7 +41,7 @@ describe('ResourceStatusBadge', () => {
   });
 
   it('maps ERROR to critical color', () => {
-    render(<ResourceStatusBadge vaultStatus="ERROR" />);
+    render(<ResourceStatusBadge resourceStatus="ERROR" />);
 
     const badge = screen.getByTestId('badge');
     expect(badge).toHaveTextContent('error');

@@ -13,7 +13,7 @@ export const TENANTS_MOCKS: Resource<Tenant>[] = [
       name: 'Tenant1',
       vaults: [
         {
-          azName: 'eu-west-par',
+          region: 'eu-west-par',
           id: '1999f2f7-5140-4000-t1v',
           name: 'Vault1',
           performance: 'HIGHPERF',
@@ -24,7 +24,7 @@ export const TENANTS_MOCKS: Resource<Tenant>[] = [
       ],
       vspcTenants: [
         {
-          azName: 'eu-west-par',
+          region: 'eu-west-par',
           id: '1999f2f7-5140-4000-t1vspc',
           name: 'VspcTenant1',
           status: 'CREATING',
@@ -57,7 +57,7 @@ export const TENANTS_MOCKS: Resource<Tenant>[] = [
       name: 'Tenant2',
       vaults: [
         {
-          azName: 'eu-west-rbx',
+          region: 'eu-west-rbx',
           id: '1999f2f7-5140-4000-t2v',
           name: 'Vault2',
           performance: 'HIGHPERF',
@@ -68,7 +68,7 @@ export const TENANTS_MOCKS: Resource<Tenant>[] = [
       ],
       vspcTenants: [
         {
-          azName: 'eu-west-rbx',
+          region: 'eu-west-rbx',
           id: '1999f2f7-5140-4000-t2v2vspc',
           name: 'VspcTenant2',
           status: 'DELETING',
@@ -101,7 +101,7 @@ export const TENANTS_MOCKS: Resource<Tenant>[] = [
       name: 'Tenant3',
       vaults: [
         {
-          azName: 'ap-southeast-sgp',
+          region: 'ap-southeast-sgp',
           id: '1999f2f7-5140-4000-t3v',
           name: 'Vault3',
           performance: 'HIGHPERF',
@@ -112,7 +112,7 @@ export const TENANTS_MOCKS: Resource<Tenant>[] = [
       ],
       vspcTenants: [
         {
-          azName: 'ap-southeast-sgp',
+          region: 'ap-southeast-sgp',
           id: '1999f2f7-5140-4000-t3vspc',
           name: 'VspcTenant3',
           status: 'ERROR',
@@ -145,7 +145,7 @@ export const TENANTS_MOCKS: Resource<Tenant>[] = [
       name: 'Tenant4',
       vaults: [
         {
-          azName: 'eu-central-waw',
+          region: 'eu-central-waw',
           id: '1999f2f7-5140-4000-t4v',
           name: 'Vault3',
           performance: 'HIGHPERF',
@@ -156,7 +156,7 @@ export const TENANTS_MOCKS: Resource<Tenant>[] = [
       ],
       vspcTenants: [
         {
-          azName: 'eu-central-waw',
+          region: 'eu-central-waw',
           id: '1999f2f7-5140-4000-t4vspc',
           name: 'VspcTenant4',
           status: 'READY',
@@ -189,7 +189,7 @@ export const TENANTS_MOCKS: Resource<Tenant>[] = [
       name: 'Tenant5',
       vaults: [
         {
-          azName: 'ca-east-tor',
+          region: 'ca-east-tor',
           id: '1999f2f7-5140-4000-t5v',
           name: 'Vault3',
           performance: 'HIGHPERF',
@@ -200,7 +200,7 @@ export const TENANTS_MOCKS: Resource<Tenant>[] = [
       ],
       vspcTenants: [
         {
-          azName: 'ca-east-tor',
+          region: 'ca-east-tor',
           id: '1999f2f7-5140-4000-t5vspc',
           name: 'VspcTenant5',
           status: 'SUSPENDED',
@@ -233,7 +233,7 @@ export const TENANTS_MOCKS: Resource<Tenant>[] = [
       name: 'Tenant6',
       vaults: [
         {
-          azName: 'us-west-lz-pao',
+          region: 'us-west-lz-pao',
           id: '1999f2f7-5140-4000-t6v',
           name: 'Vault3',
           performance: 'HIGHPERF',
@@ -244,7 +244,7 @@ export const TENANTS_MOCKS: Resource<Tenant>[] = [
       ],
       vspcTenants: [
         {
-          azName: 'us-west-lz-pao',
+          region: 'us-west-lz-pao',
           id: '1999f2f7-5140-4000-t6vspc',
           name: 'VspcTenant6',
           status: 'UPDATING',

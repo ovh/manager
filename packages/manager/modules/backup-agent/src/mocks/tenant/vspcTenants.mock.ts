@@ -9,7 +9,7 @@ export const VSPC_TENANTS_MOCKS: Resource<VSPCTenant>[] = [
       name: 'Tenant1',
     },
     currentState: {
-      azName: 'eu-west-par',
+      region: 'eu-west-par',
       backupAgents: [
         {
           id: 'bkp-ag-t1',
@@ -25,7 +25,7 @@ export const VSPC_TENANTS_MOCKS: Resource<VSPCTenant>[] = [
       status: 'CREATING',
       vaults: [
         {
-          azName: 'eu-west-par',
+          region: 'eu-west-par',
           id: '1999f2f7-5140-4000-t1v',
           name: 'Vault1',
           performance: 'HIGHPERF',
@@ -57,7 +57,7 @@ export const VSPC_TENANTS_MOCKS: Resource<VSPCTenant>[] = [
       name: 'Tenant2',
     },
     currentState: {
-      azName: 'eu-west-rbx',
+      region: 'eu-west-rbx',
       backupAgents: [
         {
           id: 'bkp-ag-t2',
@@ -73,7 +73,7 @@ export const VSPC_TENANTS_MOCKS: Resource<VSPCTenant>[] = [
       status: 'DELETING',
       vaults: [
         {
-          azName: 'eu-west-rbx',
+          region: 'eu-west-rbx',
           id: '1999f2f7-5140-4000-t2v',
           name: 'Vault2',
           performance: 'HIGHPERF',
@@ -105,7 +105,7 @@ export const VSPC_TENANTS_MOCKS: Resource<VSPCTenant>[] = [
       name: 'Tenant3',
     },
     currentState: {
-      azName: 'ap-southeast-sgp',
+      region: 'ap-southeast-sgp',
       backupAgents: [
         {
           id: 'bkp-ag-t3',
@@ -121,7 +121,7 @@ export const VSPC_TENANTS_MOCKS: Resource<VSPCTenant>[] = [
       status: 'ERROR',
       vaults: [
         {
-          azName: 'ap-southeast-sgp',
+          region: 'ap-southeast-sgp',
           id: '1999f2f7-5140-4000-t3v',
           name: 'Vault3',
           performance: 'HIGHPERF',
@@ -153,7 +153,7 @@ export const VSPC_TENANTS_MOCKS: Resource<VSPCTenant>[] = [
       name: 'Tenant4',
     },
     currentState: {
-      azName: 'eu-central-waw',
+      region: 'eu-central-waw',
       backupAgents: [
         {
           id: 'bkp-ag-t4',
@@ -169,7 +169,7 @@ export const VSPC_TENANTS_MOCKS: Resource<VSPCTenant>[] = [
       status: 'READY',
       vaults: [
         {
-          azName: 'eu-central-waw',
+          region: 'eu-central-waw',
           id: '1999f2f7-5140-4000-t4v',
           name: 'Vault4',
           performance: 'HIGHPERF',
@@ -201,7 +201,7 @@ export const VSPC_TENANTS_MOCKS: Resource<VSPCTenant>[] = [
       name: 'Tenant5',
     },
     currentState: {
-      azName: 'ca-east-tor',
+      region: 'ca-east-tor',
       backupAgents: [
         {
           id: 'bkp-ag-t5',
@@ -217,7 +217,7 @@ export const VSPC_TENANTS_MOCKS: Resource<VSPCTenant>[] = [
       status: 'SUSPENDED',
       vaults: [
         {
-          azName: 'ca-east-tor',
+          region: 'ca-east-tor',
           id: '1999f2f7-5140-4000-t5v',
           name: 'Vault5',
           performance: 'HIGHPERF',
@@ -249,7 +249,7 @@ export const VSPC_TENANTS_MOCKS: Resource<VSPCTenant>[] = [
       name: 'Tenant6',
     },
     currentState: {
-      azName: 'us-west-lz-pao',
+      region: 'us-west-lz-pao',
       backupAgents: [
         {
           id: 'bkp-ag-t6',
@@ -265,7 +265,7 @@ export const VSPC_TENANTS_MOCKS: Resource<VSPCTenant>[] = [
       status: 'UPDATING',
       vaults: [
         {
-          azName: 'us-west-lz-pao',
+          region: 'us-west-lz-pao',
           id: '1999f2f7-5140-4000-t6v',
           name: 'Vault6',
           performance: 'HIGHPERF',

@@ -12,14 +12,14 @@ import { Datagrid } from '@ovh-ux/manager-react-components';
 import { useVSPCTenantsMocks } from '@/data/hooks/tenants/useVspcTenants';
 import { urls } from '@/routes/Routes.constants';
 
-import { useVspcListingColumns } from './_hooks/useVspcTenantListingColumns';
+import { useTenantListingColumns } from './_hooks/useVspcTenantListingColumns';
 import { BACKUP_AGENT_NAMESPACES } from "@/BackupAgent.translations";
 import {useBackupTenantsMocks} from "@/data/hooks/tenants/useBackupTenants";
 
 export default function ListingPage() {
   const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.SERVICE_LISTING]);
   const navigate = useNavigate();
-  const columns = useVspcListingColumns();
+  const columns = useTenantListingColumns();
   const { data, isLoading } = useBackupTenantsMocks(); // TODO: unmock (useVSPCTenants)
 
   const onNavigateToDashboardClicked = () => {

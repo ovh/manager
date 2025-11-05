@@ -5,14 +5,14 @@ import { useTranslation } from "react-i18next";
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 
 export type ResourceStatusBadgeProps = {
-  vaultStatus: ResourceStatus;
+  resourceStatus: ResourceStatus;
 }
 
-export const ResourceStatusBadge = ({vaultStatus}: ResourceStatusBadgeProps) => {
+export const ResourceStatusBadge = ({resourceStatus}: ResourceStatusBadgeProps) => {
   const {t} = useTranslation(NAMESPACES.STATUS);
 
   return <OdsBadge
-    color={getColorResourceStatus(vaultStatus)}
-    label={t(vaultStatus.toLowerCase())}
+    color={getColorResourceStatus(resourceStatus)}
+    label={t(resourceStatus.toLowerCase())}
   />
 }
