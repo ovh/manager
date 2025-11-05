@@ -1,11 +1,11 @@
-import { getDataset } from '../../__datasets__/datasetsUtils';
-import { ChartData } from '../../components/charts/base';
+import { getDataset } from '@/__datasets__/datasetsUtils';
+import { ChartData } from '@/components/charts/base';
 import {
   ObservabilityMetricDataParams,
   ObservabilityMetricKindParams,
   ObservabilityMetricKindsParams,
-} from '../../types/ClientApi.type';
-import { Kind, MetricData } from '../../types/observability.type';
+} from '@/types/ClientApi.type';
+import { Kind, MetricData } from '@/types/observability.type';
 
 export const fetchChartData = async <TData>(
   params: ObservabilityMetricDataParams,

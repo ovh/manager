@@ -1,6 +1,7 @@
 import React, { ReactNode, createContext, useContext, useState } from 'react';
 
 import { defaultTimeRangeOptions } from '@/components/timeControls/TimeRangeOption.constants';
+import { DashboardContextType } from '@/contexts/Dashboard.context.type';
 import { TimeRangeOption } from '@/types/TimeRangeOption.type';
 
 export interface DashboardState {
@@ -13,12 +14,7 @@ export interface DashboardState {
   refreshInterval: number;
 }
 
-interface DashboardContextType {
-  state: DashboardState;
-  setState: React.Dispatch<React.SetStateAction<DashboardState>>;
-}
-
-const DashboardContext = createContext<DashboardContextType | undefined>(undefined);
+export const DashboardContext = createContext<DashboardContextType | undefined>(undefined);
 
 export const useDashboardContext = () => {
   const context = useContext(DashboardContext);

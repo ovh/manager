@@ -1,7 +1,7 @@
 import apiClient from '@ovh-ux/manager-core-api';
 
-import { ObservabilityDashboardParams } from '../../types/ClientApi.type';
-import { Dashboard } from '../../types/observability.type';
+import { ObservabilityDashboardParams } from '@/types/ClientApi.type';
+import { Dashboard } from '@/types/observability.type';
 
 export const getPredefinedDashboard = async ({
   resourceName,

@@ -1,4 +1,5 @@
-import { DashboardState } from '../../contexts';
+import { DashboardState } from '@/contexts';
+
 import { TimeRangeOptionWithLabel } from './TimeRangeOptionWithLabel.type';
 
 export interface TimeControlsProps {

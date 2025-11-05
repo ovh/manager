@@ -1,4 +1,4 @@
-import { RequestPayload } from '../../../types/RequestPayload.type';
+import { RequestPayload } from '@/types/RequestPayload.type';
 
 export const getChartDataQueryKey = (payload: RequestPayload) =>
   [
