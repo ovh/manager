@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-gcj-module@0.2.16...@ovh-ux/manager-gcj-module@0.3.0) (2025-11-05)
+
+
+### Features
+
+* **account-creation:** add new language selector menu ([113a9aa](https://github.com/ovh/manager/commit/113a9aa3422a77881681931aec0ca5461b0ccf34)), closes [#MANAGER-16322](https://github.com/ovh/manager/issues/MANAGER-16322)
+* **gcj:** created data usage policy modal ([c631815](https://github.com/ovh/manager/commit/c631815342c321241becba0a92a6290b79e39799)), closes [#MANAGER-17746](https://github.com/ovh/manager/issues/MANAGER-17746)
+
+
+
+
+
 ## [0.2.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-gcj-module@0.2.15...@ovh-ux/manager-gcj-module@0.2.16) (2025-11-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-gcj-module
