@@ -1,4 +1,4 @@
-import { initShell } from '../shell';
+import { initShell, completeShellWithEnvironment } from '../shell';
 import { Environment, fetchConfiguration } from '@ovh-ux/manager-config';
 import Shell from '../shell/shell';
 import ShellClient from './shell-client';
@@ -9,7 +9,8 @@ export default class StandaloneShellClient extends ShellClient {
 
   init(): Promise<void> {
     return fetchConfiguration('shell').then((environment: Environment) => {
-      this.shell = initShell(environment);
+      this.shell = initShell();
+      completeShellWithEnvironment(this.shell, environment);
       const clientMessageBus = new DirectClientMessageBus();
       const shellMessageBus = new DirectClientMessageBus();
 

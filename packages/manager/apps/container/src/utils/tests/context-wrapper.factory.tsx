@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { Environment } from "@ovh-ux/manager-config";
-import { initShell, Shell } from "@ovh-ux/shell";
+import { completeShellWithEnvironment, initShell, Shell } from "@ovh-ux/shell";
 
 import { ApplicationProvider } from "@/context";
 import { BaseContextFactory } from "@/utils/tests/base-context.factory";
@@ -22,8 +22,9 @@ export class TestWrapperFactory extends BaseContextFactory {
         shellEnvironment.setUniverse(this.configuration.universe || '');
         shellEnvironment.setMessage(this.configuration.message);
         shellEnvironment.setApplications(this.configuration.applications);
-        const shell: Shell = initShell(shellEnvironment);
-        const environment: Environment = shell?.getPlugin('environment').getEnvironment() ?? null;
+        const shell: Shell = initShell();
+        completeShellWithEnvironment(shell, shellEnvironment);
+        const environment: Environment = shell.getPlugin('environment').getEnvironment();
         composition = <ApplicationProvider environment={environment} shell={shell}>{composition}</ApplicationProvider>;
       }
       return composition;
