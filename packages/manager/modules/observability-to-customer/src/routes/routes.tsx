@@ -2,9 +2,9 @@ import { ComponentType, lazy } from 'react';
 
 import { Route, RouteObject } from 'react-router-dom';
 
-const importMetricsOverviewPage = () => import('../pages/metric/overview.page');
-const importMetricsDashboardPage = () => import('../pages/metric/dashboard.page');
-const importMetricsDashboardWidgetModal = () => import('../pages/metric/dashboard-widget.modal');
+const importMetricsOverviewPage = () => import('../pages/metric/Overview.page');
+const importMetricsDashboardPage = () => import('../pages/metric/Dashboard.page');
+const importMetricsDashboardWidgetModal = () => import('../pages/metric/DashboardWidgetModal.page');
 
 const metricsOverviewPage = lazy(importMetricsOverviewPage);
 const metricsDashboardPage = lazy(importMetricsDashboardPage);
