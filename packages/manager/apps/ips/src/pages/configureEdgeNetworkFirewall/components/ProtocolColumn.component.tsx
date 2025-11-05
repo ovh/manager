@@ -1,5 +1,9 @@
 import React from 'react';
-import { OdsText, OdsSelect } from '@ovhcloud/ods-components/react';
+import {
+  OdsFormField,
+  OdsText,
+  OdsSelect,
+} from '@ovhcloud/ods-components/react';
 import {
   IpEdgeFirewallRule,
   IpEdgeFirewallProtocol,
@@ -10,24 +14,32 @@ import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
 export const ProtocolColumn = (
   rule: IpEdgeFirewallRule & { isNew?: boolean },
 ) => {
-  const { newProtocol, setNewProtocol } = React.useContext(
-    EdgeNetworkFirewallContext,
-  );
+  const {
+    newProtocol,
+    setNewProtocol,
+    protocolError,
+    setProtocolError,
+  } = React.useContext(EdgeNetworkFirewallContext);
 
   return rule?.isNew ? (
-    <OdsSelect
-      name="protocol-select"
-      value={newProtocol}
-      onOdsChange={(e) =>
-        setNewProtocol(e.detail.value as IpEdgeFirewallProtocol)
-      }
-    >
-      {Object.entries(IpEdgeFirewallProtocol).map(([label, value]) => (
-        <option key={value} value={value}>
-          {label}
-        </option>
-      ))}
-    </OdsSelect>
+    <OdsFormField className="w-full" error={protocolError}>
+      <OdsSelect
+        className="block"
+        name="protocol-select"
+        value={newProtocol}
+        hasError={!!protocolError}
+        onOdsChange={(e) => {
+          setNewProtocol(e.detail.value as IpEdgeFirewallProtocol);
+          setProtocolError(undefined);
+        }}
+      >
+        {Object.entries(IpEdgeFirewallProtocol).map(([label, value]) => (
+          <option key={value} value={value}>
+            {label}
+          </option>
+        ))}
+      </OdsSelect>
+    </OdsFormField>
   ) : (
     <OdsText>{getIpEdgeFirewallProtocolLabelFromValue(rule?.protocol)}</OdsText>
   );

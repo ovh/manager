@@ -1,5 +1,9 @@
 import React from 'react';
-import { OdsText, OdsInput } from '@ovhcloud/ods-components/react';
+import {
+  OdsText,
+  OdsInput,
+  OdsFormField,
+} from '@ovhcloud/ods-components/react';
 import { IpEdgeFirewallProtocol, IpEdgeFirewallRule } from '@/data/api';
 import { handleEnterAndEscapeKeyDown } from '@/utils';
 import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
@@ -19,6 +23,8 @@ export const SourcePortColumn = (
     newFragments,
     createNewRule,
     hideNewRuleRow,
+    sourcePortError,
+    setSourcePortError,
   } = React.useContext(EdgeNetworkFirewallContext);
 
   if (
@@ -27,22 +33,28 @@ export const SourcePortColumn = (
       newProtocol,
     )
   ) {
-    return <OdsText>{formatRulePort(rule?.destinationPort)}</OdsText>;
+    return <OdsText>{formatRulePort(rule?.sourcePort)}</OdsText>;
   }
 
   return (
-    <OdsInput
-      className="w-full"
-      name="source-port-input"
-      value={newSourcePort}
-      isDisabled={newFragments}
-      onOdsChange={(e) => setNewSourcePort(e.detail.value as string)}
-      maxlength={IP_EDGE_FIREWALL_PORT_MAX.toString().length}
-      onKeyDown={handleEnterAndEscapeKeyDown({
-        onEnter: createNewRule,
-        onEscape: hideNewRuleRow,
-      })}
-    />
+    <OdsFormField error={sourcePortError}>
+      <OdsInput
+        className="w-full"
+        name="source-port-input"
+        value={newSourcePort}
+        isDisabled={newFragments}
+        hasError={!!sourcePortError}
+        onOdsChange={(e) => {
+          setNewSourcePort(e.detail.value as string);
+          setSourcePortError(undefined);
+        }}
+        maxlength={IP_EDGE_FIREWALL_PORT_MAX.toString().length}
+        onKeyDown={handleEnterAndEscapeKeyDown({
+          onEnter: createNewRule,
+          onEscape: hideNewRuleRow,
+        })}
+      />
+    </OdsFormField>
   );
 };
 
@@ -56,6 +68,8 @@ export const DestinationPortColumn = (
     newFragments,
     createNewRule,
     hideNewRuleRow,
+    destinationPortError,
+    setDestinationPortError,
   } = React.useContext(EdgeNetworkFirewallContext);
 
   if (
@@ -68,17 +82,23 @@ export const DestinationPortColumn = (
   }
 
   return (
-    <OdsInput
-      className="w-full"
-      name="destination-port-input"
-      value={newDestinationPort}
-      isDisabled={newFragments}
-      onOdsChange={(e) => setNewDestinationPort(e.detail.value as string)}
-      maxlength={IP_EDGE_FIREWALL_PORT_MAX.toString().length}
-      onKeyDown={handleEnterAndEscapeKeyDown({
-        onEnter: createNewRule,
-        onEscape: hideNewRuleRow,
-      })}
-    />
+    <OdsFormField error={destinationPortError}>
+      <OdsInput
+        className="w-full"
+        name="destination-port-input"
+        value={newDestinationPort}
+        isDisabled={newFragments}
+        hasError={!!destinationPortError}
+        onOdsChange={(e) => {
+          setNewDestinationPort(e.detail.value as string);
+          setDestinationPortError(undefined);
+        }}
+        maxlength={IP_EDGE_FIREWALL_PORT_MAX.toString().length}
+        onKeyDown={handleEnterAndEscapeKeyDown({
+          onEnter: createNewRule,
+          onEscape: hideNewRuleRow,
+        })}
+      />
+    </OdsFormField>
   );
 };

@@ -1,35 +1,37 @@
 import React from 'react';
 import { OdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+} from '@ovhcloud/ods-components';
 import { IpGameFirewallRule, IpGameFirewallStateEnum } from '@/data/api';
 import { GameFirewallContext } from '../gamefirewall.context';
 
 export const ActionColumn = (
   rule: IpGameFirewallRule & { isNew?: boolean },
 ) => {
-  const {
-    newGameProtocol,
-    hideNewRuleRow,
-    showConfirmDeleteModal,
-    addRule,
-  } = React.useContext(GameFirewallContext);
+  const { hideNewRuleRow, showConfirmDeleteModal, addRule } = React.useContext(
+    GameFirewallContext,
+  );
 
   return rule?.isNew ? (
-    <>
+    <div className="flex gap-3">
       <OdsButton
+        size={ODS_BUTTON_SIZE.xs}
         label=""
         icon={ODS_ICON_NAME.xmark}
         variant={ODS_BUTTON_VARIANT.ghost}
         onClick={hideNewRuleRow}
       />
       <OdsButton
+        size={ODS_BUTTON_SIZE.xs}
         label=""
         icon={ODS_ICON_NAME.check}
         variant={ODS_BUTTON_VARIANT.ghost}
-        isDisabled={!newGameProtocol}
         onClick={addRule}
       />
-    </>
+    </div>
   ) : (
     <OdsButton
       label=""

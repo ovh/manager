@@ -37,5 +37,8 @@
   "only_permit_rules_warning": "Nous n'avons détecté que des règles \"Accepter\" et aucune règle \"Refuser\", donc aucun trafic ne sera bloqué par cette configuration. Nous vous suggérons la dernière règle pour rendre votre configuration efficace. Cliquez ici <Link>créer une règle de refus</Link> pour ajouter cette règle.",
   "only_permit_rule_link_label": "créer une règle de refus",
   "mitigation_mode_active_warning_toltip": "La mitigation est actuellement activée, le firewall ne peut être désactivé.",
-  "firewall_not_created_tooltip": "Le firewall ne peut pas être activé tant qu'une 1ère règle n'a pas été créée."
+  "firewall_not_created_tooltip": "Le firewall ne peut pas être activé tant qu'une 1ère règle n'a pas été créée.",
+  "destinationPortLowerThanSourcePortError": "Le port de destination ne peut pas être inférieur au port source",
+  "createRuleErrorMessage": "Il y a des erreurs dans les données saisies, veuillez vérifier les champs signalés en rouge.",
+  "requiredFieldError": "Ce champ est requis"
 }

@@ -1,20 +1,13 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
+import { useQuery } from '@tanstack/react-query';
 import {
   useCreateIpEdgeNetworkFirewallRule,
   useGetIpEdgeFirewall,
   useIpEdgeNetworkFirewallRules,
 } from '@/data/hooks';
-import {
-  fromIdToIp,
-  ipFormatter,
-  INVALIDATED_REFRESH_PERIOD,
-  TRANSLATION_NAMESPACES,
-} from '@/utils';
+import { fromIdToIp, ipFormatter, INVALIDATED_REFRESH_PERIOD } from '@/utils';
 import {
   getIpList,
   IpEdgeFirewallProtocol,
@@ -48,6 +41,17 @@ export type EdgeNetworkFirewallContextType = {
   newDestinationPort?: string;
   newFragments?: boolean;
   newTcpOption?: 'established' | 'syn';
+
+  sourceError?: string;
+  sourcePortError?: string;
+  destinationPortError?: string;
+  modeError?: string;
+  protocolError?: string;
+  setSourceError: (error?: string) => void;
+  setSourcePortError: (error?: string) => void;
+  setDestinationPortError: (error?: string) => void;
+  setModeError: (error?: string) => void;
+  setProtocolError: (error?: string) => void;
 
   setNewSequence: (sequence?: number) => void;
   setNewMode: (mode?: 'permit' | 'deny') => void;
@@ -99,19 +103,23 @@ export const EdgeNetworkFirewallContext = React.createContext<
   showConfirmDeleteModal: () => {},
   hideConfirmDeleteModal: () => {},
   setTmpToggleState: () => {},
+  sourceError: undefined,
+  sourcePortError: undefined,
+  destinationPortError: undefined,
+  modeError: undefined,
+  protocolError: undefined,
+  setSourceError: () => {},
+  setSourcePortError: () => {},
+  setDestinationPortError: () => {},
+  setModeError: () => {},
+  setProtocolError: () => {},
 });
 
 export const EdgeFirewallContextProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
-  const qc = useQueryClient();
-  const { t } = useTranslation([
-    TRANSLATION_NAMESPACES.edgeNetworkFirewall,
-    TRANSLATION_NAMESPACES.error,
-  ]);
   const { id } = useParams();
   const { ipGroup, ipAddress: ipOnFirewall } = ipFormatter(fromIdToIp(id));
-  const { clearNotifications, addError, addSuccess } = useNotifications();
   const [newSequence, setNewSequence] = React.useState<number>();
   const [newMode, setNewMode] = React.useState<'permit' | 'deny'>();
   const [newProtocol, setNewProtocol] = React.useState<
@@ -136,6 +144,14 @@ export const EdgeFirewallContextProvider: React.FC<{
   const [confirmDeleteModalOpen, setConfirmDeleteModalOpen] = React.useState<
     IpEdgeFirewallRule
   >(null);
+  const [sourceError, setSourceError] = React.useState<string>();
+  const [sourcePortError, setSourcePortError] = React.useState<string>();
+  const [destinationPortError, setDestinationPortError] = React.useState<
+    string
+  >();
+  const [modeError, setModeError] = React.useState<string>();
+  const [protocolError, setProtocolError] = React.useState<string>();
+
   const { data, isLoading: isParentIpLoading } = useQuery<
     ApiResponse<string[]>,
     ApiError
@@ -180,6 +196,11 @@ export const EdgeFirewallContextProvider: React.FC<{
     sequence: newSequence,
     tcpOption: newTcpOption,
     fragments: newFragments,
+    setSourceError,
+    setSourcePortError,
+    setDestinationPortError,
+    setModeError,
+    setProtocolError,
   });
 
   const {
@@ -255,6 +276,16 @@ export const EdgeFirewallContextProvider: React.FC<{
     newDestinationPort,
     newFragments,
     newTcpOption,
+    sourceError,
+    sourcePortError,
+    destinationPortError,
+    modeError,
+    protocolError,
+    setSourceError,
+    setSourcePortError,
+    setDestinationPortError,
+    setModeError,
+    setProtocolError,
   };
 
   return (

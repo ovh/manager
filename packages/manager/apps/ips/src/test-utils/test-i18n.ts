@@ -11,7 +11,7 @@ import common from '../../public/translations/common/Messages_fr_FR.json';
 import importIpFromSys from '../../public/translations/import-ip-from-sys/Messages_fr_FR.json';
 import moveIp from '../../public/translations/move-ip/Messages_fr_FR.json';
 import aggregateSlice from '../../public/translations/aggregate-slice/Messages_fr_FR.json';
-import price from '../../public/translations/price/Messages_fr_FR.json';
+import price from '../../public/translations/ips-price/Messages_fr_FR.json';
 import { TRANSLATION_NAMESPACES } from '@/utils';
 
 export const translations = {
