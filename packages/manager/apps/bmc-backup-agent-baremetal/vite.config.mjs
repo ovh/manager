@@ -16,9 +16,9 @@ export default defineConfig({
     viteStaticCopy({
       targets: [{
         src: `${dirname(require.resolve(BACKUP_AGENT_PACKAGE))}/../public/**/*`,
-        dest: `translations/@ovh-ux/backup-agent`,
+        dest: `translations/backup-agent`,
+        overwrite: true,
       }],
-      overwrite: true,
     }),
   ]
 });
