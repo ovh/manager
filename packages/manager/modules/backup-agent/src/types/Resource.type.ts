@@ -1,21 +1,5 @@
 export type ResourceStatus = 'CREATING' | 'DELETING' | 'ERROR' | 'READY' | 'SUSPENDED' | 'UPDATING';
 
-export type ResourceWithStatus = {
-  resourceStatus: ResourceStatus;
-};
-
-export type ResourceWithAzName = {
-  currentState: {
-    azName: string;
-  };
-};
-
-export type ResourceWithName = {
-  currentState: {
-    name: string;
-  };
-};
-
 export type TaskStatus = 'ERROR' | 'PENDING' | 'RUNNING' | 'SCHEDULED' | 'WAITING_USER_INPUT';
 
 export interface CurrentTask {
@@ -32,14 +16,13 @@ export interface IamResource {
   urn: string;
 }
 
-export type Resource<T extends { name: string }> = ResourceWithStatus &
-  ResourceWithName & {
-    createdAt: string;
-    currentState: T;
-    currentTasks: CurrentTask[];
-    iam: IamResource | null;
-    id: string;
-    resourceStatus: ResourceStatus;
-    targetSpec: Pick<T, 'name'>;
-    updatedAt: string;
-  };
+export type Resource<T extends { name: string }> = {
+  createdAt: string;
+  currentState: T;
+  currentTasks: CurrentTask[];
+  iam: IamResource | null;
+  id: string;
+  resourceStatus: ResourceStatus;
+  targetSpec: Pick<T, 'name'>;
+  updatedAt: string;
+};

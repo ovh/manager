@@ -16,11 +16,11 @@ describe('VaultActionCell test suite', () => {
   const vault = mockVaults[0]!;
   const withVspc: VaultResource = {
     ...vault,
-    currentState: { ...vault.currentState, vspc: ['vspc1'] },
+    currentState: { ...vault.currentState, vspcTenants: ['vspc1'] },
   };
   const withoutVspc: VaultResource = {
     ...vault,
-    currentState: { ...vault.currentState, vspc: [] },
+    currentState: { ...vault.currentState, vspcTenants: [] },
   };
 
   const testCases: Array<{ desc: string; vault: VaultResource; isDisabled: boolean }> = [
