@@ -1,7 +1,7 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { getPredefinedDashboard } from '../../../__mocks__/dashboards/dashboard.adapter';
-import { getPredefinedDashboardQueryKey } from './getPredefinedDashboardQueryKey';
+import { getPredefinedDashboard } from '@/__mocks__/dashboards/dashboard.adapter';
+import { getPredefinedDashboardQueryKey } from '@/data/hooks/dashboards/getPredefinedDashboardQueryKey';
 
 export const getPredefinedDashboardOptions = (resourceName: string, productType: string) =>
   queryOptions({
