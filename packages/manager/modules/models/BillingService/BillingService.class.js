@@ -133,7 +133,7 @@ export default class BillingService {
       manualPayment: false,
       automatic: true,
       deleteAtExpiration: false,
-      period: period || head(this.possibleRenewPeriod),
+      period: period || this.renew.period || head(this.possibleRenewPeriod),
     });
   }
 

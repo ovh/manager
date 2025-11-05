@@ -1,5 +1,6 @@
 import filter from 'lodash/filter';
-import map from 'lodash/map';
+
+import { revertFailedBulkAction } from '../helpers/bulk-action-message.helper';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('billing.autorenew.disableRedirection', {
@@ -27,13 +28,18 @@ export default /* @ngInject */ ($stateProvider) => {
           currentUser.auth.account,
         ),
       /* @ngInject */
-      updateRenew: (BillingAutoRenew) => (services) =>
+      updateRenew: ($q, BillingAutoRenew) => (services) =>
         BillingAutoRenew.updateServices(
-          map(services, (service) => {
+          services.map((service) => {
             service.setManualRenew();
             return service;
           }),
-        ),
+        ).catch((error) => {
+          revertFailedBulkAction(services, error?.messages, (service) => {
+            service.setAutomaticRenew();
+          });
+          return $q.reject(error);
+        }),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('billing_autorenew_disable_breadcrumb'),
     },
