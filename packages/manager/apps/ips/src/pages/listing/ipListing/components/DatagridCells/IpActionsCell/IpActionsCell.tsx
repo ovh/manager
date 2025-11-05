@@ -397,6 +397,7 @@ export const IpActionsCell = ({
     },
     isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
+      !ipDetails?.bringYourOwnIp &&
       [
         IpTypeEnum.ADDITIONAL,
         IpTypeEnum.PCC,
