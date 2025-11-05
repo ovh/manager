@@ -13,6 +13,7 @@ const Container = ({ animationDuration, children, isFinished }: Props) => (
       transition: `opacity ${animationDuration}ms linear`,
     }}
   >
+    coucou
     {children}
   </div>
 );
