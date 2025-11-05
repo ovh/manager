@@ -2,11 +2,8 @@ import '@/common/setupTests';
 import React, { ReactNode } from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import {
-  QueryClient,
-  QueryClientProvider,
-  UseQueryResult,
-} from '@tanstack/react-query';
+import { UseQueryResult } from '@tanstack/react-query';
+import { wrapper } from '@/common/utils/test.provider';
 import Hosting from './Hosting';
 
 vi.mock('@/domain/hooks/data/query', () => ({
@@ -137,12 +134,6 @@ const {
 } = await import('@/domain/hooks/data/query');
 
 describe('Hosting Component', () => {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: { retry: false },
-    },
-  });
-
   const mockGetInitialOrder = vi.fn();
   const mockOrderFreeHosting = vi.fn();
 
@@ -150,33 +141,30 @@ describe('Hosting Component', () => {
     vi.clearAllMocks();
 
     vi.mocked(useInitialOrderFreeHosting).mockReturnValue({
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      orderCartDetails: (null as unknown) as any,
+      orderCartDetails: null,
       isInitialOrderFreeHostingPending: false,
       getInitialOrder: mockGetInitialOrder,
       orderCartError: (undefined as unknown) as Error,
-    });
+    } as ReturnType<typeof useInitialOrderFreeHosting>);
 
     vi.mocked(useOrderFreeHosting).mockReturnValue({
       orderFreeHosting: mockOrderFreeHosting,
       isOrderFreeHostingPending: false,
       orderCompleted: false,
-    });
+    } as ReturnType<typeof useOrderFreeHosting>);
   });
 
   const renderComponent = (props = {}) => {
-    return render(
-      <QueryClientProvider client={queryClient}>
-        <Hosting serviceName="test-domain.com" {...props} />
-      </QueryClientProvider>,
-    );
+    return render(<Hosting serviceName="test-domain.com" {...props} />, {
+      wrapper,
+    });
   };
 
   describe('when there is no associated hosting', () => {
     beforeEach(() => {
-      vi.mocked(useGetAssociatedHosting).mockReturnValue(({
+      vi.mocked(useGetAssociatedHosting).mockReturnValue({
         data: undefined,
-      } as unknown) as UseQueryResult<string[]>);
+      } as ReturnType<typeof useGetAssociatedHosting>);
     });
 
     it('should render the component', () => {
@@ -206,13 +194,13 @@ describe('Hosting Component', () => {
 
   describe('when there are associated hostings', () => {
     beforeEach(() => {
-      vi.mocked(useGetAssociatedHosting).mockReturnValue(({
+      vi.mocked(useGetAssociatedHosting).mockReturnValue({
         data: ['hosting1.com', 'hosting2.com'],
-      } as unknown) as UseQueryResult<string[]>);
-      vi.mocked(useGetFreeHostingServices).mockReturnValue(([
+      } as ReturnType<typeof useGetAssociatedHosting>);
+      vi.mocked(useGetFreeHostingServices).mockReturnValue([
         { data: { serviceId: 1 }, isLoading: false, isSuccess: true },
         { data: { serviceId: 2 }, isLoading: false, isSuccess: true },
-      ] as unknown) as ReturnType<typeof useGetFreeHostingServices>);
+      ] as ReturnType<typeof useGetFreeHostingServices>);
     });
 
     it('should display the list of hostings', () => {
@@ -235,9 +223,9 @@ describe('Hosting Component', () => {
 
   describe('FreeHostingDrawer interactions', () => {
     beforeEach(() => {
-      vi.mocked(useGetAssociatedHosting).mockReturnValue(({
+      vi.mocked(useGetAssociatedHosting).mockReturnValue({
         data: undefined,
-      } as unknown) as UseQueryResult<string[]>);
+      } as ReturnType<typeof useGetAssociatedHosting>);
     });
 
     it('should not show drawer initially', () => {
@@ -298,15 +286,19 @@ describe('Hosting Component', () => {
 
   describe('Order completion', () => {
     it('should close drawer when order is completed', async () => {
-      vi.mocked(useGetAssociatedHosting).mockReturnValue(({
+      vi.mocked(useGetAssociatedHosting).mockReturnValue({
         data: undefined,
-      } as unknown) as UseQueryResult<string[]>);
+      } as ReturnType<typeof useGetAssociatedHosting>);
 
-      vi.mocked(useOrderFreeHosting).mockReturnValue({
+      const orderState = {
+        completed: false,
+      };
+
+      vi.mocked(useOrderFreeHosting).mockImplementation(() => ({
         orderFreeHosting: mockOrderFreeHosting,
         isOrderFreeHostingPending: false,
-        orderCompleted: false,
-      });
+        orderCompleted: orderState.completed,
+      }));
 
       const { rerender } = renderComponent();
 
@@ -319,17 +311,10 @@ describe('Hosting Component', () => {
       });
 
       // Simulate order completion
-      vi.mocked(useOrderFreeHosting).mockReturnValue({
-        orderFreeHosting: mockOrderFreeHosting,
-        isOrderFreeHostingPending: false,
-        orderCompleted: true,
-      });
+      orderState.completed = true;
 
-      rerender(
-        <QueryClientProvider client={queryClient}>
-          <Hosting serviceName="test-domain.com" />
-        </QueryClientProvider>,
-      );
+      // Re-render to trigger useEffect
+      rerender(<Hosting serviceName="test-domain.com" />);
 
       await waitFor(() => {
         expect(screen.queryByTestId('drawer-open')).not.toBeInTheDocument();
@@ -339,9 +324,9 @@ describe('Hosting Component', () => {
 
   describe('Props passing to FreeHostingDrawer', () => {
     beforeEach(() => {
-      vi.mocked(useGetAssociatedHosting).mockReturnValue(({
+      vi.mocked(useGetAssociatedHosting).mockReturnValue({
         data: undefined,
-      } as unknown) as UseQueryResult<string[]>);
+      } as ReturnType<typeof useGetAssociatedHosting>);
     });
 
     it('should pass correct serviceName to drawer', async () => {
@@ -376,12 +361,11 @@ describe('Hosting Component', () => {
         ],
       };
       vi.mocked(useInitialOrderFreeHosting).mockReturnValue({
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        orderCartDetails: (mockCartDetails as unknown) as any,
+        orderCartDetails: mockCartDetails,
         isInitialOrderFreeHostingPending: false,
         getInitialOrder: mockGetInitialOrder,
         orderCartError: (undefined as unknown) as Error,
-      });
+      } as ReturnType<typeof useInitialOrderFreeHosting>);
 
       renderComponent();
       expect(screen.getByTestId('free-hosting-drawer')).toBeInTheDocument();
@@ -390,9 +374,9 @@ describe('Hosting Component', () => {
 
   describe('Action menu items', () => {
     beforeEach(() => {
-      vi.mocked(useGetAssociatedHosting).mockReturnValue(({
+      vi.mocked(useGetAssociatedHosting).mockReturnValue({
         data: undefined,
-      } as unknown) as UseQueryResult<string[]>);
+      } as ReturnType<typeof useGetAssociatedHosting>);
     });
 
     it('should render both action menu items', () => {

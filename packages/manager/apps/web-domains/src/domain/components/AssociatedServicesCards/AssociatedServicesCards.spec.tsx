@@ -13,6 +13,20 @@ vi.mock('./Hosting', () => ({
   default: () => <div data-testid="hosting-component">Hosting Component</div>,
 }));
 
+vi.mock('./SubDomainsMultiSite', () => ({
+  default: () => (
+    <div data-testid="subdomains-multisite-component">
+      SubDomains MultiSite Component
+    </div>
+  ),
+}));
+
+vi.mock('@/domain/hooks/data/query', () => ({
+  useGetAssociatedHosting: vi.fn(() => ({
+    data: ['hosting1.com', 'hosting2.com'],
+  })),
+}));
+
 describe('AssociatedServicesCards component', () => {
   it('should render the component with title', () => {
     render(<AssociatedServicesCards serviceName="example.com" />, { wrapper });
@@ -38,12 +52,26 @@ describe('AssociatedServicesCards component', () => {
     expect(screen.getByText('Emails Component')).toBeInTheDocument();
   });
 
+  it('should render SubDomainsMultiSite component', () => {
+    render(<AssociatedServicesCards serviceName="example.com" />, { wrapper });
+
+    expect(
+      screen.getByTestId('subdomains-multisite-component'),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText('SubDomains MultiSite Component'),
+    ).toBeInTheDocument();
+  });
+
   it('should pass serviceName prop to child components', () => {
     render(<AssociatedServicesCards serviceName="test-domain.com" />, {
       wrapper,
     });
 
     expect(screen.getByTestId('hosting-component')).toBeInTheDocument();
+    expect(
+      screen.getByTestId('subdomains-multisite-component'),
+    ).toBeInTheDocument();
     expect(screen.getByTestId('emails-component')).toBeInTheDocument();
   });
 });
