@@ -36,6 +36,7 @@ import { AssociatedEmailsServicesEnum } from '@/domain/enum/associatedServices.e
 import { emailOfferRedirect } from '@/domain/constants/susbcriptions';
 import {
   getAssociatedHosting,
+  getAssociatedSubDomainsMultiSite,
   getFreeHostingService,
   initialOrderFreeHosting,
   orderFreeHosting,
@@ -303,14 +304,6 @@ export function useInitialOrderFreeHosting(
   };
 }
 
-export function useGetFreeHostingService(serviceName: string) {
-  return useQuery<TServiceInfo>({
-    queryKey: ['free-hosting-service', serviceName],
-    queryFn: () => getFreeHostingService(serviceName),
-    enabled: false,
-  });
-}
-
 // Multi-hosting variant: fetch free hosting service info for each provided hosting name.
 // Returns an array of UseQueryResult<TServiceInfo> matching the input order.
 export function useGetFreeHostingServices(serviceNames: string[]) {
@@ -318,7 +311,21 @@ export function useGetFreeHostingServices(serviceNames: string[]) {
     queries: serviceNames.map((name) => ({
       queryKey: ['free-hosting-service', name],
       queryFn: () => getFreeHostingService(name),
-      enabled: !!name, // prevent empty string queries
+      enabled: !!name,
+    })),
+  });
+}
+
+export function useGetSubDomainsAndMultiSites(serviceNames: string[]) {
+  return useQueries({
+    queries: serviceNames.map((serviceName) => ({
+      queryKey: ['domain', 'subdomain-multisite', serviceName],
+      queryFn: async () => {
+        const data = await getAssociatedSubDomainsMultiSite(serviceName);
+        return data.filter((item) => item !== serviceName);
+      },
+      enabled: !!serviceName,
+      retry: false,
     })),
   });
 }

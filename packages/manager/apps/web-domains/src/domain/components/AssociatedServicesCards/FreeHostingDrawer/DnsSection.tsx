@@ -5,7 +5,10 @@ import CheckboxCard from './CheckboxCard';
 import Section from './Section';
 
 interface DnsSectionProps {
-  onCheckedChange: (key: keyof FreeHostingOptions, value: boolean) => void;
+  readonly onCheckedChange: (
+    key: keyof FreeHostingOptions,
+    value: boolean,
+  ) => void;
 }
 
 export default function DnsSection({ onCheckedChange }: DnsSectionProps) {

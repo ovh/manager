@@ -11,8 +11,8 @@ import {
 import { useTranslation } from 'react-i18next';
 
 interface LoadingStateProps {
-  isOpen: boolean;
-  onOpenChange: (detail: DrawerOpenChangeDetail) => void;
+  readonly isOpen: boolean;
+  readonly onOpenChange: (detail: DrawerOpenChangeDetail) => void;
 }
 
 export default function LoadingState({
