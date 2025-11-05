@@ -27,6 +27,16 @@ export default class PluginManager {
     };
   }
 
+  updatePluginInstance(
+    pluginId: string,
+    pluginInstance: Record<string, CallableFunction>,
+  ): void {
+    if (!Object.keys(this.plugins).includes(pluginId)) {
+      throw new Error(`No '${pluginId}' plugin registered`);
+    }
+    this.plugins[pluginId].instance = pluginInstance;
+  }
+
   invokePluginMethod({
     plugin,
     method,
