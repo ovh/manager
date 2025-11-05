@@ -78,3 +78,10 @@ export const getFreeHostingService = async (
   const { data: serviceDetails } = await v6.get(`services/${serviceId}`);
   return serviceDetails;
 };
+
+export const getAssociatedSubDomainsMultiSite = async (
+  hostingName: string,
+): Promise<string[]> => {
+  const { data } = await v6.get(`hosting/web/${hostingName}/attachedDomain`);
+  return data;
+};

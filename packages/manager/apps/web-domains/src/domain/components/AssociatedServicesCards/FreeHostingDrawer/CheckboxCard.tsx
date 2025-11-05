@@ -11,9 +11,12 @@ import { useTranslation } from 'react-i18next';
 import { FreeHostingOptions } from '../Hosting';
 
 interface CheckboxCardProps {
-  optionKey: keyof FreeHostingOptions;
-  translationKey: string;
-  onCheckedChange: (key: keyof FreeHostingOptions, value: boolean) => void;
+  readonly optionKey: keyof FreeHostingOptions;
+  readonly translationKey: string;
+  readonly onCheckedChange: (
+    key: keyof FreeHostingOptions,
+    value: boolean,
+  ) => void;
 }
 
 export default function CheckboxCard({

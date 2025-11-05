@@ -13,12 +13,12 @@ vi.mock('@/domain/hooks/data/query', () => ({
 
 describe('Emails component', () => {
   it('renders with MXPLAN service detected', async () => {
-    (useEmailService as jest.Mock).mockReturnValue({
+    vi.mocked(useEmailService).mockReturnValue({
       data: {
         serviceDetected: AssociatedEmailsServicesEnum.MXPLAN,
         data: 'mxplan-service-id',
       },
-    });
+    } as ReturnType<typeof useEmailService>);
 
     render(<Emails serviceName="example.com" />, { wrapper });
 
@@ -39,12 +39,12 @@ describe('Emails component', () => {
   });
 
   it('renders with ZIMBRA service detected', async () => {
-    (useEmailService as jest.Mock).mockReturnValue({
+    vi.mocked(useEmailService).mockReturnValue({
       data: {
         serviceDetected: AssociatedEmailsServicesEnum.ZIMBRA,
         data: 'zimbra-service-id',
       },
-    });
+    } as ReturnType<typeof useEmailService>);
 
     render(<Emails serviceName="example.com" />, { wrapper });
 
@@ -65,12 +65,12 @@ describe('Emails component', () => {
   });
 
   it('renders with default service detected', async () => {
-    (useEmailService as jest.Mock).mockReturnValue({
+    vi.mocked(useEmailService).mockReturnValue({
       data: {
-        serviceDetected: 'UNKNOWN_SERVICE',
+        serviceDetected: 'UNKNOWN_SERVICE' as AssociatedEmailsServicesEnum,
         data: 'unknown-service-id',
       },
-    });
+    } as ReturnType<typeof useEmailService>);
 
     render(<Emails serviceName="example.com" />, { wrapper });
 
