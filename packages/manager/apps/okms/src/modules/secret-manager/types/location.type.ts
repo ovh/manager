@@ -13,6 +13,8 @@ type SpecificType = 'BACKUP' | 'LZ' | 'SNC' | 'STANDARD';
 
 export type LocationType = 'LOCAL-ZONE' | 'REGION-1-AZ' | 'REGION-3-AZ';
 
+export type GeographyCode = string;
+
 export type Location = {
   availabilityZones: string[];
   cardinalPoint: CardinalPoint;
@@ -23,7 +25,7 @@ export type Location = {
   code: string;
   countryCode: string;
   countryName: string;
-  geographyCode: string;
+  geographyCode: GeographyCode;
   geographyName: string;
   location: string;
   name: string;

@@ -50,13 +50,13 @@ export const RegionSelector = () => {
         >
           <div className="flex flex-col gap-2 p-4">
             {geographyGroups.map((geographyGroup, index) => (
-              <Fragment key={geographyGroup.geographyCode}>
+              <Fragment key={geographyGroup.continentCode}>
                 <div className="flex flex-col gap-4">
                   <OdsText
                     preset="caption"
                     className="[&::part(text)]:text-[var(--ods-color-heading)]"
                   >
-                    {translateGeographyName(geographyGroup.geographyCode)}
+                    {translateGeographyName(geographyGroup.continentCode)}
                   </OdsText>
                   {geographyGroup.regions.map((link) => (
                     <Link
