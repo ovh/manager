@@ -3,7 +3,7 @@ import { StorageContainer } from '@datatr-ux/ovhcloud-types/cloud/index';
 import { ObjStoError } from '@/data/api';
 import {
   UpdateS3Data,
-  udpateS3Storage,
+  updateS3Storage,
 } from '@/data/api/storage/s3Storage.api';
 import queryClient from '@/query.client';
 
@@ -17,7 +17,7 @@ export function useUpdateS3({
 }: UseUpdateS3) {
   const mutation = useMutation({
     mutationFn: (s3Info: UpdateS3Data) => {
-      return udpateS3Storage(s3Info);
+      return updateS3Storage(s3Info);
     },
     onError,
     onSuccess: (_data, variables) => {
@@ -35,7 +35,7 @@ export function useUpdateS3({
   });
 
   return {
-    udpateS3Storage: (s3Info: UpdateS3Data) => {
+    updateS3Storage: (s3Info: UpdateS3Data) => {
       return mutation.mutate(s3Info);
     },
     ...mutation,

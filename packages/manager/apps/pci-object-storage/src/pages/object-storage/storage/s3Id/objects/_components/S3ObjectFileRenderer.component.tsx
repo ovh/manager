@@ -2,11 +2,10 @@ import { StorageObject } from '@datatr-ux/ovhcloud-types/cloud/index';
 import {
   Badge,
   Button,
-  ButtonProps,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuItemProps,
+  DropdownMenuItemVariant,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   useToast,
@@ -18,11 +17,13 @@ import {
   MoreHorizontal,
   Pen,
   Trash,
+  ArchiveRestore,
 } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { VersioningStatusEnum } from '@datatr-ux/ovhcloud-types/cloud/storage/VersioningStatusEnum';
 import { ReactElement } from 'react';
+import { StorageClassEnum } from '@datatr-ux/ovhcloud-types/cloud/storage/StorageClassEnum';
 import { octetConverter } from '@/lib/bytesHelper';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import FileIcon from '@/components/file-icon/FileIcon.component';
@@ -33,6 +34,7 @@ import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';
 import { useS3Data } from '../../S3.context';
 import storages from '@/types/Storages';
 import { cn } from '@/lib/utils';
+import { isDeepArchive, isDeepArchiveRestored } from '@/lib/s3ObjectHelper';
 
 interface S3ObjectFileRendererProps {
   object: StorageObject;
@@ -81,8 +83,33 @@ const S3ObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
       },
     });
   };
+  const onRestoreClicked = () =>
+    navigate(`./restore-object?objectKey=${encodeURIComponent(object.key)}`);
   const onDeleteClicked = () =>
     navigate(`./delete-object?objectKey=${object.key}`);
+
+  const isDeepArch = isDeepArchive(object);
+  const needsRestore = !object.restoreStatus && isDeepArch;
+  const restoreInProgress = object.restoreStatus?.inProgress;
+  const isRestored = isDeepArchiveRestored(object);
+  const canDownload =
+    !needsRestore && !restoreInProgress && !object.isDeleteMarker;
+
+  const isDownloadActionDisabled =
+    object.isDeleteMarker ||
+    pendingGetPresignUrl ||
+    restoreInProgress ||
+    (!canDownload && !needsRestore);
+
+  const getDownloadIcon = () => {
+    if (pendingGetPresignUrl) {
+      return <Loader2 className="size-4 animate-spin" />;
+    }
+    if (needsRestore) {
+      return <ArchiveRestore className="size-4" />;
+    }
+    return <Download className="size-4" />;
+  };
 
   const actions: {
     id: string;
@@ -93,7 +120,7 @@ const S3ObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
     withSeparator?: boolean;
     mobileOnly?: boolean;
     hidden?: boolean;
-    variant?: ButtonProps['variant'] & DropdownMenuItemProps['variant'];
+    variant?: DropdownMenuItemVariant;
   }[] = [
     {
       id: 'details',
@@ -104,14 +131,20 @@ const S3ObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
     },
     {
       id: 'download',
-      icon: pendingGetPresignUrl ? (
-        <Loader2 className="size-4 animate-spin" />
-      ) : (
-        <Download className="size-4" />
-      ),
-      onClick: () => onDownloadClicked(),
-      disabled: object.isDeleteMarker || pendingGetPresignUrl,
-      label: t('tableActionDownload'),
+      icon: getDownloadIcon(),
+      onClick: needsRestore
+        ? () => onRestoreClicked()
+        : () => onDownloadClicked(),
+      disabled: isDownloadActionDisabled,
+      label: needsRestore ? t('tableActionRestore') : t('tableActionDownload'),
+    },
+    {
+      id: 'extend-restore',
+      icon: <ArchiveRestore className="size-4" />,
+      onClick: () => onRestoreClicked(),
+      label: t('tableActionExtendRestore'),
+      hidden: !isRestored,
+      mobileOnly: true,
     },
     {
       id: 'versions',
@@ -129,32 +162,70 @@ const S3ObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
       variant: 'critical',
     },
   ];
+
+  const getDeepArchiveBadge = (obj: StorageObject) => {
+    const { restoreStatus } = obj;
+    if (isDeepArchive(obj) && restoreStatus) {
+      const { inProgress, expireDate } = restoreStatus;
+      if (inProgress) {
+        return <Badge variant={'information'}>{t('inProgressRestore')}</Badge>;
+      }
+      if (expireDate) {
+        return (
+          <Badge
+            variant={'information'}
+            className="flex items-center gap-2 cursor-pointer hover:bg-primary-100 transition-colors"
+            onClick={(e) => {
+              e.stopPropagation();
+              onRestoreClicked();
+            }}
+          >
+            {t('available')} &nbsp;
+            <FormattedDate
+              date={new Date(expireDate)}
+              options={{
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric',
+              }}
+            />
+            <Pen className="size-3" />
+          </Badge>
+        );
+      }
+    }
+
+    return null;
+  };
+
   return (
     <>
       <div
         className={cn(
           'py-2 px-3 grid grid-cols-[minmax(0,1fr)_auto_130px_auto] items-center gap-4 hover:bg-primary-50',
-          !object.isLatest && 'bg-neutral-50 pl-6',
+          object.isLatest === false && 'bg-neutral-50 pl-6',
         )}
       >
         {/* NAME */}
-        <Link
-          to={`./object?objectKey=${encodeURIComponent(object.key)}`}
-          className="flex items-center gap-2 min-w-0"
-        >
-          <FileIcon fileName={object.key} className="w-4 h-4 flex-shrink-0" />
-          <span className="truncate" title={object.key}>
-            {String(object.key)
-              .split('/')
-              .pop()}
-          </span>
-          {object.isDeleteMarker && (
-            <Badge className="ml-2" variant="information">
-              {t('tableSuppressionBadgeLabel')}
-            </Badge>
-          )}
-        </Link>
-
+        <div className="flex items-center gap-2 min-w-0">
+          <Link
+            to={`./object?objectKey=${encodeURIComponent(object.key)}`}
+            className="flex items-center gap-2 min-w-0"
+          >
+            <FileIcon fileName={object.key} className="w-4 h-4 flex-shrink-0" />
+            <span className="truncate" title={object.key}>
+              {String(object.key)
+                .split('/')
+                .pop()}
+            </span>
+            {object.isDeleteMarker && (
+              <Badge className="ml-2" variant="information">
+                {t('tableSuppressionBadgeLabel')}
+              </Badge>
+            )}
+          </Link>
+          <div className="hidden lg:block">{getDeepArchiveBadge(object)}</div>
+        </div>
         {/* SIZE + DATE */}
         <div className="text-muted-foreground flex justify-end gap-2">
           {object.size !== undefined && (
@@ -218,19 +289,21 @@ const S3ObjectFileRenderer = ({ object }: S3ObjectFileRendererProps) => {
               data-testid="storages-action-content"
               align="end"
             >
-              {actions.map((a) => (
-                <>
-                  {a.withSeparator && <DropdownMenuSeparator />}
-                  <DropdownMenuItem
-                    key={a.id}
-                    onClick={a.onClick}
-                    variant={a.variant}
-                    disabled={a.disabled}
-                  >
-                    {a.label}
-                  </DropdownMenuItem>
-                </>
-              ))}
+              {actions
+                .filter((a) => !a.hidden)
+                .map((a) => (
+                  <>
+                    {a.withSeparator && <DropdownMenuSeparator />}
+                    <DropdownMenuItem
+                      key={a.id}
+                      onClick={a.onClick}
+                      variant={a.variant}
+                      disabled={a.disabled}
+                    >
+                      {a.label}
+                    </DropdownMenuItem>
+                  </>
+                ))}
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

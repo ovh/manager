@@ -129,7 +129,7 @@ const OrderSummary = ({
             </SummaryItem>
           </SummarySection>
 
-          {regionInfo.type === cloud.RegionTypeEnum['region-3-az'] && (
+          {regionInfo?.type === cloud.RegionTypeEnum['region-3-az'] && (
             <SummarySection
               label={t('summaryOffsiteReplicationSection')}
               onAnchorClicked={() => scrollToDiv('replication')}
@@ -160,7 +160,7 @@ const OrderSummary = ({
             </SummarySection>
           )}
 
-          {regionInfo.type !== cloud.RegionTypeEnum.localzone && (
+          {regionInfo?.type !== cloud.RegionTypeEnum.localzone && (
             <>
               <SummarySection
                 label={t('summaryVersionningSection')}

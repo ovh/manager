@@ -19,8 +19,8 @@
     "test-ui": "vitest --ui --coverage.enabled=true"
   },
   "dependencies": {
-    "@datatr-ux/ovhcloud-types": "^1.0.40",
     "@datatr-ux/uxlib": "1.0.0-alpha-34",
+    "@datatr-ux/ovhcloud-types": "^1.0.68",
     "@hookform/resolvers": "^3.3.4",
     "@ovh-ux/manager-common-translations": "^0.9.1",
     "@ovh-ux/manager-config": "^8.7.0",
