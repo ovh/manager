@@ -1,17 +1,16 @@
+import { Bucket } from '@/types/Bucket.type';
 import { Resource, ResourceStatus } from '@/types/Resource.type';
-
-export type Performance = 'HIGHPERF' | 'STANDARD';
 
 export type VaultBillingType = 'BUNDLE' | 'PAYGO';
 export interface Vault {
-  azName: string;
+  region: string;
   id: string;
   name: string;
-  performance: Performance;
   resourceName: string;
   status: ResourceStatus;
   type: VaultBillingType;
-  vspc: string[];
+  vspcTenants: string[];
+  buckets: Bucket[];
 }
 
 export type VaultResource = Resource<Vault>;
