@@ -125,7 +125,9 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
 
         return null;
       })
-      .finally(() => setIsLoading(false));
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
 
   useEffect(() => {
@@ -149,10 +151,10 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   }, [application]);
 
   useEffect(() => {
-    shell.getPlugin('environment').onUniverseChange((universe: string) => {
+    shell.getPlugin('environment')?.onUniverseChange((universe: string) => {
       setUniverse(universe);
     });
-  }, []);
+  }, [shell.getPlugin('environment')]);
 
   const containerContext = {
     createBetaChoice,

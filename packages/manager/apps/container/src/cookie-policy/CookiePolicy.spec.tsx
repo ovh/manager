@@ -1,6 +1,6 @@
 import { render, waitFor } from '@testing-library/react';
 import { it, vi, describe, expect } from 'vitest';
-import { initShell } from '@ovh-ux/shell';
+import { completeShellWithEnvironment, initShell } from '@ovh-ux/shell';
 import { Environment, User } from '@ovh-ux/manager-config';
 import { useCookies } from 'react-cookie';
 import CookiePolicy from './CookiePolicy';
@@ -14,7 +14,8 @@ const trackingOnConsentModalDisplay = vi.fn().mockResolvedValue(undefined);
 vi.mock('@ovh-ux/shell');
 
 const renderCookiePolicy = async () => {
-  const shell = initShell({} as Environment);
+  const shell = initShell();
+  completeShellWithEnvironment(shell, {} as Environment);
   const environment = shell.getPlugin('environment').getEnvironment();
   render(
     <ApplicationContext.Provider value={{ shell, environment }}>
