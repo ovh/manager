@@ -17,7 +17,7 @@ function App() {
 
   useEffect(() => {
     shell?.ux?.hidePreloader();
-  }, []);
+  }, [shell.ux]);
 
   return (
     <QueryClientProvider client={queryClient}>

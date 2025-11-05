@@ -15,6 +15,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Region } from '@ovh-ux/manager-config';
 import { PciDiscoveryBanner, isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
 import {
   BaseLayout,
@@ -28,7 +29,6 @@ import { ShellContext, ShellContextType, useOvhTracking } from '@ovh-ux/manager-
 
 import { ProjectValidationGuard } from '@/components/ProjectValidationGuard';
 import { ROADMAP_CHANGELOG_LINKS } from '@/constants';
-import { AccountAcl } from '@/data/api/acl';
 import { useProjectAcl, useProjectAclAccountsInfo } from '@/data/hooks/useAcl';
 import { useProjectService } from '@/data/hooks/useServices';
 import { TService } from '@/data/types/service.type';
@@ -94,7 +94,7 @@ export default function ListingPage() {
     });
     navigate(`./${urls.add}`);
   };
-  const isEuRegion = context.environment.getRegion() === 'EU';
+  const isEuRegion = context.environment.getRegion() === Region.EU;
   const discoveryProject = isDiscoveryProject(project);
   const canChangeContacts = isEuRegion && !discoveryProject;
   const contactsPageHref = useGetContactsPageHref(context, serviceInfo);

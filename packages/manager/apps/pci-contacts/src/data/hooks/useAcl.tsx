@@ -49,7 +49,7 @@ export const useAddAccountAclToProject = ({
   const mutation = useMutation({
     mutationFn: (account: AccountAcl) => addAccountAclToProject(projectId, account),
     onError,
-    onSuccess: async (account: AccountAcl) => {
+    onSuccess: (account: AccountAcl) => {
       queryClient.invalidateQueries({
         queryKey: getProjectAclQueryKey(projectId),
       });
@@ -79,7 +79,7 @@ export const useDeleteAccountAclFromProject = ({
   const mutation = useMutation({
     mutationFn: (accountId: string) => deleteAccountAclFromProject(projectId, accountId),
     onError,
-    onSuccess: async (accountId: string) => {
+    onSuccess: (accountId: string) => {
       queryClient.invalidateQueries({
         queryKey: getProjectAclQueryKey(projectId),
       });

@@ -16,11 +16,11 @@ export default function Layout() {
     const match = matches.slice(-1);
     defineCurrentPage(`app.pci-contacts-${match[0]?.id}`);
     trackCurrentPage();
-  }, [location]);
+  }, [location, matches, trackCurrentPage]);
 
   useEffect(() => {
     shell?.ux?.hidePreloader();
-  }, []);
+  }, [shell?.ux]);
 
   return (
     <Suspense>

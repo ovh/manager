@@ -33,7 +33,7 @@ const init = async (appName: string) => {
   context.shell.tracking.setConfig(region, LEVEL2);
   try {
     await import(`./config-${region}.js`);
-  } catch (error) {
+  } catch (_error) {
     // nothing to do
   }
 
