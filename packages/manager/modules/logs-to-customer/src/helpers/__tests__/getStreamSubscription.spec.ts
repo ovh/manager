@@ -1,6 +1,6 @@
-import { logSubscriptionsMock } from '../data/mocks/logSubscription.mock';
-import { LogSubscription } from '../data/types/dbaas/logs';
-import getStreamSubscription from './getStreamSubscription';
+import { logSubscriptionsMock } from '../../data/mocks/logSubscription.mock';
+import { LogSubscription } from '../../data/types/dbaas/logs';
+import getStreamSubscription from '../getStreamSubscription';
 
 describe('getStreamSubscription test', () => {
   type TTestCases = {
