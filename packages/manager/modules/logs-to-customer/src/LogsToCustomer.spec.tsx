@@ -2,7 +2,7 @@ import { screen, waitFor } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
 import { logKindsMock } from './data/mocks/logKind.mock';
-import { renderTest } from './test-utils';
+import { renderTest } from './test-utils/render-test';
 
 describe('LogsToCustomer module', () => {
   it('should display an error if /log/kind api is KO', async () => {
