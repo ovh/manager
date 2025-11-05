@@ -28,7 +28,7 @@ export default mergeConfig(
       },
     },
     resolve: {
-      dedupe: [...defaultDedupedDependencies],
+      dedupe: [...defaultDedupedDependencies, 'msw'],
     },
   }),
 );

@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 
 import { logMessagesMock } from '../../data/mocks/logMessage.mock';
-import { renderTest } from '../../test-utils';
+import { renderTest } from '../../test-utils/render-test';
 
 const IntersectionObserverMock = vi.fn(() => ({
   disconnect: vi.fn(),
