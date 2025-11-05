@@ -3,5 +3,7 @@
   "services": "Services",
   "billing": "Facturation",
   "agents": "Agents",
-  "buckets": "Buckets"
+  "buckets": "Buckets",
+  "policy": "Policy",
+  "actions": "Actions"
 }
