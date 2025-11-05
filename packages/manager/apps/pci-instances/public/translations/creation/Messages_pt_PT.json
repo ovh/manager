@@ -72,5 +72,6 @@
   "pci_instance_creation_availabilityZone_choose_for_me": "Escolher por mim",
   "pci_instance_creation_availabilityZone_user_choice": "Eu escolho a minha zona de disponibilidade",
   "pci_instance_creation_availabilityZone_help_description_p1": "Num ambiente cloud, a disponibilidade e a resiliência dos serviços são essenciais para garantir a continuidade das operações, mesmo em caso de falha de uma zona de disponibilidade (AZ).",
-  "pci_instance_creation_availabilityZone_help_description_p2": "Como as instâncias são serviços de zona, elas são implantadas apenas em uma única zona de disponibilidade. Para garantir a resiliência, cabe ao cliente distribuir manualmente suas instâncias em várias zonas."
+  "pci_instance_creation_availabilityZone_help_description_p2": "Como as instâncias são serviços de zona, elas são implantadas apenas em uma única zona de disponibilidade. Para garantir a resiliência, cabe ao cliente distribuir manualmente suas instâncias em várias zonas.",
+  "pci_instance_creation_cart_distribution_image_title": "Imagem"
 }

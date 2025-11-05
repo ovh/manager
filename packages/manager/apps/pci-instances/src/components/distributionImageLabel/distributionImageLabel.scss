@@ -1,0 +1,19 @@
+$icons: 'almalinux', 'centOS', 'cPanel', 'debian', 'docker', 'fedora', 'freeBSD',
+  'linux', 'n8n', 'nvidia', 'plesk', 'rockylinux', 'ubuntu', 'windows';
+
+.distributionImage {
+  display: inline-block;
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  background-size: cover;
+  background-position: center;
+  margin-top: 2px;
+  margin-right: 8px;
+
+  @each $icon in $icons {
+    &--#{$icon} {
+      background-image: url('/assets/distribution/#{$icon}.png');
+    }
+  }
+}

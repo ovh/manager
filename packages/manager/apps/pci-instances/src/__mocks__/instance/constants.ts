@@ -1095,7 +1095,7 @@ export const mockedGpuFlavors: TGpuFlavorData[] = [
 export const mockedDistributionImageType = [
   {
     label: 'Distributions Unix',
-    value: 'linux',
+    value: 'unix',
   },
   {
     label: 'Distributions Windows',
@@ -1108,5 +1108,118 @@ export const mockedDistributionImageType = [
   {
     label: 'Backups',
     value: 'backups',
+  },
+];
+
+export const mockedDistributionImageList = [
+  {
+    id: 'linux',
+    type: 'unix',
+    label: 'Linux',
+    name: 'linux',
+  },
+  {
+    id: 'centos',
+    type: 'unix',
+    label: 'CentOS',
+    name: 'centOS',
+  },
+  {
+    id: 'almalinux',
+    type: 'unix',
+    label: 'Alma Linux',
+    name: 'almalinux',
+  },
+  {
+    id: 'debian',
+    type: 'unix',
+    label: 'Debian',
+    name: 'debian',
+  },
+  {
+    id: 'fedora',
+    type: 'unix',
+    label: 'Fedora',
+    name: 'fedora',
+  },
+  {
+    id: 'freebsd',
+    type: 'unix',
+    label: 'FreeBSD',
+    name: 'freeBSD',
+  },
+  {
+    id: 'ubuntu',
+    type: 'unix',
+    label: 'Ubuntu',
+    name: 'ubuntu',
+  },
+  {
+    id: 'win-2025',
+    type: 'windows',
+    label: 'Windows Server 2025 Standard (Desktop)',
+    name: 'windows',
+    price: '+0,0347 € HT/vCore/heure',
+  },
+  {
+    id: 'win-2022',
+    type: 'windows',
+    label: 'Windows Server 2022 Standard (Desktop)',
+    name: 'windows',
+    price: '+0,0347 € HT/vCore/heure',
+  },
+  {
+    id: 'win-2016',
+    type: 'windows',
+    label: 'Windows Server 2016 Standard (Desktop)',
+    name: 'windows',
+    price: '+0,0347 € HT/vCore/heure',
+  },
+  {
+    id: 'win-2023',
+    type: 'windows',
+    label: 'Windows Server 2023 Standard (Desktop)',
+    name: 'windows',
+    price: '+0,0347 € HT/vCore/heure',
+  },
+  {
+    id: 'backup-1',
+    type: 'backups',
+    label: 'autobackup-b2-30-bhs5',
+  },
+  {
+    id: 'backup-2',
+    type: 'backups',
+    label: 'test-node 02/03/2024 23:10',
+  },
+  {
+    id: 'cpanel',
+    type: 'apps',
+    label: 'cPanel',
+    name: 'cPanel',
+  },
+  {
+    id: 'docker',
+    type: 'apps',
+    label: 'Docker',
+    name: 'docker',
+  },
+  {
+    id: 'plesk',
+    type: 'apps',
+    label: 'Plesk',
+    name: 'plesk',
+  },
+  {
+    id: 'n8n',
+    type: 'apps',
+    label: 'n8n',
+    name: 'n8n',
+  },
+  {
+    id: 'nvidia',
+    type: 'apps',
+    label: 'NVIDIA GPU Cloud (NGC)',
+    name: 'nvidia',
   },
 ];

@@ -72,5 +72,6 @@
   "pci_instance_creation_availabilityZone_choose_for_me": "Wybierz za mnie",
   "pci_instance_creation_availabilityZone_user_choice": "Wybieram swoją strefę dostępności",
   "pci_instance_creation_availabilityZone_help_description_p1": "W środowisku chmurowym dostępność i odporność usług są kluczowe dla zapewnienia ciągłości operacji, nawet w przypadku awarii strefy dostępności (AZ).",
-  "pci_instance_creation_availabilityZone_help_description_p2": "Ponieważ instancje są usługami strefowymi, są one wdrażane tylko w jednej strefie dostępności. Aby zapewnić odporność, klient musi ręcznie rozłożyć swoje instancje na kilka stref."
+  "pci_instance_creation_availabilityZone_help_description_p2": "Ponieważ instancje są usługami strefowymi, są one wdrażane tylko w jednej strefie dostępności. Aby zapewnić odporność, klient musi ręcznie rozłożyć swoje instancje na kilka stref.",
+  "pci_instance_creation_cart_distribution_image_title": "Obraz"
 }
