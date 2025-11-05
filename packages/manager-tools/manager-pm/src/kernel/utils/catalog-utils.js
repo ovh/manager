@@ -1,8 +1,10 @@
 import { Buffer } from 'node:buffer';
+import { exec } from 'node:child_process';
 import { existsSync, mkdirSync } from 'node:fs';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
+import { promisify } from 'node:util';
 
 import {
   pnpmAppsPlaybookPath,
@@ -10,6 +12,8 @@ import {
   yarnAppsPlaybookPath,
 } from '../../playbook/playbook-config.js';
 import { logger } from './log-manager.js';
+
+const execAsync = promisify(exec);
 
 /**
  * Resolve canonical catalog file paths.
@@ -347,42 +351,76 @@ export async function updateRootWorkspacesToPnpmOnly() {
 }
 
 /**
- * Clear all root workspaces.
+ * Try to restore package.json from Git.
  *
- * Sets:
- * {
- *   "workspaces": { "packages": [] }
- * }
+ * @param {string} directory - Directory containing package.json
+ * @param {string} file - Filename of package.json
+ * @returns {Promise<boolean>} True if restored successfully
+ */
+async function tryGitRestore(directory, file) {
+  try {
+    logger.info(`Attempting to restore ${file} using Git...`);
+    await execAsync(`git restore ${file}`, { cwd: directory });
+    logger.success(`✔ Successfully restored ${file} from Git`);
+    return true;
+  } catch (err) {
+    logger.warn(`⚠️ Git restore failed: ${err.message}`);
+    logger.debug(`Git error stack: ${err.stack}`);
+    return false;
+  }
+}
+
+/**
+ * Manually clear the workspaces field in root package.json.
  *
- * - Idempotent.
- * - Normalizes array-form workspaces to object-form for consistency.
+ * @returns {Promise<void>}
+ */
+async function clearWorkspacesManually() {
+  try {
+    logger.info('Falling back to manual workspace clearing...');
+    const rootPackageJsonContent = await fs.readFile(rootPackageJsonPath, 'utf-8');
+    const rootPackageJson = JSON.parse(rootPackageJsonContent);
+
+    if (
+      !rootPackageJson.workspaces ||
+      typeof rootPackageJson.workspaces !== 'object' ||
+      Array.isArray(rootPackageJson.workspaces)
+    ) {
+      logger.warn('⚠️ Invalid or missing "workspaces" field. Creating new object form.');
+      rootPackageJson.workspaces = { packages: [] };
+    } else {
+      rootPackageJson.workspaces.packages = [];
+    }
+
+    await fs.writeFile(rootPackageJsonPath, JSON.stringify(rootPackageJson, null, 2));
+    logger.success('✔ Cleared root workspaces.packages (manual fallback successful)');
+  } catch (err) {
+    logger.error(`❌ Failed to manually clear root workspaces: ${err.message}`);
+    logger.debug(`Stack trace: ${err.stack}`);
+  }
+}
+
+/**
+ * Attempt to restore the root `package.json` from Git.
+ * Falls back to manually clearing workspaces if Git is unavailable or fails.
+ *
+ * - Uses `git restore` (requires Git ≥ 2.23, cross-platform)
+ * - Ensures the file returns to a consistent empty state even on failure
  *
  * @returns {Promise<string[]>} Always returns an empty array.
  */
 export async function clearRootWorkspaces() {
   logger.debug('clearRootWorkspaces()');
-  try {
-    const raw = await fs.readFile(rootPackageJsonPath, 'utf-8');
-    const pkg = JSON.parse(raw);
 
-    // Normalize to object form: { packages: [] }
-    if (!pkg.workspaces || typeof pkg.workspaces !== 'object' || Array.isArray(pkg.workspaces)) {
-      if (Array.isArray(pkg.workspaces)) {
-        logger.warn('⚠️ Root package.json workspaces is an array. Converting to object form.');
-      } else {
-        logger.warn('⚠️ Root package.json had no valid workspaces field. Creating a new one.');
-      }
-      pkg.workspaces = { packages: [] };
-    } else {
-      pkg.workspaces.packages = [];
-    }
+  const cwd = path.dirname(rootPackageJsonPath);
+  const file = path.basename(rootPackageJsonPath);
 
-    await fs.writeFile(rootPackageJsonPath, JSON.stringify(pkg, null, 2));
-    logger.success('✔ Cleared root workspaces.packages (now empty)');
-    return [];
-  } catch (err) {
-    logger.error(`❌ Failed to clear root workspaces: ${err.message}`);
-    logger.debug(`Stack trace: ${err.stack}`);
+  // --- Try Git restore first ---
+  if (await tryGitRestore(cwd, file)) {
     return [];
   }
+
+  // --- Fallback: manual clear ---
+  await clearWorkspacesManually();
+  return [];
 }
