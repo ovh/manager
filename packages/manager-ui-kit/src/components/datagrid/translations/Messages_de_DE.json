@@ -8,5 +8,7 @@
   "common_empty_text_cell": "Keine",
   "common_topbar_columns": "Spalten",
   "common_pagination_load_all": "Alle laden",
-  "common_topbar_columns_select_all": "Alles auswählen"
+  "common_topbar_columns_select_all": "Alles auswählen",
+  "common_search_placeholder": "Suchen",
+  "datagrid_error_context_not_found": "Fehler beim Laden. Bitte versuchen Sie es später noch einmal."
 }

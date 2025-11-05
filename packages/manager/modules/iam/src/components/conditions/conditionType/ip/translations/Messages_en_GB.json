@@ -1,6 +1,6 @@
 {
   "iam_create_condition_ip_label": "IP address",
   "iam_create_condition_ip_placeholder": "Enter an IP address",
-  "iam_create_condition_ip_criteria_in_helper": "Separate each IP address with a comma without spaces (127.0.0.1,10.23.0.0)",
-  "iam_create_condition_ip_criteria_in_range_helper": "Separate each IP address and its subnet with a comma without spaces (127.0.0.1/32,10.23.0.0/16)"
+  "iam_create_condition_ip_criteria_in_helper": "Separate each IP with a comma without spaces (127.0.0.1,10.23.0.0)",
+  "iam_create_condition_ip_criteria_in_range_helper": "Separate each IP and its subnet with a comma without spaces (127.0.0.1/32,10.23.0.0/16)"
 }
