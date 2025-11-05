@@ -3,7 +3,7 @@ import {
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useContext, useEffect, useState } from 'react';
 import { Translation, useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
@@ -119,6 +119,17 @@ export default function Actions({
       });
     }
 
+    // View/Show project option
+    if (!projectStatus.isDefault) {
+      items.push({
+        id: 3,
+        label: t('pci_projects_project_edit_set_as_default_project', {
+          ns: 'edit',
+        }),
+        onClick: () => setAsDefaultProject(projectWithService.project_id),
+      });
+    }
+
     // Delete option
     if (
       (projectStatus.isCreating || projectStatus.isActive) &&
@@ -130,17 +141,7 @@ export default function Actions({
         ...(projectStatus.isCreating
           ? { onClick: handleDeleteProject }
           : { href: deleteHref, onClick: trackDeleteProjectClick }),
-      });
-    }
-
-    // View/Show project option
-    if (!projectStatus.isDefault) {
-      items.push({
-        id: 3,
-        label: t('pci_projects_project_edit_set_as_default_project', {
-          ns: 'edit',
-        }),
-        onClick: () => setAsDefaultProject(projectWithService.project_id),
+        color: ODS_BUTTON_COLOR.critical,
       });
     }
 
