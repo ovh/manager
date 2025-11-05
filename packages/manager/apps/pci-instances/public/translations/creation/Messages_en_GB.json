@@ -72,5 +72,6 @@
   "pci_instance_creation_availabilityZone_choose_for_me": "Choose for me",
   "pci_instance_creation_availabilityZone_user_choice": "I choose my availability zone",
   "pci_instance_creation_availabilityZone_help_description_p1": "In a cloud environment, the availability and resilience of services are essential to ensure the continuity of operations, even in the event of a failure in an availability zone (AZ).",
-  "pci_instance_creation_availabilityZone_help_description_p2": "As instances are zonal services, they are only deployed in a single availability zone. To ensure resilience, it is therefore up to the customer to manually distribute their instances across multiple zones."
+  "pci_instance_creation_availabilityZone_help_description_p2": "As instances are zonal services, they are only deployed in a single availability zone. To ensure resilience, it is therefore up to the customer to manually distribute their instances across multiple zones.",
+  "pci_instance_creation_cart_distribution_image_title": "Image"
 }

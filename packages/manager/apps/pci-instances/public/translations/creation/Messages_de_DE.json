@@ -72,5 +72,6 @@
   "pci_instance_creation_availabilityZone_choose_for_me": "Für mich auswählen",
   "pci_instance_creation_availabilityZone_user_choice": "Ich wähle meine Verfügbarkeitszone aus",
   "pci_instance_creation_availabilityZone_help_description_p1": "In einer Cloud-Umgebung sind die Verfügbarkeit und Resilienz der Dienste entscheidend, um die Kontinuität der Abläufe zu gewährleisten, selbst im Falle eines Ausfalls einer Verfügbarkeitszone (AZ).",
-  "pci_instance_creation_availabilityZone_help_description_p2": "Da die Instanzen zonale Dienste sind, werden sie nur in einer einzigen Verfügbarkeitszone bereitgestellt. Um die Resilienz zu gewährleisten, liegt es daher am Kunden, seine Instanzen manuell auf mehrere Zonen zu verteilen."
+  "pci_instance_creation_availabilityZone_help_description_p2": "Da die Instanzen zonale Dienste sind, werden sie nur in einer einzigen Verfügbarkeitszone bereitgestellt. Um die Resilienz zu gewährleisten, liegt es daher am Kunden, seine Instanzen manuell auf mehrere Zonen zu verteilen.",
+  "pci_instance_creation_cart_distribution_image_title": "Image"
 }

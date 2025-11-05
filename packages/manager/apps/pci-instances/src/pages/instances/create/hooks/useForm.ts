@@ -11,7 +11,10 @@ import {
   selectCategories,
   selectTypes,
 } from '../view-models/categoriesTypesViewModel';
-import { mockedDistributionImageType } from '@/__mocks__/instance/constants';
+import {
+  mockedDistributionImageType,
+  mockedDistributionImageList,
+} from '@/__mocks__/instance/constants';
 import { selectFlavors } from '../view-models/flavorsViewModel';
 
 // eslint-disable-next-line max-lines-per-function
@@ -61,6 +64,11 @@ export const useForm = (projectId: string) => {
   const distributionImageTypeDefaultValue =
     mockedDistributionImageType[0]?.value ?? null;
 
+  const distributionImageNameDefaultValue =
+    mockedDistributionImageList.find(
+      ({ type }) => type === distributionImageTypeDefaultValue,
+    )?.id ?? null;
+
   const formMethods = useReactHookForm({
     resolver: zodResolver(instanceCreationSchema),
     values: {
@@ -75,6 +83,7 @@ export const useForm = (projectId: string) => {
       microRegion: microRegionDefaultValue,
       availabilityZone: availabilityZoneDefaultValue,
       distributionImageType: distributionImageTypeDefaultValue,
+      distributionImageName: distributionImageNameDefaultValue,
     },
     mode: 'onChange',
   });

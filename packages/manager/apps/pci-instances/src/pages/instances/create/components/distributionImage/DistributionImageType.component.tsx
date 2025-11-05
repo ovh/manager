@@ -1,10 +1,5 @@
 import { FC } from 'react';
-import {
-  Controller,
-  ControllerRenderProps,
-  useFormContext,
-  useWatch,
-} from 'react-hook-form';
+import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import {
   ButtonType,
@@ -20,28 +15,32 @@ import {
   SelectValueChangeDetail,
   Text,
 } from '@ovhcloud/ods-react';
-import { mockedDistributionImageType } from '@/__mocks__/instance/constants';
+import {
+  mockedDistributionImageList,
+  mockedDistributionImageType,
+} from '@/__mocks__/instance/constants';
 import { TInstanceCreationForm } from '../../CreateInstance.page';
 
 const DistributionImageType: FC = () => {
   const { t } = useTranslation('creation');
   const { trackClick } = useOvhTracking();
-  const { control } = useFormContext<TInstanceCreationForm>();
+  const { control, setValue } = useFormContext<TInstanceCreationForm>();
   const selectedImageType = useWatch({
     control,
     name: 'distributionImageType',
   });
 
-  const handleImageTypeChange = (
-    field: ControllerRenderProps<
-      TInstanceCreationForm,
-      'distributionImageType'
-    >,
-  ) => ({ value }: SelectValueChangeDetail) => {
+  const handleImageTypeChange = ({ value }: SelectValueChangeDetail) => {
     const imageType = value[0];
 
     if (!imageType) return;
-    field.onChange(imageType);
+
+    const distributionImageName =
+      mockedDistributionImageList.find(({ type }) => type === imageType)?.id ??
+      null;
+
+    setValue('distributionImageType', imageType);
+    setValue('distributionImageName', distributionImageName);
 
     trackClick({
       location: PageLocation.funnel,
@@ -56,7 +55,7 @@ const DistributionImageType: FC = () => {
       <Controller
         name="distributionImageType"
         control={control}
-        render={({ field }) => (
+        render={() => (
           <FormField className="max-w-[32%]">
             <FormFieldLabel>
               {t(
@@ -66,7 +65,7 @@ const DistributionImageType: FC = () => {
             <Select
               items={mockedDistributionImageType}
               value={selectedImageType ? [selectedImageType] : []}
-              onValueChange={handleImageTypeChange(field)}
+              onValueChange={handleImageTypeChange}
             >
               <SelectControl />
               <SelectContent />

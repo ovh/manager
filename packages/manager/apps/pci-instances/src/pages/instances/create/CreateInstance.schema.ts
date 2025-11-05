@@ -31,3 +31,5 @@ export const quantitySchema = z
   .max(quantityRules.max);
 
 export const distributionImageTypeSchema = z.string().nullable();
+
+export const distributionImageNameSchema = z.string().nullable();
