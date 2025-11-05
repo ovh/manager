@@ -14,7 +14,7 @@ type ModuleWithDefault<T extends ComponentType<unknown>, E extends Record<string
   default: T;
 } & E;
 
-export function lazyRouteConfig<
+function lazyRouteConfig<
   T extends ComponentType<unknown>,
   E extends Record<string, unknown> = Record<string, unknown>,
 >(importFn: () => Promise<ModuleWithDefault<T, E>>) {
@@ -58,3 +58,5 @@ export const getObservabilityRoute = () => (
     </Route>
   </>
 );
+
+export default getObservabilityRoute;
