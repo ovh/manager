@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
-import { Location } from '@secret-manager/types/location.type';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useCurrentRegion } from '@secret-manager/hooks/useCurrentRegion';
 import { useOkmsList } from '@key-management-service/data/hooks/useOkms';
 import { useNotificationAddErrorOnce } from '@key-management-service/hooks/useNotificationAddErrorOnce';
 import { OKMS } from '@key-management-service/types/okms.type';
+import { Location } from '@/common/types/location.type';
 import { useLocations } from '@/common/data/hooks/useLocation';
 import { findLocationByRegion } from '@/modules/secret-manager/utils/location';
 import { ContinentCode } from '@/common/types/continents.type';
