@@ -5,6 +5,7 @@ import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { screen } from '@testing-library/react';
 
 import { labels, renderTest } from '../../../../test-utils';
+import TEST_IDS from '../../../../utils/testIds.constants';
 
 describe('Network ACL Add new acl', () => {
   beforeAll(() => {
@@ -36,6 +37,19 @@ describe('Network ACL Add new acl', () => {
     await assertTextVisibility(
       labels.networkAcl.managed_vcd_network_acl_ip_cta_add_ip,
     );
+
+    // actions
+    const addCurrentIpButton = await screen.findByTestId(
+      TEST_IDS.networkAclAddCurrentIpAction,
+    );
+    expect(addCurrentIpButton).toBeInTheDocument();
+    expect(addCurrentIpButton).toBeEnabled();
+
+    const fromAnywhereButton = await screen.findByTestId(
+      TEST_IDS.networkAclfromAnywhereIpAction,
+    );
+    expect(fromAnywhereButton).toBeInTheDocument();
+    expect(fromAnywhereButton).toBeEnabled();
 
     // Form
     const ipInput = await screen.findByLabelText(
