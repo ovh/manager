@@ -1,8 +1,8 @@
 import React, { useId } from 'react';
 import { OdsBadge, OdsTooltip, OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { LocationType } from '@secret-manager/types/location.type';
 import { useTranslation } from 'react-i18next';
+import { LocationType } from '@/common/types/location.type';
 
 type RegionTypeBadgeProps = {
   type: LocationType;

@@ -1,4 +1,4 @@
-import { Location } from '@secret-manager/types/location.type';
+import { Location } from '@/common/types/location.type';
 
 export const findLocationByRegion = (
   locations: Location[],
