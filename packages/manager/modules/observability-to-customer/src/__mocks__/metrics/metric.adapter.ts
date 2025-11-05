@@ -1,20 +1,20 @@
 import {
+  fetchChartData as fetchChartDataFromMock,
+  getMetricKind as getMetricKindFromMock,
+  getMetricKinds as getMetricKindsFromMock,
+} from '@/__mocks__/metrics/metric.mock';
+import { apiConfig } from '@/__mocks__/mock.config';
+import {
   fetchChartData as fetchChartDataFromApi,
   getMetricKindByName as getMetricKindFromApi,
   getMetricKinds as getMetricKindsFromApi,
-} from '../../data/api/metrics';
+} from '@/data/api/metrics';
 import {
   ObservabilityMetricDataParams,
   ObservabilityMetricKindParams,
   ObservabilityMetricKindsParams,
-} from '../../types/ClientApi.type';
-import { Kind, MetricData } from '../../types/observability.type';
-import {
-  fetchChartData as fetchChartDataFromMock,
-  getMetricKind as getMetricKindFromMock,
-  getMetricKinds as getMetricKindsFromMock,
-} from '../metrics/metric.mock';
-import { apiConfig } from '../mock.config';
+} from '@/types/ClientApi.type';
+import { Kind, MetricData } from '@/types/observability.type';
 
 export const fetchChartData = async <TData>(
   params: ObservabilityMetricDataParams,

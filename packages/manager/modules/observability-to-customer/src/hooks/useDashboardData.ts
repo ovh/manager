@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 
-import { ChartWidgetWithData } from '../components/widget/ChartWidgetWithData.type';
-import { useDashboardContext } from '../contexts';
-import { useDashboardConfig, useMultipleChartData } from '../data/hooks';
-import { ChartQueryResult } from '../data/hooks/dashboards/useMultipleChartData';
+import { ChartWidgetWithData } from '@/components/widget/ChartWidgetWithData.type';
+import { useDashboardContext } from '@/contexts';
+import { useDashboardConfig, useMultipleChartData } from '@/data/hooks/dashboards';
+import { ChartQueryResult } from '@/types/ChartQueryResult.type';
 
 /**
  * Hook that combines dashboard configuration with chart data to create
