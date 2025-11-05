@@ -36,6 +36,9 @@ export const EnableEdgeNetworkFirewallModal: React.FC = () => {
       await queryClient.invalidateQueries({
         queryKey: getIpEdgeFirewallQueryKey({ ip: ipOnFirewall }),
       });
+      await queryClient.invalidateQueries({
+        queryKey: getIpEdgeFirewallQueryKey({ ip }),
+      });
     },
     onError: (err: ApiError) => {
       addError(
