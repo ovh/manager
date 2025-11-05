@@ -1,4 +1,4 @@
-import { GeographyCode } from '@secret-manager/types/location.type';
+import { GeographyCode } from '@/common/types/location.type';
 import { ContinentCode } from '@/common/types/continents.type';
 
 const GEOGRAPHY_CODE_TO_CONTINENT_CODE: Record<GeographyCode, ContinentCode> = {
