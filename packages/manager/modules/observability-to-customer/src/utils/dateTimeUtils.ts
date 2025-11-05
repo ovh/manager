@@ -1,4 +1,4 @@
-import { TimeRangeOption } from '../types/TimeRangeOption.type';
+import { TimeRangeOption } from '@/types/TimeRangeOption.type';
 
 /**
  * Determine the window in seconds based on selectedTimeOption
@@ -8,7 +8,7 @@ import { TimeRangeOption } from '../types/TimeRangeOption.type';
 export const getWindowSecAndStep = (timeRangeOption: TimeRangeOption) => {
   const defaults = { windowSec: 60 * 60, stepSec: 60 };
 
-  let windowSec: number = defaults.windowSec;
+  let { windowSec } = defaults;
   let step: number = defaults.stepSec;
 
   // Ensure timeRangeOption and its value exist
@@ -20,7 +20,6 @@ export const getWindowSecAndStep = (timeRangeOption: TimeRangeOption) => {
     };
   }
 
-  console.log(timeRangeOption.value);
   switch (timeRangeOption.value) {
     case '1h': {
       windowSec = 60 * 60; // 1 hour
