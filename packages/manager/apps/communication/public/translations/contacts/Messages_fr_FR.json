@@ -13,6 +13,8 @@
   "type_phone": "Téléphone",
   "deactivate_contact_error_message": "Une erreur est survenue lors de la désactivation du contact.",
   "deactivate_contact_success_message": "Le contact a été désactivé avec succès.",
+  "activate_contact_success_message": "Le contact a été activé avec succès.",
+  "activate_contact_error_message": "Une erreur est survenue lors de l'activation du contact.",
   "delete_contact_error_message": "Une erreur est survenue lors de la suppression du contact.",
   "delete_contact_success_message": "Le contact a été supprimé avec succès.",
   "add_contact_error_message": "Une erreur est survenue lors de l'ajout du contact.",
