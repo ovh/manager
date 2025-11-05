@@ -20,6 +20,7 @@ export const SwaggerTileItem = ({ okms }: SwaggerTileItemProps) => {
       <ManagerTile.Item.Label>{SWAGGER_UI_LABEL}</ManagerTile.Item.Label>
       <ManagerTile.Item.Description>
         <Links
+          className="block [&::part(link)]:flex"
           type={LinkType.external}
           href={okms.swaggerEndpoint}
           onClickReturn={() =>
