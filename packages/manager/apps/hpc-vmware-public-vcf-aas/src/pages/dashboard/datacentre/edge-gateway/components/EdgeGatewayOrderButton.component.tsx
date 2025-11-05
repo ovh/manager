@@ -11,6 +11,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import TEST_IDS from '@/utils/testIds.constants';
 import { subRoutes } from '@/routes/routes.constant';
+import { EDGE_GATEWAY_MAX_QUANTITY } from '../datacentreEdgeGateway.constants';
 
 type EdgeGatewayOrderButtonProps = React.HTMLAttributes<HTMLDivElement> & {
   isOrderDisabled?: boolean;
@@ -43,7 +44,9 @@ export const EdgeGatewayOrderButton = ({
         color={ODS_BUTTON_COLOR.primary}
       />
       <OdsTooltip triggerId={tooltipId}>
-        <OdsText>{t('edge_add_tooltip')}</OdsText>
+        <OdsText>
+          {t('edge_add_tooltip', { maxEdge: EDGE_GATEWAY_MAX_QUANTITY })}
+        </OdsText>
       </OdsTooltip>
     </div>
   );
