@@ -26,5 +26,6 @@
   "missingPortError": "La saisie des ports est obligatoire",
   "startPortGreaterThanEndPortError": "Le port de démarrage est plus grand que le port final",
   "portRangeError": "Veuillez renseigner une valeur entre 1 et 65535",
-  "conflictingRuleError": "Le port (ou la plage de ports) est en conflit avec une autre règle"
+  "conflictingRuleError": "Le port (ou la plage de ports) est en conflit avec une autre règle",
+  "missingProtocolError": "La sélection du protocole est obligatoire"
 }
