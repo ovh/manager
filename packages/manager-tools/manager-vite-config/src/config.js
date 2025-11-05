@@ -80,6 +80,8 @@ const getBaseConfig = (config) => {
             'color-functions',
             'legacy-js-api',
             'abs-percent',
+            'slash-div',
+            'function-units',
           ],
           includePaths: [
             resolve(`${dirname(fileURLToPath(import.meta.url))}`, '../../../../../node_modules'),
