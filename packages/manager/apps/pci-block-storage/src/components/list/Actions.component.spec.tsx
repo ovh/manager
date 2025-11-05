@@ -80,7 +80,7 @@ describe('ActionsComponent', () => {
     );
   });
 
-  describe('change type and change encryption actions', () => {
+  describe('change type actions', () => {
     it.each([
       { is3az: false, isClassicMultiAttach: false },
       { is3az: true, isClassicMultiAttach: false },
@@ -102,13 +102,12 @@ describe('ActionsComponent', () => {
       },
     );
 
-    it('should be disabled with a title if volume is 3AZ and multi-attached', () => {
-      const is3az = true;
-      const isClassicMultiAttach = true;
+    it('should be disabled with a title if volume cant retype', () => {
+      const cantRetype = true;
 
       const { getByTestId } = render(
         <ActionsComponent
-          volume={{ ...mockVolumeDetach, is3az, isClassicMultiAttach }}
+          volume={{ ...mockVolumeDetach, cantRetype }}
           projectUrl="/project"
         />,
       );
