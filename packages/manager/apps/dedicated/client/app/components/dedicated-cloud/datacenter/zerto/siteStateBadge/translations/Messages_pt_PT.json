@@ -3,7 +3,7 @@
   "dedicatedCloud_datacenter_zerto_site_state_one_site_state_success": "1 site entregue",
   "dedicatedCloud_datacenter_zerto_site_state_one_site_state_warning": "1 site em espera",
   "dedicatedCloud_datacenter_zerto_site_state_one_site_state_error": "1 site com erro",
-  "dedicatedCloud_datacenter_zerto_site_state_multiple_site_state_success": "{{numbers}} sites entregues",
+  "dedicatedCloud_datacenter_zerto_site_state_multiple_site_state_success": "{{numbers}} sites emitidos",
   "dedicatedCloud_datacenter_zerto_site_state_multiple_site_state_warning": "{{numbers}} sites em espera",
   "dedicatedCloud_datacenter_zerto_site_state_multiple_site_state_error": "{{numbers}} sites com erros"
 }

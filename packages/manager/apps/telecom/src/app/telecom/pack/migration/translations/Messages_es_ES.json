@@ -157,7 +157,7 @@
   "telecom_pack_migration_promotion_description": "Promoción disponible hasta el {{ endDate }}",
   "telecom_pack_migration_promotion_subscription_months_offered": "{{ duration }} meses gratis",
   "telecom_pack_migration_promotion_installation_fees_offered": "Sin gastos de instalación",
-  "telecom_pack_migration_confirm_promotion": "Los costos de instalación de su nueva suscripción son gratuitos (excluyendo el alquiler del módem, opciones adicionales o costos de transporte).",
+  "telecom_pack_migration_confirm_promotion": "Los gastos de instalación de la nueva suscripción son gratuitos (excepto el alquiler de módem, las opciones adicionales o los gastos de transporte).",
   "telecom_pack_migration_confirm_first_year_promo": "Descuento el primer año",
   "telecom_pack_migration_confirm_modem_rental": "Alquiler módem",
   "telecom_pack_migration_confirm_provider_infra": "Gastos adicionales",
@@ -212,8 +212,8 @@
   "telecom_pack_migration_confirm_temporary_pack_creation_line_2": "Este pack se eliminará automáticamente una vez finalizado el pedido de Fibra.",
   "telecom_pack_migration_confirm_temporary_pack_creation_line_3": "No es necesario que realice ninguna acción de modificación o eliminación: el paso a su acceso de fibra se realizará de forma totalmente automatizada.",
   "telecom_pack_migration_phone_call_for_new_meeting": "El servicio de cita previa en línea no está disponible. Nos pondremos en contacto con usted por teléfono para ofrecerle la fecha y la franja horaria que más le convenga.",
-  "telecom_pack_migration_promotion_subscription_months_reduces": "-50 % durante {{ duration }} meses",
+  "telecom_pack_migration_promotion_subscription_months_reduces": "-50% durante {{ duration }} meses",
   "telecom_pack_migration_confirm_promotion_table": "Promoción ({{ duration }} meses)",
-  "telecom_pack_migration_confirm_discount_displayed": " durante {{ duration }} meses, luego",
-  "telecom_pack_migration_confirm_new_offer_price_discount": "Su nueva suscripción mensual es de: <span class=\"text-price\">{{ priceDiscount }}</span> <span class=\"text-infos\">sin IVA/mes durante {{duration}} meses luego</span> <span class=\"text-price\">{{ price }}</span> <span class=\"text-infos\">sin IVA/mes</span>, aplicable desde la entrega de su nuevo acceso. Se le informará por correo electrónico."
+  "telecom_pack_migration_confirm_discount_displayed": " durante {{ duration }} meses, y luego",
+  "telecom_pack_migration_confirm_new_offer_price_discount": "Su nueva suscripción mensual es de: <span class=\"text-price\">{{ priceDiscount }}/</span><span class=\"text-infos\">mes + IVA durante {{duration}} meses y luego</span> <span class=\"text-price\">{{ price }}/mes</span> <span class=\"text-infos\">+ IVA</span>, aplicable a partir de la entrega del nuevo acceso. Le informaremos por correo electrónico."
 }

@@ -86,8 +86,8 @@
   "region-description-1AZ": "Region 1-AZ (Availability Zone, strefa dostępności) to jedno lub więcej centrów danych zlokalizowanych w tym samym miejscu.",
   "region-description-3AZ": " Region 3-AZ składa się z trzech stref dostępności zlokalizowanych w tej samej aglomeracji, oddalonych od siebie o kilka kilometrów. Spełnia on najwyższe wymagania w zakresie odporności i gwarantuje wyjątkowo krótki czas odpowiedzi między AZ.",
   "region_MIL": "Mediolan",
-  "region_MIL_micro": "Milan ({{ micro }})",
+  "region_MIL_micro": "Mediolan ({{micro}})",
   "region_EU-SOUTH-MIL": "Mediolan",
-  "region_EU-SOUTH-MIL_micro": "Milan ({{ micro }})",
+  "region_EU-SOUTH-MIL_micro": "Mediolan ({{micro}})",
   "region_continent_EU-SOUTH-MIL": "Europa Południowa"
 }

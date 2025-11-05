@@ -86,6 +86,6 @@
   "hosting_tab_DOMAINS_configuration_add_success_finish": "The domain(s) have been added to your hosting plan.",
   "hosting_tab_DOMAINS_configuration_add_failure": "An error has occurred adding the domain(s) to your hosting plan.",
   "domain_tab_emails": "Emails and mailing lists",
-  "hosting_managed_wordpress_websites_description": "Create a new site or import an existing site to this account in just a few clicks.",
-  "hosting_managed_wordpress_websites_description_without_import": "Create a new site on this account in just a few clicks."
+  "hosting_managed_wordpress_websites_description": "Create a new website or import an existing website to this account in just a few clicks.",
+  "hosting_managed_wordpress_websites_description_without_import": "Create a new website in just a few clicks on this account."
 }

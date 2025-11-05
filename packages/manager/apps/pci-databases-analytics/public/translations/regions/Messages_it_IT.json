@@ -89,5 +89,5 @@
   "region_MIL_micro": "Milano ({{ micro }})",
   "region_EU-SOUTH-MIL": "Milano",
   "region_EU-SOUTH-MIL_micro": "Milano ({{ micro }})",
-  "region_continent_EU-SOUTH-MIL": "Europa del Sud"
+  "region_continent_EU-SOUTH-MIL": "Sud Europa"
 }
