@@ -19,17 +19,17 @@ import ActivationSection from './FreeHostingDrawer/ActivationSection';
 import LoadingState from './FreeHostingDrawer/LoadingState';
 
 interface FreeHostingDrawerProps {
-  serviceName: string;
-  isDrawerOpen: boolean;
-  freeHostingOptions: FreeHostingOptions;
-  isInitialOrderFreeHostingPending: boolean;
-  isOrderFreeHostingPending: boolean;
-  orderCartDetails: TInitialOrderFreeHosting;
-  setFreeHostingOptions: React.Dispatch<
+  readonly serviceName: string;
+  readonly isDrawerOpen: boolean;
+  readonly freeHostingOptions: FreeHostingOptions;
+  readonly isInitialOrderFreeHostingPending: boolean;
+  readonly isOrderFreeHostingPending: boolean;
+  readonly orderCartDetails: TInitialOrderFreeHosting;
+  readonly setFreeHostingOptions: React.Dispatch<
     React.SetStateAction<FreeHostingOptions>
   >;
-  onClose: () => void;
-  orderFreeHosting: UseMutateFunction<
+  readonly onClose: () => void;
+  readonly orderFreeHosting: UseMutateFunction<
     void,
     Error,
     {
