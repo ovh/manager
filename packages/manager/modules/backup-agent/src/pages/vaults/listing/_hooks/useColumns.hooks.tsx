@@ -27,7 +27,7 @@ export const useColumns = () => {
       label: t('resource_name_label'),
     },
     {
-      id: 'currentState.azName',
+      id: 'currentState.region',
       cell: (vaultResource: Resource<Vault>) => <ResourceLocationCell region={vaultResource.currentState.region}/>,
       label: t('location_label'),
     },
