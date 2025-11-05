@@ -1,6 +1,7 @@
 import { BUTTON_SIZE, BUTTON_VARIANT, Button, ICON_NAME, Icon } from '@ovhcloud/ods-react';
 
-import { useActionClick } from '../../hooks';
+import { useActionClick } from '@/hooks';
+
 import { ToolbarActionsProps } from './ToolbarActions.props';
 
 export const ToolbarActions: React.FC<Readonly<ToolbarActionsProps>> = ({ items }): JSX.Element => {

@@ -4,9 +4,10 @@ import { useTranslation } from 'react-i18next';
 
 import { Message, MessageBody } from '@ovhcloud/ods-react';
 
-import { Dashboard, Loader } from '../../components';
-import { useDashboardContext } from '../../contexts';
-import { useDashboardData } from '../../hooks';
+import { NAMESPACES } from '@/ObservabilityToCustomer.translations';
+import { Dashboard, Loader } from '@/components';
+import { useDashboardContext } from '@/contexts';
+import { useDashboardData } from '@/hooks';
 
 type DataValueType = {
   timestamp: number;
@@ -17,7 +18,7 @@ type DataValueType = {
 };
 
 const DashboardPage = () => {
-  const { t } = useTranslation('observability-dashboards');
+  const { t } = useTranslation(NAMESPACES.DASHBOARDS);
 
   const { state } = useDashboardContext();
   const { charts, configLoading } = useDashboardData<DataValueType>(
