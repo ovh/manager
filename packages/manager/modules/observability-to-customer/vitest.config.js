@@ -1,6 +1,7 @@
 import path from 'path';
 import {
   createConfig,
+  defaultDedupedDependencies,
   defaultExcludedFiles,
   mergeConfig,
   sharedConfig,
@@ -15,13 +16,17 @@ export default mergeConfig(
         exclude: [
           ...defaultExcludedFiles,
           // App-specific exclusions (not in shared config):
-          'vite-*.ts',          
-          '__mocks__',          
-          '**/Test.utils.tsx',
+          'vite-*.ts',
+          'src/__mocks__',
+          'src/__datasets__',
+          'src/types',
+          'src/lib.ts',
+          'src/data/types',
         ],
       },
     },
     resolve: {
+      dedupe: defaultDedupedDependencies,
       alias: {
         '@/public': path.resolve(__dirname, 'public'),
         '@': path.resolve(__dirname, 'src'),
