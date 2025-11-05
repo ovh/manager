@@ -5,6 +5,7 @@ import { Translation, useTranslation } from 'react-i18next';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { OdsButton } from '@ovhcloud/ods-components/react';
 import {
+  ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
@@ -126,9 +127,10 @@ export default function Listing() {
       {!isTrustedZoneLoading && !isTrustedZone && (
         <OdsButton
           data-testid="listing_create-project_button"
-          variant={ODS_BUTTON_VARIANT.outline}
+          variant={ODS_BUTTON_VARIANT.default}
+          color={ODS_BUTTON_COLOR.primary}
           icon={ODS_ICON_NAME.plus}
-          size={ODS_BUTTON_SIZE.sm}
+          size={ODS_BUTTON_SIZE.md}
           label={t('pci_projects_create_project')}
           onClick={handleCreateProjectClick}
         />
