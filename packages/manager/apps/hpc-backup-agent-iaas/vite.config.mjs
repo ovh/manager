@@ -19,8 +19,8 @@ export default defineConfig({
       targets: [{
         src: `${dirname(require.resolve(BACKUP_AGENT_PACKAGE))}/../public/**/*`,
         dest: `translations/@ovh-ux/backup-agent`,
+        overwrite: true,
       }],
-      overwrite: true,
     }),
   ]
 });
