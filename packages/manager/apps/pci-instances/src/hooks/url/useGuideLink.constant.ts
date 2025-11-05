@@ -15,7 +15,8 @@ export type TGuideKey =
   | 'FLAVOR'
   | 'AVAILABILITY_ZONES'
   | 'DISTRIBUTION_IMAGE'
-  | 'DISTRIBUTION_IMAGE_LIFE_CYCLE';
+  | 'DISTRIBUTION_IMAGE_LIFE_CYCLE'
+  | 'SSH_KEY';
 
 export const GUIDE_LINKS: Record<TGuideKey, TGuideLinkGroup> = {
   LOCATION: {
@@ -37,5 +38,9 @@ export const GUIDE_LINKS: Record<TGuideKey, TGuideLinkGroup> = {
   DISTRIBUTION_IMAGE_LIFE_CYCLE: {
     DEFAULT: `${HELP_URL}/fr-public-cloud-compute-vps-image-life-cycle?id=kb_article_view&sysparm_article=KB0050802`,
     FR: `${HELP_URL}/fr-public-cloud-compute-vps-image-life-cycle?id=kb_article_view&sysparm_article=KB0050802`,
+  },
+  SSH_KEY: {
+    DEFAULT: `${HELP_URL}/fr-public-cloud-compute-creating-ssh-keys?id=kb_article_view&sysparm_article=KB0064541`,
+    FR: `${HELP_URL}/fr-public-cloud-compute-creating-ssh-keys?id=kb_article_view&sysparm_article=KB0064541`,
   },
 };

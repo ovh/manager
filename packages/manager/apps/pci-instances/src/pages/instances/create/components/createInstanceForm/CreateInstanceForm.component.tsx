@@ -18,6 +18,7 @@ import { selectAvailabilityZones } from '../../view-models/availabilityZonesView
 import { AvailabilityZoneSelection } from '../availabilityZoneSelection/AvailabilityZoneSelection.component';
 import { LocalizationSelection } from '../localisationSelection/LocalizationSelection.component';
 import DistributionImage from '../DistributionImage.component';
+import SshKey from '../SshKey.component';
 
 const quantityHintParams = {
   quota: 1,
@@ -72,6 +73,7 @@ export const CreateInstanceForm = () => {
           <Divider spacing="64" />
           <FlavorBlock />
           <DistributionImage />
+          <SshKey />
           <AdvancedParameters />
           <PciCardShowcaseComponent />
         </section>
