@@ -2,6 +2,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Button } from '@ovhcloud/ods-react';
 
+import { NAMESPACES } from '@/ObservabilityToCustomer.translations';
+
 import DateTimePicker from './DateTimePicker.component';
 import { TimeRangeSelectorProps } from './TimeRangeSelector.props';
 import './time-controls.scss';
@@ -10,7 +12,7 @@ export const TimeRangeSelector: React.FC<Readonly<TimeRangeSelectorProps>> = ({
   startDateTime,
   endDateTime,
 }): JSX.Element => {
-  const { t } = useTranslation('observability-timeControls');
+  const { t } = useTranslation(NAMESPACES.TIME_CONTROLS);
 
   return (
     <div className="p-5 flex flex-col gap-4">
