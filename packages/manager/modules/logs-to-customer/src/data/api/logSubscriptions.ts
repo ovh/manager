@@ -1,6 +1,6 @@
 import { fetchIcebergV6, apiClient } from '@ovh-ux/manager-core-api';
 
-import { ApiUrls } from '../../LogsToCustomer.module';
+import { ApiUrls } from '../../LogsToCustomer.props';
 import {
   LogKind,
   LogSubscription,

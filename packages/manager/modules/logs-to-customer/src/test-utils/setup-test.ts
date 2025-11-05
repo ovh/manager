@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
-import { SetupServer, setupServer } from 'msw/node';
+import type { SetupServer } from 'msw/node';
+import { setupServer } from 'msw/node';
 import { afterAll, afterEach, beforeAll } from 'vitest';
 
 import { getAuthenticationMocks, toMswHandlers } from '@ovh-ux/manager-core-test-utils';

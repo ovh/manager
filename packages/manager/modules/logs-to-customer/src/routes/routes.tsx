@@ -5,8 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
 const importLogsPage = () => import('../pages/logs/Logs.page');
-const importLogsDataStreamsPage = () =>
-  import('../pages/data-streams/DataStreams.page');
+const importLogsDataStreamsPage = () => import('../pages/data-streams/DataStreams.page');
 const importLogsTerminateSubscriptionPage = () =>
   import('../pages/logs/Logs-Subscription-terminate.page');
 
@@ -18,10 +17,9 @@ type ModuleWithDefault<T extends ComponentType<unknown>, E extends object> = {
   default: T;
 } & E;
 
-export function lazyRouteConfig<
-  T extends ComponentType<unknown>,
-  E extends object = object
->(importFn: () => Promise<ModuleWithDefault<T, E>>) {
+export function lazyRouteConfig<T extends ComponentType<unknown>, E extends object = object>(
+  importFn: () => Promise<ModuleWithDefault<T, E>>,
+) {
   return {
     lazy: async () => {
       const { default: Component, ...rest } = await importFn();

@@ -1,4 +1,4 @@
-import { parseISODuration } from './duration';
+import { parseISODuration } from '../duration';
 
 describe('parseISODuration', () => {
   test.each([

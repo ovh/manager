@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { ApiUrls } from '../../LogsToCustomer.module';
+import { ApiUrls } from '../../LogsToCustomer.props';
 import { postLogTailUrlv2, postLogTailUrlv6 } from '../api/logTailUrl';
 import { LogApiVersion } from '../types/apiVersion';
 

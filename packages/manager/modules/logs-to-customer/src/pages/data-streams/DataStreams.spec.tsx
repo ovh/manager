@@ -4,7 +4,7 @@ import { vi } from 'vitest';
 import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
 
 import { logStreamsMock } from '../../data/mocks/logStream.mock';
-import { renderTest } from '../../test-utils';
+import { renderTest } from '../../test-utils/render-test';
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   const mod = await importOriginal<typeof import('@ovh-ux/manager-react-shell-client')>();

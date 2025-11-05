@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { getLogKindsV2, getLogKindsV6 } from '../api/logKinds';
 import { LogApiVersion } from '../types/apiVersion';
-import { ApiUrls } from '../../LogsToCustomer.module';
+import { ApiUrls } from '../../LogsToCustomer.props';
 
 export const getLogKindsQueryKey = (logKindUrl: string) => [
   'getLogKinds',
