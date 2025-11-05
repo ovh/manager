@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { render, screen, waitFor } from '@testing-library/react';
-import { SetupServer } from 'msw/node';
+import type { SetupServer } from 'msw/node';
 
 import { toMswHandlers } from '@ovh-ux/manager-core-test-utils';
 
@@ -61,8 +61,8 @@ export const renderTest = async ({
       ...getLogServiceMocks(mockParams),
       ...getLogServicesMocks(mockParams),
       ...getLogRetentionMocks(mockParams),
+      ...getLogMessageMocks(mockParams),
     ]),
-    getLogMessageMocks(mockParams),
   );
 
   const result = render(<TestApp initialRoute={initialRoute} />);
