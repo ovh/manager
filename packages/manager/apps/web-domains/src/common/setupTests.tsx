@@ -66,6 +66,9 @@ const mocks = vi.hoisted(() => ({
   environment: {
     getRegion: vi.fn(),
     getUserLocale: vi.fn(() => 'fr_FR'),
+    getUser: vi.fn(() => {
+      return { ovhSubsidiary: 'FR' };
+    }),
   },
 }));
 const trackClickMock = vi.fn();
@@ -93,6 +96,13 @@ vi.mock('@/alldoms/hooks/nichandle/useNichandle', () => ({
     };
   }),
 }));
+
+vi.mock('@ovh-ux/manager-module-order', () => {
+  return {
+    getExpressOrderURL: () => 'https://order.eu.ovhcloud.com/fr',
+    getOrderURL: () => 'https://order.eu.ovhcloud.com/fr',
+  };
+});
 
 const ResizeObserverMock = vi.fn(() => ({
   observe: vi.fn(),
