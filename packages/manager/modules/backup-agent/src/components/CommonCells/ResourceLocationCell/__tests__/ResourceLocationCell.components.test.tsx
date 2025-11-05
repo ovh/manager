@@ -32,33 +32,33 @@ describe('ResourceLocationCell', () => {
     });
     const vault = { ...mockVaults[0]! };
 
-    render(<ResourceLocationCell {...vault} />);
+    render(<ResourceLocationCell region={vault.currentState.region} />);
 
     await waitFor(() =>
       expect(screen.getByTestId('cell')).toHaveTextContent(mockLocations[0]!.location),
     );
-    expect(mockLocationDetails).toHaveBeenCalledWith(mockVaults[0]!.currentState.azName);
+    expect(mockLocationDetails).toHaveBeenCalledWith(mockVaults[0]!.currentState.region);
   });
 
   it('renders during loading', async () => {
     mockLocationDetails.mockReturnValue({ data: null, isLoading: true, isError: false });
     const vault = mockVaults[0]!;
 
-    const { container } = render(<ResourceLocationCell {...vault} />);
+    const { container } = render(<ResourceLocationCell region={vault.currentState.region} />);
 
     await waitFor(() => expect(container.querySelector('ods-skeleton')).toBeVisible());
-    expect(mockLocationDetails).toHaveBeenCalledWith(mockVaults[0]!.currentState.azName);
+    expect(mockLocationDetails).toHaveBeenCalledWith(mockVaults[0]!.currentState.region);
   });
 
   it('renders during error', async () => {
     mockLocationDetails.mockReturnValue({ data: null, isLoading: false, isError: true });
     const vault = mockVaults[0]!;
 
-    render(<ResourceLocationCell {...vault} />);
+    render(<ResourceLocationCell region={vault.currentState.region} />);
 
     await waitFor(() =>
-      expect(screen.getByTestId('cell')).toHaveTextContent(mockVaults[0]!.currentState.azName),
+      expect(screen.getByTestId('cell')).toHaveTextContent(mockVaults[0]!.currentState.region),
     );
-    expect(mockLocationDetails).toHaveBeenCalledWith(mockVaults[0]!.currentState.azName);
+    expect(mockLocationDetails).toHaveBeenCalledWith(mockVaults[0]!.currentState.region);
   });
 });
