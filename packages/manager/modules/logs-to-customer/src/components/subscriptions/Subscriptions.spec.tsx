@@ -1,7 +1,7 @@
 import { screen, waitFor } from '@testing-library/react';
 import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
 import { describe, expect, it, vi } from 'vitest';
-import { renderTest } from '../../test-utils';
+import { renderTest } from '../../test-utils/render-test';
 
 const IntersectionObserverMock = vi.fn(() => ({
   disconnect: vi.fn(),
