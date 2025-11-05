@@ -15,7 +15,7 @@ describe('ResourceStatusCell', () => {
     const vault = { ...mockVaults[0]!, resourceStatus: 'READY' as ResourceStatus };
 
     const { container } = render(
-        <ResourceStatusCell {...vault} />,
+        <ResourceStatusCell resourceStatus={vault.resourceStatus} />,
         { wrapper },
     );
 
@@ -29,7 +29,7 @@ describe('ResourceStatusCell', () => {
     const vault = { ...mockVaults[0]!, resourceStatus: 'ERROR' as ResourceStatus };
 
     const { container } = render(
-        <ResourceStatusCell {...vault} />,
+        <ResourceStatusCell resourceStatus={vault.resourceStatus} />,
         { wrapper }
     );
 
