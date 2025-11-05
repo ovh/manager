@@ -100,12 +100,15 @@ export default class LogToCustomerTileCtrl {
   }
 
   getDataStreams() {
-    return this.LogToCustomerService.getDataStreams().then(
-      ({ streams, streamCount }) => {
+    this.loadingLogAccountStreams = true;
+    return this.LogToCustomerService.getDataStreams()
+      .then(({ streams, streamCount }) => {
         this.logAccountStreams = streams;
         this.hasAtLeastOneDataStream = streamCount > 0;
-      },
-    );
+      })
+      .finally(() => {
+        this.loadingLogAccountStreams = false;
+      });
   }
 
   deleteLogSubscription(subscription) {
