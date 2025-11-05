@@ -30,6 +30,10 @@ const VaultGeneralInformationPage = React.lazy(
   () => import('../pages/vaults/dashboard/general-information/GeneralInformation.page'),
 );
 
+const VaultBucketsPage = React.lazy(
+  () => import('../pages/vaults/dashboard/buckets/VaultBuckets.page'),
+);
+
 export default (
   <>
     <Route path="" Component={MainLayout}>
@@ -82,8 +86,9 @@ export default (
     </Route>
 
     <Route path={subRoutes.vaults}>
-      <Route path={subRoutes.dashboard} Component={VaultDashboardPage}>
-        <Route path={urlParams.vaultId} Component={VaultGeneralInformationPage} />
+      <Route path={`${subRoutes.dashboard}/${urlParams.vaultId}`} Component={VaultDashboardPage}>
+        <Route path="" Component={VaultGeneralInformationPage} />
+        <Route path={subRoutes.buckets} Component={VaultBucketsPage} />
       </Route>
       <Route
         path={subRoutes.delete}
