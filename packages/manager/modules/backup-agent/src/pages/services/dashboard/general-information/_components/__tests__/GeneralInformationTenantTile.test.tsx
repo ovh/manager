@@ -14,7 +14,7 @@ vi.mock('@/data/hooks/tenants/useBackupTenantDetails', () => ({
 }))
 
 vi.mock('@/components/CommonTiles/GeneralInformationsTile/GeneralInformationTile.component', () => ({
-  GeneralInformationTile: ({ resourceDetails, isLoading }: GeneralInformationTileProps) => isLoading ? (<>is loading</>) : (<>{resourceDetails?.currentState.name}</>)
+  GeneralInformationTile: <T extends { name: string }>({ resourceDetails, isLoading }: GeneralInformationTileProps<T>) => isLoading ? (<>is loading</>) : (<>{resourceDetails?.currentState.name}</>)
 }))
 
 describe('GeneralInformationTenantTile', () => {

@@ -14,7 +14,7 @@ describe('ResourceLocationCell', () => {
 
     render(
       <Providers>
-        <ResourceLocationCell {...vault} />
+        <ResourceLocationCell region={vault.currentState.region} />
       </Providers>,
     );
 
