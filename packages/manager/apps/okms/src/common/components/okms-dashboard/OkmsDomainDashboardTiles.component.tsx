@@ -22,16 +22,16 @@ export const OkmsDomainDashboardTiles = ({
 
   return (
     <div className="flex flex-col gap-8">
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 items-start">
+      <section className="grid grid-cols-1 md:grid-cols-2 xxl:grid-cols-4 gap-4 items-start">
         <GeneralInformationsTile okms={okms} />
         <KmipTile okms={okms} />
         <RestApiTile okms={okms} />
-        <BillingTile okms={okms} />
         <SecretConfigTile okms={okms} />
       </section>
       <section className="flex flex-col gap-4">
         <OdsText preset="heading-3">{t('okms_services')}</OdsText>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 xxl:grid-cols-4 gap-4 items-start">
+          <BillingTile okms={okms} />
           <SecretsTile okms={okms} />
           <ServiceKeysTile okms={okms} />
           <KmipObjectsTile okms={okms} />
