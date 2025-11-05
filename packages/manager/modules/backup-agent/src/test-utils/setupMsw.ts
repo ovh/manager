@@ -3,6 +3,7 @@ import { SetupServer } from 'msw/node';
 import { getAuthenticationMocks, toMswHandlers } from '@ovh-ux/manager-core-test-utils';
 import { GetServicesMocksParams, getServicesMocks } from '@ovh-ux/manager-module-common-api';
 
+import { TAgentMockParams, getAgentMocks } from '@/mocks/agents/agents.handler';
 import { TLocationMockParams, getLocationMocks } from '@/mocks/location/locations.handler';
 import { TTenantMockParams, getTenantMocks } from '@/mocks/tenant/tenants.handler';
 import { TVSPCTenantMockParams, getVSPCTenantMocks } from '@/mocks/tenant/vspcTenants.handler';
@@ -11,6 +12,7 @@ import { TVaultMockParams, getVaultMocks } from '@/mocks/vaults/vaults.handler';
 export type MockParams = TVaultMockParams &
   TLocationMockParams &
   TTenantMockParams &
+  TAgentMockParams &
   TVSPCTenantMockParams &
   GetServicesMocksParams;
 
@@ -22,6 +24,7 @@ export const setupMswMock = (mockParams: MockParams = {}) => {
       ...getVaultMocks(mockParams),
       ...getLocationMocks(mockParams),
       ...getTenantMocks(mockParams),
+      ...getAgentMocks(mockParams),
       ...getVSPCTenantMocks(mockParams),
     ]),
   );
