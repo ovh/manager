@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { useNotifications } from '@ovh-ux/manager-react-components';
 
-import { ApiUrls } from '../../LogsToCustomer.module';
+import { ApiUrls } from '../../LogsToCustomer.props';
 import { pollLogOperation } from '../../helpers/pollLogOperation';
 import {
   getLogSubscriptions,

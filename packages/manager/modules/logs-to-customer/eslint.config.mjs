@@ -12,6 +12,13 @@ import { vitestEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/t
 import { importEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/imports';
 import { checkFileEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/naming-conventions';
 
+const testFiles = [
+  '**/__tests__/**',
+  '**/*spec.ts',
+  '**/*spec.tsx',
+  '**/test-utils/**',
+];
+
 export default [
   javascriptEslintConfig,
   typescriptEslintConfig,
@@ -32,18 +39,28 @@ export default [
     },
   },
   {
+    files: testFiles,
+    languageOptions: {
+      globals: {
+        global: 'readonly',
+        expect: 'readonly',
+      },
+    },
     rules: {
-      'no-undef': 'off',
-      'check-file/no-index': 'off',
-      'check-file/folder-match-with-fex': 'off',
-      'check-file/filename-naming-convention': 'off',
-      'check-file/folder-naming-convention': 'off',
+      'max-lines': 'off',
       'max-lines-per-function': 'off',
-      'import/no-cycle': 'off',
-      'import/named': 'off',
-      'react-hooks/exhaustive-deps': 'off',
-      'react/prop-types': 'off',
-      'react/no-multi-comp': 'off'
+      'max-nested-callbacks': 'off',
+      'max-params': 'off',
+      'react/no-multi-comp': 'off',
+    },
+  },
+   /* ------------------------------------------------------------------------ */
+   /* Root Index File Exception                                                */
+   /* ------------------------------------------------------------------------ */
+  {
+    files: ['src/index.ts'],
+    rules: {
+      'check-file/no-index': 'off',
     },
   },
 ];
