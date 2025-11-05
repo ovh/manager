@@ -7,6 +7,8 @@ import { ResourceStatusCell } from '@/components/CommonCells/ResourceStatusCell/
 
 import { VaultBucketsCell, VaultIdCell, VaultReferenceCell } from '../_components';
 import { VaultActionCell } from '../_components/VaultActionCell.component';
+import {Vault, VaultResource} from "@/types/Vault.type";
+import {Resource} from "@/types/Resource.type";
 
 export const ID_LABEL = 'ID';
 
@@ -26,22 +28,22 @@ export const useColumns = () => {
     },
     {
       id: 'currentState.azName',
-      cell: ResourceLocationCell,
+      cell: (vaultResource: Resource<Vault>) => <ResourceLocationCell region={vaultResource.currentState.region}/>,
       label: t('location_label'),
     },
     {
       id: 'region',
-      cell: ResourceRegionCell,
+      cell: (vaultResource: Resource<Vault>) => <ResourceRegionCell region={vaultResource.currentState.region}/>,
       label: t('region_label'),
     },
     {
-      id: 'currentState.vspc',
+      id: 'currentState.buckets',
       cell: VaultBucketsCell,
       label: t('buckets_label'),
     },
     {
       id: 'resourceStatus',
-      cell: ResourceStatusCell,
+      cell: (vaultResource: Resource<Vault>) => <ResourceStatusCell resourceStatus={vaultResource.resourceStatus}/>,
       label: t('status_label'),
     },
     {

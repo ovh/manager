@@ -13,9 +13,9 @@ vi.mock('react-i18next', () => ({
 
 vi.mock('@/components/ResourceStatusBadge/ResourceStatusBadge.components', () => ({
   // eslint-disable-next-line react/no-multi-comp
-  ResourceStatusBadge: ({ vaultStatus }: { vaultStatus: ResourceStatus }) => (
+  ResourceStatusBadge: ({ resourceStatus }: { resourceStatus: ResourceStatus }) => (
     <span data-testid="badge">
-      {vaultStatus}
+      {resourceStatus}
     </span>
   ),
 }));
@@ -27,7 +27,7 @@ describe('ResourceStatusCell', () => {
   ])('renders vaults with status %s correctly: %s', (status) => {
     const vault = { ...mockVaults[0]!, resourceStatus: status as ResourceStatus };
 
-    render(<ResourceStatusCell {...vault} />);
+    render(<ResourceStatusCell resourceStatus={vault.resourceStatus} />);
 
     const badge = screen.getByTestId('badge');
     expect(badge).toHaveTextContent(vault.resourceStatus);
