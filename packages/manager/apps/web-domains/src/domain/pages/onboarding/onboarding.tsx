@@ -1,92 +1,96 @@
-import React from 'react';
+import React, { useContext, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Card,
   OnboardingLayout,
-  Breadcrumb,
+  OvhSubsidiary,
 } from '@ovh-ux/manager-react-components';
 import { Text } from '@ovhcloud/ods-react';
-import useGuideUtils from '@/alldoms/hooks/guide/useGuideUtils';
-import onboardingImgSrc from './onboarding-img.png';
-
-import appConfig from '@/web-domains.config';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { getOrderURL } from '@ovh-ux/manager-module-order';
+import onboardingImgSrc from './onboarding.svg?url';
+import {
+  ORDER_LINK,
+  WEBSITE_LINK,
+  TRANSFER_LINK,
+  ORDER_API_LINK,
+  FAQ_LINK,
+} from './onboarding.constants';
 
 export default function Onboarding() {
-  const { t } = useTranslation('onboarding');
-  const link = useGuideUtils();
+  const { t } = useTranslation('domain/onboarding');
+  const context = useContext(ShellContext);
+  const { ovhSubsidiary } = context.environment.getUser();
+  const region = context.environment.getRegion();
+  const orderBaseURL = getOrderURL('orderDomain', region, ovhSubsidiary);
 
   const tileList = [
     {
       id: 1,
       texts: {
-        title: t('guide1Title'),
-        description: t('guide1Description'),
+        title: t('guideTransferTitle'),
+        description: t('guideTransferDescription'),
         category: t('guideCategory'),
       },
-      href: link?.guideLink1,
+      href: useMemo(() => {
+        return TRANSFER_LINK[ovhSubsidiary] || TRANSFER_LINK.DEFAULT;
+      }, [ovhSubsidiary]),
     },
     {
       id: 2,
       texts: {
-        title: t('guide2Title'),
-        description: t('guide2Description'),
+        title: t('guideOrderAPITitle'),
+        description: t('guideOrderAPIDescription'),
         category: t('guideCategory'),
       },
-      href: link?.guideLink2,
+      href: useMemo(() => {
+        return ORDER_API_LINK[ovhSubsidiary] || ORDER_API_LINK.DEFAULT;
+      }, [ovhSubsidiary]),
     },
     {
       id: 3,
       texts: {
-        title: t('guide3Title'),
-        description: t('guide3Description'),
+        title: t('guideFAQTitle'),
+        description: t('guideFAQDescription'),
         category: t('guideCategory'),
       },
-      href: link?.guideLink3,
+      href: useMemo(() => {
+        return FAQ_LINK[ovhSubsidiary] || FAQ_LINK.DEFAULT;
+      }, [ovhSubsidiary]),
     },
   ];
 
   const title: string = t('title');
   const description: string = t('description');
+  const descriptionWithLeaderPart: string = t('descriptionWithLeaderPart');
+  // We are not the leader all over the world
   const renderDescriptionFormated = () => {
     return (
-      <>
-        <Text>{description.split('*')[0]}</Text>
-        <ul>
-          {description.split('*').map((i) => {
-            return (
-              <Text key={i}>
-                <li>{i}</li>
-              </Text>
-            );
-          })}
-        </ul>
-      </>
+      <Text>
+        {description}
+        {ovhSubsidiary === OvhSubsidiary.FR && `, ${descriptionWithLeaderPart}`}
+      </Text>
     );
   };
-  const imgSrc = {
+
+  const imgSrc: React.ComponentProps<'img'> = {
     src: onboardingImgSrc,
+    className: 'h-36',
   };
 
   return (
-    <>
-      <Breadcrumb
-        rootLabel={t('title')}
-        appName={appConfig.rootLabel}
-        hideRootLabel
-      />
-      <OnboardingLayout
-        title={title}
-        img={imgSrc}
-        description={renderDescriptionFormated()}
-        orderButtonLabel={t('orderButtonLabel')}
-        orderHref={t('orderButtonLink')}
-        moreInfoButtonLabel={t('moreInfoButtonLabel')}
-        moreInfoHref={t('moreInfoButtonLink')}
-      >
-        {tileList.map((tile) => (
-          <Card key={tile.id} href={tile.href} texts={tile.texts} />
-        ))}
-      </OnboardingLayout>
-    </>
+    <OnboardingLayout
+      title={title}
+      img={imgSrc}
+      description={renderDescriptionFormated()}
+      orderButtonLabel={t('orderButtonLabel')}
+      orderHref={`${orderBaseURL}${ORDER_LINK}`}
+      moreInfoButtonLabel={t('moreInfoButtonLabel')}
+      moreInfoHref={WEBSITE_LINK[ovhSubsidiary] || WEBSITE_LINK.DEFAULT}
+    >
+      {tileList.map((tile) => (
+        <Card key={tile.id} href={tile.href} texts={tile.texts} />
+      ))}
+    </OnboardingLayout>
   );
 }
