@@ -1,7 +1,9 @@
 import { useTranslation } from 'react-i18next';
 
+import { NAMESPACES } from '@/ObservabilityToCustomer.translations';
+
 export const NoDataComponent = (): JSX.Element => {
-  const { t } = useTranslation('observability-chart');
+  const { t } = useTranslation(NAMESPACES.CHART);
 
   return (
     <div className="w-full h-full flex justify-center items-center">

@@ -14,7 +14,7 @@ Add the package to your UApp:
 ### update your application tailwind config
 
 Import the custom Tailwind configuration provided by the module and extend your project's configuration with it.
-Add the module path to your application Tailwind configuration content array to generate the necessary utility classes.
+Also, you need to add the module path to your application Tailwind configuration content array to generate the necessary utility classes.
 
 ```mjs
 import observabilityTailwindConfig from '@ovh-ux/observability-to-customer/tailwind.config';
@@ -49,39 +49,19 @@ export default function ObservabilityPage() {
 To allow the module to handle observability-related routes, configure your routes as follows:
 
 ```tsx
-// Import the module routes
-import { getObservabilityRoute } from '@ovh-ux/observability-to-customer';
 // ...
-
-export default (
-  <Route
-    path={urls.root}
-    Component={LayoutPage}
-    errorElement={
-      <ErrorBoundary
-        isPreloaderHide={true}
-        isRouteShellSync={true}
-        redirectionApp="app-xx-yy"
-      />
-    }
-  >
-    // ...
-    <Route
-      path={urls.observability}
-      id="observability"
-      Component={ObservabilityPage}
-      handle={{
-        tracking: {
-          pageName: 'observability',
-          pageType: PageType.dashboard,
-        },
-      }}
-    >
-      {getObservabilityRoute()}
-    </Route>
-    
-    // ...
-  </Route>
+<Route
+    path={`{urls.observability}/*`}
+    id="observability"
+    Component={ObservabilityPage}
+    handle={{
+      tracking: {
+      pageName: 'observability',
+      pageType: PageType.dashboard,
+    },
+  }}
+/>
+// ...
 ```
 
 ## Exports
