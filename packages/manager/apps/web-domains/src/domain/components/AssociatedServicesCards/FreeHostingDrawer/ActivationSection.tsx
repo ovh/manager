@@ -14,10 +14,13 @@ import { TInitialOrderFreeHosting } from '@/domain/types/hosting';
 import Section from './Section';
 
 interface ActivationSectionProps {
-  isLoading: boolean;
-  freeHostingOptions: FreeHostingOptions;
-  orderCartDetails: TInitialOrderFreeHosting;
-  onCheckedChange: (key: keyof FreeHostingOptions, value: boolean) => void;
+  readonly isLoading: boolean;
+  readonly freeHostingOptions: FreeHostingOptions;
+  readonly orderCartDetails: TInitialOrderFreeHosting;
+  readonly onCheckedChange: (
+    key: keyof FreeHostingOptions,
+    value: boolean,
+  ) => void;
 }
 
 export default function ActivationSection({

@@ -2,6 +2,8 @@ import { ManagerTile } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import Emails from './Emails';
 import Hosting from './Hosting';
+import SubDomainMultiSite from './SubDomainsMultiSite';
+import { useGetAssociatedHosting } from '@/domain/hooks/data/query';
 
 interface AssociatedServicesCardsProps {
   readonly serviceName: string;
@@ -11,6 +13,8 @@ export default function AssociatedServicesCards({
   serviceName,
 }: AssociatedServicesCardsProps) {
   const { t } = useTranslation(['domain']);
+
+  const { data: associatedHosting } = useGetAssociatedHosting(serviceName);
   return (
     <ManagerTile>
       <ManagerTile.Title>
@@ -18,6 +22,7 @@ export default function AssociatedServicesCards({
       </ManagerTile.Title>
       <ManagerTile.Divider />
       <Hosting serviceName={serviceName} />
+      <SubDomainMultiSite serviceNames={associatedHosting} />
       <Emails serviceName={serviceName} />
     </ManagerTile>
   );

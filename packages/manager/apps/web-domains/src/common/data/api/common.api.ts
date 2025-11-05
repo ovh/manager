@@ -21,18 +21,6 @@ export const getServiceInformation = async (
   return data;
 };
 
-export const getServiceInformation = async (
-  serviceName: string,
-  serviceRoutes: string,
-): Promise<TServiceInfo> => {
-  const { data: serviceNameId } = await v6.get(
-    `/services?resourceName=${serviceName}&routes=${serviceRoutes}`,
-  );
-
-  const { data } = await v6.get(`/services/${serviceNameId}`);
-  return data;
-};
-
 /**
  *  : Update the service (terminate or cancel the terminate)
  */

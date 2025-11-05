@@ -19,7 +19,7 @@ import FreeHostingDrawer from './FreeHostingDrawer';
 import { FREE_HOSTING_PLAN_CODE } from '@/domain/constants/order';
 
 interface HostingProps {
-  serviceName: string;
+  readonly serviceName: string;
 }
 
 function HostingLink({ hosting }: { hosting: string }) {
@@ -108,6 +108,12 @@ export default function Hosting({ serviceName }: HostingProps) {
 
   return (
     <>
+      {isFreeHostingOpen && (
+        <div
+          className="fixed inset-0 bg-[--ods-color-primary-500] opacity-75 z-40"
+          onClick={() => setIsFreeHostingOpen(false)}
+        />
+      )}
       <ManagerTile.Item>
         <ManagerTile.Item.Label>
           {t('domain_tab_general_information_associated_services_hosting')}

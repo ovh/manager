@@ -2,7 +2,7 @@ import '@/common/setupTests';
 import React from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { wrapper } from '@/common/utils/test.provider';
 import FreeHostingDrawer from './FreeHostingDrawer';
 import { FreeHostingOptions } from './Hosting';
 import { TInitialOrderFreeHosting } from '@/domain/types/hosting';
@@ -141,12 +141,6 @@ vi.mock('../Card/PriceCard', () => ({
 }));
 
 describe('FreeHostingDrawer Component', () => {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: { retry: false },
-    },
-  });
-
   const mockOrderFreeHosting = vi.fn();
   const mockOnClose = vi.fn();
   const mockSetFreeHostingOptions = vi.fn();
@@ -187,11 +181,9 @@ describe('FreeHostingDrawer Component', () => {
   });
 
   const renderComponent = (props = {}) => {
-    return render(
-      <QueryClientProvider client={queryClient}>
-        <FreeHostingDrawer {...defaultProps} {...props} />
-      </QueryClientProvider>,
-    );
+    return render(<FreeHostingDrawer {...defaultProps} {...props} />, {
+      wrapper,
+    });
   };
 
   describe('Drawer rendering', () => {
@@ -421,12 +413,10 @@ describe('FreeHostingDrawer Component', () => {
       };
 
       rerender(
-        <QueryClientProvider client={queryClient}>
-          <FreeHostingDrawer
-            {...defaultProps}
-            freeHostingOptions={updatedOptions}
-          />
-        </QueryClientProvider>,
+        <FreeHostingDrawer
+          {...defaultProps}
+          freeHostingOptions={updatedOptions}
+        />,
       );
 
       const validateButton = screen.getByTestId('button-default');
