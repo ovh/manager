@@ -1,5 +1,6 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
+  BUTTON_VARIANT,
   Drawer,
   DRAWER_POSITION,
   DrawerContent,
@@ -11,15 +12,21 @@ import {
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useCatalogWithPreselection } from '@/api/hooks/useCatalogWithPreselection';
 import { useAttachedInstances } from '@/api/hooks/useInstance';
 import { useVolumeSnapshots } from '@/api/hooks/useSnapshot';
 import { Retype } from './Retype.component';
 import { RetypeDetachInstance } from './RetypeDetachInstance.component';
 import { RetypeDeleteSnapshots } from './RetypeDeleteSnapshots.component';
+import { Button } from '@/components/button/Button';
+import { useBodyScrollLock } from '@/api/hooks/useBodyScrollLock';
 
 const RetypePage = () => {
-  const { t } = useTranslation(['retype']);
+  const { t } = useTranslation(['retype', NAMESPACES.ACTIONS]);
+  const navigate = useNavigate();
+
+  useBodyScrollLock(true);
 
   const { projectId, volumeId } = useParams();
   const {
@@ -40,6 +47,10 @@ const RetypePage = () => {
   const isPending =
     isCatalogPending || isInstancesPending || isSnapshotsPending;
 
+  const handleOnClose = () => {
+    navigate('..');
+  };
+
   const displayedForm = useMemo(() => {
     if (isPending) {
       return (
@@ -52,13 +63,27 @@ const RetypePage = () => {
 
     if (!volumeModelData || volumeModelData?.length === 0) {
       return (
-        <Message
-          color={MESSAGE_COLOR.warning}
-          dismissible={false}
-          className="max-w-80"
-        >
-          {t('retype:pci_projects_project_storages_blocks_retype_cant_retype')}
-        </Message>
+        <div className="h-full flex flex-col">
+          <Message
+            color={MESSAGE_COLOR.warning}
+            dismissible={false}
+            className="max-w-80"
+          >
+            {t(
+              'retype:pci_projects_project_storages_blocks_retype_cant_retype',
+            )}
+          </Message>
+
+          <div className="flex gap-8 mt-auto">
+            <Button
+              variant={BUTTON_VARIANT.ghost}
+              onClick={handleOnClose}
+              type="button"
+            >
+              {t(`${NAMESPACES.ACTIONS}:cancel`)}
+            </Button>
+          </div>
+        </div>
       );
     }
 
@@ -86,7 +111,7 @@ const RetypePage = () => {
   }, [volumeModelData, isPending, instances]);
 
   return (
-    <div className="bg-[var(--ods-color-primary-500)] opacity-75 w-full h-full absolute top-0 left-0">
+    <div className="bg-[var(--ods-color-primary-500)] opacity-75 w-full h-full fixed top-0 left-0">
       <Drawer open>
         <DrawerContent
           position={DRAWER_POSITION.right}
