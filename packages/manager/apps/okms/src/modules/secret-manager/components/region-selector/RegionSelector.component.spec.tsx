@@ -71,32 +71,32 @@ const mockRegionLabels = {
 };
 
 const mockGeographyNames = {
-  EU: labels.commonOkms.region_continent_eu,
-  CA: labels.commonOkms.region_continent_ca,
+  EU: labels.commonOkms.region_continent_EUROPE,
+  CA: labels.commonOkms.region_continent_NORTH_AMERICA,
 };
 
 const mockGeographyGroups: GeographyGroup[] = [
   {
-    geographyCode: LOCATION_EU_WEST_GRA.geographyCode,
+    continentCode: 'EUROPE',
     regions: [
       {
         region: LOCATION_EU_WEST_GRA.name,
-        geographyCode: LOCATION_EU_WEST_GRA.geographyCode,
+        continentCode: 'EUROPE',
         href: SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_EU_WEST_GRA.name),
       },
       {
         region: LOCATION_EU_WEST_LIM.name,
-        geographyCode: LOCATION_EU_WEST_LIM.geographyCode,
+        continentCode: 'EUROPE',
         href: SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_EU_WEST_LIM.name),
       },
     ],
   },
   {
-    geographyCode: LOCATION_CA_EAST_BHS.geographyCode,
+    continentCode: 'NORTH_AMERICA',
     regions: [
       {
         region: LOCATION_CA_EAST_BHS.name,
-        geographyCode: LOCATION_CA_EAST_BHS.geographyCode,
+        continentCode: 'NORTH_AMERICA',
         href: SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_CA_EAST_BHS.name),
       },
     ],

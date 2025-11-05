@@ -1,10 +1,10 @@
 {
   "region_1_az_description": "Déploiement résilient et économique sur 1 zone de disponibilité.",
   "region_3_az_description": "Déploiement haute résilience/haute disponibilité pour vos applications critiques sur 3 zones de disponibilité",
-  "region_continent_af": "Afrique",
-  "region_continent_ap": "Asie Pacifique",
-  "region_continent_ca": "Amérique du Nord",
-  "region_continent_eu": "Europe",
-  "region_continent_us": "États-Unis",
+  "region_continent_AFRICA": "Afrique",
+  "region_continent_ASIA": "Asie Pacifique",
+  "region_continent_NORTH_AMERICA": "Amérique du Nord",
+  "region_continent_EUROPE": "Europe",
+  "region_continent_OTHERS": "Autres régions",
   "region_local_zone_description": "Déploiement de vos applications au plus près de vos utilisatrices et utilisateurs pour une faible latence et la résidence des données."
 }
