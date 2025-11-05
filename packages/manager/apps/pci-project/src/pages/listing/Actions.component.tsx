@@ -24,7 +24,7 @@ export default function Actions({
 }: Readonly<ActionsProps>) {
   const { t } = useTranslation(['listing', 'edit', NAMESPACES.ERROR]);
   const { trackClick } = useOvhTracking();
-  const { addSuccess, addError } = useNotifications();
+  const { addSuccess, addError, clearNotifications } = useNotifications();
   const {
     shell: { navigation },
   } = useContext(ShellContext);
@@ -54,17 +54,19 @@ export default function Actions({
 
   const handleDeleteProject = () => {
     trackDeleteProjectClick();
-    removeProject({ projectId: projectWithService.project_id }).then(() =>
+    removeProject({ projectId: projectWithService.project_id }).then(() => {
+      clearNotifications();
       addSuccess(
         <Translation ns="listing">
           {(_t) => _t('pci_projects_project_delete_success')}
         </Translation>,
-      ),
-    );
+      );
+    });
   };
 
   const { mutate: setAsDefaultProject } = useSetAsDefaultProject({
     onSuccess: () => {
+      clearNotifications();
       addSuccess(
         <Translation ns="edit">
           {(_t) => _t('pci_projects_project_edit_update_success')}
@@ -72,6 +74,7 @@ export default function Actions({
       );
     },
     onError: (error: ApiError) => {
+      clearNotifications();
       addError(
         <Translation ns={NAMESPACES.ERROR}>
           {(_t) =>
