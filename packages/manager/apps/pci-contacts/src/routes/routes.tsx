@@ -1,7 +1,10 @@
 import { lazy } from 'react';
+
 import { Route } from 'react-router-dom';
-import { PageType } from '@ovh-ux/manager-react-shell-client';
+
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
+
 import { urls } from '@/routes/routes.constant';
 import { CONTACTS_TRACKING } from '@/tracking.constant';
 
@@ -15,11 +18,7 @@ export default (
     path={urls.root}
     Component={LayoutPage}
     errorElement={
-      <ErrorBoundary
-        isPreloaderHide={true}
-        isRouteShellSync={true}
-        redirectionApp="contacts"
-      />
+      <ErrorBoundary isPreloaderHide={true} isRouteShellSync={true} redirectionApp="contacts" />
     }
   >
     <Route

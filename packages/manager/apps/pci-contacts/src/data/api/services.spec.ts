@@ -1,8 +1,10 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { v6 } from '@ovh-ux/manager-core-api';
 import { FetchResultV6 } from '@ovh-ux/manager-react-components';
-import { getServices } from './services';
+
 import { TService } from '../types/service.type';
+import { getServices } from './services';
 
 vi.mock('@ovh-ux/manager-core-api');
 
@@ -26,9 +28,7 @@ describe('services API', () => {
       expect(mockedV6).toHaveBeenCalledWith('/services', {
         headers: {
           'x-pagination-mode': 'CachedObjectList-Pages',
-          'x-pagination-filter': `${encodeURIComponent(
-            'route.path',
-          )}:eq=${encodeURIComponent(
+          'x-pagination-filter': `${encodeURIComponent('route.path')}:eq=${encodeURIComponent(
             '/cloud/project/{serviceName}',
           )}&${encodeURIComponent(
             'billing.lifecycle.current.state',
@@ -171,9 +171,7 @@ describe('services API', () => {
 
       await getServices();
 
-      const expectedFilter = `${encodeURIComponent(
-        'route.path',
-      )}:eq=${encodeURIComponent(
+      const expectedFilter = `${encodeURIComponent('route.path')}:eq=${encodeURIComponent(
         '/cloud/project/{serviceName}',
       )}&${encodeURIComponent(
         'billing.lifecycle.current.state',

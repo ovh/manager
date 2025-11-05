@@ -1,16 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import {
-  ShellContext,
-  initShellContext,
-  initI18n,
-} from '@ovh-ux/manager-react-shell-client';
-import '@ovh-ux/manager-react-components/dist/style.css';
-import App from './App';
-import './vite-hmr';
-import './index.scss';
 
-import { UNIVERSE, SUB_UNIVERSE, APP_NAME, LEVEL2 } from './tracking.constant';
+import ReactDOM from 'react-dom/client';
+
+import '@ovh-ux/manager-react-components/dist/style.css';
+import { ShellContext, initI18n, initShellContext } from '@ovh-ux/manager-react-shell-client';
+
+import App from './App';
+import './index.scss';
+import { APP_NAME, LEVEL2, SUB_UNIVERSE, UNIVERSE } from './tracking.constant';
+import './vite-hmr';
 
 const trackingContext = {
   chapter1: UNIVERSE,

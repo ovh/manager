@@ -1,17 +1,17 @@
-import { useQueries, useQuery, useMutation } from '@tanstack/react-query';
+import { useMutation, useQueries, useQuery } from '@tanstack/react-query';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
+
 import {
-  getProjectAcl,
-  getProjectAclAccountInfo,
   AccountAcl,
   addAccountAclToProject,
   deleteAccountAclFromProject,
+  getProjectAcl,
+  getProjectAclAccountInfo,
 } from '@/data/api/acl';
 import queryClient from '@/queryClient';
 
-const getProjectAclQueryKey = (projectId: string) => [
-  `/project/${projectId}/acl`,
-];
+const getProjectAclQueryKey = (projectId: string) => [`/project/${projectId}/acl`];
 
 export const useProjectAcl = (projectId: string) => {
   return useQuery({
@@ -20,15 +20,11 @@ export const useProjectAcl = (projectId: string) => {
   });
 };
 
-const getProjectAclAccountInfoQueryKey = (
-  projectId: string,
-  accountId: string,
-) => [`/project/${projectId}/acl/${accountId}`];
+const getProjectAclAccountInfoQueryKey = (projectId: string, accountId: string) => [
+  `/project/${projectId}/acl/${accountId}`,
+];
 
-export const useProjectAclAccountsInfo = (
-  projectId: string,
-  accountIds: string[],
-) => {
+export const useProjectAclAccountsInfo = (projectId: string, accountIds: string[]) => {
   return useQueries({
     queries: accountIds.map((accountId) => ({
       queryKey: getProjectAclAccountInfoQueryKey(projectId, accountId),
@@ -51,18 +47,14 @@ export const useAddAccountAclToProject = ({
   onError,
 }: TAddAccountAclToProjectArguments) => {
   const mutation = useMutation({
-    mutationFn: (account: AccountAcl) =>
-      addAccountAclToProject(projectId, account),
+    mutationFn: (account: AccountAcl) => addAccountAclToProject(projectId, account),
     onError,
     onSuccess: async (account: AccountAcl) => {
       queryClient.invalidateQueries({
         queryKey: getProjectAclQueryKey(projectId),
       });
       queryClient.invalidateQueries({
-        queryKey: getProjectAclAccountInfoQueryKey(
-          projectId,
-          account.accountId,
-        ),
+        queryKey: getProjectAclAccountInfoQueryKey(projectId, account.accountId),
       });
       onSuccess(account);
     },
@@ -85,8 +77,7 @@ export const useDeleteAccountAclFromProject = ({
   onError,
 }: TRemoveAccountAclFromProjectArguments) => {
   const mutation = useMutation({
-    mutationFn: (accountId: string) =>
-      deleteAccountAclFromProject(projectId, accountId),
+    mutationFn: (accountId: string) => deleteAccountAclFromProject(projectId, accountId),
     onError,
     onSuccess: async (accountId: string) => {
       queryClient.invalidateQueries({
@@ -99,8 +90,7 @@ export const useDeleteAccountAclFromProject = ({
     },
   });
   return {
-    deleteAccountAclFromProject: (accountId: string) =>
-      mutation.mutate(accountId),
+    deleteAccountAclFromProject: (accountId: string) => mutation.mutate(accountId),
     ...mutation,
   };
 };

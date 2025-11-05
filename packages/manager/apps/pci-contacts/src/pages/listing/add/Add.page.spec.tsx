@@ -1,12 +1,16 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import { describe, it, vi, expect, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { useParams, useNavigate } from 'react-router-dom';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { fireEvent, render, screen } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import * as mrc from '@ovh-ux/manager-react-components';
-import AddPage from './Add.page';
-import { createWrapper, shellContext } from '@/wrapperRenders';
+
 import { useAddAccountAclToProject } from '@/data/hooks/useAcl';
+import { createWrapper, shellContext } from '@/wrapperRenders';
+
+import AddPage from './Add.page';
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   const actual: typeof import('@ovh-ux/manager-react-components') = await importOriginal();
@@ -148,7 +152,7 @@ describe('AddPage', () => {
         ({
           addAccountAclToProject: () => onSuccess(),
           isPending: false,
-        } as any),
+        }) as any,
     );
     const navigateSpy = vi.fn();
     mockUseNavigate.mockReturnValue(navigateSpy);
@@ -176,7 +180,7 @@ describe('AddPage', () => {
         ({
           addAccountAclToProject: () => onError(),
           isPending: false,
-        } as any),
+        }) as any,
     );
     const navigateSpy = vi.fn();
     mockUseNavigate.mockReturnValue(navigateSpy);

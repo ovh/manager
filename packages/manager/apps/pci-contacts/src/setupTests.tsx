@@ -1,7 +1,9 @@
 import React from 'react';
+
 import '@testing-library/jest-dom';
-import { vi } from 'vitest';
 import { fetch } from 'cross-fetch';
+import { vi } from 'vitest';
+
 import { ActionMenuItem } from '@ovh-ux/manager-react-components';
 
 global.fetch = fetch;
@@ -142,26 +144,12 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
   const actual: typeof import('@ovhcloud/ods-components/react') = await importOriginal();
   return {
     ...actual,
-    OdsBadge: ({
-      color,
-      label,
-      ...props
-    }: {
-      color: string;
-      label: string;
-    }) => (
+    OdsBadge: ({ color, label, ...props }: { color: string; label: string }) => (
       <div data-testid="status_badge" data-color={color} {...props}>
         {label}
       </div>
     ),
-    OdsLink: ({
-      label,
-      iconAlignment, // eslint-disable-line @typescript-eslint/no-unused-vars
-      ...props
-    }: {
-      label: string;
-      iconAlignment?: string;
-    }) => (
+    OdsLink: ({ label, iconAlignment, ...props }: { label: string; iconAlignment?: string }) => (
       <a data-testid="ods-link" {...props}>
         {label}
       </a>
@@ -204,12 +192,7 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
       color?: string;
       className?: string;
     }) => (
-      <div
-        data-testid="ods-card"
-        className={className}
-        data-color={color}
-        {...props}
-      >
+      <div data-testid="ods-card" className={className} data-color={color} {...props}>
         {children}
       </div>
     ),

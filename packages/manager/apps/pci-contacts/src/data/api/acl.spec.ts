@@ -1,12 +1,13 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { describe, it, vi, expect, beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { v6 } from '@ovh-ux/manager-core-api';
+
 import {
-  getProjectAcl,
-  getProjectAclAccountInfo,
+  AccountAcl,
   addAccountAclToProject,
   deleteAccountAclFromProject,
-  AccountAcl,
+  getProjectAcl,
+  getProjectAclAccountInfo,
 } from './acl';
 
 vi.mock('@ovh-ux/manager-core-api', async (importOriginal) => {
@@ -49,10 +50,7 @@ describe('acl api', () => {
     const account: AccountAcl = { accountId: 'u3', type: 'readWrite' } as any;
     mockPost.mockResolvedValueOnce({ data: account } as any);
     const result = await addAccountAclToProject('p-1', account);
-    expect(mockPost).toHaveBeenCalledWith(
-      '/cloud/project/p-1/acl?accountId=u3',
-      account,
-    );
+    expect(mockPost).toHaveBeenCalledWith('/cloud/project/p-1/acl?accountId=u3', account);
     expect(result).toEqual(account);
   });
 

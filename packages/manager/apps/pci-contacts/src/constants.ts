@@ -5,5 +5,4 @@ export const ROADMAP_CHANGELOG_LINKS = {
     'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
 };
 
-export const SUPPORT_URL =
-  'https://help.ovhcloud.com/csm?id=csm_get_help&ovhSubsidiary=';
+export const SUPPORT_URL = 'https://help.ovhcloud.com/csm?id=csm_get_help&ovhSubsidiary=';

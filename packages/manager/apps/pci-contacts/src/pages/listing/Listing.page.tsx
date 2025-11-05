@@ -1,56 +1,47 @@
-import { useContext, useEffect, useState, Suspense } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Suspense, useContext, useEffect, useState } from 'react';
+
 import { Outlet, useNavigate } from 'react-router-dom';
-import {
-  useProject,
-  isDiscoveryProject,
-  PciDiscoveryBanner,
-} from '@ovh-ux/manager-pci-common';
-import {
-  ShellContext,
-  ShellContextType,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import {
-  BaseLayout,
-  Notifications,
-  ChangelogButton,
-  PciGuidesHeader,
-  Datagrid,
-  useProjectUrl,
-} from '@ovh-ux/manager-react-components';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
   OdsBreadcrumb,
   OdsBreadcrumbItem,
-  OdsSpinner,
-  OdsText,
   OdsButton,
   OdsLink,
+  OdsSpinner,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { PciDiscoveryBanner, isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
 import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-} from '@ovhcloud/ods-components';
-import { useProjectService } from '@/data/hooks/useServices';
-import { useProjectAcl, useProjectAclAccountsInfo } from '@/data/hooks/useAcl';
-import { getDatagridColumns } from './datagrid-columns';
-import { AccountAcl } from '@/data/api/acl';
-import { urls } from '@/routes/routes.constant';
+  BaseLayout,
+  ChangelogButton,
+  Datagrid,
+  Notifications,
+  PciGuidesHeader,
+  useProjectUrl,
+} from '@ovh-ux/manager-react-components';
+import { ShellContext, ShellContextType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { ProjectValidationGuard } from '@/components/ProjectValidationGuard';
 import { ROADMAP_CHANGELOG_LINKS } from '@/constants';
+import { AccountAcl } from '@/data/api/acl';
+import { useProjectAcl, useProjectAclAccountsInfo } from '@/data/hooks/useAcl';
+import { useProjectService } from '@/data/hooks/useServices';
 import { TService } from '@/data/types/service.type';
 import { usePaginatedItems } from '@/hooks/usePaginatedItems';
 import { useParam } from '@/hooks/useParam';
-import { ProjectValidationGuard } from '@/components/ProjectValidationGuard';
+import { urls } from '@/routes/routes.constant';
 import { CONTACTS_TRACKING } from '@/tracking.constant';
+
+import { getDatagridColumns } from './datagrid-columns';
 
 const CONTACTS_DATAGRID_PAGINATION = 10;
 
-const useGetContactsPageHref = (
-  context: ShellContextType,
-  serviceInfo: TService | undefined,
-) => {
+const useGetContactsPageHref = (context: ShellContextType, serviceInfo: TService | undefined) => {
   const [contactsPageHref, setContactsPageHref] = useState('#');
   useEffect(() => {
     if (!serviceInfo || !serviceInfo.domain) {
@@ -127,10 +118,7 @@ export default function ListingPage() {
         breadcrumb={
           <OdsBreadcrumb>
             <OdsBreadcrumbItem href={hrefProject} label={project.description} />
-            <OdsBreadcrumbItem
-              href={'#'}
-              label={t('pci_projects_project_contacts_title')}
-            />
+            <OdsBreadcrumbItem href={'#'} label={t('pci_projects_project_contacts_title')} />
           </OdsBreadcrumb>
         }
       >
@@ -139,12 +127,8 @@ export default function ListingPage() {
           <Notifications />
           <div className="contacts-card">
             <div className="row">
-              <OdsText className="contacts-card-info text-right">
-                {t('cpb_rights_owner')}
-              </OdsText>
-              <OdsText className="contacts-card-info text-left">
-                {serviceInfo.contactAdmin}
-              </OdsText>
+              <OdsText className="contacts-card-info text-right">{t('cpb_rights_owner')}</OdsText>
+              <OdsText className="contacts-card-info text-left">{serviceInfo.contactAdmin}</OdsText>
               <div className="contacts-card-info">
                 {canChangeContacts && (
                   <OdsLink
@@ -194,7 +178,7 @@ export default function ListingPage() {
 
           <Datagrid
             columns={columns}
-            items={flattenData as AccountAcl[]}
+            items={flattenData}
             totalItems={userAcls.length}
             hasNextPage={hasNextPage}
             onFetchNextPage={fetchNextPage}

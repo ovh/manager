@@ -1,5 +1,6 @@
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { ComponentProps, HTMLAttributes, memo } from 'react';
+
+import { OdsSpinner } from '@ovhcloud/ods-components/react';
 
 interface FullPageSpinnerProps extends HTMLAttributes<HTMLDivElement> {
   'data-testid'?: string;

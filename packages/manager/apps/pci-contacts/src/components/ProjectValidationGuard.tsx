@@ -1,4 +1,5 @@
-import { useEffect, useContext, PropsWithChildren } from 'react';
+import { PropsWithChildren, useContext, useEffect } from 'react';
+
 import { useProject } from '@ovh-ux/manager-pci-common';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 

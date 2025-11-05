@@ -1,18 +1,16 @@
-import { renderHook, waitFor, act } from '@testing-library/react';
-import { describe, it, vi, expect, beforeEach } from 'vitest';
-import { createWrapper } from '@/wrapperRenders';
+import { act, renderHook, waitFor } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import {
-  getProjectAcl,
+  AccountAcl,
   addAccountAclToProject as apiAddAccountAclToProject,
   deleteAccountAclFromProject as apiDeleteAccountAclFromProject,
-  AccountAcl,
+  getProjectAcl,
 } from '@/data/api/acl';
 import queryClient from '@/queryClient';
-import {
-  useProjectAcl,
-  useAddAccountAclToProject,
-  useDeleteAccountAclFromProject,
-} from './useAcl';
+import { createWrapper } from '@/wrapperRenders';
+
+import { useAddAccountAclToProject, useDeleteAccountAclFromProject, useProjectAcl } from './useAcl';
 
 vi.mock('@/data/api/acl', () => ({
   getProjectAcl: vi.fn(),
@@ -61,8 +59,7 @@ describe('useAcl hooks', () => {
       const onError = vi.fn();
 
       const { result } = renderHook(
-        () =>
-          useAddAccountAclToProject({ projectId: 'p-1', onSuccess, onError }),
+        () => useAddAccountAclToProject({ projectId: 'p-1', onSuccess, onError }),
         { wrapper: createWrapper() },
       );
 
@@ -92,8 +89,7 @@ describe('useAcl hooks', () => {
       const account: AccountAcl = { accountId: 'u2', type: 'readWrite' };
 
       const { result } = renderHook(
-        () =>
-          useAddAccountAclToProject({ projectId: 'p-1', onSuccess, onError }),
+        () => useAddAccountAclToProject({ projectId: 'p-1', onSuccess, onError }),
         { wrapper: createWrapper() },
       );
 

@@ -1,18 +1,12 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import {
-  getCartServiceOption,
-  getServiceId,
-  getServiceOptions,
-} from '@/data/api/services';
+
+import { getCartServiceOption, getServiceId, getServiceOptions } from '@/data/api/services';
 import { TCartServiceOption, TService } from '@/data/types/service.type';
 import queryClient from '@/queryClient';
 import { createWrapper } from '@/wrapperRenders';
-import {
-  useCartServiceOption,
-  useServiceIds,
-  useServiceOptions,
-} from './useServices';
+
+import { useCartServiceOption, useServiceIds, useServiceOptions } from './useServices';
 
 vi.mock('@/data/api/services', () => ({
   getCartServiceOption: vi.fn(),
@@ -157,9 +151,7 @@ describe('useServices hooks', () => {
 
   describe('useCartServiceOption', () => {
     it('should fetch cart service option when projectId is provided', async () => {
-      vi.mocked(getCartServiceOption).mockResolvedValueOnce(
-        mockCartServiceOption,
-      );
+      vi.mocked(getCartServiceOption).mockResolvedValueOnce(mockCartServiceOption);
 
       const { result } = renderHook(() => useCartServiceOption('project-1'), {
         wrapper: createWrapper(),

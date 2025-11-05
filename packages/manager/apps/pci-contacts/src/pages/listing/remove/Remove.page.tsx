@@ -1,9 +1,13 @@
-import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { Translation, useTranslation } from 'react-i18next';
+
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { useDeleteAccountAclFromProject } from '@/data/hooks/useAcl';
 import { useParam } from '@/hooks/useParam';
 import { CONTACTS_TRACKING } from '@/tracking.constant';
@@ -19,10 +23,7 @@ export default function RemovePage() {
 
   const goBack = () => navigate('..');
 
-  const {
-    deleteAccountAclFromProject,
-    isPending,
-  } = useDeleteAccountAclFromProject({
+  const { deleteAccountAclFromProject, isPending } = useDeleteAccountAclFromProject({
     projectId,
     onSuccess: () => {
       trackPage({
@@ -41,11 +42,7 @@ export default function RemovePage() {
         pageType: PageType.bannerError,
         pageName: CONTACTS_TRACKING.REMOVE.REQUEST_FAIL,
       });
-      addError(
-        <Translation ns="contacts">
-          {(_t) => _t('cpb_rights_remove_error')}
-        </Translation>,
-      );
+      addError(<Translation ns="contacts">{(_t) => _t('cpb_rights_remove_error')}</Translation>);
       goBack();
     },
   });
@@ -78,9 +75,7 @@ export default function RemovePage() {
       onDismiss={handleCancel}
       isOpen={true}
     >
-      <OdsText>
-        {t('cpb_rights_delete_question', { nickname: accountId })}
-      </OdsText>
+      <OdsText>{t('cpb_rights_delete_question', { nickname: accountId })}</OdsText>
     </Modal>
   );
 }

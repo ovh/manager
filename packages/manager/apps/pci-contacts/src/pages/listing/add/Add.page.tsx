@@ -1,19 +1,20 @@
 import { useState } from 'react';
-import { Translation, useTranslation } from 'react-i18next';
+
 import { useNavigate } from 'react-router-dom';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
-import {
-  OdsFormField,
-  OdsInput,
-  OdsSelect,
-} from '@ovhcloud/ods-components/react';
-import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { Translation, useTranslation } from 'react-i18next';
+
 import { ODS_INPUT_TYPE, ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
-import { useAddAccountAclToProject } from '@/data/hooks/useAcl';
+import { OdsFormField, OdsInput, OdsSelect } from '@ovhcloud/ods-components/react';
+
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { AccountAcl } from '@/data/api/acl';
+import { useAddAccountAclToProject } from '@/data/hooks/useAcl';
 import { useParam } from '@/hooks/useParam';
-import { normalizeAccountId } from '@/utils/normalize-account-id';
 import { CONTACTS_TRACKING } from '@/tracking.constant';
+import { normalizeAccountId } from '@/utils/normalize-account-id';
 
 type AclRight = AccountAcl['type'];
 
@@ -50,11 +51,7 @@ export default function AddPage() {
         pageType: PageType.bannerError,
         pageName: CONTACTS_TRACKING.ADD.REQUEST_FAIL,
       });
-      addError(
-        <Translation ns="contacts">
-          {(_t) => _t('cpb_rights_add_error')}
-        </Translation>,
-      );
+      addError(<Translation ns="contacts">{(_t) => _t('cpb_rights_add_error')}</Translation>);
       goBack();
     },
   });
@@ -95,11 +92,7 @@ export default function AddPage() {
     >
       <OdsFormField
         className="mb-6"
-        error={
-          isAccountInputTouched && !accountToAdd
-            ? t('common_field_error_required')
-            : ''
-        }
+        error={isAccountInputTouched && !accountToAdd ? t('common_field_error_required') : ''}
       >
         <label htmlFor="contactInput" slot="label">
           {t('cpb_rights_table_nichandle')}

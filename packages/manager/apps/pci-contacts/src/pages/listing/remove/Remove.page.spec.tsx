@@ -1,13 +1,18 @@
 import React, { PropsWithChildren } from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, vi, expect, beforeEach } from 'vitest';
-import { useParams, useNavigate } from 'react-router-dom';
-import * as mrc from '@ovh-ux/manager-react-components';
-import { ApiError } from '@ovh-ux/manager-core-api';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { fireEvent, render, screen } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { Environment } from '@ovh-ux/manager-config';
-import RemovePage from './Remove.page';
-import { createWrapper, shellContext } from '@/wrapperRenders';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import * as mrc from '@ovh-ux/manager-react-components';
+
 import { useDeleteAccountAclFromProject } from '@/data/hooks/useAcl';
+import { createWrapper, shellContext } from '@/wrapperRenders';
+
+import RemovePage from './Remove.page';
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   const actual: typeof import('@ovh-ux/manager-react-components') = await importOriginal();
@@ -37,9 +42,7 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
   const actual: typeof import('@ovhcloud/ods-components/react') = await importOriginal();
   return {
     ...actual,
-    OdsText: ({ children }: PropsWithChildren) => (
-      <div data-testid="ods-text">{children}</div>
-    ),
+    OdsText: ({ children }: PropsWithChildren) => <div data-testid="ods-text">{children}</div>,
   };
 });
 
@@ -82,22 +85,20 @@ describe('RemovePage', () => {
   });
 
   it('renders confirmation text with accountId', () => {
-    mockUseDelete.mockReturnValue(({
+    mockUseDelete.mockReturnValue({
       deleteAccountAclFromProject: vi.fn(),
       isPending: false,
-    } as unknown) as ReturnType<typeof useDeleteAccountAclFromProject>);
+    } as unknown as ReturnType<typeof useDeleteAccountAclFromProject>);
     render(<RemovePage />, { wrapper: baseWrapper });
-    expect(screen.getByTestId('ods-text')).toHaveTextContent(
-      'cpb_rights_delete_question',
-    );
+    expect(screen.getByTestId('ods-text')).toHaveTextContent('cpb_rights_delete_question');
   });
 
   it('submits deletion with accountId', () => {
     const delSpy = vi.fn();
-    mockUseDelete.mockReturnValue(({
+    mockUseDelete.mockReturnValue({
       deleteAccountAclFromProject: delSpy,
       isPending: false,
-    } as unknown) as ReturnType<typeof useDeleteAccountAclFromProject>);
+    } as unknown as ReturnType<typeof useDeleteAccountAclFromProject>);
     render(<RemovePage />, { wrapper: baseWrapper });
 
     fireEvent.click(screen.getByTestId('primary'));
@@ -106,10 +107,10 @@ describe('RemovePage', () => {
 
   it('does not submit when pending or missing accountId', () => {
     const delSpy = vi.fn();
-    mockUseDelete.mockReturnValue(({
+    mockUseDelete.mockReturnValue({
       deleteAccountAclFromProject: delSpy,
       isPending: true,
-    } as unknown) as ReturnType<typeof useDeleteAccountAclFromProject>);
+    } as unknown as ReturnType<typeof useDeleteAccountAclFromProject>);
     const { getByTestId, unmount } = render(<RemovePage />, {
       wrapper: baseWrapper,
     });
@@ -119,10 +120,10 @@ describe('RemovePage', () => {
     unmount();
 
     mockUseParams.mockReturnValue({ projectId: 'p-1' });
-    mockUseDelete.mockReturnValue(({
+    mockUseDelete.mockReturnValue({
       deleteAccountAclFromProject: delSpy,
       isPending: false,
-    } as unknown) as ReturnType<typeof useDeleteAccountAclFromProject>);
+    } as unknown as ReturnType<typeof useDeleteAccountAclFromProject>);
     const { getByTestId: getByTestId2 } = render(<RemovePage />, {
       wrapper: baseWrapper,
     });
@@ -139,10 +140,10 @@ describe('RemovePage', () => {
     } as ReturnType<typeof mrc.useNotifications>);
     mockUseDelete.mockImplementation(
       ({ onSuccess }) =>
-        (({
+        ({
           deleteAccountAclFromProject: () => onSuccess('fake-account'),
           isPending: false,
-        } as unknown) as ReturnType<typeof useDeleteAccountAclFromProject>),
+        }) as unknown as ReturnType<typeof useDeleteAccountAclFromProject>,
     );
     const navigateSpy = vi.fn();
     mockUseNavigate.mockReturnValue(navigateSpy);
@@ -160,13 +161,13 @@ describe('RemovePage', () => {
       addError: addErrorSpy,
       addInfo: vi.fn(),
     });
-    const mockError = (null as unknown) as ApiError;
+    const mockError = null as unknown as ApiError;
     mockUseDelete.mockImplementation(
       ({ onError }) =>
-        (({
+        ({
           deleteAccountAclFromProject: () => onError(mockError, 'fake-account'),
           isPending: false,
-        } as unknown) as ReturnType<typeof useDeleteAccountAclFromProject>),
+        }) as unknown as ReturnType<typeof useDeleteAccountAclFromProject>,
     );
     const navigateSpy = vi.fn();
     mockUseNavigate.mockReturnValue(navigateSpy);

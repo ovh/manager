@@ -1,12 +1,16 @@
 import React from 'react';
+
 import { render, screen, waitFor } from '@testing-library/react';
-import { describe, it, vi, expect, beforeEach } from 'vitest';
-import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import * as pciCommon from '@ovh-ux/manager-pci-common';
-import ListingPage from './Listing.page';
-import { createWrapper, shellContext } from '@/wrapperRenders';
-import { useProjectService } from '@/data/hooks/useServices';
+import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
 import { useProjectAcl, useProjectAclAccountsInfo } from '@/data/hooks/useAcl';
+import { useProjectService } from '@/data/hooks/useServices';
+import { createWrapper, shellContext } from '@/wrapperRenders';
+
+import ListingPage from './Listing.page';
 import { getDatagridColumns } from './datagrid-columns';
 
 vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
@@ -23,14 +27,7 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
         {children}
       </div>
     ),
-    OdsLink: ({
-      label,
-      iconAlignment, // eslint-disable-line @typescript-eslint/no-unused-vars
-      ...props
-    }: {
-      label: string;
-      iconAlignment?: string;
-    }) => (
+    OdsLink: ({ label, iconAlignment, ...props }: { label: string; iconAlignment?: string }) => (
       <a data-testid="ods-link" {...props}>
         {label}
       </a>
@@ -70,13 +67,13 @@ describe('ListingPage', () => {
     vi.spyOn(pciCommon, 'useProject').mockReturnValue({
       data: projectMock,
     } as ReturnType<typeof pciCommon.useProject>);
-    vi.mocked(useProjectService).mockReturnValue(({
+    vi.mocked(useProjectService).mockReturnValue({
       data: {
         serviceId: 'svc',
         contactAdmin: 'abc123',
         contactBilling: 'bill123',
       },
-    } as unknown) as ReturnType<typeof useProjectService>);
+    } as unknown as ReturnType<typeof useProjectService>);
     vi.mocked(useProjectAcl).mockReturnValue({
       data: ['u1', 'u2'],
     } as ReturnType<typeof useProjectAcl>);
@@ -126,13 +123,13 @@ describe('ListingPage', () => {
         getUser: () => ({ ovhSubsidiary: 'FR', nichandle: 'someoneelse' }),
       },
     } as ShellContextType;
-    vi.mocked(useProjectService).mockReturnValue(({
+    vi.mocked(useProjectService).mockReturnValue({
       data: {
         serviceId: 'svc-1',
         contactAdmin: 'admin1',
         contactBilling: 'bill123',
       },
-    } as unknown) as ReturnType<typeof useProjectService>);
+    } as unknown as ReturnType<typeof useProjectService>);
     const customWrapper = createWrapper(nonAdminContext);
     render(<ListingPage />, { wrapper: customWrapper });
     expect(screen.queryByTestId('ods-button')).not.toBeInTheDocument();

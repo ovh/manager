@@ -1,13 +1,13 @@
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactNode } from 'react';
+
 import { MemoryRouter } from 'react-router-dom';
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { vi } from 'vitest';
 
-export const shellContext = ({
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
+export const shellContext = {
   environment: {
     getUser: () => ({ ovhSubsidiary: 'FR' }),
     getRegion: () => 'EU',
@@ -23,11 +23,9 @@ export const shellContext = ({
       }),
     },
   },
-} as unknown) as ShellContextType;
+} as unknown as ShellContextType;
 
-export const createWrapper = (
-  contextValue: ShellContextType = shellContext,
-) => {
+export const createWrapper = (contextValue: ShellContextType = shellContext) => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
