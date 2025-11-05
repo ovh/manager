@@ -22,7 +22,12 @@ type WebsitesResponse = {
 };
 
 type UseManagedWordpressWebsitesParams = Omit<
-  UseInfiniteQueryOptions<WebsitesResponse, Error, ManagedWordpressWebsites[], WebsitesResponse>,
+  UseInfiniteQueryOptions<
+    WebsitesResponse,
+    Error,
+    ManagedWordpressWebsites[],
+    ReturnType<typeof getManagedCmsResourceWebsitesQueryKey>
+  >,
   'queryKey' | 'queryFn' | 'select' | 'getNextPageParam' | 'initialPageParam'
 > & {
   defaultFQDN?: string;
