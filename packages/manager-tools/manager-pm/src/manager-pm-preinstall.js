@@ -18,6 +18,9 @@ import process from 'node:process';
 
 import { yarnPreInstall } from './kernel/pnpm/pnpm-deps-manager.js';
 import { logger } from './kernel/utils/log-manager.js';
+import { attachCleanupSignals, handleProcessAbortSignals } from './kernel/utils/process-utils.js';
+
+attachCleanupSignals(handleProcessAbortSignals);
 
 /**
  * Main entrypoint for the pre-installation routine.
@@ -48,6 +51,7 @@ async function main() {
   } catch (err) {
     logger.error('❌ manager-pm preinstall failed:');
     logger.error(err.stack || err.message || err);
+    await handleProcessAbortSignals('preinstall-error', err);
     process.exit(1);
   }
 }

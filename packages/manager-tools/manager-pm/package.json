@@ -18,7 +18,8 @@
     "concurrently": "^9.2.0",
     "execa": "^9.6.0",
     "inquirer": "^12.9.3",
-    "inquirer-search-list": "^1.2.6"
+    "inquirer-search-list": "^1.2.6",
+    "shelljs": "^0.10.0"
   },
   "devDependencies": {
     "@inquirer/type": "^3.0.8",

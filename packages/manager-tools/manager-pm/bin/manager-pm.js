@@ -35,6 +35,10 @@ import {
   updateRootWorkspacesFromCatalogs,
 } from '../src/kernel/utils/catalog-utils.js';
 import { logger, setLoggerMode } from '../src/kernel/utils/log-manager.js';
+import {
+  attachCleanupSignals,
+  handleProcessAbortSignals,
+} from '../src/kernel/utils/process-utils.js';
 
 const VERSION = '0.2.0';
 
@@ -440,5 +444,10 @@ mode: ${mode || '(none)'}`);
   }
 }
 
+// Attach handlers for signals and unhandled errors
+attachCleanupSignals(handleProcessAbortSignals);
+
 // ---- Run CLI ----
-main();
+main().catch(async (err) => {
+  await handleProcessAbortSignals('unhandled rejection', err);
+});
