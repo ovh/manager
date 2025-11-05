@@ -74,6 +74,13 @@ const getBaseConfig = (config) => {
     css: {
       preprocessorOptions: {
         scss: {
+          silenceDeprecations: [
+            'import',
+            'global-builtin',
+            'color-functions',
+            'legacy-js-api',
+            'abs-percent',
+          ],
           includePaths: [
             resolve(`${dirname(fileURLToPath(import.meta.url))}`, '../../../../../node_modules'),
           ],

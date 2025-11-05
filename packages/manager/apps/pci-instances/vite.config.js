@@ -8,6 +8,7 @@ export default defineConfig({
   ...baseConfig,
   root: '',
   css: {
+    ...baseConfig.css,
     postcss: {
       plugins: [tailwindcss],
     },
