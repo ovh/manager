@@ -13,7 +13,9 @@ import {
   PopoverTrigger,
 } from '@ovhcloud/ods-react';
 
-import { TimeRangeOption } from '../../types/TimeRangeOption.type';
+import { NAMESPACES } from '@/ObservabilityToCustomer.translations';
+import { TimeRangeOption } from '@/types/TimeRangeOption.type';
+
 import RefreshTimeControl from './RefreshTimeControl.component';
 import { TimeControlsProps } from './TimeControls.props';
 import { TimeRangeOptionCustom, defaultTimeRangeOptions } from './TimeRangeOption.constants';
@@ -28,7 +30,7 @@ export const TimeControls: React.FC<Readonly<TimeControlsProps>> = ({
   onStateChange,
   defaultValue = '1h',
 }): JSX.Element => {
-  const { t } = useTranslation('observability-timeControls');
+  const { t } = useTranslation(NAMESPACES.TIME_CONTROLS);
 
   const [value, setValue] = useState(defaultValue);
 
