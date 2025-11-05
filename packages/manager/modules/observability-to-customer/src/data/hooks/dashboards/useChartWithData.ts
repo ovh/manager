@@ -1,9 +1,8 @@
-import { ChartWidget } from '../../../components/widget/ChartWidget.type';
-import { RequestPayload } from '../../../types/RequestPayload.type';
-import { TimeRangeOption } from '../../../types/TimeRangeOption.type';
-import { getWindowSecAndStep } from '../../../utils/dateTimeUtils';
-import { useChartData } from './useChartData';
-import { useDashboardConfig } from './useDashboardConfig';
+import { ChartWidget } from '@/components/widget/ChartWidget.type';
+import { useChartData, useDashboardConfig } from '@/data/hooks';
+import { RequestPayload } from '@/types/RequestPayload.type';
+import { TimeRangeOption } from '@/types/TimeRangeOption.type';
+import { getWindowSecAndStep } from '@/utils/dateTimeUtils';
 
 type UseChartWithDataParams = {
   chartId: string;

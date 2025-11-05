@@ -17,6 +17,8 @@ import {
   Text,
 } from '@ovhcloud/ods-react';
 
+import { NAMESPACES } from '@/ObservabilityToCustomer.translations';
+
 import {
   defaultRefreshTimeOption,
   defaultRefreshTimeOptions,
@@ -31,7 +33,7 @@ export const RefreshTimeControl: React.FC<Readonly<RefreshTimeControlProps>> = (
   isLoading,
   onStateChange,
 }): JSX.Element => {
-  const { t } = useTranslation('observability-timeControls');
+  const { t } = useTranslation(NAMESPACES.TIME_CONTROLS);
 
   const onValueChange = (detail: SelectValueChangeDetail) => {
     const value = detail.value.at(0);

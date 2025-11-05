@@ -1,10 +1,11 @@
 import { Suspense } from 'react';
 
-import { Outlet } from 'react-router-dom';
+import { Routes } from 'react-router-dom';
 
-import { IObservabilityToCustomerModule } from './IObservabilityToCustomerModule.interface';
-import { DashboardProvider } from './contexts';
-import './translations';
+import { IObservabilityToCustomerModule } from '@/IObservabilityToCustomerModule.interface';
+import { DashboardProvider } from '@/contexts';
+import getObservabilityRoute from '@/routes/routes';
+import '@/public/translations';
 
 export function ObservabilityToCustomerModule(
   moduleProps: Readonly<IObservabilityToCustomerModule>,
@@ -18,7 +19,7 @@ export function ObservabilityToCustomerModule(
           resourceName,
         }}
       >
-        <Outlet />
+        <Routes>${getObservabilityRoute()}</Routes>
       </DashboardProvider>
     </Suspense>
   );
