@@ -1,5 +1,9 @@
 import React from 'react';
-import { OdsText, OdsInput } from '@ovhcloud/ods-components/react';
+import {
+  OdsText,
+  OdsInput,
+  OdsFormField,
+} from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { IpEdgeFirewallRule } from '@/data/api';
 import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
@@ -13,20 +17,28 @@ export const SourceColumn = (
     setNewSource,
     createNewRule,
     hideNewRuleRow,
+    sourceError,
+    setSourceError,
   } = React.useContext(EdgeNetworkFirewallContext);
   const { t } = useTranslation(TRANSLATION_NAMESPACES.edgeNetworkFirewall);
 
   return rule?.isNew ? (
-    <OdsInput
-      className="w-full"
-      name="source-input"
-      value={newSource}
-      onOdsChange={(e) => setNewSource(e.detail.value as string)}
-      onKeyDown={handleEnterAndEscapeKeyDown({
-        onEnter: createNewRule,
-        onEscape: hideNewRuleRow,
-      })}
-    />
+    <OdsFormField error={sourceError}>
+      <OdsInput
+        className="w-full"
+        name="source-input"
+        value={newSource}
+        hasError={!!sourceError}
+        onOdsChange={(e) => {
+          setNewSource(e.detail.value as string);
+          setSourceError(undefined);
+        }}
+        onKeyDown={handleEnterAndEscapeKeyDown({
+          onEnter: createNewRule,
+          onEscape: hideNewRuleRow,
+        })}
+      />
+    </OdsFormField>
   ) : (
     <OdsText>{rule?.source === 'any' ? t('any_source') : rule?.source}</OdsText>
   );

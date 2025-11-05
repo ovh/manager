@@ -133,33 +133,44 @@ export const GameFirewallContextProvider: React.FC<{
   const { mutate: addRule } = useMutation({
     mutationFn: () => {
       clearNotifications();
+      let hasError = false;
       const startPort = parseInt(newStartPort, 10);
       const endPort = parseInt(newEndPort || newStartPort, 10);
 
-      if (!newStartPort) {
-        addError(t('missingPortError'), true);
-        return Promise.reject();
-      }
-      if (startPort > endPort) {
-        addError(t('startPortGreaterThanEndPortError'), true);
-        return Promise.reject();
-      }
-      if (hasPortRangeError({ startPort, endPort })) {
-        addError(t('portRangeError'), true);
-        return Promise.reject();
-      }
-      if (hasConflictingPorts({ startPort, endPort, rules })) {
-        addError(t('conflictingRuleError'), true);
-        return Promise.reject();
+      if (!newGameProtocol) {
+        addError(t('missingProtocolError'), true);
+        hasError = true;
       }
 
-      return addIpGameFirewallRule({
-        ip: ipGroup,
-        ipOnGame,
-        startPort,
-        endPort,
-        protocol: newGameProtocol,
-      });
+      if (!newStartPort) {
+        addError(t('missingPortError'), true);
+        hasError = true;
+      }
+
+      if (startPort > endPort) {
+        addError(t('startPortGreaterThanEndPortError'), true);
+        hasError = true;
+      }
+
+      if (hasPortRangeError({ startPort, endPort })) {
+        addError(t('portRangeError'), true);
+        hasError = true;
+      }
+
+      if (hasConflictingPorts({ startPort, endPort, rules })) {
+        addError(t('conflictingRuleError'), true);
+        hasError = true;
+      }
+
+      return hasError
+        ? Promise.reject()
+        : addIpGameFirewallRule({
+            ip: ipGroup,
+            ipOnGame,
+            startPort,
+            endPort,
+            protocol: newGameProtocol,
+          });
     },
     onSuccess: () => {
       clearNotifications();

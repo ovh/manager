@@ -4,11 +4,14 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+import { useQueryClient } from '@tanstack/react-query';
+import { getIpGameFirewallQueryKey } from '@/data/api';
 import { useUpdateIpGameFirewall } from '@/data/hooks';
 import { TRANSLATION_NAMESPACES } from '@/utils';
 import { GameFirewallContext } from '../gamefirewall.context';
 
 export const StrategyModal: React.FC = () => {
+  const queryClient = useQueryClient();
   const {
     isStrategyConfirmationModalVisible,
     hideStrategyConfirmationModal,
@@ -36,6 +39,9 @@ export const StrategyModal: React.FC = () => {
           : t('default_deny_strategy_disabled_success_message'),
         true,
       );
+      queryClient.invalidateQueries({
+        queryKey: getIpGameFirewallQueryKey({ ip }),
+      });
     },
     onError: (err) => {
       addError(
