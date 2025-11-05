@@ -1,5 +1,9 @@
 import React from 'react';
-import { OdsText, OdsSelect } from '@ovhcloud/ods-components/react';
+import {
+  OdsFormField,
+  OdsText,
+  OdsSelect,
+} from '@ovhcloud/ods-components/react';
 import { IpEdgeFirewallRule } from '@/data/api';
 import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
 
@@ -16,23 +20,25 @@ export const SequenceColumn = (
   );
 
   return rule?.isNew ? (
-    <OdsSelect
-      name="sequence-select"
-      value={newSequence?.toString() ?? nextAvailableSequence?.toString()}
-      onOdsChange={(e) =>
-        setNewSequence(parseInt(e.detail.value as string, 10))
-      }
-    >
-      {validSequenceNumbers.map((sequence) => (
-        <option
-          key={sequence}
-          value={sequence}
-          disabled={ruleSequenceList.includes(sequence)}
-        >
-          {sequence}
-        </option>
-      ))}
-    </OdsSelect>
+    <OdsFormField className="w-full">
+      <OdsSelect
+        name="sequence-select"
+        value={newSequence?.toString() ?? nextAvailableSequence?.toString()}
+        onOdsChange={(e) =>
+          setNewSequence(parseInt(e.detail.value as string, 10))
+        }
+      >
+        {validSequenceNumbers.map((sequence) => (
+          <option
+            key={sequence}
+            value={sequence}
+            disabled={ruleSequenceList.includes(sequence)}
+          >
+            {sequence}
+          </option>
+        ))}
+      </OdsSelect>
+    </OdsFormField>
   ) : (
     <OdsText>{rule?.sequence}</OdsText>
   );
