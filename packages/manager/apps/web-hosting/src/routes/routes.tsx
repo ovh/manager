@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import React from 'react';
 
 import { Route, UIMatch } from 'react-router-dom';
