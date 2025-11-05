@@ -18,18 +18,20 @@ import {
   Text,
 } from '@ovhcloud/ods-react';
 
-import { TimeControls } from '../../components';
-import { ChartRenderer } from '../../components/charts/base';
-import { useDashboardContext } from '../../contexts';
-import { useChartWithData } from '../../data/hooks/dashboards/useChartWithData';
-import './styles.css';
+import { NAMESPACES } from '@/ObservabilityToCustomer.translations';
+import { TimeControls } from '@/components';
+import { ChartRenderer } from '@/components/charts/base';
+import { useDashboardContext } from '@/contexts';
+import { useChartWithData } from '@/data/hooks/dashboards/useChartWithData';
+
+import './styles.scss';
 
 const DashboardWidgetModal = <TData,>() => {
-  const { t } = useTranslation('observability-dashboards');
+  const { t } = useTranslation(NAMESPACES.DASHBOARDS);
 
   const navigate = useNavigate();
 
-  const { resourceName, productType, widgetId } = useParams();
+  const { widgetId } = useParams();
 
   const { state } = useDashboardContext();
 
@@ -37,8 +39,8 @@ const DashboardWidgetModal = <TData,>() => {
 
   const { isLoading, config, data } = useChartWithData<TData>({
     chartId: widgetId as string,
-    resourceName: resourceName ?? '',
-    productType: productType ?? '',
+    resourceName: state.resourceName ?? '',
+    productType: state.productType ?? '',
     startDateTime,
     endDateTime,
     selectedTimeOption,
@@ -56,8 +58,7 @@ const DashboardWidgetModal = <TData,>() => {
 
   const onStateChange = <TValue,>(key: string, value: TValue) => {
     // TODO
-    console.log(key);
-    console.log(value);
+    console.log(`[${key} = ${value}`);
   };
 
   if (!config) {

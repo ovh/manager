@@ -1,12 +1,11 @@
-import { UseQueryResult, useQueries } from '@tanstack/react-query';
+import { useQueries } from '@tanstack/react-query';
 
-import { RequestPayload } from '../../../types/RequestPayload.type';
-import { TimeRangeOption } from '../../../types/TimeRangeOption.type';
-import { Dashboard, MetricData } from '../../../types/observability.type';
-import { getWindowSecAndStep } from '../../../utils/dateTimeUtils';
-import { getChartDataOptions } from './getChartDataOptions';
-
-export type ChartQueryResult<TData> = UseQueryResult<MetricData<TData>, unknown>;
+import { getChartDataOptions } from '@/data/hooks/dashboards/getChartDataOptions';
+import type { ChartQueryResult } from '@/types/ChartQueryResult.type';
+import { RequestPayload } from '@/types/RequestPayload.type';
+import { TimeRangeOption } from '@/types/TimeRangeOption.type';
+import { Dashboard } from '@/types/observability.type';
+import { getWindowSecAndStep } from '@/utils/dateTimeUtils';
 
 type UseMultipleChartDataParams = {
   dashboard?: Dashboard;
