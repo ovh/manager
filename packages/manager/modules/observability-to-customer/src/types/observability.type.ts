@@ -1,8 +1,8 @@
 import { IamObject } from '@ovh-ux/manager-react-components';
 
-import { ChartData } from '../components/charts/base';
-import { ChartWidget } from '../components/widget/ChartWidget.type';
-import { RequestPayload } from './RequestPayload.type';
+import { ChartData } from '@/components/charts/base';
+import { ChartWidget } from '@/components/widget/ChartWidget.type';
+import { RequestPayload } from '@/types/RequestPayload.type';
 
 type TObservability = {
   id: string;
