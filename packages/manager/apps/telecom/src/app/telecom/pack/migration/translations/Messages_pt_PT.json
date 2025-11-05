@@ -188,7 +188,7 @@
   "telecom_pack_migration_pto_yes_not_known_description": "Verificou que não dispõe da referência da tomada óptica (PTO)? Isto pode afetar o tempo de ligação.",
   "telecom_pack_migration_promotion_description": "Promoção disponível até {{ endDate }}",
   "telecom_pack_migration_promotion_subscription_months_offered": "{{ duration }} meses oferecidos",
-  "telecom_pack_migration_confirm_promotion": "Os custos de instalação da sua nova assinatura são oferecidos (exceto aluguel de modem, opções adicionais ou custos de transporte).",
+  "telecom_pack_migration_confirm_promotion": "As taxas de instalação da nova subscrição são gratuitas - exceto aluguer de modem, opções adicionais ou despesas de transporte.",
   "telecom_pack_migration_confirm_first_year_promo": "Redução no primeiro ano",
   "telecom_pack_migration_confirm_modem_rental": "Locação modem",
   "telecom_pack_migration_pack_access_error": "Não conseguimos carregar as informações relativas ao seu pack.",
@@ -214,8 +214,8 @@
   "telecom_pack_migration_confirm_temporary_pack_creation_line_2": "Este pack será automaticamente eliminado uma vez finalizada a encomenda de Fibra.",
   "telecom_pack_migration_confirm_temporary_pack_creation_line_3": "Não é necessária nenhuma ação de modificação ou de eliminação da sua parte : a passagem para o seu acesso Fibra será efetuada de forma totalmente automatizada.",
   "telecom_pack_migration_phone_call_for_new_meeting": "A marcação online não está disponível. Será contactado por telefone para lhe propor uma data e uma hora que lhe convém.",
-  "telecom_pack_migration_promotion_subscription_months_reduces": "-50 % durante {{ duration }} meses",
+  "telecom_pack_migration_promotion_subscription_months_reduces": "- 50% durante {{ duration }} meses",
   "telecom_pack_migration_confirm_promotion_table": "Promoção ({{ duration }} meses)",
-  "telecom_pack_migration_confirm_discount_displayed": " durante {{ duration }} meses, depois",
-  "telecom_pack_migration_confirm_new_offer_price_discount": "A sua nova assinatura mensal é de: <span class=\"text-price\">{{ priceDiscount }}</span> <span class=\"text-infos\">HT/mês durante {{duration}} meses depois</span> <span class=\"text-price\">{{ price }}</span> <span class=\"text-infos\">HT/mês</span>, aplicável a partir da entrega do seu novo acesso. Você será informado por e-mail."
+  "telecom_pack_migration_confirm_discount_displayed": " durante {{ duration }} meses, e depois",
+  "telecom_pack_migration_confirm_new_offer_price_discount": "A sua nova subscrição mensal ascende a: <span class=\"text-price\">{{ priceDiscount }}/</span><span class=\"text-infos\">mês + IVA durante {{duration}} meses, depois</span> <span class=\"text-price\">{{ price }}/</span><span class=\"text-infos\">mês + IVA</span>, aplicável a partir da data de entrega do novo acesso. Receberá uma notificação por e-mail."
 }

@@ -1,14 +1,14 @@
 {
-  "manager_error_page_title": "Oops …!",
+  "manager_error_page_title": "Hoppla!",
   "manager_error_page_button_cancel": "Abbrechen",
   "manager_error_page_detail_code": "Fehlercode: ",
   "manager_error_page_action_reload_label": "Erneut versuchen",
   "manager_error_page_action_home_label": "Zurück zur Startseite",
   "manager_error_page_default": "Beim Laden der Seite ist ein Fehler aufgetreten.",
-  "manager_error_page_404_title": "Ups! Seite nicht gefunden.",
-  "manager_error_page_404_description": "Fehler 404. Die von Ihnen gesuchte Seite scheint nicht gefunden zu werden.",
-  "manager_error_api_page_title": "Ups! Es ist ein interner Fehler aufgetreten",
-  "manager_error_page_api_description": "Es ist ein Fehler aufgetreten, Sie können uns mit dem untenstehenden Fehlercode kontaktieren.",
-  "manager_error_page_boundary_title": "Ups! Es ist ein Fehler aufgetreten.",
-  "manager_error_page_boundary_description": "Es ist ein Fehler aufgetreten, bitte versuchen Sie es später erneut."
+  "manager_error_page_404_title": "Hoppla! Die Seite wurde nicht gefunden.",
+  "manager_error_page_404_description": "Fehler 404. Die von Ihnen gesuchte Seite konnte nicht gefunden werden.",
+  "manager_error_api_page_title": "Hoppla! Interner Fehler",
+  "manager_error_page_api_description": "Es ist ein Fehler aufgetreten. Sie können uns mit dem nachstehenden Fehlercode kontaktieren.",
+  "manager_error_page_boundary_title": "Hoppla! Ein Fehler ist aufgetreten.",
+  "manager_error_page_boundary_description": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut."
 }

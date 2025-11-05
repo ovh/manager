@@ -1,14 +1,14 @@
 {
-  "manager_error_page_title": "Oops ...!",
+  "manager_error_page_title": "Oops!",
   "manager_error_page_button_cancel": "Cancel",
   "manager_error_page_detail_code": "Error code: ",
   "manager_error_page_action_reload_label": "Try again",
-  "manager_error_page_action_home_label": "Back to the homepage",
-  "manager_error_page_default": "An error occurred while loading the page.",
-  "manager_error_page_404_title": "Oops! Page can't be found.",
-  "manager_error_page_404_description": "Error 404. The page you are looking for seems to be missing.",
+  "manager_error_page_action_home_label": "Back to homepage",
+  "manager_error_page_default": "An error has occurred loading the page.",
+  "manager_error_page_404_title": "Oops! Page not found.",
+  "manager_error_page_404_description": "Error 404. The requested page is currently unavailable.",
   "manager_error_api_page_title": "Oops! An internal error has occurred",
   "manager_error_page_api_description": "An error has occurred, you can contact us with the error code below.",
-  "manager_error_page_boundary_title": "Oops! An error occurred.",
+  "manager_error_page_boundary_title": "Oops! An error has occurred.",
   "manager_error_page_boundary_description": "An error has occurred. Please try again later."
 }
