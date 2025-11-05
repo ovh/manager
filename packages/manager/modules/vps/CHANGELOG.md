@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.50.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.10...@ovh-ux/manager-vps@2.50.11) (2025-11-05)
+
+
+### Bug Fixes
+
+* **dedicated.vps:** fix disk space on additional disk US reseller ([7eaa84d](https://github.com/ovh/manager/commit/7eaa84d7deec359212fc768f59e3465f3929bf40)), closes [#MANAGER-19662](https://github.com/ovh/manager/issues/MANAGER-19662)
+
+
+
+
+
 ## [2.50.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.9...@ovh-ux/manager-vps@2.50.10) (2025-10-23)
 
 
