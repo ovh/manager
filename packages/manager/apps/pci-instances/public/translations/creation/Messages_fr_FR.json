@@ -72,5 +72,6 @@
   "pci_instance_creation_cart_flavor_vRamTotal": "Go vRAM",
   "pci_instance_creation_cart_flavor_vCore": "vCPU",
   "pci_instance_creation_cart_flavor_bandwidthPrivate": "(Privé)",
-  "pci_instance_creation_cart_flavor_bandwidthPublic": "(Public)"
+  "pci_instance_creation_cart_flavor_bandwidthPublic": "(Public)",
+  "pci_instance_creation_cart_distribution_image_title": "Image"
 }

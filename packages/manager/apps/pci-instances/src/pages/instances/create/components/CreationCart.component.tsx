@@ -27,6 +27,7 @@ export const CreationCart = () => {
     availabilityZone,
     quantity,
     flavorId,
+    distributionImageName,
   ] = useWatch({
     control,
     name: [
@@ -36,6 +37,7 @@ export const CreationCart = () => {
       'availabilityZone',
       'quantity',
       'flavorId',
+      'distributionImageName',
     ],
   });
 
@@ -78,8 +80,29 @@ export const CreationCart = () => {
         ]
       : [];
 
-    return [...regionDetails, ...flavorDetails];
-  }, [t, localizationDetails, quantity, selectedFlavorDetails]);
+    const distributionImageDetails = distributionImageName
+      ? [
+          {
+            name: t(
+              'creation:pci_instance_creation_cart_distribution_image_title',
+            ),
+            description: (
+              <Text preset="heading-6" className="text-[--ods-color-heading]">
+                {distributionImageName} - version x
+              </Text>
+            ),
+          },
+        ]
+      : [];
+
+    return [...regionDetails, ...flavorDetails, ...distributionImageDetails];
+  }, [
+    localizationDetails,
+    t,
+    selectedFlavorDetails,
+    quantity,
+    distributionImageName,
+  ]);
 
   const cartItems: TCartItem[] = useMemo(
     () => [

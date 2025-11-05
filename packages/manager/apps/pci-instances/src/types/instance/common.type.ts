@@ -115,3 +115,22 @@ export type TStatusSeverity = {
 };
 
 export type TFlavorTag = 'new' | 'savings_plan' | 'coming_soon';
+
+export const DISTRIBUTION_IMAGE_NAME = [
+  'almalinux',
+  'centOS',
+  'cPanel',
+  'debian',
+  'docker',
+  'fedora',
+  'freeBSD',
+  'linux',
+  'n8n',
+  'nvidia',
+  'plesk',
+  'rockylinux',
+  'ubuntu',
+  'windows',
+] as const;
+
+export type TDistributionImageName = typeof DISTRIBUTION_IMAGE_NAME[number];
