@@ -18,20 +18,15 @@ export const useZoomedInOut = () => {
 
 export const ZoomedInOutProvider = ({ children }: { children: ReactNode }) => {
   const [isZoomedIn, setIsZoomedIn] = useState(false);
-  const toggleZoom = () => setIsZoomedIn(!isZoomedIn);
 
-  return (
-    <ZoomedInOutContext.Provider
-      value={useMemo(
-        () => ({
-          isZoomedIn,
-          setIsZoomedIn,
-          toggleZoom,
-        }),
-        [isZoomedIn, setIsZoomedIn, toggleZoom],
-      )}
-    >
-      {children}
-    </ZoomedInOutContext.Provider>
+  const value = useMemo(
+    () => ({
+      isZoomedIn,
+      setIsZoomedIn,
+      toggleZoom: () => setIsZoomedIn((prev) => !prev),
+    }),
+    [isZoomedIn],
   );
+
+  return <ZoomedInOutContext.Provider value={value}>{children}</ZoomedInOutContext.Provider>;
 };
