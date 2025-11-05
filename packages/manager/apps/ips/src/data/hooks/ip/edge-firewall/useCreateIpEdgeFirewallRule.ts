@@ -2,6 +2,7 @@ import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import ipaddr from 'ipaddr.js';
 import {
   getIpEdgeFirewallQueryKey,
   getIpEdgeNetworkFirewallRuleListQueryKey,
@@ -14,12 +15,48 @@ import { isValidIpv4Block, TRANSLATION_NAMESPACES } from '@/utils';
 export const IP_EDGE_FIREWALL_PORT_MIN = 0;
 export const IP_EDGE_FIREWALL_PORT_MAX = 65535;
 
-export const hasPortRangeError = (port: string) => {
+export const hasPortRangeError = (port?: string) => {
+  if (!port) {
+    return false;
+  }
+
   const portNumber = parseInt(port, 10);
+
   return (
     portNumber < IP_EDGE_FIREWALL_PORT_MIN ||
     portNumber > IP_EDGE_FIREWALL_PORT_MAX
   );
+};
+
+export const hasDestinationPortLowerThanSourcePortError = ({
+  source,
+  destination,
+}: {
+  source?: string;
+  destination?: string;
+}) => {
+  if (!source || !destination) {
+    return false;
+  }
+
+  const sourcePortNumber = parseInt(source, 10);
+  const destinationPortNumber = parseInt(destination, 10);
+
+  return destinationPortNumber < sourcePortNumber;
+};
+
+export const hasSourceError = (source?: string) => {
+  if (!source || source.length === 0) {
+    return false;
+  }
+
+  if (source.includes('0.0.0.0')) {
+    return true;
+  }
+
+  return source.includes('/')
+    ? !isValidIpv4Block(source)
+    : !ipaddr.IPv4.isValid(source);
 };
 
 export type CreateFirewallRuleParams = {
@@ -46,11 +83,21 @@ export const useCreateIpEdgeNetworkFirewallRule = ({
   sequence,
   tcpOption,
   fragments,
+  setSourceError,
+  setSourcePortError,
+  setDestinationPortError,
+  setModeError,
+  setProtocolError,
 }: {
   ip: string;
   ipOnFirewall: string;
   hasNoFirewall: boolean;
   hideNewRuleRow: () => void;
+  setSourcePortError: (error?: string) => void;
+  setDestinationPortError: (error?: string) => void;
+  setSourceError: (error?: string) => void;
+  setModeError: (error?: string) => void;
+  setProtocolError: (error?: string) => void;
 } & CreateFirewallRuleParams) => {
   const qc = useQueryClient();
   const { t } = useTranslation([
@@ -61,18 +108,57 @@ export const useCreateIpEdgeNetworkFirewallRule = ({
   return useMutation({
     mutationFn: async () => {
       clearNotifications();
+      let hasError = false;
 
-      if (hasPortRangeError(sourcePort) || hasPortRangeError(destinationPort)) {
-        addError(t('portRangeError'), true);
-        return Promise.reject();
+      if (!protocol) {
+        setProtocolError(t('requiredFieldError'));
+        hasError = true;
+      } else {
+        setProtocolError(undefined);
+      }
+
+      if (!action) {
+        setModeError(t('requiredFieldError'));
+        hasError = true;
+      } else {
+        setModeError(undefined);
+      }
+
+      if (hasPortRangeError(sourcePort)) {
+        setSourcePortError(t('portRangeError'));
+        hasError = true;
+      } else {
+        setSourcePortError(undefined);
+      }
+
+      if (hasPortRangeError(destinationPort)) {
+        setSourcePortError(t('portRangeError'));
+        hasError = true;
+      } else {
+        setDestinationPortError(undefined);
       }
 
       if (
-        source &&
-        source.length > 0 &&
-        (!isValidIpv4Block(source) || source.includes('0.0.0.0'))
+        hasDestinationPortLowerThanSourcePortError({
+          source: sourcePort,
+          destination: destinationPort,
+        })
       ) {
-        addError(t('invalidSourceError'), true);
+        setDestinationPortError(t('destinationPortLowerThanSourcePortError'));
+        hasError = true;
+      } else {
+        setDestinationPortError(undefined);
+      }
+
+      if (hasSourceError(source)) {
+        setSourceError(t('invalidSourceError'));
+        hasError = true;
+      } else {
+        setSourceError(undefined);
+      }
+
+      if (hasError) {
+        addError(t('createRuleErrorMessage'), true);
         return Promise.reject();
       }
 
@@ -88,7 +174,7 @@ export const useCreateIpEdgeNetworkFirewallRule = ({
         destinationPort:
           destinationPort && !fragments ? parseInt(destinationPort, 10) : null,
         sequence,
-        source,
+        source: source && !source.includes('/') ? `${source}/32` : source,
         sourcePort: sourcePort && !fragments ? parseInt(sourcePort, 10) : null,
         tcpOption:
           fragments || tcpOption
