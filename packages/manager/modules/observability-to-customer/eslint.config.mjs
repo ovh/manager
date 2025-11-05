@@ -25,8 +25,14 @@ export default [
   tanStackQueryEslintConfig,
   vitestEslintConfig,
   prettierEslintConfig,
-  complexityJsxTsxConfig,
-  complexityTsJsConfig,
+  {
+    ...complexityJsxTsxConfig,
+    ignores: [...(complexityJsxTsxConfig.ignores || []), '**/__tests__/**'],
+  },
+  {
+    ...complexityTsJsConfig,
+    ignores: [...(complexityTsJsConfig.ignores || []), '**/__tests__/**'],
+  },
   {
     files: ["**/*.ts", "**/*.tsx"],
     languageOptions: {
@@ -40,7 +46,8 @@ export default [
     rules: {
       'react-hooks/exhaustive-deps': 'off',
       'react/no-children-prop': 'off',
-      'react/prop-types': 'off'
+      'react/prop-types': 'off',
+      'react/no-multi-comp': 'off'
     },
   },
   {
