@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.24.10...@ovh-ux/ovh-at-internet@0.25.0) (2025-11-05)
+
+
+### Features
+
+* **account-creation:** integrated data usage consent modal ([61be106](https://github.com/ovh/manager/commit/61be1063e8aebbc1554058843fa07d9ee519501e)), closes [#MANAGER-17746](https://github.com/ovh/manager/issues/MANAGER-17746)
+
+
+
+
+
 ## [0.24.10](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.24.9...@ovh-ux/ovh-at-internet@0.24.10) (2025-11-02)
 
 **Note:** Version bump only for package @ovh-ux/ovh-at-internet
