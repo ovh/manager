@@ -156,6 +156,6 @@
     "vnu-jar": "^24.10.17"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-tests-setup": "latest"
+    "@ovh-ux/manager-tests-setup": "^0.4.7"
   }
 }
