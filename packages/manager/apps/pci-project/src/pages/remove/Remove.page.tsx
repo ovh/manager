@@ -35,7 +35,7 @@ export default function RemovePage() {
   const projectId = useProjectIdFromParams();
   const serviceId = searchParams.get('serviceId') || '';
 
-  const { addSuccess, addError } = useNotifications();
+  const { addSuccess, addError, clearNotifications } = useNotifications();
   const { environment } = useContext(ShellContext);
   const { ovhSubsidiary } = environment?.getUser();
   const region = environment?.getRegion();
@@ -64,6 +64,7 @@ export default function RemovePage() {
       pageType: PageType.bannerSuccess,
       pageName: PROJECTS_TRACKING.DELETE.REQUEST_SUCCESS,
     });
+    clearNotifications();
     addSuccess(
       <Translation ns="remove">
         {(_t) => _t('pci_projects_project_edit_remove_success')}
@@ -78,6 +79,7 @@ export default function RemovePage() {
       pageType: PageType.bannerError,
       pageName: PROJECTS_TRACKING.DELETE.REQUEST_FAIL,
     });
+    clearNotifications();
     addError(
       <Translation ns="remove">
         {(_t) =>
