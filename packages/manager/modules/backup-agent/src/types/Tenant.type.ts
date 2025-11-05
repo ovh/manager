@@ -1,9 +1,10 @@
-import { ResourceStatus, ResourceWithAzName } from '@/types/Resource.type';
+import { Bucket } from '@/types/Bucket.type';
+import { ResourceStatus } from '@/types/Resource.type';
 
 import { Vault } from './Vault.type';
 
 type AssociatedTenantVSPC = {
-  azName: string;
+  region: string;
   id: string;
   name: string;
   status: ResourceStatus;
@@ -12,8 +13,6 @@ type AssociatedTenantVSPC = {
 export type Tenant = {
   id: string;
   name: string;
-  vaults: Omit<Vault, 'vspc'>[];
+  vaults: (Omit<Vault, 'vspcTenants' | 'buckets'> & Pick<Bucket, 'performance'>)[];
   vspcTenants: AssociatedTenantVSPC[];
 };
-
-export type TenantWithAzName = Tenant & Pick<ResourceWithAzName['currentState'], 'azName'>;
