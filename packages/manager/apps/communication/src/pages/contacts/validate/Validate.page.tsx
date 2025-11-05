@@ -5,6 +5,11 @@ import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useRef, useState } from 'react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+} from '@ovh-ux/manager-react-shell-client';
 import { urls } from '@/routes/routes.constant';
 import {
   useContactMean,
@@ -12,6 +17,8 @@ import {
 } from '@/data/hooks/useContactMean/useContactMean';
 import { useAuthorization, usePendingRedirect } from '@/hooks';
 import ContactValidateForm from '@/components/contact/contactValidateForm/contactValidateForm.component';
+import { useTracking } from '@/hooks/useTracking/useTracking';
+import { TrackingSubApps } from '@/tracking.constant';
 
 export default function ValidateContactPage() {
   const { t } = useTranslation(['contacts', NAMESPACES.ACTIONS, 'common']);
@@ -30,6 +37,7 @@ export default function ValidateContactPage() {
       enabled: !!contactMeanId && isAuthorized,
     },
   );
+  const { trackPage, trackClick } = useTracking();
 
   const {
     mutate: validateContactMean,
@@ -37,11 +45,21 @@ export default function ValidateContactPage() {
   } = useValidateContactMean({
     contactMeanId: contactMean?.id || '',
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'enter_validation_code_success',
+        subApp: TrackingSubApps.Contacts,
+      });
       clearNotifications();
       addSuccess(t('add_contact_success_message'));
       navigate(urls.contact.listing);
     },
     onError: (err) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: 'enter_validation_code_error',
+        subApp: TrackingSubApps.Contacts,
+      });
       if (err.response?.status === 429) {
         setError(t('error_rate_limit_message', { ns: 'common' }));
       } else {
@@ -69,9 +87,25 @@ export default function ValidateContactPage() {
       primaryLabel={t('validate', { ns: NAMESPACES.ACTIONS })}
       secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
       onSecondaryButtonClick={() => {
+        trackClick({
+          location: PageLocation.popup,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['enter_validation_code', 'cancel'],
+          subApp: TrackingSubApps.Contacts,
+        });
         navigate(urls.contact.listing);
       }}
-      onPrimaryButtonClick={() => formRef.current?.submit()}
+      onPrimaryButtonClick={() => {
+        trackClick({
+          location: PageLocation.popup,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['enter_validation_code', 'confirm'],
+          subApp: TrackingSubApps.Contacts,
+        });
+        return formRef.current?.submit();
+      }}
       isPrimaryButtonLoading={isValidatePending}
     >
       <div className="flex flex-col gap-4 my-4">

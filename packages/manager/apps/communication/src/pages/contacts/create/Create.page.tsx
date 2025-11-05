@@ -4,6 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { OdsMessage, OdsText, OdsLink } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useRef, useState } from 'react';
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+} from '@ovh-ux/manager-react-shell-client';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { urls } from '@/routes/routes.constant';
 import ContactForm from '@/components/contact/contactForm/ContactForm.component';
@@ -16,6 +21,8 @@ import {
 import { useAuthorization, usePendingRedirect } from '@/hooks';
 import { CreateContactStage } from './Create.constants';
 import ContactValidateForm from '@/components/contact/contactValidateForm/contactValidateForm.component';
+import { useTracking } from '@/hooks/useTracking/useTracking';
+import { TrackingSubApps } from '@/tracking.constant';
 
 export default function CreateContactPage() {
   const [currentStage, setCurrentStage] = useState<CreateContactStage>(
@@ -35,6 +42,7 @@ export default function CreateContactPage() {
   const [error, setError] = useState<string | null>(null);
   const { t } = useTranslation(['contacts', NAMESPACES.ACTIONS, 'common']);
   const navigate = useNavigate();
+  const { trackPage, trackClick } = useTracking();
 
   const formRef = useRef<{ submit: () => void }>(null);
   const {
@@ -60,11 +68,21 @@ export default function CreateContactPage() {
   } = useValidateContactMean({
     contactMeanId: createdContactMean?.id || '',
     onSuccess: () => {
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'add_contact_success',
+        subApp: TrackingSubApps.Contacts,
+      });
       clearNotifications();
       addSuccess(t('add_contact_success_message'));
       navigate(urls.contact.listing);
     },
     onError: (err) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageName: 'add_contact_error',
+        subApp: TrackingSubApps.Contacts,
+      });
       if (err.response?.status === 429) {
         setError(t('error_rate_limit_message', { ns: 'common' }));
       }
@@ -111,6 +129,13 @@ export default function CreateContactPage() {
       }
       secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
       onSecondaryButtonClick={() => {
+        trackClick({
+          location: PageLocation.popup,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['add_contact', 'cancel'],
+          subApp: TrackingSubApps.Contacts,
+        });
         navigate(urls.contact.listing);
       }}
       onPrimaryButtonClick={() => formRef.current?.submit()}
@@ -150,7 +175,19 @@ export default function CreateContactPage() {
                 }}
               />
             </OdsText>
-            <ContactValidateForm ref={formRef} onSubmit={onSubmitValidate} />
+            <ContactValidateForm
+              ref={formRef}
+              onSubmit={(data) => {
+                trackClick({
+                  location: PageLocation.popup,
+                  buttonType: ButtonType.button,
+                  actionType: 'navigation',
+                  actions: ['add_contact', 'confirm'],
+                  subApp: TrackingSubApps.Contacts,
+                });
+                onSubmitValidate(data);
+              }}
+            />
             <div className="flex flex-row justify-center my-4">
               <OdsLink
                 href="#"

@@ -81,8 +81,9 @@ export default (
           Component={CreateContactPage}
           handle={{
             tracking: {
-              pageName: 'contacts::add',
+              pageName: 'add_contact',
               pageType: PageType.popup,
+              subApp: TrackingSubApps.Contacts,
             },
           }}
         />
@@ -91,8 +92,9 @@ export default (
           Component={EditContactPage}
           handle={{
             tracking: {
-              pageName: 'contacts::edit',
+              pageName: 'rename_contact',
               pageType: PageType.popup,
+              subApp: TrackingSubApps.Contacts,
             },
           }}
         />
@@ -101,8 +103,9 @@ export default (
           Component={ValidateContactPage}
           handle={{
             tracking: {
-              pageName: 'contacts::validate',
+              pageName: 'enter_validation_code',
               pageType: PageType.popup,
+              subApp: TrackingSubApps.Contacts,
             },
           }}
         />
@@ -111,8 +114,9 @@ export default (
           Component={DeleteContactPage}
           handle={{
             tracking: {
-              pageName: 'contacts::delete',
+              pageName: 'delete_contact',
               pageType: PageType.popup,
+              subApp: TrackingSubApps.Contacts,
             },
           }}
         />
