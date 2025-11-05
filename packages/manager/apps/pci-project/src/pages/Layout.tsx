@@ -1,4 +1,4 @@
-import { useEffect, useContext, Suspense } from 'react';
+import { useEffect, useContext, Suspense, useState } from 'react';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import { Outlet, useLocation, useMatches } from 'react-router-dom';
 import {
@@ -6,12 +6,15 @@ import {
   useRouteSynchro,
   ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 
 export default function Layout() {
   const location = useLocation();
   const { shell } = useContext(ShellContext);
   const matches = useMatches();
   const { trackCurrentPage } = useOvhTracking();
+  const { clearNotifications } = useNotifications();
+
   useRouteSynchro();
 
   useEffect(() => {
@@ -26,6 +29,10 @@ export default function Layout() {
   useEffect(() => {
     shell.ux.hidePreloader();
   }, []);
+
+  useEffect(() => {
+    clearNotifications();
+  }, [location.pathname]);
 
   return (
     <Suspense>

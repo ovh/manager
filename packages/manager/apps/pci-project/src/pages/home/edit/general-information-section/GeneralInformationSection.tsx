@@ -31,7 +31,7 @@ export default function GeneralInformationSection({
   const [description, setDescription] = useState(project.description || '');
   const [isDefault, setIsDefault] = useState<boolean>(false);
 
-  const { addSuccess, addError } = useNotifications();
+  const { addSuccess, addError, clearNotifications } = useNotifications();
 
   const {
     data: hasDefaultProperty,
@@ -60,6 +60,7 @@ export default function GeneralInformationSection({
   } = useEditProject(
     project.project_id,
     () => {
+      clearNotifications();
       addSuccess(
         <Translation ns="edit">
           {(_t) => _t('pci_projects_project_edit_update_success')}
@@ -68,6 +69,7 @@ export default function GeneralInformationSection({
       );
     },
     (error: ApiError) => {
+      clearNotifications();
       addError(
         <Translation ns="edit">
           {(_t) =>
