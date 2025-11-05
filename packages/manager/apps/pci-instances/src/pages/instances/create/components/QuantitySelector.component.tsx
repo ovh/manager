@@ -1,5 +1,5 @@
 import { Trans, useTranslation } from 'react-i18next';
-import { Controller, useFormContext } from 'react-hook-form';
+import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import clsx from 'clsx';
 import {
   FormField,
@@ -12,6 +12,7 @@ import {
 } from '@ovhcloud/ods-react';
 import { quantityRules } from '@/pages/instances/create/CreateInstance.schema';
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
+import { TInstanceCreationForm } from '../CreateInstance.page';
 
 export const quantityDefaultValue = 1;
 
@@ -29,7 +30,12 @@ export const QuantitySelector = ({ quota, type, region }: TQuantityProps) => {
     formState: {
       errors: { quantity: error },
     },
-  } = useFormContext<{ quantity: number }>();
+    control,
+  } = useFormContext<TInstanceCreationForm>();
+  const quantity = useWatch({
+    control,
+    name: 'quantity',
+  });
 
   return (
     <article className="flex flex-col w-full mb-8">
@@ -42,18 +48,21 @@ export const QuantitySelector = ({ quota, type, region }: TQuantityProps) => {
             {t('pci_instances_creation_quantity_label')}
           </FormFieldLabel>
           <Controller
+            control={control}
             name="quantity"
             render={({ field }) => (
               <Quantity
                 min={quantityRules.min}
                 max={quantityRules.max}
                 invalid={!!error}
-                onValueChange={({ value }) => field.onChange(Number(value))}
-                defaultValue={String(quantityDefaultValue)}
+                onValueChange={({ valueAsNumber }) =>
+                  field.onChange(valueAsNumber)
+                }
+                value={String(quantity)}
                 required
               >
                 <QuantityControl>
-                  <QuantityInput value={String(field.value)} />
+                  <QuantityInput />
                 </QuantityControl>
               </Quantity>
             )}
