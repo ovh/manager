@@ -7,15 +7,17 @@ import { useNotificationAddErrorOnce } from '@key-management-service/hooks/useNo
 import { OKMS } from '@key-management-service/types/okms.type';
 import { useLocations } from '@/common/data/hooks/useLocation';
 import { findLocationByRegion } from '@/modules/secret-manager/utils/location';
+import { ContinentCode } from '@/common/types/continents.type';
+import { getContinentCodeFromGeographyCode } from '@/common/utils/location/continents';
 
 export type RegionOption = {
   region: string;
-  geographyCode: string;
+  continentCode: ContinentCode;
   href: string;
 };
 
 export type GeographyGroup = {
-  geographyCode: string;
+  continentCode: ContinentCode;
   regions: RegionOption[];
 };
 
@@ -46,7 +48,9 @@ const buildRegionOptions = (
 
       return {
         region: location.name,
-        geographyCode: location.geographyCode,
+        continentCode: getContinentCodeFromGeographyCode(
+          location.geographyCode,
+        ),
         href:
           // If only one okms is available, redirect to the secrets listing page
           regionOkmsList.length === 1
@@ -65,14 +69,14 @@ const groupRegionOptions = (
 ): GeographyGroup[] => {
   return regionOptions.reduce<GeographyGroup[]>((acc, regionOption) => {
     const existingRegion = acc.find(
-      (group) => group.geographyCode === regionOption.geographyCode,
+      (group) => group.continentCode === regionOption.continentCode,
     );
 
     if (existingRegion) {
       existingRegion.regions.push(regionOption);
     } else {
       acc.push({
-        geographyCode: regionOption.geographyCode,
+        continentCode: regionOption.continentCode,
         regions: [regionOption],
       });
     }
