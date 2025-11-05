@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate } from 'react-router-dom';
+import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import {
   Button,
   BUTTON_SIZE,
@@ -21,7 +20,7 @@ interface HolderCardProps {
 
 export default function HolderCard({ serviceName }: HolderCardProps) {
   const { t } = useTranslation(['domain']);
-  const navigate = useNavigate();
+  const { navigateTo } = useNavigation();
   const { domainResource } = useGetDomainResource(serviceName);
 
   const contactID =
@@ -31,12 +30,6 @@ export default function HolderCard({ serviceName }: HolderCardProps) {
     ['account:apiovh:domain/contact/get'],
     `urn:v1:eu:resource:contact:${contactID}`,
   );
-
-  const { data: editContactUrl } = useNavigationGetUrl([
-    'web',
-    `/domain/${serviceName}/contact-management/edit-contact/${contactID}/`,
-    {},
-  ]);
 
   return (
     <Card
@@ -67,7 +60,14 @@ export default function HolderCard({ serviceName }: HolderCardProps) {
         <Button
           size={BUTTON_SIZE.sm}
           disabled={!isAuthorized}
-          onClick={() => isAuthorized && navigate(editContactUrl)}
+          onClick={() =>
+            isAuthorized &&
+            navigateTo(
+              'web',
+              `/domain/${serviceName}/contact-management/edit-contact/${contactID}/`,
+              {},
+            )
+          }
         >
           {t(`${NAMESPACES.ACTIONS}:modify`)}
         </Button>

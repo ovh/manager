@@ -12,8 +12,7 @@ import {
   BUTTON_VARIANT,
 } from '@ovhcloud/ods-react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate } from 'react-router-dom';
+import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { ServiceInfoContactEnum } from '@/common/enum/common.enum';
 import NichandleInformation from './NichandleInformation';
 import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleInformation';
@@ -45,24 +44,8 @@ export default function NichandleCard({
   nichandle,
 }: NichandleCardProps) {
   const { t } = useTranslation(['domain', NAMESPACES.ACTIONS]);
-  const navigate = useNavigate();
+  const { navigateTo } = useNavigation();
   const { nichandleInformation } = useNichandleInformation();
-
-  const { data: reassignContactUrl } = useNavigationGetUrl([
-    'account',
-    '/contacts/services/edit',
-    {
-      serviceName,
-      category: 'DOMAIN',
-      service: serviceName,
-      categoryType: 'DOMAIN',
-    },
-  ]);
-  const { data: accountUrl } = useNavigationGetUrl([
-    'account',
-    '/useraccount/infos',
-    {},
-  ]);
 
   const translations: ServiceInfoContactContactTranslations = {
     [ServiceInfoContactEnum.Administrator]: {
@@ -104,7 +87,7 @@ export default function NichandleCard({
           size={BUTTON_SIZE.sm}
           data-testid="modify-button"
           disabled={nichandleInformation.nichandle !== nichandle}
-          onClick={() => navigate(accountUrl)}
+          onClick={() => navigateTo('account', '/useraccount/infos', {})}
         >
           {t(`${NAMESPACES.ACTIONS}:modify`)}
         </Button>
@@ -112,7 +95,14 @@ export default function NichandleCard({
           size={BUTTON_SIZE.sm}
           data-testid="reassign-button"
           disabled={nichandleInformation.nichandle !== nichandle}
-          onClick={() => navigate(reassignContactUrl)}
+          onClick={() =>
+            navigateTo('account', '/contacts/services/edit', {
+              serviceName,
+              category: 'DOMAIN',
+              service: serviceName,
+              categoryType: 'DOMAIN',
+            })
+          }
           variant={BUTTON_VARIANT.ghost}
         >
           {t('domain_tab_contact_management_button_reassign')}
