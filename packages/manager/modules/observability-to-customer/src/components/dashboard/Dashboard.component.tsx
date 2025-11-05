@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 
-import { useDashboardContext } from '../../contexts';
+import { useDashboardContext } from '@/contexts';
+
 import { ChartRenderer } from '../charts/base';
 import { TimeControls } from '../timeControls/TimeControls.component';
 import { ChartWidgetComponent } from '../widget/ChartWidget.component';
@@ -16,14 +17,14 @@ export const Dashboard = <TData,>({
     setState({ ...state, [key]: value });
   };
 
-  const isLoading = useMemo(() => widgets.some((w) => w.isLoading), [widgets]);
+  const isDashboardLoading = useMemo(() => widgets.some((w) => w.isLoading), [widgets]);
 
   return (
     <section>
       <div className="w-full my-6 flex justify-end items-center">
         <TimeControls
           defaultValue={state.selectedTimeOption.value}
-          isLoading={isLoading}
+          isLoading={isDashboardLoading}
           state={state}
           onStateChange={onStateChange}
         />
