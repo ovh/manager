@@ -1,57 +1,85 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect, useState } from 'react';
 
 import { useLocation } from 'react-router-dom';
 
+import { useProject } from '@ovh-ux/manager-pci-common';
+import { useProjectUrl } from '@ovh-ux/muk';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
-import type { BreadcrumbItem } from '@/types/Breadcrumb.type';
+import { BreadcrumbItem, BreadcrumbProps } from '@/types/Breadcrumb.type';
 
-type UseBreadcrumbProps = {
-  rootLabel: string;
-  appName: string;
-  items?: BreadcrumbItem[];
+export const usePciBreadcrumb = ({ projectId, appName }: BreadcrumbProps) => {
+  const { shell } = useContext(ShellContext);
+  const [root, setRoot] = useState<BreadcrumbItem[]>([]);
+  const [appRoot, setAppRoot] = useState<BreadcrumbItem[]>([]);
+  const { data: project } = useProject(projectId);
+  const hrefProject = useProjectUrl('public-cloud');
+
+  useEffect(() => {
+    const fetchRoot = async () => {
+      try {
+        const response = (await shell?.navigation.getURL(
+          'public-cloud',
+          `#/pci/projects/${projectId}`,
+          {},
+        )) as string;
+        const rootItem = {
+          label: project?.description,
+          href: hrefProject,
+        };
+        const appRoot = {
+          label: appName || '',
+          href: response.split('public-cloud')[1] || '',
+        };
+        setRoot([rootItem]);
+        setAppRoot([appRoot]);
+      } catch (error) {
+        console.error('Error fetching root URL:', error);
+      }
+    };
+    if (project) {
+      void fetchRoot();
+    }
+  }, [project]);
+
+  return [...root, ...appRoot];
 };
 
-export const useBreadcrumb = ({
-  rootLabel,
-  appName,
-  items,
-}: UseBreadcrumbProps): BreadcrumbItem[] => {
+export const useBreadcrumb = ({ rootLabel, appName }: BreadcrumbProps) => {
   const { shell } = useContext(ShellContext);
-  const [rootItems, setRootItems] = useState<BreadcrumbItem[]>([]);
+  const [root, setRoot] = useState<BreadcrumbItem[]>([]);
+  const [paths, setPaths] = useState<BreadcrumbItem[]>([]);
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
 
   useEffect(() => {
     const fetchRoot = async () => {
       try {
-        const response = await shell?.navigation.getURL(appName, '#/', {});
-        const rootItem: BreadcrumbItem = {
+        const response = await shell?.navigation.getURL(
+          appName as string,
+          '#/',
+          {},
+        );
+        const rootItem = {
           label: rootLabel,
-          href: typeof response === 'string' ? response : response?.href || '#/',
+          href: String(response),
         };
-        setRootItems([rootItem]);
+        setRoot([rootItem]);
       } catch {
-        // Fetch navigation error - set empty root
-        setRootItems([]);
+        // Fetch navigation error
       }
     };
     void fetchRoot();
   }, [rootLabel, appName, shell?.navigation]);
 
-  const pathItems: BreadcrumbItem[] = pathnames.map((value, index) => {
-    const item = items?.find((item) => item.href.includes(value));
-    const parentPaths = pathnames.slice(0, index + 1);
-    return {
-      label: item?.label || value,
-      href: item?.href || `#/${appName}/${parentPaths.join('/')}`,
-    };
-  });
+  useEffect(() => {
+    const pathsTab = pathnames.map((value) => ({
+      label: value,
+      href: `/#/${appName}/${value}`,
+    }));
+    setPaths(pathsTab);
+  }, [location]);
 
-  return [...rootItems, ...pathItems];
+  return [...root, ...paths];
 };
-
-
-
-
-

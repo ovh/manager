@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import * as AppConfig from '@/App.constants';
+import * as AppC from '@/App.constants';
 import type {
   OnboardingConfigType,
   OnboardingContentType,
@@ -15,7 +15,7 @@ const QUERY_KEY = ['onboarding-config'] as const;
 
 async function getOnboardingConfig(): Promise<OnboardingConfigType> {
   return new Promise((resolve) => {
-    resolve(AppConfig.ONBOARDING_CONFIG);
+    resolve(AppC.ONBOARDING_CONFIG);
   });
 }
 

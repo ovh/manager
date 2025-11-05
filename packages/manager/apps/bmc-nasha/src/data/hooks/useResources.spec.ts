@@ -11,23 +11,29 @@ async function loadSubject(listingApi: 'v6Iceberg' | 'v2' | 'v6' | undefined) {
   }));
 
   // Create hook mocks we can tweak per test
-  const useDataApi = vi.fn();
+  const useResourcesIcebergV2 = vi.fn();
+  const useResourcesIcebergV6 = vi.fn();
+  const useResourcesV6 = vi.fn();
 
   vi.doMock('@ovh-ux/muk', () => ({
-    useDataApi,
+    useResourcesIcebergV2,
+    useResourcesIcebergV6,
+    useResourcesV6,
   }));
 
   // Import the subject AFTER mocks are set
   const mod = await import('./useResources'); // <-- ← adjust to your real path
 
-  return {
+  return ({
     ...mod,
-    mocks: { useDataApi },
-  } as unknown as {
-    useResources: (typeof import('./useResources'))['useResources'];
-    useListingData: (typeof import('./useResources'))['useListingData'];
+    mocks: { useResourcesIcebergV2, useResourcesIcebergV6, useResourcesV6 },
+  } as unknown) as {
+    useResources: typeof import('./useResources')['useResources'];
+    useListingData: typeof import('./useResources')['useListingData'];
     mocks: {
-      useDataApi: ReturnType<typeof vi.fn>;
+      useResourcesIcebergV2: ReturnType<typeof vi.fn>;
+      useResourcesIcebergV6: ReturnType<typeof vi.fn>;
+      useResourcesV6: ReturnType<typeof vi.fn>;
     };
   };
 }
@@ -44,7 +50,7 @@ describe('useResources', () => {
       isLoading: false,
       status: 'success' as const,
     };
-    mocks.useDataApi.mockReturnValue(sample);
+    mocks.useResourcesIcebergV6.mockReturnValue(sample);
 
     const { result } = renderHook(() =>
       useResources<{ id: number }>({
@@ -53,17 +59,9 @@ describe('useResources', () => {
       }),
     );
 
-    expect(mocks.useDataApi).toHaveBeenCalledWith({
+    expect(mocks.useResourcesIcebergV6).toHaveBeenCalledWith({
       route: '/things',
-      version: 'v6',
-      iceberg: true,
-      cacheKey: ['listing', '/things'],
-      pageSize: undefined,
-      columns: undefined,
-      defaultSorting: undefined,
-      enabled: undefined,
-      disableCache: undefined,
-      fetchAll: undefined,
+      queryKey: ['listing', '/things'],
     });
     expect(result.current.flattenData).toEqual([{ id: 1 }]);
     expect(result.current.totalCount).toBe(123);
@@ -80,7 +78,7 @@ describe('useResources', () => {
       isLoading: true,
       status: 'pending' as const,
     };
-    mocks.useDataApi.mockReturnValue(sample);
+    mocks.useResourcesIcebergV2.mockReturnValue(sample);
 
     const { result } = renderHook(() =>
       useResources<{ id: string }>({
@@ -89,14 +87,7 @@ describe('useResources', () => {
       }),
     );
 
-    expect(mocks.useDataApi).toHaveBeenCalledWith({
-      route: '/legacy',
-      version: 'v2',
-      cacheKey: ['listing', '/legacy'],
-      pageSize: undefined,
-      enabled: undefined,
-      fetchAll: undefined,
-    });
+    expect(mocks.useResourcesIcebergV2).toHaveBeenCalled();
     expect(result.current.flattenData).toEqual([{ id: 'a' }]);
     // v2 mapping intentionally has no totalCount
     expect(result.current.totalCount).toBeUndefined();
@@ -114,7 +105,7 @@ describe('useResources', () => {
       isLoading: false,
       status: 'success' as const,
     };
-    mocks.useDataApi.mockReturnValue(sample);
+    mocks.useResourcesV6.mockReturnValue(sample);
 
     const { result } = renderHook(() =>
       useResources<{ id: number }>({
@@ -124,16 +115,10 @@ describe('useResources', () => {
       }),
     );
 
-    expect(mocks.useDataApi).toHaveBeenCalledWith({
+    expect(mocks.useResourcesV6).toHaveBeenCalledWith({
       route: '/new',
-      version: 'v6',
-      cacheKey: ['listing', '/new'],
-      pageSize: undefined,
+      queryKey: ['listing', '/new'],
       columns: [],
-      defaultSorting: undefined,
-      enabled: undefined,
-      refetchInterval: undefined,
-      fetchDataFn: undefined,
     });
     expect(result.current.totalCount).toBe(1);
     expect(result.current.flattenData).toEqual([{ id: 42 }]);
@@ -146,7 +131,7 @@ describe('useListingData', () => {
     const { useListingData, mocks } = await loadSubject('v6Iceberg');
 
     const fetchNextPage = vi.fn();
-    mocks.useDataApi.mockReturnValue({
+    mocks.useResourcesIcebergV6.mockReturnValue({
       flattenData: [{ id: 1 }, { id: 2 }],
       totalCount: 999,
       hasNextPage: true,
@@ -155,7 +140,9 @@ describe('useListingData', () => {
       status: 'success' as const,
     });
 
-    const { result } = renderHook(() => useListingData<{ id: number }>('/things'));
+    const { result } = renderHook(() =>
+      useListingData<{ id: number }>('/things'),
+    );
 
     expect(result.current.items).toEqual([{ id: 1 }, { id: 2 }]);
     expect(result.current.total).toBe(999); // uses totalCount when present
@@ -172,14 +159,16 @@ describe('useListingData', () => {
   it('derives total from items.length when totalCount is missing (v2)', async () => {
     const { useListingData, mocks } = await loadSubject('v2');
 
-    mocks.useDataApi.mockReturnValue({
+    mocks.useResourcesIcebergV2.mockReturnValue({
       flattenData: [{ id: 'x' }, { id: 'y' }, { id: 'z' }],
       hasNextPage: false,
       isLoading: true,
       status: 'pending' as const,
     });
 
-    const { result } = renderHook(() => useListingData<{ id: string }>('/legacy'));
+    const { result } = renderHook(() =>
+      useListingData<{ id: string }>('/legacy'),
+    );
 
     expect(result.current.items).toHaveLength(3);
     expect(result.current.total).toBe(3); // fallback to items.length
@@ -191,7 +180,7 @@ describe('useListingData', () => {
   it('handles empty/undefined flattenData gracefully', async () => {
     const { useListingData, mocks } = await loadSubject('v6');
 
-    mocks.useDataApi.mockReturnValue({
+    mocks.useResourcesV6.mockReturnValue({
       flattenData: undefined,
       totalCount: undefined,
       hasNextPage: false,
@@ -199,7 +188,9 @@ describe('useListingData', () => {
       status: 'success' as const,
     });
 
-    const { result } = renderHook(() => useListingData<Record<string, never>>('/empty'));
+    const { result } = renderHook(() =>
+      useListingData<Record<string, never>>('/empty'),
+    );
 
     expect(result.current.items).toEqual([]);
     expect(result.current.total).toBe(0);

@@ -1,21 +1,18 @@
-/* eslint-disable no-undef */
 import path from 'path';
 
 import {
-  createConfig,
-  defaultDedupedDependencies,
+  createConfig, 
+	defaultDedupedDependencies,
   defaultExcludedFiles,
   mergeConfig,
   sharedConfig,
-  sharedCssConfig,
 } from '@ovh-ux/manager-tests-setup';
 
 export default mergeConfig(
   sharedConfig,
   createConfig({
     test: {
-      setupFiles: ['@ovh-ux/manager-core-test-utils/src/utils/setup-test.ts'],
-      ...sharedCssConfig,
+      setupFiles: ['./setupTests.ts'],
       coverage: {
         exclude: [
           ...defaultExcludedFiles,
@@ -27,15 +24,13 @@ export default mergeConfig(
           '**/QueryClient.ts',
           '**/*.type.ts',
           '**/404.page.tsx',
-          '**/utils/tests/**',
-          '**/Test.utils.tsx',
+          '**/Mock.utils.tsx',
         ],
       },
     },
-    resolve: {
-      dedupe: [...defaultDedupedDependencies],
+    resolve: { dedupe: [...defaultDedupedDependencies], 
       alias: {
-        '@/public': path.resolve(__dirname, 'public'),
+        // eslint-disable-next-line no-undef
         '@': path.resolve(__dirname, 'src'),
       },
     },

@@ -1,95 +1,93 @@
 import React, { useMemo } from 'react';
 
-import type { SortingState } from '@tanstack/react-table';
-
-import { useDataApi } from '@ovh-ux/muk';
+import {
+  ColumnSort,
+  useResourcesIcebergV2,
+  useResourcesIcebergV6,
+  useResourcesV6,
+} from '@ovh-ux/muk';
 
 import { APP_FEATURES } from '@/App.constants';
-import { ResourcesFacadeResult, UseResourcesParams } from '@/types/ClientApi.type';
+import {
+  ResourcesFacadeResult,
+  UseResourcesParams,
+} from '@/types/ClientApi.type';
 import { ListingDataResultType } from '@/types/Listing.type';
 
-function mapResponse<T>(response: {
-  data?: T[];
+function mapResponseWithTotal<T>(response: {
   flattenData?: T[];
   totalCount?: number;
   hasNextPage?: boolean;
   fetchNextPage?: () => Promise<unknown> | void;
   isLoading?: boolean;
-  status?: string;
-  sorting?:
-    | {
-        sorting: SortingState;
-        setSorting: React.Dispatch<React.SetStateAction<SortingState>>;
-        manualSorting: boolean;
-      }
-    | undefined;
+  status?: 'pending' | 'success' | 'error';
+  sorting?: ColumnSort | undefined;
+  setSorting?: React.Dispatch<React.SetStateAction<ColumnSort>>;
   filters?: unknown;
   search?: unknown;
 }): ResourcesFacadeResult<T> {
-  const status = response.status as 'pending' | 'success' | 'error' | undefined;
-  const data = response.flattenData ?? response.data;
   return {
-    flattenData: Array.isArray(data) ? data : [],
+    flattenData: response.flattenData,
     totalCount: response.totalCount,
     hasNextPage: response.hasNextPage,
     fetchNextPage: response.fetchNextPage,
     isLoading: response.isLoading,
-    status,
-    sorting: response.sorting?.sorting?.[0],
-    setSorting: response.sorting?.setSorting,
+    status: response.status,
+    sorting: response.sorting,
+    setSorting: response.setSorting,
     filters: response.filters,
     search: response.search,
   };
 }
 
+function mapResponseWithoutTotal<T>(response: {
+  flattenData?: T[];
+  hasNextPage?: boolean;
+  fetchNextPage?: () => Promise<unknown> | void;
+  isLoading?: boolean;
+  status?: 'pending' | 'success' | 'error';
+  sorting?: ColumnSort | undefined;
+  setSorting?: React.Dispatch<React.SetStateAction<ColumnSort>>;
+  filters?: unknown;
+  search?: unknown;
+}): ResourcesFacadeResult<T> {
+  return {
+    flattenData: response.flattenData,
+    hasNextPage: response.hasNextPage,
+    fetchNextPage: response.fetchNextPage,
+    isLoading: response.isLoading,
+    status: response.status,
+    sorting: response.sorting,
+    setSorting: response.setSorting,
+    filters: response.filters,
+    search: response.search,
+  };
+}
+
+/* eslint-disable react-hooks/rules-of-hooks */
 function createResourcesFactory<T extends Record<string, unknown>>() {
   return {
     v6Iceberg: (params: UseResourcesParams<T>): ResourcesFacadeResult<T> => {
-      const response = useDataApi<T>({
-        route: params.route,
-        version: 'v6',
-        iceberg: true,
-        cacheKey: params.queryKey ?? ['resources', params.route],
-        pageSize: params.pageSize,
-        columns: params.columns,
-        defaultSorting: params.defaultSorting,
-        enabled: params.enabled,
-        disableCache: params.disableCache,
-        fetchAll: params.fetchAll,
-      });
-      return mapResponse<T>(response);
+      const response = useResourcesIcebergV6<T>(params);
+      return mapResponseWithTotal<T>(response);
     },
     v2: (params: UseResourcesParams<T>): ResourcesFacadeResult<T> => {
-      const response = useDataApi<T>({
-        route: params.route,
-        version: 'v2',
-        cacheKey: params.queryKey ?? ['resources', params.route],
-        pageSize: params.pageSize,
-        enabled: params.enabled,
-        fetchAll: params.fetchAll,
-      });
-      return mapResponse<T>(response);
+      const response = useResourcesIcebergV2<T>(params);
+      return mapResponseWithoutTotal<T>(response);
     },
     v6: (params: UseResourcesParams<T>): ResourcesFacadeResult<T> => {
-      const response = useDataApi<T>({
-        route: params.route,
-        version: 'v6',
-        cacheKey: params.queryKey ?? ['resources', params.route],
-        pageSize: params.pageSize,
+      const response = useResourcesV6<T>({
+        ...params,
         columns: params.columns ?? [],
-        defaultSorting: params.defaultSorting,
-        enabled: params.enabled,
-        refetchInterval: params.refetchInterval,
-        fetchDataFn: params.fetchDataFn,
       });
-      return mapResponse<T>(response);
+      return mapResponseWithTotal<T>(response);
     },
   };
 }
 
-export function useResources<T extends Record<string, unknown> = Record<string, unknown>>(
-  params: UseResourcesParams<T>,
-): ResourcesFacadeResult<T> {
+export function useResources<
+  T extends Record<string, unknown> = Record<string, unknown>
+>(params: UseResourcesParams<T>): ResourcesFacadeResult<T> {
   const resourcesFactory = createResourcesFactory<T>();
   const api = APP_FEATURES.listingApi;
 
@@ -98,9 +96,9 @@ export function useResources<T extends Record<string, unknown> = Record<string, 
   return resourcesFactory.v6(params);
 }
 
-export function useListingData<T extends Record<string, unknown> = Record<string, unknown>>(
-  route: string,
-): ListingDataResultType<T> {
+export function useListingData<
+  T extends Record<string, unknown> = Record<string, unknown>
+>(route: string): ListingDataResultType<T> {
   const raw = useResources<T>({
     route,
     queryKey: ['listing', route],
@@ -108,12 +106,13 @@ export function useListingData<T extends Record<string, unknown> = Record<string
 
   return useMemo<ListingDataResultType<T>>(() => {
     const items = raw?.flattenData ?? [];
-    const total = typeof raw?.totalCount === 'number' ? raw.totalCount : items.length;
+    const total =
+      typeof raw?.totalCount === 'number' ? raw.totalCount : items.length;
 
     const fetchNextPage =
       raw?.hasNextPage && raw?.fetchNextPage
         ? () => {
-            raw.fetchNextPage?.();
+            void raw.fetchNextPage?.();
           }
         : undefined;
 

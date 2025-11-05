@@ -21,6 +21,13 @@ vi.mock('@/routes/Routes.constants', () => {
       pathMatchers: [/^\/general-information\/[^/]+$/],
       trackingActions: ['click::general-information-tab'],
     },
+    {
+      name: 'help',
+      title: 'dashboard:help',
+      to: '/help',
+      pathMatchers: [/\/help$/],
+      trackingActions: ['click::help-tab'],
+    },
   ];
   return { DASHBOARD_NAV_TABS: tabs };
 });
