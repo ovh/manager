@@ -12,10 +12,11 @@ import { Datagrid } from '@ovh-ux/manager-react-components';
 import { BACKUP_VAULTS_LIST_QUERY_KEY, useBackupVaultsList } from '@/data/hooks/vaults/getVault';
 
 import { useColumns } from './_hooks/useColumns.hooks';
+import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 import {BACKUP_AGENT_NAMESPACES } from "@/BackupAgent.translations";
 
 export default function ListingPage() {
-  const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.VAULT_LISTING]);
+  const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.VAULT_LISTING, NAMESPACES.ACTIONS]);
   const queryClient = useQueryClient();
   const { flattenData, isLoading } = useBackupVaultsList();
   const columns = useColumns();
@@ -36,7 +37,7 @@ export default function ListingPage() {
                 color="primary"
                 onClick={void reloadDatagrid}
                 isLoading={isLoading}
-                data-arialabel="Refresh" // TODO add translation
+                data-arialabel={t(`${NAMESPACES.ACTIONS}:refresh`)}
                 label=""
               />
             </div>
