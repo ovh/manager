@@ -33,14 +33,12 @@
     </oui-header>
     <div class="container-fluid px-0">
         <oui-message data-type="warning">
-            <span
-                data-translate="pci_projects_project_load_balancer_end_service"
-            ></span>
+            <span data-translate="{{$ctrl.getEndServiceKey }}"></span>
             <a
                 href="{{$ctrl.PciLoadBalancerGuides}}"
                 target="_blank"
                 rel="noopener noreferrer"
-                data-translate="pci_projects_project_load_balancer_more_information"
+                data-translate="{{$ctrl.getEndServiceInformationKey}}"
             ></a>
             <a
                 ng-attr-href="{{ $ctrl.PciLoadBalancerGuides }}"
@@ -76,17 +74,6 @@
         criteria="$ctrl.criteria"
         on-criteria-change="$ctrl.onListParamChange($criteria)"
     >
-        <oui-datagrid-topbar>
-            <oui-button
-                variant="secondary"
-                type="button"
-                data-on-click="$ctrl.gotoOrder()"
-            >
-                <span
-                    data-translate="pci_projects_project_load_balancer_list_order"
-                ></span>
-            </oui-button>
-        </oui-datagrid-topbar>
         <oui-datagrid-column
             data-title=":: 'pci_projects_project_load_balancer_list_name' | translate"
             data-property="name"
