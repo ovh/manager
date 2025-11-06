@@ -5,7 +5,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 export const MAX_VERSIONS_MIN_VALUE = 0;
 export const MAX_VERSIONS_MAX_VALUE = 24_000;
 
-export const useSecretMetadataSchema = () => {
+export const useSecretConfigSchema = () => {
   const { t } = useTranslation(['secret-manager', NAMESPACES.FORM]);
 
   return z.object({
