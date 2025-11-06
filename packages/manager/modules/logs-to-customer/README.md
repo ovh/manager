@@ -1,6 +1,6 @@
 # Logs to customer module
 
-## overview
+## Overview
 
 This module provides the necessary pages and components to add the "Logs to Customer" feature to a product page. It includes:
 
@@ -9,13 +9,13 @@ This module provides the necessary pages and components to add the "Logs to Cust
 
 ## Configuration
 
-### add the package to your uapp
+### Add the package to your uapp
 
 To use this module, add the following package to your UApp:
 
 `@ovh-ux/logs-to-customer`
 
-### update your application tailwind config
+### Update your application tailwind config
 
 Add logs-to-customer to the content of your application tailwind configuration `tailwind.config.mjs` in order to generate the necessary tailwind classes.
 
@@ -32,11 +32,19 @@ export default {
 };
 ```
 
-### add the module in your uapp
+### Add the module in your uapp
 
 To integrate the module into your UApp, create a log tab on your product dashboard and add the `LogsToCustomerModule` to the page content.
 
+**Important**: You must import the CSS file in your app entry point (e.g., `index.tsx`) to ensure styles are loaded globally:
+
 ```tsx
+// app entry point
+import '@ovh-ux/logs-to-customer/dist/style.css';
+```
+
+```tsx
+// component
 export default function LogsPage() {
   // ...
 
@@ -64,7 +72,7 @@ export default function LogsPage() {
 }
 ```
 
-### configure your µapp routes
+### Configure your µapp routes
 
 To allow the module to handle all logs-related routes, configure your routes as follows:
 
@@ -85,32 +93,23 @@ _**routes.tsx**_
 > **Important**
 > `'*'` is mandatory as routing is defined and managed inside the module
 
-### Troubleshooting
 
-You might face to the following issue
+### configure your vite config
 
-```sh
-LogMessages.component.tsx:XX Warning: Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
-1. You might have mismatching versions of React and the renderer (such as React DOM)
-2. You might be breaking the Rules of Hooks
-3. You might have more than one copy of React in the same app
-See https://reactjs.org/link/invalid-hook-call for tips about how to debug and fix this problem.
-```
-
-To fix it, add the following `dedupe` vite configuration inside your consumer application
+Add logs-to-customer vite config to your app
 
 _**vite.config.mjs**_
-```js
+```ts
+import { defineConfig } from 'vite';
+import { getBaseConfig } from '@ovh-ux/manager-vite-config';
+import { getLogsToCustomerConfig } from '@ovh-ux/logs-to-customer/vite-config';
+import { resolve } from 'path';
+
+const logsToCustomerConfig = getLogsToCustomerConfig();
+const baseConfig = getBaseConfig(logsToCustomerConfig);
+
 export default defineConfig({
-  ...getBaseConfig(),
-  resolve: {
-    alias: {
-      '@': resolve(join(process.cwd(), 'src')),
-      ),
-    },
-    dedupe: ['@tanstack/react-virtual'],
-  },
+  ...baseConfig,
   root: resolve(process.cwd()),
 });
 ```
-

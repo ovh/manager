@@ -1,11 +1,11 @@
 import { fetchIcebergV6, apiClient } from '@ovh-ux/manager-core-api';
 
-import { ApiUrls } from '../../LogsToCustomer.props';
+import { ApiUrls } from '@/LogsToCustomer.props';
 import {
   LogKind,
   LogSubscription,
   LogSubscriptionResponse,
-} from '../types/dbaas/logs';
+} from '@/data/types/dbaas/logs';
 
 /**
  * LIST log subscription
