@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import {
   MAX_VERSIONS_MAX_VALUE,
   MAX_VERSIONS_MIN_VALUE,
-} from '@secret-manager/validation/metadata/metadataSchema';
+} from '@secret-manager/validation/secret-config/secretConfigSchema';
 import { SECRET_FORM_FIELD_TEST_IDS } from './form.constants';
 
 type FormFieldInput = {
