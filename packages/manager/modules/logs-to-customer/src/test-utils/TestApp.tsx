@@ -9,7 +9,7 @@ import { vi } from 'vitest';
 import type { ShellContextType } from '@ovh-ux/manager-react-shell-client';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
-import { lazyRouteConfig } from '../routes/routes';
+import { lazyRouteConfig } from '@/routes/routes';
 
 const appRoutes: RouteObject[] = [
   {

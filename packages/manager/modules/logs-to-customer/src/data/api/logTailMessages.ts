@@ -1,4 +1,4 @@
-import { TemporaryLogsLink } from '../types/dbaas/logs';
+import { TemporaryLogsLink } from '@/data/types/dbaas/logs';
 
 export type TMessageLevel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
 

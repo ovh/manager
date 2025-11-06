@@ -5,9 +5,10 @@ import { useQueryClient } from '@tanstack/react-query';
 import {
   getLogServiceQueryKey,
   useLogService,
-} from '../../data/hooks/useLogService';
-import { LogSubscription } from '../../data/types/dbaas/logs';
-import ApiError from '../apiError/ApiError.component';
+} from '@/data/hooks/useLogService';
+import { LogSubscription } from '@/data/types/dbaas/logs';
+import ApiError from '@/components/apiError/ApiError.component';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 type SubscriptionLogServiceProps = {
   subscription: LogSubscription;
@@ -16,7 +17,7 @@ type SubscriptionLogServiceProps = {
 const SubscriptionLogService = ({
   subscription,
 }: SubscriptionLogServiceProps) => {
-  const { t } = useTranslation('logService');
+  const { t } = useTranslation(NAMESPACES.LOG_SERVICE);
   const queryClient = useQueryClient();
   const { data: service, isLoading, isPending, error } = useLogService(
     subscription.serviceName,

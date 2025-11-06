@@ -2,18 +2,19 @@ import React, { useContext } from 'react';
 import { OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import { LogsContext } from '../../LogsToCustomer.context';
+import { LogsContext } from '@/LogsToCustomer.context';
 import {
   getLogSubscriptionsQueryKey,
   useLogSubscriptions,
-} from '../../data/hooks/useLogSubscriptions';
-import SubscriptionTile from './SubscriptionTile.component';
-import SubscriptionEmpty from './SubscriptionEmpty.component';
-import ApiError from '../apiError/ApiError.component';
-import { useZoomedInOut } from '../../hooks/useZoomedInOut';
+} from '@/data/hooks/useLogSubscriptions';
+import SubscriptionTile from '@/components/subscriptions/SubscriptionTile.component';
+import SubscriptionEmpty from '@/components/subscriptions/SubscriptionEmpty.component';
+import ApiError from '@/components/apiError/ApiError.component';
+import { useZoomedInOut } from '@/hooks/useZoomedInOut';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 export default function LogsSubscriptions() {
-  const { t } = useTranslation('logSubscription');
+  const { t } = useTranslation(NAMESPACES.LOG_SUBSCRIPTION);
   const queryClient = useQueryClient();
   const { currentLogKind, logApiUrls, logApiVersion } = useContext(LogsContext);
   const { data, isLoading, isPending, error } = useLogSubscriptions(

@@ -1,5 +1,5 @@
 import { fetchIcebergV6, apiClient } from '@ovh-ux/manager-core-api';
-import { Service } from '../types/dbaas/logs';
+import { Service } from '@/data/types/dbaas/logs';
 
 /**
  * LIST log services infos

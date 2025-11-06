@@ -1,6 +1,6 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { getLogStream } from '../api/logStream';
-import { Service, Stream } from '../types/dbaas/logs';
+import { getLogStream } from '@/data/api/logStream';
+import { Service, Stream } from '@/data/types/dbaas/logs';
 
 export const getLogStreamsQueryKey = (): string[] => ['getLogStreams'];
 
