@@ -15,6 +15,9 @@ const fakeDeps: Deps = {
       .mockReturnValue(mockedInstancesCatalogEntity),
   },
   messageProviderPort: { getMessage: vi.fn((key: string) => key) },
+  configurationPort: {
+    selectSshKeys: vi.fn(),
+  },
 };
 
 describe('selectContinents ViewModel', () => {

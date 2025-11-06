@@ -18,6 +18,9 @@ const fakeDeps: Deps = {
   messageProviderPort: {
     getMessage: vi.fn((key: string) => key),
   },
+  configurationPort: {
+    selectSshKeys: vi.fn(),
+  },
 };
 
 describe('SelectLocalizations ViewModel', () => {
