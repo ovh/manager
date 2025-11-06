@@ -36,7 +36,6 @@ export default /* @ngInject */ ($stateProvider) => {
       /* @ngInject */
       autoRenewAgreements: (BillingAutoRenew) =>
         BillingAutoRenew.getAutorenewAgreements(),
-      goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
       serviceId: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceId,
       serviceType: /* @ngInject */ ($transition$) =>

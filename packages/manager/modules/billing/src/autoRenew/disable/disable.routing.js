@@ -12,7 +12,6 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/disable?services',
     component: 'billingAutorenewDisable',
     resolve: {
-      goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
       servicesId: /* @ngInject */ ($transition$) =>
         $transition$.params().services.split(','),
       servicesList: /* @ngInject */ (
