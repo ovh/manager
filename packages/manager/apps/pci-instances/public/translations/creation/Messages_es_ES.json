@@ -81,5 +81,11 @@
   "pci_instance_creation_select_sshKey_help_content_list": "Se basa en un par de claves: <ul><li>una clave pública, registrada en su cuenta de OVHcloud,</li><li>una clave privada, conservada en su ordenador y utilizada para establecer la conexión.</li></ul>",
   "pci_instance_creation_select_sshKey_help_goal": "¿Por qué utilizar una clave SSH? <ul><li>Acceso seguro a su instancia (conexión cifrada).</li><li>Ninguna entrada de contraseña en cada conexión.</li><li>Compatible con todos los sistemas Linux y macOS (y Windows a través de WSL o PuTTY).</li></ul>",
   "pci_instance_creation_select_sshKey_help_how_to": "¿Cómo proceder? <ol><li>Cree un par de claves SSH en su equipo local (si aún no tiene uno).</li><li>Agregue su clave pública en su espacio de cliente de OVHcloud. También puede agregar esta clave pública directamente desde la creación de la instancia.</li><li>Seleccione esta clave al desplegar su instancia.</li><li>Una vez que la instancia esté desplegada, conéctese a través de SSH con la clave privada correspondiente.</li></ol>",
-  "pci_instance_creation_select_sshKey_help_read_complete_guide": "Consulte la guía completa para crear y utilizar una clave SSH."
+  "pci_instance_creation_select_sshKey_help_read_complete_guide": "Consulte la guía completa para crear y utilizar una clave SSH.",
+  "pci_instance_creation_select_sshKey_missing_warning": "No tienes una clave SSH. Por lo tanto, no podrás conectarte a tu servidor. Crea una clave para acceder a tu servidor.",
+  "pci_instance_creation_select_sshKey_add_name_label": "Nombre de la clave SSH",
+  "pci_instance_creation_select_sshKey_add_key_label": "Introduce tu clave SSH",
+  "pci_instance_creation_select_sshKey_add_key_description": "Las claves SSH aceptadas son de tipo RSA, ECDSA y ED25519. Tu clave SSH estará disponible en todas las regiones y centros de datos de OVHcloud de tu proyecto.",
+  "pci_instance_creation_select_sshKey_add_key_submit_btn": "Validar la clave",
+  "pci_instance_creation_select_sshKey_add_new": "Crear una nueva clave SSH"
 }

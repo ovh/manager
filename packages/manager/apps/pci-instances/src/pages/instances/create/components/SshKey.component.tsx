@@ -1,15 +1,22 @@
-import { Divider, Text } from '@ovhcloud/ods-react';
+import {
+  Divider,
+  ICON_NAME,
+  Message,
+  MessageBody,
+  MessageIcon,
+  Text,
+} from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { SshKeyHelper } from './sshKey/SshKeyHelper.component';
 import { useSshKeys } from '@/data/hooks/ssh/useSshKeys';
 import { deps } from '@/deps/deps';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { selectSshKeys } from '../view-models/sshKeysViewModel';
-import { useMemo } from 'react';
 
 type TSshKeyProps = {
   microRegion: string;
 };
+import AddSshKey from './sshKey/AddSshKey.component';
 
 const SshKey = ({ microRegion }: TSshKeyProps) => {
   const projectId = useProjectId();
@@ -17,10 +24,7 @@ const SshKey = ({ microRegion }: TSshKeyProps) => {
 
   const { isLoading } = useSshKeys(microRegion);
 
-  const sshKeys = useMemo(
-    () => (isLoading ? [] : selectSshKeys(deps)(projectId, microRegion)),
-    [isLoading, microRegion, projectId],
-  );
+  const sshKeys = selectSshKeys(deps)(projectId, microRegion);
 
   return (
     <section>
@@ -34,6 +38,23 @@ const SshKey = ({ microRegion }: TSshKeyProps) => {
       <Text className="mt-4" preset="paragraph">
         {t('creation:pci_instance_creation_select_sshKey_description')}
       </Text>
+      {!isLoading && (
+        <>
+          {sshKeys.length === 0 && (
+            <div className="mt-4">
+              <Message color="warning">
+                <MessageIcon name={ICON_NAME.triangleExclamation} />
+                <MessageBody>
+                  {t(
+                    'creation:pci_instance_creation_select_sshKey_missing_warning',
+                  )}
+                </MessageBody>
+              </Message>
+            </div>
+          )}
+          <AddSshKey openForm={!sshKeys} />
+        </>
+      )}
     </section>
   );
 };
