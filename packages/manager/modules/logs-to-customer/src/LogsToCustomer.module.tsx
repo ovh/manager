@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { OdsSelect, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+import { Select, SelectContent, SelectControl, Spinner, Text } from '@ovhcloud/ods-react';
 
 import {
   ButtonType,
@@ -79,7 +79,7 @@ export function LogsToCustomerModule({
   if (isPending)
     return (
       <div className="flex py-8">
-        <OdsSpinner size="md" data-testid="logKinds-spinner" />
+        <Spinner size="md" data-testid="logKinds-spinner" />
       </div>
     );
 
@@ -98,30 +98,35 @@ export function LogsToCustomerModule({
 
   if (logKinds.length === 0)
     return (
-      <OdsText preset="paragraph">
+      <Text preset="paragraph">
         {t('log_kind_empty_state_description')}
-      </OdsText>
+      </Text>
     );
 
   if (!currentLogKind)
     return (
-      <OdsText preset="paragraph">{t('log_kind_no_kind_selected')}</OdsText>
+      <Text preset="paragraph">{t('log_kind_no_kind_selected')}</Text>
     );
 
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
-        <OdsText preset="paragraph">
+        <Text preset="paragraph">
           {t('log_kind_selector_select_label')}
-        </OdsText>
-        <OdsSelect
-          className="w-full md:w-96 "
+        </Text>
+        <Select
+          className="md:w-96"
           name="select-log-kind"
-          isDisabled={logKinds.length === 1}
-          value={currentLogKind?.kindId}
-          onOdsChange={(event) => {
+          disabled={logKinds.length === 1}
+          value={currentLogKind?.kindId ? [currentLogKind.kindId] : undefined}
+          items={logKinds.map((k) => ({
+            value: k.kindId,
+            label: k.displayName,
+          }))}
+          onValueChange={(detail) => {
+            const selectedValue = detail.value[0];
             const newLogKind = logKinds.find(
-              (k) => k.kindId === event.detail.value,
+              (k) => k.kindId === selectedValue,
             );
             if (newLogKind) {
               setCurrentLogKind(newLogKind);
@@ -135,16 +140,9 @@ export function LogsToCustomerModule({
           }}
           data-testid={'logKindSelect'}
         >
-          {logKinds.map((k) => (
-            <option
-              key={k.kindId}
-              value={k.kindId}
-              data-testid={'logKindOption'}
-            >
-              {k.displayName}
-            </option>
-          ))}
-        </OdsSelect>
+          <SelectControl />
+          <SelectContent />
+        </Select>
       </div>
       <LogsContext.Provider value={LogsContextValues}>
         <ZoomedInOutProvider>

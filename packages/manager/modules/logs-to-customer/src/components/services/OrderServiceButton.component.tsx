@@ -1,5 +1,5 @@
 import React from 'react';
-import { OdsButton } from '@ovhcloud/ods-components/react';
+import { Button } from '@ovhcloud/ods-react';
 import {
   ButtonType,
   PageLocation,
@@ -20,11 +20,10 @@ const OrderServiceButton = () => {
   const { data: dedicatedUrl } = useNavigationGetUrl(['dedicated', '', {}]);
 
   return (
-    <OdsButton
-      className="[&::part(button)]:w-full"
+    <Button
+      className="w-full"
       size="sm"
       variant="outline"
-      label={t('log_service_create')}
       onClick={() => {
         trackClick({
           location: PageLocation.page,
@@ -34,7 +33,9 @@ const OrderServiceButton = () => {
         });
         window.open(`${dedicatedUrl}/dbaas/logs/order`, '_self');
       }}
-    />
+    >
+      {t('log_service_create')}
+    </Button>
   );
 };
 

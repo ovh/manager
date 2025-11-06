@@ -1,0 +1,7 @@
+/* Import custom CSS variables and animations */
+@import '@/components/logTail/logTail.css';
+
+/* Import Tailwind utilities only (Tailwind v3) */
+@tailwind utilities;
+@tailwind base;
+@tailwind components;

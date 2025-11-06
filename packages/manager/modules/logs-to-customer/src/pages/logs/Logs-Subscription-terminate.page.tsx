@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { DeleteModal } from '@ovh-ux/manager-react-components';
+import { DeleteModal } from '@ovh-ux/muk';
 
 import { LogsContext } from '@/LogsToCustomer.context';
 import { useDeleteLogSubscription } from '@/data/hooks/useLogSubscriptions';
@@ -27,17 +27,14 @@ export default function DataStreamsTerminate() {
   );
   return (
     <DeleteModal
-      isOpen
-      headline={t('log_subscription_terminate_modal_headline')}
-      deleteInputLabel={t('log_subscription_terminate_modal_delete_input_label')}
-      confirmButtonLabel={t('log_subscription_terminate_modal_confirm_button_label')}
-      closeModal={() => {
+      open
+      isLoading={isPending}
+      onClose={() => {
         navigate('..');
       }}
       onConfirmDelete={() => {
         mutate();
       }}
-      isLoading={isPending}
-    ></DeleteModal>
+    />
   );
 }

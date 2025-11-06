@@ -11,11 +11,16 @@ const pathSrc = path.resolve(__dirname, 'src');
 const pathPublic = path.resolve(__dirname, 'public');
 const externalDeps = [
     ...Object.keys(packageJson.default.peerDependencies || {}),
-    '@ovhcloud/ods-components/react',
+    '@ovhcloud/ods-react',
 ];
 
 export default defineConfig({
     ...baseConfig,
+    css: {
+        postcss: {
+            plugins: [tailwindcss],
+        },
+    },
     resolve: {
         alias: {
             '@/public': pathPublic,
@@ -38,15 +43,15 @@ export default defineConfig({
             ],
         }),
     ],
-    css: {
-        postcss: {
-            plugins: [tailwindcss],
-        },
-    },
     test: {
         globals: true,
         environment: 'jsdom',
         setupFiles: ['./src/test-utils/setup-test.ts'],
+        // CSS config for ODS v19 compatibility
+        css: true,
+        deps: {
+            inline: ['@ovhcloud/ods-react'],
+        },
     },
     build: {
         outDir: path.resolve(__dirname, 'dist'),
