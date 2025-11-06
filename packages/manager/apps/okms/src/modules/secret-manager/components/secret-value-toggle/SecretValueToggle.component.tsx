@@ -19,24 +19,26 @@ export const SecretValueToggle = ({
   const { t } = useTranslation(['secret-manager']);
 
   return (
-    <OdsSwitch
-      data-testid={SECRET_VALUE_TOGGLE_TEST_IDS.toggle}
-      name="secretValueType"
-    >
-      <OdsSwitchItem
-        data-testid={SECRET_VALUE_TOGGLE_TEST_IDS.keyValueToggle}
-        isChecked={state === 'key-value'}
-        onClick={() => onChange('key-value')}
+    <div>
+      <OdsSwitch
+        data-testid={SECRET_VALUE_TOGGLE_TEST_IDS.toggle}
+        name="secretValueType"
       >
-        {t('key_value')}
-      </OdsSwitchItem>
-      <OdsSwitchItem
-        data-testid={SECRET_VALUE_TOGGLE_TEST_IDS.jsonToggle}
-        isChecked={state === 'json'}
-        onClick={() => onChange('json')}
-      >
-        {JSON_LABEL}
-      </OdsSwitchItem>
-    </OdsSwitch>
+        <OdsSwitchItem
+          data-testid={SECRET_VALUE_TOGGLE_TEST_IDS.keyValueToggle}
+          isChecked={state === 'key-value'}
+          onClick={() => onChange('key-value')}
+        >
+          {t('key_value')}
+        </OdsSwitchItem>
+        <OdsSwitchItem
+          data-testid={SECRET_VALUE_TOGGLE_TEST_IDS.jsonToggle}
+          isChecked={state === 'json'}
+          onClick={() => onChange('json')}
+        >
+          {JSON_LABEL}
+        </OdsSwitchItem>
+      </OdsSwitch>
+    </div>
   );
 };
