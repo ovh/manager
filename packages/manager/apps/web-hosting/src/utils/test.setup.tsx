@@ -15,6 +15,7 @@ import {
   webHostingMock,
   websitesMocks,
 } from '@/data/__mocks__';
+import { cdnPropertiesMock } from '@/data/__mocks__/cdn';
 import { managedWordpressRerefenceAvailableLanguageMock } from '@/data/__mocks__/managedWordpress/language';
 import {
   managedWordpressResourceDetailsMock,
@@ -186,6 +187,16 @@ vi.mock('@/data/api/dashboard', async (importActual) => {
 });
 vi.mock('@/data/api/git', () => ({
   deleteGitAssociation: vi.fn(),
+}));
+
+vi.mock('@/data/api/cdn', () => ({
+  getCDNProperties: vi.fn(() => Promise.resolve(cdnPropertiesMock)),
+}));
+
+vi.mock('@/data/hooks/cdn', () => ({
+  useGetCDNProperties: vi.fn(),
+  flushCDNDomainCache: vi.fn(),
+  flushCdn: vi.fn(),
 }));
 
 vi.mock('@/data/hooks/webHostingDashboard/useWebHostingDashboard', () => ({
