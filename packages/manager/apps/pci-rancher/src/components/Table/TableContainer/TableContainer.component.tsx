@@ -7,6 +7,7 @@ import {
   getSortedRowModel,
   SortingState,
   Row,
+  CellContext,
 } from '@tanstack/react-table';
 import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import { useMutationState } from '@tanstack/react-query';
@@ -16,7 +17,7 @@ import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 import TableComponent from '../Table.component';
 import ActionsCell from '../ActionsCell/ActionsCell.component';
 import LinkService from '../LinkService/LinkService.component';
-import { RancherService } from '@/types/api.type';
+import { RancherService, ResourceStatus } from '@/types/api.type';
 import { RancherDatagridWrapper } from '../Table.type';
 import DisplayCellText from '../TextCell/TextCell.component';
 import '../Table.scss';
@@ -24,6 +25,8 @@ import { deleteRancherServiceQueryKey } from '@/data/api/services';
 import StatusChip from '../../StatusChip/StatusChip.component';
 import DisplayCellNumber from '../NumberCell/NumberCell.component';
 import ClipBoardCell from '../ClipBoardCell/ClipBoardCell.component';
+import IAMColumnLabel from '@/pages/listing/components/IAMColumnLabel.component';
+import { useIamActivated } from '@/hooks/useIamActivated';
 
 export default function TableContainer({
   data,
@@ -51,8 +54,10 @@ export default function TableContainer({
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  const columns: ColumnDef<RancherService>[] = useMemo(
-    () => [
+  const useDatagridColumn = (): ColumnDef<RancherService>[] => {
+    const { isIAmActivated } = useIamActivated();
+
+    return [
       {
         id: 'name',
         header: t('name'),
@@ -85,6 +90,23 @@ export default function TableContainer({
         // @ts-ignore
         cell: DisplayCellNumber,
       },
+
+      ...(isIAmActivated
+        ? [
+            {
+              id: 'iam',
+              header: ((<IAMColumnLabel />) as unknown) as string,
+              accessorFn: (row: RancherService) =>
+                row.currentState.iamAuthEnabled
+                  ? ResourceStatus.ENABLED
+                  : ResourceStatus.DISABLED,
+              cell: (row: CellContext<RancherService, unknown>) => (
+                <StatusChip label={row.getValue() as string} />
+              ),
+            },
+          ]
+        : []),
+
       {
         id: 'status',
         header: t('status'),
@@ -97,18 +119,19 @@ export default function TableContainer({
         accessorKey: 'actions',
         cell: Actions,
       },
-    ],
-    [data],
-  );
+    ];
+  };
 
   const table = useReactTable<RancherService>({
-    columns,
+    columns: useDatagridColumn(),
     data,
     state: { sorting },
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
   });
+
+  const columns = useDatagridColumn();
 
   return (
     <>
