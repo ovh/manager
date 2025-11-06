@@ -41,7 +41,7 @@ const ActivateIamModal: FC = () => {
     onSuccess: () => {
       refetch();
       addSuccess(
-        iamEnabled
+        !iamEnabled
           ? t('iam_authentication_enable_success_message', {
               rancherId,
             })
@@ -109,16 +109,18 @@ const ActivateIamModal: FC = () => {
                   </OsdsText>
                 )}
                 <div>
-                  <OsdsText
-                    size={ODS_TEXT_SIZE._400}
-                    className="text-[--ods-color-warning-700]"
-                    color={ODS_THEME_COLOR_INTENT.text}
-                  >
-                    <Trans
-                      i18nKey={warning}
-                      components={{ strong: <strong /> }}
-                    />
-                  </OsdsText>
+                  {warning.map((warn) => (
+                    <OsdsText
+                      size={ODS_TEXT_SIZE._400}
+                      className="text-[--ods-color-warning-700] block"
+                      color={ODS_THEME_COLOR_INTENT.text}
+                    >
+                      <Trans
+                        i18nKey={warn}
+                        components={{ strong: <strong /> }}
+                      />
+                    </OsdsText>
+                  ))}
                 </div>
               </div>
             </OsdsMessage>
