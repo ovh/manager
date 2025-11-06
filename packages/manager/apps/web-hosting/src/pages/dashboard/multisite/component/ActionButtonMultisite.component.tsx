@@ -51,8 +51,8 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
     if (context === 'site') {
       const website = websites.find((w) => w.id === siteId);
       const vcsStatus = website?.currentState?.git?.status;
-
-      const hasModule = !!website?.currentState?.module?.name;
+      // @TODO FOR NEXT STEP
+      // const hasModule = !!website?.currentState?.module?.name;
 
       const canAssociateGit = [GitStatus.DISABLED, GitStatus.INITIALERROR].includes(vcsStatus);
 
@@ -83,7 +83,8 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
           onClick: () => navigate(urls.addDomain.replace(subRoutes.serviceName, serviceName)),
           label: t('add_domain'),
         },
-        actionCondition(!hasModule, {
+        // @TODO FOR NEXT STEP
+        /* actionCondition(!hasModule, {
           id: 2,
           onClick: () => navigate(urls.addModule.replace(subRoutes.serviceName, serviceName)),
           label: t('add_module'),
@@ -102,7 +103,7 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
           id: 4,
           onClick: () => {},
           label: t('access_interface'),
-        }),
+        }), */
         {
           id: 5,
           onClick: () => {},
