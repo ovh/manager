@@ -1,10 +1,10 @@
-import { ContactMeanType } from './contact-mean.type';
+import { z } from 'zod';
+import { ContactMean } from './contact-mean.type';
 
-export type NotificationRoutingContactMean = {
-  id: string;
-  email: string;
-  type: ContactMeanType;
-};
+export type NotificationRoutingContactMean = Pick<
+  ContactMean,
+  'id' | 'email' | 'type' | 'status' | 'error'
+>;
 
 export type NotificationRoutingCondition = {
   category: string[];
@@ -24,3 +24,36 @@ export type NotificationRouting = {
   name: string;
   rules: NotificationRoutingRule[];
 };
+
+export const CreateRoutingSchema = z
+  .object({
+    active: z.boolean({ required_error: 'error_required_field' }),
+    name: z
+      .string({ required_error: 'error_required_field' })
+      .trim()
+      .min(1, { message: 'error_required_field' }),
+    rules: z
+      .array(
+        z.object({
+          continue: z.boolean({ required_error: 'error_required_field' }),
+          condition: z.object({
+            category: z.array(
+              z.string({ required_error: 'error_required_field' }),
+            ),
+            priority: z.array(
+              z.string({ required_error: 'error_required_field' }),
+            ),
+          }),
+          contactMeans: z
+            .array(
+              z.object({
+                id: z.string({ required_error: 'error_required_field' }),
+              }),
+            )
+            .min(1, { message: 'error_required_field' }),
+        }),
+      )
+      .min(1, { message: 'error_required_field' }),
+  })
+  .strip();
+export type CreateRouting = z.infer<typeof CreateRoutingSchema>;

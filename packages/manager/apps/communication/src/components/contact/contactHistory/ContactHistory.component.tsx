@@ -57,7 +57,7 @@ export default function ContactHistory({ contacts, isOpen, onClose }: Props) {
       <OdsText preset="heading-4">{t('history_overlay_headline')}</OdsText>
       <OdsText>{t('history_overlay_description')}</OdsText>
       <AuthLink
-        href={urls.SettingsTab}
+        href={urls.routing.listing}
         onClick={() => {
           trackClick({
             location: PageLocation.popup,

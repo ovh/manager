@@ -8,26 +8,58 @@ import {
   DataGridTextCell,
   ManagerButton,
   Notifications,
+  useNotifications,
   useResourcesIcebergV2,
 } from '@ovh-ux/manager-react-components';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useMemo } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useAuthorization } from '@/hooks';
 import { NotificationRouting } from '@/data/types/routing.type';
 import { useAccountUrn } from '@/data';
-import { getNotificationRoutingQueryKey } from '@/data/api/routing';
+import { getNotificationRoutingListQueryKey } from '@/data/api/routing';
 import {
   NotificationRoutingActions,
   displayActionMenuItem,
 } from './settings.constants';
-import RoutingStatusChip from '@/components/routingStatus/RoutingStatus.component';
+import RoutingStatusChip from '@/components/routing/routingStatus/RoutingStatus.component';
+import { urls } from '@/routes/routes.constant';
+import {
+  useDeleteRouting,
+  useUpdateRoutingStatus,
+} from '@/data/hooks/useNotificationRouting/useNotificationRouting';
+import RoutingError from '@/components/routing/routingError/RoutingError.component';
 
 function RoutingActionMenu({ routing }: { routing: NotificationRouting }) {
   const { t } = useTranslation(['settings', NAMESPACES.ACTIONS, 'common']);
-  // const { addSuccess, addError, clearNotifications } = useNotifications();
+  const navigate = useNavigate();
+  const { addSuccess, addError, clearNotifications } = useNotifications();
   const { data: accountUrn } = useAccountUrn();
+
+  const { mutate: updateRoutingStatus } = useUpdateRoutingStatus({
+    routingId: routing.id,
+    onSuccess: () => {
+      clearNotifications();
+      addSuccess(t('edit_routing_success_message'));
+    },
+    onError: () => {
+      clearNotifications();
+      addError(t('edit_routing_error_message'));
+    },
+  });
+
+  const { mutate: deleteRouting } = useDeleteRouting({
+    routingId: routing.id,
+    onSuccess: () => {
+      clearNotifications();
+      addSuccess(t('delete_routing_success_message'));
+    },
+    onError: () => {
+      clearNotifications();
+      addError(t('delete_routing_error_message'));
+    },
+  });
 
   const items = useMemo(
     () =>
@@ -35,28 +67,28 @@ function RoutingActionMenu({ routing }: { routing: NotificationRouting }) {
         displayActionMenuItem(routing, NotificationRoutingActions.ENABLE) && {
           id: 1,
           label: t('activate', { ns: NAMESPACES.ACTIONS }),
-          onClick: () => {},
+          onClick: () => updateRoutingStatus(true),
           iamActions: ['account:apiovh:notification/routing/edit'],
           urn: accountUrn,
         },
         displayActionMenuItem(routing, NotificationRoutingActions.DISABLE) && {
           id: 2,
           label: t('table_action_deactivate'),
-          onClick: () => {},
+          onClick: () => updateRoutingStatus(false),
           iamActions: ['account:apiovh:notification/routing/edit'],
           urn: accountUrn,
         },
         displayActionMenuItem(routing, NotificationRoutingActions.EDIT) && {
           id: 3,
           label: t('modify', { ns: NAMESPACES.ACTIONS }),
-          onClick: () => {},
+          onClick: () => navigate(urls.routing.editTo(routing.id)),
           iamActions: ['account:apiovh:notification/routing/edit'],
           urn: accountUrn,
         },
         displayActionMenuItem(routing, NotificationRoutingActions.DELETE) && {
           id: 4,
           label: t('delete', { ns: NAMESPACES.ACTIONS }),
-          onClick: () => {},
+          onClick: () => deleteRouting(),
           iamActions: ['account:apiovh:notification/routing/delete'],
           urn: accountUrn,
         },
@@ -82,6 +114,8 @@ function SettingsPage() {
     'account:apiovh:notification/routing/get',
   ]);
 
+  const navigate = useNavigate();
+
   const columns: DatagridColumn<NotificationRouting>[] = useMemo(
     () => [
       {
@@ -104,6 +138,17 @@ function SettingsPage() {
         ),
       },
       {
+        id: 'error',
+        label: '',
+        isSortable: false,
+        size: 50,
+        cell: ({ rules }) => (
+          <div className="flex flex-row justify-center">
+            <RoutingError rules={rules} />
+          </div>
+        ),
+      },
+      {
         id: 'actions',
         label: '',
         size: 50,
@@ -113,7 +158,7 @@ function SettingsPage() {
             <RoutingActionMenu routing={routing} />
           </div>
         ),
-      }
+      },
     ],
     [t],
   );
@@ -126,7 +171,7 @@ function SettingsPage() {
   } = useResourcesIcebergV2<NotificationRouting>({
     columns,
     route: '/notification/routing',
-    queryKey: getNotificationRoutingQueryKey(),
+    queryKey: getNotificationRoutingListQueryKey(),
     enabled: isAuthorized,
   });
 
@@ -140,14 +185,14 @@ function SettingsPage() {
 
       {!isLoading && !isAuthorized && (
         <OdsMessage color="warning" isDismissible={false} className="w-full">
-          {t('common:iam_display_content_message', { ns: 'common' })}
+          {t('iam_display_content_message', { ns: 'common' })}
         </OdsMessage>
       )}
 
       <Notifications clearAfterRead />
 
       <Datagrid
-        items={flattenData}
+        items={flattenData || []}
         columns={columns}
         isLoading={isLoading}
         tableLayoutFixed={true}
@@ -160,7 +205,7 @@ function SettingsPage() {
             label={t('add_routing_button')}
             aria-label={t('add_routing_button')}
             size="sm"
-            onClick={() => {}}
+            onClick={() => navigate(urls.routing.create)}
           />
         }
         totalItems={flattenData?.length || 0}
