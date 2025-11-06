@@ -3,6 +3,7 @@ export * from './useDeleteEdgeGateway';
 export * from './useDeleteVcdVrackSegment';
 export * from './useOrderableResource';
 export * from './useResetVcdPassword';
+export * from './useUpdateEdgeGateway';
 export * from './useUpdateVcdDatacentre';
 export * from './useUpdateVcdOrganization';
 export * from './useUpdateVcdVrackSegment';
