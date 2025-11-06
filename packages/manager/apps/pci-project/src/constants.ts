@@ -3,10 +3,7 @@ import {
   OvhSubsidiary,
 } from '@ovh-ux/manager-react-components';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import {
-  DashboardItem,
-  DashboardItemConfig,
-} from './data/types/dashboard.type';
+import { DashboardItem } from './data/types/dashboard.type';
 
 export const QUOTA_THRESHOLD = 80;
 
@@ -423,64 +420,71 @@ export const getDocumentationGuideLink = (
   return `${DOC_BASE_URL}/${language}-${path}?id=kb_article_view&sysparm_article=${kbId}`;
 };
 
-export const DASHBOARD_DOCUMENTATION_LINKS_CONFIG: DashboardItemConfig[] = [
+export const COMMUNITY_LINKS = [
   {
-    labelTranslationKey: 'pci_projects_home_getting_started',
-    linkLabelTranslationKey: 'pci_projects_home_essential_to_start',
-    documentationGuideKey: 'getting_started',
-    featureFlag: FEATURE_AVAILABILITY.CLOUD_ESSENTIAL_INFORMATION,
+    term: 'pci_projects_home_community_roadmap_term',
+    description: 'pci_projects_home_community_roadmap_description',
+    href: 'https://github.com/ovh/public-cloud-roadmap/projects',
+    trackingName: 'PublicCloud::pci::projects::project::community-roadmap',
   },
   {
-    labelTranslationKey: 'pci_projects_home_public_cloud',
-    linkLabelTranslationKey: 'pci_projects_home_get_familiar',
-    documentationGuideKey: 'public_cloud',
-    featureFlag: FEATURE_AVAILABILITY.PUBLIC_CLOUD_INTERFACE,
-  },
-  {
-    labelTranslationKey: 'pci_projects_home_instances',
-    linkLabelTranslationKey: 'pci_projects_home_manage_instances',
-    documentationGuideKey: 'instances',
-    featureFlag: FEATURE_AVAILABILITY.START_PCI_INSTANCE,
-  },
-  {
-    labelTranslationKey: 'pci_projects_home_billing',
-    linkLabelTranslationKey: 'pci_projects_home_understand_manage',
-    documentationGuideKey: 'billing',
-    featureFlag: FEATURE_AVAILABILITY.CLOUD_BILLING_OPTIONS,
-  },
-  {
-    labelTranslationKey: 'pci_projects_home_guides',
-    linkLabelTranslationKey: 'pci_projects_home_see_all_guides',
-    documentationGuideKey: 'guides',
-    featureFlag: FEATURE_AVAILABILITY.ALL_GUIDES,
+    term: 'pci_projects_home_community_discord_term',
+    description: 'pci_projects_home_community_discord_description',
+    href: 'https://discord.gg/ovhcloud',
+    trackingName: 'PublicCloud::pci::projects::project::community-discord',
   },
 ];
 
-// Developer Center URL construction (now uses centralized LANGUAGE_MAPPINGS)
-export const DASHBOARD_COMMUNITY_LINKS: DashboardItem[] = [
+export const DASHBOARD_DOCUMENTATION_LINKS = [
   {
-    labelTranslationKey: 'pci_projects_home_roadmap',
-    linkLabelTranslationKey: 'pci_projects_home_discover_participate',
-    link: CHANGELOG_LINKS.roadmap,
+    term: 'pci_projects_home_documentation_getting_started_term',
+    description: 'pci_projects_home_documentation_getting_started_description',
+    href:
+      'https://docs.ovh.com/gb/en/public-cloud/public-cloud-essential-information/',
+    feature: FEATURE_AVAILABILITY.CLOUD_ESSENTIAL_INFORMATION,
+    trackingName: 'PublicCloud::pci::projects::project::docs-pci-basics',
   },
   {
-    labelTranslationKey: 'pci_projects_home_community',
+    term: 'pci_projects_home_documentation_interface_term',
+    description: 'pci_projects_home_documentation_interface_description',
+    href: 'https://docs.ovh.com/gb/en/public-cloud/public-cloud-interface/',
+    feature: FEATURE_AVAILABILITY.PUBLIC_CLOUD_INTERFACE,
+    trackingName: 'PublicCloud::pci::projects::project::docs-pci-interface',
   },
   {
-    labelTranslationKey: '',
-    linkLabelTranslationKey: 'pci_projects_home_discuss_discord',
-    link: 'https://discord.gg/ovhcloud',
+    term: 'pci_projects_home_documentation_instances_term',
+    description: 'pci_projects_home_documentation_instances_description',
+    href:
+      'https://docs.ovh.com/gb/en/public-cloud/get-started-with-a-public-cloud-instance/',
+    feature: FEATURE_AVAILABILITY.START_PCI_INSTANCE,
+    trackingName:
+      'PublicCloud::pci::projects::project::docs-get-started-with-instances',
+  },
+  {
+    term: 'pci_projects_home_documentation_billing_term',
+    description: 'pci_projects_home_documentation_billing_description',
+    href:
+      'https://docs.ovh.com/gb/en/public-cloud/information-on-cloud-billing-options/',
+    feature: FEATURE_AVAILABILITY.CLOUD_BILLING_OPTIONS,
+    trackingName: 'PublicCloud::pci::projects::project::docs-billing',
+  },
+  {
+    term: 'pci_projects_home_documentation_guides_term',
+    description: 'pci_projects_home_documentation_guides_description',
+    href: 'https://docs.ovh.com/gb/en/',
+    feature: FEATURE_AVAILABILITY.ALL_GUIDES,
+    trackingName: 'PublicCloud::pci::projects::project::docs-all-guides',
+  },
+  {
+    term: 'pci_projects_home_documentation_block_storage_term',
+    description: 'pci_projects_home_documentation_block_storage_description',
+    href:
+      'https://support.us.ovhcloud.com/hc/en-us/articles/20566582694291-Creating-and-configuring-an-additional-disk-on-an-instance',
+    feature: FEATURE_AVAILABILITY.START_WITH_BLOCK_STORAGE,
+    trackingName:
+      'PublicCloud::pci::projects::project::docs_start_with_block_storage',
   },
 ];
-
-export const DASHBOARD_CREDIT_VOUCHER_LINK: DashboardItem = {
-  linkLabelTranslationKey: 'pci_projects_home_credits_vouchers',
-  link: '/vouchers',
-  color: 'primary',
-  iconODS: ODS_ICON_NAME.arrowRight,
-  ariaLabelTranslationKey: 'pci_projects_home_link_credits_vouchers_aria',
-  hideTileIfNoOtherItems: true,
-};
 
 // Quick Access Items - Base configuration without iconImage (will be added in component)
 export const DASHBOARD_QUICK_ACCESS_ITEMS_BASE: DashboardItem[] = [
