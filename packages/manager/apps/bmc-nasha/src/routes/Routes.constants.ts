@@ -44,28 +44,8 @@ export const subRoutes = {
 
 export const urls = {
   root: getRoot(),
-  dashboard: `dashboard`,
-  onboarding: 'onboarding',
   listing: 'listing',
 } as const;
-
-export const DASHBOARD_NAV_TABS = Object.freeze([
-  {
-    name: 'general-information',
-    title: 'dashboard:general-information',
-    to: subRoutes['general-information'],
-    pathMatchers: [/^\/general-information\/[^/]+$/],
-    trackingActions: ['click::general-information-tab'],
-  },
-  {
-    name: 'help',
-    title: 'dashboard:help',
-    to: subRoutes.help,
-    pathMatchers: [/\/help$/],
-    trackingActions: ['click::help-tab'],
-  },
-  // PCI-only tabs can be added here if needed
-]);
 
 export const redirectionApp = APP_FEATURES.isPci
   ? APP_FEATURES.appSlug // for PCI, shell expects the short app slug

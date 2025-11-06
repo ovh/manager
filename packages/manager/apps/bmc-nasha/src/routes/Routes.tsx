@@ -598,12 +598,12 @@ import React from 'react';
 
 import { Navigate, Route } from 'react-router-dom';
 
-import { ErrorBoundary } from '@ovh-ux/muk';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
+import { ErrorBoundary } from '@ovh-ux/muk';
 
 import NotFound from '@/pages/not-found/404.page';
 
-import { redirectionApp, subRoutes, urls } from './Routes.constants';
+import { redirectionApp, urls } from './Routes.constants';
 
 const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 
@@ -623,10 +623,10 @@ const ListingPage = React.lazy(() => import('@/pages/listing/Listing.page'));
 
 export default (
   <>
-    {/* Redirect container "/" → flavor-specific root (e.g. /pci/projects/:projectId/appSlug) */}
+    {/* Root page that redirects based on services existence */}
     <Route path="/" element={<Navigate to={urls.root} replace />} />
 
-    {/* Rooted application layout */}
+    {/* Rooted application layout with conditional redirect */}
     <Route
       id="root"
       path={urls.root}

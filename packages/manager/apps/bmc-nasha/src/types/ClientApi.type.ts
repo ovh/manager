@@ -3,7 +3,7 @@ import React from 'react';
 import type { SortingState } from '@tanstack/react-table';
 
 import type { Filter } from '@ovh-ux/manager-core-api';
-import type { ColumnSort, DatagridColumn } from '@ovh-ux/muk';
+import type { DatagridColumn } from '@ovh-ux/muk';
 
 export type ApiVersion = 'v2' | 'v6';
 
