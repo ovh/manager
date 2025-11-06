@@ -231,7 +231,7 @@ const RegionsStep = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
             </RadioGroup>
           </ScrollArea>
         ) : (
-          <Alert>
+          <Alert variant="information">
             <Trans
               i18nKey={`regionsNoMatch`}
               ns={'pci-object-storage/order-funnel'}

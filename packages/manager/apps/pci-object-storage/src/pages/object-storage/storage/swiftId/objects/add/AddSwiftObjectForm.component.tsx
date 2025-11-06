@@ -1,19 +1,16 @@
 import {
-  Form,
-  FormField,
-  FormItem,
-  FormLabel,
   Input,
-  FormMessage,
   DialogFooter,
   DialogClose,
   Button,
+  FieldLabel,
 } from '@datatr-ux/uxlib';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 import { FileInput } from '@/components/file-input/FileInput.component';
+import { FormField } from '@/components/form-field/FormField.component';
 
 interface AddSwiftObjectFormProps {
   onSubmit: SubmitHandler<{
@@ -53,42 +50,30 @@ const AddSwiftObjectForm = ({
   });
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit, onError)}
-        className="flex flex-col gap-2"
-      >
-        <FormField
-          control={form.control}
-          name="prefix"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t('prefixFieldLabel')}</FormLabel>
-              <Input placeholder="Enter a prefix" {...field} />
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="files"
-          render={({ field }) => (
-            <FormItem>
-              <FileInput {...field} multiple />
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <DialogFooter className="flex justify-end px-0">
-          <DialogClose asChild>
-            <Button type="button" mode="ghost">
-              {t('fileUploaderButtonCancel')}
-            </Button>
-          </DialogClose>
-          <Button type="submit">{t('fileUploaderButtonConfirm')}</Button>
-        </DialogFooter>
-      </form>
-    </Form>
+    <form
+      onSubmit={form.handleSubmit(onSubmit, onError)}
+      className="flex flex-col gap-2"
+    >
+      <FormField form={form} name="prefix">
+        {(field) => (
+          <>
+            <FieldLabel>{t('prefixFieldLabel')}</FieldLabel>
+            <Input placeholder="Enter a prefix" {...field} />
+          </>
+        )}
+      </FormField>
+      <FormField form={form} name="files">
+        {(field) => <FileInput {...field} multiple />}
+      </FormField>
+      <DialogFooter className="flex justify-end px-0">
+        <DialogClose asChild>
+          <Button type="button" mode="ghost">
+            {t('fileUploaderButtonCancel')}
+          </Button>
+        </DialogClose>
+        <Button type="submit">{t('fileUploaderButtonConfirm')}</Button>
+      </DialogFooter>
+    </form>
   );
 };
 

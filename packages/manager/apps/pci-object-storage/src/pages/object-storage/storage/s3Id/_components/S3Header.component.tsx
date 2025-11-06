@@ -12,6 +12,7 @@ export const S3Header = ({ s3 }: { s3: StorageContainer }) => {
   const { translateMacroRegion } = useTranslatedMicroRegions();
   const { regions } = useObjectStorageData();
   const isLocaleZone = useIsLocaleZone(s3, regions);
+  const region = regions?.find((reg) => reg.name === s3.region);
   return (
     <div
       data-testid="notebook-header-container"
@@ -26,20 +27,20 @@ export const S3Header = ({ s3 }: { s3: StorageContainer }) => {
         </div>
         <div className="flex gap-2 flex-wrap mt-2">
           <Badge variant="outline">S3</Badge>
-          <Badge variant="outline" className="capitalize">
-            <div className="flex items-center gap-1">
-              <Flag
-                flagName={
-                  regions?.find((reg) => reg.name === s3.region).countryCode
-                }
-                className="w-3 h-2"
-              />
-              {translateMacroRegion(s3.region)}
-            </div>
-          </Badge>
-          <RegionTypeBadge
-            type={regions?.find((reg) => reg.name === s3.region).type}
-          />
+          {region ? (
+            <>
+              <Badge variant="outline" className="capitalize">
+                <div className="flex items-center gap-1">
+                  <Flag flagName={region.countryCode} className="w-3 h-2" />
+                  {translateMacroRegion(s3.region)}
+                </div>
+              </Badge>
+              <RegionTypeBadge type={region.type} />
+            </>
+          ) : (
+            <Skeleton className="h-4 w-10" />
+          )}
+
           {!isLocaleZone && (
             <Badge variant="outline">{octetConverter(s3.objectsSize)}</Badge>
           )}

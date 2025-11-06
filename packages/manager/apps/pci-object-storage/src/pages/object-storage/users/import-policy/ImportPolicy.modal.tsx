@@ -8,11 +8,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  Form,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
+  FieldLabel,
   useToast,
 } from '@datatr-ux/uxlib';
 import { useForm } from 'react-hook-form';
@@ -24,13 +20,13 @@ import { readJsonFile } from '@/lib/fileReader';
 import RouteModal from '@/components/route-modal/RouteModal';
 import FileUploadPending from '@/components/file-input/FileUploadPending.component';
 import { FileInput } from '@/components/file-input/FileInput.component';
+import { FormField } from '@/components/form-field/FormField.component';
 
 const ImportPolicyModal = () => {
   const { t } = useTranslation('pci-object-storage/users/import-policy');
   const { projectId, userId } = useParams();
   const navigate = useNavigate();
   const toast = useToast();
-
   const { addUserPolicy, isPending } = useAddUserPolicy({
     onError: (err) => {
       toast.toast({
@@ -92,25 +88,20 @@ const ImportPolicyModal = () => {
             {isPending ? (
               <FileUploadPending value={0} total={1} />
             ) : (
-              <Form {...form}>
-                <form
-                  onSubmit={handleSubmit}
-                  className="flex flex-col gap-2"
-                  id="import-policy"
-                >
-                  <FormField
-                    control={form.control}
-                    name="policies"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Policy</FormLabel>
-                        <FileInput {...field} />
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </form>
-              </Form>
+              <form
+                onSubmit={handleSubmit}
+                className="flex flex-col gap-2"
+                id="import-policy"
+              >
+                <FormField form={form} name="policies">
+                  {(field) => (
+                    <>
+                      <FieldLabel>Policy</FieldLabel>
+                      <FileInput {...field} />
+                    </>
+                  )}
+                </FormField>
+              </form>
             )}
           </div>
         </DialogBody>

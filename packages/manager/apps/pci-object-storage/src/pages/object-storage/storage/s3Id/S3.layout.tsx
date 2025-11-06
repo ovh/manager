@@ -58,6 +58,7 @@ export default function S3Layout() {
     name: s3Name,
     options: {
       refetchInterval: isUserActive && POLLING.S3,
+      placeholderData: (prev) => prev,
     },
   });
 

@@ -27,7 +27,7 @@ interface UsersListColumnsProps {
   onSecretKeyClicked: (user: user.User) => void;
   onDeleteClicked: (user: user.User) => void;
 }
-export const getColumns = ({
+export const useGetColumns = ({
   onEnableUserClicked,
   onImportUserAccessClicked,
   onDownloadUserAccessClicked,

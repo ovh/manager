@@ -23,6 +23,7 @@ export function getColumns({
 
   return [
     {
+      id: 'id',
       accessorKey: 'id',
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
@@ -36,6 +37,7 @@ export function getColumns({
       ),
     },
     {
+      id: 'destinationName',
       accessorKey: 'destination.name',
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
@@ -45,6 +47,7 @@ export function getColumns({
       cell: ({ row }) => <span>{row.original.destination.name}</span>,
     },
     {
+      id: 'priority',
       accessorKey: 'priority',
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
@@ -54,6 +57,7 @@ export function getColumns({
       cell: ({ row }) => <span>{row.original.priority}</span>,
     },
     {
+      id: 'region',
       accessorKey: 'destination.region',
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
@@ -63,6 +67,7 @@ export function getColumns({
       cell: ({ row }) => <span>{row.original.destination.region}</span>,
     },
     {
+      id: 'storageClass',
       accessorKey: 'destination.storageClass',
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
@@ -83,6 +88,7 @@ export function getColumns({
       },
     },
     {
+      id: 'status',
       accessorKey: 'status',
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>

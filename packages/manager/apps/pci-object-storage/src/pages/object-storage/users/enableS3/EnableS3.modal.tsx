@@ -26,8 +26,6 @@ const EnableUser = () => {
   const toast = useToast();
   const userToUpate = users.find((us) => us.id === Number(userId));
   const navigate = useNavigate();
-  if (!user) navigate('../');
-
   const { addS3User, isPending: isAddS3UserPending } = useAddS3User({
     onError: (err) => {
       toast.toast({
@@ -47,10 +45,10 @@ const EnableUser = () => {
     },
   });
 
+  if (!user) navigate('../');
   const handleEnable = () => {
     addS3User({ projectId, userId: userToUpate.id });
   };
-
   const handleClose = () => {
     setNewUser(undefined);
     navigate('../');

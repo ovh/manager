@@ -19,7 +19,7 @@ import { useS3Data } from '../../S3.context';
 import { useGetS3Object } from '@/data/hooks/s3-storage/useGetS3Object.hook';
 import { octetConverter } from '@/lib/bytesHelper';
 import Link from '@/components/links/Link.component';
-import FileIcon from '@/components/fileIcon/FileIcon.component';
+import FileIcon from '@/components/file-icon/FileIcon.component';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 
 const Object = () => {

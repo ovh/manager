@@ -17,7 +17,7 @@ import { useTranslation } from 'react-i18next';
 import { ReactElement } from 'react';
 import { octetConverter } from '@/lib/bytesHelper';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
-import FileIcon from '@/components/fileIcon/FileIcon.component';
+import FileIcon from '@/components/file-icon/FileIcon.component';
 import useDownload from '@/hooks/useDownload';
 import { useGetPresignUrlS3 } from '@/data/hooks/s3-storage/useGetPresignUrlS3.hook';
 import { getObjectStoreApiErrorMessage } from '@/lib/apiHelper';

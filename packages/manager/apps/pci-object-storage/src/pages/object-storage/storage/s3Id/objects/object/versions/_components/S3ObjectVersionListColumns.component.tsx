@@ -15,7 +15,7 @@ import DataTable from '@/components/data-table';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 import { octetConverter } from '@/lib/bytesHelper';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
-import FileIcon from '@/components/fileIcon/FileIcon.component';
+import FileIcon from '@/components/file-icon/FileIcon.component';
 
 interface ObjectVersionListColumnsProps {
   onDownloadClicked: (object: StorageObject) => void;

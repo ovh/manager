@@ -25,7 +25,7 @@ import { VersioningStatusEnum } from '@datatr-ux/ovhcloud-types/cloud/storage/Ve
 import { ReactElement } from 'react';
 import { octetConverter } from '@/lib/bytesHelper';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
-import FileIcon from '@/components/fileIcon/FileIcon.component';
+import FileIcon from '@/components/file-icon/FileIcon.component';
 import Link from '@/components/links/Link.component';
 import useDownload from '@/hooks/useDownload';
 import { useGetPresignUrlS3 } from '@/data/hooks/s3-storage/useGetPresignUrlS3.hook';

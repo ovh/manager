@@ -18,18 +18,13 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
   useToast,
+  FieldLabel,
 } from '@datatr-ux/uxlib';
 import { Check } from 'lucide-react';
 import RouteModal from '@/components/route-modal/RouteModal';
@@ -40,16 +35,15 @@ import { useObjectStorageData } from '../../ObjectStorage.context';
 import { useUserForm } from './formUser/useUserForm.hook';
 import { cn } from '@/lib/utils';
 import { useAddS3Policy } from '@/data/hooks/s3-storage/useAddS3Policy.hook';
+import { FormField } from '@/components/form-field/FormField.component';
 
-const SwithType = () => {
+const AddUserS3Modal = () => {
   const { t } = useTranslation('pci-object-storage/storages/user-s3');
   const navigate = useNavigate();
   const toast = useToast();
   const { projectId, storageId, region } = useParams();
   const s3Query = useGetS3({ projectId, region, name: storageId });
-
   const { users } = useObjectStorageData();
-
   const { form } = useUserForm({
     users,
   });
@@ -96,106 +90,95 @@ const SwithType = () => {
           <DialogDescription>
             {t('updateS3PolicyDescription')}
           </DialogDescription>
-          <Form {...form}>
-            <form
-              onSubmit={onSubmit}
-              className="flex flex-col gap-2 mt-2"
-              id="addUserS3Form"
-            >
-              <FormField
-                control={form.control}
-                name="userId"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t('userIdFieldLabel')}</FormLabel>
+          <form
+            onSubmit={onSubmit}
+            className="flex flex-col gap-2 mt-2"
+            id="addUserS3Form"
+          >
+            <FormField name="userId" form={form}>
+              {(field) => (
+                <>
+                  <FieldLabel htmlFor={'userId-combobox'}>
+                    {t('userIdFieldLabel')}
+                  </FieldLabel>
+                  <Combobox
+                    value={`${field.value}`}
+                    onValueChange={(val) => field.onChange(+val)}
+                    modal
+                  >
+                    <ComboboxTrigger
+                      id="userId-combobox"
+                      ref={field.ref}
+                      disabled={field.disabled}
+                    >
+                      <ComboboxValue
+                        data-testid="select-user-button"
+                        placeholder={t('userPlaceholder')}
+                        value={
+                          field.value &&
+                          `${users.find((u) => u.id === field.value)
+                            ?.username ?? ''} - ${users.find(
+                            (u) => u.id === field.value,
+                          )?.description ?? ''}`
+                        }
+                      />
+                    </ComboboxTrigger>
+                    <ComboboxContent>
+                      <ComboboxInput placeholder={t('inputUserPlaceholder')} />
+                      <ComboboxList>
+                        <ComboboxEmpty>{t('noUserFound')}</ComboboxEmpty>
+                        <ComboboxGroup>
+                          {users.map((user) => (
+                            <ComboboxItem
+                              key={user.id}
+                              value={`${user.id}`}
+                              keywords={[user.username, user.description]}
+                            >
+                              {`${user.username} - ${user.description}`}
+                              <Check
+                                className={cn(
+                                  'ml-auto',
+                                  user.id === field.value
+                                    ? 'opacity-100'
+                                    : 'opacity-0',
+                                )}
+                              />
+                            </ComboboxItem>
+                          ))}
+                        </ComboboxGroup>
+                      </ComboboxList>
+                    </ComboboxContent>
+                  </Combobox>
+                </>
+              )}
+            </FormField>
 
-                    <FormControl>
-                      <Combobox
-                        value={`${field.value}`}
-                        onValueChange={(val) => field.onChange(+val)}
-                        modal
-                      >
-                        <ComboboxTrigger
-                          ref={field.ref}
-                          disabled={field.disabled}
-                        >
-                          <ComboboxValue
-                            data-testid="select-user-button"
-                            placeholder={t('userPlaceholder')}
-                            value={
-                              field.value &&
-                              `${users.find((u) => u.id === field.value)
-                                ?.username ?? ''} - ${users.find(
-                                (u) => u.id === field.value,
-                              )?.description ?? ''}`
-                            }
-                          />
-                        </ComboboxTrigger>
-                        <ComboboxContent>
-                          <ComboboxInput
-                            placeholder={t('inputUserPlaceholder')}
-                          />
-                          <ComboboxList>
-                            <ComboboxEmpty>{t('noUserFound')}</ComboboxEmpty>
-                            <ComboboxGroup>
-                              {users.map((user) => (
-                                <ComboboxItem
-                                  key={user.id}
-                                  value={`${user.id}`}
-                                  keywords={[user.username, user.description]}
-                                >
-                                  {`${user.username} - ${user.description}`}
-                                  <Check
-                                    className={cn(
-                                      'ml-auto',
-                                      user.id === field.value
-                                        ? 'opacity-100'
-                                        : 'opacity-0',
-                                    )}
-                                  />
-                                </ComboboxItem>
-                              ))}
-                            </ComboboxGroup>
-                          </ComboboxList>
-                        </ComboboxContent>
-                      </Combobox>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="userRole"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t('userRoleFieldLabel')}</FormLabel>
-                    <FormControl>
-                      <Select
-                        value={field.value}
-                        onValueChange={field.onChange}
-                      >
-                        <SelectTrigger>
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {Object.values(storages.PolicyRoleEnum).map(
-                            (role) => (
-                              <SelectItem key={role} value={role}>
-                                {t(`role_${role}`)}
-                              </SelectItem>
-                            ),
-                          )}
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </form>
-          </Form>
+            <FormField form={form} name="userRole">
+              {(field) => (
+                <>
+                  <FieldLabel htmlFor={`userRole-select`}>
+                    {t('userRoleFieldLabel')}
+                  </FieldLabel>
+                  <Select value={field.value} onValueChange={field.onChange}>
+                    <SelectTrigger
+                      ref={field.ref}
+                      disabled={field.disabled}
+                      id="userRole-select"
+                    >
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {Object.values(storages.PolicyRoleEnum).map((role) => (
+                        <SelectItem key={role} value={role}>
+                          {t(`role_${role}`)}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </>
+              )}
+            </FormField>
+          </form>
         </DialogBody>
         <DialogFooter>
           <DialogClose asChild>
@@ -217,4 +200,4 @@ const SwithType = () => {
   );
 };
 
-export default SwithType;
+export default AddUserS3Modal;

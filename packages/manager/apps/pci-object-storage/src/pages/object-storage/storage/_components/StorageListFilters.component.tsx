@@ -3,7 +3,7 @@ import { RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud/index';
 import { FilterCategories } from '@/lib/filters';
 import { REGIONS_OPTIONS } from './StorageListFilters.constants';
 
-export const getFilters = () => {
+export const useGetFilters = () => {
   const { t } = useTranslation('pci-object-storage/storages');
   const { t: tRegions } = useTranslation('regions');
   return [

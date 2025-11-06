@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useS3Data } from '../S3.context';
-import ReplicationList from './_components/ReplicationList.component';
+import ReplicationList from './_components/table/ReplicationList.component';
 import Guides from '@/components/guides/Guides.component';
 
 const Replication = () => {

@@ -9,12 +9,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
+  FieldLabel,
   Input,
   useToast,
 } from '@datatr-ux/uxlib';
@@ -25,6 +20,8 @@ import { useAddUser } from '@/data/hooks/user/useAddUser.hook';
 import user from '@/types/User';
 import { useGetUser } from '@/data/hooks/user/useGetUser.hook';
 import UserInformation from '@/components/user-information/userInformation.component';
+import { POLLING } from '@/configuration/polling.constants';
+import { FormField } from '@/components/form-field/FormField.component';
 
 interface AddUserFormProps {
   onClose?: (user: user.User) => void;
@@ -40,7 +37,9 @@ const AddUserForm = ({ onClose }: AddUserFormProps) => {
   const newUserQuery = useGetUser(projectId, newUserId, {
     enabled: !!newUserId,
     refetchInterval: (query) => {
-      return query.state.data?.status === user.UserStatusEnum.ok ? false : 2500;
+      return query.state.data?.status === user.UserStatusEnum.ok
+        ? false
+        : POLLING.USER_CREATION;
     },
   });
 
@@ -131,39 +130,37 @@ const AddUserForm = ({ onClose }: AddUserFormProps) => {
             </DialogFooter>
           </>
         ) : (
-          <Form {...form}>
-            <form onSubmit={onSubmit} className="flex flex-col gap-2">
-              <DialogBody>
-                <FormField
-                  control={form.control}
-                  name="userName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t('userNameLabel')}</FormLabel>
-                      <FormControl>
-                        <Input disabled={isAddUserPending} {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
+          <>
+            <DialogBody>
+              <form onSubmit={onSubmit} id="addUserForm">
+                <FormField name="userName" form={form}>
+                  {(field) => (
+                    <>
+                      <FieldLabel htmlFor={'userName-input'}>
+                        {t('userNameLabel')}
+                      </FieldLabel>
+                      <Input disabled={isAddUserPending} {...field} />
+                    </>
                   )}
-                />
-              </DialogBody>
-              <DialogFooter>
-                <DialogClose asChild>
-                  <Button type="button" mode="ghost">
-                    {t('addUserButtonCancel')}
-                  </Button>
-                </DialogClose>
-                <Button
-                  type="submit"
-                  data-testid="add-user-submit-button"
-                  disabled={isAddS3UserPending}
-                >
-                  {t('addUserButtonConfirm')}
+                </FormField>
+              </form>
+            </DialogBody>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button type="button" mode="ghost">
+                  {t('addUserButtonCancel')}
                 </Button>
-              </DialogFooter>
-            </form>
-          </Form>
+              </DialogClose>
+              <Button
+                type="submit"
+                form="addUserForm"
+                data-testid="add-user-submit-button"
+                disabled={isAddS3UserPending}
+              >
+                {t('addUserButtonConfirm')}
+              </Button>
+            </DialogFooter>
+          </>
         )}
       </DialogContent>
     </>

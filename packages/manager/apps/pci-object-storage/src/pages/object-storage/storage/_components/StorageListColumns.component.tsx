@@ -28,7 +28,7 @@ interface StoragesListColumnsProps {
   onAddUserClicked: (storage: FormattedStorage) => void;
   onDeleteClicked: (storage: FormattedStorage) => void;
 }
-export const getColumns = ({
+export const useGetColumns = ({
   onSwitchClicked,
   onDeleteClicked,
   onAddUserClicked,
