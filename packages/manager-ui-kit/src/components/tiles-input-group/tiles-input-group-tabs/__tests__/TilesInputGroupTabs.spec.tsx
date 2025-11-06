@@ -4,15 +4,15 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { render } from '@/commons/tests-utils/Render.utils';
 
-import { TabsComponent } from '../Tabs.component';
+import { TilesInputGroupTabs } from '../TilesInputGroupTabs.component';
 
-describe('TabsComponent', () => {
+describe('TilesInputGroupTabs Component', () => {
   const mockItems = ['tab1', 'tab2', 'tab3'];
   const mockOnChange = vi.fn();
 
   describe('Basic rendering', () => {
     it('should render the component with default items', () => {
-      render(<TabsComponent items={mockItems} />);
+      render(<TilesInputGroupTabs items={mockItems} />);
 
       // Check that tabs are rendered
       expect(screen.getAllByText('tab1')[0]).toBeInTheDocument();
@@ -24,7 +24,7 @@ describe('TabsComponent', () => {
     });
 
     it('should use the first item as the default selected tab', () => {
-      render(<TabsComponent items={mockItems} />);
+      render(<TilesInputGroupTabs items={mockItems} />);
 
       // The first tab should be selected by default
       const firstTab = screen.getAllByText('tab1')?.[0]?.closest?.('button');
@@ -32,7 +32,7 @@ describe('TabsComponent', () => {
     });
 
     it('should display the content of the first tab by default', () => {
-      render(<TabsComponent items={mockItems} />);
+      render(<TilesInputGroupTabs items={mockItems} />);
 
       // Should show content for the first tab
       const contentArea = screen.getAllByText('tab1', { selector: 'div' })[0];
@@ -41,7 +41,9 @@ describe('TabsComponent', () => {
 
     it('should apply the custom CSS class', () => {
       const customClass = 'custom-tabs-class';
-      const { container } = render(<TabsComponent items={mockItems} className={customClass} />);
+      const { container } = render(
+        <TilesInputGroupTabs items={mockItems} className={customClass} />,
+      );
 
       const div = container.querySelector('div');
       expect(div).toHaveClass(customClass);
@@ -50,14 +52,14 @@ describe('TabsComponent', () => {
 
   describe('Optional props handling', () => {
     it('should handle an empty items array', () => {
-      render(<TabsComponent items={[]} />);
+      render(<TilesInputGroupTabs items={[]} />);
 
       // Should render without crashing
       expect(screen.getByRole('tablist')).toBeInTheDocument();
     });
 
     it('should use default functions for titleElement and contentElement', () => {
-      render(<TabsComponent items={mockItems} />);
+      render(<TilesInputGroupTabs items={mockItems} />);
 
       // Should render default tab titles
       expect(screen.getAllByText('tab1')[0]).toBeInTheDocument();
@@ -71,7 +73,7 @@ describe('TabsComponent', () => {
 
   describe('Event handling', () => {
     it('should call onChange when a tab is selected', async () => {
-      render(<TabsComponent items={mockItems} onChange={mockOnChange} />);
+      render(<TilesInputGroupTabs items={mockItems} onChange={mockOnChange} />);
 
       // Click on the second tab
       const secondTab = screen.getByText('tab2');
@@ -82,7 +84,7 @@ describe('TabsComponent', () => {
     });
 
     it('should not throw if onChange is not provided', () => {
-      render(<TabsComponent items={mockItems} />);
+      render(<TilesInputGroupTabs items={mockItems} />);
 
       const secondTab = screen.getByText('tab2');
 
@@ -95,7 +97,7 @@ describe('TabsComponent', () => {
 
   describe('Accessibility and structure', () => {
     it('should have the correct HTML structure', () => {
-      render(<TabsComponent items={mockItems} />);
+      render(<TilesInputGroupTabs items={mockItems} />);
       expect(screen.getByRole('tablist')).toBeInTheDocument();
       const tabs = screen.getAllByRole('tab');
       expect(tabs).toHaveLength(3);
@@ -112,7 +114,7 @@ describe('TabsComponent', () => {
         ),
       );
 
-      render(<TabsComponent items={mockItems} titleElement={customTitleElement} />);
+      render(<TilesInputGroupTabs items={mockItems} titleElement={customTitleElement} />);
 
       // Check that the first tab (selected by default) has isSelected=true
       const firstTabTitle = screen.getByTestId('custom-title-tab1');
@@ -128,7 +130,7 @@ describe('TabsComponent', () => {
         <div data-testid={`custom-content-${item}`}>Custom content for {item}</div>
       ));
 
-      render(<TabsComponent items={mockItems} contentElement={customContentElement} />);
+      render(<TilesInputGroupTabs items={mockItems} contentElement={customContentElement} />);
 
       // Should render content for the first tab (selected by default)
       expect(screen.getByTestId('custom-content-tab1')).toBeInTheDocument();
@@ -140,7 +142,7 @@ describe('TabsComponent', () => {
         <div data-testid={`custom-content-${item}`}>Custom content for {item}</div>
       ));
 
-      render(<TabsComponent items={mockItems} contentElement={customContentElement} />);
+      render(<TilesInputGroupTabs items={mockItems} contentElement={customContentElement} />);
 
       // Initially should show content for first tab
       expect(screen.getByTestId('custom-content-tab1')).toBeInTheDocument();

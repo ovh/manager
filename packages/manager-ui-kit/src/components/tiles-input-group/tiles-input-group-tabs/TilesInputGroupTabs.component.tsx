@@ -2,15 +2,15 @@ import { JSX, useState } from 'react';
 
 import { Tab, TabList, Tabs, TabsValueChangeEvent } from '@ovhcloud/ods-react';
 
-import { TabsProps } from './Tabs.props';
+import { TilesInputGroupTabsProps } from './TilesInputGroupTabs.props';
 
-export function TabsComponent<Item>({
+export function TilesInputGroupTabs<Item>({
   items = [],
   titleElement = ({ item }) => <>{String(item)}</>,
   contentElement = ({ item }) => <>{String(item)}</>,
   className,
   onChange,
-}: TabsProps<Item>): JSX.Element {
+}: TilesInputGroupTabsProps<Item>): JSX.Element {
   const [selectedTabItem, setSelectedTabItem] = useState<string>(String(items?.[0] ?? ''));
 
   const TitleComponent = titleElement;
@@ -43,4 +43,4 @@ export function TabsComponent<Item>({
   );
 }
 
-export default TabsComponent;
+export default TilesInputGroupTabs;
