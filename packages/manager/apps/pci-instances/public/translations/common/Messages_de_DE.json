@@ -15,16 +15,17 @@
   "pci_instances_common_instance_localzone_deployment_mode": "Local Zone",
   "pci_instances_common_instance_region_deployment_mode": "1-AZ Region",
   "pci_instances_common_instance_region-3-az_deployment_mode": "3-AZ Region",
-  "pci_instances_common_instance_region_deployment_mode_description": "Widerstandsfähiger und kosteneffizienter Einsatz in 1 Verfügbarkeitszone.",
-  "pci_instances_common_instance_region-3-az_deployment_mode_description": "Einsatz mit hoher Widerstandsfähigkeit/hoher Verfügbarkeit für Ihre kritischen Anwendungen in 3 Verfügbarkeitszonen.",
+  "pci_instances_common_instance_region_deployment_mode_description": "Resilienter und kostengünstiger Einsatz in einer Verfügbarkeitszone.",
+  "pci_instances_common_instance_region-3-az_deployment_mode_description": "Hochverfügbarer Einsatz für Ihre kritischen Anwendungen in drei Verfügbarkeitszonen.",
   "pci_instances_common_instance_localzone_deployment_mode_description": "Einsatz Ihrer Anwendungen so nah wie möglich an Ihren Nutzern für geringe Latenz und Datenresidenz.",
   "pci_instances_common_instance_continent_north_america": "Nordamerika",
   "pci_instances_common_instance_continent_north_africa": "Nordafrika",
   "pci_instances_common_instance_continent_south_east_asia": "Südostasien",
   "pci_instances_common_instance_continent_oceania": "Ozeanien",
-  "pci_instances_common_instance_continent_europe": "Europa",
+  "pci_instances_common_instance_continent_europe": "Europe",
   "pci_instances_common_instance_category": "Instanzmodell",
   "pci_instances_common_instance_type": "Typ",
   "pci_instances_common_more_info": "Mehr Informationen",
-  "pci_instances_common_instance_continent_asia_oceania": "Asiatisch-pazifischer Raum"
+  "pci_instances_common_instance_continent_asia_oceania": "Asiatisch-pazifischer Raum",
+  "pci_instances_common_instance_continent_all": "Alle"
 }

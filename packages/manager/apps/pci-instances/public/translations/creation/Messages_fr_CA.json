@@ -73,5 +73,13 @@
   "pci_instance_creation_cart_flavor_vCore": "vCPU",
   "pci_instance_creation_cart_flavor_bandwidthPrivate": "(Privé)",
   "pci_instance_creation_cart_flavor_bandwidthPublic": "(Public)",
-  "pci_instance_creation_cart_distribution_image_title": "Image"
+  "pci_instance_creation_cart_distribution_image_title": "Image",
+  "pci_instance_creation_select_sshKey_title": "Sélectionnez une clé SSH",
+  "pci_instance_creation_select_sshKey_description": " Une clé SSH est obligatoire pour se connecter à votre service.",
+  "pci_instance_creation_select_sshKey_help_title": "Comprendre et utiliser une clé SSH",
+  "pci_instance_creation_select_sshKey_help_description": "Une clé SSH permet de vous connecter en toute sécurité à votre instance sans utiliser de mot de passe.",
+  "pci_instance_creation_select_sshKey_help_content_list": "Elle repose sur un couple de clés : <ul><li>une clé publique, enregistrée dans votre compte OVHcloud,</li><li>une clé privée, conservée sur votre ordinateur et utilisée pour établir la connexion.</li></ul>",
+  "pci_instance_creation_select_sshKey_help_goal": "Pourquoi utiliser une clé SSH ? <ul><li>Accès sécurisé à votre instance (connexion chiffrée).</li><li>Aucune saisie de mot de passe à chaque connexion.</li><li>Compatible avec tous les systèmes Linux et macOS (et Windows via WSL ou PuTTY).</li></ul>",
+  "pci_instance_creation_select_sshKey_help_how_to": "Comment procéder <ol><li>Créez une paire de clés SSH sur votre poste local (si vous n’en avez pas encore).</li><li>Ajoutez votre clé publique dans votre espace client OVHcloud. Vous pouvez aussi directement ajouter cette clé publique depuis la création de l'instance.</li><li>Sélectionnez cette clé lors du déploiement de votre instance.</li><li>Une fois l’instance déployée, connectez-vous via SSH avec la clé privée correspondante.</li></ol>",
+  "pci_instance_creation_select_sshKey_help_read_complete_guide": "Consultez le guide complet pour créer et utiliser une clé SSH"
 }
