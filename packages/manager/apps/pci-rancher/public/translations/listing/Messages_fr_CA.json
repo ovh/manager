@@ -5,6 +5,8 @@
   "rancherVersion": "Version du Rancher",
   "numberOfCpu": "Nombre de vCPUs",
   "status": "Statut",
+  "iam_authentication_status": "Authentification IAM",
+  "iam_authentication_infos_tooltip": "Permet à Harbor d’utiliser les identités gérées par OVHcloud IAM (Identity and Access Management) pour contrôler l’accès au registre, évitant ainsi la gestion manuelle des utilisateurs.",
   "actions": "Actions",
   "cancel": "Annuler",
   "manage": "Gérer",

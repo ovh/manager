@@ -114,7 +114,7 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
           </div>
         </div>
       )}
-      {iamIsEnabled && rancher.currentState.iamAuthEnabled && (
+      {iamIsEnabled && rancher.currentState.iamAuthEnabled && !accessDetail && (
         <OsdsMessage
           color={ODS_THEME_COLOR_INTENT.warning}
           type={ODS_MESSAGE_TYPE.warning}
@@ -130,20 +130,12 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
                 {t('iam_authentication_warning')} {':'}
               </strong>
             </OsdsText>
+
             <OsdsText
               className={'text-[--ods-color-warning-700] inline-block'}
               size={ODS_TEXT_SIZE._400}
             >
-              <Trans
-                i18nKey={'generateAccessModalIamWarning'}
-                components={{ strong: <strong /> }}
-              />
-            </OsdsText>
-            <OsdsText
-              className={'text-[--ods-color-warning-700] inline-block'}
-              size={ODS_TEXT_SIZE._400}
-            >
-              <Trans i18nKey={'generateAccessModalIamWarning2'} />
+              <Trans i18nKey={'iam_modal_activation_warning_text'} />
             </OsdsText>
           </div>
         </OsdsMessage>
