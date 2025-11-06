@@ -5,11 +5,11 @@ import { useTranslation } from 'react-i18next';
 import { ManagerButton } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
-import { LogsContext } from '../../LogsToCustomer.context';
-import { usePostLogSubscription } from '../../data/hooks/useLogSubscriptions';
-import { Stream } from '../../data/types/dbaas/logs';
-import useLogTrackingActions from '../../hooks/useLogTrackingActions';
-import { LogsActionEnum } from '../../types/logsTracking';
+import { LogsContext } from '@/LogsToCustomer.context';
+import { usePostLogSubscription } from '@/data/hooks/useLogSubscriptions';
+import { Stream } from '@/data/types/dbaas/logs';
+import useLogTrackingActions from '@/hooks/useLogTrackingActions';
+import { LogsActionEnum } from '@/types/logsTracking';
 
 const SubscribeButton = ({ stream }: { stream?: Stream }) => {
   const { t } = useTranslation('logStreams');

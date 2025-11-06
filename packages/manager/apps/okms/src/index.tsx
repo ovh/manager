@@ -5,6 +5,7 @@ import {
   initShellContext,
   initI18n,
 } from '@ovh-ux/manager-react-shell-client';
+import '@ovh-ux/logs-to-customer/dist/style.css';
 import App from './App';
 import './index.scss';
 

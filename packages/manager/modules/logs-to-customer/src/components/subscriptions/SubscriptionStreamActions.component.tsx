@@ -13,10 +13,10 @@ import {
   getLogStreamUrlQueryKey,
   useLogStreamUrl,
 } from '../../data/hooks/useLogStreamUrl';
-import { LogSubscription } from '../../data/types/dbaas/logs';
-import ApiError from '../apiError/ApiError.component';
-import { LogsActionEnum } from '../../types/logsTracking';
-import useLogTrackingActions from '../../hooks/useLogTrackingActions';
+import { LogSubscription } from '@/data/types/dbaas/logs';
+import ApiError from '@/components/apiError/ApiError.component';
+import { LogsActionEnum } from '@/types/logsTracking';
+import useLogTrackingActions from '@/hooks/useLogTrackingActions';
 
 type SubscriptionStreamItemProps = {
   subscription: LogSubscription;

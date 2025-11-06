@@ -1,7 +1,7 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { getLogStreamUrl } from '../api/logStreamUrl';
-import { Url, UrlTypeEnum } from '../types/dbaas/logs';
-import { getLogStreamsQueryKey } from './useLogStream';
+import { getLogStreamUrl } from '@/data/api/logStreamUrl';
+import { Url, UrlTypeEnum } from '@/data/types/dbaas/logs';
+import { getLogStreamsQueryKey } from '@/data/hooks/useLogStream';
 
 export const getLogStreamUrlQueryKey = (
   serviceName: string,

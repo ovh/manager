@@ -3,16 +3,16 @@ import { useTranslation } from 'react-i18next';
 
 import { useNotifications } from '@ovh-ux/manager-react-components';
 
-import { ApiUrls } from '../../LogsToCustomer.props';
-import { pollLogOperation } from '../../helpers/pollLogOperation';
+import { ApiUrls } from '@/LogsToCustomer.props';
+import { pollLogOperation } from '@/helpers/pollLogOperation';
 import {
   getLogSubscriptions,
   postLogSubscription,
   deleteLogSubscription,
-} from '../api/logSubscriptions.adapter';
-import { LogApiVersion } from '../types/apiVersion';
-import { LogKind, LogSubscription } from '../types/dbaas/logs';
-import { getLogStreamsQueryKey } from './useLogStream';
+} from '@/data/api/logSubscriptions.adapter';
+import { LogApiVersion } from '@/data/types/apiVersion';
+import { LogKind, LogSubscription } from '@/data/types/dbaas/logs';
+import { getLogStreamsQueryKey } from '@/data/hooks/useLogStream';
 
 /**
  * LIST log subscriptions

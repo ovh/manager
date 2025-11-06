@@ -9,16 +9,16 @@ import { OdsButton, OdsSelect, OdsSpinner, OdsText } from '@ovhcloud/ods-compone
 
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
-import ApiError from '../../components/apiError/ApiError.component';
-import KnowMoreLink from '../../components/services/KnowMoreLink.component';
-import OrderServiceButton from '../../components/services/OrderServiceButton.component';
-import ServiceLink from '../../components/services/ServiceLink.component';
-import { getLogServicesQueryKey, useLogServices } from '../../data/hooks/useLogService';
-import { Service } from '../../data/types/dbaas/logs';
-import getServiceLabel from '../../helpers/getServiceLabel';
-import useLogTrackingActions from '../../hooks/useLogTrackingActions';
-import { LogsActionEnum } from '../../types/logsTracking';
-import DataStreamsDatagrid from './DataStreamsDatagrid.component';
+import ApiError from '@/components/apiError/ApiError.component';
+import KnowMoreLink from '@/components/services/KnowMoreLink.component';
+import OrderServiceButton from '@/components/services/OrderServiceButton.component';
+import ServiceLink from '@/components/services/ServiceLink.component';
+import { getLogServicesQueryKey, useLogServices } from '@/data/hooks/useLogService';
+import { Service } from '@/data/types/dbaas/logs';
+import getServiceLabel from '@/helpers/getServiceLabel';
+import useLogTrackingActions from '@/hooks/useLogTrackingActions';
+import { LogsActionEnum } from '@/types/logsTracking';
+import DataStreamsDatagrid from '@/pages/data-streams/DataStreamsDatagrid.component';
 
 const BackButton = () => {
   const { t } = useTranslation('logStreams');

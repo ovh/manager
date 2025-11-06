@@ -7,8 +7,8 @@ import {
   useNavigationGetUrl,
 } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
-import useLogTrackingActions from '../../hooks/useLogTrackingActions';
-import { LogsActionEnum } from '../../types/logsTracking';
+import useLogTrackingActions from '@/hooks/useLogTrackingActions';
+import { LogsActionEnum } from '@/types/logsTracking';
 
 const OrderServiceButton = () => {
   const { trackClick } = useOvhTracking();
