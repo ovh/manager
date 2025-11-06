@@ -16,6 +16,7 @@ import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.consta
 import { OkmsServiceState } from '@key-management-service/components/layout-helpers/dashboard/okms-service-state/OkmsServiceState.component';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
+import { useRegionName } from '@key-management-service/hooks/useRegionName';
 import { OkmsDatagridType } from './okmsDatagrid.type';
 import { Link } from '@/common/components/link/Link.component';
 import { OKMS_LIST_CELL_TEST_IDS } from './ListingCells.constants';
@@ -66,12 +67,10 @@ export const DatagridCellName = (
 };
 
 export const DatagridCellRegion = (okms: OKMS) => {
+  const { translateRegionName } = useRegionName();
   return (
     <DataGridTextCell data-testid={OKMS_LIST_CELL_TEST_IDS.region(okms.id)}>
-      <Region
-        mode="region"
-        name={okms.region.toLowerCase().replaceAll('_', '-')}
-      />
+      {translateRegionName(okms.region)}
     </DataGridTextCell>
   );
 };
