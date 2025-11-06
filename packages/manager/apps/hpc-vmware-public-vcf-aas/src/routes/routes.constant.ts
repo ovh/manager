@@ -24,6 +24,7 @@ export const subRoutes = {
   edgeGateway: 'edge-gateway',
   edgeGatewayId: ':edgeGatewayId',
   addEdgeGateway: 'add-edge-gateway',
+  editEdgeGateway: 'edit-edge-gateway',
   deleteEdgeGateway: 'delete-edge-gateway',
   terminate: 'terminate',
   addNetworkAcl: 'add-network-acl',
@@ -59,6 +60,7 @@ export const urls = {
   networkAclDelete: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.networkAcl}/${subRoutes.deleteNetworkAcl}`,
   edgeGateway: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.edgeGateway}`,
   edgeGatewayAdd: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.edgeGateway}/${subRoutes.addEdgeGateway}`,
+  edgeGatewayEdit: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.edgeGateway}/${subRoutes.edgeGatewayId}/${subRoutes.editEdgeGateway}`,
   edgeGatewayDelete: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.edgeGateway}/${subRoutes.edgeGatewayId}/${subRoutes.deleteEdgeGateway}`,
 } as const;
 
