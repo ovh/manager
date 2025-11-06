@@ -4,14 +4,11 @@ import { Route, Routes } from 'react-router-dom';
 
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
-const importLogsPage = () => import('../pages/logs/Logs.page');
-const importLogsDataStreamsPage = () => import('../pages/data-streams/DataStreams.page');
-const importLogsTerminateSubscriptionPage = () =>
-  import('../pages/logs/Logs-Subscription-terminate.page');
-
-const logsPage = lazy(importLogsPage);
-const logsDataStreamsPage = lazy(importLogsDataStreamsPage);
-const logsTerminateSubscriptionPage = lazy(importLogsTerminateSubscriptionPage);
+const logsPage = lazy(() => import('@/pages/logs/Logs.page'));
+const logsDataStreamsPage = lazy(() => import('@/pages/data-streams/DataStreams.page'));
+const logsTerminateSubscriptionPage = lazy(
+  () => import('@/pages/logs/Logs-Subscription-terminate.page'),
+);
 
 type ModuleWithDefault<T extends ComponentType<unknown>, E extends object> = {
   default: T;
@@ -36,7 +33,6 @@ export const LogsToCustomerRoutes = () => (
   <Routes>
     <Route
       path=""
-      id="logs-tail"
       Component={logsPage}
       handle={{
         tracking: {
@@ -47,13 +43,11 @@ export const LogsToCustomerRoutes = () => (
     >
       <Route
         path="subscription/:subscriptionId/terminate"
-        id="logs-terminate-subscription"
         Component={logsTerminateSubscriptionPage}
       />
     </Route>
     <Route
       path="streams"
-      id="data-streams"
       Component={logsDataStreamsPage}
       handle={{
         tracking: {

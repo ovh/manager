@@ -1,5 +1,5 @@
-import { ServicePlanEnum } from './ServicePlanEnum';
-import { ServiceStateEnum } from './ServiceStateEnum';
+import { ServicePlanEnum } from '@/data/types/dbaas/logs/ServicePlanEnum';
+import { ServiceStateEnum } from '@/data/types/dbaas/logs/ServiceStateEnum';
 
 /** Service */
 export interface Service {
