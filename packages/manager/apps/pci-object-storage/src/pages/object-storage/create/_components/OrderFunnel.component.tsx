@@ -36,7 +36,8 @@ import {
 } from './orderFunnel.const';
 import usePciProject from '@/data/hooks/project/usePciProject.hook';
 import { PlanCode } from '@/configuration/project';
-import DiscoveryBanner from '@/components/discovery-banner/DiscoveryBanner';
+import DiscoveryBanner from '@/components/discovery-banner/DiscoveryBanner.component';
+import OrderPricing from './OrderPricing.component';
 import A from '@/components/links/A.component';
 import user from '@/types/User';
 
