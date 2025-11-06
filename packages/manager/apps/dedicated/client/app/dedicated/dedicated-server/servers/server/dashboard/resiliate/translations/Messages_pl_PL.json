@@ -1,0 +1,7 @@
+{
+  "dedicated_server_dashboard_resiliate_service": "Serwer dedykowany",
+  "dedicated_server_dashboard_resiliate_service_terminateAtExpirationDate": "Twoja usługa pozostanie aktywna do {{expirationDate}}, czyli do końca bieżącego okresu rozliczeniowego.",
+  "dedicated_server_dashboard_resiliate_service_terminate": "Twoja usługa zostanie natychmiast rozwiązana i nie będziesz już obciążany opłatami za tę usługę.",
+  "dedicated_server_dashboard_resiliate_service_terminateAtEngagementDate": "Twoja usługa pozostanie aktywna i będziesz obciążany opłatami do końca swojego zobowiązania w dniu {{commitmentEndDate}}.",
+  "dedicated_server_dashboard_resiliate_service_deleteAtExpiration": "Twoja usługa zostanie natychmiast rozwiązana. Jednak nadal będziesz obciążany miesięcznymi opłatami za tę usługę do końca swojego zobowiązania w dniu {{commitmentEndDate}}."
+}

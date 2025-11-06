@@ -170,6 +170,14 @@ export default class ServicesActionsCtrl {
       });
   }
 
+  resiliateService() {
+    return this.goToResiliateService();
+  }
+
+  canResiliateService() {
+    return this.coreConfig.isRegion('US');
+  }
+
   commit() {
     this.trackClick('commit');
     return this.goToCommit();
