@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -136,7 +138,7 @@ export const DiagnosticCell = ({ serviceName, fqdn, isWebsiteView }: DiagnosticC
     }
 
     return (
-      <>
+      <React.Fragment key={type}>
         <OdsBadge
           className="mr-4"
           id={`diagnostic-status-${type}-${fqdn}`}
@@ -151,7 +153,7 @@ export const DiagnosticCell = ({ serviceName, fqdn, isWebsiteView }: DiagnosticC
             {t(tooltipKey, { domainName: fqdn, ip })}
           </OdsText>
         </OdsTooltip>
-      </>
+      </React.Fragment>
     );
   });
 };
