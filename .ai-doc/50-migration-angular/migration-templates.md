@@ -493,7 +493,12 @@ This document provides **ready-to-use templates** for migration documentation. U
 - Ensure performance parity or improvement
 - Ensure accessibility parity
 
-### 5. Continuous Improvement
+### 5. IAM Policy
+- **Do NOT use IAM from MUK** if there is no IAM information in the original AngularJS code
+- Only migrate IAM features that exist in the source code
+- Document IAM usage decisions in MIGRATION_NOTES.md
+
+### 6. Continuous Improvement
 - Document lessons learned
 - Update templates based on experience
 - Share knowledge with team

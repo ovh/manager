@@ -1,19 +1,50 @@
 {
-  "home": "Accueil",
-  "order": "Commander",
-  "back": "Retour",
-  "title": "Dashboard",
-  "email": "E-mail",
-  "subject": "Objet",
-  "message": "Message",
-  "submitButton": "Envoyer",
-  "successMessage": "Votre demande a été envoyée avec succès.",
-  "errors": {
-    "emailRequired": "L’e-mail est obligatoire.",
-    "emailInvalid": "Veuillez entrer une adresse e-mail valide.",
-    "subjectRequired": "L’objet est obligatoire.",
-    "messageRequired": "Le message est obligatoire."
+  "actions": {
+    "edit": "Modifier"
   },
-  "general-information": "Informations générales",
-  "help": "Aide"
+  "information": {
+    "title": "Informations",
+    "name": "Nom",
+    "id": "ID Service",
+    "datacenter": "Localisation du datacenter",
+    "disk_type": "Type de disque",
+    "disk_size": "Taille de stockage"
+  },
+  "configuration": {
+    "title": "Configuration",
+    "quota": "Quota",
+    "link": "Créer une partition"
+  },
+  "tabs": {
+    "general_information": "Informations générales",
+    "partitions": "Partitions"
+  },
+  "guides": {
+    "header": "Guides",
+    "title": "Documentation générale"
+  },
+  "edit_name": {
+    "title": "Modifier le nom du service {{ name }}",
+    "label": "Nom du service {{ name }}",
+    "rules": "Les caractères < et > ne sont pas autorisés",
+    "forbid": "Vous devez choisir un nom différent de {{ name }}",
+    "success": "Le nom a été changé avec succès",
+    "cancel": "Fermer",
+    "confirm": "Modifier le nom du service"
+  },
+  "eol_banner": {
+    "description_part_1": "Votre service {{serviceName}} arrive en fin de vie à partir du 01/06/2023.",
+    "description_part_2": "Nous vous invitons à anticiper la migration de vos données vers les nouvelles références NAS-HA ou Enterprise File Storage comme précisé dans la communication que nous vous avons envoyée.",
+    "info_link": "Besoin d'aide ? Suivez le guide pour apprendre à déplacer vos données."
+  },
+  "billing": {
+    "title": "Facturation",
+    "creation": "Date de création",
+    "expiration": "Date d'expiration",
+    "status": "Statut",
+    "engagement": "Engagement jusqu'au"
+  },
+  "errors": {
+    "load_failed": "Erreur lors du chargement des données"
+  }
 }

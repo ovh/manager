@@ -32,6 +32,7 @@ This document provides a **concise, User Story centric strategy** for migrating 
 3. **Incremental Migration**: Validate each US before next
 4. **Zero Regression**: Each US must be identical to AngularJS
 5. **UI Policy**: UI must use MUK components exclusively; fallback (non‑MUK) only if no MUK equivalent exists, with justification and follow‑up ticket.
+6. **IAM Policy**: Do NOT use IAM from MUK if there is no IAM information in the original AngularJS code. Only migrate IAM features that exist in the source code.
 
 ### 🔒 Strategy Enforcement (Mandatory)
 - US-first only: never migrate multiple US at once; one complete route/page per PR.
@@ -251,6 +252,12 @@ Create checklist of features found in AngularJS that must be implemented:
 
 // ✅ CORRECT: Identical logic
 // Reproduce AngularJS exactly
+
+// ❌ WRONG: Adding IAM features not in original
+// Don't use IAM from MUK if AngularJS code has no IAM
+
+// ✅ CORRECT: Only migrate existing IAM
+// Only use IAM if it exists in the AngularJS source code
 ```
 
 ## ✅ Best Practices
@@ -354,6 +361,7 @@ Create checklist of features found in AngularJS that must be implemented:
 6. **Complete documentation**: PLAN.md, MIGRATION_NOTES.md, DoD
 7. **Zero regression**: Each US must be identical to AngularJS
 8. **Continuous validation**: Use parity-validation-guide.md throughout
+9. **IAM Policy**: Do NOT use IAM from MUK if there is no IAM information in the original AngularJS code. Only migrate IAM features that exist in the source code.
 
 ### US Migration Checklist
 

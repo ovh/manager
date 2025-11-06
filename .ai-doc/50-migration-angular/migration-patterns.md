@@ -714,6 +714,12 @@ export function useShellRoutingSync() {
 
 // ✅ CORRECT: Identical logic
 // Reproduce exactly
+
+// ❌ WRONG: Adding IAM features not in original
+// Don't use IAM from MUK if AngularJS code has no IAM
+
+// ✅ CORRECT: Only migrate existing IAM
+// Only use IAM if it exists in the AngularJS source code
 ```
 
 ### ✅ Best Practices
@@ -798,6 +804,7 @@ export function useShellRoutingSync() {
 6. **Accessibility**: Maintain accessibility level
 7. **Performance**: No regression
 8. **Documentation**: Update migration notes
+9. **IAM Policy**: Do NOT use IAM from MUK if there is no IAM information in the original AngularJS code. Only migrate IAM features that exist in the source code.
 
 ### Migration Checklist
 

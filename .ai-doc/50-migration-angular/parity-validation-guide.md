@@ -485,6 +485,7 @@ function measureTime(fn: () => void): number {
 8. **Accessibility testing**: Same accessibility level
 9. **Documentation**: Document all parity decisions
 10. **Continuous validation**: Validate throughout migration
+11. **IAM Policy**: Do NOT use IAM from MUK if there is no IAM information in the original AngularJS code. Only migrate IAM features that exist in the source code.
 
 ### Parity Validation Checklist
 

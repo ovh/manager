@@ -33,7 +33,12 @@ This directory contains **specialized guides** for migrating AngularJS modules t
 ### UI Policy (Mandatory)
 - UI must be implemented with MUK exclusively (design tokens, components, themes).
 - ODS/MRC usage is forbidden when a MUK equivalent exists.
-- Exceptional fallback: if MUK does not provide the required component/feature, document the justification and create a follow‑up ticket “Replace fallback with MUK when available”.
+- Exceptional fallback: if MUK does not provide the required component/feature, document the justification and create a follow‑up ticket "Replace fallback with MUK when available".
+
+### IAM Policy (Mandatory)
+- **Do NOT use IAM from MUK** if there is no IAM information in the original AngularJS code.
+- Only migrate IAM features that exist in the source code.
+- Document IAM usage decisions in MIGRATION_NOTES.md.
 
 ## 📘 Migration Guides
 
@@ -200,6 +205,7 @@ This directory contains **specialized guides** for migrating AngularJS modules t
 8. **Document everything** with migration-templates.md
 9. **Follow US-first approach** for user story migrations
 10. **Ensure 100% parity** for all migrations including ALL detected features
+11. **IAM Policy**: Do NOT use IAM from MUK if there is no IAM information in the original AngularJS code. Only migrate IAM features that exist in the source code.
 
 ### Guide Selection Checklist
 
