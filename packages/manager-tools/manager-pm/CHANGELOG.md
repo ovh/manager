@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.33.5...@ovh-ux/manager-pm@0.34.0) (2025-11-06)
+
+
+### Features
+
+* **web-hosting:** add pnpm ([51b0379](https://github.com/ovh/manager/commit/51b0379bfc8cf48a8248e3417b5508e757f6aafa)), closes [#PUWEBPT-95](https://github.com/ovh/manager/issues/PUWEBPT-95)
+
+
+
+
+
 ## [0.33.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.33.4...@ovh-ux/manager-pm@0.33.5) (2025-11-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-pm
