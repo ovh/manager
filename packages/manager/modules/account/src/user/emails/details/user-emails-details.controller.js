@@ -20,7 +20,7 @@ export default /* @ngInject */ function UserAccountEmailsDetailsController(
 
     /* each other links inside the text */
     parsedBody = parsedBody.replace(
-      /([^"']|^)(https?:\/\/([^/\s]+\/)*([^/\s]+)\/?)(?!"|')(\s|$)/gi,
+      /([^"']|^)(https?:\/\/([^/\s]+\/)*([^/>\s]+)\/?)(?!"|')([>\s]|$)/gi,
       '$1<a href="$2" target="_blank">$2</a>$5',
     );
 
