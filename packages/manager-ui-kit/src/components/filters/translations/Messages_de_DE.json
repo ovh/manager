@@ -17,7 +17,7 @@
   "common_criteria_adder_submit_label": "Hinzufügen",
   "common_criteria_adder_operator_EQ": "ist gleich",
   "common_criteria_adder_operator_NEQ": "ist nicht gleich",
-  "common_criteria_adder_operator_EXISTS": "existiert",
-  "common_criteria_adder_operator_NEXISTS": "Nicht vorhanden",
+  "common_criteria_adder_operator_EXISTS": "vorhanden",
+  "common_criteria_adder_operator_NEXISTS": "nicht vorhanden",
   "common_criteria_adder_key_label": "Schlüssel"
 }
