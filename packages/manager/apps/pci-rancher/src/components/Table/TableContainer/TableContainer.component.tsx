@@ -86,6 +86,13 @@ export default function TableContainer({
         cell: DisplayCellNumber,
       },
       {
+        id: 'iam',
+        header: t('iam'),
+        accessorFn: (row) =>
+          row.currentState.iamAuthEnabled ? 'ENABLED' : 'DISABLED',
+        cell: (row) => <StatusChip label={row.getValue() as string} />,
+      },
+      {
         id: 'status',
         header: t('status'),
         accessorKey: 'resourceStatus',
