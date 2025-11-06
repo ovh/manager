@@ -3,7 +3,7 @@ import template from './terminate-enterprise-cloud-database.html';
 
 export default {
   bindings: {
-    goBack: '<',
+    goToAutorenew: '<',
     terminateEnterpriseCloudDatabase: '<',
   },
   controller,

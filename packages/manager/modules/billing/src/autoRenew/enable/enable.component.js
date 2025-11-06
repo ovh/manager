@@ -4,7 +4,7 @@ import template from './enable.html';
 export default {
   bindings: {
     defaultPaymentMean: '<',
-    goBack: '<',
+    goToAutorenew: '<',
     servicesList: '<',
     updateRenew: '<',
   },

@@ -16,8 +16,6 @@ export default /* @ngInject */ ($stateProvider) => {
           offset,
           criteria,
         ),
-      goBack: /* @ngInject */ (goToAutorenew) => (message, type) =>
-        goToAutorenew(message, type),
       exchange: /* @ngInject */ (wucExchange, exchangeName, organization) =>
         wucExchange
           .getExchangeDetails(organization, exchangeName)
