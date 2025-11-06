@@ -91,6 +91,7 @@ export const ListingPage = () => {
           color="primary"
           size="sm"
           actionName="create_volume_block_storage"
+          location="page"
           icon="plus"
         >
           {t('pci_projects_project_storages_blocks_add_label')}
