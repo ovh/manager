@@ -9,4 +9,15 @@
   "multisite_git_modal_delete_association_description2": "<strong>La suppression s'appliquera sur l'ensemble des domaines pointant sur votre répertoire.</strong>",
   "multisite_git_modal_delete_association_description3": "Souhaitez-vous vider le contenu du répertoire <strong>{{ path }}</strong> ?",
   "multisite_git_modal_delete_association_warning_delete_dir": "Nous allons supprimer l'association avec Git et le contenu du répertoire.",
-  "multisite_git_modal_delete_association_success":"Votre suppression a bien été prise en compte."}
+  "multisite_git_modal_delete_association_success":"Votre suppression a bien été prise en compte.",
+  "multisite_cdn_modal_purge_title": "Vider le cache",
+  "multisite_cdn_modal_purge_description": "Êtes-vous certain de vouloir vider le cache de votre CDN ?",
+  "multisite_cdn_modal_purge_subdescription": "<strong>Nom du domaine :</strong>",
+  "multisite_cdn_modal_purge_option_all":"Tout le site",
+  "multisite_cdn_modal_purge_option_folder":"Dossier",
+  "multisite_cdn_modal_purge_option_uri":"URI",
+  "multisite_cdn_modal_purge_option_extension":"Extension",
+  "multisite_cdn_modal_purge_option_regex":"Expression régulière personnalisée",
+  "multisite_cdn_modal_purge_success": "Votre cache CDN a été vidé avec succès.",
+  "multisite_cdn_modal_purge_error": "Une erreur est survenue lors de la demande du nettoyage du cache CDN. {{ message }}"
+}
