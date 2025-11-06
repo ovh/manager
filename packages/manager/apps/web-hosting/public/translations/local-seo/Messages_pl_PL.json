@@ -1,0 +1,17 @@
+{
+  "hosting_tab_LOCAL_SEO": "Widoczna firma",
+  "hosting_tab_LOCAL_SEO_description": "Bądź obecny tam, gdzie szukają Cię Twoi klienci, ale również wszędzie, gdzie o Tobie mówią. Narzędzie do lokalnego pozycjonowania pozwala w prosty sposób zarządzać informacjami o Twojej firmie w internecie i w serwisach z opiniami klientów.",
+  "hosting_dashboard_local_seo_visibility_check": "Sprawdź Twoją lokalną obecność",
+  "hosting_tab_LOCAL_SEO_table_header_name": "Nazwa firmy",
+  "hosting_tab_LOCAL_SEO_table_header_email": "Konto e-mail",
+  "hosting_tab_LOCAL_SEO_table_header_address": "Adres",
+  "hosting_tab_LOCAL_SEO_table_value_undefined": "Do określenia",
+  "hosting_tab_LOCAL_SEO_state_created": "OK",
+  "hosting_tab_LOCAL_SEO_state_creating": "Trwa tworzenie",
+  "hosting_tab_LOCAL_SEO_state_deleting": "Trwa usuwanie",
+  "hosting_tab_LOCAL_SEO_access_interface": "Zaloguj się do interfejsu",
+  "hosting_tab_LOCAL_SEO_delete": "Usuń subskrypcję",
+  "hosting_tab_LOCAL_SEO_delete_confirm": "Czy na pewno chcesz zrezygnować z subskrypcji pakietu „Widoczna firma\" dla tego konta?",
+  "hosting_tab_LOCAL_SEO_delete_success": "Żądanie usunięcia subskrypcji pakietu „Widoczna firma\" zostało wysłane.",
+  "hosting_tab_LOCAL_SEO_delete_error": "Wystąpił błąd podczas usuwania subskrypcji pakietu „Widoczna firma\". {{error}}"
+}
