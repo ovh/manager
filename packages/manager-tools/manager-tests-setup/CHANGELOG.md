@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-tests-setup@0.4.7...@ovh-ux/manager-tests-setup@0.5.0) (2025-11-06)
+
+
+### Features
+
+* **manager-tests-setup:** add tests config for launch muk test ([7794f5d](https://github.com/ovh/manager/commit/7794f5d118776e54880e7bc8fd50faf34b8988c3)), closes [#MANAGER-20196](https://github.com/ovh/manager/issues/MANAGER-20196)
+* **manager-wiki:** add documentation for launch test in muk ([c88545f](https://github.com/ovh/manager/commit/c88545fd8be995069520252ae0d805a271a5092b)), closes [#MANAGER-20196](https://github.com/ovh/manager/issues/MANAGER-20196)
+
+
+
+
+
 ## [0.4.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-tests-setup@0.4.6...@ovh-ux/manager-tests-setup@0.4.7) (2025-11-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-tests-setup

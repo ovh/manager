@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.16.2...@ovh-ux/manager-wiki@0.17.0) (2025-11-06)
+
+
+### Features
+
+* **manager-wiki:** add documentation for launch test in muk ([c88545f](https://github.com/ovh/manager/commit/c88545fd8be995069520252ae0d805a271a5092b)), closes [#MANAGER-20196](https://github.com/ovh/manager/issues/MANAGER-20196)
+
+
+
+
+
 ## [0.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.16.1...@ovh-ux/manager-wiki@0.16.2) (2025-11-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-wiki
