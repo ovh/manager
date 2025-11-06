@@ -12,10 +12,10 @@ export default function Logs() {
 
   return (
     <div className={`flex gap-4 ${containerClasses}`}>
-      <div className={`${logTailClasses} overflow-y-auto`}>
+      <div className={logTailClasses}>
         <LogTail />
       </div>
-      <div className={`${subscriptionsListClasses}`}>
+      <div className={subscriptionsListClasses}>
         <LogsSubscriptions />
       </div>
       <Outlet />

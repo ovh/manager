@@ -54,7 +54,7 @@ describe('DataStreamSubscriptionsLink', () => {
 
     await waitFor(() => {
       const linkElement = screen.getByTestId('link-testStream');
-      expect(linkElement).toHaveAttribute('is-disabled', 'false');
+      expect(linkElement).not.toHaveAttribute('aria-disabled', 'true');
     });
   });
 
@@ -72,7 +72,7 @@ describe('DataStreamSubscriptionsLink', () => {
 
     await waitFor(() => {
       const linkElement = screen.getByTestId('link-testStream');
-      expect(linkElement).toHaveAttribute('is-disabled', 'true');
+      expect(linkElement).toHaveAttribute('aria-disabled', 'true');
     });
   });
 
@@ -87,7 +87,7 @@ describe('DataStreamSubscriptionsLink', () => {
 
     await waitFor(() => {
       expect(
-        screen.queryByTestId('popover-testStream'),
+        screen.queryByText('log_streams_subscription_disabled_tooltip'),
       ).not.toBeInTheDocument();
     });
   });
@@ -105,7 +105,9 @@ describe('DataStreamSubscriptionsLink', () => {
     );
 
     await waitFor(() => {
-      expect(screen.queryByTestId('popover-testStream')).toBeInTheDocument();
+      expect(
+        screen.getByText('log_streams_subscription_disabled_tooltip'),
+      ).toBeInTheDocument();
     });
   });
 });

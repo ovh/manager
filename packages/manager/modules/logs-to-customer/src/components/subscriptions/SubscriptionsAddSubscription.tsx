@@ -4,7 +4,7 @@ import {
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { OdsButton, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+import { Button, Spinner, Text } from '@ovhcloud/ods-react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
@@ -31,7 +31,7 @@ const SubscriptionAddSubcription = () => {
   const { data: logServices, isPending, error } = useLogServices();
 
   if (isPending)
-    return <OdsSpinner size="sm" data-testid="logServices-spinner" />;
+    return <Spinner size="sm" data-testid="logServices-spinner" />;
 
   if (error)
     return (
@@ -49,17 +49,17 @@ const SubscriptionAddSubcription = () => {
   if (logServices.length === 0)
     return (
       <div className="flex flex-col gap-2">
-        <OdsText preset="paragraph">
+        <Text preset="paragraph">
           {tService('log_service_no_service_description')}
-        </OdsText>
+        </Text>
         <OrderServiceButton />
       </div>
     );
 
   return (
-    <OdsButton
+    <Button
       variant="outline"
-      className="[&::part(button)]:w-full"
+      className="w-full"
       size="sm"
       onClick={() => {
         trackClick({
@@ -70,8 +70,9 @@ const SubscriptionAddSubcription = () => {
         });
         navigate('streams');
       }}
-      label={t('log_subscription_empty_tile_button_subscribe')}
-    />
+    >
+      {t('log_subscription_empty_tile_button_subscribe')}
+    </Button>
   );
 };
 

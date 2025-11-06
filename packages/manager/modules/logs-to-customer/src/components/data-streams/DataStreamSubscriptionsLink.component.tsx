@@ -2,9 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
-
-import { LinkType, Links } from '@ovh-ux/manager-react-components';
+import { Icon, ICON_NAME, Text, Tooltip, TooltipTrigger, TooltipContent, Link } from '@ovhcloud/ods-react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { Service, Stream } from '@/data/types/dbaas/logs';
@@ -35,24 +33,36 @@ const DataStreamSubscriptionsLink = ({
 
   return (
     <>
-      <OdsText preset="span" id={isSubStream ? `popover-${streamId}` : undefined}>
-        <Links
-          data-testid="link-testStream"
-          href={subscriptionsURL}
-          label={nbSubscription.toString()}
-          type={LinkType.external}
-          target="_blank"
-          isDisabled={isSubStream}
-        />
-      </OdsText>
-      {isSubStream && (
-        <OdsTooltip
-          data-testid="popover-testStream"
-          triggerId={`popover-${streamId}`}
-          className="p-2 bg-gray-100 text-black"
-        >
-          {t('log_streams_subscription_disabled_tooltip')}
-        </OdsTooltip>
+      {isSubStream ? (
+        <Tooltip>
+          <TooltipTrigger>
+            <Text preset="span">
+              <Link
+                data-testid="link-testStream"
+                href={subscriptionsURL}
+                target="_blank"
+                disabled={isSubStream}
+              >
+                {nbSubscription.toString()}
+                <Icon name={ICON_NAME.externalLink} />
+              </Link>
+            </Text>
+          </TooltipTrigger>
+          <TooltipContent data-testid="popover-testStream">
+            {t('log_streams_subscription_disabled_tooltip')}
+          </TooltipContent>
+        </Tooltip>
+      ) : (
+        <Text preset="span">
+          <Link
+            data-testid="link-testStream"
+            href={subscriptionsURL}
+            target="_blank"
+          >
+            {nbSubscription.toString()}
+            <Icon name={ICON_NAME.externalLink} />
+          </Link>
+        </Text>
       )}
     </>
   );
