@@ -25,10 +25,3 @@ export type DashboardItemConfig = DashboardItem & {
   documentationGuideKey?: string;
   featureFlag?: string;
 };
-
-export type DashboardTile = {
-  titleTranslationKey: string;
-  // Tile type. Defaults to 'standard' if not specified.
-  type?: 'standard' | 'billing';
-  items: DashboardItem[];
-};
