@@ -192,10 +192,10 @@ EXAMPLES
   manager-pm --type pnpm --action lint  --app web --max-warnings 0
 
   # Module management
-  yarn pm:add:module --module packages/manager/core/api
-  yarn pm:add:module --module @ovh-ux/manager-core-api
-  yarn pm:remove:module --module packages/manager/core/api
-  yarn pm:remove:module --module @ovh-ux/manager-core-api
+  manager-pm --type pnpm --action build --module packages/manager/core/api
+  manager-pm --type pnpm --action test  --module @ovh-ux/manager-core-api
+  manager-pm --type pnpm --action lint  --module packages/manager/core/application  --fix
+  manager-pm --type pnpm --action lint  --module @ovh-ux/manager-core-utils --max-warnings 0
 
   # Lint all
   manager-pm --type pnpm --action full-lint
