@@ -29,7 +29,6 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         }
         return $q.when();
       },
-      goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
       name: /* @ngInject */ ($transition$) => $transition$.params().name,
       serviceId: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceId,

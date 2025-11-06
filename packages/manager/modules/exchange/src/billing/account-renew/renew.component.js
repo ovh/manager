@@ -5,7 +5,7 @@ export default {
   bindings: {
     exchange: '<',
     getAccounts: '<',
-    goBack: '<',
+    goToAutorenew: '<',
     updateRenew: '<',
   },
   controller,
