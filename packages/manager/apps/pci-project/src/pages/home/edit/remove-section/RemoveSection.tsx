@@ -21,7 +21,7 @@ export default function RemoveSection({ isDiscovery }: RemoveSectionProps) {
 
   return (
     <section className="flex flex-col gap-5">
-      <OdsText preset="heading-3">
+      <OdsText preset="heading-2">
         {t('pci_projects_project_edit_remove')}
       </OdsText>
 
