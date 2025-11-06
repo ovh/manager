@@ -1,4 +1,9 @@
-import { OdsCard, OdsText, OdsIcon } from '@ovhcloud/ods-components/react';
+import {
+  OdsCard,
+  OdsText,
+  OdsIcon,
+  OdsLink,
+} from '@ovhcloud/ods-components/react';
 
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import useTranslation from '@/hooks/usePermissiveTranslation.hook';
@@ -38,11 +43,11 @@ function QuickAccessCard({ item, index }: QuickAccessCardProps) {
     >
       <OdsCard
         color="neutral"
-        className="flex flex-row items-center p-4 min-h-[100px] truncate"
+        className="flex flex-row items-center p-5 min-h-[100px] truncate hover:bg-[--ods-color-primary-100] transition-colors"
         role="button"
         tabIndex={0}
       >
-        <div className="bg-[var(--ods-color-information-700)] rounded flex items-center justify-center w-23 h-23">
+        <div className="flex items-center justify-center w-23 h-23">
           {item.iconImage && (
             <img
               src={item.iconImage}
@@ -56,19 +61,18 @@ function QuickAccessCard({ item, index }: QuickAccessCardProps) {
             <OdsIcon name={item.iconODS} className="w-20 h-20 text-white" />
           )}
         </div>
-        <div className="flex flex-col justify-center ml-6">
+        <div className="flex flex-col justify-center ml-5">
           <OdsText preset="heading-4" className="mb-1 leading-tight">
             {t(item.labelTranslationKey)}
           </OdsText>
-          <OdsText
-            preset="paragraph"
-            className="text-primary-500"
+          <OdsLink
+            href={item.link}
+            color="primary"
+            label={t(item.descriptionTranslationKey)}
             aria-label={t('pci_project_quick_access_link_aria_label', {
               description: t(item.descriptionTranslationKey),
             })}
-          >
-            {t(item.descriptionTranslationKey)}
-          </OdsText>
+          />
         </div>
       </OdsCard>
     </a>
@@ -76,7 +80,7 @@ function QuickAccessCard({ item, index }: QuickAccessCardProps) {
     <OdsCard
       key={index}
       color="neutral"
-      className="flex flex-row items-center p-4 min-h-[100px] truncate"
+      className="flex flex-row items-center p-4 min-h-[100px] truncate hover:bg-[--ods-color-primary-100]"
       role="button"
       tabIndex={0}
     >
