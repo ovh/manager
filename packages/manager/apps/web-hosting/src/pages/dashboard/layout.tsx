@@ -63,6 +63,7 @@ export default function Layout() {
   const logsUrl = useHostingUrl(serviceName, 'user-logs');
   const ftpUrl = useHostingUrl(serviceName, 'ftp');
   const databaseUrl = useHostingUrl(serviceName, 'database');
+  const moduleUrl = useHostingUrl(serviceName, 'module');
   const taskUrl = `#/${serviceName}/task`;
   const automatedEmailsUrl = useHostingUrl(serviceName, 'automated-emails');
   const cronUrl = useHostingUrl(serviceName, 'cron');
@@ -87,7 +88,11 @@ export default function Layout() {
         title: t('hosting_tab_SSL'),
         to: sslPathname,
       },
-
+      {
+        name: 'module',
+        title: t('hosting_tab_MODULE'),
+        to: moduleUrl,
+      },
       {
         name: 'logs',
         title: t('hosting_tab_USER_LOGS'),
@@ -143,6 +148,7 @@ export default function Layout() {
       ftpUrl,
       databaseUrl,
       taskUrl,
+      moduleUrl,
       automatedEmailsUrl,
       cronUrl,
       seoUrl,
