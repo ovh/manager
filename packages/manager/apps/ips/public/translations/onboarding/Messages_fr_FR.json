@@ -16,6 +16,8 @@
   "guide3Description": "Découvrez comment configurer le réseau sur Proxmox VE",
   "guide4Title": "Concepts - Additional IP ou Floating IP sur Public Cloud",
   "guide4Description": "Découvrez comment utiliser les adresses IP publiques dans le cadre du réseau Public Cloud",
+  "guide5Title": "Configurer un bloc Additional IPv6 dans un vRack",
+  "guide5Description": "Découvrez comment configurer un bloc Additional IPv6 dans un vRack OVHcloud",
 
   "advantagesTitle": "Avantages des Additional IP",
   "advantage1Title": "Capacités de fail-over",
