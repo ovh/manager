@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/shell",
-  "version": "4.7.14",
+  "version": "4.7.15",
   "description": "Communication and interaction between applications",
   "repository": {
     "type": "git",
@@ -36,7 +36,7 @@
     "nanoid": "^3.1.25"
   },
   "devDependencies": {
-    "@ovh-ux/manager-tests-setup": "^0.4.7",
+    "@ovh-ux/manager-tests-setup": "^0.5.0",
     "@typescript-eslint/eslint-plugin": "^4.7.4",
     "@typescript-eslint/parser": "^4.7.4"
   }

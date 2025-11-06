@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.38.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.38.2...@ovh-ux/manager-zimbra-app@0.38.3) (2025-11-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4453] ([f324c34](https://github.com/ovh/manager/commit/f324c341af7b74b5b5690e8d1e765701a3e85c77))
+
+
+
+
+
 ## [0.38.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.38.1...@ovh-ux/manager-zimbra-app@0.38.2) (2025-11-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app
