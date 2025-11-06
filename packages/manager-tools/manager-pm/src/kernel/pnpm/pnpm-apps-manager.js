@@ -16,7 +16,7 @@ import { patchVitestConfig } from './pnpm-config-manager.js';
  *
  * Steps performed:
  *   1. Skip if app is already in PNPM catalog
- *   2. Normalize React-related dependencies
+ *   2. Normalize critical dependencies
  *   3. Remove the app from Yarn catalog
  *   4. Add the app to PNPM catalog
  *   5. Clean old package-manager artifacts
