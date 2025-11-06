@@ -1,8 +1,9 @@
-import { Suspense, useEffect, useRef } from 'react';
+import { Suspense, useContext, useEffect, useRef } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsSpinner } from '@ovhcloud/ods-components/react';
 import { GlobalStateStatus } from '@/types/WillPayment.type';
 import { useWillPaymentConfig } from '../../hooks/useWillPaymentConfig';
-import { setupRequiredActionsMethodListener } from '../../utils/paymentEvents';
+import { setupWillPaymentEventListeners } from '../../utils/paymentEvents';
 import { WillPaymentModule } from './WillPaymentModule';
 
 type WillPaymentComponentProps = {
@@ -17,13 +18,21 @@ function WillPaymentComponent({
   onRequiredChallengeEvent,
 }: Readonly<WillPaymentComponentProps>) {
   const slotRef = useRef<HTMLDivElement>(null);
+  const {
+    shell: { navigation },
+  } = useContext(ShellContext);
 
   const config = useWillPaymentConfig({ onPaymentStatusChange });
 
+  const onEditDefaultPaymentMethod = () => {
+    navigation.navigateTo('dedicated', '#/billing/payment/method', {});
+  };
+
   useEffect(() => {
-    const cleanup = setupRequiredActionsMethodListener(
+    const cleanup = setupWillPaymentEventListeners(
       onNoUserActionNeeded,
       onRequiredChallengeEvent,
+      onEditDefaultPaymentMethod,
     );
     return cleanup || undefined;
   }, [onNoUserActionNeeded, onRequiredChallengeEvent]);
