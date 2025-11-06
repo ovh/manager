@@ -3,7 +3,7 @@ import template from './billing-autoRenew-terminatePrivateDatabase.html';
 
 export default {
   bindings: {
-    goBack: '<',
+    goToAutorenew: '<',
     terminateHostingPrivateDatabase: '<',
   },
   controller,
