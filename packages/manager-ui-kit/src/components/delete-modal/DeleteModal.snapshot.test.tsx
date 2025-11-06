@@ -1,6 +1,6 @@
 import { vitest } from 'vitest';
 
-import { render } from '@/setupTest';
+import { render } from '@/commons/tests-utils/Render.utils';
 
 import { DeleteModal } from './DeleteModal.component';
 import { DeleteModalProps } from './DeleteModal.props';

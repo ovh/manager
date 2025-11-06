@@ -1,8 +1,9 @@
 import { vitest } from 'vitest';
 
-import { render } from '@/setupTest';
+import { render } from '@/commons/tests-utils/Render.utils';
+import { longUrls } from '@/commons/tests-utils/StaticData.constants';
+import { ChangelogMenu } from '@/components/changelog-menu/ChangelogMenu.component';
 
-import { ChangelogMenu } from '../ChangelogMenu.component';
 import { Links, chapters } from './ChangelogMenu.utils';
 
 vitest.mock('@ovh-ux/manager-react-shell-client', () => ({
@@ -46,14 +47,6 @@ describe('ChangelogMenu Snapshot Tests', () => {
   });
 
   it('should match snapshot with long URLs', () => {
-    const longUrls = {
-      changelog:
-        'https://very-long-url-that-might-affect-rendering.com/path/to/changelog?param1=value1&param2=value2&param3=value3',
-      roadmap:
-        'https://very-long-url-that-might-affect-rendering.com/path/to/roadmap?param1=value1&param2=value2&param3=value3',
-      'feature-request':
-        'https://very-long-url-that-might-affect-rendering.com/path/to/feature-request?param1=value1&param2=value2&param3=value3',
-    };
     const { container } = render(<ChangelogMenu links={longUrls} chapters={chapters} />);
     expect(container.firstChild).toMatchSnapshot();
   });

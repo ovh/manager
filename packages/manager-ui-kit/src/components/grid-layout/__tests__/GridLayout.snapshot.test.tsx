@@ -1,8 +1,5 @@
-import { render } from '@/setupTest';
-
-import { Text } from '../../text';
-import { Tile } from '../../tile';
-import { GridLayout } from '../GridLayout.component';
+import { render } from '@/commons/tests-utils/Render.utils';
+import { GridLayout, Text, Tile } from '@/components';
 
 describe('GridLayout Snapshot Tests', () => {
   it('should render empty grid layout', () => {
@@ -31,7 +28,7 @@ describe('GridLayout Snapshot Tests', () => {
     const { container } = render(
       <GridLayout>
         {DashboardTiles.map((element) => (
-          <Tile.Root title={element.title}>
+          <Tile.Root key={element.title} title={element.title}>
             <Tile.Item.Root>
               <Tile.Item.Term label={element.label}></Tile.Item.Term>
               <Tile.Item.Description>

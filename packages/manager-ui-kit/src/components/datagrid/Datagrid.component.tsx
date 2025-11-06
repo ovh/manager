@@ -2,10 +2,11 @@ import { useRef } from 'react';
 
 import { Table } from '@ovhcloud/ods-react';
 
-import { DatagridProps } from './Datagrid.props';
+import { DatagridProps, ExpandableRow } from '@/components/datagrid/Datagrid.props';
+import { TableHeaderContent } from '@/components/datagrid/table/table-head';
+
 import { TableBody } from './table/table-body/TableBody.component';
 import { TableFooter } from './table/table-footer/TableFooter.component';
-import { TableHeaderContent } from './table/table-head/table-header-content/TableHeaderContent.component';
 import { Topbar } from './topbar/Topbar.component';
 import './translations';
 import { useDatagrid } from './useDatagrid';
@@ -13,7 +14,7 @@ import { useDatagrid } from './useDatagrid';
 const DEFAULT_ROW_HEIGHT = 50;
 const DEFAULT_CONTAINER_HEIGHT = 570;
 
-export const Datagrid = <T extends Record<string, unknown>>({
+export const Datagrid = <T extends ExpandableRow<T>>({
   autoScroll = true,
   columns,
   columnVisibility,
@@ -90,7 +91,7 @@ export const Datagrid = <T extends Record<string, unknown>>({
         />
       )}
       <div className="overflow-auto relative w-full" ref={tableContainerRef} style={containerStyle}>
-        <Table className="w-full">
+        <Table className="table table-fixed w-full">
           <TableHeaderContent<T>
             headerGroups={headerGroups}
             onSortChange={sorting?.setSorting}

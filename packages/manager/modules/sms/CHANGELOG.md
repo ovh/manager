@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.19.0...@ovh-ux/manager-sms@8.19.1) (2025-11-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4449] ([19facba](https://github.com/ovh/manager/commit/19facba088a900bb28c9377a79351a518a862af7))
+* remove unused translations [CDS] ([3677178](https://github.com/ovh/manager/commit/3677178eed8d1302b468d39f7d92adbf7a63648d))
+
+
+
+
+
+# [8.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.18.7...@ovh-ux/manager-sms@8.19.0) (2025-10-30)
+
+
+### Bug Fixes
+
+* **telecom.sms:** remove type class of sms ([157bfbf](https://github.com/ovh/manager/commit/157bfbf9c29eaa3577fab21be8bef9563524ff47)), closes [#PRDCOL-59](https://github.com/ovh/manager/issues/PRDCOL-59)
+
+
+### Features
+
+* **sms:** order time2chat number ([cd62178](https://github.com/ovh/manager/commit/cd621782067d59112f96d93fa5720070f5c8b55d)), closes [#PRDCOL-13](https://github.com/ovh/manager/issues/PRDCOL-13)
+
+
+
+
+
 ## [8.18.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.18.6...@ovh-ux/manager-sms@8.18.7) (2025-10-23)
 
 

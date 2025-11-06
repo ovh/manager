@@ -22,13 +22,13 @@ const cases = [
     expect: 0,
   },
   {
-    name: 'Single library static path by folder name (manager-react-components)',
-    cmd: 'yarn manager-perf-budgets --library manager-react-components',
+    name: 'Single library static path by folder name (manager-ui-kit)',
+    cmd: 'yarn manager-perf-budgets --library manager-ui-kit',
     expect: 0,
   },
   {
-    name: 'Single library static path by package name (manager-react-components)',
-    cmd: 'yarn manager-perf-budgets --library @ovh-ux/manager-react-components',
+    name: 'Single library static path by package name (manager-ui-kit)',
+    cmd: 'yarn manager-perf-budgets --library @ovh-ux/muk',
     expect: 0,
   },
   {
@@ -42,13 +42,13 @@ const cases = [
     expect: 0,
   },
   {
-    name: 'Multiple libraries by folder names (manager-wiki,manager-react-components,shell-client,logs-to-customer)',
-    cmd: 'yarn manager-perf-budgets --libraries manager-wiki,manager-react-components,shell-client,logs-to-customer',
+    name: 'Multiple libraries by folder names (manager-wiki,manager-ui-kit,shell-client,logs-to-customer)',
+    cmd: 'yarn manager-perf-budgets --libraries manager-wiki,manager-ui-kit,shell-client,logs-to-customer',
     expect: 0,
   },
   {
-    name: 'Multiple libraries by package names (manager-wiki,manager-react-components,shell-client,logs-to-customer)',
-    cmd: 'yarn manager-perf-budgets --libraries @ovh-ux/manager-wiki,@ovh-ux/manager-react-components,@ovh-ux/manager-react-shell-client,@ovh-ux/logs-to-customer',
+    name: 'Multiple libraries by package names (manager-wiki,manager-ui-kit,shell-client,logs-to-customer)',
+    cmd: 'yarn manager-perf-budgets --libraries @ovh-ux/manager-wiki,@ovh-ux/muk,@ovh-ux/manager-react-shell-client,@ovh-ux/logs-to-customer',
     expect: 0,
   },
   {
@@ -58,7 +58,7 @@ const cases = [
   },
   {
     name: 'Mixed valid+invalid packages',
-    cmd: 'yarn manager-perf-budgets --packages @ovh-ux/manager-wiki,manager-react-components,@ovh-ux/manager-ghost-app',
+    cmd: 'yarn manager-perf-budgets --packages @ovh-ux/manager-wiki,manager-ui-kit,@ovh-ux/manager-ghost-app',
     expect: 0,
   },
   {

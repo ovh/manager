@@ -201,7 +201,7 @@
   "exchange_tab_ALIAS_state_TASK_ON_DOING": "In progress",
   "exchange_tab_ALIAS_state_TASK_ON_DOING_tooltip": "A task involving this alias is scheduled or is currently in progress",
   "exchange_tab_ALIAS_add_button": "Add an alias",
-  "exchange_tab_ALIAS_creation_quota_description": "The quota must be between <strong>{0} {1}</strong> and <strong>{2} {3}</strong>.",
+  "exchange_tab_ALIAS_creation_quota_description": "The quota must be between <strong>{0} {1}</strong> and <strong>{2} {3}</strong>. You have already allocated <strong>{4} {5}</strong> of the <strong>{6} {7}</strong> available.",
   "exchange_tab_ALIAS_creation_error_no_local_part": "Please provide a personal account name for the email address (before the @ sign).",
   "exchange_tab_ALIAS_creation_error_regex": "The personal account name (before the @ sign) must contain both letters and numbers, or the characters <strong>.-_+</strong> (example: e_mail-3.address+abc).",
   "exchange_tab_ALIAS_taken_error_message": "Email address already exists.",
@@ -1669,5 +1669,7 @@
   "exchange_delete_mfa_success": "The two-factor authentication was successfully deleted.",
   "exchange_delete_mfa_error": "An error has occurred deleting the two-factor authentication: {{error}}",
   "exchange_tab_LOGS": "Logs",
-  "exchange_tab_ACCOUNTS_menu_migrate": "Migrate accounts"
+  "exchange_tab_ACCOUNTS_menu_migrate": "Migrate accounts",
+  "exchange_server_commercial_version_SE": "SE",
+  "exchange_tab_ALIAS_creation_quota_tooltip": "With each Exchange account purchased, you get 5 GB of shared storage."
 }

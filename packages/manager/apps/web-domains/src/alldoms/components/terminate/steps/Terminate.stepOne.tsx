@@ -1,7 +1,5 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useNavigate } from 'react-router-dom';
 import {
   Button,
   BUTTON_VARIANT,
@@ -12,9 +10,12 @@ import {
   Text,
   TEXT_PRESET,
 } from '@ovhcloud/ods-react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ModalStepsProps } from '@/alldoms/types';
-import DomainsCheckboxList from '@/alldoms/components/terminate/DomainsCheckboxes/DomainsCheckboxList';
+import DomainsCheckboxList from '@/alldoms/components/terminate/domainsCheckboxes/DomainsCheckboxList';
 import { hasTerminateAtExpirationDateAction } from '@/alldoms/utils/utils';
+import { useCloseModal } from '@/common/hooks/closeModal/useCloseModal';
+import { urls } from '@/alldoms/routes/routes.constant';
 
 export default function TerminateModalStepOne({
   services,
@@ -25,7 +26,12 @@ export default function TerminateModalStepOne({
   setCheckAllDomains,
 }: Readonly<ModalStepsProps>) {
   const { t } = useTranslation(['allDom', NAMESPACES.ACTIONS]);
+  const { serviceName } = useParams();
   const navigate = useNavigate();
+  const closeUrl = useCloseModal(
+    serviceName,
+    `${urls.alldomsRoot}/${urls.alldomsListingTerminate}`,
+  );
 
   return (
     <div>
@@ -78,7 +84,10 @@ export default function TerminateModalStepOne({
       </Message>
 
       <div className="flex justify-end gap-x-6">
-        <Button variant={BUTTON_VARIANT.ghost} onClick={() => navigate(-1)}>
+        <Button
+          variant={BUTTON_VARIANT.ghost}
+          onClick={() => navigate(closeUrl)}
+        >
           {t(`${NAMESPACES.ACTIONS}:close`)}
         </Button>
         <Button

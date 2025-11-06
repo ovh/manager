@@ -1,49 +1,36 @@
 import path from 'path';
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import {
+  sharedConfig,
+  mergeConfig,
+  createConfig,
+  defaultExcludedFiles,
+} from '@ovh-ux/manager-tests-setup';
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: './src/setupTests.tsx',
-    coverage: {
-      include: ['src'],
-      exclude: [
-        'src/types',
-        'src/__tests__',
-        'src/**/*constants.ts',
-        'src/vite-*.ts',
-        'src/App.tsx',
-        'src/index.tsx',
-        'src/tracking.constant.ts',
-        'src/i18n.ts',
-        'src/main.tsx',
-        'src/routes.tsx',
-        'src/queryClient.ts',
-        'src/**/*.spec.ts',
-        'src/**/*.spec.tsx',
-      ],
-    },
-    testTimeout: 60_000,
-    fileParallelism: false,
-    maxWorkers: 1,
-    pollOptions: {
-      forks: {
-        singleFork: true,
-      },
-      threads: {
-        singleThread: true,
+export default mergeConfig(
+  sharedConfig,
+  createConfig({
+    test: {
+      setupFiles: './src/setupTests.tsx',
+      coverage: {
+        exclude: [
+          ...defaultExcludedFiles,
+          // App-specific exclusions (not in shared config):
+          'src/types',
+          'src/tracking.constant.ts',
+          'src/queryClient.ts',
+          'src/**/*.spec.ts',
+          'src/**/*.spec.tsx',
+        ],
       },
     },
-  },
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
-      '@secret-manager': path.resolve(__dirname, 'src/modules/secret-manager'),
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, 'src'),
+        '@secret-manager': path.resolve(
+          __dirname,
+          'src/modules/secret-manager',
+        ),
+      },
     },
-    mainFields: ['module'],
-  },
-});
+  }),
+);

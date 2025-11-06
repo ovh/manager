@@ -27,6 +27,14 @@ vi.mock('@/hooks/useExistingGatewayRegion/useExistingGatewayRegion');
 
 vi.mock('@/hooks/usePrepareGatewayCreation/usePrepareGatewayCreation');
 
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const actual = (await importOriginal()) as Record<string, unknown>;
+  return {
+    ...actual,
+    useCatalogPrice: () => ({ getFormattedHourlyCatalogPrice: vi.fn() }),
+  };
+});
+
 describe('GatewayCreation', () => {
   it('should disabled the assign gateway checkbox when region is not yet selected', () => {
     vi.mocked(useExistingGatewayRegion).mockReturnValue({

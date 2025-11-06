@@ -1,0 +1,70 @@
+import { lazy } from 'react';
+import { Route } from 'react-router-dom';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
+import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+import { urls } from '@/routes/routes.constant';
+
+const LayoutPage = lazy(() => import('@/pages/layout'));
+const SettingsPage = lazy(() => import('@/pages/settings/settings.page'));
+const AccountTypePage = lazy(() =>
+  import('@/pages/accountType/AccountType.page'),
+);
+const AccountDetailsPage = lazy(() =>
+  import('@/pages/accountDetails/accountDetails.page'),
+);
+const CompanyPage = lazy(() => import('@/pages/company/Company.page'));
+
+export default (
+  <Route
+    path={urls.root}
+    Component={LayoutPage}
+    errorElement={
+      <ErrorBoundary
+        isPreloaderHide
+        isRouteShellSync
+        redirectionApp="account-creation"
+      />
+    }
+  >
+    <Route
+      path={urls.settings}
+      Component={SettingsPage}
+      handle={{
+        tracking: {
+          pageName: 'settings',
+          pageType: PageType.funnel,
+        },
+      }}
+    />
+    <Route
+      path={urls.accountType}
+      Component={AccountTypePage}
+      handle={{
+        tracking: {
+          pageName: 'account-type',
+          pageType: PageType.funnel,
+        },
+      }}
+    />
+    <Route
+      path={urls.company}
+      Component={CompanyPage}
+      handle={{
+        tracking: {
+          pageName: 'company',
+          pageType: PageType.funnel,
+        },
+      }}
+    />
+    <Route
+      path={urls.accountDetails}
+      Component={AccountDetailsPage}
+      handle={{
+        tracking: {
+          pageName: 'account-details',
+          pageType: PageType.funnel,
+        },
+      }}
+    />
+  </Route>
+);

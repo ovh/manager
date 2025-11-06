@@ -2,8 +2,10 @@ import { useMemo } from 'react';
 
 import { useReactTable } from '@tanstack/react-table';
 
-import { useTableBuilder } from './builder';
-import { ExpandableRow, UseDatagridTableProps } from './useDatagrid.props';
+import { ExpandableRow } from '@/components/datagrid/Datagrid.props';
+
+import { useTableBuilder } from './builder/useTableBuilder';
+import { UseDatagridTableProps } from './useDatagrid.props';
 
 export const useDatagrid = <T extends ExpandableRow<T>>({
   columns,
@@ -19,7 +21,9 @@ export const useDatagrid = <T extends ExpandableRow<T>>({
 }: UseDatagridTableProps<T>) => {
   const { hasSortingFeature, hasSearchFeature, hasColumnVisibilityFeature, hasFilterFeature } =
     useMemo(() => {
-      const has = (key: string) => columns?.some((col) => col?.[key]);
+      const has = <K extends 'isSortable' | 'isSearchable' | 'enableHiding' | 'isFilterable'>(
+        key: K,
+      ): boolean => columns?.some((col) => Boolean(col[key])) ?? false;
       return {
         hasSortingFeature: has('isSortable'),
         hasSearchFeature: has('isSearchable'),
@@ -30,17 +34,17 @@ export const useDatagrid = <T extends ExpandableRow<T>>({
   const hasExpandableFeature = useMemo(() => data?.some((row) => row?.subRows) ?? false, [data]);
   const builder = useTableBuilder({
     columns,
-    columnVisibility,
     data,
-    expandable,
+    columnVisibility: columnVisibility ?? {},
+    expandable: expandable ?? { expanded: {}, setExpanded: () => {} },
     hasExpandableFeature,
     hasSortingFeature,
-    manualSorting,
-    onSortChange,
+    manualSorting: manualSorting ?? false,
+    onSortChange: onSortChange ?? (() => {}),
     renderSubComponent,
     rowSelection,
-    setColumnVisibility,
-    sorting,
+    setColumnVisibility: setColumnVisibility ?? (() => {}),
+    sorting: sorting ?? [],
   })
     .setColumns()
     .setColumnsVisibility()
@@ -52,6 +56,7 @@ export const useDatagrid = <T extends ExpandableRow<T>>({
     .setSorting()
     .setState()
     .setSubRows()
+    .setRowId()
     .build();
   const table = useReactTable(builder);
 

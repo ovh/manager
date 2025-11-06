@@ -3,6 +3,84 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.13...@ovh-ux/manager-web@19.27.0) (2025-11-06)
+
+
+### Features
+
+* **web-hosting:** migrate visibility pro tab in react ([a524b43](https://github.com/ovh/manager/commit/a524b430b2440ebeafc7e9fdb7c29027c5b1f349)), closes [#WEB-21060](https://github.com/ovh/manager/issues/WEB-21060)
+
+
+
+
+
+## [19.26.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.12...@ovh-ux/manager-web@19.26.13) (2025-11-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.26.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.11...@ovh-ux/manager-web@19.26.12) (2025-11-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.26.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.10...@ovh-ux/manager-web@19.26.11) (2025-11-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.26.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.9...@ovh-ux/manager-web@19.26.10) (2025-11-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.26.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.8...@ovh-ux/manager-web@19.26.9) (2025-10-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.26.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.7...@ovh-ux/manager-web@19.26.8) (2025-10-30)
+
+
+### Bug Fixes
+
+* **web:** add "ASIA" subsidiary to language overrides ([#19872](https://github.com/ovh/manager/issues/19872)) ([59dfaf0](https://github.com/ovh/manager/commit/59dfaf01ad4059ecad637d311746319e403d28c1)), closes [#DCE-78](https://github.com/ovh/manager/issues/DCE-78)
+
+
+
+
+
+## [19.26.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.6...@ovh-ux/manager-web@19.26.7) (2025-10-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.26.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.5...@ovh-ux/manager-web@19.26.6) (2025-10-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
 ## [19.26.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.26.4...@ovh-ux/manager-web@19.26.5) (2025-10-27)
 
 

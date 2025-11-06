@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.11.0...@ovh-ux/manager-react-shell-client@0.11.1) (2025-10-01)
+
+
+### Bug Fixes
+
+* shell typescript issues ([fcce2be](https://github.com/ovh/manager/commit/fcce2bec3b26cdbe640f40be7918d24561d5bb25)), closes [#MANAGER-19933](https://github.com/ovh/manager/issues/MANAGER-19933)
+
+
+
+
+
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.10.0...@ovh-ux/manager-react-shell-client@0.11.0) (2025-09-23)
+
+
+### Features
+
+* **react-shell-client:** expose location related types ([7af94d4](https://github.com/ovh/manager/commit/7af94d40770f548a206ff94f32b844e108b83f15)), closes [#MANAGER-18341](https://github.com/ovh/manager/issues/MANAGER-18341)
+
+
+
+
+
 # [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-shell-client@0.9.3...@ovh-ux/manager-react-shell-client@0.10.0) (2025-09-04)
 
 

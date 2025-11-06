@@ -4,7 +4,7 @@ import { vitest } from 'vitest';
 
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
-import { render } from '@/setupTest';
+import { render } from '@/commons/tests-utils/Render.utils';
 
 import { CHANGELOG_PREFIXES, ChangelogMenu } from '../ChangelogMenu.component';
 import TradFr from '../translations/Messages_fr_FR.json';
@@ -52,7 +52,7 @@ describe('ChangelogMenu', () => {
   });
 
   describe('Interactions', () => {
-    it('tracks click when changelog link is clicked', async () => {
+    it('tracks click when changelog link is clicked', () => {
       const mockTrackClick = vitest.fn();
       mockedTracking.mockReturnValue({
         trackClick: mockTrackClick,
@@ -62,7 +62,7 @@ describe('ChangelogMenu', () => {
 
       const changelogButton = screen.getByText(TradFr.mrc_changelog_changelog);
 
-      await act(async () => {
+      act(() => {
         fireEvent.click(changelogButton);
       });
 
@@ -72,7 +72,7 @@ describe('ChangelogMenu', () => {
       });
     });
 
-    it('tracks click when roadmap link is clicked', async () => {
+    it('tracks click when roadmap link is clicked', () => {
       const mockTrackClick = vitest.fn();
       mockedTracking.mockReturnValue({
         trackClick: mockTrackClick,
@@ -82,7 +82,7 @@ describe('ChangelogMenu', () => {
 
       const roadmapButton = screen.getByText(TradFr.mrc_changelog_roadmap);
 
-      await act(async () => {
+      act(() => {
         fireEvent.click(roadmapButton);
       });
 
@@ -92,7 +92,7 @@ describe('ChangelogMenu', () => {
       });
     });
 
-    it('tracks click when feature request link is clicked', async () => {
+    it('tracks click when feature request link is clicked', () => {
       const mockTrackClick = vitest.fn();
       mockedTracking.mockReturnValue({
         trackClick: mockTrackClick,
@@ -102,7 +102,7 @@ describe('ChangelogMenu', () => {
 
       const featureRequestButton = screen.getByText(TradFr['mrc_changelog_feature-request']);
 
-      await act(async () => {
+      act(() => {
         fireEvent.click(featureRequestButton);
       });
 
@@ -112,7 +112,7 @@ describe('ChangelogMenu', () => {
       });
     });
 
-    it('uses custom prefixes when provided', async () => {
+    it('uses custom prefixes when provided', () => {
       const customPrefixes = ['custom-prefix-1', 'custom-prefix-2'];
       const mockTrackClick = vitest.fn();
       mockedTracking.mockReturnValue({
@@ -123,7 +123,7 @@ describe('ChangelogMenu', () => {
 
       const changelogButton = screen.getByText(TradFr.mrc_changelog_changelog);
 
-      await act(async () => {
+      act(() => {
         fireEvent.click(changelogButton);
       });
 

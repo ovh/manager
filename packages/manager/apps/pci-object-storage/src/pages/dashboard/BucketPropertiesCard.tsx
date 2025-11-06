@@ -123,7 +123,7 @@ export const BucketPropertiesCard = ({
       title={t(
         'dashboard:pci_projects_project_storages_dashboard_bucket_properties',
       )}
-      className="w-1/3"
+      className="md:w-1/3"
     >
       {renderObjectLockSection()}
 

@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.16.1...@ovh-ux/manager-wiki@0.16.2) (2025-11-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-wiki
+
+
+
+
+
+## [0.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.16.0...@ovh-ux/manager-wiki@0.16.1) (2025-11-04)
+
+
+### Bug Fixes
+
+* **muk:** correct datagrid issues in header and row selection ([4c88a77](https://github.com/ovh/manager/commit/4c88a770d8a76ede9cf45f365156099193b0df47)), closes [#MANAGER-20160](https://github.com/ovh/manager/issues/MANAGER-20160)
+* **muk:** correct import of ods style ([f74689e](https://github.com/ovh/manager/commit/f74689e19e0bf0a3891b2de042a3e19eed6b12e0)), closes [#MANAGER-20160](https://github.com/ovh/manager/issues/MANAGER-20160)
+
+
+
+
+
+# [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.15.4...@ovh-ux/manager-wiki@0.16.0) (2025-11-02)
+
+
+### Features
+
+* **muk:** static quality improvement ([2ca8694](https://github.com/ovh/manager/commit/2ca8694747cce2ea2901b6d04286ac07a65be03d))
+
+
+
+
+
+## [0.15.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.15.3...@ovh-ux/manager-wiki@0.15.4) (2025-10-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-wiki
+
+
+
+
+
+## [0.15.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.15.2...@ovh-ux/manager-wiki@0.15.3) (2025-10-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-wiki
+
+
+
+
+
+## [0.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.15.1...@ovh-ux/manager-wiki@0.15.2) (2025-10-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-wiki
+
+
+
+
+
 ## [0.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-wiki@0.15.0...@ovh-ux/manager-wiki@0.15.1) (2025-10-23)
 
 

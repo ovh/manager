@@ -18,12 +18,12 @@
   "category_legal": "Informazioni legali",
   "iam_display_content_message": "Non disponi dei permessi necessari per visualizzare i dati di questa risorsa. Contattare l'amministratore.",
   "category_support": "Supporto",
-  "category_alert": "Avvisi",
+  "category_alert": "Alert",
   "category_incident": "Incidente",
   "category_maintenance": "Manutenzione",
   "status_error": "Errore",
   "status_disabled": "Disattivato",
   "status_valid": "Attivo",
   "status_to_validate": "In attesa",
-  "error_rate_limit_message": "Hai raggiunto il limite di richieste. Per favore riprova più tardi."
+  "error_rate_limit_message": "Hai raggiunto il limite di richieste. Ti chiediamo di riprovare più tardi"
 }

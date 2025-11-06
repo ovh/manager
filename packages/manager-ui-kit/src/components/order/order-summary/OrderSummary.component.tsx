@@ -1,14 +1,16 @@
-import { FC, useEffect } from 'react';
+import { FC, JSX, useEffect } from 'react';
 
 import { Trans, useTranslation } from 'react-i18next';
 
 import { TEXT_PRESET } from '@ovhcloud/ods-react';
 
-import { Link, LinkType } from '../../Link';
-import { Button } from '../../button';
-import { Text } from '../../text';
-import { useOrderContext } from '../Order.context';
-import { OrderSummaryProps } from './OrderSummary.type';
+import { Button } from '@/components/button/Button.component';
+import { Link } from '@/components/link/Link.component';
+import { LinkType } from '@/components/link/Link.props';
+import { useOrderContext } from '@/components/order/Order.context';
+import { Text } from '@/components/text/Text.component';
+
+import { OrderSummaryProps } from './OrderSummary.props';
 
 export const OrderSummary: FC<OrderSummaryProps> = ({
   onFinish,

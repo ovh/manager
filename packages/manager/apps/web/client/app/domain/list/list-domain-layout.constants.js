@@ -110,7 +110,7 @@ export const DOMAIN_DNSSEC_STATE_CLASS = {
 export const DOMAIN_COLUMN_DNSSEC = 'DNSSEC';
 
 export const IDN_PREFIX = 'xn--';
-export const LANGUAGE_OVERRIDE = { IN: `en-IN` };
+export const LANGUAGE_OVERRIDE = { IN: `en-IN`, ASIA: `en-ASIA` };
 
 export const MONTH_DATE_FORMAT = {
   month: '2-digit',

@@ -10,63 +10,28 @@ exports[`TagsList Component - Snapshot Tests > displays all tags 1`] = `
       data-ods="badge"
       style="max-width: -32px;"
     >
-      key1:Lorem ipsum dolor
+      tag1:tag1
     </span>
     <span
       class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
       data-ods="badge"
       style="max-width: -32px;"
     >
-      key2:Lorem ipsum consectetur sit amet consectetur
+      tag2:tag2
     </span>
     <span
       class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
       data-ods="badge"
       style="max-width: -32px;"
     >
-      key3:Lorem ipsum
+      tag3:tag3
     </span>
     <span
       class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
       data-ods="badge"
       style="max-width: -32px;"
     >
-      key4:Lorem ipsum dolor
-    </span>
-    <span
-      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-      data-ods="badge"
-      style="max-width: -32px;"
-    >
-      key5:Lorem ipsum dolor sit consectetur
-    </span>
-    <span
-      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-      data-ods="badge"
-      style="max-width: -32px;"
-    >
-      key6:Lorem ipsumsit amet consectetur adipiscing elit quisque
-    </span>
-    <span
-      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-      data-ods="badge"
-      style="max-width: -32px;"
-    >
-      key7:Lorem ipsum
-    </span>
-    <span
-      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-      data-ods="badge"
-      style="max-width: -32px;"
-    >
-      key8:Lorem ipsum
-    </span>
-    <span
-      class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
-      data-ods="badge"
-      style="max-width: -32px;"
-    >
-      key9:Lorem ipsum
+      tag4:tag4
     </span>
   </div>
 </div>
@@ -82,21 +47,21 @@ exports[`TagsList Component - Snapshot Tests > displays fewer tags along with Li
       data-ods="badge"
       style="max-width: -32px;"
     >
-      key1:Lorem ipsum dolor
+      tag1:tag1
     </span>
     <span
       class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
       data-ods="badge"
       style="max-width: -32px;"
     >
-      key2:Lorem ipsum consectetur sit amet consectetur
+      tag2:tag2
     </span>
     <span
       class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
       data-ods="badge"
       style="max-width: -32px;"
     >
-      key3:Lorem ipsum
+      tag3:tag3
     </span>
     <a
       class="_link_1y3p4_2 _link--no-text_1y3p4_40 text-xs"
@@ -127,14 +92,14 @@ exports[`TagsList Component - Snapshot Tests > displays modal on click of "More 
         data-ods="badge"
         style="max-width: -32px;"
       >
-        key1:Lorem ipsum dolor
+        tag1:tag1
       </span>
       <span
         class="_badge_vpjtq_2 _badge--neutral_vpjtq_27 _badge--md_vpjtq_56 mr-1 mb-1 truncate inline-block"
         data-ods="badge"
         style="max-width: -32px;"
       >
-        key2:Lorem ipsum consectetur sit amet consectetur
+        tag2:tag2
       </span>
       <a
         class="_link_1y3p4_2 _link--no-text_1y3p4_40 text-xs"

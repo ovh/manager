@@ -32,7 +32,7 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountOrderAlias
     const firstForeigns = pull(
       Object.keys(TELEPHONY_NUMBER_OFFER.prefix),
       country,
-    ).slice(0, 3);
+    ).slice(0, 2);
     return `${map(
       firstForeigns,
       (theCountry) => TELEPHONY_NUMBER_OFFER.prefix[theCountry],

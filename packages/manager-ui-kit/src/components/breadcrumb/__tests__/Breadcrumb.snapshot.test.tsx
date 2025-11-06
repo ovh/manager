@@ -1,27 +1,23 @@
-import { vitest } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
-import { render } from '@/setupTest';
+import { renderBreadcrumb } from '@/commons/tests-utils/Render.utils';
 
-import { Breadcrumb } from '../Breadcrumb.component';
-
-vitest.mock('../../../hooks/breadcrumb/useBreadcrumb', () => ({
-  useBreadcrumb: vitest.fn(({ hideRootLabel }) => [
+vi.mock('@/hooks/breadcrumb/useBreadcrumb', () => ({
+  useBreadcrumb: vi.fn(({ hideRootLabel }: { hideRootLabel?: boolean }) => [
     { label: 'vRack services', href: '/', hideLabel: hideRootLabel },
+    { label: 'vRack service', href: '/:id', hideLabel: false },
+    { label: 'vRack service listing', href: '/:id/listing', hideLabel: false },
   ]),
 }));
 
-describe('breadcrumb component snapshot', () => {
-  it('should render 3 breadcrumb items when hideRootLabel is false', () => {
-    const { asFragment } = render(
-      <Breadcrumb rootLabel="vRack services" appName="vrack-services" hideRootLabel={false} />,
-    );
+describe('Breadcrumb component - snapshot', () => {
+  it('matches snapshot when hideRootLabel is false', () => {
+    const { asFragment } = renderBreadcrumb({ hideRootLabel: false });
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('should hide root label when hideRootLabel is true', () => {
-    const { asFragment } = render(
-      <Breadcrumb rootLabel="vRack services" appName="vrack-services" hideRootLabel={true} />,
-    );
+  it('matches snapshot when hideRootLabel is true', () => {
+    const { asFragment } = renderBreadcrumb({ hideRootLabel: true });
     expect(asFragment()).toMatchSnapshot();
   });
 });

@@ -3,10 +3,11 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { expect, it, vitest } from 'vitest';
 
-import { StepContext } from '../../StepContext';
-import StepIndicator from '../StepIndicator.component';
+import { StepProps } from '@/components';
+import { StepIndicator } from '@/components/step/step-indicator/StepIndicator.component';
 
-// Mocking Icon component to avoid rendering real icon
+import { StepContext } from '../../StepContext';
+
 vitest.mock('@ovhcloud/ods-react', () => ({
   Icon: vitest.fn(({ name, className }) => (
     <div data-testid="icon" className={className}>
@@ -18,15 +19,15 @@ vitest.mock('@ovhcloud/ods-react', () => ({
 }));
 
 describe('StepIndicator Component', () => {
-  const renderWithStepContext = (value) =>
+  const renderStepIndicatorWithContext = (value: Partial<StepProps>) =>
     render(
-      <StepContext.Provider value={value}>
+      <StepContext.Provider value={value as StepProps}>
         <StepIndicator />
       </StepContext.Provider>,
     );
 
   it('renders the Icon component when checked is true', () => {
-    renderWithStepContext({ checked: true, open: false, order: 1 });
+    renderStepIndicatorWithContext({ checked: true, open: false, order: 1 });
     const icon = screen.getByTestId('icon');
     expect(icon).toBeInTheDocument();
     expect(icon).toHaveTextContent('check');
@@ -34,14 +35,14 @@ describe('StepIndicator Component', () => {
   });
 
   it('renders the Order element when checked is false and open is false', () => {
-    renderWithStepContext({ checked: false, open: false, order: 1 });
+    renderStepIndicatorWithContext({ checked: false, open: false, order: 1 });
     const span = screen.getByText(/1/i);
     expect(span).toBeInTheDocument();
     expect(span).toHaveClass('border-[--ods-color-neutral-500] text-[--ods-color-neutral-500]');
   });
 
   it('renders the Order element with primary color when checked is false and open is true', () => {
-    renderWithStepContext({ checked: false, open: true, order: 1 });
+    renderStepIndicatorWithContext({ checked: false, open: true, order: 1 });
     const span = screen.getByText(/1/i);
     expect(span).toBeInTheDocument();
     expect(span).toHaveClass('border-[--ods-color-primary-500] text-[--ods-color-text]');

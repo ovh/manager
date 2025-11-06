@@ -158,6 +158,26 @@ export default class ExchangeAddSharedAccountCtrl {
               toDisplay: { value, unit },
             },
           ),
+          reservedQuota: Object.assign(
+            angular.copy(this.optionsToCreateNewAccounts.reservedQuota),
+            {
+              toDisplay: {
+                ...this.services.ExchangeSharedAccounts.formatQuota(
+                  this.optionsToCreateNewAccounts.reservedQuota,
+                ),
+              },
+            },
+          ),
+          totalQuota: Object.assign(
+            angular.copy(this.optionsToCreateNewAccounts.totalQuota),
+            {
+              toDisplay: {
+                ...this.services.ExchangeSharedAccounts.formatQuota(
+                  this.optionsToCreateNewAccounts.totalQuota,
+                ),
+              },
+            },
+          ),
         });
 
         this.accountBeingCreated.quota = this.optionsToCreateNewAccounts.quota.value;
@@ -196,10 +216,12 @@ export default class ExchangeAddSharedAccountCtrl {
 
   selectQuota() {
     if (this.optionsToCreateNewAccounts.quota.value) {
-      this.accountBeingCreated.quota = this.services.ExchangeSharedAccounts.convertQuota(
-        this.optionsToCreateNewAccounts.quota.value,
-        this.optionsToCreateNewAccounts.quota.unit,
-        this.optionsToCreateNewAccounts.minQuota.unit,
+      this.accountBeingCreated.quota = Math.trunc(
+        this.services.ExchangeSharedAccounts.convertQuota(
+          this.optionsToCreateNewAccounts.quota.value,
+          this.optionsToCreateNewAccounts.quota.unit,
+          this.optionsToCreateNewAccounts.minQuota.unit,
+        ),
       );
 
       this.formattedQuota = this.services.ExchangeSharedAccounts.getFormattedQuota(

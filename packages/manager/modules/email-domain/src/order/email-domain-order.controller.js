@@ -1,3 +1,4 @@
+import punycode from 'punycode';
 import find from 'lodash/find';
 import get from 'lodash/get';
 import includes from 'lodash/includes';
@@ -48,6 +49,8 @@ export default class MXPlanOrderCtrl {
   }
 
   onDomainChange() {
+    this.isIdnDomainName =
+      punycode.toASCII(this.model.selectedDomain) !== this.model.selectedDomain;
     this.loading.domain = true;
     return this.deleteItem(this.item)
       .catch((error) =>

@@ -16,11 +16,13 @@ import { useCreateSecretVersion } from '@secret-manager/data/hooks/useCreateSecr
 import { LocationPathParams } from '@secret-manager/routes/routes.constants';
 import { SecretDataFormField } from '@secret-manager/components/form/SecretDataFormField.component';
 import { SecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
+import { addCurrentVersionToCas } from '@secret-manager/utils/cas';
 import {
   DrawerContent,
   DrawerFooter,
 } from '@/common/components/drawer/DrawerInnerComponents.component';
 import { VersionStatusMessage } from './VersionStatusMessage.component';
+import { CREATE_VERSION_DRAWER_TEST_IDS } from './CreateVersionDrawer.constants';
 
 type CreateVersionDrawerProps = {
   secret: SecretWithData;
@@ -61,16 +63,20 @@ const CreateVersionDrawerForm = ({
   });
 
   const handleSubmitForm = async (data: FormSchema) => {
-    await createSecretVersion({
-      okmsId,
-      path: decodeSecretPath(secretPath),
-      data: JSON.parse(data.data),
-      // Add current version to cas parameter if cas is required
-      cas: secretConfig.casRequired.value
-        ? secret?.metadata?.currentVersion
-        : undefined,
-    });
-    onDismiss();
+    try {
+      await createSecretVersion({
+        okmsId,
+        path: decodeSecretPath(secretPath),
+        data: JSON.parse(data.data),
+        cas: addCurrentVersionToCas(
+          secret?.metadata?.currentVersion,
+          secretConfig.casRequired.value,
+        ),
+      });
+      onDismiss();
+    } catch {
+      // Error is handled by the useCreateSecretVersion hook
+    }
   };
 
   return (
@@ -130,7 +136,7 @@ export default function CreateVersionDrawerPage() {
       heading={t('add_new_version')}
       onDismiss={handleDismiss}
       isLoading={isPending}
-      data-testid="create-version-drawer"
+      data-testid={CREATE_VERSION_DRAWER_TEST_IDS.drawer}
     >
       <Suspense>
         {error && (

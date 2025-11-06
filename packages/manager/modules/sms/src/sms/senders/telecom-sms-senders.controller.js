@@ -27,6 +27,7 @@ export default class {
     OvhApiSms,
     TucToast,
     TucToastError,
+    smsFeatureAvailability,
   ) {
     this.$stateParams = $stateParams;
     this.$q = $q;
@@ -42,6 +43,7 @@ export default class {
     };
     this.TucToast = TucToast;
     this.TucToastError = TucToastError;
+    this.smsFeatureAvailability = smsFeatureAvailability;
   }
 
   $onInit() {
@@ -72,7 +74,7 @@ export default class {
           .all(
             map(senders, (sender) => {
               set(sender, 'serviceInfos', null);
-              if (sender.type === 'virtual') {
+              if (['virtual', 'time2chat'].includes(sender.type)) {
                 const number = `00${trimStart(sender.sender, '+')}`;
                 return this.api.sms.virtualNumbers
                   .getVirtualNumbersServiceInfos({ number })
@@ -291,7 +293,7 @@ export default class {
     if (sender.status === 'waitingValidation') {
       return false;
     }
-    return sender.type === 'virtual'
+    return ['virtual', 'time2chat'].includes(sender.type)
       ? sender.serviceInfos.status !== 'expired'
       : true;
   }
@@ -303,7 +305,7 @@ export default class {
    */
   static canTerminate(sender) {
     return (
-      sender.type === 'virtual' &&
+      ['virtual', 'time2chat'].includes(sender.type) &&
       sender.serviceInfos.canDeleteAtExpiration &&
       sender.serviceInfos.status !== 'expired'
     );

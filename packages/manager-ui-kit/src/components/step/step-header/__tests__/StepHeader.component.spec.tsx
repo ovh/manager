@@ -1,11 +1,15 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import * as React from 'react';
+
+import { fireEvent, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
+
+import { render } from '@/commons/tests-utils/Render.utils';
+import { StepProps } from '@/components';
 
 import { StepContext } from '../../StepContext';
 import { StepHeader } from '../StepHeader.component';
 
-// Mock the dependencies
-vi.mock('../useStepContext', () => ({
+vi.mock('../../useStepContext', () => ({
   useStepContext: vi.fn(),
 }));
 
@@ -21,37 +25,37 @@ describe('StepHeader Component', () => {
     skip: undefined,
   };
 
-  const renderWithStepContext = (value) =>
-    render(
-      <StepContext.Provider value={value}>
-        <StepHeader />
-      </StepContext.Provider>,
-    );
-
   beforeEach(() => {
     mockEditAction.mockClear();
   });
 
+  const renderStepHeaderWithContext = (value: Partial<StepProps>) =>
+    render(
+      <StepContext.Provider value={value as StepProps}>
+        <StepHeader />
+      </StepContext.Provider>,
+    );
+
   it('renders the title correctly', () => {
-    renderWithStepContext(defaultContext);
+    renderStepHeaderWithContext(defaultContext);
     expect(screen.getByText('Test Title')).toBeInTheDocument();
     expect(screen.queryByTestId('edit')).not.toBeInTheDocument();
   });
 
   it('displays skip hint when provided', () => {
-    renderWithStepContext({
+    renderStepHeaderWithContext({
       ...defaultContext,
-      skip: { hint: 'This is optional' },
+      skip: {
+        hint: 'This is optional',
+        action: () => {},
+        label: '',
+      },
     });
     expect(screen.getByText('This is optional')).toBeInTheDocument();
   });
 
-  it('does not render edit button if edit is not defined', () => {
-    renderWithStepContext(<StepHeader />);
-  });
-
   it('renders edit button when edit.action and locked are truthy', () => {
-    renderWithStepContext({
+    renderStepHeaderWithContext({
       ...defaultContext,
       edit: {
         action: mockEditAction,
@@ -65,7 +69,7 @@ describe('StepHeader Component', () => {
   });
 
   it('disables edit button when edit.disabled is true', () => {
-    renderWithStepContext({
+    renderStepHeaderWithContext({
       ...defaultContext,
       edit: {
         action: mockEditAction,
@@ -77,8 +81,8 @@ describe('StepHeader Component', () => {
     expect(screen.getByTestId('edit-cta')).toBeDisabled();
   });
 
-  it('calls edit.action when edit button is clicked and not disabled', async () => {
-    renderWithStepContext({
+  it('calls edit.action when edit button is clicked and not disabled', () => {
+    renderStepHeaderWithContext({
       ...defaultContext,
       edit: {
         action: mockEditAction,
@@ -87,12 +91,12 @@ describe('StepHeader Component', () => {
       },
       locked: true,
     });
-    await fireEvent.click(screen.getByTestId('edit-cta'));
+    fireEvent.click(screen.getByTestId('edit-cta'));
     expect(mockEditAction).toHaveBeenCalledWith('step-1');
   });
 
   it('applies correct styles when step is open', () => {
-    renderWithStepContext({
+    renderStepHeaderWithContext({
       ...defaultContext,
       open: true,
     });
@@ -101,7 +105,7 @@ describe('StepHeader Component', () => {
   });
 
   it('applies correct styles when step is closed', () => {
-    renderWithStepContext({
+    renderStepHeaderWithContext({
       ...defaultContext,
     });
     const titleElement = screen.getByText('Test Title').parentElement;

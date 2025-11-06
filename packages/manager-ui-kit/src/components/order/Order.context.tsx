@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useMemo, useState } from 'react';
 
-import { TOrderContext } from './Order.type';
+import { TOrderContext } from './Order.props';
 
 const OrderContext = createContext<TOrderContext>({} as TOrderContext);
 

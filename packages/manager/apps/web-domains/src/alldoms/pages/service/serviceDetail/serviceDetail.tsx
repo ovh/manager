@@ -24,9 +24,9 @@ import {
   TEXT_PRESET,
   Link as OdsLink,
 } from '@ovhcloud/ods-react';
-import ServiceDetailDomains from '@/alldoms/components/ServiceDetail/ServiceDetailDomains';
-import ServiceDetailInformation from '@/alldoms/components/ServiceDetail/ServiceDetailInformation';
-import ServiceDetailSubscribing from '@/alldoms/components/ServiceDetail/ServiceDetailSubscribing/ServiceDetailSubscribing.component';
+import ServiceDetailDomains from '@/alldoms/components/serviceDetail/ServiceDetailDomains';
+import ServiceDetailInformation from '@/alldoms/components/serviceDetail/ServiceDetailInformation';
+import ServiceDetailSubscribing from '@/alldoms/components/serviceDetail/serviceDetailSubscribing/ServiceDetailSubscribing.component';
 import { useGetAllDom } from '@/alldoms/hooks/data/useGetAllDom';
 import Loading from '@/alldoms/components/loading/Loading';
 import { CANCEL_TERMINATE_URL } from '@/alldoms/constants';

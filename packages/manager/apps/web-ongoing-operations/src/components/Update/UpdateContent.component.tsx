@@ -1,5 +1,5 @@
 import React from 'react';
-import { TArgument, UploadedArgumentFiles } from '@/types';
+import { TArgument } from '@/types';
 import UpdateMeContactComponent from '@/components/Update/Content/Update.Me.Contact.component';
 import UpdateMeDocumentComponent from '@/components/Update/Content/Update.Me.Document';
 import UpdateMeComponent from '@/components/Update/Content/Update.Me.component';

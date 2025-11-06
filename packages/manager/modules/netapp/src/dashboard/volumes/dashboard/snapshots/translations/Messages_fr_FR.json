@@ -35,5 +35,6 @@
   "netapp_volumes_snapshots_policies_apply_error": "La règle n'a pas pu être appliquée. Merci d'essayer ultérieurement.",
   "netapp_volumes_snapshots_hold_action_doing": "La sauvegarde de votre snapshot a bien été prise en compte et sera effective dans quelques instants.",
   "netapp_volumes_snapshots_hold_action_success": "La sauvegarde de votre snapshot a été réalisé avec succès.",
-  "netapp_volumes_snapshots_hold_action_error": "Un problème est survenu lors de la sauvegarde de votre Snapshot"
+  "netapp_volumes_snapshots_hold_action_error": "Un problème est survenu lors de la sauvegarde de votre Snapshot",
+  "netapp_volumes_snapshots_size": "Taille"
 }

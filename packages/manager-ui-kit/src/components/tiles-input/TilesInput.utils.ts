@@ -5,14 +5,13 @@ function getItemsByKey<I, U>(items: I[], cb: (item: I) => U): I[] {
     return [];
   }
 
-  return [
-    ...items
-      .reduce((map: Map<U, I>, item: I) => {
-        if (!map.has(cb(item))) map.set(cb(item), item);
-        return map;
-      }, new Map())
-      .values(),
-  ];
+  const map = items.reduce<Map<U, I>>((acc, item) => {
+    const key = cb(item);
+    if (!acc.has(key)) acc.set(key, item);
+    return acc;
+  }, new Map<U, I>());
+
+  return Array.from(map.values());
 }
 
 function stackItems<I, U>(items: I[], cb?: (item: I) => U): Map<U | undefined, I[]> {
@@ -22,15 +21,11 @@ function stackItems<I, U>(items: I[], cb?: (item: I) => U): Map<U | undefined, I
     const uniques = getItemsByKey<I, U>(items, cb);
     uniques.forEach((unique) => {
       const key = cb(unique);
-      stacks.set(key, []);
-      const stackItem = stacks.get(key);
-      if (stackItem && items) {
-        const filteredItems = items.filter((item) => item && isEqual(key, cb(item)));
-        stackItem.push(...filteredItems);
-      }
+      const filteredItems = items.filter((item) => isEqual(key, cb(item)));
+      stacks.set(key, filteredItems);
     });
   } else {
-    stacks.set(undefined, items || []);
+    stacks.set(undefined, items ?? []);
   }
 
   return stacks;

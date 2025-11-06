@@ -51,16 +51,10 @@
   "sms_sms_compose_differed_period_date_placeholder": "Wybierz datę wysyłki",
   "sms_sms_compose_differed_period_date_error_required": "Wypełnienie pola \"Data” jest obowiązkowe.",
   "sms_sms_compose_differed_period_time_label": "Godzina:",
-  "sms_sms_compose_class_label": "Typ wiadomości SMS",
-  "sms_sms_compose_class_flash": "Flash",
-  "sms_sms_compose_class_phoneDisplay": "Standard",
-  "sms_sms_compose_class_sim": "SIM",
-  "sms_sms_compose_class_info_flash": "SMS Flash wyświetla się bezpośrednio na ekranie telefonu.",
-  "sms_sms_compose_class_info_phoneDisplay": "SMS Standard to najczęściej używana opcja.",
-  "sms_sms_compose_class_info_sim": "SMS SIM jest automatycznie zapisywany na karcie SIM telefonu.",
   "sms_sms_compose_send": "Wyślij",
   "sms_sms_compose_status_success": "SMS został wysłany",
   "sms_sms_compose_status_failed": "Wystąpił błąd podczas wysyłki SMS",
+  "sms_sms_compose_status_invalid_receiver": "Nie można było wysłać SMS-a na następujący numer: {{invalidReceivers}} (nieprawidłowy adres odbiorcy)",
   "sms_sms_compose_open_new_tab": "Nowe okno",
   "sms_sms_compose_tips_title": "Wskazówki",
   "sms_sms_compose_tip_compose_title": "Redagowanie wiadomości SMS",
@@ -119,6 +113,5 @@
   "sms_sms_compose_no_commercial_clause_label": "Oświadczam, że SMS nie ma charakteru informacji handlowej.",
   "sms_credit_balance": "Saldo",
   "sms_credit_remaining_sms": "Liczba pozostałych SMS-ów",
-  "sms_credit_manage_credits": "Zarządzanie kredytami SMS",
-  "sms_sms_compose_status_invalid_receiver": "Nie można było wysłać SMS-a na następujący numer: {{invalidReceivers}} (nieprawidłowy adres odbiorcy)"
+  "sms_credit_manage_credits": "Zarządzanie kredytami SMS"
 }

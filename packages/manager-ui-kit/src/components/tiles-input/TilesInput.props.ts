@@ -1,3 +1,5 @@
+import { JSX } from 'react';
+
 export type TilesInputProps<T, S = void> = {
   id?: (() => string) | string;
   items: T[];

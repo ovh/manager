@@ -31,5 +31,5 @@
   "pci_instances_dashboard_backup_title": "Zarządzanie kopią zapasową",
   "pci_instances_dashboard_backup_number_of_backups": "Liczba kopii zapasowych instancji",
   "pci_instances_dashboard_backup_last_updated_backups": "Data ostatniej kopii zapasowej",
-  "pci_instances_dashboard_tab_vnc_disabled_text": "Stan tej instancji nie pozwala na połączenie przez konsolę VNC."
+  "pci_instances_dashboard_tab_vnc_disabled_text": "Stan tej instancji nie pozwala na połączenie poprzez konsolę VNC"
 }

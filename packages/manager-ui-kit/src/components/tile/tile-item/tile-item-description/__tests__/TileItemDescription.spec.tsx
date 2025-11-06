@@ -3,10 +3,8 @@ import { describe, expect, it, vitest } from 'vitest';
 
 import { TileItemDescription } from '../TileItemDescription.component';
 
-// Since HR element does not specific text or role, it's hard to get this element.
-// So mocking the ODS divider with custom testid to easily get the element
 vitest.mock('../../../tile-divider/TileDivider.component', () => ({
-  TileDivider: () => <hr data-testid="tile-divider" role="separator" />,
+  TileDivider: () => <hr data-testid="tile-divider" />,
 }));
 
 describe('TileItemDescription', () => {
@@ -29,10 +27,10 @@ describe('TileItemDescription', () => {
 
   it('should not render description when not provided and renders divider by default', () => {
     render(<TileItemDescription />);
-    const dd = screen.getByRole('definition');
-    expect(dd.getElementsByTagName('span').length).toBe(0);
-    expect(dd.children.length).toBeLessThanOrEqual(1);
-    expect(dd.children[0].tagName).toBe('HR');
+    const tileDefinition = screen.getByRole('definition');
+    expect(tileDefinition.getElementsByTagName('span').length).toBe(0);
+    expect(tileDefinition.children?.length).toBeLessThanOrEqual(1);
+    expect(tileDefinition.children?.[0]?.tagName).toBe('HR');
   });
 
   it('should render children if provided', () => {

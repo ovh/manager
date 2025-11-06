@@ -1,0 +1,17 @@
+{
+  "dedicatedCloud_tab_drp": "Plan Awaryjny (PRA)",
+  "dedicatedCloud_datacenter_drp_subtitle": "Utwórz swój plan awaryjny z Zerto",
+  "dedicatedCloud_datacenter_drp_details_EPCC": "Zabezpiecz ochronę swojego systemu informacyjnego, konfigurując swój plan awaryjny. Przełącz swoją infrastrukturę jednym kliknięciem i w kilka minut w przypadku awarii lub przerwy w działaniu. Uwaga, musisz posiadać drugi Private Cloud przed aktywacją tej opcji.",
+  "dedicatedCloud_datacenter_drp_warning": "Twoje obecne centrum danych nie ma żadnego hosta. Proszę zamówić jeden, aby użyć tego centrum danych dla swojego PRA, lub wybierz centrum danych z co najmniej jednym hostem.",
+  "dedicatedCloud_tab_drp_choice_plan_type": "Wybierz pożądany typ PRA:",
+  "dedicatedCloud_datacenter_ovh_choice_EPCC": "Między dwoma Private Cloud OVH",
+  "dedicatedCloud_datacenter_onPremise_choice_EPCC": "Między twoją infrastrukturą a Private Cloud OVH",
+  "dedicatedCloud_datacenter_activate_zerto_drp": "Włącz Zerto DRP",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_success": "Twój PRA Zerto jest w trakcie usuwania. Operacja zajmie kilka minut",
+  "dedicatedCloud_datacenter_drp_get_state_error": "Wystąpił błąd podczas pobierania informacji o twoim PRA.",
+  "dedicatedCloud_datacenter_install_plan": "Instaluj",
+  "dedicatedCloud_datacenter_install_in_error": "Wystąpił błąd podczas instalacji planu. Proszę skontaktować się z pomocą techniczną",
+  "dedicatedCloud_datacenter_drp_details_MBM": "Zabezpiecz ochronę swojego systemu informacyjnego, konfigurując swój plan awaryjny. Przełącz swoją infrastrukturę jednym kliknięciem i w kilka minut w przypadku awarii lub przerwy w działaniu. Uwaga, musisz posiadać drugi Managed Bare Metal przed aktywacją tej opcji.",
+  "dedicatedCloud_datacenter_ovh_choice_MBM": "Między dwoma Managed Bare Metal",
+  "dedicatedCloud_datacenter_onPremise_choice_MBM": "Między twoją infrastrukturą a Managed Bare Metal"
+}

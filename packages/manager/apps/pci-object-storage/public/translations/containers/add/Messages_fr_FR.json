@@ -81,10 +81,6 @@
   "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_standard_infrequent_access": "Pour obtenir des détails sur les prix pour chaque classe de stockage et mode de déploiement, ",
   "pci_projects_project_storages_containers_add_deployment_mode_price_explanation_link_standard_infrequent_access": "voir la page des prix.",
   "pci_projects_project_storages_containers_offsite_replication_location_choice_title": "Sélection de la région de destination ",
-  "pci_projects_project_storages_containers_offsite_replication_location_auto": "Automatique",
-  "pci_projects_project_storages_containers_offsite_replication_location_manual": "Manuelle",
   "pci_projects_project_storages_containers_offsite_replication_location_select_label": "Sélectionner une localisation",
-  "pci_projects_project_storages_containers_offsite_replication_location_select_placeholder": "Rechercher une localisation",
-  "pci_projects_project_storages_containers_offsite_replication_location_auto_description": "Je laisse OVHcloud choisir la région de destination.",
-  "pci_projects_project_storages_containers_offsite_replication_location_manual_description": "Je choisis la région de destination parmi celles disponibles."
+  "pci_projects_project_storages_containers_offsite_replication_location_select_placeholder": "Rechercher une localisation"
 }

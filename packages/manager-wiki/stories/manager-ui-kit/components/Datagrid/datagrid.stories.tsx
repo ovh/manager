@@ -54,28 +54,40 @@ const columns = [
 
 const data = [
   {
+    id: 'fjejfoirejfoierjfoier-id-1',
     person: 'John Doe',
     mostInterestIn: '	HTML tables',
     age: 25,
   },
   {
+    id: 'zfdfdsdsfdsfds-id-2',
     person: 'Jane Doe',
     mostInterestIn: 'Web accessibility',
     age: 26,
   },
   {
+    id: 'fdfdsds-id-3',
     person: 'Sarah',
     mostInterestIn: 'JavaScript frameworks',
     age: 25,
   },
   {
+    id: 'fdfdsds-id-4',
     person: 'Karen',
     mostInterestIn: '	Web performance',
     age: 26,
   },
 ];
 
-const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
+type DatagridStoryData = {
+  id: string;
+  person: string;
+  mostInterestIn: string;
+  age: number;
+  subRows?: DatagridStoryData[];
+};
+
+const DatagridStory = (args: DatagridProps<DatagridStoryData>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [searchInput, setSearchInput] = useState('');
   const sortAttrs = {
@@ -89,6 +101,7 @@ const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
   const fetchAllPages = () => {
     const newData = Array.from({ length: 10000 }, (_, index) => ({
       ...items[index],
+      id: `person-${items.length + index}`,
       person: `Most interest in ${items.length + index}`,
       mostInterestIn: `Most interest in ${items.length + index}`,
       age: index + 1,
@@ -148,6 +161,7 @@ const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
         ...col,
         ...('subRows' in args && {
           subRows: Array.from({ length: 5 }, (_, index) => ({
+            id: `sub-${indexItems}-${index}`,
             person: `Most interest in ${index + (indexItems * 2 + 888888)}`,
             mostInterestIn: `Most interest in ${index +
               (indexItems * 2 + 888888)}`,
@@ -201,6 +215,7 @@ const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
               setItems([
                 ...items,
                 {
+                  id: `person-${items.length + 1}`,
                   person: `Person ${items.length + 1}`,
                   mostInterestIn: `Most interest in ${items.length + 1}`,
                   age: items.length + 1,
@@ -243,6 +258,12 @@ const DatagridStory = (args: DatagridProps<Record<string, unknown>>) => {
           },
         })}
       />
+      { Object.keys(rowSelection)?.length > 0 && (
+        <div className="p-4">
+          <h3>Row Selection</h3>
+          <div className="bg-gray-100 p-2 rounded-md">{JSON.stringify(rowSelection)}</div>
+        </div>
+      )}
     </>
   );
 };

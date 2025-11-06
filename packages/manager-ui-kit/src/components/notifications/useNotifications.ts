@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import { create } from 'zustand';
 
-import { NotificationState, NotificationType } from './Notifications.type';
+import { NotificationState, NotificationType } from './Notifications.props';
 
 export const NOTIFICATION_MINIMAL_DISPLAY_TIME = 1000;
 

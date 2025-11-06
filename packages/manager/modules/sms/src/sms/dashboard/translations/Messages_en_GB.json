@@ -21,5 +21,6 @@
   "sms_statistics_delivered_number": "Number of SMS delivered",
   "sms_statistics_stop_subscribe_number": "Number of unsubscriptions",
   "sms_actions_credit_transfer": "Transfer credits",
-  "sms_actions_smpp_parameter": "Configure my SMPP"
+  "sms_actions_smpp_parameter": "Configure my SMPP",
+  "sms_actions_order_time2chat": "Order a Time2Chat number"
 }

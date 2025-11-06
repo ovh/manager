@@ -31,5 +31,5 @@
   "pci_instances_dashboard_backup_title": "Gestione del backup",
   "pci_instances_dashboard_backup_number_of_backups": "Numero di backup dell'istanza",
   "pci_instances_dashboard_backup_last_updated_backups": "Data dell'ultimo backup",
-  "pci_instances_dashboard_tab_vnc_disabled_text": "Lo stato di questa istanza non consente la connessione tramite la console VNC"
+  "pci_instances_dashboard_tab_vnc_disabled_text": "Lo stato dell’istanza non permette la connessione tramite console VNC"
 }

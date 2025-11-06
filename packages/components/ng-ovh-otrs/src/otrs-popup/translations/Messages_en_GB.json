@@ -122,7 +122,6 @@
   "otrs_service_type_webcoach": "Website Coach",
   "otrs_service_type_other": "Other request",
   "otrs_service_type_choice": "Type of service:",
-  "otrs_service_type_dedicated_anthos": "Anthos",
   "otrs_service_type_license_redhat": "Red Hat licence",
   "otrs_service_type_nutanix": "Nutanix",
   "otrs_universe_choice": "Universe:",

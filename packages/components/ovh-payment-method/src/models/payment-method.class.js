@@ -1,7 +1,6 @@
-import { isNull } from 'lodash-es';
-
 import { PaymentMethodType } from './payment-method-type.class';
 import { PAYMENT_METHOD_STATUS_ENUM } from '../enums';
+import { isNull } from '../utils';
 
 /**
  *  Describe a payment method object.

@@ -1,8 +1,19 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { mockHeaderGroups, mockOnSortChange } from '../../../__mocks__';
-import { TableHeaderContent } from '../table-header-content/TableHeaderContent.component';
+import { TableHeaderContent } from '@/components/datagrid/table/table-head';
+
+import {
+  mockHeaderGroups,
+  mockHeaderGroupsEmptySort,
+  mockHeaderGroupsManualSort,
+  mockHeaderGroupsMultiSort,
+  mockHeaderGroupsNoSort,
+  mockHeaderGroupsWithAscSort,
+  mockHeaderGroupsWithDescSort,
+  mockHeaderGroupsWithSorting,
+  mockOnSortChange,
+} from '../../../__mocks__';
 
 describe('TableHead', () => {
   it('should render all headers correctly', () => {
@@ -32,43 +43,11 @@ describe('TableHead', () => {
 
   it('should call onSortChange when header is clicked', () => {
     const mockToggleSorting = vi.fn();
-    const mockHeaderGroupsWithSorting: any[] = [
-      {
-        id: 'header-group-0',
-        depth: 0,
-        headers: [
-          {
-            id: 'name',
-            column: {
-              getSize: () => 150,
-              columnDef: { minSize: 20, maxSize: 'auto', header: 'Name' },
-              getCanSort: () => true,
-              getToggleSortingHandler: () => mockToggleSorting,
-              getIsSorted: () => false,
-            },
-            isPlaceholder: false,
-            getContext: () => ({}),
-          },
-          {
-            id: 'age',
-            column: {
-              getSize: () => 150,
-              columnDef: { minSize: 20, maxSize: 'auto', header: 'Age' },
-              getCanSort: () => true,
-              getToggleSortingHandler: () => vi.fn(),
-              getIsSorted: () => false,
-            },
-            isPlaceholder: false,
-            getContext: () => ({}),
-          },
-        ],
-      },
-    ];
 
     render(
       <table>
         <TableHeaderContent
-          headerGroups={mockHeaderGroupsWithSorting}
+          headerGroups={mockHeaderGroupsWithSorting(mockToggleSorting)}
           enableSorting={true}
           onSortChange={mockOnSortChange}
         />
@@ -82,43 +61,11 @@ describe('TableHead', () => {
 
   it('should toggle sort direction on second click', () => {
     const mockToggleSorting = vi.fn();
-    const mockHeaderGroupsWithAscSort: any[] = [
-      {
-        id: 'header-group-0',
-        depth: 0,
-        headers: [
-          {
-            id: 'name',
-            column: {
-              getSize: () => 150,
-              columnDef: { minSize: 20, maxSize: 'auto', header: 'Name' },
-              getCanSort: () => true,
-              getToggleSortingHandler: () => mockToggleSorting,
-              getIsSorted: () => 'asc',
-            },
-            isPlaceholder: false,
-            getContext: () => ({}),
-          },
-          {
-            id: 'age',
-            column: {
-              getSize: () => 150,
-              columnDef: { minSize: 20, maxSize: 'auto', header: 'Age' },
-              getCanSort: () => true,
-              getToggleSortingHandler: () => vi.fn(),
-              getIsSorted: () => false,
-            },
-            isPlaceholder: false,
-            getContext: () => ({}),
-          },
-        ],
-      },
-    ];
 
     render(
       <table>
         <TableHeaderContent
-          headerGroups={mockHeaderGroupsWithAscSort}
+          headerGroups={mockHeaderGroupsWithAscSort(mockToggleSorting)}
           enableSorting={true}
           onSortChange={mockOnSortChange}
         />
@@ -132,43 +79,11 @@ describe('TableHead', () => {
 
   it('should handle multiple column sorting', () => {
     const mockToggleSortingAge = vi.fn();
-    const mockHeaderGroupsMultiSort: any[] = [
-      {
-        id: 'header-group-0',
-        depth: 0,
-        headers: [
-          {
-            id: 'name',
-            column: {
-              getSize: () => 150,
-              columnDef: { minSize: 20, maxSize: 'auto', header: 'Name' },
-              getCanSort: () => true,
-              getToggleSortingHandler: () => vi.fn(),
-              getIsSorted: () => 'asc',
-            },
-            isPlaceholder: false,
-            getContext: () => ({}),
-          },
-          {
-            id: 'age',
-            column: {
-              getSize: () => 150,
-              columnDef: { minSize: 20, maxSize: 'auto', header: 'Age' },
-              getCanSort: () => true,
-              getToggleSortingHandler: () => mockToggleSortingAge,
-              getIsSorted: () => false,
-            },
-            isPlaceholder: false,
-            getContext: () => ({}),
-          },
-        ],
-      },
-    ];
 
     render(
       <table>
         <TableHeaderContent
-          headerGroups={mockHeaderGroupsMultiSort}
+          headerGroups={mockHeaderGroupsMultiSort(mockToggleSortingAge)}
           enableSorting={true}
           onSortChange={mockOnSortChange}
         />
@@ -181,39 +96,6 @@ describe('TableHead', () => {
   });
 
   it('should render with initial sorting state', () => {
-    const mockHeaderGroupsWithDescSort: any[] = [
-      {
-        id: 'header-group-0',
-        depth: 0,
-        headers: [
-          {
-            id: 'name',
-            column: {
-              getSize: () => 150,
-              columnDef: { minSize: 20, maxSize: 'auto', header: 'Name' },
-              getCanSort: () => true,
-              getToggleSortingHandler: () => vi.fn(),
-              getIsSorted: () => false,
-            },
-            isPlaceholder: false,
-            getContext: () => ({}),
-          },
-          {
-            id: 'age',
-            column: {
-              getSize: () => 150,
-              columnDef: { minSize: 20, maxSize: 'auto', header: 'Age' },
-              getCanSort: () => true,
-              getToggleSortingHandler: () => vi.fn(),
-              getIsSorted: () => 'desc',
-            },
-            isPlaceholder: false,
-            getContext: () => ({}),
-          },
-        ],
-      },
-    ];
-
     render(
       <table>
         <TableHeaderContent
@@ -230,43 +112,11 @@ describe('TableHead', () => {
 
   it('should handle empty sorting array', () => {
     const mockToggleSorting = vi.fn();
-    const mockHeaderGroupsEmptySort: any[] = [
-      {
-        id: 'header-group-0',
-        depth: 0,
-        headers: [
-          {
-            id: 'name',
-            column: {
-              getSize: () => 150,
-              columnDef: { minSize: 20, maxSize: 'auto', header: 'Name' },
-              getCanSort: () => true,
-              getToggleSortingHandler: () => mockToggleSorting,
-              getIsSorted: () => false,
-            },
-            isPlaceholder: false,
-            getContext: () => ({}),
-          },
-          {
-            id: 'age',
-            column: {
-              getSize: () => 150,
-              columnDef: { minSize: 20, maxSize: 'auto', header: 'Age' },
-              getCanSort: () => true,
-              getToggleSortingHandler: () => vi.fn(),
-              getIsSorted: () => false,
-            },
-            isPlaceholder: false,
-            getContext: () => ({}),
-          },
-        ],
-      },
-    ];
 
     render(
       <table>
         <TableHeaderContent
-          headerGroups={mockHeaderGroupsEmptySort}
+          headerGroups={mockHeaderGroupsEmptySort(mockToggleSorting)}
           enableSorting={true}
           onSortChange={mockOnSortChange}
         />
@@ -280,43 +130,11 @@ describe('TableHead', () => {
 
   it('should handle undefined sorting prop', () => {
     const mockToggleSorting = vi.fn();
-    const mockHeaderGroupsNoSort: any[] = [
-      {
-        id: 'header-group-0',
-        depth: 0,
-        headers: [
-          {
-            id: 'name',
-            column: {
-              getSize: () => 150,
-              columnDef: { minSize: 20, maxSize: 'auto', header: 'Name' },
-              getCanSort: () => true,
-              getToggleSortingHandler: () => mockToggleSorting,
-              getIsSorted: () => false,
-            },
-            isPlaceholder: false,
-            getContext: () => ({}),
-          },
-          {
-            id: 'age',
-            column: {
-              getSize: () => 150,
-              columnDef: { minSize: 20, maxSize: 'auto', header: 'Age' },
-              getCanSort: () => true,
-              getToggleSortingHandler: () => vi.fn(),
-              getIsSorted: () => false,
-            },
-            isPlaceholder: false,
-            getContext: () => ({}),
-          },
-        ],
-      },
-    ];
 
     render(
       <table>
         <TableHeaderContent
-          headerGroups={mockHeaderGroupsNoSort}
+          headerGroups={mockHeaderGroupsNoSort(mockToggleSorting)}
           enableSorting={true}
           onSortChange={mockOnSortChange}
         />
@@ -330,43 +148,11 @@ describe('TableHead', () => {
 
   it('should handle manual sorting mode', () => {
     const mockToggleSorting = vi.fn();
-    const mockHeaderGroupsManualSort: any[] = [
-      {
-        id: 'header-group-0',
-        depth: 0,
-        headers: [
-          {
-            id: 'name',
-            column: {
-              getSize: () => 150,
-              columnDef: { minSize: 20, maxSize: 'auto', header: 'Name' },
-              getCanSort: () => true,
-              getToggleSortingHandler: () => mockToggleSorting,
-              getIsSorted: () => false,
-            },
-            isPlaceholder: false,
-            getContext: () => ({}),
-          },
-          {
-            id: 'age',
-            column: {
-              getSize: () => 150,
-              columnDef: { minSize: 20, maxSize: 'auto', header: 'Age' },
-              getCanSort: () => true,
-              getToggleSortingHandler: () => vi.fn(),
-              getIsSorted: () => false,
-            },
-            isPlaceholder: false,
-            getContext: () => ({}),
-          },
-        ],
-      },
-    ];
 
     render(
       <table>
         <TableHeaderContent
-          headerGroups={mockHeaderGroupsManualSort}
+          headerGroups={mockHeaderGroupsManualSort(mockToggleSorting)}
           enableSorting={true}
           onSortChange={mockOnSortChange}
         />

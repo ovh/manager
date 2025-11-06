@@ -1,9 +1,9 @@
 import { vi } from 'vitest';
 
-import { render } from '@/setupTest';
+import { render } from '@/commons/tests-utils/Render.utils';
+import { GuideMenuItem } from '@/components/guide-menu/GuideMenu.props';
 
 import { GuideMenu } from '../GuideMenu.component';
-import { GuideMenuItem } from '../GuideMenu.props';
 
 describe('GuideMenu', () => {
   const mockItems: GuideMenuItem[] = [
@@ -49,11 +49,9 @@ describe('GuideMenu', () => {
     });
 
     it('should match snapshot with single item', () => {
-      const singleItemProps = {
-        items: [mockItems[0]],
-        isLoading: false,
-      };
-      const { container } = render(<GuideMenu {...singleItemProps} />);
+      const { container } = render(
+        <GuideMenu items={[mockItems[0]] as GuideMenuItem[]} isLoading={false} />,
+      );
       expect(container).toMatchSnapshot();
     });
   });

@@ -2,8 +2,8 @@ import angular from 'angular';
 
 import associateIpBloc from './associate-ip-bloc';
 import dashboardComponent from '../../components/dedicated-cloud/dashboard';
-import deleteDrp from './deleteDrp';
-import drpDatacenterSelection from './drpDatacenterSelection';
+import deleteZerto from './deleteZerto';
+import zertoDatacenterSelection from './zertoDatacenterSelection';
 import mailingListSubscribe from './mailing-list/subscribe';
 import routing from './dashboard.routing';
 import securityOptions from './security-options';
@@ -21,8 +21,8 @@ angular
   .module(moduleName, [
     associateIpBloc,
     dashboardComponent,
-    deleteDrp,
-    drpDatacenterSelection,
+    deleteZerto,
+    zertoDatacenterSelection,
     mailingListSubscribe,
     securityOptions,
     servicePackUpgrade,

@@ -1,0 +1,24 @@
+import angular from 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
+
+const moduleName = 'managedBaremetalDatacenterZertoOvhSecondPccStepLazyloading';
+
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state(
+      'app.managedBaremetal.details.datacenters.datacenter.zerto.ovh.secondPccStep.**',
+      {
+        url: '/secondPcc',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+          return import('./secondPccStep.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
+        },
+      },
+    );
+  },
+);
+
+export default moduleName;

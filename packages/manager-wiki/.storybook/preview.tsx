@@ -5,11 +5,10 @@ import { initialize, mswLoader } from 'msw-storybook-addon';
 import { Preview } from '@storybook/react';
 import './storybook.css';
 import '@ovh-ux/muk/dist/style.css';
-import '../../manager-ui-kit/src';
 
 import i18n from './i18n';
 import TechnicalInformation from './technical-information.mdx';
-import { normalizeLanguageCode } from '../../manager-ui-kit/src/utils/translation-helper';
+import { normalizeLanguageCode } from '../../manager-ui-kit/src/commons';
 import { handlers } from './msw-handlers';
 
 const mockQueryClient = new QueryClient({

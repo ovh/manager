@@ -1,9 +1,9 @@
 import { act, fireEvent } from '@testing-library/react';
 import { vitest } from 'vitest';
 
-import { render } from '@/setupTest';
+import { render } from '@/commons/tests-utils/Render.utils';
+import { FilterList } from '@/components/filters/filter-list/FilterList.component';
 
-import { FilterList } from '../FilterList.component';
 import { FilterListProps } from '../FilterList.props';
 
 const renderComponent = (props: FilterListProps) => {

@@ -201,7 +201,7 @@
   "exchange_tab_ALIAS_state_TASK_ON_DOING": "En proceso",
   "exchange_tab_ALIAS_state_TASK_ON_DOING_tooltip": "Hay una tarea que afecta a ese alias planificada o realizándose",
   "exchange_tab_ALIAS_add_button": "Añadir un alias",
-  "exchange_tab_ALIAS_creation_quota_description": "El límite debe estar entre <strong>{0} {1}</strong> y <strong>{2} {3}</strong>.",
+  "exchange_tab_ALIAS_creation_quota_description": "La cuota debe estar comprendida entre <strong>{0} {1}</strong> y <strong>{2} {3}</strong>. Ya ha asignado <strong>{4} {5}</strong> de los <strong>{6} {7}</strong> disponibles.",
   "exchange_tab_ALIAS_creation_error_no_local_part": "Indique una parte local en la dirección de correo (antes de la arroba). ",
   "exchange_tab_ALIAS_creation_error_regex": "La parte local (antes de la arroba) debe incluir caracteres alfanuméricos o los caracteres <strong>.-_+</strong> (por ejemplo, email-3.direccion+abc).",
   "exchange_tab_ALIAS_taken_error_message": "La dirección de correo ya existe.",
@@ -1669,5 +1669,7 @@
   "exchange_delete_mfa_success": "Se ha eliminado la doble autenticación.",
   "exchange_delete_mfa_error": "Se ha producido un error al eliminar la doble autenticación: {{error}}",
   "exchange_tab_LOGS": "Logs",
-  "exchange_tab_ACCOUNTS_menu_migrate": "Migrar cuentas"
+  "exchange_tab_ACCOUNTS_menu_migrate": "Migrar cuentas",
+  "exchange_server_commercial_version_SE": "SE",
+  "exchange_tab_ALIAS_creation_quota_tooltip": "Cada cuenta de Exchange adquirida ofrece 5GB de almacenamiento compartido."
 }

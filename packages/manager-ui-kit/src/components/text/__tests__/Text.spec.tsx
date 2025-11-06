@@ -2,13 +2,13 @@ import { screen } from '@testing-library/react';
 import type { MockInstance } from 'vitest';
 import { vitest } from 'vitest';
 
-import { render } from '@/setupTest';
+import { render } from '@/commons/tests-utils/Render.utils';
+import { Text } from '@/components';
+import { useAuthorizationIam } from '@/hooks';
 
-import { useAuthorizationIam } from '../../../hooks/iam';
-import { Text } from '../index';
 import fr_FR from '../translations/Messages_fr_FR.json';
 
-vitest.mock('../../../hooks/iam', () => ({
+vitest.mock('@/hooks/iam/useOvhIam', () => ({
   useAuthorizationIam: vitest.fn().mockReturnValue({
     isAuthorized: true,
     isLoading: false,

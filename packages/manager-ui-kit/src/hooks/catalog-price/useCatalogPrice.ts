@@ -1,8 +1,9 @@
 import { useTranslation } from 'react-i18next';
 
-import { useMe } from '../me';
-import { CatalogPriceOptions } from './useCatalog.props';
-import { ASIA_FORMAT, FRENCH_FORMAT, GERMAN_FORMAT, priceFromUcent } from './useCatalog.utils';
+import { ASIA_FORMAT, FRENCH_FORMAT, GERMAN_FORMAT } from '@/hooks/catalog-price/Catalog.constants';
+import { CatalogPriceOptions } from '@/hooks/catalog-price/Catalog.type';
+import { priceFromUcent } from '@/hooks/catalog-price/Catalog.utils';
+import { useMe } from '@/hooks/me/useMe';
 
 export const useCatalogPrice = (maximumFractionDigits?: number, options?: CatalogPriceOptions) => {
   const { i18n, t } = useTranslation('order-price');

@@ -1,9 +1,12 @@
-import { MutableRefObject } from 'react';
+import { JSX, MutableRefObject } from 'react';
 
-import { ColumnDef, ColumnSort, Row, VisibilityState } from '@tanstack/react-table';
+import type { ColumnDef, ColumnSort, Row, VisibilityState } from '@tanstack/react-table';
 
-import { ExpandedProps, RowSelectionProps } from '../Datagrid.props';
-import { ExpandableRow } from '../useDatagrid.props';
+import {
+  ExpandableRow,
+  ExpandedProps,
+  RowSelectionProps,
+} from '@/components/datagrid/Datagrid.props';
 
 export type TableBuilderProps<T extends ExpandableRow<T>> = {
   columns: readonly ColumnDef<T>[];
@@ -14,11 +17,11 @@ export type TableBuilderProps<T extends ExpandableRow<T>> = {
   hasSortingFeature: boolean;
   manualSorting: boolean;
   onSortChange: (sorting: ColumnSort[]) => void;
-  renderSubComponent: (
+  renderSubComponent?: (
     row: Row<T>,
     headerRefs?: MutableRefObject<Record<string, HTMLTableCellElement>>,
-  ) => JSX.Element;
-  rowSelection: RowSelectionProps<T>;
+  ) => JSX.Element | null;
+  rowSelection?: RowSelectionProps<T> | null;
   setColumnVisibility: (columnVisibility: VisibilityState) => void;
   sorting: ColumnSort[];
 };

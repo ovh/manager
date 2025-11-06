@@ -1,6 +1,6 @@
 import { PropsWithChildren, ReactElement } from 'react';
 
-import { HeaderProps } from './header/Header.props';
+import { HeaderProps } from '@/components/base-layout/header/Header.props';
 
 export type BaseLayoutProps = PropsWithChildren<{
   breadcrumb?: ReactElement;

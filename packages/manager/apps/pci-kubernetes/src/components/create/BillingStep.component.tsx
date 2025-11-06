@@ -42,6 +42,7 @@ const separatorClass = 'h-px my-5 bg-[#85d9fd] border-0';
 export type TBillingStepProps = {
   price: number | null;
   monthlyPrice?: number;
+  selectedAvailabilityZonesNumber?: number | null;
   monthlyBilling: {
     isComingSoon: boolean;
     isChecked: boolean;
@@ -156,7 +157,7 @@ export default function BillingStep(props: TBillingStepProps): ReactElement {
               color={ODS_THEME_COLOR_INTENT.text}
             >
               <strong>{t('node-pool:kube_common_node_pool_estimation_cost_tile')}:</strong>
-              {` ${getFormattedMonthlyCatalogPrice(convertHourlyPriceToMonthly(Number(props.price)))}`}
+              {` ${getFormattedMonthlyCatalogPrice(convertHourlyPriceToMonthly(props.selectedAvailabilityZonesNumber ? props.selectedAvailabilityZonesNumber * Number(props.price) : Number(props.price)))}`}
             </OsdsText>
           </div>
         </OsdsTile>

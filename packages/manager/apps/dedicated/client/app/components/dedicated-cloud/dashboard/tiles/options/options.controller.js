@@ -1,5 +1,7 @@
 import get from 'lodash/get';
 import { SNC_LABEL } from './options.constants';
+import { LABELS } from '../../../dedicatedCloud.constant';
+import { DedicatedCloudDatacenterZertoService } from '../../../datacenter/zerto/dedicatedCloud-datacenter-zerto.service';
 
 export default class Options {
   /* @ngInject */
@@ -8,7 +10,7 @@ export default class Options {
     $translate,
     Alerter,
     atInternet,
-    dedicatedCloudDrp,
+    dedicatedCloudZerto,
     ovhFeatureFlipping,
     ovhManagerPccDashboardOptionsModelBindings,
     ovhManagerPccDashboardOptionsService,
@@ -17,14 +19,16 @@ export default class Options {
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.atInternet = atInternet;
-    this.dedicatedCloudDrp = dedicatedCloudDrp;
+    this.dedicatedCloudZerto = dedicatedCloudZerto;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.ovhManagerPccDashboardOptionsService = ovhManagerPccDashboardOptionsService;
     this.bindings = ovhManagerPccDashboardOptionsModelBindings;
     this.SNC_LABEL = SNC_LABEL;
+    this.LABELS = LABELS;
   }
 
   $onInit() {
+    console.log({ currentZerto: this.currentZerto });
     // used for calculations before passing to bindings
     this.model = {
       currentUser: this.currentUser,
@@ -51,6 +55,9 @@ export default class Options {
         },
       },
     };
+    this.zertoSiteByState = DedicatedCloudDatacenterZertoService.computeZertoSiteByState(
+      this.zertoMultiSites,
+    );
 
     const feature = 'dedicated-cloud:sectorSpecificCompliance';
     return this.$q
@@ -84,18 +91,18 @@ export default class Options {
         this.model.currentUser = this.currentUser;
         this.model.currentService = this.currentService;
 
-        this.model.drp = {
-          currentDrp: this.currentDrp,
+        this.model.zerto = {
+          currentZerto: this.currentZerto,
           datacenterList: this.datacenterList,
-          drpGlobalStatus: this.drpGlobalStatus,
+          zertoGlobalStatus: this.zertoGlobalStatus,
 
-          goToDrp: this.goToDrp,
-          goToDrpDatacenterSelection: this.goToDrpDatacenterSelection,
+          goToZerto: this.goToZerto,
+          goToZertoDatacenterSelection: this.goToZertoDatacenterSelection,
           goToVpnConfiguration: this.goToVpnConfiguration,
 
-          isDrpActionPossible: this.isDrpActionPossible,
+          isZertoActionPossible: this.isZertoActionPossible,
 
-          service: this.dedicatedCloudDrp,
+          service: this.dedicatedCloudZerto,
         };
 
         this.bindings.update(model);

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { DrawerCollapseState } from '../Drawer.types';
 import { DrawerBase } from '../drawer-base/DrawerBase.component';

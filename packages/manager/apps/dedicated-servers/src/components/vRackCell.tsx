@@ -1,18 +1,17 @@
 import React from 'react';
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
-import { useGetVrack } from '@/hooks/useGetVrack';
+import { OdsLink } from '@ovhcloud/ods-components/react';
 import { SkeletonCell } from './skeletonCell';
-import { DedicatedServer } from '@/data/types/server.type';
+import { useGetVrack } from '@/hooks/useGetVrack';
+import { useVrackUrl } from '@/hooks/useVrackUrl';
+import type { DedicatedServer } from '@/data/types/server.type';
 
-export const DSVrack = (server: DedicatedServer) => {
-  const { vrack, isLoading, error } = useGetVrack({ server: server.name });
-
+export const DSVrack = ({name}: DedicatedServer) => {
+  const { vrack = [], isLoading, error } = useGetVrack({ server: name });
+  const vrackUrl = useVrackUrl(vrack[0]);
   return (
     <SkeletonCell isLoading={isLoading} error={error}>
-      {vrack?.[0] ? (
-        <DataGridTextCell>
-          <span className="whitespace-nowrap">{vrack[0]}</span>
-        </DataGridTextCell>
+      {vrack[0] ? (
+        <OdsLink color="primary" label={vrack[0]} href={vrackUrl} />
       ) : (
         <>-</>
       )}

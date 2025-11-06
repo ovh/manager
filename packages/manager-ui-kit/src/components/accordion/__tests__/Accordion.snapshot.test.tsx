@@ -1,7 +1,10 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '..';
+import { Accordion } from '@/components/accordion/Accordion.component';
+import { AccordionContent } from '@/components/accordion/accordion-content/AccordionContent.component';
+import { AccordionItem } from '@/components/accordion/accordion-item/AccordionItem.component';
+import { AccordionTrigger } from '@/components/accordion/accordion-trigger/AccordionTrigger.component';
 
 describe('Accordion Snapshot tests', () => {
   it('renders the component with default props', () => {

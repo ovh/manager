@@ -5,9 +5,8 @@ import { ResultObj, columns } from '../__mocks__/mock';
 import { useIceberg } from '../adapters/iceberg/useIceberg';
 import { useV2 } from '../adapters/v2/useV2';
 import { useV6 } from '../adapters/v6/useV6';
-import { useDataApi } from '../ports/use-data-api/useDataApi';
-import { UseDataApiOptions } from '../ports/use-data-api/useDataApi.types';
-import { getSorting } from './Test.utils';
+import { useDataApi } from '../ports/useDataApi';
+import { UseDataApiOptions } from '../ports/useDataApi.types';
 
 vi.mock('../adapters/v6/useV6', () => {
   return {

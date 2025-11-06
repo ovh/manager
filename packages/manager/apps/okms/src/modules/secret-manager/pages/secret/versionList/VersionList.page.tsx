@@ -18,10 +18,10 @@ import {
   SECRET_MANAGER_ROUTES_URLS,
 } from '@secret-manager/routes/routes.constants';
 import {
-  VersionCellCreatedAt,
-  VersionCellDeactivatedAt,
-  VersionCellID,
-  VersionCellState,
+  VersionCreatedAtCell,
+  VersionDeactivatedAtCell,
+  VersionIdCell,
+  VersionStateCell,
 } from './VersionCells.component';
 import { isErrorResponse } from '@/utils/api/api';
 import { VersionCellAction } from './VersionCellAction.component';
@@ -54,24 +54,23 @@ const VersionListPage = () => {
   const columns = [
     {
       id: 'version',
-      cell: (version: SecretVersion) =>
-        VersionCellID({ version, urn: secret?.iam?.urn }),
+      cell: (version: SecretVersion) => VersionIdCell({ version, secret }),
       label: t('version'),
     },
     {
       id: 'state',
-      cell: VersionCellState,
+      cell: VersionStateCell,
       label: t('status', { ns: NAMESPACES.STATUS }),
     },
     {
       id: 'createdAt',
-      cell: VersionCellCreatedAt,
+      cell: VersionCreatedAtCell,
 
       label: t('creation_date', { ns: NAMESPACES.DASHBOARD }),
     },
     {
       id: 'deactivatedAt',
-      cell: VersionCellDeactivatedAt,
+      cell: VersionDeactivatedAtCell,
       label: t('expiration_date'),
     },
     {

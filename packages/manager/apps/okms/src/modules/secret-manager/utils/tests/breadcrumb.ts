@@ -1,25 +1,20 @@
-import * as allBreadcrumbItems from '@secret-manager/components/breadcrumb';
+import * as breadcrumbItemComponents from '@secret-manager/components/breadcrumb';
 import { screen, waitFor } from '@testing-library/react';
-import {
-  CREATE_SECRET_BREADCRUMB_ITEM_TEST_ID,
-  OKMS_BREADCRUMB_ITEM_TEST_ID,
-  ROOT_BREADCRUMB_ITEM_TEST_ID,
-  SECRET_BREADCRUMB_ITEM_TEST_ID,
-} from './breadcrumb.constants';
+import { BREADCRUMB_ITEM_TEST_IDS } from '@secret-manager/components/breadcrumb/items/BreadcrumbItem.constants';
 
-type BreadcrumbItem = keyof typeof allBreadcrumbItems;
+type BreadcrumbItemName = keyof typeof breadcrumbItemComponents;
 
-const testIdsVariants: Record<BreadcrumbItem, string> = {
-  CreateSecretBreadcrumbItem: CREATE_SECRET_BREADCRUMB_ITEM_TEST_ID,
-  RootBreadcrumbItem: ROOT_BREADCRUMB_ITEM_TEST_ID,
-  OkmsBreadcrumbItem: OKMS_BREADCRUMB_ITEM_TEST_ID,
-  SecretBreadcrumbItem: SECRET_BREADCRUMB_ITEM_TEST_ID,
+const breadcrumbTestIdMap: Record<BreadcrumbItemName, string> = {
+  CreateSecretBreadcrumbItem: BREADCRUMB_ITEM_TEST_IDS.CREATE_SECRET,
+  RootBreadcrumbItem: BREADCRUMB_ITEM_TEST_IDS.ROOT,
+  OkmsBreadcrumbItem: BREADCRUMB_ITEM_TEST_IDS.OKMS,
+  SecretBreadcrumbItem: BREADCRUMB_ITEM_TEST_IDS.SECRET,
 };
 
-export const assertBreadcrumbItems = async (items: BreadcrumbItem[]) => {
+export const assertBreadcrumbItems = async (items: BreadcrumbItemName[]) => {
   await waitFor(async () => {
     items.forEach((item) => {
-      expect(screen.getByTestId(testIdsVariants[item])).toBeInTheDocument();
+      expect(screen.getByTestId(breadcrumbTestIdMap[item])).toBeInTheDocument();
     });
   });
 };

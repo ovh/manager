@@ -2,7 +2,8 @@ import { useMemo } from 'react';
 
 import { FilterCategories } from '@ovh-ux/manager-core-api';
 
-import { ColumnFilter } from '../../filters';
+import { ColumnFilter } from '@/components/filters/filter-add/FilterAdd.props';
+
 import { UseDatagridTopbarProps } from './useDatagridTopbar.props';
 
 export const useDatagridTopbar = <T,>({ columns, visibleColumns }: UseDatagridTopbarProps<T>) => {

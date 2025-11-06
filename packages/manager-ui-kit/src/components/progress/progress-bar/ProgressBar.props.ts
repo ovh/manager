@@ -1,3 +1,3 @@
-import { ProgressProps } from '@/components';
+import { ProgressProps } from '@/components/progress/Progress.props';
 
 export type ProgressBarProps = ProgressProps & {};

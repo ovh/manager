@@ -249,5 +249,6 @@
   "dedicatedCloud_premier_sbg_order_warning": "No podemos realizar nuevos pedidos en nuestro sitio web de SBG. Nuestro equipo está plenamente movilizado y hacemos todo lo posible para restablecer esta posibilidad de pedido en un futuro próximo.",
   "dedicatedCloud_banner_new_product": "Ya puede contratar datacenters para diferentes paquetes de software VMware dentro de un mismo entorno Private Cloud.",
   "dedicatedCloud_banner_new_product_link": "Más información",
-  "dedicatedCloud_tab_logs": "Logs"
+  "dedicatedCloud_tab_logs": "Logs",
+  "dedicatedCloud_go_back_to_list": "Volver a la lista"
 }

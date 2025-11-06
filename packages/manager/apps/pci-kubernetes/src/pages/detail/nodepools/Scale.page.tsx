@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useMemo, useState } from 'react';
+import { ReactElement, useMemo, useState } from 'react';
 
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
@@ -8,6 +8,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsButton, OsdsModal, OsdsSpinner } from '@ovhcloud/ods-components/react';
 
+import { isApiCustomError } from '@ovh-ux/manager-core-api';
 import { useParam as useSafeParams } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 
@@ -16,13 +17,13 @@ import { Autoscaling } from '@/components/Autoscaling.component';
 import { NODE_RANGE } from '@/constants';
 import { isScalingValid } from '@/helpers/node-pool';
 import { useTrack } from '@/hooks/track';
-import queryClient from '@/queryClient';
+import { queryClient } from '@/queryClient';
 import { TScalingState } from '@/types';
 
 export default function ScalePage(): ReactElement {
   const { projectId, kubeId: clusterId } = useSafeParams('projectId', 'kubeId');
   const [searchParams] = useSearchParams();
-  const poolId = searchParams.get('nodePoolId');
+  const poolId = searchParams.get('nodePoolId') as string;
 
   const navigate = useNavigate();
   const goBack = () => navigate('..');
@@ -34,33 +35,41 @@ export default function ScalePage(): ReactElement {
 
   const { trackClick } = useTrack();
 
-  const [state, setState] = useState<TScalingState | null>(null);
+  const { data: pool, isPending: isPoolsPending } = useClusterNodePools(
+    projectId,
+    clusterId,
+    (pools) => {
+      const pool = pools?.find((p) => p.id === poolId);
+      return pool
+        ? {
+            scalingState: {
+              quantity: {
+                desired: pool.desiredNodes,
+                min: pool.minNodes,
+                max: pool.maxNodes,
+              },
+              antiAffinity: pool.antiAffinity,
+              monthlyBilled: pool.monthlyBilled,
+              isAutoscale: pool.autoscale,
+            } as TScalingState,
+            original: pool,
+          }
+        : null;
+    },
+  );
 
-  const { data: pools, isPending: isPoolsPending } = useClusterNodePools(projectId, clusterId);
-
-  const pool = useMemo(() => pools?.find((p) => p.id === poolId), [pools, poolId]);
-
-  useEffect(() => {
-    if (pool) {
-      setState({
-        quantity: {
-          desired: pool.desiredNodes,
-          min: pool.minNodes,
-          max: pool.maxNodes,
-        },
-        isAutoscale: pool.autoscale,
-      });
-    }
-  }, [pool]);
+  const [state, setState] = useState<TScalingState | null>(pool?.scalingState ?? null);
 
   const { updateSize, isPending: isPendingScaling } = useUpdateNodePoolSize({
-    onError(cause: Error & { response: { data: { message: string } } }): void {
-      addError(
-        tScale('kube_node_pool_autoscaling_scale_error', {
-          message: cause?.response?.data?.message,
-        }),
-        true,
-      );
+    onError(cause: Error) {
+      if (isApiCustomError(cause)) {
+        addError(
+          tScale('kube_node_pool_autoscaling_scale_error', {
+            message: cause.response?.data.message,
+          }),
+          true,
+        );
+      }
       goBack();
     },
     onSuccess: async () => {
@@ -79,29 +88,19 @@ export default function ScalePage(): ReactElement {
   const isDisabled = isPendingScaling || (state && !isScalingValid({ scaling: state }));
 
   const scaleObject = useMemo(() => {
-    const desired = Number(state?.quantity.desired);
-    const minNodes = Number(pool?.minNodes);
-    const maxNodes = Number(pool?.maxNodes);
+    const { desired, min, max } = state?.quantity || {};
+    const d = Number(desired),
+      mn = Number(min),
+      mx = Number(max);
 
     if (state?.isAutoscale) {
-      return {
-        maxNodes: state?.quantity.max || NODE_RANGE.MAX,
-        minNodes: state?.quantity.min || 0,
-      };
+      return { maxNodes: mx || NODE_RANGE.MAX, minNodes: mn || 0 };
     }
 
-    if (desired < minNodes) {
-      return {
-        minNodes: desired,
-      };
-    }
-    if (desired > maxNodes) {
-      return {
-        maxNodes: desired,
-      };
-    }
+    if (d < mn) return { minNodes: d };
+    if (d > mx) return { maxNodes: d };
     return {};
-  }, [state?.quantity, pool, state?.isAutoscale]);
+  }, [state?.quantity, state?.isAutoscale]);
 
   return (
     <OsdsModal
@@ -114,15 +113,11 @@ export default function ScalePage(): ReactElement {
       <slot name="content">
         {!isPoolsPending && !isPendingScaling ? (
           <Autoscaling
-            initialScaling={{
-              min: pool?.minNodes ?? 0,
-              max: pool?.maxNodes ?? NODE_RANGE.MAX,
-              desired: pool?.desiredNodes ?? NODE_RANGE.MIN,
-            }}
-            isMonthlyBilling={pool?.monthlyBilled}
-            isAntiAffinity={pool?.antiAffinity}
-            autoscale={pool?.autoscale}
-            onChange={(s) => setState(s)}
+            initialScaling={state?.quantity}
+            isMonthlyBilling={pool?.original.monthlyBilled}
+            isAntiAffinity={pool?.original.antiAffinity}
+            isAutoscale={!!state?.isAutoscale}
+            onChange={setState}
           />
         ) : (
           <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} className="block text-center" />

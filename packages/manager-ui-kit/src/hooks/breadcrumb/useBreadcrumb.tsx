@@ -4,23 +4,9 @@ import { useLocation } from 'react-router-dom';
 
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
-export type BreadcrumbItem = {
-  label: string | undefined;
-  href?: string;
-  hideLabel?: boolean;
-};
+import { BreadcrumbItem, BreadcrumbType } from './Breadcrumb.type';
 
-export interface UseBreadcrumbProps {
-  rootLabel?: string;
-  appName?: string;
-  projectId?: string;
-  hideRootLabel?: boolean;
-}
-export const useBreadcrumb = ({
-  rootLabel,
-  appName,
-  hideRootLabel = false,
-}: UseBreadcrumbProps) => {
+export const useBreadcrumb = ({ rootLabel, appName, hideRootLabel = false }: BreadcrumbType) => {
   const { shell } = useContext(ShellContext);
   const [root, setRoot] = useState<BreadcrumbItem[]>([]);
   const [paths, setPaths] = useState<BreadcrumbItem[]>([]);
@@ -29,18 +15,31 @@ export const useBreadcrumb = ({
   useEffect(() => {
     const fetchRoot = async () => {
       try {
-        const response = await shell?.navigation.getURL(appName as string, '#/', {});
+        if (!appName) return;
+
+        const response = await shell?.navigation.getURL(appName, '#/', {});
+
+        let href = '';
+        if (typeof response === 'string') {
+          href = response;
+        } else if (response instanceof URL) {
+          href = response.href;
+        } else if (response && typeof (response as { href?: unknown }).href === 'string') {
+          href = (response as { href: string }).href;
+        }
+
         const rootItem = {
           label: rootLabel,
-          href: String(response),
+          href,
           hideLabel: hideRootLabel,
         };
+
         setRoot([rootItem]);
       } catch {
         // Fetch navigation error
       }
     };
-    fetchRoot();
+    void fetchRoot();
   }, [rootLabel, appName, shell?.navigation]);
 
   useEffect(() => {

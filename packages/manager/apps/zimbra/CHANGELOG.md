@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.38.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.38.1...@ovh-ux/manager-zimbra-app@0.38.2) (2025-11-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.38.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.38.0...@ovh-ux/manager-zimbra-app@0.38.1) (2025-11-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+# [0.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.37.4...@ovh-ux/manager-zimbra-app@0.38.0) (2025-11-04)
+
+
+### Features
+
+* **zimbra:** add accounts export csv feature ([db037b1](https://github.com/ovh/manager/commit/db037b1cd574805e464e66cf53146e657abc37d9)), closes [#PRDCOL-115](https://github.com/ovh/manager/issues/PRDCOL-115)
+* **zimbra:** zimbra pro ga ([0c3cddd](https://github.com/ovh/manager/commit/0c3cddd5b6597432634d3d5bdc836452aea4fcca)), closes [#PRDCOL-124](https://github.com/ovh/manager/issues/PRDCOL-124)
+
+
+
+
+
+## [0.37.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.37.3...@ovh-ux/manager-zimbra-app@0.37.4) (2025-11-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
+## [0.37.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.37.2...@ovh-ux/manager-zimbra-app@0.37.3) (2025-10-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4424] ([1c3c2c8](https://github.com/ovh/manager/commit/1c3c2c8a49b9402b59829ec64f0c7b3592c027c1))
+
+
+
+
+
+## [0.37.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.37.1...@ovh-ux/manager-zimbra-app@0.37.2) (2025-10-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-zimbra-app
+
+
+
+
+
 ## [0.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.37.0...@ovh-ux/manager-zimbra-app@0.37.1) (2025-10-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app

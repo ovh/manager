@@ -3,20 +3,24 @@ import template from './options.html';
 
 export default {
   bindings: {
-    currentDrp: '<',
+    currentZerto: '<',
     currentService: '<',
     currentUser: '<',
     datacenterList: '<',
     onDeactivateLogs: '<',
-    deleteDrp: '<',
-    drpAvailability: '<',
-    drpGlobalStatus: '<',
+    deleteZerto: '<',
+    zertoAvailability: '<',
+    zertoGlobalStatus: '<',
+    zertoMultiSites: '<',
     goToDatacenter: '<',
-    goToDrp: '<',
-    goToDrpDatacenterSelection: '<',
+    goToZerto: '<',
+    goToZertoDatacenterSelection: '<',
     goToVpnConfiguration: '<',
-    isDrpActionPossible: '<',
+
+    isZertoActionPossible: '<',
+    isZertoTypeOnPremise: '<',
     isLogsDisabled: '<?',
+
     onBasicOptionsUpgrade: '&',
     onCertificationUpgrade: '&',
     onConfigurationOnlyUpgrade: '&',

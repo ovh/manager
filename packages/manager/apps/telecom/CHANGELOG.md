@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.17.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.17.6...@ovh-ux/manager-telecom@16.17.7) (2025-11-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.17.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.17.5...@ovh-ux/manager-telecom@16.17.6) (2025-11-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.17.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.17.4...@ovh-ux/manager-telecom@16.17.5) (2025-11-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.17.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.17.3...@ovh-ux/manager-telecom@16.17.4) (2025-11-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.17.2...@ovh-ux/manager-telecom@16.17.3) (2025-11-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.17.1...@ovh-ux/manager-telecom@16.17.2) (2025-10-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.17.0...@ovh-ux/manager-telecom@16.17.1) (2025-10-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 756] ([c7a486f](https://github.com/ovh/manager/commit/c7a486ff25c67a53c8b5685b7721de026ab5f141))
+* **telecom.telephony:** remove DE prefix on alias order and rename GB ([c8653e2](https://github.com/ovh/manager/commit/c8653e21c22299bc8c9eae6aac27516e849f98f9)), closes [#PRDCOL-243](https://github.com/ovh/manager/issues/PRDCOL-243)
+
+
+
+
+
 # [16.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.16.12...@ovh-ux/manager-telecom@16.17.0) (2025-10-27)
 
 

@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 
-import { FetchV2Result, fetchV2 } from '@ovh-ux/manager-core-api';
+import { fetchV2 } from '@ovh-ux/manager-core-api';
+import type { FetchV2Result } from '@ovh-ux/manager-core-api';
 
-import { UseInifiniteQueryResult, useInfiniteQuery } from '../../infra/tanstack/use-infinite-query';
-import { UseDataApiResult } from '../../ports/use-data-api/useDataApi.types';
+import { UseDataApiResult } from '@/hooks/data-api/ports/useDataApi.types';
+
+import { UseInifiniteQueryResult, useInfiniteQuery } from '../../infra/tanstack';
 import type { UseV2Data, UseV2Params } from './useV2.types';
 
 export const useV2 = <TData = Record<string, unknown>>({
@@ -41,7 +43,7 @@ export const useV2 = <TData = Record<string, unknown>>({
 
   useEffect(() => {
     if (fetchAll && hasNextPage) {
-      fetchNextPage();
+      void fetchNextPage();
     }
   }, [data]);
 

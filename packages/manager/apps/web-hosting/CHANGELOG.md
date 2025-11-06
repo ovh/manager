@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.8.7...@ovh-ux/manager-web-hosting-app@0.9.0) (2025-11-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4423] ([bd67a9c](https://github.com/ovh/manager/commit/bd67a9cc4510785293b63b8c90af1a13587320e9))
+* tests issues ([3c757a5](https://github.com/ovh/manager/commit/3c757a5f111943039fd5e3fadfefe590dc947e28)), closes [#MANAGER-19933](https://github.com/ovh/manager/issues/MANAGER-19933)
+* **web-hosting:** fixes for import on managed cms ([1e732c1](https://github.com/ovh/manager/commit/1e732c1e91cc808eee3ded385c69c12ac47364d9)), closes [#PUWEBPT-102](https://github.com/ovh/manager/issues/PUWEBPT-102)
+* **web-hosting:** types for release ([9d8a412](https://github.com/ovh/manager/commit/9d8a4123a3f2833cd5d04d9fe7e0174319a9a60b)), closes [#PUWEPT-102](https://github.com/ovh/manager/issues/PUWEPT-102)
+
+
+### Features
+
+* **web-hosting:** add pnpm ([93ffefd](https://github.com/ovh/manager/commit/93ffefd670c0f9532e17a58dc230307a31927f87)), closes [#PUWEBPT-95](https://github.com/ovh/manager/issues/PUWEBPT-95)
+* **web-hosting:** add pnpm ([51b0379](https://github.com/ovh/manager/commit/51b0379bfc8cf48a8248e3417b5508e757f6aafa)), closes [#PUWEBPT-95](https://github.com/ovh/manager/issues/PUWEBPT-95)
+* **web-hosting:** migrate visibility pro tab in react ([a524b43](https://github.com/ovh/manager/commit/a524b430b2440ebeafc7e9fdb7c29027c5b1f349)), closes [#WEB-21060](https://github.com/ovh/manager/issues/WEB-21060)
+
+
+
+
+
+## [0.8.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.8.6...@ovh-ux/manager-web-hosting-app@0.8.7) (2025-11-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
+
+
+
+
+
+## [0.8.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.8.5...@ovh-ux/manager-web-hosting-app@0.8.6) (2025-11-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4449] ([19facba](https://github.com/ovh/manager/commit/19facba088a900bb28c9377a79351a518a862af7))
+
+
+
+
+
+## [0.8.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.8.4...@ovh-ux/manager-web-hosting-app@0.8.5) (2025-11-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
+
+
+
+
+
+## [0.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.8.3...@ovh-ux/manager-web-hosting-app@0.8.4) (2025-10-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4434] ([7043df7](https://github.com/ovh/manager/commit/7043df74d7339a8b7cb94d0b06fbad17fea3a1fe))
+
+
+
+
+
+## [0.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.8.2...@ovh-ux/manager-web-hosting-app@0.8.3) (2025-10-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
+
+
+
+
+
 ## [0.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.8.1...@ovh-ux/manager-web-hosting-app@0.8.2) (2025-10-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-hosting-app

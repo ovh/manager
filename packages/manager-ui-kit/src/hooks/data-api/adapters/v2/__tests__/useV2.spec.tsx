@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { FetchV2Params, fetchV2 } from '@ovh-ux/manager-core-api';
+import { fetchV2 } from '@ovh-ux/manager-core-api';
 
 import { items } from '../../../__mocks__/mock';
 import { getWrapper } from '../../../__tests__/Test.utils';
@@ -35,16 +35,16 @@ describe('useIceberg hook', () => {
     vi.mocked(fetchV2).mockResolvedValueOnce({
       data: items,
       totalCount: 50,
-      status: '200',
-    } as any);
+      status: 200,
+    });
     vi.clearAllMocks();
   });
 
   it('tests the default params', () => {
     renderUseV2Hook();
     const callArg = vi.mocked(fetchV2).mock.calls[0]?.[0];
-    expect((callArg as FetchV2Params).route).toBe('/dedicated/nasha');
-    expect((callArg as FetchV2Params).pageSize).toBe(10);
+    expect(callArg?.route).toBe('/dedicated/nasha');
+    expect(callArg?.pageSize).toBe(10);
   });
 
   it('does not make API call when enabled=false', () => {

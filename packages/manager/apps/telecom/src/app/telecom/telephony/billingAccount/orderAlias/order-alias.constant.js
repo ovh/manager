@@ -30,7 +30,7 @@ export const TELEPHONY_NUMBER_OFFER = {
       title: 'telephony_order_international_title',
       tip: 'telephony_order_international_tip',
       description: 'telephony_order_international_description',
-      clarification: '(&nbsp;+32,&nbsp;+44,&nbsp;+49,&nbsp;...&nbsp;)',
+      clarification: '(&nbsp;+32,&nbsp;+44,&nbsp;...&nbsp;)',
       state: 'telecom.telephony.billingAccount.orderAlias.international',
     },
   },
@@ -55,7 +55,6 @@ export const TELEPHONY_NUMBER_OFFER = {
   prefix: {
     fr: '+33',
     be: '+32',
-    de: '+49',
     gb: '+44',
     ch: '+41',
     es: '+34',

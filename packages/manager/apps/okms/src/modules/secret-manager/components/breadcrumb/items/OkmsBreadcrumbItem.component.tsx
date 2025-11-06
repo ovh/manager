@@ -5,8 +5,8 @@ import {
   LocationPathParams,
   SECRET_MANAGER_ROUTES_URLS,
 } from '@secret-manager/routes/routes.constants';
-import { OKMS_BREADCRUMB_ITEM_TEST_ID } from '@secret-manager/utils/tests/breadcrumb.constants';
 import { isLocationParamsDefined } from '@secret-manager/utils/locationParams';
+import { BREADCRUMB_ITEM_TEST_IDS } from './BreadcrumbItem.constants';
 import { useOkmsById } from '@/data/hooks/useOkms';
 
 const Item = ({ okmsId }: { okmsId: string }) => {
@@ -23,7 +23,7 @@ const Item = ({ okmsId }: { okmsId: string }) => {
 
   return (
     <OdsBreadcrumbItem
-      data-testid={OKMS_BREADCRUMB_ITEM_TEST_ID}
+      data-testid={BREADCRUMB_ITEM_TEST_IDS.OKMS}
       key={okmsId}
       label={error ? okmsId : okms?.data?.iam?.displayName || okmsId}
       onClick={() => navigate(SECRET_MANAGER_ROUTES_URLS.secretList(okmsId))}

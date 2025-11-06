@@ -1,6 +1,6 @@
 import component from './legacy.component';
 
-import drp from '../../datacenter/drp';
+import zerto from '../../datacenter/zerto';
 import securityOptionsTile from '../tiles/security-options';
 import vmwareOptionTile from '../tiles/vmware-option';
 
@@ -8,7 +8,7 @@ const moduleName = 'ovhManagerPccDashboardLegacy';
 
 angular
   .module(moduleName, [
-    drp,
+    zerto,
     securityOptionsTile,
     vmwareOptionTile,
     'oui',

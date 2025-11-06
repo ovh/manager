@@ -55,5 +55,6 @@
   "sms_senders_terminate_sender_ko": "Ojej! Nie można przetworzyć rezygnacji z wirtualnego numeru.<br/>{{error}}",
   "sms_senders_add_warning": "Twoje zlecenie zostanie przetworzone w ciągu 48 godzin",
   "sms_senders_label_comment": "Komentarz",
-  "sms_senders_breadcrumb": "Nadawcy"
+  "sms_senders_breadcrumb": "Nadawcy",
+  "sms_senders_order_time2chat": "Zamów numer Time2Chat"
 }

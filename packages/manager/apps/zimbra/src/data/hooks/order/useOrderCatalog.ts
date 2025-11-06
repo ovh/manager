@@ -1,12 +1,12 @@
 import { UseQueryOptions, UseQueryResult, useQuery } from '@tanstack/react-query';
 
-import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { Subsidiary } from '@ovh-ux/manager-config';
 
 import { getOrderCatalog, getOrderCatalogQueryKey, order } from '@/data/api';
 
 type Props = Omit<UseQueryOptions, 'queryKey' | 'queryFn'> & {
   productName?: string;
-  ovhSubsidiary: OvhSubsidiary;
+  ovhSubsidiary: Subsidiary;
 };
 
 export const useOrderCatalog = (props: Props) => {

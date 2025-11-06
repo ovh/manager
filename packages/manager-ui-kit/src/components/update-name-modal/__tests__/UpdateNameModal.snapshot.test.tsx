@@ -1,7 +1,7 @@
 import { act } from '@testing-library/react';
 import { vitest } from 'vitest';
 
-import { cleanup, render } from '@/setupTest';
+import { cleanup, render } from '@/commons/tests-utils/Render.utils';
 
 import { UpdateNameModal } from '../UpdateNameModal.component';
 

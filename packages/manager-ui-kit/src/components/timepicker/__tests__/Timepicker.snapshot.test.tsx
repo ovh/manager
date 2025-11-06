@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { Timepicker } from '..';
+import { Timepicker } from '@/components';
 
 describe('Timepicker Snapshot tests', () => {
   it('renders the component with default props and children', () => {

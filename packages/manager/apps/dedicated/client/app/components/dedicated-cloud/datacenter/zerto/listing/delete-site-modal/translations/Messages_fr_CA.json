@@ -1,0 +1,8 @@
+{
+  "dedicatedCloud_datacenter_drp_delete_site_title": "Supprimer un site Zerto",
+  "dedicatedCloud_datacenter_drp_delete_site_confirmation": "Souhaitez-vous vraiment supprimer le site Zerto {{siteLabel}} ?",
+  "dedicatedCloud_datacenter_drp_delete_site_confirm": "Confirmer",
+  "dedicatedCloud_datacenter_drp_delete_site_cancel": "Annuler",
+  "dedicatedCloud_datacenter_drp_delete_site_success_banner": "Votre site Zerto a été supprimé avec succès.",
+  "dedicatedCloud_datacenter_drp_delete_site_error_banner": "Une erreur est survenue lors de la suppression de votre site Zerto"
+}

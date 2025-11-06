@@ -1,12 +1,11 @@
 import { screen } from '@testing-library/react';
 
-import { render } from '@/setupTest';
+import { render } from '@/commons/tests-utils/Render.utils';
+import { IamAuthorizationResponse, useAuthorizationIam } from '@/hooks';
 
-import { useAuthorizationIam } from '../../../../hooks/iam';
-import { IamAuthorizationResponse } from '../../../../hooks/iam/iam.interface';
 import { DrawerHeader } from '../DrawerHeader.component';
 
-vitest.mock('../../../../hooks/iam', () => ({
+vitest.mock('@/hooks/iam/useOvhIam', () => ({
   useAuthorizationIam: vitest.fn().mockReturnValue({
     isAuthorized: true,
     isLoading: false,

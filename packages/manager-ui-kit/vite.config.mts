@@ -1,9 +1,12 @@
-import { defineConfig } from 'vitest/config';
-import dts from 'vite-plugin-dts';
+// @ts-ignore
 import path from 'path';
+// @ts-ignore
 import tailwindcss from 'tailwindcss';
-import { getBaseConfig } from '@ovh-ux/manager-vite-config';
+import dts from 'vite-plugin-dts';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
+import { defineConfig } from 'vitest/config';
+
+import { getBaseConfig } from '@ovh-ux/manager-vite-config';
 
 const baseConfig = getBaseConfig({});
 
@@ -12,7 +15,7 @@ export default defineConfig({
   assetsInclude: ['**/*.png', '**/*.jpg', '**/*.svg'],
   resolve: {
     alias: {
-      '@/setupTest': path.resolve(__dirname, 'setupTest.tsx'),
+      '@/setupTest': path.resolve(__dirname, 'setupTests.ts'),
       '@': path.resolve(__dirname, 'src'),
     },
   },
@@ -84,7 +87,7 @@ export default defineConfig({
           zustand: 'Zustand',
         },
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name?.endsWith('.css')) {
+          if (assetInfo.name && assetInfo.name.endsWith('.css')) {
             return 'style.css';
           }
           return '[name][extname]';

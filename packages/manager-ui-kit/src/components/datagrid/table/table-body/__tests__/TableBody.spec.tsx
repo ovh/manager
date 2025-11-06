@@ -3,14 +3,14 @@ import { useState } from 'react';
 import { fireEvent, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { render } from '@/setupTest';
+import { render } from '@/commons/tests-utils/Render.utils';
+import { Datagrid } from '@/components';
+import { IamAuthorizationResponse } from '@/hooks/iam/IAM.type';
+import { useAuthorizationIam } from '@/hooks/iam/useOvhIam';
 
-import { useAuthorizationIam } from '../../../../../hooks/iam';
-import { IamAuthorizationResponse } from '../../../../../hooks/iam/iam.interface';
-import { Datagrid } from '../../../Datagrid.component';
 import { mockBasicColumns, mockExtendedData, mockIamResponse } from '../../../__mocks__';
 
-vi.mock('../../../../../hooks/iam');
+vi.mock('@/hooks/iam/useOvhIam');
 
 const mockedHook = useAuthorizationIam as unknown as jest.Mock<IamAuthorizationResponse>;
 
@@ -50,11 +50,12 @@ vi.mock('@tanstack/react-virtual', () => ({
 
 const Wrapper = () => {
   const [items, setItems] = useState(mockExtendedData);
-  const [isFetchAllPages, setIsFetchAllPages] = useState(false);
+  const [, setIsFetchAllPages] = useState(false);
   const onFetchNextPage = () => {
     setItems([
       ...items,
       {
+        id: `person-${items.length + 1}`,
         name: `Person ${items.length + 1}`,
         age: items.length + 1,
       },
@@ -62,6 +63,7 @@ const Wrapper = () => {
   };
   const onFetchAllPages = () => {
     const newData = Array.from({ length: 200 }, (_, index) => ({
+      id: `person-${index}`,
       name: `Person ${index}`,
       age: index + 1,
     }));

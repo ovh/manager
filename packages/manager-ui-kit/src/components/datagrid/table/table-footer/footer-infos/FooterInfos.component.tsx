@@ -2,7 +2,7 @@ import { memo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { Text } from '../../../../text';
+import { Text } from '@/components/text/Text.component';
 
 const FooterInformationsComponent = ({
   itemsCount,

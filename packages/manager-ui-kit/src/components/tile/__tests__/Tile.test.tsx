@@ -4,10 +4,10 @@ import { describe, expect, it, vitest } from 'vitest';
 
 import { Link } from '@ovhcloud/ods-react';
 
-import { ActionMenu } from '../../action-menu';
-import { Tile } from '../index';
+import { assertNotNull } from '@/commons/tests-utils/Assertions.utils';
+import { ActionMenu, Tile } from '@/components';
 
-vitest.mock('../../../hooks/iam', () => ({
+vitest.mock('@/hooks/iam/useOvhIam', () => ({
   useAuthorizationIam: vitest.fn().mockReturnValue({
     isAuthorized: true,
     isLoading: false,
@@ -32,7 +32,7 @@ describe('Tile Snapshot tests', () => {
     expect(container).toMatchSnapshot();
   });
 
-  it('renders tile term with Tooltip', () => {
+  it('renders tile term with Tooltip', async () => {
     const { baseElement, container } = render(
       <Tile.Root title="Simple Tile">
         <Tile.Item.Root>
@@ -43,7 +43,9 @@ describe('Tile Snapshot tests', () => {
     );
 
     const tooltipElement = container.querySelector('span[data-scope="tooltip"]');
-    userEvent.hover(tooltipElement);
+    assertNotNull(tooltipElement);
+
+    await userEvent.hover(tooltipElement);
     expect(baseElement).toMatchSnapshot();
   });
 

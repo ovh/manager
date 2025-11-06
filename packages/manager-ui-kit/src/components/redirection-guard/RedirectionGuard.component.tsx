@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { JSX } from 'react';
 
 import { Navigate } from 'react-router-dom';
 
 import { SPINNER_SIZE, Spinner } from '@ovhcloud/ods-react';
 
-import { RedirectionGuardProps } from './RedirectionGuard.props';
+import { RedirectionGuardProps } from '@/components/redirection-guard/RedirectionGuard.props';
 
 export function RedirectionGuard({
   route,

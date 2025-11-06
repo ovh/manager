@@ -49,18 +49,26 @@ export default class {
             },
           ]
         : []),
-      {
-        name: 'recredit_options',
-        sref: 'sms.service.order',
-        text: this.$translate.instant('sms_actions_credit_account'),
-        hit: `${this.DASHBOARD_TRACKING_PREFIX}::credit-account`,
-      },
-      {
-        name: 'credit_transfer',
-        sref: 'sms.service.dashboard.creditTransfer',
-        text: this.$translate.instant('sms_actions_credit_transfer'),
-        hit: `${this.DASHBOARD_TRACKING_PREFIX}::transfer-credit`,
-      },
+      ...(!this.isSmppAccount
+        ? [
+            {
+              name: 'create_campaign',
+              sref: 'sms.service.batches.create',
+              text: this.$translate.instant('sms_actions_create_campaign'),
+              hit: 'sms::service::dashboard::add-campaign',
+            },
+          ]
+        : []),
+      ...(!this.isSmppAccount
+        ? [
+            {
+              name: 'campaign_history',
+              sref: 'sms.service.batches.history',
+              text: this.$translate.instant('sms_actions_campaign_history'),
+              hit: 'sms::service::dashboard::historic-campaigns',
+            },
+          ]
+        : []),
       ...(!this.isSmppAccount
         ? [
             {
@@ -97,26 +105,6 @@ export default class {
             },
           ]
         : []),
-      ...(!this.isSmppAccount
-        ? [
-            {
-              name: 'create_campaign',
-              sref: 'sms.service.batches.create',
-              text: this.$translate.instant('sms_actions_create_campaign'),
-              hit: 'sms::service::dashboard::add-campaign',
-            },
-          ]
-        : []),
-      ...(!this.isSmppAccount
-        ? [
-            {
-              name: 'campaign_history',
-              sref: 'sms.service.batches.history',
-              text: this.$translate.instant('sms_actions_campaign_history'),
-              hit: 'sms::service::dashboard::historic-campaigns',
-            },
-          ]
-        : []),
       ...(this.isSmppAccount
         ? [
             {
@@ -124,6 +112,28 @@ export default class {
               sref: 'sms.service.options.smppParameter',
               text: this.$translate.instant('sms_actions_smpp_parameter'),
               hit: 'sms::service::dashboard-smpp::configure-smpp',
+            },
+          ]
+        : []),
+      {
+        name: 'recredit_options',
+        sref: 'sms.service.order',
+        text: this.$translate.instant('sms_actions_credit_account'),
+        hit: `${this.DASHBOARD_TRACKING_PREFIX}::credit-account`,
+      },
+      {
+        name: 'credit_transfer',
+        sref: 'sms.service.dashboard.creditTransfer',
+        text: this.$translate.instant('sms_actions_credit_transfer'),
+        hit: `${this.DASHBOARD_TRACKING_PREFIX}::transfer-credit`,
+      },
+      ...(this.smsFeatureAvailability.isFeatureAvailable('sms:time2chat')
+        ? [
+            {
+              name: 'order_time2chat',
+              sref: 'sms.service.senders.orderTime2Chat',
+              text: this.$translate.instant('sms_actions_order_time2chat'),
+              hit: `${this.DASHBOARD_TRACKING_PREFIX}::order-time2chat`,
             },
           ]
         : []),
@@ -243,5 +253,12 @@ export default class {
       `${this.DASHBOARD_TRACKING_PREFIX}::report::credit-account`,
     );
     return this.goToCreditOrder();
+  }
+
+  onGoToOrderTime2Chat() {
+    this.trackClick(
+      `${this.DASHBOARD_TRACKING_PREFIX}::report::order-time2chat`,
+    );
+    return this.goToOrderTime2Chat();
   }
 }

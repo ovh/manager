@@ -7,10 +7,12 @@ import { FilterComparator, FilterTypeCategories } from '@ovh-ux/manager-core-api
 export const getWrapper = () => {
   const queryClient = new QueryClient();
 
+  // eslint-disable-next-line react/display-name
   return ({ children }: React.PropsWithChildren) => (
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );
 };
+
 export const getFilter = (
   key: string,
   searchTerm: string,

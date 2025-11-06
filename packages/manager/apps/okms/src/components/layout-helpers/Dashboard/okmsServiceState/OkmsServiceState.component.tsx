@@ -7,6 +7,7 @@ import { ResourceStatus } from '@ovh-ux/manager-react-components';
 export type OkmsStateProps = {
   size?: ODS_BADGE_SIZE;
   state: ResourceStatus;
+  'data-testid'?: string;
 } & Record<string, string>;
 
 export const OkmsServiceState = ({ state, ...props }: OkmsStateProps) => {

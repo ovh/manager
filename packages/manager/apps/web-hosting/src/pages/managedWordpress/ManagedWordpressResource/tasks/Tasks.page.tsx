@@ -29,7 +29,9 @@ export default function TasksPage() {
 
   const { data, refetch, isFetching } = useManagedWordpressResourceTasks(serviceName);
   const formatDate = useFormatDate();
-  const { data: websitesList } = useManagedWordpressWebsites();
+  const { data: websitesList } = useManagedWordpressWebsites({
+    disableRefetchInterval: true,
+  });
   /*   const navigate = useNavigate();
   const goToStep2 = useGenerateUrl(`../import`, 'path');
 

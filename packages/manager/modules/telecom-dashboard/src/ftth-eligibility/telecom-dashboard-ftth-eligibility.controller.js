@@ -102,13 +102,17 @@ export default class FtthEligibilityCtrl {
       ) {
         return this.FtthEligibilityService.getFiberEligibilities(
           service.accessName,
-        ).then((data) =>
-          this.createService(
-            service,
-            data[0].status,
-            data[0].firstCopperClosure,
-          ),
-        );
+        )
+          .then((data) =>
+            this.createService(
+              service,
+              data[0].status,
+              data[0].firstCopperClosure,
+            ),
+          )
+          .catch(() =>
+            this.createService(service, this.ELIGIBILITY.not_concerned),
+          );
       }
       return this.createService(service, this.ELIGIBILITY.not_concerned);
     });

@@ -6,9 +6,13 @@ import { BUTTON_VARIANT } from '@ovhcloud/ods-react';
 
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
-import { LinkType } from '../Link';
-import { ActionMenu } from '../action-menu';
-import { ChangelogMenuLinks, ChangelogMenuProps } from './ChangelogMenu.props';
+import { ActionMenu } from '@/components/action-menu/ActionMenu.component';
+import {
+  ChangelogMenuLinks,
+  ChangelogMenuProps,
+} from '@/components/changelog-menu/ChangelogMenu.props';
+import { LinkType } from '@/components/link/Link.props';
+
 import './translations/translation';
 
 export const CHANGELOG_PREFIXES = ['tile-changelog-roadmap', 'external-link'];

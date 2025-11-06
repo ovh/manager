@@ -16,8 +16,6 @@ vi.mock(`react-router-dom`, async (reactRouterDom) => {
   };
 });
 
-const rootLabel = 'root-label';
-
 const locationPaths = ['123123', 'path', '234234'];
 
 const locationPathname = '/'.concat(locationPaths.join('/'));

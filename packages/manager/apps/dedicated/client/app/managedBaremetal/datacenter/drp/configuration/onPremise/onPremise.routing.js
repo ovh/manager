@@ -4,13 +4,8 @@ export default /* @ngInject */ ($stateProvider) => {
     {
       url: '/onPremise',
       abstract: true,
-      views: {
-        'progressTrackerView@app.managedBaremetal.details.datacenters.datacenter.drp': {
-          component: 'dedicatedCloudDatacenterDrpOnPremise',
-        },
-      },
       redirectTo:
-        'app.managedBaremetal.details.datacenters.datacenter.drp.onPremise.ovhPccStep',
+        'app.managedBaremetal.details.datacenters.datacenter.zerto.onPremise.ovhPccStep',
     },
   );
 };

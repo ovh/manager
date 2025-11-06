@@ -45,6 +45,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ovhFeatureFlipping.checkFeatureAvailability([
           'sms:hlr',
           'sms:response',
+          'sms:time2chat',
         ]),
       trackClick: /* @ngInject */ (atInternet) => (hit) => {
         atInternet.trackClick({

@@ -84,5 +84,10 @@
   "region_continent_EU-WEST-PAR": "Europa occidental",
   "help-link-more-info": "Más información",
   "region-description-1AZ": "Una región de 1-AZ (zona de disponibilidad) reúne uno o varios datacenters localizados en una misma ubicación.",
-  "region-description-3AZ": " Una región 3-AZ incluye tres zonas de disponibilidad situadas en una misma área metropolitana, separadas por algunos kilómetros. Cumple los más altos requisitos de resiliencia, al tiempo que garantiza una latencia extremadamente baja entre los AZ."
+  "region-description-3AZ": " Una región 3-AZ incluye tres zonas de disponibilidad situadas en una misma área metropolitana, separadas por algunos kilómetros. Cumple los más altos requisitos de resiliencia, al tiempo que garantiza una latencia extremadamente baja entre los AZ.",
+  "region_MIL": "Milán",
+  "region_MIL_micro": "Milán ({{ micro }})",
+  "region_EU-SOUTH-MIL": "Milán",
+  "region_EU-SOUTH-MIL_micro": "Milán ({{ micro }})",
+  "region_continent_EU-SOUTH-MIL": "Europa del Sur"
 }

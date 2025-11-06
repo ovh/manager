@@ -3,6 +3,8 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
+import { assertNotNull } from '@/commons/tests-utils/Assertions.utils';
+
 import { TagsModal } from '../TagsModal.component';
 
 vi.mock('react-i18next', () => ({
@@ -29,8 +31,14 @@ describe('TagsModal', () => {
     );
 
     expect(screen.queryByText(new RegExp(heading, 'gi'))).toBeInTheDocument();
-    expect(screen.queryByText('back').tagName).toBe('BUTTON');
-    expect(screen.queryByText('edit_tags').tagName).toBe('BUTTON');
+
+    const backButton = screen.queryByText('back');
+    assertNotNull(backButton);
+    expect(backButton.tagName).toBe('BUTTON');
+
+    const editTagsButton = screen.queryByText('edit_tags');
+    assertNotNull(editTagsButton);
+    expect(editTagsButton.tagName).toBe('BUTTON');
   });
 
   it('renders the Tags Modal without "Edit Tags" button', () => {
@@ -61,7 +69,7 @@ describe('TagsModal', () => {
     expect(onEditTags).toHaveBeenCalledOnce();
   });
 
-  it('filters tags correctly when searching', async () => {
+  it('filters tags correctly when searching', () => {
     render(
       <TagsModal
         open={true}

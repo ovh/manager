@@ -1,6 +1,6 @@
 {
   "iam_create_condition_ip_label": "Endereço IP",
   "iam_create_condition_ip_placeholder": "Introduza um endereço IP",
-  "iam_create_condition_ip_criteria_in_helper": "Separe cada endereço IP por uma vírgula sem espaço (127.0.0.1,10.23.0.0)",
-  "iam_create_condition_ip_criteria_in_range_helper": "Separe cada endereço IP e seu subnet por uma vírgula sem espaço (127.0.0.1/32,10.23.0.0/16)"
+  "iam_create_condition_ip_criteria_in_helper": "Separe cada endereço IP por uma vírgula sem espaços (127.0.0.1,10.23.0.0)",
+  "iam_create_condition_ip_criteria_in_range_helper": "Separe cada endereço IP e o respetivo subnet com uma vírgula sem espaços (127.0.0.1/32,10.23.0.0/16)"
 }

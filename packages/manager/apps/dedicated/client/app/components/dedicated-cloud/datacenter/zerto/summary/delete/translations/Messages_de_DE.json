@@ -1,0 +1,8 @@
+{
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_title": "Löschen Sie Ihr PRA dauerhaft",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_action_text": "Zerto PRA löschen",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_modal_title": "Löschen des Wiederherstellungsplans",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_modal_question": "Sind Sie sicher, dass Sie das PRA löschen möchten? Diese Aktion ist unwiderruflich.",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_success": "Ihr Zerto PRA wird gelöscht. Der Vorgang wird einige Minuten dauern",
+  "dedicatedCloud_datacenter_drp_confirm_delete_drp_error": "Ein Fehler ist beim Löschen des Wiederherstellungsplans aufgetreten"
+}

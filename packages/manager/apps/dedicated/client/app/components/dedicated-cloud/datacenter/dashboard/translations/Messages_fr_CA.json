@@ -116,9 +116,9 @@
   "dedicatedCloud_options_zerto_status_vpn_notConfigured": "En attente des IPs du VPN",
   "dedicatedCloud_options_zerto_status_vpn_configuring": "VPN en cours de configuration",
   "dedicatedCloud_options_zerto_status_vpn_error": "Configuration du VPN en erreur",
-  "dedicatedCloud_options_zerto_action_install": "Installer un PRA",
-  "dedicatedCloud_options_zerto_action_add_configuration": "Ajouter les IPs",
-  "dedicatedCloud_options_zerto_action_delete": "Supprimer Zerto PRA",
+  "dedicatedCloud_options_zerto_action_install": "Activer",
+  "dedicatedCloud_options_zerto_action_add_configuration": "Configurer",
+  "dedicatedCloud_options_zerto_action_delete": "Supprimer",
   "dedicatedCloud_subscription_links": "Liens",
   "dedicatedCloud_datacenter_go_vscope": "Aller sur vScope",
   "dedicatedCloud_datacenter_go_web_interface": "Interface web",
@@ -127,5 +127,6 @@
   "dedicatedCloud_datacenter_descriptionModifying_success": "Le changement de la description de votre datacenter sera effectif dans quelques instants.",
   "dedicatedCloud_datacenter_nameModifying_success": "Le changement de nom de votre datacenter sera effectif dans quelques instants.",
   "dedicatedCloud_manage_nsx_vcpu_price": "à partir de {{price}} HT/vCPU/ mois *",
-  "dedicatedCloud_manage_nsx_additionnal_price_informations": "* 2x4 vCPU inclus dans l'offre standard"
+  "dedicatedCloud_manage_nsx_additionnal_price_informations": "* 2x4 vCPU inclus dans l'offre standard",
+  "dedicatedCloud_go_back_to_list": "Retour à la liste"
 }

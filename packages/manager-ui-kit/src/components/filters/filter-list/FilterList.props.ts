@@ -1,4 +1,4 @@
-import { FilterWithLabel } from '../Filter.props';
+import { FilterWithLabel } from '@/components/filters/Filter.props';
 
 export type FilterListProps = {
   filters: FilterWithLabel[];

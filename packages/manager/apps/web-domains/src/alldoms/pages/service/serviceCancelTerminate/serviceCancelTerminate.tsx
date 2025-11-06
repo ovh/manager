@@ -7,12 +7,18 @@ import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { Spinner, SPINNER_SIZE, Text } from '@ovhcloud/ods-react';
 import { useGetAllDomResource } from '@/alldoms/hooks/data/query';
 import { useCancelAllDomTerminate } from '@/alldoms/hooks/useCancelAllDomTerminate/useCancelAllDomTerminate';
+import { urls } from '@/alldoms/routes/routes.constant';
+import { useCloseModal } from '@/common/hooks/closeModal/useCloseModal';
 
 export default function ServiceCancelTerminate() {
   const { t } = useTranslation(['allDom', NAMESPACES.ACTIONS]);
   const { serviceName } = useParams<{ serviceName: string }>();
-  const navigate = useNavigate();
   const { data: allDomResource, isLoading } = useGetAllDomResource(serviceName);
+  const navigate = useNavigate();
+  const closeUrl = useCloseModal(
+    serviceName,
+    `${urls.alldomsRoot}/${urls.alldomsListingCancelTerminate}`,
+  );
 
   const cancelAllDomTerminate = useCancelAllDomTerminate(
     serviceName,
@@ -28,7 +34,7 @@ export default function ServiceCancelTerminate() {
       primaryLabel={t(`${NAMESPACES.ACTIONS}:confirm`)}
       secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onPrimaryButtonClick={() => cancelAllDomTerminate.mutate()}
-      onSecondaryButtonClick={() => navigate(-1)}
+      onSecondaryButtonClick={() => navigate(closeUrl)}
     >
       {isLoading ? (
         <Spinner size={SPINNER_SIZE.xs} />

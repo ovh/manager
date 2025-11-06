@@ -3,9 +3,11 @@ import { vitest } from 'vitest';
 
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
-import { mockGetEnvironment, mockTrackPage, renderWithContext } from '../../../utils/Test.utils';
-import { Error } from '../Error.component';
-import { ErrorObject, ErrorProps } from '../Error.props';
+import { mockGetEnvironment, mockTrackPage } from '@/commons/tests-utils/Mock.utils';
+import { renderWithContext } from '@/commons/tests-utils/Render.utils';
+import { Error } from '@/components/error/Error.component';
+import { ErrorObject, ErrorProps } from '@/components/error/Error.props';
+
 import tradFr from '../translations/Messages_fr_FR.json';
 
 const defaultProps: ErrorProps = {
@@ -35,7 +37,7 @@ describe('specs:error.component', () => {
     expect(errorMessage).toBeInTheDocument();
   });
 
-  describe('tracking functionality', async () => {
+  describe('tracking functionality', () => {
     it('calls tracking with correct parameters for 404 error', async () => {
       const error404: ErrorObject = {
         status: 404,
@@ -55,14 +57,15 @@ describe('specs:error.component', () => {
       });
     });
 
-    it('calls tracking with correct parameters for 401 error', () => {
+    it('calls tracking with correct parameters for 401 error', async () => {
       const error401: ErrorObject = {
         status: 401,
         data: { message: 'Unauthorized' },
         headers: { 'x-ovh-queryid': '123456789' },
       };
       renderWithContext({ children: <Error error={error401} /> });
-      waitFor(() => {
+
+      await waitFor(() => {
         expect(mockGetEnvironment).toHaveBeenCalled();
         expect(mockTrackPage).toHaveBeenCalledWith({
           name: 'errors::unauthorized::test-application',

@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { render } from '@/setupTest';
+import { render } from '@/commons/tests-utils/Render.utils';
 
 import { mockOnFetchAllPages, mockOnFetchNextPage } from '../../../__mocks__';
 import { FooterActions } from './FooterActions.component';

@@ -237,8 +237,13 @@ export function useOrderFunnel(
       'frameworkWithVersion.version',
       listFramework[0]?.versions[0],
     );
-  }, [regionObject, region, listFramework, flavorQuery.isSuccess]);
-
+  }, [
+    regionObject,
+    region,
+    listFramework,
+    flavorQuery.isSuccess,
+    qpuFlavorQuery.isSuccess,
+  ]);
   // Change editors when region change?
   useEffect(() => {
     const suggestedEditor =

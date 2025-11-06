@@ -1,8 +1,7 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import {
   assertTextVisibility,
   getOdsButtonByLabel,
-  WAIT_FOR_DEFAULT_OPTIONS,
 } from '@ovh-ux/manager-core-test-utils';
 import userEvent from '@testing-library/user-event';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
@@ -14,6 +13,7 @@ import {
   regionWithMultipleOkms,
   regionWithoutOkms,
 } from '@/mocks/kms/okms.mock';
+import { OKMS_LIST_CELL_TEST_IDS } from '@/common/components/okmsDatagrid/ListingCells.constants';
 
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.okmsList(
   regionWithMultipleOkms.region,
@@ -26,10 +26,11 @@ const checkOkmsListPageToBeDisplayed = async (container: HTMLElement) => {
   await assertTextVisibility(labels.secretManager.okms_list);
 
   // Check there is clipboard components displayed in the datagrid
-  expect(
-    (await screen.findAllByTestId('clipboard', {}, WAIT_FOR_DEFAULT_OPTIONS))
-      .length,
-  ).toBeGreaterThan(0);
+  const firstOkmsId = regionWithMultipleOkms.okmsMock[0].id;
+  const firstClipboardTestId = OKMS_LIST_CELL_TEST_IDS.id(firstOkmsId);
+  await waitFor(() => {
+    expect(screen.getByTestId(firstClipboardTestId)).toBeInTheDocument();
+  });
 
   // Check the first okms link on the datagrid
   const okmsNameLink = await getOdsButtonByLabel({

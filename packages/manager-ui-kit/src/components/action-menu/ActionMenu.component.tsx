@@ -14,9 +14,10 @@ import {
   PopoverTrigger,
 } from '@ovhcloud/ods-react';
 
-import { ActionMenuProps } from './ActionMenu.props';
+import { ActionMenuProps } from '@/components/action-menu/ActionMenu.props';
+import { ActionMenuItem } from '@/components/action-menu/action-menu-item/ActionMenuItem.component';
+
 import './action-menu.scss';
-import { MenuItem } from './menu-item';
 import './translations/translation';
 
 export const ActionMenu: React.FC<ActionMenuProps> = ({
@@ -54,7 +55,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
         <ul className="menu-item-ul">
           {items.map(({ id, ...item }) => (
             <li key={id}>
-              <MenuItem id={id} key={id} item={item} isTrigger={isTrigger} />
+              <ActionMenuItem id={id} key={id} item={item} isTrigger={isTrigger} />
             </li>
           ))}
         </ul>

@@ -14,6 +14,7 @@ import {
   typesCoverageCombinedJsonReportName,
   typesCoverageOutputRootDir,
   typesCoverageReportsRootDirName,
+  typesSpecificIgnorePatterns,
 } from './cli-path-config.js';
 import { buildTypesCoverageArgs, parseCliTargets } from './utils/args-parse-utils.js';
 import { logError, logInfo, logWarn } from './utils/log-utils.js';
@@ -102,12 +103,18 @@ export function countLooseTypes(appDir) {
     visit(source);
   }
 
+  function shouldIgnore(filePath) {
+    return typesSpecificIgnorePatterns.some((re) => re.test(filePath));
+  }
+
   function walk(dir) {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
       const fullPath = path.join(dir, entry.name);
       if (entry.isDirectory()) {
+        if (shouldIgnore(fullPath)) continue;
         walk(fullPath);
       } else if (/\.(ts|tsx)$/.test(entry.name)) {
+        if (shouldIgnore(fullPath)) continue;
         analyzeFile(fullPath);
       }
     }

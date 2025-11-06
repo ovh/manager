@@ -1,7 +1,6 @@
 import {
   Datagrid,
   ErrorBanner,
-  Notification,
   useResourcesIcebergV6,
 } from '@ovh-ux/manager-react-components';
 import React, { useEffect, useState } from 'react';
@@ -13,7 +12,6 @@ import { ParentEnum } from '@/enum/parent.enum';
 
 interface DashboardPageProps {
   readonly parent: ParentEnum;
-  readonly notifications: Notification[];
   readonly route: string;
   readonly queryKey: string[];
   readonly searchableColumnID: string;
@@ -21,7 +19,6 @@ interface DashboardPageProps {
 
 export default function DashboardPage({
   parent,
-  notifications,
   route,
   queryKey,
   searchableColumnID,
@@ -48,7 +45,7 @@ export default function DashboardPage({
     route,
     queryKey,
     pageSize: 10,
-    disableCache: !!notifications.length,
+    disableCache: true,
     columns,
   });
 

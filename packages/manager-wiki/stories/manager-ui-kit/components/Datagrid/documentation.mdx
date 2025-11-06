@@ -236,7 +236,8 @@ const [filters, setFilters] = useState([]);
 Toggle columns on and off via the visibility menu.
 
 ```tsx
-const [columnVisibility, setColumnVisibility] = useState({});
+import { VisibilityState } from '@tanstack/react-table';
+const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
 
 const columns = [
   { id: 'name', header: 'Name', accessorKey: 'name', enableHiding: true },
@@ -246,10 +247,10 @@ const columns = [
 <Datagrid
   columns={columns}
   data={data}
-  enableColumnvisibility
-  columnVisibility={columnVisibility}
-  setColumnVisibility={setColumnVisibility}
-  enableColumnvisibility={true}
+  columnVisibility={
+    columnVisibility,
+    setColumnVisibility,
+  }
 />;
 ```
 
@@ -258,7 +259,8 @@ const columns = [
 Allow selecting one or multiple rows.
 
 ```tsx
-const [rowSelection, setRowSelection] = useState({});
+import { RowSelectionState } from '@tanstack/react-table';
+const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
 <Datagrid
   columns={columns}
@@ -266,9 +268,6 @@ const [rowSelection, setRowSelection] = useState({});
   rowSelection={{
     rowSelection,
     setRowSelection,
-    onRowSelectionChange: (rows) => console.log('selected rows', rows),
-    // Optionally restrict selection
-    // enableRowSelection: (row) => row.original.locked !== true,
   }}
 />;
 ```

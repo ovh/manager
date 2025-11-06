@@ -44,7 +44,7 @@ export default function UpdateMeComponent({
         color="primary"
         className="block modal-link"
         icon="external-link"
-        isDisabled={!url}
+        disabled={!url}
       >
         {t(`domain_operations_update_${argumentKey}_click`)}
       </Link>

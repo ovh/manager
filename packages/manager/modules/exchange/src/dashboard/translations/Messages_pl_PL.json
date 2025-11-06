@@ -201,7 +201,7 @@
   "exchange_tab_ALIAS_state_TASK_ON_DOING": "W realizacji",
   "exchange_tab_ALIAS_state_TASK_ON_DOING_tooltip": "Zadanie dotyczące tego aliasu jest już zaplanowane lub wykonywane.",
   "exchange_tab_ALIAS_add_button": "Dodaj alias",
-  "exchange_tab_ALIAS_creation_quota_description": "Wielkość limitu powinna zawierać się między <strong>{0} {1}</strong> a <strong>{2} {3}</strong>.",
+  "exchange_tab_ALIAS_creation_quota_description": "Limit musi mieścić się w zakresie od <strong><strong>{0} {1}</strong> do <strong>{2} {3}</strong>. Używasz <strong>{4} {5}</strong> z dostępnych <strong>{6} {7}</strong>.",
   "exchange_tab_ALIAS_creation_error_no_local_part": "Wskaż nazwę adresu e-mail (przed znakiem @).",
   "exchange_tab_ALIAS_creation_error_regex": "Nazwa adresu (przed znakiem @) powinna zawierać znaki alfanumeryczne lub znaki <strong>.-_+</strong> (przykład: e_mail-3.adres+abc).",
   "exchange_tab_ALIAS_taken_error_message": "Istniejący adres email",
@@ -1669,5 +1669,7 @@
   "exchange_delete_mfa_success": "Weryfikacja dwuetapowa za pomocą wiadomości SMS została usunięta.",
   "exchange_delete_mfa_error": "Wystąpił błąd podczas usuwania weryfikacji dwuetapowej: {{error}}",
   "exchange_tab_LOGS": "Logi",
-  "exchange_tab_ACCOUNTS_menu_migrate": "Migracja kont"
+  "exchange_tab_ACCOUNTS_menu_migrate": "Migracja kont",
+  "exchange_server_commercial_version_SE": "SE",
+  "exchange_tab_ALIAS_creation_quota_tooltip": "Każde konto Exchange zapewnia dodatkowe 5 GB wspólnej przestrzeni dyskowej."
 }

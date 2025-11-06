@@ -76,5 +76,4 @@ export interface ModalStepsProps {
   setIsStepOne: (changeStep: boolean) => void;
   setDomainsChecked?: (domainSelected: string[]) => void;
   setCheckAllDomains?: (checked: boolean) => void;
-  closeModal?: () => void;
 }
