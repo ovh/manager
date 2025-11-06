@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.100.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.99.1...@ovh-ux/manager-pci@6.100.0) (2025-11-06)
+
+
+### Features
+
+* **pci-load-balancer:** update translation EOS ([9bb717c](https://github.com/ovh/manager/commit/9bb717cb1037271c8c1a7bd284468d5f437a387d)), closes [#TAPC-5173](https://github.com/ovh/manager/issues/TAPC-5173)
+
+
+
+
+
 ## [6.99.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.99.0...@ovh-ux/manager-pci@6.99.1) (2025-11-04)
 
 
