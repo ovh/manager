@@ -1,4 +1,4 @@
-import { LogKind } from '../types/dbaas/logs';
+import { LogKind } from '@/data/types/dbaas/logs';
 
 export interface GetSubscriptionsProps {
   apiVersion: string;

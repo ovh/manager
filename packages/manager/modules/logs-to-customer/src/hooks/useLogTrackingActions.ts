@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
-import { LogsContext } from '../LogsToCustomer.context';
-import { LogsActionName } from '../types/logsTracking';
+import { LogsContext } from '@/LogsToCustomer.context';
+import { LogsActionName } from '@/types/logsTracking';
 
 const useLogTrackingActions = (action: LogsActionName) => {
   const { trackingOptions } = useContext(LogsContext);

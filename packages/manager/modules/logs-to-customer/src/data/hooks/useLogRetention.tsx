@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { getLogRetention } from '../api/logRetention';
-import { Service, Stream } from '../types/dbaas/logs';
+import { getLogRetention } from '@/data/api/logRetention';
+import { Service, Stream } from '@/data/types/dbaas/logs';
 
 /**
  * Use log retention
