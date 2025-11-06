@@ -9,6 +9,8 @@ import { MaxVersionTileItem } from './items/MaxVersionTileItem.component';
 import { DeactivateVersionAfterTileItem } from './items/DeactivateVersionAfterTileItem.component';
 import { CasTileItem } from './items/CasTileItem.component';
 import { TileError } from '@/common/components/tile-error/TileError.component';
+import { EditSecretConfigLinkTileItem } from './items/EditSecretConfigLinkTileItem.component';
+import useProductType from '@/common/hooks/useProductType';
 
 type SecretConfigTileProps = {
   okms: OKMS;
@@ -16,6 +18,7 @@ type SecretConfigTileProps = {
 
 export const SecretConfigTile = ({ okms }: SecretConfigTileProps) => {
   const { t } = useTranslation('key-management-service/dashboard');
+  const productType = useProductType();
 
   const { data: secretConfig, isPending, error } = useSecretConfigOkms(okms.id);
 
@@ -48,6 +51,12 @@ export const SecretConfigTile = ({ okms }: SecretConfigTileProps) => {
           />
           <ManagerTile.Divider />
           <CasTileItem secretConfig={secretConfig} isPending={isPending} />
+          {productType === 'secret-manager' && (
+            <>
+              <ManagerTile.Divider />
+              <EditSecretConfigLinkTileItem okms={okms} />
+            </>
+          )}
         </>
       )}
     </ManagerTile>
