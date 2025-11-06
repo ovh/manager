@@ -14,5 +14,7 @@
   "region_WAW": "Varsavia (WAW{{micro}}) - Polonia",
   "region_RBX_HZ": "Roubaix (RBXHZ) - Francia",
   "region_GSW": "(GSW) - Francia",
-  "region_YNM": "Mumbai (YNM{{micro}}) - India"
+  "region_YNM": "Mumbai (YNM{{micro}}) - India",
+  "region_PAR": "Parigi (PAR{{micro}}) - Francia",
+  "region_YYZ": "Toronto (YYZ{{micro}}) - Canada"
 }
