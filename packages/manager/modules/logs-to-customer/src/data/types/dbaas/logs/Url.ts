@@ -1,4 +1,4 @@
-import { UrlTypeEnum } from './UrlTypeEnum';
+import { UrlTypeEnum } from '@/data/types/dbaas/logs/UrlTypeEnum';
 
 /** Web address */
 export interface Url {

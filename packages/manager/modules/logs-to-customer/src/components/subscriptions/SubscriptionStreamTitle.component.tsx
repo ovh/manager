@@ -6,8 +6,8 @@ import {
   getLogStreamQueryKey,
   useLogStream,
 } from '../../data/hooks/useLogStream';
-import { LogSubscription } from '../../data/types/dbaas/logs';
-import ApiError from '../apiError/ApiError.component';
+import { LogSubscription } from '@/data/types/dbaas/logs';
+import ApiError from '@/components/apiError/ApiError.component';
 
 type SubscriptionStreamItemProps = {
   subscription: LogSubscription;
