@@ -32,6 +32,7 @@ export const CreateInstanceForm = () => {
   const projectId = useProjectId();
   const formMethods = useForm(projectId);
   const macroRegion = formMethods.watch('macroRegion');
+  const microRegion = formMethods.watch('microRegion');
   const microRegions = selectMicroRegions(deps)(projectId, macroRegion);
   const availabilityZones = selectAvailabilityZones(deps)(
     projectId,
@@ -73,7 +74,7 @@ export const CreateInstanceForm = () => {
           <Divider spacing="64" />
           <FlavorBlock />
           <DistributionImage />
-          <SshKey />
+          {microRegion && <SshKey microRegion={microRegion} />}
           <AdvancedParameters />
           <PciCardShowcaseComponent />
         </section>

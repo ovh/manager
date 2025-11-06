@@ -1,10 +1,26 @@
-import { FC } from 'react';
 import { Divider, Text } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { SshKeyHelper } from './sshKey/SshKeyHelper.component';
+import { useSshKeys } from '@/data/hooks/ssh/useSshKeys';
+import { deps } from '@/deps/deps';
+import { useProjectId } from '@/hooks/project/useProjectId';
+import { selectSshKeys } from '../view-models/sshKeysViewModel';
+import { useMemo } from 'react';
 
-const SshKey: FC = () => {
+type TSshKeyProps = {
+  microRegion: string;
+};
+
+const SshKey = ({ microRegion }: TSshKeyProps) => {
+  const projectId = useProjectId();
   const { t } = useTranslation('creation');
+
+  const { isLoading } = useSshKeys(microRegion);
+
+  const sshKeys = useMemo(
+    () => (isLoading ? [] : selectSshKeys(deps)(projectId, microRegion)),
+    [isLoading, microRegion, projectId],
+  );
 
   return (
     <section>
