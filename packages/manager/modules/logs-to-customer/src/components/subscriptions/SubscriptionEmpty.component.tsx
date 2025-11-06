@@ -1,8 +1,8 @@
 import { OdsText, OdsCard } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import SubscriptionAddSubcription from './SubscriptionsAddSubscription';
-import KnowMoreLink from '../services/KnowMoreLink.component';
+import SubscriptionAddSubcription from '@/components/subscriptions/SubscriptionsAddSubscription';
+import KnowMoreLink from '@/components/services/KnowMoreLink.component';
 
 const SubscriptionEmpty = () => {
   const { t } = useTranslation('logSubscription');

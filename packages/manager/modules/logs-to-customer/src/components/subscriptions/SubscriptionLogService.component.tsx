@@ -6,8 +6,8 @@ import {
   getLogServiceQueryKey,
   useLogService,
 } from '../../data/hooks/useLogService';
-import { LogSubscription } from '../../data/types/dbaas/logs';
-import ApiError from '../apiError/ApiError.component';
+import { LogSubscription } from '@/data/types/dbaas/logs';
+import ApiError from '@/components/apiError/ApiError.component';
 
 type SubscriptionLogServiceProps = {
   subscription: LogSubscription;

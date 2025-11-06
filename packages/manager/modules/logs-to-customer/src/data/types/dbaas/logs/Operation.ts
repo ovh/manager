@@ -1,4 +1,4 @@
-import { OperationStateEnum } from './OperationStateEnum';
+import { OperationStateEnum } from '@/data/types/dbaas/logs/OperationStateEnum';
 
 /** Asynchronous operation */
 export interface Operation {

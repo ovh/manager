@@ -1,3 +1,4 @@
+import path from 'path';
 import {
   createConfig,
   defaultDedupedDependencies,
@@ -29,6 +30,10 @@ export default mergeConfig(
     },
     resolve: {
       dedupe: [...defaultDedupedDependencies, 'msw'],
+      alias: {
+        '@/public': path.resolve(__dirname, 'public'),
+        '@': path.resolve(__dirname, 'src'),
+      },
     },
   }),
 );
