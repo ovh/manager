@@ -7,7 +7,8 @@ import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
 import { LinkType, Links } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
-import { Service, Stream } from '../../data/types/dbaas/logs';
+import { Service, Stream } from '@/data/types/dbaas/logs';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 type TDataStreamSubscriptionsLink = Pick<Stream, 'nbSubscription' | 'streamId' | 'parentStreamId'> &
   Pick<Service, 'serviceName'>;
@@ -18,7 +19,7 @@ const DataStreamSubscriptionsLink = ({
   streamId,
   parentStreamId,
 }: TDataStreamSubscriptionsLink) => {
-  const { t } = useTranslation('logStreams');
+  const { t } = useTranslation(NAMESPACES.LOG_STREAMS);
   const [subscriptionsURL, setSubscriptionsURL] = useState('');
   const {
     shell: { navigation },

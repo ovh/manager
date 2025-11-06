@@ -6,12 +6,13 @@ import { useTranslation } from 'react-i18next';
 
 import { DeleteModal } from '@ovh-ux/manager-react-components';
 
-import { LogsContext } from '../../LogsToCustomer.context';
-import { useDeleteLogSubscription } from '../../data/hooks/useLogSubscriptions';
+import { LogsContext } from '@/LogsToCustomer.context';
+import { useDeleteLogSubscription } from '@/data/hooks/useLogSubscriptions';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 export default function DataStreamsTerminate() {
   const navigate = useNavigate();
-  const { t } = useTranslation('logSubscription');
+  const { t } = useTranslation(NAMESPACES.LOG_SUBSCRIPTION);
   const { subscriptionId } = useParams();
   const { currentLogKind, logApiUrls, logApiVersion } = useContext(LogsContext);
 

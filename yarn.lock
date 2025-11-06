@@ -7421,6 +7421,23 @@
     date-fns "^3.6.0"
     lodash.isequal "^4.5.0"
 
+"@ovh-ux/manager-react-components@2.43.1", "@ovh-ux/manager-react-components@^2.43.1":
+  version "2.43.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-2.43.1.tgz#1dc97f93ae0f0e5643f498079a2310e01a7ef301"
+  integrity sha512-Z6OJ3aNzf4qNLGLJPBy8FeNb0RnDPUTYzaFjc0QK7QU1bxCfrLzXAaxKZ060asTiZ0qOm7EQ3Qt+JoToM/cKEA==
+  dependencies:
+    "@babel/plugin-proposal-private-property-in-object" "^7.21.11"
+    "@tanstack/react-query" "^5.51.21"
+    "@tanstack/react-table" "^8.20.1"
+    clsx "^2.1.1"
+    lodash.isdate "^4.0.1"
+    lodash.isequal "^4.5.0"
+    react-i18next "^14.0.5"
+    react-use "^17.5.0"
+    sass "1.56.1"
+    tailwindcss "^3.4.4"
+    uuid "^9.0.1"
+
 "@ovh-ux/manager-react-components@^1.46.0":
   version "1.46.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-1.46.0.tgz#8c868c4098e210918de90041dbffdc0dabea82d5"
@@ -7478,23 +7495,6 @@
     react-i18next "^14.0.5"
     react-use "^17.5.0"
     sass "1.71.0"
-    tailwindcss "^3.4.4"
-    uuid "^9.0.1"
-
-"@ovh-ux/manager-react-components@^2.43.1":
-  version "2.43.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-components/-/manager-react-components-2.43.1.tgz#1dc97f93ae0f0e5643f498079a2310e01a7ef301"
-  integrity sha512-Z6OJ3aNzf4qNLGLJPBy8FeNb0RnDPUTYzaFjc0QK7QU1bxCfrLzXAaxKZ060asTiZ0qOm7EQ3Qt+JoToM/cKEA==
-  dependencies:
-    "@babel/plugin-proposal-private-property-in-object" "^7.21.11"
-    "@tanstack/react-query" "^5.51.21"
-    "@tanstack/react-table" "^8.20.1"
-    clsx "^2.1.1"
-    lodash.isdate "^4.0.1"
-    lodash.isequal "^4.5.0"
-    react-i18next "^14.0.5"
-    react-use "^17.5.0"
-    sass "1.56.1"
     tailwindcss "^3.4.4"
     uuid "^9.0.1"
 

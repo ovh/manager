@@ -17,12 +17,13 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 
-import { useLogTailMessages } from '../../../data/hooks/useLogTailMessages';
-import { TemporaryLogsLink } from '../../../data/types/dbaas/logs';
-import useLogTrackingActions from '../../../hooks/useLogTrackingActions';
-import { useZoomedInOut } from '../../../hooks/useZoomedInOut';
-import { LogsActionEnum } from '../../../types/logsTracking';
-import { Log } from './log/Log.component';
+import { useLogTailMessages } from '@/data/hooks/useLogTailMessages';
+import { TemporaryLogsLink } from '@/data/types/dbaas/logs';
+import useLogTrackingActions from '@/hooks/useLogTrackingActions';
+import { useZoomedInOut } from '@/hooks/useZoomedInOut';
+import { LogsActionEnum } from '@/types/logsTracking';
+import { Log } from '@/components/logTail/logMessages/log/Log.component';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 interface ISearchContext {
   query?: string;
@@ -43,7 +44,7 @@ interface ILogTailMessageUrl {
 }
 
 export const LogMessages = ({ logTailMessageUrl }: ILogTailMessageUrl) => {
-  const { t } = useTranslation('logTail');
+  const { t } = useTranslation(NAMESPACES.LOG_TAIL);
   const parentRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
   const [searchQuery, setSearchQuery] = useState('');

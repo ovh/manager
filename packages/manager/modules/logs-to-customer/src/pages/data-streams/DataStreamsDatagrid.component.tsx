@@ -24,15 +24,16 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 
-import ApiError from '../../components/apiError/ApiError.component';
-import DataStreamActions from '../../components/data-streams/DataStreamActions.component';
-import DataStreamIndexingStatus from '../../components/data-streams/DataStreamIndexingStatus.component';
-import DataStreamRetention from '../../components/data-streams/DataStreamRetention.component';
-import DataStreamSubscriptionsLink from '../../components/data-streams/DataStreamSubscriptionsLink.component';
-import { Service, Stream } from '../../data/types/dbaas/logs';
-import useLogTrackingActions from '../../hooks/useLogTrackingActions';
-import { LogsActionEnum } from '../../types/logsTracking';
-import { getLogStreamsQueryKey } from '../../data/hooks/useLogStream';
+import ApiError from '@/components/apiError/ApiError.component';
+import DataStreamActions from '@/components/data-streams/DataStreamActions.component';
+import DataStreamIndexingStatus from '@/components/data-streams/DataStreamIndexingStatus.component';
+import DataStreamRetention from '@/components/data-streams/DataStreamRetention.component';
+import DataStreamSubscriptionsLink from '@/components/data-streams/DataStreamSubscriptionsLink.component';
+import { Service, Stream } from '@/data/types/dbaas/logs';
+import useLogTrackingActions from '@/hooks/useLogTrackingActions';
+import { LogsActionEnum } from '@/types/logsTracking';
+import { getLogStreamsQueryKey } from '@/data/hooks/useLogStream';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 const STREAM_LIST_COLUMN_ID = {
   title: 'title',
@@ -47,7 +48,7 @@ const logStreamsQueryKey = getLogStreamsQueryKey()[0] as string;
 
 const DataStreamsDatagrid = ({ service }: { service: Service }) => {
   const queryClient = useQueryClient();
-  const { t } = useTranslation('logStreams');
+  const { t } = useTranslation(NAMESPACES.LOG_STREAMS);
   const {
     shell: { navigation },
   } = useContext(ShellContext);
