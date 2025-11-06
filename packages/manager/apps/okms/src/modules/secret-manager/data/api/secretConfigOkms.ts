@@ -18,5 +18,19 @@ export const getSecretConfigOkms = async (
 };
 
 // PUT secret config
-export type SecretConfigBody = Partial<SecretConfig>;
+export type SecretConfigParams = {
+  okmsId: string;
+  secretConfig: Partial<SecretConfig>;
+};
 export type SecretConfigResponse = SecretConfig;
+
+export const updateSecretConfigOkms = async ({
+  okmsId,
+  secretConfig,
+}: SecretConfigParams) => {
+  const { data } = await apiClient.v2.put<SecretConfigResponse>(
+    `okms/resource/${okmsId}/secretConfig`,
+    secretConfig,
+  );
+  return data;
+};
