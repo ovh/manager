@@ -1,4 +1,5 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { format, formatDate } from 'date-fns';
 import { getCreditDetails } from '@/data/api/credit';
 import { CreditDetailsResponse } from '@/data/types/credit.type';
 import { getCreditBalance, getStartupProgram } from '../api/credit';
@@ -18,8 +19,8 @@ export const useCreditDetails = (projectId: string) => {
       const formattedData: VoucherCreditDetail[] =
         response.data?.map((creditDetail: CreditDetailsResponse) => ({
           voucher: creditDetail.voucher || '',
-          description: creditDetail.description || 'No description',
-          balance: creditDetail.available_credit?.text || '0',
+          description: creditDetail.description || '',
+          balance: creditDetail.available_credit?.text || '',
           expirationDate: creditDetail.validity?.to || null,
         })) || [];
 

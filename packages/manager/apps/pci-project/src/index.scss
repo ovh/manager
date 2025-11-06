@@ -22,6 +22,10 @@ ods-text.font-54::part(text) {
   font-size: 54px;
 }
 
+ods-text.font-32::part(text) {
+  font-size: 32px;
+}
+
 .contracts-agreements .contract-link:not(:last-child) {
   &::after {
     color: var(--ods-color-primary-500);

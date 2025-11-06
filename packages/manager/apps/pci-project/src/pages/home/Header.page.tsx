@@ -73,6 +73,7 @@ export default function ProjectHeader() {
       >
         <QuotaAlert />
         <PciAnnouncementBanner projectId={project?.project_id} />
+
         <Suspense>
           <Outlet />
         </Suspense>

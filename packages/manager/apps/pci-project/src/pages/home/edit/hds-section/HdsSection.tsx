@@ -100,7 +100,7 @@ export default function HdsSection({ project }: { project: TProject }) {
 
   return (
     <section className="flex flex-col gap-5">
-      <OdsText preset="heading-3">
+      <OdsText preset="heading-2">
         {t('pci_projects_project_edit_hds_title')}
       </OdsText>
 
