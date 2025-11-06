@@ -47,7 +47,7 @@ export const normalizedVersionsPath = path.join(
 );
 
 /**
- * Absolute path to the JSON catalog of critical React-related dependencies.
+ * Absolute path to the JSON catalog of Critical Dependencies.
  *
  * - This file (`pnpm-critical-deps.json`) lists packages that must be pinned
  *   to the exact versions installed by Yarn before migrating an app to PNPM.
@@ -71,9 +71,9 @@ export const normalizedVersionsPath = path.join(
  * @constant
  * @type {string}
  */
-export const reactCriticalDependenciesPath = path.join(
+export const criticalDependenciesPath = path.join(
   managerPMPath,
-  'src/playbook/catalog/pnpm-react-critical-deps.json',
+  'src/playbook/catalog/pnpm-critical-deps.json',
 );
 
 /**

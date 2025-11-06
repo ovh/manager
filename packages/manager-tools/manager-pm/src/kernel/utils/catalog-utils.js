@@ -424,3 +424,36 @@ export async function clearRootWorkspaces() {
   await clearWorkspacesManually();
   return [];
 }
+
+/**
+ * Update workspace catalogs by removing the application path
+ * from one catalog and adding it to another.
+ *
+ * @async
+ * @param {Object} params - Function parameters.
+ * @param {string} params.fromPath - Source catalog path (to remove from).
+ * @param {string} params.toPath - Target catalog path (to add to).
+ * @param {string} params.appPath - Relative path of the application.
+ * @returns {Promise<boolean>} - True if catalog update succeeded,
+ *   false if skipped due to invalid workspace.
+ * @throws {Error} If catalog update fails with an error status.
+ */
+export async function updateCatalog({ fromPath, toPath, appPath }) {
+  const removed = await removeAppPathFromCatalog(fromPath, appPath);
+  const added = await addAppPathToCatalog(toPath, appPath);
+
+  logger.info(`ℹ️ Catalog updates:
+       • Removed from ${fromPath.includes('pnpm') ? 'PNPM' : 'Yarn'} → ${removed}
+       • Added to ${toPath.includes('pnpm') ? 'PNPM' : 'Yarn'} → ${added}`);
+
+  if (removed === 'invalid' || added === 'invalid') {
+    logger.warn(`⚠️ Skipped: "${appPath}" is not a valid workspace.`);
+    return false;
+  }
+
+  if (removed === 'error' || added === 'error') {
+    throw new Error(`Catalog update failed for "${appPath}"`);
+  }
+
+  return true;
+}

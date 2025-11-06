@@ -1,3 +1,5 @@
+import { execSync } from 'node:child_process';
+
 import { logger } from './log-manager.js';
 import { buildAppWorkspacePath, getPackageNameFromApp } from './workspace-utils.js';
 
@@ -40,5 +42,22 @@ export function resolveBuildFilter(appRef) {
     logger.error(`❌ Exception in resolveBuildFilter for appRef="${appRef}": ${err.message}`);
     logger.debug(`Stack trace: ${err.stack}`);
     return null;
+  }
+}
+
+/**
+ * Run `yarn install` at the repository root to refresh
+ * all workspaces after migration or rollback.
+ *
+ * @throws {Error} If the install command fails.
+ */
+export function runYarnInstall() {
+  logger.info(`📦 Running "yarn install" to refresh root workspaces...`);
+  try {
+    execSync('yarn install', { stdio: 'inherit' });
+    logger.success(`✔ Dependencies installed.`);
+  } catch (err) {
+    logger.error(`❌ "yarn install" failed: ${err.message}`);
+    throw err;
   }
 }
