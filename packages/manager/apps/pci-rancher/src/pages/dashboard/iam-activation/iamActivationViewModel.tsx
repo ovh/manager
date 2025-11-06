@@ -15,15 +15,15 @@ export const DOCUMENTATION_LINK = {
   AU:
     'https://www.ovhcloud.com/en-au/identity-security-operations/identity-access-management',
   CA:
-    'https://www.ovhcloud.com/fr/identity-security-operations/identity-access-management',
+    'https://www.ovhcloud.com/en-ca/identity-security-operations/identity-access-management',
   DE:
     'https://www.ovhcloud.com/de/identity-security-operations/identity-access-management',
   ES:
-    'https://www.ovhcloud.com/es/identity-security-operations/identity-access-management',
+    'https://www.ovhcloud.com/es-es/identity-security-operations/identity-access-management',
   FR:
     'https://www.ovhcloud.com/fr/identity-security-operations/identity-access-management',
   GB:
-    'https://www.ovhcloud.com/en/identity-security-operations/identity-access-management',
+    'https://www.ovhcloud.com/en-gb/identity-security-operations/identity-access-management',
   IE:
     'https://www.ovhcloud.com/en-ie/identity-security-operations/identity-access-management',
   IN:
@@ -38,20 +38,18 @@ export const DOCUMENTATION_LINK = {
     'https://www.ovhcloud.com/pl/identity-security-operations/identity-access-management',
   PT:
     'https://www.ovhcloud.com/pt/identity-security-operations/identity-access-management/',
-  QB:
-    'https://www.ovhcloud.com/en/identity-security-operations/identity-access-management',
+  QC:
+    'https://www.ovhcloud.com/fr-ca/identity-security-operations/identity-access-management',
   SG:
     'https://www.ovhcloud.com/en-sg/identity-security-operations/identity-access-management',
   SN:
-    'https://www.ovhcloud.com/en/identity-security-operations/identity-access-management',
+    'https://www.ovhcloud.com/fr-sn/identity-security-operations/identity-access-management',
   TN:
     'https://www.ovhcloud.com/fr-tn/identity-security-operations/identity-access-management',
   WE:
     'https://www.ovhcloud.com/en/identity-security-operations/identity-access-management',
   WS:
-    'https://www.ovhcloud.com/en/identity-security-operations/identity-access-management',
-  WW:
-    'https://www.ovhcloud.com/en/identity-security-operations/identity-access-management',
+    'https://www.ovhcloud.com/es/identity-security-operations/identity-access-management',
   US:
     'https://us.ovhcloud.com/identity-security-operations/identity-access-management',
 };
@@ -138,14 +136,17 @@ const IAM_MODAL_CONFIG = {
   activation: {
     title: 'iam_modal_title',
     content: ContentActivation,
-    warning: 'iam_modal_activation_warning_text',
+    warning: ['iam_modal_activation_warning_text'],
     confirmButton: 'iam_modal_activate_button',
     showWarningTitle: true,
   },
   deactivation: {
     title: 'iam_modal_deactivation_title',
     content: ContentDeactivation,
-    warning: 'iam_modal_deactivation_warning',
+    warning: [
+      'iam_modal_deactivation_warning',
+      'iam_modal_deactivation_warning_continue',
+    ],
     confirmButton: 'iam_modal_deactivate_button',
     showWarningTitle: false,
   },
