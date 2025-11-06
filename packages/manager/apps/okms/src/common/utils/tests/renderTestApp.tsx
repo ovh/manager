@@ -32,6 +32,8 @@ import {
 import {
   getSecretConfigOkmsMock,
   GetSecretConfigOkmsMockParams,
+  updateSecretConfigOkmsMock,
+  UpdateSecretConfigOkmsMockParams,
 } from '@secret-manager/mocks/secret-config-okms/secretConfigOkms.handler';
 import {
   getSecretConfigReferenceMock,
@@ -106,6 +108,7 @@ export type RenderTestMockParams = GetOkmsMocksParams &
   UpdateSecretMockParams &
   DeleteSecretMockParams &
   GetSecretConfigOkmsMockParams &
+  UpdateSecretConfigOkmsMockParams &
   GetSecretConfigReferenceMockParams &
   GetVersionsMockParams &
   GetVersionMockParams &
@@ -142,6 +145,7 @@ export const renderTestApp = async (
         ...updateSecretMock(mockParams),
         ...deleteSecretMock(mockParams),
         ...getSecretConfigOkmsMock(mockParams),
+        ...updateSecretConfigOkmsMock(mockParams),
         ...getSecretConfigReferenceMock(mockParams),
         ...getVersionsMock(mockParams),
         ...getVersionMock(mockParams),
