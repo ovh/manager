@@ -22,7 +22,7 @@ export const TilesInputComponent = <T, S>({
   const [state, setState] = useState<TilesInputState<T, S>>({
     stacks: stackItems(items, stack?.by),
     selectedStack: stack?.value,
-    activeClass: `cursor-pointer font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600] ${tileClass?.active}`,
+    activeClass: `bg-orange-110 cursor-pointer font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600] ${tileClass?.active}`,
     inactiveClass: `cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] ${tileClass?.inactive}`,
   });
 
@@ -66,8 +66,12 @@ export const TilesInputComponent = <T, S>({
     if (tileClass) {
       setState((prev) => ({
         ...prev,
-        activeClass: `cursor-pointer font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600] ${tileClass?.active}`,
-        inactiveClass: `cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] ${tileClass?.inactive}`,
+        activeClass: clsx(
+          `cursor-pointer font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600] ${tileClass?.active}`,
+        ),
+        inactiveClass: clsx(
+          `cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] ${tileClass?.inactive}`,
+        ),
       }));
     }
   }, [tileClass]);
