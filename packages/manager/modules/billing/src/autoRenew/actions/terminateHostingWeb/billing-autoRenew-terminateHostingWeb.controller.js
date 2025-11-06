@@ -5,7 +5,7 @@ export default class {
   }
 
   onSuccess() {
-    this.goBack(
+    this.goToAutorenew(
       this.skipRetentionPeriod
         ? this.$translate.instant(
             'autorenew_hosting_dashboard_close_service_success_skip_retention_period',
@@ -13,11 +13,13 @@ export default class {
         : this.$translate.instant(
             'autorenew_hosting_dashboard_close_service_success',
           ),
+      'success',
+      true,
     );
   }
 
   onError(error) {
-    this.goBack(
+    this.goToAutorenew(
       `${this.$translate.instant(
         'autorenew_hosting_dashboard_close_service_error',
       )} ${error?.data?.message}`,

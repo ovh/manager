@@ -18,7 +18,6 @@ export default /* @ngInject */ ($stateProvider) => {
               .catch(() => ({ engagement: null }))
           : Promise.resolve({ engagement: null })
         ).then(({ engagement }) => engagement),
-
       goBack: /* @ngInject */ (
         $translate,
         cancelResiliationUrl,
@@ -27,7 +26,9 @@ export default /* @ngInject */ ($stateProvider) => {
         success
           ? goToAutorenew(
               `${$translate.instant('autorenew_service_delete_success')}
-      <a data-href="${cancelResiliationUrl}" data-translate="autorenew_service_delete_cancel"></a>`,
+        <a data-href="${cancelResiliationUrl}" data-translate="autorenew_service_delete_cancel"></a>`,
+              'success',
+              true,
             )
           : goToAutorenew(),
       serviceId: /* @ngInject */ ($transition$) =>

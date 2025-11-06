@@ -74,10 +74,14 @@ export default /* @ngInject */ ($stateProvider) => {
         $timeout,
         Alerter,
         queryParameters,
-      ) => (message = false, type = 'success') => {
+      ) => (message = false, type = 'success', refresh = false) => {
         const reload = message && type === 'success';
+        const params = {
+          ...queryParameters,
+          refresh,
+        };
 
-        const promise = $state.go('billing.autorenew', queryParameters || {}, {
+        const promise = $state.go('billing.autorenew', params, {
           reload,
         });
 

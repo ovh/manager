@@ -21,14 +21,16 @@ export default class BillingAutorenewDisableDomainsBulkCtrl {
     return this.disableDomainsBulk()
       .then(() => {
         this.$scope.$emit(DISABLE_AUTOMATIC_PAYMENT_FOR_DOMAINS);
-        this.goBack(
+        this.goToAutorenew(
           this.$translate.instant(
             'autorenew_service_disable_all_domains_success',
+            'success',
+            true,
           ),
         );
       })
       .catch(({ message }) => {
-        this.goBack(
+        this.goToAutorenew(
           this.$translate.instant(
             'autorenew_service_disable_all_domains_error',
             { message },

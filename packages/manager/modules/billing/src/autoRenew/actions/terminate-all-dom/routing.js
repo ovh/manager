@@ -16,7 +16,6 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     resolve: {
-      goBack: /* @ngInject */ (goToAutorenew) => goToAutorenew,
       serviceId: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceId,
       serviceType: /* @ngInject */ ($transition$) =>
