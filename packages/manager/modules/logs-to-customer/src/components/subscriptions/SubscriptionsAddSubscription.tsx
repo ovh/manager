@@ -8,14 +8,14 @@ import { OdsButton, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
-import useLogTrackingActions from '../../hooks/useLogTrackingActions';
-import { LogsActionEnum } from '../../types/logsTracking';
+import useLogTrackingActions from '@/hooks/useLogTrackingActions';
+import { LogsActionEnum } from '@/types/logsTracking';
 import {
   getLogServicesQueryKey,
   useLogServices,
 } from '../../data/hooks/useLogService';
-import ApiError from '../apiError/ApiError.component';
-import OrderServiceButton from '../services/OrderServiceButton.component';
+import ApiError from '@/components/apiError/ApiError.component';
+import OrderServiceButton from '@/components/services/OrderServiceButton.component';
 
 const SubscriptionAddSubcription = () => {
   const queryClient = useQueryClient();

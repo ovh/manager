@@ -53,14 +53,5 @@ export default [
       'max-params': 'off',
       'react/no-multi-comp': 'off',
     },
-  },
-   /* ------------------------------------------------------------------------ */
-   /* Root Index File Exception                                                */
-   /* ------------------------------------------------------------------------ */
-  {
-    files: ['src/index.ts'],
-    rules: {
-      'check-file/no-index': 'off',
-    },
-  },
+  }
 ];

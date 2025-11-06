@@ -36,7 +36,13 @@ export default {
 
 To integrate the module into your UApp, create a log tab on your product dashboard and add the `LogsToCustomerModule` to the page content.
 
+**Important**: You must import the CSS file in your app entry point (e.g., `index.tsx`) to ensure styles are loaded globally:
+
 ```tsx
+// app entry point
+import '@ovh-ux/logs-to-customer/dist/style.css';
+
+// component
 export default function LogsPage() {
   // ...
 

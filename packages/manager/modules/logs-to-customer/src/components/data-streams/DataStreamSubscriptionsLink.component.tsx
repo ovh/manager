@@ -7,7 +7,7 @@ import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
 import { LinkType, Links } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
-import { Service, Stream } from '../../data/types/dbaas/logs';
+import { Service, Stream } from '@/data/types/dbaas/logs';
 
 type TDataStreamSubscriptionsLink = Pick<Stream, 'nbSubscription' | 'streamId' | 'parentStreamId'> &
   Pick<Service, 'serviceName'>;

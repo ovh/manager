@@ -6,8 +6,8 @@ import { useTranslation } from 'react-i18next';
 
 import { DeleteModal } from '@ovh-ux/manager-react-components';
 
-import { LogsContext } from '../../LogsToCustomer.context';
-import { useDeleteLogSubscription } from '../../data/hooks/useLogSubscriptions';
+import { LogsContext } from '@/LogsToCustomer.context';
+import { useDeleteLogSubscription } from '@/data/hooks/useLogSubscriptions';
 
 export default function DataStreamsTerminate() {
   const navigate = useNavigate();

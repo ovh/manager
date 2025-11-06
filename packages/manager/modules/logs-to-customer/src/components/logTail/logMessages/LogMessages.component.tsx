@@ -17,12 +17,12 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 
-import { useLogTailMessages } from '../../../data/hooks/useLogTailMessages';
-import { TemporaryLogsLink } from '../../../data/types/dbaas/logs';
-import useLogTrackingActions from '../../../hooks/useLogTrackingActions';
-import { useZoomedInOut } from '../../../hooks/useZoomedInOut';
-import { LogsActionEnum } from '../../../types/logsTracking';
-import { Log } from './log/Log.component';
+import { useLogTailMessages } from '@/data/hooks/useLogTailMessages';
+import { TemporaryLogsLink } from '@/data/types/dbaas/logs';
+import useLogTrackingActions from '@/hooks/useLogTrackingActions';
+import { useZoomedInOut } from '@/hooks/useZoomedInOut';
+import { LogsActionEnum } from '@/types/logsTracking';
+import { Log } from '@/components/logTail/logMessages/log/Log.component';
 
 interface ISearchContext {
   query?: string;
