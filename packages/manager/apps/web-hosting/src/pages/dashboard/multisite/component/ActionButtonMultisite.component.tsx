@@ -205,6 +205,7 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
               urls.purgeCdn
                 .replace(subRoutes.serviceName, serviceName)
                 .replace(subRoutes.domain, domain ?? ''),
+              { state: { domain, serviceName } },
             ),
           label: t('purge_cdn'),
         }),
