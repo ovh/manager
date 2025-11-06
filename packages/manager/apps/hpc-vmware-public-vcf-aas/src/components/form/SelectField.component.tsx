@@ -3,6 +3,7 @@ import {
   OdsFormField,
   OdsSelect,
   OdsSpinner,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
 
 type SelectFieldProps<TValues extends FieldValues = FieldValues> = {
@@ -13,6 +14,7 @@ type SelectFieldProps<TValues extends FieldValues = FieldValues> = {
   isDisabled?: boolean;
   isLoading?: boolean;
   placeholder?: string;
+  helperText?: string;
 };
 
 export const SelectField = <TValues extends FieldValues = FieldValues>({
@@ -23,6 +25,7 @@ export const SelectField = <TValues extends FieldValues = FieldValues>({
   isDisabled = false,
   isLoading = false,
   placeholder,
+  helperText,
 }: SelectFieldProps<TValues>) => {
   return (
     <OdsFormField error={error}>
@@ -48,6 +51,11 @@ export const SelectField = <TValues extends FieldValues = FieldValues>({
         </OdsSelect>
         {isLoading && <OdsSpinner size="sm" />}
       </div>
+      {helperText && (
+        <OdsText slot="helper" preset="caption">
+          {helperText}
+        </OdsText>
+      )}
     </OdsFormField>
   );
 };
