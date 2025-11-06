@@ -1,7 +1,9 @@
 import React from 'react';
 
+import type { SortingState } from '@tanstack/react-table';
+
 import type { Filter } from '@ovh-ux/manager-core-api';
-import type { ColumnSort, DatagridColumn } from '@ovh-ux/muk';
+import type { DatagridColumn } from '@ovh-ux/muk';
 
 export type ApiVersion = 'v2' | 'v6';
 
@@ -23,12 +25,16 @@ export type GetListingParams = {
 
 export type UseResourcesParams<T extends Record<string, unknown>> = {
   route: string;
-  queryKey: string[];
+  queryKey?: string[];
   columns?: DatagridColumn<T>[];
   pageSize?: number;
-  defaultSorting?: ColumnSort;
+  defaultSorting?: SortingState;
   shouldFetchAll?: boolean;
+  fetchAll?: boolean;
   disableCache?: boolean;
+  enabled?: boolean;
+  refetchInterval?: number | false;
+  fetchDataFn?: (route: string) => Promise<{ data: T[] }>;
 };
 
 export type ResourcesFacadeResult<T> = {
@@ -38,8 +44,8 @@ export type ResourcesFacadeResult<T> = {
   fetchNextPage?: () => Promise<unknown> | void;
   isLoading?: boolean;
   status?: 'pending' | 'success' | 'error';
-  sorting?: ColumnSort;
-  setSorting?: React.Dispatch<React.SetStateAction<ColumnSort>>;
+  sorting?: SortingState[0];
+  setSorting?: React.Dispatch<React.SetStateAction<SortingState>>;
   filters?: unknown;
   search?: unknown;
 };

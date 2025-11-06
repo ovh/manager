@@ -7,3 +7,4 @@ packages/manager/apps/dedicated/client/app/css/less/common/buttonIcons.less
 **/.type-coverage/
 packages/manager-ui-kit
 packages/manager-wiki
+packages/manager/apps/bmc-nasha

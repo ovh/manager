@@ -59,3 +59,4 @@ packages/manager-tools/manager-generator/bin/manager-generator.js
 packages/manager-tools/manager-legacy-tools/test-utils/src/utils/ui-test-helpers-ods18.ts
 packages/manager-ui-kit
 packages/manager-wiki
+packages/manager/apps/bmc-nasha

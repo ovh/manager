@@ -16,7 +16,8 @@
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "start": "vite",
     "test": "manager-test run",
-    "test:coverage": "manager-test run --coverage"
+    "test:coverage": "manager-test run --coverage",
+    "build:strict": "tsc --project tsconfig.json && vite build"
   },
   "dependencies": {
     "@ovh-ux/manager-common-translations": "*",
@@ -28,6 +29,7 @@
     "@ovh-ux/request-tagger": "*",
     "@ovh-ux/shell": "^4.5.7",
     "@ovh-ux/muk": "^0.4.0",
+    "@ovhcloud/ods-components": "^18.6.2",
     "@tanstack/react-query": "5.51.21",
     "axios": "^1.1.2",
     "clsx": "^1.2.1",
