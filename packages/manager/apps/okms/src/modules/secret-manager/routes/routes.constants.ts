@@ -14,6 +14,7 @@ const URIS = {
   update: 'update',
   terminate: 'terminate',
   dashboard: 'dashboard',
+  editSecretConfig: 'edit-secret-config',
 };
 
 const URLS = {
@@ -36,6 +37,9 @@ const URLS = {
 
   okmsTerminateModal: (okmsId: string) =>
     `/${URIS.root}/${okmsId}/${URIS.dashboard}/${URIS.terminate}`,
+
+  okmsUpdateSecretConfigDrawer: (okmsId: string) =>
+    `/${URIS.root}/${okmsId}/${URIS.dashboard}/${URIS.editSecretConfig}`,
 
   secretList: (okmsId: string) => `/${URIS.root}/${okmsId}`,
 
