@@ -106,6 +106,10 @@ const EdgeGatewayAddPage = React.lazy(() =>
   import('@/pages/dashboard/datacentre/edge-gateway/add/AddEdgeGateway.page'),
 );
 
+const EdgeGatewayEditPage = React.lazy(() =>
+  import('@/pages/dashboard/datacentre/edge-gateway/edit/EditEdgeGateway.page'),
+);
+
 const EdgeGatewayDeletePage = React.lazy(() =>
   import(
     '@/pages/dashboard/datacentre/edge-gateway/delete/DeleteEdgeGateway.page'
@@ -327,19 +331,24 @@ export default (
           }}
         />
         <Route
-          id={'edge-gateway'}
+          id={subRoutes.edgeGateway}
           path={urls.edgeGateway}
           Component={EdgeGatewayListingPage}
         >
           <Route
-            id={'delete-edge-gateway'}
-            path={urls.edgeGatewayDelete}
-            Component={EdgeGatewayDeletePage}
-          />
-          <Route
-            id={'add-edge-gateway'}
+            id={subRoutes.addEdgeGateway}
             path={urls.edgeGatewayAdd}
             Component={EdgeGatewayAddPage}
+          />
+          <Route
+            id={subRoutes.editEdgeGateway}
+            path={urls.edgeGatewayEdit}
+            Component={EdgeGatewayEditPage}
+          />
+          <Route
+            id={subRoutes.deleteEdgeGateway}
+            path={urls.edgeGatewayDelete}
+            Component={EdgeGatewayDeletePage}
           />
         </Route>
       </Route>

@@ -26,6 +26,7 @@ export const EdgeGatewayActionCell = (edge: VCDEdgeGateway) => {
   ]);
   const id = useId();
   const deleteHref = useHref(`${edge.id}/${subRoutes.deleteEdgeGateway}`);
+  const editHref = useHref(`${edge.id}/${subRoutes.editEdgeGateway}`);
 
   const actionMenuItems: ActionMenuItem[] = [
     {
@@ -33,6 +34,7 @@ export const EdgeGatewayActionCell = (edge: VCDEdgeGateway) => {
       label: t('datacentres/edge-gateway:edge_edit_config'),
       isDisabled: false,
       onClick: () => {},
+      href: editHref,
     },
     {
       id: 2,

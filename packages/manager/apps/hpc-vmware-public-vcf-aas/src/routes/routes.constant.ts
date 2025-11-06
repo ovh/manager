@@ -21,6 +21,7 @@ export const subRoutes = {
   edgeGateway: 'edge-gateway',
   edgeGatewayId: ':edgeGatewayId',
   addEdgeGateway: 'add-edge-gateway',
+  editEdgeGateway: 'edit-edge-gateway',
   deleteEdgeGateway: 'delete-edge-gateway',
   terminate: 'terminate',
 } as const;
@@ -48,6 +49,7 @@ export const urls = {
   vrackSegmentDeleteNetwork: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.vrackSegments}/${subRoutes.vrackSegmentId}/${subRoutes.vrackNetwork}/${subRoutes.vrackNetworkId}/${subRoutes.deleteNetwork}`,
   edgeGateway: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.edgeGateway}`,
   edgeGatewayAdd: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.edgeGateway}/${subRoutes.addEdgeGateway}`,
+  edgeGatewayEdit: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.edgeGateway}/${subRoutes.edgeGatewayId}/${subRoutes.editEdgeGateway}`,
   edgeGatewayDelete: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.edgeGateway}/${subRoutes.edgeGatewayId}/${subRoutes.deleteEdgeGateway}`,
 } as const;
 

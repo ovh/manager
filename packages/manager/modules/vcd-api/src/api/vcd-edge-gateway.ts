@@ -1,6 +1,7 @@
 import { v2 } from '@ovh-ux/manager-core-api';
 import {
   GetEdgeGatewayParams,
+  UpdateEdgeGatewayPayload,
   VCDEdgeGateway,
   VCDEdgeGatewayState,
 } from '../types';
@@ -10,6 +11,9 @@ export type AddEdgeGatewayParams = {
   id: string;
   vdcId: string;
   payload: VCDEdgeGatewayState;
+};
+export type UpdateEdgeGatewayParams = GetEdgeGatewayParams & {
+  payload: UpdateEdgeGatewayPayload;
 };
 
 export const createVcdEdgeGateway = async ({
@@ -38,6 +42,17 @@ export const getVcdEdgeGateway = async (
   params: GetEdgeGatewayParams,
 ): Promise<VCDEdgeGateway> => {
   const { data } = await v2.get<VCDEdgeGateway>(getVcdEdgeGatewayRoute(params));
+  return data;
+};
+
+export const updateVcdEdgeGateway = async ({
+  payload,
+  ...params
+}: UpdateEdgeGatewayParams): Promise<VCDEdgeGateway> => {
+  const { data } = await v2.put<VCDEdgeGateway>(
+    getVcdEdgeGatewayRoute(params),
+    payload,
+  );
   return data;
 };
 
