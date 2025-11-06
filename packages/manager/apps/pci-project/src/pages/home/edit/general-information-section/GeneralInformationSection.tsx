@@ -93,30 +93,18 @@ export default function GeneralInformationSection({
 
   return (
     <section className="flex flex-col gap-5">
-      <OdsText preset="heading-3">
+      <OdsText preset="heading-2">
         {t('pci_projects_project_edit_project_name')}
       </OdsText>
       <OdsFormField className="w-full" error={descriptionError}>
-        <div className="flex gap-3 items-start">
-          <OdsText className="font-bold" preset="caption">
-            {t('pci_projects_project_edit_project_name')}
+        <label slot="label">
+          {t('pci_projects_project_edit_project_name')}
+        </label>
+        {isDiscovery && (
+          <OdsText preset="caption" slot="helper">
+            {t('pci_projects_project_edit_discovery_disable_tooltip')}
           </OdsText>
-
-          {isDiscovery && (
-            <div>
-              <OdsIcon
-                id="is-discovery-input-trigger-id"
-                name="circle-question"
-                className="text-[var(--ods-color-information-500)] cursor-help"
-              />
-              <OdsPopover triggerId="is-discovery-input-trigger-id">
-                <OdsText preset="paragraph">
-                  {t('pci_projects_project_edit_discovery_disable_tooltip')}
-                </OdsText>
-              </OdsPopover>
-            </div>
-          )}
-        </div>
+        )}
 
         <OdsInput
           name="project-description"

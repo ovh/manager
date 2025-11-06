@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 
 import QuickAccessCard from './QuickAccessCard.component';
 import { DASHBOARD_QUICK_ACCESS_ITEMS_BASE } from '@/constants';
@@ -43,10 +42,10 @@ function QuickAccess() {
 
   return (
     <>
-      <OdsText preset={ODS_TEXT_PRESET.heading3}>
+      <OdsText preset="heading-2">
         {t('pci_projects_home_quick_access')}
       </OdsText>
-      <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 my-6">
+      <div className="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 my-8">
         {itemsWithLinksAndIcons.map((item, idx) => (
           <QuickAccessCard key={idx} item={item} index={idx} />
         ))}
