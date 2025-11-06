@@ -295,9 +295,9 @@
   "pack_move_confirm_temporary_pack_creation_line_2": "Este pack será automaticamente eliminado uma vez finalizada a encomenda de Fibra.",
   "pack_move_confirm_temporary_pack_creation_line_3": "Não é necessária nenhuma ação de modificação ou de eliminação da sua parte : a passagem para o seu acesso Fibra será efetuada de forma totalmente automatizada.",
   "pack_move_phone_call_for_new_meeting": "A marcação online não está disponível. Será contactado por telefone para lhe propor uma data e uma hora que lhe convém.",
-  "pack_move_promotion_subscription_months_reduces": "-50 % durante {{ duration }} meses",
+  "pack_move_promotion_subscription_months_reduces": "- 50% durante {{ duration }} meses",
   "pack_move_confirm_promotion_table": "Promoção ({{ duration }} meses)",
-  "pack_move_confirm_discount_displayed": " durante {{ duration }} meses, depois",
-  "pack_move_confirm_new_offer_price_discount": "A sua nova assinatura mensal é de: <span class=\"text-price\">{{ priceDiscount }}</span> <span class=\"text-infos\">HT/mês durante {{duration}} meses depois</span> <span class=\"text-price\">{{ price }}</span> <span class=\"text-infos\">HT/mês</span>, aplicável a partir da entrega do seu novo acesso. Você será informado por e-mail.",
-  "pack_move_confirm_promotion": "Os custos de instalação da sua nova assinatura são oferecidos (exceto aluguer de modem, opções adicionais ou custos de transporte)."
+  "pack_move_confirm_discount_displayed": " durante {{ duration }} meses, e depois",
+  "pack_move_confirm_new_offer_price_discount": "A sua nova subscrição mensal ascende a: <span class=\"text-price\">{{ priceDiscount }}/</span><span class=\"text-infos\">mês + IVA durante {{duration}} meses, depois</span> <span class=\"text-price\">{{ price }}/</span><span class=\"text-infos\">mês + IVA</span>, aplicável a partir da data de entrega do novo acesso. Receberá uma notificação por e-mail.",
+  "pack_move_confirm_promotion": "As taxas de instalação da nova subscrição são gratuitas - exceto aluguer de modem, opções adicionais ou despesas de transporte."
 }

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-veeam-enterprise-app",
-  "version": "3.0.48",
+  "version": "3.0.49",
   "private": true,
   "description": "Veeam Enterprise standalone application.",
   "repository": {
@@ -19,7 +19,7 @@
     "@ovh-ux/manager-core": "^13.2.16",
     "@ovh-ux/manager-ng-layout-helpers": "^2.12.0",
     "@ovh-ux/manager-veeam-enterprise": "^1.13.2",
-    "@ovh-ux/ng-at-internet": "^6.0.31",
+    "@ovh-ux/ng-at-internet": "^6.0.32",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.18.2",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.1.6",

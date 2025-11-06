@@ -5,9 +5,9 @@
   "manager_billing_service_status_manual": "Manuelle Verlängerung",
   "manager_billing_service_status_manualPayment": "Manuelle Verlängerung",
   "manager_billing_service_status_pending_debt": "Zahlungsausfall",
-  "manager_billing_service_status_delete_at_expiration": "Geplante Kündigung",
+  "manager_billing_service_status_delete_at_expiration": "Kündigung geplant",
   "manager_billing_service_status_expired": "Gekündigt",
-  "manager_billing_service_status_billing_suspended": "Abrechnung verschoben",
-  "manager_billing_service_status_forced_manual": "Zwangsweise manuelle Verlängerung",
+  "manager_billing_service_status_billing_suspended": "Rechnungsstellung verschoben",
+  "manager_billing_service_status_forced_manual": "Manuelle Verlängerung",
   "manager_billing_service_status_restorable": "Wiederherstellbar"
 }

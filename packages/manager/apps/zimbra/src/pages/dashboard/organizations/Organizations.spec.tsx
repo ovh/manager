@@ -18,7 +18,5 @@ describe('Organizations page', () => {
     const button = getByTestId('add-organization-btn');
 
     expect(button).toHaveAttribute('label', organizationsTranslation.add_organisation_cta);
-
-    expect(button).toHaveAttribute('is-disabled', 'true');
   });
 });

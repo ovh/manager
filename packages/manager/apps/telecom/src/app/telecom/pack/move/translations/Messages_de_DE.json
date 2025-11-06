@@ -295,9 +295,9 @@
   "pack_move_confirm_temporary_pack_creation_line_2": "Dieses Paket wird automatisch gelöscht, sobald Ihre Fibre-Bestellung abgeschlossen ist.",
   "pack_move_confirm_temporary_pack_creation_line_3": "Es ist keine Änderung oder Löschung Ihrerseits erforderlich: der Wechsel zu Ihrem Fibre-Zugang erfolgt vollautomatisch.",
   "pack_move_phone_call_for_new_meeting": "Die Online-Terminbuchung ist nicht verfügbar. Sie werden telefonisch kontaktiert, um einen passenden Termin mit Ihnen zu vereinbaren.",
-  "pack_move_promotion_subscription_months_reduces": "-50 % für {{ duration }} Monate",
-  "pack_move_confirm_promotion_table": "Aktion ({{ duration }} Monate)",
-  "pack_move_confirm_discount_displayed": " für {{ duration }} Monate, dann",
-  "pack_move_confirm_new_offer_price_discount": "Ihr neues monatliches Abonnement beträgt: <span class=\"text-price\">{{ priceDiscount }}</span> <span class=\"text-infos\">zzgl. MwSt./Monat für {{duration}} Monate dann</span> <span class=\"text-price\">{{ price }}</span> <span class=\"text-infos\">zzgl. MwSt./Monat</span>, gültig ab Lieferung Ihres neuen Zugangs. Sie werden per E-Mail informiert.",
-  "pack_move_confirm_promotion": "Die Installationsgebühren für Ihr neues Abonnement entfallen (außer für die Modemvermietung, zusätzliche Optionen oder Transportkosten)."
+  "pack_move_promotion_subscription_months_reduces": "50 % Rabatt während {{ duration }} Monaten",
+  "pack_move_confirm_promotion_table": "Sonderangebot ({{ duration }} Monat)",
+  "pack_move_confirm_discount_displayed": " {{ duration }} Monat lang, dann",
+  "pack_move_confirm_new_offer_price_discount": "Ihr neues monatliches Abonnement beträgt: <span class=\"text-price\">{{ priceDiscount }}</span> <span class=\"text-infos\">inkl. MwSt./Monat für {{duration}} Monat und dann</span> <span class=\"text-price\">{{ price }}</span> <span class=\"text-infos\">inkl. MwSt./Monat</span>, anwendbar ab Bereitstellung des neuen Zugriffs. Hierüber werden Sie per E-Mail in Kenntnis gesetzt.",
+  "pack_move_confirm_promotion": "Die Einrichtungsgebühr für Ihr neues Abonnement wird geschenkt (Modemmieten, zusätzliche Optionen oder Transportkosten ausgenommen)."
 }

@@ -10,6 +10,8 @@ import 'element-internals-polyfill';
 import i18n from 'i18next';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import actionsCommonTranslation from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/actions/Messages_fr_FR.json';
 import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
 
 import accountTranslation from '@/public/translations/accounts/Messages_fr_FR.json';
@@ -52,6 +54,7 @@ await i18n.use(initReactI18next).init({
       'auto-replies': autoRepliesTranslation,
       'auto-replies/form': autoRepliesFormTranslation,
       onboarding: onboardingTranslation,
+      [NAMESPACES.ACTIONS]: actionsCommonTranslation,
     },
   },
   ns: ['dashboard'],

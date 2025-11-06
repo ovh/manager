@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -27,10 +27,13 @@ import {
 } from '@/tracking.constants';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 
+import { EmailAccountsExportCsv } from './EmailAccountsExportCsv.component';
+
 export const DatagridTopbar = () => {
   const { t } = useTranslation(['accounts', 'common']);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
+
   const { platformUrn } = usePlatform();
   const { accountsStatistics } = useAccountsStatistics();
 
@@ -125,6 +128,7 @@ export const DatagridTopbar = () => {
         iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.right}
         icon={ODS_ICON_NAME.externalLink}
       />
+      <EmailAccountsExportCsv />
     </div>
   );
 };

@@ -297,9 +297,9 @@
   "pack_move_confirm_temporary_pack_creation_line_2": "This pack will be automatically deleted once your Fiber order is finalized.",
   "pack_move_confirm_temporary_pack_creation_line_3": "No modification or deletion action is necessary on your part: the switch to your Fiber access will be fully automated.",
   "pack_move_phone_call_for_new_meeting": "Online appointment booking is not available. We will contact you via phone to arrange a convenient date and time slot for you.",
-  "pack_move_promotion_subscription_months_reduces": "-50% for {{ duration }} months",
-  "pack_move_confirm_promotion_table": "Promotion ({{ duration }} months)",
+  "pack_move_promotion_subscription_months_reduces": "50% off for {{ duration }} months",
+  "pack_move_confirm_promotion_table": "Special offer ({{ duration }} months)",
   "pack_move_confirm_discount_displayed": " for {{ duration }} months, then",
-  "pack_move_confirm_new_offer_price_discount": "Your new monthly subscription is: <span class=\"text-price\">{{ priceDiscount }}</span> <span class=\"text-infos\">excl. VAT/month for {{duration}} months then</span> <span class=\"text-price\">{{ price }}</span> <span class=\"text-infos\">excl. VAT/month</span>, applicable from the delivery of your new access. You will be informed by email.",
-  "pack_move_confirm_promotion": "The installation fees for your new subscription are waived (excluding modem rental, additional options, or transport fees)."
+  "pack_move_confirm_new_offer_price_discount": "Your new monthly subscription is: <span class=\"text-price\">{{ priceDiscount }}</span> <span class=\"text-infos\">ex. VAT/month for {{duration}} months, then</span> <span class=\"text-price\">{{ price }}</span> <span class=\"text-infos\">ex. VAT/month</span>, applicable as soon as your new access is delivered. You will receive confirmation via email.",
+  "pack_move_confirm_promotion": "The setup fees for your new subscription are free (excluding modem rental, additional options, or transportation)."
 }
