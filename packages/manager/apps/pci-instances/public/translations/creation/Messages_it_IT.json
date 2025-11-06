@@ -81,5 +81,11 @@
   "pci_instance_creation_select_sshKey_help_content_list": "Si basa su una coppia di chiavi: <ul><li>una chiave pubblica, registrata nel tuo account OVHcloud,</li><li>una chiave privata, conservata sul tuo computer e utilizzata per stabilire la connessione.</li></ul>",
   "pci_instance_creation_select_sshKey_help_goal": "Perché utilizzare una chiave SSH? <ul><li>Accesso sicuro alla tua istanza (connessione crittografata).</li><li>Nessuna immissione della password ad ogni accesso.</li><li>Compatibile con tutti i sistemi Linux e macOS (e Windows tramite WSL o PuTTY).</li></ul>",
   "pci_instance_creation_select_sshKey_help_how_to": "Come procedere <ol><li>Crea una coppia di chiavi SSH sul tuo computer locale (se non ne hai già una).</li><li>Aggiungi la tua chiave pubblica nel tuo spazio cliente OVHcloud. Puoi anche aggiungere direttamente questa chiave pubblica durante la creazione dell'istanza.</li><li>Seleziona questa chiave durante il deployment della tua istanza.</li><li>Una volta che l'istanza è stata distribuita, connettiti tramite SSH con la chiave privata corrispondente.</li></ol>",
-  "pci_instance_creation_select_sshKey_help_read_complete_guide": "Consulta la guida completa per creare e utilizzare una chiave SSH"
+  "pci_instance_creation_select_sshKey_help_read_complete_guide": "Consulta la guida completa per creare e utilizzare una chiave SSH",
+  "pci_instance_creation_select_sshKey_missing_warning": "Non hai una chiave SSH. Quindi non potrai connetterti al tuo server. Crea una chiave per accedere al tuo server.",
+  "pci_instance_creation_select_sshKey_add_name_label": "Nome della chiave SSH",
+  "pci_instance_creation_select_sshKey_add_key_label": "Inserisci la tua chiave SSH",
+  "pci_instance_creation_select_sshKey_add_key_description": "Le chiavi SSH accettate sono di tipo RSA, ECDSA e ED25519. La tua chiave SSH sarà disponibile in tutte le regioni e i data center di OVHcloud del tuo progetto.",
+  "pci_instance_creation_select_sshKey_add_key_submit_btn": "Conferma la chiave",
+  "pci_instance_creation_select_sshKey_add_new": "Crea una nuova chiave SSH"
 }

@@ -69,6 +69,8 @@ export const useForm = (projectId: string) => {
       ({ type }) => type === distributionImageTypeDefaultValue,
     )?.id ?? null;
 
+  const sshNameDefaultValue = null; // TODO: will be handle by a select view-models
+
   const formMethods = useReactHookForm({
     resolver: zodResolver(instanceCreationSchema),
     values: {
@@ -84,6 +86,7 @@ export const useForm = (projectId: string) => {
       availabilityZone: availabilityZoneDefaultValue,
       distributionImageType: distributionImageTypeDefaultValue,
       distributionImageName: distributionImageNameDefaultValue,
+      sshName: sshNameDefaultValue,
     },
     mode: 'onChange',
   });

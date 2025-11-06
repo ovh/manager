@@ -81,5 +81,11 @@
   "pci_instance_creation_select_sshKey_help_content_list": "Ela se baseia em um par de chaves: <ul><li>uma chave pública, registrada na sua conta OVHcloud,</li><li>uma chave privada, mantida no seu computador e usada para estabelecer a conexão.</li></ul>",
   "pci_instance_creation_select_sshKey_help_goal": "Por que usar uma chave SSH? <ul><li>Acesso seguro à sua instância (conexão criptografada).</li><li>Nenhuma entrada de senha a cada conexão.</li><li>Compatível com todos os sistemas Linux e macOS (e Windows via WSL ou PuTTY).</li></ul>",
   "pci_instance_creation_select_sshKey_help_how_to": "Como proceder <ol><li>Crie um par de chaves SSH no seu computador local (se ainda não tiver).</li><li>Adicione sua chave pública no seu espaço cliente OVHcloud. Você também pode adicionar essa chave pública diretamente durante a criação da instância.</li><li>Selecione essa chave ao implantar sua instância.</li><li>Uma vez que a instância esteja implantada, conecte-se via SSH com a chave privada correspondente.</li></ol>",
-  "pci_instance_creation_select_sshKey_help_read_complete_guide": "Consulte o guia completo para criar e usar uma chave SSH"
+  "pci_instance_creation_select_sshKey_help_read_complete_guide": "Consulte o guia completo para criar e usar uma chave SSH",
+  "pci_instance_creation_select_sshKey_missing_warning": "Você não tem uma chave SSH. Portanto, você não poderá se conectar ao seu servidor. Crie uma chave para acessar seu servidor.",
+  "pci_instance_creation_select_sshKey_add_name_label": "Nome da chave SSH",
+  "pci_instance_creation_select_sshKey_add_key_label": "Insira sua chave SSH",
+  "pci_instance_creation_select_sshKey_add_key_description": "As chaves SSH aceitas são do tipo RSA, ECDSA e ED25519. Sua chave SSH estará disponível em todas as regiões e datacenters da OVHcloud do seu projeto.",
+  "pci_instance_creation_select_sshKey_add_key_submit_btn": "Validar a chave",
+  "pci_instance_creation_select_sshKey_add_new": "Criar uma nova chave SSH"
 }

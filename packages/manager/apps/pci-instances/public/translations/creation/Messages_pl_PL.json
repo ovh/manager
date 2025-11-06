@@ -81,5 +81,11 @@
   "pci_instance_creation_select_sshKey_help_content_list": "Opiera się na parze kluczy: <ul><li>klucz publiczny, zarejestrowany w Twoim koncie OVHcloud,</li><li>klucz prywatny, przechowywany na Twoim komputerze i używany do nawiązania połączenia.</li></ul>",
   "pci_instance_creation_select_sshKey_help_goal": "Dlaczego warto używać klucza SSH? <ul><li>Bezpieczny dostęp do Twojej instancji (szyfrowane połączenie).</li><li>Brak potrzeby wprowadzania hasła przy każdym logowaniu.</li><li>Kompatybilny ze wszystkimi systemami Linux i macOS (oraz Windows za pomocą WSL lub PuTTY).</li></ul>",
   "pci_instance_creation_select_sshKey_help_how_to": "Jak to zrobić? <ol><li>Utwórz parę kluczy SSH na swoim lokalnym komputerze (jeśli jeszcze ich nie masz).</li><li>Dodaj swój klucz publiczny w swoim panelu klienta OVHcloud. Możesz również bezpośrednio dodać ten klucz publiczny podczas tworzenia instancji.</li><li>Wybierz ten klucz podczas wdrażania swojej instancji.</li><li>Po wdrożeniu instancji, połącz się przez SSH za pomocą odpowiadającego klucza prywatnego.</li></ol>",
-  "pci_instance_creation_select_sshKey_help_read_complete_guide": "Zapoznaj się z pełnym przewodnikiem, aby utworzyć i używać klucza SSH."
+  "pci_instance_creation_select_sshKey_help_read_complete_guide": "Zapoznaj się z pełnym przewodnikiem, aby utworzyć i używać klucza SSH.",
+  "pci_instance_creation_select_sshKey_missing_warning": "Nie masz klucza SSH. Nie będziesz mógł więc połączyć się z serwerem. Utwórz klucz, aby uzyskać dostęp do swojego serwera.",
+  "pci_instance_creation_select_sshKey_add_name_label": "Nazwa klucza SSH",
+  "pci_instance_creation_select_sshKey_add_key_label": "Wprowadź swój klucz SSH",
+  "pci_instance_creation_select_sshKey_add_key_description": "Akceptowane klucze SSH to RSA, ECDSA i ED25519. Twój klucz SSH będzie dostępny we wszystkich regionach i centrach danych OVHcloud w Twoim projekcie.",
+  "pci_instance_creation_select_sshKey_add_key_submit_btn": "Zatwierdź klucz",
+  "pci_instance_creation_select_sshKey_add_new": "Utwórz nowy klucz SSH"
 }
