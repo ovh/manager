@@ -12,11 +12,12 @@ import {
 import {
   getLogStreamUrlQueryKey,
   useLogStreamUrl,
-} from '../../data/hooks/useLogStreamUrl';
-import { LogSubscription } from '../../data/types/dbaas/logs';
-import ApiError from '../apiError/ApiError.component';
-import { LogsActionEnum } from '../../types/logsTracking';
-import useLogTrackingActions from '../../hooks/useLogTrackingActions';
+} from '@/data/hooks/useLogStreamUrl';
+import { LogSubscription } from '@/data/types/dbaas/logs';
+import ApiError from '@/components/apiError/ApiError.component';
+import { LogsActionEnum } from '@/types/logsTracking';
+import useLogTrackingActions from '@/hooks/useLogTrackingActions';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 type SubscriptionStreamItemProps = {
   subscription: LogSubscription;
@@ -27,8 +28,8 @@ const SubscriptionStreamActions = ({
 }: SubscriptionStreamItemProps) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { t } = useTranslation('logStream');
-  const { t: tSubscription } = useTranslation('logSubscription');
+  const { t } = useTranslation(NAMESPACES.LOG_STREAM);
+  const { t: tSubscription } = useTranslation(NAMESPACES.LOG_SUBSCRIPTION);
   const { data, isLoading, isPending, error } = useLogStreamUrl(
     subscription.serviceName,
     subscription.streamId,

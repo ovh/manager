@@ -1,4 +1,4 @@
-import { ApiUrls } from '../LogsToCustomer.props';
+import { ApiUrls } from '@/LogsToCustomer.props';
 
 export const apiUrlMocks: ApiUrls = {
   logKind: 'mock/log/kind',

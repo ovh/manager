@@ -1,5 +1,5 @@
-import { logServicesMock } from '../../data/mocks/logService.mock';
-import getServiceLabel from '../getServiceLabel';
+import { logServicesMock } from '@/__mocks__/logService.mock';
+import getServiceLabel from '@/helpers/getServiceLabel';
 
 describe('getServiceLabel tests', () => {
   it('should return serviceName if displayname is undefined', () => {

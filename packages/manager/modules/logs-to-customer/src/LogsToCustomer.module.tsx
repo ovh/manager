@@ -11,23 +11,17 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 
-import './translations/error';
-import './translations/logKind';
-import './translations/logService';
-import './translations/logSubscription';
-import './translations/logStream';
-import './translations/logStreams';
-import './translations/logTail';
-import { LogsContext } from './LogsToCustomer.context';
-import { ApiUrls, LogIamActions } from './LogsToCustomer.props';
-import ApiError from './components/apiError/ApiError.component';
-import { getLogKindsQueryKey, useLogKinds } from './data/hooks/useLogKinds';
-import { LogApiVersion } from './data/types/apiVersion';
-import { LogKind } from './data/types/dbaas/logs';
-import useLogTrackingActions from './hooks/useLogTrackingActions';
-import { ZoomedInOutProvider } from './hooks/useZoomedInOut';
-import { LogsActionEnum } from './types/logsTracking';
-import { LogsToCustomerRoutes } from './routes/routes';
+import { LogsContext } from '@/LogsToCustomer.context';
+import { ApiUrls, LogIamActions } from '@/LogsToCustomer.props';
+import ApiError from '@/components/apiError/ApiError.component';
+import { getLogKindsQueryKey, useLogKinds } from '@/data/hooks/useLogKinds';
+import { LogApiVersion } from '@/data/types/apiVersion';
+import { LogKind } from '@/data/types/dbaas/logs';
+import useLogTrackingActions from '@/hooks/useLogTrackingActions';
+import { ZoomedInOutProvider } from '@/hooks/useZoomedInOut';
+import { LogsActionEnum } from '@/types/logsTracking';
+import { LogsToCustomerRoutes } from '@/routes/routes';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 export interface ILogsToCustomerModule {
   logApiUrls: ApiUrls;
@@ -44,11 +38,11 @@ export function LogsToCustomerModule({
   logApiVersion,
   logIamActions,
   resourceURN,
-  trackingOptions,
-}: Readonly<ILogsToCustomerModule>) {
+  trackingOptions = undefined,
+}: ILogsToCustomerModule) {
   const queryClient = useQueryClient();
   const [currentLogKind, setCurrentLogKind] = useState<LogKind>();
-  const { t } = useTranslation('logKind');
+  const { t } = useTranslation(NAMESPACES.LOG_KIND);
   const { trackClick } = useOvhTracking();
   const selectKindLogsAccess = useLogTrackingActions(
     LogsActionEnum.select_kind_logs_access,

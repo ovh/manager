@@ -6,6 +6,7 @@ import {
   initI18n,
 } from '@ovh-ux/manager-react-shell-client';
 import '@ovh-ux/manager-react-components/dist/style.css';
+import '@ovh-ux/logs-to-customer/dist/style.css';
 import App from './App';
 import appConfig from '@/hpc-vmware-vsphere.config';
 import './vite-hmr';
