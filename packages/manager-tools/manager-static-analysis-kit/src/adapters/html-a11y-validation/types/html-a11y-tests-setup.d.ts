@@ -5,7 +5,6 @@
  * `@ovh-ux/manager-static-analysis-kit/tests/html-a11y-tests-setup`
  * in your test setup to register the matcher at runtime and include these types.
  */
-
 import 'vitest';
 
 /**

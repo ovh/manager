@@ -49,13 +49,4 @@ export default [
       'check-file/filename-naming-convention': 'off',
     },
   },
-  {
-    files: ['./scripts/**.ts'],
-    languageOptions: {
-      globals: {
-        global: 'readonly',
-      },
-      env: { node: true },
-    },
-  },
 ];
